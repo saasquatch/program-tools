@@ -31,7 +31,8 @@ fragment AllFlatRewardFields on FlatReward {
 `;
 
 export function generateSimpleRewardAndEmail({context, emailKey, rewardKey, mutations}){
-    var rewardId = context.body.ids.pop();
+    const rewardId = context.body.ids.pop();
+    const currentUser = context.body.activeTrigger.user;
     mutations.push({
       "type": "CREATE_REWARD",
       "data": {
