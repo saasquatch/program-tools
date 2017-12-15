@@ -1,0 +1,22 @@
+{
+  "name": "program-tools",
+  "version": "1.0.0",
+  "description": "Collection of tools and examples to help create program templates for the SaaSquatch platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saasquatch/program-tools.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saasquatch/program-tools/issues"
+  },
+  "homepage": "https://github.com/saasquatch/program-tools#readme",
+  "devDependencies": {
+    "lerna": "^2.5.1"
+  }
+}
