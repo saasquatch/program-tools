@@ -1,0 +1,6 @@
+{
+  "id": "saasquatchEmailTemplate",
+  "name": "SaaSquatch Email Template Editor",
+  "src": "http://localhost:3000/",
+  "fieldTypes": ["Object"]
+}
