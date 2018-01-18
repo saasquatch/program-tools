@@ -4,7 +4,8 @@
   "private": true,
   "main": "json-form-editor.js",
   "scripts":{
-    "deploy": "gulp bundle && contentful-extension update --srcdoc ./dist/index.min.html --force --space-id CONTENTFUL_SPACE_ID"
+    "create": "contentful-extension create --space-id $CONTENTFUL_SPACE_ID",
+    "deploy": "gulp bundle && contentful-extension update --srcdoc ./dist/index.min.html --force --space-id $CONTENTFUL_SPACE_ID"
   },
   "dependencies": {
     "contentful-ui-extensions-sdk": "^2.0.0",
