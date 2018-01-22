@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/vanilla-components",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Vanilla component library for the SaaSquatch platform",
   "files": [
     "dist/"
