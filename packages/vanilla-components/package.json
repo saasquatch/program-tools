@@ -1,11 +1,15 @@
 {
   "name": "@saasquatch/vanilla-components",
-  "private": true,
   "version": "0.0.1",
   "description": "Vanilla component library for the SaaSquatch platform",
+  "private": true,
+  "main": "dist/widget-components.js",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
   "files": [
     "dist/"
   ],
+  "browser": "dist/widget-components.js",
   "scripts": {
     "build": "stencil build --prerender",
     "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",
@@ -15,8 +19,7 @@
     "test.watch": "jest --watch --no-cache"
   },
   "dependencies": {
-    "@stencil/core": "next",
-    "@stencil/router": "latest"
+    "@stencil/core": "next"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",

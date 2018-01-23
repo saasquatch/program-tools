@@ -1,10 +1,9 @@
 exports.config = {
+  namespace: 'widget-components',
+  generateDistribution: true,
+  generateWWW: false,
   bundles: [
-    { components: ['my-app', 'app-home'] },
-    { components: ['app-profile'] }
-  ],
-  collections: [
-    { name: '@stencil/router' }
+    { components: ['my-app'] }
   ]
 };
 
