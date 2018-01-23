@@ -1,6 +1,6 @@
 {
-  "name": "json-form-editor",
-  "version": "1.0.0",
+  "name": "private-json-form-editor",
+  "version": "0.0.1",
   "private": true,
   "main": "json-form-editor.js",
   "scripts":{
