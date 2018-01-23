@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/vanilla-components-grapesjs",
-  "version": "1.0.0",
+  "version": "0.0.5",
   "description": "Describe vanilla-components-grapesjs here",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -15,8 +15,6 @@
     "test": "nwb test",
     "test:coverage": "nwb test --coverage",
     "test:watch": "nwb test --server"
-  },
-  "dependencies": {
   },
   "devDependencies": {
     "nwb": "0.21.x"

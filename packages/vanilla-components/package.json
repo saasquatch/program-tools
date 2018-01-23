@@ -1,8 +1,7 @@
 {
   "name": "@saasquatch/vanilla-components",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "Vanilla component library for the SaaSquatch platform",
-  "private": true,
   "main": "dist/widget-components.js",
   "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
