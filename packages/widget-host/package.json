@@ -22,5 +22,9 @@
   "author": "",
   "homepage": "",
   "license": "MIT",
-  "repository": ""
+  "repository": "",
+  "dependencies": {
+    "apollo-client": "^2.2.0",
+    "graphql": "^0.12.3"
+  }
 }

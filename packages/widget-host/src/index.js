@@ -1,3 +1,7 @@
+import ApolloClient from 'apollo-client';
+
+console.log(ApolloClient);
+
 const API = {
     version: 'Welcome to widget-host',
     analytics: {

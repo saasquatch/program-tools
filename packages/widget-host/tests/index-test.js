@@ -1,9 +1,11 @@
 import expect from 'expect'
-
-import message from 'src/index'
+import API from 'src/index'
 
 describe('Module template', () => {
-  it('displays a welcome message', () => {
-    expect(message).toContain('Welcome to widget-host')
-  })
+
+  it('gets user data', () => {
+    API.graphql.getCurrentUser().then((res) => {
+      console.log(res);
+    });
+  });
 })
