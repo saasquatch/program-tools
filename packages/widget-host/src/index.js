@@ -1,21 +1,24 @@
 const API = {
     version: 'Welcome to widget-host',
     analytics: {
-        shareEvent(){
-            return Promise.resolve({event:"shareEvent"});
+        shareEvent() {
+            return Promise.resolve({ event: "shareEvent" });
+        },
+        loadEvent() {
+            return Promise.resolve({ event: "loadEvent" });
         }
     },
     graphql: {
-        getCurrentUser(){
-            return Promise.resolve({user:"123"});
+        getCurrentUser() {
+            return Promise.resolve({ user: "321" });
         }
     },
     ui: {
-        open(){
+        open() {
             window.frameElement.squatchJsApi.open();
         },
-        close(){
-            window.frameElement.squatchJsApi.open();
+        close() {
+            window.frameElement.squatchJsApi.close();
         }
     }
 };

@@ -1,11 +1,28 @@
-import { Component } from '@stencil/core';
-
+import { Component, Prop, State } from '@stencil/core';
+import API from '@saasquatch/widget-host';
 
 @Component({
   tag: 'my-app',
   styleUrl: 'my-app.scss'
 })
 export class MyApp {
+
+  @Prop() user: string;
+  @State() id: string;
+
+  componentWillLoad() {
+    API.graphql.getCurrentUser().then((res) => {
+      this.id = res.user;
+    })
+  }
+
+  componentDidLoad() {
+    // API.analytics.loadEvent();
+  }
+
+  handleClick(event: UIEvent) {
+    API.ui.open();
+  }
 
   render() {
     return (
@@ -15,7 +32,9 @@ export class MyApp {
         </header>
 
         <main>
-          Text here
+          Hello {this.user} with id {this.id}
+
+          <button onClick={this.handleClick.bind(this)}>Click here!</button>
         </main>
       </div>
     );

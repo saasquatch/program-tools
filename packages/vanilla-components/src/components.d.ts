@@ -29,7 +29,7 @@ declare global {
   }
   namespace JSXElements {
     export interface MyAppAttributes extends HTMLAttributes {
-      
+      user?: string;
     }
   }
 }
