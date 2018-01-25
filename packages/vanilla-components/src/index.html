@@ -10,8 +10,8 @@
 
   <meta http-equiv="x-ua-compatible" content="IE=Edge"/>
 
-  <!-- <script src="https://unpkg.com/@saasquatch/widget-host@0.0.6/umd/@saasquatch/widget-host.js"></script> -->
-  <script src="../dist/widget-components.js"></script>
+  <script src="https://unpkg.com/@saasquatch/widget-host@0.0.7-alpha.1/umd/@saasquatch/widget-host.js"></script>
+  <script src="./build/widget-components.js"></script>
 
 
   <link rel="apple-touch-icon" href="/assets/icon/icon.png">
@@ -29,5 +29,15 @@
       font-family: sans-serif;
     }
   </style>
+
+  <script>
+    if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+      // auto-unregister service worker during dev mode
+      navigator.serviceWorker.ready.then(function(registration) {
+        registration.unregister().then(function() { location.reload(true) });
+      });
+    }
+  </script>
+
 </body>
 </html>

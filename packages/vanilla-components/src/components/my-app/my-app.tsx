@@ -1,5 +1,16 @@
+interface MyAPI{
+  ui: {
+    open: () => any
+  }
+  analytics: {
+    loadEvent():String
+  }
+  graphql: {
+    getCurrentUser():Promise<any>
+  }
+}
+const API:MyAPI = window['WidgetHost'];
 import { Component, Prop, State } from '@stencil/core';
-import API from '@saasquatch/widget-host';
 
 @Component({
   tag: 'my-app',
@@ -11,13 +22,17 @@ export class MyApp {
   @State() id: string;
 
   componentWillLoad() {
-    API.graphql.getCurrentUser().then((res) => {
-      this.id = res.user;
-    })
+    if(API) {
+      API.graphql.getCurrentUser().then((res) => {
+        this.id = res.data.feed[0].repository.full_name;
+      });
+    }
   }
 
   componentDidLoad() {
-    // API.analytics.loadEvent();
+    if (API) {
+      API.analytics.loadEvent();
+    }
   }
 
   handleClick(event: UIEvent) {
@@ -32,7 +47,7 @@ export class MyApp {
         </header>
 
         <main>
-          Hello {this.user} with id {this.id}
+          {this.user} is a contributor in repository {this.id}
 
           <button onClick={this.handleClick.bind(this)}>Click here!</button>
         </main>
