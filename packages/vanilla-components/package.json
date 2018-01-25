@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/vanilla-components",
-  "version": "0.0.6-alpha.1",
+  "version": "0.0.6-alpha.2",
   "description": "Vanilla component library for the SaaSquatch platform",
   "main": "dist/widget-components.js",
   "types": "dist/types/components.d.ts",
@@ -18,7 +18,7 @@
     "test.watch": "jest --watch --no-cache"
   },
   "dependencies": {
-    "@saasquatch/widget-host": "^0.0.7-alpha.1",
+    "@saasquatch/widget-host": "^0.0.7-alpha.2",
     "@stencil/core": "next"
   },
   "devDependencies": {
