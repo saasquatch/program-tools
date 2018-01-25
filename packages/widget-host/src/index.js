@@ -17,7 +17,7 @@ const API = {
     graphql: {
         getCurrentUser() {
           const client = new ApolloClient({
-            link: new HttpLink({ uri: 'http://api.githunt.com/graphql' }),
+            link: new HttpLink({ uri: 'https://api.githunt.com/graphql' }),
             cache: new InMemoryCache()
           });
 

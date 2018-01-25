@@ -34,3 +34,35 @@ declare global {
   }
 }
 
+
+import {
+  TextComponent as TextComponent
+} from './components/text-component/text-component';
+
+declare global {
+  interface HTMLTextComponentElement extends TextComponent, HTMLElement {
+  }
+  var HTMLTextComponentElement: {
+    prototype: HTMLTextComponentElement;
+    new (): HTMLTextComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    "text-component": HTMLTextComponentElement;
+  }
+  interface ElementTagNameMap {
+    "text-component": HTMLTextComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "text-component": JSXElements.TextComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface TextComponentAttributes extends HTMLAttributes {
+      fontSize?: string;
+      text?: string;
+      textAlign?: string;
+    }
+  }
+}
+
