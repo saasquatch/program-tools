@@ -1,6 +1,9 @@
+import { Component, Prop, State } from '@stencil/core';
+
 interface MyAPI{
   ui: {
-    open: () => any
+    open(): any
+    close():any
   }
   analytics: {
     loadEvent():String
@@ -10,7 +13,22 @@ interface MyAPI{
   }
 }
 const API:MyAPI = window['WidgetHost'];
-import { Component, Prop, State } from '@stencil/core';
+
+interface Referral{
+  id: string
+}
+
+const demoData:Referral[] = [
+  {
+    id: "foo"
+  },
+  {
+    id: "bar"
+  },
+  {
+    id: "baz"
+  }
+]
 
 @Component({
   tag: 'my-app',
@@ -18,14 +36,19 @@ import { Component, Prop, State } from '@stencil/core';
 })
 export class MyApp {
 
-  @Prop() user: string;
-  @State() id: string;
+  @Prop() emptyText: string;
+  @State() referrals: Referral[];
+  @State() loading: boolean;
 
   componentWillLoad() {
     if(API) {
+      this.loading = true;
       API.graphql.getCurrentUser().then((res) => {
-        this.id = res.data.feed[0].repository.full_name;
+        this.referrals = res.data.feed[0].repository.full_name;
+        this.loading = false;
       });
+    }else{
+      this.referrals = demoData;
     }
   }
 
@@ -36,21 +59,18 @@ export class MyApp {
   }
 
   handleClick(event: UIEvent) {
-    API.ui.open();
+    API.ui.close();
   }
 
   render() {
     return (
       <div>
-        <header>
-          <h1>Stencil App Starter</h1>
-        </header>
-
-        <main>
-          {this.user} is a contributor in repository {this.id}
-
-          <button onClick={this.handleClick.bind(this)}>Click here!</button>
-        </main>
+        <h1>Referral List</h1>
+        {this.referrals.map( r =>{
+          return <div>
+              Referral: {r.id}
+          </div>
+        })}
       </div>
     );
   }

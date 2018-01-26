@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "build": "nwb build-web-module",
+    "build:watch": "nodemon -w src --exec \"npm run build\"",
     "clean": "nwb clean-module",
     "test": "nwb test",
     "test:coverage": "nwb test --coverage",

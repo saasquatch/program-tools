@@ -34,8 +34,41 @@ const API = {
                 }
               }
             `
-          })
+          });
+        },
+        getRewardBalances() {
+          const host = window.HOST ? window.HOST : 'https://staging.referralsaasquatch.com';
+          const tenant = window.TENANT ? window.TENANT : "TODO";
+          const uri = `${host}/api/v1/${tenant}/graphql`;
+          
+          const userId = "TODO";
+          const accountId = "TODO";
+          const token = "TODO";
+          
+          const client = new ApolloClient({
+            link: new HttpLink({ uri }),
+            cache: new InMemoryCache()
+          });
+
+          return client.query({
+            query: gql`
+              query($userId: String!, $accountId) {
+                user()
+              }
+            `,
+            variables:{
+              userId,
+              accountId
+            },
+            context: {
+              // example of setting the headers with context per operation
+              headers: {
+                'x-saasquatch-token': token
+              }
+            }
+          });
         }
+
     },
     ui: {
         open() {

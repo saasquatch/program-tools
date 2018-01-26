@@ -29,6 +29,36 @@ declare global {
   }
   namespace JSXElements {
     export interface MyAppAttributes extends HTMLAttributes {
+      emptyText?: string;
+    }
+  }
+}
+
+
+import {
+  ReferralList as ReferralList
+} from './components/referral-list/referral-list';
+
+declare global {
+  interface HTMLReferralListElement extends ReferralList, HTMLElement {
+  }
+  var HTMLReferralListElement: {
+    prototype: HTMLReferralListElement;
+    new (): HTMLReferralListElement;
+  };
+  interface HTMLElementTagNameMap {
+    "referral-list": HTMLReferralListElement;
+  }
+  interface ElementTagNameMap {
+    "referral-list": HTMLReferralListElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "referral-list": JSXElements.ReferralListAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface ReferralListAttributes extends HTMLAttributes {
       user?: string;
     }
   }
@@ -66,3 +96,4 @@ declare global {
   }
 }
 
+declare global { namespace JSX { interface StencilJSX {} } }
