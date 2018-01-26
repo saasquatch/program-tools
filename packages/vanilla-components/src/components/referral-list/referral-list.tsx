@@ -1,4 +1,5 @@
 import { Component, Prop, State } from '@stencil/core';
+import faker from 'faker';
 
 interface MyAPI{
   ui: {
@@ -14,21 +15,53 @@ interface MyAPI{
 }
 const API:MyAPI = window['WidgetHost'];
 
+interface Referral{
+  id: string
+}
+const b = faker;
+const demoData = [{
+  id: "baz"
+},{
+  id: "bar"
+}]
+
 @Component({
   tag: 'referral-list',
   styleUrl: 'referral-list.scss'
 })
 export class ReferralList {
 
-  @Prop() user: string;
-  @State() id: string;
+  @Prop() emptyText: string;
+  @State() referrals: Referral[] = demoData;
+  @State() loading: boolean;
 
-  componentWillLoad() {
+  constructor(){
     if(API) {
+      this.loading = true;
       API.graphql.getCurrentUser().then((res) => {
-        this.id = res.data.feed[0].repository.full_name;
+        // this.referrals = res.data.feed[0].repository.full_name;
+        this.referrals = [
+          {
+            id: "fromServer"
+          },
+          {
+            id: "fromServer2"
+          },
+          {
+            id: "fromServer3"
+          }          
+        ]
+        this.loading = false;
+      }).catch(e=>{
+        console.log("Error loading via GraphQL.", e);
+        this.loading = false;
       });
+    }else{
+      this.referrals = demoData;
     }
+  }
+  componentWillLoad() {
+
   }
 
   componentDidLoad() {
@@ -42,17 +75,31 @@ export class ReferralList {
   }
 
   render() {
+    let content;
+    if(this.loading){
+      content = "Loading..."
+    }else{
+      content = <div>
+      {this.referrals.map( r =>{
+        return <div class="referral-row">
+            <img src={faker.internet.avatar()} style={{float:"left"}}/>
+            <div>
+            {faker.name.findName()} <br/>
+            <span style={{color: "grey"}}>{faker.internet.email()} </span>
+              </div>
+            ID: <code>{r.id}</code>
+        </div>
+      })}
+      </div>
+    }
     return (
       <div>
-        <header>
-          <h1>Stencil App Starter</h1>
-        </header>
-
-        <main>
-          {this.user} is a contributor in repository {this.id}
-
-          <button onClick={this.handleClick.bind(this)}>Close popup!</button>
-        </main>
+        <h1>Referral Data</h1>
+        <pre>
+        Referrals: {JSON.stringify(this.referrals,null,2)}
+        </pre>
+        <h1>Referral List</h1>
+        {content}
       </div>
     );
   }

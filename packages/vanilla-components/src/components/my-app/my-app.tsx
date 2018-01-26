@@ -14,41 +14,20 @@ interface MyAPI{
 }
 const API:MyAPI = window['WidgetHost'];
 
-interface Referral{
-  id: string
-}
-
-const demoData:Referral[] = [
-  {
-    id: "foo"
-  },
-  {
-    id: "bar"
-  },
-  {
-    id: "baz"
-  }
-]
-
 @Component({
   tag: 'my-app',
   styleUrl: 'my-app.scss'
 })
 export class MyApp {
 
-  @Prop() emptyText: string;
-  @State() referrals: Referral[];
-  @State() loading: boolean;
+  @Prop() user: string;
+  @State() id: string;
 
   componentWillLoad() {
     if(API) {
-      this.loading = true;
       API.graphql.getCurrentUser().then((res) => {
-        this.referrals = res.data.feed[0].repository.full_name;
-        this.loading = false;
+        this.id = res.data.feed[0].repository.full_name;
       });
-    }else{
-      this.referrals = demoData;
     }
   }
 
@@ -65,12 +44,15 @@ export class MyApp {
   render() {
     return (
       <div>
-        <h1>Referral List</h1>
-        {this.referrals.map( r =>{
-          return <div>
-              Referral: {r.id}
-          </div>
-        })}
+        <header>
+          <h1>Stencil App Starter</h1>
+        </header>
+
+        <main>
+          {this.user} is a contributor in repository {this.id}
+
+          <button onClick={this.handleClick.bind(this)}>Close popup!</button>
+        </main>
       </div>
     );
   }

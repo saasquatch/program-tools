@@ -29,7 +29,7 @@ declare global {
   }
   namespace JSXElements {
     export interface MyAppAttributes extends HTMLAttributes {
-      emptyText?: string;
+      user?: string;
     }
   }
 }
@@ -59,7 +59,7 @@ declare global {
   }
   namespace JSXElements {
     export interface ReferralListAttributes extends HTMLAttributes {
-      user?: string;
+      emptyText?: string;
     }
   }
 }

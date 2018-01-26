@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/widget-host",
-  "version": "0.0.7-alpha.4",
+  "version": "0.0.6-alpha.5",
   "description": "Host javascript for SaaSquatch Widgets. The other part of the pair with Squatch.js",
   "main": "lib/index.js",
   "module": "es/index.js",
