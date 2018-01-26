@@ -19,7 +19,9 @@
     "test.watch": "jest --watch --no-cache"
   },
   "dependencies": {
-    "@stencil/core": "next"
+    "@stencil/core": "next",
+    "@types/faker": "^4.1.2",
+    "faker": "^4.1.0"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",
