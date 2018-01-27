@@ -1,17 +1,5 @@
 import { Component, Prop, State } from '@stencil/core';
 
-interface MyAPI{
-  ui: {
-    open(): any
-    close():any
-  }
-  analytics: {
-    loadEvent():String
-  }
-  graphql: {
-    getCurrentUser():Promise<any>
-  }
-}
 const API:MyAPI = window['WidgetHost'];
 
 @Component({

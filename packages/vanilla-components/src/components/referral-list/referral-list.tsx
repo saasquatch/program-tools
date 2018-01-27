@@ -1,68 +1,62 @@
-import { Component, Prop, State } from '@stencil/core';
-import faker from 'faker';
+import { Component, Prop, State } from "@stencil/core";
+import faker from "faker";
 
-interface MyAPI{
-  ui: {
-    open(): any
-    close():any
-  }
-  analytics: {
-    loadEvent():String
-  }
-  graphql: {
-    getCurrentUser():Promise<any>
-  }
-}
-const API:MyAPI = window['WidgetHost'];
+const API: MyAPI = window["WidgetHost"];
 
-interface Referral{
-  id: string
+const demoData: Referral[] = [1, 2, 3, 4, 5, 6].map(generateFakeReferral);
+
+function generateFakeReferral(): Referral {
+  return {
+    id: faker.random.uuid(),
+    dateReferralStarted: faker.random.number(),
+    dateReferralPaid: faker.random.number(),
+    dateReferralEnded: faker.random.number(),
+    moderationStatus: faker.random.word(),
+    referredUser: {
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName() + " Demo"
+    }
+  };
 }
-const b = faker;
-const demoData = [{
-  id: "baz"
-},{
-  id: "bar"
-}]
 
 @Component({
-  tag: 'referral-list',
-  styleUrl: 'referral-list.scss'
+  tag: "referral-list",
+  styleUrl: "referral-list.scss"
 })
 export class ReferralList {
-
   @Prop() emptyText: string;
   @State() referrals: Referral[] = demoData;
   @State() loading: boolean;
 
-  constructor(){
-    if(API) {
+  constructor() {
+    if (API) {
       this.loading = true;
-      API.graphql.getCurrentUser().then((res) => {
-        // this.referrals = res.data.feed[0].repository.full_name;
-        this.referrals = [
-          {
-            id: "fromServer"
-          },
-          {
-            id: "fromServer2"
-          },
-          {
-            id: "fromServer3"
-          }          
-        ]
-        this.loading = false;
-      }).catch(e=>{
-        console.log("Error loading via GraphQL.", e);
-        this.loading = false;
-      });
-    }else{
+      API.graphql
+        .getCurrentUser()
+        .then(res => {
+          try {
+            // this.referrals = res.data.feed[0].repository.full_name;
+            if (!(res.data instanceof Array)) throw new Error();
+            this.referrals = res.data;
+            this.loading = false;
+          } catch (e) {
+            this.onError(e);
+          }
+        })
+        .catch(e => {
+          this.onError(e);
+        });
+    } else {
       this.referrals = demoData;
     }
   }
-  componentWillLoad() {
-
+  onError(e: Error) {
+    console.log("Error loading via GraphQL.", e);
+    this.referrals = demoData;
+    this.loading = false;
   }
+
+  componentWillLoad() {}
 
   componentDidLoad() {
     if (API) {
@@ -76,30 +70,36 @@ export class ReferralList {
 
   render() {
     let content;
-    if(this.loading){
-      content = "Loading..."
-    }else{
-      content = <div>
-      {this.referrals.map( r =>{
-        return <div class="referral-row">
-            <img src={faker.internet.avatar()} style={{float:"left"}}/>
-            <div>
-            {faker.name.findName()} <br/>
-            <span style={{color: "grey"}}>{faker.internet.email()} </span>
+    if (this.loading) {
+      content = "Loading...";
+    } else {
+      content = (
+        <div>
+          {this.referrals.map(r => {
+            return (
+              <div class="referral-row">
+                <img src={faker.internet.avatar()} style={{ float: "left", margin: "0 10px", height:"50px" }} />
+                <div>
+                  <b>Name:</b> {r.referredUser.firstName}{" "}{r.referredUser.lastName} <br />
+                  <b>Email:</b> <span style={{ color: "grey" }}>
+                    {faker.internet.email()}{" "}
+                  </span><br/>
+                  <b>ModerationStatus:</b> {r.moderationStatus} <br/>
+                  <b>ID:</b> <code>{r.id}</code>
+                </div>
               </div>
-            ID: <code>{r.id}</code>
+            );
+          })}
         </div>
-      })}
-      </div>
+      );
     }
     return (
       <div>
-        <h1>Referral Data</h1>
-        <pre>
-        Referrals: {JSON.stringify(this.referrals,null,2)}
-        </pre>
         <h1>Referral List</h1>
         {content}
+        <h1>Referral Data</h1>
+
+        <pre>{JSON.stringify(this.referrals, null, 2)}</pre>
       </div>
     );
   }
