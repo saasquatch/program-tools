@@ -32,12 +32,12 @@ export class ReferralList {
     if (API) {
       this.loading = true;
       API.graphql
-        .getCurrentUser()
+        .getReferrals()
         .then(res => {
           try {
             // this.referrals = res.data.feed[0].repository.full_name;
-            if (!(res.data instanceof Array)) throw new Error();
-            this.referrals = res.data;
+            this.referrals = res.data.user.referrals.data;
+            if (!(this.referrals instanceof Array)) throw new Error("Didn't get a referral list from GraphQL");
             this.loading = false;
           } catch (e) {
             this.onError(e);
