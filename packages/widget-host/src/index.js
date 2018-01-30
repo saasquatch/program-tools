@@ -81,7 +81,7 @@ const API = {
     },
 
     getReferrals(offset = 0) {
-      return getUserFragment(gql`
+      return this.getUserFragment(`
           referrals(limit: 10, offset: $offset) {
             count
             totalCount

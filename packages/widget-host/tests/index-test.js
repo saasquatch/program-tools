@@ -15,4 +15,14 @@ describe('Module template', () => {
       console.log(res);
     });
   });
+
+  /* it('gets referals', async function () {
+    const response = await API.graphql.getReferrals().then((res) => {
+      return res;
+    }).catch((err) => {
+      console.error("ERROR ", err.message);
+    });
+    console.log("GRAPHQL RESPONSE? ", JSON.stringify(response.data));
+  }); */
+
 })
