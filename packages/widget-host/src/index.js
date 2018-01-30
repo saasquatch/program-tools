@@ -87,7 +87,9 @@ const API = {
         ,
         variables,
         context: {
-          'X-SaaSquatch-User-Token' : token
+          headers: {
+            'X-SaaSquatch-User-Token' : token
+          }
         }
       })
 

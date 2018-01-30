@@ -8,16 +8,19 @@ interface MyAPI{
     }
     graphql: {
       getCurrentUser():Promise<any>
-      getReferrals(offset:number | null):Promise<UserPayload>
+      getReferrals(offset:number):Promise<UserPayload>
+      getReferrals():Promise<UserPayload>
     }
   }
   
   interface UserPayload{
-    user:{
-      referrals:{
-        count: number
-        totalCount: number
-        data:Referral[]
+    data:{
+      user:{
+        referrals:{
+          count: number
+          totalCount: number
+          data:Referral[]
+        }
       }
     }
   }
