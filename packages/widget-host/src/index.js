@@ -36,7 +36,8 @@ const API = {
             `
       });
     },
-    getReferrals(offset = 0) {
+
+    getUserFragment(userFragment, fragmentVariables) {
       const tenantAlias = window.frameElement.squatchJsApi.widgetApi.tenantAlias;
       const domain = window.frameElement.squatchJsApi.widgetApi.domain;
       const uri = domain + "/api/v1/" + tenantAlias + "/graphql";
@@ -49,83 +50,68 @@ const API = {
         cache: new InMemoryCache()
       });
 
+      const fragment = gql`
+          fragment UserFragment on User {
+            ${userFragment}
+          }`
+
       const variables = {
-        offset,
+        ... fragmentVariables,
         userId : demo.userId,
         accountId : demo.accountId
       }
 
       return client.query({
         query: gql`
-              query ($userId: String!, $accountId: String!, $offset: Int!) {
-                user(id: $userId, accountId: $accountId) {
-                  referrals(limit: 10, offset: $offset) {
-                    count
-                    totalCount
-                    data {
-                      id
-                      dateReferralStarted
-                      dateReferralPaid
-                      dateReferralEnded
-                      referrerReward {
-                        type
-                        value
-                        unit
-                        name
-                      }
-                      moderationStatus
-                      referredUser {
-                        firstName
-                        lastName
-                        imageUrl
-                      }
-                    }
-                  }
-                  rewardBalances
-                }
-              }`
-        ,
-        variables,
-        context: {
-          headers: {
-            'X-SaaSquatch-User-Token' : token
+            query ($userId: String!, $accountId: String!, $offset: Int!) {
+              user(id: $userId, accountId: $accountId) {
+                ... UserFragment
+              }
+            }
+            ${fragment}
+          `
+          ,
+          variables,
+          context: {
+            headers: {
+              'X-SaaSquatch-User-Token' : token
+            }
           }
-        }
       })
+    },
 
+    getReferrals(offset = 0) {
+      return getUserFragment(gql`
+          referrals(limit: 10, offset: $offset) {
+            count
+            totalCount
+            data {
+              id
+              dateReferralStarted
+              dateReferralPaid
+              dateReferralEnded
+              referrerReward {
+                type
+                value
+                unit
+                name
+              }
+              moderationStatus
+              referredUser {
+                firstName
+                lastName
+                imageUrl
+              }
+            }
+          }
+          rewardBalances
+      `, { offset });
     },
 
     getRewardBalances() {
-      const host = window.HOST ? window.HOST : 'https://staging.referralsaasquatch.com';
-      const tenant = window.TENANT ? window.TENANT : "TODO";
-      const uri = `${host}/api/v1/${tenant}/graphql`;
-
-      const userId = "TODO";
-      const accountId = "TODO";
-      const token = "TODO";
-
-      const client = new ApolloClient({
-        link: new HttpLink({ uri }),
-        cache: new InMemoryCache()
-      });
-
-      return client.query({
-        query: gql`
-              query($userId: String!, $accountId) {
-                user()
-              }
-            `,
-        variables: {
-          userId,
-          accountId
-        },
-        context: {
-          // example of setting the headers with context per operation
-          headers: {
-            'x-saasquatch-token': token
-          }
-        }
-      });
+      return getUserFragment(gql`
+        rewardBalances
+      `);
     }
 
   },
