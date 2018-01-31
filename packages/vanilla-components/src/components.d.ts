@@ -96,6 +96,37 @@ declare global {
 
 
 import {
+  SocialShareButton as SocialShareButton
+} from './components/social-share-button/social-share-button';
+
+declare global {
+  interface HTMLSocialShareButtonElement extends SocialShareButton, HTMLElement {
+  }
+  var HTMLSocialShareButtonElement: {
+    prototype: HTMLSocialShareButtonElement;
+    new (): HTMLSocialShareButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    "social-share-button": HTMLSocialShareButtonElement;
+  }
+  interface ElementTagNameMap {
+    "social-share-button": HTMLSocialShareButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "social-share-button": JSXElements.SocialShareButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SocialShareButtonAttributes extends HTMLAttributes {
+      social?: string;
+      text?: string;
+    }
+  }
+}
+
+
+import {
   TextComponent as TextComponent
 } from './components/text-component/text-component';
 
@@ -126,3 +157,4 @@ declare global {
   }
 }
 
+declare global { namespace JSX { interface StencilJSX {} } }
