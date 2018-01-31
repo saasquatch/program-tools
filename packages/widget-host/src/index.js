@@ -37,19 +37,21 @@ const API = {
       });
     },
 
-    getUserFragment(userFragment, fragmentVariables) {
-      const tenantAlias = window.frameElement.squatchJsApi.widgetApi.tenantAlias;
-      const domain = window.frameElement.squatchJsApi.widgetApi.domain;
+    getClient(){
+      const tenantAlias = window.widgetIdent.tenantAlias;
+      const domain = window.widgetIdent.domain;
       const uri = domain + "/api/v1/" + tenantAlias + "/graphql";
-
-      const demo = window.parent.demo; // TODO currently only test app, but this should be made accessible via squatch-js
-      const token = demo.token;
-
+      const headers = {
+        'Authorization' : `Bearer ${window.widgetIdent.token}`
+      }
       const client = new ApolloClient({
-        link: new HttpLink({ uri }),
+        link: new HttpLink({ uri, headers }),
         cache: new InMemoryCache()
       });
+      return client;
+    },
 
+    getUserFragment(userFragment, fragmentVariables) {
       const fragment = gql`
           fragment UserFragment on User {
             ${userFragment}
@@ -57,13 +59,13 @@ const API = {
 
       const variables = {
         ... fragmentVariables,
-        userId : demo.userId,
-        accountId : demo.accountId
+        userId : window.widgetIdent.userId,
+        accountId : window.widgetIdent.accountId
       }
 
-      return client.query({
+      return this.getClient().query({
         query: gql`
-            query ($userId: String!, $accountId: String!, $offset: Int!) {
+            query ($userId:String!, $accountId:String!, $offset: Int!) {
               user(id: $userId, accountId: $accountId) {
                 ... UserFragment
               }
@@ -71,12 +73,7 @@ const API = {
             ${fragment}
           `
           ,
-          variables,
-          context: {
-            headers: {
-              'X-SaaSquatch-User-Token' : token
-            }
-          }
+          variables
       })
     },
 
