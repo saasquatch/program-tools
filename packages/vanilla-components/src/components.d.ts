@@ -6,6 +6,36 @@
 
 
 import {
+  CopyLinkButton as CopyLinkButton
+} from './components/copy-link-button/copy-link-button';
+
+declare global {
+  interface HTMLCopyLinkButtonElement extends CopyLinkButton, HTMLElement {
+  }
+  var HTMLCopyLinkButtonElement: {
+    prototype: HTMLCopyLinkButtonElement;
+    new (): HTMLCopyLinkButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    "copy-link-button": HTMLCopyLinkButtonElement;
+  }
+  interface ElementTagNameMap {
+    "copy-link-button": HTMLCopyLinkButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "copy-link-button": JSXElements.CopyLinkButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface CopyLinkButtonAttributes extends HTMLAttributes {
+      shareLink?: string;
+    }
+  }
+}
+
+
+import {
   MyApp as MyApp
 } from './components/my-app/my-app';
 
@@ -96,4 +126,3 @@ declare global {
   }
 }
 
-declare global { namespace JSX { interface StencilJSX {} } }
