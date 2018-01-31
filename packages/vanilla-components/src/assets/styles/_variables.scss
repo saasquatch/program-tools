@@ -1,3 +1,84 @@
+// Colors
+$black:                   #000;
+$gray-darker:             #444;
+$gray-dark:               #5b6165;
+$gray:                    #9a9999;
+$gray-light:              #a9a9a9;
+$gray-lighter:            #ddd;
+$gray-lightest:           #f2f2f2;
+$white:                   #fff;
+
+$blue:                    #4486e1;
+$green:                   #35b21e;
+$yellow:                  #f2ae43;
+
+$facebook-blue:           #234079;
+$twitter-blue:            #4797d2;
+$messenger-blue:          #0084ff;
+$sms-green:               #7bbf38;
+$whatsapp-green:          #25D366;
+
+// Typography
+$font-size-h1:            30px;
+$font-size-h2:            14px;
+$font-size-xl:            22px;
+$font-size-large:         16px;
+$font-size-lg:            $font-size-large;
+$font-size-small:         13px;
+$font-size-sm:            $font-size-small;
+$font-size-xs:            12px;
+
+// Border radius
+$border-radius-base:      4px;
+
+// Buttons
+$label-default-bg:        lighten($gray-dark, 10%);
+
+// Theme layout
+$container-width:         500px;
+$grid-gutter-width:       10px;
+$body-padding:            30px;
+$body-padding-sm:         20px;
+
+// Theme components
+$btn-primary-color:       #fff;
+$btn-primary-bg:          $gray-dark;
+$btn-primary-border:      $gray-dark;
+
+$btn-email-color:         #fff;
+$btn-email-bg:            darken($gray-dark, 15%);
+$btn-email-border:        darken($gray-dark, 15%);
+
+$btn-facebook-color:      #fff;
+$btn-facebook-bg:         $facebook-blue;
+$btn-facebook-border:     $facebook-blue;
+
+$btn-twitter-color:       #fff;
+$btn-twitter-bg:          $twitter-blue;
+$btn-twitter-border:      $twitter-blue;
+
+$btn-messenger-color:     #fff;
+$btn-messenger-bg:        $messenger-blue;
+$btn-messenger-border:    $messenger-blue;
+
+$btn-sms-color:           #fff;
+$btn-sms-bg:              $sms-green;
+$btn-sms-border:          $sms-green;
+
+$btn-whatsapp-color:      #fff;
+$btn-whatsapp-bg:         $whatsapp-green;
+$btn-whatsapp-border:     $whatsapp-green;
+
+$screen-sm:               0px;
+$screen-sm-min:           $screen-sm;
+
+$screen-md:               $container-width;
+$screen-md-min:           $screen-md;
+
+$screen-sm-max:           ($screen-md-min - 1);
+$screen-md-max:           99999px;
+
+
 $input-border:        #ccc;
 $text-color:          #5b6165;
 $border-radius-base:  4px;

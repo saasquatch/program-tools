@@ -127,6 +127,36 @@ declare global {
 
 
 import {
+  StatsComponent as StatsComponent
+} from './components/stats-component/stats-component';
+
+declare global {
+  interface HTMLStatsComponentElement extends StatsComponent, HTMLElement {
+  }
+  var HTMLStatsComponentElement: {
+    prototype: HTMLStatsComponentElement;
+    new (): HTMLStatsComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    "stats-component": HTMLStatsComponentElement;
+  }
+  interface ElementTagNameMap {
+    "stats-component": HTMLStatsComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "stats-component": JSXElements.StatsComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface StatsComponentAttributes extends HTMLAttributes {
+      text?: string;
+    }
+  }
+}
+
+
+import {
   TextComponent as TextComponent
 } from './components/text-component/text-component';
 

@@ -16,7 +16,7 @@ describe('Module template', () => {
     });
   });
 
-  /* it('gets referals', async function () {
+  /*it('gets referals', async function () {
     const response = await API.graphql.getReferrals().then((res) => {
       return res;
     }).catch((err) => {
