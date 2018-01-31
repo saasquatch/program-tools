@@ -39,7 +39,7 @@ const API = {
 
     getClient(){
       const tenantAlias = window.widgetIdent.tenantAlias;
-      const domain = window.widgetIdent.domain;
+      const domain = window.widgetIdent.appDomain;
       const uri = domain + "/api/v1/" + tenantAlias + "/graphql";
       const headers = {
         'Authorization' : `Bearer ${window.widgetIdent.token}`
