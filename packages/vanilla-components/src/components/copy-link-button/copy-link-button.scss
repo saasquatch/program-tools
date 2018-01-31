@@ -8,6 +8,7 @@
 
 @import '../../assets/styles/labels';
 @import '../../assets/styles/buttons';
+@import '../../assets/styles/icons';
 @import '../../assets/styles/responsive-utilities';
 
 copy-link-button {
@@ -17,6 +18,11 @@ copy-link-button {
     color: inherit;
     font: inherit;
     margin: 0;
+  }
+
+  .input-group {
+    max-width: 440px;
+    margin: 0 auto;
   }
 
   .label-default {
