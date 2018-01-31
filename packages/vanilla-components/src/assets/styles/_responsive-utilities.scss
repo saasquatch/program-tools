@@ -1,0 +1,5 @@
+.hidden-sm {
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    display: none !important;
+  }
+}

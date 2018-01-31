@@ -1,0 +1,99 @@
+@import '../../assets/styles/mixins/buttons';
+@import '../../assets/styles/mixins/vendor-prefixes';
+@import '../../assets/styles/mixins/tab-focus';
+
+@import '../../assets/styles/variables';
+@import '../../assets/styles/base';
+@import '../../assets/styles/shims';
+
+@import '../../assets/styles/labels';
+@import '../../assets/styles/buttons';
+@import '../../assets/styles/icons';
+@import '../../assets/styles/responsive-utilities';
+
+copy-link-button {
+  font-family: 'Lato', sans-serif;
+
+  input {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+  }
+
+  .input-group {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .label-default {
+    background-color: #737b80;
+  }
+
+  #squatch-share-notification {
+    position: absolute;
+    top: 10px;
+    right: 156px;
+    z-index: 100;
+  
+    @media (max-width: $screen-sm-max) {
+      right: 50px;
+    }
+  }
+
+  #squatch-share-link {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;  
+    color: $text-color;
+    background: transparent;
+    cursor: text;
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
+    display: table-cell;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  button.icon-btn.copy {
+    @include button-variant(white, #5b6165, #5b6165);
+    width: 140px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    text-align: left;
+    min-height: 34px;
+  
+    &.hover {
+      background: darken($btn-primary-bg, 10%);
+      border-color: darken($btn-primary-border, 12%);
+    }
+  
+    @media (max-width: $screen-sm-max) {
+      width: auto;
+  
+      .icon {
+        width: 39px;
+        margin-right: 0;
+      }
+    }
+  }
+}
+

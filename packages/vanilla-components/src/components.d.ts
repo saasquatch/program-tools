@@ -6,6 +6,36 @@
 
 
 import {
+  CopyLinkButton as CopyLinkButton
+} from './components/copy-link-button/copy-link-button';
+
+declare global {
+  interface HTMLCopyLinkButtonElement extends CopyLinkButton, HTMLElement {
+  }
+  var HTMLCopyLinkButtonElement: {
+    prototype: HTMLCopyLinkButtonElement;
+    new (): HTMLCopyLinkButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    "copy-link-button": HTMLCopyLinkButtonElement;
+  }
+  interface ElementTagNameMap {
+    "copy-link-button": HTMLCopyLinkButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "copy-link-button": JSXElements.CopyLinkButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface CopyLinkButtonAttributes extends HTMLAttributes {
+      shareLink?: string;
+    }
+  }
+}
+
+
+import {
   MyApp as MyApp
 } from './components/my-app/my-app';
 
@@ -66,6 +96,36 @@ declare global {
 
 
 import {
+  StatsComponent as StatsComponent
+} from './components/stats-component/stats-component';
+
+declare global {
+  interface HTMLStatsComponentElement extends StatsComponent, HTMLElement {
+  }
+  var HTMLStatsComponentElement: {
+    prototype: HTMLStatsComponentElement;
+    new (): HTMLStatsComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    "stats-component": HTMLStatsComponentElement;
+  }
+  interface ElementTagNameMap {
+    "stats-component": HTMLStatsComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "stats-component": JSXElements.StatsComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface StatsComponentAttributes extends HTMLAttributes {
+      text?: string;
+    }
+  }
+}
+
+
+import {
   TextComponent as TextComponent
 } from './components/text-component/text-component';
 
@@ -96,4 +156,3 @@ declare global {
   }
 }
 
-declare global { namespace JSX { interface StencilJSX {} } }

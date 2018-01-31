@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/vanilla-components",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Vanilla component library for the SaaSquatch platform",
   "main": "dist/widget-components.js",
   "types": "dist/types/components.d.ts",
@@ -21,6 +21,7 @@
   "dependencies": {
     "@stencil/core": "next",
     "@types/faker": "^4.1.2",
+    "clipboard": "^1.7.1",
     "faker": "^4.1.0"
   },
   "devDependencies": {
