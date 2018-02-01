@@ -1,14 +1,6 @@
 import { Component, Prop, State} from '@stencil/core';
 
 const API: MyAPI = window["WidgetHost"];
-const w = window;
-w["widgetIdent"] = {
-  tenantAlias: 'test_asmhxnffb9cml',
-  domain: 'https://staging.referralsaasquatch.com',
-  userId: 'abc_123',
-  accountId: 'abc_123',
-  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYWJjXzEyMyIsImFjY291bnRJZCI6ImFiY18xMjMiLCJlbWFpbCI6ImpvaG5AZXhhbXBsZS5jb20iLCJmaXJzdE5hbWUiOiJKb2huIiwibGFzdE5hbWUiOiJEb2UifX0.dwTEZuABoVA86TLY2Lhyw2x_AO5IDYM0hXeSh3Ok1z0'
-}
 
 @Component({
   tag: 'rewards-list',
