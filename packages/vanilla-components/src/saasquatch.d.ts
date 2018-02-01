@@ -10,6 +10,7 @@ interface MyAPI {
     getCurrentUser():Promise<any>
     getReferrals(offset:number):Promise<UserPayload>
     getReferrals():Promise<UserPayload>
+    getUserFragment(userFragment:string, fragmentVariables:any):Promise<UserPayload>
     getClient():any
   }
 }
@@ -17,10 +18,22 @@ interface MyAPI {
 interface UserPayload {
   data:{
     user:{
-      referrals:{
+      referredBy: {
+        referredUser: {
+          firstName: string
+          lastName: string
+          imageUrl: string
+        }
+      }
+      referrals: {
         count: number
         totalCount: number
         data:Referral[]
+      },
+      rewards: {
+        count: number
+        totalCount: number
+        data:Reward[]
       }
     }
   }
@@ -35,5 +48,20 @@ interface Referral {
   referredUser: {
     firstName: string
     lastName: string
+    imageUrl: string
   }
+}
+
+interface Reward {
+  id: string
+  type: string
+  value: number
+  unit: string
+  name: string
+  dateGiven: number
+  dateExpires: number
+  dateCancelled: number
+  fuelTankCode: string
+  fuelTankType: string
+  currency: string
 }

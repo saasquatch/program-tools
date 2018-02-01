@@ -2,7 +2,7 @@ exports.config = {
   namespace: 'widget-components',
   generateDistribution: true,
   bundles: [
-    { components: ['my-app', 'referral-list', 'rewards-list', 'stats-component', 'text-component'] }
+    { components: ['rewards-list', 'stats-component', 'text-component'] }
   ]
 };
 

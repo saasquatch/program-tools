@@ -1,3 +1,157 @@
 @import '../../assets/styles/variables';
 @import '../../assets/styles/base';
 @import '../../assets/styles/atomic';
+
+rewards-list {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #5b6165;
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0; 
+  }
+
+  td, th {
+    padding: 0;
+  }
+
+  .img-circle {
+    border-radius: 50%;
+  }
+
+  .squatch-referrals {
+    margin: 10px 0 11px;
+    height: 209px;
+    overflow: hidden;
+    width: 440px;
+    margin: 0 auto;
+  
+    @media (max-width: $screen-sm-max) {
+      margin: 0 -$body-padding-sm 10px;
+    }
+  }
+  
+  .squatch-referrals-title {
+    background: $gray-dark;
+    color: $white;
+    text-align: center;
+    margin: $body-padding-sm -$body-padding-sm 0;
+    padding: 10px $body-padding-sm;
+    display: none;
+  
+    @media (max-width: $screen-sm-max) {
+      display: block;
+    }
+  }
+  
+  .squatch-referrals-list {
+    margin-bottom: 209px;
+    border-collapse: separate;
+    position: relative;
+    width: 100%;
+  
+    td {
+      padding-top: 15px;
+      padding-bottom: 14px;
+      vertical-align: top;
+      border-bottom: 1px solid $gray-lighter;
+  
+      &:first-child {
+        width: 160px;
+        padding-left: 10px;
+  
+        @media (max-width: $screen-sm-max) {
+          width: 235px;
+          padding-left: 40px;
+        }
+      }
+  
+      &:last-child {
+        width: 170px;
+        padding-right: 10px;
+  
+        @media (max-width: $screen-sm-max) {
+          width: 70px;
+          padding-right: 40px;
+        }
+      }
+    }
+  
+    tr {
+      &:last-child td,
+      &:nth-child(3n) td {
+        border-bottom: 0;
+      }
+    }
+  
+    .squatch-referrals-avatar {
+      width: 40px;
+      float: left;
+      margin-right: 12px;
+    }
+  
+    .squatch-referrals-heading {
+      margin: 2px 0;
+  
+      @media (max-width: $screen-sm-max) {
+        font-size: $font-size-lg;
+      }
+    }
+  
+    .squatch-referrals-description {
+      color: $gray-light;
+      font-size: $font-size-xs;
+      line-height: 12px;
+    }
+  
+    .squatch-referrals-icon {
+      margin: 10px 7px 0 0;
+      float: left;
+      font-size: $font-size-xl;
+  
+      @media (max-width: $screen-sm-max) {
+        float: right;
+        font-size: 30px;
+        margin-right: 0;
+      }
+    }
+  }
+  
+  // Empty referrals list
+  [data-scroll-limit='0'] {
+    display: none;
+  
+    // Leave these elements with a height for correct container height calculation with no referrals
+    & + .squatch-referrals-actions,
+    & ~ .squatch-attribution {
+      visibility: hidden;
+    }
+  
+    & ~ .squatch-attribution {
+      margin-top: 30px;
+    }
+  }
+  
+  .squatch-referrals-actions {
+    text-align: center;
+  
+    .btn {
+      margin-left: $grid-gutter-width;
+      width: 120px;
+  
+      &:first-child {
+        margin-left: 0;
+      }
+  
+      @media (max-width: $screen-sm-max) {
+        font-size: $font-size-sm;
+        width: 85px;
+        padding-left: 6px;
+        padding-right: 6px;
+        margin-left: 7px;
+      }
+    }
+  }
+}

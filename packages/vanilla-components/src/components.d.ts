@@ -36,66 +36,6 @@ declare global {
 
 
 import {
-  MyApp as MyApp
-} from './components/my-app/my-app';
-
-declare global {
-  interface HTMLMyAppElement extends MyApp, HTMLElement {
-  }
-  var HTMLMyAppElement: {
-    prototype: HTMLMyAppElement;
-    new (): HTMLMyAppElement;
-  };
-  interface HTMLElementTagNameMap {
-    "my-app": HTMLMyAppElement;
-  }
-  interface ElementTagNameMap {
-    "my-app": HTMLMyAppElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      "my-app": JSXElements.MyAppAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface MyAppAttributes extends HTMLAttributes {
-      user?: string;
-    }
-  }
-}
-
-
-import {
-  ReferralList as ReferralList
-} from './components/referral-list/referral-list';
-
-declare global {
-  interface HTMLReferralListElement extends ReferralList, HTMLElement {
-  }
-  var HTMLReferralListElement: {
-    prototype: HTMLReferralListElement;
-    new (): HTMLReferralListElement;
-  };
-  interface HTMLElementTagNameMap {
-    "referral-list": HTMLReferralListElement;
-  }
-  interface ElementTagNameMap {
-    "referral-list": HTMLReferralListElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      "referral-list": JSXElements.ReferralListAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface ReferralListAttributes extends HTMLAttributes {
-      emptyText?: string;
-    }
-  }
-}
-
-
-import {
   RewardsList as RewardsList
 } from './components/rewards-list/rewards-list';
 
@@ -119,6 +59,8 @@ declare global {
   }
   namespace JSXElements {
     export interface RewardsListAttributes extends HTMLAttributes {
+      rewardsHeading?: string;
+      showReferrer?: boolean;
       userIsReferred?: boolean;
     }
   }
@@ -189,4 +131,3 @@ declare global {
   }
 }
 
-declare global { namespace JSX { interface StencilJSX {} } }
