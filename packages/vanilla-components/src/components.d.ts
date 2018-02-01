@@ -36,6 +36,36 @@ declare global {
 
 
 import {
+  EmailShareButton as EmailShareButton
+} from './components/email-share-button/email-share-button';
+
+declare global {
+  interface HTMLEmailShareButtonElement extends EmailShareButton, HTMLElement {
+  }
+  var HTMLEmailShareButtonElement: {
+    prototype: HTMLEmailShareButtonElement;
+    new (): HTMLEmailShareButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    "email-share-button": HTMLEmailShareButtonElement;
+  }
+  interface ElementTagNameMap {
+    "email-share-button": HTMLEmailShareButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "email-share-button": JSXElements.EmailShareButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface EmailShareButtonAttributes extends HTMLAttributes {
+      text?: string;
+    }
+  }
+}
+
+
+import {
   MyApp as MyApp
 } from './components/my-app/my-app';
 
@@ -90,37 +120,6 @@ declare global {
   namespace JSXElements {
     export interface ReferralListAttributes extends HTMLAttributes {
       emptyText?: string;
-    }
-  }
-}
-
-
-import {
-  SocialShareButton as SocialShareButton
-} from './components/social-share-button/social-share-button';
-
-declare global {
-  interface HTMLSocialShareButtonElement extends SocialShareButton, HTMLElement {
-  }
-  var HTMLSocialShareButtonElement: {
-    prototype: HTMLSocialShareButtonElement;
-    new (): HTMLSocialShareButtonElement;
-  };
-  interface HTMLElementTagNameMap {
-    "social-share-button": HTMLSocialShareButtonElement;
-  }
-  interface ElementTagNameMap {
-    "social-share-button": HTMLSocialShareButtonElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      "social-share-button": JSXElements.SocialShareButtonAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface SocialShareButtonAttributes extends HTMLAttributes {
-      social?: string;
-      text?: string;
     }
   }
 }
