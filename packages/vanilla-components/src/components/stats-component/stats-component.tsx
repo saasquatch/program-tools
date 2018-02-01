@@ -1,4 +1,5 @@
 import { Component, Prop, State} from '@stencil/core';
+import FormatJs from '../../services/FormatJs';
 
 @Component({
   tag: 'stats-component',
@@ -6,7 +7,7 @@ import { Component, Prop, State} from '@stencil/core';
 })
 export class StatsComponent {
   @Prop() text: string;
-  @State() friendsReferred: string;
+  @Prop() friendsReferred: string = `{value, plural, one {Person} other {People}} Referred`;
   @State() rewardsEarned: string;
   @State() rewardsPending: string;
 
@@ -20,7 +21,7 @@ export class StatsComponent {
         <div class="squatch-stats-item">
           <div class="squatch-stats-title">8</div>
 
-          <span class="squatch-stats-description">Friends Referred</span>
+          <span class="squatch-stats-description">{FormatJs.format(this.friendsReferred, {value:1})}</span>
         </div>
 
         <div class="squatch-stats-item">

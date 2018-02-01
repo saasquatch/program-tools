@@ -119,6 +119,7 @@ declare global {
   }
   namespace JSXElements {
     export interface StatsComponentAttributes extends HTMLAttributes {
+      friendsReferred?: string;
       text?: string;
     }
   }
@@ -156,3 +157,4 @@ declare global {
   }
 }
 
+declare global { namespace JSX { interface StencilJSX {} } }
