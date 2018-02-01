@@ -1,38 +1,39 @@
-interface MyAPI{
-    ui: {
-      open(): any
-      close():any
-    }
-    analytics: {
-      loadEvent():String
-    }
-    graphql: {
-      getCurrentUser():Promise<any>
-      getReferrals(offset:number):Promise<UserPayload>
-      getReferrals():Promise<UserPayload>
-    }
+interface MyAPI {
+  ui: {
+    open():any
+    close():any
   }
-  
-  interface UserPayload{
-    data:{
-      user:{
-        referrals:{
-          count: number
-          totalCount: number
-          data:Referral[]
-        }
+  analytics: {
+    loadEvent():String
+  }
+  graphql: {
+    getCurrentUser():Promise<any>
+    getReferrals(offset:number):Promise<UserPayload>
+    getReferrals():Promise<UserPayload>
+    getClient():any
+  }
+}
+
+interface UserPayload {
+  data:{
+    user:{
+      referrals:{
+        count: number
+        totalCount: number
+        data:Referral[]
       }
     }
   }
-  
-  interface Referral{
-    id: string
-    dateReferralStarted: number
-    dateReferralPaid: number
-    dateReferralEnded: number
-    moderationStatus: string
-    referredUser: {
-      firstName: string
-      lastName: string
-    }
+}
+
+interface Referral {
+  id: string
+  dateReferralStarted: number
+  dateReferralPaid: number
+  dateReferralEnded: number
+  moderationStatus: string
+  referredUser: {
+    firstName: string
+    lastName: string
   }
+}
