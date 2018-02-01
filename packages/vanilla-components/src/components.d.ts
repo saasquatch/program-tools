@@ -59,7 +59,12 @@ declare global {
   }
   namespace JSXElements {
     export interface EmailShareButtonAttributes extends HTMLAttributes {
+      backgroundColor?: string;
+      borderColor?: string;
+      emailBody?: string;
+      emailSubject?: string;
       text?: string;
+      textColor?: string;
     }
   }
 }

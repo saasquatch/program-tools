@@ -12,28 +12,29 @@
 @import '../../assets/styles/responsive-utilities';
 
 email-share-button {
-    a.emailShare {
-        background: #373a3d;
-        color: white;
-        padding: 6px 0 6px 30px;
-        position: relative;
-        width: 140px;
+  a.emailShare {
+    border: 1px solid;
+    color: white;
+    padding: 6px 0 6px 30px;
+    position: relative;
+    text-decoration: none;
+    width: 140px;
 
-        .icon {
-            position: absolute;
-            left: 12px;
-            top: 7px;
-            width: 16px;
-        }
-
-        &:before {
-            bottom: -1px;
-            background: rgba(255,255,255,0.18);
-            content: '';
-            left: 0;
-            position: absolute;
-            top: -1px;
-            width: 40px;
-        }
+    .icon {
+      position: absolute;
+      left: 12px;
+      top: 7px;
+      width: 16px;
     }
+
+    &:before {
+      bottom: -1px;
+      background: rgba(255,255,255,0.18);
+      content: '';
+      left: 0;
+      position: absolute;
+      top: -1px;
+      width: 40px;
+    }
+  }
 }
