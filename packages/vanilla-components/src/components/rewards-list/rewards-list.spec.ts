@@ -1,16 +1,16 @@
 import { render } from '@stencil/core/testing';
-import { MyApp } from './my-app';
+import { RewardsList } from './rewards-list';
 
 describe('my-app', () => {
   it('should build', () => {
-    expect(new MyApp()).toBeTruthy();
+    expect(new RewardsList()).toBeTruthy();
   });
 
   describe('rendering', () => {
     beforeEach(async () => {
       await render({
-        components: [MyApp],
-        html: '<my-app></my-app>'
+        components: [RewardsList],
+        html: '<rewards-list></rewards-list>'
       });
     });
   });

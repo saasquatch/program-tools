@@ -1,38 +1,67 @@
-interface MyAPI{
-    ui: {
-      open(): any
-      close():any
-    }
-    analytics: {
-      loadEvent():String
-    }
-    graphql: {
-      getCurrentUser():Promise<any>
-      getReferrals(offset:number):Promise<UserPayload>
-      getReferrals():Promise<UserPayload>
-    }
+interface MyAPI {
+  ui: {
+    open():any
+    close():any
   }
-  
-  interface UserPayload{
-    data:{
-      user:{
-        referrals:{
-          count: number
-          totalCount: number
-          data:Referral[]
+  analytics: {
+    loadEvent():String
+  }
+  graphql: {
+    getCurrentUser():Promise<any>
+    getReferrals(offset:number):Promise<UserPayload>
+    getReferrals():Promise<UserPayload>
+    getUserFragment(userFragment:string, fragmentVariables:any):Promise<UserPayload>
+    getClient():any
+  }
+}
+
+interface UserPayload {
+  data:{
+    user:{
+      referredBy: {
+        referredUser: {
+          firstName: string
+          lastName: string
+          imageUrl: string
         }
+      }
+      referrals: {
+        count: number
+        totalCount: number
+        data:Referral[]
+      },
+      rewards: {
+        count: number
+        totalCount: number
+        data:Reward[]
       }
     }
   }
-  
-  interface Referral{
-    id: string
-    dateReferralStarted: number
-    dateReferralPaid: number
-    dateReferralEnded: number
-    moderationStatus: string
-    referredUser: {
-      firstName: string
-      lastName: string
-    }
+}
+
+interface Referral {
+  id: string
+  dateReferralStarted: number
+  dateReferralPaid: number
+  dateReferralEnded: number
+  moderationStatus: string
+  referredUser: {
+    firstName: string
+    lastName: string
+    imageUrl: string
   }
+}
+
+interface Reward {
+  id: string
+  type: string
+  value: number
+  unit: string
+  name: string
+  dateGiven: number
+  dateExpires: number
+  dateCancelled: number
+  fuelTankCode: string
+  fuelTankType: string
+  currency: string
+}

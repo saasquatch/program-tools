@@ -45,12 +45,12 @@ export class CopyLinkButton {
     //TODO: handle analytics here too
   }
 
-  notifySuccess(e) {
-    this.notify(e.trigger.dataset.clipboardNotification, "Copied!");
+  notifySuccess(e:Clipboard.Event) {
+    this.notify((e.trigger as HTMLElement).dataset.clipboardNotification, "Copied!");
   }
 
-  notifyFailure(e) {
-    this.notify(e.trigger.dataset.clipboardNotification, "Press Ctrl+C to copy");
+  notifyFailure(e:Clipboard.Event) {
+    this.notify((e.trigger as HTMLElement).dataset.clipboardNotification, "Press Ctrl+C to copy");
   }
 
   componentDidLoad() {

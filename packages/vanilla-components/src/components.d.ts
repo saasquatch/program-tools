@@ -104,60 +104,32 @@ declare global {
 
 
 import {
-  MyApp as MyApp
-} from './components/my-app/my-app';
+  RewardsList as RewardsList
+} from './components/rewards-list/rewards-list';
 
 declare global {
-  interface HTMLMyAppElement extends MyApp, HTMLElement {
+  interface HTMLRewardsListElement extends RewardsList, HTMLElement {
   }
-  var HTMLMyAppElement: {
-    prototype: HTMLMyAppElement;
-    new (): HTMLMyAppElement;
+  var HTMLRewardsListElement: {
+    prototype: HTMLRewardsListElement;
+    new (): HTMLRewardsListElement;
   };
   interface HTMLElementTagNameMap {
-    "my-app": HTMLMyAppElement;
+    "rewards-list": HTMLRewardsListElement;
   }
   interface ElementTagNameMap {
-    "my-app": HTMLMyAppElement;
+    "rewards-list": HTMLRewardsListElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "my-app": JSXElements.MyAppAttributes;
+      "rewards-list": JSXElements.RewardsListAttributes;
     }
   }
   namespace JSXElements {
-    export interface MyAppAttributes extends HTMLAttributes {
-      user?: string;
-    }
-  }
-}
-
-
-import {
-  ReferralList as ReferralList
-} from './components/referral-list/referral-list';
-
-declare global {
-  interface HTMLReferralListElement extends ReferralList, HTMLElement {
-  }
-  var HTMLReferralListElement: {
-    prototype: HTMLReferralListElement;
-    new (): HTMLReferralListElement;
-  };
-  interface HTMLElementTagNameMap {
-    "referral-list": HTMLReferralListElement;
-  }
-  interface ElementTagNameMap {
-    "referral-list": HTMLReferralListElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      "referral-list": JSXElements.ReferralListAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface ReferralListAttributes extends HTMLAttributes {
-      emptyText?: string;
+    export interface RewardsListAttributes extends HTMLAttributes {
+      rewardsHeading?: string;
+      showReferrer?: boolean;
+      userIsReferred?: boolean;
     }
   }
 }
@@ -187,6 +159,9 @@ declare global {
   }
   namespace JSXElements {
     export interface StatsComponentAttributes extends HTMLAttributes {
+      friendsReferred?: string;
+      rewardsEarned?: string;
+      rewardsPending?: string;
       text?: string;
     }
   }
