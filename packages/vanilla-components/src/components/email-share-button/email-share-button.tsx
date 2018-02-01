@@ -1,4 +1,4 @@
-import { Component, Prop, Element} from '@stencil/core';
+import { Component, Prop, Element, State} from '@stencil/core';
 
 const mailTo = (url) => {
   try {
@@ -27,19 +27,20 @@ const mailTo = (url) => {
 })
 export class EmailShareButton {
   @Prop() text: string = "Email";
-  @Prop() emailSubject: string = "";
-  @Prop() emailBody: string = "";
+  @Prop() emailSubject: string = "Your friend wants to give stuff!";
+  @Prop() emailBody: string = "Hey friend, do this thing and get free stuff! Yay free stuff!";
   @Prop() backgroundColor: string = "#373a3d";
   @Prop() borderColor: string = "#373a3d";
   @Prop() textColor: string = "#fff";
+  
+  @State() mailurl: string;
 
   @Element() emailShareButton: HTMLElement;
 
   emailHandler(e) {
     if (e.type != 'touchstart') {
       e.preventDefault();
-      var mailurl = `mailto:?subject=${encodeURIComponent(this.emailSubject)}&body=${encodeURIComponent(this.emailBody)}`;
-      mailTo(mailurl);
+      mailTo(this.mailurl);
     }
 
     // TODO: Wire up analytics once api includes shareEvent
@@ -72,8 +73,10 @@ export class EmailShareButton {
 
   componentDidLoad() {
     let el = this.emailShareButton.getElementsByClassName('emailShare')[0];
+
+    this.mailurl = `mailto:?subject=${encodeURIComponent(this.emailSubject)}&body=${encodeURIComponent(this.emailBody)}`;
     
-    el.setAttribute("href", "https://www.google.com");
+    el.setAttribute("href", this.mailurl);
     el.addEventListener("click", this.emailHandler.bind(this), false);
     el.addEventListener("touchStart", this.emailHandler.bind(this), false);
 

@@ -12,6 +12,8 @@
 @import '../../assets/styles/responsive-utilities';
 
 email-share-button {
+  display: inline-block;
+
   a.emailShare {
     border: 1px solid;
     color: white;
