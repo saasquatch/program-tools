@@ -71,6 +71,39 @@ declare global {
 
 
 import {
+  FacebookShareButton as FacebookShareButton
+} from './components/facebook-share-button/facebook-share-button';
+
+declare global {
+  interface HTMLFacebookShareButtonElement extends FacebookShareButton, HTMLElement {
+  }
+  var HTMLFacebookShareButtonElement: {
+    prototype: HTMLFacebookShareButtonElement;
+    new (): HTMLFacebookShareButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    "facebook-share-button": HTMLFacebookShareButtonElement;
+  }
+  interface ElementTagNameMap {
+    "facebook-share-button": HTMLFacebookShareButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "facebook-share-button": JSXElements.FacebookShareButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface FacebookShareButtonAttributes extends HTMLAttributes {
+      backgroundColor?: string;
+      borderColor?: string;
+      text?: string;
+      textColor?: string;
+    }
+  }
+}
+
+
+import {
   MyApp as MyApp
 } from './components/my-app/my-app';
 
