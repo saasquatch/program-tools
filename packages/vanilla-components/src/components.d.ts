@@ -120,6 +120,8 @@ declare global {
   namespace JSXElements {
     export interface StatsComponentAttributes extends HTMLAttributes {
       friendsReferred?: string;
+      rewardsEarned?: string;
+      rewardsPending?: string;
       text?: string;
     }
   }

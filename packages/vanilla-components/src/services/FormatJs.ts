@@ -1,7 +1,7 @@
 import IntlMessageFormat from 'intl-messageformat';
 
 const FormatJS = {
-    format(msg:string, values:Object|Array<any>){
+    format(msg:string, values:Object|Array<any>):string{
         var format = new IntlMessageFormat(msg, 'en-US');
         return format.format(values);
     }

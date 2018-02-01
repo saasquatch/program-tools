@@ -1,4 +1,4 @@
-import { Component, Prop, State} from '@stencil/core';
+import { Component, Prop} from '@stencil/core';
 import FormatJs from '../../services/FormatJs';
 
 @Component({
@@ -7,33 +7,38 @@ import FormatJs from '../../services/FormatJs';
 })
 export class StatsComponent {
   @Prop() text: string;
-  @Prop() friendsReferred: string = `{value, plural, one {Person} other {People}} Referred`;
-  @State() rewardsEarned: string;
-  @State() rewardsPending: string;
+  @Prop() friendsReferred: string = `{value, plural, =0 {Nobody} one {Person} other {People}} Referred`;
+  @Prop() rewardsEarned: string = `{value, plural, one {Reward} other {Rewards}} Earned`;
+  @Prop() rewardsPending: string = `{value, plural, one {Reward} other {Rewards}} Pending`;
 
   componentDidLoad() {
     console.log('did load');
   }
 
   render() {
+    const data = {
+      referrals: 1,
+      rewards: 1,
+      pending: 1
+    }
     return (
       <div class="squatch-stats">
         <div class="squatch-stats-item">
-          <div class="squatch-stats-title">1</div>
+          <div class="squatch-stats-title">{data.referrals}</div>
 
-          <span class="squatch-stats-description">{FormatJs.format(this.friendsReferred, {value:1})}</span>
+          <span class="squatch-stats-description">{FormatJs.format(this.friendsReferred, {value:data.referrals})}</span>
         </div>
 
         <div class="squatch-stats-item">
-          <div class="squatch-stats-title text-green">7</div>
+          <div class="squatch-stats-title text-green">{data.rewards}</div>
 
-          <span class="squatch-stats-description">Rewards Earned</span>
+          <span class="squatch-stats-description">{FormatJs.format(this.rewardsEarned, {value:data.rewards})}</span>
         </div>
 
         <div class="squatch-stats-item">
-          <div class="squatch-stats-title">2</div>
+          <div class="squatch-stats-title">{data.pending}</div>
 
-          <span class="squatch-stats-description">Rewards Pending</span>
+          <span class="squatch-stats-description">{FormatJs.format(this.rewardsPending, {value:data.pending})}</span>
         </div>
       </div>
     );
