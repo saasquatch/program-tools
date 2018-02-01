@@ -19,7 +19,7 @@ export class StatsComponent {
     return (
       <div class="squatch-stats">
         <div class="squatch-stats-item">
-          <div class="squatch-stats-title">8</div>
+          <div class="squatch-stats-title">1</div>
 
           <span class="squatch-stats-description">{FormatJs.format(this.friendsReferred, {value:1})}</span>
         </div>
