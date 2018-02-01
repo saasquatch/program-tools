@@ -96,6 +96,36 @@ declare global {
 
 
 import {
+  RewardsList as RewardsList
+} from './components/rewards-list/rewards-list';
+
+declare global {
+  interface HTMLRewardsListElement extends RewardsList, HTMLElement {
+  }
+  var HTMLRewardsListElement: {
+    prototype: HTMLRewardsListElement;
+    new (): HTMLRewardsListElement;
+  };
+  interface HTMLElementTagNameMap {
+    "rewards-list": HTMLRewardsListElement;
+  }
+  interface ElementTagNameMap {
+    "rewards-list": HTMLRewardsListElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "rewards-list": JSXElements.RewardsListAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface RewardsListAttributes extends HTMLAttributes {
+      userIsReferred?: boolean;
+    }
+  }
+}
+
+
+import {
   StatsComponent as StatsComponent
 } from './components/stats-component/stats-component';
 
