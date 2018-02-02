@@ -136,6 +136,36 @@ declare global {
 
 
 import {
+  ShareButtonContainer as ShareButtonContainer
+} from './components/share-button-container/share-button-container';
+
+declare global {
+  interface HTMLShareButtonContainerElement extends ShareButtonContainer, HTMLElement {
+  }
+  var HTMLShareButtonContainerElement: {
+    prototype: HTMLShareButtonContainerElement;
+    new (): HTMLShareButtonContainerElement;
+  };
+  interface HTMLElementTagNameMap {
+    "share-button-container": HTMLShareButtonContainerElement;
+  }
+  interface ElementTagNameMap {
+    "share-button-container": HTMLShareButtonContainerElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "share-button-container": JSXElements.ShareButtonContainerAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface ShareButtonContainerAttributes extends HTMLAttributes {
+      maxWidth?: string;
+    }
+  }
+}
+
+
+import {
   StatsComponent as StatsComponent
 } from './components/stats-component/stats-component';
 
@@ -195,6 +225,40 @@ declare global {
       fontSize?: string;
       text?: string;
       textAlign?: string;
+    }
+  }
+}
+
+
+import {
+  TwitterShareButton as TwitterShareButton
+} from './components/twitter-share-button/twitter-share-button';
+
+declare global {
+  interface HTMLTwitterShareButtonElement extends TwitterShareButton, HTMLElement {
+  }
+  var HTMLTwitterShareButtonElement: {
+    prototype: HTMLTwitterShareButtonElement;
+    new (): HTMLTwitterShareButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    "twitter-share-button": HTMLTwitterShareButtonElement;
+  }
+  interface ElementTagNameMap {
+    "twitter-share-button": HTMLTwitterShareButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "twitter-share-button": JSXElements.TwitterShareButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface TwitterShareButtonAttributes extends HTMLAttributes {
+      backgroundColor?: string;
+      borderColor?: string;
+      text?: string;
+      textColor?: string;
+      twMessage?: string;
     }
   }
 }
