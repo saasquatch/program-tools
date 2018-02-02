@@ -15,7 +15,9 @@ email-share-button {
   display: inline-block;
 
   a.emailShare {
-    padding: 6px 0 6px 30px;
+    line-height: 32px;
+    min-height: 34px;
+    padding: 0 0 0 30px;
     position: relative;
     text-decoration: none;
     width: 140px;
