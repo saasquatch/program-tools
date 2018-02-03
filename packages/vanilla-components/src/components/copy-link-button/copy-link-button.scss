@@ -11,6 +11,33 @@
 @import '../../assets/styles/icons';
 @import '../../assets/styles/responsive-utilities';
 
+button.icon-btn.copy {
+  @include button-variant(white, #5b6165, #5b6165);
+  width: 140px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-left: 0;
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+  text-align: left;
+  min-height: 34px;
+
+  &.hover {
+    background: darken($btn-primary-bg, 10%);
+    border-color: darken($btn-primary-border, 12%);
+  }
+
+  @media (max-width: $screen-sm-max) {
+    width: auto;
+
+    .icon {
+      width: 39px;
+      margin-right: 0;
+    }
+  }
+}
+
 copy-link-button {
   font-family: 'Lato', sans-serif;
   display: block;
@@ -68,33 +95,6 @@ copy-link-button {
     display: table-cell;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
-  }
-
-  button.icon-btn.copy {
-    @include button-variant(white, #5b6165, #5b6165);
-    width: 140px;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-    border-left: 0;
-    padding-left: 0;
-    padding-right: 0;
-    position: relative;
-    text-align: left;
-    min-height: 34px;
-  
-    &.hover {
-      background: darken($btn-primary-bg, 10%);
-      border-color: darken($btn-primary-border, 12%);
-    }
-  
-    @media (max-width: $screen-sm-max) {
-      width: auto;
-  
-      .icon {
-        width: 39px;
-        margin-right: 0;
-      }
-    }
   }
 }
 

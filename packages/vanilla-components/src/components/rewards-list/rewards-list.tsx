@@ -58,7 +58,7 @@ export class RewardsList {
   @Prop() userIsReferred: boolean = false;
   @Prop() showReferrer: boolean = true;
   @Prop() dateFormatting: string = `{value, date, medium}`;
-  @State() referrals: Array<any>;
+  @State() referrals: Referral[];
   @State() referralsCount: number;
   @State() referredBy: any;
   @State() rewards: Array<any>;
@@ -134,7 +134,7 @@ export class RewardsList {
                     }
                   </div>
 
-                  <div class="squatch-referrals-description" data-moment="true">{FormatJs.format(this.dateFormatting, {value:r.referredUser.dateReferralStarted})}</div>
+                  <div class="squatch-referrals-description" data-moment="true">{FormatJs.format(this.dateFormatting, {value:r.dateReferralStarted})}</div>
                 </td>
 
                 <td>

@@ -3,7 +3,8 @@ import { shadeColor } from '../../utilities';
 
 @Component({
   tag: 'twitter-share-button',
-  styleUrl: 'twitter-share-button.scss'
+  styleUrl: 'twitter-share-button.scss',
+  assetsDir: '../../assets/fonts'
 })
 export class TwitterShareButton {
   @Prop() text: string = "Tweet";

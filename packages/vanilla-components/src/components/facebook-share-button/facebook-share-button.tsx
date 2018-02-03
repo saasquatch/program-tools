@@ -3,7 +3,8 @@ import { shadeColor } from '../../utilities';
 
 @Component({
   tag: 'facebook-share-button',
-  styleUrl: 'facebook-share-button.scss'
+  styleUrl: 'facebook-share-button.scss',
+  assetsDir: '../../assets/fonts'
 })
 export class FacebookShareButton {
   @Prop() text: string = "Share";
