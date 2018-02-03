@@ -36,6 +36,38 @@ declare global {
 
 
 import {
+  StatsComponent as RewardsActions
+} from './components/rewards-actions/rewards-actions';
+
+declare global {
+  interface HTMLRewardsActionsElement extends RewardsActions, HTMLElement {
+  }
+  var HTMLRewardsActionsElement: {
+    prototype: HTMLRewardsActionsElement;
+    new (): HTMLRewardsActionsElement;
+  };
+  interface HTMLElementTagNameMap {
+    "rewards-actions": HTMLRewardsActionsElement;
+  }
+  interface ElementTagNameMap {
+    "rewards-actions": HTMLRewardsActionsElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "rewards-actions": JSXElements.RewardsActionsAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface RewardsActionsAttributes extends HTMLAttributes {
+      hideText?: string;
+      nextText?: string;
+      previousText?: string;
+    }
+  }
+}
+
+
+import {
   RewardsList as RewardsList
 } from './components/rewards-list/rewards-list';
 
@@ -59,7 +91,7 @@ declare global {
   }
   namespace JSXElements {
     export interface RewardsListAttributes extends HTMLAttributes {
-      rewardsHeading?: string;
+      dateFormatting?: string;
       showReferrer?: boolean;
       userIsReferred?: boolean;
     }
@@ -131,3 +163,4 @@ declare global {
   }
 }
 
+declare global { namespace JSX { interface StencilJSX {} } }

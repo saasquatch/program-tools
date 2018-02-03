@@ -19,7 +19,7 @@
     "test.watch": "jest --watch --no-cache"
   },
   "dependencies": {
-    "@stencil/core": "next",
+    "@stencil/core": "^0.2.2",
     "clipboard": "^1.7.1",
     "faker": "^4.1.0",
     "intl-messageformat": "^2.2.0",

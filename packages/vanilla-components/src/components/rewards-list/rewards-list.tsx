@@ -24,7 +24,7 @@ const userFragment = `referrals(limit: 10, offset: $offset) {
       }
     }
   }
-  referredBy {
+  referredByReferral {
     referredUser {
       firstName
       lastName
@@ -57,9 +57,10 @@ const userFragment = `referrals(limit: 10, offset: $offset) {
 export class RewardsList {
   @Prop() userIsReferred: boolean = false;
   @Prop() showReferrer: boolean = true;
-  @Prop() rewardsHeading: string = `{value, select, CENTS {Cents} MONTH {Month} % {value} other {value}}`;
+  @Prop() dateFormatting: string = `{value, date, medium}`;
   @State() referrals: Array<any>;
-  @State() referredBy: Object;
+  @State() referralsCount: number;
+  @State() referredBy: any;
   @State() rewards: Array<any>;
   @State() loading: boolean;
 
@@ -69,7 +70,8 @@ export class RewardsList {
       this.getUserPayLoad().then(res => {
         console.log('res', res);
         this.referrals = res.data.user.referrals.data;
-        this.referredBy = res.data.user.referredBy;
+        this.referralsCount = res.data.user.referrals.totalCount;
+        this.referredBy = res.data.user.referredByReferral;
         this.rewards = res.data.user.rewards.data;
         this.loading = false;
       }).catch(e => {
@@ -89,77 +91,181 @@ export class RewardsList {
 
   render() {
     let content;
+    let referredByRow;
+    let referralsRow;
     
     if(this.loading) {
       content = 'Is loading';
     } else { 
+      if (this.referrals) {
+        referralsRow = (
+          this.referrals.map((r, index) => {
+            let i = this.referredBy && this.showReferrer ? `${index + 1}` : `${index}`;
+            return (
+              <tr id={i}>
+                {/* <referral-component></referral-component> */}
+                <td>
+                  <img class="img-circle squatch-referrals-avatar" src={r.referredUser.imageUrl 
+                    ? r.referredUser.imageUrl 
+                    : `http://www.gravatar.com/avatar/3a99ddeabe3bcca7f64938b753005735?s=40&d=mm&r=pg`
+                  }></img>
+
+                  <div class="squatch-referrals-heading">{r.referredUser.firstName}</div>
+
+                  <div class="squatch-referrals-description">
+                    <span class="hidden-sm">
+                      {r.dateReferralPaid
+                      ? `Paid User`
+                      : `Trial User`
+                      }
+                    </span>
+
+                    <span class="hidden-md text-green">
+                      $10
+                    </span>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="squatch-referrals-heading">
+                    {r.dateReferralPaid
+                    ? `Signed Up`
+                    : `Referred`
+                    }
+                  </div>
+
+                  <div class="squatch-referrals-description" data-moment="true">{FormatJs.format(this.dateFormatting, {value:r.referredUser.dateReferralStarted})}</div>
+                </td>
+
+                <td>
+                  <i class={r.dateReferralPaid ? `icon squatch-referrals-icon icon-ok-circled text-green` : `icon squatch-referrals-icon icon-ok-circled text-yellow`}></i>
+
+                  <div class="squatch-referrals-heading hidden-sm">
+                    {/* TODO: logic here */}
+                    $10
+                  </div>
+
+                  <div class="squatch-referrals-description hidden-sm">
+                    {r.dateReferralPaid
+                    ? `Free Credit`
+                    : `Credit Pending`
+                    }
+                  </div>
+                </td>
+              </tr>
+            );
+          })
+        );
+      }
+
       if (this.rewards) {
         content = (
-          <div>
-            {this.rewards.map((r, index) => {
-                let i = this.referredBy && this.showReferrer ? `${index + 1}` : `${index}`;
-                return (
-                  <tr id={i}>
-                    <td>
-                      <img class="img-circle squatch-referrals-avatar" src='http://www.gravatar.com/avatar/3a99ddeabe3bcca7f64938b753005735?s=40&d=mm&r=pg'></img>
+          this.rewards.map((r, index) => {
+            let i = this.referredBy && this.showReferrer ? `${index + this.referralsCount + 1}` : `${index + this.referralsCount}`;
+            return (
+              <tr id={i}>
+                {/* <reward-component></reward-component> */}
+                <td>
+                  <img class="img-circle squatch-referrals-avatar" src='http://www.gravatar.com/avatar/3a99ddeabe3bcca7f64938b753005735?s=40&d=mm&r=pg'></img>
 
-                      <div class="squatch-referrals-heading">
-                        {r.name}
-                      </div>
+                  <div class="squatch-referrals-heading">
+                    {r.name}
+                  </div>
 
-                      <div class="squatch-referrals-description">
-                        Arbitrary Reward
-                      </div>
-                    </td> 
-                    
-                    <td class="hidden-sm">
-                      <div class="squatch-referrals-heading">
-                        Signed up
-                      </div>
-                      <div class="squatch-referrals-description" data-moment="true">{FormatJs.format(`{value, date, medium}`, {value:r.dateGiven})}</div>
-                    </td> 
+                  <div class="squatch-referrals-description">
+                    No Referral
+                  </div>
+                </td> 
+                
+                <td class="hidden-sm">
+                  <div class="squatch-referrals-heading">
+                    Signed up
+                  </div>
+                  <div class="squatch-referrals-description" data-moment="true">{FormatJs.format(this.dateFormatting, {value:r.dateGiven})}</div>
+                </td> 
 
-                    <td>
-                      <i class="icon squatch-referrals-icon icon-ok-circled text-green"></i>
+                <td>
+                  <i class="icon squatch-referrals-icon icon-ok-circled text-green"></i>
 
-                      <div class="squatch-referrals-heading hidden-sm">
-                        {r.unit == 'CENTS'
-                          ? `$${r.value/100}`
-                          : `${r.value} ${r.unit}`
-                        }
-                      </div>
+                  <div class="squatch-referrals-heading hidden-sm">
+                    {r.unit == 'CENTS'
+                      ? `$${r.value/100}`
+                      : (r.unit == 'MONTH') 
+                      ? FormatJs.format(`${r.value} {value, plural, =0 {Nothing} one {Month} other {Months}}`, {value:r.value})
+                      : (r.unit == '%') 
+                      ? `${r.value}${r.unit}`
+                      : `${r.value} ${r.unit}`
+                    }
+                  </div>
 
-                      <div class="squatch-referrals-description hidden-sm text-green">
-                        Reward Given
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-          </div>
-        )
+                  <div class="squatch-referrals-description hidden-sm text-green">
+                    Reward Given
+                  </div>
+                </td>
+              </tr>
+            );
+          })
+        );
+      }
+
+      if (this.referredBy && this.showReferrer) {
+        referredByRow = (
+          <tr id="0">
+            <td>
+              {this.referredBy.referredUser.imageUrl 
+              ? <img class="img-circle squatch-referrals-avatar" src={this.referredBy.referredUser.imageUrl}></img>
+              : <img class="img-circle squatch-referrals-avatar" src="http://www.gravatar.com/avatar/3a99ddeabe3bcca7f64938b753005735?s=40&d=mm&r=pg"></img>
+              }
+
+              <div class="squatch-referrals-heading">{this.referredBy.referredUser.firstName}</div>
+
+              <div class="squatch-referrals-description">
+                <span class="hidden-sm">
+                  Referring User
+                </span>
+
+                <span class="hidden-md text-green">
+                  $10
+                </span>
+              </div>
+            </td>
+
+            <td>
+              <div class="squatch-referrals-heading">
+                Referred You
+              </div>
+
+              <div class="squatch-referrals-description" data-moment="true">{FormatJs.format(this.dateFormatting, {value:this.referredBy.dateReferralStarted})}</div>
+            </td>
+
+            <td>
+
+            <i class="icon squatch-referrals-icon icon-ok-circled text-green"></i>
+
+            <div class="squatch-referrals-heading hidden-sm">
+              {/* TODO: logic here */}
+              $10
+            </div>
+
+            <div class="squatch-referrals-description hidden-sm text-green">
+              Free Credit
+            </div>
+            </td>
+          </tr>
+        );
       }
     }
+
     return (
-      <div class="squatch-referrals" id="squatch-referrals-scroll" data-scroll-offset="0" data-scroll-limit="{{nonCancelledReferralAndRewardsListLength}}">
+      <div class="squatch-referrals" id="squatch-referrals-scroll" data-scroll-offset="0" data-scroll-limit={this.referralsCount}>
 
         <table class="squatch-referrals-list">
           <tbody>
-            {this.referredBy && this.showReferrer
-              ? <tr id="0">was Referred</tr>
-              : ''
-            }
+            {referredByRow}
+
+            {referralsRow}
 
             {content}
-
-            {/* <tr id="{{#if options.showReferrer}}{{#if ../referredBy.dateReferred}}{{#if ../referredBy.hasCancelledReferredReward}}{{math @index}}{{else}}{{math @index '+ 1'}}{{/if}}{{else}}{{math @index}}{{/if}}{{else}}{{math @index}}{{/if}}">
-              <referral-item></referral-item>
-            </tr> */}
-
-
-            {/* <tr id="{{#if options.showReferrer}}{{#if ../referredBy.dateReferred}}{{#if ../referredBy.hasCancelledReferredReward}}{{math @index '+' referralsLength}}{{else}}{{math @index '+ 1 +' referralsLength}}{{/if}}{{else}}{{math @index '+' referralsLength}}{{/if}}{{else}}{{math @index '+' referralsLength}}{{/if}}">
-              <reward-item></reward-item>
-            </tr> */}
           </tbody>
         </table>
       </div>

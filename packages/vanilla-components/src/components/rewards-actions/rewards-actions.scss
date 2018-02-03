@@ -1,0 +1,35 @@
+@import '../../assets/styles/mixins/buttons';
+@import '../../assets/styles/mixins/vendor-prefixes';
+@import '../../assets/styles/mixins/tab-focus';
+
+@import '../../assets/styles/variables';
+@import '../../assets/styles/base';
+@import '../../assets/styles/shims';
+
+@import '../../assets/styles/labels';
+@import '../../assets/styles/buttons';
+@import '../../assets/styles/icons';
+@import '../../assets/styles/responsive-utilities';
+
+rewards-actions {
+  .squatch-referrals-actions {
+    text-align: center;
+  
+    .btn {
+      margin-left: $grid-gutter-width;
+      width: 120px;
+  
+      &:first-child {
+        margin-left: 0;
+      }
+  
+      @media (max-width: $screen-sm-max) {
+        font-size: $font-size-sm;
+        width: 85px;
+        padding-left: 6px;
+        padding-right: 6px;
+        margin-left: 7px;
+      }
+    }
+  }
+}

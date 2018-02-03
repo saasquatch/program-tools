@@ -15,28 +15,6 @@ const API = {
     }
   },
   graphql: {
-    getCurrentUser() {
-      const client = new ApolloClient({
-        link: new HttpLink({ uri: 'https://api.githunt.com/graphql' }),
-        cache: new InMemoryCache()
-      });
-
-      return client.query({
-        query: gql`
-              query {
-                feed(type: TOP, limit: 5) {
-                  repository {
-                    full_name
-                    owner {
-                      login
-                    }
-                  }
-                }
-              }
-            `
-      });
-    },
-
     getClient(){
       const tenantAlias = window.widgetIdent.tenantAlias;
       const domain = window.widgetIdent.appDomain;

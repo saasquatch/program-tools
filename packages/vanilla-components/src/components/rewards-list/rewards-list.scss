@@ -133,25 +133,4 @@ rewards-list {
       margin-top: 30px;
     }
   }
-  
-  .squatch-referrals-actions {
-    text-align: center;
-  
-    .btn {
-      margin-left: $grid-gutter-width;
-      width: 120px;
-  
-      &:first-child {
-        margin-left: 0;
-      }
-  
-      @media (max-width: $screen-sm-max) {
-        font-size: $font-size-sm;
-        width: 85px;
-        padding-left: 6px;
-        padding-right: 6px;
-        margin-left: 7px;
-      }
-    }
-  }
 }

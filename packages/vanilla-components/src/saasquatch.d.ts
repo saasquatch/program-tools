@@ -18,12 +18,13 @@ interface MyAPI {
 interface UserPayload {
   data:{
     user:{
-      referredBy: {
+      referredByReferral: {
         referredUser: {
           firstName: string
           lastName: string
           imageUrl: string
         }
+        dateReferralStarted: number
       }
       referrals: {
         count: number
