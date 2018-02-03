@@ -36,6 +36,74 @@ declare global {
 
 
 import {
+  EmailShareButton as EmailShareButton
+} from './components/email-share-button/email-share-button';
+
+declare global {
+  interface HTMLEmailShareButtonElement extends EmailShareButton, HTMLElement {
+  }
+  var HTMLEmailShareButtonElement: {
+    prototype: HTMLEmailShareButtonElement;
+    new (): HTMLEmailShareButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    "email-share-button": HTMLEmailShareButtonElement;
+  }
+  interface ElementTagNameMap {
+    "email-share-button": HTMLEmailShareButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "email-share-button": JSXElements.EmailShareButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface EmailShareButtonAttributes extends HTMLAttributes {
+      backgroundColor?: string;
+      borderColor?: string;
+      emailBody?: string;
+      emailSubject?: string;
+      text?: string;
+      textColor?: string;
+    }
+  }
+}
+
+
+import {
+  FacebookShareButton as FacebookShareButton
+} from './components/facebook-share-button/facebook-share-button';
+
+declare global {
+  interface HTMLFacebookShareButtonElement extends FacebookShareButton, HTMLElement {
+  }
+  var HTMLFacebookShareButtonElement: {
+    prototype: HTMLFacebookShareButtonElement;
+    new (): HTMLFacebookShareButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    "facebook-share-button": HTMLFacebookShareButtonElement;
+  }
+  interface ElementTagNameMap {
+    "facebook-share-button": HTMLFacebookShareButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "facebook-share-button": JSXElements.FacebookShareButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface FacebookShareButtonAttributes extends HTMLAttributes {
+      backgroundColor?: string;
+      borderColor?: string;
+      text?: string;
+      textColor?: string;
+    }
+  }
+}
+
+
+import {
   StatsComponent as RewardsActions
 } from './components/rewards-actions/rewards-actions';
 
@@ -94,6 +162,36 @@ declare global {
       dateFormatting?: string;
       showReferrer?: boolean;
       userIsReferred?: boolean;
+    }
+  }
+}
+
+
+import {
+  ShareButtonContainer as ShareButtonContainer
+} from './components/share-button-container/share-button-container';
+
+declare global {
+  interface HTMLShareButtonContainerElement extends ShareButtonContainer, HTMLElement {
+  }
+  var HTMLShareButtonContainerElement: {
+    prototype: HTMLShareButtonContainerElement;
+    new (): HTMLShareButtonContainerElement;
+  };
+  interface HTMLElementTagNameMap {
+    "share-button-container": HTMLShareButtonContainerElement;
+  }
+  interface ElementTagNameMap {
+    "share-button-container": HTMLShareButtonContainerElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "share-button-container": JSXElements.ShareButtonContainerAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface ShareButtonContainerAttributes extends HTMLAttributes {
+      maxWidth?: string;
     }
   }
 }
@@ -159,6 +257,40 @@ declare global {
       fontSize?: string;
       text?: string;
       textAlign?: string;
+    }
+  }
+}
+
+
+import {
+  TwitterShareButton as TwitterShareButton
+} from './components/twitter-share-button/twitter-share-button';
+
+declare global {
+  interface HTMLTwitterShareButtonElement extends TwitterShareButton, HTMLElement {
+  }
+  var HTMLTwitterShareButtonElement: {
+    prototype: HTMLTwitterShareButtonElement;
+    new (): HTMLTwitterShareButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    "twitter-share-button": HTMLTwitterShareButtonElement;
+  }
+  interface ElementTagNameMap {
+    "twitter-share-button": HTMLTwitterShareButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "twitter-share-button": JSXElements.TwitterShareButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface TwitterShareButtonAttributes extends HTMLAttributes {
+      backgroundColor?: string;
+      borderColor?: string;
+      text?: string;
+      textColor?: string;
+      twMessage?: string;
     }
   }
 }

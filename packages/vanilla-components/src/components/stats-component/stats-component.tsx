@@ -17,7 +17,7 @@ export class StatsComponent {
 
   render() {
     const data = {
-      referrals: 1,
+      referrals: 2,
       rewards: 1,
       pending: 1
     }
@@ -40,6 +40,8 @@ export class StatsComponent {
 
           <span class="squatch-stats-description">{FormatJs.format(this.rewardsPending, {value:data.pending})}</span>
         </div>
+
+        <div style={{clear:"both"}}></div>
       </div>
     );
   }
