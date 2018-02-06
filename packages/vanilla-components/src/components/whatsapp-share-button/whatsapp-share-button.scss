@@ -11,14 +11,14 @@
 @import '../../assets/styles/share';
 @import '../../assets/styles/responsive-utilities';
 
-sms-share-button {
+whatsapp-share-button {
   display: inline-block;
 
   @media (max-width: $screen-sm-max) {
     display: block;
   }
 
-  a.smsShare {
+  a.whatsappShare {
     line-height: 32px;
     min-height: 34px;
     padding: 0 0 0 30px;
@@ -28,8 +28,9 @@ sms-share-button {
     .icon {
       position: absolute;
       left: 10px;
-      top: 9px;
+      top: 6px;
       width: 16px;
+      font-size: 1.4em;
     }
 
     &:before {

@@ -330,4 +330,39 @@ declare global {
   }
 }
 
+
+import {
+  SmsShareButton as WhatsappShareButton
+} from './components/whatsapp-share-button/whatsapp-share-button';
+
+declare global {
+  interface HTMLWhatsappShareButtonElement extends WhatsappShareButton, HTMLElement {
+  }
+  var HTMLWhatsappShareButtonElement: {
+    prototype: HTMLWhatsappShareButtonElement;
+    new (): HTMLWhatsappShareButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    "whatsapp-share-button": HTMLWhatsappShareButtonElement;
+  }
+  interface ElementTagNameMap {
+    "whatsapp-share-button": HTMLWhatsappShareButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "whatsapp-share-button": JSXElements.WhatsappShareButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface WhatsappShareButtonAttributes extends HTMLAttributes {
+      backgroundColor?: string;
+      borderColor?: string;
+      displayRule?: string;
+      shareBody?: string;
+      text?: string;
+      textColor?: string;
+    }
+  }
+}
+
 declare global { namespace JSX { interface StencilJSX {} } }
