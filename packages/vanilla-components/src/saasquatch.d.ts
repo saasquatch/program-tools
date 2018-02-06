@@ -4,7 +4,8 @@ interface MyAPI {
     close():any
   }
   analytics: {
-    loadEvent():String
+    loadEvent():String,
+    shareEvent(medium:string):String
   }
   graphql: {
     getCurrentUser():Promise<any>

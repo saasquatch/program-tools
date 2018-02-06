@@ -29,7 +29,7 @@ declare global {
   }
   namespace JSXElements {
     export interface CopyLinkButtonAttributes extends HTMLAttributes {
-      shareLink?: string;
+      text?: string;
     }
   }
 }
@@ -192,6 +192,41 @@ declare global {
   namespace JSXElements {
     export interface ShareButtonContainerAttributes extends HTMLAttributes {
       maxWidth?: string;
+    }
+  }
+}
+
+
+import {
+  SmsShareButton as SmsShareButton
+} from './components/sms-share-button/sms-share-button';
+
+declare global {
+  interface HTMLSmsShareButtonElement extends SmsShareButton, HTMLElement {
+  }
+  var HTMLSmsShareButtonElement: {
+    prototype: HTMLSmsShareButtonElement;
+    new (): HTMLSmsShareButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    "sms-share-button": HTMLSmsShareButtonElement;
+  }
+  interface ElementTagNameMap {
+    "sms-share-button": HTMLSmsShareButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "sms-share-button": JSXElements.SmsShareButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SmsShareButtonAttributes extends HTMLAttributes {
+      backgroundColor?: string;
+      borderColor?: string;
+      displayRule?: string;
+      shareBody?: string;
+      text?: string;
+      textColor?: string;
     }
   }
 }

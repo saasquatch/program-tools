@@ -8,10 +8,15 @@
 
 @import '../../assets/styles/labels';
 @import '../../assets/styles/buttons';
+@import '../../assets/styles/share';
 @import '../../assets/styles/responsive-utilities';
 
 email-share-button {
   display: inline-block;
+
+  @media (max-width: $screen-sm-max) {
+    display: block;
+  }
 
   a.emailShare {
     line-height: 32px;
@@ -19,7 +24,6 @@ email-share-button {
     padding: 0 0 0 30px;
     position: relative;
     text-decoration: none;
-    width: 140px;
 
     .icon {
       position: absolute;

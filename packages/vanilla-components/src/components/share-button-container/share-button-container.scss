@@ -1,6 +1,12 @@
+@import '../../assets/styles/variables';
+
 share-button-container {
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
     text-align: center;
+
+    @media (max-width: $screen-sm-max) {
+        display: block;
+    }
 }

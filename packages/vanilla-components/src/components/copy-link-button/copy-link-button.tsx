@@ -1,48 +1,28 @@
-import { Component, Prop} from '@stencil/core';
+import { Component, Prop, State} from '@stencil/core';
 import Clipboard from 'clipboard';
+import { addClass, removeClass } from '../../utilities';
+
+const API: MyAPI = window["WidgetHost"];
 
 @Component({
   tag: 'copy-link-button',
   styleUrl: 'copy-link-button.scss'
 })
 export class CopyLinkButton {
-  @Prop() shareLink: string;
-
-  hasClass(el, className) {
-    if (el.classList)
-      return el.classList.contains(className)
-    else
-      return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
-  }
-
-  addClass(el, className) {
-    if (el.classList) {
-      el.classList.add(className);
-    } else if (!this.hasClass(el, className)) {
-      el.className += " " + className;
-    }
-  }
-
-  removeClass(el, className) {
-    if (el.classList) {
-      el.classList.remove(className);
-    } else if (this.hasClass(el, className)) {
-      const reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
-      el.className = el.className.replace(reg, ' ');
-    }
-  }
+  @Prop() text: string;
+  @State() shareLink: string;
 
   notify(clipboardNotification, notificationText) {
     const notification = document.getElementById(clipboardNotification.slice(1));
     notification.textContent = notificationText;
 
-    this.addClass(notification, 'in');
+    addClass(notification, 'in');
 
     setTimeout(() => {
-      this.removeClass(notification, 'in');
+      removeClass(notification, 'in');
     }, 1400);
 
-    //TODO: handle analytics here too
+    API.analytics.shareEvent('DIRECT');
   }
 
   notifySuccess(e:Clipboard.Event) {

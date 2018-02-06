@@ -1,6 +1,8 @@
 import { Component, Prop, Element, State} from '@stencil/core';
 import { shadeColor } from '../../utilities';
 
+const API: MyAPI = window["WidgetHost"];
+
 @Component({
   tag: 'facebook-share-button',
   styleUrl: 'facebook-share-button.scss'
@@ -23,10 +25,7 @@ export class FacebookShareButton {
       window.open(url, 'fb', 'status=0,width=620,height=400');
     }
 
-    // TODO: Wire up analytics once api includes shareEvent
-    // const API: MyAPI = window["WidgetHost"];
-    // API.analytics.
-    // window.frameElement.squatchJsApi._shareEvent(window.squatch, 'FACEBOOK');
+    API.analytics.shareEvent('FACEBOOK');
   }
 
   addStyle() {

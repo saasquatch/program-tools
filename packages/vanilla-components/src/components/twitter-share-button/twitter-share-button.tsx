@@ -1,6 +1,8 @@
 import { Component, Prop, Element, State} from '@stencil/core';
 import { shadeColor } from '../../utilities';
 
+const API: MyAPI = window["WidgetHost"];
+
 @Component({
   tag: 'twitter-share-button',
   styleUrl: 'twitter-share-button.scss'
@@ -24,10 +26,7 @@ export class TwitterShareButton {
       window.open(url, 'fb', 'status=0,width=620,height=400');
     }
 
-    // TODO: Wire up analytics once api includes shareEvent
-    // const API: MyAPI = window["WidgetHost"];
-    // API.analytics.
-    // window.frameElement.squatchJsApi._shareEvent(window.squatch, 'TWITTER');
+    API.analytics.shareEvent('TWITTER');
   }
 
   addStyle() {
@@ -60,6 +59,8 @@ export class TwitterShareButton {
     el.setAttribute("href", this.twurl);
     el.addEventListener("click", this.twitterHandler.bind(this), false);
     el.addEventListener("touchStart", this.twitterHandler.bind(this), false);
+
+    // add user agent handler
 
     this.addStyle();
   }

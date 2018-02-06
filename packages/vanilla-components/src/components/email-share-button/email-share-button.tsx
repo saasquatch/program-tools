@@ -1,6 +1,7 @@
 import { Component, Prop, Element, State} from '@stencil/core';
 import { shadeColor } from '../../utilities';
 
+const API: MyAPI = window["WidgetHost"];
 const mailTo = (url) => {
   try {
     var mailer = window.open(url, 'Mailer');
@@ -44,10 +45,7 @@ export class EmailShareButton {
       mailTo(this.mailurl);
     }
 
-    // TODO: Wire up analytics once api includes shareEvent
-    // const API: MyAPI = window["WidgetHost"];
-    // API.analytics.
-    // window.frameElement.squatchJsApi._shareEvent(window.squatch, 'EMAIL');
+    API.analytics.shareEvent('EMAIL');
   }
 
   addStyle() {

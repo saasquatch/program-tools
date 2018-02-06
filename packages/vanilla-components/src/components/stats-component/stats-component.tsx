@@ -17,7 +17,7 @@ export class StatsComponent {
 
   render() {
     const data = {
-      referrals: 2,
+      referrals: 3,
       rewards: 1,
       pending: 1
     }
