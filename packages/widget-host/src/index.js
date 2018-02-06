@@ -88,7 +88,6 @@ const API = {
         rewardBalances
       `);
     }
-
   },
   ui: {
     open() {

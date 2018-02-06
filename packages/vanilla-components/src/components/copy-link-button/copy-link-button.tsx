@@ -3,8 +3,7 @@ import Clipboard from 'clipboard';
 
 @Component({
   tag: 'copy-link-button',
-  styleUrl: 'copy-link-button.scss',
-  assetsDir: '../../assets/fonts'
+  styleUrl: 'copy-link-button.scss'
 })
 export class CopyLinkButton {
   @Prop() shareLink: string;

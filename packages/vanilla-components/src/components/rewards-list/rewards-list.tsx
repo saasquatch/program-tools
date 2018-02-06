@@ -65,7 +65,7 @@ export class RewardsList {
   @State() loading: boolean;
 
   constructor() {
-    if (API) {
+    if (this.userIsReferred) {
       this.loading = true;
       this.getUserPayLoad().then(res => {
         console.log('res', res);
@@ -77,6 +77,48 @@ export class RewardsList {
       }).catch(e => {
         this.onError(e);
       });
+    } else {
+      this.referrals = [{
+        id: '123',
+        dateReferralStarted: 98123472,
+        dateReferralPaid: 9123401923,
+        dateReferralEnded: null,
+        moderationStatus: null,
+        referredUser: {
+          firstName: 'Jorge',
+          lastName: 'Conde',
+          imageUrl: null,
+        }
+      },
+      {
+        id: '342',
+        dateReferralStarted: 981234372,
+        dateReferralPaid: 912401923,
+        dateReferralEnded: null,
+        moderationStatus: null,
+        referredUser: {
+          firstName: 'Eric',
+          lastName: 'Mason',
+          imageUrl: null,
+        }
+      },
+      {
+        id: '678',
+        dateReferralStarted: 981223472,
+        dateReferralPaid: 91234019423,
+        dateReferralEnded: null,
+        moderationStatus: null,
+        referredUser: {
+          firstName: 'Logan',
+          lastName: 'Volkers',
+          imageUrl: null,
+        }
+      }
+      ];
+      this.referralsCount = 3;
+      this.referredBy = null;
+      this.rewards = [];
+      this.loading = false;
     }
   }
 
