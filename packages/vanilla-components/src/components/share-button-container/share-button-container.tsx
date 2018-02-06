@@ -5,7 +5,7 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: 'share-button-container.scss'
 })
 export class ShareButtonContainer {
-  @Prop() maxWidth: string = "440px";
+  @Prop() maxWidth: string = "441px";
   
   addStyle() {
     const css = ` share-button-container {

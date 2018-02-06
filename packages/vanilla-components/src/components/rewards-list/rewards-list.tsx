@@ -168,7 +168,7 @@ export class RewardsList {
                   </div>
                 </td>
 
-                <td>
+                <td class="hidden-sm">
                   <div class="squatch-referrals-heading">
                     {r.dateReferralPaid
                     ? `Signed Up`
@@ -272,7 +272,7 @@ export class RewardsList {
               </div>
             </td>
 
-            <td>
+            <td class="hidden-sm">
               <div class="squatch-referrals-heading">
                 Referred You
               </div>

@@ -1,10 +1,14 @@
 @import '../../assets/styles/variables';
 
 share-button-container {
-    display: flex;
+    display: block;
     justify-content: space-between;
     margin: 0 auto;
     text-align: center;
+
+    > .hydrated:first-child a {
+        margin-left: 0;
+    }
 
     @media (max-width: $screen-sm-max) {
         display: block;

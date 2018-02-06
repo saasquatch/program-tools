@@ -104,6 +104,46 @@ declare global {
 
 
 import {
+  LinkedinShareButton as LinkedinShareButton
+} from './components/linkedin-share-button/linkedin-share-button';
+
+declare global {
+  interface HTMLLinkedinShareButtonElement extends LinkedinShareButton, HTMLElement {
+  }
+  var HTMLLinkedinShareButtonElement: {
+    prototype: HTMLLinkedinShareButtonElement;
+    new (): HTMLLinkedinShareButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    "linkedin-share-button": HTMLLinkedinShareButtonElement;
+  }
+  interface ElementTagNameMap {
+    "linkedin-share-button": HTMLLinkedinShareButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "linkedin-share-button": JSXElements.LinkedinShareButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface LinkedinShareButtonAttributes extends HTMLAttributes {
+      backgroundColor?: string;
+      borderColor?: string;
+      displayRule?: string;
+      link?: string;
+      redirectUrl?: string;
+      shareBody?: string;
+      shareImage?: string;
+      summary?: string;
+      text?: string;
+      textColor?: string;
+      title?: string;
+    }
+  }
+}
+
+
+import {
   StatsComponent as RewardsActions
 } from './components/rewards-actions/rewards-actions';
 
@@ -332,7 +372,7 @@ declare global {
 
 
 import {
-  SmsShareButton as WhatsappShareButton
+  WhatsappShareButton as WhatsappShareButton
 } from './components/whatsapp-share-button/whatsapp-share-button';
 
 declare global {

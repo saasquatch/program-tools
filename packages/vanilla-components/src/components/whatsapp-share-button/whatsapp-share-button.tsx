@@ -7,14 +7,14 @@ const API: MyAPI = window["WidgetHost"];
   tag: 'whatsapp-share-button',
   styleUrl: 'whatsapp-share-button.scss'
 })
-export class SmsShareButton {
+export class WhatsappShareButton {
   @Prop() text: string = "Whatsapp";
   @Prop() shareBody: string;
   @Prop() backgroundColor: string = "#25D366";
   @Prop() borderColor: string = "#25D366";
   @Prop() textColor: string = "#fff";
   @Prop() displayRule: string = "mobile-only"
-  @Element() whatsappShareButton: HTMLElement;
+  @Element() button: HTMLElement;
 
   clickHandler() {
     API.analytics.shareEvent('WHATSAPP');
@@ -43,7 +43,7 @@ export class SmsShareButton {
   }
 
   componentDidLoad() {
-    let el = this.whatsappShareButton.getElementsByClassName('whatsappShare')[0];
+    let el = this.button.getElementsByClassName('whatsappShare')[0];
     let url = ' whatsapp://send?text=' + this.shareBody;
     
     el.setAttribute("href", url);

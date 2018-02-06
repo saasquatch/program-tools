@@ -26,11 +26,11 @@ rewards-list {
     margin: 10px 0 11px;
     height: 209px;
     overflow: hidden;
-    width: 440px;
+    max-width: 440px;
     margin: 0 auto;
   
     @media (max-width: $screen-sm-max) {
-      margin: 0 -$body-padding-sm 10px;
+      margin: 0;
     }
   }
   
