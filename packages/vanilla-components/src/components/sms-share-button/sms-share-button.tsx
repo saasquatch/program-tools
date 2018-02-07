@@ -4,7 +4,7 @@ import { shadeColor, addClass } from '../../utilities';
 const API: MyAPI = window["WidgetHost"];
 
 @Component({
-  tag: 'sms-share-button',
+  tag: 'sqh-sms-share-button',
   styleUrl: 'sms-share-button.scss'
 })
 export class SmsShareButton {

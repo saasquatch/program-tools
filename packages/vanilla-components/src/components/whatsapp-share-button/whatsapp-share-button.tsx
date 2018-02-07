@@ -4,7 +4,7 @@ import { shadeColor, addClass } from '../../utilities';
 const API: MyAPI = window["WidgetHost"];
 
 @Component({
-  tag: 'whatsapp-share-button',
+  tag: 'sqh-whatsapp-share-button',
   styleUrl: 'whatsapp-share-button.scss'
 })
 export class WhatsappShareButton {

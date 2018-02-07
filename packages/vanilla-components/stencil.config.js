@@ -2,7 +2,18 @@ exports.config = {
   namespace: 'widget-components',
   generateDistribution: true,
   bundles: [
-    { components: ['rewards-list', 'stats-component', 'text-component', 'rewards-actions', 'facebook-share-button', 'twitter-share-button', 'email-share-button','copy-link-button'] }
+    { components: [ 'sqh-rewards-list', 
+                    'sqh-stats-component', 
+                    'sqh-text-component', 
+                    'sqh-rewards-actions', 
+                    'sqh-facebook-share-button', 
+                    'sqh-twitter-share-button', 
+                    'sqh-email-share-button',
+                    'sqh-linkedin-share-button',
+                    'sqh-sms-share-button',
+                    'sqh-whatsapp-share-button',
+                    'sqh-copy-link-button'
+                  ]}
   ]
 };
 

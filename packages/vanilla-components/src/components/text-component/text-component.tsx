@@ -1,7 +1,7 @@
 import { Component, Prop, Element } from '@stencil/core';
 
 @Component({
-  tag: 'text-component',
+  tag: 'sqh-text-component',
   styleUrl: 'text-component.scss'
 })
 export class TextComponent {

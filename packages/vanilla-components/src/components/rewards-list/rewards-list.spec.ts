@@ -10,7 +10,7 @@ describe('my-app', () => {
     beforeEach(async () => {
       await render({
         components: [RewardsList],
-        html: '<rewards-list></rewards-list>'
+        html: '<sqh-rewards-list></sqh-rewards-list>'
       });
     });
   });

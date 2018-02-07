@@ -10,7 +10,7 @@ describe('my-app', () => {
     beforeEach(async () => {
       await render({
         components: [TextComponent],
-        html: '<text-component></text-component>'
+        html: '<sqh-text-component></sqh-text-component>'
       });
     });
   });

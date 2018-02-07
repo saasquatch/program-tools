@@ -5,7 +5,7 @@ import { addClass, removeClass } from '../../utilities';
 const API: MyAPI = window["WidgetHost"];
 
 @Component({
-  tag: 'copy-link-button',
+  tag: 'sqh-copy-link-button',
   styleUrl: 'copy-link-button.scss'
 })
 export class CopyLinkButton {

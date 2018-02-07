@@ -4,7 +4,7 @@ import { shadeColor } from '../../utilities';
 const API: MyAPI = window["WidgetHost"];
 
 @Component({
-  tag: 'twitter-share-button',
+  tag: 'sqh-twitter-share-button',
   styleUrl: 'twitter-share-button.scss'
 })
 export class TwitterShareButton {

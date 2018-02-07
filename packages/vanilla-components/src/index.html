@@ -30,27 +30,25 @@
 </head>
 <body>
 
-  <copy-link-button></copy-link-button>
+  <sqh-copy-link-button></sqh-copy-link-button>
   <br>
   <br>
   <br>
-  <share-button-container>
-    <email-share-button></email-share-button>
-    <facebook-share-button></facebook-share-button>
-    <twitter-share-button></twitter-share-button>
-    <sms-share-button></sms-share-button>
-    <whatsapp-share-button></whatsapp-share-button>
-  </share-button-container>
+  <sqh-share-button-container>
+    <sqh-email-share-button background-color="#000000"></sqh-email-share-button>
+    <sqh-facebook-share-button></sqh-facebook-share-button>
+    <sqh-twitter-share-button></sqh-twitter-share-button>
+    <sqh-sms-share-button></sqh-sms-share-button>
+    <sqh-whatsapp-share-button></sqh-whatsapp-share-button>
+  </sqh-share-button-container>
   <br>
   <br>
   <br>
-  <stats-component friends-referred="{value, plural, one {PERSON} other {PERSONS}} Referred"></stats-component>
+  <sqh-stats-component friends-referred="{value, plural, one {PERSON} other {PERSONS}} Referred"></sqh-stats-component>
   <br>
   <br>
   <br>
-  <rewards-list></rewards-list>
-
-  <i class="icon icon-twitter"></i>
+  <sqh-rewards-list></sqh-rewards-list>
 
   <style>
     body {

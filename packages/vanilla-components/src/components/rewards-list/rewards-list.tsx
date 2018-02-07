@@ -51,7 +51,7 @@ const userFragment = `referrals(limit: 10, offset: $offset) {
   }`;
 
 @Component({
-  tag: 'rewards-list',
+  tag: 'sqh-rewards-list',
   styleUrl: 'rewards-list.scss'
 })
 export class RewardsList {

@@ -2,7 +2,7 @@ import { Component, Prop} from '@stencil/core';
 import FormatJs from '../../services/FormatJs';
 
 @Component({
-  tag: 'stats-component',
+  tag: 'sqh-stats-component',
   styleUrl: 'stats-component.scss'
 })
 export class StatsComponent {

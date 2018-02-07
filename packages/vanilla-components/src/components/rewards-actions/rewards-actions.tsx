@@ -2,7 +2,7 @@ import { Component, Prop} from '@stencil/core';
 import FormatJs from '../../services/FormatJs';
 
 @Component({
-  tag: 'rewards-actions',
+  tag: 'sqh-rewards-actions',
   styleUrl: 'rewards-actions.scss'
 })
 export class StatsComponent {

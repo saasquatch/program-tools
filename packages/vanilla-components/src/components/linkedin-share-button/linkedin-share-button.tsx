@@ -4,7 +4,7 @@ import { shadeColor, addClass } from '../../utilities';
 const API: MyAPI = window["WidgetHost"];
 
 @Component({
-  tag: 'linkedin-share-button',
+  tag: 'sqh-linkedin-share-button',
   styleUrl: 'linkedin-share-button.scss'
 })
 export class LinkedinShareButton {

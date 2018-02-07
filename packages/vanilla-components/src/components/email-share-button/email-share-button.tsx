@@ -24,7 +24,7 @@ const mailTo = (url) => {
 }
 
 @Component({
-  tag: 'email-share-button',
+  tag: 'sqh-email-share-button',
   styleUrl: 'email-share-button.scss'
 })
 export class EmailShareButton {

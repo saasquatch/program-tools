@@ -4,7 +4,7 @@ import { shadeColor } from '../../utilities';
 const API: MyAPI = window["WidgetHost"];
 
 @Component({
-  tag: 'facebook-share-button',
+  tag: 'sqh-facebook-share-button',
   styleUrl: 'facebook-share-button.scss'
 })
 export class FacebookShareButton {

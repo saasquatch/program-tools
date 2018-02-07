@@ -6,29 +6,29 @@
 
 
 import {
-  CopyLinkButton as CopyLinkButton
+  CopyLinkButton as SqhCopyLinkButton
 } from './components/copy-link-button/copy-link-button';
 
 declare global {
-  interface HTMLCopyLinkButtonElement extends CopyLinkButton, HTMLElement {
+  interface HTMLSqhCopyLinkButtonElement extends SqhCopyLinkButton, HTMLElement {
   }
-  var HTMLCopyLinkButtonElement: {
-    prototype: HTMLCopyLinkButtonElement;
-    new (): HTMLCopyLinkButtonElement;
+  var HTMLSqhCopyLinkButtonElement: {
+    prototype: HTMLSqhCopyLinkButtonElement;
+    new (): HTMLSqhCopyLinkButtonElement;
   };
   interface HTMLElementTagNameMap {
-    "copy-link-button": HTMLCopyLinkButtonElement;
+    "sqh-copy-link-button": HTMLSqhCopyLinkButtonElement;
   }
   interface ElementTagNameMap {
-    "copy-link-button": HTMLCopyLinkButtonElement;
+    "sqh-copy-link-button": HTMLSqhCopyLinkButtonElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "copy-link-button": JSXElements.CopyLinkButtonAttributes;
+      "sqh-copy-link-button": JSXElements.SqhCopyLinkButtonAttributes;
     }
   }
   namespace JSXElements {
-    export interface CopyLinkButtonAttributes extends HTMLAttributes {
+    export interface SqhCopyLinkButtonAttributes extends HTMLAttributes {
       text?: string;
     }
   }
@@ -36,29 +36,29 @@ declare global {
 
 
 import {
-  EmailShareButton as EmailShareButton
+  EmailShareButton as SqhEmailShareButton
 } from './components/email-share-button/email-share-button';
 
 declare global {
-  interface HTMLEmailShareButtonElement extends EmailShareButton, HTMLElement {
+  interface HTMLSqhEmailShareButtonElement extends SqhEmailShareButton, HTMLElement {
   }
-  var HTMLEmailShareButtonElement: {
-    prototype: HTMLEmailShareButtonElement;
-    new (): HTMLEmailShareButtonElement;
+  var HTMLSqhEmailShareButtonElement: {
+    prototype: HTMLSqhEmailShareButtonElement;
+    new (): HTMLSqhEmailShareButtonElement;
   };
   interface HTMLElementTagNameMap {
-    "email-share-button": HTMLEmailShareButtonElement;
+    "sqh-email-share-button": HTMLSqhEmailShareButtonElement;
   }
   interface ElementTagNameMap {
-    "email-share-button": HTMLEmailShareButtonElement;
+    "sqh-email-share-button": HTMLSqhEmailShareButtonElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "email-share-button": JSXElements.EmailShareButtonAttributes;
+      "sqh-email-share-button": JSXElements.SqhEmailShareButtonAttributes;
     }
   }
   namespace JSXElements {
-    export interface EmailShareButtonAttributes extends HTMLAttributes {
+    export interface SqhEmailShareButtonAttributes extends HTMLAttributes {
       backgroundColor?: string;
       borderColor?: string;
       emailBody?: string;
@@ -71,29 +71,29 @@ declare global {
 
 
 import {
-  FacebookShareButton as FacebookShareButton
+  FacebookShareButton as SqhFacebookShareButton
 } from './components/facebook-share-button/facebook-share-button';
 
 declare global {
-  interface HTMLFacebookShareButtonElement extends FacebookShareButton, HTMLElement {
+  interface HTMLSqhFacebookShareButtonElement extends SqhFacebookShareButton, HTMLElement {
   }
-  var HTMLFacebookShareButtonElement: {
-    prototype: HTMLFacebookShareButtonElement;
-    new (): HTMLFacebookShareButtonElement;
+  var HTMLSqhFacebookShareButtonElement: {
+    prototype: HTMLSqhFacebookShareButtonElement;
+    new (): HTMLSqhFacebookShareButtonElement;
   };
   interface HTMLElementTagNameMap {
-    "facebook-share-button": HTMLFacebookShareButtonElement;
+    "sqh-facebook-share-button": HTMLSqhFacebookShareButtonElement;
   }
   interface ElementTagNameMap {
-    "facebook-share-button": HTMLFacebookShareButtonElement;
+    "sqh-facebook-share-button": HTMLSqhFacebookShareButtonElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "facebook-share-button": JSXElements.FacebookShareButtonAttributes;
+      "sqh-facebook-share-button": JSXElements.SqhFacebookShareButtonAttributes;
     }
   }
   namespace JSXElements {
-    export interface FacebookShareButtonAttributes extends HTMLAttributes {
+    export interface SqhFacebookShareButtonAttributes extends HTMLAttributes {
       backgroundColor?: string;
       borderColor?: string;
       text?: string;
@@ -104,29 +104,29 @@ declare global {
 
 
 import {
-  LinkedinShareButton as LinkedinShareButton
+  LinkedinShareButton as SqhLinkedinShareButton
 } from './components/linkedin-share-button/linkedin-share-button';
 
 declare global {
-  interface HTMLLinkedinShareButtonElement extends LinkedinShareButton, HTMLElement {
+  interface HTMLSqhLinkedinShareButtonElement extends SqhLinkedinShareButton, HTMLElement {
   }
-  var HTMLLinkedinShareButtonElement: {
-    prototype: HTMLLinkedinShareButtonElement;
-    new (): HTMLLinkedinShareButtonElement;
+  var HTMLSqhLinkedinShareButtonElement: {
+    prototype: HTMLSqhLinkedinShareButtonElement;
+    new (): HTMLSqhLinkedinShareButtonElement;
   };
   interface HTMLElementTagNameMap {
-    "linkedin-share-button": HTMLLinkedinShareButtonElement;
+    "sqh-linkedin-share-button": HTMLSqhLinkedinShareButtonElement;
   }
   interface ElementTagNameMap {
-    "linkedin-share-button": HTMLLinkedinShareButtonElement;
+    "sqh-linkedin-share-button": HTMLSqhLinkedinShareButtonElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "linkedin-share-button": JSXElements.LinkedinShareButtonAttributes;
+      "sqh-linkedin-share-button": JSXElements.SqhLinkedinShareButtonAttributes;
     }
   }
   namespace JSXElements {
-    export interface LinkedinShareButtonAttributes extends HTMLAttributes {
+    export interface SqhLinkedinShareButtonAttributes extends HTMLAttributes {
       backgroundColor?: string;
       borderColor?: string;
       displayRule?: string;
@@ -144,29 +144,29 @@ declare global {
 
 
 import {
-  StatsComponent as RewardsActions
+  StatsComponent as SqhRewardsActions
 } from './components/rewards-actions/rewards-actions';
 
 declare global {
-  interface HTMLRewardsActionsElement extends RewardsActions, HTMLElement {
+  interface HTMLSqhRewardsActionsElement extends SqhRewardsActions, HTMLElement {
   }
-  var HTMLRewardsActionsElement: {
-    prototype: HTMLRewardsActionsElement;
-    new (): HTMLRewardsActionsElement;
+  var HTMLSqhRewardsActionsElement: {
+    prototype: HTMLSqhRewardsActionsElement;
+    new (): HTMLSqhRewardsActionsElement;
   };
   interface HTMLElementTagNameMap {
-    "rewards-actions": HTMLRewardsActionsElement;
+    "sqh-rewards-actions": HTMLSqhRewardsActionsElement;
   }
   interface ElementTagNameMap {
-    "rewards-actions": HTMLRewardsActionsElement;
+    "sqh-rewards-actions": HTMLSqhRewardsActionsElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "rewards-actions": JSXElements.RewardsActionsAttributes;
+      "sqh-rewards-actions": JSXElements.SqhRewardsActionsAttributes;
     }
   }
   namespace JSXElements {
-    export interface RewardsActionsAttributes extends HTMLAttributes {
+    export interface SqhRewardsActionsAttributes extends HTMLAttributes {
       hideText?: string;
       nextText?: string;
       previousText?: string;
@@ -176,29 +176,29 @@ declare global {
 
 
 import {
-  RewardsList as RewardsList
+  RewardsList as SqhRewardsList
 } from './components/rewards-list/rewards-list';
 
 declare global {
-  interface HTMLRewardsListElement extends RewardsList, HTMLElement {
+  interface HTMLSqhRewardsListElement extends SqhRewardsList, HTMLElement {
   }
-  var HTMLRewardsListElement: {
-    prototype: HTMLRewardsListElement;
-    new (): HTMLRewardsListElement;
+  var HTMLSqhRewardsListElement: {
+    prototype: HTMLSqhRewardsListElement;
+    new (): HTMLSqhRewardsListElement;
   };
   interface HTMLElementTagNameMap {
-    "rewards-list": HTMLRewardsListElement;
+    "sqh-rewards-list": HTMLSqhRewardsListElement;
   }
   interface ElementTagNameMap {
-    "rewards-list": HTMLRewardsListElement;
+    "sqh-rewards-list": HTMLSqhRewardsListElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "rewards-list": JSXElements.RewardsListAttributes;
+      "sqh-rewards-list": JSXElements.SqhRewardsListAttributes;
     }
   }
   namespace JSXElements {
-    export interface RewardsListAttributes extends HTMLAttributes {
+    export interface SqhRewardsListAttributes extends HTMLAttributes {
       dateFormatting?: string;
       showReferrer?: boolean;
       userIsReferred?: boolean;
@@ -208,29 +208,29 @@ declare global {
 
 
 import {
-  ShareButtonContainer as ShareButtonContainer
+  ShareButtonContainer as SqhShareButtonContainer
 } from './components/share-button-container/share-button-container';
 
 declare global {
-  interface HTMLShareButtonContainerElement extends ShareButtonContainer, HTMLElement {
+  interface HTMLSqhShareButtonContainerElement extends SqhShareButtonContainer, HTMLElement {
   }
-  var HTMLShareButtonContainerElement: {
-    prototype: HTMLShareButtonContainerElement;
-    new (): HTMLShareButtonContainerElement;
+  var HTMLSqhShareButtonContainerElement: {
+    prototype: HTMLSqhShareButtonContainerElement;
+    new (): HTMLSqhShareButtonContainerElement;
   };
   interface HTMLElementTagNameMap {
-    "share-button-container": HTMLShareButtonContainerElement;
+    "sqh-share-button-container": HTMLSqhShareButtonContainerElement;
   }
   interface ElementTagNameMap {
-    "share-button-container": HTMLShareButtonContainerElement;
+    "sqh-share-button-container": HTMLSqhShareButtonContainerElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "share-button-container": JSXElements.ShareButtonContainerAttributes;
+      "sqh-share-button-container": JSXElements.SqhShareButtonContainerAttributes;
     }
   }
   namespace JSXElements {
-    export interface ShareButtonContainerAttributes extends HTMLAttributes {
+    export interface SqhShareButtonContainerAttributes extends HTMLAttributes {
       maxWidth?: string;
     }
   }
@@ -238,29 +238,29 @@ declare global {
 
 
 import {
-  SmsShareButton as SmsShareButton
+  SmsShareButton as SqhSmsShareButton
 } from './components/sms-share-button/sms-share-button';
 
 declare global {
-  interface HTMLSmsShareButtonElement extends SmsShareButton, HTMLElement {
+  interface HTMLSqhSmsShareButtonElement extends SqhSmsShareButton, HTMLElement {
   }
-  var HTMLSmsShareButtonElement: {
-    prototype: HTMLSmsShareButtonElement;
-    new (): HTMLSmsShareButtonElement;
+  var HTMLSqhSmsShareButtonElement: {
+    prototype: HTMLSqhSmsShareButtonElement;
+    new (): HTMLSqhSmsShareButtonElement;
   };
   interface HTMLElementTagNameMap {
-    "sms-share-button": HTMLSmsShareButtonElement;
+    "sqh-sms-share-button": HTMLSqhSmsShareButtonElement;
   }
   interface ElementTagNameMap {
-    "sms-share-button": HTMLSmsShareButtonElement;
+    "sqh-sms-share-button": HTMLSqhSmsShareButtonElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "sms-share-button": JSXElements.SmsShareButtonAttributes;
+      "sqh-sms-share-button": JSXElements.SqhSmsShareButtonAttributes;
     }
   }
   namespace JSXElements {
-    export interface SmsShareButtonAttributes extends HTMLAttributes {
+    export interface SqhSmsShareButtonAttributes extends HTMLAttributes {
       backgroundColor?: string;
       borderColor?: string;
       displayRule?: string;
@@ -273,29 +273,29 @@ declare global {
 
 
 import {
-  StatsComponent as StatsComponent
+  StatsComponent as SqhStatsComponent
 } from './components/stats-component/stats-component';
 
 declare global {
-  interface HTMLStatsComponentElement extends StatsComponent, HTMLElement {
+  interface HTMLSqhStatsComponentElement extends SqhStatsComponent, HTMLElement {
   }
-  var HTMLStatsComponentElement: {
-    prototype: HTMLStatsComponentElement;
-    new (): HTMLStatsComponentElement;
+  var HTMLSqhStatsComponentElement: {
+    prototype: HTMLSqhStatsComponentElement;
+    new (): HTMLSqhStatsComponentElement;
   };
   interface HTMLElementTagNameMap {
-    "stats-component": HTMLStatsComponentElement;
+    "sqh-stats-component": HTMLSqhStatsComponentElement;
   }
   interface ElementTagNameMap {
-    "stats-component": HTMLStatsComponentElement;
+    "sqh-stats-component": HTMLSqhStatsComponentElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "stats-component": JSXElements.StatsComponentAttributes;
+      "sqh-stats-component": JSXElements.SqhStatsComponentAttributes;
     }
   }
   namespace JSXElements {
-    export interface StatsComponentAttributes extends HTMLAttributes {
+    export interface SqhStatsComponentAttributes extends HTMLAttributes {
       friendsReferred?: string;
       rewardsEarned?: string;
       rewardsPending?: string;
@@ -306,29 +306,29 @@ declare global {
 
 
 import {
-  TextComponent as TextComponent
+  TextComponent as SqhTextComponent
 } from './components/text-component/text-component';
 
 declare global {
-  interface HTMLTextComponentElement extends TextComponent, HTMLElement {
+  interface HTMLSqhTextComponentElement extends SqhTextComponent, HTMLElement {
   }
-  var HTMLTextComponentElement: {
-    prototype: HTMLTextComponentElement;
-    new (): HTMLTextComponentElement;
+  var HTMLSqhTextComponentElement: {
+    prototype: HTMLSqhTextComponentElement;
+    new (): HTMLSqhTextComponentElement;
   };
   interface HTMLElementTagNameMap {
-    "text-component": HTMLTextComponentElement;
+    "sqh-text-component": HTMLSqhTextComponentElement;
   }
   interface ElementTagNameMap {
-    "text-component": HTMLTextComponentElement;
+    "sqh-text-component": HTMLSqhTextComponentElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "text-component": JSXElements.TextComponentAttributes;
+      "sqh-text-component": JSXElements.SqhTextComponentAttributes;
     }
   }
   namespace JSXElements {
-    export interface TextComponentAttributes extends HTMLAttributes {
+    export interface SqhTextComponentAttributes extends HTMLAttributes {
       fontSize?: string;
       text?: string;
       textAlign?: string;
@@ -338,29 +338,29 @@ declare global {
 
 
 import {
-  TwitterShareButton as TwitterShareButton
+  TwitterShareButton as SqhTwitterShareButton
 } from './components/twitter-share-button/twitter-share-button';
 
 declare global {
-  interface HTMLTwitterShareButtonElement extends TwitterShareButton, HTMLElement {
+  interface HTMLSqhTwitterShareButtonElement extends SqhTwitterShareButton, HTMLElement {
   }
-  var HTMLTwitterShareButtonElement: {
-    prototype: HTMLTwitterShareButtonElement;
-    new (): HTMLTwitterShareButtonElement;
+  var HTMLSqhTwitterShareButtonElement: {
+    prototype: HTMLSqhTwitterShareButtonElement;
+    new (): HTMLSqhTwitterShareButtonElement;
   };
   interface HTMLElementTagNameMap {
-    "twitter-share-button": HTMLTwitterShareButtonElement;
+    "sqh-twitter-share-button": HTMLSqhTwitterShareButtonElement;
   }
   interface ElementTagNameMap {
-    "twitter-share-button": HTMLTwitterShareButtonElement;
+    "sqh-twitter-share-button": HTMLSqhTwitterShareButtonElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "twitter-share-button": JSXElements.TwitterShareButtonAttributes;
+      "sqh-twitter-share-button": JSXElements.SqhTwitterShareButtonAttributes;
     }
   }
   namespace JSXElements {
-    export interface TwitterShareButtonAttributes extends HTMLAttributes {
+    export interface SqhTwitterShareButtonAttributes extends HTMLAttributes {
       backgroundColor?: string;
       borderColor?: string;
       text?: string;
@@ -372,29 +372,29 @@ declare global {
 
 
 import {
-  WhatsappShareButton as WhatsappShareButton
+  WhatsappShareButton as SqhWhatsappShareButton
 } from './components/whatsapp-share-button/whatsapp-share-button';
 
 declare global {
-  interface HTMLWhatsappShareButtonElement extends WhatsappShareButton, HTMLElement {
+  interface HTMLSqhWhatsappShareButtonElement extends SqhWhatsappShareButton, HTMLElement {
   }
-  var HTMLWhatsappShareButtonElement: {
-    prototype: HTMLWhatsappShareButtonElement;
-    new (): HTMLWhatsappShareButtonElement;
+  var HTMLSqhWhatsappShareButtonElement: {
+    prototype: HTMLSqhWhatsappShareButtonElement;
+    new (): HTMLSqhWhatsappShareButtonElement;
   };
   interface HTMLElementTagNameMap {
-    "whatsapp-share-button": HTMLWhatsappShareButtonElement;
+    "sqh-whatsapp-share-button": HTMLSqhWhatsappShareButtonElement;
   }
   interface ElementTagNameMap {
-    "whatsapp-share-button": HTMLWhatsappShareButtonElement;
+    "sqh-whatsapp-share-button": HTMLSqhWhatsappShareButtonElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      "whatsapp-share-button": JSXElements.WhatsappShareButtonAttributes;
+      "sqh-whatsapp-share-button": JSXElements.SqhWhatsappShareButtonAttributes;
     }
   }
   namespace JSXElements {
-    export interface WhatsappShareButtonAttributes extends HTMLAttributes {
+    export interface SqhWhatsappShareButtonAttributes extends HTMLAttributes {
       backgroundColor?: string;
       borderColor?: string;
       displayRule?: string;

@@ -10,7 +10,7 @@ describe('my-app', () => {
     beforeEach(async () => {
       await render({
         components: [CopyLinkButton],
-        html: '<copy-link-button></copy-link-button>'
+        html: '<sqh-copy-link-button></sqh-copy-link-button>'
       });
     });
   });
