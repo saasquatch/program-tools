@@ -61,6 +61,7 @@ declare global {
     export interface SqhEmailShareButtonAttributes extends HTMLAttributes {
       backgroundColor?: string;
       borderColor?: string;
+      displayRule?: string;
       emailBody?: string;
       emailSubject?: string;
       text?: string;
@@ -96,6 +97,7 @@ declare global {
     export interface SqhFacebookShareButtonAttributes extends HTMLAttributes {
       backgroundColor?: string;
       borderColor?: string;
+      displayRule?: string;
       text?: string;
       textColor?: string;
     }
@@ -363,6 +365,7 @@ declare global {
     export interface SqhTwitterShareButtonAttributes extends HTMLAttributes {
       backgroundColor?: string;
       borderColor?: string;
+      displayRule?: string;
       text?: string;
       textColor?: string;
       twMessage?: string;

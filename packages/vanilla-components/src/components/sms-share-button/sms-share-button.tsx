@@ -1,5 +1,5 @@
 import { Component, Prop, Element} from '@stencil/core';
-import { shadeColor, addClass } from '../../utilities';
+import { shadeColor, addClass, detectMobileSafari } from '../../utilities';
 
 const API: MyAPI = window["WidgetHost"];
 
@@ -43,22 +43,19 @@ export class SmsShareButton {
   }
 
   componentDidLoad() {
+    let isMobileSafari = detectMobileSafari;
     let el = this.smsShareButton.getElementsByClassName('smsShare')[0];
     let smsUrl = 'sms:?&body=' + this.shareBody;
     
+    if (isMobileSafari) {
+      el.setAttribute("target", "_parent");
+    }
+
     el.setAttribute("href", smsUrl);
     el.addEventListener("click", this.smsHandler.bind(this), false);
     el.addEventListener("touchStart", this.smsHandler.bind(this), false);
 
     addClass(el, this.displayRule);
-
-    /*var md = new MobileDetect(window.navigator.userAgent);
-    var UA = md.userAgent();
-
-    if (UA === 'Safari') {
-      smsBtn.target = '_parent';
-    }*/
-
     this.addStyle();
   }
 

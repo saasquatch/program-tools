@@ -1,5 +1,5 @@
 import { Component, Prop, Element, State} from '@stencil/core';
-import { shadeColor, addClass } from '../../utilities';
+import { shadeColor, addClass, detectMobileSafari } from '../../utilities';
 
 const API: MyAPI = window["WidgetHost"];
 
@@ -18,7 +18,7 @@ export class LinkedinShareButton {
   @Prop() title: string;
   @Prop() summary: string;
   @Prop() redirectUrl: string;
-  @Prop() displayRule: string = "mobile-and-desktop"
+  @Prop() displayRule: string = "mobile-and-desktop";
   @State() linkedinUrl: string;
   @Element() button: HTMLElement;
 
@@ -56,24 +56,21 @@ export class LinkedinShareButton {
   }
 
   componentDidLoad() {
+    let isMobileSafari  = detectMobileSafari();
     let el = this.button.getElementsByClassName('linkedinShare')[0];
     let pictureString = this.shareImage ? `&picture=${this.shareImage}` : "";
     this.linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${this.link}&title=${this.title}&summary=${this.summary}${pictureString}&source=${this.redirectUrl}`;
     //TODO: need to url encode this
+
+    if (isMobileSafari) {
+      el.setAttribute("target", "_parent");
+    }
 
     el.setAttribute("href", this.linkedinUrl);
     el.addEventListener("click", this.clickHandler.bind(this), false);
     el.addEventListener("touchStart", this.clickHandler.bind(this), false);
 
     addClass(el, this.displayRule);
-
-    /*var md = new MobileDetect(window.navigator.userAgent);
-    var UA = md.userAgent();
-
-    if (UA === 'Safari') {
-      smsBtn.target = '_parent';
-    }*/
-
     this.addStyle();
   }
 

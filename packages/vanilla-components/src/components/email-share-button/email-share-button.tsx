@@ -1,5 +1,5 @@
 import { Component, Prop, Element, State} from '@stencil/core';
-import { shadeColor } from '../../utilities';
+import { shadeColor, addClass, detectMobileSafari } from '../../utilities';
 
 const API: MyAPI = window["WidgetHost"];
 const mailTo = (url) => {
@@ -34,7 +34,7 @@ export class EmailShareButton {
   @Prop() backgroundColor: string = "#373a3d";
   @Prop() borderColor: string = "#373a3d";
   @Prop() textColor: string = "#fff";
-  
+  @Prop() displayRule: string = "mobile-and-desktop";
   @State() mailurl: string;
 
   @Element() emailShareButton: HTMLElement;
@@ -71,14 +71,20 @@ export class EmailShareButton {
   }
 
   componentDidLoad() {
+    let isMobileSafari = detectMobileSafari();
     let el = this.emailShareButton.getElementsByClassName('emailShare')[0];
 
     this.mailurl = `mailto:?subject=${encodeURIComponent(this.emailSubject)}&body=${encodeURIComponent(this.emailBody)}`;
     
+    if (isMobileSafari) {
+      el.setAttribute("target", "_parent");
+    }
+
     el.setAttribute("href", this.mailurl);
     el.addEventListener("click", this.emailHandler.bind(this), false);
     el.addEventListener("touchStart", this.emailHandler.bind(this), false);
 
+    addClass(el, this.displayRule);
     this.addStyle();
   }
 

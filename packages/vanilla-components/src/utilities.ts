@@ -68,4 +68,8 @@ const removeClass = (el, className) => {
   }
 }
 
-export { shadeColor, addClass, removeClass }
+const detectMobileSafari = () => {
+  return /iP(ad|hone|od).+Version\/[\d\.]+.*Safari/i.test(window.navigator.userAgent);
+}
+
+export { shadeColor, addClass, removeClass, detectMobileSafari }

@@ -1,5 +1,5 @@
 import { Component, Prop, Element, State} from '@stencil/core';
-import { shadeColor } from '../../utilities';
+import { shadeColor, addClass, detectMobileSafari } from '../../utilities';
 
 const API: MyAPI = window["WidgetHost"];
 
@@ -13,12 +13,12 @@ export class TwitterShareButton {
   @Prop() borderColor: string = "#4797d2";
   @Prop() textColor: string = "#fff";
   @Prop() twMessage: string = "";
-
+  @Prop() displayRule: string = "mobile-and-desktop";
   @State() twurl: string;
 
   @Element() twitterShareButton: HTMLElement;
 
-  twitterHandler(e) {
+  clickHandler(e) {
     if (e.type != 'touchstart') {
       e.preventDefault();
 
@@ -52,16 +52,19 @@ export class TwitterShareButton {
   }
 
   componentDidLoad() {
+    let isMobileSafari = detectMobileSafari();
     let el = this.twitterShareButton.getElementsByClassName('twitterShare')[0];
+    let url = `https://twitter.com/intent/tweet?source=webclient&amp;text=${encodeURIComponent(this.twMessage).replace(/%20/g, "+")}`;
     
-    this.twurl = `https://twitter.com/intent/tweet?source=webclient&amp;text=${encodeURIComponent(this.twMessage).replace(/%20/g, "+")}`;
-    
-    el.setAttribute("href", this.twurl);
-    el.addEventListener("click", this.twitterHandler.bind(this), false);
-    el.addEventListener("touchStart", this.twitterHandler.bind(this), false);
+    if (isMobileSafari) {
+      el.setAttribute("target", "_parent");
+    }
 
-    // add user agent handler
+    el.setAttribute("href", url);
+    el.addEventListener("click", this.clickHandler.bind(this), false);
+    el.addEventListener("touchStart", this.clickHandler.bind(this), false);
 
+    addClass(el, this.displayRule);
     this.addStyle();
   }
 

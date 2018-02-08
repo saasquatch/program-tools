@@ -1,5 +1,5 @@
 import { Component, Prop, Element, State} from '@stencil/core';
-import { shadeColor } from '../../utilities';
+import { shadeColor, addClass, detectMobileSafari } from '../../utilities';
 
 const API: MyAPI = window["WidgetHost"];
 
@@ -12,6 +12,7 @@ export class FacebookShareButton {
   @Prop() backgroundColor: string = "#234079";
   @Prop() borderColor: string = "#234079";
   @Prop() textColor: string = "#fff";
+  @Prop() displayRule: string = "mobile-and-desktop"
 
   @State() fburl: string;
 
@@ -51,14 +52,20 @@ export class FacebookShareButton {
   }
 
   componentDidLoad() {
+    let isMobileSafari = detectMobileSafari();
     let el = this.facebookShareButton.getElementsByClassName('fbShare')[0];
 
     this.fburl = `https://www.facebook.com/dialog/feed?app_id=157382547792399&link=http://ssqt.co/mzddNkO&redirect_uri=http://app.referralsaasquatch.com/widget/close`;
-    
+
+    if (isMobileSafari) {
+      el.setAttribute("target", "_parent");
+    }
+
     el.setAttribute("href", this.fburl);
     el.addEventListener("click", this.facebookHandler.bind(this), false);
     el.addEventListener("touchStart", this.facebookHandler.bind(this), false);
 
+    addClass(el, this.displayRule);
     this.addStyle();
   }
 
