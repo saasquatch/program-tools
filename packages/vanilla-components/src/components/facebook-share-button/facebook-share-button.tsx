@@ -13,9 +13,7 @@ export class FacebookShareButton {
   @Prop() borderColor: string = "#234079";
   @Prop() textColor: string = "#fff";
   @Prop() displayRule: string = "mobile-and-desktop"
-
   @State() fburl: string;
-
   @Element() facebookShareButton: HTMLElement;
 
   facebookHandler(e) {

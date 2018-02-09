@@ -54,13 +54,13 @@ export class TwitterShareButton {
   componentDidLoad() {
     let isMobileSafari = detectMobileSafari();
     let el = this.twitterShareButton.getElementsByClassName('twitterShare')[0];
-    let url = `https://twitter.com/intent/tweet?source=webclient&amp;text=${encodeURIComponent(this.twMessage).replace(/%20/g, "+")}`;
+    this.twurl = `https://twitter.com/intent/tweet?source=webclient&amp;text=${encodeURIComponent(this.twMessage).replace(/%20/g, "+")}`;
     
     if (isMobileSafari) {
       el.setAttribute("target", "_parent");
     }
 
-    el.setAttribute("href", url);
+    el.setAttribute("href", this.twurl);
     el.addEventListener("click", this.clickHandler.bind(this), false);
     el.addEventListener("touchStart", this.clickHandler.bind(this), false);
 

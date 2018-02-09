@@ -36,10 +36,9 @@ export class EmailShareButton {
   @Prop() textColor: string = "#fff";
   @Prop() displayRule: string = "mobile-and-desktop";
   @State() mailurl: string;
-
   @Element() emailShareButton: HTMLElement;
 
-  emailHandler(e) {
+  clickHandler(e) {
     if (e.type != 'touchstart') {
       e.preventDefault();
       mailTo(this.mailurl);
@@ -81,8 +80,8 @@ export class EmailShareButton {
     }
 
     el.setAttribute("href", this.mailurl);
-    el.addEventListener("click", this.emailHandler.bind(this), false);
-    el.addEventListener("touchStart", this.emailHandler.bind(this), false);
+    el.addEventListener("click", this.clickHandler.bind(this), false);
+    el.addEventListener("touchStart", this.clickHandler.bind(this), false);
 
     addClass(el, this.displayRule);
     this.addStyle();

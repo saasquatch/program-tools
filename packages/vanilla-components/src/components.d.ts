@@ -6,6 +6,36 @@
 
 
 import {
+  TwitterShareButton as SqhCloseButton
+} from './components/close-button/close-button';
+
+declare global {
+  interface HTMLSqhCloseButtonElement extends SqhCloseButton, HTMLElement {
+  }
+  var HTMLSqhCloseButtonElement: {
+    prototype: HTMLSqhCloseButtonElement;
+    new (): HTMLSqhCloseButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    "sqh-close-button": HTMLSqhCloseButtonElement;
+  }
+  interface ElementTagNameMap {
+    "sqh-close-button": HTMLSqhCloseButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      "sqh-close-button": JSXElements.SqhCloseButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhCloseButtonAttributes extends HTMLAttributes {
+      text?: string;
+    }
+  }
+}
+
+
+import {
   CopyLinkButton as SqhCopyLinkButton
 } from './components/copy-link-button/copy-link-button';
 
