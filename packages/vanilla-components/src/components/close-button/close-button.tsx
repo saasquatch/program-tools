@@ -19,7 +19,7 @@ export class TwitterShareButton {
 
   componentDidLoad() {
     console.log(widget);
-    if (widget.mode != "POPUP") {
+    if (widget && widget.mode != "POPUP") {
       this.closeButton.setAttribute('style', 'display:none');
     }
   }
