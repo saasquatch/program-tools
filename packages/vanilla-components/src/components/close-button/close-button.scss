@@ -1,0 +1,17 @@
+@import '../../assets/styles/variables';
+
+sqh-close-button {
+  .squatch-header-close {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    background: transparent;
+    border: 0;
+    color: $blue;
+    font-size: $font-size-xs;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  }  
+}

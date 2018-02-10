@@ -26,7 +26,7 @@ export class TwitterShareButton {
 
   render() {
     return (
-      <span class="close">{this.text}</span>
+      <span class="close squatch-header-close" data-close-panel="#squatch-panel">{this.text}</span>
     );
   }
 }
