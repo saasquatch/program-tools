@@ -62,6 +62,38 @@ export function generateSimpleRewardAndEmail({context, emailKey, rewardKey, muta
     });
 }
 
+export function generateReferralRewardAndEmail({context, emailKey, rewardKey, referralId, userId, accountId, mutations}){
+  const rewardId = context.body.ids.pop();
+  mutations.push({
+    "type": "CREATE_REWARD",
+    "data": {
+      "user": {
+        "id": userId,
+        "accountId": accountId
+      },
+      "key": rewardKey,
+      "rewardId": rewardId,
+      "referralId": referralId
+    }
+  });
+  mutations.push({
+    "type": "SEND_EMAIL",
+    "data": {
+      "user": {
+        "id": userId,
+        "accountId": accountId
+      },
+      "key": emailKey,
+      "queryVariables": {
+        "userId": userId,
+        "accountId": accountId,
+        "rewardId": rewardId
+      },
+      "query": rewardEmailQuery
+    }
+  });
+}
+
 export function webtask(options = {}){
     return function(context, cb) {
       var mutations = [];
