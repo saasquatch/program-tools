@@ -4,7 +4,9 @@ const referralSideModerationStatus = {
     PENDING: "PENDING",
     DENIED: "DENIED"
   };
-
+/**
+ * @module fraudCheck
+ */
 //typedefs
 /**
  * @typedef {Object} referral 
@@ -62,7 +64,7 @@ export function passFraudCheck(tenantSettings, referral, isReferredUser) {
     //if fraud check not enabled, return true
     if(!fraudChecksEnabled) { return true; }
     
-    const fraudCheckCompleted = referral.dateFraudChecksCompleted && true;
+    const fraudCheckCompleted = !!referral.dateFraudChecksCompleted;
 
     //should not reward user if fraud check is not completed
     if (fraudChecksEnabled && !fraudCheckCompleted) {

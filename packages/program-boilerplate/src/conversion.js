@@ -1,5 +1,8 @@
 //@ts-check
 
+/**
+ * @module conversion
+ */
 //typedefs
 /**
  * A customField-based conversion rule
@@ -71,7 +74,6 @@ function parseValue(value) {
     const val = user.customFields[customConversionRule.fieldName];
     switch (customConversionRule.operator) {
       case "equal":
-        console.log(val == ruleVal);
         return val == ruleVal;
       case "greater":
         return val > ruleVal;
@@ -94,7 +96,6 @@ function parseValue(value) {
   function meetEventCondition(events, eventTriggerRule) {
     return events.some(function (event) {
       if (event.key !== eventTriggerRule.eventKey) return false;
-      console.log("eventTriggerRule.operator:", eventTriggerRule.operator);
       const ruleVal = parseValue(eventTriggerRule.value);
       switch (eventTriggerRule.operator) {
         case "equal":

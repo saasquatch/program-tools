@@ -1,17 +1,20 @@
 {
-  "name": "@saasquatch/program-boilerplate",
-  "version": "0.1.5",
+  "name": "jiaqih",
+  "version": "0.2.40",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "babel src -d dist",
+    "build": "babel src --out-dir dist --extensions \".ts,.js\"",
     "deploy": "np",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "@babel/cli": "^7.0.0-beta.49",
+    "@babel/core": "^7.0.0-beta.49",
+    "@babel/preset-typescript": "^7.0.0-beta.49",
+    "babel-cli": "^7.0.0-0",
     "babel-preset-env": "^1.6.1",
     "np": "^2.18.3"
   }
