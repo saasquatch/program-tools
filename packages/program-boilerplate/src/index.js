@@ -1,4 +1,5 @@
 // @ts-check
+
 const Transaction = require('./transaction');
 const Queries = require('./queries');
 const Conversion = require('./conversion');
@@ -33,6 +34,7 @@ export {
 /**
  * @description A list of valid programTriggerTypes
  */
+
 const ProgramTriggerTypes = [
     "AFTER_USER_CREATED_OR_UPDATED",
     "REFERRAL",
