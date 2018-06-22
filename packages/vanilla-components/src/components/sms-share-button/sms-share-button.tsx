@@ -9,11 +9,11 @@ const API: MyAPI = window["WidgetHost"];
 })
 export class SmsShareButton {
   @Prop() text: string = "SMS";
-  @Prop() shareBody: string;
-  @Prop() backgroundColor: string = "#7bbf38";
-  @Prop() borderColor: string = "#7bbf38";
-  @Prop() textColor: string = "#fff";
-  @Prop() displayRule: string = "mobile-only"
+  @Prop() sharebody: string;
+  @Prop() backgroundcolor: string = "#7bbf38";
+  @Prop() bordercolor: string = "#7bbf38";
+  @Prop() textcolor: string = "#fff";
+  @Prop() displayrule: string = "mobile-only"
   @Element() smsShareButton: HTMLElement;
 
   smsHandler() {
@@ -22,19 +22,19 @@ export class SmsShareButton {
 
   addStyle() {
     const css = ` .smsShare {
-                    background-color: ${this.backgroundColor};
-                    border: 1px solid ${this.borderColor};
-                    color: ${this.textColor};
+                    background-color: ${this.backgroundcolor};
+                    border: 1px solid ${this.bordercolor};
+                    color: ${this.textcolor};
                   }
                   
                   .smsShare:hover {
-                    background: ${shadeColor(this.backgroundColor, 10)};
-                    border-color: ${shadeColor(this.borderColor, 12)};
-                    color: ${this.textColor};
+                    background: ${shadeColor(this.backgroundcolor, 10)};
+                    border-color: ${shadeColor(this.bordercolor, 12)};
+                    color: ${this.textcolor};
                   }
                   
                   .smsShare:focus {
-                    color: ${this.textColor};
+                    color: ${this.textcolor};
                   } `
     const style = document.createElement('style');
 
@@ -45,7 +45,7 @@ export class SmsShareButton {
   componentDidLoad() {
     let isMobileSafari = detectMobileSafari;
     let el = this.smsShareButton.getElementsByClassName('smsShare')[0];
-    let smsUrl = 'sms:?&body=' + this.shareBody;
+    let smsUrl = 'sms:?&body=' + this.sharebody;
     
     if (isMobileSafari) {
       el.setAttribute("target", "_parent");
@@ -55,7 +55,7 @@ export class SmsShareButton {
     el.addEventListener("click", this.smsHandler.bind(this), false);
     el.addEventListener("touchStart", this.smsHandler.bind(this), false);
 
-    addClass(el, this.displayRule);
+    addClass(el, this.displayrule);
     this.addStyle();
   }
 

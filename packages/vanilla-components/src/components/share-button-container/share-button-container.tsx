@@ -5,11 +5,11 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: 'share-button-container.scss'
 })
 export class ShareButtonContainer {
-  @Prop() maxWidth: string = "441px";
+  @Prop() maxwidth: string = "441px";
   
   addStyle() {
     const css = ` share-button-container {
-                    max-width: ${this.maxWidth};
+                    max-width: ${this.maxwidth};
                   } `
     const style = document.createElement('style');
 

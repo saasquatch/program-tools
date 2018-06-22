@@ -22,7 +22,7 @@
   </script>
   <script src="https://unpkg.com/@saasquatch/widget-host@latest/umd/@saasquatch/widget-host.js"></script>
   
-  <script src="./build/widget-components.js"></script>
+  <script src="/build/widget-components.js"></script>
 
   <link rel="stylesheet" type="text/css" href="https://unpkg.com/@saasquatch/vanilla-components-assets@latest/icons.css"></link>
   <link rel="apple-touch-icon" href="/assets/icon/icon.png">
@@ -47,7 +47,7 @@
   <br>
   <br>
   <br>
-  <sqh-stats-component friends-referred="{value, plural, one {PERSON} other {PERSONS}} Referred"></sqh-stats-component>
+  <sqh-stats-component friends-referred="{value, plural, one {Dude} other {Dudes}} Referred"></sqh-stats-component>
   <br>
   <br>
   <br>
@@ -60,15 +60,6 @@
       font-family: sans-serif;
     }
   </style>
-
-  <script>
-    if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-      // auto-unregister service worker during dev mode
-      navigator.serviceWorker.ready.then(function(registration) {
-        registration.unregister().then(function() { location.reload(true) });
-      });
-    }
-  </script>
 
 </body>
 </html>

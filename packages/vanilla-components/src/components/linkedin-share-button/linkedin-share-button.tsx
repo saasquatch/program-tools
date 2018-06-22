@@ -15,7 +15,7 @@ export class LinkedinShareButton {
   @Prop() textcolor: string = "#fff";
   @Prop() shareimage: string;
   @Prop() link: string;
-  @Prop() title: string;
+  @Prop() linktitle: string;
   @Prop() summary: string;
   @Prop() redirecturl: string;
   @Prop() displayrule: string = "mobile-and-desktop";
@@ -59,7 +59,7 @@ export class LinkedinShareButton {
     let isMobileSafari  = detectMobileSafari();
     let el = this.button.getElementsByClassName('linkedinShare')[0];
     let pictureString = this.shareimage ? `&picture=${this.shareimage}` : "";
-    this.linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${this.link}&title=${this.title}&summary=${this.summary}${pictureString}&source=${this.redirecturl}`;
+    this.linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${this.link}&title=${this.linktitle}&summary=${this.summary}${pictureString}&source=${this.redirecturl}`;
     //TODO: need to url encode this
     if (isMobileSafari) {
       el.setAttribute("target", "_parent");

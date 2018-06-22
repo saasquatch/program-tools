@@ -13,7 +13,7 @@ export class TwitterShareButton {
 
   @Listen('click')
   handleClick(ev){
-    console.log('clicked')
+    console.log('clicked', ev)
     API.ui.close();
   }
 
