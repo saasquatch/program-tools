@@ -89,13 +89,13 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhEmailShareButtonAttributes extends HTMLAttributes {
-      backgroundColor?: string;
-      borderColor?: string;
-      displayRule?: string;
-      emailBody?: string;
-      emailSubject?: string;
+      backgroundcolor?: string;
+      bordercolor?: string;
+      displayrule?: string;
+      emailbody?: string;
+      emailsubject?: string;
       text?: string;
-      textColor?: string;
+      textcolor?: string;
     }
   }
 }
@@ -125,11 +125,11 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhFacebookShareButtonAttributes extends HTMLAttributes {
-      backgroundColor?: string;
-      borderColor?: string;
-      displayRule?: string;
+      backgroundcolor?: string;
+      bordercolor?: string;
+      displayrule?: string;
       text?: string;
-      textColor?: string;
+      textcolor?: string;
     }
   }
 }
@@ -159,16 +159,16 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhLinkedinShareButtonAttributes extends HTMLAttributes {
-      backgroundColor?: string;
-      borderColor?: string;
-      displayRule?: string;
+      backgroundcolor?: string;
+      bordercolor?: string;
+      displayrule?: string;
       link?: string;
-      redirectUrl?: string;
-      shareBody?: string;
-      shareImage?: string;
+      redirecturl?: string;
+      sharebody?: string;
+      shareimage?: string;
       summary?: string;
       text?: string;
-      textColor?: string;
+      textcolor?: string;
       title?: string;
     }
   }
@@ -199,9 +199,9 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhRewardsActionsAttributes extends HTMLAttributes {
-      hideText?: string;
-      nextText?: string;
-      previousText?: string;
+      hidetext?: string;
+      nexttext?: string;
+      previoustext?: string;
     }
   }
 }
@@ -231,9 +231,9 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhRewardsListAttributes extends HTMLAttributes {
-      dateFormatting?: string;
-      showReferrer?: boolean;
-      userIsReferred?: boolean;
+      dateformatting?: string;
+      showreferrer?: boolean;
+      userisreferred?: boolean;
     }
   }
 }
@@ -393,12 +393,12 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhTwitterShareButtonAttributes extends HTMLAttributes {
-      backgroundColor?: string;
-      borderColor?: string;
-      displayRule?: string;
+      backgroundcolor?: string;
+      bordercolor?: string;
+      displayrule?: string;
       text?: string;
-      textColor?: string;
-      twMessage?: string;
+      textcolor?: string;
+      twmessage?: string;
     }
   }
 }
@@ -428,12 +428,12 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhWhatsappShareButtonAttributes extends HTMLAttributes {
-      backgroundColor?: string;
-      borderColor?: string;
-      displayRule?: string;
-      shareBody?: string;
+      backgroundcolor?: string;
+      bordercolor?: string;
+      displayrule?: string;
+      sharebody?: string;
       text?: string;
-      textColor?: string;
+      textcolor?: string;
     }
   }
 }
