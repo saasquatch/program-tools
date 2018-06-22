@@ -9,11 +9,11 @@ const API: MyAPI = window["WidgetHost"];
 })
 export class TwitterShareButton {
   @Prop() text: string = "Tweet";
-  @Prop() backgroundColor: string = "#4797d2";
-  @Prop() borderColor: string = "#4797d2";
-  @Prop() textColor: string = "#fff";
-  @Prop() twMessage: string = "";
-  @Prop() displayRule: string = "mobile-and-desktop";
+  @Prop() backgroundcolor: string = "#4797d2";
+  @Prop() bordercolor: string = "#4797d2";
+  @Prop() textcolor: string = "#fff";
+  @Prop() twmessage: string = "";
+  @Prop() displayrule: string = "mobile-and-desktop";
   @State() twurl: string;
 
   @Element() twitterShareButton: HTMLElement;
@@ -31,19 +31,19 @@ export class TwitterShareButton {
 
   addStyle() {
     const css = ` .twitterShare {
-                    background-color: ${this.backgroundColor};
-                    border: 1px solid ${this.borderColor};
-                    color: ${this.textColor};
+                    background-color: ${this.backgroundcolor};
+                    border: 1px solid ${this.bordercolor};
+                    color: ${this.textcolor};
                   }
                   
                   .twitterShare:hover {
-                    background: ${shadeColor(this.backgroundColor, 10)};
-                    border-color: ${shadeColor(this.borderColor, 12)};
-                    color: ${this.textColor};
+                    background: ${shadeColor(this.backgroundcolor, 10)};
+                    border-color: ${shadeColor(this.bordercolor, 12)};
+                    color: ${this.textcolor};
                   }
                   
                   .twitterShare:focus {
-                    color: ${this.textColor};
+                    color: ${this.textcolor};
                   } `
     const style = document.createElement('style');
 
@@ -54,7 +54,7 @@ export class TwitterShareButton {
   componentDidLoad() {
     let isMobileSafari = detectMobileSafari();
     let el = this.twitterShareButton.getElementsByClassName('twitterShare')[0];
-    this.twurl = `https://twitter.com/intent/tweet?source=webclient&amp;text=${encodeURIComponent(this.twMessage).replace(/%20/g, "+")}`;
+    this.twurl = `https://twitter.com/intent/tweet?source=webclient&amp;text=${encodeURIComponent(this.twmessage).replace(/%20/g, "+")}`;
     
     if (isMobileSafari) {
       el.setAttribute("target", "_parent");
@@ -64,7 +64,7 @@ export class TwitterShareButton {
     el.addEventListener("click", this.clickHandler.bind(this), false);
     el.addEventListener("touchStart", this.clickHandler.bind(this), false);
 
-    addClass(el, this.displayRule);
+    addClass(el, this.displayrule);
     this.addStyle();
   }
 

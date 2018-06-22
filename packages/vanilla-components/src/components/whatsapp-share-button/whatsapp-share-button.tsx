@@ -9,11 +9,11 @@ const API: MyAPI = window["WidgetHost"];
 })
 export class WhatsappShareButton {
   @Prop() text: string = "Whatsapp";
-  @Prop() shareBody: string;
-  @Prop() backgroundColor: string = "#25D366";
-  @Prop() borderColor: string = "#25D366";
-  @Prop() textColor: string = "#fff";
-  @Prop() displayRule: string = "mobile-only"
+  @Prop() sharebody: string;
+  @Prop() backgroundcolor: string = "#25D366";
+  @Prop() bordercolor: string = "#25D366";
+  @Prop() textcolor: string = "#fff";
+  @Prop() displayrule: string = "mobile-only"
   @Element() button: HTMLElement;
 
   clickHandler() {
@@ -22,19 +22,19 @@ export class WhatsappShareButton {
 
   addStyle() {
     const css = ` .whatsappShare {
-                    background-color: ${this.backgroundColor};
-                    border: 1px solid ${this.borderColor};
-                    color: ${this.textColor};
+                    background-color: ${this.backgroundcolor};
+                    border: 1px solid ${this.bordercolor};
+                    color: ${this.textcolor};
                   }
                   
                   .whatsappShare:hover {
-                    background: ${shadeColor(this.backgroundColor, 10)};
-                    border-color: ${shadeColor(this.borderColor, 12)};
-                    color: ${this.textColor};
+                    background: ${shadeColor(this.backgroundcolor, 10)};
+                    border-color: ${shadeColor(this.bordercolor, 12)};
+                    color: ${this.textcolor};
                   }
                   
                   .whatsappShare:focus {
-                    color: ${this.textColor};
+                    color: ${this.textcolor};
                   } `
     const style = document.createElement('style');
 
@@ -45,7 +45,7 @@ export class WhatsappShareButton {
   componentDidLoad() {
     let isMobileSafari = detectMobileSafari();
     let el = this.button.getElementsByClassName('whatsappShare')[0];
-    let url = ' whatsapp://send?text=' + this.shareBody;
+    let url = ' whatsapp://send?text=' + this.sharebody;
     
     if (isMobileSafari) {
       el.setAttribute("target", "_parent");
@@ -55,7 +55,7 @@ export class WhatsappShareButton {
     el.addEventListener("click", this.clickHandler.bind(this), false);
     el.addEventListener("touchStart", this.clickHandler.bind(this), false);
 
-    addClass(el, this.displayRule);
+    addClass(el, this.displayrule);
     this.addStyle();
   }
 

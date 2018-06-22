@@ -9,16 +9,16 @@ const API: MyAPI = window["WidgetHost"];
 })
 export class LinkedinShareButton {
   @Prop() text: string = "linkedin";
-  @Prop() shareBody: string;
-  @Prop() backgroundColor: string = "#0084b9";
-  @Prop() borderColor: string = "#0084b9";
-  @Prop() textColor: string = "#fff";
-  @Prop() shareImage: string;
+  @Prop() sharebody: string;
+  @Prop() backgroundcolor: string = "#0084b9";
+  @Prop() bordercolor: string = "#0084b9";
+  @Prop() textcolor: string = "#fff";
+  @Prop() shareimage: string;
   @Prop() link: string;
   @Prop() title: string;
   @Prop() summary: string;
-  @Prop() redirectUrl: string;
-  @Prop() displayRule: string = "mobile-and-desktop";
+  @Prop() redirecturl: string;
+  @Prop() displayrule: string = "mobile-and-desktop";
   @State() linkedinUrl: string;
   @Element() button: HTMLElement;
 
@@ -35,19 +35,19 @@ export class LinkedinShareButton {
 
   addStyle() {
     const css = ` .linkedinShare {
-                    background-color: ${this.backgroundColor};
-                    border: 1px solid ${this.borderColor};
-                    color: ${this.textColor};
+                    background-color: ${this.backgroundcolor};
+                    border: 1px solid ${this.bordercolor};
+                    color: ${this.textcolor};
                   }
                   
                   .linkedinShare:hover {
-                    background: ${shadeColor(this.backgroundColor, 10)};
-                    border-color: ${shadeColor(this.borderColor, 12)};
-                    color: ${this.textColor};
+                    background: ${shadeColor(this.backgroundcolor, 10)};
+                    border-color: ${shadeColor(this.bordercolor, 12)};
+                    color: ${this.textcolor};
                   }
                   
                   .linkedinShare:focus {
-                    color: ${this.textColor};
+                    color: ${this.textcolor};
                   } `
     const style = document.createElement('style');
 
@@ -58,10 +58,9 @@ export class LinkedinShareButton {
   componentDidLoad() {
     let isMobileSafari  = detectMobileSafari();
     let el = this.button.getElementsByClassName('linkedinShare')[0];
-    let pictureString = this.shareImage ? `&picture=${this.shareImage}` : "";
-    this.linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${this.link}&title=${this.title}&summary=${this.summary}${pictureString}&source=${this.redirectUrl}`;
+    let pictureString = this.shareimage ? `&picture=${this.shareimage}` : "";
+    this.linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${this.link}&title=${this.title}&summary=${this.summary}${pictureString}&source=${this.redirecturl}`;
     //TODO: need to url encode this
-
     if (isMobileSafari) {
       el.setAttribute("target", "_parent");
     }
@@ -70,7 +69,7 @@ export class LinkedinShareButton {
     el.addEventListener("click", this.clickHandler.bind(this), false);
     el.addEventListener("touchStart", this.clickHandler.bind(this), false);
 
-    addClass(el, this.displayRule);
+    addClass(el, this.displayrule);
     this.addStyle();
   }
 

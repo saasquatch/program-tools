@@ -29,12 +29,12 @@ const mailTo = (url) => {
 })
 export class EmailShareButton {
   @Prop() text: string = "Email";
-  @Prop() emailSubject: string = "Your friend wants to give stuff!";
-  @Prop() emailBody: string = "Hey friend, do this thing and get free stuff! Yay free stuff!";
-  @Prop() backgroundColor: string = "#373a3d";
-  @Prop() borderColor: string = "#373a3d";
-  @Prop() textColor: string = "#fff";
-  @Prop() displayRule: string = "mobile-and-desktop";
+  @Prop() emailsubject: string = "Your friend wants to give stuff!";
+  @Prop() emailbody: string = "Hey friend, do this thing and get free stuff! Yay free stuff!";
+  @Prop() backgroundcolor: string = "#373a3d";
+  @Prop() bordercolor: string = "#373a3d";
+  @Prop() textcolor: string = "#fff";
+  @Prop() displayrule: string = "mobile-and-desktop";
   @State() mailurl: string;
   @Element() emailShareButton: HTMLElement;
 
@@ -49,19 +49,19 @@ export class EmailShareButton {
 
   addStyle() {
     const css = ` .emailShare {
-                    background-color: ${this.backgroundColor};
-                    border: 1px solid ${this.borderColor};
-                    color: ${this.textColor};
+                    background-color: ${this.backgroundcolor};
+                    border: 1px solid ${this.bordercolor};
+                    color: ${this.textcolor};
                   }
                   
                   .emailShare:hover {
-                    background: ${shadeColor(this.backgroundColor, 10)};
-                    border-color: ${shadeColor(this.borderColor, 12)};
-                    color: ${this.textColor};
+                    background: ${shadeColor(this.backgroundcolor, 10)};
+                    border-color: ${shadeColor(this.bordercolor, 12)};
+                    color: ${this.textcolor};
                   }
                   
                   .emailShare:focus {
-                    color: ${this.textColor};
+                    color: ${this.textcolor};
                   } `
     const style = document.createElement('style');
 
@@ -73,7 +73,7 @@ export class EmailShareButton {
     let isMobileSafari = detectMobileSafari();
     let el = this.emailShareButton.getElementsByClassName('emailShare')[0];
 
-    this.mailurl = `mailto:?subject=${encodeURIComponent(this.emailSubject)}&body=${encodeURIComponent(this.emailBody)}`;
+    this.mailurl = `mailto:?subject=${encodeURIComponent(this.emailsubject)}&body=${encodeURIComponent(this.emailbody)}`;
     
     if (isMobileSafari) {
       el.setAttribute("target", "_parent");
@@ -83,7 +83,7 @@ export class EmailShareButton {
     el.addEventListener("click", this.clickHandler.bind(this), false);
     el.addEventListener("touchStart", this.clickHandler.bind(this), false);
 
-    addClass(el, this.displayRule);
+    addClass(el, this.displayrule);
     this.addStyle();
   }
 

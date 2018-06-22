@@ -55,9 +55,9 @@ const userFragment = `referrals(limit: 10, offset: $offset) {
   styleUrl: 'rewards-list.scss'
 })
 export class RewardsList {
-  @Prop() userIsReferred: boolean = false;
-  @Prop() showReferrer: boolean = true;
-  @Prop() dateFormatting: string = `{value, date, medium}`;
+  @Prop() userisreferred: boolean = false;
+  @Prop() showreferrer: boolean = true;
+  @Prop() dateformatting: string = `{value, date, medium}`;
   @State() referrals: Referral[];
   @State() referralsCount: number;
   @State() referredBy: any;
@@ -65,7 +65,7 @@ export class RewardsList {
   @State() loading: boolean;
 
   constructor() {
-    if (this.userIsReferred) {
+    if (this.userisreferred) {
       this.loading = true;
       this.getUserPayLoad().then(res => {
         console.log('res', res);
@@ -142,7 +142,7 @@ export class RewardsList {
       if (this.referrals) {
         referralsRow = (
           this.referrals.map((r, index) => {
-            let i = this.referredBy && this.showReferrer ? `${index + 1}` : `${index}`;
+            let i = this.referredBy && this.showreferrer ? `${index + 1}` : `${index}`;
             return (
               <tr id={i}>
                 {/* <referral-component></referral-component> */}
@@ -176,7 +176,7 @@ export class RewardsList {
                     }
                   </div>
 
-                  <div class="squatch-referrals-description" data-moment="true">{FormatJs.format(this.dateFormatting, {value:r.dateReferralStarted})}</div>
+                  <div class="squatch-referrals-description" data-moment="true">{FormatJs.format(this.dateformatting, {value:r.dateReferralStarted})}</div>
                 </td>
 
                 <td>
@@ -203,7 +203,7 @@ export class RewardsList {
       if (this.rewards) {
         content = (
           this.rewards.map((r, index) => {
-            let i = this.referredBy && this.showReferrer ? `${index + this.referralsCount + 1}` : `${index + this.referralsCount}`;
+            let i = this.referredBy && this.showreferrer ? `${index + this.referralsCount + 1}` : `${index + this.referralsCount}`;
             return (
               <tr id={i}>
                 {/* <reward-component></reward-component> */}
@@ -223,7 +223,7 @@ export class RewardsList {
                   <div class="squatch-referrals-heading">
                     Signed up
                   </div>
-                  <div class="squatch-referrals-description" data-moment="true">{FormatJs.format(this.dateFormatting, {value:r.dateGiven})}</div>
+                  <div class="squatch-referrals-description" data-moment="true">{FormatJs.format(this.dateformatting, {value:r.dateGiven})}</div>
                 </td> 
 
                 <td>
@@ -250,7 +250,7 @@ export class RewardsList {
         );
       }
 
-      if (this.referredBy && this.showReferrer) {
+      if (this.referredBy && this.showreferrer) {
         referredByRow = (
           <tr id="0">
             <td>
@@ -277,7 +277,7 @@ export class RewardsList {
                 Referred You
               </div>
 
-              <div class="squatch-referrals-description" data-moment="true">{FormatJs.format(this.dateFormatting, {value:this.referredBy.dateReferralStarted})}</div>
+              <div class="squatch-referrals-description" data-moment="true">{FormatJs.format(this.dateformatting, {value:this.referredBy.dateReferralStarted})}</div>
             </td>
 
             <td>
