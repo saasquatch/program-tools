@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/program-boilerplate",
-  "version": "0.1.6-logan2",
+  "version": "0.1.6",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
