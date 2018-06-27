@@ -10,7 +10,8 @@ const API: MyAPI = window["WidgetHost"];
 })
 export class CopyLinkButton {
   @Prop() text: string;
-  @State() shareLink: string;
+  @Prop() hidden: boolean = false;
+  @Prop() buttoncolor: string;
 
   notify(clipboardNotification, notificationText) {
     const notification = document.getElementById(clipboardNotification.slice(1));
@@ -40,19 +41,21 @@ export class CopyLinkButton {
   }
 
   render() {
-    return (
-    <div class="input-group">
-        <input id="squatch-share-link" value="https://link.com" readonly="readonly"></input>
+    const copyLinkSection = this.hidden 
+      ? `` 
+      : <div class="input-group">
+          <input id="squatch-share-link" value="https://link.com" readonly="readonly"></input>
 
-        <span class="label label-default fade" id="squatch-share-notification">copied!</span>
+          <span class="label label-default fade" id="squatch-share-notification">copied!</span>
 
-        <span class="input-group-btn">
-            <button class="btn btn-primary icon-btn copy" data-clipboard-target="#squatch-share-link" data-clipboard-notification="#squatch-share-notification">
-            <i class="icon icon-link"></i>
-            <span class="hidden-sm">Copy</span>
-            </button>
-        </span>
-    </div>
-    );
+          <span class="input-group-btn">
+              <button class="btn btn-primary icon-btn copy" data-clipboard-target="#squatch-share-link" data-clipboard-notification="#squatch-share-notification">
+              <i class="icon icon-link"></i>
+              <span class="hidden-sm">Copy</span>
+              </button>
+          </span>
+        </div>;
+      
+    return copyLinkSection;
   }
 }

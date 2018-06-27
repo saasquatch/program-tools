@@ -30,28 +30,22 @@
   <link rel="manifest" href="/manifest.json">
 </head>
 <body>
+  <sqh-global-container background="transparent" fontsize="14">
 
-  <sqh-close-button></sqh-close-button>
+    <sqh-text-component text="hello" fontsize="28" color="red"></sqh-text-component>
 
-  <sqh-copy-link-button></sqh-copy-link-button>
-  <br>
-  <br>
-  <br>
-  <sqh-share-button-container>
-    <sqh-email-share-button background-color="#000000"></sqh-email-share-button>
-    <sqh-facebook-share-button></sqh-facebook-share-button>
-    <sqh-twitter-share-button></sqh-twitter-share-button>
-    <sqh-sms-share-button></sqh-sms-share-button>
-    <sqh-whatsapp-share-button></sqh-whatsapp-share-button>
-  </sqh-share-button-container>
-  <br>
-  <br>
-  <br>
-  <sqh-stats-component friends-referred="{value, plural, one {Dude} other {Dudes}} Referred"></sqh-stats-component>
-  <br>
-  <br>
-  <br>
-  <sqh-rewards-list></sqh-rewards-list>
+
+    <sqh-close-button></sqh-close-button>
+
+    <sqh-copy-link-button hidden="false"></sqh-copy-link-button>
+
+    <sqh-share-button-container maxwidth="100%"></sqh-share-button-container>
+
+    <sqh-stats-component friends-referred="{value, plural, one {Dude} other {Dudes}} Referred"></sqh-stats-component>
+
+    <sqh-rewards-list></sqh-rewards-list>
+
+  </sqh-global-container>
 
   <style>
     body {

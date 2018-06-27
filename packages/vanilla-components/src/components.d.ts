@@ -63,6 +63,8 @@ declare global {
 
   namespace StencilComponents {
     interface SqhCopyLinkButton {
+      'buttoncolor': string;
+      'hidden': boolean;
       'text': string;
     }
   }
@@ -86,6 +88,8 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhCopyLinkButtonAttributes extends HTMLAttributes {
+      'buttoncolor'?: string;
+      'hidden'?: boolean;
       'text'?: string;
     }
   }
@@ -173,6 +177,47 @@ declare global {
       'displayrule'?: string;
       'text'?: string;
       'textcolor'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SqhGlobalContainer {
+      'background': string;
+      'fontcolor': string;
+      'fontfamily': string;
+      'fontsize': string;
+      'width': string;
+    }
+  }
+
+  interface HTMLSqhGlobalContainerElement extends StencilComponents.SqhGlobalContainer, HTMLStencilElement {}
+
+  var HTMLSqhGlobalContainerElement: {
+    prototype: HTMLSqhGlobalContainerElement;
+    new (): HTMLSqhGlobalContainerElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-global-container': HTMLSqhGlobalContainerElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-global-container': HTMLSqhGlobalContainerElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-global-container': JSXElements.SqhGlobalContainerAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhGlobalContainerAttributes extends HTMLAttributes {
+      'background'?: string;
+      'fontcolor'?: string;
+      'fontfamily'?: string;
+      'fontsize'?: string;
+      'width'?: string;
     }
   }
 }
@@ -309,7 +354,23 @@ declare global {
 
   namespace StencilComponents {
     interface SqhShareButtonContainer {
+      'emailcolor': string;
+      'emaildisplayrule': string;
+      'emailtext': string;
+      'facebookcolor': string;
+      'facebookdisplayrule': string;
+      'facebooktext': string;
+      'hidden': boolean;
       'maxwidth': string;
+      'smscolor': string;
+      'smsdisplayrule': string;
+      'smstext': string;
+      'twittercolor': string;
+      'twitterdisplayrule': string;
+      'twittertext': string;
+      'whatsappcolor': string;
+      'whatsappdisplayrule': string;
+      'whatsapptext': string;
     }
   }
 
@@ -332,7 +393,23 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhShareButtonContainerAttributes extends HTMLAttributes {
+      'emailcolor'?: string;
+      'emaildisplayrule'?: string;
+      'emailtext'?: string;
+      'facebookcolor'?: string;
+      'facebookdisplayrule'?: string;
+      'facebooktext'?: string;
+      'hidden'?: boolean;
       'maxwidth'?: string;
+      'smscolor'?: string;
+      'smsdisplayrule'?: string;
+      'smstext'?: string;
+      'twittercolor'?: string;
+      'twitterdisplayrule'?: string;
+      'twittertext'?: string;
+      'whatsappcolor'?: string;
+      'whatsappdisplayrule'?: string;
+      'whatsapptext'?: string;
     }
   }
 }
@@ -424,9 +501,11 @@ declare global {
 
   namespace StencilComponents {
     interface SqhTextComponent {
-      'fontSize': string;
+      'color': string;
+      'fontfamily': string;
+      'fontsize': string;
       'text': string;
-      'textAlign': string;
+      'textalign': string;
     }
   }
 
@@ -449,9 +528,11 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhTextComponentAttributes extends HTMLAttributes {
-      'fontSize'?: string;
+      'color'?: string;
+      'fontfamily'?: string;
+      'fontsize'?: string;
       'text'?: string;
-      'textAlign'?: string;
+      'textalign'?: string;
     }
   }
 }

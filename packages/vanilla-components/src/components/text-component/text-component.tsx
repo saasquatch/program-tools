@@ -6,14 +6,21 @@ import { Component, Prop, Element } from '@stencil/core';
 })
 export class TextComponent {
   @Prop() text: string;
-  @Prop() fontSize: string;
-  @Prop() textAlign: string;
+  @Prop() fontfamily: string;
+  @Prop() color: string;
+  @Prop() fontsize: string;
+  @Prop() textalign: string = 'center';
   @Element() textEl: HTMLElement;   
   
   addStyle(el) {
     if (!el) return;
 
-    el.setAttribute('style', `font-size: ${this.fontSize}; text-align: ${this.textAlign}`);
+    const fontFamily = this.fontfamily || 'inherit';
+    const fontSize = this.fontsize || 'inherit';
+    const textAlign = this.textalign || 'inherit';
+    const fontColor = this.color || 'inherit';
+
+    el.setAttribute('style', `font-family: ${fontFamily}; font-size: ${fontSize}px; text-align: ${textAlign}; color: ${fontColor}`);
   }
 
   componentDidLoad() {
