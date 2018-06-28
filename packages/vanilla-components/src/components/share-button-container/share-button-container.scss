@@ -14,3 +14,64 @@ sqh-share-button-container {
         display: block;
     }
 }
+
+.emailShare,
+.fbShare,
+.twitterShare,
+.linkedinShare {
+
+  &.hidden {
+    display: none;
+  }
+
+  &.mobile-only {
+    display: none;
+
+    @media (max-width: $screen-sm-max) {
+      display: block;
+    }
+  }
+
+  &.desktop-only {
+    @media (max-width: $screen-sm-max) {
+      display: none;
+    }
+  }
+}
+
+.messengerShare {
+
+  &.hidden {
+    display: none;
+  }
+
+  &.mobile-only {
+    display: none;
+  }
+
+  &.desktop-only {
+    @media (max-width: $screen-sm-max) {
+      display: none;
+    }
+  }
+
+  @media (max-width: $screen-sm-max) {
+    display: none;
+  }
+}
+
+.smsShare,
+.whatsappShare {
+
+  &.hidden {
+    display: none;
+  }
+
+  &.mobile-only {
+    display: none;
+
+    @media (max-width: $screen-sm-max) {
+      display: block;
+    }
+  }
+}
