@@ -498,6 +498,7 @@ declare global {
       'color': string;
       'fontfamily': string;
       'fontsize': string;
+      'hidden': boolean;
       'padding': string;
       'text': string;
       'textalign': string;
@@ -526,6 +527,7 @@ declare global {
       'color'?: string;
       'fontfamily'?: string;
       'fontsize'?: string;
+      'hidden'?: boolean;
       'padding'?: string;
       'text'?: string;
       'textalign'?: string;

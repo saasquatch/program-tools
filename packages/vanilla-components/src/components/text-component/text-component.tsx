@@ -5,6 +5,7 @@ import { Component, Prop, Element } from '@stencil/core';
   styleUrl: 'text-component.scss'
 })
 export class TextComponent {
+  @Prop() hidden: boolean = false;
   @Prop() text: string;
   @Prop() fontfamily: string;
   @Prop() color: string;
@@ -22,10 +23,8 @@ export class TextComponent {
       padding: this.padding || 'inherit'
     } 
 
-    return (
-      <div>
-        <p style={style}>{this.text}</p>
-      </div>
-    );
+    const textSection = this.hidden ? `` : <div><p style={style}>{this.text}</p></div>
+
+    return textSection;
   }
 }
