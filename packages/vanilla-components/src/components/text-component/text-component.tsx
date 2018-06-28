@@ -28,6 +28,11 @@ export class TextComponent {
     this.addStyle(el);
   }
 
+  componentWillUpdate() {
+    let el = this.textEl.getElementsByTagName('p')[0];
+    this.addStyle(el);
+  }
+
   render() {
     return (
       <div>

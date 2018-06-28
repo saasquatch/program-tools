@@ -51,6 +51,9 @@ export class TwitterShareButton {
     document.getElementsByTagName('head')[0].appendChild(style);
   }
 
+  
+  
+
   componentDidLoad() {
     let isMobileSafari = detectMobileSafari();
     let el = this.twitterShareButton.getElementsByClassName('twitterShare')[0];
@@ -64,6 +67,12 @@ export class TwitterShareButton {
     el.addEventListener("click", this.clickHandler.bind(this), false);
     el.addEventListener("touchStart", this.clickHandler.bind(this), false);
 
+    addClass(el, this.displayrule);
+    this.addStyle();
+  }
+
+  componentWillUpdate() {
+    let el = this.twitterShareButton.getElementsByClassName('twitterShare')[0];
     addClass(el, this.displayrule);
     this.addStyle();
   }

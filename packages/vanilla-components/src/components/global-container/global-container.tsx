@@ -36,4 +36,8 @@ export class GlobalContainer {
   componentDidLoad() {
     this.addStyle();
   }
+
+  componentWillUpdate() {
+    this.addStyle();
+  }
 }

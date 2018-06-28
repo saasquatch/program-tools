@@ -1,4 +1,4 @@
-import { Component, Prop, State} from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 import Clipboard from 'clipboard';
 import { addClass, removeClass } from '../../utilities';
 
