@@ -67,20 +67,22 @@ export class TwitterShareButton {
     el.addEventListener("click", this.clickHandler.bind(this), false);
     el.addEventListener("touchStart", this.clickHandler.bind(this), false);
 
-    addClass(el, this.displayrule);
+    // addClass(el, this.displayrule);
     this.addStyle();
   }
 
   componentWillUpdate() {
     let el = this.twitterShareButton.getElementsByClassName('twitterShare')[0];
-    addClass(el, this.displayrule);
+    // addClass(el, this.displayrule);
     this.addStyle();
   }
 
   render() {
+    const classes = `btn btn-twitter squatch-share-btn twitterShare ${this.displayrule}`;
+  
     return (
       <div>
-        <a class="btn btn-twitter squatch-share-btn twitterShare" target="_blank">
+        <a class={classes} target="_blank">
           <i class="icon icon-twitter"></i>
           {this.text}
         </a>
