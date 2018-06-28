@@ -1,5 +1,5 @@
 import { Component, Prop, Element, State} from '@stencil/core';
-import { shadeColor, addClass, detectMobileSafari } from '../../utilities';
+import { shadeColor, detectMobileSafari } from '../../utilities';
 
 const API: MyAPI = window["WidgetHost"];
 
@@ -10,7 +10,6 @@ const API: MyAPI = window["WidgetHost"];
 export class TwitterShareButton {
   @Prop() text: string = "Tweet";
   @Prop() backgroundcolor: string = "#4797d2";
-  @Prop() bordercolor: string = "#4797d2";
   @Prop() textcolor: string = "#fff";
   @Prop() twmessage: string = "";
   @Prop() displayrule: string = "mobile-and-desktop";
@@ -32,13 +31,13 @@ export class TwitterShareButton {
   addStyle() {
     const css = ` .twitterShare {
                     background-color: ${this.backgroundcolor};
-                    border: 1px solid ${this.bordercolor};
+                    border: 1px solid ${this.backgroundcolor};
                     color: ${this.textcolor};
                   }
                   
                   .twitterShare:hover {
                     background: ${shadeColor(this.backgroundcolor, 10)};
-                    border-color: ${shadeColor(this.bordercolor, 12)};
+                    border-color: ${shadeColor(this.backgroundcolor, 12)};
                     color: ${this.textcolor};
                   }
                   
@@ -67,13 +66,10 @@ export class TwitterShareButton {
     el.addEventListener("click", this.clickHandler.bind(this), false);
     el.addEventListener("touchStart", this.clickHandler.bind(this), false);
 
-    // addClass(el, this.displayrule);
     this.addStyle();
   }
 
   componentWillUpdate() {
-    let el = this.twitterShareButton.getElementsByClassName('twitterShare')[0];
-    // addClass(el, this.displayrule);
     this.addStyle();
   }
 

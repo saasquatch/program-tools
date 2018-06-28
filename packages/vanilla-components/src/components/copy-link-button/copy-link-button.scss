@@ -22,11 +22,6 @@ button.icon-btn.copy {
   text-align: left;
   min-height: 34px;
 
-  &.hover {
-    background: darken($btn-primary-bg, 10%);
-    border-color: darken($btn-primary-border, 12%);
-  }
-
   @media (max-width: $screen-sm-max) {
     width: auto;
 
@@ -40,6 +35,7 @@ button.icon-btn.copy {
 sqh-copy-link-button {
   font-family: 'Lato', sans-serif;
   display: block;
+  margin-bottom: 10px;
 
   input {
     color: inherit;

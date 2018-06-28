@@ -1,5 +1,5 @@
 import { Component, Prop, Element, State} from '@stencil/core';
-import { shadeColor, addClass, detectMobileSafari } from '../../utilities';
+import { shadeColor, detectMobileSafari } from '../../utilities';
 
 const API: MyAPI = window["WidgetHost"];
 
@@ -11,7 +11,6 @@ export class LinkedinShareButton {
   @Prop() text: string = "linkedin";
   @Prop() sharebody: string;
   @Prop() backgroundcolor: string = "#0084b9";
-  @Prop() bordercolor: string = "#0084b9";
   @Prop() textcolor: string = "#fff";
   @Prop() shareimage: string;
   @Prop() link: string;
@@ -36,13 +35,13 @@ export class LinkedinShareButton {
   addStyle() {
     const css = ` .linkedinShare {
                     background-color: ${this.backgroundcolor};
-                    border: 1px solid ${this.bordercolor};
+                    border: 1px solid ${this.backgroundcolor};
                     color: ${this.textcolor};
                   }
                   
                   .linkedinShare:hover {
                     background: ${shadeColor(this.backgroundcolor, 10)};
-                    border-color: ${shadeColor(this.bordercolor, 12)};
+                    border-color: ${shadeColor(this.backgroundcolor, 12)};
                     color: ${this.textcolor};
                   }
                   
@@ -69,14 +68,15 @@ export class LinkedinShareButton {
     el.addEventListener("click", this.clickHandler.bind(this), false);
     el.addEventListener("touchStart", this.clickHandler.bind(this), false);
 
-    addClass(el, this.displayrule);
     this.addStyle();
   }
 
   render() {
+    const classes = `btn btn-linkedin squatch-share-btn linkedinShare ${this.displayrule}`;
+
     return (
       <div>
-        <a class="btn btn-linkedin squatch-share-btn linkedinShare" target="_blank">
+        <a class={classes} target="_blank">
           <i class="icon icon-linkedin"></i>
           {this.text}
         </a>

@@ -1,5 +1,5 @@
 import { Component, Prop, Element, State} from '@stencil/core';
-import { shadeColor, addClass, detectMobileSafari } from '../../utilities';
+import { shadeColor, detectMobileSafari } from '../../utilities';
 
 const API: MyAPI = window["WidgetHost"];
 const mailTo = (url) => {
@@ -32,7 +32,6 @@ export class EmailShareButton {
   @Prop() emailsubject: string = "Your friend wants to give stuff!";
   @Prop() emailbody: string = "Hey friend, do this thing and get free stuff! Yay free stuff!";
   @Prop() backgroundcolor: string = "#373a3d";
-  @Prop() bordercolor: string = "#373a3d";
   @Prop() textcolor: string = "#fff";
   @Prop() displayrule: string = "mobile-and-desktop";
   @State() mailurl: string;
@@ -50,13 +49,13 @@ export class EmailShareButton {
   addStyle() {
     const css = ` .emailShare {
                     background-color: ${this.backgroundcolor};
-                    border: 1px solid ${this.bordercolor};
+                    border: 1px solid ${this.backgroundcolor};
                     color: ${this.textcolor};
                   }
                   
                   .emailShare:hover {
                     background: ${shadeColor(this.backgroundcolor, 10)};
-                    border-color: ${shadeColor(this.bordercolor, 12)};
+                    border-color: ${shadeColor(this.backgroundcolor, 12)};
                     color: ${this.textcolor};
                   }
                   
@@ -83,14 +82,19 @@ export class EmailShareButton {
     el.addEventListener("click", this.clickHandler.bind(this), false);
     el.addEventListener("touchStart", this.clickHandler.bind(this), false);
 
-    addClass(el, this.displayrule);
+    this.addStyle();
+  }
+
+  componentWillUpdate() {
     this.addStyle();
   }
 
   render() {
+    const classes = `btn btn-email squatch-share-btn emailShare ${this.displayrule}`;
+
     return (
       <div>
-        <a class="btn btn-email squatch-share-btn emailShare" target="_blank">
+        <a class={classes} target="_blank">
           <i class="icon icon-mail"></i>
           {this.text}
         </a>

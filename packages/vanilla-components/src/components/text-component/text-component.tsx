@@ -9,34 +9,22 @@ export class TextComponent {
   @Prop() fontfamily: string;
   @Prop() color: string;
   @Prop() fontsize: string;
+  @Prop() padding: string;
   @Prop() textalign: string = 'center';
   @Element() textEl: HTMLElement;   
-  
-  addStyle(el) {
-    if (!el) return;
-
-    const fontFamily = this.fontfamily || 'inherit';
-    const fontSize = this.fontsize || 'inherit';
-    const textAlign = this.textalign || 'inherit';
-    const fontColor = this.color || 'inherit';
-
-    el.setAttribute('style', `font-family: ${fontFamily}; font-size: ${fontSize}px; text-align: ${textAlign}; color: ${fontColor}`);
-  }
-
-  componentDidLoad() {
-    let el = this.textEl.getElementsByTagName('p')[0];
-    this.addStyle(el);
-  }
-
-  componentWillUpdate() {
-    let el = this.textEl.getElementsByTagName('p')[0];
-    this.addStyle(el);
-  }
 
   render() {
+    const style = {
+      fontFamily: this.fontfamily || 'inherit',
+      fontSize: `${this.fontsize}px` || 'inherit',
+      textAlign: this.textalign || 'inherit',
+      color: this.color || 'inherit',
+      padding: this.padding || 'inherit'
+    } 
+
     return (
       <div>
-        <p class='my-text'>{this.text}</p>
+        <p style={style}>{this.text}</p>
       </div>
     );
   }

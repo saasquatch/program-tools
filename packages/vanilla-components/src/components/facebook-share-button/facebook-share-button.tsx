@@ -1,5 +1,5 @@
 import { Component, Prop, Element, State} from '@stencil/core';
-import { shadeColor, addClass, detectMobileSafari } from '../../utilities';
+import { shadeColor, detectMobileSafari } from '../../utilities';
 
 const API: MyAPI = window["WidgetHost"];
 
@@ -10,7 +10,6 @@ const API: MyAPI = window["WidgetHost"];
 export class FacebookShareButton {
   @Prop() text: string = "Share";
   @Prop() backgroundcolor: string = "#234079";
-  @Prop() bordercolor: string = "#234079";
   @Prop() textcolor: string = "#fff";
   @Prop() displayrule: string = "mobile-and-desktop"
   @State() fburl: string;
@@ -30,13 +29,13 @@ export class FacebookShareButton {
   addStyle() {
     const css = ` .fbShare {
                     background-color: ${this.backgroundcolor};
-                    border: 1px solid ${this.bordercolor};
+                    border: 1px solid ${this.backgroundcolor};
                     color: ${this.textcolor};
                   }
                   
                   .fbShare:hover {
                     background: ${shadeColor(this.backgroundcolor, 10)};
-                    border-color: ${shadeColor(this.bordercolor, 12)};
+                    border-color: ${shadeColor(this.backgroundcolor, 12)};
                     color: ${this.textcolor};
                   }
                   
@@ -63,14 +62,19 @@ export class FacebookShareButton {
     el.addEventListener("click", this.facebookHandler.bind(this), false);
     el.addEventListener("touchStart", this.facebookHandler.bind(this), false);
 
-    addClass(el, this.displayrule);
+    this.addStyle();
+  }
+
+  componentWillUpdate() {
     this.addStyle();
   }
 
   render() {
+    const classes = `btn btn-facebook squatch-share-btn fbShare ${this.displayrule}`;
+
     return (
       <div>
-        <a class="btn btn-facebook squatch-share-btn fbShare" target="_blank">
+        <a class={classes} target="_blank">
           <i class="icon icon-facebook"></i>
           {this.text}
         </a>

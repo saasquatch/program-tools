@@ -15,7 +15,7 @@ export class GlobalContainer {
     const css = ` sqh-global-container {
                     background-color: ${this.background};
                     font-family: ${this.fontfamily};
-                    font-color: ${this.fontcolor};
+                    color: ${this.fontcolor};
                     font-size: ${this.fontsize}px;
                     width: ${this.width}px;
                     margin: 0 auto;

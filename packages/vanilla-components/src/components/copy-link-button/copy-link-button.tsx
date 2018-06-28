@@ -1,6 +1,6 @@
 import { Component, Prop } from '@stencil/core';
 import Clipboard from 'clipboard';
-import { addClass, removeClass } from '../../utilities';
+import { shadeColor, addClass, removeClass } from '../../utilities';
 
 const API: MyAPI = window["WidgetHost"];
 
@@ -12,6 +12,29 @@ export class CopyLinkButton {
   @Prop() text: string;
   @Prop() hidden: boolean = false;
   @Prop() buttoncolor: string;
+  @Prop() textcolor: string;
+
+  addStyle() {
+    const css = ` button.icon-btn.copy {
+                    background-color: ${this.buttoncolor};
+                    border: 1px solid ${this.buttoncolor};
+                    color: ${this.textcolor};
+                  }
+                  
+                  button.icon-btn.copy:hover {
+                    background: ${shadeColor(this.buttoncolor, 10)};
+                    border-color: ${shadeColor(this.buttoncolor, 12)};
+                    color: ${this.textcolor};
+                  }
+                  
+                  button.icon-btn.copy:focus {
+                    color: ${this.textcolor};
+                  } `
+    const style = document.createElement('style');
+
+    style.appendChild(document.createTextNode(css));
+    document.getElementsByTagName('head')[0].appendChild(style);
+  }
 
   notify(clipboardNotification, notificationText) {
     const notification = document.getElementById(clipboardNotification.slice(1));
@@ -38,6 +61,12 @@ export class CopyLinkButton {
     const clipboard = new Clipboard('[data-clipboard-target]');
     clipboard.on('success', this.notifySuccess.bind(this));
     clipboard.on('error', this.notifyFailure.bind(this));
+
+    this.addStyle();
+  }
+
+  componentWillUpdate() {
+    this.addStyle();
   }
 
   render() {

@@ -66,6 +66,7 @@ declare global {
       'buttoncolor': string;
       'hidden': boolean;
       'text': string;
+      'textcolor': string;
     }
   }
 
@@ -91,6 +92,7 @@ declare global {
       'buttoncolor'?: string;
       'hidden'?: boolean;
       'text'?: string;
+      'textcolor'?: string;
     }
   }
 }
@@ -101,7 +103,6 @@ declare global {
   namespace StencilComponents {
     interface SqhEmailShareButton {
       'backgroundcolor': string;
-      'bordercolor': string;
       'displayrule': string;
       'emailbody': string;
       'emailsubject': string;
@@ -130,7 +131,6 @@ declare global {
   namespace JSXElements {
     export interface SqhEmailShareButtonAttributes extends HTMLAttributes {
       'backgroundcolor'?: string;
-      'bordercolor'?: string;
       'displayrule'?: string;
       'emailbody'?: string;
       'emailsubject'?: string;
@@ -146,7 +146,6 @@ declare global {
   namespace StencilComponents {
     interface SqhFacebookShareButton {
       'backgroundcolor': string;
-      'bordercolor': string;
       'displayrule': string;
       'text': string;
       'textcolor': string;
@@ -173,7 +172,6 @@ declare global {
   namespace JSXElements {
     export interface SqhFacebookShareButtonAttributes extends HTMLAttributes {
       'backgroundcolor'?: string;
-      'bordercolor'?: string;
       'displayrule'?: string;
       'text'?: string;
       'textcolor'?: string;
@@ -228,7 +226,6 @@ declare global {
   namespace StencilComponents {
     interface SqhLinkedinShareButton {
       'backgroundcolor': string;
-      'bordercolor': string;
       'displayrule': string;
       'link': string;
       'linktitle': string;
@@ -261,7 +258,6 @@ declare global {
   namespace JSXElements {
     export interface SqhLinkedinShareButtonAttributes extends HTMLAttributes {
       'backgroundcolor'?: string;
-      'bordercolor'?: string;
       'displayrule'?: string;
       'link'?: string;
       'linktitle'?: string;
@@ -420,7 +416,6 @@ declare global {
   namespace StencilComponents {
     interface SqhSmsShareButton {
       'backgroundcolor': string;
-      'bordercolor': string;
       'displayrule': string;
       'sharebody': string;
       'text': string;
@@ -448,7 +443,6 @@ declare global {
   namespace JSXElements {
     export interface SqhSmsShareButtonAttributes extends HTMLAttributes {
       'backgroundcolor'?: string;
-      'bordercolor'?: string;
       'displayrule'?: string;
       'sharebody'?: string;
       'text'?: string;
@@ -504,6 +498,7 @@ declare global {
       'color': string;
       'fontfamily': string;
       'fontsize': string;
+      'padding': string;
       'text': string;
       'textalign': string;
     }
@@ -531,6 +526,7 @@ declare global {
       'color'?: string;
       'fontfamily'?: string;
       'fontsize'?: string;
+      'padding'?: string;
       'text'?: string;
       'textalign'?: string;
     }
@@ -543,7 +539,6 @@ declare global {
   namespace StencilComponents {
     interface SqhTwitterShareButton {
       'backgroundcolor': string;
-      'bordercolor': string;
       'displayrule': string;
       'text': string;
       'textcolor': string;
@@ -571,7 +566,6 @@ declare global {
   namespace JSXElements {
     export interface SqhTwitterShareButtonAttributes extends HTMLAttributes {
       'backgroundcolor'?: string;
-      'bordercolor'?: string;
       'displayrule'?: string;
       'text'?: string;
       'textcolor'?: string;

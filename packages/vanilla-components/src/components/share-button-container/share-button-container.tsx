@@ -27,10 +27,8 @@ export class ShareButtonContainer {
   @Prop() whatsappcolor: string;
   
   addStyle() {
-    const display = this.hidden ? 'none' : 'block';
     const css = ` sqh-share-button-container {
                     max-width: ${this.maxwidth};
-                    display: ${display} 
                   } `
     const style = document.createElement('style');
 
@@ -69,15 +67,16 @@ export class ShareButtonContainer {
                           backgroundcolor={this.whatsappcolor}
                         />;
 
-    return (
-      <div>
-        {emailBtn}
-        {facebookBtn}
-        {twitterBtn}
-        {smsBtn}
-        {whatsappBtn}
-      </div>
-    );
+    const shareSection = this.hidden ? `` :
+                          <div>
+                            {emailBtn}
+                            {facebookBtn}
+                            {twitterBtn}
+                            {smsBtn}
+                            {whatsappBtn}
+                          </div>
+
+    return shareSection;
   }
 }
   

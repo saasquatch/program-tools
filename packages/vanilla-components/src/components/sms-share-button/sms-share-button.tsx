@@ -1,5 +1,5 @@
 import { Component, Prop, Element} from '@stencil/core';
-import { shadeColor, addClass, detectMobileSafari } from '../../utilities';
+import { shadeColor, detectMobileSafari } from '../../utilities';
 
 const API: MyAPI = window["WidgetHost"];
 
@@ -11,7 +11,6 @@ export class SmsShareButton {
   @Prop() text: string = "SMS";
   @Prop() sharebody: string;
   @Prop() backgroundcolor: string = "#7bbf38";
-  @Prop() bordercolor: string = "#7bbf38";
   @Prop() textcolor: string = "#fff";
   @Prop() displayrule: string = "mobile-only"
   @Element() smsShareButton: HTMLElement;
@@ -23,13 +22,13 @@ export class SmsShareButton {
   addStyle() {
     const css = ` .smsShare {
                     background-color: ${this.backgroundcolor};
-                    border: 1px solid ${this.bordercolor};
+                    border: 1px solid ${this.backgroundcolor};
                     color: ${this.textcolor};
                   }
                   
                   .smsShare:hover {
                     background: ${shadeColor(this.backgroundcolor, 10)};
-                    border-color: ${shadeColor(this.bordercolor, 12)};
+                    border-color: ${shadeColor(this.backgroundcolor, 12)};
                     color: ${this.textcolor};
                   }
                   
@@ -55,14 +54,15 @@ export class SmsShareButton {
     el.addEventListener("click", this.smsHandler.bind(this), false);
     el.addEventListener("touchStart", this.smsHandler.bind(this), false);
 
-    addClass(el, this.displayrule);
     this.addStyle();
   }
 
   render() {
+    const classes = `btn btn-sms squatch-share-btn smsShare ${this.displayrule}`;
+
     return (
       <div>
-        <a class="btn btn-sms squatch-share-btn smsShare" target="_blank">
+        <a class={classes} target="_blank">
           <i class="icon icon-chat"></i>
           {this.text}
         </a>
