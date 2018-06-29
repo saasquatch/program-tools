@@ -12,6 +12,8 @@ export class TextComponent {
   @Prop() fontsize: string;
   @Prop() padding: string;
   @Prop() textalign: string = 'center';
+  @Prop() background: string;
+  @Prop() height: string;
   @Element() textEl: HTMLElement;   
 
   render() {
@@ -23,7 +25,12 @@ export class TextComponent {
       padding: this.padding || 'inherit'
     } 
 
-    const textSection = this.hidden ? `` : <div><p style={style}>{this.text}</p></div>
+    const divStyle = {
+      background: `url(${this.background}) no-repeat center center` || 'inherit',
+      height: this.height || 'inherit'
+    }
+
+    const textSection = this.hidden ? `` : <div style={divStyle}><p style={style}>{this.text}</p></div>
 
     return textSection;
   }

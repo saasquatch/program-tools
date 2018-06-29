@@ -495,9 +495,11 @@ declare global {
 
   namespace StencilComponents {
     interface SqhTextComponent {
+      'background': string;
       'color': string;
       'fontfamily': string;
       'fontsize': string;
+      'height': string;
       'hidden': boolean;
       'padding': string;
       'text': string;
@@ -524,9 +526,11 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhTextComponentAttributes extends HTMLAttributes {
+      'background'?: string;
       'color'?: string;
       'fontfamily'?: string;
       'fontsize'?: string;
+      'height'?: string;
       'hidden'?: boolean;
       'padding'?: string;
       'text'?: string;
