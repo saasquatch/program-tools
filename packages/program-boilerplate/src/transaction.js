@@ -121,7 +121,8 @@ class Transaction {
                 "accountId": user.accountId,
                 "rewardId": this.rewardId
             },
-            "query": query
+            "query": query,
+            "rewardId": this.rewardId
             }
         };
         
