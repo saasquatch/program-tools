@@ -57,7 +57,8 @@ export function generateSimpleRewardAndEmail({context, emailKey, rewardKey, muta
           "accountId": currentUser.accountId,
           "rewardId": rewardId
         },
-        "query": rewardEmailQuery
+        "query": rewardEmailQuery,
+        "rewardId": rewardId
       }
     });
 }
@@ -89,7 +90,8 @@ export function generateReferralRewardAndEmail({context, emailKey, rewardKey, re
         "accountId": accountId,
         "rewardId": rewardId
       },
-      "query": rewardEmailQuery
+      "query": rewardEmailQuery,
+      "rewardId": rewardId
     }
   });
 }
@@ -98,19 +100,19 @@ export function webtask(options = {}){
     return function(context, cb) {
       var mutations = [];
       var analytics = [];
-      
+
       switch (context.body.activeTrigger.type) {
         case "AFTER_USER_CREATED_OR_UPDATED":
           if(typeof options.afterUserCreatedOrUpdated === "function"){
 
               var currentUser = context.body.activeTrigger.user;
               var previousUser = context.body.activeTrigger.previous;
-              
+
               if (!currentUser) return;
-              
+
               var currentProgram = context.body.program;
               if (!currentProgram) return;
-                
+
               options.afterUserCreatedOrUpdated(context, mutations, analytics);
           }
           break;
