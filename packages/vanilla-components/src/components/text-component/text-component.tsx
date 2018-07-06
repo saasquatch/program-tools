@@ -10,7 +10,7 @@ export class TextComponent {
   @Prop() fontfamily: string;
   @Prop() color: string;
   @Prop() fontsize: string;
-  @Prop() padding: string;
+  @Prop() padding: string = '10px 20px 15px';
   @Prop() textalign: string = 'center';
   @Prop() background: string;
   @Prop() height: string;
