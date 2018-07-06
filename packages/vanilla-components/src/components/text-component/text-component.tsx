@@ -22,7 +22,7 @@ export class TextComponent {
       fontSize: `${this.fontsize}px` || 'inherit',
       textAlign: this.textalign || 'inherit',
       color: this.color || 'inherit',
-      padding: this.padding || 'inherit'
+      padding: this.padding || '0'
     } 
 
     const divStyle = {
@@ -30,7 +30,16 @@ export class TextComponent {
       height: this.height || 'inherit'
     }
 
-    const textSection = this.hidden ? `` : <div style={divStyle}><p style={style}>{this.text}</p></div>
+    const textSection = this.hidden 
+      ? `` 
+      : (
+        <div style={divStyle}>
+          <p style={style}>
+            {this.text}
+            <slot name="markdown-content" />
+          </p>
+        </div>
+      )
 
     return textSection;
   }

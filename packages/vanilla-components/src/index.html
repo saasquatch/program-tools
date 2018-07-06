@@ -34,7 +34,10 @@
 
     <sqh-text-component text="" fontsize="50" color="red" padding="60px 10px 10px" height="400px" background="http://res.cloudinary.com/saasquatch/image/upload/v1517426138/Optimalprint_FB_OG_default_jky5tu.jpg"></sqh-text-component>
 
-    <sqh-text-component text="Give shoe get shoe" color="#4486E1" fontsize="30"></sqh-text-component>
+    <sqh-text-component id="markdown-comp" color="#4486E1" fontsize="30"></sqh-text-component>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>document.getElementById('markdown-comp').innerHTML = `<div slot="markdown-content">${marked('*Give* **shoe** ***get*** shoe')}<div>`</script>
 
     <sqh-close-button></sqh-close-button>
 
