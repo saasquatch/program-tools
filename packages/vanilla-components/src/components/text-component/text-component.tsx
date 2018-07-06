@@ -1,4 +1,5 @@
 import { Component, Prop, Element } from '@stencil/core';
+import marked from 'marked';
 
 @Component({
   tag: 'sqh-text-component',
@@ -6,6 +7,7 @@ import { Component, Prop, Element } from '@stencil/core';
 })
 export class TextComponent {
   @Prop() hidden: boolean = false;
+  @Prop() ismarkdown: boolean = false;
   @Prop() text: string;
   @Prop() fontfamily: string;
   @Prop() color: string;
@@ -30,13 +32,16 @@ export class TextComponent {
       height: this.height || 'inherit'
     }
 
+    const content = this.ismarkdown
+      ? <div innerHTML={marked(this.text)} />
+      : this.text
+
     const textSection = this.hidden 
       ? `` 
       : (
         <div style={divStyle}>
           <p style={style}>
-            {this.text}
-            <slot name="markdown-content" />
+            {content}
           </p>
         </div>
       )

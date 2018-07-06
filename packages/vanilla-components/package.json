@@ -24,7 +24,8 @@
     "clipboard": "^1.7.1",
     "faker": "^4.1.0",
     "intl-messageformat": "^2.2.0",
-    "intl-relativeformat": "^2.1.0"
+    "intl-relativeformat": "^2.1.0",
+    "marked": "^0.4.0"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",

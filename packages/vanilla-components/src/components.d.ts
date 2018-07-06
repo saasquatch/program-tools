@@ -501,6 +501,7 @@ declare global {
       'fontsize': string;
       'height': string;
       'hidden': boolean;
+      'ismarkdown': boolean;
       'padding': string;
       'text': string;
       'textalign': string;
@@ -532,6 +533,7 @@ declare global {
       'fontsize'?: string;
       'height'?: string;
       'hidden'?: boolean;
+      'ismarkdown'?: boolean;
       'padding'?: string;
       'text'?: string;
       'textalign'?: string;
