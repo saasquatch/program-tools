@@ -16,6 +16,7 @@ export class TextComponent {
   @Prop() textalign: string = 'center';
   @Prop() background: string;
   @Prop() height: string;
+
   @Element() textEl: HTMLElement;   
 
   render() {
