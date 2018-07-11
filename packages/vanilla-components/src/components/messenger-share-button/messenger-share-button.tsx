@@ -1,7 +1,6 @@
 import { Component, Prop, Element, State } from '@stencil/core';
 import { shadeColor, detectMobileSafari } from '../../utilities';
 
-// not sure what this is for (sets up some kind of analytics variable)
 const API: MyAPI = window["WidgetHost"];
 
 @Component({
@@ -85,7 +84,7 @@ export class MessengerShareButton {
 
   componentWillUpdate() {
     // updates styles if props change
-    this.addStyle
+    this.addStyle()
   }
 
   render() {
