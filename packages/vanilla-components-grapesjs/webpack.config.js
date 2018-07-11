@@ -28,8 +28,8 @@ module.exports = (env = {}) => {
     devtool: isProd ? 'source-map' : 'cheap-module-eval-source-map',
     output: {
         path: path.resolve(__dirname),
-        filename: `dist/${name}.min.js`,
-        library: name,
+        filename: `dist/index.min.js`,
+        library: 'vanillaComponentsGrapesjs',
         libraryTarget: 'umd',
     },
     module: {

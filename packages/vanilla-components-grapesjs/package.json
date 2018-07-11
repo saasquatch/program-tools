@@ -1,8 +1,8 @@
 {
   "name": "@saasquatch/vanilla-components-grapesjs",
-  "version": "0.0.44",
+  "version": "0.0.46",
   "description": "GrapesJS Plugin Boilerplate",
-  "main": "dist/vanilla-components-grapesjs.min.js",
+  "main": "dist/index.min.js",
   "scripts": {
     "lint": "eslint src",
     "v:patch": "npm version --no-git-tag-version patch",
@@ -13,14 +13,8 @@
     "type": "git",
     "url": "git+https://github.com/saasquatch/program-tools.git"
   },
-  "keywords": [
-    "grapesjs",
-    "plugin",
-    "boilerplate",
-    "wysiwyg"
-  ],
-  "author": "Artur Arseniev",
-  "license": "BSD-3-Clause",
+  "author": "SaaSquatch",
+  "license": "MIT",
   "babel": {
     "presets": [
       "env"
