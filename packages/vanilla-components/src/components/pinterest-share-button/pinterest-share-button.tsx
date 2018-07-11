@@ -4,42 +4,42 @@ import { shadeColor, detectMobileSafari } from '../../utilities';
 const API: MyAPI = window["WidgetHost"];
 
 @Component({
-  tag: 'sqh-linkedin-share-button',
-  styleUrl: 'linkedin-share-button.scss'
+  tag: 'sqh-pinterest-share-button',
+  styleUrl: 'pinterest-share-button.scss'
 })
-export class LinkedinShareButton {
-  @Prop() text: string = "linkedin";
-  @Prop() backgroundcolor: string = "#0084b9";
+export class PinterestShareButton {
+  @Prop() text: string = "Pinterest";
+  @Prop() backgroundcolor: string = "#cb2027";
   @Prop() textcolor: string = "#fff";
-  @Prop() displayrule: string = "mobile-and-desktop";
-  @State() linkedinUrl: string;
-  @Element() button: HTMLElement;
+  @Prop() displayrule: string = "mobile-and-desktop"
+  @State() url: string;
+  @Element() pinterestShareButton: HTMLElement;
 
-  clickHandler(e) {
+  handler(e) {
     if (e.type != 'touchstart') {
       e.preventDefault();
 
-      let url = `${this.linkedinUrl}&display=popup`;
-      window.open(url, 'linkedin', 'status=0,width=620,height=400');
+      var url = this.url + "&display=popup";
+      window.open(url, 'pinterest', 'status=0,width=620,height=400');
     }
 
-    API.analytics.shareEvent('LINKEDIN');
+    API.analytics.shareEvent('PINTEREST');
   }
 
   addStyle() {
-    const css = ` .linkedinShare {
+    const css = ` .pinterestShare {
                     background-color: ${this.backgroundcolor};
                     border: 1px solid ${this.backgroundcolor};
                     color: ${this.textcolor};
                   }
                   
-                  .linkedinShare:hover {
+                  .pinterestShare:hover {
                     background: ${shadeColor(this.backgroundcolor, 10)};
                     border-color: ${shadeColor(this.backgroundcolor, 12)};
                     color: ${this.textcolor};
                   }
                   
-                  .linkedinShare:focus {
+                  .pinterestShare:focus {
                     color: ${this.textcolor};
                   } `
     const style = document.createElement('style');
@@ -49,28 +49,33 @@ export class LinkedinShareButton {
   }
 
   componentDidLoad() {
-    let isMobileSafari  = detectMobileSafari();
-    let el = this.button.getElementsByClassName('linkedinShare')[0];
-    this.linkedinUrl = `https://link.here`;
-    //TODO: need to url encode this
+    let isMobileSafari = detectMobileSafari();
+    let el = this.pinterestShareButton.getElementsByClassName('pinterestShare')[0];
+
+    this.url = `https://sharelink.here`;
+
     if (isMobileSafari) {
       el.setAttribute("target", "_parent");
     }
 
-    el.setAttribute("href", this.linkedinUrl);
-    el.addEventListener("click", this.clickHandler.bind(this), false);
-    el.addEventListener("touchStart", this.clickHandler.bind(this), false);
+    el.setAttribute("href", this.url);
+    el.addEventListener("click", this.handler.bind(this), false);
+    el.addEventListener("touchStart", this.handler.bind(this), false);
 
     this.addStyle();
   }
 
+  componentWillUpdate() {
+    this.addStyle();
+  }
+
   render() {
-    const classes = `btn btn-linkedin squatch-share-btn linkedinShare ${this.displayrule}`;
+    const classes = `btn btn-pinterest squatch-share-btn pinterestShare ${this.displayrule}`;
 
     return (
       <div>
         <a class={classes} target="_blank">
-          <i class="icon icon-linkedin"></i>
+          <i class="icon icon-pinterest"></i>
           {this.text}
         </a>
       </div>

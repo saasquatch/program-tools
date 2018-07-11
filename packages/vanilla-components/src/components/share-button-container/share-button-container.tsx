@@ -13,18 +13,24 @@ export class ShareButtonContainer {
   @Prop() smsdisplayrule: string;
   @Prop() twitterdisplayrule: string;
   @Prop() whatsappdisplayrule: string;
+  @Prop() linkedindisplayrule: string;
+  @Prop() pinterestdisplayrule: string;
 
   @Prop() emailtext: string;
   @Prop() facebooktext: string;
   @Prop() twittertext: string;
   @Prop() smstext: string;
   @Prop() whatsapptext: string;
+  @Prop() linkedintext: string;
+  @Prop() pinteresttext: string;
 
   @Prop() emailcolor: string;
   @Prop() facebookcolor: string;
   @Prop() twittercolor: string;
   @Prop() smscolor: string;
   @Prop() whatsappcolor: string;
+  @Prop() linkedincolor: string;
+  @Prop() pinterestcolor: string;
   
   addStyle() {
     const css = ` sqh-share-button-container {
@@ -67,6 +73,18 @@ export class ShareButtonContainer {
                           backgroundcolor={this.whatsappcolor}
                         />;
 
+    const linkedinBtn = <sqh-linkedin-share-button 
+                          displayrule={this.linkedindisplayrule}
+                          text={this.linkedintext}
+                          backgroundcolor={this.linkedincolor}
+                        />
+
+    const pinterestBtn = <sqh-pinterest-share-button
+                          displayrule={this.pinterestdisplayrule}
+                          text={this.pinteresttext}
+                          backgroundcolor={this.pinterestcolor}
+                        />
+
     const shareSection = this.hidden ? `` :
                           <div>
                             {emailBtn}
@@ -74,6 +92,8 @@ export class ShareButtonContainer {
                             {twitterBtn}
                             {smsBtn}
                             {whatsappBtn}
+                            {linkedinBtn}
+                            {pinterestBtn}
                           </div>
 
     return shareSection;

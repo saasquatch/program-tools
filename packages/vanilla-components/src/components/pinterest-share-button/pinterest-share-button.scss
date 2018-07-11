@@ -1,0 +1,45 @@
+@import '../../assets/styles/mixins/buttons';
+@import '../../assets/styles/mixins/vendor-prefixes';
+@import '../../assets/styles/mixins/tab-focus';
+
+@import '../../assets/styles/variables';
+@import '../../assets/styles/base';
+@import '../../assets/styles/shims';
+
+@import '../../assets/styles/labels';
+@import '../../assets/styles/buttons';
+@import '../../assets/styles/share';
+@import '../../assets/styles/responsive-utilities';
+
+sqh-pinterest-share-button {
+  display: inline-block;
+
+  @media (max-width: $screen-sm-max) {
+    display: block;
+  }
+
+  a.pinterestShare {
+    line-height: 32px;
+    min-height: 34px;
+    padding: 0 0 0 30px;
+    position: relative;
+    text-decoration: none;
+
+    .icon {
+      position: absolute;
+      left: 10px;
+      top: 6px;
+      width: 16px;
+    }
+
+    &:before {
+      bottom: -1px;
+      background: rgba(255,255,255,0.18);
+      content: '';
+      left: 0;
+      position: absolute;
+      top: -1px;
+      width: 40px;
+    }
+  }
+}

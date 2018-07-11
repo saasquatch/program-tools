@@ -227,12 +227,6 @@ declare global {
     interface SqhLinkedinShareButton {
       'backgroundcolor': string;
       'displayrule': string;
-      'link': string;
-      'linktitle': string;
-      'redirecturl': string;
-      'sharebody': string;
-      'shareimage': string;
-      'summary': string;
       'text': string;
       'textcolor': string;
     }
@@ -259,12 +253,45 @@ declare global {
     export interface SqhLinkedinShareButtonAttributes extends HTMLAttributes {
       'backgroundcolor'?: string;
       'displayrule'?: string;
-      'link'?: string;
-      'linktitle'?: string;
-      'redirecturl'?: string;
-      'sharebody'?: string;
-      'shareimage'?: string;
-      'summary'?: string;
+      'text'?: string;
+      'textcolor'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SqhPinterestShareButton {
+      'backgroundcolor': string;
+      'displayrule': string;
+      'text': string;
+      'textcolor': string;
+    }
+  }
+
+  interface HTMLSqhPinterestShareButtonElement extends StencilComponents.SqhPinterestShareButton, HTMLStencilElement {}
+
+  var HTMLSqhPinterestShareButtonElement: {
+    prototype: HTMLSqhPinterestShareButtonElement;
+    new (): HTMLSqhPinterestShareButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-pinterest-share-button': HTMLSqhPinterestShareButtonElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-pinterest-share-button': HTMLSqhPinterestShareButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-pinterest-share-button': JSXElements.SqhPinterestShareButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhPinterestShareButtonAttributes extends HTMLAttributes {
+      'backgroundcolor'?: string;
+      'displayrule'?: string;
       'text'?: string;
       'textcolor'?: string;
     }
@@ -357,7 +384,13 @@ declare global {
       'facebookdisplayrule': string;
       'facebooktext': string;
       'hidden': boolean;
+      'linkedincolor': string;
+      'linkedindisplayrule': string;
+      'linkedintext': string;
       'maxwidth': string;
+      'pinterestcolor': string;
+      'pinterestdisplayrule': string;
+      'pinteresttext': string;
       'smscolor': string;
       'smsdisplayrule': string;
       'smstext': string;
@@ -396,7 +429,13 @@ declare global {
       'facebookdisplayrule'?: string;
       'facebooktext'?: string;
       'hidden'?: boolean;
+      'linkedincolor'?: string;
+      'linkedindisplayrule'?: string;
+      'linkedintext'?: string;
       'maxwidth'?: string;
+      'pinterestcolor'?: string;
+      'pinterestdisplayrule'?: string;
+      'pinteresttext'?: string;
       'smscolor'?: string;
       'smsdisplayrule'?: string;
       'smstext'?: string;
