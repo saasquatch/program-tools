@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/vanilla-components-grapesjs",
-  "version": "0.0.43",
+  "version": "0.0.44",
   "description": "GrapesJS Plugin Boilerplate",
   "main": "dist/vanilla-components-grapesjs.min.js",
   "scripts": {
