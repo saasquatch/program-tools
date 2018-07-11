@@ -51,6 +51,11 @@ interface Referral {
     firstName: string
     lastName: string
     imageUrl: string
+  },
+  rewards: {
+    count: number
+    totalCount: number
+    data:Reward[]
   }
 }
 

@@ -25,7 +25,8 @@
     "faker": "^4.1.0",
     "intl-messageformat": "^2.2.0",
     "intl-relativeformat": "^2.1.0",
-    "marked": "^0.4.0"
+    "marked": "^0.4.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",

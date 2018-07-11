@@ -275,6 +275,78 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhReferralComponent {
+      'locale': string;
+      'referral': any;
+    }
+  }
+
+  interface HTMLSqhReferralComponentElement extends StencilComponents.SqhReferralComponent, HTMLStencilElement {}
+
+  var HTMLSqhReferralComponentElement: {
+    prototype: HTMLSqhReferralComponentElement;
+    new (): HTMLSqhReferralComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-referral-component': HTMLSqhReferralComponentElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-referral-component': HTMLSqhReferralComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-referral-component': JSXElements.SqhReferralComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhReferralComponentAttributes extends HTMLAttributes {
+      'locale'?: string;
+      'referral'?: any;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SqhReferralList {
+      'dateformatting': string;
+      'showreferrer': boolean;
+      'userisreferred': boolean;
+    }
+  }
+
+  interface HTMLSqhReferralListElement extends StencilComponents.SqhReferralList, HTMLStencilElement {}
+
+  var HTMLSqhReferralListElement: {
+    prototype: HTMLSqhReferralListElement;
+    new (): HTMLSqhReferralListElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-referral-list': HTMLSqhReferralListElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-referral-list': HTMLSqhReferralListElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-referral-list': JSXElements.SqhReferralListAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhReferralListAttributes extends HTMLAttributes {
+      'dateformatting'?: string;
+      'showreferrer'?: boolean;
+      'userisreferred'?: boolean;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhRewardsActions {
       'hidetext': string;
       'nexttext': string;
@@ -304,43 +376,6 @@ declare global {
       'hidetext'?: string;
       'nexttext'?: string;
       'previoustext'?: string;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface SqhRewardsList {
-      'dateformatting': string;
-      'showreferrer': boolean;
-      'userisreferred': boolean;
-    }
-  }
-
-  interface HTMLSqhRewardsListElement extends StencilComponents.SqhRewardsList, HTMLStencilElement {}
-
-  var HTMLSqhRewardsListElement: {
-    prototype: HTMLSqhRewardsListElement;
-    new (): HTMLSqhRewardsListElement;
-  };
-  interface HTMLElementTagNameMap {
-    'sqh-rewards-list': HTMLSqhRewardsListElement;
-  }
-  interface ElementTagNameMap {
-    'sqh-rewards-list': HTMLSqhRewardsListElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'sqh-rewards-list': JSXElements.SqhRewardsListAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface SqhRewardsListAttributes extends HTMLAttributes {
-      'dateformatting'?: string;
-      'showreferrer'?: boolean;
-      'userisreferred'?: boolean;
     }
   }
 }
