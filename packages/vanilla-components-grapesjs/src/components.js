@@ -2,7 +2,7 @@ export default (editor, config = {}) => {
   // Get DomComponents module
   var comps = editor.DomComponents;
 
-  // edit here
+  // edit
   
   // Get the model and the view from the default Component type
   var defaultType = comps.getType('default');
