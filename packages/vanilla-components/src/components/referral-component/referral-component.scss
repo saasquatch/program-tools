@@ -3,7 +3,34 @@
   .squatch-referrals-row {
     display: grid;
     grid-template-columns: 60% 10% 30%;
+    grid-template-rows: 20px auto 20px;
     margin: 0 30px;
     padding: 10px 0;
+
+    .squatch-referrals-heading {
+      grid-column-start: 1;
+      grid-row-start: 1;
+    }
+
+    .squatch-referrals-description {
+      grid-column-start: 1;
+      grid-row-start: 2;
+    }
+
+    .squatch-referrals-icon {
+      grid-column-start: 2;
+      grid-row-start: 1;
+      grid-row-end: 3;
+      align-self: center;
+
+      font-size: 30px;
+    }
+
+    .squatch-referrals-value {
+      grid-column-start: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
+      align-self: center;
+    }
   }
 }
