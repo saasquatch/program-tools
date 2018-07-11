@@ -1,8 +1,8 @@
 {
   "name": "@saasquatch/vanilla-components-grapesjs",
-  "version": "0.0.41",
+  "version": "0.0.42",
   "description": "GrapesJS Plugin Boilerplate",
-  "main": "dist/anilla-components-grapesjs.min.js",
+  "main": "dist/vanilla-components-grapesjs.min.js",
   "scripts": {
     "lint": "eslint src",
     "v:patch": "npm version --no-git-tag-version patch",
