@@ -263,6 +263,45 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhMessengerShareButton {
+      'backgroundcolor': string;
+      'displayrule': string;
+      'text': string;
+      'textcolor': string;
+    }
+  }
+
+  interface HTMLSqhMessengerShareButtonElement extends StencilComponents.SqhMessengerShareButton, HTMLStencilElement {}
+
+  var HTMLSqhMessengerShareButtonElement: {
+    prototype: HTMLSqhMessengerShareButtonElement;
+    new (): HTMLSqhMessengerShareButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-messenger-share-button': HTMLSqhMessengerShareButtonElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-messenger-share-button': HTMLSqhMessengerShareButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-messenger-share-button': JSXElements.SqhMessengerShareButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhMessengerShareButtonAttributes extends HTMLAttributes {
+      'backgroundcolor'?: string;
+      'displayrule'?: string;
+      'text'?: string;
+      'textcolor'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhPinterestShareButton {
       'backgroundcolor': string;
       'displayrule': string;
@@ -388,6 +427,9 @@ declare global {
       'linkedindisplayrule': string;
       'linkedintext': string;
       'maxwidth': string;
+      'messengercolor': string;
+      'messengerdisplayrule': string;
+      'messengertext': string;
       'pinterestcolor': string;
       'pinterestdisplayrule': string;
       'pinteresttext': string;
@@ -433,6 +475,9 @@ declare global {
       'linkedindisplayrule'?: string;
       'linkedintext'?: string;
       'maxwidth'?: string;
+      'messengercolor'?: string;
+      'messengerdisplayrule'?: string;
+      'messengertext'?: string;
       'pinterestcolor'?: string;
       'pinterestdisplayrule'?: string;
       'pinteresttext'?: string;
