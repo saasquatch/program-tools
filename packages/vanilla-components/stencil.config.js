@@ -2,6 +2,7 @@ const sass = require('@stencil/sass');
 
 exports.config = {
   namespace: 'widget-components',
+  globalStyle: "src/globals/global.scss",
   outputTargets: [
     {
       type: 'dist'
