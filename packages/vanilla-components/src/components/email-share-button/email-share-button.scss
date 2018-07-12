@@ -12,34 +12,8 @@
 @import '../../assets/styles/responsive-utilities';
 
 sqh-email-share-button {
-  display: inline-block;
-
-  @media (max-width: $screen-sm-max) {
-    display: block;
-  }
-
-  a.emailShare {
-    line-height: 32px;
-    min-height: 34px;
-    padding: 0 0 0 30px;
-    position: relative;
-    text-decoration: none;
-
-    .icon {
-      position: absolute;
-      left: 12px;
-      top: 7px;
-      width: 16px;
-    }
-
-    &:before {
-      bottom: -1px;
-      background: rgba(255,255,255,0.18);
-      content: '';
-      left: -1px;
-      position: absolute;
-      top: -1px;
-      width: 40px;
-    }
+  .icon-mail {
+    margin-left: 3px;
+    margin-top: 1px;
   }
 }

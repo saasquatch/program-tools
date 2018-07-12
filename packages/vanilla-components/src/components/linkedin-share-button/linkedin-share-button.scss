@@ -10,36 +10,3 @@
 @import '../../assets/styles/buttons';
 @import '../../assets/styles/share';
 @import '../../assets/styles/responsive-utilities';
-
-sqh-linkedin-share-button {
-  display: inline-block;
-
-  @media (max-width: $screen-sm-max) {
-    display: block;
-  }
-
-  a.linkedinShare {
-    line-height: 32px;
-    min-height: 34px;
-    padding: 0 0 0 30px;
-    position: relative;
-    text-decoration: none;
-
-    .icon {
-      position: absolute;
-      left: 10px;
-      top: 6px;
-      width: 16px;
-    }
-
-    &:before {
-      bottom: -1px;
-      background: rgba(255,255,255,0.18);
-      content: '';
-      left: -1px;
-      position: absolute;
-      top: -1px;
-      width: 40px;
-    }
-  }
-}

@@ -224,6 +224,39 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhImageComponent {
+      'text': string;
+    }
+  }
+
+  interface HTMLSqhImageComponentElement extends StencilComponents.SqhImageComponent, HTMLStencilElement {}
+
+  var HTMLSqhImageComponentElement: {
+    prototype: HTMLSqhImageComponentElement;
+    new (): HTMLSqhImageComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-image-component': HTMLSqhImageComponentElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-image-component': HTMLSqhImageComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-image-component': JSXElements.SqhImageComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhImageComponentAttributes extends HTMLAttributes {
+      'text'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhLinkedinShareButton {
       'backgroundcolor': string;
       'displayrule': string;
