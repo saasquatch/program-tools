@@ -12,7 +12,4 @@ export default grapesjs.plugins.add('vanilla-components-grapesjs-plugin', (edito
 
   // Add blocks
   loadBlocks(editor, options);
-
-  // TODO Remove
-  // editor.on('load', () => editor.addComponents(``, { at: 0 }))
 });
