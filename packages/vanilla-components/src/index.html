@@ -13,11 +13,11 @@
   <script>
     window.widgetIdent = {
       mode: 'POPUP',
-      tenantAlias: 'test_awwcsmzov10wp',
+      tenantAlias: 'test_ahq6tdmfclzwx',
       appDomain: 'https://staging.referralsaasquatch.com',
-      userId: '5a34673fe4b010c222be4058',
-      accountId: 'AGS8ZCPIUZDKHB42',
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWEzNDY3M2ZlNGIwMTBjMjIyYmU0MDU4IiwiYWNjb3VudElkIjoiQUdTOFpDUElVWkRLSEI0MiJ9fQ.ebpqSfvGwpeD88GNCB0Nnf65VhhpkzvVe-EigtpTGuA'
+      userId: '5b3ead41e4b0d9a2cf439e86',
+      accountId: 'DVVJFP7R7GPT0J75',
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWIzZWFkNDFlNGIwZDlhMmNmNDM5ZTg2IiwiYWNjb3VudElkIjoiRFZWSkZQN1I3R1BUMEo3NSJ9fQ.lrNCyo-RKFnF6ruEQEpBi75gsVqB3JxjHgrYIGzKpgI'
     };
   </script>
   <script src="https://unpkg.com/@saasquatch/widget-host@latest/umd/@saasquatch/widget-host.js"></script>
@@ -30,7 +30,7 @@
   <link rel="manifest" href="/manifest.json">
 </head>
 <body>
-  <sqh-global-container background="transparent" fontsize="18">
+  <sqh-global-container background="transparent" fontsize="16" fontfamily="Helvetica Neue">
 
     <sqh-text-component text="" fontsize="50" color="red" padding="60px 10px 10px" height="400px" background="http://res.cloudinary.com/saasquatch/image/upload/v1517426138/Optimalprint_FB_OG_default_jky5tu.jpg"></sqh-text-component>
     
@@ -44,7 +44,7 @@
 
     <sqh-stats-component friends-referred="{value, plural, one {Dude} other {Dudes}} Referred"></sqh-stats-component>
 
-    <sqh-referral-list></sqh-referral-list>
+    <sqh-referral-list userisreferred="true"></sqh-referral-list>
 
   </sqh-global-container>
 

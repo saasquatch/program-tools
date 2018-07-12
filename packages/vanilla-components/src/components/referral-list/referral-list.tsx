@@ -3,38 +3,37 @@ import FormatJs from '../../services/FormatJs';
 
 const API: MyAPI = window["WidgetHost"];
 const userFragment = `referrals(limit: 10, offset: $offset) {
-    count
-    totalCount
-    data {
-      id
-      dateReferralStarted
-      dateReferralPaid
-      dateReferralEnded
-      referrerReward {
-        type
-        value
-        unit
-        name
-      }
-      moderationStatus
-      referredUser {
-        firstName
-        lastName
-        imageUrl
-      }
-      rewards {
-        value
-      }
+  count
+  totalCount
+  data {
+    id
+    dateReferralStarted
+    dateReferralPaid
+    dateReferralEnded
+    referrerReward {
+      type
+      value
+      unit
+      name
     }
-  }
-  referredByReferral {
+    moderationStatus
     referredUser {
       firstName
       lastName
       imageUrl
     }
-    dateReferralStarted
+    rewards {
+      value
+    }
   }
+}
+referredByReferral {
+  referredUser {
+    firstName
+    lastName
+    imageUrl
+  }
+  dateReferralStarted
 }`;
 
 @Component({
@@ -45,6 +44,8 @@ export class ReferralList {
   @Prop() userisreferred: boolean = false;
   @Prop() showreferrer: boolean = true;
   @Prop() dateformatting: string = `{value, date, medium}`;
+  @Prop() rewardColor: string = "#4BB543";
+  @Prop() pendingColor: string = "#DDDDDD";
   @State() referrals: Referral[];
   @State() referralsCount: number;
   @State() referredBy: any;
@@ -52,130 +53,53 @@ export class ReferralList {
   @State() loading: boolean;
 
   constructor() {
-    if (this.userisreferred) {
-      this.loading = true;
-      this.getUserPayLoad().then(res => {
-        console.log('res', res);
-        this.referrals = res.data.user.referrals.data;
-        this.referralsCount = res.data.user.referrals.totalCount;
-        this.referredBy = res.data.user.referredByReferral;
-        this.rewards = res.data.user.rewards.data;
-        this.loading = false;
-      }).catch(e => {
-        this.onError(e);
-      });
-    } else {
-      this.referrals = [{
-        id: '123',
-        dateReferralStarted: 1508150601440,
-        dateReferralPaid: null,
-        dateReferralEnded: null,
-        moderationStatus: null,
-        referredUser: {
-          firstName: 'Jorge',
-          lastName: 'Conde',
-          imageUrl: null,
-        },
-        rewards: {
-          count: 1,
-          totalCount: 1,
-          data: [
-            {
-              id: '123',
-              type: 'CREDIT',
-              value: 1000,
-              unit: 'CENTS',
-              name: 'Dollar Credit',
-              dateGiven: 1508150601479,
-              dateExpires: null,
-              dateCancelled: null,
-              fuelTankCode: null,
-              fuelTankType: null,
-              currency: '$',
-            }
-          ]
-        },
-      },
-      {
-        id: '342',
-        dateReferralStarted: 1508150982134,
-        dateReferralPaid: null,
-        dateReferralEnded: null,
-        moderationStatus: null,
-        referredUser: {
-          firstName: 'Eric',
-          lastName: 'Mason',
-          imageUrl: null,
-        },
-        rewards: {
-          count: 3,
-          totalCount: 3,
-          data: [
-            {
-              id: '234',
-              type: 'CREDIT',
-              value: 1000,
-              unit: 'CENTS',
-              name: 'Dollar Credit',
-              dateGiven: 1508150601479,
-              dateExpires: null,
-              dateCancelled: null,
-              fuelTankCode: null,
-              fuelTankType: null,
-              currency: '$',
-            },
-            {
-              id: '345',
-              type: 'CREDIT',
-              value: 1000,
-              unit: 'CENTS',
-              name: 'Dollar Credit',
-              dateGiven: 1508150982172,
-              dateExpires: null,
-              dateCancelled: null,
-              fuelTankCode: null,
-              fuelTankType: null,
-              currency: '$',
-            },
-            {
-              id: '456',
-              type: 'CREDIT',
-              value: 1000,
-              unit: 'CENTS',
-              name: 'Dollar Credit',
-              dateGiven: 1508151280974,
-              dateExpires: null,
-              dateCancelled: null,
-              fuelTankCode: null,
-              fuelTankType: null,
-              currency: '$',
-            },
-          ]
-        },
-      },
-      {
-        id: '678',
-        dateReferralStarted: 1508151280937,
-        dateReferralPaid: null,
-        dateReferralEnded: null,
-        moderationStatus: null,
-        referredUser: {
-          firstName: 'Logan',
-          lastName: 'Volkers',
-          imageUrl: null,
-        },
-        rewards: {
-          count: 0,
-          totalCount: 0,
-          data: []
-        },
-      }
-      ];
-      this.referralsCount = 3;
-      this.referredBy = null;
-      this.rewards = [];
+    this.loading = true;
+    this.getUserPayLoad().then(res => {
+      console.log('res', res);
+      this.referrals = res.data.user.referrals.data;
+      this.referralsCount = res.data.user.referrals.totalCount;
+      this.referredBy = res.data.user.referredByReferral;
       this.loading = false;
+    }).catch(e => {
+      this.onError(e);
+    });
+  }
+
+  addStyle() {
+    const el = document.getElementById("squatch-referrals-style");
+    const css = `
+      .squatch-referrals-icon.icon-ok-circled {
+        color: ${ this.rewardColor };
+      }
+      .squatch-referrals-icon.icon-attention {
+        color: ${ this.pendingColor };
+      }
+      .squatch-referrals-value {
+        color: ${ this.rewardColor };
+        font-size: 20px;
+      }
+      .squatch-referrals-value.pending {
+        color: ${ this.pendingColor };
+        font-size: 15px;
+      }
+    `;
+    
+    if (el) {
+      el.textContent = css;
+    } else {
+      const style = document.createElement("style")
+      style.setAttribute('id', 'squatch-referrals-style');
+      style.textContent = css;
+      document.getElementsByTagName('head')[0].appendChild(style);
     }
+  }
+
+  componentDidLoad() {
+    this.addStyle();
+  }
+
+  componentWillUpdate() {
+    this.addStyle();
   }
 
   getUserPayLoad(offset = 0) {

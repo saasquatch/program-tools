@@ -13,26 +13,31 @@ export class ReferralComponent {
   render() {
     return (
       <div class="squatch-referrals-row">
-        <div class="squatch-referrals-heading">{this.referral.referredUser.firstName}</div>
-
+        <div class="squatch-referrals-heading">
+          {this.referral.referredUser.firstName}
+        </div>
         <div class="squatch-referrals-description">
-          <span>
-            { this.referral.rewards.totalCount > 0
-              ? `Paid User, signed up ${FormatJs.formatRelative(this.referral.dateReferralStarted, this.locale)}`
-              : `Trial User, signed up ${FormatJs.formatRelative(this.referral.dateReferralStarted, this.locale)}`
-            }
-          </span>
+          { this.referral.rewards.totalCount > 0
+            ? `Paid User, signed up ${FormatJs.formatRelative(this.referral.dateReferralStarted, this.locale)}`
+            : `Trial User, signed up ${FormatJs.formatRelative(this.referral.dateReferralStarted, this.locale)}`
+          }
         </div>
         <i class={
           `icon squatch-referrals-icon ${
             this.referral.rewards.totalCount > 0
-              ? `icon-ok-circled text-green`
-              : `icon-attention text-yellow`
+              ? `icon-ok-circled`
+              : `icon-attention`
+            }
+          `
+        }></i>
+        <div class={
+          `squatch-referrals-value ${
+            this.referral.rewards.totalCount > 0
+              ? ''
+              : 'pending'
             }
           `
         }>
-        </i>
-        <div class="squatch-referrals-value">
           { this.referral.rewards.totalCount > 0
             ? `${ this.referral.rewards.data[0].currency }${ this.referral.rewards.data[0].value / 100 }`
             : 'Reward pending'

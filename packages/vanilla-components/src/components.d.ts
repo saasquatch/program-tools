@@ -312,6 +312,8 @@ declare global {
   namespace StencilComponents {
     interface SqhReferralList {
       'dateformatting': string;
+      'pendingColor': string;
+      'rewardColor': string;
       'showreferrer': boolean;
       'userisreferred': boolean;
     }
@@ -337,6 +339,8 @@ declare global {
   namespace JSXElements {
     export interface SqhReferralListAttributes extends HTMLAttributes {
       'dateformatting'?: string;
+      'pendingColor'?: string;
+      'rewardColor'?: string;
       'showreferrer'?: boolean;
       'userisreferred'?: boolean;
     }
