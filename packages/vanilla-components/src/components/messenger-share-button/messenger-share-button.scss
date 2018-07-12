@@ -11,14 +11,14 @@
 @import '../../assets/styles/share';
 @import '../../assets/styles/responsive-utilities';
 
-sqh-pinterest-share-button {
+sqh-messenger-share-button {
   display: inline-block;
 
   @media (max-width: $screen-sm-max) {
     display: block;
   }
 
-  a.pinterestShare {
+  a.messengerShare {
     line-height: 32px;
     min-height: 34px;
     padding: 0 0 0 30px;

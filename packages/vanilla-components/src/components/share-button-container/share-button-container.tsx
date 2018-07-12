@@ -15,6 +15,7 @@ export class ShareButtonContainer {
   @Prop() whatsappdisplayrule: string;
   @Prop() linkedindisplayrule: string;
   @Prop() pinterestdisplayrule: string;
+  @Prop() messengerdisplayrule: string;
 
   @Prop() emailtext: string;
   @Prop() facebooktext: string;
@@ -23,6 +24,7 @@ export class ShareButtonContainer {
   @Prop() whatsapptext: string;
   @Prop() linkedintext: string;
   @Prop() pinteresttext: string;
+  @Prop() messengertext: string;
 
   @Prop() emailcolor: string;
   @Prop() facebookcolor: string;
@@ -31,6 +33,7 @@ export class ShareButtonContainer {
   @Prop() whatsappcolor: string;
   @Prop() linkedincolor: string;
   @Prop() pinterestcolor: string;
+  @Prop() messengercolor: string;
   
   addStyle() {
     const css = ` sqh-share-button-container {
@@ -85,6 +88,12 @@ export class ShareButtonContainer {
                           backgroundcolor={this.pinterestcolor}
                         />
 
+    const messengerBtn = <sqh-messenger-share-button
+                          displayrule={this.messengerdisplayrule}
+                          text={this.messengertext}
+                          backgroundcolor={this.messengercolor}
+                          />
+
     const shareSection = this.hidden ? `` :
                           <div>
                             {emailBtn}
@@ -94,6 +103,7 @@ export class ShareButtonContainer {
                             {whatsappBtn}
                             {linkedinBtn}
                             {pinterestBtn}
+                            {messengerBtn}
                           </div>
 
     return shareSection;

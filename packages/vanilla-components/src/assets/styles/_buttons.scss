@@ -1,6 +1,6 @@
 .btn {
   display: inline-block;
-  margin-bottom: 0; // For input.btn
+  margin-bottom: 10px; // For input.btn
   font-weight: $btn-font-weight;
   text-align: center;
   vertical-align: middle;
@@ -58,7 +58,7 @@
     content: '';
     position: absolute;
     top: -1px;
-    left: 0;
+    left: -1px;
     bottom: -1px;
     background: transparentize(#ffffff, 0.82);
     width: 40px;
