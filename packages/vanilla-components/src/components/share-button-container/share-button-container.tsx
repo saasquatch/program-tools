@@ -37,7 +37,7 @@ export class ShareButtonContainer {
   @Prop() twitterclassName: string;
 
   // SMS button properties and default settings
-  @Prop() smsdisplayrule: string = "mobile-and-desktop";
+  @Prop() smsdisplayrule: string = "mobile";
   @Prop() smstext: string = "SMS";
   @Prop() smsbackgroundcolor: string = "#7bbf38";
   @Prop() smstextcolor: string = "#fff";
@@ -46,7 +46,7 @@ export class ShareButtonContainer {
   @Prop() smsclassName: string;
 
   // Whatsapp button properties and default settings
-  @Prop() whatsappdisplayrule: string = "mobile-and-desktop";
+  @Prop() whatsappdisplayrule: string = "mobile";
   @Prop() whatsapptext: string = "Whatsapp";
   @Prop() whatsappbackgroundcolor: string = "#25D366";
   @Prop() whatsapptextcolor: string = "#fff";

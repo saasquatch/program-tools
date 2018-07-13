@@ -56,7 +56,7 @@ export class ShareButton {
         color: ${this.textcolor};
       } 
     `;
-    const classes = [`btn share-btn ${this.className} ${this.displayrule}`, clz].join(" ");
+    const classes = [`btn squatch-share-btn ${this.className} ${this.displayrule}`, clz].join(" ");
 
     return (
       <a class={classes} href={this.url} target={target}>

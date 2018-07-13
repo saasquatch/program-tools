@@ -28,7 +28,7 @@ $line-height-base:        1.428571429; // 20/14
 $border-radius-base:        4px;
 $btn-default-color: red;
 
-.share-btn {
+.squatch-share-btn {
   width: 140px;
   // display: inline-block;
   margin: 5px;
@@ -39,7 +39,8 @@ $btn-default-color: red;
   }
   
   @media (max-width: $screen-sm-max) {
-    width: 95%;
+    width: 100%;
+    margin: 0px;
   }
 }
 
