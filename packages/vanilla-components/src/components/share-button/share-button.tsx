@@ -6,14 +6,14 @@ import { css } from 'emotion';
   tag: 'sqh-share-button',
   styleUrl: 'share-button.scss'
 })
-export class LinkedinShareButton {
-  @Prop() text: string = "linkedin";
-  @Prop() backgroundcolor: string = "#0084b9";
-  @Prop() textcolor: string = "#fff";
-  @Prop() displayrule: string = "mobile-and-desktop";
-  @Prop() className: string;
+export class ShareButton {
+  @Prop() displayrule: string;
+  @Prop() text: string;
+  @Prop() backgroundcolor: string;
+  @Prop() textcolor: string;
   @Prop() icon: string;
   @Prop() url: string;
+  @Prop() className: string;
 
   @Element() button: HTMLElement;
 
@@ -44,6 +44,7 @@ export class LinkedinShareButton {
       background-color: ${this.backgroundcolor};
       border: 1px solid ${this.backgroundcolor};
       color: ${this.textcolor};
+      width: 95%;
                         
       &:hover {
         background: ${shadeColor(this.backgroundcolor, 10)};

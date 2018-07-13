@@ -70,28 +70,14 @@
   }
 }
 
-sqh-facebook-share-button,
-sqh-whatsapp-share-button,
-sqh-twitter-share-button,
-sqh-pinterest-share-button,
-sqh-messenger-share-button,
-sqh-linkedin-share-button,
-sqh-email-share-button,
-sqh-sms-share-button {
+sqh-share-button {
   display: inline-block;
 
   @media (max-width: $screen-sm-max) {
     display: block;
   }
 
-  a.fbShare,
-  a.whatsappShare,
-  a.twitterShare,
-  a.pinterestShare,
-  a.messengerShare,
-  a.linkedinShare,
-  a.emailShare,
-  a.smsShare {
+  a {
     line-height: 32px;
     min-height: 34px;
     padding: 0 0 0 30px;

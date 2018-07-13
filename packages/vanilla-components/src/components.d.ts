@@ -449,32 +449,15 @@ declare global {
 
   namespace StencilComponents {
     interface SqhShareButtonContainer {
-      'emailcolor': string;
+      'emailbackgroundcolor': string;
+      'emailclassName': string;
       'emaildisplayrule': string;
+      'emailicon': string;
       'emailtext': string;
-      'facebookcolor': string;
-      'facebookdisplayrule': string;
-      'facebooktext': string;
+      'emailtextcolor': string;
+      'emailurl': string;
       'hidden': boolean;
-      'linkedincolor': string;
-      'linkedindisplayrule': string;
-      'linkedintext': string;
       'maxwidth': string;
-      'messengercolor': string;
-      'messengerdisplayrule': string;
-      'messengertext': string;
-      'pinterestcolor': string;
-      'pinterestdisplayrule': string;
-      'pinteresttext': string;
-      'smscolor': string;
-      'smsdisplayrule': string;
-      'smstext': string;
-      'twittercolor': string;
-      'twitterdisplayrule': string;
-      'twittertext': string;
-      'whatsappcolor': string;
-      'whatsappdisplayrule': string;
-      'whatsapptext': string;
     }
   }
 
@@ -497,32 +480,60 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhShareButtonContainerAttributes extends HTMLAttributes {
-      'emailcolor'?: string;
+      'emailbackgroundcolor'?: string;
+      'emailclassName'?: string;
       'emaildisplayrule'?: string;
+      'emailicon'?: string;
       'emailtext'?: string;
-      'facebookcolor'?: string;
-      'facebookdisplayrule'?: string;
-      'facebooktext'?: string;
+      'emailtextcolor'?: string;
+      'emailurl'?: string;
       'hidden'?: boolean;
-      'linkedincolor'?: string;
-      'linkedindisplayrule'?: string;
-      'linkedintext'?: string;
       'maxwidth'?: string;
-      'messengercolor'?: string;
-      'messengerdisplayrule'?: string;
-      'messengertext'?: string;
-      'pinterestcolor'?: string;
-      'pinterestdisplayrule'?: string;
-      'pinteresttext'?: string;
-      'smscolor'?: string;
-      'smsdisplayrule'?: string;
-      'smstext'?: string;
-      'twittercolor'?: string;
-      'twitterdisplayrule'?: string;
-      'twittertext'?: string;
-      'whatsappcolor'?: string;
-      'whatsappdisplayrule'?: string;
-      'whatsapptext'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SqhShareButton {
+      'backgroundcolor': string;
+      'className': string;
+      'displayrule': string;
+      'icon': string;
+      'text': string;
+      'textcolor': string;
+      'url': string;
+    }
+  }
+
+  interface HTMLSqhShareButtonElement extends StencilComponents.SqhShareButton, HTMLStencilElement {}
+
+  var HTMLSqhShareButtonElement: {
+    prototype: HTMLSqhShareButtonElement;
+    new (): HTMLSqhShareButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-share-button': HTMLSqhShareButtonElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-share-button': HTMLSqhShareButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-share-button': JSXElements.SqhShareButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhShareButtonAttributes extends HTMLAttributes {
+      'backgroundcolor'?: string;
+      'className'?: string;
+      'displayrule'?: string;
+      'icon'?: string;
+      'text'?: string;
+      'textcolor'?: string;
+      'url'?: string;
     }
   }
 }
