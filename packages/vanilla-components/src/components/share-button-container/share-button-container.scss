@@ -1,90 +1,27 @@
-// // @import '../../assets/styles/variables';
-// $screen-sm-max:             500px;
-
-// sqh-share-button-container {
-//     display: block;
-//     justify-content: space-between;
-//     margin: 0 auto;
-//     text-align: center;
-
-//     // > div > .hydrated:first-child > div > a {
-//     //     margin-left: 0;
-//     // }
-
-//     @media (max-width: $screen-sm-max) {
-//         display: block;
-//     }
-// }
-
-// .emailShare,
-// .fbShare,
-// .twitterShare,
-// .linkedinShare,
-// .pinterestShare {
-
-//   &.hidden {
-//     display: none;
-//   }
-
-//   &.mobile-only {
-//     display: none;
-
-//     @media (max-width: $screen-sm-max) {
-//       display: block;
-//     }
-//   }
-
-//   &.desktop-only {
-//     @media (max-width: $screen-sm-max) {
-//       display: none;
-//     }
-//   }
-// }
-
-// .messengerShare {
-
-//   &.hidden {
-//     display: none;
-//   }
-
-//   &.mobile-only {
-//     display: none;
-//   }
-
-//   &.desktop-only {
-//     @media (max-width: $screen-sm-max) {
-//       display: none;
-//     }
-//   }
-
-//   @media (max-width: $screen-sm-max) {
-//     display: none;
-//   }
-// }
-
-// .smsShare,
-// .whatsappShare {
-
-//   &.hidden {
-//     display: none;
-//   }
-
-//   &.mobile-only {
-//     display: none;
-
-//     @media (max-width: $screen-sm-max) {
-//       display: block;
-//     }
-//   }
-// }
-
-
 // MINIMAL STYLING BELOW
+
+$screen-sm-max: 500px;
 
 sqh-share-button-container {
   text-align: center;
-}
+  .squatch-share-btn {
 
-.whatsapp {
-  font-size: 1.4em;
+    &.hidden {
+      display: none;
+    }
+
+    &.mobile-only {
+      display: none;
+
+      @media (max-width: $screen-sm-max) {
+        display: block;
+      }
+    }
+
+    &.desktop-only {
+      @media (max-width: $screen-sm-max) {
+        display: none;
+      }
+    }
+  }
 }

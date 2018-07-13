@@ -1,17 +1,7 @@
+// required mixin imports
 @import '../../assets/styles/mixins/buttons';
 @import '../../assets/styles/mixins/vendor-prefixes';
 @import '../../assets/styles/mixins/tab-focus';
-
-// @import '../../assets/styles/variables';
-// // @import '../../assets/styles/base';
-// // @import '../../assets/styles/shims';
-
-// // @import '../../assets/styles/labels';
-// // @import '../../assets/styles/buttons';
-// // @import '../../assets/styles/share';
-// // @import '../../assets/styles/responsive-utilities';
-
-
 
 
 // MINIMAL STYLING BELOW
@@ -30,7 +20,6 @@ $btn-default-color: red;
 
 .squatch-share-btn {
   width: 140px;
-  // display: inline-block;
   margin: 5px;
 
   .share-btn-text {
@@ -49,10 +38,10 @@ $btn-default-color: red;
 .btn {
   display: inline-block;
   margin-bottom: 10px; // For input.btn
-  // font-weight: $btn-font-weight;
-  // text-align: center;
-  // vertical-align: middle;
-  // touch-action: manipulation;
+  font-weight: $btn-font-weight;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
   cursor: pointer;
   background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
   border: 1px solid transparent;

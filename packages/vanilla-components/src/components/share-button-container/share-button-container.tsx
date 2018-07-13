@@ -37,7 +37,7 @@ export class ShareButtonContainer {
   @Prop() twitterclassName: string;
 
   // SMS button properties and default settings
-  @Prop() smsdisplayrule: string = "mobile";
+  @Prop() smsdisplayrule: string = "mobile-only";
   @Prop() smstext: string = "SMS";
   @Prop() smsbackgroundcolor: string = "#7bbf38";
   @Prop() smstextcolor: string = "#fff";
@@ -46,7 +46,7 @@ export class ShareButtonContainer {
   @Prop() smsclassName: string;
 
   // Whatsapp button properties and default settings
-  @Prop() whatsappdisplayrule: string = "mobile";
+  @Prop() whatsappdisplayrule: string = "mobile-only";
   @Prop() whatsapptext: string = "Whatsapp";
   @Prop() whatsappbackgroundcolor: string = "#25D366";
   @Prop() whatsapptextcolor: string = "#fff";
@@ -55,7 +55,7 @@ export class ShareButtonContainer {
   @Prop() whatsappclassName: string;
   
   // LinkedIn button properties and default settings
-  @Prop() linkedindisplayrule: string = "mobile-and-desktop";
+  @Prop() linkedindisplayrule: string = "desktop-only";
   @Prop() linkedintext: string = "LinkedIn";
   @Prop() linkedinbackgroundcolor: string = "#0084b9";
   @Prop() linkedintextcolor: string = "#fff";
@@ -73,7 +73,7 @@ export class ShareButtonContainer {
   @Prop() pinterestclassName: string;
   
   // Messenger button properties and default settings
-  @Prop() messengerdisplayrule: string = "mobile-and-desktop";
+  @Prop() messengerdisplayrule: string = "hidden";
   @Prop() messengertext: string = "Messenger";
   @Prop() messengerbackgroundcolor: string = "#0084ff";
   @Prop() messengertextcolor: string = "#fff";
