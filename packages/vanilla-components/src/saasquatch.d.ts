@@ -20,12 +20,17 @@ interface UserPayload {
   data:{
     user:{
       referredByReferral: {
-        referredUser: {
+        referrerUser: {
           firstName: string
           lastName: string
           imageUrl: string
         }
         dateReferralStarted: number
+        rewards: {
+          count: number
+          totalCount: number
+          data:Reward[]
+        }
       }
       referrals: {
         count: number

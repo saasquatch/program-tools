@@ -21,7 +21,6 @@ const userFragment = `referrals(limit: 10, offset: $offset) {
     referredUser {
       firstName
       lastName
-      imageUrl
     }
     rewards {
       prettyValue
@@ -29,12 +28,14 @@ const userFragment = `referrals(limit: 10, offset: $offset) {
   }
 }
 referredByReferral {
-  referredUser {
+  referrerUser {
     firstName
     lastName
-    imageUrl
   }
   dateReferralStarted
+  rewards {
+    prettyValue
+  }
 }`;
 
 @Component({
@@ -129,12 +130,15 @@ export class ReferralList {
               rewards
             } = ref;
             const date = FormatJs.formatRelative(dateReferralStarted.toString());
+            const content = rewards.length > 0
+              ? 'Paid User, signed up {date}'
+              : 'Trial User, signed up {date}'
             const referral = {
               name,
-              content: rewards.length > 0
-                ? `Paid User, signed up ${date}`
-                : `Trial User, signed up ${date}`,
-              value: rewards.length > 0 ? rewards[0].prettyValue : 'Reward Pending',
+              content: FormatJs.format(content, { date }),
+              value: rewards.length > 0
+                ? rewards[0].prettyValue
+                : 'Reward Pending',
               hasreward: rewards.length > 0
             }
             return (
@@ -143,47 +147,26 @@ export class ReferralList {
           })
         );
       }
-      // if (this.referredBy && this.showreferrer) {
-      //   referredByRow = (
-      //     <tr id="0">
-      //       <td>
-      //         <div class="squatch-referrals-heading">{this.referredBy.referredUser.firstName}</div>
-
-      //         <div class="squatch-referrals-description">
-      //           <span class="hidden-sm">
-      //             Referring User
-      //           </span>
-
-      //           <span class="hidden-md text-green">
-      //             $10
-      //           </span>
-      //         </div>
-      //       </td>
-
-      //       <td class="hidden-sm">
-      //         <div class="squatch-referrals-heading">
-      //           Referred You
-      //         </div>
-
-      //         <div class="squatch-referrals-description" data-moment="true">{FormatJs.format(this.dateformatting, {value:this.referredBy.dateReferralStarted})}</div>
-      //       </td>
-
-      //       <td>
-
-      //       <i class="icon squatch-referrals-icon icon-ok-circled text-green"></i>
-
-      //       <div class="squatch-referrals-heading hidden-sm">
-      //         {/* TODO: logic here */}
-      //         $10
-      //       </div>
-
-      //       <div class="squatch-referrals-description hidden-sm text-green">
-      //         Free Credit
-      //       </div>
-      //       </td>
-      //     </tr>
-      //   );
-      // }
+      if (this.referredBy && this.showreferrer) {
+        const { 
+          dateReferralStarted,
+          referrerUser: { firstName: name = 'Anonymous' },
+          rewards
+        } = this.referredBy;
+        const date = FormatJs.formatRelative(dateReferralStarted.toString());
+        const content = 'Referred You {date}';
+        const referral = {
+          name,
+          content: FormatJs.format(content, { date }),
+          value: rewards.length > 0
+            ? rewards[0].prettyValue
+            : 'Reward Pending',
+          hasreward: rewards.length > 0
+        }
+        referredByRow = (
+          <sqh-referral-component id={ uuid() } { ...referral } ></sqh-referral-component>
+        );
+      }
     }
 
     return (
