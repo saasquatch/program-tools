@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import FormatJs from '../../services/FormatJs';
 
 @Component({
   tag: 'sqh-referral-component',
@@ -7,41 +6,30 @@ import FormatJs from '../../services/FormatJs';
 })
 
 export class ReferralComponent {
-  @Prop() referral: any;
-  @Prop() locale: string = "en-US";
+  @Prop() name: string;
+  @Prop() content: string;
+  @Prop() value: string;
+  @Prop() hasreward: boolean;
 
   render() {
     return (
       <div class="squatch-referrals-row">
         <div class="squatch-referrals-heading">
-          {this.referral.referredUser.firstName}
+          { this.name }
         </div>
         <div class="squatch-referrals-description">
-          { this.referral.rewards.totalCount > 0
-            ? `Paid User, signed up ${FormatJs.formatRelative(this.referral.dateReferralStarted, this.locale)}`
-            : `Trial User, signed up ${FormatJs.formatRelative(this.referral.dateReferralStarted, this.locale)}`
-          }
+          { this.content }
         </div>
         <i class={
           `icon squatch-referrals-icon ${
-            this.referral.rewards.totalCount > 0
+            this.hasreward
               ? `icon-ok-circled`
               : `icon-attention`
             }
           `
         }></i>
-        <div class={
-          `squatch-referrals-value ${
-            this.referral.rewards.totalCount > 0
-              ? ''
-              : 'pending'
-            }
-          `
-        }>
-          { this.referral.rewards.totalCount > 0
-            ? `${ this.referral.rewards.data[0].currency }${ this.referral.rewards.data[0].value / 100 }`
-            : 'Reward pending'
-          }
+        <div class={ `squatch-referrals-value ${ this.hasreward ? '' : 'pending' }` }>
+          { this.value }
         </div>
       </div>
     )

@@ -52,11 +52,7 @@ interface Referral {
     lastName: string
     imageUrl: string
   },
-  rewards: {
-    count: number
-    totalCount: number
-    data:Reward[]
-  }
+  rewards: Reward[]
 }
 
 interface Reward {
@@ -71,4 +67,5 @@ interface Reward {
   fuelTankCode: string
   fuelTankType: string
   currency: string
+  prettyValue: string
 }
