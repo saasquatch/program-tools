@@ -6,14 +6,14 @@ import { css } from 'emotion';
   tag: 'sqh-share-button',
   styleUrl: 'share-button.scss'
 })
-export class LinkedinShareButton {
-  @Prop() text: string = "linkedin";
-  @Prop() backgroundcolor: string = "#0084b9";
-  @Prop() textcolor: string = "#fff";
-  @Prop() displayrule: string = "mobile-and-desktop";
-  @Prop() className: string;
+export class ShareButton {
+  @Prop() displayrule: string;
+  @Prop() text: string;
+  @Prop() backgroundcolor: string;
+  @Prop() textcolor: string;
   @Prop() icon: string;
   @Prop() url: string;
+  @Prop() className: string;
 
   @Element() button: HTMLElement;
 
@@ -39,8 +39,9 @@ export class LinkedinShareButton {
     const target = isMobileSafari ? '_parent' : '_blank';
     const iconClass = `icon icon-${this.icon}`;
 
+    // input a dynamic label
     const clz = css`
-      label: emailShare;
+      label: ;
       background-color: ${this.backgroundcolor};
       border: 1px solid ${this.backgroundcolor};
       color: ${this.textcolor};
@@ -58,12 +59,10 @@ export class LinkedinShareButton {
     const classes = [`btn squatch-share-btn ${this.className} ${this.displayrule}`, clz].join(" ");
 
     return (
-      <div>
-        <a class={classes} href={this.url} target={target}>
-          <i class={iconClass}></i>
-          {this.text}
-        </a>
-      </div>
+      <a class={classes} href={this.url} target={target}>
+        <i class={iconClass}></i>
+        <span class="share-btn-text">{this.text}</span>
+      </a>
     );
   }
 }

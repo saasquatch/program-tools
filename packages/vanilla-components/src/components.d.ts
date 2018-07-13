@@ -101,88 +101,6 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface SqhEmailShareButton {
-      'backgroundcolor': string;
-      'displayrule': string;
-      'emailbody': string;
-      'emailsubject': string;
-      'text': string;
-      'textcolor': string;
-    }
-  }
-
-  interface HTMLSqhEmailShareButtonElement extends StencilComponents.SqhEmailShareButton, HTMLStencilElement {}
-
-  var HTMLSqhEmailShareButtonElement: {
-    prototype: HTMLSqhEmailShareButtonElement;
-    new (): HTMLSqhEmailShareButtonElement;
-  };
-  interface HTMLElementTagNameMap {
-    'sqh-email-share-button': HTMLSqhEmailShareButtonElement;
-  }
-  interface ElementTagNameMap {
-    'sqh-email-share-button': HTMLSqhEmailShareButtonElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'sqh-email-share-button': JSXElements.SqhEmailShareButtonAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface SqhEmailShareButtonAttributes extends HTMLAttributes {
-      'backgroundcolor'?: string;
-      'displayrule'?: string;
-      'emailbody'?: string;
-      'emailsubject'?: string;
-      'text'?: string;
-      'textcolor'?: string;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface SqhFacebookShareButton {
-      'backgroundcolor': string;
-      'displayrule': string;
-      'text': string;
-      'textcolor': string;
-    }
-  }
-
-  interface HTMLSqhFacebookShareButtonElement extends StencilComponents.SqhFacebookShareButton, HTMLStencilElement {}
-
-  var HTMLSqhFacebookShareButtonElement: {
-    prototype: HTMLSqhFacebookShareButtonElement;
-    new (): HTMLSqhFacebookShareButtonElement;
-  };
-  interface HTMLElementTagNameMap {
-    'sqh-facebook-share-button': HTMLSqhFacebookShareButtonElement;
-  }
-  interface ElementTagNameMap {
-    'sqh-facebook-share-button': HTMLSqhFacebookShareButtonElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'sqh-facebook-share-button': JSXElements.SqhFacebookShareButtonAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface SqhFacebookShareButtonAttributes extends HTMLAttributes {
-      'backgroundcolor'?: string;
-      'displayrule'?: string;
-      'text'?: string;
-      'textcolor'?: string;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
     interface SqhGlobalContainer {
       'background': string;
       'fontcolor': string;
@@ -224,115 +142,31 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface SqhLinkedinShareButton {
-      'backgroundcolor': string;
-      'displayrule': string;
+    interface SqhImageComponent {
       'text': string;
-      'textcolor': string;
     }
   }
 
-  interface HTMLSqhLinkedinShareButtonElement extends StencilComponents.SqhLinkedinShareButton, HTMLStencilElement {}
+  interface HTMLSqhImageComponentElement extends StencilComponents.SqhImageComponent, HTMLStencilElement {}
 
-  var HTMLSqhLinkedinShareButtonElement: {
-    prototype: HTMLSqhLinkedinShareButtonElement;
-    new (): HTMLSqhLinkedinShareButtonElement;
+  var HTMLSqhImageComponentElement: {
+    prototype: HTMLSqhImageComponentElement;
+    new (): HTMLSqhImageComponentElement;
   };
   interface HTMLElementTagNameMap {
-    'sqh-linkedin-share-button': HTMLSqhLinkedinShareButtonElement;
+    'sqh-image-component': HTMLSqhImageComponentElement;
   }
   interface ElementTagNameMap {
-    'sqh-linkedin-share-button': HTMLSqhLinkedinShareButtonElement;
+    'sqh-image-component': HTMLSqhImageComponentElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'sqh-linkedin-share-button': JSXElements.SqhLinkedinShareButtonAttributes;
+      'sqh-image-component': JSXElements.SqhImageComponentAttributes;
     }
   }
   namespace JSXElements {
-    export interface SqhLinkedinShareButtonAttributes extends HTMLAttributes {
-      'backgroundcolor'?: string;
-      'displayrule'?: string;
+    export interface SqhImageComponentAttributes extends HTMLAttributes {
       'text'?: string;
-      'textcolor'?: string;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface SqhMessengerShareButton {
-      'backgroundcolor': string;
-      'displayrule': string;
-      'text': string;
-      'textcolor': string;
-    }
-  }
-
-  interface HTMLSqhMessengerShareButtonElement extends StencilComponents.SqhMessengerShareButton, HTMLStencilElement {}
-
-  var HTMLSqhMessengerShareButtonElement: {
-    prototype: HTMLSqhMessengerShareButtonElement;
-    new (): HTMLSqhMessengerShareButtonElement;
-  };
-  interface HTMLElementTagNameMap {
-    'sqh-messenger-share-button': HTMLSqhMessengerShareButtonElement;
-  }
-  interface ElementTagNameMap {
-    'sqh-messenger-share-button': HTMLSqhMessengerShareButtonElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'sqh-messenger-share-button': JSXElements.SqhMessengerShareButtonAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface SqhMessengerShareButtonAttributes extends HTMLAttributes {
-      'backgroundcolor'?: string;
-      'displayrule'?: string;
-      'text'?: string;
-      'textcolor'?: string;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface SqhPinterestShareButton {
-      'backgroundcolor': string;
-      'displayrule': string;
-      'text': string;
-      'textcolor': string;
-    }
-  }
-
-  interface HTMLSqhPinterestShareButtonElement extends StencilComponents.SqhPinterestShareButton, HTMLStencilElement {}
-
-  var HTMLSqhPinterestShareButtonElement: {
-    prototype: HTMLSqhPinterestShareButtonElement;
-    new (): HTMLSqhPinterestShareButtonElement;
-  };
-  interface HTMLElementTagNameMap {
-    'sqh-pinterest-share-button': HTMLSqhPinterestShareButtonElement;
-  }
-  interface ElementTagNameMap {
-    'sqh-pinterest-share-button': HTMLSqhPinterestShareButtonElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'sqh-pinterest-share-button': JSXElements.SqhPinterestShareButtonAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface SqhPinterestShareButtonAttributes extends HTMLAttributes {
-      'backgroundcolor'?: string;
-      'displayrule'?: string;
-      'text'?: string;
-      'textcolor'?: string;
     }
   }
 }
@@ -416,32 +250,64 @@ declare global {
 
   namespace StencilComponents {
     interface SqhShareButtonContainer {
-      'emailcolor': string;
+      'emailbackgroundcolor': string;
+      'emailclassName': string;
       'emaildisplayrule': string;
+      'emailicon': string;
       'emailtext': string;
-      'facebookcolor': string;
+      'emailtextcolor': string;
+      'emailurl': string;
+      'facebookbackgroundcolor': string;
+      'facebookclassName': string;
       'facebookdisplayrule': string;
+      'facebookicon': string;
       'facebooktext': string;
+      'facebooktextcolor': string;
+      'facebookurl': string;
       'hidden': boolean;
-      'linkedincolor': string;
+      'linkedinbackgroundcolor': string;
+      'linkedinclassName': string;
       'linkedindisplayrule': string;
+      'linkedinicon': string;
       'linkedintext': string;
+      'linkedintextcolor': string;
+      'linkedinurl': string;
       'maxwidth': string;
-      'messengercolor': string;
+      'messengerbackgroundcolor': string;
+      'messengerclassName': string;
       'messengerdisplayrule': string;
+      'messengericon': string;
       'messengertext': string;
-      'pinterestcolor': string;
+      'messengertextcolor': string;
+      'messengerurl': string;
+      'pinterestbackgroundcolor': string;
+      'pinterestclassName': string;
       'pinterestdisplayrule': string;
+      'pinteresticon': string;
       'pinteresttext': string;
-      'smscolor': string;
+      'pinteresttextcolor': string;
+      'pinteresturl': string;
+      'smsbackgroundcolor': string;
+      'smsclassName': string;
       'smsdisplayrule': string;
+      'smsicon': string;
       'smstext': string;
-      'twittercolor': string;
+      'smstextcolor': string;
+      'smsurl': string;
+      'twitterbackgroundcolor': string;
+      'twitterclassName': string;
       'twitterdisplayrule': string;
+      'twittericon': string;
       'twittertext': string;
-      'whatsappcolor': string;
+      'twittertextcolor': string;
+      'twitterurl': string;
+      'whatsappbackgroundcolor': string;
+      'whatsappclassName': string;
       'whatsappdisplayrule': string;
+      'whatsappicon': string;
       'whatsapptext': string;
+      'whatsapptextcolor': string;
+      'whatsappurl': string;
     }
   }
 
@@ -464,32 +330,64 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhShareButtonContainerAttributes extends HTMLAttributes {
-      'emailcolor'?: string;
+      'emailbackgroundcolor'?: string;
+      'emailclassName'?: string;
       'emaildisplayrule'?: string;
+      'emailicon'?: string;
       'emailtext'?: string;
-      'facebookcolor'?: string;
+      'emailtextcolor'?: string;
+      'emailurl'?: string;
+      'facebookbackgroundcolor'?: string;
+      'facebookclassName'?: string;
       'facebookdisplayrule'?: string;
+      'facebookicon'?: string;
       'facebooktext'?: string;
+      'facebooktextcolor'?: string;
+      'facebookurl'?: string;
       'hidden'?: boolean;
-      'linkedincolor'?: string;
+      'linkedinbackgroundcolor'?: string;
+      'linkedinclassName'?: string;
       'linkedindisplayrule'?: string;
+      'linkedinicon'?: string;
       'linkedintext'?: string;
+      'linkedintextcolor'?: string;
+      'linkedinurl'?: string;
       'maxwidth'?: string;
-      'messengercolor'?: string;
+      'messengerbackgroundcolor'?: string;
+      'messengerclassName'?: string;
       'messengerdisplayrule'?: string;
+      'messengericon'?: string;
       'messengertext'?: string;
-      'pinterestcolor'?: string;
+      'messengertextcolor'?: string;
+      'messengerurl'?: string;
+      'pinterestbackgroundcolor'?: string;
+      'pinterestclassName'?: string;
       'pinterestdisplayrule'?: string;
+      'pinteresticon'?: string;
       'pinteresttext'?: string;
-      'smscolor'?: string;
+      'pinteresttextcolor'?: string;
+      'pinteresturl'?: string;
+      'smsbackgroundcolor'?: string;
+      'smsclassName'?: string;
       'smsdisplayrule'?: string;
+      'smsicon'?: string;
       'smstext'?: string;
-      'twittercolor'?: string;
+      'smstextcolor'?: string;
+      'smsurl'?: string;
+      'twitterbackgroundcolor'?: string;
+      'twitterclassName'?: string;
       'twitterdisplayrule'?: string;
+      'twittericon'?: string;
       'twittertext'?: string;
-      'whatsappcolor'?: string;
+      'twittertextcolor'?: string;
+      'twitterurl'?: string;
+      'whatsappbackgroundcolor'?: string;
+      'whatsappclassName'?: string;
       'whatsappdisplayrule'?: string;
+      'whatsappicon'?: string;
       'whatsapptext'?: string;
+      'whatsapptextcolor'?: string;
+      'whatsappurl'?: string;
     }
   }
 }
@@ -498,39 +396,43 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface SqhSmsShareButton {
+    interface SqhShareButton {
       'backgroundcolor': string;
+      'className': string;
       'displayrule': string;
-      'sharebody': string;
+      'icon': string;
       'text': string;
       'textcolor': string;
+      'url': string;
     }
   }
 
-  interface HTMLSqhSmsShareButtonElement extends StencilComponents.SqhSmsShareButton, HTMLStencilElement {}
+  interface HTMLSqhShareButtonElement extends StencilComponents.SqhShareButton, HTMLStencilElement {}
 
-  var HTMLSqhSmsShareButtonElement: {
-    prototype: HTMLSqhSmsShareButtonElement;
-    new (): HTMLSqhSmsShareButtonElement;
+  var HTMLSqhShareButtonElement: {
+    prototype: HTMLSqhShareButtonElement;
+    new (): HTMLSqhShareButtonElement;
   };
   interface HTMLElementTagNameMap {
-    'sqh-sms-share-button': HTMLSqhSmsShareButtonElement;
+    'sqh-share-button': HTMLSqhShareButtonElement;
   }
   interface ElementTagNameMap {
-    'sqh-sms-share-button': HTMLSqhSmsShareButtonElement;
+    'sqh-share-button': HTMLSqhShareButtonElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'sqh-sms-share-button': JSXElements.SqhSmsShareButtonAttributes;
+      'sqh-share-button': JSXElements.SqhShareButtonAttributes;
     }
   }
   namespace JSXElements {
-    export interface SqhSmsShareButtonAttributes extends HTMLAttributes {
+    export interface SqhShareButtonAttributes extends HTMLAttributes {
       'backgroundcolor'?: string;
+      'className'?: string;
       'displayrule'?: string;
-      'sharebody'?: string;
+      'icon'?: string;
       'text'?: string;
       'textcolor'?: string;
+      'url'?: string;
     }
   }
 }
@@ -621,90 +523,6 @@ declare global {
       'padding'?: string;
       'text'?: string;
       'textalign'?: string;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface SqhTwitterShareButton {
-      'backgroundcolor': string;
-      'displayrule': string;
-      'text': string;
-      'textcolor': string;
-      'twmessage': string;
-    }
-  }
-
-  interface HTMLSqhTwitterShareButtonElement extends StencilComponents.SqhTwitterShareButton, HTMLStencilElement {}
-
-  var HTMLSqhTwitterShareButtonElement: {
-    prototype: HTMLSqhTwitterShareButtonElement;
-    new (): HTMLSqhTwitterShareButtonElement;
-  };
-  interface HTMLElementTagNameMap {
-    'sqh-twitter-share-button': HTMLSqhTwitterShareButtonElement;
-  }
-  interface ElementTagNameMap {
-    'sqh-twitter-share-button': HTMLSqhTwitterShareButtonElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'sqh-twitter-share-button': JSXElements.SqhTwitterShareButtonAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface SqhTwitterShareButtonAttributes extends HTMLAttributes {
-      'backgroundcolor'?: string;
-      'displayrule'?: string;
-      'text'?: string;
-      'textcolor'?: string;
-      'twmessage'?: string;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface SqhWhatsappShareButton {
-      'backgroundcolor': string;
-      'bordercolor': string;
-      'displayrule': string;
-      'sharebody': string;
-      'text': string;
-      'textcolor': string;
-    }
-  }
-
-  interface HTMLSqhWhatsappShareButtonElement extends StencilComponents.SqhWhatsappShareButton, HTMLStencilElement {}
-
-  var HTMLSqhWhatsappShareButtonElement: {
-    prototype: HTMLSqhWhatsappShareButtonElement;
-    new (): HTMLSqhWhatsappShareButtonElement;
-  };
-  interface HTMLElementTagNameMap {
-    'sqh-whatsapp-share-button': HTMLSqhWhatsappShareButtonElement;
-  }
-  interface ElementTagNameMap {
-    'sqh-whatsapp-share-button': HTMLSqhWhatsappShareButtonElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'sqh-whatsapp-share-button': JSXElements.SqhWhatsappShareButtonAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface SqhWhatsappShareButtonAttributes extends HTMLAttributes {
-      'backgroundcolor'?: string;
-      'bordercolor'?: string;
-      'displayrule'?: string;
-      'sharebody'?: string;
-      'text'?: string;
-      'textcolor'?: string;
     }
   }
 }
