@@ -20,64 +20,64 @@ export class ShareButtonContainer {
 
   // FaceBook button properties and default settings
   @Prop() facebookdisplayrule: string = "mobile-and-desktop";
-  @Prop() facebooktext: string = "Email";
-  @Prop() facebookbackgroundcolor: string = "#373a3d";
+  @Prop() facebooktext: string = "Share";
+  @Prop() facebookbackgroundcolor: string = "#234079";
   @Prop() facebooktextcolor: string = "#fff";
-  @Prop() facebookicon: string = "mail";
+  @Prop() facebookicon: string = "facebook";
   @Prop() facebookurl: string;
   @Prop() facebookclassName: string;
 
   // Twitter button properties and default settings
   @Prop() twitterdisplayrule: string = "mobile-and-desktop";
-  @Prop() twittertext: string = "Email";
-  @Prop() twitterbackgroundcolor: string = "#373a3d";
+  @Prop() twittertext: string = "Tweet";
+  @Prop() twitterbackgroundcolor: string = "#4797d2";
   @Prop() twittertextcolor: string = "#fff";
-  @Prop() twittericon: string = "mail";
+  @Prop() twittericon: string = "twitter";
   @Prop() twitterurl: string;
   @Prop() twitterclassName: string;
 
   // SMS button properties and default settings
   @Prop() smsdisplayrule: string = "mobile-and-desktop";
-  @Prop() smstext: string = "Email";
-  @Prop() smsbackgroundcolor: string = "#373a3d";
+  @Prop() smstext: string = "SMS";
+  @Prop() smsbackgroundcolor: string = "#7bbf38";
   @Prop() smstextcolor: string = "#fff";
-  @Prop() smsicon: string = "mail";
+  @Prop() smsicon: string = "chat";
   @Prop() smsurl: string;
   @Prop() smsclassName: string;
 
   // Whatsapp button properties and default settings
   @Prop() whatsappdisplayrule: string = "mobile-and-desktop";
-  @Prop() whatsapptext: string = "Email";
-  @Prop() whatsappbackgroundcolor: string = "#373a3d";
+  @Prop() whatsapptext: string = "Whatsapp";
+  @Prop() whatsappbackgroundcolor: string = "#25D366";
   @Prop() whatsapptextcolor: string = "#fff";
-  @Prop() whatsappicon: string = "mail";
+  @Prop() whatsappicon: string = "whatsapp";
   @Prop() whatsappurl: string;
   @Prop() whatsappclassName: string;
   
   // LinkedIn button properties and default settings
   @Prop() linkedindisplayrule: string = "mobile-and-desktop";
-  @Prop() linkedintext: string = "Email";
-  @Prop() linkedinbackgroundcolor: string = "#373a3d";
+  @Prop() linkedintext: string = "LinkedIn";
+  @Prop() linkedinbackgroundcolor: string = "#0084b9";
   @Prop() linkedintextcolor: string = "#fff";
-  @Prop() linkedinicon: string = "mail";
+  @Prop() linkedinicon: string = "linkedin";
   @Prop() linkedinurl: string;
   @Prop() linkedinclassName: string;
 
   // Pinterest button properties and default settings
   @Prop() pinterestdisplayrule: string = "mobile-and-desktop";
-  @Prop() pinteresttext: string = "Email";
-  @Prop() pinterestbackgroundcolor: string = "#373a3d";
+  @Prop() pinteresttext: string = "Pinterest";
+  @Prop() pinterestbackgroundcolor: string = "#cb2027";
   @Prop() pinteresttextcolor: string = "#fff";
-  @Prop() pinteresticon: string = "mail";
+  @Prop() pinteresticon: string = "pinterest";
   @Prop() pinteresturl: string;
   @Prop() pinterestclassName: string;
   
   // Messenger button properties and default settings
   @Prop() messengerdisplayrule: string = "mobile-and-desktop";
-  @Prop() messengertext: string = "Email";
-  @Prop() messengerbackgroundcolor: string = "#373a3d";
+  @Prop() messengertext: string = "Messenger";
+  @Prop() messengerbackgroundcolor: string = "#0084ff";
   @Prop() messengertextcolor: string = "#fff";
-  @Prop() messengericon: string = "mail";
+  @Prop() messengericon: string = "messenger";
   @Prop() messengerurl: string;
   @Prop() messengerclassName: string;
   
