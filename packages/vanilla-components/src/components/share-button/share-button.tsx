@@ -39,8 +39,9 @@ export class ShareButton {
     const target = isMobileSafari ? '_parent' : '_blank';
     const iconClass = `icon icon-${this.icon}`;
 
+    // input a dynamic label
     const clz = css`
-      label: emailShare;
+      label: ;
       background-color: ${this.backgroundcolor};
       border: 1px solid ${this.backgroundcolor};
       color: ${this.textcolor};
