@@ -56,15 +56,13 @@ export class ShareButton {
         color: ${this.textcolor};
       } 
     `;
-    const classes = [`btn squatch-share-btn ${this.className} ${this.displayrule}`, clz].join(" ");
+    const classes = [`btn share-btn ${this.className} ${this.displayrule}`, clz].join(" ");
 
     return (
-      <div>
-        <a class={classes} href={this.url} target={target}>
-          <i class={iconClass}></i>
-          {this.text}
-        </a>
-      </div>
+      <a class={classes} href={this.url} target={target}>
+        <i class={iconClass}></i>
+        <span class="share-btn-text">{this.text}</span>
+      </a>
     );
   }
 }
