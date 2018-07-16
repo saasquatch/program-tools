@@ -1,4 +1,5 @@
 import { Component, Prop } from '@stencil/core';
+import FormatJS from '../../services/FormatJs';
 
 @Component({
   tag: 'sqh-referral-component',
@@ -6,34 +7,57 @@ import { Component, Prop } from '@stencil/core';
 })
 
 export class ReferralComponent {
-  @Prop() name: string;
-  @Prop() content: string;
-  @Prop() value: string;
-  @Prop() hasreward: boolean;
-  @Prop() valuecontent: string;
+  @Prop() referral: Referral | ReferredByReferral;
+  @Prop() referraltype: "converted" | "pending" | "referrer";
+  @Prop() referralvariables: ReferralVariables;
 
   render() {
+    const { 
+      dateReferralStarted,
+      rewards
+    } = this.referral;
+    const formatVariables = {
+      date: FormatJS.formatRelative(dateReferralStarted.toString()),
+      extrarewards: rewards.length - 1,
+    };
+
+    const name = (this.referral as Referral).referredUser
+      ? (this.referral as Referral).referredUser.firstName
+      : (this.referral as ReferredByReferral).referrerUser.firstName;
+    const icon = rewards.length > 0
+      ? `icon-ok-circled`
+      : `icon-attention`;
+    const content = this.referraltype === "converted"
+      ? FormatJS.format(this.referralvariables.convertedcontent, formatVariables)
+      : this.referraltype === "pending"
+      ? FormatJS.format(this.referralvariables.pendingcontent, formatVariables)
+      : FormatJS.format(this.referralvariables.referrercontent, formatVariables)
+    const value = rewards.length > 0
+      ? this.referralvariables.usefirstreward
+      ? rewards[rewards.length - 1].prettyValue
+      : rewards[0].prettyValue
+      : this.referralvariables.pendingvalue
+    const valuecontent = rewards.length > 1
+      ? FormatJS.format(this.referralvariables.valuecontent, formatVariables)
+      : '';
+
     return (
       <div class="squatch-referrals-row">
         <div class="squatch-referrals-heading">
-          { this.name }
+          { name }
         </div>
         <div class="squatch-referrals-description">
-          { this.content }
+          { content }
         </div>
         <i class={
-          `icon squatch-referrals-icon ${
-            this.hasreward
-              ? `icon-ok-circled`
-              : `icon-attention`
-            }
+          `icon squatch-referrals-icon ${ icon }
           `
         }></i>
-        <div class={ `squatch-referrals-value ${ this.hasreward ? '' : 'pending' }` }>
-          { this.value }
+        <div class={ `squatch-referrals-value ${ rewards.length > 0 ? '' : 'pending' }` }>
+          { value }
         </div>
         <div class="squatch-referrals-value-content">
-          { this.valuecontent }
+          { valuecontent }
         </div>
       </div>
     )

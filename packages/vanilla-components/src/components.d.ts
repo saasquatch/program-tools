@@ -276,11 +276,9 @@ declare global {
 
   namespace StencilComponents {
     interface SqhReferralComponent {
-      'content': string;
-      'hasreward': boolean;
-      'name': string;
-      'value': string;
-      'valuecontent': string;
+      'referral': Referral | ReferredByReferral;
+      'referraltype': "converted" | "pending" | "referrer";
+      'referralvariables': ReferralVariables;
     }
   }
 
@@ -303,11 +301,9 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhReferralComponentAttributes extends HTMLAttributes {
-      'content'?: string;
-      'hasreward'?: boolean;
-      'name'?: string;
-      'value'?: string;
-      'valuecontent'?: string;
+      'referral'?: Referral | ReferredByReferral;
+      'referraltype'?: "converted" | "pending" | "referrer";
+      'referralvariables'?: ReferralVariables;
     }
   }
 }
@@ -318,7 +314,6 @@ declare global {
   namespace StencilComponents {
     interface SqhReferralList {
       'convertedcontent': string;
-      'dateformatting': string;
       'pendingcolor': string;
       'pendingcontent': string;
       'pendingvalue': string;
@@ -350,7 +345,6 @@ declare global {
   namespace JSXElements {
     export interface SqhReferralListAttributes extends HTMLAttributes {
       'convertedcontent'?: string;
-      'dateformatting'?: string;
       'pendingcolor'?: string;
       'pendingcontent'?: string;
       'pendingvalue'?: string;

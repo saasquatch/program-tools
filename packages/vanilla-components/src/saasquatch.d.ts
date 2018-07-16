@@ -46,6 +46,16 @@ interface UserPayload {
   }
 }
 
+interface ReferredByReferral {
+  referrerUser: {
+    firstName: string
+    lastName: string
+    imageUrl: string
+  }
+  dateReferralStarted: number
+  rewards: Reward[]
+}
+
 interface Referral {
   id: string
   dateReferralStarted: number
@@ -73,4 +83,13 @@ interface Reward {
   fuelTankType: string
   currency: string
   prettyValue: string
+}
+
+interface ReferralVariables {
+  usefirstreward: boolean
+  referrercontent: string
+  convertedcontent: string
+  pendingcontent: string
+  pendingvalue: string
+  valuecontent: string
 }

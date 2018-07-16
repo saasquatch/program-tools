@@ -1,5 +1,4 @@
 import { Component, Prop, State} from '@stencil/core';
-import FormatJs from '../../services/FormatJs';
 import { uuid } from '../../utilities';
 
 const API: MyAPI = window["WidgetHost"];
@@ -44,7 +43,6 @@ referredByReferral {
 })
 export class ReferralList {
   @Prop() showreferrer: boolean = true;
-  @Prop() dateformatting: string = `{value, date, medium}`;
   @Prop() rewardcolor: string = "#4BB543";
   @Prop() pendingcolor: string = "#DDDDDD";
   @Prop() usefirstreward: boolean = false;
@@ -122,6 +120,15 @@ export class ReferralList {
     let content;
     let referredByRow;
     let referralsRow;
+
+    const referralvariables = {
+      usefirstreward: this.usefirstreward,
+      referrercontent: this.referrercontent,
+      convertedcontent: this.convertedcontent,
+      pendingcontent: this.pendingcontent,
+      pendingvalue: this.pendingvalue,
+      valuecontent: this.valuecontent,
+    }
     
     if(this.loading) {
       content = 'Is loading';
@@ -129,56 +136,15 @@ export class ReferralList {
       if (this.referrals) {
         referralsRow = (
           this.referrals.map((ref) => {
-            const { 
-              dateReferralStarted,
-              referredUser: { firstName: name = 'Anonymous' },
-              rewards
-            } = ref;
-            const date = FormatJs.formatRelative(dateReferralStarted.toString());
-            const content = rewards.length > 0
-              ? this.convertedcontent
-              : this.pendingcontent;
-            const extrarewards = rewards.length -1;
-            const referral = {
-              name,
-              content: FormatJs.format(content, { date }),
-              value: rewards.length > 0
-                ? this.usefirstreward
-                ? rewards[rewards.length - 1].prettyValue
-                : rewards[0].prettyValue
-                : this.pendingvalue,
-              hasreward: rewards.length > 0,
-              valuecontent: rewards.length > 1
-                ? FormatJs.format(this.valuecontent, { extrarewards })
-                : ''
-            };
             return (
-              <sqh-referral-component id={ uuid() } { ...referral } ></sqh-referral-component>
+              <sqh-referral-component id={ uuid() } referral={ ref } referralvariables={ referralvariables } ></sqh-referral-component>
             );
           })
         );
       }
       if (this.referredBy && this.showreferrer) {
-        const { 
-          dateReferralStarted,
-          referrerUser: { firstName: name = 'Anonymous' },
-          rewards
-        } = this.referredBy;
-        const date = FormatJs.formatRelative(dateReferralStarted.toString());
-        const extrarewards = rewards.length - 1;
-        const referral = {
-          name,
-          content: FormatJs.format(this.referrercontent, { date }),
-          value: rewards.length > 0
-            ? rewards[0].prettyValue
-            : 'Reward Pending',
-          hasreward: rewards.length > 0,
-          valuecontent: rewards.length > 1
-                ? FormatJs.format(this.valuecontent, { extrarewards })
-                : ''
-        }
         referredByRow = (
-          <sqh-referral-component id={ uuid() } { ...referral } ></sqh-referral-component>
+          <sqh-referral-component id={ uuid() } referral={ this.referredBy } referralvariables={ referralvariables } ></sqh-referral-component>
         );
       }
     }
