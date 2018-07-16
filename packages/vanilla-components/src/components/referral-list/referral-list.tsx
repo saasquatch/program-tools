@@ -48,6 +48,11 @@ export class ReferralList {
   @Prop() rewardcolor: string = "#4BB543";
   @Prop() pendingcolor: string = "#DDDDDD";
   @Prop() usefirstreward: boolean = false;
+  @Prop() referrercontent: string = "Referred You {date}";
+  @Prop() convertedcontent: string = "Paid User, signed up {date}";
+  @Prop() pendingcontent: string = "Trial User, signed up {date}";
+  @Prop() pendingvalue: string = "Reward Pending";
+  @Prop() valuecontent: string = "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}";
   @State() referrals: Referral[];
   @State() referralsCount: number;
   @State() referredBy: any;
@@ -131,16 +136,22 @@ export class ReferralList {
             } = ref;
             const date = FormatJs.formatRelative(dateReferralStarted.toString());
             const content = rewards.length > 0
-              ? 'Paid User, signed up {date}'
-              : 'Trial User, signed up {date}'
+              ? this.convertedcontent
+              : this.pendingcontent;
+            const extrarewards = rewards.length -1;
             const referral = {
               name,
               content: FormatJs.format(content, { date }),
               value: rewards.length > 0
-                ? rewards[0].prettyValue
-                : 'Reward Pending',
-              hasreward: rewards.length > 0
-            }
+                ? this.usefirstreward
+                ? rewards[rewards.length - 1].prettyValue
+                : rewards[0].prettyValue
+                : this.pendingvalue,
+              hasreward: rewards.length > 0,
+              valuecontent: rewards.length > 1
+                ? FormatJs.format(this.valuecontent, { extrarewards })
+                : ''
+            };
             return (
               <sqh-referral-component id={ uuid() } { ...referral } ></sqh-referral-component>
             );
@@ -154,14 +165,17 @@ export class ReferralList {
           rewards
         } = this.referredBy;
         const date = FormatJs.formatRelative(dateReferralStarted.toString());
-        const content = 'Referred You {date}';
+        const extrarewards = rewards.length - 1;
         const referral = {
           name,
-          content: FormatJs.format(content, { date }),
+          content: FormatJs.format(this.referrercontent, { date }),
           value: rewards.length > 0
             ? rewards[0].prettyValue
             : 'Reward Pending',
-          hasreward: rewards.length > 0
+          hasreward: rewards.length > 0,
+          valuecontent: rewards.length > 1
+                ? FormatJs.format(this.valuecontent, { extrarewards })
+                : ''
         }
         referredByRow = (
           <sqh-referral-component id={ uuid() } { ...referral } ></sqh-referral-component>

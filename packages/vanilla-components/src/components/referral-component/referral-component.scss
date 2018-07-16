@@ -24,17 +24,27 @@
     .squatch-referrals-icon {
       grid-column-start: 2;
       grid-row-start: 2;
-      grid-row-end: 4;
       align-self: center;
 
       font-size: 30px;
+      margin-top: 10px;
     }
 
     .squatch-referrals-value {
       grid-column-start: 3;
       grid-row-start: 2;
-      grid-row-end: 4;
       align-self: center;
+
+      margin-top: 10px;
+    }
+
+    .squatch-referrals-value-content {
+      grid-column-start: 3;
+      grid-row-start: 3;
+
+      color: #a9a9a9;
+      font-size: 12px;
+      margin-top: 5px;
     }
   }
 }

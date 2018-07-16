@@ -280,6 +280,7 @@ declare global {
       'hasreward': boolean;
       'name': string;
       'value': string;
+      'valuecontent': string;
     }
   }
 
@@ -306,6 +307,7 @@ declare global {
       'hasreward'?: boolean;
       'name'?: string;
       'value'?: string;
+      'valuecontent'?: string;
     }
   }
 }
@@ -315,11 +317,16 @@ declare global {
 
   namespace StencilComponents {
     interface SqhReferralList {
+      'convertedcontent': string;
       'dateformatting': string;
       'pendingcolor': string;
+      'pendingcontent': string;
+      'pendingvalue': string;
+      'referrercontent': string;
       'rewardcolor': string;
       'showreferrer': boolean;
       'usefirstreward': boolean;
+      'valuecontent': string;
     }
   }
 
@@ -342,11 +349,16 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhReferralListAttributes extends HTMLAttributes {
+      'convertedcontent'?: string;
       'dateformatting'?: string;
       'pendingcolor'?: string;
+      'pendingcontent'?: string;
+      'pendingvalue'?: string;
+      'referrercontent'?: string;
       'rewardcolor'?: string;
       'showreferrer'?: boolean;
       'usefirstreward'?: boolean;
+      'valuecontent'?: string;
     }
   }
 }

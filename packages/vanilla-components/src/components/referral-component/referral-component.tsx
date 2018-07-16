@@ -10,6 +10,7 @@ export class ReferralComponent {
   @Prop() content: string;
   @Prop() value: string;
   @Prop() hasreward: boolean;
+  @Prop() valuecontent: string;
 
   render() {
     return (
@@ -30,6 +31,9 @@ export class ReferralComponent {
         }></i>
         <div class={ `squatch-referrals-value ${ this.hasreward ? '' : 'pending' }` }>
           { this.value }
+        </div>
+        <div class="squatch-referrals-value-content">
+          { this.valuecontent }
         </div>
       </div>
     )
