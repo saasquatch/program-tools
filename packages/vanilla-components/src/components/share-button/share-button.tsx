@@ -22,8 +22,13 @@ export class ShareButton {
       e.preventDefault();
 
       // THIS BEHAVIOUR might be different across share mediums
-      let url = `${this.url}&display=popup`;
-      window.open(url, 'Share', 'status=0,width=620,height=400');
+      // let url = `${this.url}&display=popup`;
+      let url = this.url
+
+      // TODO: Is this correct?
+      const target = 'Share';
+      const features = 'status=0,width=620,height=400'
+      window.open(url, target, features);
     }
   }
 
@@ -56,7 +61,7 @@ export class ShareButton {
         color: ${this.textcolor};
       } 
     `;
-    const classes = [`btn squatch-share-btn ${this.className} ${this.displayrule}`, clz].join(" ");
+    const classes = [`btn squatch-share-btn`, this.className, this.displayrule, clz].join(" ");
 
     return (
       <a class={classes} href={this.url} target={target}>

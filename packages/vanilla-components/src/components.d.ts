@@ -251,14 +251,12 @@ declare global {
   namespace StencilComponents {
     interface SqhShareButtonContainer {
       'emailbackgroundcolor': string;
-      'emailclassName': string;
       'emaildisplayrule': string;
       'emailicon': string;
       'emailtext': string;
       'emailtextcolor': string;
       'emailurl': string;
       'facebookbackgroundcolor': string;
-      'facebookclassName': string;
       'facebookdisplayrule': string;
       'facebookicon': string;
       'facebooktext': string;
@@ -331,14 +329,12 @@ declare global {
   namespace JSXElements {
     export interface SqhShareButtonContainerAttributes extends HTMLAttributes {
       'emailbackgroundcolor'?: string;
-      'emailclassName'?: string;
       'emaildisplayrule'?: string;
       'emailicon'?: string;
       'emailtext'?: string;
       'emailtextcolor'?: string;
       'emailurl'?: string;
       'facebookbackgroundcolor'?: string;
-      'facebookclassName'?: string;
       'facebookdisplayrule'?: string;
       'facebookicon'?: string;
       'facebooktext'?: string;

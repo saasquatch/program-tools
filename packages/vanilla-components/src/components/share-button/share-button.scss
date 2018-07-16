@@ -128,6 +128,25 @@ sqh-share-button {
       width: 16px;
     }
 
+    // UNIQUE DEFAULT ICON STYLES
+
+    // SMS
+    i.icon-chat {
+      left: 11px;
+      top: 9px;
+      }
+
+    // WHATSAPP
+    i.icon-whatsapp {
+      font-size: 1.4em;
+    }
+
+    // EMAIL
+    i.icon-mail {
+      left: 13px;
+      top: 7px;
+    }
+
     &:before {
       bottom: -1px;
       background: rgba(255,255,255,0.18);
@@ -139,4 +158,5 @@ sqh-share-button {
     }
   }
 }
-  
+
+

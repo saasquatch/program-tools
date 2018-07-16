@@ -8,15 +8,14 @@ export class ShareButtonContainer {
   @Prop() maxwidth: string = "441px";
   @Prop() hidden: boolean = false;
 
-
   // Email button properties and default settings
   @Prop() emaildisplayrule: string = "mobile-and-desktop";
   @Prop() emailtext: string = "Email";
   @Prop() emailbackgroundcolor: string = "#373a3d";
   @Prop() emailtextcolor: string = "#fff";
   @Prop() emailicon: string = "mail";
-  @Prop() emailurl: string;
-  @Prop() emailclassName: string;
+  @Prop() emailurl: string = `mailto:?subject=testsubject&body=NEWtestbody`;
+  // @Prop() emailclassName: string = "emailShare";
 
   // FaceBook button properties and default settings
   @Prop() facebookdisplayrule: string = "mobile-and-desktop";
@@ -25,7 +24,7 @@ export class ShareButtonContainer {
   @Prop() facebooktextcolor: string = "#fff";
   @Prop() facebookicon: string = "facebook";
   @Prop() facebookurl: string;
-  @Prop() facebookclassName: string;
+  // @Prop() facebookclassName: string = "facebookShare";
 
   // Twitter button properties and default settings
   @Prop() twitterdisplayrule: string = "mobile-and-desktop";
@@ -80,7 +79,7 @@ export class ShareButtonContainer {
   @Prop() messengericon: string = "messenger";
   @Prop() messengerurl: string;
   @Prop() messengerclassName: string;
-  
+
   addStyle() {
     const css = ` sqh-share-button-container {
                     max-width: ${this.maxwidth};
@@ -103,7 +102,7 @@ export class ShareButtonContainer {
                         textcolor={this.emailtextcolor}
                         icon={this.emailicon}
                         url={this.emailurl}
-                        class={this.emailclassName}
+                        // class={this.emailclassName}
                       />;
 
     const facebookBtn = <sqh-share-button 
@@ -113,7 +112,7 @@ export class ShareButtonContainer {
                           textcolor={this.facebooktextcolor}
                           icon={this.facebookicon}
                           url={this.facebookurl}
-                          class={this.facebookclassName}
+                          // class={this.facebookclassName}
                         />;
 
     const twitterBtn = <sqh-share-button 
