@@ -143,7 +143,11 @@ declare global {
 
   namespace StencilComponents {
     interface SqhImageComponent {
-      'text': string;
+      'alignment': string;
+      'anycss': string;
+      'borderradius': number;
+      'url': string;
+      'width': number;
     }
   }
 
@@ -166,7 +170,11 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhImageComponentAttributes extends HTMLAttributes {
-      'text'?: string;
+      'alignment'?: string;
+      'anycss'?: string;
+      'borderradius'?: number;
+      'url'?: string;
+      'width'?: number;
     }
   }
 }
