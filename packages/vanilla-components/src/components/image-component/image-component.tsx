@@ -27,12 +27,15 @@ export class ImageComponent {
       height: auto;
       border-radius: ${this.borderradius}px;
       ${this.anycss}
+
+      @media (max-width: 500px) {
+        width: 100%;
+      }
     }`
 
     return(
         <div class={alignment}>
           <img src={imageString} class={myStyle}/>
-          <div class="text">Text Over Image</div>
         </div>
     );
   }
