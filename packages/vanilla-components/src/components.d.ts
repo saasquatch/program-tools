@@ -106,6 +106,7 @@ declare global {
       'fontcolor': string;
       'fontfamily': string;
       'fontsize': string;
+      'padding': number;
       'width': string;
     }
   }
@@ -133,6 +134,7 @@ declare global {
       'fontcolor'?: string;
       'fontfamily'?: string;
       'fontsize'?: string;
+      'padding'?: number;
       'width'?: string;
     }
   }

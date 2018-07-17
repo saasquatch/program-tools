@@ -10,6 +10,7 @@ export class GlobalContainer {
   @Prop() fontcolor: string;
   @Prop() fontsize: string;
   @Prop() width: string = "500";
+  @Prop() padding: number = 10;
   
   addStyle() {
     const css = ` sqh-global-container {
@@ -19,6 +20,7 @@ export class GlobalContainer {
                     font-size: ${this.fontsize}px;
                     width: ${this.width}px;
                     margin: 0 auto;
+                    padding: ${this.padding}px;
                   } 
                   
                   @media (max-width: ${this.width}px) {
