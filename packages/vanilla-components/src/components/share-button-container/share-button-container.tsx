@@ -17,6 +17,16 @@ export class ShareButtonContainer {
   @Prop() emailurl: string = `mailto:?subject=testsubject&body=NEWtestbody`;
   // @Prop() emailclassName: string = "emailShare";
 
+
+
+  // To show Jorge for icon placement in editor
+  @Prop() emailiconhorizontal: number;
+  @Prop() emailiconvertical: number;
+  @Prop() emailiconsize: number;
+
+
+
+
   // FaceBook button properties and default settings
   @Prop() facebookdisplayrule: string = "mobile-and-desktop";
   @Prop() facebooktext: string = "Share";
@@ -103,6 +113,9 @@ export class ShareButtonContainer {
                         icon={this.emailicon}
                         url={this.emailurl}
                         // class={this.emailclassName}
+                        iconhorizontal={this.emailiconhorizontal}
+                        iconvertical={this.emailiconvertical}
+                        iconsize={this.emailiconsize}
                       />;
 
     const facebookBtn = <sqh-share-button 

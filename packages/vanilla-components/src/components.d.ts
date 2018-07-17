@@ -253,6 +253,9 @@ declare global {
       'emailbackgroundcolor': string;
       'emaildisplayrule': string;
       'emailicon': string;
+      'emailiconhorizontal': number;
+      'emailiconsize': number;
+      'emailiconvertical': number;
       'emailtext': string;
       'emailtextcolor': string;
       'emailurl': string;
@@ -331,6 +334,9 @@ declare global {
       'emailbackgroundcolor'?: string;
       'emaildisplayrule'?: string;
       'emailicon'?: string;
+      'emailiconhorizontal'?: number;
+      'emailiconsize'?: number;
+      'emailiconvertical'?: number;
       'emailtext'?: string;
       'emailtextcolor'?: string;
       'emailurl'?: string;
@@ -397,6 +403,9 @@ declare global {
       'className': string;
       'displayrule': string;
       'icon': string;
+      'iconhorizontal': number;
+      'iconsize': number;
+      'iconvertical': number;
       'text': string;
       'textcolor': string;
       'url': string;
@@ -426,6 +435,9 @@ declare global {
       'className'?: string;
       'displayrule'?: string;
       'icon'?: string;
+      'iconhorizontal'?: number;
+      'iconsize'?: number;
+      'iconvertical'?: number;
       'text'?: string;
       'textcolor'?: string;
       'url'?: string;

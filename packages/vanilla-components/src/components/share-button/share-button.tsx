@@ -14,6 +14,9 @@ export class ShareButton {
   @Prop() icon: string;
   @Prop() url: string;
   @Prop() className: string;
+  @Prop() iconhorizontal: number;
+  @Prop() iconvertical: number;
+  @Prop() iconsize: number;
 
   @Element() button: HTMLElement;
 
@@ -21,7 +24,7 @@ export class ShareButton {
     if (e.type != 'touchstart') {
       e.preventDefault();
 
-      // THIS BEHAVIOUR might be different across share mediums
+      // TODO THIS BEHAVIOUR might be different across share mediums
       // let url = `${this.url}&display=popup`;
       let url = this.url
 
@@ -59,8 +62,15 @@ export class ShareButton {
                     
       &:focus {
         color: ${this.textcolor};
-      } 
+      }
+
+      .icon-${this.icon} {
+        left: ${this.iconhorizontal}px;
+        top: ${this.iconvertical}px;
+        font-size: ${this.iconsize}em;
+      }
     `;
+    
     const classes = [`btn squatch-share-btn`, this.className, this.displayrule, clz].join(" ");
 
     return (
