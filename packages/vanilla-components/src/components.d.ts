@@ -212,43 +212,6 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface SqhRewardsList {
-      'dateformatting': string;
-      'showreferrer': boolean;
-      'userisreferred': boolean;
-    }
-  }
-
-  interface HTMLSqhRewardsListElement extends StencilComponents.SqhRewardsList, HTMLStencilElement {}
-
-  var HTMLSqhRewardsListElement: {
-    prototype: HTMLSqhRewardsListElement;
-    new (): HTMLSqhRewardsListElement;
-  };
-  interface HTMLElementTagNameMap {
-    'sqh-rewards-list': HTMLSqhRewardsListElement;
-  }
-  interface ElementTagNameMap {
-    'sqh-rewards-list': HTMLSqhRewardsListElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'sqh-rewards-list': JSXElements.SqhRewardsListAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface SqhRewardsListAttributes extends HTMLAttributes {
-      'dateformatting'?: string;
-      'showreferrer'?: boolean;
-      'userisreferred'?: boolean;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
     interface SqhShareButtonContainer {
       'emailbackgroundcolor': string;
       'emailclassName': string;
