@@ -314,6 +314,7 @@ declare global {
   namespace StencilComponents {
     interface SqhReferralList {
       'convertedcontent': string;
+      'hidden': boolean;
       'pendingcolor': string;
       'pendingcontent': string;
       'pendingvalue': string;
@@ -345,6 +346,7 @@ declare global {
   namespace JSXElements {
     export interface SqhReferralListAttributes extends HTMLAttributes {
       'convertedcontent'?: string;
+      'hidden'?: boolean;
       'pendingcolor'?: string;
       'pendingcontent'?: string;
       'pendingvalue'?: string;

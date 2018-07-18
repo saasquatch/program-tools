@@ -42,6 +42,7 @@ referredByReferral {
   styleUrl: 'referral-list.scss'
 })
 export class ReferralList {
+  @Prop() hidden: boolean = false;
   @Prop() showreferrer: boolean = true;
   @Prop() rewardcolor: string = "#4BB543";
   @Prop() pendingcolor: string = "#DDDDDD";
@@ -150,11 +151,15 @@ export class ReferralList {
     }
 
     return (
-      <div class="squatch-referrals" id="squatch-referrals-scroll" data-scroll-offset="0" data-scroll-limit={this.referralsCount}>
-        {referralsRow}
-        {referredByRow}
-        {content}
-      </div>
+      this.hidden 
+      ? ''
+      : (
+        <div class="squatch-referrals" id="squatch-referrals-scroll" data-scroll-offset="0" data-scroll-limit={this.referralsCount}>
+          {referralsRow}
+          {referredByRow}
+          {content}
+        </div>
+      )
     );
   }
 }
