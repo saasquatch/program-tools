@@ -1,43 +1,5 @@
 import { Component, Prop } from '@stencil/core';
 
-
-// TODO - get messengerLinks dynamically with graphQL and set them as the correct urls
-// currently they're hardcoded from GraphiQL using the code below
-
-// query UserInfo {
-//   user(accountId: "AGS8ZCPIUZDKHB42", id: "5a34673fe4b010c222be4058") {
-//     messengerLink(programId: "5b4e5ca7e4b0497ecd1e7d0e", shareMedium: EMAIL, engagementMedium: EMBED)
-//   }
-// }
-
-
-
-///////////
-
-// const API: MyAPI = window["WidgetHost"];
-// const userFragment = `messengerLink(
-//   programId: "5b4e5ca7e4b0497ecd1e7d0e"
-//   shareMedium: LINKEDIN
-//   engagementMedium: EMBED
-// )
-// referrals(offset: $offset) {
-//   totalCount
-// }
-// `;
-
-// API.graphql.getClient().query({
-//   query: gql`
-//       query ($userId:String!, $accountId:String!) {
-//         user(accountId: "AGS8ZCPIUZDKHB42", id: "5a34673fe4b010c222be4058") {
-//           messengerLink(programId: "5b4e5ca7e4b0497ecd1e7d0e", shareMedium: LINKEDIN, engagementMedium: EMBED)
-//           messengerLinkOpenGraph(programId: "5b4e5ca7e4b0497ecd1e7d0e")
-//         }
-//       }
-//     `
-//   })
-
-
-
 @Component({
   tag: 'sqh-share-button-container',
   styleUrl: 'share-button-container.scss'
@@ -54,15 +16,9 @@ export class ShareButtonContainer {
   @Prop() emailicon: string = "mail";
   @Prop() emailurl: string = "http://short.staging.referralsaasquatch.com/mJjDFl";
   // @Prop() emailclassName: string = "emailShare";
-
-
-
-  // To show Jorge for icon placement in editor
   @Prop() emailiconhorizontal: number;
   @Prop() emailiconvertical: number;
   @Prop() emailiconsize: number;
-
-
 
 
   // FaceBook button properties and default settings
@@ -73,9 +29,6 @@ export class ShareButtonContainer {
   @Prop() facebookicon: string = "facebook";
   @Prop() facebookurl: string = "http://short.staging.referralsaasquatch.com/mwjDFl";
   // @Prop() facebookclassName: string = "facebookShare";
-
-
-
 
   // Twitter button properties and default settings
   @Prop() twitterdisplayrule: string = "mobile-and-desktop";
