@@ -15,7 +15,7 @@ export class ShareButtonContainer {
   @Prop() emailtextcolor: string = "#fff";
   @Prop() emailicon: string = "mail";
   @Prop() emailurl: string = "http://short.staging.referralsaasquatch.com/mJjDFl";
-  // @Prop() emailclassName: string = "emailShare";
+  @Prop() emailclassName: string = "email-share";
 
   // icon editing rules for when we need them (only on email for now)
   @Prop() emailiconhorizontal: number;
@@ -108,7 +108,7 @@ export class ShareButtonContainer {
                         textcolor={this.emailtextcolor}
                         icon={this.emailicon}
                         url={this.emailurl}
-                        // class={this.emailclassName}
+                        class={this.emailclassName}
                         iconhorizontal={this.emailiconhorizontal}
                         iconvertical={this.emailiconvertical}
                         iconsize={this.emailiconsize}

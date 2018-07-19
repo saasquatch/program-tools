@@ -21,25 +21,24 @@ export class ShareButton {
   @Element() button: HTMLElement;
 
   clickHandler(e) {
-    if (e.type != 'touchstart' && this.text !== "Email") {
+    if (this.className !== "email-share") {
       e.preventDefault();
 
       const url = this.url
       const target = '_blank';
-      const features = 'status=0,width=620,height=400'
+      const features = 'status=0,width=680,height=580'
       window.open(url, target, features);
     }
   }
 
   componentDidLoad() {
-    let el = this.button;
+    let el = this.button
     el.addEventListener("click", this.clickHandler.bind(this), false);
-    el.addEventListener("touchStart", this.clickHandler.bind(this), false);
   }
 
   render() {
     const isMobileSafari  = detectMobileSafari();
-    const target = isMobileSafari ? '_parent' : '_blank';
+    const target = isMobileSafari ? '_parent' : null;
     const iconClass = `icon icon-${this.icon}`;
 
     const style = css`
