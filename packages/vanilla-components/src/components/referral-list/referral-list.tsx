@@ -2,7 +2,7 @@ import { Component, Prop, State} from '@stencil/core';
 import { uuid } from '../../utilities';
 
 const API: MyAPI = window["WidgetHost"];
-const userFragment = `referrals(limit: 10, offset: $offset) {
+const userFragment = `referrals(limit: 3, offset: $offset) {
   count
   totalCount
   data {
@@ -10,12 +10,6 @@ const userFragment = `referrals(limit: 10, offset: $offset) {
     dateReferralStarted
     dateReferralPaid
     dateReferralEnded
-    referrerReward {
-      type
-      value
-      unit
-      name
-    }
     moderationStatus
     referredUser {
       firstName
@@ -37,11 +31,26 @@ referredByReferral {
   }
 }`;
 
+const userReferralsFragment = `
+  referrals(limit: 3, offset: $offset) {
+    data {
+      dateReferralStarted
+      referredUser {
+        firstName
+      }
+      rewards {
+        prettyValue
+      }
+    }
+  }
+`
+
 @Component({
   tag: 'sqh-referral-list',
   styleUrl: 'referral-list.scss'
 })
 export class ReferralList {
+  @Prop() hidden: boolean = false;
   @Prop() showreferrer: boolean = true;
   @Prop() rewardcolor: string = "#4BB543";
   @Prop() pendingcolor: string = "#DDDDDD";
@@ -51,19 +60,27 @@ export class ReferralList {
   @Prop() pendingcontent: string = "Trial User, signed up {date}";
   @Prop() pendingvalue: string = "Reward Pending";
   @Prop() valuecontent: string = "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}";
+  @Prop() paginatemore: string = "View More";
+  @Prop() paginateless: string = "Previous";
   @State() referrals: Referral[];
   @State() referralsCount: number;
   @State() referredBy: any;
   @State() rewards: Array<any>;
   @State() loading: boolean;
+  @State() offset: number = 0;
 
   constructor() {
     this.loading = true;
-    this.getUserPayLoad().then(res => {
+  }
+
+  componentWillLoad() {
+    return this.getUserPayLoad().then(res => {
       console.log('res', res);
       this.referrals = res.data.user.referrals.data;
-      this.referralsCount = res.data.user.referrals.totalCount;
       this.referredBy = res.data.user.referredByReferral;
+      this.referralsCount = this.showreferrer && this.referredBy
+      ? res.data.user.referrals.totalCount + 1
+      : res.data.user.referrals.totalCount;
       this.loading = false;
     }).catch(e => {
       this.onError(e);
@@ -111,13 +128,25 @@ export class ReferralList {
     return API.graphql.getUserFragment(userFragment, { offset });
   }
 
+  getReferrals(offset = 0) {
+    return API.graphql.getUserFragment(userReferralsFragment, { offset })
+  }
+
+  paginate(offset) {
+    if (offset >= this.referralsCount || offset < 0) return null;
+    this.getReferrals(offset)
+    .then(res => {
+      this.referrals = res.data.user.referrals.data;
+      this.offset = offset;
+    });
+  }
+
   onError(e: Error) {
     console.log("Error loading via GraphQL.", e);
     this.loading = false;
   }
 
   render() {
-    let content;
     let referredByRow;
     let referralsRow;
 
@@ -130,31 +159,37 @@ export class ReferralList {
       valuecontent: this.valuecontent,
     }
     
-    if(this.loading) {
-      content = 'Is loading';
-    } else { 
-      if (this.referrals) {
-        referralsRow = (
-          this.referrals.map((ref) => {
-            return (
-              <sqh-referral-component id={ uuid() } referral={ ref } referralvariables={ referralvariables } ></sqh-referral-component>
-            );
-          })
-        );
-      }
-      if (this.referredBy && this.showreferrer) {
-        referredByRow = (
-          <sqh-referral-component id={ uuid() } referral={ this.referredBy } referralvariables={ referralvariables } ></sqh-referral-component>
-        );
-      }
+    if (this.referrals) {
+      referralsRow = (
+        this.referrals.map((ref) => {
+          const referraltype = ref.rewards.length > 0 ? 'converted' : 'pending'
+          return (
+            <sqh-referral-component id={ uuid() } referral={ ref } referralvariables={ referralvariables } referraltype={ referraltype }></sqh-referral-component>
+          );
+        })
+      );
+    }
+    if (this.referrals.length < 3 && this.referredBy && this.showreferrer) {
+      referredByRow = (
+        <sqh-referral-component id={ uuid() } referral={ this.referredBy } referralvariables={ referralvariables } referraltype='referrer'></sqh-referral-component>
+      );
     }
 
     return (
-      <div class="squatch-referrals" id="squatch-referrals-scroll" data-scroll-offset="0" data-scroll-limit={this.referralsCount}>
-        {referralsRow}
-        {referredByRow}
-        {content}
-      </div>
+      this.hidden 
+      ? ''
+      : (
+        <div class="squatch-referrals">
+          <div class="squatch-referrals-scroll-container">
+            {referralsRow}
+            {referredByRow}
+          </div>
+          <div class="squatch-referrals-scroll-action-container">
+            <button class={`squatch-referrals-scroll-action previous ${this.offset === 0 ? "disabled" : ""}`} onClick={() => this.paginate(this.offset - 3)}>{this.paginateless}</button>
+            <button class={`squatch-referrals-scroll-action view-more ${this.offset >= this.referralsCount - 3 ? "disabled" : ""}`} view-more onClick={() => this.paginate(this.offset + 3)}>{this.paginatemore}</button>
+          </div>
+        </div>
+      )
     );
   }
 }

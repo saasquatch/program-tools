@@ -175,6 +175,98 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhReferralComponent {
+      'referral': Referral | ReferredByReferral;
+      'referraltype': "converted" | "pending" | "referrer";
+      'referralvariables': ReferralVariables;
+    }
+  }
+
+  interface HTMLSqhReferralComponentElement extends StencilComponents.SqhReferralComponent, HTMLStencilElement {}
+
+  var HTMLSqhReferralComponentElement: {
+    prototype: HTMLSqhReferralComponentElement;
+    new (): HTMLSqhReferralComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-referral-component': HTMLSqhReferralComponentElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-referral-component': HTMLSqhReferralComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-referral-component': JSXElements.SqhReferralComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhReferralComponentAttributes extends HTMLAttributes {
+      'referral'?: Referral | ReferredByReferral;
+      'referraltype'?: "converted" | "pending" | "referrer";
+      'referralvariables'?: ReferralVariables;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SqhReferralList {
+      'convertedcontent': string;
+      'hidden': boolean;
+      'paginateless': string;
+      'paginatemore': string;
+      'pendingcolor': string;
+      'pendingcontent': string;
+      'pendingvalue': string;
+      'referrercontent': string;
+      'rewardcolor': string;
+      'showreferrer': boolean;
+      'usefirstreward': boolean;
+      'valuecontent': string;
+    }
+  }
+
+  interface HTMLSqhReferralListElement extends StencilComponents.SqhReferralList, HTMLStencilElement {}
+
+  var HTMLSqhReferralListElement: {
+    prototype: HTMLSqhReferralListElement;
+    new (): HTMLSqhReferralListElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-referral-list': HTMLSqhReferralListElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-referral-list': HTMLSqhReferralListElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-referral-list': JSXElements.SqhReferralListAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhReferralListAttributes extends HTMLAttributes {
+      'convertedcontent'?: string;
+      'hidden'?: boolean;
+      'paginateless'?: string;
+      'paginatemore'?: string;
+      'pendingcolor'?: string;
+      'pendingcontent'?: string;
+      'pendingvalue'?: string;
+      'referrercontent'?: string;
+      'rewardcolor'?: string;
+      'showreferrer'?: boolean;
+      'usefirstreward'?: boolean;
+      'valuecontent'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhRewardsActions {
       'hidetext': string;
       'nexttext': string;
