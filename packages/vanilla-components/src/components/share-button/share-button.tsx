@@ -21,7 +21,9 @@ export class ShareButton {
   @Element() button: HTMLElement;
 
   clickHandler(e) {
-    if (this.className !== "email-share") {
+    // setting anchor to a tags lets click handler avoid firing when margin is clicked
+    var anchor = e.target.closest('a');
+    if (anchor !== null && this.className !== "email-share") {
       e.preventDefault();
 
       const url = this.url
@@ -32,7 +34,7 @@ export class ShareButton {
   }
 
   componentDidLoad() {
-    let el = this.button
+    let el = this.button;
     el.addEventListener("click", this.clickHandler.bind(this), false);
   }
 

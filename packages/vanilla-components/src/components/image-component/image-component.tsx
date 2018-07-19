@@ -11,9 +11,7 @@ export class ImageComponent {
   @Prop() width: number;
   @Prop() borderradius: number;
   @Prop() alignment: string;
-
-
-  // Option: a text box that allows for any css rules in this format  [key]:[value];
+  // Option: a text box/code editor that allows for any css rules in this format  [key]:[value];
   @Prop() css: string;
 
   render() {
@@ -24,13 +22,10 @@ export class ImageComponent {
     }`
     const myStyle = css`{
       width: ${this.width}px;
+      max-width: 100%;
       height: auto;
       border-radius: ${this.borderradius}px;
       ${this.css}
-
-      @media (max-width: 500px) {
-        width: 100%;
-      }
     }`
 
     return(
