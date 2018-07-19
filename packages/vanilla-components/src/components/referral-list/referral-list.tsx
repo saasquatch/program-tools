@@ -89,9 +89,7 @@ export class ReferralList {
       console.log('res', res);
       this.referrals = res.data.user.referrals.data;
       this.referredBy = res.data.user.referredByReferral;
-      this.referralsCount = this.showreferrer && this.referredBy
-      ? res.data.user.referrals.totalCount + 1
-      : res.data.user.referrals.totalCount;
+      this.referralsCount = res.data.user.referrals.totalCount;
       this.loading = false;
     }).catch(e => {
       this.onError(e);
@@ -144,7 +142,9 @@ export class ReferralList {
   }
 
   paginate(offset) {
-    if (offset >= this.referralsCount || offset < 0) return null;
+    let { referralsCount } = this;
+    if (this.showreferrer && this.referredBy) referralsCount++;
+    if (offset >= referralsCount || offset < 0) return null;
     this.getReferrals(offset)
     .then(res => {
       this.referrals = res.data.user.referrals.data;
@@ -197,7 +197,18 @@ export class ReferralList {
           </div>
           <div class="squatch-referrals-scroll-action-container">
             <button class={`squatch-referrals-scroll-action previous ${this.offset === 0 ? "disabled" : ""}`} onClick={() => this.paginate(this.offset - 3)}>{this.paginateless}</button>
-            <button class={`squatch-referrals-scroll-action view-more ${this.offset >= this.referralsCount - 3 ? "disabled" : ""}`} view-more onClick={() => this.paginate(this.offset + 3)}>{this.paginatemore}</button>
+            <button 
+              class={`
+                squatch-referrals-scroll-action view-more ${
+                  this.showreferrer && this.referredBy
+                    ? this.offset >= this.referralsCount - 2
+                      ? "disabled"
+                      : ""
+                    : this.offset >= this.referralsCount - 3
+                      ? "disabled"
+                      : ""
+                }
+              `} view-more onClick={() => this.paginate(this.offset + 3)}>{this.paginatemore}</button>
           </div>
         </div>
       )
