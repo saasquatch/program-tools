@@ -16,6 +16,8 @@ export class ShareButtonContainer {
   @Prop() emailicon: string = "mail";
   @Prop() emailurl: string = "http://short.staging.referralsaasquatch.com/mJjDFl";
   // @Prop() emailclassName: string = "emailShare";
+
+  // icon editing rules for when we need them (only on email for now)
   @Prop() emailiconhorizontal: number;
   @Prop() emailiconvertical: number;
   @Prop() emailiconsize: number;

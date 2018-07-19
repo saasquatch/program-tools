@@ -14,7 +14,7 @@ export class ImageComponent {
 
 
   // Option: a text box that allows for any css rules in this format  [key]:[value];
-  @Prop() anycss: string;
+  @Prop() css: string;
 
   render() {
     const imageString = `${this.url}`;
@@ -26,7 +26,7 @@ export class ImageComponent {
       width: ${this.width}px;
       height: auto;
       border-radius: ${this.borderradius}px;
-      ${this.anycss}
+      ${this.css}
 
       @media (max-width: 500px) {
         width: 100%;

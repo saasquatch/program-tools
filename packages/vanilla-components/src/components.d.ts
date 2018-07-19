@@ -106,7 +106,7 @@ declare global {
       'fontcolor': string;
       'fontfamily': string;
       'fontsize': string;
-      'padding': number;
+      'padding': string;
       'width': string;
     }
   }
@@ -134,7 +134,7 @@ declare global {
       'fontcolor'?: string;
       'fontfamily'?: string;
       'fontsize'?: string;
-      'padding'?: number;
+      'padding'?: string;
       'width'?: string;
     }
   }
@@ -146,8 +146,8 @@ declare global {
   namespace StencilComponents {
     interface SqhImageComponent {
       'alignment': string;
-      'anycss': string;
       'borderradius': number;
+      'css': string;
       'url': string;
       'width': number;
     }
@@ -173,8 +173,8 @@ declare global {
   namespace JSXElements {
     export interface SqhImageComponentAttributes extends HTMLAttributes {
       'alignment'?: string;
-      'anycss'?: string;
       'borderradius'?: number;
+      'css'?: string;
       'url'?: string;
       'width'?: number;
     }
