@@ -315,6 +315,8 @@ declare global {
     interface SqhReferralList {
       'convertedcontent': string;
       'hidden': boolean;
+      'paginateless': string;
+      'paginatemore': string;
       'pendingcolor': string;
       'pendingcontent': string;
       'pendingvalue': string;
@@ -347,6 +349,8 @@ declare global {
     export interface SqhReferralListAttributes extends HTMLAttributes {
       'convertedcontent'?: string;
       'hidden'?: boolean;
+      'paginateless'?: string;
+      'paginatemore'?: string;
       'pendingcolor'?: string;
       'pendingcontent'?: string;
       'pendingvalue'?: string;

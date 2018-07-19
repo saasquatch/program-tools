@@ -1,5 +1,9 @@
 .squatch-referrals {
 
+  sqh-referral-component:nth-child(3) .squatch-referrals-row {
+    border-bottom: none;
+  }
+
   .squatch-referrals-row {
     display: grid;
     grid-template-columns: 60% 55px auto;
@@ -7,6 +11,7 @@
 
     border-bottom: 1px solid #ddd;
     margin: 0 30px;
+    min-height: 85px;
 
     .squatch-referrals-heading {
       grid-column-start: 1;
