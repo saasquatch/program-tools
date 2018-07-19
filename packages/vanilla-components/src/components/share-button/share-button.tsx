@@ -20,34 +20,14 @@ export class ShareButton {
 
   @Element() button: HTMLElement;
 
-  clickHandler(e) {
-    if (e.type != 'touchstart') {
-      e.preventDefault();
-
-      // TODO THIS BEHAVIOUR might be different across share mediums
-      // let url = `${this.url}&display=popup`;
-      let url = this.url
-
-      // TODO: Is this correct?
-      const target = 'Share';
-      const features = 'status=0,width=620,height=400'
-      window.open(url, target, features);
-    }
-  }
-
-  componentDidLoad() {
-    let el = this.button;
-
-    el.addEventListener("click", this.clickHandler.bind(this), false);
-    el.addEventListener("touchStart", this.clickHandler.bind(this), false);
-  }
-
   render() {
     const isMobileSafari  = detectMobileSafari();
-    const target = isMobileSafari ? '_parent' : '_blank';
+    const target = isMobileSafari ? '_parent' : '';
     const iconClass = `icon icon-${this.icon}`;
+    // opens new window for all links except for Email
+    const newWindowUrl = this.icon === "mail" ? `${this.url}` : `javascript:window.open('${this.url}','Share','status=0,width=550,height=600')`
 
-    // input a dynamic label
+    // TODO: input a dynamic label - Do we need to?
     const clz = css`
       label: ;
       background-color: ${this.backgroundcolor};
@@ -74,7 +54,7 @@ export class ShareButton {
     const classes = [`btn squatch-share-btn`, this.className, this.displayrule, clz].join(" ");
 
     return (
-      <a class={classes} href={this.url} target={target}>
+      <a class={classes} href={newWindowUrl} target={target}>
         <i class={iconClass}></i>
         <span class="share-btn-text">{this.text}</span>
       </a>

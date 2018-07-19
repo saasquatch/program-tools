@@ -1,5 +1,43 @@
 import { Component, Prop } from '@stencil/core';
 
+
+// TODO - get messengerLinks dynamically with graphQL and set them as the correct urls
+// currently they're hardcoded from GraphiQL using the code below
+
+// query UserInfo {
+//   user(accountId: "AGS8ZCPIUZDKHB42", id: "5a34673fe4b010c222be4058") {
+//     messengerLink(programId: "5b4e5ca7e4b0497ecd1e7d0e", shareMedium: EMAIL, engagementMedium: EMBED)
+//   }
+// }
+
+
+
+///////////
+
+// const API: MyAPI = window["WidgetHost"];
+// const userFragment = `messengerLink(
+//   programId: "5b4e5ca7e4b0497ecd1e7d0e"
+//   shareMedium: LINKEDIN
+//   engagementMedium: EMBED
+// )
+// referrals(offset: $offset) {
+//   totalCount
+// }
+// `;
+
+// API.graphql.getClient().query({
+//   query: gql`
+//       query ($userId:String!, $accountId:String!) {
+//         user(accountId: "AGS8ZCPIUZDKHB42", id: "5a34673fe4b010c222be4058") {
+//           messengerLink(programId: "5b4e5ca7e4b0497ecd1e7d0e", shareMedium: LINKEDIN, engagementMedium: EMBED)
+//           messengerLinkOpenGraph(programId: "5b4e5ca7e4b0497ecd1e7d0e")
+//         }
+//       }
+//     `
+//   })
+
+
+
 @Component({
   tag: 'sqh-share-button-container',
   styleUrl: 'share-button-container.scss'
@@ -14,7 +52,7 @@ export class ShareButtonContainer {
   @Prop() emailbackgroundcolor: string = "#373a3d";
   @Prop() emailtextcolor: string = "#fff";
   @Prop() emailicon: string = "mail";
-  @Prop() emailurl: string = `mailto:?subject=testsubject&body=NEWtestbody`;
+  @Prop() emailurl: string = "http://short.staging.referralsaasquatch.com/mJjDFl";
   // @Prop() emailclassName: string = "emailShare";
 
 
@@ -33,8 +71,11 @@ export class ShareButtonContainer {
   @Prop() facebookbackgroundcolor: string = "#234079";
   @Prop() facebooktextcolor: string = "#fff";
   @Prop() facebookicon: string = "facebook";
-  @Prop() facebookurl: string;
+  @Prop() facebookurl: string = "http://short.staging.referralsaasquatch.com/mwjDFl";
   // @Prop() facebookclassName: string = "facebookShare";
+
+
+
 
   // Twitter button properties and default settings
   @Prop() twitterdisplayrule: string = "mobile-and-desktop";
@@ -42,7 +83,7 @@ export class ShareButtonContainer {
   @Prop() twitterbackgroundcolor: string = "#4797d2";
   @Prop() twittertextcolor: string = "#fff";
   @Prop() twittericon: string = "twitter";
-  @Prop() twitterurl: string;
+  @Prop() twitterurl: string = "http://short.staging.referralsaasquatch.com/mcjDFl";
   @Prop() twitterclassName: string;
 
   // SMS button properties and default settings
@@ -51,7 +92,7 @@ export class ShareButtonContainer {
   @Prop() smsbackgroundcolor: string = "#7bbf38";
   @Prop() smstextcolor: string = "#fff";
   @Prop() smsicon: string = "chat";
-  @Prop() smsurl: string;
+  @Prop() smsurl: string = "http://short.staging.referralsaasquatch.com/m2jDFl";
   @Prop() smsclassName: string;
 
   // Whatsapp button properties and default settings
@@ -60,7 +101,7 @@ export class ShareButtonContainer {
   @Prop() whatsappbackgroundcolor: string = "#25D366";
   @Prop() whatsapptextcolor: string = "#fff";
   @Prop() whatsappicon: string = "whatsapp";
-  @Prop() whatsappurl: string;
+  @Prop() whatsappurl: string = "http://short.staging.referralsaasquatch.com/mZjDFl";
   @Prop() whatsappclassName: string;
   
   // LinkedIn button properties and default settings
@@ -69,7 +110,7 @@ export class ShareButtonContainer {
   @Prop() linkedinbackgroundcolor: string = "#0084b9";
   @Prop() linkedintextcolor: string = "#fff";
   @Prop() linkedinicon: string = "linkedin";
-  @Prop() linkedinurl: string;
+  @Prop() linkedinurl: string = "http://short.staging.referralsaasquatch.com/mHjDFl";
   @Prop() linkedinclassName: string;
 
   // Pinterest button properties and default settings
@@ -78,7 +119,7 @@ export class ShareButtonContainer {
   @Prop() pinterestbackgroundcolor: string = "#cb2027";
   @Prop() pinteresttextcolor: string = "#fff";
   @Prop() pinteresticon: string = "pinterest";
-  @Prop() pinteresturl: string;
+  @Prop() pinteresturl: string = "http://short.staging.referralsaasquatch.com/mfjDFl";
   @Prop() pinterestclassName: string;
   
   // Messenger button properties and default settings
@@ -87,7 +128,7 @@ export class ShareButtonContainer {
   @Prop() messengerbackgroundcolor: string = "#0084ff";
   @Prop() messengertextcolor: string = "#fff";
   @Prop() messengericon: string = "messenger";
-  @Prop() messengerurl: string;
+  @Prop() messengerurl: string = "http://short.staging.referralsaasquatch.com/mgjDFl";
   @Prop() messengerclassName: string;
 
   addStyle() {
