@@ -1,18 +1,8 @@
 import { Component, Prop, State} from '@stencil/core';
-import { uuid } from '../../utilities';
 
-const API: MyAPI = window["WidgetHost"];
-if (!window["widgetIdent"]) {
-  window["widgetIdent"] = {
-      mode: 'POPUP',
-      locale: 'en_US',
-      tenantAlias: 'test_ahq6tdmfclzwx',
-      appDomain: 'https://staging.referralsaasquatch.com',
-      userId: '5b3ead41e4b0d9a2cf439e86',
-      accountId: 'DVVJFP7R7GPT0J75',
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWIzZWFkNDFlNGIwZDlhMmNmNDM5ZTg2IiwiYWNjb3VudElkIjoiRFZWSkZQN1I3R1BUMEo3NSJ9fQ.lrNCyo-RKFnF6ruEQEpBi75gsVqB3JxjHgrYIGzKpgI'
-    };
-}
+import { uuid } from '../../utilities';
+import {API} from '../../services/WidgetHost';
+
 const userFragment = `referrals(limit: 3, offset: $offset) {
   count
   totalCount

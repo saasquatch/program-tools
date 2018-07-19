@@ -2,7 +2,7 @@ import { Component, Prop } from '@stencil/core';
 import Clipboard from 'clipboard';
 import { shadeColor, addClass, removeClass } from '../../utilities';
 
-const API: MyAPI = window["WidgetHost"];
+import {API} from '../../services/WidgetHost';
 
 @Component({
   tag: 'sqh-copy-link-button',
@@ -46,7 +46,7 @@ export class CopyLinkButton {
       removeClass(notification, 'in');
     }, 1400);
 
-    API.analytics.shareEvent('DIRECT');
+    API.analytics.shareEvent('COPY');
   }
 
   notifySuccess(e:Clipboard.Event) {
