@@ -15,7 +15,7 @@ export class ImageComponent {
   @Prop() css: string;
 
   render() {
-    const imageString = `${this.url}`;
+    const imageString = this.url;
     const alignment = css `{
       position: relative;
       text-align: ${this.alignment};
