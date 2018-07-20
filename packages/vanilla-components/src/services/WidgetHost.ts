@@ -43,7 +43,7 @@ export function widgetIdent(): WidgetIdent {
 }
 
 //@ts-ignore
-const squatchJsApi = window.frameElement.squatchJsApi;
+const squatchJsApi = !window.frameElement ? null : window.frameElement.squatchJsApi;
 
 const API = {
   version: "Welcome to widget-host",
