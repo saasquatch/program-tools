@@ -1,21 +1,3 @@
-interface MyAPI {
-  ui: {
-    open():any
-    close():any
-  }
-  analytics: {
-    loadEvent():String,
-    shareEvent(medium:string):String
-  }
-  graphql: {
-    getCurrentUser():Promise<any>
-    getReferrals(offset:number):Promise<UserPayload>
-    getReferrals():Promise<UserPayload>
-    getUserFragment(userFragment:string, fragmentVariables:any):Promise<UserPayload>
-    getClient():any
-  }
-}
-
 interface UserPayload {
   data:{
     user:{

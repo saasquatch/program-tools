@@ -1,4 +1,5 @@
 dist/
+docs/
 !www/favicon.ico
 www/
 
