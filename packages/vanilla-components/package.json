@@ -21,6 +21,7 @@
   "dependencies": {
     "@stencil/core": "^0.9.11",
     "@types/faker": "^4.1.2",
+    "@types/graphql": "^0.13.3",
     "apollo-cache-inmemory": "^1.2.5",
     "apollo-client": "^2.3.5",
     "apollo-link-http": "^1.5.4",
