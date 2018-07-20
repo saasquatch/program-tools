@@ -21,7 +21,7 @@ export class ShareButton {
   @Element() button: HTMLElement;
 
   clickHandler(e) {
-    // setting anchor to a tags lets click handler avoid firing when margin is clicked
+    // checking for null on closest 'a' tag makes click handler avoid firing when margin is clicked
     var anchor = e.target.closest('a');
     if (anchor !== null && this.className !== "email-share") {
       e.preventDefault();
