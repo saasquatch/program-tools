@@ -175,6 +175,43 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhReferralComponent {
+      'referral': Referral | ReferredByReferral;
+      'referraltype': "converted" | "pending" | "referrer";
+      'referralvariables': ReferralVariables;
+    }
+  }
+
+  interface HTMLSqhReferralComponentElement extends StencilComponents.SqhReferralComponent, HTMLStencilElement {}
+
+  var HTMLSqhReferralComponentElement: {
+    prototype: HTMLSqhReferralComponentElement;
+    new (): HTMLSqhReferralComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-referral-component': HTMLSqhReferralComponentElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-referral-component': HTMLSqhReferralComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-referral-component': JSXElements.SqhReferralComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhReferralComponentAttributes extends HTMLAttributes {
+      'referral'?: Referral | ReferredByReferral;
+      'referraltype'?: "converted" | "pending" | "referrer";
+      'referralvariables'?: ReferralVariables;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhReferralList {
       'convertedcontent': string;
       'hidden': boolean;
