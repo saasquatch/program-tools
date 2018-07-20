@@ -24,6 +24,7 @@
     "clipboard": "^1.7.1",
     "emotion": "^9.2.5",
     "faker": "^4.1.0",
+    "@types/graphql": "^0.13.3",
     "intl-messageformat": "^2.2.0",
     "intl-relativeformat": "^2.1.0",
     "marked": "^0.4.0",
