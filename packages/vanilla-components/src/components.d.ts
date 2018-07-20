@@ -531,6 +531,51 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhShareButton {
+      'backgroundcolor': string;
+      'className': string;
+      'displayrule': string;
+      'icon': string;
+      'text': string;
+      'textcolor': string;
+      'url': string;
+    }
+  }
+
+  interface HTMLSqhShareButtonElement extends StencilComponents.SqhShareButton, HTMLStencilElement {}
+
+  var HTMLSqhShareButtonElement: {
+    prototype: HTMLSqhShareButtonElement;
+    new (): HTMLSqhShareButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-share-button': HTMLSqhShareButtonElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-share-button': HTMLSqhShareButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-share-button': JSXElements.SqhShareButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhShareButtonAttributes extends HTMLAttributes {
+      'backgroundcolor'?: string;
+      'className'?: string;
+      'displayrule'?: string;
+      'icon'?: string;
+      'text'?: string;
+      'textcolor'?: string;
+      'url'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhSmsShareButton {
       'backgroundcolor': string;
       'displayrule': string;
