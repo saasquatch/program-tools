@@ -1,0 +1,55 @@
+.squatch-referrals {
+
+  sqh-referral-component:nth-child(3) .squatch-referrals-row {
+    border-bottom: none;
+  }
+
+  .squatch-referrals-row {
+    display: grid;
+    grid-template-columns: 60% 55px auto;
+    grid-template-rows: 20px 25px auto 20px;
+
+    border-bottom: 1px solid #ddd;
+    margin: 0 30px;
+    min-height: 85px;
+
+    .squatch-referrals-heading {
+      grid-column-start: 1;
+      grid-row-start: 2;
+    }
+
+    .squatch-referrals-description {
+      grid-column-start: 1;
+      grid-row-start: 3;
+
+      color: #a9a9a9;
+      font-size: 15px;
+    }
+
+    .squatch-referrals-icon {
+      grid-column-start: 2;
+      grid-row-start: 2;
+      align-self: center;
+
+      font-size: 30px;
+      margin-top: 10px;
+    }
+
+    .squatch-referrals-value {
+      grid-column-start: 3;
+      grid-row-start: 2;
+      align-self: center;
+
+      margin-top: 10px;
+    }
+
+    .squatch-referrals-value-content {
+      grid-column-start: 3;
+      grid-row-start: 3;
+
+      color: #a9a9a9;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  }
+}

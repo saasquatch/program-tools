@@ -1,93 +1,10 @@
 .squatch-share-btn {
   width: 140px;
   display: inline-block;
-  margin-left: 10px;
-  margin-bottom: 10px;
+  margin: 5px;
 
   @media (max-width: $screen-sm-max) {
     width: 100%;
     margin-top: $grid-gutter-width;
-    margin-left: 0;
-    margin-bottom: 0;
-  }
-}
-
-.emailShare,
-.fbShare,
-.twShare,
-.linkedinShare,
-.pinterestShare {
-
-  &.hidden {
-    display: none;
-  }
-
-  &.mobile-only {
-    display: none;
-
-    @media (max-width: $screen-sm-max) {
-      display: block;
-    }
-  }
-
-  &.desktop-only {
-    @media (max-width: $screen-sm-max) {
-      display: none;
-    }
-  }
-}
-
-.messengerShare {
-
-  &.hidden {
-    display: none;
-  }
-
-  &.mobile-only {
-    display: none;
-  }
-
-  &.desktop-only {
-    @media (max-width: $screen-sm-max) {
-      display: none;
-    }
-  }
-
-  @media (max-width: $screen-sm-max) {
-    display: none;
-  }
-}
-
-.messengerMobile {
-  display: none;
-
-  &.mobile-and-desktop,
-  &.mobile-only {
-    @media (max-width: $screen-sm-max) {
-      display: block;
-    }
-  }
-
-  &.hidden,
-  &.desktop-only {
-    @media (max-width: $screen-sm-max) {
-      display: none;
-    }
-  }
-}
-
-.smsShare,
-.whatsappShare {
-
-  &.hidden {
-    display: none;
-  }
-
-  &.mobile-only {
-    display: none;
-
-    @media (max-width: $screen-sm-max) {
-      display: block;
-    }
   }
 }
