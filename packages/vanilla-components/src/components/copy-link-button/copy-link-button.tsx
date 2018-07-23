@@ -9,7 +9,9 @@ import {API} from '../../services/WidgetHost';
   styleUrl: 'copy-link-button.scss'
 })
 export class CopyLinkButton {
-  @Prop() text: string;
+  @Prop() text: string = "Copy";
+  @Prop() copysuccess: string = "copied!";
+  @Prop() copyfailure: string = "Press Ctrl+C to copy";
   @Prop() ishidden: boolean = false;
   @Prop() buttoncolor: string;
   @Prop() textcolor: string;
@@ -50,11 +52,11 @@ export class CopyLinkButton {
   }
 
   notifySuccess(e:Clipboard.Event) {
-    this.notify((e.trigger as HTMLElement).dataset.clipboardNotification, "Copied!");
+    this.notify((e.trigger as HTMLElement).dataset.clipboardNotification, this.copysuccess);
   }
 
   notifyFailure(e:Clipboard.Event) {
-    this.notify((e.trigger as HTMLElement).dataset.clipboardNotification, "Press Ctrl+C to copy");
+    this.notify((e.trigger as HTMLElement).dataset.clipboardNotification, this.copyfailure);
   }
 
   componentDidLoad() {
@@ -75,12 +77,12 @@ export class CopyLinkButton {
       : <div class="input-group">
           <input id="squatch-share-link" value="https://link.com" readonly="readonly"></input>
 
-          <span class="label label-default fade" id="squatch-share-notification">copied!</span>
+          <span class="label label-default fade" id="squatch-share-notification">{this.copysuccess}</span>
 
           <span class="input-group-btn">
               <button class="btn btn-primary icon-btn copy" data-clipboard-target="#squatch-share-link" data-clipboard-notification="#squatch-share-notification">
               <i class="icon icon-link"></i>
-              <span class="hidden-sm">Copy</span>
+              <span class="hidden-sm">{this.text}</span>
               </button>
           </span>
         </div>;
