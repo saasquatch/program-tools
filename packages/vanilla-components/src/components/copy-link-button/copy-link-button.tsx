@@ -10,7 +10,7 @@ import {API} from '../../services/WidgetHost';
 })
 export class CopyLinkButton {
   @Prop() text: string;
-  @Prop() hidden: boolean = false;
+  @Prop() ishidden: boolean = false;
   @Prop() buttoncolor: string;
   @Prop() textcolor: string;
 
@@ -70,7 +70,7 @@ export class CopyLinkButton {
   }
 
   render() {
-    const copyLinkSection = this.hidden 
+    const copyLinkSection = this.ishidden 
       ? `` 
       : <div class="input-group">
           <input id="squatch-share-link" value="https://link.com" readonly="readonly"></input>

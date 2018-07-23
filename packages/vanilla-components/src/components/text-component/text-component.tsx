@@ -6,7 +6,7 @@ import marked from 'marked';
   styleUrl: 'text-component.scss'
 })
 export class TextComponent {
-  @Prop() hidden: boolean = false;
+  @Prop() ishidden: boolean = false;
   @Prop() ismarkdown: boolean = false;
   @Prop() text: string;
   @Prop() fontfamily: string;
@@ -37,7 +37,7 @@ export class TextComponent {
       ? <div innerHTML={marked(this.text)} />
       : this.text
 
-    const textSection = this.hidden 
+    const textSection = this.ishidden 
       ? `` 
       : (
         <div style={divStyle}>

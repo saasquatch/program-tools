@@ -51,7 +51,7 @@ const userReferralsFragment = `
   styleUrl: 'referral-list.scss'
 })
 export class ReferralList {
-  @Prop() hidden: boolean = false;
+  @Prop() ishidden: boolean = false;
   @Prop() showreferrer: boolean = true;
   @Prop() rewardcolor: string = "#4BB543";
   @Prop() pendingcolor: string = "#DDDDDD";
@@ -177,7 +177,7 @@ export class ReferralList {
     }
 
     return (
-      this.hidden 
+      this.ishidden 
       ? ''
       : (
         <div class="squatch-referrals">

@@ -64,7 +64,7 @@ declare global {
   namespace StencilComponents {
     interface SqhCopyLinkButton {
       'buttoncolor': string;
-      'hidden': boolean;
+      'ishidden': boolean;
       'text': string;
       'textcolor': string;
     }
@@ -90,7 +90,7 @@ declare global {
   namespace JSXElements {
     export interface SqhCopyLinkButtonAttributes extends HTMLAttributes {
       'buttoncolor'?: string;
-      'hidden'?: boolean;
+      'ishidden'?: boolean;
       'text'?: string;
       'textcolor'?: string;
     }
@@ -214,7 +214,7 @@ declare global {
   namespace StencilComponents {
     interface SqhReferralList {
       'convertedcontent': string;
-      'hidden': boolean;
+      'ishidden': boolean;
       'paginateless': string;
       'paginatemore': string;
       'pendingcolor': string;
@@ -248,7 +248,7 @@ declare global {
   namespace JSXElements {
     export interface SqhReferralListAttributes extends HTMLAttributes {
       'convertedcontent'?: string;
-      'hidden'?: boolean;
+      'ishidden'?: boolean;
       'paginateless'?: string;
       'paginatemore'?: string;
       'pendingcolor'?: string;
@@ -319,7 +319,7 @@ declare global {
       'facebooktext': string;
       'facebooktextcolor': string;
       'facebookurl': string;
-      'hidden': boolean;
+      'ishidden': boolean;
       'linkedinbackgroundcolor': string;
       'linkedinclassName': string;
       'linkedindisplayrule': string;
@@ -399,7 +399,7 @@ declare global {
       'facebooktext'?: string;
       'facebooktextcolor'?: string;
       'facebookurl'?: string;
-      'hidden'?: boolean;
+      'ishidden'?: boolean;
       'linkedinbackgroundcolor'?: string;
       'linkedinclassName'?: string;
       'linkedindisplayrule'?: string;
@@ -541,7 +541,7 @@ declare global {
       'fontfamily': string;
       'fontsize': string;
       'height': string;
-      'hidden': boolean;
+      'ishidden': boolean;
       'ismarkdown': boolean;
       'padding': string;
       'text': string;
@@ -573,7 +573,7 @@ declare global {
       'fontfamily'?: string;
       'fontsize'?: string;
       'height'?: string;
-      'hidden'?: boolean;
+      'ishidden'?: boolean;
       'ismarkdown'?: boolean;
       'padding'?: string;
       'text'?: string;
