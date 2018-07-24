@@ -476,9 +476,10 @@ export default (editor, config = {}) => {
           droppable: false,
           selectable: true,
           traits: [
-            { type: 'string', title: 'Referred', name: 'friendsreferred', value: 'Referred' },
-            { type: 'string', title: 'Earned', name: 'rewardsearned', value: 'Earned' },
-            { type: 'string', title: 'Pending', name: 'rewardspending', value: 'Pending' }
+            { type: 'boolean', title: 'Hidden', name: 'ishidden', value: false },
+            { type: 'string', title: 'Referrals Total', name: 'referralscounttext', value: '{value, plural, one {Friend} other {Friends}} Referred' },
+            { type: 'string', title: 'Rewards Total', name: 'rewardscounttext', value: '{value, plural, one {Reward} other {Rewards}} Earned' },
+            { type: 'string', title: 'Referrals This Month', name: 'referralsmonthtext', value: '{value, plural, one {Referral} other {Referrals}} this month' }
           ],
           toolbar: []
         })
