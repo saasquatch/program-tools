@@ -85,7 +85,7 @@ const API = {
 
       return this.getClient().query({
         query: gql`
-          query($userId: String!, $accountId: String!, $offset: Int!) {
+          query($userId: String!, $accountId: String!, $offset: Int) {
             user(id: $userId, accountId: $accountId) {
               ...UserFragment
             }
