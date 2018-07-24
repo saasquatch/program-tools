@@ -1,20 +1,18 @@
-@import '../../assets/styles/mixins/buttons';
-@import '../../assets/styles/mixins/vendor-prefixes';
-@import '../../assets/styles/mixins/tab-focus';
-
-@import '../../assets/styles/variables';
-@import '../../assets/styles/base';
-@import '../../assets/styles/shims';
-
-@import '../../assets/styles/labels';
-@import '../../assets/styles/buttons';
-@import '../../assets/styles/responsive-utilities';
-
-
-
 sqh-copy-link-button {
   font-family: 'Lato', sans-serif;
   display: block;
+
+  @import '../../assets/styles/mixins/buttons';
+  @import '../../assets/styles/mixins/vendor-prefixes';
+  @import '../../assets/styles/mixins/tab-focus';
+
+  @import '../../assets/styles/variables';
+  @import '../../assets/styles/base';
+  @import '../../assets/styles/shims';
+
+  @import '../../assets/styles/labels';
+  @import '../../assets/styles/buttons';
+  @import '../../assets/styles/responsive-utilities';
 
   button.icon-btn.copy {
   @include button-variant(white, #5b6165, #5b6165);

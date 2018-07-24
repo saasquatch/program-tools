@@ -1,3 +1,5 @@
+// COPY LINK SPECIFIC
+
 .fade {
   opacity: 0;
   @include transition(opacity .15s linear);
@@ -19,25 +21,28 @@
   vertical-align: middle;
 }
 
-.input-group-btn:last-child  {
-  > .btn,
-  > .btn-group {
-    margin-left: 0;
-  }
-}
 
-html.lt-ie9 {
-  .input-group {
-    width: 100%;
+// POSSIBLY NOT NECESSARY
 
-    .form-control {
-      width: 100%;
-      border-right: 1px solid $input-border;
-      border-radius: $border-radius-base;
-    }
+// .input-group-btn:last-child  {
+//   > .btn,
+//   > .btn-group {
+//     margin-left: 0;
+//   }
+// }
 
-    .input-group-btn {
-      display: none;
-    }
-  }
-}
+// html.lt-ie9 {
+//   .input-group {
+//     width: 100%;
+
+//     .form-control {
+//       width: 100%;
+//       border-right: 1px solid $input-border;
+//       border-radius: $border-radius-base;
+//     }
+
+//     .input-group-btn {
+//       display: none;
+//     }
+//   }
+// }
