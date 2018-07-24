@@ -41,6 +41,7 @@ export default (editor, config = {}) => {
         name: 'Widget Container',
         draggable: false,
         droppable: false,
+        deletable: false,
         selectable: true,
         toolbar: [],
         traits: [
@@ -71,6 +72,7 @@ export default (editor, config = {}) => {
         name: 'Text Component',
         draggable: false,
         droppable: false,
+        deletable: false,
         selectable: true,
         toolbar: [],
         traits: [
@@ -206,6 +208,7 @@ export default (editor, config = {}) => {
           name: "Copy Link",
           draggable: false,
           droppable: false,
+          deletable: false,
           selectable: true,
           toolbar: [],
           traits: [
@@ -299,6 +302,7 @@ export default (editor, config = {}) => {
           name: "Share Button Container",
           draggable: false,
           droppable: false,
+          deletable: false,
           selectable: true,
           toolbar: [],
           traits: [
@@ -474,6 +478,7 @@ export default (editor, config = {}) => {
           name: "Stats Component",
           draggable: false,
           droppable: false,
+          deletable: false,
           selectable: true,
           traits: [
             { type: 'boolean', title: 'Hidden', name: 'ishidden', value: false },
@@ -506,6 +511,7 @@ export default (editor, config = {}) => {
           name: "Referral List",
           draggable: false,
           droppable: false,
+          deletable: false,
           selectable: true,
           traits: [
             { type: 'boolean', name: 'ishidden', value: false },
