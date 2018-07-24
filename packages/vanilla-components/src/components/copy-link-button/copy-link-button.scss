@@ -10,7 +10,13 @@
 @import '../../assets/styles/buttons';
 @import '../../assets/styles/responsive-utilities';
 
-button.icon-btn.copy {
+
+
+sqh-copy-link-button {
+  font-family: 'Lato', sans-serif;
+  display: block;
+
+  button.icon-btn.copy {
   @include button-variant(white, #5b6165, #5b6165);
   width: 140px;
   border-bottom-left-radius: 0;
@@ -22,24 +28,25 @@ button.icon-btn.copy {
   text-align: left;
   min-height: 34px;
 
-  @media (max-width: $screen-sm-max) {
-    width: auto;
+    @media (max-width: $screen-sm-max) {
+      width: auto;
 
-    .icon {
-      width: 39px;
-      margin-right: 0;
+      .icon {
+        width: 39px;
+        margin-right: 0;
+      }
     }
   }
-}
 
-sqh-copy-link-button {
-  font-family: 'Lato', sans-serif;
-  display: block;
+  .icon-btn {
+    color: #fff;
+    width: 140px;
+  }
 
   input {
     color: inherit;
     font: inherit;
-    margin: 0;
+    // margin: 0;
   }
 
   .input-group {
@@ -92,4 +99,3 @@ sqh-copy-link-button {
     border-top-right-radius: 0;
   }
 }
-

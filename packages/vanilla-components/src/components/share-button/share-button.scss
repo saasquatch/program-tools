@@ -1,44 +1,44 @@
-@import '../../assets/styles/variables';
+$screen-sm-max: 500px;
 
 sqh-share-button {
-    display: inline-block;
+  display: inline-block;
   
-    @media (max-width: $screen-sm-max) {
-      display: block;
+  @media (max-width: $screen-sm-max) {
+    display: block;
+  }
+  
+  a {
+    line-height: 32px;
+    min-height: 34px;
+    padding: 0 0 0 30px;
+    position: relative;
+    text-decoration: none;
+  
+    .icon {
+      position: absolute;
+      left: 10px;
+      top: 6px;
+      width: 16px;
     }
   
-    a {
-      line-height: 32px;
-      min-height: 34px;
-      padding: 0 0 0 30px;
-      position: relative;
-      text-decoration: none;
+    // UNIQUE DEFAULT ICON STYLES (Might be moved to default props for these icons)
   
-      .icon {
-        position: absolute;
-        left: 10px;
-        top: 6px;
-        width: 16px;
-      }
+    // SMS
+    i.icon-chat {
+      left: 11px;
+      top: 9px;
+    }
   
-      // UNIQUE DEFAULT ICON STYLES (Might be moved to default props for these icons)
+    // WHATSAPP
+    i.icon-whatsapp {
+      font-size: 1.4em;
+    }
   
-      // SMS
-      i.icon-chat {
-        left: 11px;
-        top: 9px;
-        }
-  
-      // WHATSAPP
-      i.icon-whatsapp {
-        font-size: 1.4em;
-      }
-  
-      // EMAIL
-      i.icon-mail {
-        left: 13px;
-        top: 7px;
-      }
+    // EMAIL
+    i.icon-mail {
+      left: 13px;
+      top: 7px;
+    }
   
       &:before {
         bottom: -1px;
@@ -50,7 +50,7 @@ sqh-share-button {
         width: 40px;
       }
     }
-  }
+
   
   .squatch-share-btn {
     width: 140px;
@@ -66,3 +66,4 @@ sqh-share-button {
       margin: 5px 0px;
     }
   }
+}

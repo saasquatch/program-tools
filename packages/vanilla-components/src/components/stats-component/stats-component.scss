@@ -1,6 +1,12 @@
-@import '../../assets/styles/variables';
-@import '../../assets/styles/base';
-@import '../../assets/styles/atomic';
+$grid-gutter-width:       10px;
+$screen-sm-max: 500px;
+$gray-light:              #a9a9a9;
+$gray-lighter:            #ddd;
+$gray-lightest:           #f2f2f2;
+$border-radius-base:      4px;
+$font-size-h1:            30px;
+$font-size-xl:            22px;
+$font-size-xs:            12px;
 
 sqh-stats-component {
   display: block;
