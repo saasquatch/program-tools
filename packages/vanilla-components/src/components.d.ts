@@ -64,6 +64,8 @@ declare global {
   namespace StencilComponents {
     interface SqhCopyLinkButton {
       'buttoncolor': string;
+      'copyfailure': string;
+      'copysuccess': string;
       'ishidden': boolean;
       'text': string;
       'textcolor': string;
@@ -90,6 +92,8 @@ declare global {
   namespace JSXElements {
     export interface SqhCopyLinkButtonAttributes extends HTMLAttributes {
       'buttoncolor'?: string;
+      'copyfailure'?: string;
+      'copysuccess'?: string;
       'ishidden'?: boolean;
       'text'?: string;
       'textcolor'?: string;
@@ -497,9 +501,10 @@ declare global {
 
   namespace StencilComponents {
     interface SqhStatsComponent {
-      'friendsreferred': string;
-      'rewardsearned': string;
-      'rewardspending': string;
+      'ishidden': boolean;
+      'referralscounttext': string;
+      'referralsmonthtext': string;
+      'rewardscounttext': string;
       'text': string;
     }
   }
@@ -523,9 +528,10 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhStatsComponentAttributes extends HTMLAttributes {
-      'friendsreferred'?: string;
-      'rewardsearned'?: string;
-      'rewardspending'?: string;
+      'ishidden'?: boolean;
+      'referralscounttext'?: string;
+      'referralsmonthtext'?: string;
+      'rewardscounttext'?: string;
       'text'?: string;
     }
   }
