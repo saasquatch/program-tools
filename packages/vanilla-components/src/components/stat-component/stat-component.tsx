@@ -1,4 +1,4 @@
-import { Component, Prop, Event, EventEmitter, Element } from '@stencil/core';
+import { Component, Prop, Event, EventEmitter, Element, Watch } from '@stencil/core';
 
 @Component({
   tag: 'sqh-stat-component',
@@ -11,8 +11,9 @@ export class StatComponent {
   @Prop() statdescription: string;
   @Event() statTypeUpdated: EventEmitter;
 
-  componentWillUpdate() {
-    this.statTypeUpdatedHandler(this.elem)
+  @Watch('stattype')
+  watchHandler(newValue: string, oldValue: string) {
+    if (newValue !== oldValue) this.statTypeUpdatedHandler(this.elem)
   }
 
   statTypeUpdatedHandler(stat: HTMLElement) {
