@@ -538,45 +538,6 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface SqhStatsComponent {
-      'ishidden': boolean;
-      'referralscounttext': string;
-      'referralsmonthtext': string;
-      'rewardscounttext': string;
-    }
-  }
-
-  interface HTMLSqhStatsComponentElement extends StencilComponents.SqhStatsComponent, HTMLStencilElement {}
-
-  var HTMLSqhStatsComponentElement: {
-    prototype: HTMLSqhStatsComponentElement;
-    new (): HTMLSqhStatsComponentElement;
-  };
-  interface HTMLElementTagNameMap {
-    'sqh-stats-component': HTMLSqhStatsComponentElement;
-  }
-  interface ElementTagNameMap {
-    'sqh-stats-component': HTMLSqhStatsComponentElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'sqh-stats-component': JSXElements.SqhStatsComponentAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface SqhStatsComponentAttributes extends HTMLAttributes {
-      'ishidden'?: boolean;
-      'referralscounttext'?: string;
-      'referralsmonthtext'?: string;
-      'rewardscounttext'?: string;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
     interface SqhStatsContainer {
       'ishidden': boolean;
     }
