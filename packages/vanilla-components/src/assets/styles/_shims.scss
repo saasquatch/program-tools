@@ -1,25 +1,25 @@
 // COPY LINK SPECIFIC
 
-.fade {
-  opacity: 0;
-  @include transition(opacity .15s linear);
-  &.in {
-    opacity: 1;
-  }
-}
+// .fade {
+//   opacity: 0;
+//   @include transition(opacity .15s linear);
+//   &.in {
+//     opacity: 1;
+//   }
+// }
 
-.input-group {
-  position: relative;
-  display: table;
-  border-collapse: separate;
-}
+// .input-group {
+//   position: relative;
+//   display: table;
+//   border-collapse: separate;
+// }
 
-.input-group-btn {
-  display: table-cell;
-  width: 1%;
-  white-space: nowrap;
-  vertical-align: middle;
-}
+// .input-group-btn {
+//   display: table-cell;
+//   width: 1%;
+//   white-space: nowrap;
+//   vertical-align: middle;
+// }
 
 
 // POSSIBLY NOT NECESSARY

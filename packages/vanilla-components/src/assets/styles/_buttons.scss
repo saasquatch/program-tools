@@ -1,5 +1,7 @@
 // BOTH COPY LINK AND SHARE BUTTONS
 
+@import '../../assets/styles/variables';
+
 .btn {
   display: inline-block;
   margin-bottom: 10px; // For input.btn
@@ -52,25 +54,25 @@
 
 // COPY LINK SPECIFIC
 
-.icon-btn {
-  border-left: 0;
-  padding-left: 0;
-  padding-right: 0;
-  position: relative;
-  text-align: left;
+// .icon-btn {
+//   border-left: 0;
+//   padding-left: 0;
+//   padding-right: 0;
+//   position: relative;
+//   text-align: left;
 
-  &:before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    bottom: -1px;
-    background: transparentize(#ffffff, 0.82);
-    width: 40px;
-  }
+//   &:before {
+//     content: '';
+//     position: absolute;
+//     top: -1px;
+//     left: -1px;
+//     bottom: -1px;
+//     background: transparentize(#ffffff, 0.82);
+//     width: 40px;
+//   }
 
-  .icon {
-    width: 42px;
-    margin-right: 20px;
-  }
-}
+//   .icon {
+//     width: 42px;
+//     margin-right: 20px;
+//   }
+// }

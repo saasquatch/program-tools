@@ -2,17 +2,123 @@ sqh-copy-link-button {
   font-family: 'Lato', sans-serif;
   display: block;
 
+  // START OF IMPORTS TO TRIM
+
+  // mixins might be find as imports
   @import '../../assets/styles/mixins/buttons';
   @import '../../assets/styles/mixins/vendor-prefixes';
   @import '../../assets/styles/mixins/tab-focus';
 
-  @import '../../assets/styles/variables';
-  @import '../../assets/styles/base';
-  @import '../../assets/styles/shims';
+  // @import '../../assets/styles/variables';
 
-  @import '../../assets/styles/labels';
+  // @import '../../assets/styles/base';
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: transparent;
+  }
+
+
+
+
+  // @import '../../assets/styles/shims';
+  .fade {
+    opacity: 0;
+    @include transition(opacity .15s linear);
+    &.in {
+      opacity: 1;
+    }
+  }
+  
+  .input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+  }
+  
+  .input-group-btn {
+    display: table-cell;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+
+  // @import '../../assets/styles/labels';
+  .label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+  
+    // Empty labels collapse automatically (not available in IE8)
+    &:empty {
+      display: none;
+    }
+  }
+
+  
+  
   @import '../../assets/styles/buttons';
-  @import '../../assets/styles/responsive-utilities';
+  .icon-btn {
+    border-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    text-align: left;
+  
+    &:before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      bottom: -1px;
+      background: transparentize(#ffffff, 0.82);
+      width: 40px;
+    }
+  
+    .icon {
+      width: 42px;
+      margin-right: 20px;
+    }
+  }
+
+
+
+
+  // @import '../../assets/styles/responsive-utilities';
+  .hidden-xs {
+    @media (max-width: $screen-xs-max) {
+      display: none !important;
+    }
+  }
+  
+  .hidden-sm {
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+      display: none !important;
+    }
+  }
+  
+  .hidden-md {
+    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+      display: none !important;
+    }
+  }
+
+  $screen-sm-max: 500px;
+
+
+  // END OF IMPORTS
 
   button.icon-btn.copy {
   @include button-variant(white, #5b6165, #5b6165);
@@ -44,7 +150,7 @@ sqh-copy-link-button {
   input {
     color: inherit;
     font: inherit;
-    // margin: 0;
+    margin: 0;
   }
 
   .input-group {

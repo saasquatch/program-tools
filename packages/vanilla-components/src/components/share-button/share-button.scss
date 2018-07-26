@@ -1,18 +1,20 @@
-$screen-sm-max: 500px;
-$btn-font-weight: 400;
-$padding-base-vertical:     6px;
-$padding-base-horizontal:   12px;
-$font-size-base:          14px;
-$line-height-base:        1.428571429; // 20/14
-$border-radius-base:        4px;
-$btn-default-color: white;
-
-
-@import '../../assets/styles/mixins/buttons';
-@import '../../assets/styles/mixins/vendor-prefixes';
-@import '../../assets/styles/mixins/tab-focus';
-
 sqh-share-button {
+
+  $screen-sm-max: 500px;
+  $btn-font-weight: 400;
+  $padding-base-vertical:     6px;
+  $padding-base-horizontal:   12px;
+  $font-size-base:          14px;
+  $line-height-base:        1.428571429; // 20/14
+  $border-radius-base:        4px;
+  $btn-default-color: white;
+
+
+  @import '../../assets/styles/mixins/buttons';
+  @import '../../assets/styles/mixins/vendor-prefixes';
+  @import '../../assets/styles/mixins/tab-focus';
+
+
   display: inline-block;
 
   .btn {
