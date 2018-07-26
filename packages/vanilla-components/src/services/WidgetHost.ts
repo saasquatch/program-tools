@@ -218,6 +218,7 @@ const API = {
             }) {
               totalCount
             }
+            rewardBalances(programId: $programId)
           }
         }
         `,

@@ -75,3 +75,10 @@ interface ReferralVariables {
   pendingvalue: string
   valuecontent: string
 }
+
+interface RewardBalance {
+  type: string
+  unit: string
+  value: number
+  prettyValue: string
+}
