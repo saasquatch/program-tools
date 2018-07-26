@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element } from '@stencil/core';
+import { Component, Prop, State, Element, Listen } from '@stencil/core';
 import { API } from '../../services/WidgetHost';
 
 @Component({
@@ -33,9 +33,7 @@ export class StatsContainer {
       this.loading = false;
     }).then(() => {
       this.stats.map(stat => {
-        const type = stat.getAttribute("stattype");
-        stat.setAttribute('statvalue', this[type]);
-        return stat;
+        this.setStatValue(stat)
       })
     }).catch(e => {
       this.onError(e);
@@ -43,7 +41,18 @@ export class StatsContainer {
   }
 
   componentWillUpdate() {
-    // this.addStyle();
+    console.log('container updated')
+  }
+
+  @Listen('statTypeUpdated')
+  statTypeUpdatedHandler(stat: CustomEvent) {
+    this.setStatValue(stat.detail)
+  }
+
+  setStatValue(stat: HTMLElement) {
+    const type = stat.getAttribute("stattype");
+    stat.setAttribute('statvalue', this[type]);
+    return stat;
   }
 
   onError(e: Error) {

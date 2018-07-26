@@ -526,6 +526,7 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhStatComponentAttributes extends HTMLAttributes {
+      'onStatTypeUpdated'?: (event: CustomEvent) => void;
       'statdescription'?: string;
       'stattype'?: "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | null;
       'statvalue'?: number;
