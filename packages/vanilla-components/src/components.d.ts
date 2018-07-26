@@ -501,9 +501,10 @@ declare global {
 
   namespace StencilComponents {
     interface SqhStatComponent {
+      'rewardbalancepath': string;
       'statdescription': string;
-      'stattype': "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | null;
-      'statvalue': number;
+      'stattype': "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | "rewardBalance" | null;
+      'statvalue': string;
     }
   }
 
@@ -527,9 +528,10 @@ declare global {
   namespace JSXElements {
     export interface SqhStatComponentAttributes extends HTMLAttributes {
       'onStatTypeUpdated'?: (event: CustomEvent) => void;
+      'rewardbalancepath'?: string;
       'statdescription'?: string;
-      'stattype'?: "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | null;
-      'statvalue'?: number;
+      'stattype'?: "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | "rewardBalance" | null;
+      'statvalue'?: string;
     }
   }
 }
