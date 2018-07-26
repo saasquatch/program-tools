@@ -6,7 +6,7 @@ import { Component, Prop, Event, EventEmitter, Element, Watch } from '@stencil/c
 })
 export class StatComponent {
   @Element() elem: HTMLElement;
-  @Prop() stattype: "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | "rewardBalance" | null
+  @Prop() stattype: string;
   @Prop() rewardbalancepath: string;
   @Prop() statvalue: string = "0";
   @Prop() statdescription: string;

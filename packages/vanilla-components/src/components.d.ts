@@ -503,7 +503,7 @@ declare global {
     interface SqhStatComponent {
       'rewardbalancepath': string;
       'statdescription': string;
-      'stattype': "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | "rewardBalance" | null;
+      'stattype': string;
       'statvalue': string;
     }
   }
@@ -530,7 +530,7 @@ declare global {
       'onStatTypeUpdated'?: (event: CustomEvent) => void;
       'rewardbalancepath'?: string;
       'statdescription'?: string;
-      'stattype'?: "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | "rewardBalance" | null;
+      'stattype'?: string;
       'statvalue'?: string;
     }
   }
