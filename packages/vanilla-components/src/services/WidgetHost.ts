@@ -138,7 +138,7 @@ const API = {
                     prettyValue
                   }
                 }
-              },
+              }
               referredByReferral(programId: $programId) {
                 referrerUser {
                   firstName
@@ -157,6 +157,72 @@ const API = {
         `,
         variables
       });
+    },
+
+    getStats() {
+      const { userId, accountId, programId = null } = widgetIdent();
+
+      const variables = {
+        userId,
+        accountId,
+        programId,
+        programId_exists: programId ? true : false
+      };
+
+      return this.getClient().query({
+        query: gql`
+        query(
+          $userId: String!,
+          $accountId: String!,
+          $programId: ID,
+          $programId_exists: Boolean!
+        ) {
+          user(id: $userId, accountId: $accountId) {
+            referralsCount: referrals(filter: {
+              programId_eq: $programId
+              programId_exists: $programId_exists
+            }) {
+              totalCount
+            }
+            referralsMonth: referrals(filter: {
+              programId_eq: $programId
+              programId_exists: $programId_exists
+              dateReferralStarted_timeframe: "this_month"
+            }) {
+              totalCount
+            }
+            referralsWeek: referrals(filter: {
+              programId_eq: $programId
+              programId_exists: $programId_exists
+              dateReferralStarted_timeframe: "this_week"
+            }) {
+              totalCount
+            }
+            rewardsCount: rewards(filter: {
+              programId_eq: $programId
+              programId_exists: $programId_exists
+            }) {
+              totalCount
+            }
+            rewardsMonth: rewards(filter: {
+              programId_eq: $programId
+              programId_exists: $programId_exists
+              dateGiven_timeframe: "this_month"
+            }) {
+              totalCount
+            }
+            rewardsWeek: rewards(filter: {
+              programId_eq: $programId
+              programId_exists: $programId_exists
+              dateGiven_timeframe: "this_week"
+            }) {
+              totalCount
+            }
+          }
+        }
+        `,
+        variables
+      })
     },
 
     getRewardBalances() {

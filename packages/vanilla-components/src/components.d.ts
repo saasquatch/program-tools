@@ -500,6 +500,43 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhStatComponent {
+      'statdescription': string;
+      'stattype': "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | null;
+      'statvalue': number;
+    }
+  }
+
+  interface HTMLSqhStatComponentElement extends StencilComponents.SqhStatComponent, HTMLStencilElement {}
+
+  var HTMLSqhStatComponentElement: {
+    prototype: HTMLSqhStatComponentElement;
+    new (): HTMLSqhStatComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-stat-component': HTMLSqhStatComponentElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-stat-component': HTMLSqhStatComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-stat-component': JSXElements.SqhStatComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhStatComponentAttributes extends HTMLAttributes {
+      'statdescription'?: string;
+      'stattype'?: "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | null;
+      'statvalue'?: number;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhStatsComponent {
       'ishidden': boolean;
       'referralscounttext': string;
@@ -531,6 +568,39 @@ declare global {
       'referralscounttext'?: string;
       'referralsmonthtext'?: string;
       'rewardscounttext'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SqhStatsContainer {
+      'ishidden': boolean;
+    }
+  }
+
+  interface HTMLSqhStatsContainerElement extends StencilComponents.SqhStatsContainer, HTMLStencilElement {}
+
+  var HTMLSqhStatsContainerElement: {
+    prototype: HTMLSqhStatsContainerElement;
+    new (): HTMLSqhStatsContainerElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-stats-container': HTMLSqhStatsContainerElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-stats-container': HTMLSqhStatsContainerElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-stats-container': JSXElements.SqhStatsContainerAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhStatsContainerAttributes extends HTMLAttributes {
+      'ishidden'?: boolean;
     }
   }
 }

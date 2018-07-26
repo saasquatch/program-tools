@@ -46,7 +46,11 @@
 
     <sqh-share-button-container maxwidth="100%" twitterdisplayrule=""></sqh-share-button-container>
 
-    <sqh-stats-component friends-referred="{value, plural, one {Dude} other {Dudes}} Referred"></sqh-stats-component>
+    <sqh-stats-container>
+      <sqh-stat-component stattype="referralsCount" statdescription="Total Referrals"></sqh-stat-component>
+      <sqh-stat-component stattype="rewardsCount" statdescription="Total Rewards"></sqh-stat-component>
+      <sqh-stat-component stattype="referralsMonth" statdescription="Referrals this month"></ssqh-stat-component>
+    </sqh-stats-container>
 
     <sqh-referral-list showreferrer=true></sqh-referral-list>
 
