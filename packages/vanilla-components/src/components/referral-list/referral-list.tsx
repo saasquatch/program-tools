@@ -10,22 +10,22 @@ import {API} from '../../services/WidgetHost';
 export class ReferralList {
   @Prop() ishidden: boolean = false;
   @Prop() showreferrer: boolean = true;
-  @Prop() rewardcolor: string = "#4BB543";
-  @Prop() pendingcolor: string = "#DDDDDD";
-  @Prop() usefirstreward: boolean = false;
-  @Prop() referrercontent: string = "Referred You {date}";
-  @Prop() convertedcontent: string = "Paid User, signed up {date}";
-  @Prop() pendingcontent: string = "Trial User, signed up {date}";
-  @Prop() pendingvalue: string = "Reward Pending";
-  @Prop() valuecontent: string = "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}";
-  @Prop() paginatemore: string = "View More";
-  @Prop() paginateless: string = "Previous";
+  @Prop() rewardcolor: string;
+  @Prop() pendingcolor: string;
+  @Prop() usefirstreward: boolean;
+  @Prop() referrercontent: string;
+  @Prop() convertedcontent: string;
+  @Prop() pendingcontent: string;
+  @Prop() pendingvalue: string;
+  @Prop() valuecontent: string;
+  @Prop() paginatemore: string;
+  @Prop() paginateless: string;
   @State() referrals: Referral[];
   @State() referralsCount: number;
   @State() referredBy: any;
   @State() rewards: Array<any>;
   @State() loading: boolean;
-  @State() offset: number = 0;
+  @State() offset: number;
 
   constructor() {
     this.loading = true;
