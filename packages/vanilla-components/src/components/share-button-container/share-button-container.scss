@@ -3,6 +3,8 @@ sqh-share-button-container {
   $screen-sm-max: 500px;
 
   text-align: center;
+
+  // hides share buttons based on class for desktop and mobile
   .squatch-share-btn {
 
     &.hidden {

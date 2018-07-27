@@ -1,15 +1,34 @@
 sqh-copy-link-button {
-  font-family: 'Lato', sans-serif;
-  display: block;
-
-  // START OF IMPORTS TO TRIM
-
-  // mixins might be find as imports
   @import '../../assets/styles/mixins/buttons';
   @import '../../assets/styles/mixins/vendor-prefixes';
   @import '../../assets/styles/mixins/tab-focus';
 
+  $screen-sm-max: 500px;
+  $btn-font-weight: 400;
+  $padding-base-vertical:     6px;
+  $padding-base-horizontal:   12px;
+  $font-size-base:          14px;
+  $line-height-base:        1.428571429; // 20/14
+  $border-radius-base:        4px;
+  $btn-default-color: white;
 
+  $screen-sm:               0px;
+  $screen-sm-min:           $screen-sm;
+  $screen-xs-max:           ($screen-sm-min - 1);
+
+  $container-width:         500px;
+  $screen-md:               $container-width;
+  $screen-md-min:           $screen-md;
+  $screen-md-max:           99999px;
+  $text-color:            #5b6165;
+  // $screen-sm-max: 500px;
+
+
+
+  font-family: 'Lato', sans-serif;
+  display: block;
+
+  // START OF IMPORTS TO TRIM
 
   // @import '../../assets/styles/base'; SOURCE DELETED
   * {
@@ -21,9 +40,6 @@ sqh-copy-link-button {
   body {
     background: transparent;
   }
-
-
-
 
   // @import '../../assets/styles/shims'; SOURCE DELETED
   .fade {
@@ -96,27 +112,6 @@ sqh-copy-link-button {
   
   
   // @import '../../assets/styles/buttons'; SOURCE DELETED
-
-  $screen-sm-max: 500px;
-  $btn-font-weight: 400;
-  $padding-base-vertical:     6px;
-  $padding-base-horizontal:   12px;
-  $font-size-base:          14px;
-  $line-height-base:        1.428571429; // 20/14
-  $border-radius-base:        4px;
-  $btn-default-color: white;
-
-  $screen-sm:               0px;
-  $screen-sm-min:           $screen-sm;
-  $screen-xs-max:           ($screen-sm-min - 1);
-
-  $container-width:         500px;
-  $screen-md:               $container-width;
-  $screen-md-min:           $screen-md;
-  $screen-md-max:           99999px;
-  $text-color:            #5b6165;
-
-  
 .btn {
   display: inline-block;
   margin-bottom: 10px; // For input.btn
@@ -212,10 +207,9 @@ sqh-copy-link-button {
     }
   }
 
-  $screen-sm-max: 500px;
-
-
   // END OF IMPORTS
+
+
 
   button.icon-btn.copy {
   @include button-variant(white, #5b6165, #5b6165);
@@ -252,7 +246,7 @@ sqh-copy-link-button {
 
   .input-group {
     width: 100%;
-    max-width: 440px;
+    max-width: 100%;
     margin: 0 auto;
   }
 
