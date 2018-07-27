@@ -501,6 +501,7 @@ declare global {
 
   namespace StencilComponents {
     interface SqhStatComponent {
+      'ishidden': boolean;
       'rewardbalancepath': string;
       'statdescription': string;
       'stattype': string;
@@ -527,6 +528,7 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhStatComponentAttributes extends HTMLAttributes {
+      'ishidden'?: boolean;
       'onStatTypeUpdated'?: (event: CustomEvent) => void;
       'rewardbalancepath'?: string;
       'statdescription'?: string;

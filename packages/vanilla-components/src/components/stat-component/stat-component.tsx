@@ -6,6 +6,7 @@ import { Component, Prop, Event, EventEmitter, Element, Watch } from '@stencil/c
 })
 export class StatComponent {
   @Element() elem: HTMLElement;
+  @Prop() ishidden: boolean = false;
   @Prop() stattype: string;
   @Prop() rewardbalancepath: string;
   @Prop() statvalue: string = "0";
@@ -23,14 +24,14 @@ export class StatComponent {
 
   render() {
     return (
-      this.stattype
-      ? (
+      this.ishidden
+      ? ''
+      : (
         <div>
           <div class="stat-value">{this.statvalue}</div>
           <div class="stat-description">{this.statdescription}</div>
         </div>
       )
-      : ''
     );
   }
 }
