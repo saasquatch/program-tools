@@ -1,5 +1,6 @@
-import { Component, Prop, State, Element, Listen } from '@stencil/core';
+import { Component, Prop, State, Element, Listen, Watch } from '@stencil/core';
 import { API } from '../../services/WidgetHost';
+import pathToRegexp from "path-to-regexp";
 
 @Component({
   tag: 'sqh-stats-container',
@@ -39,7 +40,14 @@ export class StatsContainer {
   }
 
   componentWillUpdate() {
-    console.log('container updated')
+    this.children = Array.from(this.container.querySelectorAll('sqh-stat-component'));
+  }
+
+  @Watch('children')
+  watchHandler() {
+    this.children.map(child => {
+      this.setStatValue(child)
+    })
   }
 
   @Listen('statTypeUpdated')
@@ -47,32 +55,46 @@ export class StatsContainer {
     this.setStatValue(event.detail)
   }
 
+  statPaths = [
+    "/rewardBalance/:type/:unit/:valuetype?",
+    "/:statName"
+  ]
+
+  statPathRegexp = this.statPaths.map(path => {
+    const keys = []
+    const regexp = pathToRegexp(path, keys)
+    return { regexp, keys }
+  })
+
   setStatValue(child: HTMLElement) {
-    const type = child.getAttribute("stattype");
-    if (type === "rewardBalance") {
-      const path = child.getAttribute("rewardbalancepath");
-      const balance = this.getBalanceFromPath(path);
-      child.setAttribute('statvalue', balance);
-      return child;
-    }
-    child.setAttribute('statvalue', this.stats[type].toString());
+    const path = child.getAttribute("stattype");
+    const stat = this.getStatFromPath(path);
+    console.log('path: ', path, ' / stat: ', stat)
+    child.setAttribute('statvalue', `${stat}`);
     return child;
   }
 
-  isValidRewardBalancePath(path: string) {
-    if (!path) return false;
-    const pathRegExp = /^\/t\/[^\/]+\/u\/[^\/]+\/v\/value|prettyValue$/i;
-    const match = path.match(pathRegExp);
-    return match && match[0] === path;
+  getStatFromPath(path) {
+    const statPath = this.statPathRegexp.find(stat => stat.regexp.test(path));
+    if (!statPath) return 0;
+    const { keys, regexp } = statPath;
+    const res = regexp.exec(path);
+    const statVariables = {};
+    keys.forEach((k, i) => statVariables[k.name] = res[i + 1]);
+    return this.getStatValue(statVariables);
   }
 
-  getBalanceFromPath(path) {
-    if (!this.isValidRewardBalancePath(path)) return "0";
-    const type = path.match(/\/t\/[^\/]+/i)[0].replace("/t/", "");
-    const unit = path.match(/\/u\/[^\/]+/i)[0].replace("/u/", "");
-    const value = path.match(/\/v\/value|prettyValue/i)[0].replace("/v/", "");
-    const balanceObj = this.stats['rewardBalances'].find(bal => bal.type === type && bal.unit === unit);
-    return balanceObj ? balanceObj[value] : "0";
+  getStatValue(statVariables) {
+    if (statVariables.statName) return this.stats[statVariables.statName] || 0;
+    return this.getRewardBalance(statVariables);
+  }
+
+  getRewardBalance(statVariables) {
+    const { type, unit, valuetype } = statVariables;
+    const rewardBalance = this.stats['rewardBalances'].find(rb => rb.type === type && rb.unit === unit);
+    if (!rewardBalance) return 0;
+    if (valuetype === "pretty") return rewardBalance.prettyValue || rewardBalance.value;
+    return rewardBalance.value;
   }
 
   onError(e: Error) {
