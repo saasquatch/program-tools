@@ -6,7 +6,7 @@ import { Component, Prop } from '@stencil/core';
 })
 export class ShareButtonContainer {
   @Prop() maxwidth: string = "441px";
-  @Prop() hidden: boolean = false;
+  @Prop() ishidden: boolean = false;
 
 
   // Email button properties and default settings
@@ -184,7 +184,7 @@ export class ShareButtonContainer {
                             class={this.messengerclassName}
                           />
 
-    const shareSection = this.hidden ? `` :
+    const shareSection = this.ishidden ? `` :
                           <div>
                             {emailBtn}
                             {facebookBtn}

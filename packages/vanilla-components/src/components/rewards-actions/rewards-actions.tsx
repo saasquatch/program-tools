@@ -5,7 +5,7 @@ import { Component, Prop} from '@stencil/core';
   tag: 'sqh-rewards-actions',
   styleUrl: 'rewards-actions.scss'
 })
-export class StatsComponent {
+export class RewardsActions {
   @Prop() previoustext: string = 'Previous';
   @Prop() hidetext: string = 'Hide';
   @Prop() nexttext: string = 'Next';

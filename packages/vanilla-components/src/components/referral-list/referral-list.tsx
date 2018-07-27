@@ -3,55 +3,12 @@ import { Component, Prop, State} from '@stencil/core';
 import { uuid } from '../../utilities';
 import {API} from '../../services/WidgetHost';
 
-const userFragment = `referrals(limit: 3, offset: $offset) {
-  count
-  totalCount
-  data {
-    id
-    dateReferralStarted
-    dateReferralPaid
-    dateReferralEnded
-    moderationStatus
-    referredUser {
-      firstName
-      lastName
-    }
-    rewards {
-      prettyValue
-    }
-  }
-}
-referredByReferral {
-  referrerUser {
-    firstName
-    lastName
-  }
-  dateReferralStarted
-  rewards {
-    prettyValue
-  }
-}`;
-
-const userReferralsFragment = `
-  referrals(limit: 3, offset: $offset) {
-    data {
-      dateReferralStarted
-      referredUser {
-        firstName
-      }
-      rewards {
-        prettyValue
-      }
-    }
-  }
-`
-
 @Component({
   tag: 'sqh-referral-list',
   styleUrl: 'referral-list.scss'
 })
 export class ReferralList {
-  @Prop() hidden: boolean = false;
+  @Prop() ishidden: boolean = false;
   @Prop() showreferrer: boolean = true;
   @Prop() rewardcolor: string = "#4BB543";
   @Prop() pendingcolor: string = "#DDDDDD";
@@ -75,7 +32,7 @@ export class ReferralList {
   }
 
   componentWillLoad() {
-    return this.getUserPayLoad().then(res => {
+    return this.getReferrals().then(res => {
       console.log('res', res);
       this.referrals = res.data.user.referrals.data;
       this.referredBy = res.data.user.referredByReferral;
@@ -123,12 +80,8 @@ export class ReferralList {
     this.addStyle();
   }
 
-  getUserPayLoad(offset = 0) {
-    return API.graphql.getUserFragment(userFragment, { offset });
-  }
-
   getReferrals(offset = 0) {
-    return API.graphql.getUserFragment(userReferralsFragment, { offset })
+    return API.graphql.getReferrals(offset);
   }
 
   paginate(offset) {
@@ -177,7 +130,7 @@ export class ReferralList {
     }
 
     return (
-      this.hidden 
+      this.ishidden 
       ? ''
       : (
         <div class="squatch-referrals">

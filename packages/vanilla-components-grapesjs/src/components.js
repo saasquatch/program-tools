@@ -41,6 +41,7 @@ export default (editor, config = {}) => {
         name: 'Widget Container',
         draggable: false,
         droppable: false,
+        deletable: false,
         selectable: true,
         toolbar: [],
         traits: [
@@ -71,10 +72,11 @@ export default (editor, config = {}) => {
         name: 'Text Component',
         draggable: false,
         droppable: false,
+        deletable: false,
         selectable: true,
         toolbar: [],
         traits: [
-          { type: 'boolean', title: 'Hidden', name: 'hidden', value: false },
+          { type: 'boolean', title: 'Hidden', name: 'ishidden', value: false },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: false },
           { type: 'string', title: 'Content', name: 'text', value: 'Give a friend $10 and receive $10 for yourself when they sign up!' },
           { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
@@ -82,7 +84,7 @@ export default (editor, config = {}) => {
           { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
         ],
         uiSchema: {
-          'hidden': { 'ui:widget': 'hidden' },
+          'ishidden': { 'ui:widget': 'hidden' },
           'color': { 'ui:widget': 'color' },
           'fontsize': { 'ui:widget': 'updown' },
         }
@@ -106,7 +108,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Header',
         traits: [
-          { type: 'boolean', title: 'Hidden', name: 'hidden', value: false },
+          { type: 'boolean', title: 'Hidden', name: 'ishidden', value: false },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: false },
           { type: 'string', title: 'Content', name: 'text', value: 'Give $10 and Get $10' },
           { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
@@ -117,7 +119,7 @@ export default (editor, config = {}) => {
     },
     {
       isComponent: function(el) {
-        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('type') === 'header'){
+        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhheader')){
           return {type: 'sqh-header'};
         }
       },
@@ -129,13 +131,44 @@ export default (editor, config = {}) => {
   comps.addType('sqh-body', {
     model: textComp.model.extend({
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
-        name: 'Body'
+        name: 'Body',
+        uiSchema: {
+          'text': { 'ui:widget': 'textarea' },
+          'ishidden': { 'ui:widget': 'hidden' },
+          'color': { 'ui:widget': 'color' },
+          'fontsize': { 'ui:widget': 'updown' },
+        }
       })
     },
     {
       isComponent: function(el) {
-        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('type') === 'body'){
+        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhbody')){
           return {type: 'sqh-body'};
+        }
+      },
+    }),
+
+    view: textComp.view
+  })
+
+  comps.addType('sqh-referrals-header', {
+    model: textComp.model.extend({
+      defaults: Object.assign({}, textComp.model.prototype.defaults, {
+        name: 'Referrals Header',
+        traits: [
+          { type: 'boolean', title: 'Hidden', name: 'ishidden', value: false },
+          { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: true },
+          { type: 'string', title: 'Content', name: 'text', value: '**Referrals Dashboard**' },
+          { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
+          { type: 'integer', title: 'Font Size', name: 'fontsize', value: 14 },
+          { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
+        ]
+      })
+    },
+    {
+      isComponent: function(el) {
+        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhreferralsheader')){
+          return {type: 'sqh-referrals-header'};
         }
       },
     }),
@@ -148,19 +181,19 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Banner',
         traits: [
-          { type: 'boolean', title: 'Hidden', name: 'hidden', value: true },
+          { type: 'boolean', title: 'Hidden', name: 'ishidden', value: true },
           { type: 'string', title: 'Image URL', name: 'background', format: 'uri' },
           { type: 'integer', title: 'Height', name: 'height' },
         ],
         uiSchema: {
-          'hidden': { 'ui:widget': 'hidden' },
+          'ishidden': { 'ui:widget': 'hidden' },
           'height': { 'ui:widget': 'updown' },
         }
       })
     },
     {
       isComponent: function(el) {
-        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('type') === 'banner'){
+        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhbanner')){
           return {type: 'sqh-banner'};
         }
       },
@@ -175,15 +208,17 @@ export default (editor, config = {}) => {
           name: "Copy Link",
           draggable: false,
           droppable: false,
+          deletable: false,
           selectable: true,
           toolbar: [],
           traits: [
-            { type: 'boolean', title: 'Hidden', name: 'hidden', value: false },
+            { type: 'boolean', title: 'Hidden', name: 'ishidden', value: false },
+            { type: 'string', title: 'Button Text', name: 'text', value: 'Copy' },
             { type: 'string', title: 'Button Color', name: 'buttoncolor', value: '#5C6164' },
             { type: 'string', title: 'Text Color', name: 'textcolor', value: '#FFFFFF' },
           ],
           uiSchema: {
-            'hidden': { 'ui:widget': 'hidden' },
+            'ishidden': { 'ui:widget': 'hidden' },
             'buttoncolor': { 'ui:widget': 'color' },
             'textcolor': { 'ui:widget': 'color' },
           }
@@ -251,6 +286,11 @@ export default (editor, config = {}) => {
     'type': 'string',
   }
 
+  const shareMediumTextColorObj = {
+    'title': 'Text Color',
+    'type': 'string',
+  }
+
   const shareMediumColorObj = {
     'title': 'Button Color',
     'type': 'string',
@@ -262,33 +302,62 @@ export default (editor, config = {}) => {
           name: "Share Button Container",
           draggable: false,
           droppable: false,
+          deletable: false,
           selectable: true,
           toolbar: [],
           traits: [
-            { type: 'boolean', name: 'hidden', value: false },
-            { type: 'string', name: 'twitterdisplayrule', value: 'mobile-and-desktop' },
-            { type: 'string', name: 'twittertext', value: 'Twitter' },
-            { type: 'string', name: 'twittercolor', value: '#4797d2' },
+            { type: 'boolean', name: 'ishidden', value: false },
             { type: 'string', name: 'emaildisplayrule', value: 'mobile-and-desktop' },
             { type: 'string', name: 'emailtext', value: 'Email' },
-            { type: 'string', name: 'emailcolor', value: '#373a3d' },
+            { type: 'string', name: 'emailtextcolor', value: '#ffffff' },
+            { type: 'string', name: 'emailbackgroundcolor', value: '#373a3d' },
             { type: 'string', name: 'facebookdisplayrule', value: 'mobile-and-desktop' },
             { type: 'string', name: 'facebooktext', value: 'Facebook' },
-            { type: 'string', name: 'facebookcolor', value: '#234079' },
-            { type: 'string', name: 'whatsappdisplayrule', value: 'mobile-only' },
-            { type: 'string', name: 'whatsapptext', value: 'WhatsApp' },
-            { type: 'string', name: 'whatsappcolor', value: '#25D366' },
+            { type: 'string', name: 'facebooktextcolor', value: '#ffffff' },
+            { type: 'string', name: 'facebookbackgroundcolor', value: '#234079' },
+            { type: 'string', name: 'twitterdisplayrule', value: 'mobile-and-desktop' },
+            { type: 'string', name: 'twittertext', value: 'Twitter' },
+            { type: 'string', name: 'twittertextcolor', value: '#ffffff' },
+            { type: 'string', name: 'twitterbackgroundcolor', value: '#4797d2' },
             { type: 'string', name: 'smsdisplayrule', value: 'mobile-only' },
             { type: 'string', name: 'smstext', value: 'SMS' },
-            { type: 'string', name: 'smscolor', value: '#7bbf38' },
+            { type: 'string', name: 'smstextcolor', value: '#ffffff' },
+            { type: 'string', name: 'smsbackgroundcolor', value: '#7bbf38' },
+            { type: 'string', name: 'whatsappdisplayrule', value: 'mobile-only' },
+            { type: 'string', name: 'whatsapptext', value: 'WhatsApp' },
+            { type: 'string', name: 'whatsapptextcolor', value: '#ffffff' },
+            { type: 'string', name: 'whatsappbackgroundcolor', value: '#25D366' },
+            { type: 'string', name: 'linkedindisplayrule', value: 'hidden' },
+            { type: 'string', name: 'linkedintext', value: 'LinkedIn' },
+            { type: 'string', name: 'linkedintextcolor', value: '#ffffff' },
+            { type: 'string', name: 'linkedinbackgroundcolor', value: '#0084b9' },
+            { type: 'string', name: 'pinterestdisplayrule', value: 'hidden' },
+            { type: 'string', name: 'pinteresttext', value: 'Pinterest' },
+            { type: 'string', name: 'pinteresttextcolor', value: '#ffffff' },
+            { type: 'string', name: 'pinterestbackgroundcolor', value: '#cb2027' },
+            { type: 'string', name: 'messengerisplayrule', value: 'hidden' },
+            { type: 'string', name: 'messengerext', value: 'Messenger' },
+            { type: 'string', name: 'messengerextcolor', value: '#ffffff' },
+            { type: 'string', name: 'messengerackgroundcolor', value: '#0084ff' },
           ],
           uiSchema: {
-            hidden: { 'ui:widget': 'hidden' },
-            twittercolor: { 'ui:widget': 'color' },
-            emailcolor: { 'ui:widget': 'color' },
-            facebookcolor: { 'ui:widget': 'color' },
-            whatsappcolor: { 'ui:widget': 'color' },
-            smscolor: { 'ui:widget': 'color' },
+            ishidden: { 'ui:widget': 'hidden' },
+            twittertextcolor: { 'ui:widget': 'color' },
+            twitterbackgroundcolor: { 'ui:widget': 'color' },
+            emailtextcolor: { 'ui:widget': 'color' },
+            emailbackgroundcolor: { 'ui:widget': 'color' },
+            facebooktextcolor: { 'ui:widget': 'color' },
+            facebookbackgroundcolor: { 'ui:widget': 'color' },
+            whatsapptextcolor: { 'ui:widget': 'color' },
+            whatsappbackgroundcolor: { 'ui:widget': 'color' },
+            smstextcolor: { 'ui:widget': 'color' },
+            smsbackgroundcolor: { 'ui:widget': 'color' },
+            linkedintextcolor: { 'ui:widget': 'color' },
+            linkedinbackgroundcolor: { 'ui:widget': 'color' },
+            pinteresttextcolor: { 'ui:widget': 'color' },
+            pinterestbackgroundcolor: { 'ui:widget': 'color' },
+            messengertextcolor: { 'ui:widget': 'color' },
+            messengerbackgroundcolor: { 'ui:widget': 'color' },
           },
           required: [
             'sharemedium'
@@ -298,13 +367,13 @@ export default (editor, config = {}) => {
             'description': 'Some description here',
             'type': 'object',
             'properties': {
-              'hidden': { 'type': 'boolean', 'title': 'Hidden' },
+              'ishidden': { 'type': 'boolean', 'title': 'Hidden' },
               'sharemedium': {
                 'type': 'string',
                 'title': 'Share Medium',
                 'default': 'email',
-                'enum': [ 'email', 'facebook', 'twitter', 'whatsapp', 'sms' ],
-                'enumNames': [ 'Email', 'Facebook', 'Twitter', 'WhatsApp', 'SMS' ] 
+                'enum': [ 'email', 'facebook', 'messenger', 'twitter', 'whatsapp', 'sms', 'linkedin', 'pinterest' ],
+                'enumNames': [ 'Email', 'Facebook', 'Messenger', 'Twitter', 'WhatsApp', 'SMS', 'LinkedIn', 'Pinterest' ] 
               },
             },
             'dependencies': {
@@ -315,7 +384,8 @@ export default (editor, config = {}) => {
                       'sharemedium': { 'enum': [ 'email' ] },
                       'emaildisplayrule': displayRuleObj.default,
                       'emailtext': shareMediumTextObj,
-                      'emailcolor': shareMediumColorObj
+                      'emailtextcolor': shareMediumTextColorObj,
+                      'emailbackgroundcolor': shareMediumColorObj
                     }
                   },
                   {
@@ -323,15 +393,25 @@ export default (editor, config = {}) => {
                       'sharemedium': { 'enum': [ 'facebook' ] },
                       'facebookdisplayrule': displayRuleObj.default,
                       'facebooktext': shareMediumTextObj,
-                      'facebookcolor': shareMediumColorObj
+                      'facebooktextcolor': shareMediumTextColorObj,
+                      'facebookbackgroundcolor': shareMediumColorObj
+                    }
+                  },
+                  {
+                    'properties': {
+                      'sharemedium': { 'enum': [ 'messenger' ] },
+                      'messengerdisplayrule': displayRuleObj.default,
+                      'messengertext': shareMediumTextObj,
+                      'messengertextcolor': shareMediumTextColorObj,
+                      'messengerbackgroundcolor': shareMediumColorObj
                     }
                   },
                   {
                     'properties': {
                       'sharemedium': { 'enum': [ 'twitter' ] },
                       'twitterdisplayrule': displayRuleObj.default,
-                      'twittertext': shareMediumTextObj,
-                      'twittercolor': shareMediumColorObj
+                      'twittertextcolor': shareMediumTextColorObj,
+                      'twitterbcakgroundcolor': shareMediumColorObj
                     }
                   },
                   {
@@ -339,7 +419,8 @@ export default (editor, config = {}) => {
                       'sharemedium': { 'enum': [ 'whatsapp' ] },
                       'whatsappdisplayrule': displayRuleObj.mobile,
                       'whatsapptext': shareMediumTextObj,
-                      'whatsappcolor': shareMediumColorObj
+                      'whatsapptextcolor': shareMediumTextColorObj,
+                      'whatsappbackgroundcolor': shareMediumColorObj
                     }
                   },
                   {
@@ -347,7 +428,26 @@ export default (editor, config = {}) => {
                       'sharemedium': { 'enum': [ 'sms' ] },
                       'smsdisplayrule': displayRuleObj.mobile,
                       'smstext': shareMediumTextObj,
-                      'smscolor': shareMediumColorObj
+                      'smstextcolor': shareMediumTextColorObj,
+                      'smsbackgroundcolor': shareMediumColorObj
+                    }
+                  },
+                  {
+                    'properties': {
+                      'sharemedium': { 'enum': [ 'linkedin' ] },
+                      'linkedindisplayrule': displayRuleObj.default,
+                      'linkedintext': shareMediumTextObj,
+                      'linkedintextcolor': shareMediumTextColorObj,
+                      'linkedinbackgroundcolor': shareMediumColorObj
+                    }
+                  },
+                  {
+                    'properties': {
+                      'sharemedium': { 'enum': [ 'pinterest' ] },
+                      'pinterestdisplayrule': displayRuleObj.default,
+                      'pinteresttext': shareMediumTextObj,
+                      'pinteresttextcolor': shareMediumTextColorObj,
+                      'pinterestbackgroundcolor': shareMediumColorObj
                     }
                   },
                 ]
@@ -378,11 +478,13 @@ export default (editor, config = {}) => {
           name: "Stats Component",
           draggable: false,
           droppable: false,
+          deletable: false,
           selectable: true,
           traits: [
-            { type: 'string', title: 'Referred', name: 'friendsreferred', value: 'Referred' },
-            { type: 'string', title: 'Earned', name: 'rewardsearned', value: 'Earned' },
-            { type: 'string', title: 'Pending', name: 'rewardspending', value: 'Pending' }
+            { type: 'boolean', title: 'Hidden', name: 'ishidden', value: false },
+            { type: 'string', title: 'Referrals Total', name: 'referralscounttext', value: '{value, plural, one {Friend} other {Friends}} Referred' },
+            { type: 'string', title: 'Rewards Total', name: 'rewardscounttext', value: '{value, plural, one {Reward} other {Rewards}} Earned' },
+            { type: 'string', title: 'Referrals This Month', name: 'referralsmonthtext', value: '{value, plural, one {Referral} other {Referrals}} this month' }
           ],
           toolbar: []
         })
@@ -403,23 +505,118 @@ export default (editor, config = {}) => {
     }),
   });
 
-  comps.addType('sqh-rewards-list', {
+  comps.addType('sqh-referral-list', {
     model: defaultModel.extend({
         defaults: Object.assign({}, defaultModel.prototype.defaults, {
-          name: "Rewards List",
+          name: "Referral List",
           draggable: false,
           droppable: false,
+          deletable: false,
           selectable: true,
           traits: [
-            // { type: 'boolean', title: 'Show Referrer', name: 'showReferrer' }
+            { type: 'boolean', name: 'ishidden', value: false },
+            { type: 'boolean', name: 'showreferrer', value: true },
+            { type: 'boolean', name: 'usefirstreward', value: false },
+            { type: 'string', name: 'rewardcolor', value: "#4BB543" },
+            { type: 'string', name: 'pendingcolor', value: "#DDDDDD" },
+            { type: 'string', name: 'pendingvalue', value: "Reward Pending" },
+            { type: 'string', name: 'referrercontent', value: "Referred You {date}" },
+            { type: 'string', name: 'convertedcontent', value: "Paid User, signed up {date}" },
+            { type: 'string', name: 'pendingcontent', value: "Trial User, signed up {date}" },
+            { type: 'string', name: 'valuecontent', value: "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}" },
+            { type: 'string', name: 'paginatemore', value: "View More" },
+            { type: 'string', name: 'paginateless', value: "Previous" },
           ],
-          toolbar: []
+          toolbar: [],
+          uiSchema: {
+            ishidden: { 'ui:widget': 'hidden' },
+            showreferrer: { 'ui:widget': 'radio' },
+            usefirstreward: { 'ui:widget': 'radio' },
+            rewardcolor: { 'ui:widget': 'color' },
+            pendingcolor: { 'ui:widget': 'color' },
+          },
+          schema: {
+            'title': 'Grapes JS Props',
+            'description': 'Some description here',
+            'type': 'object',
+            'properties': {
+              'ishidden': { 'type': 'boolean', 'title': 'Hidden' },
+              'paginatemore': { 'type': 'string', 'title': 'View More Text' },
+              'paginateless': { 'type': 'string', 'title': 'Previous Text' },
+              'referraltype': {
+                'type': 'string',
+                'title': 'Referral Type to Edit',
+                'default': 'converted',
+                'enum': [ 'converted', 'pending', 'referrer' ],
+                'enumNames': [ 'Converted', 'Pending', 'Referrer' ]
+              },
+            },
+            'dependencies': {
+              'referraltype': {
+                'oneOf': [
+                  {
+                    'properties': {
+                      'referraltype': { 'enum': [ 'converted' ] },
+                      'usefirstreward': {
+                        'title': 'Reward Value Displayed',
+                        'type': 'boolean',
+                        'enumNames': [ 'Newest', 'Oldest' ]
+                      },
+                      'rewardcolor': {
+                        'title': 'Reward Color',
+                        'type': 'string',
+                      },
+                      'convertedcontent': {
+                        'title': 'Converted User Content',
+                        'type': 'string'
+                      },
+                      'valuecontent': {
+                        'title': 'Extra Rewards Description',
+                        'type': 'string'
+                      }
+                    }
+                  },
+                  {
+                    'properties': {
+                      'referraltype': { 'enum': [ 'pending' ] },
+                      'pendingcolor': {
+                        'title': 'Pending Reward Color',
+                        'type': 'string',
+                      },
+                      'pendingcontent': {
+                        'title': 'Pending User Content',
+                        'type': 'string'
+                      },
+                      'pendingvalue': {
+                        'title': 'Pending Reward Description',
+                        'type': 'string'
+                      }
+                    }
+                  },
+                  {
+                    'properties': {
+                      'referraltype': { 'enum': [ 'referrer' ] },
+                      'showreferrer': {
+                        'title': 'Pending User Content',
+                        'type': 'boolean',
+                        'enumNames': [ 'Show', 'Hide' ]
+                      },
+                      'referrercontent': {
+                        'title': 'Referring User Content',
+                        'type': 'string'
+                      }
+                    }
+                  },
+                ]
+              }
+            }
+          }
         })
       },
       {
         isComponent: function (el) {
-          if (el.tagName === 'SQH-REWARDS-LIST') {
-            return { type: 'sqh-rewards-list' };
+          if (el.tagName === 'SQH-REFERRAL-LIST') {
+            return { type: 'sqh-referral-list' };
           }
         },
       }),
@@ -437,7 +634,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Footer',
         traits: [
-          { type: 'boolean', title: 'Hidden', name: 'hidden', value: false },
+          { type: 'boolean', title: 'Hidden', name: 'ishidden', value: false },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: false },
           { type: 'string', title: 'Content', name: 'text', value: 'Footer text' },
           { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
@@ -445,7 +642,7 @@ export default (editor, config = {}) => {
           { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
         ],
         uiSchema: {
-          'hidden': { 'ui:widget': 'hidden' },
+          'ishidden': { 'ui:widget': 'hidden' },
           'color': { 'ui:widget': 'color' },
           'fontsize': { 'ui:widget': 'updown' },
         }

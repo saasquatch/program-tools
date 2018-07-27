@@ -64,7 +64,9 @@ declare global {
   namespace StencilComponents {
     interface SqhCopyLinkButton {
       'buttoncolor': string;
-      'hidden': boolean;
+      'copyfailure': string;
+      'copysuccess': string;
+      'ishidden': boolean;
       'text': string;
       'textcolor': string;
     }
@@ -90,7 +92,9 @@ declare global {
   namespace JSXElements {
     export interface SqhCopyLinkButtonAttributes extends HTMLAttributes {
       'buttoncolor'?: string;
-      'hidden'?: boolean;
+      'copyfailure'?: string;
+      'copysuccess'?: string;
+      'ishidden'?: boolean;
       'text'?: string;
       'textcolor'?: string;
     }
@@ -222,7 +226,7 @@ declare global {
   namespace StencilComponents {
     interface SqhReferralList {
       'convertedcontent': string;
-      'hidden': boolean;
+      'ishidden': boolean;
       'paginateless': string;
       'paginatemore': string;
       'pendingcolor': string;
@@ -256,7 +260,7 @@ declare global {
   namespace JSXElements {
     export interface SqhReferralListAttributes extends HTMLAttributes {
       'convertedcontent'?: string;
-      'hidden'?: boolean;
+      'ishidden'?: boolean;
       'paginateless'?: string;
       'paginatemore'?: string;
       'pendingcolor'?: string;
@@ -329,7 +333,7 @@ declare global {
       'facebooktext': string;
       'facebooktextcolor': string;
       'facebookurl': string;
-      'hidden': boolean;
+      'ishidden': boolean;
       'linkedinbackgroundcolor': string;
       'linkedinclassName': string;
       'linkedindisplayrule': string;
@@ -411,7 +415,7 @@ declare global {
       'facebooktext'?: string;
       'facebooktextcolor'?: string;
       'facebookurl'?: string;
-      'hidden'?: boolean;
+      'ishidden'?: boolean;
       'linkedinbackgroundcolor'?: string;
       'linkedinclassName'?: string;
       'linkedindisplayrule'?: string;
@@ -514,37 +518,71 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface SqhStatsComponent {
-      'friendsreferred': string;
-      'rewardsearned': string;
-      'rewardspending': string;
-      'text': string;
+    interface SqhStatComponent {
+      'rewardbalancepath': string;
+      'statdescription': string;
+      'stattype': "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | "rewardBalance" | null;
+      'statvalue': string;
     }
   }
 
-  interface HTMLSqhStatsComponentElement extends StencilComponents.SqhStatsComponent, HTMLStencilElement {}
+  interface HTMLSqhStatComponentElement extends StencilComponents.SqhStatComponent, HTMLStencilElement {}
 
-  var HTMLSqhStatsComponentElement: {
-    prototype: HTMLSqhStatsComponentElement;
-    new (): HTMLSqhStatsComponentElement;
+  var HTMLSqhStatComponentElement: {
+    prototype: HTMLSqhStatComponentElement;
+    new (): HTMLSqhStatComponentElement;
   };
   interface HTMLElementTagNameMap {
-    'sqh-stats-component': HTMLSqhStatsComponentElement;
+    'sqh-stat-component': HTMLSqhStatComponentElement;
   }
   interface ElementTagNameMap {
-    'sqh-stats-component': HTMLSqhStatsComponentElement;
+    'sqh-stat-component': HTMLSqhStatComponentElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'sqh-stats-component': JSXElements.SqhStatsComponentAttributes;
+      'sqh-stat-component': JSXElements.SqhStatComponentAttributes;
     }
   }
   namespace JSXElements {
-    export interface SqhStatsComponentAttributes extends HTMLAttributes {
-      'friendsreferred'?: string;
-      'rewardsearned'?: string;
-      'rewardspending'?: string;
-      'text'?: string;
+    export interface SqhStatComponentAttributes extends HTMLAttributes {
+      'onStatTypeUpdated'?: (event: CustomEvent) => void;
+      'rewardbalancepath'?: string;
+      'statdescription'?: string;
+      'stattype'?: "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | "rewardBalance" | null;
+      'statvalue'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SqhStatsContainer {
+      'ishidden': boolean;
+    }
+  }
+
+  interface HTMLSqhStatsContainerElement extends StencilComponents.SqhStatsContainer, HTMLStencilElement {}
+
+  var HTMLSqhStatsContainerElement: {
+    prototype: HTMLSqhStatsContainerElement;
+    new (): HTMLSqhStatsContainerElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-stats-container': HTMLSqhStatsContainerElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-stats-container': HTMLSqhStatsContainerElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-stats-container': JSXElements.SqhStatsContainerAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhStatsContainerAttributes extends HTMLAttributes {
+      'ishidden'?: boolean;
     }
   }
 }
@@ -559,7 +597,7 @@ declare global {
       'fontfamily': string;
       'fontsize': string;
       'height': string;
-      'hidden': boolean;
+      'ishidden': boolean;
       'ismarkdown': boolean;
       'padding': string;
       'text': string;
@@ -591,7 +629,7 @@ declare global {
       'fontfamily'?: string;
       'fontsize'?: string;
       'height'?: string;
-      'hidden'?: boolean;
+      'ishidden'?: boolean;
       'ismarkdown'?: boolean;
       'padding'?: string;
       'text'?: string;

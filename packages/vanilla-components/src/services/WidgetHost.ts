@@ -10,6 +10,7 @@ export interface WidgetIdent {
   userId: string;
   accountId: string;
   mode: "POPUP" | "EMBED" | string;
+  programId: string;
 }
 
 /**
@@ -85,7 +86,7 @@ const API = {
 
       return this.getClient().query({
         query: gql`
-          query($userId: String!, $accountId: String!, $offset: Int!) {
+          query($userId: String!, $accountId: String!, $offset: Int) {
             user(id: $userId, accountId: $accountId) {
               ...UserFragment
             }
@@ -96,35 +97,133 @@ const API = {
       });
     },
 
-    getReferrals(offset = 0) {
-      return this.getUserFragment(
-        `
-          referrals(limit: 10, offset: $offset) {
-            count
-            totalCount
-            data {
-              id
-              dateReferralStarted
-              dateReferralPaid
-              dateReferralEnded
-              referrerReward {
-                type
-                value
-                unit
-                name
+    getReferrals(offset = 0, limit = 3) {
+      const { userId, accountId, programId = null } = widgetIdent();
+
+      const variables = {
+        limit,
+        offset,
+        userId,
+        accountId,
+        programId,
+        programId_exists: programId ? true : false
+      };
+
+      return this.getClient().query({
+        query: gql`
+          query(
+            $userId: String!,
+            $accountId: String!,
+            $offset: Int!,
+            $limit: Int!,
+            $programId: ID,
+            $programId_exists: Boolean!
+          ) {
+            user(id: $userId, accountId: $accountId) {
+              referrals(limit: $limit, offset: $offset, filter: {
+                programId_eq: $programId
+                programId_exists: $programId_exists
+              }) {
+                totalCount
+                data {
+                  dateReferralStarted
+                  referredUser {
+                    firstName
+                    lastName
+                  }
+                  rewards (filter: {
+                    userId_eq: $userId
+                    accountId_eq: $accountId
+                  }) {
+                    prettyValue
+                  }
+                }
               }
-              moderationStatus
-              referredUser {
-                firstName
-                lastName
-                imageUrl
+              referredByReferral(programId: $programId) {
+                referrerUser {
+                  firstName
+                  lastName
+                }
+                dateReferralStarted
+                rewards(filter: {
+                  userId_eq: $userId
+                  accountId_eq: $accountId
+                }) {
+                  prettyValue
+                }
               }
             }
           }
-          rewardBalances
-      `,
-        { offset }
-      );
+        `,
+        variables
+      });
+    },
+
+    getStats() {
+      const { userId, accountId, programId = null } = widgetIdent();
+
+      const variables = {
+        userId,
+        accountId,
+        programId,
+        programId_exists: programId ? true : false
+      };
+
+      return this.getClient().query({
+        query: gql`
+        query(
+          $userId: String!,
+          $accountId: String!,
+          $programId: ID,
+          $programId_exists: Boolean!
+        ) {
+          user(id: $userId, accountId: $accountId) {
+            referralsCount: referrals(filter: {
+              programId_eq: $programId
+              programId_exists: $programId_exists
+            }) {
+              totalCount
+            }
+            referralsMonth: referrals(filter: {
+              programId_eq: $programId
+              programId_exists: $programId_exists
+              dateReferralStarted_timeframe: "this_month"
+            }) {
+              totalCount
+            }
+            referralsWeek: referrals(filter: {
+              programId_eq: $programId
+              programId_exists: $programId_exists
+              dateReferralStarted_timeframe: "this_week"
+            }) {
+              totalCount
+            }
+            rewardsCount: rewards(filter: {
+              programId_eq: $programId
+              programId_exists: $programId_exists
+            }) {
+              totalCount
+            }
+            rewardsMonth: rewards(filter: {
+              programId_eq: $programId
+              programId_exists: $programId_exists
+              dateGiven_timeframe: "this_month"
+            }) {
+              totalCount
+            }
+            rewardsWeek: rewards(filter: {
+              programId_eq: $programId
+              programId_exists: $programId_exists
+              dateGiven_timeframe: "this_week"
+            }) {
+              totalCount
+            }
+            rewardBalances(programId: $programId)
+          }
+        }
+        `,
+        variables
+      })
     },
 
     getRewardBalances() {
