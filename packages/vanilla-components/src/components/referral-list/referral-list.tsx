@@ -1,25 +1,32 @@
 import { Component, Prop, State} from '@stencil/core';
-
+import { css } from 'emotion';
 import { uuid } from '../../utilities';
-import {API} from '../../services/WidgetHost';
+import { API } from '../../services/WidgetHost';
 
 @Component({
   tag: 'sqh-referral-list',
   styleUrl: 'referral-list.scss'
 })
 export class ReferralList {
+  // referral list props
   @Prop() ishidden: boolean = false;
-  @Prop() showreferrer: boolean = true;
-  @Prop() rewardcolor: string;
-  @Prop() pendingcolor: string;
-  @Prop() usefirstreward: boolean = false;
-  @Prop() referrercontent: string;
-  @Prop() convertedcontent: string;
-  @Prop() pendingcontent: string;
-  @Prop() pendingvalue: string;
-  @Prop() valuecontent: string;
   @Prop() paginatemore: string;
   @Prop() paginateless: string;
+  @Prop() referralnamecolor: string;
+  @Prop() referraltextcolor: string;
+  // referrer props
+  @Prop() showreferrer: boolean = true;
+  @Prop() referrercontent: string;
+  // converted referral props
+  @Prop() rewardcolor: string;
+  @Prop() usefirstreward: boolean = false;
+  @Prop() convertedcontent: string;
+  @Prop() valuecontent: string;
+  // pending referral props
+  @Prop() pendingcolor: string;
+  @Prop() pendingcontent: string;
+  @Prop() pendingvalue: string;
+  // state
   @State() referrals: Referral[];
   @State() referralsCount: number;
   @State() referredBy: any;
@@ -129,11 +136,35 @@ export class ReferralList {
       );
     }
 
+    const clz = css`
+      .squatch-referrals-icon.icon-ok-circled {
+        color: ${ this.rewardcolor };
+      }
+      .squatch-referrals-icon.icon-attention {
+        color: ${ this.pendingcolor };
+      }
+      .squatch-referrals-value {
+        color: ${ this.rewardcolor };
+        font-size: 20px;
+      }
+      .squatch-referrals-value.pending {
+        color: ${ this.pendingcolor };
+        font-size: 15px;
+      }
+      .squatch-referrals-heading {
+        color: ${ this.referralnamecolor };
+      }
+      .squatch-referrals-description,
+      .squatch-referrals-value-content {
+        color: ${ this.referraltextcolor };
+      }
+    `
+
     return (
       this.ishidden 
       ? ''
       : (
-        <div class="squatch-referrals">
+        <div class={`squatch-referrals ${clz}`}>
           <div class="squatch-referrals-scroll-container">
             {referralsRow}
             {referredByRow}

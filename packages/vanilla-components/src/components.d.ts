@@ -224,6 +224,8 @@ declare global {
       'pendingcolor': string;
       'pendingcontent': string;
       'pendingvalue': string;
+      'referralnamecolor': string;
+      'referraltextcolor': string;
       'referrercontent': string;
       'rewardcolor': string;
       'showreferrer': boolean;
@@ -258,6 +260,8 @@ declare global {
       'pendingcolor'?: string;
       'pendingcontent'?: string;
       'pendingvalue'?: string;
+      'referralnamecolor'?: string;
+      'referraltextcolor'?: string;
       'referrercontent'?: string;
       'rewardcolor'?: string;
       'showreferrer'?: boolean;
