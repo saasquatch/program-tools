@@ -503,6 +503,7 @@ declare global {
     interface SqhStatComponent {
       'ishidden': boolean;
       'rewardbalancepath': string;
+      'statcolor': string;
       'statdescription': string;
       'stattype': string;
       'statvalue': string;
@@ -532,6 +533,7 @@ declare global {
       'onStatAdded'?: (event: CustomEvent) => void;
       'onStatTypeUpdated'?: (event: CustomEvent) => void;
       'rewardbalancepath'?: string;
+      'statcolor'?: string;
       'statdescription'?: string;
       'stattype'?: string;
       'statvalue'?: string;

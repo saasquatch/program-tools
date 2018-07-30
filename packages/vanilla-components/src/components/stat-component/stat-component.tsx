@@ -11,16 +11,23 @@ export class StatComponent {
   @Prop() rewardbalancepath: string;
   @Prop() statvalue: string = "0";
   @Prop() statdescription: string;
+  @Prop() statcolor: string;
   @Event() statTypeUpdated: EventEmitter;
   @Event() statAdded: EventEmitter;
 
   componentWillLoad() {
     this.statAddedHandler(this.elem);
+    this.elem.style.color = this.statcolor || 'inherit';
   }
 
   @Watch('stattype')
-  watchHandler(newValue: string, oldValue: string) {
+  stattypeHandler(newValue: string, oldValue: string) {
     if (newValue !== oldValue) this.statTypeUpdatedHandler(this.elem)
+  }
+
+  @Watch('statcolor')
+  statcolorHandler() {
+    this.elem.style.color = this.statcolor;
   }
 
   statAddedHandler(stat: HTMLElement) {
