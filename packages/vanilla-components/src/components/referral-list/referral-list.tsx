@@ -12,7 +12,7 @@ export class ReferralList {
   @Prop() showreferrer: boolean = true;
   @Prop() rewardcolor: string;
   @Prop() pendingcolor: string;
-  @Prop() usefirstreward: boolean;
+  @Prop() usefirstreward: boolean = false;
   @Prop() referrercontent: string;
   @Prop() convertedcontent: string;
   @Prop() pendingcontent: string;
@@ -25,7 +25,7 @@ export class ReferralList {
   @State() referredBy: any;
   @State() rewards: Array<any>;
   @State() loading: boolean;
-  @State() offset: number;
+  @State() offset: number = 0;
 
   constructor() {
     this.loading = true;

@@ -52,7 +52,17 @@
       <sqh-stat-component stattype="/rewardBalance/CREDIT/Points" statdescription="Total Points"></ssqh-stat-component>
     </sqh-stats-container>
 
-    <sqh-referral-list showreferrer=true></sqh-referral-list>
+    <sqh-referral-list
+      rewardcolor="green"
+      pendingcolor="lightgray"
+      referrercontent="Referred you on {date}"
+      convertedcontent="Signed up, reffered on {date}"
+      pendingcontent="Trial user, reffered on {date}"
+      pendingvalue="Referral pending"
+      valuecontent="and {extraRewards} more {extraRewards, plural, one {reward} other {rewards}}"
+      paginatemore="View More"
+      paginateless="Previous"
+    ></sqh-referral-list>
 
   </sqh-global-container>
 
