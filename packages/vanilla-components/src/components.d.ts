@@ -529,6 +529,7 @@ declare global {
   namespace JSXElements {
     export interface SqhStatComponentAttributes extends HTMLAttributes {
       'ishidden'?: boolean;
+      'onStatAdded'?: (event: CustomEvent) => void;
       'onStatTypeUpdated'?: (event: CustomEvent) => void;
       'rewardbalancepath'?: string;
       'statdescription'?: string;

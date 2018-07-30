@@ -12,10 +12,19 @@ export class StatComponent {
   @Prop() statvalue: string = "0";
   @Prop() statdescription: string;
   @Event() statTypeUpdated: EventEmitter;
+  @Event() statAdded: EventEmitter;
+
+  componentWillLoad() {
+    this.statAddedHandler(this.elem);
+  }
 
   @Watch('stattype')
   watchHandler(newValue: string, oldValue: string) {
     if (newValue !== oldValue) this.statTypeUpdatedHandler(this.elem)
+  }
+
+  statAddedHandler(stat: HTMLElement) {
+    this.statAdded.emit(stat);
   }
 
   statTypeUpdatedHandler(stat: HTMLElement) {

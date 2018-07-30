@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element, Listen, Watch } from '@stencil/core';
+import { Component, Prop, State, Element, Listen } from '@stencil/core';
 import { API } from '../../services/WidgetHost';
 import pathToRegexp from "path-to-regexp";
 
@@ -10,7 +10,6 @@ export class StatsContainer {
   @Element() container: HTMLElement;
   @Prop() ishidden: boolean = false;
   @State() loading: boolean;
-  @State() children: HTMLElement[];
   @State() stats: object;
 
   constructor() {
@@ -28,10 +27,10 @@ export class StatsContainer {
         rewardsWeek: res.data.user.rewardsWeek.totalCount,
         rewardBalances: res.data.user.rewardBalances
       }
-      this.children = Array.from(this.container.querySelectorAll('sqh-stat-component'));
       this.loading = false;
     }).then(() => {
-      this.children.map(child => {
+      const children = Array.from(this.container.querySelectorAll('sqh-stat-component'));
+      children.map(child => {
         this.setStatValue(child)
       })
     }).catch(e => {
@@ -39,20 +38,14 @@ export class StatsContainer {
     });
   }
 
-  componentWillUpdate() {
-    this.children = Array.from(this.container.querySelectorAll('sqh-stat-component'));
-  }
-
-  @Watch('children')
-  watchHandler() {
-    this.children.map(child => {
-      this.setStatValue(child)
-    })
-  }
-
   @Listen('statTypeUpdated')
   statTypeUpdatedHandler(event: CustomEvent) {
-    this.setStatValue(event.detail)
+    this.setStatValue(event.detail);
+  }
+
+  @Listen('statAdded')
+  statAddedHandler(event: CustomEvent) {
+    if (this.stats) this.setStatValue(event.detail);
   }
 
   statPaths = [
@@ -69,7 +62,6 @@ export class StatsContainer {
   setStatValue(child: HTMLElement) {
     const path = child.getAttribute("stattype");
     const stat = this.getStatFromPath(path);
-    console.log('path: ', path, ' / stat: ', stat)
     child.setAttribute('statvalue', `${stat}`);
     return child;
   }
