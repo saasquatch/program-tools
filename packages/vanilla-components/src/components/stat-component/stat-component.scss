@@ -1,9 +1,10 @@
 sqh-stat-component{
   text-align: center;
   width: 140px;
+  float: left;
 
   @media (max-width: 500px) {
-    width: auto;
+    width: 100%;
     text-align: left;
     padding: 10px;
     background: #f2f2f2;

@@ -82,3 +82,5 @@ interface RewardBalance {
   value: number
   prettyValue: string
 }
+
+declare module 'react';

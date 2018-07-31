@@ -95,10 +95,12 @@ export class StatsContainer {
   }
 
   render() {
-    return (
-      <div style={{display: this.ishidden ? 'none' : 'inherit'}}>
-        <slot />
-      </div>
-    );
+    if(this.ishidden) {
+      this.container.setAttribute('style', 'display: none');
+    } else {
+      this.container.setAttribute('style', '');
+    }
+
+    return <slot />;
   }
 }
