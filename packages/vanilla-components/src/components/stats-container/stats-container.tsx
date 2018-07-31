@@ -19,13 +19,13 @@ export class StatsContainer {
   componentWillLoad() {
     return API.graphql.getStats().then(res => {
       this.stats = {
-        referralsCount: res.data.user.referralsCount.totalCount,
-        referralsMonth: res.data.user.referralsMonth.totalCount,
-        referralsWeek: res.data.user.referralsWeek.totalCount,
-        rewardsCount: res.data.user.rewardsCount.totalCount,
-        rewardsMonth: res.data.user.rewardsMonth.totalCount,
-        rewardsWeek: res.data.user.rewardsWeek.totalCount,
-        rewardBalances: res.data.user.rewardBalances
+        referralsCount: res.referralsCount.totalCount,
+        referralsMonth: res.referralsMonth.totalCount,
+        referralsWeek: res.referralsWeek.totalCount,
+        rewardsCount: res.rewardsCount.totalCount,
+        rewardsMonth: res.rewardsMonth.totalCount,
+        rewardsWeek: res.rewardsWeek.totalCount,
+        rewardBalances: res.rewardBalances
       }
       this.loading = false;
     }).then(() => {

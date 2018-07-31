@@ -41,9 +41,9 @@ export class ReferralList {
   componentWillLoad() {
     return this.getReferrals().then(res => {
       console.log('res', res);
-      this.referrals = res.data.user.referrals.data;
-      this.referredBy = res.data.user.referredByReferral;
-      this.referralsCount = res.data.user.referrals.totalCount;
+      this.referrals = res.referrals.data;
+      this.referredBy = res.referredByReferral;
+      this.referralsCount = res.referrals.totalCount;
       this.loading = false;
     }).catch(e => {
       this.onError(e);
@@ -97,7 +97,7 @@ export class ReferralList {
     if (offset >= referralsCount || offset < 0) return null;
     this.getReferrals(offset)
     .then(res => {
-      this.referrals = res.data.user.referrals.data;
+      this.referrals = res.referrals.data;
       this.offset = offset;
     });
   }
