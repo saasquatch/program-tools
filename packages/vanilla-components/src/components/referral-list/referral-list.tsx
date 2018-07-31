@@ -50,43 +50,6 @@ export class ReferralList {
     });
   }
 
-  addStyle() {
-    const el = document.getElementById("squatch-referrals-style");
-    const css = `
-      .squatch-referrals-icon.icon-ok-circled {
-        color: ${ this.rewardcolor };
-      }
-      .squatch-referrals-icon.icon-attention {
-        color: ${ this.pendingcolor };
-      }
-      .squatch-referrals-value {
-        color: ${ this.rewardcolor };
-        font-size: 20px;
-      }
-      .squatch-referrals-value.pending {
-        color: ${ this.pendingcolor };
-        font-size: 15px;
-      }
-    `;
-    
-    if (el) {
-      el.textContent = css;
-    } else {
-      const style = document.createElement("style")
-      style.setAttribute('id', 'squatch-referrals-style');
-      style.textContent = css;
-      document.getElementsByTagName('head')[0].appendChild(style);
-    }
-  }
-
-  componentDidLoad() {
-    this.addStyle();
-  }
-
-  componentWillUpdate() {
-    this.addStyle();
-  }
-
   getReferrals(offset = 0) {
     return API.graphql.getReferrals(offset);
   }

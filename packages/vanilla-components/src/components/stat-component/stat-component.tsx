@@ -1,4 +1,5 @@
 import { Component, Prop, Event, EventEmitter, Element, Watch } from '@stencil/core';
+import { css } from 'emotion';
 
 @Component({
   tag: 'sqh-stat-component',
@@ -33,11 +34,15 @@ export class StatComponent {
   }
 
   render() {
+    const clz = css`
+      color: ${ this.statcolor };
+    `
+
     return (
       this.ishidden
       ? ''
       : (
-        <div style={{color: this.statcolor}}>
+        <div class={ clz }>
           <div class="stat-value">{this.statvalue}</div>
           <div class="stat-description">{this.statdescription}</div>
         </div>
