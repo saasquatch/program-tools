@@ -1,4 +1,5 @@
 import { Component, Prop, Event, EventEmitter, Element, Watch } from '@stencil/core';
+import { css } from 'emotion';
 
 @Component({
   tag: 'sqh-stat-component',
@@ -16,17 +17,11 @@ export class StatComponent {
 
   componentWillLoad() {
     this.statAddedHandler(this.elem);
-    this.elem.style.color = this.statcolor || 'inherit';
   }
 
   @Watch('stattype')
   stattypeHandler(newValue: string, oldValue: string) {
     if (newValue !== oldValue) this.statTypeUpdatedHandler(this.elem)
-  }
-
-  @Watch('statcolor')
-  statcolorHandler() {
-    this.elem.style.color = this.statcolor;
   }
 
   statAddedHandler(stat: HTMLElement) {
@@ -38,11 +33,15 @@ export class StatComponent {
   }
 
   render() {
+    const clz = css`
+      color: ${ this.statcolor };
+    `
+
     return (
       this.ishidden
       ? ''
       : (
-        <div>
+        <div class={ clz }>
           <div class="stat-value">{this.statvalue}</div>
           <div class="stat-description">{this.statdescription}</div>
         </div>
