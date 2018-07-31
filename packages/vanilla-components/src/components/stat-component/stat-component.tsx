@@ -8,7 +8,6 @@ export class StatComponent {
   @Element() elem: HTMLElement;
   @Prop() ishidden: boolean = false;
   @Prop() stattype: string;
-  @Prop() rewardbalancepath: string;
   @Prop() statvalue: string = "0";
   @Prop() statdescription: string;
   @Prop() statcolor: string;

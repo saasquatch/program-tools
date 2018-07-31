@@ -506,7 +506,6 @@ declare global {
   namespace StencilComponents {
     interface SqhStatComponent {
       'ishidden': boolean;
-      'rewardbalancepath': string;
       'statcolor': string;
       'statdescription': string;
       'stattype': string;
@@ -536,7 +535,6 @@ declare global {
       'ishidden'?: boolean;
       'onStatAdded'?: (event: CustomEvent) => void;
       'onStatTypeUpdated'?: (event: CustomEvent) => void;
-      'rewardbalancepath'?: string;
       'statcolor'?: string;
       'statdescription'?: string;
       'stattype'?: string;
