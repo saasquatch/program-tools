@@ -17,17 +17,11 @@ export class StatComponent {
 
   componentWillLoad() {
     this.statAddedHandler(this.elem);
-    this.elem.style.color = this.statcolor || 'inherit';
   }
 
   @Watch('stattype')
   stattypeHandler(newValue: string, oldValue: string) {
     if (newValue !== oldValue) this.statTypeUpdatedHandler(this.elem)
-  }
-
-  @Watch('statcolor')
-  statcolorHandler() {
-    this.elem.style.color = this.statcolor;
   }
 
   statAddedHandler(stat: HTMLElement) {
@@ -43,7 +37,7 @@ export class StatComponent {
       this.ishidden
       ? ''
       : (
-        <div>
+        <div style={{color: this.statcolor}}>
           <div class="stat-value">{this.statvalue}</div>
           <div class="stat-description">{this.statdescription}</div>
         </div>
