@@ -1,8 +1,8 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 import Clipboard from 'clipboard';
 import { shadeColor, addClass, removeClass } from '../../utilities';
 
-import {API} from '../../services/WidgetHost';
+import { API } from '../../services/WidgetHost';
 
 @Component({
   tag: 'sqh-copy-link-button',
@@ -15,6 +15,19 @@ export class CopyLinkButton {
   @Prop() ishidden: boolean = false;
   @Prop() buttoncolor: string;
   @Prop() textcolor: string;
+  @State() sharelink: string;
+
+  componentWillLoad() {
+    return API.graphql.getShareLink().then(res => {
+      this.sharelink = res;
+    }).catch(e => {
+      this.onError(e);
+    });
+  }
+
+  onError(e: Error) {
+    console.log("Error loading via GraphQL.", e);
+  }
 
   addStyle() {
     const css = ` button.icon-btn.copy {
@@ -75,7 +88,7 @@ export class CopyLinkButton {
     const copyLinkSection = this.ishidden 
       ? `` 
       : <div class="input-group">
-          <input id="squatch-share-link" value="https://link.com" readonly="readonly"></input>
+          <input id="squatch-share-link" value={ this.sharelink } readonly="readonly"></input>
 
           <span class="label label-default fade" id="squatch-share-notification">{this.copysuccess}</span>
 

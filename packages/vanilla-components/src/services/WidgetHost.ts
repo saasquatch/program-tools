@@ -24,17 +24,9 @@ export interface SquatchJSApi {
   close();
 }
 
-// TODO: This might not want to be hard-coded.
 if (!window["widgetIdent"]) {
   window["widgetIdent"] = {
-    mode: "POPUP",
-    locale: "en_US",
-    tenantAlias: "test_ahq6tdmfclzwx",
-    appDomain: "https://staging.referralsaasquatch.com",
-    userId: "5b3ead41e4b0d9a2cf439e86",
-    accountId: "DVVJFP7R7GPT0J75",
-    token:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWIzZWFkNDFlNGIwZDlhMmNmNDM5ZTg2IiwiYWNjb3VudElkIjoiRFZWSkZQN1I3R1BUMEo3NSJ9fQ.lrNCyo-RKFnF6ruEQEpBi75gsVqB3JxjHgrYIGzKpgI"
+    env: "demo"
   };
 }
 
@@ -95,6 +87,28 @@ const API = {
         `,
         variables
       });
+    },
+
+    getShareLink() {
+      const { userId, accountId, programId, mode } = widgetIdent();
+
+      const variables = {
+        userId,
+        accountId,
+        programId,
+        mode
+      };
+
+      return this.getClient().query({
+        query: gql`
+          query($userId: String!, $accountId: String!, $programId: ID, $mode: UserEngagementMedium) {
+            user(id: $userId, accountId: $accountId) {
+              shareLink(programId: $programId, engagementMedium: $mode, shareMedium: DIRECT)
+            }
+          }
+        `,
+        variables
+      }).then(res => res.data.user.shareLink);
     },
 
     getReferrals(offset = 0, limit = 3) {
