@@ -232,6 +232,8 @@ declare global {
       'pendingcolor': string;
       'pendingcontent': string;
       'pendingvalue': string;
+      'referralnamecolor': string;
+      'referraltextcolor': string;
       'referrercontent': string;
       'rewardcolor': string;
       'showreferrer': boolean;
@@ -266,6 +268,8 @@ declare global {
       'pendingcolor'?: string;
       'pendingcontent'?: string;
       'pendingvalue'?: string;
+      'referralnamecolor'?: string;
+      'referraltextcolor'?: string;
       'referrercontent'?: string;
       'rewardcolor'?: string;
       'showreferrer'?: boolean;
@@ -519,9 +523,10 @@ declare global {
 
   namespace StencilComponents {
     interface SqhStatComponent {
-      'rewardbalancepath': string;
+      'ishidden': boolean;
+      'statcolor': string;
       'statdescription': string;
-      'stattype': "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | "rewardBalance" | null;
+      'stattype': string;
       'statvalue': string;
     }
   }
@@ -545,10 +550,12 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhStatComponentAttributes extends HTMLAttributes {
+      'ishidden'?: boolean;
+      'onStatAdded'?: (event: CustomEvent) => void;
       'onStatTypeUpdated'?: (event: CustomEvent) => void;
-      'rewardbalancepath'?: string;
+      'statcolor'?: string;
       'statdescription'?: string;
-      'stattype'?: "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | "rewardBalance" | null;
+      'stattype'?: string;
       'statvalue'?: string;
     }
   }

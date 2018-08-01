@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/vanilla-components",
-  "version": "0.0.46",
+  "version": "0.0.55",
   "description": "Vanilla component library for the SaaSquatch platform",
   "main": "dist/index.js",
   "types": "dist/types/components.d.ts",
@@ -34,6 +34,7 @@
     "intl-messageformat": "^2.2.0",
     "intl-relativeformat": "^2.1.0",
     "marked": "^0.4.0",
+    "path-to-regexp": "^2.2.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

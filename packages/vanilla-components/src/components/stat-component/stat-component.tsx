@@ -1,4 +1,5 @@
 import { Component, Prop, Event, EventEmitter, Element, Watch } from '@stencil/core';
+import { css } from 'emotion';
 
 @Component({
   tag: 'sqh-stat-component',
@@ -6,15 +7,25 @@ import { Component, Prop, Event, EventEmitter, Element, Watch } from '@stencil/c
 })
 export class StatComponent {
   @Element() elem: HTMLElement;
-  @Prop() stattype: "referralsCount" | "referralsMonth" | "referralsWeek" | "rewardsCount" | "rewardsMonth" | "rewardsWeek" | "rewardBalance" | null
-  @Prop() rewardbalancepath: string;
+  @Prop() ishidden: boolean = false;
+  @Prop() stattype: string;
   @Prop() statvalue: string = "0";
   @Prop() statdescription: string;
+  @Prop() statcolor: string;
   @Event() statTypeUpdated: EventEmitter;
+  @Event() statAdded: EventEmitter;
+
+  componentWillLoad() {
+    this.statAddedHandler(this.elem);
+  }
 
   @Watch('stattype')
-  watchHandler(newValue: string, oldValue: string) {
+  stattypeHandler(newValue: string, oldValue: string) {
     if (newValue !== oldValue) this.statTypeUpdatedHandler(this.elem)
+  }
+
+  statAddedHandler(stat: HTMLElement) {
+    this.statAdded.emit(stat);
   }
 
   statTypeUpdatedHandler(stat: HTMLElement) {
@@ -22,15 +33,19 @@ export class StatComponent {
   }
 
   render() {
+    const clz = css`
+      color: ${ this.statcolor };
+    `
+
     return (
-      this.stattype
-      ? (
-        <div>
+      this.ishidden
+      ? ''
+      : (
+        <div class={ clz }>
           <div class="stat-value">{this.statvalue}</div>
           <div class="stat-description">{this.statdescription}</div>
         </div>
       )
-      : ''
     );
   }
 }

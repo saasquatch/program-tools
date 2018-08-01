@@ -2,8 +2,6 @@ export default (editor, config = {}) => {
   // Get DomComponents module
   var comps = editor.DomComponents;
 
-  // edit
-  
   // Get the model and the view from the default Component type
   var defaultType = comps.getType('default');
   var defaultModel = defaultType.model;
@@ -39,11 +37,9 @@ export default (editor, config = {}) => {
       // Extend default properties
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
         name: 'Widget Container',
-        draggable: false,
+        selectable: false,
         droppable: false,
-        deletable: false,
-        selectable: true,
-        toolbar: [],
+        draggable: false,
         traits: [
           {type: 'string', title: 'Background Color', name: 'background', value: '#FFFFFF'},
           {type: 'string', title: 'Font Family', name: 'fontfamily', value: 'Helvetica Neue,Helvetica,Arial,sans-serif', ...fontFamilyOpts},
@@ -51,7 +47,7 @@ export default (editor, config = {}) => {
         uiSchema: {
           'background': { 'ui:widget': 'color' },
         }
-      }),
+      })
     },
     {
       isComponent: function(el) {
@@ -61,7 +57,7 @@ export default (editor, config = {}) => {
       },
     }),
 
-    view: defaultType.view,
+    view: defaultType.view
   })
 
   comps.addType('sqh-text-component', {
@@ -70,11 +66,17 @@ export default (editor, config = {}) => {
       // Extend default properties
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
         name: 'Text Component',
+
+        // can be dropped only inside 
         draggable: false,
+
+        // these components can be dropped in here
         droppable: false,
-        deletable: false,
+
         selectable: true,
+        
         toolbar: [],
+
         traits: [
           { type: 'boolean', title: 'Hidden', name: 'ishidden', value: false },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: false },
@@ -206,9 +208,12 @@ export default (editor, config = {}) => {
     model: defaultModel.extend({
         defaults: Object.assign({}, defaultModel.prototype.defaults, {
           name: "Copy Link",
+          // can be dropped only inside 
           draggable: false,
+
+          // these components can be dropped in here
           droppable: false,
-          deletable: false,
+
           selectable: true,
           toolbar: [],
           traits: [
@@ -300,11 +305,17 @@ export default (editor, config = {}) => {
     model: defaultModel.extend({
         defaults: Object.assign({}, defaultModel.prototype.defaults, {
           name: "Share Button Container",
-          draggable: false,
+
+          // can drop these elements in 
           droppable: false,
-          deletable: false,
+
+          // can be dropped only inside 
+          draggable: false,
+
           selectable: true,
+
           toolbar: [],
+
           traits: [
             { type: 'boolean', name: 'ishidden', value: false },
             { type: 'string', name: 'emaildisplayrule', value: 'mobile-and-desktop' },
@@ -472,27 +483,78 @@ export default (editor, config = {}) => {
     }),
   });
 
-  comps.addType('sqh-stats-component', {
+  comps.addType('sqh-stats-container', {
     model: defaultModel.extend({
         defaults: Object.assign({}, defaultModel.prototype.defaults, {
-          name: "Stats Component",
+          name: "Stats Container",
+
+          // can be dropped only inside 
           draggable: false,
-          droppable: false,
-          deletable: false,
+
+          // these components can be dropped in here
+          droppable: ['sqh-stat-component'],
+
           selectable: true,
+
+          toolbar: [],
+          
           traits: [
-            { type: 'boolean', title: 'Hidden', name: 'ishidden', value: false },
-            { type: 'string', title: 'Referrals Total', name: 'referralscounttext', value: '{value, plural, one {Friend} other {Friends}} Referred' },
-            { type: 'string', title: 'Rewards Total', name: 'rewardscounttext', value: '{value, plural, one {Reward} other {Rewards}} Earned' },
-            { type: 'string', title: 'Referrals This Month', name: 'referralsmonthtext', value: '{value, plural, one {Referral} other {Referrals}} this month' }
+            { type: 'boolean', name: 'ishidden', value: false },
           ],
-          toolbar: []
+
+          uiSchema: {
+            ishidden: { 'ui:widget': 'hidden' }
+          }
         })
       },
       {
         isComponent: function (el) {
-          if (el.tagName === 'SQH-STATS-COMPONENT') {
-            return { type: 'sqh-stats-component' };
+          if (el.tagName === 'SQH-STATS-CONTAINER') {
+            return { type: 'sqh-stats-container' };
+          }
+        },
+      }),
+
+    view: defaultType.view.extend({
+      render: function () {
+        defaultType.view.prototype.render.apply(this, arguments);
+        return this;
+      },
+    }),
+  });
+
+  comps.addType('sqh-stat-component', {
+    model: defaultModel.extend({
+        defaults: Object.assign({}, defaultModel.prototype.defaults, {
+          name: "Stat Component",
+
+          // can be dropped only inside 
+          draggable: ['sqh-stats-container'],
+
+          // these components can be dropped in here
+          droppable: false,
+
+          selectable: true,
+
+          // toolbar: [],
+          
+          traits: [
+            { type: 'boolean', name: 'ishidden', value: false },
+            { type: 'string', name: 'stattype', value: '' },
+            { type: 'string', name: 'statdescription', value: '' },
+            { type: 'string', name: 'statcolor', value: '' },
+          ],
+
+          uiSchema: {
+            ishidden: { 'ui:widget': 'hidden' },
+            statcolor: { 'ui:widget': 'color' },
+          }
+        })
+      },
+      {
+        isComponent: function (el) {
+          if (el.tagName === 'SQH-STAT-COMPONENT') {
+            return { type: 'sqh-stat-component' };
           }
         },
       }),
@@ -509,9 +571,13 @@ export default (editor, config = {}) => {
     model: defaultModel.extend({
         defaults: Object.assign({}, defaultModel.prototype.defaults, {
           name: "Referral List",
+
+          // can be dropped only inside 
           draggable: false,
+
+          // these components can be dropped in here
           droppable: false,
-          deletable: false,
+
           selectable: true,
           traits: [
             { type: 'boolean', name: 'ishidden', value: false },
@@ -519,6 +585,8 @@ export default (editor, config = {}) => {
             { type: 'boolean', name: 'usefirstreward', value: false },
             { type: 'string', name: 'rewardcolor', value: "#4BB543" },
             { type: 'string', name: 'pendingcolor', value: "#DDDDDD" },
+            { type: 'string', name: 'referralnamecolor', value: '' },
+            { type: 'string', name: 'referraltextcolor', value: ''},
             { type: 'string', name: 'pendingvalue', value: "Reward Pending" },
             { type: 'string', name: 'referrercontent', value: "Referred You {date}" },
             { type: 'string', name: 'convertedcontent', value: "Paid User, signed up {date}" },
@@ -527,13 +595,14 @@ export default (editor, config = {}) => {
             { type: 'string', name: 'paginatemore', value: "View More" },
             { type: 'string', name: 'paginateless', value: "Previous" },
           ],
-          toolbar: [],
           uiSchema: {
             ishidden: { 'ui:widget': 'hidden' },
             showreferrer: { 'ui:widget': 'radio' },
             usefirstreward: { 'ui:widget': 'radio' },
             rewardcolor: { 'ui:widget': 'color' },
             pendingcolor: { 'ui:widget': 'color' },
+            referralnamecolor: { 'ui:widget': 'color' },
+            referraltextcolor: { 'ui:widget': 'color' },
           },
           schema: {
             'title': 'Grapes JS Props',
@@ -568,6 +637,14 @@ export default (editor, config = {}) => {
                       },
                       'convertedcontent': {
                         'title': 'Converted User Content',
+                        'type': 'string'
+                      },
+                      'referralnamecolor': {
+                        'title': 'Referral Text Color',
+                        'type': 'string'
+                      },
+                      'referraltextcolor': {
+                        'title': 'Referral Text Color',
                         'type': 'string'
                       },
                       'valuecontent': {

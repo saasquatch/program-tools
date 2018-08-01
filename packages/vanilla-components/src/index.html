@@ -10,7 +10,7 @@
 
   <meta http-equiv="x-ua-compatible" content="IE=Edge"/>
 
-  <script>
+  <!-- <script>
     window.widgetIdent = {
       mode: 'POPUP',
       locale: 'en_US',
@@ -21,7 +21,7 @@
       accountId: 'DVVJFP7R7GPT0J75',
       token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWIzZWFkNDFlNGIwZDlhMmNmNDM5ZTg2IiwiYWNjb3VudElkIjoiRFZWSkZQN1I3R1BUMEo3NSJ9fQ.lrNCyo-RKFnF6ruEQEpBi75gsVqB3JxjHgrYIGzKpgI'
     };
-  </script>
+  </script> -->
   <script src="https://unpkg.com/@saasquatch/widget-host@latest/umd/@saasquatch/widget-host.js"></script>
   
   <script src="/build/widget-components.js"></script>
@@ -47,12 +47,24 @@
     <sqh-share-button-container maxwidth="100%" twitterdisplayrule=""></sqh-share-button-container>
 
     <sqh-stats-container>
-      <sqh-stat-component stattype="referralsCount" statdescription="Total Referrals"></sqh-stat-component>
-      <sqh-stat-component stattype="rewardsCount" statdescription="Total Rewards"></sqh-stat-component>
-      <sqh-stat-component stattype="rewardBalance" rewardbalancepath="/t/CREDIT/u/Points/v/value" statdescription="Total Points"></ssqh-stat-component>
+      <sqh-stat-component slot="stat-1" statcolor="#4caf50" stattype="/referralsCount" statdescription="Total Referrals"></sqh-stat-component>
+      <sqh-stat-component slot="stat-2" stattype="/rewardsCount" statdescription="Total Rewards"></sqh-stat-component>
+      <sqh-stat-component slot="stat-3" stattype="/rewardBalance/CREDIT/CENTS/pretty" statdescription="Credit earned"></ssqh-stat-component>
     </sqh-stats-container>
 
-    <sqh-referral-list showreferrer=true></sqh-referral-list>
+    <sqh-referral-list
+      referralnamecolor="darkslategray"
+      referraltextcolor="lightgray"
+      rewardcolor="green"
+      pendingcolor="lightgray"
+      referrercontent="Referred you {date}"
+      convertedcontent="Signed up, reffered {date}"
+      pendingcontent="Trial user, reffered {date}"
+      pendingvalue="Referral pending"
+      valuecontent="and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
+      paginatemore="View More"
+      paginateless="Previous"
+    ></sqh-referral-list>
 
   </sqh-global-container>
 

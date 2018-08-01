@@ -1,5 +1,6 @@
 import { Component, Prop, State, Element, Listen } from '@stencil/core';
 import { API } from '../../services/WidgetHost';
+import pathToRegexp from "path-to-regexp";
 
 @Component({
   tag: 'sqh-stats-container',
@@ -9,14 +10,7 @@ export class StatsContainer {
   @Element() container: HTMLElement;
   @Prop() ishidden: boolean = false;
   @State() loading: boolean;
-  @State() stats: any[];
-  @State() referralsCount: number;
-  @State() referralsMonth: number;
-  @State() referralsWeek: number;
-  @State() rewardsCount: number;
-  @State() rewardsMonth: number;
-  @State() rewardsWeek: number;
-  @State() rewardBalances: [RewardBalance];
+  @State() stats: object;
 
   constructor() {
     this.loading = true;
@@ -24,60 +18,75 @@ export class StatsContainer {
 
   componentWillLoad() {
     return API.graphql.getStats().then(res => {
-      this.referralsCount = res.data.user.referralsCount.totalCount;
-      this.referralsMonth = res.data.user.referralsMonth.totalCount;
-      this.referralsWeek = res.data.user.referralsWeek.totalCount;
-      this.rewardsCount = res.data.user.rewardsCount.totalCount;
-      this.rewardsMonth = res.data.user.rewardsMonth.totalCount;
-      this.rewardsWeek = res.data.user.rewardsWeek.totalCount;
-      this.rewardBalances = res.data.user.rewardBalances;
-      console.log(this.rewardBalances)
-      this.stats = Array.from(this.container.querySelectorAll('sqh-stat-component'));
+      this.stats = {
+        referralsCount: res.referralsCount.totalCount,
+        referralsMonth: res.referralsMonth.totalCount,
+        referralsWeek: res.referralsWeek.totalCount,
+        rewardsCount: res.rewardsCount.totalCount,
+        rewardsMonth: res.rewardsMonth.totalCount,
+        rewardsWeek: res.rewardsWeek.totalCount,
+        rewardBalances: res.rewardBalances
+      }
       this.loading = false;
     }).then(() => {
-      this.stats.map(stat => {
-        this.setStatValue(stat)
+      const children = Array.from(this.container.querySelectorAll('sqh-stat-component'));
+      children.map(child => {
+        this.setStatValue(child)
       })
     }).catch(e => {
       this.onError(e);
     });
   }
 
-  componentWillUpdate() {
-    console.log('container updated')
-  }
-
   @Listen('statTypeUpdated')
-  statTypeUpdatedHandler(stat: CustomEvent) {
-    this.setStatValue(stat.detail)
+  statTypeUpdatedHandler(event: CustomEvent) {
+    this.setStatValue(event.detail);
   }
 
-  setStatValue(stat: HTMLElement) {
-    const type = stat.getAttribute("stattype");
-    if (type === "rewardBalance") {
-      const path = stat.getAttribute("rewardbalancepath");
-      const balance = this.getBalanceFromPath(path);
-      stat.setAttribute('statvalue', balance);
-      return stat;
-    }
-    stat.setAttribute('statvalue', this[type].toString());
-    return stat;
+  @Listen('statAdded')
+  statAddedHandler(event: CustomEvent) {
+    if (this.stats) this.setStatValue(event.detail);
   }
 
-  isValidRewardBalancePath(path: string) {
-    if (!path) return false;
-    const pathRegExp = /^\/t\/[^\/]+\/u\/[^\/]+\/v\/value|prettyValue$/i;
-    const match = path.match(pathRegExp);
-    return match && match[0] === path;
+  statPaths = [
+    "/rewardBalance/:type/:unit/:valuetype?",
+    "/:statName"
+  ]
+
+  statPathRegexp = this.statPaths.map(path => {
+    const keys = []
+    const regexp = pathToRegexp(path, keys)
+    return { regexp, keys }
+  })
+
+  setStatValue(child: HTMLElement) {
+    const path = child.getAttribute("stattype");
+    const stat = this.getStatFromPath(path);
+    child.setAttribute('statvalue', `${stat}`);
+    return child;
   }
 
-  getBalanceFromPath(path) {
-    if (!this.isValidRewardBalancePath(path)) return "0";
-    const type = path.match(/\/t\/[^\/]+/i)[0].replace("/t/", "");
-    const unit = path.match(/\/u\/[^\/]+/i)[0].replace("/u/", "");
-    const value = path.match(/\/v\/value|prettyValue/i)[0].replace("/v/", "");
-    const balanceObj = this.rewardBalances.find(bal => bal.type === type && bal.unit === unit);
-    return balanceObj ? balanceObj[value] : "0";
+  getStatFromPath(path) {
+    const statPath = this.statPathRegexp.find(stat => stat.regexp.test(path));
+    if (!statPath) return 0;
+    const { keys, regexp } = statPath;
+    const res = regexp.exec(path);
+    const statVariables = {};
+    keys.forEach((k, i) => statVariables[k.name] = res[i + 1]);
+    return this.getStatValue(statVariables);
+  }
+
+  getStatValue(statVariables) {
+    if (statVariables.statName) return this.stats[statVariables.statName] || 0;
+    return this.getRewardBalance(statVariables);
+  }
+
+  getRewardBalance(statVariables) {
+    const { type, unit, valuetype } = statVariables;
+    const rewardBalance = this.stats['rewardBalances'].find(rb => rb.type === type && rb.unit === unit);
+    if (!rewardBalance) return 0;
+    if (valuetype === "pretty") return rewardBalance.prettyValue || rewardBalance.value;
+    return rewardBalance.value;
   }
 
   onError(e: Error) {
@@ -86,12 +95,12 @@ export class StatsContainer {
   }
 
   render() {
-    return (
-      this.ishidden 
-      ? ''
-      : (
-        <slot />
-      )
-    );
+    if(this.ishidden) {
+      this.container.setAttribute('style', 'display: none');
+    } else {
+      this.container.setAttribute('style', '');
+    }
+
+    return <slot />;
   }
 }
