@@ -3,94 +3,59 @@ sqh-copy-link-button {
   @import '../../assets/styles/mixins/vendor-prefixes';
   @import '../../assets/styles/mixins/tab-focus';
 
-  $screen-sm-max: 500px;
-  $btn-font-weight: 400;
-  $padding-base-vertical:     6px;
-  $padding-base-horizontal:   12px;
-  $font-size-base:          14px;
-  $line-height-base:        1.428571429; // 20/14
-  $border-radius-base:        4px;
-  $btn-default-color: white;
-
-  $screen-sm:               0px;
-  $screen-sm-min:           $screen-sm;
-  $screen-xs-max:           ($screen-sm-min - 1);
-
-  $container-width:         500px;
-  $screen-md:               $container-width;
-  $screen-md-min:           $screen-md;
-  $screen-md-max:           99999px;
-  $text-color:            #5b6165;
-  // $screen-sm-max: 500px;
-
-
-
-  font-family: 'Lato', sans-serif;
-  display: block;
-
-  // START OF IMPORTS TO TRIM
-
-  // @import '../../assets/styles/base'; SOURCE DELETED
   * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
-  
-  body {
-    background: transparent;
-  }
 
-  // @import '../../assets/styles/shims'; SOURCE DELETED
-  .fade {
-    opacity: 0;
-    @include transition(opacity .15s linear);
-    &.in {
-      opacity: 1;
-    }
-  }
-  
+  font-family: 'Lato', sans-serif;
+  display: block;
+
   .input-group {
     position: relative;
     display: table;
     border-collapse: separate;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
   }
-  
-  .input-group-btn {
+
+  input {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+  }
+
+  #squatch-share-link {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;  
+    color: #5b6165;
+    background: transparent;
+    cursor: text;
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
     display: table-cell;
-    width: 1%;
-    white-space: nowrap;
-    vertical-align: middle;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
   }
 
-  // POSSIBLY NOT NECESSARY
-
-  // .input-group-btn:last-child  {
-  //   > .btn,
-  //   > .btn-group {
-  //     margin-left: 0;
-  //   }
-  // }
-
-  // html.lt-ie9 {
-  //   .input-group {
-  //     width: 100%;
-
-  //     .form-control {
-  //       width: 100%;
-  //       border-right: 1px solid $input-border;
-  //       border-radius: $border-radius-base;
-  //     }
-
-  //     .input-group-btn {
-  //       display: none;
-  //     }
-  //   }
-  // }
-
-
-
-  // @import '../../assets/styles/labels'; SOURCE DELETED
   .label {
     display: inline;
     padding: .2em .6em .3em;
@@ -102,6 +67,7 @@ sqh-copy-link-button {
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: .25em;
+    background-color: #737b80;
   
     // Empty labels collapse automatically (not available in IE8)
     &:empty {
@@ -109,60 +75,84 @@ sqh-copy-link-button {
     }
   }
 
-  
-  
-  // @import '../../assets/styles/buttons'; SOURCE DELETED
-.btn {
-  display: inline-block;
-  margin-bottom: 10px; // For input.btn
-  font-weight: $btn-font-weight;
-  text-align: center;
-  vertical-align: middle;
-  touch-action: manipulation;
-  cursor: pointer;
-  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
-  border: 1px solid transparent;
-  white-space: nowrap;
-  @include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base, $border-radius-base);
-  @include user-select(none);
-
-  &,
-  &:active,
-  &.active {
-    &:focus,
-    &.focus {
-      @include tab-focus();
+  .fade {
+    opacity: 0;
+    @include transition(opacity .15s linear);
+    &.in {
+      opacity: 1;
     }
   }
 
-  &:hover,
-  &:focus,
-  &.focus {
-    color: $btn-default-color;
-    text-decoration: none;
+  #squatch-share-notification {
+    position: absolute;
+    top: 10px;
+    right: 156px;
+    z-index: 100;
+  
+    @media (max-width: 500px) {
+      right: 50px;
+    }
   }
 
-  &:active,
-  &.active {
-    outline: 0;
-    background-image: none;
-    -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-            box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  .input-group-btn {
+    display: table-cell;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
   }
 
-  &.disabled,
-  &[disabled],
-  fieldset[disabled] & {
-    cursor: not-allowed;
-    pointer-events: none; // Future-proof disabling of clicks
-    opacity: .65;
-    -webkit-box-shadow: none;
-            box-shadow: none;
-  }
-}
+  .btn {
+    display: inline-block;
+    margin-bottom: 10px; // For input.btn
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: 1px solid transparent;
+    white-space: nowrap;
+    @include button-size(6px, 12px, 14px, 1.428571429, 4px);  // 1.428571429 = 20/14
+    @include user-select(none);
 
+    &,
+    &:active,
+    &.active {
+      &:focus,
+      &.focus {
+        @include tab-focus();
+      }
+    }
+
+    &:hover,
+    &:focus,
+    &.focus {
+      color: white;
+      text-decoration: none;
+    }
+
+    &:active,
+    &.active {
+      outline: 0;
+      background-image: none;
+      -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+              box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    }
+
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+      cursor: not-allowed;
+      pointer-events: none; // Future-proof disabling of clicks
+      opacity: .65;
+      -webkit-box-shadow: none;
+              box-shadow: none;
+    }
+  }
 
   .icon-btn {
+    color: #fff;
+    width: 140px;
     border-left: 0;
     padding-left: 0;
     padding-right: 0;
@@ -185,112 +175,31 @@ sqh-copy-link-button {
     }
   }
 
-
-
-
-  // @import '../../assets/styles/responsive-utilities'; SOURCE DELETED
-  .hidden-xs {
-    @media (max-width: $screen-xs-max) {
-      display: none !important;
-    }
-  }
-  
-  .hidden-sm {
-    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
-      display: none !important;
-    }
-  }
-  
-  .hidden-md {
-    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-      display: none !important;
-    }
-  }
-
-  // END OF IMPORTS
-
-
-
   button.icon-btn.copy {
-  @include button-variant(white, #5b6165, #5b6165);
-  width: 140px;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  border-left: 0;
-  padding-left: 0;
-  padding-right: 0;
-  position: relative;
-  text-align: left;
-  min-height: 34px;
-
-    @media (max-width: $screen-sm-max) {
-      width: auto;
-
-      .icon {
-        width: 39px;
-        margin-right: 0;
-      }
-    }
-  }
-
-  .icon-btn {
-    color: #fff;
+    @include button-variant(white, #5b6165, #5b6165);
     width: 140px;
-  }
-
-  input {
-    color: inherit;
-    font: inherit;
-    margin: 0;
-  }
-
-  .input-group {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
-  .label-default {
-    background-color: #737b80;
-  }
-
-  #squatch-share-notification {
-    position: absolute;
-    top: 10px;
-    right: 156px;
-    z-index: 100;
-  
-    @media (max-width: $screen-sm-max) {
-      right: 50px;
-    }
-  }
-
-  #squatch-share-link {
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.428571429;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;  
-    color: $text-color;
-    background: transparent;
-    cursor: text;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-left: 0;
+    padding-left: 0;
+    padding-right: 0;
     position: relative;
-    z-index: 2;
-    float: left;
-    width: 100%;
-    margin-bottom: 0;
-    display: table-cell;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
+    text-align: left;
+    min-height: 34px;
+  
+      @media (max-width: 500px) {
+        width: auto;
+  
+        .icon {
+          width: 39px;
+          margin-right: 0;
+        }
+      }
+  }
+
+  .hidden-sm {
+    @media (min-width: 0px) and (max-width: 500px) {
+      display: none !important;
+    }
   }
 }

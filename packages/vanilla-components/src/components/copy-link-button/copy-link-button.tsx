@@ -90,10 +90,10 @@ export class CopyLinkButton {
       : <div class="input-group">
           <input id="squatch-share-link" value={ this.sharelink } readonly="readonly"></input>
 
-          <span class="label label-default fade" id="squatch-share-notification">{this.copysuccess}</span>
+          <span class="label fade" id="squatch-share-notification">{this.copysuccess}</span>
 
           <span class="input-group-btn">
-              <button class="btn btn-primary icon-btn copy" data-clipboard-target="#squatch-share-link" data-clipboard-notification="#squatch-share-notification">
+              <button class="btn icon-btn copy" data-clipboard-target="#squatch-share-link" data-clipboard-notification="#squatch-share-notification">
               <i class="icon icon-link"></i>
               <span class="hidden-sm">{this.text}</span>
               </button>
