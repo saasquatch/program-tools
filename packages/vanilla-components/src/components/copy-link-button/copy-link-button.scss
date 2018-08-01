@@ -11,6 +11,7 @@ sqh-copy-link-button {
 
   font-family: 'Lato', sans-serif;
   display: block;
+  margin: 0 5px;
 
   .input-group {
     position: relative;
@@ -88,10 +89,6 @@ sqh-copy-link-button {
     top: 10px;
     right: 156px;
     z-index: 100;
-  
-    @media (max-width: 500px) {
-      right: 50px;
-    }
   }
 
   .input-group-btn {
@@ -186,7 +183,21 @@ sqh-copy-link-button {
     position: relative;
     text-align: left;
     min-height: 34px;
-  
+  }
+}
+
+
+// Mobile style to be put into CSS in JS
+
+sqh-copy-link-button {
+  #squatch-share-notification {
+
+    @media (max-width: 500px) {
+      right: 50px;
+    }
+  }
+
+  button.icon-btn.copy {
       @media (max-width: 500px) {
         width: auto;
   

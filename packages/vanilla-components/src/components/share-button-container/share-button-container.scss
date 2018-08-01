@@ -1,7 +1,4 @@
 sqh-share-button-container {
-
-  $screen-sm-max: 500px;
-
   text-align: center;
 
   // hides share buttons based on class for desktop and mobile
@@ -14,13 +11,14 @@ sqh-share-button-container {
     &.mobile-only {
       display: none;
 
-      @media (max-width: $screen-sm-max) {
+      @media (max-width: 500px) {
         display: block;
+        // max-width: 100%;
       }
     }
 
     &.desktop-only {
-      @media (max-width: $screen-sm-max) {
+      @media (max-width: 500px) {
         display: none;
       }
     }

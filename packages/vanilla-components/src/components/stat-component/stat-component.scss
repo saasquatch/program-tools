@@ -3,8 +3,26 @@ sqh-stat-component{
   width: 140px;
   float: left;
 
+  .stat-value {
+    font-size: 30px;
+    line-height: 20px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-weight: 300;
+  }
+  
+  .stat-description {
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+}
+
+
+// Mobile css will go in CSS in JS
+
+sqh-stat-component {
   @media (max-width: 500px) {
-    width: 100%;
+    width: 90%;
     text-align: left;
     padding: 10px;
     background: #f2f2f2;
@@ -20,12 +38,6 @@ sqh-stat-component{
   }
 
   .stat-value {
-    font-size: 30px;
-    line-height: 20px;
-    margin-top: 20px;
-    margin-bottom: 8px;
-    font-weight: 300;
-  
     @media (max-width: 500px) {
       font-size: 22px;
       float: left;
@@ -34,11 +46,8 @@ sqh-stat-component{
       margin: 0 10px 0 0;
     }
   }
-  
+
   .stat-description {
-    text-transform: uppercase;
-    font-size: 12px;
-  
     @media (max-width: 500px) {
       line-height: 20px;
     }
