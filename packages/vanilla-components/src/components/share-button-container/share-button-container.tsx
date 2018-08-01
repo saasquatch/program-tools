@@ -12,7 +12,7 @@ export class ShareButtonContainer {
   // Email button properties and default settings
   @Prop() emaildisplayrule: string = "mobile-and-desktop";
   @Prop() emailtext: string = "Email";
-  @Prop() emailbackgroundcolor: string = "#373a3d";
+  @Prop() emailbackgroundcolor: string = "#4b4d50";
   @Prop() emailtextcolor: string = "#fff";
   @Prop() emailicon: string = "mail";
   @Prop() emailurl: string = "http://short.staging.referralsaasquatch.com/mJjDFl";

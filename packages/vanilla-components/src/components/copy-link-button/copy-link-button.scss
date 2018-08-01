@@ -6,55 +6,27 @@ sqh-copy-link-button {
     box-sizing: border-box;
   }
 
-  // font-family: 'Lato', sans-serif;
   display: block;
 
   .input-group {
     position: relative;
     display: table;
-    border-collapse: separate;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
-  input {
-    color: inherit;
-    font: inherit;
-    margin: 0;
   }
 
   #squatch-share-link {
-    display: block;
-    width: 100%;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
-    line-height: 1.428571429;
-    background-color: #fff;
-    background-image: none;
+    background-color: white;
+    background-image: none; // Normalizes Firefox on Android default style
     border: 1px solid #ccc;
     border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;  
-    color: #5b6165;
-    background: transparent;
-    cursor: text;
-    position: relative;
-    z-index: 2;
-    float: left;
     width: 100%;
-    margin-bottom: 0;
-    display: table-cell;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
   }
 
   .label {
-    display: inline;
     padding: .2em .6em .3em;
     font-size: 11px;
     font-weight: bold;
@@ -62,7 +34,6 @@ sqh-copy-link-button {
     color: #fff;
     text-align: center;
     white-space: nowrap;
-    vertical-align: baseline;
     border-radius: .25em;
     background-color: #737b80;
   
@@ -74,9 +45,9 @@ sqh-copy-link-button {
 
   .fade {
     opacity: 0;
-    -webkit-transition: opacity .15s linear;
-    -o-transition: opacity .15s linear;
-    transition: opacity .15s linear;
+    -webkit-transition: opacity .25s linear;
+    -o-transition: opacity .25s linear;
+    transition: opacity .25s linear;
 
     &.in {
       opacity: 1;
@@ -85,9 +56,9 @@ sqh-copy-link-button {
 
   #squatch-share-notification {
     position: absolute;
-    top: 10px;
+    top: 9px;
     right: 156px;
-    z-index: 100;
+    z-index: 2;
   }
 
   .input-group-btn {
@@ -97,25 +68,17 @@ sqh-copy-link-button {
     vertical-align: middle;
   }
 
-  .btn {
-    display: inline-block;
-    margin-bottom: 10px; // For input.btn
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
+  .sqh-copy-btn {
     touch-action: manipulation;
     cursor: pointer;
     background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
     border: 1px solid transparent;
     white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.428571429;
     border-radius: 4px;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     background-color: #5b6165;
-    border-color: #5b6165;
+    height: 34px;
 
     &.disabled,
     &[disabled],
@@ -153,8 +116,7 @@ sqh-copy-link-button {
     }
   }
 
-  button.icon-btn.copy {
-
+  .sqh-copy-btn {
     &:hover,
     &:focus,
     &:active {
@@ -166,17 +128,6 @@ sqh-copy-link-button {
     &:active {
       background-image: none;
     }
-    // &.disabled,
-    // &[disabled],
-    // fieldset[disabled] & {
-    //   &,
-    //   &:hover,
-    //   &:focus,
-    //   &:active {
-    //     background-color: #5b6165;
-    //         border-color: #5b6165;
-    //   }
-    // }
   }
 }
 
@@ -193,7 +144,7 @@ sqh-copy-link-button {
     }
   }
 
-  button.icon-btn.copy {
+  .sqh-copy-btn {
       @media (max-width: 500px) {
         width: auto;
   

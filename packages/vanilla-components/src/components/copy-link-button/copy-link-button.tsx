@@ -94,7 +94,7 @@ export class CopyLinkButton {
           <span class="label fade" id="squatch-share-notification">{this.copysuccess}</span>
 
           <span class="input-group-btn">
-              <button class="btn icon-btn copy" data-clipboard-target="#squatch-share-link" data-clipboard-notification="#squatch-share-notification">
+              <button class="sqh-copy-btn icon-btn" data-clipboard-target="#squatch-share-link" data-clipboard-notification="#squatch-share-notification">
               <i class="icon icon-link"></i>
               <span class="hidden-sm">{this.text}</span>
               </button>
