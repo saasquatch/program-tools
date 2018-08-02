@@ -28,8 +28,10 @@ export class TextComponent {
       padding: this.padding || '0'
     } 
 
+    // 
     const divStyle = {
-      background: `url(${this.background}) no-repeat center center` || 'inherit',
+      background: `url(${this.background}) no-repeat center` || 'inherit',
+      backgroundSize: 'contain',
       height: this.height || 'inherit'
     }
 

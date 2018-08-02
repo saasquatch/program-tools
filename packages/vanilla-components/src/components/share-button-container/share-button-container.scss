@@ -1,5 +1,9 @@
 sqh-share-button-container {
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 
   // hides share buttons based on class for desktop and mobile - might end up in CSS in JS because of media queries
   .squatch-share-btn {

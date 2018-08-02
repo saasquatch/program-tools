@@ -1,5 +1,8 @@
 sqh-share-button {
-  display: inline-block;
+  // display: inline-block;
+  flex-basis: auto;
+
+
 
   .btn {
     font-family: 'Lato', sans-serif;
@@ -105,7 +108,7 @@ sqh-share-button {
   
   .squatch-share-btn {
     width: 120px;
-    margin: 5px;
+    // margin: 5px;
   
     .share-btn-text {
       text-align: center;
