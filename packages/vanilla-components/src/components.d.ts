@@ -589,6 +589,8 @@ declare global {
       'ishidden': boolean;
       'ismarkdown': boolean;
       'padding': string;
+      'paddingbottom': string;
+      'paddingtop': string;
       'text': string;
       'textalign': string;
     }
@@ -621,6 +623,8 @@ declare global {
       'ishidden'?: boolean;
       'ismarkdown'?: boolean;
       'padding'?: string;
+      'paddingbottom'?: string;
+      'paddingtop'?: string;
       'text'?: string;
       'textalign'?: string;
     }
