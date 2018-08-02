@@ -47,7 +47,7 @@ export class ShareButton {
       background-color: ${this.backgroundcolor};
       border: 1px solid ${this.backgroundcolor};
       color: ${this.textcolor};
-      transition: background-color .5s;
+      transition: background-color .15s;
                         
       &:hover {
         background: ${shadeColor(this.backgroundcolor, 20)};

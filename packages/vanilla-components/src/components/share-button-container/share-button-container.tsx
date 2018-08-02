@@ -185,7 +185,7 @@ export class ShareButtonContainer {
                           />
 
     const shareSection = this.ishidden ? `` :
-                          <div>
+                          <div class="squatch-share-container">
                             {emailBtn}
                             {facebookBtn}
                             {twitterBtn}
