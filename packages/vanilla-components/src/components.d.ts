@@ -147,7 +147,11 @@ declare global {
 
   namespace StencilComponents {
     interface SqhImageComponent {
-      'text': string;
+      'alignment': string;
+      'borderradius': number;
+      'css': string;
+      'url': string;
+      'width': number;
     }
   }
 
@@ -170,7 +174,11 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhImageComponentAttributes extends HTMLAttributes {
-      'text'?: string;
+      'alignment'?: string;
+      'borderradius'?: number;
+      'css'?: string;
+      'url'?: string;
+      'width'?: number;
     }
   }
 }
@@ -317,11 +325,13 @@ declare global {
       'emailclassName': string;
       'emaildisplayrule': string;
       'emailicon': string;
+      'emailiconhorizontal': number;
+      'emailiconsize': number;
+      'emailiconvertical': number;
       'emailtext': string;
       'emailtextcolor': string;
       'emailurl': string;
       'facebookbackgroundcolor': string;
-      'facebookclassName': string;
       'facebookdisplayrule': string;
       'facebookicon': string;
       'facebooktext': string;
@@ -397,11 +407,13 @@ declare global {
       'emailclassName'?: string;
       'emaildisplayrule'?: string;
       'emailicon'?: string;
+      'emailiconhorizontal'?: number;
+      'emailiconsize'?: number;
+      'emailiconvertical'?: number;
       'emailtext'?: string;
       'emailtextcolor'?: string;
       'emailurl'?: string;
       'facebookbackgroundcolor'?: string;
-      'facebookclassName'?: string;
       'facebookdisplayrule'?: string;
       'facebookicon'?: string;
       'facebooktext'?: string;
@@ -464,6 +476,9 @@ declare global {
       'className': string;
       'displayrule': string;
       'icon': string;
+      'iconhorizontal': number;
+      'iconsize': number;
+      'iconvertical': number;
       'text': string;
       'textcolor': string;
       'url': string;
@@ -493,6 +508,9 @@ declare global {
       'className'?: string;
       'displayrule'?: string;
       'icon'?: string;
+      'iconhorizontal'?: number;
+      'iconsize'?: number;
+      'iconvertical'?: number;
       'text'?: string;
       'textcolor'?: string;
       'url'?: string;

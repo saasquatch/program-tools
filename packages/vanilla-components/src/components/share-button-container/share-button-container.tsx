@@ -12,11 +12,16 @@ export class ShareButtonContainer {
   // Email button properties and default settings
   @Prop() emaildisplayrule: string = "mobile-and-desktop";
   @Prop() emailtext: string = "Email";
-  @Prop() emailbackgroundcolor: string = "#373a3d";
+  @Prop() emailbackgroundcolor: string = "#4b4d50";
   @Prop() emailtextcolor: string = "#fff";
   @Prop() emailicon: string = "mail";
-  @Prop() emailurl: string;
-  @Prop() emailclassName: string;
+  @Prop() emailurl: string = "http://short.staging.referralsaasquatch.com/mJjDFl";
+  @Prop() emailclassName: string = "email-share";
+  
+  // icon editing rules for when we need them (only on email for now)
+  @Prop() emailiconhorizontal: number;
+  @Prop() emailiconvertical: number;
+  @Prop() emailiconsize: number;
 
   // FaceBook button properties and default settings
   @Prop() facebookdisplayrule: string = "mobile-and-desktop";
@@ -24,8 +29,8 @@ export class ShareButtonContainer {
   @Prop() facebookbackgroundcolor: string = "#234079";
   @Prop() facebooktextcolor: string = "#fff";
   @Prop() facebookicon: string = "facebook";
-  @Prop() facebookurl: string;
-  @Prop() facebookclassName: string;
+  @Prop() facebookurl: string = "http://short.staging.referralsaasquatch.com/mwjDFl";
+  // @Prop() facebookclassName: string;
 
   // Twitter button properties and default settings
   @Prop() twitterdisplayrule: string = "mobile-and-desktop";
@@ -33,7 +38,7 @@ export class ShareButtonContainer {
   @Prop() twitterbackgroundcolor: string = "#4797d2";
   @Prop() twittertextcolor: string = "#fff";
   @Prop() twittericon: string = "twitter";
-  @Prop() twitterurl: string;
+  @Prop() twitterurl: string = "http://short.staging.referralsaasquatch.com/mcjDFl";
   @Prop() twitterclassName: string;
 
   // SMS button properties and default settings
@@ -42,7 +47,7 @@ export class ShareButtonContainer {
   @Prop() smsbackgroundcolor: string = "#7bbf38";
   @Prop() smstextcolor: string = "#fff";
   @Prop() smsicon: string = "chat";
-  @Prop() smsurl: string;
+  @Prop() smsurl: string = "http://short.staging.referralsaasquatch.com/m2jDFl";
   @Prop() smsclassName: string;
 
   // Whatsapp button properties and default settings
@@ -51,7 +56,7 @@ export class ShareButtonContainer {
   @Prop() whatsappbackgroundcolor: string = "#25D366";
   @Prop() whatsapptextcolor: string = "#fff";
   @Prop() whatsappicon: string = "whatsapp";
-  @Prop() whatsappurl: string;
+  @Prop() whatsappurl: string = "http://short.staging.referralsaasquatch.com/mZjDFl";
   @Prop() whatsappclassName: string;
   
   // LinkedIn button properties and default settings
@@ -60,7 +65,7 @@ export class ShareButtonContainer {
   @Prop() linkedinbackgroundcolor: string = "#0084b9";
   @Prop() linkedintextcolor: string = "#fff";
   @Prop() linkedinicon: string = "linkedin";
-  @Prop() linkedinurl: string;
+  @Prop() linkedinurl: string = "http://short.staging.referralsaasquatch.com/mHjDFl";
   @Prop() linkedinclassName: string;
 
   // Pinterest button properties and default settings
@@ -69,7 +74,7 @@ export class ShareButtonContainer {
   @Prop() pinterestbackgroundcolor: string = "#cb2027";
   @Prop() pinteresttextcolor: string = "#fff";
   @Prop() pinteresticon: string = "pinterest";
-  @Prop() pinteresturl: string;
+  @Prop() pinteresturl: string = "http://short.staging.referralsaasquatch.com/mfjDFl";
   @Prop() pinterestclassName: string;
   
   // Messenger button properties and default settings
@@ -78,7 +83,7 @@ export class ShareButtonContainer {
   @Prop() messengerbackgroundcolor: string = "#0084ff";
   @Prop() messengertextcolor: string = "#fff";
   @Prop() messengericon: string = "messenger";
-  @Prop() messengerurl: string;
+  @Prop() messengerurl: string = "http://short.staging.referralsaasquatch.com/mgjDFl";
   @Prop() messengerclassName: string;
   
   addStyle() {
@@ -104,6 +109,9 @@ export class ShareButtonContainer {
                         icon={this.emailicon}
                         url={this.emailurl}
                         class={this.emailclassName}
+                        iconhorizontal={this.emailiconhorizontal}
+                        iconvertical={this.emailiconvertical}
+                        iconsize={this.emailiconsize}
                       />;
 
     const facebookBtn = <sqh-share-button 
@@ -113,7 +121,7 @@ export class ShareButtonContainer {
                           textcolor={this.facebooktextcolor}
                           icon={this.facebookicon}
                           url={this.facebookurl}
-                          class={this.facebookclassName}
+                          // class={this.facebookclassName}
                         />;
 
     const twitterBtn = <sqh-share-button 

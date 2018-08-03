@@ -14,49 +14,58 @@ export class ShareButton {
   @Prop() icon: string;
   @Prop() url: string;
   @Prop() className: string;
+  @Prop() iconhorizontal: number;
+  @Prop() iconvertical: number;
+  @Prop() iconsize: number;
 
   @Element() button: HTMLElement;
 
   clickHandler(e) {
-    if (e.type != 'touchstart') {
+    // checking for null on closest 'a' tag makes click handler avoid firing when margin is clicked
+    var anchor = e.target.closest('a');
+    if (anchor !== null && this.className !== "email-share") {
       e.preventDefault();
 
-      // THIS BEHAVIOUR might be different across share mediums
-      let url = `${this.url}&display=popup`;
-      window.open(url, 'Share', 'status=0,width=620,height=400');
+      const url = this.url
+      const target = '_blank';
+      const features = 'status=0,width=680,height=580'
+      window.open(url, target, features);
     }
   }
 
   componentDidLoad() {
     let el = this.button;
-
     el.addEventListener("click", this.clickHandler.bind(this), false);
-    el.addEventListener("touchStart", this.clickHandler.bind(this), false);
   }
 
   render() {
     const isMobileSafari  = detectMobileSafari();
-    const target = isMobileSafari ? '_parent' : '_blank';
+    const target = isMobileSafari ? '_parent' : null;
     const iconClass = `icon icon-${this.icon}`;
 
-    // input a dynamic label
-    const clz = css`
-      label: ;
+    const style = css`
       background-color: ${this.backgroundcolor};
       border: 1px solid ${this.backgroundcolor};
       color: ${this.textcolor};
+      transition: background-color .5s;
                         
       &:hover {
-        background: ${shadeColor(this.backgroundcolor, 10)};
-        border-color: ${shadeColor(this.backgroundcolor, 12)};
+        background: ${shadeColor(this.backgroundcolor, 20)};
+        border-color: ${shadeColor(this.backgroundcolor, 24)};
         color: ${this.textcolor};
       }
                     
       &:focus {
         color: ${this.textcolor};
-      } 
+      }
+      .icon-${this.icon} {
+        left: ${this.iconhorizontal}px;
+        top: ${this.iconvertical}px;
+        font-size: ${this.iconsize}em;
+      }
     `;
-    const classes = [`btn squatch-share-btn ${this.className} ${this.displayrule}`, clz].join(" ");
+    
+    const classes = [`btn squatch-share-btn`, this.className, this.displayrule, style].join(" ");
 
     return (
       <a class={classes} href={this.url} target={target}>

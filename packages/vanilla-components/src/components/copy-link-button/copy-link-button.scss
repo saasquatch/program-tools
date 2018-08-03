@@ -1,95 +1,163 @@
-@import '../../assets/styles/mixins/buttons';
-@import '../../assets/styles/mixins/vendor-prefixes';
-@import '../../assets/styles/mixins/tab-focus';
-
-@import '../../assets/styles/variables';
-@import '../../assets/styles/base';
-@import '../../assets/styles/shims';
-
-@import '../../assets/styles/labels';
-@import '../../assets/styles/buttons';
-@import '../../assets/styles/responsive-utilities';
-
-button.icon-btn.copy {
-  @include button-variant(white, #5b6165, #5b6165);
-  width: 140px;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  border-left: 0;
-  padding-left: 0;
-  padding-right: 0;
-  position: relative;
-  text-align: left;
-  min-height: 34px;
-
-  @media (max-width: $screen-sm-max) {
-    width: auto;
-
-    .icon {
-      width: 39px;
-      margin-right: 0;
-    }
-  }
-}
-
 sqh-copy-link-button {
-  font-family: 'Lato', sans-serif;
+
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
   display: block;
 
-  input {
-    color: inherit;
-    font: inherit;
-    margin: 0;
-  }
-
   .input-group {
-    width: 100%;
-    max-width: 440px;
-    margin: 0 auto;
+    position: relative;
+    display: table;
   }
 
-  .label-default {
+  #squatch-share-link {
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: white;
+    background-image: none; // Normalizes Firefox on Android default style
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .label {
+    padding: .2em .6em .3em;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: .25em;
     background-color: #737b80;
+  
+    // Empty labels collapse automatically (not available in IE8)
+    &:empty {
+      display: none;
+    }
+  }
+
+  .fade {
+    opacity: 0;
+    -webkit-transition: opacity .25s linear;
+    -o-transition: opacity .25s linear;
+    transition: opacity .25s linear;
+
+    &.in {
+      opacity: 1;
+    }
   }
 
   #squatch-share-notification {
     position: absolute;
-    top: 10px;
+    top: 9px;
     right: 156px;
-    z-index: 100;
+    z-index: 2;
+  }
+
+  .input-group-btn {
+    display: table-cell;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .sqh-copy-btn {
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: 1px solid transparent;
+    white-space: nowrap;
+    border-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    background-color: #5b6165;
+    height: 34px;
+
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+      cursor: not-allowed;
+      pointer-events: none; // Future-proof disabling of clicks
+      opacity: .65;
+      -webkit-box-shadow: none;
+              box-shadow: none;
+    }
+  }
+
+  .icon-btn {
+    color: #fff;
+    width: 140px;
+    border-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    text-align: left;
   
-    @media (max-width: $screen-sm-max) {
+    &:before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      bottom: -1px;
+      background: transparentize(#ffffff, 0.82);
+      width: 40px;
+    }
+  
+    .icon {
+      width: 42px;
+      margin-right: 20px;
+    }
+  }
+
+  .sqh-copy-btn {
+    &:hover,
+    &:focus,
+    &:active {
+      color: white;
+      background-color: darken(#5b6165, 20%);
+      border-color: darken(#5b6165, 24%);
+      transition: background-color .5s;
+    }
+    &:active {
+      background-image: none;
+    }
+  }
+}
+
+
+
+
+// Mobile style to be put into CSS in JS
+
+sqh-copy-link-button {
+  #squatch-share-notification {
+
+    @media (max-width: 500px) {
       right: 50px;
     }
   }
 
-  #squatch-share-link {
-    display: block;
-    width: 100%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.428571429;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;  
-    color: $text-color;
-    background: transparent;
-    cursor: text;
-    position: relative;
-    z-index: 2;
-    float: left;
-    width: 100%;
-    margin-bottom: 0;
-    display: table-cell;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
+  .sqh-copy-btn {
+      @media (max-width: 500px) {
+        width: auto;
+  
+        .icon {
+          width: 39px;
+          margin-right: 0;
+        }
+      }
+  }
+
+  .hidden-sm {
+    @media (min-width: 0px) and (max-width: 500px) {
+      display: none !important;
+    }
   }
 }
-

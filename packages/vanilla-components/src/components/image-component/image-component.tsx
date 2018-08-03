@@ -1,4 +1,5 @@
 import { Component, Prop } from '@stencil/core';
+import { css } from 'emotion';
 
 @Component({
   tag: 'sqh-image-component',
@@ -6,25 +7,28 @@ import { Component, Prop } from '@stencil/core';
 })
 
 export class ImageComponent {
-  @Prop() text: string;
-
-
-
-  // addStyle() {
-  //   const css = `img {
-  //   }`
-  // }
-
+  @Prop() url: string;
+  @Prop() width: number;
+  @Prop() borderradius: number;
+  @Prop() alignment: string;
+  // Option: a text box/code editor that allows for any css rules in this format  [key]:[value];
+  @Prop() css: string;
 
   render() {
-    const imageString = `${this.text}`;
-    // const imageTag = <div> innerHTML={this.imgHTMLAttributes} </div>;
-    console.log(`What I'm getting = ${imageString}`);
-    console.log(`Type of = ${typeof this.text}`)
-    return(
-        <div>
-          <img src={imageString} />
-        </div>
+    const imageString = this.url;
+    const alignment = css `{
+      text-align: ${this.alignment};
+    }`
+    const myStyle = css`{
+      width: ${this.width}px;
+      border-radius: ${this.borderradius}px;
+      ${this.css}
+    }`
+  
+   return(
+    <div class={alignment}>
+      <img src={imageString} class={myStyle}/>
+    </div>
     );
   }
 }

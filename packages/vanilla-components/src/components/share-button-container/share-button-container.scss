@@ -1,9 +1,7 @@
-// MINIMAL STYLING BELOW
-
-$screen-sm-max: 500px;
-
 sqh-share-button-container {
   text-align: center;
+
+  // hides share buttons based on class for desktop and mobile - might end up in CSS in JS because of media queries
   .squatch-share-btn {
 
     &.hidden {
@@ -13,13 +11,13 @@ sqh-share-button-container {
     &.mobile-only {
       display: none;
 
-      @media (max-width: $screen-sm-max) {
+      @media (max-width: 500px) {
         display: block;
       }
     }
 
     &.desktop-only {
-      @media (max-width: $screen-sm-max) {
+      @media (max-width: 500px) {
         display: none;
       }
     }
