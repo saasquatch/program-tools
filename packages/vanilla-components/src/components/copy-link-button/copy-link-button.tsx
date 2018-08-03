@@ -1,7 +1,7 @@
 import { Component, Prop, State } from '@stencil/core';
 import Clipboard from 'clipboard';
-// import { shadeColor, addClass, removeClass } from '../../utilities';
-import { addClass, removeClass } from '../../utilities';
+import { shadeColor, addClass, removeClass } from '../../utilities';
+// import { addClass, removeClass } from '../../utilities';
 
 import { API } from '../../services/WidgetHost';
 
@@ -30,27 +30,27 @@ export class CopyLinkButton {
     console.log("Error loading via GraphQL.", e);
   }
 
-  // addStyle() {
-  //   const css = ` button.icon-btn.copy {
-  //                   background-color: ${this.buttoncolor};
-  //                   border: 1px solid ${this.buttoncolor};
-  //                   color: ${this.textcolor};
-  //                 }
+  addStyle() {
+    const css = ` button.icon-btn.copy {
+                    background-color: ${this.buttoncolor};
+                    border: 1px solid ${this.buttoncolor};
+                    color: ${this.textcolor};
+                  }
                   
-  //                 button.icon-btn.copy:hover {
-  //                   background: ${shadeColor(this.buttoncolor, 10)};
-  //                   border-color: ${shadeColor(this.buttoncolor, 12)};
-  //                   color: ${this.textcolor};
-  //                 }
+                  button.icon-btn.copy:hover {
+                    background: ${shadeColor(this.buttoncolor, 10)};
+                    border-color: ${shadeColor(this.buttoncolor, 12)};
+                    color: ${this.textcolor};
+                  }
                   
-  //                 button.icon-btn.copy:focus {
-  //                   color: ${this.textcolor};
-  //                 } `
-  //   const style = document.createElement('style');
+                  button.icon-btn.copy:focus {
+                    color: ${this.textcolor};
+                  } `
+    const style = document.createElement('style');
 
-  //   style.appendChild(document.createTextNode(css));
-  //   document.getElementsByTagName('head')[0].appendChild(style);
-  // }
+    style.appendChild(document.createTextNode(css));
+    document.getElementsByTagName('head')[0].appendChild(style);
+  }
 
   notify(clipboardNotification, notificationText) {
     const notification = document.getElementById(clipboardNotification.slice(1));
@@ -78,12 +78,12 @@ export class CopyLinkButton {
     clipboard.on('success', this.notifySuccess.bind(this));
     clipboard.on('error', this.notifyFailure.bind(this));
 
-    // this.addStyle();
+    this.addStyle();
   }
 
-  // componentWillUpdate() {
-  //   this.addStyle();
-  // }
+  componentWillUpdate() {
+    this.addStyle();
+  }
 
   render() {
     const copyLinkSection = this.ishidden 

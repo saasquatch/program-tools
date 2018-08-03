@@ -7,13 +7,17 @@ sqh-copy-link-button {
   }
 
   display: block;
+  text-align: center;
 
-  .input-group {
-    position: relative;
-    display: table;
-  }
+
+  // .input-group {
+  //   text-align: center;
+  // }
 
   #squatch-share-link {
+    display: inline-block;
+    max-width: 314px;
+    vertical-align: top;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -62,10 +66,11 @@ sqh-copy-link-button {
   }
 
   .input-group-btn {
-    display: table-cell;
-    width: 1%;
+    display: inline-block;
+    max-width: 145px;
+    // width: 1%;
     white-space: nowrap;
-    vertical-align: middle;
+    // vertical-align: middle;
   }
 
   .sqh-copy-btn {
@@ -77,7 +82,7 @@ sqh-copy-link-button {
     border-radius: 4px;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
-    background-color: #5b6165;
+    // background-color: #5b6165;
     height: 34px;
 
     &.disabled,
@@ -93,7 +98,7 @@ sqh-copy-link-button {
 
   .icon-btn {
     color: #fff;
-    width: 140px;
+    width: 145px;
     border-left: 0;
     padding-left: 0;
     padding-right: 0;
@@ -121,9 +126,9 @@ sqh-copy-link-button {
     &:focus,
     &:active {
       color: white;
-      background-color: darken(#5b6165, 20%);
-      border-color: darken(#5b6165, 24%);
-      transition: background-color .15s;
+      background-color: darken(#5b6165, 10%);
+      border-color: darken(#5b6165, 12%);
+      outline: 0; // removes blue border on interactions
     }
     &:active {
       background-image: none;
@@ -138,9 +143,8 @@ sqh-copy-link-button {
 
 sqh-copy-link-button {
   #squatch-share-notification {
-
     @media (max-width: 500px) {
-      right: 50px;
+      right: 60px;
     }
   }
 

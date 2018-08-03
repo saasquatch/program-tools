@@ -7,34 +7,18 @@ sqh-share-button {
     text-align: center;
     touch-action: manipulation; // ensures a double tap to zoom doesn't delay click events loading
     cursor: pointer;
-    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
-    white-space: nowrap; // Keeps button text from starting new line
+    background-image: none; // still needed? Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    white-space: nowrap;
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.428571429;
     border-radius: 4px;
 
-    // NOW HANDLED IN THE CCS IN JS - IS THAT WHERE WE WANT IT TO BE? ARE THE BUTTON COLORS AND TEXT GOING TO BE EDITABLE?
-    // &,
-    // &:active,
-    // &.active {
-    //   &:focus,
-    //   &.focus {
-    //     // @include tab-focus();
-    //     // Default
-    //     outline: thin dotted;
-    //     // WebKit
-    //     outline: 50px auto -webkit-focus-ring-color;
-    //     outline-offset: -2px;
-    //   }
-    // }
-  
-    // &:hover,
-    // &:focus,
-    // &.focus {
-    //   color: white;
-    //   text-decoration: none;
-    // }
+    &:focus {
+      outline: 0; // removes blue border on interactions
+    }
+
+    // Normalizing code for active buttons from bootstrap maybe, is this still necessary?
   
     // &:active,
     // &.active {
@@ -66,43 +50,17 @@ sqh-share-button {
       width: 16px;
     }
   
-    // UNIQUE DEFAULT ICON STYLES (Might be moved to default props for these icons)
-  
-    // TWITTER
-    i.icon-twitter {
-      left: 12px;
+    &:before {
+      bottom: -1px;
+      background: rgba(255,255,255,0.18);
+      content: '';
+      left: -1px;
+      position: absolute;
+      top: -1px;
+      width: 40px;
     }
-
-    // SMS
-    i.icon-chat {
-      left: 11px;
-      top: 9px;
-    }
-  
-    // WHATSAPP
-    i.icon-whatsapp {
-      font-size: 1.4em;
-      left: 12px;
-    }
-  
-    // EMAIL
-    i.icon-mail {
-      left: 13px;
-      top: 7px;
-    }
-  
-      &:before {
-        bottom: -1px;
-        background: rgba(255,255,255,0.18);
-        content: '';
-        left: -1px;
-        position: absolute;
-        top: -1px;
-        width: 40px;
-      }
   }
 
-  
   .squatch-share-btn {
     width: 120px;
     margin: 5px;
