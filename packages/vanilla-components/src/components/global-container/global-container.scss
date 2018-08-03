@@ -1,12 +1,14 @@
 body {
-  margin: 0px;
-  padding: 0px;
+  margin: 0px; // resets defaults
+  padding: 0px; // resets defaults
   font-family: sans-serif;
 }
 
 sqh-global-container {
-  display: block;
   > div {
+    max-width: 500px;
+    display: block;
+    margin: 0 auto;
     padding: 0 10px;
   }
 }

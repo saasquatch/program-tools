@@ -65,7 +65,7 @@ export class ShareButton {
       }
     `;
     
-    const classes = [`btn squatch-share-btn`, this.className, this.displayrule, style].join(" ");
+    const classes = [`squatch-share-btn`, this.className, this.displayrule, style].join(" ");
 
     return (
       <a class={classes} href={this.url} target={target}>
