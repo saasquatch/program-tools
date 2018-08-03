@@ -110,6 +110,7 @@ declare global {
       'fontcolor': string;
       'fontfamily': string;
       'fontsize': string;
+      'poweredby': boolean;
       'width': string;
     }
   }
@@ -137,6 +138,7 @@ declare global {
       'fontcolor'?: string;
       'fontfamily'?: string;
       'fontsize'?: string;
+      'poweredby'?: boolean;
       'width'?: string;
     }
   }
@@ -611,6 +613,8 @@ declare global {
   namespace StencilComponents {
     interface SqhStatsContainer {
       'ishidden': boolean;
+      'paddingbottom': string;
+      'paddingtop': string;
     }
   }
 
@@ -634,6 +638,8 @@ declare global {
   namespace JSXElements {
     export interface SqhStatsContainerAttributes extends HTMLAttributes {
       'ishidden'?: boolean;
+      'paddingbottom'?: string;
+      'paddingtop'?: string;
     }
   }
 }

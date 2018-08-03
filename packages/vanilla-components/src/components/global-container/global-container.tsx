@@ -9,6 +9,7 @@ export class GlobalContainer {
   @Prop() fontfamily: string;
   @Prop() fontcolor: string;
   @Prop() fontsize: string;
+  @Prop() poweredby: boolean = true;
   @Prop() width: string = "500";
   
   addStyle() {
@@ -42,6 +43,12 @@ export class GlobalContainer {
   }
 
   render() {
-    return <div><slot /></div>;
+    return <div>
+      <slot />
+      {this.poweredby
+        ? <div>Powered by SaaSquatch</div>
+        : ''
+      }
+    </div>;
   }
 }
