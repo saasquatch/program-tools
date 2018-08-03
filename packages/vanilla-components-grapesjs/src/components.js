@@ -1,5 +1,6 @@
 export default (editor, config = {}) => {
   // Get DomComponents module
+  // Get DomComponents module
   var comps = editor.DomComponents;
 
   // Get the model and the view from the default Component type
@@ -548,6 +549,9 @@ export default (editor, config = {}) => {
           uiSchema: {
             ishidden: { 'ui:widget': 'hidden' },
             statcolor: { 'ui:widget': 'color' },
+            stattype: {
+              "ui:widget": "StatTypeSelectWidget",
+            }
           }
         })
       },

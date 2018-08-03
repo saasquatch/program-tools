@@ -59,7 +59,7 @@ const demoUser = {
   rewardsMonth: { totalCount: 7 },
   rewardsWeek: { totalCount: 4 },
   rewardBalances: [
-    { type: "CREDIT", unit: "CENTS", value: 17000, prettyValue: "$170.00" },
+    { type: "CREDIT", unit: "CENTS", value: 17000, prettyValue: "$170.00", totalAssignedCredit: "170000", totalRedeemedCredit: "0" },
     { type: "PCT_DISCOUNT", unit: "%", value: 15, prettyValue: "15%" },
   ],
 }
