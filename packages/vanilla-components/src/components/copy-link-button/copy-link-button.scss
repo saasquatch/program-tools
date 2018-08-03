@@ -96,6 +96,10 @@ sqh-copy-link-button {
     border-top-left-radius: 0;
     height: 34px;
 
+    &:focus {
+      outline: 0; // removes blue border on interactions
+    }
+
     &.disabled,
     &[disabled],
     fieldset[disabled] & {
@@ -127,21 +131,7 @@ sqh-copy-link-button {
   
     .icon {
       width: 42px;
-      margin-right: 20px;
-    }
-  }
-
-  .sqh-copy-btn {
-    &:hover,
-    &:focus,
-    &:active {
-      color: white;
-      background-color: darken(#5b6165, 10%);
-      border-color: darken(#5b6165, 12%);
-      outline: 0; // removes blue border on interactions
-    }
-    &:active {
-      background-image: none;
+      margin-right: 30px;
     }
   }
 }

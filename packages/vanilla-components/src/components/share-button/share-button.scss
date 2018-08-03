@@ -1,7 +1,8 @@
 sqh-share-button {
   display: inline-block;
 
-  .btn {
+  .squatch-share-btn {
+    font-family: 'Lato', sans-serif;
     display: block;
     text-align: center;
     touch-action: manipulation; // ensures a double tap to zoom doesn't delay click events loading
@@ -12,6 +13,13 @@ sqh-share-button {
     font-size: 14px;
     line-height: 1.428571429;
     border-radius: 4px;
+    width: 120px;
+    margin: 5px;
+    
+    .share-btn-text {
+      text-align: center;
+      padding-left: 30px;
+    }
 
     &:focus {
       outline: 0; // removes blue border on interactions
@@ -50,16 +58,6 @@ sqh-share-button {
       position: absolute;
       top: -1px;
       width: 40px;
-    }
-  }
-
-  .squatch-share-btn {
-    width: 120px;
-    margin: 5px;
-  
-    .share-btn-text {
-      text-align: center;
-      padding-left: 30px;
     }
   }
 }

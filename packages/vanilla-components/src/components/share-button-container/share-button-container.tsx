@@ -5,9 +5,7 @@ import { Component, Prop } from '@stencil/core';
   styleUrl: 'share-button-container.scss'
 })
 export class ShareButtonContainer {
-  @Prop() maxwidth: string = "441px";
   @Prop() ishidden: boolean = false;
-
 
   // Email button properties and default settings
   @Prop() emaildisplayrule: string = "mobile-and-desktop";
@@ -105,20 +103,6 @@ export class ShareButtonContainer {
   @Prop() messengericonvertical: number;
   @Prop() messengericonsize: number;
   
-  addStyle() {
-    const css = ` sqh-share-button-container {
-                    max-width: ${this.maxwidth};
-                  } `
-    const style = document.createElement('style');
-
-    style.appendChild(document.createTextNode(css));
-    document.getElementsByTagName('head')[0].appendChild(style);
-  }
-
-  componentDidLoad() {
-    this.addStyle();
-  }
-
   render() {
     const emailBtn = <sqh-share-button 
                         displayrule={this.emaildisplayrule} 
@@ -225,7 +209,7 @@ export class ShareButtonContainer {
                           />
 
     const shareSection = this.ishidden ? `` :
-                          <div class="squatch-share-container">
+                          <div>
                             {emailBtn}
                             {facebookBtn}
                             {twitterBtn}

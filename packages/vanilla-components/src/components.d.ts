@@ -107,11 +107,8 @@ declare global {
   namespace StencilComponents {
     interface SqhGlobalContainer {
       'background': string;
-      'fontcolor': string;
       'fontfamily': string;
-      'fontsize': string;
       'poweredby': boolean;
-      'width': string;
     }
   }
 
@@ -135,11 +132,8 @@ declare global {
   namespace JSXElements {
     export interface SqhGlobalContainerAttributes extends HTMLAttributes {
       'background'?: string;
-      'fontcolor'?: string;
       'fontfamily'?: string;
-      'fontsize'?: string;
       'poweredby'?: boolean;
-      'width'?: string;
     }
   }
 }
@@ -354,7 +348,6 @@ declare global {
       'linkedintext': string;
       'linkedintextcolor': string;
       'linkedinurl': string;
-      'maxwidth': string;
       'messengerbackgroundcolor': string;
       'messengerclassName': string;
       'messengerdisplayrule': string;
@@ -458,7 +451,6 @@ declare global {
       'linkedintext'?: string;
       'linkedintextcolor'?: string;
       'linkedinurl'?: string;
-      'maxwidth'?: string;
       'messengerbackgroundcolor'?: string;
       'messengerclassName'?: string;
       'messengerdisplayrule'?: string;
