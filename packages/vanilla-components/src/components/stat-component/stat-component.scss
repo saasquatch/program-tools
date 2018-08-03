@@ -3,6 +3,10 @@ sqh-stat-component{
   width: 140px;
   float: left;
 
+  > div {
+    padding: 10px;
+  }
+
   .stat-value {
     font-size: 30px;
     line-height: 20px;
@@ -22,9 +26,8 @@ sqh-stat-component{
 
 sqh-stat-component {
   @media (max-width: 500px) {
-    width: 90%;
+    width: 100%;
     text-align: left;
-    padding: 10px;
     background: #f2f2f2;
     border: 1px solid #ddd;
 

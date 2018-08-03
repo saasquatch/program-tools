@@ -40,4 +40,8 @@ export class GlobalContainer {
   componentWillUpdate() {
     this.addStyle();
   }
+
+  render() {
+    return <div><slot /></div>;
+  }
 }

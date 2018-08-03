@@ -332,8 +332,12 @@ declare global {
       'emailtextcolor': string;
       'emailurl': string;
       'facebookbackgroundcolor': string;
+      'facebookclassName': string;
       'facebookdisplayrule': string;
       'facebookicon': string;
+      'facebookiconhorizontal': number;
+      'facebookiconsize': number;
+      'facebookiconvertical': number;
       'facebooktext': string;
       'facebooktextcolor': string;
       'facebookurl': string;
@@ -342,6 +346,9 @@ declare global {
       'linkedinclassName': string;
       'linkedindisplayrule': string;
       'linkedinicon': string;
+      'linkediniconhorizontal': number;
+      'linkediniconsize': number;
+      'linkediniconvertical': number;
       'linkedintext': string;
       'linkedintextcolor': string;
       'linkedinurl': string;
@@ -350,6 +357,9 @@ declare global {
       'messengerclassName': string;
       'messengerdisplayrule': string;
       'messengericon': string;
+      'messengericonhorizontal': number;
+      'messengericonsize': number;
+      'messengericonvertical': number;
       'messengertext': string;
       'messengertextcolor': string;
       'messengerurl': string;
@@ -357,6 +367,9 @@ declare global {
       'pinterestclassName': string;
       'pinterestdisplayrule': string;
       'pinteresticon': string;
+      'pinteresticonhorizontal': number;
+      'pinteresticonsize': number;
+      'pinteresticonvertical': number;
       'pinteresttext': string;
       'pinteresttextcolor': string;
       'pinteresturl': string;
@@ -364,6 +377,9 @@ declare global {
       'smsclassName': string;
       'smsdisplayrule': string;
       'smsicon': string;
+      'smsiconhorizontal': number;
+      'smsiconsize': number;
+      'smsiconvertical': number;
       'smstext': string;
       'smstextcolor': string;
       'smsurl': string;
@@ -371,6 +387,9 @@ declare global {
       'twitterclassName': string;
       'twitterdisplayrule': string;
       'twittericon': string;
+      'twittericonhorizontal': number;
+      'twittericonsize': number;
+      'twittericonvertical': number;
       'twittertext': string;
       'twittertextcolor': string;
       'twitterurl': string;
@@ -378,6 +397,9 @@ declare global {
       'whatsappclassName': string;
       'whatsappdisplayrule': string;
       'whatsappicon': string;
+      'whatsappiconhorizontal': number;
+      'whatsappiconsize': number;
+      'whatsappiconvertical': number;
       'whatsapptext': string;
       'whatsapptextcolor': string;
       'whatsappurl': string;
@@ -414,8 +436,12 @@ declare global {
       'emailtextcolor'?: string;
       'emailurl'?: string;
       'facebookbackgroundcolor'?: string;
+      'facebookclassName'?: string;
       'facebookdisplayrule'?: string;
       'facebookicon'?: string;
+      'facebookiconhorizontal'?: number;
+      'facebookiconsize'?: number;
+      'facebookiconvertical'?: number;
       'facebooktext'?: string;
       'facebooktextcolor'?: string;
       'facebookurl'?: string;
@@ -424,6 +450,9 @@ declare global {
       'linkedinclassName'?: string;
       'linkedindisplayrule'?: string;
       'linkedinicon'?: string;
+      'linkediniconhorizontal'?: number;
+      'linkediniconsize'?: number;
+      'linkediniconvertical'?: number;
       'linkedintext'?: string;
       'linkedintextcolor'?: string;
       'linkedinurl'?: string;
@@ -432,6 +461,9 @@ declare global {
       'messengerclassName'?: string;
       'messengerdisplayrule'?: string;
       'messengericon'?: string;
+      'messengericonhorizontal'?: number;
+      'messengericonsize'?: number;
+      'messengericonvertical'?: number;
       'messengertext'?: string;
       'messengertextcolor'?: string;
       'messengerurl'?: string;
@@ -439,6 +471,9 @@ declare global {
       'pinterestclassName'?: string;
       'pinterestdisplayrule'?: string;
       'pinteresticon'?: string;
+      'pinteresticonhorizontal'?: number;
+      'pinteresticonsize'?: number;
+      'pinteresticonvertical'?: number;
       'pinteresttext'?: string;
       'pinteresttextcolor'?: string;
       'pinteresturl'?: string;
@@ -446,6 +481,9 @@ declare global {
       'smsclassName'?: string;
       'smsdisplayrule'?: string;
       'smsicon'?: string;
+      'smsiconhorizontal'?: number;
+      'smsiconsize'?: number;
+      'smsiconvertical'?: number;
       'smstext'?: string;
       'smstextcolor'?: string;
       'smsurl'?: string;
@@ -453,6 +491,9 @@ declare global {
       'twitterclassName'?: string;
       'twitterdisplayrule'?: string;
       'twittericon'?: string;
+      'twittericonhorizontal'?: number;
+      'twittericonsize'?: number;
+      'twittericonvertical'?: number;
       'twittertext'?: string;
       'twittertextcolor'?: string;
       'twitterurl'?: string;
@@ -460,6 +501,9 @@ declare global {
       'whatsappclassName'?: string;
       'whatsappdisplayrule'?: string;
       'whatsappicon'?: string;
+      'whatsappiconhorizontal'?: number;
+      'whatsappiconsize'?: number;
+      'whatsappiconvertical'?: number;
       'whatsapptext'?: string;
       'whatsapptextcolor'?: string;
       'whatsappurl'?: string;

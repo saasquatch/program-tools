@@ -1,4 +1,12 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
+}
+
 sqh-global-container {
   display: block;
-  // padding: 5px;
+  > div {
+    padding: 0 10px;
+  }
 }
