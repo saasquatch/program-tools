@@ -42,6 +42,6 @@ export class GlobalContainer {
   }
 
   render() {
-    return <div></div>;
+    return <div><slot /></div>;
   }
 }

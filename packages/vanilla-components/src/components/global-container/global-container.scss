@@ -6,7 +6,7 @@ body {
 
 sqh-global-container {
   display: block;
-  div {
+  > div {
     padding: 0 10px;
   }
 }
