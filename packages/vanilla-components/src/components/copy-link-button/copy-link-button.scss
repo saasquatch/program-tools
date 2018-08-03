@@ -14,7 +14,7 @@ sqh-copy-link-button {
     display: table;
     border-collapse: separate;
     width: 100%;
-    max-width: 459px;
+    max-width: 451px;
     margin: 0 auto;
   }
 
@@ -112,7 +112,7 @@ sqh-copy-link-button {
   }
 
   .icon-btn {
-    width: 145px;
+    width: 142px;
     border-left: 0;
     padding-left: 0;
     padding-right: 0;
@@ -142,6 +142,12 @@ sqh-copy-link-button {
 // Mobile style to be put into CSS in JS
 
 sqh-copy-link-button {
+  @media (max-width: 500px) {
+    .input-group {
+      max-width: 100%;
+    }
+  }
+
   #squatch-share-notification {
     @media (max-width: 500px) {
       right: 60px;
