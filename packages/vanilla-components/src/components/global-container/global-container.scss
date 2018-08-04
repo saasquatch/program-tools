@@ -2,9 +2,16 @@ body {
   margin: 0px; // resets defaults
   padding: 0px; // resets defaults
   font-family: sans-serif;
+
 }
 
 sqh-global-container {
+  * {
+    -webkit-box-sizing: border-box; // maintains padding from local to editor
+    -moz-box-sizing: border-box; // maintains padding from local to editor
+    box-sizing: border-box; // maintains padding from local to editor
+  }
+
   > div {
     max-width: 500px;
     display: block;
