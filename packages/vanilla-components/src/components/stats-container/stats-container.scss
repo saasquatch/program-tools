@@ -11,5 +11,10 @@ sqh-stats-container {
 sqh-stats-container {
   @media (max-width: 500px) {
     flex-direction: column;
+    
+    div {
+      flex-wrap: wrap;
+      width: 100%;
+    }
   }
 }
