@@ -15,8 +15,8 @@ export class ShareButtonContainer {
   @Prop() emailicon: string = "mail";
   @Prop() emailurl: string = "http://short.staging.referralsaasquatch.com/mJjDFl";
   @Prop() emailclassName: string = "email-share";
-  @Prop() emailiconhorizontal: number = 12;
-  @Prop() emailiconvertical: number = 8;
+  @Prop() emailiconhorizontal: number;
+  @Prop() emailiconvertical: number;
   @Prop() emailiconsize: number;
 
   // FaceBook button properties and default settings
@@ -27,9 +27,9 @@ export class ShareButtonContainer {
   @Prop() facebookicon: string = "facebook";
   @Prop() facebookurl: string = "http://short.staging.referralsaasquatch.com/mwjDFl";
   @Prop() facebookclassName: string;
-  @Prop() facebookiconhorizontal: number;
+  @Prop() facebookiconhorizontal: number = 9;
   @Prop() facebookiconvertical: number;
-  @Prop() facebookiconsize: number;
+  @Prop() facebookiconsize: number = 1.2;
 
   // Twitter button properties and default settings
   @Prop() twitterdisplayrule: string = "mobile-and-desktop";
@@ -39,9 +39,9 @@ export class ShareButtonContainer {
   @Prop() twittericon: string = "twitter";
   @Prop() twitterurl: string = "http://short.staging.referralsaasquatch.com/mcjDFl";
   @Prop() twitterclassName: string;
-  @Prop() twittericonhorizontal: number = 12;
+  @Prop() twittericonhorizontal: number = 9;
   @Prop() twittericonvertical: number;
-  @Prop() twittericonsize: number;
+  @Prop() twittericonsize: number = 1.2;
 
   // SMS button properties and default settings
   @Prop() smsdisplayrule: string = "mobile-only";
@@ -51,8 +51,8 @@ export class ShareButtonContainer {
   @Prop() smsicon: string = "chat";
   @Prop() smsurl: string = "http://short.staging.referralsaasquatch.com/m2jDFl";
   @Prop() smsclassName: string;
-  @Prop() smsiconhorizontal: number = 11;
-  @Prop() smsiconvertical: number = 9;
+  @Prop() smsiconhorizontal: number;
+  @Prop() smsiconvertical: number;
   @Prop() smsiconsize: number;
 
   // Whatsapp button properties and default settings
@@ -63,8 +63,8 @@ export class ShareButtonContainer {
   @Prop() whatsappicon: string = "whatsapp";
   @Prop() whatsappurl: string = "http://short.staging.referralsaasquatch.com/mZjDFl";
   @Prop() whatsappclassName: string;
-  @Prop() whatsappiconhorizontal: number = 12;
-  @Prop() whatsappiconvertical: number = 5;
+  @Prop() whatsappiconhorizontal: number = 7;
+  @Prop() whatsappiconvertical: number = 2;
   @Prop() whatsappiconsize: number = 1.4;
   
   // LinkedIn button properties and default settings
@@ -77,7 +77,7 @@ export class ShareButtonContainer {
   @Prop() linkedinclassName: string;
   @Prop() linkediniconhorizontal: number;
   @Prop() linkediniconvertical: number;
-  @Prop() linkediniconsize: number;
+  @Prop() linkediniconsize: number = 1.2;
 
   // Pinterest button properties and default settings
   @Prop() pinterestdisplayrule: string = "mobile-and-desktop";
@@ -87,9 +87,9 @@ export class ShareButtonContainer {
   @Prop() pinteresticon: string = "pinterest";
   @Prop() pinteresturl: string = "http://short.staging.referralsaasquatch.com/mfjDFl";
   @Prop() pinterestclassName: string;
-  @Prop() pinteresticonhorizontal: number;
-  @Prop() pinteresticonvertical: number;
-  @Prop() pinteresticonsize: number;
+  @Prop() pinteresticonhorizontal: number = 9;
+  @Prop() pinteresticonvertical: number = 4;
+  @Prop() pinteresticonsize: number = 1.2;
   
   // Messenger button properties and default settings
   @Prop() messengerdisplayrule: string = "hidden";
@@ -99,9 +99,9 @@ export class ShareButtonContainer {
   @Prop() messengericon: string = "messenger";
   @Prop() messengerurl: string = "http://short.staging.referralsaasquatch.com/mgjDFl";
   @Prop() messengerclassName: string;
-  @Prop() messengericonhorizontal: number;
-  @Prop() messengericonvertical: number;
-  @Prop() messengericonsize: number;
+  @Prop() messengericonhorizontal: number = 7;
+  @Prop() messengericonvertical: number = 3;
+  @Prop() messengericonsize: number = 1.4;
   
   render() {
     const emailBtn = <sqh-share-button 

@@ -14,9 +14,9 @@ export class CopyLinkButton {
   @Prop() copysuccess: string = "copied!";
   @Prop() copyfailure: string = "Press Ctrl+C to copy";
   @Prop() ishidden: boolean = false;
-  @Prop() buttoncolor: string = "#FF69B4";
+  @Prop() buttoncolor: string = "#5b6165";
   @Prop() textcolor: string = "#fff";
-  @State() sharelink: string = "Testing 123";
+  @State() sharelink: string;
 
   componentWillLoad() {
     return API.graphql.getShareLink().then(res => {
