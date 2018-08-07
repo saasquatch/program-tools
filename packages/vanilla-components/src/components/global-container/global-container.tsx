@@ -18,7 +18,7 @@ export class GlobalContainer {
     return <div class={myStyle}>
       <slot />
       {this.poweredby
-        ? <div>Powered by SaaSquatch</div>
+        ? <a class="sqh-attribution" href="https://get.referralsaasquatch.com/powered-by/?co=GraphQL%20testing" target="_blank">Powered By Saasquatch</a>
         : ''
       }
     </div>

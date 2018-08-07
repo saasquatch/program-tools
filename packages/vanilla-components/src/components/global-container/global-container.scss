@@ -7,8 +7,6 @@ body {
 
 sqh-global-container {
   * {
-    // -webkit-box-sizing: border-box; 
-    // -moz-box-sizing: border-box;
     box-sizing: border-box; // respects width set and puts padding inside of set width
   }
 
@@ -17,5 +15,13 @@ sqh-global-container {
     display: block;
     margin: 0 auto;
     padding: 0 10px;
+  }
+
+  .sqh-attribution {
+    display: inherit;
+    text-align: center;
+    font-size: 10px;
+    color: lightgray;
+    text-decoration: none;
   }
 }
