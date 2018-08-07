@@ -32,6 +32,7 @@ export class TextComponent {
       color: ${this.color || 'inherit'};
       padding-top: ${this.paddingtop ? this.paddingtop+ 'px' : 'inherit'};
       padding-bottom: ${this.paddingbottom ? this.paddingbottom + 'px' : 'inherit'};
+      overflow-wrap: break-word;
     `;
 
     const divStyle = css`

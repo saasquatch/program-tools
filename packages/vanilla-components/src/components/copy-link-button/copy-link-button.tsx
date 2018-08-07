@@ -62,6 +62,7 @@ export class CopyLinkButton {
       background-color: ${this.buttoncolor};
       border: 1px solid ${this.buttoncolor};
       color: ${this.textcolor};
+      font-family: ${'inherit'};
       
       &:hover {
         background: ${shadeColor(this.buttoncolor, 10)};

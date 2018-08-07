@@ -2,7 +2,6 @@ sqh-share-button {
   display: inline-block;
 
   .squatch-share-btn {
-    font-family: 'Lato', sans-serif;
     display: block;
     text-align: center;
     touch-action: manipulation; // ensures a double tap to zoom doesn't delay click events loading
@@ -13,7 +12,7 @@ sqh-share-button {
     font-size: 14px;
     line-height: 1.428571429;
     border-radius: 4px;
-    width: 120px;
+    width: 140px;
     margin: 5px;
     
     .share-btn-text {

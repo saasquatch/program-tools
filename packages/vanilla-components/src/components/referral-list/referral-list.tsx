@@ -100,6 +100,7 @@ export class ReferralList {
     }
 
     const clz = css`
+    
       .squatch-referrals-icon.icon-ok-circled {
         color: ${ this.rewardcolor };
       }
@@ -120,6 +121,9 @@ export class ReferralList {
       .squatch-referrals-description,
       .squatch-referrals-value-content {
         color: ${ this.referraltextcolor };
+      }
+      .squatch-referrals-scroll-action {
+        font-family: ${'inherit'};
       }
     `
 
