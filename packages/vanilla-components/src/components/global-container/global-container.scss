@@ -7,9 +7,9 @@ body {
 
 sqh-global-container {
   * {
-    -webkit-box-sizing: border-box; // maintains padding from local to editor
-    -moz-box-sizing: border-box; // maintains padding from local to editor
-    box-sizing: border-box; // maintains padding from local to editor
+    // -webkit-box-sizing: border-box; 
+    // -moz-box-sizing: border-box;
+    box-sizing: border-box; // respects width set and puts padding inside of set width
   }
 
   > div {
