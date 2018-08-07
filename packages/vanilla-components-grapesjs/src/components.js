@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactDOM from "react-dom";
+
 export default (editor, config = {}) => {
   // Get DomComponents module
   var comps = editor.DomComponents;
