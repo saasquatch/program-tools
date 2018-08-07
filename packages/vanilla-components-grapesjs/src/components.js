@@ -1,6 +1,5 @@
 export default (editor, config = {}) => {
   // Get DomComponents module
-  // Get DomComponents module
   var comps = editor.DomComponents;
 
   // Get the model and the view from the default Component type
@@ -32,6 +31,32 @@ export default (editor, config = {}) => {
     ]
   }
 
+  const poweredByUi = editor.canWhitelabel ?
+  {'ui:disabled': false }:
+  {'ui:disabled': true, 'ui:help': <div>Can only be disabled on <span className="label">Pro</span> plans</div>, "ui:title": <span><span className="ico ico-lock"></span> Show Powered By</span> };
+  
+  const markdownUi = {
+    'ui:widget': (props) => {
+      const { schema, id, value, required, disabled, readonly, label, autofocus, onChange } = props;
+        
+      return (<div className={`checkbox ${disabled || readonly ? "disabled" : ""}`}>
+        <label>
+          <input
+            type="checkbox"
+            id={id}
+            checked={typeof value === "undefined" ? false : value}
+            required={required}
+            disabled={disabled || readonly}
+            autoFocus={autofocus}
+            onChange={event => onChange(event.target.checked)}
+          />
+          <span>Use markdown. <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">More Info.</a></span>
+        </label>
+      </div>)
+    },
+    'ui:title': <span></span>
+  };
+
   comps.addType('sqh-global-container', {
     // Define the Model
     model: defaultModel.extend({
@@ -44,9 +69,11 @@ export default (editor, config = {}) => {
         traits: [
           {type: 'string', title: 'Background Color', name: 'background', value: '#FFFFFF'},
           {type: 'string', title: 'Font Family', name: 'fontfamily', value: 'Helvetica Neue,Helvetica,Arial,sans-serif', ...fontFamilyOpts},
+          {type: 'boolean', title: 'Show Powered By', name: 'poweredby', value: true}
         ],
         uiSchema: {
           'background': { 'ui:widget': 'color' },
+          'poweredby': poweredByUi
         }
       })
     },
@@ -85,11 +112,15 @@ export default (editor, config = {}) => {
           { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
           { type: 'integer', title: 'Font Size', name: 'fontsize', value: 16 },
           { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
+          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
+
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
           'color': { 'ui:widget': 'color' },
           'fontsize': { 'ui:widget': 'updown' },
+          'ismarkdown': markdownUi
         }
       }),
     },
@@ -117,7 +148,13 @@ export default (editor, config = {}) => {
           { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
           { type: 'integer', title: 'Font Size', name: 'fontsize', value: 28 },
           { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
-        ]
+          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
+        ],
+        uiSchema: {
+          'ishidden': { 'ui:widget': 'hidden' },
+          'ismarkdown': markdownUi
+        }
       })
     },
     {
@@ -140,6 +177,7 @@ export default (editor, config = {}) => {
           'ishidden': { 'ui:widget': 'hidden' },
           'color': { 'ui:widget': 'color' },
           'fontsize': { 'ui:widget': 'updown' },
+          'ismarkdown': markdownUi
         }
       })
     },
@@ -165,6 +203,8 @@ export default (editor, config = {}) => {
           { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
           { type: 'integer', title: 'Font Size', name: 'fontsize', value: 14 },
           { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
+          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
         ]
       })
     },
@@ -185,12 +225,16 @@ export default (editor, config = {}) => {
         name: 'Banner',
         traits: [
           { type: 'boolean', title: 'Hidden', name: 'ishidden', value: true },
-          { type: 'string', title: 'Image URL', name: 'background', format: 'uri' },
-          { type: 'integer', title: 'Height', name: 'height' },
+          { type: 'string', title: 'Image URL', name: 'background', value: 'http://res.cloudinary.com/saasquatch/image/upload/v1517426138/Optimalprint_FB_OG_default_jky5tu.jpg', format: 'uri' },
+          { type: 'string', title: 'Height', name: 'height' },
+          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
+          { type: 'string', title: 'Content', name: 'text', value: 'Text in banner' },
+          { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
-          'height': { 'ui:widget': 'updown' },
+          'color': { 'ui:widget': 'color' }
         }
       })
     },
@@ -501,6 +545,8 @@ export default (editor, config = {}) => {
           
           traits: [
             { type: 'boolean', name: 'ishidden', value: false },
+            { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
+            { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
           ],
 
           uiSchema: {
@@ -541,8 +587,8 @@ export default (editor, config = {}) => {
           
           traits: [
             { type: 'boolean', name: 'ishidden', value: false },
-            { type: 'string', name: 'stattype', value: '' },
-            { type: 'string', name: 'statdescription', value: '' },
+            { type: 'string', name: 'stattype', title: 'Stat Type', value: '' },
+            { type: 'string', name: 'statdescription', title: 'Stat Description',value: '' },
             { type: 'string', name: 'statcolor', value: '' },
           ],
 
@@ -721,17 +767,20 @@ export default (editor, config = {}) => {
           { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
           { type: 'integer', title: 'Font Size', name: 'fontsize', value: 16 },
           { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
+          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
           'color': { 'ui:widget': 'color' },
           'fontsize': { 'ui:widget': 'updown' },
+          'ismarkdown': markdownUi
         }
       })
     },
     {
       isComponent: function(el) {
-        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('type') === 'footer'){
+        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhfooter')){
           return {type: 'sqh-footer'};
         }
       },
