@@ -1,6 +1,7 @@
 import { Component, Prop, State, Element, Listen } from '@stencil/core';
 import { API } from '../../services/WidgetHost';
 import pathToRegexp from "path-to-regexp";
+import { css } from 'emotion';
 
 @Component({
   tag: 'sqh-stats-container',
@@ -9,6 +10,8 @@ import pathToRegexp from "path-to-regexp";
 export class StatsContainer {
   @Element() container: HTMLElement;
   @Prop() ishidden: boolean = false;
+  @Prop() paddingtop: string = '10';
+  @Prop() paddingbottom: string = '10';
   @State() loading: boolean;
   @State() stats: object;
 
@@ -95,12 +98,12 @@ export class StatsContainer {
   }
 
   render() {
-    if(this.ishidden) {
-      this.container.setAttribute('style', 'display: none');
-    } else {
-      this.container.setAttribute('style', '');
-    }
+    const containerStyle = css`
+      display: ${this.ishidden ? 'none' : 'inherit'};
+      padding-top: ${this.paddingtop}px;
+      padding-bottom: ${this.paddingbottom}px;
+    `;
 
-    return <slot />;
+    return <div class={containerStyle}><slot /></div>;
   }
 }

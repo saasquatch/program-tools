@@ -37,9 +37,12 @@ module.exports = (env = {}) => {
           test: /\.js$/,
           loader: 'babel-loader',
           include: /src/,
+          query: {
+            presets: ['react', 'es2015']
+          }
       }],
     },
-    externals: {'grapesjs': 'grapesjs'},
+    externals: {'grapesjs': 'grapesjs', 'react': 'React', 'react-dom': 'ReactDOM'},
     plugins: plugins,
   };
 }

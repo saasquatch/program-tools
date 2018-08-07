@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/vanilla-components-assets",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "Assets for the widget",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

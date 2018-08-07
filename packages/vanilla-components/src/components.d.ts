@@ -108,6 +108,7 @@ declare global {
     interface SqhGlobalContainer {
       'background': string;
       'fontfamily': string;
+      'poweredby': boolean;
     }
   }
 
@@ -132,6 +133,7 @@ declare global {
     export interface SqhGlobalContainerAttributes extends HTMLAttributes {
       'background'?: string;
       'fontfamily'?: string;
+      'poweredby'?: boolean;
     }
   }
 }
@@ -603,6 +605,8 @@ declare global {
   namespace StencilComponents {
     interface SqhStatsContainer {
       'ishidden': boolean;
+      'paddingbottom': string;
+      'paddingtop': string;
     }
   }
 
@@ -626,6 +630,8 @@ declare global {
   namespace JSXElements {
     export interface SqhStatsContainerAttributes extends HTMLAttributes {
       'ishidden'?: boolean;
+      'paddingbottom'?: string;
+      'paddingtop'?: string;
     }
   }
 }
