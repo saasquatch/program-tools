@@ -37,7 +37,6 @@ export class TextComponent {
 
     const divStyle = css`
       background: ${this.background ? this.background.match(regex) ? `url(${this.background}) no-repeat center center;` : this.background : 'inherit'};
-      background-size: 100% auto;
       height: ${this.height || 'inherit'}
     `;
 
