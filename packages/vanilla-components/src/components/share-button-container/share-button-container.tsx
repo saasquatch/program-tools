@@ -107,12 +107,12 @@ export class ShareButtonContainer {
   @State() messageLink: string;
 
   componentWillLoad() {
-    return this.getMessageLinks();
+    return this.getMessageLinks('FACEBOOK');
   }
 
-
-  getMessageLinks() {
-    return API.graphql.getMessageLinks('FACEBOOK').then(res => {
+  // TODO: test this function with real (not demo) data
+  getMessageLinks(type) {
+    return API.graphql.getMessageLinks(type).then(res => {
       this.messageLink = res;
     }).catch(e => {
       this.onError(e);
@@ -124,7 +124,6 @@ export class ShareButtonContainer {
   }
   
   render() {
-    console.log('message state', this.messageLink)
     const emailBtn = <sqh-share-button 
                         displayrule={this.emaildisplayrule} 
                         text={this.emailtext}

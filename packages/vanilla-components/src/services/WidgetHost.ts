@@ -312,23 +312,23 @@ const API = {
 
     getMessageLinks(type){
       const widgetId = widgetIdent();
-      console.log('WIDGET ID IN MESSAGE LINKS', widgetId);
 
       if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
 
-      const { userId, accountId, programId = null } = widgetId;
+      const { userId, accountId, programId = null, mode } = widgetId;
 
       const variables = {
         userId,
         accountId,
-        programId
+        programId,
+        mode
       };
 
-      return this.getClient().query({
+      return this.getClient(test).query({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID, $mode: UserEngagementMedium) {
             user(id: $userId, accountId: $accountId) {
-              messageLink(programId: $programId, engagementMedium: ${type}, shareMedium: EMBED)
+              messageLink(programId: $programId, engagementMedium: ${type}, shareMedium: $mode)
             }
           }
         `,
