@@ -673,7 +673,7 @@ export default (editor, config = {}) => {
               },
               'referraltype': {
                 'type': 'string',
-                'title': 'Referral Type to Edit',
+                'title': 'Referral State to Edit',
                 'default': 'converted',
                 'enum': [ 'converted', 'pending', 'referrer' ],
                 'enumNames': [ 'Converted', 'Pending', 'Referrer' ]
