@@ -55,12 +55,13 @@ export class ReferralList {
   }
 
   paginate(offset, event) {
-    this.loading = true;
-    const { target } = event;
-    target.innerText = "...";
+    if (this.loading) return null;
     let { referralsCount } = this;
     if (this.showreferrer && this.referredBy) referralsCount++;
     if (offset >= referralsCount || offset < 0) return null;
+    this.loading = true;
+    const { target } = event;
+    target.innerText = "...";
     this.getReferrals(offset)
     .then(res => {
       target.innerText = offset > this.offset
