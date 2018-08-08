@@ -34,17 +34,21 @@
 <body>
   <sqh-global-container background="transparent">
 
-    <sqh-text-component text="" fontsize="50" color="red" padding="60px 10px 10px" height="250px" background="http://res.cloudinary.com/saasquatch/image/upload/v1517426138/Optimalprint_FB_OG_default_jky5tu.jpg"></sqh-text-component>
+    <sqh-text-component text="Give $10 and Get $10!" fontsize="30" color="#4486E1" paddingtop="30" paddingbottom="10"></sqh-text-component>
     
     <!-- <sqh-image-component url="https://i.ytimg.com/vi/I7jgu-8scIA/maxresdefault.jpg" borderradius="10"></sqh-image-component> -->
 
-    <sqh-text-component color="#4486E1" fontsize="30" text="`Give a` **cat** ***get*** a kitten<br>while supplies" ismarkdown=true></sqh-text-component>
+    <sqh-text-component color="#000" fontsize="13" text="Give a friend a $10 and receive a $10 for yourself when they pay their first bill." paddingtop="12" paddingbottom="10"></sqh-text-component>
+
+    <sqh-text-component color="#000" fontsize="13" text="Share the link below or use the code **RIDDIKULUS.**" ismarkdown="true" paddingtop="5" paddingbottom="20"></sqh-text-component>
 
     <sqh-close-button></sqh-close-button>
 
     <sqh-copy-link-button hidden="false"></sqh-copy-link-button>
 
-    <sqh-share-button-container maxwidth="100%" twitterdisplayrule=""></sqh-share-button-container>
+    <sqh-share-button-container maxwidth="100%" twitterdisplayrule="" messengerdisplayrule="desktop"></sqh-share-button-container>
+
+    <sqh-text-component color="#000" fontsize="13" text="**Rewards Dashboard**" ismarkdown="true" paddingtop="20" paddingbottom="10"></sqh-text-component>
 
     <sqh-stats-container>
       <sqh-stat-component slot="stat-1" statcolor="#4caf50" stattype="/referralsCount" statdescription="Total Referrals"></sqh-stat-component>

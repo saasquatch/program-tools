@@ -13,10 +13,9 @@ export class ShareButtonContainer {
   @Prop() emailbackgroundcolor: string = "#4b4d50";
   @Prop() emailtextcolor: string = "#fff";
   @Prop() emailicon: string = "mail";
-  @Prop() emailurl: string = "http://short.staging.referralsaasquatch.com/mJjDFl";
   @Prop() emailclassName: string = "email-share";
-  @Prop() emailiconhorizontal: number = 12;
-  @Prop() emailiconvertical: number = 8;
+  @Prop() emailiconhorizontal: number;
+  @Prop() emailiconvertical: number;
   @Prop() emailiconsize: number;
 
   // FaceBook button properties and default settings
@@ -25,11 +24,10 @@ export class ShareButtonContainer {
   @Prop() facebookbackgroundcolor: string = "#234079";
   @Prop() facebooktextcolor: string = "#fff";
   @Prop() facebookicon: string = "facebook";
-  @Prop() facebookurl: string = "http://short.staging.referralsaasquatch.com/mwjDFl";
   @Prop() facebookclassName: string;
-  @Prop() facebookiconhorizontal: number;
+  @Prop() facebookiconhorizontal: number = 9;
   @Prop() facebookiconvertical: number;
-  @Prop() facebookiconsize: number;
+  @Prop() facebookiconsize: number = 1.2;
 
   // Twitter button properties and default settings
   @Prop() twitterdisplayrule: string = "mobile-and-desktop";
@@ -37,11 +35,10 @@ export class ShareButtonContainer {
   @Prop() twitterbackgroundcolor: string = "#4797d2";
   @Prop() twittertextcolor: string = "#fff";
   @Prop() twittericon: string = "twitter";
-  @Prop() twitterurl: string = "http://short.staging.referralsaasquatch.com/mcjDFl";
   @Prop() twitterclassName: string;
-  @Prop() twittericonhorizontal: number = 12;
+  @Prop() twittericonhorizontal: number = 9;
   @Prop() twittericonvertical: number;
-  @Prop() twittericonsize: number;
+  @Prop() twittericonsize: number = 1.2;
 
   // SMS button properties and default settings
   @Prop() smsdisplayrule: string = "mobile-only";
@@ -49,10 +46,9 @@ export class ShareButtonContainer {
   @Prop() smsbackgroundcolor: string = "#7bbf38";
   @Prop() smstextcolor: string = "#fff";
   @Prop() smsicon: string = "chat";
-  @Prop() smsurl: string = "http://short.staging.referralsaasquatch.com/m2jDFl";
   @Prop() smsclassName: string;
-  @Prop() smsiconhorizontal: number = 11;
-  @Prop() smsiconvertical: number = 9;
+  @Prop() smsiconhorizontal: number;
+  @Prop() smsiconvertical: number;
   @Prop() smsiconsize: number;
 
   // Whatsapp button properties and default settings
@@ -61,10 +57,9 @@ export class ShareButtonContainer {
   @Prop() whatsappbackgroundcolor: string = "#25D366";
   @Prop() whatsapptextcolor: string = "#fff";
   @Prop() whatsappicon: string = "whatsapp";
-  @Prop() whatsappurl: string = "http://short.staging.referralsaasquatch.com/mZjDFl";
   @Prop() whatsappclassName: string;
-  @Prop() whatsappiconhorizontal: number = 12;
-  @Prop() whatsappiconvertical: number = 5;
+  @Prop() whatsappiconhorizontal: number = 7;
+  @Prop() whatsappiconvertical: number = 2;
   @Prop() whatsappiconsize: number = 1.4;
   
   // LinkedIn button properties and default settings
@@ -73,11 +68,10 @@ export class ShareButtonContainer {
   @Prop() linkedinbackgroundcolor: string = "#0084b9";
   @Prop() linkedintextcolor: string = "#fff";
   @Prop() linkedinicon: string = "linkedin";
-  @Prop() linkedinurl: string = "http://short.staging.referralsaasquatch.com/mHjDFl";
   @Prop() linkedinclassName: string;
   @Prop() linkediniconhorizontal: number;
   @Prop() linkediniconvertical: number;
-  @Prop() linkediniconsize: number;
+  @Prop() linkediniconsize: number = 1.2;
 
   // Pinterest button properties and default settings
   @Prop() pinterestdisplayrule: string = "mobile-and-desktop";
@@ -85,11 +79,10 @@ export class ShareButtonContainer {
   @Prop() pinterestbackgroundcolor: string = "#cb2027";
   @Prop() pinteresttextcolor: string = "#fff";
   @Prop() pinteresticon: string = "pinterest";
-  @Prop() pinteresturl: string = "http://short.staging.referralsaasquatch.com/mfjDFl";
   @Prop() pinterestclassName: string;
-  @Prop() pinteresticonhorizontal: number;
-  @Prop() pinteresticonvertical: number;
-  @Prop() pinteresticonsize: number;
+  @Prop() pinteresticonhorizontal: number = 9;
+  @Prop() pinteresticonvertical: number = 4;
+  @Prop() pinteresticonsize: number = 1.2;
   
   // Messenger button properties and default settings
   @Prop() messengerdisplayrule: string = "hidden";
@@ -97,11 +90,10 @@ export class ShareButtonContainer {
   @Prop() messengerbackgroundcolor: string = "#0084ff";
   @Prop() messengertextcolor: string = "#fff";
   @Prop() messengericon: string = "messenger";
-  @Prop() messengerurl: string = "http://short.staging.referralsaasquatch.com/mgjDFl";
   @Prop() messengerclassName: string;
-  @Prop() messengericonhorizontal: number;
-  @Prop() messengericonvertical: number;
-  @Prop() messengericonsize: number;
+  @Prop() messengericonhorizontal: number = 7;
+  @Prop() messengericonvertical: number = 3;
+  @Prop() messengericonsize: number = 1.4;
   
   render() {
     const emailBtn = <sqh-share-button 
@@ -110,11 +102,11 @@ export class ShareButtonContainer {
                         backgroundcolor={this.emailbackgroundcolor}
                         textcolor={this.emailtextcolor}
                         icon={this.emailicon}
-                        url={this.emailurl}
                         class={this.emailclassName}
                         iconhorizontal={this.emailiconhorizontal}
                         iconvertical={this.emailiconvertical}
                         iconsize={this.emailiconsize}
+                        type="EMAIL"
                       />;
 
     const facebookBtn = <sqh-share-button 
@@ -123,11 +115,11 @@ export class ShareButtonContainer {
                           backgroundcolor={this.facebookbackgroundcolor}
                           textcolor={this.facebooktextcolor}
                           icon={this.facebookicon}
-                          url={this.facebookurl}
                           class={this.facebookclassName}
                           iconhorizontal={this.facebookiconhorizontal}
                           iconvertical={this.facebookiconvertical}
                           iconsize={this.facebookiconsize}
+                          type="FACEBOOK"
                         />;
 
     const twitterBtn = <sqh-share-button 
@@ -136,11 +128,11 @@ export class ShareButtonContainer {
                           backgroundcolor={this.twitterbackgroundcolor}
                           textcolor={this.twittertextcolor}
                           icon={this.twittericon}
-                          url={this.twitterurl}
                           class={this.twitterclassName}
                           iconhorizontal={this.twittericonhorizontal}
                           iconvertical={this.twittericonvertical}
                           iconsize={this.twittericonsize}
+                          type="TWITTER"
                         />;
 
     const smsBtn = <sqh-share-button 
@@ -149,11 +141,11 @@ export class ShareButtonContainer {
                         backgroundcolor={this.smsbackgroundcolor}
                         textcolor={this.smstextcolor}
                         icon={this.smsicon}
-                        url={this.smsurl}
                         class={this.smsclassName}
                         iconhorizontal={this.smsiconhorizontal}
                         iconvertical={this.smsiconvertical}
                         iconsize={this.smsiconsize}
+                        type="SMS"
                     />;
 
     const whatsappBtn = <sqh-share-button 
@@ -162,11 +154,11 @@ export class ShareButtonContainer {
                           backgroundcolor={this.whatsappbackgroundcolor}
                           textcolor={this.whatsapptextcolor}
                           icon={this.whatsappicon}
-                          url={this.whatsappurl}
                           class={this.whatsappclassName}
                           iconhorizontal={this.whatsappiconhorizontal}
                           iconvertical={this.whatsappiconvertical}
                           iconsize={this.whatsappiconsize}
+                          type="WHATSAPP"
                         />;
 
     const linkedinBtn = <sqh-share-button 
@@ -175,11 +167,11 @@ export class ShareButtonContainer {
                           backgroundcolor={this.linkedinbackgroundcolor}
                           textcolor={this.linkedintextcolor}
                           icon={this.linkedinicon}
-                          url={this.linkedinurl}
                           class={this.linkedinclassName}
                           iconhorizontal={this.linkediniconhorizontal}
                           iconvertical={this.linkediniconvertical}
                           iconsize={this.linkediniconsize}
+                          type="LINKEDIN"
                         />
 
     const pinterestBtn = <sqh-share-button
@@ -188,11 +180,11 @@ export class ShareButtonContainer {
                             backgroundcolor={this.pinterestbackgroundcolor}
                             textcolor={this.pinteresttextcolor}
                             icon={this.pinteresticon}
-                            url={this.pinteresturl}
                             class={this.pinterestclassName}
                             iconhorizontal={this.pinteresticonhorizontal}
                             iconvertical={this.pinteresticonvertical}
                             iconsize={this.pinteresticonsize}
+                            type="PINTEREST"
                         />
 
     const messengerBtn = <sqh-share-button
@@ -201,11 +193,11 @@ export class ShareButtonContainer {
                             backgroundcolor={this.messengerbackgroundcolor}
                             textcolor={this.messengertextcolor}
                             icon={this.messengericon}
-                            url={this.messengerurl}
                             class={this.messengerclassName}
                             iconhorizontal={this.messengericonhorizontal}
                             iconvertical={this.messengericonvertical}
                             iconsize={this.messengericonsize}
+                            type="FBMESSENGER"
                           />
 
     const shareSection = this.ishidden ? `` :

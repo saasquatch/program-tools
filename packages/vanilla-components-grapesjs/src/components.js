@@ -65,7 +65,7 @@ export default (editor, config = {}) => {
     model: defaultModel.extend({
       // Extend default properties
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
-        name: 'Widget Container',
+        name: 'Widget Style',
         selectable: false,
         droppable: false,
         draggable: false,
@@ -148,7 +148,7 @@ export default (editor, config = {}) => {
           { type: 'boolean', title: 'Hidden', name: 'ishidden', value: false },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: false },
           { type: 'string', title: 'Content', name: 'text', value: 'Give $10 and Get $10' },
-          { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
+          { type: 'string', title: 'Font Color', name: 'color', value: '#4486E1' },
           { type: 'integer', title: 'Font Size', name: 'fontsize', value: 28 },
           { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
           { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
@@ -156,6 +156,7 @@ export default (editor, config = {}) => {
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
+          'text': { 'ui:widget': 'textarea' },
           'ismarkdown': markdownUi
         }
       })
@@ -176,7 +177,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Body',
         uiSchema: {
-          'text': { 'ui:widget': 'textarea' },
+          'text': { 'ui:widget': 'textarea', 'ui:options': { rows: 8 } },
           'ishidden': { 'ui:widget': 'hidden' },
           'color': { 'ui:widget': 'color' },
           'fontsize': { 'ui:widget': 'updown' },
@@ -229,7 +230,7 @@ export default (editor, config = {}) => {
         traits: [
           { type: 'boolean', title: 'Hidden', name: 'ishidden', value: true },
           { type: 'string', title: 'Image URL', name: 'background', value: 'http://res.cloudinary.com/saasquatch/image/upload/v1517426138/Optimalprint_FB_OG_default_jky5tu.jpg', format: 'uri' },
-          { type: 'string', title: 'Height', name: 'height' },
+          { type: 'string', title: 'Height', name: 'height', value: 'auto' },
           { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
           { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
           { type: 'string', title: 'Content', name: 'text', value: 'Text in banner' },
@@ -255,7 +256,7 @@ export default (editor, config = {}) => {
   comps.addType('sqh-copy-link-button', {
     model: defaultModel.extend({
         defaults: Object.assign({}, defaultModel.prototype.defaults, {
-          name: "Copy Link",
+          name: "Reward Link",
           // can be dropped only inside 
           draggable: false,
 
@@ -533,37 +534,37 @@ export default (editor, config = {}) => {
 
   comps.addType('sqh-stats-container', {
     model: defaultModel.extend({
-        defaults: Object.assign({}, defaultModel.prototype.defaults, {
-          name: "Stats Container",
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        name: "Stats Container",
 
-          // can be dropped only inside 
-          draggable: false,
+        // can be dropped only inside 
+        draggable: false,
 
-          // these components can be dropped in here
-          droppable: ['sqh-stat-component'],
+        // these components can be dropped in here
+        droppable: ['sqh-stat-component'],
 
-          selectable: true,
+        selectable: true,
 
-          toolbar: [],
-          
-          traits: [
-            { type: 'boolean', name: 'ishidden', value: false },
-            { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
-            { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
-          ],
+        toolbar: [],
+        
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
+        ],
 
-          uiSchema: {
-            ishidden: { 'ui:widget': 'hidden' }
-          }
-        })
+        uiSchema: {
+          ishidden: { 'ui:widget': 'hidden' }
+        }
+      })
+    },
+    {
+      isComponent: function (el) {
+        if (el.tagName === 'SQH-STATS-CONTAINER') {
+          return { type: 'sqh-stats-container' };
+        }
       },
-      {
-        isComponent: function (el) {
-          if (el.tagName === 'SQH-STATS-CONTAINER') {
-            return { type: 'sqh-stats-container' };
-          }
-        },
-      }),
+    }),
 
     view: defaultType.view.extend({
       render: function () {
@@ -575,42 +576,42 @@ export default (editor, config = {}) => {
 
   comps.addType('sqh-stat-component', {
     model: defaultModel.extend({
-        defaults: Object.assign({}, defaultModel.prototype.defaults, {
-          name: "Stat Component",
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        name: "Stat Component",
 
-          // can be dropped only inside 
-          draggable: ['sqh-stats-container'],
+        // can be dropped only inside 
+        draggable: ['sqh-stats-container'],
 
-          // these components can be dropped in here
-          droppable: false,
+        // these components can be dropped in here
+        droppable: false,
 
-          selectable: true,
+        selectable: true,
 
-          // toolbar: [],
-          
-          traits: [
-            { type: 'boolean', name: 'ishidden', value: false },
-            { type: 'string', name: 'stattype', title: 'Stat Type', value: '' },
-            { type: 'string', name: 'statdescription', title: 'Stat Description',value: '' },
-            { type: 'string', name: 'statcolor', value: '' },
-          ],
+        // toolbar: [],
+        
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'string', name: 'stattype', title: 'Stat Type', value: '' },
+          { type: 'string', name: 'statdescription', title: 'Stat Description',value: '' },
+          { type: 'string', name: 'statcolor', value: '' },
+        ],
 
-          uiSchema: {
-            ishidden: { 'ui:widget': 'hidden' },
-            statcolor: { 'ui:widget': 'color' },
-            stattype: {
-              "ui:widget": "StatTypeSelectWidget",
-            }
+        uiSchema: {
+          ishidden: { 'ui:widget': 'hidden' },
+          statcolor: { 'ui:widget': 'color' },
+          stattype: {
+            "ui:widget": "StatTypeSelectWidget",
           }
-        })
+        }
+      })
+    },
+    {
+      isComponent: function (el) {
+        if (el.tagName === 'SQH-STAT-COMPONENT') {
+          return { type: 'sqh-stat-component' };
+        }
       },
-      {
-        isComponent: function (el) {
-          if (el.tagName === 'SQH-STAT-COMPONENT') {
-            return { type: 'sqh-stat-component' };
-          }
-        },
-      }),
+    }),
 
     view: defaultType.view.extend({
       render: function () {
@@ -622,134 +623,134 @@ export default (editor, config = {}) => {
 
   comps.addType('sqh-referral-list', {
     model: defaultModel.extend({
-        defaults: Object.assign({}, defaultModel.prototype.defaults, {
-          name: "Referral List",
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        name: "Referral List",
 
-          // can be dropped only inside 
-          draggable: false,
+        // can be dropped only inside 
+        draggable: false,
 
-          // these components can be dropped in here
-          droppable: false,
+        // these components can be dropped in here
+        droppable: false,
 
-          selectable: true,
-          traits: [
-            { type: 'boolean', name: 'ishidden', value: false },
-            { type: 'boolean', name: 'showreferrer', value: true },
-            { type: 'boolean', name: 'usefirstreward', value: false },
-            { type: 'string', name: 'rewardcolor', value: "#4BB543" },
-            { type: 'string', name: 'pendingcolor', value: "#DDDDDD" },
-            { type: 'string', name: 'referralnamecolor', value: '' },
-            { type: 'string', name: 'referraltextcolor', value: ''},
-            { type: 'string', name: 'pendingvalue', value: "Reward Pending" },
-            { type: 'string', name: 'referrercontent', value: "Referred You {date}" },
-            { type: 'string', name: 'convertedcontent', value: "Paid User, signed up {date}" },
-            { type: 'string', name: 'pendingcontent', value: "Trial User, signed up {date}" },
-            { type: 'string', name: 'valuecontent', value: "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}" },
-            { type: 'string', name: 'paginatemore', value: "View More" },
-            { type: 'string', name: 'paginateless', value: "Previous" },
-          ],
-          uiSchema: {
-            ishidden: { 'ui:widget': 'hidden' },
-            showreferrer: { 'ui:widget': 'radio' },
-            usefirstreward: { 'ui:widget': 'radio' },
-            rewardcolor: { 'ui:widget': 'color' },
-            pendingcolor: { 'ui:widget': 'color' },
-            referralnamecolor: { 'ui:widget': 'color' },
-            referraltextcolor: { 'ui:widget': 'color' },
-          },
-          schema: {
-            'title': 'Grapes JS Props',
-            'description': 'Some description here',
-            'type': 'object',
-            'properties': {
-              'ishidden': { 'type': 'boolean', 'title': 'Hidden' },
-              'referralnamecolor': {
-                'title': 'Referral Name Color',
-                'type': 'string'
-              },
-              'referraltextcolor': {
-                'title': 'Referral Text Color',
-                'type': 'string'
-              },
-              'referraltype': {
-                'type': 'string',
-                'title': 'Referral State to Edit',
-                'default': 'converted',
-                'enum': [ 'converted', 'pending', 'referrer' ],
-                'enumNames': [ 'Converted', 'Pending', 'Referrer' ]
-              },
-              'paginatemore': { 'type': 'string', 'title': 'View More Text' },
-              'paginateless': { 'type': 'string', 'title': 'Previous Text' },
+        selectable: true,
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'boolean', name: 'showreferrer', value: true },
+          { type: 'boolean', name: 'usefirstreward', value: false },
+          { type: 'string', name: 'rewardcolor', value: "#4BB543" },
+          { type: 'string', name: 'pendingcolor', value: "#DDDDDD" },
+          { type: 'string', name: 'referralnamecolor', value: '' },
+          { type: 'string', name: 'referraltextcolor', value: ''},
+          { type: 'string', name: 'pendingvalue', value: "Reward Pending" },
+          { type: 'string', name: 'referrercontent', value: "Referred You {date}" },
+          { type: 'string', name: 'convertedcontent', value: "Paid User, signed up {date}" },
+          { type: 'string', name: 'pendingcontent', value: "Trial User, signed up {date}" },
+          { type: 'string', name: 'valuecontent', value: "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}" },
+          { type: 'string', name: 'paginatemore', value: "View More" },
+          { type: 'string', name: 'paginateless', value: "Previous" },
+        ],
+        uiSchema: {
+          ishidden: { 'ui:widget': 'hidden' },
+          showreferrer: { 'ui:widget': 'radio' },
+          usefirstreward: { 'ui:widget': 'radio' },
+          rewardcolor: { 'ui:widget': 'color' },
+          pendingcolor: { 'ui:widget': 'color' },
+          referralnamecolor: { 'ui:widget': 'color' },
+          referraltextcolor: { 'ui:widget': 'color' },
+        },
+        schema: {
+          'title': 'Grapes JS Props',
+          'description': 'Some description here',
+          'type': 'object',
+          'properties': {
+            'ishidden': { 'type': 'boolean', 'title': 'Hidden' },
+            'referralnamecolor': {
+              'title': 'Referral Name Color',
+              'type': 'string'
             },
-            'dependencies': {
-              'referraltype': {
-                'oneOf': [
-                  {
-                    'properties': {
-                      'referraltype': { 'enum': [ 'converted' ] },
-                      'rewardcolor': {
-                        'title': 'Reward Color',
-                        'type': 'string',
-                      },
-                      'convertedcontent': {
-                        'title': 'Converted User Content',
-                        'type': 'string'
-                      },
-                      'valuecontent': {
-                        'title': 'Extra Rewards Description',
-                        'type': 'string'
-                      },
-                      'usefirstreward': {
-                        'title': 'Reward Value Displayed',
-                        'type': 'boolean',
-                        'enumNames': [ 'Newest', 'Oldest' ]
-                      },
+            'referraltextcolor': {
+              'title': 'Referral Text Color',
+              'type': 'string'
+            },
+            'referraltype': {
+              'type': 'string',
+              'title': 'Referral State to Edit',
+              'default': 'converted',
+              'enum': [ 'converted', 'pending', 'referrer' ],
+              'enumNames': [ 'Converted', 'Pending', 'Referrer' ]
+            },
+            'paginatemore': { 'type': 'string', 'title': 'View More Text' },
+            'paginateless': { 'type': 'string', 'title': 'Previous Text' },
+          },
+          'dependencies': {
+            'referraltype': {
+              'oneOf': [
+                {
+                  'properties': {
+                    'referraltype': { 'enum': [ 'converted' ] },
+                    'rewardcolor': {
+                      'title': 'Reward Color',
+                      'type': 'string',
+                    },
+                    'convertedcontent': {
+                      'title': 'Converted User Content',
+                      'type': 'string'
+                    },
+                    'valuecontent': {
+                      'title': 'Extra Rewards Description',
+                      'type': 'string'
+                    },
+                    'usefirstreward': {
+                      'title': 'Reward Value Displayed',
+                      'type': 'boolean',
+                      'enumNames': [ 'Newest', 'Oldest' ]
+                    },
+                  }
+                },
+                {
+                  'properties': {
+                    'referraltype': { 'enum': [ 'pending' ] },
+                    'pendingcolor': {
+                      'title': 'Pending Reward Color',
+                      'type': 'string',
+                    },
+                    'pendingcontent': {
+                      'title': 'Pending User Content',
+                      'type': 'string'
+                    },
+                    'pendingvalue': {
+                      'title': 'Pending Reward Description',
+                      'type': 'string'
                     }
-                  },
-                  {
-                    'properties': {
-                      'referraltype': { 'enum': [ 'pending' ] },
-                      'pendingcolor': {
-                        'title': 'Pending Reward Color',
-                        'type': 'string',
-                      },
-                      'pendingcontent': {
-                        'title': 'Pending User Content',
-                        'type': 'string'
-                      },
-                      'pendingvalue': {
-                        'title': 'Pending Reward Description',
-                        'type': 'string'
-                      }
-                    }
-                  },
-                  {
-                    'properties': {
-                      'referraltype': { 'enum': [ 'referrer' ] },
-                      'referrercontent': {
-                        'title': 'Referring User Content',
-                        'type': 'string'
-                      },
-                      'showreferrer': {
-                        'title': 'Pending User Content',
-                        'type': 'boolean',
-                        'enumNames': [ 'Show', 'Hide' ]
-                      },
-                    }
-                  },
-                ]
-              }
+                  }
+                },
+                {
+                  'properties': {
+                    'referraltype': { 'enum': [ 'referrer' ] },
+                    'referrercontent': {
+                      'title': 'Referring User Content',
+                      'type': 'string'
+                    },
+                    'showreferrer': {
+                      'title': 'Pending User Content',
+                      'type': 'boolean',
+                      'enumNames': [ 'Show', 'Hide' ]
+                    },
+                  }
+                },
+              ]
             }
           }
-        })
+        }
+      })
+    },
+    {
+      isComponent: function (el) {
+        if (el.tagName === 'SQH-REFERRAL-LIST') {
+          return { type: 'sqh-referral-list' };
+        }
       },
-      {
-        isComponent: function (el) {
-          if (el.tagName === 'SQH-REFERRAL-LIST') {
-            return { type: 'sqh-referral-list' };
-          }
-        },
-      }),
+    }),
 
     view: defaultType.view.extend({
       render: function () {

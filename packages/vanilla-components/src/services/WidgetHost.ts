@@ -39,6 +39,7 @@ const today = new Date();
 
 const demoUser = {
   shareLink: "http://sharelink.squatch.com",
+  messageLink: "http://short.staging.referralsaasquatch.com/mwjExk",
   referrals: {
     totalCount: 8,
     data: [
@@ -308,6 +309,33 @@ const API = {
         variables
       }).then(res => res.data.user);
     },
+
+    getMessageLinks(type){
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
+
+      const { userId, accountId, programId = null, mode } = widgetId;
+
+      const variables = {
+        userId,
+        accountId,
+        programId,
+        mode
+      };
+
+      return this.getClient(test).query({
+        query: gql`
+          query($userId: String!, $accountId: String!, $programId: ID, $mode: UserEngagementMedium) {
+            user(id: $userId, accountId: $accountId) {
+              messageLink(programId: $programId, engagementMedium: ${type}, shareMedium: $mode)
+            }
+          }
+        `,
+        variables
+      }).then(res => res.data.user.messageLink);
+    },
+
   },
   ui: squatchJsApi
 };
