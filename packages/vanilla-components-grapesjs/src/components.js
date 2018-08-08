@@ -663,6 +663,14 @@ export default (editor, config = {}) => {
             'type': 'object',
             'properties': {
               'ishidden': { 'type': 'boolean', 'title': 'Hidden' },
+              'referralnamecolor': {
+                'title': 'Referral Name Color',
+                'type': 'string'
+              },
+              'referraltextcolor': {
+                'title': 'Referral Text Color',
+                'type': 'string'
+              },
               'referraltype': {
                 'type': 'string',
                 'title': 'Referral Type to Edit',
@@ -690,14 +698,6 @@ export default (editor, config = {}) => {
                       },
                       'convertedcontent': {
                         'title': 'Converted User Content',
-                        'type': 'string'
-                      },
-                      'referralnamecolor': {
-                        'title': 'Referral Text Color',
-                        'type': 'string'
-                      },
-                      'referraltextcolor': {
-                        'title': 'Referral Text Color',
                         'type': 'string'
                       },
                       'valuecontent': {
