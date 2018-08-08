@@ -663,8 +663,6 @@ export default (editor, config = {}) => {
             'type': 'object',
             'properties': {
               'ishidden': { 'type': 'boolean', 'title': 'Hidden' },
-              'paginatemore': { 'type': 'string', 'title': 'View More Text' },
-              'paginateless': { 'type': 'string', 'title': 'Previous Text' },
               'referraltype': {
                 'type': 'string',
                 'title': 'Referral Type to Edit',
@@ -672,6 +670,8 @@ export default (editor, config = {}) => {
                 'enum': [ 'converted', 'pending', 'referrer' ],
                 'enumNames': [ 'Converted', 'Pending', 'Referrer' ]
               },
+              'paginatemore': { 'type': 'string', 'title': 'View More Text' },
+              'paginateless': { 'type': 'string', 'title': 'Previous Text' },
             },
             'dependencies': {
               'referraltype': {
