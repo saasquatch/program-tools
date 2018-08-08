@@ -687,11 +687,6 @@ export default (editor, config = {}) => {
                   {
                     'properties': {
                       'referraltype': { 'enum': [ 'converted' ] },
-                      'usefirstreward': {
-                        'title': 'Reward Value Displayed',
-                        'type': 'boolean',
-                        'enumNames': [ 'Newest', 'Oldest' ]
-                      },
                       'rewardcolor': {
                         'title': 'Reward Color',
                         'type': 'string',
@@ -703,7 +698,12 @@ export default (editor, config = {}) => {
                       'valuecontent': {
                         'title': 'Extra Rewards Description',
                         'type': 'string'
-                      }
+                      },
+                      'usefirstreward': {
+                        'title': 'Reward Value Displayed',
+                        'type': 'boolean',
+                        'enumNames': [ 'Newest', 'Oldest' ]
+                      },
                     }
                   },
                   {
@@ -726,15 +726,15 @@ export default (editor, config = {}) => {
                   {
                     'properties': {
                       'referraltype': { 'enum': [ 'referrer' ] },
+                      'referrercontent': {
+                        'title': 'Referring User Content',
+                        'type': 'string'
+                      },
                       'showreferrer': {
                         'title': 'Pending User Content',
                         'type': 'boolean',
                         'enumNames': [ 'Show', 'Hide' ]
                       },
-                      'referrercontent': {
-                        'title': 'Referring User Content',
-                        'type': 'string'
-                      }
                     }
                   },
                 ]
