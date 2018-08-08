@@ -88,7 +88,9 @@ export class StatsContainer {
     const { type, unit, valuetype } = statVariables;
     const rewardBalance = this.stats['rewardBalances'].find(rb => rb.type === type && rb.unit === unit);
     if (!rewardBalance) return 0;
-    if (valuetype === "pretty") return rewardBalance.prettyValue || rewardBalance.value;
+    console.log(valuetype)
+    console.log(rewardBalance)
+    if (valuetype) return rewardBalance[valuetype];
     return rewardBalance.value;
   }
 
