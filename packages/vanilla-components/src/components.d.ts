@@ -519,7 +519,7 @@ declare global {
       'iconvertical': number;
       'text': string;
       'textcolor': string;
-      'url': string;
+      'type': string;
     }
   }
 
@@ -551,7 +551,7 @@ declare global {
       'iconvertical'?: number;
       'text'?: string;
       'textcolor'?: string;
-      'url'?: string;
+      'type'?: string;
     }
   }
 }
