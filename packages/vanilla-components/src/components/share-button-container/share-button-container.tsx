@@ -1,4 +1,5 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
+import { API } from '../../services/WidgetHost';
 
 @Component({
   tag: 'sqh-share-button-container',
@@ -102,8 +103,28 @@ export class ShareButtonContainer {
   @Prop() messengericonhorizontal: number = 7;
   @Prop() messengericonvertical: number = 3;
   @Prop() messengericonsize: number = 1.4;
+
+  @State() messageLink: string;
+
+  componentWillLoad() {
+    return this.getMessageLinks();
+  }
+
+
+  getMessageLinks() {
+    return API.graphql.getMessageLinks('FACEBOOK').then(res => {
+      this.messageLink = res;
+    }).catch(e => {
+      this.onError(e);
+    });
+  }
+
+  onError(e: Error) {
+    console.log("Error loading via GraphQL.", e);
+  }
   
   render() {
+    console.log('message state', this.messageLink)
     const emailBtn = <sqh-share-button 
                         displayrule={this.emaildisplayrule} 
                         text={this.emailtext}
