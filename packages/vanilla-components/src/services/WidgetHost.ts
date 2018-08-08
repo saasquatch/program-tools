@@ -144,7 +144,7 @@ const API = {
       }).then(res => res.data.user.shareLink);
     },
 
-    getReferrals(offset = 0, limit = 3) {
+    async getReferrals(offset = 0, limit = 3) {
       const widgetId = widgetIdent();
 
       if (widgetId["env"] === "demo" || !widgetId) {
@@ -154,7 +154,7 @@ const API = {
           data: refs.data.slice(offset, offset + limit)
         }
         const user = { referrals, referredByReferral };
-        return Promise.resolve(user);
+        return await new Promise(resolve => setTimeout(() => resolve(user), 500));
       }
 
       const { userId, accountId, programId = null } = widgetId;
