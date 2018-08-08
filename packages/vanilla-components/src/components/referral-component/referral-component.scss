@@ -1,10 +1,10 @@
-.squatch-referrals {
+sqh-referral-component:nth-child(3) .squatch-referrals-row {
+  border-bottom: none;
+}
 
-  sqh-referral-component:nth-child(3) .squatch-referrals-row {
-    border-bottom: none;
-  }
-
+sqh-referral-component {
   .squatch-referrals-row {
+    padding-left: 20px;
     display: grid;
     grid-template-columns: 60% 55px auto;
     grid-template-rows: 20px 25px auto 20px;
@@ -47,6 +47,14 @@
 
       font-size: 12px;
       margin-top: 5px;
+    }
+  }
+}
+
+sqh-referral-component {
+  .squatch-referrals-row {
+    @media (max-width: 500px) {
+      padding-left: 0;
     }
   }
 }

@@ -1,5 +1,6 @@
-import { Component, Prop, Element } from '@stencil/core';
+import { Component, Prop, Element, State } from '@stencil/core';
 import { shadeColor, detectMobileSafari } from '../../utilities';
+import { API } from '../../services/WidgetHost';
 import { css } from 'emotion';
 
 @Component({
@@ -12,11 +13,13 @@ export class ShareButton {
   @Prop() backgroundcolor: string;
   @Prop() textcolor: string;
   @Prop() icon: string;
-  @Prop() url: string;
   @Prop() className: string;
   @Prop() iconhorizontal: number;
   @Prop() iconvertical: number;
   @Prop() iconsize: number;
+  @Prop() type: string;
+
+  @State() messageLink: string;
 
   @Element() button: HTMLElement;
 
@@ -26,7 +29,7 @@ export class ShareButton {
     if (anchor !== null && this.className !== "email-share") {
       e.preventDefault();
 
-      const url = this.url
+      const url = this.messageLink
       const target = '_blank';
       const features = 'status=0,width=680,height=580'
       window.open(url, target, features);
@@ -36,6 +39,23 @@ export class ShareButton {
   componentDidLoad() {
     let el = this.button;
     el.addEventListener("click", this.clickHandler.bind(this), false);
+  }
+
+  componentWillLoad() {
+    return this.getMessageLinks(this.type);
+  }
+
+  // TODO: test this function with real (not demo) data
+  getMessageLinks(type) {
+    return API.graphql.getMessageLinks(type).then(res => {
+      this.messageLink = res;
+    }).catch(e => {
+      this.onError(e);
+    });
+  }
+
+  onError(e: Error) {
+    console.log("Error loading via GraphQL.", e);
   }
 
   render() {
@@ -68,7 +88,7 @@ export class ShareButton {
     const classes = [`squatch-share-btn`, this.className, this.displayrule, style].join(" ");
 
     return (
-      <a class={classes} href={this.url} target={target}>
+      <a class={classes} href={this.messageLink} target={target}>
         <i class={iconClass}></i>
         <span class="share-btn-text">{this.text}</span>
       </a>

@@ -53,6 +53,8 @@ sqh-stat-component {
   .stat-description {
     @media (max-width: 500px) {
       line-height: 20px;
+      padding-left: 100px;
+      overflow-wrap: break-word;
     }
   }
 }
