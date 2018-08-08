@@ -326,7 +326,6 @@ declare global {
       'emailiconvertical': number;
       'emailtext': string;
       'emailtextcolor': string;
-      'emailurl': string;
       'facebookbackgroundcolor': string;
       'facebookclassName': string;
       'facebookdisplayrule': string;
@@ -336,7 +335,6 @@ declare global {
       'facebookiconvertical': number;
       'facebooktext': string;
       'facebooktextcolor': string;
-      'facebookurl': string;
       'ishidden': boolean;
       'linkedinbackgroundcolor': string;
       'linkedinclassName': string;
@@ -347,7 +345,6 @@ declare global {
       'linkediniconvertical': number;
       'linkedintext': string;
       'linkedintextcolor': string;
-      'linkedinurl': string;
       'messengerbackgroundcolor': string;
       'messengerclassName': string;
       'messengerdisplayrule': string;
@@ -357,7 +354,6 @@ declare global {
       'messengericonvertical': number;
       'messengertext': string;
       'messengertextcolor': string;
-      'messengerurl': string;
       'pinterestbackgroundcolor': string;
       'pinterestclassName': string;
       'pinterestdisplayrule': string;
@@ -367,7 +363,6 @@ declare global {
       'pinteresticonvertical': number;
       'pinteresttext': string;
       'pinteresttextcolor': string;
-      'pinteresturl': string;
       'smsbackgroundcolor': string;
       'smsclassName': string;
       'smsdisplayrule': string;
@@ -377,7 +372,6 @@ declare global {
       'smsiconvertical': number;
       'smstext': string;
       'smstextcolor': string;
-      'smsurl': string;
       'twitterbackgroundcolor': string;
       'twitterclassName': string;
       'twitterdisplayrule': string;
@@ -387,7 +381,6 @@ declare global {
       'twittericonvertical': number;
       'twittertext': string;
       'twittertextcolor': string;
-      'twitterurl': string;
       'whatsappbackgroundcolor': string;
       'whatsappclassName': string;
       'whatsappdisplayrule': string;
@@ -397,7 +390,6 @@ declare global {
       'whatsappiconvertical': number;
       'whatsapptext': string;
       'whatsapptextcolor': string;
-      'whatsappurl': string;
     }
   }
 
@@ -429,7 +421,6 @@ declare global {
       'emailiconvertical'?: number;
       'emailtext'?: string;
       'emailtextcolor'?: string;
-      'emailurl'?: string;
       'facebookbackgroundcolor'?: string;
       'facebookclassName'?: string;
       'facebookdisplayrule'?: string;
@@ -439,7 +430,6 @@ declare global {
       'facebookiconvertical'?: number;
       'facebooktext'?: string;
       'facebooktextcolor'?: string;
-      'facebookurl'?: string;
       'ishidden'?: boolean;
       'linkedinbackgroundcolor'?: string;
       'linkedinclassName'?: string;
@@ -450,7 +440,6 @@ declare global {
       'linkediniconvertical'?: number;
       'linkedintext'?: string;
       'linkedintextcolor'?: string;
-      'linkedinurl'?: string;
       'messengerbackgroundcolor'?: string;
       'messengerclassName'?: string;
       'messengerdisplayrule'?: string;
@@ -460,7 +449,6 @@ declare global {
       'messengericonvertical'?: number;
       'messengertext'?: string;
       'messengertextcolor'?: string;
-      'messengerurl'?: string;
       'pinterestbackgroundcolor'?: string;
       'pinterestclassName'?: string;
       'pinterestdisplayrule'?: string;
@@ -470,7 +458,6 @@ declare global {
       'pinteresticonvertical'?: number;
       'pinteresttext'?: string;
       'pinteresttextcolor'?: string;
-      'pinteresturl'?: string;
       'smsbackgroundcolor'?: string;
       'smsclassName'?: string;
       'smsdisplayrule'?: string;
@@ -480,7 +467,6 @@ declare global {
       'smsiconvertical'?: number;
       'smstext'?: string;
       'smstextcolor'?: string;
-      'smsurl'?: string;
       'twitterbackgroundcolor'?: string;
       'twitterclassName'?: string;
       'twitterdisplayrule'?: string;
@@ -490,7 +476,6 @@ declare global {
       'twittericonvertical'?: number;
       'twittertext'?: string;
       'twittertextcolor'?: string;
-      'twitterurl'?: string;
       'whatsappbackgroundcolor'?: string;
       'whatsappclassName'?: string;
       'whatsappdisplayrule'?: string;
@@ -500,7 +485,6 @@ declare global {
       'whatsappiconvertical'?: number;
       'whatsapptext'?: string;
       'whatsapptextcolor'?: string;
-      'whatsappurl'?: string;
     }
   }
 }
