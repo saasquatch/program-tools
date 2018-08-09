@@ -10,19 +10,19 @@ class ColorPicker extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleClick = () => {
+  handleClick() {
     this.setState({ isOpen: !this.state.isOpen })
   };
 
-  handleClose = () => {
+  handleClose() {
     this.setState({ isOpen: false })
   };
 
-  handleChange = (color) => {
+  handleChange(color) {
     this.props.onChange(color.hex)
   }
 
-  Button = (color) => {
+  Button(color) {
     const ButtonOuter = styled.div`
       border: 1px solid #ddd;
       border-radius: 4px;
@@ -41,7 +41,7 @@ class ColorPicker extends React.Component {
     )
   }
 
-  Picker = (color) => {
+  Picker(color) {
     const popover = {
       position: 'absolute',
       zIndex: '2',
