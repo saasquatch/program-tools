@@ -9,7 +9,7 @@ export interface WidgetIdent {
   token: string;
   userId: string;
   accountId: string;
-  mode: "POPUP" | "EMBED" | string;
+  engagementMedium: "POPUP" | "EMBED" | string;
   programId: string;
 }
 
@@ -60,7 +60,7 @@ const demoUser = {
   rewardsMonth: { totalCount: 7 },
   rewardsWeek: { totalCount: 4 },
   rewardBalances: [
-    { type: "CREDIT", unit: "CENTS", value: 17000, prettyValue: "$170.00", totalAssignedCredit: "17000", totalRedeemedCredit: "1500", prettyAssignedCredit: "$170.00", prettyRedeemedCredit:"$15.00" },
+    { type: "CREDIT", unit: "CENTS", value: 17000, prettyValue: "$170.00", totalAssignedCredit: "170000", totalRedeemedCredit: "0" },
     { type: "PCT_DISCOUNT", unit: "%", value: 15, prettyValue: "15%" },
   ],
 }
@@ -124,20 +124,20 @@ const API = {
 
       if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.shareLink);
 
-      const { userId, accountId, programId = null, mode } = widgetId;
+      const { userId, accountId, programId = null, engagementMedium } = widgetId;
 
       const variables = {
         userId,
         accountId,
         programId,
-        mode
+        engagementMedium
       };
 
       return this.getClient().query({
         query: gql`
-          query($userId: String!, $accountId: String!, $programId: ID, $mode: UserEngagementMedium) {
+          query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium) {
             user(id: $userId, accountId: $accountId) {
-              shareLink(programId: $programId, engagementMedium: $mode, shareMedium: DIRECT)
+              shareLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: DIRECT)
             }
           }
         `,
@@ -145,7 +145,7 @@ const API = {
       }).then(res => res.data.user.shareLink);
     },
 
-    async getReferrals(offset = 0, limit = 3) {
+    getReferrals(offset = 0, limit = 3) {
       const widgetId = widgetIdent();
 
       if (widgetId["env"] === "demo" || !widgetId) {
@@ -155,7 +155,7 @@ const API = {
           data: refs.data.slice(offset, offset + limit)
         }
         const user = { referrals, referredByReferral };
-        return await new Promise(resolve => setTimeout(() => resolve(user), 500));
+        return Promise.resolve(user);
       }
 
       const { userId, accountId, programId = null } = widgetId;
@@ -316,20 +316,20 @@ const API = {
 
       if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
 
-      const { userId, accountId, programId = null, mode } = widgetId;
+      const { userId, accountId, programId = null, engagementMedium } = widgetId;
 
       const variables = {
         userId,
         accountId,
         programId,
-        mode
+        engagementMedium
       };
 
       return this.getClient(type).query({
         query: gql`
-          query($userId: String!, $accountId: String!, $programId: ID, $mode: UserEngagementMedium) {
+          query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium) {
             user(id: $userId, accountId: $accountId) {
-              messageLink(programId: $programId, engagementMedium: $mode, shareMedium: ${type})
+              messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${type})
             }
           }
         `,

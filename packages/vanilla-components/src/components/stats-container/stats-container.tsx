@@ -20,25 +20,27 @@ export class StatsContainer {
   }
 
   componentWillLoad() {
-    return API.graphql.getStats().then(res => {
-      this.stats = {
-        referralsCount: res.referralsCount.totalCount,
-        referralsMonth: res.referralsMonth.totalCount,
-        referralsWeek: res.referralsWeek.totalCount,
-        rewardsCount: res.rewardsCount.totalCount,
-        rewardsMonth: res.rewardsMonth.totalCount,
-        rewardsWeek: res.rewardsWeek.totalCount,
-        rewardBalances: res.rewardBalances
-      }
-      this.loading = false;
-    }).then(() => {
-      const children = Array.from(this.container.querySelectorAll('sqh-stat-component'));
-      children.map(child => {
-        this.setStatValue(child)
-      })
-    }).catch(e => {
-      this.onError(e);
-    });
+    if (!this.ishidden) {
+      return API.graphql.getStats().then(res => {
+        this.stats = {
+          referralsCount: res.referralsCount.totalCount,
+          referralsMonth: res.referralsMonth.totalCount,
+          referralsWeek: res.referralsWeek.totalCount,
+          rewardsCount: res.rewardsCount.totalCount,
+          rewardsMonth: res.rewardsMonth.totalCount,
+          rewardsWeek: res.rewardsWeek.totalCount,
+          rewardBalances: res.rewardBalances
+        }
+        this.loading = false;
+      }).then(() => {
+        const children = Array.from(this.container.querySelectorAll('sqh-stat-component'));
+        children.map(child => {
+          this.setStatValue(child)
+        })
+      }).catch(e => {
+        this.onError(e);
+      });
+    }
   }
 
   @Listen('statTypeUpdated')
