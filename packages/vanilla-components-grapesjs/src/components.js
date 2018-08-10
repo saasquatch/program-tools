@@ -304,7 +304,7 @@ export default (editor, config = {}) => {
         traits: [
           { type: 'boolean', title: 'Hidden', name: 'ishidden', value: true },
           { type: 'string', title: 'Image URL', name: 'background', value: 'http://res.cloudinary.com/saasquatch/image/upload/v1517426138/Optimalprint_FB_OG_default_jky5tu.jpg', format: 'uri' },
-          { type: 'string', title: 'Height', name: 'height', value: 'auto' },
+          { type: 'string', title: 'Height in pixels', name: 'height', value: 'auto' },
           { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
           { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
           { type: 'string', title: 'Content', name: 'text', value: 'Text in banner' },
