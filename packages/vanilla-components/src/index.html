@@ -23,24 +23,6 @@
     };
   </script> -->
 
-
-  <!-- http://short.staging.referralsaasquatch.com/mwjExn -->
-
-
-  <!-- <script>
-    window.widgetIdent = {
-      env: 'index',
-      mode: 'EMBED',
-      locale: 'en_US',
-      tenantAlias: 'amfaprx1axfay',
-      programId: '5b6b2314e4b01dc84c21b7eb',
-      appDomain: 'https://staging.referralsaasquatch.com',
-      userId: '5a57fe4b66d53bed1548a5f9',
-      accountId: '5a57fe4b66d53bed1548a5f8',
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWE1N2ZlNGI2NmQ1M2JlZDE1NDhhNWY5IiwiYWNjb3VudElkIjoiNWE1N2ZlNGI2NmQ1M2JlZDE1NDhhNWY4In19.LUfh5Hzu4Bqx4T-RWnxcch01mpWFsXx5jJX6ygoZAfs'
-    };
-  </script> -->
-
   <script src="https://unpkg.com/@saasquatch/widget-host@latest/umd/@saasquatch/widget-host.js"></script>
   
   <script src="/build/widget-components.js"></script>
@@ -63,16 +45,16 @@
 
     <sqh-close-button></sqh-close-button>
 
-    <!-- <sqh-copy-link-button hidden="false"></sqh-copy-link-button> -->
+    <sqh-copy-link-button hidden="false"></sqh-copy-link-button>
 
-    <sqh-share-button-container maxwidth="100%" twitterdisplayrule="" messengerdisplayrule="desktop"></sqh-share-button-container>
+    <sqh-share-button-container maxwidth="100%"></sqh-share-button-container>
 
     <sqh-text-component color="#000" fontsize="13" text="**Rewards Dashboard**" ismarkdown="true" paddingtop="20" paddingbottom="10"></sqh-text-component>
 
     <sqh-stats-container>
       <sqh-stat-component slot="stat-1" statcolor="#4caf50" stattype="/referralsCount" statdescription="Total Referrals"></sqh-stat-component>
       <sqh-stat-component slot="stat-2" stattype="/rewardsCount" statdescription="Total Rewards"></sqh-stat-component>
-      <sqh-stat-component slot="stat-3" stattype="/rewardBalance/CREDIT/CENTS/pretty" statdescription="Credit earned"></sqh-stat-component>
+      <sqh-stat-component slot="stat-3" stattype="/rewardBalance/CREDIT/CENTS/prettyRedeemedCredit" statdescription="Credit earned"></sqh-stat-component>
     </sqh-stats-container>
 
     <sqh-referral-list

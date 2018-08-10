@@ -63,7 +63,7 @@ export class ShareButtonContainer {
   @Prop() whatsappiconsize: number = 1.4;
   
   // LinkedIn button properties and default settings
-  @Prop() linkedindisplayrule: string = "desktop-only";
+  @Prop() linkedindisplayrule: string;
   @Prop() linkedintext: string = "LinkedIn";
   @Prop() linkedinbackgroundcolor: string = "#0084b9";
   @Prop() linkedintextcolor: string = "#fff";
@@ -74,7 +74,7 @@ export class ShareButtonContainer {
   @Prop() linkediniconsize: number = 1.2;
 
   // Pinterest button properties and default settings
-  @Prop() pinterestdisplayrule: string = "mobile-and-desktop";
+  @Prop() pinterestdisplayrule: string;
   @Prop() pinteresttext: string = "Pinterest";
   @Prop() pinterestbackgroundcolor: string = "#cb2027";
   @Prop() pinteresttextcolor: string = "#fff";
@@ -85,7 +85,7 @@ export class ShareButtonContainer {
   @Prop() pinteresticonsize: number = 1.2;
   
   // Messenger button properties and default settings
-  @Prop() messengerdisplayrule: string = "hidden";
+  @Prop() messengerdisplayrule: string;
   @Prop() messengertext: string = "Messenger";
   @Prop() messengerbackgroundcolor: string = "#0084ff";
   @Prop() messengertextcolor: string = "#fff";
