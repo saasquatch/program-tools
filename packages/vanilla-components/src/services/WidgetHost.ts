@@ -312,6 +312,7 @@ const API = {
 
     getMessageLinks(type){
       const widgetId = widgetIdent();
+      console.log("MESSAGE LINK WIDGETID", widgetId);
 
       if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
 
@@ -324,11 +325,11 @@ const API = {
         mode
       };
 
-      return this.getClient(test).query({
+      return this.getClient(type).query({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID, $mode: UserEngagementMedium) {
             user(id: $userId, accountId: $accountId) {
-              messageLink(programId: $programId, engagementMedium: ${type}, shareMedium: $mode)
+              messageLink(programId: $programId, engagementMedium: $mode, shareMedium: ${type})
             }
           }
         `,
