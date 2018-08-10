@@ -2,7 +2,6 @@ import { Component, Prop, State } from '@stencil/core';
 import Clipboard from 'clipboard';
 import { shadeColor, addClass, removeClass } from '../../utilities';
 import { css } from 'emotion';
-
 import { API } from '../../services/WidgetHost';
 
 @Component({
@@ -19,6 +18,7 @@ export class CopyLinkButton {
   @State() sharelink: string;
 
   componentWillLoad() {
+    // if this.ishidden TODO
     return API.graphql.getShareLink().then(res => {
       this.sharelink = res;
     }).catch(e => {
