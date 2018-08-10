@@ -63,6 +63,7 @@ export default (editor, config = {}) => {
 
     Button(color) {
       const ButtonOuter = styled.div`
+        background: white;
         border: 1px solid #ddd;
         border-radius: 4px;
         height: 15px;
