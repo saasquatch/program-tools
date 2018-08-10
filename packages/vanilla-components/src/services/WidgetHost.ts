@@ -60,7 +60,7 @@ const demoUser = {
   rewardsMonth: { totalCount: 7 },
   rewardsWeek: { totalCount: 4 },
   rewardBalances: [
-    { type: "CREDIT", unit: "CENTS", value: 17000, prettyValue: "$170.00", totalAssignedCredit: "170000", totalRedeemedCredit: "0" },
+    { type: "CREDIT", unit: "CENTS", value: 17000, prettyValue: "$170.00", totalAssignedCredit: "17000", totalRedeemedCredit: "1500", prettyAssignedCredit: "$170.00", prettyRedeemedCredit:"$15.00" },
     { type: "PCT_DISCOUNT", unit: "%", value: 15, prettyValue: "15%" },
   ],
 }
@@ -145,7 +145,7 @@ const API = {
       }).then(res => res.data.user.shareLink);
     },
 
-    getReferrals(offset = 0, limit = 3) {
+    async getReferrals(offset = 0, limit = 3) {
       const widgetId = widgetIdent();
 
       if (widgetId["env"] === "demo" || !widgetId) {
@@ -155,7 +155,7 @@ const API = {
           data: refs.data.slice(offset, offset + limit)
         }
         const user = { referrals, referredByReferral };
-        return Promise.resolve(user);
+        return await new Promise(resolve => setTimeout(() => resolve(user), 500));
       }
 
       const { userId, accountId, programId = null } = widgetId;

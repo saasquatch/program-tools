@@ -54,14 +54,22 @@ export class ReferralList {
     return API.graphql.getReferrals(offset);
   }
 
-  paginate(offset) {
+  paginate(offset, event) {
+    if (this.loading) return null;
     let { referralsCount } = this;
     if (this.showreferrer && this.referredBy) referralsCount++;
     if (offset >= referralsCount || offset < 0) return null;
+    this.loading = true;
+    const { target } = event;
+    target.innerText = "...";
     this.getReferrals(offset)
     .then(res => {
+      target.innerText = offset > this.offset
+        ? this.paginatemore
+        : this.paginateless;
       this.referrals = res.referrals.data;
       this.offset = offset;
+      this.loading = false;
     });
   }
 
@@ -137,19 +145,39 @@ export class ReferralList {
             {referredByRow}
           </div>
           <div class="squatch-referrals-scroll-action-container">
-            <button class={`squatch-referrals-scroll-action previous ${this.offset === 0 ? "disabled" : ""}`} onClick={() => this.paginate(this.offset - 3)}>{this.paginateless}</button>
             <button 
               class={`
-                squatch-referrals-scroll-action view-more ${
-                  this.showreferrer && this.referredBy
-                    ? this.offset >= this.referralsCount - 2
-                      ? "disabled"
-                      : ""
-                    : this.offset >= this.referralsCount - 3
+                squatch-referrals-scroll-action previous ${
+                  this.loading
+                    ? "disabled"
+                    : this.offset === 0
                       ? "disabled"
                       : ""
                 }
-              `} view-more onClick={() => this.paginate(this.offset + 3)}>{this.paginatemore}</button>
+              `}
+              onClick={event => this.paginate(this.offset - 3, event)}
+            >
+              {this.paginateless}
+            </button>
+            <button 
+              class={`
+                squatch-referrals-scroll-action view-more ${
+                  this.loading
+                    ? "disabled"
+                    : this.showreferrer && this.referredBy
+                      ? this.offset >= this.referralsCount - 2
+                        ? "disabled"
+                        : ""
+                      : this.offset >= this.referralsCount - 3
+                        ? "disabled"
+                        : ""
+                }
+              `}
+              view-more
+              onClick={event => this.paginate(this.offset + 3, event)}
+            >
+              {this.paginatemore}
+            </button>
           </div>
         </div>
       )
