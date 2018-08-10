@@ -15,6 +15,11 @@ sqh-referral-component {
     .squatch-referrals-heading {
       grid-column-start: 1;
       grid-row-start: 2;
+
+      @media (max-width: 400px) {
+        align-self: center;
+        margin-top: 10px;
+      }
     }
 
     .squatch-referrals-description {
@@ -22,6 +27,10 @@ sqh-referral-component {
       grid-row-start: 3;
 
       font-size: 15px;
+
+      @media (max-width: 400px) {
+        display: none;
+      }
     }
 
     .squatch-referrals-icon {
