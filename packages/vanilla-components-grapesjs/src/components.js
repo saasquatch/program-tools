@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import { ChromePicker } from "react-color";
+import { ChromePicker, BlockPicker, TwitterPicker, CompactPicker } from "react-color";
 
 export default (editor, config = {}) => {
   // Get DomComponents module
@@ -61,7 +61,7 @@ export default (editor, config = {}) => {
       this.props.onChange(color.hex)
     }
 
-    Button(color) {
+    Button() {
       const ButtonOuter = styled.div`
         background: white;
         border: 1px solid #ddd;
@@ -81,7 +81,7 @@ export default (editor, config = {}) => {
       )
     }
 
-    Picker(color) {
+    Picker(p) {
       const popover = {
         position: 'absolute',
         zIndex: '2',
@@ -93,14 +93,17 @@ export default (editor, config = {}) => {
         bottom: '0px',
         left: '0px',
       }
+      const picker = {
+        chrome: <ChromePicker color={this.props.value} onChangeComplete={this.handleChange} />,
+        block: <BlockPicker color={this.props.value} onChangeComplete={this.handleChange} />,
+        twitter: <TwitterPicker color={this.props.value} onChangeComplete={this.handleChange} />,
+        compact: <CompactPicker color={this.props.value} onChangeComplete={this.handleChange} />,
+      }
       return this.state.isOpen
         ? (
           <div style={popover}>
             <div style={cover} onClick={this.handleClose} />
-            <ChromePicker
-              color={this.props.value}
-              onChangeComplete={this.handleChange}
-            />
+            {picker[p.type]}
           </div>
         ) : null
     }
@@ -109,7 +112,7 @@ export default (editor, config = {}) => {
       return (
         <div>
           <this.Button />
-          <this.Picker />
+          <this.Picker type={this.props.type} />
         </div>
       )
     }
@@ -156,7 +159,7 @@ export default (editor, config = {}) => {
           {type: 'boolean', title: 'Show Powered By', name: 'poweredby', value: true}
         ],
         uiSchema: {
-          'background': { 'ui:widget': 'color' },
+          'background': { 'ui:widget': props => <ColorPicker {...props} type="compact" /> },
           'poweredby': poweredByUi
         }
       })
@@ -238,7 +241,8 @@ export default (editor, config = {}) => {
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
           'text': { 'ui:widget': 'textarea' },
-          'ismarkdown': markdownUi
+          'ismarkdown': markdownUi,
+          'color': { 'ui:widget': props => <ColorPicker {...props} type="twitter" /> },
         }
       })
     },
@@ -260,7 +264,7 @@ export default (editor, config = {}) => {
         uiSchema: {
           'text': { 'ui:widget': 'textarea', 'ui:options': { rows: 8 } },
           'ishidden': { 'ui:widget': 'hidden' },
-          'color': { 'ui:widget': props => <ColorPicker {...props} /> },
+          'color': { 'ui:widget': props => <ColorPicker {...props} type="chrome" /> },
           'fontsize': { 'ui:widget': 'updown' },
           'ismarkdown': markdownUi
         }
@@ -319,7 +323,7 @@ export default (editor, config = {}) => {
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
-          'color': { 'ui:widget': 'color' }
+          'color': { 'ui:widget': props => <ColorPicker {...props} type="block" /> },
         }
       })
     },
