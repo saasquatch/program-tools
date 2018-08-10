@@ -1,80 +1,6 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 
-class ColorPicker extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isOpen: false,
-    }
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleClick() {
-    this.setState({ isOpen: !this.state.isOpen })
-  };
-
-  handleClose() {
-    this.setState({ isOpen: false })
-  };
-
-  handleChange(color) {
-    this.props.onChange(color.hex)
-  }
-
-  Button(color) {
-    const ButtonOuter = styled.div`
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      height: 15px;
-      padding: 5px;
-      width: 30px;
-    `
-    const ButtonInner = styled.div`
-      background: ${ this.props.value };
-      height: 100%;
-    `
-    return (
-      <ButtonOuter onClick={this.handleClick}>
-        <ButtonInner />
-      </ButtonOuter>
-    )
-  }
-
-  Picker(color) {
-    const popover = {
-      position: 'absolute',
-      zIndex: '2',
-    }
-    const cover = {
-      position: 'fixed',
-      top: '0px',
-      right: '0px',
-      bottom: '0px',
-      left: '0px',
-    }
-    return this.state.isOpen
-      ? (
-        <div style={popover}>
-          <div style={cover} onClick={this.handleClose} />
-          <ChromePicker
-            color={this.props.value}
-            onChangeComplete={this.handleChange}
-          />
-        </div>
-      ) : null
-  }
-
-  render() {
-    return (
-      <div>
-        <this.Button />
-        <this.Picker />
-      </div>
-    )
-  }
-}
-
 export default (editor, config = {}) => {
   // Get DomComponents module
   var comps = editor.DomComponents;
@@ -106,6 +32,80 @@ export default (editor, config = {}) => {
       "Verdana",
       "Georgia"
     ]
+  }
+
+  class ColorPicker extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+        isOpen: false,
+      }
+      this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleClick() {
+      this.setState({ isOpen: !this.state.isOpen })
+    };
+
+    handleClose() {
+      this.setState({ isOpen: false })
+    };
+
+    handleChange(color) {
+      this.props.onChange(color.hex)
+    }
+
+    Button(color) {
+      const ButtonOuter = styled.div`
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        height: 15px;
+        padding: 5px;
+        width: 30px;
+      `
+      const ButtonInner = styled.div`
+        background: ${ this.props.value };
+        height: 100%;
+      `
+      return (
+        <ButtonOuter onClick={this.handleClick}>
+          <ButtonInner />
+        </ButtonOuter>
+      )
+    }
+
+    Picker(color) {
+      const popover = {
+        position: 'absolute',
+        zIndex: '2',
+      }
+      const cover = {
+        position: 'fixed',
+        top: '0px',
+        right: '0px',
+        bottom: '0px',
+        left: '0px',
+      }
+      return this.state.isOpen
+        ? (
+          <div style={popover}>
+            <div style={cover} onClick={this.handleClose} />
+            <ChromePicker
+              color={this.props.value}
+              onChangeComplete={this.handleChange}
+            />
+          </div>
+        ) : null
+    }
+
+    render() {
+      return (
+        <div>
+          <this.Button />
+          <this.Picker />
+        </div>
+      )
+    }
   }
 
   const poweredByUi = editor.canWhitelabel ?
@@ -195,7 +195,7 @@ export default (editor, config = {}) => {
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
-          'color': { 'ui:widget': props => <ColorPicker {...props} /> },
+          'color': { 'ui:widget': 'color' },
           'fontsize': { 'ui:widget': 'updown' },
           'ismarkdown': markdownUi
         }
@@ -253,7 +253,7 @@ export default (editor, config = {}) => {
         uiSchema: {
           'text': { 'ui:widget': 'textarea', 'ui:options': { rows: 8 } },
           'ishidden': { 'ui:widget': 'hidden' },
-          'color': { 'ui:widget': 'color' },
+          'color': { 'ui:widget': props => <ColorPicker {...props} /> },
           'fontsize': { 'ui:widget': 'updown' },
           'ismarkdown': markdownUi
         }
