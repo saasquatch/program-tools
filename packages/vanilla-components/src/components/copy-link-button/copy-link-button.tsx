@@ -17,10 +17,9 @@ export class CopyLinkButton {
   @Prop() textcolor: string = "#fff";
   @State() sharelink: string;
 
+
   componentWillLoad() {
-    if (this.ishidden) {
-      return; // don't make graphql calls if component isn't being rendered
-    } else {
+    if (!this.ishidden) {
       return API.graphql.getShareLink().then(res => {
         this.sharelink = res;
       }).catch(e => {

@@ -20,9 +20,7 @@ export class StatsContainer {
   }
 
   componentWillLoad() {
-    if (this.ishidden) {
-      return; // don't make graphql calls if component isn't being rendered
-    } else {
+    if (!this.ishidden) {
       return API.graphql.getStats().then(res => {
         this.stats = {
           referralsCount: res.referralsCount.totalCount,
