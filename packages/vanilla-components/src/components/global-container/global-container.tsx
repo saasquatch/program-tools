@@ -10,10 +10,25 @@ export class GlobalContainer {
   @Prop() fontfamily: string;
   @Prop() poweredby: boolean = true;
 
+  LoadingState() {
+    return (
+      <div class="container-loading">
+        <div class="loading-icon">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+          <div class="bar4"></div>
+          <div class="bar5"></div>
+        </div>
+      </div>
+    )
+  }
+
   render() {
     const myStyle = css`
       background-color: ${this.background};
       font-family: ${this.fontfamily};
+      position: relative;
     `
     return <div class={myStyle}>
       <slot />
@@ -21,6 +36,7 @@ export class GlobalContainer {
         ? <a class="sqh-attribution" href="https://get.referralsaasquatch.com/powered-by/?co=GraphQL%20testing" target="_blank">Powered By Saasquatch</a>
         : ''
       }
+      <this.LoadingState />
     </div>
   }
 }
