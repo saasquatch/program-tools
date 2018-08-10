@@ -42,6 +42,8 @@ export default (editor, config = {}) => {
         isOpen: false,
       }
       this.handleChange = this.handleChange.bind(this)
+      this.Button = this.Button.bind(this)
+      this.Picker = this.Picker.bind(this)
     }
 
     handleClick() {
