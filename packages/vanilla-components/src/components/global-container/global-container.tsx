@@ -25,12 +25,13 @@ export class GlobalContainer {
   }
 
   render() {
-    const myStyle = css`
+    const style = css`
       background-color: ${this.background};
       font-family: ${this.fontfamily};
       position: relative;
     `
-    return <div class={myStyle}>
+
+    return <div class={style}>
       <slot />
       {this.poweredby
         ? <a class="sqh-attribution" href="https://get.referralsaasquatch.com/powered-by/?co=GraphQL%20testing" target="_blank">Powered By Saasquatch</a>
