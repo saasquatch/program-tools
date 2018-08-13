@@ -6,6 +6,8 @@ body {
 }
 
 sqh-global-container {
+  display: block;
+
   * {
     box-sizing: border-box; // respects width set and puts padding inside of set width
   }

@@ -32,14 +32,12 @@ export class GlobalContainer {
     `
 
     return <div class={style}>
-      <div class="squatch-container">
-        <slot />
-        {this.poweredby
-          ? <a class="sqh-attribution" href="https://get.referralsaasquatch.com/powered-by/?co=GraphQL%20testing" target="_blank">Powered By Saasquatch</a>
-          : ''
-        }
-        <this.LoadingState />
-      </div>
+      <slot />
+      {this.poweredby
+        ? <a class="sqh-attribution" href="https://get.referralsaasquatch.com/powered-by/?co=GraphQL%20testing" target="_blank">Powered By Saasquatch</a>
+        : ''
+      }
+      <this.LoadingState />
     </div>
   }
 }
