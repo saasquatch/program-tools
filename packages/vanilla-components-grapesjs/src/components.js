@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import { ChromePicker, BlockPicker, TwitterPicker, CompactPicker } from "react-color";
+import ReactColor from "react-color";
 
 export default (editor, config = {}) => {
   // Get DomComponents module
@@ -94,10 +94,7 @@ export default (editor, config = {}) => {
         left: '0px',
       }
       const picker = {
-        chrome: <ChromePicker color={this.props.value} onChangeComplete={this.handleChange} />,
-        block: <BlockPicker color={this.props.value} onChangeComplete={this.handleChange} />,
-        twitter: <TwitterPicker color={this.props.value} onChangeComplete={this.handleChange} />,
-        compact: <CompactPicker color={this.props.value} onChangeComplete={this.handleChange} />,
+        twitter: <ReactColor.TwitterPicker color={this.props.value} onChangeComplete={this.handleChange} />,
       }
       return this.state.isOpen
         ? (
@@ -159,7 +156,7 @@ export default (editor, config = {}) => {
           {type: 'boolean', title: 'Show Powered By', name: 'poweredby', value: true}
         ],
         uiSchema: {
-          'background': { 'ui:widget': props => <ColorPicker {...props} type="compact" /> },
+          'background': { 'ui:widget': props => <ColorPicker {...props} type="twitter" /> },
           'poweredby': poweredByUi
         }
       })
@@ -264,7 +261,7 @@ export default (editor, config = {}) => {
         uiSchema: {
           'text': { 'ui:widget': 'textarea', 'ui:options': { rows: 8 } },
           'ishidden': { 'ui:widget': 'hidden' },
-          'color': { 'ui:widget': props => <ColorPicker {...props} type="chrome" /> },
+          'color': { 'ui:widget': props => <ColorPicker {...props} type="twitter" /> },
           'fontsize': { 'ui:widget': 'updown' },
           'ismarkdown': markdownUi
         }
@@ -323,7 +320,7 @@ export default (editor, config = {}) => {
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
-          'color': { 'ui:widget': props => <ColorPicker {...props} type="block" /> },
+          'color': { 'ui:widget': props => <ColorPicker {...props} type="twitter" /> },
         }
       })
     },
