@@ -31,7 +31,7 @@ export class GlobalContainer {
       position: relative;
     `
     return <div class={myStyle}>
-      <slot />
+      {/* <slot /> */}
       {this.poweredby
         ? <a class="sqh-attribution" href="https://get.referralsaasquatch.com/powered-by/?co=GraphQL%20testing" target="_blank">Powered By Saasquatch</a>
         : ''
