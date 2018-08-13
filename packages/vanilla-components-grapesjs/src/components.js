@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import styled from "styled-components";
-import ReactColor from "react-color";
 
 export default (editor, config = {}) => {
   // Get DomComponents module
@@ -34,85 +32,6 @@ export default (editor, config = {}) => {
       "Verdana",
       "Georgia"
     ]
-  }
-
-  class ColorPicker extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        isOpen: false,
-      }
-      this.handleChange = this.handleChange.bind(this)
-      this.handleClick = this.handleClick.bind(this)
-      this.handleClose = this.handleClose.bind(this)
-      this.Button = this.Button.bind(this)
-      this.Picker = this.Picker.bind(this)
-    }
-
-    handleClick() {
-      this.setState({ isOpen: !this.state.isOpen })
-    };
-
-    handleClose() {
-      this.setState({ isOpen: false })
-    };
-
-    handleChange(color) {
-      this.props.onChange(color.hex)
-    }
-
-    Button() {
-      const ButtonOuter = styled.div`
-        background: white;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        height: 15px;
-        padding: 5px;
-        width: 30px;
-      `
-      const ButtonInner = styled.div`
-        background: ${ this.props.value };
-        height: 100%;
-      `
-      return (
-        <ButtonOuter onClick={this.handleClick}>
-          <ButtonInner />
-        </ButtonOuter>
-      )
-    }
-
-    Picker(p) {
-      const popover = {
-        position: 'absolute',
-        zIndex: '2',
-      }
-      const cover = {
-        position: 'fixed',
-        top: '0px',
-        right: '0px',
-        bottom: '0px',
-        left: '0px',
-      }
-      const picker = {
-        twitter: <ReactColor.TwitterPicker color={this.props.value} onChangeComplete={this.handleChange} />,
-      }
-      return this.state.isOpen
-        ? (
-          <div style={popover}>
-            <div style={cover} onClick={this.handleClose} />
-            {picker[p.type]}
-          </div>
-        ) : null
-    }
-
-    render() {
-      return (
-        <div>
-          <this.Button />
-          <this.Picker type={this.props.type} />
-        </div>
-      )
-    }
   }
 
   const poweredByUi = editor.canWhitelabel ?
@@ -156,7 +75,7 @@ export default (editor, config = {}) => {
           {type: 'boolean', title: 'Show Powered By', name: 'poweredby', value: true}
         ],
         uiSchema: {
-          'background': { 'ui:widget': props => <ColorPicker {...props} type="twitter" /> },
+          'background': { 'ui:widget': "color" },
           'poweredby': poweredByUi
         }
       })
@@ -239,7 +158,7 @@ export default (editor, config = {}) => {
           'ishidden': { 'ui:widget': 'hidden' },
           'text': { 'ui:widget': 'textarea' },
           'ismarkdown': markdownUi,
-          'color': { 'ui:widget': props => <ColorPicker {...props} type="twitter" /> },
+          'color': { 'ui:widget': 'color' },
         }
       })
     },
@@ -261,7 +180,7 @@ export default (editor, config = {}) => {
         uiSchema: {
           'text': { 'ui:widget': 'textarea', 'ui:options': { rows: 8 } },
           'ishidden': { 'ui:widget': 'hidden' },
-          'color': { 'ui:widget': props => <ColorPicker {...props} type="twitter" /> },
+          'color': { 'ui:widget': 'color' },
           'fontsize': { 'ui:widget': 'updown' },
           'ismarkdown': markdownUi
         }
@@ -320,7 +239,7 @@ export default (editor, config = {}) => {
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
-          'color': { 'ui:widget': props => <ColorPicker {...props} type="twitter" /> },
+          'color': { 'ui:widget': 'color' },
         }
       })
     },
