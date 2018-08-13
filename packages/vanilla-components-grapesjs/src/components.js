@@ -284,7 +284,7 @@ export default (editor, config = {}) => {
   comps.addType('sqh-referrals-header', {
     model: textComp.model.extend({
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
-        name: 'Referrals Header',
+        name: 'Stats Header',
         traits: [
           { type: 'boolean', title: 'Hidden', name: 'ishidden', value: false },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: true },
@@ -341,7 +341,7 @@ export default (editor, config = {}) => {
   comps.addType('sqh-copy-link-button', {
     model: defaultModel.extend({
         defaults: Object.assign({}, defaultModel.prototype.defaults, {
-          name: "Reward Link",
+          name: "Share Link",
           // can be dropped only inside 
           draggable: false,
 
