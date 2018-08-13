@@ -480,7 +480,7 @@ export default (editor, config = {}) => {
             { type: 'string', name: 'pinteresttext', value: 'Pinterest' },
             { type: 'string', name: 'pinteresttextcolor', value: '#ffffff' },
             { type: 'string', name: 'pinterestbackgroundcolor', value: '#cb2027' },
-            { type: 'string', name: 'messengerisplayrule', value: 'hidden' },
+            { type: 'string', name: 'messengerdisplayrule', value: 'hidden' },
             { type: 'string', name: 'messengerext', value: 'Messenger' },
             { type: 'string', name: 'messengerextcolor', value: '#ffffff' },
             { type: 'string', name: 'messengerackgroundcolor', value: '#0084ff' },
