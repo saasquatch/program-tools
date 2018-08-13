@@ -60,7 +60,7 @@ export class ShareButton {
 
   render() {
     const isMobileSafari  = detectMobileSafari();
-    const target = isMobileSafari ? '_parent' : null;
+    const target = isMobileSafari ? '_parent' : '_top'; // target top allows mailto link to open in iframe
     const iconClass = `icon icon-${this.icon}`;
 
     const style = css`
