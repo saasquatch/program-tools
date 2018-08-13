@@ -312,7 +312,6 @@ const API = {
 
     getMessageLinks(type){
       const widgetId = widgetIdent();
-      console.log("MESSAGE LINK WIDGETID", widgetId);
 
       if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
 
