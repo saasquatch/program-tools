@@ -60,7 +60,7 @@ export class ShareButton {
 
   render() {
     const isMobileSafari  = detectMobileSafari();
-    const target = isMobileSafari ? '_parent' : '_parent'; // might be able to take out isMobile if email link works
+    const target = isMobileSafari ? '_parent' : '_blank';
     const iconClass = `icon icon-${this.icon}`;
 
     const style = css`
