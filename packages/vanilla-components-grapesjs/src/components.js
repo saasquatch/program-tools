@@ -314,11 +314,11 @@ export default (editor, config = {}) => {
         name: 'Banner',
         traits: [
           { type: 'boolean', title: 'Hidden', name: 'ishidden', value: true },
-          { type: 'string', title: 'Image URL', name: 'background', value: 'http://res.cloudinary.com/saasquatch/image/upload/v1517426138/Optimalprint_FB_OG_default_jky5tu.jpg', format: 'uri' },
+          { type: 'string', title: 'Image URL', name: 'background', value: 'https://res.cloudinary.com/saasquatch/image/upload/v1534263854/default_banner_pmzqnc.jpg', format: 'uri' },
           { type: 'string', title: 'Height in pixels', name: 'height', value: 'auto' },
-          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
-          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
-          { type: 'string', title: 'Content', name: 'text', value: 'Text in banner' },
+          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '150'},
+          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '150'},
+          { type: 'string', title: 'Content', name: 'text', value: '' },
           { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
         ],
         uiSchema: {

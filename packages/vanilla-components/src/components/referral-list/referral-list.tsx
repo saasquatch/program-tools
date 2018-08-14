@@ -83,6 +83,7 @@ export class ReferralList {
   render() {
     let referredByRow;
     let referralsRow;
+    let noReferrals;
 
     const referralvariables = {
       usefirstreward: this.usefirstreward,
@@ -92,7 +93,14 @@ export class ReferralList {
       pendingvalue: this.pendingvalue,
       valuecontent: this.valuecontent,
     }
-    
+
+    console.log('THE STATE OF REFERRALS COUNT: ' + this.referralsCount);
+
+    if (this.referralsCount === 0) {
+      console.log('Hey Handsome, Im zero!!!!');
+      
+    }
+
     if (this.referrals) {
       referralsRow = (
         this.referrals.map((ref) => {
@@ -143,6 +151,7 @@ export class ReferralList {
       : (
         <div class={`squatch-referrals ${clz}`}>
           <div class="squatch-referrals-scroll-container">
+            {noReferrals}
             {referralsRow}
             {referredByRow}
           </div>

@@ -41,7 +41,7 @@ const demoUser = {
   shareLink: "http://sharelink.squatch.com",
   messageLink: "http://short.staging.referralsaasquatch.com/mwjExk",
   referrals: {
-    totalCount: 8,
+    totalCount: 0,
     data: [
       { dateReferralStarted: today.setDate(today.getDate()-2), referredUser: { firstName: "Remus", lastName: "Lupin" }, rewards: [{ prettyValue: "$20.00" },{ prettyValue: "$10.00" },{ prettyValue: "$5.00" },] },
       { dateReferralStarted: today.setDate(today.getDate()-1), referredUser: { firstName: "Gellert", lastName: "Grindelwald" }, rewards: [] },
