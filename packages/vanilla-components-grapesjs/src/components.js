@@ -438,7 +438,7 @@ export default (editor, config = {}) => {
   comps.addType('sqh-share-button-container', {
     model: defaultModel.extend({
         defaults: Object.assign({}, defaultModel.prototype.defaults, {
-          name: "Share Button Container",
+          name: "Share Buttons",
 
           // can drop these elements in 
           droppable: false,
@@ -620,7 +620,7 @@ export default (editor, config = {}) => {
   comps.addType('sqh-stats-container', {
     model: defaultModel.extend({
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
-        name: "Stats Container",
+        name: "Referral Stats",
 
         // can be dropped only inside 
         draggable: false,
