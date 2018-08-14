@@ -18,12 +18,13 @@ export class CopyLinkButton {
   @State() sharelink: string;
 
   componentWillLoad() {
-    // if this.ishidden TODO
-    return API.graphql.getShareLink().then(res => {
-      this.sharelink = res;
-    }).catch(e => {
-      this.onError(e);
-    });
+    if (!this.ishidden) {
+      return API.graphql.getShareLink().then(res => {
+        this.sharelink = res;
+      }).catch(e => {
+        this.onError(e);
+      });
+    } 
   }
 
   onError(e: Error) {

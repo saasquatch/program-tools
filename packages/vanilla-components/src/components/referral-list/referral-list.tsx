@@ -39,15 +39,17 @@ export class ReferralList {
   }
 
   componentWillLoad() {
-    return this.getReferrals().then(res => {
-      console.log('res', res);
-      this.referrals = res.referrals.data;
-      this.referredBy = res.referredByReferral;
-      this.referralsCount = res.referrals.totalCount;
-      this.loading = false;
-    }).catch(e => {
-      this.onError(e);
-    });
+    if (!this.ishidden) {
+      return this.getReferrals().then(res => {
+        console.log('res', res);
+        this.referrals = res.referrals.data;
+        this.referredBy = res.referredByReferral;
+        this.referralsCount = res.referrals.totalCount;
+        this.loading = false;
+      }).catch(e => {
+        this.onError(e);
+      });
+    }
   }
 
   getReferrals(offset = 0) {

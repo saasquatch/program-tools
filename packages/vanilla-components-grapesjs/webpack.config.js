@@ -42,7 +42,7 @@ module.exports = (env = {}) => {
           }
       }],
     },
-    externals: {'grapesjs': 'grapesjs', 'react': 'React', 'react-dom': 'ReactDOM'},
+    externals: {'grapesjs': 'grapesjs', 'react': 'React', 'react-dom': 'ReactDOM', 'styled-components': 'styled', 'react-color': 'ReactColor'},
     plugins: plugins,
   };
 }
