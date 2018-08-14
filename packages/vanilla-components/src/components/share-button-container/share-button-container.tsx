@@ -1,4 +1,5 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
+import { API } from '../../services/WidgetHost';
 
 @Component({
   tag: 'sqh-share-button-container',
@@ -17,6 +18,7 @@ export class ShareButtonContainer {
   @Prop() emailiconhorizontal: number;
   @Prop() emailiconvertical: number;
   @Prop() emailiconsize: number;
+  @State() emailurl: string;
 
   // FaceBook button properties and default settings
   @Prop() facebookdisplayrule: string = "mobile-and-desktop";
@@ -28,6 +30,7 @@ export class ShareButtonContainer {
   @Prop() facebookiconhorizontal: number = 9;
   @Prop() facebookiconvertical: number;
   @Prop() facebookiconsize: number = 1.2;
+  @State() facebookurl: string;
 
   // Twitter button properties and default settings
   @Prop() twitterdisplayrule: string = "mobile-and-desktop";
@@ -39,6 +42,7 @@ export class ShareButtonContainer {
   @Prop() twittericonhorizontal: number = 9;
   @Prop() twittericonvertical: number;
   @Prop() twittericonsize: number = 1.2;
+  @State() twitterurl: string;
 
   // SMS button properties and default settings
   @Prop() smsdisplayrule: string = "mobile-only";
@@ -50,6 +54,7 @@ export class ShareButtonContainer {
   @Prop() smsiconhorizontal: number;
   @Prop() smsiconvertical: number;
   @Prop() smsiconsize: number;
+  @State() smsurl: string;
 
   // Whatsapp button properties and default settings
   @Prop() whatsappdisplayrule: string = "mobile-only";
@@ -61,6 +66,7 @@ export class ShareButtonContainer {
   @Prop() whatsappiconhorizontal: number = 7;
   @Prop() whatsappiconvertical: number = 2;
   @Prop() whatsappiconsize: number = 1.4;
+  @State() whatsappurl: string;
   
   // LinkedIn button properties and default settings
   @Prop() linkedindisplayrule: string;
@@ -72,6 +78,7 @@ export class ShareButtonContainer {
   @Prop() linkediniconhorizontal: number;
   @Prop() linkediniconvertical: number;
   @Prop() linkediniconsize: number = 1.2;
+  @State() linkedinurl: string;
 
   // Pinterest button properties and default settings
   @Prop() pinterestdisplayrule: string;
@@ -83,6 +90,7 @@ export class ShareButtonContainer {
   @Prop() pinteresticonhorizontal: number = 9;
   @Prop() pinteresticonvertical: number = 4;
   @Prop() pinteresticonsize: number = 1.2;
+  @State() pinteresturl: string;
   
   // Messenger button properties and default settings
   @Prop() messengerdisplayrule: string;
@@ -94,6 +102,32 @@ export class ShareButtonContainer {
   @Prop() messengericonhorizontal: number = 7;
   @Prop() messengericonvertical: number = 3;
   @Prop() messengericonsize: number = 1.4;
+  @State() messengerurl: string;
+
+  componentWillLoad() {
+    if (!this.ishidden) {
+      return this.getMessageLinks('EMAIL', 'FACEBOOK', 'TWITTER', 'SMS', 'WHATSAPP', 'LINKEDIN', 'PINTEREST', 'FBMESSENGER');
+    }
+  }
+
+  getMessageLinks(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8) {
+    return API.graphql.getMessageLinks(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8).then(res => {
+      this.emailurl = res.EMAIL;
+      this.facebookurl = res.FACEBOOK;
+      this.twitterurl = res.TWITTER;
+      this.smsurl = res.SMS;
+      this.whatsappurl = res.WHATSAPP;
+      this.linkedinurl = res.LINKEDIN;
+      this.pinteresturl = res.PINTEREST;
+      this.messengerurl = res.FBMESSENGER;
+    }).catch(e => {
+      this.onError(e);
+    });
+  }
+
+  onError(e: Error) {
+    console.log("Error loading via GraphQL.", e);
+  }
   
   render() {
     const emailBtn = <sqh-share-button 
@@ -106,7 +140,7 @@ export class ShareButtonContainer {
                         iconhorizontal={this.emailiconhorizontal}
                         iconvertical={this.emailiconvertical}
                         iconsize={this.emailiconsize}
-                        type="EMAIL"
+                        url={this.emailurl}
                       />;
 
     const facebookBtn = <sqh-share-button 
@@ -119,7 +153,7 @@ export class ShareButtonContainer {
                           iconhorizontal={this.facebookiconhorizontal}
                           iconvertical={this.facebookiconvertical}
                           iconsize={this.facebookiconsize}
-                          type="FACEBOOK"
+                          url={this.facebookurl}
                         />;
 
     const twitterBtn = <sqh-share-button 
@@ -132,7 +166,7 @@ export class ShareButtonContainer {
                           iconhorizontal={this.twittericonhorizontal}
                           iconvertical={this.twittericonvertical}
                           iconsize={this.twittericonsize}
-                          type="TWITTER"
+                          url={this.twitterurl}
                         />;
 
     const smsBtn = <sqh-share-button 
@@ -145,7 +179,7 @@ export class ShareButtonContainer {
                         iconhorizontal={this.smsiconhorizontal}
                         iconvertical={this.smsiconvertical}
                         iconsize={this.smsiconsize}
-                        type="SMS"
+                        url={this.smsurl}
                     />;
 
     const whatsappBtn = <sqh-share-button 
@@ -158,7 +192,7 @@ export class ShareButtonContainer {
                           iconhorizontal={this.whatsappiconhorizontal}
                           iconvertical={this.whatsappiconvertical}
                           iconsize={this.whatsappiconsize}
-                          type="WHATSAPP"
+                          url={this.whatsappurl}
                         />;
 
     const linkedinBtn = <sqh-share-button 
@@ -171,7 +205,7 @@ export class ShareButtonContainer {
                           iconhorizontal={this.linkediniconhorizontal}
                           iconvertical={this.linkediniconvertical}
                           iconsize={this.linkediniconsize}
-                          type="LINKEDIN"
+                          url={this.linkedinurl}
                         />
 
     const pinterestBtn = <sqh-share-button
@@ -184,7 +218,7 @@ export class ShareButtonContainer {
                             iconhorizontal={this.pinteresticonhorizontal}
                             iconvertical={this.pinteresticonvertical}
                             iconsize={this.pinteresticonsize}
-                            type="PINTEREST"
+                            url={this.pinteresturl}
                         />
 
     const messengerBtn = <sqh-share-button
@@ -197,7 +231,7 @@ export class ShareButtonContainer {
                             iconhorizontal={this.messengericonhorizontal}
                             iconvertical={this.messengericonvertical}
                             iconsize={this.messengericonsize}
-                            type="FBMESSENGER"
+                            url={this.messengerurl}
                           />
 
     const shareSection = this.ishidden ? `` :
