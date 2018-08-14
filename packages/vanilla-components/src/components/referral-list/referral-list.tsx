@@ -12,6 +12,7 @@ export class ReferralList {
   @Prop() ishidden: boolean = false;
   @Prop() paginatemore: string;
   @Prop() paginateless: string;
+  @Prop() noreferralsyet: string = 'No Referrals Yet...';
   @Prop() referralnamecolor: string;
   @Prop() referraltextcolor: string;
   // referrer props
@@ -92,7 +93,7 @@ export class ReferralList {
       pendingvalue: this.pendingvalue,
       valuecontent: this.valuecontent,
     }
-    
+
     if (this.referrals) {
       referralsRow = (
         this.referrals.map((ref) => {
@@ -138,9 +139,11 @@ export class ReferralList {
     `
 
     return (
-      this.ishidden 
+      this.ishidden
       ? ''
-      : (
+      : this.referralsCount > 0
+      ? (
+        // Referral List when not hidden and 1 or more referrals
         <div class={`squatch-referrals ${clz}`}>
           <div class="squatch-referrals-scroll-container">
             {referralsRow}
@@ -181,6 +184,14 @@ export class ReferralList {
               {this.paginatemore}
             </button>
           </div>
+        </div>
+      ) 
+      // 'No Referrals Yet' button if this.referralCount < 1
+      : (
+        <div class="squatch-referrals-scroll-action-container">
+          <button disabled class='squatch-no-referrals-yet'>
+            {this.noreferralsyet}
+          </button>
         </div>
       )
     );
