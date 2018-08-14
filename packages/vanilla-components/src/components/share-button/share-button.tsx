@@ -60,7 +60,7 @@ export class ShareButton {
 
   render() {
     const isMobileSafari  = detectMobileSafari();
-    const target = isMobileSafari ? '_parent' : null;
+    const target = isMobileSafari ? '_parent' : '_blank';
     const iconClass = `icon icon-${this.icon}`;
 
     const style = css`
