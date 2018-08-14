@@ -108,6 +108,8 @@ export class StatsContainer {
       padding-bottom: ${this.paddingbottom}px;
     `;
 
+    console.log('render')
+
     return <div class={containerStyle}><slot /></div>;
   }
 }
