@@ -506,6 +506,7 @@ declare global {
       'text': string;
       'textcolor': string;
       'type': string;
+      'url': string;
     }
   }
 
@@ -538,6 +539,7 @@ declare global {
       'text'?: string;
       'textcolor'?: string;
       'type'?: string;
+      'url'?: string;
     }
   }
 }
