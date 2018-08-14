@@ -24,6 +24,7 @@ export class ShareButton {
   @Element() button: HTMLElement;
 
   clickHandler(e) {
+    if (window["widgetIdent"].env === "demo") return null
     // checking for null on closest 'a' tag makes click handler avoid firing when margin is clicked
     var anchor = e.target.closest('a');
     if (anchor !== null && this.className !== "email-share") {
@@ -88,7 +89,7 @@ export class ShareButton {
     const classes = [`squatch-share-btn`, this.className, this.displayrule, style].join(" ");
 
     return (
-      <a class={classes} href={this.messageLink} target={target}>
+      <a class={classes} href={window["widgetIdent"].env === "demo" ? null : this.messageLink} target={target}>
         <i class={iconClass}></i>
         <span class="share-btn-text">{this.text}</span>
       </a>
