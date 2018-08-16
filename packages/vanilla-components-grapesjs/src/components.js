@@ -149,10 +149,10 @@ export default (editor, config = {}) => {
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: false },
           { type: 'string', title: 'Content', name: 'text', value: 'Give $10 and Get $10' },
           { type: 'string', title: 'Font Color', name: 'color', value: '#4486E1' },
-          { type: 'integer', title: 'Font Size', name: 'fontsize', value: 28 },
+          { type: 'integer', title: 'Font Size in pixels', name: 'fontsize', value: 28 },
           { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
-          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
-          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '10'},
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
@@ -177,6 +177,16 @@ export default (editor, config = {}) => {
     model: textComp.model.extend({
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Body',
+        traits: [
+          { type: 'boolean', title: 'Hidden', name: 'ishidden', value: false },
+          { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: true },
+          { type: 'string', title: 'Content', name: 'text', value: 'Give a friend a $10 and receive $10 for yourself when they purchase.<br/><br/>Share the link below or use the code **RIDDIKULUS.**' },
+          { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
+          { type: 'integer', title: 'Font Size in pixels', name: 'fontsize', value: 13 },
+          { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '10'},
+        ],
         uiSchema: {
           'text': { 'ui:widget': 'textarea', 'ui:options': { rows: 8 } },
           'ishidden': { 'ui:widget': 'hidden' },
@@ -206,10 +216,10 @@ export default (editor, config = {}) => {
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: true },
           { type: 'string', title: 'Content', name: 'text', value: '**Referrals Dashboard**' },
           { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
-          { type: 'integer', title: 'Font Size', name: 'fontsize', value: 14 },
+          { type: 'integer', title: 'Font Size in pixels', name: 'fontsize', value: 14 },
           { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
-          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
-          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '10'},
         ]
       })
     },
@@ -232,8 +242,8 @@ export default (editor, config = {}) => {
           { type: 'boolean', title: 'Hidden', name: 'ishidden', value: true },
           { type: 'string', title: 'Image URL', name: 'background', value: 'https://res.cloudinary.com/saasquatch/image/upload/v1534263854/default_banner_pmzqnc.jpg', format: 'uri' },
           { type: 'string', title: 'Height in pixels', name: 'height', value: 'auto' },
-          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '150'},
-          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '150'},
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '150'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '150'},
           { type: 'string', title: 'Content', name: 'text', value: '' },
           { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
         ],
@@ -550,8 +560,8 @@ export default (editor, config = {}) => {
         
         traits: [
           { type: 'boolean', name: 'ishidden', value: false },
-          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
-          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '10'},
         ],
 
         uiSchema: {
@@ -770,10 +780,10 @@ export default (editor, config = {}) => {
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: false },
           { type: 'string', title: 'Content', name: 'text', value: 'Footer text' },
           { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
-          { type: 'integer', title: 'Font Size', name: 'fontsize', value: 16 },
+          { type: 'integer', title: 'Font Size in pixels', name: 'fontsize', value: 16 },
           { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
-          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
-          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '10'},
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },

@@ -41,7 +41,6 @@ export class ShareButton {
   }
 
   render() {
-    console.log('URL IN BUTTON COMPONENT' + this.url);
     const isMobileSafari  = detectMobileSafari();
     const target = isMobileSafari ? '_parent' : '_blank';
     const iconClass = `icon icon-${this.icon}`;
