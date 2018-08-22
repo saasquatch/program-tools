@@ -38,10 +38,7 @@ export class TextComponent {
     const divStyle = css`
       background: ${this.background ? this.background.match(regex) ? `url(${this.background}) no-repeat center center;` : this.background : 'inherit'};
       height: ${this.height || 'inherit'};
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
+      background-size: contain;
     `;
 
     const content = this.ismarkdown
