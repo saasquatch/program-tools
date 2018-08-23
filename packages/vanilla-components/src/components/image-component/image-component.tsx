@@ -7,6 +7,7 @@ import { css } from 'emotion';
 })
 
 export class ImageComponent {
+  @Prop() ishidden: boolean = false;
   @Prop() url: string;
   @Prop() width: number;
   @Prop() borderradius: number;
@@ -24,11 +25,14 @@ export class ImageComponent {
       border-radius: ${this.borderradius}px;
       ${this.css}
     }`
-  
-   return(
-    <div class={alignment}>
-      <img src={imageString} class={myStyle}/>
-    </div>
-    );
+
+    const imageSection = this.ishidden 
+      ? `` 
+      : <div class={alignment}>
+          <img src={imageString} class={myStyle}/>
+        </div>
+      ;
+
+    return imageSection;
   }
 }
