@@ -310,32 +310,32 @@ const API = {
       }).then(res => res.data.user);
     },
 
-      getMessageLinks(arr){
-        const widgetId = widgetIdent();
-  
-        if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
-  
-        const { userId, accountId, programId = null, engagementMedium } = widgetId;
-  
-        const variables = {
-          userId,
-          accountId,
-          programId,
-          engagementMedium
-        };
+    getMessageLinks(arr){
+      const widgetId = widgetIdent();
 
-        return this.getClient(arr).query({
-          query: gql`
-            query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium) {
-              user(id: $userId, accountId: $accountId) {
-                ${arr}.forEach((btn) => {
-                  btn:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: btn)  
-                })
-              }
+      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
+
+      const { userId, accountId, programId = null, engagementMedium } = widgetId;
+
+      const variables = {
+        userId,
+        accountId,
+        programId,
+        engagementMedium
+      };
+
+      return this.getClient(arr).query({
+        query: gql`
+          query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium) {
+            user(id: $userId, accountId: $accountId) {
+              ${arr}.forEach((btn) => {
+                btn:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: btn)  
+              })
             }
-          `,
-          variables
-        }).then(res => res.data.user);
+          }
+        `,
+        variables
+      }).then(res => res.data.user);
     },
   },
   ui: squatchJsApi
