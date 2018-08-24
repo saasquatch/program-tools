@@ -12,7 +12,6 @@ export class ImageComponent {
   @Prop() width: number;
   @Prop() borderradius: number;
   @Prop() alignment: string;
-  // Option: a text box/code editor that allows for any css rules in this format  [key]:[value];
   @Prop() css: string;
 
   render() {
@@ -26,13 +25,8 @@ export class ImageComponent {
       ${this.css}
     }`
 
-    const imageSection = this.ishidden 
-      ? `` 
-      : <div class={alignment}>
-          <img src={imageString} class={myStyle}/>
-        </div>
-      ;
-
-    return imageSection;
+    return !this.ishidden && <div class={alignment}>
+      <img src={imageString} class={myStyle}/>
+    </div>;
   }
 }

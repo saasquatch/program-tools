@@ -34,8 +34,8 @@ export default (editor, config = {}) => {
     ]
   }
 
-  const poweredByUi = editor.canWhitelabel ?
-  {'ui:disabled': false }:
+  const poweredByUi = editor.editor.attributes.canWhitelabel ?
+  {'ui:disabled': false } :
   {'ui:disabled': true, 'ui:help': <div>Can only be disabled on <span className="label">Pro</span> plans</div>, "ui:title": <span><span className="ico ico-lock"></span> Show Powered By</span> };
   
   const markdownUi = {
@@ -240,16 +240,17 @@ export default (editor, config = {}) => {
         name: 'Banner',
         traits: [
           { type: 'boolean', title: 'Hidden', name: 'ishidden', value: true },
-          { type: 'string', title: 'Image URL', name: 'background', value: 'https://res.cloudinary.com/saasquatch/image/upload/v1534263854/default_banner_pmzqnc.jpg', format: 'uri' },
+          { type: 'string', title: 'Upload Image', name: 'background', value: 'https://res.cloudinary.com/saasquatch/image/upload/v1534263854/default_banner_pmzqnc.jpg' /*,format: 'uri'*/ },
           { type: 'string', title: 'Height in pixels', name: 'height', value: 'auto' },
           { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '150'},
           { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '150'},
           { type: 'string', title: 'Content', name: 'text', value: '' },
-          { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
+          { type: 'string', title: 'Font Color in pixels', name: 'color', value: '#000000' },
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
           'color': { 'ui:widget': 'color' },
+          // 'background': { 'ui:widget': 'CloudinaryUpload' }
         }
       })
     },
@@ -797,6 +798,70 @@ export default (editor, config = {}) => {
       isComponent: function(el) {
         if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhfooter')){
           return {type: 'sqh-footer'};
+        }
+      },
+    }),
+
+    view: textComp.view
+  })
+
+  comps.addType('sqh-image-component', {
+    model: defaultModel.extend({
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        name: 'Banner',
+        selectable: true,
+        droppable: false,
+        draggable: false,
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'string', title: 'Upload Image', name: 'url', value: 'https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png' /*,format: 'uri'*/ },
+          { type: 'string', title: 'Image Align', name: 'alignment', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
+          { type: 'string', title: 'Size in pixels', name: 'width', value: '140' },
+        ],
+        uiSchema: {
+          'ishidden': { 'ui:widget': 'hidden' },
+          // 'url': { 'ui:widget': 'CloudinaryUpload' }
+        }
+      })
+    },
+    {
+      isComponent: function(el) {
+        if(el.tagName == 'SQH-IMAGE-COMPONENT'){
+          return {type: 'sqh-image-component'};
+        }
+      },
+    }),
+
+    view: defaultType.view
+  })
+
+  comps.addType('sqh-cta', {
+    model: textComp.model.extend({
+      defaults: Object.assign({}, textComp.model.prototype.defaults, {
+        name: 'CTA',
+        selectable: true,
+        droppable: false,
+        draggable: false,
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'integer', title: 'Font Size in pixels', name: 'fontsize', value: 16 },
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '10'},
+
+        ],
+        uiSchema: {
+          'text': { 'ui:widget': 'textarea', 'ui:options': { rows: 8 } },
+          'ishidden': { 'ui:widget': 'hidden' },
+          'color': { 'ui:widget': 'color' },
+          'fontsize': { 'ui:widget': 'updown' },
+          'ismarkdown': markdownUi
+        }
+      })
+    },
+    {
+      isComponent: function(el) {
+        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhcta')){
+          return {type: 'sqh-cta'};
         }
       },
     }),
