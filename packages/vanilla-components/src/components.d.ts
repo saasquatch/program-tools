@@ -146,6 +146,7 @@ declare global {
       'alignment': string;
       'borderradius': number;
       'css': string;
+      'ishidden': boolean;
       'url': string;
       'width': number;
     }
@@ -173,6 +174,7 @@ declare global {
       'alignment'?: string;
       'borderradius'?: number;
       'css'?: string;
+      'ishidden'?: boolean;
       'url'?: string;
       'width'?: number;
     }
