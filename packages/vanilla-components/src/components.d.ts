@@ -62,6 +62,39 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhCopyButton {
+
+    }
+  }
+
+  interface HTMLSqhCopyButtonElement extends StencilComponents.SqhCopyButton, HTMLStencilElement {}
+
+  var HTMLSqhCopyButtonElement: {
+    prototype: HTMLSqhCopyButtonElement;
+    new (): HTMLSqhCopyButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-copy-button': HTMLSqhCopyButtonElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-copy-button': HTMLSqhCopyButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-copy-button': JSXElements.SqhCopyButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhCopyButtonAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhCopyLinkButton {
       'buttoncolor': string;
       'copyfailure': string;
