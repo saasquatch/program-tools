@@ -240,7 +240,7 @@ export default (editor, config = {}) => {
         name: 'Banner',
         traits: [
           { type: 'boolean', title: 'Hidden', name: 'ishidden', value: true },
-          { type: 'string', title: 'Upload Image', name: 'background', value: 'https://res.cloudinary.com/saasquatch/image/upload/v1534263854/default_banner_pmzqnc.jpg', format: 'uri' },
+          { type: 'string', title: 'Upload Image', name: 'background', value: 'https://res.cloudinary.com/saasquatch/image/upload/v1534263854/default_banner_pmzqnc.jpg' /*,format: 'uri'*/ },
           { type: 'string', title: 'Height in pixels', name: 'height', value: 'auto' },
           { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '150'},
           { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '150'},
@@ -250,7 +250,7 @@ export default (editor, config = {}) => {
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
           'color': { 'ui:widget': 'color' },
-          'background': { 'ui:widget': 'CloudinaryUpload' }
+          // 'background': { 'ui:widget': 'CloudinaryUpload' }
         }
       })
     },
@@ -814,13 +814,13 @@ export default (editor, config = {}) => {
         draggable: false,
         traits: [
           { type: 'boolean', name: 'ishidden', value: false },
-          { type: 'string', title: 'Upload Image', name: 'url', value: 'https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png', format: 'uri' },
+          { type: 'string', title: 'Upload Image', name: 'url', value: 'https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png' /*,format: 'uri'*/ },
           { type: 'string', title: 'Image Align', name: 'alignment', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
           { type: 'string', title: 'Size in pixels', name: 'width', value: '140' },
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
-          'url': { 'ui:widget': 'CloudinaryUpload' }
+          // 'url': { 'ui:widget': 'CloudinaryUpload' }
         }
       })
     },
