@@ -71,8 +71,33 @@ const squatchJsApi = window.frameElement ? window.frameElement.squatchJsApi : {}
 const API = {
   version: "Welcome to widget-host",
   analytics: {
-    shareEvent(type: string) {
-      return Promise.resolve({ event: "shareEvent", type });
+    shareEvent(shareMedium: string) {
+      const { userId, accountId, programId = null, engagementMedium } = widgetIdent();
+
+      const variables = {
+        userId,
+        accountId,
+        programId,
+        meta: {
+          engagementMedium,
+          shareMedium
+        }
+      }
+      return this.client.mutate({
+        mutation: gql`
+          mutation ($eventMeta: UserAnalyticsEvent!) {
+            createUserAnalyticsEvent(
+              id: $userId, 
+              accountId: $accountId, 
+              programId: $programId, 
+              type: USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT, 
+              meta: $meta)
+          }
+        `,
+        variables
+      }).then((result) => {
+        return result.data.createUserAnalyticsEvent;
+      });
     },
     loadEvent() {
       return Promise.resolve({ event: "loadEvent" });
