@@ -72,7 +72,11 @@ const API = {
   version: "Welcome to widget-host",
   analytics: {
     shareEvent(shareMedium: string) {
-      const { userId, accountId, programId = null, engagementMedium } = widgetIdent();
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve({});
+
+      const { userId, accountId, programId = "classic", engagementMedium } = widgetId;
 
       const variables = {
         userId,
