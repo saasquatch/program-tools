@@ -13,6 +13,7 @@ export class CopyButton {
   @Prop() backgroundcolor: string = "#35b21e";
   @Prop() borderradius: number = 4;
   @Prop() textcolor: string = "#ffffff";
+  @Prop() fontsize: number = 14;
 
   render() {
     const style = css`
@@ -21,6 +22,7 @@ export class CopyButton {
     border: ${this.backgroundcolor};
     color: ${this.textcolor};
     border-radius: ${this.borderradius}px;
+    font-size: ${this.fontsize}px;
 
     &:hover {
       background-color: ${shadeColor(this.backgroundcolor, 10)};
@@ -35,7 +37,7 @@ export class CopyButton {
     const classes = [`sqh-copy-button`, style].join(" ");
 
     return (
-      <button class={classes}>{this.text}</button>
+      !this.ishidden && <button class={classes}>{this.text}</button>
     );
   }
 }

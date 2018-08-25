@@ -868,4 +868,47 @@ export default (editor, config = {}) => {
 
     view: textComp.view
   })
+
+
+  comps.addType('sqh-copy-button', {
+    model: textComp.model.extend({
+      defaults: Object.assign({}, textComp.model.prototype.defaults, {
+        name: 'Copy Button',
+        selectable: true,
+        droppable: false,
+        draggable: false,
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'string', title: 'Text', name: 'text', value: 'COPY CODE' },
+          { type: 'integer', title: 'Font Size in pixels', name: 'fontsize', value: 14},
+          { type: 'integer', title: 'Width in pixels', name: 'width', value: 170},
+          { type: 'string', title: 'Button Color', name: 'backgroundcolor', value: '#35b21e'},
+          { type: 'string', title: 'Text Color', name: 'textcolor', value: '#ffffff'},
+          { type: 'integer', title: 'Border Radius', name: 'borderradius', value: 4}
+
+        ],
+        uiSchema: {
+          'ishidden': { 'ui:widget': 'hidden' },
+          'fontsize': { 'ui:widget': 'updown' },
+          'width': { 'ui:widget': 'updown' },
+          'backgroundcolor': { 'ui:widget': 'color' },
+          'textcolor': { 'ui:widget': 'color' },
+          'borderradius': { 'ui:widget': 'updown' }
+        }
+      })
+    },
+    {
+      isComponent: function(el) {
+        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhcta')){
+          return {type: 'sqh-cta'};
+        }
+      },
+    }),
+
+    view: textComp.view
+  })
+
+
+
+
 }
