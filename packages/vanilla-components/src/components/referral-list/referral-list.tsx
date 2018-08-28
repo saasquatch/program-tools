@@ -42,7 +42,6 @@ export class ReferralList {
   componentWillLoad() {
     if (!this.ishidden) {
       return this.getReferrals().then(res => {
-        console.log('res', res);
         this.referrals = res.referrals.data;
         this.referredBy = res.referredByReferral;
         this.referralsCount = res.referrals.totalCount;
