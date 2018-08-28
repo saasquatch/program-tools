@@ -63,7 +63,15 @@ declare global {
 
   namespace StencilComponents {
     interface SqhCopyButton {
-
+      'backgroundcolor': string;
+      'borderradius': number;
+      'copyfailure': string;
+      'copysuccess': string;
+      'fontsize': number;
+      'ishidden': boolean;
+      'text': string;
+      'textcolor': string;
+      'width': number;
     }
   }
 
@@ -86,7 +94,15 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhCopyButtonAttributes extends HTMLAttributes {
-
+      'backgroundcolor'?: string;
+      'borderradius'?: number;
+      'copyfailure'?: string;
+      'copysuccess'?: string;
+      'fontsize'?: number;
+      'ishidden'?: boolean;
+      'text'?: string;
+      'textcolor'?: string;
+      'width'?: number;
     }
   }
 }

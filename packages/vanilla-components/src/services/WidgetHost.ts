@@ -339,6 +339,10 @@ const API = {
       }).then(res => res.data.user);
     },
 
+    getFueltankCode() {
+      return Promise.resolve({code: '12AS3F'})
+    },
+
     getMessageLinks(arr){
       const widgetId = widgetIdent();
 

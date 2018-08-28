@@ -78,21 +78,18 @@ export class CopyLinkButton {
 
     const buttonClass = [`sqh-copy-btn icon-btn`, myStyle ].join(" ");
 
-    const copyLinkSection = this.ishidden 
-      ? `` 
-      : <div class="input-group">
-          <input id="squatch-share-link" value={ this.sharelink } readonly="readonly"></input>
+    return !this.ishidden && 
+      <div class="input-group">
+        <input id="squatch-share-link" value={ this.sharelink } readonly="readonly"></input>
 
-          <span class="label fade" id="squatch-share-notification">{this.copysuccess}</span>
+        <span class="label fade" id="squatch-share-notification">{this.copysuccess}</span>
 
-          <span class="input-group-btn">
-              <button class={buttonClass} data-clipboard-target="#squatch-share-link" data-clipboard-notification="#squatch-share-notification">
-              <i class="icon icon-link"></i>
-              <span class="hidden-sm">{this.text}</span>
-              </button>
-          </span>
-        </div>;
-      
-    return copyLinkSection;
+        <span class="input-group-btn">
+            <button class={buttonClass} data-clipboard-target="#squatch-share-link" data-clipboard-notification="#squatch-share-notification">
+            <i class="icon icon-link"></i>
+            <span class="hidden-sm">{this.text}</span>
+            </button>
+        </span>
+      </div>;
   }
 }

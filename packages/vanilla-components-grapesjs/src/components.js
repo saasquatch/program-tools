@@ -844,13 +844,14 @@ export default (editor, config = {}) => {
         draggable: false,
         traits: [
           { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'string', title: 'Content', name: 'text', value: 'Call to Action text' },
           { type: 'integer', title: 'Font Size in pixels', name: 'fontsize', value: 16 },
           { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '10'},
           { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '10'},
 
         ],
         uiSchema: {
-          'text': { 'ui:widget': 'textarea', 'ui:options': { rows: 8 } },
+          'text': { 'ui:widget': 'textarea' },
           'ishidden': { 'ui:widget': 'hidden' },
           'color': { 'ui:widget': 'color' },
           'fontsize': { 'ui:widget': 'updown' },
@@ -869,7 +870,6 @@ export default (editor, config = {}) => {
     view: textComp.view
   })
 
-
   comps.addType('sqh-copy-button', {
     model: textComp.model.extend({
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
@@ -885,7 +885,6 @@ export default (editor, config = {}) => {
           { type: 'string', title: 'Button Color', name: 'backgroundcolor', value: '#35b21e'},
           { type: 'string', title: 'Text Color', name: 'textcolor', value: '#ffffff'},
           { type: 'integer', title: 'Border Radius', name: 'borderradius', value: 4}
-
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
@@ -899,16 +898,12 @@ export default (editor, config = {}) => {
     },
     {
       isComponent: function(el) {
-        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhcta')){
-          return {type: 'sqh-cta'};
+        if(el.tagName == 'SQH-COPY-BUTTON'){
+          return {type: 'sqh-copy-button'};
         }
       },
     }),
 
-    view: textComp.view
+    view: defaultType.view
   })
-
-
-
-
 }

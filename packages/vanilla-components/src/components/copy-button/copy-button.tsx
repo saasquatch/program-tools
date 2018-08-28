@@ -1,6 +1,8 @@
-import { Component, Prop } from '@stencil/core';
-import { shadeColor } from '../../utilities';
+import { Component, Prop, State } from '@stencil/core';
+import { shadeColor, addClass, removeClass } from '../../utilities';
 import { css } from 'emotion';
+import { API } from '../../services/WidgetHost';
+import Clipboard from 'clipboard';
 
 @Component({
   tag: 'sqh-copy-button',
@@ -14,6 +16,51 @@ export class CopyButton {
   @Prop() borderradius: number = 4;
   @Prop() textcolor: string = "#ffffff";
   @Prop() fontsize: number = 14;
+  @Prop() copysuccess: string = "copied!";
+  @Prop() copyfailure: string = "Press Ctrl+C to copy";
+  @State() fueltankcode: string;
+
+  componentWillLoad() {
+    if (!this.ishidden) {
+      return API.graphql.getFueltankCode().then(res => {
+        this.fueltankcode = res.code;
+      }).catch(e => {
+        this.onError(e);
+      });
+    } 
+  }
+
+  onError(e: Error) {
+    console.log("Error loading via GraphQL.", e);
+  }
+
+  notify(clipboardNotification, notificationText) {
+    const notification = document.getElementById(clipboardNotification.slice(1));
+    notification.textContent = notificationText;
+
+    addClass(notification, 'in');
+
+    setTimeout(() => {
+      removeClass(notification, 'in');
+    }, 1400);
+
+    // Is this the same analytic event as on the other widget?
+    // API.analytics.shareEvent('COPY');
+  }
+
+  notifySuccess(e:Clipboard.Event) {
+    this.notify((e.trigger as HTMLElement).dataset.clipboardNotification, this.copysuccess);
+  }
+
+  notifyFailure(e:Clipboard.Event) {
+    this.notify((e.trigger as HTMLElement).dataset.clipboardNotification, this.copyfailure);
+  }
+
+  componentDidLoad() {
+    const clipboard = new Clipboard('button');
+    clipboard.on('success', this.notifySuccess.bind(this));
+    clipboard.on('error', this.notifyFailure.bind(this));
+  }
 
   render() {
     const style = css`
@@ -37,7 +84,13 @@ export class CopyButton {
     const classes = [`sqh-copy-button`, style].join(" ");
 
     return (
-      !this.ishidden && <button class={classes}>{this.text}</button>
+      !this.ishidden && 
+      <div class="sqh-align-button">
+        <span class="label fade" id="squatch-copy-notification">{this.copysuccess}</span>
+        <button class={classes} data-clipboard-text={this.fueltankcode} data-clipboard-notification="#squatch-copy-notification">
+          {this.text}
+        </button>
+      </div>
     );
   }
 }

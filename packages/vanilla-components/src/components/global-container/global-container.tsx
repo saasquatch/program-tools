@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 import { css } from 'emotion';
 
 @Component({
@@ -9,6 +9,7 @@ export class GlobalContainer {
   @Prop() background: string;
   @Prop() fontfamily: string;
   @Prop() poweredby: boolean = true;
+  @State() fueltankcode: string = "testing fueltank props pass";
 
   LoadingState() {
     return (
