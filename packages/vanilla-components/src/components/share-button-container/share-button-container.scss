@@ -15,13 +15,13 @@ sqh-share-button-container {
     &.mobile-only {
       display: none;
 
-      @media (max-width: 500px) {
+      @media (max-width: 499px) {
         display: block;
       }
     }
 
     &.desktop-only {
-      @media (max-width: 500px) {
+      @media (max-width: 499px) {
         display: none;
       }
     }

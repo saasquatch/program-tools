@@ -147,20 +147,20 @@ sqh-copy-link-button {
 // Mobile style to be put into CSS in JS
 
 sqh-copy-link-button {
-  @media (max-width: 500px) {
+  @media (max-width: 499px) {
     .input-group {
       max-width: 100%;
     }
   }
 
   #squatch-share-notification {
-    @media (max-width: 500px) {
+    @media (max-width: 499px) {
       right: 60px;
     }
   }
 
   .sqh-copy-btn {
-      @media (max-width: 500px) {
+      @media (max-width: 499px) {
         width: auto;
   
         .icon {
@@ -172,7 +172,7 @@ sqh-copy-link-button {
   }
 
   .hidden-sm {
-    @media (min-width: 0px) and (max-width: 500px) {
+    @media (min-width: 0px) and (max-width: 499px) {
       display: none !important;
     }
   }
