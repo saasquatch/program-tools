@@ -157,6 +157,7 @@ declare global {
     interface SqhGlobalContainer {
       'background': string;
       'fontfamily': string;
+      'passedprop': string;
       'poweredby': boolean;
     }
   }
@@ -182,6 +183,7 @@ declare global {
     export interface SqhGlobalContainerAttributes extends HTMLAttributes {
       'background'?: string;
       'fontfamily'?: string;
+      'passedprop'?: string;
       'poweredby'?: boolean;
     }
   }
@@ -690,6 +692,7 @@ declare global {
       'padding': string;
       'paddingbottom': string;
       'paddingtop': string;
+      'passedprop': string;
       'text': string;
       'textalign': string;
     }
@@ -724,6 +727,7 @@ declare global {
       'padding'?: string;
       'paddingbottom'?: string;
       'paddingtop'?: string;
+      'passedprop'?: string;
       'text'?: string;
       'textalign'?: string;
     }

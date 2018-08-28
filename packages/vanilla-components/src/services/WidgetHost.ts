@@ -39,6 +39,8 @@ const today = new Date();
 
 const demoUser = {
   shareLink: "http://sharelink.squatch.com",
+  fueltankCode: "12AS3F",
+  referralcode: "DEMOJOHNDOE",
   messageLink: "http://short.staging.referralsaasquatch.com/mwjExk",
   referrals: {
     totalCount: 8,
@@ -339,8 +341,50 @@ const API = {
       }).then(res => res.data.user);
     },
 
-    getFueltankCode() {
+    getReferralCode() {
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.referralcode);
+
+      const { userId, accountId, programId = null, engagementMedium } = widgetId;
+
+      const variables = {
+        userId,
+        accountId,
+        programId,
+        engagementMedium
+      };
+
+      return this.getClient().query({
+        query: gql`
+          query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium) {
+            user(id: $userId, accountId: $accountId) {
+              referralCode(programId: $programId)
+            }
+          }
+        `,
+        variables
+      }).then(res => res.data.user.referralCode);
+    },
+
+    getFueltankCode () {
       return Promise.resolve({code: '12AS3F'})
+
+      // from graphql in staging portal. Need to know programRewardKey_eq to get specific fueltankcode.
+
+      // query FueltankCode($userId: String!, $accountId: String! $programId: ID!) {
+      //   user (accountId: $accountId, id: $userId) {
+      //     rewards (filter: {
+      //       programId_eq: $programId
+      //       # programRewardKey_eq: ""
+      //     }) {
+      //       data {
+      //         fuelTankCode
+      //       }
+      //     }
+          
+      //   } 
+      // }
     },
 
     getMessageLinks(arr){
