@@ -55,7 +55,7 @@ const demoUser = {
       { dateReferralStarted: today.setDate(today.getDate()-2), referredUser: { firstName: "Hermione", lastName: "Granger" }, rewards: [{ prettyValue: "$20.00" },{ prettyValue: "$10.00" },{ prettyValue: "$5.00" },{ prettyValue: "5%" },{ prettyValue: "5%" },{ prettyValue: "5%" },] },
     ]
   },
-  referredByReferral: { dateReferralStarted: today.setDate(today.getDate()-2), referrerUser: { firstName: "Rubeus", lastName: "Hagrid" }, rewards: [{ prettyValue: "$10.00" }] },
+  referredByReferral: { dateReferralStarted: today.setDate(today.getDate()-2), referrerUser: { firstName: "Rubeus", lastName: "Hagrid" }, rewards: [{ fuelTankCode: 'CODE1234', prettyValue: "$10.00" }] },
   referralsMonth: { totalCount: 6 },
   referralsWeek:  { totalCount: 3 },
   rewardsCount: { totalCount: 14 },
@@ -367,30 +367,45 @@ const API = {
       }).then(res => res.data.user.referralCode);
     },
 
-    getFueltankCode () {
-      return Promise.resolve({code: '12AS3F'})
-
-      // from graphql in staging portal. Need to know programRewardKey_eq to get specific fueltankcode.
-
-      // query FueltankCode($userId: String!, $accountId: String! $programId: ID!) {
-      //   user (accountId: $accountId, id: $userId) {
-      //     rewards (filter: {
-      //       programId_eq: $programId
-      //       # programRewardKey_eq: ""
-      //     }) {
-      //       data {
-      //         fuelTankCode
-      //       }
-      //     }
-          
-      //   } 
-      // }
-    },
-
-    getMessageLinks(arr){
+    async getFueltankCode (rewardKey):Promise<SimpleObject[]> {
       const widgetId = widgetIdent();
 
-      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
+      if(widgetId["env"] === "demo" || !widgetId) return demoUser.referredByReferral.rewards
+
+      const { userId, accountId, programId } = widgetId;
+
+      const variables = {
+        userId,
+        accountId,
+        programId,
+        rewardKey
+      }
+
+      return this.getClient().query({
+        query: gql`
+          query($userId: String!, $accountId: String!, $programId: ID!, $rewardKey: String!) {
+            user(id: $userId, accountId: $accountId) {
+              rewards (filter: {
+                programId_eq: $programId
+                programRewardKey_eq: $rewardKey
+              }) {
+                count
+                totalCount
+                data {
+                  fuelTankCode
+                }
+              }
+            }
+          }
+        `,
+        variables
+      }).then(res => res.data.user.rewards.data);
+    },
+
+    getMessageLinks(arr:string[]):Promise<SimpleObject>{
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser);
 
       const { userId, accountId, programId = null, engagementMedium } = widgetId;
 
@@ -401,13 +416,13 @@ const API = {
         engagementMedium
       };
 
-      return this.getClient(arr).query({
+      return this.getClient().query({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium) {
             user(id: $userId, accountId: $accountId) {
-              ${arr}.forEach((btn) => {
-                btn:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: btn)  
-              })
+              ${arr.map((btn) => {
+                return `${btn}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn})`
+              }).join('\n')}
             }
           }
         `,
@@ -419,3 +434,10 @@ const API = {
 };
 
 export { API };
+
+/**
+ * Key-value simple object
+ */
+export interface SimpleObject {
+  [key:string]: any
+}
