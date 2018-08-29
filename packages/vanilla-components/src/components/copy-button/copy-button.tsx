@@ -18,12 +18,13 @@ export class CopyButton {
   @Prop() fontsize: number = 14;
   @Prop() copysuccess: string = "copied!";
   @Prop() copyfailure: string = "Press Ctrl+C to copy";
+  @Prop() rewardkey: string;
   @State() fueltankcode: string;
 
   componentWillLoad() {
     if (!this.ishidden) {
-      return API.graphql.getFueltankCode().then(res => {
-        this.fueltankcode = res.code;
+      return API.graphql.getFueltankCode(this.rewardkey).then(res => {
+        this.fueltankcode = res[0].fuelTankCode;
       }).catch(e => {
         this.onError(e);
       });
@@ -43,9 +44,6 @@ export class CopyButton {
     setTimeout(() => {
       removeClass(notification, 'in');
     }, 1400);
-
-    // Is this the same analytic event as on the other widget?
-    // API.analytics.shareEvent('COPY');
   }
 
   notifySuccess(e:Clipboard.Event) {
@@ -81,16 +79,25 @@ export class CopyButton {
       color: ${this.textcolor};
     }
     `;
+
+    const code = css`
+      text-align: center;
+      font-weight: bold;
+    `
     const classes = [`sqh-copy-button`, style].join(" ");
 
     return (
       !this.ishidden && 
-      <div class="sqh-align-button">
-        <span class="label fade" id="squatch-copy-notification">{this.copysuccess}</span>
-        <button class={classes} data-clipboard-text={this.fueltankcode} data-clipboard-notification="#squatch-copy-notification">
-          {this.text}
-        </button>
+      <div>
+        <div class={code}>{this.fueltankcode}</div>
+        <div class="sqh-align-button">
+          <span class="label fade" id="squatch-copy-notification">{this.copysuccess}</span>
+          <button class={classes} data-clipboard-text={this.fueltankcode} data-clipboard-notification="#squatch-copy-notification">
+            {this.text}
+          </button>
+        </div>
       </div>
+      
     );
   }
 }

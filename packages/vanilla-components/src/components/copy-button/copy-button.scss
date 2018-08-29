@@ -7,6 +7,7 @@ sqh-copy-button {
       width: 100%;
       text-align: center;
       padding: 8px;
+      cursor: pointer;
     }
     .label {
       padding: .2em .6em .3em;
@@ -39,7 +40,7 @@ sqh-copy-button {
     #squatch-copy-notification {
       position: absolute;
       left: 215px;
-      bottom: 40px;
+      bottom: 35px;
       z-index: 2;
     }
   }

@@ -69,6 +69,7 @@ declare global {
       'copysuccess': string;
       'fontsize': number;
       'ishidden': boolean;
+      'rewardkey': string;
       'text': string;
       'textcolor': string;
       'width': number;
@@ -100,6 +101,7 @@ declare global {
       'copysuccess'?: string;
       'fontsize'?: number;
       'ishidden'?: boolean;
+      'rewardkey'?: string;
       'text'?: string;
       'textcolor'?: string;
       'width'?: number;
