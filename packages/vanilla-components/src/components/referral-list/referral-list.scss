@@ -15,7 +15,8 @@ sqh-referral-list {
   }
 
   .squatch-referrals-scroll-container {
-    min-height: 255px;
+    // collapses div if <3 referrals
+    min-height: auto;
   }
 
   .squatch-referrals-scroll-action-container {
