@@ -45,10 +45,11 @@ export class TextComponent {
       ? <div innerHTML={marked(this.text)} />
       : this.text
 
-    return !this.ishidden && <div class={divStyle}>
-      <p class={textStyle}>
-        {content}
-      </p>
-    </div>;
+    return !this.ishidden && 
+      <div class={divStyle}>
+        <p class={textStyle}>
+          {content}
+        </p>
+      </div>;
   }
 }

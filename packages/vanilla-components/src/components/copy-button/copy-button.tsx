@@ -86,8 +86,8 @@ export class CopyButton {
     `
     const classes = [`sqh-copy-button`, style].join(" ");
 
-    return (
-      !this.ishidden && 
+    return ( 
+    !this.ishidden && 
       <div>
         <div class={code}>{this.fueltankcode}</div>
         <div class="sqh-align-button">
@@ -97,7 +97,6 @@ export class CopyButton {
           </button>
         </div>
       </div>
-      
     );
   }
 }

@@ -37,15 +37,10 @@ export class StatComponent {
       color: ${ this.statcolor };
     `
 
-    return (
-      this.ishidden
-      ? ''
-      : (
-        <div class={ clz }>
-          <div class="stat-value">{this.statvalue}</div>
-          <div class="stat-description">{this.statdescription}</div>
-        </div>
-      )
-    );
+  return !this.ishidden &&
+    <div class={ clz }>
+      <div class="stat-value">{this.statvalue}</div>
+      <div class="stat-description">{this.statdescription}</div>
+    </div>;
   }
 }
