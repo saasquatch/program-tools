@@ -402,27 +402,29 @@ const API = {
       }).then(res => res.data.user.rewards.data);
     },
 
-    getMessageLinks(arr:string[]):Promise<SimpleObject>{
+    getMessageLinks(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8){
       const widgetId = widgetIdent();
 
-      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser);
-
-      const { userId, accountId, programId = null, engagementMedium } = widgetId;
-
-      const variables = {
+      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
+       const { userId, accountId, programId = null, engagementMedium } = widgetId;
+       const variables = {
         userId,
         accountId,
         programId,
         engagementMedium
       };
-
-      return this.getClient().query({
+       return this.getClient(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8).query({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium) {
             user(id: $userId, accountId: $accountId) {
-              ${arr.map((btn) => {
-                return `${btn}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn})`
-              }).join('\n')}
+              ${btn1}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn1})           
+              ${btn2}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn2})
+              ${btn3}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn3})
+              ${btn4}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn4})
+              ${btn5}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn5})
+              ${btn6}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn6})
+              ${btn7}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn7})
+              ${btn8}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn8})
             }
           }
         `,

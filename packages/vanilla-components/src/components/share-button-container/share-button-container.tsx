@@ -106,16 +106,20 @@ export class ShareButtonContainer {
 
   componentWillLoad() {
     if (!this.ishidden) {
-      const buttonsArr = ['EMAIL', 'FACEBOOK', 'TWITTER', 'SMS', 'WHATSAPP', 'LINKEDIN', 'PINTEREST', 'FBMESSENGER']
-      return this.getMessageLinks(buttonsArr);
+      return this.getMessageLinks('EMAIL', 'FACEBOOK', 'TWITTER', 'SMS', 'WHATSAPP', 'LINKEDIN', 'PINTEREST', 'FBMESSENGER');
     }
   }
 
-  getMessageLinks(arr) {
-    return API.graphql.getMessageLinks(arr).then(res => {
-      arr.forEach((btn) => {
-        `this.${btn.toLowerCase()}url = ${res.btn}`
-      })
+  getMessageLinks(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8) {
+    return API.graphql.getMessageLinks(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8).then(res => {
+      this.emailurl = res.EMAIL;
+      this.facebookurl = res.FACEBOOK;
+      this.twitterurl = res.TWITTER;
+      this.smsurl = res.SMS;
+      this.whatsappurl = res.WHATSAPP;
+      this.linkedinurl = res.LINKEDIN;
+      this.pinteresturl = res.PINTEREST;
+      this.messengerurl = res.FBMESSENGER;
     }).catch(e => {
       this.onError(e);
     });
