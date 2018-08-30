@@ -25,8 +25,9 @@ export class ImageComponent {
       ${this.css}
     }`
 
-    return !this.ishidden && <div class={alignment}>
-      <img src={imageString} class={myStyle}/>
-    </div>;
+    return !this.ishidden && 
+      <div class={alignment}>
+        <img src={imageString} class={myStyle}/>
+      </div>;
   }
 }

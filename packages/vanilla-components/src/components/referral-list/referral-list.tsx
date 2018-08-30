@@ -27,7 +27,7 @@ export class ReferralList {
   @Prop() pendingcolor: string;
   @Prop() pendingcontent: string;
   @Prop() pendingvalue: string;
-  // state
+  
   @State() referrals: Referral[];
   @State() referralsCount: number;
   @State() referredBy: any;
@@ -137,12 +137,9 @@ export class ReferralList {
       }
     `
 
-    return (
-      this.ishidden
-      ? ''
-      : this.referralsCount > 0
-      ? (
-        // Referral List when not hidden and 1 or more referrals
+    return !this.ishidden && 
+      this.referralsCount > 0 
+      ? ( // Referral List when not hidden and 1 or more referrals
         <div class={`squatch-referrals ${clz}`}>
           <div class="squatch-referrals-scroll-container">
             {referralsRow}
@@ -193,6 +190,6 @@ export class ReferralList {
           </button>
         </div>
       )
-    );
+    ;
   }
 }
