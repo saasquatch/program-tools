@@ -70,7 +70,7 @@ export class ShareButton {
     const classes = [`squatch-share-btn`, this.className, this.displayrule, style].join(" ");
 
     return (
-      <a class={classes} href={window["widgetIdent"].env === "demo" ? null : this.url} target={target}>
+      <a class={classes} href={this.url} target={target}>
         <i class={iconClass}></i>
         <span class="share-btn-text">{this.text}</span>
       </a>

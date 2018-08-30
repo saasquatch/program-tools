@@ -112,6 +112,7 @@ export class ShareButtonContainer {
 
   getMessageLinks(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8) {
     return API.graphql.getMessageLinks(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8).then(res => {
+      console.log('res', res.EMAIL);
       this.emailurl = res.EMAIL;
       this.facebookurl = res.FACEBOOK;
       this.twitterurl = res.TWITTER;
@@ -130,6 +131,7 @@ export class ShareButtonContainer {
   }
   
   render() {
+    console.log('messenger url', this.messengerurl);
     const emailBtn = <sqh-share-button 
                         displayrule={this.emaildisplayrule} 
                         text={this.emailtext}

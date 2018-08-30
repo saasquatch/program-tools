@@ -41,7 +41,16 @@ const demoUser = {
   shareLink: "http://sharelink.squatch.com",
   fueltankCode: "12AS3F",
   referralcode: "DEMOJOHNDOE",
-  messageLink: "http://short.staging.referralsaasquatch.com/mwjExk",
+  messageLink: {
+    EMAIL: "http://short.staging.referralsaasquatch.com/mJjFXu",
+    FACEBOOK: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    TWITTER: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    SMS: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    WHATSAPP: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    LINKEDIN: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    PINTEREST: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    FBMESSENGER: "http://short.staging.referralsaasquatch.com/mwjFXu"
+  },
   referrals: {
     totalCount: 8,
     data: [
@@ -413,7 +422,7 @@ const API = {
         programId,
         engagementMedium
       };
-       return this.getClient(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8).query({
+       return this.getClient().query({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium) {
             user(id: $userId, accountId: $accountId) {
