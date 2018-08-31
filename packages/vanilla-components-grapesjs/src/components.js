@@ -240,7 +240,7 @@ export default (editor, config = {}) => {
         name: 'Banner',
         traits: [
           { type: 'boolean', title: 'Hidden', name: 'ishidden', value: true },
-          { type: 'string', title: 'Upload Image', name: 'background', value: 'https://res.cloudinary.com/saasquatch/image/upload/v1534263854/default_banner_pmzqnc.jpg' /*,format: 'uri'*/ },
+          { type: 'string', title: 'Upload Image', name: 'background', value: 'https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg' /*,format: 'uri'*/ },
           { type: 'string', title: 'Height in pixels', name: 'height', value: 'auto' },
           { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '150'},
           { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '150'},
