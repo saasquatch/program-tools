@@ -31,9 +31,18 @@ sqh-referral-component {
 }
 
 sqh-referral-component {
-  .squatch-referrals-description {
-    @media (max-width: 499px) {
+  @media (max-width: 499px) {
+    .squatch-referrals-description {
       display: none;
+    }
+    .squatch-referrals-row {
+      padding: 0;
+    }
+    .squatch-referrals-row {
+      &>div:first-of-type {
+        width: 100px;
+        overflow: hidden;
+      }
     }
   }
 }
