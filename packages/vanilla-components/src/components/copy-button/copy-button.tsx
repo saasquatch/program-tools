@@ -19,6 +19,8 @@ export class CopyButton {
   @Prop() copysuccess: string = "copied!";
   @Prop() copyfailure: string = "Press Ctrl+C to copy";
   @Prop() rewardkey: string;
+  @Prop() codefontsize: number = 14;
+  @Prop() codefontcolor: string = '#000';
   @State() fueltankcode: string;
 
   componentWillLoad() {
@@ -83,6 +85,8 @@ export class CopyButton {
     const code = css`
       text-align: center;
       font-weight: bold;
+      font-size: ${this.codefontsize};
+      color: ${this.codefontcolor};
     `
     const classes = [`sqh-copy-button`, style].join(" ");
 

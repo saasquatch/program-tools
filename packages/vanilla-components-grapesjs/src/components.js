@@ -599,7 +599,10 @@ export default (editor, config = {}) => {
 
         selectable: true,
 
-        // toolbar: [],
+        toolbar: [{
+          attributes: {class: 'fa fa-arrows'},
+          command: 'tlb-move'
+        }],
         
         traits: [
           { type: 'boolean', name: 'ishidden', value: false },
@@ -645,6 +648,7 @@ export default (editor, config = {}) => {
         droppable: false,
 
         selectable: true,
+        toolbar: [],
         traits: [
           { type: 'boolean', name: 'ishidden', value: false },
           { type: 'boolean', name: 'showreferrer', value: true },
@@ -809,9 +813,10 @@ export default (editor, config = {}) => {
     model: defaultModel.extend({
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
         name: 'Banner',
-        selectable: true,
-        droppable: false,
         draggable: false,
+        droppable: false,
+        selectable: true,
+        toolbar: [],
         traits: [
           { type: 'boolean', name: 'ishidden', value: false },
           { type: 'string', title: 'Upload Image', name: 'url', value: 'https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png' /*,format: 'uri'*/ },
@@ -839,9 +844,9 @@ export default (editor, config = {}) => {
     model: textComp.model.extend({
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'CTA',
-        selectable: true,
-        droppable: false,
         draggable: false,
+        droppable: false,
+        selectable: true,
         traits: [
           { type: 'boolean', name: 'ishidden', value: false },
           { type: 'string', title: 'Content', name: 'text', value: 'Call to Action text' },
@@ -874,20 +879,24 @@ export default (editor, config = {}) => {
     model: textComp.model.extend({
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Copy Button',
-        selectable: true,
-        droppable: false,
         draggable: false,
+        droppable: false,
+        selectable: true,
         traits: [
+          { type: 'string', title: 'Code Color', name: 'codefontcolor', value: '#000'},
+          { type: 'integer', title: 'Code Font Size in pixels', name: 'codefontsize', value: 14},          
           { type: 'boolean', name: 'ishidden', value: false },
-          { type: 'string', title: 'Text', name: 'text', value: 'COPY CODE' },
-          { type: 'integer', title: 'Font Size in pixels', name: 'fontsize', value: 14},
-          { type: 'integer', title: 'Width in pixels', name: 'width', value: 170},
+          { type: 'string', title: 'Button Text', name: 'text', value: 'COPY CODE' },
+          { type: 'integer', title: 'Button Font Size in pixels', name: 'fontsize', value: 14},
+          { type: 'integer', title: 'Buttton Width in pixels', name: 'width', value: 170},
           { type: 'string', title: 'Button Color', name: 'backgroundcolor', value: '#35b21e'},
-          { type: 'string', title: 'Text Color', name: 'textcolor', value: '#ffffff'},
-          { type: 'integer', title: 'Border Radius', name: 'borderradius', value: 4}
+          { type: 'string', title: 'Button Text Color', name: 'textcolor', value: '#ffffff'},
+          { type: 'integer', title: 'Button Border Radius', name: 'borderradius', value: 4}
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
+          'codefontcolor': { 'ui:widget': 'color' },
+          'codefontsize': { 'ui:widget': 'updown' },
           'fontsize': { 'ui:widget': 'updown' },
           'width': { 'ui:widget': 'updown' },
           'backgroundcolor': { 'ui:widget': 'color' },
