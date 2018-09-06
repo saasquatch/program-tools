@@ -408,9 +408,9 @@ export default (editor, config = {}) => {
             { type: 'string', name: 'pinteresttextcolor', value: '#ffffff' },
             { type: 'string', name: 'pinterestbackgroundcolor', value: '#cb2027' },
             { type: 'string', name: 'messengerdisplayrule', value: 'hidden' },
-            { type: 'string', name: 'messengerext', value: 'Messenger' },
-            { type: 'string', name: 'messengerextcolor', value: '#ffffff' },
-            { type: 'string', name: 'messengerackgroundcolor', value: '#0084ff' },
+            { type: 'string', name: 'messengertext', value: 'Messenger' },
+            { type: 'string', name: 'messengertextcolor', value: '#ffffff' },
+            { type: 'string', name: 'messengerbackgroundcolor', value: '#0084ff' },
           ],
           uiSchema: {
             ishidden: { 'ui:widget': 'hidden' },
@@ -483,7 +483,7 @@ export default (editor, config = {}) => {
                       'sharemedium': { 'enum': [ 'twitter' ] },
                       'twitterdisplayrule': displayRuleObj.default,
                       'twittertextcolor': shareMediumTextColorObj,
-                      'twitterbcakgroundcolor': shareMediumColorObj
+                      'twitterbackgroundcolor': shareMediumColorObj
                     }
                   },
                   {
