@@ -51,7 +51,9 @@ export class ReferralComponent {
 
         {/* first column */}
         <div>
-          { name }
+          <div class="squatch-referrals-heading">
+            { name }
+          </div>
           <div class="squatch-referrals-description">
             { content }
           </div>
