@@ -76,7 +76,6 @@ export class ReferralList {
   }
 
   onError(e: Error) {
-    console.log("Error loading via GraphQL.", e);
     this.loading = false;
   }
 
