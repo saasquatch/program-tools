@@ -65,6 +65,8 @@ declare global {
     interface SqhCopyButton {
       'backgroundcolor': string;
       'borderradius': number;
+      'codefontcolor': string;
+      'codefontsize': number;
       'copyfailure': string;
       'copysuccess': string;
       'fontsize': number;
@@ -97,6 +99,8 @@ declare global {
     export interface SqhCopyButtonAttributes extends HTMLAttributes {
       'backgroundcolor'?: string;
       'borderradius'?: number;
+      'codefontcolor'?: string;
+      'codefontsize'?: number;
       'copyfailure'?: string;
       'copysuccess'?: string;
       'fontsize'?: number;
