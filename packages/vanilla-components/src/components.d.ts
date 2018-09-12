@@ -65,6 +65,8 @@ declare global {
     interface SqhCopyButton {
       'backgroundcolor': string;
       'borderradius': number;
+      'codefontcolor': string;
+      'codefontsize': number;
       'copyfailure': string;
       'copysuccess': string;
       'fontsize': number;
@@ -97,6 +99,8 @@ declare global {
     export interface SqhCopyButtonAttributes extends HTMLAttributes {
       'backgroundcolor'?: string;
       'borderradius'?: number;
+      'codefontcolor'?: string;
+      'codefontsize'?: number;
       'copyfailure'?: string;
       'copysuccess'?: string;
       'fontsize'?: number;
@@ -228,6 +232,39 @@ declare global {
       'ishidden'?: boolean;
       'url'?: string;
       'width'?: number;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SqhReferralCode {
+
+    }
+  }
+
+  interface HTMLSqhReferralCodeElement extends StencilComponents.SqhReferralCode, HTMLStencilElement {}
+
+  var HTMLSqhReferralCodeElement: {
+    prototype: HTMLSqhReferralCodeElement;
+    new (): HTMLSqhReferralCodeElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-referral-code': HTMLSqhReferralCodeElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-referral-code': HTMLSqhReferralCodeElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-referral-code': JSXElements.SqhReferralCodeAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhReferralCodeAttributes extends HTMLAttributes {
+
     }
   }
 }

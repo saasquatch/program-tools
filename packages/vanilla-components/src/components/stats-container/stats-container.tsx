@@ -29,7 +29,7 @@ export class StatsContainer {
           rewardsCount: res.rewardsCount.totalCount,
           rewardsMonth: res.rewardsMonth.totalCount,
           rewardsWeek: res.rewardsWeek.totalCount,
-          rewardBalances: res.rewardBalances
+          rewardBalance: res.rewardBalances[0].prettyAssignedCredit
         }
         this.loading = false;
       }).then(() => {
@@ -100,6 +100,7 @@ export class StatsContainer {
   }
 
   render() {
+    console.log("stats", this.stats);
     const containerStyle = css`
       display: ${this.ishidden ? 'none' : 'inherit'};
       padding-top: ${this.paddingtop}px;
