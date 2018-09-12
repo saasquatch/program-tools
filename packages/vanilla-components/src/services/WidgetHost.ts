@@ -40,7 +40,7 @@ const today = new Date();
 const demoUser = {
   shareLink: "http://sharelink.squatch.com",
   fueltankCode: "12AS3F",
-  referralcode: "DEMOJOHNDOE",
+  referralcode: "RIDDIKULUS",
   messageLink: {
     EMAIL: "http://short.staging.referralsaasquatch.com/mJjFXu",
     FACEBOOK: "http://short.staging.referralsaasquatch.com/mwjFXu",
@@ -350,23 +350,47 @@ const API = {
       }).then(res => res.data.user);
     },
 
-    getReferralCode() {
+    // getReferralCode() {
+    //   const widgetId = widgetIdent();
+
+    //   if (widgetId["env"] === "demo" || !widgetId) return demoUser.referralcode;
+
+    //   const { userId, accountId, programId = null } = widgetId;
+
+    //   const variables = {
+    //     userId,
+    //     accountId,
+    //     programId
+    //   };
+
+    //   return this.getClient().query({
+    //     query: gql`
+    //       query($userId: String!, $accountId: String!, $programId: ID) {
+    //         user(id: $userId, accountId: $accountId) {
+    //           referralCode(programId: $programId)
+    //         }
+    //       }
+    //     `,
+    //     variables
+    //   }).then(res => res.data.user.referralCode);
+    // },
+
+    async getReferralCode ():Promise<string> {
       const widgetId = widgetIdent();
 
-      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.referralcode);
+      if(widgetId["env"] === "demo" || !widgetId) return demoUser.referralcode
 
-      const { userId, accountId, programId = null, engagementMedium } = widgetId;
+      const { userId, accountId, programId } = widgetId;
 
       const variables = {
         userId,
         accountId,
-        programId,
-        engagementMedium
-      };
+        programId
+      }
 
       return this.getClient().query({
         query: gql`
-          query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium) {
+          query($userId: String!, $accountId: String!, $programId: ID!) {
             user(id: $userId, accountId: $accountId) {
               referralCode(programId: $programId)
             }

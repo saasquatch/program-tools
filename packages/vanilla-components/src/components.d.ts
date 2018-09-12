@@ -240,6 +240,39 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhReferralCode {
+
+    }
+  }
+
+  interface HTMLSqhReferralCodeElement extends StencilComponents.SqhReferralCode, HTMLStencilElement {}
+
+  var HTMLSqhReferralCodeElement: {
+    prototype: HTMLSqhReferralCodeElement;
+    new (): HTMLSqhReferralCodeElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-referral-code': HTMLSqhReferralCodeElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-referral-code': HTMLSqhReferralCodeElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-referral-code': JSXElements.SqhReferralCodeAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhReferralCodeAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhReferralComponent {
       'referral': Referral | ReferredByReferral;
       'referraltype': "converted" | "pending" | "referrer";
