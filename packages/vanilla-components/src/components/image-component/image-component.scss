@@ -1,5 +1,6 @@
 sqh-image-component {
-  // margin: 0 5px;
+  // sets default display type allowing component outline to appear
+  display: block;
   div {
     position: relative;
   }

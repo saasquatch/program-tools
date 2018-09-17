@@ -34,8 +34,8 @@ export default (editor, config = {}) => {
     ]
   }
 
-  const poweredByUi = editor.canWhitelabel ?
-  {'ui:disabled': false }:
+  const poweredByUi = editor.editor.attributes.canWhitelabel ?
+  {'ui:disabled': false } :
   {'ui:disabled': true, 'ui:help': <div>Can only be disabled on <span className="label">Pro</span> plans</div>, "ui:title": <span><span className="ico ico-lock"></span> Show Powered By</span> };
   
   const markdownUi = {
@@ -149,16 +149,17 @@ export default (editor, config = {}) => {
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: false },
           { type: 'string', title: 'Content', name: 'text', value: 'Give $10 and Get $10' },
           { type: 'string', title: 'Font Color', name: 'color', value: '#4486E1' },
-          { type: 'integer', title: 'Font Size', name: 'fontsize', value: 28 },
+          { type: 'integer', title: 'Font Size in pixels', name: 'fontsize', value: 28 },
           { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
-          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
-          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '10'},
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
           'text': { 'ui:widget': 'textarea' },
           'ismarkdown': markdownUi,
           'color': { 'ui:widget': 'color' },
+          'fontsize': { 'ui:widget': 'updown' },
         }
       })
     },
@@ -177,6 +178,16 @@ export default (editor, config = {}) => {
     model: textComp.model.extend({
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Body',
+        traits: [
+          { type: 'boolean', title: 'Hidden', name: 'ishidden', value: false },
+          { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: true },
+          { type: 'string', title: 'Content', name: 'text', value: 'Give a friend a $10 and receive $10 for yourself when they purchase.<br/><br/>Share the link below or use the code **RIDDIKULUS.**' },
+          { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
+          { type: 'integer', title: 'Font Size in pixels', name: 'fontsize', value: 13 },
+          { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '10'},
+        ],
         uiSchema: {
           'text': { 'ui:widget': 'textarea', 'ui:options': { rows: 8 } },
           'ishidden': { 'ui:widget': 'hidden' },
@@ -206,10 +217,10 @@ export default (editor, config = {}) => {
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: true },
           { type: 'string', title: 'Content', name: 'text', value: '**Referrals Dashboard**' },
           { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
-          { type: 'integer', title: 'Font Size', name: 'fontsize', value: 14 },
+          { type: 'integer', title: 'Font Size in pixels', name: 'fontsize', value: 14 },
           { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
-          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
-          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '10'},
         ]
       })
     },
@@ -230,16 +241,17 @@ export default (editor, config = {}) => {
         name: 'Banner',
         traits: [
           { type: 'boolean', title: 'Hidden', name: 'ishidden', value: true },
-          { type: 'string', title: 'Image URL', name: 'background', value: 'http://res.cloudinary.com/saasquatch/image/upload/v1517426138/Optimalprint_FB_OG_default_jky5tu.jpg', format: 'uri' },
+          { type: 'string', title: 'Upload Image', name: 'background', value: 'https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg' /*,format: 'uri'*/ },
           { type: 'string', title: 'Height in pixels', name: 'height', value: 'auto' },
-          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
-          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
-          { type: 'string', title: 'Content', name: 'text', value: 'Text in banner' },
-          { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '150'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '150'},
+          { type: 'string', title: 'Content', name: 'text', value: '' },
+          { type: 'string', title: 'Font Color in pixels', name: 'color', value: '#000000' },
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
           'color': { 'ui:widget': 'color' },
+          // 'background': { 'ui:widget': 'CloudinaryUpload' }
         }
       })
     },
@@ -397,9 +409,9 @@ export default (editor, config = {}) => {
             { type: 'string', name: 'pinteresttextcolor', value: '#ffffff' },
             { type: 'string', name: 'pinterestbackgroundcolor', value: '#cb2027' },
             { type: 'string', name: 'messengerdisplayrule', value: 'hidden' },
-            { type: 'string', name: 'messengerext', value: 'Messenger' },
-            { type: 'string', name: 'messengerextcolor', value: '#ffffff' },
-            { type: 'string', name: 'messengerackgroundcolor', value: '#0084ff' },
+            { type: 'string', name: 'messengertext', value: 'Messenger' },
+            { type: 'string', name: 'messengertextcolor', value: '#ffffff' },
+            { type: 'string', name: 'messengerbackgroundcolor', value: '#0084ff' },
           ],
           uiSchema: {
             ishidden: { 'ui:widget': 'hidden' },
@@ -472,7 +484,7 @@ export default (editor, config = {}) => {
                       'sharemedium': { 'enum': [ 'twitter' ] },
                       'twitterdisplayrule': displayRuleObj.default,
                       'twittertextcolor': shareMediumTextColorObj,
-                      'twitterbcakgroundcolor': shareMediumColorObj
+                      'twitterbackgroundcolor': shareMediumColorObj
                     }
                   },
                   {
@@ -550,8 +562,8 @@ export default (editor, config = {}) => {
         
         traits: [
           { type: 'boolean', name: 'ishidden', value: false },
-          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
-          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '10'},
         ],
 
         uiSchema: {
@@ -588,7 +600,10 @@ export default (editor, config = {}) => {
 
         selectable: true,
 
-        // toolbar: [],
+        toolbar: [{
+          attributes: {class: 'fa fa-arrows'},
+          command: 'tlb-move'
+        }],
         
         traits: [
           { type: 'boolean', name: 'ishidden', value: false },
@@ -634,6 +649,7 @@ export default (editor, config = {}) => {
         droppable: false,
 
         selectable: true,
+        toolbar: [],
         traits: [
           { type: 'boolean', name: 'ishidden', value: false },
           { type: 'boolean', name: 'showreferrer', value: true },
@@ -651,6 +667,7 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'paginateless', value: "Previous" },
         ],
         uiSchema: {
+          "ui:order": ['*', 'paginatemore', 'paginateless'],
           ishidden: { 'ui:widget': 'hidden' },
           showreferrer: { 'ui:widget': 'radio' },
           usefirstreward: { 'ui:widget': 'radio' },
@@ -770,10 +787,10 @@ export default (editor, config = {}) => {
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown', value: false },
           { type: 'string', title: 'Content', name: 'text', value: 'Footer text' },
           { type: 'string', title: 'Font Color', name: 'color', value: '#000000' },
-          { type: 'integer', title: 'Font Size', name: 'fontsize', value: 16 },
+          { type: 'integer', title: 'Font Size in pixels', name: 'fontsize', value: 16 },
           { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
-          { type: 'string', title: 'Padding Top', name: 'paddingtop', default: '10'},
-          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom', default: '10'},
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '10'},
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
@@ -792,5 +809,112 @@ export default (editor, config = {}) => {
     }),
 
     view: textComp.view
+  })
+
+  comps.addType('sqh-image-component', {
+    model: defaultModel.extend({
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        name: 'Banner',
+        draggable: false,
+        droppable: false,
+        selectable: true,
+        toolbar: [],
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'string', title: 'Upload Image', name: 'url', value: 'https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png' /*,format: 'uri'*/ },
+          { type: 'string', title: 'Image Align', name: 'alignment', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'], default: 'center' },
+          { type: 'string', title: 'Size in pixels', name: 'width', value: '140' },
+        ],
+        uiSchema: {
+          'ishidden': { 'ui:widget': 'hidden' },
+          // 'url': { 'ui:widget': 'CloudinaryUpload' }
+        }
+      })
+    },
+    {
+      isComponent: function(el) {
+        if(el.tagName == 'SQH-IMAGE-COMPONENT'){
+          return {type: 'sqh-image-component'};
+        }
+      },
+    }),
+
+    view: defaultType.view
+  })
+
+  comps.addType('sqh-cta', {
+    model: textComp.model.extend({
+      defaults: Object.assign({}, textComp.model.prototype.defaults, {
+        name: 'CTA',
+        draggable: false,
+        droppable: false,
+        selectable: true,
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'string', title: 'Content', name: 'text', value: 'Call to Action text' },
+          { type: 'integer', title: 'Font Size in pixels', name: 'fontsize', value: 16 },
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop', default: '10'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom', default: '10'},
+
+        ],
+        uiSchema: {
+          'text': { 'ui:widget': 'textarea' },
+          'ishidden': { 'ui:widget': 'hidden' },
+          'color': { 'ui:widget': 'color' },
+          'fontsize': { 'ui:widget': 'updown' },
+          'ismarkdown': markdownUi
+        }
+      })
+    },
+    {
+      isComponent: function(el) {
+        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhcta')){
+          return {type: 'sqh-cta'};
+        }
+      },
+    }),
+
+    view: textComp.view
+  })
+
+  comps.addType('sqh-copy-button', {
+    model: textComp.model.extend({
+      defaults: Object.assign({}, textComp.model.prototype.defaults, {
+        name: 'Copy Button',
+        draggable: false,
+        droppable: false,
+        selectable: true,
+        traits: [
+          { type: 'string', title: 'Code Color', name: 'codefontcolor', value: '#000'},
+          { type: 'integer', title: 'Code Font Size in pixels', name: 'codefontsize', value: 14},          
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'string', title: 'Button Text', name: 'text', value: 'COPY CODE' },
+          { type: 'integer', title: 'Button Font Size in pixels', name: 'fontsize', value: 14},
+          { type: 'integer', title: 'Buttton Width in pixels', name: 'width', value: 170},
+          { type: 'string', title: 'Button Color', name: 'backgroundcolor', value: '#35b21e'},
+          { type: 'string', title: 'Button Text Color', name: 'textcolor', value: '#ffffff'},
+          { type: 'integer', title: 'Button Border Radius', name: 'borderradius', value: 4}
+        ],
+        uiSchema: {
+          'ishidden': { 'ui:widget': 'hidden' },
+          'codefontcolor': { 'ui:widget': 'color' },
+          'codefontsize': { 'ui:widget': 'updown' },
+          'fontsize': { 'ui:widget': 'updown' },
+          'width': { 'ui:widget': 'updown' },
+          'backgroundcolor': { 'ui:widget': 'color' },
+          'textcolor': { 'ui:widget': 'color' },
+          'borderradius': { 'ui:widget': 'updown' }
+        }
+      })
+    },
+    {
+      isComponent: function(el) {
+        if(el.tagName == 'SQH-COPY-BUTTON'){
+          return {type: 'sqh-copy-button'};
+        }
+      },
+    }),
+
+    view: defaultType.view
   })
 }

@@ -62,6 +62,61 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhCopyButton {
+      'backgroundcolor': string;
+      'borderradius': number;
+      'codefontcolor': string;
+      'codefontsize': number;
+      'copyfailure': string;
+      'copysuccess': string;
+      'fontsize': number;
+      'ishidden': boolean;
+      'rewardkey': string;
+      'text': string;
+      'textcolor': string;
+      'width': number;
+    }
+  }
+
+  interface HTMLSqhCopyButtonElement extends StencilComponents.SqhCopyButton, HTMLStencilElement {}
+
+  var HTMLSqhCopyButtonElement: {
+    prototype: HTMLSqhCopyButtonElement;
+    new (): HTMLSqhCopyButtonElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-copy-button': HTMLSqhCopyButtonElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-copy-button': HTMLSqhCopyButtonElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-copy-button': JSXElements.SqhCopyButtonAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhCopyButtonAttributes extends HTMLAttributes {
+      'backgroundcolor'?: string;
+      'borderradius'?: number;
+      'codefontcolor'?: string;
+      'codefontsize'?: number;
+      'copyfailure'?: string;
+      'copysuccess'?: string;
+      'fontsize'?: number;
+      'ishidden'?: boolean;
+      'rewardkey'?: string;
+      'text'?: string;
+      'textcolor'?: string;
+      'width'?: number;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhCopyLinkButton {
       'buttoncolor': string;
       'copyfailure': string;
@@ -146,6 +201,7 @@ declare global {
       'alignment': string;
       'borderradius': number;
       'css': string;
+      'ishidden': boolean;
       'url': string;
       'width': number;
     }
@@ -173,8 +229,42 @@ declare global {
       'alignment'?: string;
       'borderradius'?: number;
       'css'?: string;
+      'ishidden'?: boolean;
       'url'?: string;
       'width'?: number;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SqhReferralCode {
+
+    }
+  }
+
+  interface HTMLSqhReferralCodeElement extends StencilComponents.SqhReferralCode, HTMLStencilElement {}
+
+  var HTMLSqhReferralCodeElement: {
+    prototype: HTMLSqhReferralCodeElement;
+    new (): HTMLSqhReferralCodeElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-referral-code': HTMLSqhReferralCodeElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-referral-code': HTMLSqhReferralCodeElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-referral-code': JSXElements.SqhReferralCodeAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhReferralCodeAttributes extends HTMLAttributes {
+
     }
   }
 }
@@ -223,6 +313,7 @@ declare global {
     interface SqhReferralList {
       'convertedcontent': string;
       'ishidden': boolean;
+      'noreferralsyet': string;
       'paginateless': string;
       'paginatemore': string;
       'pendingcolor': string;
@@ -259,6 +350,7 @@ declare global {
     export interface SqhReferralListAttributes extends HTMLAttributes {
       'convertedcontent'?: string;
       'ishidden'?: boolean;
+      'noreferralsyet'?: string;
       'paginateless'?: string;
       'paginatemore'?: string;
       'pendingcolor'?: string;
@@ -504,6 +596,7 @@ declare global {
       'text': string;
       'textcolor': string;
       'type': string;
+      'url': string;
     }
   }
 
@@ -536,6 +629,7 @@ declare global {
       'text'?: string;
       'textcolor'?: string;
       'type'?: string;
+      'url'?: string;
     }
   }
 }

@@ -12,6 +12,7 @@ export class ReferralList {
   @Prop() ishidden: boolean = false;
   @Prop() paginatemore: string;
   @Prop() paginateless: string;
+  @Prop() noreferralsyet: string = 'No Referrals Yet...';
   @Prop() referralnamecolor: string;
   @Prop() referraltextcolor: string;
   // referrer props
@@ -26,7 +27,7 @@ export class ReferralList {
   @Prop() pendingcolor: string;
   @Prop() pendingcontent: string;
   @Prop() pendingvalue: string;
-  // state
+  
   @State() referrals: Referral[];
   @State() referralsCount: number;
   @State() referredBy: any;
@@ -41,7 +42,6 @@ export class ReferralList {
   componentWillLoad() {
     if (!this.ishidden) {
       return this.getReferrals().then(res => {
-        console.log('res', res);
         this.referrals = res.referrals.data;
         this.referredBy = res.referredByReferral;
         this.referralsCount = res.referrals.totalCount;
@@ -76,7 +76,6 @@ export class ReferralList {
   }
 
   onError(e: Error) {
-    console.log("Error loading via GraphQL.", e);
     this.loading = false;
   }
 
@@ -92,7 +91,7 @@ export class ReferralList {
       pendingvalue: this.pendingvalue,
       valuecontent: this.valuecontent,
     }
-    
+
     if (this.referrals) {
       referralsRow = (
         this.referrals.map((ref) => {
@@ -104,6 +103,7 @@ export class ReferralList {
       );
     }
     if (this.referrals.length < 3 && this.referredBy && this.showreferrer) {
+      console.log('do we show referrer', this.showreferrer)
       referredByRow = (
         <sqh-referral-component id={ uuid() } referral={ this.referredBy } referralvariables={ referralvariables } referraltype='referrer'></sqh-referral-component>
       );
@@ -137,10 +137,11 @@ export class ReferralList {
       }
     `
 
-    return (
-      this.ishidden 
-      ? ''
-      : (
+    const totalReferralsCount = this.showreferrer && this.referredBy ? this.referralsCount + 1 : this.referralsCount;
+
+    return !this.ishidden && 
+      totalReferralsCount > 0 
+      ? ( // Referral List when not hidden and 1 or more referrals
         <div class={`squatch-referrals ${clz}`}>
           <div class="squatch-referrals-scroll-container">
             {referralsRow}
@@ -182,7 +183,15 @@ export class ReferralList {
             </button>
           </div>
         </div>
+      ) 
+      // 'No Referrals Yet' button if this.referralCount < 1
+      : (
+        <div class="squatch-referrals-scroll-action-container">
+          <button disabled class='squatch-no-referrals-yet'>
+            {this.noreferralsyet}
+          </button>
+        </div>
       )
-    );
+    ;
   }
 }

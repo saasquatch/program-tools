@@ -27,21 +27,20 @@
   
   <script src="/build/widget-components.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="https://unpkg.com/@saasquatch/vanilla-components-assets@latest/icons.css"></link>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/@saasquatch/vanilla-components-assets@latest/icons.css">
   <link rel="apple-touch-icon" href="/assets/icon/icon.png">
-  <link rel="icon" type="image/x-icon" href="/assets/icon/favicon.ico">
   <link rel="manifest" href="/manifest.json">
 </head>
 <body>
   <sqh-global-container background="transparent">
 
+    <sqh-image-component url="https://i.ytimg.com/vi/I7jgu-8scIA/maxresdefault.jpg" borderradius="10"></sqh-image-component>
+    
     <sqh-text-component text="Give $10 and Get $10!" fontsize="30" color="#4486E1" paddingtop="30" paddingbottom="10"></sqh-text-component>
     
-    <!-- <sqh-image-component url="https://i.ytimg.com/vi/I7jgu-8scIA/maxresdefault.jpg" borderradius="10"></sqh-image-component> -->
-
     <sqh-text-component color="#000" fontsize="13" text="Give a friend a $10 and receive a $10 for yourself when they pay their first bill." paddingtop="12" paddingbottom="10"></sqh-text-component>
 
-    <sqh-text-component color="#000" fontsize="13" text="Share the link below or use the code **RIDDIKULUS.**" ismarkdown="true" paddingtop="5" paddingbottom="20"></sqh-text-component>
+    <sqh-text-component color="#000" fontsize="13" text="Share the link below or use the code **<sqh-referral-code />**." ismarkdown="true" paddingtop="5" paddingbottom="20"></sqh-text-component>
 
     <sqh-close-button></sqh-close-button>
 
@@ -52,9 +51,9 @@
     <sqh-text-component color="#000" fontsize="13" text="**Rewards Dashboard**" ismarkdown="true" paddingtop="20" paddingbottom="10"></sqh-text-component>
 
     <sqh-stats-container>
-      <sqh-stat-component slot="stat-1" statcolor="#4caf50" stattype="/referralsCount" statdescription="Total Referrals"></sqh-stat-component>
-      <sqh-stat-component slot="stat-2" stattype="/rewardsCount" statdescription="Total Rewards"></sqh-stat-component>
-      <sqh-stat-component slot="stat-3" stattype="/rewardBalance/CREDIT/CENTS/prettyRedeemedCredit" statdescription="Credit redeemed"></sqh-stat-component>
+      <sqh-stat-component statcolor="#4caf50" stattype="/referralsCount" statdescription="Total Referrals"></sqh-stat-component>
+      <sqh-stat-component stattype="/rewardsCount" statdescription="Total Rewards"></sqh-stat-component>
+      <sqh-stat-component stattype="/rewardBalance" statdescription="Credit earned"></sqh-stat-component>
     </sqh-stats-container>
 
     <sqh-referral-list
@@ -72,6 +71,20 @@
     ></sqh-referral-list>
   
   </sqh-global-container>
+
+ <sqh-global-container background="transparent">
+
+    <sqh-image-component url="https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png" alignment="center" width="140" css="padding-top: 38px; padding-bottom: 7px;"></sqh-image-component>
+
+    <sqh-text-component color="#000" fontsize="24" text="You were Successfully Referred to Saasquatch" paddingtop="12" paddingbottom="20"></sqh-text-component>
+
+
+
+    <sqh-text-component color="gray" rewardkey="referredReward" fontsize="13" text="<hr style='border-top: 1px solid #eee; border-bottom: 0;'></hr><br/><br/>Use the Referral Code at checkout to receive your referral reward" ismarkdown="true" paddingtop="10" paddingbottom="20"></sqh-text-component>
+
+    <sqh-copy-button></sqh-copy-button>
+
+  </sqh-global-container> 
 
 </body>
 </html>

@@ -39,7 +39,18 @@ const today = new Date();
 
 const demoUser = {
   shareLink: "http://sharelink.squatch.com",
-  messageLink: "http://short.staging.referralsaasquatch.com/mwjExk",
+  fueltankCode: "12AS3F",
+  referralcode: "RIDDIKULUS",
+  messageLink: {
+    EMAIL: "http://short.staging.referralsaasquatch.com/mJjFXu",
+    FACEBOOK: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    TWITTER: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    SMS: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    WHATSAPP: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    LINKEDIN: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    PINTEREST: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    FBMESSENGER: "http://short.staging.referralsaasquatch.com/mwjFXu"
+  },
   referrals: {
     totalCount: 8,
     data: [
@@ -53,7 +64,7 @@ const demoUser = {
       { dateReferralStarted: today.setDate(today.getDate()-2), referredUser: { firstName: "Hermione", lastName: "Granger" }, rewards: [{ prettyValue: "$20.00" },{ prettyValue: "$10.00" },{ prettyValue: "$5.00" },{ prettyValue: "5%" },{ prettyValue: "5%" },{ prettyValue: "5%" },] },
     ]
   },
-  referredByReferral: { dateReferralStarted: today.setDate(today.getDate()-2), referrerUser: { firstName: "Rubeus", lastName: "Hagrid" }, rewards: [{ prettyValue: "$10.00" }] },
+  referredByReferral: { dateReferralStarted: today.setDate(today.getDate()-2), referrerUser: { firstName: "Rubeus", lastName: "Hagrid" }, rewards: [{ fuelTankCode: 'CODE1234', prettyValue: "$10.00" }] },
   referralsMonth: { totalCount: 6 },
   referralsWeek:  { totalCount: 3 },
   rewardsCount: { totalCount: 14 },
@@ -71,8 +82,37 @@ const squatchJsApi = window.frameElement ? window.frameElement.squatchJsApi : {}
 const API = {
   version: "Welcome to widget-host",
   analytics: {
-    shareEvent(type: string) {
-      return Promise.resolve({ event: "shareEvent", type });
+    shareEvent(shareMedium: string) {
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve({});
+
+      const { userId, accountId, programId = "classic", engagementMedium } = widgetId;
+
+      const variables = {
+        userId,
+        accountId,
+        programId,
+        meta: {
+          engagementMedium,
+          shareMedium
+        }
+      }
+      return this.client.mutate({
+        mutation: gql`
+          mutation ($eventMeta: UserAnalyticsEvent!) {
+            createUserAnalyticsEvent(
+              id: $userId, 
+              accountId: $accountId, 
+              programId: $programId, 
+              type: USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT, 
+              meta: $meta)
+          }
+        `,
+        variables
+      }).then((result) => {
+        return result.data.createUserAnalyticsEvent;
+      });
     },
     loadEvent() {
       return Promise.resolve({ event: "loadEvent" });
@@ -310,34 +350,129 @@ const API = {
       }).then(res => res.data.user);
     },
 
-    getMessageLinks(type){
+    // getReferralCode() {
+    //   const widgetId = widgetIdent();
+
+    //   if (widgetId["env"] === "demo" || !widgetId) return demoUser.referralcode;
+
+    //   const { userId, accountId, programId = null } = widgetId;
+
+    //   const variables = {
+    //     userId,
+    //     accountId,
+    //     programId
+    //   };
+
+    //   return this.getClient().query({
+    //     query: gql`
+    //       query($userId: String!, $accountId: String!, $programId: ID) {
+    //         user(id: $userId, accountId: $accountId) {
+    //           referralCode(programId: $programId)
+    //         }
+    //       }
+    //     `,
+    //     variables
+    //   }).then(res => res.data.user.referralCode);
+    // },
+
+    async getReferralCode ():Promise<string> {
       const widgetId = widgetIdent();
 
-      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
+      if(widgetId["env"] === "demo" || !widgetId) return demoUser.referralcode
 
-      const { userId, accountId, programId = null, engagementMedium } = widgetId;
+      const { userId, accountId, programId } = widgetId;
+
+      const variables = {
+        userId,
+        accountId,
+        programId
+      }
+
+      return this.getClient().query({
+        query: gql`
+          query($userId: String!, $accountId: String!, $programId: ID!) {
+            user(id: $userId, accountId: $accountId) {
+              referralCode(programId: $programId)
+            }
+          }
+        `,
+        variables
+      }).then(res => res.data.user.referralCode);
+    },
+
+    async getFueltankCode (rewardKey):Promise<SimpleObject[]> {
+      const widgetId = widgetIdent();
+
+      if(widgetId["env"] === "demo" || !widgetId) return demoUser.referredByReferral.rewards
+
+      const { userId, accountId, programId } = widgetId;
 
       const variables = {
         userId,
         accountId,
         programId,
-        engagementMedium
-      };
+        rewardKey
+      }
 
-      return this.getClient(type).query({
+      return this.getClient().query({
         query: gql`
-          query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium) {
+          query($userId: String!, $accountId: String!, $programId: ID!, $rewardKey: String!) {
             user(id: $userId, accountId: $accountId) {
-              messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${type})
+              rewards (filter: {
+                programId_eq: $programId
+                programRewardKey_eq: $rewardKey
+              }) {
+                count
+                totalCount
+                data {
+                  fuelTankCode
+                }
+              }
             }
           }
         `,
         variables
-      }).then(res => res.data.user.messageLink);
+      }).then(res => res.data.user.rewards.data);
     },
 
+    getMessageLinks(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8){
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
+       const { userId, accountId, programId = null, engagementMedium } = widgetId;
+       const variables = {
+        userId,
+        accountId,
+        programId,
+        engagementMedium
+      };
+       return this.getClient().query({
+        query: gql`
+          query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium) {
+            user(id: $userId, accountId: $accountId) {
+              ${btn1}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn1})           
+              ${btn2}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn2})
+              ${btn3}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn3})
+              ${btn4}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn4})
+              ${btn5}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn5})
+              ${btn6}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn6})
+              ${btn7}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn7})
+              ${btn8}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn8})
+            }
+          }
+        `,
+        variables
+      }).then(res => res.data.user);
+    },
   },
   ui: squatchJsApi
 };
 
 export { API };
+
+/**
+ * Key-value simple object
+ */
+export interface SimpleObject {
+  [key:string]: any
+}

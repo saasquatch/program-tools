@@ -21,7 +21,6 @@ export class TwitterShareButton {
 
   componentDidLoad() {
     const widget = widgetIdent();
-    console.log(widget);
     if (widget && widget.engagementMedium != "POPUP") {
       this.closeButton.setAttribute('style', 'display:none');
     }

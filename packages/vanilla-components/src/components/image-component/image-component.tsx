@@ -7,11 +7,11 @@ import { css } from 'emotion';
 })
 
 export class ImageComponent {
+  @Prop() ishidden: boolean = false;
   @Prop() url: string;
   @Prop() width: number;
   @Prop() borderradius: number;
   @Prop() alignment: string;
-  // Option: a text box/code editor that allows for any css rules in this format  [key]:[value];
   @Prop() css: string;
 
   render() {
@@ -24,11 +24,10 @@ export class ImageComponent {
       border-radius: ${this.borderradius}px;
       ${this.css}
     }`
-  
-   return(
-    <div class={alignment}>
-      <img src={imageString} class={myStyle}/>
-    </div>
-    );
+
+    return !this.ishidden && 
+      <div class={alignment}>
+        <img src={imageString} class={myStyle}/>
+      </div>;
   }
 }

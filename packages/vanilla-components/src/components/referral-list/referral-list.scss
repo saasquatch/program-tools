@@ -1,6 +1,19 @@
 sqh-referral-list {
   display: block;
 
+  .squatch-no-referrals-yet {
+    background: white;
+    border-color: #adadad;
+    border: 1px solid;
+    border-color: #cccccc;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 5px;
+    padding: 6px 12px;
+    width: 165px;
+  }
+
   .squatch-referrals-scroll-container {
     min-height: 255px;
   }

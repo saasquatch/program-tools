@@ -22,10 +22,10 @@ sqh-stat-component{
 }
 
 
-// Mobile css will go in CSS in JS
+// May end up in CSS in JS so it's user controlled
 
 sqh-stat-component {
-  @media (max-width: 500px) {
+  @media (max-width: 499px) {
     width: 100%;
     text-align: left;
     background: #f2f2f2;
@@ -41,7 +41,7 @@ sqh-stat-component {
   }
 
   .stat-value {
-    @media (max-width: 500px) {
+    @media (max-width: 499px) {
       font-size: 22px;
       float: left;
       width: 60px;
@@ -51,7 +51,7 @@ sqh-stat-component {
   }
 
   .stat-description {
-    @media (max-width: 500px) {
+    @media (max-width: 499px) {
       line-height: 20px;
       padding-left: 100px;
       overflow-wrap: break-word;

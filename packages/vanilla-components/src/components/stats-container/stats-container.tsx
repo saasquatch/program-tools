@@ -29,7 +29,7 @@ export class StatsContainer {
           rewardsCount: res.rewardsCount.totalCount,
           rewardsMonth: res.rewardsMonth.totalCount,
           rewardsWeek: res.rewardsWeek.totalCount,
-          rewardBalances: res.rewardBalances
+          rewardBalance: res.rewardBalances[0].prettyAssignedCredit
         }
         this.loading = false;
       }).then(() => {
@@ -90,8 +90,6 @@ export class StatsContainer {
     const { type, unit, valuetype } = statVariables;
     const rewardBalance = this.stats['rewardBalances'].find(rb => rb.type === type && rb.unit === unit);
     if (!rewardBalance) return 0;
-    console.log(valuetype)
-    console.log(rewardBalance)
     if (valuetype) return rewardBalance[valuetype];
     return rewardBalance.value;
   }
@@ -102,6 +100,7 @@ export class StatsContainer {
   }
 
   render() {
+    console.log("stats", this.stats);
     const containerStyle = css`
       display: ${this.ishidden ? 'none' : 'inherit'};
       padding-top: ${this.paddingtop}px;

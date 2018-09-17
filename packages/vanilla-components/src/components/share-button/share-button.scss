@@ -65,12 +65,12 @@ sqh-share-button {
 // Mobile css will go in CSS in JS (emotion) because break point will be available in editor
 
 sqh-share-button {
-  @media (max-width: 500px) {
+  @media (max-width: 499px) {
     display: block;
   }
 
   .squatch-share-btn {
-    @media (max-width: 500px) {
+    @media (max-width: 499px) {
       margin: 5px 0px;
       width: auto;
     }
