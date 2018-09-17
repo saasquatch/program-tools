@@ -24,9 +24,9 @@ export class ReferralComponent {
     };
 
     const name = (this.referral as Referral).referredUser
-      ? (this.referral as Referral).referredUser.firstName
+      ? (this.referral as Referral).referredUser.firstName || 'Your friend'
       : (this.referral as ReferredByReferral).referrerUser
-      ? (this.referral as ReferredByReferral).referrerUser.firstName
+      ? (this.referral as ReferredByReferral).referrerUser.firstName || 'Your friend'
       : 'Your friend'
     const icon = rewards.length > 0
       ? `icon-ok-circled`
