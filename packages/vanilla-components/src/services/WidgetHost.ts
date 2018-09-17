@@ -102,10 +102,10 @@ const API = {
         mutation: gql`
           mutation ($eventMeta: UserAnalyticsEvent!) {
             createUserAnalyticsEvent(
-              id: $userId, 
-              accountId: $accountId, 
-              programId: $programId, 
-              type: USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT, 
+              id: $userId,
+              accountId: $accountId,
+              programId: $programId,
+              type: USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT,
               meta: $meta)
           }
         `,
@@ -175,7 +175,7 @@ const API = {
 
       return this.getClient().query({
         query: gql`
-          query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium) {
+          query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium!) {
             user(id: $userId, accountId: $accountId) {
               shareLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: DIRECT)
             }
@@ -263,23 +263,23 @@ const API = {
       const widgetId = widgetIdent();
 
       if (widgetId["env"] === "demo" || !widgetId) {
-        const { 
+        const {
           referrals: referralsCount,
           referralsMonth,
           referralsWeek,
           rewardsCount,
           rewardsMonth,
           rewardsWeek,
-          rewardBalances 
+          rewardBalances
         } = demoUser;
-        const user = { 
+        const user = {
           referralsCount,
           referralsMonth,
           referralsWeek,
           rewardsCount,
           rewardsMonth,
           rewardsWeek,
-          rewardBalances 
+          rewardBalances
         };
         return Promise.resolve(user);
       }
@@ -448,9 +448,9 @@ const API = {
       };
        return this.getClient().query({
         query: gql`
-          query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium) {
+          query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium!) {
             user(id: $userId, accountId: $accountId) {
-              ${btn1}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn1})           
+              ${btn1}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn1})
               ${btn2}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn2})
               ${btn3}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn3})
               ${btn4}:messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: ${btn4})
