@@ -76,6 +76,7 @@ export class ReferralList {
   }
 
   onError(e: Error) {
+    console.error(e);
     this.loading = false;
   }
 
