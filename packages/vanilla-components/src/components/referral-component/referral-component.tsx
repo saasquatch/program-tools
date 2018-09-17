@@ -12,6 +12,7 @@ export class ReferralComponent {
   @Prop() referralvariables: ReferralVariables;
 
   render() {
+    console.log('referral', this.referral)
     const { 
       dateReferralStarted,
       rewards
@@ -23,7 +24,9 @@ export class ReferralComponent {
 
     const name = (this.referral as Referral).referredUser
       ? (this.referral as Referral).referredUser.firstName
-      : (this.referral as ReferredByReferral).referrerUser.firstName;
+      : (this.referral as ReferredByReferral).referrerUser
+      ? (this.referral as ReferredByReferral).referrerUser.firstName
+      : 'Your friend'
     const icon = rewards.length > 0
       ? `icon-ok-circled`
       : `icon-attention`;
