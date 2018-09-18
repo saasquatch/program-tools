@@ -412,6 +412,10 @@ export default (editor, config = {}) => {
             { type: 'string', name: 'messengertext', value: 'Messenger' },
             { type: 'string', name: 'messengertextcolor', value: '#ffffff' },
             { type: 'string', name: 'messengerbackgroundcolor', value: '#0084ff' },
+            { type: 'string', name: 'linedisplayrule', value: 'mobile-only' },
+            { type: 'string', name: 'linetext', value: 'Line Messenger' },
+            { type: 'string', name: 'linetextcolor', value: '#ffffff' },
+            { type: 'string', name: 'linebackgroundcolor', value: '#00c300' },
           ],
           uiSchema: {
             ishidden: { 'ui:widget': 'hidden' },
@@ -431,6 +435,8 @@ export default (editor, config = {}) => {
             pinterestbackgroundcolor: { 'ui:widget': 'color' },
             messengertextcolor: { 'ui:widget': 'color' },
             messengerbackgroundcolor: { 'ui:widget': 'color' },
+            linetextcolor: { 'ui:widget': 'color' },
+            linebackgroundcolor: { 'ui:widget': 'color' },
           },
           required: [
             'sharemedium'
@@ -445,8 +451,8 @@ export default (editor, config = {}) => {
                 'type': 'string',
                 'title': 'Share Medium',
                 'default': 'email',
-                'enum': [ 'email', 'facebook', 'messenger', 'twitter', 'whatsapp', 'sms', 'linkedin', 'pinterest' ],
-                'enumNames': [ 'Email', 'Facebook', 'Messenger', 'Twitter', 'WhatsApp', 'SMS', 'LinkedIn', 'Pinterest' ] 
+                'enum': [ 'email', 'facebook', 'messenger', 'twitter', 'whatsapp', 'sms', 'linkedin', 'pinterest', 'line' ],
+                'enumNames': [ 'Email', 'Facebook', 'Messenger', 'Twitter', 'WhatsApp', 'SMS', 'LinkedIn', 'Pinterest', 'Line Messenger' ] 
               },
             },
             'dependencies': {
@@ -521,6 +527,15 @@ export default (editor, config = {}) => {
                       'pinteresttext': shareMediumTextObj,
                       'pinteresttextcolor': shareMediumTextColorObj,
                       'pinterestbackgroundcolor': shareMediumColorObj
+                    }
+                  },
+                  {
+                    'properties': {
+                      'sharemedium': { 'enum': [ 'line' ] },
+                      'linetdisplayrule': displayRuleObj.mobile,
+                      'linetext': shareMediumTextObj,
+                      'linetextcolor': shareMediumTextColorObj,
+                      'linebackgroundcolor': shareMediumColorObj
                     }
                   },
                 ]
