@@ -104,14 +104,27 @@ export class ShareButtonContainer {
   @Prop() messengericonsize: number = 1.4;
   @State() messengerurl: string;
 
+  // Messenger button properties and default settings
+  @Prop() linedisplayrule: string = "mobile-only";
+  @Prop() linetext: string = "Line Messenger";
+  @Prop() linebackgroundcolor: string = "#00c300";
+  @Prop() linetextcolor: string = "#fff";
+  @Prop() lineicon: string = "line";
+  @Prop() lineclassName: string;
+  @Prop() lineiconhorizontal: number = -2;
+  @Prop() lineiconvertical: number = -5;
+  @Prop() lineiconsize: number = 2.2;
+  @State() lineurl: string;
+
   componentWillLoad() {
     if (!this.ishidden) {
-      return this.getMessageLinks('EMAIL', 'FACEBOOK', 'TWITTER', 'SMS', 'WHATSAPP', 'LINKEDIN', 'PINTEREST', 'FBMESSENGER');
+      const mediums = ['EMAIL', 'FACEBOOK', 'TWITTER', 'SMS', 'WHATSAPP', 'LINKEDIN', 'PINTEREST', 'FBMESSENGER', 'LINEMESSENGER']
+      return this.getMessageLinks(mediums);
     }
   }
 
-  getMessageLinks(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8) {
-    return API.graphql.getMessageLinks(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8).then(res => {
+  getMessageLinks(mediums:Array<string>) {
+    return API.graphql.getMessageLinks(mediums).then(res => {
       this.emailurl = res.EMAIL;
       this.facebookurl = res.FACEBOOK;
       this.twitterurl = res.TWITTER;
@@ -120,6 +133,7 @@ export class ShareButtonContainer {
       this.linkedinurl = res.LINKEDIN;
       this.pinteresturl = res.PINTEREST;
       this.messengerurl = res.FBMESSENGER;
+      this.lineurl = res.LINEMESSENGER;
     }).catch(e => {
       this.onError(e);
     });
@@ -233,6 +247,19 @@ export class ShareButtonContainer {
                             iconsize={this.messengericonsize}
                             url={this.messengerurl}
                           />
+    
+    const lineBtn = <sqh-share-button
+                            displayrule={this.linedisplayrule} 
+                            text={this.linetext}
+                            backgroundcolor={this.linebackgroundcolor}
+                            textcolor={this.linetextcolor}
+                            icon={this.lineicon}
+                            class={this.lineclassName}
+                            iconhorizontal={this.lineiconhorizontal}
+                            iconvertical={this.lineiconvertical}
+                            iconsize={this.lineiconsize}
+                            url={this.lineurl}
+                          />
 
     return !this.ishidden &&
       <div>
@@ -244,6 +271,7 @@ export class ShareButtonContainer {
         {linkedinBtn}
         {pinterestBtn}
         {messengerBtn}
+        {lineBtn}
       </div>;
   }
 }

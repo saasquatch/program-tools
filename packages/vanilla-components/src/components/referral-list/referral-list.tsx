@@ -76,7 +76,7 @@ export class ReferralList {
   }
 
   onError(e: Error) {
-    console.log("Error loading via GraphQL.", e);
+    console.error(e);
     this.loading = false;
   }
 
@@ -104,6 +104,7 @@ export class ReferralList {
       );
     }
     if (this.referrals.length < 3 && this.referredBy && this.showreferrer) {
+      console.log('do we show referrer', this.showreferrer)
       referredByRow = (
         <sqh-referral-component id={ uuid() } referral={ this.referredBy } referralvariables={ referralvariables } referraltype='referrer'></sqh-referral-component>
       );
@@ -137,8 +138,10 @@ export class ReferralList {
       }
     `
 
+    const totalReferralsCount = this.showreferrer && this.referredBy ? this.referralsCount + 1 : this.referralsCount;
+
     return !this.ishidden && 
-      this.referralsCount > 0 
+      totalReferralsCount > 0 
       ? ( // Referral List when not hidden and 1 or more referrals
         <div class={`squatch-referrals ${clz}`}>
           <div class="squatch-referrals-scroll-container">
