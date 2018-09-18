@@ -241,7 +241,7 @@ declare global {
 
   namespace StencilComponents {
     interface SqhReferralCode {
-
+      'message': string;
     }
   }
 
@@ -264,7 +264,7 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhReferralCodeAttributes extends HTMLAttributes {
-
+      'message'?: string;
     }
   }
 }
