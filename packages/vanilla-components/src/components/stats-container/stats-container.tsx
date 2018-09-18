@@ -100,7 +100,6 @@ export class StatsContainer {
   }
 
   render() {
-    console.log("stats", this.stats);
     const containerStyle = css`
       display: ${this.ishidden ? 'none' : 'inherit'};
       padding-top: ${this.paddingtop}px;
