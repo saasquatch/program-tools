@@ -18,6 +18,7 @@ export class ReferralList {
   // referrer props
   @Prop() showreferrer: boolean = true;
   @Prop() referrercontent: string;
+  @Prop() referrervalue: string;
   // converted referral props
   @Prop() rewardcolor: string;
   @Prop() usefirstreward: boolean = false;
@@ -90,6 +91,7 @@ export class ReferralList {
       convertedcontent: this.convertedcontent,
       pendingcontent: this.pendingcontent,
       pendingvalue: this.pendingvalue,
+      referrervalue: this.referrervalue,
       valuecontent: this.valuecontent,
     }
 
@@ -124,6 +126,10 @@ export class ReferralList {
       }
       .squatch-referrals-value.pending {
         color: ${ this.pendingcolor };
+        font-size: 15px;
+      }
+      .squatch-referrals-value.referrer {
+        color: ${ this.rewardcolor };
         font-size: 15px;
       }
       .squatch-referrals-heading {
