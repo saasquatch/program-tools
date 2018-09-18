@@ -111,9 +111,9 @@ export class ShareButtonContainer {
   @Prop() linetextcolor: string = "#fff";
   @Prop() lineicon: string = "line";
   @Prop() lineclassName: string;
-  @Prop() lineiconhorizontal: number = 7;
-  @Prop() lineiconvertical: number = 3;
-  @Prop() lineiconsize: number = 1.4;
+  @Prop() lineiconhorizontal: number = -2;
+  @Prop() lineiconvertical: number = -5;
+  @Prop() lineiconsize: number = 2.2;
   @State() lineurl: string;
 
   componentWillLoad() {
