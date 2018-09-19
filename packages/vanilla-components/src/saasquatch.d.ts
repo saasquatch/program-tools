@@ -73,6 +73,7 @@ interface ReferralVariables {
   convertedcontent: string
   pendingcontent: string
   pendingvalue: string
+  referrervalue: string
   valuecontent: string
 }
 

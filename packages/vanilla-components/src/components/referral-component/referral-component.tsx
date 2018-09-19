@@ -27,7 +27,7 @@ export class ReferralComponent {
       : (this.referral as ReferredByReferral).referrerUser
       ? (this.referral as ReferredByReferral).referrerUser.firstName || 'Your friend'
       : 'Your friend'
-    const icon = rewards.length > 0
+    const icon = rewards.length > 0 || this.referraltype === "referrer"
       ? `icon-ok-circled`
       : `icon-attention`;
 
@@ -41,6 +41,8 @@ export class ReferralComponent {
       ? this.referralvariables.usefirstreward
       ? rewards[rewards.length - 1].prettyValue
       : rewards[0].prettyValue
+      : this.referraltype === "referrer"
+      ? this.referralvariables.referrervalue
       : this.referralvariables.pendingvalue
 
     const valuecontent = rewards.length > 1
@@ -63,7 +65,7 @@ export class ReferralComponent {
         {/* second column */}
         <div class="sqh-column-two">
           <i class={`icon squatch-referrals-icon ${ icon }`}></i>
-          <div class={ `squatch-referrals-value ${ rewards.length > 0 ? '' : 'pending' }` }>
+          <div class={ `squatch-referrals-value ${ rewards.length > 0 ? '' : this.referraltype === 'referrer' ? 'referrer' : 'pending' }` }>
             { value }
           </div>
           { valuecontent }

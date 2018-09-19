@@ -674,6 +674,7 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'referralnamecolor', value: '' },
           { type: 'string', name: 'referraltextcolor', value: ''},
           { type: 'string', name: 'pendingvalue', value: "Reward Pending" },
+          { type: 'string', name: 'referrervalue', value: "Referred" },
           { type: 'string', name: 'referrercontent', value: "Referred You {date}" },
           { type: 'string', name: 'convertedcontent', value: "Paid User, signed up {date}" },
           { type: 'string', name: 'pendingcontent', value: "Trial User, signed up {date}" },
@@ -762,6 +763,10 @@ export default (editor, config = {}) => {
                     'referraltype': { 'enum': [ 'referrer' ] },
                     'referrercontent': {
                       'title': 'Referring User Content',
+                      'type': 'string'
+                    },
+                    'referrervalue': {
+                      'title': 'Referrer Description - no reward',
                       'type': 'string'
                     },
                     'showreferrer': {

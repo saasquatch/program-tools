@@ -350,31 +350,6 @@ const API = {
       }).then(res => res.data.user);
     },
 
-    // getReferralCode() {
-    //   const widgetId = widgetIdent();
-
-    //   if (widgetId["env"] === "demo" || !widgetId) return demoUser.referralcode;
-
-    //   const { userId, accountId, programId = null } = widgetId;
-
-    //   const variables = {
-    //     userId,
-    //     accountId,
-    //     programId
-    //   };
-
-    //   return this.getClient().query({
-    //     query: gql`
-    //       query($userId: String!, $accountId: String!, $programId: ID) {
-    //         user(id: $userId, accountId: $accountId) {
-    //           referralCode(programId: $programId)
-    //         }
-    //       }
-    //     `,
-    //     variables
-    //   }).then(res => res.data.user.referralCode);
-    // },
-
     async getReferralCode ():Promise<string> {
       const widgetId = widgetIdent();
 

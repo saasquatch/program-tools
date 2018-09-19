@@ -22,7 +22,10 @@ export class ShareButton {
   @Element() button: HTMLElement;
 
   clickHandler(e) {
-    if (window["widgetIdent"].env === "demo") return null
+    if (window["widgetIdent"].env === "demo"){
+      e.preventDefault();
+      return;
+    }
     // checking for null on closest 'a' tag makes click handler avoid firing when margin is clicked
     var anchor = e.target.closest('a');
     if (anchor !== null && this.className !== "email-share") {

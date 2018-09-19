@@ -322,6 +322,7 @@ declare global {
       'referralnamecolor': string;
       'referraltextcolor': string;
       'referrercontent': string;
+      'referrervalue': string;
       'rewardcolor': string;
       'showreferrer': boolean;
       'usefirstreward': boolean;
@@ -359,6 +360,7 @@ declare global {
       'referralnamecolor'?: string;
       'referraltextcolor'?: string;
       'referrercontent'?: string;
+      'referrervalue'?: string;
       'rewardcolor'?: string;
       'showreferrer'?: boolean;
       'usefirstreward'?: boolean;

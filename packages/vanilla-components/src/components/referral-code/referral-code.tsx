@@ -5,7 +5,8 @@ import { API } from '../../services/WidgetHost';
   tag: 'sqh-referral-code',
   styleUrl: 'referral-code.scss'
 })
-export class TextComponent {
+
+export class ReferralCode {
   @State() referralcode: string;
 
   componentWillLoad() {
