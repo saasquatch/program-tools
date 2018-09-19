@@ -29,7 +29,7 @@ export class StatsContainer {
           rewardsCount: res.rewardsCount.totalCount,
           rewardsMonth: res.rewardsMonth.totalCount,
           rewardsWeek: res.rewardsWeek.totalCount,
-          rewardBalance: res.rewardBalances[0].prettyAssignedCredit
+          rewardBalances: res.rewardBalances
         }
         this.loading = false;
       }).then(() => {
