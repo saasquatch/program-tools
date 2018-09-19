@@ -64,7 +64,7 @@ const demoUser = {
       { dateReferralStarted: today.setDate(today.getDate()-2), referredUser: { firstName: "Hermione", lastName: "Granger" }, rewards: [{ prettyValue: "$20.00" },{ prettyValue: "$10.00" },{ prettyValue: "$5.00" },{ prettyValue: "5%" },{ prettyValue: "5%" },{ prettyValue: "5%" },] },
     ]
   },
-  referredByReferral: { dateReferralStarted: today.setDate(today.getDate()-2), referrerUser: { firstName: "Rubeus", lastName: "Hagrid" }, rewards: [{ fuelTankCode: 'CODE1234', prettyValue: "$10.00" }] },
+  referredByReferral: { dateReferralStarted: today.setDate(today.getDate()-2), referrerUser: { firstName: "Rubeus", lastName: "Hagrid" , referralCode: 'RUBEUSHAGRID12'}, rewards: [{ fuelTankCode: 'CODE1234', prettyValue: "$10.00" }] },
   referralsMonth: { totalCount: 6 },
   referralsWeek:  { totalCount: 3 },
   rewardsCount: { totalCount: 14 },
@@ -400,10 +400,12 @@ const API = {
       }).then(res => res.data.user.referralCode);
     },
 
-    async getFueltankCode (rewardKey):Promise<SimpleObject[]> {
+    async getFueltankCode (rewardKey):Promise<SimpleObject> {
       const widgetId = widgetIdent();
 
-      if(widgetId["env"] === "demo" || !widgetId) return demoUser.referredByReferral.rewards
+      if (widgetId["env"] === "demo" || !widgetId) {
+        return {referredByReferral: demoUser.referredByReferral, rewards: {data: demoUser.referredByReferral.rewards} };
+      }
 
       const { userId, accountId, programId } = widgetId;
 
@@ -418,6 +420,11 @@ const API = {
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID!, $rewardKey: String!) {
             user(id: $userId, accountId: $accountId) {
+              referredByReferral {
+                referredUser {
+                  referralCode
+                }
+              }
               rewards (filter: {
                 programId_eq: $programId
                 programRewardKey_eq: $rewardKey
@@ -432,7 +439,7 @@ const API = {
           }
         `,
         variables
-      }).then(res => res.data.user.rewards.data);
+      }).then(res => res.data.user);
     },
 
     getMessageLinks(mediums:Array<string>){

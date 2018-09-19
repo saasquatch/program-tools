@@ -12,7 +12,6 @@ export class ReferralComponent {
   @Prop() referralvariables: ReferralVariables;
 
   render() {
-    console.log('referral', this.referral)
     const { 
       dateReferralStarted,
       rewards

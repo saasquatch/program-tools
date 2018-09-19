@@ -26,7 +26,8 @@ export class CopyButton {
   componentWillLoad() {
     if (!this.ishidden) {
       return API.graphql.getFueltankCode(this.rewardkey).then(res => {
-        this.fueltankcode = res[0].fuelTankCode;
+        const fuelTank = res.rewards.data[0].fuelTankCode;
+        this.fueltankcode = fuelTank || res.referredByReferral.referrerUser.referralCode;
       }).catch(e => {
         this.onError(e);
       });

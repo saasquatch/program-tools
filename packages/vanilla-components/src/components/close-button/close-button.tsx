@@ -14,8 +14,7 @@ export class TwitterShareButton {
   @Element() closeButton: HTMLElement;
 
   @Listen('click')
-  handleClick(ev){
-    console.log('clicked', ev)
+  handleClick(){
     API.ui.close();
   }
 

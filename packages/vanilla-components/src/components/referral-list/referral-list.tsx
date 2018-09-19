@@ -104,7 +104,6 @@ export class ReferralList {
       );
     }
     if (this.referrals.length < 3 && this.referredBy && this.showreferrer) {
-      console.log('do we show referrer', this.showreferrer)
       referredByRow = (
         <sqh-referral-component id={ uuid() } referral={ this.referredBy } referralvariables={ referralvariables } referraltype='referrer'></sqh-referral-component>
       );

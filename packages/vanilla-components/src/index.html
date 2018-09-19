@@ -12,7 +12,8 @@
 
   <script>
     window.widgetIdent = {
-      mode: 'POPUP',
+      env: 'demo',
+      engagementMedium: 'POPUP',
       locale: 'en_US',
       tenantAlias: 'ahktawurp5cdj',
       programId: 'rt2',
@@ -80,9 +81,9 @@
 
 
 
-    <sqh-text-component color="gray" rewardkey="referredReward" fontsize="13" text="<hr style='border-top: 1px solid #eee; border-bottom: 0;'></hr><br/><br/>Use the Referral Code at checkout to receive your referral reward" ismarkdown="true" paddingtop="10" paddingbottom="20"></sqh-text-component>
+    <sqh-text-component color="gray"  fontsize="13" text="<hr style='border-top: 1px solid #eee; border-bottom: 0;'></hr><br/><br/>Use the Referral Code at checkout to receive your referral reward" ismarkdown="true" paddingtop="10" paddingbottom="20"></sqh-text-component>
 
-    <sqh-copy-button></sqh-copy-button>
+    <sqh-copy-button rewardkey="referredReward"></sqh-copy-button>
 
   </sqh-global-container> 
 
