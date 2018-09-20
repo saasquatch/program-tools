@@ -489,6 +489,7 @@ export default (editor, config = {}) => {
                     'properties': {
                       'sharemedium': { 'enum': [ 'twitter' ] },
                       'twitterdisplayrule': displayRuleObj.default,
+                      'twittertext': shareMediumTextObj,
                       'twittertextcolor': shareMediumTextColorObj,
                       'twitterbackgroundcolor': shareMediumColorObj
                     }
