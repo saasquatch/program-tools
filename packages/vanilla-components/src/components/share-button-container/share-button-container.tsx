@@ -9,10 +9,10 @@ export class ShareButtonContainer {
   @Prop() ishidden: boolean = false;
 
   // Email button properties and default settings
-  @Prop() emaildisplayrule: string = "mobile-and-desktop";
-  @Prop() emailtext: string = "Email";
-  @Prop() emailbackgroundcolor: string = "#4b4d50";
-  @Prop() emailtextcolor: string = "#fff";
+  @Prop() emaildisplayrule: string;
+  @Prop() emailtext: string;
+  @Prop() emailbackgroundcolor: string;
+  @Prop() emailtextcolor: string;
   @Prop() emailicon: string = "mail";
   @Prop() emailclassName: string = "email-share";
   @Prop() emailiconhorizontal: number;
@@ -21,10 +21,10 @@ export class ShareButtonContainer {
   @State() emailurl: string;
 
   // FaceBook button properties and default settings
-  @Prop() facebookdisplayrule: string = "mobile-and-desktop";
-  @Prop() facebooktext: string = "Share";
-  @Prop() facebookbackgroundcolor: string = "#234079";
-  @Prop() facebooktextcolor: string = "#fff";
+  @Prop() facebookdisplayrule: string;
+  @Prop() facebooktext: string;
+  @Prop() facebookbackgroundcolor: string;
+  @Prop() facebooktextcolor: string;
   @Prop() facebookicon: string = "facebook";
   @Prop() facebookclassName: string;
   @Prop() facebookiconhorizontal: number = 9;
@@ -34,7 +34,7 @@ export class ShareButtonContainer {
 
   // Twitter button properties and default settings
   @Prop() twitterdisplayrule: string = "mobile-and-desktop";
-  @Prop() twittertext: string = "Tweet";
+  @Prop() twittertext: string = "Twitter";
   @Prop() twitterbackgroundcolor: string = "#4797d2";
   @Prop() twittertextcolor: string = "#fff";
   @Prop() twittericon: string = "twitter";
@@ -70,9 +70,9 @@ export class ShareButtonContainer {
   
   // LinkedIn button properties and default settings
   @Prop() linkedindisplayrule: string;
-  @Prop() linkedintext: string = "LinkedIn";
-  @Prop() linkedinbackgroundcolor: string = "#0084b9";
-  @Prop() linkedintextcolor: string = "#fff";
+  @Prop() linkedintext: string;
+  @Prop() linkedinbackgroundcolor: string;
+  @Prop() linkedintextcolor: string;
   @Prop() linkedinicon: string = "linkedin";
   @Prop() linkedinclassName: string;
   @Prop() linkediniconhorizontal: number;
@@ -82,9 +82,9 @@ export class ShareButtonContainer {
 
   // Pinterest button properties and default settings
   @Prop() pinterestdisplayrule: string;
-  @Prop() pinteresttext: string = "Pinterest";
-  @Prop() pinterestbackgroundcolor: string = "#cb2027";
-  @Prop() pinteresttextcolor: string = "#fff";
+  @Prop() pinteresttext: string;
+  @Prop() pinterestbackgroundcolor: string;
+  @Prop() pinteresttextcolor: string;
   @Prop() pinteresticon: string = "pinterest";
   @Prop() pinterestclassName: string;
   @Prop() pinteresticonhorizontal: number = 9;
@@ -94,9 +94,9 @@ export class ShareButtonContainer {
   
   // Messenger button properties and default settings
   @Prop() messengerdisplayrule: string;
-  @Prop() messengertext: string = "Messenger";
-  @Prop() messengerbackgroundcolor: string = "#0084ff";
-  @Prop() messengertextcolor: string = "#fff";
+  @Prop() messengertext: string;
+  @Prop() messengerbackgroundcolor: string;
+  @Prop() messengertextcolor: string;
   @Prop() messengericon: string = "messenger";
   @Prop() messengerclassName: string;
   @Prop() messengericonhorizontal: number = 7;
