@@ -395,7 +395,7 @@ const API = {
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID!, $rewardKey: String!) {
             user(id: $userId, accountId: $accountId) {
-              referredByReferral {
+              referredByReferral (programId: $programId) {
                 referredUser {
                   referralCode
                 }
