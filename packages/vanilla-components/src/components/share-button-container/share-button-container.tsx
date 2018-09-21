@@ -9,7 +9,7 @@ export class ShareButtonContainer {
   @Prop() ishidden: boolean = false;
 
   // Email button properties and default settings
-  @Prop() emaildisplayrule: string;
+  @Prop() emaildisplayrule: string = "hidden";
   @Prop() emailtext: string;
   @Prop() emailbackgroundcolor: string;
   @Prop() emailtextcolor: string;
@@ -21,7 +21,7 @@ export class ShareButtonContainer {
   @State() emailurl: string;
 
   // FaceBook button properties and default settings
-  @Prop() facebookdisplayrule: string;
+  @Prop() facebookdisplayrule: string = "hidden";
   @Prop() facebooktext: string;
   @Prop() facebookbackgroundcolor: string;
   @Prop() facebooktextcolor: string;
@@ -33,10 +33,10 @@ export class ShareButtonContainer {
   @State() facebookurl: string;
 
   // Twitter button properties and default settings
-  @Prop() twitterdisplayrule: string = "mobile-and-desktop";
-  @Prop() twittertext: string = "Twitter";
-  @Prop() twitterbackgroundcolor: string = "#4797d2";
-  @Prop() twittertextcolor: string = "#fff";
+  @Prop() twitterdisplayrule: string = "hidden";
+  @Prop() twittertext: string;
+  @Prop() twitterbackgroundcolor: string;
+  @Prop() twittertextcolor: string;
   @Prop() twittericon: string = "twitter";
   @Prop() twitterclassName: string;
   @Prop() twittericonhorizontal: number = 9;
@@ -45,10 +45,10 @@ export class ShareButtonContainer {
   @State() twitterurl: string;
 
   // SMS button properties and default settings
-  @Prop() smsdisplayrule: string = "mobile-only";
-  @Prop() smstext: string = "SMS";
-  @Prop() smsbackgroundcolor: string = "#7bbf38";
-  @Prop() smstextcolor: string = "#fff";
+  @Prop() smsdisplayrule: string = "hidden";
+  @Prop() smstext: string;
+  @Prop() smsbackgroundcolor: string;
+  @Prop() smstextcolor: string;
   @Prop() smsicon: string = "chat";
   @Prop() smsclassName: string;
   @Prop() smsiconhorizontal: number;
@@ -57,9 +57,9 @@ export class ShareButtonContainer {
   @State() smsurl: string;
 
   // Whatsapp button properties and default settings
-  @Prop() whatsappdisplayrule: string = "mobile-only";
-  @Prop() whatsapptext: string = "Whatsapp";
-  @Prop() whatsappbackgroundcolor: string = "#25D366";
+  @Prop() whatsappdisplayrule: string = "hidden";
+  @Prop() whatsapptext: string;
+  @Prop() whatsappbackgroundcolor: string;
   @Prop() whatsapptextcolor: string = "#fff";
   @Prop() whatsappicon: string = "whatsapp";
   @Prop() whatsappclassName: string;
