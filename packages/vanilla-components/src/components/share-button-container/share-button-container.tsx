@@ -105,10 +105,10 @@ export class ShareButtonContainer {
   @State() messengerurl: string;
 
   // Messenger button properties and default settings
-  @Prop() linedisplayrule: string = "mobile-only";
-  @Prop() linetext: string = "Line Messenger";
-  @Prop() linebackgroundcolor: string = "#00c300";
-  @Prop() linetextcolor: string = "#fff";
+  @Prop() linedisplayrule: string;
+  @Prop() linetext: string;
+  @Prop() linebackgroundcolor: string;
+  @Prop() linetextcolor: string;
   @Prop() lineicon: string = "line";
   @Prop() lineclassName: string;
   @Prop() lineiconhorizontal: number = -2;
