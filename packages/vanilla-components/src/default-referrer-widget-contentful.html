@@ -1,3 +1,12 @@
+<!-- 
+  //
+  //
+  // use command 'npm run contentful' in terminal to convert templates to json contentful format
+  // copy output from console and paste into matching contentful file
+  // - there are still some line breaks, can be helpful to run through https://www.textfixer.com/html/compress-html-compression.php
+  //
+ -->
+
 <sqh-global-container 
   class="squatch-container" 
   background="#ffffff"
@@ -5,67 +14,94 @@
 
   <sqh-text-component 
     sqhbanner="true"
+    ishidden="true"
+    background="https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg"
+    height="auto"
+    paddingtop="150"
+    paddingbottom="150"
+    text=""
+    color="#000000"
   ></sqh-text-component>
 
-  <sqh-text-component 
+  <sqh-text-component
     sqhheader="true" 
+    ishidden="false"
+    ismarkdown="false"
     text="Give $10 and Get $10!" 
-    fontsize="30" 
     color="#4486E1" 
+    fontsize="30" 
+    textalign="center"
     paddingtop="30" 
     paddingbottom="10"
   ></sqh-text-component>
 
   <sqh-text-component 
     sqhbody="true" 
-    color="#000" 
-    fontsize="13" 
+    ishidden="false"
+    ismarkdown="true"
     text="Give a friend a $10 and receive $10 for yourself when they purchase.<br/><br/>Share the link below or use the code **<sqh-referral-code />**" 
-    ismarkdown="true" 
+    color="#000000" 
+    fontsize="13" 
+    textalign="center"
     paddingtop="5" 
     paddingbottom="20"
   ></sqh-text-component>
 
   <sqh-copy-link-button 
-    hidden="false"
+    ishidden="false"
+    text="Copy"
+    buttoncolor="#5C6164"
+    textcolor="#FFFFFF"
   ></sqh-copy-link-button>
 
   <sqh-share-button-container 
     maxwidth="100%" 
     emaildisplayrule="mobile-and-desktop" 
     emailtext="Email" 
+    emailtextcolor="#ffffff" 
     emailbackgroundcolor="#4b4d50" 
-    emailtextcolor="#fff" 
     facebookdisplayrule="mobile-and-desktop" 
     facebooktext="Facebook" 
+    facebooktextcolor="#ffffff" 
     facebookbackgroundcolor="#234079" 
-    facebooktextcolor="#fff" 
     twitterdisplayrule="mobile-and-desktop" 
     twittertext="Twitter" 
+    twittertextcolor="#ffffff" 
     twitterbackgroundcolor="#4797d2" 
-    twittertextcolor="#fff" 
     smsdisplayrule="mobile-only" 
     smstext="SMS" 
+    smstextcolor="#ffffff" 
     smsbackgroundcolor="#7bbf38" 
-    smstextcolor="#fff" 
     whatsappdisplayrule="mobile-only" 
     whatsapptext="Whatspp" 
+    whatsapptextcolor="#ffffff"
     whatsappbackgroundcolor="#25D366"
+    linkedindisplayrule="hidden"
+    linkedintext="LinkedIn"
+    linkedintextcolor="#ffffff"
+    linkedinbackgroundcolor="#0084b9"
+    pinterestdisplayrule="hidden"
+    pinteresttext="Pinterest"
+    pinteresttextcolor="#ffffff"
+    pinterestbackgroundcolor="#cb2027"
+    messengerdisplayrule="hidden"
+    messengertext="Messenger"
+    messengertextcolor="#ffffff"
+    messengerbackgroundcolor="#0084ff"
     linedisplayrule="mobile-only"
     linetext="Line Messenger"
+    linetextcolor="#ffffff"
     linebackgroundcolor="#00c300"
-    linetextcolor="#fff"
-    linkedindisplayrule="hidden"
-    pinterestdisplayrule="hidden"
-    messengerdisplayrule="hidden"
   ></sqh-share-button-container>
 
   <sqh-text-component 
-    sqhreferralsheader="true" 
-    color="#000" 
-    fontsize="13" 
+    sqhreferralsheader="true"
+    ishidden="false"
+    ismarkdown="true"
     text="**Rewards Dashboard**" 
-    ismarkdown="true" 
+    color="#000000" 
+    fontsize="13" 
+    textalign="center"
     paddingtop="20" 
     paddingbottom="10"
   ></sqh-text-component>
@@ -73,28 +109,42 @@
   <sqh-stats-container>
 
     <sqh-stat-component 
+      ishidden="false"
       statcolor="#4caf50" 
       stattype="/referralsCount" 
       statdescription="Friends Referred"
+      paddingtop="10"
+      paddingbottom="10"
     ></sqh-stat-component>
 
-    <sqh-stat-component 
+    <sqh-stat-component
+      ishidden="false"
       stattype="/rewardsCount" 
       statdescription="Total Rewards"
+      paddingtop="10"
+      paddingbottom="10"
     ></sqh-stat-component>
 
     <sqh-stat-component 
+      ishidden="false"
       stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit" 
       statdescription="Credit earned"
+      paddingtop="10"
+      paddingbottom="10"
     ></sqh-stat-component>
 
   </sqh-stats-container>
 
   <sqh-referral-list 
+    ishidden="false"
+    showreferrer="true"
+    usefirstreward="false"
     referralnamecolor="darkslategray" 
     referraltextcolor="lightgray" 
-    rewardcolor="green" 
+    rewardcolor="#4BB543" 
     pendingcolor="lightgray" 
+    pendingvalue="Reward Pending"
+    referrervalue="Referred"
     referrercontent="Referred you {date}" 
     convertedcontent="Signed up, referred {date}" 
     pendingcontent="Trial user, referred {date}" 
@@ -106,9 +156,14 @@
 
   <sqh-text-component 
     sqhfooter="true" 
+    ishidden="false"
+    ismarkdown="false"
     text="Terms and Conditions" 
     color="lightgray" 
     fontsize="13"
+    textalign="center"
+    paddingtop="10"
+    paddingbottom="10"
   ></sqh-text-component>
 
 </sqh-global-container>  
