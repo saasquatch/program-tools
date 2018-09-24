@@ -16,7 +16,7 @@ export class TextComponent {
   @Prop() paddingtop: string;
   @Prop() paddingbottom: string;
   @Prop() padding: string = '10px 20px 15px';
-  @Prop() textalign: string = 'center';
+  @Prop() textalign: string;
   @Prop() background: string;
   @Prop() height: string;
 
