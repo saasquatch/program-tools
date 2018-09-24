@@ -9,7 +9,7 @@ export class ShareButtonContainer {
   @Prop() ishidden: boolean = false;
 
   // Email button properties and default settings
-  @Prop() emaildisplayrule: string = "hidden";
+  @Prop() emaildisplayrule: string;
   @Prop() emailtext: string;
   @Prop() emailbackgroundcolor: string;
   @Prop() emailtextcolor: string;
@@ -21,7 +21,7 @@ export class ShareButtonContainer {
   @State() emailurl: string;
 
   // FaceBook button properties and default settings
-  @Prop() facebookdisplayrule: string = "hidden";
+  @Prop() facebookdisplayrule: string;
   @Prop() facebooktext: string;
   @Prop() facebookbackgroundcolor: string;
   @Prop() facebooktextcolor: string;
@@ -33,7 +33,7 @@ export class ShareButtonContainer {
   @State() facebookurl: string;
 
   // Twitter button properties and default settings
-  @Prop() twitterdisplayrule: string = "hidden";
+  @Prop() twitterdisplayrule: string;
   @Prop() twittertext: string;
   @Prop() twitterbackgroundcolor: string;
   @Prop() twittertextcolor: string;
@@ -45,7 +45,7 @@ export class ShareButtonContainer {
   @State() twitterurl: string;
 
   // SMS button properties and default settings
-  @Prop() smsdisplayrule: string = "hidden";
+  @Prop() smsdisplayrule: string;
   @Prop() smstext: string;
   @Prop() smsbackgroundcolor: string;
   @Prop() smstextcolor: string;
@@ -57,7 +57,7 @@ export class ShareButtonContainer {
   @State() smsurl: string;
 
   // Whatsapp button properties and default settings
-  @Prop() whatsappdisplayrule: string = "hidden";
+  @Prop() whatsappdisplayrule: string;
   @Prop() whatsapptext: string;
   @Prop() whatsappbackgroundcolor: string;
   @Prop() whatsapptextcolor: string = "#fff";
