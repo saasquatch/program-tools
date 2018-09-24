@@ -25,8 +25,6 @@
 
   <sqh-text-component
     sqhheader="true" 
-    ishidden="false"
-    ismarkdown="false"
     text="Give $10 and Get $10!" 
     color="#4486E1" 
     fontsize="30" 
@@ -37,7 +35,6 @@
 
   <sqh-text-component 
     sqhbody="true" 
-    ishidden="false"
     ismarkdown="true"
     text="Give a friend a $10 and receive $10 for yourself when they purchase.<br/><br/>Share the link below or use the code **<sqh-referral-code />**" 
     color="#000000" 
@@ -48,14 +45,12 @@
   ></sqh-text-component>
 
   <sqh-copy-link-button 
-    ishidden="false"
     text="Copy"
     buttoncolor="#5C6164"
     textcolor="#FFFFFF"
   ></sqh-copy-link-button>
 
   <sqh-share-button-container 
-    maxwidth="100%" 
     emaildisplayrule="mobile-and-desktop" 
     emailtext="Email" 
     emailtextcolor="#ffffff" 
@@ -96,7 +91,6 @@
 
   <sqh-text-component 
     sqhreferralsheader="true"
-    ishidden="false"
     ismarkdown="true"
     text="**Rewards Dashboard**" 
     color="#000000" 
@@ -106,10 +100,12 @@
     paddingbottom="10"
   ></sqh-text-component>
 
-  <sqh-stats-container>
+  <sqh-stats-container
+    paddingtop="0"
+    paddingbottom="0"
+  >
 
     <sqh-stat-component 
-      ishidden="false"
       statcolor="#4caf50" 
       stattype="/referralsCount" 
       statdescription="Friends Referred"
@@ -118,25 +114,24 @@
     ></sqh-stat-component>
 
     <sqh-stat-component
-      ishidden="false"
       stattype="/rewardsCount" 
       statdescription="Total Rewards"
       paddingtop="10"
       paddingbottom="10"
+      statcolor="#000000"
     ></sqh-stat-component>
 
     <sqh-stat-component 
-      ishidden="false"
       stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit" 
       statdescription="Credit earned"
       paddingtop="10"
       paddingbottom="10"
+      statcolor="#000000"
     ></sqh-stat-component>
 
   </sqh-stats-container>
 
   <sqh-referral-list 
-    ishidden="false"
     showreferrer="true"
     usefirstreward="false"
     referralnamecolor="darkslategray" 
@@ -152,12 +147,11 @@
     valuecontent="and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}" 
     paginatemore="View More" 
     paginateless="Previous"
+    noreferralsyet="No Referrals Yet..."
   ></sqh-referral-list>
 
   <sqh-text-component 
     sqhfooter="true" 
-    ishidden="false"
-    ismarkdown="false"
     text="Terms and Conditions" 
     color="lightgray" 
     fontsize="13"

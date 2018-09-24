@@ -12,7 +12,7 @@ export class ReferralList {
   @Prop() ishidden: boolean = false;
   @Prop() paginatemore: string;
   @Prop() paginateless: string;
-  @Prop() noreferralsyet: string = 'No Referrals Yet...';
+  @Prop() noreferralsyet: string;
   @Prop() referralnamecolor: string;
   @Prop() referraltextcolor: string;
   // referrer props

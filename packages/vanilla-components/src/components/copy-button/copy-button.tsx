@@ -10,17 +10,17 @@ import Clipboard from 'clipboard';
 })
 export class CopyButton {
   @Prop() ishidden: boolean = false;
-  @Prop() text: string = "COPY CODE";
-  @Prop() width: number = 170;
-  @Prop() backgroundcolor: string = "#35b21e";
-  @Prop() borderradius: number = 4;
-  @Prop() textcolor: string = "#ffffff";
-  @Prop() fontsize: number = 14;
+  @Prop() text: string;
+  @Prop() width: number;
+  @Prop() backgroundcolor: string;
+  @Prop() borderradius: number;
+  @Prop() textcolor: string;
+  @Prop() fontsize: number;
   @Prop() copysuccess: string = "copied!";
   @Prop() copyfailure: string = "Press Ctrl+C to copy";
   @Prop() rewardkey: string;
-  @Prop() codefontsize: number = 14;
-  @Prop() codefontcolor: string = '#000';
+  @Prop() codefontsize: number;
+  @Prop() codefontcolor: string;
   @State() fueltankcode: string;
 
   componentWillLoad() {

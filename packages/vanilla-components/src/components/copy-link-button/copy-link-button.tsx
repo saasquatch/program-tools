@@ -9,12 +9,12 @@ import { API } from '../../services/WidgetHost';
   styleUrl: 'copy-link-button.scss'
 })
 export class CopyLinkButton {
-  @Prop() text: string = "Copy";
+  @Prop() text: string;
   @Prop() copysuccess: string = "copied!";
   @Prop() copyfailure: string = "Press Ctrl+C to copy";
   @Prop() ishidden: boolean = false;
-  @Prop() buttoncolor: string = "#5b6165";
-  @Prop() textcolor: string = "#fff";
+  @Prop() buttoncolor: string;
+  @Prop() textcolor: string;
   @State() sharelink: string;
 
   componentWillLoad() {
