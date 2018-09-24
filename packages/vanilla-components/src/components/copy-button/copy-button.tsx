@@ -27,7 +27,7 @@ export class CopyButton {
     if (!this.ishidden) {
       return API.graphql.getFueltankCode(this.rewardkey).then(res => {
         const fuelTank = res.rewards.data.length > 0 ? res.rewards.data[0].fuelTankCode : null;
-        this.fueltankcode = fuelTank || res.referredByReferral.referrerUser.referralCode;
+        this.fueltankcode = fuelTank || res.referredByReferral.referredUser.referralCode;
       }).catch(e => {
         this.onError(e);
       });
