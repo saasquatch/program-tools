@@ -906,15 +906,15 @@ export default (editor, config = {}) => {
         droppable: false,
         selectable: true,
         traits: [
-          { type: 'string', title: 'Code Color', name: 'codefontcolor', value: ''},
-          { type: 'integer', title: 'Code Font Size in pixels', name: 'codefontsize', value: '' },          
-          { type: 'boolean', name: 'ishidden', value: '' },
-          { type: 'string', title: 'Button Text', name: 'text', value: '' },
-          { type: 'integer', title: 'Button Font Size in pixels', name: 'fontsize', value: '' },
-          { type: 'integer', title: 'Buttton Width in pixels', name: 'width', value: '' },
-          { type: 'string', title: 'Button Color', name: 'backgroundcolor', value: ''},
-          { type: 'string', title: 'Button Text Color', name: 'textcolor', value: ''},
-          { type: 'integer', title: 'Button Border Radius', name: 'borderradius', value: ''}
+          { type: 'string', title: 'Code Color', name: 'codefontcolor' },
+          { type: 'integer', title: 'Code Font Size in pixels', name: 'codefontsize' },          
+          { type: 'boolean', name: 'ishidden' },
+          { type: 'string', title: 'Button Text', name: 'text' },
+          { type: 'integer', title: 'Button Font Size in pixels', name: 'fontsize' },
+          { type: 'integer', title: 'Buttton Width in pixels', name: 'width' },
+          { type: 'string', title: 'Button Color', name: 'backgroundcolor' },
+          { type: 'string', title: 'Button Text Color', name: 'textcolor' },
+          { type: 'integer', title: 'Button Border Radius', name: 'borderradius' }
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
