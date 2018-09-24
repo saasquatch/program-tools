@@ -396,7 +396,7 @@ const API = {
           query($userId: String!, $accountId: String!, $programId: ID!, $rewardKey: String!) {
             user(id: $userId, accountId: $accountId) {
               referredByReferral (programId: $programId) {
-                referredUser {
+                referrerUser {
                   referralCode
                 }
               }
