@@ -570,7 +570,7 @@ export default (editor, config = {}) => {
         draggable: false,
 
         // these components can be dropped in here
-        droppable: ['sqh-stat-component'],
+        droppable: false,
 
         selectable: true,
 
@@ -609,7 +609,7 @@ export default (editor, config = {}) => {
         name: "Stat Component",
 
         // can be dropped only inside 
-        draggable: ['sqh-stats-container'],
+        draggable: false,
 
         // these components can be dropped in here
         droppable: false,
