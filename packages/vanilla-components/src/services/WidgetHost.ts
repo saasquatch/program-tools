@@ -103,24 +103,21 @@ const API = {
       const { userId, accountId, programId = "classic", engagementMedium } = widgetId;
 
       const variables = {
-        userId,
-        accountId,
-        programId,
-        meta: {
-          engagementMedium,
-          shareMedium
+        eventMeta: {
+          userId,
+          accountId,
+          programId,
+          meta: {
+            engagementMedium,
+            shareMedium
+          }
         }
       }
 
       return apolloClient().mutate({
         mutation: gql`
           mutation ($eventMeta: UserAnalyticsEvent!) {
-            createUserAnalyticsEvent(
-              id: $userId,
-              accountId: $accountId,
-              programId: $programId,
-              type: USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT,
-              meta: $meta)
+            createUserAnalyticsEvent(eventMeta: $eventMeta)
           }
         `,
         variables
