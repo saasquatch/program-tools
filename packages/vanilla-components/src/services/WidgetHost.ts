@@ -79,6 +79,19 @@ const demoUser = {
 //@ts-ignore
 const squatchJsApi = window.frameElement ? window.frameElement.squatchJsApi : {};
 
+const apolloClient = () => {
+  const { tenantAlias, appDomain, token } = widgetIdent();
+  const uri = appDomain + "/api/v1/" + tenantAlias + "/graphql";
+  const headers = {
+    Authorization: `Bearer ${token}`
+  };
+  const client = new ApolloClient({
+    link: new HttpLink({ uri, headers }),
+    cache: new InMemoryCache()
+  });
+  return client;
+}
+
 const API = {
   version: "Welcome to widget-host",
   analytics: {
@@ -98,7 +111,8 @@ const API = {
           shareMedium
         }
       }
-      return this.getClient().mutate({
+
+      return apolloClient().mutate({
         mutation: gql`
           mutation ($eventMeta: UserAnalyticsEvent!) {
             createUserAnalyticsEvent(
@@ -120,16 +134,7 @@ const API = {
   },
   graphql: {
     getClient() {
-      const { tenantAlias, appDomain, token } = widgetIdent();
-      const uri = appDomain + "/api/v1/" + tenantAlias + "/graphql";
-      const headers = {
-        Authorization: `Bearer ${token}`
-      };
-      const client = new ApolloClient({
-        link: new HttpLink({ uri, headers }),
-        cache: new InMemoryCache()
-      });
-      return client;
+      return apolloClient();
     },
 
     getUserFragment(userFragment, fragmentVariables) {
