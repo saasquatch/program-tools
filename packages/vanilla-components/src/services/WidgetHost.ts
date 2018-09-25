@@ -107,6 +107,7 @@ const API = {
           id: userId,
           accountId,
           programId,
+          type: 'USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT',
           meta: {
             engagementMedium,
             shareMedium
