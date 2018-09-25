@@ -397,7 +397,7 @@ const API = {
             user(id: $userId, accountId: $accountId) {
               referredByReferral (programId: $programId) {
                 referrerUser {
-                  referralCode
+                  referralCode (programId: $programId)
                 }
               }
               rewards (filter: {
