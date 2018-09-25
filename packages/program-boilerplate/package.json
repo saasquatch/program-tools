@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/program-boilerplate",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -14,5 +14,6 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "np": "^2.18.3"
-  }
+  },
+  "gitHead": "582bd4b44cc76ca36433790ac8ae4b1329ae5b77"
 }
