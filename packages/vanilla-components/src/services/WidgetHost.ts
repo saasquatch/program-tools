@@ -104,7 +104,7 @@ const API = {
 
       const variables = {
         eventMeta: {
-          userId,
+          id: userId,
           accountId,
           programId,
           meta: {
