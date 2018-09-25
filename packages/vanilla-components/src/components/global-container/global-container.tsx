@@ -34,7 +34,7 @@ export class GlobalContainer {
     return <div class={style}>
       <slot />
       {this.poweredby
-        ? <a class="sqh-attribution" href="https://get.referralsaasquatch.com/powered-by/?co=GraphQL%20testing" target="_blank">Powered By Saasquatch</a>
+        ? <a class="sqh-attribution" href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" target="_blank">Powered By Saasquatch</a>
         : ''
       }
       <this.LoadingState />
