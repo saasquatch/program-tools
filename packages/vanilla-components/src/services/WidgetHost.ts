@@ -98,7 +98,7 @@ const API = {
           shareMedium
         }
       }
-      return this.client.mutate({
+      return this.getClient().mutate({
         mutation: gql`
           mutation ($eventMeta: UserAnalyticsEvent!) {
             createUserAnalyticsEvent(
