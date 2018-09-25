@@ -9,7 +9,7 @@ export class StatComponent {
   @Element() elem: HTMLElement;
   @Prop() ishidden: boolean = false;
   @Prop() stattype: string;
-  @Prop() statvalue: string = "0";
+  @Prop() statvalue: string;
   @Prop() statdescription: string;
   @Prop() statcolor: string;
   @Event() statTypeUpdated: EventEmitter;

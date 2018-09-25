@@ -1,0 +1,57 @@
+<!-- 
+  //
+  //
+  // use command 'npm run contentful' in terminal to convert templates to json contentful format
+  // copy output from console and paste into matching contentful file
+  // - there are still some line breaks, can be helpful to run through https://www.textfixer.com/html/compress-html-compression.php
+  //
+ -->
+
+<sqh-global-container 
+  background="#ffffff"
+>
+
+  <sqh-image-component
+    url="https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png" 
+    alignment="center" 
+    width="140" 
+    css="padding-top: 38px; padding-bottom: 7px;"
+  ></sqh-image-component>
+  
+  <sqh-text-component 
+    sqhheader="true" 
+    color="#000" 
+    fontsize="24" 
+    text="You were Successfully Referred to Saasquatch" 
+    textalign="center"
+    paddingtop="12" 
+    paddingbottom="20"
+  ></sqh-text-component>
+  
+  <sqh-text-component 
+    sqhbody="true" 
+    color="gray" 
+    rewardkey="referredReward" 
+    fontsize="13" 
+    text="<hr style='border-top: 1px solid #eee; border-bottom: 0;'></hr><br/><br/>Use the Referral Code at checkout to receive your referral reward" 
+    ismarkdown="true" 
+    textalign="center"
+    paddingtop="10" 
+    paddingbottom="20"
+  ></sqh-text-component>
+  
+  <sqh-copy-button
+    codefontcolor="#000000"
+    codefontsize="14"
+    text="COPY CODE"
+    fontsize="14"
+    width="170"
+    backgroundcolor="#35b21e"
+    textcolor="#ffffff"
+    borderradius="4"
+    rewardkey="referredReward"
+    codefontsize="14"
+    codefontcolor="#000000"
+    ></sqh-copy-button>
+  
+</sqh-global-container>

@@ -10,8 +10,8 @@ import { css } from 'emotion';
 export class StatsContainer {
   @Element() container: HTMLElement;
   @Prop() ishidden: boolean = false;
-  @Prop() paddingtop: string = '10';
-  @Prop() paddingbottom: string = '10';
+  @Prop() paddingtop: string;
+  @Prop() paddingbottom: string;
   @State() loading: boolean;
   @State() stats: object;
 

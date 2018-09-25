@@ -9,10 +9,10 @@ export class ShareButtonContainer {
   @Prop() ishidden: boolean = false;
 
   // Email button properties and default settings
-  @Prop() emaildisplayrule: string = "mobile-and-desktop";
-  @Prop() emailtext: string = "Email";
-  @Prop() emailbackgroundcolor: string = "#4b4d50";
-  @Prop() emailtextcolor: string = "#fff";
+  @Prop() emaildisplayrule: string;
+  @Prop() emailtext: string;
+  @Prop() emailbackgroundcolor: string;
+  @Prop() emailtextcolor: string;
   @Prop() emailicon: string = "mail";
   @Prop() emailclassName: string = "email-share";
   @Prop() emailiconhorizontal: number;
@@ -21,10 +21,10 @@ export class ShareButtonContainer {
   @State() emailurl: string;
 
   // FaceBook button properties and default settings
-  @Prop() facebookdisplayrule: string = "mobile-and-desktop";
-  @Prop() facebooktext: string = "Share";
-  @Prop() facebookbackgroundcolor: string = "#234079";
-  @Prop() facebooktextcolor: string = "#fff";
+  @Prop() facebookdisplayrule: string;
+  @Prop() facebooktext: string;
+  @Prop() facebookbackgroundcolor: string;
+  @Prop() facebooktextcolor: string;
   @Prop() facebookicon: string = "facebook";
   @Prop() facebookclassName: string;
   @Prop() facebookiconhorizontal: number = 9;
@@ -33,10 +33,10 @@ export class ShareButtonContainer {
   @State() facebookurl: string;
 
   // Twitter button properties and default settings
-  @Prop() twitterdisplayrule: string = "mobile-and-desktop";
-  @Prop() twittertext: string = "Tweet";
-  @Prop() twitterbackgroundcolor: string = "#4797d2";
-  @Prop() twittertextcolor: string = "#fff";
+  @Prop() twitterdisplayrule: string;
+  @Prop() twittertext: string;
+  @Prop() twitterbackgroundcolor: string;
+  @Prop() twittertextcolor: string;
   @Prop() twittericon: string = "twitter";
   @Prop() twitterclassName: string;
   @Prop() twittericonhorizontal: number = 9;
@@ -45,10 +45,10 @@ export class ShareButtonContainer {
   @State() twitterurl: string;
 
   // SMS button properties and default settings
-  @Prop() smsdisplayrule: string = "mobile-only";
-  @Prop() smstext: string = "SMS";
-  @Prop() smsbackgroundcolor: string = "#7bbf38";
-  @Prop() smstextcolor: string = "#fff";
+  @Prop() smsdisplayrule: string;
+  @Prop() smstext: string;
+  @Prop() smsbackgroundcolor: string;
+  @Prop() smstextcolor: string;
   @Prop() smsicon: string = "chat";
   @Prop() smsclassName: string;
   @Prop() smsiconhorizontal: number;
@@ -57,9 +57,9 @@ export class ShareButtonContainer {
   @State() smsurl: string;
 
   // Whatsapp button properties and default settings
-  @Prop() whatsappdisplayrule: string = "mobile-only";
-  @Prop() whatsapptext: string = "Whatsapp";
-  @Prop() whatsappbackgroundcolor: string = "#25D366";
+  @Prop() whatsappdisplayrule: string;
+  @Prop() whatsapptext: string;
+  @Prop() whatsappbackgroundcolor: string;
   @Prop() whatsapptextcolor: string = "#fff";
   @Prop() whatsappicon: string = "whatsapp";
   @Prop() whatsappclassName: string;
@@ -70,9 +70,9 @@ export class ShareButtonContainer {
   
   // LinkedIn button properties and default settings
   @Prop() linkedindisplayrule: string;
-  @Prop() linkedintext: string = "LinkedIn";
-  @Prop() linkedinbackgroundcolor: string = "#0084b9";
-  @Prop() linkedintextcolor: string = "#fff";
+  @Prop() linkedintext: string;
+  @Prop() linkedinbackgroundcolor: string;
+  @Prop() linkedintextcolor: string;
   @Prop() linkedinicon: string = "linkedin";
   @Prop() linkedinclassName: string;
   @Prop() linkediniconhorizontal: number;
@@ -82,9 +82,9 @@ export class ShareButtonContainer {
 
   // Pinterest button properties and default settings
   @Prop() pinterestdisplayrule: string;
-  @Prop() pinteresttext: string = "Pinterest";
-  @Prop() pinterestbackgroundcolor: string = "#cb2027";
-  @Prop() pinteresttextcolor: string = "#fff";
+  @Prop() pinteresttext: string;
+  @Prop() pinterestbackgroundcolor: string;
+  @Prop() pinteresttextcolor: string;
   @Prop() pinteresticon: string = "pinterest";
   @Prop() pinterestclassName: string;
   @Prop() pinteresticonhorizontal: number = 9;
@@ -94,9 +94,9 @@ export class ShareButtonContainer {
   
   // Messenger button properties and default settings
   @Prop() messengerdisplayrule: string;
-  @Prop() messengertext: string = "Messenger";
-  @Prop() messengerbackgroundcolor: string = "#0084ff";
-  @Prop() messengertextcolor: string = "#fff";
+  @Prop() messengertext: string;
+  @Prop() messengerbackgroundcolor: string;
+  @Prop() messengertextcolor: string;
   @Prop() messengericon: string = "messenger";
   @Prop() messengerclassName: string;
   @Prop() messengericonhorizontal: number = 7;
@@ -105,10 +105,10 @@ export class ShareButtonContainer {
   @State() messengerurl: string;
 
   // Messenger button properties and default settings
-  @Prop() linedisplayrule: string = "mobile-only";
-  @Prop() linetext: string = "Line Messenger";
-  @Prop() linebackgroundcolor: string = "#00c300";
-  @Prop() linetextcolor: string = "#fff";
+  @Prop() linedisplayrule: string;
+  @Prop() linetext: string;
+  @Prop() linebackgroundcolor: string;
+  @Prop() linetextcolor: string;
   @Prop() lineicon: string = "line";
   @Prop() lineclassName: string;
   @Prop() lineiconhorizontal: number = -2;

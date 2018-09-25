@@ -79,6 +79,19 @@ const demoUser = {
 //@ts-ignore
 const squatchJsApi = window.frameElement ? window.frameElement.squatchJsApi : {};
 
+const apolloClient = () => {
+  const { tenantAlias, appDomain, token } = widgetIdent();
+  const uri = appDomain + "/api/v1/" + tenantAlias + "/graphql";
+  const headers = {
+    Authorization: `Bearer ${token}`
+  };
+  const client = new ApolloClient({
+    link: new HttpLink({ uri, headers }),
+    cache: new InMemoryCache()
+  });
+  return client;
+}
+
 const API = {
   version: "Welcome to widget-host",
   analytics: {
@@ -90,23 +103,22 @@ const API = {
       const { userId, accountId, programId = "classic", engagementMedium } = widgetId;
 
       const variables = {
-        userId,
-        accountId,
-        programId,
-        meta: {
-          engagementMedium,
-          shareMedium
+        eventMeta: {
+          id: userId,
+          accountId,
+          programId,
+          type: 'USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT',
+          meta: {
+            engagementMedium,
+            shareMedium
+          }
         }
       }
-      return this.client.mutate({
+
+      return apolloClient().mutate({
         mutation: gql`
           mutation ($eventMeta: UserAnalyticsEvent!) {
-            createUserAnalyticsEvent(
-              id: $userId,
-              accountId: $accountId,
-              programId: $programId,
-              type: USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT,
-              meta: $meta)
+            createUserAnalyticsEvent(eventMeta: $eventMeta)
           }
         `,
         variables
@@ -120,16 +132,7 @@ const API = {
   },
   graphql: {
     getClient() {
-      const { tenantAlias, appDomain, token } = widgetIdent();
-      const uri = appDomain + "/api/v1/" + tenantAlias + "/graphql";
-      const headers = {
-        Authorization: `Bearer ${token}`
-      };
-      const client = new ApolloClient({
-        link: new HttpLink({ uri, headers }),
-        cache: new InMemoryCache()
-      });
-      return client;
+      return apolloClient();
     },
 
     getUserFragment(userFragment, fragmentVariables) {
@@ -395,9 +398,9 @@ const API = {
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID!, $rewardKey: String!) {
             user(id: $userId, accountId: $accountId) {
-              referredByReferral {
-                referredUser {
-                  referralCode
+              referredByReferral (programId: $programId) {
+                referrerUser {
+                  referralCode (programId: $programId)
                 }
               }
               rewards (filter: {
