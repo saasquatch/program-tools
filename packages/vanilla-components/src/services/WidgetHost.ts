@@ -92,6 +92,10 @@ const apolloClient = () => {
   return client;
 }
 
+enum EVENT_TYPE {
+  USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT
+}
+
 const API = {
   version: "Welcome to widget-host",
   analytics: {
@@ -107,7 +111,7 @@ const API = {
           id: userId,
           accountId,
           programId,
-          type: 'USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT',
+          type: EVENT_TYPE.USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT,
           meta: {
             engagementMedium,
             shareMedium
