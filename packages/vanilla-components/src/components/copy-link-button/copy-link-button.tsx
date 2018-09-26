@@ -41,7 +41,7 @@ export class CopyLinkButton {
       removeClass(notification, 'in');
     }, 1400);
 
-    API.analytics.shareEvent('COPY');
+    API.analytics.shareEvent('DIRECT');
   }
 
   notifySuccess(e:Clipboard.Event) {
