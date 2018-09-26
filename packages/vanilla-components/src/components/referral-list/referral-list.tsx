@@ -8,13 +8,14 @@ import { API } from '../../services/WidgetHost';
   styleUrl: 'referral-list.scss'
 })
 export class ReferralList {
-  // referral list props
+  // general in dropdown
   @Prop() ishidden: boolean = false;
   @Prop() paginatemore: string;
   @Prop() paginateless: string;
   @Prop() noreferralsyet: string;
   @Prop() referralnamecolor: string;
   @Prop() referraltextcolor: string;
+  @Prop() unknownuser: string = 'Your Friend';
   // referrer props
   @Prop() showreferrer: boolean = true;
   @Prop() referrercontent: string;
@@ -100,14 +101,14 @@ export class ReferralList {
         this.referrals.map((ref) => {
           const referraltype = ref.rewards.length > 0 ? 'converted' : 'pending'
           return (
-            <sqh-referral-component id={ uuid() } referral={ ref } referralvariables={ referralvariables } referraltype={ referraltype }></sqh-referral-component>
+            <sqh-referral-component id={ uuid() } referral={ ref } referralvariables={ referralvariables } referraltype={ referraltype } unknownuser={ this.unknownuser }></sqh-referral-component>
           );
         })
       );
     }
     if (this.referrals.length < 3 && this.referredBy && this.showreferrer) {
       referredByRow = (
-        <sqh-referral-component id={ uuid() } referral={ this.referredBy } referralvariables={ referralvariables } referraltype='referrer'></sqh-referral-component>
+        <sqh-referral-component id={ uuid() } referral={ this.referredBy } referralvariables={ referralvariables } referraltype='referrer' unknownuser={ this.unknownuser }></sqh-referral-component>
       );
     }
 

@@ -450,7 +450,7 @@ export default (editor, config = {}) => {
               'ishidden': { 'type': 'boolean', 'title': 'Hidden' },
               'sharemedium': {
                 'type': 'string',
-                'title': 'Share Medium',
+                'title': 'Select Button to Edit',
                 'default': 'email',
                 'enum': [ 'email', 'facebook', 'messenger', 'twitter', 'whatsapp', 'sms', 'linkedin', 'pinterest', 'line' ],
                 'enumNames': [ 'Email', 'Facebook', 'Messenger', 'Twitter', 'WhatsApp', 'SMS', 'LinkedIn', 'Pinterest', 'Line Messenger' ] 
@@ -571,7 +571,7 @@ export default (editor, config = {}) => {
         draggable: false,
 
         // these components can be dropped in here
-        droppable: false,
+        droppable: ['sqh-stat-component'],
 
         selectable: true,
 
@@ -610,7 +610,7 @@ export default (editor, config = {}) => {
         name: "Stat Component",
 
         // can be dropped only inside 
-        draggable: false,
+        draggable: ['sqh-stats-container'],
 
         // these components can be dropped in here
         droppable: false,
@@ -683,9 +683,9 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'valuecontent' },
           { type: 'string', name: 'paginatemore' },
           { type: 'string', name: 'paginateless' },
+          { type: 'string', name: 'unknownuser' }
         ],
         uiSchema: {
-          "ui:order": ['*', 'paginatemore', 'paginateless'],
           ishidden: { 'ui:widget': 'hidden' },
           showreferrer: { 'ui:widget': 'radio' },
           usefirstreward: { 'ui:widget': 'radio' },
@@ -699,28 +699,45 @@ export default (editor, config = {}) => {
           'description': 'Some description here',
           'type': 'object',
           'properties': {
-            'ishidden': { 'type': 'boolean', 'title': 'Hidden' },
-            'referralnamecolor': {
-              'title': 'Referral Name Color',
-              'type': 'string'
-            },
-            'referraltextcolor': {
-              'title': 'Referral Text Color',
-              'type': 'string'
-            },
+            'ishidden': { 'type': 'boolean' },
+
+
             'referraltype': {
               'type': 'string',
-              'title': 'Referral State to Edit',
-              'default': 'converted',
-              'enum': [ 'converted', 'pending', 'referrer' ],
-              'enumNames': [ 'Converted', 'Pending', 'Referrer' ]
+              'title': 'Select Area to Edit',
+              'default': 'global',
+              'enum': [ 'global', 'converted', 'pending', 'referrer' ],
+              'enumNames': [ 'Global Referral List Options', 'Converted User (Remus)', 'Pending User (Gellert)', 'Referrer (Rubeus)' ]
             },
-            'paginatemore': { 'type': 'string', 'title': 'View More Text' },
-            'paginateless': { 'type': 'string', 'title': 'Previous Text' },
           },
           'dependencies': {
             'referraltype': {
               'oneOf': [
+                {
+                  'properties': {
+                    'referraltype': { 'enum': [ 'global' ] },
+                    'referralnamecolor': {
+                      'title': 'Referral Name Color',
+                      'type': 'string'
+                    },
+                    'referraltextcolor': {
+                      'title': 'Referral Text Color',
+                      'type': 'string'
+                    },
+                    'unknownuser': { 
+                      'type': 'string', 
+                      'title': 'Label For Unknown User'
+                    },
+                    'paginatemore': { 
+                      'type': 'string', 
+                      'title': 'View More Text' 
+                    },
+                    'paginateless': { 
+                      'type': 'string', 
+                      'title': 'Previous Text'
+                    },
+                  }
+                },
                 {
                   'properties': {
                     'referraltype': { 'enum': [ 'converted' ] },
@@ -734,7 +751,7 @@ export default (editor, config = {}) => {
                     },
                     'valuecontent': {
                       'title': 'Extra Rewards Description',
-                      'type': 'string'
+                      'type': 'string',
                     },
                     'usefirstreward': {
                       'title': 'Reward Value Displayed',
@@ -772,7 +789,7 @@ export default (editor, config = {}) => {
                       'type': 'string'
                     },
                     'showreferrer': {
-                      'title': 'Pending User Content',
+                      'title': ' ',
                       'type': 'boolean',
                       'enumNames': [ 'Show', 'Hide' ]
                     },
@@ -937,6 +954,5 @@ export default (editor, config = {}) => {
       },
     }),
 
-    view: defaultType.view
-  })
+    view: defaultType.view  })
 }

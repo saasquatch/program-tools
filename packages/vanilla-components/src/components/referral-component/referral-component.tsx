@@ -10,6 +10,7 @@ export class ReferralComponent {
   @Prop() referral: Referral | ReferredByReferral;
   @Prop() referraltype: "converted" | "pending" | "referrer";
   @Prop() referralvariables: ReferralVariables;
+  @Prop() unknownuser: String;
 
   render() {
     const { 
@@ -23,10 +24,10 @@ export class ReferralComponent {
     };
 
     const name = (this.referral as Referral).referredUser
-      ? (this.referral as Referral).referredUser.firstName || 'Your friend'
+      ? (this.referral as Referral).referredUser.firstName || this.unknownuser
       : (this.referral as ReferredByReferral).referrerUser
-      ? (this.referral as ReferredByReferral).referrerUser.firstName || 'Your friend'
-      : 'Your friend'
+      ? (this.referral as ReferredByReferral).referrerUser.firstName || this.unknownuser
+      : this.unknownuser
     const icon = rewards.length > 0 || this.referraltype === "referrer"
       ? `icon-ok-circled`
       : `icon-attention`;

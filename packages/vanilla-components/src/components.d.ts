@@ -277,6 +277,7 @@ declare global {
       'referral': Referral | ReferredByReferral;
       'referraltype': "converted" | "pending" | "referrer";
       'referralvariables': ReferralVariables;
+      'unknownuser': String;
     }
   }
 
@@ -302,6 +303,7 @@ declare global {
       'referral'?: Referral | ReferredByReferral;
       'referraltype'?: "converted" | "pending" | "referrer";
       'referralvariables'?: ReferralVariables;
+      'unknownuser'?: String;
     }
   }
 }
@@ -325,6 +327,7 @@ declare global {
       'referrervalue': string;
       'rewardcolor': string;
       'showreferrer': boolean;
+      'unknownuser': string;
       'usefirstreward': boolean;
       'valuecontent': string;
     }
@@ -363,6 +366,7 @@ declare global {
       'referrervalue'?: string;
       'rewardcolor'?: string;
       'showreferrer'?: boolean;
+      'unknownuser'?: string;
       'usefirstreward'?: boolean;
       'valuecontent'?: string;
     }
