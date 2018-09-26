@@ -669,7 +669,7 @@ export default (editor, config = {}) => {
         toolbar: [],
         traits: [
           { type: 'boolean', name: 'ishidden', value: false  },
-          { type: 'boolean', name: 'showreferrer' },
+          { type: 'boolean', name: 'showreferrer', value: true },
           { type: 'boolean', name: 'usefirstreward', value: false },
           { type: 'string', name: 'rewardcolor' },
           { type: 'string', name: 'pendingcolor' },
@@ -953,6 +953,6 @@ export default (editor, config = {}) => {
         }
       },
     }),
-
-    view: defaultType.view  })
+    view: defaultType.view
+  })
 }
