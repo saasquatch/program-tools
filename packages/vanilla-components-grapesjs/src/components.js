@@ -285,6 +285,7 @@ export default (editor, config = {}) => {
             { type: 'string', title: 'Text Color', name: 'textcolor' },
           ],
           uiSchema: {
+            "ui:order": ['*', 'buttoncolor'],
             'ishidden': { 'ui:widget': 'hidden' },
             'buttoncolor': { 'ui:widget': 'color' },
             'textcolor': { 'ui:widget': 'color' },

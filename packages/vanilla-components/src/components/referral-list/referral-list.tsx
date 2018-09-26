@@ -121,15 +121,12 @@ export class ReferralList {
       }
       .squatch-referrals-value {
         color: ${ this.rewardcolor };
-        font-size: 20px;
       }
       .squatch-referrals-value.pending {
         color: ${ this.pendingcolor };
-        font-size: 15px;
       }
       .squatch-referrals-value.referrer {
         color: ${ this.rewardcolor };
-        font-size: 15px;
       }
       .squatch-referrals-heading {
         color: ${ this.referralnamecolor };

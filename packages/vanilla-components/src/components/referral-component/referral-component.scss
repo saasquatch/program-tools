@@ -27,6 +27,20 @@ sqh-referral-component {
   }
   .squatch-referrals-value {
     width: 175px;
+    font-size: 16px;
+    float: left;
+    line-height: 49px;
+  }
+  .squatch-value-contents {
+    font-size: 13px;
+    line-height: 0px;
+    padding-bottom: 25px;
+  }
+  .squatch-referrals-heading {
+    font-size: 16px;
+  }
+  .squatch-referrals-description {
+    font-size: 13px;
   }
 }
 

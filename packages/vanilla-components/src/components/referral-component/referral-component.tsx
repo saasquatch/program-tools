@@ -62,13 +62,15 @@ export class ReferralComponent {
           </div>
         </div>
 
+        <i class={`icon squatch-referrals-icon ${ icon }`}></i>
+
         {/* second column */}
         <div class="sqh-column-two">
-          <i class={`icon squatch-referrals-icon ${ icon }`}></i>
+
           <div class={ `squatch-referrals-value ${ rewards.length > 0 ? '' : this.referraltype === 'referrer' ? 'referrer' : 'pending' }` }>
             { value }
           </div>
-          { valuecontent }
+          <div class="squatch-value-contents">{ valuecontent }</div>
         </div>
 
       </div>
