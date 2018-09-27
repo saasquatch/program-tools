@@ -707,7 +707,7 @@ export default (editor, config = {}) => {
               'title': 'Select Area to Edit',
               'default': 'global',
               'enum': [ 'global', 'converted', 'pending', 'referrer' ],
-              'enumNames': [ 'Global Referral List Options', 'Converted User (Remus)', 'Pending User (Gellert)', 'Referrer (Rubeus)' ]
+              'enumNames': [ 'Global Referral List Options', 'Converted Rewards (eg Remus)', 'Pending Rewards (eg Gellert)', 'Referrer (eg Rubeus)' ]
             },
           },
           'dependencies': {
