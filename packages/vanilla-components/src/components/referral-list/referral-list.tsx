@@ -15,7 +15,7 @@ export class ReferralList {
   @Prop() noreferralsyet: string;
   @Prop() referralnamecolor: string;
   @Prop() referraltextcolor: string;
-  @Prop() unknownuser: string = 'Your Friend';
+  @Prop() unknownuser: string;
   // referrer props
   @Prop() showreferrer: boolean = true;
   @Prop() referrercontent: string;

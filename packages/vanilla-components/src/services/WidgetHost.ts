@@ -56,7 +56,8 @@ const demoUser = {
     data: [
       { dateReferralStarted: today.setDate(today.getDate()-2), referredUser: { firstName: "Remus", lastName: "Lupin" }, rewards: [{ prettyValue: "$20.00" },{ prettyValue: "$10.00" },{ prettyValue: "$5.00" },] },
       { dateReferralStarted: today.setDate(today.getDate()-1), referredUser: { firstName: "Gellert", lastName: "Grindelwald" }, rewards: [] },
-      { dateReferralStarted: today.setDate(today.getDate()-1), referredUser: { firstName: "Seamus", lastName: "Finnigan" }, rewards: [{ prettyValue: "$20.00" }] },
+      // Blank string becomes an unknown user, which is editable
+      { dateReferralStarted: today.setDate(today.getDate()-1), referredUser: { firstName: "", lastName: "" }, rewards: [{ prettyValue: "$20.00" }] },
       { dateReferralStarted: today.setDate(today.getDate()-5), referredUser: { firstName: "Lavender", lastName: "Brown" }, rewards: [{ prettyValue: "$20.00" }] },
       { dateReferralStarted: today.setDate(today.getDate()-4), referredUser: { firstName: "Blaise", lastName: "Zabini" }, rewards: [{ prettyValue: "$20.00" },{ prettyValue: "$10.00" },] },
       { dateReferralStarted: today.setDate(today.getDate()-10), referredUser: { firstName: "Argus", lastName: "Filch" }, rewards: [] },
