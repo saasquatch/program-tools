@@ -314,6 +314,9 @@ declare global {
   namespace StencilComponents {
     interface SqhReferralList {
       'convertedcontent': string;
+      'expiredcolor': string;
+      'expiredcontent': string;
+      'expiredvalue': string;
       'ishidden': boolean;
       'noreferralsyet': string;
       'paginateless': string;
@@ -353,6 +356,9 @@ declare global {
   namespace JSXElements {
     export interface SqhReferralListAttributes extends HTMLAttributes {
       'convertedcontent'?: string;
+      'expiredcolor'?: string;
+      'expiredcontent'?: string;
+      'expiredvalue'?: string;
       'ishidden'?: boolean;
       'noreferralsyet'?: string;
       'paginateless'?: string;

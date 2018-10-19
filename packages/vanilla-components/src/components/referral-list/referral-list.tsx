@@ -29,6 +29,10 @@ export class ReferralList {
   @Prop() pendingcolor: string;
   @Prop() pendingcontent: string;
   @Prop() pendingvalue: string;
+  // expired reward props
+  @Prop() expiredcolor: string;
+  @Prop() expiredcontent: string;
+  @Prop() expiredvalue: string;
   
   @State() referrals: Referral[];
   @State() referralsCount: number;
@@ -94,6 +98,8 @@ export class ReferralList {
       pendingvalue: this.pendingvalue,
       referrervalue: this.referrervalue,
       valuecontent: this.valuecontent,
+      expiredcontent: this.expiredcontent,
+      expiredvalue: this.expiredvalue
     }
 
     if (this.referrals) {
@@ -128,6 +134,12 @@ export class ReferralList {
       }
       .squatch-referrals-value.referrer {
         color: ${ this.rewardcolor };
+      }
+      .squatch-referrals-value.expired {
+        color: ${ this.expiredcolor };
+      }
+      .squatch-value-contents.expired {
+        color: ${ this.expiredcolor }
       }
       .squatch-referrals-heading {
         color: ${ this.referralnamecolor };

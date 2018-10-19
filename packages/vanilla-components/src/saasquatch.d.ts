@@ -75,6 +75,8 @@ interface ReferralVariables {
   pendingvalue: string
   referrervalue: string
   valuecontent: string
+  expiredvalue: string
+  expiredcontent: string
 }
 
 interface RewardBalance {
