@@ -123,7 +123,7 @@ export class ReferralComponent {
           </div>
         </div>
 
-        <i class={`icon squatch-referrals-icon ${ icon }`}></i>
+        <i class={`icon squatch-referrals-icon ${ icon } ${this.rewardIsExpired() && 'expired'}`}></i>
 
         {/* second column */}
         <div class="sqh-column-two">

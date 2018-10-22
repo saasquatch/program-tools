@@ -141,6 +141,9 @@ export class ReferralList {
       .squatch-value-contents.expired {
         color: ${ this.expiredcolor }
       }
+      .squatch-referrals-icon.icon-attention.expired {
+        color: ${ this.expiredcolor }
+      }
       .squatch-referrals-heading {
         color: ${ this.referralnamecolor };
       }

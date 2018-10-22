@@ -679,6 +679,9 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'referrervalue' },
           { type: 'string', name: 'referrercontent' },
           { type: 'string', name: 'convertedcontent' },
+          { type: 'string', name: 'expiredcolor' },
+          { type: 'string', name: 'expiredvalue' },
+          { type: 'string', name: 'expiredcontent' },
           { type: 'string', name: 'pendingcontent' },
           { type: 'string', name: 'valuecontent' },
           { type: 'string', name: 'paginatemore' },
@@ -693,6 +696,7 @@ export default (editor, config = {}) => {
           pendingcolor: { 'ui:widget': 'color' },
           referralnamecolor: { 'ui:widget': 'color' },
           referraltextcolor: { 'ui:widget': 'color' },
+          expiredcolor: { 'ui:widget': 'color' }
         },
         schema: {
           'title': 'Grapes JS Props',
@@ -706,8 +710,8 @@ export default (editor, config = {}) => {
               'type': 'string',
               'title': 'Select Area to Edit',
               'default': 'global',
-              'enum': [ 'global', 'converted', 'pending', 'referrer' ],
-              'enumNames': [ 'Global Referral List Options', 'Converted Rewards (eg Remus)', 'Pending Rewards (eg Gellert)', 'Referrer (eg Rubeus)' ]
+              'enum': [ 'global', 'converted', 'pending', 'referrer', 'expired' ],
+              'enumNames': [ 'Global Referral List Options', 'Converted Rewards (eg Remus)', 'Pending Rewards (eg Gellert)', 'Referrer (eg Rubeus)', 'Expired Rewards' ]
             },
           },
           'dependencies': {
@@ -792,6 +796,23 @@ export default (editor, config = {}) => {
                       'title': ' ',
                       'type': 'boolean',
                       'enumNames': [ 'Show', 'Hide' ]
+                    },
+                  }
+                },
+                {
+                  'properties': {
+                    'referraltype': { 'enum': [ 'expired' ] },
+                    'expiredcolor': {
+                      'title': 'Expired Color',
+                      'type': 'string'
+                    },
+                    'expiredcontent': {
+                      'title': 'Expired Description',
+                      'type': 'string'
+                    },
+                    'expiredvalue': {
+                      'title': 'Expired Reward Value',
+                      'type': 'string',
                     },
                   }
                 },
