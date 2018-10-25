@@ -54,8 +54,8 @@ export class ReferralComponent {
 
   rewardIsExpired() {
     const { rewards } = this.referral;
-    const hasExpiry = rewards.length == 1 && rewards[0].dateExpires;
-    const isExpired = hasExpiry && rewards[0].dateExpires <= Date.now();
+    const hasExpiry = rewards.length == 1 && rewards[0].statuses;
+    const isExpired = hasExpiry && rewards[0].statuses.indexOf("EXPIRED") > -1;
 
     return isExpired;
   }

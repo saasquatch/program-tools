@@ -65,6 +65,7 @@ interface Reward {
   fuelTankType: string
   currency: string
   prettyValue: string
+  statuses: string[]
 }
 
 interface ReferralVariables {
