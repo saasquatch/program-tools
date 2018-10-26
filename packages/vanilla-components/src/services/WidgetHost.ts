@@ -54,10 +54,10 @@ const demoUser = {
   referrals: {
     totalCount: 8,
     data: [
-      { dateReferralStarted: today.setDate(today.getDate()-2), referredUser: { firstName: "Remus", lastName: "Lupin" }, rewards: [{ prettyValue: "$20.00", dateExpires: today.setDate(today.getDate()-2) },{ prettyValue: "$10.00" },{ prettyValue: "$5.00" },] },
+      { dateReferralStarted: today.setDate(today.getDate()-2), referredUser: { firstName: "Remus", lastName: "Lupin" }, rewards: [{ prettyValue: "$20.00", dateExpires: today.setDate(today.getDate()-2), statuses:["EXPIRED"] },{ prettyValue: "$10.00" },{ prettyValue: "$5.00" },] },
       { dateReferralStarted: today.setDate(today.getDate()-1), referredUser: { firstName: "Gellert", lastName: "Grindelwald" }, rewards: [] },
       // Blank string becomes an unknown user, which is editable
-      { dateReferralStarted: today.setDate(today.getDate()-1), referredUser: { firstName: "", lastName: "" }, rewards: [{ prettyValue: "$20.00", dateExpires: today.setDate(today.getDate()-2) }] },
+      { dateReferralStarted: today.setDate(today.getDate()-1), referredUser: { firstName: "", lastName: "" }, rewards: [{ prettyValue: "$20.00", dateExpires: today.setDate(today.getDate()-2), statuses:["EXPIRED"] }] },
       { dateReferralStarted: today.setDate(today.getDate()-5), referredUser: { firstName: "Lavender", lastName: "Brown" }, rewards: [{ prettyValue: "$20.00" }] },
       { dateReferralStarted: today.setDate(today.getDate()-4), referredUser: { firstName: "Blaise", lastName: "Zabini" }, rewards: [{ prettyValue: "$20.00" },{ prettyValue: "$10.00" },] },
       { dateReferralStarted: today.setDate(today.getDate()-10), referredUser: { firstName: "Argus", lastName: "Filch" }, rewards: [] },
@@ -240,6 +240,7 @@ const API = {
                     accountId_eq: $accountId
                   }) {
                     prettyValue
+                    statuses
                   }
                 }
               }
@@ -254,6 +255,7 @@ const API = {
                   accountId_eq: $accountId
                 }) {
                   prettyValue
+                  statuses
                 }
               }
             }
