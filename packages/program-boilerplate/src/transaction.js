@@ -116,6 +116,15 @@ class Transaction {
         if (!this.rewardId) {
             this.rewardId = this.context.body.ids.pop();
         }
+        let queryVariables = {
+            "userId": user.id,
+            "accountId": user.accountId,
+            "rewardId": this.rewardId,
+            "programId":this.context.body.program.id,
+        };
+        if(referralId) {
+            queryVariables["referralId"] = referralId;
+        }
         const newMutation = {
             "type": "SEND_EMAIL",
             "data": {
@@ -124,18 +133,11 @@ class Transaction {
                 "accountId": user.accountId
             },
             "key": emailKey,
-            "queryVariables":  {
-                "userId": user.id,
-                "accountId": user.accountId,
-                "rewardId": this.rewardId,
-                "programId":this.context.body.program.id,
-                "referralId": referralId
-            },
+            "queryVariables": queryVariables,
             "query": query,
             "rewardId": this.rewardId
             }
         };
-
         this.mutations = [...this.mutations, newMutation];
     }
 
