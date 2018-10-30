@@ -1,20 +1,20 @@
 
 /**
- * @typedef WebtaskContext 
- * @property {Object} body      -  An object containing either application/json or application/x-www-form-urlencoded parsed data. 
+ * @typedef WebtaskContext
+ * @property {Object} body      -  An object containing either application/json or application/x-www-form-urlencoded parsed data.
  * @property {Object} meta      -  An object containing the metadata properties of the task being executed, or an empty object if there are none.
  * @property {Object} storage   - An instance of the storage interface. The context.storage.get and the context.storage.set methods can be used to access or store items.
  * @property {Object} query     -  The parsed query-string. It is parsed using querystring, so it does not support the dot syntax that things like qs support.
- * @property {Object} secrets   - An object containing Webtask secrets (or an empty object, if there are none). 
+ * @property {Object} secrets   - An object containing Webtask secrets (or an empty object, if there are none).
  * @property {Object} headers   - An object containing the unmodified headers from the request received by the Webtask sandbox.
  * @property {Object} data      - An object containing the overlay of query params, Webtask token params (pctx), Webtask secrets, and the body (when the mb claim is 1).
- * 
+ *
  * @see {@link https://webtask.io/docs/context}
  */
 
  /**
   * @typedef User
-  * 
+  *
   * @property {string} id
   * @property {string} accountId
   * @property {Referral} referredByReferral
@@ -29,7 +29,7 @@ class Transaction {
     /**
      * @classdesc A Transaction instance takes a context object from webtask, generates mutations and analytics as the program requested.
      * @constructor
-     * 
+     *
      * @param {WebtaskContext} context     - An javascript object passed by webtask.
      * @param {Object[]} mutations  - Mutations to be made on the program.
      * @param {Object[]} analytics  - Analytics of the program.
@@ -42,7 +42,7 @@ class Transaction {
         this.rewardId = null;
         if(context.body.activeTrigger) {
             this.currentUser = context.body.activeTrigger.user;
-        }        
+        }
    }
 
     /**
@@ -55,10 +55,15 @@ class Transaction {
 
     /**
      * Generates a reward that does not relates to any referral, for the currrent user.
-     * 
+     *
      * @param {string} rewardKey - Key of the reward (as defined in contentful).
      */
-    generateSimpleReward(rewardKey) {       
+
+    pushAnalytics(analytic) {
+        this.analytics.push(analytic);
+    }
+
+    generateSimpleReward(rewardKey) {
         this.rewardId = this.context.body.ids.pop();
         const newMutation = {
             "type": "CREATE_REWARD",
@@ -71,18 +76,18 @@ class Transaction {
             "rewardId": this.rewardId
             }
         };
-        
+
         this.mutations = [...this.mutations,newMutation];
     }
-    
+
     /**
      * Generates reward for a user of a referral.
-     * 
+     *
      * @param {string} rewardKey - Key of the reward (as defined in Contentful).
      * @param {User} user - The user to be given reward to (can be either referrer or referred user).
      * @param {string} referralId - id of the referral.
      */
-    generateReferralReward(rewardKey,referralId, user) {
+    generateReferralReward({rewardKey,referralId, user}) {
         this.rewardId = this.context.body.ids.pop();
         const newMutation = {
             "type": "CREATE_REWARD",
@@ -102,12 +107,15 @@ class Transaction {
 
     /**
      * Generates an email for the user.
-     * 
+     *
      * @param {string} emailKey - Key of email template (as defined in Contentful).
      * @param {User} user       - The user to be sent a email to.
      * @param {Object} query    - Queries to obtain information required by the email. See {@link Queries}.
      */
-    generateEmail(emailKey, user, query) {
+    generateEmail({emailKey, user, referralId, query}) {
+        if (!this.rewardId) {
+            this.rewardId = this.context.body.ids.pop();
+        }
         const newMutation = {
             "type": "SEND_EMAIL",
             "data": {
@@ -119,34 +127,36 @@ class Transaction {
             "queryVariables":  {
                 "userId": user.id,
                 "accountId": user.accountId,
-                "rewardId": this.rewardId
+                "rewardId": this.rewardId,
+                "programId":this.context.body.program.id,
+                "referralId": referralId
             },
             "query": query,
             "rewardId": this.rewardId
             }
         };
-        
+
         this.mutations = [...this.mutations, newMutation];
     }
 
-   
+
     /**
      * Generates both reward and email.
      */
     generateSimpleRewardAndEmail({emailKey, rewardKey,user,query}) {
         this.generateSimpleReward(rewardKey);
-        this.generateEmail(emailKey, user, query);
+        this.generateEmail({emailKey, user, query});
     }
     /**
-     * Generates both reward and email for a referral. 
+     * Generates both reward and email for a referral.
      */
     generateReferralRewardAndEmail({emailKey,rewardKey,referralId,user,query}) {
-        this.generateReferralReward(rewardKey, referralId, user);
-        this.generateEmail(emailKey, user, query);
+        this.generateReferralReward({rewardKey, referralId, user});
+        this.generateEmail({emailKey, user, referralId, query});
     }
 
     /**
-     * Returns a JSON object required by the callback function of webtask to modifify the program. 
+     * Returns a JSON object required by the callback function of webtask to modifify the program.
      */
     toJson() {
         return {

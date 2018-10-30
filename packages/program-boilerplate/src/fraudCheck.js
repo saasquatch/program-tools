@@ -67,7 +67,7 @@ export function passFraudCheck(tenantSettings, referral, isReferredUser) {
     const fraudCheckCompleted = !!referral.dateFraudChecksCompleted;
 
     //should not reward user if fraud check is not completed
-    if (fraudChecksEnabled && !fraudCheckCompleted) {
+    if (fraudChecksEnabled && referral.moderationStatus !== 'ACTIONED' ) {
         return false;
     }
     //should not reward user if the user has not passed auto fraudcheck yet

@@ -39,7 +39,8 @@ const ProgramTriggerTypes = [
     "AFTER_USER_CREATED_OR_UPDATED",
     "REFERRAL",
     "AFTER_USER_EVENT_PROCESSED",
-    "SCHEDULED"];
+    "SCHEDULED",
+    "REWARD_SCHEDULED"];
 
  /**
   * A webtask that accepts handlers and returns a function fitting the webtask programming model.
@@ -57,6 +58,7 @@ const ProgramTriggerTypes = [
   * 
   *  
  */
+
 export function webtask(handlers = {}) {
     /**
      * A function that fits in the webtask programming model. 
@@ -76,7 +78,6 @@ export function webtask(handlers = {}) {
             case "PROGRAM_INTROSPECTION":
                 var template = context.body.template;
                 var rules = context.body.rules;
-                console.log("PROGRAM_INTROSPECTION");
                 // Make modifications to template based on rules here if necessary.
                 // ...
                 const handleIntrospection = handlers["PROGRAM_INTROSPECTION"];
@@ -90,7 +91,9 @@ export function webtask(handlers = {}) {
                 let transaction = new Transaction(context);
                 const triggerType = context.body.activeTrigger.type;
                 const handleTrigger = handlers[triggerType];
-                handleTrigger(transaction);
+                if (handleTrigger) {
+                    handleTrigger(transaction);
+                }  
                 cb(null, transaction.toJson());
                 break;
             default:

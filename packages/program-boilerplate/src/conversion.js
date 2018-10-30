@@ -120,7 +120,7 @@ function parseValue(value) {
  */
 export function meetCustomFieldRules(user, customConversionRules) {
     if (!user) { return false; }
-    if (customConversionRules.length === 0) { return true; }
+    if (customConversionRules === undefined || customConversionRules.length === 0) { return true; }
     return customConversionRules.every(rule => meetCustomFieldCondition(user, rule));
 }
   
@@ -132,7 +132,7 @@ export function meetCustomFieldRules(user, customConversionRules) {
  * @returns {boolean}
  */
 export function meetEventTriggerRules(events, eventTriggerRules) {
-    if (!events || events.length === 0) { return false; }
-    if (eventTriggerRules.length === 0) { return true;}
+    if (eventTriggerRules === undefined || eventTriggerRules.length === 0) { return true;}
+    if (!events || events.length === 0) { return false; }  
     return eventTriggerRules.every(rule => meetEventCondition(events, rule));
 }
