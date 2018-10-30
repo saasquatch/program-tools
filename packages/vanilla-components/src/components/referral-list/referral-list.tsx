@@ -103,6 +103,7 @@ export class ReferralList {
     }
 
     if (this.referrals) {
+      console.log("REFERRALS FROM GRAPHQL", this.referrals)
       referralsRow = (
         this.referrals.map((ref) => {
           const referraltype = ref.rewards.length > 0 ? 'converted' : 'pending';         
