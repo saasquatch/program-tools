@@ -110,9 +110,8 @@ export class ReferralList {
 
           if (ref.rewards.length === 1 && isCancelled) return;
 
-          const moreThanOneReward = ref.rewards.length > 1;
-
           // Removes cancelled rewards from rewards array so that multiple rewards don't show cancelled amoungst them
+          const moreThanOneReward = ref.rewards.length > 1;
           let rewardsArr = ref.rewards;
           if (moreThanOneReward) {
             for( var i = 0; i < rewardsArr.length; i++){ 
