@@ -103,17 +103,17 @@ export class ReferralList {
     }
 
     if (this.referrals) {
-      console.log("REFERRALS FROM GRAPHQL", this.referrals);
+
       referralsRow = (
         this.referrals.map((ref) => {
           const referraltype = ref.rewards.length > 0 ? 'converted' : 'pending';         
 
-          const isCancelled = ref.rewards.length === 1 && ref.rewards[0].statuses && ref.rewards[0].statuses.indexOf("CANCELLED") > -1;
-          if (isCancelled) return;
+          const isCancelled = ref.rewards.length > 0 && ref.rewards.length === 1 && ref.rewards[0].statuses && ref.rewards[0].statuses.indexOf("CANCELLED") > -1;
+          if (ref.rewards.length === 1 && isCancelled) return;
 
           let rewardsArr = ref.rewards.filter( r => r.statuses && !(r.statuses.indexOf("CANCELLED") > -1) )
           ref.rewards = rewardsArr;
-          console.log("MAPPED AND FILTERED REFERRALS", ref);
+
           return (
             <sqh-referral-component id={ uuid() } referral={ ref } referralvariables={ referralvariables } referraltype={ referraltype } unknownuser={ this.unknownuser }></sqh-referral-component>
           );

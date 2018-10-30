@@ -52,17 +52,46 @@ const demoUser = {
     FBMESSENGER: "http://short.staging.referralsaasquatch.com/mwjFXu"
   },
   referrals: {
-    totalCount: 8,
-    data: [
-      { dateReferralStarted: today.setDate(today.getDate()-2), referredUser: { firstName: "Remus", lastName: "Lupin" }, rewards: [{ prettyValue: "$20.00", dateExpires: today.setDate(today.getDate()-2), statuses:["EXPIRED"] },{ prettyValue: "$10.00", statuses:["AVAILABLE"] },{ prettyValue: "$5.00", statuses:["AVAILABLE"] },] },
-      { dateReferralStarted: today.setDate(today.getDate()-1), referredUser: { firstName: "Gellert", lastName: "Grindelwald" }, rewards: [] },
-      // Blank string becomes an unknown user, which is editable
-      { dateReferralStarted: today.setDate(today.getDate()-1), referredUser: { firstName: "", lastName: "" }, rewards: [{ prettyValue: "$20.00", dateExpires: today.setDate(today.getDate()-2), statuses:["EXPIRED"] }] },
-      { dateReferralStarted: today.setDate(today.getDate()-5), referredUser: { firstName: "Lavender", lastName: "Brown" }, rewards: [{ prettyValue: "$20.00", statuses:["AVAILABLE"] }] },
-      { dateReferralStarted: today.setDate(today.getDate()-4), referredUser: { firstName: "Blaise", lastName: "Zabini" }, rewards: [{ prettyValue: "$20.00", statuses:["AVAILABLE"] },{ prettyValue: "$10.00", statuses:["AVAILABLE"] },] },
-      { dateReferralStarted: today.setDate(today.getDate()-10), referredUser: { firstName: "Argus", lastName: "Filch" }, rewards: [] },
-      { dateReferralStarted: today.setDate(today.getDate()-15), referredUser: { firstName: "Ron", lastName: "Weasley" }, rewards: [{ prettyValue: "$20.00", statuses:["AVAILABLE"] }] },
-      { dateReferralStarted: today.setDate(today.getDate()-2), referredUser: { firstName: "Hermione", lastName: "Granger" }, rewards: [{ prettyValue: "$20.00", statuses:["AVAILABLE"] },{ prettyValue: "$10.00", statuses:["AVAILABLE"] },{ prettyValue: "$5.00", statuses:["AVAILABLE"] },{ prettyValue: "5%", statuses:["AVAILABLE"] },{ prettyValue: "5%", statuses:["AVAILABLE"] },{ prettyValue: "5%", statuses:["AVAILABLE"] },] },
+    totalCount: 2,
+    "data": [
+      {
+        "dateReferralStarted": 1540938206190,
+        "referredUser": {
+          "firstName": "Melvin",
+          "lastName": "Barnes"
+        },
+        "rewards": [
+          {
+            "prettyValue": "$10.00",
+            "statuses": [
+              "AVAILABLE"
+            ]
+          }
+        ]
+      },
+      {
+        "dateReferralStarted": 1540932637857,
+        "referredUser": {
+          "firstName": "Chester",
+          "lastName": "Glover"
+        },
+        "rewards": []
+      },
+      {
+        "dateReferralStarted": 1540932178574,
+        "referredUser": {
+          "firstName": "Inez",
+          "lastName": "Neal"
+        },
+        "rewards": [
+          {
+            "prettyValue": "$10.00",
+            "statuses": [
+              "CANCELLED"
+            ]
+          }
+        ]
+      }
     ]
   },
   referredByReferral: { dateReferralStarted: today.setDate(today.getDate()-2), referrerUser: { firstName: "Rubeus", lastName: "Hagrid" , referralCode: 'RUBEUSHAGRID12'}, rewards: [{ fuelTankCode: 'CODE1234', prettyValue: "$10.00", statuses: ["AVAILABLE"] }] },
