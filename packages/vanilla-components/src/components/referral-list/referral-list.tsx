@@ -108,7 +108,7 @@ export class ReferralList {
         this.referrals.map((ref) => {
           const referraltype = ref.rewards.length > 0 ? 'converted' : 'pending';         
 
-          const isCancelled = ref.rewards.length > 0 && ref.rewards.length === 1 && ref.rewards[0].statuses && ref.rewards[0].statuses.indexOf("CANCELLED") > -1;
+          const isCancelled = ref.rewards.length > 0 && ref.rewards[0].statuses && ref.rewards[0].statuses.indexOf("CANCELLED") > -1;
           if (ref.rewards.length === 1 && isCancelled) return;
 
           let rewardsArr = ref.rewards.filter( r => r.statuses && !(r.statuses.indexOf("CANCELLED") > -1) )
