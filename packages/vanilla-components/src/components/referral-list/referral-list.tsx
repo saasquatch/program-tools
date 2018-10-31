@@ -107,19 +107,13 @@ export class ReferralList {
       referralsRow = (
         this.referrals.map((ref) => {
           const referraltype = ref.rewards.length > 0 ? 'converted' : 'pending';         
-
-          const isCancelled = ref.rewards.length > 0 && ref.rewards[0].statuses && ref.rewards[0].statuses.indexOf("CANCELLED") > -1;
-          if (ref.rewards.length === 1 && isCancelled) return;
-
-          let rewardsArr = ref.rewards.filter( r => r.statuses && !(r.statuses.indexOf("CANCELLED") > -1) )
-          ref.rewards = rewardsArr;
-
           return (
             <sqh-referral-component id={ uuid() } referral={ ref } referralvariables={ referralvariables } referraltype={ referraltype } unknownuser={ this.unknownuser }></sqh-referral-component>
           );
         })
       );
     }
+    
     if (this.referrals.length < 3 && this.referredBy && this.showreferrer) {
       referredByRow = (
         <sqh-referral-component id={ uuid() } referral={ this.referredBy } referralvariables={ referralvariables } referraltype='referrer' unknownuser={ this.unknownuser }></sqh-referral-component>

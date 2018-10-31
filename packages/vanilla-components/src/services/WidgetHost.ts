@@ -282,6 +282,7 @@ const API = {
                 rewards(filter: {
                   userId_eq: $userId
                   accountId_eq: $accountId
+                  dateCancelled_exists: false
                 }) {
                   prettyValue
                   statuses
