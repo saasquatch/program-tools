@@ -420,6 +420,39 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhSamComponent {
+
+    }
+  }
+
+  interface HTMLSqhSamComponentElement extends StencilComponents.SqhSamComponent, HTMLStencilElement {}
+
+  var HTMLSqhSamComponentElement: {
+    prototype: HTMLSqhSamComponentElement;
+    new (): HTMLSqhSamComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-sam-component': HTMLSqhSamComponentElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-sam-component': HTMLSqhSamComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-sam-component': JSXElements.SqhSamComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhSamComponentAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhShareButtonContainer {
       'emailbackgroundcolor': string;
       'emailclassName': string;
