@@ -45,6 +45,11 @@ export class ReferralComponent {
       return FormatJS.format(this.referralvariables.expiredcontent, formatVariables);
     }
 
+    // When reward is cancelled and Cancelled Content was set
+    if (this.rewardIsCancelled() && this.referralvariables.cancelledcontent) {
+      return FormatJS.format(this.referralvariables.cancelledcontent, formatVariables);
+    }
+
     if (this.referraltype) {
       return FormatJS.format(this.referralvariables[`${this.referraltype}content`], formatVariables);
     }

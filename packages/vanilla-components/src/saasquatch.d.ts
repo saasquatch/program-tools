@@ -79,6 +79,7 @@ interface ReferralVariables {
   expiredvalue: string
   expiredcontent: string
   cancelledvalue: string
+  cancelledcontent: string
 }
 
 interface RewardBalance {

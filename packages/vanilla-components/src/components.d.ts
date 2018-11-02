@@ -314,6 +314,7 @@ declare global {
   namespace StencilComponents {
     interface SqhReferralList {
       'cancelledcolor': string;
+      'cancelledcontent': string;
       'cancelledvalue': string;
       'convertedcontent': string;
       'expiredcolor': string;
@@ -358,6 +359,7 @@ declare global {
   namespace JSXElements {
     export interface SqhReferralListAttributes extends HTMLAttributes {
       'cancelledcolor'?: string;
+      'cancelledcontent'?: string;
       'cancelledvalue'?: string;
       'convertedcontent'?: string;
       'expiredcolor'?: string;

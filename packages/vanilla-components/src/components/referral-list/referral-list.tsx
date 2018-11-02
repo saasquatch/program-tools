@@ -34,8 +34,9 @@ export class ReferralList {
   @Prop() expiredcontent: string;
   @Prop() expiredvalue: string;
   // cancelled reward props
-  @Prop() cancelledcolor: string = "#C81D05";
-  @Prop() cancelledvalue: string = "Cancelled";
+  @Prop() cancelledcolor: string;
+  @Prop() cancelledcontent: string;
+  @Prop() cancelledvalue: string;
   
   @State() referrals: Referral[];
   @State() referralsCount: number;
@@ -103,15 +104,14 @@ export class ReferralList {
       valuecontent: this.valuecontent,
       expiredcontent: this.expiredcontent,
       expiredvalue: this.expiredvalue,
-      cancelledvalue: this.cancelledvalue
+      cancelledvalue: this.cancelledvalue,
+      cancelledcontent: this.cancelledcontent
     }
 
     if (this.referrals) {
-
       referralsRow = (
         this.referrals.map((ref) => {
           const referraltype = ref.rewards.length > 0 ? 'converted' : 'pending';    
-               
           return (
             <sqh-referral-component id={ uuid() } referral={ ref } referralvariables={ referralvariables } referraltype={ referraltype } unknownuser={ this.unknownuser }></sqh-referral-component>
           );
@@ -126,7 +126,6 @@ export class ReferralList {
     }
 
     const clz = css`
-    
       .squatch-referrals-icon.icon-ok-circled {
         color: ${ this.rewardcolor };
       }
