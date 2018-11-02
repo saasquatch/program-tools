@@ -425,6 +425,7 @@ declare global {
       'buttontext': string;
       'buttontextcolor': string;
       'failuretext': string;
+      'loadingtext': string;
       'successtext': string;
     }
   }
@@ -452,6 +453,7 @@ declare global {
       'buttontext'?: string;
       'buttontextcolor'?: string;
       'failuretext'?: string;
+      'loadingtext'?: string;
       'successtext'?: string;
     }
   }

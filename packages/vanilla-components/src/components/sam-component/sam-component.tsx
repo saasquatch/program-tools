@@ -30,6 +30,7 @@ export class SamComponent {
 
   @Prop() successtext: string;
   @Prop() failuretext: string;
+  @Prop() loadingtext: string;
   
   // button props
   @Prop() buttoncolor: string;
@@ -60,7 +61,7 @@ export class SamComponent {
         ...this.formData,
         signedUp: true
       }
-      console.log(this.formData, "Form submission failed")
+      console.log(this.formData, "Form submission success")
     } else {
       // Form re-enabled
       this.formData = {
@@ -168,7 +169,9 @@ export class SamComponent {
             />
   
             <p>{ failMessage }</p>
-            <input type="submit" class={`sqh-continue-btn ${buttonStyle}`} value={this.buttontext} disabled={this.formData.loading} />
+            <input type="submit" 
+              class={`sqh-continue-btn ${buttonStyle}`} 
+              value={this.formData.loading ? this.loadingtext : this.buttontext} disabled={this.formData.loading} />
           </form>
         </div>
       </div>
