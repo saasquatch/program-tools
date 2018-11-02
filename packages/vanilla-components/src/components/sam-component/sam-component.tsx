@@ -1,6 +1,7 @@
 import { Component, Prop, State } from '@stencil/core';
 import { shadeColor } from '../../utilities';
 import { css } from 'emotion';
+import { API } from '../../services/WidgetHost';
 
 interface FormState {
   firstName?: string;
@@ -9,14 +10,6 @@ interface FormState {
   valid?: boolean;
   loading?: boolean;
   failed?: boolean;
-}
-
-function delayPromise(duration) { 
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve();
-    }, duration);
-  });
 }
 
 @Component({
@@ -38,10 +31,31 @@ export class SamComponent {
   @Prop() buttontextcolor: string;
   @Prop() buttontext: string;
 
+  
+  testAdd() { 
+    const dataToSend = {
+      firstName: this.formData.firstName,
+      lastName: this.formData.lastName,
+      email: this.formData.email,
+    }
+
+    let result = API.graphql.addUserDetails(dataToSend);
+
+    console.log(result);
+    /*
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve();
+      }, duration);
+    });
+    */
+  }
+
   async handleSubmit(e) {
     console.log(e)
     e.preventDefault()
-
+    
+    // display Loading... text
     // disable form and load
     this.formData = {
       ...this.formData,
@@ -52,12 +66,11 @@ export class SamComponent {
 
     //API.graphql
     // send data to our backend
-    // display Loading... text
-    await delayPromise(3000);
-
+    
     if(Math.random() >= 0.5){
       // Successfully signed up!
       // Hide form
+      await this.testAdd();
       this.signedUp = true;
       console.log(this.formData, "Form submission success")
     } else {

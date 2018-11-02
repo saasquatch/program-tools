@@ -453,6 +453,54 @@ const API = {
         variables
       }).then(res => res.data.user);
     },
+
+    addUserDetails(userDetails){
+      console.log("adding user...")
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId) {
+        return {
+          userId: widgetId.userId, 
+          accountId:widgetId.accountId,
+          firstName:userDetails.firstName,
+          lastName:userDetails.lastName, 
+          email:userDetails.email};
+      }
+
+      userDetails = {
+        ...userDetails.firstName,
+        ...userDetails.lastName,
+        ...userDetails.email
+      }
+
+      const newUserDetails = {
+        userId: widgetId.userId,
+        accountId: widgetId.accountId,
+        firstName: userDetails.firstName,
+        lastName: userDetails.lastName,
+        email: userDetails.email
+      }
+
+      return this.getClient().mutate({
+
+        mutation: gql`
+          mutation {
+            upsertUser(userInput:{id: $userId, accountId: $accountId, firstName: $firstName, lastName: $lastName, email: $email}){
+              id
+              accountId
+              firstName
+              lastName
+              email
+            }       
+          }
+        `,
+        newUserDetails
+      }).then((result) => {
+        console.log(result)
+        return result.data;
+      });
+    }
+    
   },
   ui: squatchJsApi
 };
