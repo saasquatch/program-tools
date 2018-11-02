@@ -684,6 +684,7 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'expiredcontent' },
           { type: 'string', name: 'cancelledcolor' },
           { type: 'string', name: 'cancelledvalue' },
+          { type: 'string', name: 'cancelledcontent' },
           { type: 'string', name: 'pendingcontent' },
           { type: 'string', name: 'valuecontent' },
           { type: 'string', name: 'paginatemore' },
@@ -824,6 +825,10 @@ export default (editor, config = {}) => {
                     'referraltype': { 'enum': [ 'cancelled' ] },
                     'cancelledcolor': {
                       'title': 'Cancelled Color',
+                      'type': 'string'
+                    },
+                    'cancelledcontent': {
+                      'title': 'Cancelled Description',
                       'type': 'string'
                     },
                     'cancelledvalue': {
