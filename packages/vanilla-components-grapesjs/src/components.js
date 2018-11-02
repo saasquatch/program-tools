@@ -682,6 +682,8 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'expiredcolor' },
           { type: 'string', name: 'expiredvalue' },
           { type: 'string', name: 'expiredcontent' },
+          { type: 'string', name: 'cancelledcolor' },
+          { type: 'string', name: 'cancelledvalue' },
           { type: 'string', name: 'pendingcontent' },
           { type: 'string', name: 'valuecontent' },
           { type: 'string', name: 'paginatemore' },
@@ -696,7 +698,8 @@ export default (editor, config = {}) => {
           pendingcolor: { 'ui:widget': 'color' },
           referralnamecolor: { 'ui:widget': 'color' },
           referraltextcolor: { 'ui:widget': 'color' },
-          expiredcolor: { 'ui:widget': 'color' }
+          expiredcolor: { 'ui:widget': 'color' },
+          cancelledcolor: { 'ui:widget': 'color' }
         },
         schema: {
           'title': 'Grapes JS Props',
@@ -710,8 +713,8 @@ export default (editor, config = {}) => {
               'type': 'string',
               'title': 'Select Area to Edit',
               'default': 'global',
-              'enum': [ 'global', 'converted', 'pending', 'referrer', 'expired' ],
-              'enumNames': [ 'Global Referral List Options', 'Converted Rewards (eg Remus)', 'Pending Rewards (eg Gellert)', 'Referrer (eg Rubeus)', 'Expired Rewards' ]
+              'enum': [ 'global', 'converted', 'pending', 'referrer', 'expired', 'cancelled' ],
+              'enumNames': [ 'Global Referral List Options', 'Converted Rewards (eg Remus)', 'Pending Rewards (eg Gellert)', 'Referrer (eg Rubeus)', 'Expired Rewards', 'Cancelled Rewards (Lavender)' ]
             },
           },
           'dependencies': {
@@ -816,6 +819,19 @@ export default (editor, config = {}) => {
                     },
                   }
                 },
+                {
+                  'properties': {
+                    'referraltype': { 'enum': [ 'cancelled' ] },
+                    'cancelledcolor': {
+                      'title': 'Cancelled Color',
+                      'type': 'string'
+                    },
+                    'cancelledvalue': {
+                      'title': 'Cancelled Reward Value',
+                      'type': 'string',
+                    },
+                  }
+                }
               ]
             }
           }
