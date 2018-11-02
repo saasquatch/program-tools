@@ -421,7 +421,11 @@ declare global {
 
   namespace StencilComponents {
     interface SqhSamComponent {
-
+      'buttoncolor': string;
+      'buttontext': string;
+      'buttontextcolor': string;
+      'failuretext': string;
+      'successtext': string;
     }
   }
 
@@ -444,7 +448,11 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhSamComponentAttributes extends HTMLAttributes {
-
+      'buttoncolor'?: string;
+      'buttontext'?: string;
+      'buttontextcolor'?: string;
+      'failuretext'?: string;
+      'successtext'?: string;
     }
   }
 }

@@ -31,15 +31,13 @@ sqh-sam-component {
         touch-action: manipulation;
         cursor: pointer;
         background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
-        background-color:#35b21e;
-        color:#fff;
         border: 1px solid transparent;
         white-space: nowrap;
         border-radius: 4px;
-        padding:0 30px;
-        height: 34px;
+        padding:6px 12px;
         font-size:14px;
         line-height: 1.428571429;
+        width: 140px;
     
         &:focus {
           outline: 0; // removes blue border on interactions
