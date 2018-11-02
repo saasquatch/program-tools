@@ -174,7 +174,10 @@ export class SamComponent {
     )
     : (
       <div>
-        <h3>{ this.successtext }</h3>
+        <h3>
+          <img class="success" src="https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png" />
+        { this.successtext }
+        </h3>
       </div>
     )
  
