@@ -13,7 +13,7 @@ sqh-sam-component {
       text-align:center;
     }
 
-    .form-input {
+    #form-input {
         height: 34px;
         padding: 6px 12px;
         font-size: 14px;
@@ -55,4 +55,15 @@ sqh-sam-component {
                   box-shadow: none;
         }
       }
+
+      .invalid {
+        outline-color:red;
+        border-color:red;
+      }
+
+      .valid {
+          outline-color:green;
+          border-color:green;
+      }
+
 }
