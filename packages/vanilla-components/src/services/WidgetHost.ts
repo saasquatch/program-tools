@@ -467,12 +467,6 @@ const API = {
           email:userDetails.email};
       }
 
-      userDetails = {
-        ...userDetails.firstName,
-        ...userDetails.lastName,
-        ...userDetails.email
-      }
-
       const newUserDetails = {
         userId: widgetId.userId,
         accountId: widgetId.accountId,
