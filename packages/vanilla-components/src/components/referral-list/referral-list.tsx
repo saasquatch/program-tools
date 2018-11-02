@@ -33,6 +33,10 @@ export class ReferralList {
   @Prop() expiredcolor: string;
   @Prop() expiredcontent: string;
   @Prop() expiredvalue: string;
+  // cancelled reward props
+  @Prop() cancelledcolor: string;
+  @Prop() cancelledcontent: string;
+  @Prop() cancelledvalue: string;
   
   @State() referrals: Referral[];
   @State() referralsCount: number;
@@ -99,20 +103,22 @@ export class ReferralList {
       referrervalue: this.referrervalue,
       valuecontent: this.valuecontent,
       expiredcontent: this.expiredcontent,
-      expiredvalue: this.expiredvalue
+      expiredvalue: this.expiredvalue,
+      cancelledvalue: this.cancelledvalue,
+      cancelledcontent: this.cancelledcontent
     }
 
     if (this.referrals) {
       referralsRow = (
         this.referrals.map((ref) => {
-          const referraltype = ref.rewards.length > 0 ? 'converted' : 'pending';
-
+          const referraltype = ref.rewards.length > 0 ? 'converted' : 'pending';    
           return (
             <sqh-referral-component id={ uuid() } referral={ ref } referralvariables={ referralvariables } referraltype={ referraltype } unknownuser={ this.unknownuser }></sqh-referral-component>
           );
         })
       );
     }
+
     if (this.referrals.length < 3 && this.referredBy && this.showreferrer) {
       referredByRow = (
         <sqh-referral-component id={ uuid() } referral={ this.referredBy } referralvariables={ referralvariables } referraltype='referrer' unknownuser={ this.unknownuser }></sqh-referral-component>
@@ -120,7 +126,6 @@ export class ReferralList {
     }
 
     const clz = css`
-    
       .squatch-referrals-icon.icon-ok-circled {
         color: ${ this.rewardcolor };
       }
@@ -144,6 +149,15 @@ export class ReferralList {
       }
       .squatch-referrals-icon.icon-attention.expired {
         color: ${ this.expiredcolor }
+      }
+      .squatch-referrals-value.cancelled {
+        color: ${ this.cancelledcolor };
+      }
+      .squatch-value-contents.cancelled {
+        color: ${ this.cancelledcolor }
+      }
+      .squatch-referrals-icon.icon-attention.cancelled {
+        color: ${ this.cancelledcolor }
       }
       .squatch-referrals-heading {
         color: ${ this.referralnamecolor };

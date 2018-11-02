@@ -31,7 +31,7 @@ export class ReferralComponent {
   }
 
   getIcon() {
-    if ((this.referraltype === "converted" || this.referraltype === "referrer") && !this.rewardIsExpired()) {
+    if ((this.referraltype === "converted" || this.referraltype === "referrer") && !this.rewardIsExpired() && !this.rewardIsCancelled()) {
       return `icon-ok-circled`;
     }
 
@@ -43,6 +43,11 @@ export class ReferralComponent {
     // When reward is expired and Expired Content was set
     if (this.rewardIsExpired() && this.referralvariables.expiredcontent) {
       return FormatJS.format(this.referralvariables.expiredcontent, formatVariables);
+    }
+
+    // When reward is cancelled and Cancelled Content was set
+    if (this.rewardIsCancelled() && this.referralvariables.cancelledcontent) {
+      return FormatJS.format(this.referralvariables.cancelledcontent, formatVariables);
     }
 
     if (this.referraltype) {
@@ -58,6 +63,14 @@ export class ReferralComponent {
     const isExpired = hasExpiry && rewards[0].statuses.indexOf("EXPIRED") > -1;
 
     return isExpired;
+  }
+
+  rewardIsCancelled() {
+    const { rewards } = this.referral;
+    const hasStatuses = rewards.length == 1 && rewards[0].statuses;
+    const isCancelled = hasStatuses && rewards[0].statuses.indexOf("CANCELLED") > -1;
+
+    return isCancelled;
   }
 
   getValue() {
@@ -86,6 +99,11 @@ export class ReferralComponent {
     if (rewards.length == 1 && this.rewardIsExpired()) {
       return FormatJS.format(this.referralvariables.expiredvalue, formatVariables)
     }
+
+    // Cancelled content only applies when there is 1 reward in the referral
+    if (rewards.length == 1 && this.rewardIsCancelled()) {
+      return FormatJS.format(this.referralvariables.cancelledvalue, formatVariables)
+    }  
 
     // When there are no more than rewards and reward has not expired yet
     if (rewards.length <= 1) return '';
@@ -123,15 +141,15 @@ export class ReferralComponent {
           </div>
         </div>
 
-        <i class={`icon squatch-referrals-icon ${ icon } ${this.rewardIsExpired() && 'expired'}`}></i>
+        <i class={`icon squatch-referrals-icon ${ icon } ${this.rewardIsExpired() && 'expired'} ${this.rewardIsCancelled() && 'cancelled'}`}></i>
 
         {/* second column */}
         <div class="sqh-column-two">
 
-          <div class={ `squatch-referrals-value ${ rewards.length > 0 ? this.rewardIsExpired() ? 'expired': '' : this.referraltype === 'referrer' ? 'referrer' : 'pending' }` }>
+          <div class={ `squatch-referrals-value ${this.rewardIsCancelled() && 'cancelled'} ${ rewards.length > 0 ? this.rewardIsExpired() ? 'expired': '' : this.referraltype === 'referrer' ? 'referrer' : 'pending' }` }>
             { value }
           </div>
-          <div class={`squatch-value-contents ${this.rewardIsExpired() && 'expired'}`}>{ valuecontent }</div>
+          <div class={`squatch-value-contents ${this.rewardIsExpired() && 'expired'} ${this.rewardIsCancelled() && 'cancelled'}`}>{ valuecontent }</div>
         </div>
 
       </div>
