@@ -9,7 +9,6 @@ interface FormState {
   valid?: boolean;
   loading?: boolean;
   failed?: boolean;
-  signedUp?: boolean;
 }
 
 function delayPromise(duration) { 
@@ -27,6 +26,8 @@ function delayPromise(duration) {
 
 export class SamComponent {
   @State() formData: FormState = {};
+  @State() failMessage: string = "";
+  @State() signedUp?: boolean;
 
   @Prop() successtext: string;
   @Prop() failuretext: string;
@@ -57,10 +58,7 @@ export class SamComponent {
     if(Math.random() >= 0.5){
       // Successfully signed up!
       // Hide form
-      this.formData = {
-        ...this.formData,
-        signedUp: true
-      }
+      this.signedUp = true;
       console.log(this.formData, "Form submission success")
     } else {
       // Form re-enabled
@@ -90,7 +88,6 @@ export class SamComponent {
       firstName: event.target.value,
       valid
     }
-    
   }
 
   handleLastName(event) {
@@ -130,8 +127,7 @@ export class SamComponent {
   }
 
   render() {
-    let failMessage = "";
-    if(this.formData.failed) failMessage = this.failuretext;
+    if(this.formData.failed) this.failMessage = this.failuretext;
 
     const buttonStyle= css`
       background-color:${this.buttoncolor};
@@ -142,7 +138,7 @@ export class SamComponent {
       }
     `;
 
-    return !this.formData.signedUp ? (
+    return !this.signedUp ? (
       <div>
         <div class="input-group">
           <form id="signup-form" onSubmit={(e) => this.handleSubmit(e)}>
@@ -168,7 +164,7 @@ export class SamComponent {
               required 
             />
   
-            <p>{ failMessage }</p>
+            <p>{ this.failMessage }</p>
             <input type="submit" 
               class={`sqh-continue-btn ${buttonStyle}`} 
               value={this.formData.loading ? this.loadingtext : this.buttontext} disabled={this.formData.loading} />
