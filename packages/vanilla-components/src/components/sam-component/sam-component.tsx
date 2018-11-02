@@ -164,7 +164,7 @@ export class SamComponent {
               required 
             />
   
-            <p>{ this.failMessage }</p>
+            <p class="failed">{ this.failMessage }</p>
             <input type="submit" 
               class={`sqh-continue-btn ${buttonStyle}`} 
               value={this.formData.loading ? this.loadingtext : this.buttontext} disabled={this.formData.loading} />
