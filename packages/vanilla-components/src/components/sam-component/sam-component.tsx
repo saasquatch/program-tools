@@ -1,7 +1,11 @@
 import { Component, Prop, State } from '@stencil/core';
-import { shadeColor } from '../../utilities';
 import { css } from 'emotion';
+import debugFn from "debug";
+
+import { shadeColor } from '../../utilities';
 import { API } from '../../services/WidgetHost';
+
+const debug = debugFn("sqh-sam-component")
 
 interface FormState {
   firstName?: string;
@@ -39,22 +43,13 @@ export class SamComponent {
       email: this.formData.email,
     }
 
-    let result = API.graphql.addUserDetails(dataToSend);
-
-    console.log(result);
-    /*
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve();
-      }, duration);
-    });
-    */
+    return API.graphql.addUserDetails(dataToSend);
   }
 
   async handleSubmit(e) {
-    console.log(e)
+    debug(e)
     e.preventDefault()
-    
+
     // display Loading... text
     // disable form and load
     this.formData = {
@@ -62,7 +57,7 @@ export class SamComponent {
       loading: true
     }
     
-    console.log("Submitted", this.formData);
+    debug("Submitted", this.formData);
 
     //API.graphql
     // send data to our backend
@@ -72,7 +67,7 @@ export class SamComponent {
       // Hide form
       await this.testAdd();
       this.signedUp = true;
-      console.log(this.formData, "Form submission success")
+      debug(this.formData, "Form submission success")
     } else {
       // Form re-enabled
       this.formData = {
@@ -81,7 +76,7 @@ export class SamComponent {
         failed: true
       }
 
-      console.log(this.formData, "Form submission failed")
+      debug(this.formData, "Form submission failed")
     }
   }
 

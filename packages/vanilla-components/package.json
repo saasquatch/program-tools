@@ -29,6 +29,7 @@
     "apollo-client": "^2.3.5",
     "apollo-link-http": "^1.5.4",
     "clipboard": "^1.7.1",
+    "debug": "^4.1.0",
     "emotion": "^9.2.6",
     "faker": "^4.1.0",
     "graphql-tag": "^2.9.2",

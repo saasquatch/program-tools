@@ -2,6 +2,10 @@ import { ApolloClient } from "apollo-client";
 import { HttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import gql from "graphql-tag";
+import debugFn from "debug";
+
+const debug = debugFn("WidgetHost")
+
 
 export interface WidgetIdent {
   tenantAlias: string;
@@ -54,20 +58,20 @@ const demoUser = {
   referrals: {
     totalCount: 8,
     data: [
-      { dateReferralStarted: today.setDate(today.getDate()-2), referredUser: { firstName: "Remus", lastName: "Lupin" }, rewards: [{ prettyValue: "$20.00", dateExpires: today.setDate(today.getDate()-2), statuses:["EXPIRED"] },{ prettyValue: "$10.00", statuses:["AVAILABLE"] },{ prettyValue: "$5.00", statuses:["AVAILABLE"] },] },
-      { dateReferralStarted: today.setDate(today.getDate()-1), referredUser: { firstName: "Gellert", lastName: "Grindelwald" }, rewards: [] },
+      { dateReferralStarted: today.setDate(today.getDate() - 2), referredUser: { firstName: "Remus", lastName: "Lupin" }, rewards: [{ prettyValue: "$20.00", dateExpires: today.setDate(today.getDate() - 2), statuses: ["EXPIRED"] }, { prettyValue: "$10.00", statuses: ["AVAILABLE"] }, { prettyValue: "$5.00", statuses: ["AVAILABLE"] },] },
+      { dateReferralStarted: today.setDate(today.getDate() - 1), referredUser: { firstName: "Gellert", lastName: "Grindelwald" }, rewards: [] },
       // Blank string becomes an unknown user, which is editable
-      { dateReferralStarted: today.setDate(today.getDate()-1), referredUser: { firstName: "", lastName: "" }, rewards: [{ prettyValue: "$20.00", dateExpires: today.setDate(today.getDate()-2), statuses:["EXPIRED"] }] },
-      { dateReferralStarted: today.setDate(today.getDate()-5), referredUser: { firstName: "Lavender", lastName: "Brown" }, rewards: [{ prettyValue: "$20.00", statuses:["CANCELLED"] }] },
-      { dateReferralStarted: today.setDate(today.getDate()-4), referredUser: { firstName: "Blaise", lastName: "Zabini" }, rewards: [{ prettyValue: "$20.00", statuses:["AVAILABLE"] },{ prettyValue: "$10.00", statuses:["AVAILABLE"] },] },
-      { dateReferralStarted: today.setDate(today.getDate()-10), referredUser: { firstName: "Argus", lastName: "Filch" }, rewards: [] },
-      { dateReferralStarted: today.setDate(today.getDate()-15), referredUser: { firstName: "Ron", lastName: "Weasley" }, rewards: [{ prettyValue: "$20.00", statuses:["AVAILABLE"] }] },
-      { dateReferralStarted: today.setDate(today.getDate()-2), referredUser: { firstName: "Hermione", lastName: "Granger" }, rewards: [{ prettyValue: "$20.00", statuses:["AVAILABLE"] },{ prettyValue: "$10.00", statuses:["AVAILABLE"] },{ prettyValue: "$5.00", statuses:["AVAILABLE"] },{ prettyValue: "5%", statuses:["AVAILABLE"] },{ prettyValue: "5%", statuses:["AVAILABLE"] },{ prettyValue: "5%", statuses:["AVAILABLE"] },] },
+      { dateReferralStarted: today.setDate(today.getDate() - 1), referredUser: { firstName: "", lastName: "" }, rewards: [{ prettyValue: "$20.00", dateExpires: today.setDate(today.getDate() - 2), statuses: ["EXPIRED"] }] },
+      { dateReferralStarted: today.setDate(today.getDate() - 5), referredUser: { firstName: "Lavender", lastName: "Brown" }, rewards: [{ prettyValue: "$20.00", statuses: ["CANCELLED"] }] },
+      { dateReferralStarted: today.setDate(today.getDate() - 4), referredUser: { firstName: "Blaise", lastName: "Zabini" }, rewards: [{ prettyValue: "$20.00", statuses: ["AVAILABLE"] }, { prettyValue: "$10.00", statuses: ["AVAILABLE"] },] },
+      { dateReferralStarted: today.setDate(today.getDate() - 10), referredUser: { firstName: "Argus", lastName: "Filch" }, rewards: [] },
+      { dateReferralStarted: today.setDate(today.getDate() - 15), referredUser: { firstName: "Ron", lastName: "Weasley" }, rewards: [{ prettyValue: "$20.00", statuses: ["AVAILABLE"] }] },
+      { dateReferralStarted: today.setDate(today.getDate() - 2), referredUser: { firstName: "Hermione", lastName: "Granger" }, rewards: [{ prettyValue: "$20.00", statuses: ["AVAILABLE"] }, { prettyValue: "$10.00", statuses: ["AVAILABLE"] }, { prettyValue: "$5.00", statuses: ["AVAILABLE"] }, { prettyValue: "5%", statuses: ["AVAILABLE"] }, { prettyValue: "5%", statuses: ["AVAILABLE"] }, { prettyValue: "5%", statuses: ["AVAILABLE"] },] },
     ]
   },
-  referredByReferral: { dateReferralStarted: today.setDate(today.getDate()-2), referrerUser: { firstName: "Rubeus", lastName: "Hagrid" , referralCode: 'RUBEUSHAGRID12'}, rewards: [{ fuelTankCode: 'CODE1234', prettyValue: "$10.00", statuses: ["AVAILABLE"] }] },
+  referredByReferral: { dateReferralStarted: today.setDate(today.getDate() - 2), referrerUser: { firstName: "Rubeus", lastName: "Hagrid", referralCode: 'RUBEUSHAGRID12' }, rewards: [{ fuelTankCode: 'CODE1234', prettyValue: "$10.00", statuses: ["AVAILABLE"] }] },
   referralsMonth: { totalCount: 6 },
-  referralsWeek:  { totalCount: 3 },
+  referralsWeek: { totalCount: 3 },
   rewardsCount: { totalCount: 14 },
   rewardsMonth: { totalCount: 7 },
   rewardsWeek: { totalCount: 4 },
@@ -132,9 +136,6 @@ const API = {
     }
   },
   graphql: {
-    getClient() {
-      return apolloClient();
-    },
 
     getUserFragment(userFragment, fragmentVariables) {
       const fragment = gql`
@@ -150,7 +151,7 @@ const API = {
         accountId
       };
 
-      return this.getClient().query({
+      return apolloClient().query({
         query: gql`
           query($userId: String!, $accountId: String!, $offset: Int) {
             user(id: $userId, accountId: $accountId) {
@@ -177,7 +178,7 @@ const API = {
         engagementMedium
       };
 
-      return this.getClient().query({
+      return apolloClient().query({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium!) {
             user(id: $userId, accountId: $accountId) {
@@ -186,6 +187,7 @@ const API = {
           }
         `,
         variables
+        //@ts-ignore
       }).then(res => res.data.user.shareLink);
     },
 
@@ -213,7 +215,7 @@ const API = {
         programId_exists: programId ? true : false
       };
 
-      return this.getClient().query({
+      return apolloClient().query({
         query: gql`
           query(
             $userId: String!,
@@ -262,6 +264,7 @@ const API = {
           }
         `,
         variables
+        //@ts-ignore
       }).then(res => res.data.user);
     },
 
@@ -299,7 +302,7 @@ const API = {
         programId_exists: programId ? true : false
       };
 
-      return this.getClient().query({
+      return apolloClient().query({
         query: gql`
         query(
           $userId: String!,
@@ -353,13 +356,14 @@ const API = {
         }
         `,
         variables
+        //@ts-ignore
       }).then(res => res.data.user);
     },
 
-    async getReferralCode ():Promise<string> {
+    async getReferralCode(): Promise<string> {
       const widgetId = widgetIdent();
 
-      if(widgetId["env"] === "demo" || !widgetId) return demoUser.referralcode
+      if (widgetId["env"] === "demo" || !widgetId) return demoUser.referralcode
 
       const { userId, accountId, programId } = widgetId;
 
@@ -369,7 +373,11 @@ const API = {
         programId
       }
 
-      return this.getClient().query({
+      return apolloClient().query<{
+        user: {
+          referralCode: string
+        }
+      }>({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID!) {
             user(id: $userId, accountId: $accountId) {
@@ -381,11 +389,11 @@ const API = {
       }).then(res => res.data.user.referralCode);
     },
 
-    async getFueltankCode (rewardKey):Promise<SimpleObject> {
+    async getFueltankCode(rewardKey): Promise<SimpleObject> {
       const widgetId = widgetIdent();
 
       if (widgetId["env"] === "demo" || !widgetId) {
-        return {referredByReferral: demoUser.referredByReferral, rewards: {data: demoUser.referredByReferral.rewards} };
+        return { referredByReferral: demoUser.referredByReferral, rewards: { data: demoUser.referredByReferral.rewards } };
       }
 
       const { userId, accountId, programId } = widgetId;
@@ -397,7 +405,7 @@ const API = {
         rewardKey
       }
 
-      return this.getClient().query({
+      return apolloClient().query({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID!, $rewardKey: String!) {
             user(id: $userId, accountId: $accountId) {
@@ -420,21 +428,22 @@ const API = {
           }
         `,
         variables
+        //@ts-ignore
       }).then(res => res.data.user);
     },
 
-    getMessageLinks(mediums:Array<string>){
+    getMessageLinks(mediums: Array<string>) {
       const widgetId = widgetIdent();
 
       if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
-       const { userId, accountId, programId = null, engagementMedium } = widgetId;
-       const variables = {
+      const { userId, accountId, programId = null, engagementMedium } = widgetId;
+      const variables = {
         userId,
         accountId,
         programId,
         engagementMedium
       };
-       return this.getClient().query({
+      return apolloClient().query({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium!) {
             user(id: $userId, accountId: $accountId) {
@@ -451,35 +460,32 @@ const API = {
           }
         `,
         variables
+        //@ts-ignore
       }).then(res => res.data.user);
     },
 
-    addUserDetails(userDetails){
-      console.log("adding user...")
+    async addUserDetails(userDetails: {
+      firstName: string,
+      lastName: string,
+      email: string
+    }): Promise<UpdateUserDetailsResponse> {
+      debug("adding user...")
       const widgetId = widgetIdent();
 
-      if (widgetId["env"] === "demo" || !widgetId) {
-        return {
-          userId: widgetId.userId, 
-          accountId:widgetId.accountId,
-          firstName:userDetails.firstName,
-          lastName:userDetails.lastName, 
-          email:userDetails.email};
-      }
-
-      const newUserDetails = {
-        userId: widgetId.userId,
+      const user = {
+        id: widgetId.userId,
         accountId: widgetId.accountId,
-        firstName: userDetails.firstName,
-        lastName: userDetails.lastName,
-        email: userDetails.email
+        ...userDetails
       }
 
-      return this.getClient().mutate({
+      if (widgetId["env"] === "demo" || !widgetId) {
+        return Promise.resolve({user});
+      }
 
+      const result = await apolloClient().mutate<UpdateUserDetailsResponse>({
         mutation: gql`
-          mutation {
-            upsertUser(userInput:{id: $userId, accountId: $accountId, firstName: $firstName, lastName: $lastName, email: $email}){
+          mutation($user:UserInput!) {
+            user:upsertUser(userInput:$user){
               id
               accountId
               firstName
@@ -488,22 +494,34 @@ const API = {
             }       
           }
         `,
-        newUserDetails
-      }).then((result) => {
-        console.log(result)
-        return result.data;
-      });
+        variables: {
+          user
+        }
+      })
+      debug(result);
+      //@ts-ignore
+      return result.data;
     }
-    
+
   },
   ui: squatchJsApi
 };
 
 export { API };
 
+export type UpdateUserDetailsResponse = {
+  user: {
+    id: string
+    accountId: string
+    firstName: string
+    lastName: string
+    email: string
+  }
+}
+
 /**
  * Key-value simple object
  */
 export interface SimpleObject {
-  [key:string]: any
+  [key: string]: any
 }
