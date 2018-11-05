@@ -1,16 +1,16 @@
 import { render } from '@stencil/core/testing';
-import { SamComponent } from './sam-component';
+import { FormComponent } from './form-component';
 
 describe('my-app', () => {
   it('should build', () => {
-    expect(new SamComponent()).toBeTruthy();
+    expect(new FormComponent()).toBeTruthy();
   });
 
   describe('rendering', () => {
     beforeEach(async () => {
       await render({
-        components: [SamComponent],
-        html: '<sam-component></sam-component>'
+        components: [FormComponent],
+        html: '<form-component></form-component>'
       });
     });
   });

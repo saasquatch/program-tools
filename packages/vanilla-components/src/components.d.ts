@@ -160,6 +160,49 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhFormComponent {
+      'buttoncolor': string;
+      'buttontext': string;
+      'buttontextcolor': string;
+      'failuretext': string;
+      'loadingtext': string;
+      'successtext': string;
+    }
+  }
+
+  interface HTMLSqhFormComponentElement extends StencilComponents.SqhFormComponent, HTMLStencilElement {}
+
+  var HTMLSqhFormComponentElement: {
+    prototype: HTMLSqhFormComponentElement;
+    new (): HTMLSqhFormComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-form-component': HTMLSqhFormComponentElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-form-component': HTMLSqhFormComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-form-component': JSXElements.SqhFormComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhFormComponentAttributes extends HTMLAttributes {
+      'buttoncolor'?: string;
+      'buttontext'?: string;
+      'buttontextcolor'?: string;
+      'failuretext'?: string;
+      'loadingtext'?: string;
+      'successtext'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhGlobalContainer {
       'background': string;
       'fontfamily': string;
@@ -412,49 +455,6 @@ declare global {
       'hidetext'?: string;
       'nexttext'?: string;
       'previoustext'?: string;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface SqhSamComponent {
-      'buttoncolor': string;
-      'buttontext': string;
-      'buttontextcolor': string;
-      'failuretext': string;
-      'loadingtext': string;
-      'successtext': string;
-    }
-  }
-
-  interface HTMLSqhSamComponentElement extends StencilComponents.SqhSamComponent, HTMLStencilElement {}
-
-  var HTMLSqhSamComponentElement: {
-    prototype: HTMLSqhSamComponentElement;
-    new (): HTMLSqhSamComponentElement;
-  };
-  interface HTMLElementTagNameMap {
-    'sqh-sam-component': HTMLSqhSamComponentElement;
-  }
-  interface ElementTagNameMap {
-    'sqh-sam-component': HTMLSqhSamComponentElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'sqh-sam-component': JSXElements.SqhSamComponentAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface SqhSamComponentAttributes extends HTMLAttributes {
-      'buttoncolor'?: string;
-      'buttontext'?: string;
-      'buttontextcolor'?: string;
-      'failuretext'?: string;
-      'loadingtext'?: string;
-      'successtext'?: string;
     }
   }
 }

@@ -5,7 +5,7 @@ import debugFn from "debug";
 import { shadeColor } from '../../utilities';
 import { API } from '../../services/WidgetHost';
 
-const debug = debugFn("sqh-sam-component")
+const debug = debugFn("sqh-form-component")
 
 interface FormState {
   firstName?: string;
@@ -17,11 +17,11 @@ interface FormState {
 }
 
 @Component({
-  tag: 'sqh-sam-component',
-  styleUrl: 'sam-component.scss'
+  tag: 'sqh-form-component',
+  styleUrl: 'form-component.scss'
 })
 
-export class SamComponent {
+export class FormComponent {
   @State() formData: FormState = {};
   @State() failMessage: string = "";
   @State() signedUp?: boolean;
