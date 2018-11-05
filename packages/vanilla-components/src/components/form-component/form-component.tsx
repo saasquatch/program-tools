@@ -12,7 +12,6 @@ interface FormState {
   lastName?: string;
   email?: string;
   valid?: boolean;
-  loading?: boolean;
   failed?: boolean;
 }
 
@@ -24,6 +23,7 @@ interface FormState {
 export class FormComponent {
   @State() formData: FormState = {};
   @State() failMessage: string = "";
+  @State() loading?: boolean;
   @State() signedUp?: boolean;
 
   @Prop() successtext: string;
@@ -36,7 +36,7 @@ export class FormComponent {
   @Prop() buttontext: string;
 
   
-  testAdd() { 
+  addUser() { 
     const dataToSend = {
       firstName: this.formData.firstName,
       lastName: this.formData.lastName,
@@ -47,34 +47,26 @@ export class FormComponent {
   }
 
   async handleSubmit(e) {
-    debug(e)
     e.preventDefault()
 
-    // display Loading... text
     // disable form and load
-    this.formData = {
-      ...this.formData,
-      loading: true
-    }
+    this.loading=true
     
     debug("Submitted", this.formData);
-
-    //API.graphql
-    // send data to our backend
     
     if(Math.random() >= 0.5){
       // Successfully signed up!
-      // Hide form
-      await this.testAdd();
+      await this.addUser();
       this.signedUp = true;
       debug(this.formData, "Form submission success")
     } else {
-      // Form re-enabled
+      // Form re-enabled on fail
       this.formData = {
         ...this.formData,
-        loading: false,
         failed: true
       }
+
+      this.loading = false;
 
       debug(this.formData, "Form submission failed")
     }
@@ -154,28 +146,28 @@ export class FormComponent {
               value={this.formData.firstName} 
               onInput={(e) => this.handleFirstName(e)} 
               placeholder="First Name" 
-              disabled={this.formData.loading}
+              disabled={this.loading}
               required 
             />
             <input type="text" id="form-input" 
               value={this.formData.lastName} 
               onInput={(e) => this.handleLastName(e)} 
               placeholder="Last Name" 
-              disabled={this.formData.loading}
+              disabled={this.loading}
               required 
             />
             <input type="email" id="form-input" 
               value={this.formData.email} 
               onInput={(e) => this.handleEmail(e)} 
               placeholder="Email" 
-              disabled={this.formData.loading}
+              disabled={this.loading}
               required 
             />
   
             <p class="failed">{ this.failMessage }</p>
             <input type="submit" 
               class={`sqh-continue-btn ${buttonStyle}`} 
-              value={this.formData.loading ? this.loadingtext : this.buttontext} disabled={this.formData.loading} />
+              value={this.loading ? this.loadingtext : this.buttontext} disabled={this.loading} />
           </form>
         </div>
       </div>
