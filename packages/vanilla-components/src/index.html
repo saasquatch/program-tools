@@ -12,6 +12,7 @@
 
   <script>
     window.widgetIdent = {
+      //email:"test@test.ca",
       env: 'demo',
       engagementMedium: 'POPUP',
       locale: 'en_US',
@@ -127,12 +128,16 @@
   ></sqh-text-component>
 
   <sqh-form-component
+    ishidden="false"
     buttontext="Continue"
     buttoncolor="#35b21e"
     buttontextcolor="#FFFFFF"
     successtext="You have successfully signed up!"
     failuretext="Something went wrong. Please try again."
     loadingtext="Loading..."
+    requirefirstname="true"
+    requirelastname="true"
+    requireemail="true"
   ></sqh-form-component>
 
 <!--

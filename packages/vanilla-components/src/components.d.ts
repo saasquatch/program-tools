@@ -166,6 +166,9 @@ declare global {
       'buttontextcolor': string;
       'failuretext': string;
       'loadingtext': string;
+      'requireemail': boolean;
+      'requirefirstname': boolean;
+      'requirelastname': boolean;
       'successtext': string;
     }
   }
@@ -194,6 +197,9 @@ declare global {
       'buttontextcolor'?: string;
       'failuretext'?: string;
       'loadingtext'?: string;
+      'requireemail'?: boolean;
+      'requirefirstname'?: boolean;
+      'requirelastname'?: boolean;
       'successtext'?: string;
     }
   }

@@ -25,6 +25,7 @@ export class FormComponent {
   @State() failMessage: string = "";
   @State() loading?: boolean;
   @State() signedUp?: boolean;
+  //@State() isRegistered?: boolean;
 
   @Prop() successtext: string;
   @Prop() failuretext: string;
@@ -34,6 +35,11 @@ export class FormComponent {
   @Prop() buttoncolor: string;
   @Prop() buttontextcolor: string;
   @Prop() buttontext: string;
+
+  // form props
+  @Prop() requirefirstname: boolean;
+  @Prop() requirelastname: boolean;
+  @Prop() requireemail: boolean;
 
   
   addUser() { 
@@ -50,7 +56,7 @@ export class FormComponent {
     e.preventDefault()
 
     // disable form and load
-    this.loading=true
+    this.loading = true
     
     debug("Submitted", this.formData);
     
@@ -129,6 +135,8 @@ export class FormComponent {
   render() {
     if(this.formData.failed) this.failMessage = this.failuretext;
 
+    console.log(window["widgetIdent"].email)
+
     const buttonStyle= css`
       background-color:${this.buttoncolor};
       color:${this.buttontextcolor};
@@ -147,21 +155,21 @@ export class FormComponent {
               onInput={(e) => this.handleFirstName(e)} 
               placeholder="First Name" 
               disabled={this.loading}
-              required 
+              required={this.requirefirstname}
             />
             <input type="text" id="form-input" 
               value={this.formData.lastName} 
               onInput={(e) => this.handleLastName(e)} 
               placeholder="Last Name" 
               disabled={this.loading}
-              required 
+              required={this.requirelastname}
             />
             <input type="email" id="form-input" 
               value={this.formData.email} 
               onInput={(e) => this.handleEmail(e)} 
               placeholder="Email" 
               disabled={this.loading}
-              required 
+              required={this.requireemail}
             />
   
             <p class="failed">{ this.failMessage }</p>
