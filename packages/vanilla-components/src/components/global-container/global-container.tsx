@@ -56,6 +56,24 @@ export class GlobalContainer {
                   box-shadow: none;
         }
       }
+      .input-group {
+        padding: 8px 0 10px;
+        position: relative;
+        display: table;
+        border-collapse: separate;
+        width: 100%;
+        max-width: 440px;
+        margin: 0 auto;
+      }
+      .input-group input {
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.428571429;
+        border: 1px solid #ccc;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      }
     `
     return <div class={style}>
       <slot />
