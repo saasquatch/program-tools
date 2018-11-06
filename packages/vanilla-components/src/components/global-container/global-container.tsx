@@ -32,7 +32,10 @@ export class GlobalContainer {
     `
 
     injectGlobal`
-    input[type="button"],input[type="submit"],.squatch-share-btn,.sqh-copy-btn {
+    input[type="button"],
+    input[type="submit"],
+    .squatch-share-btn,
+    .sqh-copy-btn {
         touch-action: manipulation;
         cursor: pointer;
         background-image: none;
@@ -42,7 +45,7 @@ export class GlobalContainer {
         font-size:14px;
         padding:6px 12px;
         line-height: 1.428571429;
-        width: 140px;
+        width:140px;
         &:focus {
           outline: 0; 
         }

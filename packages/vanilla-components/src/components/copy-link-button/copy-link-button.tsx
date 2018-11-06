@@ -14,6 +14,7 @@ export class CopyLinkButton {
   @Prop() copyfailure: string = "Press Ctrl+C to copy";
   @Prop() ishidden: boolean = false;
   @Prop() buttoncolor: string;
+  @Prop() buttonwidth: string;
   @Prop() textcolor: string;
   @State() sharelink: string;
 
@@ -62,6 +63,7 @@ export class CopyLinkButton {
     const myStyle = css `
       background-color: ${this.buttoncolor};
       border: 1px solid ${this.buttoncolor};
+      width: ${this.buttonwidth}px;
       color: ${this.textcolor};
       font-family: ${'inherit'};
       

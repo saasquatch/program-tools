@@ -121,6 +121,7 @@ declare global {
   namespace StencilComponents {
     interface SqhCopyLinkButton {
       'buttoncolor': string;
+      'buttonwidth': string;
       'copyfailure': string;
       'copysuccess': string;
       'ishidden': boolean;
@@ -149,6 +150,7 @@ declare global {
   namespace JSXElements {
     export interface SqhCopyLinkButtonAttributes extends HTMLAttributes {
       'buttoncolor'?: string;
+      'buttonwidth'?: string;
       'copyfailure'?: string;
       'copysuccess'?: string;
       'ishidden'?: boolean;

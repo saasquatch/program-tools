@@ -115,8 +115,8 @@ export class StatsContainer {
 
     return (
     <Tunnel.Consumer>
-    {({ readyToLoad }) => (   
-      readyToLoad ? (  
+    {({ readyToLoadStats }) => (   
+      readyToLoadStats ? (  
         <div class={containerStyle}><slot /></div>
       )
       : 
