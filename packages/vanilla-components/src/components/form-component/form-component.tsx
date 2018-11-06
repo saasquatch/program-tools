@@ -174,7 +174,6 @@ export class FormComponent {
     {({ registered, registerUser, loadStats }) => (
        !registered ? (
         <div class="input-group">
-          <p>registered status: false</p>
           <form id="signup-form" onSubmit={(e) => this.handleSubmit(e, registerUser)}>
             <input type="text" id="form-input" 
               value={this.formData.firstName} 
@@ -210,7 +209,7 @@ export class FormComponent {
       <div>
         <h3>
           <img class="success" src="https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png" />
-        { this.successtext }registered status: true
+        { this.successtext }
         </h3>
         <input type="button" value="Load Stats" onClick={() => this.loadRefStats(registered,loadStats)}  />
       </div>

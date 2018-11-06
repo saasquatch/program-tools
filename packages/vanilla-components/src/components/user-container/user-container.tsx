@@ -35,9 +35,84 @@ export class UserContainer {
     <Tunnel.Provider state={tunnelState}>
       {
         this.readyToLoad ? 
-        <sqh-stats-container />
+        <div>
+          <sqh-text-component
+            ismarkdown={true}
+            text="**Rewards Dashboard**" 
+            color="#000000" 
+            fontsize="13" 
+            textalign="center"
+            paddingtop="20" 
+            paddingbottom="5"
+          ></sqh-text-component>
+          <sqh-stats-container
+            paddingtop="0"
+            paddingbottom="0"
+          >
+            <sqh-stat-component
+              statcolor="#4caf50" 
+              stattype="/referralsCount" 
+              statdescription="Friends Referred"
+            ></sqh-stat-component>
+
+            <sqh-stat-component         
+              stattype="/rewardsCount" 
+              statdescription="Total Rewards"
+              statcolor="#000000">
+            </sqh-stat-component>
+
+            <sqh-stat-component 
+              stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit" 
+              statdescription="Credit earned"
+              statcolor="#000000"
+            ></sqh-stat-component>
+
+            <sqh-referral-list         
+              showreferrer={true}
+              usefirstreward={false}
+              referralnamecolor="darkslategray" 
+              referraltextcolor="lightgray" 
+              rewardcolor="#4BB543" 
+              pendingcolor="lightgray" 
+              pendingvalue="Reward Pending"
+              expiredcolor="lightgray" 
+              expiredvalue="Expired Reward"
+              expiredcontent="Signed up, referred {date}"
+              referrervalue="Referred"
+              referrercontent="Referred you {date}" 
+              convertedcontent="Signed up, referred {date}" 
+              pendingcontent="Trial user, referred {date}" 
+              valuecontent="and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}" 
+              paginatemore="View More" 
+              paginateless="Previous"
+              noreferralsyet="No Referrals Yet..."
+              unknownuser="Your Friend"
+            ></sqh-referral-list> 
+          </sqh-stats-container>
+        </div>
         :
-        <sqh-form-component />
+        <div>
+          <sqh-text-component
+            ismarkdown={true}
+            text="Thanks for sending your first referral!<br>Give us your email to ensure you get rewarded when your referral is used." 
+            color="#000000" 
+            fontsize="13" 
+            textalign="center"
+            paddingtop="20" 
+            paddingbottom="5"
+          ></sqh-text-component>
+          <sqh-form-component 
+            buttontext="Continue"
+            buttoncolor="#35b21e"
+            buttontextcolor="#FFFFFF"
+            successtext="You have successfully signed up!"
+            failuretext="Something went wrong. Please try again."
+            loadingtext="Loading..."
+            requirefirstname={true}
+            requirelastname={true}
+            requireemail={true}
+          />
+        </div>
       
       }
       </Tunnel.Provider>

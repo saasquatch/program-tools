@@ -15,7 +15,6 @@ export class StatsContainer {
   @Prop() paddingbottom: string;
   @State() loading: boolean;
   @State() stats: object;
-  @State() isRegistered: boolean;
 
   constructor() {
     this.loading = true;
@@ -113,7 +112,7 @@ export class StatsContainer {
     <Tunnel.Consumer>
     {({ readyToLoad }) => (   
       readyToLoad ? (  
-        <div class={containerStyle}>stats should be here<slot /></div>
+        <div class={containerStyle}><slot /></div>
       )
       : 
       ""
