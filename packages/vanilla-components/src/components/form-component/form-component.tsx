@@ -8,12 +8,18 @@ import { API } from '../../services/WidgetHost';
 
 const debug = debugFn("sqh-form-component")
 
-interface FormState {
+interface FormState extends FormData{
+  failed?: boolean;
+  errors?: FormErrors;
+}
+
+interface FormData {
   firstName?: string;
   lastName?: string;
   email?: string;
-  valid?: boolean;
-  failed?: boolean;
+}
+type FormErrors = {
+  [key in keyof FormData]:string
 }
 
 @Component({
@@ -25,8 +31,6 @@ export class FormComponent {
   @State() formData: FormState = {};
   @State() failMessage: string = "";
   @State() loading?: boolean;
-  @State() signedUp?: boolean;
-  @State() isRegistered?: boolean;
 
   @Prop() successtext: string;
   @Prop() failuretext: string;
@@ -42,18 +46,24 @@ export class FormComponent {
   @Prop() requirelastname: boolean;
   @Prop() requireemail: boolean;
 
-  
+  componentWillLoad(){
+    this.formData.errors = {
+      firstName: "",
+      lastName: "",
+      email: ""
+    }
+  }
+
   addUser() { 
     const dataToSend = {
       firstName: this.formData.firstName,
       lastName: this.formData.lastName,
       email: this.formData.email,
     }
-
     return API.graphql.addUserDetails(dataToSend);
   }
 
-  async loadRefStats(registered, loadStats) {
+ loadRefStats(registered, loadStats) {
     debug("registered:", registered)
     if(registered){
       loadStats();
@@ -71,10 +81,8 @@ export class FormComponent {
     if(Math.random() >= 0.5){
       // Successfully signed up!
       await this.addUser();
-      this.signedUp = true;
       debug(this.formData, "Form submission success")
       registerUser();
-      this.isRegistered = true;
     } else {
       // Form re-enabled on fail
       this.formData = {
@@ -88,57 +96,20 @@ export class FormComponent {
     }
   }
 
-  handleFirstName(event) {
-    let valid;
-
-    if(!event.target.value){
-      event.target.className = "invalid"
-      valid = false;
-    } else {
-      event.target.className = "valid"
-      valid = true;
-    }
-
-    this.formData = {
-      ...this.formData,
-      firstName: event.target.value,
-      valid
-    }
-  }
-
-  handleLastName(event) {
-    let valid;
-
-    if(!event.target.value){
-      event.target.className = "invalid"
-      valid = false;
-    } else {
-      event.target.className = "valid"
-      valid = true;
-    }
-
-    this.formData = {
-      ...this.formData,
-      lastName: event.target.value,
-      valid
-    }
-  }
-
-  handleEmail(event) {
-    let valid;
-
+  validateField(event, fieldName) {
     if (event.target.validity.typeMismatch || !event.target.value) { 
-      event.target.className = "invalid"
-      valid = false;
+      this.formData[fieldName] = event.target.value
+      this.formData.errors[fieldName] = "invalid"
+      //render
+      this.formData = {
+        ...this.formData
+      }
     } else {
-      event.target.className = "valid"
-      valid = true;
-    }
-
-    this.formData = {
-      ...this.formData,
-      email: event.target.value,
-      valid
+      this.formData[fieldName] = event.target.value
+      this.formData.errors[fieldName] = "valid"
+      this.formData = {
+        ...this.formData
+      }
     }
   }
 
@@ -152,63 +123,48 @@ export class FormComponent {
         border-color: green;
       }
     `;
-
-  /*
-    return (
-      <Tunnel.Consumer>
-        {({ registered, registerUser }) => (
-          {registered : true} ?
-            <div class='app-profile'>
-              <button class="sqh-continue-btn" onClick={registerUser}>Increment Num</button>
-              <p>{registered}</p>
-            </div>
-            :
-            <p>{registered}</p>
-        )}
-      </Tunnel.Consumer>
-    );
-    */
-
+    
     return (
     <Tunnel.Consumer>
     {({ registered, registerUser, loadStats }) => (
        !registered ? (
         <div class="input-group">
           <form id="signup-form" onSubmit={(e) => this.handleSubmit(e, registerUser)}>
-            <input type="text" id="form-input" 
+            <input type="text"  
               value={this.formData.firstName} 
-              onInput={(e) => this.handleFirstName(e)} 
+              class={`form-input ${this.formData.errors.firstName}`}
+              onInput={(e) => this.validateField(e, "firstName")} 
               placeholder="First Name" 
               disabled={this.loading}
               required={this.requirefirstname}
             />
-            <input type="text" id="form-input" 
+            <input type="text" 
               value={this.formData.lastName} 
-              onInput={(e) => this.handleLastName(e)} 
+              class={`form-input ${this.formData.errors.lastName}`}
+              onInput={(e) => this.validateField(e, "lastName")} 
               placeholder="Last Name" 
               disabled={this.loading}
               required={this.requirelastname}
             />
-            <input type="email" id="form-input" 
+            <input type="email"
               value={this.formData.email} 
-              onInput={(e) => this.handleEmail(e)} 
+              class={`form-input ${this.formData.errors.email}`}
+              onInput={(e) => this.validateField(e, "email")} 
               placeholder="Email" 
               disabled={this.loading}
               required={this.requireemail}
             />
-  
             <p class="failed">{ this.failMessage }</p>
             <input type="submit" 
               class={`sqh-continue-btn ${buttonStyle}`} 
               value={this.loading ? this.loadingtext : this.buttontext} disabled={this.loading} />
-            <p>{registered}</p>
           </form>
         </div>
     )
     : (
       <div>
         <h3>
-          <img class="success" src="https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png" />
+          <i class="success icon icon-ok-circled" />
         { this.successtext }
         </h3>
         <input type="button" value="Load Stats" onClick={() => this.loadRefStats(registered,loadStats)}  />

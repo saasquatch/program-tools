@@ -3,6 +3,9 @@ import { API } from '../../services/WidgetHost';
 import pathToRegexp from "path-to-regexp";
 import { css } from 'emotion';
 import Tunnel from '../../services/Registered'; // Import the tunnel
+import debugFn from "debug";
+
+const debug = debugFn("sqh-stats-container")
 
 @Component({
   tag: 'sqh-stats-container',
@@ -32,9 +35,11 @@ export class StatsContainer {
           rewardsWeek: res.rewardsWeek.totalCount,
           rewardBalances: res.rewardBalances
         }
+        debug(this.stats)
         this.loading = false;
       }).then(() => {
         const children = Array.from(this.container.querySelectorAll('sqh-stat-component'));
+        debug(children)
         children.map(child => {
           this.setStatValue(child)
         })
