@@ -4,6 +4,7 @@ sqh-copy-link-button {
   text-align: center;
 
   #squatch-share-link {
+    border-radius: 4px 0 0 4px;
     -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
