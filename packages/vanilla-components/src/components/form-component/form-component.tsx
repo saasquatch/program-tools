@@ -19,7 +19,7 @@ interface FormData {
   email?: string;
 }
 type FormErrors = {
-  [key in keyof FormData]:string
+  [key in keyof FormData]:string;
 }
 
 @Component({
@@ -32,6 +32,7 @@ export class FormComponent {
   @State() failMessage: string = "";
   @State() loading?: boolean;
 
+  // status props
   @Prop() successtext: string;
   @Prop() failuretext: string;
   @Prop() loadingtext: string;
@@ -130,53 +131,53 @@ export class FormComponent {
   
     return (
     <Tunnel.Consumer>
-    {({ registered, registerUser, loadStats }) => (
-       !registered ? (
-        <div class="input-group">
-          <form id="signup-form" onSubmit={(e) => this.handleSubmit(e, registerUser)}>
-            <input type="text"  
-              value={this.formData.firstName} 
-              class={`form-input ${this.formData.errors.firstName}`}
-              onInput={(e) => this.validateField(e, "firstName")} 
-              placeholder="First Name" 
-              disabled={this.loading}
-              required={this.requirefirstname}
-            />
-            <input type="text" 
-              value={this.formData.lastName} 
-              class={`form-input ${this.formData.errors.lastName}`}
-              onInput={(e) => this.validateField(e, "lastName")} 
-              placeholder="Last Name" 
-              disabled={this.loading}
-              required={this.requirelastname}
-            />
-            <input type="email"
-              value={this.formData.email} 
-              class={`form-input ${this.formData.errors.email}`}
-              onInput={(e) => this.validateField(e, "email")} 
-              placeholder="Email" 
-              disabled={this.loading}
-              required={this.requireemail}
-            />
-            <p class="failed">{ this.failMessage }</p>
-            <input type="submit" 
-              class={buttonStyle} 
-              value={this.loading ? this.loadingtext : this.buttontext} disabled={this.loading} />
-          </form>
+      {({ registered, registerUser, loadStats }) => (
+        !registered ? (
+          <div class="input-group">
+            <form id="signup-form" onSubmit={(e) => this.handleSubmit(e, registerUser)}>
+              <input type="text"  
+                value={this.formData.firstName} 
+                class={`form-input ${this.formData.errors.firstName}`}
+                onInput={(e) => this.validateField(e, "firstName")} 
+                placeholder="First Name" 
+                disabled={this.loading}
+                required={this.requirefirstname}
+              />
+              <input type="text" 
+                value={this.formData.lastName} 
+                class={`form-input ${this.formData.errors.lastName}`}
+                onInput={(e) => this.validateField(e, "lastName")} 
+                placeholder="Last Name" 
+                disabled={this.loading}
+                required={this.requirelastname}
+              />
+              <input type="email"
+                value={this.formData.email} 
+                class={`form-input ${this.formData.errors.email}`}
+                onInput={(e) => this.validateField(e, "email")} 
+                placeholder="Email" 
+                disabled={this.loading}
+                required={this.requireemail}
+              />
+              <p class="failed">{ this.failMessage }</p>
+              <input type="submit" 
+                class={buttonStyle} 
+                value={this.loading ? this.loadingtext : this.buttontext} disabled={this.loading} />
+            </form>
+          </div>
+      )
+      : (
+        <div>
+          <h3>
+            <i class="success icon icon-ok-circled" />
+          { this.successtext }
+          </h3>
+          <input class={buttonStyle} type="button" value="Load Stats" onClick={() => this.loadRefStats(registered,loadStats)}  />
         </div>
-    )
-    : (
-      <div>
-        <h3>
-          <i class="success icon icon-ok-circled" />
-        { this.successtext }
-        </h3>
-        <input class={buttonStyle} type="button" value="Load Stats" onClick={() => this.loadRefStats(registered,loadStats)}  />
-      </div>
-    )
-  )}
+      )
+    )}
   </Tunnel.Consumer>
-  )
+  );
 
   }
 }
