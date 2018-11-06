@@ -57,13 +57,30 @@ export class FormComponent {
     }
   }
 
-  addUser() { 
+  addUser(registerUser) { 
     const dataToSend = {
       firstName: this.formData.firstName,
       lastName: this.formData.lastName,
       email: this.formData.email,
     }
-    return API.graphql.addUserDetails(dataToSend);
+    return API.graphql.addUserDetails(dataToSend).then(res => {
+      debug(res, "Form submission success")
+      registerUser();
+    }).catch(e => {
+      this.onError(e);
+    });
+    ;
+  }
+
+  onError(e: Error) {
+    debug("Error loading via GraphQL.", e);
+    // Form re-enabled on fail
+    this.formData = {
+      ...this.formData,
+      failed: true
+    }
+
+    this.loading = false;
   }
 
  loadRefStats(registered, loadStats) {
@@ -75,28 +92,11 @@ export class FormComponent {
 
   async handleSubmit(e, registerUser) {
     e.preventDefault()
+    debug("Submitted", this.formData);
 
     // disable form and load
     this.loading = true
-    
-    debug("Submitted", this.formData);
-    
-    if(Math.random() >= 0.5){
-      // Successfully signed up!
-      await this.addUser();
-      debug(this.formData, "Form submission success")
-      registerUser();
-    } else {
-      // Form re-enabled on fail
-      this.formData = {
-        ...this.formData,
-        failed: true
-      }
-
-      this.loading = false;
-
-      debug(this.formData, "Form submission failed")
-    }
+    await this.addUser(registerUser);
   }
 
   validateField(event, fieldName) {
