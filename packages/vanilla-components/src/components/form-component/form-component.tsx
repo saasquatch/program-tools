@@ -1,8 +1,9 @@
 import { Component, Prop, State } from '@stencil/core';
+import Tunnel from '../../services/Registered'; // Import the tunnel
 import { css } from 'emotion';
 import debugFn from "debug";
 
-import { shadeColor } from '../../utilities';
+//import { shadeColor } from '../../utilities';
 import { API } from '../../services/WidgetHost';
 
 const debug = debugFn("sqh-form-component")
@@ -25,7 +26,7 @@ export class FormComponent {
   @State() failMessage: string = "";
   @State() loading?: boolean;
   @State() signedUp?: boolean;
-  //@State() isRegistered?: boolean;
+  @State() isRegistered?: boolean;
 
   @Prop() successtext: string;
   @Prop() failuretext: string;
@@ -52,7 +53,14 @@ export class FormComponent {
     return API.graphql.addUserDetails(dataToSend);
   }
 
-  async handleSubmit(e) {
+  async loadRefStats(registered, loadStats) {
+    debug("registered:", registered)
+    if(registered){
+      loadStats();
+    }
+  }
+
+  async handleSubmit(e, registerUser) {
     e.preventDefault()
 
     // disable form and load
@@ -65,6 +73,8 @@ export class FormComponent {
       await this.addUser();
       this.signedUp = true;
       debug(this.formData, "Form submission success")
+      registerUser();
+      this.isRegistered = true;
     } else {
       // Form re-enabled on fail
       this.formData = {
@@ -134,22 +144,38 @@ export class FormComponent {
 
   render() {
     if(this.formData.failed) this.failMessage = this.failuretext;
-
-    console.log(window["widgetIdent"].email)
-
     const buttonStyle= css`
       background-color:${this.buttoncolor};
       color:${this.buttontextcolor};
       &:hover {
-        background-color: ${shadeColor(this.buttoncolor, 10)};
-        border-color: ${shadeColor(this.buttoncolor, 12)};
+        background-color: green;
+        border-color: green;
       }
     `;
 
-    return !this.signedUp ? (
-      <div>
+  /*
+    return (
+      <Tunnel.Consumer>
+        {({ registered, registerUser }) => (
+          {registered : true} ?
+            <div class='app-profile'>
+              <button class="sqh-continue-btn" onClick={registerUser}>Increment Num</button>
+              <p>{registered}</p>
+            </div>
+            :
+            <p>{registered}</p>
+        )}
+      </Tunnel.Consumer>
+    );
+    */
+
+    return (
+    <Tunnel.Consumer>
+    {({ registered, registerUser, loadStats }) => (
+       !registered ? (
         <div class="input-group">
-          <form id="signup-form" onSubmit={(e) => this.handleSubmit(e)}>
+          <p>registered status: false</p>
+          <form id="signup-form" onSubmit={(e) => this.handleSubmit(e, registerUser)}>
             <input type="text" id="form-input" 
               value={this.formData.firstName} 
               onInput={(e) => this.handleFirstName(e)} 
@@ -176,18 +202,22 @@ export class FormComponent {
             <input type="submit" 
               class={`sqh-continue-btn ${buttonStyle}`} 
               value={this.loading ? this.loadingtext : this.buttontext} disabled={this.loading} />
+            <p>{registered}</p>
           </form>
         </div>
-      </div>
     )
     : (
       <div>
         <h3>
           <img class="success" src="https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png" />
-        { this.successtext }
+        { this.successtext }registered status: true
         </h3>
+        <input type="button" value="Load Stats" onClick={() => this.loadRefStats(registered,loadStats)}  />
       </div>
     )
- 
+  )}
+  </Tunnel.Consumer>
+  )
+
   }
 }

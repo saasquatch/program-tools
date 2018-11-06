@@ -2,6 +2,7 @@ import { Component, Prop, State, Element, Listen } from '@stencil/core';
 import { API } from '../../services/WidgetHost';
 import pathToRegexp from "path-to-regexp";
 import { css } from 'emotion';
+import Tunnel from '../../services/Registered'; // Import the tunnel
 
 @Component({
   tag: 'sqh-stats-container',
@@ -14,6 +15,7 @@ export class StatsContainer {
   @Prop() paddingbottom: string;
   @State() loading: boolean;
   @State() stats: object;
+  @State() isRegistered: boolean;
 
   constructor() {
     this.loading = true;
@@ -100,12 +102,23 @@ export class StatsContainer {
   }
 
   render() {
+    
     const containerStyle = css`
       display: ${this.ishidden ? 'none' : 'inherit'};
       padding-top: ${this.paddingtop}px;
       padding-bottom: ${this.paddingbottom}px;
     `;
 
-    return <div class={containerStyle}><slot /></div>;
+    return (
+    <Tunnel.Consumer>
+    {({ readyToLoad }) => (   
+      readyToLoad ? (  
+        <div class={containerStyle}>stats should be here<slot /></div>
+      )
+      : 
+      ""
+    )}
+    </Tunnel.Consumer>
+    )
   }
 }

@@ -127,84 +127,90 @@
   paddingbottom="5"
   ></sqh-text-component>
 
-  <sqh-form-component
-    ishidden="false"
-    buttontext="Continue"
-    buttoncolor="#35b21e"
-    buttontextcolor="#FFFFFF"
-    successtext="You have successfully signed up!"
-    failuretext="Something went wrong. Please try again."
-    loadingtext="Loading..."
-    requirefirstname="true"
-    requirelastname="true"
-    requireemail="true"
-  ></sqh-form-component>
-
+  <sqh-user-container>
 <!--
-  <sqh-text-component 
-    sqhreferralsheader="true"
-    ismarkdown="true"
-    text="**Rewards Dashboard**" 
-    color="#000000" 
-    fontsize="13" 
-    textalign="center"
-    paddingtop="20" 
-    paddingbottom="10"
-  ></sqh-text-component>
+    <sqh-form-component
+      ishidden="false"
+      buttontext="Continue"
+      buttoncolor="#35b21e"
+      buttontextcolor="#FFFFFF"
+      successtext="You have successfully signed up!"
+      failuretext="Something went wrong. Please try again."
+      loadingtext="Loading..."
+      requirefirstname="true"
+      requirelastname="true"
+      requireemail="true"
+    ></sqh-form-component>
 
-  <sqh-stats-container
-    paddingtop="0"
-    paddingbottom="0"
-  >
+    <sqh-stats-container
+      paddingtop="0"
+      paddingbottom="0"
+    >
 
-    <sqh-stat-component 
-      statcolor="#4caf50" 
-      stattype="/referralsCount" 
-      statdescription="Friends Referred"
-      paddingtop="10"
-      paddingbottom="10"
-    ></sqh-stat-component>
+      <sqh-text-component 
+        sqhreferralsheader="true"
+        ismarkdown="true"
+        text="**Rewards Dashboard**" 
+        color="#000000" 
+        fontsize="13" 
+        textalign="center"
+        paddingtop="20" 
+        paddingbottom="10"
+      ></sqh-text-component>
 
-    <sqh-stat-component
-      stattype="/rewardsCount" 
-      statdescription="Total Rewards"
-      paddingtop="10"
-      paddingbottom="10"
-      statcolor="#000000"
-    ></sqh-stat-component>
+      <sqh-stat-component 
+        statcolor="#4caf50" 
+        stattype="/referralsCount" 
+        statdescription="Friends Referred"
+        paddingtop="10"
+        paddingbottom="10"
+      ></sqh-stat-component>
 
-    <sqh-stat-component 
-      stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit" 
-      statdescription="Credit earned"
-      paddingtop="10"
-      paddingbottom="10"
-      statcolor="#000000"
-    ></sqh-stat-component>
+      <sqh-stat-component
+        stattype="/rewardsCount" 
+        statdescription="Total Rewards"
+        paddingtop="10"
+        paddingbottom="10"
+        statcolor="#000000"
+      ></sqh-stat-component>
 
-  </sqh-stats-container>
+      <sqh-stat-component 
+        stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit" 
+        statdescription="Credit earned"
+        paddingtop="10"
+        paddingbottom="10"
+        statcolor="#000000"
+      ></sqh-stat-component>
 
-  <sqh-referral-list 
-    showreferrer="true"
-    usefirstreward="false"
-    referralnamecolor="darkslategray" 
-    referraltextcolor="lightgray" 
-    rewardcolor="#4BB543" 
-    pendingcolor="lightgray" 
-    pendingvalue="Reward Pending"
-    expiredcolor="lightgray" 
-    expiredvalue="Expired Reward"
-    expiredcontent="Signed up, referred {date}"
-    referrervalue="Referred"
-    referrercontent="Referred you {date}" 
-    convertedcontent="Signed up, referred {date}" 
-    pendingcontent="Trial user, referred {date}" 
-    pendingvalue="Referral pending" 
-    valuecontent="and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}" 
-    paginatemore="View More" 
-    paginateless="Previous"
-    noreferralsyet="No Referrals Yet..."
-    unknownuser="Your Friend"
-  ></sqh-referral-list>
+      <sqh-referral-list 
+        showreferrer="true"
+        usefirstreward="false"
+        referralnamecolor="darkslategray" 
+        referraltextcolor="lightgray" 
+        rewardcolor="#4BB543" 
+        pendingcolor="lightgray" 
+        pendingvalue="Reward Pending"
+        expiredcolor="lightgray" 
+        expiredvalue="Expired Reward"
+        expiredcontent="Signed up, referred {date}"
+        referrervalue="Referred"
+        referrercontent="Referred you {date}" 
+        convertedcontent="Signed up, referred {date}" 
+        pendingcontent="Trial user, referred {date}" 
+        pendingvalue="Referral pending" 
+        valuecontent="and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}" 
+        paginatemore="View More" 
+        paginateless="Previous"
+        noreferralsyet="No Referrals Yet..."
+        unknownuser="Your Friend"
+      ></sqh-referral-list>
+    </sqh-stats-container>
+  -->
+  </sqh-user-container>
+<!--
+
+-->
+<!--
 
   <sqh-text-component 
     sqhfooter="true" 

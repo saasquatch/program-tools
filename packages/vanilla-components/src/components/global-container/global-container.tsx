@@ -30,7 +30,6 @@ export class GlobalContainer {
       font-family: ${this.fontfamily};
       position: relative;
     `
-
     return <div class={style}>
       <slot />
       {this.poweredby
