@@ -80,29 +80,10 @@ sqh-copy-link-button {
   }
 
   .sqh-copy-btn {
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
-    border: 1px solid transparent;
-    white-space: nowrap;
-    border-radius: 4px;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     height: 34px;
-
-    &:focus {
-      outline: 0; // removes blue border on interactions
-    }
-
-    &.disabled,
-    &[disabled],
-    fieldset[disabled] & {
-      cursor: not-allowed;
-      pointer-events: none; // Future-proof disabling of clicks
-      opacity: .65;
-      -webkit-box-shadow: none;
-              box-shadow: none;
-    }
+    padding:0;
   }
 
   .icon-btn {

@@ -164,8 +164,10 @@ declare global {
   namespace StencilComponents {
     interface SqhFormComponent {
       'buttoncolor': string;
+      'buttonfontsize': string;
       'buttontext': string;
       'buttontextcolor': string;
+      'buttonwidth': string;
       'failuretext': string;
       'loadingtext': string;
       'requireemail': boolean;
@@ -195,8 +197,10 @@ declare global {
   namespace JSXElements {
     export interface SqhFormComponentAttributes extends HTMLAttributes {
       'buttoncolor'?: string;
+      'buttonfontsize'?: string;
       'buttontext'?: string;
       'buttontextcolor'?: string;
+      'buttonwidth'?: string;
       'failuretext'?: string;
       'loadingtext'?: string;
       'requireemail'?: boolean;

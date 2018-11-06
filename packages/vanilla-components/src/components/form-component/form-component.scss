@@ -26,53 +26,26 @@ sqh-form-component {
         margin: 0.75em auto;
     }
 
-    .sqh-continue-btn {
-        touch-action: manipulation;
-        cursor: pointer;
-        background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
-        border: 1px solid transparent;
-        white-space: nowrap;
-        border-radius: 4px;
-        padding:6px 12px;
-        font-size:14px;
-        line-height: 1.428571429;
-        width: 140px;
-    
-        &:focus {
-          outline: 0; // removes blue border on interactions
-        }
-    
-        &.disabled,
-        &[disabled],
-        fieldset[disabled] & {
-          cursor: not-allowed;
-          pointer-events: none; // Future-proof disabling of clicks
-          opacity: .65;
-          -webkit-box-shadow: none;
-                  box-shadow: none;
-        }
-      }
+    .invalid {
+      outline-color:red;
+      border-color:red;
+    }
 
-      .invalid {
-        outline-color:red;
-        border-color:red;
-      }
+    .valid {
+        outline-color:green;
+        border-color:green;
+    }
 
-      .valid {
-          outline-color:green;
-          border-color:green;
-      }
+    .failed {
+        font-size:12px;
+        color:#c70404;
+    }
 
-      .failed {
-          font-size:12px;
-          color:#c70404;
-      }
-
-      .success {
-        width: 15px;
-        vertical-align: middle;
-        margin: 4px;
-        color:#4BB543;
-      }
+    .success {
+      width: 15px;
+      vertical-align: middle;
+      margin: 4px;
+      color:#4BB543;
+    }
 
 }

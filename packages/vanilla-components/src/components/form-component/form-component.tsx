@@ -3,7 +3,7 @@ import Tunnel from '../../services/Registered'; // Import the tunnel
 import { css } from 'emotion';
 import debugFn from "debug";
 
-//import { shadeColor } from '../../utilities';
+import { shadeColor } from '../../utilities';
 import { API } from '../../services/WidgetHost';
 
 const debug = debugFn("sqh-form-component")
@@ -40,6 +40,8 @@ export class FormComponent {
   @Prop() buttoncolor: string;
   @Prop() buttontextcolor: string;
   @Prop() buttontext: string;
+  @Prop() buttonwidth: string;
+  @Prop() buttonfontsize: string;
 
   // form props
   @Prop() requirefirstname: boolean;
@@ -100,7 +102,6 @@ export class FormComponent {
     if (event.target.validity.typeMismatch || !event.target.value) { 
       this.formData[fieldName] = event.target.value
       this.formData.errors[fieldName] = "invalid"
-      //render
       this.formData = {
         ...this.formData
       }
@@ -115,15 +116,18 @@ export class FormComponent {
 
   render() {
     if(this.formData.failed) this.failMessage = this.failuretext;
+
     const buttonStyle= css`
+      font-size:${this.buttonfontsize}px;
+      width: ${this.buttonwidth}px;
       background-color:${this.buttoncolor};
       color:${this.buttontextcolor};
       &:hover {
-        background-color: green;
-        border-color: green;
+        background-color: ${shadeColor(this.buttoncolor, 10)};
+        border-color: ${shadeColor(this.buttoncolor, 12)};
       }
     `;
-    
+  
     return (
     <Tunnel.Consumer>
     {({ registered, registerUser, loadStats }) => (
@@ -156,7 +160,7 @@ export class FormComponent {
             />
             <p class="failed">{ this.failMessage }</p>
             <input type="submit" 
-              class={`sqh-continue-btn ${buttonStyle}`} 
+              class={buttonStyle} 
               value={this.loading ? this.loadingtext : this.buttontext} disabled={this.loading} />
           </form>
         </div>
@@ -167,7 +171,7 @@ export class FormComponent {
           <i class="success icon icon-ok-circled" />
         { this.successtext }
         </h3>
-        <input type="button" value="Load Stats" onClick={() => this.loadRefStats(registered,loadStats)}  />
+        <input class={buttonStyle} type="button" value="Load Stats" onClick={() => this.loadRefStats(registered,loadStats)}  />
       </div>
     )
   )}
