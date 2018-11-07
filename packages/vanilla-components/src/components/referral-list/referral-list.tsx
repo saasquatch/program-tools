@@ -2,6 +2,7 @@ import { Component, Prop, State} from '@stencil/core';
 import { css } from 'emotion';
 import { uuid } from '../../utilities';
 import { API } from '../../services/WidgetHost';
+import Tunnel from '../../services/Registered'; // Import the tunnel
 
 @Component({
   tag: 'sqh-referral-list',
@@ -158,11 +159,15 @@ export class ReferralList {
     `
 
     const totalReferralsCount = this.showreferrer && this.referredBy ? this.referralsCount + 1 : this.referralsCount;
-
-    return !this.ishidden && 
+    const hiddenStyle = { display: "none" };
+    return (
+      <Tunnel.Consumer>
+      {({ completedRegister }) => (   
+      
+      !this.ishidden && 
       totalReferralsCount > 0 
       ? ( // Referral List when not hidden and 1 or more referrals
-        <div class={`squatch-referrals ${clz}`}>
+        <div class={`squatch-referrals ${clz}`} style={completedRegister? null: hiddenStyle}>
           <div class="squatch-referrals-scroll-container">
             {referralsRow}
             {referredByRow}
@@ -206,12 +211,13 @@ export class ReferralList {
       ) 
       // 'No Referrals Yet' button if this.referralCount < 1
       : (
-        <div class="squatch-referrals-scroll-action-container">
+        <div class="squatch-referrals-scroll-action-container" style={completedRegister? null: hiddenStyle}>
           <button disabled class='squatch-no-referrals-yet'>
             {this.noreferralsyet}
           </button>
         </div>
       )
-    ;
-  }
+    )}
+    </Tunnel.Consumer>
+  )}
 }

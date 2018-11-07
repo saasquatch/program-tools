@@ -1,14 +1,30 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 import { css, injectGlobal } from 'emotion';
+import Tunnel from '../../services/Registered';
+import debugFn from "debug";
+
+const debug = debugFn("sqh-global-container");
 
 @Component({
   tag: 'sqh-global-container',
   styleUrl: 'global-container.scss'
 })
 export class GlobalContainer {
+  @State() trackRegistered: boolean;
+  @State() registered: boolean;
+  @State() completedRegister: boolean;
+
   @Prop() background: string;
   @Prop() fontfamily: string;
-  @Prop() poweredby: boolean = true;
+  @Prop() showform: boolean = true;
+  @Prop() poweredby: boolean = false;
+
+  
+  componentWillLoad(){
+    this.registered = false;
+    this.completedRegister = false;
+    
+  }
 
   LoadingState() {
     return (
@@ -25,6 +41,21 @@ export class GlobalContainer {
   }
 
   render() {
+    //this.trackRegistered = this.showform;
+
+    const tunnelState = {
+      registered: this.registered,
+      completedRegister: this.completedRegister,
+      registerUser: () => {
+        this.registered = true;
+        debug("registered:", this.registered)
+      },
+      loadNext: () => {
+        this.completedRegister = true;
+        debug("completedRegister:", this.completedRegister)
+      }
+    };
+
     const style = css`
       background-color: ${this.background};
       font-family: ${this.fontfamily};
@@ -78,13 +109,17 @@ export class GlobalContainer {
         box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
       }
     `
-    return <div class={style}>
-      <slot />
-      {this.poweredby
-        ? <a class="sqh-attribution" href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" target="_blank">Powered By Saasquatch</a>
-        : ''
-      }
-      <this.LoadingState />
-    </div>
+    return (
+      <Tunnel.Provider state={tunnelState}>
+        <div class={style}>
+          <slot />
+          {this.poweredby
+            ? <a class="sqh-attribution" href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" target="_blank">Powered By Saasquatch</a>
+            : ''
+          }
+          <this.LoadingState />
+        </div>
+      </Tunnel.Provider>
+    )
   }
 }

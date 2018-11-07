@@ -57,7 +57,7 @@ export class FormComponent {
     }
   }
 
-  addUser(registerUser) { 
+  async addUser(registerUser) { 
     const dataToSend = {
       firstName: this.formData.firstName,
       lastName: this.formData.lastName,
@@ -83,10 +83,10 @@ export class FormComponent {
     this.loading = false;
   }
 
- loadRefStats(registered, loadStats) {
+ loadNextSection(registered, loadNext) {
     debug("registered:", registered)
     if(registered){
-      loadStats();
+      loadNext();
     }
   }
 
@@ -117,6 +117,7 @@ export class FormComponent {
 
   render() {
     if(this.formData.failed) this.failMessage = this.failuretext;
+    const hiddenStyle = { display: "none" };
 
     const buttonStyle= css`
       font-size:${this.buttonfontsize}px;
@@ -131,9 +132,9 @@ export class FormComponent {
   
     return (
     <Tunnel.Consumer>
-      {({ registered, registerUser, loadStats }) => (
-        !registered ? (
-          <div class="input-group">
+      {({ registered, completedRegister, registerUser, loadNext }) => (
+        <div>
+          <div class="input-group" style={!registered ? null: hiddenStyle}>
             <form id="signup-form" onSubmit={(e) => this.handleSubmit(e, registerUser)}>
               <input type="text"  
                 value={this.formData.firstName} 
@@ -165,19 +166,18 @@ export class FormComponent {
                 value={this.loading ? this.loadingtext : this.buttontext} disabled={this.loading} />
             </form>
           </div>
-      )
-      : (
-        <div>
+        <div style={registered && !completedRegister ? null: hiddenStyle}>
           <h3>
             <i class="success icon icon-ok-circled" />
           { this.successtext }
           </h3>
-          <input class={buttonStyle} type="button" value="Load Stats" onClick={() => this.loadRefStats(registered,loadStats)}  />
+          <input class={buttonStyle} type="button" value="Load Stats" onClick={() => this.loadNextSection(registered,loadNext)}  />
         </div>
-      )
+      </div>
+
     )}
   </Tunnel.Consumer>
   );
 
-  }
+  }        
 }

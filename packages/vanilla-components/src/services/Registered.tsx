@@ -3,15 +3,15 @@ import { createProviderConsumer } from '@stencil/state-tunnel';
 
 export interface State {
   registered: boolean,
-  readyToLoadStats: boolean,
+  completedRegister: boolean,
   registerUser?: () => void,
-  loadStats?: () => void
+  loadNext?: () => void
 
 }
 
 export default createProviderConsumer<State>({
     registered: false,
-    readyToLoadStats: false
+    completedRegister: false
   },
   (subscribe, child) => (
     <context-consumer subscribe={subscribe} renderer={child} />

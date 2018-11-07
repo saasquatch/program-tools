@@ -11,7 +11,7 @@ const debug = debugFn("sqh-user-container");
 export class UserContainer {
 
   @State() registered: boolean;
-  @State() readyToLoadStats: boolean;
+  @State() completedRegister: boolean;
 
   componentWillLoad(){
     this.registered = false;
@@ -20,10 +20,10 @@ export class UserContainer {
     //fake check for registered user
     if(Math.random() >= 0.5){
       debug("User is already registered")
-      this.readyToLoadStats = true;
+      this.completedRegister = true;
     } else {
       debug("User is not registered")
-      this.readyToLoadStats = false;
+      this.completedRegister = false;
     }
   }
 
@@ -32,23 +32,23 @@ export class UserContainer {
 
     const tunnelState = {
       registered: this.registered,
-      readyToLoadStats: this.readyToLoadStats,
+      completedRegister: this.completedRegister,
       registerUser: () => {
         this.registered = true;
         debug("registerUser:", this.registered);
       },
-      loadStats: () => {
-        this.readyToLoadStats = true;
-        debug("readyToLoadStats:", this.readyToLoadStats)
+      loadNext: () => {
+        this.completedRegister = true;
+        debug("readyToLoadStats:", this.completedRegister)
       }
     };
 
     return (
       <Tunnel.Provider state={tunnelState}>
-        <div style={this.readyToLoadStats ? hiddenStyle : null}>
+        <div style={this.completedRegister ? hiddenStyle : null}>
           <slot name="form" />
         </div>
-        <div style={this.readyToLoadStats ? null : hiddenStyle}>
+        <div style={this.completedRegister ? null : hiddenStyle}>
           <slot name="stats"/>
         </div>
 
