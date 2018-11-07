@@ -1,6 +1,5 @@
 import { Component, Prop, Event, EventEmitter, Element, Watch } from '@stencil/core';
 import { css } from 'emotion';
-import Tunnel from '../../services/Registered'; // Import the tunnel
 
 @Component({
   tag: 'sqh-stat-component',
@@ -37,18 +36,11 @@ export class StatComponent {
     const clz = css`
       color: ${ this.statcolor };
     `
-    const hiddenStyle = { display: "none" };
 
-  return (
-    <Tunnel.Consumer>
-      {({ completedRegister }) => (
-        !this.ishidden &&
-          <div class={ clz } style={completedRegister? null: hiddenStyle}>
-            <div class="stat-value">{this.statvalue}</div>
-            <div class="stat-description">{this.statdescription}</div>
-          </div>
-      )}
-    </Tunnel.Consumer>
-  )
+  return !this.ishidden &&
+    <div class={ clz }>
+      <div class="stat-value">{this.statvalue}</div>
+      <div class="stat-description">{this.statdescription}</div>
+    </div>;
   }
 }

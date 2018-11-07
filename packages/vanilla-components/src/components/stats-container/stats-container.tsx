@@ -2,7 +2,6 @@ import { Component, Prop, State, Element, Listen } from '@stencil/core';
 import { API } from '../../services/WidgetHost';
 import pathToRegexp from "path-to-regexp";
 import { css } from 'emotion';
-import Tunnel from '../../services/Registered'; // Import the tunnel
 import debugFn from "debug";
 
 const debug = debugFn("sqh-stats-container")
@@ -106,25 +105,14 @@ export class StatsContainer {
   }
 
   render() {
-    const hiddenStyle = { display: "none" };
     const containerStyle = css`
     display: ${this.ishidden ? 'none' : 'inherit'};
       padding-top: ${this.paddingtop}px;
       padding-bottom: ${this.paddingbottom}px;
     `;
 
-
     return (
-      <Tunnel.Consumer>
-      {({ completedRegister }) => (
-        completedRegister ?
-        <div class={containerStyle} style={completedRegister? null: hiddenStyle}>
-          <slot />
-        </div>
-        :
-        ""
-      )}
-      </Tunnel.Consumer>
+        <div class={containerStyle}><slot /></div>
     )
   }
 }

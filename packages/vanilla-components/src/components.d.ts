@@ -171,6 +171,8 @@ declare global {
       'buttontextcolor': string;
       'buttonwidth': string;
       'failuretext': string;
+      'headingtext': string;
+      'ishidden': boolean;
       'loadingtext': string;
       'requireemail': boolean;
       'requirefirstname': boolean;
@@ -204,6 +206,8 @@ declare global {
       'buttontextcolor'?: string;
       'buttonwidth'?: string;
       'failuretext'?: string;
+      'headingtext'?: string;
+      'ishidden'?: boolean;
       'loadingtext'?: string;
       'requireemail'?: boolean;
       'requirefirstname'?: boolean;
@@ -222,6 +226,7 @@ declare global {
       'fontfamily': string;
       'poweredby': boolean;
       'showform': boolean;
+      'widgettype': string;
     }
   }
 
@@ -248,6 +253,7 @@ declare global {
       'fontfamily'?: string;
       'poweredby'?: boolean;
       'showform'?: boolean;
+      'widgettype'?: string;
     }
   }
 }
@@ -854,39 +860,6 @@ declare global {
       'paddingtop'?: string;
       'text'?: string;
       'textalign'?: string;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface SqhUserContainer {
-
-    }
-  }
-
-  interface HTMLSqhUserContainerElement extends StencilComponents.SqhUserContainer, HTMLStencilElement {}
-
-  var HTMLSqhUserContainerElement: {
-    prototype: HTMLSqhUserContainerElement;
-    new (): HTMLSqhUserContainerElement;
-  };
-  interface HTMLElementTagNameMap {
-    'sqh-user-container': HTMLSqhUserContainerElement;
-  }
-  interface ElementTagNameMap {
-    'sqh-user-container': HTMLSqhUserContainerElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'sqh-user-container': JSXElements.SqhUserContainerAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface SqhUserContainerAttributes extends HTMLAttributes {
-
     }
   }
 }

@@ -10,20 +10,27 @@ const debug = debugFn("sqh-global-container");
   styleUrl: 'global-container.scss'
 })
 export class GlobalContainer {
-  @State() trackRegistered: boolean;
+  @State() skipRegister: boolean;
   @State() registered: boolean;
   @State() completedRegister: boolean;
 
   @Prop() background: string;
   @Prop() fontfamily: string;
+  @Prop() widgettype: string;
   @Prop() showform: boolean = true;
   @Prop() poweredby: boolean = false;
 
   
   componentWillLoad(){
-    this.registered = false;
-    this.completedRegister = false;
-    
+    this.skipRegister = false;
+
+    if(this.skipRegister){
+      this.registered = true;
+      this.completedRegister = true;
+    } else {
+      this.registered = false;
+      this.completedRegister = false;
+    }
   }
 
   LoadingState() {
@@ -44,6 +51,7 @@ export class GlobalContainer {
     //this.trackRegistered = this.showform;
 
     const tunnelState = {
+      widgetType: this.widgettype,
       registered: this.registered,
       completedRegister: this.completedRegister,
       registerUser: () => {
@@ -55,7 +63,7 @@ export class GlobalContainer {
         debug("completedRegister:", this.completedRegister)
       }
     };
-
+    const hiddenStyle = { display: "none" };
     const style = css`
       background-color: ${this.background};
       font-family: ${this.fontfamily};
@@ -111,14 +119,28 @@ export class GlobalContainer {
     `
     return (
       <Tunnel.Provider state={tunnelState}>
+      { !this.completedRegister && !this.skipRegister ? (
         <div class={style}>
           <slot />
+          <slot name="form" />
+          
           {this.poweredby
             ? <a class="sqh-attribution" href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" target="_blank">Powered By Saasquatch</a>
             : ''
           }
           <this.LoadingState />
+          <div style={hiddenStyle}>
+            <slot name={this.widgettype} />
+          </div>
         </div>
+        ) 
+        :
+        (
+          <div style={this.completedRegister ? null : hiddenStyle}>
+            <slot />
+            <slot name={this.widgettype} />
+          </div>
+        )}
       </Tunnel.Provider>
     )
   }

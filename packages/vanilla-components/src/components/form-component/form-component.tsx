@@ -32,6 +32,11 @@ export class FormComponent {
   @State() failMessage: string = "";
   @State() loading?: boolean;
 
+  @Prop() ishidden: boolean;
+
+  // heading props
+  @Prop() headingtext: string;
+
   // status props
   @Prop() successtext: string;
   @Prop() failuretext: string;
@@ -132,11 +137,13 @@ export class FormComponent {
   
     return (
     <Tunnel.Consumer>
-      {({ registered, completedRegister, registerUser, loadNext }) => (
+      {({ widgetType, registered, completedRegister, registerUser, loadNext }) => (
         <div>
           <div class="input-group" style={!registered ? null: hiddenStyle}>
+          <sqh-text-component ismarkdown={true} text="Thanks for sending your first referral!<br>Give us your email to ensure you get rewarded when your referral is used."
+          color="#000000" fontsize="13" textalign="center" paddingtop="20" paddingbottom="5"></sqh-text-component>
             <form id="signup-form" onSubmit={(e) => this.handleSubmit(e, registerUser)}>
-              <input type="text"  
+              <input type="text"
                 value={this.formData.firstName} 
                 class={`form-input ${this.formData.errors.firstName}`}
                 onInput={(e) => this.validateField(e, "firstName")} 
@@ -171,10 +178,12 @@ export class FormComponent {
             <i class="success icon icon-ok-circled" />
           { this.successtext }
           </h3>
-          <input class={buttonStyle} type="button" value="Load Stats" onClick={() => this.loadNextSection(registered,loadNext)}  />
+          <input class={buttonStyle} type="button" value="Continue" onClick={() => this.loadNextSection(registered,loadNext)}  />
+        </div>
+        <div style={!completedRegister ? null: hiddenStyle}>
+          <slot name={widgetType} />
         </div>
       </div>
-
     )}
   </Tunnel.Consumer>
   );

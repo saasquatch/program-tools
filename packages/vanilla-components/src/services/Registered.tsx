@@ -2,6 +2,7 @@ import { State } from '@stencil/core';
 import { createProviderConsumer } from '@stencil/state-tunnel';
 
 export interface State {
+  widgetType: string,
   registered: boolean,
   completedRegister: boolean,
   registerUser?: () => void,
@@ -10,6 +11,7 @@ export interface State {
 }
 
 export default createProviderConsumer<State>({
+    widgetType: "stats",
     registered: false,
     completedRegister: false
   },
