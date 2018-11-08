@@ -1,0 +1,62 @@
+<sqh-global-container class="squatch-container" background="#ffffff" widgettype="stats" skipregister="false">
+
+  <sqh-text-component sqhbanner="true" ishidden="true" background="https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg"
+    height="auto" paddingtop="150" paddingbottom="150" text="" color="#000000" slot="main"></sqh-text-component>
+
+  <sqh-text-component sqhheader="true" text="Give $10 and Get $10!" color="#4486E1" fontsize="30" textalign="center" paddingtop="30"
+    paddingbottom="10" slot="main"></sqh-text-component>
+
+  <sqh-text-component sqhbody="true" ismarkdown="true" text="Give a friend $10 and receive $10 for yourself when they purchase.<br/><br/>Share the link below or use the code **<sqh-referral-code />**"
+    color="#000000" fontsize="13" textalign="center" paddingtop="5" paddingbottom="20" slot="main"></sqh-text-component>
+
+  <sqh-copy-link-button text="Copy" buttoncolor="#5C6164" buttonwidth="139" textcolor="#FFFFFF" slot="main"></sqh-copy-link-button>
+
+<sqh-share-button-container emaildisplayrule="mobile-and-desktop" emailtext="Email" emailtextcolor="#ffffff" emailbackgroundcolor="#4b4d50"
+  facebookdisplayrule="mobile-and-desktop" facebooktext="Facebook" facebooktextcolor="#ffffff" facebookbackgroundcolor="#234079"
+  twitterdisplayrule="mobile-and-desktop" twittertext="Twitter" twittertextcolor="#ffffff" twitterbackgroundcolor="#4797d2"
+  smsdisplayrule="mobile-only" smstext="SMS" smstextcolor="#ffffff" smsbackgroundcolor="#7bbf38" whatsappdisplayrule="mobile-only"
+  whatsapptext="Whatsapp" whatsapptextcolor="#ffffff" whatsappbackgroundcolor="#25D366" linkedindisplayrule="hidden" linkedintext="LinkedIn"
+  linkedintextcolor="#ffffff" linkedinbackgroundcolor="#0084b9" pinterestdisplayrule="hidden" pinteresttext="Pinterest"
+  pinteresttextcolor="#ffffff" pinterestbackgroundcolor="#cb2027" messengerdisplayrule="hidden" messengertext="Messenger"
+  messengertextcolor="#ffffff" messengerbackgroundcolor="#0084ff" linedisplayrule="mobile-only" linetext="Line Messenger"
+  linetextcolor="#ffffff" linebackgroundcolor="#00c300" slot="main"></sqh-share-button-container>
+
+  <sqh-text-component ismarkdown="true" text="**Rewards Dashboard**" color="#000000" fontsize="13" textalign="center" paddingtop="20"
+    paddingbottom="5" slot="stats"></sqh-text-component>
+
+  <sqh-stats-container paddingtop="0" paddingbottom="0" slot="stats">
+
+    <sqh-stat-component statcolor="#4caf50" stattype="/referralsCount" statdescription="Friends Referred"></sqh-stat-component>
+
+    <sqh-stat-component stattype="/rewardsCount" statdescription="Total Rewards" statcolor="#000000">
+    </sqh-stat-component>
+
+    <sqh-stat-component stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit" statdescription="Credit earned" statcolor="#000000"></sqh-stat-component>
+    
+  </sqh-stats-container>
+
+  <sqh-referral-list showreferrer="true" usefirstreward="false" referralnamecolor="darkslategray" referraltextcolor="lightgray"
+  rewardcolor="#4BB543" pendingcolor="lightgray" pendingvalue="Reward Pending" expiredcolor="lightgray" expiredvalue="Expired Reward"
+  expiredcontent="Signed up, referred {date}" referrervalue="Referred" referrercontent="Referred you {date}" convertedcontent="Signed up, referred {date}"
+  pendingcontent="Trial user, referred {date}" valuecontent="and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
+  paginatemore="View More" paginateless="Previous" noreferralsyet="No Referrals Yet..." unknownuser="Your Friend" slot="stats"></sqh-referral-list>
+
+  <sqh-form-component 
+    ishidden="false" fieldwidth="220" fieldborderradius="4"
+    headingtext="Thanks for sending your first referral!<br>Give us your email to ensure you get rewarded when your referral is used." 
+    buttontext="Continue" buttoncolor="#35b21e" buttonwidth="140" buttontextcolor="#FFFFFF" buttonfontsize="14" buttonborderradius="4"
+    successtext="You have successfully signed up!" failuretext="Something went wrong. Please try again." loadingtext="Loading..." requirefirstname="true"
+      requirelastname="true" requireemail="true"> 
+  </sqh-form-component>
+
+  <sqh-text-component 
+    sqhfooter="true" 
+    text="Terms and Conditions" 
+    color="lightgray" 
+    fontsize="13"
+    textalign="center"
+    paddingtop="10"
+    paddingbottom="10"
+  ></sqh-text-component>
+
+</sqh-global-container>
