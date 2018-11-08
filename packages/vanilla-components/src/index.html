@@ -80,10 +80,23 @@
       pendingcontent="Trial user, referred {date}" valuecontent="and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
       paginatemore="View More" paginateless="Previous" noreferralsyet="No Referrals Yet..." unknownuser="Your Friend" slot="stats"></sqh-referral-list>
 
-      <sqh-form-component ishidden="false" headingtext="Thanks for sending your first referral!<br>Give us your email to ensure you get rewarded when your referral is used." buttontext="Continue" buttoncolor="#35b21e" buttonwidth="140" buttontextcolor="#FFFFFF" buttonfontsize="14" successtext="You have successfully signed up!"
-        failuretext="Something went wrong. Please try again." loadingtext="Loading..." requirefirstname="true" requirelastname="true"
-        requireemail="true" slot="form">
+      <sqh-form-component 
+        ishidden="false" fieldwidth="220"
+        headingtext="Thanks for sending your first referral!<br>Give us your email to ensure you get rewarded when your referral is used." 
+        buttontext="Continue" buttoncolor="#35b21e" buttonwidth="140" buttontextcolor="#FFFFFF" buttonfontsize="14" buttonborderradius="4"
+        successtext="You have successfully signed up!" failuretext="Something went wrong. Please try again." loadingtext="Loading..." requirefirstname="true"
+         requirelastname="true" requireemail="true"> 
       </sqh-form-component>
+
+      <sqh-text-component 
+        sqhfooter="true" 
+        text="Terms and Conditions" 
+        color="lightgray" 
+        fontsize="13"
+        textalign="center"
+        paddingtop="10"
+        paddingbottom="10"
+      ></sqh-text-component>
 
   </sqh-global-container>
 
@@ -93,15 +106,6 @@
     color="#000000" fontsize="13" textalign="center" paddingtop="20" paddingbottom="5">
   </sqh-text-component>
           
-  <sqh-text-component 
-    sqhfooter="true" 
-    text="Terms and Conditions" 
-    color="lightgray" 
-    fontsize="13"
-    textalign="center"
-    paddingtop="10"
-    paddingbottom="10"
-  ></sqh-text-component>
 -->
 
   <!-- REFERRED WIDGET START -->

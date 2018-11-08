@@ -165,12 +165,14 @@ declare global {
 
   namespace StencilComponents {
     interface SqhFormComponent {
+      'buttonborderradius': string;
       'buttoncolor': string;
       'buttonfontsize': string;
       'buttontext': string;
       'buttontextcolor': string;
       'buttonwidth': string;
       'failuretext': string;
+      'fieldwidth': string;
       'headingtext': string;
       'ishidden': boolean;
       'loadingtext': string;
@@ -200,12 +202,14 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhFormComponentAttributes extends HTMLAttributes {
+      'buttonborderradius'?: string;
       'buttoncolor'?: string;
       'buttonfontsize'?: string;
       'buttontext'?: string;
       'buttontextcolor'?: string;
       'buttonwidth'?: string;
       'failuretext'?: string;
+      'fieldwidth'?: string;
       'headingtext'?: string;
       'ishidden'?: boolean;
       'loadingtext'?: string;

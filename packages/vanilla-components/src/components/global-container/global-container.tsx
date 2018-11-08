@@ -17,7 +17,7 @@ export class GlobalContainer {
   @Prop() fontfamily: string;
   @Prop() widgettype: string;
   @Prop() skipregister: boolean;
-  @Prop() poweredby: boolean = false;
+  @Prop() poweredby: boolean = true;
   
   componentWillLoad(){
     this.skipregister;
@@ -121,7 +121,6 @@ export class GlobalContainer {
       !this.skipregister ? (
         <div class={style}>
           <slot />
-          <slot name="form" />
           {this.poweredby
             ? <a class="sqh-attribution" href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" target="_blank">Powered By Saasquatch</a>
             : ''

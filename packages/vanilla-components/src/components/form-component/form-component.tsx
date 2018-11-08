@@ -48,11 +48,13 @@ export class FormComponent {
   @Prop() buttontext: string;
   @Prop() buttonwidth: string;
   @Prop() buttonfontsize: string;
+  @Prop() buttonborderradius: string;
 
   // form props
   @Prop() requirefirstname: boolean;
   @Prop() requirelastname: boolean;
   @Prop() requireemail: boolean;
+  @Prop() fieldwidth: string;
 
   componentWillLoad(){
     this.formData.errors = {
@@ -124,11 +126,16 @@ export class FormComponent {
     if(this.formData.failed) this.failMessage = this.failuretext;
     const hiddenStyle = { display: "none" };
 
+    const fieldStyle= css`
+      max-width:${this.fieldwidth}px;
+    `
+
     const buttonStyle= css`
       font-size:${this.buttonfontsize}px;
       width: ${this.buttonwidth}px;
       background-color:${this.buttoncolor};
       color:${this.buttontextcolor};
+      border-radius:${this.buttonborderradius};
       &:hover {
         background-color: ${shadeColor(this.buttoncolor, 10)};
         border-color: ${shadeColor(this.buttoncolor, 12)};
