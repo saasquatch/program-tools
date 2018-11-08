@@ -37,7 +37,7 @@
 
 <body>
 
-  <sqh-global-container class="squatch-container" background="#ffffff" widgettype="stats" skipregister="false">
+  <sqh-global-container class="squatch-container" background="#ffffff" widgettype="referral" skipregister="false">
 
     <sqh-text-component sqhbanner="true" ishidden="true" background="https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg"
       height="auto" paddingtop="150" paddingbottom="150" text="" color="#000000" slot></sqh-text-component>
@@ -61,9 +61,9 @@
       linetextcolor="#ffffff" linebackgroundcolor="#00c300" slot="main"></sqh-share-button-container>
 
       <sqh-text-component ismarkdown="true" text="**Rewards Dashboard**" color="#000000" fontsize="13" textalign="center" paddingtop="20"
-        paddingbottom="5" slot="stats"></sqh-text-component>
+        paddingbottom="5" slot="referral"></sqh-text-component>
 
-      <sqh-stats-container paddingtop="0" paddingbottom="0" slot="stats">
+      <sqh-stats-container paddingtop="0" paddingbottom="0" slot="referral">
 
         <sqh-stat-component statcolor="#4caf50" stattype="/referralsCount" statdescription="Friends Referred"></sqh-stat-component>
 
@@ -78,7 +78,7 @@
     rewardcolor="#4BB543" pendingcolor="lightgray" pendingvalue="Reward Pending" expiredcolor="lightgray" expiredvalue="Expired Reward"
     expiredcontent="Signed up, referred {date}" referrervalue="Referred" referrercontent="Referred you {date}" convertedcontent="Signed up, referred {date}"
     pendingcontent="Trial user, referred {date}" valuecontent="and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
-    paginatemore="View More" paginateless="Previous" noreferralsyet="No Referrals Yet..." unknownuser="Your Friend" slot="stats"></sqh-referral-list>
+    paginatemore="View More" paginateless="Previous" noreferralsyet="No Referrals Yet..." unknownuser="Your Friend" slot="referral"></sqh-referral-list>
 
     <sqh-form-component 
       ishidden="false" fieldwidth="220" fieldborderradius="4"
