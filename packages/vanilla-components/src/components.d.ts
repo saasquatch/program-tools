@@ -225,7 +225,6 @@ declare global {
       'background': string;
       'fontfamily': string;
       'poweredby': boolean;
-      'showform': boolean;
       'widgettype': string;
     }
   }
@@ -252,7 +251,6 @@ declare global {
       'background'?: string;
       'fontfamily'?: string;
       'poweredby'?: boolean;
-      'showform'?: boolean;
       'widgettype'?: string;
     }
   }

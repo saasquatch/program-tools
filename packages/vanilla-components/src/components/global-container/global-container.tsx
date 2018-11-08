@@ -17,9 +17,7 @@ export class GlobalContainer {
   @Prop() background: string;
   @Prop() fontfamily: string;
   @Prop() widgettype: string;
-  @Prop() showform: boolean = true;
   @Prop() poweredby: boolean = false;
-
   
   componentWillLoad(){
     this.skipRegister = false;
@@ -48,7 +46,6 @@ export class GlobalContainer {
   }
 
   render() {
-    //this.trackRegistered = this.showform;
 
     const tunnelState = {
       widgetType: this.widgettype,
@@ -63,6 +60,7 @@ export class GlobalContainer {
         debug("completedRegister:", this.completedRegister)
       }
     };
+    
     const hiddenStyle = { display: "none" };
     const style = css`
       background-color: ${this.background};
@@ -123,7 +121,6 @@ export class GlobalContainer {
         <div class={style}>
           <slot />
           <slot name="form" />
-          
           {this.poweredby
             ? <a class="sqh-attribution" href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" target="_blank">Powered By Saasquatch</a>
             : ''
