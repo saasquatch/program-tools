@@ -15,7 +15,7 @@ sqh-global-container {
     box-sizing: border-box; // respects width set and puts padding inside of set width
   }
 
-  > div {
+  div {
     width: 100%;
     display: block;
     padding: 0 10px;
