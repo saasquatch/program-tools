@@ -137,7 +137,7 @@ export class FormComponent {
   
     return (
     <Tunnel.Consumer>
-      {({ widgetType, registered, completedRegister, registerUser, loadNext }) => (
+      {({ registered, completedRegister, registerUser, loadNext }) => (
         <div>
           <div class="input-group" style={!registered ? null: hiddenStyle}>
           <sqh-text-component ismarkdown={true} text={this.headingtext}
@@ -179,9 +179,6 @@ export class FormComponent {
           { this.successtext }
           </h3>
           <input class={buttonStyle} type="button" value="Continue" onClick={() => this.loadNextSection(registered,loadNext)}  />
-        </div>
-        <div style={!completedRegister ? null: hiddenStyle}>
-          <slot name={widgetType} />
         </div>
       </div>
     )}
