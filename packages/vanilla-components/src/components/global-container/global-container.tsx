@@ -16,7 +16,7 @@ export class GlobalContainer {
   @Prop() background: string;
   @Prop() fontfamily: string;
   @Prop() widgettype: string;
-  @Prop() skipregister: string;
+  @Prop() skipregister: boolean;
   @Prop() poweredby: boolean = false;
   
   componentWillLoad(){
