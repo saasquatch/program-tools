@@ -10,19 +10,19 @@ const debug = debugFn("sqh-global-container");
   styleUrl: 'global-container.scss'
 })
 export class GlobalContainer {
-  @State() skipRegister: boolean;
   @State() registered: boolean;
   @State() completedRegister: boolean;
 
   @Prop() background: string;
   @Prop() fontfamily: string;
   @Prop() widgettype: string;
+  @Prop() skipregister: string;
   @Prop() poweredby: boolean = false;
   
   componentWillLoad(){
-    this.skipRegister = false;
+    this.skipregister;
 
-    if(this.skipRegister){
+    if(this.skipregister){
       this.registered = true;
       this.completedRegister = true;
     } else {
@@ -117,7 +117,8 @@ export class GlobalContainer {
     `
     return (
       <Tunnel.Provider state={tunnelState}>
-      { !this.completedRegister && !this.skipRegister ? (
+      { !this.completedRegister && 
+      !this.skipregister ? (
         <div class={style}>
           <slot />
           <slot name="form" />
@@ -130,14 +131,14 @@ export class GlobalContainer {
             <slot name={this.widgettype} />
           </div>
         </div>
-        ) 
-        :
-        (
-          <div style={this.completedRegister ? null : hiddenStyle}>
-            <slot />
-            <slot name={this.widgettype} />
-          </div>
-        )}
+      ) 
+      :
+      (
+        <div style={this.completedRegister ? null : hiddenStyle}>
+          <slot />
+          <slot name={this.widgettype} />
+        </div>
+      )}
       </Tunnel.Provider>
     )
   }
