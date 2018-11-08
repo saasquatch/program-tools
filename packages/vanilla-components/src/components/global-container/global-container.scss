@@ -9,13 +9,12 @@ sqh-global-container {
   display: block;
   max-width: 500px;
   margin: 0 auto;
-  padding: 0 10px;
 
   * {
     box-sizing: border-box; // respects width set and puts padding inside of set width
   }
 
-  div {
+  > div {
     width: 100%;
     display: block;
     padding: 0 10px;

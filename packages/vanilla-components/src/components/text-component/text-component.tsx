@@ -39,6 +39,7 @@ export class TextComponent {
       background: ${this.background ? this.background.match(regex) ? `url(${this.background}) no-repeat center center;` : this.background : 'inherit'};
       height: ${this.height || 'inherit'};
       background-size: contain;
+      padding:0 10px;
     `;
 
     const content = this.ismarkdown
