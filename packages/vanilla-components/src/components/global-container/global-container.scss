@@ -93,8 +93,7 @@ sqh-global-container {
 
   input[type="button"],
   input[type="submit"],
-  .squatch-share-btn,
-  .sqh-copy-btn {
+  .squatch-share-btn {
       touch-action: manipulation;
       cursor: pointer;
       background-image: none;
