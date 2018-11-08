@@ -40,7 +40,7 @@
   <sqh-global-container class="squatch-container" background="#ffffff" widgettype="referral" skipregister="false">
 
     <sqh-text-component sqhbanner="true" ishidden="true" background="https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg"
-      height="auto" paddingtop="150" paddingbottom="150" text="" color="#000000" slot></sqh-text-component>
+      height="auto" paddingtop="150" paddingbottom="150" text="" color="#000000" slot="main"></sqh-text-component>
 
     <sqh-text-component sqhheader="true" text="Give $10 and Get $10!" color="#4486E1" fontsize="30" textalign="center" paddingtop="30"
       paddingbottom="10" slot="main"></sqh-text-component>
@@ -85,7 +85,7 @@
       headingtext="Thanks for sending your first referral!<br>Give us your email to ensure you get rewarded when your referral is used." 
       buttontext="Continue" buttoncolor="#35b21e" buttonwidth="140" buttontextcolor="#FFFFFF" buttonfontsize="14" buttonborderradius="4"
       successtext="You have successfully signed up!" failuretext="Something went wrong. Please try again." loadingtext="Loading..." requirefirstname="true"
-        requirelastname="true" requireemail="true"> 
+        requirelastname="true" requireemail="true" slot="form"> 
     </sqh-form-component>
 
     <sqh-text-component 
@@ -96,6 +96,7 @@
       textalign="center"
       paddingtop="10"
       paddingbottom="10"
+      slot="main"
     ></sqh-text-component>
 
   </sqh-global-container>
@@ -110,10 +111,7 @@
 
   <!-- REFERRED WIDGET START -->
   
-<!-- <sqh-global-container 
-    background="#ffffff"
-    widgettype="referred"
-  >
+  <!-- <sqh-global-container class="squatch-container" background="#ffffff" widgettype="referred" skipregister="false">
 
     <sqh-image-component
       url="https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png" 
@@ -162,8 +160,8 @@
       slot="referred"
     ></sqh-copy-button>
 
-    <sqh-form-component headingtext="Thanks for sending your first referral!<br>Give us your email to ensure you get rewarded when your referral is used." buttontext="Continue" buttoncolor="#35b21e" buttonwidth="140" buttontextcolor="#FFFFFF" buttonfontsize="14" successtext="You have successfully signed up!"
-      failuretext="Something went wrong. Please try again." loadingtext="Loading..." requirefirstname="true" requirelastname="true" requireemail="true">
+    <sqh-form-component fieldwidth="220" fieldborderradius="4" headingtext="Thanks for sending your first referral!<br>Give us your email to ensure you get rewarded when your referral is used." buttontext="Continue" buttoncolor="#35b21e" buttonwidth="140" buttontextcolor="#FFFFFF" buttonfontsize="14" successtext="You have successfully signed up!"
+      failuretext="Something went wrong. Please try again." loadingtext="Loading..." requirefirstname="true" requirelastname="true" requireemail="true" slot="form">
     </sqh-form-component>
 
   </sqh-global-container> -->

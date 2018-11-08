@@ -20,8 +20,6 @@ export class GlobalContainer {
   @Prop() poweredby: boolean = true;
   
   componentWillLoad(){
-    this.skipregister;
-
     if(this.skipregister){
       this.registered = true;
       this.completedRegister = true;
@@ -70,8 +68,6 @@ export class GlobalContainer {
 
     return (
       <Tunnel.Provider state={tunnelState}>
-      { !this.completedRegister && 
-      !this.skipregister ? (
         <div class={style}>
           <slot />
           {this.poweredby
@@ -79,22 +75,14 @@ export class GlobalContainer {
             : ''
           }
           <this.LoadingState />
-          <div style={hiddenStyle}>
-            <slot name={this.widgettype} />
-          </div>
-        </div>
-      ) 
-      :
-      (
-        <div class={style} style={this.completedRegister ? null : hiddenStyle}>
-          <slot />
-          {this.poweredby
-            ? <a class="sqh-attribution" href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" target="_blank">Powered By Saasquatch</a>
+          { !this.completedRegister && 
+            !this.skipregister 
+            ? <div style={hiddenStyle}>
+                <slot name={this.widgettype} />
+              </div>
             : ''
           }
-          <this.LoadingState />
         </div>
-      )}
       </Tunnel.Provider>
     )
   }
