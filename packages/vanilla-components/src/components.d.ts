@@ -172,7 +172,6 @@ declare global {
       'buttontextcolor': string;
       'buttonwidth': string;
       'failuretext': string;
-      'fieldborderradius': string;
       'fieldwidth': string;
       'headingtext': string;
       'ishidden': boolean;
@@ -210,7 +209,6 @@ declare global {
       'buttontextcolor'?: string;
       'buttonwidth'?: string;
       'failuretext'?: string;
-      'fieldborderradius'?: string;
       'fieldwidth'?: string;
       'headingtext'?: string;
       'ishidden'?: boolean;

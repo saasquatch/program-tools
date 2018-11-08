@@ -55,7 +55,6 @@ export class FormComponent {
   @Prop() requirelastname: boolean;
   @Prop() requireemail: boolean;
   @Prop() fieldwidth: string;
-  @Prop() fieldborderradius: string;
 
   componentWillLoad(){
     this.formData.errors = {
@@ -127,10 +126,9 @@ export class FormComponent {
     if(this.formData.failed) this.failMessage = this.failuretext;
     const hiddenStyle = { display: "none" };
 
-    const fieldStyle= css`
-       max-width:${this.fieldwidth}px;
-       border-radius:${this.fieldborderradius}px;
-     `
+    // const fieldStyle= css`
+    //   max-width:${this.fieldwidth}px;
+    // `
 
     const buttonStyle= css`
       font-size:${this.buttonfontsize}px;
@@ -154,7 +152,7 @@ export class FormComponent {
             <form id="signup-form" onSubmit={(e) => this.handleSubmit(e, registerUser)}>
               <input type="text"
                 value={this.formData.firstName} 
-                class={`form-input ${fieldStyle} ${this.formData.errors.firstName}`}
+                class={`form-input ${this.formData.errors.firstName}`}
                 onInput={(e) => this.validateField(e, "firstName")} 
                 placeholder={`First Name ${this.requirefirstname ? "" : "(Optional)"}`}
                 disabled={this.loading}
@@ -162,7 +160,7 @@ export class FormComponent {
               />
               <input type="text" 
                 value={this.formData.lastName} 
-                class={`form-input ${fieldStyle} ${this.formData.errors.lastName}`}
+                class={`form-input ${this.formData.errors.lastName}`}
                 onInput={(e) => this.validateField(e, "lastName")} 
                 placeholder={`Last Name ${this.requirelastname ? "" : "(Optional)"}`}
                 disabled={this.loading}
@@ -170,7 +168,7 @@ export class FormComponent {
               />
               <input type="email"
                 value={this.formData.email} 
-                class={`form-input ${fieldStyle} ${this.formData.errors.email}`}
+                class={`form-input ${this.formData.errors.email}`}
                 onInput={(e) => this.validateField(e, "email")} 
                 placeholder={`Email ${this.requireemail ? "" : "(Optional)"}`}
                 disabled={this.loading}

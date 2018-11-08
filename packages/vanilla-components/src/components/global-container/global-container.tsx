@@ -1,5 +1,5 @@
 import { Component, Prop, State } from '@stencil/core';
-import { css } from 'emotion';
+import { css, injectGlobal } from 'emotion';
 import Tunnel from '../../services/Registered';
 import debugFn from "debug";
 
@@ -67,7 +67,7 @@ export class GlobalContainer {
       font-family: ${this.fontfamily};
       position: relative;
     `
-
+    
     return (
       <Tunnel.Provider state={tunnelState}>
       { !this.completedRegister && 

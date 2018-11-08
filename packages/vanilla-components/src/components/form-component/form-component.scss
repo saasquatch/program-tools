@@ -4,6 +4,8 @@ sqh-form-component {
     .form-input {
         display: block;
         margin: 0.75em auto;
+        border-radius: 4px;
+        max-width: 220px;
         width:100%;
     }
 
