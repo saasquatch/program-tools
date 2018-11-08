@@ -67,54 +67,7 @@ export class GlobalContainer {
       font-family: ${this.fontfamily};
       position: relative;
     `
-
-    injectGlobal`
-    input[type="button"],
-    input[type="submit"],
-    .squatch-share-btn,
-    .sqh-copy-btn {
-        touch-action: manipulation;
-        cursor: pointer;
-        background-image: none;
-        border: 1px solid transparent;
-        white-space: nowrap;
-        border-radius: 4px;
-        font-size:14px;
-        padding:6px 12px;
-        line-height: 1.428571429;
-        width:140px;
-        &:focus {
-          outline: 0; 
-        }
-        &.disabled,
-        &[disabled],
-        fieldset[disabled] & {
-          cursor: not-allowed;
-          pointer-events: none
-          opacity: .65;
-          -webkit-box-shadow: none;
-                  box-shadow: none;
-        }
-      }
-      .input-group {
-        padding: 8px 0 10px;
-        position: relative;
-        display: table;
-        border-collapse: separate;
-        width: 100%;
-        max-width: 440px;
-        margin: 0 auto;
-      }
-      .input-group input {
-        height: 34px;
-        padding: 6px 12px;
-        font-size: 14px;
-        line-height: 1.428571429;
-        border: 1px solid #ccc;
-        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-      }
-    `
+    
     return (
       <Tunnel.Provider state={tunnelState}>
       { !this.completedRegister && 
@@ -133,9 +86,13 @@ export class GlobalContainer {
       ) 
       :
       (
-        <div style={this.completedRegister ? null : hiddenStyle}>
+        <div class={style} style={this.completedRegister ? null : hiddenStyle}>
           <slot />
-          <slot name={this.widgettype} />
+          {this.poweredby
+            ? <a class="sqh-attribution" href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" target="_blank">Powered By Saasquatch</a>
+            : ''
+          }
+          <this.LoadingState />
         </div>
       )}
       </Tunnel.Provider>

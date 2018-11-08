@@ -126,9 +126,9 @@ export class FormComponent {
     if(this.formData.failed) this.failMessage = this.failuretext;
     const hiddenStyle = { display: "none" };
 
-    const fieldStyle= css`
-      max-width:${this.fieldwidth}px;
-    `
+    // const fieldStyle= css`
+    //   max-width:${this.fieldwidth}px;
+    // `
 
     const buttonStyle= css`
       font-size:${this.buttonfontsize}px;
@@ -144,7 +144,7 @@ export class FormComponent {
   
     return (
     <Tunnel.Consumer>
-      {({ registered, completedRegister, registerUser, loadNext }) => (
+      {({registered, completedRegister, registerUser, loadNext }) => (
         <div>
           <div class="input-group" style={!registered ? null: hiddenStyle}>
           <sqh-text-component ismarkdown={true} text={this.headingtext}
@@ -154,7 +154,7 @@ export class FormComponent {
                 value={this.formData.firstName} 
                 class={`form-input ${this.formData.errors.firstName}`}
                 onInput={(e) => this.validateField(e, "firstName")} 
-                placeholder="First Name" 
+                placeholder={`First Name ${this.requirefirstname ? "" : "(Optional)"}`}
                 disabled={this.loading}
                 required={this.requirefirstname}
               />
@@ -162,7 +162,7 @@ export class FormComponent {
                 value={this.formData.lastName} 
                 class={`form-input ${this.formData.errors.lastName}`}
                 onInput={(e) => this.validateField(e, "lastName")} 
-                placeholder="Last Name" 
+                placeholder={`Last Name ${this.requirelastname ? "" : "(Optional)"}`}
                 disabled={this.loading}
                 required={this.requirelastname}
               />
@@ -170,7 +170,7 @@ export class FormComponent {
                 value={this.formData.email} 
                 class={`form-input ${this.formData.errors.email}`}
                 onInput={(e) => this.validateField(e, "email")} 
-                placeholder="Email" 
+                placeholder={`Email ${this.requireemail ? "" : "(Optional)"}`}
                 disabled={this.loading}
                 required={this.requireemail}
               />
@@ -185,7 +185,7 @@ export class FormComponent {
             <i class="success icon icon-ok-circled" />
           { this.successtext }
           </h3>
-          <input class={buttonStyle} type="button" value="Continue" onClick={() => this.loadNextSection(registered,loadNext)}  />
+          <input class={buttonStyle} type="button" value="Continue" onClick={() => this.loadNextSection(registered,loadNext)}  /> 
         </div>
       </div>
     )}
