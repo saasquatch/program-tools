@@ -140,7 +140,7 @@ export class FormComponent {
       {({ widgetType, registered, completedRegister, registerUser, loadNext }) => (
         <div>
           <div class="input-group" style={!registered ? null: hiddenStyle}>
-          <sqh-text-component ismarkdown={true} text="Thanks for sending your first referral!<br>Give us your email to ensure you get rewarded when your referral is used."
+          <sqh-text-component ismarkdown={true} text={this.headingtext}
           color="#000000" fontsize="13" textalign="center" paddingtop="20" paddingbottom="5"></sqh-text-component>
             <form id="signup-form" onSubmit={(e) => this.handleSubmit(e, registerUser)}>
               <input type="text"
