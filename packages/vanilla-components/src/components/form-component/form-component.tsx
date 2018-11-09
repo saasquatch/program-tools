@@ -188,7 +188,7 @@ export class FormComponent {
                 value={this.loading ? this.loadingtext : this.buttontext} disabled={this.loading} />
             </form>
           </div>,
-        <div class="input-group" style={registered && !completedRegister ? null: hiddenStyle}>
+        <div class="input-group success-header" style={registered && !completedRegister ? null: hiddenStyle}>
           <h3>
             <i class="success icon icon-ok-circled" />
           { this.successtext }
