@@ -53,6 +53,7 @@ export class FormComponent {
   @Prop() buttonborderradius: string;
 
   // form props
+  @Prop() paddingtop: string;
   @Prop() requirefirstname: boolean;
   @Prop() requirelastname: boolean;
   @Prop() requireemail: boolean;
@@ -129,6 +130,10 @@ export class FormComponent {
     if(this.formData.failed) this.failMessage = this.failuretext;
     const hiddenStyle = { display: "none" };
 
+    const divStyle= css`
+      padding-top:${this.paddingtop}px;
+    `
+
     const fieldStyle= css`
        max-width:${this.fieldwidth}px;
        border-radius:${this.fieldborderradius}px;
@@ -148,11 +153,10 @@ export class FormComponent {
   
     return (
     <Tunnel.Consumer>
-      {({registered, completedRegister, registerUser, loadNext }) => (
-        <div>
-          <div class="input-group" style={!registered ? null: hiddenStyle}>
+      {({registered, completedRegister, registerUser, loadNext }) => ([
+          <div class={`input-group ${divStyle}`} style={!registered ? null: hiddenStyle}>
           <sqh-text-component ismarkdown={true} text={this.headingtext} lineheight="1.428571429"
-          color={this.headingtextcolor} fontsize={this.headingfontsize} textalign="center" padding="0" paddingtop="20" paddingbottom="5"></sqh-text-component>
+          color={this.headingtextcolor} fontsize={this.headingfontsize} textalign="center" padding="0" paddingtop="10" paddingbottom="5"></sqh-text-component>
             <form id="signup-form" onSubmit={(e) => this.handleSubmit(e, registerUser)}>
               <input type="text"
                 value={this.formData.firstName} 
@@ -183,7 +187,7 @@ export class FormComponent {
                 class={buttonStyle} 
                 value={this.loading ? this.loadingtext : this.buttontext} disabled={this.loading} />
             </form>
-          </div>
+          </div>,
         <div class="input-group" style={registered && !completedRegister ? null: hiddenStyle}>
           <h3>
             <i class="success icon icon-ok-circled" />
@@ -191,8 +195,7 @@ export class FormComponent {
           </h3>
           <input class={buttonStyle} type="button" value="Continue" onClick={() => this.loadNextSection(registered,loadNext)}  /> 
         </div>
-      </div>
-    )}
+    ])}
   </Tunnel.Consumer>
   );
 

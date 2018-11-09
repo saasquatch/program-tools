@@ -179,6 +179,7 @@ declare global {
       'headingtextcolor': string;
       'ishidden': boolean;
       'loadingtext': string;
+      'paddingtop': string;
       'requireemail': boolean;
       'requirefirstname': boolean;
       'requirelastname': boolean;
@@ -219,6 +220,7 @@ declare global {
       'headingtextcolor'?: string;
       'ishidden'?: boolean;
       'loadingtext'?: string;
+      'paddingtop'?: string;
       'requireemail'?: boolean;
       'requirefirstname'?: boolean;
       'requirelastname'?: boolean;
