@@ -11,7 +11,7 @@ export interface State {
 }
 
 export default createProviderConsumer<State>({
-    widgetType: "stats",
+    widgetType: "",
     registered: false,
     completedRegister: false
   },
