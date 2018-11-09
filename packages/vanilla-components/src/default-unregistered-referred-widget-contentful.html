@@ -22,9 +22,10 @@
     sqhheader="true" 
     color="#000" 
     fontsize="24" 
-    text="You were Successfully Referred to Saasquatch<hr style='border-bottom: 1px solid rgb(221, 221, 221);'></hr>" 
+    text="You were Successfully Referred to Saasquatch<br/><br/><hr style='border-top: 1px solid rgb(221, 221, 221);border-bottom: 0;'></hr>" 
     textalign="center"
     paddingtop="12" 
+    padding="0 10px"
     slot="main"
   ></sqh-text-component>
 
@@ -33,7 +34,7 @@
     color="gray" 
     rewardkey="referredReward" 
     fontsize="13" 
-    text="<br/><br/>Use the Referral Code at checkout to receive your referral reward" 
+    text="<br/>Use the Referral Code at checkout to receive your referral reward" 
     ismarkdown="true" 
     textalign="center"
     paddingtop="10" 
@@ -56,7 +57,8 @@
     slot="referred"
   ></sqh-copy-button>
 
-  <sqh-form-component fieldwidth="220" fieldborderradius="4" headingtext="Thanks for sending your first referral!<br>Give us your email to ensure you get rewarded when your referral is used." buttontext="Continue" buttoncolor="#35b21e" buttonwidth="140" buttontextcolor="#FFFFFF" buttonfontsize="14" successtext="You have successfully signed up!"
+  <sqh-form-component fieldwidth="220" fieldborderradius="4" headingfontsize="13" headingtextcolor="#000000" paddingtop="0"
+  headingtext="Thanks for sending your first referral!<br>Give us your email to ensure you get rewarded when your referral is used." buttontext="Continue" buttoncolor="#35b21e" buttonwidth="140" buttontextcolor="#FFFFFF" buttonfontsize="14" successtext="You have successfully signed up!"
     failuretext="Something went wrong. Please try again." loadingtext="Loading..." requirefirstname="true" requirelastname="true" requireemail="true" slot="form">
   </sqh-form-component>
 
