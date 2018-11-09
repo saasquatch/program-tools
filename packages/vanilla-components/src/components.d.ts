@@ -831,6 +831,7 @@ declare global {
       'height': string;
       'ishidden': boolean;
       'ismarkdown': boolean;
+      'lineheight': string;
       'padding': string;
       'paddingbottom': string;
       'paddingtop': string;
@@ -865,6 +866,7 @@ declare global {
       'height'?: string;
       'ishidden'?: boolean;
       'ismarkdown'?: boolean;
+      'lineheight'?: string;
       'padding'?: string;
       'paddingbottom'?: string;
       'paddingtop'?: string;

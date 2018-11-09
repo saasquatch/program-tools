@@ -15,10 +15,11 @@ export class TextComponent {
   @Prop() fontsize: string;
   @Prop() paddingtop: string;
   @Prop() paddingbottom: string;
-  @Prop() padding: string = '10px 20px 15px';
+  @Prop() padding: string;
   @Prop() textalign: string;
   @Prop() background: string;
   @Prop() height: string;
+  @Prop() lineheight: string;
 
   @Element() textEl: HTMLElement;   
 
@@ -32,6 +33,7 @@ export class TextComponent {
       color: ${this.color || 'inherit'};
       padding-top: ${this.paddingtop ? this.paddingtop+ 'px' : 'inherit'};
       padding-bottom: ${this.paddingbottom ? this.paddingbottom + 'px' : 'inherit'};
+      line-height: ${ this.lineheight ? this.lineheight : 'inherit'};
       overflow-wrap: break-word;
     `;
 
@@ -39,7 +41,7 @@ export class TextComponent {
       background: ${this.background ? this.background.match(regex) ? `url(${this.background}) no-repeat center center;` : this.background : 'inherit'};
       height: ${this.height || 'inherit'};
       background-size: contain;
-      padding:0 10px;
+      padding: ${this.padding};
     `;
 
     const content = this.ismarkdown
