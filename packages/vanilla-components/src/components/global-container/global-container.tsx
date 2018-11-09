@@ -2,6 +2,7 @@ import { Component, Prop, State } from '@stencil/core';
 import { css } from 'emotion';
 import Tunnel from '../../services/Registered';
 import debugFn from "debug";
+import { API } from '../../services/WidgetHost';
 
 const debug = debugFn("sqh-global-container");
 
@@ -20,12 +21,18 @@ export class GlobalContainer {
   @Prop() poweredby: boolean = true;
   
   componentWillLoad(){
+
     if(this.skipregister){
       this.registered = true;
       this.completedRegister = true;
     } else {
       this.registered = false;
       this.completedRegister = false;
+    }
+    debug("registered check:", API.graphql.checkRegisteredUser());
+    if(API.graphql.checkRegisteredUser()){
+      this.registered = true;
+      this.completedRegister = true;
     }
   }
 

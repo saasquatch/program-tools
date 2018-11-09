@@ -42,6 +42,7 @@ export function widgetIdent(): WidgetIdent {
 const today = new Date();
 
 const demoUser = {
+  //email: "test@test.ca",
   shareLink: "http://sharelink.squatch.com",
   fueltankCode: "12AS3F",
   referralcode: "RIDDIKULUS",
@@ -462,6 +463,10 @@ const API = {
         variables
         //@ts-ignore
       }).then(res => res.data.user);
+    },
+
+    checkRegisteredUser() {
+      return demoUser['email'];
     },
 
     async addUserDetails(userDetails: {
