@@ -9,6 +9,7 @@ sqh-global-container {
   display: block;
   max-width: 500px;
   margin: 0 auto;
+  padding:0 10px;
 
   * {
     box-sizing: border-box; // respects width set and puts padding inside of set width
@@ -103,7 +104,6 @@ sqh-global-container {
       font-size:14px;
       padding:6px 12px;
       line-height: 1.428571429;
-      width:140px;
       &:focus {
         outline: 0; 
       }

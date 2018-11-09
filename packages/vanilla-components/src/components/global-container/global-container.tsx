@@ -25,6 +25,7 @@ export class GlobalContainer {
     if(this.skipregister){
       this.registered = true;
       this.completedRegister = true;
+      return;
     } else {
       this.registered = false;
       this.completedRegister = false;
