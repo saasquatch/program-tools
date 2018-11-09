@@ -132,6 +132,7 @@ export class FormComponent {
 
     const divStyle= css`
       padding-top:${this.paddingtop}px;
+      display: ${this.ishidden ? 'none' : 'inherit'} 
     `
 
     const fieldStyle= css`
