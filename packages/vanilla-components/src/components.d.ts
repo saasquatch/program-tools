@@ -174,7 +174,9 @@ declare global {
       'failuretext': string;
       'fieldborderradius': string;
       'fieldwidth': string;
+      'headingfontsize': string;
       'headingtext': string;
+      'headingtextcolor': string;
       'ishidden': boolean;
       'loadingtext': string;
       'requireemail': boolean;
@@ -212,7 +214,9 @@ declare global {
       'failuretext'?: string;
       'fieldborderradius'?: string;
       'fieldwidth'?: string;
+      'headingfontsize'?: string;
       'headingtext'?: string;
+      'headingtextcolor'?: string;
       'ishidden'?: boolean;
       'loadingtext'?: string;
       'requireemail'?: boolean;

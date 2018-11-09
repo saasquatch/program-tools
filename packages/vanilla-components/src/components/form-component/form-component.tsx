@@ -36,6 +36,8 @@ export class FormComponent {
 
   // heading props
   @Prop() headingtext: string;
+  @Prop() headingtextcolor: string;
+  @Prop() headingfontsize: string;
 
   // status props
   @Prop() successtext: string;
@@ -150,7 +152,7 @@ export class FormComponent {
         <div>
           <div class="input-group" style={!registered ? null: hiddenStyle}>
           <sqh-text-component ismarkdown={true} text={this.headingtext}
-          color="#000000" fontsize="13" textalign="center" paddingtop="20" paddingbottom="5"></sqh-text-component>
+          color={this.headingtextcolor} fontsize={this.headingfontsize} textalign="center" paddingtop="20" paddingbottom="5"></sqh-text-component>
             <form id="signup-form" onSubmit={(e) => this.handleSubmit(e, registerUser)}>
               <input type="text"
                 value={this.formData.firstName} 
