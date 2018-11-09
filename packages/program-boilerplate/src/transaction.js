@@ -1,4 +1,6 @@
 
+//@ts-check
+import {rewardEmailQuery, rewardEmailQueryForNonReferralPrograms} from './queries';
 /**
  * @typedef WebtaskContext
  * @property {Object} body      -  An object containing either application/json or application/x-www-form-urlencoded parsed data.
@@ -25,7 +27,7 @@
    * @typedef {string} id
    */
 
-class Transaction {
+export default class Transaction {
     /**
      * @classdesc A Transaction instance takes a context object from webtask, generates mutations and analytics as the program requested.
      * @constructor
@@ -41,7 +43,11 @@ class Transaction {
         this.currentUser = null;
         this.rewardId = null;
         if(context.body.activeTrigger) {
-            this.currentUser = context.body.activeTrigger.user;
+            const activeTrigger = context.body.activeTrigger;
+            this.currentUser = activeTrigger.user;
+            if(activeTrigger.type === 'REWARD_SCHEDULED') {
+                this.rewardId = activeTrigger.reward.id;
+            }
         }
    }
 
@@ -87,7 +93,7 @@ class Transaction {
      * @param {User} user - The user to be given reward to (can be either referrer or referred user).
      * @param {string} referralId - id of the referral.
      */
-    generateReferralReward({rewardKey,referralId, user}) {
+    generateReferralReward({rewardKey,referralId, user, userEvent, rewardOverride}) {
         this.rewardId = this.context.body.ids.pop();
         const newMutation = {
             "type": "CREATE_REWARD",
@@ -112,19 +118,16 @@ class Transaction {
      * @param {User} user       - The user to be sent a email to.
      * @param {Object} query    - Queries to obtain information required by the email. See {@link Queries}.
      */
-    generateEmail({emailKey, user, referralId, query}) {
+    generateSimpleEmail({emailKey, user}) {
         if (!this.rewardId) {
             this.rewardId = this.context.body.ids.pop();
         }
-        let queryVariables = {
+        const queryVariables = {
             "userId": user.id,
             "accountId": user.accountId,
             "rewardId": this.rewardId,
             "programId":this.context.body.program.id,
         };
-        if(referralId) {
-            queryVariables["referralId"] = referralId;
-        }
         const newMutation = {
             "type": "SEND_EMAIL",
             "data": {
@@ -134,7 +137,34 @@ class Transaction {
             },
             "key": emailKey,
             "queryVariables": queryVariables,
-            "query": query,
+            "query": rewardEmailQueryForNonReferralPrograms,
+            "rewardId": this.rewardId
+            }
+        };
+        this.mutations = [...this.mutations, newMutation];
+    }
+
+    generateReferralEmail({emailKey, user, referralId}) {
+        if (!this.rewardId) {
+            this.rewardId = this.context.body.ids.pop();
+        }
+        const queryVariables = {
+            "userId": user.id,
+            "accountId": user.accountId,
+            "rewardId": this.rewardId,
+            "programId":this.context.body.program.id,
+            "referralId": referralId
+        };
+        const newMutation = {
+            "type": "SEND_EMAIL",
+            "data": {
+            "user": {
+                "id": user.id,
+                "accountId": user.accountId
+            },
+            "key": emailKey,
+            "queryVariables": queryVariables,
+            "query": rewardEmailQuery,
             "rewardId": this.rewardId
             }
         };
@@ -145,16 +175,16 @@ class Transaction {
     /**
      * Generates both reward and email.
      */
-    generateSimpleRewardAndEmail({emailKey, rewardKey,user,query}) {
+    generateSimpleRewardAndEmail({emailKey, rewardKey,user}) {
         this.generateSimpleReward(rewardKey);
-        this.generateEmail({emailKey, user, query});
+        this.generateSimpleEmail({emailKey, user});
     }
     /**
      * Generates both reward and email for a referral.
      */
-    generateReferralRewardAndEmail({emailKey,rewardKey,referralId,user,query}) {
-        this.generateReferralReward({rewardKey, referralId, user});
-        this.generateEmail({emailKey, user, referralId, query});
+    generateReferralRewardAndEmail({emailKey,rewardKey,referralId,user}) {
+        this.generateReferralReward({rewardKey, user, referralId});
+        this.generateReferralEmail({emailKey, user, referralId});
     }
 
     /**
@@ -168,5 +198,3 @@ class Transaction {
         }
     }
 }
-
-module.exports = Transaction;

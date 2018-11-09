@@ -1,18 +1,25 @@
 {
-  "name": "@saasquatch/program-boilerplate",
-  "version": "2.0.4",
+  "name": "index-test ",
+  "version": "2.0.1",
   "description": "Boilerplate for writing programs",
   "main": "dist/index.js",
   "scripts": {
-    "build": "babel src -d dist",
+    "build": "babel src --out-dir dist",
+    "format": "prettier \"src/**/*.js\" --write",
+    "prepush": "npm run format",
     "deploy": "np",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
     "np": "^2.18.3"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "prettier": "^1.15.1"
   }
 }

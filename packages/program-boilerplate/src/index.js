@@ -1,24 +1,16 @@
 // @ts-check
 
-const Transaction = require('./transaction');
-const Queries = require('./queries');
-const Conversion = require('./conversion');
-const FraudCheck = require('./fraudCheck');
-
-const rewardEmailQuery = Queries.rewardEmailQuery;
-const passFraudCheck = FraudCheck.passFraudCheck;
-const meetCustomFieldRules = Conversion.meetCustomFieldRules;
-const meetEventTriggerRules = Conversion.meetEventTriggerRules;
+import Transaction from './transaction';
+import {rewardEmailQuery} from './queries';
+import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
+import {setRewardSchedule} from './utils';
 
 export {
-  Queries,
-  Conversion,
-  FraudCheck,
   Transaction,
   meetEventTriggerRules,
   meetCustomFieldRules,
-  passFraudCheck,
-  rewardEmailQuery
+  rewardEmailQuery,
+  setRewardSchedule
 }
 
 /**
