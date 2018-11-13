@@ -1,5 +1,4 @@
 
-//@ts-check
 import {rewardEmailQuery, rewardEmailQueryForNonReferralPrograms} from './queries';
 /**
  * @typedef WebtaskContext

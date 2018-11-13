@@ -68,15 +68,12 @@ export function webtask(handlers = {}) {
     return function (context, cb) {
         switch (context.body.messageType || "PROGRAM_TRIGGER") {
             case "PROGRAM_INTROSPECTION":
-                var template = context.body.template;
-                var rules = context.body.rules;
+                const template = context.body.template;
+                const rules = context.body.rules;
                 // Make modifications to template based on rules here if necessary.
                 // ...
                 const handleIntrospection = handlers["PROGRAM_INTROSPECTION"];
-                if (handleIntrospection === undefined) {
-                    return cb(null, template);
-                }
-                const newTemplate = handleIntrospection(template, rules);
+                const newTemplate = handleIntrospection(template,rules) || template;
                 cb(null, newTemplate);
                 break;
             case "PROGRAM_TRIGGER": 
