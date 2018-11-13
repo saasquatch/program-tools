@@ -68,6 +68,19 @@ export default class Transaction {
         this.analytics.push(analytic);
     }
 
+    fireProgramEvalAnalytics(user) {
+        const evalAnalytic = { 
+            eventType: "PROGRAM_EVALUATED", 
+            data: { 
+                user: { 
+                    id: user.id, 
+                    accountId: user.accountId 
+                } 
+            } 
+        };
+        pushAnalytics(evalAnalytic);
+    }
+
     generateSimpleReward(rewardKey) {
         this.rewardId = this.context.body.ids.pop();
         const newMutation = {
