@@ -69,6 +69,7 @@ export class FormComponent {
   }
 
   async addUser(registerUser) { 
+    // TODO: check if optional, don't include empty fields otherwise they'll overwrite whats there
     const dataToSend = {
       firstName: this.formData.firstName,
       lastName: this.formData.lastName,
