@@ -16,8 +16,8 @@ export class GlobalContainer {
   @Prop() background: string;
   @Prop() fontfamily: string;
   @Prop() widgettype: string;
-  @Prop() skipregister: boolean = false;
-  @Prop() poweredby: boolean = false;
+  @Prop() skipregister: boolean;
+  @Prop() poweredby: boolean = true;
 
   @Element() el: HTMLElement;
   
@@ -55,24 +55,30 @@ export class GlobalContainer {
     this.completedRegister = newValue;
   }
 
+  tunnelState = {
+    widgetType: this.widgettype,
+    registered: this.registered,
+    completedRegister: this.completedRegister,
+    registerUser: () => {
+      this.registered = true;
+      debug("registered:", this.registered)
+    },
+    loadNext: () => {
+      this.completedRegister = true;
+      debug("completedRegister:", this.completedRegister)
+    }
+  };
+
   render() {
 
     debug("this.registered:", this.registered)
     debug("this.completedRegister:", this.completedRegister)
 
-    const tunnelState = {
-      widgetType: this.widgettype,
+    this.tunnelState = {
+      ...this.tunnelState,
       registered: this.registered,
       completedRegister: this.completedRegister,
-      registerUser: () => {
-        this.registered = true;
-        debug("registered:", this.registered)
-      },
-      loadNext: () => {
-        this.completedRegister = true;
-        debug("completedRegister:", this.completedRegister)
-      }
-    };
+    }
     
     const hiddenStyle = { display: "none" };
 
@@ -88,7 +94,7 @@ export class GlobalContainer {
     this.el.style.setProperty('font-family', this.fontfamily?this.fontfamily : 'inherit');
 
     return (
-      <Tunnel.Provider state={tunnelState}>
+      <Tunnel.Provider state={this.tunnelState}>
         <slot />
         {this.poweredby
           ? <a class="sqh-attribution" href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" target="_blank">Powered By Saasquatch</a>
