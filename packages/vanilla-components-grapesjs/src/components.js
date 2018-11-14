@@ -34,6 +34,23 @@ export default (editor, config = {}) => {
     ]
   }
 
+  const skipRegister = {
+    'ui:widget': (props) => {
+
+      console.log(props);
+      const { id, value, onChange } = props;
+
+        
+      return (<div className={`checkbox`}>
+        <label>
+          <input type="checkbox" id={id} checked={typeof value === "undefined" ? false : value} onChange={event => onChange(event.target.checked)} />
+          <span>Skip Registration</span>
+        </label>
+      </div>)
+    },
+    'ui:title': <span></span>
+  }
+
   const poweredByUi = editor.editor.attributes.canWhitelabel ?
   {'ui:disabled': false } :
   {'ui:disabled': true, 'ui:help': <div>Can only be disabled on <span className="label">Pro</span> plans</div>, "ui:title": <span><span className="ico ico-lock"></span> Show Powered By</span> };
@@ -42,7 +59,7 @@ export default (editor, config = {}) => {
     'ui:widget': (props) => {
       const { schema, id, value, required, disabled, readonly, label, autofocus, onChange } = props;
         
-      return (<div className={`checkbox ${disabled || readonly ? "disabled" : ""}`}>
+      return (<div className={`checkbox`}>
         <label>
           <input
             type="checkbox"
@@ -72,10 +89,12 @@ export default (editor, config = {}) => {
         traits: [
           {type: 'string', title: 'Background Color', name: 'background' },
           {type: 'string', title: 'Font Family', name: 'fontfamily', value: 'Helvetica Neue,Helvetica,Arial,sans-serif', ...fontFamilyOpts},
-          {type: 'boolean', title: 'Show Powered By', name: 'poweredby', value: true}
+          {type: 'boolean', title: 'Show Powered By', name: 'poweredby', value: true},
+          {type: 'boolean', title: 'Skip Registration', name: 'skipregister'}
         ],
         uiSchema: {
           'background': { 'ui:widget': "color" },
+          'skipregister': skipRegister,
           'poweredby': poweredByUi
         }
       })
@@ -975,5 +994,169 @@ export default (editor, config = {}) => {
       },
     }),
     view: defaultType.view
+  })
+
+  comps.addType('sqh-form-component', {
+    model: defaultModel.extend({
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        name: "Register Form",
+  
+        draggable: false,
+        droppable: false,
+        selectable: true,
+  
+        toolbar: [],
+        
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'string', name: 'headingtext' },
+          { type: 'string', name: 'headingtextcolor' },
+          { type: 'integer', name: 'headingfontsize' },
+          { type: 'string', name: 'fieldwidth' },
+          { type: 'string', name: 'fieldborderradius' },
+          { type: 'string', name: 'buttontext' },
+          { type: 'string', name: 'buttontextcolor' },
+          { type: 'integer', name: 'buttonfontsize' },
+          { type: 'string', name: 'buttoncolor' },
+          { type: 'string', name: 'buttonwidth' },
+          { type: 'string', name: 'buttonborderradius' },
+          { type: 'string', name: 'successtext' },
+          { type: 'string', name: 'failuretext' },
+          { type: 'string', name: 'loadingtext' },
+          { type: 'boolean', name: 'requirefirstname', value: true },
+          { type: 'boolean', name: 'requirelastname', value: true },
+          { type: 'boolean', name: 'requireemail', value: true },
+        ],
+  
+        uiSchema: {
+          ishidden: { 'ui:widget': 'hidden' },
+          headingtext: { 'ui:widget': 'textarea' },
+          headingtextcolor: { 'ui:widget': 'color' },
+          headingfontsize: { 'ui:widget': 'updown' },
+          buttontextcolor: { 'ui:widget': 'color' },
+          buttonfontsize: { 'ui:widget': 'updown' },
+          buttoncolor: { 'ui:widget': 'color' },
+        },
+  
+        schema: {
+          'title': 'Grapes JS Props',
+          'description': 'Some description here',
+          'type': 'object',
+          'properties': {
+            'ishidden': { 'type': 'boolean' },
+            'formsection': {
+              'type': 'string',
+              'title': 'Select Area to Edit',
+              'default': 'global',
+              'enum': [ 'global', 'fields', 'button' ],
+              'enumNames': [ 'Global Form Options', 'Form Fields', 'Form Button' ]
+            }
+          },
+          'dependencies': {
+            'formsection': {
+              'oneOf': [
+                {
+                  'properties': {
+                    'formsection': { 'enum': [ 'global' ] },
+                    'headingtext': {
+                      'title': 'Heading Text',
+                      'type': 'string'
+                    },
+                    'headingtextcolor': {
+                      'title': 'Heading Text Color',
+                      'type': 'string'
+                    },
+                    'headingfontsize': {
+                      'title': 'Heading Font Size',
+                      'type': 'integer'
+                    },
+                    'successtext': {
+                      'title': 'Form Submission Success Text',
+                      'type': 'string'
+                    },
+                    'failuretext': {
+                      'title': 'Form Submission Failure Text',
+                      'type': 'string'
+                    },
+                    'loadingtext': {
+                      'title': 'Form Submission Loading Text',
+                      'type': 'string'
+                    },
+                  }
+                },
+                {
+                  'properties': {
+                    'formsection': { 'enum': [ 'fields' ] },
+                    'fieldwidth': {
+                      'title': 'Field Width',
+                      'type': 'string'
+                    },
+                    'fieldborderradius': {
+                      'title': 'Field Border Radius',
+                      'type': 'string'
+                    },
+                    'requirefirstname': {
+                      'title': 'Require First Name',
+                      'type': 'boolean'
+                    },
+                    'requirelastname': {
+                      'title': 'Require Last Name',
+                      'type': 'boolean'
+                    },
+                    'requireemail': {
+                      'title': 'Require Email',
+                      'type': 'boolean'
+                    }
+                  }
+                },
+                {
+                  'properties': {
+                    'formsection': { 'enum': [ 'button' ] },
+                    'buttontext': {
+                      'title': 'Button Text',
+                      'type': 'string'
+                    },
+                    'buttontextcolor': {
+                      'title': 'Button Text Color',
+                      'type': 'string'
+                    },
+                    'buttonfontsize': {
+                      'title': 'Button Font Size',
+                      'type': 'integer'
+                    },
+                    'buttoncolor': {
+                      'title': 'Button Color',
+                      'type': 'string'
+                    },
+                    'buttonwidth': {
+                      'title': 'Button Width',
+                      'type': 'string'
+                    },
+                    'buttonborderradius': {
+                      'title': 'Button Border Radius',
+                      'type': 'string'
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      })
+    },
+    {
+      isComponent: function (el) {
+        if (el.tagName === 'SQH-FORM-COMPONENT') {
+          return { type: 'sqh-form-component' };
+        }
+      },
+    }),
+  
+    view: defaultType.view.extend({
+      render: function () {
+        defaultType.view.prototype.render.apply(this, arguments);
+        return this;
+      },
+    })
   })
 }
