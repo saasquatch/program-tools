@@ -1,5 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
-import { css } from 'emotion';
+import { Component, Prop, State, Element, Watch } from '@stencil/core';
 import Tunnel from '../../services/Registered';
 import debugFn from "debug";
 import { API } from '../../services/WidgetHost';
@@ -11,30 +10,30 @@ const debug = debugFn("sqh-global-container");
   styleUrl: 'global-container.scss'
 })
 export class GlobalContainer {
-  @State() registered: boolean;
-  @State() completedRegister: boolean;
+  @State() registered: boolean = false;
+  @State() completedRegister: boolean = false;
 
   @Prop() background: string;
   @Prop() fontfamily: string;
   @Prop() widgettype: string;
-  @Prop() skipregister: boolean;
+  @Prop() skipregister: boolean = false;
   @Prop() poweredby: boolean = true;
+
+  @Element() el: HTMLElement;
   
   componentWillLoad(){
-
-    if(this.skipregister){
-      this.registered = true;
-      this.completedRegister = true;
-      return;
-    } else {
-      this.registered = false;
-      this.completedRegister = false;
-    }
+    this.checkSkipRegister(this.skipregister);
     debug("registered check:", API.graphql.checkRegisteredUser());
     if(API.graphql.checkRegisteredUser()){
       this.registered = true;
       this.completedRegister = true;
     }
+  }
+
+  @Watch('skipregister')
+  skipRegister(newValue: boolean, oldValue: boolean) {
+    debug(newValue, oldValue)
+    if (newValue !== oldValue) this.checkSkipRegister(newValue);
   }
 
   LoadingState() {
@@ -51,7 +50,15 @@ export class GlobalContainer {
     )
   }
 
+  checkSkipRegister(newValue: boolean = false) {
+    this.registered = newValue;
+    this.completedRegister = newValue;
+  }
+
   render() {
+
+    debug("this.registered:", this.registered)
+    debug("this.completedRegister:", this.completedRegister)
 
     const tunnelState = {
       widgetType: this.widgettype,
@@ -68,29 +75,33 @@ export class GlobalContainer {
     };
     
     const hiddenStyle = { display: "none" };
+
+    /*
     const style = css`
       background-color: ${this.background};
       font-family: ${this.fontfamily};
       position: relative;
-    `
+    `*/
+
+    // temporary fix since using slots removes parent div to place emotion style in
+    this.el.style.setProperty('background-color', this.background?this.background: 'inherit');
+    this.el.style.setProperty('font-family', this.fontfamily?this.fontfamily : 'inherit');
 
     return (
       <Tunnel.Provider state={tunnelState}>
-        <div class={style}>
-          <slot />
-          {this.poweredby
-            ? <a class="sqh-attribution" href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" target="_blank">Powered By Saasquatch</a>
-            : ''
-          }
-          <this.LoadingState />
-          { !this.completedRegister && 
-            !this.skipregister 
-            ? <div style={hiddenStyle}>
-                <slot name={this.widgettype} />
-              </div>
-            : ''
-          }
-        </div>
+        <slot />
+        {this.poweredby
+          ? <a class="sqh-attribution" href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" target="_blank">Powered By Saasquatch</a>
+          : ''
+        }
+        <this.LoadingState />
+        { !this.completedRegister && 
+          !this.skipregister 
+          ? <div style={hiddenStyle}>
+              <slot name={this.widgettype} />
+            </div>
+          : ''
+        }
       </Tunnel.Provider>
     )
   }

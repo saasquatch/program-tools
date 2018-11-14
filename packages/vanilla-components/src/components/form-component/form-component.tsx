@@ -146,7 +146,7 @@ export class FormComponent {
       width: ${this.buttonwidth}px;
       background-color:${this.buttoncolor};
       color:${this.buttontextcolor};
-      border-radius:${this.buttonborderradius};
+      border-radius:${this.buttonborderradius}px;
       &:hover {
         background-color: ${shadeColor(this.buttoncolor, 10)};
         border-color: ${shadeColor(this.buttoncolor, 12)};
