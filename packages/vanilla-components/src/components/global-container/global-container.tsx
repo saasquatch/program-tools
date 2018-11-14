@@ -1,29 +1,24 @@
 import { Component, Prop, State, Element, Watch } from '@stencil/core';
 import Tunnel from '../../services/Registered';
-import debugFn from "debug";
 import { API } from '../../services/WidgetHost';
-
-const debug = debugFn("sqh-global-container");
 
 @Component({
   tag: 'sqh-global-container',
   styleUrl: 'global-container.scss'
 })
 export class GlobalContainer {
+  @Element() el: HTMLElement;
   @State() registered: boolean = false;
   @State() completedRegister: boolean = false;
 
   @Prop() background: string;
   @Prop() fontfamily: string;
   @Prop() widgettype: string;
-  @Prop() skipregister: boolean;
+  @Prop() skipregister: boolean = false;
   @Prop() poweredby: boolean = true;
-
-  @Element() el: HTMLElement;
   
   componentWillLoad(){
     this.checkSkipRegister(this.skipregister);
-    debug("registered check:", API.graphql.checkRegisteredUser());
     if(API.graphql.checkRegisteredUser()){
       this.registered = true;
       this.completedRegister = true;
@@ -32,7 +27,6 @@ export class GlobalContainer {
 
   @Watch('skipregister')
   skipRegister(newValue: boolean, oldValue: boolean) {
-    debug(newValue, oldValue)
     if (newValue !== oldValue) this.checkSkipRegister(newValue);
   }
 
@@ -61,18 +55,13 @@ export class GlobalContainer {
     completedRegister: this.completedRegister,
     registerUser: () => {
       this.registered = true;
-      debug("registered:", this.registered)
     },
     loadNext: () => {
       this.completedRegister = true;
-      debug("completedRegister:", this.completedRegister)
     }
   };
 
   render() {
-
-    debug("this.registered:", this.registered)
-    debug("this.completedRegister:", this.completedRegister)
 
     this.tunnelState = {
       ...this.tunnelState,
@@ -89,9 +78,9 @@ export class GlobalContainer {
       position: relative;
     `*/
 
-    // temporary fix since using slots removes parent div to place emotion style in
-    this.el.style.setProperty('background-color', this.background?this.background: 'inherit');
-    this.el.style.setProperty('font-family', this.fontfamily?this.fontfamily : 'inherit');
+    // TODO: find proper fix since using slots removes parent div that emotion styles are placed in
+    this.el.style.setProperty('background-color', this.background ? this.background: 'inherit');
+    this.el.style.setProperty('font-family', this.fontfamily ? this.fontfamily : 'inherit');
 
     return (
       <Tunnel.Provider state={this.tunnelState}>

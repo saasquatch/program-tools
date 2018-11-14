@@ -112,18 +112,16 @@ export class FormComponent {
   }
 
   validateField(event, fieldName) {
+    this.formData[fieldName] = event.target.value;
+
     if (event.target.validity.typeMismatch || !event.target.value) { 
-      this.formData[fieldName] = event.target.value
       this.formData.errors[fieldName] = "invalid"
-      this.formData = {
-        ...this.formData
-      }
     } else {
-      this.formData[fieldName] = event.target.value
       this.formData.errors[fieldName] = "valid"
-      this.formData = {
-        ...this.formData
-      }
+    }
+    
+    this.formData = {
+      ...this.formData
     }
   }
 
