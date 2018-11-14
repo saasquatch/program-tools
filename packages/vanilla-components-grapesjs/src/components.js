@@ -1152,11 +1152,6 @@ export default (editor, config = {}) => {
       },
     }),
   
-    view: defaultType.view.extend({
-      render: function () {
-        defaultType.view.prototype.render.apply(this, arguments);
-        return this;
-      },
-    })
+    view: defaultType.view
   })
 }
