@@ -38,9 +38,8 @@ export default (editor, config = {}) => {
     'ui:widget': (props) => {
 
       console.log(props);
-      const { id, value, onChange } = props;
-
-        
+      const { schema, id, value, onChange } = props;
+  
       return (<div className={`checkbox`}>
         <label>
           <input type="checkbox" id={id} checked={typeof value === "undefined" ? false : value} onChange={event => onChange(event.target.checked)} />
@@ -90,7 +89,7 @@ export default (editor, config = {}) => {
           {type: 'string', title: 'Background Color', name: 'background' },
           {type: 'string', title: 'Font Family', name: 'fontfamily', value: 'Helvetica Neue,Helvetica,Arial,sans-serif', ...fontFamilyOpts},
           {type: 'boolean', title: 'Show Powered By', name: 'poweredby', value: true},
-          {type: 'boolean', title: 'Skip Registration', name: 'skipregister'}
+          {type: 'boolean', title: 'Skip Registration', name: 'skipregister', value: false}
         ],
         uiSchema: {
           'background': { 'ui:widget': "color" },
