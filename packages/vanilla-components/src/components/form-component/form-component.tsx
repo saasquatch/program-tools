@@ -2,7 +2,6 @@ import { Component, Prop, State } from '@stencil/core';
 import Tunnel from '../../services/Registered'; // Import the tunnel
 import { css } from 'emotion';
 import debugFn from "debug";
-
 import { shadeColor } from '../../utilities';
 import { API } from '../../services/WidgetHost';
 
@@ -91,7 +90,6 @@ export class FormComponent {
       ...this.formData,
       failed: true
     }
-
     this.loading = false;
   }
 
@@ -119,7 +117,7 @@ export class FormComponent {
     } else {
       this.formData.errors[fieldName] = "valid"
     }
-    
+
     this.formData = {
       ...this.formData
     }
@@ -143,6 +141,7 @@ export class FormComponent {
       font-size:${this.buttonfontsize}px;
       width: ${this.buttonwidth}px;
       background-color:${this.buttoncolor};
+      border: 1px solid ${this.buttoncolor};
       color:${this.buttontextcolor};
       border-radius:${this.buttonborderradius}px;
       &:hover {
