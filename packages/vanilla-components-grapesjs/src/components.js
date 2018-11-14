@@ -36,10 +36,8 @@ export default (editor, config = {}) => {
 
   const skipRegister = {
     'ui:widget': (props) => {
-
       console.log(props);
       const { schema, id, value, onChange } = props;
-  
       return (<div className={`checkbox`}>
         <label>
           <input type="checkbox" id={id} checked={typeof value === "undefined" ? false : value} onChange={event => onChange(event.target.checked)} />
