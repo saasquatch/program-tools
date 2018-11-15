@@ -183,6 +183,7 @@ declare global {
       'requireemail': boolean;
       'requirefirstname': boolean;
       'requirelastname': boolean;
+      'skipregister': boolean;
       'successtext': string;
     }
   }
@@ -224,6 +225,7 @@ declare global {
       'requireemail'?: boolean;
       'requirefirstname'?: boolean;
       'requirelastname'?: boolean;
+      'skipregister'?: boolean;
       'successtext'?: string;
     }
   }

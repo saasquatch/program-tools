@@ -1,5 +1,5 @@
-import { Component, Prop, State } from '@stencil/core';
-import Tunnel from '../../services/Registered'; // Import the tunnel
+import { Component, Prop, State, Watch } from '@stencil/core';
+//import Tunnel from '../../services/Registered'; // Import the tunnel
 import { css } from 'emotion';
 import debugFn from "debug";
 import { shadeColor } from '../../utilities';
@@ -9,7 +9,10 @@ const debug = debugFn("sqh-form-component")
 
 interface FormState extends FormData{
   failed?: boolean;
+  registered?: boolean;
+  completedRegister?: boolean;
   errors?: FormErrors;
+
 }
 
 interface FormData {
@@ -32,6 +35,7 @@ export class FormComponent {
   @State() loading?: boolean;
 
   @Prop() ishidden: boolean;
+  @Prop() skipregister: boolean;
 
   // heading props
   @Prop() headingtext: string;
@@ -65,9 +69,31 @@ export class FormComponent {
       lastName: "",
       email: ""
     }
+
+    this.checkSkipRegister(this.skipregister);
+    if(API.graphql.checkRegisteredUser()){
+      this.formData = {
+        ...this.formData,
+        registered: true,
+        completedRegister: true
+      }
+    }
   }
 
-  async addUser(registerUser) { 
+  @Watch('skipregister')
+  skipRegister(newValue: boolean, oldValue: boolean) {
+    if (newValue !== oldValue) this.checkSkipRegister(newValue);
+  }
+
+  checkSkipRegister(newValue: boolean = false) {
+    this.formData = {
+      ...this.formData,
+      registered: newValue,
+      completedRegister: newValue
+    }
+  }
+
+  async addUser() { 
     // TODO: check if optional, don't include empty fields otherwise they'll overwrite whats there
     const dataToSend = {
       firstName: this.formData.firstName,
@@ -76,7 +102,11 @@ export class FormComponent {
     }
     return API.graphql.addUserDetails(dataToSend).then(res => {
       debug(res, "Form submission success")
-      registerUser();
+      this.formData = {
+        ...this.formData,
+        registered: true
+
+      }
     }).catch(e => {
       this.onError(e);
     });
@@ -100,13 +130,13 @@ export class FormComponent {
     }
   }
 
-  async handleSubmit(e, registerUser) {
+  async handleSubmit(e) {
     e.preventDefault()
     debug("Submitted", this.formData);
 
     // disable form and load
     this.loading = true
-    await this.addUser(registerUser);
+    await this.addUser();
   }
 
   validateField(event, fieldName) {
@@ -153,14 +183,14 @@ export class FormComponent {
         border-color: ${shadeColor(this.buttoncolor, 12)};
       }
     `;
-  
-    return (
-    <Tunnel.Consumer>
-      {({registered, completedRegister, registerUser, loadNext }) => ([
-          <div class={`input-group ${divStyle}`} style={!registered ? null: hiddenStyle}>
+    // fix this - tunnel consumer breaks slots
+    return ([
+    // <Tunnel.Consumer>
+    //   {({registered, completedRegister, registerUser, loadNext }) => ([
+          <div class={`input-group ${divStyle}`} style={!this.formData.registered ? null: hiddenStyle}>
           <sqh-text-component ismarkdown={true} text={this.headingtext} lineheight="1.428571429"
           color={this.headingtextcolor} fontsize={this.headingfontsize} textalign="center" padding="0" paddingtop="10" paddingbottom="5"></sqh-text-component>
-            <form id="signup-form" onSubmit={(e) => this.handleSubmit(e, registerUser)}>
+            <form id="signup-form" onSubmit={(e) => this.handleSubmit(e)}>
               <input type="text"
                 value={this.formData.firstName} 
                 class={`form-input ${fieldStyle} ${this.formData.errors.firstName}`}
@@ -191,16 +221,19 @@ export class FormComponent {
                 value={this.loading ? this.loadingtext : this.buttontext} disabled={this.loading} />
             </form>
           </div>,
-        <div class="success-header" style={registered && !completedRegister ? null: hiddenStyle}>
+  //   ])}
+  // </Tunnel.Consumer>
+        <div class="success-header"  style={this.formData.registered ? null : hiddenStyle }>
           <h3 class={successStyle}>
             <i class="success icon icon-ok-circled" />
             { this.successtext }
           </h3>
-          <input class={buttonStyle} type="button" value="Continue" onClick={() => this.loadNextSection(registered,loadNext)}  /> 
+          {/* <input class={buttonStyle} type="button" value="Continue" onClick={() => this.loadNextSection(true,true)}  />  */}
+          {/* <h2>Above</h2> */}
+          <slot />
+          {/* <h2>Below</h2> */}
         </div>
-    ])}
-  </Tunnel.Consumer>
-  );
+  ]);
 
   }        
 }
