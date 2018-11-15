@@ -37,7 +37,7 @@
 
 <body>
 
-  <sqh-global-container class="squatch-container" background="#FFFFFF" widgettype="referral" skipregister="false">
+  <sqh-global-container class="squatch-container" background="#FFFFFF">
 
     <sqh-text-component sqhbanner="true" ishidden="true" background="https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg"
       height="auto" paddingtop="150" paddingbottom="150" text="" color="#000000"></sqh-text-component>
@@ -67,6 +67,8 @@
       buttonborderradius="4" successtext="You have successfully signed up!" failuretext="Something went wrong. Please try again."
       loadingtext="Loading..." requirefirstname="true" requirelastname="true" requireemail="true">
 
+      <sqh-text-component sqhsuccess="true" ismarkdown="true" text="<i class='success icon icon-ok-circled'></i>You have successfully signed up!" lineheight="1.428571429"
+          color="#000000" fontsize="19" textalign="center" padding="0" paddingtop="10" paddingbottom="5"></sqh-text-component>
 
       <sqh-text-component ismarkdown="true" text="**Rewards Dashboard**" color="#000000" fontsize="13" textalign="center"
         paddingtop="20" paddingbottom="5"></sqh-text-component>

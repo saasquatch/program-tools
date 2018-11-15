@@ -1,5 +1,4 @@
 import { Component, Prop, State, Watch } from '@stencil/core';
-//import Tunnel from '../../services/Registered'; // Import the tunnel
 import { css } from 'emotion';
 import debugFn from "debug";
 import { shadeColor } from '../../utilities';
@@ -157,10 +156,6 @@ export class FormComponent {
     if(this.formData.failed) this.failMessage = this.failuretext;
     const hiddenStyle = { display: "none" };
 
-    const successStyle = css`
-      color: ${this.headingtextcolor};
-      `
-
     const divStyle = css`
       padding-top:${this.paddingtop}px;
       display: ${this.ishidden ? 'none' : 'inherit'};
@@ -183,10 +178,8 @@ export class FormComponent {
         border-color: ${shadeColor(this.buttoncolor, 12)};
       }
     `;
-    // fix this - tunnel consumer breaks slots
+
     return ([
-    // <Tunnel.Consumer>
-    //   {({registered, completedRegister, registerUser, loadNext }) => ([
           <div class={`input-group ${divStyle}`} style={!this.formData.registered ? null: hiddenStyle}>
           <sqh-text-component ismarkdown={true} text={this.headingtext} lineheight="1.428571429"
           color={this.headingtextcolor} fontsize={this.headingfontsize} textalign="center" padding="0" paddingtop="10" paddingbottom="5"></sqh-text-component>
@@ -221,17 +214,8 @@ export class FormComponent {
                 value={this.loading ? this.loadingtext : this.buttontext} disabled={this.loading} />
             </form>
           </div>,
-  //   ])}
-  // </Tunnel.Consumer>
         <div class="success-header"  style={this.formData.registered ? null : hiddenStyle }>
-          <h3 class={successStyle}>
-            <i class="success icon icon-ok-circled" />
-            { this.successtext }
-          </h3>
-          {/* <input class={buttonStyle} type="button" value="Continue" onClick={() => this.loadNextSection(true,true)}  />  */}
-          {/* <h2>Above</h2> */}
           <slot />
-          {/* <h2>Below</h2> */}
         </div>
   ]);
 
