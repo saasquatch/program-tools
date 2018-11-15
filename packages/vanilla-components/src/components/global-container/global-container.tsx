@@ -20,8 +20,7 @@ export class GlobalContainer {
   componentWillLoad(){
     this.checkSkipRegister(this.skipregister);
     if(API.graphql.checkRegisteredUser()){
-      this.registered = true;
-      this.completedRegister = true;
+      this.registered,this.completedRegister = true;
     }
   }
 
@@ -62,7 +61,6 @@ export class GlobalContainer {
   };
 
   render() {
-
     this.tunnelState = {
       ...this.tunnelState,
       registered: this.registered,
@@ -70,14 +68,12 @@ export class GlobalContainer {
     }
     
     const hiddenStyle = { display: "none" };
-
     /*
     const style = css`
       background-color: ${this.background};
       font-family: ${this.fontfamily};
       position: relative;
     `*/
-
     // TODO: find proper fix since using slots removes parent div that emotion styles are placed in
     this.el.style.setProperty('background-color', this.background ? this.background: 'inherit');
     this.el.style.setProperty('font-family', this.fontfamily ? this.fontfamily : 'inherit');
@@ -92,9 +88,7 @@ export class GlobalContainer {
         <this.LoadingState />
         { !this.completedRegister && 
           !this.skipregister 
-          ? <div style={hiddenStyle}>
-              <slot name={this.widgettype} />
-            </div>
+          ? <div style={hiddenStyle}><slot name={this.widgettype} /></div>
           : ''
         }
       </Tunnel.Provider>
