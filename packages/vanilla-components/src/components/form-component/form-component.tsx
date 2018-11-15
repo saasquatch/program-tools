@@ -183,7 +183,7 @@ export class FormComponent {
           <div class={`input-group ${divStyle}`} style={!this.formData.registered ? null: hiddenStyle}>
           <sqh-text-component ismarkdown={true} text={this.headingtext} lineheight="1.428571429"
           color={this.headingtextcolor} fontsize={this.headingfontsize} textalign="center" padding="0" paddingtop="10" paddingbottom="5"></sqh-text-component>
-            <form id="signup-form" onSubmit={(e) => this.handleSubmit(e)}>
+            <form class="signup-form" onSubmit={(e) => this.handleSubmit(e)}>
               <input type="text"
                 value={this.formData.firstName} 
                 class={`form-input ${fieldStyle} ${this.formData.errors.firstName}`}
