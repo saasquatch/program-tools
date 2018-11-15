@@ -127,17 +127,21 @@ export class FormComponent {
     if(this.formData.failed) this.failMessage = this.failuretext;
     const hiddenStyle = { display: "none" };
 
-    const divStyle= css`
+    const successStyle = css`
+      color: ${this.headingtextcolor};
+      `
+
+    const divStyle = css`
       padding-top:${this.paddingtop}px;
-      display: ${this.ishidden ? 'none' : 'inherit'} 
+      display: ${this.ishidden ? 'none' : 'inherit'};
     `
 
-    const fieldStyle= css`
+    const fieldStyle = css`
        max-width:${this.fieldwidth}px;
        border-radius:${this.fieldborderradius}px;
      `
 
-    const buttonStyle= css`
+    const buttonStyle = css`
       font-size:${this.buttonfontsize}px;
       width: ${this.buttonwidth}px;
       background-color:${this.buttoncolor};
@@ -188,9 +192,9 @@ export class FormComponent {
             </form>
           </div>,
         <div class="success-header" style={registered && !completedRegister ? null: hiddenStyle}>
-          <h3>
+          <h3 class={successStyle}>
             <i class="success icon icon-ok-circled" />
-          { this.successtext }
+            { this.successtext }
           </h3>
           <input class={buttonStyle} type="button" value="Continue" onClick={() => this.loadNextSection(registered,loadNext)}  /> 
         </div>
