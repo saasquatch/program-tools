@@ -1039,7 +1039,7 @@ export default (editor, config = {}) => {
           { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom'},
         ],
         uiSchema: {
-          'text': { 'ui:widget': 'textarea', 'ui:options': { rows: 8 } },
+          'text': { 'ui:widget': 'textarea', 'ui:options': { rows: 4 } },
           'ishidden': { 'ui:widget': 'hidden' },
           'color': { 'ui:widget': 'color' },
           'fontsize': { 'ui:widget': 'updown' },
@@ -1080,6 +1080,9 @@ export default (editor, config = {}) => {
           { type: 'integer', name: 'headingfontsize' },
           { type: 'string', name: 'fieldwidth' },
           { type: 'string', name: 'fieldborderradius' },
+          { type: 'boolean', name: 'includefirstname', value: false },
+          { type: 'boolean', name: 'includelastname', value: false },
+          { type: 'boolean', name: 'includeemail', value: false },
           { type: 'string', name: 'buttontext' },
           { type: 'string', name: 'buttontextcolor' },
           { type: 'integer', name: 'buttonfontsize' },
@@ -1088,14 +1091,14 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'buttonborderradius' },
           { type: 'string', name: 'failuretext' },
           { type: 'string', name: 'loadingtext' },
-          { type: 'boolean', name: 'requirefirstname', value: true },
-          { type: 'boolean', name: 'requirelastname', value: true },
-          { type: 'boolean', name: 'requireemail', value: true },
+          { type: 'boolean', name: 'requirefirstname', value: false },
+          { type: 'boolean', name: 'requirelastname', value: false },
+          { type: 'boolean', name: 'requireemail', value: false },
         ],
   
         uiSchema: {
           ishidden: { 'ui:widget': 'hidden' },
-          headingtext: { 'ui:widget': 'textarea' },
+          headingtext: { 'ui:widget': 'textarea', 'ui:options': { rows: 4 } },
           headingtextcolor: { 'ui:widget': 'color' },
           headingfontsize: { 'ui:widget': 'updown' },
           buttontextcolor: { 'ui:widget': 'color' },
@@ -1156,17 +1159,29 @@ export default (editor, config = {}) => {
                       'title': 'Field Border Radius',
                       'type': 'string'
                     },
+                    'includefirstname': {
+                      'title': 'Show First Name Field',
+                      'type': 'boolean',
+                    },
+                    'includelastname': {
+                      'title': 'Show Last Name Field',
+                      'type': 'boolean',
+                    },
+                    'includeemail': {
+                      'title': 'Show Email Field',
+                      'type': 'boolean',
+                    },
                     'requirefirstname': {
                       'title': 'Require First Name',
-                      'type': 'boolean'
+                      'type': 'boolean',
                     },
                     'requirelastname': {
                       'title': 'Require Last Name',
-                      'type': 'boolean'
+                      'type': 'boolean',
                     },
                     'requireemail': {
                       'title': 'Require Email',
-                      'type': 'boolean'
+                      'type': 'boolean',
                     }
                   }
                 },
