@@ -34,19 +34,19 @@ export default (editor, config = {}) => {
     ]
   }
 
-  const skipRegister = {
-    'ui:widget': (props) => {
-      console.log(props);
-      const { schema, id, value, onChange } = props;
-      return (<div className={`checkbox`}>
-        <label>
-          <input type="checkbox" id={id} checked={typeof value === "undefined" ? false : value} onChange={event => onChange(event.target.checked)} />
-          <span>Skip Registration</span>
-        </label>
-      </div>)
-    },
-    'ui:title': <span></span>
-  }
+  // const skipRegister = {
+  //   'ui:widget': (props) => {
+  //     console.log(props);
+  //     const { schema, id, value, onChange } = props;
+  //     return (<div className={`checkbox`}>
+  //       <label>
+  //         <input type="checkbox" id={id} checked={typeof value === "undefined" ? false : value} onChange={event => onChange(event.target.checked)} />
+  //         <span>Skip Registration</span>
+  //       </label>
+  //     </div>)
+  //   },
+  //   'ui:title': <span></span>
+  // }
 
   const poweredByUi = editor.editor.attributes.canWhitelabel ?
   {'ui:disabled': false } :
@@ -78,23 +78,25 @@ export default (editor, config = {}) => {
     // Define the Model
     model: defaultModel.extend({
       // Extend default properties
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+      defaults: {
+        ...defaultModel.prototype.defaults, 
         name: 'Widget Style',
         selectable: false,
-        droppable: false,
+        droppable: true,
         draggable: false,
+        highlightable: true,
         traits: [
           {type: 'string', title: 'Background Color', name: 'background' },
           {type: 'string', title: 'Font Family', name: 'fontfamily', value: 'Helvetica Neue,Helvetica,Arial,sans-serif', ...fontFamilyOpts},
-          {type: 'boolean', title: 'Show Powered By', name: 'poweredby', value: true},
-          {type: 'boolean', title: 'Skip Registration', name: 'skipregister', value: false}
+          // {type: 'boolean', title: 'Skip Registration', name: 'skipregister', value: false},
+          {type: 'boolean', title: 'Show Powered By', name: 'poweredby', value: true}
         ],
         uiSchema: {
           'background': { 'ui:widget': "color" },
-          'skipregister': skipRegister,
+          // 'skipregister': skipRegister,
           'poweredby': poweredByUi
         }
-      })
+      }
     },
     {
       isComponent: function(el) {
@@ -111,18 +113,23 @@ export default (editor, config = {}) => {
     // Define the Model
     model: defaultModel.extend({
       // Extend default properties
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+      defaults: {
+        ...defaultModel.prototype.defaults,
         name: 'Text Component',
 
         // can be dropped only inside 
-        draggable: false,
+        draggable: ['sqh-global-container', 'sqh-form-component'],
 
         // these components can be dropped in here
         droppable: false,
 
         selectable: true,
+        highlightable: true,
         
-        toolbar: [],
+        toolbar: [{
+          attributes: {class: 'fa fa-arrows'},
+          command: 'tlb-move'
+        }],
 
         traits: [
           { type: 'boolean', name: 'ishidden', value: false  },
@@ -141,7 +148,7 @@ export default (editor, config = {}) => {
           'fontsize': { 'ui:widget': 'updown' },
           'ismarkdown': markdownUi
         }
-      }),
+      }
     },
     {
       isComponent: function(el) {
@@ -284,16 +291,21 @@ export default (editor, config = {}) => {
 
   comps.addType('sqh-copy-link-button', {
     model: defaultModel.extend({
-        defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        defaults: {
+          ...defaultModel.prototype.defaults, 
           name: "Share Link",
           // can be dropped only inside 
-          draggable: false,
+          draggable: ['sqh-global-container', 'sqh-form-component'],
 
           // these components can be dropped in here
           droppable: false,
-
+          highlightable: true,
           selectable: true,
-          toolbar: [],
+          toolbar: [{
+            attributes: {class: 'fa fa-arrows'},
+            command: 'tlb-move'
+          }],
+          
           traits: [
             { type: 'boolean', name: 'ishidden', value: false  },
             { type: 'string', title: 'Button Text', name: 'text' },
@@ -306,7 +318,7 @@ export default (editor, config = {}) => {
             'buttoncolor': { 'ui:widget': 'color' },
             'textcolor': { 'ui:widget': 'color' },
           }
-        })
+        }
       },
       {
         isComponent: function (el) {
@@ -382,18 +394,22 @@ export default (editor, config = {}) => {
 
   comps.addType('sqh-share-button-container', {
     model: defaultModel.extend({
-        defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        defaults: { 
+          ...defaultModel.prototype.defaults,
           name: "Share Buttons",
 
           // can drop these elements in 
           droppable: false,
 
           // can be dropped only inside 
-          draggable: false,
+          draggable: ['sqh-global-container', 'sqh-form-component'],
 
           selectable: true,
 
-          toolbar: [],
+          toolbar: [{
+            attributes: {class: 'fa fa-arrows'},
+            command: 'tlb-move'
+          }],
 
           traits: [
             { type: 'boolean', name: 'ishidden', value: false  },
@@ -560,7 +576,7 @@ export default (editor, config = {}) => {
               }
             }
           }
-        })
+        }
       },
       {
         isComponent: function (el) {
@@ -580,18 +596,22 @@ export default (editor, config = {}) => {
 
   comps.addType('sqh-stats-container', {
     model: defaultModel.extend({
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+      defaults: {
+        ...defaultModel.prototype.defaults, 
         name: "Referral Stats",
 
         // can be dropped only inside 
-        draggable: false,
+        draggable: ['sqh-global-container', 'sqh-form-component'],
 
         // these components can be dropped in here
         droppable: ['sqh-stat-component'],
 
         selectable: true,
 
-        toolbar: [],
+        toolbar: [{
+          attributes: {class: 'fa fa-arrows'},
+          command: 'tlb-move'
+        }],
         
         traits: [
           { type: 'boolean', name: 'ishidden', value: false  },
@@ -602,7 +622,7 @@ export default (editor, config = {}) => {
         uiSchema: {
           ishidden: { 'ui:widget': 'hidden' }
         }
-      })
+      }
     },
     {
       isComponent: function (el) {
@@ -622,7 +642,8 @@ export default (editor, config = {}) => {
 
   comps.addType('sqh-stat-component', {
     model: defaultModel.extend({
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+      defaults: {
+        ...defaultModel.prototype.defaults,
         name: "Stat Component",
 
         // can be dropped only inside 
@@ -652,7 +673,7 @@ export default (editor, config = {}) => {
             "ui:widget": "StatTypeSelectWidget",
           }
         }
-      })
+      }
     },
     {
       isComponent: function (el) {
@@ -672,17 +693,22 @@ export default (editor, config = {}) => {
 
   comps.addType('sqh-referral-list', {
     model: defaultModel.extend({
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+      defaults: {
+        ...defaultModel.prototype.defaults,
         name: "Referral List",
 
         // can be dropped only inside 
-        draggable: false,
+        draggable: ['sqh-global-container', 'sqh-form-component'],
 
         // these components can be dropped in here
         droppable: false,
 
         selectable: true,
-        toolbar: [],
+        toolbar: [{
+          attributes: {class: 'fa fa-arrows'},
+          command: 'tlb-move'
+        }],
+
         traits: [
           { type: 'boolean', name: 'ishidden', value: false  },
           { type: 'boolean', name: 'showreferrer', value: true },
@@ -836,7 +862,7 @@ export default (editor, config = {}) => {
             }
           }
         }
-      })
+      }
     },
     {
       isComponent: function (el) {
@@ -889,12 +915,17 @@ export default (editor, config = {}) => {
 
   comps.addType('sqh-image-component', {
     model: defaultModel.extend({
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+      defaults: {
+        ...defaultModel.prototype.defaults, 
         name: 'Banner',
-        draggable: false,
+        draggable: ['sqh-global-container', 'sqh-form-component'],
         droppable: false,
         selectable: true,
-        toolbar: [],
+        toolbar: [{
+          attributes: {class: 'fa fa-arrows'},
+          command: 'tlb-move'
+        }],
+
         traits: [
           { type: 'boolean', name: 'ishidden', value: false  },
           { type: 'string', title: 'Upload Image', name: 'url' /*,format: 'uri'*/ },
@@ -905,7 +936,7 @@ export default (editor, config = {}) => {
           'ishidden': { 'ui:widget': 'hidden' },
           // 'url': { 'ui:widget': 'CloudinaryUpload' }
         }
-      })
+      }
     },
     {
       isComponent: function(el) {
@@ -922,7 +953,7 @@ export default (editor, config = {}) => {
     model: textComp.model.extend({
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'CTA',
-        draggable: false,
+        draggable: ['sqh-global-container', 'sqh-form-component'],
         droppable: false,
         selectable: true,
         traits: [
@@ -957,7 +988,7 @@ export default (editor, config = {}) => {
     model: textComp.model.extend({
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Copy Button',
-        draggable: false,
+        draggable: ['sqh-global-container', 'sqh-form-component'],
         droppable: false,
         selectable: true,
         traits: [
@@ -993,16 +1024,54 @@ export default (editor, config = {}) => {
     view: defaultType.view
   })
 
+  comps.addType('sqh-success', {
+    model: textComp.model.extend({
+      defaults: Object.assign({}, textComp.model.prototype.defaults, {
+        name: 'Success Heading',
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown' },
+          { type: 'string', title: 'Content', name: 'text' },
+          { type: 'string', title: 'Font Color', name: 'color' },
+          { type: 'integer', title: 'Font Size in pixels', name: 'fontsize' },
+          { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'] },
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop'},
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom'},
+        ],
+        uiSchema: {
+          'text': { 'ui:widget': 'textarea', 'ui:options': { rows: 8 } },
+          'ishidden': { 'ui:widget': 'hidden' },
+          'color': { 'ui:widget': 'color' },
+          'fontsize': { 'ui:widget': 'updown' },
+          'ismarkdown': markdownUi
+        }
+      })
+    },
+    {
+      isComponent: function(el) {
+        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhsuccess')){
+          return {type: 'sqh-success'};
+        }
+      },
+    }),
+
+    view: textComp.view
+  })
+
   comps.addType('sqh-form-component', {
     model: defaultModel.extend({
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+      defaults: {
+        ...defaultModel.prototype.defaults, 
         name: "Register Form",
   
         draggable: false,
-        droppable: false,
+        droppable: true,
         selectable: true,
   
-        toolbar: [],
+        toolbar: [{
+          attributes: {class: 'fa fa-arrows'},
+          command: 'tlb-move'
+        }],
         
         traits: [
           { type: 'boolean', name: 'ishidden', value: false  },
@@ -1017,7 +1086,6 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'buttoncolor' },
           { type: 'string', name: 'buttonwidth' },
           { type: 'string', name: 'buttonborderradius' },
-          { type: 'string', name: 'successtext' },
           { type: 'string', name: 'failuretext' },
           { type: 'string', name: 'loadingtext' },
           { type: 'boolean', name: 'requirefirstname', value: true },
@@ -1066,10 +1134,6 @@ export default (editor, config = {}) => {
                     'headingfontsize': {
                       'title': 'Heading Font Size',
                       'type': 'integer'
-                    },
-                    'successtext': {
-                      'title': 'Form Submission Success Text',
-                      'type': 'string'
                     },
                     'failuretext': {
                       'title': 'Form Submission Failure Text',
@@ -1139,7 +1203,7 @@ export default (editor, config = {}) => {
             }
           }
         }
-      })
+      }
     },
     {
       isComponent: function (el) {
