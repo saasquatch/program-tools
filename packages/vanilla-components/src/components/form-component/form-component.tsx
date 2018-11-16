@@ -56,9 +56,12 @@ export class FormComponent {
 
   // form props
   @Prop() paddingtop: string;
-  @Prop() requirefirstname: boolean;
-  @Prop() requirelastname: boolean;
-  @Prop() requireemail: boolean;
+  @Prop() includefirstname: boolean = false;
+  @Prop() includelastname: boolean = false;
+  @Prop() includeemail: boolean = false;
+  @Prop() requirefirstname: boolean = false;
+  @Prop() requirelastname: boolean = false;
+  @Prop() requireemail: boolean = false;
   @Prop() fieldwidth: string;
   @Prop() fieldborderradius: string;
 
@@ -185,38 +188,45 @@ export class FormComponent {
           <sqh-text-component ismarkdown={true} text={this.headingtext} lineheight="1.428571429"
           color={this.headingtextcolor} fontsize={this.headingfontsize} textalign="center" padding="0" paddingtop="10" paddingbottom="5"></sqh-text-component>
             <form class="signup-form" onSubmit={(e) => this.handleSubmit(e)}>
-              <input type="text"
-                value={this.formData.firstName} 
-                class={`form-input ${fieldStyle} ${this.formData.errors.firstName}`}
-                onInput={(e) => this.validateField(e, "firstName")} 
-                placeholder={`First Name ${this.requirefirstname ? "" : "(Optional)"}`}
-                disabled={this.loading}
-                required={this.requirefirstname}
-              />
-              <input type="text" 
-                value={this.formData.lastName} 
-                class={`form-input ${fieldStyle} ${this.formData.errors.lastName}`}
-                onInput={(e) => this.validateField(e, "lastName")} 
-                placeholder={`Last Name ${this.requirelastname ? "" : "(Optional)"}`}
-                disabled={this.loading}
-                required={this.requirelastname}
-              />
-              <input type="email"
-                value={this.formData.email} 
-                class={`form-input ${fieldStyle} ${this.formData.errors.email}`}
-                onInput={(e) => this.validateField(e, "email")} 
-                placeholder={`Email ${this.requireemail ? "" : "(Optional)"}`}
-                disabled={this.loading}
-                required={this.requireemail}
-              />
+            {/* TODO: Create input component to allow rearranging of these fields? (maybe not) */}
+              {this.includefirstname
+                ? <input type="text"
+                  value={this.formData.firstName}
+                  class={`form-input ${fieldStyle} ${this.formData.errors.firstName}`}
+                  onInput={(e) => this.validateField(e, "firstName")}
+                  placeholder={`First Name ${this.requirefirstname ? "" : "(Optional)"}`}
+                  disabled={this.loading}
+                  required={this.requirefirstname}
+                />
+                : '' }
+              {this.includelastname
+                ? <input type="text"
+                  value={this.formData.lastName}
+                  class={`form-input ${fieldStyle} ${this.formData.errors.lastName}`}
+                  onInput={(e) => this.validateField(e, "lastName")}
+                  placeholder={`Last Name ${this.requirelastname ? "" : "(Optional)"}`}
+                  disabled={this.loading}
+                  required={this.requirelastname}
+                />
+                : '' }
+              {this.includeemail
+                ? <input type="email"
+                  value={this.formData.email}
+                  class={`form-input ${fieldStyle} ${this.formData.errors.email}`}
+                  onInput={(e) => this.validateField(e, "email")}
+                  placeholder={`Email ${this.requireemail ? "" : "(Optional)"}`}
+                  disabled={this.loading}
+                  required={this.requireemail}
+                />
+                : '' }
               <p class="failed">{ this.failMessage }</p>
-              <input type="submit" 
-                class={buttonStyle} 
+              <input type="submit"
+                class={buttonStyle}
                 value={this.loading ? this.loadingtext : this.buttontext} disabled={this.loading} />
             </form>
           </div>
           : '',
-          this.formData.registered 
+          this.formData.registered
           ? <slot />
           : <span style={this.formData.registered ? null : hiddenStyle}><slot /></span>
           
