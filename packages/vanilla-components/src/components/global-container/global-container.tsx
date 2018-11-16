@@ -1,11 +1,12 @@
-import { Component, Prop } from '@stencil/core';
-import { css } from 'emotion';
+import { Component, Prop, Element } from '@stencil/core';
+// import { css } from 'emotion';
 
 @Component({
   tag: 'sqh-global-container',
   styleUrl: 'global-container.scss'
 })
 export class GlobalContainer {
+  @Element() el: HTMLElement;
   @Prop() background: string;
   @Prop() fontfamily: string;
   @Prop() widgettype: string;
@@ -28,21 +29,20 @@ export class GlobalContainer {
 
   render() {
     
-    const style = css`
-      background-color: ${this.background};
-      font-family: ${this.fontfamily};
-      position: relative;
-    `
-
-    return (
-      <div class={style}>
-        <slot />
-        {this.poweredby
+    // const style = css`
+    //   background-color: ${this.background};
+    //   font-family: ${this.fontfamily};
+    //   position: relative;
+    // `
+    this.el.style.setProperty('background-color', this.background ? this.fontfamily : 'inherit');
+    this.el.style.setProperty('font-family', this.fontfamily ? this.fontfamily : 'inherit');
+    
+    return ([
+        <slot />,
+        this.poweredby
           ? <a class="sqh-attribution" href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" target="_blank">Powered By Saasquatch</a>
-          : ''
-        }
+          : '',
         <this.LoadingState />
-      </div>
-    )
+      ])
   }
 }

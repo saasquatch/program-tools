@@ -180,6 +180,7 @@ export class FormComponent {
     `;
 
     return ([
+      !this.formData.registered ?
           <div class={`input-group ${divStyle}`} style={!this.formData.registered ? null: hiddenStyle}>
           <sqh-text-component ismarkdown={true} text={this.headingtext} lineheight="1.428571429"
           color={this.headingtextcolor} fontsize={this.headingfontsize} textalign="center" padding="0" paddingtop="10" paddingbottom="5"></sqh-text-component>
@@ -213,11 +214,13 @@ export class FormComponent {
                 class={buttonStyle} 
                 value={this.loading ? this.loadingtext : this.buttontext} disabled={this.loading} />
             </form>
-          </div>,
-        <div class="success-header"  style={this.formData.registered ? null : hiddenStyle }>
-          <slot />
-        </div>
-  ]);
+          </div>
+          : '',
+          this.formData.registered 
+          ? <slot />
+          : <span style={this.formData.registered ? null : hiddenStyle}><slot /></span>
+          
+    ]);
 
   }        
 }

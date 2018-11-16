@@ -10,16 +10,16 @@ sqh-global-container {
   max-width: 500px;
   margin: 0 auto;
   position:relative;
-
+  padding: 0 10px;
   * {
     box-sizing: border-box; // respects width set and puts padding inside of set width
   }
 
-  > div {
-    width: 100%;
-    display: block;
-    padding: 0 10px;
-  }
+  // > div {
+  //   width: 100%;
+  //   display: block;
+    
+  // }
 
   .sqh-attribution {
     display: inherit;
@@ -28,6 +28,7 @@ sqh-global-container {
     color: lightgray;
     text-decoration: none;
     padding-bottom: 10px;
+    width: 100%;
   }
 
   .container-loading {
