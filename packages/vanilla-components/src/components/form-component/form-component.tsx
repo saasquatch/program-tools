@@ -96,11 +96,11 @@ export class FormComponent {
   }
 
   async addUser() { 
-    // TODO: check if optional, don't include empty fields otherwise they'll overwrite whats there
+    // TODO: check if optional, don't include empty strings otherwise they'll overwrite whats there (null is ok)
     const dataToSend = {
-      firstName: this.formData.firstName,
-      lastName: this.formData.lastName,
-      email: this.formData.email,
+      firstName: this.formData.firstName ? this.formData.firstName : null,
+      lastName: this.formData.lastName ? this.formData.lastName : null,
+      email: this.formData.email ? this.formData.email : null
     }
     return API.graphql.addUserDetails(dataToSend).then(res => {
       debug(res, "Form submission success")
