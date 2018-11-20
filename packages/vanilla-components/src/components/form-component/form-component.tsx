@@ -42,6 +42,7 @@ export class FormComponent {
   // status props
   @Prop() successtext: string;
   @Prop() failuretext: string;
+  @Prop() failuretextcolor: string;
   @Prop() loadingtext: string;
   
   // button props
@@ -63,6 +64,9 @@ export class FormComponent {
   @Prop() firstnamefield: string = "required";
   @Prop() lastnamefield: string = "required";
   @Prop() emailfield: string = "required";
+  @Prop() firstnametext: string;
+  @Prop() lastnametext: string;
+  @Prop() emailtext: string;
   @Prop() fieldwidth: string;
   @Prop() fieldborderradius: string;
   @Prop() fieldvalidcolor: string;
@@ -161,6 +165,11 @@ export class FormComponent {
     if(this.formData.failed) this.failMessage = this.failuretext;
     const hiddenStyle = { display: "none" };
 
+    const failedStyle = css`
+      font-size:12px;
+      color:${this.failuretextcolor};
+    `;
+
     const divStyle = css`
       padding-top:${this.paddingtop}px;
       display: ${this.ishidden ? 'none' : 'inherit'};
@@ -204,7 +213,7 @@ export class FormComponent {
                   value={this.formData.firstName}
                   class={`form-input ${fieldStyle} ${this.formData.errors.firstName}`}
                   onInput={(e) => this.validateField(e, "firstName")}
-                  placeholder={`First Name ${this.firstnamefield === "optional" ? "(Optional)" : ""}`}
+                  placeholder={`${this.firstnametext} ${this.firstnamefield === "optional" ? "(Optional)" : ""}`}
                   disabled={this.loading}
                   required={this.firstnamefield === "required"}
                 />
@@ -214,7 +223,7 @@ export class FormComponent {
                   value={this.formData.lastName}
                   class={`form-input ${fieldStyle} ${this.formData.errors.lastName}`}
                   onInput={(e) => this.validateField(e, "lastName")}
-                  placeholder={`Last Name ${this.lastnamefield === "optional" ? "(Optional)" : ""}`}
+                  placeholder={`${this.lastnametext} ${this.lastnamefield === "optional" ? "(Optional)" : ""}`}
                   disabled={this.loading}
                   required={this.lastnamefield === "required"}
                 />
@@ -224,12 +233,12 @@ export class FormComponent {
                   value={this.formData.email}
                   class={`form-input ${fieldStyle} ${this.formData.errors.email}`}
                   onInput={(e) => this.validateField(e, "email")}
-                  placeholder={`Email ${this.emailfield === "optional" ? "(Optional)": ""}`}
+                  placeholder={`${this.emailtext} ${this.emailfield === "optional" ? "(Optional)": ""}`}
                   disabled={this.loading}
                   required={this.emailfield === "required"}
                 />
                 : '' }
-              <p class="failed">{ this.failMessage }</p>
+              <p class={failedStyle}>{ this.failMessage }</p>
               <input type="submit"
                 class={buttonStyle}
                 value={this.loading ? this.loadingtext : this.buttontext} disabled={this.loading} />

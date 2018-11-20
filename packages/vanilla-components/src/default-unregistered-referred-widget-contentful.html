@@ -7,14 +7,13 @@
   //
  -->
  
- <sqh-global-container background="#ffffff" widgettype="referred" skipregister="false">
+ <sqh-global-container class="squatch-container" background="#ffffff">
 
   <sqh-image-component
     url="https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png" 
     alignment="center" 
     width="140" 
     css="padding-top: 38px; padding-bottom: 7px;"
-    slot="main"
   ></sqh-image-component>
 
   <sqh-text-component 
@@ -26,10 +25,14 @@
     textalign="center"
     paddingtop="12" 
     padding="0 10px"
-    slot="main"
   ></sqh-text-component>
 
-  <sqh-text-component 
+  <sqh-form-component fieldwidth="220" fieldborderradius="4" fieldvalidcolor="green" fieldinvalidcolor="#C70404" headingfontsize="13" headingtextcolor="#000000"
+    paddingtop="10" headingtext="Thanks for sending your first referral!<br>Give us your email to ensure you get rewarded when your referral is used."
+    buttontext="Continue" buttoncolor="#35b21e" buttonwidth="140" buttontextcolor="#FFFFFF" buttonfontsize="14"
+    buttonborderradius="4" successtext="You have successfully signed up!" failuretext="Something went wrong. Please try again."
+    loadingtext="Loading..." firstnamefield="require" lastnamefield="require" emailfield="require">
+        <sqh-text-component 
     sqhbody="true" 
     color="gray" 
     rewardkey="referredReward" 
@@ -39,30 +42,20 @@
     textalign="center"
     paddingtop="10" 
     paddingbottom="20"
-    slot="referred"
   ></sqh-text-component>
 
-  <sqh-copy-button
-    codefontcolor="#000000"
-    codefontsize="14"
-    text="COPY CODE"
-    fontsize="14"
-    width="170"
-    backgroundcolor="#35b21e"
-    textcolor="#ffffff"
-    borderradius="4"
-    rewardkey="referredReward"
-    codefontsize="14"
-    codefontcolor="#000000"
-    slot="referred"
-  ></sqh-copy-button>
-
-  <sqh-form-component 
-    fieldwidth="220" fieldborderradius="4" headingfontsize="13" headingtextcolor="#000000"  paddingtop="10"
-    headingtext="Thanks for sending your first referral!<br>Give us your email to ensure you get rewarded when your referral is used." 
-    buttontext="Continue" buttoncolor="#35b21e" buttonwidth="140" buttontextcolor="#FFFFFF" buttonfontsize="14" buttonborderradius="4"
-    successtext="You have successfully signed up!" failuretext="Something went wrong. Please try again." loadingtext="Loading..." requirefirstname="true"
-      requirelastname="true" requireemail="true" slot="form"> 
+    <sqh-copy-button
+      codefontcolor="#000000"
+      codefontsize="14"
+      text="COPY CODE"
+      fontsize="14"
+      width="170"
+      backgroundcolor="#35b21e"
+      textcolor="#ffffff"
+      borderradius="4"
+      rewardkey="referredReward"
+      codefontsize="14"
+      codefontcolor="#000000"
+    ></sqh-copy-button>
   </sqh-form-component>
-
 </sqh-global-container>

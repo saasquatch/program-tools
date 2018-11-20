@@ -1083,6 +1083,9 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'firstnamefield' },
           { type: 'string', name: 'lastnamefield' },
           { type: 'string', name: 'emailfield' },
+          { type: 'string', name: 'firstnametext' },
+          { type: 'string', name: 'lastnametext' },
+          { type: 'string', name: 'emailtext' },
           /*{ type: 'boolean', name: 'includefirstname'},
           { type: 'boolean', name: 'includelastname'},
           { type: 'boolean', name: 'includeemail'},*/
@@ -1093,6 +1096,7 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'buttonwidth' },
           { type: 'string', name: 'buttonborderradius' },
           { type: 'string', name: 'failuretext' },
+          { type: 'string', name: 'failuretextcolor' },
           { type: 'string', name: 'loadingtext' },
           /*{ type: 'boolean', name: 'requirefirstname'},
           { type: 'boolean', name: 'requirelastname'},
@@ -1107,6 +1111,8 @@ export default (editor, config = {}) => {
           buttontextcolor: { 'ui:widget': 'color' },
           buttonfontsize: { 'ui:widget': 'updown' },
           buttoncolor: { 'ui:widget': 'color' },
+          failuretextcolor: { 'ui:widget': 'color' },
+          
         },
   
         schema: {
@@ -1143,6 +1149,10 @@ export default (editor, config = {}) => {
                     },
                     'failuretext': {
                       'title': 'Form Submission Failure Text',
+                      'type': 'string'
+                    },
+                    'failuretextcolor': {
+                      'title': 'Form Submission Failure Text Color',
                       'type': 'string'
                     },
                     'loadingtext': {
@@ -1192,6 +1202,7 @@ export default (editor, config = {}) => {
                       ],
                       'default': 'required'
                     },
+
                     'emailfield': {
                       'type': 'string',
                       'title': 'Email Field',
@@ -1206,6 +1217,18 @@ export default (editor, config = {}) => {
                         'Hide'
                       ],
                       'default': 'required'
+                    },
+                    'firstnametext': {
+                      'title': 'First Name Placeholder',
+                      'type': 'string'
+                    },
+                    'lastnametext': {
+                      'title': 'Last Name Placeholder',
+                      'type': 'string'
+                    },
+                    'emailtext': {
+                      'title': 'Email Placeholder',
+                      'type': 'string'
                     },
 /*                    'includefirstname': {
                       'title': 'Show First Name Field',
