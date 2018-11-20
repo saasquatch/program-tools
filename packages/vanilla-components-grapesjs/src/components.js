@@ -1080,9 +1080,12 @@ export default (editor, config = {}) => {
           { type: 'integer', name: 'headingfontsize' },
           { type: 'string', name: 'fieldwidth' },
           { type: 'string', name: 'fieldborderradius' },
-          { type: 'boolean', name: 'includefirstname', value: false },
-          { type: 'boolean', name: 'includelastname', value: false },
-          { type: 'boolean', name: 'includeemail', value: false },
+          { type: 'string', name: 'firstnamefield' },
+          { type: 'string', name: 'lastnamefield' },
+          { type: 'string', name: 'emailfield' },
+          /*{ type: 'boolean', name: 'includefirstname'},
+          { type: 'boolean', name: 'includelastname'},
+          { type: 'boolean', name: 'includeemail'},*/
           { type: 'string', name: 'buttontext' },
           { type: 'string', name: 'buttontextcolor' },
           { type: 'integer', name: 'buttonfontsize' },
@@ -1091,9 +1094,9 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'buttonborderradius' },
           { type: 'string', name: 'failuretext' },
           { type: 'string', name: 'loadingtext' },
-          { type: 'boolean', name: 'requirefirstname', value: false },
-          { type: 'boolean', name: 'requirelastname', value: false },
-          { type: 'boolean', name: 'requireemail', value: false },
+          /*{ type: 'boolean', name: 'requirefirstname'},
+          { type: 'boolean', name: 'requirelastname'},
+          { type: 'boolean', name: 'requireemail'},*/
         ],
   
         uiSchema: {
@@ -1159,30 +1162,81 @@ export default (editor, config = {}) => {
                       'title': 'Field Border Radius',
                       'type': 'string'
                     },
-                    'includefirstname': {
+                    'firstnamefield': {
+                      'type': 'string',
+                      'title': 'First Name Field',
+                      'enum': [
+                        'optional',
+                        'required',
+                        'hide'
+                      ],
+                      'enumNames': [
+                        'Optional',
+                        'Required',
+                        'Hide'
+                      ],
+                      'default': 'required'
+                    },
+                    'lastnamefield': {
+                      'type': 'string',
+                      'title': 'Last Name Field',
+                      'enum': [
+                        'optional',
+                        'required',
+                        'hide'
+                      ],
+                      'enumNames': [
+                        'Optional',
+                        'Required',
+                        'Hide'
+                      ],
+                      'default': 'required'
+                    },
+                    'emailfield': {
+                      'type': 'string',
+                      'title': 'Email Field',
+                      'enum': [
+                        'optional',
+                        'required',
+                        'hide'
+                      ],
+                      'enumNames': [
+                        'Optional',
+                        'Required',
+                        'Hide'
+                      ],
+                      'default': 'required'
+                    },
+/*                    'includefirstname': {
                       'title': 'Show First Name Field',
                       'type': 'boolean',
+                      "enum": ["{true}", "{false}"]
                     },
                     'includelastname': {
                       'title': 'Show Last Name Field',
                       'type': 'boolean',
+                      "enum": ["{true}", "{false}"]
                     },
                     'includeemail': {
                       'title': 'Show Email Field',
                       'type': 'boolean',
+                      "enum": ["{true}", "{false}"]
                     },
                     'requirefirstname': {
                       'title': 'Require First Name',
                       'type': 'boolean',
+                      "enum": ["{true}", "{false}"]
                     },
                     'requirelastname': {
                       'title': 'Require Last Name',
                       'type': 'boolean',
+                      "enum": ["{true}", "{false}"]
                     },
                     'requireemail': {
                       'title': 'Require Email',
                       'type': 'boolean',
-                    }
+                      
+                    }*/
                   }
                 },
                 {
@@ -1230,4 +1284,5 @@ export default (editor, config = {}) => {
   
     view: defaultType.view
   })
+  comps.getWrapper().set('droppable', false);
 }

@@ -1,4 +1,4 @@
-import { Component, Prop, State, Watch } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 import { css } from 'emotion';
 import debugFn from "debug";
 import { shadeColor } from '../../utilities';
@@ -9,9 +9,7 @@ const debug = debugFn("sqh-form-component")
 interface FormState extends FormData{
   failed?: boolean;
   registered?: boolean;
-  completedRegister?: boolean;
   errors?: FormErrors;
-
 }
 
 interface FormData {
@@ -56,14 +54,19 @@ export class FormComponent {
 
   // form props
   @Prop() paddingtop: string;
-  @Prop() includefirstname: boolean = false;
+  /*@Prop() includefirstname: boolean = false;
   @Prop() includelastname: boolean = false;
   @Prop() includeemail: boolean = false;
   @Prop() requirefirstname: boolean = false;
   @Prop() requirelastname: boolean = false;
-  @Prop() requireemail: boolean = false;
+  @Prop() requireemail: boolean = false;*/
+  @Prop() firstnamefield: string = "required";
+  @Prop() lastnamefield: string = "required";
+  @Prop() emailfield: string = "required";
   @Prop() fieldwidth: string;
   @Prop() fieldborderradius: string;
+  @Prop() fieldvalidcolor: string;
+  @Prop() fieldinvalidcolor: string;
 
   componentWillLoad(){
     this.formData.errors = {
@@ -72,16 +75,16 @@ export class FormComponent {
       email: ""
     }
 
-    this.checkSkipRegister(this.skipregister);
+    //this.checkSkipRegister(this.skipregister);
     if(API.graphql.checkRegisteredUser()){
       this.formData = {
         ...this.formData,
         registered: true,
-        completedRegister: true
       }
     }
-  }
 
+  }
+/*
   @Watch('skipregister')
   skipRegister(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) this.checkSkipRegister(newValue);
@@ -93,10 +96,9 @@ export class FormComponent {
       registered: newValue,
       completedRegister: newValue
     }
-  }
+  }*/
 
   async addUser() { 
-    // TODO: check if optional, don't include empty strings otherwise they'll overwrite whats there (null is ok)
     const dataToSend = {
       firstName: this.formData.firstName ? this.formData.firstName : null,
       lastName: this.formData.lastName ? this.formData.lastName : null,
@@ -167,6 +169,14 @@ export class FormComponent {
     const fieldStyle = css`
        max-width:${this.fieldwidth}px;
        border-radius:${this.fieldborderradius}px;
+       &.valid {
+        outline-color:${this.fieldvalidcolor};
+        border-color:${this.fieldvalidcolor};
+       }
+       &.invalid {
+        outline-color:${this.fieldinvalidcolor};
+        border-color:${this.fieldinvalidcolor};
+       }
      `
 
     const buttonStyle = css`
@@ -189,34 +199,34 @@ export class FormComponent {
           color={this.headingtextcolor} fontsize={this.headingfontsize} textalign="center" padding="0" paddingtop="10" paddingbottom="5"></sqh-text-component>
             <form class="signup-form" onSubmit={(e) => this.handleSubmit(e)}>
             {/* TODO: Create input component to allow rearranging of these fields? (maybe not) */}
-              {this.includefirstname
+              {!(this.firstnamefield === 'hide')
                 ? <input type="text"
                   value={this.formData.firstName}
                   class={`form-input ${fieldStyle} ${this.formData.errors.firstName}`}
                   onInput={(e) => this.validateField(e, "firstName")}
-                  placeholder={`First Name ${this.requirefirstname ? "" : "(Optional)"}`}
+                  placeholder={`First Name ${this.firstnamefield === "optional" ? "(Optional)" : ""}`}
                   disabled={this.loading}
-                  required={this.requirefirstname}
+                  required={this.firstnamefield === "required"}
                 />
                 : '' }
-              {this.includelastname
+              {!(this.lastnamefield === 'hide')
                 ? <input type="text"
                   value={this.formData.lastName}
                   class={`form-input ${fieldStyle} ${this.formData.errors.lastName}`}
                   onInput={(e) => this.validateField(e, "lastName")}
-                  placeholder={`Last Name ${this.requirelastname ? "" : "(Optional)"}`}
+                  placeholder={`Last Name ${this.lastnamefield === "optional" ? "(Optional)" : ""}`}
                   disabled={this.loading}
-                  required={this.requirelastname}
+                  required={this.lastnamefield === "required"}
                 />
                 : '' }
-              {this.includeemail
+              {!(this.emailfield === 'hide')
                 ? <input type="email"
                   value={this.formData.email}
                   class={`form-input ${fieldStyle} ${this.formData.errors.email}`}
                   onInput={(e) => this.validateField(e, "email")}
-                  placeholder={`Email ${this.requireemail ? "" : "(Optional)"}`}
+                  placeholder={`Email ${this.emailfield === "optional" ? "(Optional)": ""}`}
                   disabled={this.loading}
-                  required={this.requireemail}
+                  required={this.emailfield === "required"}
                 />
                 : '' }
               <p class="failed">{ this.failMessage }</p>
