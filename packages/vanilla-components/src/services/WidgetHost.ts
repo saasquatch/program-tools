@@ -465,8 +465,33 @@ const API = {
       }).then(res => res.data.user);
     },
 
-    checkRegisteredUser() {
-      return demoUser['email'];
+    async checkRegisteredUser(): Promise<string> {
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId) return demoUser['email'];
+
+      const { userId, accountId, programId } = widgetId;
+
+      const variables = {
+        userId,
+        accountId,
+        programId
+      }
+
+      return apolloClient().query<{
+        user: {
+          email: string
+        }
+      }>({
+        query: gql`
+          query($userId: String!, $accountId: String!, $programId: ID!) {
+            user(id: $userId, accountId: $accountId) {
+              email
+            }
+          }
+        `,
+        variables
+      }).then(res => res.data.user.email);
     },
 
     async addUserDetails(userDetails: {

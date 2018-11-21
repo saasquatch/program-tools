@@ -80,13 +80,19 @@ export class FormComponent {
     }
 
     //this.checkSkipRegister(this.skipregister);
-    if(API.graphql.checkRegisteredUser()){
-      this.formData = {
-        ...this.formData,
-        registered: true,
-      }
-    }
 
+    API.graphql.checkRegisteredUser().then(hasEmail => {
+      debug(hasEmail, "Registered User Check")
+
+      if(hasEmail){
+        this.formData = {
+          ...this.formData,
+          registered: true
+        }
+      }
+    }).catch(e => {
+      this.onError(e);
+    });
   }
 /*
   @Watch('skipregister')
@@ -118,7 +124,6 @@ export class FormComponent {
     }).catch(e => {
       this.onError(e);
     });
-    ;
   }
 
   onError(e: Error) {
