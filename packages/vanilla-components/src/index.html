@@ -268,7 +268,7 @@ background="#ffffff"
 
 <sqh-text-component
   sqhheader="true" 
-  text="Partner with us and profit." 
+  text="Partner and profit!" 
   color="#4486E1" 
   fontsize="30" 
   textalign="center"
@@ -279,7 +279,7 @@ background="#ffffff"
 <sqh-text-component 
   sqhbody="true" 
   ismarkdown="true"
-  text="Receive commission on every referred purchase.<br/><br/>Share the link below or use the code **<sqh-referral-code />**." 
+  text="Receive commission on every eligible referred purchase.<br/><br/>Share the link below or use the code **<sqh-referral-code />**." 
   color="#000000" 
   fontsize="13" 
   textalign="center"
@@ -350,14 +350,14 @@ background="#ffffff"
 
   <sqh-stat-component 
     statcolor="#000000"
-    stattype="/referralsCount" 
+    stattype="/rewardBalance/CASH/CAD/prettyTotalAssignedCash" 
     statdescription="Lifetime Earned"
     paddingtop="10"
     paddingbottom="10"
   ></sqh-stat-component>
 
   <sqh-stat-component
-    stattype="/rewardsCount" 
+    stattype="/rewardBalance/CASH/CAD/prettyTotalAvailableCash" 
     statdescription="Available Balance"
     paddingtop="10"
     paddingbottom="10"
@@ -365,7 +365,7 @@ background="#ffffff"
   ></sqh-stat-component>
 
   <sqh-stat-component 
-    stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit" 
+    stattype="/rewardBalance/CASH/CAD/prettyTotalPendingCash" 
     statdescription="Pending Balance"
     paddingtop="10"
     paddingbottom="10"

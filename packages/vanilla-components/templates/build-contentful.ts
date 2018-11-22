@@ -7,7 +7,7 @@ const htmlminify = require("html-minifier")
 
 
 
-const done = ["default-referred-widget-contentful", "default-referrer-widget-contentful"].forEach(filename => {
+const done = ["default-referred-widget-contentful", "default-referrer-widget-contentful", "partner-referrer-widget-contentful"].forEach(filename => {
   // @ts-ignore
   const file = fs.readFileSync(path.resolve(__dirname, `../src/${filename}.html`), { encoding: "utf8" })
 
