@@ -73,7 +73,7 @@ export function webtask(handlers = {}) {
                 // Make modifications to template based on rules here if necessary.
                 // ...
                 const handleIntrospection = handlers["PROGRAM_INTROSPECTION"];
-                const newTemplate = handleIntrospection(template,rules) || template;
+                const newTemplate = handleIntrospection && handleIntrospection(template,rules) || template;
                 cb(null, newTemplate);
                 break;
             case "PROGRAM_TRIGGER": 

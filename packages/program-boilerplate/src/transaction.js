@@ -135,7 +135,7 @@ export default class Transaction {
    */
   generateSimpleEmail({ emailKey, user }) {
     if (!this.rewardId) {
-      this.rewardId = this.context.body.ids.pop();
+        error("rewardId must be provided before email sent.");
     }
     const queryVariables = {
       userId: user.id,
@@ -161,7 +161,7 @@ export default class Transaction {
 
   generateReferralEmail({ emailKey, user, referralId }) {
     if (!this.rewardId) {
-      this.rewardId = this.context.body.ids.pop();
+      error("rewardId must be provided before email sent.");
     }
     const queryVariables = {
       userId: user.id,
