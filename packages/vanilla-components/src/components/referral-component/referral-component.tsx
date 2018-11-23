@@ -145,7 +145,6 @@ export class ReferralComponent {
 
         {/* second column */}
         <div class="sqh-column-two">
-
           <div class={ `squatch-referrals-value ${this.rewardIsCancelled() && 'cancelled'} ${ rewards.length > 0 ? this.rewardIsExpired() ? 'expired': '' : this.referraltype === 'referrer' ? 'referrer' : 'pending' }` }>
             { value }
           </div>
