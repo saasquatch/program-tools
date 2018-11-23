@@ -74,7 +74,7 @@ const demoUser = {
   rewardBalances: [
     { type: "CREDIT", unit: "CENTS", value: 17000, prettyValue: "$170.00", totalAssignedCredit: "17000", totalRedeemedCredit: "1500", prettyAssignedCredit: "$170.00", prettyRedeemedCredit: "$15.00" },
     { type: "PCT_DISCOUNT", unit: "%", value: 15, prettyValue: "15%" },
-    { type: "CASH", unit: "CAD", value: 30000, prettyValue: "$300.00", totalAssignedCash: "30000", totalAvailableCash: "20000", totalPendingCash: "10000", prettyTotalAssignedCash: "$300.00", prettyTotalAvailableCash: "$200.00", prettyTotalPendingCash: "$100.00" }
+    { type: "CREDIT", unit: "CAD", value: 30000, prettyValue: "$300.00", totalAssignedCash: "30000", totalAvailableCash: "20000", totalPendingCash: "10000", prettyTotalAssignedCash: "$300.00", prettyTotalAvailableCash: "$200.00", prettyTotalPendingCash: "$100.00" }
   ],
 }
 

@@ -1,4 +1,4 @@
-sqh-stat-component{
+partner-sqh-stat-component{
   text-align: center;
   width: 140px;
   float: left;
@@ -24,7 +24,7 @@ sqh-stat-component{
 
 // May end up in CSS in JS so it's user controlled
 
-sqh-stat-component {
+partner-sqh-stat-component {
   @media (max-width: 499px) {
     width: 100%;
     text-align: left;

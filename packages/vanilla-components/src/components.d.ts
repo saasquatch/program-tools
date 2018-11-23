@@ -240,6 +240,49 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhPartnerStatComponent {
+      'ishidden': boolean;
+      'statcolor': string;
+      'statdescription': string;
+      'stattype': string;
+      'statvalue': string;
+    }
+  }
+
+  interface HTMLSqhPartnerStatComponentElement extends StencilComponents.SqhPartnerStatComponent, HTMLStencilElement {}
+
+  var HTMLSqhPartnerStatComponentElement: {
+    prototype: HTMLSqhPartnerStatComponentElement;
+    new (): HTMLSqhPartnerStatComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-partner-stat-component': HTMLSqhPartnerStatComponentElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-partner-stat-component': HTMLSqhPartnerStatComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-partner-stat-component': JSXElements.SqhPartnerStatComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhPartnerStatComponentAttributes extends HTMLAttributes {
+      'ishidden'?: boolean;
+      'onStatAdded'?: (event: CustomEvent) => void;
+      'onStatTypeUpdated'?: (event: CustomEvent) => void;
+      'statcolor'?: string;
+      'statdescription'?: string;
+      'stattype'?: string;
+      'statvalue'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhReferralCode {
 
     }
@@ -746,45 +789,6 @@ declare global {
       'ishidden'?: boolean;
       'paddingbottom'?: string;
       'paddingtop'?: string;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface TempSqhReferralComponent {
-      'referral': Referral | ReferredByReferral;
-      'referraltype': "converted" | "pending" | "referrer";
-      'referralvariables': ReferralVariables;
-      'unknownuser': String;
-    }
-  }
-
-  interface HTMLTempSqhReferralComponentElement extends StencilComponents.TempSqhReferralComponent, HTMLStencilElement {}
-
-  var HTMLTempSqhReferralComponentElement: {
-    prototype: HTMLTempSqhReferralComponentElement;
-    new (): HTMLTempSqhReferralComponentElement;
-  };
-  interface HTMLElementTagNameMap {
-    'temp-sqh-referral-component': HTMLTempSqhReferralComponentElement;
-  }
-  interface ElementTagNameMap {
-    'temp-sqh-referral-component': HTMLTempSqhReferralComponentElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'temp-sqh-referral-component': JSXElements.TempSqhReferralComponentAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface TempSqhReferralComponentAttributes extends HTMLAttributes {
-      'referral'?: Referral | ReferredByReferral;
-      'referraltype'?: "converted" | "pending" | "referrer";
-      'referralvariables'?: ReferralVariables;
-      'unknownuser'?: String;
     }
   }
 }
