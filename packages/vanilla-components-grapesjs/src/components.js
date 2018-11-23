@@ -1011,12 +1011,18 @@ export default (editor, config = {}) => {
     enum: [
       "/rewardBalance/CREDIT/CAD/prettyTotalAssignedCash",
       "/rewardBalance/CREDIT/CAD/prettyTotalAvailableCash",
-      "/rewardBalance/CREDIT/CAD/prettyTotalPendingCash"
+      "/rewardBalance/CREDIT/CAD/prettyTotalPendingCash",
+      "/rewardBalance/CREDIT/USD/prettyTotalAssignedCash",
+      "/rewardBalance/CREDIT/USD/prettyTotalAvailableCash",
+      "/rewardBalance/CREDIT/USD/prettyTotalPendingCash"
     ],
     enumNames: [
-      "Lifetime Earned",
-      "Available Balance",
-      "Pending Balance"
+      "Lifetime Earned CAD",
+      "Available Balance CAD",
+      "Pending Balance CAD",
+      "Lifetime Earned USD",
+      "Available Balance USD",
+      "Pending Balance USD"
     ]
   }
 
