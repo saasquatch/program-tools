@@ -97,10 +97,10 @@ const demoUser = {
       totalRedeemedCredit: 10000,
       totalExpiredCredit: 15000,
       totalCancelledCredit: 10000,
-      prettyAssignedCredit: "$400.00",
-      prettyRedeemedCredit: "$150.00",
+      prettyAssignedCredit: "USD400.00",
+      prettyRedeemedCredit: "USD150.00",
       value: 0,
-      prettyValue: "$400.00"
+      prettyValue: "USD400.00"
     }
   ],
 }
