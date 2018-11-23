@@ -1,5 +1,5 @@
 {
-  "name": "@saasquatch/vanilla-components",
+  "name": "@kittenco/vanilla-components",
   "version": "1.0.1",
   "description": "Vanilla component library for the SaaSquatch platform",
   "main": "dist/index.js",

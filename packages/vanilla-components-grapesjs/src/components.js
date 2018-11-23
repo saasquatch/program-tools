@@ -1009,9 +1009,9 @@ export default (editor, config = {}) => {
 
   const partnerStatsDropdown = {
     enum: [
-      "/rewardBalance/CASH/CAD/prettyTotalAssignedCash",
-      "/rewardBalance/CASH/CAD/prettyTotalAvailableCash",
-      "/rewardBalance/CASH/CAD/prettyTotalPendingCash"
+      "/rewardBalance/CREDIT/CAD/prettyTotalAssignedCash",
+      "/rewardBalance/CREDIT/CAD/prettyTotalAvailableCash",
+      "/rewardBalance/CREDIT/CAD/prettyTotalPendingCash"
     ],
     enumNames: [
       "Lifetime Earned",
@@ -1020,7 +1020,7 @@ export default (editor, config = {}) => {
     ]
   }
 
-  comps.addType('temp-sqh-referral-component', {
+  comps.addType('sqh-partner-stat-component', {
     model: defaultModel.extend({
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
         name: "Stat Component",
@@ -1053,8 +1053,8 @@ export default (editor, config = {}) => {
     },
     {
       isComponent: function (el) {
-        if (el.tagName === 'SQH-STAT-COMPONENT-PARTNER') {
-          return { type: 'sqh-stat-component-partner' };
+        if (el.tagName === 'SQH-PARTNER-STAT-COMPONENT') {
+          return { type: 'sqh-partner-stat-component' };
         }
       },
     }),

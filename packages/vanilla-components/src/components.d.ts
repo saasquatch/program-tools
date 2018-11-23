@@ -754,6 +754,45 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface TempSqhReferralComponent {
+      'referral': Referral | ReferredByReferral;
+      'referraltype': "converted" | "pending" | "referrer";
+      'referralvariables': ReferralVariables;
+      'unknownuser': String;
+    }
+  }
+
+  interface HTMLTempSqhReferralComponentElement extends StencilComponents.TempSqhReferralComponent, HTMLStencilElement {}
+
+  var HTMLTempSqhReferralComponentElement: {
+    prototype: HTMLTempSqhReferralComponentElement;
+    new (): HTMLTempSqhReferralComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'temp-sqh-referral-component': HTMLTempSqhReferralComponentElement;
+  }
+  interface ElementTagNameMap {
+    'temp-sqh-referral-component': HTMLTempSqhReferralComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'temp-sqh-referral-component': JSXElements.TempSqhReferralComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface TempSqhReferralComponentAttributes extends HTMLAttributes {
+      'referral'?: Referral | ReferredByReferral;
+      'referraltype'?: "converted" | "pending" | "referrer";
+      'referralvariables'?: ReferralVariables;
+      'unknownuser'?: String;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhTextComponent {
       'background': string;
       'color': string;
