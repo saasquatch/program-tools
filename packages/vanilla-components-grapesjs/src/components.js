@@ -654,6 +654,8 @@ export default (editor, config = {}) => {
     }),
   });
 
+
+
   comps.addType('sqh-referral-list', {
     model: defaultModel.extend({
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
@@ -997,4 +999,79 @@ export default (editor, config = {}) => {
     }),
     view: defaultType.view
   })
+
+
+  // 
+  // 
+  //  Partner specific editor
+  // 
+  // 
+
+  const partnerStatsDropdown = {
+    enum: [
+      "/rewardBalance/CASH/CAD/prettyTotalAssignedCash",
+      "/rewardBalance/CASH/CAD/prettyTotalAvailableCash",
+      "/rewardBalance/CASH/CAD/prettyTotalPendingCash"
+    ],
+    enumNames: [
+      "Lifetime Earned",
+      "Available Balance",
+      "Pending Balance"
+    ]
+  }
+
+  comps.addType('temp-sqh-referral-component', {
+    model: defaultModel.extend({
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        name: "Stat Component",
+
+        // can be dropped only inside 
+        draggable: ['sqh-stats-container'],
+
+        // these components can be dropped in here
+        droppable: false,
+
+        selectable: true,
+
+        toolbar: [{
+          attributes: {class: 'fa fa-arrows'},
+          command: 'tlb-move'
+        }],
+
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'string', name: 'stattype', title: 'Stat Type', ...partnerStatsDropdown },
+          { type: 'string', name: 'statdescription', title: 'Stat Description' },
+          { type: 'string', name: 'statcolor' },
+        ],
+
+        uiSchema: {
+          ishidden: { 'ui:widget': 'hidden' },
+          statcolor: { 'ui:widget': 'color' },
+        }
+      })
+    },
+    {
+      isComponent: function (el) {
+        if (el.tagName === 'SQH-STAT-COMPONENT-PARTNER') {
+          return { type: 'sqh-stat-component-partner' };
+        }
+      },
+    }),
+
+    view: defaultType.view.extend({
+      render: function () {
+        defaultType.view.prototype.render.apply(this, arguments);
+        return this;
+      },
+    }),
+  });
+
+
+  // 
+  // 
+  // END OF PARTNER SPECIFIC EDITOR
+  // 
+  // 
+
 }
