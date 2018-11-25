@@ -11,6 +11,6 @@ export class PartnerTotal {
   
   render() {
     return !this.ishidden && 
-      <div>hi</div>
+    <div>hi</div>
   }
 }
