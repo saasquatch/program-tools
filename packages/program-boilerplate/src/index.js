@@ -70,10 +70,11 @@ export function webtask(handlers = {}) {
             case "PROGRAM_INTROSPECTION":
                 const template = context.body.template;
                 const rules = context.body.rules;
+                const program = context.body.program;
                 // Make modifications to template based on rules here if necessary.
                 // ...
                 const handleIntrospection = handlers["PROGRAM_INTROSPECTION"];
-                const newTemplate = handleIntrospection && handleIntrospection(template,rules) || template;
+                const newTemplate = handleIntrospection && (handleIntrospection(template,rules,program) || handleIntrospection(template,rules)) || template;
                 cb(null, newTemplate);
                 break;
             case "PROGRAM_TRIGGER": 
