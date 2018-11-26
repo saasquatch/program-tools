@@ -1,5 +1,14 @@
 import { Component, Prop } from '@stencil/core';
+// import * as vega from "vega-lib"
+import vegaEmbed from "vega-embed";
 
+const spec = "https://raw.githubusercontent.com/vega/vega/master/docs/examples/bar-chart.vg.json";
+
+// const spec = "bar.vg.json";
+
+vegaEmbed('#vis', spec, {
+  defaultStyle: true
+});
 
 @Component({
   tag: 'sqh-partner-total-bar',
@@ -11,6 +20,7 @@ export class PartnerTotal {
   
   render() {
     return !this.ishidden && 
-    <div>hi</div>
+      <div id="vis"></div>
+      // <div id="view"></div>
   }
 }

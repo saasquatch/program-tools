@@ -36,7 +36,9 @@
     "intl-relativeformat": "^2.1.0",
     "marked": "^0.4.0",
     "path-to-regexp": "^2.2.1",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "vega-embed": "^3.24.2",
+    "vega-lib": "^4.3.0"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",
