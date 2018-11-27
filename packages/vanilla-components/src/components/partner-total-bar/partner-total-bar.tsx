@@ -20,7 +20,8 @@ export class PartnerTotal {
   render() {
     console.log("SPEC", spec)
     return !this.ishidden && 
+    <div id="wrapper">
       <div id="vis"></div>
-      // <div id="view"></div>
+    </div>
   }
 }
