@@ -1,5 +1,5 @@
-{
-  "$schema": "https://vega.github.io/schema/vega/v3.0.json",
+export const spec = {
+  "$schema": "https://vega.github.io/schema/vega/v4.3.0.json",
   "width": 400,
   "height": 200,
   "padding": 5,
