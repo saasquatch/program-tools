@@ -7,35 +7,35 @@
   "data": [{
     "name": "table",
     "values": [{
-        "category": "A",
+        "category": "CAD",
         "amount": 28
       },
       {
-        "category": "B",
+        "category": "USD",
         "amount": 55
       },
       {
-        "category": "C",
+        "category": "EUR",
         "amount": 43
       },
       {
-        "category": "D",
+        "category": "BTN",
         "amount": 91
       },
       {
-        "category": "E",
+        "category": "HRK",
         "amount": 81
       },
       {
-        "category": "F",
+        "category": "HKD",
         "amount": 53
       },
       {
-        "category": "G",
+        "category": "ILS",
         "amount": 19
       },
       {
-        "category": "H",
+        "category": "JOD",
         "amount": 87
       }
     ]
