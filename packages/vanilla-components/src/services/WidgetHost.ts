@@ -76,7 +76,7 @@ const demoUser = {
     { type: "PCT_DISCOUNT", unit: "%", value: 15, prettyValue: "15%" },
     {
       type: "CREDIT",
-      unit: "CAD",
+      unit: "CASH/CAD",
       count: 3,
       totalPendingCredit: 20000,
       totalAssignedCredit: 30000,
@@ -86,12 +86,12 @@ const demoUser = {
       prettyPendingCredit: "$200.00",
       prettyAssignedCredit: "$300.00",
       prettyRedeemedCredit: "$100.00",
-      value: 0,
+      value: 30000,
       prettyValue: "$300.00"
     },
     {
       type: "CREDIT",
-      unit: "USD",
+      unit: "CASH/USD",
       count: 6,
       totalPendingCredit: 25000,
       totalAssignedCredit: 40000,
@@ -101,11 +101,12 @@ const demoUser = {
       prettyPendingCredit: "USD250.00",
       prettyAssignedCredit: "USD400.00",
       prettyRedeemedCredit: "USD150.00",
-      value: 0,
+      value: 40000,
       prettyValue: "USD400.00"
     }
   ],
 }
+
 
 //@ts-ignore
 const squatchJsApi = window.frameElement ? window.frameElement.squatchJsApi : {};
