@@ -1009,12 +1009,12 @@ export default (editor, config = {}) => {
 
   const partnerStatsDropdown = {
     enum: [
-      "/rewardBalance/CREDIT/CAD/totalPendingCredit",
-      "/rewardBalance/CREDIT/CAD/prettyAssignedCredit",
-      "/rewardBalance/CREDIT/CAD/prettyRedeemedCredit",
-      "/rewardBalance/CREDIT/USD/totalPendingCredit",
-      "/rewardBalance/CREDIT/USD/prettyAssignedCredit",
-      "/rewardBalance/CREDIT/USD/prettyRedeemedCredit"
+      "/rewardBalance/CREDIT/CASH_CAD/totalPendingCredit",
+      "/rewardBalance/CREDIT/CASH_CAD/prettyAssignedCredit",
+      "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit",
+      "/rewardBalance/CREDIT/CASH_USD/totalPendingCredit",
+      "/rewardBalance/CREDIT/CASH_USD/prettyAssignedCredit",
+      "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"
     ],
     enumNames: [
       "Pending Balance CAD",
