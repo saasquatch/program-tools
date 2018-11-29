@@ -88,7 +88,11 @@ export class StatsContainer {
 
   getRewardBalance(statVariables) {
     const { type, unit, valuetype } = statVariables;
-    const rewardBalance = this.stats['rewardBalances'].find(rb => rb.type === type && rb.unit === unit);
+    // passing in CASH/USD as CASH_USD into this webcomponent so pathToRegexp doesn't split it and it stays all in unit.
+    // this converts the _ back to / so that it matches the unit from the backend
+    // possibly change the unit in the backend to avoid this?
+    const newUnit = unit.replace(/_/, "/")
+    const rewardBalance = this.stats['rewardBalances'].find(rb => rb.type === type && rb.unit === newUnit);
     if (!rewardBalance) return 0;
     if (valuetype) return rewardBalance[valuetype];
     return rewardBalance.value;
