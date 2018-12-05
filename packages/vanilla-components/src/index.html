@@ -172,7 +172,176 @@
     paddingbottom="10"
   ></sqh-text-component>
   
+<<<<<<< HEAD
   </sqh-global-container>  
+=======
+  <sqh-text-component 
+    sqhbody="true" 
+    color="gray" 
+    rewardkey="referredReward" 
+    fontsize="13" 
+    text="<hr style='border-top: 1px solid #eee; border-bottom: 0;'></hr><br/><br/>Use the Referral Code at checkout to receive your referral reward" 
+    ismarkdown="true" 
+    textalign="center"
+    paddingtop="10" 
+    paddingbottom="20"
+  ></sqh-text-component>
+  
+  <sqh-copy-button
+    codefontcolor="#000000"
+    codefontsize="14"
+    text="COPY CODE"
+    fontsize="14"
+    width="170"
+    backgroundcolor="#35b21e"
+    textcolor="#ffffff"
+    borderradius="4"
+    rewardkey="referredReward"
+    codefontsize="14"
+    codefontcolor="#000000"
+    ></sqh-copy-button>
+  
+</sqh-global-container>
+
+
+<!-- Partner Widget -->
+
+<sqh-global-container 
+class="squatch-container" 
+background="#ffffff"
+>
+
+<sqh-text-component 
+  sqhbanner="true"
+  ishidden="true"
+  background="https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg"
+  height="auto"
+  paddingtop="150"
+  paddingbottom="150"
+  text=""
+  color="#000000"
+></sqh-text-component>
+
+<sqh-text-component
+  sqhheader="true" 
+  text="Partner with us and profit." 
+  color="#4486E1" 
+  fontsize="30" 
+  textalign="center"
+  paddingtop="30" 
+  paddingbottom="10"
+></sqh-text-component>
+
+<sqh-text-component 
+  sqhbody="true" 
+  ismarkdown="true"
+  text="Receive commission on every referred purchase.<br/><br/>Share the link below or use the code **<sqh-referral-code />**." 
+  color="#000000" 
+  fontsize="13" 
+  textalign="center"
+  paddingtop="5" 
+  paddingbottom="20"
+></sqh-text-component>
+
+<sqh-copy-link-button 
+  text="Copy"
+  buttoncolor="#5C6164"
+  textcolor="#FFFFFF"
+></sqh-copy-link-button>
+
+<sqh-share-button-container 
+  emaildisplayrule="mobile-and-desktop" 
+  emailtext="Email" 
+  emailtextcolor="#ffffff" 
+  emailbackgroundcolor="#4b4d50" 
+  facebookdisplayrule="mobile-and-desktop" 
+  facebooktext="Facebook" 
+  facebooktextcolor="#ffffff" 
+  facebookbackgroundcolor="#234079" 
+  twitterdisplayrule="mobile-and-desktop" 
+  twittertext="Twitter" 
+  twittertextcolor="#ffffff" 
+  twitterbackgroundcolor="#4797d2" 
+  smsdisplayrule="mobile-only" 
+  smstext="SMS" 
+  smstextcolor="#ffffff" 
+  smsbackgroundcolor="#7bbf38" 
+  whatsappdisplayrule="mobile-only" 
+  whatsapptext="Whatspp" 
+  whatsapptextcolor="#ffffff"
+  whatsappbackgroundcolor="#25D366"
+  linkedindisplayrule="hidden"
+  linkedintext="LinkedIn"
+  linkedintextcolor="#ffffff"
+  linkedinbackgroundcolor="#0084b9"
+  pinterestdisplayrule="hidden"
+  pinteresttext="Pinterest"
+  pinteresttextcolor="#ffffff"
+  pinterestbackgroundcolor="#cb2027"
+  messengerdisplayrule="hidden"
+  messengertext="Messenger"
+  messengertextcolor="#ffffff"
+  messengerbackgroundcolor="#0084ff"
+  linedisplayrule="mobile-only"
+  linetext="Line Messenger"
+  linetextcolor="#ffffff"
+  linebackgroundcolor="#00c300"
+></sqh-share-button-container>
+
+<sqh-text-component 
+  sqhreferralsheader="true"
+  ismarkdown="true"
+  text="**Rewards Dashboard**" 
+  color="#000000" 
+  fontsize="13" 
+  textalign="center"
+  paddingtop="20" 
+  paddingbottom="10"
+></sqh-text-component>
+
+<sqh-stats-container
+  paddingtop="0"
+  paddingbottom="0"
+>
+
+  <sqh-stat-component 
+    statcolor="#000000"
+    stattype="/referralsCount" 
+    statdescription="Lifetime Earned"
+    paddingtop="10"
+    paddingbottom="10"
+  ></sqh-stat-component>
+
+  <sqh-stat-component
+    stattype="/rewardsCount" 
+    statdescription="Available Balance"
+    paddingtop="10"
+    paddingbottom="10"
+    statcolor="#4caf50"
+  ></sqh-stat-component>
+
+  <sqh-stat-component 
+    stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit" 
+    statdescription="Pending Balance"
+    paddingtop="10"
+    paddingbottom="10"
+    statcolor="#000000"
+  ></sqh-stat-component>
+
+</sqh-stats-container>
+
+<sqh-text-component 
+  sqhfooter="true" 
+  text="Terms and Conditions" 
+  color="lightgray" 
+  fontsize="13"
+  textalign="center"
+  paddingtop="10"
+  paddingbottom="10"
+></sqh-text-component>
+
+</sqh-global-container>  
+>>>>>>> e7cef3340e6f356d6a0882f3642acb458c255afd
 
 
 </body>
