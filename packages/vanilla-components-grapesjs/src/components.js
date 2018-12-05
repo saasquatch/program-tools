@@ -35,13 +35,13 @@ export default (editor, config = {}) => {
   }
 
   const poweredByUi = editor.editor.attributes.canWhitelabel ?
-  {'ui:disabled': false } :
-  {'ui:disabled': true, 'ui:help': <div>Can only be disabled on <span className="label">Pro</span> plans</div>, "ui:title": <span><span className="ico ico-lock"></span> Show Powered By</span> };
-  
+    { 'ui:disabled': false } :
+    { 'ui:disabled': true, 'ui:help': <div>Can only be disabled on <span className="label">Pro</span> plans</div>, "ui:title": <span><span className="ico ico-lock"></span> Show Powered By</span> };
+
   const markdownUi = {
     'ui:widget': (props) => {
       const { schema, id, value, required, disabled, readonly, label, autofocus, onChange } = props;
-        
+
       return (<div className={`checkbox ${disabled || readonly ? "disabled" : ""}`}>
         <label>
           <input
@@ -70,9 +70,9 @@ export default (editor, config = {}) => {
         droppable: false,
         draggable: false,
         traits: [
-          {type: 'string', title: 'Background Color', name: 'background' },
-          {type: 'string', title: 'Font Family', name: 'fontfamily', value: 'Helvetica Neue,Helvetica,Arial,sans-serif', ...fontFamilyOpts},
-          {type: 'boolean', title: 'Show Powered By', name: 'poweredby', value: true}
+          { type: 'string', title: 'Background Color', name: 'background' },
+          { type: 'string', title: 'Font Family', name: 'fontfamily', value: 'Helvetica Neue,Helvetica,Arial,sans-serif', ...fontFamilyOpts },
+          { type: 'boolean', title: 'Show Powered By', name: 'poweredby', value: true }
         ],
         uiSchema: {
           'background': { 'ui:widget': "color" },
@@ -80,13 +80,13 @@ export default (editor, config = {}) => {
         }
       })
     },
-    {
-      isComponent: function(el) {
-        if(el.tagName == 'SQH-GLOBAL-CONTAINER'){
-          return {type: 'sqh-global-container'};
-        }
-      },
-    }),
+      {
+        isComponent: function (el) {
+          if (el.tagName == 'SQH-GLOBAL-CONTAINER') {
+            return { type: 'sqh-global-container' };
+          }
+        },
+      }),
 
     view: defaultType.view
   })
@@ -105,11 +105,11 @@ export default (editor, config = {}) => {
         droppable: false,
 
         selectable: true,
-        
+
         toolbar: [],
 
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'boolean', name: 'ishidden', value: false },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown' },
           { type: 'string', title: 'Content', name: 'text' },
           { type: 'string', title: 'Font Color', name: 'color' },
@@ -127,13 +127,13 @@ export default (editor, config = {}) => {
         }
       }),
     },
-    {
-      isComponent: function(el) {
-        if(el.tagName == 'SQH-TEXT-COMPONENT'){
-          return {type: 'sqh-text-component'};
-        }
-      },
-    }),
+      {
+        isComponent: function (el) {
+          if (el.tagName == 'SQH-TEXT-COMPONENT') {
+            return { type: 'sqh-text-component' };
+          }
+        },
+      }),
 
     view: defaultType.view,
   })
@@ -145,7 +145,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Header',
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'boolean', name: 'ishidden', value: false },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown' },
           { type: 'string', title: 'Content', name: 'text' },
           { type: 'string', title: 'Font Color', name: 'color' },
@@ -163,13 +163,13 @@ export default (editor, config = {}) => {
         }
       })
     },
-    {
-      isComponent: function(el) {
-        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhheader')){
-          return {type: 'sqh-header'};
-        }
-      },
-    }),
+      {
+        isComponent: function (el) {
+          if (el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhheader')) {
+            return { type: 'sqh-header' };
+          }
+        },
+      }),
 
     view: textComp.view
   })
@@ -179,14 +179,14 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Body',
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'boolean', name: 'ishidden', value: false },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown' },
           { type: 'string', title: 'Content', name: 'text' },
           { type: 'string', title: 'Font Color', name: 'color' },
           { type: 'integer', title: 'Font Size in pixels', name: 'fontsize' },
           { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'] },
-          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop'},
-          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom'},
+          { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop' },
+          { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom' },
         ],
         uiSchema: {
           'text': { 'ui:widget': 'textarea', 'ui:options': { rows: 8 } },
@@ -197,13 +197,13 @@ export default (editor, config = {}) => {
         }
       })
     },
-    {
-      isComponent: function(el) {
-        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhbody')){
-          return {type: 'sqh-body'};
-        }
-      },
-    }),
+      {
+        isComponent: function (el) {
+          if (el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhbody')) {
+            return { type: 'sqh-body' };
+          }
+        },
+      }),
 
     view: textComp.view
   })
@@ -213,7 +213,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Stats Header',
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'boolean', name: 'ishidden', value: false },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown' },
           { type: 'string', title: 'Content', name: 'text' },
           { type: 'string', title: 'Font Color', name: 'color' },
@@ -224,13 +224,13 @@ export default (editor, config = {}) => {
         ]
       })
     },
-    {
-      isComponent: function(el) {
-        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhreferralsheader')){
-          return {type: 'sqh-referrals-header'};
-        }
-      },
-    }),
+      {
+        isComponent: function (el) {
+          if (el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhreferralsheader')) {
+            return { type: 'sqh-referrals-header' };
+          }
+        },
+      }),
 
     view: textComp.view
   })
@@ -240,7 +240,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Banner',
         traits: [
-          { type: 'boolean', name: 'ishidden', value: true  },
+          { type: 'boolean', name: 'ishidden', value: true },
           { type: 'string', title: 'Upload Image', name: 'background' /*,format: 'uri'*/ },
           { type: 'string', title: 'Height in pixels', name: 'height' },
           { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop' },
@@ -255,43 +255,43 @@ export default (editor, config = {}) => {
         }
       })
     },
-    {
-      isComponent: function(el) {
-        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhbanner')){
-          return {type: 'sqh-banner'};
-        }
-      },
-    }),
+      {
+        isComponent: function (el) {
+          if (el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhbanner')) {
+            return { type: 'sqh-banner' };
+          }
+        },
+      }),
 
     view: textComp.view
   })
 
   comps.addType('sqh-copy-link-button', {
     model: defaultModel.extend({
-        defaults: Object.assign({}, defaultModel.prototype.defaults, {
-          name: "Share Link",
-          // can be dropped only inside 
-          draggable: false,
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        name: "Share Link",
+        // can be dropped only inside 
+        draggable: false,
 
-          // these components can be dropped in here
-          droppable: false,
+        // these components can be dropped in here
+        droppable: false,
 
-          selectable: true,
-          toolbar: [],
-          traits: [
-            { type: 'boolean', name: 'ishidden', value: false  },
-            { type: 'string', title: 'Button Text', name: 'text' },
-            { type: 'string', title: 'Button Color', name: 'buttoncolor' },
-            { type: 'string', title: 'Text Color', name: 'textcolor' },
-          ],
-          uiSchema: {
-            "ui:order": ['*', 'buttoncolor'],
-            'ishidden': { 'ui:widget': 'hidden' },
-            'buttoncolor': { 'ui:widget': 'color' },
-            'textcolor': { 'ui:widget': 'color' },
-          }
-        })
-      },
+        selectable: true,
+        toolbar: [],
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'string', title: 'Button Text', name: 'text' },
+          { type: 'string', title: 'Button Color', name: 'buttoncolor' },
+          { type: 'string', title: 'Text Color', name: 'textcolor' },
+        ],
+        uiSchema: {
+          "ui:order": ['*', 'buttoncolor'],
+          'ishidden': { 'ui:widget': 'hidden' },
+          'buttoncolor': { 'ui:widget': 'color' },
+          'textcolor': { 'ui:widget': 'color' },
+        }
+      })
+    },
       {
         isComponent: function (el) {
           if (el.tagName === 'SQH-COPY-LINK-BUTTON') {
@@ -366,186 +366,186 @@ export default (editor, config = {}) => {
 
   comps.addType('sqh-share-button-container', {
     model: defaultModel.extend({
-        defaults: Object.assign({}, defaultModel.prototype.defaults, {
-          name: "Share Buttons",
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        name: "Share Buttons",
 
-          // can drop these elements in 
-          droppable: false,
+        // can drop these elements in 
+        droppable: false,
 
-          // can be dropped only inside 
-          draggable: false,
+        // can be dropped only inside 
+        draggable: false,
 
-          selectable: true,
+        selectable: true,
 
-          toolbar: [],
+        toolbar: [],
 
-          traits: [
-            { type: 'boolean', name: 'ishidden', value: false  },
-            { type: 'string', name: 'emaildisplayrule' },
-            { type: 'string', name: 'emailtext' },
-            { type: 'string', name: 'emailtextcolor' },
-            { type: 'string', name: 'emailbackgroundcolor' },
-            { type: 'string', name: 'facebookdisplayrule' },
-            { type: 'string', name: 'facebooktext' },
-            { type: 'string', name: 'facebooktextcolor' },
-            { type: 'string', name: 'facebookbackgroundcolor' },
-            { type: 'string', name: 'twitterdisplayrule' },
-            { type: 'string', name: 'twittertext' },
-            { type: 'string', name: 'twittertextcolor' },
-            { type: 'string', name: 'twitterbackgroundcolor' },
-            { type: 'string', name: 'smsdisplayrule' },
-            { type: 'string', name: 'smstext' },
-            { type: 'string', name: 'smstextcolor' },
-            { type: 'string', name: 'smsbackgroundcolor' },
-            { type: 'string', name: 'whatsappdisplayrule' },
-            { type: 'string', name: 'whatsapptext' },
-            { type: 'string', name: 'whatsapptextcolor' },
-            { type: 'string', name: 'whatsappbackgroundcolor' },
-            { type: 'string', name: 'linkedindisplayrule' },
-            { type: 'string', name: 'linkedintext' },
-            { type: 'string', name: 'linkedintextcolor' },
-            { type: 'string', name: 'linkedinbackgroundcolor' },
-            { type: 'string', name: 'pinterestdisplayrule' },
-            { type: 'string', name: 'pinteresttext' },
-            { type: 'string', name: 'pinteresttextcolor' },
-            { type: 'string', name: 'pinterestbackgroundcolor' },
-            { type: 'string', name: 'messengerdisplayrule' },
-            { type: 'string', name: 'messengertext' },
-            { type: 'string', name: 'messengertextcolor' },
-            { type: 'string', name: 'messengerbackgroundcolor' },
-            { type: 'string', name: 'linedisplayrule' },
-            { type: 'string', name: 'linetext' },
-            { type: 'string', name: 'linetextcolor' },
-            { type: 'string', name: 'linebackgroundcolor' },
-          ],
-          uiSchema: {
-            ishidden: { 'ui:widget': 'hidden' },
-            twittertextcolor: { 'ui:widget': 'color' },
-            twitterbackgroundcolor: { 'ui:widget': 'color' },
-            emailtextcolor: { 'ui:widget': 'color' },
-            emailbackgroundcolor: { 'ui:widget': 'color' },
-            facebooktextcolor: { 'ui:widget': 'color' },
-            facebookbackgroundcolor: { 'ui:widget': 'color' },
-            whatsapptextcolor: { 'ui:widget': 'color' },
-            whatsappbackgroundcolor: { 'ui:widget': 'color' },
-            smstextcolor: { 'ui:widget': 'color' },
-            smsbackgroundcolor: { 'ui:widget': 'color' },
-            linkedintextcolor: { 'ui:widget': 'color' },
-            linkedinbackgroundcolor: { 'ui:widget': 'color' },
-            pinteresttextcolor: { 'ui:widget': 'color' },
-            pinterestbackgroundcolor: { 'ui:widget': 'color' },
-            messengertextcolor: { 'ui:widget': 'color' },
-            messengerbackgroundcolor: { 'ui:widget': 'color' },
-            linetextcolor: { 'ui:widget': 'color' },
-            linebackgroundcolor: { 'ui:widget': 'color' },
-          },
-          required: [
-            'sharemedium'
-          ],
-          schema: {
-            'title': 'Grapes JS Props',
-            'description': 'Some description here',
-            'type': 'object',
-            'properties': {
-              'ishidden': { 'type': 'boolean', 'title': 'Hidden' },
-              'sharemedium': {
-                'type': 'string',
-                'title': 'Select Button to Edit',
-                'default': 'email',
-                'enum': [ 'email', 'facebook', 'messenger', 'twitter', 'whatsapp', 'sms', 'linkedin', 'pinterest', 'line' ],
-                'enumNames': [ 'Email', 'Facebook', 'Messenger', 'Twitter', 'WhatsApp', 'SMS', 'LinkedIn', 'Pinterest', 'Line Messenger' ] 
-              },
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'string', name: 'emaildisplayrule' },
+          { type: 'string', name: 'emailtext' },
+          { type: 'string', name: 'emailtextcolor' },
+          { type: 'string', name: 'emailbackgroundcolor' },
+          { type: 'string', name: 'facebookdisplayrule' },
+          { type: 'string', name: 'facebooktext' },
+          { type: 'string', name: 'facebooktextcolor' },
+          { type: 'string', name: 'facebookbackgroundcolor' },
+          { type: 'string', name: 'twitterdisplayrule' },
+          { type: 'string', name: 'twittertext' },
+          { type: 'string', name: 'twittertextcolor' },
+          { type: 'string', name: 'twitterbackgroundcolor' },
+          { type: 'string', name: 'smsdisplayrule' },
+          { type: 'string', name: 'smstext' },
+          { type: 'string', name: 'smstextcolor' },
+          { type: 'string', name: 'smsbackgroundcolor' },
+          { type: 'string', name: 'whatsappdisplayrule' },
+          { type: 'string', name: 'whatsapptext' },
+          { type: 'string', name: 'whatsapptextcolor' },
+          { type: 'string', name: 'whatsappbackgroundcolor' },
+          { type: 'string', name: 'linkedindisplayrule' },
+          { type: 'string', name: 'linkedintext' },
+          { type: 'string', name: 'linkedintextcolor' },
+          { type: 'string', name: 'linkedinbackgroundcolor' },
+          { type: 'string', name: 'pinterestdisplayrule' },
+          { type: 'string', name: 'pinteresttext' },
+          { type: 'string', name: 'pinteresttextcolor' },
+          { type: 'string', name: 'pinterestbackgroundcolor' },
+          { type: 'string', name: 'messengerdisplayrule' },
+          { type: 'string', name: 'messengertext' },
+          { type: 'string', name: 'messengertextcolor' },
+          { type: 'string', name: 'messengerbackgroundcolor' },
+          { type: 'string', name: 'linedisplayrule' },
+          { type: 'string', name: 'linetext' },
+          { type: 'string', name: 'linetextcolor' },
+          { type: 'string', name: 'linebackgroundcolor' },
+        ],
+        uiSchema: {
+          ishidden: { 'ui:widget': 'hidden' },
+          twittertextcolor: { 'ui:widget': 'color' },
+          twitterbackgroundcolor: { 'ui:widget': 'color' },
+          emailtextcolor: { 'ui:widget': 'color' },
+          emailbackgroundcolor: { 'ui:widget': 'color' },
+          facebooktextcolor: { 'ui:widget': 'color' },
+          facebookbackgroundcolor: { 'ui:widget': 'color' },
+          whatsapptextcolor: { 'ui:widget': 'color' },
+          whatsappbackgroundcolor: { 'ui:widget': 'color' },
+          smstextcolor: { 'ui:widget': 'color' },
+          smsbackgroundcolor: { 'ui:widget': 'color' },
+          linkedintextcolor: { 'ui:widget': 'color' },
+          linkedinbackgroundcolor: { 'ui:widget': 'color' },
+          pinteresttextcolor: { 'ui:widget': 'color' },
+          pinterestbackgroundcolor: { 'ui:widget': 'color' },
+          messengertextcolor: { 'ui:widget': 'color' },
+          messengerbackgroundcolor: { 'ui:widget': 'color' },
+          linetextcolor: { 'ui:widget': 'color' },
+          linebackgroundcolor: { 'ui:widget': 'color' },
+        },
+        required: [
+          'sharemedium'
+        ],
+        schema: {
+          'title': 'Grapes JS Props',
+          'description': 'Some description here',
+          'type': 'object',
+          'properties': {
+            'ishidden': { 'type': 'boolean', 'title': 'Hidden' },
+            'sharemedium': {
+              'type': 'string',
+              'title': 'Select Button to Edit',
+              'default': 'email',
+              'enum': ['email', 'facebook', 'messenger', 'twitter', 'whatsapp', 'sms', 'linkedin', 'pinterest', 'line'],
+              'enumNames': ['Email', 'Facebook', 'Messenger', 'Twitter', 'WhatsApp', 'SMS', 'LinkedIn', 'Pinterest', 'Line Messenger']
             },
-            'dependencies': {
-              'sharemedium': {
-                'oneOf': [
-                  {
-                    'properties': {
-                      'sharemedium': { 'enum': [ 'email' ] },
-                      'emaildisplayrule': displayRuleObj.default,
-                      'emailtext': shareMediumTextObj,
-                      'emailtextcolor': shareMediumTextColorObj,
-                      'emailbackgroundcolor': shareMediumColorObj
-                    }
-                  },
-                  {
-                    'properties': {
-                      'sharemedium': { 'enum': [ 'facebook' ] },
-                      'facebookdisplayrule': displayRuleObj.default,
-                      'facebooktext': shareMediumTextObj,
-                      'facebooktextcolor': shareMediumTextColorObj,
-                      'facebookbackgroundcolor': shareMediumColorObj
-                    }
-                  },
-                  {
-                    'properties': {
-                      'sharemedium': { 'enum': [ 'messenger' ] },
-                      'messengerdisplayrule': displayRuleObj.default,
-                      'messengertext': shareMediumTextObj,
-                      'messengertextcolor': shareMediumTextColorObj,
-                      'messengerbackgroundcolor': shareMediumColorObj
-                    }
-                  },
-                  {
-                    'properties': {
-                      'sharemedium': { 'enum': [ 'twitter' ] },
-                      'twitterdisplayrule': displayRuleObj.default,
-                      'twittertext': shareMediumTextObj,
-                      'twittertextcolor': shareMediumTextColorObj,
-                      'twitterbackgroundcolor': shareMediumColorObj
-                    }
-                  },
-                  {
-                    'properties': {
-                      'sharemedium': { 'enum': [ 'whatsapp' ] },
-                      'whatsappdisplayrule': displayRuleObj.mobile,
-                      'whatsapptext': shareMediumTextObj,
-                      'whatsapptextcolor': shareMediumTextColorObj,
-                      'whatsappbackgroundcolor': shareMediumColorObj
-                    }
-                  },
-                  {
-                    'properties': {
-                      'sharemedium': { 'enum': [ 'sms' ] },
-                      'smsdisplayrule': displayRuleObj.mobile,
-                      'smstext': shareMediumTextObj,
-                      'smstextcolor': shareMediumTextColorObj,
-                      'smsbackgroundcolor': shareMediumColorObj
-                    }
-                  },
-                  {
-                    'properties': {
-                      'sharemedium': { 'enum': [ 'linkedin' ] },
-                      'linkedindisplayrule': displayRuleObj.default,
-                      'linkedintext': shareMediumTextObj,
-                      'linkedintextcolor': shareMediumTextColorObj,
-                      'linkedinbackgroundcolor': shareMediumColorObj
-                    }
-                  },
-                  {
-                    'properties': {
-                      'sharemedium': { 'enum': [ 'pinterest' ] },
-                      'pinterestdisplayrule': displayRuleObj.default,
-                      'pinteresttext': shareMediumTextObj,
-                      'pinteresttextcolor': shareMediumTextColorObj,
-                      'pinterestbackgroundcolor': shareMediumColorObj
-                    }
-                  },
-                  {
-                    'properties': {
-                      'sharemedium': { 'enum': [ 'line' ] },
-                      'linetdisplayrule': displayRuleObj.mobile,
-                      'linetext': shareMediumTextObj,
-                      'linetextcolor': shareMediumTextColorObj,
-                      'linebackgroundcolor': shareMediumColorObj
-                    }
-                  },
-                ]
-              }
+          },
+          'dependencies': {
+            'sharemedium': {
+              'oneOf': [
+                {
+                  'properties': {
+                    'sharemedium': { 'enum': ['email'] },
+                    'emaildisplayrule': displayRuleObj.default,
+                    'emailtext': shareMediumTextObj,
+                    'emailtextcolor': shareMediumTextColorObj,
+                    'emailbackgroundcolor': shareMediumColorObj
+                  }
+                },
+                {
+                  'properties': {
+                    'sharemedium': { 'enum': ['facebook'] },
+                    'facebookdisplayrule': displayRuleObj.default,
+                    'facebooktext': shareMediumTextObj,
+                    'facebooktextcolor': shareMediumTextColorObj,
+                    'facebookbackgroundcolor': shareMediumColorObj
+                  }
+                },
+                {
+                  'properties': {
+                    'sharemedium': { 'enum': ['messenger'] },
+                    'messengerdisplayrule': displayRuleObj.default,
+                    'messengertext': shareMediumTextObj,
+                    'messengertextcolor': shareMediumTextColorObj,
+                    'messengerbackgroundcolor': shareMediumColorObj
+                  }
+                },
+                {
+                  'properties': {
+                    'sharemedium': { 'enum': ['twitter'] },
+                    'twitterdisplayrule': displayRuleObj.default,
+                    'twittertext': shareMediumTextObj,
+                    'twittertextcolor': shareMediumTextColorObj,
+                    'twitterbackgroundcolor': shareMediumColorObj
+                  }
+                },
+                {
+                  'properties': {
+                    'sharemedium': { 'enum': ['whatsapp'] },
+                    'whatsappdisplayrule': displayRuleObj.mobile,
+                    'whatsapptext': shareMediumTextObj,
+                    'whatsapptextcolor': shareMediumTextColorObj,
+                    'whatsappbackgroundcolor': shareMediumColorObj
+                  }
+                },
+                {
+                  'properties': {
+                    'sharemedium': { 'enum': ['sms'] },
+                    'smsdisplayrule': displayRuleObj.mobile,
+                    'smstext': shareMediumTextObj,
+                    'smstextcolor': shareMediumTextColorObj,
+                    'smsbackgroundcolor': shareMediumColorObj
+                  }
+                },
+                {
+                  'properties': {
+                    'sharemedium': { 'enum': ['linkedin'] },
+                    'linkedindisplayrule': displayRuleObj.default,
+                    'linkedintext': shareMediumTextObj,
+                    'linkedintextcolor': shareMediumTextColorObj,
+                    'linkedinbackgroundcolor': shareMediumColorObj
+                  }
+                },
+                {
+                  'properties': {
+                    'sharemedium': { 'enum': ['pinterest'] },
+                    'pinterestdisplayrule': displayRuleObj.default,
+                    'pinteresttext': shareMediumTextObj,
+                    'pinteresttextcolor': shareMediumTextColorObj,
+                    'pinterestbackgroundcolor': shareMediumColorObj
+                  }
+                },
+                {
+                  'properties': {
+                    'sharemedium': { 'enum': ['line'] },
+                    'linetdisplayrule': displayRuleObj.mobile,
+                    'linetext': shareMediumTextObj,
+                    'linetextcolor': shareMediumTextColorObj,
+                    'linebackgroundcolor': shareMediumColorObj
+                  }
+                },
+              ]
             }
           }
-        })
-      },
+        }
+      })
+    },
       {
         isComponent: function (el) {
           if (el.tagName === 'SQH-SHARE-BUTTON-CONTAINER') {
@@ -576,9 +576,9 @@ export default (editor, config = {}) => {
         selectable: true,
 
         toolbar: [],
-        
+
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'boolean', name: 'ishidden', value: false },
           { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop' },
           { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom' },
         ],
@@ -588,13 +588,13 @@ export default (editor, config = {}) => {
         }
       })
     },
-    {
-      isComponent: function (el) {
-        if (el.tagName === 'SQH-STATS-CONTAINER') {
-          return { type: 'sqh-stats-container' };
-        }
-      },
-    }),
+      {
+        isComponent: function (el) {
+          if (el.tagName === 'SQH-STATS-CONTAINER') {
+            return { type: 'sqh-stats-container' };
+          }
+        },
+      }),
 
     view: defaultType.view.extend({
       render: function () {
@@ -618,12 +618,12 @@ export default (editor, config = {}) => {
         selectable: true,
 
         toolbar: [{
-          attributes: {class: 'fa fa-arrows'},
+          attributes: { class: 'fa fa-arrows' },
           command: 'tlb-move'
         }],
-        
+
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'boolean', name: 'ishidden', value: false },
           { type: 'string', name: 'stattype', title: 'Stat Type' },
           { type: 'string', name: 'statdescription', title: 'Stat Description' },
           { type: 'string', name: 'statcolor' },
@@ -638,13 +638,13 @@ export default (editor, config = {}) => {
         }
       })
     },
-    {
-      isComponent: function (el) {
-        if (el.tagName === 'SQH-STAT-COMPONENT') {
-          return { type: 'sqh-stat-component' };
-        }
-      },
-    }),
+      {
+        isComponent: function (el) {
+          if (el.tagName === 'SQH-STAT-COMPONENT') {
+            return { type: 'sqh-stat-component' };
+          }
+        },
+      }),
 
     view: defaultType.view.extend({
       render: function () {
@@ -670,7 +670,7 @@ export default (editor, config = {}) => {
         selectable: true,
         toolbar: [],
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'boolean', name: 'ishidden', value: false },
           { type: 'boolean', name: 'showreferrer', value: true },
           { type: 'boolean', name: 'usefirstreward', value: false },
           { type: 'string', name: 'rewardcolor' },
@@ -716,8 +716,8 @@ export default (editor, config = {}) => {
               'type': 'string',
               'title': 'Select Area to Edit',
               'default': 'global',
-              'enum': [ 'global', 'converted', 'pending', 'referrer', 'expired', 'cancelled' ],
-              'enumNames': [ 'Global Referral List Options', 'Converted Rewards (eg Remus)', 'Pending Rewards (eg Gellert)', 'Referrer (eg Rubeus)', 'Expired Rewards', 'Cancelled Rewards (Lavender)' ]
+              'enum': ['global', 'converted', 'pending', 'referrer', 'expired', 'cancelled'],
+              'enumNames': ['Global Referral List Options', 'Converted Rewards (eg Remus)', 'Pending Rewards (eg Gellert)', 'Referrer (eg Rubeus)', 'Expired Rewards', 'Cancelled Rewards (Lavender)']
             },
           },
           'dependencies': {
@@ -725,7 +725,7 @@ export default (editor, config = {}) => {
               'oneOf': [
                 {
                   'properties': {
-                    'referraltype': { 'enum': [ 'global' ] },
+                    'referraltype': { 'enum': ['global'] },
                     'referralnamecolor': {
                       'title': 'Referral Name Color',
                       'type': 'string'
@@ -734,23 +734,23 @@ export default (editor, config = {}) => {
                       'title': 'Referral Text Color',
                       'type': 'string'
                     },
-                    'unknownuser': { 
-                      'type': 'string', 
+                    'unknownuser': {
+                      'type': 'string',
                       'title': 'Label For Unknown User'
                     },
-                    'paginatemore': { 
-                      'type': 'string', 
-                      'title': 'View More Text' 
+                    'paginatemore': {
+                      'type': 'string',
+                      'title': 'View More Text'
                     },
-                    'paginateless': { 
-                      'type': 'string', 
+                    'paginateless': {
+                      'type': 'string',
                       'title': 'Previous Text'
                     },
                   }
                 },
                 {
                   'properties': {
-                    'referraltype': { 'enum': [ 'converted' ] },
+                    'referraltype': { 'enum': ['converted'] },
                     'rewardcolor': {
                       'title': 'Reward Color',
                       'type': 'string',
@@ -766,13 +766,13 @@ export default (editor, config = {}) => {
                     'usefirstreward': {
                       'title': 'Reward Value Displayed',
                       'type': 'boolean',
-                      'enumNames': [ 'Newest', 'Oldest' ]
+                      'enumNames': ['Newest', 'Oldest']
                     },
                   }
                 },
                 {
                   'properties': {
-                    'referraltype': { 'enum': [ 'pending' ] },
+                    'referraltype': { 'enum': ['pending'] },
                     'pendingcolor': {
                       'title': 'Pending Reward Color',
                       'type': 'string',
@@ -789,7 +789,7 @@ export default (editor, config = {}) => {
                 },
                 {
                   'properties': {
-                    'referraltype': { 'enum': [ 'referrer' ] },
+                    'referraltype': { 'enum': ['referrer'] },
                     'referrercontent': {
                       'title': 'Referring User Content',
                       'type': 'string'
@@ -801,13 +801,13 @@ export default (editor, config = {}) => {
                     'showreferrer': {
                       'title': ' ',
                       'type': 'boolean',
-                      'enumNames': [ 'Show', 'Hide' ]
+                      'enumNames': ['Show', 'Hide']
                     },
                   }
                 },
                 {
                   'properties': {
-                    'referraltype': { 'enum': [ 'expired' ] },
+                    'referraltype': { 'enum': ['expired'] },
                     'expiredcolor': {
                       'title': 'Expired Color',
                       'type': 'string'
@@ -824,7 +824,7 @@ export default (editor, config = {}) => {
                 },
                 {
                   'properties': {
-                    'referraltype': { 'enum': [ 'cancelled' ] },
+                    'referraltype': { 'enum': ['cancelled'] },
                     'cancelledcolor': {
                       'title': 'Cancelled Color',
                       'type': 'string'
@@ -845,13 +845,13 @@ export default (editor, config = {}) => {
         }
       })
     },
-    {
-      isComponent: function (el) {
-        if (el.tagName === 'SQH-REFERRAL-LIST') {
-          return { type: 'sqh-referral-list' };
-        }
-      },
-    }),
+      {
+        isComponent: function (el) {
+          if (el.tagName === 'SQH-REFERRAL-LIST') {
+            return { type: 'sqh-referral-list' };
+          }
+        },
+      }),
 
     view: defaultType.view.extend({
       render: function () {
@@ -866,7 +866,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Footer',
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'boolean', name: 'ishidden', value: false },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown' },
           { type: 'string', title: 'Content', name: 'text' },
           { type: 'string', title: 'Font Color', name: 'color' },
@@ -883,13 +883,13 @@ export default (editor, config = {}) => {
         }
       })
     },
-    {
-      isComponent: function(el) {
-        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhfooter')){
-          return {type: 'sqh-footer'};
-        }
-      },
-    }),
+      {
+        isComponent: function (el) {
+          if (el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhfooter')) {
+            return { type: 'sqh-footer' };
+          }
+        },
+      }),
 
     view: textComp.view
   })
@@ -903,7 +903,7 @@ export default (editor, config = {}) => {
         selectable: true,
         toolbar: [],
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'boolean', name: 'ishidden', value: false },
           { type: 'string', title: 'Upload Image', name: 'url' /*,format: 'uri'*/ },
           { type: 'string', title: 'Image Align', name: 'alignment', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'] },
           { type: 'string', title: 'Size in pixels', name: 'width' },
@@ -914,13 +914,13 @@ export default (editor, config = {}) => {
         }
       })
     },
-    {
-      isComponent: function(el) {
-        if(el.tagName == 'SQH-IMAGE-COMPONENT'){
-          return {type: 'sqh-image-component'};
-        }
-      },
-    }),
+      {
+        isComponent: function (el) {
+          if (el.tagName == 'SQH-IMAGE-COMPONENT') {
+            return { type: 'sqh-image-component' };
+          }
+        },
+      }),
 
     view: defaultType.view
   })
@@ -933,7 +933,7 @@ export default (editor, config = {}) => {
         droppable: false,
         selectable: true,
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'boolean', name: 'ishidden', value: false },
           { type: 'string', title: 'Content', name: 'text' },
           { type: 'integer', title: 'Font Size in pixels', name: 'fontsize' },
           { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop' },
@@ -949,13 +949,13 @@ export default (editor, config = {}) => {
         }
       })
     },
-    {
-      isComponent: function(el) {
-        if(el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhcta')){
-          return {type: 'sqh-cta'};
-        }
-      },
-    }),
+      {
+        isComponent: function (el) {
+          if (el.tagName == 'SQH-TEXT-COMPONENT' && el.getAttribute('sqhcta')) {
+            return { type: 'sqh-cta' };
+          }
+        },
+      }),
 
     view: textComp.view
   })
@@ -968,9 +968,9 @@ export default (editor, config = {}) => {
         droppable: false,
         selectable: true,
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'boolean', name: 'ishidden', value: false },
           { type: 'string', title: 'Code Color', name: 'codefontcolor' },
-          { type: 'integer', title: 'Code Font Size in pixels', name: 'codefontsize' },          
+          { type: 'integer', title: 'Code Font Size in pixels', name: 'codefontsize' },
           { type: 'string', title: 'Button Text', name: 'text' },
           { type: 'integer', title: 'Button Font Size in pixels', name: 'fontsize' },
           { type: 'integer', title: 'Buttton Width in pixels', name: 'width' },
@@ -990,13 +990,13 @@ export default (editor, config = {}) => {
         }
       })
     },
-    {
-      isComponent: function(el) {
-        if(el.tagName == 'SQH-COPY-BUTTON'){
-          return {type: 'sqh-copy-button'};
-        }
-      },
-    }),
+      {
+        isComponent: function (el) {
+          if (el.tagName == 'SQH-COPY-BUTTON') {
+            return { type: 'sqh-copy-button' };
+          }
+        },
+      }),
     view: defaultType.view
   })
 
@@ -1040,12 +1040,12 @@ export default (editor, config = {}) => {
         selectable: true,
 
         toolbar: [{
-          attributes: {class: 'fa fa-arrows'},
+          attributes: { class: 'fa fa-arrows' },
           command: 'tlb-move'
         }],
 
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'boolean', name: 'ishidden', value: false },
           { type: 'string', name: 'stattype', title: 'Stat Type', ...partnerStatsDropdown },
           { type: 'string', name: 'statdescription', title: 'Stat Description' },
           { type: 'string', name: 'statcolor' },
@@ -1057,13 +1057,13 @@ export default (editor, config = {}) => {
         }
       })
     },
-    {
-      isComponent: function (el) {
-        if (el.tagName === 'SQH-PARTNER-STAT-COMPONENT') {
-          return { type: 'sqh-partner-stat-component' };
-        }
-      },
-    }),
+      {
+        isComponent: function (el) {
+          if (el.tagName === 'SQH-PARTNER-STAT-COMPONENT') {
+            return { type: 'sqh-partner-stat-component' };
+          }
+        },
+      }),
 
     view: defaultType.view.extend({
       render: function () {
