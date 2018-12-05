@@ -74,8 +74,39 @@ const demoUser = {
   rewardBalances: [
     { type: "CREDIT", unit: "CENTS", value: 17000, prettyValue: "$170.00", totalAssignedCredit: "17000", totalRedeemedCredit: "1500", prettyAssignedCredit: "$170.00", prettyRedeemedCredit: "$15.00" },
     { type: "PCT_DISCOUNT", unit: "%", value: 15, prettyValue: "15%" },
+    {
+      type: "CREDIT",
+      unit: "CASH/CAD",
+      count: 3,
+      totalPendingCredit: 20000,
+      totalAssignedCredit: 30000,
+      totalRedeemedCredit: 10000,
+      totalExpiredCredit: 0,
+      totalCancelledCredit: 0,
+      prettyPendingCredit: "$200.00",
+      prettyAssignedCredit: "$300.00",
+      prettyRedeemedCredit: "$100.00",
+      value: 30000,
+      prettyValue: "$300.00"
+    },
+    {
+      type: "CREDIT",
+      unit: "CASH/USD",
+      count: 6,
+      totalPendingCredit: 25000,
+      totalAssignedCredit: 40000,
+      totalRedeemedCredit: 10000,
+      totalExpiredCredit: 15000,
+      totalCancelledCredit: 10000,
+      prettyPendingCredit: "USD250.00",
+      prettyAssignedCredit: "USD400.00",
+      prettyRedeemedCredit: "USD150.00",
+      value: 40000,
+      prettyValue: "USD400.00"
+    }
   ],
 }
+
 
 //@ts-ignore
 const squatchJsApi = window.frameElement ? window.frameElement.squatchJsApi : {};

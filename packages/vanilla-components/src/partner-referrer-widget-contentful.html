@@ -107,31 +107,33 @@ background="#ffffff"
    paddingtop="0"
    paddingbottom="0"
  >
+ 
+<!-- need to create a lifetime earned -->
 
-   <sqh-stat-component 
+   <sqh-partner-stat-component 
      statcolor="#000000"
-     stattype="/referralsCount" 
-     statdescription="Lifetime Earned"
+     stattype="/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit" 
+     statdescription="Pending Balance"
      paddingtop="10"
      paddingbottom="10"
-   ></sqh-stat-component>
-
-   <sqh-stat-component
-     stattype="/rewardsCount" 
+   ></sqh-partner-stat-component>
+ 
+   <sqh-partner-stat-component
+     stattype="/rewardBalance/CREDIT/CASH_CAD/prettyValue" 
      statdescription="Available Balance"
      paddingtop="10"
      paddingbottom="10"
      statcolor="#4caf50"
-   ></sqh-stat-component>
-
-   <sqh-stat-component 
-     stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit" 
-     statdescription="Pending Balance"
+   ></sqh-partner-stat-component>
+ 
+   <sqh-partner-stat-component 
+     stattype="/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit" 
+     statdescription="Redeemed Balance"
      paddingtop="10"
      paddingbottom="10"
      statcolor="#000000"
-   ></sqh-stat-component>
-
+   ></sqh-partner-stat-component>
+ 
  </sqh-stats-container>
 
  <sqh-text-component 

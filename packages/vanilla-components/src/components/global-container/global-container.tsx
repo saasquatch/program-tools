@@ -8,6 +8,7 @@ import { css } from 'emotion';
 export class GlobalContainer {
   @Prop() background: string;
   @Prop() fontfamily: string;
+  @Prop() maxwidth: string;
   @Prop() poweredby: boolean = true;
 
   LoadingState() {
@@ -29,6 +30,7 @@ export class GlobalContainer {
       background-color: ${this.background};
       font-family: ${this.fontfamily};
       position: relative;
+      max-width: ${this.maxwidth};
     `
 
     return <div class={style}>

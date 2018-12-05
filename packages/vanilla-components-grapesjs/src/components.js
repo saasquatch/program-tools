@@ -654,6 +654,8 @@ export default (editor, config = {}) => {
     }),
   });
 
+
+
   comps.addType('sqh-referral-list', {
     model: defaultModel.extend({
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
@@ -997,4 +999,85 @@ export default (editor, config = {}) => {
     }),
     view: defaultType.view
   })
+
+
+  // 
+  // 
+  //  Partner specific editor
+  // 
+  // 
+
+  const partnerStatsDropdown = {
+    enum: [
+      "/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit",
+      "/rewardBalance/CREDIT/CASH_CAD/prettyValue",
+      "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit",
+      "/rewardBalance/CREDIT/CASH_USD/prettyPendingCredit",
+      "/rewardBalance/CREDIT/CASH_USD/prettyValue",
+      "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"
+    ],
+    enumNames: [
+      "Pending Balance CAD",
+      "Available Balance CAD",
+      "Redeemed Balance CAD",
+      "Pending Balance USD",
+      "Available Balance USD",
+      "Redeemed Balance USD"
+    ]
+  }
+
+  comps.addType('sqh-partner-stat-component', {
+    model: defaultModel.extend({
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        name: "Stat Component",
+
+        // can be dropped only inside 
+        draggable: ['sqh-stats-container'],
+
+        // these components can be dropped in here
+        droppable: false,
+
+        selectable: true,
+
+        toolbar: [{
+          attributes: {class: 'fa fa-arrows'},
+          command: 'tlb-move'
+        }],
+
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false  },
+          { type: 'string', name: 'stattype', title: 'Stat Type', ...partnerStatsDropdown },
+          { type: 'string', name: 'statdescription', title: 'Stat Description' },
+          { type: 'string', name: 'statcolor' },
+        ],
+
+        uiSchema: {
+          ishidden: { 'ui:widget': 'hidden' },
+          statcolor: { 'ui:widget': 'color' },
+        }
+      })
+    },
+    {
+      isComponent: function (el) {
+        if (el.tagName === 'SQH-PARTNER-STAT-COMPONENT') {
+          return { type: 'sqh-partner-stat-component' };
+        }
+      },
+    }),
+
+    view: defaultType.view.extend({
+      render: function () {
+        defaultType.view.prototype.render.apply(this, arguments);
+        return this;
+      },
+    }),
+  });
+
+
+  // 
+  // 
+  // END OF PARTNER SPECIFIC EDITOR
+  // 
+  // 
+
 }

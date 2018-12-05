@@ -163,6 +163,7 @@ declare global {
     interface SqhGlobalContainer {
       'background': string;
       'fontfamily': string;
+      'maxwidth': string;
       'poweredby': boolean;
     }
   }
@@ -188,6 +189,7 @@ declare global {
     export interface SqhGlobalContainerAttributes extends HTMLAttributes {
       'background'?: string;
       'fontfamily'?: string;
+      'maxwidth'?: string;
       'poweredby'?: boolean;
     }
   }
@@ -232,6 +234,84 @@ declare global {
       'ishidden'?: boolean;
       'url'?: string;
       'width'?: number;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SqhPartnerStatComponent {
+      'ishidden': boolean;
+      'statcolor': string;
+      'statdescription': string;
+      'stattype': string;
+      'statvalue': string;
+    }
+  }
+
+  interface HTMLSqhPartnerStatComponentElement extends StencilComponents.SqhPartnerStatComponent, HTMLStencilElement {}
+
+  var HTMLSqhPartnerStatComponentElement: {
+    prototype: HTMLSqhPartnerStatComponentElement;
+    new (): HTMLSqhPartnerStatComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-partner-stat-component': HTMLSqhPartnerStatComponentElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-partner-stat-component': HTMLSqhPartnerStatComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-partner-stat-component': JSXElements.SqhPartnerStatComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhPartnerStatComponentAttributes extends HTMLAttributes {
+      'ishidden'?: boolean;
+      'onStatAdded'?: (event: CustomEvent) => void;
+      'onStatTypeUpdated'?: (event: CustomEvent) => void;
+      'statcolor'?: string;
+      'statdescription'?: string;
+      'stattype'?: string;
+      'statvalue'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SqhPartnerTotalBar {
+      'ishidden': boolean;
+      'text': string;
+    }
+  }
+
+  interface HTMLSqhPartnerTotalBarElement extends StencilComponents.SqhPartnerTotalBar, HTMLStencilElement {}
+
+  var HTMLSqhPartnerTotalBarElement: {
+    prototype: HTMLSqhPartnerTotalBarElement;
+    new (): HTMLSqhPartnerTotalBarElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-partner-total-bar': HTMLSqhPartnerTotalBarElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-partner-total-bar': HTMLSqhPartnerTotalBarElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-partner-total-bar': JSXElements.SqhPartnerTotalBarAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhPartnerTotalBarAttributes extends HTMLAttributes {
+      'ishidden'?: boolean;
+      'text'?: string;
     }
   }
 }
