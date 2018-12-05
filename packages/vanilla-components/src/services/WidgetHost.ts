@@ -74,7 +74,6 @@ const demoUser = {
   rewardBalances: [
     { type: "CREDIT", unit: "CENTS", value: 17000, prettyValue: "$170.00", totalAssignedCredit: "17000", totalRedeemedCredit: "1500", prettyAssignedCredit: "$170.00", prettyRedeemedCredit: "$15.00" },
     { type: "PCT_DISCOUNT", unit: "%", value: 15, prettyValue: "15%" },
-<<<<<<< HEAD
     {
       type: "CREDIT",
       unit: "CASH/CAD",
@@ -105,8 +104,6 @@ const demoUser = {
       value: 40000,
       prettyValue: "USD400.00"
     }
-=======
->>>>>>> e7cef3340e6f356d6a0882f3642acb458c255afd
   ],
 }
 
