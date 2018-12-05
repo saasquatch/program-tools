@@ -46,6 +46,7 @@ export default class Transaction {
     if (context.body.activeTrigger) {
       const activeTrigger = context.body.activeTrigger;
       this.currentUser = activeTrigger.user;
+      this.events = activeTrigger.events;
       if (activeTrigger.type === "REWARD_SCHEDULED") {
         this.rewardId = activeTrigger.reward.id;
       }
@@ -66,7 +67,6 @@ export default class Transaction {
   }
 
   /**
-   * @typedef RewardAndEmailParam
    * @property {string?} emailKey     - Key of email template (as defined in Contentful).
    * @property {string?} rewardKey    - Key of the reward (as defined in Contentful).
    * @property {User} user            - The user to be given reward to (can be either referrer or referred user).
@@ -107,20 +107,26 @@ export default class Transaction {
     referralId,
     user,
     userEvent,
-    rewardOverride
+    rewardSource,
+    status,
+    rewardProperties
   }) {
     this.rewardId = this.context.body.ids.pop();
+    const rewardData = {
+      user: {
+        id: user.id,
+        accountId: user.accountId
+      },
+      key: rewardKey,
+      rewardId: this.rewardId,
+      referralId: referralId
+    };
+    const validProperties = [{userEvent},{rewardSource},{status},rewardProperties].filter(prop=>prop!==undefined);
+    const updatedRewardData = validProperties.reduce((currentData,prop)=> {return {...currentData,...prop}},rewardData);
     const newMutation = {
       type: "CREATE_REWARD",
-      data: {
-        user: {
-          id: user.id,
-          accountId: user.accountId
-        },
-        key: rewardKey,
-        rewardId: this.rewardId,
-        referralId: referralId
-      }
+      data:
+        updatedRewardData
     };
 
     this.mutations = [...this.mutations, newMutation];
@@ -160,13 +166,9 @@ export default class Transaction {
   }
 
   generateReferralEmail({ emailKey, user, referralId }) {
-    if (!this.rewardId) {
-      error("rewardId must be provided before email sent.");
-    }
     const queryVariables = {
       userId: user.id,
       accountId: user.accountId,
-      rewardId: this.rewardId,
       programId: this.context.body.program.id,
       referralId: referralId
     };
@@ -180,7 +182,6 @@ export default class Transaction {
         key: emailKey,
         queryVariables: queryVariables,
         query: rewardEmailQuery,
-        rewardId: this.rewardId
       }
     };
     this.mutations = [...this.mutations, newMutation];
@@ -200,6 +201,35 @@ export default class Transaction {
     this.generateReferralReward({ rewardKey, user, referralId });
     this.generateReferralEmail({ emailKey, user, referralId });
   }
+
+  generateRefunds(){
+    const refundEvents = (this.events || []).filter(
+      e =>
+        e.key === "refund" &&
+        e.fields &&
+        // we can't do much if there's no order_id
+        e.fields.order_id
+    );
+    refundEvents.forEach(refundEvent => {
+      const refundNode = {
+        type: "MODERATE_GRAPH_NODES",
+        data: {
+          graphNodeType: "USER_EVENT",
+          filter: {
+            key: "purchase",
+            fields: {
+              order_id_eq: refundEvent.fields.order_id
+            }
+          },
+          moderationInput: {
+            action: "DENY",
+            maxDepth: 5
+          }
+        }
+      };
+      this.mutations = [...this.mutations, refundNode];
+      });
+  } 
 
   /**
    * Returns a JSON object required by the callback function of webtask to modifify the program.
