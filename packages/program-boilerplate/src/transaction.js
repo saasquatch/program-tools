@@ -1,5 +1,6 @@
 import {
   rewardEmailQuery,
+  nonRewardEmailQueryForReferralPrograms,
   rewardEmailQueryForNonReferralPrograms
 } from "./queries";
 /**
@@ -47,7 +48,7 @@ export default class Transaction {
       const activeTrigger = context.body.activeTrigger;
       this.currentUser = activeTrigger.user;
       this.events = activeTrigger.events;
-      if (activeTrigger.type === "REWARD_SCHEDULED") {
+      if(activeTrigger.reward) {
         this.rewardId = activeTrigger.reward.id;
       }
     }
@@ -79,7 +80,9 @@ export default class Transaction {
    * @param {string} rewardKey - Key of the reward (as defined in contentful).
    */
   generateSimpleReward(rewardKey) {
-    this.rewardId = this.context.body.ids.pop();
+    if(!this.rewardId) {
+      this.rewardId = this.context.body.ids.pop();
+    }
     const newMutation = {
       type: "CREATE_REWARD",
       data: {
@@ -111,7 +114,9 @@ export default class Transaction {
     status,
     rewardProperties
   }) {
-    this.rewardId = this.context.body.ids.pop();
+    if(!this.rewardId) {
+      this.rewardId = this.context.body.ids.pop();
+    }
     const rewardData = {
       user: {
         id: user.id,
@@ -166,12 +171,13 @@ export default class Transaction {
   }
 
   generateReferralEmail({ emailKey, user, referralId }) {
-    const queryVariables = {
+    const variables = {
       userId: user.id,
       accountId: user.accountId,
       programId: this.context.body.program.id,
-      referralId: referralId
+      referralId: referralId,
     };
+    const queryVariables = this.rewardId?{...variables,rewardId:this.rewardId}:variables;
     const newMutation = {
       type: "SEND_EMAIL",
       data: {
@@ -181,7 +187,7 @@ export default class Transaction {
         },
         key: emailKey,
         queryVariables: queryVariables,
-        query: rewardEmailQuery,
+        query: this.rewardId?rewardEmailQuery:nonRewardEmailQueryForReferralPrograms,
       }
     };
     this.mutations = [...this.mutations, newMutation];

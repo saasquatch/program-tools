@@ -53,6 +53,40 @@ fragment AllFlatRewardFields on FlatReward {
 }
 `;
 
+export const nonRewardEmailQueryForReferralPrograms = 
+`query ($userId:String!, $accountId:String!,$programId:ID!, $referralId: ID!) {
+  user(id:$userId, accountId:$accountId) {
+    firstName
+    lastName
+    referralCode(programId:$programId)
+    shareLink(programId:$programId)
+    facebook: messageLink(programId:$programId,shareMedium:FACEBOOK)
+    twitter: messageLink(programId:$programId,shareMedium:TWITTER)
+    email:messageLink(programId:$programId,shareMedium:EMAIL)
+    sms:messageLink(programId:$programId,shareMedium:SMS)
+    linkedin: messageLink(programId:$programId,shareMedium:LINKEDIN)
+    fbmessenger: messageLink(programId:$programId,shareMedium:FBMESSENGER)
+  }
+
+  referral(id:$referralId) {
+    referrerUser{
+      firstName
+      lastName
+    }
+    referredUser{
+      firstName
+      lastName
+    }
+  }
+
+  tenant {
+    emailAddress
+    settings {
+      companyName
+    }
+  }
+}
+`;
 export const rewardEmailQueryForNonReferralPrograms = `
 query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!) {
   reward(id:$rewardId) {
