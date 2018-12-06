@@ -8,12 +8,12 @@ query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!, $refe
     lastName
     referralCode(programId:$programId)
     shareLink(programId:$programId)
-    facebookMessageLink: messageLink(programId:$programId,shareMedium:FACEBOOK)
-    twitterMessageLink: messageLink(programId:$programId,shareMedium:TWITTER)
-    emailMessageLink:messageLink(programId:$programId,shareMedium:EMAIL)
-    smsMessageLink:messageLink(programId:$programId,shareMedium:SMS)
-    linkedinMessageLink: messageLink(programId:$programId,shareMedium:LINKEDIN)
-    fbmessengerMessageLink: messageLink(programId:$programId,shareMedium:FBMESSENGER)
+    facebook: messageLink(programId:$programId,shareMedium:FACEBOOK)
+    twitter: messageLink(programId:$programId,shareMedium:TWITTER)
+    email:messageLink(programId:$programId,shareMedium:EMAIL)
+    sms:messageLink(programId:$programId,shareMedium:SMS)
+    linkedin: messageLink(programId:$programId,shareMedium:LINKEDIN)
+    fbmessenger: messageLink(programId:$programId,shareMedium:FBMESSENGER)
   }
 
   referral(id:$referralId) {
