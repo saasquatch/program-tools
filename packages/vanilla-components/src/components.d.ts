@@ -30,18 +30,16 @@ declare global {
 
   namespace StencilComponents {
     interface SqhBalancesComponent {
-      'background': string;
-      'color': string;
-      'fontfamily': string;
-      'fontsize': string;
-      'height': string;
+      'availabletext': string;
+      'bordercolor': string;
+      'borderradius': number;
+      'cellpadding': number;
+      'currencytext': string;
+      'earnedtext': string;
+      'headerpadding': number;
       'ishidden': boolean;
-      'ismarkdown': boolean;
-      'padding': string;
-      'paddingbottom': string;
-      'paddingtop': string;
-      'text': string;
-      'textalign': string;
+      'redeemedtext': string;
+      'textcolor': string;
     }
   }
 
@@ -64,18 +62,16 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhBalancesComponentAttributes extends HTMLAttributes {
-      'background'?: string;
-      'color'?: string;
-      'fontfamily'?: string;
-      'fontsize'?: string;
-      'height'?: string;
+      'availabletext'?: string;
+      'bordercolor'?: string;
+      'borderradius'?: number;
+      'cellpadding'?: number;
+      'currencytext'?: string;
+      'earnedtext'?: string;
+      'headerpadding'?: number;
       'ishidden'?: boolean;
-      'ismarkdown'?: boolean;
-      'padding'?: string;
-      'paddingbottom'?: string;
-      'paddingtop'?: string;
-      'text'?: string;
-      'textalign'?: string;
+      'redeemedtext'?: string;
+      'textcolor'?: string;
     }
   }
 }

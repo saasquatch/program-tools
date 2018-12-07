@@ -1,6 +1,6 @@
 import { Component, Prop, Element, State } from '@stencil/core';
 import { API } from '../../services/WidgetHost';
-// import { css } from 'emotion';
+import { css } from 'emotion';
 import debugFn from 'debug'
 
 const debug = debugFn("sqh-balances-component")
@@ -22,33 +22,23 @@ interface balance {
 })
 export class BalancesComponent {
   @Prop() ishidden: boolean = false;
-  @Prop() ismarkdown: boolean = false;
-  @Prop() text: string;
-  @Prop() fontfamily: string;
-  @Prop() color: string;
-  @Prop() fontsize: string;
-  @Prop() paddingtop: string;
-  @Prop() paddingbottom: string;
-  @Prop() padding: string = '10px 20px 15px';
-  @Prop() textalign: string;
-  @Prop() background: string;
-  @Prop() height: string;
+  @Prop() borderradius: number;
+  @Prop() bordercolor: string;
+  @Prop() textcolor: string;
+  @Prop() cellpadding: number;
+  @Prop() headerpadding: number;
 
+  @Prop() currencytext: string;
+  @Prop() availabletext: string;
+  @Prop() earnedtext: string;
+  @Prop() redeemedtext: string;
+ 
   @State() stats: stats;
   @State() loading: boolean;
 
   @Element() textEl: HTMLElement;   
 
   componentWillLoad() {
-    // this.stats = {
-    //   rewardBalances: {
-    //     unit: '',
-    //     prettyvalue: '',
-    //     prettyAssignedCredit: '',
-    //     prettyRedeemedCredit: ''
-    //   }
-    // };
-
     if (!this.ishidden) {
       return API.graphql.getBalances().then(res => {
         const balances = res.rewardBalances;
@@ -71,15 +61,12 @@ export class BalancesComponent {
     this.loading = false;
   }
 
-
-
   render() {
     let getBalances;
 
     getBalances = (
       this.stats.rewardBalances.map((balance: balance) => {
         debug(balance);
-
         return (
           <tr>
             <td>{balance.unit}</td>
@@ -91,19 +78,34 @@ export class BalancesComponent {
       })
     );
 
+    const tableStyle = css`
+      border-collapse: collapse;
+      text-align:center;
+      width:100%;
+      border-radius: ${this.borderradius}px;
+      border:1px solid ${this.bordercolor};    
+
+      tr td {
+        padding:${this.cellpadding}px;
+        border:1px solid ${this.bordercolor};
+      }
+      tr th {
+        padding:${this.headerpadding}px;
+        border:1px solid ${this.bordercolor};
+      }
+    `
 
     return !this.ishidden && 
       <div>
-        <table class="the-table">
+        <table class={`${tableStyle} balances-table`}>
           <tr>
-            <th>Currency</th>
-            <th>Available</th>
-            <th>Earned</th>
-            <th>Redeemed</th> 
+            <th>{this.currencytext}</th>
+            <th>{this.availabletext}</th>
+            <th>{this.earnedtext}</th>
+            <th>{this.redeemedtext}</th> 
           </tr>
           {this.stats ? getBalances : ''}
         </table>
-
       </div>;
   }
 }
