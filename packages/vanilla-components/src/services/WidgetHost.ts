@@ -86,8 +86,8 @@ const demoUser = {
       prettyPendingCredit: "$200.00",
       prettyAssignedCredit: "$300.00",
       prettyRedeemedCredit: "$100.00",
-      value: 30000,
-      prettyValue: "$300.00"
+      value: 20000,
+      prettyValue: "$200.00"
     },
     {
       type: "CREDIT",
@@ -101,8 +101,8 @@ const demoUser = {
       prettyPendingCredit: "USD250.00",
       prettyAssignedCredit: "USD400.00",
       prettyRedeemedCredit: "USD150.00",
-      value: 40000,
-      prettyValue: "USD400.00"
+      value: 25000,
+      prettyValue: "USD250.00"
     }
   ],
 }
@@ -379,6 +379,43 @@ const API = {
             }) {
               totalCount
             }
+            rewardBalances(programId: $programId)
+          }
+        }
+        `,
+        variables
+      }).then(res => res.data.user);
+    },
+
+    getBalances() {
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId) {
+        const {
+          rewardBalances
+        } = demoUser;
+        const user = {
+          rewardBalances
+        };
+        return Promise.resolve(user);
+      }
+
+      const { userId, accountId, programId = null } = widgetId;
+
+      const variables = {
+        userId,
+        accountId,
+        programId,
+      };
+
+      return this.getClient().query({
+        query: gql`
+        query(
+          $userId: String!,
+          $accountId: String!,
+          $programId: ID,
+        ) {
+          user(id: $userId, accountId: $accountId) {
             rewardBalances(programId: $programId)
           }
         }

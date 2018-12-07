@@ -29,6 +29,61 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhBalancesComponent {
+      'background': string;
+      'color': string;
+      'fontfamily': string;
+      'fontsize': string;
+      'height': string;
+      'ishidden': boolean;
+      'ismarkdown': boolean;
+      'padding': string;
+      'paddingbottom': string;
+      'paddingtop': string;
+      'text': string;
+      'textalign': string;
+    }
+  }
+
+  interface HTMLSqhBalancesComponentElement extends StencilComponents.SqhBalancesComponent, HTMLStencilElement {}
+
+  var HTMLSqhBalancesComponentElement: {
+    prototype: HTMLSqhBalancesComponentElement;
+    new (): HTMLSqhBalancesComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-balances-component': HTMLSqhBalancesComponentElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-balances-component': HTMLSqhBalancesComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-balances-component': JSXElements.SqhBalancesComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhBalancesComponentAttributes extends HTMLAttributes {
+      'background'?: string;
+      'color'?: string;
+      'fontfamily'?: string;
+      'fontsize'?: string;
+      'height'?: string;
+      'ishidden'?: boolean;
+      'ismarkdown'?: boolean;
+      'padding'?: string;
+      'paddingbottom'?: string;
+      'paddingtop'?: string;
+      'text'?: string;
+      'textalign'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhCloseButton {
       'text': string;
     }
@@ -277,41 +332,6 @@ declare global {
       'statdescription'?: string;
       'stattype'?: string;
       'statvalue'?: string;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
-    interface SqhPartnerTotalBar {
-      'ishidden': boolean;
-      'text': string;
-    }
-  }
-
-  interface HTMLSqhPartnerTotalBarElement extends StencilComponents.SqhPartnerTotalBar, HTMLStencilElement {}
-
-  var HTMLSqhPartnerTotalBarElement: {
-    prototype: HTMLSqhPartnerTotalBarElement;
-    new (): HTMLSqhPartnerTotalBarElement;
-  };
-  interface HTMLElementTagNameMap {
-    'sqh-partner-total-bar': HTMLSqhPartnerTotalBarElement;
-  }
-  interface ElementTagNameMap {
-    'sqh-partner-total-bar': HTMLSqhPartnerTotalBarElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'sqh-partner-total-bar': JSXElements.SqhPartnerTotalBarAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface SqhPartnerTotalBarAttributes extends HTMLAttributes {
-      'ishidden'?: boolean;
-      'text'?: string;
     }
   }
 }
