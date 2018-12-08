@@ -38,27 +38,19 @@ export class BalancesComponent {
 
   @Element() textEl: HTMLElement;   
 
-  componentWillLoad() {
+  async componentWillLoad() {
     if (!this.ishidden) {
-      return API.graphql.getBalances().then(res => {
-        const balances = res.rewardBalances;
-        this.stats = {
-          rewardBalances:balances.filter(balance => {
-            if(!balance.unit.includes('CASH')) return;
-            return balance;
-          })
-        }
-        this.loading = false;
-        debug(this.stats);
-      }).catch(e => {
-        this.onError(e);
-      });
-    }
-  }
+      const { rewardBalances } = await API.graphql.getBalances();
 
-  onError(e: Error) {
-    console.log("Error loading via GraphQL.", e);
-    this.loading = false;
+      this.stats = {
+        rewardBalances: rewardBalances.filter(balance => {
+          if(!balance.unit.includes('CASH')) return;
+          return balance;
+        })
+      }
+
+      debug(this.stats);
+    }
   }
 
   render() {
