@@ -11,9 +11,19 @@ interface stats {
 
 interface balance {
   unit: string
+  rewardUnit: rewardUnit
+  currency: string
   prettyValue: string
   prettyAssignedCredit: string
   prettyRedeemedCredit: string
+}
+
+interface rewardUnit {
+  currency: currency
+}
+
+interface currency {
+  localizedSymbol: string;
 }
 
 @Component({
@@ -64,10 +74,10 @@ export class BalancesComponent {
         debug(balance);
         return (
           <tr>
-            <td>{balance.unit}</td>
-            <td>{balance.prettyValue}</td>
-            <td>{balance.prettyAssignedCredit}</td>
-            <td>{balance.prettyRedeemedCredit}</td>
+            <td>{balance.currency}</td>
+            <td>{balance.rewardUnit.currency.localizedSymbol}{balance.prettyValue}</td>
+            <td>{balance.rewardUnit.currency.localizedSymbol}{balance.prettyAssignedCredit}</td>
+            <td>{balance.rewardUnit.currency.localizedSymbol}{balance.prettyRedeemedCredit}</td>
           </tr>
         )
       })

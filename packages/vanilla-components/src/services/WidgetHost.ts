@@ -77,33 +77,68 @@ const demoUser = {
     {
       type: "CREDIT",
       unit: "CASH/CAD",
+      currency: "CAD",
       count: 3,
       totalPendingCredit: 20000,
       totalAssignedCredit: 30000,
       totalRedeemedCredit: 10000,
       totalExpiredCredit: 0,
       totalCancelledCredit: 0,
-      prettyPendingCredit: "$200.00",
-      prettyAssignedCredit: "$300.00",
-      prettyRedeemedCredit: "$100.00",
+      prettyPendingCredit: "200.00",
+      prettyAssignedCredit: "300.00",
+      prettyRedeemedCredit: "100.00",
       value: 20000,
-      prettyValue: "$200.00"
+      prettyValue: "200.00",
+      rewardUnit: {
+        currency: {
+          localizedSymbol: "$"
+        }
+      }
     },
     {
       type: "CREDIT",
       unit: "CASH/USD",
+      currency: "USD",
       count: 6,
       totalPendingCredit: 25000,
       totalAssignedCredit: 40000,
       totalRedeemedCredit: 10000,
       totalExpiredCredit: 15000,
       totalCancelledCredit: 10000,
-      prettyPendingCredit: "USD250.00",
-      prettyAssignedCredit: "USD400.00",
-      prettyRedeemedCredit: "USD150.00",
+      prettyPendingCredit: "250.00",
+      prettyAssignedCredit: "400.00",
+      prettyRedeemedCredit: "150.00",
       value: 25000,
-      prettyValue: "USD250.00"
+      prettyValue: "250.00",
+      rewardUnit: {
+        currency: {
+          localizedSymbol: "$"
+        }
+      }
+    },
+    {
+      type: "CREDIT",
+      unit: "CASH/JPY",
+      currency: "JPY",
+      count: 6,
+      totalPendingCredit: 25000,
+      totalAssignedCredit: 40000,
+      totalRedeemedCredit: 10000,
+      totalExpiredCredit: 15000,
+      totalCancelledCredit: 10000,
+      prettyPendingCredit: "250.00",
+      prettyAssignedCredit: "400.00",
+      prettyRedeemedCredit: "150.00",
+      value: 25000,
+      prettyValue: "250.00",
+      rewardUnit: {
+        currency: {
+          localizedSymbol: "¥"
+        }
+      }
+
     }
+    
   ],
 }
 
