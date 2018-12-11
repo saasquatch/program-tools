@@ -1073,6 +1073,52 @@ export default (editor, config = {}) => {
     }),
   });
 
+  comps.addType('sqh-balances-component', {
+    model: textComp.model.extend({
+      defaults: Object.assign({}, textComp.model.prototype.defaults, {
+        name: 'Balances',
+        draggable: true,
+        droppable: false,
+        selectable: true,
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'string', title: 'Table Width', name: 'tablewidth'},
+          { type: 'number', title: 'Border Radius', name: 'borderradius' },
+          { type: 'string', title: 'Border Color', name: 'bordercolor' },
+          { type: 'number', title: 'Heading Text Size', name: 'headertextsize' },
+          { type: 'string', title: 'Currency Text', name: 'currencytext' },
+          { type: 'string', title: 'Available Text', name: 'availabletext' },
+          { type: 'string', title: 'Earned Text', name: 'earnedtext' },
+          { type: 'string', title: 'Redeemed Text', name: 'redeemedtext' },
+          { type: 'number', title: 'Text Size', name: 'textsize' },
+          { type: 'string', title: 'Text Color', name: 'textcolor' },
+          { type: 'number', title: 'Cell Padding', name: 'cellpadding' },
+          { type: 'number', title: 'Header Padding', name: 'headerpadding' },
+
+        ],
+        uiSchema: {
+          'borderradius': { 'ui:widget': 'updown'},
+          'bordercolor': { 'ui:widget': 'color' },
+          'text': { 'ui:widget': 'textarea' },
+          'ishidden': { 'ui:widget': 'hidden' },
+          'color': { 'ui:widget': 'color' },
+          'textsize': { 'ui:widget': 'updown' },
+          'textcolor': { 'ui:widget': 'color' },
+          'ismarkdown': markdownUi
+        }
+      })
+    },
+      {
+        isComponent: function (el) {
+          if (el.tagName == 'SQH-BALANCES-COMPONENT') {
+            return { type: 'sqh-balances-component' };
+          }
+        },
+      }),
+
+      view: defaultType.view
+  })
+
 
   // 
   // 

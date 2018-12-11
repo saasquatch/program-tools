@@ -22,8 +22,11 @@ interface balance {
 })
 export class BalancesComponent {
   @Prop() ishidden: boolean = false;
+  @Prop() tablewidth: string;
   @Prop() borderradius: number;
   @Prop() bordercolor: string;
+  @Prop() headertextsize: string;
+  @Prop() textsize: string;
   @Prop() textcolor: string;
   @Prop() cellpadding: number;
   @Prop() headerpadding: number;
@@ -73,7 +76,8 @@ export class BalancesComponent {
     const tableStyle = css`
       border-collapse: collapse;
       text-align:center;
-      width:100%;
+      margin:0 auto;
+      width:${this.tablewidth};
       border-radius: ${this.borderradius}px;
       border:1px solid ${this.bordercolor};    
 
@@ -89,7 +93,7 @@ export class BalancesComponent {
 
     return !this.ishidden && 
       <div>
-        <table class={`${tableStyle} balances-table`}>
+        <table class={`${tableStyle}`}>
           <tr>
             <th>{this.currencytext}</th>
             <th>{this.availabletext}</th>

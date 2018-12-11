@@ -37,9 +37,12 @@ declare global {
       'currencytext': string;
       'earnedtext': string;
       'headerpadding': number;
+      'headertextsize': string;
       'ishidden': boolean;
       'redeemedtext': string;
+      'tablewidth': string;
       'textcolor': string;
+      'textsize': string;
     }
   }
 
@@ -69,9 +72,12 @@ declare global {
       'currencytext'?: string;
       'earnedtext'?: string;
       'headerpadding'?: number;
+      'headertextsize'?: string;
       'ishidden'?: boolean;
       'redeemedtext'?: string;
+      'tablewidth'?: string;
       'textcolor'?: string;
+      'textsize'?: string;
     }
   }
 }
