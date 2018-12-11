@@ -38,7 +38,7 @@ export function widgetIdent(): WidgetIdent {
 const today = new Date();
 
 const demoUser = {
-  shareLink: "http://sharelink.squatch.com",
+  shareLink: "http://ssqt.co",
   fueltankCode: "12AS3F",
   referralcode: "RIDDIKULUS",
   messageLink: {
