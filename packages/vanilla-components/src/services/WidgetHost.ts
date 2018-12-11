@@ -42,14 +42,14 @@ const demoUser = {
   fueltankCode: "12AS3F",
   referralcode: "RIDDIKULUS",
   messageLink: {
-    EMAIL: "http://ssqt.co/mJjFXu",
-    FACEBOOK: "http://ssqt.co/mwjFXu",
-    TWITTER: "http://ssqt.co/mwjFXu",
-    SMS: "http://ssqt.co/mwjFXu",
-    WHATSAPP: "http://ssqt.co/mwjFXu",
-    LINKEDIN: "http://ssqt.co/mwjFXu",
-    PINTEREST: "http://ssqt.co/mwjFXu",
-    FBMESSENGER: "http://ssqt.co/mwjFXu"
+    EMAIL: "http://short.staging.referralsaasquatch.com/mJjFXu",
+    FACEBOOK: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    TWITTER: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    SMS: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    WHATSAPP: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    LINKEDIN: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    PINTEREST: "http://short.staging.referralsaasquatch.com/mwjFXu",
+    FBMESSENGER: "http://short.staging.referralsaasquatch.com/mwjFXu"
   },
   referrals: {
     totalCount: 8,
