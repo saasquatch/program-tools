@@ -1,6 +1,6 @@
 {
-  "name": "index-test",
-  "version": "2.2.1",
+  "name": "@saasquatch/program-boilerplate",
+  "version": "2.0.11",
   "description": "Boilerplate for writing programs",
   "main": "dist/index.js",
   "scripts": {
