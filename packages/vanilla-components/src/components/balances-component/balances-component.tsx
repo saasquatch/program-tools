@@ -7,14 +7,13 @@ import { findFlagUrlByIso2Code } from 'country-flags-svg'
 const debug = debugFn("sqh-balances-component")
 
 interface stats {
-  rewardBalances: Array<balance>
+  rewardBalanceDetails: Array<balance>
 }
 
 interface balance {
   unit: string
   rewardUnit: rewardUnit
-  currency: string
-  prettyValue: string
+  prettyAvailableValue: string
   prettyAssignedCredit: string
   prettyRedeemedCredit: string
 }
@@ -24,12 +23,13 @@ interface rewardUnit {
 }
 
 interface currency {
-  localizedSymbol: string;
+  symbol: string
+  displayName: string
+  currencyCode: string
 }
 
 @Component({
-  tag: 'sqh-balances-component',
-  // styleUrl: '../../../node_modules\currency-flags\dist\currency-flags.min.css'
+  tag: 'sqh-balances-component'
 })
 export class BalancesComponent {
   @Prop() ishidden: boolean = false;
@@ -69,10 +69,10 @@ export class BalancesComponent {
 
   async componentWillLoad() {
     if (!this.ishidden) {
-      const { rewardBalances } = await API.graphql.getBalances();
+      const { rewardBalanceDetails } = await API.graphql.getBalanceDetails();
 
       this.stats = {
-        rewardBalances: rewardBalances.filter(balance => {
+        rewardBalanceDetails: rewardBalanceDetails.filter(balance => {
           if(!balance.unit.includes('CASH')) return;
           return balance;
         })
@@ -83,31 +83,13 @@ export class BalancesComponent {
   }
 
   render() {
-
-    /* with symbols */
-    // const getBalances = (
-    //   this.stats.rewardBalances.map((balance: balance) => {
-    //     debug(balance);
-    //     return (
-    //       <tr>
-    //         <td>{balance.currency}</td>
-    //         <td>{balance.rewardUnit.currency.localizedSymbol}{balance.prettyValue}</td>
-    //         <td>{balance.rewardUnit.currency.localizedSymbol}{balance.prettyAssignedCredit}</td>
-    //         <td>{balance.rewardUnit.currency.localizedSymbol}{balance.prettyRedeemedCredit}</td>
-    //       </tr>
-    //     )
-    //   })
-    // );
-
     const getBalances = (
-      this.stats.rewardBalances.map((balance: balance) => {
+      this.stats.rewardBalanceDetails.map((balance: balance) => {
         debug(balance);
-
         return (
           <tr>
-            {/* <td><span class="cell">{balance.unit}</span><span class={`currency-flag currency-flag-lg currency-flag-${balance.currency.toLowerCase()}`}> </span></td> */}
-            <td><span class="cell currency">{balance.unit}</span> <img class="flag" src={findFlagUrlByIso2Code(balance.currency.substr(0,2))} /></td>
-            { this.showavailable && <td><span class="cell available">{balance.prettyValue}</span></td> }
+            <td><span class="cell currency">{balance.unit}</span> <img class="flag" src={findFlagUrlByIso2Code(balance.rewardUnit.currency.currencyCode.substr(0,2))} /></td>
+            { this.showavailable && <td><span class="cell available">{balance.prettyAvailableValue}</span></td> }
             { this.showearned && <td><span class="cell earned">{balance.prettyAssignedCredit}</span></td> }
             { this.showclaimed && <td><span class="cell redeemed">{balance.prettyRedeemedCredit}</span></td> }
           </tr>
@@ -157,8 +139,7 @@ export class BalancesComponent {
       }
       .redeemed {
         color: ${this.redeemedtextcolor};
-      }
-      
+      } 
     `
 
     return !this.ishidden &&
