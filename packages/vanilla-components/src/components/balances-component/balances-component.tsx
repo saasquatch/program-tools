@@ -88,7 +88,7 @@ export class BalancesComponent {
         debug(balance);
         return (
           <tr>
-            <td><span class="cell currency">{balance.rewardUnit.currency.displayName}</span> <img class="flag" src={findFlagUrlByIso2Code(balance.rewardUnit.currency.currencyCode.substr(0,2))} /></td>
+            <td class="currency"><span class="test"><span class="cell currency">{balance.rewardUnit.currency.displayName}</span></span> <img class="flag" src={findFlagUrlByIso2Code(balance.rewardUnit.currency.currencyCode.substr(0,2))} /></td>
             { this.showavailable && <td><span class="cell available">{balance.prettyAvailableValue}</span></td> }
             { this.showearned && <td><span class="cell earned">{balance.prettyAssignedCredit}</span></td> }
             { this.showclaimed && <td><span class="cell redeemed">{balance.prettyRedeemedCredit}</span></td> }
@@ -113,7 +113,6 @@ export class BalancesComponent {
         vertical-align:middle;
         border:1px solid lightgrey;
         object-fit: cover;
-        float:right;
       }
       .cell {
         vertical-align:middle;
@@ -130,7 +129,12 @@ export class BalancesComponent {
         font-size:${this.headertextsize}px;
       }
       .currency {
-        float:left;
+        text-align:right;
+      }
+      .test {
+        width: 120px;
+        display: inline-block;
+        text-align: left;
       }
       .available {
         color: ${this.availabletextcolor};

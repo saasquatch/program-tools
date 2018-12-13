@@ -30,7 +30,6 @@
     "apollo-link-http": "^1.5.4",
     "clipboard": "^1.7.1",
     "country-flags-svg": "^0.2.12",
-    "currency-flags": "git+https://github.com/transferwise/currency-flags.git",
     "emotion": "^9.2.6",
     "faker": "^4.1.0",
     "graphql-tag": "^2.9.2",
