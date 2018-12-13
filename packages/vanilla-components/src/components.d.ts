@@ -40,6 +40,10 @@ declare global {
       'headertextsize': string;
       'ishidden': boolean;
       'redeemedtext': string;
+      'showavailable': boolean;
+      'showclaimed': boolean;
+      'showearned': boolean;
+      'showflag': boolean;
       'tablewidth': string;
       'textcolor': string;
       'textsize': string;
@@ -75,6 +79,10 @@ declare global {
       'headertextsize'?: string;
       'ishidden'?: boolean;
       'redeemedtext'?: string;
+      'showavailable'?: boolean;
+      'showclaimed'?: boolean;
+      'showearned'?: boolean;
+      'showflag'?: boolean;
       'tablewidth'?: string;
       'textcolor'?: string;
       'textsize'?: string;
