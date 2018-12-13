@@ -31,19 +31,28 @@ declare global {
   namespace StencilComponents {
     interface SqhBalancesComponent {
       'availabletext': string;
+      'availabletextcolor': string;
       'bordercolor': string;
       'borderradius': number;
+      'borderwidth': number;
       'cellpadding': number;
       'currencytext': string;
+      'currencytextcolor': string;
       'earnedtext': string;
+      'earnedtextcolor': string;
+      'flagwidth': number;
+      'fontfamily': string;
       'headerpadding': number;
+      'headertextcolor': string;
       'headertextsize': string;
       'ishidden': boolean;
       'redeemedtext': string;
+      'redeemedtextcolor': string;
       'showavailable': boolean;
       'showclaimed': boolean;
       'showearned': boolean;
       'showflag': boolean;
+      'tablebackgroundcolor': string;
       'tablewidth': string;
       'textcolor': string;
       'textsize': string;
@@ -70,19 +79,28 @@ declare global {
   namespace JSXElements {
     export interface SqhBalancesComponentAttributes extends HTMLAttributes {
       'availabletext'?: string;
+      'availabletextcolor'?: string;
       'bordercolor'?: string;
       'borderradius'?: number;
+      'borderwidth'?: number;
       'cellpadding'?: number;
       'currencytext'?: string;
+      'currencytextcolor'?: string;
       'earnedtext'?: string;
+      'earnedtextcolor'?: string;
+      'flagwidth'?: number;
+      'fontfamily'?: string;
       'headerpadding'?: number;
+      'headertextcolor'?: string;
       'headertextsize'?: string;
       'ishidden'?: boolean;
       'redeemedtext'?: string;
+      'redeemedtextcolor'?: string;
       'showavailable'?: boolean;
       'showclaimed'?: boolean;
       'showearned'?: boolean;
       'showflag'?: boolean;
+      'tablebackgroundcolor'?: string;
       'tablewidth'?: string;
       'textcolor'?: string;
       'textsize'?: string;
