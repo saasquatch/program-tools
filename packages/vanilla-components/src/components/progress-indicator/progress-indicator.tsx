@@ -1,7 +1,7 @@
 import { Component, Prop, State } from '@stencil/core';
 import ProgressBar  from 'progressbar.js';
 import { API } from '../../services/WidgetHost';
-
+import { css } from 'emotion';
 interface stats {
   rewardBalanceDetails: Array<balance>
 }
@@ -32,6 +32,9 @@ export class ProgressIndicator {
 
   @Prop() ishidden: boolean = false;
   @Prop() tiername: string;
+  @Prop() unit: string;
+  @Prop() textcolor: string;
+  @Prop() align: string;
   @Prop() progresstype: string = "Circle";
   @State() stats: stats;
  
@@ -85,9 +88,25 @@ export class ProgressIndicator {
   }
   
   render() {
+  const wrapper = css`
+    color: ${ this.textcolor };
+    text-align: ${ this.align };
+  `
 
     console.log(ProgressBar);
     return !this.ishidden && 
-      <div id="container"></div>;
+      <div class={wrapper}>
+        {this.tiername}
+        <div id="container"></div>;
+
+        {/* customer editable / automatically set */}
+        <div>{this.unit}</div>
+
+        {/* automatically set */}
+        <div>Balance</div>
+
+        {/* automatically set */}
+        <div>Expiry</div>
+      </div>;
   }
 }
