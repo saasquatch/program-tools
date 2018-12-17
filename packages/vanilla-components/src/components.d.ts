@@ -285,38 +285,50 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface SqhProgressCircle {
+    interface SqhProgressIndicator {
       'align': string;
+      'imagewidth': string;
       'ishidden': boolean;
+      'percentagecolor': string;
+      'percentagesize': string;
+      'progressendcolor': string;
+      'progressstartcolor': string;
       'progresstype': string;
+      'progresswidth': string;
       'textcolor': string;
       'tiername': string;
       'unit': string;
     }
   }
 
-  interface HTMLSqhProgressCircleElement extends StencilComponents.SqhProgressCircle, HTMLStencilElement {}
+  interface HTMLSqhProgressIndicatorElement extends StencilComponents.SqhProgressIndicator, HTMLStencilElement {}
 
-  var HTMLSqhProgressCircleElement: {
-    prototype: HTMLSqhProgressCircleElement;
-    new (): HTMLSqhProgressCircleElement;
+  var HTMLSqhProgressIndicatorElement: {
+    prototype: HTMLSqhProgressIndicatorElement;
+    new (): HTMLSqhProgressIndicatorElement;
   };
   interface HTMLElementTagNameMap {
-    'sqh-progress-circle': HTMLSqhProgressCircleElement;
+    'sqh-progress-indicator': HTMLSqhProgressIndicatorElement;
   }
   interface ElementTagNameMap {
-    'sqh-progress-circle': HTMLSqhProgressCircleElement;
+    'sqh-progress-indicator': HTMLSqhProgressIndicatorElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'sqh-progress-circle': JSXElements.SqhProgressCircleAttributes;
+      'sqh-progress-indicator': JSXElements.SqhProgressIndicatorAttributes;
     }
   }
   namespace JSXElements {
-    export interface SqhProgressCircleAttributes extends HTMLAttributes {
+    export interface SqhProgressIndicatorAttributes extends HTMLAttributes {
       'align'?: string;
+      'imagewidth'?: string;
       'ishidden'?: boolean;
+      'percentagecolor'?: string;
+      'percentagesize'?: string;
+      'progressendcolor'?: string;
+      'progressstartcolor'?: string;
       'progresstype'?: string;
+      'progresswidth'?: string;
       'textcolor'?: string;
       'tiername'?: string;
       'unit'?: string;
