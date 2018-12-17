@@ -1,29 +1,67 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 import ProgressBar  from 'progressbar.js';
+import { API } from '../../services/WidgetHost';
 import { css } from 'emotion';
+interface stats {
+  rewardBalanceDetails: Array<balance>
+}
+
+interface balance {
+  unit: string
+  rewardUnit: rewardUnit
+  prettyAvailableValue: string
+  prettyAssignedCredit: string
+  prettyRedeemedCredit: string
+}
+
+interface rewardUnit {
+  currency: currency
+}
+
+interface currency {
+  symbol: string
+  displayName: string
+  currencyCode: string
+}
 
 @Component({
   tag: 'sqh-progress-indicator',
   styleUrl: 'progress-indicator.scss'
 })
 export class ProgressIndicator {
+
   @Prop() ishidden: boolean = false;
   @Prop() tiername: string;
   @Prop() unit: string;
   @Prop() textcolor: string;
   @Prop() align: string;
+  @Prop() progresstype: string = "Circle";
 
-  // Progress Props
-  @Prop() progresstype: string;
   @Prop() progresswidth: string;
   @Prop() percentagecolor: string;
   @Prop() percentagesize: string;
 
   @Prop() imagewidth: string;
   @Prop() progressstartcolor: string;
-  @Prop() progressendcolor: string
+  @Prop() progressendcolor: string;
+  @State() stats: stats;
+  @State() rewardStats: any;
+ 
+ async componentDidLoad(){
+    const { rewardBalanceDetails } = await API.graphql.getBalanceDetails();
+    let closestExpiry = {dateExpires: 0, balance: 0};
+    let closestExpiryDate = Math.floor(Date.now()/1000);
 
-  componentDidLoad(){
+    rewardBalanceDetails.map(reward => {
+      console.log("reward.dateExpires", reward.dateExpires)
+      if(closestExpiryDate < reward.dateExpires) closestExpiry = { dateExpires: reward.dateExpires, balance: reward.prettyAvailableValue }           
+    })
+
+    console.log("winner:", closestExpiry);
+    this.rewardStats = {
+      dateExpires: new Date(+(closestExpiry.dateExpires * 1000)).toLocaleString("en-US", { year:"numeric", month: "long", day: "numeric", hour:"numeric" } ),
+      balance: closestExpiry.balance
+    }
     this.getProgress();
   }
 
@@ -145,22 +183,22 @@ export class ProgressIndicator {
     padding: 15px 0;
   `
 
-    return !this.ishidden && 
-      <div class={wrapperStyle}>
-        {this.tiername}
+  return !this.ishidden && 
+  <div class={wrapperStyle}>
+    {this.tiername}
 
-        <div class={progressStyle}>
-          <div id="container"></div>
-        </div>
+    <div class={progressStyle}>
+      <div id="container"></div>
+    </div>
 
-        {/* customer editable / automatically set */}
-        <div>{this.unit}</div>
+    {/* customer editable / automatically set */}
+    <div>{this.unit}</div>
 
-        {/* automatically set */}
-        <div class={balanceStyle}>Balance</div>
+    {/* automatically set */}
+    <div class={balanceStyle}>Balance: {this.rewardStats && this.rewardStats.balance}</div>
 
-        {/* automatically set */}
-        <div>Expiry</div>
-      </div>
+    {/* automatically set */}
+    <div>Expires: {this.rewardStats && this.rewardStats.dateExpires}</div>
+  </div>
   }
 }
