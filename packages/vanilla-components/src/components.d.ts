@@ -286,8 +286,11 @@ declare global {
 
   namespace StencilComponents {
     interface SqhProgressCircle {
+      'align': string;
       'ishidden': boolean;
+      'textcolor': string;
       'tiername': string;
+      'unit': string;
     }
   }
 
@@ -310,8 +313,11 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhProgressCircleAttributes extends HTMLAttributes {
+      'align'?: string;
       'ishidden'?: boolean;
+      'textcolor'?: string;
       'tiername'?: string;
+      'unit'?: string;
     }
   }
 }

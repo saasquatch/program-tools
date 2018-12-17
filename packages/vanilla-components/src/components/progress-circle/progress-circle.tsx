@@ -1,13 +1,16 @@
 import { Component, Prop} from '@stencil/core';
+import { css } from 'emotion';
 
 @Component({
   tag: 'sqh-progress-circle',
   styleUrl: 'progress-circle.scss'
 })
 export class ProgressCircle {
-
   @Prop() ishidden: boolean = false;
   @Prop() tiername: string;
+  @Prop() unit: string;
+  @Prop() textcolor: string;
+  @Prop() align: string;
 
 
   constructor() {
@@ -22,11 +25,24 @@ export class ProgressCircle {
 
 
   render() {
+  const wrapper = css`
+    color: ${ this.textcolor };
+    text-align: ${ this.align };
+  `
 
     return !this.ishidden && 
-      <div>
+      <div class={wrapper}>
         {this.tiername}
-        <div id="container">{this.bar}</div>
+        <div id="container">Progress Bar Here</div>
+
+        {/* customer editable / automatically set */}
+        <div>{this.unit}</div>
+
+        {/* automatically set */}
+        <div>Balance</div>
+
+        {/* automatically set */}
+        <div>Expiry</div>
       </div>;
   }
 }
