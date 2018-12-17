@@ -285,33 +285,33 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface SqhPartnerTotalBar {
+    interface SqhProgressCircle {
       'ishidden': boolean;
-      'text': string;
+      'tiername': string;
     }
   }
 
-  interface HTMLSqhPartnerTotalBarElement extends StencilComponents.SqhPartnerTotalBar, HTMLStencilElement {}
+  interface HTMLSqhProgressCircleElement extends StencilComponents.SqhProgressCircle, HTMLStencilElement {}
 
-  var HTMLSqhPartnerTotalBarElement: {
-    prototype: HTMLSqhPartnerTotalBarElement;
-    new (): HTMLSqhPartnerTotalBarElement;
+  var HTMLSqhProgressCircleElement: {
+    prototype: HTMLSqhProgressCircleElement;
+    new (): HTMLSqhProgressCircleElement;
   };
   interface HTMLElementTagNameMap {
-    'sqh-partner-total-bar': HTMLSqhPartnerTotalBarElement;
+    'sqh-progress-circle': HTMLSqhProgressCircleElement;
   }
   interface ElementTagNameMap {
-    'sqh-partner-total-bar': HTMLSqhPartnerTotalBarElement;
+    'sqh-progress-circle': HTMLSqhProgressCircleElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'sqh-partner-total-bar': JSXElements.SqhPartnerTotalBarAttributes;
+      'sqh-progress-circle': JSXElements.SqhProgressCircleAttributes;
     }
   }
   namespace JSXElements {
-    export interface SqhPartnerTotalBarAttributes extends HTMLAttributes {
+    export interface SqhProgressCircleAttributes extends HTMLAttributes {
       'ishidden'?: boolean;
-      'text'?: string;
+      'tiername'?: string;
     }
   }
 }
