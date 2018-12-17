@@ -9,14 +9,15 @@ export class ProgressCircle {
 
   @Prop() ishidden: boolean = false;
   @Prop() tiername: string;
-
+  @Prop() progresstype: string = "Circle";
+ 
   componentDidLoad(){
     this.getProgress();
   }
 
   getProgress(){
 
-    var bar = new ProgressBar.Circle('#container', {
+    var bar = new ProgressBar[this.progresstype]('#container', {
       color: '#aaa',
       // This has to be the same size as the maximum width to
       // prevent clipping
