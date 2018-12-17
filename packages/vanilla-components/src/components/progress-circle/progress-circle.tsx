@@ -42,7 +42,7 @@ export class ProgressCircle {
         if (value === 0) {
           circle.setText('');
         } else {
-          circle.setText('<img style="width:100%" src="https://static.thenounproject.com/png/130115-200.png">' + value + "%");
+          circle.setText('<img style="" src="">' + value + "%");
         }
     
       }
@@ -54,19 +54,30 @@ export class ProgressCircle {
   }
   
   render() {
-  const wrapper = css`
+  const wrapperStyle = css`
     color: ${ this.textcolor };
-    text-align: ${ this.align };
+    text-align: center;
+  `
+
+  const unitStyle = css`
+
+  `
+
+  const progressStyle = css`
+    width: 200px;
+    margin: 0 auto;
   `
 
     console.log(ProgressBar);
     return !this.ishidden && 
-      <div class={wrapper}>
+      <div class={wrapperStyle}>
         {this.tiername}
-        <div id="container"></div>;
+        <div class={progressStyle}>
+        <div id="container" class={progressStyle}></div>;
+        </div>
 
         {/* customer editable / automatically set */}
-        <div>{this.unit}</div>
+        <div class={unitStyle}>{this.unit}</div>
 
         {/* automatically set */}
         <div>Balance</div>
