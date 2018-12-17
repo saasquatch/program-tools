@@ -91,6 +91,7 @@ export class ProgressIndicator {
       });
       bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
       bar.text.style.fontSize = '2rem';
+      bar.text.style.marginBottom = '30px';
     }
 
     if (this.progresstype === "Line") {
@@ -132,16 +133,16 @@ export class ProgressIndicator {
     text-align: center;
   `
 
-  const unitStyle = css`
-    margin-top: 35px
-  `
-
   const progressStyle = css`
     width: ${ this.progresswidth };
     margin: 0 auto;
     img {
       width: ${ this.imagewidth };
     }
+  `
+
+  const balanceStyle = css`
+    padding: 15px 0;
   `
 
     return !this.ishidden && 
@@ -153,10 +154,10 @@ export class ProgressIndicator {
         </div>
 
         {/* customer editable / automatically set */}
-        <div class={unitStyle}>{this.unit}</div>
+        <div>{this.unit}</div>
 
         {/* automatically set */}
-        <div>Balance</div>
+        <div class={balanceStyle}>Balance</div>
 
         {/* automatically set */}
         <div>Expiry</div>
