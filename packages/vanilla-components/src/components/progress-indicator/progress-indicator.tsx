@@ -1,17 +1,51 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 import ProgressBar  from 'progressbar.js';
+import { API } from '../../services/WidgetHost';
+
+interface stats {
+  rewardBalanceDetails: Array<balance>
+}
+
+interface balance {
+  unit: string
+  rewardUnit: rewardUnit
+  prettyAvailableValue: string
+  prettyAssignedCredit: string
+  prettyRedeemedCredit: string
+}
+
+interface rewardUnit {
+  currency: currency
+}
+
+interface currency {
+  symbol: string
+  displayName: string
+  currencyCode: string
+}
 
 @Component({
-  tag: 'sqh-progress-circle',
-  styleUrl: 'progress-circle.scss'
+  tag: 'sqh-progress-indicator',
+  styleUrl: 'progress-indicator.scss'
 })
-export class ProgressCircle {
+export class ProgressIndicator {
 
   @Prop() ishidden: boolean = false;
   @Prop() tiername: string;
   @Prop() progresstype: string = "Circle";
+  @State() stats: stats;
  
-  componentDidLoad(){
+ async  componentDidLoad(){
+    const { rewardBalanceDetails } = await API.graphql.getBalanceDetails();
+    let closestExpiry = {dateExpires: '', balance: ''};
+    let closestExpiryDate = Math.floor(Date.now()/1000);
+
+    rewardBalanceDetails.map(reward => {
+      console.log("reward.dateExpires", reward.dateExpires)
+      if(closestExpiryDate < reward.dateExpires) closestExpiry = { dateExpires: reward.dateExpires, balance: reward.prettyAvailableValue }           
+    })
+
+    console.log("winner:", closestExpiry);
     this.getProgress();
   }
 
