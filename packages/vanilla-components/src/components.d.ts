@@ -288,6 +288,7 @@ declare global {
     interface SqhProgressCircle {
       'align': string;
       'ishidden': boolean;
+      'progresstype': string;
       'textcolor': string;
       'tiername': string;
       'unit': string;
@@ -315,6 +316,7 @@ declare global {
     export interface SqhProgressCircleAttributes extends HTMLAttributes {
       'align'?: string;
       'ishidden'?: boolean;
+      'progresstype'?: string;
       'textcolor'?: string;
       'tiername'?: string;
       'unit'?: string;
