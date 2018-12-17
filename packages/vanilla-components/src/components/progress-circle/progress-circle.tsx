@@ -6,6 +6,7 @@ import ProgressBar  from 'progressbar.js';
   styleUrl: 'progress-circle.scss'
 })
 export class ProgressCircle {
+
   @Prop() ishidden: boolean = false;
   @Prop() tiername: string;
 
