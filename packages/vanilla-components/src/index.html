@@ -1,21 +1,3 @@
-Skip to content
- 
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- @cbot83 Sign out
-2
-0 0 saasquatch/program-tools
- Code  Issues 0  Pull requests 1  Projects 0  Wiki  Insights
-program-tools/packages/vanilla-components/src/index.html
-797118d  13 days ago
-@cbot83 cbot83 updated index.html to include parnter widget
-@cbot83 @zmcadie @jorgecgll @loganvolkers @jericmason
-     
-394 lines (347 sloc)  10.7 KB
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -54,7 +36,89 @@ program-tools/packages/vanilla-components/src/index.html
 
 <body>
 
-    <sqh-global-container 
+
+  <!-- VIP WIDGET -->
+
+  <sqh-global-container 
+  class="squatch-container" 
+  background="#ffffff"
+  >
+      
+    <sqh-text-component 
+      sqhbanner="true"
+      ishidden="true"
+      background="https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg"
+      height="auto"
+      paddingtop="150"
+      paddingbottom="150"
+      text=""
+      color="#000000"
+    ></sqh-text-component>
+  
+    <sqh-text-component
+      sqhheader="true" 
+      text="V.I.P." 
+      color="#4486E1" 
+      fontsize="30" 
+      textalign="center"
+      paddingtop="30" 
+      paddingbottom="10"
+    ></sqh-text-component>
+  
+    <sqh-text-component 
+      sqhbody="true" 
+      ismarkdown="true"
+      text="You're very important to us. Input program rules here" 
+      color="#000000" 
+      fontsize="13" 
+      textalign="center"
+      paddingtop="5" 
+      paddingbottom="20"
+    ></sqh-text-component>
+    
+ 
+    <sqh-progress-indicator
+      sqhprogress="true"
+      tiername="You're already"
+      textcolor="#000"
+      unit="of the way to a free Gift"
+      progresstype="Circle"
+      progresswidth="200px"
+      percentagecolor="#23d129"
+      percentagesize="32px"
+      imagewidth="72px"
+      progressstartcolor="#4286f4"
+      progressendcolor="#23d129"
+    >
+    </sqh-progress-indicator>
+  
+    <sqh-text-component 
+      sqhcta="true" 
+      text="Call To Action" 
+      color="#000" 
+      fontsize="13"
+      textalign="center"
+      paddingtop="10"
+      paddingbottom="10"
+    ></sqh-text-component>
+  
+    <sqh-text-component 
+      sqhfooter="true" 
+      text="Terms and Conditions" 
+      color="lightgray" 
+      fontsize="13"
+      textalign="center"
+      paddingtop="10"
+      paddingbottom="10"
+    ></sqh-text-component>
+      
+  </sqh-global-container>  
+
+
+  <!-- REFERRAL WIDGET -->
+
+
+<sqh-global-container 
   class="squatch-container" 
   background="#ffffff"
 >
@@ -410,16 +474,3 @@ program-tools/packages/vanilla-components/src/index.html
   </sqh-global-container>  
 </body>
 </html>
-© 2018 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Press h to open a hovercard with more details.
