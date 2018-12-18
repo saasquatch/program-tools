@@ -77,7 +77,7 @@ const demoUser = {
       prettyAvailableValue: "200.00",
       prettyAssignedCredit: "300.00",
       prettyRedeemedCredit: "100.00",
-      dateExpires: "1545096080",
+      dateExpires: "1545196080",
       dateCreated: "1545084080",
       unit: "CASH/LONG",
       rewardUnit: {
@@ -92,7 +92,7 @@ const demoUser = {
       prettyAvailableValue: "200.00",
       prettyAssignedCredit: "300.00",
       prettyRedeemedCredit: "100.00",
-      dateExpires: "1545094080",
+      dateExpires: "1545194080",
       dateCreated: "1545074080",
       unit: "CASH/MEDIUM",
       rewardUnit: {
@@ -107,7 +107,7 @@ const demoUser = {
       prettyAvailableValue: "200.00",
       prettyAssignedCredit: "300.00",
       prettyRedeemedCredit: "100.00",
-      dateExpires: "1545089080",
+      dateExpires: "1545189080",
       dateCreated: "1545074080",
       unit: "CASH/SHORTEST",
       rewardUnit: {
@@ -522,7 +522,6 @@ const API = {
             rewards(programId_eq: $programId) {
               data {
                 dateCreated
-                dateScheduledFor
                 dateExpires
                 prettyValue
                 unit

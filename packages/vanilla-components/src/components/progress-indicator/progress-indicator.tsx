@@ -53,15 +53,16 @@ export class ProgressIndicator {
     let closestExpiryDate = Math.floor(Date.now()/1000);
 
     rewardBalanceDetails.map(reward => {
-      console.log("reward.dateExpires", reward.dateExpires)
       if(closestExpiryDate < reward.dateExpires) closestExpiry = { dateExpires: reward.dateExpires, balance: reward.prettyAvailableValue }           
     })
 
-    console.log("winner:", closestExpiry);
-    this.rewardStats = {
-      dateExpires: new Date(+(closestExpiry.dateExpires * 1000)).toLocaleString("en-US", { year:"numeric", month: "long", day: "numeric", hour:"numeric" } ),
-      balance: closestExpiry.balance
-    }
+    if(closestExpiry.dateExpires){
+      this.rewardStats = {
+        dateExpires: new Date(+(closestExpiry.dateExpires * 1000)).toLocaleString("en-US", { year:"numeric", month: "long", day: "numeric", hour:"numeric" } ),
+        balance: closestExpiry.balance
+      }
+    } 
+
     this.getProgress();
   }
 
@@ -197,7 +198,7 @@ export class ProgressIndicator {
           <div>Balance: {this.rewardStats && this.rewardStats.balance}</div>
   
           {/* automatically set */}
-          <div>Expires: {this.rewardStats && this.rewardStats.dateExpires}</div>
+          { this.rewardStats && this.rewardStats.dateExpires && <div>Expires: {this.rewardStats && this.rewardStats.dateExpires}</div> }
         </div>
     }
   }
