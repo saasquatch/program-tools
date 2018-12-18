@@ -1,7 +1,9 @@
 import { Component, Prop, State } from '@stencil/core';
-import ProgressBar  from 'progressbar.js';
-import { API } from '../../services/WidgetHost';
+import ProgressBar from 'progressbar.js';
+// import { API } from '../../services/WidgetHost';
 import { css } from 'emotion';
+import { getStats } from '../../services/StatPaths';
+
 interface stats {
   rewardBalanceDetails: Array<balance>
 }
@@ -46,30 +48,33 @@ export class ProgressIndicator {
   @Prop() progressendcolor: string;
   @State() stats: stats;
   @State() rewardStats: any;
- 
- async componentDidLoad(){
-    const { rewardBalanceDetails } = await API.graphql.getBalanceDetails();
-    let closestExpiry = {dateExpires: 0, balance: 0};
-    let closestExpiryDate = Math.floor(Date.now()/1000);
 
-    rewardBalanceDetails.map(reward => {
-      if(closestExpiryDate < reward.dateExpires) closestExpiry = { dateExpires: reward.dateExpires, balance: reward.prettyAvailableValue }           
-    })
+  async componentDidLoad() {
+    // const { rewardBalanceDetails } = await API.graphql.getBalanceDetails();
+    // let closestExpiry = { dateExpires: 0, balance: 0 };
+    // let closestExpiryDate = Math.floor(Date.now() / 1000);
 
-    if(closestExpiry.dateExpires){
-      this.rewardStats = {
-        dateExpires: new Date(+(closestExpiry.dateExpires * 1000)).toLocaleString("en-US", { year:"numeric", month: "long", day: "numeric", hour:"numeric" } ),
-        balance: closestExpiry.balance
-      }
-    } 
+    // rewardBalanceDetails.map(reward => {
+    //   if (closestExpiryDate < reward.dateExpires) closestExpiry = { dateExpires: reward.dateExpires, balance: reward.prettyAvailableValue }
+    // })
+
+    // if (closestExpiry.dateExpires) {
+    //   this.rewardStats = {
+    //     dateExpires: new Date(+(closestExpiry.dateExpires * 1000)).toLocaleString("en-US", { year: "numeric", month: "long", day: "numeric", hour: "numeric" }),
+    //     balance: closestExpiry.balance
+    //   }
+    // }
+    const stat = await getStats(['/rewardsCount', '/rewardBalance/CREDIT/CENTS/prettyAssignedCredit']);
+    // const stat = await getStat('/rewardBalance/CREDIT/CENTS/prettyAssignedCredit');
+    console.log('stat ', stat);
 
     this.getProgress();
   }
 
-  getProgress(){
-    
-    if(this.progresstype === "Circle") {
-      var bar = new ProgressBar[this.progresstype] ('#container', {
+  getProgress() {
+
+    if (this.progresstype === "Circle") {
+      var bar = new ProgressBar[this.progresstype]('#container', {
         color: this.percentagecolor,
         // This has to be the same size as the maximum width to
         // prevent clipping
@@ -83,24 +88,24 @@ export class ProgressIndicator {
         from: { color: this.progressstartcolor, width: 1 },
         to: { color: this.progressendcolor, width: 4 },
         // Set default step function for all animate calls
-        step: function(state, circle) {
+        step: function (state, circle) {
           circle.path.setAttribute('stroke', state.color);
           circle.path.setAttribute('stroke-width', state.width);
-      
+
           var value = Math.round(circle.value() * 100);
           if (value === 0) {
             circle.setText('');
           } else {
             circle.setText(`<img src="https://static.thenounproject.com/png/130115-200.png"><br>` + value + "%");
           }
-      
+
         }
       });
       bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
       bar.text.style.fontSize = this.percentagesize;
     }
 
-    if(this.progresstype === "SemiCircle") {
+    if (this.progresstype === "SemiCircle") {
       var bar = new ProgressBar.SemiCircle('#container', {
         strokeWidth: 6,
         color: '#FFEA82',
@@ -113,8 +118,8 @@ export class ProgressIndicator {
           value: '',
           alignToBottom: false
         },
-        from: {color: '#FFEA82'},
-        to: {color: '#ED6A5A'},
+        from: { color: '#FFEA82' },
+        to: { color: '#ED6A5A' },
         // Set default step function for all animate calls
         step: (state, bar) => {
           bar.path.setAttribute('stroke', state.color);
@@ -124,7 +129,7 @@ export class ProgressIndicator {
           } else {
             bar.setText(`${value}%`);
           }
-      
+
           bar.text.style.color = state.color;
         }
       });
@@ -140,7 +145,7 @@ export class ProgressIndicator {
         color: '#FFEA82',
         trailColor: '#eee',
         trailWidth: 1,
-        svgStyle: {width: '100%', height: '100%'},
+        svgStyle: { width: '100%', height: '100%' },
         text: {
           style: {
             // Text color.
@@ -152,8 +157,8 @@ export class ProgressIndicator {
           },
           autoStyleContainer: false
         },
-        from: {color: '#FFEA82'},
-        to: {color: '#ED6A5A'},
+        from: { color: '#FFEA82' },
+        to: { color: '#ED6A5A' },
         // @ts-ignore
         step: (state, bar) => {
           bar.setText(Math.round(bar.value() * 100) + ' %');
@@ -164,41 +169,41 @@ export class ProgressIndicator {
     bar.animate(0.75);  // TODO: graphql call to get progress and goal to find out percentage and input
     // TODO: Add in for Custom as well https://jsfiddle.net/kimmobrunfeldt/dnLLgm5o/
   }
-  
+
   render() {
     const wrapperStyle = css`
-      color: ${ this.textcolor };
+      color: ${ this.textcolor};
       text-align: center;
     `
-  
+
     const unitStyle = css`
       margin-top: 35px
     `
-  
+
     const progressStyle = css`
-      width: ${ this.progresswidth };
+      width: ${ this.progresswidth};
       margin: 0 auto;
       img {
-        width: ${ this.imagewidth };
+        width: ${ this.imagewidth};
       }
     `
-  
-      return !this.ishidden && 
-        <div class={wrapperStyle}>
-          {this.tiername}
-  
-          <div class={progressStyle}>
-            <div id="container"></div>
-          </div>
-  
-          {/* customer editable / automatically set */}
-          <div class={unitStyle}>{this.unit}</div>
-  
-          {/* automatically set */}
-          <div>Balance: {this.rewardStats && this.rewardStats.balance}</div>
-  
-          {/* automatically set */}
-          { this.rewardStats && this.rewardStats.dateExpires && <div>Expires: {this.rewardStats && this.rewardStats.dateExpires}</div> }
+
+    return !this.ishidden &&
+      <div class={wrapperStyle}>
+        {this.tiername}
+
+        <div class={progressStyle}>
+          <div id="container"></div>
         </div>
-    }
+
+        {/* customer editable / automatically set */}
+        <div class={unitStyle}>{this.unit}</div>
+
+        {/* automatically set */}
+        <div>Balance: {this.rewardStats && this.rewardStats.balance}</div>
+
+        {/* automatically set */}
+        {this.rewardStats && this.rewardStats.dateExpires && <div>Expires: {this.rewardStats && this.rewardStats.dateExpires}</div>}
+      </div>
   }
+}
