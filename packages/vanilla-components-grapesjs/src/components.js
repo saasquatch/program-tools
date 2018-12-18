@@ -1018,7 +1018,7 @@ export default (editor, config = {}) => {
         selectable: true,
         traits: [
           { type: 'boolean', name: 'ishidden', value: false },
-          { type: 'string', title: 'Shape', name: 'shape', enum: ['Circle', 'SemiCircle', 'Line'], enumNames: ['Circle', 'SemiCircle', 'Line'] },
+          { type: 'string', title: 'Shape of Progress Bar', name: 'progresstype', enum: ['Circle', 'SemiCircle', 'Line'], enumNames: ['Circle', 'SemiCircle', 'Line'] },
           { type: 'string', title: 'Tier Name', name: 'tiername' },
           { type: 'integer', title: 'Width of Progress in pixels', name: 'progresswidth' },
           { type: 'string', title: 'Progress Bar Color Start', name: 'progressstartcolor' },

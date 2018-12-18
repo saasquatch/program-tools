@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop, State, Watch, Element } from '@stencil/core';
 import ProgressBar  from 'progressbar.js';
 import { API } from '../../services/WidgetHost';
 import { css } from 'emotion';
@@ -40,15 +40,40 @@ export class ProgressIndicator {
   @Prop() align: string;
   @Prop() progresstype: string;
 
-  @Prop() progresswidth: string;
+  @Prop() progresswidth: number;
   @Prop() percentagecolor: string;
   @Prop() percentagesize: string;
 
-  @Prop() imagewidth: string;
   @Prop() progressstartcolor: string;
   @Prop() progressendcolor: string;
   @State() stats: stats;
   @State() rewardStats: any;
+
+  @Element() el: HTMLElement;
+
+
+  @Watch('progresstype')
+  watchHandler() {
+    const element = this.el.querySelector('#container')
+    while (element.hasChildNodes()) {
+      element.removeChild(element.lastChild)
+    }
+    this.getProgress()
+  }
+
+  @Watch('progresswidth')
+  watchHandler2() {
+    const element = this.el.querySelector('#container')
+    while (element.hasChildNodes()) {
+      element.removeChild(element.lastChild)
+    }
+    this.getProgress()
+  }
+
+  // @Watch('progresswidth')
+  // watchHandler2() {
+  //   console.log('hi')
+  // }
  
   async componentDidLoad(){
     const { rewardBalanceDetails } = await API.graphql.getBalanceDetails();
@@ -56,11 +81,9 @@ export class ProgressIndicator {
     let closestExpiryDate = Math.floor(Date.now()/1000);
 
     rewardBalanceDetails.map(reward => {
-      console.log("reward.dateExpires", reward.dateExpires)
       if(closestExpiryDate < reward.dateExpires) closestExpiry = { dateExpires: reward.dateExpires, balance: reward.prettyAvailableValue }           
     })
 
-    console.log("winner:", closestExpiry);
     this.rewardStats = {
       dateExpires: new Date(+(closestExpiry.dateExpires * 1000)).toLocaleString("en-US", { year:"numeric", month: "long", day: "numeric", hour:"numeric" } ),
       balance: closestExpiry.balance
@@ -80,7 +103,26 @@ export class ProgressIndicator {
         easing: 'easeInOut',
         duration: 1400,
         text: {
-          autoStyleContainer: false
+          style: {
+            // Text color.
+            // Default: same as stroke color (options.color)
+            color: `${ this.textcolor }`,
+            position: 'relative',
+            left: '50%',
+            bottom: `${this.progresswidth / 2}px`,
+            padding: 0,
+            margin: 0,
+            // You can specify styles which will be browser prefixed
+            transform: {
+                prefix: true,
+                value: 'translate(-50%, -50%)'
+            }
+        },
+
+        // Only effective if the text.style is not null
+        // By default position: relative is applied to container if text
+        // is set. Setting this to false disables that feature.
+        autoStyleContainer: true,
         },
         from: { color: this.progressstartcolor, width: 1 },
         to: { color: this.progressendcolor, width: 4 },
@@ -99,7 +141,7 @@ export class ProgressIndicator {
         }
       });
       bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-      bar.text.style.fontSize = this.percentagesize;
+      bar.text.style.fontSize = `${this.progresswidth / 100}em`;
     }
 
     if(this.progresstype === "SemiCircle") {
@@ -164,6 +206,8 @@ export class ProgressIndicator {
       });
     }
 
+    console.log("Bar", bar)
+    console.log("Element", this.el.querySelector('#container'))
     bar.animate(0.75);  // TODO: graphql call to get progress and goal to find out percentage and input
     // TODO: Add in for Custom as well https://jsfiddle.net/kimmobrunfeldt/dnLLgm5o/
   }
@@ -175,10 +219,11 @@ export class ProgressIndicator {
   `
 
   const progressStyle = css`
-    width: ${ this.progresswidth };
+    width: ${ this.progresswidth }px;
+    height: ${ this.progresswidth }px;
     margin: 30px auto;
     img {
-      width: ${ this.imagewidth };
+      width: ${ this.progresswidth / 2}px ;
     }
   `
 
