@@ -1003,6 +1003,52 @@ export default (editor, config = {}) => {
 
   // 
   // 
+  //  Progress Bar for VIP Program
+  // 
+  // 
+
+
+  comps.addType('sqh-progress-indicator', {
+    model: textComp.model.extend({
+      defaults: Object.assign({}, textComp.model.prototype.defaults, {
+        name: 'Progress Indicator',
+        draggable: false,
+        droppable: false,
+        selectable: true,
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'string', title: 'Shape', name: 'shape', enum: ['Circle', 'SemiCircle', 'Line'], enumNames: ['Circle', 'SemiCircle', 'Line'] },
+          { type: 'string', title: 'Tier Name', name: 'tiername' },
+          { type: 'integer', title: 'Width of Progress in pixels', name: 'progresswidth' },
+          { type: 'string', title: 'Progress Bar Color Start', name: 'progressstartcolor' },
+          { type: 'string', title: 'Progress Bar Color Start', name: 'progressendcolor' },
+          { type: 'string', title: 'Prize Description', name: 'unit' }
+        ],
+        uiSchema: {
+          'ishidden': { 'ui:widget': 'hidden' },
+          'progresswidth': { 'ui:widget': 'updown' },
+          'progressstartcolor': { 'ui:widget': 'color' },
+          'progressendcolor': { 'ui:widget': 'color' }
+        }
+      })
+    },
+      {
+        isComponent: function (el) {
+          if (el.tagName == 'SQH-PROGRESS-INDICATOR' && el.getAttribute('sqhprogress')) {
+            return { type: 'sqh-progress-indicator' };
+          }
+        },
+      }),
+    view: defaultType.view
+  })
+
+
+
+
+
+
+  // 
+  // 
   //  Partner specific editor
   // 
   // 

@@ -37,7 +37,7 @@ export class ProgressIndicator {
   @Prop() unit: string;
   @Prop() textcolor: string;
   @Prop() align: string;
-  @Prop() progresstype: string = "Circle";
+  @Prop() progresstype: string;
 
   @Prop() progresswidth: string;
   @Prop() percentagecolor: string;
