@@ -11,6 +11,7 @@ export interface WidgetIdent {
   accountId: string;
   engagementMedium: "POPUP" | "EMBED" | string;
   programId: string;
+  locale: string;
 }
 
 /**
@@ -71,6 +72,53 @@ const demoUser = {
   rewardsCount: { totalCount: 14 },
   rewardsMonth: { totalCount: 7 },
   rewardsWeek: { totalCount: 4 },
+  rewardBalanceDetails: [
+    {   
+      prettyAvailableValue: "200.00",
+      prettyAssignedCredit: "300.00",
+      prettyRedeemedCredit: "100.00",
+      dateExpires: "1545096080",
+      dateCreated: "1545084080",
+      unit: "CASH/LONG",
+      rewardUnit: {
+        currency: {
+          displayName: "Canadian Dollar",
+          symbol: "$",
+          currencyCode: "CAD"
+        }
+      }  
+    },
+    {   
+      prettyAvailableValue: "200.00",
+      prettyAssignedCredit: "300.00",
+      prettyRedeemedCredit: "100.00",
+      dateExpires: "1545094080",
+      dateCreated: "1545074080",
+      unit: "CASH/MEDIUM",
+      rewardUnit: {
+        currency: {
+          displayName: "Canadian Dollar",
+          symbol: "$",
+          currencyCode: "CAD"
+        }
+      }  
+    },
+    {   
+      prettyAvailableValue: "200.00",
+      prettyAssignedCredit: "300.00",
+      prettyRedeemedCredit: "100.00",
+      dateExpires: "1545089080",
+      dateCreated: "1545074080",
+      unit: "CASH/SHORTEST",
+      rewardUnit: {
+        currency: {
+          displayName: "Canadian Dollar",
+          symbol: "$",
+          currencyCode: "CAD"
+        }
+      }  
+    }
+  ],
   rewardBalances: [
     { type: "CREDIT", unit: "CENTS", value: 17000, prettyValue: "$170.00", totalAssignedCredit: "17000", totalRedeemedCredit: "1500", prettyAssignedCredit: "$170.00", prettyRedeemedCredit: "$15.00" },
     { type: "PCT_DISCOUNT", unit: "%", value: 15, prettyValue: "15%" },
@@ -380,6 +428,106 @@ const API = {
               totalCount
             }
             rewardBalances(programId: $programId)
+          }
+        }
+        `,
+        variables
+      }).then(res => res.data.user);
+    },
+
+    getBalanceDetails() {
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId) {
+        const {
+          rewardBalanceDetails
+        } = demoUser;
+        const user = {
+          rewardBalanceDetails
+        };
+        return Promise.resolve(user);
+      }
+
+      const { userId, accountId, programId = null, locale } = widgetId;
+
+      const variables = {
+        userId,
+        accountId,
+        programId,
+        locale
+      };
+
+      return this.getClient().query({
+        query: gql`
+        query(
+          $userId: String!,
+          $accountId: String!,
+          $programId: ID,
+          $locale: String!
+        ) {
+          user(id: $userId, accountId: $accountId) {
+            rewardBalanceDetails(programId: $programId) {
+              prettyAvailableValue
+              unit
+              ... on CreditRewardBalance {
+                prettyAssignedCredit
+                prettyRedeemedCredit
+                rewardUnit {
+                  currency {
+                    displayName(locale: $locale)
+                    symbol(locale: $locale)
+                    currencyCode
+                  }
+                }
+              }
+            }
+          }
+        }
+        `,
+        variables
+      }).then(res => res.data.user);
+    },
+
+    getRewardExpiries() {
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId) {
+        const {
+          rewardBalanceDetails
+        } = demoUser;
+        const user = {
+          rewardBalanceDetails
+        };
+        return Promise.resolve(user);
+      }
+
+      const { userId, accountId, programId = null, locale } = widgetId;
+
+      const variables = {
+        userId,
+        accountId,
+        programId,
+        locale
+      };
+
+      return this.getClient().query({
+        query: gql`
+        query(
+          $userId: String!,
+          $accountId: String!,
+          $programId: ID,
+          $locale: String!
+        ) {
+          user(id: $userId, accountId: $accountId) {
+            rewards(programId_eq: $programId) {
+              data {
+                dateCreated
+                dateScheduledFor
+                dateExpires
+                prettyValue
+                unit
+              }
+            }
           }
         }
         `,

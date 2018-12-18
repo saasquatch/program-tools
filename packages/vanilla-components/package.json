@@ -1,6 +1,6 @@
 {
-  "name": "@saasquatch/vanilla-components",
-  "version": "1.0.3",
+  "name": "@kittenco/vanilla-components",
+  "version": "1.0.11",
   "description": "Vanilla component library for the SaaSquatch platform",
   "main": "dist/index.js",
   "types": "dist/types/components.d.ts",
@@ -36,6 +36,7 @@
     "intl-relativeformat": "^2.1.0",
     "marked": "^0.4.0",
     "path-to-regexp": "^2.2.1",
+    "progressbar.js": "^1.0.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

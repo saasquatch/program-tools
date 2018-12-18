@@ -285,33 +285,53 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface SqhPartnerTotalBar {
+    interface SqhProgressIndicator {
+      'align': string;
+      'imagewidth': string;
       'ishidden': boolean;
-      'text': string;
+      'percentagecolor': string;
+      'percentagesize': string;
+      'progressendcolor': string;
+      'progressstartcolor': string;
+      'progresstype': string;
+      'progresswidth': string;
+      'textcolor': string;
+      'tiername': string;
+      'unit': string;
     }
   }
 
-  interface HTMLSqhPartnerTotalBarElement extends StencilComponents.SqhPartnerTotalBar, HTMLStencilElement {}
+  interface HTMLSqhProgressIndicatorElement extends StencilComponents.SqhProgressIndicator, HTMLStencilElement {}
 
-  var HTMLSqhPartnerTotalBarElement: {
-    prototype: HTMLSqhPartnerTotalBarElement;
-    new (): HTMLSqhPartnerTotalBarElement;
+  var HTMLSqhProgressIndicatorElement: {
+    prototype: HTMLSqhProgressIndicatorElement;
+    new (): HTMLSqhProgressIndicatorElement;
   };
   interface HTMLElementTagNameMap {
-    'sqh-partner-total-bar': HTMLSqhPartnerTotalBarElement;
+    'sqh-progress-indicator': HTMLSqhProgressIndicatorElement;
   }
   interface ElementTagNameMap {
-    'sqh-partner-total-bar': HTMLSqhPartnerTotalBarElement;
+    'sqh-progress-indicator': HTMLSqhProgressIndicatorElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'sqh-partner-total-bar': JSXElements.SqhPartnerTotalBarAttributes;
+      'sqh-progress-indicator': JSXElements.SqhProgressIndicatorAttributes;
     }
   }
   namespace JSXElements {
-    export interface SqhPartnerTotalBarAttributes extends HTMLAttributes {
+    export interface SqhProgressIndicatorAttributes extends HTMLAttributes {
+      'align'?: string;
+      'imagewidth'?: string;
       'ishidden'?: boolean;
-      'text'?: string;
+      'percentagecolor'?: string;
+      'percentagesize'?: string;
+      'progressendcolor'?: string;
+      'progressstartcolor'?: string;
+      'progresstype'?: string;
+      'progresswidth'?: string;
+      'textcolor'?: string;
+      'tiername'?: string;
+      'unit'?: string;
     }
   }
 }
