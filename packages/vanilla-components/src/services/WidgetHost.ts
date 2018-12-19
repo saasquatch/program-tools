@@ -19,10 +19,10 @@ export interface WidgetIdent {
  */
 export interface SquatchJSApi {
   // Opens the current popup widget.
-  open();
+  open():void;
 
   // Closes the current popup widget.
-  close();
+  close():void;
 }
 
 if (!window["widgetIdent"]) {
@@ -77,7 +77,7 @@ const demoUser = {
       prettyAvailableValue: "200.00",
       prettyAssignedCredit: "300.00",
       prettyRedeemedCredit: "100.00",
-      dateExpires: "1545096080",
+      dateExpires: "1545196080",
       dateCreated: "1545084080",
       unit: "CASH/LONG",
       rewardUnit: {
@@ -92,7 +92,7 @@ const demoUser = {
       prettyAvailableValue: "200.00",
       prettyAssignedCredit: "300.00",
       prettyRedeemedCredit: "100.00",
-      dateExpires: "1545094080",
+      dateExpires: "1545194080",
       dateCreated: "1545074080",
       unit: "CASH/MEDIUM",
       rewardUnit: {
@@ -107,7 +107,7 @@ const demoUser = {
       prettyAvailableValue: "200.00",
       prettyAssignedCredit: "300.00",
       prettyRedeemedCredit: "100.00",
-      dateExpires: "1545089080",
+      dateExpires: "1545189080",
       dateCreated: "1545074080",
       unit: "CASH/SHORTEST",
       rewardUnit: {
@@ -159,7 +159,7 @@ const demoUser = {
 //@ts-ignore
 const squatchJsApi = window.frameElement ? window.frameElement.squatchJsApi : {};
 
-const apolloClient = () => {
+export const apolloClient = () => {
   const { tenantAlias, appDomain, token } = widgetIdent();
   const uri = appDomain + "/api/v1/" + tenantAlias + "/graphql";
   const headers = {
@@ -211,7 +211,7 @@ const API = {
     }
   },
   graphql: {
-    getClient() {
+    getClient():ApolloClient<any> {
       return apolloClient();
     },
 
@@ -229,7 +229,7 @@ const API = {
         accountId
       };
 
-      return this.getClient().query({
+      return apolloClient().query<any>({
         query: gql`
           query($userId: String!, $accountId: String!, $offset: Int) {
             user(id: $userId, accountId: $accountId) {
@@ -256,7 +256,7 @@ const API = {
         engagementMedium
       };
 
-      return this.getClient().query({
+      return apolloClient().query<any>({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium!) {
             user(id: $userId, accountId: $accountId) {
@@ -292,7 +292,7 @@ const API = {
         programId_exists: programId ? true : false
       };
 
-      return this.getClient().query({
+      return apolloClient().query<any>({
         query: gql`
           query(
             $userId: String!,
@@ -378,7 +378,7 @@ const API = {
         programId_exists: programId ? true : false
       };
 
-      return this.getClient().query({
+      return apolloClient().query<any>({
         query: gql`
         query(
           $userId: String!,
@@ -457,7 +457,7 @@ const API = {
         locale
       };
 
-      return this.getClient().query({
+      return apolloClient().query<any>({
         query: gql`
         query(
           $userId: String!,
@@ -510,7 +510,7 @@ const API = {
         locale
       };
 
-      return this.getClient().query({
+      return apolloClient().query<any>({
         query: gql`
         query(
           $userId: String!,
@@ -548,7 +548,7 @@ const API = {
         programId
       }
 
-      return this.getClient().query({
+      return apolloClient().query<any>({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID!) {
             user(id: $userId, accountId: $accountId) {
@@ -576,7 +576,7 @@ const API = {
         rewardKey
       }
 
-      return this.getClient().query({
+      return apolloClient().query<any>({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID!, $rewardKey: String!) {
             user(id: $userId, accountId: $accountId) {
@@ -613,7 +613,7 @@ const API = {
         programId,
         engagementMedium
       };
-       return this.getClient().query({
+       return apolloClient().query<any>({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium!) {
             user(id: $userId, accountId: $accountId) {

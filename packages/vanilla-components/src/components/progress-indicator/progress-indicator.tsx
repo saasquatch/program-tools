@@ -1,38 +1,37 @@
-import { Component, Prop, State, Watch, Element } from '@stencil/core';
-import ProgressBar  from 'progressbar.js';
-import { API } from '../../services/WidgetHost';
-import { css } from 'emotion';
+import { Component, Prop, State, Watch, Element } from "@stencil/core";
+import ProgressBar from "progressbar.js";
+import { API } from "../../services/WidgetHost";
+import { css } from "emotion";
+import { getStats } from "../../services/StatPaths";
 
-
-interface stats {
-  rewardBalanceDetails: Array<balance>
+interface Stats {
+  total: any;
+  progress: any;
 }
 
-interface balance {
-  unit: string
-  rewardUnit: rewardUnit
-  prettyAvailableValue: string
-  prettyAssignedCredit: string
-  prettyRedeemedCredit: string
-}
+// interface balance {
+//   unit: string
+//   rewardUnit: rewardUnit
+//   prettyAvailableValue: string
+//   prettyAssignedCredit: string
+//   prettyRedeemedCredit: string
+// }
 
-interface rewardUnit {
-  currency: currency
-}
+// interface rewardUnit {
+//   currency: currency
+// }
 
-interface currency {
-  symbol: string
-  displayName: string
-  currencyCode: string
-}
+// interface currency {
+//   symbol: string
+//   displayName: string
+//   currencyCode: string
+// }
 
 @Component({
-  tag: 'sqh-progress-indicator',
-  styleUrl: 'progress-indicator.scss'
+  tag: "sqh-progress-indicator",
+  styleUrl: "progress-indicator.scss"
 })
-
 export class ProgressIndicator {
-
   @Prop() ishidden: boolean = false;
   @Prop() tiername: string;
   @Prop() unit: string;
@@ -44,181 +43,226 @@ export class ProgressIndicator {
   @Prop() percentagecolor: string;
   @Prop() percentagesize: string;
 
+  @Prop({ attr: "progress-variable" }) progressvariable: string;
+  @Prop({ attr: "total-variable" }) totalvariable: string;
+
   @Prop() progressstartcolor: string;
   @Prop() progressendcolor: string;
-  @State() stats: stats;
-  @State() rewardStats: any;
+  @State() rewardStats: { dateExpires: string; balance: number };
 
   @Element() el: HTMLElement;
 
-
   svgContainer!: HTMLInputElement;
 
-
-  @Watch('progresstype')
+  // TODO: check for update method in progress.js
+  @Watch("progresstype")
   watchHandler() {
-    const element = this.svgContainer
+    const element = this.svgContainer;
     while (element.hasChildNodes()) {
-      element.removeChild(element.lastChild)
+      element.removeChild(element.lastChild);
     }
-    this.getProgress()
+    this.getProgress({
+      total: this.totalvariable,
+      progress: this.progressvariable
+    });
   }
 
-  @Watch('progresswidth')
+  // TODO: check for update method in progress.js
+  @Watch("progresswidth")
   watchHandler2() {
-    const element = this.svgContainer
+    const element = this.svgContainer;
     while (element.hasChildNodes()) {
-      element.removeChild(element.lastChild)
+      element.removeChild(element.lastChild);
     }
-    this.getProgress()
+    this.getProgress({
+      total: this.totalvariable,
+      progress: this.progressvariable
+    });
   }
 
-  async componentDidLoad(){
+  async componentDidLoad() {
     const { rewardBalanceDetails } = await API.graphql.getBalanceDetails();
-    let closestExpiry = {dateExpires: 0, balance: 0};
-    let closestExpiryDate = Math.floor(Date.now()/1000);
+    let closestExpiry = { dateExpires: 0, balance: 0 };
+    let closestExpiryDate = Math.floor(Date.now() / 1000);
 
     rewardBalanceDetails.map(reward => {
-      if(closestExpiryDate < reward.dateExpires) closestExpiry = { dateExpires: reward.dateExpires, balance: reward.prettyAvailableValue }           
-    })
+      if (closestExpiryDate < reward.dateExpires)
+        closestExpiry = {
+          dateExpires: reward.dateExpires,
+          balance: reward.prettyAvailableValue
+        };
+    });
 
-    this.rewardStats = {
-      dateExpires: new Date(+(closestExpiry.dateExpires * 1000)).toLocaleString("en-US", { year:"numeric", month: "long", day: "numeric", hour:"numeric" } ),
-      balance: closestExpiry.balance
+    if (closestExpiry.dateExpires) {
+      this.rewardStats = {
+        dateExpires: new Date(
+          +(closestExpiry.dateExpires * 1000)
+        ).toLocaleString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "numeric"
+        }),
+        balance: closestExpiry.balance
+      };
     }
-    this.getProgress();
+
+    const statTypes = {
+      total: this.totalvariable,
+      progress: this.progressvariable
+    };
+    console.log(statTypes);
+    // const stat = await getStats(['/rewardsCount', '/rewardBalance/CREDIT/CENTS/totalAssignedValue',"/customField/lastSeenDate","/referralsCount"]);
+
+    const statResponse = await getStats([statTypes.total, statTypes.progress]);
+
+    this.getProgress({
+      total: statResponse[statTypes.total],
+      progress: statResponse[statTypes.progress]
+    });
   }
 
-  getProgress() {
-    // TODO: dynamically change progress
-    let progress = 0.75
+  getProgress(stats: Stats) {
+    let progress = 0;
+    try {
+      progress = Math.round((stats.progress / stats.total) * 100);
+    } catch (e) {
+      // Math error or null error -- just render 0
+    }
 
-    
-
-    let progressBar = new ProgressBar[this.progresstype] (this.svgContainer, {
+    let progressBar = new ProgressBar[this.progresstype](this.svgContainer, {
       color: this.percentagecolor,
       strokeWidth: 4,
       trailWidth: 1,
-      easing: 'easeInOut',
+      easing: "easeInOut",
       duration: 1400,
       text: {
         style: {
-          color: `${ this.textcolor }`,
-          position: 'absolute',
-          left: '50%',
-          top: '50%',
+          color: `${this.textcolor}`,
+          position: "absolute",
+          left: "50%",
+          top: "50%",
           fontFamily: '"Raleway", Helvetica, sans-serif',
           fontSize: `${this.progresswidth / 100}em`,
-          
+
           padding: 0,
-          textAlign: 'center',
+          textAlign: "center",
           margin: 0,
           transform: {
-              prefix: true,
-              value: 'translate(-50%, -50%)'
+            prefix: true,
+            value: "translate(-50%, -50%)"
           }
-      },
-      autoStyleContainer: true,
+        },
+        autoStyleContainer: true
       },
       from: { color: this.progressstartcolor, width: 1 },
       to: { color: this.progressendcolor, width: 4 },
       step: function(state, circle) {
-        circle.path.setAttribute('stroke', state.color);
-        circle.path.setAttribute('stroke-width', state.width);
-    
+        circle.path.setAttribute("stroke", state.color);
+        circle.path.setAttribute("stroke-width", state.width);
+
         var value = Math.round(circle.value() * 100);
         if (value === 0) {
-          circle.setText('');
+          circle.setText("");
         } else {
-          circle.setText(`<img src="https://static.thenounproject.com/png/130115-200.png"><br>` + value + "%");
+          circle.setText(
+            `<img src="https://static.thenounproject.com/png/130115-200.png"><br>` +
+              value +
+              "%"
+          );
         }
-    
       }
     });
 
-
-
-    if (this.progresstype === 'Circle') {
+    if (this.progresstype === "Circle") {
       progressBar.animate(progress, {
-
         // @ts-ignore
         step: function(state, circle) {
-          circle.path.setAttribute('stroke', state.color);
-          circle.path.setAttribute('stroke-width', state.width);
-      
+          circle.path.setAttribute("stroke", state.color);
+          circle.path.setAttribute("stroke-width", state.width);
+
           var value = Math.round(circle.value() * 100);
           if (value === 0) {
-            circle.setText('');
+            circle.setText("");
           } else {
-            circle.setText(`<img src="https://static.thenounproject.com/png/130115-200.png"><br>` + value + "%");
+            circle.setText(
+              `<img src="https://static.thenounproject.com/png/130115-200.png"><br>` +
+                value +
+                "%"
+            );
           }
-      
         }
       });
     }
 
-    if (this.progresstype === 'SemiCircle') {
-      progressBar.text.style.bottom = '0px'
-
+    if (this.progresstype === "SemiCircle") {
+      progressBar.text.style.bottom = "0px";
 
       progressBar.animate(progress, {
         // @ts-ignore
         step: (state, bar) => {
-          bar.path.setAttribute('stroke', state.color);
+          bar.path.setAttribute("stroke", state.color);
           var value = Math.round(bar.value() * 100);
           if (value === 0) {
-            bar.setText('');
+            bar.setText("");
           } else {
             bar.setText(`${value}%`);
           }
-      
+
           bar.text.style.color = state.color;
         }
       });
     }
 
-    if (this.progresstype === 'Line') {
-      progressBar.text.style.top = '20px'
+    if (this.progresstype === "Line") {
+      progressBar.text.style.top = "20px";
 
       progressBar.animate(progress, {
         // @ts-ignore
         step: (state, bar) => {
-          bar.setText(Math.round(bar.value() * 100) + ' %');
+          bar.setText(Math.round(bar.value() * 100) + " %");
         }
       });
     }
   }
-  
+
   render() {
-  const wrapperStyle = css`
-    color: ${ this.textcolor };
-    text-align: center;
-  `
+    const wrapperStyle = css`
+      color: ${this.textcolor};
+      text-align: center;
+    `;
 
-  const progressStyle = css`
-    width: ${ this.progresswidth }px;
-    margin: 30px auto;
-    img {
-      width: ${ this.progresswidth / 2}px ;
-    }
-  `
+    const progressStyle = css`
+      width: ${this.progresswidth}px;
+      margin: 30px auto;
+      img {
+        width: ${this.progresswidth / 2}px;
+      }
+    `;
 
-  return !this.ishidden && 
-  <div class={wrapperStyle}>
-    {this.tiername}
+    return (
+      !this.ishidden && (
+        <div class={wrapperStyle}>
+          {this.tiername}
 
-    <div class={progressStyle}> 
-      <div ref={(el) => this.svgContainer = el as HTMLInputElement}></div>
-    </div>
+          <div class={progressStyle}>
+            <div ref={el => (this.svgContainer = el as HTMLInputElement)} />
+          </div>
 
-    {/* customer editable / automatically set */}
-    <div>{this.unit}</div>
+          {/* customer editable / automatically set */}
+          <div>{this.unit}</div>
 
-    {/* automatically set */}
-    <div>Balance: {this.rewardStats && this.rewardStats.balance}</div>
+          {/* automatically set */}
+          <div>Balance: {this.rewardStats && this.rewardStats.balance}</div>
 
-    {/* automatically set */}
-    <div>Expires: {this.rewardStats && this.rewardStats.dateExpires}</div>
-  </div>
+          {/* automatically set */}
+          {this.rewardStats && this.rewardStats.dateExpires && (
+            <div>
+              Expires: {this.rewardStats && this.rewardStats.dateExpires}
+            </div>
+          )}
+        </div>
+      )
+    );
   }
 }

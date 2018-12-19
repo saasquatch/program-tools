@@ -76,7 +76,6 @@
       paddingbottom="20"
     ></sqh-text-component>
     
- 
     <sqh-progress-indicator
       sqhprogress="true"
       tiername="You're already"
@@ -87,6 +86,8 @@
       percentagecolor="#23d129"
       progressstartcolor="#4286f4"
       progressendcolor="#23d129"
+      progress-variable="/referralsCount"
+      total-variable="/customField/lastSeenDate"
     >
     </sqh-progress-indicator>
   
@@ -276,12 +277,12 @@
     paddingbottom="10"
   ></sqh-text-component>
 
-</sqh-global-container>  
+</sqh-global-container>   -->
 
 
 <!-- REFERRED WIDGET START -->
 
-<sqh-global-container 
+<!-- <sqh-global-container 
   background="#ffffff"
 >
 
@@ -328,12 +329,12 @@
     codefontcolor="#000000"
     ></sqh-copy-button>
   
-  </sqh-global-container>
+  </sqh-global-container> -->
 
 
   <!-- Partner Widget -->
 
-  <sqh-global-container 
+  <!-- <sqh-global-container 
   class="squatch-container" 
   background="#ffffff"
   >
@@ -431,8 +432,6 @@
     paddingbottom="0"
   >
 
-  <!-- need to create a lifetime earned -->
-
     <sqh-partner-stat-component 
       statcolor="#000000"
       stattype="/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit" 
@@ -469,6 +468,6 @@
     paddingbottom="10"
   ></sqh-text-component>
 
-  </sqh-global-container>  
+  </sqh-global-container>   -->
 </body>
 </html>
