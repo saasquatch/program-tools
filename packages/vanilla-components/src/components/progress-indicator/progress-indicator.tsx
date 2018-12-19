@@ -43,8 +43,8 @@ export class ProgressIndicator {
   @Prop() percentagecolor: string;
   @Prop() percentagesize: string;
 
-  @Prop({ attr: "progress-variable" }) progressvariable: string;
-  @Prop({ attr: "total-variable" }) totalvariable: string;
+  @Prop({ attr: "progress-variable" }) progressvariable: string = "10";
+  @Prop({ attr: "total-variable" }) totalvariable: string = "100";
 
   @Prop() progressstartcolor: string;
   @Prop() progressendcolor: string;
@@ -122,13 +122,15 @@ export class ProgressIndicator {
     });
   }
 
+  // @ts-ignore
   getProgress(stats: Stats) {
-    let progress = 0;
-    try {
-      progress = Math.round((stats.progress / stats.total) * 100);
-    } catch (e) {
-      // Math error or null error -- just render 0
-    }
+    let progress = 0.75;
+    // TODO: make this get progress info in editor
+    // try {
+    //   progress = Math.round((stats.progress / stats.total) * 100);
+    // } catch (e) {
+    //   // Math error or null error -- just render 0
+    // }
 
     let progressBar = new ProgressBar[this.progresstype](this.svgContainer, {
       color: this.percentagecolor,
