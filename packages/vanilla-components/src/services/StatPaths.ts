@@ -69,10 +69,10 @@ const STATS: {
   },
 
   "/programrule/:name": {
-    fragment: (_) => `program(programId:$programId){
+    fragment: (_) => `program(id:$programId){
       rules
     }`,
-    value: (resp, { name }) => resp.data.user.customFields[`${widgetIdent().programId}_${name}`],
+    value: (resp, { name }) => resp.data.program.rules[name],
     level: "root",
     demoValue: (_) => 0
   },
@@ -141,7 +141,7 @@ async function executeRequest(fragments: {
     query(
       $userId: String!,
       $accountId: String!,
-      $programId: ID
+      $programId: ID!
     ) {
       user(id: $userId, accountId: $accountId) {
         ${fragments.user}
@@ -188,7 +188,7 @@ export async function getStat(name: string): Promise<number> {
  * @example getStats(["foo","bar"]) returns {foo:0, bar:120}
  */
 export async function getStats(names: string[]): Promise<NumberMap> {
-
+  if(!names || !names.length) throw new Error("Stat names are required");
   const fragments = names.reduce((acc,name) => {
     const { stat, variables } = matchStat(name);
     const fragment = stat.fragment(variables);
@@ -210,7 +210,7 @@ export async function getStats(names: string[]): Promise<NumberMap> {
   )
 
   // Demo data returned here
-  if(widgetId["env"] === "demo")
+  // if(widgetId["env"] === "demo")
 
   // Network happens here
   const batchResponse = await executeRequest(fragments);

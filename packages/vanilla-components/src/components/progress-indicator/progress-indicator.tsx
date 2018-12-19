@@ -1,30 +1,14 @@
 import { Component, Prop, State } from '@stencil/core';
 import ProgressBar from 'progressbar.js';
-// import { API } from '../../services/WidgetHost';
+import { API } from '../../services/WidgetHost';
 import { css } from 'emotion';
 import { getStats } from '../../services/StatPaths';
 
-interface stats {
-  rewardBalanceDetails: Array<balance>
+interface Stats {
+  total: any,
+  progress: any
 }
 
-interface balance {
-  unit: string
-  rewardUnit: rewardUnit
-  prettyAvailableValue: string
-  prettyAssignedCredit: string
-  prettyRedeemedCredit: string
-}
-
-interface rewardUnit {
-  currency: currency
-}
-
-interface currency {
-  symbol: string
-  displayName: string
-  currencyCode: string
-}
 
 @Component({
   tag: 'sqh-progress-indicator',
@@ -46,32 +30,45 @@ export class ProgressIndicator {
   @Prop() imagewidth: string;
   @Prop() progressstartcolor: string;
   @Prop() progressendcolor: string;
-  @State() stats: stats;
-  @State() rewardStats: any;
+
+  @Prop({attr:"progress-variable"}) progressvariable: string;
+  @Prop({attr:"total-variable"}) totalvariable: string;
+
+  @State() rewardStats: { dateExpires: string; balance: number; };
+
 
   async componentDidLoad() {
-    // const { rewardBalanceDetails } = await API.graphql.getBalanceDetails();
-    // let closestExpiry = { dateExpires: 0, balance: 0 };
-    // let closestExpiryDate = Math.floor(Date.now() / 1000);
+    const { rewardBalanceDetails } = await API.graphql.getBalanceDetails();
+    let closestExpiry = { dateExpires: 0, balance: 0 };
+    let closestExpiryDate = Math.floor(Date.now() / 1000);
 
-    // rewardBalanceDetails.map(reward => {
-    //   if (closestExpiryDate < reward.dateExpires) closestExpiry = { dateExpires: reward.dateExpires, balance: reward.prettyAvailableValue }
-    // })
+    rewardBalanceDetails.map(reward => {
+      if (closestExpiryDate < reward.dateExpires) closestExpiry = { dateExpires: reward.dateExpires, balance: reward.prettyAvailableValue }
+    })
 
-    // if (closestExpiry.dateExpires) {
-    //   this.rewardStats = {
-    //     dateExpires: new Date(+(closestExpiry.dateExpires * 1000)).toLocaleString("en-US", { year: "numeric", month: "long", day: "numeric", hour: "numeric" }),
-    //     balance: closestExpiry.balance
-    //   }
-    // }
-    const stat = await getStats(['/rewardsCount', '/rewardBalance/CREDIT/CENTS/prettyAssignedCredit']);
-    // const stat = await getStat('/rewardBalance/CREDIT/CENTS/prettyAssignedCredit');
-    console.log('stat ', stat);
+    if (closestExpiry.dateExpires) {
+      this.rewardStats = {
+        dateExpires: new Date(+(closestExpiry.dateExpires * 1000)).toLocaleString("en-US", { year: "numeric", month: "long", day: "numeric", hour: "numeric" }),
+        balance: closestExpiry.balance
+      }
+    }
 
-    this.getProgress();
+    const statTypes = {
+      total: this.totalvariable,
+      progress: this.progressvariable
+    }
+    console.log(statTypes)
+    // const stat = await getStats(['/rewardsCount', '/rewardBalance/CREDIT/CENTS/totalAssignedValue',"/customField/lastSeenDate","/referralsCount"]);
+
+    const statResponse = await getStats([statTypes.total, statTypes.progress]);
+
+    this.getProgress({
+      total: statResponse[statTypes.total],
+      progress: statResponse[statTypes.progress]
+    });
   }
 
-  getProgress() {
+  getProgress(stats:Stats) {
 
     if (this.progresstype === "Circle") {
       var bar = new ProgressBar[this.progresstype]('#container', {
@@ -93,11 +90,11 @@ export class ProgressIndicator {
           circle.path.setAttribute('stroke-width', state.width);
 
           var value = Math.round(circle.value() * 100);
-          if (value === 0) {
-            circle.setText('');
-          } else {
+          // if (value === 0) {
+          //   circle.setText('');
+          // } else {
             circle.setText(`<img src="https://static.thenounproject.com/png/130115-200.png"><br>` + value + "%");
-          }
+          // }
 
         }
       });
@@ -165,8 +162,13 @@ export class ProgressIndicator {
         }
       });
     }
-
-    bar.animate(0.75);  // TODO: graphql call to get progress and goal to find out percentage and input
+    let progress = 0;
+    try{
+      progress = Math.round(stats.progress/stats.total*100);
+    }catch(e){
+      // Math error or null error -- just render 0
+    }
+    bar.animate(progress);  // TODO: graphql call to get progress and goal to find out percentage and input
     // TODO: Add in for Custom as well https://jsfiddle.net/kimmobrunfeldt/dnLLgm5o/
   }
 

@@ -294,9 +294,11 @@ declare global {
       'progressendcolor': string;
       'progressstartcolor': string;
       'progresstype': string;
+      'progressvariable': string;
       'progresswidth': string;
       'textcolor': string;
       'tiername': string;
+      'totalvariable': string;
       'unit': string;
     }
   }
@@ -328,9 +330,11 @@ declare global {
       'progressendcolor'?: string;
       'progressstartcolor'?: string;
       'progresstype'?: string;
+      'progressvariable'?: string;
       'progresswidth'?: string;
       'textcolor'?: string;
       'tiername'?: string;
+      'totalvariable'?: string;
       'unit'?: string;
     }
   }
