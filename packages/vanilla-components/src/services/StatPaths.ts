@@ -138,17 +138,17 @@ async function executeRequest(fragments: {
 
   const res = await apolloClient().query({
     query: gql`
-    query(
-      $userId: String!,
-      $accountId: String!,
-      $programId: ID!
-    ) {
-      user(id: $userId, accountId: $accountId) {
-        ${fragments.user}
+      query(
+        $userId: String!,
+        $accountId: String!,
+        $programId: ID!
+      ) {
+        user(id: $userId, accountId: $accountId) {
+          ${fragments.user}
+        }
+        ${fragments.root}
       }
-      ${fragments.root}
-    }
-    `,
+      `,
     variables
   });
 
@@ -162,7 +162,7 @@ function matchStat(name: string): {
 } {
 
   const match = statPathRegexp.find(stat => stat.regexp.test(name));
-  if (!match) throw new Error("Invalid stat" + name);
+  if (!match) throw new Error("Invalid stat " + name);
 
   const { keys, regexp } = match;
   const res = regexp.exec(name);
@@ -188,18 +188,18 @@ export async function getStat(name: string): Promise<number> {
  * @example getStats(["foo","bar"]) returns {foo:0, bar:120}
  */
 export async function getStats(names: string[]): Promise<NumberMap> {
-  if(!names || !names.length) throw new Error("Stat names are required");
-  const fragments = names.reduce((acc,name) => {
+  if (!names || !names.length) throw new Error("Stat names are required");
+  const fragments = names.reduce((acc, name) => {
     const { stat, variables } = matchStat(name);
     const fragment = stat.fragment(variables);
-    
+
     // Add fragment to accumulated list of fragments
     const level = stat.level || "user";
     const currentFragments = acc[level];
     const newFragments = [...currentFragments, fragment];
     return {
       ...acc,
-      [level]:newFragments
+      [level]: newFragments
     };
   },
     // Default empty list of fragments
@@ -212,18 +212,22 @@ export async function getStats(names: string[]): Promise<NumberMap> {
   // Demo data returned here
 
   // Network happens here
-  const batchResponse = await executeRequest(fragments);
+  let batchResponse;
+
+  if (widgetIdent()["env"] != "demo") {
+      batchResponse = await executeRequest(fragments);
+  }
 
   const values = names.reduce((prev, name) => {
     const { stat, variables } = matchStat(name);
     let value;
 
-    if(widgetIdent()["env"] === "demo") {
+    if (widgetIdent()["env"] === "demo") {
       value = stat.demoValue(variables);
     } else {
       value = stat.value(batchResponse, variables);
     }
-    
+
     return {
       ...prev,
       [name]: value

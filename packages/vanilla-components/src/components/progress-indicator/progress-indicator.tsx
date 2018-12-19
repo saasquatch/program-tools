@@ -9,23 +9,6 @@ interface Stats {
   progress: any;
 }
 
-// interface balance {
-//   unit: string
-//   rewardUnit: rewardUnit
-//   prettyAvailableValue: string
-//   prettyAssignedCredit: string
-//   prettyRedeemedCredit: string
-// }
-
-// interface rewardUnit {
-//   currency: currency
-// }
-
-// interface currency {
-//   symbol: string
-//   displayName: string
-//   currencyCode: string
-// }
 
 @Component({
   tag: "sqh-progress-indicator",
@@ -43,8 +26,8 @@ export class ProgressIndicator {
   @Prop() percentagecolor: string;
   @Prop() percentagesize: string;
 
-  @Prop({ attr: "progress-variable" }) progressvariable: string;
-  @Prop({ attr: "total-variable" }) totalvariable: string;
+  @Prop() progressvariable: string = '/rewardsCount';
+  @Prop() totalvariable: string = '/customField/lastSeenDate';
 
   @Prop() progressstartcolor: string;
   @Prop() progressendcolor: string;
@@ -62,7 +45,7 @@ export class ProgressIndicator {
     while (element.hasChildNodes()) {
       element.removeChild(element.lastChild);
     }
-    this.getProgress(this.stats);
+    this.getProgress();
   }
 
   // TODO: check for update method in progress.js
@@ -72,10 +55,10 @@ export class ProgressIndicator {
     while (element.hasChildNodes()) {
       element.removeChild(element.lastChild);
     }
-    this.getProgress(this.stats);
+    this.getProgress();
   }
 
-  async componentDidLoad() {
+  async componentWillLoad() {
     const { rewardBalanceDetails } = await API.graphql.getBalanceDetails();
     let closestExpiry = { dateExpires: 0, balance: 0 };
     let closestExpiryDate = Math.floor(Date.now() / 1000);
@@ -106,8 +89,6 @@ export class ProgressIndicator {
       total: this.totalvariable,
       progress: this.progressvariable
     };
-    console.log(statTypes);
-    // const stat = await getStats(['/rewardsCount', '/rewardBalance/CREDIT/CENTS/totalAssignedValue',"/customField/lastSeenDate","/referralsCount"]);
 
     const statResponse = await getStats([statTypes.total, statTypes.progress]);
 
@@ -115,13 +96,16 @@ export class ProgressIndicator {
       total: statResponse[statTypes.total],
       progress: statResponse[statTypes.progress]
     }
+  }
 
-    this.getProgress(this.stats);
+  componentDidload() {
+    this.getProgress();
   }
 
 
-  getProgress(stats: Stats) {
+  getProgress() {
     let progress = 0;
+    const stats = this.stats;
     // TODO: make this get progress info in editor
     try {
       progress = (stats.progress / stats.total);
