@@ -1,0 +1,18 @@
+sqh-progress-indicator {
+  display: block;
+  #container {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    text-align:center;
+  }
+
+  .progressbar-text {
+    text-align:center;
+  }
+  
+  p {
+    margin: 0;
+  }
+}

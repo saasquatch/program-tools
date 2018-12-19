@@ -11,6 +11,7 @@ export interface WidgetIdent {
   accountId: string;
   engagementMedium: "POPUP" | "EMBED" | string;
   programId: string;
+  locale: string;
 }
 
 /**
@@ -18,10 +19,10 @@ export interface WidgetIdent {
  */
 export interface SquatchJSApi {
   // Opens the current popup widget.
-  open();
+  open():void;
 
   // Closes the current popup widget.
-  close();
+  close():void;
 }
 
 if (!window["widgetIdent"]) {
@@ -71,6 +72,53 @@ const demoUser = {
   rewardsCount: { totalCount: 14 },
   rewardsMonth: { totalCount: 7 },
   rewardsWeek: { totalCount: 4 },
+  rewardBalanceDetails: [
+    {   
+      prettyAvailableValue: "200.00",
+      prettyAssignedCredit: "300.00",
+      prettyRedeemedCredit: "100.00",
+      dateExpires: "1545196080",
+      dateCreated: "1545084080",
+      unit: "CASH/LONG",
+      rewardUnit: {
+        currency: {
+          displayName: "Canadian Dollar",
+          symbol: "$",
+          currencyCode: "CAD"
+        }
+      }  
+    },
+    {   
+      prettyAvailableValue: "200.00",
+      prettyAssignedCredit: "300.00",
+      prettyRedeemedCredit: "100.00",
+      dateExpires: "1545194080",
+      dateCreated: "1545074080",
+      unit: "CASH/MEDIUM",
+      rewardUnit: {
+        currency: {
+          displayName: "Canadian Dollar",
+          symbol: "$",
+          currencyCode: "CAD"
+        }
+      }  
+    },
+    {   
+      prettyAvailableValue: "200.00",
+      prettyAssignedCredit: "300.00",
+      prettyRedeemedCredit: "100.00",
+      dateExpires: "1545189080",
+      dateCreated: "1545074080",
+      unit: "CASH/SHORTEST",
+      rewardUnit: {
+        currency: {
+          displayName: "Canadian Dollar",
+          symbol: "$",
+          currencyCode: "CAD"
+        }
+      }  
+    }
+  ],
   rewardBalances: [
     { type: "CREDIT", unit: "CENTS", value: 17000, prettyValue: "$170.00", totalAssignedCredit: "17000", totalRedeemedCredit: "1500", prettyAssignedCredit: "$170.00", prettyRedeemedCredit: "$15.00" },
     { type: "PCT_DISCOUNT", unit: "%", value: 15, prettyValue: "15%" },
@@ -111,7 +159,7 @@ const demoUser = {
 //@ts-ignore
 const squatchJsApi = window.frameElement ? window.frameElement.squatchJsApi : {};
 
-const apolloClient = () => {
+export const apolloClient = () => {
   const { tenantAlias, appDomain, token } = widgetIdent();
   const uri = appDomain + "/api/v1/" + tenantAlias + "/graphql";
   const headers = {
@@ -163,7 +211,7 @@ const API = {
     }
   },
   graphql: {
-    getClient() {
+    getClient():ApolloClient<any> {
       return apolloClient();
     },
 
@@ -181,7 +229,7 @@ const API = {
         accountId
       };
 
-      return this.getClient().query({
+      return apolloClient().query<any>({
         query: gql`
           query($userId: String!, $accountId: String!, $offset: Int) {
             user(id: $userId, accountId: $accountId) {
@@ -208,7 +256,7 @@ const API = {
         engagementMedium
       };
 
-      return this.getClient().query({
+      return apolloClient().query<any>({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium!) {
             user(id: $userId, accountId: $accountId) {
@@ -244,7 +292,7 @@ const API = {
         programId_exists: programId ? true : false
       };
 
-      return this.getClient().query({
+      return apolloClient().query<any>({
         query: gql`
           query(
             $userId: String!,
@@ -330,7 +378,7 @@ const API = {
         programId_exists: programId ? true : false
       };
 
-      return this.getClient().query({
+      return apolloClient().query<any>({
         query: gql`
         query(
           $userId: String!,
@@ -387,6 +435,105 @@ const API = {
       }).then(res => res.data.user);
     },
 
+    getBalanceDetails() {
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId) {
+        const {
+          rewardBalanceDetails
+        } = demoUser;
+        const user = {
+          rewardBalanceDetails
+        };
+        return Promise.resolve(user);
+      }
+
+      const { userId, accountId, programId = null, locale } = widgetId;
+
+      const variables = {
+        userId,
+        accountId,
+        programId,
+        locale
+      };
+
+      return apolloClient().query<any>({
+        query: gql`
+        query(
+          $userId: String!,
+          $accountId: String!,
+          $programId: ID,
+          $locale: String!
+        ) {
+          user(id: $userId, accountId: $accountId) {
+            rewardBalanceDetails(programId: $programId) {
+              prettyAvailableValue
+              unit
+              ... on CreditRewardBalance {
+                prettyAssignedCredit
+                prettyRedeemedCredit
+                rewardUnit {
+                  currency {
+                    displayName(locale: $locale)
+                    symbol(locale: $locale)
+                    currencyCode
+                  }
+                }
+              }
+            }
+          }
+        }
+        `,
+        variables
+      }).then(res => res.data.user);
+    },
+
+    getRewardExpiries() {
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId) {
+        const {
+          rewardBalanceDetails
+        } = demoUser;
+        const user = {
+          rewardBalanceDetails
+        };
+        return Promise.resolve(user);
+      }
+
+      const { userId, accountId, programId = null, locale } = widgetId;
+
+      const variables = {
+        userId,
+        accountId,
+        programId,
+        locale
+      };
+
+      return apolloClient().query<any>({
+        query: gql`
+        query(
+          $userId: String!,
+          $accountId: String!,
+          $programId: ID,
+          $locale: String!
+        ) {
+          user(id: $userId, accountId: $accountId) {
+            rewards(programId_eq: $programId) {
+              data {
+                dateCreated
+                dateExpires
+                prettyValue
+                unit
+              }
+            }
+          }
+        }
+        `,
+        variables
+      }).then(res => res.data.user);
+    },
+
     async getReferralCode ():Promise<string> {
       const widgetId = widgetIdent();
 
@@ -400,7 +547,7 @@ const API = {
         programId
       }
 
-      return this.getClient().query({
+      return apolloClient().query<any>({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID!) {
             user(id: $userId, accountId: $accountId) {
@@ -428,7 +575,7 @@ const API = {
         rewardKey
       }
 
-      return this.getClient().query({
+      return apolloClient().query<any>({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID!, $rewardKey: String!) {
             user(id: $userId, accountId: $accountId) {
@@ -465,7 +612,7 @@ const API = {
         programId,
         engagementMedium
       };
-       return this.getClient().query({
+       return apolloClient().query<any>({
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium!) {
             user(id: $userId, accountId: $accountId) {
