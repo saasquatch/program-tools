@@ -54,18 +54,18 @@ const STATS: {
       if (valuetype) return rewardBalance[valuetype];
       return rewardBalance.value;
     },
-    demoValue: (_) => 0
+    demoValue: (_) => 10
   },
   "/customField/:name": {
     fragment: (_) => `customFields`,
     value: (resp, { name }) => resp.data.user.customFields[name],
-    demoValue: (_) => 0
+    demoValue: (_) => 10
   },
 
   "/programMetric/:name": {
     fragment: (_) => `customFields`,
     value: (resp, { name }) => resp.data.user.customFields[`${widgetIdent().programId}_${name}`],
-    demoValue: (_) => 0
+    demoValue: (_) => 10
   },
 
   "/programrule/:name": {
@@ -74,7 +74,7 @@ const STATS: {
     }`,
     value: (resp, { name }) => resp.data.program.rules[name],
     level: "root",
-    demoValue: (_) => 0
+    demoValue: (_) => 10
   },
 
   /**
@@ -83,17 +83,17 @@ const STATS: {
   "/referralsCount": {
     fragment: (_) => ReferralQuery("referralsCount"),
     value: (resp) => resp.data.user.referralsCount.totalCount,
-    demoValue: (_) => 0
+    demoValue: (_) => 7
   },
   "/referralsMonth": {
     fragment: (_) => ReferralQuery("referralsMonth", `dateReferralStarted_timeframe: "this_month"`),
     value: (resp) => resp.data.user.referralsMonth.totalCount,
-    demoValue: (_) => 0
+    demoValue: (_) => 7
   },
   "/referralsWeek": {
     fragment: (_) => ReferralQuery("referralsWeek", `dateReferralStarted_timeframe: "this_week"`),
     value: (resp) => resp.data.user.referralsWeek.totalCount,
-    demoValue: (_) => 0
+    demoValue: (_) => 7
   },
 
   /**
@@ -102,17 +102,17 @@ const STATS: {
   "/rewardsCount": {
     fragment: (_) => RewardsQuery("rewardsCount"),
     value: (resp) => resp.data.user.rewardsCount.totalCount,
-    demoValue: (_) => 0
+    demoValue: (_) => 7
   },
   "/rewardsMonth": {
     fragment: (_) => RewardsQuery("rewardsMonth", `dateGiven_timeframe: "this_month"`),
     value: (resp) => resp.data.user.rewardsMonth.totalCount,
-    demoValue: (_) => 0
+    demoValue: (_) => 7
   },
   "/rewardsWeek": {
     fragment: (_) => RewardsQuery("rewardsWeek", `dateGiven_timeframe: "this_week"`),
     value: (resp) => resp.data.user.rewardsWeek.totalCount,
-    demoValue: (_) => 0
+    demoValue: (_) => 7
   }
 };
 
@@ -210,14 +210,20 @@ export async function getStats(names: string[]): Promise<NumberMap> {
   )
 
   // Demo data returned here
-  // if(widgetId["env"] === "demo")
 
   // Network happens here
   const batchResponse = await executeRequest(fragments);
 
   const values = names.reduce((prev, name) => {
     const { stat, variables } = matchStat(name);
-    const value = stat.value(batchResponse, variables);
+    let value;
+
+    if(widgetIdent()["env"] === "demo") {
+      value = stat.demoValue(variables);
+    } else {
+      value = stat.value(batchResponse, variables);
+    }
+    
     return {
       ...prev,
       [name]: value

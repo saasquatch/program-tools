@@ -287,7 +287,6 @@ declare global {
   namespace StencilComponents {
     interface SqhProgressIndicator {
       'align': string;
-      'imagewidth': string;
       'ishidden': boolean;
       'percentagecolor': string;
       'percentagesize': string;
@@ -295,7 +294,7 @@ declare global {
       'progressstartcolor': string;
       'progresstype': string;
       'progressvariable': string;
-      'progresswidth': string;
+      'progresswidth': number;
       'textcolor': string;
       'tiername': string;
       'totalvariable': string;
@@ -323,7 +322,6 @@ declare global {
   namespace JSXElements {
     export interface SqhProgressIndicatorAttributes extends HTMLAttributes {
       'align'?: string;
-      'imagewidth'?: string;
       'ishidden'?: boolean;
       'percentagecolor'?: string;
       'percentagesize'?: string;
@@ -331,7 +329,7 @@ declare global {
       'progressstartcolor'?: string;
       'progresstype'?: string;
       'progressvariable'?: string;
-      'progresswidth'?: string;
+      'progresswidth'?: number;
       'textcolor'?: string;
       'tiername'?: string;
       'totalvariable'?: string;

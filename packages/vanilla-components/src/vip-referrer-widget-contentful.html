@@ -10,53 +10,77 @@
   // from Strings for Props that are set as Booleans.
  -->
 
- <sqh-global-container 
- class="squatch-container" 
- background="#ffffff"
- >
-     
-   <sqh-text-component 
-     sqhbanner="true"
-     ishidden="true"
-     background="https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg"
-     height="auto"
-     paddingtop="150"
-     paddingbottom="150"
-     text=""
-     color="#000000"
-   ></sqh-text-component>
- 
-   <sqh-text-component
-     sqhheader="true" 
-     text="Partner with us and profit." 
-     color="#4486E1" 
-     fontsize="30" 
-     textalign="center"
-     paddingtop="30" 
-     paddingbottom="10"
-   ></sqh-text-component>
- 
-   <sqh-text-component 
-     sqhbody="true" 
-     ismarkdown="true"
-     text="Give a friend a $10 and receive $10 for yourself when they purchase." 
-     color="#000000" 
-     fontsize="13" 
-     textalign="center"
-     paddingtop="5" 
-     paddingbottom="20"
-   ></sqh-text-component>
-   
- <!-- New Component Here -->
- 
-   <sqh-text-component 
-     sqhfooter="true" 
-     text="Terms and Conditions" 
-     color="lightgray" 
-     fontsize="13"
-     textalign="center"
-     paddingtop="10"
-     paddingbottom="10"
-   ></sqh-text-component>
-     
- </sqh-global-container>  
+<sqh-global-container 
+class="squatch-container" 
+background="#ffffff"
+>
+    
+  <sqh-text-component 
+    sqhbanner="true"
+    ishidden="true"
+    background="https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg"
+    height="auto"
+    paddingtop="150"
+    paddingbottom="150"
+    text=""
+    color="#000000"
+  ></sqh-text-component>
+
+  <sqh-text-component
+    sqhheader="true" 
+    text="V.I.P." 
+    color="#4486E1" 
+    fontsize="30" 
+    textalign="center"
+    paddingtop="30" 
+    paddingbottom="10"
+  ></sqh-text-component>
+
+  <sqh-text-component 
+    sqhbody="true" 
+    ismarkdown="true"
+    text="You're very important to us. Input program rules here" 
+    color="#000000" 
+    fontsize="13" 
+    textalign="center"
+    paddingtop="5" 
+    paddingbottom="20"
+  ></sqh-text-component>
+  
+
+  <sqh-progress-indicator
+    sqhprogress="true"
+    tiername="You're already"
+    textcolor="#000"
+    unit="of the way to a free Gift"
+    progresstype="Circle"
+    progresswidth="200"
+    percentagecolor="#23d129"
+    progressstartcolor="#4286f4"
+    progressendcolor="#23d129"
+    progress-variable="/referralsCount"
+    total-variable="/customField/lastSeenDate"
+  >
+  </sqh-progress-indicator>
+
+  <sqh-text-component 
+    sqhcta="true" 
+    text="Call To Action" 
+    color="#000" 
+    fontsize="13"
+    textalign="center"
+    paddingtop="10"
+    paddingbottom="10"
+  ></sqh-text-component>
+
+  <sqh-text-component 
+    sqhfooter="true" 
+    text="Terms and Conditions" 
+    color="lightgray" 
+    fontsize="13"
+    textalign="center"
+    paddingtop="10"
+    paddingbottom="10"
+  ></sqh-text-component>
+    
+</sqh-global-container>

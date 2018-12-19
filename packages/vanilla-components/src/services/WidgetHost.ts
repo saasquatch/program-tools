@@ -522,6 +522,7 @@ const API = {
             rewards(programId_eq: $programId) {
               data {
                 dateCreated
+                dateScheduledFor
                 dateExpires
                 prettyValue
                 unit

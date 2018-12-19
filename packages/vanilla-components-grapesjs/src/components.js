@@ -960,6 +960,7 @@ export default (editor, config = {}) => {
     view: textComp.view
   })
 
+  
   comps.addType('sqh-copy-button', {
     model: textComp.model.extend({
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
@@ -994,6 +995,48 @@ export default (editor, config = {}) => {
         isComponent: function (el) {
           if (el.tagName == 'SQH-COPY-BUTTON') {
             return { type: 'sqh-copy-button' };
+          }
+        },
+      }),
+    view: defaultType.view
+  })
+
+
+  // 
+  // 
+  //  Progress Bar for VIP Program
+  // 
+  // 
+
+
+  comps.addType('sqh-progress-indicator', {
+    model: textComp.model.extend({
+      defaults: Object.assign({}, textComp.model.prototype.defaults, {
+        name: 'Progress Indicator',
+        draggable: false,
+        droppable: false,
+        selectable: true,
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'string', title: 'Shape of Progress Bar', name: 'progresstype', enum: ['Circle', 'SemiCircle', 'Line'], enumNames: ['Circle', 'SemiCircle', 'Line'] },
+          { type: 'string', title: 'Tier Name', name: 'tiername' },
+          { type: 'integer', title: 'Width of Progress in pixels', name: 'progresswidth' },
+          { type: 'string', title: 'Progress Bar Color Start', name: 'progressstartcolor' },
+          { type: 'string', title: 'Progress Bar Color Start', name: 'progressendcolor' },
+          { type: 'string', title: 'Prize Description', name: 'unit' }
+        ],
+        uiSchema: {
+          'ishidden': { 'ui:widget': 'hidden' },
+          'progresswidth': { 'ui:widget': 'updown' },
+          'progressstartcolor': { 'ui:widget': 'color' },
+          'progressendcolor': { 'ui:widget': 'color' }
+        }
+      })
+    },
+      {
+        isComponent: function (el) {
+          if (el.tagName == 'SQH-PROGRESS-INDICATOR' && el.getAttribute('sqhprogress')) {
+            return { type: 'sqh-progress-indicator' };
           }
         },
       }),

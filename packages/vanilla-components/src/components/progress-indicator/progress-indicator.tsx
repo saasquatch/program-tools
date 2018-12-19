@@ -1,41 +1,79 @@
-import { Component, Prop, State } from '@stencil/core';
-import ProgressBar from 'progressbar.js';
-import { API } from '../../services/WidgetHost';
-import { css } from 'emotion';
-import { getStats } from '../../services/StatPaths';
+import { Component, Prop, State, Watch, Element } from "@stencil/core";
+import ProgressBar from "progressbar.js";
+import { API } from "../../services/WidgetHost";
+import { css } from "emotion";
+import { getStats } from "../../services/StatPaths";
 
 interface Stats {
-  total: any,
-  progress: any
+  total: any;
+  progress: any;
 }
 
+// interface balance {
+//   unit: string
+//   rewardUnit: rewardUnit
+//   prettyAvailableValue: string
+//   prettyAssignedCredit: string
+//   prettyRedeemedCredit: string
+// }
+
+// interface rewardUnit {
+//   currency: currency
+// }
+
+// interface currency {
+//   symbol: string
+//   displayName: string
+//   currencyCode: string
+// }
 
 @Component({
-  tag: 'sqh-progress-indicator',
-  styleUrl: 'progress-indicator.scss'
+  tag: "sqh-progress-indicator",
+  styleUrl: "progress-indicator.scss"
 })
 export class ProgressIndicator {
-
   @Prop() ishidden: boolean = false;
   @Prop() tiername: string;
   @Prop() unit: string;
   @Prop() textcolor: string;
   @Prop() align: string;
-  @Prop() progresstype: string = "Circle";
+  @Prop() progresstype: string;
 
-  @Prop() progresswidth: string;
+  @Prop() progresswidth: number;
   @Prop() percentagecolor: string;
   @Prop() percentagesize: string;
 
-  @Prop() imagewidth: string;
+  @Prop({ attr: "progress-variable" }) progressvariable: string;
+  @Prop({ attr: "total-variable" }) totalvariable: string;
+
   @Prop() progressstartcolor: string;
   @Prop() progressendcolor: string;
+  @State() rewardStats: { dateExpires: string; balance: number };
+  @State() stats: Stats;
 
-  @Prop({attr:"progress-variable"}) progressvariable: string;
-  @Prop({attr:"total-variable"}) totalvariable: string;
+  @Element() el: HTMLElement;
 
-  @State() rewardStats: { dateExpires: string; balance: number; };
+  svgContainer!: HTMLInputElement;
 
+  // TODO: check for update method in progress.js
+  @Watch("progresstype")
+  watchHandler() {
+    const element = this.svgContainer;
+    while (element.hasChildNodes()) {
+      element.removeChild(element.lastChild);
+    }
+    this.getProgress(this.stats);
+  }
+
+  // TODO: check for update method in progress.js
+  @Watch("progresswidth")
+  watchHandler2() {
+    const element = this.svgContainer;
+    while (element.hasChildNodes()) {
+      element.removeChild(element.lastChild);
+    }
+    this.getProgress(this.stats);
+  }
 
   async componentDidLoad() {
     const { rewardBalanceDetails } = await API.graphql.getBalanceDetails();
@@ -43,86 +81,129 @@ export class ProgressIndicator {
     let closestExpiryDate = Math.floor(Date.now() / 1000);
 
     rewardBalanceDetails.map(reward => {
-      if (closestExpiryDate < reward.dateExpires) closestExpiry = { dateExpires: reward.dateExpires, balance: reward.prettyAvailableValue }
-    })
+      if (closestExpiryDate < reward.dateExpires)
+        closestExpiry = {
+          dateExpires: reward.dateExpires,
+          balance: reward.prettyAvailableValue
+        };
+    });
 
     if (closestExpiry.dateExpires) {
       this.rewardStats = {
-        dateExpires: new Date(+(closestExpiry.dateExpires * 1000)).toLocaleString("en-US", { year: "numeric", month: "long", day: "numeric", hour: "numeric" }),
+        dateExpires: new Date(
+          +(closestExpiry.dateExpires * 1000)
+        ).toLocaleString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "numeric"
+        }),
         balance: closestExpiry.balance
-      }
+      };
     }
 
     const statTypes = {
       total: this.totalvariable,
       progress: this.progressvariable
-    }
-    console.log(statTypes)
+    };
+    console.log(statTypes);
     // const stat = await getStats(['/rewardsCount', '/rewardBalance/CREDIT/CENTS/totalAssignedValue',"/customField/lastSeenDate","/referralsCount"]);
 
     const statResponse = await getStats([statTypes.total, statTypes.progress]);
 
-    this.getProgress({
+    this.stats = {
       total: statResponse[statTypes.total],
       progress: statResponse[statTypes.progress]
-    });
+    }
+
+    this.getProgress(this.stats);
   }
 
-  getProgress(stats:Stats) {
+
+  getProgress(stats: Stats) {
+    let progress = 0;
+    // TODO: make this get progress info in editor
+    try {
+      progress = (stats.progress / stats.total);
+    } catch (e) {
+      // Math error or null error -- just render 0
+    }
+
+    let progressBar = new ProgressBar[this.progresstype](this.svgContainer, {
+      color: this.percentagecolor,
+      strokeWidth: 4,
+      trailWidth: 1,
+      easing: "easeInOut",
+      duration: 1400,
+      text: {
+        style: {
+          color: `${this.textcolor}`,
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          fontFamily: '"Raleway", Helvetica, sans-serif',
+          fontSize: `${this.progresswidth / 100}em`,
+
+          padding: 0,
+          textAlign: "center",
+          margin: 0,
+          transform: {
+            prefix: true,
+            value: "translate(-50%, -50%)"
+          }
+        },
+        autoStyleContainer: true
+      },
+      from: { color: this.progressstartcolor, width: 1 },
+      to: { color: this.progressendcolor, width: 4 },
+      step: function(state, circle) {
+        circle.path.setAttribute("stroke", state.color);
+        circle.path.setAttribute("stroke-width", state.width);
+
+        var value = Math.round(circle.value() * 100);
+        if (value === 0) {
+          circle.setText("");
+        } else {
+          circle.setText(
+            `<img src="https://static.thenounproject.com/png/130115-200.png"><br>` +
+              value +
+              "%"
+          );
+        }
+      }
+    });
 
     if (this.progresstype === "Circle") {
-      var bar = new ProgressBar[this.progresstype]('#container', {
-        color: this.percentagecolor,
-        // This has to be the same size as the maximum width to
-        // prevent clipping
-        strokeWidth: 4,
-        trailWidth: 1,
-        easing: 'easeInOut',
-        duration: 1400,
-        text: {
-          autoStyleContainer: false
-        },
-        from: { color: this.progressstartcolor, width: 1 },
-        to: { color: this.progressendcolor, width: 4 },
-        // Set default step function for all animate calls
-        step: function (state, circle) {
-          circle.path.setAttribute('stroke', state.color);
-          circle.path.setAttribute('stroke-width', state.width);
+      progressBar.animate(progress, {
+        // @ts-ignore
+        step: function(state, circle) {
+          circle.path.setAttribute("stroke", state.color);
+          circle.path.setAttribute("stroke-width", state.width);
 
           var value = Math.round(circle.value() * 100);
-          // if (value === 0) {
-          //   circle.setText('');
-          // } else {
-            circle.setText(`<img src="https://static.thenounproject.com/png/130115-200.png"><br>` + value + "%");
-          // }
-
+          if (value === 0) {
+            circle.setText("");
+          } else {
+            circle.setText(
+              `<img src="https://static.thenounproject.com/png/130115-200.png"><br>` +
+                value +
+                "%"
+            );
+          }
         }
       });
-      bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-      bar.text.style.fontSize = this.percentagesize;
     }
 
     if (this.progresstype === "SemiCircle") {
-      var bar = new ProgressBar.SemiCircle('#container', {
-        strokeWidth: 6,
-        color: '#FFEA82',
-        trailColor: '#eee',
-        trailWidth: 1,
-        easing: 'easeInOut',
-        duration: 1400,
-        svgStyle: null,
-        text: {
-          value: '',
-          alignToBottom: false
-        },
-        from: { color: '#FFEA82' },
-        to: { color: '#ED6A5A' },
-        // Set default step function for all animate calls
+      progressBar.text.style.bottom = "0px";
+
+      progressBar.animate(progress, {
+        // @ts-ignore
         step: (state, bar) => {
-          bar.path.setAttribute('stroke', state.color);
+          bar.path.setAttribute("stroke", state.color);
           var value = Math.round(bar.value() * 100);
           if (value === 0) {
-            bar.setText('');
+            bar.setText("");
           } else {
             bar.setText(`${value}%`);
           }
@@ -130,82 +211,57 @@ export class ProgressIndicator {
           bar.text.style.color = state.color;
         }
       });
-      bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-      bar.text.style.fontSize = '2rem';
     }
 
     if (this.progresstype === "Line") {
-      var bar = new ProgressBar.Line('#container', {
-        strokeWidth: 4,
-        easing: 'easeInOut',
-        duration: 1400,
-        color: '#FFEA82',
-        trailColor: '#eee',
-        trailWidth: 1,
-        svgStyle: { width: '100%', height: '100%' },
-        text: {
-          style: {
-            // Text color.
-            // Default: same as stroke color (options.color)
-            color: '#999',
-            padding: 0,
-            margin: 0,
-            transform: null
-          },
-          autoStyleContainer: false
-        },
-        from: { color: '#FFEA82' },
-        to: { color: '#ED6A5A' },
+      progressBar.text.style.top = "20px";
+
+      progressBar.animate(progress, {
         // @ts-ignore
         step: (state, bar) => {
-          bar.setText(Math.round(bar.value() * 100) + ' %');
+          bar.setText(Math.round(bar.value() * 100) + " %");
         }
       });
     }
-    let progress = 0;
-    try{
-      progress = Math.round(stats.progress/stats.total*100);
-    }catch(e){
-      // Math error or null error -- just render 0
-    }
-    bar.animate(progress);  // TODO: graphql call to get progress and goal to find out percentage and input
-    // TODO: Add in for Custom as well https://jsfiddle.net/kimmobrunfeldt/dnLLgm5o/
   }
 
   render() {
     const wrapperStyle = css`
-      color: ${ this.textcolor};
+      color: ${this.textcolor};
       text-align: center;
-    `
-
-    const unitStyle = css`
-      margin-top: 35px
-    `
+    `;
 
     const progressStyle = css`
-      width: ${ this.progresswidth};
-      margin: 0 auto;
+      width: ${this.progresswidth}px;
+      margin: 30px auto;
       img {
-        width: ${ this.imagewidth};
+        width: ${this.progresswidth / 2}px;
       }
-    `
+    `;
 
-    return !this.ishidden &&
-      <div class={wrapperStyle}>
-        {this.tiername}
+    return (
+      !this.ishidden && (
+        <div class={wrapperStyle}>
+          {this.tiername}
 
-        <div class={progressStyle}>
-          <div id="container"></div>
+          <div class={progressStyle}>
+            <div ref={el => (this.svgContainer = el as HTMLInputElement)} />
+          </div>
+
+          {/* customer editable / automatically set */}
+          <div>{this.unit}</div>
+
+          {/* automatically set */}
+          <div>Balance: {this.rewardStats && this.rewardStats.balance}</div>
+
+          {/* automatically set */}
+          {this.rewardStats && this.rewardStats.dateExpires && (
+            <div>
+              Expires: {this.rewardStats && this.rewardStats.dateExpires}
+            </div>
+          )}
         </div>
-
-        {/* customer editable / automatically set */}
-        <div class={unitStyle}>{this.unit}</div>
-
-        {/* automatically set */}
-        <div>Balance: {this.rewardStats && this.rewardStats.balance}</div>
-
-        {/* automatically set */}
-        {this.rewardStats && this.rewardStats.dateExpires && <div>Expires: {this.rewardStats && this.rewardStats.dateExpires}</div>}
-      </div>
+      )
+    );
   }
 }
