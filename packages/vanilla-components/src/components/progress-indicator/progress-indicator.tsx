@@ -43,12 +43,13 @@ export class ProgressIndicator {
   @Prop() percentagecolor: string;
   @Prop() percentagesize: string;
 
-  @Prop({ attr: "progress-variable" }) progressvariable: string = "10";
-  @Prop({ attr: "total-variable" }) totalvariable: string = "100";
+  @Prop({ attr: "progress-variable" }) progressvariable: string;
+  @Prop({ attr: "total-variable" }) totalvariable: string;
 
   @Prop() progressstartcolor: string;
   @Prop() progressendcolor: string;
   @State() rewardStats: { dateExpires: string; balance: number };
+  @State() stats: Stats;
 
   @Element() el: HTMLElement;
 
@@ -61,10 +62,7 @@ export class ProgressIndicator {
     while (element.hasChildNodes()) {
       element.removeChild(element.lastChild);
     }
-    this.getProgress({
-      total: this.totalvariable,
-      progress: this.progressvariable
-    });
+    this.getProgress(this.stats);
   }
 
   // TODO: check for update method in progress.js
@@ -74,10 +72,7 @@ export class ProgressIndicator {
     while (element.hasChildNodes()) {
       element.removeChild(element.lastChild);
     }
-    this.getProgress({
-      total: this.totalvariable,
-      progress: this.progressvariable
-    });
+    this.getProgress(this.stats);
   }
 
   async componentDidLoad() {
@@ -116,21 +111,23 @@ export class ProgressIndicator {
 
     const statResponse = await getStats([statTypes.total, statTypes.progress]);
 
-    this.getProgress({
+    this.stats = {
       total: statResponse[statTypes.total],
       progress: statResponse[statTypes.progress]
-    });
+    }
+
+    this.getProgress(this.stats);
   }
 
-  // @ts-ignore
+
   getProgress(stats: Stats) {
-    let progress = 0.75;
+    let progress = 0;
     // TODO: make this get progress info in editor
-    // try {
-    //   progress = Math.round((stats.progress / stats.total) * 100);
-    // } catch (e) {
-    //   // Math error or null error -- just render 0
-    // }
+    try {
+      progress = (stats.progress / stats.total);
+    } catch (e) {
+      // Math error or null error -- just render 0
+    }
 
     let progressBar = new ProgressBar[this.progresstype](this.svgContainer, {
       color: this.percentagecolor,
