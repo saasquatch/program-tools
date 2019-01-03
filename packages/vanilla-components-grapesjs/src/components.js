@@ -145,7 +145,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Header',
         traits: [
-          { type: 'boolean', name: 'ishidden' },
+          { type: 'string', name: 'ishidden' },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown' },
           { type: 'string', title: 'Content', name: 'text' },
           { type: 'string', title: 'Font Color', name: 'color' },
