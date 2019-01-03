@@ -285,41 +285,6 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface SqhPartnerTotalBar {
-      'ishidden': boolean;
-      'text': string;
-    }
-  }
-
-  interface HTMLSqhPartnerTotalBarElement extends StencilComponents.SqhPartnerTotalBar, HTMLStencilElement {}
-
-  var HTMLSqhPartnerTotalBarElement: {
-    prototype: HTMLSqhPartnerTotalBarElement;
-    new (): HTMLSqhPartnerTotalBarElement;
-  };
-  interface HTMLElementTagNameMap {
-    'sqh-partner-total-bar': HTMLSqhPartnerTotalBarElement;
-  }
-  interface ElementTagNameMap {
-    'sqh-partner-total-bar': HTMLSqhPartnerTotalBarElement;
-  }
-  namespace JSX {
-    interface IntrinsicElements {
-      'sqh-partner-total-bar': JSXElements.SqhPartnerTotalBarAttributes;
-    }
-  }
-  namespace JSXElements {
-    export interface SqhPartnerTotalBarAttributes extends HTMLAttributes {
-      'ishidden'?: boolean;
-      'text'?: string;
-    }
-  }
-}
-
-
-declare global {
-
-  namespace StencilComponents {
     interface SqhReferralCode {
 
     }

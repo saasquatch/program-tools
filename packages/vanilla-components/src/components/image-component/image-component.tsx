@@ -7,7 +7,7 @@ import { css } from 'emotion';
 })
 
 export class ImageComponent {
-  @Prop() ishidden: boolean = false;
+  @Prop() ishidden: boolean;
   @Prop() url: string;
   @Prop() width: number;
   @Prop() borderradius: number;

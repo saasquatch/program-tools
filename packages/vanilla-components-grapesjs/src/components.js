@@ -109,7 +109,7 @@ export default (editor, config = {}) => {
         toolbar: [],
 
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'boolean', name: 'ishidden' },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown' },
           { type: 'string', title: 'Content', name: 'text' },
           { type: 'string', title: 'Font Color', name: 'color' },
@@ -145,7 +145,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Header',
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'boolean', name: 'ishidden' },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown' },
           { type: 'string', title: 'Content', name: 'text' },
           { type: 'string', title: 'Font Color', name: 'color' },
@@ -179,7 +179,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Body',
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'boolean', name: 'ishidden' },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown' },
           { type: 'string', title: 'Content', name: 'text' },
           { type: 'string', title: 'Font Color', name: 'color' },
@@ -213,7 +213,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Stats Header',
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'boolean', name: 'ishidden' },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown' },
           { type: 'string', title: 'Content', name: 'text' },
           { type: 'string', title: 'Font Color', name: 'color' },
@@ -240,7 +240,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Banner',
         traits: [
-          { type: 'boolean', name: 'ishidden', value: true },
+          { type: 'boolean', name: 'ishidden' },
           { type: 'string', title: 'Upload Image', name: 'background' /*,format: 'uri'*/ },
           { type: 'string', title: 'Height in pixels', name: 'height' },
           { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop' },
@@ -279,7 +279,7 @@ export default (editor, config = {}) => {
         selectable: true,
         toolbar: [],
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'boolean', name: 'ishidden' },
           { type: 'string', title: 'Button Text', name: 'text' },
           { type: 'string', title: 'Button Color', name: 'buttoncolor' },
           { type: 'string', title: 'Text Color', name: 'textcolor' },
@@ -380,7 +380,7 @@ export default (editor, config = {}) => {
         toolbar: [],
 
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'boolean', name: 'ishidden' },
           { type: 'string', name: 'emaildisplayrule' },
           { type: 'string', name: 'emailtext' },
           { type: 'string', name: 'emailtextcolor' },
@@ -578,7 +578,7 @@ export default (editor, config = {}) => {
         toolbar: [],
 
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'boolean', name: 'ishidden' },
           { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop' },
           { type: 'string', title: 'Padding Bottom in pixels', name: 'paddingbottom' },
         ],
@@ -623,7 +623,7 @@ export default (editor, config = {}) => {
         }],
 
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'boolean', name: 'ishidden' },
           { type: 'string', name: 'stattype', title: 'Stat Type' },
           { type: 'string', name: 'statdescription', title: 'Stat Description' },
           { type: 'string', name: 'statcolor' },
@@ -670,9 +670,9 @@ export default (editor, config = {}) => {
         selectable: true,
         toolbar: [],
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
-          { type: 'boolean', name: 'showreferrer', value: true },
-          { type: 'boolean', name: 'usefirstreward', value: false },
+          { type: 'boolean', name: 'ishidden' },
+          { type: 'boolean', name: 'showreferrer' },
+          { type: 'boolean', name: 'usefirstreward' },
           { type: 'string', name: 'rewardcolor' },
           { type: 'string', name: 'pendingcolor' },
           { type: 'string', name: 'referralnamecolor' },
@@ -866,7 +866,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
         name: 'Footer',
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'boolean', name: 'ishidden' },
           { type: 'boolean', title: 'Use Markdown', name: 'ismarkdown' },
           { type: 'string', title: 'Content', name: 'text' },
           { type: 'string', title: 'Font Color', name: 'color' },
@@ -903,7 +903,7 @@ export default (editor, config = {}) => {
         selectable: true,
         toolbar: [],
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'boolean', name: 'ishidden' },
           { type: 'string', title: 'Upload Image', name: 'url' /*,format: 'uri'*/ },
           { type: 'string', title: 'Image Align', name: 'alignment', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'] },
           { type: 'string', title: 'Size in pixels', name: 'width' },
@@ -933,7 +933,7 @@ export default (editor, config = {}) => {
         droppable: false,
         selectable: true,
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'boolean', name: 'ishidden' },
           { type: 'string', title: 'Content', name: 'text' },
           { type: 'integer', title: 'Font Size in pixels', name: 'fontsize' },
           { type: 'string', title: 'Padding Top in pixels', name: 'paddingtop' },
@@ -968,7 +968,7 @@ export default (editor, config = {}) => {
         droppable: false,
         selectable: true,
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'boolean', name: 'ishidden' },
           { type: 'string', title: 'Code Color', name: 'codefontcolor' },
           { type: 'integer', title: 'Code Font Size in pixels', name: 'codefontsize' },
           { type: 'string', title: 'Button Text', name: 'text' },
@@ -1045,7 +1045,7 @@ export default (editor, config = {}) => {
         }],
 
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'boolean', name: 'ishidden' },
           { type: 'string', name: 'stattype', title: 'Stat Type', ...partnerStatsDropdown },
           { type: 'string', name: 'statdescription', title: 'Stat Description' },
           { type: 'string', name: 'statcolor' },

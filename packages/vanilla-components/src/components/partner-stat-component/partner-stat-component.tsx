@@ -7,7 +7,7 @@ import { css } from 'emotion';
 })
 export class StatComponent {
   @Element() elem: HTMLElement;
-  @Prop() ishidden: boolean = false;
+  @Prop() ishidden: boolean;
   @Prop() stattype: string;
   @Prop() statvalue: string;
   @Prop() statdescription: string;
