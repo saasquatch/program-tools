@@ -805,7 +805,7 @@ declare global {
       'fontfamily': string;
       'fontsize': string;
       'height': string;
-      'ishidden': string;
+      'ishidden': boolean;
       'ismarkdown': boolean;
       'padding': string;
       'paddingbottom': string;
@@ -839,7 +839,7 @@ declare global {
       'fontfamily'?: string;
       'fontsize'?: string;
       'height'?: string;
-      'ishidden'?: string;
+      'ishidden'?: boolean;
       'ismarkdown'?: boolean;
       'padding'?: string;
       'paddingbottom'?: string;
