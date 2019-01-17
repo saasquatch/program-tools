@@ -534,7 +534,7 @@ export default (editor, config = {}) => {
                 {
                   'properties': {
                     'sharemedium': { 'enum': ['line'] },
-                    'linetdisplayrule': displayRuleObj.mobile,
+                    'linedisplayrule': displayRuleObj.mobile,
                     'linetext': shareMediumTextObj,
                     'linetextcolor': shareMediumTextColorObj,
                     'linebackgroundcolor': shareMediumColorObj
