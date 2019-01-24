@@ -165,6 +165,21 @@ export default class Transaction {
     this.mutations = [...this.mutations, newMutation];
   }
 
+  generateRewardExpiringEmail({user, rewardId}) {
+    const rewardWithEmailSent = user.programEmailTransactions.data.map(email => {
+      return email.rewardId;
+    });
+
+    const emailNotSentForThisReward = !rewardWithEmailSent.includes(rewardId);
+    if (emailNotSentForThisReward) {
+      this.generateSimpleEmail({
+        rewardId: rewardId,
+        emailKey: "rewardExpiryWarningEmail",
+        user: user
+      });
+    }
+  }
+
   generateReferralEmail({ emailKey, user, referralId, rewardId }) {
     const variables = {
       userId: user.id,
@@ -230,7 +245,7 @@ export default class Transaction {
       };
       this.mutations = [...this.mutations, refundNode];
       });
-  } 
+  }
 
   /**
    * Returns a JSON object required by the callback function of webtask to modifify the program.
