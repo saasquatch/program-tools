@@ -166,11 +166,11 @@ export default class Transaction {
   }
 
   generateRewardExpiringEmail({user, rewardId}) {
-    const rewardWithEmailSent = user.programEmailTransactions.data.map(email => {
+    const rewardIdsWithEmailSent = user.programEmailTransactions.data.map(email => {
       return email.rewardId;
     });
 
-    const emailNotSentForThisReward = !rewardWithEmailSent.includes(rewardId);
+    const emailNotSentForThisReward = !rewardIdsWithEmailSent.includes(rewardId);
     if (emailNotSentForThisReward) {
       this.generateSimpleEmail({
         rewardId: rewardId,
