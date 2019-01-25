@@ -1,6 +1,8 @@
 import yargs from 'yargs';
+import '@babel/polyfill';
+import { version } from '../package.json';
 
-yargs.usage('\nUsage: contentful <cmd> [args]')
+yargs.usage('\nUsage: saasquatch-dev-cli <cmd> [args]')
   .commandDir('cmd')
   .demandCommand(4, 'Please specify a command.')
   .help('h')
@@ -15,15 +17,15 @@ yargs.usage('\nUsage: contentful <cmd> [args]')
     skipValidation: true
   })
   .version(false)
-  .fail(function (msg, err, yargs) {
-    if (err) throw err
-    console.error(msg)
-    process.exit(1)
+  .fail((msg, err) => {
+    if (err) throw err;
+    console.error(msg);
+    process.exit(1);
   })
   .parse(process.argv.slice(2), (_, argv, output) => {
     if (argv.version === true && !argv._.length) {
-      console.log(version)
+      console.log(version);
     } else {
-      console.log(output)
+      console.log(output);
     }
-})
+  });
