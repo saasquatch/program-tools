@@ -1,6 +1,7 @@
 import inquirer from 'inquirer';
 import opn from 'opn';
 import chalk from 'chalk';
+import { log } from 'util';
 
 export const command = 'login';
 export const desc = 'Login to Contentful and Webtask';
@@ -54,12 +55,12 @@ export async function login () {
     {
       type: 'input',
       name: 'cmaToken',
-      message: 'Paste your token here:',
-      validate: (val) => /^[a-f0-9]{64}$/.test(val.trim())
+      message: 'Paste your token here:'
+      // validate: (val) => /^[a-f0-9]{64}$/.test(val.trim())
     }
   ]);
 
-  console.log();
+  console.log(tokenAnswer.cmaToken);
   console.log(`Contentful authorization completed`);
   console.log();
 
@@ -95,13 +96,16 @@ export async function login () {
     {
       type: 'input',
       name: 'webtaskToken',
-      message: 'Paste your token here:',
-      validate: (val) => /^[a-f0-9]{64}$/.test(val.trim())
+      message: 'Paste your token here:'
+      // validate: (val) => /^[a-f0-9]{64}$/.test(val.trim())
     }
   ]);
 
+  console.log(webtaskAnswer.webtaskToken);
+
   // Store the contentful and webtask tokens here
 
+  console.log('Authentication complete');
   return;
 }
 
