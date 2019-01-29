@@ -2,7 +2,10 @@ import { resolve } from 'path';
 import { homedir } from 'os';
 import { writeFile } from 'fs';
 
+import Joi from 'joi';
+
 import log from './log';
+import { settingsSchema } from './schema';
 
 const resolveHomeDir = () => {
   const fileName = `.programdevclirc.json`;
@@ -19,6 +22,12 @@ export const write = async (data) => {
   const path = resolveHomeDir();
   if (!path) {
     log.error('Failed to write config file.');
+    return;
+  }
+
+  const result = Joi.validate(data, settingsSchema);
+  if (result.error) {
+    log.error('Settings schema validation failed');
     return;
   }
 

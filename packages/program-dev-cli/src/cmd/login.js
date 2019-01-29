@@ -11,7 +11,7 @@ const REDIRECT_URI = `https://www.contentful.com/developers/cli-oauth-page/`;
 const CONTENTFUL_AUTH_URL = `https://google.ca`;
 const WEBTASK_AUTH_URL = `https://google.ca`;
 
-export async function login () {
+const login = async () => {
   const cmaToken = null;
 
   if (cmaToken) {
@@ -27,14 +27,12 @@ export async function login () {
   console.log(`A browser window will open where you will login to Contentful and authorize this CLI tool.`);
   console.log();
 
-  const contentfulConfirmed = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'ready',
-      message: 'Open browser window now?',
-      default: true
-    }
-  ]);
+  const contentfulConfirmed = await inquirer.prompt([{
+    type: 'confirm',
+    name: 'ready',
+    message: 'Open browser window now?',
+    default: true
+  }]);
 
   if (!contentfulConfirmed.ready) {
     console.log('Log in aborted by the user.');
@@ -50,14 +48,12 @@ export async function login () {
     console.log(`Unable to open your browser automatically. Please open the following URI in your browser:\n\n${CONTENTFUL_AUTH_URL}\n\n`);
   }
 
-  const tokenAnswer = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'cmaToken',
-      message: 'Paste your token here:'
-      // validate: (val) => /^[a-f0-9]{64}$/.test(val.trim())
-    }
-  ]);
+  const tokenAnswer = await inquirer.prompt([{
+    type: 'input',
+    name: 'cmaToken',
+    message: 'Paste your token here:'
+    // validate: (val) => /^[a-f0-9]{64}$/.test(val.trim())
+  }]);
 
   console.log(tokenAnswer.cmaToken);
   console.log(`Contentful authorization completed`);
@@ -68,14 +64,12 @@ export async function login () {
   console.log(`A browser window will open where you will login to Webtask and authorize this CLI tool.`);
   console.log();
 
-  const webtaskConfirmed = await inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'ready',
-      message: 'Open browser window now?',
-      default: true
-    }
-  ]);
+  const webtaskConfirmed = await inquirer.prompt([{
+    type: 'confirm',
+    name: 'ready',
+    message: 'Open browser window now?',
+    default: true
+  }]);
 
   if (!webtaskConfirmed.ready) {
     console.log('Log in aborted by the user.');
@@ -91,14 +85,12 @@ export async function login () {
     console.log(`Unable to open your browser automatically. Please open the following URI in your browser:\n\n${WEBTASK_AUTH_URL}\n\n`);
   }
 
-  const webtaskAnswer = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'webtaskToken',
-      message: 'Paste your token here:'
-      // validate: (val) => /^[a-f0-9]{64}$/.test(val.trim())
-    }
-  ]);
+  const webtaskAnswer = await inquirer.prompt([{
+    type: 'input',
+    name: 'webtaskToken',
+    message: 'Paste your token here:'
+    // validate: (val) => /^[a-f0-9]{64}$/.test(val.trim())
+  }]);
 
   console.log(webtaskAnswer.webtaskToken);
 
@@ -106,6 +98,6 @@ export async function login () {
 
   console.log('Authentication complete');
   return;
-}
+};
 
-login();
+export const handler = login;
