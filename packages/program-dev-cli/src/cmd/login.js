@@ -19,9 +19,9 @@ const login = async () => {
   const configPath = resolveConfigPath();
   const config = loadConfig();
 
-  if (config) {
+  if (config && config.contentfulToken && config.webtaskToken) {
     log();
-    log(`Looks like you already stored your tokens on your system. ${chalk.dim(`(Located at ${configPath})`)}`);
+    log(`It looks like you already stored your tokens on your system. ${chalk.dim(`(Located at ${configPath})`)}`);
     log(`Your Contentful token: ${config.contentfulToken}`);
     log(`Your Webtask token: ${config.webtaskToken}`);
     log(`Maybe you want to logout?`);
@@ -112,8 +112,6 @@ const login = async () => {
   } else {
     log('Authentication step failed');
   }
-
-  return;
 };
 
 export const handler = login;

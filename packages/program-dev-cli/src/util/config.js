@@ -45,11 +45,28 @@ export const load = () => {
   }
 
   const fileData = readFileSync(path, 'utf8');
-  log(fileData);
-
   if (fileData) {
     return JSON.parse(fileData);
   } else {
     return null;
   }
+};
+
+export const clear = async () => {
+  const path = resolveConfigPath();
+  if (!path) {
+    error('Failed to write config file.');
+    return false;
+  }
+
+  const data = {
+    contentfulToken: null,
+    webtaskToken: null
+  };
+
+  await writeFile(path, JSON.stringify(data), (err) => {
+    if (err) throw err;
+  });
+
+  return true;
 };
