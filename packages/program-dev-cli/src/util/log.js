@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-export const write = (...args) => {
+export const log = (...args) => {
   console.log(...args);
 };
 
