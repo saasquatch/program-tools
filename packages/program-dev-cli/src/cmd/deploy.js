@@ -1,9 +1,11 @@
-import { createClient } from 'contentful-management';
-import { readFile } from 'fs';
+import inquirer from 'inquirer';
 import ora from 'ora';
 
-import { log, error } from '../util/log';
-import { load as loadConfig } from '../util/config';
+import { createClient } from 'contentful-management';
+import { readFile } from 'fs';
+
+import { log, warn, error, bigWarn } from '../util/log';
+import { getContext } from '../util/context';
 
 const commandPreflightCheck = (args, config) => {
   if (args.length !== 1) {
@@ -21,10 +23,22 @@ const commandPreflightCheck = (args, config) => {
   return null;
 };
 
+const hugeWarningConfirm = async (warnMessage, confirmMessage) => {
+  bigWarn(warnMessage);
+  const deployConfirmed = await inquirer.prompt([{
+    type: 'confirm',
+    name: 'confirmed',
+    message: confirmMessage,
+    default: true
+  }]);
+  return deployConfirmed.confirmed;
+};
+
 const deploy = async (argv) => {
   argv._.shift();
   const args = argv._;
-  const config = loadConfig();
+  const context = getContext();
+  const config = context.config;
 
   const preflightCheck = commandPreflightCheck(args, config);
   if (preflightCheck !== null) {
@@ -35,6 +49,18 @@ const deploy = async (argv) => {
     return;
   }
 
+  if (config.space.live === true) {
+    const confirmed = await hugeWarningConfirm(
+      `Your space is set to '${config.space.name}'. Are you sure you want to deploy?`,
+      `Yes, I really want to deploy to '${config.space.name}'.`
+    );
+
+    if (!confirmed) {
+      log('Exiting.');
+      return;
+    }
+  }
+
   const connectionSpinner = ora('Connecting to contentful').start();
   const client = createClient({
     accessToken: config.contentfulToken
@@ -43,7 +69,7 @@ const deploy = async (argv) => {
   connectionSpinner.succeed('Connected');
   const uploadSpinner = ora('Uploading...').start();
 
-  const env = await client.getSpace('1th1ybv0b2n4')
+  const env = await client.getSpace(config.space.id)
     .then(space => {
       return space.getEnvironment('master');
     });

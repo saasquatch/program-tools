@@ -8,7 +8,7 @@
     "format": "prettier \"src/**/*.js\" --write",
     "prepush": "npm run format",
     "deploy": "np",
-    "build": "node ./node_modules/@babel/cli/bin/babel.js src --out-dir dist"
+    "build": "babel src --out-dir dist"
   },
   "author": "",
   "license": "ISC",

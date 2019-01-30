@@ -4,7 +4,7 @@ import { writeFile, readFileSync } from 'fs';
 
 import Joi from 'joi';
 
-import { log, warn, error } from './log';
+import { error } from './log';
 import { settingsSchema } from './schema';
 
 export const resolveConfigPath = () => {
@@ -12,7 +12,7 @@ export const resolveConfigPath = () => {
   const defaultPath = resolve(homedir(), fileName);
 
   if (!defaultPath) {
-    warn('Config file path failed to resolve');
+    error('Config file path failed to resolve');
   }
 
   return defaultPath;
@@ -35,6 +35,17 @@ export const write = async (data) => {
     if (err) throw err;
   });
   return true;
+};
+
+export const update = async (key, value) => {
+  let config = load();
+  if (!config) {
+    error('Failed to retrieve existing config file');
+    return false;
+  }
+
+  config[key] = value;
+  return write(config);
 };
 
 export const load = () => {
@@ -65,7 +76,9 @@ export const clear = async () => {
   };
 
   await writeFile(path, JSON.stringify(data), (err) => {
-    if (err) throw err;
+    if (err) {
+      return false;
+    }
   });
 
   return true;
