@@ -2,6 +2,9 @@ import yargs from 'yargs';
 import '@babel/polyfill';
 import { version } from '../package.json';
 
+// Load vars from .env
+require('dotenv').config();
+
 yargs.usage('\nUsage: saasquatch-dev-cli <cmd> [args]')
   .commandDir('cmd')
   .demandCommand(4, 'Please specify a command.')

@@ -2,22 +2,30 @@ import inquirer from 'inquirer';
 import opn from 'opn';
 import chalk from 'chalk';
 
-import { log } from '../util/log';
+import { log, error } from '../util/log';
 import { write as writeConfig, resolveConfigPath } from '../util/config';
 import { load as loadConfig } from '../util/config';
 
 export const command = 'login';
 export const desc = 'Login to Contentful and Webtask';
 
-const APP_ID = `DavxURak0VBfgHXGRfCRnsvDe1bziBMuLi72cbYm5b2DqwqxN5VtZApSIDmBFCAF`;
+const CLIENT_ID = process.env.PDCLI_CLIENT_ID || '';
+const CLIENT_SECRET = process.env.PDCLI_CLIENT_SECRET || '';
 const REDIRECT_URI = `https://www.contentful.com/developers/cli-oauth-page/`;
-const O_AUTH_URL = `https://be.contentful.com/oauth/authorize?response_type=token&client_id=${APP_ID}&redirect_uri=${REDIRECT_URI}&scope=content_management_manage`;
-const CONTENTFUL_AUTH_URL = `https://google.ca`;
+const CONTENTFUL_AUTH_URL = `https://be.contentful.com/oauth/authorize?response_type=token&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=content_management_manage`;
+// const CONTENTFUL_AUTH_URL = `https://google.ca`;
 const WEBTASK_AUTH_URL = `https://google.ca`;
 
 const login = async () => {
   const configPath = resolveConfigPath();
   const config = loadConfig();
+
+  if (CLIENT_ID === '' || CLIENT_SECRET === '') {
+    log();
+    error('Client ID and secret were not loaded from env vars!');
+    error('Aborting login');
+    return;
+  }
 
   if (config && config.contentfulToken && config.webtaskToken) {
     log();
