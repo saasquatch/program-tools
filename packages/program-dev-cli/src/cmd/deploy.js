@@ -1,38 +1,82 @@
 import { createClient } from 'contentful-management';
+import { readFile } from 'fs';
+import ora from 'ora';
 
-import { log } from '../util/log';
+import { log, error } from '../util/log';
 import { load as loadConfig } from '../util/config';
 
-const deploy = async () => {
+const commandPreflightCheck = (args, config) => {
+  if (args.length !== 1) {
+    return 'Incorrect number of arguments provided';
+  }
+  if (!config) {
+    return 'You are not logged in.';
+  }
+  if (!config.contentfulToken || !config.webtaskToken) {
+    return 'One or more authentication tokens are missing.';
+  }
+  if (!config.space) {
+    return 'Contentful space is not configured. Use `program-dev-cli space` to set up';
+  }
+  return null;
+};
+
+const deploy = async (argv) => {
+  argv._.shift();
+  const args = argv._;
   const config = loadConfig();
 
-  if (!config || !config.contentfulToken || !config.webtaskToken) {
+  const preflightCheck = commandPreflightCheck(args, config);
+  if (preflightCheck !== null) {
     log();
-    log('You are not logged in. Please login with the `login` command.');
+    error(preflightCheck);
     log();
     log('Exiting.');
     return;
   }
 
-  log(config.contentfulToken);
-
+  const connectionSpinner = ora('Connecting to contentful').start();
   const client = createClient({
-    // This is the space ID. A space is like a project folder in Contentful terms
-    // space: "1th1ybv0b2n4",
-    // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
     accessToken: config.contentfulToken
   });
-  // This API call will request an entry with the specified ID from the space defined at the top, using a space-specific access token.
-  client.getSpace('1th1ybv0b2n4')
+
+  connectionSpinner.succeed('Connected');
+  const uploadSpinner = ora('Uploading...').start();
+
+  const env = await client.getSpace('1th1ybv0b2n4')
     .then(space => {
-      space.getEnvironment('master')
-        .then(env => {
-          env.getEntry('NaEDz2HmmIiUq4YAacKqa')
-            .then(entry => {
-              log(entry.fields.schema['en-US']);
-            });
-        });
+      return space.getEnvironment('master');
     });
+
+  readFile(args[0], 'utf8', (err, data) => {
+    if (err) {
+      uploadSpinner.fail('Failed to read schema file: ' + err.message);
+      return;
+    }
+
+    const newSchema = JSON.parse(data);
+
+    env.getEntry('NaEDz2HmmIiUq4YAacKqa')
+      .then(entry => {
+        entry.fields.schema['en-US'] = newSchema;
+        return entry.update();
+      })
+      .then(entry => {
+        if (entry.isUpdated()) {
+          uploadSpinner.text = 'Publishing...';
+          entry.publish().then(() => {
+            uploadSpinner.succeed('Done, new version of schema published.');
+          });
+        } else {
+          uploadSpinner.succeed('Done, no updates were made to schema.');
+        }
+      })
+      .catch(err => {
+        uploadSpinner.fail('Failed to upload schema: ' + err.message);
+        return;
+      });
+  });
+
 };
 
 export const handler = deploy;
