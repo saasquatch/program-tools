@@ -67,22 +67,54 @@ const deploy = async (argv) => {
   });
 
   connectionSpinner.succeed('Connected');
-  const uploadSpinner = ora('Uploading...').start();
+  const entryFindSpinner = ora('Finding entry ID...').start();
 
   const env = await client.getSpace(config.space.id)
     .then(space => {
       return space.getEnvironment('master');
     });
 
-  readFile(args[0], 'utf8', (err, data) => {
+  readFile(args[0], 'utf8', async (err, data) => {
     if (err) {
-      uploadSpinner.fail('Failed to read schema file: ' + err.message);
+      entryFindSpinner.fail('Failed to read schema file: ' + err.message);
       return;
     }
 
     const newSchema = JSON.parse(data);
+    let entryId = await env.getEntries({'content_type': 'programTemplate'})
+      .then(entries => {
+        for (let prop in entries.items) {
+          if (entries.items.hasOwnProperty(prop)) {
+            let tmpSchema = entries.items[prop].fields.schema['en-US'];
+            if (tmpSchema.name === newSchema.name
+                && tmpSchema.summary === newSchema.summary
+                && tmpSchema.longDescription === newSchema.longDescription) {
+              return entries.items[prop].sys.id;
+            }
+          }
+        }
+      })
+      .catch(err => {
+        entryFindSpinner.fail('Error ocurred during entry ID search');
+        return null;
+      });
 
-    env.getEntry('NaEDz2HmmIiUq4YAacKqa')
+    if (!entryId) {
+      entryFindSpinner.warn('Unable to automatically determine entry ID');
+      const answer = await inquirer.prompt([{
+        type: 'input',
+        name: 'entryId',
+        message: 'Please paste the entry ID:'
+      }]);
+
+      entryId = answer.entryId;
+    } else {
+      entryFindSpinner.succeed('Found');
+    }
+
+    const uploadSpinner = ora('Uploading...').start();
+
+    env.getEntry(entryId)
       .then(entry => {
         entry.fields.schema['en-US'] = newSchema;
         return entry.update();
