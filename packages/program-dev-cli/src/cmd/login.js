@@ -70,7 +70,6 @@ const login = async () => {
     // validate: (val) => /^[a-f0-9]{64}$/.test(val.trim())
   }]);
 
-  log(contentfulAnswer.token);
   log(`Contentful authorization completed`);
   log();
 
@@ -106,8 +105,6 @@ const login = async () => {
     message: 'Paste your token here:'
     // validate: (val) => /^[a-f0-9]{64}$/.test(val.trim())
   }]);
-
-  log(webtaskAnswer.token);
 
   // Store the contentful and webtask tokens here
   const success = await writeConfig({

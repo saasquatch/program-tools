@@ -3,7 +3,7 @@ import { getContext } from '../util/context';
 import { hugeWarningConfirm } from '../util/actions';
 import { uploadSchema } from '../util/contentful';
 
-const commandPreflightCheck = (args, config) => {
+const preflightCheck = (args, config) => {
   if (args.length !== 1) {
     return 'Incorrect number of arguments provided';
   }
@@ -25,15 +25,14 @@ const deploy = async (argv) => {
   const context = getContext();
   const config = context.config;
 
-  const preflightCheck = commandPreflightCheck(args, config);
-  if (preflightCheck !== null) {
+  const checkResult = preflightCheck(args, config);
+  if (checkResult !== null) {
     log();
-    error(preflightCheck);
+    error(checkResult);
     log();
     log('Exiting.');
     return;
   }
-
 
   if (config.space.live === true) {
     const confirmed = await hugeWarningConfirm(
