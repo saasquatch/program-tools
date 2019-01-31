@@ -27,14 +27,12 @@ export const login = async () => {
     return null;
   }
 
-  // We open the browser window only on Windows and OSX since this might fail or open the wrong browser on Linux.
-  if (['win32', 'darwin'].includes(process.platform)) {
-    await opn(AUTH_URL, {
-      wait: false
-    });
-  } else {
-    log(`Unable to open your browser automatically. Please open the following URI in your browser:\n\n${AUTH_URL}\n\n`);
-  }
+  await opn(AUTH_URL, {
+    wait: false
+  });
+
+  log();
+  log(`If your browser doesn't open automatically, open this URL:\n\n${AUTH_URL}\n`);
 
   const answer = await inquirer.prompt([{
     type: 'input',

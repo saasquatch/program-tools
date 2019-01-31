@@ -23,6 +23,7 @@ const login = async () => {
     log(`It looks like you already stored your tokens on your system. ${chalk.dim(`(Located at ${configPath})`)}`);
     log(`Your Contentful token: ${config.contentfulToken}`);
     log(`Your Webtask token: ${config.webtaskToken}`);
+    log();
     log(`Maybe you want to logout?`);
     return;
   }
