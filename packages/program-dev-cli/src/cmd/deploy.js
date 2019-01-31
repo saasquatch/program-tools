@@ -4,8 +4,9 @@ import ora from 'ora';
 import { createClient } from 'contentful-management';
 import { readFile } from 'fs';
 
-import { log, warn, error, bigWarn } from '../util/log';
+import { log, error, bigWarn } from '../util/log';
 import { getContext } from '../util/context';
+import { findFilePair } from '../util/fio';
 
 const commandPreflightCheck = (args, config) => {
   if (args.length !== 1) {
@@ -25,13 +26,13 @@ const commandPreflightCheck = (args, config) => {
 
 const hugeWarningConfirm = async (warnMessage, confirmMessage) => {
   bigWarn(warnMessage);
-  const deployConfirmed = await inquirer.prompt([{
+  const confirmed = await inquirer.prompt([{
     type: 'confirm',
-    name: 'confirmed',
+    name: 'yes',
     message: confirmMessage,
     default: true
   }]);
-  return deployConfirmed.confirmed;
+  return confirmed.yes;
 };
 
 const deploy = async (argv) => {
@@ -44,6 +45,17 @@ const deploy = async (argv) => {
   if (preflightCheck !== null) {
     log();
     error(preflightCheck);
+    log();
+    log('Exiting.');
+    return;
+  }
+
+  const filePair = await findFilePair(args[0]);
+  if (!filePair) {
+    log();
+    error('Could not find schema file to accompany source');
+    error('Make sure you pass a webtask Javascript file and that');
+    error('your files are in the form <programName>.js, <programName>_schema.json');
     log();
     log('Exiting.');
     return;
@@ -74,9 +86,9 @@ const deploy = async (argv) => {
   connectionSpinner.succeed('Connected');
   const entryFindSpinner = ora('Finding entry ID...').start();
 
-  readFile(args[0], 'utf8', async (err, data) => {
+  readFile(filePair.schema, 'utf8', async (err, data) => {
     if (err) {
-      entryFindSpinner.fail('Failed to read schema file: ' + err.message);
+      entryFindSpinner.fail(`Failed to read schema file: ${err.message}`);
       return;
     }
 
@@ -119,6 +131,23 @@ const deploy = async (argv) => {
       entryFindSpinner.succeed('Entry ID found');
     }
 
+    if (config.space.live === true) {
+      const confirmed = await hugeWarningConfirm(
+        `You are deploying to '${config.space.name}'. Please confirm the entry ID: ${entryId}`,
+        `Yes, this is the correct entry ID.`
+      );
+
+      if (!confirmed) {
+        const answer = await inquirer.prompt([{
+          type: 'input',
+          name: 'entryId',
+          message: 'Please paste the entry ID:'
+        }]);
+
+        entryId = answer.entryId;
+      }
+    }
+
     return;
     const uploadSpinner = ora('Uploading...').start();
 
@@ -142,7 +171,6 @@ const deploy = async (argv) => {
         return;
       });
   });
-
 };
 
 export const handler = deploy;

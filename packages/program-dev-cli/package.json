@@ -23,6 +23,7 @@
     "chalk": "^2.4.2",
     "contentful-management": "^5.4.0",
     "dotenv": "^6.2.0",
+    "find-up": "^3.0.0",
     "inquirer": "^6.2.1",
     "joi": "^14.3.1",
     "opn": "^5.4.0",

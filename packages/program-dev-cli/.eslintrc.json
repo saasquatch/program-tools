@@ -42,6 +42,7 @@
       "warn",
       "always"
     ],
+    "prefer-template": 1,
     "no-case-declarations": "off",
     "no-console": "off"
   },
