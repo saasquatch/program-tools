@@ -18,12 +18,12 @@ export const error = (...args) => {
 
 export const bigWarn = (message) => {
   console.log(chalk.yellow('WARN'));
-  console.log(chalk.yellow('WARN ' + '='.repeat(message.length)));
-  console.log(chalk.yellow('WARN ' + '='.repeat(message.length)));
+  console.log(chalk.yellow(`WARN ${'='.repeat(message.length)}`));
+  console.log(chalk.yellow(`WARN ${'='.repeat(message.length)}`));
   console.log(chalk.yellow('WARN'));
   console.log(chalk.yellow('WARN'), message);
   console.log(chalk.yellow('WARN'));
-  console.log(chalk.yellow('WARN ' + '='.repeat(message.length)));
-  console.log(chalk.yellow('WARN ' + '='.repeat(message.length)));
+  console.log(chalk.yellow(`WARN ${'='.repeat(message.length)}`));
+  console.log(chalk.yellow(`WARN ${'='.repeat(message.length)}`));
   console.log(chalk.yellow('WARN'));
 };
