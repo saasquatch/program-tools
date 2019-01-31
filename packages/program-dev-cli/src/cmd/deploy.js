@@ -66,13 +66,13 @@ const deploy = async (argv) => {
     accessToken: config.contentfulToken
   });
 
-  connectionSpinner.succeed('Connected');
-  const entryFindSpinner = ora('Finding entry ID...').start();
-
   const env = await client.getSpace(config.space.id)
     .then(space => {
       return space.getEnvironment('master');
     });
+
+  connectionSpinner.succeed('Connected');
+  const entryFindSpinner = ora('Finding entry ID...').start();
 
   readFile(args[0], 'utf8', async (err, data) => {
     if (err) {
@@ -109,9 +109,10 @@ const deploy = async (argv) => {
 
       entryId = answer.entryId;
     } else {
-      entryFindSpinner.succeed('Found');
+      entryFindSpinner.succeed('Entry ID found');
     }
 
+    return;
     const uploadSpinner = ora('Uploading...').start();
 
     env.getEntry(entryId)
