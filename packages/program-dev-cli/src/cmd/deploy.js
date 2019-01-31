@@ -80,7 +80,14 @@ const deploy = async (argv) => {
       return;
     }
 
-    const newSchema = JSON.parse(data);
+    let newSchema;
+    try {
+      newSchema = JSON.parse(data);
+    } catch (err) {
+      entryFindSpinner.fail(`Failed to parse provided schema file: ${err.message}`);
+      return;
+    }
+
     let entryId = await env.getEntries({'content_type': 'programTemplate'})
       .then(entries => {
         for (let prop in entries.items) {
@@ -95,7 +102,7 @@ const deploy = async (argv) => {
         }
       })
       .catch(err => {
-        entryFindSpinner.fail('Error ocurred during entry ID search');
+        entryFindSpinner.fail(`Error ocurred during entry ID search: ${err.message}`);
         return null;
       });
 
@@ -131,7 +138,7 @@ const deploy = async (argv) => {
         }
       })
       .catch(err => {
-        uploadSpinner.fail('Failed to upload schema: ' + err.message);
+        uploadSpinner.fail(`Failed to upload schema: ${err.message}`);
         return;
       });
   });
