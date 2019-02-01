@@ -64,8 +64,8 @@ export const login = async () => {
   const answer = await inquirer.prompt([{
     type: 'input',
     name: 'token',
-    message: 'Paste your token here:',
-    validate: (val) => /^[a-f0-9]{64}$/.test(val.trim())
+    message: 'Paste your token here:'
+    // validate: (val) => /^[a-f0-9]{64}$/.test(val.trim())
   }]);
 
   return answer.token;

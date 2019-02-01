@@ -6,7 +6,7 @@ import { readFile } from 'fs';
 
 import { hugeWarningConfirm } from '../util/actions';
 
-export const uploadSchema = async (filePair, config) => {
+export const uploadSchema = async (schema, config) => {
   const connectionSpinner = ora('Connecting to contentful').start();
   const client = createClient({
     accessToken: config.contentfulToken
@@ -20,7 +20,7 @@ export const uploadSchema = async (filePair, config) => {
   connectionSpinner.succeed('Connected');
   const entryFindSpinner = ora('Finding entry ID...').start();
 
-  readFile(filePair.schema, 'utf8', async (err, data) => {
+  readFile(schema, 'utf8', async (err, data) => {
     if (err) {
       entryFindSpinner.fail(`Failed to read schema file: ${err.message}`);
       return;
@@ -82,7 +82,6 @@ export const uploadSchema = async (filePair, config) => {
       }
     }
 
-    return;
     const uploadSpinner = ora('Uploading...').start();
 
     env.getEntry(entryId)
