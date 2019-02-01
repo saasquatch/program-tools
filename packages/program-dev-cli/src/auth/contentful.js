@@ -1,10 +1,11 @@
 import inquirer from 'inquirer';
 import opn from 'opn';
+import chalk from 'chalk';
 
 import { log, error } from '../util/log';
 
-const CLIENT_ID = process.env.PDCLI_CLIENT_ID || '';
-const CLIENT_SECRET = process.env.PDCLI_CLIENT_SECRET || '';
+const CLIENT_ID = process.env.PDCLI_CONTENTFUL_CLIENT_ID || '';
+const CLIENT_SECRET = process.env.PDCLI_CONTENTFUL_CLIENT_SECRET || '';
 const REDIRECT_URI = `https://www.contentful.com/developers/cli-oauth-page/`;
 const AUTH_URL = `https://be.contentful.com/oauth/authorize?response_type=token&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=content_management_manage`;
 
@@ -33,7 +34,8 @@ export const login = async () => {
   });
 
   log();
-  log(`If your browser doesn't open automatically, open this URL:\n\n${AUTH_URL}\n`);
+  log(`If your browser doesn't open automatically, open this URL:`);
+  log(`\n${chalk.underline(AUTH_URL)}\n`);
 
   const answer = await inquirer.prompt([{
     type: 'input',

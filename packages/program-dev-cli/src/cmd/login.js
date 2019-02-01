@@ -1,5 +1,3 @@
-import inquirer from 'inquirer';
-import opn from 'opn';
 import chalk from 'chalk';
 
 import { log, error } from '../util/log';
@@ -12,35 +10,33 @@ import { login as webtaskLogin } from '../auth/webtask';
 export const command = 'login';
 export const desc = 'Login to Contentful and Webtask';
 
-const WEBTASK_AUTH_URL = `https://google.ca`;
-
 const login = async () => {
   const configPath = resolveConfigPath();
   const config = loadConfig();
 
-  if (config && config.contentfulToken && config.webtaskToken) {
-    log();
-    log(`It looks like you already stored your tokens on your system. ${chalk.dim(`(Located at ${configPath})`)}`);
-    log(`Your Contentful token: ${config.contentfulToken}`);
-    log(`Your Webtask token: ${config.webtaskToken}`);
-    log();
-    log(`Maybe you want to logout?`);
-    return;
-  }
+  // if (config && config.contentfulToken && config.webtaskToken) {
+  //   log();
+  //   log(`It looks like you already stored your tokens on your system. ${chalk.dim(`(Located at ${configPath})`)}`);
+  //   log(`Your Contentful token: ${config.contentfulToken}`);
+  //   log(`Your Webtask token: ${config.webtaskToken}`);
+  //   log();
+  //   log(`Maybe you want to logout?`);
+  //   return;
+  // }
 
-  log();
-  log(`== Contentful authorization ==`);
-  log();
-  log(`A browser window will open where you will login to Contentful and authorize this CLI tool.`);
-  log();
+  // log();
+  // log(`== Contentful authorization ==`);
+  // log();
+  // log(`A browser window will open where you will login to Contentful and authorize this CLI tool.`);
+  // log();
 
-  const contentfulToken = await contentfulLogin();
-  if (!contentfulToken) {
-    return;
-  }
+  // const contentfulToken = await contentfulLogin();
+  // if (!contentfulToken) {
+  //   return;
+  // }
 
-  log(`Contentful authorization completed`);
-  log();
+  // log(`Contentful authorization completed`);
+  // log();
 
   log();
   log(`== Webtask authorization ==`);
@@ -52,6 +48,8 @@ const login = async () => {
   if (!webtaskToken) {
     return;
   }
+
+  return;
 
   const success = await writeConfig({
     contentfulToken: contentfulToken,
