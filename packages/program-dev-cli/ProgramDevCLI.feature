@@ -3,6 +3,13 @@ Feature: SaaSquatch Program Development CLI
     The SaaSquatch program dev CLI aims to improve the workflow of a program developer by automating
     the process of uploading code/schemas to Webtask and Contentful.
 
+    @approved
+    Scenario: Sensitive information will be loaded through environment variables
+        Given I have installed the CLI
+        When the CLI loads and begins executing
+        Then if a .env file is found in the current working directory it will be loaded
+        And the environment variables will store the sensitive information
+
     @review
     Scenario: Users can log in via the CLI
         Given I have just installed the CLI and want to log in
@@ -11,6 +18,12 @@ Feature: SaaSquatch Program Development CLI
         Then I will be prompted and the appropriate web pages will open in the browser
         And I will be prompted to login and paste the access tokens in the CLI
         And the CLI will store the tokens in a configuration file in my home directory
+
+    @review
+    Scenario: Users can log out
+        Given I have installed the CLI and logged in
+        When I use the command `logout`
+        Then my tokens will be deleted from the configuration file
 
     @review
     Scenario: Users can select whether to use the staging or production environment
@@ -35,6 +48,14 @@ Feature: SaaSquatch Program Development CLI
         And I have set the space to 'Product (LIVE)'
         When I use the command `deploy`
         Then the CLI will print a warning on the screen and confirm that I want to continue
+
+    @review
+    Scenario: The user must be logged in to make a deployment
+        Given I have installed the CLI
+        And I am not logged in
+        When I use the command `deploy`
+        Then the CLI will not deploy
+        And the CLI will prompt me to log in
 
     @review
     Scenario Outline: The CLI will automatically determine which files to upload

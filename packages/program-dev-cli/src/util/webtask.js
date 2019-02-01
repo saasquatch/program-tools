@@ -21,7 +21,6 @@ export const uploadWebtask = (source, config) => {
       : 'staging-';
 
     const webtaskName = `${prefix}${path.basename(source, '.js')}`;
-
     const connectionSpinner = ora('Connecting to webtask').start();
 
     const profile = sandbox.init({
@@ -52,7 +51,7 @@ export const uploadWebtask = (source, config) => {
     connectionSpinner.succeed('Connected');
     const readSpinner = ora('Reading source code file...').start();
 
-    await readFile(source, 'utf8', async (err, code) => {
+    readFile(source, 'utf8', async (err, code) => {
       if (err) {
         const errMessage = `Failed to read source code file: ${err.message}`;
         readSpinner.fail(errMessage);
