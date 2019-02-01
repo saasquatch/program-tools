@@ -3,13 +3,16 @@ import chalk from 'chalk';
 import { log, error } from '../util/log';
 import { write as writeConfig, resolveConfigPath } from '../util/config';
 import { load as loadConfig } from '../util/config';
-
 import { login as contentfulLogin } from '../auth/contentful';
 import { login as webtaskLogin } from '../auth/webtask';
 
 export const command = 'login';
 export const desc = 'Login to Contentful and Webtask';
 
+/**
+ * Gets the Webtask/Contentful login tokens
+ * from the user
+ */
 const login = async () => {
   const configPath = resolveConfigPath();
   const config = loadConfig();

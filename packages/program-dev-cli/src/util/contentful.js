@@ -1,13 +1,19 @@
 import inquirer from 'inquirer';
 import ora from 'ora';
 import diff from 'deep-diff';
-
 import { createClient } from 'contentful-management';
 import { readFile } from 'fs';
-import { log } from '../util/log';
 
 import { hugeWarningConfirm } from '../util/actions';
 
+/**
+ * Uploads the provided schema to Contentful
+ *
+ * @param {Object} schema The program schema
+ * @param {Object} config The cli config
+ *
+ * @return {Promise}
+ */
 export const uploadSchema = async (schema, config) => {
   return new Promise(async (resolve, reject) => {
     const connectionSpinner = ora('Connecting to contentful').start();

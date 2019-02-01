@@ -7,6 +7,18 @@ import { uploadSchema } from '../util/contentful';
 import { uploadWebtask } from '../util/webtask';
 import { findFilePair } from '../util/fio';
 
+export const command = 'deploy';
+export const desc = 'Deploy a program to Webtask/Contentful';
+
+/**
+ * Basic checks to complete before the command begins
+ * executing
+ *
+ * @param {String[]} args List of command arguments
+ * @param {Object} config The program config
+ *
+ * @return {String | null} The error as a string, null if no error
+ */
 const preflightCheck = (args, config) => {
   if (args.length !== 1) {
     return 'Incorrect number of arguments provided';
@@ -23,6 +35,13 @@ const preflightCheck = (args, config) => {
   return null;
 };
 
+/**
+ * Deploy command. Finds the appropriate files
+ * and uploads them to Webtask/Contentful if
+ * they need updating
+ *
+ * @param {Object} argv Command args from Yargs
+ */
 const deploy = async (argv) => {
   argv._.shift();
   const args = argv._;

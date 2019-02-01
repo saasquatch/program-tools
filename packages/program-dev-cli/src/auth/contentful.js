@@ -9,6 +9,11 @@ const CLIENT_SECRET = process.env.PDCLI_CONTENTFUL_CLIENT_SECRET || '';
 const REDIRECT_URI = `https://www.contentful.com/developers/cli-oauth-page/`;
 const AUTH_URL = `https://be.contentful.com/oauth/authorize?response_type=token&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=content_management_manage`;
 
+/**
+ * Logs prompts the user for their Contentful login token
+ *
+ * @return {String} The token
+ */
 export const login = async () => {
   if (CLIENT_ID === '' || CLIENT_SECRET === '') {
     log();

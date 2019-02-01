@@ -1,8 +1,14 @@
 import path from 'path';
 import fs from 'fs';
-
 import findUp from 'find-up';
 
+/**
+ * Finds the other file that is associated with the
+ * provided Webtask source file
+ *
+ * @param {String} filePath The path to the js source file
+ * @return {Object} An object with the Webtask and Contentful file paths
+ */
 export const findFilePair = async (filePath) => {
   const ext = path.extname(filePath);
   const basename = path.basename(filePath, ext);

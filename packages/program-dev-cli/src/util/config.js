@@ -1,12 +1,16 @@
+import Joi from 'joi';
 import { resolve } from 'path';
 import { homedir } from 'os';
 import { writeFile, readFileSync } from 'fs';
 
-import Joi from 'joi';
-
 import { error } from './log';
 import { settingsSchema } from './schema';
 
+/**
+ * Finds the location of the config file
+ *
+ * @return {String} The path
+ */
 export const resolveConfigPath = () => {
   const fileName = `.programdevclirc.json`;
   const defaultPath = resolve(homedir(), fileName);
@@ -18,6 +22,12 @@ export const resolveConfigPath = () => {
   return defaultPath;
 };
 
+/**
+ * Writes the config to the config file
+ *
+ * @param {Object} data The config
+ * @return {Boolean} Whether the operation succeeded
+ */
 export const write = async (data) => {
   const path = resolveConfigPath();
   if (!path) {
@@ -38,6 +48,14 @@ export const write = async (data) => {
   return true;
 };
 
+/**
+ * Updates the config file with new information
+ *
+ * @param {String} key The key to update
+ * @param {Any} value The value to write
+ *
+ * @return {Boolean} Whether the operation succeeded
+ */
 export const update = async (key, value) => {
   let config = load();
   if (!config) {
@@ -49,6 +67,11 @@ export const update = async (key, value) => {
   return write(config);
 };
 
+/**
+ * Loads the config file
+ *
+ * @return {Object | null} The config object if sucessful, null otherwise
+ */
 export const load = () => {
   const path = resolveConfigPath();
   if (!path) {
@@ -64,6 +87,11 @@ export const load = () => {
   }
 };
 
+/**
+ * Clears all information in the config file
+ *
+ * @return {Boolean} Whether the operation succeeded
+ */
 export const clear = async () => {
   const path = resolveConfigPath();
   if (!path) {

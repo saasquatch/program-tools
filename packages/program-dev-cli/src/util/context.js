@@ -1,7 +1,10 @@
-import * as config from './config';
+import { load as loadConfig } from './config';
 
 let context;
 
+/**
+ * @return {Object} The cli operating context
+ */
 export const getContext = () => {
   if (!context) {
     context = loadContext();
@@ -10,8 +13,13 @@ export const getContext = () => {
   return context;
 };
 
+/**
+ * Loads the context if it isn't already there
+ *
+ * @return {Object} The cli operating context
+ */
 const loadContext = () => {
   return {
-    config: config.load()
+    config: loadConfig()
   };
 };

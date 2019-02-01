@@ -9,6 +9,13 @@ export const desc = 'Choose which Contentful space to use';
 const LIVE_ID = process.env.PDCLI_SPACE_ID_LIVE || '';
 const TEST_ID = process.env.PDCLI_SPACE_ID_TEST || '';
 
+/**
+ * Prompts the user for their choice of Contentful space.
+ * This also decides whether or not Webtask code is
+ * uplaoded as `staging`
+ *
+ * @param {Object} argv Command arguments from Yargs
+ */
 const space = async (argv) => {
   argv._.shift();
 

@@ -11,6 +11,12 @@ const CLIENT_ID = process.env.PDCLI_AUTH0_CLIENT_ID || '';
 const REDIRECT_URI = `http://127.0.0.1:8722`;
 const LOGIN_URL = `https://squatch.auth0.com`;
 
+/**
+ * Builds the Auth0 authentication URL based on
+ * the program requirements
+ *
+ * @return {String} The Auth0 URL
+ */
 const getAuthURL = () => {
   let loginUrl = url.parse(LOGIN_URL, true);
   let codeVerifier = base64URLEncode(crypto.randomBytes(16));
@@ -31,6 +37,11 @@ const getAuthURL = () => {
   return url.format(loginUrl);
 };
 
+/**
+ * Gets the Auth0 token from the user
+ *
+ * @return {String} The Auth0 token
+ */
 export const login = async () => {
   if (CLIENT_ID === '') {
     log();
@@ -52,7 +63,6 @@ export const login = async () => {
   }
 
   const authURL = getAuthURL();
-
   await opn(authURL, {
     wait: false
   });
@@ -65,7 +75,6 @@ export const login = async () => {
     type: 'input',
     name: 'token',
     message: 'Paste your token here:'
-    // validate: (val) => /^[a-f0-9]{64}$/.test(val.trim())
   }]);
 
   return answer.token;

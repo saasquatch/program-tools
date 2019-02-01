@@ -7,6 +7,9 @@ import { clear as clearConfig } from '../util/config';
 export const command = 'logout';
 export const desc = 'Remove Contentful and Webtask credentials';
 
+/**
+ * Deletes the Webtask/Contentful tokens
+ */
 const logout = async () => {
   const config = loadConfig();
 

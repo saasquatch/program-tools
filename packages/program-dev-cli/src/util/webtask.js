@@ -6,6 +6,14 @@ import { readFile } from 'fs';
 const CONTAINER = 'saasquatch';
 const WEBTASK_URL = 'https://saasquatch.auth0-extend.com';
 
+/**
+ * Uploads the provided Webtask code
+ *
+ * @param {String} source Path to source code
+ * @param {Object} config cli config
+ *
+ * @return {Promise}
+ */
 export const uploadWebtask = (source, config) => {
   return new Promise(async (resolve, reject) => {
     const prefix = config.space.live
