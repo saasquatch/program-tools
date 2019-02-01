@@ -28,6 +28,7 @@ export const write = async (data) => {
   const result = Joi.validate(data, settingsSchema);
   if (result.error) {
     error('Settings schema validation failed');
+    error(result.error.message);
     return false;
   }
 

@@ -20,7 +20,7 @@ const getAuthURL = () => {
 
   loginUrl.pathname = '/authorize';
   loginUrl.query = {
-    // redirect_uri: REDIRECT_URI,
+    redirect_uri: REDIRECT_URI,
     response_type: 'code',
     client_id: CLIENT_ID,
     scope: 'openid email user_metadata app_metadata',

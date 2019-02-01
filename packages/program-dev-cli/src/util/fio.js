@@ -19,7 +19,7 @@ export const findFilePair = async (filePath) => {
     complimentFilePath = path.join(dirName, 'programSchemas', complimentFileName);
     fs.accessSync(complimentFilePath, fs.constants.F_OK | fs.constants.W_OK);
   } catch (err) {
-    complimentFilePath = await findUp(complimentFileName, null, dirName);
+    complimentFilePath = await findUp(complimentFileName, {cwd: dirName});
     if (complimentFilePath === null) {
       return null;
     }

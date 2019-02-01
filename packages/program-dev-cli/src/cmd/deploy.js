@@ -1,7 +1,11 @@
+import chalk from 'chalk';
+
 import { log, error } from '../util/log';
 import { getContext } from '../util/context';
 import { hugeWarningConfirm } from '../util/actions';
 import { uploadSchema } from '../util/contentful';
+import { uploadWebtask } from '../util/webtask';
+import { findFilePair } from '../util/fio';
 
 const preflightCheck = (args, config) => {
   if (args.length !== 1) {
@@ -34,10 +38,21 @@ const deploy = async (argv) => {
     return;
   }
 
+  const filePair = await findFilePair(args[0]);
+  if (!filePair) {
+    log();
+    error('Could not find schema file to accompany source');
+    error('Make sure you pass a webtask Javascript file and that');
+    error('your files are in the form <programName>.js, <programName>_schema.json');
+    log();
+    log('Exiting.');
+    return;
+  }
+
   if (config.space.live === true) {
     const confirmed = await hugeWarningConfirm(
-      `Your space is set to '${config.space.name}'. Are you sure you want to deploy?`,
-      `Yes, I really want to deploy to '${config.space.name}'.`
+      `You are about to deploy to the ${chalk.bold('LIVE')} Contentful and Webtask environments.`,
+      `Yes, I really want to deploy to the ${chalk.bold('LIVE')} environments.`
     );
 
     if (!confirmed) {
@@ -46,7 +61,11 @@ const deploy = async (argv) => {
     }
   }
 
-  uploadSchema(args, config);
+  await uploadWebtask(filePair, config);
+  return;
+
+
+  uploadSchema(filePair, config);
 };
 
 export const handler = deploy;

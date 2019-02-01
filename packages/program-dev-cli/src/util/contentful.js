@@ -4,22 +4,9 @@ import ora from 'ora';
 import { createClient } from 'contentful-management';
 import { readFile } from 'fs';
 
-import { log, error } from '../util/log';
-import { findFilePair } from '../util/fio';
 import { hugeWarningConfirm } from '../util/actions';
 
-export const uploadSchema = async (args, config) => {
-  const filePair = await findFilePair(args[0]);
-  if (!filePair) {
-    log();
-    error('Could not find schema file to accompany source');
-    error('Make sure you pass a webtask Javascript file and that');
-    error('your files are in the form <programName>.js, <programName>_schema.json');
-    log();
-    log('Exiting.');
-    return;
-  }
-
+export const uploadSchema = async (filePair, config) => {
   const connectionSpinner = ora('Connecting to contentful').start();
   const client = createClient({
     accessToken: config.contentfulToken

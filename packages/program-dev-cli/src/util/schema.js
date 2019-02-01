@@ -8,6 +8,6 @@ const spaceSchema = Joi.object().keys({
 
 export const settingsSchema = Joi.object().keys({
   contentfulToken: Joi.string().alphanum().length(64).required(),
-  webtaskToken: Joi.string().alphanum().required(),
+  webtaskToken: Joi.string().required(),
   space: spaceSchema
 });
