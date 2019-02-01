@@ -23,6 +23,7 @@
     "auth0": "^2.14.0",
     "chalk": "^2.4.2",
     "contentful-management": "^5.4.0",
+    "deep-diff": "^1.0.2",
     "dotenv": "^6.2.0",
     "find-up": "^3.0.0",
     "inquirer": "^6.2.1",

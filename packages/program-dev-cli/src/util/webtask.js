@@ -7,7 +7,7 @@ const CONTAINER = 'saasquatch';
 const WEBTASK_URL = 'https://saasquatch.auth0-extend.com';
 
 export const uploadWebtask = (source, config) => {
-  return new Promise(async (resolve) => {
+  return new Promise(async (resolve, reject) => {
     const prefix = config.space.live
       ? ''
       : 'staging-';
@@ -30,13 +30,14 @@ export const uploadWebtask = (source, config) => {
         if (err.statusCode === 404) {
           return undefined;
         } else {
-          connectionSpinner.fail(`Failed to connect to webtask: ${err.message}\n\nCode:${err.statusCode}`);
+          const errMessage = `Failed to connect to webtask: ${err.message}\n\nCode:${err.statusCode}`;
+          connectionSpinner.fail(errMessage);
+          reject(new Error(errMessage));
           return null;
         }
       });
 
     if (webtask === null) {
-      resolve();
       return;
     }
 
@@ -45,13 +46,14 @@ export const uploadWebtask = (source, config) => {
 
     await readFile(source, 'utf8', async (err, code) => {
       if (err) {
-        readSpinner.fail(`Failed to read source code file: ${err.message}`);
-        resolve();
+        const errMessage = `Failed to read source code file: ${err.message}`;
+        readSpinner.fail(errMessage);
+        reject(new Error(errMessage));
         return;
       }
 
       if (webtask && webtask.code === code) {
-        readSpinner.succeed('No update to code necessary');
+        readSpinner.succeed('Webtask code was unchanged');
         resolve();
         return;
       }
@@ -71,8 +73,9 @@ export const uploadWebtask = (source, config) => {
             resolve();
           })
           .catch(err => {
-            uploadSpinner.fail(`Error ocurred while updating webtask: ${err.message}`);
-            resolve();
+            const errMessage = `Error ocurred while updating webtask: ${err.message}`;
+            uploadSpinner.fail(errMessage);
+            reject(new Error(errMessage));
           });
 
       } else {
@@ -86,8 +89,9 @@ export const uploadWebtask = (source, config) => {
             resolve();
           })
           .catch(err => {
-            uploadSpinner.fail(`Error ocurred while creating webtask: ${err.message}`);
-            resolve();
+            const errMessage = `Error ocurred while creating webtask: ${err.message}`;
+            uploadSpinner.fail(errMessage);
+            reject(new Error(errMessage));
           });
       }
     });

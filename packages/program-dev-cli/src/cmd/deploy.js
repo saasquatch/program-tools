@@ -61,9 +61,19 @@ const deploy = async (argv) => {
     }
   }
 
-  await uploadWebtask(filePair.source, config);
-  log();
-  uploadSchema(filePair.schema, config);
+  uploadWebtask(filePair.source, config)
+    .then(() => {
+      log();
+      uploadSchema(filePair.schema, config)
+        .catch(err => {
+          log();
+          error(err.message);
+        });
+    })
+    .catch(err => {
+      log();
+      error(err.message);
+    });
 };
 
 export const handler = deploy;
