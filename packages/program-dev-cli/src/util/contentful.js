@@ -2,7 +2,7 @@ import inquirer from 'inquirer';
 import ora from 'ora';
 import diff from 'deep-diff';
 import { createClient } from 'contentful-management';
-import { readFile, readFileSync } from 'fs';
+import { readFileSync } from 'fs';
 
 import { hugeWarningConfirm } from '../util/actions';
 
