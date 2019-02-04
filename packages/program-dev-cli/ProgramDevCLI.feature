@@ -4,6 +4,7 @@ Feature: SaaSquatch Program Development CLI
     the process of uploading code/schemas to Webtask and Contentful.
 
     @approved
+    @implemented
     Scenario: Sensitive information will be loaded through environment variables
         Given I have installed the CLI
         When the CLI loads and begins executing
@@ -11,6 +12,7 @@ Feature: SaaSquatch Program Development CLI
         And the environment variables will store the sensitive information
 
     @review
+    @implemented
     Scenario: Users can log in via the CLI
         Given I have just installed the CLI and want to log in
         And I have accounts on Contentful and Webtask with the proper access rights
@@ -20,12 +22,14 @@ Feature: SaaSquatch Program Development CLI
         And the CLI will store the tokens in a configuration file in my home directory
 
     @review
+    @implemented
     Scenario: Users can log out
         Given I have installed the CLI and logged in
         When I use the command `logout`
         Then my tokens will be deleted from the configuration file
 
     @review
+    @implemented
     Scenario: Users can select whether to use the staging or production environment
         Given I have installed the CLI and logged in with the `login` command
         When I use the command `space`
@@ -35,6 +39,7 @@ Feature: SaaSquatch Program Development CLI
         Then the option I selected will be stored in the configuration file
 
     @review
+    @implemented
     Scenario: The environment must be selected before making a deployment
         Given I have installed the CLI and logged in
         And I have not yet configured the environment
@@ -43,13 +48,15 @@ Feature: SaaSquatch Program Development CLI
         And I will be asked to set the environment before continuing
 
     @review
-    Scenario: The CLI will issue a clear warning when deploying to the production environment
+    @implemented
+    Scenario: The CLI will issue a clear warning when deploying to production 
         Given I have installed the CLI and logged in
         And I have set the space to 'Product (LIVE)'
         When I use the command `deploy`
-        Then the CLI will print a warning on the screen and confirm that I want to continue
+        Then the CLI will print a warning on the screen & confirm that I want to continue
 
     @review
+    @implemented
     Scenario: The user must be logged in to make a deployment
         Given I have installed the CLI
         And I am not logged in
@@ -58,6 +65,7 @@ Feature: SaaSquatch Program Development CLI
         And the CLI will prompt me to log in
 
     @review
+    @implemented
     Scenario Outline: The CLI will automatically determine which files to upload
         Given I have installed the CLI and logged in
         And I have set the environment
@@ -71,6 +79,7 @@ Feature: SaaSquatch Program Development CLI
             | VIPprogram     | VIPProgram_schema.json     |
 
     @review
+    @implemented
     Scenario: The CLI will not run if it cannot determine the other file to upload
         Given I have installed the CLI and logged in
         And I have set the environment
@@ -80,6 +89,7 @@ Feature: SaaSquatch Program Development CLI
         And the CLI will prompt the user to name their files correctly
 
     @review
+    @implemented
     Scenario: The `deploy` command must be passed the Webtask file, not the schema file
         Given I have installed the CLI and logged in
         And I have set the environment
@@ -89,6 +99,7 @@ Feature: SaaSquatch Program Development CLI
         And the CLI will prompt the user to upload the .js file instead
 
     @review
+    @implemented
     Scenario: The `deploy` command will determine the Contentful entry ID automatically
         Given I have installed the CLI and logged in
         And I have set the environment
@@ -101,6 +112,7 @@ Feature: SaaSquatch Program Development CLI
         Then the CLI will prompt the user to enter the entry ID manually
 
     @review
+    @implemented
     Scenario Outline: The `deploy` command will choose the name of the Webtask automatically
         Given I have installed the CLI and logged in
         And I have set the environment to <environment>
@@ -116,6 +128,15 @@ Feature: SaaSquatch Program Development CLI
             | VIPProgram     | Product (LIVE) | VIPProgram             |
 
     @review
+    Scenario: The `deploy` command will determine the required NPM modules automatically
+        Given I have installed the CLI and logged in
+        And I have set the environment
+        When I use the command `deploy`
+        Then the CLI will scan the Webtask file for `require` statements
+        And the CLI will automatically update the NPM modules in webtask according to what it finds
+
+    @review
+    @implemented
     Scenario: The `deploy` command will only upload if the files have changed
         Given I have installed the CLI and logged in
         And I have set the environment
