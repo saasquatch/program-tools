@@ -94,3 +94,13 @@ export const uploadWebtask = async (source, config) => {
       });
   }
 };
+
+export const getLogStream = (config) => {
+  const profile = sandbox.init({
+    url: WEBTASK_URL,
+    container: CONTAINER,
+    token: config.webtaskToken
+  });
+
+  return profile.createLogStream();
+};
