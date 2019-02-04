@@ -14,21 +14,21 @@ program-dev-cli <command> [args...]
 ```
 
 ### Commands
-#### login
+#### `login`
 Login to Contentful and Webtask.
 
-#### logout
+#### `logout`
 Delete stored Contentful/Webtask tokens
 
-#### space
+#### `space`
 Set the Contentful space. This will also affect the naming of the Webtasks (staging vs production)
 Pass 'test' or 'prod' as an argument to bypass the selection dialog
 
-#### deploy
+#### `deploy`
 Deploy a program. Pass the Webtask Javascript file as the argument
 Example: `program-dev-cli deploy myProgram.js`
 
-#### logs
+#### `logs`
 Stream the Webtask logs to the console
 
 ## TODO
