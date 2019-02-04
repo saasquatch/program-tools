@@ -144,3 +144,10 @@ Feature: SaaSquatch Program Development CLI
         And I have made changes to <files>
         When I use the command `deploy programName.js`
         Then the CLI will only upload <files>
+
+    @review
+    @implemented
+    Scenario: I can stream the Webtask logs to the console
+        Given I have installed the CLI and logged in
+        When I use the command `logs`
+        Then the Webtask log stream will be outputted on the console
