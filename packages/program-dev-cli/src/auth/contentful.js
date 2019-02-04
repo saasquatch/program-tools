@@ -19,7 +19,7 @@ export const login = async () => {
     log();
     error('Contentful client ID and secret were not loaded from env vars!');
     error('Aborting login');
-    return null;
+    return undefined;
   }
 
   const confirmed = await inquirer.prompt([{
@@ -31,7 +31,7 @@ export const login = async () => {
 
   if (!confirmed.ready) {
     log('Log in aborted by the user.');
-    return null;
+    return undefined;
   }
 
   await opn(AUTH_URL, {

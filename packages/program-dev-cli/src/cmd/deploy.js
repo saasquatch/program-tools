@@ -5,7 +5,7 @@ import { getContext } from '../util/context';
 import { hugeWarningConfirm } from '../util/actions';
 import { uploadSchema } from '../util/contentful';
 import { uploadWebtask } from '../util/webtask';
-import { findFilePair } from '../util/fio';
+import { findFilePair, fileExists } from '../util/fio';
 
 export const command = 'deploy';
 export const desc = 'Deploy a program to Webtask/Contentful';
@@ -22,6 +22,9 @@ export const desc = 'Deploy a program to Webtask/Contentful';
 const preflightCheck = (args, config) => {
   if (args.length !== 1) {
     return 'Incorrect number of arguments provided';
+  }
+  if (!fileExists(args[0])) {
+    return 'File provided does not exist';
   }
   if (!config) {
     return 'You are not logged in.';

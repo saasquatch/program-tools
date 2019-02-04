@@ -36,3 +36,13 @@ export const findFilePair = async (filePath) => {
     schema: complimentFilePath
   };
 };
+
+export const fileExists = (filePath) => {
+  try {
+    fs.accessSync(filePath, fs.constants.F_OK | fs.constants.R_OK);
+  } catch (err) {
+    return false;
+  }
+
+  return true;
+};
