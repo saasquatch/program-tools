@@ -46,14 +46,36 @@ const space = async (argv) => {
     }
   ];
 
-  const answer = await inquirer.prompt([{
-    type: 'list',
-    name: 'space',
-    message: 'Which space would you like to use?',
-    choices: spaceChoices
-  }]);
+  const args = argv._;
+  let choice;
 
-  await updateConfig('space', answer.space);
+  if (args.length === 1) {
+    switch (args[0]) {
+      case 'prod':
+        choice = spaceChoices[0].value;
+        break;
+      case 'test':
+        choice = spaceChoices[1].value;
+        break;
+      default:
+        choice = undefined;
+    }
+  }
+
+  if (choice === undefined) {
+    const answer = await inquirer.prompt([{
+      type: 'list',
+      name: 'space',
+      message: 'Which space would you like to use?',
+      choices: spaceChoices
+    }]);
+
+    choice = answer.space;
+  }
+
+  await updateConfig('space', choice);
+  log();
+  log(`Environment sucessfully set to '${choice.name}'`);
 };
 
 export const handler = space;

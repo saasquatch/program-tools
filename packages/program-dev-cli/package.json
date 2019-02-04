@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "eslint \"src/**/*.js\"",
+    "lint": "eslint \"src/**/*.js\"",
     "prepush": "npm run format",
     "deploy": "np",
     "build": "babel src --out-dir dist"
