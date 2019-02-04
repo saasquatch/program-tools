@@ -95,6 +95,10 @@ export const uploadWebtask = async (source, config) => {
   }
 };
 
+/**
+ * Returns the Webtask log stream
+ * @param {Object} config The program config
+ */
 export const getLogStream = (config) => {
   const profile = sandbox.init({
     url: WEBTASK_URL,
