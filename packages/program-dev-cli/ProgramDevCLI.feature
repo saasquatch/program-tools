@@ -49,7 +49,7 @@ Feature: SaaSquatch Program Development CLI
 
     @review
     @implemented
-    Scenario: The CLI will issue a clear warning when deploying to production 
+    Scenario: The CLI will issue a clear warning when deploying to production
         Given I have installed the CLI and logged in
         And I have set the space to 'Product (LIVE)'
         When I use the command `deploy`
