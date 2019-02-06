@@ -5,12 +5,12 @@ import gherkin from 'gherkin';
  * @param {String} path The path to the feature file
  * @return {Stream} The stream of data from the Gherkin parser
  */
-export const parse = (path) => {
+export const parse = (paths) => {
   const options = {
     includeSource: false,
     includeGherkinDocument: true,
     includePickles: false
   };
 
-  return gherkin.fromPaths([path], options);
+  return gherkin.fromPaths(paths, options);
 };

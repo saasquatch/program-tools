@@ -2,13 +2,27 @@ import moment from 'moment';
 
 import { parse } from '../util/parser';
 import { version } from '../../package.json';
+import { isDir, gherkins } from '../util/fio';
 
 export const command = 'json';
 export const desc = 'Parse the provided file or directory into JSON';
 
-export const handler = () => {
-  const file = 'test/ProgramDevCLI.feature';
-  const stream = parse(file);
+export const handler = (argv) => {
+  argv._.shift();
+
+  const args = argv._;
+
+  if (args.length !== 1) {
+    console.log('Wrong number of arguments.');
+    console.log('Pass a .feature file or directory.');
+    return;
+  }
+
+  const files = isDir(args[0])
+    ? gherkins(args[0])
+    : [args[0]];
+
+  const stream = parse(files);
 
   let json = {
     features: [],
@@ -38,12 +52,13 @@ export const handler = () => {
   };
 
   stream.on('data', chunk => {
-    // console.log(chunk.gherkinDocument.feature);
+    // console.log(Object.keys(chunk.gherkinDocument.uri));
+    // console.log(chunk.gherkinDocument.uri);
 
     const feature = chunk.gherkinDocument.feature;
 
     let tmp = {
-      relativeFolder: file,
+      relativeFolder: chunk.gherkinDocument.uri,
       feature: {
         name: feature.name,
         description: feature.description,
