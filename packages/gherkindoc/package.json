@@ -10,12 +10,19 @@
     "deploy": "np",
     "build": "babel src --out-dir dist"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
+    }
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.5",
     "@babel/preset-env": "^7.1.5",
+    "husky": "^1.3.1",
     "np": "^2.18.3"
   },
   "dependencies": {
