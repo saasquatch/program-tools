@@ -1,0 +1,26 @@
+{
+  "name": "gherkindoc",
+  "version": "1.0.0",
+  "description": "Compile Gherkin feature files to Excel/JSON/HTML",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint \"src/**/*.js\"",
+    "prepush": "npm run format",
+    "deploy": "np",
+    "build": "babel src --out-dir dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
+    "np": "^2.18.3"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "gherkin": "^6.0.15",
+    "moment": "^2.24.0"
+  }
+}

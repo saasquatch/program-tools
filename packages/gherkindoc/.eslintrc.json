@@ -1,0 +1,60 @@
+{
+  "extends": "eslint:recommended",
+  "rules": {
+    "indent": [
+      "warn",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "quotes": [ "warn", "single", {
+      "allowTemplateLiterals": true
+    }],
+    "semi": [
+      "warn",
+      "always"
+    ],
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false
+      }
+    ],
+    "no-trailing-spaces": [
+      "warn",
+      {
+        "skipBlankLines": false,
+        "ignoreComments": false
+      }
+    ],
+    "keyword-spacing": [
+      "warn",
+      {
+        "before": true,
+        "after": true
+      }
+    ],
+    "comma-dangle": [
+      "warn",
+      "never"
+    ],
+    "no-cond-assign": [
+      "warn",
+      "always"
+    ],
+    "prefer-template": 1,
+    "no-case-declarations": "off",
+    "no-console": "off"
+  },
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018
+  }
+}
