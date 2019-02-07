@@ -102,7 +102,7 @@ export const handler = async (argv) => {
     code = code.replace(/\r\n/g, '\n').trim();
     webtask.code = webtask.code.replace(/\r\n/g, '\n').trim();
 
-    const changes = jsdiff.diffChars(webtask.code, code);
+    const changes = jsdiff.diffLines(webtask.code, code);
     if (changes.length > 1) {
       webtaskSpinner.info('Changes to code detected:');
       log();
