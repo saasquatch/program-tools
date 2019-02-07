@@ -5,6 +5,7 @@ import { createClient } from 'contentful-management';
 import { readFileSync } from 'fs';
 
 import { hugeWarningConfirm } from '../util/actions';
+import { error } from '../util/log';
 
 /**
  * Uploads the provided schema to Contentful
@@ -117,5 +118,67 @@ export const uploadSchema = async (schema, config) => {
       const errMessage = `Failed to upload schema: ${err.message}`;
       uploadSpinner.fail(errMessage);
       return;
+    });
+};
+
+export const getSchema = async (schema, config) => {
+  const client = createClient({
+    accessToken: config.contentfulToken
+  });
+
+  const env = await client.getSpace(config.space.id)
+    .then(async space => {
+      return space.getEnvironment('master');
+    });
+
+  let data;
+  try {
+    data = readFileSync(schema, 'utf8');
+  } catch (err) {
+    error(`Failed to read schema file: ${err.message}`);
+    return null;
+  }
+
+  let newSchema;
+  try {
+    newSchema = JSON.parse(data);
+  } catch (err) {
+    error(`Failed to parse provided schema file: ${err.message}`);
+    return null;
+  }
+
+  let entry = await env.getEntries({ 'content_type': 'programTemplate' })
+    .then(entries => {
+      for (let prop in entries.items) {
+        if (entries.items.hasOwnProperty(prop)) {
+          let tmpSchema = entries.items[prop].fields.schema['en-US'];
+          if (tmpSchema.name === newSchema.name
+            && tmpSchema.summary === newSchema.summary
+            && tmpSchema.longDescription === newSchema.longDescription) {
+            return tmpSchema;
+          }
+        }
+      }
+    })
+    .catch(() => {
+      return null;
+    });
+
+  if (!entry) {
+    const answer = await inquirer.prompt([{
+      type: 'input',
+      name: 'entryId',
+      message: 'Please paste the entry ID:'
+    }]);
+
+    entry = answer.entryId;
+  } else {
+    return entry;
+  }
+
+  return await env.getEntry(entry)
+    .catch(err => {
+      error(`Failed to upload schema: ${err.message}`);
+      return null;
     });
 };

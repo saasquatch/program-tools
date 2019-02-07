@@ -8,7 +8,7 @@ require('dotenv').config();
 yargs
   .usage('\nUsage: pdcli <cmd> [args]')
   .commandDir('cmd')
-  .strict()
+  // .strict()
   .scriptName('pdcli')
   .recommendCommands()
   .option('v', {

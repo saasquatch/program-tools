@@ -3,6 +3,8 @@ import path from 'path';
 import ora from 'ora';
 import { readFileSync } from 'fs';
 
+import { error } from '../util/log';
+
 const CONTAINER = 'saasquatch';
 const WEBTASK_URL = 'https://saasquatch.auth0-extend.com';
 
@@ -93,6 +95,43 @@ export const uploadWebtask = async (source, config) => {
         uploadSpinner.fail(errMessage);
       });
   }
+};
+
+/**
+ * Gets a webtask
+ *
+ * @param {String} source Path to source code
+ * @param {Object} config cli config
+ *
+ * @return {Object} The webtask
+ */
+export const getWebtask = async (source, config) => {
+  const prefix = config.space.live
+    ? ''
+    : 'staging-';
+
+  const webtaskName = `${prefix}${path.basename(source, '.js')}`;
+
+  const profile = sandbox.init({
+    url: WEBTASK_URL,
+    container: CONTAINER,
+    token: config.webtaskToken
+  });
+
+  const webtask = await profile.getWebtask({
+    name: webtaskName,
+    fetch_code: true
+  })
+    .catch((err) => {
+      if (err.statusCode === 404) {
+        return undefined;
+      } else {
+        error(`Failed to connect to webtask: ${err.message}\n\nCode:${err.statusCode}`);
+        return null;
+      }
+    });
+
+  return webtask;
 };
 
 /**
