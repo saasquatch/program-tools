@@ -40,23 +40,6 @@ Feature: SaaSquatch Program Development CLI
 
     @review
     @implemented
-    Scenario: The environment must be selected before making a deployment
-        Given I have installed the CLI and logged in
-        And I have not yet configured the environment
-        When I use the command `deploy`
-        Then the CLI will not deploy the program
-        And I will be asked to set the environment before continuing
-
-    @review
-    @implemented
-    Scenario: The CLI will issue a clear warning when deploying to production
-        Given I have installed the CLI and logged in
-        And I have set the space to 'Product (LIVE)'
-        When I use the command `deploy`
-        Then the CLI will print a warning on the screen & confirm that I want to continue
-
-    @review
-    @implemented
     Scenario: The user must be logged in to make a deployment
         Given I have installed the CLI
         And I am not logged in
@@ -64,12 +47,33 @@ Feature: SaaSquatch Program Development CLI
         Then the CLI will not deploy
         And the CLI will prompt me to log in
 
+
+
+    Background:
+        Given I have installed the CLI
+        And I have logged in
+        And the user I have logged in as has sufficient read/write access rights
+
+
+    @review
+    @implemented
+    Scenario: The environment must be selected before making a deployment
+        Given I have not yet configured the environment
+        When I use the command `deploy`
+        Then the CLI will not deploy the program
+        And I will be asked to set the environment before continuing
+
+    @review
+    @implemented
+    Scenario: The CLI will issue a clear warning when deploying to production
+        Given I have set the space to 'Product (LIVE)'
+        When I use the command `deploy`
+        Then the CLI will print a warning on the screen & confirm that I want to continue
+
     @review
     @implemented
     Scenario Outline: The CLI will automatically determine which files to upload
-        Given I have installed the CLI and logged in
-        And I have set the environment
-        And I have two files, <programName>.js and <programName>_schema.json
+        Given I have two files, <programName>.js and <programName>_schema.json
         When I use the command `deploy <programName>.js`
         Then the CLI will determine the name of the schema file to be <file>
 
@@ -81,9 +85,7 @@ Feature: SaaSquatch Program Development CLI
     @review
     @implemented
     Scenario: The CLI will not run if it cannot determine the other file to upload
-        Given I have installed the CLI and logged in
-        And I have set the environment
-        And I have two files, <programName>.js and <programName>.json
+        Given I have two files, <programName>.js and <programName>.json
         When I use the command `deploy <programName>.js`
         Then the CLI will not be able to determine the schema file to upload
         And the CLI will prompt the user to name their files correctly
@@ -91,9 +93,7 @@ Feature: SaaSquatch Program Development CLI
     @review
     @implemented
     Scenario: The `deploy` command must be passed the Webtask file, not the schema file
-        Given I have installed the CLI and logged in
-        And I have set the environment
-        And I have two files, <programName>.js and <programName>_schema.json
+        Given I have two files, <programName>.js and <programName>_schema.json
         When I use the command `deploy <programName>_schema.json`
         Then the CLI will not be able to make the deployment
         And the CLI will prompt the user to upload the .js file instead
@@ -101,9 +101,7 @@ Feature: SaaSquatch Program Development CLI
     @review
     @implemented
     Scenario: The `deploy` command will determine the Contentful entry ID automatically
-        Given I have installed the CLI and logged in
-        And I have set the environment
-        And I have two files, programName.js and programName_schema.json
+        Given I have two files, programName.js and programName_schema.json
         When I use the command `deploy programName.js`
         Then the CLI will obtain a list of entries from Contentful
         And if the CLI finds an entry with matching name, summary, and description
@@ -114,8 +112,7 @@ Feature: SaaSquatch Program Development CLI
     @review
     @implemented
     Scenario Outline: The `deploy` command will choose the name of the Webtask automatically
-        Given I have installed the CLI and logged in
-        And I have set the environment to <environment>
+        Given I have set the environment to <environment>
         And I have two files, <programName>.js and <programName>_schema.json
         When I use the command `deploy <programName>.js`
         Then the CLI will choose the name of the Webtask as <name>
@@ -129,8 +126,7 @@ Feature: SaaSquatch Program Development CLI
 
     @review
     Scenario: The `deploy` command will determine the required NPM modules automatically
-        Given I have installed the CLI and logged in
-        And I have set the environment
+        Given I have set the environment
         When I use the command `deploy`
         Then the CLI will scan the Webtask file for `require` statements
         And the CLI will automatically update the NPM modules in webtask according to what it finds
@@ -138,9 +134,7 @@ Feature: SaaSquatch Program Development CLI
     @review
     @implemented
     Scenario: The `deploy` command will only upload if the files have changed
-        Given I have installed the CLI and logged in
-        And I have set the environment
-        And I have two files, programName.js and programName_schema.json
+        Given I have two files, programName.js and programName_schema.json
         And I have made changes to <files>
         When I use the command `deploy programName.js`
         Then the CLI will only upload <files>
@@ -148,14 +142,12 @@ Feature: SaaSquatch Program Development CLI
     @review
     @implemented
     Scenario: I can stream the Webtask logs to the console
-        Given I have installed the CLI and logged in
         When I use the command `logs`
         Then the Webtask log stream will be outputted on the console
 
     @review
     @implemented
     Scenario: I can filter the log output with a regex pattern
-        Given I have installed the CLI and logged in
         When I use the command `logs --pattern="<pattern>" --flags="<flags>"`
         Then the log output will be filtered with the <pattern> regex pattern
         And the regex pattern will use regex flags <flags>
@@ -163,7 +155,6 @@ Feature: SaaSquatch Program Development CLI
     @review
     @implemented
     Scenario Outline: I can take a diff between the local and remote programs
-        Given I have installed the CLI and a logged in
         When I use the command `diff programName.js <flags>`
         Then the program will show me the differences between the local and remote <file> for the <env> environment
 
