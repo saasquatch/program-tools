@@ -154,6 +154,14 @@ Feature: SaaSquatch Program Development CLI
 
     @review
     @implemented
+    Scenario: I can filter the log output with a regex pattern
+        Given I have installed the CLI and logged in
+        When I use the command `logs --pattern="<pattern>" --flags="<flags>"`
+        Then the log output will be filtered with the <pattern> regex pattern
+        And the regex pattern will use regex flags <flags>
+
+    @review
+    @implemented
     Scenario Outline: I can take a diff between the local and remote programs
         Given I have installed the CLI and a logged in
         When I use the command `diff programName.js <flags>`
