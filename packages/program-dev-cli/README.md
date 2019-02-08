@@ -42,6 +42,12 @@ Example: `pdcli deploy myProgram.js`
 #### `logs`
 Stream the Webtask logs to the console
 
+Flags
+- `--pattern="<regex pattern>"` Only print the log messages that match the provided regex
+- `--flags="<regex flags>"` Flags for the previously provided regex expression
+
+Example: `pdcli logs --pattern="(warn)|(error)" --flags="gmi"`
+
 ## TODO
 - [ ] Fix Webtask login (needs update to pink credit)
 - [ ] Maybe some code for automatically determining NPM dependencies and telling webtask to install those?

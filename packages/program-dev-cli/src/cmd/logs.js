@@ -11,14 +11,26 @@ export const desc = 'View the Webtask log stream';
 /**
  * Streams the Webtask logs to the console
  */
-const logs = () => {
+const logs = (argv) => {
   const context = getContext();
-
   const stream = getLogStream(context.config);
+
+  let pattern = undefined;
+
+  if (argv.pattern) {
+    pattern = new RegExp(argv.pattern, argv.flags);
+    log();
+    log(`Filtering logs with pattern '${pattern}'`);
+    log();
+  }
 
   log(`${chalk.green(`[${moment().format('LTS')}] Successfully connected to log stream`)}`);
 
   stream.on('data', (chunk) => {
+    if (pattern && !pattern.test(chunk.msg)) {
+      return;
+    }
+
     const time = moment(chunk.time);
     log(`[${time.format('LTS')}] ${chunk.msg}`);
   });
