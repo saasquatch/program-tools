@@ -51,7 +51,7 @@ const space = async (argv) => {
 
   if (args.length === 1) {
     switch (args[0]) {
-      case 'prod':
+      case 'live':
         choice = spaceChoices[0].value;
         break;
       case 'test':

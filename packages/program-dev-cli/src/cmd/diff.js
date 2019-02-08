@@ -169,7 +169,7 @@ export const handler = async (argv) => {
         }
 
         log();
-      })
+      });
     } else {
       contentfulSpinner.succeed('No changes to schema');
     }

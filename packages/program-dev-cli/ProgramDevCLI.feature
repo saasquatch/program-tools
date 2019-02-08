@@ -151,3 +151,18 @@ Feature: SaaSquatch Program Development CLI
         Given I have installed the CLI and logged in
         When I use the command `logs`
         Then the Webtask log stream will be outputted on the console
+
+    @review
+    @implemented
+    Scenario Outline: I can take a diff between the local and remote programs
+        Given I have installed the CLI and a logged in
+        When I use the command `diff programName.js <flags>`
+        Then the program will show me the differences between the local and remote <file> for the <env> environment
+
+        Examples:
+            | flags                    | file            | env                  |
+            |                          | code and schema | from config file     |
+            | --code-only              | code            | from config file     |
+            | --schema-only            | schema          | from config file     |
+            | --production             | code and schema | production           |
+            | --production --code-only | code            | production           |

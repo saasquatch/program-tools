@@ -10,7 +10,7 @@ Before using you must set up your .env file. See the `.env.example` file to get 
 
 Basic usage:
 ```
-program-dev-cli <command> [args...]
+pdcli <command> [args...]
 ```
 
 ### Commands
@@ -22,11 +22,22 @@ Delete stored Contentful/Webtask tokens
 
 #### `space`
 Set the Contentful space. This will also affect the naming of the Webtasks (staging vs production)
-Pass 'test' or 'prod' as an argument to bypass the selection dialog
+Pass 'test' or 'live' as an argument to bypass the selection dialog
+
+Example: `pdcli space test`
+
+#### `diff`
+Take a diff between the local program and the remote program
+
+Flags:
+- `--code-only` Only show the code diff
+- `--schema-only` Only show the schema diff
+- `--production` Use the production Webtask/Contentful files for the diff instead. This will NOT make any changes to the production files
 
 #### `deploy`
 Deploy a program. Pass the Webtask Javascript file as the argument
-Example: `program-dev-cli deploy myProgram.js`
+
+Example: `pdcli deploy myProgram.js`
 
 #### `logs`
 Stream the Webtask logs to the console
