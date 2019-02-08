@@ -9,5 +9,6 @@ const spaceSchema = Joi.object().keys({
 export const settingsSchema = Joi.object().keys({
   contentfulToken: Joi.string().alphanum().length(64).required(),
   webtaskToken: Joi.string().required(),
-  space: spaceSchema
+  space: spaceSchema,
+  availableSpaces: Joi.array().items(spaceSchema)
 });

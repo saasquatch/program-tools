@@ -73,7 +73,14 @@ const space = async (argv) => {
     choice = answer.space;
   }
 
-  await updateConfig('space', choice);
+  let success = await updateConfig('space', choice);
+  if (!success) {
+    return;
+  }
+  success = await updateConfig('availableSpaces', spaceChoices.map(c => c.value));
+  if (!success) {
+    return;
+  }
   log();
   log(`Environment sucessfully set to '${choice.name}'`);
 };

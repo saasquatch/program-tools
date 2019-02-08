@@ -10,8 +10,6 @@ import { getSchema } from '../util/contentful';
 import { getWebtask } from '../util/webtask';
 import { findFilePair, fileExists } from '../util/fio';
 
-const LIVE_ID = process.env.PDCLI_SPACE_ID_LIVE || '';
-
 export const command = 'diff';
 export const desc = 'Take a diff between a local and remote program';
 
@@ -75,11 +73,7 @@ export const handler = async (argv) => {
     log('The diff operation will NOT modify anything on Contentful/Webtask');
     log();
 
-    config.space = {
-      name: 'Product (LIVE)',
-      id: LIVE_ID,
-      live: true
-    };
+    config.space = config.availableSpaces.find(s => s.live === true);
   }
 
   if (!argv.schemaOnly) {

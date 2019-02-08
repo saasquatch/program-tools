@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import { resolve } from 'path';
 import { homedir } from 'os';
-import { writeFile, readFileSync } from 'fs';
+import { writeFileSync, readFileSync } from 'fs';
 
 import { error } from './log';
 import { settingsSchema } from './schema';
@@ -42,9 +42,7 @@ export const write = async (data) => {
     return false;
   }
 
-  await writeFile(path, JSON.stringify(data), (err) => {
-    if (err) throw err;
-  });
+  writeFileSync(path, JSON.stringify(data));
   return true;
 };
 
@@ -83,6 +81,7 @@ export const load = () => {
   if (fileData) {
     return JSON.parse(fileData);
   } else {
+    error('No file data read');
     return null;
   }
 };
@@ -104,11 +103,6 @@ export const clear = async () => {
     webtaskToken: null
   };
 
-  await writeFile(path, JSON.stringify(data), (err) => {
-    if (err) {
-      return false;
-    }
-  });
-
+  writeFileSync(path, JSON.stringify(data));
   return true;
 };
