@@ -38,6 +38,11 @@ const logs = (argv) => {
   stream.on('end', () => {
     log('log stream ended');
   });
+
+  stream.on('error', (err) => {
+    log(chalk.red('An error ocurred while streaming logs:\n\n'));
+    log(err);
+  });
 };
 
 export const handler = logs;

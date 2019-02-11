@@ -83,19 +83,25 @@ const deploy = async (argv) => {
     }
   }
 
-  uploadWebtask(filePair.source, config)
-    .then(() => {
+  if (!argv.schemaOnly) {
+    await uploadWebtask(filePair.source, config)
+      .catch(err => {
+        log();
+        error(err.message);
+      });
+
+    if (!argv.codeOnly) {
       log();
-      uploadSchema(filePair.schema, config)
-        .catch(err => {
-          log();
-          error(err.message);
-        });
-    })
-    .catch(err => {
-      log();
-      error(err.message);
-    });
+    }
+  }
+
+  if (!argv.codeOnly) {
+    await uploadSchema(filePair.schema, config)
+      .catch(err => {
+        log();
+        error(err.message);
+      });
+  }
 };
 
 export const handler = deploy;
