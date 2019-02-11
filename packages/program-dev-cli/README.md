@@ -37,6 +37,10 @@ Flags:
 #### `deploy`
 Deploy a program. Pass the Webtask Javascript file as the argument
 
+Flags
+- `--code-only` Only deploy the code
+- `--schema-only` Only deploy the schema
+
 Example: `pdcli deploy myProgram.js`
 
 #### `logs`

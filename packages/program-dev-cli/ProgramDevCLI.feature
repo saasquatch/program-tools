@@ -139,6 +139,19 @@ Feature: SaaSquatch Program Development CLI
         When I use the command `deploy programName.js`
         Then the CLI will only upload <files>
 
+    @review 
+    @implemented
+    Scenario Outline: I can choose do deploy only the code or only the schema
+        When I use the `deploy` command with flag <flag>
+        Then the program will only deploy the <file> files
+
+        Examples:
+            | flag          | file          |
+            |               | code & schema |
+            | --code-only   | code          |
+            | --schema-only | schema        |
+
+
     @review
     @implemented
     Scenario: I can stream the Webtask logs to the console
