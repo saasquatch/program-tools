@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import moment from 'moment';
 
-import { log } from '../util/log';
+import { log, error } from '../util/log';
 import { getContext } from '../util/context';
 import { getLogStream } from '../util/webtask';
 
@@ -13,6 +13,13 @@ export const desc = 'View the Webtask log stream';
  */
 const logs = (argv) => {
   const context = getContext();
+
+  if (!context.config) {
+    log();
+    error('You are not logged in.');
+    return;
+  }
+
   const stream = getLogStream(context.config);
 
   let pattern = undefined;

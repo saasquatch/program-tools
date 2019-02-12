@@ -2,6 +2,7 @@ import Joi from 'joi';
 import { resolve } from 'path';
 import { homedir } from 'os';
 import { writeFileSync, readFileSync } from 'fs';
+import { fileExists } from './fio.js';
 
 import { error } from './log';
 import { settingsSchema } from './schema';
@@ -74,6 +75,10 @@ export const load = () => {
   const path = resolveConfigPath();
   if (!path) {
     error('Failed to read config file.');
+    return null;
+  }
+
+  if (!fileExists(path)) {
     return null;
   }
 
