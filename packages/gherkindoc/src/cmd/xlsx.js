@@ -8,6 +8,7 @@ export const command = 'xlsx';
 export const desc = 'Parse the provided file or directory into XLSX';
 
 const NUM_CONTENT_ROWS = 30;
+const COLUMN_WIDTH_PADDING = 1.5;
 const styles = {
   bold: {
     name: 'Calibri',
@@ -77,6 +78,8 @@ export const handler = async (argv) => {
   json.features.map(feature => feature.feature).forEach(feature => {
     const name = feature.name;
     const ws = wb.addWorksheet(name);
+    const maxWidths = {};
+
     ws.state = 'show';
     ws.views = [{
       state: 'frozen',
@@ -93,7 +96,9 @@ export const handler = async (argv) => {
     }
 
     for (let i = 0; i < NUM_CONTENT_ROWS; i++) {
-      wscolumns.push({header: '', key: `content${i}`, width: 9});
+      const key = `content${i}`;
+      wscolumns.push({header: '', key, width: 9});
+      maxWidths[key] = 9;
     }
 
     ws.columns = wscolumns;
@@ -124,7 +129,7 @@ export const handler = async (argv) => {
       ws.addRow();
 
       scenario.steps.forEach(step => {
-        genStepContent(ws, step, testers);
+        genStepContent(ws, step, testers, maxWidths);
       });
 
       if (scenario.examples.length > 0) {
@@ -132,17 +137,21 @@ export const handler = async (argv) => {
       }
 
       scenario.examples.forEach(example => {
-        genExampleTable(ws, example, testers || 0);
+        genExampleTable(ws, example, testers || 0, maxWidths);
       });
 
       ws.addRow();
     });
+
+    for (let key in maxWidths) {
+      ws.getColumn(key).width = maxWidths[key] + COLUMN_WIDTH_PADDING;
+    }
   });
 
   await wb.xlsx.writeFile('output.xlsx');
 };
 
-const genStepContent = (ws, step, testers) => {
+const genStepContent = (ws, step, testers, maxWidths) => {
   step.stepComments.forEach(comment => {
     ws.addRow({content1: comment});
     ws.lastRow.getCell(3 + testers).font = styles.light;
@@ -153,7 +162,7 @@ const genStepContent = (ws, step, testers) => {
   ws.lastRow.getCell(3 + testers).alignment = styles.keywordAlignment;
 
   if (step.dataTable) {
-    genDataTable(ws, step.dataTable, testers || 0);
+    genDataTable(ws, step.dataTable, testers || 0, maxWidths);
   }
 
   step.afterLastStepComments.forEach(comment => {
@@ -162,13 +171,17 @@ const genStepContent = (ws, step, testers) => {
   });
 };
 
-const genExampleTable = (ws, example, testers) => {
+const genExampleTable = (ws, example, testers, maxWidths) => {
   ws.addRow({content0: 'Examples:'});
-  let headerRow = {};
-  let cellsToStyle = [];
+  const headerRow = {};
+  const cellsToStyle = [];
 
   for (let i = 0; i < example.header.length; i++) {
-    headerRow[`content${i+2}`] = example.header[i];
+    const key = `content${i+2}`;
+    headerRow[key] = example.header[i];
+    if (maxWidths[key] < example.header[i].toString().length) {
+      maxWidths[key] = example.header[i].toString().length;
+    }
     cellsToStyle.push(i + 4 + testers);
   }
 
@@ -181,11 +194,17 @@ const genExampleTable = (ws, example, testers) => {
   });
 
   example.data.forEach(row => {
-    let cellsToStyle = [];
-    let contentRow = {};
+    const cellsToStyle = [];
+    const contentRow = {};
 
     for (let i = 0; i < row.length; i++) {
-      contentRow[`content${i+2}`] = row[i];
+      const key = `content${i+2}`;
+      contentRow[key] = row[i];
+
+      if (maxWidths[key] < row[i].toString().length) {
+        maxWidths[key] = row[i].toString().length;
+      }
+
       cellsToStyle.push(i + 4 + testers);
     }
 
@@ -197,16 +216,22 @@ const genExampleTable = (ws, example, testers) => {
   });
 };
 
-const genDataTable = (ws, table, testers) => {
+const genDataTable = (ws, table, testers, maxWidths) => {
   if (table.length === 0) {
     return;
   }
 
-  let headerRow = {};
-  let cellsToStyle = [];
+  const headerRow = {};
+  const cellsToStyle = [];
 
   for (let i = 0; i < table[0].length; i++) {
-    headerRow[`content${i+2}`] = table[0][i];
+    const key = `content${i+2}`;
+    headerRow[key] = table[0][i];
+
+    if (maxWidths[key] < table[0][i].toString().length) {
+      maxWidths[key] = table[0][i].toString().length;
+    }
+
     cellsToStyle.push(i + 4 + testers);
   }
 
@@ -221,11 +246,17 @@ const genDataTable = (ws, table, testers) => {
   table.shift();
 
   table.forEach(row => {
-    let cellsToStyle = [];
-    let contentRow = {};
+    const cellsToStyle = [];
+    const contentRow = {};
 
     for (let i = 0; i < row.length; i++) {
-      contentRow[`content${i+2}`] = row[i];
+      const key = `content${i+2}`;
+      contentRow[key] = row[i];
+
+      if (maxWidths[key] < row[i].toString().length) {
+        maxWidths[key] = row[i].toString().length;
+      }
+
       cellsToStyle.push(i + 4 + testers);
     }
 
