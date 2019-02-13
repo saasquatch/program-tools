@@ -72,16 +72,20 @@ export const handler = async (argv) => {
   wb.created = new Date(json.configuration.generatedOnTimestamp);
   wb.modified = new Date(json.configuration.generatedOnTimestamp);
 
+  const testers = argv.testers || 0;
+
   json.features.map(feature => feature.feature).forEach(feature => {
     const name = feature.name;
     const ws = wb.addWorksheet(name);
     ws.state = 'show';
+    ws.views = [{
+      state: 'frozen',
+      ySplit: 1
+    }];
 
-    let wscolumns = [
+    const wscolumns = [
       {header: name, key: 'name', width: 9}
     ];
-
-    const testers = argv.testers || 0;
 
     for (let i = 0; i < testers; i++) {
       const text = `Tester ${i+1}`;
@@ -93,7 +97,7 @@ export const handler = async (argv) => {
     }
 
     ws.columns = wscolumns;
-    ws.getRow(1).font = styles.bold; // Set the top row to bold (rows are 1-indexed........)
+    ws.getRow(1).font = styles.bold; // Set the top row to bold (rows are 1-indexed...)
 
     if (feature.tags.length > 0) {
       ws.addRow({content0: 'Tags:', content1: feature.tags.join(', ')});
@@ -103,7 +107,7 @@ export const handler = async (argv) => {
     ws.addRow();
 
     if (feature.description) {
-      ws.addRow({content0: feature.description});
+      ws.addRow({content0: feature.description.replace(/\n +/g, '\n').trim()});
       ws.lastRow.height = (feature.description.split(/\r\n|\r|\n/).length - 1) * 11 + 15;
       ws.addRow();
     }
@@ -120,25 +124,8 @@ export const handler = async (argv) => {
       ws.addRow();
 
       scenario.steps.forEach(step => {
-        step.stepComments.forEach(comment => {
-          ws.addRow({content1: comment});
-          ws.lastRow.getCell(3 + testers).font = styles.light;
-        });
-
-        ws.addRow({content1: step.rawKeyword, content2: step.text});
-        ws.lastRow.getCell(3 + testers).font = styles.bold;
-        ws.lastRow.getCell(3 + testers).alignment = styles.keywordAlignment;
-
-        if (step.dataTable) {
-          genDataTable(ws, step.dataTable, testers || 0);
-        }
-
-        step.afterLastStepComments.forEach(comment => {
-          ws.addRow({content1: comment});
-          ws.lastRow.getCell(3 + testers).font = styles.light;
-        });
+        genStepContent(ws, step, testers);
       });
-
 
       if (scenario.examples.length > 0) {
         ws.addRow();
@@ -153,6 +140,26 @@ export const handler = async (argv) => {
   });
 
   await wb.xlsx.writeFile('output.xlsx');
+};
+
+const genStepContent = (ws, step, testers) => {
+  step.stepComments.forEach(comment => {
+    ws.addRow({content1: comment});
+    ws.lastRow.getCell(3 + testers).font = styles.light;
+  });
+
+  ws.addRow({content1: step.rawKeyword, content2: step.text});
+  ws.lastRow.getCell(3 + testers).font = styles.bold;
+  ws.lastRow.getCell(3 + testers).alignment = styles.keywordAlignment;
+
+  if (step.dataTable) {
+    genDataTable(ws, step.dataTable, testers || 0);
+  }
+
+  step.afterLastStepComments.forEach(comment => {
+    ws.addRow({content1: comment});
+    ws.lastRow.getCell(3 + testers).font = styles.light;
+  });
 };
 
 const genExampleTable = (ws, example, testers) => {
@@ -228,4 +235,4 @@ const genDataTable = (ws, table, testers) => {
       ws.lastRow.getCell(cellNum).border = styles.fullBorder;
     });
   });
-}
+};
