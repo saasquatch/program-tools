@@ -20,5 +20,5 @@ export const handler = async (argv) => {
     : [args[0]];
 
   const json = await generateJson(files);
-  console.log(json);
+  console.log(JSON.stringify(json, undefined, 2));
 };

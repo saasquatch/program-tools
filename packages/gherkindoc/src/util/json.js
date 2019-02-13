@@ -60,17 +60,36 @@ export const generate = async (files) => {
       feature.children.forEach(child => {
         json.summary.scenarios.total += 1;
         json.summary.scenarios.inconclusive += 1;
-        tmp.feature.featureElements.push({
-          examples: child.scenario.examples || [],
-          name: child.scenario.name,
-          description: child.scenario.description || '',
-          steps: child.scenario.steps.map(step => ({
+        const examples = child.scenario.examples
+          ? child.scenario.examples.map(example => ({
+            header: example.tableHeader.cells.map(cell => cell.value),
+            data: example.tableBody.map(e => e.cells.map(cell => cell.value))
+          }))
+          : [];
+
+        const steps = child.scenario.steps.map(step => {
+          const stepObj = {
             keyword: step.keyword.trim(),
             rawKeyword: step.keyword,
             text: step.text,
-            comments: [],
+            stepComments: [],
             afterLastStepComments: []
-          })),
+          };
+
+          if (step.dataTable) {
+            stepObj.dataTable = step.dataTable.rows.map(row => {
+              return row.cells.map(cell => cell.value);
+            });
+          }
+
+          return stepObj;
+        });
+
+        tmp.feature.featureElements.push({
+          steps,
+          examples,
+          name: child.scenario.name,
+          description: child.scenario.description || '',
           tags: child.scenario.tags.map(tag => tag.name),
           result: {
             wasExecuted: false,

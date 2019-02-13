@@ -5,7 +5,6 @@ import { version } from '../package.json';
 yargs
   .usage('\nUsage: gherkindoc <cmd> [args]')
   .commandDir('cmd')
-  .strict()
   .scriptName('gherkindoc')
   .recommendCommands()
   .option('v', {

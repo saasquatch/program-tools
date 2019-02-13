@@ -1,1064 +1,880 @@
 
 {
-    "features": [
-        {
-            "relativeFolder": "test/ProgramDevCLI.feature",
-            "feature": {
-                "name": "SaaSquatch Program Development CLI",
-                "description": "    The SaaSquatch program dev CLI aims to improve the workflow of a program developer by automating\n    the process of uploading code/schemas to Webtask and Contentful.",
-                "featureElements": [
-                    {
-                        "examples": [],
-                        "name": "Sensitive information will be loaded through environment variables",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have installed the CLI",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "the CLI loads and begins executing",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "if a .env file is found in the current working directory it will be loaded",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "the environment variables will store the sensitive information",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@approved",
-                            "@implemented"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    },
-                    {
-                        "examples": [],
-                        "name": "Users can log in via the CLI",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have just installed the CLI and want to log in",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have accounts on Contentful and Webtask with the proper access rights",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I use the command `login`",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "I will be prompted and the appropriate web pages will open in the browser",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I will be prompted to login and paste the access tokens in the CLI",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "the CLI will store the tokens in a configuration file in my home directory",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@review",
-                            "@implemented"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    },
-                    {
-                        "examples": [],
-                        "name": "Users can log out",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have installed the CLI and logged in",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I use the command `logout`",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "my tokens will be deleted from the configuration file",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@review",
-                            "@implemented"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    },
-                    {
-                        "examples": [],
-                        "name": "Users can select whether to use the staging or production environment",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have installed the CLI and logged in with the `login` command",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I use the command `space`",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "I will be prompted to select the Contentful space I want to use",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "the options will be either 'Product (TEST)' or 'Product (LIVE)'",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I select one of the two options",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "the option I selected will be stored in the configuration file",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@review",
-                            "@implemented"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    },
-                    {
-                        "examples": [],
-                        "name": "The environment must be selected before making a deployment",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have installed the CLI and logged in",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have not yet configured the environment",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I use the command `deploy`",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "the CLI will not deploy the program",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I will be asked to set the environment before continuing",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@review",
-                            "@implemented"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    },
-                    {
-                        "examples": [],
-                        "name": "The CLI will issue a clear warning when deploying to production",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have installed the CLI and logged in",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have set the space to 'Product (LIVE)'",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I use the command `deploy`",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "the CLI will print a warning on the screen & confirm that I want to continue",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@review",
-                            "@implemented"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    },
-                    {
-                        "examples": [],
-                        "name": "The user must be logged in to make a deployment",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have installed the CLI",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I am not logged in",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I use the command `deploy`",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "the CLI will not deploy",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "the CLI will prompt me to log in",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@review",
-                            "@implemented"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    },
-                    {
-                        "examples": [
-                            {
-                                "location": {
-                                    "line": 76,
-                                    "column": 9
-                                },
-                                "keyword": "Examples",
-                                "tableHeader": {
-                                    "location": {
-                                        "line": 77,
-                                        "column": 13
-                                    },
-                                    "cells": [
-                                        {
-                                            "location": {
-                                                "line": 77,
-                                                "column": 15
-                                            },
-                                            "value": "programName"
-                                        },
-                                        {
-                                            "location": {
-                                                "line": 77,
-                                                "column": 32
-                                            },
-                                            "value": "file"
-                                        }
-                                    ]
-                                },
-                                "tableBody": [
-                                    {
-                                        "location": {
-                                            "line": 78,
-                                            "column": 13
-                                        },
-                                        "cells": [
-                                            {
-                                                "location": {
-                                                    "line": 78,
-                                                    "column": 15
-                                                },
-                                                "value": "winBackProgram"
-                                            },
-                                            {
-                                                "location": {
-                                                    "line": 78,
-                                                    "column": 32
-                                                },
-                                                "value": "winbackProgram_schema.json"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "location": {
-                                            "line": 79,
-                                            "column": 13
-                                        },
-                                        "cells": [
-                                            {
-                                                "location": {
-                                                    "line": 79,
-                                                    "column": 15
-                                                },
-                                                "value": "VIPprogram"
-                                            },
-                                            {
-                                                "location": {
-                                                    "line": 79,
-                                                    "column": 32
-                                                },
-                                                "value": "VIPProgram_schema.json"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ],
-                        "name": "The CLI will automatically determine which files to upload",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have installed the CLI and logged in",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have set the environment",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have two files, <programName>.js and <programName>_schema.json",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I use the command `deploy <programName>.js`",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "the CLI will determine the name of the schema file to be <file>",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@review",
-                            "@implemented"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    },
-                    {
-                        "examples": [],
-                        "name": "The CLI will not run if it cannot determine the other file to upload",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have installed the CLI and logged in",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have set the environment",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have two files, <programName>.js and <programName>.json",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I use the command `deploy <programName>.js`",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "the CLI will not be able to determine the schema file to upload",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "the CLI will prompt the user to name their files correctly",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@review",
-                            "@implemented"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    },
-                    {
-                        "examples": [],
-                        "name": "The `deploy` command must be passed the Webtask file, not the schema file",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have installed the CLI and logged in",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have set the environment",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have two files, <programName>.js and <programName>_schema.json",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I use the command `deploy <programName>_schema.json`",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "the CLI will not be able to make the deployment",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "the CLI will prompt the user to upload the .js file instead",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@review",
-                            "@implemented"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    },
-                    {
-                        "examples": [],
-                        "name": "The `deploy` command will determine the Contentful entry ID automatically",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have installed the CLI and logged in",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have set the environment",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have two files, programName.js and programName_schema.json",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I use the command `deploy programName.js`",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "the CLI will obtain a list of entries from Contentful",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "if the CLI finds an entry with matching name, summary, and description",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "the CLI will upload the schema to that entry",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "But",
-                                "rawKeyword": "But ",
-                                "text": "if the CLI does not find a match",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "the CLI will prompt the user to enter the entry ID manually",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@review",
-                            "@implemented"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    },
-                    {
-                        "examples": [
-                            {
-                                "location": {
-                                    "line": 123,
-                                    "column": 9
-                                },
-                                "keyword": "Examples",
-                                "tableHeader": {
-                                    "location": {
-                                        "line": 124,
-                                        "column": 13
-                                    },
-                                    "cells": [
-                                        {
-                                            "location": {
-                                                "line": 124,
-                                                "column": 15
-                                            },
-                                            "value": "programName"
-                                        },
-                                        {
-                                            "location": {
-                                                "line": 124,
-                                                "column": 32
-                                            },
-                                            "value": "environment"
-                                        },
-                                        {
-                                            "location": {
-                                                "line": 124,
-                                                "column": 49
-                                            },
-                                            "value": "name"
-                                        }
-                                    ]
-                                },
-                                "tableBody": [
-                                    {
-                                        "location": {
-                                            "line": 125,
-                                            "column": 13
-                                        },
-                                        "cells": [
-                                            {
-                                                "location": {
-                                                    "line": 125,
-                                                    "column": 15
-                                                },
-                                                "value": "winbackProgram"
-                                            },
-                                            {
-                                                "location": {
-                                                    "line": 125,
-                                                    "column": 32
-                                                },
-                                                "value": "Product (TEST)"
-                                            },
-                                            {
-                                                "location": {
-                                                    "line": 125,
-                                                    "column": 49
-                                                },
-                                                "value": "staging-winbackProgram"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "location": {
-                                            "line": 126,
-                                            "column": 13
-                                        },
-                                        "cells": [
-                                            {
-                                                "location": {
-                                                    "line": 126,
-                                                    "column": 15
-                                                },
-                                                "value": "winbackProgram"
-                                            },
-                                            {
-                                                "location": {
-                                                    "line": 126,
-                                                    "column": 32
-                                                },
-                                                "value": "Product (LIVE)"
-                                            },
-                                            {
-                                                "location": {
-                                                    "line": 126,
-                                                    "column": 49
-                                                },
-                                                "value": "winbackProgram"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "location": {
-                                            "line": 127,
-                                            "column": 13
-                                        },
-                                        "cells": [
-                                            {
-                                                "location": {
-                                                    "line": 127,
-                                                    "column": 15
-                                                },
-                                                "value": "VIPProgram"
-                                            },
-                                            {
-                                                "location": {
-                                                    "line": 127,
-                                                    "column": 32
-                                                },
-                                                "value": "Product (TEST)"
-                                            },
-                                            {
-                                                "location": {
-                                                    "line": 127,
-                                                    "column": 49
-                                                },
-                                                "value": "staging-VIPProgram"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "location": {
-                                            "line": 128,
-                                            "column": 13
-                                        },
-                                        "cells": [
-                                            {
-                                                "location": {
-                                                    "line": 128,
-                                                    "column": 15
-                                                },
-                                                "value": "VIPProgram"
-                                            },
-                                            {
-                                                "location": {
-                                                    "line": 128,
-                                                    "column": 32
-                                                },
-                                                "value": "Product (LIVE)"
-                                            },
-                                            {
-                                                "location": {
-                                                    "line": 128,
-                                                    "column": 49
-                                                },
-                                                "value": "VIPProgram"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        ],
-                        "name": "The `deploy` command will choose the name of the Webtask automatically",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have installed the CLI and logged in",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have set the environment to <environment>",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have two files, <programName>.js and <programName>_schema.json",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I use the command `deploy <programName>.js`",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "the CLI will choose the name of the Webtask as <name>",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@review",
-                            "@implemented"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    },
-                    {
-                        "examples": [],
-                        "name": "The `deploy` command will determine the required NPM modules automatically",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have installed the CLI and logged in",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have set the environment",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I use the command `deploy`",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "the CLI will scan the Webtask file for `require` statements",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "the CLI will automatically update the NPM modules in webtask according to what it finds",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@review"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    },
-                    {
-                        "examples": [],
-                        "name": "The `deploy` command will only upload if the files have changed",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have installed the CLI and logged in",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have set the environment",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have two files, programName.js and programName_schema.json",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "And",
-                                "rawKeyword": "And ",
-                                "text": "I have made changes to <files>",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I use the command `deploy programName.js`",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "the CLI will only upload <files>",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@review",
-                            "@implemented"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    },
-                    {
-                        "examples": [],
-                        "name": "I can stream the Webtask logs to the console",
-                        "description": "",
-                        "steps": [
-                            {
-                                "keyword": "Given",
-                                "rawKeyword": "Given ",
-                                "text": "I have installed the CLI and logged in",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "When",
-                                "rawKeyword": "When ",
-                                "text": "I use the command `logs`",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            },
-                            {
-                                "keyword": "Then",
-                                "rawKeyword": "Then ",
-                                "text": "the Webtask log stream will be outputted on the console",
-                                "comments": [],
-                                "afterLastStepComments": []
-                            }
-                        ],
-                        "tags": [
-                            "@review",
-                            "@implemented"
-                        ],
-                        "result": {
-                            "wasExecuted": false,
-                            "wasSuccessful": false,
-                            "wasProvided": false
-                        }
-                    }
-                ],
-                "tags": [],
-                "result": {
-                    "wasExecuted": false,
-                    "wasSuccessful": false,
-                    "wasProvided": false
-                }
-            },
+  "features": [
+    {
+      "relativeFolder": "test/ProgramDevCLI.feature",
+      "feature": {
+        "name": "SaaSquatch Program Development CLI",
+        "description": "    The SaaSquatch program dev CLI aims to improve the workflow of a program developer by automating\n    the process of uploading code/schemas to Webtask and Contentful.",
+        "featureElements": [
+          {
+            "examples": [],
+            "name": "Sensitive information will be loaded through environment variables",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have installed the CLI",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "the CLI loads and begins executing",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "if a .env file is found in the current working directory it will be loaded",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "the environment variables will store the sensitive information",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@approved",
+              "@implemented"
+            ],
             "result": {
-                "wasExecuted": false,
-                "wasSuccessful": false,
-                "wasProvided": false
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
             }
-        }
-    ],
-    "summary": {
+          },
+          {
+            "examples": [],
+            "name": "Users can log in via the CLI",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have just installed the CLI and want to log in",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have accounts on Contentful and Webtask with the proper access rights",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I use the command `login`",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "I will be prompted and the appropriate web pages will open in the browser",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I will be prompted to login and paste the access tokens in the CLI",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "the CLI will store the tokens in a configuration file in my home directory",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@review",
+              "@implemented"
+            ],
+            "result": {
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
+            }
+          },
+          {
+            "examples": [],
+            "name": "Users can log out",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have installed the CLI and logged in",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I use the command `logout`",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "my tokens will be deleted from the configuration file",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@review",
+              "@implemented"
+            ],
+            "result": {
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
+            }
+          },
+          {
+            "examples": [],
+            "name": "Users can select whether to use the staging or production environment",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have installed the CLI and logged in with the `login` command",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I use the command `space`",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "I will be prompted to select the Contentful space I want to use",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "the options will be either 'Product (TEST)' or 'Product (LIVE)'",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I select one of the two options",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "the option I selected will be stored in the configuration file",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@review",
+              "@implemented"
+            ],
+            "result": {
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
+            }
+          },
+          {
+            "examples": [],
+            "name": "The environment must be selected before making a deployment",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have installed the CLI and logged in",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have not yet configured the environment",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I use the command `deploy`",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "the CLI will not deploy the program",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I will be asked to set the environment before continuing",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@review",
+              "@implemented"
+            ],
+            "result": {
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
+            }
+          },
+          {
+            "examples": [],
+            "name": "The CLI will issue a clear warning when deploying to production",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have installed the CLI and logged in",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have set the space to 'Product (LIVE)'",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I use the command `deploy`",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "the CLI will print a warning on the screen & confirm that I want to continue",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@review",
+              "@implemented"
+            ],
+            "result": {
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
+            }
+          },
+          {
+            "examples": [],
+            "name": "The user must be logged in to make a deployment",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have installed the CLI",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I am not logged in",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I use the command `deploy`",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "the CLI will not deploy",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "the CLI will prompt me to log in",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@review",
+              "@implemented"
+            ],
+            "result": {
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
+            }
+          },
+          {
+            "examples": [
+              {
+                "header": [
+                  "programName",
+                  "file"
+                ],
+                "data": [
+                  [
+                    "winBackProgram",
+                    "winbackProgram_schema.json"
+                  ],
+                  [
+                    "VIPprogram",
+                    "VIPProgram_schema.json"
+                  ]
+                ]
+              }
+            ],
+            "name": "The CLI will automatically determine which files to upload",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have installed the CLI and logged in",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have set the environment",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have two files, <programName>.js and <programName>_schema.json",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I use the command `deploy <programName>.js`",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "the CLI will determine the name of the schema file to be <file>",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@review",
+              "@implemented"
+            ],
+            "result": {
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
+            }
+          },
+          {
+            "examples": [],
+            "name": "The CLI will not run if it cannot determine the other file to upload",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have installed the CLI and logged in",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have set the environment",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have two files, <programName>.js and <programName>.json",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I use the command `deploy <programName>.js`",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "the CLI will not be able to determine the schema file to upload",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "the CLI will prompt the user to name their files correctly",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@review",
+              "@implemented"
+            ],
+            "result": {
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
+            }
+          },
+          {
+            "examples": [],
+            "name": "The `deploy` command must be passed the Webtask file, not the schema file",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have installed the CLI and logged in",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have set the environment",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have two files, <programName>.js and <programName>_schema.json",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I use the command `deploy <programName>_schema.json`",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "the CLI will not be able to make the deployment",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "the CLI will prompt the user to upload the .js file instead",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@review",
+              "@implemented"
+            ],
+            "result": {
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
+            }
+          },
+          {
+            "examples": [],
+            "name": "The `deploy` command will determine the Contentful entry ID automatically",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have installed the CLI and logged in",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have set the environment",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have two files, programName.js and programName_schema.json",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I use the command `deploy programName.js`",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "the CLI will obtain a list of entries from Contentful",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "if the CLI finds an entry with matching name, summary, and description",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "the CLI will upload the schema to that entry",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "But",
+                "rawKeyword": "But ",
+                "text": "if the CLI does not find a match",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "the CLI will prompt the user to enter the entry ID manually",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@review",
+              "@implemented"
+            ],
+            "result": {
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
+            }
+          },
+          {
+            "examples": [
+              {
+                "header": [
+                  "programName",
+                  "environment",
+                  "name"
+                ],
+                "data": [
+                  [
+                    "winbackProgram",
+                    "Product (TEST)",
+                    "staging-winbackProgram"
+                  ],
+                  [
+                    "winbackProgram",
+                    "Product (LIVE)",
+                    "winbackProgram"
+                  ],
+                  [
+                    "VIPProgram",
+                    "Product (TEST)",
+                    "staging-VIPProgram"
+                  ],
+                  [
+                    "VIPProgram",
+                    "Product (LIVE)",
+                    "VIPProgram"
+                  ]
+                ]
+              }
+            ],
+            "name": "The `deploy` command will choose the name of the Webtask automatically",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have installed the CLI and logged in",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have set the environment to <environment>",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have two files, <programName>.js and <programName>_schema.json",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I use the command `deploy <programName>.js`",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "the CLI will choose the name of the Webtask as <name>",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@review",
+              "@implemented"
+            ],
+            "result": {
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
+            }
+          },
+          {
+            "examples": [],
+            "name": "The `deploy` command will determine the required NPM modules automatically",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have installed the CLI and logged in",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have set the environment",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I use the command `deploy`",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "the CLI will scan the Webtask file for `require` statements",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "the CLI will automatically update the NPM modules in webtask according to what it finds",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@review"
+            ],
+            "result": {
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
+            }
+          },
+          {
+            "examples": [],
+            "name": "The `deploy` command will only upload if the files have changed",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have installed the CLI and logged in",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have set the environment",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have two files, programName.js and programName_schema.json",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "And",
+                "rawKeyword": "And ",
+                "text": "I have made changes to <files>",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I use the command `deploy programName.js`",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "the CLI will only upload <files>",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@review",
+              "@implemented"
+            ],
+            "result": {
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
+            }
+          },
+          {
+            "examples": [],
+            "name": "I can stream the Webtask logs to the console",
+            "description": "",
+            "steps": [
+              {
+                "keyword": "Given",
+                "rawKeyword": "Given ",
+                "text": "I have installed the CLI and logged in",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "When",
+                "rawKeyword": "When ",
+                "text": "I use the command `logs`",
+                "stepComments": [],
+                "afterLastStepComments": []
+              },
+              {
+                "keyword": "Then",
+                "rawKeyword": "Then ",
+                "text": "the Webtask log stream will be outputted on the console",
+                "stepComments": [],
+                "afterLastStepComments": []
+              }
+            ],
+            "tags": [
+              "@review",
+              "@implemented"
+            ],
+            "result": {
+              "wasExecuted": false,
+              "wasSuccessful": false,
+              "wasProvided": false
+            }
+          }
+        ],
         "tags": [],
-        "folders": [],
-        "notTestedFolders": [],
-        "scenarios": {
-            "total": 15,
-            "passing": 0,
-            "failing": 0,
-            "inconclusive": 15
-        },
-        "features": {
-            "total": 1,
-            "passing": 0,
-            "failing": 0,
-            "inconclusive": 1
+        "result": {
+          "wasExecuted": false,
+          "wasSuccessful": false,
+          "wasProvided": false
         }
-    },
-    "configuration": {
-        "program": "gherkindoc",
-        "version": "1.0.0",
-        "generatedOn": "2019-02-13T10:50:50-08:00",
-        "generatedOnTimestamp": 1550083850662
+      },
+      "result": {
+        "wasExecuted": false,
+        "wasSuccessful": false,
+        "wasProvided": false
+      }
     }
+  ],
+  "summary": {
+    "tags": [],
+    "folders": [],
+    "notTestedFolders": [],
+    "scenarios": {
+      "total": 15,
+      "passing": 0,
+      "failing": 0,
+      "inconclusive": 15
+    },
+    "features": {
+      "total": 1,
+      "passing": 0,
+      "failing": 0,
+      "inconclusive": 1
+    }
+  },
+  "configuration": {
+    "program": "gherkindoc",
+    "version": "1.0.0",
+    "generatedOn": "2019-02-13T12:53:25-08:00",
+    "generatedOnTimestamp": 1550091205818
+  }
 }
