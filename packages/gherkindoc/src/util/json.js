@@ -43,7 +43,7 @@ export const generate = async (files) => {
           name: feature.name,
           description: feature.description,
           featureElements: [],
-          tags: feature.tags,
+          tags: feature.tags.map(tag => tag.name),
           result: {
             wasExecuted: false,
             wasSuccessful: false,

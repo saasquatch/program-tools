@@ -72,10 +72,10 @@ export const handler = async (argv) => {
   wb.created = new Date(json.configuration.generatedOnTimestamp);
   wb.modified = new Date(json.configuration.generatedOnTimestamp);
 
-  for (let i = 0; i < json.features.length; i++) {
-
-    const name = json.features[i].feature.name;
+  json.features.map(feature => feature.feature).forEach(feature => {
+    const name = feature.name;
     const ws = wb.addWorksheet(name);
+    ws.state = 'show';
 
     let wscolumns = [
       {header: name, key: 'name', width: 9}
@@ -94,9 +94,21 @@ export const handler = async (argv) => {
 
     ws.columns = wscolumns;
     ws.getRow(1).font = styles.bold; // Set the top row to bold (rows are 1-indexed........)
+
+    if (feature.tags.length > 0) {
+      ws.addRow({content0: 'Tags:', content1: feature.tags.join(', ')});
+      ws.lastRow.font = styles.light;
+    }
+
     ws.addRow();
 
-    json.features[i].feature.featureElements.forEach(scenario => {
+    if (feature.description) {
+      ws.addRow({content0: feature.description});
+      ws.lastRow.height = (feature.description.split(/\r\n|\r|\n/).length - 1) * 11 + 15;
+      ws.addRow();
+    }
+
+    feature.featureElements.forEach(scenario => {
       ws.addRow({content0: scenario.name});
       ws.lastRow.font = styles.bold;
 
@@ -138,7 +150,7 @@ export const handler = async (argv) => {
 
       ws.addRow();
     });
-  }
+  });
 
   await wb.xlsx.writeFile('output.xlsx');
 };
