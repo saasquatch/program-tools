@@ -1,6 +1,8 @@
-import XLSX from 'xlsx';
+import Excel from 'exceljs';
+
 import { generate as generateJson } from '../util/json';
 import { isDir, gherkins } from '../util/fio';
+import { version } from '../../package.json';
 
 export const command = 'xlsx';
 export const desc = 'Parse the provided file or directory into XLSX';
@@ -20,38 +22,57 @@ export const handler = async (argv) => {
 
   const json = await generateJson(files);
 
-  // const ws = XLSX.utils.json_to_sheet([
-  //   { S:1, h:2, e:3, e_1:4, t:5, J:6, S_1:7 },
-  //   { S:2, h:3, e:4, e_1:5, t:6, J:7, S_1:8 }
-  // ], {header:['S','h','e','e_1','t','J','S_1']});
+  let wb = new Excel.Workbook();
 
-  const featureNameKey = json.features[0].feature.name;
-  
-  let sheetJson = [
-    {feature: featureNameKey, content1: '', content2: '', content3: ''},
+  wb.creator = `${json.configuration.program} v${version}`;
+  wb.created = new Date(json.configuration.generatedOnTimestamp);
+  wb.modified = new Date(json.configuration.generatedOnTimestamp);
+
+  const name = json.features[0].feature.name;
+
+  let ws = wb.addWorksheet(name);
+
+  const styles = {
+    bold: {
+      name: 'Calibri',
+      bold: true
+    },
+    light: {
+      name: 'Calibri',
+      italic: true,
+      color: {
+        argb: 'FF505050'
+      }
+    }
+  };
+
+  ws.columns = [
+    { header: name, key: 'name', width: name.length},
+    { header: '', key: 'content1', width: 11},
+    { header: '', key: 'content2', width: 11},
+    { header: '', key: 'content3', width: 11}
   ];
 
+  ws.getRow(1).getCell(1).font = styles.bold;
+
   json.features[0].feature.featureElements.forEach(scenario => {
-    sheetJson.push({feature: '', content1: scenario.name, content2: '', content3: ''});
-    sheetJson.push({feature: '', content1: '', content2: '', content3: ''});
+    ws.addRow({content1: scenario.name});
+    ws.lastRow.font = styles.bold;
 
     if (scenario.tags) {
-      sheetJson.push({feature: '', content1: 'Tags: ', content2: scenario.tags.join(', '), content3: ''});
+      ws.addRow({content1: 'Tags: ', content2: scenario.tags.join(', ')});
+      ws.lastRow.font = styles.light;
     }
 
+    ws.addRow();
+
     scenario.steps.forEach(step => {
-      sheetJson.push({feature: '', content1: step.keyword, content2: step.text, content3: ''});
+      ws.addRow({content1: step.keyword, content2: step.text});
+      ws.lastRow.getCell(2).font = styles.bold;
     });
 
-    sheetJson.push({feature: '', content1: '', content2: '', content3: ''});
+    ws.addRow();
   });
 
-  const ws = XLSX.utils.json_to_sheet(sheetJson, {header: ['feature', 'content1', 'content2', 'content3'], skipHeader: true});
-
-  let wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, 'Table one');
-
-  XLSX.writeFile(wb, 'output.xlsx');
-
-  // console.log(json);
+  await wb.xlsx.writeFile('output.xlsx');
 };
