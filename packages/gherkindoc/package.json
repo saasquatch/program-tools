@@ -1,12 +1,11 @@
 {
   "name": "gherkindoc",
   "version": "1.0.0",
-  "description": "Compile Gherkin feature files to Excel/JSON/HTML",
+  "description": "Compile Gherkin feature files to XLSX/JSON/HTML",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint \"src/**/*.js\"",
-    "prepush": "npm run format",
     "deploy": "np",
     "build": "babel src --out-dir dist"
   },
@@ -28,6 +27,7 @@
     "@babel/polyfill": "^7.0.0",
     "gherkin": "^6.0.15",
     "glob": "^7.1.3",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "xlsx": "^0.14.1"
   }
 }
