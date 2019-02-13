@@ -98,7 +98,10 @@ export const handler = async (argv) => {
     for (let i = 0; i < NUM_CONTENT_ROWS; i++) {
       const key = `content${i}`;
       wscolumns.push({header: '', key, width: 9});
-      maxWidths[key] = 9;
+
+      if (i > 1) {
+        maxWidths[key] = 9;
+      }
     }
 
     ws.columns = wscolumns;
