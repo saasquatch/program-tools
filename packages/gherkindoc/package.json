@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
+    "chalk": "^2.4.2",
     "exceljs": "^1.7.0",
     "gherkin": "^6.0.15",
     "glob": "^7.1.3",

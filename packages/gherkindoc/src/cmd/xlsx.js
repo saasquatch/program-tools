@@ -1,8 +1,9 @@
 import Excel from 'exceljs';
+import chalk from 'chalk';
 
 import { generate as generateJson } from '../util/json';
 import { styles } from '../util/styles';
-import { isDir, gherkins } from '../util/fio';
+import { isDir, gherkins, getOutputFileName } from '../util/fio';
 import { version } from '../../package.json';
 
 export const command = 'xlsx';
@@ -22,16 +23,15 @@ export const handler = async (argv) => {
     return;
   }
 
+  const outFile = getOutputFileName(argv.out);
   const files = isDir(args[0]) ? gherkins(args[0]) : [args[0]];
   const json = await generateJson(files);
-
   const wb = new Excel.Workbook();
+  const testers = argv.testers || 0;
 
   wb.creator = `${json.configuration.program} v${version}`;
   wb.created = new Date(json.configuration.generatedOnTimestamp);
   wb.modified = new Date(json.configuration.generatedOnTimestamp);
-
-  const testers = argv.testers || 0;
 
   json.features.map(feature => feature.feature).forEach(feature => {
     const name = feature.name;
@@ -79,39 +79,7 @@ export const handler = async (argv) => {
     }
 
     feature.featureElements.forEach(scenario => {
-      scenario.beforeComments.forEach(comment => {
-        ws.addRow({content0: comment});
-        ws.lastRow.font = styles.light;
-      });
-
-      ws.addRow({content0: scenario.name});
-      ws.lastRow.font = styles.bold;
-
-      if (scenario.tags) {
-        ws.addRow({content0: 'Tags:', content1: scenario.tags.join(', ')});
-        ws.lastRow.font = styles.light;
-      }
-
-      ws.addRow();
-
-      scenario.steps.forEach(step => {
-        genStepContent(ws, step, testers, maxWidths);
-      });
-
-      if (scenario.examples.length > 0) {
-        ws.addRow();
-      }
-
-      scenario.examples.forEach(example => {
-        genExampleTable(ws, example, testers || 0, maxWidths);
-      });
-
-      scenario.afterComments.forEach(comment => {
-        ws.addRow({content0: comment});
-        ws.lastRow.font = styles.light;
-      });
-
-      ws.addRow();
+      genScenarioContent(ws, scenario, testers, maxWidths);
     });
 
     for (let key in maxWidths) {
@@ -119,7 +87,49 @@ export const handler = async (argv) => {
     }
   });
 
-  await wb.xlsx.writeFile('output.xlsx');
+  wb.xlsx.writeFile(outFile)
+    .then(() => {
+      console.log(`${chalk.green('Success')}: Sheets generated & written to ${outFile}`);
+    })
+    .catch(err => {
+      console.log(`${chalk.red('ERROR')}: ${err.message}`);
+    });
+};
+
+const genScenarioContent = (ws, scenario, testers, maxWidths) => {
+  scenario.beforeComments.forEach(comment => {
+    ws.addRow({content0: comment});
+    ws.lastRow.font = styles.light;
+  });
+
+  ws.addRow({content0: scenario.name});
+  ws.lastRow.font = styles.bold;
+
+  if (scenario.tags) {
+    ws.addRow({content0: 'Tags:', content1: scenario.tags.join(', ')});
+    ws.lastRow.font = styles.light;
+  }
+
+  ws.addRow();
+
+  scenario.steps.forEach(step => {
+    genStepContent(ws, step, testers, maxWidths);
+  });
+
+  if (scenario.examples.length > 0) {
+    ws.addRow();
+  }
+
+  scenario.examples.forEach(example => {
+    genExampleTable(ws, example, testers || 0, maxWidths);
+  });
+
+  scenario.afterComments.forEach(comment => {
+    ws.addRow({content0: comment});
+    ws.lastRow.font = styles.light;
+  });
+
+  ws.addRow();
 };
 
 const genStepContent = (ws, step, testers, maxWidths) => {
