@@ -11,7 +11,7 @@ export const gherkins = (dir) => {
 };
 
 export const getOutputFileName = (input) => {
-  const defaultFileName = `gherkindoc-${moment().format('YYYY-MM-DD:HH-MM-SS')}`;
+  const defaultFileName = `gherkindoc--${moment().format('YYYY-MM-DD--HH-mm-ss')}.xlsx`;
   if (!input) {
     return defaultFileName;
   }

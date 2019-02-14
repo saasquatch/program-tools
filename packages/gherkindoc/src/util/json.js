@@ -27,8 +27,8 @@ export const generate = async (files) => {
         }
       },
       configuration: {
+        version,
         program: 'gherkindoc',
-        version: version,
         generatedOn: moment().format(),
         generatedOnTimestamp: moment().valueOf()
       }

@@ -4,7 +4,6 @@ import chalk from 'chalk';
 import { generate as generateJson } from '../util/json';
 import { styles } from '../util/styles';
 import { isDir, gherkins, getOutputFileName } from '../util/fio';
-import { version } from '../../package.json';
 
 export const command = 'xlsx';
 export const desc = 'Parse the provided file or directory into XLSX';
@@ -29,7 +28,7 @@ export const handler = async (argv) => {
   const wb = new Excel.Workbook();
   const testers = argv.testers || 0;
 
-  wb.creator = `${json.configuration.program} v${version}`;
+  wb.creator = `${json.configuration.program} v${json.configuration.version}`;
   wb.created = new Date(json.configuration.generatedOnTimestamp);
   wb.modified = new Date(json.configuration.generatedOnTimestamp);
 
