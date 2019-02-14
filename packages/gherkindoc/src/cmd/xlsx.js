@@ -121,6 +121,11 @@ export const handler = async (argv) => {
     }
 
     feature.featureElements.forEach(scenario => {
+      scenario.beforeComments.forEach(comment => {
+        ws.addRow({content0: comment});
+        ws.lastRow.font = styles.light;
+      });
+
       ws.addRow({content0: scenario.name});
       ws.lastRow.font = styles.bold;
 
@@ -140,7 +145,22 @@ export const handler = async (argv) => {
       }
 
       scenario.examples.forEach(example => {
+        example.beforeComments.forEach(comment => {
+          ws.addRow({content0: comment});
+          ws.lastRow.font = styles.light;
+        });
+
         genExampleTable(ws, example, testers || 0, maxWidths);
+
+        example.afterComments.forEach(comment => {
+          ws.addRow({content0: comment});
+          ws.lastRow.font = styles.light;
+        });
+      });
+
+      scenario.afterComments.forEach(comment => {
+        ws.addRow({content0: comment});
+        ws.lastRow.font = styles.light;
       });
 
       ws.addRow();
@@ -155,23 +175,23 @@ export const handler = async (argv) => {
 };
 
 const genStepContent = (ws, step, testers, maxWidths) => {
-  step.stepComments.forEach(comment => {
+  step.beforeComments.forEach(comment => {
     ws.addRow({content1: comment});
-    ws.lastRow.getCell(3 + testers).font = styles.light;
+    ws.lastRow.font = styles.light;
   });
 
   ws.addRow({content1: step.rawKeyword, content2: step.text});
   ws.lastRow.getCell(3 + testers).font = styles.bold;
   ws.lastRow.getCell(3 + testers).alignment = styles.keywordAlignment;
 
+  step.afterComments.forEach(comment => {
+    ws.addRow({content1: comment});
+    ws.lastRow.font = styles.light;
+  });
+
   if (step.dataTable) {
     genDataTable(ws, step.dataTable, testers || 0, maxWidths);
   }
-
-  step.afterLastStepComments.forEach(comment => {
-    ws.addRow({content1: comment});
-    ws.lastRow.getCell(3 + testers).font = styles.light;
-  });
 };
 
 const genExampleTable = (ws, example, testers, maxWidths) => {

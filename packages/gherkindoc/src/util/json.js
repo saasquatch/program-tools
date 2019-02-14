@@ -57,23 +57,34 @@ export const generate = async (files) => {
         }
       };
 
+      const comments = chunk.gherkinDocument.comments;
+
       feature.children.forEach(child => {
         json.summary.scenarios.total += 1;
         json.summary.scenarios.inconclusive += 1;
         const examples = child.scenario.examples
-          ? child.scenario.examples.map(example => ({
-            header: example.tableHeader.cells.map(cell => cell.value),
-            data: example.tableBody.map(e => e.cells.map(cell => cell.value))
-          }))
+          ? child.scenario.examples.map(example => {
+            const commentsFound = commentCrawler(comments, example.location.line);
+            const exampleObj = {
+              header: example.tableHeader.cells.map(cell => cell.value),
+              data: example.tableBody.map(e => e.cells.map(cell => cell.value)),
+              beforeComments: commentsFound.before,
+              afterComments: commentsFound.after
+            };
+
+            return exampleObj;
+          })
           : [];
 
         const steps = child.scenario.steps.map(step => {
+          const commentsFound = commentCrawler(comments, step.location.line);
+
           const stepObj = {
             keyword: step.keyword.trim(),
             rawKeyword: step.keyword,
             text: step.text,
-            stepComments: [],
-            afterLastStepComments: []
+            beforeComments: commentsFound.before,
+            afterComments: commentsFound.after
           };
 
           if (step.dataTable) {
@@ -85,6 +96,8 @@ export const generate = async (files) => {
           return stepObj;
         });
 
+        const commentsFound = commentCrawler(comments, child.scenario.location.line);
+
         tmp.feature.featureElements.push({
           steps,
           examples,
@@ -95,7 +108,9 @@ export const generate = async (files) => {
             wasExecuted: false,
             wasSuccessful: false,
             wasProvided: false
-          }
+          },
+          beforeComments: commentsFound.before,
+          afterComments: commentsFound.after
         });
       });
 
@@ -112,4 +127,30 @@ export const generate = async (files) => {
       resolve(json);
     });
   });
+};
+
+const commentCrawler = (comments, startingIndex) => {
+  let currentIndex = startingIndex;
+  let element;
+
+  const ret = {
+    before: [],
+    after: []
+  };
+
+  // eslint-disable-next-line no-cond-assign
+  while (element = comments.find(c => c.location.line === currentIndex - 1)) {
+    ret.before.push(element.text.trim());
+    currentIndex--;
+  }
+
+  currentIndex = startingIndex;
+
+  // eslint-disable-next-line no-cond-assign
+  while (element = comments.find(c => c.location.line === currentIndex + 1)) {
+    ret.after.push(element.text.trim());
+    currentIndex++;
+  }
+
+  return ret;
 };
