@@ -30,16 +30,18 @@ Example: `pdcli space test`
 Take a diff between the local program and the remote program
 
 Flags:
-- `--code-only` Only show the code diff
-- `--schema-only` Only show the schema diff
-- `--production` Use the production Webtask/Contentful files for the diff instead. This will NOT make any changes to the production files
+- `-c --code-only` Only show the code diff
+- `-s --schema-only` Only show the schema diff
+- `-p --production` Use the production Webtask/Contentful files for the diff instead. This will NOT make any changes to the production files
+
+Example: `pdcli diff referralProgram.js -pc`
 
 #### `deploy`
 Deploy a program. Pass the Webtask Javascript file as the argument
 
 Flags
-- `--code-only` Only deploy the code
-- `--schema-only` Only deploy the schema
+- `-c --code-only` Only deploy the code
+- `-s --schema-only` Only deploy the schema
 
 Example: `pdcli deploy myProgram.js`
 
@@ -47,13 +49,10 @@ Example: `pdcli deploy myProgram.js`
 Stream the Webtask logs to the console
 
 Flags
-- `--pattern="<regex pattern>"` Only print the log messages that match the provided regex
-- `--flags="<regex flags>"` Flags for the previously provided regex expression
+- `-p --pattern="<regex pattern>"` Only print the log messages that match the provided regex
+- `-f --flags="<regex flags>"` Flags for the previously provided regex expression
 
 Example: `pdcli logs --pattern="(warn)|(error)" --flags="gmi"`
 
 ## TODO
 - [ ] Fix Webtask login (needs update to pink credit)
-- [ ] Maybe some code for automatically determining NPM dependencies and telling webtask to install those?
-- [x] Add command to view Webtask logs from the CLI
-- [x] Be able to set the space by passing a parameter instead of using the list to select

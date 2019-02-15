@@ -59,7 +59,7 @@ export const builder = {
     describe: 'Regex pattern to filter the logs with'
   },
   flags: {
-    alias: 'l',
+    alias: 'f',
     type: 'string',
     describe: 'Regex flags',
     implies: 'pattern'
