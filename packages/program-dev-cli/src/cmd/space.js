@@ -16,7 +16,7 @@ const TEST_ID = process.env.PDCLI_SPACE_ID_TEST || '';
  *
  * @param {Object} argv Command arguments from Yargs
  */
-const space = async (argv) => {
+export const handler = async (argv) => {
   argv._.shift();
 
   if (!LIVE_ID || !TEST_ID) {
@@ -84,5 +84,3 @@ const space = async (argv) => {
   log();
   log(`Environment sucessfully set to '${choice.name}'`);
 };
-
-export const handler = space;

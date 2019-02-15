@@ -45,7 +45,7 @@ const preflightCheck = (args, config) => {
  *
  * @param {Object} argv Command args from Yargs
  */
-const deploy = async (argv) => {
+export const handler = async (argv) => {
   argv._.shift();
   const args = argv._;
   const context = getContext();
@@ -104,4 +104,13 @@ const deploy = async (argv) => {
   }
 };
 
-export const handler = deploy;
+export const builder = {
+  codeOnly: {
+    type: 'boolean',
+    describe: 'Only deploy the code'
+  },
+  schemaOnly: {
+    type: 'boolean',
+    describe: 'Only deploy the schema'
+  }
+};

@@ -11,7 +11,7 @@ export const desc = 'View the Webtask log stream';
 /**
  * Streams the Webtask logs to the console
  */
-const logs = (argv) => {
+export const handler = (argv) => {
   const context = getContext();
 
   if (!context.config) {
@@ -52,4 +52,14 @@ const logs = (argv) => {
   });
 };
 
-export const handler = logs;
+export const builder = {
+  pattern: {
+    type: 'string',
+    describe: 'Regex pattern to filter the logs with'
+  },
+  flags: {
+    type: 'string',
+    describe: 'Regex flags',
+    implies: 'pattern'
+  }
+};

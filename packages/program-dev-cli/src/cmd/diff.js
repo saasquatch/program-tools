@@ -169,3 +169,18 @@ export const handler = async (argv) => {
     }
   }
 };
+
+export const builder = {
+  production: {
+    type: 'boolean',
+    describe: 'Use the production Webtask/Contentful code for the diff instead'
+  },
+  codeOnly: {
+    type: 'boolean',
+    describe: 'Only run the diff on the code'
+  },
+  schemaOnly: {
+    type: 'boolean',
+    describe: 'Only run the diff on the schema'
+  }
+};

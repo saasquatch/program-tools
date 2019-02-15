@@ -9,13 +9,16 @@ yargs
   .usage('\nUsage: pdcli <cmd> [args]')
   .commandDir('cmd')
   .scriptName('pdcli')
+  .strict()
   .recommendCommands()
-  .option('v', {
-    alias: 'version',
-    global: false,
-    type: 'boolean',
-    describe: 'Show current version',
-    skipValidation: true
+  .options({
+    'v': {
+      alias: 'version',
+      global: false,
+      type: 'boolean',
+      describe: 'Show current version',
+      skipValidation: true
+    }
   })
   .version(false)
   .help('h')
