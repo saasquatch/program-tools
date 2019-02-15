@@ -1,4 +1,5 @@
 import { statSync } from 'fs';
+import { dirname } from 'path';
 import glob from 'glob';
 import moment from 'moment';
 
@@ -21,4 +22,8 @@ export const getOutputFileName = (input) => {
   } else {
     return input;
   }
+};
+
+export const getAllPaths = (file) => {
+  return dirname(file).split('/');
 };

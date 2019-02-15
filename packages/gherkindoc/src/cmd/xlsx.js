@@ -2,8 +2,9 @@ import Excel from 'exceljs';
 import chalk from 'chalk';
 
 import { generate as generateJson } from '../util/json';
+import { setupTable } from '../util/xlsx';
 import { styles } from '../util/styles';
-import { isDir, gherkins, getOutputFileName } from '../util/fio';
+import { isDir, gherkins, getOutputFileName, getAllPaths } from '../util/fio';
 
 export const command = 'xlsx';
 export const desc = 'Parse the provided file or directory into XLSX';
@@ -27,15 +28,37 @@ export const handler = async (argv) => {
   const json = await generateJson(files);
   const wb = new Excel.Workbook();
   const testers = argv.testers || 0;
+  const toc = {};
 
   wb.creator = `${json.configuration.program} v${json.configuration.version}`;
   wb.created = new Date(json.configuration.generatedOnTimestamp);
   wb.modified = new Date(json.configuration.generatedOnTimestamp);
 
-  json.features.map(feature => feature.feature).forEach(feature => {
-    const name = feature.name;
+  json.features.forEach(feature => {
+    const name = feature.feature.name;
     const ws = wb.addWorksheet(name);
     const maxWidths = {};
+
+    const allRelativePaths = getAllPaths(feature.relativeFolder);
+    let curr = toc;
+
+    allRelativePaths.forEach((path, index) => {
+      if (!curr[path]) {
+        curr[path] = {
+          title: path,
+          sheets: [],
+          subdirs: {}
+        };
+      }
+
+      if (index < allRelativePaths.length - 1) {
+        curr = curr[path].subdirs;
+      } else {
+        curr = curr[path];
+      }
+    });
+
+    curr.sheets.push({name, id: ws.id});
 
     ws.state = 'show';
     ws.views = [{
@@ -43,41 +66,22 @@ export const handler = async (argv) => {
       ySplit: 1
     }];
 
-    const wscolumns = [
-      {header: name, key: 'name', width: 9}
-    ];
+    setupTable(ws, name, testers, NUM_CONTENT_ROWS, maxWidths);
 
-    for (let i = 0; i < testers; i++) {
-      const text = `Tester ${i+1}`;
-      wscolumns.unshift({header: text, key: `tester${i}`, width: text.legnth});
-    }
-
-    for (let i = 0; i < NUM_CONTENT_ROWS; i++) {
-      const key = `content${i}`;
-      wscolumns.push({header: '', key, width: 9});
-
-      if (i > 1) {
-        maxWidths[key] = 9;
-      }
-    }
-
-    ws.columns = wscolumns;
-    ws.getRow(1).font = styles.bold; // Set the top row to bold (rows are 1-indexed...)
-
-    if (feature.tags.length > 0) {
-      ws.addRow({content0: 'Tags:', content1: feature.tags.join(', ')});
+    if (feature.feature.tags.length > 0) {
+      ws.addRow({content0: 'Tags:', content1: feature.feature.tags.join(', ')});
       ws.lastRow.font = styles.light;
     }
 
     ws.addRow();
 
-    if (feature.description) {
-      ws.addRow({content0: feature.description.replace(/\n +/g, '\n').trim()});
-      ws.lastRow.height = (feature.description.split(/\r\n|\r|\n/).length - 1) * 11 + 15;
+    if (feature.feature.description) {
+      ws.addRow({content0: feature.feature.description.replace(/\n +/g, '\n').trim()});
+      ws.lastRow.height = (feature.feature.description.split(/\r\n|\r|\n/).length - 1) * 11 + 15;
       ws.addRow();
     }
 
-    feature.featureElements.forEach(scenario => {
+    feature.feature.featureElements.forEach(scenario => {
       genScenarioContent(ws, scenario, testers, maxWidths);
     });
 
@@ -86,6 +90,8 @@ export const handler = async (argv) => {
     }
   });
 
+  genTocTable(wb, toc, testers);
+
   wb.xlsx.writeFile(outFile)
     .then(() => {
       console.log(`${chalk.green('Success')}: Sheets generated & written to ${outFile}`);
@@ -93,6 +99,32 @@ export const handler = async (argv) => {
     .catch(err => {
       console.log(`${chalk.red('ERROR')}: ${err.message}`);
     });
+};
+
+const genTocTable = (wb, toc, testers) => {
+  const ws = wb.addWorksheet('TOC');
+  setupTable(ws, 'Sections', testers, NUM_CONTENT_ROWS);
+  generateSheetStructure(ws, toc, 0);
+};
+
+/* _recursive_ */
+const generateSheetStructure = (ws, dir, indentLevel) => {
+  for (let key in dir) {
+    ws.addRow({name: dir[key].title});
+
+    dir[key].sheets.forEach(sheet => {
+      ws.addRow({
+        [`content${indentLevel}`]: {
+          text: sheet.name,
+          hyperlink: `#${sheet.name}!a1`
+        }
+      });
+    });
+
+    for (let subkey in dir.subdirs) {
+      generateSheetStructure(ws, dir.subdirs[subkey], indentLevel + 1);
+    }
+  }
 };
 
 const genScenarioContent = (ws, scenario, testers, maxWidths) => {
