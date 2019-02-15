@@ -106,10 +106,12 @@ export const handler = async (argv) => {
 
 export const builder = {
   codeOnly: {
+    alias: 'c',
     type: 'boolean',
     describe: 'Only deploy the code'
   },
   schemaOnly: {
+    alias: 's',
     type: 'boolean',
     describe: 'Only deploy the schema'
   }

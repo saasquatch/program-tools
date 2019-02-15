@@ -172,14 +172,17 @@ export const handler = async (argv) => {
 
 export const builder = {
   production: {
+    alias: 'p',
     type: 'boolean',
     describe: 'Use the production Webtask/Contentful code for the diff instead'
   },
   codeOnly: {
+    alias: 'c',
     type: 'boolean',
     describe: 'Only run the diff on the code'
   },
   schemaOnly: {
+    alias: 's',
     type: 'boolean',
     describe: 'Only run the diff on the schema'
   }

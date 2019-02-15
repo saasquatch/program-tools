@@ -10,7 +10,7 @@ export const desc = 'Remove Contentful and Webtask credentials';
 /**
  * Deletes the Webtask/Contentful tokens
  */
-const logout = async () => {
+export const handler = async () => {
   const config = loadConfig();
 
   if (!config) {
@@ -50,5 +50,3 @@ const logout = async () => {
     log('An error occurred while logging out.');
   }
 };
-
-export const handler = logout;

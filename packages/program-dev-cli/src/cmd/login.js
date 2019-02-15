@@ -13,7 +13,7 @@ export const desc = 'Login to Contentful and Webtask';
  * Gets the Webtask/Contentful login tokens
  * from the user
  */
-const login = async () => {
+export const handler = async () => {
   const configPath = resolveConfigPath();
   const config = loadConfig();
 
@@ -63,5 +63,3 @@ const login = async () => {
     error('Failed to write tokens to config file');
   }
 };
-
-export const handler = login;

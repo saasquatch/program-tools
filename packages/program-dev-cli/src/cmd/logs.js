@@ -54,10 +54,12 @@ export const handler = (argv) => {
 
 export const builder = {
   pattern: {
+    alias: 'p',
     type: 'string',
     describe: 'Regex pattern to filter the logs with'
   },
   flags: {
+    alias: 'l',
     type: 'string',
     describe: 'Regex flags',
     implies: 'pattern'
