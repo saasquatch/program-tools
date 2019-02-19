@@ -33,27 +33,41 @@ export const handler = (argv) => {
 
   log(`${chalk.green(`[${moment().format('LTS')}] Successfully connected to log stream`)}`);
 
-  const infoRe = /\[info\]/i;
-  const warnRe = /\[warn\]/i;
-  const errorRe = /\[error\]/i;
+  const logTags = [
+    {re: /\[error\]/i, color: chalk.red},
+    {re: /\[warn\]/i, color: chalk.yellow},
+    {re: /\[info\]/i, color: chalk.blue},
+    {re: /\[debug\]/i, color: chalk.green}
+  ];
+
+  const multiLineBugRe = /\r?\n+(?=\[)/gmi;
 
   stream.on('data', (chunk) => {
-    if (pattern && !pattern.test(chunk.msg)) {
-      return;
-    }
-
     const time = moment(chunk.time);
-    let color = chalk.green;
 
-    if (infoRe.test(chunk.msg)) {
-      color = chalk.blue;
-    } else if (warnRe.test(chunk.msg)) {
-      color = chalk.orange;
-    } else if (errorRe.test(chunk.msg)) {
-      color = chalk.red;
-    }
+    chunk.msg.split(multiLineBugRe).forEach(line => {
+      let timeColor = chalk.white;
+      let msgColor = chalk.white;
 
-    log(`${color(`[${time.format('LTS')}]`)} ${chunk.msg}`);
+      if (pattern) {
+        if (pattern.test(line)) {
+          if (argv.highlight) {
+            msgColor = chalk.magenta;
+          }
+        } else if (!argv.highlight) {
+          return;
+        }
+      }
+
+      for (let i = 0; i < logTags.length; i++) {
+        if (logTags[i].re.test(line)) {
+          timeColor = logTags[i].color;
+          break;
+        }
+      }
+
+      log(`${timeColor(`[${time.format('LTS')}]`)} ${msgColor(line)}`);
+    });
   });
 
   stream.on('end', () => {
@@ -71,6 +85,12 @@ export const builder = {
     alias: 'p',
     type: 'string',
     describe: 'Regex pattern to filter the logs with'
+  },
+  highlight: {
+    alias: 'hi',
+    type: 'boolean',
+    describe: 'Highlight messages matching the pattern instead of filtering them',
+    implies: 'pattern'
   },
   flags: {
     alias: 'f',
