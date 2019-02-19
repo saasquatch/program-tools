@@ -34,8 +34,10 @@ export const handler = async (argv) => {
   wb.created = new Date(json.configuration.generatedOnTimestamp);
   wb.modified = new Date(json.configuration.generatedOnTimestamp);
 
+  wb.addWorksheet('TOC');
+
   json.features.forEach(feature => {
-    const name = feature.feature.name;
+    const name = feature.feature.name.replace(/\s/g, '').toUpperCase();
     const ws = wb.addWorksheet(name);
     const maxWidths = {};
 
@@ -60,7 +62,7 @@ export const handler = async (argv) => {
 
     curr.sheets.push({name, id: ws.id});
 
-    ws.state = 'show';
+    ws.state = 'visible';
     ws.views = [{
       state: 'frozen',
       ySplit: 1
@@ -102,7 +104,7 @@ export const handler = async (argv) => {
 };
 
 const genTocTable = (wb, toc, testers) => {
-  const ws = wb.addWorksheet('TOC');
+  const ws = wb.getWorksheet('TOC');
   setupTable(ws, 'Sections', testers, NUM_CONTENT_ROWS);
   generateSheetStructure(ws, toc, 0);
 };
@@ -116,9 +118,11 @@ const generateSheetStructure = (ws, dir, indentLevel) => {
       ws.addRow({
         [`content${indentLevel}`]: {
           text: sheet.name,
-          hyperlink: `#${sheet.name}!a1`
+          hyperlink: `#'${sheet.name}'.A1`
         }
       });
+
+      console.log(ws.lastRow.getCell(4).value);
     });
 
     for (let subkey in dir.subdirs) {
