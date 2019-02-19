@@ -33,13 +33,27 @@ export const handler = (argv) => {
 
   log(`${chalk.green(`[${moment().format('LTS')}] Successfully connected to log stream`)}`);
 
+  const infoRe = /\[info\]/i;
+  const warnRe = /\[warn\]/i;
+  const errorRe = /\[error\]/i;
+
   stream.on('data', (chunk) => {
     if (pattern && !pattern.test(chunk.msg)) {
       return;
     }
 
     const time = moment(chunk.time);
-    log(`[${time.format('LTS')}] ${chunk.msg}`);
+    let color = chalk.green;
+
+    if (infoRe.test(chunk.msg)) {
+      color = chalk.blue;
+    } else if (warnRe.test(chunk.msg)) {
+      color = chalk.orange;
+    } else if (errorRe.test(chunk.msg)) {
+      color = chalk.red;
+    }
+
+    log(`${color(`[${time.format('LTS')}]`)} ${chunk.msg}`);
   });
 
   stream.on('end', () => {
