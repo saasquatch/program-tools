@@ -1,5 +1,6 @@
+import * as jsdiff from 'diff';
 import chalk from 'chalk';
-const jsdiff = require('diff');
+import termSize from 'term-size';
 import diff from 'deep-diff';
 import ora from 'ora';
 import { readFileSync } from 'fs';
@@ -12,6 +13,8 @@ import { findFilePair, fileExists } from '../util/fio';
 
 export const command = 'diff';
 export const desc = 'Take a diff between a local and remote program';
+
+const PRE_CHANGE_BUFFER_SIZE = 3;
 
 /**
  * Basic checks to complete before the command begins
@@ -99,17 +102,58 @@ export const handler = async (argv) => {
     const changes = jsdiff.diffLines(webtask.code, code);
     if (changes.length > 1) {
       webtaskSpinner.info('Changes to code detected:');
-      log();
+      let linesPrinted = PRE_CHANGE_BUFFER_SIZE;
+      let preChangeBuffer = [];
+      let currentLine = 0;
+
       changes.forEach(change => {
+        const lines = change.value.split(/\n/);
         const color = change.added ? chalk.green : change.removed ? chalk.red : chalk.white;
 
-        process.stdout.write(color(change.value));
-      });
+        if (lines.length > 1) {
+          lines.pop();
+        }
 
-      log('\n');
+        if (change.added || change.removed) {
+          linesPrinted = 0;
+
+          if (preChangeBuffer.length > 0) {
+            log();
+            log(chalk.bold('─'.repeat(termSize().columns)));
+            log(`${chalk.bold(`modified: ${filePair.source}`)} ${chalk.blue.bold(`line ${currentLine + 1}`)}`);
+            log(chalk.bold('─'.repeat(termSize().columns)));
+          }
+
+          while (preChangeBuffer.length > 0) {
+            console.log(preChangeBuffer.shift());
+          }
+
+          lines.forEach(line => {
+            console.log(color(line));
+          });
+
+        } else {
+          lines.forEach(line => {
+            if (linesPrinted++ < PRE_CHANGE_BUFFER_SIZE) {
+              console.log(line);
+            } else {
+              preChangeBuffer.push(line);
+
+              if (preChangeBuffer.length > PRE_CHANGE_BUFFER_SIZE) {
+                preChangeBuffer.shift();
+              }
+            }
+
+            currentLine++;
+          });
+        }
+      });
     } else {
       webtaskSpinner.succeed('No changes to code');
-      log();
+
+      if (!argv.codeOnly) {
+        log();
+      }
     }
   }
 
