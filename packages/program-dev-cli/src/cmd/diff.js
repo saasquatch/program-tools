@@ -148,12 +148,10 @@ export const handler = async (argv) => {
           });
         }
       });
+      log();
     } else {
       webtaskSpinner.succeed('No changes to code');
-
-      if (!argv.codeOnly) {
-        log();
-      }
+      log();
     }
   }
 
@@ -210,6 +208,7 @@ export const handler = async (argv) => {
       });
     } else {
       contentfulSpinner.succeed('No changes to schema');
+      log();
     }
   }
 };
