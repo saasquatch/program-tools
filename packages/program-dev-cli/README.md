@@ -51,6 +51,7 @@ Stream the Webtask logs to the console
 Flags
 - `-p --pattern="<regex pattern>"` Only print the log messages that match the provided regex
 - `-f --flags="<regex flags>"` Flags for the previously provided regex expression
+- `-hi --highlight` Use the regex to highlight matching logs instead of filtering them
 
 Example: `pdcli logs --pattern="(warn)|(error)" --flags="gmi"`
 
