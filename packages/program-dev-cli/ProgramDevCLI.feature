@@ -139,7 +139,7 @@ Feature: SaaSquatch Program Development CLI
         When I use the command `deploy programName.js`
         Then the CLI will only upload <files>
 
-    @review 
+    @review
     @implemented
     Scenario Outline: I can choose do deploy only the code or only the schema
         When I use the `deploy` command with flag <flag>
@@ -150,6 +150,8 @@ Feature: SaaSquatch Program Development CLI
             |               | code & schema |
             | --code-only   | code          |
             | --schema-only | schema        |
+            | -c            | code          |
+            | -s            | schema        |
 
 
     @review
@@ -178,3 +180,7 @@ Feature: SaaSquatch Program Development CLI
             | --schema-only            | schema          | from config file     |
             | --production             | code and schema | production           |
             | --production --code-only | code            | production           |
+            | -c                       | code            | from config file     |
+            | -s                       | schema          | from config file     |
+            | -p                       | code and schema | production           |
+            | -pc                      | code            | production           |
