@@ -71,11 +71,13 @@ export default (editor, config = {}) => {
         draggable: false,
         traits: [
           { type: 'string', title: 'Background Color', name: 'background' },
+          { type: 'string', title: 'Loading Color', name: 'loadingcolor', value:'#439B76' },
           { type: 'string', title: 'Font Family', name: 'fontfamily', value: 'Helvetica Neue,Helvetica,Arial,sans-serif', ...fontFamilyOpts },
           { type: 'boolean', title: 'Show Powered By', name: 'poweredby', value: true }
         ],
         uiSchema: {
           'background': { 'ui:widget': "color" },
+          'loadingcolor': { 'ui:widget': "color" },
           'poweredby': poweredByUi
         }
       })
