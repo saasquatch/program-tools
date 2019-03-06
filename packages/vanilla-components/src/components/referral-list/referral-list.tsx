@@ -9,7 +9,7 @@ import { API } from '../../services/WidgetHost';
 })
 export class ReferralList {
   // general in dropdown
-  @Prop() ishidden: boolean = false;
+  @Prop() ishidden: boolean;
   @Prop() paginatemore: string;
   @Prop() paginateless: string;
   @Prop() noreferralsyet: string;
@@ -17,12 +17,12 @@ export class ReferralList {
   @Prop() referraltextcolor: string;
   @Prop() unknownuser: string;
   // referrer props
-  @Prop() showreferrer: boolean = true;
+  @Prop() showreferrer: boolean;
   @Prop() referrercontent: string;
   @Prop() referrervalue: string;
   // converted referral props
   @Prop() rewardcolor: string;
-  @Prop() usefirstreward: boolean = false;
+  @Prop() usefirstreward: boolean;
   @Prop() convertedcontent: string;
   @Prop() valuecontent: string;
   // pending referral props

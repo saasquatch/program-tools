@@ -6,7 +6,7 @@ import { API } from '../../services/WidgetHost';
   styleUrl: 'share-button-container.scss'
 })
 export class ShareButtonContainer {
-  @Prop() ishidden: boolean = false;
+  @Prop() ishidden: boolean;
 
   // Email button properties and default settings
   @Prop() emaildisplayrule: string;
