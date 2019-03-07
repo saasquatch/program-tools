@@ -73,7 +73,7 @@ export default (editor, config = {}) => {
           { type: 'string', title: 'Background Color', name: 'background' },
           { type: 'string', title: 'Loading Color', name: 'loadingcolor', value:'#439B76' },
           { type: 'string', title: 'Font Family', name: 'fontfamily', value: 'Helvetica Neue,Helvetica,Arial,sans-serif', ...fontFamilyOpts },
-          { type: 'boolean', title: 'Show Powered By', name: 'poweredby', value: true }
+          { type: 'boolean', title: 'Show Powered By', name: 'poweredby' }
         ],
         uiSchema: {
           'background': { 'ui:widget': "color" },

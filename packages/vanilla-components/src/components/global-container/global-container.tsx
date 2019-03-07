@@ -10,7 +10,7 @@ export class GlobalContainer {
   @Prop() loadingcolor: string;
   @Prop() fontfamily: string;
   @Prop() maxwidth: string;
-  @Prop() poweredby: boolean = true;
+  @Prop() poweredby: boolean;
   
   LoadingState(props) {
     const style = css`
