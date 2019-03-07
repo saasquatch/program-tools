@@ -11,7 +11,6 @@ export default (editor, config = {}) => {
   var defaultView = defaultType.view;
 
   const fontFamilyOpts = {
-    default: "Helvetica Neue,Helvetica,Arial,sans-serif",
     enum: [
       "Helvetica Neue,Helvetica,Arial,sans-serif",
       "Lato,sans-serif",
