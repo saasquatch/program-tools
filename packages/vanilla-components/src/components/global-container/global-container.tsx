@@ -9,7 +9,7 @@ export class GlobalContainer {
   @Prop() background: string;
   @Prop() fontfamily: string;
   @Prop() maxwidth: string;
-  @Prop() poweredby: boolean = true;
+  @Prop() poweredby: boolean;
 
   LoadingState() {
     return (
