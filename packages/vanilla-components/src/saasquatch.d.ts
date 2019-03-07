@@ -90,3 +90,5 @@ interface RewardBalance {
 }
 
 declare module 'react';
+
+declare module 'progress.js'

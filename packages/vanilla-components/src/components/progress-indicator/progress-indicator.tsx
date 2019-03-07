@@ -1,8 +1,7 @@
 import { Component, Prop, State } from '@stencil/core';
-import ProgressBar  from 'progressbar.js';
+import { ProgressBar } from 'progressbar.js';
 import { API } from '../../services/WidgetHost';
 import { css } from 'emotion';
-
 
 interface stats {
   rewardBalanceDetails: Array<balance>
