@@ -72,7 +72,7 @@ export default (editor, config = {}) => {
         traits: [
           { type: 'string', title: 'Background Color', name: 'background' },
           { type: 'string', title: 'Font Family', name: 'fontfamily', value: 'Helvetica Neue,Helvetica,Arial,sans-serif', ...fontFamilyOpts },
-          { type: 'boolean', title: 'Show Powered By', name: 'poweredby', value: true }
+          { type: 'boolean', title: 'Show Powered By', name: 'poweredby' }
         ],
         uiSchema: {
           'background': { 'ui:widget': "color" },
