@@ -7,8 +7,8 @@ import marked from 'marked';
   styleUrl: 'text-component.scss'
 })
 export class TextComponent {
-  @Prop() ishidden: boolean = false;
-  @Prop() ismarkdown: boolean = false;
+  @Prop() ishidden: boolean;
+  @Prop() ismarkdown: boolean;
   @Prop() text: string;
   @Prop() fontfamily: string;
   @Prop() color: string;

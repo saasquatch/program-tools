@@ -9,15 +9,15 @@ import Clipboard from 'clipboard';
   styleUrl: 'copy-button.scss'
 })
 export class CopyButton {
-  @Prop() ishidden: boolean = false;
+  @Prop() ishidden: boolean;
   @Prop() text: string;
   @Prop() width: number;
   @Prop() backgroundcolor: string;
   @Prop() borderradius: number;
   @Prop() textcolor: string;
   @Prop() fontsize: number;
-  @Prop() copysuccess: string = "copied!";
-  @Prop() copyfailure: string = "Press Ctrl+C to copy";
+  @Prop() copysuccess: string;
+  @Prop() copyfailure: string;
   @Prop() rewardkey: string;
   @Prop() codefontsize: number;
   @Prop() codefontcolor: string;

@@ -7,11 +7,13 @@
   //
  -->
 
+
 <sqh-global-container 
   background="#ffffff"
 >
 
   <sqh-image-component
+    ishidden="false"
     url="https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png" 
     alignment="center" 
     width="140" 
@@ -19,17 +21,21 @@
   ></sqh-image-component>
   
   <sqh-text-component 
-    sqhheader="true" 
-    color="#000" 
-    fontsize="24" 
-    text="You were Successfully Referred to Saasquatch" 
+    sqhheader="true"
+    ishidden="false"
+    ismarkdown="false"
+    color="#000"
+    fontsize="24"
+    text="You were Successfully Referred to Saasquatch"
     textalign="center"
-    paddingtop="12" 
+    paddingtop="12"
     paddingbottom="20"
   ></sqh-text-component>
   
   <sqh-text-component 
-    sqhbody="true" 
+    sqhbody="true"
+    ishidden="false"
+    ismarkdown="false"
     color="gray" 
     rewardkey="referredReward" 
     fontsize="13" 
@@ -41,6 +47,9 @@
   ></sqh-text-component>
   
   <sqh-copy-button
+    ishidden="false"
+    copysuccess="copied!"
+    copyfailure="Press Ctrl+C to copy"
     codefontcolor="#000000"
     codefontsize="14"
     text="COPY CODE"

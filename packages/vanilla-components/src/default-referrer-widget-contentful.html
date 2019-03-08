@@ -18,6 +18,7 @@
   <sqh-text-component 
     sqhbanner="true"
     ishidden="true"
+    ismarkdown="false"
     background="https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg"
     height="auto"
     paddingtop="150"
@@ -27,7 +28,9 @@
   ></sqh-text-component>
 
   <sqh-text-component
-    sqhheader="true" 
+    sqhheader="true"
+    ishidden="false"
+    ismarkdown="false"
     text="Give $10 and Get $10!" 
     color="#4486E1" 
     fontsize="30" 
@@ -37,7 +40,8 @@
   ></sqh-text-component>
 
   <sqh-text-component 
-    sqhbody="true" 
+    sqhbody="true"
+    ishidden="false"
     ismarkdown="true"
     text="Give a friend a $10 and receive $10 for yourself when they purchase.<br/><br/>Share the link below or use the code **<sqh-referral-code />**" 
     color="#000000" 
@@ -47,13 +51,17 @@
     paddingbottom="20"
   ></sqh-text-component>
 
-  <sqh-copy-link-button 
+  <sqh-copy-link-button
+    ishidden="false"
+    copysuccess="copied!"
+    copyfailure="Press Ctrl+C to copy"
     text="Copy"
     buttoncolor="#5C6164"
     textcolor="#FFFFFF"
   ></sqh-copy-link-button>
 
-  <sqh-share-button-container 
+  <sqh-share-button-container
+    ishidden="false"
     emaildisplayrule="mobile-and-desktop" 
     emailtext="Email" 
     emailtextcolor="#ffffff" 
@@ -95,6 +103,7 @@
   <sqh-text-component 
     sqhreferralsheader="true"
     ismarkdown="true"
+    ishidden="false"
     text="**Rewards Dashboard**" 
     color="#000000" 
     fontsize="13" 
@@ -104,11 +113,13 @@
   ></sqh-text-component>
 
   <sqh-stats-container
+    ishidden="false"
     paddingtop="0"
     paddingbottom="0"
   >
 
-    <sqh-stat-component 
+    <sqh-stat-component
+      ishidden="false"
       statcolor="#4caf50" 
       stattype="/referralsCount" 
       statdescription="Friends Referred"
@@ -117,6 +128,7 @@
     ></sqh-stat-component>
 
     <sqh-stat-component
+      ishidden="false"
       stattype="/rewardsCount" 
       statdescription="Total Rewards"
       paddingtop="10"
@@ -124,7 +136,8 @@
       statcolor="#000000"
     ></sqh-stat-component>
 
-    <sqh-stat-component 
+    <sqh-stat-component
+      ishidden="false"
       stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit" 
       statdescription="Credit earned"
       paddingtop="10"
@@ -134,7 +147,10 @@
 
   </sqh-stats-container>
 
-  <sqh-referral-list 
+  <sqh-referral-list
+    ishidden="false"
+    showreferrer="true"
+    usefirstreward="false"
     referralnamecolor="darkslategray" 
     referraltextcolor="lightgray" 
     rewardcolor="#4BB543" 
@@ -159,7 +175,9 @@
   ></sqh-referral-list>
 
   <sqh-text-component 
-    sqhfooter="true" 
+    sqhfooter="true"
+    ishidden="false"
+    ismarkdown="false"
     text="Terms and Conditions" 
     color="lightgray" 
     fontsize="13"

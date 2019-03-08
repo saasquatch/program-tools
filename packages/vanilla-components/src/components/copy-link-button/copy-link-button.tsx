@@ -9,10 +9,10 @@ import { API } from '../../services/WidgetHost';
   styleUrl: 'copy-link-button.scss'
 })
 export class CopyLinkButton {
+  @Prop() ishidden: boolean;
   @Prop() text: string;
-  @Prop() copysuccess: string = "copied!";
-  @Prop() copyfailure: string = "Press Ctrl+C to copy";
-  @Prop() ishidden: boolean = false;
+  @Prop() copysuccess: string;
+  @Prop() copyfailure: string;
   @Prop() buttoncolor: string;
   @Prop() textcolor: string;
   @State() sharelink: string;
