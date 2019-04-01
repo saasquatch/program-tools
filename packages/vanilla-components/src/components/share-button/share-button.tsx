@@ -1,5 +1,5 @@
 import { Component, Prop, Element } from '@stencil/core';
-import { shadeColor, detectMobileSafari } from '../../utilities';
+import { shadeColor, detectMobileSafari, detectMobileChrome } from '../../utilities';
 import { css } from 'emotion';
 
 @Component({
@@ -44,8 +44,8 @@ export class ShareButton {
   }
 
   render() {
-    const isMobileSafari  = detectMobileSafari();
-    const target = isMobileSafari ? '_parent' : '_blank';
+    const isMobileiOS = detectMobileSafari() || detectMobileChrome();
+    const target = isMobileiOS ? '_parent' : '_blank';
     const iconClass = `icon icon-${this.icon}`;
 
     const style = css`
