@@ -141,7 +141,7 @@ export default class Transaction {
    */
   generateSimpleEmail({ emailKey, user, rewardId }) {
     if (!rewardId) {
-        error("rewardId must be provided before email sent.");
+        throw new Error("rewardId must be provided before email sent.");
     }
     const queryVariables = {
       userId: user.id,
