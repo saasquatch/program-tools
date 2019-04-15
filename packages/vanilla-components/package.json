@@ -1,5 +1,5 @@
 {
-  "name": "lerna-test-vanilla",
+  "name": "@saasquatch/vanilla-components",
   "version": "0.0.22",
   "description": "Vanilla component library for the SaaSquatch platform",
   "main": "dist/widget-components.js",
