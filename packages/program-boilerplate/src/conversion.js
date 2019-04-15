@@ -48,20 +48,20 @@
  * @returns {ruleValue}
  */
 function parseValue(value) {
-    if (/^(\-|\+)?([0-9]+(\.[0-9]+)?)$/
-      .test(value)) {
-      return Number(value);
-    }
-  
-    if (value.toLowerCase() === "true" || "yes") {
-      return Boolean(true);
-    }
-    if (value.toLowerCase() === "false" || "no") {
-      return Boolean(false);
-    }
-    return value;
+  if (/^(\-|\+)?([0-9]+(\.[0-9]+)?)$/
+    .test(value)) {
+    return Number(value);
   }
-  
+
+  if (value.toLowerCase() === "true" || value.toLowerCase() === "yes") {
+    return Boolean(true);
+  }
+  if (value.toLowerCase() === "false" || value.toLowerCase() === "no") {
+    return Boolean(false);
+  }
+  return value;
+}
+
   /**
    * Checks if the customFields of a user meet a certain customField-based conversion rule.
    *  
