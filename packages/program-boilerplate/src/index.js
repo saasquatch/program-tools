@@ -1,128 +1,94 @@
-export const rewardEmailQuery = `
-query ($userId:String!, $accountId:String!, $rewardId:ID!) {
-  reward(id:$rewardId) {
-    ...AllFlatRewardFields
-  }
-  user(id:$userId, accountId:$accountId) {
-    firstName
-  }
-  tenant {
-    emailAddress
-    settings {
-      companyName
+// @ts-check
+import Transaction from './transaction';
+import {rewardEmailQuery} from './queries';
+import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
+import {setRewardSchedule} from './utils';
+
+export {
+  Transaction,
+  meetEventTriggerRules,
+  meetCustomFieldRules,
+  rewardEmailQuery,
+  setRewardSchedule
+}
+
+/**
+ * @typedef {Object} WebtaskContext
+ * @property {WebtaskContextBody?} body
+ */
+/**
+ * @typedef {Object} WebtaskContextBody
+ * @property {Object?} activeTrigger
+ * @property {Object?} program
+ */
+
+/**
+ * @description A list of valid programTriggerTypes
+ */
+
+const ProgramTriggerTypes = [
+    "AFTER_USER_CREATED_OR_UPDATED",
+    "REFERRAL",
+    "AFTER_USER_EVENT_PROCESSED",
+    "SCHEDULED",
+    "REWARD_SCHEDULED"];
+
+ /**
+  * A webtask that accepts handlers and returns a function fitting the webtask programming model.
+  * 
+  * @example webtask ({
+  *          "AFTER_USER_CREATED_OR_UPDATED" : handleUserUpsert,
+  *          "AFTER_USER_EVENT_PROCESSED": handleUserEvent,
+  *          "REFERRAL": handleReferralTrigger,
+  *          "PROGRAM_INTROSPECTION": handleIntrospection
+  *           })
+  * @param {Object} handlers - Key-value pairs, where key is a ProgramTriggerType (see {@link ProgramTriggerTypes}) or "PROGRAM_INTROSPECTION";
+  * ProgramTrigger handlers must accept a transaction instance as parameter. 
+  * Program-Introspection must accept a template as parameter and returns a new template.
+  * @returns {function} - A function that fits in the webtask programming model. See {@link https://webtask.io/docs/model}.
+  * 
+  *  
+ */
+
+export function webtask(handlers = {}) {
+    /**
+     * A function that fits in the webtask programming model. 
+     * If the messageType of context is 
+     * (a) "PROGRAM_INTROSPECTION":
+     * The handler must take the current template and rules as parameter, and returns the modified template.
+     * (b) "PROGRAM_TRIGGER":
+     * It creates a Transaction instance and passes it to a program handler.
+     * The handler will operate on the transaction instance to generate mutations analytics, which, together with programId are passed as 
+     * the result parameter of the callback function.
+     * 
+     * @param {WebtaskContext} context - A webtask context with several properties.
+     * @param {requestCallback} cb - A callback function.To indicate completion, the function must call the callback with two arguments: an error, and the result.
+     */
+    return function (context, cb) {
+        switch (context.body.messageType || "PROGRAM_TRIGGER") {
+            case "PROGRAM_INTROSPECTION":
+                const template = context.body.template;
+                const rules = context.body.rules;
+                const program = context.body.program;
+                // Make modifications to template based on rules here if necessary.
+                // ...
+                const handleIntrospection = handlers["PROGRAM_INTROSPECTION"];
+                const newTemplate = handleIntrospection && (handleIntrospection(template,rules,program) || handleIntrospection(template,rules)) || template;
+                cb(null, newTemplate);
+                break;
+            case "PROGRAM_TRIGGER": 
+                let transaction = new Transaction(context);
+                const triggerType = context.body.activeTrigger.type;
+                const handleTrigger = handlers[triggerType];
+                if (handleTrigger) {
+                    handleTrigger(transaction);
+                }  
+                cb(null, transaction.toJson());
+                break;
+            default:
+                cb(null, {});
+                break;
+        }
     }
-  }
-}
-fragment AllFlatRewardFields on FlatReward {
-  type
-  value
-  unit
-  name
-  dateGiven
-  dateExpires
-  dateCancelled
-  rewardSource
-  fuelTankCode
-  fuelTankType
-  currency
-  programId
-  programRewardKey
-}
-`;
 
-export function generateSimpleRewardAndEmail({context, emailKey, rewardKey, mutations}){
-    const rewardId = context.body.ids.pop();
-    const currentUser = context.body.activeTrigger.user;
-    mutations.push({
-      "type": "CREATE_REWARD",
-      "data": {
-        "user": {
-          "id": currentUser.id,
-          "accountId": currentUser.accountId
-        },
-        "key": rewardKey,
-        "rewardId": rewardId
-      }
-    });
-    mutations.push({
-      "type": "SEND_EMAIL",
-      "data": {
-        "user": {
-          "id": currentUser.id,
-          "accountId": currentUser.accountId
-        },
-        "key": emailKey,
-        "queryVariables": {
-          "userId": currentUser.id,
-          "accountId": currentUser.accountId,
-          "rewardId": rewardId
-        },
-        "query": rewardEmailQuery,
-        "rewardId": rewardId
-      }
-    });
-}
-
-export function generateReferralRewardAndEmail({context, emailKey, rewardKey, referralId, userId, accountId, mutations}){
-  const rewardId = context.body.ids.pop();
-  mutations.push({
-    "type": "CREATE_REWARD",
-    "data": {
-      "user": {
-        "id": userId,
-        "accountId": accountId
-      },
-      "key": rewardKey,
-      "rewardId": rewardId,
-      "referralId": referralId
-    }
-  });
-  mutations.push({
-    "type": "SEND_EMAIL",
-    "data": {
-      "user": {
-        "id": userId,
-        "accountId": accountId
-      },
-      "key": emailKey,
-      "queryVariables": {
-        "userId": userId,
-        "accountId": accountId,
-        "rewardId": rewardId
-      },
-      "query": rewardEmailQuery,
-      "rewardId": rewardId
-    }
-  });
-}
-
-export function webtask(options = {}){
-    return function(context, cb) {
-      var mutations = [];
-      var analytics = [];
-
-      switch (context.body.activeTrigger.type) {
-        case "AFTER_USER_CREATED_OR_UPDATED":
-          if(typeof options.afterUserCreatedOrUpdated === "function"){
-
-              var currentUser = context.body.activeTrigger.user;
-              var previousUser = context.body.activeTrigger.previous;
-
-              if (!currentUser) return;
-
-              var currentProgram = context.body.program;
-              if (!currentProgram) return;
-
-              options.afterUserCreatedOrUpdated(context, mutations, analytics);
-          }
-          break;
-        default:
-          break;
-      }
-      cb(null, {
-        "mutations": mutations,
-        "programId": context.body.program.id,
-        "analytics": analytics
-      });
-    };
 }
