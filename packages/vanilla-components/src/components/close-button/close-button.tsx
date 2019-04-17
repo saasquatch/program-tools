@@ -1,7 +1,9 @@
 import { Component, Prop, Element, Listen } from '@stencil/core';
 
-const API: MyAPI = window["WidgetHost"];
-const widget = window["widgetIdent"];
+import {API,widgetIdent} from "../../services/WidgetHost"
+
+// const API: MyAPI = window["WidgetHost"];
+// const widget = window["widgetIdent"];
 
 @Component({
   tag: 'sqh-close-button',
@@ -12,14 +14,13 @@ export class TwitterShareButton {
   @Element() closeButton: HTMLElement;
 
   @Listen('click')
-  handleClick(ev){
-    console.log('clicked')
+  handleClick(){
     API.ui.close();
   }
 
   componentDidLoad() {
-    console.log(widget);
-    if (widget && widget.mode != "POPUP") {
+    const widget = widgetIdent();
+    if (widget && widget.engagementMedium != "POPUP") {
       this.closeButton.setAttribute('style', 'display:none');
     }
   }

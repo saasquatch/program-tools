@@ -1,5 +1,4 @@
 // @ts-check
-
 import Transaction from './transaction';
 import {rewardEmailQuery} from './queries';
 import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';

@@ -1,26 +1,46 @@
 {
   "name": "@saasquatch/vanilla-components-grapesjs",
-  "version": "0.0.8",
-  "description": "Describe vanilla-components-grapesjs here",
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "files": [
-    "es",
-    "lib",
-    "umd"
-  ],
+  "version": "1.0.14",
+  "description": "GrapesJS Plugin Boilerplate",
+  "main": "dist/index.min.js",
   "scripts": {
-    "build": "nwb build-web-module",
-    "clean": "nwb clean-module",
-    "test": "nwb test",
-    "test:coverage": "nwb test --coverage",
-    "test:watch": "nwb test --server"
+    "lint": "eslint src",
+    "v:patch": "npm version --no-git-tag-version patch",
+    "build": "npm run v:patch && webpack --env.production",
+    "start": "webpack-dev-server --open --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saasquatch/program-tools.git"
+  },
+  "author": "SaaSquatch",
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      "env"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
+  },
+  "peerDependencies": {
+    "grapesjs": "0.x"
   },
   "devDependencies": {
-    "nwb": "0.21.x"
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.19.1",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "^16.4.2",
+    "react-color": "^2.14.1",
+    "react-dom": "^16.4.2",
+    "styled-components": "^3.4.2",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.1.2",
+    "webpack-dev-server": "^3.1.4"
   },
-  "author": "",
-  "homepage": "",
-  "license": "MIT",
-  "repository": ""
+  "gitHead": "582bd4b44cc76ca36433790ac8ae4b1329ae5b77"
 }
