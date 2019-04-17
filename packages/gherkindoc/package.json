@@ -1,6 +1,6 @@
 {
-  "name": "gherkindoc",
-  "version": "1.0.0",
+  "name": "@saasquatch/gherkindoc",
+  "version": "0.0.1",
   "description": "Compile Gherkin feature files to XLSX/JSON/HTML",
   "main": "dist/index.js",
   "scripts": {
