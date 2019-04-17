@@ -51,7 +51,7 @@ export default class Transaction {
     }
   }
 
-  fireProgramEvalAnalytics(user) {
+  fireProgramEvalAnalytics(user, type) {
     const evalAnalytic = {
       eventType: "PROGRAM_EVALUATED",
       data: {
@@ -61,6 +61,11 @@ export default class Transaction {
         }
       }
     };
+
+    if (type) {
+      evalAnalytic.programTypeOrdinal = type;
+    }
+
     this.analytics.push(evalAnalytic);
   }
 
