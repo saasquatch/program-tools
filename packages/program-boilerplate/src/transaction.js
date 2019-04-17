@@ -63,17 +63,19 @@ export default class Transaction {
     };
 
     if (type !== undefined) {
-      evalAnalytic.data.programTypeOrdinal = type;
+      evalAnalytic.data.programType = type;
     }
 
     this.analytics.push(evalAnalytic);
   }
 
-  fireProgramGoalAnalytics(user, type) {
+  fireProgramGoalAnalytics(user, type, key, id) {
     const goalAnalytic = {
       eventType: "PROGRAM_GOAL",
       data: {
-        programTypeOrdinal: type,
+        programType: type,
+        analyticKey: key,
+        analyticDedupeId: id,
         user: {
           id: user.id,
           accountId: user.accountId
