@@ -62,8 +62,8 @@ export default class Transaction {
       }
     };
 
-    if (type) {
-      evalAnalytic.programTypeOrdinal = type;
+    if (type !== undefined) {
+      evalAnalytic.data.programTypeOrdinal = type;
     }
 
     this.analytics.push(evalAnalytic);
@@ -72,8 +72,8 @@ export default class Transaction {
   fireProgramGoalAnalytics(user, type) {
     const goalAnalytic = {
       eventType: "PROGRAM_GOAL",
-      programTypeOrdinal: type,
       data: {
+        programTypeOrdinal: type,
         user: {
           id: user.id,
           accountId: user.accountId
