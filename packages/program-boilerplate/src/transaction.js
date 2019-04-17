@@ -64,6 +64,21 @@ export default class Transaction {
     this.analytics.push(evalAnalytic);
   }
 
+  fireProgramGoalAnalytics(user, type) {
+    const goalAnalytic = {
+      eventType: "PROGRAM_GOAL",
+      programTypeOrdinal: type,
+      data: {
+        user: {
+          id: user.id,
+          accountId: user.accountId
+        }
+      }
+    };
+
+    this.analytics.push(goalAnalytic);
+  }
+
   /**
    * @property {string?} emailKey     - Key of email template (as defined in Contentful).
    * @property {string?} rewardKey    - Key of the reward (as defined in Contentful).
@@ -230,7 +245,7 @@ export default class Transaction {
       };
       this.mutations = [...this.mutations, refundNode];
       });
-  } 
+  }
 
   /**
    * Returns a JSON object required by the callback function of webtask to modifify the program.
