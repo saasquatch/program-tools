@@ -1,6 +1,8 @@
-@import '../../assets/styles/variables';
-
 sqh-close-button {
+
+  $blue:                    #4486e1;
+  $font-size-xs:            12px;
+
   .squatch-header-close {
     position: absolute;
     top: 4px;

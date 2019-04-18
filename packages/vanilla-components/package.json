@@ -1,14 +1,14 @@
 {
-  "name": "lerna-test-vanilla",
-  "version": "0.0.22",
+  "name": "@saasquatch/vanilla-components",
+  "version": "1.0.6",
   "description": "Vanilla component library for the SaaSquatch platform",
-  "main": "dist/widget-components.js",
+  "main": "dist/index.js",
   "types": "dist/types/components.d.ts",
+  "module": "dist/esm/index.js",
   "collection": "dist/collection/collection-manifest.json",
   "files": [
     "dist/"
   ],
-  "browser": "dist/widget-components.js",
   "scripts": {
     "build": "stencil build --prerender",
     "build:watch": "nodemon -w src --exec \"npm run build\"",
@@ -16,25 +16,44 @@
     "serve": "stencil-dev-server",
     "start": "npm run dev",
     "test": "jest --no-cache",
-    "test.watch": "jest --watch --no-cache"
+    "test.watch": "jest --watch --no-cache",
+    "storybook": "start-storybook -p 6006 -s ./dist",
+    "build-storybook": "build-storybook -o docs -c .storybook-prod",
+    "contentful": "ts-node templates/build-contentful.ts"
   },
   "dependencies": {
-    "@stencil/core": "^0.2.2",
+    "@stencil/core": "^0.9.11",
     "@types/faker": "^4.1.2",
+    "@types/graphql": "^0.13.3",
+    "apollo-cache-inmemory": "^1.2.5",
+    "apollo-client": "^2.3.5",
+    "apollo-link-http": "^1.5.4",
     "clipboard": "^1.7.1",
+    "emotion": "^9.2.6",
     "faker": "^4.1.0",
+    "graphql-tag": "^2.9.2",
     "intl-messageformat": "^2.2.0",
-    "intl-relativeformat": "^2.1.0"
+    "intl-relativeformat": "^2.1.0",
+    "marked": "^0.4.0",
+    "path-to-regexp": "^2.2.1",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",
+    "@stencil/sass": "0.0.5",
     "@stencil/utils": "latest",
+    "@storybook/html": "^4.0.0-alpha.14",
     "@types/clipboard": "^1.5.36",
     "@types/faker": "^4.1.2",
     "@types/intl-messageformat": "^1.3.0",
-    "@types/jest": "^21.1.1",
+    "@types/jest": "^21.1.10",
+    "@types/node": "^10.10.2",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
     "graphql": "^0.12.3",
-    "jest": "^21.2.1"
+    "html-minifier": "^3.5.20",
+    "jest": "^21.2.1",
+    "ts-node": "^7.0.1"
   },
   "repository": {
     "type": "git",
@@ -58,5 +77,6 @@
       "json",
       "jsx"
     ]
-  }
+  },
+  "gitHead": "582bd4b44cc76ca36433790ac8ae4b1329ae5b77"
 }

@@ -1,0 +1,107 @@
+body {
+  margin: 0px; // resets defaults
+  padding: 0px; // resets defaults
+  font-family: sans-serif;
+
+}
+
+sqh-global-container {
+  display: block;
+  max-width: 500px;
+  margin: 0 auto;
+
+  * {
+    box-sizing: border-box; // respects width set and puts padding inside of set width
+  }
+
+  > div {
+    width: 100%;
+    display: block;
+    padding: 0 10px;
+  }
+
+  .sqh-attribution {
+    display: inherit;
+    text-align: center;
+    font-size: 10px;
+    color: lightgray;
+    text-decoration: none;
+    padding-bottom: 10px;
+  }
+
+  .container-loading {
+    display: none;
+    left: calc(50% - 50px);
+    position: absolute;
+    text-align: center;
+    top: 45%;
+    width: 100px;
+  }
+
+  &:not(.hydrated) {
+    .container-loading {
+      display: block;
+      visibility: visible;
+    }
+  }
+
+  .loading-icon {
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 45%;
+    z-index: 1000;
+  }
+  
+  .loading-icon-tr .loading-icon {
+    position: relative;
+    top: 0;
+  }
+  
+  .loading-icon > div {
+    height: 100%;
+    margin: 1px;
+    width: 6px;
+    display: inline-block;
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  }
+  
+  .loading-icon .bar2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+  }
+  
+  .loading-icon .bar3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+  }
+  
+  .loading-icon .bar4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+  }
+  
+  .loading-icon .bar5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+  }
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}

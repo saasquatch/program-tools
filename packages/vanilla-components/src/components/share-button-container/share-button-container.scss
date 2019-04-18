@@ -1,16 +1,29 @@
-@import '../../assets/styles/variables';
-
 sqh-share-button-container {
-    display: block;
-    justify-content: space-between;
-    margin: 0 auto;
-    text-align: center;
+  text-align: center;
+  display: block;
+  max-width: 100%;
+  padding-bottom: 24px;
+  border-bottom: 1px solid lightgray;
 
-    > .hydrated:first-child a {
-        margin-left: 0;
+  // hides share buttons based on class for desktop and mobile - might end up in CSS in JS because of media queries
+  .squatch-share-btn {
+
+    &.hidden {
+      display: none;
     }
 
-    @media (max-width: $screen-sm-max) {
+    &.mobile-only {
+      display: none;
+
+      @media (max-width: 499px) {
         display: block;
+      }
     }
+
+    &.desktop-only {
+      @media (max-width: 499px) {
+        display: none;
+      }
+    }
+  }
 }

@@ -1,0 +1,49 @@
+sqh-copy-button {
+  // sets default display type allowing component outline to appear
+  display: block;
+  .sqh-align-button {
+    text-align: center;
+    position: relative;
+    margin: 20px 0;
+    .sqh-copy-button {
+      width: 100%;
+      text-align: center;
+      padding: 8px;
+      cursor: pointer;
+    }
+    .label {
+      padding: .2em .6em .3em;
+      font-size: 11px;
+      font-weight: bold;
+      line-height: 1;
+      color: #fff;
+      text-align: center;
+      white-space: nowrap;
+      border-radius: .25em;
+      background-color: #35b21e;
+    
+      // Empty labels collapse automatically (not available in IE8)
+      &:empty {
+        display: none;
+      }
+    }
+  
+    .fade {
+      opacity: 0;
+      -webkit-transition: opacity .15s linear;
+      -o-transition: opacity .15s linear;
+      transition: opacity .15s linear;
+  
+      &.in {
+        opacity: 1;
+      }
+    }
+  
+    #squatch-copy-notification {
+      position: absolute;
+      left: 215px;
+      bottom: 35px;
+      z-index: 2;
+    }
+  }
+}

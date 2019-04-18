@@ -1,99 +1,179 @@
-@import '../../assets/styles/mixins/buttons';
-@import '../../assets/styles/mixins/vendor-prefixes';
-@import '../../assets/styles/mixins/tab-focus';
-
-@import '../../assets/styles/variables';
-@import '../../assets/styles/base';
-@import '../../assets/styles/shims';
-
-@import '../../assets/styles/labels';
-@import '../../assets/styles/buttons';
-@import '../../assets/styles/responsive-utilities';
-
-button.icon-btn.copy {
-  @include button-variant(white, #5b6165, #5b6165);
-  width: 140px;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  border-left: 0;
-  padding-left: 0;
-  padding-right: 0;
-  position: relative;
-  text-align: left;
-  min-height: 34px;
-
-  &.hover {
-    background: darken($btn-primary-bg, 10%);
-    border-color: darken($btn-primary-border, 12%);
-  }
-
-  @media (max-width: $screen-sm-max) {
-    width: auto;
-
-    .icon {
-      width: 39px;
-      margin-right: 0;
-    }
-  }
-}
-
 sqh-copy-link-button {
-  font-family: 'Lato', sans-serif;
-  display: block;
 
-  input {
-    color: inherit;
-    font: inherit;
-    margin: 0;
-  }
+  display: block;
+  text-align: center;
 
   .input-group {
+    padding: 8px 0 10px;
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    width: 100%;
     max-width: 440px;
     margin: 0 auto;
   }
 
-  .label-default {
-    background-color: #737b80;
-  }
-
-  #squatch-share-notification {
-    position: absolute;
-    top: 10px;
-    right: 156px;
-    z-index: 100;
-  
-    @media (max-width: $screen-sm-max) {
-      right: 50px;
-    }
-  }
-
   #squatch-share-link {
-    display: block;
-    width: 100%;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.428571429;
-    background-color: #fff;
-    background-image: none;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    border-radius: 4px 0 0 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;  
-    color: $text-color;
-    background: transparent;
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    color: #5b6165;
     cursor: text;
     position: relative;
     z-index: 2;
-    float: left;
     width: 100%;
     margin-bottom: 0;
     display: table-cell;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
+  }
+
+  .label {
+    padding: .2em .6em .3em;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: .25em;
+    background-color: #737b80;
+  
+    // Empty labels collapse automatically (not available in IE8)
+    &:empty {
+      display: none;
+    }
+  }
+
+  .fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+
+    &.in {
+      opacity: 1;
+    }
+  }
+
+  #squatch-share-notification {
+    position: absolute;
+    top: 16px;
+    right: 156px;
+    z-index: 2;
+  }
+
+  .input-group-btn {
+    display: table-cell;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .sqh-copy-btn {
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: 1px solid transparent;
+    white-space: nowrap;
+    border-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    height: 34px;
+
+    &:focus {
+      outline: 0; // removes blue border on interactions
+    }
+
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+      cursor: not-allowed;
+      pointer-events: none; // Future-proof disabling of clicks
+      opacity: .65;
+      -webkit-box-shadow: none;
+              box-shadow: none;
+    }
+  }
+
+  .icon-btn {
+    width: 139px;
+    border-left: 0;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    text-align: left;
+  
+    &:before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -3px;
+      bottom: -1px;
+      background: transparentize(#ffffff, 0.82);
+      width: 40px;
+    }
+  
+    .icon {
+      width: 42px;
+      margin-right: 30px;
+    }
+  }
+
+  .hidden-sm {
+    text-align: center;
+    padding-left: 10px;
+    font-size: 14px;
+  }
+
+  .icon-link:before {
+    font-size: 1.2em;
+    padding-left: 8px;
   }
 }
 
+
+
+
+// Mobile style to be put into CSS in JS
+
+sqh-copy-link-button {
+  @media (max-width: 499px) {
+    .input-group {
+      max-width: 100%;
+    }
+  }
+
+  #squatch-share-notification {
+    @media (max-width: 499px) {
+      right: 60px;
+    }
+  }
+
+  .sqh-copy-btn {
+      @media (max-width: 499px) {
+        width: auto;
+  
+        .icon {
+          width: 39px;
+          margin-right: 0;
+          padding-right: 8px;
+        }
+      }
+  }
+
+  .hidden-sm {
+    @media (min-width: 0px) and (max-width: 499px) {
+      display: none !important;
+    }
+  }
+}

@@ -1,16 +1,35 @@
-import { Component, Prop, State} from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 import Clipboard from 'clipboard';
-import { addClass, removeClass } from '../../utilities';
-
-const API: MyAPI = window["WidgetHost"];
+import { shadeColor, addClass, removeClass } from '../../utilities';
+import { css } from 'emotion';
+import { API } from '../../services/WidgetHost';
 
 @Component({
   tag: 'sqh-copy-link-button',
   styleUrl: 'copy-link-button.scss'
 })
 export class CopyLinkButton {
+  @Prop() ishidden: boolean;
   @Prop() text: string;
-  @State() shareLink: string;
+  @Prop() copysuccess: string;
+  @Prop() copyfailure: string;
+  @Prop() buttoncolor: string;
+  @Prop() textcolor: string;
+  @State() sharelink: string;
+
+  componentWillLoad() {
+    if (!this.ishidden) {
+      return API.graphql.getShareLink().then(res => {
+        this.sharelink = res;
+      }).catch(e => {
+        this.onError(e);
+      });
+    } 
+  }
+
+  onError(e: Error) {
+    console.log("Error loading via GraphQL.", e);
+  }
 
   notify(clipboardNotification, notificationText) {
     const notification = document.getElementById(clipboardNotification.slice(1));
@@ -26,11 +45,11 @@ export class CopyLinkButton {
   }
 
   notifySuccess(e:Clipboard.Event) {
-    this.notify((e.trigger as HTMLElement).dataset.clipboardNotification, "Copied!");
+    this.notify((e.trigger as HTMLElement).dataset.clipboardNotification, this.copysuccess);
   }
 
   notifyFailure(e:Clipboard.Event) {
-    this.notify((e.trigger as HTMLElement).dataset.clipboardNotification, "Press Ctrl+C to copy");
+    this.notify((e.trigger as HTMLElement).dataset.clipboardNotification, this.copyfailure);
   }
 
   componentDidLoad() {
@@ -40,19 +59,37 @@ export class CopyLinkButton {
   }
 
   render() {
-    return (
-    <div class="input-group">
-        <input id="squatch-share-link" value="https://link.com" readonly="readonly"></input>
+    const myStyle = css `
+      background-color: ${this.buttoncolor};
+      border: 1px solid ${this.buttoncolor};
+      color: ${this.textcolor};
+      font-family: ${'inherit'};
+      
+      &:hover {
+        background: ${shadeColor(this.buttoncolor, 10)};
+        border-color: ${shadeColor(this.buttoncolor, 12)};
+        color: ${this.textcolor};
+      }
+      
+      &:focus {
+        color: ${this.textcolor};
+      }
+    `;
 
-        <span class="label label-default fade" id="squatch-share-notification">copied!</span>
+    const buttonClass = [`sqh-copy-btn icon-btn`, myStyle ].join(" ");
+
+    return !this.ishidden && 
+      <div class="input-group">
+        <input id="squatch-share-link" value={ this.sharelink } readonly="readonly"></input>
+
+        <span class="label fade" id="squatch-share-notification">{this.copysuccess}</span>
 
         <span class="input-group-btn">
-            <button class="btn btn-primary icon-btn copy" data-clipboard-target="#squatch-share-link" data-clipboard-notification="#squatch-share-notification">
+            <button class={buttonClass} data-clipboard-target="#squatch-share-link" data-clipboard-notification="#squatch-share-notification">
             <i class="icon icon-link"></i>
-            <span class="hidden-sm">Copy</span>
+            <span class="hidden-sm">{this.text}</span>
             </button>
         </span>
-    </div>
-    );
+      </div>;
   }
 }
