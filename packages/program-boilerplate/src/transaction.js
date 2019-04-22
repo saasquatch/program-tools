@@ -142,6 +142,7 @@ export default class Transaction {
       rewardId: rewardId,
       referralId: referralId
     };
+
     const validProperties = [{userEvent},{rewardSource},{status},rewardProperties].filter(prop=>prop!==undefined);
     const updatedRewardData = validProperties.reduce((currentData,prop)=> {return {...currentData,...prop}},rewardData);
     const newMutation = {
@@ -165,12 +166,14 @@ export default class Transaction {
     if (!rewardId) {
         throw new Error("rewardId must be provided before email sent.");
     }
+
     const queryVariables = {
       userId: user.id,
       accountId: user.accountId,
       rewardId: rewardId,
       programId: this.context.body.program.id
     };
+
     const newMutation = {
       type: "SEND_EMAIL",
       data: {
@@ -184,6 +187,7 @@ export default class Transaction {
         rewardId: rewardId
       }
     };
+
     this.mutations = [...this.mutations, newMutation];
   }
 
@@ -194,6 +198,7 @@ export default class Transaction {
       programId: this.context.body.program.id,
       referralId: referralId,
     };
+
     const queryVariables = rewardId?{...variables,rewardId}:variables;
     const newMutation = {
       type: "SEND_EMAIL",
@@ -217,6 +222,7 @@ export default class Transaction {
     const {rewardId} = this.generateSimpleReward(rewardKey);
     this.generateSimpleEmail({ emailKey, user, rewardId });
   }
+
   /**
    * Generates both reward and email for a referral.
    */
