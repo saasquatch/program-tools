@@ -63,7 +63,7 @@ export const update = async (key, value) => {
   }
 
   config[key] = value;
-  return write(config);
+  return await write(config);
 };
 
 /**
