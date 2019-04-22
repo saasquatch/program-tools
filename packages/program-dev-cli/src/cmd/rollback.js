@@ -6,8 +6,8 @@ import { hugeWarningConfirm } from '../util/actions';
 import { uploadSchema } from '../util/contentful';
 import { uploadWebtask } from '../util/webtask';
 
-export const command = 'revert';
-export const desc = 'Revert a previous deploy';
+export const command = 'rollback';
+export const desc = 'Rollback to a previous deploy';
 
 /**
  * Basic checks to complete before the command begins
