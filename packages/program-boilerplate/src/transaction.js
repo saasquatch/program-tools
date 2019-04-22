@@ -74,8 +74,8 @@ export default class Transaction {
       eventType: "PROGRAM_GOAL",
       data: {
         programType: type,
-        analyticKey: key,
-        analyticDedupeId: id,
+        analyticsKey: key,
+        analyticsDedupeId: id,
         user: {
           id: user.id,
           accountId: user.accountId
