@@ -84,7 +84,7 @@ export const handler = async (argv) => {
   }
 
   if (!argv.schemaOnly) {
-    await uploadWebtask(filePair.source, config)
+    await uploadWebtask(filePair.source, config, argv.webtask)
       .catch(err => {
         log();
         error(err.message);
@@ -114,5 +114,10 @@ export const builder = {
     alias: 's',
     type: 'boolean',
     describe: 'Only deploy the schema'
+  },
+  webtask: {
+    alias: 'w',
+    type: 'string',
+    describe: 'Manually specify the webtask name'
   }
 };

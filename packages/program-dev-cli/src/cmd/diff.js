@@ -81,7 +81,7 @@ export const handler = async (argv) => {
 
   if (!argv.schemaOnly) {
     const webtaskSpinner = ora('Pulling Webtask code diff...').start();
-    let webtask = await getWebtask(filePair.source, config);
+    let webtask = await getWebtask(filePair.source, config, argv.webtask);
 
     if (!webtask) {
       webtaskSpinner.fail('Failed to retrieve webtask');
@@ -228,5 +228,10 @@ export const builder = {
     alias: 's',
     type: 'boolean',
     describe: 'Only run the diff on the schema'
+  },
+  webtask: {
+    alias: 'w',
+    type: 'string',
+    describe: 'Manually specify the webtask name'
   }
 };

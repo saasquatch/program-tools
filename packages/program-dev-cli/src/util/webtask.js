@@ -14,12 +14,12 @@ const WEBTASK_URL = 'https://saasquatch.auth0-extend.com';
  * @param {String} source Path to source code
  * @param {Object} config cli config
  */
-export const uploadWebtask = async (source, config) => {
+export const uploadWebtask = async (source, config, wtName) => {
   const prefix = config.space.live
     ? ''
     : 'staging-';
 
-  const webtaskName = `${prefix}${path.basename(source, '.js')}`;
+  const webtaskName = wtName ? wtName : `${prefix}${path.basename(source, '.js')}`;
   const connectionSpinner = ora('Connecting to webtask').start();
 
   const profile = sandbox.init({
@@ -105,12 +105,12 @@ export const uploadWebtask = async (source, config) => {
  *
  * @return {Object} The webtask
  */
-export const getWebtask = async (source, config) => {
+export const getWebtask = async (source, config, wtName) => {
   const prefix = config.space.live
     ? ''
     : 'staging-';
 
-  const webtaskName = `${prefix}${path.basename(source, '.js')}`;
+  const webtaskName = wtName ? wtName : `${prefix}${path.basename(source, '.js')}`;
 
   const profile = sandbox.init({
     url: WEBTASK_URL,
