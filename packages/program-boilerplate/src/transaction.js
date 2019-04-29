@@ -79,11 +79,11 @@ export default class Transaction {
   fireProgramGoalAnalytics(user, programType, analyticsKey, analyticsDedupeId, timestamp) {
     const goalAnalytic = {
       eventType: "PROGRAM_GOAL",
+      timestamp,
       data: {
         programType,
         analyticsKey,
         analyticsDedupeId,
-        timestamp,
         user: {
           id: user.id,
           accountId: user.accountId
