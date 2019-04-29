@@ -69,13 +69,21 @@ export default class Transaction {
     this.analytics.push(evalAnalytic);
   }
 
-  fireProgramGoalAnalytics(user, type, key, id) {
+  /**
+   * @param {object} user              - user who achieved the program goal
+   * @param {string} programType       - type of program
+   * @param {string} analyticsKey      - type of goal achieved
+   * @param {string} analyticsDedupeId - unique id of the analytic event
+   * @param {number} timestamp         - timestamp of the event
+   */
+  fireProgramGoalAnalytics(user, programType, analyticsKey, analyticsDedupeId, timestamp) {
     const goalAnalytic = {
       eventType: "PROGRAM_GOAL",
       data: {
-        programType: type,
-        analyticsKey: key,
-        analyticsDedupeId: id,
+        programType,
+        analyticsKey,
+        analyticsDedupeId,
+        timestamp,
         user: {
           id: user.id,
           accountId: user.accountId
