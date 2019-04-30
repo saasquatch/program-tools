@@ -129,7 +129,12 @@ export const handler = async (argv) => {
           }
 
           lines.forEach(line => {
-            console.log(color(line));
+            if (line.match(/^\s*$/g)) {
+              const bg = change.added ? chalk.bgGreen : chalk.bgRed;
+              console.log(bg(' '));
+            } else {
+              console.log(color(line));
+            }
           });
 
         } else {
