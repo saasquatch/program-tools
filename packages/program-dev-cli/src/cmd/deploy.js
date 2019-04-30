@@ -71,7 +71,7 @@ export const handler = async (argv) => {
     return;
   }
 
-  if (config.space.live === true) {
+  if (config.space.live === true || (argv.webtask && !argv.webtask.includes('staging'))) {
     const confirmed = await hugeWarningConfirm(
       `You are about to deploy to the ${chalk.bold('LIVE')} Contentful and Webtask environments.`,
       `Yes, I really want to deploy to the ${chalk.bold('LIVE')} environments.`
