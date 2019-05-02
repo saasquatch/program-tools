@@ -76,7 +76,6 @@ export function webtask(handlers = {}) {
         }
         break;
       case "PROGRAM_TRIGGER": 
-        console.log(context.body);
         const transaction = new Transaction({
           body: context.body,
           meta: undefined,
