@@ -88,22 +88,23 @@ export function webtask(handlers = {}) {
         const triggerType = context.body.activeTrigger.type;
         const handleTrigger = handlers[triggerType];
 
-        if (handleTrigger) {
-          try {
+        try {
+          if (handleTrigger) {
             handleTrigger(transaction);
-            res.status(200).json(transaction.toJson());
-          } catch (e) {
-            res.status(500).json({
-              error: "An error occurred in a webtask",
-              message: e.toString(),
-            });
           }
-        } else {
-          res.status(200).send();
+
+          res.status(200).json(transaction.toJson());
+        } catch (e) {
+          res.status(500).json({
+            error: "An error occurred in a webtask",
+            message: e.toString(),
+          });
         }
 
         break;
       default:
+        console.log('UNREACHABLE CODE REACHED!!');
+        res.status(400).send('Expected either PROGRAM_TRIGGER or PROGRAM_INTROSPECTION messageType.');
         break;
     }
   });
