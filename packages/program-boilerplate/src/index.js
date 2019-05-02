@@ -52,6 +52,9 @@ const ProgramTriggerTypes = [
 
 export function webtask(handlers = {}) {
   const express = require('express')();
+  const bodyParser = require('body-parser');
+
+  express.use(bodyParser.json());
 
   express.post('/', (context, res) => {
     switch (context.body.messageType || "PROGRAM_TRIGGER") {
@@ -73,14 +76,23 @@ export function webtask(handlers = {}) {
         }
         break;
       case "PROGRAM_TRIGGER": 
-        const transaction = new Transaction(context);
+        console.log(context.body);
+        const transaction = new Transaction({
+          body: context.body,
+          meta: undefined,
+          storage: undefined,
+          query: context.query,
+          secrets: undefined,
+          headers: context.headers,
+          data: undefined,
+        });
         const triggerType = context.body.activeTrigger.type;
         const handleTrigger = handlers[triggerType];
 
         if (handleTrigger) {
           try {
             handleTrigger(transaction);
-            res.status(200).json(transaction);
+            res.status(200).json(transaction.toJson());
           } catch (e) {
             res.status(500).json({
               error: "An error occurred in a webtask",
