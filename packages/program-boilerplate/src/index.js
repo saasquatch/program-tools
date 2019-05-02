@@ -51,44 +51,51 @@ const ProgramTriggerTypes = [
  */
 
 export function webtask(handlers = {}) {
-    /**
-     * A function that fits in the webtask programming model. 
-     * If the messageType of context is 
-     * (a) "PROGRAM_INTROSPECTION":
-     * The handler must take the current template and rules as parameter, and returns the modified template.
-     * (b) "PROGRAM_TRIGGER":
-     * It creates a Transaction instance and passes it to a program handler.
-     * The handler will operate on the transaction instance to generate mutations analytics, which, together with programId are passed as 
-     * the result parameter of the callback function.
-     * 
-     * @param {WebtaskContext} context - A webtask context with several properties.
-     * @param {requestCallback} cb - A callback function.To indicate completion, the function must call the callback with two arguments: an error, and the result.
-     */
-    return function (context, cb) {
-        switch (context.body.messageType || "PROGRAM_TRIGGER") {
-            case "PROGRAM_INTROSPECTION":
-                const template = context.body.template;
-                const rules = context.body.rules;
-                const program = context.body.program;
-                // Make modifications to template based on rules here if necessary.
-                // ...
-                const handleIntrospection = handlers["PROGRAM_INTROSPECTION"];
-                const newTemplate = handleIntrospection && (handleIntrospection(template,rules,program) || handleIntrospection(template,rules)) || template;
-                cb(null, newTemplate);
-                break;
-            case "PROGRAM_TRIGGER": 
-                let transaction = new Transaction(context);
-                const triggerType = context.body.activeTrigger.type;
-                const handleTrigger = handlers[triggerType];
-                if (handleTrigger) {
-                    handleTrigger(transaction);
-                }  
-                cb(null, transaction.toJson());
-                break;
-            default:
-                cb(null, {});
-                break;
-        }
-    }
+  const express = require('express')();
 
+  express.post('/', (context, res) => {
+    switch (context.body.messageType || "PROGRAM_TRIGGER") {
+      case "PROGRAM_INTROSPECTION":
+        const template = context.body.template;
+        const rules = context.body.rules;
+        const program = context.body.program;
+        // Make modifications to template based on rules here if necessary.
+        // ...
+        const handleIntrospection = handlers["PROGRAM_INTROSPECTION"];
+        try {
+          const newTemplate = handleIntrospection && (handleIntrospection(template,rules,program) || handleIntrospection(template,rules)) || template;
+          res.status(200).json(newTemplate);
+        } catch (e) {
+          res.status(500).json({
+            error: "An error occurred in a webtask",
+            message: e.toString(),
+          });
+        }
+        break;
+      case "PROGRAM_TRIGGER": 
+        const transaction = new Transaction(context);
+        const triggerType = context.body.activeTrigger.type;
+        const handleTrigger = handlers[triggerType];
+
+        if (handleTrigger) {
+          try {
+            handleTrigger(transaction);
+            res.status(200).json(transaction);
+          } catch (e) {
+            res.status(500).json({
+              error: "An error occurred in a webtask",
+              message: e.toString(),
+            });
+          }
+        } else {
+          res.status(200).send();
+        }
+
+        break;
+      default:
+        break;
+    }
+  });
+
+  return express;
 }
