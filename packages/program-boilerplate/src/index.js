@@ -35,7 +35,7 @@ const ProgramTriggerTypes = [
 
  /**
   * A webtask that accepts handlers and returns a function fitting the webtask programming model.
-  * 
+  *
   * @example webtask ({
   *          "AFTER_USER_CREATED_OR_UPDATED" : handleUserUpsert,
   *          "AFTER_USER_EVENT_PROCESSED": handleUserEvent,
@@ -43,18 +43,20 @@ const ProgramTriggerTypes = [
   *          "PROGRAM_INTROSPECTION": handleIntrospection
   *           })
   * @param {Object} handlers - Key-value pairs, where key is a ProgramTriggerType (see {@link ProgramTriggerTypes}) or "PROGRAM_INTROSPECTION";
-  * ProgramTrigger handlers must accept a transaction instance as parameter. 
+  * ProgramTrigger handlers must accept a transaction instance as parameter.
   * Program-Introspection must accept a template as parameter and returns a new template.
   * @returns {function} - A function that fits in the webtask programming model. See {@link https://webtask.io/docs/model}.
-  * 
-  *  
+  *
+  *
  */
 
 export function webtask(handlers = {}) {
   const express = require('express')();
   const bodyParser = require('body-parser');
+  const compression = require('compression');
 
   express.use(bodyParser.json());
+  express.use(compression());
 
   express.post('/', (context, res) => {
     switch (context.body.messageType || "PROGRAM_TRIGGER") {
@@ -75,7 +77,7 @@ export function webtask(handlers = {}) {
           });
         }
         break;
-      case "PROGRAM_TRIGGER": 
+      case "PROGRAM_TRIGGER":
         const transaction = new Transaction({
           body: context.body,
           meta: undefined,
