@@ -25,7 +25,7 @@ export const setRewardSchedule = ({ template, expiryWarningDays, key, emailKey, 
     }
 }
 
-export function getGoalAnalyticTimestamp(events, triggerTime) {
-  const purchaseEvent = events.find(e => e.key === "purchase");
-  return purchaseEvent ? purchaseEvent.dateTriggered : triggerTime;
+export function getGoalAnalyticTimestamp(trigger) {
+  const purchaseEvent = trigger.events.find(e => e.key === "purchase");
+  return purchaseEvent ? purchaseEvent.dateTriggered : trigger.time;
 }
