@@ -27,29 +27,28 @@ export {
  */
 
 const ProgramTriggerTypes = [
-    "AFTER_USER_CREATED_OR_UPDATED",
-    "REFERRAL",
-    "AFTER_USER_EVENT_PROCESSED",
-    "SCHEDULED",
-    "REWARD_SCHEDULED"];
+  "AFTER_USER_CREATED_OR_UPDATED",
+  "REFERRAL",
+  "AFTER_USER_EVENT_PROCESSED",
+  "SCHEDULED",
+  "REWARD_SCHEDULED"];
 
- /**
-  * A webtask that accepts handlers and returns a function fitting the webtask programming model.
-  *
-  * @example webtask ({
-  *          "AFTER_USER_CREATED_OR_UPDATED" : handleUserUpsert,
-  *          "AFTER_USER_EVENT_PROCESSED": handleUserEvent,
-  *          "REFERRAL": handleReferralTrigger,
-  *          "PROGRAM_INTROSPECTION": handleIntrospection
-  *           })
-  * @param {Object} handlers - Key-value pairs, where key is a ProgramTriggerType (see {@link ProgramTriggerTypes}) or "PROGRAM_INTROSPECTION";
-  * ProgramTrigger handlers must accept a transaction instance as parameter.
-  * Program-Introspection must accept a template as parameter and returns a new template.
-  * @returns {function} - A function that fits in the webtask programming model. See {@link https://webtask.io/docs/model}.
-  *
-  *
- */
-
+/**
+* A webtask that accepts handlers and returns a function fitting the webtask programming model.
+*
+* @example webtask ({
+*          "AFTER_USER_CREATED_OR_UPDATED" : handleUserUpsert,
+*          "AFTER_USER_EVENT_PROCESSED": handleUserEvent,
+*          "REFERRAL": handleReferralTrigger,
+*          "PROGRAM_INTROSPECTION": handleIntrospection
+*           })
+* @param {Object} handlers - Key-value pairs, where key is a ProgramTriggerType (see {@link ProgramTriggerTypes}) or "PROGRAM_INTROSPECTION";
+* ProgramTrigger handlers must accept a transaction instance as parameter.
+* Program-Introspection must accept a template as parameter and returns a new template.
+* @returns {function} - A function that fits in the webtask programming model. See {@link https://webtask.io/docs/model}.
+*
+*
+*/
 export function webtask(handlers = {}) {
   const express = require('express')();
   const bodyParser = require('body-parser');
@@ -115,4 +114,22 @@ export function webtask(handlers = {}) {
   });
 
   return express;
+}
+
+export function getLogger(logLevel) {
+  const winston = require('winston');
+
+  const logFormat = winston.format.printf(({ level, message }) => {
+    return `[${level.toUpperCase()}] ${message}`;
+  });
+
+  const logger = winston.createLogger({
+    level: logLevel,
+    format: winston.format.combine(
+      logFormat
+    ),
+    transports: [new winston.transports.Console()]
+  });
+
+  return logger;
 }
