@@ -2,14 +2,15 @@
 import Transaction from './transaction';
 import {rewardEmailQuery} from './queries';
 import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
-import {setRewardSchedule} from './utils';
+import {setRewardSchedule, getGoalAnalyticTimestamp} from './utils';
 
 export {
   Transaction,
   meetEventTriggerRules,
   meetCustomFieldRules,
   rewardEmailQuery,
-  setRewardSchedule
+  setRewardSchedule,
+  getGoalAnalyticTimestamp
 }
 
 /**
