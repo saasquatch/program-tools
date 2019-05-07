@@ -71,10 +71,13 @@ export function webtask(handlers = {}) {
           const newTemplate = handleIntrospection && (handleIntrospection(template,rules,program) || handleIntrospection(template,rules)) || template;
           res.status(200).json(newTemplate);
         } catch (e) {
-          res.status(500).json({
+          const errorMes = {
             error: "An error occurred in a webtask",
             message: e.toString(),
-          });
+          };
+
+          console.log(errorMes);
+          res.status(500).json(errorMes);
         }
         break;
       case "PROGRAM_TRIGGER":
