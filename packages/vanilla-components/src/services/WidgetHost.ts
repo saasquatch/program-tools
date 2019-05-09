@@ -632,6 +632,52 @@ const API = {
         variables
       }).then(res => res.data.user);
     },
+    getUserProgress(){
+      const widgetId = widgetIdent();
+
+      // if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
+       const { userId, accountId, programId } = widgetId;
+       const variables = {
+        userId,
+        accountId,
+        programId,
+      };
+      return this.getClient().query({
+        query: gql`
+          query($userId: String!, $accountId: String!, $programId: ID) {
+            user(id: $userId, accountId: $accountId){
+              customFields
+              rewards(limit:1000,offset:0, filter:{programId_eq: $programId}){
+                count
+              }
+            }
+          }
+          `,
+          variables
+        }).then(res => res.data.user);
+    },
+    getProgramRules(){
+      const widgetId = widgetIdent();
+
+      // if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
+       const { programId } = widgetId;
+       const variables = {
+        programId
+      };
+      return this.getClient().query({
+        query: gql`
+          query($programId: ID!) {
+            program(id:$programId){
+              id
+              name
+              rules
+            }
+          }
+          `,
+          variables
+        }).then(res => res.data.program);
+    },
+
   },
   ui: squatchJsApi
 };
