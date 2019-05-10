@@ -66,7 +66,7 @@ export class ProgressIndicator {
       purchaseTotal,
       programGoal,
       progress: Math.floor(((purchaseTotal % programGoal) / programGoal) * 100) / 100,
-      progressToGoal:(programGoal -(purchaseTotal % programGoal))
+      progressToGoal:(programGoal - (purchaseTotal % programGoal))
     }
 
     if(purchaseTotal % programGoal == 0){
