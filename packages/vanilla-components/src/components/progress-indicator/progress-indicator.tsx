@@ -60,6 +60,7 @@ export class ProgressIndicator {
     const purchaseTotal = userProgress.customFields[programRules.id + '_totalValue'];
     const programGoal = programRules.rules.rewardRules.rewardGoal; 
 
+    // may need to handle actual 0 state
     this.rewardStats = {
       amountEarned:userProgress.rewards.count,
       purchaseTotal,
@@ -218,10 +219,6 @@ export class ProgressIndicator {
     }
   `
 
-  // const balanceStyle = css`
-  //   padding: 15px 0;
-  // `
-  
   return !this.ishidden && 
   this.rewardComplete ? 
     <div class={wrapperStyle}>
@@ -237,12 +234,6 @@ export class ProgressIndicator {
 
         <p>Earn More Rewards</p>
       </div>
-
-    {/* automatically set */}
-    {/* <div class={balanceStyle}>Balance: {this.rewardStats && this.rewardStats.balance}</div> */}
-
-    {/* automatically set */}
-    {/* <div>Expires: {this.rewardStats && this.rewardStats.dateExpires}</div> */}
   </div>
   :
   <div class={wrapperStyle}>
@@ -254,12 +245,6 @@ export class ProgressIndicator {
     <p>{this.progressMessage}</p>
     <br />
     <div>{this.rewardStats && this.earned} {this.rewardStats && this.rewardStats.amountEarned} rewards</div>
-
-    {/* automatically set */}
-    {/* <div class={balanceStyle}>Balance: {this.rewardStats && this.rewardStats.balance}</div> */}
-
-    {/* automatically set */}
-    {/* <div>Expires: {this.rewardStats && this.rewardStats.dateExpires}</div> */}
   </div>
   }
 }
