@@ -62,7 +62,7 @@ export function webtask(handlers = {}) {
   // because OWASP advises not to
   express.use((req, res, next) => {
     console.log(`Serving request with protocol ${req.protocol}`);
-    if (req.protocol !== 'https') {
+    if (req.header('X-Forwarded-Proto') !== 'https') {
       return res.status(403).send({message: 'SSL required'});
     }
 
