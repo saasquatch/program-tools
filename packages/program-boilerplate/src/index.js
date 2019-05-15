@@ -58,6 +58,17 @@ export function webtask(handlers = {}) {
   express.use(bodyParser.json());
   express.use(compression());
 
+  // Enforce HTTPS. The server does not redirect http -> https
+  // because OWASP advises not to
+  express.use((req, res, next) => {
+    if (req.protocol !== 'https') {
+      return res.status(403).send({message: 'SSL required'});
+    }
+
+    // allow the request to continue if https is used
+    next();
+  });
+
   express.post('/', (context, res) => {
     switch (context.body.messageType || "PROGRAM_TRIGGER") {
       case "PROGRAM_INTROSPECTION":
@@ -120,6 +131,8 @@ export function webtask(handlers = {}) {
   return express;
 }
 
+// Returns a logger for the programs to use instead of
+// console.log
 export function getLogger(logLevel) {
   const winston = require('winston');
 
