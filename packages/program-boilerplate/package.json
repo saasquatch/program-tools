@@ -7,6 +7,7 @@
     "build": "babel src --out-dir dist",
     "format": "prettier \"src/**/*.js\" --write",
     "prepush": "npm run format",
+    "prepublish": "npm run build",
     "deploy": "np",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
