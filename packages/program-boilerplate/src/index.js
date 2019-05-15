@@ -61,6 +61,7 @@ export function webtask(handlers = {}) {
   // Enforce HTTPS. The server does not redirect http -> https
   // because OWASP advises not to
   express.use((req, res, next) => {
+    console.log(`Serving request with protocol ${req.protocol}`);
     if (req.protocol !== 'https') {
       return res.status(403).send({message: 'SSL required'});
     }
