@@ -8,12 +8,12 @@ query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!, $refe
     lastName
     referralCode(programId:$programId)
     shareLink(programId:$programId)
-    facebook: messageLink(programId:$programId,shareMedium:FACEBOOK)
-    twitter: messageLink(programId:$programId,shareMedium:TWITTER)
-    email:messageLink(programId:$programId,shareMedium:EMAIL)
-    sms:messageLink(programId:$programId,shareMedium:SMS)
-    linkedin: messageLink(programId:$programId,shareMedium:LINKEDIN)
-    fbmessenger: messageLink(programId:$programId,shareMedium:FBMESSENGER)
+    facebook: messageLink(programId:$programId,shareMedium:FACEBOOK,engagementMedium:EMAIL)
+    twitter: messageLink(programId:$programId,shareMedium:TWITTER,engagementMedium:EMAIL)
+    email:messageLink(programId:$programId,shareMedium:EMAIL,engagementMedium:EMAIL)
+    sms:messageLink(programId:$programId,shareMedium:SMS,engagementMedium:EMAIL)
+    linkedin: messageLink(programId:$programId,shareMedium:LINKEDIN,engagementMedium:EMAIL)
+    fbmessenger: messageLink(programId:$programId,shareMedium:FBMESSENGER,engagementMedium:EMAIL)
   }
 
   referral(id:$referralId) {
@@ -53,7 +53,7 @@ fragment AllFlatRewardFields on FlatReward {
 }
 `;
 
-export const nonRewardEmailQueryForReferralPrograms = 
+export const nonRewardEmailQueryForReferralPrograms =
 `query ($userId:String!, $accountId:String!,$programId:ID!, $referralId: ID!) {
   user(id:$userId, accountId:$accountId) {
     firstName
@@ -191,7 +191,7 @@ export const rewardScheduleQuery = (emailKey) => {
         }
       }
       ... on RewardScheduledProgramTrigger {
-        id 
+        id
         reward {
             ...RewardFields
       }
@@ -214,7 +214,7 @@ export const rewardScheduleQuery = (emailKey) => {
     }
     ids(length: 10)
   }
-  
+
   fragment BaseUserFields on User {
     id
     accountId
@@ -238,7 +238,7 @@ export const rewardScheduleQuery = (emailKey) => {
       ...FraudFlagFields
     }
   }
-  
+
   fragment ReferralFields on Referral {
     id
     moderationStatus
@@ -266,7 +266,7 @@ export const rewardScheduleQuery = (emailKey) => {
       ...RewardFields
     }
   }
-  
+
   fragment RewardFields on FlatReward {
     id
     type
@@ -284,7 +284,7 @@ export const rewardScheduleQuery = (emailKey) => {
     programId
     programRewardKey
   }
-  
+
   fragment FraudFlagFields on FraudFlag {
     type
     message
