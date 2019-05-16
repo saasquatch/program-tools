@@ -1,43 +1,43 @@
 export const styles = {
   bold: {
     name: 'Calibri',
-    bold: true
+    bold: true,
   },
   boldItalic: {
     name: 'Calibri',
     bold: true,
-    italic: true
+    italic: true,
   },
   light: {
     name: 'Calibri',
     italic: true,
     color: {
-      argb: 'FF444444'
-    }
+      argb: 'FF444444',
+    },
   },
   keywordAlignment: {
     vertical: 'bottom',
-    horizontal: 'right'
+    horizontal: 'right',
   },
   blueFill: {
     type: 'pattern',
     pattern: 'solid',
     fgColor: {
-      argb: 'FFF0F8FF'
-    }
+      argb: 'FFF0F8FF',
+    },
   },
   fullBorder: {
     top: {
-      style:'thin'
+      style:'thin',
     },
     left: {
-      style:'thin'
+      style:'thin',
     },
     bottom: {
-      style:'thin'
+      style:'thin',
     },
     right: {
-      style:'thin'
-    }
-  }
+      style:'thin',
+    },
+  },
 };

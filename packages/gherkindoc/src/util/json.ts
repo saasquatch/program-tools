@@ -1,10 +1,10 @@
-import moment from 'moment';
+import * as moment from 'moment';
 
 import { parse } from './parser';
 import { version } from '../../package.json';
 
-export const generate = async (files) => {
-  return new Promise((resolve, reject) => {
+export async function generate(files: string[]): Promise<any> {
+  return new Promise<any>((resolve, reject) => {
     const stream = parse(files);
 
     let json = {
@@ -34,7 +34,7 @@ export const generate = async (files) => {
       }
     };
 
-    stream.on('data', chunk => {
+    stream.on('data', (chunk: any) => {
       const feature = chunk.gherkinDocument.feature;
 
       let tmp = {
@@ -43,7 +43,7 @@ export const generate = async (files) => {
           name: feature.name,
           description: feature.description,
           featureElements: [],
-          tags: feature.tags.map(tag => tag.name),
+          tags: feature.tags.map((tag: any) => tag.name),
           result: {
             wasExecuted: false,
             wasSuccessful: false,
@@ -127,7 +127,7 @@ export const generate = async (files) => {
       resolve(json);
     });
   });
-};
+}
 
 const commentCrawler = (comments, startingIndex) => {
   let currentIndex = startingIndex;

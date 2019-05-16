@@ -1,5 +1,4 @@
-import yargs from 'yargs';
-import '@babel/polyfill';
+import * as yargs from 'yargs';
 import { version } from '../package.json';
 
 yargs
@@ -19,7 +18,7 @@ yargs
   .alias('h', 'help')
   .showHelpOnFail(true)
   .demandCommand(1, 'Please specify a command')
-  .parse(process.argv.slice(2), (_, argv, output) => {
+  .parse(process.argv.slice(2), (_: any, argv: any, output: any) => {
     if (argv.version === true && !argv._.length) {
       console.log(version);
     } else {

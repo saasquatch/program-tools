@@ -1,13 +1,13 @@
 import { styles } from './styles';
 
-export const setupTable = (ws, tableName, testers, contentRows, maxWidths) => {
+export const setupTable = (ws: any, tableName: any, testers: any, contentRows: any, maxWidths: any) => {
   const wscolumns = [
-    {header: tableName, key: 'name', width: 9}
+    {header: tableName, key: 'name', width: 9},
   ];
 
   for (let i = 0; i < testers; i++) {
     const text = `Tester ${i+1}`;
-    wscolumns.unshift({header: text, key: `tester${i}`, width: text.legnth});
+    wscolumns.unshift({header: text, key: `tester${i}`, width: text.length});
   }
 
   for (let i = 0; i < contentRows; i++) {

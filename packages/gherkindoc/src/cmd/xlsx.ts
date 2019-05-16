@@ -1,4 +1,4 @@
-import Excel from 'exceljs';
+import XlsxPopulate from 'xlsx-populate';
 import chalk from 'chalk';
 
 import { generate as generateJson } from '../util/json';
@@ -12,7 +12,7 @@ export const desc = 'Parse the provided file or directory into XLSX';
 const NUM_CONTENT_ROWS = 30;
 const COLUMN_WIDTH_PADDING = 1.5;
 
-export const handler = async (argv) => {
+export const handler = async (argv: any) => {
   argv._.shift();
 
   const args = argv._;
@@ -26,7 +26,7 @@ export const handler = async (argv) => {
   const outFile = getOutputFileName(argv.out);
   const files = isDir(args[0]) ? gherkins(args[0]) : [args[0]];
   const json = await generateJson(files);
-  const wb = new Excel.Workbook();
+  const wb = await XlsxPopulate.blankFromAsync();
   const testers = argv.testers || 0;
   const toc = {};
 
@@ -34,11 +34,11 @@ export const handler = async (argv) => {
   wb.created = new Date(json.configuration.generatedOnTimestamp);
   wb.modified = new Date(json.configuration.generatedOnTimestamp);
 
-  wb.addWorksheet('TOC');
+  wb.addSheet('TOC');
 
   json.features.forEach(feature => {
     const name = feature.feature.name.replace(/\s/g, '').toUpperCase();
-    const ws = wb.addWorksheet(name);
+    const ws = wb.addSheet(name);
     const maxWidths = {};
 
     const allRelativePaths = getAllPaths(feature.relativeFolder);
@@ -62,11 +62,11 @@ export const handler = async (argv) => {
 
     curr.sheets.push({name, id: ws.id});
 
-    ws.state = 'visible';
-    ws.views = [{
-      state: 'frozen',
-      ySplit: 1
-    }];
+    // ws.state = 'visible';
+    // ws.views = [{
+    //   state: 'frozen',
+    //   ySplit: 1
+    // }];
 
     setupTable(ws, name, testers, NUM_CONTENT_ROWS, maxWidths);
 

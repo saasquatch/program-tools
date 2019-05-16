@@ -1,0 +1,15 @@
+{
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.json"
+  ],
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "outDir": "dist",
+    "module": "commonjs",
+    "target": "ES6",
+    "noImplicitAny": true,
+    "jsx": "react"
+  }
+}
