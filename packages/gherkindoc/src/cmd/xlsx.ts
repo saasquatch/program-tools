@@ -11,6 +11,8 @@ export const desc = 'Parse the provided file or directory into XLSX';
 
 const NUM_CONTENT_ROWS = 30;
 const COLUMN_WIDTH_PADDING = 1.5;
+const DESCRIPTION_HEIGHT_MULTIPLIER = 11;
+const DESCRIPTION_HEIGHT_OFFSET = 15;
 
 export const handler = async (argv: any) => {
   argv._.shift();
@@ -79,7 +81,11 @@ export const handler = async (argv: any) => {
 
     if (feature.feature.description) {
       ws.addRow({content0: feature.feature.description.replace(/\n +/g, '\n').trim()});
-      ws.lastRow.height = (feature.feature.description.split(/\r\n|\r|\n/).length - 1) * 11 + 15;
+
+      ws.lastRow.height =
+        (feature.feature.description.split(/\r\n|\r|\n/).length - 1)
+        * DESCRIPTION_HEIGHT_MULTIPLIER + DESCRIPTION_HEIGHT_OFFSET;
+
       ws.addRow();
     }
 
@@ -111,27 +117,30 @@ const genTocTable = (wb: XlsxPopulate.workBook, toc: any, testers: number) => {
 
 /* _recursive_ */
 const generateSheetStructure = (ws: XlsxPopulate.workSheet, dir: any, indentLevel: number) => {
-  for (let key in dir) {
+  for (const key in dir) {
     ws.addRow({name: dir[key].title});
 
     dir[key].sheets.forEach((sheet: any) => {
       ws.addRow({
         [`content${indentLevel}`]: {
           text: sheet.name,
-          hyperlink: `#'${sheet.name}'.A1`
-        }
+          hyperlink: `#'${sheet.name}'.A1`,
+        },
       });
-
-      console.log(ws.lastRow.getCell(4).value);
     });
 
-    for (let subkey in dir.subdirs) {
+    for (const subkey in dir.subdirs) {
       generateSheetStructure(ws, dir.subdirs[subkey], indentLevel + 1);
     }
   }
 };
 
-const genScenarioContent = (ws: XlsxPopulate.workSheet, scenario: any, testers: number, maxWidths: any) => {
+function genScenarioContent(
+  ws: XlsxPopulate.workSheet,
+  scenario: any,
+  testers: number,
+  maxWidths: any
+) {
   scenario.beforeComments.forEach((comment: any) => {
     ws.addRow({content0: comment});
     ws.lastRow.font = styles.light;
@@ -165,7 +174,7 @@ const genScenarioContent = (ws: XlsxPopulate.workSheet, scenario: any, testers: 
   });
 
   ws.addRow();
-};
+}
 
 const genStepContent = (ws: XlsxPopulate.workSheet, step: any, testers: number, maxWidths: any) => {
   step.beforeComments.forEach((comment: any) => {
@@ -187,7 +196,12 @@ const genStepContent = (ws: XlsxPopulate.workSheet, step: any, testers: number, 
   }
 };
 
-const genExampleTable = (ws: XlsxPopulate.workSheet, example: any, testers: number, maxWidths: any) => {
+function genExampleTable(
+  ws: XlsxPopulate.workSheet,
+  example: any,
+  testers: number,
+  maxWidths: any
+) {
   example.beforeComments.forEach((comment: any) => {
     ws.addRow({content0: comment});
     ws.lastRow.font = styles.light;
@@ -240,9 +254,14 @@ const genExampleTable = (ws: XlsxPopulate.workSheet, example: any, testers: numb
     ws.addRow({content0: comment});
     ws.lastRow.font = styles.light;
   });
-};
+}
 
-const genDataTable = (ws: XlsxPopulate.workSheet, table: any[], testers: number, maxWidths: any) => {
+function genDataTable(
+  ws: XlsxPopulate.workSheet,
+  table: any[],
+  testers: number,
+  maxWidths: any
+) {
   if (table.length === 0) {
     return;
   }
@@ -291,4 +310,4 @@ const genDataTable = (ws: XlsxPopulate.workSheet, table: any[], testers: number,
       ws.lastRow.getCell(cellNum).border = styles.fullBorder;
     });
   });
-};
+}
