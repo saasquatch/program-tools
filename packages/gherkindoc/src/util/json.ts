@@ -7,7 +7,7 @@ export async function generate(files: string[]): Promise<any> {
   return new Promise<any>((resolve, reject) => {
     const stream = parse(files);
 
-    let json = {
+    const json = {
       features: [],
       summary: {
         tags: [],
@@ -17,27 +17,27 @@ export async function generate(files: string[]): Promise<any> {
           total: 0,
           passing: 0,
           failing: 0,
-          inconclusive: 0
+          inconclusive: 0,
         },
         features: {
           total: 0,
           passing: 0,
           failing: 0,
-          inconclusive: 0
-        }
+          inconclusive: 0,
+        },
       },
       configuration: {
         version,
         program: 'gherkindoc',
         generatedOn: moment().format(),
-        generatedOnTimestamp: moment().valueOf()
-      }
+        generatedOnTimestamp: moment().valueOf(),
+      },
     };
 
     stream.on('data', (chunk: any) => {
       const feature = chunk.gherkinDocument.feature;
 
-      let tmp = {
+      const tmp = {
         relativeFolder: chunk.gherkinDocument.uri,
         feature: {
           name: feature.name,
@@ -47,36 +47,36 @@ export async function generate(files: string[]): Promise<any> {
           result: {
             wasExecuted: false,
             wasSuccessful: false,
-            wasProvided: false
-          }
+            wasProvided: false,
+          },
         },
         result: {
           wasExecuted: false,
           wasSuccessful: false,
-          wasProvided: false
-        }
+          wasProvided: false,
+        },
       };
 
       const comments = chunk.gherkinDocument.comments;
 
-      feature.children.forEach(child => {
+      feature.children.forEach((child: any)=> {
         json.summary.scenarios.total += 1;
         json.summary.scenarios.inconclusive += 1;
         const examples = child.scenario.examples
-          ? child.scenario.examples.map(example => {
+          ? child.scenario.examples.map((example: any)=> {
             const commentsFound = commentCrawler(comments, example.location.line);
             const exampleObj = {
-              header: example.tableHeader.cells.map(cell => cell.value),
-              data: example.tableBody.map(e => e.cells.map(cell => cell.value)),
+              header: example.tableHeader.cells.map((cell: any)=> cell.value),
+              data: example.tableBody.map((e: any)=> e.cells.map((cell: any)=> cell.value)),
               beforeComments: commentsFound.before,
-              afterComments: commentsFound.after
+              afterComments: commentsFound.after,
             };
 
             return exampleObj;
           })
           : [];
 
-        const steps = child.scenario.steps.map(step => {
+        const steps = child.scenario.steps.map((step: any)=> {
           const commentsFound = commentCrawler(comments, step.location.line);
 
           const stepObj = {
@@ -84,12 +84,13 @@ export async function generate(files: string[]): Promise<any> {
             rawKeyword: step.keyword,
             text: step.text,
             beforeComments: commentsFound.before,
-            afterComments: commentsFound.after
+            afterComments: commentsFound.after,
+            dataTable: [],
           };
 
           if (step.dataTable) {
-            stepObj.dataTable = step.dataTable.rows.map(row => {
-              return row.cells.map(cell => cell.value);
+            stepObj.dataTable = step.dataTable.rows.map((row: any)=> {
+              return row.cells.map((cell: any)=> cell.value);
             });
           }
 
@@ -103,14 +104,14 @@ export async function generate(files: string[]): Promise<any> {
           examples,
           name: child.scenario.name,
           description: child.scenario.description || '',
-          tags: child.scenario.tags.map(tag => tag.name),
+          tags: child.scenario.tags.map((tag: any)=> tag.name),
           result: {
             wasExecuted: false,
             wasSuccessful: false,
-            wasProvided: false
+            wasProvided: false,
           },
           beforeComments: commentsFound.before,
-          afterComments: commentsFound.after
+          afterComments: commentsFound.after,
         });
       });
 
@@ -119,7 +120,7 @@ export async function generate(files: string[]): Promise<any> {
       json.summary.features.inconclusive += 1;
     });
 
-    stream.on('error', err => {
+    stream.on('error', (err: any)=> {
       reject(err);
     });
 
@@ -129,7 +130,7 @@ export async function generate(files: string[]): Promise<any> {
   });
 }
 
-const commentCrawler = (comments, startingIndex) => {
+const commentCrawler = (comments: any, startingIndex: any) => {
   let currentIndex = startingIndex;
   let element;
 
@@ -139,7 +140,7 @@ const commentCrawler = (comments, startingIndex) => {
   };
 
   // eslint-disable-next-line no-cond-assign
-  while (element = comments.find(c => c.location.line === currentIndex - 1)) {
+  while (element = comments.find((c: any)=> c.location.line === currentIndex - 1)) {
     ret.before.push(element.text.trim());
     currentIndex--;
   }
@@ -147,7 +148,7 @@ const commentCrawler = (comments, startingIndex) => {
   currentIndex = startingIndex;
 
   // eslint-disable-next-line no-cond-assign
-  while (element = comments.find(c => c.location.line === currentIndex + 1)) {
+  while (element = comments.find((c: any)=> c.location.line === currentIndex + 1)) {
     ret.after.push(element.text.trim());
     currentIndex++;
   }

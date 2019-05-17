@@ -1,10 +1,11 @@
 import { generate as generateJson } from '../util/json';
 import { isDir, gherkins } from '../util/fio';
+import { Arguments } from 'yargs';
 
 export const command = 'json';
 export const desc = 'Parse the provided file or directory into JSON';
 
-export const handler = async (argv) => {
+export const handler = async (argv: Arguments) => {
   argv._.shift();
 
   const args = argv._;

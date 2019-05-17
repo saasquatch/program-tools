@@ -1,7 +1,7 @@
 import { statSync } from 'fs';
 import { dirname } from 'path';
-import glob from 'glob';
-import moment from 'moment';
+import * as glob from 'glob';
+import * as moment from 'moment';
 
 export const isDir = (path: string) => {
   return statSync(path).isDirectory();

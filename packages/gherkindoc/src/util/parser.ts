@@ -1,4 +1,4 @@
-import gherkin from 'gherkin';
+import * as gherkin from 'gherkin';
 
 /**
  * Parses the feature file and returns the stream

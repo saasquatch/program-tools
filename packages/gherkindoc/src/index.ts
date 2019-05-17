@@ -11,7 +11,7 @@ yargs
     global: false,
     type: 'boolean',
     describe: 'Show current version',
-    skipValidation: true
+    skipValidation: true,
   })
   .version(false)
   .help('h')
