@@ -9,7 +9,7 @@
     "outDir": "dist",
     "module": "commonjs",
     "target": "ES6",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "jsx": "react"
   }
 }

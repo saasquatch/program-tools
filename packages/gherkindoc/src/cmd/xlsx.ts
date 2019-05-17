@@ -5,6 +5,7 @@ import { generate as generateJson } from '../util/json';
 import { setupTable } from '../util/xlsx';
 import { styles } from '../util/styles';
 import { isDir, gherkins, getOutputFileName, getAllPaths } from '../util/fio';
+import { Arguments } from 'yargs';
 
 export const command = 'xlsx';
 export const desc = 'Parse the provided file or directory into XLSX';
@@ -14,7 +15,7 @@ const COLUMN_WIDTH_PADDING = 1.5;
 const DESCRIPTION_HEIGHT_MULTIPLIER = 11;
 const DESCRIPTION_HEIGHT_OFFSET = 15;
 
-export const handler = async (argv: any) => {
+export const handler = async (argv: Arguments) => {
   argv._.shift();
 
   const args = argv._;
@@ -25,11 +26,11 @@ export const handler = async (argv: any) => {
     return;
   }
 
-  const outFile = getOutputFileName(argv.out);
+  const outFile = getOutputFileName(argv.out as string);
   const files = isDir(args[0]) ? gherkins(args[0]) : [args[0]];
   const json = await generateJson(files);
   const wb = await XlsxPopulate.blankFromAsync();
-  const testers = argv.testers || 0;
+  const testers = argv.testers as number || 0;
   const toc: any = {};
 
   wb.creator = `${json.configuration.program} v${json.configuration.version}`;
@@ -109,14 +110,14 @@ export const handler = async (argv: any) => {
     });
 };
 
-const genTocTable = (wb: XlsxPopulate.workBook, toc: any, testers: number) => {
+const genTocTable = (wb: any, toc: any, testers: number) => {
   const ws = wb.getWorksheet('TOC');
   setupTable(ws, 'Sections', testers, NUM_CONTENT_ROWS, {});
   generateSheetStructure(ws, toc, 0);
 };
 
 /* _recursive_ */
-const generateSheetStructure = (ws: XlsxPopulate.workSheet, dir: any, indentLevel: number) => {
+const generateSheetStructure = (ws: any, dir: any, indentLevel: number) => {
   for (const key in dir) {
     ws.addRow({name: dir[key].title});
 
@@ -136,7 +137,7 @@ const generateSheetStructure = (ws: XlsxPopulate.workSheet, dir: any, indentLeve
 };
 
 function genScenarioContent(
-  ws: XlsxPopulate.workSheet,
+  ws: any,
   scenario: any,
   testers: number,
   maxWidths: any
@@ -176,7 +177,7 @@ function genScenarioContent(
   ws.addRow();
 }
 
-const genStepContent = (ws: XlsxPopulate.workSheet, step: any, testers: number, maxWidths: any) => {
+const genStepContent = (ws: any, step: any, testers: number, maxWidths: any) => {
   step.beforeComments.forEach((comment: any) => {
     ws.addRow({content1: comment});
     ws.lastRow.font = styles.light;
@@ -197,7 +198,7 @@ const genStepContent = (ws: XlsxPopulate.workSheet, step: any, testers: number, 
 };
 
 function genExampleTable(
-  ws: XlsxPopulate.workSheet,
+  ws: any,
   example: any,
   testers: number,
   maxWidths: any
@@ -257,7 +258,7 @@ function genExampleTable(
 }
 
 function genDataTable(
-  ws: XlsxPopulate.workSheet,
+  ws: any,
   table: any[],
   testers: number,
   maxWidths: any
