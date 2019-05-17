@@ -28,7 +28,7 @@ export const handler = async (argv: any) => {
   const json = await generateJson(files);
   const wb = await XlsxPopulate.blankFromAsync();
   const testers = argv.testers || 0;
-  const toc = {};
+  const toc: any = {};
 
   wb.creator = `${json.configuration.program} v${json.configuration.version}`;
   wb.created = new Date(json.configuration.generatedOnTimestamp);
@@ -36,10 +36,10 @@ export const handler = async (argv: any) => {
 
   wb.addSheet('TOC');
 
-  json.features.forEach(feature => {
+  json.features.forEach((feature: any) => {
     const name = feature.feature.name.replace(/\s/g, '').toUpperCase();
     const ws = wb.addSheet(name);
-    const maxWidths = {};
+    const maxWidths: any = {};
 
     const allRelativePaths = getAllPaths(feature.relativeFolder);
     let curr = toc;
@@ -49,7 +49,7 @@ export const handler = async (argv: any) => {
         curr[path] = {
           title: path,
           sheets: [],
-          subdirs: {}
+          subdirs: {},
         };
       }
 
@@ -83,11 +83,11 @@ export const handler = async (argv: any) => {
       ws.addRow();
     }
 
-    feature.feature.featureElements.forEach(scenario => {
+    feature.feature.featureElements.forEach((scenario: any) => {
       genScenarioContent(ws, scenario, testers, maxWidths);
     });
 
-    for (let key in maxWidths) {
+    for (const key in maxWidths) {
       ws.getColumn(key).width = maxWidths[key] + COLUMN_WIDTH_PADDING;
     }
   });
@@ -98,23 +98,23 @@ export const handler = async (argv: any) => {
     .then(() => {
       console.log(`${chalk.green('Success')}: Sheets generated & written to ${outFile}`);
     })
-    .catch(err => {
+    .catch((err: Error) => {
       console.log(`${chalk.red('ERROR')}: ${err.message}`);
     });
 };
 
-const genTocTable = (wb, toc, testers) => {
+const genTocTable = (wb: XlsxPopulate.workBook, toc: any, testers: number) => {
   const ws = wb.getWorksheet('TOC');
-  setupTable(ws, 'Sections', testers, NUM_CONTENT_ROWS);
+  setupTable(ws, 'Sections', testers, NUM_CONTENT_ROWS, {});
   generateSheetStructure(ws, toc, 0);
 };
 
 /* _recursive_ */
-const generateSheetStructure = (ws, dir, indentLevel) => {
+const generateSheetStructure = (ws: XlsxPopulate.workSheet, dir: any, indentLevel: number) => {
   for (let key in dir) {
     ws.addRow({name: dir[key].title});
 
-    dir[key].sheets.forEach(sheet => {
+    dir[key].sheets.forEach((sheet: any) => {
       ws.addRow({
         [`content${indentLevel}`]: {
           text: sheet.name,
@@ -131,8 +131,8 @@ const generateSheetStructure = (ws, dir, indentLevel) => {
   }
 };
 
-const genScenarioContent = (ws, scenario, testers, maxWidths) => {
-  scenario.beforeComments.forEach(comment => {
+const genScenarioContent = (ws: XlsxPopulate.workSheet, scenario: any, testers: number, maxWidths: any) => {
+  scenario.beforeComments.forEach((comment: any) => {
     ws.addRow({content0: comment});
     ws.lastRow.font = styles.light;
   });
@@ -147,7 +147,7 @@ const genScenarioContent = (ws, scenario, testers, maxWidths) => {
 
   ws.addRow();
 
-  scenario.steps.forEach(step => {
+  scenario.steps.forEach((step: any) => {
     genStepContent(ws, step, testers, maxWidths);
   });
 
@@ -155,11 +155,11 @@ const genScenarioContent = (ws, scenario, testers, maxWidths) => {
     ws.addRow();
   }
 
-  scenario.examples.forEach(example => {
+  scenario.examples.forEach((example: any) => {
     genExampleTable(ws, example, testers || 0, maxWidths);
   });
 
-  scenario.afterComments.forEach(comment => {
+  scenario.afterComments.forEach((comment: any) => {
     ws.addRow({content0: comment});
     ws.lastRow.font = styles.light;
   });
@@ -167,8 +167,8 @@ const genScenarioContent = (ws, scenario, testers, maxWidths) => {
   ws.addRow();
 };
 
-const genStepContent = (ws, step, testers, maxWidths) => {
-  step.beforeComments.forEach(comment => {
+const genStepContent = (ws: XlsxPopulate.workSheet, step: any, testers: number, maxWidths: any) => {
+  step.beforeComments.forEach((comment: any) => {
     ws.addRow({content1: comment});
     ws.lastRow.font = styles.light;
   });
@@ -177,7 +177,7 @@ const genStepContent = (ws, step, testers, maxWidths) => {
   ws.lastRow.getCell(3 + testers).font = styles.bold;
   ws.lastRow.getCell(3 + testers).alignment = styles.keywordAlignment;
 
-  step.afterComments.forEach(comment => {
+  step.afterComments.forEach((comment: any) => {
     ws.addRow({content1: comment});
     ws.lastRow.font = styles.light;
   });
@@ -187,17 +187,17 @@ const genStepContent = (ws, step, testers, maxWidths) => {
   }
 };
 
-const genExampleTable = (ws, example, testers, maxWidths) => {
-  example.beforeComments.forEach(comment => {
+const genExampleTable = (ws: XlsxPopulate.workSheet, example: any, testers: number, maxWidths: any) => {
+  example.beforeComments.forEach((comment: any) => {
     ws.addRow({content0: comment});
     ws.lastRow.font = styles.light;
   });
 
   ws.addRow({content0: 'Examples:'});
-  const headerRow = {};
-  const cellsToStyle = [];
+  const headerRow: any = {};
+  const cellsToStyle: any[] = [];
 
-  example.header.forEach((header, index) => {
+  example.header.forEach((header: any, index: any) => {
     const key = `content${index + 2}`;
     headerRow[key] = header;
     if (maxWidths[key] < header.toString().length) {
@@ -214,11 +214,11 @@ const genExampleTable = (ws, example, testers, maxWidths) => {
     ws.lastRow.getCell(cellNum).border = styles.fullBorder;
   });
 
-  example.data.forEach(row => {
-    const cellsToStyle = [];
-    const contentRow = {};
+  example.data.forEach((row: any) => {
+    const cellsToStyle: any[] = [];
+    const contentRow: any = {};
 
-    row.forEach((entry, index) => {
+    row.forEach((entry: any, index: any) => {
       const key = `content${index + 2}`;
       contentRow[key] = entry;
 
@@ -236,21 +236,21 @@ const genExampleTable = (ws, example, testers, maxWidths) => {
     });
   });
 
-  example.afterComments.forEach(comment => {
+  example.afterComments.forEach((comment: any) => {
     ws.addRow({content0: comment});
     ws.lastRow.font = styles.light;
   });
 };
 
-const genDataTable = (ws, table, testers, maxWidths) => {
+const genDataTable = (ws: XlsxPopulate.workSheet, table: any[], testers: number, maxWidths: any) => {
   if (table.length === 0) {
     return;
   }
 
-  const headerRow = {};
-  const cellsToStyle = [];
+  const headerRow: any = {};
+  const cellsToStyle: any[] = [];
 
-  table[0].forEach((header, index) => {
+  table[0].forEach((header: any, index: any) => {
     const key = `content${index + 2}`;
     headerRow[key] = header;
 
@@ -270,11 +270,11 @@ const genDataTable = (ws, table, testers, maxWidths) => {
   });
 
   table.shift();
-  table.forEach(row => {
-    const cellsToStyle = [];
-    const contentRow = {};
+  table.forEach((row: any)=> {
+    const cellsToStyle: any[] = [];
+    const contentRow: any = {};
 
-    row.forEach((entry, index) => {
+    row.forEach((entry: any, index: any) => {
       const key = `content${index + 2}`;
       contentRow[key] = entry;
 
