@@ -69,7 +69,7 @@ export function webtask(handlers = {}) {
     next();
   });
 
-  express.post('/', (context, res) => {
+  express.post('/*', (context, res) => {
     switch (context.body.messageType || "PROGRAM_TRIGGER") {
       case "PROGRAM_INTROSPECTION":
         const template = context.body.template;
