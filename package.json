@@ -18,5 +18,6 @@
   "homepage": "https://github.com/saasquatch/program-tools#readme",
   "devDependencies": {
     "lerna": "^2.5.1"
-  }
+  },
+  "dependencies": {}
 }

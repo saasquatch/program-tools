@@ -160,6 +160,71 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhCtaComponent {
+      'background': string;
+      'borderradius': string;
+      'buttonbackground': string;
+      'color': string;
+      'fontfamily': string;
+      'fontsize': string;
+      'fontweight': string;
+      'height': string;
+      'ishidden': boolean;
+      'ismarkdown': boolean;
+      'padding': string;
+      'paddingbottom': string;
+      'paddingtop': string;
+      'text': string;
+      'textalign': string;
+      'url': string;
+      'width': string;
+    }
+  }
+
+  interface HTMLSqhCtaComponentElement extends StencilComponents.SqhCtaComponent, HTMLStencilElement {}
+
+  var HTMLSqhCtaComponentElement: {
+    prototype: HTMLSqhCtaComponentElement;
+    new (): HTMLSqhCtaComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-cta-component': HTMLSqhCtaComponentElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-cta-component': HTMLSqhCtaComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-cta-component': JSXElements.SqhCtaComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhCtaComponentAttributes extends HTMLAttributes {
+      'background'?: string;
+      'borderradius'?: string;
+      'buttonbackground'?: string;
+      'color'?: string;
+      'fontfamily'?: string;
+      'fontsize'?: string;
+      'fontweight'?: string;
+      'height'?: string;
+      'ishidden'?: boolean;
+      'ismarkdown'?: boolean;
+      'padding'?: string;
+      'paddingbottom'?: string;
+      'paddingtop'?: string;
+      'text'?: string;
+      'textalign'?: string;
+      'url'?: string;
+      'width'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhGlobalContainer {
       'background': string;
       'fontfamily': string;
@@ -863,6 +928,7 @@ declare global {
       'color': string;
       'fontfamily': string;
       'fontsize': string;
+      'fontweight': string;
       'height': string;
       'ishidden': boolean;
       'ismarkdown': boolean;
@@ -897,6 +963,7 @@ declare global {
       'color'?: string;
       'fontfamily'?: string;
       'fontsize'?: string;
+      'fontweight'?: string;
       'height'?: string;
       'ishidden'?: boolean;
       'ismarkdown'?: boolean;

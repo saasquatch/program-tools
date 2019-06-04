@@ -65,7 +65,15 @@ export class ProgressIndicator {
   @State() progressMessage: string;
   @State() rewardComplete: boolean;
  
+
   async componentDidLoad(){
+    this.rewardStats = {
+      amountEarned:0,
+      purchaseTotal:0,
+      programGoal:0,
+      progress: 0,
+      progressToGoal:0
+    }
     const userProgress = await API.graphql.getUserProgress();
     const programRules = await API.graphql.getProgramRules();
 
@@ -264,10 +272,11 @@ export class ProgressIndicator {
 
   const progressMessageStyle = css`
     padding:0 25%;
+    margin-bottom:0;
   `
 
   const textStyle = css`
-  position: absolute; left: 55%; top:82%; padding: 0px; margin: 0px; transform: translate(-50%, -50%); color: rgb(0, 157, 245); font-family: Roboto, Helvetica, sans-serif; font-size: 32px;color:#285F62;font-weight:bold;
+  position: absolute; left: 55%; top:82%; padding: 0px; margin: 0px; transform: translate(-50%, -50%); color: rgb(0, 157, 245); font-family: Roboto, Helvetica, sans-serif; font-size: 34px;color:#285F62;font-weight:bold;
   `
   const presentStyle = css`
     position: absolute; 
@@ -275,6 +284,14 @@ export class ProgressIndicator {
     top: 52%; 
     transform: translate(-50%, -50%);
   `;
+
+  const percentStyle = css`
+    font-size:65%;
+    vertical-align: top;
+    display: inline-block;
+    margin-top: 3px;
+    margin-left: -1px;
+  `
 
   return !this.ishidden && 
   this.rewardComplete ? 
@@ -307,7 +324,7 @@ export class ProgressIndicator {
         </svg>, 
         <span class={presentStyle}>{present}</span>,
         <div class={textStyle}>          
-            <br/>{this.rewardStats && this.rewardStats.progress * 100}%<br/><p class={completeStyle}>COMPLETE</p>
+            <br/>{this.rewardStats && this.rewardStats.progress * 100}<span class={percentStyle}>%</span><br/><p class={completeStyle}>COMPLETE</p>
         </div>      
         ]}
       </div>

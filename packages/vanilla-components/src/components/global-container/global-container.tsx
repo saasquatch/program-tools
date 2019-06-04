@@ -33,7 +33,10 @@ export class GlobalContainer {
       max-width: ${this.maxwidth};
     `
 
+    const fontImport = <link href='https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap' rel='stylesheet' />
+
     return <div class={style}>
+      { this.fontfamily=="Roboto" ? fontImport : ''}
       <slot />
       {this.poweredby
         ? <a class="sqh-attribution" href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" target="_blank">Powered By Saasquatch</a>
