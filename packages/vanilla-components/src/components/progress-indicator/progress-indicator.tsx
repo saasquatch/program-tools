@@ -45,8 +45,6 @@ interface currency {
 
 export class ProgressIndicator {
   @Prop() ishidden: boolean = false;
-  @Prop() tiername: string;
-  @Prop() unit: string;
   @Prop() textcolor: string;
   @Prop() align: string;
   @Prop() progresstype: string;
@@ -57,16 +55,29 @@ export class ProgressIndicator {
   @Prop() percentagecolor: string;
   @Prop() percentagesize: string;
 
-  @Prop() imagewidth: string;
   @Prop() progressstartcolor: string;
   @Prop() progressendcolor: string;
   @State() stats: stats;
   @State() rewardStats: any;
   @State() progressMessage: string;
   @State() rewardComplete: boolean;
- 
 
-  async componentDidLoad(){
+  @State() loading: boolean = true;
+ 
+  LoadingState() {
+    return (
+      <div class="container-loading">
+        <div class="loading-icon">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+          <div class="bar4"></div>
+          <div class="bar5"></div>
+        </div>
+      </div>
+    )
+  }
+  async componentWillLoad() {
     this.rewardStats = {
       amountEarned:0,
       purchaseTotal:0,
@@ -74,28 +85,32 @@ export class ProgressIndicator {
       progress: 0,
       progressToGoal:0
     }
+
     const userProgress = await API.graphql.getUserProgress();
     const programRules = await API.graphql.getProgramRules();
+    this.loading = false;
 
-    const purchaseTotal = userProgress.customFields[programRules.id + '_totalValue'];
-    const programGoal = programRules.rules.rewardRules.rewardGoal; 
+    const purchaseTotal = programRules.id ? userProgress.customFields[programRules.id + '_totalValue'] : 16;
+    const programGoal = programRules.rules ? programRules.rules.rewardRules.rewardGoal : 24; 
 
     console.log(userProgress)
     // may need to handle actual 0 state
     this.rewardStats = {
-      amountEarned:userProgress.rewardBalanceDetails[0].prettyAvailableValue,
+      amountEarned: userProgress.rewardBalanceDetails ? userProgress.rewardBalanceDetails[0].prettyAvailableValue : 0,
       purchaseTotal,
       programGoal,
       progress: Math.floor(((purchaseTotal % programGoal) / programGoal) * 100) / 100,
       progressToGoal:(programGoal - (purchaseTotal % programGoal))
     }
-
     if(purchaseTotal % programGoal == 0){
       this.rewardComplete = true;
       this.rewardStats.progress = 1
       this.getProgress();
       return;
     }
+
+  }
+  async componentDidLoad(){
 
     const formatVariables = {
       amountNeeded:this.rewardStats.progressToGoal
@@ -106,6 +121,7 @@ export class ProgressIndicator {
     console.log(this.rewardStats);
 
     this.getProgress();
+    
   }
 
   getProgress(){
@@ -120,8 +136,7 @@ export class ProgressIndicator {
         easing: 'easeInOut',
         duration: 1400,
         text: {
-          autoStyleContainer: false,
-          value:this.rewardStats.progress
+          autoStyleContainer: false
         },
         from: { color: this.progressstartcolor, width: 8 },
         to: { color: this.progressendcolor, width: 8 },
@@ -129,9 +144,6 @@ export class ProgressIndicator {
         step: (state, circle) => {
           circle.path.setAttribute('stroke', "#009DF5");
           circle.path.setAttribute('stroke-width', state.width);
-      
-          var value = Math.round(circle.value() * 100);
-          if(this.rewardStats) this.rewardStats.percent = value;
         }
       });
     }
@@ -271,7 +283,7 @@ export class ProgressIndicator {
   `
 
   const progressMessageStyle = css`
-    padding:0 25%;
+    padding:0 20%;
     margin-bottom:0;
   `
 
@@ -311,6 +323,7 @@ export class ProgressIndicator {
       </div>
   </div>
   :
+  this.loading ? <this.LoadingState /> :
   <div class={wrapperStyle}>
     {this.rewardStats && <div>{this.earned} {this.rewardStats.amountEarned} credit</div>}
     <div class={progressStyle}>
@@ -329,7 +342,7 @@ export class ProgressIndicator {
         ]}
       </div>
     </div> 
-    <p class={progressMessageStyle}>{this.progressMessage}</p>
+    <p class={progressMessageStyle}>{this.progressMessage || "Almost there - Spend 23 more dollars and get $5 credit."}</p>
     <br />
   </div>
   }

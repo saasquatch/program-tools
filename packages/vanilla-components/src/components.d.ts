@@ -353,7 +353,6 @@ declare global {
     interface SqhProgressIndicator {
       'align': string;
       'earned': string;
-      'imagewidth': string;
       'ishidden': boolean;
       'percentagecolor': string;
       'percentagesize': string;
@@ -363,8 +362,6 @@ declare global {
       'progresstype': string;
       'progresswidth': string;
       'textcolor': string;
-      'tiername': string;
-      'unit': string;
     }
   }
 
@@ -389,7 +386,6 @@ declare global {
     export interface SqhProgressIndicatorAttributes extends HTMLAttributes {
       'align'?: string;
       'earned'?: string;
-      'imagewidth'?: string;
       'ishidden'?: boolean;
       'percentagecolor'?: string;
       'percentagesize'?: string;
@@ -399,8 +395,6 @@ declare global {
       'progresstype'?: string;
       'progresswidth'?: string;
       'textcolor'?: string;
-      'tiername'?: string;
-      'unit'?: string;
     }
   }
 }

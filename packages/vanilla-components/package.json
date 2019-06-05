@@ -1,6 +1,6 @@
 {
-  "name": "@kittenco/vanilla-components",
-  "version": "1.0.3",
+  "name": "@samsquatch/vanilla-components",
+  "version": "1.0.6",
   "description": "Vanilla component library for the SaaSquatch platform",
   "main": "dist/index.js",
   "types": "dist/types/components.d.ts",
@@ -10,7 +10,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "stencil build --prerender",
+    "build": "stencil build --prod",
     "build:watch": "nodemon -w src --exec \"npm run build\"",
     "dev": "sd concurrent \"stencil build --dev --watch\" \"stencil-dev-server\" ",
     "serve": "stencil-dev-server",

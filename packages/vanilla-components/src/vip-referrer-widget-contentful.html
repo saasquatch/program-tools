@@ -11,76 +11,75 @@
  -->
 
  <sqh-global-container 
-class="squatch-container" 
-background="#ffffff"
->
-    
-  <sqh-text-component 
-    sqhbanner="true"
-    ishidden="true"
-    background="https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg"
-    height="auto"
-    paddingtop="150"
-    paddingbottom="150"
-    text=""
-    color="#000000"
-  ></sqh-text-component>
-
-  <sqh-text-component
-    sqhheader="true" 
-    text="V.I.P." 
-    color="#4486E1" 
-    fontsize="30" 
-    textalign="center"
-    paddingtop="30" 
-    paddingbottom="10"
-  ></sqh-text-component>
-
-  <sqh-text-component 
-    sqhbody="true" 
-    ismarkdown="true"
-    text="You're very important to us. Input program rules here" 
-    color="#000000" 
-    fontsize="13" 
-    textalign="center"
-    paddingtop="5" 
-    paddingbottom="20"
-  ></sqh-text-component>
-  
-<!-- New Component Here -->
-
-  <sqh-progress-indicator
-    tiername="You're already"
-    textcolor="#000"
-    unit="of the way to a free Gift"
-    progresstype="Circle"
-    progresswidth="200px"
-    percentagecolor="#23d129"
-    percentagesize="32px"
-    imagewidth="72px"
-    progressstartcolor="#4286f4"
-    progressendcolor="#23d129"
-  >
-  </sqh-progress-indicator>
-
-  <sqh-text-component 
-    sqhfooter="true" 
-    text="Call To Action" 
-    color="#000" 
-    fontsize="13"
-    textalign="center"
-    paddingtop="10"
-    paddingbottom="10"
-  ></sqh-text-component>
-
-  <sqh-text-component 
-    sqhfooter="true" 
-    text="Terms and Conditions" 
-    color="lightgray" 
-    fontsize="13"
-    textalign="center"
-    paddingtop="10"
-    paddingbottom="10"
-  ></sqh-text-component>
-    
-</sqh-global-container>  
+ class="squatch-container" 
+ background="#ffffff"
+ fontfamily="Roboto"
+ >
+     
+   <sqh-text-component 
+     sqhbanner="true"
+     ishidden="true"
+     background="https://res.cloudinary.com/saasquatch/image/upload/v1535746336/prod_default_assets/default_banner.jpg"
+     height="auto"
+     paddingtop="150"
+     paddingbottom="150"
+     text=""
+     color="#000000"
+   ></sqh-text-component>
+ 
+   <sqh-text-component
+     sqhheader="true" 
+     text="Spend $100.<br>Get $5 Credit." 
+     ismarkdown="true"
+     color="#285F62" 
+     fontsize="30" 
+     fontweight="bold"
+     textalign="center"
+     paddingtop="30" 
+     paddingbottom="10"
+   ></sqh-text-component>
+   
+ <!-- New Component Here -->
+ 
+   <sqh-progress-indicator
+     sqhprogress="true"
+     tiername="You're already"
+     textcolor="#000"
+     unit="of the way to a free Gift"
+     earned="You've already earned"
+     progress="Almost there - Spend {amountNeeded} more dollars and get $5 credit."
+     progresstype="Path"
+     progresswidth="200px"
+     percentagecolor="#285F62"
+     percentagesize="32px"
+     imagewidth="72px"
+     progressstartcolor="#009DF5"
+     progressendcolor="#009DF5"
+   >
+   </sqh-progress-indicator>
+ 
+   <sqh-cta-component 
+     sqhfooter="true" 
+     text="Shop Now" 
+     color="#FFF" 
+     backgroundcolor="#F5A100"
+     fontsize="14"
+     textalign="center"
+     paddingtop="10"
+     paddingbottom="10"
+     width="170"
+     borderradius="24"
+     url="https://google.com"
+   ></sqh-cta-component>
+ 
+   <sqh-text-component 
+     sqhfooter="true" 
+     text="Terms and Conditions" 
+     color="lightgray" 
+     fontsize="13"
+     textalign="center"
+     paddingtop="10"
+     paddingbottom="10"
+   ></sqh-text-component>
+     
+ </sqh-global-container>  

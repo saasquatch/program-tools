@@ -635,7 +635,7 @@ const API = {
     getUserProgress(){
       const widgetId = widgetIdent();
 
-      // if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
+      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
        const { userId, accountId, programId } = widgetId;
        const variables = {
         userId,
@@ -662,7 +662,7 @@ const API = {
     getProgramRules(){
       const widgetId = widgetIdent();
 
-      // if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
+      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
        const { programId } = widgetId;
        const variables = {
         programId
