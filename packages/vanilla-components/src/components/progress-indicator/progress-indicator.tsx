@@ -41,8 +41,6 @@ interface currency {
   styleUrl: 'progress-indicator.scss'
 })
 
-// const svg = 
-
 export class ProgressIndicator {
   @Prop() ishidden: boolean = false;
   @Prop() textcolor: string;
@@ -90,27 +88,27 @@ export class ProgressIndicator {
     const programRules = await API.graphql.getProgramRules();
     this.loading = false;
 
-    const purchaseTotal = programRules.id ? userProgress.customFields[programRules.id + '_totalValue'] : 16;
-    const programGoal = programRules.rules ? programRules.rules.rewardRules.rewardGoal : 24; 
-
+    const purchaseTotal = userProgress.customFields[programRules.id + '_totalValue'] || 0;
+    const programGoal = programRules.rules.rewardRules.rewardGoal;
     console.log(userProgress)
-    // may need to handle actual 0 state
+    console.log(programRules)
+
     this.rewardStats = {
-      amountEarned: userProgress.rewardBalanceDetails ? userProgress.rewardBalanceDetails[0].prettyAvailableValue : 0,
+      amountEarned: userProgress.rewardBalanceDetails[0].prettyAvailableValue,
       purchaseTotal,
       programGoal,
       progress: Math.floor(((purchaseTotal % programGoal) / programGoal) * 100) / 100,
       progressToGoal:(programGoal - (purchaseTotal % programGoal))
     }
-    if(purchaseTotal % programGoal == 0){
+  }
+  async componentDidLoad(){
+
+    if(this.rewardStats.purchaseTotal > 0 && this.rewardStats.purchaseTotal % this.rewardStats.programGoal == 0){
       this.rewardComplete = true;
       this.rewardStats.progress = 1
       this.getProgress();
       return;
     }
-
-  }
-  async componentDidLoad(){
 
     const formatVariables = {
       amountNeeded:this.rewardStats.progressToGoal
@@ -288,7 +286,17 @@ export class ProgressIndicator {
   `
 
   const textStyle = css`
-  position: absolute; left: 55%; top:82%; padding: 0px; margin: 0px; transform: translate(-50%, -50%); color: rgb(0, 157, 245); font-family: Roboto, Helvetica, sans-serif; font-size: 34px;color:#285F62;font-weight:bold;
+    position: absolute; 
+    left: ${this.rewardComplete ? '53.5%' : '55%'}; 
+    top:82%; 
+    padding: 0px; 
+    margin: 0px; 
+    transform: translate(-50%, -50%); 
+    color: rgb(0, 157, 245); 
+    font-family: Roboto, Helvetica, sans-serif; 
+    font-size: ${this.rewardComplete ? '30px' : '34px'};
+    color:#285F62;
+    font-weight:bold;
   `
   const presentStyle = css`
     position: absolute; 
@@ -302,18 +310,48 @@ export class ProgressIndicator {
     vertical-align: top;
     display: inline-block;
     margin-top: 3px;
-    margin-left: -1px;
+    margin-left: ${this.rewardComplete ? '0px' : '-1px'};
   `
+
+  const congratsStyle = css`
+    h1 {
+      color:#285F62;
+      font-size:36px;
+      margin-bottom:2px;
+    }
+    h3 {
+      color:#285F62;
+      font-size:20px;
+      margin:2px 0;
+    }
+    p {
+      margin-top:5px;
+      margin-bottom:1.5em;
+    }
+  `;
 
   return !this.ishidden && 
   this.rewardComplete ? 
     <div class={wrapperStyle}>
       <div>{this.rewardStats && this.earned} {this.rewardStats && this.rewardStats.amountEarned}</div>
       <div class={progressStyle}>
-        <div id="container"></div>
+        <div id="container">
+        { this.progresstype=="Path" && [
+        <svg class={circleStyle} width="210px" height="210px" viewBox="0 0 133 133" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <g id="blue-semi-circle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+            <path d="M94.2309355,112 C106.803489,103.004938 115,88.2630912 115,71.6028679 C115,44.2079604 92.8380951,22 65.5,22 C38.1619049,22 16,44.2079604 16,71.6028679 C16,88.1040219 24.0407405,102.723258 36.4101421,111.740781" id="Grey-Semi" stroke="#E9E9E9" stroke-width="6.5"></path>
+            <path id="custom-circle" d="M94.2309355,112 C106.803489,103.004938 115,88.2630912 115,71.6028679 C115,44.2079604 92.8380951,22 65.5,22 C38.1619049,22 16,44.2079604 16,71.6028679 C16,88.1040219 24.0407405,102.723258 36.4101421,111.740781" stroke="#2D97D3" stroke-width="6.5"></path>
+          </g>
+        </svg>, 
+        <span class={presentStyle}>{present}</span>,
+        <div class={textStyle}>          
+            <br/>{this.rewardStats && Math.round(this.rewardStats.progress * 100)}<span class={percentStyle}>%</span><br/><p class={completeStyle}>COMPLETE</p>
+        </div>      
+        ]}
+        </div>
       </div>
       {/* customer editable / automatically set */}
-      <div>
+      <div class={congratsStyle}>
         <h1>Congrats!</h1>
         <h3>You just earned another great reward.</h3>
         <br />
@@ -337,7 +375,7 @@ export class ProgressIndicator {
         </svg>, 
         <span class={presentStyle}>{present}</span>,
         <div class={textStyle}>          
-            <br/>{this.rewardStats && this.rewardStats.progress * 100}<span class={percentStyle}>%</span><br/><p class={completeStyle}>COMPLETE</p>
+            <br/>{this.rewardStats && Math.round(this.rewardStats.progress * 100)}<span class={percentStyle}>%</span><br/><p class={completeStyle}>COMPLETE</p>
         </div>      
         ]}
       </div>

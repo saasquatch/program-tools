@@ -635,7 +635,16 @@ const API = {
     getUserProgress(){
       const widgetId = widgetIdent();
 
-      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
+      if (widgetId["env"] === "demo" || !widgetId) {
+        const demoData = {
+          customFields: {demo_totalValue:16},
+          rewardBalanceDetails:[{
+            prettyAvailableValue:"$10.00"
+          }],
+          rewards:{count:1}
+        }
+        return Promise.resolve(demoData);
+      }
        const { userId, accountId, programId } = widgetId;
        const variables = {
         userId,
@@ -662,7 +671,22 @@ const API = {
     getProgramRules(){
       const widgetId = widgetIdent();
 
-      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve(demoUser.messageLink);
+      if (widgetId["env"] === "demo" || !widgetId) {
+        const demoData = {
+          id:"demo",
+          name:"Demo Program",
+          rules: {
+            programWindow:"",
+            rewardRules: {
+              rewardRulesType: 1,
+              rewardGoal: 24,
+              isRecurring: 1,
+              defaultCurrency: "CAD"
+            }
+          }
+        }
+        return Promise.resolve(demoData);
+      }
        const { programId } = widgetId;
        const variables = {
         programId
