@@ -656,7 +656,7 @@ const API = {
           query($userId: String!, $accountId: String!, $programId: ID) {
             user(id: $userId, accountId: $accountId){
               customFields
-              rewardBalanceDetails {
+              rewardBalanceDetails(programId: $programId) {
                 prettyAvailableValue(formatType:UNIT_FORMATTED)
               }
               rewards(limit:1000,offset:0, filter:{programId_eq: $programId}){

@@ -53,8 +53,7 @@ export class ProgressIndicator {
   @Prop() percentagecolor: string;
   @Prop() percentagesize: string;
 
-  @Prop() progressstartcolor: string;
-  @Prop() progressendcolor: string;
+  @Prop() progresscolor: string;
   @State() stats: stats;
   @State() rewardStats: any;
   @State() progressMessage: string;
@@ -94,7 +93,7 @@ export class ProgressIndicator {
     console.log(programRules)
 
     this.rewardStats = {
-      amountEarned: userProgress.rewardBalanceDetails[0].prettyAvailableValue,
+      amountEarned: userProgress.rewardBalanceDetails[0] ? userProgress.rewardBalanceDetails[0].prettyAvailableValue : null,
       purchaseTotal,
       programGoal,
       progress: Math.floor(((purchaseTotal % programGoal) / programGoal) * 100) / 100,
@@ -136,11 +135,11 @@ export class ProgressIndicator {
         text: {
           autoStyleContainer: false
         },
-        from: { color: this.progressstartcolor, width: 8 },
-        to: { color: this.progressendcolor, width: 8 },
+        from: { color: this.progresscolor, width: 8 },
+        to: { color: this.progresscolor, width: 8 },
         // Set default step function for all animate calls
         step: (state, circle) => {
-          circle.path.setAttribute('stroke', "#009DF5");
+          circle.path.setAttribute('stroke', this.progresscolor);
           circle.path.setAttribute('stroke-width', state.width);
         }
       });
@@ -158,8 +157,8 @@ export class ProgressIndicator {
         text: {
           autoStyleContainer: false
         },
-        from: { color: this.progressstartcolor, width: 1 },
-        to: { color: this.progressendcolor, width: 4 },
+        from: { color: this.progresscolor, width: 1 },
+        to: { color: this.progresscolor, width: 4 },
         // Set default step function for all animate calls
         step: function(state, circle) {
           circle.path.setAttribute('stroke', state.color);
@@ -292,10 +291,9 @@ export class ProgressIndicator {
     padding: 0px; 
     margin: 0px; 
     transform: translate(-50%, -50%); 
-    color: rgb(0, 157, 245); 
+    color: ${this.percentagecolor || 'rgb(0, 157, 245)'}; 
     font-family: Roboto, Helvetica, sans-serif; 
     font-size: ${this.rewardComplete ? '30px' : '34px'};
-    color:#285F62;
     font-weight:bold;
   `
   const presentStyle = css`
@@ -333,7 +331,7 @@ export class ProgressIndicator {
   return !this.ishidden && 
   this.rewardComplete ? 
     <div class={wrapperStyle}>
-      <div>{this.rewardStats && this.earned} {this.rewardStats && this.rewardStats.amountEarned}</div>
+      { this.rewardStats.amountEarned && <div>{this.rewardStats && this.earned} {this.rewardStats && this.rewardStats.amountEarned}</div>}
       <div class={progressStyle}>
         <div id="container">
         { this.progresstype=="Path" && [
@@ -363,14 +361,14 @@ export class ProgressIndicator {
   :
   this.loading ? <this.LoadingState /> :
   <div class={wrapperStyle}>
-    {this.rewardStats && <div>{this.earned} {this.rewardStats.amountEarned} credit</div>}
+    { this.rewardStats.amountEarned && <div>{this.rewardStats && this.earned} {this.rewardStats && this.rewardStats.amountEarned} credit</div>}
     <div class={progressStyle}>
       <div id="container">
         { this.progresstype=="Path" && [
         <svg class={circleStyle} width="210px" height="210px" viewBox="0 0 133 133" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <g id="blue-semi-circle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
             <path d="M94.2309355,112 C106.803489,103.004938 115,88.2630912 115,71.6028679 C115,44.2079604 92.8380951,22 65.5,22 C38.1619049,22 16,44.2079604 16,71.6028679 C16,88.1040219 24.0407405,102.723258 36.4101421,111.740781" id="Grey-Semi" stroke="#E9E9E9" stroke-width="6.5"></path>
-            <path id="custom-circle" d="M94.2309355,112 C106.803489,103.004938 115,88.2630912 115,71.6028679 C115,44.2079604 92.8380951,22 65.5,22 C38.1619049,22 16,44.2079604 16,71.6028679 C16,88.1040219 24.0407405,102.723258 36.4101421,111.740781" stroke="#2D97D3" stroke-width="6.5"></path>
+            <path id="custom-circle" d="M94.2309355,112 C106.803489,103.004938 115,88.2630912 115,71.6028679 C115,44.2079604 92.8380951,22 65.5,22 C38.1619049,22 16,44.2079604 16,71.6028679 C16,88.1040219 24.0407405,102.723258 36.4101421,111.740781" stroke={this.progresscolor} stroke-width="6.5"></path>
           </g>
         </svg>, 
         <span class={presentStyle}>{present}</span>,

@@ -357,8 +357,7 @@ declare global {
       'percentagecolor': string;
       'percentagesize': string;
       'progress': string;
-      'progressendcolor': string;
-      'progressstartcolor': string;
+      'progresscolor': string;
       'progresstype': string;
       'progresswidth': string;
       'textcolor': string;
@@ -390,8 +389,7 @@ declare global {
       'percentagecolor'?: string;
       'percentagesize'?: string;
       'progress'?: string;
-      'progressendcolor'?: string;
-      'progressstartcolor'?: string;
+      'progresscolor'?: string;
       'progresstype'?: string;
       'progresswidth'?: string;
       'textcolor'?: string;

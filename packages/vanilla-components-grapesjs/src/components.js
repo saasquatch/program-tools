@@ -11,8 +11,9 @@ export default (editor, config = {}) => {
   var defaultView = defaultType.view;
 
   const fontFamilyOpts = {
-    default: "Helvetica Neue,Helvetica,Arial,sans-serif",
+    default: "Roboto",
     enum: [
+      "Roboto",
       "Helvetica Neue,Helvetica,Arial,sans-serif",
       "Lato,sans-serif",
       "Times New Roman",
@@ -23,6 +24,7 @@ export default (editor, config = {}) => {
       "Georgia"
     ],
     enumNames: [
+      "Roboto",
       "Helvetica Neue",
       "Lato",
       "Times New Roman",
@@ -1006,8 +1008,6 @@ export default (editor, config = {}) => {
   //  Progress Bar for VIP Program
   // 
   // 
-
-
   comps.addType('sqh-progress-indicator', {
     model: textComp.model.extend({
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
@@ -1016,19 +1016,19 @@ export default (editor, config = {}) => {
         droppable: false,
         selectable: true,
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },
-          { type: 'string', title: 'Shape', name: 'shape', enum: ['Circle', 'SemiCircle', 'Line'], enumNames: ['Circle', 'SemiCircle', 'Line'] },
-          { type: 'string', title: 'Tier Name', name: 'tiername' },
-          { type: 'integer', title: 'Width of Progress in pixels', name: 'progresswidth' },
-          { type: 'string', title: 'Progress Bar Color Start', name: 'progressstartcolor' },
-          { type: 'string', title: 'Progress Bar Color Start', name: 'progressendcolor' },
-          { type: 'string', title: 'Prize Description', name: 'unit' }
+          { type: 'boolean', name: 'ishidden', value: false },      
+          //{ type: 'string', title: 'Shape', name: 'shape', enum: ['Circle', 'SemiCircle', 'Line', 'Path'], enumNames: ['Circle', 'SemiCircle', 'Line', 'Path'] },
+          { type: 'string', title: 'Progress Text', name: 'progress' },
+          { type: 'string', title: 'Text Color', name: 'textcolor' },
+          { type: 'string', title: 'Progress Bar Color', name: 'progresscolor' },
+          { type: 'string', title: 'Percentage Text Color', name: 'percentagecolor' },
+          { type: 'string', title: 'Earned Text', name: 'earned' }
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
-          'progresswidth': { 'ui:widget': 'updown' },
-          'progressstartcolor': { 'ui:widget': 'color' },
-          'progressendcolor': { 'ui:widget': 'color' }
+          'textcolor': { 'ui:widget': 'color' },
+          'percentagecolor': { 'ui:widget': 'color' },
+          'progresscolor': { 'ui:widget': 'color' },
         }
       })
     },
@@ -1040,6 +1040,57 @@ export default (editor, config = {}) => {
         },
       }),
     view: defaultType.view
+  })
+
+  comps.addType('sqh-cta-component', {
+    // Define the Model
+    model: defaultModel.extend({
+      // Extend default properties
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        name: 'Call To Action',
+
+        // can be dropped only inside 
+        draggable: false,
+
+        // these components can be dropped in here
+        droppable: false,
+
+        selectable: true,
+
+        toolbar: [],
+
+        traits: [
+          { type: 'boolean', name: 'ishidden', value: false },
+          { type: 'string', title: 'Content', name: 'text' },
+          { type: 'string', title: 'URL', name: 'url' },
+          { type: 'string', title: 'Font Color', name: 'color' },
+          { type: 'string', title: 'Button Background Color', name: 'backgroundcolor' },
+          { type: 'integer', title: 'Font Size', name: 'fontsize' },
+          { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'] },
+          { type: 'string', title: 'Padding Top', name: 'paddingtop' },
+          { type: 'string', title: 'Padding Bottom', name: 'paddingbottom' },
+          { type: 'integer', title: 'Button Border Radius', name: 'borderradius' },
+          { type: 'integer', title: 'Button Width', name: 'width' }
+
+        ],
+        uiSchema: {
+          'ishidden': { 'ui:widget': 'hidden' },
+          'color': { 'ui:widget': 'color' },
+          'backgroundcolor': { 'ui:widget': 'color' },
+          'fontsize': { 'ui:widget': 'updown' },
+          'borderradius': { 'ui:widget': 'updown' }
+        }
+      }),
+    },
+      {
+        isComponent: function (el) {
+          if (el.tagName == 'SQH-CTA-COMPONENT') {
+            return { type: 'sqh-cta-component' };
+          }
+        },
+      }),
+
+    view: defaultType.view,
   })
 
 
