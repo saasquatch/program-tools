@@ -49,6 +49,7 @@ export class ProgressIndicator {
       </div>
     )
   }
+
   async componentWillLoad() {
     const userProgress = await API.graphql.getUserProgress();
     const programRules = await API.graphql.getProgramRules();
@@ -68,6 +69,7 @@ export class ProgressIndicator {
       progressToGoal:(programGoal - (purchaseTotal % programGoal))
     }
   }
+
   async componentDidLoad(){
     if(this.rewardStats.purchaseTotal > 0 && this.rewardStats.purchaseTotal % this.rewardStats.programGoal == 0){
       this.rewardComplete = true;
@@ -94,7 +96,6 @@ export class ProgressIndicator {
 
     this.progressMessage = FormatJS.format(this.progressmessage, progress);
     this.earnedMessage = FormatJS.format(this.earnedmessage, earned)
-
   }
 
   getProgress(){
@@ -176,20 +177,16 @@ export class ProgressIndicator {
       text-align: center;
     `
 
-    // progressbar-text has to override strange positioning of image inside ProgressBar
     const progressStyle = css`
       position:relative;
       width: ${ this.progresswidth };
       margin: 30px auto;
       margin-top:0;
-      .progressbar-text {
-        top: ${ this.rewardComplete ? "37%" : "48%" }!important;  
-      }
     `
 
     const progressMessageStyle = css`
       padding:0 20%;
-      margin-bottom:0;
+      margin-bottom:20px;
     `
 
     const congratsStyle = css`
@@ -227,7 +224,7 @@ export class ProgressIndicator {
           <p>Earn More Rewards</p>
         </div> 
         :
-        [<p class={progressMessageStyle}>{this.progressMessage}</p>,<br />]
+        <p class={progressMessageStyle}>{this.progressMessage}</p>
       }
     </div>
     );
