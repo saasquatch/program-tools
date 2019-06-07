@@ -162,8 +162,8 @@ declare global {
   namespace StencilComponents {
     interface SqhCtaComponent {
       'background': string;
+      'backgroundcolor': string;
       'borderradius': string;
-      'buttonbackground': string;
       'color': string;
       'fontfamily': string;
       'fontsize': string;
@@ -201,8 +201,8 @@ declare global {
   namespace JSXElements {
     export interface SqhCtaComponentAttributes extends HTMLAttributes {
       'background'?: string;
+      'backgroundcolor'?: string;
       'borderradius'?: string;
-      'buttonbackground'?: string;
       'color'?: string;
       'fontfamily'?: string;
       'fontsize'?: string;
@@ -351,15 +351,26 @@ declare global {
 
   namespace StencilComponents {
     interface SqhProgressIndicator {
-      'earnedmessage': string;
+      'completedearnedmessage': string;
+      'completedneededmessage': string;
+      'completedpercentagecolor': string;
+      'completedprogresscolor': string;
+      'completedtextcolor': string;
+      'editormode': "noprogress" | "inprogress" | "completed";
+      'inprogressearnedmessage': string;
+      'inprogressneededmessage': string;
+      'inprogresspercentagecolor': string;
+      'inprogressprogresscolor': string;
+      'inprogresstextcolor': string;
       'ishidden': boolean;
-      'percentagecolor': string;
+      'noprogresscolor': string;
+      'noprogressearnedmessage': string;
+      'noprogressneededmessage': string;
+      'noprogresspercentagecolor': string;
+      'noprogresstextcolor': string;
       'percentagesize': string;
-      'progresscolor': string;
-      'progressmessage': string;
       'progresstype': string;
       'progresswidth': string;
-      'textcolor': string;
     }
   }
 
@@ -382,15 +393,26 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhProgressIndicatorAttributes extends HTMLAttributes {
-      'earnedmessage'?: string;
+      'completedearnedmessage'?: string;
+      'completedneededmessage'?: string;
+      'completedpercentagecolor'?: string;
+      'completedprogresscolor'?: string;
+      'completedtextcolor'?: string;
+      'editormode'?: "noprogress" | "inprogress" | "completed";
+      'inprogressearnedmessage'?: string;
+      'inprogressneededmessage'?: string;
+      'inprogresspercentagecolor'?: string;
+      'inprogressprogresscolor'?: string;
+      'inprogresstextcolor'?: string;
       'ishidden'?: boolean;
-      'percentagecolor'?: string;
+      'noprogresscolor'?: string;
+      'noprogressearnedmessage'?: string;
+      'noprogressneededmessage'?: string;
+      'noprogresspercentagecolor'?: string;
+      'noprogresstextcolor'?: string;
       'percentagesize'?: string;
-      'progresscolor'?: string;
-      'progressmessage'?: string;
       'progresstype'?: string;
       'progresswidth'?: string;
-      'textcolor'?: string;
     }
   }
 }

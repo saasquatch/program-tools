@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Prop, State, Watch } from '@stencil/core';
 import ProgressBar from 'progressbar.js';
 import { API } from '../../services/WidgetHost';
 import { css } from 'emotion';
@@ -21,15 +21,25 @@ const present = <svg width="100" height="100" viewBox="0 0 235 180" fill="none" 
 
 export class ProgressIndicator {
   @Prop() ishidden: boolean = false;
-  @Prop() textcolor: string;
   @Prop() progresstype: string;
-  @Prop() earnedmessage: string;
-  @Prop() progressmessage: string;
-  @Prop() progresswidth: string;
-  @Prop() percentagecolor: string;
+  @Prop() noprogressearnedmessage: string;
+  @Prop() noprogressneededmessage: string; 
+  @Prop() noprogresstextcolor: string;
+  @Prop() noprogresscolor: string;
+  @Prop() noprogresspercentagecolor: string;
+  @Prop() inprogressearnedmessage: string;
+  @Prop() inprogressneededmessage: string; 
+  @Prop() inprogresstextcolor: string;
+  @Prop() inprogressprogresscolor: string;
+  @Prop() inprogresspercentagecolor: string;
+  @Prop() completedearnedmessage: string;
+  @Prop() completedneededmessage: string; 
+  @Prop() completedtextcolor: string;
+  @Prop() completedprogresscolor: string;
+  @Prop() completedpercentagecolor: string;
   @Prop() percentagesize: string;
-  @Prop() progresscolor: string;
-
+  @Prop() progresswidth: string;
+  @Prop() editormode: "noprogress" | "inprogress" | "completed"
   @State() rewardStats: any;
   @State() progressMessage: string;
   @State() earnedMessage: string;
@@ -77,6 +87,9 @@ export class ProgressIndicator {
       this.getProgress();
       return;
     }
+    if(window["widgetIdent"].env === "demo"){
+      this.editorModeUpdated();
+    }
 
     this.getProgress();
     this.updateText();
@@ -84,6 +97,48 @@ export class ProgressIndicator {
 
   componentWillUpdate(){
     this.updateText();
+  }
+
+  @Watch('editormode')
+  editorModeUpdated(){
+    console.log(this.editormode)
+    switch(this.editormode){
+      case "noprogress":
+        this.rewardStats = {
+          amountEarned: '$10.00',
+          purchaseTotal:0,
+          programGoal:24,
+          progress: 0,
+          progressToGoal:24
+        }
+        this.rewardComplete = false;
+        this.getProgress();
+        this.updateText();
+        break;
+      case "inprogress":
+        this.rewardStats = {
+          amountEarned: '$10.00',
+          purchaseTotal: 16,
+          programGoal: 24,
+          progress: 0.66,
+          progressToGoal:16
+        }
+        this.rewardComplete = false;
+        this.getProgress();
+        this.updateText();
+        break;
+      case "completed":
+          this.rewardStats = {
+            amountEarned: '$15.00',
+            purchaseTotal: 24,
+            programGoal: 24,
+            progress: 1,
+            progressToGoal:0
+          }
+          this.getProgress();
+          this.updateText();
+          this.rewardComplete = true;
+    }
   }
 
   updateText(){
@@ -94,8 +149,8 @@ export class ProgressIndicator {
       amountEarned: this.rewardStats.amountEarned || 0
     }
 
-    this.progressMessage = FormatJS.format(this.progressmessage, progress);
-    this.earnedMessage = FormatJS.format(this.earnedmessage, earned)
+    this.progressMessage = FormatJS.format(this[this.editormode + 'neededmessage'], progress);
+    this.earnedMessage = FormatJS.format(this[this.editormode + 'earnedmessage'], earned)
   }
 
   getProgress(){
@@ -109,11 +164,11 @@ export class ProgressIndicator {
       text: {
         autoStyleContainer: false
       },
-      from: { color: this.progresscolor, width: 8 },
-      to: { color: this.progresscolor, width: 8 },
+      from: { color: this[this.editormode + 'progresscolor'], width: 8 },
+      to: { color: this[this.editormode + 'progresscolor'], width: 8 },
       // Set default step function for all animate calls
       step: (state, circle) => {
-        circle.path.setAttribute('stroke', this.progresscolor);
+        circle.path.setAttribute('stroke', this[this.editormode + 'progresscolor']);
         circle.path.setAttribute('stroke-width', state.width);
       }
     });
@@ -132,7 +187,7 @@ export class ProgressIndicator {
       padding: 0px; 
       margin: 0px; 
       transform: translate(-50%, -50%); 
-      color: ${this.percentagecolor || 'rgb(0, 157, 245)'}; 
+      color: ${this[this.editormode + 'percentagecolor'] || 'rgb(0, 157, 245)'}; 
       font-family: Roboto, Helvetica, sans-serif; 
       font-size: ${this.rewardComplete ? '30px' : '34px'};
       font-weight:bold;
@@ -160,7 +215,7 @@ export class ProgressIndicator {
       <svg class={circleStyle} width="210px" height="210px" viewBox="0 0 133 133" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <g id="blue-semi-circle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
           <path d="M94.2309355,112 C106.803489,103.004938 115,88.2630912 115,71.6028679 C115,44.2079604 92.8380951,22 65.5,22 C38.1619049,22 16,44.2079604 16,71.6028679 C16,88.1040219 24.0407405,102.723258 36.4101421,111.740781" id="Grey-Semi" stroke="#E9E9E9" stroke-width="6.5"></path>
-          <path id="custom-circle" d="M94.2309355,112 C106.803489,103.004938 115,88.2630912 115,71.6028679 C115,44.2079604 92.8380951,22 65.5,22 C38.1619049,22 16,44.2079604 16,71.6028679 C16,88.1040219 24.0407405,102.723258 36.4101421,111.740781" stroke={this.progresscolor} stroke-width="6.5"></path>
+          <path id="custom-circle" d="M94.2309355,112 C106.803489,103.004938 115,88.2630912 115,71.6028679 C115,44.2079604 92.8380951,22 65.5,22 C38.1619049,22 16,44.2079604 16,71.6028679 C16,88.1040219 24.0407405,102.723258 36.4101421,111.740781" stroke={this[this.editormode + 'progresscolor']} stroke-width="6.5"></path>
         </g>
       </svg>,
       <span class={presentStyle}>{present}</span>,
@@ -173,7 +228,7 @@ export class ProgressIndicator {
   
   render() {
     const wrapperStyle = css`
-      color: ${ this.textcolor };
+      color: ${ this[this.editormode + 'textcolor'] };
       text-align: center;
     `
 
@@ -217,11 +272,7 @@ export class ProgressIndicator {
       </div> 
       { this.rewardComplete ? 
         <div class={congratsStyle}>
-          <h1>Congrats!</h1>
-          <h3>You just earned another great reward.</h3>
-          <br />
-          <p>We love rewarding customers like you, keep it up!</p>
-          <p>Earn More Rewards</p>
+          <p class={progressMessageStyle}>{this.progressMessage}</p>
         </div> 
         :
         <p class={progressMessageStyle}>{this.progressMessage}</p>

@@ -18,7 +18,7 @@ export class CTAComponent {
   @Prop() padding: string = '10px 20px 15px';
   @Prop() textalign: string;
   @Prop() background: string;
-  @Prop() buttonbackground: string;
+  @Prop() backgroundcolor: string;
   @Prop() height: string;
   @Prop() width: string;
   @Prop() borderradius: string;
@@ -39,7 +39,7 @@ export class CTAComponent {
       border-radius: ${this.borderradius ? this.borderradius + 'px' : '8px'};
       margin:0 auto;
       border:none;
-      background-color: ${this.buttonbackground ? this.buttonbackground : '#F5A100'};
+      background-color: ${this.backgroundcolor ? this.backgroundcolor : '#F5A100'};
       &:hover {
         cursor:pointer;
         opacity:0.9;

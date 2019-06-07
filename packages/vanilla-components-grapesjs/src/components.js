@@ -71,6 +71,7 @@ export default (editor, config = {}) => {
         selectable: false,
         droppable: false,
         draggable: false,
+        
         traits: [
           { type: 'string', title: 'Background Color', name: 'background' },
           { type: 'string', title: 'Font Family', name: 'fontfamily', value: 'Helvetica Neue,Helvetica,Arial,sans-serif', ...fontFamilyOpts },
@@ -1008,6 +1009,12 @@ export default (editor, config = {}) => {
   //  Progress Bar for VIP Program
   // 
   // 
+  const progressBarColorObj = { type: 'string', title: 'Progress Bar Color' }
+  const progressTextColorObj = { type: 'string', title: 'Text Color' }
+  const progressPercentageTextColorObj = { type: 'string', title: 'Percentage Text Color' }
+  const progressNeededObj = { type: 'string', title: 'Progress Text' }
+  const progressEarnedTextObj = { type: 'string', title: 'Earned Text' }
+
   comps.addType('sqh-progress-indicator', {
     model: textComp.model.extend({
       defaults: Object.assign({}, textComp.model.prototype.defaults, {
@@ -1016,19 +1023,91 @@ export default (editor, config = {}) => {
         droppable: false,
         selectable: true,
         traits: [
-          { type: 'boolean', name: 'ishidden', value: false },      
-          //{ type: 'string', title: 'Shape', name: 'shape', enum: ['Circle', 'SemiCircle', 'Line', 'Path'], enumNames: ['Circle', 'SemiCircle', 'Line', 'Path'] },
-          { type: 'string', title: 'Progress Text', name: 'progress' },
-          { type: 'string', title: 'Text Color', name: 'textcolor' },
-          { type: 'string', title: 'Progress Bar Color', name: 'progresscolor' },
-          { type: 'string', title: 'Percentage Text Color', name: 'percentagecolor' },
-          { type: 'string', title: 'Earned Text', name: 'earned' }
+          { type: 'boolean', name: 'ishidden', value: false },    
+          { type:'string', name:'editormode' },
+          { type: 'string', name: 'noprogressneededmessage' },
+          { type: 'string', name: 'noprogressearnedmessage' },
+          { type: 'string', name: 'noprogresstextcolor' },
+          { type: 'string', name: 'noprogressprogresscolor' },
+          { type: 'string', name: 'noprogresspercentagecolor' },
+          { type: 'string', name: 'inprogressneededmessage' },
+          { type: 'string', name: 'inprogressearnedmessage' },
+          { type: 'string', name: 'inprogresstextcolor' },
+          { type: 'string', name: 'inprogressprogresscolor' },
+          { type: 'string', name: 'inprogresspercentagecolor' },
+          { type: 'string', name: 'completedneededmessage' },
+          { type: 'string', name: 'completedearnedmessage' },
+          { type: 'string', name: 'completedtextcolor' },
+          { type: 'string', name: 'completedprogresscolor' },
+          { type: 'string', name: 'completedpercentagecolor' },
+          
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
-          'textcolor': { 'ui:widget': 'color' },
-          'percentagecolor': { 'ui:widget': 'color' },
-          'progresscolor': { 'ui:widget': 'color' },
+          'editormode': { 'ui:widget': 'radio' },
+          'noprogresstextcolor': { 'ui:widget': 'color' },
+          'noprogresspercentagecolor': { 'ui:widget': 'color' },
+          'noprogressprogresscolor': { 'ui:widget': 'color' },
+          'inprogresstextcolor': { 'ui:widget': 'color' },
+          'inprogresspercentagecolor': { 'ui:widget': 'color' },
+          'inprogressprogresscolor': { 'ui:widget': 'color' },
+          'completedtextcolor': { 'ui:widget': 'color' },
+          'completedpercentagecolor': { 'ui:widget': 'color' },
+          'completedprogresscolor': { 'ui:widget': 'color' },
+        },
+        required: [
+          'sharemedium'
+        ],
+        schema: {
+          'title': 'Grapes JS Props',
+          'description': 'Some description here',
+          'type': 'object',
+          'properties': {
+            'ishidden': { 'type': 'boolean', 'title': 'Hidden' },
+            'editormode': {
+              'type': 'string',
+              'title': 'Select Button to Edit',
+              'default': 'noprogress',
+              'enum': ['noprogress', 'inprogress', 'completed'],
+              'enumNames': ['No Progress', 'In Progress', 'Completed']
+            },
+          },
+          'dependencies': {
+            'editormode': {
+              'oneOf': [
+                {
+                  'properties': {
+                    'editormode': { 'enum': ['noprogress'] },
+                    'noprogresstextcolor': progressTextColorObj,
+                    'noprogressprogresscolor': progressBarColorObj,
+                    'noprogresspercentagecolor': progressPercentageTextColorObj,
+                    'noprogressearnedmessage': progressEarnedTextObj,
+                    'noprogressneededmessage': progressNeededObj
+                  }
+                },
+                {
+                  'properties': {
+                    'editormode': { 'enum': ['inprogress'] },
+                    'inprogresstextcolor': progressTextColorObj,
+                    'inprogressprogresscolor': progressBarColorObj,
+                    'inprogresspercentagecolor': progressPercentageTextColorObj,
+                    'inprogressearnedmessage': progressEarnedTextObj,
+                    'inprogressneededmessage': progressNeededObj
+                  }
+                },
+                {
+                  'properties': {
+                    'editormode': { 'enum': ['completed'] },
+                    'completedtextcolor': progressTextColorObj,
+                    'completedprogresscolor': progressBarColorObj,
+                    'completedpercentagecolor': progressPercentageTextColorObj,
+                    'completedearnedmessage': progressEarnedTextObj,
+                    'completedneededmessage': progressNeededObj
+                  }
+                },
+              ]
+            }
+          }
         }
       })
     },
