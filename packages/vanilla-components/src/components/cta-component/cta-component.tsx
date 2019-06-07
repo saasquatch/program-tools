@@ -58,7 +58,10 @@ export class CTAComponent {
 
     return !this.ishidden && 
       <div class={divStyle}>
-        <button class={buttonStyle} onClick={() => window.open(this.url, "_blank") }>
+        <button class={buttonStyle} onClick={() => {
+            if(window["widgetIdent"].env === "demo") return;
+            window.open(this.url, "_blank")
+          }}>
           {this.text}
         </button>
       </div>;
