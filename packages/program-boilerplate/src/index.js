@@ -27,15 +27,96 @@ export {
  */
 
 /**
- * @description A list of valid programTriggerTypes
+ * Triggers the program and returns the result (JSON + HTTP code)
+ *
+ * @param {Object} body The trigger body
+ * @param {Object?} handlers The program trigger handlers
+ * @param {Object?} query The context query
+ * @param {Object?} headers The context HTTP headers
+ *
+ * @return {Object} The program trigger result
+ *
+ * Example return object:
+ * {
+ *   json: { "example": "json" },
+ *   code: 200
+ * }
  */
+export function triggerProgram(body, handlers = {}, query = {}, headers = {}) {
+    switch (body.messageType || "PROGRAM_TRIGGER") {
+      case "PROGRAM_INTROSPECTION":
+        const template = body.template;
+        const rules = body.rules;
+        const program = body.program;
+        // Make modifications to template based on rules here if necessary.
+        // ...
+        const handleIntrospection = handlers["PROGRAM_INTROSPECTION"];
+        try {
+          const newTemplate =
+            handleIntrospection && (handleIntrospection(template,rules,program)
+            || handleIntrospection(template,rules))
+            || template;
 
-const ProgramTriggerTypes = [
-  "AFTER_USER_CREATED_OR_UPDATED",
-  "REFERRAL",
-  "AFTER_USER_EVENT_PROCESSED",
-  "SCHEDULED",
-  "REWARD_SCHEDULED"];
+          return {
+            json: newTemplate,
+            code: 200
+          };
+        } catch (e) {
+          const errorMes = {
+            error: "An error occurred in a webtask",
+            message: e.toString(),
+          };
+
+          console.log(errorMes);
+
+          return {
+            json: errorMes,
+            code: 500
+          };
+        }
+      case "PROGRAM_TRIGGER":
+        const transaction = new Transaction({
+          body: body,
+          meta: undefined,
+          storage: undefined,
+          query: query,
+          secrets: undefined,
+          headers: headers,
+          data: undefined,
+        });
+        const triggerType = body.activeTrigger.type;
+        const handleTrigger = handlers[triggerType];
+
+        try {
+          if (handleTrigger) {
+            handleTrigger(transaction);
+          }
+
+          return {
+            json: transaction.toJson(),
+            code: 200
+          };
+        } catch (e) {
+          const errorMes = {
+            error: "An error occurred in a webtask",
+            message: e.toString(),
+          };
+
+          console.log(errorMes);
+
+          return {
+            json: errorMes,
+            code: 500
+          };
+        }
+      default:
+        console.log('UNREACHABLE CODE REACHED!!');
+        return {
+          json: { message: 'Expected either PROGRAM_TRIGGER or PROGRAM_INTROSPECTION messageType.' },
+          code: 400
+        };
+    }
+}
 
 /**
 * A webtask that accepts handlers and returns a function fitting the webtask programming model.
@@ -73,62 +154,9 @@ export function webtask(handlers = {}) {
   });
 
   express.post('/*', (context, res) => {
-    switch (context.body.messageType || "PROGRAM_TRIGGER") {
-      case "PROGRAM_INTROSPECTION":
-        const template = context.body.template;
-        const rules = context.body.rules;
-        const program = context.body.program;
-        // Make modifications to template based on rules here if necessary.
-        // ...
-        const handleIntrospection = handlers["PROGRAM_INTROSPECTION"];
-        try {
-          const newTemplate = handleIntrospection && (handleIntrospection(template,rules,program) || handleIntrospection(template,rules)) || template;
-          res.status(200).json(newTemplate);
-        } catch (e) {
-          const errorMes = {
-            error: "An error occurred in a webtask",
-            message: e.toString(),
-          };
+    const { json, code } = triggerProgram(context.body, handlers, context.query, context.headers);
 
-          console.log(errorMes);
-          res.status(500).json(errorMes);
-        }
-        break;
-      case "PROGRAM_TRIGGER":
-        const transaction = new Transaction({
-          body: context.body,
-          meta: undefined,
-          storage: undefined,
-          query: context.query,
-          secrets: undefined,
-          headers: context.headers,
-          data: undefined,
-        });
-        const triggerType = context.body.activeTrigger.type;
-        const handleTrigger = handlers[triggerType];
-
-        try {
-          if (handleTrigger) {
-            handleTrigger(transaction);
-          }
-
-          res.status(200).json(transaction.toJson());
-        } catch (e) {
-          const errorMes = {
-            error: "An error occurred in a webtask",
-            message: e.toString(),
-          };
-
-          console.log(errorMes);
-          res.status(500).json(errorMes);
-        }
-
-        break;
-      default:
-        console.log('UNREACHABLE CODE REACHED!!');
-        res.status(400).send('Expected either PROGRAM_TRIGGER or PROGRAM_INTROSPECTION messageType.');
-        break;
-    }
+    res.status(code).json(json);
   });
 
   return express;
