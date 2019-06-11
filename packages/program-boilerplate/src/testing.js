@@ -1,3 +1,13 @@
+export function getTriggerBody(trigger) {
+  const triggerClone = JSON.parse(JSON.stringify(PROGRAM_TRIGGER));
+  return { ...triggerClone, ...trigger };
+}
+
+export function getIntrospectionBody(trigger) {
+  const triggerClone = JSON.parse(JSON.stringify(PROGRAM_INTROSPECTION));
+  return { ...triggerClone, ...trigger };
+}
+
 const PROGRAM_TRIGGER = {
   "activeTrigger":{
     "type":"AFTER_USER_CREATED_OR_UPDATED",
@@ -672,10 +682,3 @@ const PROGRAM_INTROSPECTION = {
   }
 };
 
-export function getTriggerBody(trigger) {
-  return { ...PROGRAM_TRIGGER, ...trigger };
-}
-
-export function getIntrospectionBody(trigger) {
-  return { ...PROGRAM_INTROSPECTION, ...trigger };
-}
