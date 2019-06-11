@@ -3,6 +3,7 @@ import ProgressBar from 'progressbar.js';
 import { API } from '../../services/WidgetHost';
 import { css } from 'emotion';
 import FormatJS from '../../services/FormatJs';
+import marked from 'marked';
 
 const present = <svg width="100" height="100" viewBox="0 0 235 180" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <rect width="250.699" height="179.753" fill="url(#pattern0)"/>
@@ -246,12 +247,12 @@ export class ProgressIndicator {
 
     const congratsStyle = css`
       h1 {
-        color:#285F62;
+        color:${ this.completedpercentagecolor };
         font-size:36px;
         margin-bottom:2px;
       }
       h3 {
-        color:#285F62;
+        color:${ this.completedpercentagecolor };
         font-size:20px;
         margin:2px 0;
       }
@@ -264,7 +265,7 @@ export class ProgressIndicator {
     return !this.ishidden && (
     this.loading ? <this.LoadingState /> :
     <div class={wrapperStyle}>
-      { this.earnedMessage }
+      <span innerHTML={ marked(this.earnedMessage || "") }></span>
       <div class={progressStyle}>
         <div id="container">
           { this.progressBar() }
@@ -272,10 +273,10 @@ export class ProgressIndicator {
       </div> 
       { this.rewardComplete ? 
         <div class={congratsStyle}>
-          <p class={progressMessageStyle}>{this.progressMessage}</p>
+          <span innerHTML={marked(this.progressMessage || "")}></span>
         </div> 
         :
-        <p class={progressMessageStyle}>{this.progressMessage}</p>
+        <p class={progressMessageStyle}><span innerHTML={marked(this.progressMessage || "")}></span></p>
       }
     </div>
     );

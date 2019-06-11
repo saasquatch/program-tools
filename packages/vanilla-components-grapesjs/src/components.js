@@ -1044,7 +1044,11 @@ export default (editor, config = {}) => {
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
-          'editormode': { 'ui:widget': 'radio' },
+          'editormode': { 'ui:widget': 'tabs', "ui:title": <span></span>, "ui:options": {
+            noprogress: "This is a description for no progress", 
+            inprogress: "This is a description for in progress",
+            completed: "This is a description for completed"
+        } },
           'noprogresstextcolor': { 'ui:widget': 'color' },
           'noprogresspercentagecolor': { 'ui:widget': 'color' },
           'noprogressprogresscolor': { 'ui:widget': 'color' },
@@ -1055,9 +1059,6 @@ export default (editor, config = {}) => {
           'completedpercentagecolor': { 'ui:widget': 'color' },
           'completedprogresscolor': { 'ui:widget': 'color' },
         },
-        required: [
-          'sharemedium'
-        ],
         schema: {
           'title': 'Grapes JS Props',
           'description': 'Some description here',
@@ -1066,7 +1067,7 @@ export default (editor, config = {}) => {
             'ishidden': { 'type': 'boolean', 'title': 'Hidden' },
             'editormode': {
               'type': 'string',
-              'title': 'Select Button to Edit',
+              'title': 'Select State to Edit',
               'default': 'noprogress',
               'enum': ['noprogress', 'inprogress', 'completed'],
               'enumNames': ['No Progress', 'In Progress', 'Completed']
@@ -1145,7 +1146,7 @@ export default (editor, config = {}) => {
           { type: 'string', title: 'Font Color', name: 'color' },
           { type: 'string', title: 'Button Background Color', name: 'backgroundcolor' },
           { type: 'integer', title: 'Font Size', name: 'fontsize' },
-          { type: 'string', title: 'Text Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'] },
+          { type: 'string', title: 'Button Align', name: 'textalign', enum: ['left', 'center', 'right'], enumNames: ['Left', 'Center', 'Right'] },
           { type: 'string', title: 'Padding Top', name: 'paddingtop' },
           { type: 'string', title: 'Padding Bottom', name: 'paddingbottom' },
           { type: 'integer', title: 'Button Border Radius', name: 'borderradius' },
