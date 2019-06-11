@@ -43,79 +43,79 @@ export {
  * }
  */
 export function triggerProgram(body, handlers = {}, query = {}, headers = {}) {
-    switch (body.messageType || "PROGRAM_TRIGGER") {
-      case "PROGRAM_INTROSPECTION":
-        const template = body.template;
-        const rules = body.rules;
-        const program = body.program;
-        // Make modifications to template based on rules here if necessary.
-        // ...
-        const handleIntrospection = handlers["PROGRAM_INTROSPECTION"];
-        try {
-          const newTemplate =
-            handleIntrospection && (handleIntrospection(template,rules,program)
-            || handleIntrospection(template,rules))
-            || template;
+  switch (body.messageType || "PROGRAM_TRIGGER") {
+    case "PROGRAM_INTROSPECTION":
+      const template = body.template;
+      const rules = body.rules;
+      const program = body.program;
+      // Make modifications to template based on rules here if necessary.
+      // ...
+      const handleIntrospection = handlers["PROGRAM_INTROSPECTION"];
+      try {
+        const newTemplate =
+          handleIntrospection && (handleIntrospection(template,rules,program)
+          || handleIntrospection(template,rules))
+          || template;
 
-          return {
-            json: newTemplate,
-            code: 200
-          };
-        } catch (e) {
-          const errorMes = {
-            error: "An error occurred in a webtask",
-            message: e.toString(),
-          };
-
-          console.log(errorMes);
-
-          return {
-            json: errorMes,
-            code: 500
-          };
-        }
-      case "PROGRAM_TRIGGER":
-        const transaction = new Transaction({
-          body: body,
-          meta: undefined,
-          storage: undefined,
-          query: query,
-          secrets: undefined,
-          headers: headers,
-          data: undefined,
-        });
-        const triggerType = body.activeTrigger.type;
-        const handleTrigger = handlers[triggerType];
-
-        try {
-          if (handleTrigger) {
-            handleTrigger(transaction);
-          }
-
-          return {
-            json: transaction.toJson(),
-            code: 200
-          };
-        } catch (e) {
-          const errorMes = {
-            error: "An error occurred in a webtask",
-            message: e.toString(),
-          };
-
-          console.log(errorMes);
-
-          return {
-            json: errorMes,
-            code: 500
-          };
-        }
-      default:
-        console.log('UNREACHABLE CODE REACHED!!');
         return {
-          json: { message: 'Expected either PROGRAM_TRIGGER or PROGRAM_INTROSPECTION messageType.' },
-          code: 400
+          json: newTemplate,
+          code: 200
         };
-    }
+      } catch (e) {
+        const errorMes = {
+          error: "An error occurred in a webtask",
+          message: e.toString(),
+        };
+
+        console.log(errorMes);
+
+        return {
+          json: errorMes,
+          code: 500
+        };
+      }
+    case "PROGRAM_TRIGGER":
+      const transaction = new Transaction({
+        body: body,
+        meta: undefined,
+        storage: undefined,
+        query: query,
+        secrets: undefined,
+        headers: headers,
+        data: undefined,
+      });
+      const triggerType = body.activeTrigger.type;
+      const handleTrigger = handlers[triggerType];
+
+      try {
+        if (handleTrigger) {
+          handleTrigger(transaction);
+        }
+
+        return {
+          json: transaction.toJson(),
+          code: 200
+        };
+      } catch (e) {
+        const errorMes = {
+          error: "An error occurred in a webtask",
+          message: e.toString(),
+        };
+
+        console.log(errorMes);
+
+        return {
+          json: errorMes,
+          code: 500
+        };
+      }
+    default:
+      console.log('UNREACHABLE CODE REACHED!!');
+      return {
+        json: { message: 'Expected either PROGRAM_TRIGGER or PROGRAM_INTROSPECTION messageType.' },
+        code: 400
+      };
+  }
 }
 
 /**
