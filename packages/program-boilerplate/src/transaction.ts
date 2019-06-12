@@ -5,7 +5,7 @@ import {
   rewardEmailQueryForNonReferralPrograms
 } from "./queries";
 
-type WebtaskContext = {
+export type WebtaskContext = {
   body: any,
   meta: any,
   storage: any,
@@ -15,17 +15,17 @@ type WebtaskContext = {
   data: any,
 };
 
-type Referral = {
+export type Referral = {
   id: string
 };
 
-type User = {
+export type User = {
   id: string,
   accountId: string,
   referredByReferral: Referral
 };
 
-type ProgramType = "ACQUISITION" | "LOYALTY" | "RETENTION";
+export type ProgramType = "ACQUISITION" | "LOYALTY" | "RETENTION";
 
 export default class Transaction {
 
