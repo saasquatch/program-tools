@@ -1,5 +1,5 @@
 // @ts-check
-import Transaction from './transaction';
+import Transaction, { ProgramType } from './transaction';
 import {rewardEmailQuery} from './queries';
 import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
 import {setRewardSchedule, getGoalAnalyticTimestamp} from './utils';
@@ -22,7 +22,8 @@ export {
   setRewardSchedule,
   getGoalAnalyticTimestamp,
   getTriggerBody,
-  getIntrospectionBody
+  getIntrospectionBody,
+  ProgramType
 }
 
 type WebtaskContext = {
