@@ -1,9 +1,9 @@
-export function getTriggerBody(trigger) {
+export function getTriggerBody(trigger: any) {
   const triggerClone = JSON.parse(JSON.stringify(PROGRAM_TRIGGER));
   return { ...triggerClone, ...trigger };
 }
 
-export function getIntrospectionBody(trigger) {
+export function getIntrospectionBody(trigger: any) {
   const triggerClone = JSON.parse(JSON.stringify(PROGRAM_INTROSPECTION));
   return { ...triggerClone, ...trigger };
 }

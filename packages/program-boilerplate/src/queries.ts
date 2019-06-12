@@ -125,7 +125,7 @@ fragment AllFlatRewardFields on FlatReward {
 `;
 
 //context for reward schedule trigger
-export const rewardScheduleQuery = (emailKey) => {
+export const rewardScheduleQuery = (emailKey: string) => {
   const query = `query ProgramTrigger($programId: ID!) {
     activeTrigger: activeProgramTrigger {
       type

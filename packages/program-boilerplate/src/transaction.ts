@@ -25,6 +25,8 @@ type User = {
   referredByReferral: Referral
 };
 
+type ProgramType = "ACQUISITION" | "LOYALTY" | "RETENTION";
+
 export default class Transaction {
 
   mutations: any[];
@@ -53,7 +55,7 @@ export default class Transaction {
     }
   }
 
-  fireProgramEvalAnalytics(user, type) {
+  fireProgramEvalAnalytics(user: User, type: ProgramType) {
     const evalAnalytic = {
       eventType: "PROGRAM_EVALUATED",
       data: {
@@ -79,7 +81,13 @@ export default class Transaction {
    * @param {string} analyticsDedupeId - unique id of the analytic event
    * @param {number} timestamp         - timestamp of the event
    */
-  fireProgramGoalAnalytics(user, programType, analyticsKey, analyticsDedupeId, timestamp) {
+  fireProgramGoalAnalytics(
+    user: User,
+    programType: ProgramType,
+    analyticsKey: string,
+    analyticsDedupeId: string,
+    timestamp: number
+  ) {
     const goalAnalytic = {
       eventType: "PROGRAM_GOAL",
       data: {
@@ -109,7 +117,7 @@ export default class Transaction {
    *
    * @param {string} rewardKey - Key of the reward (as defined in contentful).
    */
-  generateSimpleReward(rewardKey) {
+  generateSimpleReward(rewardKey: string) {
     const rewardId = this.context.body.ids.pop();
     const newMutation = {
       type: "CREATE_REWARD",
