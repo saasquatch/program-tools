@@ -4,33 +4,35 @@ import {
   nonRewardEmailQueryForReferralPrograms,
   rewardEmailQueryForNonReferralPrograms
 } from "./queries";
-/**
- * @typedef WebtaskContext
- * @property {Object} body      -  An object containing either application/json or application/x-www-form-urlencoded parsed data.
- * @property {Object} meta      -  An object containing the metadata properties of the task being executed, or an empty object if there are none.
- * @property {Object} storage   - An instance of the storage interface. The context.storage.get and the context.storage.set methods can be used to access or store items.
- * @property {Object} query     -  The parsed query-string. It is parsed using querystring, so it does not support the dot syntax that things like qs support.
- * @property {Object} secrets   - An object containing Webtask secrets (or an empty object, if there are none).
- * @property {Object} headers   - An object containing the unmodified headers from the request received by the Webtask sandbox.
- * @property {Object} data      - An object containing the overlay of query params, Webtask token params (pctx), Webtask secrets, and the body (when the mb claim is 1).
- *
- * @see {@link https://webtask.io/docs/context}
- */
 
-/**
- * @typedef User
- *
- * @property {string} id
- * @property {string} accountId
- * @property {Referral} referredByReferral
- */
+type WebtaskContext = {
+  body: any,
+  meta: any,
+  storage: any,
+  query: any,
+  secrets: any,
+  headers: any,
+  data: any,
+};
 
-/**
- * @typedef Referral
- * @typedef {string} id
- */
+type Referral = {
+  id: string
+};
+
+type User = {
+  id: string,
+  accountId: string,
+  referredByReferral: Referral
+};
 
 export default class Transaction {
+
+  mutations: any[];
+  analytics: any[];
+  context: WebtaskContext;
+  currentUser: User;
+  events: any[];
+
   /**
    * @classdesc A Transaction instance takes a context object from webtask, generates mutations and analytics as the program requested.
    * @constructor
@@ -39,7 +41,7 @@ export default class Transaction {
    * @param {Object[]} mutations  - Mutations to be made on the program.
    * @param {Object[]} analytics  - Analytics of the program.
    */
-  constructor(context, mutations = [], analytics = []) {
+  constructor(context: WebtaskContext, mutations = [], analytics = []) {
     this.mutations = mutations;
     this.analytics = analytics;
     this.context = context;
@@ -58,7 +60,8 @@ export default class Transaction {
         user: {
           id: user.id,
           accountId: user.accountId
-        }
+        },
+        programType: undefined
       }
     };
 
@@ -235,7 +238,16 @@ export default class Transaction {
    * Generates both reward and email for a referral.
    */
   generateReferralRewardAndEmail({ emailKey, rewardKey, referralId, user }) {
-    const {rewardId} =this.generateReferralReward({ rewardKey, user, referralId });
+    const { rewardId } =this.generateReferralReward({
+      rewardKey,
+      referralId,
+      user,
+      userEvent: undefined,
+      rewardSource: undefined,
+      status: undefined,
+      rewardProperties: undefined
+    });
+
     this.generateReferralEmail({ emailKey, user, referralId, rewardId });
   }
 

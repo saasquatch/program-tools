@@ -1,0 +1,12 @@
+{
+  "include": [
+    "src/**/*.ts"
+  ],
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "commonjs",
+    "target": "es2015",
+    "noImplicitAny": false,
+    "jsx": "react"
+  }
+}

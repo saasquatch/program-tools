@@ -5,6 +5,15 @@ import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
 import {setRewardSchedule, getGoalAnalyticTimestamp} from './utils';
 import {getTriggerBody, getIntrospectionBody} from './testing';
 
+import { 
+  Logger,
+  format,
+  createLogger,
+  transports,
+} from 'winston';
+
+import * as express from 'express';
+
 export {
   Transaction,
   meetEventTriggerRules,
@@ -16,15 +25,22 @@ export {
   getIntrospectionBody
 }
 
+type WebtaskContext = {
+  body?: WebtaskContextBody
+};
+
+type WebtaskContextBody = {
+  activeTrigger?: any
+  program?: any
+};
+
 /**
- * @typedef {Object} WebtaskContext
- * @property {WebtaskContextBody?} body
+ * The result of a program being triggered
  */
-/**
- * @typedef {Object} WebtaskContextBody
- * @property {Object?} activeTrigger
- * @property {Object?} program
- */
+type ProgramTriggerResult = {
+  json: any
+  code: number
+}
 
 /**
  * Triggers the program and returns the result (JSON + HTTP code)
@@ -34,7 +50,7 @@ export {
  * @param {Object?} query The context query
  * @param {Object?} headers The context HTTP headers
  *
- * @return {Object} The program trigger result
+ * @return {ProgramTriggerResult} The program trigger result
  *
  * Example return object:
  * {
@@ -42,7 +58,7 @@ export {
  *   code: 200
  * }
  */
-export function triggerProgram(body, handlers = {}, query = {}, headers = {}) {
+export function triggerProgram(body, handlers = {}, query = {}, headers = {}): ProgramTriggerResult {
   switch (body.messageType || "PROGRAM_TRIGGER") {
     case "PROGRAM_INTROSPECTION":
       const template = body.template;
@@ -118,33 +134,18 @@ export function triggerProgram(body, handlers = {}, query = {}, headers = {}) {
   }
 }
 
-/**
-* A webtask that accepts handlers and returns a function fitting the webtask programming model.
-*
-* @example webtask ({
-*          "AFTER_USER_CREATED_OR_UPDATED" : handleUserUpsert,
-*          "AFTER_USER_EVENT_PROCESSED": handleUserEvent,
-*          "REFERRAL": handleReferralTrigger,
-*          "PROGRAM_INTROSPECTION": handleIntrospection
-*           })
-* @param {Object} handlers - Key-value pairs, where key is a ProgramTriggerType (see {@link ProgramTriggerTypes}) or "PROGRAM_INTROSPECTION";
-* ProgramTrigger handlers must accept a transaction instance as parameter.
-* Program-Introspection must accept a template as parameter and returns a new template.
-* @returns {function} - A function that fits in the webtask programming model. See {@link https://webtask.io/docs/model}.
-*
-*
-*/
 export function webtask(handlers = {}) {
-  const express = require('express')();
   const bodyParser = require('body-parser');
   const compression = require('compression');
 
-  express.use(bodyParser.json());
-  express.use(compression());
+  const app = express();
+
+  app.use(bodyParser.json());
+  app.use(compression());
 
   // Enforce HTTPS. The server does not redirect http -> https
   // because OWASP advises not to
-  express.use((req, res, next) => {
+  app.use((req, res, next) => {
     if (req.header('X-Forwarded-Proto') !== 'https') {
       return res.status(403).send({message: 'SSL required'});
     }
@@ -153,7 +154,7 @@ export function webtask(handlers = {}) {
     next();
   });
 
-  express.post('/*', (context, res) => {
+  app.post('/*', (context, res) => {
     const { json, code } = triggerProgram(context.body, handlers, context.query, context.headers);
 
     res.status(code).json(json);
@@ -162,21 +163,24 @@ export function webtask(handlers = {}) {
   return express;
 }
 
-// Returns a logger for the programs to use instead of
-// console.log
-export function getLogger(logLevel) {
-  const winston = require('winston');
-
-  const logFormat = winston.format.printf(({ level, message }) => {
+/** Returns a logger for the programs to use instead of
+ * console.log
+ *
+ * @param {string} logLevel The log level
+ *
+ * @return {Logger} The winston logger
+ */ 
+export function getLogger(logLevel: string): Logger {
+  const logFormat =format.printf(({ level, message }) => {
     return `[${level.toUpperCase()}] ${message}`;
   });
 
-  const logger = winston.createLogger({
+  const logger = createLogger({
     level: logLevel,
-    format: winston.format.combine(
+    format: format.combine(
       logFormat
     ),
-    transports: [new winston.transports.Console()]
+    transports: [new transports.Console()]
   });
 
   return logger;

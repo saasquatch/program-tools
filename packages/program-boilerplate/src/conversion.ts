@@ -1,53 +1,53 @@
-//@ts-check
-
 /**
  * @module conversion
  */
-//typedefs
-/**
- * A customField-based conversion rule
- * 
- * @typedef {Object} customFieldConversionRule
- * @property {string} operator A number, boolean or string rule.
- * @property {string} fieldName A number, boolean or string rule.
- * @property {string} value A number, boolean or string rule.
- */
-
- /**
- * A event-based conversion rule
- * 
- * @typedef {Object} eventTriggerRule
- * @property {string} operator A number, boolean or string rule.
- * @property {string} eventKey A number, boolean or string rule.
- * @property {string} value A number, boolean or string rule.
- */
 
 /**
- * @typedef {object} event a key-value pair
- * @property {string} key
- * @property {object} fields An abitrary JSON node
+ * A custom field based conversion rule
  */
+type CustomFieldConversionRule = {
+  operator: number | string
+  fieldName: string,
+  value: RuleValue
+};
 
 /**
-* A user object returned from a GraphQL query
-* 
-* @typedef {Object} UserQueryResult
-* @property {Object} customFields A set of key-value pairs
-*/
+ * An event-based conversion rule
+ */
+type EventTriggerRule = {
+ operator: string
+ eventKey: string
+ value: string
+};
 
 /**
- * The value of a rule 
- * @typedef {(string | Boolean | Number)} ruleValue
+ * A key-value pair
  */
+type Event = {
+  key: string
+  fields: any
+};
+
+/**
+ * A user object returned from a GraphQL query
+ */
+type UserQueryResult = {
+  customFields: any
+};
+
+/**
+ * The value of a rule
+ */
+type RuleValue = string | boolean | number;
 
 //functions
 /**
  * Turns a string scalar into a Number, Boolean or String
- * 
+ *
  * @param {string} value the value of a rule passed in as a string
- * @returns {ruleValue}
+ * @returns {RuleValue} The parsed value
  */
-function parseValue(value) {
+function parseValue(value: string): RuleValue {
   if (/^(\-|\+)?([0-9]+(\.[0-9]+)?)$/
     .test(value)) {
     return Number(value);
@@ -59,19 +59,21 @@ function parseValue(value) {
   if (value.toLowerCase() === "false" || value.toLowerCase() === "no") {
     return Boolean(false);
   }
+
   return value;
 }
 
   /**
    * Checks if the customFields of a user meet a certain customField-based conversion rule.
-   *  
-   * @param {UserQueryResult} user 
-   * @param {customFieldConversionRule} customConversionRule 
+   *
+   * @param {UserQueryResult} user
+   * @param {CustomFieldConversionRule} customConversionRule
    * @returns {boolean}
    */
-  function meetCustomFieldCondition(user, customConversionRule) {
-    const ruleVal = parseValue(customConversionRule.value);
+  function meetCustomFieldCondition(user: UserQueryResult, customConversionRule: CustomFieldConversionRule): boolean {
+    const ruleVal = parseValue(customConversionRule.value.toString());
     const val = user.customFields[customConversionRule.fieldName];
+
     switch (customConversionRule.operator) {
       case "equal":
         return val == ruleVal;
@@ -84,16 +86,16 @@ function parseValue(value) {
     }
     return false;
   }
-  
- 
+
+
   /**
    * Checks if the events triggered the program meet a certain event-based conversion rule.
-   * 
-   * @param {event[]} events 
-   * @param {eventTriggerRule} eventTriggerRule 
-   * @returns {boolean}
+   *
+   * @param {Event[]} events
+   * @param {EventTriggerRule} eventTriggerRule
+   * @returns {boolean} Whether or not the events meet the rule
    */
-  function meetEventCondition(events, eventTriggerRule) {
+  function meetEventCondition(events: Event[], eventTriggerRule: EventTriggerRule): boolean {
     return events.some(function (event) {
       if (event.key !== eventTriggerRule.eventKey) return false;
       const ruleVal = parseValue(eventTriggerRule.value);
@@ -110,29 +112,29 @@ function parseValue(value) {
       return false;
     });
   }
-  
+
 /**
  * Checks if the customFields of the user meet every rule that defines customFields-based conversion
- * 
+ *
  * @param {UserQueryResult} user UserQueryResult passed in context.
- * @param {customFieldConversionRule[]} customConversionRules Rules of user-conversion based on customFields.
+ * @param {CustomFieldConversionRule[]} customConversionRules Rules of user-conversion based on customFields.
  * @returns {boolean} True if the customFields of the user meet rules of customFields; False otherwise.
  */
-export function meetCustomFieldRules(user, customConversionRules) {
+export function meetCustomFieldRules(user: UserQueryResult, customConversionRules: CustomFieldConversionRule[]): boolean {
     if (!user) { return false; }
     if (customConversionRules === undefined || customConversionRules.length === 0) { return true; }
     return customConversionRules.every(rule => meetCustomFieldCondition(user, rule));
 }
-  
+
 /**
  * Checks if the events triggering the program meet every rule that defines event-based conversion
- * 
- * @param {event[]} events 
- * @param {eventTriggerRule[]} eventTriggerRules 
+ *
+ * @param {Event[]} events
+ * @param {EventTriggerRule[]} eventTriggerRules
  * @returns {boolean}
  */
-export function meetEventTriggerRules(events, eventTriggerRules) {
+export function meetEventTriggerRules(events: Event[], eventTriggerRules: EventTriggerRule[]): boolean {
     if (eventTriggerRules === undefined || eventTriggerRules.length === 0) { return true;}
-    if (!events || events.length === 0) { return false; }  
+    if (!events || events.length === 0) { return false; }
     return eventTriggerRules.every(rule => meetEventCondition(events, rule));
 }
