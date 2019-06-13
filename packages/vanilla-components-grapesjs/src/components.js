@@ -1012,6 +1012,7 @@ export default (editor, config = {}) => {
   const progressBarColorObj = { type: 'string', title: 'Progress Bar Color' }
   const progressTextColorObj = { type: 'string', title: 'Text Color' }
   const progressPercentageTextColorObj = { type: 'string', title: 'Percentage Text Color' }
+  const progressRewardedTextColorObj = { type: 'string', title: 'Rewarded Text Color' }
   const progressNeededObj = { type: 'string', title: 'Progress Text' }
   const progressEarnedTextObj = { type: 'string', title: 'Earned Text' }
 
@@ -1040,6 +1041,7 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'completedtextcolor' },
           { type: 'string', name: 'completedprogresscolor' },
           { type: 'string', name: 'completedpercentagecolor' },
+          { type: 'string', name: 'completedrewardedcolor' },
           
         ],
         uiSchema: {
@@ -1058,6 +1060,7 @@ export default (editor, config = {}) => {
           'completedtextcolor': { 'ui:widget': 'color' },
           'completedpercentagecolor': { 'ui:widget': 'color' },
           'completedprogresscolor': { 'ui:widget': 'color' },
+          'completedrewardedcolor': { 'ui:widget': 'color' },
         },
         schema: {
           'title': 'Grapes JS Props',
@@ -1102,6 +1105,7 @@ export default (editor, config = {}) => {
                     'completedtextcolor': progressTextColorObj,
                     'completedprogresscolor': progressBarColorObj,
                     'completedpercentagecolor': progressPercentageTextColorObj,
+                    'completedrewardedcolor': progressRewardedTextColorObj,
                     'completedearnedmessage': progressEarnedTextObj,
                     'completedneededmessage': progressNeededObj
                   }

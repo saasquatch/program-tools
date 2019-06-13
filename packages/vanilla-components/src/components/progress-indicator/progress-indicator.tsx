@@ -254,7 +254,7 @@ export class ProgressIndicator {
         </div>
       </div> 
       { this.rewardComplete ? 
-          <sqh-text-component ismarkdown={true} text={this.progressMessage || ""} padding="0 10% 20px 10%" color={this.completedrewardedcolor} />
+          <sqh-text-component ismarkdown={true} text={this.progressMessage || ""} padding="0 4% 20px 4%" color={this.completedrewardedcolor} />
         :
         <sqh-text-component ismarkdown={true} text={this.progressMessage || ""} padding="0 20% 20px 20%" color={this[this.widgetMode + 'textcolor']} />
       }
