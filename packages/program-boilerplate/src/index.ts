@@ -5,7 +5,7 @@ import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
 import {setRewardSchedule, getGoalAnalyticTimestamp} from './utils';
 import {getTriggerBody, getIntrospectionBody} from './testing';
 
-import { 
+import {
   Logger,
   format,
   createLogger,
@@ -25,6 +25,15 @@ export {
   getIntrospectionBody,
   ProgramType
 }
+
+export type Program = {
+  AFTER_USER_CREATED_OR_UPDATED?: (transaction: Transaction) => void
+  AFTER_USER_EVENT_PROCESSED?:  (transaction: Transaction) => void
+  REFERRAL?: (transaction: Transaction) => void
+  PROGRAM_INTROSPECTION?: (template: any, rules: any, program?: any) => any
+  SCHEDULED?: (transaction: Transaction) => void
+  REWARD_SCHEDULED?: (transaction: Transaction) => void
+};
 
 type WebtaskContext = {
   body?: WebtaskContextBody
@@ -47,7 +56,7 @@ type ProgramTriggerResult = {
  * Triggers the program and returns the result (JSON + HTTP code)
  *
  * @param {Object} body The trigger body
- * @param {Object?} handlers The program trigger handlers
+ * @param {Program?} handlers The program trigger handlers
  * @param {Object?} query The context query
  * @param {Object?} headers The context HTTP headers
  *
@@ -59,7 +68,13 @@ type ProgramTriggerResult = {
  *   code: 200
  * }
  */
-export function triggerProgram(body, handlers = {}, query = {}, headers = {}): ProgramTriggerResult {
+export function triggerProgram(
+  body: any,
+  handlers: Program = {},
+  query: any = {},
+  headers: any = {}
+): ProgramTriggerResult {
+
   switch (body.messageType || "PROGRAM_TRIGGER") {
     case "PROGRAM_INTROSPECTION":
       const template = body.template;
@@ -101,6 +116,7 @@ export function triggerProgram(body, handlers = {}, query = {}, headers = {}): P
         headers: headers,
         data: undefined,
       });
+
       const triggerType = body.activeTrigger.type;
       const handleTrigger = handlers[triggerType];
 
@@ -135,7 +151,15 @@ export function triggerProgram(body, handlers = {}, query = {}, headers = {}): P
   }
 }
 
-export function webtask(handlers = {}) {
+/**
+ * Returns an express server that serves the provided handlers
+ * as a program
+ *
+ * @param {Program} handlers The program trigger handlers to use
+ *
+ * @return {Object} The express server
+ */
+export function webtask(handlers: Program = {}) {
   const bodyParser = require('body-parser');
   const compression = require('compression');
 
@@ -164,15 +188,16 @@ export function webtask(handlers = {}) {
   return app;
 }
 
-/** Returns a logger for the programs to use instead of
+/**
+ * Returns a logger for the programs to use instead of
  * console.log
  *
  * @param {string} logLevel The log level
  *
  * @return {Logger} The winston logger
- */ 
+ */
 export function getLogger(logLevel: string): Logger {
-  const logFormat =format.printf(({ level, message }) => {
+  const logFormat = format.printf(({ level, message }) => {
     return `[${level.toUpperCase()}] ${message}`;
   });
 
