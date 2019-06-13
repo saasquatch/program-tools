@@ -161,7 +161,7 @@ export function webtask(handlers = {}) {
     res.status(code).json(json);
   });
 
-  return express;
+  return app;
 }
 
 /** Returns a logger for the programs to use instead of

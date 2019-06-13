@@ -4,8 +4,7 @@
   "description": "Boilerplate for writing programs",
   "main": "dist/index.js",
   "scripts": {
-    "build": "babel src --out-dir dist",
-    "build:tsc": "tsc --declaration",
+    "build": "tsc --declaration",
     "format": "prettier \"src/**/*.js\" --write",
     "prepush": "npm run format",
     "prepublish": "npm run build",
