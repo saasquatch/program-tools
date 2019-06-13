@@ -355,6 +355,7 @@ declare global {
       'completedneededmessage': string;
       'completedpercentagecolor': string;
       'completedprogresscolor': string;
+      'completedrewardedcolor': string;
       'completedtextcolor': string;
       'editormode': "noprogress" | "inprogress" | "completed";
       'inprogressearnedmessage': string;
@@ -397,6 +398,7 @@ declare global {
       'completedneededmessage'?: string;
       'completedpercentagecolor'?: string;
       'completedprogresscolor'?: string;
+      'completedrewardedcolor'?: string;
       'completedtextcolor'?: string;
       'editormode'?: "noprogress" | "inprogress" | "completed";
       'inprogressearnedmessage'?: string;

@@ -3,7 +3,6 @@ import ProgressBar from 'progressbar.js';
 import { API } from '../../services/WidgetHost';
 import { css } from 'emotion';
 import FormatJS from '../../services/FormatJs';
-import marked from 'marked';
 
 const present = <svg width="100" height="100" viewBox="0 0 235 180" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <rect width="250.699" height="179.753" fill="url(#pattern0)"/>
@@ -38,6 +37,7 @@ export class ProgressIndicator {
   @Prop() completedtextcolor: string;
   @Prop() completedprogresscolor: string;
   @Prop() completedpercentagecolor: string;
+  @Prop() completedrewardedcolor: string;
   @Prop() percentagesize: string;
   @Prop() progresswidth: string;
   @Prop() editormode: "noprogress" | "inprogress" | "completed"
@@ -46,6 +46,7 @@ export class ProgressIndicator {
   @State() earnedMessage: string;
   @State() rewardComplete: boolean;
   @State() loading: boolean = true;
+  @State() widgetMode: "noprogress" | "inprogress" | "completed";
  
   LoadingState() {
     return (
@@ -77,17 +78,20 @@ export class ProgressIndicator {
       purchaseTotal,
       programGoal,
       progress: Math.floor(((purchaseTotal % programGoal) / programGoal) * 100) / 100,
-      progressToGoal:(programGoal - (purchaseTotal % programGoal))
+      progressToGoal:Math.floor((programGoal - (purchaseTotal % programGoal)))
     }
+    this.widgetMode = this.rewardStats.progress ? "inprogress" : "noprogress";
   }
 
   async componentDidLoad(){
     if(this.rewardStats.purchaseTotal > 0 && this.rewardStats.purchaseTotal % this.rewardStats.programGoal == 0){
       this.rewardComplete = true;
       this.rewardStats.progress = 1
+      this.widgetMode = "completed";
       this.getProgress();
       return;
     }
+
     if(window["widgetIdent"].env === "demo"){
       this.editorModeUpdated();
     }
@@ -103,6 +107,7 @@ export class ProgressIndicator {
   @Watch('editormode')
   editorModeUpdated(){
     console.log(this.editormode)
+    this.widgetMode = this.editormode;
     switch(this.editormode){
       case "noprogress":
         this.rewardStats = {
@@ -150,8 +155,8 @@ export class ProgressIndicator {
       amountEarned: this.rewardStats.amountEarned || 0
     }
 
-    this.progressMessage = FormatJS.format(this[this.editormode + 'neededmessage'], progress);
-    this.earnedMessage = FormatJS.format(this[this.editormode + 'earnedmessage'], earned)
+    this.progressMessage = FormatJS.format(this[this.widgetMode + 'neededmessage'], progress);
+    this.earnedMessage = FormatJS.format(this[this.widgetMode + 'earnedmessage'], earned)
   }
 
   getProgress(){
@@ -165,11 +170,11 @@ export class ProgressIndicator {
       text: {
         autoStyleContainer: false
       },
-      from: { color: this[this.editormode + 'progresscolor'], width: 8 },
-      to: { color: this[this.editormode + 'progresscolor'], width: 8 },
+      from: { color: this[this.widgetMode + 'progresscolor'], width: 8 },
+      to: { color: this[this.widgetMode + 'progresscolor'], width: 8 },
       // Set default step function for all animate calls
       step: (state, circle) => {
-        circle.path.setAttribute('stroke', this[this.editormode + 'progresscolor']);
+        circle.path.setAttribute('stroke', this[this.widgetMode + 'progresscolor']);
         circle.path.setAttribute('stroke-width', state.width);
       }
     });
@@ -188,7 +193,7 @@ export class ProgressIndicator {
       padding: 0px; 
       margin: 0px; 
       transform: translate(-50%, -50%); 
-      color: ${this[this.editormode + 'percentagecolor'] || 'rgb(0, 157, 245)'}; 
+      color: ${this[this.widgetMode + 'percentagecolor'] || 'rgb(0, 157, 245)'}; 
       font-family: Roboto, Helvetica, sans-serif; 
       font-size: ${this.rewardComplete ? '30px' : '34px'};
       font-weight:bold;
@@ -209,14 +214,13 @@ export class ProgressIndicator {
     const completeStyle = css`
       margin-top:0em;
       font-size:16px;
-      background-color:#FFF;
     `;
 
     return [
       <svg class={circleStyle} width="210px" height="210px" viewBox="0 0 133 133" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <g id="blue-semi-circle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
           <path d="M94.2309355,112 C106.803489,103.004938 115,88.2630912 115,71.6028679 C115,44.2079604 92.8380951,22 65.5,22 C38.1619049,22 16,44.2079604 16,71.6028679 C16,88.1040219 24.0407405,102.723258 36.4101421,111.740781" id="Grey-Semi" stroke="#E9E9E9" stroke-width="6.5"></path>
-          <path id="custom-circle" d="M94.2309355,112 C106.803489,103.004938 115,88.2630912 115,71.6028679 C115,44.2079604 92.8380951,22 65.5,22 C38.1619049,22 16,44.2079604 16,71.6028679 C16,88.1040219 24.0407405,102.723258 36.4101421,111.740781" stroke={this[this.editormode + 'progresscolor']} stroke-width="6.5"></path>
+          <path id="custom-circle" d="M94.2309355,112 C106.803489,103.004938 115,88.2630912 115,71.6028679 C115,44.2079604 92.8380951,22 65.5,22 C38.1619049,22 16,44.2079604 16,71.6028679 C16,88.1040219 24.0407405,102.723258 36.4101421,111.740781" stroke={this[this.widgetMode + 'progresscolor']} stroke-width="6.5"></path>
         </g>
       </svg>,
       <span class={presentStyle}>{present}</span>,
@@ -229,7 +233,7 @@ export class ProgressIndicator {
   
   render() {
     const wrapperStyle = css`
-      color: ${ this[this.editormode + 'textcolor'] };
+      color: ${ this[this.widgetMode + 'textcolor'] };
       text-align: center;
     `
 
@@ -240,43 +244,19 @@ export class ProgressIndicator {
       margin-top:0;
     `
 
-    const progressMessageStyle = css`
-      padding:0 20%;
-      margin-bottom:20px;
-    `
-
-    const congratsStyle = css`
-      h1 {
-        color:${ this.completedpercentagecolor };
-        font-size:36px;
-        margin-bottom:2px;
-      }
-      h3 {
-        color:${ this.completedpercentagecolor };
-        font-size:20px;
-        margin:2px 0;
-      }
-      p {
-        margin-top:5px;
-        margin-bottom:1.5em;
-      }
-    `;
-
     return !this.ishidden && (
     this.loading ? <this.LoadingState /> :
     <div class={wrapperStyle}>
-      <span innerHTML={ marked(this.earnedMessage || "") }></span>
+      <sqh-text-component ismarkdown={true} text={this.earnedMessage || ""} paddingtop="20" color={this[this.widgetMode + 'textcolor']} />
       <div class={progressStyle}>
         <div id="container">
           { this.progressBar() }
         </div>
       </div> 
       { this.rewardComplete ? 
-        <div class={congratsStyle}>
-          <span innerHTML={marked(this.progressMessage || "")}></span>
-        </div> 
+          <sqh-text-component ismarkdown={true} text={this.progressMessage || ""} padding="0 10% 20px 10%" color={this.completedrewardedcolor} />
         :
-        <p class={progressMessageStyle}><span innerHTML={marked(this.progressMessage || "")}></span></p>
+        <sqh-text-component ismarkdown={true} text={this.progressMessage || ""} padding="0 20% 20px 20%" color={this[this.widgetMode + 'textcolor']} />
       }
     </div>
     );

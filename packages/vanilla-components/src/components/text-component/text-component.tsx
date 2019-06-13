@@ -16,7 +16,7 @@ export class TextComponent {
   @Prop() fontweight: string;
   @Prop() paddingtop: string;
   @Prop() paddingbottom: string;
-  @Prop() padding: string = '10px 20px 15px';
+  @Prop() padding: string;
   @Prop() textalign: string;
   @Prop() background: string;
   @Prop() height: string;
@@ -34,6 +34,7 @@ export class TextComponent {
       color: ${this.color || 'inherit'};
       padding-top: ${this.paddingtop ? this.paddingtop+ 'px' : 'inherit'};
       padding-bottom: ${this.paddingbottom ? this.paddingbottom + 'px' : 'inherit'};
+      padding: ${ this.padding ? this.padding : ''};
       overflow-wrap: break-word;
     `;
 
