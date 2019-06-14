@@ -159,7 +159,7 @@ export function triggerProgram(
  *
  * @return {Object} The express server
  */
-export function webtask(handlers: Program = {}) {
+export function webtask(handlers: Program = {}): express.Application {
   const bodyParser = require('body-parser');
   const compression = require('compression');
 
