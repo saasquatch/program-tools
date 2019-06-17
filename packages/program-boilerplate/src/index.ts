@@ -171,7 +171,7 @@ export function webtask(handlers: Program = {}): express.Application {
   // Enforce HTTPS. The server does not redirect http -> https
   // because OWASP advises not to
   app.use((req, res, next) => {
-    if (req.header('X-Forwarded-Proto') !== 'https') {
+    if (process.env.NODE_ENV === 'production' && req.header('X-Forwarded-Proto') !== 'https') {
       return res.status(403).send({message: 'SSL required'});
     }
 
