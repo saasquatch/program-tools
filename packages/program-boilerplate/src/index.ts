@@ -3,7 +3,7 @@ import Transaction, { ProgramType } from './transaction';
 import {rewardEmailQuery} from './queries';
 import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
 import {setRewardSchedule, getGoalAnalyticTimestamp} from './utils';
-import {getTriggerBody, getIntrospectionBody} from './testing';
+import {tester} from './testing';
 
 import {
   Logger,
@@ -21,8 +21,7 @@ export {
   rewardEmailQuery,
   setRewardSchedule,
   getGoalAnalyticTimestamp,
-  getTriggerBody,
-  getIntrospectionBody,
+  tester,
   ProgramType
 }
 
