@@ -3,7 +3,7 @@ import Transaction, { ProgramType } from './transaction';
 import {rewardEmailQuery} from './queries';
 import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
 import {setRewardSchedule, getGoalAnalyticTimestamp} from './utils';
-import {tester} from './testing';
+import {tester, getTriggerBody, getIntrospectionBody} from './testing';
 
 import {
   Logger,
@@ -22,8 +22,10 @@ export {
   setRewardSchedule,
   getGoalAnalyticTimestamp,
   tester,
-  ProgramType
-}
+  getTriggerBody,
+  getIntrospectionBody,
+  ProgramType,
+};
 
 export type Program = {
   AFTER_USER_CREATED_OR_UPDATED?: (transaction: Transaction) => void

@@ -3,12 +3,12 @@ import { readdirSync } from 'fs';
 
 import { triggerProgram } from './index';
 
-function getTriggerBody(trigger: any) {
+export function getTriggerBody(trigger: any) {
   const triggerClone = JSON.parse(JSON.stringify(PROGRAM_TRIGGER));
   return { ...triggerClone, ...trigger };
 }
 
-function getIntrospectionBody(trigger: any) {
+export function getIntrospectionBody(trigger: any) {
   const triggerClone = JSON.parse(JSON.stringify(PROGRAM_INTROSPECTION));
   return { ...triggerClone, ...trigger };
 }
@@ -83,7 +83,7 @@ const PROGRAM_TRIGGER = {
       "referrals":{
         "totalCount":0
       },
-      "referredByReferral":null
+      "referredByReferral": null
     },
     "previous":{
       "id":"5b4e107297427c27ca1faf89",
