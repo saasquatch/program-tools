@@ -1,9 +1,8 @@
-// @ts-check
 import Transaction, { ProgramType } from './transaction';
 import {rewardEmailQuery} from './queries';
 import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
 import {setRewardSchedule, getGoalAnalyticTimestamp} from './utils';
-import {tester, getTriggerBody, getIntrospectionBody} from './testing';
+import {getTriggerBody, getIntrospectionBody} from './testing';
 
 import {
   Logger,
@@ -21,7 +20,6 @@ export {
   rewardEmailQuery,
   setRewardSchedule,
   getGoalAnalyticTimestamp,
-  tester,
   getTriggerBody,
   getIntrospectionBody,
   ProgramType,

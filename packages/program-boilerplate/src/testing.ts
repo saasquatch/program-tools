@@ -1,8 +1,3 @@
-import { join } from 'path';
-import { readdirSync } from 'fs';
-
-import { triggerProgram } from './index';
-
 export function getTriggerBody(trigger: any) {
   const triggerClone = JSON.parse(JSON.stringify(PROGRAM_TRIGGER));
   return { ...triggerClone, ...trigger };
@@ -11,33 +6,6 @@ export function getTriggerBody(trigger: any) {
 export function getIntrospectionBody(trigger: any) {
   const triggerClone = JSON.parse(JSON.stringify(PROGRAM_INTROSPECTION));
   return { ...triggerClone, ...trigger };
-}
-
-export function tester(dirname): (tests, handlers) => void {
-  return function(tests: any, handlers: any) {
-    Object.entries(tests).forEach(([key, val]) => {
-      describe(key, () => {
-        readdirSync(join(dirname, val as string)).forEach(file => {
-          const fname = join(dirname, val as string, file);
-
-          if (!file.endsWith('.ts')) {
-            return;
-          }
-
-          const { test } = require(fname);
-          const body = key === 'PROGRAM_INTROSPECTION'
-            ? getIntrospectionBody(test.trigger)
-            : getTriggerBody(test.trigger);
-            const { json, code } = triggerProgram(body, handlers);
-
-            it(test.name, () => {
-              expect(json).toEqual(test.result);
-              expect(code).toEqual(test.code);
-            });
-        });
-      });
-    });
-  }
 }
 
 const PROGRAM_TRIGGER = {
