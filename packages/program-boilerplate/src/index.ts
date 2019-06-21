@@ -1,15 +1,10 @@
-import Transaction, { ProgramType } from './transaction';
+import Transaction, {ProgramType} from './transaction';
 import {rewardEmailQuery} from './queries';
 import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
 import {setRewardSchedule, getGoalAnalyticTimestamp} from './utils';
 import {getTriggerBody, getIntrospectionBody} from './testing';
 
-import {
-  Logger,
-  format,
-  createLogger,
-  transports,
-} from 'winston';
+import {Logger, format, createLogger, transports} from 'winston';
 
 import * as express from 'express';
 
@@ -26,30 +21,30 @@ export {
 };
 
 export type Program = {
-  AFTER_USER_CREATED_OR_UPDATED?: (transaction: Transaction) => void
-  AFTER_USER_EVENT_PROCESSED?:  (transaction: Transaction) => void
-  REFERRAL?: (transaction: Transaction) => void
-  PROGRAM_INTROSPECTION?: (template: any, rules: any, program?: any) => any
-  SCHEDULED?: (transaction: Transaction) => void
-  REWARD_SCHEDULED?: (transaction: Transaction) => void
+  AFTER_USER_CREATED_OR_UPDATED?: (transaction: Transaction) => void;
+  AFTER_USER_EVENT_PROCESSED?: (transaction: Transaction) => void;
+  REFERRAL?: (transaction: Transaction) => void;
+  PROGRAM_INTROSPECTION?: (template: any, rules: any, program?: any) => any;
+  SCHEDULED?: (transaction: Transaction) => void;
+  REWARD_SCHEDULED?: (transaction: Transaction) => void;
 };
 
 type WebtaskContext = {
-  body?: WebtaskContextBody
+  body?: WebtaskContextBody;
 };
 
 type WebtaskContextBody = {
-  activeTrigger?: any
-  program?: any
+  activeTrigger?: any;
+  program?: any;
 };
 
 /**
  * The result of a program being triggered
  */
 type ProgramTriggerResult = {
-  json: any
-  code: number
-}
+  json: any;
+  code: number;
+};
 
 /**
  * Triggers the program and returns the result (JSON + HTTP code)
@@ -71,30 +66,30 @@ export function triggerProgram(
   body: any,
   handlers: Program = {},
   query: any = {},
-  headers: any = {}
+  headers: any = {},
 ): ProgramTriggerResult {
-
-  switch (body.messageType || "PROGRAM_TRIGGER") {
-    case "PROGRAM_INTROSPECTION":
+  switch (body.messageType || 'PROGRAM_TRIGGER') {
+    case 'PROGRAM_INTROSPECTION':
       const template = body.template;
       const rules = body.rules;
       const program = body.program;
       // Make modifications to template based on rules here if necessary.
       // ...
-      const handleIntrospection = handlers["PROGRAM_INTROSPECTION"];
+      const handleIntrospection = handlers['PROGRAM_INTROSPECTION'];
       try {
         const newTemplate =
-          handleIntrospection && (handleIntrospection(template,rules,program)
-          || handleIntrospection(template,rules))
-          || template;
+          (handleIntrospection &&
+            (handleIntrospection(template, rules, program) ||
+              handleIntrospection(template, rules))) ||
+          template;
 
         return {
           json: newTemplate,
-          code: 200
+          code: 200,
         };
       } catch (e) {
         const errorMes = {
-          error: "An error occurred in a webtask",
+          error: 'An error occurred in a webtask',
           message: e.toString(),
         };
 
@@ -102,10 +97,10 @@ export function triggerProgram(
 
         return {
           json: errorMes,
-          code: 500
+          code: 500,
         };
       }
-    case "PROGRAM_TRIGGER":
+    case 'PROGRAM_TRIGGER':
       const transaction = new Transaction({
         body: body,
         meta: undefined,
@@ -126,11 +121,11 @@ export function triggerProgram(
 
         return {
           json: transaction.toJson(),
-          code: 200
+          code: 200,
         };
       } catch (e) {
         const errorMes = {
-          error: "An error occurred in a webtask",
+          error: 'An error occurred in a webtask',
           message: e.toString(),
         };
 
@@ -138,14 +133,17 @@ export function triggerProgram(
 
         return {
           json: errorMes,
-          code: 500
+          code: 500,
         };
       }
     default:
       console.log('UNREACHABLE CODE REACHED!!');
       return {
-        json: { message: 'Expected either PROGRAM_TRIGGER or PROGRAM_INTROSPECTION messageType.' },
-        code: 400
+        json: {
+          message:
+            'Expected either PROGRAM_TRIGGER or PROGRAM_INTROSPECTION messageType.',
+        },
+        code: 400,
       };
   }
 }
@@ -170,7 +168,10 @@ export function webtask(handlers: Program = {}): express.Application {
   // Enforce HTTPS. The server does not redirect http -> https
   // because OWASP advises not to
   app.use((req, res, next) => {
-    if (process.env.NODE_ENV === 'production' && req.header('X-Forwarded-Proto') !== 'https') {
+    if (
+      process.env.NODE_ENV === 'production' &&
+      req.header('X-Forwarded-Proto') !== 'https'
+    ) {
       return res.status(403).send({message: 'SSL required'});
     }
 
@@ -179,7 +180,12 @@ export function webtask(handlers: Program = {}): express.Application {
   });
 
   app.post('/*', (context, res) => {
-    const { json, code } = triggerProgram(context.body, handlers, context.query, context.headers);
+    const {json, code} = triggerProgram(
+      context.body,
+      handlers,
+      context.query,
+      context.headers,
+    );
 
     res.status(code).json(json);
   });
@@ -196,16 +202,14 @@ export function webtask(handlers: Program = {}): express.Application {
  * @return {Logger} The winston logger
  */
 export function getLogger(logLevel: string): Logger {
-  const logFormat = format.printf(({ level, message }) => {
+  const logFormat = format.printf(({level, message}) => {
     return `[${level.toUpperCase()}] ${message}`;
   });
 
   const logger = createLogger({
     level: logLevel,
-    format: format.combine(
-      logFormat
-    ),
-    transports: [new transports.Console()]
+    format: format.combine(logFormat),
+    transports: [new transports.Console()],
   });
 
   return logger;

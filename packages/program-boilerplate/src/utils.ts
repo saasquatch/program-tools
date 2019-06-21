@@ -1,29 +1,37 @@
-import { rewardScheduleQuery } from './queries';
+import {rewardScheduleQuery} from './queries';
 
 //return new template with reward schedules
-export const setRewardSchedule = ({ template, expiryWarningDays, key, emailKey, periodInHours }) => {
+export const setRewardSchedule = ({
+  template,
+  expiryWarningDays,
+  key,
+  emailKey,
+  periodInHours,
+}) => {
   if (expiryWarningDays) {
     const dateExpires_timeframe = `next_${expiryWarningDays}_days`;
     const rewardSchedule = {
       key,
-      type: "REWARD",
+      type: 'REWARD',
       filter: {
-        dateExpires_timeframe
+        dateExpires_timeframe,
       },
       query: rewardScheduleQuery(emailKey),
-      periodInHours
+      periodInHours,
     };
     const currentSchedules = template.schedules;
-    const schedules = currentSchedules ? [...currentSchedules, rewardSchedule] : [rewardSchedule];
+    const schedules = currentSchedules
+      ? [...currentSchedules, rewardSchedule]
+      : [rewardSchedule];
     const newTemplate = {
       ...template,
-      schedules
+      schedules,
     };
     return newTemplate;
   } else {
     return template;
   }
-}
+};
 
 /**
  * Returns the appropriate timestamp based on the trigger
@@ -34,10 +42,8 @@ export const setRewardSchedule = ({ template, expiryWarningDays, key, emailKey, 
  */
 export function getGoalAnalyticTimestamp(trigger: any): number {
   const purchaseEvent = trigger.events
-    ? trigger.events.find(e => e.key === "purchase")
+    ? trigger.events.find(e => e.key === 'purchase')
     : undefined;
 
-  return purchaseEvent
-    ? purchaseEvent.dateTriggered - 1
-    : trigger.time;
+  return purchaseEvent ? purchaseEvent.dateTriggered - 1 : trigger.time;
 }

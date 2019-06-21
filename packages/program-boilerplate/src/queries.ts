@@ -53,8 +53,7 @@ fragment AllFlatRewardFields on FlatReward {
 }
 `;
 
-export const nonRewardEmailQueryForReferralPrograms =
-`query ($userId:String!, $accountId:String!,$programId:ID!, $referralId: ID!) {
+export const nonRewardEmailQueryForReferralPrograms = `query ($userId:String!, $accountId:String!,$programId:ID!, $referralId: ID!) {
   user(id:$userId, accountId:$accountId) {
     firstName
     lastName
