@@ -25,14 +25,18 @@ type EventTriggerRule = {
  */
 type Event = {
   key: string
-  fields: any
+  fields: {
+    [key: string]: any
+  }
 };
 
 /**
  * A user object returned from a GraphQL query
  */
 type UserQueryResult = {
-  customFields: any
+  customFields: {
+    [key: string]: any
+  }
 };
 
 /**
