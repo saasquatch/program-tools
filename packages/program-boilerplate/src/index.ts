@@ -193,6 +193,9 @@ export function webtask(handlers: Program = {}): express.Application {
   return app;
 }
 
+// Lazily initialized logger instance
+let _logger = undefined;
+
 /**
  * Returns a logger for the programs to use instead of
  * console.log
@@ -202,15 +205,20 @@ export function webtask(handlers: Program = {}): express.Application {
  * @return {Logger} The winston logger
  */
 export function getLogger(logLevel: string): Logger {
+
+  if (_logger !== undefined) {
+    return _logger;
+  }
+
   const logFormat = format.printf(({level, message}) => {
     return `[${level.toUpperCase()}] ${message}`;
   });
 
-  const logger = createLogger({
+  _logger = createLogger({
     level: logLevel,
     format: format.combine(logFormat),
     transports: [new transports.Console()],
   });
 
-  return logger;
+  return _logger;
 }
