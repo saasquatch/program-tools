@@ -5,34 +5,11 @@ import {
   rewardEmailQueryForNonReferralPrograms,
 } from './queries';
 
-export type WebtaskContextBody = {
-  activeTrigger?: any;
-  messageType: string;
-  template?: any;
-  program?: any;
-  rules?: any;
-  ids: string[];
-  queryResult?: any;
-};
+import {ProgramTriggerBody} from './types/rpc';
+import {ProgramType, User} from './types/saasquatch';
 
-export type WebtaskContext = {
-  body: WebtaskContextBody;
-  meta: any;
-  storage: any;
-  query: any;
-  secrets: any;
-  headers: any;
-  data: any;
-};
-
-export type Referral = {
-  id: string;
-};
-
-export type User = {
-  id: string;
-  accountId: string;
-  referredByReferral: Referral;
+type TransactionContext = {
+  body: ProgramTriggerBody;
 };
 
 type ReferralRewardInput = {
@@ -45,12 +22,10 @@ type ReferralRewardInput = {
   rewardProperties?: any;
 };
 
-export type ProgramType = 'ACQUISITION' | 'LOYALTY' | 'RETENTION';
-
 export default class Transaction {
   mutations: any[];
   analytics: any[];
-  context: WebtaskContext;
+  context: TransactionContext;
   currentUser: User;
   events?: any[];
 
@@ -58,12 +33,12 @@ export default class Transaction {
    * @classdesc A Transaction instance takes a context object from Express, generates mutations and analytics as the program requested.
    * @constructor
    *
-   * @param {WebtaskContext} context     - An javascript object passed by webtask.
+   * @param {TransactionContext} context     - An javascript object passed by webtask.
    * @param {Object[]} mutations  - Mutations to be made on the program.
    * @param {Object[]} analytics  - Analytics of the program.
    */
   constructor(
-    context: WebtaskContext,
+    context: TransactionContext,
     mutations: any = [],
     analytics: any = [],
   ) {

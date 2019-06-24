@@ -1,11 +1,12 @@
-import Transaction, {ProgramType, WebtaskContextBody} from './transaction';
+import Transaction from './transaction';
 import {rewardEmailQuery} from './queries';
 import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
 import {setRewardSchedule, getGoalAnalyticTimestamp} from './utils';
 import {getTriggerBody, getIntrospectionBody} from './testing';
+import {Program} from './types/rpc';
+import {triggerProgram} from './trigger';
 
 import {Logger, format, createLogger, transports} from 'winston';
-
 import * as express from 'express';
 
 export {
@@ -17,195 +18,18 @@ export {
   getGoalAnalyticTimestamp,
   getTriggerBody,
   getIntrospectionBody,
-  ProgramType,
+  triggerProgram,
 };
-
-type TriggerType =
-  | 'AFTER_USER_CREATED_OR_UPDATED'
-  | 'AFTER_USER_EVENT_PROCESSED'
-  | 'REFERRAL'
-  | 'PROGRAM_INTROSPECTION'
-  | 'SCHEDULED'
-  | 'REWARD_SCHEDULED'
-  | 'VALIDATION';
-
-type ValidationResult = {
-  message: string;
-  status: 'ERROR' | 'WARN' | 'SUCCESS';
-};
-
-type ValidationBody = {
-  queryResult: any;
-};
-
-type ProgramValidationFunctions = {
-  [key: string]: (body: ValidationBody) => ValidationResult[];
-};
-
-type ProgramTriggerHandler = (transaction: Transaction) => void;
-type ProgramIntospectionHandler = (
-  template: any,
-  rules: any,
-  program?: any,
-) => any;
-
-export type Program = {
-  AFTER_USER_CREATED_OR_UPDATED?: ProgramTriggerHandler;
-  AFTER_USER_EVENT_PROCESSED?: ProgramTriggerHandler;
-  REFERRAL?: ProgramTriggerHandler;
-  PROGRAM_INTROSPECTION?: ProgramIntospectionHandler;
-  SCHEDULED?: ProgramTriggerHandler;
-  REWARD_SCHEDULED?: ProgramTriggerHandler;
-  VALIDATION?: ProgramValidationFunctions;
-};
-
-/**
- * The result of a program being triggered
- */
-type ProgramTriggerResult = {
-  json: any;
-  code: number;
-};
-
-/**
- * Triggers the program and returns the result (JSON + HTTP code)
- *
- * @param {Object} body The trigger body
- * @param {Program?} handlers The program trigger handlers
- * @param {Object?} query The context query
- * @param {Object?} headers The context HTTP headers
- *
- * @return {ProgramTriggerResult} The program trigger result
- *
- * Example return object:
- * {
- *   json: { "example": "json" },
- *   code: 200
- * }
- */
-export function triggerProgram(
-  body: WebtaskContextBody,
-  handlers: Program = {},
-  query: any = {},
-  headers: any = {},
-): ProgramTriggerResult {
-  switch (body.messageType || 'PROGRAM_TRIGGER') {
-    case 'PROGRAM_INTROSPECTION':
-      const template = body.template;
-      const rules = body.rules;
-      const program = body.program;
-
-      // Make modifications to template based on rules here if necessary.
-      const handleIntrospection = handlers['PROGRAM_INTROSPECTION'];
-      try {
-        const newTemplate =
-          (handleIntrospection &&
-            (handleIntrospection(template, rules, program) ||
-              handleIntrospection(template, rules))) ||
-          template;
-
-        return {
-          json: newTemplate,
-          code: 200,
-        };
-      } catch (e) {
-        const errorMes = {
-          error: 'An error occurred in a webtask',
-          message: e.toString(),
-        };
-
-        console.log(errorMes);
-
-        return {
-          json: errorMes,
-          code: 500,
-        };
-      }
-    case 'PROGRAM_TRIGGER':
-      const transaction = new Transaction({
-        body: body,
-        meta: undefined,
-        storage: undefined,
-        query: query,
-        secrets: undefined,
-        headers: headers,
-        data: undefined,
-      });
-
-      const triggerType = body.activeTrigger.type as TriggerType;
-      const handleTrigger: any = handlers[triggerType];
-
-      try {
-        if (handleTrigger) {
-          handleTrigger(transaction);
-        }
-
-        return {
-          json: transaction.toJson(),
-          code: 200,
-        };
-      } catch (e) {
-        const errorMes = {
-          error: 'An error occurred in a webtask',
-          message: e.toString(),
-        };
-
-        console.log(errorMes);
-
-        return {
-          json: errorMes,
-          code: 500,
-        };
-      }
-    case 'PROGRAM_VALIDATION':
-      // Make modifications to template based on rules here if necessary.
-      const queryResult = body.queryResult;
-      const validationKey = queryResult.key;
-      const handler = handlers['VALIDATION']
-        ? handlers['VALIDATION'][validationKey]
-        : undefined;
-
-      try {
-        const errors = (handler && handler(queryResult)) || [];
-
-        return {
-          json: errors,
-          code: 200,
-        };
-      } catch (e) {
-        const errorMes = {
-          error: 'An error occurred in a webtask',
-          message: e.toString(),
-        };
-
-        console.log(errorMes);
-
-        return {
-          json: errorMes,
-          code: 500,
-        };
-      }
-    default:
-      console.log('UNREACHABLE CODE REACHED!!');
-      return {
-        json: {
-          message:
-            'Expected either PROGRAM_TRIGGER or PROGRAM_INTROSPECTION messageType.',
-        },
-        code: 400,
-      };
-  }
-}
 
 /**
  * Returns an express server that serves the provided handlers
  * as a program
  *
- * @param {Program} handlers The program trigger handlers to use
+ * @param {Program} program The program trigger handlers to use
  *
  * @return {Object} The express server
  */
-export function webtask(handlers: Program = {}): express.Application {
+export function webtask(program: Program = {}): express.Application {
   const bodyParser = require('body-parser');
   const compression = require('compression');
 
@@ -231,9 +55,7 @@ export function webtask(handlers: Program = {}): express.Application {
   app.post('/*', (context, res) => {
     const {json, code} = triggerProgram(
       context.body,
-      handlers,
-      context.query,
-      context.headers,
+      program,
     );
 
     res.status(code).json(json);
