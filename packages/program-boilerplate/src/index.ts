@@ -29,8 +29,9 @@ type TriggerType =
   | 'REWARD_SCHEDULED'
   | 'VALIDATION';
 
-type ValidationError = {
+type ValidationResult = {
   message: string;
+  status: 'ERROR' | 'WARN' | 'SUCCESS';
 };
 
 type ValidationBody = {
@@ -38,7 +39,7 @@ type ValidationBody = {
 };
 
 type ProgramValidationFunctions = {
-  [key: string]: (body: ValidationBody) => ValidationError[];
+  [key: string]: (body: ValidationBody) => ValidationResult[];
 };
 
 type ProgramTriggerHandler = (transaction: Transaction) => void;
