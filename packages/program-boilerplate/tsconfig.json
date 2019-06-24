@@ -6,7 +6,6 @@
     "outDir": "dist",
     "module": "commonjs",
     "target": "es2015",
-    "noImplicitAny": false,
-    "jsx": "react"
+    "noImplicitAny": false
   }
 }
