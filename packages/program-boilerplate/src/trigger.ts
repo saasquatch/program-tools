@@ -53,6 +53,14 @@ export function triggerProgram(
   }
 }
 
+/**
+ * Trigger the program for the default cases
+ *
+ * @param {ProgramTriggerBody} body The JSON body from the backend
+ * @param {Program} program The program to trigger
+ *
+ * @return {ProgramTriggerResult} The result from the program
+ */
 function handleProgramTrigger(
   body: ProgramTriggerBody,
   program: Program,
@@ -86,6 +94,14 @@ function handleProgramTrigger(
   }
 }
 
+/**
+ * Trigger the program for the introspection case
+ *
+ * @param {ProgramTriggerBody} body The JSON body from the backend
+ * @param {Program} program The program to trigger
+ *
+ * @return {ProgramTriggerResult} The result from the program
+ */
 function handleProgramIntrospection(
   body: ProgramIntospectionBody,
   program: Program,
@@ -122,6 +138,14 @@ function handleProgramIntrospection(
   }
 }
 
+/**
+ * Trigger the program for the validation case
+ *
+ * @param {ProgramTriggerBody} body The JSON body from the backend
+ * @param {Program} program The program to trigger
+ *
+ * @return {ProgramTriggerResult} The result from the program
+ */
 function handleProgramValidation(
   body: ProgramValidationBody,
   program: Program,
