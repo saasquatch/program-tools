@@ -6,6 +6,6 @@
     "outDir": "dist",
     "module": "commonjs",
     "target": "es2015",
-    "noImplicitAny": false
+    "strict": true
   }
 }
