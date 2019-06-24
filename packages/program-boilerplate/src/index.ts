@@ -4,6 +4,7 @@ import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
 import {setRewardSchedule, getGoalAnalyticTimestamp} from './utils';
 import {getTriggerBody, getIntrospectionBody} from './testing';
 import {Program} from './types/rpc';
+import {ProgramType} from './types/saasquatch';
 import {triggerProgram} from './trigger';
 
 import {Logger, format, createLogger, transports} from 'winston';
@@ -19,6 +20,8 @@ export {
   getTriggerBody,
   getIntrospectionBody,
   triggerProgram,
+  Program,
+  ProgramType,
 };
 
 /**
@@ -53,10 +56,7 @@ export function webtask(program: Program = {}): express.Application {
   });
 
   app.post('/*', (context, res) => {
-    const {json, code} = triggerProgram(
-      context.body,
-      program,
-    );
+    const {json, code} = triggerProgram(context.body, program);
 
     res.status(code).json(json);
   });
