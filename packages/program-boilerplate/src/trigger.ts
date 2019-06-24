@@ -129,7 +129,7 @@ function handleProgramValidation(
   const results: ValidationResult[] = [];
 
   body.validationRequests.forEach(r => {
-    const validationHandlers = program['VALIDATION'];
+    const validationHandlers = program['PROGRAM_VALIDATION'];
     const prereqHandler = validationHandlers
       ? validationHandlers[r.key]
       : undefined;

@@ -8,7 +8,7 @@ export type TriggerType =
   | 'PROGRAM_INTROSPECTION'
   | 'SCHEDULED'
   | 'REWARD_SCHEDULED'
-  | 'VALIDATION';
+  | 'PROGRAM_VALIDATION';
 
 export type Program = {
   AFTER_USER_CREATED_OR_UPDATED?: ProgramTriggerHandler;
@@ -17,7 +17,7 @@ export type Program = {
   PROGRAM_INTROSPECTION?: ProgramIntospectionHandler;
   SCHEDULED?: ProgramTriggerHandler;
   REWARD_SCHEDULED?: ProgramTriggerHandler;
-  VALIDATION?: ProgramValidationFunctions;
+  PROGRAM_VALIDATION?: ProgramValidationFunctions;
 };
 
 /********************************************************/
@@ -64,7 +64,9 @@ export type ProgramIntospectionHandler = (
   program?: any,
 ) => any;
 
-export type PrerequisiteHandler = (queryResult: any) => PrereqValidationResult[];
+export type PrerequisiteHandler = (
+  queryResult: any,
+) => PrereqValidationResult[];
 
 type ProgramValidationFunctions = {
   [key: string]: PrerequisiteHandler;
@@ -82,7 +84,7 @@ export type ProgramTriggerResult = {
   code: number;
 };
 
-type PrereqValidationResult = {
+export type PrereqValidationResult = {
   message: string;
   status: 'ERROR' | 'WARN' | 'SUCCESS';
 };
@@ -90,4 +92,17 @@ type PrereqValidationResult = {
 export type ValidationResult = {
   key: string;
   results: PrereqValidationResult[];
-}
+};
+
+/********************************************************/
+/*                         Misc                         */
+/********************************************************/
+export type ProgramPrerequisite = {
+  key: string;
+  name: string;
+  description: string;
+  query: string;
+  queryVariables: {
+    [key: string]: any;
+  };
+};
