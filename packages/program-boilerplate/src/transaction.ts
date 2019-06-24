@@ -12,6 +12,7 @@ export type WebtaskContextBody = {
   program?: any;
   rules?: any;
   ids: string[];
+  queryResult?: any;
 };
 
 export type WebtaskContext = {

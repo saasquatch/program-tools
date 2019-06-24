@@ -26,15 +26,36 @@ type TriggerType =
   | 'REFERRAL'
   | 'PROGRAM_INTROSPECTION'
   | 'SCHEDULED'
-  | 'REWARD_SCHEDULED';
+  | 'REWARD_SCHEDULED'
+  | 'VALIDATION';
+
+type ValidationError = {
+  message: string;
+};
+
+type ValidationBody = {
+  queryResult: any;
+};
+
+type ProgramValidationFunctions = {
+  [key: string]: (body: ValidationBody) => ValidationError[];
+};
+
+type ProgramTriggerHandler = (transaction: Transaction) => void;
+type ProgramIntospectionHandler = (
+  template: any,
+  rules: any,
+  program?: any,
+) => any;
 
 export type Program = {
-  AFTER_USER_CREATED_OR_UPDATED?: (transaction: Transaction) => void;
-  AFTER_USER_EVENT_PROCESSED?: (transaction: Transaction) => void;
-  REFERRAL?: (transaction: Transaction) => void;
-  PROGRAM_INTROSPECTION?: (template: any, rules: any, program?: any) => any;
-  SCHEDULED?: (transaction: Transaction) => void;
-  REWARD_SCHEDULED?: (transaction: Transaction) => void;
+  AFTER_USER_CREATED_OR_UPDATED?: ProgramTriggerHandler;
+  AFTER_USER_EVENT_PROCESSED?: ProgramTriggerHandler;
+  REFERRAL?: ProgramTriggerHandler;
+  PROGRAM_INTROSPECTION?: ProgramIntospectionHandler;
+  SCHEDULED?: ProgramTriggerHandler;
+  REWARD_SCHEDULED?: ProgramTriggerHandler;
+  VALIDATION?: ProgramValidationFunctions;
 };
 
 /**
@@ -72,8 +93,8 @@ export function triggerProgram(
       const template = body.template;
       const rules = body.rules;
       const program = body.program;
+
       // Make modifications to template based on rules here if necessary.
-      // ...
       const handleIntrospection = handlers['PROGRAM_INTROSPECTION'];
       try {
         const newTemplate =
@@ -120,6 +141,34 @@ export function triggerProgram(
 
         return {
           json: transaction.toJson(),
+          code: 200,
+        };
+      } catch (e) {
+        const errorMes = {
+          error: 'An error occurred in a webtask',
+          message: e.toString(),
+        };
+
+        console.log(errorMes);
+
+        return {
+          json: errorMes,
+          code: 500,
+        };
+      }
+    case 'PROGRAM_VALIDATION':
+      // Make modifications to template based on rules here if necessary.
+      const queryResult = body.queryResult;
+      const validationKey = queryResult.key;
+      const handler = handlers['VALIDATION']
+        ? handlers['VALIDATION'][validationKey]
+        : undefined;
+
+      try {
+        const errors = (handler && handler(queryResult)) || [];
+
+        return {
+          json: errors,
           code: 200,
         };
       } catch (e) {
