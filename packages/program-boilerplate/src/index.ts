@@ -20,6 +20,14 @@ export {
   ProgramType,
 };
 
+type TriggerType =
+  | 'AFTER_USER_CREATED_OR_UPDATED'
+  | 'AFTER_USER_EVENT_PROCESSED'
+  | 'REFERRAL'
+  | 'PROGRAM_INTROSPECTION'
+  | 'SCHEDULED'
+  | 'REWARD_SCHEDULED';
+
 export type Program = {
   AFTER_USER_CREATED_OR_UPDATED?: (transaction: Transaction) => void;
   AFTER_USER_EVENT_PROCESSED?: (transaction: Transaction) => void;
@@ -111,8 +119,8 @@ export function triggerProgram(
         data: undefined,
       });
 
-      const triggerType = body.activeTrigger.type;
-      const handleTrigger = handlers[triggerType];
+      const triggerType = body.activeTrigger.type as TriggerType;
+      const handleTrigger: any = handlers[triggerType];
 
       try {
         if (handleTrigger) {
@@ -194,7 +202,7 @@ export function webtask(handlers: Program = {}): express.Application {
 }
 
 // Lazily initialized logger instance
-let _logger = undefined;
+let _logger: Logger;
 
 /**
  * Returns a logger for the programs to use instead of
@@ -205,8 +213,7 @@ let _logger = undefined;
  * @return {Logger} The winston logger
  */
 export function getLogger(logLevel: string): Logger {
-
-  if (_logger !== undefined) {
+  if (_logger) {
     return _logger;
   }
 

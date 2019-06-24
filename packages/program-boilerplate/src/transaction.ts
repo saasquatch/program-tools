@@ -25,6 +25,16 @@ export type User = {
   referredByReferral: Referral;
 };
 
+type ReferralRewardInput = {
+  rewardKey: string;
+  user: User;
+  referralId: string;
+  userEvent?: any;
+  rewardSource?: string;
+  status?: string;
+  rewardProperties?: any;
+};
+
 export type ProgramType = 'ACQUISITION' | 'LOYALTY' | 'RETENTION';
 
 export default class Transaction {
@@ -32,26 +42,29 @@ export default class Transaction {
   analytics: any[];
   context: WebtaskContext;
   currentUser: User;
-  events: any[];
+  events?: any[];
 
   /**
-   * @classdesc A Transaction instance takes a context object from webtask, generates mutations and analytics as the program requested.
+   * @classdesc A Transaction instance takes a context object from Express, generates mutations and analytics as the program requested.
    * @constructor
    *
    * @param {WebtaskContext} context     - An javascript object passed by webtask.
    * @param {Object[]} mutations  - Mutations to be made on the program.
    * @param {Object[]} analytics  - Analytics of the program.
    */
-  constructor(context: WebtaskContext, mutations: any = [], analytics: any = []) {
+  constructor(
+    context: WebtaskContext,
+    mutations: any = [],
+    analytics: any = [],
+  ) {
     this.mutations = mutations;
     this.analytics = analytics;
     this.context = context;
-    this.currentUser = null;
-    if (context.body.activeTrigger) {
-      const activeTrigger = context.body.activeTrigger;
-      this.currentUser = activeTrigger.user;
-      this.events = activeTrigger.events;
-    }
+
+    const activeTrigger = context.body.activeTrigger;
+
+    this.currentUser = activeTrigger.user;
+    this.events = activeTrigger.events;
   }
 
   fireProgramEvalAnalytics(user: User, type: ProgramType) {
@@ -62,13 +75,9 @@ export default class Transaction {
           id: user.id,
           accountId: user.accountId,
         },
-        programType: undefined,
+        programType: type,
       },
     };
-
-    if (type !== undefined) {
-      evalAnalytic.data.programType = type;
-    }
 
     this.analytics.push(evalAnalytic);
   }
@@ -141,15 +150,17 @@ export default class Transaction {
    * @param {User} user - The user to be given reward to (can be either referrer or referred user).
    * @param {string} referralId - id of the referral.
    */
-  generateReferralReward({
-    rewardKey,
-    referralId,
-    user,
-    userEvent,
-    rewardSource,
-    status,
-    rewardProperties,
-  }) {
+  generateReferralReward(input: ReferralRewardInput) {
+    const {
+      rewardKey,
+      user,
+      referralId,
+      userEvent,
+      rewardSource,
+      status,
+      rewardProperties,
+    } = input;
+
     const rewardId = this.context.body.ids.pop();
     const rewardData = {
       user: {
@@ -183,10 +194,18 @@ export default class Transaction {
    * Generates an email for the user.
    *
    * @param {string} emailKey - Key of email template (as defined in Contentful).
-   * @param {User} user       - The user to be sent a email to.
-   * @param {Object} query    - Queries to obtain information required by the email. See {@link Queries}.
+   * @param {User} user       - The user to be sent a email to
+   * @param {string} rewardId - The reward id
    */
-  generateSimpleEmail({emailKey, user, rewardId}) {
+  generateSimpleEmail({
+    emailKey,
+    user,
+    rewardId,
+  }: {
+    emailKey: string;
+    user: User;
+    rewardId: any;
+  }) {
     if (!rewardId) {
       throw new Error('rewardId must be provided before email sent.');
     }
@@ -215,7 +234,17 @@ export default class Transaction {
     this.mutations = [...this.mutations, newMutation];
   }
 
-  generateReferralEmail({emailKey, user, referralId, rewardId}) {
+  generateReferralEmail({
+    emailKey,
+    user,
+    referralId,
+    rewardId,
+  }: {
+    emailKey: string;
+    user: User;
+    referralId: string;
+    rewardId?: string;
+  }) {
     const variables = {
       userId: user.id,
       accountId: user.accountId,
@@ -244,7 +273,15 @@ export default class Transaction {
   /**
    * Generates both reward and email.
    */
-  generateSimpleRewardAndEmail({emailKey, rewardKey, user}) {
+  generateSimpleRewardAndEmail({
+    emailKey,
+    rewardKey,
+    user,
+  }: {
+    emailKey: string;
+    rewardKey: string;
+    user: User;
+  }) {
     const {rewardId} = this.generateSimpleReward(rewardKey);
     this.generateSimpleEmail({emailKey, user, rewardId});
   }
@@ -252,7 +289,17 @@ export default class Transaction {
   /**
    * Generates both reward and email for a referral.
    */
-  generateReferralRewardAndEmail({emailKey, rewardKey, referralId, user}) {
+  generateReferralRewardAndEmail({
+    emailKey,
+    rewardKey,
+    referralId,
+    user,
+  }: {
+    emailKey: string;
+    rewardKey: string;
+    referralId: string;
+    user: User;
+  }) {
     const {rewardId} = this.generateReferralReward({
       rewardKey,
       referralId,

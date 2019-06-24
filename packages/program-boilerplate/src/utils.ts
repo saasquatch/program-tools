@@ -1,13 +1,19 @@
 import {rewardScheduleQuery} from './queries';
 
 //return new template with reward schedules
-export const setRewardSchedule = ({
+export function setRewardSchedule({
   template,
   expiryWarningDays,
   key,
   emailKey,
   periodInHours,
-}) => {
+}: {
+  template: any;
+  expiryWarningDays: number;
+  key: string;
+  emailKey: string;
+  periodInHours: number;
+}): any {
   if (expiryWarningDays) {
     const dateExpires_timeframe = `next_${expiryWarningDays}_days`;
     const rewardSchedule = {
@@ -31,7 +37,7 @@ export const setRewardSchedule = ({
   } else {
     return template;
   }
-};
+}
 
 /**
  * Returns the appropriate timestamp based on the trigger
@@ -42,7 +48,7 @@ export const setRewardSchedule = ({
  */
 export function getGoalAnalyticTimestamp(trigger: any): number {
   const purchaseEvent = trigger.events
-    ? trigger.events.find(e => e.key === 'purchase')
+    ? trigger.events.find((e: any) => e.key === 'purchase')
     : undefined;
 
   return purchaseEvent ? purchaseEvent.dateTriggered - 1 : trigger.time;
