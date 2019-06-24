@@ -5,8 +5,17 @@ import {
   rewardEmailQueryForNonReferralPrograms,
 } from './queries';
 
+export type WebtaskContextBody = {
+  activeTrigger?: any;
+  messageType: string;
+  template?: any;
+  program?: any;
+  rules?: any;
+  ids: string[];
+};
+
 export type WebtaskContext = {
-  body: any;
+  body: WebtaskContextBody;
   meta: any;
   storage: any;
   query: any;

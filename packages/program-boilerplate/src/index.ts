@@ -1,4 +1,4 @@
-import Transaction, {ProgramType} from './transaction';
+import Transaction, {ProgramType, WebtaskContextBody} from './transaction';
 import {rewardEmailQuery} from './queries';
 import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
 import {setRewardSchedule, getGoalAnalyticTimestamp} from './utils';
@@ -37,15 +37,6 @@ export type Program = {
   REWARD_SCHEDULED?: (transaction: Transaction) => void;
 };
 
-type WebtaskContext = {
-  body?: WebtaskContextBody;
-};
-
-type WebtaskContextBody = {
-  activeTrigger?: any;
-  program?: any;
-};
-
 /**
  * The result of a program being triggered
  */
@@ -71,7 +62,7 @@ type ProgramTriggerResult = {
  * }
  */
 export function triggerProgram(
-  body: any,
+  body: WebtaskContextBody,
   handlers: Program = {},
   query: any = {},
   headers: any = {},
