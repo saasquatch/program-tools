@@ -66,11 +66,17 @@ type ValidationRequest = {
   queryResult: any;
 };
 
+type ValidationProgramField = {
+  id: string;
+  rules: any;
+};
+
 /**
  * A JSON request body for the PROGRAM_VALIDATION case
  */
 export type ProgramValidationBody = RequestBody & {
   validationRequests: ValidationRequest[];
+  program: ValidationProgramField;
 };
 
 /********************************************************/
@@ -96,6 +102,7 @@ export type ProgramIntospectionHandler = (
  */
 export type PrerequisiteHandler = (
   queryResult: any,
+  program?: ValidationProgramField,
 ) => PrereqValidationResult[];
 
 type ProgramValidationFunctions = {

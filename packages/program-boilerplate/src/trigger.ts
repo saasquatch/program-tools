@@ -168,7 +168,7 @@ function handleProgramValidation(
     } else {
       results.push({
         key: r.key,
-        results: prereqHandler(r.queryResult),
+        results: prereqHandler(r.queryResult, body.program),
       });
     }
   });
