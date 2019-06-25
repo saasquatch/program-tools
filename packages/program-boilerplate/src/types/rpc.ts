@@ -66,7 +66,7 @@ type ValidationRequest = {
   queryResult: any;
 };
 
-type ValidationProgramField = {
+export type ValidationProgramField = {
   id: string;
   rules: any;
 };
