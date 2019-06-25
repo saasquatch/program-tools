@@ -36,8 +36,12 @@ export class GlobalContainer {
       position: relative;
       max-width: ${this.maxwidth};
     `
-
+    const robotoFont = <link href='https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap' rel='stylesheet' />
+    const artifaktFont = <link href='https://static-dc.autodesk.net/etc/designs/v201903181748/templates-general/structure/fonts/artifakt/clientlibs/artifakt.css' rel='stylesheet' />
+      
     return <div class={style}>
+      { this.fontfamily=="Roboto" ? robotoFont : ''}
+      { this.fontfamily=="Artifakt Element" ? artifaktFont : ''}
       <slot />
       {this.poweredby
         ? <a class="sqh-attribution" href="https://www.saasquatch.com/?utm_source=app&utm_medium=user-widget&utm_campaign=referral-widget" target="_blank">Powered By Saasquatch</a>
