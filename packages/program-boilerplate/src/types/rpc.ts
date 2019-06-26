@@ -23,7 +23,7 @@ export type Program = {
   AFTER_USER_CREATED_OR_UPDATED?: ProgramTriggerHandler;
   AFTER_USER_EVENT_PROCESSED?: ProgramTriggerHandler;
   REFERRAL?: ProgramTriggerHandler;
-  PROGRAM_INTROSPECTION?: ProgramIntospectionHandler;
+  PROGRAM_INTROSPECTION?: ProgramIntrospectionHandler;
   SCHEDULED?: ProgramTriggerHandler;
   REWARD_SCHEDULED?: ProgramTriggerHandler;
   PROGRAM_VALIDATION?: ProgramValidationFunctions;
@@ -55,7 +55,7 @@ export type ProgramTriggerBody = RequestBody & {
 /**
  * A JSON request body for the PROGRAM_INTROSPECTION case
  */
-export type ProgramIntospectionBody = RequestBody & {
+export type ProgramIntrospectionBody = RequestBody & {
   template: any;
   rules: any;
   program: any;
@@ -91,7 +91,7 @@ export type ProgramTriggerHandler = (transaction: Transaction) => void;
 /**
  * Introspection handler
  */
-export type ProgramIntospectionHandler = (
+export type ProgramIntrospectionHandler = (
   template: any,
   rules: any,
   program?: any,

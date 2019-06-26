@@ -3,7 +3,7 @@ import Transaction from './transaction';
 import {
   ProgramTriggerResult,
   ProgramTriggerBody,
-  ProgramIntospectionBody,
+  ProgramIntrospectionBody,
   ProgramValidationBody,
   Program,
   TriggerType,
@@ -27,12 +27,12 @@ import {
  * }
  */
 export function triggerProgram(
-  body: ProgramTriggerBody | ProgramIntospectionBody | ProgramValidationBody,
+  body: ProgramTriggerBody | ProgramIntrospectionBody | ProgramValidationBody,
   program: Program = {},
 ): ProgramTriggerResult {
   switch (body.messageType || 'PROGRAM_TRIGGER') {
     case 'PROGRAM_INTROSPECTION':
-      body = body as ProgramIntospectionBody;
+      body = body as ProgramIntrospectionBody;
       return handleProgramIntrospection(body, program);
     case 'PROGRAM_TRIGGER':
       body = body as ProgramTriggerBody;
@@ -103,7 +103,7 @@ function handleProgramTrigger(
  * @return {ProgramTriggerResult} The result from the program
  */
 function handleProgramIntrospection(
-  body: ProgramIntospectionBody,
+  body: ProgramIntrospectionBody,
   program: Program,
 ): ProgramTriggerResult {
   const template = body.template;
