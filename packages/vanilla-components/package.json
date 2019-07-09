@@ -34,7 +34,7 @@
     "graphql-tag": "^2.9.2",
     "intl-messageformat": "^2.2.0",
     "intl-relativeformat": "^2.1.0",
-    "marked": "^0.4.0",
+    "marked": "^0.7.0",
     "path-to-regexp": "^2.2.1",
     "uuid": "^3.3.2"
   },
