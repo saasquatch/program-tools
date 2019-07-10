@@ -148,6 +148,7 @@ export type ProgramPrerequisite = {
   key: string;
   name: string;
   description: string;
+  longDescription: string;
   query: string;
   queryVariables: {
     [key: string]: any;
