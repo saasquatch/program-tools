@@ -154,21 +154,21 @@ function handleProgramValidation(
 
   body.validationRequests.forEach(r => {
     const validationHandlers = program['PROGRAM_VALIDATION'];
-    const prereqHandler = validationHandlers
+    const requirementHandler = validationHandlers
       ? validationHandlers[r.key]
       : undefined;
 
-    if (!prereqHandler) {
+    if (!requirementHandler) {
       return {
         json: {
-          message: `Prerequisite handler for key ${r.key} not implemented`,
+          message: `Requirement handler for key ${r.key} not implemented`,
         },
         code: 501,
       };
     } else {
       results.push({
         key: r.key,
-        results: prereqHandler(r.queryResult, body.program),
+        results: requirementHandler(r.queryResult, body.program),
       });
     }
   });

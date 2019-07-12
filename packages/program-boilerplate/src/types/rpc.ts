@@ -98,15 +98,15 @@ export type ProgramIntrospectionHandler = (
 ) => any;
 
 /**
- * Handler for an individual program prerequisite
+ * Handler for an individual program requirement validation
  */
-export type PrerequisiteHandler = (
+export type RequirementValidationHandler = (
   queryResult: any,
   program?: ValidationProgramField,
-) => PrereqValidationResult[];
+) => RequirementValidationResult[];
 
 type ProgramValidationFunctions = {
-  [key: string]: PrerequisiteHandler;
+  [key: string]: RequirementValidationHandler;
 };
 
 /********************************************************/
@@ -122,19 +122,19 @@ export type ProgramTriggerResult = {
 };
 
 /**
- * A result for an individual program prerequisite check
+ * A result for an individual program requirement check
  */
-export type PrereqValidationResult = {
+export type RequirementValidationResult = {
   message: string;
   status: 'ERROR' | 'WARN' | 'SUCCESS';
 };
 
 /**
- * The end result of a program prerequisite check for `key`
+ * The end result of a program requirement check for `key`
  */
 export type ValidationResult = {
   key: string;
-  results: PrereqValidationResult[];
+  results: RequirementValidationResult[];
 };
 
 /********************************************************/
@@ -142,9 +142,9 @@ export type ValidationResult = {
 /********************************************************/
 
 /**
- * A program prerequisite
+ * A program requirement
  */
-export type ProgramPrerequisite = {
+export type ProgramRequirement = {
   key: string;
   name: string;
   description: string;
