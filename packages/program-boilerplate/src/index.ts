@@ -1,7 +1,11 @@
 import Transaction from './transaction';
 import {rewardEmailQuery} from './queries';
 import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
-import {setRewardSchedule, getGoalAnalyticTimestamp} from './utils';
+import {
+  setRewardSchedule,
+  getGoalAnalyticTimestamp,
+  templateLiteralPassthrough,
+} from './utils';
 import {getTriggerBody, getIntrospectionBody} from './testing';
 import {
   Program,
@@ -30,6 +34,7 @@ export {
   RequirementValidationResult,
   ProgramRequirement,
   ValidationProgramField,
+  templateLiteralPassthrough,
 };
 
 /**

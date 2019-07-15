@@ -53,3 +53,29 @@ export function getGoalAnalyticTimestamp(trigger: any): number {
 
   return purchaseEvent ? purchaseEvent.dateTriggered - 1 : trigger.time;
 }
+
+/**
+ * A passthru template literal function to get GraphQL
+ * syntax in program requirement files
+ *
+ * @param {TemplateStringsArray} literals The literals portion of the template
+ * @param {any[]} placeholders The placeholders
+ *
+ * @return {string} The compiled string
+ */
+export function templateLiteralPassthrough(
+  literals: TemplateStringsArray,
+  ...placeholders: any[]
+): string {
+  let result = '';
+
+  // interleave the literals with the placeholders
+  for (let i = 0; i < placeholders.length; i++) {
+    result += literals[i];
+    result += placeholders[i].toString();
+  }
+
+  // add the last literal
+  result += literals[literals.length - 1];
+  return result;
+}
