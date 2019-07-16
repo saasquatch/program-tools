@@ -1,0 +1,36 @@
+sq-code-example {
+  .sq-tabs {
+    display:block;
+    margin-bottom:5px;
+    border-bottom:1px solid #ddd;
+  }
+  .sq-tab {
+    display:inline-block;
+    margin-bottom:-1px;
+  }
+  .sq-tab button:hover {
+    background-color:rgba(200,200,200,0.1);
+    border-radius: 3px 3px 0 0;
+  }
+  .sq-open button:hover {
+    cursor:default;
+    background-color:#FFF;
+  }
+  .sq-open button {
+    color:#555;
+    border: 1px solid #ddd;
+    border-radius: 3px 3px 0 0;
+    border-bottom-color: transparent;
+  }
+  button {
+    background-color:#FFF;
+    border:none;
+    outline:none;
+    cursor:pointer;
+    font-size:16px;
+    color:#08c;
+    height:100%;
+    width:100%;
+    padding:5px 10px;
+  }
+}
