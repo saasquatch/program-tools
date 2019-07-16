@@ -135,10 +135,7 @@ export function meetCustomFieldRules(
   if (!user) {
     return false;
   }
-  if (
-    customConversionRules === undefined ||
-    customConversionRules.length === 0
-  ) {
+  if (!customConversionRules || customConversionRules.length === 0) {
     return true;
   }
   return customConversionRules.every(rule =>
@@ -157,7 +154,7 @@ export function meetEventTriggerRules(
   events: Event[],
   eventTriggerRules: EventTriggerRule[],
 ): boolean {
-  if (eventTriggerRules === undefined || eventTriggerRules.length === 0) {
+  if (!eventTriggerRules || eventTriggerRules.length === 0) {
     return true;
   }
   if (!events || events.length === 0) {
