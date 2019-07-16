@@ -102,7 +102,7 @@ export type ProgramIntrospectionHandler = (
  */
 export type RequirementValidationHandler = (
   queryResult: any,
-  program?: ValidationProgramField,
+  program: ValidationProgramField,
 ) => RequirementValidationResult[];
 
 type ProgramValidationFunctions = {
