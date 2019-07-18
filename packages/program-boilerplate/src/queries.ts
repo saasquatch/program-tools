@@ -53,8 +53,7 @@ fragment AllFlatRewardFields on FlatReward {
 }
 `;
 
-export const nonRewardEmailQueryForReferralPrograms =
-`query ($userId:String!, $accountId:String!,$programId:ID!, $referralId: ID!) {
+export const nonRewardEmailQueryForReferralPrograms = `query ($userId:String!, $accountId:String!,$programId:ID!, $referralId: ID!) {
   user(id:$userId, accountId:$accountId) {
     firstName
     lastName
@@ -125,7 +124,7 @@ fragment AllFlatRewardFields on FlatReward {
 `;
 
 //context for reward schedule trigger
-export const rewardScheduleQuery = (emailKey) => {
+export const rewardScheduleQuery = (emailKey: string) => {
   const query = `query ProgramTrigger($programId: ID!) {
     activeTrigger: activeProgramTrigger {
       type
