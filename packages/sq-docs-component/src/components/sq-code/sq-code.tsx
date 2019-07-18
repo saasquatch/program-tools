@@ -14,6 +14,7 @@ export class SqCode {
   @Prop() open: boolean;
   @Prop() syntax:string;
   @Prop() tabname:string;
+  @Prop() copied: boolean;
 
   @State() highlightedCode:string;
   @State() text:string
@@ -56,7 +57,7 @@ export class SqCode {
 
   render() {
 
-    return <pre class={`language-${this.syntax}`} hidden={!this.open}>
+    return <pre class={`language-${this.syntax} ${this.copied}`} hidden={!this.open}>
       
       <code class={`language-${this.syntax}`}>
       <span ref={(el) => this.newElement = el as HTMLElement}></span>

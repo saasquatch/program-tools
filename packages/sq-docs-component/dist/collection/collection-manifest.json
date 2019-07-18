@@ -1,8 +1,8 @@
 {
   "entries": [
-    "components\\sq-docs\\sq-docs.js",
     "components\\sq-code-example\\sq-code-example.js",
-    "components\\sq-code\\sq-code.js"
+    "components\\sq-code\\sq-code.js",
+    "components\\sq-docs\\sq-docs.js"
   ],
   "compiler": {
     "name": "@stencil/core",

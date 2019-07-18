@@ -3,15 +3,15 @@
 }
 
 sq-code {
-  margin-top: -7px;
+  margin-top: 15px;
   display: block;
   position: relative;
-  width: 95%;
   /* Code blocks */
   /* Inline code */
 }
 sq-code code[class*=language-],
 sq-code pre {
+  box-sizing: border-box;
   position: relative;
   height: auto;
   color: #f8f8f2;

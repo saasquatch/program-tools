@@ -10,6 +10,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface SqCode {
+    'copied': boolean;
     'open': boolean;
     'syntax': string;
     'tabname': string;
@@ -47,6 +48,7 @@ declare global {
 
 declare namespace LocalJSX {
   interface SqCode extends JSXBase.HTMLAttributes<HTMLSqCodeElement> {
+    'copied'?: boolean;
     'open'?: boolean;
     'syntax'?: string;
     'tabname'?: string;

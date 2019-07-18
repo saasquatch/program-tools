@@ -2,12 +2,12 @@
 	display:none;
 }
 sq-code {
-	margin-top: -7px;
+	margin-top: 15px;
 	display: block;
 	position:relative;
-	width:95%;
 	code[class*="language-"],
 	pre {
+		box-sizing:border-box;
 		position:relative;
 		height:auto;
 		color: #f8f8f2;

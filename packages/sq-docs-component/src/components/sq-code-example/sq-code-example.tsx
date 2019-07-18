@@ -16,6 +16,7 @@ export class SqCodeExample {
   @State() tabs:any;
   @State() code:Array<tab> = [];
   @State() clipboard:Clipboard;
+  @State() copied:boolean;
   
   componentWillLoad() {
     this.tabs = Array.from(document.querySelectorAll('sq-code'));
@@ -35,16 +36,31 @@ export class SqCodeExample {
           return openedTab[0].innerText
         }
       }) 
+
+      this.clipboard.on('success', async(e) => {
+        this.copied = true;
+        e.trigger.innerHTML = `<i class="icon-sqh-copy"></i> Copied!`
+        await new Promise(resolve => setTimeout(resolve, 3000))
+        this.copied = false;
+        e.trigger.innerHTML = `<i class="icon-sqh-copy"></i> Copy`
+    });
+    
+    this.clipboard.on('error', async(e) => {
+      e.trigger.innerHTML = `Failed, try again`
+      await new Promise(resolve => setTimeout(resolve, 3000))
+      e.trigger.innerHTML = `<i class="icon-sqh-copy"></i> Copy`
+    });
   }
 
   async openTab(tabIndex: number) {
+    this.copied = false;
     this.tabs = this.tabs.map((tab:tab) => {
       tab.open = false;
       return tab;
     });
     this.tabs[tabIndex].open = true;
     const openedTab:HTMLElement = this.tabs[tabIndex];
-    new Clipboard('.copy-button', {
+    this.clipboard = new Clipboard('.copy-button', {
       text: () => {       
         return openedTab.getElementsByClassName(`original`)[0].textContent
       }
@@ -52,12 +68,12 @@ export class SqCodeExample {
   }
 
   render() {
-    return <div>
+    return <div class={`code-container ${this.copied && `copied`}`}>
       <div class="sq-tabs">
         {this.tabs.map((tab:tab, i: number) => {
           const openClass = tab.open ? 'sq-open' : '';
           return (
-            <div class={`sq-tab ${openClass}`}>
+            <div class={`sq-tab ${openClass} `}>
               <button
                 role="tab"
                 class={`sq-tab-button`}
@@ -68,7 +84,7 @@ export class SqCodeExample {
           );
         })}
       </div>
-      <button class="copy-button">Copy</button>
+      <button class="copy-button" onClick={() => {}}><i class="icon-sqh-copy"></i> Copy</button>
       <slot />  
     </div>
 

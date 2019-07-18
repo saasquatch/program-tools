@@ -7,6 +7,7 @@ export declare class SqCode {
     open: boolean;
     syntax: string;
     tabname: string;
+    copied: boolean;
     highlightedCode: string;
     text: string;
     loaded: boolean;

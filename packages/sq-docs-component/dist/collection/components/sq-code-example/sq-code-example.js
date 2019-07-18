@@ -19,28 +19,43 @@ export class SqCodeExample {
                 return openedTab[0].innerText;
             }
         });
+        this.clipboard.on('success', async (e) => {
+            this.copied = true;
+            e.trigger.innerHTML = `<i class="icon-sqh-copy"></i> Copied!`;
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            this.copied = false;
+            e.trigger.innerHTML = `<i class="icon-sqh-copy"></i> Copy`;
+        });
+        this.clipboard.on('error', async (e) => {
+            e.trigger.innerHTML = `Failed, try again`;
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            e.trigger.innerHTML = `<i class="icon-sqh-copy"></i> Copy`;
+        });
     }
     async openTab(tabIndex) {
+        this.copied = false;
         this.tabs = this.tabs.map((tab) => {
             tab.open = false;
             return tab;
         });
         this.tabs[tabIndex].open = true;
         const openedTab = this.tabs[tabIndex];
-        new Clipboard('.copy-button', {
+        this.clipboard = new Clipboard('.copy-button', {
             text: () => {
                 return openedTab.getElementsByClassName(`original`)[0].textContent;
             }
         });
     }
     render() {
-        return h("div", null,
+        return h("div", { class: `code-container ${this.copied && `copied`}` },
             h("div", { class: "sq-tabs" }, this.tabs.map((tab, i) => {
                 const openClass = tab.open ? 'sq-open' : '';
-                return (h("div", { class: `sq-tab ${openClass}` },
+                return (h("div", { class: `sq-tab ${openClass} ` },
                     h("button", { role: "tab", class: `sq-tab-button`, onClick: () => this.openTab(i) }, tab.tabname)));
             })),
-            h("button", { class: "copy-button" }, "Copy"),
+            h("button", { class: "copy-button", onClick: () => { } },
+                h("i", { class: "icon-sqh-copy" }),
+                " Copy"),
             h("slot", null));
     }
     static get is() { return "sq-code-example"; }
@@ -53,6 +68,7 @@ export class SqCodeExample {
     static get states() { return {
         "tabs": {},
         "code": {},
-        "clipboard": {}
+        "clipboard": {},
+        "copied": {}
     }; }
 }

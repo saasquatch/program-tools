@@ -39,7 +39,7 @@ export class SqCode {
         return h("div", null, this.highlightedCode);
     }
     render() {
-        return h("pre", { class: `language-${this.syntax}`, hidden: !this.open },
+        return h("pre", { class: `language-${this.syntax} ${this.copied}`, hidden: !this.open },
             h("code", { class: `language-${this.syntax}` },
                 h("span", { ref: (el) => this.newElement = el })),
             h("span", { class: `hidden original` }, this.text));
@@ -101,6 +101,23 @@ export class SqCode {
                 "text": ""
             },
             "attribute": "tabname",
+            "reflect": false
+        },
+        "copied": {
+            "type": "boolean",
+            "mutable": false,
+            "complexType": {
+                "original": "boolean",
+                "resolved": "boolean",
+                "references": {}
+            },
+            "required": false,
+            "optional": false,
+            "docs": {
+                "tags": [],
+                "text": ""
+            },
+            "attribute": "copied",
             "reflect": false
         }
     }; }

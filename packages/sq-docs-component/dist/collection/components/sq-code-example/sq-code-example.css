@@ -1,3 +1,25 @@
+sq-code-example .code-container {
+  position: relative;
+  margin-top: 16px;
+}
+sq-code-example .copy-button {
+  width: 85px;
+  height: 30px;
+  position: absolute;
+  top: 4.75em;
+  right: 1em;
+  z-index: 1;
+  color: #FFF;
+  background: transparent;
+}
+sq-code-example .copy-button:hover {
+  color: #66d9ef;
+}
+sq-code-example .copied pre {
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  box-shadow: 0 0 2pt 2pt #428bca;
+}
 sq-code-example .sq-tabs {
   display: block;
   margin-bottom: 5px;
@@ -26,8 +48,8 @@ sq-code-example button {
   border: none;
   outline: none;
   cursor: pointer;
-  font-size: 16px;
-  color: #08c;
+  font-size: 13px;
+  color: #428bca;
   height: 100%;
   width: 100%;
   padding: 5px 10px;
