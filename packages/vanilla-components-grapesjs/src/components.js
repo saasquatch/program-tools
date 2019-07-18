@@ -11,7 +11,10 @@ export default (editor, config = {}) => {
   var defaultView = defaultType.view;
 
   const fontFamilyOpts = {
+    default:"Roboto",
     enum: [
+      "Roboto",
+      "Artifakt Element",
       "Helvetica Neue,Helvetica,Arial,sans-serif",
       "Lato,sans-serif",
       "Times New Roman",
@@ -22,6 +25,8 @@ export default (editor, config = {}) => {
       "Georgia"
     ],
     enumNames: [
+      "Roboto",
+      "Artifakt Element",
       "Helvetica Neue",
       "Lato",
       "Times New Roman",
