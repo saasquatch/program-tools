@@ -253,6 +253,16 @@ export function init(program: Program, cucumber: Cucumber): void {
     });
   });
 
+  Given('there are no reward rules', function(this: World) {
+    this.setState({
+      introspectionTrigger: {
+        rules: {
+          rewardRules: undefined,
+        },
+      },
+    });
+  });
+
   Given('the program schema is located at {string}', function(
     this: World,
     path: string,
