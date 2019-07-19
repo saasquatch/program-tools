@@ -165,12 +165,20 @@ export function init(program: Program, cucumber: Cucumber): void {
     assert(trigger.eventKeys.includes(key));
   });
 
-  Then('the output template will not include a {string} email', function(
+  Then('the output will not include a {string} email', function(
     this: World,
     key: string,
   ) {
     const emails = this.state.programTriggerResult.emails;
     assert(!emails.some(e => e.key === key));
+  });
+
+  Then('the output will include a {string} email', function(
+    this: World,
+    key: string,
+  ) {
+    const emails = this.state.programTriggerResult.emails;
+    assert(emails.some(e => e.key === key));
   });
 
   Given('there are no events', function(this: World) {

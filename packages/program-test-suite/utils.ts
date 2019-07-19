@@ -1,3 +1,5 @@
+import {World} from '.';
+
 export function inferType(
   val: string,
 ): string | number | boolean | undefined | null {

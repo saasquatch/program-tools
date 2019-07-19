@@ -15,6 +15,8 @@ declare interface World extends CucumberWorld {
    * @param newState
    */
   setState: (newState: Partial<State>) => World;
+
+  setRules: (rules: any) => void;
 }
 
 declare interface State {
@@ -49,5 +51,21 @@ export function CustomWorld() {
   this.setState = (newState: Partial<State>) => {
     this.state = mergeRecursive(this.state, newState);
     return this;
+  };
+
+  this.setRules = (rules: any) => {
+    this.setState({
+      introspectionTrigger: {
+        program: {
+          rules,
+        },
+        rules,
+      },
+      eventTrigger: {
+        program: {
+          rules,
+        },
+      },
+    });
   };
 }
