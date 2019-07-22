@@ -1,7 +1,7 @@
 import {HookScenarioResult} from 'cucumber';
-import {getIntrospectionJson} from './faker';
+import {getIntrospectionJson, getProgramTriggerJson} from './faker';
 
-import {World, State, Cucumber} from '..';
+import {World, Cucumber} from '..';
 
 import assert from 'assert';
 import delve from 'dlv';
@@ -13,13 +13,9 @@ import {recursive as mergeRecursive} from 'merge';
 import {MutationStepRow, AnalyticsStepRow} from './types';
 import {inferType} from './utils';
 
-import {
-  Program,
-  triggerProgram,
-  getTriggerBody,
-} from '@saasquatch/program-boilerplate';
+import {triggerProgram, types} from '@saasquatch/program-boilerplate';
 
-export function init(program: Program, cucumber: Cucumber): void {
+export function init(program: types.rpc.Program, cucumber: Cucumber): void {
   const {Before, After, Given, When, Then} = cucumber;
 
   Before({tags: '@debug'}, function(this: World, scenario: HookScenarioResult) {
@@ -34,20 +30,23 @@ export function init(program: Program, cucumber: Cucumber): void {
     console.log('=================================================');
   });
 
-  When('{string} runs', function(this: World, trigger: string) {
+  When('{string} runs', function(this: World, type: types.rpc.TriggerType) {
     const currentState = this.state.current || {};
     const {template, rules, programRewards} = currentState;
 
-    const body =
-      trigger === 'PROGRAM_INTROSPECTION'
-        ? getIntrospectionJson(template, rules, programRewards)
-        : getTriggerBody({
-            ...this.state.eventTrigger,
-            activeTrigger: {
-              ...this.state.eventTrigger.activeTrigger,
-              type: trigger,
-            },
-          });
+    let body;
+
+    switch (type) {
+      case 'PROGRAM_INTROSPECTION':
+        body = getIntrospectionJson(template, rules, programRewards);
+        break;
+      default:
+        body = getProgramTriggerJson({
+          type,
+          user: this.state.current.user,
+          rules: this.state.current.rules,
+        });
+    }
 
     this.setState({
       programTriggerResult: triggerProgram(body, program).json,
@@ -59,7 +58,7 @@ export function init(program: Program, cucumber: Cucumber): void {
       switch (row.type) {
         case 'reward':
           const relevantRewards = this.state.programTriggerResult.mutations.filter(
-            m => {
+            (m: any) => {
               return (
                 m.type === 'CREATE_REWARD' &&
                 m.data.user.id === `${row.user.toUpperCase()}ID` &&
@@ -74,7 +73,7 @@ export function init(program: Program, cucumber: Cucumber): void {
           break;
         case 'email':
           const relevantEmails = this.state.programTriggerResult.mutations.filter(
-            m => {
+            (m: any) => {
               return (
                 m.type === 'SEND_EMAIL' &&
                 m.data.user.id === `${row.user.toUpperCase()}ID` &&
@@ -123,7 +122,7 @@ export function init(program: Program, cucumber: Cucumber): void {
     user: string,
   ) {
     const relevantRewards = this.state.programTriggerResult.mutations.filter(
-      m => {
+      (m: any) => {
         return (
           m.type === 'CREATE_REWARD' &&
           m.data.user.id === `${user.toUpperCase()}ID` &&
@@ -143,7 +142,7 @@ export function init(program: Program, cucumber: Cucumber): void {
     user: string,
   ) {
     const relevantRewards = this.state.programTriggerResult.mutations.filter(
-      m => {
+      (m: any) => {
         return (
           m.type === 'SEND_EMAIL' &&
           m.data.user.id === `${user.toUpperCase()}ID` &&
@@ -173,7 +172,7 @@ export function init(program: Program, cucumber: Cucumber): void {
     key: string,
   ) {
     const emails = this.state.programTriggerResult.emails;
-    assert(!emails.some(e => e.key === key));
+    assert(!emails.some((e: any) => e.key === key));
   });
 
   Then('the output will include a {string} email', function(
@@ -181,21 +180,19 @@ export function init(program: Program, cucumber: Cucumber): void {
     key: string,
   ) {
     const emails = this.state.programTriggerResult.emails;
-    assert(emails.some(e => e.key === key));
+    assert(emails.some((e: any) => e.key === key));
   });
 
   Given('there are no events', function(this: World) {
     this.setState({
-      eventTrigger: {
-        activeTrigger: {
-          events: [],
-        },
+      current: {
+        events: [],
       },
     });
   });
 
   Given('the following event exists:', function(this: World, data: any) {
-    let events = this.state.eventTrigger.activeTrigger.events;
+    let events = this.state.current.events;
 
     if (!events) {
       events = [JSON.parse(data)];
@@ -204,10 +201,8 @@ export function init(program: Program, cucumber: Cucumber): void {
     }
 
     this.setState({
-      eventTrigger: {
-        activeTrigger: {
-          events,
-        },
+      current: {
+        events,
       },
     });
   });
@@ -217,10 +212,10 @@ export function init(program: Program, cucumber: Cucumber): void {
     data: any,
   ) {
     const relevantMutations = this.state.programTriggerResult.mutations.filter(
-      m => {
+      (m: any) => {
         const correctType = m.type === 'MODERATE_GRAPH_NODES';
 
-        const passesFilters = !data.rows().some(row => {
+        const passesFilters = !data.rows().some((row: any) => {
           return delve(m.data, row[0]) !== inferType(row[1]);
         });
 
@@ -237,12 +232,10 @@ export function init(program: Program, cucumber: Cucumber): void {
     val: string,
   ) {
     this.setState({
-      eventTrigger: {
-        activeTrigger: {
-          user: {
-            customFields: {
-              [field]: inferType(val),
-            },
+      current: {
+        user: {
+          customFields: {
+            [field]: inferType(val),
           },
         },
       },

@@ -18,9 +18,7 @@ declare interface World extends CucumberWorld {
 }
 
 declare interface State {
-  introspectionTrigger: any;
   programTriggerResult: any;
-  eventTrigger: any;
   config: Partial<{
     schemaPath: string;
     defaultIntrospection: any;
@@ -28,6 +26,8 @@ declare interface State {
     defaultTemplate: any;
   }>;
   current: Partial<{
+    events: any[];
+    user: any;
     programRewards: any[];
     rules: any;
     template: any;
@@ -48,11 +48,9 @@ if (!process.env.PROGRAM_LOG_LEVEL) {
 
 export {World, State, Cucumber, init, inferType};
 
-export function CustomWorld(this: World) {
-  this.state = {
-    introspectionTrigger: {},
+export class CustomWorld implements World {
+  state: Readonly<State> = {
     programTriggerResult: {},
-    eventTrigger: {},
     config: {
       schemaPath: '',
       defaultIntrospection: {},
@@ -60,13 +58,15 @@ export function CustomWorld(this: World) {
       defaultTemplate: {},
     },
     current: {
+      events: [],
+      user: {},
       programRewards: [],
       rules: {},
       template: {},
     },
   };
 
-  this.setState = function(this: World, newState: Partial<State>) {
+  setState = function(this: World, newState: Partial<State>) {
     this.state = mergeRecursive(this.state, newState);
     return this;
   };
