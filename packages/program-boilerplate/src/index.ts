@@ -3,12 +3,17 @@ import {rewardEmailQuery} from './queries';
 import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
 import {setRewardSchedule, getGoalAnalyticTimestamp} from './utils';
 import {getTriggerBody, getIntrospectionBody} from './testing';
+
 import {
   Program,
   RequirementValidationResult,
   ProgramRequirement,
   ValidationProgramField,
 } from './types/rpc';
+
+import * as types from './types';
+export {types};
+
 import {ProgramType} from './types/saasquatch';
 import {triggerProgram} from './trigger';
 
