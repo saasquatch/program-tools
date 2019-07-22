@@ -83,6 +83,7 @@ export function getRandomUser(name: string): any {
     email: faker.fake('{{internet.email}}'),
     dateCreated: Date.now(),
     customFields: {},
+    segments: [],
     rewards: {
       totalCount: 0,
       data: [],
