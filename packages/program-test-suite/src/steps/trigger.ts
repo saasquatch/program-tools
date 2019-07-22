@@ -20,6 +20,7 @@ export function init(program: types.rpc.Program, cucumber: Cucumber): void {
           type,
           user: this.state.current.user,
           rules: this.state.current.rules,
+          time: this.state.current.time,
         });
     }
 

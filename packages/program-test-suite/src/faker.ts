@@ -1,4 +1,5 @@
 import {types} from '@saasquatch/program-boilerplate';
+import * as faker from 'faker';
 
 type ProgramIntrospectionBody = types.rpc.ProgramIntrospectionBody;
 type ProgramTriggerBody = types.rpc.ProgramTriggerBody;
@@ -71,4 +72,24 @@ function getReferralJson(referralEventType: any, referral: any): any {
 
 function getAUEPTJson(events?: any[]): any {
   return {};
+}
+
+export function getRandomUser(name: string): any {
+  return {
+    id: `${name}ID`,
+    accountId: `${name}ACCOUNTID`,
+    firstName: faker.fake('{{name.firstName}}'),
+    lastName: faker.fake('{{name.lastName}}'),
+    email: faker.fake('{{internet.email}}'),
+    dateCreated: Date.now(),
+    customFields: {},
+    rewards: {
+      totalCount: 0,
+      data: [],
+    },
+    referrals: {
+      totalCount: 0,
+      data: [],
+    },
+  };
 }

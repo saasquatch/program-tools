@@ -19,4 +19,14 @@ export function init(cucumber: Cucumber): void {
       },
     });
   });
+
+  Given('the user {word} blocked', function(this: World, blocked: string) {
+    this.setState({
+      current: {
+        user: {
+          dateBlocked: blocked === 'is' ? 123 : undefined,
+        },
+      },
+    });
+  });
 }

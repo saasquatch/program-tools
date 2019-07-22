@@ -27,6 +27,7 @@ declare interface State {
   }>;
   current: Partial<{
     events: any[];
+    time?: number;
     user: any;
     programRewards: any[];
     rules: any;

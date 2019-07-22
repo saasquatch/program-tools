@@ -1,5 +1,6 @@
 import {World, Cucumber} from '../..';
 import {readFileSync} from 'fs';
+import {getRandomUser} from '../faker';
 
 // @ts-ignore
 import {recursive as mergeRecursive} from 'merge';
@@ -36,6 +37,14 @@ export function init(cucumber: Cucumber): void {
     });
   });
 
+  Given('the current time is {int}', function(this: World, time: number) {
+    this.setState({
+      current: {
+        time,
+      },
+    });
+  });
+
   Given('the default configuration is loaded', function(this: World) {
     const defaultIntrospection = JSON.parse(
       readFileSync('__tests__/defaults/template.json').toString(),
@@ -55,6 +64,7 @@ export function init(cucumber: Cucumber): void {
       current: {
         rules: defaultRules,
         template: defaultTemplate,
+        user: getRandomUser('DEFAULT'),
       },
       config: {
         defaultIntrospection,
