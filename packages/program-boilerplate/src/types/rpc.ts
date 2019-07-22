@@ -34,28 +34,25 @@ export type Program = {
 /********************************************************/
 
 /**
- * A JSON request body from the backend
- */
-export type RequestBody = {
-  messageType:
-    | 'PROGRAM_TRIGGER'
-    | 'PROGRAM_INTROSPECTION'
-    | 'PROGRAM_VALIDATION';
-};
-
-/**
  * A JSON request body for the PROGRAM_TRIGGER case
  */
-export type ProgramTriggerBody = RequestBody & {
+export type ProgramTriggerBody = {
+  messageType: 'PROGRAM_TRIGGER';
   activeTrigger: any;
   program: any;
+  tenant: {
+    settings: {
+      suspectedFraudModerationState: string;
+    };
+  };
   ids: string[];
 };
 
 /**
  * A JSON request body for the PROGRAM_INTROSPECTION case
  */
-export type ProgramIntrospectionBody = RequestBody & {
+export type ProgramIntrospectionBody = {
+  messageType: 'PROGRAM_INTROSPECTION';
   template: any;
   rules: any;
   program: any;
@@ -74,7 +71,8 @@ export type ValidationProgramField = {
 /**
  * A JSON request body for the PROGRAM_VALIDATION case
  */
-export type ProgramValidationBody = RequestBody & {
+export type ProgramValidationBody = {
+  messageType: 'PROGRAM_VALIDATION';
   validationRequests: ValidationRequest[];
   program: ValidationProgramField;
 };
