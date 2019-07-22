@@ -1,57 +1,13 @@
-import {HookScenarioResult} from 'cucumber';
-import {getIntrospectionJson, getProgramTriggerJson} from './faker';
-
-import {World, Cucumber} from '..';
+import {World, Cucumber} from '../..';
 
 import assert from 'assert';
 import delve from 'dlv';
-import {readFileSync} from 'fs';
+import {inferType} from '../utils';
 
-// @ts-ignore
-import {recursive as mergeRecursive} from 'merge';
+import {MutationStepRow, AnalyticsStepRow} from '../types';
 
-import {MutationStepRow, AnalyticsStepRow} from './types';
-import {inferType} from './utils';
-
-import {triggerProgram, types} from '@saasquatch/program-boilerplate';
-
-export function init(program: types.rpc.Program, cucumber: Cucumber): void {
-  const {Before, After, Given, When, Then} = cucumber;
-
-  Before({tags: '@debug'}, function(this: World, scenario: HookScenarioResult) {
-    console.log(`===== State before "${scenario.pickle.name}" =====`);
-    console.log(JSON.stringify(this.state, null, 2));
-    console.log('==================================================');
-  });
-
-  After({tags: '@debug'}, function(this: World, scenario: HookScenarioResult) {
-    console.log(`===== State after "${scenario.pickle.name}" =====`);
-    console.log(JSON.stringify(this.state, null, 2));
-    console.log('=================================================');
-  });
-
-  When('{string} runs', function(this: World, type: types.rpc.TriggerType) {
-    const currentState = this.state.current || {};
-    const {template, rules, programRewards} = currentState;
-
-    let body;
-
-    switch (type) {
-      case 'PROGRAM_INTROSPECTION':
-        body = getIntrospectionJson(template, rules, programRewards);
-        break;
-      default:
-        body = getProgramTriggerJson({
-          type,
-          user: this.state.current.user,
-          rules: this.state.current.rules,
-        });
-    }
-
-    this.setState({
-      programTriggerResult: triggerProgram(body, program).json,
-    });
-  });
+export function init(cucumber: Cucumber): void {
+  const {Then} = cucumber;
 
   Then('the following mutations will exist:', function(this: World, data: any) {
     data.hashes().forEach((row: MutationStepRow) => {
@@ -183,30 +139,6 @@ export function init(program: types.rpc.Program, cucumber: Cucumber): void {
     assert(emails.some((e: any) => e.key === key));
   });
 
-  Given('there are no events', function(this: World) {
-    this.setState({
-      current: {
-        events: [],
-      },
-    });
-  });
-
-  Given('the following event exists:', function(this: World, data: any) {
-    let events = this.state.current.events;
-
-    if (!events) {
-      events = [JSON.parse(data)];
-    } else {
-      events.push(JSON.parse(data));
-    }
-
-    this.setState({
-      current: {
-        events,
-      },
-    });
-  });
-
   Then('the following MODERATE_GRAPH_NODES mutation will exist:', function(
     this: World,
     data: any,
@@ -226,83 +158,10 @@ export function init(program: types.rpc.Program, cucumber: Cucumber): void {
     assert.strictEqual(relevantMutations.length, 1);
   });
 
-  Given('the user has custom field {string} equal to {string}', function(
-    this: World,
-    field: string,
-    val: string,
-  ) {
-    this.setState({
-      current: {
-        user: {
-          customFields: {
-            [field]: inferType(val),
-          },
-        },
-      },
-    });
-  });
-
   Then('the output template will be unchanged', function(this: World) {
     assert.deepStrictEqual(
       this.state.programTriggerResult,
       this.state.config.defaultTemplate,
     );
-  });
-
-  Given('there are no program rules', function(this: World) {
-    this.setState({
-      current: {
-        rules: undefined,
-      },
-    });
-  });
-
-  Given('there are no reward rules', function(this: World) {
-    this.setState({
-      current: {
-        rules: {
-          rewardRules: undefined,
-        },
-      },
-    });
-  });
-
-  Given('the program schema is located at {string}', function(
-    this: World,
-    path: string,
-  ) {
-    this.setState({
-      config: {
-        schemaPath: path,
-      },
-    });
-  });
-
-  Given('the default configuration is loaded', function(this: World) {
-    const defaultIntrospection = JSON.parse(
-      readFileSync('__tests__/defaults/introspection.json').toString(),
-    );
-
-    const schema = JSON.parse(
-      readFileSync(this.state.config.schemaPath || '').toString(),
-    );
-
-    const defaultRules = JSON.parse(
-      readFileSync('__tests__/defaults/rules.json').toString(),
-    );
-
-    const defaultTemplate = mergeRecursive(defaultIntrospection, schema);
-
-    this.setState({
-      current: {
-        rules: defaultRules,
-        template: defaultTemplate,
-      },
-      config: {
-        defaultIntrospection,
-        defaultRules,
-        defaultTemplate,
-      },
-    });
   });
 }
