@@ -7,7 +7,7 @@ import {inferType} from './src/utils';
 import {recursive as mergeRecursive} from 'merge';
 
 declare interface World extends CucumberWorld {
-  state: Readonly<Partial<State>>;
+  state: Readonly<State>;
 
   /**
    * Like React's setState method
@@ -15,20 +15,23 @@ declare interface World extends CucumberWorld {
    * @param newState
    */
   setState: (newState: Partial<State>) => World;
-
-  setRules: (rules: any) => void;
 }
 
 declare interface State {
   introspectionTrigger: any;
   programTriggerResult: any;
   eventTrigger: any;
-  config: {
-    schemaPath?: string;
-    defaultIntrospection?: any;
-    defaultRules?: any;
-    defaultTemplate?: any;
-  };
+  config: Partial<{
+    schemaPath: string;
+    defaultIntrospection: any;
+    defaultRules: any;
+    defaultTemplate: any;
+  }>;
+  current: Partial<{
+    programRewards: any[];
+    rules: any;
+    template: any;
+  }>;
 }
 
 declare interface Cucumber {
@@ -45,27 +48,26 @@ if (!process.env.PROGRAM_LOG_LEVEL) {
 
 export {World, State, Cucumber, init, inferType};
 
-export function CustomWorld() {
-  this.state = {};
-
-  this.setState = (newState: Partial<State>) => {
-    this.state = mergeRecursive(this.state, newState);
-    return this;
+export function CustomWorld(this: World) {
+  this.state = {
+    introspectionTrigger: {},
+    programTriggerResult: {},
+    eventTrigger: {},
+    config: {
+      schemaPath: '',
+      defaultIntrospection: {},
+      defaultRules: {},
+      defaultTemplate: {},
+    },
+    current: {
+      programRewards: [],
+      rules: {},
+      template: {},
+    },
   };
 
-  this.setRules = (rules: any) => {
-    this.setState({
-      introspectionTrigger: {
-        program: {
-          rules,
-        },
-        rules,
-      },
-      eventTrigger: {
-        program: {
-          rules,
-        },
-      },
-    });
+  this.setState = function(this: World, newState: Partial<State>) {
+    this.state = mergeRecursive(this.state, newState);
+    return this;
   };
 }

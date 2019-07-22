@@ -1,4 +1,5 @@
 import {HookScenarioResult} from 'cucumber';
+import {getIntrospectionJson} from './faker';
 
 import {World, State, Cucumber} from '..';
 
@@ -15,7 +16,6 @@ import {inferType} from './utils';
 import {
   Program,
   triggerProgram,
-  getIntrospectionBody,
   getTriggerBody,
 } from '@saasquatch/program-boilerplate';
 
@@ -35,9 +35,12 @@ export function init(program: Program, cucumber: Cucumber): void {
   });
 
   When('{string} runs', function(this: World, trigger: string) {
+    const currentState = this.state.current || {};
+    const {template, rules, programRewards} = currentState;
+
     const body =
       trigger === 'PROGRAM_INTROSPECTION'
-        ? getIntrospectionBody(this.state.introspectionTrigger)
+        ? getIntrospectionJson(template, rules, programRewards)
         : getTriggerBody({
             ...this.state.eventTrigger,
             activeTrigger: {
@@ -255,7 +258,7 @@ export function init(program: Program, cucumber: Cucumber): void {
 
   Given('there are no program rules', function(this: World) {
     this.setState({
-      introspectionTrigger: {
+      current: {
         rules: undefined,
       },
     });
@@ -263,7 +266,7 @@ export function init(program: Program, cucumber: Cucumber): void {
 
   Given('there are no reward rules', function(this: World) {
     this.setState({
-      introspectionTrigger: {
+      current: {
         rules: {
           rewardRules: undefined,
         },
@@ -288,7 +291,7 @@ export function init(program: Program, cucumber: Cucumber): void {
     );
 
     const schema = JSON.parse(
-      readFileSync(this.state.config.schemaPath).toString(),
+      readFileSync(this.state.config.schemaPath || '').toString(),
     );
 
     const defaultRules = JSON.parse(
@@ -298,9 +301,9 @@ export function init(program: Program, cucumber: Cucumber): void {
     const defaultTemplate = mergeRecursive(defaultIntrospection, schema);
 
     this.setState({
-      introspectionTrigger: {
-        template: defaultTemplate,
+      current: {
         rules: defaultRules,
+        template: defaultTemplate,
       },
       config: {
         defaultIntrospection,
