@@ -1,4 +1,4 @@
-import {World} from '.';
+import {World} from '..';
 
 export function inferType(
   val: string,

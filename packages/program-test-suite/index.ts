@@ -1,7 +1,7 @@
 import {World as CucumberWorld} from 'cucumber';
 
-import {init} from './steps';
-import {inferType} from './utils';
+import {init} from './src/steps';
+import {inferType} from './src/utils';
 
 // @ts-ignore
 import {recursive as mergeRecursive} from 'merge';

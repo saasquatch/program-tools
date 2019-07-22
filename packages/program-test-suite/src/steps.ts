@@ -1,6 +1,6 @@
 import {HookScenarioResult} from 'cucumber';
 
-import {World, State, Cucumber} from '.';
+import {World, State, Cucumber} from '..';
 
 import assert from 'assert';
 import delve from 'dlv';
