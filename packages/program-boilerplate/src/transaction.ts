@@ -33,9 +33,9 @@ export default class Transaction {
    * @classdesc A Transaction instance takes a context object from Express, generates mutations and analytics as the program requested.
    * @constructor
    *
-   * @param {TransactionContext} context     - An javascript object passed by webtask.
-   * @param {Object[]} mutations  - Mutations to be made on the program.
-   * @param {Object[]} analytics  - Analytics of the program.
+   * @param {TransactionContext} context   A javascript object passed by webtask.
+   * @param {Object[]}           mutations Mutations to be made on the program.
+   * @param {Object[]}           analytics Analytics of the program.
    */
   constructor(
     context: TransactionContext,
@@ -52,6 +52,13 @@ export default class Transaction {
     this.events = activeTrigger.events;
   }
 
+  /**
+   * Generates a PROGRAM_EVALUATED analytic and pushes it
+   * to the list of analytics.
+   *
+   * @param {User}        user The user to associate the analytic with
+   * @param {ProgramType} type The type of program
+   */
   fireProgramEvalAnalytics(user: User, type: ProgramType) {
     const evalAnalytic = {
       eventType: 'PROGRAM_EVALUATED',
@@ -68,11 +75,14 @@ export default class Transaction {
   }
 
   /**
-   * @param {object} user              - user who achieved the program goal
-   * @param {string} programType       - type of program
-   * @param {string} analyticsKey      - type of goal achieved
-   * @param {string} analyticsDedupeId - unique id of the analytic event
-   * @param {number} timestamp         - timestamp of the event
+   * Generates a PROGRAM_GOAL analytic and pushs it
+   * to the list of analytics.
+   *
+   * @param {object} user              user who achieved the program goal
+   * @param {string} programType       type of program
+   * @param {string} analyticsKey      type of goal achieved
+   * @param {string} analyticsDedupeId unique id of the analytic event
+   * @param {number} timestamp         timestamp of the event
    */
   fireProgramGoalAnalytics(
     user: User,
@@ -99,10 +109,10 @@ export default class Transaction {
   }
 
   /**
-   * @property {string?} emailKey     - Key of email template (as defined in Contentful).
-   * @property {string?} rewardKey    - Key of the reward (as defined in Contentful).
-   * @property {User} user            - The user to be given reward to (can be either referrer or referred user).
-   * @property {Object?} query        - Queries to obtain information required by the email. See {@link Queries}.
+   * @property {string?} emailKey  Key of email template (as defined in Contentful).
+   * @property {string?} rewardKey Key of the reward (as defined in Contentful).
+   * @property {User}    user      The user to be given reward to (can be either referrer or referred user).
+   * @property {Object?} query     Queries to obtain information required by the email. See {@link Queries}.
    */
 
   /**
@@ -131,9 +141,9 @@ export default class Transaction {
   /**
    * Generates reward for a user of a referral.
    *
-   * @param {string} rewardKey - Key of the reward (as defined in Contentful).
-   * @param {User} user - The user to be given reward to (can be either referrer or referred user).
-   * @param {string} referralId - id of the referral.
+   * @param {string} rewardKey  Key of the reward (as defined in Contentful).
+   * @param {User}   user       The user to be given reward to (can be either referrer or referred user).
+   * @param {string} referralId id of the referral.
    */
   generateReferralReward(input: ReferralRewardInput) {
     const {
@@ -178,9 +188,9 @@ export default class Transaction {
   /**
    * Generates an email for the user.
    *
-   * @param {string} emailKey - Key of email template (as defined in Contentful).
-   * @param {User} user       - The user to be sent a email to
-   * @param {string} rewardId - The reward id
+   * @param {string} emailKey Key of email template (as defined in Contentful).
+   * @param {User}   user     The user to be sent a email to
+   * @param {string} rewardId The reward id
    */
   generateSimpleEmail({
     emailKey,

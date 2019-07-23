@@ -1,6 +1,14 @@
 import {rewardScheduleQuery} from './queries';
 
-//return new template with reward schedules
+/**
+ * Append a reward schedule to the template and return the new template
+ *
+ * @param {object} template          The template
+ * @param {number} expiryWarningDays The number of warning days
+ * @param {string} key               The schedule key
+ * @param {string} emailKey          The email key
+ * @param {number} periodInHours     The refresh period
+ */
 export function setRewardSchedule({
   template,
   expiryWarningDays,
@@ -40,7 +48,10 @@ export function setRewardSchedule({
 }
 
 /**
- * Returns the appropriate timestamp based on the trigger
+ * Returns the appropriate timestamp based on the trigger.
+ * If the trigger includes a purchase event, the timestamp
+ * will be 1 millisecond before the `dateTriggered` field
+ * of the event. Otherwise, it will be the trigger time
  *
  * @param {any} trigger The trigger to base the timestamp on
  *
