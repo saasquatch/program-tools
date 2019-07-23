@@ -16,3 +16,9 @@ export type AnalyticsStepRow = {
   count: string;
   user: string;
 };
+
+export type ValidationStepRow = {
+  key: string;
+  message: string;
+  status: string;
+};

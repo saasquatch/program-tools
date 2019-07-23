@@ -3,6 +3,23 @@ import * as faker from 'faker';
 
 type ProgramIntrospectionBody = types.rpc.ProgramIntrospectionBody;
 type ProgramTriggerBody = types.rpc.ProgramTriggerBody;
+type ProgramValidationBody = types.rpc.ProgramValidationBody;
+type ValidationRequest = types.rpc.ValidationRequest;
+
+export function getValidationJson(
+  reqs: ValidationRequest[],
+  id: string,
+  rules: any,
+): ProgramValidationBody {
+  return {
+    messageType: 'PROGRAM_VALIDATION',
+    validationRequests: reqs,
+    program: {
+      id,
+      rules,
+    },
+  };
+}
 
 export function getIntrospectionJson(
   template?: any,

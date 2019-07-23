@@ -63,7 +63,7 @@ export type ProgramIntrospectionBody = {
  * to be validated along with the result of the graphql query
  * associated with the requirement
  */
-type ValidationRequest = {
+export type ValidationRequest = {
   key: string;
   queryResult: any;
 };

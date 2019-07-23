@@ -4,10 +4,27 @@ import assert from 'assert';
 import delve from 'dlv';
 import {inferType} from '../utils';
 
-import {MutationStepRow, AnalyticsStepRow} from '../types';
+import {MutationStepRow, AnalyticsStepRow, ValidationStepRow} from '../types';
 
 export function init(cucumber: Cucumber): void {
   const {Then} = cucumber;
+
+  Then('the following validation results will exist:', function(
+    this: World,
+    data: any,
+  ) {
+    const results = this.state.programTriggerResult.validationResults;
+    data.hashes().forEach((row: ValidationStepRow) => {
+      const relevantResult = results.find(r => r.key === row.key);
+      assert(relevantResult);
+
+      assert(
+        relevantResult.results.some(r => {
+          return r.message === row.message && r.status === row.status;
+        }),
+      );
+    });
+  });
 
   Then('the following mutations will exist:', function(this: World, data: any) {
     data.hashes().forEach((row: MutationStepRow) => {

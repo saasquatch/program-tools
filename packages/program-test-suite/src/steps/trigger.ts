@@ -1,4 +1,8 @@
-import {getIntrospectionJson, getProgramTriggerJson} from '../faker';
+import {
+  getIntrospectionJson,
+  getProgramTriggerJson,
+  getValidationJson,
+} from '../faker';
 import {World, Cucumber} from '../..';
 import {triggerProgram, types} from '@saasquatch/program-boilerplate';
 
@@ -17,6 +21,10 @@ export function init(program: types.rpc.Program, cucumber: Cucumber): void {
     switch (type) {
       case 'PROGRAM_INTROSPECTION':
         body = getIntrospectionJson(template, rules, programRewards);
+        break;
+
+      case 'PROGRAM_VALIDATION':
+        body = getValidationJson(this.state.validationReqs, template.id, rules);
         break;
       default:
         body = getProgramTriggerJson({

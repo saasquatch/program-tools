@@ -1,5 +1,7 @@
 import {World as CucumberWorld} from 'cucumber';
 
+import {types} from '@saasquatch/program-boilerplate';
+
 import {init} from './src/steps';
 import {inferType} from './src/utils';
 
@@ -19,6 +21,7 @@ declare interface World extends CucumberWorld {
 
 declare interface State {
   programTriggerResult: any;
+  validationReqs: types.rpc.ValidationRequest[];
   config: Partial<{
     schemaPath: string;
     defaultIntrospection: any;
@@ -52,6 +55,7 @@ export {World, State, Cucumber, init, inferType};
 export class CustomWorld implements World {
   state: Readonly<State> = {
     programTriggerResult: {},
+    validationReqs: [],
     config: {
       schemaPath: '',
       defaultIntrospection: {},
