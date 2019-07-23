@@ -5,7 +5,10 @@ import {triggerProgram, types} from '@saasquatch/program-boilerplate';
 export function init(program: types.rpc.Program, cucumber: Cucumber): void {
   const {When} = cucumber;
 
-  When('{string} runs', function(this: World, type: types.rpc.TriggerType) {
+  When('(the ){string}( trigger) runs', function(
+    this: World,
+    type: types.rpc.TriggerType,
+  ) {
     const currentState = this.state.current || {};
     const {template, rules, programRewards} = currentState;
 
