@@ -47,18 +47,7 @@ export function getProgramTriggerJson(
         suspectedFraudModerationState: 'IGNORE',
       },
     },
-    ids: [
-      'triggergivenid1',
-      'triggergivenid2',
-      'triggergivenid3',
-      'triggergivenid4',
-      'triggergivenid5',
-      'triggergivenid6',
-      'triggergivenid7',
-      'triggergivenid8',
-      'triggergivenid9',
-      'triggergivenid10',
-    ],
+    ids: [...Array(10).keys()].map(a => `triggergivenid${a + 1}`),
   };
 }
 
