@@ -16,7 +16,7 @@ export function init(program: types.rpc.Program, cucumber: Cucumber): void {
     const currentState = this.state.current || {};
     const {template, rules, programRewards} = currentState;
 
-    let body;
+    let body: any;
 
     switch (type) {
       case 'PROGRAM_INTROSPECTION':
