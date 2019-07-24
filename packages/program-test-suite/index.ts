@@ -2,7 +2,7 @@ import {World as CucumberWorld} from 'cucumber';
 
 import {types} from '@saasquatch/program-boilerplate';
 
-import {init} from './src/steps';
+import {init, setup} from './src/steps';
 import {inferType} from './src/utils';
 
 // @ts-ignore
@@ -53,7 +53,7 @@ if (!process.env.PROGRAM_LOG_LEVEL) {
   process.env.PROGRAM_LOG_LEVEL = 'none';
 }
 
-export {World, State, Cucumber, init, inferType};
+export {World, State, Cucumber, init, setup, inferType};
 
 export class CustomWorld implements World {
   state: Readonly<State> = {
