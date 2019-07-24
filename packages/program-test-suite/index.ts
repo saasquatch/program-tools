@@ -22,6 +22,9 @@ declare interface World extends CucumberWorld {
 declare interface State {
   programTriggerResult: any;
   validationReqs: types.rpc.ValidationRequest[];
+  assertionResults: {
+    [key: string]: any;
+  };
   config: Partial<{
     schemaPath: string;
     defaultIntrospection: any;
@@ -56,6 +59,7 @@ export class CustomWorld implements World {
   state: Readonly<State> = {
     programTriggerResult: {},
     validationReqs: [],
+    assertionResults: {},
     config: {
       schemaPath: '',
       defaultIntrospection: {},

@@ -9,6 +9,24 @@ import {MutationStepRow, AnalyticsStepRow, ValidationStepRow} from '../types';
 export function init(cucumber: Cucumber): void {
   const {Then} = cucumber;
 
+  Then('the output template will include a {string} requirement', function(
+    this: World,
+    key: string,
+  ) {
+    const reqs = this.state.programTriggerResult.requirements;
+    const reqFound = reqs.find(r => r.key === key);
+
+    this.setState({assertionResults: {foundRequirement: reqFound}});
+    assert(reqFound);
+  });
+
+  Then('the requirement will include a graphql query', function(this: World) {
+    const query = this.state.assertionResults.foundRequirement.query;
+    assert(query !== null, 'expected query to be not null');
+    assert(query !== undefined, 'expected query to be not undefined');
+    assert(query.length !== 0, 'expected query length > 0');
+  });
+
   Then('the following validation results will exist:', function(
     this: World,
     data: any,
