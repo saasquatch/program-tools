@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
-  "main": "dist/index.ts",
+  "files": ["dist"],
+  "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
     "@saasquatch/program-boilerplate": "^3.3.0-alpha.0",
