@@ -2,8 +2,8 @@ import {World as CucumberWorld} from 'cucumber';
 
 import {types} from '@saasquatch/program-boilerplate';
 
-import {init, setup} from './src/steps';
-import {inferType} from './src/utils';
+import {init, setup} from './steps';
+import {inferType} from './utils';
 
 // @ts-ignore
 import {recursive as mergeRecursive} from 'merge';
