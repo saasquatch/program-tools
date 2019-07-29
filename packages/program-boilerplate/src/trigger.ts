@@ -82,7 +82,7 @@ function handleProgramTrigger(
   } catch (e) {
     const errorMes = {
       error: 'An error occurred in a webtask',
-      message: e.toString(),
+      message: e.stack,
     };
 
     console.log(errorMes);
@@ -126,7 +126,7 @@ function handleProgramIntrospection(
   } catch (e) {
     const errorMes = {
       error: 'An error occurred in a webtask',
-      message: e.toString(),
+      message: e.stack,
     };
 
     console.log(errorMes);
