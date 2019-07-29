@@ -1,11 +1,9 @@
 {
   "name": "@saasquatch/program-boilerplate",
-  "version": "3.3.0-alpha.0",
+  "version": "3.3.0-alpha.1",
   "description": "Boilerplate for writing programs",
   "main": "dist/index.js",
-  "files": [
-    "dist/"
-  ],
+  "files": ["dist/"],
   "scripts": {
     "build": "tsc --declaration",
     "format": "prettier \"src/**/*.js\" --write",
