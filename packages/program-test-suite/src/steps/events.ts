@@ -1,4 +1,4 @@
-import {World, Cucumber} from '../..';
+import {World, Cucumber} from '../index';
 
 export function init(cucumber: Cucumber): void {
   const {Given} = cucumber;
@@ -12,17 +12,9 @@ export function init(cucumber: Cucumber): void {
   });
 
   Given('the following event exists:', function(this: World, data: any) {
-    let events = this.state.current.events;
-
-    if (!events) {
-      events = [JSON.parse(data)];
-    } else {
-      events.push(JSON.parse(data));
-    }
-
     this.setState({
       current: {
-        events,
+        events: [...this.state.current.events, JSON.parse(data)],
       },
     });
   });

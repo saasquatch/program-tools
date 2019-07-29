@@ -1,4 +1,4 @@
-import {World, Cucumber} from '../..';
+import {World, Cucumber} from '../index';
 
 import assert from 'assert';
 import delve from 'dlv';

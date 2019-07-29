@@ -1,4 +1,4 @@
-import {World, Cucumber} from '../..';
+import {World, Cucumber} from '../index';
 import {inferType} from '../utils';
 
 export function init(cucumber: Cucumber): void {

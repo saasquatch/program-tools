@@ -68,16 +68,29 @@ export function getProgramTriggerJson(
   };
 }
 
-function getAUCOUTJson(prev?: any, events?: any[]): any {
-  return {};
+export function getAUCOUTJson(prev?: any, events?: any[]): any {
+  return {
+    activeTrigger: {
+      events,
+      prev,
+    },
+  };
 }
 
-function getReferralJson(referralEventType: any, referral: any): any {
-  return {};
+export function getReferralJson(referralEventType: any, referral: any): any {
+  return {
+    activeTrigger: {
+      referral,
+    },
+  };
 }
 
-function getAUEPTJson(events?: any[]): any {
-  return {};
+export function getAUEPTJson(events?: any[]): any {
+  return {
+    activeTrigger: {
+      events,
+    },
+  };
 }
 
 export function getRandomUser(name: string): any {
@@ -90,6 +103,19 @@ export function getRandomUser(name: string): any {
     dateCreated: Date.now(),
     customFields: {},
     segments: [],
+    referredByReferral: {
+      id: 'REFERRALID',
+      referrerUser: {
+        id: 'REFERRERID',
+        accountId: 'REFERRERACCOUNTID',
+        dateBlocked: undefined,
+        rewards: {
+          totalCount: 0,
+          data: [],
+        },
+      },
+      rewards: [],
+    },
     rewards: {
       totalCount: 0,
       data: [],

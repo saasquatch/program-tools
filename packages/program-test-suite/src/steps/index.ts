@@ -1,11 +1,10 @@
-import {Cucumber, World} from '../..';
+import {Cucumber, World} from '../index';
 import {types} from '@saasquatch/program-boilerplate';
 import {getRandomUser} from '../faker';
 
 import {readFileSync} from 'fs';
 
-// @ts-ignore
-import {recursive as mergeRecursive} from 'merge';
+import deepmerge from 'deepmerge';
 
 import * as assertions from './assertions';
 import * as debug from './debug';
@@ -33,16 +32,14 @@ export function setup(
     );
 
     const schema = JSON.parse(readFileSync(paths.schema).toString());
-
     const defaultRules = JSON.parse(readFileSync(paths.rules).toString());
-
-    const defaultTemplate = mergeRecursive(defaultIntrospection, schema);
+    const defaultTemplate = deepmerge(defaultIntrospection, schema);
 
     this.setState({
       current: {
         rules: defaultRules,
         template: defaultTemplate,
-        user: getRandomUser('DEFAULT'),
+        user: getRandomUser('REFERRED'),
       },
       config: {
         defaultIntrospection,
