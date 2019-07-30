@@ -82,6 +82,24 @@ export function init(cucumber: Cucumber): void {
     });
   });
 
+  Then('there will not be a {word} analytic for the {word} user', function(
+    this: World,
+    type: string,
+    user: string,
+  ) {
+    const relevantAnalytics = this.state.programTriggerResult.analytics.filter(
+      (a: any) => {
+        return (
+          a.eventType === type &&
+          a.data.user.id === `${user.toUpperCase()}ID` &&
+          a.data.user.accountId === `${user.toUpperCase()}ACCOUNTID`
+        );
+      },
+    );
+
+    assert.strictEqual(relevantAnalytics.length, 0);
+  });
+
   Then('the following analytics will exist:', function(this: World, data: any) {
     data.hashes().forEach((row: AnalyticsStepRow) => {
       const relevantAnalytics = this.state.programTriggerResult.analytics.filter(
