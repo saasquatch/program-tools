@@ -40,6 +40,7 @@ export function init(cucumber: Cucumber): void {
         relevantResult.results.some(r => {
           return r.message === row.message && r.status === row.status;
         }),
+        `failed to find validation result: ${row.message} ${row.status}`,
       );
     });
   });
