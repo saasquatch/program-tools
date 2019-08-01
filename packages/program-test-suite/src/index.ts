@@ -3,7 +3,6 @@ import {World as CucumberWorld} from 'cucumber';
 import {types} from '@saasquatch/program-boilerplate';
 
 import {init, setup} from './steps';
-import {inferType} from './utils';
 
 import deepmerge from 'deepmerge';
 
@@ -53,7 +52,7 @@ if (!process.env.PROGRAM_LOG_LEVEL) {
   process.env.PROGRAM_LOG_LEVEL = 'none';
 }
 
-export {World, State, Cucumber, init, setup, inferType};
+export {World, State, Cucumber, init, setup};
 
 export class CustomWorld implements World {
   state: Readonly<State> = {
