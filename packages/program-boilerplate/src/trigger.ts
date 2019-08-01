@@ -107,15 +107,16 @@ function handleProgramIntrospection(
   program: Program,
 ): ProgramTriggerResult {
   const template = body.template;
-  const rules = body.rules;
+  const rules = body.program.rules;
   const bodyProgram = body.program;
+  const tenant = body.tenant;
 
   // Make modifications to template based on rules here if necessary.
   const handleIntrospection = program['PROGRAM_INTROSPECTION'];
   try {
     const newTemplate =
       (handleIntrospection &&
-        (handleIntrospection(template, rules, bodyProgram) ||
+        (handleIntrospection(template, rules, bodyProgram, tenant) ||
           handleIntrospection(template, rules))) ||
       template;
 

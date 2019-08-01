@@ -56,6 +56,10 @@ export type ProgramIntrospectionBody = {
   template: any;
   rules: any;
   program: any;
+  tenant: {
+    tenantAlias: string;
+    isLiveMode: boolean;
+  };
 };
 
 /**
@@ -102,6 +106,10 @@ export type ProgramIntrospectionHandler = (
   template: any,
   rules: any,
   program?: any,
+  tenant?: {
+    tenantAlias: string;
+    isLiveMode: boolean;
+  },
 ) => any;
 
 /**
