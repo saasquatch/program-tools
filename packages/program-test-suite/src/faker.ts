@@ -35,6 +35,10 @@ export function getIntrospectionJson(
       rules,
       rewards,
     },
+    tenant: {
+      tenantAlias: 'test_UNITTESTTENANT',
+      isLiveMode: false,
+    },
   };
 }
 

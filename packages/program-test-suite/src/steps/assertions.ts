@@ -2,7 +2,7 @@ import {World, Cucumber} from '../index';
 
 import assert from 'assert';
 import delve from 'dlv';
-import {inferType} from '../utils';
+import {inferType} from '@saasquatch/program-boilerplate';
 
 import {MutationStepRow, AnalyticsStepRow, ValidationStepRow} from '../types';
 

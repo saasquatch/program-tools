@@ -3,7 +3,9 @@
   "version": "3.3.0-alpha.2",
   "description": "Boilerplate for writing programs",
   "main": "dist/index.js",
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "build": "tsc --declaration",
     "format": "prettier \"src/**/*.js\" --write",

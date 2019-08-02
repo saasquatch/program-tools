@@ -1,5 +1,5 @@
 import {World, Cucumber} from '../index';
-import {inferType} from '../utils';
+import {inferType} from '@saasquatch/program-boilerplate';
 
 export function init(cucumber: Cucumber): void {
   const {Given} = cucumber;
