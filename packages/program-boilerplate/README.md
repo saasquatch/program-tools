@@ -14,14 +14,6 @@ Here is the basic architecture of the SaaSquatch program engine:
 
 ![](media/arch.png)
 
-A SaaSquatch program consists of three major components:
-* General program trigger handlers ([`PROGRAM_TRIGGER`](https://github.com/saasquatch/program-tools/blob/master/packages/program-boilerplate/src/types/rpc.ts#L39))
-* Program introspection handler ([`PROGRAM_INTROSPECTION`](https://github.com/saasquatch/program-tools/blob/master/packages/program-boilerplate/src/types/rpc.ts#L54))
-* Program validation handlers ([`PROGRAM_VALIDATION`](https://github.com/saasquatch/program-tools/blob/master/packages/program-boilerplate/src/types/rpc.ts#L66))
-
-Combined, these components form a program. All three triggers are optional and aren't
-necessarily implemented by all programs.
-
 ## Schema
 Each program has a schema, written in JSON schema language. The schema defines several
 aspects of the program, including its rules, rewards, emails, widgets, requirements, and
@@ -42,6 +34,14 @@ documents written in Gherkin language. This is usually done by Eric and resides 
 `blackbox-testing` repository along with the rest of the specs. For newer programs there
 are low-level tech specs that are used for unit testing. These also live in the
 `blackbox-testing` repo in a sub-folder called `unit`.
+
+SaaSquatch program logic consists of three major components (triggers):
+* General program trigger handlers ([`PROGRAM_TRIGGER`](https://github.com/saasquatch/program-tools/blob/master/packages/program-boilerplate/src/types/rpc.ts#L39))
+* Program introspection handler ([`PROGRAM_INTROSPECTION`](https://github.com/saasquatch/program-tools/blob/master/packages/program-boilerplate/src/types/rpc.ts#L54))
+* Program validation handlers ([`PROGRAM_VALIDATION`](https://github.com/saasquatch/program-tools/blob/master/packages/program-boilerplate/src/types/rpc.ts#L66))
+
+Combined, these components form a program. All three triggers are optional and aren't
+necessarily implemented by all programs.
 
 ### General Program Triggers
 
