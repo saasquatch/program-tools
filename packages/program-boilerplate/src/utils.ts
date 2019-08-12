@@ -66,14 +66,22 @@ export function getGoalAnalyticTimestamp(trigger: any): number {
 }
 
 /**
- * Translates a string type into its proper JavaScript type
+ * Translates a string type into its proper JavaScript type.
+ * Only supports conversion to number, boolean, null and undefined values.
+ * Objects and arrays are not supported.
  *
  * @example
- *
- * "29" => 29
- * "3.1415" => 3.1415
- * "true" => true
- * "asdf" => "asdf"
+ * "29" => 29 (number)
+ * @example
+ * "3.1415" => 3.1415 (number)
+ * @example
+ * "true" => true (boolean)
+ * @example
+ * "asdf" => "asdf" (string)
+ * @example
+ * NaN => NaN (number)
+ * @example
+ * undefined => undefined
  *
  * @param {string} val The value to test
  * @return {any} the computed value

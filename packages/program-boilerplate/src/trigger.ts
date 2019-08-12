@@ -20,6 +20,7 @@ import {
  *
  * @return {ProgramTriggerResult} The program trigger result
  *
+ * @example
  * Example return object:
  * {
  *   json: { "example": "json" },
