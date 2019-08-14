@@ -81,7 +81,7 @@ export default class Transaction {
    * @param {object} user              user who achieved the program goal
    * @param {string} programType       type of program
    * @param {string} analyticsKey      type of goal achieved
-   * @param {string} analyticsDedupeId unique id of the analytic event
+   * @param {string} analyticsDedupeId dedupe id of the analytic event
    * @param {number} timestamp         timestamp of the event
    */
   fireProgramGoalAnalytics(
@@ -107,13 +107,6 @@ export default class Transaction {
 
     this.analytics.push(goalAnalytic);
   }
-
-  /**
-   * @property {string?} emailKey  Key of email template (as defined in Contentful).
-   * @property {string?} rewardKey Key of the reward (as defined in Contentful).
-   * @property {User}    user      The user to be given reward to (can be either referrer or referred user).
-   * @property {Object?} query     Queries to obtain information required by the email. See {@link Queries}.
-   */
 
   /**
    * Generates a reward that does not relates to any referral, for the currrent user.
