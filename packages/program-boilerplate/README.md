@@ -96,7 +96,10 @@ Before you create a new program you will need the following tools installed on y
 computer:
 
 * NodeJS / npm
-* Heroku CLI
+* Heroku CLI (logged in with permission to access the `saasquatch-webtasks` team)
+
+All of the commands in the tutorial, are written for a UNIX shell (MacOS/Linux). If
+you're on Windows, good luck!
 
 ## Set up the program code on your local machine
 Under the `programs` folder, create a new folder for your program:
@@ -107,7 +110,7 @@ cd <my-program>
 Replace `<my-program>` with your program name for the rest of this tutorial. Program
 names are kebab case by convention.
 
-Initialize a new npm module: 
+Initialize a new npm module:
 ```
 npm init
 ```
@@ -141,6 +144,9 @@ mkdir -p src/schema
 touch src/schema/<my-program>_schema.json
 touch src/program.ts src/<my-program>.ts
 ```
+The program template will be stored under `schema/<my-program>_schema.json`. The `schema`
+naming is simply a legacy decision, perhaps in the future it could be changed to
+`template/<my-program>_template.json`.
 
 Having `program.ts` and `<my-program>.ts` files in the source root is standard for newer
 programs. `program.ts` should export a `Program` type with the relevant handlers, and
@@ -182,6 +188,39 @@ Running `npm build && npm start` should now run your program locally (useless fo
 but a good test to make sure things are working).
 
 ## Set up your program template
-As mentioned previously, your program also needs a 
+As mentioned previously, your program also needs a template which defines its rules,
+rewards, emails etc. You could try to write your template from scratch, but it would
+likely be easier to copy/paste one from another program and edit it accordingly. You can
+probably skip this step and come back to it later.
+
+## Provisioning cloud infrastructure
+Next it is time to provision your cloud infrastructure that will host your program
+components.
+
+### Creating a Heroku pipeline
+In the Heroku console, switch to the `saasquatch-webtasks` team. Select `New` -> `Create
+new pipeline`. The name of the pipeline should match the name for your program that was
+chosen in the previous step. Do not connect to GitHub.
+
+Next, add the staging and prod apps to the pipeline by clicking `Add app` -> `Create new
+app...` under the respective staging and production pipeline stages. By convention, the
+app names are `<my-program>-staging` and `<my-program>-prod`.
+
+#### Setting up the Heroku app
+Now that your apps are created, you can configure them to run your program. It's easiest
+to do this from the command line. The first thing you will want to do is use the
+`heroku.sh` script to set up the git remotes.
+
+From the `programs` folder, run:
+```
+./heroku.sh setup-remotes
+```
+This will set up the git remotes for making deployments to the various programs. It's OK
+if you get a bunch of `fatal: remote <some_remote> already exists.` errors.
+
+**WARNING**:
+The `setup-remotes` command will only work if the folder name for your program matches
+the names of the Heroku programs, ie. you have a folder: `my-program` and Heroku programs
+`my-program-staging` and `my-program-prod`.
 
 # Program development workflow
