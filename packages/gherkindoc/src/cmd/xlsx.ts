@@ -65,11 +65,13 @@ export const handler = async (argv: Arguments) => {
 
     curr.sheets.push({name, id: ws.id});
 
-    // ws.state = 'visible';
-    // ws.views = [{
-    //   state: 'frozen',
-    //   ySplit: 1
-    // }];
+    ws.state = 'visible';
+    ws.views = [
+      {
+        state: 'frozen',
+        ySplit: 1,
+      },
+    ];
 
     setupTable(ws, name, testers, NUM_CONTENT_ROWS, maxWidths);
 
@@ -122,7 +124,6 @@ const genTocTable = (wb: any, toc: any, testers: number) => {
   generateSheetStructure(ws, toc, 0);
 };
 
-/* _recursive_ */
 const generateSheetStructure = (ws: any, dir: any, indentLevel: number) => {
   for (const key in dir) {
     ws.addRow({name: dir[key].title});
