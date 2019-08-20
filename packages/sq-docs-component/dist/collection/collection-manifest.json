@@ -1,0 +1,14 @@
+{
+  "entries": [
+    "components\\sq-code-example\\sq-code-example.js",
+    "components\\sq-code\\sq-code.js",
+    "components\\sq-docs\\sq-docs.js"
+  ],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "1.0.7",
+    "typescriptVersion": "3.5.2"
+  },
+  "collections": [],
+  "bundles": []
+}

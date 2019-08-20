@@ -1,0 +1,114 @@
+.hidden {
+  display: none;
+}
+
+sq-code {
+  margin-top: 15px;
+  display: block;
+  position: relative;
+  /* Code blocks */
+  /* Inline code */
+}
+sq-code code[class*=language-],
+sq-code pre {
+  box-sizing: border-box;
+  position: relative;
+  height: auto;
+  color: #f8f8f2;
+  background: none;
+  background-color: none;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 1em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+sq-code pre {
+  width: 100%;
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+sq-code :not(pre) > code[class*=language-],
+sq-code pre {
+  background: #272822;
+}
+sq-code :not(pre) > code[class*=language-] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+}
+sq-code .token.comment,
+sq-code .token.prolog,
+sq-code .token.doctype,
+sq-code .token.cdata {
+  color: slategray;
+}
+sq-code .token.punctuation {
+  color: #f8f8f2;
+}
+sq-code .namespace {
+  opacity: 0.7;
+}
+sq-code .token.property,
+sq-code .token.tag,
+sq-code .token.constant,
+sq-code .token.symbol,
+sq-code .token.deleted {
+  color: #f92672;
+}
+sq-code .token.boolean,
+sq-code .token.number {
+  color: #ae81ff;
+}
+sq-code .token.selector,
+sq-code .token.attr-name,
+sq-code .token.string,
+sq-code .token.char,
+sq-code .token.builtin,
+sq-code .token.inserted {
+  color: #a6e22e;
+}
+sq-code .token.operator,
+sq-code .token.entity,
+sq-code .token.url,
+sq-code .language-css .token.string,
+sq-code .style .token.string,
+sq-code .token.variable {
+  color: #f8f8f2;
+}
+sq-code .token.atrule,
+sq-code .token.attr-value,
+sq-code .token.function,
+sq-code .token.class-name {
+  color: #e6db74;
+}
+sq-code .token.keyword {
+  color: #66d9ef;
+}
+sq-code .token.regex,
+sq-code .token.important {
+  color: #fd971f;
+}
+sq-code .token.important,
+sq-code .token.bold {
+  font-weight: bold;
+}
+sq-code .token.italic {
+  font-style: italic;
+}
+sq-code .token.entity {
+  cursor: help;
+}

@@ -1,0 +1,58 @@
+sq-code-example {
+  .code-container {
+    position:relative;
+    margin-top: 16px;
+  }
+  .copy-button {
+    width: 85px;
+    height: 30px;
+    position: absolute;
+    top:4.75em;
+    right: 1em;
+    z-index: 1;
+    color: #FFF;
+    background: transparent;
+  }
+  .copy-button:hover {
+    color: #66d9ef;
+  }
+  .copied pre {
+    width:calc(100% - 2px);
+    height:calc(100% - 2px);
+    box-shadow: 0 0 2pt 2pt #428bca;
+	}
+  .sq-tabs {
+    display:block;
+    margin-bottom:5px;
+    border-bottom:1px solid #ddd;
+  }
+  .sq-tab {
+    display:inline-block;
+    margin-bottom:-1px;
+  }
+  .sq-tab button:hover {
+    background-color:rgba(200,200,200,0.1);
+    border-radius: 3px 3px 0 0;
+  }
+  .sq-open button:hover {
+    cursor:default;
+    background-color:#FFF;
+  }
+  .sq-open button {
+    color:#555;
+    border: 1px solid #ddd;
+    border-radius: 3px 3px 0 0;
+    border-bottom-color: transparent;
+  }
+  button {
+    background-color:#FFF;
+    border:none;
+    outline:none;
+    cursor:pointer;
+    font-size:13px;
+    color:#428bca;
+    height:100%;
+    width:100%;
+    padding:5px 10px;
+  }
+}
