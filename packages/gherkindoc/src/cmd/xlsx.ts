@@ -1,11 +1,11 @@
-import XlsxPopulate from 'xlsx-populate';
+const Excel = require('exceljs/modern.nodejs');
 import chalk from 'chalk';
 
-import { generate as generateJson } from '../util/json';
-import { setupTable } from '../util/xlsx';
-import { styles } from '../util/styles';
-import { isDir, gherkins, getOutputFileName, getAllPaths } from '../util/fio';
-import { Arguments } from 'yargs';
+import {generate as generateJson} from '../util/json';
+import {setupTable} from '../util/xlsx';
+import {styles} from '../util/styles';
+import {isDir, gherkins, getOutputFileName, getAllPaths} from '../util/fio';
+import {Arguments} from 'yargs';
 
 export const command = 'xlsx';
 export const desc = 'Parse the provided file or directory into XLSX';
@@ -29,19 +29,19 @@ export const handler = async (argv: Arguments) => {
   const outFile = getOutputFileName(argv.out as string);
   const files = isDir(args[0]) ? gherkins(args[0]) : [args[0]];
   const json = await generateJson(files);
-  const wb = await XlsxPopulate.blankFromAsync();
-  const testers = argv.testers as number || 0;
+  const wb = new Excel.Workbook();
+  const testers = (argv.testers as number) || 0;
   const toc: any = {};
 
   wb.creator = `${json.configuration.program} v${json.configuration.version}`;
   wb.created = new Date(json.configuration.generatedOnTimestamp);
   wb.modified = new Date(json.configuration.generatedOnTimestamp);
 
-  wb.addSheet('TOC');
+  wb.addWorksheet('TOC');
 
   json.features.forEach((feature: any) => {
     const name = feature.feature.name.replace(/\s/g, '').toUpperCase();
-    const ws = wb.addSheet(name);
+    const ws = wb.addWorksheet(name);
     const maxWidths: any = {};
 
     const allRelativePaths = getAllPaths(feature.relativeFolder);
@@ -81,11 +81,14 @@ export const handler = async (argv: Arguments) => {
     ws.addRow();
 
     if (feature.feature.description) {
-      ws.addRow({content0: feature.feature.description.replace(/\n +/g, '\n').trim()});
+      ws.addRow({
+        content0: feature.feature.description.replace(/\n +/g, '\n').trim(),
+      });
 
       ws.lastRow.height =
-        (feature.feature.description.split(/\r\n|\r|\n/).length - 1)
-        * DESCRIPTION_HEIGHT_MULTIPLIER + DESCRIPTION_HEIGHT_OFFSET;
+        (feature.feature.description.split(/\r\n|\r|\n/).length - 1) *
+          DESCRIPTION_HEIGHT_MULTIPLIER +
+        DESCRIPTION_HEIGHT_OFFSET;
 
       ws.addRow();
     }
@@ -101,9 +104,12 @@ export const handler = async (argv: Arguments) => {
 
   genTocTable(wb, toc, testers);
 
-  wb.xlsx.writeFile(outFile)
+  wb.xlsx
+    .writeFile(outFile)
     .then(() => {
-      console.log(`${chalk.green('Success')}: Sheets generated & written to ${outFile}`);
+      console.log(
+        `${chalk.green('Success')}: Sheets generated & written to ${outFile}`,
+      );
     })
     .catch((err: Error) => {
       console.log(`${chalk.red('ERROR')}: ${err.message}`);
@@ -125,7 +131,7 @@ const generateSheetStructure = (ws: any, dir: any, indentLevel: number) => {
       ws.addRow({
         [`content${indentLevel}`]: {
           text: sheet.name,
-          hyperlink: `#'${sheet.name}'.A1`,
+          hyperlink: `#${sheet.name}.A1`,
         },
       });
     });
@@ -140,7 +146,7 @@ function genScenarioContent(
   ws: any,
   scenario: any,
   testers: number,
-  maxWidths: any
+  maxWidths: any,
 ) {
   scenario.beforeComments.forEach((comment: any) => {
     ws.addRow({content0: comment});
@@ -177,7 +183,12 @@ function genScenarioContent(
   ws.addRow();
 }
 
-const genStepContent = (ws: any, step: any, testers: number, maxWidths: any) => {
+const genStepContent = (
+  ws: any,
+  step: any,
+  testers: number,
+  maxWidths: any,
+) => {
   step.beforeComments.forEach((comment: any) => {
     ws.addRow({content1: comment});
     ws.lastRow.font = styles.light;
@@ -201,7 +212,7 @@ function genExampleTable(
   ws: any,
   example: any,
   testers: number,
-  maxWidths: any
+  maxWidths: any,
 ) {
   example.beforeComments.forEach((comment: any) => {
     ws.addRow({content0: comment});
@@ -257,12 +268,7 @@ function genExampleTable(
   });
 }
 
-function genDataTable(
-  ws: any,
-  table: any[],
-  testers: number,
-  maxWidths: any
-) {
+function genDataTable(ws: any, table: any[], testers: number, maxWidths: any) {
   if (table.length === 0) {
     return;
   }
@@ -290,7 +296,7 @@ function genDataTable(
   });
 
   table.shift();
-  table.forEach((row: any)=> {
+  table.forEach((row: any) => {
     const cellsToStyle: any[] = [];
     const contentRow: any = {};
 

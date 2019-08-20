@@ -22,10 +22,11 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
+    "chalk": "^2.4.2",
+    "exceljs": "^1.15.0",
     "gherkin": "^6.0.17",
     "glob": "^7.1.4",
     "moment": "^2.24.0",
-    "xlsx-populate": "^1.19.1",
     "yargs": "^13.2.4"
   }
 }
