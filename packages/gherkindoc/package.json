@@ -1,5 +1,5 @@
 {
-  "name": "gherkindoc",
+  "name": "@saasquatch/gherkindoc",
   "version": "0.0.1",
   "description": "Compile spec documents written in Gherkin language to XLSX or JSON",
   "main": "dist/index.js",
