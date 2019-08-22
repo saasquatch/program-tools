@@ -64,3 +64,53 @@ export function getGoalAnalyticTimestamp(trigger: any): number {
 
   return purchaseEvent ? purchaseEvent.dateTriggered - 1 : trigger.time;
 }
+
+/**
+ * Translates a string type into its proper JavaScript type.
+ * Only supports conversion to number, boolean, null and undefined values.
+ * Objects and arrays are not supported.
+ *
+ * @example
+ * "29" => 29 (number)
+ * @example
+ * "3.1415" => 3.1415 (number)
+ * @example
+ * "true" => true (boolean)
+ * @example
+ * "asdf" => "asdf" (string)
+ * @example
+ * NaN => NaN (number)
+ * @example
+ * undefined => undefined
+ *
+ * @param {string} val The value to test
+ * @return {any} the computed value
+ */
+export function inferType(val: string): any {
+  if (/^(-|\+)?([0-9]+(\.[0-9]+)?)$/.test(val)) {
+    const asNum = Number(val);
+
+    if (!isNaN(asNum)) {
+      return asNum;
+    }
+  }
+
+  switch (val) {
+    case 'undefined':
+      return undefined;
+    case 'null':
+      return null;
+    case 'NaN':
+      return NaN;
+    case 'Infinity':
+      return Infinity;
+    case '-Infinity':
+      return -Infinity;
+    case 'true':
+      return true;
+    case 'false':
+      return false;
+    default:
+      return val;
+  }
+}

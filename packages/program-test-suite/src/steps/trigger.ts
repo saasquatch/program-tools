@@ -1,10 +1,16 @@
 import {
   getIntrospectionJson,
+  getAUCOUTJson,
+  getAUEPTJson,
+  getReferralJson,
   getProgramTriggerJson,
   getValidationJson,
 } from '../faker';
-import {World, Cucumber} from '../..';
+
+import {World, Cucumber} from '../index';
 import {triggerProgram, types} from '@saasquatch/program-boilerplate';
+
+import deepmerge from 'deepmerge';
 
 export function init(program: types.rpc.Program, cucumber: Cucumber): void {
   const {When} = cucumber;
@@ -33,6 +39,26 @@ export function init(program: types.rpc.Program, cucumber: Cucumber): void {
           rules: this.state.current.rules,
           time: this.state.current.time,
         });
+    }
+
+    switch (type) {
+      case 'AFTER_USER_CREATED_OR_UPDATED':
+        body = deepmerge(
+          body,
+          getAUCOUTJson(undefined, this.state.current.events),
+        );
+        break;
+      case 'AFTER_USER_EVENT_PROCESSED':
+        body = deepmerge(body, getAUEPTJson(this.state.current.events));
+        break;
+      case 'REFERRAL':
+        body = deepmerge(
+          body,
+          getReferralJson(undefined, this.state.current.referral),
+        );
+        break;
+      default:
+        break;
     }
 
     this.setState({

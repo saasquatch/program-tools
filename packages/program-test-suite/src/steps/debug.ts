@@ -1,4 +1,4 @@
-import {World, Cucumber} from '../..';
+import {World, Cucumber} from '../index';
 import {HookScenarioResult} from 'cucumber';
 
 export function init(cucumber: Cucumber): void {

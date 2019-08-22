@@ -1,23 +1,23 @@
-import Transaction from './transaction';
-import {rewardEmailQuery} from './queries';
+import * as express from 'express';
+import {createLogger, format, Logger, transports} from 'winston';
+
 import {meetCustomFieldRules, meetEventTriggerRules} from './conversion';
-import {setRewardSchedule, getGoalAnalyticTimestamp} from './utils';
+import {rewardEmailQuery} from './queries';
+import Transaction from './transaction';
+import {triggerProgram} from './trigger';
+import * as types from './types';
 
 import {
   Program,
-  RequirementValidationResult,
   ProgramRequirement,
+  RequirementValidationResult,
   ValidationProgramField,
 } from './types/rpc';
 
-import * as types from './types';
-export {types};
-
 import {ProgramType} from './types/saasquatch';
-import {triggerProgram} from './trigger';
+import {inferType, getGoalAnalyticTimestamp, setRewardSchedule} from './utils';
 
-import {Logger, format, createLogger, transports} from 'winston';
-import * as express from 'express';
+export {types};
 
 export {
   Transaction,
@@ -32,6 +32,7 @@ export {
   RequirementValidationResult,
   ProgramRequirement,
   ValidationProgramField,
+  inferType,
 };
 
 /**

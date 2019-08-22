@@ -1,8 +1,8 @@
-import {World, Cucumber} from '../..';
+import {World, Cucumber} from '../index';
 
 import assert from 'assert';
 import delve from 'dlv';
-import {inferType} from '../utils';
+import {inferType} from '@saasquatch/program-boilerplate';
 
 import {MutationStepRow, AnalyticsStepRow, ValidationStepRow} from '../types';
 
@@ -40,6 +40,7 @@ export function init(cucumber: Cucumber): void {
         relevantResult.results.some(r => {
           return r.message === row.message && r.status === row.status;
         }),
+        `failed to find validation result: ${row.message} ${row.status}`,
       );
     });
   });
@@ -80,6 +81,24 @@ export function init(cucumber: Cucumber): void {
         default:
       }
     });
+  });
+
+  Then('there will not be a {word} analytic for the {word} user', function(
+    this: World,
+    type: string,
+    user: string,
+  ) {
+    const relevantAnalytics = this.state.programTriggerResult.analytics.filter(
+      (a: any) => {
+        return (
+          a.eventType === type &&
+          a.data.user.id === `${user.toUpperCase()}ID` &&
+          a.data.user.accountId === `${user.toUpperCase()}ACCOUNTID`
+        );
+      },
+    );
+
+    assert.strictEqual(relevantAnalytics.length, 0);
   });
 
   Then('the following analytics will exist:', function(this: World, data: any) {
