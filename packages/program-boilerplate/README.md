@@ -223,4 +223,3 @@ The `setup-remotes` command will only work if the folder name for your program m
 the names of the Heroku programs, ie. you have a folder: `my-program` and Heroku programs
 `my-program-staging` and `my-program-prod`.
 
-# Program development workflow
