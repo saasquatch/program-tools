@@ -153,6 +153,7 @@ export type ProgramTriggerResult = {
  * A result for an individual program requirement check
  */
 export type RequirementValidationResult = {
+  title: string;
   message: string;
   status: 'ERROR' | 'WARN' | 'SUCCESS';
 };

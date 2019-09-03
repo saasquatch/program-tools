@@ -3,7 +3,9 @@
   "version": "3.3.0-alpha.4",
   "description": "Boilerplate for writing programs",
   "main": "dist/index.js",
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "build": "tsc --declaration",
     "build:docs": "typedoc --out ./docs ./src --ignoreCompilerErrors --media assets --hideGenerator",
