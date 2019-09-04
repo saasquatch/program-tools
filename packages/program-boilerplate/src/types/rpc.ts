@@ -154,7 +154,7 @@ export type ProgramTriggerResult = {
  */
 export type RequirementValidationResult = {
   message: string;
-  description: string;
+  longDescription: string;
   status: 'ERROR' | 'WARN' | 'SUCCESS';
 };
 
