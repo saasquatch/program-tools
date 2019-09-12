@@ -15,7 +15,12 @@ import {
 } from './types/rpc';
 
 import {ProgramType} from './types/saasquatch';
-import {inferType, getGoalAnalyticTimestamp, setRewardSchedule} from './utils';
+import {
+  inferType,
+  getGoalAnalyticTimestamp,
+  setRewardSchedule,
+  numToEquality,
+} from './utils';
 
 export {types};
 
@@ -33,6 +38,7 @@ export {
   ProgramRequirement,
   ValidationProgramField,
   inferType,
+  numToEquality,
 };
 
 /**
