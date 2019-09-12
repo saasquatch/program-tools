@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/program-boilerplate",
-  "version": "3.3.0-alpha.8",
+  "version": "3.3.0-alpha.9",
   "description": "Boilerplate for writing programs",
   "main": "dist/index.js",
   "files": [

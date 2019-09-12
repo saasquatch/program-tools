@@ -114,3 +114,22 @@ export function inferType(val: string): any {
       return val;
   }
 }
+
+/**
+ * Converts a number representation of a conversion operator set in program
+ * rules to a string that can be user in a graphQL query
+ * @param num the conversion criteria set in a program
+ * @return {string} the string representation of the conversion operator
+ */
+export function numToEquality(num: number): string {
+  switch (num) {
+    case 0:
+      return 'eq';
+    case 1:
+      return 'gte';
+    case 2:
+      return 'lte';
+    default:
+      return 'eq';
+  }
+}
