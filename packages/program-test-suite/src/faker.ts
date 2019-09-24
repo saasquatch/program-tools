@@ -14,6 +14,7 @@ export function getValidationJson(
   return {
     messageType: 'PROGRAM_VALIDATION',
     validationRequests: reqs,
+    time: 1,
     program: {
       id,
       rules,
