@@ -170,7 +170,7 @@ function handleProgramValidation(
     } else {
       results.push({
         key: r.key,
-        results: requirementHandler(r.queryResult, body.program),
+        results: requirementHandler(r.queryResult, body.program, body.time),
       });
     }
   });

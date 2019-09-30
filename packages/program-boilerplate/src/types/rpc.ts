@@ -89,6 +89,7 @@ export type ProgramValidationBody = {
   messageType: 'PROGRAM_VALIDATION';
   validationRequests: ValidationRequest[];
   program: ValidationProgramField;
+  time: number;
 };
 
 /********************************************************/
@@ -124,6 +125,7 @@ export type ProgramIntrospectionHandler = (
 export type RequirementValidationHandler = (
   queryResult: any,
   program: ValidationProgramField,
+  time: number,
 ) => RequirementValidationResult[];
 
 /**
@@ -154,6 +156,7 @@ export type ProgramTriggerResult = {
  */
 export type RequirementValidationResult = {
   message: string;
+  longDescription: string;
   status: 'ERROR' | 'WARN' | 'SUCCESS';
 };
 
