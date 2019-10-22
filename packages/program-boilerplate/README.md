@@ -206,6 +206,9 @@ Next, add the staging and prod apps to the pipeline by clicking `Add app` -> `Cr
 app...` under the respective staging and production pipeline stages. By convention, the
 app names are `<my-program>-staging` and `<my-program>-prod`.
 
+In each Heroku app add `APP_BASE` as a configuration variable and set it to the path of
+the program in the SaaSquatch core repo.
+
 #### Setting up the Heroku app
 Now that your apps are created, you can configure them to run your program. It's easiest
 to do this from the command line. The first thing you will want to do is use the
