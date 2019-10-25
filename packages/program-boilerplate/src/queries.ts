@@ -219,7 +219,6 @@ export const rewardScheduleQuery = (emailKey: string) => {
     accountId
     firstName
     lastName
-    referralCode
     imageUrl
     email
     cookieId
