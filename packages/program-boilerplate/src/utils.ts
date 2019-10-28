@@ -1,4 +1,7 @@
 import {rewardScheduleQuery} from './queries';
+import {ProgramTriggerBody, TriggerType} from './types/rpc';
+import {User} from './types/saasquatch';
+import {loggers} from 'winston';
 
 /**
  * Append a reward schedule to the template and return the new template
@@ -131,5 +134,44 @@ export function numToEquality(num: number): string {
       return 'lte';
     default:
       return 'eq';
+  }
+}
+
+export function getTriggerSchema(body: ProgramTriggerBody) {
+  const activeTrigger = body.activeTrigger;
+  const triggerType = activeTrigger.type as TriggerType;
+  const standardData = {
+    type: activeTrigger.type,
+    time: activeTrigger.time,
+    user: activeTrigger.user,
+  };
+  switch (triggerType) {
+    case 'AFTER_USER_CREATED_OR_UPDATED':
+      return {
+        ...standardData,
+        previous: activeTrigger.previous,
+      };
+    case 'REFERRAL':
+      return {
+        ...standardData,
+        referral: activeTrigger.referral,
+      };
+    case 'AFTER_USER_EVENT_PROCESSED':
+      return {
+        ...standardData,
+        event: {
+          key: activeTrigger.events.key,
+          dateTriggered: activeTrigger.events.dateTriggered,
+          fields: activeTrigger.events.fields,
+        },
+      };
+    case 'SCHEDULED':
+      return {
+        ...standardData,
+      };
+    case 'REWARD_SCHEDULED':
+      return {
+        ...standardData,
+      };
   }
 }
