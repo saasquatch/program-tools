@@ -137,7 +137,7 @@ export function numToEquality(num: number): string {
   }
 }
 
-export function getTriggerSchema(body: ProgramTriggerBody) {
+export function getTriggerSchema(body: ProgramTriggerBody): object[] {
   const activeTrigger = body.activeTrigger;
   const triggerType = activeTrigger.type as TriggerType;
   const standardData = {
@@ -147,31 +147,44 @@ export function getTriggerSchema(body: ProgramTriggerBody) {
   };
   switch (triggerType) {
     case 'AFTER_USER_CREATED_OR_UPDATED':
-      return {
-        ...standardData,
-        previous: activeTrigger.previous,
-      };
-    case 'REFERRAL':
-      return {
-        ...standardData,
-        referral: activeTrigger.referral,
-      };
-    case 'AFTER_USER_EVENT_PROCESSED':
-      return {
-        ...standardData,
-        event: {
-          key: activeTrigger.events.key,
-          dateTriggered: activeTrigger.events.dateTriggered,
-          fields: activeTrigger.events.fields,
+      return [
+        {
+          ...standardData,
+          previous: activeTrigger.previous,
         },
-      };
+      ];
+    case 'REFERRAL':
+      return [
+        {
+          ...standardData,
+          referral: activeTrigger.referral,
+        },
+      ];
+    case 'AFTER_USER_EVENT_PROCESSED':
+      let contexts: object[] = [];
+      activeTrigger.events.forEach((event: any) => {
+        contexts.push({
+          ...standardData,
+          event: {
+            key: event.key,
+            dateTriggered: event.dateTriggered,
+            fields: event.fields,
+          },
+        });
+      });
     case 'SCHEDULED':
-      return {
-        ...standardData,
-      };
+      return [
+        {
+          ...standardData,
+        },
+      ];
     case 'REWARD_SCHEDULED':
-      return {
-        ...standardData,
-      };
+      return [
+        {
+          ...standardData,
+        },
+      ];
+    default:
+      throw new Error('Trigger type did not match expected options');
   }
 }
