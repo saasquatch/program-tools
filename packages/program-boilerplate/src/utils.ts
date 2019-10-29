@@ -172,6 +172,7 @@ export function getTriggerSchema(body: ProgramTriggerBody): object[] {
           },
         });
       });
+      return contexts;
     case 'SCHEDULED':
       return [
         {
