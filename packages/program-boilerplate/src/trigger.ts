@@ -5,6 +5,7 @@ import {
   ProgramTriggerBody,
   ProgramIntrospectionBody,
   ProgramValidationBody,
+  ProgramVariableSchemaRequestBody,
   Program,
   TriggerType,
   ValidationResult,
@@ -28,7 +29,11 @@ import {
  * }
  */
 export function triggerProgram(
-  body: ProgramTriggerBody | ProgramIntrospectionBody | ProgramValidationBody,
+  body:
+    | ProgramTriggerBody
+    | ProgramIntrospectionBody
+    | ProgramValidationBody
+    | ProgramVariableSchemaRequestBody,
   program: Program = {},
 ): ProgramTriggerResult {
   switch (body.messageType || 'PROGRAM_TRIGGER') {
@@ -42,6 +47,9 @@ export function triggerProgram(
       // Make modifications to template based on rules here if necessary.
       body = body as ProgramValidationBody;
       return handleProgramValidation(body, program);
+    case 'PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST':
+      body = body as ProgramVariableSchemaRequestBody;
+      return handleProgramVariableSchemaRequest(body, program);
     default:
       console.log('UNREACHABLE CODE REACHED!!');
       return {
@@ -178,5 +186,23 @@ function handleProgramValidation(
   return {
     json: {validationResults: results},
     code: 200,
+  };
+}
+
+function handleProgramVariableSchemaRequest(
+  body: ProgramVariableSchemaRequestBody,
+  program: Program,
+): ProgramTriggerResult {
+  const handleSchemaRequest =
+    program['PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST'];
+  if (!handleSchemaRequest) {
+    return {
+      json: {},
+      code: 204,
+    };
+  }
+  return {
+    json: {},
+    code: 500,
   };
 }
