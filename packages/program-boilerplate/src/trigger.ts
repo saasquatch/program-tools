@@ -54,10 +54,9 @@ export function triggerProgram(
       console.log('UNREACHABLE CODE REACHED!!');
       return {
         json: {
-          message:
-            'Expected either PROGRAM_TRIGGER or PROGRAM_INTROSPECTION messageType.',
+          message: `Unrecognized messageType ${body.messageType}`,
         },
-        code: 400,
+        code: 501,
       };
   }
 }
@@ -193,6 +192,9 @@ function handleProgramVariableSchemaRequest(
   body: ProgramVariableSchemaRequestBody,
   program: Program,
 ): ProgramTriggerResult {
+  const schema = body.schema;
+  const scheduleKey = body.scheduleKey;
+  const triggerType = body.triggerType;
   const handleSchemaRequest =
     program['PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST'];
   if (!handleSchemaRequest) {
@@ -200,9 +202,19 @@ function handleProgramVariableSchemaRequest(
       json: {},
       code: 204,
     };
+  } else {
+    const newSchema = handleSchemaRequest(schema, triggerType, scheduleKey);
+    if (!newSchema) {
+      return {
+        json: {},
+        code: 204,
+      };
+    }
+    return {
+      json: {
+        schema: newSchema,
+      },
+      code: 200,
+    };
   }
-  return {
-    json: {},
-    code: 500,
-  };
 }

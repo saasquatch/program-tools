@@ -100,9 +100,9 @@ export type ProgramValidationBody = {
  */
 export type ProgramVariableSchemaRequestBody = {
   messageType: 'PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST';
-  triggerType: TriggerType;
-  template: any;
   schema: any;
+  triggerType: TriggerType;
+  scheduleKey?: string;
 };
 
 /********************************************************/
@@ -142,9 +142,9 @@ export type RequirementValidationHandler = (
 ) => RequirementValidationResult[];
 
 export type ProgramVariableSchemaHandler = (
-  program: any,
-  template: any,
   schema: any,
+  triggerType: TriggerType,
+  scheduleKey?: string,
 ) => any;
 /**
  * Key-value list of validation functions to be exported by
