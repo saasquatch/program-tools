@@ -83,6 +83,11 @@ export class ReferralComponent {
       return this.referraltype === "referrer" ? referrer : pending;
     } 
 
+    // SPECIFIC FOR DISNEY
+    if (rewards[0].unit == "POINT") {
+      return rewards[0].value + ' Vacation Points';
+    }
+
     // When we want to use the first reward pretty value
     if (rewards.length > 0 && this.referralvariables.usefirstreward) {
       return rewards[rewards.length - 1].prettyValue || rewards[0].prettyValue;
