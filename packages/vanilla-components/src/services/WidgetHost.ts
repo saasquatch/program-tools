@@ -273,6 +273,7 @@ const API = {
                     prettyValue
                     statuses
                     unit
+                    value
                   }
                 }
               }
