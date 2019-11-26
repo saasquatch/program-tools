@@ -207,7 +207,12 @@ function handleProgramVariableSchemaRequest(
     try {
       newSchema = handleSchemaRequest(schema, triggerType, scheduleKey);
     } catch (e) {
-      console.error(e, e.stack);
+      const errorMes = {
+        error: 'An error occurred in a webtask (PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST)',
+        message: e.stack,
+      };
+
+      console.log(errorMes);
     }
     if (!newSchema) {
       return {
