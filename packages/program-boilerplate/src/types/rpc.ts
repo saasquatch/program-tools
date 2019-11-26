@@ -145,7 +145,8 @@ export type ProgramVariableSchemaHandler = (
   schema: any,
   triggerType: TriggerType,
   scheduleKey?: string,
-) => any;
+) => ProgramVariableSchemaResult;
+
 /**
  * Key-value list of validation functions to be exported by
  * the program
@@ -186,6 +187,10 @@ export type RequirementValidationResult = {
 export type ValidationResult = {
   key: string;
   results: RequirementValidationResult[];
+};
+
+export type ProgramVariableSchemaResult = {
+  schema: any;
 };
 
 /********************************************************/

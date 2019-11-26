@@ -137,6 +137,11 @@ export function numToEquality(num: number): string {
   }
 }
 
+/**
+ * Converts a trigger context into the relavent information for the specified trigger type.
+ * @param body the body of the trigger
+ * @return object[] The tranformed data that is relavent for the trigger type
+ */
 export function getTriggerSchema(body: ProgramTriggerBody): object[] {
   const activeTrigger = body.activeTrigger;
   const triggerType = activeTrigger.type as TriggerType;

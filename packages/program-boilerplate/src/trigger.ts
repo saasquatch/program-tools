@@ -161,7 +161,7 @@ function handleProgramValidation(
 ): ProgramTriggerResult {
   const results: ValidationResult[] = [];
 
-  body.validationRequests.forEach(r => {
+  body.validationRequests.forEach((r) => {
     const validationHandlers = program['PROGRAM_VALIDATION'];
     const requirementHandler = validationHandlers
       ? validationHandlers[r.key]
@@ -203,7 +203,12 @@ function handleProgramVariableSchemaRequest(
       code: 204,
     };
   } else {
-    const newSchema = handleSchemaRequest(schema, triggerType, scheduleKey);
+    let newSchema;
+    try {
+      newSchema = handleSchemaRequest(schema, triggerType, scheduleKey);
+    } catch (e) {
+      console.error(e, e.stack);
+    }
     if (!newSchema) {
       return {
         json: {},
