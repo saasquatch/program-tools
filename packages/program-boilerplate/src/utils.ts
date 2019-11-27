@@ -1,4 +1,7 @@
 import {rewardScheduleQuery} from './queries';
+import {ProgramTriggerBody, TriggerType} from './types/rpc';
+import {User} from './types/saasquatch';
+import {loggers} from 'winston';
 
 /**
  * Append a reward schedule to the template and return the new template
@@ -131,5 +134,63 @@ export function numToEquality(num: number): string {
       return 'lte';
     default:
       return 'eq';
+  }
+}
+
+/**
+ * Converts a trigger context into the relavent information for the specified trigger type.
+ * @param body the body of the trigger
+ * @return object[] The tranformed data that is relavent for the trigger type
+ */
+export function getTriggerSchema(body: ProgramTriggerBody): object[] {
+  const activeTrigger = body.activeTrigger;
+  const triggerType = activeTrigger.type as TriggerType;
+  const standardData = {
+    type: activeTrigger.type,
+    time: activeTrigger.time,
+    user: activeTrigger.user,
+  };
+  switch (triggerType) {
+    case 'AFTER_USER_CREATED_OR_UPDATED':
+      return [
+        {
+          ...standardData,
+          previous: activeTrigger.previous,
+        },
+      ];
+    case 'REFERRAL':
+      return [
+        {
+          ...standardData,
+          referral: activeTrigger.referral,
+        },
+      ];
+    case 'AFTER_USER_EVENT_PROCESSED':
+      let contexts: object[] = [];
+      activeTrigger.events.forEach((event: any) => {
+        contexts.push({
+          ...standardData,
+          event: {
+            key: event.key,
+            dateTriggered: event.dateTriggered,
+            fields: event.fields,
+          },
+        });
+      });
+      return contexts;
+    case 'SCHEDULED':
+      return [
+        {
+          ...standardData,
+        },
+      ];
+    case 'REWARD_SCHEDULED':
+      return [
+        {
+          ...standardData,
+        },
+      ];
+    default:
+      throw new Error('Trigger type did not match expected options');
   }
 }

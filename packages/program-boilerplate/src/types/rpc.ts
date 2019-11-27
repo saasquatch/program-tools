@@ -14,7 +14,8 @@ export type TriggerType =
   | 'PROGRAM_INTROSPECTION'
   | 'SCHEDULED'
   | 'REWARD_SCHEDULED'
-  | 'PROGRAM_VALIDATION';
+  | 'PROGRAM_VALIDATION'
+  | 'PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST';
 
 /**
  * The Program type
@@ -27,6 +28,7 @@ export type Program = {
   SCHEDULED?: ProgramTriggerHandler;
   REWARD_SCHEDULED?: ProgramTriggerHandler;
   PROGRAM_VALIDATION?: ProgramValidationFunctions;
+  PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST?: ProgramVariableSchemaHandler;
 };
 
 /********************************************************/
@@ -92,6 +94,17 @@ export type ProgramValidationBody = {
   time: number;
 };
 
+/**
+ * The program information provided by the backend for
+ * requesting custom schema
+ */
+export type ProgramVariableSchemaRequestBody = {
+  messageType: 'PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST';
+  schema: any;
+  triggerType: TriggerType;
+  scheduleKey?: string;
+};
+
 /********************************************************/
 /*                       Handlers                       */
 /********************************************************/
@@ -127,6 +140,12 @@ export type RequirementValidationHandler = (
   program: ValidationProgramField,
   time: number,
 ) => RequirementValidationResult[];
+
+export type ProgramVariableSchemaHandler = (
+  schema: any,
+  triggerType: TriggerType,
+  scheduleKey?: string,
+) => ProgramVariableSchemaResult;
 
 /**
  * Key-value list of validation functions to be exported by
@@ -168,6 +187,10 @@ export type RequirementValidationResult = {
 export type ValidationResult = {
   key: string;
   results: RequirementValidationResult[];
+};
+
+export type ProgramVariableSchemaResult = {
+  schema: any;
 };
 
 /********************************************************/

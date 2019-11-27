@@ -5,6 +5,7 @@ import {
   ProgramTriggerBody,
   ProgramIntrospectionBody,
   ProgramValidationBody,
+  ProgramVariableSchemaRequestBody,
   Program,
   TriggerType,
   ValidationResult,
@@ -28,7 +29,11 @@ import {
  * }
  */
 export function triggerProgram(
-  body: ProgramTriggerBody | ProgramIntrospectionBody | ProgramValidationBody,
+  body:
+    | ProgramTriggerBody
+    | ProgramIntrospectionBody
+    | ProgramValidationBody
+    | ProgramVariableSchemaRequestBody,
   program: Program = {},
 ): ProgramTriggerResult {
   switch (body.messageType || 'PROGRAM_TRIGGER') {
@@ -42,14 +47,16 @@ export function triggerProgram(
       // Make modifications to template based on rules here if necessary.
       body = body as ProgramValidationBody;
       return handleProgramValidation(body, program);
+    case 'PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST':
+      body = body as ProgramVariableSchemaRequestBody;
+      return handleProgramVariableSchemaRequest(body, program);
     default:
       console.log('UNREACHABLE CODE REACHED!!');
       return {
         json: {
-          message:
-            'Expected either PROGRAM_TRIGGER or PROGRAM_INTROSPECTION messageType.',
+          message: `Unrecognized messageType ${body.messageType}`,
         },
-        code: 400,
+        code: 501,
       };
   }
 }
@@ -154,7 +161,7 @@ function handleProgramValidation(
 ): ProgramTriggerResult {
   const results: ValidationResult[] = [];
 
-  body.validationRequests.forEach(r => {
+  body.validationRequests.forEach((r) => {
     const validationHandlers = program['PROGRAM_VALIDATION'];
     const requirementHandler = validationHandlers
       ? validationHandlers[r.key]
@@ -179,4 +186,45 @@ function handleProgramValidation(
     json: {validationResults: results},
     code: 200,
   };
+}
+
+function handleProgramVariableSchemaRequest(
+  body: ProgramVariableSchemaRequestBody,
+  program: Program,
+): ProgramTriggerResult {
+  const schema = body.schema;
+  const scheduleKey = body.scheduleKey;
+  const triggerType = body.triggerType;
+  const handleSchemaRequest =
+    program['PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST'];
+  if (!handleSchemaRequest) {
+    return {
+      json: {},
+      code: 204,
+    };
+  } else {
+    let newSchema;
+    try {
+      newSchema = handleSchemaRequest(schema, triggerType, scheduleKey);
+    } catch (e) {
+      const errorMes = {
+        error: 'An error occurred in a webtask (PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST)',
+        message: e.stack,
+      };
+
+      console.log(errorMes);
+    }
+    if (!newSchema) {
+      return {
+        json: {},
+        code: 204,
+      };
+    }
+    return {
+      json: {
+        schema: newSchema,
+      },
+      code: 200,
+    };
+  }
 }
