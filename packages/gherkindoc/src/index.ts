@@ -1,5 +1,5 @@
 import * as yargs from 'yargs';
-import { version } from '../package.json';
+import {version} from '../package.json';
 
 yargs
   .usage('\nUsage: gherkindoc <cmd> [args]')
@@ -21,7 +21,5 @@ yargs
   .parse(process.argv.slice(2), (_: any, argv: any, output: any) => {
     if (argv.version === true && !argv._.length) {
       console.log(version);
-    } else {
-      console.log(output);
     }
   });
