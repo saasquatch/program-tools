@@ -9,7 +9,7 @@ import {Arguments} from 'yargs';
 export const command = 'xlsx';
 export const desc = 'Parse the provided file or directory into XLSX';
 
-const DESCRIPTION_HEIGHT_MULTIPLIER = 15;
+const DESCRIPTION_HEIGHT_MULTIPLIER = 14;
 const DESCRIPTION_HEIGHT_OFFSET = 15;
 
 type CoordinateBase = {
@@ -177,7 +177,11 @@ function printFeatureSheet(wb: any, feature: any, testers: number): void {
     .value(feature.name)
     .style(styles.bold);
 
-  printTags(sheet, feature.tags, {x: baseContentColumn, y: 2});
+  let currYIdx = 2;
+  if (feature.tags.length > 0) {
+    printTags(sheet, feature.tags, {x: baseContentColumn, y: currYIdx});
+    currYIdx += 1;
+  }
 
   // Print tester columns
   for (let i = 1; i <= testers; i++) {
@@ -187,21 +191,24 @@ function printFeatureSheet(wb: any, feature: any, testers: number): void {
   if (feature.description) {
     // Place the feature description in the box below the tags
     sheet
-      .cell(3, baseContentColumn + 1)
+      .cell(currYIdx, baseContentColumn + 1)
       .value(feature.description.replace(/\n +/g, '\n').trim());
 
     // The height of the description row needs to be adjusted
     // so that all lines are visible
     sheet
-      .row(3)
+      .row(currYIdx)
       .height(
         (feature.description.split(/\r\n|\r|\n/).length - 1) *
           DESCRIPTION_HEIGHT_MULTIPLIER +
           DESCRIPTION_HEIGHT_OFFSET,
       );
+
+    currYIdx += 1;
   }
 
-  let currYIdx = 5;
+  currYIdx += 1;
+
   if (feature.background) {
     currYIdx += printBlock(sheet, feature.background, {
       x: baseContentColumn + 1,
