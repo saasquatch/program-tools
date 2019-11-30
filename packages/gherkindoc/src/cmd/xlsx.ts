@@ -70,8 +70,27 @@ export const handler = async (argv: Arguments) => {
 
     printFeatureSheet(wb, f.feature, testers);
   });
-  printTOC(wb, toc, {x: testers + 2, y: 2});
+
+  let height = 2;
+  const tocKeys = Object.keys(toc);
+  if (tocKeys.length === 1 && toc[tocKeys[0]].sheets.length === 0) {
+    for (const key in toc[tocKeys[0]].subdirs) {
+      height += printTOC(wb.sheet('TOC'), toc[tocKeys[0]].subdirs[key], {
+        x: testers + 2,
+        y: height,
+      });
+    }
+  } else {
+    for (const key in toc) {
+      height += printTOC(wb.sheet('TOC'), toc[key], {
+        x: testers + 2,
+        y: height,
+      });
+    }
+  }
+
   wb.toFileAsync('./out.xlsx');
+  console.log('Finished.');
 };
 
 /**
@@ -105,32 +124,34 @@ function wbInit(wb: any, testers: number): void {
  * @param {Object} sheet The sheet to print onto
  * @param {TableOfContents} toc The table of contents
  * @param {CoordinateBase} base The base coordinates
+ *
+ * @return {Number} The number of lines printed
  */
-function printTOC(wb: any, toc: TableOfContents, base: CoordinateBase): void {
-  let height = 1;
-  for (const key in toc) {
-    wb.sheet('TOC')
-      .cell(base.y, base.x)
-      .value(toc[key].title)
-      .style(styles.bold);
+function printTOC(sheet: any, toc: TOCEntry, base: CoordinateBase): number {
+  let height = 0;
+  sheet
+    .cell(base.y, base.x)
+    .value(toc.title)
+    .style(styles.bold);
 
-    toc[key].sheets.forEach((s, idx) => {
-      wb.sheet('TOC')
-        .cell(base.y + idx + 1, base.x + 1)
-        .value(s)
-        .style(styles.hyperlink)
-        .hyperlink(`${getSheetName(s)}!A1`);
-      height += 1;
-    });
-    height += 1;
-  }
+  toc.sheets.forEach((s, idx) => {
+    sheet
+      .cell(base.y + idx + 1, base.x + 1)
+      .value(s)
+      .style(styles.hyperlink)
+      .hyperlink(`${getSheetName(s)}!A1`);
+  });
+
+  height += toc.sheets.length;
 
   for (const subkey in toc.subdirs) {
-    printTOC(wb.sheet('TOC'), toc.subdir[subkey], {
+    height += printTOC(sheet, toc.subdirs[subkey], {
       x: base.x + 1,
       y: base.y + height + 1,
     });
   }
+
+  return height + 1;
 }
 
 /**

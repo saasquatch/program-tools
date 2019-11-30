@@ -62,7 +62,7 @@ export async function generate(files: string[]): Promise<any> {
 
       feature.children.forEach((child: any) => {
         if (child.rule) {
-          console.log(child);
+          // empty
         } else if (child.background) {
           const bg = child.background;
           const commentsFound = commentCrawler(comments, bg.location.line);
