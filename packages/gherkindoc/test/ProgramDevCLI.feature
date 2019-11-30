@@ -1,3 +1,6 @@
+@automated
+@failing
+@current
 Feature: SaaSquatch Program Development CLI
 
     The SaaSquatch program dev CLI aims to improve the workflow of a program developer by automating

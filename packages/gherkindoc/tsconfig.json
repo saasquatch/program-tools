@@ -5,7 +5,7 @@
     "outDir": "dist",
     "module": "commonjs",
     "target": "ES6",
-    "sourceMap": true,
+    "inlineSourceMap": true,
     "noImplicitAny": false,
     "jsx": "react"
   }
