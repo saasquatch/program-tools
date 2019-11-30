@@ -40,4 +40,8 @@ export const styles = {
       diagonal: false,
     },
   },
+  hyperlink: {
+    fontColor: '0563c1',
+    underline: true,
+  },
 };

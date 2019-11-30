@@ -19,6 +19,16 @@ type CoordinateBase = {
   y: number;
 };
 
+type TableOfContents = {
+  [key: string]: TOCEntry;
+};
+
+type TOCEntry = {
+  title: string;
+  sheets: string[];
+  subdirs: TableOfContents;
+};
+
 export const handler = async (argv: Arguments) => {
   argv._.shift();
 
@@ -38,10 +48,33 @@ export const handler = async (argv: Arguments) => {
   const XlsxPopulate = require('xlsx-populate');
   const wb = await XlsxPopulate.fromBlankAsync();
 
+  let toc: TableOfContents = {};
+
   wbInit(wb, testers);
   json.features.forEach(f => {
-    initFeatureSheet(wb, f.feature, testers);
+    const allRelativePaths = getAllPaths(f.relativeFolder);
+    let curr = toc;
+
+    // Use the parsed path stack to traverse the TOC tree
+    allRelativePaths.forEach((path, index) => {
+      if (!curr[path]) {
+        curr[path] = {
+          title: path,
+          sheets: [],
+          subdirs: {},
+        };
+      }
+
+      if (index < allRelativePaths.length - 1) {
+        curr = curr[path].subdirs;
+      } else {
+        curr[path].sheets.push(f.feature.name);
+      }
+    });
+
+    printFeatureSheet(wb, f.feature, testers);
   });
+  printTOC(wb.sheet('TOC'), toc, {x: testers + 2, y: 2});
   wb.toFileAsync('./out.xlsx');
 };
 
@@ -69,25 +102,53 @@ function wbInit(wb: any, testers: number): void {
   toc.freezePanes(0, 1);
 }
 
+function printTOC(
+  sheet: any,
+  toc: TableOfContents,
+  base: CoordinateBase,
+): void {
+  let height = 1;
+  for (const key in toc) {
+    sheet
+      .cell(base.y, base.x)
+      .value(toc[key].title)
+      .style(styles.bold);
+
+    toc[key].sheets.forEach((s, idx) => {
+      sheet
+        .cell(base.y + idx + 1, base.x + 1)
+        .value(s)
+        .style(styles.hyperlink)
+        .hyperlink(`${getSheetName(s)}!A1`);
+      height += 1;
+    });
+    height += 1;
+  }
+
+  for (const subkey in toc.subdirs) {
+    printTOC(sheet, toc.subdir[subkey], {
+      x: base.x + 1,
+      y: base.y + height + 1,
+    });
+  }
+}
+
 /**
  * Creates a new sheet in the workbook for the provided
  * feature file. The tester columns are added to the
  * left of the sheet, and the Title, Tags, and background
  * (if present) are added.
  *
+ * Each "block" of the feature is printed iteratively
+ *
  * @param {Object} wb The workbook to add the sheet to
  * @param {Object} feature The feature for the sheet
  * @param {Number} testers The number of tester columns
  */
-function initFeatureSheet(wb: any, feature: any, testers: number): void {
+function printFeatureSheet(wb: any, feature: any, testers: number): void {
   const baseContentColumn = testers + 2;
 
-  const sheet = wb.addSheet(
-    feature.name
-      .replace(/\s+/g, '')
-      .slice(0, 31)
-      .toUpperCase(),
-  );
+  const sheet = wb.addSheet(getSheetName(feature.name));
 
   // Configure the title row
   sheet.freezePanes(0, 1);
@@ -96,7 +157,7 @@ function initFeatureSheet(wb: any, feature: any, testers: number): void {
     .value(feature.name)
     .style(styles.bold);
 
-  printTags(sheet, feature.tags, {x: baseContentColumn + 1, y: 2});
+  printTags(sheet, feature.tags, {x: baseContentColumn, y: 2});
 
   // Print tester columns
   for (let i = 1; i <= testers; i++) {
@@ -123,14 +184,14 @@ function initFeatureSheet(wb: any, feature: any, testers: number): void {
   let currYIdx = 5;
   if (feature.background) {
     currYIdx += printBlock(sheet, feature.background, {
-      x: baseContentColumn + 1,
+      x: baseContentColumn,
       y: currYIdx,
     });
   }
 
   feature.featureElements.forEach(scenario => {
     currYIdx += printBlock(sheet, scenario, {
-      x: baseContentColumn + 1,
+      x: baseContentColumn,
       y: currYIdx,
     });
   });
@@ -192,6 +253,24 @@ function printBlock(sheet: any, block: any, base: CoordinateBase): number {
     }
   });
 
+  block.examples.forEach(example => {
+    example.beforeComments.forEach((comment, idx) => {
+      sheet
+        .cell(currYIdx + idx, base.x)
+        .value(comment)
+        .style(styles.light);
+    });
+    currYIdx += example.beforeComments.length + 1;
+
+    sheet
+      .cell(currYIdx, base.x)
+      .value('Examples')
+      .style(styles.normal);
+
+    currYIdx += 1;
+    currYIdx += printExampleTable(sheet, example, {x: base.x + 2, y: currYIdx});
+  });
+
   return currYIdx - base.y + 1;
 }
 
@@ -246,4 +325,35 @@ function printDataTable(
   });
 
   return table.length + 1;
+}
+
+function printExampleTable(
+  sheet: any,
+  table: any,
+  base: CoordinateBase,
+): number {
+  table.header.forEach((col, idx) => {
+    sheet
+      .cell(base.y, base.x + idx)
+      .value(col)
+      .style(styles.tableHeader);
+  });
+
+  table.data.forEach((row, rIdx) => {
+    row.forEach((col, cIdx) => {
+      sheet
+        .cell(base.y + rIdx + 1, base.x + cIdx)
+        .value(col)
+        .style(styles.tableCell);
+    });
+  });
+
+  return table.length + 1;
+}
+
+function getSheetName(feature: string): string {
+  return feature
+    .replace(/\s+/g, '')
+    .slice(0, 31)
+    .toUpperCase();
 }
