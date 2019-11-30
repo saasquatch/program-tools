@@ -71,7 +71,9 @@ function wbInit(wb: any, testers: number): void {
 
 /**
  * Creates a new sheet in the workbook for the provided
- * feature file
+ * feature file. The tester columns are added to the
+ * left of the sheet, and the Title, Tags, and background
+ * (if present) are added.
  *
  * @param {Object} wb The workbook to add the sheet to
  * @param {Object} feature The feature for the sheet
@@ -118,9 +120,20 @@ function initFeatureSheet(wb: any, feature: any, testers: number): void {
       );
   }
 
+  let currYIdx = 5;
   if (feature.background) {
-    printBlock(sheet, feature.background, {x: baseContentColumn + 1, y: 5});
+    currYIdx += printBlock(sheet, feature.background, {
+      x: baseContentColumn + 1,
+      y: currYIdx,
+    });
   }
+
+  feature.featureElements.forEach(scenario => {
+    currYIdx += printBlock(sheet, scenario, {
+      x: baseContentColumn + 1,
+      y: currYIdx,
+    });
+  });
 }
 
 /**
@@ -131,7 +144,7 @@ function initFeatureSheet(wb: any, feature: any, testers: number): void {
  * @param {Object} block The block to print
  * @param {CoordinateBase} base The x and y coordinates to start at
  *
- * @return {Number} The cursor Y position at the end of the insertion
+ * @return {Number} The number of rows inserted by the operation
  */
 function printBlock(sheet: any, block: any, base: CoordinateBase): number {
   block.beforeComments.forEach((comment, idx) => {
@@ -147,6 +160,12 @@ function printBlock(sheet: any, block: any, base: CoordinateBase): number {
     .style(styles.bold);
 
   let currYIdx = base.y + 1 + block.beforeComments.length;
+  if (block.tags.length > 0) {
+    printTags(sheet, block.tags, {x: base.x, y: currYIdx});
+    currYIdx += 1;
+  }
+
+  currYIdx += 1;
 
   block.steps.forEach(step => {
     step.beforeComments.forEach(comment => {
@@ -165,9 +184,15 @@ function printBlock(sheet: any, block: any, base: CoordinateBase): number {
 
     sheet.cell(currYIdx, base.x + 2).value(step.text);
     currYIdx += 1;
+    if (step.dataTable.length > 0) {
+      currYIdx += printDataTable(sheet, step.dataTable, {
+        x: base.x + 2,
+        y: currYIdx,
+      });
+    }
   });
 
-  return currYIdx;
+  return currYIdx - base.y + 1;
 }
 
 /**
@@ -187,4 +212,38 @@ function printTags(sheet: any, tags: string[], base: CoordinateBase): void {
     .cell(base.y, base.x + 1)
     .value(tags.join(' '))
     .style(styles.light);
+}
+
+/**
+ * Prints a "block" of the feature file (a block is either a Background, Rule,
+ * Scenario, or Scenario Outline).
+ *
+ * @param {Object} sheet The sheet to print onto
+ * @param {Object} block The block to print
+ * @param {CoordinateBase} base The x and y coordinates to start at
+ *
+ * @return {Number} The number of rows inserted by the operation
+ */
+function printDataTable(
+  sheet: any,
+  table: string[][],
+  base: CoordinateBase,
+): number {
+  table.shift().forEach((col, idx) => {
+    sheet
+      .cell(base.y, base.x + idx)
+      .value(col)
+      .style(styles.tableHeader);
+  });
+
+  table.forEach((row, rIdx) => {
+    row.forEach((col, cIdx) => {
+      sheet
+        .cell(base.y + rIdx + 1, base.x + cIdx)
+        .value(col)
+        .style(styles.tableCell);
+    });
+  });
+
+  return table.length + 1;
 }
