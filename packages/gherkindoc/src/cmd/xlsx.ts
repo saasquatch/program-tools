@@ -10,10 +10,14 @@ import {Arguments} from 'yargs';
 export const command = 'xlsx';
 export const desc = 'Parse the provided file or directory into XLSX';
 
-const NUM_CONTENT_ROWS = 30;
 const COLUMN_WIDTH_PADDING = 1.5;
 const DESCRIPTION_HEIGHT_MULTIPLIER = 15;
 const DESCRIPTION_HEIGHT_OFFSET = 15;
+
+type CoordinateBase = {
+  x: number;
+  y: number;
+};
 
 export const handler = async (argv: Arguments) => {
   argv._.shift();
@@ -34,8 +38,6 @@ export const handler = async (argv: Arguments) => {
   const XlsxPopulate = require('xlsx-populate');
   const wb = await XlsxPopulate.fromBlankAsync();
 
-  console.log(json);
-
   wbInit(wb, testers);
   json.features.forEach(f => {
     initFeatureSheet(wb, f.feature, testers);
@@ -46,8 +48,11 @@ export const handler = async (argv: Arguments) => {
 /**
  * Initializes the workbook table of contents page
  * with the appropriate columns for testers etc
+ *
+ * @param {Object} wb The workbook to initialize
+ * @param {Number} testers The number of tester columns
  */
-function wbInit(wb, testers): void {
+function wbInit(wb: any, testers: number): void {
   const toc = wb.sheet(0);
   toc
     .name('TOC')
@@ -67,8 +72,12 @@ function wbInit(wb, testers): void {
 /**
  * Creates a new sheet in the workbook for the provided
  * feature file
+ *
+ * @param {Object} wb The workbook to add the sheet to
+ * @param {Object} feature The feature for the sheet
+ * @param {Number} testers The number of tester columns
  */
-function initFeatureSheet(wb, feature, testers): void {
+function initFeatureSheet(wb: any, feature: any, testers: number): void {
   const baseContentColumn = testers + 2;
 
   const sheet = wb.addSheet(
@@ -85,20 +94,12 @@ function initFeatureSheet(wb, feature, testers): void {
     .value(feature.name)
     .style(styles.bold);
 
+  printTags(sheet, feature.tags, {x: baseContentColumn + 1, y: 2});
+
+  // Print tester columns
   for (let i = 1; i <= testers; i++) {
     sheet.cell(1, i).value(`Tester ${i}`);
   }
-
-  // Display the feature file tags
-  sheet
-    .cell(2, baseContentColumn + 1)
-    .value('Tags:')
-    .style(styles.light);
-
-  sheet
-    .cell(2, baseContentColumn + 2)
-    .value(feature.tags.join(' '))
-    .style(styles.light);
 
   if (feature.description) {
     // Place the feature description in the box below the tags
@@ -117,6 +118,73 @@ function initFeatureSheet(wb, feature, testers): void {
       );
   }
 
-  console.log(feature.background);
-  console.log(feature.featureElements[0].steps);
+  if (feature.background) {
+    printBlock(sheet, feature.background, {x: baseContentColumn + 1, y: 5});
+  }
+}
+
+/**
+ * Prints a "block" of the feature file (a block is either a Background, Rule,
+ * Scenario, or Scenario Outline).
+ *
+ * @param {Object} sheet The sheet to print onto
+ * @param {Object} block The block to print
+ * @param {CoordinateBase} base The x and y coordinates to start at
+ *
+ * @return {Number} The cursor Y position at the end of the insertion
+ */
+function printBlock(sheet: any, block: any, base: CoordinateBase): number {
+  block.beforeComments.forEach((comment, idx) => {
+    sheet
+      .cell(base.y + idx, base.x)
+      .value(comment)
+      .style(styles.light);
+  });
+
+  sheet
+    .cell(base.y + block.beforeComments.length, base.x)
+    .value(block.name)
+    .style(styles.bold);
+
+  let currYIdx = base.y + 1 + block.beforeComments.length;
+
+  block.steps.forEach(step => {
+    step.beforeComments.forEach(comment => {
+      sheet
+        .cell(currYIdx, base.x + 1)
+        .value(comment)
+        .style(styles.light);
+
+      currYIdx += 1;
+    });
+
+    sheet
+      .cell(currYIdx, base.x + 1)
+      .value(`${step.keyword} `)
+      .style(styles.stepKeyword);
+
+    sheet.cell(currYIdx, base.x + 2).value(step.text);
+    currYIdx += 1;
+  });
+
+  return currYIdx;
+}
+
+/**
+ * Prints a list of tags at the specified x and y coordinates
+ *
+ * @param {Object} sheet The sheet to print onto
+ * @param {String[]} tags The tags to print
+ * @param {CoordinateBase} base The base x and y coordinates
+ */
+function printTags(sheet: any, tags: string[], base: CoordinateBase): void {
+  sheet
+    .cell(base.y, base.x)
+    .value('Tags:')
+    .style(styles.light);
+
+  sheet
+    .cell(base.y, base.x + 1)
+    .value(tags.join(' '))
+    .style(styles.light);
 }

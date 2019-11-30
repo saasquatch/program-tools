@@ -13,4 +13,9 @@ export const styles = {
   normal: {
     fontFamily: 'Calibri',
   },
+  stepKeyword: {
+    fontFamily: 'Calibri',
+    bold: true,
+    horizontalAlignment: 'right',
+  },
 };
