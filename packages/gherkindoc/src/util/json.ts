@@ -61,7 +61,9 @@ export async function generate(files: string[]): Promise<any> {
       const comments = chunk.gherkinDocument.comments;
 
       feature.children.forEach((child: any) => {
-        if (child.background) {
+        if (child.rule) {
+          console.log(child);
+        } else if (child.background) {
           const bg = child.background;
           const commentsFound = commentCrawler(comments, bg.location.line);
 
@@ -94,45 +96,45 @@ export async function generate(files: string[]): Promise<any> {
             beforeComments: commentsFound.before,
             afterComments: commentsFound.after,
           };
-          return;
+        } else if (child.scenario) {
+          json.summary.scenarios.total += 1;
+          json.summary.scenarios.inconclusive += 1;
+
+          const examples = child.scenario.examples
+            ? child.scenario.examples.map((example: any) => {
+                const commentsFound = commentCrawler(
+                  comments,
+                  example.location.line,
+                );
+                return processExample(example, commentsFound);
+              })
+            : [];
+
+          const steps = child.scenario.steps.map((step: any) => {
+            const commentsFound = commentCrawler(comments, step.location.line);
+            return processStep(step, commentsFound);
+          });
+
+          const commentsFound = commentCrawler(
+            comments,
+            child.scenario.location.line,
+          );
+
+          tmp.feature.featureElements.push({
+            steps,
+            examples,
+            name: child.scenario.name,
+            description: child.scenario.description || '',
+            tags: child.scenario.tags.map((tag: any) => tag.name),
+            result: {
+              wasExecuted: false,
+              wasSuccessful: false,
+              wasProvided: false,
+            },
+            beforeComments: commentsFound.before,
+            afterComments: commentsFound.after,
+          });
         }
-
-        json.summary.scenarios.total += 1;
-        json.summary.scenarios.inconclusive += 1;
-        const examples = child.scenario.examples
-          ? child.scenario.examples.map((example: any) => {
-              const commentsFound = commentCrawler(
-                comments,
-                example.location.line,
-              );
-              return processExample(example, commentsFound);
-            })
-          : [];
-
-        const steps = child.scenario.steps.map((step: any) => {
-          const commentsFound = commentCrawler(comments, step.location.line);
-          return processStep(step, commentsFound);
-        });
-
-        const commentsFound = commentCrawler(
-          comments,
-          child.scenario.location.line,
-        );
-
-        tmp.feature.featureElements.push({
-          steps,
-          examples,
-          name: child.scenario.name,
-          description: child.scenario.description || '',
-          tags: child.scenario.tags.map((tag: any) => tag.name),
-          result: {
-            wasExecuted: false,
-            wasSuccessful: false,
-            wasProvided: false,
-          },
-          beforeComments: commentsFound.before,
-          afterComments: commentsFound.after,
-        });
       });
 
       json.features.push(tmp);

@@ -3,7 +3,7 @@ export const styles = {
     fontFamily: 'Calibri',
     italic: true,
     fontColor: {
-      rgb: 'FF444444',
+      rgb: '444444',
     },
   },
   bold: {
@@ -41,7 +41,15 @@ export const styles = {
     },
   },
   hyperlink: {
-    fontColor: '0563c1',
+    fontColor: '0563C1',
     underline: true,
+  },
+  notTested: {
+    fill: 'FCE988',
+    fontFamily: 'Calibri',
+  },
+  template: {
+    fontFamily: 'Calibri',
+    fontColor: 'B232FC',
   },
 };

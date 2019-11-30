@@ -1,6 +1,5 @@
-const Excel = require('exceljs/modern.nodejs');
-import XlsxPopulate from 'xlsx-populate';
-import chalk from 'chalk';
+import * as XlsxPopulate from 'xlsx-populate';
+import {RichText} from 'xlsx-populate';
 
 import {generate as generateJson} from '../util/json';
 import {styles} from '../util/styles';
@@ -10,7 +9,6 @@ import {Arguments} from 'yargs';
 export const command = 'xlsx';
 export const desc = 'Parse the provided file or directory into XLSX';
 
-const COLUMN_WIDTH_PADDING = 1.5;
 const DESCRIPTION_HEIGHT_MULTIPLIER = 15;
 const DESCRIPTION_HEIGHT_OFFSET = 15;
 
@@ -45,10 +43,8 @@ export const handler = async (argv: Arguments) => {
   const json = await generateJson(files);
   const testers = (argv.testers as number) || 0;
 
-  const XlsxPopulate = require('xlsx-populate');
   const wb = await XlsxPopulate.fromBlankAsync();
-
-  let toc: TableOfContents = {};
+  const toc: TableOfContents = {};
 
   wbInit(wb, testers);
   json.features.forEach(f => {
@@ -74,7 +70,7 @@ export const handler = async (argv: Arguments) => {
 
     printFeatureSheet(wb, f.feature, testers);
   });
-  printTOC(wb.sheet('TOC'), toc, {x: testers + 2, y: 2});
+  printTOC(wb, toc, {x: testers + 2, y: 2});
   wb.toFileAsync('./out.xlsx');
 };
 
@@ -102,20 +98,24 @@ function wbInit(wb: any, testers: number): void {
   toc.freezePanes(0, 1);
 }
 
-function printTOC(
-  sheet: any,
-  toc: TableOfContents,
-  base: CoordinateBase,
-): void {
+/**
+ * Recursively prints the table of contents onto the
+ * provided sheet
+ *
+ * @param {Object} sheet The sheet to print onto
+ * @param {TableOfContents} toc The table of contents
+ * @param {CoordinateBase} base The base coordinates
+ */
+function printTOC(wb: any, toc: TableOfContents, base: CoordinateBase): void {
   let height = 1;
   for (const key in toc) {
-    sheet
+    wb.sheet('TOC')
       .cell(base.y, base.x)
       .value(toc[key].title)
       .style(styles.bold);
 
     toc[key].sheets.forEach((s, idx) => {
-      sheet
+      wb.sheet('TOC')
         .cell(base.y + idx + 1, base.x + 1)
         .value(s)
         .style(styles.hyperlink)
@@ -126,7 +126,7 @@ function printTOC(
   }
 
   for (const subkey in toc.subdirs) {
-    printTOC(sheet, toc.subdir[subkey], {
+    printTOC(wb.sheet('TOC'), toc.subdir[subkey], {
       x: base.x + 1,
       y: base.y + height + 1,
     });
@@ -147,7 +147,6 @@ function printTOC(
  */
 function printFeatureSheet(wb: any, feature: any, testers: number): void {
   const baseContentColumn = testers + 2;
-
   const sheet = wb.addSheet(getSheetName(feature.name));
 
   // Configure the title row
@@ -184,14 +183,23 @@ function printFeatureSheet(wb: any, feature: any, testers: number): void {
   let currYIdx = 5;
   if (feature.background) {
     currYIdx += printBlock(sheet, feature.background, {
-      x: baseContentColumn,
+      x: baseContentColumn + 1,
       y: currYIdx,
     });
   }
 
   feature.featureElements.forEach(scenario => {
+    if (testers > 0) {
+      for (let i = 1; i <= testers; i++) {
+        sheet
+          .cell(currYIdx, i)
+          .value('Pending')
+          .style(styles.notTested);
+      }
+    }
+
     currYIdx += printBlock(sheet, scenario, {
-      x: baseContentColumn,
+      x: baseContentColumn + 1,
       y: currYIdx,
     });
   });
@@ -229,6 +237,7 @@ function printBlock(sheet: any, block: any, base: CoordinateBase): number {
   currYIdx += 1;
 
   block.steps.forEach(step => {
+    // Comments
     step.beforeComments.forEach(comment => {
       sheet
         .cell(currYIdx, base.x + 1)
@@ -238,12 +247,22 @@ function printBlock(sheet: any, block: any, base: CoordinateBase): number {
       currYIdx += 1;
     });
 
+    // Step keyword
     sheet
       .cell(currYIdx, base.x + 1)
       .value(`${step.keyword} `)
       .style(styles.stepKeyword);
 
-    sheet.cell(currYIdx, base.x + 2).value(step.text);
+    // Step text
+    const textCell = sheet.cell(currYIdx, base.x + 2);
+    textCell.value(new RichText());
+
+    step.text.split(/(<\w+>)/g).forEach(chunk => {
+      const style = chunk.match(/<\w+>/) ? styles.template : styles.normal;
+      textCell.value().add(chunk, style);
+    });
+
+    // Step data table (if present)
     currYIdx += 1;
     if (step.dataTable.length > 0) {
       currYIdx += printDataTable(sheet, step.dataTable, {
@@ -348,12 +367,13 @@ function printExampleTable(
     });
   });
 
-  return table.length + 1;
+  return table.data.length + 1;
 }
 
 function getSheetName(feature: string): string {
   return feature
     .replace(/\s+/g, '')
+    .replace(/[\\/*[\]:?]/g, '_')
     .slice(0, 31)
     .toUpperCase();
 }
