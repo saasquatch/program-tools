@@ -11,6 +11,7 @@ export const desc = 'Parse the provided file or directory into XLSX';
 
 const DESCRIPTION_HEIGHT_MULTIPLIER = 14;
 const DESCRIPTION_HEIGHT_OFFSET = 15;
+const MAX_COL_WIDTH_PADDING = 1.6;
 
 type CoordinateBase = {
   x: number;
@@ -25,6 +26,10 @@ type TOCEntry = {
   title: string;
   sheets: string[];
   subdirs: TableOfContents;
+};
+
+type MaxWidths = {
+  [key: number]: number;
 };
 
 export const handler = async (argv: Arguments) => {
@@ -171,6 +176,7 @@ function printTOC(sheet: any, toc: TOCEntry, base: CoordinateBase): number {
 function printFeatureSheet(wb: any, feature: any, testers: number): void {
   const baseContentColumn = testers + 2;
   const sheet = wb.addSheet(getSheetName(feature.name));
+  const maxWidths: MaxWidths = {};
 
   // Configure the title row
   sheet.freezePanes(0, 1);
@@ -212,7 +218,7 @@ function printFeatureSheet(wb: any, feature: any, testers: number): void {
   currYIdx += 1;
 
   if (feature.background) {
-    currYIdx += printBlock(sheet, feature.background, {
+    currYIdx += printBlock(sheet, feature.background, maxWidths, {
       x: baseContentColumn + 1,
       y: currYIdx,
     });
@@ -228,7 +234,7 @@ function printFeatureSheet(wb: any, feature: any, testers: number): void {
       }
     }
 
-    currYIdx += printBlock(sheet, scenario, {
+    currYIdx += printBlock(sheet, scenario, maxWidths, {
       x: baseContentColumn + 1,
       y: currYIdx,
     });
@@ -241,11 +247,17 @@ function printFeatureSheet(wb: any, feature: any, testers: number): void {
  *
  * @param {Object} sheet The sheet to print onto
  * @param {Object} block The block to print
+ * @param {MaxWidths} maxWidths A table of the max cell widths
  * @param {CoordinateBase} base The x and y coordinates to start at
  *
  * @return {Number} The number of rows inserted by the operation
  */
-function printBlock(sheet: any, block: any, base: CoordinateBase): number {
+function printBlock(
+  sheet: any,
+  block: any,
+  maxWidths: MaxWidths,
+  base: CoordinateBase,
+): number {
   block.beforeComments.forEach((comment, idx) => {
     sheet
       .cell(base.y + idx, base.x)
@@ -295,7 +307,7 @@ function printBlock(sheet: any, block: any, base: CoordinateBase): number {
     // Step data table (if present)
     currYIdx += 1;
     if (step.dataTable.length > 0) {
-      currYIdx += printDataTable(sheet, step.dataTable, {
+      currYIdx += printDataTable(sheet, step.dataTable, maxWidths, {
         x: base.x + 2,
         y: currYIdx,
       });
@@ -317,7 +329,10 @@ function printBlock(sheet: any, block: any, base: CoordinateBase): number {
       .style(styles.normal);
 
     currYIdx += 1;
-    currYIdx += printExampleTable(sheet, example, {x: base.x + 2, y: currYIdx});
+    currYIdx += printExampleTable(sheet, example, maxWidths, {
+      x: base.x + 2,
+      y: currYIdx,
+    });
   });
 
   return currYIdx - base.y + 1;
@@ -348,6 +363,7 @@ function printTags(sheet: any, tags: string[], base: CoordinateBase): void {
  *
  * @param {Object} sheet The sheet to print onto
  * @param {Object} block The block to print
+ * @param {MaxWidths} maxWidths A table of the max cell widths
  * @param {CoordinateBase} base The x and y coordinates to start at
  *
  * @return {Number} The number of rows inserted by the operation
@@ -355,9 +371,13 @@ function printTags(sheet: any, tags: string[], base: CoordinateBase): void {
 function printDataTable(
   sheet: any,
   table: string[][],
+  maxWidths: MaxWidths,
   base: CoordinateBase,
 ): number {
   table.shift().forEach((col, idx) => {
+    const x = base.x + idx;
+    updateMaxWidths(sheet, maxWidths, x, col.length);
+
     sheet
       .cell(base.y, base.x + idx)
       .value(col)
@@ -366,6 +386,9 @@ function printDataTable(
 
   table.forEach((row, rIdx) => {
     row.forEach((col, cIdx) => {
+      const x = base.x + cIdx;
+      updateMaxWidths(sheet, maxWidths, x, col.length);
+
       sheet
         .cell(base.y + rIdx + 1, base.x + cIdx)
         .value(col)
@@ -376,12 +399,27 @@ function printDataTable(
   return table.length + 1;
 }
 
+/**
+ * Prints a "block" of the feature file (a block is either a Background, Rule,
+ * Scenario, or Scenario Outline).
+ *
+ * @param {Object} sheet The sheet to print onto
+ * @param {Object} table The table to print
+ * @param {MaxWidths} maxWidths A table of the max cell widths
+ * @param {CoordinateBase} base The x and y coordinates to start at
+ *
+ * @return {Number} The number of rows inserted by the operation
+ */
 function printExampleTable(
   sheet: any,
   table: any,
+  maxWidths: MaxWidths,
   base: CoordinateBase,
 ): number {
   table.header.forEach((col, idx) => {
+    const x = base.x + idx;
+    updateMaxWidths(sheet, maxWidths, x, col.length);
+
     sheet
       .cell(base.y, base.x + idx)
       .value(col)
@@ -390,6 +428,9 @@ function printExampleTable(
 
   table.data.forEach((row, rIdx) => {
     row.forEach((col, cIdx) => {
+      const x = base.x + cIdx;
+      updateMaxWidths(sheet, maxWidths, x, col.length);
+
       sheet
         .cell(base.y + rIdx + 1, base.x + cIdx)
         .value(col)
@@ -406,4 +447,16 @@ function getSheetName(feature: string): string {
     .replace(/[\\/*[\]:?]/g, '_')
     .slice(0, 31)
     .toUpperCase();
+}
+
+function updateMaxWidths(
+  sheet: any,
+  maxWidths: MaxWidths,
+  col: number,
+  x: number,
+): void {
+  if (!maxWidths[col] || x > maxWidths[col]) {
+    maxWidths[col] = x;
+    sheet.column(col).width(x);
+  }
 }
