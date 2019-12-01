@@ -96,8 +96,9 @@ export const handler = async (argv: Arguments) => {
     }
   }
 
-  wb.toFileAsync('./out.xlsx');
+  wb.toFileAsync(outFile);
   console.log('Finished.');
+  console.log(`Workbook written to ${outFile}`);
 };
 
 /**
@@ -441,6 +442,14 @@ function printExampleTable(
   return table.data.length + 1;
 }
 
+/**
+ * Transforms a feature file name into a usable
+ * sheet name
+ *
+ * @param {String} feature The name of the feature
+ *
+ * @return {String} The transformed sheet name
+ */
 function getSheetName(feature: string): string {
   return feature
     .replace(/\s+/g, '')
@@ -449,6 +458,16 @@ function getSheetName(feature: string): string {
     .toUpperCase();
 }
 
+/**
+ * Checks to see if the provided width is larger than the
+ * current max for the given column and updates the table
+ * accordingly
+ *
+ * @param {Object} sheet The sheet to update
+ * @param {MaxWidths} maxWidths The maxWidths table
+ * @param {Number} col The column to check
+ * @param {Number} x The width to compare
+ */
 function updateMaxWidths(
   sheet: any,
   maxWidths: MaxWidths,
