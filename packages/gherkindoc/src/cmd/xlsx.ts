@@ -45,8 +45,7 @@ export const handler = async (argv: Arguments) => {
 
   console.log("Generating spreadsheet...");
 
-  // const outFile = getOutputFileName(argv.out as string);
-  const outFile = "./out.xlsx";
+  const outFile = getOutputFileName(argv.out as string);
   const files = isDir(args[0]) ? gherkins(args[0]) : [args[0]];
   const json = await generateJson(files);
   const testers = (argv.testers as number) || 0;
