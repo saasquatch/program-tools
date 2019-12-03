@@ -2,7 +2,13 @@
   "name": "@saasquatch/gherkindoc",
   "version": "0.0.1",
   "description": "Compile spec documents written in Gherkin language to XLSX or JSON",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
+  "bin": {
+    "gherkindoc": "dist/src/index.js"
+  },
+  "files": [
+    "bin"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
@@ -23,7 +29,6 @@
   },
   "dependencies": {
     "chalk": "^2.4.2",
-    "exceljs": "^1.15.0",
     "gherkin": "^8.2.1",
     "glob": "^7.1.4",
     "moment": "^2.24.0",
