@@ -209,15 +209,8 @@ function printFeatureSheet(wb: any, feature: any, testers: number): void {
 
   currYIdx += 1;
 
-  if (feature.background) {
-    currYIdx += printBlock(sheet, feature.background, maxWidths, {
-      x: baseContentColumn + 1,
-      y: currYIdx,
-    });
-  }
-
-  feature.featureElements.forEach(scenario => {
-    if (testers > 0) {
+  feature.featureElements.forEach(element => {
+    if (testers > 0 && element.elementType.startsWith('Scenario')) {
       for (let i = 1; i <= testers; i++) {
         sheet
           .cell(currYIdx, i)
@@ -226,7 +219,7 @@ function printFeatureSheet(wb: any, feature: any, testers: number): void {
       }
     }
 
-    currYIdx += printBlock(sheet, scenario, maxWidths, {
+    currYIdx += printBlock(sheet, element, maxWidths, {
       x: baseContentColumn + 1,
       y: currYIdx,
     });
@@ -259,7 +252,7 @@ function printBlock(
 
   sheet
     .cell(base.y + block.beforeComments.length, base.x)
-    .value(block.name)
+    .value(`${block.elementType}: ${block.name}`)
     .style(styles.bold);
 
   let currYIdx = base.y + 1 + block.beforeComments.length;

@@ -61,80 +61,60 @@ export async function generate(files: string[]): Promise<any> {
       const comments = chunk.gherkinDocument.comments;
 
       feature.children.forEach((child: any) => {
-        if (child.rule) {
-          // empty
-        } else if (child.background) {
-          const bg = child.background;
-          const commentsFound = commentCrawler(comments, bg.location.line);
+        const element = child.rule
+          ? child.rule
+          : child.background
+          ? child.background
+          : child.scenario;
 
-          const steps = bg.steps.map((step: any) => {
-            const commentsFound = commentCrawler(comments, step.location.line);
-            return processStep(step, commentsFound);
-          });
+        json.summary.scenarios.total += 1;
+        json.summary.scenarios.inconclusive += 1;
 
-          const examples = bg.examples
-            ? bg.examples.map((example: any) => {
-                const commentsFound = commentCrawler(
-                  comments,
-                  example.location.line,
-                );
-                return processExample(example, commentsFound);
-              })
-            : [];
+        const examples = element.examples
+          ? element.examples.map((example: any) => {
+              const commentsFound = commentCrawler(
+                comments,
+                example.location.line,
+              );
+              return processExample(example, commentsFound);
+            })
+          : [];
 
-          tmp.feature.background = {
-            steps,
-            examples,
-            name: bg.name,
-            description: bg.description || '',
-            tags: bg.tags ? bg.tags.map((tag: any) => tag.name) : [],
-            result: {
-              wasExecuted: false,
-              wasSuccessful: false,
-              wasProvided: false,
-            },
-            beforeComments: commentsFound.before,
-            afterComments: commentsFound.after,
-          };
-        } else if (child.scenario) {
-          json.summary.scenarios.total += 1;
-          json.summary.scenarios.inconclusive += 1;
+        const elementType = child.rule
+          ? 'Rule'
+          : child.background
+          ? 'Background'
+          : examples.length > 0
+          ? 'Scenario Outline'
+          : 'Scenario';
 
-          const examples = child.scenario.examples
-            ? child.scenario.examples.map((example: any) => {
-                const commentsFound = commentCrawler(
-                  comments,
-                  example.location.line,
-                );
-                return processExample(example, commentsFound);
-              })
-            : [];
+        const steps = element.steps
+          ? element.steps.map((step: any) => {
+              const commentsFound = commentCrawler(
+                comments,
+                step.location.line,
+              );
+              return processStep(step, commentsFound);
+            })
+          : [];
 
-          const steps = child.scenario.steps.map((step: any) => {
-            const commentsFound = commentCrawler(comments, step.location.line);
-            return processStep(step, commentsFound);
-          });
+        const commentsFound = commentCrawler(comments, element.location.line);
 
-          const commentsFound = commentCrawler(
-            comments,
-            child.scenario.location.line,
-          );
-
-          tmp.feature.featureElements.push({
-            steps,
-            examples,
-            name: child.scenario.name,
-            description: child.scenario.description || '',
-            tags: child.scenario.tags.map((tag: any) => tag.name),
-            result: {
-              wasExecuted: false,
-              wasSuccessful: false,
-              wasProvided: false,
-            },
-            beforeComments: commentsFound.before,
-            afterComments: commentsFound.after,
-          });
-        }
+        tmp.feature.featureElements.push({
+          steps,
+          examples,
+          elementType,
+          name: element.name,
+          description: element.description || '',
+          tags: element.tags ? element.tags.map((tag: any) => tag.name) : [],
+          result: {
+            wasExecuted: false,
+            wasSuccessful: false,
+            wasProvided: false,
+          },
+          beforeComments: commentsFound.before,
+          afterComments: commentsFound.after,
+        });
       });
 
       json.features.push(tmp);
@@ -154,13 +134,13 @@ export async function generate(files: string[]): Promise<any> {
 
 const commentCrawler = (comments: any, startingIndex: any) => {
   let currentIndex = startingIndex;
-  let element;
 
   const ret = {
     before: [],
     after: [],
   };
 
+  let element;
   // prettier-ignore
   // eslint-disable-next-line no-cond-assign
   while (element = comments.find((c: any)=> c.location.line === currentIndex - 1)) {
