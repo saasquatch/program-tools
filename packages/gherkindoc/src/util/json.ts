@@ -42,7 +42,6 @@ export async function generate(files: string[]): Promise<any> {
         feature: {
           name: feature.name,
           description: feature.description,
-          background: undefined,
           featureElements: [],
           tags: feature.tags.map((tag: any) => tag.name),
           result: {
