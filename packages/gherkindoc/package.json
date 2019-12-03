@@ -29,7 +29,6 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
-    "chalk": "^2.4.2",
     "gherkin": "^8.2.1",
     "glob": "^7.1.4",
     "moment": "^2.24.0",

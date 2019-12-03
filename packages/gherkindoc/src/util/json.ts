@@ -187,6 +187,7 @@ function processStep(step: any, comments: any): any {
     text: step.text,
     beforeComments: comments.before,
     afterComments: comments.after,
+    docString: step.docString,
     dataTable: [],
   };
 
