@@ -21,5 +21,7 @@ yargs
   .parse(process.argv.slice(2), (_: any, argv: any, output: any) => {
     if (argv.version === true && !argv._.length) {
       console.log(version);
+    } else {
+      console.log(output);
     }
   });
