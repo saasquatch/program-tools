@@ -2,6 +2,7 @@ import * as XlsxPopulate from "xlsx-populate";
 import { RichText } from "xlsx-populate";
 
 import { generate as generateJson } from "../util/json";
+import { ElementType } from "../util/json";
 import { styles } from "../util/styles";
 import { isDir, gherkins, getOutputFileName, getAllPaths } from "../util/fio";
 import { Arguments } from "yargs";
@@ -209,7 +210,11 @@ function printFeatureSheet(wb: any, feature: any, testers: number): void {
   currYIdx += 1;
 
   feature.featureElements.forEach(element => {
-    if (testers > 0 && element.elementType.startsWith("Scenario")) {
+    const eType = element.elementType;
+    if (
+      (testers > 0 && eType === ElementType.SCENARIO) ||
+      eType === ElementType.SCENARIO_OUTLINE
+    ) {
       for (let i = 1; i <= testers; i++) {
         sheet
           .cell(currYIdx, i)

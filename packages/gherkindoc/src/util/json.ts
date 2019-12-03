@@ -3,11 +3,81 @@ import * as moment from "moment";
 import { parse } from "./parser";
 import { version } from "../../package.json";
 
+export enum ElementType {
+  RULE,
+  BACKGROUND,
+  SCENARIO,
+  SCENARIO_OUTLINE
+}
+
+type FeatureElement = {
+  steps: any[];
+  examples: any[];
+  elementType: ElementType;
+  name: string;
+  description: string;
+  tags: string[];
+  result: {
+    wasExecuted: boolean;
+    wasSuccessful: boolean;
+    wasProvided: boolean;
+  };
+  beforeComments: string[];
+  afterComments: string[];
+};
+
+type Feature = {
+  relativeFolder: string;
+  feature: {
+    name: string;
+    description: string;
+    featureElements: FeatureElement[];
+    tags: string[];
+    result: {
+      wasExecuted: boolean;
+      wasSuccessful: boolean;
+      wasProvided: boolean;
+    };
+  };
+  result: {
+    wasExecuted: boolean;
+    wasSuccessful: boolean;
+    wasProvided: boolean;
+  };
+};
+
+type GherkinJSON = {
+  features: Feature[];
+  summary: {
+    tags: string[];
+    folders: string[];
+    notTestedFolders: string[];
+    scenarios: {
+      total: number;
+      passing: number;
+      failing: number;
+      inconclusive: number;
+    };
+    features: {
+      total: number;
+      passing: number;
+      failing: number;
+      inconclusive: number;
+    };
+  };
+  configuration: {
+    version: string;
+    program: string;
+    generatedOn: string;
+    generatedOnTimestamp: number;
+  };
+};
+
 export async function generate(files: string[]): Promise<any> {
   return new Promise<any>((resolve, reject) => {
     const stream = parse(files);
 
-    const json = {
+    const json: GherkinJSON = {
       features: [],
       summary: {
         tags: [],
@@ -37,7 +107,7 @@ export async function generate(files: string[]): Promise<any> {
     stream.on("data", (chunk: any) => {
       const feature = chunk.gherkinDocument.feature;
 
-      const tmp = {
+      const tmp: Feature = {
         relativeFolder: chunk.gherkinDocument.uri,
         feature: {
           name: feature.name,
@@ -58,6 +128,7 @@ export async function generate(files: string[]): Promise<any> {
       };
 
       const comments = chunk.gherkinDocument.comments;
+      console.log(`COMMENTS: ${comments}`);
 
       feature.children.forEach((child: any) => {
         const element = child.rule
@@ -80,12 +151,12 @@ export async function generate(files: string[]): Promise<any> {
           : [];
 
         const elementType = child.rule
-          ? "Rule"
+          ? ElementType.RULE
           : child.background
-          ? "Background"
+          ? ElementType.BACKGROUND
           : examples.length > 0
-          ? "Scenario Outline"
-          : "Scenario";
+          ? ElementType.SCENARIO_OUTLINE
+          : ElementType.SCENARIO;
 
         const steps = element.steps
           ? element.steps.map((step: any) => {
@@ -143,18 +214,18 @@ const commentCrawler = (comments: any, startingIndex: any) => {
   // prettier-ignore
   // eslint-disable-next-line no-cond-assign
   while (element = comments.find((c: any)=> c.location.line === currentIndex - 1)) {
-    ret.before.push(element.text.trim());
-    currentIndex--;
-  }
+      ret.before.push(element.text.trim());
+      currentIndex--;
+    }
 
   currentIndex = startingIndex;
 
   // prettier-ignore
   // eslint-disable-next-line no-cond-assign
   while (element = comments.find((c: any)=> c.location.line === currentIndex + 1)) {
-    ret.after.push(element.text.trim());
-    currentIndex++;
-  }
+      ret.after.push(element.text.trim());
+      currentIndex++;
+    }
 
   return ret;
 };
