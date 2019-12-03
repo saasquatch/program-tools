@@ -1,4 +1,4 @@
-import * as gherkin from 'gherkin';
+import * as gherkin from "gherkin";
 
 /**
  * Parses the feature file and returns the stream
@@ -9,7 +9,7 @@ export const parse = (paths: string[]) => {
   const options = {
     includeSource: false,
     includeGherkinDocument: true,
-    includePickles: false,
+    includePickles: false
   };
 
   return gherkin.fromPaths(paths, options);

@@ -1,7 +1,7 @@
-import { statSync } from 'fs';
-import { dirname } from 'path';
-import * as glob from 'glob';
-import * as moment from 'moment';
+import { statSync } from "fs";
+import { dirname } from "path";
+import * as glob from "glob";
+import * as moment from "moment";
 
 export const isDir = (path: string) => {
   return statSync(path).isDirectory();
@@ -12,7 +12,9 @@ export const gherkins = (dir: string) => {
 };
 
 export const getOutputFileName = (input: string) => {
-  const defaultFileName = `gherkindoc--${moment().format('YYYY-MM-DD--HH-mm-ss')}.xlsx`;
+  const defaultFileName = `gherkindoc--${moment().format(
+    "YYYY-MM-DD--HH-mm-ss"
+  )}.xlsx`;
   if (!input) {
     return defaultFileName;
   }
@@ -25,5 +27,5 @@ export const getOutputFileName = (input: string) => {
 };
 
 export const getAllPaths = (file: string) => {
-  return dirname(file).split('/');
+  return dirname(file).split("/");
 };

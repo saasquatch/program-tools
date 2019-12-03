@@ -1,55 +1,55 @@
 export const styles = {
   light: {
-    fontFamily: 'Calibri',
+    fontFamily: "Calibri",
     italic: true,
     fontColor: {
-      rgb: '444444',
-    },
+      rgb: "444444"
+    }
   },
   bold: {
-    fontFamily: 'Calibri',
-    bold: true,
+    fontFamily: "Calibri",
+    bold: true
   },
   normal: {
-    fontFamily: 'Calibri',
+    fontFamily: "Calibri"
   },
   stepKeyword: {
-    fontFamily: 'Calibri',
+    fontFamily: "Calibri",
     bold: true,
-    horizontalAlignment: 'right',
+    horizontalAlignment: "right"
   },
   tableHeader: {
-    fill: 'F0F8FF',
-    fontFamily: 'Calibri',
+    fill: "F0F8FF",
+    fontFamily: "Calibri",
     border: {
       left: true,
       right: true,
       top: true,
       bottom: true,
-      diagonal: false,
+      diagonal: false
     },
-    bold: true,
+    bold: true
   },
   tableCell: {
-    fontFamily: 'Calibri',
+    fontFamily: "Calibri",
     border: {
       left: true,
       right: true,
       top: true,
       bottom: true,
-      diagonal: false,
-    },
+      diagonal: false
+    }
   },
   hyperlink: {
-    fontColor: '0563C1',
-    underline: true,
+    fontColor: "0563C1",
+    underline: true
   },
   notTested: {
-    fill: 'FCE988',
-    fontFamily: 'Calibri',
+    fill: "FCE988",
+    fontFamily: "Calibri"
   },
   template: {
-    fontFamily: 'Calibri',
-    fontColor: 'B232FC',
-  },
+    fontFamily: "Calibri",
+    fontColor: "B232FC"
+  }
 };

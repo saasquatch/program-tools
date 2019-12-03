@@ -1,13 +1,13 @@
-import * as XlsxPopulate from 'xlsx-populate';
-import {RichText} from 'xlsx-populate';
+import * as XlsxPopulate from "xlsx-populate";
+import { RichText } from "xlsx-populate";
 
-import {generate as generateJson} from '../util/json';
-import {styles} from '../util/styles';
-import {isDir, gherkins, getOutputFileName, getAllPaths} from '../util/fio';
-import {Arguments} from 'yargs';
+import { generate as generateJson } from "../util/json";
+import { styles } from "../util/styles";
+import { isDir, gherkins, getOutputFileName, getAllPaths } from "../util/fio";
+import { Arguments } from "yargs";
 
-export const command = 'xlsx';
-export const desc = 'Parse the provided file or directory into XLSX';
+export const command = "xlsx";
+export const desc = "Parse the provided file or directory into XLSX";
 
 const DESCRIPTION_HEIGHT_MULTIPLIER = 14;
 const DESCRIPTION_HEIGHT_OFFSET = 15;
@@ -38,15 +38,15 @@ export const handler = async (argv: Arguments) => {
   const args = argv._;
 
   if (args.length !== 1) {
-    console.log('Wrong number of arguments.');
-    console.log('Pass a .feature file or directory.');
+    console.log("Wrong number of arguments.");
+    console.log("Pass a .feature file or directory.");
     return;
   }
 
-  console.log('Generating spreadsheet...');
+  console.log("Generating spreadsheet...");
 
   // const outFile = getOutputFileName(argv.out as string);
-  const outFile = './out.xlsx';
+  const outFile = "./out.xlsx";
   const files = isDir(args[0]) ? gherkins(args[0]) : [args[0]];
   const json = await generateJson(files);
   const testers = (argv.testers as number) || 0;
@@ -65,7 +65,7 @@ export const handler = async (argv: Arguments) => {
         curr[path] = {
           title: path,
           sheets: [],
-          subdirs: {},
+          subdirs: {}
         };
       }
 
@@ -83,22 +83,22 @@ export const handler = async (argv: Arguments) => {
   const tocKeys = Object.keys(toc);
   if (tocKeys.length === 1 && toc[tocKeys[0]].sheets.length === 0) {
     for (const key in toc[tocKeys[0]].subdirs) {
-      height += printTOC(wb.sheet('TOC'), toc[tocKeys[0]].subdirs[key], {
+      height += printTOC(wb.sheet("TOC"), toc[tocKeys[0]].subdirs[key], {
         x: testers + 2,
-        y: height,
+        y: height
       });
     }
   } else {
     for (const key in toc) {
-      height += printTOC(wb.sheet('TOC'), toc[key], {
+      height += printTOC(wb.sheet("TOC"), toc[key], {
         x: testers + 2,
-        y: height,
+        y: height
       });
     }
   }
 
   wb.toFileAsync(outFile);
-  console.log('Finished.');
+  console.log("Finished.");
   console.log(`Workbook written to ${outFile}`);
 };
 
@@ -112,9 +112,9 @@ export const handler = async (argv: Arguments) => {
 function wbInit(wb: any, testers: number): void {
   const toc = wb.sheet(0);
   toc
-    .name('TOC')
-    .cell('A1')
-    .value('New/TODO');
+    .name("TOC")
+    .cell("A1")
+    .value("New/TODO");
 
   toc.row(1).style(styles.bold);
 
@@ -122,7 +122,7 @@ function wbInit(wb: any, testers: number): void {
     toc.cell(1, i + 1).value(`Tester ${i}`);
   }
 
-  toc.cell(1, testers + 2).value('Sections');
+  toc.cell(1, testers + 2).value("Sections");
   toc.freezePanes(0, 1);
 }
 
@@ -156,7 +156,7 @@ function printTOC(sheet: any, toc: TOCEntry, base: CoordinateBase): number {
   for (const subkey in toc.subdirs) {
     height += printTOC(sheet, toc.subdirs[subkey], {
       x: base.x + 1,
-      y: base.y + height + 1,
+      y: base.y + height + 1
     });
   }
 
@@ -189,7 +189,7 @@ function printFeatureSheet(wb: any, feature: any, testers: number): void {
 
   let currYIdx = 2;
   if (feature.tags.length > 0) {
-    printTags(sheet, feature.tags, {x: baseContentColumn, y: currYIdx});
+    printTags(sheet, feature.tags, { x: baseContentColumn, y: currYIdx });
     currYIdx += 1;
   }
 
@@ -200,9 +200,9 @@ function printFeatureSheet(wb: any, feature: any, testers: number): void {
 
   if (feature.description) {
     // Place the feature description in the box below the tags
-    printLongtext(sheet, feature.description.replace(/\n +/g, '\n').trim(), {
+    printLongtext(sheet, feature.description.replace(/\n +/g, "\n").trim(), {
       x: baseContentColumn + 1,
-      y: currYIdx,
+      y: currYIdx
     });
     currYIdx += 1;
   }
@@ -210,18 +210,18 @@ function printFeatureSheet(wb: any, feature: any, testers: number): void {
   currYIdx += 1;
 
   feature.featureElements.forEach(element => {
-    if (testers > 0 && element.elementType.startsWith('Scenario')) {
+    if (testers > 0 && element.elementType.startsWith("Scenario")) {
       for (let i = 1; i <= testers; i++) {
         sheet
           .cell(currYIdx, i)
-          .value('Pending')
+          .value("Pending")
           .style(styles.notTested);
       }
     }
 
     currYIdx += printBlock(sheet, element, maxWidths, {
       x: baseContentColumn + 1,
-      y: currYIdx,
+      y: currYIdx
     });
   });
 }
@@ -241,7 +241,7 @@ function printBlock(
   sheet: any,
   block: any,
   maxWidths: MaxWidths,
-  base: CoordinateBase,
+  base: CoordinateBase
 ): number {
   block.beforeComments.forEach((comment, idx) => {
     sheet
@@ -257,16 +257,16 @@ function printBlock(
 
   let currYIdx = base.y + 1 + block.beforeComments.length;
   if (block.tags.length > 0) {
-    printTags(sheet, block.tags, {x: base.x, y: currYIdx});
+    printTags(sheet, block.tags, { x: base.x, y: currYIdx });
     currYIdx += 1;
   }
 
-  const {description} = block;
+  const { description } = block;
   if (description) {
     // Place the feature description in the box below the tags
-    printLongtext(sheet, description.replace(/\n +/g, '\n').trim(), {
+    printLongtext(sheet, description.replace(/\n +/g, "\n").trim(), {
       x: base.x,
-      y: currYIdx,
+      y: currYIdx
     });
     currYIdx += 1;
   }
@@ -304,14 +304,14 @@ function printBlock(
     if (step.dataTable.length > 0) {
       currYIdx += printDataTable(sheet, step.dataTable, maxWidths, {
         x: base.x + 2,
-        y: currYIdx,
+        y: currYIdx
       });
     }
 
     if (step.docString) {
       printLongtext(sheet, step.docString.content, {
         x: base.x + 1,
-        y: currYIdx,
+        y: currYIdx
       });
       currYIdx += 1;
     }
@@ -328,13 +328,13 @@ function printBlock(
 
     sheet
       .cell(currYIdx, base.x)
-      .value('Examples')
+      .value("Examples")
       .style(styles.normal);
 
     currYIdx += 1;
     currYIdx += printExampleTable(sheet, example, maxWidths, {
       x: base.x + 2,
-      y: currYIdx,
+      y: currYIdx
     });
   });
 
@@ -350,7 +350,7 @@ function printLongtext(sheet: any, text: string, base: CoordinateBase): void {
     .row(base.y)
     .height(
       (text.split(/\r\n|\r|\n/).length - 1) * DESCRIPTION_HEIGHT_MULTIPLIER +
-        DESCRIPTION_HEIGHT_OFFSET,
+        DESCRIPTION_HEIGHT_OFFSET
     );
 }
 
@@ -364,12 +364,12 @@ function printLongtext(sheet: any, text: string, base: CoordinateBase): void {
 function printTags(sheet: any, tags: string[], base: CoordinateBase): void {
   sheet
     .cell(base.y, base.x)
-    .value('Tags:')
+    .value("Tags:")
     .style(styles.light);
 
   sheet
     .cell(base.y, base.x + 1)
-    .value(tags.join(' '))
+    .value(tags.join(" "))
     .style(styles.light);
 }
 
@@ -388,7 +388,7 @@ function printDataTable(
   sheet: any,
   table: string[][],
   maxWidths: MaxWidths,
-  base: CoordinateBase,
+  base: CoordinateBase
 ): number {
   table.shift().forEach((col, idx) => {
     const x = base.x + idx;
@@ -430,7 +430,7 @@ function printExampleTable(
   sheet: any,
   table: any,
   maxWidths: MaxWidths,
-  base: CoordinateBase,
+  base: CoordinateBase
 ): number {
   table.header.forEach((col, idx) => {
     const x = base.x + idx;
@@ -467,8 +467,8 @@ function printExampleTable(
  */
 function getSheetName(feature: string): string {
   return feature
-    .replace(/\s+/g, '')
-    .replace(/[\\/*[\]:?]/g, '_')
+    .replace(/\s+/g, "")
+    .replace(/[\\/*[\]:?]/g, "_")
     .slice(0, 31)
     .toUpperCase();
 }
@@ -487,7 +487,7 @@ function updateMaxWidths(
   sheet: any,
   maxWidths: MaxWidths,
   col: number,
-  x: number,
+  x: number
 ): void {
   if (!maxWidths[col] || x > maxWidths[col]) {
     maxWidths[col] = x;
