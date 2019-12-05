@@ -14,7 +14,7 @@ export function init(cucumber: Cucumber): void {
     key: string,
   ) {
     const reqs = this.state.programTriggerResult.requirements;
-    const reqFound = reqs.find(r => r.key === key);
+    const reqFound = reqs.find((r) => r.key === key);
 
     this.setState({assertionResults: {foundRequirement: reqFound}});
     assert(reqFound);
@@ -33,11 +33,11 @@ export function init(cucumber: Cucumber): void {
   ) {
     const results = this.state.programTriggerResult.validationResults;
     data.hashes().forEach((row: ValidationStepRow) => {
-      const relevantResult = results.find(r => r.key === row.key);
+      const relevantResult = results.find((r) => r.key === row.key);
       assert(relevantResult);
 
       assert(
-        relevantResult.results.some(r => {
+        relevantResult.results.some((r) => {
           return r.message === row.message && r.status === row.status;
         }),
         `failed to find validation result: ${row.message} ${row.status}`,
@@ -191,6 +191,14 @@ export function init(cucumber: Cucumber): void {
   ) {
     const emails = this.state.programTriggerResult.emails;
     assert(emails.some((e: any) => e.key === key));
+  });
+
+  Then('the output will include a {string} reward key', function(
+    this: World,
+    key: string,
+  ) {
+    const rewards = this.state.programTriggerResult.rewards;
+    assert(rewards.some((r: any) => r.key === key));
   });
 
   Then('the following MODERATE_GRAPH_NODES mutation will exist:', function(
