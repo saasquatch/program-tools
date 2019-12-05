@@ -93,7 +93,7 @@ export class StatsContainer {
     // this converts the _ back to / so that it matches the unit from the backend
     // possibly change the unit in the backend to avoid this?
     const newUnit = unit.replace(/_/, "/")
-    const rewardBalance = this.stats[global === "global" ? 'rewardBalanceGlobal' : 'rewardBalance'].find(rb => rb.type === type && rb.unit === newUnit);
+    const rewardBalance = this.stats[`rewardBalance${global && "Global"} `].find(rb => rb.type === type && rb.unit === newUnit);
     if (!rewardBalance) return 0;
     if (valuetype) return rewardBalance[valuetype];
     return rewardBalance.value;
