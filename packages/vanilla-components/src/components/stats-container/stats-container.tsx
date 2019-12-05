@@ -29,7 +29,8 @@ export class StatsContainer {
           rewardsCount: res.rewardsCount.totalCount,
           rewardsMonth: res.rewardsMonth.totalCount,
           rewardsWeek: res.rewardsWeek.totalCount,
-          rewardBalances: res.rewardBalances
+          rewardBalance: res.rewardBalances,
+          rewardBalanceGlobal: res.rewardBalancesGlobal
         }
         this.loading = false;
       }).then(() => {
@@ -54,7 +55,7 @@ export class StatsContainer {
   }
 
   statPaths = [
-    "/rewardBalance/:type/:unit/:valuetype?",
+    "/:rewardBalance/:type/:unit/:valuetype?",
     "/:statName"
   ]
 
@@ -87,15 +88,15 @@ export class StatsContainer {
   }
 
   getRewardBalance(statVariables) {
-    const { type, unit, valuetype } = statVariables;
+    const { rewardBalance, type, unit, valuetype } = statVariables;
     // passing in CASH/USD as CASH_USD into this webcomponent so pathToRegexp doesn't split it and it stays all in unit.
     // this converts the _ back to / so that it matches the unit from the backend
     // possibly change the unit in the backend to avoid this?
     const newUnit = unit.replace(/_/, "/")
-    const rewardBalance = this.stats['rewardBalances'].find(rb => rb.type === type && rb.unit === newUnit);
+    const rewardBalanceData = this.stats[rewardBalance].find(rb => rb.type === type && rb.unit === newUnit);
     if (!rewardBalance) return 0;
-    if (valuetype) return rewardBalance[valuetype];
-    return rewardBalance.value;
+    if (valuetype) return rewardBalanceData[valuetype];
+    return rewardBalanceData.value;
   }
 
   onError(e: Error) {
