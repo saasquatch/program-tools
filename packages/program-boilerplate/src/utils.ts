@@ -172,6 +172,7 @@ export function getTriggerSchema(body: ProgramTriggerBody): object[] {
           ...standardData,
           event: {
             key: event.key,
+            id: event.id,
             dateTriggered: event.dateTriggered,
             fields: event.fields,
           },
