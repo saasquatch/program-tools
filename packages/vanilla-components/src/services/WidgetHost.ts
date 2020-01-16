@@ -54,7 +54,7 @@ const demoUser = {
   referrals: {
     totalCount: 8,
     data: [
-      { dateReferralStarted: today.setDate(today.getDate()-2), referredUser: { firstName: "Remus", lastName: "Lupin" }, rewards: [{ prettyValue: "$20.00", dateExpires: today.setDate(today.getDate()-2), statuses:["EXPIRED"] },{ prettyValue: "$10.00", statuses:["AVAILABLE"] },{ prettyValue: "$5.00", statuses:["AVAILABLE"] },] },
+      { dateReferralStarted: today.setDate(today.getDate()-2), referredUser: { firstName: "Remus", lastName: "Lupin" }, rewards: [{ prettyValue: "$20.00", dateExpires: today.setDate(today.getDate()-2), statuses:["EXPIRED"], meta:{customerNote:"Applied to Invoice #1234"} },{ prettyValue: "$10.00", statuses:["AVAILABLE"] },{ prettyValue: "$5.00", statuses:["AVAILABLE"] },] },
       { dateReferralStarted: today.setDate(today.getDate()-1), referredUser: { firstName: "Gellert", lastName: "Grindelwald" }, rewards: [] },
       // Blank string becomes an unknown user, which is editable
       { dateReferralStarted: today.setDate(today.getDate()-1), referredUser: { firstName: "", lastName: "" }, rewards: [{ prettyValue: "$20.00", dateExpires: today.setDate(today.getDate()-2), statuses:["EXPIRED"] }] },
@@ -329,6 +329,11 @@ const API = {
                 }) {
                   prettyValue
                   statuses
+                  data {
+                    meta {
+                      customMeta
+                    }
+                  }
                 }
               }
             }

@@ -16,6 +16,8 @@ export class ReferralList {
   @Prop() referralnamecolor: string;
   @Prop() referraltextcolor: string;
   @Prop() unknownuser: string;
+  @Prop() showexpiry:boolean;
+  @Prop() shownotes:boolean;
   // referrer props
   @Prop() showreferrer: boolean;
   @Prop() referrercontent: string;
@@ -33,7 +35,6 @@ export class ReferralList {
   @Prop() expiredcolor: string;
   @Prop() expiredcontent: string;
   @Prop() expiredvalue: string;
-  @Prop() showexpiry:boolean;
   // cancelled reward props
   @Prop() cancelledcolor: string;
   @Prop() cancelledcontent: string;
@@ -106,6 +107,7 @@ export class ReferralList {
       expiredcontent: this.expiredcontent,
       expiredvalue: this.expiredvalue,
       showexpiry: this.showexpiry,
+      shownotes: this.shownotes,
       cancelledvalue: this.cancelledvalue,
       cancelledcontent: this.cancelledcontent
     }

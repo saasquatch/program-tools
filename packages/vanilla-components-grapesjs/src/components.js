@@ -677,6 +677,8 @@ export default (editor, config = {}) => {
         toolbar: [],
         traits: [
           { type: 'boolean', name: 'ishidden' },
+          { type: 'boolean', name: 'showexpiry' },
+          { type: 'boolean', name: 'shownotes' },
           { type: 'boolean', name: 'showreferrer' },
           { type: 'boolean', name: 'usefirstreward' },
           { type: 'string', name: 'rewardcolor' },
@@ -732,6 +734,14 @@ export default (editor, config = {}) => {
                 {
                   'properties': {
                     'referraltype': { 'enum': ['global'] },
+                    'showexpiry': {
+                      'title': 'Show Expiry Date',
+                      'type': 'boolean'
+                    },
+                    'shownotes': {
+                      'title': 'Show Customer Notes',
+                      'type': 'boolean'
+                    },
                     'referralnamecolor': {
                       'title': 'Referral Name Color',
                       'type': 'string'

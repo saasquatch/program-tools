@@ -11,8 +11,6 @@ export class ReferralComponent {
   @Prop() referraltype: "converted" | "pending" | "referrer";
   @Prop() referralvariables: ReferralVariables;
   @Prop() unknownuser: String;
-  @Prop() showexpiry:boolean;
-
 
   getName() {
     const referral = (this.referral as Referral);
@@ -115,11 +113,15 @@ export class ReferralComponent {
     var rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
     const timeApart = rtf.format(diff / (60*60*24*1000), "day")
     console.log("time apart", timeApart)
-    console.log("showexpiry", this.showexpiry)
     return this.referralvariables.showexpiry && rewards[0].dateExpires ?
     FormatJS.format(`Expires in ${timeApart}`, formatVariables)
       :
     FormatJS.format(this.referralvariables.valuecontent, formatVariables);
+  }
+
+  getNote(rewards){
+    const note = rewards[0] && rewards[0].meta && rewards[0].meta.customerNote
+    return note || ""
   }
 
   render() {
@@ -132,12 +134,13 @@ export class ReferralComponent {
       date: FormatJS.formatRelative(dateReferralStarted.toString()),
       extrarewards: rewards.length - 1,
     };
-
+    console.log("rewards", rewards)
     const name = this.getName();
     const icon = this.getIcon();
     const content = this.getContent(formatVariables);
     const value = this.getValue();
     const valuecontent = this.getValueContent(formatVariables);
+    const customernote = this.getNote(rewards);
 
     return (
       <div class="squatch-referrals-row">
@@ -150,6 +153,11 @@ export class ReferralComponent {
           <div class="squatch-referrals-description">
             { content }
           </div>
+          { this.referralvariables.shownotes && customernote &&
+            <div class="squatch-referrals-description">
+              { customernote }
+            </div>
+          }
         </div>
 
         <i class={`icon squatch-referrals-icon ${ icon } ${this.rewardIsExpired() && 'expired'} ${this.rewardIsCancelled() && 'cancelled'}`}></i>
