@@ -33,6 +33,7 @@ export class ReferralList {
   @Prop() expiredcolor: string;
   @Prop() expiredcontent: string;
   @Prop() expiredvalue: string;
+  @Prop() expireddate:boolean;
   // cancelled reward props
   @Prop() cancelledcolor: string;
   @Prop() cancelledcontent: string;

@@ -366,6 +366,7 @@ declare global {
       'convertedcontent': string;
       'expiredcolor': string;
       'expiredcontent': string;
+      'expireddate': boolean;
       'expiredvalue': string;
       'ishidden': boolean;
       'noreferralsyet': string;
@@ -411,6 +412,7 @@ declare global {
       'convertedcontent'?: string;
       'expiredcolor'?: string;
       'expiredcontent'?: string;
+      'expireddate'?: boolean;
       'expiredvalue'?: string;
       'ishidden'?: boolean;
       'noreferralsyet'?: string;

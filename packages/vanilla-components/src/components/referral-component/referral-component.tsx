@@ -107,8 +107,17 @@ export class ReferralComponent {
 
     // When there are no more than rewards and reward has not expired yet
     if (rewards.length <= 1) return '';
-
-    return FormatJS.format(this.referralvariables.valuecontent, formatVariables);
+    console.log("expires:",rewards[0].dateExpires, "now", new Date().getTime())
+    const diff = (rewards[0].dateExpires - new Date().getTime())
+    console.log("diff?", diff);
+    //@ts-ignore
+    var rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+    const timeApart = rtf.format(diff / (60*60*24*1000), "day")
+    console.log("time apart", timeApart)
+    return rewards[0].dateExpires ?
+    FormatJS.format(`Expires in ${timeApart}`, formatVariables)
+      :
+    FormatJS.format(this.referralvariables.valuecontent, formatVariables);
   }
 
   render() {
