@@ -324,6 +324,7 @@ declare global {
       'referral': Referral | ReferredByReferral;
       'referraltype': "converted" | "pending" | "referrer";
       'referralvariables': ReferralVariables;
+      'showexpiry': boolean;
       'unknownuser': String;
     }
   }
@@ -350,6 +351,7 @@ declare global {
       'referral'?: Referral | ReferredByReferral;
       'referraltype'?: "converted" | "pending" | "referrer";
       'referralvariables'?: ReferralVariables;
+      'showexpiry'?: boolean;
       'unknownuser'?: String;
     }
   }
@@ -366,7 +368,6 @@ declare global {
       'convertedcontent': string;
       'expiredcolor': string;
       'expiredcontent': string;
-      'expireddate': boolean;
       'expiredvalue': string;
       'ishidden': boolean;
       'noreferralsyet': string;
@@ -380,6 +381,7 @@ declare global {
       'referrercontent': string;
       'referrervalue': string;
       'rewardcolor': string;
+      'showexpiry': boolean;
       'showreferrer': boolean;
       'unknownuser': string;
       'usefirstreward': boolean;
@@ -412,7 +414,6 @@ declare global {
       'convertedcontent'?: string;
       'expiredcolor'?: string;
       'expiredcontent'?: string;
-      'expireddate'?: boolean;
       'expiredvalue'?: string;
       'ishidden'?: boolean;
       'noreferralsyet'?: string;
@@ -426,6 +427,7 @@ declare global {
       'referrercontent'?: string;
       'referrervalue'?: string;
       'rewardcolor'?: string;
+      'showexpiry'?: boolean;
       'showreferrer'?: boolean;
       'unknownuser'?: string;
       'usefirstreward'?: boolean;

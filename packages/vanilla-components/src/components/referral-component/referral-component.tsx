@@ -11,6 +11,7 @@ export class ReferralComponent {
   @Prop() referraltype: "converted" | "pending" | "referrer";
   @Prop() referralvariables: ReferralVariables;
   @Prop() unknownuser: String;
+  @Prop() showexpiry:boolean;
 
 
   getName() {
@@ -114,7 +115,8 @@ export class ReferralComponent {
     var rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
     const timeApart = rtf.format(diff / (60*60*24*1000), "day")
     console.log("time apart", timeApart)
-    return rewards[0].dateExpires ?
+    console.log("showexpiry", this.showexpiry)
+    return this.referralvariables.showexpiry && rewards[0].dateExpires ?
     FormatJS.format(`Expires in ${timeApart}`, formatVariables)
       :
     FormatJS.format(this.referralvariables.valuecontent, formatVariables);

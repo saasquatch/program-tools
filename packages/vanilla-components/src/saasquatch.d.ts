@@ -78,6 +78,7 @@ interface ReferralVariables {
   valuecontent: string
   expiredvalue: string
   expiredcontent: string
+  showexpiry: boolean
   cancelledvalue: string
   cancelledcontent: string
 }
