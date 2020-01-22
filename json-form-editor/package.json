@@ -8,7 +8,7 @@
     "deploy": "gulp bundle && contentful-extension update --srcdoc ./dist/index.min.html --force --space-id $CONTENTFUL_SPACE_ID"
   },
   "dependencies": {
-    "contentful-ui-extensions-sdk": "^2.0.0",
+    "contentful-ui-extensions-sdk": "^3.2.0",
     "json-editor": "^0.7.23"
   },
   "devDependencies": {
