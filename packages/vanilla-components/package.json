@@ -22,7 +22,7 @@
     "contentful": "ts-node templates/build-contentful.ts"
   },
   "dependencies": {
-    "@stencil/core": "^0.9.11",
+    "@stencil/core": "^0.14.0",
     "@types/faker": "^4.1.2",
     "@types/graphql": "^0.13.3",
     "apollo-cache-inmemory": "^1.2.5",
