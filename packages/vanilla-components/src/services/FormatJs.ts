@@ -7,7 +7,7 @@ const FormatJS = {
         var format = new IntlMessageFormat(msg, locale);
         return format.format(values);
     },
-    formatRelative(value: string) {
+    formatRelative(value: string | number) {
       var locale = ((<any>window).widgetIdent.locale || 'en-US').replace('_', '-');
       var relative = new IntRelativeFormat(locale);
       return relative.format(value);

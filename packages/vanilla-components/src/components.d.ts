@@ -379,7 +379,9 @@ declare global {
       'referrercontent': string;
       'referrervalue': string;
       'rewardcolor': string;
+      'rewardnotecolor': string;
       'showexpiry': boolean;
+      'showmanualrewards': boolean;
       'shownotes': boolean;
       'showreferrer': boolean;
       'unknownuser': string;
@@ -426,7 +428,9 @@ declare global {
       'referrercontent'?: string;
       'referrervalue'?: string;
       'rewardcolor'?: string;
+      'rewardnotecolor'?: string;
       'showexpiry'?: boolean;
+      'showmanualrewards'?: boolean;
       'shownotes'?: boolean;
       'showreferrer'?: boolean;
       'unknownuser'?: string;

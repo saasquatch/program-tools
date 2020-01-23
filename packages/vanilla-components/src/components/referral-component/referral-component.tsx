@@ -72,6 +72,15 @@ export class ReferralComponent {
     return isCancelled;
   }
 
+  rewardIsRedeemed() {
+    const { rewards } = this.referral;
+    const hasStatuses = rewards.length == 1 && rewards[0].statuses;
+    const isRedeemed = hasStatuses && rewards[0].statuses.indexOf("REDEEMED") > -1;
+
+    return isRedeemed;
+  }
+
+
   getValue() {
     const {rewards} = this.referral;
     const referrer = this.referralvariables.referrervalue;
@@ -105,22 +114,27 @@ export class ReferralComponent {
     }  
 
     // When there are no more than rewards and reward has not expired yet
-    if (rewards.length <= 1) return '';
-    console.log("expires:",rewards[0].dateExpires, "now", new Date().getTime())
-    const diff = (rewards[0].dateExpires - new Date().getTime())
-    console.log("diff?", diff);
-    //@ts-ignore
-    var rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
-    const timeApart = rtf.format(diff / (60*60*24*1000), "day")
-    console.log("time apart", timeApart)
-    return this.referralvariables.showexpiry && rewards[0].dateExpires ?
-    FormatJS.format(`Expires in ${timeApart}`, formatVariables)
-      :
-    FormatJS.format(this.referralvariables.valuecontent, formatVariables);
+    if (!rewards.length) return '';
+
+    if(this.rewardIsRedeemed()){
+      return this.referralvariables.shownotes 
+      ? (this.getNote() || "Redeemed")
+      : FormatJS.format(rewards.length == 1 ? '' : this.referralvariables.valuecontent, formatVariables);
+    }
+
+    if(this.referralvariables.showexpiry && !rewards[0].dateExpires) return '';
+
+    if(this.referralvariables.showexpiry){
+      const expiryDate = FormatJS.formatRelative(rewards[0].dateExpires);
+      return FormatJS.format(`Expires ${expiryDate}`, formatVariables)
+    }
+
+    return FormatJS.format(rewards.length == 1 ? '' : this.referralvariables.valuecontent, formatVariables);
   }
 
-  getNote(rewards){
-    const note = rewards[0] && rewards[0].meta && rewards[0].meta.customerNote
+  getNote(){
+    const {rewards} = this.referral;
+    const note = rewards[0] && rewards[0].meta && rewards[0].meta.message
     return note || ""
   }
 
@@ -140,8 +154,8 @@ export class ReferralComponent {
     const content = this.getContent(formatVariables);
     const value = this.getValue();
     const valuecontent = this.getValueContent(formatVariables);
-    const customernote = this.getNote(rewards);
-
+    const customernote = this.getNote();
+    console.log("referralvariables", this.referralvariables, "customernote", customernote)
     return (
       <div class="squatch-referrals-row">
 
@@ -153,8 +167,8 @@ export class ReferralComponent {
           <div class="squatch-referrals-description">
             { content }
           </div>
-          { this.referralvariables.shownotes && customernote &&
-            <div class="squatch-referrals-description">
+          { this.referralvariables.shownotes && customernote && !this.rewardIsRedeemed() &&
+            <div class="squatch-referrals-description squatch-reward-note">
               { customernote }
             </div>
           }

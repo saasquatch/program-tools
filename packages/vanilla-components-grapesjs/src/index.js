@@ -2,7 +2,7 @@ import grapesjs from 'grapesjs';
 import loadComponents from './components';
 import loadBlocks from './blocks';
 
-export default grapesjs.plugins.add('vanilla-components-grapesjs-plugin', (editor, opts = {}) => {
+export default grapesjs.plugins.add('vanilla-components-grapesjs-meta-plugin', (editor, opts = {}) => {
   const options = { ...{
     // default options
   },  ...opts };
