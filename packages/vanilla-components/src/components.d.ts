@@ -364,6 +364,7 @@ declare global {
       'cancelledcontent': string;
       'cancelledvalue': string;
       'convertedcontent': string;
+      'customernotecolor': string;
       'expiredcolor': string;
       'expiredcontent': string;
       'expiredvalue': string;
@@ -379,7 +380,6 @@ declare global {
       'referrercontent': string;
       'referrervalue': string;
       'rewardcolor': string;
-      'rewardnotecolor': string;
       'showexpiry': boolean;
       'showmanualrewards': boolean;
       'shownotes': boolean;
@@ -413,6 +413,7 @@ declare global {
       'cancelledcontent'?: string;
       'cancelledvalue'?: string;
       'convertedcontent'?: string;
+      'customernotecolor'?: string;
       'expiredcolor'?: string;
       'expiredcontent'?: string;
       'expiredvalue'?: string;
@@ -428,7 +429,6 @@ declare global {
       'referrercontent'?: string;
       'referrervalue'?: string;
       'rewardcolor'?: string;
-      'rewardnotecolor'?: string;
       'showexpiry'?: boolean;
       'showmanualrewards'?: boolean;
       'shownotes'?: boolean;

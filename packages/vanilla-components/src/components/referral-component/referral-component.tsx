@@ -117,9 +117,7 @@ export class ReferralComponent {
     if (!rewards.length) return '';
 
     if(this.rewardIsRedeemed()){
-      return this.referralvariables.shownotes 
-      ? (this.getNote() || "Redeemed")
-      : FormatJS.format(rewards.length == 1 ? '' : this.referralvariables.valuecontent, formatVariables);
+      return FormatJS.format(rewards.length == 1 ? 'Redeemed' : this.referralvariables.valuecontent, formatVariables);
     }
 
     if(this.referralvariables.showexpiry && !rewards[0].dateExpires) return '';
@@ -167,8 +165,8 @@ export class ReferralComponent {
           <div class="squatch-referrals-description">
             { content }
           </div>
-          { this.referralvariables.shownotes && customernote && !this.rewardIsRedeemed() &&
-            <div class="squatch-referrals-description squatch-reward-note">
+          { this.referralvariables.shownotes && customernote &&
+            <div class="squatch-referrals-description squatch-customer-note">
               { customernote }
             </div>
           }

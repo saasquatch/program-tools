@@ -678,9 +678,10 @@ export default (editor, config = {}) => {
         traits: [
           { type: 'boolean', name: 'ishidden' },
           { type: 'boolean', name: 'showexpiry' },
-          { type: 'boolean', name: 'shownotes' },
+          { type: 'boolean', name: 'shownotes' }, 
           { type: 'boolean', name: 'showreferrer' },
           { type: 'boolean', name: 'usefirstreward' },
+          { type: 'string', name: 'customernotecolor' },
           { type: 'string', name: 'rewardcolor' },
           { type: 'string', name: 'pendingcolor' },
           { type: 'string', name: 'referralnamecolor' },
@@ -705,6 +706,7 @@ export default (editor, config = {}) => {
           ishidden: { 'ui:widget': 'hidden' },
           showreferrer: { 'ui:widget': 'radio' },
           usefirstreward: { 'ui:widget': 'radio' },
+          customernotecolor: { 'ui:widget': 'color' },
           rewardcolor: { 'ui:widget': 'color' },
           pendingcolor: { 'ui:widget': 'color' },
           referralnamecolor: { 'ui:widget': 'color' },
@@ -741,6 +743,10 @@ export default (editor, config = {}) => {
                     'shownotes': {
                       'title': 'Show Customer Notes',
                       'type': 'boolean'
+                    },
+                    'customernotecolor': {
+                      'title': 'Customer Note Color',
+                      'type': 'string'
                     },
                     'referralnamecolor': {
                       'title': 'Referral Name Color',

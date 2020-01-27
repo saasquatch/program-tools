@@ -25,7 +25,7 @@ export class ReferralList {
   @Prop() referrervalue: string;
   // converted referral props
   @Prop() rewardcolor: string;
-  @Prop() rewardnotecolor: string;
+  @Prop() customernotecolor: string;
   @Prop() usefirstreward: boolean;
   @Prop() convertedcontent: string;
   @Prop() valuecontent: string;
@@ -172,8 +172,8 @@ export class ReferralList {
       .squatch-referrals-value-content {
         color: ${ this.referraltextcolor };
       }
-      .squatch-reward-note {
-        color:${ this.rewardnotecolor || 'darkslategray' };
+      .squatch-customer-note {
+        color:${ this.customernotecolor || 'darkslategray' };
       }
       .squatch-referrals-scroll-action {
         font-family: ${'inherit'};
