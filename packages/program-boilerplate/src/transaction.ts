@@ -150,7 +150,7 @@ export default class Transaction {
       rewardProperties,
     } = input;
 
-    const rewardId = this.context.body.ids.pop();
+    const rewardId = ObjectID();
     const rewardData = {
       user: {
         id: user.id,
@@ -166,7 +166,7 @@ export default class Transaction {
       {rewardSource},
       {status},
       rewardProperties,
-    ].filter(prop => prop !== undefined);
+    ].filter((prop) => prop !== undefined);
     const updatedRewardData = validProperties.reduce((currentData, prop) => {
       return {...currentData, ...prop};
     }, rewardData);
@@ -304,13 +304,13 @@ export default class Transaction {
 
   generateRefunds() {
     const refundEvents = (this.events || []).filter(
-      e =>
+      (e) =>
         e.key === 'refund' &&
         e.fields &&
         // we can't do much if there's no order_id
         e.fields.order_id,
     );
-    refundEvents.forEach(refundEvent => {
+    refundEvents.forEach((refundEvent) => {
       const refundNode = {
         type: 'MODERATE_GRAPH_NODES',
         data: {
