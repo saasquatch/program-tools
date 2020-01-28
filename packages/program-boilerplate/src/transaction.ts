@@ -7,6 +7,7 @@ import {
 
 import {ProgramTriggerBody} from './types/rpc';
 import {ProgramType, User} from './types/saasquatch';
+const ObjectID = require('bson-objectid');
 
 type TransactionContext = {
   body: ProgramTriggerBody;
@@ -114,7 +115,7 @@ export default class Transaction {
    * @param {string} rewardKey - Key of the reward (as defined in contentful).
    */
   generateSimpleReward(rewardKey: string) {
-    const rewardId = this.context.body.ids.pop();
+    const rewardId = ObjectID();
     const newMutation = {
       type: 'CREATE_REWARD',
       data: {
