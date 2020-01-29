@@ -18,6 +18,7 @@ export class ReferralList {
   @Prop() unknownuser: string;
   @Prop() showexpiry:boolean;
   @Prop() shownotes:boolean;
+  @Prop() redeemedvalue: string;
   // referrer props
   @Prop() showreferrer: boolean;
   @Prop() referrercontent: string;
@@ -107,6 +108,7 @@ export class ReferralList {
       valuecontent: this.valuecontent,
       expiredcontent: this.expiredcontent,
       expiredvalue: this.expiredvalue,
+      redeemedvalue:this.redeemedvalue,
       showexpiry: this.showexpiry,
       shownotes: this.shownotes,
       cancelledvalue: this.cancelledvalue,

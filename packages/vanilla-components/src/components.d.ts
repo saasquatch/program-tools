@@ -375,6 +375,7 @@ declare global {
       'pendingcolor': string;
       'pendingcontent': string;
       'pendingvalue': string;
+      'redeemedvalue': string;
       'referralnamecolor': string;
       'referraltextcolor': string;
       'referrercontent': string;
@@ -423,6 +424,7 @@ declare global {
       'pendingcolor'?: string;
       'pendingcontent'?: string;
       'pendingvalue'?: string;
+      'redeemedvalue'?: string;
       'referralnamecolor'?: string;
       'referraltextcolor'?: string;
       'referrercontent'?: string;

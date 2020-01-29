@@ -103,31 +103,28 @@ export class ReferralComponent {
   getValueContent(formatVariables) {
     const {rewards} = this.referral;
 
-    // Expired content only applies when there is 1 reward in the referral
-    if (rewards.length == 1 && this.rewardIsExpired()) {
-      return FormatJS.format(this.referralvariables.expiredvalue, formatVariables)
-    }
-
-    // Cancelled content only applies when there is 1 reward in the referral
-    if (rewards.length == 1 && this.rewardIsCancelled()) {
-      return FormatJS.format(this.referralvariables.cancelledvalue, formatVariables)
-    }  
-
-    // When there are no more than rewards and reward has not expired yet
+    // When the reward is pending and there are no other rewards
     if (!rewards.length) return '';
 
-    if(this.rewardIsRedeemed()){
-      return FormatJS.format(rewards.length == 1 ? 'Redeemed' : this.referralvariables.valuecontent, formatVariables);
+    if(rewards.length == 1){
+      // Expired content only applies when there is 1 reward in the referral
+      if (this.rewardIsExpired()) return FormatJS.format(this.referralvariables.expiredvalue, formatVariables)
+
+      // Cancelled content only applies when there is 1 reward in the referral
+      if (this.rewardIsCancelled()) return FormatJS.format(this.referralvariables.cancelledvalue, formatVariables) 
+
+      // Redeemed content only applies when there is 1 reward in the referral
+      if(this.rewardIsRedeemed()) return FormatJS.format(this.referralvariables.redeemedvalue || "Redeemed", formatVariables);
+
+      // Expiry date only shown if there is 1 reward with dateExpires set in the referral
+      if(this.referralvariables.showexpiry && rewards[0].dateExpires){
+        const expiryDate = FormatJS.formatRelative(rewards[0].dateExpires);
+        return FormatJS.format(`Expires ${expiryDate}`, formatVariables)
+      }
+
+      return '';
     }
-
-    if(this.referralvariables.showexpiry && !rewards[0].dateExpires) return '';
-
-    if(this.referralvariables.showexpiry){
-      const expiryDate = FormatJS.formatRelative(rewards[0].dateExpires);
-      return FormatJS.format(`Expires ${expiryDate}`, formatVariables)
-    }
-
-    return FormatJS.format(rewards.length == 1 ? '' : this.referralvariables.valuecontent, formatVariables);
+    return FormatJS.format(this.referralvariables.valuecontent, formatVariables);
   }
 
   getNote(){
