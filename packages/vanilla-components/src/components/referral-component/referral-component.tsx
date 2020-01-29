@@ -161,7 +161,7 @@ export class ReferralComponent {
             { content }
           </div>
           { this.referralvariables.shownotes && customernote &&
-            <div class="squatch-referrals-description squatch-customer-note">
+            <div class="squatch-referrals-description squatch-customer-note" title={customernote}>
               { customernote }
             </div>
           }

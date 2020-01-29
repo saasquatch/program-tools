@@ -686,6 +686,7 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'pendingcolor' },
           { type: 'string', name: 'referralnamecolor' },
           { type: 'string', name: 'referraltextcolor' },
+          { type: 'string', name: 'redeemedvalue' },
           { type: 'string', name: 'pendingvalue' },
           { type: 'string', name: 'referrervalue' },
           { type: 'string', name: 'referrercontent' },
@@ -776,6 +777,10 @@ export default (editor, config = {}) => {
                     'rewardcolor': {
                       'title': 'Reward Color',
                       'type': 'string',
+                    },
+                    'redeemedvalue': {
+                      'title': 'Redeemed Reward Content',
+                      'type': 'string'
                     },
                     'convertedcontent': {
                       'title': 'Converted User Content',

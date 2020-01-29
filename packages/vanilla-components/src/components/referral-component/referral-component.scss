@@ -44,6 +44,10 @@ sqh-referral-component {
   }
   .squatch-customer-note {
     color:darkslategray;
+    max-width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
 
