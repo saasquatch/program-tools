@@ -18,7 +18,6 @@ export class ReferralList {
   @Prop() unknownuser: string;
   @Prop() showexpiry:boolean;
   @Prop() shownotes:boolean;
-  @Prop() showmanualrewards:boolean;
   // referrer props
   @Prop() showreferrer: boolean;
   @Prop() referrercontent: string;

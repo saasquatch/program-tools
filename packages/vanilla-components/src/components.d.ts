@@ -381,7 +381,6 @@ declare global {
       'referrervalue': string;
       'rewardcolor': string;
       'showexpiry': boolean;
-      'showmanualrewards': boolean;
       'shownotes': boolean;
       'showreferrer': boolean;
       'unknownuser': string;
@@ -430,7 +429,6 @@ declare global {
       'referrervalue'?: string;
       'rewardcolor'?: string;
       'showexpiry'?: boolean;
-      'showmanualrewards'?: boolean;
       'shownotes'?: boolean;
       'showreferrer'?: boolean;
       'unknownuser'?: string;
