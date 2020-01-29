@@ -118,7 +118,7 @@ export class ReferralComponent {
 
       // Expiry date only shown if there is 1 reward with dateExpires set in the referral
       if(this.referralvariables.showexpiry && rewards[0].dateExpires){
-        const expiryDate = FormatJS.formatRelative(rewards[0].dateExpires);
+        const expiryDate = FormatJS.formatRelative(rewards[0].dateExpires.toString());
         return FormatJS.format(`Expires ${expiryDate}`, formatVariables)
       }
 
