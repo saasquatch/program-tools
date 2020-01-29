@@ -146,14 +146,12 @@ export class ReferralComponent {
       date: FormatJS.formatRelative(dateReferralStarted.toString()),
       extrarewards: rewards.length - 1,
     };
-    console.log("rewards", rewards)
     const name = this.getName();
     const icon = this.getIcon();
     const content = this.getContent(formatVariables);
     const value = this.getValue();
     const valuecontent = this.getValueContent(formatVariables);
     const customernote = this.getNote();
-    console.log("referralvariables", this.referralvariables, "customernote", customernote)
     return (
       <div class="squatch-referrals-row">
 
