@@ -1,6 +1,6 @@
 {
-  "name": "@samsquatch/vanilla-components-meta",
-  "version": "1.0.13",
+  "name": "@samsquatch/vanilla-components",
+  "version": "1.0.8",
   "description": "Vanilla component library for the SaaSquatch platform",
   "main": "dist/index.js",
   "types": "dist/types/components.d.ts",
