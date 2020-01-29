@@ -52,6 +52,10 @@ interface Referral {
   rewards: Reward[]
 }
 
+interface Meta {
+  message: string
+}
+
 interface Reward {
   id: string
   type: string
@@ -66,6 +70,7 @@ interface Reward {
   currency: string
   prettyValue: string
   statuses: string[]
+  meta: Meta
 }
 
 interface ReferralVariables {
@@ -78,6 +83,9 @@ interface ReferralVariables {
   valuecontent: string
   expiredvalue: string
   expiredcontent: string
+  redeemedvalue: string
+  showexpiry: boolean
+  shownotes: boolean
   cancelledvalue: string
   cancelledcontent: string
 }

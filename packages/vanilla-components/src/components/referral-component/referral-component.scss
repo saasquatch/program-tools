@@ -42,6 +42,13 @@ sqh-referral-component {
   .squatch-referrals-description {
     font-size: 13px;
   }
+  .squatch-customer-note {
+    color:darkslategray;
+    max-width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 }
 
 sqh-referral-component {
