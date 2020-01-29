@@ -1,5 +1,5 @@
 {
-  "name": "@samsquatch/vanilla-components",
+  "name": "@saasquatch/vanilla-components",
   "version": "1.0.8",
   "description": "Vanilla component library for the SaaSquatch platform",
   "main": "dist/index.js",
