@@ -115,7 +115,7 @@ export default class Transaction {
    * @param {string} rewardKey - Key of the reward (as defined in contentful).
    */
   generateSimpleReward(rewardKey: string) {
-    const rewardId = new ObjectID();
+    const rewardId = ObjectID.generate();
     const newMutation = {
       type: 'CREATE_REWARD',
       data: {
@@ -150,7 +150,7 @@ export default class Transaction {
       rewardProperties,
     } = input;
 
-    const rewardId = new ObjectID();
+    const rewardId = ObjectID.generate();
     const rewardData = {
       user: {
         id: user.id,
