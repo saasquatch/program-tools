@@ -34,7 +34,7 @@ export class StatsContainer {
         }
         this.loading = false;
       }).then(() => {
-        const children = Array.from(this.container.querySelectorAll('sqh-stat-component'));
+        const children = Array.from(this.container.querySelectorAll('[stattype]'));
         children.map(child => {
           this.setStatValue(child)
         })
@@ -65,7 +65,7 @@ export class StatsContainer {
     return { regexp, keys }
   })
 
-  setStatValue(child: HTMLElement) {
+  setStatValue(child: HTMLElement | Element) {
     const path = child.getAttribute("stattype");
     const stat = this.getStatFromPath(path);
     child.setAttribute('statvalue', `${stat}`);
