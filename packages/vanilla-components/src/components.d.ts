@@ -287,6 +287,61 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhProgramComponent {
+      'background': string;
+      'color': string;
+      'fontfamily': string;
+      'fontsize': string;
+      'height': string;
+      'ishidden': boolean;
+      'ismarkdown': boolean;
+      'padding': string;
+      'paddingbottom': string;
+      'paddingtop': string;
+      'text': string;
+      'textalign': string;
+    }
+  }
+
+  interface HTMLSqhProgramComponentElement extends StencilComponents.SqhProgramComponent, HTMLStencilElement {}
+
+  var HTMLSqhProgramComponentElement: {
+    prototype: HTMLSqhProgramComponentElement;
+    new (): HTMLSqhProgramComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-program-component': HTMLSqhProgramComponentElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-program-component': HTMLSqhProgramComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-program-component': JSXElements.SqhProgramComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhProgramComponentAttributes extends HTMLAttributes {
+      'background'?: string;
+      'color'?: string;
+      'fontfamily'?: string;
+      'fontsize'?: string;
+      'height'?: string;
+      'ishidden'?: boolean;
+      'ismarkdown'?: boolean;
+      'padding'?: string;
+      'paddingbottom'?: string;
+      'paddingtop'?: string;
+      'text'?: string;
+      'textalign'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhReferralCode {
 
     }
@@ -801,6 +856,76 @@ declare global {
       'ishidden'?: boolean;
       'paddingbottom'?: string;
       'paddingtop'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SqhTabComponent {
+      'open': boolean;
+      'syntax': string;
+      'tabname': string;
+    }
+  }
+
+  interface HTMLSqhTabComponentElement extends StencilComponents.SqhTabComponent, HTMLStencilElement {}
+
+  var HTMLSqhTabComponentElement: {
+    prototype: HTMLSqhTabComponentElement;
+    new (): HTMLSqhTabComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-tab-component': HTMLSqhTabComponentElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-tab-component': HTMLSqhTabComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-tab-component': JSXElements.SqhTabComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhTabComponentAttributes extends HTMLAttributes {
+      'open'?: boolean;
+      'syntax'?: string;
+      'tabname'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SqhTabContainer {
+
+    }
+  }
+
+  interface HTMLSqhTabContainerElement extends StencilComponents.SqhTabContainer, HTMLStencilElement {}
+
+  var HTMLSqhTabContainerElement: {
+    prototype: HTMLSqhTabContainerElement;
+    new (): HTMLSqhTabContainerElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-tab-container': HTMLSqhTabContainerElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-tab-container': HTMLSqhTabContainerElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-tab-container': JSXElements.SqhTabContainerAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhTabContainerAttributes extends HTMLAttributes {
+
     }
   }
 }
