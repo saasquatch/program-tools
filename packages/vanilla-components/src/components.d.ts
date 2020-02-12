@@ -288,16 +288,13 @@ declare global {
 
   namespace StencilComponents {
     interface SqhProgramComponent {
-      'background': string;
-      'color': string;
-      'fontfamily': string;
-      'fontsize': string;
-      'height': string;
+      'ctatext': string;
+      'ctaurl': string;
+      'icon': string;
+      'iconplacement': string;
       'ishidden': boolean;
       'ismarkdown': boolean;
-      'padding': string;
-      'paddingbottom': string;
-      'paddingtop': string;
+      'reward': string;
       'text': string;
       'textalign': string;
     }
@@ -322,16 +319,13 @@ declare global {
   }
   namespace JSXElements {
     export interface SqhProgramComponentAttributes extends HTMLAttributes {
-      'background'?: string;
-      'color'?: string;
-      'fontfamily'?: string;
-      'fontsize'?: string;
-      'height'?: string;
+      'ctatext'?: string;
+      'ctaurl'?: string;
+      'icon'?: string;
+      'iconplacement'?: string;
       'ishidden'?: boolean;
       'ismarkdown'?: boolean;
-      'padding'?: string;
-      'paddingbottom'?: string;
-      'paddingtop'?: string;
+      'reward'?: string;
       'text'?: string;
       'textalign'?: string;
     }
