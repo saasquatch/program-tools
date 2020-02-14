@@ -587,7 +587,79 @@ const API = {
         `,
         variables
       }).then(res => res.data.user);
-    }
+    },
+    getUserProgress(){
+      const widgetId = widgetIdent();
+  
+      if (widgetId["env"] === "demo" || !widgetId) {
+        const demoData = {
+          customFields: {demo_totalValue:16},
+          rewardBalanceDetails:[{
+            prettyAvailableValue:"$10.00"
+          }],
+          rewards:{count:1}
+        }
+        return Promise.resolve(demoData);
+      }
+       const { userId, accountId, programId } = widgetId;
+       const variables = {
+        userId,
+        accountId,
+        programId,
+      };
+      return this.getClient().query({
+        query: gql`
+          query($userId: String!, $accountId: String!, $programId: ID) {
+            user(id: $userId, accountId: $accountId){
+              customFields
+              rewardBalanceDetails(programId: $programId) {
+                prettyAvailableValue(formatType:UNIT_FORMATTED)
+              }
+              rewards(limit:1000,offset:0, filter:{programId_eq: $programId}){
+                count
+              }
+            }
+          }
+          `,
+          variables
+        }).then(res => res.data.user);
+    },
+    getProgramRules(){
+      const widgetId = widgetIdent();
+  
+      if (widgetId["env"] === "demo" || !widgetId) {
+        const demoData = {
+          id:"demo",
+          name:"Demo Program",
+          rules: {
+            programWindow:"",
+            rewardRules: {
+              rewardRulesType: 1,
+              rewardGoal: 24,
+              isRecurring: 1,
+              defaultCurrency: "CAD"
+            }
+          }
+        }
+        return Promise.resolve(demoData);
+      }
+       const { programId } = widgetId;
+       const variables = {
+        programId
+      };
+      return this.getClient().query({
+        query: gql`
+          query($programId: ID!) {
+            program(id:$programId){
+              id
+              name
+              rules
+            }
+          }
+          `,
+          variables
+        }).then(res => res.data.program);
+    },
   },
   ui: squatchJsApi
 };

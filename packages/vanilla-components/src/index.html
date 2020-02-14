@@ -39,9 +39,21 @@
   <sqh-global-container>
     <!-- figure out what these summary things will actually be -->
     <sqh-summary-container>
-      <sqh-summary-component type="progress" textalign="left"></sqh-summary-component>
-      <sqh-summary-component type="balances" textalign="right"></sqh-summary-component>
-      <sqh-stat-component style="float:right;" statcolor="#4caf50" stattype="/referralsCount" statdescription="Friends Referred" paddingtop="10" paddingbottom="10" statvalue="8"></sqh-stat-component>
+      <sqh-progress-indicator
+      style="transform:scale(0.85);margin-top:-20px;"
+      sqhprogress="true"
+      textcolor="#000"
+      earned="You've already earned"
+      progress="Almost there - Spend {amountNeeded} more dollars and get $5 credit."
+      progresstype="Path"
+      progresswidth="200px"
+      percentagecolor="#285F62"
+      percentagesize="32px"
+      progresscolor="#009DF5"
+    >
+    </sqh-progress-indicator>
+      <sqh-stat-component style="float:right;" stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit/global" statdescription="Credit earned" paddingtop="10" paddingbottom="10" statcolor="#000000" statvalue="$1000.00"></sqh-stat-component>
+      <sqh-stat-component style="float:right;margin-top:-125px;" statcolor="#4caf50" stattype="/referralsCount" statdescription="Friends Referred" paddingtop="10" paddingbottom="10" statvalue="8"></sqh-stat-component>
     </sqh-summary-container>
     <sqh-tab-container>
       <sqh-tab-component tabname="History">

@@ -336,6 +336,57 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhProgressIndicator {
+      'align': string;
+      'earned': string;
+      'ishidden': boolean;
+      'percentagecolor': string;
+      'percentagesize': string;
+      'progress': string;
+      'progresscolor': string;
+      'progresstype': string;
+      'progresswidth': string;
+      'textcolor': string;
+    }
+  }
+
+  interface HTMLSqhProgressIndicatorElement extends StencilComponents.SqhProgressIndicator, HTMLStencilElement {}
+
+  var HTMLSqhProgressIndicatorElement: {
+    prototype: HTMLSqhProgressIndicatorElement;
+    new (): HTMLSqhProgressIndicatorElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-progress-indicator': HTMLSqhProgressIndicatorElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-progress-indicator': HTMLSqhProgressIndicatorElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-progress-indicator': JSXElements.SqhProgressIndicatorAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhProgressIndicatorAttributes extends HTMLAttributes {
+      'align'?: string;
+      'earned'?: string;
+      'ishidden'?: boolean;
+      'percentagecolor'?: string;
+      'percentagesize'?: string;
+      'progress'?: string;
+      'progresscolor'?: string;
+      'progresstype'?: string;
+      'progresswidth'?: string;
+      'textcolor'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhReferralCode {
 
     }

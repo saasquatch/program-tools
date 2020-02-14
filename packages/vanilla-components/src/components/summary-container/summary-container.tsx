@@ -24,7 +24,7 @@ export class SummaryContainer {
 
   render() {
     const divStyle = css`
-      height:150px;
+      height:200px;
       border:1px solid #555;
     `
 
