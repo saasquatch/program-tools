@@ -533,6 +533,61 @@ const API = {
         variables
       }).then(res => res.data.user);
     },
+
+    // Global Widget 
+    getSummaryBalance(unit:string){
+      const widgetId = widgetIdent();
+      const { userId, accountId } = widgetId;
+
+      const variables = {
+        userId,
+        accountId, 
+        unit
+      };
+
+      return this.getClient().query({
+        query: gql`
+          query(
+            $userId: String!, $accountId: String!, $unit: String!
+          ) {
+            user(id:$userId, accountId:$accountId){
+              rewardBalanceDetails(filter:{unit_eq:$unit}) {
+                prettyAvailableValue
+                type
+                unit
+              }
+            }
+          }
+        `,
+        variables
+      }).then(res => res.data.user);
+    },
+    getRewardBalances(){
+      const widgetId = widgetIdent();
+      const { userId, accountId } = widgetId;
+
+      const variables = {
+        userId,
+        accountId
+      };
+
+      return this.getClient().query({
+        query: gql`
+          query(
+            $userId: String!, $accountId: String!
+          ) {
+            user(id:$userId, accountId:$accountId){
+              rewardBalanceDetails {
+                prettyAvailableValue
+                type
+                unit
+              }
+            }
+          }
+        `,
+        variables
+      }).then(res => res.data.user);
+    }
   },
   ui: squatchJsApi
 };

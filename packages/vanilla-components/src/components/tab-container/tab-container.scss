@@ -1,7 +1,9 @@
 sqh-tab-container {
   .code-container {
+    border-left:1px solid #555;
+    border-right:1px solid #555;
     position:relative;
-    margin-top: 16px;
+    padding-top: 16px;
   }
   .copy-button {
     width: 85px;

@@ -858,6 +858,61 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface SqhSummaryContainer {
+      'background': string;
+      'color': string;
+      'fontfamily': string;
+      'fontsize': string;
+      'height': string;
+      'ishidden': boolean;
+      'ismarkdown': boolean;
+      'padding': string;
+      'paddingbottom': string;
+      'paddingtop': string;
+      'text': string;
+      'textalign': string;
+    }
+  }
+
+  interface HTMLSqhSummaryContainerElement extends StencilComponents.SqhSummaryContainer, HTMLStencilElement {}
+
+  var HTMLSqhSummaryContainerElement: {
+    prototype: HTMLSqhSummaryContainerElement;
+    new (): HTMLSqhSummaryContainerElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-summary-container': HTMLSqhSummaryContainerElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-summary-container': HTMLSqhSummaryContainerElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-summary-container': JSXElements.SqhSummaryContainerAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhSummaryContainerAttributes extends HTMLAttributes {
+      'background'?: string;
+      'color'?: string;
+      'fontfamily'?: string;
+      'fontsize'?: string;
+      'height'?: string;
+      'ishidden'?: boolean;
+      'ismarkdown'?: boolean;
+      'padding'?: string;
+      'paddingbottom'?: string;
+      'paddingtop'?: string;
+      'text'?: string;
+      'textalign'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface SqhTabComponent {
       'open': boolean;
       'syntax': string;

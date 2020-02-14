@@ -41,11 +41,12 @@
     <sqh-summary-container>
       <sqh-summary-component type="progress" textalign="left"></sqh-summary-component>
       <sqh-summary-component type="balances" textalign="right"></sqh-summary-component>
+      <sqh-stat-component style="float:right;" statcolor="#4caf50" stattype="/referralsCount" statdescription="Friends Referred" paddingtop="10" paddingbottom="10" statvalue="8"></sqh-stat-component>
     </sqh-summary-container>
     <sqh-tab-container>
       <sqh-tab-component tabname="History">
         <h1>your history and junk</h1>
-        <ul>
+        <ul style="margin-bottom:0;">
           <li>line item 1</li>
           <li>line item 2</li>
           <li>line item 3</li>
@@ -60,30 +61,39 @@
           ctaurl="http://google.com"
           ctatext="EARN"
           ismarkdown="true"
-        />
+        ></sqh-program-component>
         <sqh-program-component
           text="UPGRADE TO PREMIUM BEFORE FEB 4"
-          reward="20000 Squatch Points"
+          reward="2000 Squatch Points"
           icon="https://opengear.com/wp-content/uploads/2016/03/box-icon.png"
           ctaurl="http://google.com"
           ctatext="UPGRADE"
           ismarkdown="true"
-
-        />
+        ></sqh-program-component>
         <sqh-program-component
           text="Earn 10% of every purchase your referred friend makes"
           icon=""
           ismarkdown="true"
-        />
+        ></sqh-program-component>
       </sqh-tab-component>
       <sqh-tab-component tabname="My Rewards">
         You currently have:
-        <ul>
+        <ul style="margin-bottom:0;">
           <li>$20</li>
           <li>100 squatch bucks</li>
         </ul>
       </sqh-tab-component>
     </sqh-tab-container>
+    <sqh-text-component 
+    style="border:1px solid #555;border-top:none;"
+    sqhfooter="true" 
+    text="Terms and Conditions" 
+    color="lightgray" 
+    fontsize="13"
+    textalign="center"
+    paddingtop="10"
+    paddingbottom="10"
+  ></sqh-text-component>
   </sqh-global-container>
     <!-- <sqh-global-container 
   class="squatch-container" 

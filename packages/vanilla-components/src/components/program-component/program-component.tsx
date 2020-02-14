@@ -32,13 +32,15 @@ export class ProgramComponent {
 
     const divStyle = css`
       background: #FFF;
-      border:1px solid #555;
+      border-top:1px solid #555;
+      border-bottom:1px solid #555;
       padding:8px;
       text-align:center;
       height:125px;
       display:grid;
       grid-template-columns: 20% 5% 35% 35% 5%;
-      grid-template-rows: 12.5% 25% 25% 25% 12.5%
+      grid-template-rows: 12.5% 25% 25% 25% 12.5%;
+      margin-top:1em;
     `;
 
     const iconDivStyle = css`
