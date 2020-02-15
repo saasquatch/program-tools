@@ -624,7 +624,7 @@ const API = {
           variables
         }).then(res => res.data.user);
     },
-    getProgramRules(){
+    getProgramRules(programId){
       const widgetId = widgetIdent();
   
       if (widgetId["env"] === "demo" || !widgetId) {
@@ -643,7 +643,7 @@ const API = {
         }
         return Promise.resolve(demoData);
       }
-       const { programId } = widgetId;
+      //  const { programId } = widgetId;
        const variables = {
         programId
       };
@@ -659,6 +659,116 @@ const API = {
           `,
           variables
         }).then(res => res.data.program);
+    },
+    getProgramCardData(programId){
+      const widgetId = widgetIdent();
+  
+      if (widgetId["env"] === "demo" || !widgetId) {
+        const demoData = {
+          id:"demo",
+          name:"Demo Program",
+          rules: {
+            programWindow:"",
+            rewardRules: {
+              rewardRulesType: 1,
+              rewardGoal: 24,
+              isRecurring: 1,
+              defaultCurrency: "CAD"
+            }
+          }
+        }
+        return Promise.resolve(demoData);
+      }
+      //  const { programId } = widgetId;
+       const variables = {
+        programId
+      };
+      return this.getClient().query({
+        query: gql`
+          query($programId: ID!) {
+            program(id:$programId){
+                id
+                status
+                rules
+                rewards {
+                  name
+                  description
+                  rewardType
+                  amount
+                  unit
+                  currency
+                  prettyValue
+                }
+            }
+          }
+          `,
+          variables
+        }).then(res => res.data.program);
+    },
+    getRewards(){
+      const widgetId = widgetIdent();
+  
+      if (widgetId["env"] === "demo" || !widgetId) {
+        const demoData = {
+          customFields: {demo_totalValue:16},
+          rewardBalanceDetails:[{
+            prettyAvailableValue:"$10.00",
+            rewardUnit: {
+              name: "Credit",
+              currency: {
+                currencyCode:"USD",
+                fractionalUnit: "Cent"
+              }
+            },
+          }],
+          rewards:{
+            data:[{
+            unit: "CENTS",
+            rewardUnit: {
+              name: "Credit"
+            },
+            prettyAvailableValue: "$50.00",
+            prettyRedeemedCredit: "$0.00",
+          }],
+          count:1}
+        }
+        return Promise.resolve(demoData);
+      }
+       const { userId, accountId } = widgetId;
+       const variables = {
+        userId,
+        accountId
+      };
+      return this.getClient().query({
+        query: gql`
+          query($userId: String!, $accountId: String!) {
+            user(id: $userId, accountId: $accountId){
+              customFields
+              rewardBalanceDetails {
+                rewardUnit {
+                  name
+                  currency {
+                    currencyCode
+                  }
+                }
+                prettyAvailableValue(formatType:UNIT_FORMATTED)
+              }
+              rewards(limit:1000,offset:0){
+                data {
+                  rewardUnit {
+                    name
+                  }
+                  prettyAvailableValue
+                  prettyRedeemedCredit
+                  id
+                }
+                count
+              }
+            }
+          }
+          `,
+          variables
+        }).then(res => res.data.user);
     },
   },
   ui: squatchJsApi

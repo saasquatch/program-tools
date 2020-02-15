@@ -36,8 +36,8 @@
 </head>
 
 <body>
+
   <sqh-global-container>
-    <!-- figure out what these summary things will actually be -->
     <sqh-summary-container>
       <sqh-progress-indicator
       style="transform:scale(0.85);margin-top:-20px;"
@@ -50,10 +50,13 @@
       percentagecolor="#285F62"
       percentagesize="32px"
       progresscolor="#009DF5"
+      programid="global-vip"
     >
     </sqh-progress-indicator>
-      <sqh-stat-component style="float:right;" stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit/global" statdescription="Credit earned" paddingtop="10" paddingbottom="10" statcolor="#000000" statvalue="$1000.00"></sqh-stat-component>
-      <sqh-stat-component style="float:right;margin-top:-125px;" statcolor="#4caf50" stattype="/referralsCount" statdescription="Friends Referred" paddingtop="10" paddingbottom="10" statvalue="8"></sqh-stat-component>
+    <sqh-stats-container style="display:inline;">
+      <sqh-stat-component style="float:right;width:155px;" stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit/global" statdescription="Credit earned" paddingtop="10" paddingbottom="10" statcolor="#000000"></sqh-stat-component>
+      <sqh-stat-component style="float:right;margin-top:-125px;width:155px;" statcolor="#4caf50" stattype="/referralsCount" statdescription="Friends Referred" paddingtop="10" paddingbottom="10"></sqh-stat-component>
+    </sqh-stats-container>
     </sqh-summary-container>
     <sqh-tab-container>
       <sqh-tab-component tabname="History">
@@ -67,33 +70,35 @@
       </sqh-tab-component>
       <sqh-tab-component tabname="Earn" open="true">
         <sqh-program-component
-          text="COMPLETE YOUR PROFILE"
-          reward="20 Squatch Points"
+          text="Receive points with every purchase over $5"
+          reward="100 Squatch Points"
           icon="https://clipartart.com/images/default-profile-picture-clipart-3.jpg"
           ctaurl="http://google.com"
-          ctatext="EARN"
+          ctatext="Shop"
           ismarkdown="true"
+          programid="global-points"
         ></sqh-program-component>
         <sqh-program-component
-          text="UPGRADE TO PREMIUM BEFORE FEB 4"
-          reward="2000 Squatch Points"
+          text="When you earn 500 Squatch Points receive a wonderful prize!"
+          reward="$50 Credit"
           icon="https://opengear.com/wp-content/uploads/2016/03/box-icon.png"
           ctaurl="http://google.com"
-          ctatext="UPGRADE"
+          ctatext="Earn Points"
           ismarkdown="true"
+          programid="global-vip"
         ></sqh-program-component>
         <sqh-program-component
-          text="Earn 10% of every purchase your referred friend makes"
-          icon=""
+          text="Get rewarded for every friend that you refer"
+          reward="$50 Credit"
+          ctaurl="http://short.staging.referralsaasquatch.com/mznPmE"
+          ctatext="Copy Link"
+          icon="https://opengear.com/wp-content/uploads/2016/03/box-icon.png"
           ismarkdown="true"
+          programid="referral-program"
         ></sqh-program-component>
       </sqh-tab-component>
       <sqh-tab-component tabname="My Rewards">
-        You currently have:
-        <ul style="margin-bottom:0;">
-          <li>$20</li>
-          <li>100 squatch bucks</li>
-        </ul>
+        <sqh-rewards-component></sqh-rewards-component>
       </sqh-tab-component>
     </sqh-tab-container>
     <sqh-text-component 

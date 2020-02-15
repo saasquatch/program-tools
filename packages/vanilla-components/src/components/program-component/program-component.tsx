@@ -1,6 +1,7 @@
-import { Component, Prop, Element } from '@stencil/core';
+import { Component, Prop, Element, State } from '@stencil/core';
 import { css } from 'emotion';
 import marked from 'marked';
+import { API } from '../../services/WidgetHost';
 
 @Component({
   tag: 'sqh-program-component',
@@ -16,10 +17,22 @@ export class ProgramComponent {
   @Prop() ctaurl:string;
   @Prop() ctatext:string;
   @Prop() reward:string;
+  @Prop() programid:string;
   @Element() textEl: HTMLElement;   
+  @State() programData: any;
+
+  async componentWillLoad() {
+    this.programData = {
+      data:{}
+    }
+    const programData = await API.graphql.getProgramCardData(this.programid);
+    console.log(programData)
+    this.programData = {
+      data:programData
+    }
+  }
 
   render() {
-    // const regex = /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i;
 
     const textStyle = css`
       padding-top: inherit;
@@ -56,9 +69,14 @@ export class ProgramComponent {
 
     const ctaStyle = css`
       border:1px solid #555;
+      border-radius:4px;
+      color:#FFF;
+      text-decoration:none;
+      background-color:rgb(245, 168, 65);
       padding:6px 12px;
       grid-column:4;
       grid-row:4;
+      align-self: center;
     `
 
     const rewardStyle = css`
@@ -79,7 +97,7 @@ export class ProgramComponent {
           {content}
         </p>
         <p class={rewardStyle}>{this.reward}</p>
-        {this.ctaurl && <a class={ctaStyle} href={this.ctaurl}><span>{this.ctatext}</span></a>}
+        {this.ctaurl && <a target="_blank" class={ctaStyle} href={this.ctaurl}><span>{this.ctatext}</span></a>}
       </div>;
   }
 }

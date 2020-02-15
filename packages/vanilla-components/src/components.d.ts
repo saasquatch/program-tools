@@ -294,6 +294,7 @@ declare global {
       'iconplacement': string;
       'ishidden': boolean;
       'ismarkdown': boolean;
+      'programid': string;
       'reward': string;
       'text': string;
       'textalign': string;
@@ -325,6 +326,7 @@ declare global {
       'iconplacement'?: string;
       'ishidden'?: boolean;
       'ismarkdown'?: boolean;
+      'programid'?: string;
       'reward'?: string;
       'text'?: string;
       'textalign'?: string;
@@ -342,6 +344,7 @@ declare global {
       'ishidden': boolean;
       'percentagecolor': string;
       'percentagesize': string;
+      'programid': string;
       'progress': string;
       'progresscolor': string;
       'progresstype': string;
@@ -374,6 +377,7 @@ declare global {
       'ishidden'?: boolean;
       'percentagecolor'?: string;
       'percentagesize'?: string;
+      'programid'?: string;
       'progress'?: string;
       'progresscolor'?: string;
       'progresstype'?: string;
@@ -573,6 +577,57 @@ declare global {
       'hidetext'?: string;
       'nexttext'?: string;
       'previoustext'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SqhRewardsComponent {
+      'ctatext': string;
+      'ctaurl': string;
+      'icon': string;
+      'iconplacement': string;
+      'ishidden': boolean;
+      'ismarkdown': boolean;
+      'programid': string;
+      'reward': string;
+      'text': string;
+      'textalign': string;
+    }
+  }
+
+  interface HTMLSqhRewardsComponentElement extends StencilComponents.SqhRewardsComponent, HTMLStencilElement {}
+
+  var HTMLSqhRewardsComponentElement: {
+    prototype: HTMLSqhRewardsComponentElement;
+    new (): HTMLSqhRewardsComponentElement;
+  };
+  interface HTMLElementTagNameMap {
+    'sqh-rewards-component': HTMLSqhRewardsComponentElement;
+  }
+  interface ElementTagNameMap {
+    'sqh-rewards-component': HTMLSqhRewardsComponentElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'sqh-rewards-component': JSXElements.SqhRewardsComponentAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SqhRewardsComponentAttributes extends HTMLAttributes {
+      'ctatext'?: string;
+      'ctaurl'?: string;
+      'icon'?: string;
+      'iconplacement'?: string;
+      'ishidden'?: boolean;
+      'ismarkdown'?: boolean;
+      'programid'?: string;
+      'reward'?: string;
+      'text'?: string;
+      'textalign'?: string;
     }
   }
 }
