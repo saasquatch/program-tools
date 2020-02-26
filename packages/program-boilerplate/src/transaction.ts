@@ -283,11 +283,15 @@ export default class Transaction {
     rewardKey,
     referralId,
     user,
+    status,
+    rewardProperties,
   }: {
     emailKey: string;
     rewardKey: string;
     referralId: string;
     user: User;
+    status?: string;
+    rewardProperties?: any;
   }) {
     const {rewardId} = this.generateReferralReward({
       rewardKey,
@@ -295,8 +299,8 @@ export default class Transaction {
       user,
       userEvent: undefined,
       rewardSource: undefined,
-      status: undefined,
-      rewardProperties: undefined,
+      status,
+      rewardProperties,
     });
 
     this.generateReferralEmail({emailKey, user, referralId, rewardId});

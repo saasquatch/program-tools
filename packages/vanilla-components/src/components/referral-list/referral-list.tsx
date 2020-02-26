@@ -16,12 +16,16 @@ export class ReferralList {
   @Prop() referralnamecolor: string;
   @Prop() referraltextcolor: string;
   @Prop() unknownuser: string;
+  @Prop() showexpiry:boolean;
+  @Prop() shownotes:boolean;
+  @Prop() redeemedvalue: string;
   // referrer props
   @Prop() showreferrer: boolean;
   @Prop() referrercontent: string;
   @Prop() referrervalue: string;
   // converted referral props
   @Prop() rewardcolor: string;
+  @Prop() customernotecolor: string;
   @Prop() usefirstreward: boolean;
   @Prop() convertedcontent: string;
   @Prop() valuecontent: string;
@@ -104,6 +108,9 @@ export class ReferralList {
       valuecontent: this.valuecontent,
       expiredcontent: this.expiredcontent,
       expiredvalue: this.expiredvalue,
+      redeemedvalue:this.redeemedvalue,
+      showexpiry: this.showexpiry,
+      shownotes: this.shownotes,
       cancelledvalue: this.cancelledvalue,
       cancelledcontent: this.cancelledcontent
     }
@@ -165,6 +172,9 @@ export class ReferralList {
       .squatch-referrals-description,
       .squatch-referrals-value-content {
         color: ${ this.referraltextcolor };
+      }
+      .squatch-customer-note {
+        color:${ this.customernotecolor || 'darkslategray' };
       }
       .squatch-referrals-scroll-action {
         font-family: ${'inherit'};

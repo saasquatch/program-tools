@@ -12,7 +12,6 @@ export class ReferralComponent {
   @Prop() referralvariables: ReferralVariables;
   @Prop() unknownuser: String;
 
-
   getName() {
     const referral = (this.referral as Referral);
     const referredByReferral = (this.referral as ReferredByReferral);
@@ -73,6 +72,15 @@ export class ReferralComponent {
     return isCancelled;
   }
 
+  rewardIsRedeemed() {
+    const { rewards } = this.referral;
+    const hasStatuses = rewards.length == 1 && rewards[0].statuses;
+    const isRedeemed = hasStatuses && rewards[0].statuses.indexOf("REDEEMED") > -1;
+
+    return isRedeemed;
+  }
+
+
   getValue() {
     const {rewards} = this.referral;
     const referrer = this.referralvariables.referrervalue;
@@ -95,20 +103,34 @@ export class ReferralComponent {
   getValueContent(formatVariables) {
     const {rewards} = this.referral;
 
-    // Expired content only applies when there is 1 reward in the referral
-    if (rewards.length == 1 && this.rewardIsExpired()) {
-      return FormatJS.format(this.referralvariables.expiredvalue, formatVariables)
+    // When the reward is pending and there are no other rewards
+    if (!rewards.length) return '';
+
+    if(rewards.length == 1){
+      // Expired content only applies when there is 1 reward in the referral
+      if (this.rewardIsExpired()) return FormatJS.format(this.referralvariables.expiredvalue, formatVariables)
+
+      // Cancelled content only applies when there is 1 reward in the referral
+      if (this.rewardIsCancelled()) return FormatJS.format(this.referralvariables.cancelledvalue, formatVariables) 
+
+      // Redeemed content only applies when there is 1 reward in the referral
+      if(this.rewardIsRedeemed()) return FormatJS.format(this.referralvariables.redeemedvalue || "Redeemed", formatVariables);
+
+      // Expiry date only shown if there is 1 reward with dateExpires set in the referral
+      if(this.referralvariables.showexpiry && rewards[0].dateExpires){
+        const expiryDate = FormatJS.formatRelative(rewards[0].dateExpires.toString());
+        return FormatJS.format(`Expires ${expiryDate}`, formatVariables)
+      }
+
+      return '';
     }
-
-    // Cancelled content only applies when there is 1 reward in the referral
-    if (rewards.length == 1 && this.rewardIsCancelled()) {
-      return FormatJS.format(this.referralvariables.cancelledvalue, formatVariables)
-    }  
-
-    // When there are no more than rewards and reward has not expired yet
-    if (rewards.length <= 1) return '';
-
     return FormatJS.format(this.referralvariables.valuecontent, formatVariables);
+  }
+
+  getNote(){
+    const {rewards} = this.referral;
+    const note = rewards[0] && rewards[0].meta && rewards[0].meta.message
+    return note || ""
   }
 
   render() {
@@ -121,13 +143,12 @@ export class ReferralComponent {
       date: FormatJS.formatRelative(dateReferralStarted.toString()),
       extrarewards: rewards.length - 1,
     };
-
     const name = this.getName();
     const icon = this.getIcon();
     const content = this.getContent(formatVariables);
     const value = this.getValue();
     const valuecontent = this.getValueContent(formatVariables);
-
+    const customernote = this.getNote();
     return (
       <div class="squatch-referrals-row">
 
@@ -139,6 +160,11 @@ export class ReferralComponent {
           <div class="squatch-referrals-description">
             { content }
           </div>
+          { this.referralvariables.shownotes && customernote &&
+            <div class="squatch-referrals-description squatch-customer-note" title={customernote}>
+              { customernote }
+            </div>
+          }
         </div>
 
         <i class={`icon squatch-referrals-icon ${ icon } ${this.rewardIsExpired() && 'expired'} ${this.rewardIsCancelled() && 'cancelled'}`}></i>
