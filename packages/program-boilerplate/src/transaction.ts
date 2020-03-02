@@ -7,6 +7,7 @@ import {
 
 import {ProgramTriggerBody} from './types/rpc';
 import {ProgramType, User} from './types/saasquatch';
+import ObjectID from 'bson-objectid';
 
 type TransactionContext = {
   body: ProgramTriggerBody;
@@ -114,7 +115,7 @@ export default class Transaction {
    * @param {string} rewardKey - Key of the reward (as defined in contentful).
    */
   generateSimpleReward(rewardKey: string) {
-    const rewardId = this.context.body.ids.pop();
+    const rewardId = ObjectID.generate();
     const newMutation = {
       type: 'CREATE_REWARD',
       data: {
@@ -149,7 +150,7 @@ export default class Transaction {
       rewardProperties,
     } = input;
 
-    const rewardId = this.context.body.ids.pop();
+    const rewardId = ObjectID.generate();
     const rewardData = {
       user: {
         id: user.id,
@@ -165,7 +166,7 @@ export default class Transaction {
       {rewardSource},
       {status},
       rewardProperties,
-    ].filter(prop => prop !== undefined);
+    ].filter((prop) => prop !== undefined);
     const updatedRewardData = validProperties.reduce((currentData, prop) => {
       return {...currentData, ...prop};
     }, rewardData);
@@ -307,13 +308,13 @@ export default class Transaction {
 
   generateRefunds() {
     const refundEvents = (this.events || []).filter(
-      e =>
+      (e) =>
         e.key === 'refund' &&
         e.fields &&
         // we can't do much if there's no order_id
         e.fields.order_id,
     );
-    refundEvents.forEach(refundEvent => {
+    refundEvents.forEach((refundEvent) => {
       const refundNode = {
         type: 'MODERATE_GRAPH_NODES',
         data: {
