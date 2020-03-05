@@ -15,7 +15,7 @@ import {
   ProgramTriggerBody,
 } from './types/rpc';
 
-import {timeboxExpression, evaluateJsonata} from './jsonata';
+import {timeboxExpression, safeJsonata} from './jsonata';
 
 import {ProgramType} from './types/saasquatch';
 import {
@@ -46,7 +46,7 @@ export {
   numToEquality,
   getTriggerSchema,
   timeboxExpression,
-  evaluateJsonata,
+  safeJsonata,
 };
 
 /**
