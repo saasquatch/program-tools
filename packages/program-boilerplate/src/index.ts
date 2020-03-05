@@ -12,7 +12,10 @@ import {
   ProgramRequirement,
   RequirementValidationResult,
   ValidationProgramField,
+  ProgramTriggerBody,
 } from './types/rpc';
+
+import {timeboxExpression} from './jsonata';
 
 import {ProgramType} from './types/saasquatch';
 import {
@@ -20,6 +23,7 @@ import {
   getGoalAnalyticTimestamp,
   setRewardSchedule,
   numToEquality,
+  getTriggerSchema,
 } from './utils';
 
 export {types};
@@ -39,6 +43,8 @@ export {
   ValidationProgramField,
   inferType,
   numToEquality,
+  getTriggerSchema,
+  timeboxExpression,
 };
 
 /**
