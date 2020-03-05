@@ -15,7 +15,7 @@ import {
   ProgramTriggerBody,
 } from './types/rpc';
 
-import {timeboxExpression} from './jsonata';
+import {timeboxExpression, evaluateJsonata} from './jsonata';
 
 import {ProgramType} from './types/saasquatch';
 import {
@@ -30,22 +30,23 @@ export {types};
 
 export {
   Transaction,
+  ProgramTriggerBody,
+  Program,
+  ProgramType,
+  RequirementValidationResult,
+  ProgramRequirement,
+  ValidationProgramField,
   meetEventTriggerRules,
   meetCustomFieldRules,
   rewardEmailQuery,
   setRewardSchedule,
   getGoalAnalyticTimestamp,
   triggerProgram,
-  Program,
-  ProgramType,
-  RequirementValidationResult,
-  ProgramRequirement,
-  ValidationProgramField,
   inferType,
   numToEquality,
   getTriggerSchema,
   timeboxExpression,
-  ProgramTriggerBody,
+  evaluateJsonata,
 };
 
 /**
