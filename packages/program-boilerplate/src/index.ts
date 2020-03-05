@@ -45,6 +45,7 @@ export {
   numToEquality,
   getTriggerSchema,
   timeboxExpression,
+  ProgramTriggerBody,
 };
 
 /**
