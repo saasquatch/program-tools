@@ -1,5 +1,5 @@
 import * as jsonata from 'jsonata';
-import {getLogger} from '.';
+import {getLogger} from './logger';
 
 const TIMEOUT = 5000;
 const MAXDEPTH = 1000;
