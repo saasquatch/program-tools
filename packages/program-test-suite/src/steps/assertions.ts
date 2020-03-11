@@ -45,6 +45,26 @@ export function init(cucumber: Cucumber): void {
     });
   });
 
+  Then('the following rewards will exist:', function(this: World, data:any) {
+    const rewards = this.state.programTriggerResult.mutations.filter(
+      (m: any) => {
+        return (
+          m.type === 'CREATE_REWARD'
+        );
+      },
+    );
+
+    data.hashes().forEach((row: MutationStepRow, idx: number) => {
+      const reward = rewards[idx];
+      assert(reward, `A reward at index ${idx} does not exist`);
+      assert.strictEqual(reward.data.user.id, `${row.user.toUpperCase()}ID`, "The user ID does not match");
+      assert.strictEqual(reward.data.user.accountId, `${row.user.toUpperCase()}ACCOUNTID`, "The account ID does not match");
+      assert.strictEqual(reward.data.key, row.key, "The row key does not match");
+      if (row.assignedCredit)
+        assert.strictEqual(reward.data.dynamicProperties.assignedCredit, Number(row.assignedCredit), "The amount does not match");
+    });
+  });
+
   Then('the following mutations will exist:', function(this: World, data: any) {
     data.hashes().forEach((row: MutationStepRow) => {
       switch (row.type) {
