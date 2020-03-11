@@ -6,6 +6,7 @@ export type MutationStepRow = {
   key: string;
   count: string;
   user: string;
+  assignedCredit?: number;
 };
 
 /**
