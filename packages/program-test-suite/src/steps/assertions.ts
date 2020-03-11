@@ -56,12 +56,12 @@ export function init(cucumber: Cucumber): void {
 
     data.hashes().forEach((row: MutationStepRow, idx: number) => {
       const reward = rewards[idx];
-      assert(reward);
-      assert.strictEqual(reward.data.user.id, `${row.user.toUpperCase()}ID`);
-      assert.strictEqual(reward.data.user.accountId, `${row.user.toUpperCase()}ACCOUNTID`);
-      assert.strictEqual(reward.data.key, row.key);
+      assert(reward, `A reward at index ${idx} does not exist`);
+      assert.strictEqual(reward.data.user.id, `${row.user.toUpperCase()}ID`, "The user ID does not match");
+      assert.strictEqual(reward.data.user.accountId, `${row.user.toUpperCase()}ACCOUNTID`, "The account ID does not match");
+      assert.strictEqual(reward.data.key, row.key, "The row key does not match");
       if (row.assignedCredit)
-        assert.strictEqual(reward.data.dynamicProperties.assignedCredit, Number(row.assignedCredit));
+        assert.strictEqual(reward.data.dynamicProperties.assignedCredit, Number(row.assignedCredit), "The amount does not match");
     });
   });
 
