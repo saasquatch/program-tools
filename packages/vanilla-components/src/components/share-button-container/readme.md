@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property                   | Attribute                  | Description | Type      | Default         |
@@ -89,6 +90,7 @@
 | `whatsapptext`             | `whatsapptext`             |             | `string`  | `undefined`     |
 | `whatsapptextcolor`        | `whatsapptextcolor`        |             | `string`  | `"#fff"`        |
 
+
 ## Dependencies
 
 ### Depends on
@@ -96,13 +98,12 @@
 - [sqh-share-button](../share-button)
 
 ### Graph
-
 ```mermaid
 graph TD;
   sqh-share-button-container --> sqh-share-button
   style sqh-share-button-container fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property          | Attribute         | Description | Type      | Default     |
@@ -19,6 +20,7 @@
 | `textcolor`       | `textcolor`       |             | `string`  | `undefined` |
 | `width`           | `width`           |             | `number`  | `undefined` |
 
----
 
-_Built with [StencilJS](https://stenciljs.com/)_
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

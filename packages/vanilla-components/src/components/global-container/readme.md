@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property       | Attribute      | Description | Type      | Default     |
@@ -12,6 +13,7 @@
 | `maxwidth`     | `maxwidth`     |             | `string`  | `undefined` |
 | `poweredby`    | `poweredby`    |             | `boolean` | `undefined` |
 
----
 
-_Built with [StencilJS](https://stenciljs.com/)_
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*

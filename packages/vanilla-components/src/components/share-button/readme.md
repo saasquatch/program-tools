@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property          | Attribute           | Description | Type     | Default     |
@@ -18,20 +19,20 @@
 | `type`            | `type`              |             | `string` | `undefined` |
 | `url`             | `url`               |             | `string` | `undefined` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [sqh-share-button-container](../share-button-container)
+ - [sqh-share-button-container](../share-button-container)
 
 ### Graph
-
 ```mermaid
 graph TD;
   sqh-share-button-container --> sqh-share-button
   style sqh-share-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property            | Attribute           | Description | Type      | Default     |
@@ -34,6 +35,7 @@
 | `usefirstreward`    | `usefirstreward`    |             | `boolean` | `undefined` |
 | `valuecontent`      | `valuecontent`      |             | `string`  | `undefined` |
 
+
 ## Dependencies
 
 ### Depends on
@@ -41,13 +43,12 @@
 - [sqh-referral-component](../referral-component)
 
 ### Graph
-
 ```mermaid
 graph TD;
   sqh-referral-list --> sqh-referral-component
   style sqh-referral-list fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*

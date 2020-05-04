@@ -2,6 +2,7 @@
 
 <!-- Auto Generated Below -->
 
+
 ## Properties
 
 | Property            | Attribute      | Description | Type                                     | Default     |
@@ -11,20 +12,20 @@
 | `referralvariables` | --             |             | `ReferralVariables`                      | `undefined` |
 | `unknownuser`       | --             |             | `String`                                 | `undefined` |
 
+
 ## Dependencies
 
 ### Used by
 
-- [sqh-referral-list](../referral-list)
+ - [sqh-referral-list](../referral-list)
 
 ### Graph
-
 ```mermaid
 graph TD;
   sqh-referral-list --> sqh-referral-component
   style sqh-referral-component fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
----
+----------------------------------------------
 
-_Built with [StencilJS](https://stenciljs.com/)_
+*Built with [StencilJS](https://stenciljs.com/)*
