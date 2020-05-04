@@ -1,100 +1,100 @@
 interface UserPayload {
-  data:{
-    user:{
+  data: {
+    user: {
       referredByReferral: {
         referrerUser: {
-          firstName: string
-          lastName: string
-          imageUrl: string
-        }
-        dateReferralStarted: number
+          firstName: string;
+          lastName: string;
+          imageUrl: string;
+        };
+        dateReferralStarted: number;
         rewards: {
-          count: number
-          totalCount: number
-          data:Reward[]
-        }
-      }
+          count: number;
+          totalCount: number;
+          data: Reward[];
+        };
+      };
       referrals: {
-        count: number
-        totalCount: number
-        data:Referral[]
-      },
+        count: number;
+        totalCount: number;
+        data: Referral[];
+      };
       rewards: {
-        count: number
-        totalCount: number
-        data:Reward[]
-      }
-    }
-  }
+        count: number;
+        totalCount: number;
+        data: Reward[];
+      };
+    };
+  };
 }
 
 interface ReferredByReferral {
   referrerUser: {
-    firstName: string
-    lastName: string
-    imageUrl: string
-  }
-  dateReferralStarted: number
-  rewards: Reward[]
+    firstName: string;
+    lastName: string;
+    imageUrl: string;
+  };
+  dateReferralStarted: number;
+  rewards: Reward[];
 }
 
 interface Referral {
-  id: string
-  dateReferralStarted: number
-  dateReferralPaid: number
-  dateReferralEnded: number
-  moderationStatus: string
+  id: string;
+  dateReferralStarted: number;
+  dateReferralPaid: number;
+  dateReferralEnded: number;
+  moderationStatus: string;
   referredUser: {
-    firstName: string
-    lastName: string
-    imageUrl: string
-  },
-  rewards: Reward[]
+    firstName: string;
+    lastName: string;
+    imageUrl: string;
+  };
+  rewards: Reward[];
 }
 
 interface Meta {
-  message: string
+  message: string;
 }
 
 interface Reward {
-  id: string
-  type: string
-  value: number
-  unit: string
-  name: string
-  dateGiven: number
-  dateExpires: number
-  dateCancelled: number
-  fuelTankCode: string
-  fuelTankType: string
-  currency: string
-  prettyValue: string
-  statuses: string[]
-  meta: Meta
+  id: string;
+  type: string;
+  value: number;
+  unit: string;
+  name: string;
+  dateGiven: number;
+  dateExpires: number;
+  dateCancelled: number;
+  fuelTankCode: string;
+  fuelTankType: string;
+  currency: string;
+  prettyValue: string;
+  statuses: string[];
+  meta: Meta;
 }
 
 interface ReferralVariables {
-  usefirstreward: boolean
-  referrercontent: string
-  convertedcontent: string
-  pendingcontent: string
-  pendingvalue: string
-  referrervalue: string
-  valuecontent: string
-  expiredvalue: string
-  expiredcontent: string
-  redeemedvalue: string
-  showexpiry: boolean
-  shownotes: boolean
-  cancelledvalue: string
-  cancelledcontent: string
+  usefirstreward: boolean;
+  referrercontent: string;
+  convertedcontent: string;
+  pendingcontent: string;
+  pendingvalue: string;
+  referrervalue: string;
+  valuecontent: string;
+  expiredvalue: string;
+  expiredcontent: string;
+  redeemedvalue: string;
+  showexpiry: boolean;
+  shownotes: boolean;
+  cancelledvalue: string;
+  cancelledcontent: string;
 }
 
 interface RewardBalance {
-  type: string
-  unit: string
-  value: number
-  prettyValue: string
+  type: string;
+  unit: string;
+  value: number;
+  prettyValue: string;
 }
 
-declare module 'react';
+declare module "react";

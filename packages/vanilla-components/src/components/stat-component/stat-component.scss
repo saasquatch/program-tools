@@ -1,4 +1,4 @@
-sqh-stat-component{
+sqh-stat-component {
   text-align: center;
   width: 140px;
   float: left;
@@ -15,13 +15,12 @@ sqh-stat-component{
     margin-bottom: 8px;
     font-weight: 300;
   }
-  
+
   .stat-description {
     text-transform: uppercase;
     font-size: 12px;
   }
 }
-
 
 // May end up in CSS in JS so it's user controlled
 

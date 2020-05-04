@@ -1,11 +1,11 @@
-import { Component, Prop, State} from '@stencil/core';
-import { css } from 'emotion';
-import { uuid } from '../../utilities';
-import { API } from '../../services/WidgetHost';
+import { h, Component, Prop, State } from "@stencil/core";
+import { css } from "emotion";
+import { uuid } from "../../utilities";
+import { API } from "../../services/WidgetHost";
 
 @Component({
-  tag: 'sqh-referral-list',
-  styleUrl: 'referral-list.scss'
+  tag: "sqh-referral-list",
+  styleUrl: "referral-list.scss",
 })
 export class ReferralList {
   // general in dropdown
@@ -16,8 +16,8 @@ export class ReferralList {
   @Prop() referralnamecolor: string;
   @Prop() referraltextcolor: string;
   @Prop() unknownuser: string;
-  @Prop() showexpiry:boolean;
-  @Prop() shownotes:boolean;
+  @Prop() showexpiry: boolean;
+  @Prop() shownotes: boolean;
   @Prop() redeemedvalue: string;
   // referrer props
   @Prop() showreferrer: boolean;
@@ -41,7 +41,7 @@ export class ReferralList {
   @Prop() cancelledcolor: string;
   @Prop() cancelledcontent: string;
   @Prop() cancelledvalue: string;
-  
+
   @State() referrals: Referral[];
   @State() referralsCount: number;
   @State() referredBy: any;
@@ -55,14 +55,16 @@ export class ReferralList {
 
   componentWillLoad() {
     if (!this.ishidden) {
-      return this.getReferrals().then(res => {
-        this.referrals = res.referrals.data;
-        this.referredBy = res.referredByReferral;
-        this.referralsCount = res.referrals.totalCount;
-        this.loading = false;
-      }).catch(e => {
-        this.onError(e);
-      });
+      return this.getReferrals()
+        .then((res) => {
+          this.referrals = res.referrals.data;
+          this.referredBy = res.referredByReferral;
+          this.referralsCount = res.referrals.totalCount;
+          this.loading = false;
+        })
+        .catch((e) => {
+          this.onError(e);
+        });
     }
   }
 
@@ -78,11 +80,9 @@ export class ReferralList {
     this.loading = true;
     const { target } = event;
     target.innerText = "...";
-    this.getReferrals(offset)
-    .then(res => {
-      target.innerText = offset > this.offset
-        ? this.paginatemore
-        : this.paginateless;
+    this.getReferrals(offset).then((res) => {
+      target.innerText =
+        offset > this.offset ? this.paginatemore : this.paginateless;
       this.referrals = res.referrals.data;
       this.offset = offset;
       this.loading = false;
@@ -108,134 +108,144 @@ export class ReferralList {
       valuecontent: this.valuecontent,
       expiredcontent: this.expiredcontent,
       expiredvalue: this.expiredvalue,
-      redeemedvalue:this.redeemedvalue,
+      redeemedvalue: this.redeemedvalue,
       showexpiry: this.showexpiry,
       shownotes: this.shownotes,
       cancelledvalue: this.cancelledvalue,
-      cancelledcontent: this.cancelledcontent
-    }
+      cancelledcontent: this.cancelledcontent,
+    };
 
     if (this.referrals) {
-      referralsRow = (
-        this.referrals.map((ref) => {
-          const referraltype = ref.rewards.length > 0 ? 'converted' : 'pending';    
-          return (
-            <sqh-referral-component id={ uuid() } referral={ ref } referralvariables={ referralvariables } referraltype={ referraltype } unknownuser={ this.unknownuser }></sqh-referral-component>
-          );
-        })
-      );
+      referralsRow = this.referrals.map((ref) => {
+        const referraltype = ref.rewards.length > 0 ? "converted" : "pending";
+        return (
+          <sqh-referral-component
+            id={uuid()}
+            referral={ref}
+            referralvariables={referralvariables}
+            referraltype={referraltype}
+            unknownuser={this.unknownuser}
+          ></sqh-referral-component>
+        );
+      });
     }
 
     if (this.referrals.length < 3 && this.referredBy && this.showreferrer) {
       referredByRow = (
-        <sqh-referral-component id={ uuid() } referral={ this.referredBy } referralvariables={ referralvariables } referraltype='referrer' unknownuser={ this.unknownuser }></sqh-referral-component>
+        <sqh-referral-component
+          id={uuid()}
+          referral={this.referredBy}
+          referralvariables={referralvariables}
+          referraltype="referrer"
+          unknownuser={this.unknownuser}
+        ></sqh-referral-component>
       );
     }
 
     const clz = css`
       .squatch-referrals-icon.icon-ok-circled {
-        color: ${ this.rewardcolor };
+        color: ${this.rewardcolor};
       }
       .squatch-referrals-icon.icon-attention {
-        color: ${ this.pendingcolor };
+        color: ${this.pendingcolor};
       }
       .squatch-referrals-value {
-        color: ${ this.rewardcolor };
+        color: ${this.rewardcolor};
       }
       .squatch-referrals-value.pending {
-        color: ${ this.pendingcolor };
+        color: ${this.pendingcolor};
       }
       .squatch-referrals-value.referrer {
-        color: ${ this.rewardcolor };
+        color: ${this.rewardcolor};
       }
       .squatch-referrals-value.expired {
-        color: ${ this.expiredcolor };
+        color: ${this.expiredcolor};
       }
       .squatch-value-contents.expired {
-        color: ${ this.expiredcolor }
+        color: ${this.expiredcolor};
       }
       .squatch-referrals-icon.icon-attention.expired {
-        color: ${ this.expiredcolor }
+        color: ${this.expiredcolor};
       }
       .squatch-referrals-value.cancelled {
-        color: ${ this.cancelledcolor };
+        color: ${this.cancelledcolor};
       }
       .squatch-value-contents.cancelled {
-        color: ${ this.cancelledcolor }
+        color: ${this.cancelledcolor};
       }
       .squatch-referrals-icon.icon-attention.cancelled {
-        color: ${ this.cancelledcolor }
+        color: ${this.cancelledcolor};
       }
       .squatch-referrals-heading {
-        color: ${ this.referralnamecolor };
+        color: ${this.referralnamecolor};
       }
       .squatch-referrals-description,
       .squatch-referrals-value-content {
-        color: ${ this.referraltextcolor };
+        color: ${this.referraltextcolor};
       }
       .squatch-customer-note {
-        color:${ this.customernotecolor || 'darkslategray' };
+        color: ${this.customernotecolor || "darkslategray"};
       }
       .squatch-referrals-scroll-action {
-        font-family: ${'inherit'};
+        font-family: ${"inherit"};
       }
-    `
+    `;
 
-    const totalReferralsCount = this.showreferrer && this.referredBy ? this.referralsCount + 1 : this.referralsCount;
+    const totalReferralsCount =
+      this.showreferrer && this.referredBy
+        ? this.referralsCount + 1
+        : this.referralsCount;
 
-    return !this.ishidden && 
-      totalReferralsCount > 0 
-      ? ( // Referral List when not hidden and 1 or more referrals
-        <div class={`squatch-referrals ${clz}`}>
-          <div class="squatch-referrals-scroll-container">
-            {referralsRow}
-            {referredByRow}
-          </div>
-          <div class="squatch-referrals-scroll-action-container">
-            <button 
-              class={`
+    return !this.ishidden && totalReferralsCount > 0 ? (
+      // Referral List when not hidden and 1 or more referrals
+      <div class={`squatch-referrals ${clz}`}>
+        <div class="squatch-referrals-scroll-container">
+          {referralsRow}
+          {referredByRow}
+        </div>
+        <div class="squatch-referrals-scroll-action-container">
+          <button
+            class={`
                 squatch-referrals-scroll-action previous ${
                   this.loading
                     ? "disabled"
                     : this.offset === 0
-                      ? "disabled"
-                      : ""
+                    ? "disabled"
+                    : ""
                 }
               `}
-              onClick={event => this.paginate(this.offset - 3, event)}
-            >
-              {this.paginateless}
-            </button>
-            <button 
-              class={`
+            onClick={(event) => this.paginate(this.offset - 3, event)}
+          >
+            {this.paginateless}
+          </button>
+          <button
+            class={`
                 squatch-referrals-scroll-action view-more ${
                   this.loading
                     ? "disabled"
                     : this.showreferrer && this.referredBy
-                      ? this.offset >= this.referralsCount - 2
-                        ? "disabled"
-                        : ""
-                      : this.offset >= this.referralsCount - 3
-                        ? "disabled"
-                        : ""
+                    ? this.offset >= this.referralsCount - 2
+                      ? "disabled"
+                      : ""
+                    : this.offset >= this.referralsCount - 3
+                    ? "disabled"
+                    : ""
                 }
               `}
-              view-more
-              onClick={event => this.paginate(this.offset + 3, event)}
-            >
-              {this.paginatemore}
-            </button>
-          </div>
-        </div>
-      ) 
-      // 'No Referrals Yet' button if this.referralCount < 1
-      : (
-        <div class="squatch-referrals-scroll-action-container">
-          <button disabled class='squatch-no-referrals-yet'>
-            {this.noreferralsyet}
+            view-more
+            onClick={(event) => this.paginate(this.offset + 3, event)}
+          >
+            {this.paginatemore}
           </button>
         </div>
-      )
-    ;
+      </div>
+    ) : (
+      // 'No Referrals Yet' button if this.referralCount < 1
+      <div class="squatch-referrals-scroll-action-container">
+        <button disabled class="squatch-no-referrals-yet">
+          {this.noreferralsyet}
+        </button>
+      </div>
+    );
   }
 }

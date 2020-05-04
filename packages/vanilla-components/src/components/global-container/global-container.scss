@@ -2,7 +2,6 @@ body {
   margin: 0px; // resets defaults
   padding: 0px; // resets defaults
   font-family: sans-serif;
-
 }
 
 sqh-global-container {
@@ -55,12 +54,12 @@ sqh-global-container {
     top: 45%;
     z-index: 1000;
   }
-  
+
   .loading-icon-tr .loading-icon {
     position: relative;
     top: 0;
   }
-  
+
   .loading-icon > div {
     height: 100%;
     margin: 1px;
@@ -69,22 +68,22 @@ sqh-global-container {
     -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
     animation: sk-stretchdelay 1.2s infinite ease-in-out;
   }
-  
+
   .loading-icon .bar2 {
     -webkit-animation-delay: -1.1s;
     animation-delay: -1.1s;
   }
-  
+
   .loading-icon .bar3 {
-    -webkit-animation-delay: -1.0s;
-    animation-delay: -1.0s;
+    -webkit-animation-delay: -1s;
+    animation-delay: -1s;
   }
-  
+
   .loading-icon .bar4 {
     -webkit-animation-delay: -0.9s;
     animation-delay: -0.9s;
   }
-  
+
   .loading-icon .bar5 {
     -webkit-animation-delay: -0.8s;
     animation-delay: -0.8s;
@@ -92,16 +91,25 @@ sqh-global-container {
 }
 
 @-webkit-keyframes sk-stretchdelay {
-  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
-  20% { -webkit-transform: scaleY(1.0) }
+  0%,
+  40%,
+  100% {
+    -webkit-transform: scaleY(0.4);
+  }
+  20% {
+    -webkit-transform: scaleY(1);
+  }
 }
 
 @keyframes sk-stretchdelay {
-  0%, 40%, 100% { 
+  0%,
+  40%,
+  100% {
     transform: scaleY(0.4);
     -webkit-transform: scaleY(0.4);
-  }  20% { 
-    transform: scaleY(1.0);
-    -webkit-transform: scaleY(1.0);
+  }
+  20% {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
   }
 }

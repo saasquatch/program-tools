@@ -1,9 +1,17 @@
-import { Component, Prop, Event, EventEmitter, Element, Watch } from '@stencil/core';
-import { css } from 'emotion';
+import {
+  h,
+  Component,
+  Prop,
+  Event,
+  EventEmitter,
+  Element,
+  Watch,
+} from "@stencil/core";
+import { css } from "emotion";
 
 @Component({
-  tag: 'sqh-stat-component',
-  styleUrl: 'stat-component.scss'
+  tag: "sqh-stat-component",
+  styleUrl: "stat-component.scss",
 })
 export class StatComponent {
   @Element() elem: HTMLElement;
@@ -19,9 +27,9 @@ export class StatComponent {
     this.statAddedHandler(this.elem);
   }
 
-  @Watch('stattype')
+  @Watch("stattype")
   stattypeHandler(newValue: string, oldValue: string) {
-    if (newValue !== oldValue) this.statTypeUpdatedHandler(this.elem)
+    if (newValue !== oldValue) this.statTypeUpdatedHandler(this.elem);
   }
 
   statAddedHandler(stat: HTMLElement) {
@@ -34,13 +42,16 @@ export class StatComponent {
 
   render() {
     const clz = css`
-      color: ${ this.statcolor };
-    `
+      color: ${this.statcolor};
+    `;
 
-  return !this.ishidden &&
-    <div class={ clz }>
-      <div class="stat-value">{this.statvalue}</div>
-      <div class="stat-description">{this.statdescription}</div>
-    </div>;
+    return (
+      !this.ishidden && (
+        <div class={clz}>
+          <div class="stat-value">{this.statvalue}</div>
+          <div class="stat-description">{this.statdescription}</div>
+        </div>
+      )
+    );
   }
 }

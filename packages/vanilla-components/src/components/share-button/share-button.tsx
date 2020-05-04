@@ -1,10 +1,14 @@
-import { Component, Prop, Element } from '@stencil/core';
-import { shadeColor, detectMobileSafari, detectMobileChrome } from '../../utilities';
-import { css } from 'emotion';
+import { h, Component, Prop, Element } from "@stencil/core";
+import {
+  shadeColor,
+  detectMobileSafari,
+  detectMobileChrome,
+} from "../../utilities";
+import { css } from "emotion";
 
 @Component({
-  tag: 'sqh-share-button',
-  styleUrl: 'share-button.scss'
+  tag: "sqh-share-button",
+  styleUrl: "share-button.scss",
 })
 export class ShareButton {
   @Prop() displayrule: string;
@@ -12,7 +16,7 @@ export class ShareButton {
   @Prop() backgroundcolor: string;
   @Prop() textcolor: string;
   @Prop() icon: string;
-  @Prop() className: string;
+  @Prop() buttonClassName: string;
   @Prop() iconhorizontal: number;
   @Prop() iconvertical: number;
   @Prop() iconsize: number;
@@ -22,18 +26,18 @@ export class ShareButton {
   @Element() button: HTMLElement;
 
   clickHandler(e) {
-    if (window["widgetIdent"].env === "demo"){
+    if (window["widgetIdent"].env === "demo") {
       e.preventDefault();
       return;
     }
     // checking for null on closest 'a' tag makes click handler avoid firing when margin is clicked
-    var anchor = e.target.closest('a');
-    if (anchor !== null && this.className !== "email-share") {
+    var anchor = e.target.closest("a");
+    if (anchor !== null && this.buttonClassName !== "email-share") {
       e.preventDefault();
 
-      const url = this.url
-      const target = '_blank';
-      const features = 'status=0,width=680,height=580'
+      const url = this.url;
+      const target = "_blank";
+      const features = "status=0,width=680,height=580";
       window.open(url, target, features);
     }
   }
@@ -45,7 +49,7 @@ export class ShareButton {
 
   render() {
     const isMobileiOS = detectMobileSafari() || detectMobileChrome();
-    const target = isMobileiOS ? '_parent' : '_blank';
+    const target = isMobileiOS ? "_parent" : "_blank";
     const iconClass = `icon icon-${this.icon}`;
 
     const style = css`
@@ -53,13 +57,12 @@ export class ShareButton {
       border: 1px solid ${this.backgroundcolor};
       color: ${this.textcolor};
 
-                        
       &:hover {
         background: ${shadeColor(this.backgroundcolor, 10)};
         border-color: ${shadeColor(this.backgroundcolor, 12)};
         color: ${this.textcolor};
       }
-                    
+
       &:focus {
         color: ${this.textcolor};
       }
@@ -69,8 +72,13 @@ export class ShareButton {
         font-size: ${this.iconsize}em;
       }
     `;
-    
-    const classes = [`squatch-share-btn`, this.className, this.displayrule, style].join(" ");
+
+    const classes = [
+      `squatch-share-btn`,
+      this.buttonClassName,
+      this.displayrule,
+      style,
+    ].join(" ");
 
     return (
       <a class={classes} href={this.url} target={target}>

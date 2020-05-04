@@ -1,11 +1,11 @@
-import { Component, Prop, State, Element, Listen } from '@stencil/core';
-import { API } from '../../services/WidgetHost';
-import pathToRegexp from "path-to-regexp";
-import { css } from 'emotion';
+import { h, Component, Prop, State, Element, Listen } from "@stencil/core";
+import { API } from "../../services/WidgetHost";
+import { pathToRegexp } from "path-to-regexp";
+import { css } from "emotion";
 
 @Component({
-  tag: 'sqh-stats-container',
-  styleUrl: 'stats-container.scss'
+  tag: "sqh-stats-container",
+  styleUrl: "stats-container.scss",
 })
 export class StatsContainer {
   @Element() container: HTMLElement;
@@ -21,64 +21,70 @@ export class StatsContainer {
 
   componentWillLoad() {
     if (!this.ishidden) {
-      return API.graphql.getStats().then(res => {
-        this.stats = {
-          referralsCount: res.referralsCount.totalCount,
-          referralsMonth: res.referralsMonth.totalCount,
-          referralsWeek: res.referralsWeek.totalCount,
-          rewardsCount: res.rewardsCount.totalCount,
-          rewardsMonth: res.rewardsMonth.totalCount,
-          rewardsWeek: res.rewardsWeek.totalCount,
-          rewardBalance: res.rewardBalances,
-          rewardBalanceGlobal: res.rewardBalancesGlobal
-        }
-        this.loading = false;
-      }).then(() => {
-        const children = Array.from(this.container.querySelectorAll('[stattype]'));
-        children.map(child => {
-          this.setStatValue(child)
+      return API.graphql
+        .getStats()
+        .then((res) => {
+          this.stats = {
+            referralsCount: res.referralsCount.totalCount,
+            referralsMonth: res.referralsMonth.totalCount,
+            referralsWeek: res.referralsWeek.totalCount,
+            rewardsCount: res.rewardsCount.totalCount,
+            rewardsMonth: res.rewardsMonth.totalCount,
+            rewardsWeek: res.rewardsWeek.totalCount,
+            rewardBalance: res.rewardBalances,
+            rewardBalanceGlobal: res.rewardBalancesGlobal,
+          };
+          this.loading = false;
         })
-      }).catch(e => {
-        this.onError(e);
-      });
+        .then(() => {
+          const children = Array.from(
+            this.container.querySelectorAll("[stattype]")
+          );
+          children.map((child) => {
+            this.setStatValue(child);
+          });
+        })
+        .catch((e) => {
+          this.onError(e);
+        });
     }
   }
 
-  @Listen('statTypeUpdated')
+  @Listen("statTypeUpdated")
   statTypeUpdatedHandler(event: CustomEvent) {
     this.setStatValue(event.detail);
   }
 
-  @Listen('statAdded')
+  @Listen("statAdded")
   statAddedHandler(event: CustomEvent) {
     if (this.stats) this.setStatValue(event.detail);
   }
 
   statPaths = [
     "/rewardBalance/:type/:unit/:valuetype?/:isGlobal?",
-    "/:statName"
-  ]
+    "/:statName",
+  ];
 
-  statPathRegexp = this.statPaths.map(path => {
-    const keys = []
-    const regexp = pathToRegexp(path, keys)
-    return { regexp, keys }
-  })
+  statPathRegexp = this.statPaths.map((path) => {
+    const keys = [];
+    const regexp = pathToRegexp(path, keys);
+    return { regexp, keys };
+  });
 
   setStatValue(child: HTMLElement | Element) {
     const path = child.getAttribute("stattype");
     const stat = this.getStatFromPath(path);
-    child.setAttribute('statvalue', `${stat}`);
+    child.setAttribute("statvalue", `${stat}`);
     return child;
   }
 
   getStatFromPath(path) {
-    const statPath = this.statPathRegexp.find(stat => stat.regexp.test(path));
+    const statPath = this.statPathRegexp.find((stat) => stat.regexp.test(path));
     if (!statPath) return 0;
     const { keys, regexp } = statPath;
     const res = regexp.exec(path);
     const statVariables = {};
-    keys.forEach((k, i) => statVariables[k.name] = res[i + 1]);
+    keys.forEach((k, i) => (statVariables[k.name] = res[i + 1]));
     return this.getStatValue(statVariables);
   }
 
@@ -92,8 +98,10 @@ export class StatsContainer {
     // passing in CASH/USD as CASH_USD into this webcomponent so pathToRegexp doesn't split it and it stays all in unit.
     // this converts the _ back to / so that it matches the unit from the backend
     // possibly change the unit in the backend to avoid this?
-    const newUnit = unit.replace(/_/, "/")
-    const rewardBalance = this.stats[isGlobal ? "rewardBalanceGlobal" : "rewardBalance"].find(rb => rb.type === type && rb.unit === newUnit);
+    const newUnit = unit.replace(/_/, "/");
+    const rewardBalance = this.stats[
+      isGlobal ? "rewardBalanceGlobal" : "rewardBalance"
+    ].find((rb) => rb.type === type && rb.unit === newUnit);
     if (!rewardBalance) return 0;
     if (valuetype) return rewardBalance[valuetype];
     return rewardBalance.value;
@@ -106,11 +114,15 @@ export class StatsContainer {
 
   render() {
     const containerStyle = css`
-      display: ${this.ishidden ? 'none' : 'inherit'};
+      display: ${this.ishidden ? "none" : "inherit"};
       padding-top: ${this.paddingtop}px;
       padding-bottom: ${this.paddingbottom}px;
     `;
 
-    return <div class={containerStyle}><slot /></div>;
+    return (
+      <div class={containerStyle}>
+        <slot />
+      </div>
+    );
   }
 }

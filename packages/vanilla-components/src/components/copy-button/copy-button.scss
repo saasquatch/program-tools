@@ -12,33 +12,33 @@ sqh-copy-button {
       cursor: pointer;
     }
     .label {
-      padding: .2em .6em .3em;
+      padding: 0.2em 0.6em 0.3em;
       font-size: 11px;
       font-weight: bold;
       line-height: 1;
       color: #fff;
       text-align: center;
       white-space: nowrap;
-      border-radius: .25em;
+      border-radius: 0.25em;
       background-color: #35b21e;
-    
+
       // Empty labels collapse automatically (not available in IE8)
       &:empty {
         display: none;
       }
     }
-  
+
     .fade {
       opacity: 0;
-      -webkit-transition: opacity .15s linear;
-      -o-transition: opacity .15s linear;
-      transition: opacity .15s linear;
-  
+      -webkit-transition: opacity 0.15s linear;
+      -o-transition: opacity 0.15s linear;
+      transition: opacity 0.15s linear;
+
       &.in {
         opacity: 1;
       }
     }
-  
+
     #squatch-copy-notification {
       position: absolute;
       left: 215px;

@@ -1,16 +1,15 @@
-
 sqh-rewards-actions {
   .squatch-referrals-actions {
     text-align: center;
-  
+
     .btn {
       margin-left: 10px;
       width: 120px;
-  
+
       &:first-child {
         margin-left: 0;
       }
-  
+
       @media (max-width: 499px) {
         font-size: 13px;
         width: 85px;

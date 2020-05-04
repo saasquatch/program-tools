@@ -1,9 +1,9 @@
-import { Component, Prop, State } from '@stencil/core';
-import { API } from '../../services/WidgetHost';
+import { h, Component, Prop, State } from "@stencil/core";
+import { API } from "../../services/WidgetHost";
 
 @Component({
-  tag: 'sqh-share-button-container',
-  styleUrl: 'share-button-container.scss'
+  tag: "sqh-share-button-container",
+  styleUrl: "share-button-container.scss",
 })
 export class ShareButtonContainer {
   @Prop() ishidden: boolean;
@@ -67,7 +67,7 @@ export class ShareButtonContainer {
   @Prop() whatsappiconvertical: number = 2;
   @Prop() whatsappiconsize: number = 1.4;
   @State() whatsappurl: string;
-  
+
   // LinkedIn button properties and default settings
   @Prop() linkedindisplayrule: string;
   @Prop() linkedintext: string;
@@ -91,7 +91,7 @@ export class ShareButtonContainer {
   @Prop() pinteresticonvertical: number = 4;
   @Prop() pinteresticonsize: number = 1.2;
   @State() pinteresturl: string;
-  
+
   // Messenger button properties and default settings
   @Prop() messengerdisplayrule: string;
   @Prop() messengertext: string;
@@ -118,161 +118,194 @@ export class ShareButtonContainer {
 
   componentWillLoad() {
     if (!this.ishidden) {
-      const mediums = ['EMAIL', 'FACEBOOK', 'TWITTER', 'SMS', 'WHATSAPP', 'LINKEDIN', 'PINTEREST', 'FBMESSENGER', 'LINEMESSENGER']
+      const mediums = [
+        "EMAIL",
+        "FACEBOOK",
+        "TWITTER",
+        "SMS",
+        "WHATSAPP",
+        "LINKEDIN",
+        "PINTEREST",
+        "FBMESSENGER",
+        "LINEMESSENGER",
+      ];
       return this.getMessageLinks(mediums);
     }
   }
 
-  getMessageLinks(mediums:Array<string>) {
-    return API.graphql.getMessageLinks(mediums).then(res => {
-      this.emailurl = res.EMAIL;
-      this.facebookurl = res.FACEBOOK;
-      this.twitterurl = res.TWITTER;
-      this.smsurl = res.SMS;
-      this.whatsappurl = res.WHATSAPP;
-      this.linkedinurl = res.LINKEDIN;
-      this.pinteresturl = res.PINTEREST;
-      this.messengerurl = res.FBMESSENGER;
-      this.lineurl = res.LINEMESSENGER;
-    }).catch(e => {
-      this.onError(e);
-    });
+  getMessageLinks(mediums: Array<string>) {
+    return API.graphql
+      .getMessageLinks(mediums)
+      .then((res) => {
+        this.emailurl = res.EMAIL;
+        this.facebookurl = res.FACEBOOK;
+        this.twitterurl = res.TWITTER;
+        this.smsurl = res.SMS;
+        this.whatsappurl = res.WHATSAPP;
+        this.linkedinurl = res.LINKEDIN;
+        this.pinteresturl = res.PINTEREST;
+        this.messengerurl = res.FBMESSENGER;
+        this.lineurl = res.LINEMESSENGER;
+      })
+      .catch((e) => {
+        this.onError(e);
+      });
   }
 
   onError(e: Error) {
     console.log("Error loading via GraphQL.", e);
   }
-  
+
   render() {
-    const emailBtn = <sqh-share-button 
-                        displayrule={this.emaildisplayrule} 
-                        text={this.emailtext}
-                        backgroundcolor={this.emailbackgroundcolor}
-                        textcolor={this.emailtextcolor}
-                        icon={this.emailicon}
-                        class={this.emailclassName}
-                        iconhorizontal={this.emailiconhorizontal}
-                        iconvertical={this.emailiconvertical}
-                        iconsize={this.emailiconsize}
-                        url={this.emailurl}
-                      />;
+    const emailBtn = (
+      <sqh-share-button
+        displayrule={this.emaildisplayrule}
+        text={this.emailtext}
+        backgroundcolor={this.emailbackgroundcolor}
+        textcolor={this.emailtextcolor}
+        icon={this.emailicon}
+        class={this.emailclassName}
+        iconhorizontal={this.emailiconhorizontal}
+        iconvertical={this.emailiconvertical}
+        iconsize={this.emailiconsize}
+        url={this.emailurl}
+      />
+    );
 
-    const facebookBtn = <sqh-share-button 
-                          displayrule={this.facebookdisplayrule} 
-                          text={this.facebooktext}
-                          backgroundcolor={this.facebookbackgroundcolor}
-                          textcolor={this.facebooktextcolor}
-                          icon={this.facebookicon}
-                          class={this.facebookclassName}
-                          iconhorizontal={this.facebookiconhorizontal}
-                          iconvertical={this.facebookiconvertical}
-                          iconsize={this.facebookiconsize}
-                          url={this.facebookurl}
-                        />;
+    const facebookBtn = (
+      <sqh-share-button
+        displayrule={this.facebookdisplayrule}
+        text={this.facebooktext}
+        backgroundcolor={this.facebookbackgroundcolor}
+        textcolor={this.facebooktextcolor}
+        icon={this.facebookicon}
+        class={this.facebookclassName}
+        iconhorizontal={this.facebookiconhorizontal}
+        iconvertical={this.facebookiconvertical}
+        iconsize={this.facebookiconsize}
+        url={this.facebookurl}
+      />
+    );
 
-    const twitterBtn = <sqh-share-button 
-                          displayrule={this.twitterdisplayrule} 
-                          text={this.twittertext}
-                          backgroundcolor={this.twitterbackgroundcolor}
-                          textcolor={this.twittertextcolor}
-                          icon={this.twittericon}
-                          class={this.twitterclassName}
-                          iconhorizontal={this.twittericonhorizontal}
-                          iconvertical={this.twittericonvertical}
-                          iconsize={this.twittericonsize}
-                          url={this.twitterurl}
-                        />;
+    const twitterBtn = (
+      <sqh-share-button
+        displayrule={this.twitterdisplayrule}
+        text={this.twittertext}
+        backgroundcolor={this.twitterbackgroundcolor}
+        textcolor={this.twittertextcolor}
+        icon={this.twittericon}
+        class={this.twitterclassName}
+        iconhorizontal={this.twittericonhorizontal}
+        iconvertical={this.twittericonvertical}
+        iconsize={this.twittericonsize}
+        url={this.twitterurl}
+      />
+    );
 
-    const smsBtn = <sqh-share-button 
-                        displayrule={this.smsdisplayrule} 
-                        text={this.smstext}
-                        backgroundcolor={this.smsbackgroundcolor}
-                        textcolor={this.smstextcolor}
-                        icon={this.smsicon}
-                        class={this.smsclassName}
-                        iconhorizontal={this.smsiconhorizontal}
-                        iconvertical={this.smsiconvertical}
-                        iconsize={this.smsiconsize}
-                        url={this.smsurl}
-                    />;
+    const smsBtn = (
+      <sqh-share-button
+        displayrule={this.smsdisplayrule}
+        text={this.smstext}
+        backgroundcolor={this.smsbackgroundcolor}
+        textcolor={this.smstextcolor}
+        icon={this.smsicon}
+        class={this.smsclassName}
+        iconhorizontal={this.smsiconhorizontal}
+        iconvertical={this.smsiconvertical}
+        iconsize={this.smsiconsize}
+        url={this.smsurl}
+      />
+    );
 
-    const whatsappBtn = <sqh-share-button 
-                          displayrule={this.whatsappdisplayrule} 
-                          text={this.whatsapptext}
-                          backgroundcolor={this.whatsappbackgroundcolor}
-                          textcolor={this.whatsapptextcolor}
-                          icon={this.whatsappicon}
-                          class={this.whatsappclassName}
-                          iconhorizontal={this.whatsappiconhorizontal}
-                          iconvertical={this.whatsappiconvertical}
-                          iconsize={this.whatsappiconsize}
-                          url={this.whatsappurl}
-                        />;
+    const whatsappBtn = (
+      <sqh-share-button
+        displayrule={this.whatsappdisplayrule}
+        text={this.whatsapptext}
+        backgroundcolor={this.whatsappbackgroundcolor}
+        textcolor={this.whatsapptextcolor}
+        icon={this.whatsappicon}
+        class={this.whatsappclassName}
+        iconhorizontal={this.whatsappiconhorizontal}
+        iconvertical={this.whatsappiconvertical}
+        iconsize={this.whatsappiconsize}
+        url={this.whatsappurl}
+      />
+    );
 
-    const linkedinBtn = <sqh-share-button 
-                          displayrule={this.linkedindisplayrule} 
-                          text={this.linkedintext}
-                          backgroundcolor={this.linkedinbackgroundcolor}
-                          textcolor={this.linkedintextcolor}
-                          icon={this.linkedinicon}
-                          class={this.linkedinclassName}
-                          iconhorizontal={this.linkediniconhorizontal}
-                          iconvertical={this.linkediniconvertical}
-                          iconsize={this.linkediniconsize}
-                          url={this.linkedinurl}
-                        />
+    const linkedinBtn = (
+      <sqh-share-button
+        displayrule={this.linkedindisplayrule}
+        text={this.linkedintext}
+        backgroundcolor={this.linkedinbackgroundcolor}
+        textcolor={this.linkedintextcolor}
+        icon={this.linkedinicon}
+        class={this.linkedinclassName}
+        iconhorizontal={this.linkediniconhorizontal}
+        iconvertical={this.linkediniconvertical}
+        iconsize={this.linkediniconsize}
+        url={this.linkedinurl}
+      />
+    );
 
-    const pinterestBtn = <sqh-share-button
-                            displayrule={this.pinterestdisplayrule} 
-                            text={this.pinteresttext}
-                            backgroundcolor={this.pinterestbackgroundcolor}
-                            textcolor={this.pinteresttextcolor}
-                            icon={this.pinteresticon}
-                            class={this.pinterestclassName}
-                            iconhorizontal={this.pinteresticonhorizontal}
-                            iconvertical={this.pinteresticonvertical}
-                            iconsize={this.pinteresticonsize}
-                            url={this.pinteresturl}
-                        />
+    const pinterestBtn = (
+      <sqh-share-button
+        displayrule={this.pinterestdisplayrule}
+        text={this.pinteresttext}
+        backgroundcolor={this.pinterestbackgroundcolor}
+        textcolor={this.pinteresttextcolor}
+        icon={this.pinteresticon}
+        class={this.pinterestclassName}
+        iconhorizontal={this.pinteresticonhorizontal}
+        iconvertical={this.pinteresticonvertical}
+        iconsize={this.pinteresticonsize}
+        url={this.pinteresturl}
+      />
+    );
 
-    const messengerBtn = <sqh-share-button
-                            displayrule={this.messengerdisplayrule} 
-                            text={this.messengertext}
-                            backgroundcolor={this.messengerbackgroundcolor}
-                            textcolor={this.messengertextcolor}
-                            icon={this.messengericon}
-                            class={this.messengerclassName}
-                            iconhorizontal={this.messengericonhorizontal}
-                            iconvertical={this.messengericonvertical}
-                            iconsize={this.messengericonsize}
-                            url={this.messengerurl}
-                          />
-    
-    const lineBtn = <sqh-share-button
-                            displayrule={this.linedisplayrule} 
-                            text={this.linetext}
-                            backgroundcolor={this.linebackgroundcolor}
-                            textcolor={this.linetextcolor}
-                            icon={this.lineicon}
-                            class={this.lineclassName}
-                            iconhorizontal={this.lineiconhorizontal}
-                            iconvertical={this.lineiconvertical}
-                            iconsize={this.lineiconsize}
-                            url={this.lineurl}
-                          />
+    const messengerBtn = (
+      <sqh-share-button
+        displayrule={this.messengerdisplayrule}
+        text={this.messengertext}
+        backgroundcolor={this.messengerbackgroundcolor}
+        textcolor={this.messengertextcolor}
+        icon={this.messengericon}
+        class={this.messengerclassName}
+        iconhorizontal={this.messengericonhorizontal}
+        iconvertical={this.messengericonvertical}
+        iconsize={this.messengericonsize}
+        url={this.messengerurl}
+      />
+    );
 
-    return !this.ishidden &&
-      <div>
-        {emailBtn}
-        {facebookBtn}
-        {twitterBtn}
-        {smsBtn}
-        {whatsappBtn}
-        {linkedinBtn}
-        {pinterestBtn}
-        {messengerBtn}
-        {lineBtn}
-      </div>;
+    const lineBtn = (
+      <sqh-share-button
+        displayrule={this.linedisplayrule}
+        text={this.linetext}
+        backgroundcolor={this.linebackgroundcolor}
+        textcolor={this.linetextcolor}
+        icon={this.lineicon}
+        class={this.lineclassName}
+        iconhorizontal={this.lineiconhorizontal}
+        iconvertical={this.lineiconvertical}
+        iconsize={this.lineiconsize}
+        url={this.lineurl}
+      />
+    );
+
+    return (
+      !this.ishidden && (
+        <div>
+          {emailBtn}
+          {facebookBtn}
+          {twitterBtn}
+          {smsBtn}
+          {whatsappBtn}
+          {linkedinBtn}
+          {pinterestBtn}
+          {messengerBtn}
+          {lineBtn}
+        </div>
+      )
+    );
   }
 }
-  
