@@ -1,6 +1,5 @@
 import IntlMessageFormat from "intl-messageformat";
-import IntlRelativeTimeFormat from "@formatjs/intl-relativetimeformat";
-import { selectUnit } from "@formatjs/intl-utils";
+import IntRelativeFormat from "intl-relativeformat";
 
 const FormatJS = {
   format(msg: string, values: { [key: string]: any }): string {
@@ -11,17 +10,13 @@ const FormatJS = {
     var format = new IntlMessageFormat(msg, locale);
     return format.format(values);
   },
-  formatRelative(value: number | Date) {
+  formatRelative(value: string | number) {
     var locale = ((<any>window).widgetIdent.locale || "en-US").replace(
       "_",
       "-"
     );
-    const diff = selectUnit(value);
-
-    return new IntlRelativeTimeFormat(locale, { numeric: "auto" }).format(
-      diff.value,
-      diff.unit
-    );
+    var relative = new IntRelativeFormat(locale);
+    return relative.format(value);
   },
 };
 

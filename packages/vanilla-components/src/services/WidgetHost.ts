@@ -240,7 +240,7 @@ const demoUser = {
 
 //@ts-ignore
 const squatchJsApi = window.frameElement
-  ? window.frameElement.squatchJsApi
+  ? (window.frameElement as any).squatchJsApi
   : {};
 
 const apolloClient = () => {
