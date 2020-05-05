@@ -3,6 +3,7 @@ import { sass } from "@stencil/sass";
 
 export const config: Config = {
   namespace: "widget-components",
+  globalScript: "src/global/global.ts",
   outputTargets: [
     {
       type: "dist",

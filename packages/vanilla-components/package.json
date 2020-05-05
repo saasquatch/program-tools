@@ -51,7 +51,9 @@
     "path-to-regexp": "^6.1.0",
     "puppeteer": "2.1.1",
     "ts-node": "^8.10.1",
-    "uuid": "^8.0.0"
+    "uuid": "^8.0.0",
+    "@formatjs/intl-relativetimeformat": "^4.5.14",
+    "intl-relativeformat": "^6.4.3"
   },
   "resolutions": {
     "apollo-link": "^1.2.14"
@@ -66,9 +68,5 @@
     "url": "https://github.com/saasquatch/program-tools"
   },
   "homepage": "https://github.com/saasquatch/program-tools",
-  "gitHead": "8bb7593d8b46310071835017f0cd63c8c36013b4",
-  "dependencies": {
-    "@formatjs/intl-relativetimeformat": "^4.5.14",
-    "intl-relativeformat": "^6.4.3"
-  }
+  "gitHead": "8bb7593d8b46310071835017f0cd63c8c36013b4"
 }
