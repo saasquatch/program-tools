@@ -15,10 +15,10 @@ export const config: Config = {
     },
   ],
   plugins: [sass()],
-};
-
-export const devServer = {
-  root: "www",
-  watchGlob: "**/**",
-  httpPort: process.env.PORT || 3333,
+  extras: {
+    dynamicImportShim: true,
+    safari10: true,
+    shadowDomShim: true,
+    slotChildNodesFix: true,
+  },
 };
