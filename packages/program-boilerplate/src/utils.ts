@@ -1,7 +1,7 @@
-import {rewardScheduleQuery} from './queries';
-import {ProgramTriggerBody, TriggerType} from './types/rpc';
-import {User} from './types/saasquatch';
-import {loggers} from 'winston';
+import { rewardScheduleQuery } from "./queries";
+import { ProgramTriggerBody, TriggerType } from "./types/rpc";
+import { User } from "./types/saasquatch";
+import { loggers } from "winston";
 
 /**
  * Append a reward schedule to the template and return the new template
@@ -29,7 +29,7 @@ export function setRewardSchedule({
     const dateExpires_timeframe = `next_${expiryWarningDays}_days`;
     const rewardSchedule = {
       key,
-      type: 'REWARD',
+      type: "REWARD",
       filter: {
         dateExpires_timeframe,
       },
@@ -62,7 +62,7 @@ export function setRewardSchedule({
  */
 export function getGoalAnalyticTimestamp(trigger: any): number {
   const purchaseEvent = trigger.events
-    ? trigger.events.find((e: any) => e.key === 'purchase')
+    ? trigger.events.find((e: any) => e.key === "purchase")
     : undefined;
 
   return purchaseEvent ? purchaseEvent.dateTriggered - 1 : trigger.time;
@@ -70,8 +70,7 @@ export function getGoalAnalyticTimestamp(trigger: any): number {
 
 /**
  * Translates a string type into its proper JavaScript type.
- * Only supports conversion to number, boolean, null and undefined values.
- * Objects and arrays are not supported.
+ * Only supports conversion to number, boolean, objects, arrays, null and undefined values.
  *
  * @example
  * "29" => 29 (number)
@@ -83,6 +82,10 @@ export function getGoalAnalyticTimestamp(trigger: any): number {
  * "asdf" => "asdf" (string)
  * @example
  * NaN => NaN (number)
+ * @example
+ * "[true, false]" => [true, false] (object)
+ * @example
+ * "{"key1":true,"key2":false}" => {"key1":true,"key2":false} (object)
  * @example
  * undefined => undefined
  *
@@ -98,20 +101,28 @@ export function inferType(val: string): any {
     }
   }
 
+  if (/(^[\[].*[\]]$)|(^[\{].*[\}]$)/.test(val)) {
+    const asObject = JSON.parse(val);
+
+    if (asObject instanceof Object) {
+      return asObject;
+    }
+  }
+
   switch (val) {
-    case 'undefined':
+    case "undefined":
       return undefined;
-    case 'null':
+    case "null":
       return null;
-    case 'NaN':
+    case "NaN":
       return NaN;
-    case 'Infinity':
+    case "Infinity":
       return Infinity;
-    case '-Infinity':
+    case "-Infinity":
       return -Infinity;
-    case 'true':
+    case "true":
       return true;
-    case 'false':
+    case "false":
       return false;
     default:
       return val;
@@ -127,13 +138,13 @@ export function inferType(val: string): any {
 export function numToEquality(num: number): string {
   switch (num) {
     case 0:
-      return 'eq';
+      return "eq";
     case 1:
-      return 'gte';
+      return "gte";
     case 2:
-      return 'lte';
+      return "lte";
     default:
-      return 'eq';
+      return "eq";
   }
 }
 
@@ -151,21 +162,21 @@ export function getTriggerSchema(body: ProgramTriggerBody): object[] {
     user: activeTrigger.user,
   };
   switch (triggerType) {
-    case 'AFTER_USER_CREATED_OR_UPDATED':
+    case "AFTER_USER_CREATED_OR_UPDATED":
       return [
         {
           ...standardData,
           previous: activeTrigger.previous,
         },
       ];
-    case 'REFERRAL':
+    case "REFERRAL":
       return [
         {
           ...standardData,
           referral: activeTrigger.referral,
         },
       ];
-    case 'AFTER_USER_EVENT_PROCESSED':
+    case "AFTER_USER_EVENT_PROCESSED":
       let contexts: object[] = [];
       activeTrigger.events.forEach((event: any) => {
         contexts.push({
@@ -179,19 +190,19 @@ export function getTriggerSchema(body: ProgramTriggerBody): object[] {
         });
       });
       return contexts;
-    case 'SCHEDULED':
+    case "SCHEDULED":
       return [
         {
           ...standardData,
         },
       ];
-    case 'REWARD_SCHEDULED':
+    case "REWARD_SCHEDULED":
       return [
         {
           ...standardData,
         },
       ];
     default:
-      throw new Error('Trigger type did not match expected options');
+      throw new Error("Trigger type did not match expected options");
   }
 }
