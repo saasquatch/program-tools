@@ -32,6 +32,5 @@
     "jsonata": "^1.8.1",
     "express": "^4.17.1",
     "winston": "^3.2.1"
-  },
-  "gitHead": "0e9b06e3729cf43bd9ffa3b05b97d9587fa83727"
+  }
 }
