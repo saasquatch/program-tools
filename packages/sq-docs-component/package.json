@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/sq-docs-component",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Saasquatch Docs Component",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
