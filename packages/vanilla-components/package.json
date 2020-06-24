@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/vanilla-components",
-  "version": "1.0.12-alpha.7",
+  "version": "1.0.12",
   "description": "Vanilla component library for the SaaSquatch platform",
   "main": "dist/index.js",
   "types": "dist/types/components.d.ts",
@@ -78,5 +78,5 @@
       "jsx"
     ]
   },
-  "gitHead": "8bb7593d8b46310071835017f0cd63c8c36013b4"
+  "gitHead": "c1fd46c8cddb9fedc9eb6e5a76ea2e3e3b38808d"
 }
