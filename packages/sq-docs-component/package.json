@@ -28,5 +28,6 @@
     "@stencil/sass": "^1.0.1",
     "clipboard": "^2.0.4",
     "prismjs": "^1.16.0"
-  }
+  },
+  "gitHead": "0e9b06e3729cf43bd9ffa3b05b97d9587fa83727"
 }
