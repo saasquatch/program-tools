@@ -213,6 +213,14 @@ export function init(cucumber: Cucumber): void {
     assert(emails.some((e: any) => e.key === key));
   });
 
+  Then('the output will include a {string} reward key', function(
+    this: World,
+    key: string,
+  ) {
+    const rewards = this.state.programTriggerResult.rewards;
+    assert(rewards.some((e: any) => e.key === key));
+  });
+
   Then('the following MODERATE_GRAPH_NODES mutation will exist:', function(
     this: World,
     data: any,

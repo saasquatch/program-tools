@@ -71,5 +71,18 @@
   "gitHead": "8bb7593d8b46310071835017f0cd63c8c36013b4",
   "dependencies": {
     "@formatjs/intl-pluralrules": "^1.5.8"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json",
+      "jsx"
+    ]
   }
 }
