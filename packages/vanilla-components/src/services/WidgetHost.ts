@@ -367,6 +367,7 @@ const API = {
                   programId: $programId
                   engagementMedium: $engagementMedium
                   shareMedium: DIRECT
+                  useCleanLink: true
                 )
               }
             }
