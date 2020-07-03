@@ -254,7 +254,7 @@ const API = {
         query: gql`
           query($userId: String!, $accountId: String!, $programId: ID, $engagementMedium: UserEngagementMedium!) {
             user(id: $userId, accountId: $accountId) {
-              shareLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: DIRECT)
+              shareLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: DIRECT, useCleanLink: true)
             }
           }
         `,
