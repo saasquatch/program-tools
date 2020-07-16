@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/saasquatch/program-tools#readme",
   "devDependencies": {
-    "lerna": "^2.11.0"
+    "lerna": "^3.22.1"
   },
   "dependencies": {
     "yarn": "^1.7.0"
