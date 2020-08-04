@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/vanilla-components-grapesjs",
-  "version": "1.0.18",
+  "version": "1.0.20",
   "description": "GrapesJS Plugin Boilerplate",
   "main": "dist/index.min.js",
   "scripts": {
@@ -42,5 +42,5 @@
     "webpack-cli": "^2.1.2",
     "webpack-dev-server": "^3.1.4"
   },
-  "gitHead": "582bd4b44cc76ca36433790ac8ae4b1329ae5b77"
+  "gitHead": "0e9b06e3729cf43bd9ffa3b05b97d9587fa83727"
 }
