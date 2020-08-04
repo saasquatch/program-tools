@@ -19,9 +19,9 @@ export const config: Config = {
   extras: {
      safari10: true,
      appendChildSlotFix: true,
+     slotChildNodesFix: true,
   //   dynamicImportShim: true,
   //   shadowDomShim: true,
-  //   slotChildNodesFix: true,
   //   cloneNodeFix: true,
   //   cssVarsShim: true
   },
