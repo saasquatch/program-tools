@@ -16,13 +16,13 @@ export const config: Config = {
     },
   ],
   plugins: [sass()],
-  // extras: {
+  extras: {
+     safari10: true,
   //   dynamicImportShim: true,
-  //   safari10: true,
   //   shadowDomShim: true,
   //   slotChildNodesFix: true,
   //   appendChildSlotFix: true,
   //   cloneNodeFix: true,
   //   cssVarsShim: true
-  // },
+  },
 };
