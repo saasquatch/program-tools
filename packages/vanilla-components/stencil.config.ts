@@ -17,12 +17,8 @@ export const config: Config = {
   ],
   plugins: [sass()],
   extras: {
-     safari10: true,
      appendChildSlotFix: true,
      slotChildNodesFix: true,
-  //   dynamicImportShim: true,
-  //   shadowDomShim: true,
-  //   cloneNodeFix: true,
-  //   cssVarsShim: true
+     cloneNodeFix: true,
   },
 };
