@@ -8,12 +8,11 @@ export const config: Config = {
   outputTargets: [
     {
       type: "dist",
-      esmLoaderPath: "../loader",
     },
-    {
-      type: "www",
-      serviceWorker: false,
-    },
+    // {
+    //   type: "www",
+    //   serviceWorker: false,
+    // },
   ],
   plugins: [sass()],
   extras: {
