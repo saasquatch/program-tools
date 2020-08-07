@@ -9,6 +9,9 @@
   parts.pop();
   var url = parts.join('/');
 
+  // NOTE(johan): Safari 10 supports type="module" but the build is too new for it, so we only want the ES5 build but
+  // without the "nomodule" attribute
+  
   if (!isSafari10) {
     var scriptElm = doc.createElement('script');
     scriptElm.setAttribute('type', 'module');
@@ -18,7 +21,9 @@
   }
   
   var scriptElm = doc.createElement('script');
-  scriptElm.setAttribute('nomodule', '');
+  if (!isSafari10) {
+    scriptElm.setAttribute('nomodule', '');
+  }
   scriptElm.src = url + '/widget-components.js';
   scriptElm.setAttribute('data-stencil-namespace', 'widget-components');
   doc.head.appendChild(scriptElm)

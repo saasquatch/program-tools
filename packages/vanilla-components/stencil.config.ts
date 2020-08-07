@@ -19,9 +19,7 @@ export const config: Config = {
   ],
   plugins: [sass()],
   extras: {
-     safari10: false,
      appendChildSlotFix: true,
-     //slotChildNodesFix: true,
      cloneNodeFix: true,
   },
 };
