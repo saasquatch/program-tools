@@ -8,6 +8,9 @@ export const config: Config = {
   outputTargets: [
     {
       type: "dist",
+      copy: [
+        { src: "entrypoint.js" }
+      ]
     },
     // {
     //   type: "www",
