@@ -21,5 +21,6 @@ export const config: Config = {
   extras: {
      appendChildSlotFix: true,
      cloneNodeFix: true,
+     slotChildNodesFix: true
   },
 };
