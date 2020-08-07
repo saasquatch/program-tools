@@ -19,6 +19,9 @@ export const config: Config = {
   ],
   plugins: [sass()],
   extras: {
+     // Don't use Stencil's built in Safari10 check, it breaks the non-ES modules build
+     // NOTE: This looks like it might be fixed in Stencil 1.8.x - https://github.com/ionic-team/stencil/issues/1900
+     safari10: false,
      appendChildSlotFix: true,
      cloneNodeFix: true,
      slotChildNodesFix: true
