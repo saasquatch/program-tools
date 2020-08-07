@@ -7,7 +7,7 @@ query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!, $refe
     firstName
     lastName
     referralCode(programId:$programId)
-    shareLink(programId:$programId)
+    shareLink(programId:$programId,useCleanLink:true)
     facebook: messageLink(programId:$programId,shareMedium:FACEBOOK,engagementMedium:EMAIL)
     twitter: messageLink(programId:$programId,shareMedium:TWITTER,engagementMedium:EMAIL)
     email:messageLink(programId:$programId,shareMedium:EMAIL,engagementMedium:EMAIL)
@@ -58,7 +58,7 @@ export const nonRewardEmailQueryForReferralPrograms = `query ($userId:String!, $
     firstName
     lastName
     referralCode(programId:$programId)
-    shareLink(programId:$programId)
+    shareLink(programId:$programId,useCleanLink:true)
     facebook: messageLink(programId:$programId,shareMedium:FACEBOOK)
     twitter: messageLink(programId:$programId,shareMedium:TWITTER)
     email:messageLink(programId:$programId,shareMedium:EMAIL)
