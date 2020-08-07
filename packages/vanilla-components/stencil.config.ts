@@ -20,7 +20,7 @@ export const config: Config = {
   plugins: [sass()],
   extras: {
      appendChildSlotFix: true,
-     slotChildNodesFix: true,
+     //slotChildNodesFix: true,
      cloneNodeFix: true,
   },
 };
