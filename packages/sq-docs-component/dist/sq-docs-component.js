@@ -17,7 +17,14 @@
   scriptElm.setAttribute('data-stencil-namespace', 'sq-docs-component');
   doc.head.appendChild(scriptElm);
 
-  false
+  
+  scriptElm = doc.createElement('script');
+  scriptElm.setAttribute('nomodule', '');
+  scriptElm.src = url + '/sq-docs-component.js';
+  warn.push(scriptElm.outerHTML);
+  scriptElm.setAttribute('data-stencil-namespace', 'sq-docs-component');
+  doc.head.appendChild(scriptElm)
+  
   console.warn(warn.join('\n'));
 
 })(document);
