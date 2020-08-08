@@ -1,1 +1,0 @@
-import{b as e}from"./p-0f60ee1b.js";import{p as d}from"./p-6d444428.js";d().then(d=>e([["p-e79f31c6",[[0,"sq-code",{open:[4],syntax:[1],tabname:[1],copied:[4],highlightedCode:[32],text:[32],loaded:[32],newElement:[32]}],[4,"sq-code-example",{tabs:[32],code:[32],clipboard:[32],copied:[32]}]]],["p-3bd1df10",[[4,"sq-docs"]]]],d));
