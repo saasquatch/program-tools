@@ -13,15 +13,11 @@
   var scriptElm = doc.createElement('script');
   scriptElm.setAttribute('type', 'module');
   scriptElm.src = url + '/sq-docs-component.esm.js';
-  doc.head.appendChild(scriptElm);
   warn.push(scriptElm.outerHTML);
-
-  scriptElm = doc.createElement('script');
-  scriptElm.setAttribute('nomodule', '');
-  scriptElm.src = url + '/sq-docs-component.js';
+  scriptElm.setAttribute('data-stencil-namespace', 'sq-docs-component');
   doc.head.appendChild(scriptElm);
-  warn.push(scriptElm.outerHTML);
 
+  false
   console.warn(warn.join('\n'));
 
 })(document);

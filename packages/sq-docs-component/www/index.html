@@ -1,4 +1,4 @@
-<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>SQ Docs Component</title>  <link rel="modulepreload" href="/build/p-4b13a101.js"><link rel="modulepreload" href="/build/p-4vaped2l.entry.js"><script nomodule="" src="/build/sq-docs-component.js"></script> <link rel="stylesheet" href="https://i.icomoon.io/public/830a3260df/SaaSquatch/style.css"> </head> <body> <sq-code-example> <sq-code syntax="javascript" tabname="Javascript" open="true"> squatch.widgets().upsertUser({
+<!doctype html><html dir="ltr" lang="en"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>SQ Docs Component</title> <script type="module" src="/build/sq-docs-component.esm.js" data-stencil></script> <script nomodule="" src="/build/sq-docs-component.js" data-stencil></script> <link rel="stylesheet" href="https://i.icomoon.io/public/830a3260df/SaaSquatch/style.css"> </head> <body> <sq-code-example> <sq-code syntax="javascript" tabname="Javascript" open="true"> squatch.widgets().upsertUser({
           user: {
             id: 'USER_ID',
             accountId: 'USER_ACCOUNT_ID',
@@ -155,4 +155,11 @@
                 }
                 return result;
             }
-        } </sq-code> <sq-code syntax="bash" tabname="cURL"> curl -X POST https://app.referralsaasquatch.com/api/v1/{tenant_alias}/user -u :API_KEY -H "Content-Type: application/json" -d '{ "id": "USER_ID", "accountId": "USER_ACCOUNT_ID", "email": "USER_EMAIL", "customFields": { "birthday": "--MM-DD" } }' </sq-code> </sq-code-example> <script type="module" data-resources-url="/build/" data-namespace="sq-docs-component">import{p as e,b as a}from"/build/p-4b13a101.js";e().then(e=>a([["p-4vaped2l",[[0,"sq-code",{open:[4],syntax:[1],tabname:[1],copied:[4],highlightedCode:[32],text:[32],loaded:[32],newElement:[32]}],[4,"sq-code-example",{tabs:[32],code:[32],clipboard:[32],copied:[32]}]]],["p-aaey7xca",[[4,"sq-docs"]]]],{resourcesUrl:e}));</script></body></html>
+        } </sq-code> <sq-code syntax="bash" tabname="cURL"> curl -X POST https://app.referralsaasquatch.com/api/v1/{tenant_alias}/user -u :API_KEY -H "Content-Type: application/json" -d '{ "id": "USER_ID", "accountId": "USER_ACCOUNT_ID", "email": "USER_EMAIL", "customFields": { "birthday": "--MM-DD" } }' </sq-code> </sq-code-example> <script>if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  // auto-unregister service worker during dev mode
+  navigator.serviceWorker.getRegistration().then(function(registration) {
+  if (registration) {
+    registration.unregister().then(function() { location.reload(true) });
+  }
+  });
+}</script></body></html>
