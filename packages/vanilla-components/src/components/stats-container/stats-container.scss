@@ -5,13 +5,12 @@ sqh-stats-container {
   justify-content: space-around;
 }
 
-
 // Mobile css to be moved to CSS in JS
 
 sqh-stats-container {
   @media (max-width: 499px) {
     flex-direction: column;
-    
+
     div {
       flex-wrap: wrap;
       width: 100%;

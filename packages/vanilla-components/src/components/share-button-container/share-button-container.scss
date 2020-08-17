@@ -7,7 +7,6 @@ sqh-share-button-container {
 
   // hides share buttons based on class for desktop and mobile - might end up in CSS in JS because of media queries
   .squatch-share-btn {
-
     &.hidden {
       display: none;
     }

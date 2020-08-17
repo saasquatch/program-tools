@@ -1,7 +1,6 @@
 sqh-close-button {
-
-  $blue:                    #4486e1;
-  $font-size-xs:            12px;
+  $blue: #4486e1;
+  $font-size-xs: 12px;
 
   .squatch-header-close {
     position: absolute;
@@ -11,9 +10,9 @@ sqh-close-button {
     border: 0;
     color: $blue;
     font-size: $font-size-xs;
-  
+
     &:hover {
       text-decoration: underline;
     }
-  }  
+  }
 }

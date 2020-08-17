@@ -14,7 +14,7 @@ sqh-share-button {
     border-radius: 4px;
     width: 140px;
     margin: 5px;
-    
+
     .share-btn-text {
       text-align: center;
       padding-left: 30px;
@@ -26,33 +26,32 @@ sqh-share-button {
 
     // Normalizing code for active buttons from bootstrap maybe, is this still necessary?
 
-  
     &.disabled,
     &[disabled],
     fieldset[disabled] & {
       cursor: not-allowed;
       pointer-events: none; // Future-proof disabling of clicks
-      opacity: .65;
+      opacity: 0.65;
       -webkit-box-shadow: none;
-              box-shadow: none;
+      box-shadow: none;
     }
   }
 
   a {
     position: relative;
     text-decoration: none;
-  
+
     .icon {
       position: absolute;
       left: 10px;
       top: 6px;
       width: 16px;
     }
-  
+
     &:before {
       bottom: -1px;
-      background: rgba(255,255,255,0.18);
-      content: '';
+      background: rgba(255, 255, 255, 0.18);
+      content: "";
       left: -1px;
       position: absolute;
       top: -1px;
@@ -60,7 +59,6 @@ sqh-share-button {
     }
   }
 }
-
 
 // Mobile css will go in CSS in JS (emotion) because break point will be available in editor
 

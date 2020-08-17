@@ -10,12 +10,8 @@
   // from Strings for Props that are set as Booleans.
  -->
 
-<sqh-global-container 
-  class="squatch-container" 
-  background="#ffffff"
->
-
-  <sqh-text-component 
+<sqh-global-container class="squatch-container" background="#ffffff">
+  <sqh-text-component
     sqhbanner="true"
     ishidden="true"
     ismarkdown="false"
@@ -31,23 +27,23 @@
     sqhheader="true"
     ishidden="false"
     ismarkdown="false"
-    text="Give $10 and Get $10!" 
-    color="#4486E1" 
-    fontsize="30" 
+    text="Give $10 and Get $10!"
+    color="#4486E1"
+    fontsize="30"
     textalign="center"
-    paddingtop="30" 
+    paddingtop="30"
     paddingbottom="10"
   ></sqh-text-component>
 
-  <sqh-text-component 
+  <sqh-text-component
     sqhbody="true"
     ishidden="false"
     ismarkdown="true"
-    text="Give a friend a $10 and receive $10 for yourself when they purchase.<br/><br/>Share the link below or use the code **<sqh-referral-code />**" 
-    color="#000000" 
-    fontsize="13" 
+    text="Give a friend a $10 and receive $10 for yourself when they purchase.<br/><br/>Share the link below or use the code **<sqh-referral-code />**"
+    color="#000000"
+    fontsize="13"
     textalign="center"
-    paddingtop="5" 
+    paddingtop="5"
     paddingbottom="20"
   ></sqh-text-component>
 
@@ -62,24 +58,24 @@
 
   <sqh-share-button-container
     ishidden="false"
-    emaildisplayrule="mobile-and-desktop" 
-    emailtext="Email" 
-    emailtextcolor="#ffffff" 
-    emailbackgroundcolor="#4b4d50" 
-    facebookdisplayrule="mobile-and-desktop" 
-    facebooktext="Facebook" 
-    facebooktextcolor="#ffffff" 
-    facebookbackgroundcolor="#234079" 
-    twitterdisplayrule="mobile-and-desktop" 
-    twittertext="Twitter" 
-    twittertextcolor="#ffffff" 
-    twitterbackgroundcolor="#4797d2" 
-    smsdisplayrule="mobile-only" 
-    smstext="SMS" 
-    smstextcolor="#ffffff" 
-    smsbackgroundcolor="#7bbf38" 
-    whatsappdisplayrule="mobile-only" 
-    whatsapptext="Whatspp" 
+    emaildisplayrule="mobile-and-desktop"
+    emailtext="Email"
+    emailtextcolor="#ffffff"
+    emailbackgroundcolor="#4b4d50"
+    facebookdisplayrule="mobile-and-desktop"
+    facebooktext="Facebook"
+    facebooktextcolor="#ffffff"
+    facebookbackgroundcolor="#234079"
+    twitterdisplayrule="mobile-and-desktop"
+    twittertext="Twitter"
+    twittertextcolor="#ffffff"
+    twitterbackgroundcolor="#4797d2"
+    smsdisplayrule="mobile-only"
+    smstext="SMS"
+    smstextcolor="#ffffff"
+    smsbackgroundcolor="#7bbf38"
+    whatsappdisplayrule="mobile-only"
+    whatsapptext="Whatspp"
     whatsapptextcolor="#ffffff"
     whatsappbackgroundcolor="#25D366"
     linkedindisplayrule="hidden"
@@ -100,28 +96,23 @@
     linebackgroundcolor="#00c300"
   ></sqh-share-button-container>
 
-  <sqh-text-component 
+  <sqh-text-component
     sqhreferralsheader="true"
     ismarkdown="true"
     ishidden="false"
-    text="**Rewards Dashboard**" 
-    color="#000000" 
-    fontsize="13" 
+    text="**Rewards Dashboard**"
+    color="#000000"
+    fontsize="13"
     textalign="center"
-    paddingtop="20" 
+    paddingtop="20"
     paddingbottom="10"
   ></sqh-text-component>
 
-  <sqh-stats-container
-    ishidden="false"
-    paddingtop="0"
-    paddingbottom="0"
-  >
-
+  <sqh-stats-container ishidden="false" paddingtop="0" paddingbottom="0">
     <sqh-stat-component
       ishidden="false"
-      statcolor="#4caf50" 
-      stattype="/referralsCount" 
+      statcolor="#4caf50"
+      stattype="/referralsCount"
       statdescription="Friends Referred"
       paddingtop="10"
       paddingbottom="10"
@@ -129,7 +120,7 @@
 
     <sqh-stat-component
       ishidden="false"
-      stattype="/rewardsCount" 
+      stattype="/rewardsCount"
       statdescription="Total Rewards"
       paddingtop="10"
       paddingbottom="10"
@@ -138,52 +129,50 @@
 
     <sqh-stat-component
       ishidden="false"
-      stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit" 
+      stattype="/rewardBalance/CREDIT/CENTS/prettyAssignedCredit"
       statdescription="Credit earned"
       paddingtop="10"
       paddingbottom="10"
       statcolor="#000000"
     ></sqh-stat-component>
-
   </sqh-stats-container>
 
   <sqh-referral-list
     ishidden="false"
     showreferrer="true"
     usefirstreward="false"
-    referralnamecolor="darkslategray" 
-    referraltextcolor="lightgray" 
-    rewardcolor="#4BB543" 
-    pendingcolor="lightgray" 
+    referralnamecolor="darkslategray"
+    referraltextcolor="lightgray"
+    rewardcolor="#4BB543"
+    pendingcolor="lightgray"
     pendingvalue="Reward Pending"
     referrervalue="Referred"
-    referrercontent="Referred you {date}" 
-    convertedcontent="Signed up, referred {date}" 
-    pendingcontent="Trial user, referred {date}" 
-    pendingvalue="Referral pending" 
-    valuecontent="and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}" 
-    expiredcolor="lightgray" 
-    expiredvalue="Expired Reward" 
-    expiredcontent="Signed up, referred {date}" 
-    cancelledcolor="#C81D05" 
-    cancelledvalue="Cancelled Reward" 
+    referrercontent="Referred you {date}"
+    convertedcontent="Signed up, referred {date}"
+    pendingcontent="Trial user, referred {date}"
+    pendingvalue="Referral pending"
+    valuecontent="and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
+    expiredcolor="lightgray"
+    expiredvalue="Expired Reward"
+    expiredcontent="Signed up, referred {date}"
+    cancelledcolor="#C81D05"
+    cancelledvalue="Cancelled Reward"
     cancelledcontent="Signed up, referred {date}"
-    paginatemore="View More" 
+    paginatemore="View More"
     paginateless="Previous"
     noreferralsyet="No Referrals Yet..."
     unknownuser="Your Friend"
   ></sqh-referral-list>
 
-  <sqh-text-component 
+  <sqh-text-component
     sqhfooter="true"
     ishidden="false"
     ismarkdown="false"
-    text="Terms and Conditions" 
-    color="lightgray" 
+    text="Terms and Conditions"
+    color="lightgray"
     fontsize="13"
     textalign="center"
     paddingtop="10"
     paddingbottom="10"
   ></sqh-text-component>
-
-</sqh-global-container>  
+</sqh-global-container>
