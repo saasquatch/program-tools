@@ -210,6 +210,13 @@ export namespace Components {
         "paddingbottom": string;
         "paddingtop": string;
     }
+    interface SqhTabComponent {
+        "open": boolean;
+        "syntax": string;
+        "tabname": string;
+    }
+    interface SqhTabContainer {
+    }
     interface SqhTextComponent {
         "background": string;
         "color": string;
@@ -316,6 +323,18 @@ declare global {
         prototype: HTMLSqhStatsContainerElement;
         new (): HTMLSqhStatsContainerElement;
     };
+    interface HTMLSqhTabComponentElement extends Components.SqhTabComponent, HTMLStencilElement {
+    }
+    var HTMLSqhTabComponentElement: {
+        prototype: HTMLSqhTabComponentElement;
+        new (): HTMLSqhTabComponentElement;
+    };
+    interface HTMLSqhTabContainerElement extends Components.SqhTabContainer, HTMLStencilElement {
+    }
+    var HTMLSqhTabContainerElement: {
+        prototype: HTMLSqhTabContainerElement;
+        new (): HTMLSqhTabContainerElement;
+    };
     interface HTMLSqhTextComponentElement extends Components.SqhTextComponent, HTMLStencilElement {
     }
     var HTMLSqhTextComponentElement: {
@@ -338,6 +357,8 @@ declare global {
         "sqh-share-button-container": HTMLSqhShareButtonContainerElement;
         "sqh-stat-component": HTMLSqhStatComponentElement;
         "sqh-stats-container": HTMLSqhStatsContainerElement;
+        "sqh-tab-component": HTMLSqhTabComponentElement;
+        "sqh-tab-container": HTMLSqhTabContainerElement;
         "sqh-text-component": HTMLSqhTextComponentElement;
     }
 }
@@ -550,6 +571,13 @@ declare namespace LocalJSX {
         "paddingbottom"?: string;
         "paddingtop"?: string;
     }
+    interface SqhTabComponent {
+        "open"?: boolean;
+        "syntax"?: string;
+        "tabname"?: string;
+    }
+    interface SqhTabContainer {
+    }
     interface SqhTextComponent {
         "background"?: string;
         "color"?: string;
@@ -580,6 +608,8 @@ declare namespace LocalJSX {
         "sqh-share-button-container": SqhShareButtonContainer;
         "sqh-stat-component": SqhStatComponent;
         "sqh-stats-container": SqhStatsContainer;
+        "sqh-tab-component": SqhTabComponent;
+        "sqh-tab-container": SqhTabContainer;
         "sqh-text-component": SqhTextComponent;
     }
 }
@@ -602,6 +632,8 @@ declare module "@stencil/core" {
             "sqh-share-button-container": LocalJSX.SqhShareButtonContainer & JSXBase.HTMLAttributes<HTMLSqhShareButtonContainerElement>;
             "sqh-stat-component": LocalJSX.SqhStatComponent & JSXBase.HTMLAttributes<HTMLSqhStatComponentElement>;
             "sqh-stats-container": LocalJSX.SqhStatsContainer & JSXBase.HTMLAttributes<HTMLSqhStatsContainerElement>;
+            "sqh-tab-component": LocalJSX.SqhTabComponent & JSXBase.HTMLAttributes<HTMLSqhTabComponentElement>;
+            "sqh-tab-container": LocalJSX.SqhTabContainer & JSXBase.HTMLAttributes<HTMLSqhTabContainerElement>;
             "sqh-text-component": LocalJSX.SqhTextComponent & JSXBase.HTMLAttributes<HTMLSqhTextComponentElement>;
         }
     }

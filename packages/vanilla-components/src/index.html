@@ -137,7 +137,11 @@
         linetextcolor="#ffffff"
         linebackgroundcolor="#00c300"
       ></sqh-share-button-container>
+      <sqh-tab-container>
+        <sqh-tab-component tabname="Submit a Referral" open="true">
       <form-component formkey="lead-capture"></form-component>
+      </sqh-tab-component>
+      <sqh-tab-component tabname="Rewards Dashboard">
       <sqh-text-component
         sqhreferralsheader="true"
         ismarkdown="true"
@@ -204,6 +208,9 @@
         noreferralsyet="No Referrals Yet..."
         unknownuser="Your Friend"
       ></sqh-referral-list>
+    </sqh-tab-component>
+    </sqh-tab-container>
+    
 
       <sqh-text-component
         sqhfooter="true"
