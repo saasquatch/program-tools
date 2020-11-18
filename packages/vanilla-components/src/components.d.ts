@@ -6,6 +6,12 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface FormComponent {
+        "formkey": any;
+        "ishidden": boolean;
+        "namespace": string;
+        "textcolor": string;
+    }
     interface SqhCloseButton {
         "text": string;
     }
@@ -220,6 +226,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLFormComponentElement extends Components.FormComponent, HTMLStencilElement {
+    }
+    var HTMLFormComponentElement: {
+        prototype: HTMLFormComponentElement;
+        new (): HTMLFormComponentElement;
+    };
     interface HTMLSqhCloseButtonElement extends Components.SqhCloseButton, HTMLStencilElement {
     }
     var HTMLSqhCloseButtonElement: {
@@ -311,6 +323,7 @@ declare global {
         new (): HTMLSqhTextComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "form-component": HTMLFormComponentElement;
         "sqh-close-button": HTMLSqhCloseButtonElement;
         "sqh-copy-button": HTMLSqhCopyButtonElement;
         "sqh-copy-link-button": HTMLSqhCopyLinkButtonElement;
@@ -329,6 +342,12 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface FormComponent {
+        "formkey"?: any;
+        "ishidden"?: boolean;
+        "namespace"?: string;
+        "textcolor"?: string;
+    }
     interface SqhCloseButton {
         "text"?: string;
     }
@@ -546,6 +565,7 @@ declare namespace LocalJSX {
         "textalign"?: string;
     }
     interface IntrinsicElements {
+        "form-component": FormComponent;
         "sqh-close-button": SqhCloseButton;
         "sqh-copy-button": SqhCopyButton;
         "sqh-copy-link-button": SqhCopyLinkButton;
@@ -567,6 +587,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "form-component": LocalJSX.FormComponent & JSXBase.HTMLAttributes<HTMLFormComponentElement>;
             "sqh-close-button": LocalJSX.SqhCloseButton & JSXBase.HTMLAttributes<HTMLSqhCloseButtonElement>;
             "sqh-copy-button": LocalJSX.SqhCopyButton & JSXBase.HTMLAttributes<HTMLSqhCopyButtonElement>;
             "sqh-copy-link-button": LocalJSX.SqhCopyLinkButton & JSXBase.HTMLAttributes<HTMLSqhCopyLinkButtonElement>;

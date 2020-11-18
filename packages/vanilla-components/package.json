@@ -1,6 +1,6 @@
 {
-  "name": "@saasquatch/vanilla-components",
-  "version": "1.2.0",
+  "name": "@samsquatch/vanilla-components-forms",
+  "version": "0.0.8",
   "description": "Vanilla component library for the SaaSquatch platform",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -10,8 +10,7 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "files": [
-    "dist/",
-    "loader/"
+    "dist/"
   ],
   "scripts": {
     "build": "stencil build --docs",
@@ -54,7 +53,9 @@
     "puppeteer": "3.0.3",
     "ts-node": "^8.10.1",
     "uuid": "^8.3.0",
-    "workbox-build": "4.3.1"
+    "workbox-build": "4.3.1",
+    "ajv": "^6.12.6",
+    "graphql-request": "^3.3.0"
   },
   "resolutions": {
     "apollo-link": "^1.2.14"

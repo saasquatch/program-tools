@@ -17,6 +17,16 @@
     <meta http-equiv="x-ua-compatible" content="IE=Edge" />
 
     <script>
+      window.widgetIdent = {
+      programId: "referral-demo",
+      userId: "sam",
+      accountId: "sam",
+      token:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtIiwiYWNjb3VudElkIjoic2FtIn19.DrOO_Jgdn84yjrvIFw3rFLFD28PVYL3ag26TIEaj5a4",
+      tenantAlias: "test_arjfs55ufpwk3",
+      engagementMedium: "EMBED",
+      appDomain: "https://staging.referralsaasquatch.com",
+    };
+
 //      window.widgetIdent = {
 //        env: "demo",
 //        engagementMedium: "POPUP",
@@ -127,7 +137,7 @@
         linetextcolor="#ffffff"
         linebackgroundcolor="#00c300"
       ></sqh-share-button-container>
-
+      <form-component formkey="lead-capture"></form-component>
       <sqh-text-component
         sqhreferralsheader="true"
         ismarkdown="true"
@@ -208,7 +218,7 @@
 
     <!-- REFERRED WIDGET START -->
 
-    <sqh-global-container background="#ffffff">
+    <!-- <sqh-global-container background="#ffffff">
       <sqh-image-component
         url="https://d2rcp9ak152ke1.cloudfront.net/theme/test_azu3qtbbzj0ta/assets/WkKexbBO/images/conversion.png"
         alignment="center"
@@ -251,11 +261,11 @@
         codefontsize="14"
         codefontcolor="#000000"
       ></sqh-copy-button>
-    </sqh-global-container>
+    </sqh-global-container> -->
 
     <!-- Partner Widget -->
 
-    <sqh-global-container class="squatch-container" background="#ffffff">
+    <!-- <sqh-global-container class="squatch-container" background="#ffffff">
       <sqh-text-component
         sqhbanner="true"
         ishidden="true"
@@ -344,10 +354,10 @@
         paddingbottom="10"
       ></sqh-text-component>
 
-      <sqh-stats-container paddingtop="0" paddingbottom="0">
+      <sqh-stats-container paddingtop="0" paddingbottom="0"> -->
         <!-- need to create a lifetime earned -->
 
-        <sqh-partner-stat-component
+        <!-- <sqh-partner-stat-component
           statcolor="#000000"
           stattype="/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit"
           statdescription="Pending Balance"
@@ -380,7 +390,7 @@
         textalign="center"
         paddingtop="10"
         paddingbottom="10"
-      ></sqh-text-component>
-    </sqh-global-container>
+      ></sqh-text-component> 
+    </sqh-global-container> -->
   </body>
 </html>

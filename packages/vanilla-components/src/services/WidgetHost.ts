@@ -688,6 +688,120 @@ const API = {
         })
         .then((res) => res.data.user);
     },
+    getForm(key:string) {
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId)
+        return Promise.resolve({
+            key:"lead-capture",
+            name:"Lead Form",
+            schema:{
+              "$schema": "http://json-schema.org/draft-06/schema#",
+              title:"Lead Form",
+              type: "object",
+              required: ["firstName", "lastName", "email", "company"],
+              properties: {
+                firstName: {
+                  type:"string",
+                  title:"First Name"
+                },
+                lastName: {
+                  type:"string",
+                  title:"Last Name"
+                },
+                email: {
+                  type:"string",
+                  title:"Email"
+                },
+                company: {
+                  type:"string",
+                  title:"Company"
+                },
+              },
+            }
+        });
+      // const {
+      //   userId,
+      //   accountId,
+      //   programId = null,
+      //   engagementMedium,
+      // } = widgetId;
+
+      const variables = {
+        key
+      };
+      return this.getClient()
+        .query({
+          query: gql`
+          query($key: String!) {
+            form(key: $key) {
+              key
+              schema
+              initialData {
+                initialData
+                isEnabled
+                isEnabledErrorMessage
+              }
+            }
+          }
+        `,
+          variables,
+        })
+        .then((res) => res.data);
+    },
+    submitForm(formSubmissionInput) {
+      const widgetId = widgetIdent();
+  
+      if (widgetId["env"] === "demo" || !widgetId) {
+        return Promise.resolve({forms:{
+          data:true
+        }});
+      }
+  
+      const variables = formSubmissionInput
+
+      // change selection to:
+      // valid
+      // results
+      return this.getClient()
+        .mutate({
+          mutation: gql`
+          mutation($formSubmissionInput: FormSubmissionInput!) {
+            submitForm(formSubmissionInput: $formSubmissionInput) {
+              success
+              results {
+                ... on FormHandlerSubmissionResult {
+                  formHandler {
+                    name
+                    endpointUrl
+                    integration {
+                      name
+                    }
+                  }
+                  result
+                }
+                ... on FormHandlerError {
+                  formHandler {
+                    name
+                    endpointUrl
+                    integration {
+                      name
+                    }
+                  }
+                  errorType
+                  error
+                  errorCode
+                }
+              }
+            }
+          }
+        `,
+          variables
+        }
+        )
+        .then((res) => res);
+    }
+
   },
   ui: squatchJsApi,
 };
