@@ -16,8 +16,8 @@ function LoadingStateSmall() {
     <div
       class="container-loading-small"
       style={{
-        position:"absolute",
-        display:"inline",
+        position: "absolute",
+        display: "inline",
         width: "10px",
         top: "14px",
         left: "15px",
@@ -110,19 +110,24 @@ export class FormComponent {
       formSubmissionInput: { key: this.form.key, formData },
     };
     console.log(formSubmissionInput);
-    const res = await API.graphql.submitForm(formSubmissionInput);
-    console.log("submit data", res);
-    const data = res.data;
+    try {
+      const res = await API.graphql.submitForm(formSubmissionInput);
+      console.log("submit data", res);
+      const data = res.data;
 
-    if (!data.submitForm.success) {
-      const error =
-        data.submitForm.results[0] &&
-        data.submitForm.results[0].result.results[0].message;
-      this.errorMessage = error;
-    } else {
+      if (!data.submitForm.success) {
+        const error =
+          data.submitForm.results[0] &&
+          data.submitForm.results[0].result.results[0].message;
+        this.errorMessage = error;
+      } else {
+        this.submitted = true;
+      }
+      this.loadingForm = false;
+    } catch (err) {
       this.submitted = true;
+      this.loadingForm = false;
     }
-    this.loadingForm = false;
   };
 
   render() {
@@ -193,13 +198,14 @@ export class FormComponent {
                     style={{ marginTop: "24px", position: "relative" }}
                     class={`${buttonStyle} submit-button`}
                     type="submit"
-                    disabled={isDisabled}
+                    disabled={isDisabled || this.submitted}
                   >
                     {this.loadingForm ? <LoadingStateSmall /> : <span></span>}
                     {isDisabled
                       ? this.form.initialData.isEnabledErrorMessage ||
                         "Form Disabled"
-                      : this.submitted ? "Successfully Submitted!"
+                      : this.submitted
+                      ? "Successfully Submitted!"
                       : "Submit"}
                   </button>
                 </form>
