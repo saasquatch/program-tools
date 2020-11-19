@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Link = styled("a")<{blue?: boolean, bold?: boolean}>`
   padding: 0;
   border: none;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 13px;
   background: transparent;
   color: ${props => (props.blue ? '#0088cc' : '#7c7c7c')} ;
