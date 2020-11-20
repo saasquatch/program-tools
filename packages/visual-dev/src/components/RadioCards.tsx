@@ -46,7 +46,7 @@ const CardFormat = styled.div<{ checked: boolean }>`
   border-radius: 4px;
 `;
 
-const DetailedRadiosWidget: React.FC<DetailedRadiosWidgetProps> = (
+const RadioCards: React.FC<DetailedRadiosWidgetProps> = (
   props: DetailedRadiosWidgetProps
 ) => {
   const { cardFormat } = props.options;
@@ -78,4 +78,4 @@ const DetailedRadiosWidget: React.FC<DetailedRadiosWidgetProps> = (
   );
 };
 
-export default DetailedRadiosWidget;
+export default RadioCards;

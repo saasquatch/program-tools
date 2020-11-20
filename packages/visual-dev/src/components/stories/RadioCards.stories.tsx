@@ -1,8 +1,8 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import DetailedRadiosWidget from "../RadioCards";
+import RadioCards from "../RadioCards";
 
-storiesOf("UI Schema Widgets / DetailedRadiosWidget", module).add("Item selected", () => {
+storiesOf("UI Schema Widgets / RadioCards", module).add("Item selected", () => {
   const options = {
     cardFormat: true,
     radioOptions: [
@@ -50,7 +50,7 @@ storiesOf("UI Schema Widgets / DetailedRadiosWidget", module).add("Item selected
 
   return (
     <div style={{ margin: "100px" }}>
-      <DetailedRadiosWidget options={options} value={"QUERY/USER"} onChange={(v)=>console.log('change', v)}></DetailedRadiosWidget>
+      <RadioCards options={options} value={"QUERY/USER"} onChange={(v)=>console.log('change', v)}></RadioCards>
     </div>
   );
 });

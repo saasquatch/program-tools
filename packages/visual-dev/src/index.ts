@@ -5,6 +5,7 @@ import { TextLink as TextButton } from "./components/TextButton";
 import { Link } from "./components/Links";
 import Select from "./components/Select";
 import LoadingSpinner, { LoadingSpinnerLarge } from "./components/LoadingSpinner";
+import RadioCards from "./components/RadioCards";
 
 export {
   MyComponent,
@@ -18,4 +19,5 @@ export {
   Select,
   LoadingSpinner,
   LoadingSpinnerLarge,
+  RadioCards
 };
