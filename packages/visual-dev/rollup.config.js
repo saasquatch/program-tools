@@ -6,6 +6,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import pkg from './package.json'
 
 export default {
+  external: ['styled-components', 'react-select'],
   input: 'src/index.ts',
   output: [
     {
@@ -44,5 +45,5 @@ export default {
         'node_modules/react-dom/index.js': ['render']
       }
     })
-  ]
+  ],
 }
