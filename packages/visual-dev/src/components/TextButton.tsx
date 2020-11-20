@@ -61,7 +61,7 @@ export const TextLinkStyle = styled.button<TLSProps>`
       ? `#E2E2E2`
       : (props) =>
           props.blue
-            ? `#428bca`
+            ? `#0088cc`
             : (props) => (props.action ? `#F5A841` : `#7C7C7C`)};
   font-weight: bold;
   text-decoration: none;

@@ -56,11 +56,12 @@ export const H3 = styled.h3<H3Props>`
   margin-bottom: 8px;
 `;
 
-export const P = styled.p<{ bold?: boolean }>`
+export const P = styled.p<{ bold?: boolean, noMargin?: boolean }>`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 13px;
   color: ${(props) => props.color || `#575757`};
   ${({ bold }) => bold && `font-weight: bold;`};
+  ${({ noMargin }) => noMargin && `margin: 0px;`};
 `;
 
 export const NumberedStep = styled.div`
@@ -75,3 +76,23 @@ export const NumberedStep = styled.div`
   height: 18px;
   line-height: 17px;
 `;
+
+export const AttributeHeading = styled.h3`
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  color: #808080;
+  font-weight: normal
+  font-size: 12px;
+  line-height: 14px;
+  margin: 0px;
+  padding: 0px;
+`
+
+export const WidgetTitle = styled.h2`
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  color: #575757;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  margin: 0px;
+  padding: 0px;
+`
