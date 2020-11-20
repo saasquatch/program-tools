@@ -21,7 +21,6 @@ const ButtonWrapper = styled.button<StyleProps>`
   background: ${({ backgroundColor }) => backgroundColor || "#f5a841"};
   color: ${({ textColor }) => textColor || "#fff"};
 
-  outline: none;
   border: none;
 
   font-family: "Helvetica Neue", Helvetica, sans-serif;
