@@ -4,7 +4,7 @@ import { WidgetContainer } from "./components/Widgets";
 import { TextLink as TextButton } from "./components/TextButton";
 import { Link } from "./components/Links";
 import Select from "./components/Select";
-import LoadingSpinner, { LoadingSpinnerLarge } from "./LoadingSpinner";
+import LoadingSpinner, { LoadingSpinnerLarge } from "./components/LoadingSpinner";
 
 export {
   MyComponent,
