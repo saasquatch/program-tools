@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/visual-dev",
-  "version": "0.0.1",
+  "version": "0.0.2-5",
   "description": "SaaSquatch visual dev",
   "main": "build/index.js",
   "module": "build/index.es.js",
@@ -19,6 +19,7 @@
     "@babel/core": "^7.9.6",
     "@storybook/addon-a11y": "^5.3.18",
     "@storybook/addon-docs": "^5.3.18",
+    "@storybook/addon-knobs": "^6.1.1",
     "@storybook/addon-viewport": "^5.3.18",
     "@storybook/react": "^5.3.18",
     "@testing-library/jest-dom": "^5.7.0",

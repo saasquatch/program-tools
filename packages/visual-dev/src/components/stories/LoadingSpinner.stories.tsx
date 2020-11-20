@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import LoadingSpinner, {LoadingSpinnerLarge} from "./LoadingSpinner";
+import LoadingSpinner, {LoadingSpinnerLarge} from "../LoadingSpinner";
 
 
 storiesOf("Components / Loading Spinner", module).add("Normal", () => {

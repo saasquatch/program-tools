@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { TextLink } from "./TextButton";
+import { TextLink } from "../TextButton";
 
 storiesOf("Components / Buttons", module).add("Text Button", () => {
   return (

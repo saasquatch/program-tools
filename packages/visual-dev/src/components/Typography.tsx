@@ -1,18 +1,10 @@
 import styled from "styled-components";
 
-// ***********************
-//
-// Core Typography Styles
-//
-// DO NOT MODIFY THESE, EXTEND THEM IF YOU WANT VARIATIONS
-//
-// ***********************
-
-interface Props {
+interface TypographyProps {
   color?: string;
 }
 
-export const H1 = styled.h1<Props>`
+export const H1 = styled.h1<TypographyProps>`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   color: ${(props) => props.color || `#575757`};
   font-size: 21px;

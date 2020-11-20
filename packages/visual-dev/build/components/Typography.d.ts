@@ -1,8 +1,8 @@
 /// <reference types="react" />
-interface Props {
+interface TypographyProps {
     color?: string;
 }
-export declare const H1: import("styled-components").StyledComponentClass<import("react").ClassAttributes<HTMLHeadingElement> & import("react").HTMLAttributes<HTMLHeadingElement> & Props, any, import("react").ClassAttributes<HTMLHeadingElement> & import("react").HTMLAttributes<HTMLHeadingElement> & Props>;
+export declare const H1: import("styled-components").StyledComponentClass<import("react").ClassAttributes<HTMLHeadingElement> & import("react").HTMLAttributes<HTMLHeadingElement> & TypographyProps, any, import("react").ClassAttributes<HTMLHeadingElement> & import("react").HTMLAttributes<HTMLHeadingElement> & TypographyProps>;
 declare type MarginBottom = "8px";
 interface H2Props {
     marginBottom?: MarginBottom;

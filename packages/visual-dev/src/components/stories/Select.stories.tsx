@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import Select from "./Select";
+import Select from "../Select";
 
 storiesOf("Components / Select", module).add("Empty Selection", () => {
   return (

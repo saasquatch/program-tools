@@ -1,5 +1,5 @@
 import * as React from 'react'
-import MyComponent from './MyComponent'
+import MyComponent from '../MyComponent'
 
 export default { title: 'MyComponent' }
 

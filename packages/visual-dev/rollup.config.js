@@ -31,6 +31,10 @@ export default {
         '**/__tests__/**',
         '**/*.stories.tsx'
       ],
+      include: [
+        // Project files
+        './**/*.ts+(|x)',
+      ],
       clean: true
     }),
     commonjs({
