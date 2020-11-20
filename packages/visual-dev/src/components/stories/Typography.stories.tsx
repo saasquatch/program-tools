@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { H1, H2, H3, P } from "./Typography";
+import { H1, H2, H3, P } from "../Typography";
 
 storiesOf("Components / Typography", module).add("Header 1", () => {
   return (
