@@ -1,13 +1,5 @@
 import styled from "styled-components";
 
-// ***********************
-//
-// Core Typography Styles
-//
-// DO NOT MODIFY THESE, EXTEND THEM IF YOU WANT VARIATIONS
-//
-// ***********************
-
 interface TypographyProps {
   color?: string;
 }
