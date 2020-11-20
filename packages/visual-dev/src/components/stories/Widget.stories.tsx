@@ -1,13 +1,13 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { H1, P } from "../Typography";
+import { P, WidgetTitle } from "../Typography";
 import { WidgetContainer } from "../Widgets";
 
 storiesOf("Components / Widget", module).add("Widget Container", () => {
   return (
     <div style={{ margin: "100px" }}>
       <WidgetContainer>
-        <H1>Lorem Ipsum</H1>
+        <WidgetTitle>Lorem Ipsum</WidgetTitle>
         <P>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad

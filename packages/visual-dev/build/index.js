@@ -66,12 +66,17 @@ var H1 = styled__default['default'].h1(templateObject_1 || (templateObject_1 = _
 var H2 = styled__default['default'].h2(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  color: ", ";\n  font-size: 16px;\n  line-height: 16px;\n  margin-bottom: ", ";\n  font-weight: 500;\n"], ["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  color: ", ";\n  font-size: 16px;\n  line-height: 16px;\n  margin-bottom: ", ";\n  font-weight: 500;\n"])), function (props) { return props.color || "#575757"; }, function (props) { return props.marginBottom || "16px"; });
 var BoldH2 = styled__default['default'](H2)(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  font-weight: 700;\n"], ["\n  font-weight: 700;\n"])));
 var H3 = styled__default['default'].h3(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  display: ", ";\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  color: ", ";\n  line-height: 13px;\n  font-weight: 600;\n  font-size: 13px;\n  margin-bottom: 8px;\n"], ["\n  display: ", ";\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  color: ", ";\n  line-height: 13px;\n  font-weight: 600;\n  font-size: 13px;\n  margin-bottom: 8px;\n"])), function (props) { return props.display || "inherit"; }, function (props) { return props.color || "#575757"; });
-var P = styled__default['default'].p(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  font-size: 13px;\n  color: ", ";\n  ", ";\n"], ["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  font-size: 13px;\n  color: ", ";\n  ", ";\n"])), function (props) { return props.color || "#575757"; }, function (_a) {
+var P = styled__default['default'].p(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  font-size: 13px;\n  color: ", ";\n  ", ";\n  ", ";\n"], ["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  font-size: 13px;\n  color: ", ";\n  ", ";\n  ", ";\n"])), function (props) { return props.color || "#575757"; }, function (_a) {
     var bold = _a.bold;
     return bold && "font-weight: bold;";
+}, function (_a) {
+    var noMargin = _a.noMargin;
+    return noMargin && "margin: 0px;";
 });
 var NumberedStep = styled__default['default'].div(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  color: #575757;\n  border: 1px solid #dddddd;\n  border-radius: 50%;\n  text-align: center;\n  display: inline-block;\n  margin-right: 10px;\n  width: 18px;\n  height: 18px;\n  line-height: 17px;\n"], ["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  color: #575757;\n  border: 1px solid #dddddd;\n  border-radius: 50%;\n  text-align: center;\n  display: inline-block;\n  margin-right: 10px;\n  width: 18px;\n  height: 18px;\n  line-height: 17px;\n"])));
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6;
+var AttributeHeading = styled__default['default'].h3(templateObject_7 || (templateObject_7 = __makeTemplateObject(["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  color: #808080;\n  font-weight: normal\n  font-size: 12px;\n  line-height: 14px;\n  margin: 0px;\n  padding: 0px;\n"], ["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  color: #808080;\n  font-weight: normal\n  font-size: 12px;\n  line-height: 14px;\n  margin: 0px;\n  padding: 0px;\n"])));
+var WidgetTitle = styled__default['default'].h2(templateObject_8 || (templateObject_8 = __makeTemplateObject(["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  color: #575757;\n  font-weight: bold;\n  font-size: 14px;\n  line-height: 16px;\n  margin: 0px;\n  padding: 0px;\n"], ["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  color: #575757;\n  font-weight: bold;\n  font-size: 14px;\n  line-height: 16px;\n  margin: 0px;\n  padding: 0px;\n"])));
+var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8;
 
 var WidgetContainer = styled__default['default'].div(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n    display: flex;\n    flex-direction: column;\n    align-items: flex-start;\n    padding: 20px;\n\n    width: 100%;\n\n    background: #FFFFFF;\n    border: 1px solid #E2E2E2;\n    box-sizing: border-box;\n    border-radius: 5px;\n"], ["\n    display: flex;\n    flex-direction: column;\n    align-items: flex-start;\n    padding: 20px;\n\n    width: 100%;\n\n    background: #FFFFFF;\n    border: 1px solid #E2E2E2;\n    box-sizing: border-box;\n    border-radius: 5px;\n"])));
 var templateObject_1$1;
@@ -85,7 +90,7 @@ var TextLinkStyle = styled__default['default'].button(templateObject_3$1 || (tem
         ? "#E2E2E2"
         : function (props) {
             return props.blue
-                ? "#428bca"
+                ? "#0088cc"
                 : function (props) { return (props.action ? "#F5A841" : "#7C7C7C"); };
         };
 }, function (props) {
@@ -119,7 +124,7 @@ var TextLink = function (_a) {
 };
 var templateObject_1$2, templateObject_2$1, templateObject_3$1, templateObject_4$1;
 
-var Link = styled__default['default']("a")(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  padding: 0;\n  border: none;\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  font-size: 13px;\n  background: transparent;\n  color: ", " ;\n  font-weight: ", " ;\n  text-decoration: none;\n  &:hover {\n    color: ", " ;\n  }\n  &:focus {\n    color: ", " ;\n  }\n"], ["\n  padding: 0;\n  border: none;\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  font-size: 13px;\n  background: transparent;\n  color: ", " ;\n  font-weight: ", " ;\n  text-decoration: none;\n  &:hover {\n    color: ", " ;\n  }\n  &:focus {\n    color: ", " ;\n  }\n"])), function (props) { return (props.blue ? '#0088cc' : '#7c7c7c'); }, function (props) { return (props.bold ? 'bold' : 'normal'); }, function (props) { return (props.blue ? '#005580' : '#606060'); }, function (props) { return (props.blue ? '#005580' : '#606060'); });
+var Link = styled__default['default']("a")(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  padding: 0px;\n  margin: 0px;\n  border: none;\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  font-size: 13px;\n  background: transparent;\n  color: ", " ;\n  font-weight: ", " ;\n  text-decoration: none;\n  &:hover {\n    color: ", " ;\n  }\n  &:focus {\n    color: ", " ;\n  }\n"], ["\n  padding: 0px;\n  margin: 0px;\n  border: none;\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  font-size: 13px;\n  background: transparent;\n  color: ", " ;\n  font-weight: ", " ;\n  text-decoration: none;\n  &:hover {\n    color: ", " ;\n  }\n  &:focus {\n    color: ", " ;\n  }\n"])), function (props) { return (props.blue ? '#0088cc' : '#7c7c7c'); }, function (props) { return (props.bold ? 'bold' : 'normal'); }, function (props) { return (props.blue ? '#005580' : '#606060'); }, function (props) { return (props.blue ? '#005580' : '#606060'); });
 var templateObject_1$3;
 
 var Arrow = styled__default['default'].span(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(["\n  color: #969696;\n"], ["\n  color: #969696;\n"])));
@@ -182,6 +187,41 @@ var TableSpinnerStyle = styled__default['default'](RingDefault)(templateObject_5
 var TableInitialSpinnerStyle = styled__default['default'](RingDefault)(templateObject_6$1 || (templateObject_6$1 = __makeTemplateObject(["\n  height: 160px;\n  background: transparent;\n  position: absolute;\n  left: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  z-index: 4;\n\n  div {\n    width: 55px;\n    height: 55px;\n    border: 6px solid #f5a623;\n    border-color: #f5a623 transparent transparent transparent;\n  }\n"], ["\n  height: 160px;\n  background: transparent;\n  position: absolute;\n  left: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  z-index: 4;\n\n  div {\n    width: 55px;\n    height: 55px;\n    border: 6px solid #f5a623;\n    border-color: #f5a623 transparent transparent transparent;\n  }\n"])));
 var templateObject_1$5, templateObject_2$2, templateObject_3$2, templateObject_4$2, templateObject_5$1, templateObject_6$1;
 
+var StandardizedRadioStyles = styled__default['default'].div(templateObject_1$6 || (templateObject_1$6 = __makeTemplateObject(["\n  input[type=\"radio\"] {\n    /**\n * handles the default elements\n */\n    float: left;\n    clear: both;\n    margin: 0;\n    outline: none;\n    -webkit-appearance: none;\n  }\n\n  /**\n   * Styles the label\n   */\n  input[type=\"radio\"] + label {\n    display: inline-block;\n    color: #575757;\n    font-size: 13px;\n    align-content: flex-start;\n    position: relative;\n    margin-left: 32px;\n    padding-top: 1px;\n  }\n\n  /**\n * builds the radio button\n */\n  input[type=\"radio\"] + label:before {\n    content: \"\";\n    position: absolute;\n    top: 2px;\n    left: -32px;\n    cursor: pointer;\n    display: inline-block;\n    box-sizing: border-box;\n    width: 16px;\n    height: 16px;\n    font-weight: 900;\n    font-family: \"icomoon\";\n    padding: 0.125em;\n    margin-right: 0.125em;\n    color: transparent;\n    border: 1px solid #ccc;\n    background-color: #fff;\n    vertical-align: middle;\n    padding-top: 0px;\n  }\n\n  /**\n * styles the radio button\n */\n  input[type=\"radio\"] + label:before {\n    content: \"\";\n    border-radius: 50%;\n  }\n\n  /**\n * support focused on firefox\n */\n  @-moz-document url-prefix() {\n    input[type=\"radio\"]:focus + label:before,\n    input[type=\"checkbox\"]:focus + label:before {\n      outline: 1px auto Highlight;\n    }\n  }\n\n  /**\n * handles ie 10+\n */\n  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {\n    input[type=\"radio\"] + label {\n      padding: 3px;\n    }\n\n    input[type=\"radio\"] + label:before {\n      padding: 0.15em;\n    }\n  }\n\n  /**\n * handles checked\n */\n  input[type=\"radio\"]:checked + label:before {\n    border-radius: 50%;\n    border-color: #f5a841;\n    background: radial-gradient(circle at center, #f5a841 40%, white 0);\n  }\n\n  /**\n * handles focused\n */\n  input[type=\"radio\"]:focus + label:before {\n    outline: none;\n  }\n\n  /**\n * handles disabled\n */\n  input[type=\"radio\"]:disabled + label,\n  input[type=\"radio\"]:disabled + label:before,\n  input[type=\"radio\"]:disabled:checked + label:before {\n    cursor: default;\n  }\n\n  input[type=\"radio\"]:disabled + label,\n  input[type=\"radio\"]:disabled:checked + label:before {\n    color: #bbbbbb;\n  }\n"], ["\n  input[type=\"radio\"] {\n    /**\n * handles the default elements\n */\n    float: left;\n    clear: both;\n    margin: 0;\n    outline: none;\n    -webkit-appearance: none;\n  }\n\n  /**\n   * Styles the label\n   */\n  input[type=\"radio\"] + label {\n    display: inline-block;\n    color: #575757;\n    font-size: 13px;\n    align-content: flex-start;\n    position: relative;\n    margin-left: 32px;\n    padding-top: 1px;\n  }\n\n  /**\n * builds the radio button\n */\n  input[type=\"radio\"] + label:before {\n    content: \"\";\n    position: absolute;\n    top: 2px;\n    left: -32px;\n    cursor: pointer;\n    display: inline-block;\n    box-sizing: border-box;\n    width: 16px;\n    height: 16px;\n    font-weight: 900;\n    font-family: \"icomoon\";\n    padding: 0.125em;\n    margin-right: 0.125em;\n    color: transparent;\n    border: 1px solid #ccc;\n    background-color: #fff;\n    vertical-align: middle;\n    padding-top: 0px;\n  }\n\n  /**\n * styles the radio button\n */\n  input[type=\"radio\"] + label:before {\n    content: \"\";\n    border-radius: 50%;\n  }\n\n  /**\n * support focused on firefox\n */\n  @-moz-document url-prefix() {\n    input[type=\"radio\"]:focus + label:before,\n    input[type=\"checkbox\"]:focus + label:before {\n      outline: 1px auto Highlight;\n    }\n  }\n\n  /**\n * handles ie 10+\n */\n  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {\n    input[type=\"radio\"] + label {\n      padding: 3px;\n    }\n\n    input[type=\"radio\"] + label:before {\n      padding: 0.15em;\n    }\n  }\n\n  /**\n * handles checked\n */\n  input[type=\"radio\"]:checked + label:before {\n    border-radius: 50%;\n    border-color: #f5a841;\n    background: radial-gradient(circle at center, #f5a841 40%, white 0);\n  }\n\n  /**\n * handles focused\n */\n  input[type=\"radio\"]:focus + label:before {\n    outline: none;\n  }\n\n  /**\n * handles disabled\n */\n  input[type=\"radio\"]:disabled + label,\n  input[type=\"radio\"]:disabled + label:before,\n  input[type=\"radio\"]:disabled:checked + label:before {\n    cursor: default;\n  }\n\n  input[type=\"radio\"]:disabled + label,\n  input[type=\"radio\"]:disabled:checked + label:before {\n    color: #bbbbbb;\n  }\n"])));
+var Label = styled__default['default'].div(templateObject_2$3 || (templateObject_2$3 = __makeTemplateObject(["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  padding-bottom: 8px;\n"], ["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  padding-bottom: 8px;\n"])));
+var Description = styled__default['default'].div(templateObject_3$3 || (templateObject_3$3 = __makeTemplateObject(["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  color: #999;\n  font-weight: normal;\n  word-wrap: break-word;\n  width: auto;\n  margin-bottom: 16px;\n  line-height: 16px;\n  font-size: 12px;\n"], ["\n  font-family: \"Helvetica Neue\", Helvetica, sans-serif;\n  color: #999;\n  font-weight: normal;\n  word-wrap: break-word;\n  width: auto;\n  margin-bottom: 16px;\n  line-height: 16px;\n  font-size: 12px;\n"])));
+var DetailedRadio = function (_a) {
+    var checked = _a.checked, onChange = _a.onChange, label = _a.label, id = _a.id, name = _a.name, description = _a.description, _b = _a.disabled, disabled = _b === void 0 ? false : _b;
+    return (React__default['default'].createElement(React__default['default'].Fragment, null,
+        React__default['default'].createElement(StandardizedRadioStyles, null,
+            React__default['default'].createElement("input", { id: id, readOnly // since using onClick
+                : true, name: name, type: "radio", onClick: function () { return onChange(id); }, checked: checked, disabled: disabled }),
+            React__default['default'].createElement("label", { htmlFor: id },
+                React__default['default'].createElement(Label, null, label),
+                React__default['default'].createElement(Description, null, description)))));
+};
+var templateObject_1$6, templateObject_2$3, templateObject_3$3;
+
+var InfoWrapper = styled__default['default'].div(templateObject_1$7 || (templateObject_1$7 = __makeTemplateObject(["\n  margin-bottom: 32px;\n  padding-left: 32px;\n  & * {\n    color: #999;\n  }\n  & b {\n    color: #575757;\n  }\n"], ["\n  margin-bottom: 32px;\n  padding-left: 32px;\n  & * {\n    color: #999;\n  }\n  & b {\n    color: #575757;\n  }\n"])));
+var CardFormatWrapper = styled__default['default'].div(templateObject_2$4 || (templateObject_2$4 = __makeTemplateObject(["\n  display: grid;\n  grid-template-columns: 49% 49%;\n  grid-column-gap: 16px;\n  grid-template-rows: repeat(auto-fill);\n  grid-row-gap: 0px;\n  grid-auto-flow: row;\n"], ["\n  display: grid;\n  grid-template-columns: 49% 49%;\n  grid-column-gap: 16px;\n  grid-template-rows: repeat(auto-fill);\n  grid-row-gap: 0px;\n  grid-auto-flow: row;\n"])));
+var CardFormat = styled__default['default'].div(templateObject_3$4 || (templateObject_3$4 = __makeTemplateObject(["\n  padding: 16px;\n  padding-bottom: 0;\n  background: ", ";\n  border-radius: 4px;\n"], ["\n  padding: 16px;\n  padding-bottom: 0;\n  background: ", ";\n  border-radius: 4px;\n"])), function (_a) {
+    var checked = _a.checked;
+    return (checked ? "#f9f9f9" : "none");
+});
+var RadioCards = function (props) {
+    var cardFormat = props.options.cardFormat;
+    var Wrapper = cardFormat ? CardFormatWrapper : React.Fragment;
+    var Card = cardFormat ? CardFormat : React.Fragment;
+    return (React.createElement(Wrapper, null, props.options.radioOptions.map(function (option) {
+        var key = option.key, primaryInfo = option.primaryInfo, options = __rest(option, ["key", "primaryInfo"]);
+        return (React.createElement(Card, { key: key, checked: props.value === key },
+            React.createElement(DetailedRadio, __assign({ checked: props.value === key, onChange: props.onChange, id: key }, options)),
+            key === "setAsPrimary" && props.value === key && primaryInfo && (React.createElement(InfoWrapper, null, primaryInfo.map(function (info) { return info; })))));
+    })));
+};
+var templateObject_1$7, templateObject_2$4, templateObject_3$4;
+
+exports.AttributeHeading = AttributeHeading;
 exports.H1 = H1;
 exports.H2 = H2;
 exports.H3 = H3;
@@ -190,7 +230,9 @@ exports.LoadingSpinner = LoadingSpinner;
 exports.LoadingSpinnerLarge = LoadingSpinnerLarge;
 exports.MyComponent = MyComponent;
 exports.P = P;
+exports.RadioCards = RadioCards;
 exports.Select = Select;
 exports.TextButton = TextLink;
 exports.WidgetContainer = WidgetContainer;
+exports.WidgetTitle = WidgetTitle;
 //# sourceMappingURL=index.js.map

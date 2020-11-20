@@ -1,5 +1,5 @@
 import MyComponent from "./components/MyComponent";
-import { H1, H2, H3, P } from "./components/Typography";
+import { H1, H2, H3, P, WidgetTitle, AttributeHeading } from "./components/Typography";
 import { WidgetContainer } from "./components/Widgets";
 import { TextLink as TextButton } from "./components/TextButton";
 import { Link } from "./components/Links";
@@ -13,6 +13,8 @@ export {
   H2,
   H3,
   P,
+  WidgetTitle,
+  AttributeHeading,
   WidgetContainer,
   TextButton,
   Link,
