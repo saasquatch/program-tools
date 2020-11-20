@@ -25,7 +25,7 @@ export const H2 = styled.h2<H2Props>`
   font-size: 16px;
   line-height: 16px;
   margin-bottom: ${(props) => props.marginBottom || `16px`};
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 export const BoldH2 = styled(H2)`
