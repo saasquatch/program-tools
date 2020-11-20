@@ -58,4 +58,4 @@ typings/
 .env
 docs
 
-build/
+packages/visual-dev/build/
