@@ -7,8 +7,9 @@ Template repo for visual development for Saasquatch products.
 1. Create a folder in Title Case of the name of the component/category within the `components` folder
 
 2. Create an `index.ts` at the root of the component's named folder that exports everything from the various component files:
-	For example
-	```
+
+	**For example**
+	```js
 	export * from './PrimaryButton'
 	export * from './SecondaryButton'
 	```
