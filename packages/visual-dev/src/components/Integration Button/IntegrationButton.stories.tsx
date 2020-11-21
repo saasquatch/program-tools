@@ -1,7 +1,7 @@
 import * as React from "react";
 import { IntegrationButton } from "./IntegrationButton";
 
-export default { title: "Integration Button" };
+export default { title: "Components / Integration Button" };
 
 const Icon = () => {
   return (
