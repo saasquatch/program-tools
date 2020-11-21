@@ -2,6 +2,12 @@
 
 Template repo for visual development for Saasquatch products.
 
+## Best Practices
+
+Organise your stories title by making them **exactly the same** as their relative directory path from the stories folder
+
+_i.e._ `src/stories/components/Button` should have the title "Components/Button/{variant}"
+
 ## Usage
 
 To install dependencies
