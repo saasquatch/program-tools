@@ -10,6 +10,14 @@ storiesOf("Components / Buttons", module).add("Text Button", () => {
   );
 });
 
+storiesOf("Components / Buttons", module).add("Text Button (Submit Type)", () => {
+  return (
+    <div style={{ margin: "100px" }}>
+      <TextLink type={"submit"} onClick={() => console.log("submitted!")}>This is a text button</TextLink>
+    </div>
+  );
+});
+
 storiesOf("Components / Buttons", module).add("Text Button (Blue)", () => {
   return (
     <div style={{ margin: "100px" }}>

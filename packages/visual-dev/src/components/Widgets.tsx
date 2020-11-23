@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 
-export const WidgetContainer = styled.div`
+export const WidgetContainer = styled.div<{gapSize?: string }>`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 20px;
+    gap: ${props => (props.gapSize ? props.gapSize : '0px')};
 
     width: 100%;
 

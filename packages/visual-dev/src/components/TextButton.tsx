@@ -24,6 +24,7 @@ interface TLProps extends TLSProps {
   customStyle?: CSSProperties | undefined;
   disabled?: boolean;
   action?: boolean;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
 interface IProps {
@@ -122,6 +123,7 @@ export const TextLink = ({
   customStyle,
   disabled,
   action,
+  type,
 }: TLProps) => {
   return (
     <TextLinkWrapper
@@ -140,7 +142,7 @@ export const TextLink = ({
         />
       )}
       <TextLinkStyle
-        type="button"
+        type={type ? type : "button"}
         margin={margin}
         blue={blue}
         icon={icon}
