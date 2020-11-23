@@ -6,6 +6,7 @@ import { Link } from "./components/Links";
 import Select from "./components/Select";
 import LoadingSpinner, { LoadingSpinnerLarge } from "./components/LoadingSpinner";
 import RadioCards from "./components/RadioCards";
+import {GenericInput, StyledSelect} from "./components/Inputs"
 
 export {
   MyComponent,
@@ -21,5 +22,7 @@ export {
   Select,
   LoadingSpinner,
   LoadingSpinnerLarge,
-  RadioCards
+  RadioCards,
+  GenericInput,
+  StyledSelect
 };
