@@ -64,3 +64,24 @@ export const StyledSelect = styled.select<{
       border-color: #c8d2d9;
     }
 `;
+
+export const PencilButton = styled.button`
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #428bca;
+  outline:none;
+  position: relative;
+  top: 36px;
+  left: 177px;
+  &:hover {
+    color: #005580;
+  }
+`
+
+export const EditPencil = styled.span`
+  text-decoration: none;
+  &:hover, &:active, &:visited {
+    text-decoration: none;
+  }
+`
