@@ -17,7 +17,7 @@ interface TLSProps {
 interface TLProps extends TLSProps {
   // See: https://github.com/typescript-cheatsheets/react#useful-react-prop-type-examples
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   fontWeight?: FontWeight;
   top?: number;
   fontSize?: number;
