@@ -50,6 +50,7 @@ import { AST } from "jsonata-visual-editor";
 import styled from "styled-components";
 import { TierName } from "./JSONata/JSONataStyle";
 import { SaasquatchTheme } from "./JSONata/SaasquatchTheme";
+import JSONataUtils from "./JSONata/JSONataUtils";
 
 const ButtonDiv = styled.div`
   display: flex;
@@ -349,7 +350,7 @@ export function JSONataEditorView(props: JSONataEditorViewProps) {
             console.log('currentchildren', currentChildren)
 
             // This uses context
-            // JSONataUtils.addRule(currentChildren);
+            JSONataUtils.addRule(currentChildren);
           }}
         >
           + Add Rule
