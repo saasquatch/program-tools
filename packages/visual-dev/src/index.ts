@@ -7,6 +7,7 @@ import Select from "./components/Select";
 import LoadingSpinner, { LoadingSpinnerLarge } from "./components/LoadingSpinner";
 import RadioCards from "./components/RadioCards";
 import {GenericInput, StyledSelect, PencilButton, EditPencil} from "./components/Inputs"
+import {JSONataEditorView as MapFieldsJsonataView} from "./components/MapFieldsJsonata"
 
 export {
   MyComponent,
@@ -26,5 +27,6 @@ export {
   GenericInput,
   StyledSelect,
   PencilButton,
-  EditPencil
+  EditPencil,
+  MapFieldsJsonataView,
 };
