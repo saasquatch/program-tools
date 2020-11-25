@@ -28,6 +28,10 @@ const NarrowWrapper = styled.div`
       padding-bottom: 5px;
     }
   }
+
+  &. Select-value-label {
+    line-height: 27px;
+  }
 `;
 
 const StyleWrapper = styled.div`
