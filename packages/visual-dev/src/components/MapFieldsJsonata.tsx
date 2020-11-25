@@ -271,7 +271,8 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
                         disabled={!canDelete}
                         style={{ fontWeight: "lighter" }}
                       >
-                        <i className="icon-sqh-close" />
+                        {/* <i className="icon-sqh-close" /> */}
+                        X
                       </FormButton>
                     </TData>
                   </TRow>
@@ -318,7 +319,8 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
                       disabled={!canDelete}
                       style={{ fontWeight: "lighter" }}
                     >
-                      <i className="icon-sqh-close" />
+                      {/* <i className="icon-sqh-close" /> */}
+                      X
                     </FormButton>
                   </TData>
                 </TRow>
@@ -431,7 +433,8 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
                                 );
                               }}
                             >
-                              <i className="icon-sqh-close" />
+                              {/* <i className="icon-sqh-close" /> */}
+                              X
                             </FormButton>
                           </>
                         )}
