@@ -15,6 +15,7 @@ import {
   ArrayUnaryEditorProps,
   RootNodeEditorProps,
   NodeEditorProps,
+  SchemaProvider,
 } from "jsonata-visual-editor";
 import React, { useState } from "react";
 
@@ -45,7 +46,6 @@ import { Path as PathSuggestion } from "jsonata-visual-editor/dist/schema/PathSu
 import { PathSuggester } from "jsonata-visual-editor/dist/AstEditor";
 import PathPicker, { Reducer } from "./JSONata/PathEditor";
 import { AST } from "jsonata-visual-editor";
-// import JSONataUtils from "./JSONata/JSONataUtils";
 // import { LoadingSpinnerCard } from "../../../uiLibrary/LoadingSpinnerNew";
 import styled from "styled-components";
 import { TierName } from "./JSONata/JSONataStyle";
@@ -457,12 +457,13 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
   };
 
   function PathEditor({ ast, onChange }: PathEditorProps) {
-    // const newSchema = SchemaContext.useContainer();
-    // const newSchemaProvider = SchemaProvider.makeSchemaProvider(
-    //   newSchema?.value == "Value" ? {} : inputDataSchema
-    // );
+    const newSchemaProvider = SchemaProvider.makeSchemaProvider(
+       inputDataSchema
+    );
     // const renderDropDown = newSchema?.value == "show" ? true : false;
     const changeType = () => onChange(nextAst(ast, defaultPath()));
+
+    console.log('ast', ast);
 
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
@@ -470,9 +471,11 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
           <TypeSwitch ast={ast} onChange={onChange} changeType={changeType} />
         {/* // )} */}
         <SmallPickerWrapper>
+
           <PathPicker
             value={ast}
             onChange={(option) => onChange(option.value as AST)}
+            schemaProvider={newSchemaProvider}
           />
         </SmallPickerWrapper>
       </div>
@@ -519,6 +522,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
   function RootNodeEditor({ editor }: RootNodeEditorProps) {
     return <div>{editor}</div>;
   }
+
 
   if (showButton) {
     return (
