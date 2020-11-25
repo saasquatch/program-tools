@@ -10,7 +10,7 @@ import {
   Consts,
   LeafValueEditorProps,
   PathEditorProps,
-  SchemaProvider,
+  // SchemaProvider,
   ObjectUnaryEditorProps,
   ArrayUnaryEditorProps,
   RootNodeEditorProps,
@@ -56,7 +56,7 @@ const ButtonDiv = styled.div`
   display: flex;
 `
 
-export const TableWrapper = styled.table`
+const TableWrapper = styled.table`
   width: 100%;
   border: 0px solid #e2e2e2;
   padding: 0;
@@ -65,7 +65,7 @@ export const TableWrapper = styled.table`
   }
 `;
 
-export const SmallPickerWrapper = styled.div`
+const SmallPickerWrapper = styled.div`
   max-width: 160px;
   width: 160px;
   min-width: 100px;
@@ -123,10 +123,12 @@ type Option = {
   data: PathSuggestion;
 };
 
-export function JSONataEditorView(props: JSONataEditorViewProps) {
+function JSONataEditorView(props: JSONataEditorViewProps) {
   const { showButton, loading, defaultValue } = props.states;
   const { value, inputDataSchema, SchemaContext } = props.data;
   const { onChange } = props.callbacks;
+
+  console.log("Context", SchemaContext);
 
   function ComparisonEditor({
     lhs,
@@ -181,9 +183,9 @@ export function JSONataEditorView(props: JSONataEditorViewProps) {
 
     return (
       <Form style={{ display: "flex" }}>
-        <SchemaContext.Provider initialState={{ value: "Key" }}>
+        <div>
           {lhs}
-        </SchemaContext.Provider>
+        </div>
         <FormControl
           style={{
             padding: "4px 12px",
@@ -226,9 +228,9 @@ export function JSONataEditorView(props: JSONataEditorViewProps) {
             </optgroup>
           )}
         </FormControl>
-        <SchemaContext.Provider initialState={{ value: "show" }}>
+        <div>
           {rhs}
-        </SchemaContext.Provider>
+        </div>
       </Form>
     );
   }
@@ -256,17 +258,13 @@ export function JSONataEditorView(props: JSONataEditorViewProps) {
           </thead>
           <tbody>
             {children.map((c) => {
-              const schemaK = "Key";
-              const schemaV = "Value";
+              // const schemaK = "Key";
+              // const schemaV = "Value";
               return (
                 <>
                   <TRow>
-                    <SchemaContext.Provider initialState={{ value: schemaK }}>
                       <TData>{c.key}</TData>
-                    </SchemaContext.Provider>
-                    <SchemaContext.Provider initialState={{ value: schemaV }}>
                       <TData>{c.value}</TData>
-                    </SchemaContext.Provider>
                     <TData style={{ paddingTop: "0px" }}>
                       <FormButton
                         onClick={c.remove}
@@ -310,12 +308,10 @@ export function JSONataEditorView(props: JSONataEditorViewProps) {
           </thead>
           <tbody>
             {children.map((c) => {
-              const schemaV = "Value";
+              // const schemaV = "Value";
               return (
                 <TRow>
-                  <SchemaContext.Provider initialState={{ value: schemaV }}>
                     <TData>{c.editor}</TData>
-                  </SchemaContext.Provider>
                   <TData>
                     <FormButton
                       onClick={c.remove}
@@ -376,14 +372,9 @@ export function JSONataEditorView(props: JSONataEditorViewProps) {
             return (
               <>
                 <TRow>
-                  <SchemaContext.Provider initialState={{ value: "Value" }}>
                     <TData style={{ paddingRight: "20px", width: "1px" }}>
                       {pair.Condition}
                     </TData>
-                  </SchemaContext.Provider>
-                  <SchemaContext.Provider
-                    initialState={{ value: "Error message" }}
-                  >
                     <TData style={{ verticalAlign: "top" }}>
                       <TierName
                         className="error-container"
@@ -395,7 +386,6 @@ export function JSONataEditorView(props: JSONataEditorViewProps) {
                     <TData style={{ verticalAlign: "top" }}>
                       {getButton(pair, elseEditor, children, canDelete)}
                     </TData>
-                  </SchemaContext.Provider>
                 </TRow>
                 <TRow>
                   <TData
@@ -467,23 +457,22 @@ export function JSONataEditorView(props: JSONataEditorViewProps) {
   };
 
   function PathEditor({ ast, onChange }: PathEditorProps) {
-    const newSchema = SchemaContext.useContainer();
-    const newSchemaProvider = SchemaProvider.makeSchemaProvider(
-      newSchema?.value == "Value" ? {} : inputDataSchema
-    );
-    const renderDropDown = newSchema?.value == "show" ? true : false;
+    // const newSchema = SchemaContext.useContainer();
+    // const newSchemaProvider = SchemaProvider.makeSchemaProvider(
+    //   newSchema?.value == "Value" ? {} : inputDataSchema
+    // );
+    // const renderDropDown = newSchema?.value == "show" ? true : false;
     const changeType = () => onChange(nextAst(ast, defaultPath()));
 
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
-        {renderDropDown && (
+        {/* {renderDropDown && ( */}
           <TypeSwitch ast={ast} onChange={onChange} changeType={changeType} />
-        )}
+        {/* // )} */}
         <SmallPickerWrapper>
           <PathPicker
             value={ast}
             onChange={(option) => onChange(option.value as AST)}
-            schemaProvider={newSchemaProvider}
           />
         </SmallPickerWrapper>
       </div>
@@ -496,8 +485,8 @@ export function JSONataEditorView(props: JSONataEditorViewProps) {
     text,
     ast,
   }: LeafValueEditorProps) {
-    const newSchema: { value: string } = SchemaContext.useContainer();
-    const renderDropDown = newSchema?.value === "show" ? true : false;
+    // const newSchema: { value: string } = SchemaContext.useContainer();
+    // const renderDropDown = newSchema?.value === "show" ? true : false;
     const [input, setInput] = useState(text || "");
     function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
       if (e.key === "Enter" || e.key === "Escape") {
@@ -506,16 +495,16 @@ export function JSONataEditorView(props: JSONataEditorViewProps) {
     }
 
     const changeType = () => onChange(nextAst(ast, defaultPath()));
-    const message =
-      newSchema?.value === "show" ? "Variable value" : newSchema?.value;
+    // const message =
+    //   newSchema?.value === "show" ? "Variable value" : newSchema?.value;
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
-        {renderDropDown && (
+        {/* {renderDropDown && ( */}
           <TypeSwitch ast={ast} onChange={onChange} changeType={changeType} />
-        )}
+        {/* )} */}
         <input
           type="text"
-          placeholder={message}
+          // placeholder={message}
           value={input}
           onKeyDown={handleKeyDown}
           // prevent enter key from creating a new condition
@@ -528,7 +517,7 @@ export function JSONataEditorView(props: JSONataEditorViewProps) {
   }
 
   function RootNodeEditor({ editor }: RootNodeEditorProps) {
-    return <SchemaContext.Provider>{editor}</SchemaContext.Provider>;
+    return <div>{editor}</div>;
   }
 
   if (showButton) {
@@ -537,6 +526,7 @@ export function JSONataEditorView(props: JSONataEditorViewProps) {
         <FormButton
           onClick={(e) => {
             e.preventDefault();
+            console.log(defaultValue);
             onChange(defaultValue);
           }}
         >
@@ -570,6 +560,56 @@ export function JSONataEditorView(props: JSONataEditorViewProps) {
   }
 }
 
+type ContextFormData = {
+  schema: string;
+};
+
+type FormContext = {
+formData: ContextFormData;
+};
+
+type JSONataEditorHookProps = {
+  formContext: FormContext;
+  value: string;
+  onChange: (value: string) => void;
+};
+
+
+const JSONataEditorPreFill: React.FC<JSONataEditorHookProps> = (props) => {
+
+  const { onChange } = props;
+  const defaultValue = `{ "": "" }`;
+  console.log('do we have a value', props.value)
+  const value = props.value;
+
+  const loading = false;
+  const showButton = (!value || value === `null` || value.replace(/[\n\s\r]/g, "") === "{}");;
+
+  const emptyBlock = value === null || value === undefined;
+
+
+  const newProps = {
+    states: {
+      showButton,
+      emptyBlock,
+      loading,
+      defaultValue,
+    },
+    data: {
+      value,
+      inputDataSchema: {},
+      SchemaContext: null
+    },
+    callbacks: {
+      onChange,
+    },
+  };
+
+  return <JSONataEditorView {...newProps} />;
+};
+
+export default JSONataEditorPreFill;
+
 
 
 type JSONataEditorHookStates = {
@@ -590,7 +630,7 @@ type WidgetOption = {
   valueTitle?: string
 }
 
-export type JSONataEditorViewProps = {
+type JSONataEditorViewProps = {
   states: JSONataEditorHookStates,
   data: JSONataEditorHookData,
   options?: WidgetOption,
