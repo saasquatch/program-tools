@@ -553,7 +553,7 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
 
   const { onChange } = props;
   const defaultValue = props.options.defaultValue;
-  console.log('do we have a value', props.value)
+  console.log('options', props.options)
   const value = props.value;
 
   const loading = false;
