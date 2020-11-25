@@ -36,6 +36,7 @@
     "react-dom": "^16.13.1",
     "rollup": "^2.8.2",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-import-css": "^1.1.2",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.2",
     "rollup-plugin-typescript2": "^0.27.0",

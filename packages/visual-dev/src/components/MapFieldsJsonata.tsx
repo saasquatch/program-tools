@@ -549,7 +549,7 @@ type JSONataEditorHookProps = {
 };
 
 
-const JSONataEditorPreFill: React.FC<JSONataEditorHookProps> = (props) => {
+const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
 
   const { onChange } = props;
   const defaultValue = props.options.defaultValue;
@@ -582,7 +582,7 @@ const JSONataEditorPreFill: React.FC<JSONataEditorHookProps> = (props) => {
   return <JSONataEditorView {...newProps} />;
 };
 
-export default JSONataEditorPreFill;
+export default JSONataEditor;
 
 
 

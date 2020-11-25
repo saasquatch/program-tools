@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import JSONataEditorView from "../MapFieldsJsonata";
+import JSONataEditor from "../MapFieldsJsonata";
 
 storiesOf("UI Schema Widgets / JSONata Editor Prefilled Fields", module).add(
   "Empty",
@@ -21,7 +21,7 @@ storiesOf("UI Schema Widgets / JSONata Editor Prefilled Fields", module).add(
     };
     return (
       <div style={{ margin: "100px" }}>
-        <JSONataEditorView {...props} />
+        <JSONataEditor {...props} />
       </div>
     );
   }
@@ -46,7 +46,7 @@ storiesOf("UI Schema Widgets / JSONata Editor Prefilled Fields", module).add(
     };
     return (
       <div style={{ margin: "100px" }}>
-        <JSONataEditorView {...props} />
+        <JSONataEditor {...props} />
       </div>
     );
   }
@@ -74,7 +74,7 @@ storiesOf(
   };
   return (
     <div style={{ margin: "100px" }}>
-      <JSONataEditorView {...props} />
+      <JSONataEditor {...props} />
     </div>
   );
 });
@@ -100,7 +100,7 @@ storiesOf(
   };
   return (
     <div style={{ margin: "100px" }}>
-      <JSONataEditorView {...props} />
+      <JSONataEditor {...props} />
     </div>
   );
 });

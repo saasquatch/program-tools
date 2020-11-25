@@ -7,7 +7,7 @@ import {Select, CreatableSelect, SelectNarrow, CreatableSelectNarrow} from "./co
 import LoadingSpinner, { LoadingSpinnerLarge } from "./components/LoadingSpinner";
 import RadioCards from "./components/RadioCards";
 import {GenericInput, StyledSelect, PencilButton, EditPencil} from "./components/Inputs"
-import MapFieldsJsonataView from "./components/MapFieldsJsonata"
+import JSONataEditor from "./components/MapFieldsJsonata"
 
 export {
   MyComponent,
@@ -31,5 +31,5 @@ export {
   StyledSelect,
   PencilButton,
   EditPencil,
-  MapFieldsJsonataView,
+  JSONataEditor,
 };
