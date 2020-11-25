@@ -67,13 +67,13 @@ const TableWrapper = styled.table`
 `;
 
 const SmallPickerWrapper = styled.div`
-  max-width: 170px;
-  width: 170px;
+  max-width: 194px;
+  width: 194px;
   min-width: 100px;
   & .Select,
   & .Select-control {
-    max-width: 170px;
-    width: 170px;
+    max-width: 194px;
+    width: 194px;
     min-width: 100px;
   }
 `;
@@ -542,6 +542,9 @@ formData: ContextFormData;
 type JSONataEditorHookProps = {
   formContext: FormContext;
   value: string;
+  options: {
+    defaultValue: string;
+  };
   onChange: (value: string) => void;
 };
 
@@ -549,7 +552,7 @@ type JSONataEditorHookProps = {
 const JSONataEditorPreFill: React.FC<JSONataEditorHookProps> = (props) => {
 
   const { onChange } = props;
-  const defaultValue = `{ "": "" }`;
+  const defaultValue = props.options.defaultValue;
   console.log('do we have a value', props.value)
   const value = props.value;
 

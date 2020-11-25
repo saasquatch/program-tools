@@ -6,6 +6,9 @@ storiesOf("UI Schema Widgets / JSONata Editor Prefilled Fields", module).add(
   "Empty",
   () => {
     const props = {
+      options:{
+        defaultValue: `{"":""}`,
+      },
       formContext: {
         formData: {
           schema: "",
@@ -28,6 +31,9 @@ storiesOf("UI Schema Widgets / JSONata Editor Prefilled Fields", module).add(
   "Single Rule",
   () => {
     const props = {
+      options:{
+        defaultValue: `{"":""}`,
+      },
       formContext: {
         formData: {
           schema: "",
@@ -51,6 +57,9 @@ storiesOf(
   module
 ).add("Variables", () => {
   const props = {
+    options:{
+      defaultValue: `{"":""}`,
+    },
     formContext: {
       formData: {
         schema: "",
@@ -76,6 +85,9 @@ storiesOf(
   module
 ).add("Array", () => {
   const props = {
+    options:{
+      defaultValue: `{"":""}`,
+    },
     formContext: {
       formData: {
         schema: "",
