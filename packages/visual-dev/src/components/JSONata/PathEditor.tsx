@@ -1,5 +1,4 @@
 import React from "react";
-import Select from "react-select";
 import jsonata from "jsonata";
 import { JsonataASTNode, serializer, escapeString } from "jsonata-ui-core";
 import styled from "styled-components";
@@ -8,6 +7,7 @@ import { SchemaProvider } from "jsonata-visual-editor/dist/Types";
 import { Path as PathSuggestion } from "jsonata-visual-editor/dist/schema/PathSuggester";
 // import { GreenFlag } from "../../uiLibrary/Notification";
 import ArrowRenderer from "../ArrowRenderer";
+import { CreatableSelectNarrow } from "../Select";
 
 // TODO
 const GreenFlag = styled.div``;
@@ -21,22 +21,6 @@ const StyledOption = styled.div`
   overflow: hidden;
   &:hover {
     background-color: #efefef;
-  }
-`;
-
-//@ts-ignore
-const StyledCreatable = styled(Select.Creatable)`
-  margin-bottom: -15px;
-  &.Select {
-    width: 100%;
-  }
-  &.Select .Select-control {
-    width: 100%;
-  }
-  & .Select-menu-outer {
-    position: absolute;
-    overflow: hidden;
-    width: auto;
   }
 `;
 
@@ -164,7 +148,7 @@ export default function PathEditor(props: PathEditorProps) {
 
   return (
     <div>
-      <StyledCreatable
+      <CreatableSelectNarrow
         onClick={(e: React.MouseEvent<HTMLElement>) => {
           e.preventDefault();
         }}

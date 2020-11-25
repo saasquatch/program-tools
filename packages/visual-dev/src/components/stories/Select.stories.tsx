@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import Select from "../Select";
+import {Select, CreatableSelect} from "../Select";
 
 storiesOf("Components / Select", module).add("Empty Selection", () => {
   return (
@@ -19,6 +19,22 @@ storiesOf("Components / Select", module).add("Empty Selection", () => {
 });
 
 storiesOf("Components / Select", module).add("Enabled", () => {
+  return (
+    <div style={{ margin: "100px" }}>
+        <Select
+          onChange={() => console.log("New Selection")}
+          options={[
+            { value: true, label: "Option 1" },
+            { value: false, label: "Option 2" },
+          ]}
+          disabled={false}
+          placeholder={"Select value"}
+        />
+    </div>
+  );
+});
+
+storiesOf("Components / Select", module).add("Enabled with value", () => {
   return (
     <div style={{ margin: "100px" }}>
         <Select
@@ -46,6 +62,23 @@ storiesOf("Components / Select", module).add("Disabled", () => {
             { value: false, label: "Option 2" },
           ]}
           disabled={true}
+          placeholder={"Select value"}
+        />
+    </div>
+  );
+});
+
+storiesOf("Components / Select", module).add("Createable", () => {
+  return (
+    <div style={{ margin: "100px" }}>
+        <CreatableSelect
+          value={"Option 1"}
+          onChange={() => console.log("New Selection")}
+          options={[
+            { value: true, label: "Option 1" },
+            { value: false, label: "Option 2" },
+          ]}
+          disabled={false}
           placeholder={"Select value"}
         />
     </div>
