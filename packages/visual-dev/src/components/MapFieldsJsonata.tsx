@@ -15,6 +15,7 @@ import {
   ArrayUnaryEditorProps,
   RootNodeEditorProps,
   NodeEditorProps,
+  SchemaProvider,
 } from "jsonata-visual-editor";
 import React, { useState } from "react";
 
@@ -456,12 +457,13 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
   };
 
   function PathEditor({ ast, onChange }: PathEditorProps) {
-    // const newSchema = SchemaContext.useContainer();
-    // const newSchemaProvider = SchemaProvider.makeSchemaProvider(
-    //   newSchema?.value == "Value" ? {} : inputDataSchema
-    // );
+    const newSchemaProvider = SchemaProvider.makeSchemaProvider(
+       inputDataSchema
+    );
     // const renderDropDown = newSchema?.value == "show" ? true : false;
     const changeType = () => onChange(nextAst(ast, defaultPath()));
+
+    console.log('ast', ast);
 
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
@@ -469,9 +471,11 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
           <TypeSwitch ast={ast} onChange={onChange} changeType={changeType} />
         {/* // )} */}
         <SmallPickerWrapper>
+
           <PathPicker
             value={ast}
             onChange={(option) => onChange(option.value as AST)}
+            schemaProvider={newSchemaProvider}
           />
         </SmallPickerWrapper>
       </div>
