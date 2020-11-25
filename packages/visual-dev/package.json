@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/visual-dev",
-  "version": "0.0.2-8",
+  "version": "0.0.2-9",
   "description": "SaaSquatch visual dev",
   "main": "build/index.js",
   "module": "build/index.es.js",
