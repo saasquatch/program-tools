@@ -51,6 +51,7 @@ import styled from "styled-components";
 import { TierName } from "./JSONata/JSONataStyle";
 import { SaasquatchTheme } from "./JSONata/SaasquatchTheme";
 import JSONataUtils from "./JSONata/JSONataUtils";
+import { GenericInput } from "./Inputs";
 
 const ButtonDiv = styled.div`
   display: flex;
@@ -66,52 +67,15 @@ const TableWrapper = styled.table`
 `;
 
 const SmallPickerWrapper = styled.div`
-  max-width: 160px;
-  width: 160px;
+  max-width: 170px;
+  width: 170px;
   min-width: 100px;
   & .Select,
   & .Select-control {
-    max-width: 160px;
-    width: 160px;
+    max-width: 170px;
+    width: 170px;
     min-width: 100px;
   }
-
-  & .Select-control {
-    height: 30px;
-    line-height: normal;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-
-    .form-control {
-      height: 30px;
-    }
-
-  }
-
-  .Select-value-label,
-  .Select-multi-value-wrapper {
-    line-height: 20px;
-    height: 18px;
-  }
-
-  .Select-value {
-    top: 0px !important;
-    line-height: 43px !important;
-  }
-
-  .Select-placeholder {
-    line-height: 25px;
-  }
-
-  .Select-value-label {
-    bottom: 8px;
-    position: relative;
-    color: #575757 !important;
-  }
-
 `;
 
 const { baseOperators, numberOperators, arrayOperators } = Consts;
@@ -492,7 +456,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
     ast,
   }: LeafValueEditorProps) {
     // const newSchema: { value: string } = SchemaContext.useContainer();
-    // const renderDropDown = newSchema?.value === "show" ? true : false;
+    // const renderDropDown = newSchema?.value === "Value" ? true : false;
     const [input, setInput] = useState(text || "");
     function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
       if (e.key === "Enter" || e.key === "Escape") {
@@ -508,7 +472,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
         {/* {renderDropDown && ( */}
           <TypeSwitch ast={ast} onChange={onChange} changeType={changeType} />
         {/* )} */}
-        <input
+        <GenericInput
           type="text"
           // placeholder={message}
           value={input}

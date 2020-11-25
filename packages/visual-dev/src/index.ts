@@ -3,7 +3,7 @@ import { H1, H2, H3, P, WidgetTitle, AttributeHeading } from "./components/Typog
 import { WidgetContainer } from "./components/Widgets";
 import { TextLink as TextButton } from "./components/TextButton";
 import { Link } from "./components/Links";
-import Select from "./components/Select";
+import {Select, CreatableSelect, SelectNarrow, CreatableSelectNarrow} from "./components/Select";
 import LoadingSpinner, { LoadingSpinnerLarge } from "./components/LoadingSpinner";
 import RadioCards from "./components/RadioCards";
 import {GenericInput, StyledSelect, PencilButton, EditPencil} from "./components/Inputs"
@@ -21,6 +21,9 @@ export {
   TextButton,
   Link,
   Select,
+  CreatableSelect,
+  SelectNarrow,
+  CreatableSelectNarrow,
   LoadingSpinner,
   LoadingSpinnerLarge,
   RadioCards,
