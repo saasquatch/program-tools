@@ -45,7 +45,6 @@ import { Path as PathSuggestion } from "jsonata-visual-editor/dist/schema/PathSu
 import { PathSuggester } from "jsonata-visual-editor/dist/AstEditor";
 import PathPicker, { Reducer } from "./JSONata/PathEditor";
 import { AST } from "jsonata-visual-editor";
-// import JSONataUtils from "./JSONata/JSONataUtils";
 // import { LoadingSpinnerCard } from "../../../uiLibrary/LoadingSpinnerNew";
 import styled from "styled-components";
 import { TierName } from "./JSONata/JSONataStyle";
@@ -530,6 +529,7 @@ export function JSONataEditorView(props: JSONataEditorViewProps) {
   function RootNodeEditor({ editor }: RootNodeEditorProps) {
     return <SchemaContext.Provider>{editor}</SchemaContext.Provider>;
   }
+
 
   if (showButton) {
     return (
