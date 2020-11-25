@@ -1,64 +1,24 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { createContainer } from "unstated-next";
-import { JSONataEditorView } from "../MapFieldsJsonata";
-
-const emptyState = {
-  states: {
-    showButton: true,
-    emptyBlock: true,
-    disableRemove: false,
-    loading: false,
-    defaultValue: "",
-  },
-  data: {
-    value: "",
-    inputDataSchema: {},
-    SchemaContext: {},
-  },
-};
+import JSONataEditorView from "../MapFieldsJsonata";
 
 
-
-interface InitialStateProps {
-  states?:any;
-  data?:any;
-  callbacks?:any;
-}
-
-
-const defaultState = (initialState: InitialStateProps = {}) => {
-  const handleChange = () => {
-    console.log("change");
-  };
-
-  const SchemaContext = createContainer((value) => value);
-
-  return {
-    states: {
-      showButton: false,
-      emptyBlock: false,
-      disableRemove: false,
-      loading: false,
-      defaultValue: "",
-      ...initialState.states
-    },
-    data: {
-      value: "{ 'test' : 'test2' }",
-      inputDataSchema: {},
-      SchemaContext,
-      ...initialState.data
-    },
-    callbacks: { onChange: handleChange },
-  };
-};
 
 storiesOf("UI Schema Widgets / JSONata Editor Prefilled Fields", module).add(
   "Empty",
   () => {
+    const props =  {
+      formContext: {
+        formData: {
+          schema: ""
+        }
+      },
+      value: `{"":""}`,
+      onChange: () => {console.log('change')}
+    }
     return (
       <div style={{ margin: "100px" }}>
-        <JSONataEditorView {...defaultState(emptyState)} />
+        <JSONataEditorView {...props} />
       </div>
     );
   }
@@ -67,9 +27,18 @@ storiesOf("UI Schema Widgets / JSONata Editor Prefilled Fields", module).add(
 storiesOf("UI Schema Widgets / JSONata Editor Prefilled Fields", module).add(
   "Single Rule",
   () => {
+    const props =  {
+      formContext: {
+        formData: {
+          schema: ""
+        }
+      },
+      value: `{"email":"text"}`,
+      onChange: () => {console.log('change')}
+    }
     return (
       <div style={{ margin: "100px" }}>
-        <JSONataEditorView {...defaultState()} />
+        <JSONataEditorView {...props} />
       </div>
     );
   }
