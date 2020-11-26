@@ -113,13 +113,14 @@ storiesOf(
     options:{
       defaultValue: `[""]`,
       singleRowArray: true,
+      initialValue: `[""]`,
     },
     formContext: {
       formData: {
         schema: "",
       },
     },
-    value: `[""]`,
+    value: "",
     onChange: () => {
       console.log("change");
     },

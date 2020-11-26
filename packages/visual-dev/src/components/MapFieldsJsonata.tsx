@@ -543,6 +543,7 @@ type JSONataEditorHookProps = {
   options: {
     defaultValue: string;
     singleRowArray?: boolean;
+    initialValue?: string;
   };
   onChange: (value: string) => void;
 };
@@ -551,8 +552,9 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
   const { onChange } = props;
   const defaultValue = props.options.defaultValue;
   const singleRowArray = props?.options?.singleRowArray;
+  const initialValue = props?.options?.initialValue || "";
   console.log("options", props.options);
-  const value = props.value;
+  const value = props.value || initialValue;
 
   const loading = false;
   const showButton =
