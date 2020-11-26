@@ -40,7 +40,7 @@ export const RowContainer = styled.div<{gapSize?: string}>`
 `
 
 export const RJSFContainer = styled.div`
-  & input[type=text], & select{
+  & input[type=text], & select, & textarea {
     height: 30px;
     width: 270px;
 

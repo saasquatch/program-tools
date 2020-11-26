@@ -11,7 +11,8 @@ export const GenericInput = styled.input<{
     ${(props) => props.minWidth && `min-width: ${props.minWidth};`}
     ${(props) => props.maxWidth && `max-width: ${props.maxWidth};`}
 
-    padding: 0px 10px;
+    padding-left: 10px;
+    padding-right: 2px;
 
     border-radius: 5px;
     border: solid 2px #e2e2e2;
