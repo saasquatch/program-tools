@@ -1,8 +1,5 @@
 import jsonata from "jsonata";
-import {
-  serializer,
-  ConditionNode,
-} from "jsonata-ui-core";
+import { serializer, ConditionNode } from "jsonata-ui-core";
 import {
   ConditionEditorProps,
   Editor,
@@ -55,7 +52,7 @@ import { GenericInput } from "./Inputs";
 
 const ButtonDiv = styled.div`
   display: flex;
-`
+`;
 
 const TableWrapper = styled.table`
   width: 100%;
@@ -88,7 +85,7 @@ type Option = {
 };
 
 function JSONataEditorView(props: JSONataEditorViewProps) {
-  const { showButton, loading, defaultValue } = props.states;
+  const { showButton, loading, defaultValue, singleRowArray } = props.states;
   const { value, inputDataSchema, SchemaContext } = props.data;
   const { onChange } = props.callbacks;
 
@@ -147,9 +144,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
 
     return (
       <Form style={{ display: "flex" }}>
-        <div>
-          {lhs}
-        </div>
+        <div>{lhs}</div>
         <FormControl
           style={{
             padding: "4px 12px",
@@ -192,9 +187,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
             </optgroup>
           )}
         </FormControl>
-        <div>
-          {rhs}
-        </div>
+        <div>{rhs}</div>
       </Form>
     );
   }
@@ -212,10 +205,16 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
           <thead>
             <tr>
               <THead>
-                <H3>{props.options?.keyTitle ? props.options.keyTitle : "Key"}</H3>
+                <H3>
+                  {props.options?.keyTitle ? props.options.keyTitle : "Key"}
+                </H3>
               </THead>
               <THead>
-                <H3>{props.options?.valueTitle ? props.options.valueTitle : "Value"}</H3>
+                <H3>
+                  {props.options?.valueTitle
+                    ? props.options.valueTitle
+                    : "Value"}
+                </H3>
               </THead>
               <THead />
             </tr>
@@ -227,16 +226,15 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
               return (
                 <>
                   <TRow>
-                      <TData>{c.key}</TData>
-                      <TData>{c.value}</TData>
+                    <TData>{c.key}</TData>
+                    <TData>{c.value}</TData>
                     <TData style={{ paddingTop: "0px" }}>
                       <FormButton
                         onClick={c.remove}
                         disabled={!canDelete}
                         style={{ fontWeight: "lighter" }}
                       >
-                        {/* <i className="icon-sqh-close" /> */}
-                        X
+                        {/* <i className="icon-sqh-close" /> */}X
                       </FormButton>
                     </TData>
                   </TRow>
@@ -259,45 +257,48 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
     onChange,
     removeLast,
   }: ArrayUnaryEditorProps) {
-    const canDelete = children.length > 0;
-    return (
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <JSONataTable>
-          <thead>
-            <tr>
-              <THead>
-                <H3>Value</H3>
-              </THead>
-              <THead />
-            </tr>
-          </thead>
-          <tbody>
-            {children.map((c) => {
-              // const schemaV = "Value";
-              return (
-                <TRow>
+    const canDelete = children.length > 0 && !singleRowArray;
+    if (singleRowArray) {
+      return <div>{children.length > 0 && children[0].editor}</div>;
+    } else {
+      return (
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <JSONataTable>
+            <thead>
+              <tr>
+                <THead>
+                  <H3>Value</H3>
+                </THead>
+                <THead />
+              </tr>
+            </thead>
+            <tbody>
+              {children.map((c) => {
+                // const schemaV = "Value";
+                return (
+                  <TRow>
                     <TData>{c.editor}</TData>
-                  <TData>
-                    <FormButton
-                      onClick={c.remove}
-                      disabled={!canDelete}
-                      style={{ fontWeight: "lighter" }}
-                    >
-                      {/* <i className="icon-sqh-close" /> */}
-                      X
-                    </FormButton>
-                  </TData>
-                </TRow>
-              );
-            })}
-          </tbody>
-        </JSONataTable>
-        <AddRemoveGroup
-          addNew={() => addNewArray(ast, onChange)}
-          removeLast={removeLast}
-        />
-      </div>
-    );
+                    <TData>
+                      <FormButton
+                        onClick={c.remove}
+                        disabled={!canDelete}
+                        style={{ fontWeight: "lighter" }}
+                      >
+                        {/* <i className="icon-sqh-close" /> */}X
+                      </FormButton>
+                    </TData>
+                  </TRow>
+                );
+              })}
+            </tbody>
+          </JSONataTable>
+          <AddRemoveGroup
+            addNew={() => addNewArray(ast, onChange)}
+            removeLast={removeLast}
+          />
+        </div>
+      );
+    }
   }
 
   const AddTier = ({
@@ -309,7 +310,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
           onClick={(e) => {
             e.preventDefault();
 
-            console.log('currentchildren', currentChildren)
+            console.log("currentchildren", currentChildren);
 
             // This uses context
             JSONataUtils.addRule(currentChildren);
@@ -338,20 +339,20 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
             return (
               <>
                 <TRow>
-                    <TData style={{ paddingRight: "20px", width: "1px" }}>
-                      {pair.Condition}
-                    </TData>
-                    <TData style={{ verticalAlign: "top" }}>
-                      <TierName
-                        className="error-container"
-                        style={{ justifyContent: "flex-start" }}
-                      >
-                        {pair.Then}
-                      </TierName>
-                    </TData>
-                    <TData style={{ verticalAlign: "top" }}>
-                      {getButton(pair, elseEditor, children, canDelete)}
-                    </TData>
+                  <TData style={{ paddingRight: "20px", width: "1px" }}>
+                    {pair.Condition}
+                  </TData>
+                  <TData style={{ verticalAlign: "top" }}>
+                    <TierName
+                      className="error-container"
+                      style={{ justifyContent: "flex-start" }}
+                    >
+                      {pair.Then}
+                    </TierName>
+                  </TData>
+                  <TData style={{ verticalAlign: "top" }}>
+                    {getButton(pair, elseEditor, children, canDelete)}
+                  </TData>
                 </TRow>
                 <TRow>
                   <TData
@@ -397,8 +398,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
                                 );
                               }}
                             >
-                              {/* <i className="icon-sqh-close" /> */}
-                              X
+                              {/* <i className="icon-sqh-close" /> */}X
                             </FormButton>
                           </>
                         )}
@@ -425,20 +425,19 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
 
   function PathEditor({ ast, onChange }: PathEditorProps) {
     const newSchemaProvider = SchemaProvider.makeSchemaProvider(
-       inputDataSchema
+      inputDataSchema
     );
-    // const renderDropDown = newSchema?.value == "show" ? true : false;
+    const renderTypeSwitch = false;
     const changeType = () => onChange(nextAst(ast, defaultPath()));
 
-    console.log('ast', ast);
+    console.log("ast", ast);
 
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
-        {/* {renderDropDown && ( */}
+        {renderTypeSwitch && (
           <TypeSwitch ast={ast} onChange={onChange} changeType={changeType} />
-        {/* // )} */}
+        )}
         <SmallPickerWrapper>
-
           <PathPicker
             value={ast}
             onChange={(option) => onChange(option.value as AST)}
@@ -456,7 +455,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
     ast,
   }: LeafValueEditorProps) {
     // const newSchema: { value: string } = SchemaContext.useContainer();
-    // const renderDropDown = newSchema?.value === "Value" ? true : false;
+    const renderTypeSwitch = false;
     const [input, setInput] = useState(text || "");
     function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
       if (e.key === "Enter" || e.key === "Escape") {
@@ -469,9 +468,9 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
     //   newSchema?.value === "show" ? "Variable value" : newSchema?.value;
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
-        {/* {renderDropDown && ( */}
+        {renderTypeSwitch && (
           <TypeSwitch ast={ast} onChange={onChange} changeType={changeType} />
-        {/* )} */}
+        )}
         <GenericInput
           type="text"
           // placeholder={message}
@@ -490,7 +489,6 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
     return <div>{editor}</div>;
   }
 
-
   if (showButton) {
     return (
       <div>
@@ -502,12 +500,12 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
           }}
         >
           + Add Rule(s)
-          </FormButton>
+        </FormButton>
       </div>
     );
   } else if (loading) {
     // return <LoadingSpinnerCard height="133px"></LoadingSpinnerCard>;
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   } else {
     return (
       <Editor
@@ -536,7 +534,7 @@ type ContextFormData = {
 };
 
 type FormContext = {
-formData: ContextFormData;
+  formData: ContextFormData;
 };
 
 type JSONataEditorHookProps = {
@@ -544,23 +542,23 @@ type JSONataEditorHookProps = {
   value: string;
   options: {
     defaultValue: string;
+    singleRowArray?: boolean;
   };
   onChange: (value: string) => void;
 };
 
-
 const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
-
   const { onChange } = props;
   const defaultValue = props.options.defaultValue;
-  console.log('options', props.options)
+  const singleRowArray = props?.options?.singleRowArray;
+  console.log("options", props.options);
   const value = props.value;
 
   const loading = false;
-  const showButton = (!value || value === `null` || value.replace(/[\n\s\r]/g, "") === "{}");;
+  const showButton =
+    !value || value === `null` || value.replace(/[\n\s\r]/g, "") === "{}";
 
   const emptyBlock = value === null || value === undefined;
-
 
   const newProps = {
     states: {
@@ -568,11 +566,12 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
       emptyBlock,
       loading,
       defaultValue,
+      singleRowArray,
     },
     data: {
       value,
       inputDataSchema: {},
-      SchemaContext: null
+      SchemaContext: null,
     },
     callbacks: {
       onChange,
@@ -584,31 +583,30 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
 
 export default JSONataEditor;
 
-
-
 type JSONataEditorHookStates = {
-  showButton: boolean,
-  emptyBlock: boolean,
-  loading: boolean,
-  defaultValue: string,
-}
+  showButton: boolean;
+  emptyBlock: boolean;
+  loading: boolean;
+  defaultValue: string;
+  singleRowArray?: boolean;
+};
 
 type JSONataEditorHookData = {
-  value: string,
-  inputDataSchema: Object,
-  SchemaContext: any, //TODO
-}
+  value: string;
+  inputDataSchema: Object;
+  SchemaContext: any; //TODO
+};
 
 type WidgetOption = {
-  keyTitle?: string,
-  valueTitle?: string
-}
+  keyTitle?: string;
+  valueTitle?: string;
+};
 
 type JSONataEditorViewProps = {
-  states: JSONataEditorHookStates,
-  data: JSONataEditorHookData,
-  options?: WidgetOption,
+  states: JSONataEditorHookStates;
+  data: JSONataEditorHookData;
+  options?: WidgetOption;
   callbacks: {
-    onChange: any // TODO
-  }
-}
+    onChange: any; // TODO
+  };
+};

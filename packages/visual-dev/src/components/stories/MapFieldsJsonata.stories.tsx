@@ -104,3 +104,29 @@ storiesOf(
     </div>
   );
 });
+
+storiesOf(
+  "UI Schema Widgets / JSONata Editor Prefilled Fields",
+  module
+).add("Single Row Array", () => {
+  const props = {
+    options:{
+      defaultValue: `[""]`,
+      singleRowArray: true,
+    },
+    formContext: {
+      formData: {
+        schema: "",
+      },
+    },
+    value: `[""]`,
+    onChange: () => {
+      console.log("change");
+    },
+  };
+  return (
+    <div style={{ margin: "100px" }}>
+      <JSONataEditor {...props} />
+    </div>
+  );
+});
