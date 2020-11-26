@@ -57,6 +57,7 @@ export const TextLinkStyle = styled.button<TLSProps>`
   font-size: ${(props) => (props.icon ? `14px` : `13px`)};
   margin: ${(props) => props.margin};
   background: transparent;
+  outline: none;
   color: ${(props) =>
     props.disabled
       ? `#E2E2E2`
@@ -72,6 +73,9 @@ export const TextLinkStyle = styled.button<TLSProps>`
     padding: 0 5px;`}
   ${ButtonDiv} & {
     margin: ${(props) => (props.disabled ? "0" : "0 8px")};
+  }
+  &:focus {
+    outline: none;
   }
 `;
 

@@ -1,7 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { P, WidgetTitle } from "../Typography";
-import { WidgetContainer } from "../Widgets";
+import { WidgetContainer } from "../Layouts";
 
 storiesOf("Components / Widget", module).add("Widget Container", () => {
   return (

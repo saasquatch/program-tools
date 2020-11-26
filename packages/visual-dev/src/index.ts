@@ -1,6 +1,6 @@
 import MyComponent from "./components/MyComponent";
 import { H1, H2, H3, P, WidgetTitle, AttributeHeading } from "./components/Typography";
-import { WidgetContainer } from "./components/Widgets";
+import { WidgetContainer } from "./components/Layouts";
 import { TextLink as TextButton } from "./components/TextButton";
 import { Link } from "./components/Links";
 import {Select, CreatableSelect, SelectNarrow, CreatableSelectNarrow} from "./components/Select";

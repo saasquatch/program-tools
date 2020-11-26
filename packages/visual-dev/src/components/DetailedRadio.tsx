@@ -21,6 +21,7 @@ const StandardizedRadioStyles = styled.div`
     margin: 0;
     outline: none;
     -webkit-appearance: none;
+    cursor: pointer;
   }
 
   /**
@@ -67,7 +68,6 @@ const StandardizedRadioStyles = styled.div`
     content: "";
     border-radius: 50%;
   }
-
   /**
  * support focused on firefox
  */
@@ -125,6 +125,7 @@ const StandardizedRadioStyles = styled.div`
 const Label = styled.div`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   padding-bottom: 8px;
+  cursor: pointer;
 `;
 const Description = styled.div`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
@@ -135,6 +136,7 @@ const Description = styled.div`
   margin-bottom: 16px;
   line-height: 16px;
   font-size: 12px;
+  cursor: pointer;
 `;
 
 const DetailedRadio: React.FC<DetailedRadioProps> = ({
