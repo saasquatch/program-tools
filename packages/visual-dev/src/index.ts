@@ -10,6 +10,7 @@ import {GenericInput, StyledSelect, PencilButton, EditPencil} from "./components
 import JSONataEditor from "./components/MapFieldsJsonata"
 import { PrimaryButton, PrimaryButtonNew, SecondaryButton } from "./components/Buttons";
 import { ActionsArrayTemplate } from "./components/FormTemplates";
+import { Icon } from "./components/Icons";
 
 export {
   MyComponent,
@@ -41,5 +42,6 @@ export {
   ColumnContainer,
   RowContainer,
   RJSFContainer,
-  ActionsArrayTemplate
+  ActionsArrayTemplate,
+  Icon,
 };
