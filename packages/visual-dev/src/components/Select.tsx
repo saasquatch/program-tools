@@ -32,6 +32,10 @@ const NarrowWrapper = styled.div`
   &. Select-value-label {
     line-height: 27px;
   }
+  
+  &. Select-value {
+    line-height: 27px;
+  }
 `;
 
 const StyleWrapper = styled.div`
