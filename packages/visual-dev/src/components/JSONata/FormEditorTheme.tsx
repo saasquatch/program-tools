@@ -78,7 +78,7 @@ export const TData = styled.td`
 
 export const THead = styled.th`
   text-align: left;
-  padding-left: 8px;
+  padding-left: 3px;
   color: #575757;
 `;
 

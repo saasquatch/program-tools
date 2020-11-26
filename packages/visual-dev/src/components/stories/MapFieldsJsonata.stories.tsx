@@ -79,6 +79,35 @@ storiesOf(
   );
 });
 
+storiesOf(
+  "UI Schema Widgets / JSONata Editor Prefilled Fields",
+  module
+).add("Custom headings", () => {
+  const props = {
+    options:{
+      defaultValue: `{"":""}`,
+      keyTitle: "Custom key",
+      valueTitle: "Custom value",
+    },
+    formContext: {
+      formData: {
+        schema: "",
+      },
+    },
+    value: `{
+        "":""
+      }`,
+    onChange: () => {
+      console.log("change");
+    },
+  };
+  return (
+    <div style={{ margin: "100px" }}>
+      <JSONataEditor {...props} />
+    </div>
+  );
+});
+
 
 storiesOf(
   "UI Schema Widgets / JSONata Editor Prefilled Fields",

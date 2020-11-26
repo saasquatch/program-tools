@@ -86,7 +86,7 @@ type Option = {
 
 function JSONataEditorView(props: JSONataEditorViewProps) {
   const { showButton, loading, defaultValue, singleRowArray } = props.states;
-  const { value, inputDataSchema } = props.data;
+  const { value, inputDataSchema, keyTitle, valueTitle } = props.data;
   const { onChange } = props.callbacks;
 
   function ComparisonEditor({
@@ -204,14 +204,12 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
             <tr>
               <THead>
                 <H3>
-                  {props.options?.keyTitle ? props.options.keyTitle : "Key"}
+                  {keyTitle}
                 </H3>
               </THead>
               <THead>
                 <H3>
-                  {props.options?.valueTitle
-                    ? props.options.valueTitle
-                    : "Value"}
+                  {valueTitle}
                 </H3>
               </THead>
               <THead />
@@ -265,7 +263,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
             <thead>
               <tr>
                 <THead>
-                  <H3>Value</H3>
+                  <H3>{valueTitle}</H3>
                 </THead>
                 <THead />
               </tr>
@@ -535,6 +533,8 @@ type JSONataEditorHookProps = {
     defaultValue: string;
     singleRowArray?: boolean;
     initialValue?: string;
+    keyTitle?: string;
+    valueTitle?: string;
   };
   onChange: (value: string) => void;
 };
@@ -544,6 +544,8 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
   const defaultValue = props.options.defaultValue;
   const singleRowArray = props?.options?.singleRowArray;
   const initialValue = props?.options?.initialValue || "";
+  const valueTitle = props?.options?.valueTitle || "Value";
+  const keyTitle = props?.options?.keyTitle || "Key";
   console.log("options", props.options);
   const value = props.value || initialValue;
 
@@ -565,6 +567,8 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
       value,
       inputDataSchema: {},
       SchemaContext: null,
+      valueTitle,
+      keyTitle,
     },
     callbacks: {
       onChange,
@@ -587,6 +591,8 @@ type JSONataEditorHookStates = {
 type JSONataEditorHookData = {
   value: string;
   inputDataSchema: Object;
+  valueTitle?: string;
+  keyTitle?: string;
   SchemaContext: any; //TODO
 };
 
