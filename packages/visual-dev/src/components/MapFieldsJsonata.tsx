@@ -49,6 +49,7 @@ import { TierName } from "./JSONata/JSONataStyle";
 import { SaasquatchTheme } from "./JSONata/SaasquatchTheme";
 import JSONataUtils from "./JSONata/JSONataUtils";
 import { GenericInput } from "./Inputs";
+import { Icon } from "./Icons";
 
 const ButtonDiv = styled.div`
   display: flex;
@@ -230,7 +231,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
                         disabled={!canDelete}
                         style={{ fontWeight: "lighter" }}
                       >
-                        {/* <i className="icon-sqh-close" /> */}X
+                        <Icon icon="icon-sqh-close" color="#f5a841" />
                       </FormButton>
                     </TData>
                   </TRow>
@@ -280,7 +281,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
                         disabled={!canDelete}
                         style={{ fontWeight: "lighter" }}
                       >
-                        {/* <i className="icon-sqh-close" /> */}X
+                        <Icon icon="icon-sqh-close" color="#f5a841" />
                       </FormButton>
                     </TData>
                   </TRow>
@@ -390,7 +391,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
                                 );
                               }}
                             >
-                              {/* <i className="icon-sqh-close" /> */}X
+                              <Icon icon="icon-sqh-close" color="#f5a841" />
                             </FormButton>
                           </>
                         )}

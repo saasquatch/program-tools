@@ -29,7 +29,7 @@ const NarrowWrapper = styled.div`
     }
   }
 
-  &. Select-value-label {
+  & .Select--single > .Select-control .Select-value {
     line-height: 27px;
   }
   

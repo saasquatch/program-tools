@@ -91,8 +91,9 @@ export const JSONataTable = styled.table`
 `;
 
 export const FormButton = styled.button`
-  margin: 0px 0px;
-  padding: 0px 0px;
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
 
   align-self: flex-start;
 
