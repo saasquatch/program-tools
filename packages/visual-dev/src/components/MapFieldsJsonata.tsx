@@ -86,7 +86,7 @@ type Option = {
 
 function JSONataEditorView(props: JSONataEditorViewProps) {
   const { showButton, loading, defaultValue, singleRowArray } = props.states;
-  const { value, inputDataSchema, SchemaContext } = props.data;
+  const { value, inputDataSchema } = props.data;
   const { onChange } = props.callbacks;
 
   function ComparisonEditor({
