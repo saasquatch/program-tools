@@ -92,8 +92,6 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
   const { value, inputDataSchema, SchemaContext } = props.data;
   const { onChange } = props.callbacks;
 
-  console.log("Context", SchemaContext);
-
   function ComparisonEditor({
     lhs,
     rhs,
@@ -308,10 +306,6 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
         <FormButton
           onClick={(e) => {
             e.preventDefault();
-
-            console.log('currentchildren', currentChildren)
-
-            // This uses context
             JSONataUtils.addRule(currentChildren);
           }}
         >
@@ -430,8 +424,6 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
     // const renderDropDown = newSchema?.value == "show" ? true : false;
     const changeType = () => onChange(nextAst(ast, defaultPath()));
 
-    console.log('ast', ast);
-
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
         {/* {renderDropDown && ( */}
@@ -497,7 +489,6 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
         <FormButton
           onClick={(e) => {
             e.preventDefault();
-            console.log(defaultValue);
             onChange(defaultValue);
           }}
         >
@@ -553,7 +544,7 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
 
   const { onChange } = props;
   const defaultValue = props.options.defaultValue;
-  console.log('options', props.options)
+  const context = props.formContext;
   const value = props.value;
 
   const loading = false;
