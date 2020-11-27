@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { PrimaryButton, PrimaryButtonNew, SecondaryButton } from "../Buttons";
+import { PlatformSignInButton, PrimaryButton, PrimaryButtonNew, SecondaryButton } from "../Buttons";
 import { TextLink } from "../TextButton";
 
 storiesOf("Components / Buttons", module).add("Text Button", () => {
@@ -47,6 +47,22 @@ storiesOf("Components / Buttons", module).add("Secondary button", () => {
   return (
     <div style={{ margin: "100px" }}>
       <SecondaryButton onClick={() => console.log("click")}>Secondary button</SecondaryButton>
+    </div>
+  );
+});
+
+storiesOf("Components / Buttons", module).add("Sign in button", () => {
+  return (
+    <div style={{ margin: "100px" }}>
+      <PlatformSignInButton onClick={() => console.log("click")}>Secondary button</PlatformSignInButton>
+    </div>
+  );
+});
+
+storiesOf("Components / Buttons", module).add("Sign in button with color", () => {
+  return (
+    <div style={{ margin: "100px" }}>
+      <PlatformSignInButton bgcolor={"#0C9CD9"} hoverBGColor={"#0088CC"} onClick={() => console.log("click")}>Secondary button</PlatformSignInButton>
     </div>
   );
 });

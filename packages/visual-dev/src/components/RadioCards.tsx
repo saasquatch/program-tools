@@ -9,14 +9,15 @@ interface DetailedRadiosWidgetProps {
     cardFormat?: boolean;
     radioOptions: Array<{
       key: string;
-      name: string;
       label: string;
       description: string;
       primaryInfo?: any;
+      name: string
     }>;
     currentLink: string;
     currentCode: string;
   };
+  id: string;
 }
 
 const InfoWrapper = styled.div`
@@ -56,17 +57,19 @@ const RadioCards: React.FC<DetailedRadiosWidgetProps> = (
   return (
     <Wrapper>
       {props.options.radioOptions.map((option) => {
-        const { key, primaryInfo, ...options } = option;
-
+        const { key, primaryInfo, name, ...options } = option;
+        const checked = props.value === key;
         return (
-          <Card key={key} checked={props.value === key}>
+          <Card key={props.id + "_" + key} checked={checked}>
             <DetailedRadio
-              checked={props.value === key}
+              checked={checked}
               onChange={props.onChange}
-              id={key}
+              id={props.id + "_" + key}
+              value={key}
+              name={props.id}
               {...options}
             />
-            {key === "setAsPrimary" && props.value === key && primaryInfo && (
+            {key === "setAsPrimary" && checked && primaryInfo && (
               <InfoWrapper>
                 {primaryInfo.map((info: React.ReactNode) => info)}
               </InfoWrapper>

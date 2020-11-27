@@ -332,3 +332,21 @@ export const SecondaryButtonDisappearing = styled(SecondaryButton)`
 export const SecondaryButtonPending = styled(SecondaryButton)`
   pointer-events: none;
 `;
+
+
+export const PlatformSignInButton = styled.button<{bgcolor?: string, hoverBGColor?: string}>`
+  padding: 10px;
+  background-color: ${(props) => props.bgcolor || `#e2e2e2`};
+  color: white;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  line-height: 13px;
+  font-weight: 600;
+  font-size: 13px;
+  border: 0;
+  border-radius: 5px;
+
+  &:hover{
+    background-color: ${(props) => props.hoverBGColor || `#888888`};
+    cursor: pointer;
+  }
+`

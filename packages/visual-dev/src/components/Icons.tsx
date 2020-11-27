@@ -7,6 +7,7 @@ interface IconProps {
   padding?: string;
   margin?: string;
   fontSize?: string;
+  fontWeight?: string;
 }
 
 const StyledIcon = styled.i<{
@@ -14,11 +15,13 @@ const StyledIcon = styled.i<{
   padding?: string;
   margin?: string;
   fontSize?: string;
+  fontWeight?: string;
 }>`
     color: ${(props) => (props.color ? props.color : "#7c7c7c")} ;
     ${(props) => props.padding && `padding: ${props.padding};`}
     ${(props) => props.margin && `margin: ${props.margin};`}
     ${(props) => props.fontSize && `font-size: ${props.fontSize};`}
+    ${(props) => props.fontWeight && `font-size: ${props.fontWeight};`}
 `;
 
 export const Icon = (props: IconProps) => {
@@ -29,6 +32,7 @@ export const Icon = (props: IconProps) => {
       margin={props.margin}
       color={props.color}
       className={props.icon}
+      fontWeight={props.fontWeight}
     />
   );
 };

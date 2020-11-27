@@ -6,6 +6,7 @@ import { H3, P } from "../Typography";
 import Form from "react-jsonschema-form";
 import { JSONSchema6 } from "json-schema";
 import { ActionsArrayTemplate } from "../FormTemplates";
+import RadioCards from "../RadioCards";
 
 export const submitActionsSchema: JSONSchema6 = {
   $id: "http://json-schema.org/draft-06/schema#",
@@ -308,6 +309,7 @@ const uiSchema = {
           "ui:label": <P>Fail on Duplicate Contacts</P>
         },
         type:{
+          "ui:widget": RadioCards,
           "ui:title": <H3>Action type</H3>,
           "ui:options": {
             cardFormat: true,

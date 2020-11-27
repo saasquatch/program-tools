@@ -9,6 +9,7 @@ export interface DetailedRadioProps {
   id: string;
   name: string;
   disabled?: boolean;
+  value: string;
 }
 
 const StandardizedRadioStyles = styled.div`
@@ -147,16 +148,18 @@ const DetailedRadio: React.FC<DetailedRadioProps> = ({
   name,
   description,
   disabled = false,
+  value,
 }) => {
+  console.log("NAME", name)
   return (
     <>
       <StandardizedRadioStyles>
         <input
           id={id}
-          readOnly // since using onClick
+          readOnly
           name={name}
           type="radio"
-          onClick={() => onChange(id)}
+          onClick={() => onChange(value)}
           checked={checked}
           disabled={disabled}
         />
