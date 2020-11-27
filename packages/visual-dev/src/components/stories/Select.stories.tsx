@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import {Select, CreatableSelect} from "../Select";
+import {Select, CreatableSelect, SelectNarrow} from "../Select";
 
 storiesOf("Components / Select", module).add("Empty Selection", () => {
   return (
@@ -22,6 +22,22 @@ storiesOf("Components / Select", module).add("Enabled", () => {
   return (
     <div style={{ margin: "100px" }}>
         <Select
+          onChange={() => console.log("New Selection")}
+          options={[
+            { value: true, label: "Option 1" },
+            { value: false, label: "Option 2" },
+          ]}
+          disabled={false}
+          placeholder={"Select value"}
+        />
+    </div>
+  );
+});
+
+storiesOf("Components / Select", module).add("Enabled (narrow)", () => {
+  return (
+    <div style={{ margin: "100px" }}>
+        <SelectNarrow
           onChange={() => console.log("New Selection")}
           options={[
             { value: true, label: "Option 1" },
