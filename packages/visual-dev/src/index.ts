@@ -8,7 +8,7 @@ import LoadingSpinner, { LoadingSpinnerLarge } from "./components/LoadingSpinner
 import RadioCards from "./components/RadioCards";
 import {GenericInput, StyledSelect, PencilButton, EditPencil} from "./components/Inputs"
 import JSONataEditor from "./components/MapFieldsJsonata"
-import { PrimaryButton, PrimaryButtonNew, SecondaryButton } from "./components/Buttons";
+import { PlatformSignInButton, PrimaryButton, PrimaryButtonNew, SecondaryButton } from "./components/Buttons";
 import { ActionsArrayTemplate } from "./components/FormTemplates";
 import { Icon } from "./components/Icons";
 
@@ -25,6 +25,7 @@ export {
   PrimaryButton,
   PrimaryButtonNew,
   SecondaryButton,
+  PlatformSignInButton,
   Link,
   Select,
   CreatableSelect,

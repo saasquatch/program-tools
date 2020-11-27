@@ -50,7 +50,7 @@ storiesOf("UI Schema Widgets / RadioCards", module).add("Item selected", () => {
 
   return (
     <div style={{ margin: "100px" }}>
-      <RadioCards options={options} value={"QUERY/USER"} onChange={(v)=>console.log('change', v)}></RadioCards>
+      <RadioCards id={"123"} options={options} value={"QUERY/USER"} onChange={(v)=>console.log('change', v)}></RadioCards>
     </div>
   );
 });

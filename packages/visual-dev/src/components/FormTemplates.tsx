@@ -8,7 +8,6 @@ export const ActionsArrayTemplate = (props: any) => {
     <ColumnContainer className={props.className}>
       {props.items &&
         props.items.map((element: any) => {
-          console.log("Element", element);
           return (
             <WidgetContainer key={element.key} className={element.className}>
               <RowContainer style={{alignSelf:"flex-end", marginBottom:"20px"}}>

@@ -44,13 +44,17 @@ export const StyledSelect = styled.select<{
     ${(props) => props.width && `width: ${props.width};`}
     ${(props) => props.minWidth && `min-width: ${props.minWidth};`}
     ${(props) => props.maxWidth && `max-width: ${props.maxWidth};`}
+
+    padding: 0px;
+    padding-left: 10px;
+    padding-right: 2px;
     
     border-radius: 5px;
     border: solid 2px #e2e2e2;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     outline: 0;
-
+    
     font-family: "Helvetica Neue", Helvetica, sans-serif;
     color: ${(props) => props.color || `#575757`};
     font-size: 14px;
