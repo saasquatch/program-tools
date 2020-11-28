@@ -46,7 +46,7 @@ export const ActionsArrayTemplate = (props: any) => {
         })}
 
       {props.canAdd && (
-        <TextButton action={true} onClick={props.onAddClick} type="button">
+        <TextButton orange={true} onClick={props.onAddClick} type="button">
           + Add Action
         </TextButton>
       )}
