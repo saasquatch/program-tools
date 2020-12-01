@@ -1,5 +1,5 @@
 import MyComponent from "./components/MyComponent";
-import { H1, H2, H3, P, WidgetTitle, AttributeHeading } from "./components/Typography";
+import { H1, H2, H3, P, WidgetTitle, AttributeHeading, ErrorBlock } from "./components/Typography";
 import { ColumnContainer, RJSFContainer, RowContainer, StyledHR, WidgetContainer } from "./components/Layouts";
 import { TextLink as TextButton } from "./components/TextButton";
 import { Link } from "./components/Links";
@@ -9,7 +9,7 @@ import RadioCards from "./components/RadioCards";
 import {GenericInput, StyledSelect, PencilButton, EditPencil} from "./components/Inputs"
 import JSONataEditor from "./components/MapFieldsJsonata"
 import { PlatformSignInButton, PrimaryButton, PrimaryButtonNew, SecondaryButton } from "./components/Buttons";
-import { ActionsArrayTemplate } from "./components/FormTemplates";
+import { ActionsArrayTemplate, DefaultTemplate } from "./components/FormTemplates";
 import { Icon } from "./components/Icons";
 
 export {
@@ -45,4 +45,6 @@ export {
   RJSFContainer,
   ActionsArrayTemplate,
   Icon,
+  ErrorBlock,
+  DefaultTemplate,
 };
