@@ -1,19 +1,15 @@
 import React from "react";
-import { H3, P } from "./Typography";
-import { TextLink as TextButton } from "./TextButton";
-import {
-  ColumnContainer,
-  RowContainer,
-  StyledHR,
-  WidgetContainer,
-} from "./Layouts";
-import { Icon } from "./Icons";
 import styled from "styled-components";
+import { ColumnContainer, RowContainer, StyledHR, WidgetContainer } from "./Layouts";
+import { H3, P } from "./Typography";
+import { TextLink as TextButton} from "./TextButton"
+import { Icon } from "./Icons";
 
 const RequiredSpan = styled(H3)`
-  color: #e2e2e2;
+  color: #b5b5b5;
   font-weight: 400;
   white-space: pre;
+  margin: 0;
 `;
 
 type LabelProps = {
@@ -39,12 +35,11 @@ export const ActionsArrayTemplate = (props: any) => {
     <ColumnContainer className={props.className} gapSize={"20px"}>
       {props.items &&
         props.items.map((element: any, index: number) => {
-          console.log("EL", element);
           return (
             <WidgetContainer
               key={element.key}
               className={element.className}
-              gapSize={"40px"}
+              gapSize={"0px"}
             >
               <RowContainer style={{ width: "100%", justifyContent:"space-between"}}>
                 <H3 noMargin={true}>Action {index + 1}</H3>
@@ -82,7 +77,7 @@ export const ActionsArrayTemplate = (props: any) => {
                   </TextButton>
                 </RowContainer>
               </RowContainer>
-              <StyledHR />
+              <StyledHR style={{marginTop:"20px", marginBottom:"-20px"}}/>
               <div>{element.children}</div>
             </WidgetContainer>
           );
@@ -103,8 +98,8 @@ function Label(props: LabelProps) {
     return null;
   }
   return (
-    <label className="control-label" htmlFor={id}>
-      <H3>{label}</H3>
+    <label className="control-label" htmlFor={id} style={{marginTop:"40px", marginBottom:"10px"}}>
+      <H3 noMargin={true}>{label}</H3>
       {required && <RequiredSpan> (required)</RequiredSpan>}
     </label>
   );
