@@ -26,3 +26,11 @@ storiesOf("Components / Icons", module).add("Large Icon", () => {
       </div>
     );
   });
+
+storiesOf("Components / Icons", module).add("Salesforce Icon", () => {
+    return (
+      <div style={{ margin: "100px" }}>
+        <Icon color={"black"} fontSize={"32px"} icon={"icon-sqh-salesforce"} />
+      </div>
+    );
+  });

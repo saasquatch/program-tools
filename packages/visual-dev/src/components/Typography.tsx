@@ -36,6 +36,7 @@ type Display = "inline";
 
 interface H3Props {
   display?: Display;
+  noMargin?: boolean;
 }
 
 export const H3 = styled.h3<H3Props>`
@@ -45,7 +46,8 @@ export const H3 = styled.h3<H3Props>`
   line-height: 13px;
   font-weight: 600;
   font-size: 13px;
-  margin-bottom: 8px;
+  margin-bottom: ${(props) => props.noMargin ? '0' : `8px`};
+  ${(props) => props.noMargin && 'margin: 0'};
 `;
 
 export const P = styled.p<{ bold?: boolean, noMargin?: boolean }>`

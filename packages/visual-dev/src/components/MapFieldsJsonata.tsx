@@ -217,12 +217,12 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
             </tr>
           </thead>
           <tbody>
-            {children.map((c) => {
+            {children.map((c, i) => {
               // const schemaK = "Key";
               // const schemaV = "Value";
               return (
                 <>
-                  <TRow>
+                  <TRow key={i}>
                     <TData>{c.key}</TData>
                     <TData>{c.value}</TData>
                     <TData style={{ paddingTop: "0px" }}>

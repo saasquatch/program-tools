@@ -10,7 +10,7 @@ interface IconProps {
   fontWeight?: string;
 }
 
-const StyledIcon = styled.i<{
+export const StyledIcon = styled.i<{
   color?: string;
   padding?: string;
   margin?: string;
@@ -22,6 +22,10 @@ const StyledIcon = styled.i<{
     ${(props) => props.margin && `margin: ${props.margin};`}
     ${(props) => props.fontSize && `font-size: ${props.fontSize};`}
     ${(props) => props.fontWeight && `font-size: ${props.fontWeight};`}
+
+    &:before{
+      color: ${(props) => (props.color ? props.color : "#7c7c7c")} ;
+    }
 `;
 
 export const Icon = (props: IconProps) => {

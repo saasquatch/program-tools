@@ -11,7 +11,7 @@ interface TLSProps {
   blue?: boolean;
   icon?: string;
   inline?: boolean;
-  action?: boolean;
+  orange?: boolean;
 }
 
 interface TLProps extends TLSProps {
@@ -23,7 +23,7 @@ interface TLProps extends TLSProps {
   fontSize?: number;
   customStyle?: CSSProperties | undefined;
   disabled?: boolean;
-  action?: boolean;
+  orange?: boolean;
   type?: "button" | "submit" | "reset" | undefined;
 }
 
@@ -64,7 +64,7 @@ export const TextLinkStyle = styled.button<TLSProps>`
       : (props) =>
           props.blue
             ? `#0088cc`
-            : (props) => (props.action ? `#F5A841` : `#7C7C7C`)};
+            : (props) => (props.orange ? `#F5A841` : `#7C7C7C`)};
   font-weight: bold;
   text-decoration: none;
   ${(props) =>
@@ -80,7 +80,7 @@ export const TextLinkStyle = styled.button<TLSProps>`
 `;
 
 interface TLWProps {
-  action?: boolean;
+  orange?: boolean;
   blue?: boolean;
   disabled?: boolean;
 }
@@ -95,7 +95,7 @@ const TextLinkWrapper = styled.span<TLWProps>`
         : (props) =>
             props.blue
               ? `#2f71a9`
-              : (props) => (props.action ? `#F5A841` : `#606060`)};
+              : (props) => (props.orange ? `#F5A841` : `#606060`)};
     outline: none;
     cursor: ${(props) => (props.disabled ? "not-allowed" : `pointer`)};
   }
@@ -107,7 +107,7 @@ const TextLinkWrapper = styled.span<TLWProps>`
       : (props) =>
           props.blue
             ? `#2f71a9`
-            : (props) => (props.action ? `#F5A841` : `#606060`)};
+            : (props) => (props.orange ? `#F5A841` : `#606060`)};
     text-decoration: ${(props) => (props.disabled ? `none` : `underline`)};
     outline: none;
     cursor: ${(props) => (props.disabled ? "not-allowed" : `pointer`)};
@@ -126,7 +126,7 @@ export const TextLink = ({
   fontSize,
   customStyle,
   disabled,
-  action,
+  orange,
   type,
 }: TLProps) => {
   return (
@@ -135,7 +135,7 @@ export const TextLink = ({
       blue={blue}
       style={customStyle}
       disabled={disabled}
-      action={action}
+      orange={orange}
     >
       {icon && (
         <Icon
@@ -152,7 +152,7 @@ export const TextLink = ({
         icon={icon}
         inline={inline}
         disabled={disabled}
-        action={action}
+        orange={orange}
       >
         {children}
       </TextLinkStyle>
