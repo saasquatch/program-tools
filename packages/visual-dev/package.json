@@ -13,7 +13,7 @@
     "storybook": "start-storybook"
   },
   "files": [
-    "./build"
+    "build/"
   ],
   "keywords": [],
   "author": "SaaSquatch Team",
