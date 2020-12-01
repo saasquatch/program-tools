@@ -41,8 +41,6 @@ export const RowContainer = styled.div<{gapSize?: string}>`
 
 export const RJSFContainer = styled.div`
   & input[type=text], & select, & textarea {
-    height: 30px;
-    width: 270px;
 
     border-radius: 5px;
     border: solid 2px #e2e2e2;
@@ -65,4 +63,23 @@ export const RJSFContainer = styled.div`
     }
   }
 
+  & textarea {
+    width: 400px;
+  }
+
+  & input[type=text], & select {
+    height: 30px;
+    width: 270px;
+  }
+
+  & select {
+    padding: 0px;
+    padding-left: 10px;
+    padding-right: 2px;
+  }
+
+  & input[type=text] {
+    padding-left: 10px;
+    padding-right: 2px;
+  }
 `

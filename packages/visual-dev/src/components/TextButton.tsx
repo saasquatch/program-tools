@@ -97,7 +97,6 @@ const TextLinkWrapper = styled.span<TLWProps>`
               ? `#2f71a9`
               : (props) => (props.orange ? `#F5A841` : `#606060`)};
     outline: none;
-    cursor: ${(props) => (props.disabled ? "not-allowed" : `pointer`)};
   }
   // prettier-ignore
   &:hover ${TextLinkStyle}, &:active ${TextLinkStyle}, &:focus ${TextLinkStyle} {
@@ -110,7 +109,6 @@ const TextLinkWrapper = styled.span<TLWProps>`
             : (props) => (props.orange ? `#F5A841` : `#606060`)};
     text-decoration: ${(props) => (props.disabled ? `none` : `underline`)};
     outline: none;
-    cursor: ${(props) => (props.disabled ? "not-allowed" : `pointer`)};
   }
 `;
 

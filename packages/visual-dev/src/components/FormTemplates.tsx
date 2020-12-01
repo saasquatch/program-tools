@@ -11,7 +11,7 @@ import { Icon } from "./Icons";
 import styled from "styled-components";
 
 const RequiredSpan = styled(H3)`
-  color: #b5b5b5;
+  color: #e2e2e2;
   font-weight: 400;
   white-space: pre;
 `;
@@ -59,8 +59,8 @@ export const ActionsArrayTemplate = (props: any) => {
                       <Icon fontSize={"14px"} color={"#7C7C7C"} icon="icon-sqh-chevron-up" />
                     </TextButton>
                   ) : (
-                    <P noMargin={true} color={"#9E9E9E"}>
-                      <Icon fontSize={"14px"} color={"#9E9E9E"} icon="icon-sqh-chevron-up" />
+                    <P noMargin={true} color={"#e2e2e2"}>
+                      <Icon fontSize={"14px"} color={"#e2e2e2"} icon="icon-sqh-chevron-up" />
                     </P>
                   )}
                   {element.hasMoveDown ? (
@@ -73,8 +73,8 @@ export const ActionsArrayTemplate = (props: any) => {
                       <Icon fontSize={"14px"} color={"#7C7C7C"} icon="icon-sqh-chevron-down" />
                     </TextButton>
                   ) : (
-                    <P noMargin={true} color={"#9E9E9E"}>
-                      <Icon fontSize={"14px"} color={"#9E9E9E"} icon="icon-sqh-chevron-down" />
+                    <P noMargin={true} color={"#e2e2e2"}>
+                      <Icon fontSize={"14px"} color={"#e2e2e2"} icon="icon-sqh-chevron-down" />
                     </P>
                   )}
                   <TextButton onClick={element.onDropIndexClick(element.index)}>
@@ -104,7 +104,7 @@ function Label(props: LabelProps) {
   }
   return (
     <label className="control-label" htmlFor={id}>
-      {label}
+      <H3>{label}</H3>
       {required && <RequiredSpan> (required)</RequiredSpan>}
     </label>
   );

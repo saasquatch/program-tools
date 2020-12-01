@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { AttributeHeading, H1, H2, H3, P, WidgetTitle } from "../Typography";
+import { AttributeHeading, ErrorBlock, H1, H2, H3, P, WidgetTitle } from "../Typography";
 
 storiesOf("Components / Typography", module).add("Header 1", () => {
   return (
@@ -54,6 +54,14 @@ storiesOf("Components / Typography", module).add("Widget title", () => {
   return (
     <div style={{ margin: "100px" }}>
       <WidgetTitle >This is an widget title</WidgetTitle>
+    </div>
+  );
+});
+
+storiesOf("Components / Typography", module).add("Error", () => {
+  return (
+    <div style={{ margin: "100px" }}>
+      <ErrorBlock>This is an error</ErrorBlock>
     </div>
   );
 });

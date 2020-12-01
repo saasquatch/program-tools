@@ -90,3 +90,8 @@ export const WidgetTitle = styled.h2`
   margin: 0px;
   padding: 0px;
 `
+
+export const ErrorBlock = styled(P)`
+  color: #f92929;
+  padding: 5px 0px;
+`
