@@ -1,8 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { ColumnContainer, RowContainer, StyledHR, WidgetContainer } from "./Layouts";
+import {
+  ColumnContainer,
+  RowContainer,
+  StyledHR,
+  WidgetContainer,
+} from "./Layouts";
 import { H3, P } from "./Typography";
-import { TextLink as TextButton} from "./TextButton"
+import { TextLink as TextButton } from "./TextButton";
 import { Icon } from "./Icons";
 
 const RequiredSpan = styled(H3)`
@@ -41,7 +46,9 @@ export const ActionsArrayTemplate = (props: any) => {
               className={element.className}
               gapSize={"0px"}
             >
-              <RowContainer style={{ width: "100%", justifyContent:"space-between"}}>
+              <RowContainer
+                style={{ width: "100%", justifyContent: "space-between" }}
+              >
                 <H3 noMargin={true}>Action {index + 1}</H3>
                 <RowContainer>
                   {element.hasMoveUp ? (
@@ -51,11 +58,19 @@ export const ActionsArrayTemplate = (props: any) => {
                         element.index - 1
                       )}
                     >
-                      <Icon fontSize={"14px"} color={"#7C7C7C"} icon="icon-sqh-chevron-up" />
+                      <Icon
+                        fontSize={"14px"}
+                        color={"#7C7C7C"}
+                        icon="icon-sqh-chevron-up"
+                      />
                     </TextButton>
                   ) : (
                     <P noMargin={true} color={"#e2e2e2"}>
-                      <Icon fontSize={"14px"} color={"#e2e2e2"} icon="icon-sqh-chevron-up" />
+                      <Icon
+                        fontSize={"14px"}
+                        color={"#e2e2e2"}
+                        icon="icon-sqh-chevron-up"
+                      />
                     </P>
                   )}
                   {element.hasMoveDown ? (
@@ -65,11 +80,19 @@ export const ActionsArrayTemplate = (props: any) => {
                         element.index + 1
                       )}
                     >
-                      <Icon fontSize={"14px"} color={"#7C7C7C"} icon="icon-sqh-chevron-down" />
+                      <Icon
+                        fontSize={"14px"}
+                        color={"#7C7C7C"}
+                        icon="icon-sqh-chevron-down"
+                      />
                     </TextButton>
                   ) : (
                     <P noMargin={true} color={"#e2e2e2"}>
-                      <Icon fontSize={"14px"} color={"#e2e2e2"} icon="icon-sqh-chevron-down" />
+                      <Icon
+                        fontSize={"14px"}
+                        color={"#e2e2e2"}
+                        icon="icon-sqh-chevron-down"
+                      />
                     </P>
                   )}
                   <TextButton onClick={element.onDropIndexClick(element.index)}>
@@ -77,7 +100,7 @@ export const ActionsArrayTemplate = (props: any) => {
                   </TextButton>
                 </RowContainer>
               </RowContainer>
-              <StyledHR style={{marginTop:"20px", marginBottom:"-20px"}}/>
+              <StyledHR style={{ marginTop: "20px", marginBottom: "-20px" }} />
               <div>{element.children}</div>
             </WidgetContainer>
           );
@@ -98,10 +121,12 @@ function Label(props: LabelProps) {
     return null;
   }
   return (
-    <div style={{marginTop:"40px", marginBottom:"10px"}}><label className="control-label" htmlFor={id} >
-      <H3 noMargin={true}>{label}</H3>
-      {required && <RequiredSpan> (required)</RequiredSpan>}
-    </label></div>
+    <div style={{ marginTop: "40px", marginBottom: "10px" }}>
+      <label className="control-label" htmlFor={id}>
+        <H3 noMargin={true}>{label}</H3>
+        {required && <RequiredSpan> (required)</RequiredSpan>}
+      </label>
+    </div>
   );
 }
 
@@ -123,7 +148,9 @@ export function DefaultTemplate(props: DefaultTemplateProps) {
   return (
     <div>
       {displayLabel && <Label label={label} required={required} id={id} />}
-      {displayLabel && description ? <P noMargin={true}>{description}</P> : null}
+      {displayLabel && description ? (
+        <P noMargin={true}>{description}</P>
+      ) : null}
       {children}
       {errors}
       {help}

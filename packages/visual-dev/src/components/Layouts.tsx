@@ -40,12 +40,12 @@ export const RowContainer = styled.div<{gapSize?: string}>`
 `
 
 export const RJSFContainer = styled.div`
-
+  
   & fieldset {
     border: 0;
   }
 
-  & input[type=text], & select, & textarea {
+& input[type=text], & select, & textarea {
 
     border-radius: 5px;
     border: solid 2px #e2e2e2;
@@ -72,7 +72,7 @@ export const RJSFContainer = styled.div`
     margin-top: 0;
     margin-bottom: 10px;
   }
-
+  
   & textarea {
     width: 400px;
   }
@@ -91,5 +91,11 @@ export const RJSFContainer = styled.div`
   & input[type=text] {
     padding-left: 10px;
     padding-right: 2px;
+  }
+
+  & * {
+    &:disabled{
+      cursor: default;
+    }
   }
 `
