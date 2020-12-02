@@ -6,6 +6,8 @@ import { P } from "../Typography";
 import Form from "react-jsonschema-form";
 import { JSONSchema6 } from "json-schema";
 import { ActionsArrayTemplate, DefaultTemplate } from "../FormTemplates";
+import JSONataEditor from "../MapFieldsJsonata"
+import RadioCards from "../RadioCards"
 
 const submitActionsSchema: JSONSchema6 = {
   $id: "http://json-schema.org/draft-06/schema#",
@@ -197,22 +199,25 @@ const uiSchema = {
         "customScriptExpr",
       ],
       fieldMapExpr: {
-        "ui:title": "Update a record",
+        "ui:widget": JSONataEditor,
         "ui:options": {
           defaultValue: `{"":""}`,
         },
       },
       filterExpr: {
+        "ui:widget": JSONataEditor,
         "ui:options": {
           defaultValue: `{"":""}`,
         },
       },
       referenceabilityNameExpr: {
+        "ui:widget": JSONataEditor,
         "ui:options": {
-          defaultValue: `[""]`,
+          defaultValue: `""`,
+          initialValue: `""`,
           singleRowArray: true,
         },
-        "ui:title": "Referenceability name",
+        "ui:title": "Referenceability Name",
         "ui:description": (
           <P>
             The name of the Referenceability Type associated with the Contact
@@ -242,6 +247,7 @@ const uiSchema = {
       },
       type: {
         "ui:title": "Action type",
+        "ui:widget": RadioCards,
         "ui:options": {
           cardFormat: true,
           radioOptions: [
@@ -249,7 +255,7 @@ const uiSchema = {
               key: "create",
               label: "Create",
               description:
-                "Insert a new Salesforce record with data from your form.",
+                "Create a new Salesforce record with data from your form.",
               name: "action",
             },
             {
@@ -263,14 +269,14 @@ const uiSchema = {
               key: "create_or_update",
               label: "Create or update",
               description:
-                "Update and existing Salesforce record with data from your form. Create a new Salesforce record if the requested record is not found.",
+                "Update a Salesforce record with data from your form. Create a new Salesforce record if it doesn't exist.",
               name: "action",
             },
             {
               key: "custom_script",
               label: "Custom script",
               description:
-                "Execute a custom script with data from your form.",
+                "Configure and run a custom script using JSONata.",
               name: "action",
             },
             {

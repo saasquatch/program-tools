@@ -65,13 +65,13 @@ const TableWrapper = styled.table`
 `;
 
 const SmallPickerWrapper = styled.div`
-  max-width: 194px;
-  width: 194px;
+  max-width: 270px;
+  width: 270px;
   min-width: 100px;
   & .Select,
   & .Select-control {
-    max-width: 194px;
-    width: 194px;
+    max-width: 270px;
+    width: 270px;
     min-width: 100px;
   }
 `;
@@ -416,13 +416,16 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
     );
   };
 
-  function PathEditor({ ast, onChange }: PathEditorProps) {
+  function PathEditor(props: PathEditorProps) {
+    const { ast, onChange } = props
     const newSchemaProvider = SchemaProvider.makeSchemaProvider(
       inputDataSchema
     );
     const renderTypeSwitch = false;
     const changeType = () => onChange(nextAst(ast, defaultPath()));
-
+    
+    
+      
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
         {renderTypeSwitch && (

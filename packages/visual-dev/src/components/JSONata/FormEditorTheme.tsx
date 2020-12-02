@@ -124,7 +124,7 @@ export const TypeButton = styled.button`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   text-decoration: none;
   font-size: 13px;
-  text-align: left;
+  text-align: center;
 
   &:hover {
     background-color: #f9f9f9;
@@ -136,6 +136,7 @@ export const TBody = styled.tbody``;
 const ButtonContainer = styled.div`
   height: 30px;
   width: 126px;
+  margin-left: -6px;
 `;
 
 const ButtonMap = {
