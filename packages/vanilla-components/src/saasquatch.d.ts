@@ -35,6 +35,7 @@ interface ReferredByReferral {
     imageUrl: string;
   };
   dateReferralStarted: number;
+  dateConverted:number;
   rewards: Reward[];
 }
 
@@ -43,6 +44,7 @@ interface Referral {
   dateReferralStarted: number;
   dateReferralPaid: number;
   dateReferralEnded: number;
+  dateConverted:number;
   moderationStatus: string;
   referredUser: {
     firstName: string;
