@@ -40,6 +40,11 @@ export const RowContainer = styled.div<{gapSize?: string}>`
 `
 
 export const RJSFContainer = styled.div`
+
+  & fieldset {
+    border: 0;
+  }
+
   & input[type=text], & select, & textarea {
 
     border-radius: 5px;
@@ -61,6 +66,11 @@ export const RJSFContainer = styled.div`
     &:focus{
         border-color: #448ee1;
     }
+  }
+
+  & .field-description {
+    margin-top: 0;
+    margin-bottom: 10px;
   }
 
   & textarea {

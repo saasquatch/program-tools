@@ -28,7 +28,6 @@ import {
   FormButton,
   TRow,
   TypeSwitch,
-  AddRemoveGroup,
   TBody,
   nextAst,
   defaultPath,
@@ -37,6 +36,7 @@ import {
   getButton,
   updateOperator,
   DisplayRulesIDETextarea,
+  Callback,
 } from "./JSONata/FormEditorTheme";
 import { Form, FormControl } from "react-bootstrap";
 import { Path as PathSuggestion } from "jsonata-visual-editor/dist/schema/PathSuggester";
@@ -85,10 +85,33 @@ type Option = {
   data: PathSuggestion;
 };
 
+type AddRemoveGroupProps = {
+  addNew: Callback;
+  removeLast: Callback;
+  canDelete?: boolean;
+};
+
 function JSONataEditorView(props: JSONataEditorViewProps) {
   const { showButton, loading, defaultValue, singleRowArray } = props.states;
-  const { value, inputDataSchema, keyTitle, valueTitle } = props.data;
+  const { value, inputDataSchema, keyTitle, valueTitle, addButtonText, addButtonTextEmpty } = props.data;
   const { onChange } = props.callbacks;
+
+  function AddRemoveGroup({
+    addNew,
+  }: AddRemoveGroupProps) {
+    return (
+      <>
+        <FormButton
+          onClick={(e) => {
+            e.preventDefault();
+            addNew();
+          }}
+        >
+          {addButtonText}
+        </FormButton>
+      </>
+    );
+  }
 
   function ComparisonEditor({
     lhs,
@@ -217,12 +240,12 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
             </tr>
           </thead>
           <tbody>
-            {children.map((c, i) => {
+            {children.map((c) => {
               // const schemaK = "Key";
               // const schemaV = "Value";
               return (
                 <>
-                  <TRow key={i}>
+                  <TRow>
                     <TData>{c.key}</TData>
                     <TData>{c.value}</TData>
                     <TData style={{ paddingTop: "0px" }}>
@@ -309,7 +332,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
             JSONataUtils.addRule(currentChildren);
           }}
         >
-          + Add Rule
+          {addButtonText}
         </FormButton>
       </ButtonDiv>
     );
@@ -376,7 +399,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
                             );
                           }}
                         >
-                          + Add Condition
+                          {addButtonText}
                         </FormButton>
                         {!deleteDisabled && (
                           <>
@@ -492,7 +515,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
             onChange(defaultValue);
           }}
         >
-          + Add Rule(s)
+          {addButtonTextEmpty}
         </FormButton>
       </div>
     );
@@ -539,6 +562,8 @@ type JSONataEditorHookProps = {
     initialValue?: string;
     keyTitle?: string;
     valueTitle?: string;
+    addButtonText?: string;
+    addButtonTextEmpty?: string;
   };
   onChange: (value: string) => void;
 };
@@ -552,6 +577,11 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
   const keyTitle = props?.options?.keyTitle || "Key";
   console.log("options", props.options);
   const value = props.value || initialValue;
+  const addButtonText = props?.options?.addButtonText || "+ Add Field";
+  const addButtonTextEmpty = props?.options?.addButtonTextEmpty || "+ Add Field(s)";
+
+  console.log(props.options);
+  console.log(addButtonText);
 
   const loading = false;
   const showButton =
@@ -573,6 +603,8 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
       SchemaContext: null,
       valueTitle,
       keyTitle,
+      addButtonText,
+      addButtonTextEmpty,
     },
     callbacks: {
       onChange,
@@ -597,6 +629,8 @@ type JSONataEditorHookData = {
   inputDataSchema: Object;
   valueTitle?: string;
   keyTitle?: string;
+  addButtonText?: string;
+  addButtonTextEmpty?: string;
   SchemaContext: any; //TODO
 };
 

@@ -98,10 +98,10 @@ function Label(props: LabelProps) {
     return null;
   }
   return (
-    <label className="control-label" htmlFor={id} style={{marginTop:"40px", marginBottom:"10px"}}>
+    <div style={{marginTop:"40px", marginBottom:"10px"}}><label className="control-label" htmlFor={id} >
       <H3 noMargin={true}>{label}</H3>
       {required && <RequiredSpan> (required)</RequiredSpan>}
-    </label>
+    </label></div>
   );
 }
 
@@ -123,7 +123,7 @@ export function DefaultTemplate(props: DefaultTemplateProps) {
   return (
     <div>
       {displayLabel && <Label label={label} required={required} id={id} />}
-      {displayLabel && description ? description : null}
+      {displayLabel && description ? <P noMargin={true}>{description}</P> : null}
       {children}
       {errors}
       {help}

@@ -379,28 +379,6 @@ export function nextAst(ast: AST, defaultPath: AST): AST {
   throw new Error("Unhandled AST type");
 }
 
-type AddRemoveGroupProps = {
-  addNew: Callback;
-  removeLast: Callback;
-  canDelete?: boolean;
-};
-export function AddRemoveGroup({
-  addNew,
-}: AddRemoveGroupProps) {
-  return (
-    <>
-      <FormButton
-        onClick={(e) => {
-          e.preventDefault();
-          addNew();
-        }}
-      >
-        + Add Field
-      </FormButton>
-    </>
-  );
-}
-
 export function addNewObject(
   ast: ObjectUnaryNode,
   onChange: OnChange<JsonataASTNode>
