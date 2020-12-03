@@ -5,7 +5,7 @@ import {
   FormGroup
 } from "react-bootstrap";
 import styled from "styled-components";
-import { ArrayUnaryNode, JsonataASTNode, LiteralNode, ObjectUnaryNode, PathNode, serializer } from "jsonata-ui-core";
+import { ArrayUnaryNode, BinaryNode, JsonataASTNode, LiteralNode, PathNode, serializer } from "jsonata-ui-core";
 import {
   CombinerEditorProps,
   Context,
@@ -149,7 +149,7 @@ const ButtonMap = {
 export function TypeSwitch({
   ast,
   changeType,
-}: NodeEditorProps<LiteralNode | PathNode> & { changeType: Callback }) {
+}: NodeEditorProps<LiteralNode | PathNode | BinaryNode> & { changeType: Callback }) {
   const [dataType, setDataType] = useState("String");
 
   useEffect(() => {
@@ -220,14 +220,10 @@ function MathEditor({
     }
   }
 
-  console.log('ast', ast);
-  console.log('chang type', changeType);
-
   if (isEditing) {
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
-       
-        {/* <TypeSwitch ast={ast} onChange={onChange} changeType={changeType} /> */}
+        <TypeSwitch ast={ast} onChange={onChange} changeType={changeType} />
         <Form style={{ marginBottom: "0px", alignItems: "center" }}>
           <input
             ref={inputRef as React.RefObject<any>}
@@ -244,7 +240,7 @@ function MathEditor({
   } else {
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
-        {/* <TypeSwitch ast={ast} onChange={onChange} changeType={changeType} /> */}
+        <TypeSwitch ast={ast} onChange={onChange} changeType={changeType} />
         <StyledMathForm>
           <Math onClick={() => setIsEditing(true)}>
             <Context.Provider
@@ -377,26 +373,6 @@ export function nextAst(ast: AST, defaultPath: AST): AST {
     return { type: "string", value: serializer(ast), position: 0 } as AST;
   }
   throw new Error("Unhandled AST type");
-}
-
-export function addNewObject(
-  ast: ObjectUnaryNode,
-  onChange: OnChange<JsonataASTNode>
-) {
-  const newExpression = [
-    {
-      value: "",
-      type: "string",
-    },
-    {
-      value: "",
-      type: "string",
-    },
-  ];
-  onChange({
-    ...ast,
-    lhs: [...ast.lhs, newExpression],
-  } as ObjectUnaryNode);
 }
 
 export function addNewArray(

@@ -117,7 +117,6 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
     ast: ObjectUnaryNode,
     onChange: OnChange<JsonataASTNode>
   ) {
-    console.log("IM WORKING")
     const newExpression = defaultObject ? defaultObject : [
       {
         value: "",
@@ -597,7 +596,6 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
   const initialValue = props?.options?.initialValue || "";
   const valueTitle = props?.options?.valueTitle || "Value";
   const keyTitle = props?.options?.keyTitle || "Key";
-  console.log("options", props.options);
   const value = props.value || initialValue;
   const addButtonText = props?.options?.addButtonText || "+ Add Field";
   const addButtonTextEmpty = props?.options?.addButtonTextEmpty || "+ Add Field(s)";
