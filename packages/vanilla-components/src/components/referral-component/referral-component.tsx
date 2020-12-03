@@ -97,10 +97,12 @@ export class ReferralComponent {
     const { rewards } = this.referral;
     const referrer = this.referralvariables.referrervalue;
     const pending = this.referralvariables.pendingvalue;
-
     // When we have no reward values to show
     if (rewards.length == 0) {
-      return this.referraltype === "referrer" ? referrer : pending;
+      return this.referraltype === "referrer" ||
+        this.referraltype === "converted"
+        ? referrer
+        : pending;
     }
 
     // When we want to use the first reward pretty value
@@ -205,7 +207,8 @@ export class ReferralComponent {
                 ? this.rewardIsExpired()
                   ? "expired"
                   : ""
-                : this.referraltype === "referrer"
+                : this.referraltype === "referrer" ||
+                  this.referraltype === "converted"
                 ? "referrer"
                 : "pending"
             }`}
