@@ -49,8 +49,8 @@ export const TData = styled.td`
 
   padding-top: 6px;
   padding-bottom: 6px;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding-right: 10px;
+  padding-left: 0px;
   
   & .Select-control, & .Select {
     width: 100%;
@@ -78,7 +78,7 @@ export const TData = styled.td`
 
 export const THead = styled.th`
   text-align: left;
-  padding-left: 3px;
+  padding 0;
   color: #575757;
 `;
 

@@ -6,8 +6,8 @@ import { P } from "../Typography";
 import Form from "react-jsonschema-form";
 import { JSONSchema6 } from "json-schema";
 import { ActionsArrayTemplate, DefaultTemplate } from "../FormTemplates";
-import JSONataEditor from "../MapFieldsJsonata"
-import RadioCards from "../RadioCards"
+import JSONataEditor from "../MapFieldsJsonata";
+import RadioCards from "../RadioCards";
 
 const submitActionsSchema: JSONSchema6 = {
   $id: "http://json-schema.org/draft-06/schema#",
@@ -201,13 +201,37 @@ const uiSchema = {
       fieldMapExpr: {
         "ui:widget": JSONataEditor,
         "ui:options": {
-          defaultValue: `{"":""}`,
+          defaultValue: `{
+            "DEFAULT VALUE":SELECT123
+          }`,
+          // defaultObject: [
+          //   {
+          //     value: "DEFAULT OBJECT",
+          //     type: "string",
+          //   },
+          //   {
+          //     type: "path",
+          //     steps: [{ type: "name", value: "SELECTOR" }],
+          //   },
+          // ],
         },
       },
       filterExpr: {
         "ui:widget": JSONataEditor,
         "ui:options": {
-          defaultValue: `{"":""}`,
+          defaultValue: `{
+            "TEST":SELECTOR
+          }`,
+          defaultObject: [
+            {
+              value: "123",
+              type: "string",
+            },
+            {
+              type: "path",
+              steps: [{ type: "name", value: "SELECTOR" }],
+            },
+          ],
         },
       },
       referenceabilityNameExpr: {
@@ -239,9 +263,8 @@ const uiSchema = {
         "ui:widget": "textarea",
       },
       failOnDuplicateContacts: {
-        "ui:title": (
-          "Prevent contact records from being updated if duplicate contacts exist in Salesforce."
-        ),
+        "ui:title":
+          "Prevent contact records from being updated if duplicate contacts exist in Salesforce.",
         "ui:label": <P>Fail on Duplicate Contacts</P>,
         "ui:widget": "checkbox",
       },
@@ -275,8 +298,7 @@ const uiSchema = {
             {
               key: "custom_script",
               label: "Custom script",
-              description:
-                "Configure and run a custom script using JSONata.",
+              description: "Configure and run a custom script using JSONata.",
               name: "action",
             },
             {
@@ -307,7 +329,7 @@ const uiSchema = {
   },
 };
 
-storiesOf("Components / RJSF", module).add("Array", () => {
+storiesOf("Components / RJSF", module).add("Create Form", () => {
   return (
     <div style={{ margin: "100px" }}>
       <RJSFContainer>
@@ -318,7 +340,9 @@ storiesOf("Components / RJSF", module).add("Array", () => {
           FieldTemplate={DefaultTemplate}
           disabled={false}
           showErrorList={false}
-          onSubmit={() => {console.log("submitted")}}
+          onSubmit={() => {
+            console.log("submitted");
+          }}
           noHtml5Validate
         >
           <button type="submit" className="btn btn-info">

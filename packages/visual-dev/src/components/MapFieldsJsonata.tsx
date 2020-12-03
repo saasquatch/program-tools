@@ -1,5 +1,5 @@
 import jsonata from "jsonata";
-import { serializer, ConditionNode } from "jsonata-ui-core";
+import { serializer, ConditionNode, ObjectUnaryNode, JsonataASTNode } from "jsonata-ui-core";
 import {
   ConditionEditorProps,
   Editor,
@@ -13,6 +13,7 @@ import {
   RootNodeEditorProps,
   NodeEditorProps,
   SchemaProvider,
+  OnChange,
 } from "jsonata-visual-editor";
 import React, { useState } from "react";
 
@@ -31,7 +32,6 @@ import {
   TBody,
   nextAst,
   defaultPath,
-  addNewObject,
   addNewArray,
   getButton,
   updateOperator,
@@ -93,7 +93,7 @@ type AddRemoveGroupProps = {
 
 function JSONataEditorView(props: JSONataEditorViewProps) {
   const { showButton, loading, defaultValue, singleRowArray } = props.states;
-  const { value, inputDataSchema, keyTitle, valueTitle, addButtonText, addButtonTextEmpty } = props.data;
+  const { value, inputDataSchema, keyTitle, valueTitle, addButtonText, addButtonTextEmpty, defaultObject } = props.data;
   const { onChange } = props.callbacks;
 
   function AddRemoveGroup({
@@ -111,6 +111,27 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
         </FormButton>
       </>
     );
+  }
+
+  function addNewObject(
+    ast: ObjectUnaryNode,
+    onChange: OnChange<JsonataASTNode>
+  ) {
+    console.log("IM WORKING")
+    const newExpression = defaultObject ? defaultObject : [
+      {
+        value: "",
+        type: "string",
+      },
+      {
+        type:"path",
+        steps: [{type:"name",value:"select"}]
+      },
+    ];
+    onChange({
+      ...ast,
+      lhs: [...ast.lhs, newExpression],
+    } as ObjectUnaryNode);
   }
 
   function ComparisonEditor({
@@ -564,6 +585,7 @@ type JSONataEditorHookProps = {
     valueTitle?: string;
     addButtonText?: string;
     addButtonTextEmpty?: string;
+    defaultObject?: object;
   };
   onChange: (value: string) => void;
 };
@@ -579,9 +601,7 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
   const value = props.value || initialValue;
   const addButtonText = props?.options?.addButtonText || "+ Add Field";
   const addButtonTextEmpty = props?.options?.addButtonTextEmpty || "+ Add Field(s)";
-
-  console.log(props.options);
-  console.log(addButtonText);
+  const defaultObject = props?.options?.defaultObject;
 
   const loading = false;
   const showButton =
@@ -605,6 +625,7 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
       keyTitle,
       addButtonText,
       addButtonTextEmpty,
+      defaultObject,
     },
     callbacks: {
       onChange,
@@ -631,6 +652,7 @@ type JSONataEditorHookData = {
   keyTitle?: string;
   addButtonText?: string;
   addButtonTextEmpty?: string;
+  defaultObject?: object;
   SchemaContext: any; //TODO
 };
 
