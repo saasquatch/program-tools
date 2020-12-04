@@ -91,7 +91,7 @@ export const WidgetTitle = styled.h2`
   padding: 0px;
 `
 
-export const ErrorBlock = styled(P)`
+export const ErrorBlock = styled(P)<{margin?: string}>`
   color: #f92929;
-  padding: 5px 0px;
+  margin: ${(props) => props.margin || `0px`};
 `

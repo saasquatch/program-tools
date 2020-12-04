@@ -11,6 +11,7 @@ import JSONataEditor from "./components/MapFieldsJsonata"
 import { PlatformSignInButton, PrimaryButton, PrimaryButtonNew, SecondaryButton } from "./components/Buttons";
 import { ActionsArrayTemplate, DefaultTemplate } from "./components/FormTemplates";
 import { Icon } from "./components/Icons";
+import JSONataUtils from "./components/JSONata/JSONataUtils";
 
 export {
   MyComponent,
@@ -47,4 +48,5 @@ export {
   Icon,
   ErrorBlock,
   DefaultTemplate,
+  JSONataUtils,
 };
