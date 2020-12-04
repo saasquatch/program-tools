@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/visual-dev",
-  "version": "0.0.2-21",
+  "version": "0.0.2-22",
   "description": "SaaSquatch visual dev",
   "main": "build/index.js",
   "module": "build/index.es.js",
@@ -12,9 +12,6 @@
     "test": "echo test",
     "storybook": "start-storybook"
   },
-  "files": [
-    "build/"
-  ],
   "keywords": [],
   "author": "SaaSquatch Team",
   "license": "MIT",
