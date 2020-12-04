@@ -224,12 +224,12 @@ const uiSchema = {
           }`,
           defaultObject: [
             {
-              value: "123",
+              value: "",
               type: "string",
             },
             {
               type: "path",
-              steps: [{ type: "name", value: "SELECTOR" }],
+              steps: [{ type: "name", value: "select" }],
             },
           ],
         },
