@@ -189,6 +189,7 @@ const PrimaryButtonStyled = styled.button<PBProps>`
   font-weight: 600;
   font-size: 13px;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
+  cursor: pointer;
   &:hover,
   &:active,
   &:focus {
@@ -306,6 +307,7 @@ export const SecondaryButton = styled.button`
   border: 1px solid ${(props) => props.color || `#a6b9bd`};
   color: #575757;
   font-weight: 600;
+  cursor: pointer;
   &:hover {
     background: ${(props) => props.color || `#a6b9bd`};
     border: 1px solid ${(props) => props.color || `#a6b9bd`};
@@ -344,7 +346,7 @@ export const PlatformSignInButton = styled.button<{bgcolor?: string, hoverBGColo
   font-size: 13px;
   border: 0;
   border-radius: 5px;
-
+  cursor: pointer;
   &:hover{
     background-color: ${(props) => props.hoverBGColor || `#888888`};
     cursor: pointer;

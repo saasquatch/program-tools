@@ -48,6 +48,7 @@ const Icon = styled.i<IProps>`
   font-weight: ${(props) => props.fontWeight};
   position: relative;
   top: ${(props) => `${props.top}px`};
+  cursor: pointer;
 `;
 
 export const TextLinkStyle = styled.button<TLSProps>`
@@ -58,6 +59,7 @@ export const TextLinkStyle = styled.button<TLSProps>`
   margin: ${(props) => props.margin};
   background: transparent;
   outline: none;
+  cursor: pointer;
   color: ${(props) =>
     props.disabled
       ? `#E2E2E2`

@@ -17,6 +17,17 @@ const RequiredSpan = styled(H3)`
   margin: 0;
 `;
 
+const DescriptionContainer = styled.div`
+  margin-bottom: 15px;
+
+  p {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    color: #575757;
+  }
+`
+
 type LabelProps = {
   label: string | React.ReactElement;
   required: boolean;
@@ -122,7 +133,7 @@ function Label(props: LabelProps) {
   }
   return (
     <div style={{ marginTop: "40px", marginBottom: "10px" }}>
-      <label className="control-label" htmlFor={id}>
+      <label className="control-label" htmlFor={id} style={{marginBottom:"0px"}}>
         <H3 noMargin={true}>{label}</H3>
         {required && <RequiredSpan> (required)</RequiredSpan>}
       </label>
@@ -149,7 +160,7 @@ export function DefaultTemplate(props: DefaultTemplateProps) {
     <div>
       {displayLabel && <Label label={label} required={required} id={id} />}
       {displayLabel && description ? (
-        <P noMargin={true}>{description}</P>
+        <DescriptionContainer>{description}</DescriptionContainer>
       ) : null}
       {children}
       {errors}
