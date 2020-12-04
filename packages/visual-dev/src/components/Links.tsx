@@ -10,6 +10,7 @@ export const Link = styled("a")<{blue?: boolean, bold?: boolean}>`
   color: ${props => (props.blue ? '#0088cc' : '#7c7c7c')} ;
   font-weight: ${props => (props.bold ? 'bold' : 'normal')} ;
   text-decoration: none;
+  cursor: pointer;
   &:hover {
     color: ${props => (props.blue ? '#005580' : '#606060')} ;
   }
