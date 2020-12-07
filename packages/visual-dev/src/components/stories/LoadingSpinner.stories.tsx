@@ -11,6 +11,14 @@ storiesOf("Components / Loading Spinner", module).add("Normal", () => {
   );
 });
 
+storiesOf("Components / Loading Spinner", module).add("Normal with props", () => {
+  return (
+    <div style={{ margin: "100px" }}>
+      <LoadingSpinner left={"50px"} paddingRight={"10px"} right={"10px"} bottom={"5px"} />
+    </div>
+  );
+});
+
 storiesOf("Components / Loading Spinner", module).add("Large", () => {
   return (
     <div style={{ margin: "100px" }}>

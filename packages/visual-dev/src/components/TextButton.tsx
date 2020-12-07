@@ -21,10 +21,10 @@ interface TLProps extends TLSProps {
   fontWeight?: FontWeight;
   top?: number;
   fontSize?: number;
-  customStyle?: CSSProperties | undefined;
+  customStyle?: CSSProperties;
   disabled?: boolean;
   orange?: boolean;
-  type?: "button" | "submit" | "reset" | undefined;
+  type?: "button" | "submit" | "reset";
 }
 
 interface IProps {

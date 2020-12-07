@@ -2,12 +2,12 @@ import React, { SyntheticEvent, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 interface PBProps {
-  padding?: string | false;
-  buttonColor?: string | false;
-  darkercolor?: string | false;
-  disabledcolor?: string | false;
+  padding?: string;
+  buttonColor?: string;
+  darkercolor?: string;
+  disabledcolor?: string;
   children: any[] | string;
-  onClick: any;
+  onClick: (e: SyntheticEvent) => Promise<void> | void;
   loading?: boolean;
   disabled?: boolean;
 }
@@ -178,7 +178,6 @@ export const PrimaryButton = ({
   );
 };
 
-// TODO: make one Primary Button to rule them all!
 const PrimaryButtonStyled = styled.button<PBProps>`
   border-radius: 20px;
   min-width: 100px;
@@ -214,7 +213,7 @@ const PrimaryButtonStyled = styled.button<PBProps>`
 // Primary Button ends
 
 interface IPrimaryButton extends PBProps {
-  onClick: any;
+  onClick: (e: SyntheticEvent) => Promise<void> | void;
   disabled?: boolean;
   success?: boolean;
   successText?: string;
@@ -240,8 +239,6 @@ export const PrimaryButtonNew = (props: IPrimaryButton) => {
 
   const successfulClick = success && justClicked;
 
-  // TODO: how do I check if the onClick is successful? (I guess the success result comes from the props.success)
-  // TODO: build in a way to have the checkmark persist instead of going away.
   async function onClickTimer(e : SyntheticEvent) {
     try {
       await onClick(e);
@@ -255,10 +252,10 @@ export const PrimaryButtonNew = (props: IPrimaryButton) => {
 
   return (
     <PrimaryButton
-      buttonColor={buttonColor || (successfulClick && `#57AC59`)}
-      darkercolor={darkercolor || (successfulClick && `#57AC59`)}
+      buttonColor={successfulClick ? `#57AC59` : buttonColor }
+      darkercolor={successfulClick ? `#57AC59` : darkercolor}
       disabledcolor={disabledcolor}
-      padding={padding || (successfulClick && `3px 30px 3px 19px`)}
+      padding={successfulClick ? `3px 30px 3px 19px` : padding}
       onClick={onClickTimer}
       disabled={disabled}
       loading={loading}

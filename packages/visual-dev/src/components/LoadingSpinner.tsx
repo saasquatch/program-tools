@@ -5,6 +5,13 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
+interface RingProps {
+  bottom?: string;
+  right?: string;
+  left?: string;
+  paddingRight?: string;
+}
+
 const rotate = keyframes`
    from {      
      transform: rotate(0deg);    
@@ -38,20 +45,17 @@ export const RingDefault = styled.div`
   }
 `;
 
+
 // SMALL LOADING SPINNER FOR INSIDE OF BUTTONS while loading
-const RingSmall = styled(RingDefault)`
+const RingSmall = styled(RingDefault)<RingProps>`
   position: relative;
   bottom: ${props =>
-    // @ts-ignore
     props.bottom || `14px`};
   right: ${props =>
-    // @ts-ignore
     props.right || `2px`};
   left: ${props =>
-    // @ts-ignore
     props.left || `unset`};
   padding-right: ${props =>
-      // @ts-ignore
       props.paddingRight || `unset`}
     div {
     width: 14px;
@@ -62,12 +66,10 @@ const RingSmall = styled(RingDefault)`
   }
 `;
 
-const LoadingSpinner = ({ ...props }) => {
+const LoadingSpinner = ({ ...props } : RingProps) => {
   const { bottom, right, left, paddingRight } = props;
-  // @ts-ignore
   return (
     <RingSmall
-    // @ts-expect-error - bad typing
       bottom={bottom}
       right={right}
       left={left}
