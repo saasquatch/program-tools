@@ -1,4 +1,3 @@
-// @ts-nocheck
 import * as React from "react";
 import ArrowRenderer from "./ArrowRenderer";
 import { SelectComponentsProps } from "react-select/src/Select";
@@ -32,7 +31,7 @@ const NarrowWrapper = styled.div`
   & .Select--single > .Select-control .Select-value {
     line-height: 27px;
   }
-  
+
   &. Select-value {
     line-height: 27px;
   }
@@ -62,20 +61,24 @@ const StyleWrapper = styled.div`
 `;
 
 export const CreatableSelect = (props: SelectComponentsProps) => (
-    <StyleWrapper>
-      <DefaultSelect.Creatable arrowRenderer={ArrowRenderer} {...props} />
-    </StyleWrapper>
+  <StyleWrapper>
+    {/*
+      // @ts-ignore -- broken types from react-select*/}
+    <DefaultSelect.Creatable arrowRenderer={ArrowRenderer} {...props} />
+  </StyleWrapper>
 );
 
 export const Select = (props: SelectComponentsProps) => (
-    <StyleWrapper>
-      <DefaultSelect arrowRenderer={ArrowRenderer} {...props} />
-    </StyleWrapper>
+  <StyleWrapper>
+    <DefaultSelect arrowRenderer={ArrowRenderer} {...props} />
+  </StyleWrapper>
 );
 
 export const CreatableSelectNarrow = (props: SelectComponentsProps) => (
   <NarrowWrapper>
     <StyleWrapper>
+      {/*
+        // @ts-ignore -- broken types from react-select*/}
       <DefaultSelect.Creatable arrowRenderer={ArrowRenderer} {...props} />
     </StyleWrapper>
   </NarrowWrapper>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { CSSProperties } from "react";
+import { CSSProperties, SyntheticEvent } from "react";
 
 type Margin = "0 16px";
 
@@ -17,14 +17,14 @@ interface TLSProps {
 interface TLProps extends TLSProps {
   // See: https://github.com/typescript-cheatsheets/react#useful-react-prop-type-examples
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick: (e: SyntheticEvent) => Promise<void>;
   fontWeight?: FontWeight;
   top?: number;
   fontSize?: number;
-  customStyle?: CSSProperties | undefined;
+  customStyle?: CSSProperties;
   disabled?: boolean;
   orange?: boolean;
-  type?: "button" | "submit" | "reset" | undefined;
+  type?: "button" | "submit" | "reset";
 }
 
 interface IProps {
