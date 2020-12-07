@@ -7,7 +7,7 @@ interface PBProps {
   darkercolor?: string;
   disabledcolor?: string;
   children: any[] | string;
-  onClick: (e: SyntheticEvent) => Promise<void> | void;
+  onClick: (e: SyntheticEvent) => Promise<void>;
   loading?: boolean;
   disabled?: boolean;
 }
@@ -213,7 +213,7 @@ const PrimaryButtonStyled = styled.button<PBProps>`
 // Primary Button ends
 
 interface IPrimaryButton extends PBProps {
-  onClick: (e: SyntheticEvent) => Promise<void> | void;
+  onClick: (e: SyntheticEvent) => Promise<void>;
   disabled?: boolean;
   success?: boolean;
   successText?: string;
