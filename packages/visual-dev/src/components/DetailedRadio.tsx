@@ -150,7 +150,6 @@ const DetailedRadio: React.FC<DetailedRadioProps> = ({
   disabled = false,
   value,
 }) => {
-  console.log("NAME", name)
   return (
     <>
       <StandardizedRadioStyles>
