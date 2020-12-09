@@ -25,17 +25,18 @@ const StyledOption = styled.div`
 `;
 
 type AST = JsonataASTNode;
-type Option = {
-  type: "suggested";
-  label: string;
-  value: AST;
-  data: PathSuggestion;
-}
+type Option =
   | {
-    type: "created";
-    label: string;
-    value: AST;
-  };
+      type: "suggested";
+      label: string;
+      value: AST;
+      data: PathSuggestion;
+    }
+  | {
+      type: "created";
+      label: string;
+      value: AST;
+    };
 
 //@ts-ignore
 type CustomOptionProps = React.ComponentProps<typeof defaultComponents.Option>;
@@ -143,9 +144,9 @@ export default function PathEditor(props: PathEditorProps) {
   const option = foundOption
     ? foundOption
     : {
-      label: stringValue,
-      value: props.value,
-    };
+        label: stringValue,
+        value: props.value,
+      };
 
   return (
     <div>
@@ -154,7 +155,13 @@ export default function PathEditor(props: PathEditorProps) {
           e.preventDefault();
         }}
         clearable={false}
-        arrowRenderer={props?.hideArrow ? () => {return <></>} : ArrowRenderer}
+        arrowRenderer={
+          props?.hideArrow
+            ? () => {
+                return <></>;
+              }
+            : ArrowRenderer
+        }
         onNewOptionClick={handleCreate}
         defaultOptions
         options={schemaOptions}
