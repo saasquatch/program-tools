@@ -201,26 +201,12 @@ const uiSchema = {
       fieldMapExpr: {
         "ui:widget": JSONataEditor,
         "ui:options": {
-          defaultValue: `{
-            "DEFAULT VALUE":SELECT123
+          hideArrow: true,
+          initialValue: `{
+            "":\`Enter a value\`
           }`,
-          // defaultObject: [
-          //   {
-          //     value: "DEFAULT OBJECT",
-          //     type: "string",
-          //   },
-          //   {
-          //     type: "path",
-          //     steps: [{ type: "name", value: "SELECTOR" }],
-          //   },
-          // ],
-        },
-      },
-      filterExpr: {
-        "ui:widget": JSONataEditor,
-        "ui:options": {
           defaultValue: `{
-            "TEST":SELECTOR
+            "":\`Enter a value\`
           }`,
           defaultObject: [
             {
@@ -229,7 +215,25 @@ const uiSchema = {
             },
             {
               type: "path",
-              steps: [{ type: "name", value: "select" }],
+              steps: [{ type: "name", value: "Enter a value" }],
+            },
+          ],
+        },
+      },
+      filterExpr: {
+        "ui:widget": JSONataEditor,
+        "ui:options": {
+          defaultValue: `{
+            "":\`Enter a value\`
+          }`,
+          defaultObject: [
+            {
+              value: "",
+              type: "string",
+            },
+            {
+              type: "path",
+              steps: [{ type: "name", value: "Enter a value" }],
             },
           ],
         },

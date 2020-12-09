@@ -1,5 +1,10 @@
 import jsonata from "jsonata";
-import { serializer, ConditionNode, ObjectUnaryNode, JsonataASTNode } from "jsonata-ui-core";
+import {
+  serializer,
+  ConditionNode,
+  ObjectUnaryNode,
+  JsonataASTNode,
+} from "jsonata-ui-core";
 import {
   ConditionEditorProps,
   Editor,
@@ -91,14 +96,38 @@ type AddRemoveGroupProps = {
   canDelete?: boolean;
 };
 
+function isValidBasicExpression(newValue: AST): string | null {
+  const advancedOnly = jsonata(
+    `**[type = "function" or type = "lambda" or (type = "binary" and value = "&")]`
+  );
+  try {
+    if (advancedOnly.evaluate(newValue)) {
+      return "Can't use basic editor for advanced expressions. Try a simpler expression.";
+    }
+  } catch (e) {}
+  return null;
+}
+
 function JSONataEditorView(props: JSONataEditorViewProps) {
-  const { showButton, loading, defaultValue, singleRowArray } = props.states;
-  const { value, inputDataSchema, keyTitle, valueTitle, addButtonText, addButtonTextEmpty, defaultObject } = props.data;
+  const {
+    showButton,
+    loading,
+    defaultValue,
+    singleRowArray,
+    hideArrow,
+  } = props.states;
+  const {
+    value,
+    inputDataSchema,
+    keyTitle,
+    valueTitle,
+    addButtonText,
+    addButtonTextEmpty,
+    defaultObject,
+  } = props.data;
   const { onChange } = props.callbacks;
 
-  function AddRemoveGroup({
-    addNew,
-  }: AddRemoveGroupProps) {
+  function AddRemoveGroup({ addNew }: AddRemoveGroupProps) {
     return (
       <>
         <FormButton
@@ -117,16 +146,18 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
     ast: ObjectUnaryNode,
     onChange: OnChange<JsonataASTNode>
   ) {
-    const newExpression = defaultObject ? defaultObject : [
-      {
-        value: "",
-        type: "string",
-      },
-      {
-        type:"path",
-        steps: [{type:"name",value:"select"}]
-      },
-    ];
+    const newExpression = defaultObject
+      ? defaultObject
+      : [
+          {
+            value: "",
+            type: "string",
+          },
+          {
+            type: "path",
+            steps: [{ type: "name", value: "select" }],
+          },
+        ];
     onChange({
       ...ast,
       lhs: [...ast.lhs, newExpression],
@@ -247,14 +278,10 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
           <thead>
             <tr>
               <THead>
-                <H3>
-                  {keyTitle}
-                </H3>
+                <H3>{keyTitle}</H3>
               </THead>
               <THead>
-                <H3>
-                  {valueTitle}
-                </H3>
+                <H3>{valueTitle}</H3>
               </THead>
               <THead />
             </tr>
@@ -460,15 +487,13 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
   };
 
   function PathEditor(props: PathEditorProps) {
-    const { ast, onChange } = props
+    const { ast, onChange } = props;
     const newSchemaProvider = SchemaProvider.makeSchemaProvider(
       inputDataSchema
     );
     const renderTypeSwitch = false;
     const changeType = () => onChange(nextAst(ast, defaultPath()));
-    
-    
-      
+
     return (
       <div style={{ display: "flex", flexDirection: "row" }}>
         {renderTypeSwitch && (
@@ -476,6 +501,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
         )}
         <SmallPickerWrapper>
           <PathPicker
+            hideArrow={hideArrow}
             value={ast}
             onChange={(option) => onChange(option.value as AST)}
             schemaProvider={newSchemaProvider}
@@ -547,7 +573,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
       <Editor
         text={value || defaultValue}
         onChange={onChange}
-        // isValidBasicExpression={JSONataUtils.isValidBasicExpression}
+        isValidBasicExpression={isValidBasicExpression}
         theme={{
           ...SaasquatchTheme,
           ...FormEditorTheme,
@@ -585,6 +611,7 @@ type JSONataEditorHookProps = {
     addButtonText?: string;
     addButtonTextEmpty?: string;
     defaultObject?: object;
+    hideArrow?: boolean;
   };
   onChange: (value: string) => void;
 };
@@ -598,8 +625,10 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
   const keyTitle = props?.options?.keyTitle || "Key";
   const value = props.value || initialValue;
   const addButtonText = props?.options?.addButtonText || "+ Add Field";
-  const addButtonTextEmpty = props?.options?.addButtonTextEmpty || "+ Add Field(s)";
+  const addButtonTextEmpty =
+    props?.options?.addButtonTextEmpty || "+ Add Field(s)";
   const defaultObject = props?.options?.defaultObject;
+  const hideArrow = props?.options?.hideArrow;
 
   const loading = false;
   const showButton =
@@ -614,6 +643,7 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
       loading,
       defaultValue,
       singleRowArray,
+      hideArrow,
     },
     data: {
       value,
@@ -641,6 +671,7 @@ type JSONataEditorHookStates = {
   loading: boolean;
   defaultValue: string;
   singleRowArray?: boolean;
+  hideArrow?: boolean;
 };
 
 type JSONataEditorHookData = {
