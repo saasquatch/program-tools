@@ -98,6 +98,7 @@ type PathEditorProps = {
   onChange: (ast: Option) => void;
   value: AST;
   schemaProvider?: SchemaProvider;
+  hideArrow?: boolean;
 };
 
 export function Reducer(acc: Option[], p: PathSuggestion): Option[] {
@@ -153,7 +154,7 @@ export default function PathEditor(props: PathEditorProps) {
           e.preventDefault();
         }}
         clearable={false}
-        arrowRenderer={ArrowRenderer}
+        arrowRenderer={props?.hideArrow ? () => {return <></>} : ArrowRenderer}
         onNewOptionClick={handleCreate}
         defaultOptions
         options={schemaOptions}

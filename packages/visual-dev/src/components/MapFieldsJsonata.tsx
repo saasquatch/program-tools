@@ -91,8 +91,18 @@ type AddRemoveGroupProps = {
   canDelete?: boolean;
 };
 
+function isValidBasicExpression(newValue: AST): string | null {
+  const advancedOnly = jsonata(`**[type = "function" or type = "lambda" or (type = "binary" and value = "&")]`);
+  try {
+    if(advancedOnly.evaluate(newValue)) {
+      return "Can't use basic editor for advanced expressions. Try a simpler expression."
+    } 
+  } catch (e) {}
+  return null;
+}
+
 function JSONataEditorView(props: JSONataEditorViewProps) {
-  const { showButton, loading, defaultValue, singleRowArray } = props.states;
+  const { showButton, loading, defaultValue, singleRowArray, hideArrow } = props.states;
   const { value, inputDataSchema, keyTitle, valueTitle, addButtonText, addButtonTextEmpty, defaultObject } = props.data;
   const { onChange } = props.callbacks;
 
@@ -476,6 +486,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
         )}
         <SmallPickerWrapper>
           <PathPicker
+            hideArrow={hideArrow}
             value={ast}
             onChange={(option) => onChange(option.value as AST)}
             schemaProvider={newSchemaProvider}
@@ -547,7 +558,7 @@ function JSONataEditorView(props: JSONataEditorViewProps) {
       <Editor
         text={value || defaultValue}
         onChange={onChange}
-        // isValidBasicExpression={JSONataUtils.isValidBasicExpression}
+        isValidBasicExpression={isValidBasicExpression}
         theme={{
           ...SaasquatchTheme,
           ...FormEditorTheme,
@@ -585,6 +596,7 @@ type JSONataEditorHookProps = {
     addButtonText?: string;
     addButtonTextEmpty?: string;
     defaultObject?: object;
+    hideArrow?: boolean;
   };
   onChange: (value: string) => void;
 };
@@ -600,6 +612,7 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
   const addButtonText = props?.options?.addButtonText || "+ Add Field";
   const addButtonTextEmpty = props?.options?.addButtonTextEmpty || "+ Add Field(s)";
   const defaultObject = props?.options?.defaultObject;
+  const hideArrow = props?.options?.hideArrow;
 
   const loading = false;
   const showButton =
@@ -614,6 +627,7 @@ const JSONataEditor: React.FC<JSONataEditorHookProps> = (props) => {
       loading,
       defaultValue,
       singleRowArray,
+      hideArrow,
     },
     data: {
       value,
@@ -641,6 +655,7 @@ type JSONataEditorHookStates = {
   loading: boolean;
   defaultValue: string;
   singleRowArray?: boolean;
+  hideArrow?: boolean;
 };
 
 type JSONataEditorHookData = {
