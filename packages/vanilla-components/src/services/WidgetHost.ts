@@ -52,7 +52,7 @@ const demoUser = {
     FBMESSENGER: "http://short.staging.referralsaasquatch.com/mwjFXu",
   },
   referrals: {
-    totalCount: 8,
+    totalCount: 9,
     data: [
       {
         dateReferralStarted: today.setDate(today.getDate() - 2),
@@ -120,6 +120,16 @@ const demoUser = {
           { prettyValue: "5%", statuses: ["AVAILABLE"] },
         ],
       },
+      {
+        dateConverted: 1606943971468,
+        dateReferralStarted: 1606943971468,
+        referredUser: {
+          imageUrl: "",
+          firstName: "Seamus",
+          lastName: "Finnigan",
+        },
+        rewards: [],
+      }
     ],
   },
   referredByReferral: {
@@ -423,6 +433,7 @@ const API = {
                 ) {
                   totalCount
                   data {
+                    dateConverted
                     dateReferralStarted
                     referredUser {
                       firstName
