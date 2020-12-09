@@ -117,7 +117,8 @@ export class ReferralList {
 
     if (this.referrals) {
       referralsRow = this.referrals.map((ref) => {
-        const referraltype = ref.rewards.length > 0 ? "converted" : "pending";
+        const referraltype =
+          ref.rewards.length > 0 || ref.dateConverted ? "converted" : "pending";
         return (
           <sqh-referral-component
             id={uuid()}

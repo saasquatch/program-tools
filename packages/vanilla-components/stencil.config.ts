@@ -5,17 +5,14 @@ export const config: Config = {
   namespace: "widget-components",
   globalScript: "src/global/global.ts",
   buildEs5: true,
-  outputTargets: [
-    {
-      type: "dist",
+  //@ts-ignore
+  outputTargets: process.env.NODE_ENV === "dev" ? [] : [
+    { 
+      type: 'dist',
       copy: [
         { src: "entrypoint.js" }
       ]
-    },
-    // {
-    //   type: "www",
-    //   serviceWorker: false,
-    // },
+    }
   ],
   plugins: [sass()],
   extras: {

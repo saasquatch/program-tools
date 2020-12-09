@@ -12,9 +12,6 @@
     "test": "echo test",
     "storybook": "start-storybook"
   },
-  "files": [
-    "build/"
-  ],
   "keywords": [],
   "author": "SaaSquatch Team",
   "license": "MIT",
