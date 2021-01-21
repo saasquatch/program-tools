@@ -89,7 +89,7 @@ export default class Transaction {
     user: User,
     programType: ProgramType,
     analyticsKey: string,
-    analyticsDedupeId: string,
+    analyticsDedupeId: string | null,
     timestamp: number,
   ) {
     const goalAnalytic = {
