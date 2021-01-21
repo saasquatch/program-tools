@@ -21,6 +21,10 @@ type ReferralRewardInput = {
   rewardSource?: string;
   status?: string;
   rewardProperties?: any;
+  overrideProperties?: {
+    dateScheduledFor?: number | null;
+    dateExpires?: number | null;
+  };
 };
 
 export default class Transaction {
