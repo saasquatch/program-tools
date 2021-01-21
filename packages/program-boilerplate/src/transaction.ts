@@ -249,6 +249,7 @@ export default class Transaction {
           id: user.id,
           accountId: user.accountId,
         },
+        rewardId,
         key: emailKey,
         queryVariables: queryVariables,
         query: rewardId
