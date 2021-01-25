@@ -88,6 +88,7 @@ export default class Transaction {
    * @param {string} analyticsKey      type of goal achieved
    * @param {string} analyticsDedupeId dedupe id of the analytic event
    * @param {number} timestamp         timestamp of the event
+   * @param {boolean} isConversion     whether the analytic should convert the referral
    */
   fireProgramGoalAnalytics(
     user: User,
@@ -95,6 +96,7 @@ export default class Transaction {
     analyticsKey: string,
     analyticsDedupeId: string | null,
     timestamp: number,
+    isConversion: boolean = true
   ) {
     const goalAnalytic = {
       eventType: 'PROGRAM_GOAL',
@@ -107,6 +109,7 @@ export default class Transaction {
           id: user.id,
           accountId: user.accountId,
         },
+        isConversion
       },
     };
 
