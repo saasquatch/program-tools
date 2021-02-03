@@ -14,7 +14,7 @@ import {
 
 const triggerSteps: StepDefinitions = ({ when }) => {
   when(
-    /^(?:the )?(PROGRAM_INTROSPECTION|PROGRAM_VALIDATION|AFTER_USER_CREATED_OR_UPDATED|AFTER_USER_EVENT_PROCESSED|REFERRAL)(?: trigger)? runs$/,
+    /^(?:the )?"?(PROGRAM_INTROSPECTION|PROGRAM_VALIDATION|AFTER_USER_CREATED_OR_UPDATED|AFTER_USER_EVENT_PROCESSED|REFERRAL)"?(?: trigger)? runs$/,
     (type: types.rpc.TriggerType) => {
       const currentState = getWorld().state.current || {};
       const { template, rules, programRewards } = currentState;
@@ -33,6 +33,7 @@ const triggerSteps: StepDefinitions = ({ when }) => {
             rules
           );
           break;
+
         default:
           body = getProgramTriggerJson({
             type,
@@ -49,15 +50,18 @@ const triggerSteps: StepDefinitions = ({ when }) => {
             getAUCOUTJson(undefined, getWorld().state.current.events)
           );
           break;
+
         case "AFTER_USER_EVENT_PROCESSED":
           body = deepmerge(body, getAUEPTJson(getWorld().state.current.events));
           break;
+
         case "REFERRAL":
           body = deepmerge(
             body,
             getReferralJson(undefined, getWorld().state.current.referral)
           );
           break;
+
         default:
           break;
       }

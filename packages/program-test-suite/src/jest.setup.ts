@@ -8,22 +8,35 @@ function hasTag(tag: string) {
   return match && match[1] && match[1].split(",").includes(tag);
 }
 
+function printState() {
+  const state = { ...getWorld().state };
+
+  state.current = {
+    ...state.current,
+    template: "REMOVED FOR CLARITY",
+  };
+
+  return JSON.stringify(state, null, 2);
+}
+
 beforeEach(() => {
+  // Reset the world between each test
+  getWorld().reset();
+
   if (hasTag("@debug")) {
     console.debug(`
 ===== State before "${expect.getState().currentTestName}" =====
-${JSON.stringify(getWorld().state, null, 2)}
+${printState()}
 ==================================================
     `);
   }
-  getWorld().reset();
 });
 
 afterEach(() => {
   if (hasTag("@debug")) {
     console.debug(`
 ===== State after "${expect.getState().currentTestName}" =====
-${JSON.stringify(getWorld().state, null, 2)}
+${printState()}
 ==================================================
     `);
   }

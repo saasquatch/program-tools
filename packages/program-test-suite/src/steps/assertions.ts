@@ -8,7 +8,7 @@ import { MutationStepRow, AnalyticsStepRow, ValidationStepRow } from "../types";
 
 const assertionSteps: StepDefinitions = ({ then }) => {
   then(
-    /the output template will include a (\S+) requirement/,
+    /^the output template will include a (\S+) requirement$/,
     (key: string) => {
       const reqs = getWorld().state.programTriggerResult.requirements;
       const reqFound = reqs.find((r: any) => r.key === key);
@@ -26,7 +26,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
 
   then("the following validation results will exist:", (data: any) => {
     const results = getWorld().state.programTriggerResult.validationResults;
-    data.hashes().forEach((row: ValidationStepRow) => {
+    data.forEach((row: ValidationStepRow) => {
       const relevantResult = results.find((r: any) => r.key === row.key);
       assert(relevantResult);
 
@@ -46,7 +46,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
       }
     );
 
-    data.hashes().forEach((row: MutationStepRow, idx: number) => {
+    data.forEach((row: MutationStepRow, idx: number) => {
       const reward = rewards[idx];
       assert(reward, `A reward at index ${idx} does not exist`);
       assert.strictEqual(
@@ -74,7 +74,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   });
 
   then("the following mutations will exist:", (data: any) => {
-    data.hashes().forEach((row: MutationStepRow) => {
+    data.forEach((row: MutationStepRow) => {
       switch (row.type) {
         case "reward":
           const relevantRewards = getWorld().state.programTriggerResult.mutations.filter(
@@ -112,7 +112,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   });
 
   then(
-    /there will not be a (\S+) analytic for the (\S+) user/,
+    /^there will not be a (\S+) analytic for the (\S+) user$/,
     (type: string, user: string) => {
       const relevantAnalytics = getWorld().state.programTriggerResult.analytics.filter(
         (a: any) => {
@@ -129,7 +129,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   );
 
   then("the following analytics will exist:", (data: any) => {
-    data.hashes().forEach((row: AnalyticsStepRow) => {
+    data.forEach((row: AnalyticsStepRow) => {
       const relevantAnalytics = getWorld().state.programTriggerResult.analytics.filter(
         (a: any) => {
           return (
@@ -159,7 +159,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   });
 
   then(
-    /there will be (\d+) (\S+) reward(s) for the (\S+) user/,
+    /^there will be (\d+) (\S+) reward(s) for the (\S+) user$/,
     (count: number, key: string, user: string) => {
       const relevantRewards = getWorld().state.programTriggerResult.mutations.filter(
         (m: any) => {
@@ -177,7 +177,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   );
 
   then(
-    /there will be (\d+) (\S+) email(s) for the (\S+) user/,
+    /^there will be (\d+) (\S+) email(s) for the (\S+) user$/,
     (count: number, key: string, user: string) => {
       const relevantRewards = getWorld().state.programTriggerResult.mutations.filter(
         (m: any) => {
@@ -194,26 +194,26 @@ const assertionSteps: StepDefinitions = ({ then }) => {
     }
   );
 
-  then(/the programId will be (\S+)/, (k: string) => {
+  then(/^the programId will be (\S+)$/, (k: string) => {
     assert.strictEqual(getWorld().state.programTriggerResult.programId, k);
   });
 
-  then(/the output will include a (\S+) event key trigger/, (key: string) => {
+  then(/^the output will include a (\S+) event key trigger$/, (key: string) => {
     const trigger = getWorld().state.programTriggerResult.trigger;
     assert(trigger.eventKeys.includes(key));
   });
 
-  then(/the output will not include a (\S+) email/, (key: string) => {
+  then(/^the output will not include a (\S+) email$/, (key: string) => {
     const emails = getWorld().state.programTriggerResult.emails;
     assert(!emails.some((e: any) => e.key === key));
   });
 
-  then(/the output will include a (\S+) email/, (key: string) => {
+  then(/^the output will include a (\S+) email$/, (key: string) => {
     const emails = getWorld().state.programTriggerResult.emails;
     assert(emails.some((e: any) => e.key === key));
   });
 
-  then(/the output will include a (\S+) reward key/, (key: string) => {
+  then(/^the output will include a (\S+) reward key$/, (key: string) => {
     const rewards = getWorld().state.programTriggerResult.rewards;
     assert(rewards.some((e: any) => e.key === key));
   });
@@ -237,7 +237,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
     }
   );
 
-  then("the output template will be unchanged", () => {
+  then("^the output template will be unchanged$", () => {
     assert.deepStrictEqual(
       getWorld().state.programTriggerResult,
       World.defaultTemplate

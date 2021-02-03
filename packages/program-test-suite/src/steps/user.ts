@@ -5,7 +5,7 @@ import { getWorld } from "../world";
 
 const userSteps: StepDefinitions = ({ given }) => {
   given(
-    /^the (?:referred )?user has custom field (\S*) equal to (\S*)$/,
+    /^the (?:referred )?user has custom field (\S+) equal to (\S+)$/,
     (field: string, val: string) => {
       getWorld().setState({
         current: {
@@ -20,7 +20,7 @@ const userSteps: StepDefinitions = ({ given }) => {
   );
 
   given(
-    /the (?:referred )?user (is|is not|isn't) blocked/,
+    /^the (?:referred )?user (is|is not|isn't) blocked$/,
     (blocked: string) => {
       getWorld().setState({
         current: {
@@ -32,7 +32,7 @@ const userSteps: StepDefinitions = ({ given }) => {
     }
   );
 
-  given(/the segment rules include segment (S*)/, (seg: string) => {
+  given(/^the segment rules include segment (S+)$/, (seg: string) => {
     const segments = getWorld().state.current.rules.userSegmentation || [];
     segments.push(seg);
 
@@ -46,7 +46,7 @@ const userSteps: StepDefinitions = ({ given }) => {
   });
 
   given(
-    /the (?:referred )?user belongs to segment (\S*)/,
+    /^the (?:referred )?user belongs to segment (\S+)$/,
     (segment: string) => {
       const segments = getWorld().state.current.user.segments || [];
       segments.push(segment);

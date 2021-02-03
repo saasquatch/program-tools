@@ -1,6 +1,3 @@
-/**
- * Represents a row in the mutations assertion step
- */
 export type MutationStepRow = {
   type: string;
   key: string;
@@ -9,9 +6,6 @@ export type MutationStepRow = {
   assignedCredit?: number;
 };
 
-/**
- * Represents a row in the analytics assertion step
- */
 export type AnalyticsStepRow = {
   type: string;
   count: string;

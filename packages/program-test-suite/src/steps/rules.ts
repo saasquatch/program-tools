@@ -21,7 +21,7 @@ const rulesSteps: StepDefinitions = ({ given }) => {
     });
   });
 
-  given(/the current time is (\d+)/, (time: number) => {
+  given(/^the current time is (\d+)$/, (time: number) => {
     getWorld().setState({
       current: {
         time,
