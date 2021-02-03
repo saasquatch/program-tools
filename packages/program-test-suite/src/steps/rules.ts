@@ -1,18 +1,18 @@
-import {World, Cucumber} from '../index';
+import { StepDefinitions } from "jest-cucumber";
 
-export function init(cucumber: Cucumber): void {
-  const {Given} = cucumber;
+import { getWorld } from "../world";
 
-  Given('there are no program rules', function(this: World) {
-    this.setState({
+const rulesSteps: StepDefinitions = ({ given }) => {
+  given("there are no program rules", () => {
+    getWorld().setState({
       current: {
         rules: undefined,
       },
     });
   });
 
-  Given('there are no reward rules', function(this: World) {
-    this.setState({
+  given("there are no reward rules", () => {
+    getWorld().setState({
       current: {
         rules: {
           rewardRules: undefined,
@@ -21,11 +21,13 @@ export function init(cucumber: Cucumber): void {
     });
   });
 
-  Given('the current time is {int}', function(this: World, time: number) {
-    this.setState({
+  given(/the current time is (\d+)/, (time: number) => {
+    getWorld().setState({
       current: {
         time,
       },
     });
   });
-}
+};
+
+export default rulesSteps;
