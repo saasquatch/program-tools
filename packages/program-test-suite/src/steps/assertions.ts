@@ -8,7 +8,7 @@ import { MutationStepRow, AnalyticsStepRow, ValidationStepRow } from "../types";
 
 const assertionSteps: StepDefinitions = ({ then }) => {
   then(
-    /^the output template will include a (\S+) requirement$/,
+    /^the output template will include a "?([^"]+)"? requirement$/,
     (key: string) => {
       const reqs = getWorld().state.programTriggerResult.requirements;
       const reqFound = reqs.find((r: any) => r.key === key);
@@ -112,7 +112,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   });
 
   then(
-    /^there will not be a (\S+) analytic for the (\S+) user$/,
+    /^there will not be a "?([^"]+)"? analytic for the "?([^"]+)"? user$/,
     (type: string, user: string) => {
       const relevantAnalytics = getWorld().state.programTriggerResult.analytics.filter(
         (a: any) => {
@@ -159,7 +159,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   });
 
   then(
-    /^there will be (\d+) (\S+) reward(s) for the (\S+) user$/,
+    /^there will be (\d+) "?([^"]+)"? reward(s) for the "?([^"]+)"? user$/,
     (count: number, key: string, user: string) => {
       const relevantRewards = getWorld().state.programTriggerResult.mutations.filter(
         (m: any) => {
@@ -177,7 +177,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   );
 
   then(
-    /^there will be (\d+) (\S+) email(s) for the (\S+) user$/,
+    /^there will be (\d+) "?([^"]+)"? email(s) for the "?([^"]+)"? user$/,
     (count: number, key: string, user: string) => {
       const relevantRewards = getWorld().state.programTriggerResult.mutations.filter(
         (m: any) => {
@@ -194,26 +194,29 @@ const assertionSteps: StepDefinitions = ({ then }) => {
     }
   );
 
-  then(/^the programId will be (\S+)$/, (k: string) => {
+  then(/^the programId will be "?([^"]+)"?$/, (k: string) => {
     assert.strictEqual(getWorld().state.programTriggerResult.programId, k);
   });
 
-  then(/^the output will include a (\S+) event key trigger$/, (key: string) => {
-    const trigger = getWorld().state.programTriggerResult.trigger;
-    assert(trigger.eventKeys.includes(key));
-  });
+  then(
+    /^the output will include a "?([^"]+)"? event key trigger$/,
+    (key: string) => {
+      const trigger = getWorld().state.programTriggerResult.trigger;
+      assert(trigger.eventKeys.includes(key));
+    }
+  );
 
-  then(/^the output will not include a (\S+) email$/, (key: string) => {
+  then(/^the output will not include a "?([^"]+)"? email$/, (key: string) => {
     const emails = getWorld().state.programTriggerResult.emails;
     assert(!emails.some((e: any) => e.key === key));
   });
 
-  then(/^the output will include a (\S+) email$/, (key: string) => {
+  then(/^the output will include a "?([^"]+)"? email$/, (key: string) => {
     const emails = getWorld().state.programTriggerResult.emails;
     assert(emails.some((e: any) => e.key === key));
   });
 
-  then(/^the output will include a (\S+) reward key$/, (key: string) => {
+  then(/^the output will include a "?([^"]+)"? reward key$/, (key: string) => {
     const rewards = getWorld().state.programTriggerResult.rewards;
     assert(rewards.some((e: any) => e.key === key));
   });

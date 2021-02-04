@@ -5,7 +5,7 @@ import { getWorld } from "../world";
 
 const referralSteps: StepDefinitions = ({ given }) => {
   given(
-    /^the referral has field (\S+) equal to (\S+)$/,
+    /^the referral has field "?([^"]+)"? equal to "?([^"]+)"?$/,
     (key: string, value: string) => {
       getWorld().setState({
         current: {
