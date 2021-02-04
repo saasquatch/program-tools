@@ -1,14 +1,12 @@
 {
   "name": "@saasquatch/program-test-suite",
-  "version": "2.0.0",
+  "version": "1.2.1",
   "description": "A collection of utilities for creating program unit tests",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "main": "dist/index.js",
   "license": "MIT",
   "dependencies": {
