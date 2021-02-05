@@ -270,7 +270,19 @@ const assertionSteps: StepDefinitions = ({ then }) => {
         (m: any) => {
           const correctType = m.type === "MODERATE_GRAPH_NODES";
           const passesFilters = data.every((row: FieldValueRow) => {
-            return delve(m.data, row.field) === inferType(row.value);
+            const expected = inferType(row.value);
+            const actual = delve(m.data, row.field);
+
+            if (expected instanceof Object) {
+              try {
+                assert.deepStrictEqual(actual, expected);
+                return true;
+              } catch (e) {
+                return false;
+              }
+            }
+
+            return actual === expected;
           });
           return correctType && passesFilters;
         }
