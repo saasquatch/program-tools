@@ -4,7 +4,13 @@ import delve from "dlv";
 import { inferType } from "@saasquatch/program-boilerplate";
 
 import { World, getWorld } from "../world";
-import { MutationStepRow, AnalyticsStepRow, ValidationStepRow } from "../types";
+import {
+  MutationStepRow,
+  AnalyticsStepRow,
+  ValidationStepRow,
+  IntrospectionRow,
+  FieldValueRow,
+} from "../types";
 
 const assertionSteps: StepDefinitions = ({ then }) => {
   then(
@@ -135,7 +141,10 @@ const assertionSteps: StepDefinitions = ({ then }) => {
           return (
             a.eventType === row.type &&
             a.data.user.id === `${row.user.toUpperCase()}ID` &&
-            a.data.user.accountId === `${row.user.toUpperCase()}ACCOUNTID`
+            a.data.user.accountId === `${row.user.toUpperCase()}ACCOUNTID` &&
+            (!row.analyticsKey || a.data.analyticsKey === row.analyticsKey) &&
+            (!row.isConversion ||
+              a.data.isConversion === inferType(row.isConversion))
           );
         }
       );
@@ -175,6 +184,16 @@ const assertionSteps: StepDefinitions = ({ then }) => {
       assert.strictEqual(relevantRewards.length, count);
     }
   );
+
+  then(/^there will be no reward "?([^"]+)"?$/, (rewardKey: string) => {
+    const relevantRewards = getWorld().state.programTriggerResult.mutations.filter(
+      (m: any) => {
+        return m.type === "CREATE_REWARD" && m.data.key === rewardKey;
+      }
+    );
+
+    assert.strictEqual(relevantRewards.length, 0);
+  });
 
   then(
     /^there will be (\d+) "?([^"]+)"? email(s) for the "?([^"]+)"? user$/,
@@ -222,16 +241,37 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   });
 
   then(
+    /^the output will not include a "?([^"]+)"? reward key$/,
+    (key: string) => {
+      const rewards = getWorld().state.programTriggerResult.rewards;
+      assert(!rewards.some((e: any) => e.key === key));
+    }
+  );
+
+  then(
+    "the output will include the following rewards and emails:",
+    (data: IntrospectionRow[]) => {
+      const emails = getWorld().state.programTriggerResult.emails;
+      const rewards = getWorld().state.programTriggerResult.rewards;
+      data.forEach((row) => {
+        if (row.type === "reward")
+          assert(rewards.some((e: any) => e.key === row.key));
+
+        if (row.type === "email")
+          assert(emails.some((e: any) => e.key === row.key));
+      });
+    }
+  );
+
+  then(
     "the following MODERATE_GRAPH_NODES mutation will exist:",
     (data: any) => {
       const relevantMutations = getWorld().state.programTriggerResult.mutations.filter(
         (m: any) => {
           const correctType = m.type === "MODERATE_GRAPH_NODES";
-
-          const passesFilters = !data.rows().some((row: any) => {
-            return delve(m.data, row[0]) !== inferType(row[1]);
+          const passesFilters = data.every((row: FieldValueRow) => {
+            return delve(m.data, row.field) === inferType(row.value);
           });
-
           return correctType && passesFilters;
         }
       );
@@ -240,12 +280,25 @@ const assertionSteps: StepDefinitions = ({ then }) => {
     }
   );
 
-  then("^the output template will be unchanged$", () => {
+  then("the output template will be unchanged", () => {
     assert.deepStrictEqual(
       getWorld().state.programTriggerResult,
       World.defaultTemplate
     );
   });
+
+  then(
+    /^there will be no "?([^"]+)"? analytic for "?([^"]+)"?$/,
+    (type: string, key: string) => {
+      const matching = getWorld().state.programTriggerResult.analytics.filter(
+        (a: any) => {
+          return a.eventType === type && a.data.analyticsKey === key;
+        }
+      );
+
+      assert.strictEqual(matching.length, 0);
+    }
+  );
 };
 
 export default assertionSteps;

@@ -77,6 +77,50 @@ const userSteps: StepDefinitions = ({ given }) => {
       },
     });
   });
+
+  given("the referred user has the following reward:", (data: any) => {
+    const rewards = getWorld().state.current.user.referredByReferral
+      .referrerUser.rewards || {
+      totalCount: 0,
+      data: [],
+    };
+    rewards.data.push(JSON.parse(data));
+    rewards.totalCount += 1;
+
+    getWorld().setState({
+      current: {
+        user: {
+          referredByReferral: {
+            referrerUser: {
+              rewards,
+            },
+          },
+        },
+      },
+    });
+  });
+
+  given(
+    /^the (?:referred )?user has a program goal "?([^"]+)"? with count "?([^"]+)"?$/,
+    (goalId: string, count: string) => {
+      getWorld().setState({
+        current: {
+          user: {
+            programGoals: [
+              ...(getWorld().state.current.user?.programGoals || []),
+              {
+                goalId,
+                programId: "r1",
+                count: inferType(count),
+                firstDate: 1,
+                lastDate: 1,
+              },
+            ],
+          },
+        },
+      });
+    }
+  );
 };
 
 export default userSteps;
