@@ -264,12 +264,12 @@ const assertionSteps: StepDefinitions = ({ then }) => {
   );
 
   then(
-    "the following MODERATE_GRAPH_NODES mutation will exist:",
-    (data: any) => {
-      const relevantMutations = getWorld().state.programTriggerResult.mutations.filter(
+    /^the following (CREATE_REWARD|MODERATE_GRAPH_NODES) mutation will exist:$/,
+    (type: string, filters: any) => {
+      const matchingMutations = getWorld().state.programTriggerResult.mutations.filter(
         (m: any) => {
-          const correctType = m.type === "MODERATE_GRAPH_NODES";
-          const passesFilters = data.every((row: FieldValueRow) => {
+          const correctType = m.type === type;
+          const passesFilters = filters.every((row: FieldValueRow) => {
             const expected = inferType(row.value);
             const actual = delve(m.data, row.field);
 
@@ -287,8 +287,7 @@ const assertionSteps: StepDefinitions = ({ then }) => {
           return correctType && passesFilters;
         }
       );
-
-      assert.strictEqual(relevantMutations.length, 1);
+      assert.strictEqual(matchingMutations.length, 1);
     }
   );
 
