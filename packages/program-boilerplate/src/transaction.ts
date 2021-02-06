@@ -174,18 +174,19 @@ export default class Transaction {
       key: rewardKey,
       rewardId: rewardId,
       referralId: referralId,
+      dynamicProperties,
+      overrideProperties
     };
 
     const validProperties = [
       {userEvent},
       {rewardSource},
       {status},
-      dynamicProperties,
-      overrideProperties
     ].filter((prop) => prop !== undefined);
     const updatedRewardData = validProperties.reduce((currentData, prop) => {
       return {...currentData, ...prop};
     }, rewardData);
+
     const newMutation = {
       type: 'CREATE_REWARD',
       data: updatedRewardData,
