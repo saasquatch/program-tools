@@ -25,6 +25,13 @@ type ReferralRewardInput = {
     dateScheduledFor?: number | null;
     dateExpires?: number | null;
   };
+  dynamicProperties?: {
+    dateScheduledFor?: number | null;
+    dateExpires?: number | null;
+    type: string;
+    unit: string;
+    assignedCredit: number;
+  };
 };
 
 export default class Transaction {
@@ -154,7 +161,8 @@ export default class Transaction {
       userEvent,
       rewardSource,
       status,
-      rewardProperties,
+      overrideProperties,
+      dynamicProperties,
     } = input;
 
     const rewardId = ObjectID.generate();
@@ -172,7 +180,8 @@ export default class Transaction {
       {userEvent},
       {rewardSource},
       {status},
-      rewardProperties,
+      dynamicProperties,
+      overrideProperties
     ].filter((prop) => prop !== undefined);
     const updatedRewardData = validProperties.reduce((currentData, prop) => {
       return {...currentData, ...prop};
