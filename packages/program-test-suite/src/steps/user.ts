@@ -61,7 +61,7 @@ const userSteps: StepDefinitions = ({ given }) => {
     }
   );
 
-  given("the user has the following reward:", (data: any) => {
+  given("the (?:referred )?user has the following reward:", (data: any) => {
     const rewards = getWorld().state.current.user.rewards || {
       totalCount: 0,
       data: [],
@@ -78,7 +78,7 @@ const userSteps: StepDefinitions = ({ given }) => {
     });
   });
 
-  given("the referred user has the following reward:", (data: any) => {
+  given("the referrer user has the following reward:", (data: any) => {
     const rewards = getWorld().state.current.user.referredByReferral
       .referrerUser.rewards || {
       totalCount: 0,
