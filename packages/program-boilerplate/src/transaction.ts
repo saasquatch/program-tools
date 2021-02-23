@@ -174,8 +174,8 @@ export default class Transaction {
       key: rewardKey,
       rewardId: rewardId,
       referralId: referralId,
-      dynamicProperties,
-      overrideProperties
+      overrideProperties,
+      dynamicProperties
     };
 
     const validProperties = [
@@ -302,14 +302,16 @@ export default class Transaction {
     referralId,
     user,
     status,
-    rewardProperties,
+    overrideProperties,
+    dynamicProperties
   }: {
     emailKey: string;
     rewardKey: string;
     referralId: string;
     user: User;
     status?: string;
-    rewardProperties?: any;
+    overrideProperties?: any;
+    dynamicProperties?: any;
   }) {
     const {rewardId} = this.generateReferralReward({
       rewardKey,
@@ -318,7 +320,8 @@ export default class Transaction {
       userEvent: undefined,
       rewardSource: undefined,
       status,
-      rewardProperties,
+      overrideProperties,
+      dynamicProperties
     });
 
     this.generateReferralEmail({emailKey, user, referralId, rewardId});
