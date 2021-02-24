@@ -6,8 +6,10 @@ export const Style = css`
   height: 100vh;
 
   .story-book-outer-div {
-    font-family: "Arial", sans-serif;
-    font-size: 12px;
+    .story-div {
+      font-family: "Arial", sans-serif;
+      font-size: 12px;
+    }
     padding-bottom: 500px;
   }
 
