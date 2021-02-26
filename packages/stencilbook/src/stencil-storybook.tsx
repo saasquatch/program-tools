@@ -4,58 +4,15 @@ import * as Hooks from "@saasquatch/stencil-hooks";
 import startCase from "lodash.startcase";
 import { Style } from "./stencil-storybook.styles";
 import { css } from "@emotion/css";
-
-function organiseStories(
-  prev: OrganisedStoryWithSubs,
-  curr: StoryWithSubs
-): OrganisedStoryWithSubs {
-  const splitTitle = curr.story.title.split("/");
-  const group = splitTitle[1] ? splitTitle[0] : "_";
-  const title = splitTitle[1] || splitTitle[0];
-
-  return {
-    ...prev,
-    [group]: [
-      ...(prev[group] || []),
-      {
-        story: {
-          ...curr.story,
-          title,
-        },
-        subs: curr.subs,
-      },
-    ].sort((a, b) => a.story.title.localeCompare(b.story.title)),
-  };
-}
-/**
- *
- * Based on Component Story Format (CSF)
- *
- * For portability: https://storybook.js.org/docs/web-components/api/csf
- *
- */
-export type StorybookDefaultExport = {
-  title: string;
-  component: FunctionalComponent;
-  decorators?: unknown[];
-  parameters?: {};
-};
-export type SubStories = {
-  [name: string]: SubStory;
-};
-type SubStory = FunctionalComponent & SubStoryFields;
-type SubStoryFields = {
-  storyName?: string;
-  decorators?: unknown[];
-  parameters?: {};
-};
-type StoryWithSubs = {
-  story: StorybookDefaultExport;
-  subs?: SubStories;
-};
-type OrganisedStoryWithSubs = {
-  [key: string]: StoryWithSubs[];
-};
+import { organiseStories } from "./organiseStories";
+import {
+  StorybookDefaultExport,
+  SubStories,
+  AddOn,
+  OrganisedStoryWithSubs,
+  StoryWithSubs,
+  Selection,
+} from ".";
 
 function loadStory(imps: any) {
   // TODO: Validate if something doesn't export things in Component Story Format (CSF)
@@ -75,18 +32,19 @@ export type Return = {
   selected: Selection;
 };
 
-type Selection = {
-  key: string;
-  story: SubStory;
-};
-
 export function useStencilbook(
   imports: unknown[],
   {
     h = StencilH,
     hooks = Hooks,
     title = "Stencilbook",
-  }: { h?: typeof StencilH; hooks?: typeof Hooks; title?: string }
+    addons = [],
+  }: {
+    h?: typeof StencilH;
+    hooks?: typeof Hooks;
+    title?: string;
+    addons?: AddOn[];
+  }
 ): Return {
   const stories: OrganisedStoryWithSubs = hooks.useMemo(
     () =>
@@ -101,10 +59,17 @@ export function useStencilbook(
   const [layout, setLayout] = hooks.useState<Layout>("desktop");
   const [showSidebar, setShowSidebar] = hooks.useState<boolean>(true);
   const [darkCanvas, setDarkCanvas] = hooks.useState<boolean>(false);
-  function setSelected(story: FunctionalComponent, key: string) {
+  function setSelected(
+    story: FunctionalComponent,
+    key: string,
+    parent: StorybookDefaultExport,
+    label: string
+  ) {
     setSelectedInternal({
       key,
       story,
+      parent,
+      label,
     });
   }
   const WidthSelector = () => {
@@ -171,6 +136,21 @@ export function useStencilbook(
     document.body.style.backgroundColor = "#fafafa";
   }
 
+  const InnerFn = ({ selected }: { selected: Selection }) => {
+    const Component = addons.reduce<FunctionalComponent>((PrevFn, AddOnFn) => {
+      return () => (
+        <AddOnFn
+          story={{
+            ...selected,
+          }}
+        >
+          <PrevFn />
+        </AddOnFn>
+      );
+    }, selected?.story);
+    return <Component />;
+  };
+
   const View = () => (
     <div class="story-book-outer-div">
       <div class={`story-div ${!showSidebar ? hide : ""}`}>
@@ -193,6 +173,7 @@ export function useStencilbook(
                           </summary>
                           {s.subs &&
                             Object.keys(s.subs).map((subKey) => {
+                              const key = group + "/" + subKey;
                               const subStory = s.subs[subKey];
                               const subStoryView = () => <subStory />;
                               const label =
@@ -200,12 +181,12 @@ export function useStencilbook(
                               return (
                                 <div
                                   class={`subStory ${
-                                    selectedKey === subKey ? "selected" : ""
+                                    selectedKey === key ? "selected" : ""
                                   }`}
                                 >
                                   <a
                                     onClick={() =>
-                                      setSelected(subStory, subKey)
+                                      setSelected(subStory, key, s.story, label)
                                     }
                                   >
                                     {label}
@@ -228,8 +209,8 @@ export function useStencilbook(
         {selectedKey && (
           <div>
             {/* <pre>{selected.specs}</pre> */}
-            <h3>{Selected.story.storyName || startCase(selectedKey)}</h3>
-            <Selected.story />
+            <h3>{Selected.label}</h3>
+            <InnerFn selected={Selected} />
           </div>
         )}
       </div>
