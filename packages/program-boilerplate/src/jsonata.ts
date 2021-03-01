@@ -63,7 +63,7 @@ export function safeJsonata(expression: string, inputData: any) {
     const jsonataQuery = jsonata(expression);
     timeboxExpression(jsonataQuery);
     return jsonataQuery.evaluate(inputData);
-  } catch {
-    logger.warn('Failed to evaluate JSONata expression');
+  } catch(e) {
+    logger.warn(`Failed to evaluate JSONata expression: ${e.message}`);
   }
 }

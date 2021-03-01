@@ -1,4 +1,4 @@
-import {createLogger, format, Logger, transports} from 'winston';
+import { createLogger, format, Logger, transports } from "winston";
 
 // Lazily initialized logger instance
 let _logger: Logger;
@@ -16,7 +16,7 @@ export function getLogger(logLevel: string): Logger {
     return _logger;
   }
 
-  const logFormat = format.printf(({level, message}) => {
+  const logFormat = format.printf(({ level, message }) => {
     return `[${level.toUpperCase()}] ${message}`;
   });
 
@@ -27,4 +27,15 @@ export function getLogger(logLevel: string): Logger {
   });
 
   return _logger;
+}
+
+/**
+ * Set the log level of the singleton logger.
+ *
+ * @param {string} logLevel The log level
+ */
+export function setLogLevel(logLevel: string) {
+  if (!_logger) return;
+
+  _logger.level = logLevel;
 }
