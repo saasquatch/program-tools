@@ -1,13 +1,13 @@
-import {World, Cucumber} from '../index';
-import {inferType} from '@saasquatch/program-boilerplate';
+import { StepDefinitions } from "jest-cucumber";
+import { inferType } from "@saasquatch/program-boilerplate";
 
-export function init(cucumber: Cucumber): void {
-  const {Given} = cucumber;
+import { getWorld } from "../world";
 
-  Given(
-    'the (referred )user has custom field {string} equal to {string}',
-    function(this: World, field: string, val: string) {
-      this.setState({
+const userSteps: StepDefinitions = ({ given }) => {
+  given(
+    /^the (?:referred )?user has custom field "?([^"]+)"? equal to "?([^"]+)"?$/,
+    (field: string, val: string) => {
+      getWorld().setState({
         current: {
           user: {
             customFields: {
@@ -16,30 +16,27 @@ export function init(cucumber: Cucumber): void {
           },
         },
       });
-    },
+    }
   );
 
-  Given('the (referred )user {word} blocked', function(
-    this: World,
-    blocked: string,
-  ) {
-    this.setState({
-      current: {
-        user: {
-          dateBlocked: blocked === 'is' ? 123 : undefined,
+  given(
+    /^the (?:referred )?user (is|is not|isn't) blocked$/,
+    (blocked: string) => {
+      getWorld().setState({
+        current: {
+          user: {
+            dateBlocked: blocked === "is" ? 123 : undefined,
+          },
         },
-      },
-    });
-  });
+      });
+    }
+  );
 
-  Given('the segment rules include segment {string}', function(
-    this: World,
-    seg: string,
-  ) {
-    const segments = this.state.current.rules.userSegmentation || [];
+  given(/^the segment rules include segment (S+)$/, (seg: string) => {
+    const segments = getWorld().state.current.rules.userSegmentation || [];
     segments.push(seg);
 
-    this.setState({
+    getWorld().setState({
       current: {
         rules: {
           userSegmentation: segments,
@@ -48,31 +45,31 @@ export function init(cucumber: Cucumber): void {
     });
   });
 
-  Given('the (referred )user belongs to segment {string}', function(
-    this: World,
-    segment: string,
-  ) {
-    const segments = this.state.current.user.segments || [];
-    segments.push(segment);
+  given(
+    /^the (?:referred )?user belongs to segment "?([^"]+)"?$/,
+    (segment: string) => {
+      const segments = getWorld().state.current.user.segments || [];
+      segments.push(segment);
 
-    this.setState({
-      current: {
-        user: {
-          segments,
+      getWorld().setState({
+        current: {
+          user: {
+            segments,
+          },
         },
-      },
-    });
-  });
+      });
+    }
+  );
 
-  Given('the user has the following reward:', function(this: World, data: any) {
-    const rewards = this.state.current.user.rewards || {
+  given(/^the (?:referred )?user has the following reward:$/, (data: any) => {
+    const rewards = getWorld().state.current.user.rewards || {
       totalCount: 0,
       data: [],
     };
     rewards.data.push(JSON.parse(data));
     rewards.totalCount += 1;
 
-    this.setState({
+    getWorld().setState({
       current: {
         user: {
           rewards,
@@ -80,4 +77,50 @@ export function init(cucumber: Cucumber): void {
       },
     });
   });
-}
+
+  given("the referrer user has the following reward:", (data: any) => {
+    const rewards = getWorld().state.current.user.referredByReferral
+      .referrerUser.rewards || {
+      totalCount: 0,
+      data: [],
+    };
+    rewards.data.push(JSON.parse(data));
+    rewards.totalCount += 1;
+
+    getWorld().setState({
+      current: {
+        user: {
+          referredByReferral: {
+            referrerUser: {
+              rewards,
+            },
+          },
+        },
+      },
+    });
+  });
+
+  given(
+    /^the (?:referred )?user has a program goal "?([^"]+)"? with count "?([^"]+)"?$/,
+    (goalId: string, count: string) => {
+      getWorld().setState({
+        current: {
+          user: {
+            programGoals: [
+              ...(getWorld().state.current.user?.programGoals || []),
+              {
+                goalId,
+                programId: "r1",
+                count: inferType(count),
+                firstDate: 1,
+                lastDate: 1,
+              },
+            ],
+          },
+        },
+      });
+    }
+  );
+};
+
+export default userSteps;
