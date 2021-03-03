@@ -45,20 +45,26 @@ export function getEnvironmentSDK(): EnvironmentSDK {
   if (window.frameElement && (window.frameElement as any)["squatchJsApi"]) {
     return {
       type: "SquatchJS2",
+      //@ts-ignore
       api: window.frameElement["squatchJsApi"],
+      //@ts-ignore
       widgetIdent: window["widgetIdent"],
     };
   }
 
+  //@ts-ignore
   if (window["SquatchAndroid"]) {
     return {
       type: "SquatchAndroid",
+      //@ts-ignore
       android: window["SquatchAndroid"] as SquatchAndroid,
+      //@ts-ignore
       widgetIdent: window["widgetIdent"],
     };
   }
 
   // TODO: Needs formalizing
+  //@ts-ignore
   if (window["SquatchPortal"]) {
     return {
       type: "SquatchPortal",
@@ -67,9 +73,11 @@ export function getEnvironmentSDK(): EnvironmentSDK {
   }
 
   // TODO: Needs formalizing
+  //@ts-ignore
   if (window["SquatchAdmin"]) {
     return {
       type: "SquatchAdmin",
+      //@ts-ignore
       adminSDK: window["SquatchAdmin"] as SquatchAdmin,
     };
   }
@@ -79,10 +87,20 @@ export function getEnvironmentSDK(): EnvironmentSDK {
   };
 }
 
-export function useWidgetIdent() {
+type UserIdentity = {
+  id: string;
+  accountId: string;
+  jwt?: string;
+};
+
+export function useUserIdentity(): UserIdentity | undefined {
   const sdk = getEnvironmentSDK();
   if (sdk.type === "SquatchAndroid" || sdk.type === "SquatchJS2") {
-    return sdk.widgetIdent;
+    return {
+      id: sdk.widgetIdent.userId,
+      accountId: sdk.widgetIdent.accountId,
+      jwt: sdk.widgetIdent.token,
+    };
   }
 
   if (sdk.type === "SquatchPortal") {
