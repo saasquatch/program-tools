@@ -1,15 +1,24 @@
-import { GraphQLClientContext } from "../../context";
 import { GraphQLClient } from "graphql-request";
-import { useHost } from "@saasquatch/stencil-hooks";
+import { useMemo } from "@saasquatch/stencil-hooks";
+import {
+  useAppDomain,
+  useTenantAlias,
+  useToken,
+} from "../../environment/environment";
 
 export function useGraphQLClient(): GraphQLClient {
-  const client: GraphQLClient = GraphQLClientContext.useContext();
-  const host = useHost();
-  if (!client) {
-    console.error(
-      "No client! To call `useGraphQlClient` you must be inside a provider.",
-      host
-    );
-  }
+  const token = useToken();
+  const appDomain = useAppDomain();
+  const tenantAlias = useTenantAlias();
+  const client: GraphQLClient = useMemo(() => {
+    const uri = appDomain + "/api/v1/" + tenantAlias + "/graphql";
+    const headers = {
+      Authorization: `Bearer ${token || ""}`,
+    };
+    const newClient = new GraphQLClient(uri, {
+      headers,
+    });
+    return newClient;
+  }, [token, tenantAlias, appDomain]);
   return client;
 }

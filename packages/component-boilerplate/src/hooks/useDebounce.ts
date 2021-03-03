@@ -101,7 +101,7 @@ export interface DebouncedState<T extends (...args: any[]) => ReturnType<T>>
  * @returns {Function} Returns the new debounced function.
  * @example
  */
-export default function useDebouncedCallback<
+export function useDebouncedCallback<
   T extends (...args: any[]) => ReturnType<T>
 >(
   func: T,

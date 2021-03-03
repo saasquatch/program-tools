@@ -12,13 +12,13 @@ const FIRE_EVENT = gql`
   }
 `;
 
-export default function useShareEvent() {
+export function useShareEvent() {
   const engagementMedium = useEngagementMedium();
-  const widgetIdent = useUserIdentity();
+  const userIdentity = useUserIdentity();
   const program = useProgramId();
   const [dispatch] = useMutation(FIRE_EVENT);
 
-  if (!widgetIdent) {
+  if (!userIdentity) {
     // Not logged in. No-op callback for tracking sharing.
     return () => {};
   }
@@ -26,8 +26,8 @@ export default function useShareEvent() {
   return (shareMedium: string) => {
     const variables = {
       eventMeta: {
-        id: widgetIdent.id,
-        accountId: widgetIdent.accountId,
+        id: userIdentity.id,
+        accountId: userIdentity.accountId,
         programId: program,
         type: "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT",
         meta: {

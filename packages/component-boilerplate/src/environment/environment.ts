@@ -141,3 +141,7 @@ export function useEngagementMedium(): string {
 export function useProgramId(): string | undefined {
   return undefined;
 }
+
+export function useLocale(): string {
+  return "TODO";
+}
