@@ -3,6 +3,7 @@
     "strict": false,
     "lib": ["es2017", "DOM"],
     "esModuleInterop": true,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "allowSyntheticDefaultImports": true
   }
 }
