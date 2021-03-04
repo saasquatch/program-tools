@@ -21,7 +21,11 @@ function createGraphQlCLient(
   return newClient;
 }
 
-const memoizedClient = memoize(createGraphQlCLient, { primitive: true });
+const memoizedClient = memoize(createGraphQlCLient, {
+  primitive: true,
+  // Assuming log-out, log-in flows this should be acceptably small
+  max: 5,
+});
 
 export function useGraphQLClient(): GraphQLClient {
   const token = useToken();
