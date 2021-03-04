@@ -5,6 +5,11 @@ import { createContext } from "@saasquatch/stencil-hooks";
  */
 export type SquatchPortal = typeof SquatchPortalInstance;
 
+export type PortalEnv = {
+  tenantAlias: string;
+  appDomain: string;
+};
+
 export type UserIdentifier = {
   id: string;
   accountId: string;

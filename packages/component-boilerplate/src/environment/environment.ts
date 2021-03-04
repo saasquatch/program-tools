@@ -1,8 +1,13 @@
+import { ProgramContext } from "./ProgramContext";
 import { WidgetIdent } from "./shared";
 import { SquatchAdmin } from "./SquatchAdmin";
 import { SquatchAndroid } from "./SquatchAndroid";
 import { SquatchJS2 } from "./SquatchJS2";
-import { SquatchPortal, SquatchPortalInstance } from "./SquatchPortal";
+import {
+  PortalEnv,
+  SquatchPortal,
+  SquatchPortalInstance,
+} from "./SquatchPortal";
 
 export type Environment = EnvironmentSDK["type"];
 
@@ -20,6 +25,7 @@ export type EnvironmentSDK =
   | {
       type: "SquatchPortal";
       context: SquatchPortal;
+      env: PortalEnv;
     }
   | {
       type: "SquatchAdmin";
@@ -69,6 +75,8 @@ export function getEnvironmentSDK(): EnvironmentSDK {
     return {
       type: "SquatchPortal",
       context: SquatchPortalInstance,
+      //@ts-ignore
+      env: window["SquatchPortal"],
     };
   }
 
@@ -95,31 +103,57 @@ type UserIdentity = {
 
 export function useUserIdentity(): UserIdentity | undefined {
   const sdk = getEnvironmentSDK();
-  if (sdk.type === "SquatchAndroid" || sdk.type === "SquatchJS2") {
-    return {
-      id: sdk.widgetIdent.userId,
-      accountId: sdk.widgetIdent.accountId,
-      jwt: sdk.widgetIdent.token,
-    };
+  switch (sdk.type) {
+    case "SquatchAndroid":
+    case "SquatchJS2":
+      return {
+        id: sdk.widgetIdent.userId,
+        accountId: sdk.widgetIdent.accountId,
+        jwt: sdk.widgetIdent.token,
+      };
+    case "SquatchPortal":
+      return sdk.context.userContext.useContext();
+    case "SquatchAdmin":
+    case "None":
+      // Not logged in for admin portal / none default case
+      return undefined;
   }
-
-  if (sdk.type === "SquatchPortal") {
-    return sdk.context.userContext.useContext();
-  }
-  // No widget ident in the Admin portal / demo mode
-  return undefined;
 }
+
+// Fake tenant alias in
+const FAKE_TENANT = "demo";
 
 export function useTenantAlias(): string {
-  return "TODO";
+  const sdk = getEnvironmentSDK();
+  switch (sdk.type) {
+    case "SquatchAndroid":
+    case "SquatchJS2":
+      return sdk.widgetIdent.tenantAlias;
+    case "SquatchAdmin":
+    case "None":
+      return FAKE_TENANT;
+    case "SquatchPortal":
+      return sdk.env.tenantAlias;
+  }
 }
 
+const DEFAULT_DOMAIN = "https://app.referralsaasquatch.com";
 export function useAppDomain(): string {
-  return "staging.referralsaasquatch.com";
+  const sdk = getEnvironmentSDK();
+  switch (sdk.type) {
+    case "SquatchAndroid":
+    case "SquatchJS2":
+      return sdk.widgetIdent.appDomain;
+    case "SquatchPortal":
+      return sdk.env?.appDomain || DEFAULT_DOMAIN;
+    case "SquatchAdmin":
+    case "None":
+      return DEFAULT_DOMAIN;
+  }
 }
 
 export function useToken(): string | undefined {
-  return "TODO";
+  return useUserIdentity()?.jwt;
 }
 
 export type UserId = {
@@ -127,21 +161,37 @@ export type UserId = {
   accountId: string;
 };
 
-export function useUserId(): UserId | undefined {
-  return {
-    id: "TODO",
-    accountId: "TODO",
-  };
-}
+type EngagementMedium = "EMBED" | "POPUP";
+const DEFAULT_MEDIUM = "EMBED";
 
-export function useEngagementMedium(): string {
-  return "TODO";
+export function useEngagementMedium(): EngagementMedium {
+  const sdk = getEnvironmentSDK();
+  switch (sdk.type) {
+    case "SquatchJS2":
+      return sdk.widgetIdent.engagementMedium || DEFAULT_MEDIUM;
+    case "SquatchAndroid":
+    case "SquatchPortal":
+    case "SquatchAdmin":
+    case "None":
+      return DEFAULT_MEDIUM;
+  }
 }
 
 export function useProgramId(): string | undefined {
-  return undefined;
+  // TODO: Widgets MIGHT have program ID available at the top level via widget ident
+  return ProgramContext.useContext();
 }
 
 export function useLocale(): string {
-  return "TODO";
+  // TODO: Widgets might provide this and portals might override this
+  return getCleanLocale();
+}
+
+function getCleanLocale() {
+  const locale = navigator.language;
+  const splitLocale = locale?.split("-");
+  if (!splitLocale || splitLocale.length === 1) return locale;
+  const language = splitLocale[0];
+  const country = splitLocale[1];
+  return `${language}-${country.toUpperCase()}`;
 }
