@@ -24,9 +24,11 @@
   },
   "dependencies": {
     "@formatjs/intl": "^1.8.2",
+    "@types/memoizee": "^0.4.5",
     "@wry/equality": "^0.3.3",
     "debounce": "^1.2.0",
     "graphql-request": "^3.4.0",
-    "history": "^5.0.0"
+    "history": "^5.0.0",
+    "memoizee": "^0.4.15"
   }
 }

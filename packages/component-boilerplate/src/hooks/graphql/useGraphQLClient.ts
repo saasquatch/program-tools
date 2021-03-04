@@ -1,24 +1,34 @@
 import { GraphQLClient } from "graphql-request";
-import { useMemo } from "@saasquatch/stencil-hooks";
+import memoize from "memoizee";
 import {
   useAppDomain,
   useTenantAlias,
   useToken,
 } from "../../environment/environment";
 
+function createGraphQlCLient(
+  appDomain: string,
+  tenantAlias: string,
+  token?: string
+): GraphQLClient {
+  const uri = appDomain + "/api/v1/" + tenantAlias + "/graphql";
+  const headers = {
+    Authorization: `Bearer ${token || ""}`,
+  };
+  const newClient = new GraphQLClient(uri, {
+    headers,
+  });
+  return newClient;
+}
+
+const memoizedClient = memoize(createGraphQlCLient, { primitive: true });
+
 export function useGraphQLClient(): GraphQLClient {
   const token = useToken();
   const appDomain = useAppDomain();
   const tenantAlias = useTenantAlias();
-  const client: GraphQLClient = useMemo(() => {
-    const uri = appDomain + "/api/v1/" + tenantAlias + "/graphql";
-    const headers = {
-      Authorization: `Bearer ${token || ""}`,
-    };
-    const newClient = new GraphQLClient(uri, {
-      headers,
-    });
-    return newClient;
-  }, [token, tenantAlias, appDomain]);
+
+  // Memoization is shared. One client per domain, tenant and token (or null)
+  const client: GraphQLClient = memoizedClient(appDomain, tenantAlias, token);
   return client;
 }
