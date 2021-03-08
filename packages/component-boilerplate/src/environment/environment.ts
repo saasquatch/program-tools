@@ -11,7 +11,7 @@ import {
  * Source: https://github.com/saasquatch/saasquatch/blob/805e51284f818f8656b6458bcee6181f378819d3/packages/saasquatch-core/app/saasquatch/controllers/api/widget/WidgetApi.java
  *
  */
- export interface WidgetIdent {
+export interface WidgetIdent {
   tenantAlias: string;
   appDomain: string;
   token: string;
@@ -27,7 +27,7 @@ import {
  *
  * Used for rendering widgets in a preview/demo mode.
  */
- export interface SquatchAdmin {
+export interface SquatchAdmin {
   /**
    * Provides a way of providing user feedback when a widget is rendered in the SaaSquatch admin portal
    *
@@ -41,7 +41,7 @@ import {
  *
  * Should exist as `window.SquatchAndroid`
  */
- export interface SquatchAndroid {
+export interface SquatchAndroid {
   /**
    *
    * @param shareLink
@@ -63,7 +63,7 @@ import {
  * See: https://github.com/saasquatch/squatch-js/blob/8f2b218c9d55567e0cc12d27d635a5fb545e6842/src/widgets/Widget.ts#L47
  *
  */
- export interface SquatchJS2 {
+export interface SquatchJS2 {
   /**
    * Opens the current popup widget (if loaded as a popup)
    */
@@ -86,9 +86,6 @@ import {
     jwt: string
   ): void;
 }
-
-
-
 
 export type Environment = EnvironmentSDK["type"];
 

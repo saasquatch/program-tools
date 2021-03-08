@@ -1,5 +1,10 @@
 import { useDeepMemo } from "../useDeepMemo";
-import { BaseQueryData, GqlType, QueryData, useBaseQuery } from "./useBaseQuery";
+import {
+  BaseQueryData,
+  GqlType,
+  QueryData,
+  useBaseQuery,
+} from "./useBaseQuery";
 import { useTick } from "../useTick";
 
 export const initialQueryState: BaseQueryData = {

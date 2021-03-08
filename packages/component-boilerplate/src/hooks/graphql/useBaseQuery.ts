@@ -19,7 +19,7 @@ export type QueryData<T> = BaseQueryData<T> & {
  * Note: reverse-engineered from a returned error. May not capture all error types.
  */
 
- export type GraphQlRequestError<T> = {
+export type GraphQlRequestError<T> = {
   response: {
     errors: [
       {
@@ -45,7 +45,6 @@ export type QueryData<T> = BaseQueryData<T> & {
     variables: { [key: string]: unknown };
   };
 };
-
 
 type Action<T> =
   | {
