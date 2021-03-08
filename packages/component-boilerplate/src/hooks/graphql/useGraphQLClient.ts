@@ -1,12 +1,12 @@
 import { GraphQLClient } from "graphql-request";
-import memoize from "memoizee";
+import memoize from "fast-memoize";
 import {
   useAppDomain,
   useTenantAlias,
   useToken,
 } from "../../environment/environment";
 
-function createGraphQlCLient(
+function createGraphQlClient(
   appDomain: string,
   tenantAlias: string,
   token?: string
@@ -21,11 +21,7 @@ function createGraphQlCLient(
   return newClient;
 }
 
-const memoizedClient = memoize(createGraphQlCLient, {
-  primitive: true,
-  // Assuming log-out, log-in flows this should be acceptably small
-  max: 5,
-});
+const memoizedClient = memoize(createGraphQlClient);
 
 export function useGraphQLClient(): GraphQLClient {
   const token = useToken();

@@ -1,8 +1,6 @@
 import { useDeepMemo } from "../useDeepMemo";
-import { useBaseQuery } from "./useBaseQuery";
-import { GqlType } from "./GqlType";
+import { BaseQueryData, GqlType, QueryData, useBaseQuery } from "./useBaseQuery";
 import { useTick } from "../useTick";
-import { QueryData, BaseQueryData } from "./QueryData";
 
 const initialLazyQueryState: BaseQueryData = {
   loading: false,

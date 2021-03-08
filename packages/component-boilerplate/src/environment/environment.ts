@@ -1,13 +1,94 @@
 import { ProgramContext } from "./ProgramContext";
-import { WidgetIdent } from "./shared";
-import { SquatchAdmin } from "./SquatchAdmin";
-import { SquatchAndroid } from "./SquatchAndroid";
-import { SquatchJS2 } from "./SquatchJS2";
 import {
   PortalEnv,
   SquatchPortal,
   SquatchPortalInstance,
 } from "./SquatchPortal";
+
+/**
+ * Provided by the SaaSquatch GraphQL backend when a widget is rendered.
+ *
+ * Source: https://github.com/saasquatch/saasquatch/blob/805e51284f818f8656b6458bcee6181f378819d3/packages/saasquatch-core/app/saasquatch/controllers/api/widget/WidgetApi.java
+ *
+ */
+ export interface WidgetIdent {
+  tenantAlias: string;
+  appDomain: string;
+  token: string;
+  userId: string;
+  accountId: string;
+
+  engagementMedium?: "POPUP" | "EMBED";
+  programId?: string;
+}
+
+/**
+ * An interface for interacting with the SaaSquatch Admin Portal.
+ *
+ * Used for rendering widgets in a preview/demo mode.
+ */
+ export interface SquatchAdmin {
+  /**
+   * Provides a way of providing user feedback when a widget is rendered in the SaaSquatch admin portal
+   *
+   * @param text
+   */
+  showMessage(text: string): void;
+}
+
+/**
+ * Type for the Javascript environment added by https://github.com/saasquatch/squatch-android
+ *
+ * Should exist as `window.SquatchAndroid`
+ */
+ export interface SquatchAndroid {
+  /**
+   *
+   * @param shareLink
+   * @param messageLink fallback URL to redirect to if the app is not installed
+   */
+  shareOnFacebook(shareLink: string, messageLink: string): void;
+
+  /**
+   * Shows a native Android toast
+   *
+   * @param text
+   */
+  showToast(text: string): void;
+}
+
+/**
+ * An interface provided by Squatch.js V2 for widgets.
+ *
+ * See: https://github.com/saasquatch/squatch-js/blob/8f2b218c9d55567e0cc12d27d635a5fb545e6842/src/widgets/Widget.ts#L47
+ *
+ */
+ export interface SquatchJS2 {
+  /**
+   * Opens the current popup widget (if loaded as a popup)
+   */
+  open?: () => void;
+
+  /**
+   * Closes the current popup widget (if loaded as a popup)
+   */
+  close?: () => void;
+
+  /**
+   * DEPRECATED used to update user details from inside the widget.
+   *
+   * Should no longer be used. Replace with natively using the GraphQL API and re-rendering locally. Will be removed in a future version of Squatch.js
+   *
+   * @deprecated
+   */
+  reload(
+    userDetails: { email: string; firstName: string; lastName: string },
+    jwt: string
+  ): void;
+}
+
+
+
 
 export type Environment = EnvironmentSDK["type"];
 

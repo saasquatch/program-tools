@@ -1,6 +1,4 @@
-import { useBaseQuery } from "./useBaseQuery";
-import { GqlType } from "./GqlType";
-import { QueryData, BaseQueryData } from "./QueryData";
+import { BaseQueryData, GqlType, useBaseQuery } from "./useBaseQuery";
 
 const initialMutationState: BaseQueryData = {
   loading: false,

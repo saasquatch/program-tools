@@ -1,10 +1,51 @@
 import { GraphQLClient } from "graphql-request";
 import { useCallback, useReducer } from "@saasquatch/stencil-hooks";
 import { useGraphQLClient } from "./useGraphQLClient";
-import { GqlType } from "./GqlType";
-import { BaseQueryData } from "./QueryData";
+import { RequestDocument } from "graphql-request/dist/types";
 
-import { GraphQlRequestError } from "./GraphQlRequestError";
+export type GqlType = RequestDocument;
+
+export interface BaseQueryData<T = unknown> {
+  loading: boolean;
+  data?: T;
+  errors?: GraphQlRequestError<T>;
+}
+
+export type QueryData<T> = BaseQueryData<T> & {
+  refetch: () => unknown;
+};
+
+/**
+ * Note: reverse-engineered from a returned error. May not capture all error types.
+ */
+
+ export type GraphQlRequestError<T> = {
+  response: {
+    errors: [
+      {
+        message: string;
+        locations: [{ line: number; column: number }];
+        path: string[];
+        extensions: {
+          apiError: {
+            message: string;
+            statusCode: number;
+            apiErrorCode: string;
+            rsCode: string;
+          };
+          classification: string;
+        };
+      }
+    ];
+    data: Partial<T>;
+    status: number;
+  };
+  request: {
+    query: string;
+    variables: { [key: string]: unknown };
+  };
+};
+
 
 type Action<T> =
   | {
