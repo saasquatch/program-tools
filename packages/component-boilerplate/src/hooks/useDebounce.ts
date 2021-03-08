@@ -4,7 +4,7 @@ import {
   useMemo,
   useRef,
   useState,
-} from "@saasquatch/stencil-hooks";
+} from "@saasquatch/universal-hooks";
 import debounce from "debounce";
 
 function valueEquality<T>(left: T, right: T): boolean {

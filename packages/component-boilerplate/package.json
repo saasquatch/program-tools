@@ -15,7 +15,6 @@
   "author": "SaaSquatch",
   "license": "ISC",
   "devDependencies": {
-    "@saasquatch/stencil-hooks": "^1.0.1",
     "@types/debounce": "^1.2.0",
     "@types/debug": "^4.1.5",
     "@types/jest": "^26.0.20",
@@ -26,6 +25,7 @@
   },
   "dependencies": {
     "@formatjs/intl": "^1.8.2",
+    "@saasquatch/universal-hooks": "^0.1.2",
     "@wry/equality": "^0.3.3",
     "debounce": "^1.2.0",
     "dom-context": "^1.0.1",

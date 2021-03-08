@@ -22,9 +22,7 @@ export { useLazyQuery } from "./hooks/graphql/useLazyQuery";
 //      Generic low-level helpers
 //
 export { useDebounce, useDebouncedCallback } from "./hooks/useDebounce";
-export { useListener } from "./hooks/useListener";
 export { useTick } from "./hooks/useTick";
-export { createUnstated } from "./hooks/createUnstated";
 
 //
 //      Common higher-level functionality

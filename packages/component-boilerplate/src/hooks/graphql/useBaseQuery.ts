@@ -1,5 +1,5 @@
 import { GraphQLClient } from "graphql-request";
-import { useCallback, useReducer } from "@saasquatch/stencil-hooks";
+import { useCallback, useReducer } from "@saasquatch/universal-hooks";
 import { useGraphQLClient } from "./useGraphQLClient";
 import { RequestDocument } from "graphql-request/dist/types";
 
@@ -80,11 +80,10 @@ export function useBaseQuery<T = any>(
 ): [BaseQueryData<T>, (variables: unknown) => unknown] {
   const client: GraphQLClient = useGraphQLClient();
 
-  const [state, dispatch] = useReducer<
-    BaseQueryData<T>,
-    BaseQueryData<T>,
-    Action<T>
-  >(reducer, initialState);
+  const [state, dispatch] = useReducer<BaseQueryData<T>, Action<T>>(
+    reducer,
+    initialState
+  );
 
   const update = useCallback(
     async function (variables: unknown) {

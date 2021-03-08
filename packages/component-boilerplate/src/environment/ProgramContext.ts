@@ -1,3 +1,6 @@
 import { createContext } from "@saasquatch/stencil-hooks";
+import { useContext } from "@saasquatch/universal-hooks";
 
-export const ProgramContext = createContext<string>("sq-context:program-id");
+export function useProgramContext() {
+  return useContext<string>("sq-context:program-id");
+}

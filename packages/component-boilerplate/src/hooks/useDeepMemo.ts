@@ -1,5 +1,5 @@
 import { equal } from "@wry/equality";
-import { useRef } from "@saasquatch/stencil-hooks";
+import { useRef } from "@saasquatch/universal-hooks";
 
 export function useDeepMemo<TKey, TValue>(
   memoFn: () => TValue,

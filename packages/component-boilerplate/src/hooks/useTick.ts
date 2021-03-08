@@ -1,4 +1,4 @@
-import { useReducer } from "@saasquatch/stencil-hooks";
+import { useReducer } from "@saasquatch/universal-hooks";
 
 export function useTick(): readonly [number, () => unknown] {
   //@ts-expect-error -- bad typing on callback
