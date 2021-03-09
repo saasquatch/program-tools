@@ -29,7 +29,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         content={props.tooltiptext}
         placement="top-end"
       >
-        <sl-input style={`${copyInput} `} value="https://ssqt.co" disabled readonly>
+        <sl-input style={`${copyInput} ${props.customstyle}`} value="https://ssqt.co" disabled readonly>
           <sl-icon-button name="clipboard" />
         </sl-input>
       </sl-tooltip>
