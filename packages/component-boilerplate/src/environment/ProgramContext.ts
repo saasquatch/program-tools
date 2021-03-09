@@ -1,6 +1,7 @@
-import { createContext } from "@saasquatch/stencil-hooks";
-import { useContext } from "@saasquatch/universal-hooks";
+import { useDomContext } from "@saasquatch/dom-context-hooks";
+import { useHost } from "../hooks/useHost";
 
 export function useProgramContext() {
-  return useContext<string>("sq-context:program-id");
+  const host = useHost();
+  return useDomContext<string>(host, "sq-context:program-id");
 }

@@ -1,12 +1,4 @@
-import { useContext } from "@saasquatch/universal-hooks";
-
-function createContext<T>(name: string) {
-  return {
-    useContext() {
-      return useContext<T>(name);
-    },
-  };
-}
+import { createContext } from "@saasquatch/dom-context-hooks";
 
 /**
  * Environment provided by components hosted in a web component (`sqh-widget`)

@@ -23,6 +23,7 @@ export { useLazyQuery } from "./hooks/graphql/useLazyQuery";
 //
 export { useDebounce, useDebouncedCallback } from "./hooks/useDebounce";
 export { useTick } from "./hooks/useTick";
+export { useHost, setImplementation as setUseHostImplementation } from "./hooks/useHost";
 
 //
 //      Common higher-level functionality

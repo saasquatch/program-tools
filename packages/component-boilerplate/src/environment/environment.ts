@@ -1,3 +1,4 @@
+import { useHost } from "../hooks/useHost";
 import { useProgramContext } from "./ProgramContext";
 import {
   PortalEnv,
@@ -181,6 +182,7 @@ type UserIdentity = {
 
 export function useUserIdentity(): UserIdentity | undefined {
   const sdk = getEnvironmentSDK();
+  const host = useHost();
   switch (sdk.type) {
     case "SquatchAndroid":
     case "SquatchJS2":
@@ -190,7 +192,7 @@ export function useUserIdentity(): UserIdentity | undefined {
         jwt: sdk.widgetIdent.token,
       };
     case "SquatchPortal":
-      return sdk.context.userContext.useContext();
+      return sdk.context.userContext.useContext(host);
     case "SquatchAdmin":
     case "None":
       // Not logged in for admin portal / none default case
