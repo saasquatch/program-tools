@@ -20,6 +20,32 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface ShareButton {
+        "customstyle"?: string;
+        "disabled"?: boolean;
+        "href"?: string;
+        "icon"?: string;
+        "iconlabel"?: string;
+        "iconslot"?: 'prefix' | 'suffix';
+        "label"?: string;
+        "loading"?: boolean;
+        "name"?: string;
+        "pill"?: boolean;
+        "size"?: 'small' | 'medium' | 'large';
+        "target"?: '_blank' | '_parent' | '_self' | '_top';
+        "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
+        "value"?: string;
+    }
+    interface ShareLink {
+        "buttondisabled"?: boolean;
+        "customstyle"?: string;
+        "disabletooltip"?: boolean;
+        "icon"?: string;
+        "iconlabel"?: string;
+        "tooltiptext"?: string;
+    }
+    interface StnStencilbook {
+    }
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -28,8 +54,29 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLShareButtonElement extends Components.ShareButton, HTMLStencilElement {
+    }
+    var HTMLShareButtonElement: {
+        prototype: HTMLShareButtonElement;
+        new (): HTMLShareButtonElement;
+    };
+    interface HTMLShareLinkElement extends Components.ShareLink, HTMLStencilElement {
+    }
+    var HTMLShareLinkElement: {
+        prototype: HTMLShareLinkElement;
+        new (): HTMLShareLinkElement;
+    };
+    interface HTMLStnStencilbookElement extends Components.StnStencilbook, HTMLStencilElement {
+    }
+    var HTMLStnStencilbookElement: {
+        prototype: HTMLStnStencilbookElement;
+        new (): HTMLStnStencilbookElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "share-button": HTMLShareButtonElement;
+        "share-link": HTMLShareLinkElement;
+        "stn-stencilbook": HTMLStnStencilbookElement;
     }
 }
 declare namespace LocalJSX {
@@ -47,8 +94,37 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface ShareButton {
+        "customstyle"?: string;
+        "disabled"?: boolean;
+        "href"?: string;
+        "icon"?: string;
+        "iconlabel"?: string;
+        "iconslot"?: 'prefix' | 'suffix';
+        "label"?: string;
+        "loading"?: boolean;
+        "name"?: string;
+        "pill"?: boolean;
+        "size"?: 'small' | 'medium' | 'large';
+        "target"?: '_blank' | '_parent' | '_self' | '_top';
+        "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
+        "value"?: string;
+    }
+    interface ShareLink {
+        "buttondisabled"?: boolean;
+        "customstyle"?: string;
+        "disabletooltip"?: boolean;
+        "icon"?: string;
+        "iconlabel"?: string;
+        "tooltiptext"?: string;
+    }
+    interface StnStencilbook {
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "share-button": ShareButton;
+        "share-link": ShareLink;
+        "stn-stencilbook": StnStencilbook;
     }
 }
 export { LocalJSX as JSX };
@@ -56,6 +132,9 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "share-button": LocalJSX.ShareButton & JSXBase.HTMLAttributes<HTMLShareButtonElement>;
+            "share-link": LocalJSX.ShareLink & JSXBase.HTMLAttributes<HTMLShareLinkElement>;
+            "stn-stencilbook": LocalJSX.StnStencilbook & JSXBase.HTMLAttributes<HTMLStnStencilbookElement>;
         }
     }
 }

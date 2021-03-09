@@ -3,12 +3,25 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
+    <title>Mint Components Stencilbook</title>
 
-    <script type="module" src="/build/mint-components.esm.js"></script>
-    <script nomodule src="/build/mint-components.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.27/dist/shoelace/shoelace.esm.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.27/dist/shoelace/shoelace.css" />
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito%20Sans" />
+    <script type="module" src="/build/components-starter.esm.js"></script>
+    <script nomodule src="/build/components-starter.js"></script>
   </head>
   <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+    <script>
+      if (!localStorage.getItem('IEAlert') && window.document.documentMode) {
+        localStorage.setItem('IEAlert', true);
+        alert('Internet Explorer is not fully supported. We recommend upgrading your browser for the best experience.');
+      }
+    </script>
+
+    <stn-stencilbook></stn-stencilbook>
   </body>
 </html>
