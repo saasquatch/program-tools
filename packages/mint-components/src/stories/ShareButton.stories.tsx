@@ -13,3 +13,8 @@ export const WithIcon = () => {
   const props = { label: 'Share', icon:"facebook", iconslot:"suffix" } as const;
   return ShareButtonView(props);
 };
+
+export const TextButton = () => {
+  const props = { label: 'Share', type:'text' } as const;
+  return ShareButtonView(props);
+};
