@@ -16,18 +16,21 @@ const initialLazyQueryState: BaseQueryData = {
 export function useLazyQuery<T = any>(
   query: GqlType,
   variables: unknown
-): QueryData<T> {
+): [(e: unknown) => unknown, QueryData<T>] {
   const [state, update] = useBaseQuery<T>(
     query,
     initialLazyQueryState as BaseQueryData<T>
   );
   const [tick, forceUpdate] = useTick();
   useDeepMemo(() => {
-    tick > 0 && update(variables);
+    update(variables);
   }, [tick]);
-  return {
-    ...state,
-    // can override props when refetching for new pagination, offset, etc
-    refetch: forceUpdate,
-  };
+  return [
+    update,
+    {
+      ...state,
+      // can override props when refetching for new pagination, offset, etc
+      refetch: forceUpdate,
+    },
+  ];
 }
