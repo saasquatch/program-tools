@@ -1,6 +1,10 @@
-import { ShareButtonView } from "../components/share-button/share-button-view";
+import { ShareButtonView } from '../components/share-button/share-button-view';
 
-export const ShareButtons = () => {
+export default {
+  title: 'Share Button',
+};
+
+export const Default = () => {
   const props = {};
   return ShareButtonView(props);
 };

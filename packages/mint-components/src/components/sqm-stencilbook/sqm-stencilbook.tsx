@@ -2,8 +2,8 @@ import { h, Component, Host, State } from '@stencil/core';
 import { useStencilbook } from '@saasquatch/stencilbook';
 import * as hooks from '@saasquatch/stencil-hooks';
 
-import * as ShareButton from '../share-button/share-button-view';
-import * as ShareLink from '../share-link/share-link-view';
+import * as ShareButton from '../../stories/ShareButton.stories';
+import * as ShareLink from '../../stories/ShareLink.stories';
 
 import { CucumberAddon } from './CucumberAddon';
 
