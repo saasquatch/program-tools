@@ -1,4 +1,5 @@
 import { h } from '@stencil/core';
+import { css } from 'emotion';
 
 export interface ShareLinkViewProps {
   buttondisabled?: boolean;
@@ -11,7 +12,7 @@ export interface ShareLinkViewProps {
   customstyle?: string;
 }
 
-const copyInput = `
+const copyInput = css`
   &::part(base) {
     background: white;
     opacity: 1;
@@ -23,14 +24,22 @@ export function ShareLinkView(props: ShareLinkViewProps) {
   return (
     <div>
       <sl-tooltip
-        style={`
+        css={css`
           margin-top: 12px;
         `}
         content={props.tooltiptext}
         placement="top-end"
       >
-        <sl-input style={`${copyInput} ${props.customstyle}`} value="https://ssqt.co" disabled readonly>
-          <sl-icon-button name="clipboard" />
+        <sl-input
+          class={copyInput}
+          css={css`
+            ${props.customstyle}
+          `}
+          value="https://ssqt.co"
+          disabled
+          readonly
+        >
+          <sl-icon-button slot="suffix" name="clipboard"/>
         </sl-input>
       </sl-tooltip>
     </div>

@@ -12,15 +12,15 @@ export class MyComponent {
     @Prop() loading?: boolean;
     @Prop() disabled?: boolean;
     @Prop() pill?: boolean;
-    @Prop() type?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
-    @Prop() size?: 'small' | 'medium' | 'large';
+    @Prop() type?: "primary" | "success" | "info" | "warning" | "danger" | "default" | "text";
+    @Prop() size?: "small" | "medium" | "large";
     @Prop() icon?: string;
-    @Prop() iconslot?: 'prefix' | 'suffix';
+    @Prop() iconslot?: "prefix" | "suffix";
     @Prop() iconlabel?: string;
     @Prop() href?: string;
     @Prop() name?: string;
     @Prop() value?: string;
-    @Prop() target?: '_blank' | '_parent' | '_self' | '_top';
+    @Prop() target?: "_blank" | "_parent" | "_self" | "_top";
     @Prop() customstyle?: string;
 
   render() {

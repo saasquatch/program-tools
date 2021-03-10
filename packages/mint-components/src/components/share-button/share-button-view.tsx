@@ -1,21 +1,21 @@
-import { h } from '@stencil/core';
+import { h } from "@stencil/core";
 
 export interface ShareButtonViewProps {
   label?: string;
   loading?: boolean;
   disabled?: boolean;
   pill?: boolean;
-  type?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
-  size?: 'small' | 'medium' | 'large';
+  type?: "primary" | "success" | "info" | "warning" | "danger" | "default" | "text";
+  size?: "small" | "medium" | "large";
 
   icon?: string;
-  iconslot?: 'prefix' | 'suffix';
+  iconslot?: "prefix" | "suffix";
   iconlabel?: string;
 
   href?: string;
   name?: string;
   value?: string;
-  target?: '_blank' | '_parent' | '_self' | '_top';
+  target?: "_blank" | "_parent" | "_self" | "_top";
 
   customstyle?: string;
 }

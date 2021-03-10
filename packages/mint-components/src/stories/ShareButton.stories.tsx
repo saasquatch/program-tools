@@ -4,7 +4,12 @@ export default {
   title: 'Share Button',
 };
 
-export const Default = () => {
-  const props = {};
+export const WithoutIcon = () => {
+  const props = { label: 'Share' };
+  return ShareButtonView(props);
+};
+
+export const WithIcon = () => {
+  const props = { label: 'Share', icon:"facebook", iconslot:"suffix" } as const;
   return ShareButtonView(props);
 };

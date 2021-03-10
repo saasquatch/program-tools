@@ -26,14 +26,14 @@ export namespace Components {
         "href"?: string;
         "icon"?: string;
         "iconlabel"?: string;
-        "iconslot"?: 'prefix' | 'suffix';
+        "iconslot"?: "prefix" | "suffix";
         "label"?: string;
         "loading"?: boolean;
         "name"?: string;
         "pill"?: boolean;
-        "size"?: 'small' | 'medium' | 'large';
-        "target"?: '_blank' | '_parent' | '_self' | '_top';
-        "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
+        "size"?: "small" | "medium" | "large";
+        "target"?: "_blank" | "_parent" | "_self" | "_top";
+        "type"?: "primary" | "success" | "info" | "warning" | "danger" | "default" | "text";
         "value"?: string;
     }
     interface SqmShareLink {
@@ -100,14 +100,14 @@ declare namespace LocalJSX {
         "href"?: string;
         "icon"?: string;
         "iconlabel"?: string;
-        "iconslot"?: 'prefix' | 'suffix';
+        "iconslot"?: "prefix" | "suffix";
         "label"?: string;
         "loading"?: boolean;
         "name"?: string;
         "pill"?: boolean;
-        "size"?: 'small' | 'medium' | 'large';
-        "target"?: '_blank' | '_parent' | '_self' | '_top';
-        "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
+        "size"?: "small" | "medium" | "large";
+        "target"?: "_blank" | "_parent" | "_self" | "_top";
+        "type"?: "primary" | "success" | "info" | "warning" | "danger" | "default" | "text";
         "value"?: string;
     }
     interface SqmShareLink {
