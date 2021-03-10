@@ -23,7 +23,7 @@ export function useLazyQuery<T = any>(
   );
   const [tick, forceUpdate] = useTick();
   useDeepMemo(() => {
-    update(variables);
+    tick > 0 && update(variables);
   }, [tick]);
   return {
     ...state,
