@@ -2,8 +2,8 @@ import { h, Component, Host, State } from '@stencil/core';
 import { useStencilbook } from '@saasquatch/stencilbook';
 import * as hooks from '@saasquatch/stencil-hooks';
 
-import * as ShareButton from '../../components/share-button/ShareButtonView';
-import * as ShareLink from '../../components/share-link/ShareLinkView';
+import * as ShareButton from '../share-button/share-button-view';
+import * as ShareLink from '../share-link/share-link-view';
 
 import { CucumberAddon } from './CucumberAddon';
 
@@ -15,7 +15,7 @@ const stories = [ShareButton, ShareLink];
  * @undocumented
  */
 @Component({
-  tag: 'stn-stencilbook',
+  tag: 'sqm-stencilbook',
 })
 export class StencilStorybook {
   @State()

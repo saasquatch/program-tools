@@ -1,9 +1,9 @@
 import { Component, Prop, h } from '@stencil/core';
-import { ShareButtonView } from './shareButtonView';
+import { ShareButtonView } from './share-button-view';
 import { useShareButton } from './useShareButton';
 
 @Component({
-  tag: 'share-button',
+  tag: 'sqm-share-button',
   styleUrl: 'share-button.css',
   shadow: true,
 })

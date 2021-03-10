@@ -1,4 +1,4 @@
-import { ShareButtonViewProps } from './shareButtonView';
+import { ShareButtonViewProps } from './share-button-view';
 
 interface ShareButtonProps extends ShareButtonViewProps {}
 

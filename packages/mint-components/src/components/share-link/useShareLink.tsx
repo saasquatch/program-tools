@@ -1,4 +1,4 @@
-import { ShareLinkViewProps } from './shareLinkView';
+import { ShareLinkViewProps } from './share-link-view';
 
 interface ShareLinkProps extends ShareLinkViewProps {}
 

@@ -20,7 +20,7 @@ export namespace Components {
          */
         "middle": string;
     }
-    interface ShareButton {
+    interface SqmShareButton {
         "customstyle"?: string;
         "disabled"?: boolean;
         "href"?: string;
@@ -36,7 +36,7 @@ export namespace Components {
         "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
         "value"?: string;
     }
-    interface ShareLink {
+    interface SqmShareLink {
         "buttondisabled"?: boolean;
         "customstyle"?: string;
         "disabletooltip"?: boolean;
@@ -44,7 +44,7 @@ export namespace Components {
         "iconlabel"?: string;
         "tooltiptext"?: string;
     }
-    interface StnStencilbook {
+    interface SqmStencilbook {
     }
 }
 declare global {
@@ -54,29 +54,29 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
-    interface HTMLShareButtonElement extends Components.ShareButton, HTMLStencilElement {
+    interface HTMLSqmShareButtonElement extends Components.SqmShareButton, HTMLStencilElement {
     }
-    var HTMLShareButtonElement: {
-        prototype: HTMLShareButtonElement;
-        new (): HTMLShareButtonElement;
+    var HTMLSqmShareButtonElement: {
+        prototype: HTMLSqmShareButtonElement;
+        new (): HTMLSqmShareButtonElement;
     };
-    interface HTMLShareLinkElement extends Components.ShareLink, HTMLStencilElement {
+    interface HTMLSqmShareLinkElement extends Components.SqmShareLink, HTMLStencilElement {
     }
-    var HTMLShareLinkElement: {
-        prototype: HTMLShareLinkElement;
-        new (): HTMLShareLinkElement;
+    var HTMLSqmShareLinkElement: {
+        prototype: HTMLSqmShareLinkElement;
+        new (): HTMLSqmShareLinkElement;
     };
-    interface HTMLStnStencilbookElement extends Components.StnStencilbook, HTMLStencilElement {
+    interface HTMLSqmStencilbookElement extends Components.SqmStencilbook, HTMLStencilElement {
     }
-    var HTMLStnStencilbookElement: {
-        prototype: HTMLStnStencilbookElement;
-        new (): HTMLStnStencilbookElement;
+    var HTMLSqmStencilbookElement: {
+        prototype: HTMLSqmStencilbookElement;
+        new (): HTMLSqmStencilbookElement;
     };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
-        "share-button": HTMLShareButtonElement;
-        "share-link": HTMLShareLinkElement;
-        "stn-stencilbook": HTMLStnStencilbookElement;
+        "sqm-share-button": HTMLSqmShareButtonElement;
+        "sqm-share-link": HTMLSqmShareLinkElement;
+        "sqm-stencilbook": HTMLSqmStencilbookElement;
     }
 }
 declare namespace LocalJSX {
@@ -94,7 +94,7 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
-    interface ShareButton {
+    interface SqmShareButton {
         "customstyle"?: string;
         "disabled"?: boolean;
         "href"?: string;
@@ -110,7 +110,7 @@ declare namespace LocalJSX {
         "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
         "value"?: string;
     }
-    interface ShareLink {
+    interface SqmShareLink {
         "buttondisabled"?: boolean;
         "customstyle"?: string;
         "disabletooltip"?: boolean;
@@ -118,13 +118,13 @@ declare namespace LocalJSX {
         "iconlabel"?: string;
         "tooltiptext"?: string;
     }
-    interface StnStencilbook {
+    interface SqmStencilbook {
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
-        "share-button": ShareButton;
-        "share-link": ShareLink;
-        "stn-stencilbook": StnStencilbook;
+        "sqm-share-button": SqmShareButton;
+        "sqm-share-link": SqmShareLink;
+        "sqm-stencilbook": SqmStencilbook;
     }
 }
 export { LocalJSX as JSX };
@@ -132,9 +132,9 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
-            "share-button": LocalJSX.ShareButton & JSXBase.HTMLAttributes<HTMLShareButtonElement>;
-            "share-link": LocalJSX.ShareLink & JSXBase.HTMLAttributes<HTMLShareLinkElement>;
-            "stn-stencilbook": LocalJSX.StnStencilbook & JSXBase.HTMLAttributes<HTMLStnStencilbookElement>;
+            "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
+            "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
+            "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
         }
     }
 }

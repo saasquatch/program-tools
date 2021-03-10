@@ -1,4 +1,4 @@
-import { ShareButtonView } from "../components/share-button/ShareButtonView";
+import { ShareButtonView } from "../components/share-button/share-button-view";
 
 export const ShareButtons = () => {
   const props = {};
