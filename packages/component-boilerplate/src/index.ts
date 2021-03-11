@@ -29,3 +29,4 @@ export { useHost, setImplementation as setUseHostImplementation } from "./hooks/
 //      Common higher-level functionality
 //
 export { useShareEvent } from "./hooks/useShareEvent";
+export { useForm } from "./hooks/useForm";

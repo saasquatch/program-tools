@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/component-boilerplate",
-  "version": "1.0.0-beta7",
+  "version": "1.0.0-beta8",
   "private": false,
   "description": "Boilerplate for writing web components for the SaaSquatch widget environments",
   "source": "src/index.ts",
@@ -36,6 +36,7 @@
     "fast-memoize": "^2.5.2",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
-    "history": "^5.0.0"
+    "history": "^5.0.0",
+    "jsonpointer": "^4.1.0"
   }
 }
