@@ -1,5 +1,5 @@
 import { Component, Prop, h } from '@stencil/core';
-import ShareLinkView from './share-link-view';
+import { ShareLinkView } from './share-link-view';
 import { useShareLink } from './useShareLink';
 
 @Component({

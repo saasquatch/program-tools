@@ -1,4 +1,4 @@
-import ShareLinkView from '../components/share-link/share-link-view';
+import { ShareLinkView } from '../components/share-link/share-link-view';
 
 export default {
   title: 'Share Link',
