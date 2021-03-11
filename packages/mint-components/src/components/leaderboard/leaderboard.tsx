@@ -9,6 +9,8 @@ import { useLeaderboard } from './useLeaderboard';
 })
 export class MyComponent {
 
+  @Prop() placementtext: string;
+
   render() {
     return <LeaderboardView {...useLeaderboard(this)} />;
   }
