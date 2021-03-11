@@ -1,9 +1,9 @@
-import { h, VNode } from "@stencil/core";
-import { FunctionalComponent } from "@stencil/router/dist/types/stencil.core";
-import { css } from "emotion";
-import { formatMessage } from "../../utilities";
-import { LoadingState } from "./loading-state";
-import ReferralComponentView from "./referral-component-view";
+import { h, VNode } from '@stencil/core';
+import { FunctionalComponent } from '@stencil/router/dist/types/stencil.core';
+import { css } from 'emotion';
+import { formatMessage } from '../../utilities';
+import { LoadingState } from './loading-state';
+import ReferralComponentView from './referral-component-view';
 
 const ListCard = css`
   position: relative;
@@ -43,10 +43,47 @@ const ButtonsContainer = css`
   }
 `;
 
-export type ReferralListViewProps = any;
-const ReferralListView: FunctionalComponent<ReferralListViewProps> = (
-  props: ReferralListViewProps
-) => {
+export interface ReferralListViewProps {
+  states: {
+    loading: boolean;
+    offset: number;
+    styles: {
+      unknownuser: string;
+      pickrewardtext: string;
+      showStatus: boolean;
+      downloadedtext: string;
+      downloadedunqualifiedtext: string;
+      purchasedeligibletext: string;
+      purchasednoteligibletext: string;
+      newreferraltext: string;
+      rewardpendingtext: string;
+      rewardsavailabletext: string;
+      rewardredeemedtext: string;
+      paginateless: string;
+      paginatemore: string;
+      noreferralsyet: string;
+      titleText: string;
+    };
+  };
+  data: {
+    referrals: Array<
+      Referral & {
+        referredFor: {
+          firstName: string;
+          lastName: string;
+        };
+      }
+    >;
+    referraltype: 'converted' | 'pending' | 'referrer';
+    referralsCount: number;
+    rewardTranslations: unknown;
+  };
+  callbacks: {
+    intl: any;
+    paginate: any;
+  };
+}
+const ReferralListView: FunctionalComponent<ReferralListViewProps> = (props: ReferralListViewProps) => {
   const { states, data, callbacks } = props;
   const { styles } = states;
   const { paginate } = callbacks;
@@ -54,14 +91,12 @@ const ReferralListView: FunctionalComponent<ReferralListViewProps> = (
   let referredByRow: VNode;
 
   function hasAvailableRewards(referral: Referral) {
-    const rewards = referral.rewards.filter((e: any) =>
-      e.statuses.includes("AVAILABLE")
-    );
+    const rewards = referral.rewards.filter((e: any) => e.statuses.includes('AVAILABLE'));
     return rewards.length > 0;
   }
 
   const allRewardsRedeemed = (referral: Referral) => {
-    return referral.rewards.every((e: any) => e.statuses.includes("REDEEMED"));
+    return referral.rewards.every((e: any) => e.statuses.includes('REDEEMED'));
   };
 
   const getName = (referral: Referral) => {
@@ -76,13 +111,13 @@ const ReferralListView: FunctionalComponent<ReferralListViewProps> = (
     if (referredUser.customFields.Saasquatch_Referral_Status__c) {
       const status = referredUser.customFields.Saasquatch_Referral_Status__c;
       switch (status) {
-        case "Downloaded - qualified":
+        case 'Downloaded - qualified':
           return styles.downloadedtext;
-        case "Downloaded - unqualified":
+        case 'Downloaded - unqualified':
           return styles.downloadedunqualifiedtext;
-        case "Purchased - eligible for reward":
+        case 'Purchased - eligible for reward':
           return styles.purchasedeligibletext;
-        case "Purchased - not eligible for reward":
+        case 'Purchased - not eligible for reward':
           return styles.purchasednoteligibletext;
         default:
           return styles.newreferraltext;
@@ -97,20 +132,16 @@ const ReferralListView: FunctionalComponent<ReferralListViewProps> = (
       return styles.rewardpendingtext;
     }
     if (hasAvailableRewards(referral)) {
-      const countAvailable = rewards.filter((obj) =>
-        obj.statuses.some((e) => e === "AVAILABLE")
-      ).length;
+      const countAvailable = rewards.filter(obj => obj.statuses.some(e => e === 'AVAILABLE')).length;
       return countAvailable > 1
         ? formatMessage(styles.rewardsavailabletext, callbacks.intl.locale, {
             count: countAvailable,
           })
-        : styles.rewardavailabletext;
+        : styles.rewardsavailabletext;
     }
-    const countRedeemed = rewards.filter((obj) =>
-      obj.statuses.some((e) => e === "REDEEMED")
-    ).length;
+    const countRedeemed = rewards.filter(obj => obj.statuses.some(e => e === 'REDEEMED')).length;
     return countRedeemed > 1
-      ? formatMessage(styles.rewardsredeemedtext, callbacks.intl.locale, {
+      ? formatMessage(styles.rewardsavailabletext, callbacks.intl.locale, {
           count: countRedeemed,
         })
       : styles.rewardredeemedtext;
@@ -118,7 +149,7 @@ const ReferralListView: FunctionalComponent<ReferralListViewProps> = (
 
   if (states.loading) {
     return (
-      <div style={{ minHeight: "537px" }} class={`${ListCard}`}>
+      <div style={{ minHeight: '537px' }} class={`${ListCard}`}>
         <div class={CardTitle}>{styles.titleText}</div>
         <LoadingState minHeight={370} />
       </div>
@@ -130,9 +161,8 @@ const ReferralListView: FunctionalComponent<ReferralListViewProps> = (
       {data.referralsCount > 0 ? (
         <div>
           <div class={RowContainer}>
-            {data?.referrals?.map((ref) => {
-              const referraltype =
-                ref.rewards.length > 0 ? "converted" : "pending";
+            {data?.referrals?.map(ref => {
+              const referraltype = ref.rewards.length > 0 ? 'converted' : 'pending';
               return (
                 <ReferralComponentView
                   data={{
@@ -162,28 +192,16 @@ const ReferralListView: FunctionalComponent<ReferralListViewProps> = (
             {referredByRow}
           </div>
           <div class={`${ButtonsContainer}`}>
-            <sl-button
-              size="small"
-              disabled={states.offset === 0}
-              loading={states.loading}
-              onClick={(event) => paginate(states.offset - 3, event)}
-            >
+            <sl-button size="small" disabled={states.offset === 0} loading={states.loading} onClick={event => paginate(states.offset - 3, event)}>
               {styles.paginateless}
             </sl-button>
-            <sl-button
-              size="small"
-              loading={states.loading}
-              disabled={states.offset >= data.referralsCount - 3}
-              onClick={(event) => paginate(states.offset + 3, event)}
-            >
+            <sl-button size="small" loading={states.loading} disabled={states.offset >= data.referralsCount - 3} onClick={event => paginate(states.offset + 3, event)}>
               {styles.paginatemore}
             </sl-button>
           </div>
         </div>
       ) : (
-        <span style={{ fontSize: "var(--sl-font-size-medium)" }}>
-          {styles.noreferralsyet}
-        </span>
+        <span style={{ fontSize: 'var(--sl-font-size-medium)' }}>{styles.noreferralsyet}</span>
       )}
     </div>
   );

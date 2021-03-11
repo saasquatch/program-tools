@@ -20,7 +20,7 @@ const copyInput = css`
   }
 `;
 
-export function ShareLinkView(props: ShareLinkViewProps) {
+function ShareLinkView(props: ShareLinkViewProps) {
   return (
     <div>
       <sl-tooltip
@@ -45,3 +45,5 @@ export function ShareLinkView(props: ShareLinkViewProps) {
     </div>
   );
 }
+
+export default ShareLinkView;

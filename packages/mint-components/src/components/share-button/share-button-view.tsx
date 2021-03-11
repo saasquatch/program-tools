@@ -20,7 +20,7 @@ export interface ShareButtonViewProps {
   customstyle?: string;
 }
 
-export function ShareButtonView(props: ShareButtonViewProps) {
+function ShareButtonView(props: ShareButtonViewProps) {
   return (
     <sl-button
       loading={props.loading}
@@ -39,3 +39,5 @@ export function ShareButtonView(props: ShareButtonViewProps) {
     </sl-button>
   );
 }
+
+export default ShareButtonView

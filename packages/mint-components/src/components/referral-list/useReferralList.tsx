@@ -1,6 +1,6 @@
 import { ReferralListViewProps } from './referral-list-view';
 
-interface ReferralListProps extends ReferralListViewProps {}
+type ReferralListProps = any;
 
 export function useReferralList(props: ReferralListProps): ReferralListViewProps {
   return props;

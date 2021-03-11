@@ -14,7 +14,7 @@ interface Referral {
   };
   rewards: Reward[];
 }
-
+  
 interface Reward {
   id: string;
   type: string;
@@ -29,7 +29,7 @@ interface Reward {
   currency: string;
   prettyValue: string;
   statuses: string[];
-  globalRewardKey?: string;
+  globalRewardKey?:string;
   rewardRedemptionTransactions: {
     data: [
       {
@@ -39,11 +39,42 @@ interface Reward {
               prettyValue: string;
               type: string;
               fuelTankCode: string;
-              globalRewardKey?: string;
-            },
+              globalRewardKey?:string;
+            }
           ];
         };
-      },
+      }
     ];
   };
 }
+
+interface ReferralVariables {
+  usefirstreward: boolean;
+  referrercontent: string;
+  convertedcontent: string;
+  pendingcontent: string;
+  pendingvalue: string;
+  referrervalue: string;
+  valuecontent: string;
+  expiredvalue: string;
+  expiredcontent: string;
+  cancelledvalue: string;
+  cancelledcontent: string;
+}
+
+interface RewardPickerReward {
+  description: string;
+  amount: number;
+  unit: string;
+  JSONata: string;
+  key: string;
+}
+
+interface RewardBalance {
+  type: string;
+  unit: string;
+  value: number;
+  prettyValue: string;
+}
+
+declare module "react";

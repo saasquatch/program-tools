@@ -8,7 +8,7 @@ const useDocx = {
     outDir: "docs",
     textFont: "Calibri",
     excludeTags: ["undocumented"],
-    title: "Mint Components",
+    title: "Service Titan Component Documentation",
     author: "SaaSquatch",
   }),
 } as const;
