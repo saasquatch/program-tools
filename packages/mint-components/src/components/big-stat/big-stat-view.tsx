@@ -1,12 +1,18 @@
 import { h } from '@stencil/core';
-import { css } from 'emotion';
-
 export interface BigStatViewProps {
+  statvalue: number;
+  statdescription: string;
 }
 
 export function BigStatView(props: BigStatViewProps) {
   return (
-    <div>
+    <div part="stat-wrapper">
+      <div part="stat-value" style={{ fontSize: 'var(--sl-font-size-x-large)', textAlign: 'center' }}>
+        {props.statvalue || 0}
+      </div>
+      <div part="stat-description" style={{ fontSize: 'var(--sl-font-size-small)', textTransform: 'uppercase' }}>
+        {props.statdescription}
+      </div>
     </div>
   );
 }

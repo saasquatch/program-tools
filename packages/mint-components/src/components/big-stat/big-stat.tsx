@@ -8,6 +8,7 @@ import { useBigStat } from './useBigStat';
   shadow: true,
 })
 export class MyComponent {
+  @Prop() statdescription;
 
   render() {
     return <BigStatView {...useBigStat(this)} />;

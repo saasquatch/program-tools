@@ -1,7 +1,7 @@
 import { BigStatViewProps } from './big-stat-view';
 
-interface BigStatProps extends BigStatViewProps {}
+interface BigStatProps {statdescription: string}
 
 export function useBigStat(props: BigStatProps): BigStatViewProps {
-  return props;
+  return {statvalue: 0, ...props};
 }

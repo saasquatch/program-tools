@@ -21,6 +21,7 @@ export namespace Components {
         "middle": string;
     }
     interface SqmBigStat {
+        "statdescription": any;
     }
     interface SqmLeaderboard {
         "placementtext": string;
@@ -28,28 +29,21 @@ export namespace Components {
     interface SqmLeaderboardRank {
     }
     interface SqmReferralList {
-        "cancelledcolor": string;
-        "cancelledcontent": string;
-        "cancelledvalue": string;
-        "convertedcontent": string;
-        "expiredcolor": string;
-        "expiredcontent": string;
-        "expiredvalue": string;
+        "downloadedtext": string;
+        "downloadedunqualifiedtext": string;
+        "newreferraltext": string;
         "noreferralsyet": string;
         "paginateless": string;
         "paginatemore": string;
-        "pendingcolor": string;
-        "pendingcontent": string;
-        "pendingvalue": string;
-        "referralnamecolor": string;
-        "referraltextcolor": string;
-        "referrercontent": string;
-        "referrervalue": string;
-        "rewardcolor": string;
-        "showreferrer": string;
+        "pickrewardtext": string;
+        "purchasedeligibletext": string;
+        "purchasednoteligibletext": string;
+        "rewardpendingtext": string;
+        "rewardredeemedtext": string;
+        "rewardsavailabletext": string;
+        "showStatus": boolean;
+        "titleText": string;
         "unknownuser": string;
-        "usefirstreward": string;
-        "valuecontent": string;
     }
     interface SqmShareButton {
         "customstyle"?: string;
@@ -154,6 +148,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface SqmBigStat {
+        "statdescription"?: any;
     }
     interface SqmLeaderboard {
         "placementtext"?: string;
@@ -161,28 +156,21 @@ declare namespace LocalJSX {
     interface SqmLeaderboardRank {
     }
     interface SqmReferralList {
-        "cancelledcolor"?: string;
-        "cancelledcontent"?: string;
-        "cancelledvalue"?: string;
-        "convertedcontent"?: string;
-        "expiredcolor"?: string;
-        "expiredcontent"?: string;
-        "expiredvalue"?: string;
+        "downloadedtext"?: string;
+        "downloadedunqualifiedtext"?: string;
+        "newreferraltext"?: string;
         "noreferralsyet"?: string;
         "paginateless"?: string;
         "paginatemore"?: string;
-        "pendingcolor"?: string;
-        "pendingcontent"?: string;
-        "pendingvalue"?: string;
-        "referralnamecolor"?: string;
-        "referraltextcolor"?: string;
-        "referrercontent"?: string;
-        "referrervalue"?: string;
-        "rewardcolor"?: string;
-        "showreferrer"?: string;
+        "pickrewardtext"?: string;
+        "purchasedeligibletext"?: string;
+        "purchasednoteligibletext"?: string;
+        "rewardpendingtext"?: string;
+        "rewardredeemedtext"?: string;
+        "rewardsavailabletext"?: string;
+        "showStatus"?: boolean;
+        "titleText"?: string;
         "unknownuser"?: string;
-        "usefirstreward"?: string;
-        "valuecontent"?: string;
     }
     interface SqmShareButton {
         "customstyle"?: string;

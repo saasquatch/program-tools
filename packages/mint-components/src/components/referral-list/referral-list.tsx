@@ -8,28 +8,21 @@ import { useReferralList } from './useReferralList';
   shadow: true,
 })
 export class MyComponent {
-  @Prop() showreferrer: string;
-  @Prop() usefirstreward: string;
-  @Prop() referralnamecolor: string;
-  @Prop() referraltextcolor: string;
-  @Prop() rewardcolor: string;
-  @Prop() pendingcolor: string;
-  @Prop() pendingvalue: string;
-  @Prop() referrervalue: string;
-  @Prop() referrercontent: string;
-  @Prop() convertedcontent: string;
-  @Prop() pendingcontent: string;
-  @Prop() valuecontent: string;
-  @Prop() expiredcolor: string;
-  @Prop() expiredvalue: string;
-  @Prop() expiredcontent: string;
-  @Prop() cancelledcolor: string;
-  @Prop() cancelledvalue: string;
-  @Prop() cancelledcontent: string;
-  @Prop() paginatemore: string;
-  @Prop() paginateless: string;
-  @Prop() noreferralsyet: string;
   @Prop() unknownuser: string;
+  @Prop() pickrewardtext: string;
+  @Prop() showStatus: boolean;
+  @Prop() downloadedtext: string;
+  @Prop() downloadedunqualifiedtext: string;
+  @Prop() purchasedeligibletext: string;
+  @Prop() purchasednoteligibletext: string;
+  @Prop() newreferraltext: string;
+  @Prop() rewardpendingtext: string;
+  @Prop() rewardsavailabletext: string;
+  @Prop() rewardredeemedtext: string;
+  @Prop() paginateless: string;
+  @Prop() paginatemore: string;
+  @Prop() noreferralsyet: string;
+  @Prop() titleText: string;
   render() {
     return <ReferralListView {...useReferralList(this)} />;
   }
