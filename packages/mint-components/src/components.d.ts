@@ -20,6 +20,30 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface SqmReferralList {
+        "cancelledcolor": string;
+        "cancelledcontent": string;
+        "cancelledvalue": string;
+        "convertedcontent": string;
+        "expiredcolor": string;
+        "expiredcontent": string;
+        "expiredvalue": string;
+        "noreferralsyet": string;
+        "paginateless": string;
+        "paginatemore": string;
+        "pendingcolor": string;
+        "pendingcontent": string;
+        "pendingvalue": string;
+        "referralnamecolor": string;
+        "referraltextcolor": string;
+        "referrercontent": string;
+        "referrervalue": string;
+        "rewardcolor": string;
+        "showreferrer": string;
+        "unknownuser": string;
+        "usefirstreward": string;
+        "valuecontent": string;
+    }
     interface SqmShareButton {
         "customstyle"?: string;
         "disabled"?: boolean;
@@ -54,6 +78,12 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLSqmReferralListElement extends Components.SqmReferralList, HTMLStencilElement {
+    }
+    var HTMLSqmReferralListElement: {
+        prototype: HTMLSqmReferralListElement;
+        new (): HTMLSqmReferralListElement;
+    };
     interface HTMLSqmShareButtonElement extends Components.SqmShareButton, HTMLStencilElement {
     }
     var HTMLSqmShareButtonElement: {
@@ -74,6 +104,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "sqm-referral-list": HTMLSqmReferralListElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
@@ -93,6 +124,30 @@ declare namespace LocalJSX {
           * The middle name
          */
         "middle"?: string;
+    }
+    interface SqmReferralList {
+        "cancelledcolor"?: string;
+        "cancelledcontent"?: string;
+        "cancelledvalue"?: string;
+        "convertedcontent"?: string;
+        "expiredcolor"?: string;
+        "expiredcontent"?: string;
+        "expiredvalue"?: string;
+        "noreferralsyet"?: string;
+        "paginateless"?: string;
+        "paginatemore"?: string;
+        "pendingcolor"?: string;
+        "pendingcontent"?: string;
+        "pendingvalue"?: string;
+        "referralnamecolor"?: string;
+        "referraltextcolor"?: string;
+        "referrercontent"?: string;
+        "referrervalue"?: string;
+        "rewardcolor"?: string;
+        "showreferrer"?: string;
+        "unknownuser"?: string;
+        "usefirstreward"?: string;
+        "valuecontent"?: string;
     }
     interface SqmShareButton {
         "customstyle"?: string;
@@ -122,6 +177,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "sqm-referral-list": SqmReferralList;
         "sqm-share-button": SqmShareButton;
         "sqm-share-link": SqmShareLink;
         "sqm-stencilbook": SqmStencilbook;
@@ -132,6 +188,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "sqm-referral-list": LocalJSX.SqmReferralList & JSXBase.HTMLAttributes<HTMLSqmReferralListElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
