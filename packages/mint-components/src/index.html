@@ -13,96 +13,192 @@
     <script nomodule src="/build/components-starter.js"></script>
   </head>
   <body>
+    <!-- LV: These variables taken directly from the ServiceTitan homepage -->
     <style>
-      /* Global styles: typefaces, colours, and spacing */
-
       :root {
-        /* These are currently just copies of the default shoeslace style */
+        --primary-color: #ff8424;
+        --primary-hover-color: #da6d17;
+        --secondary-color: #009de6;
+        --secondary-hover-color: #0076ad;
+        --tertiary-color: #0b1a21;
+        --tertiary-hover-color: #354f5b;
+        --white-color: #fff;
+        --white-hover-color: #e5ebee;
+        --black-color: #000;
+        --dark-gray-color: #222;
+        --light-gray-color: #434244;
+        --disabled-color: #e5ebee;
+        --disabled-text-color: #9fadb4;
+        --font-family: Sofia Pro;
+        --font-size-h5: 25px;
+        --font-size-h6: 20px;
+        --font-size-small: 16px;
+        --neutral-text-color: #637984;
+        --normal-title-color: #0b1a21;
+        --normal-description-color: #354f5b;
+        --blue-3-title-color: #83d5fb;
+        --blue-primary: #009de6;
+        --blue-secondary: #0076ad;
+        --blue-tertiary: #003954;
+        --blue-fourth: #f5fcff;
+        --blue-video: #00a9f7;
+        --gray-dark: #222;
+        --green: #4ab971;
+        --secondary-green-background: #46c5ff;
+        --white: #fff;
+        --transparent: transparent;
+        --input-selected-color: #009de6;
+        --input-success-color: #fff;
+        --input-failed-color: red;
+        --input-selected-text-color: #0076ad;
+        --pantheon-white-border: 1px solid #fff;
+        --pantheon-blueprintBorder: 1px solid #0553ef;
+        --pantheon-heading-letter-space: 0.02em;
+        --pantheon-blueprint-blue: #0553ef;
+        --pantheon-st-blue: #00a9f7;
+        --pantheon-orange: #ff8b02;
+        --pantheon-white: #fff;
+        --pantheon-gray: #8f8f8f;
+        --pantheon-black: #000;
+        --pantheon-border: 1px solid #fff;
+        --blue-1: #f5fcff;
+        --blue-3: #83d5fb;
+        --blue-5: #009de6;
+        --blue-6: #0076ad;
+        --blue-7: #003954;
+        --green-5: #4ab971;
+        --green-6: #267b44;
+        --green-7: #043415;
+        --navy-5: #4f73a3;
+        --navy-6: #3d5a80;
+        --navy-7: #072c57;
+        --neutral-1: #f6f8fa;
+        --neutral-2: #e5ebee;
+        --neutral-4: #9fadb4;
+        --neutral-5: #637984;
+        --neutral-6: #354f5b;
+        --neutral-7: #0b1a21;
+        --orange-5: #ff8424;
+        --orange-6: #da6d17;
+        --orange-7: #ad4c00;
+        --purple: #5f4fa3;
+        --red: red;
+        --teal-5: #12889d;
+        --teal-6: #0b6270;
+        --teal-7: #004551;
+      }
+    </style>
 
-        /* Colours */
-
-        --sl-color-black: #000;
+    <!-- Service Titan to Shoelace theme-->
+    <style>
+      :root {
+        --sl-color-black: #141414;
         --sl-color-white: #fff;
 
-        --sl-color-gray-50: #f9fafb;
-        --sl-color-gray-100: #f3f4f6;
-        --sl-color-gray-200: #e5e7eb;
-        --sl-color-gray-300: #d1d5db;
-        --sl-color-gray-400: #9ca3af;
-        --sl-color-gray-500: #6b7280;
-        --sl-color-gray-600: #4b5563;
-        --sl-color-gray-700: #374151;
-        --sl-color-gray-800: #1f2937;
-        --sl-color-gray-900: #111827;
-        --sl-color-gray-950: #0d131e;
+        /** Anvil uses a different scale (from 0-400), but has 10 increments.
+        Just ported the 10 incrementals colors over for a slightly-less-dark palette than Shoelace **/
+        --sl-color-gray-50: #f7f7f7;
+        --sl-color-gray-100: #f5f5f5;
+        --sl-color-gray-200: #eeeeee;
+        --sl-color-gray-300: #dfe0e1;
+        --sl-color-gray-400: #bcbcbd;
+        --sl-color-gray-500: #9e9ea0;
+        --sl-color-gray-600: #737475;
+        --sl-color-gray-700: #606162;
+        --sl-color-gray-800: #444445;
+        --sl-color-gray-900: #2d2e31;
+        --sl-color-gray-950: #141414;
 
+        /** Primary Colors from: https://anvil.servicetitan.com/foundations/color/ **/
         --sl-color-primary-50: #f0f9ff;
-        --sl-color-primary-100: #e0f2fe;
-        --sl-color-primary-200: #bae6fd;
-        --sl-color-primary-300: #7dd3fc;
-        --sl-color-primary-400: #38bdf8;
-        --sl-color-primary-500: #0ea5e9;
-        --sl-color-primary-600: #0284c7;
-        --sl-color-primary-700: #0369a1;
-        --sl-color-primary-800: #075985;
-        --sl-color-primary-900: #0c4a6e;
-        --sl-color-primary-950: #082e45;
+        --sl-color-primary-100: #ecf4fd;
+        --sl-color-primary-200: #a9d1ff;
+        --sl-color-primary-300: #3684f5;
+        --sl-color-primary-400: #2270ee;
+        --sl-color-primary-500: #1360d9;
+        --sl-color-primary-600: #004cc3;
+        /** ServiceTitan Anvil doesn't have colors over 600 **/
+        --sl-color-primary-700: var(--sl-color-primary-600);
+        --sl-color-primary-800: var(--sl-color-primary-600);
+        --sl-color-primary-900: var(--sl-color-primary-600);
+        --sl-color-primary-950: var(--sl-color-primary-600);
+
         --sl-color-primary-text: var(--sl-color-white);
 
+        /** Syuccess Colors from: https://anvil.servicetitan.com/foundations/color/ **/
         --sl-color-success-50: #f0fdf4;
-        --sl-color-success-100: #dcfce7;
-        --sl-color-success-200: #bbf7d0;
-        --sl-color-success-300: #86efac;
-        --sl-color-success-400: #4ade80;
-        --sl-color-success-500: #22c55e;
-        --sl-color-success-600: #16a34a;
-        --sl-color-success-700: #15803d;
-        --sl-color-success-800: #166534;
-        --sl-color-success-900: #14532d;
-        --sl-color-success-950: #0d381e;
+        --sl-color-success-100: #e1fdef;
+        --sl-color-success-200: #90efc0;
+        --sl-color-success-300: #60dfa6;
+        --sl-color-success-400: #1fbc70;
+        --sl-color-success-500: #18a761;
+        --sl-color-success-600: #10864b;
+
+        /** ServiceTitan Anvil doesn't have colors over 600 **/
+        --sl-color-success-700: var(--sl-color-success-600);
+        --sl-color-success-800: var(--sl-color-success-600);
+        --sl-color-success-900: var(--sl-color-success-600);
+        --sl-color-success-950: var(--sl-color-success-600);
+
         --sl-color-success-text: var(--sl-color-white);
 
-        --sl-color-info-50: #f9fafb;
-        --sl-color-info-100: #f3f4f6;
-        --sl-color-info-200: #e5e7eb;
-        --sl-color-info-300: #d1d5db;
-        --sl-color-info-400: #9ca3af;
-        --sl-color-info-500: #6b7280;
-        --sl-color-info-600: #4b5563;
-        --sl-color-info-700: #374151;
-        --sl-color-info-800: #1f2937;
-        --sl-color-info-900: #111827;
-        --sl-color-info-950: #0d131e;
+        /** Delegating to Anvil Grey colors from above **/
+        --sl-color-info-50: var(--sl-color-gray-50);
+        --sl-color-info-100: var(--sl-color-gray-100);
+        --sl-color-info-200: var(--sl-color-gray-200);
+        --sl-color-info-300: var(--sl-color-gray-300);
+        --sl-color-info-400: var(--sl-color-gray-400);
+        --sl-color-info-500: var(--sl-color-gray-500);
+        --sl-color-info-600: var(--sl-color-gray-600);
+        --sl-color-info-700: var(--sl-color-gray-700);
+        --sl-color-info-800: var(--sl-color-gray-800);
+        --sl-color-info-900: var(--sl-color-gray-900);
+        --sl-color-info-950: var(--sl-color-gray-950);
+
+        /** Colors from Anvil **/
         --sl-color-info-text: var(--sl-color-white);
-
         --sl-color-warning-50: #fffbeb;
-        --sl-color-warning-100: #fef3c7;
-        --sl-color-warning-200: #fde68a;
-        --sl-color-warning-300: #fcd34d;
-        --sl-color-warning-400: #fbbf24;
-        --sl-color-warning-500: #f59e0b;
-        --sl-color-warning-600: #d97706;
-        --sl-color-warning-700: #b45309;
-        --sl-color-warning-800: #92400e;
-        --sl-color-warning-900: #78350f;
-        --sl-color-warning-950: #4d220a;
+        --sl-color-warning-100: #fff2dc;
+        --sl-color-warning-200: #ffcc80;
+        --sl-color-warning-300: #ffa23a;
+        --sl-color-warning-400: #ff9116;
+        --sl-color-warning-500: #ee8400;
+        --sl-color-warning-600: #df7600;
+        /** LV: Note - Anvil doesn't list color weights over 600 **/
+        --sl-color-warning-700: var(--sl-color-warning-600);
+        --sl-color-warning-800: var(--sl-color-warning-600);
+        --sl-color-warning-900: var(--sl-color-warning-600);
+        --sl-color-warning-950: var(--sl-color-warning-600);
+
+        /** Colors from Anvil **/
         --sl-color-warning-text: var(--sl-color-white);
-
+        --sl-color-danger-10: #fff9f8;
         --sl-color-danger-50: #fef2f2;
-        --sl-color-danger-100: #fee2e2;
-        --sl-color-danger-200: #fecaca;
-        --sl-color-danger-300: #fca5a5;
-        --sl-color-danger-400: #f87171;
-        --sl-color-danger-500: #ef4444;
-        --sl-color-danger-600: #dc2626;
-        --sl-color-danger-700: #b91c1c;
-        --sl-color-danger-800: #991b1b;
-        --sl-color-danger-900: #7f1d1d;
-        --sl-color-danger-950: #481111;
+        --sl-color-danger-100: #ffece9;
+        --sl-color-danger-200: #ffb2a0;
+        --sl-color-danger-300: #ff745f;
+        --sl-color-danger-400: #f94d32;
+        --sl-color-danger-500: #e63717;
+        --sl-color-danger-600: #bf2a00;
+        /** LV: Note - ServiceTitan Anvil doesn't list color weights over 600 **/
+        --sl-color-danger-700: var(--sl-color-danger-600);
+        --sl-color-danger-800: var(--sl-color-danger-600);
+        --sl-color-danger-900: var(--sl-color-danger-600);
+        --sl-color-danger-950: var(--sl-color-danger-600);
         --sl-color-danger-text: var(--sl-color-white);
+        --sl-border-radius-small: 0.125rem;
+        --sl-border-radius-medium: 0.25rem;
+        --sl-border-radius-large: 0.5rem;
+        --sl-border-radius-x-large: 1rem;
+        --sl-border-radius-circle: 50%;
+        --sl-border-radius-pill: 9999px;
+        --sl-shadow-x-small: 0 1px 0 #0d131e0d;
+        --sl-shadow-small: 0 1px 2px #0d131e1a;
+        --sl-shadow-medium: 0 2px 4px #0d131e1a;
+        --sl-shadow-large: 0 2px 8px #0d131e1a;
+        --sl-shadow-x-large: 0 4px 16px #0d131e1a;
 
-        /* Spacing */
-
+        /** LV: Could use the Anvil spacing rules, but probably not necessary **/
         --sl-spacing-xxx-small: 0.125rem;
         --sl-spacing-xx-small: 0.25rem;
         --sl-spacing-x-small: 0.5rem;
@@ -113,13 +209,14 @@
         --sl-spacing-xx-large: 2.25rem;
         --sl-spacing-xxx-large: 3rem;
         --sl-spacing-xxxx-large: 4.5rem;
-
-        /*Typography */
-
+        --sl-transition-x-slow: 1000ms;
+        --sl-transition-slow: 500ms;
+        --sl-transition-medium: 250ms;
+        --sl-transition-fast: 150ms;
+        --sl-transition-x-fast: 50ms;
         --sl-font-mono: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
-        --sl-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        --sl-font-sans: 'Nunito Sans', sans;
         --sl-font-serif: Georgia, 'Times New Roman', serif;
-
         --sl-font-size-xx-small: 0.625rem;
         --sl-font-size-x-small: 0.75rem;
         --sl-font-size-small: 0.875rem;
@@ -129,11 +226,108 @@
         --sl-font-size-xx-large: 2.25rem;
         --sl-font-size-xxx-large: 3rem;
         --sl-font-size-xxxx-large: 4.5rem;
-
         --sl-font-weight-light: 300;
         --sl-font-weight-normal: 400;
         --sl-font-weight-semibold: 500;
         --sl-font-weight-bold: 700;
+        --sl-letter-spacing-dense: -0.015em;
+        --sl-letter-spacing-normal: normal;
+        --sl-letter-spacing-loose: 0.075em;
+        --sl-line-height-dense: 1.4;
+        --sl-line-height-normal: 1.8;
+        --sl-line-height-loose: 2.2;
+        --sl-focus-ring-color-primary: #0ea5e954;
+        --sl-focus-ring-color-success: #22c55e54;
+        --sl-focus-ring-color-info: #6b728054;
+        --sl-focus-ring-color-warning: #f59e0b54;
+        --sl-focus-ring-color-danger: #ef444454;
+        --sl-focus-ring-width: 3px;
+        --sl-button-font-size-small: var(--sl-font-size-x-small);
+        --sl-button-font-size-medium: var(--sl-font-size-small);
+        --sl-button-font-size-large: var(--sl-font-size-medium);
+        --sl-input-height-small: 1.875rem;
+        --sl-input-height-medium: 2.5rem;
+        --sl-input-height-large: 3.125rem;
+        --sl-input-background-color: var(--sl-color-white);
+        --sl-input-background-color-hover: var(--sl-color-white);
+        --sl-input-background-color-focus: var(--sl-color-white);
+        --sl-input-background-color-disabled: var(--sl-color-gray-100);
+        --sl-input-border-color: var(--sl-color-gray-300);
+        --sl-input-border-color-hover: var(--sl-color-gray-400);
+        --sl-input-border-color-focus: var(--sl-color-primary-500);
+        --sl-input-border-color-disabled: var(--sl-color-gray-300);
+        --sl-input-border-width: 1px;
+        --sl-input-border-radius-small: var(--sl-border-radius-medium);
+        --sl-input-border-radius-medium: var(--sl-border-radius-medium);
+        --sl-input-border-radius-large: var(--sl-border-radius-medium);
+        --sl-input-font-family: var(--sl-font-sans);
+        --sl-input-font-weight: var(--sl-font-weight-normal);
+        --sl-input-font-size-small: var(--sl-font-size-small);
+        --sl-input-font-size-medium: var(--sl-font-size-medium);
+        --sl-input-font-size-large: var(--sl-font-size-large);
+        --sl-input-letter-spacing: var(--sl-letter-spacing-normal);
+        --sl-input-color: var(--sl-color-gray-700);
+        --sl-input-color-hover: var(--sl-color-gray-700);
+        --sl-input-color-focus: var(--sl-color-gray-700);
+        --sl-input-color-disabled: var(--sl-color-gray-900);
+        --sl-input-icon-color: var(--sl-color-gray-400);
+        --sl-input-icon-color-hover: var(--sl-color-gray-600);
+        --sl-input-icon-color-focus: var(--sl-color-gray-600);
+        --sl-input-placeholder-color: var(--sl-color-gray-400);
+        --sl-input-placeholder-color-disabled: var(--sl-color-gray-600);
+        --sl-input-spacing-small: var(--sl-spacing-small);
+        --sl-input-spacing-medium: var(--sl-spacing-medium);
+        --sl-input-spacing-large: var(--sl-spacing-large);
+        --sl-input-label-font-size-small: var(--sl-font-size-small);
+        --sl-input-label-font-size-medium: var(--sl-font-size-medium);
+        --sl-input-label-font-size-large: var(--sl-font-size-large);
+        --sl-input-label-color: inherit;
+        --sl-input-help-text-font-size-small: var(--sl-font-size-x-small);
+        --sl-input-help-text-font-size-medium: var(--sl-font-size-small);
+        --sl-input-help-text-font-size-large: var(--sl-font-size-medium);
+        --sl-input-help-text-color: var(--sl-color-gray-400);
+        --sl-toggle-size: 1rem;
+        --sl-overlay-background-color: #37415180;
+        --sl-panel-background-color: var(--sl-color-white);
+        --sl-panel-border-color: var(--sl-color-gray-200);
+        --sl-tooltip-border-radius: var(--sl-border-radius-medium);
+        --sl-tooltip-background-color: var(--sl-color-gray-900);
+        --sl-tooltip-color: var(--sl-color-white);
+        --sl-tooltip-font-family: var(--sl-font-sans);
+        --sl-tooltip-font-weight: var(--sl-font-weight-normal);
+        --sl-tooltip-font-size: var(--sl-font-size-small);
+        --sl-tooltip-line-height: var(--sl-line-height-dense);
+        --sl-tooltip-padding: var(--sl-spacing-xxx-small) var(--sl-spacing-x-small);
+        --sl-tooltip-arrow-size: 5px;
+        --sl-tooltip-arrow-start-end-offset: 8px;
+        --sl-z-index-drawer: 700;
+        --sl-z-index-dialog: 800;
+        --sl-z-index-dropdown: 900;
+        --sl-z-index-toast: 950;
+        --sl-z-index-tooltip: 1000;
+      }
+    </style>
+    <style>
+      :root {
+        --st-color-text-error: #e63717;
+        --st-content-max-width: 700px;
+        --st-content-background: var(--sl-color-gray-100);
+      }
+      body {
+        font-family: var(--sl-font-sans);
+        font-size: var(--sl-font-size-medium);
+        font-weight: var(--sl-font-weight-normal);
+        letter-spacing: var(--sl-letter-spacing-small);
+        color: var(--sl-color-gray-800);
+        line-height: var(--sl-line-height-normal);
+      }
+      a,
+      a:visited {
+        text-decoration: none;
+        color: var(--sl-color-primary-500);
+      }
+      a:hover {
+        color: var(--sl-color-primary-600);
       }
     </style>
 
