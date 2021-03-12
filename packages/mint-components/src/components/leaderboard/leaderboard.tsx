@@ -7,10 +7,9 @@ import { useLeaderboard } from './useLeaderboard';
   styleUrl: 'leaderboard.css',
   shadow: true,
 })
-export class MyComponent {
-  @Prop() pretext: string;
-  @Prop() posttext: string;
-  @Prop() rank?: string;
+export class Leaderboard {
+  @Prop() usersheading: string;
+  @Prop() statsheading: string;
   render() {
     return <LeaderboardView {...useLeaderboard(this)} />;
   }

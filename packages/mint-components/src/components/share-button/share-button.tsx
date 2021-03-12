@@ -7,23 +7,37 @@ import { useShareButton } from './useShareButton';
   styleUrl: 'share-button.css',
   shadow: true,
 })
-export class MyComponent {
-    @Prop() label?: string;
-    @Prop() loading?: boolean;
-    @Prop() disabled?: boolean;
-    @Prop() pill?: boolean;
-    @Prop() type?: "primary" | "success" | "info" | "warning" | "danger" | "default" | "text";
-    @Prop() size?: "small" | "medium" | "large";
-    @Prop() icon?: string;
-    @Prop() iconslot?: "prefix" | "suffix";
-    @Prop() iconlabel?: string;
-    @Prop() href?: string;
-    @Prop() name?: string;
-    @Prop() value?: string;
-    @Prop() target?: "_blank" | "_parent" | "_self" | "_top";
-    @Prop() customstyle?: string;
+export class ShareButon {
+  //
+  //  Required attrs to make it work
+  //
+  /// TOOD: Add all the share mediums
+  // Should be a REQUIRED prop
+
+  /**
+   * Which medium sharing should occur on
+   */
+  @Prop() medium: 'facebook' | 'twitter' | 'email' | 'TODO';
+  /**
+   * Optional programId, or uses the programId context where this button is rendered.
+   */
+  @Prop() programId?: string;
+
+  //
+  //  Optional styling attrs
+  //
+  @Prop() pill?: boolean;
+  @Prop() disabled?: boolean;
+  @Prop() type?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
+  @Prop() size?: 'small' | 'medium' | 'large';
+  @Prop() iconslot?: 'prefix' | 'suffix';
+  @Prop() hideicon?: boolean;
 
   render() {
-    return <ShareButtonView {...useShareButton(this)} />;
+    return (
+      <ShareButtonView {...useShareButton(this)}>
+        <slot />
+      </ShareButtonView>
+    );
   }
 }

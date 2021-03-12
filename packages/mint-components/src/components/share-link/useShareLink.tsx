@@ -2,7 +2,12 @@ import { useQuery } from '@saasquatch/component-boilerplate';
 import gql from 'graphql-tag';
 import { ShareLinkViewProps } from './share-link-view';
 
-interface ShareLinkProps extends ShareLinkViewProps {
+interface ShareLinkProps {
+  icon?: string;
+  iconlabel?: string;
+  tooltiptext?: string;
+  sharelink?: string;
+  disabled?: boolean;
   variables: {
     programId: string,
     engagemantMedium: string,

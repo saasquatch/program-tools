@@ -1,41 +1,25 @@
-import { h } from "@stencil/core";
+import { h, VNode } from '@stencil/core';
 
 export interface ShareButtonViewProps {
-  label?: string;
+  medium: 'facebook' | 'twitter' | 'email' | 'TODO';
+
   loading?: boolean;
   disabled?: boolean;
   pill?: boolean;
-  type?: "primary" | "success" | "info" | "warning" | "danger" | "default" | "text";
-  size?: "small" | "medium" | "large";
+  type?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
+  size?: 'small' | 'medium' | 'large';
 
-  icon?: string;
-  iconslot?: "prefix" | "suffix";
-  iconlabel?: string;
+  hideicon?: boolean;
+  iconslot?: 'prefix' | 'suffix';
 
-  href?: string;
-  name?: string;
-  value?: string;
-  target?: "_blank" | "_parent" | "_self" | "_top";
-
-  customstyle?: string;
+  onClick?: () => void;
 }
 
-export function ShareButtonView(props: ShareButtonViewProps) {
+export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   return (
-    <sl-button
-      loading={props.loading}
-      disabled={props.disabled}
-      pill={props.pill}
-      size={props.size}
-      type={props.type}
-      href={props.href}
-      name={props.name}
-      target={props.target}
-      value={props.value}
-      style={props.customstyle}
-    >
-      {props.icon && <sl-icon slot={props.iconslot} name={props.icon}></sl-icon>}
-      {props.label}
+    <sl-button loading={props.loading} disabled={props.disabled} pill={props.pill} size={props.size} type={props.type} onClick={props.onClick}>
+      {!props.hideicon && <sl-icon slot={props.iconslot} name={props.medium}></sl-icon>}
+      {children}
     </sl-button>
   );
 }

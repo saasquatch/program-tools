@@ -7,13 +7,12 @@ import { useShareLink } from './useShareLink';
   styleUrl: 'share-link.css',
   shadow: true,
 })
-export class MyComponent {
-  @Prop() buttondisabled?: boolean;
+export class ShareLink {
   @Prop() icon?: string;
   @Prop() iconlabel?: string;
   @Prop() tooltiptext?: string;
-  @Prop() disabletooltip?: boolean;
-  @Prop() customstyle?: string;
+  @Prop() sharelink?: string;
+  @Prop() disabled?: boolean;
 
   render() {
     return <ShareLinkView {...useShareLink(this)} />;

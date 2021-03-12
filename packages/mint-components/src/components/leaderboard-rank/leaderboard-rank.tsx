@@ -7,12 +7,9 @@ import { useLeaderboardRank } from './useLeaderboardRank';
   styleUrl: 'leaderboard-rank.css',
   shadow: true,
 })
-export class MyComponent {
-  @Prop() pretext: string;
-  @Prop() posttext: string;
-  @Prop() rank: string
+export class LeaderboardRank {
+  @Prop() rank?: string
   render() {
-    console.log("called rank");
     return <LeaderboardRankView {...useLeaderboardRank(this)} />;
   }
 }
