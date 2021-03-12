@@ -1,10 +1,9 @@
 import { h } from '@stencil/core';
-import { useState } from 'haunted';
-import { ShareLinkView } from '../components/share-link/share-link-view';
-import { useShareLink } from '../components/share-link/useShareLink';
+import { ShareButtonView } from '../components/share-button/share-button-view';
+import { useShareButton } from '../components/share-button/useShareButton';
 
 export default {
-  title: 'Hooks / useShareLink',
+  title: 'Hooks / useShareButton',
 };
 
 function setupGraphQL() {
@@ -31,22 +30,39 @@ export const BareBonesView = () => {
   const variables = {
     programId: 'a-referral-program',
     engagementMedium: 'HOSTED',
-    shareMedium: 'FACEBOOK',
   };
-  const res = useShareLink({variables} as any);
+  const res = [useShareButton({ variables, medium: 'facebook' }), useShareButton({ variables, medium: 'twitter' }), useShareButton({ variables, medium: 'email' })];
   // console.log(res.data.referrals)
   return (
     <div>
-      Sharelink: <code style={{borderStyle: "solid", borderWidth: "1px", padding: "2px"}}>{res.sharelink}</code>
+      {res.map(r => (
+        <div>
+          <button onClick={r.onClick}>Share link ({r.medium})</button>
+        </div>
+      ))}
     </div>
   );
 };
 
 export const RegularView = () => {
-  setupGraphQL()
-  return <ShareLinkView {...useShareLink({variables: {
+  setupGraphQL();
+  const variables = {
     programId: 'a-referral-program',
     engagementMedium: 'HOSTED',
-    shareMedium: 'FACEBOOK',
-  }})} />;
+  };
+  const mediums: Array<ReturnType<typeof useShareButton>['medium']> = ['facebook', 'twitter', 'email'];
+  return (
+    <div>
+      {mediums.map(medium => (
+        <div>
+          <ShareButtonView
+            {...useShareButton({
+              variables,
+              medium,
+            })}
+          >BUTTON_TEXT</ShareButtonView>
+        </div>
+      ))}
+    </div>
+  );
 };
