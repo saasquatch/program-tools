@@ -4,23 +4,23 @@ import { useQuery } from '@saasquatch/component-boilerplate';
 import { usePaginatedCountQuery } from '../../hooks/usePaginatedCountQuery';
 import { usePaginatedQuery } from '../../hooks/usePaginatedQuery';
 
-// type ReferralListProps = {
-//   unknownuser: string;
-//   pickrewardtext: string;
-//   showStatus: boolean;
-//   downloadedtext: string;
-//   downloadedunqualifiedtext: string;
-//   purchasedeligibletext: string;
-//   purchasednoteligibletext: string;
-//   newreferraltext: string;
-//   rewardpendingtext: string;
-//   rewardsavailabletext: string;
-//   rewardredeemedtext: string;
-//   paginateless: string;
-//   paginatemore: string;
-//   noreferralsyet: string;
-//   titleText: string;
-// };
+type ReferralListProps = {
+  unknownuser: string;
+  pickrewardtext: string;
+  showStatus: boolean;
+  downloadedtext: string;
+  downloadedunqualifiedtext: string;
+  purchasedeligibletext: string;
+  purchasednoteligibletext: string;
+  newreferraltext: string;
+  rewardpendingtext: string;
+  rewardsavailabletext: string;
+  rewardredeemedtext: string;
+  paginateless: string;
+  paginatemore: string;
+  noreferralsyet: string;
+  titleText: string;
+};
 
 const getReferrals = gql`
   query($accountId: String!, $id: String!, $limit: Int!, $offset: Int!, $filter: ReferralFilterInput) {
@@ -107,7 +107,9 @@ type ReferralListProps = {
 };
 
 export function useReferralList(props: ReferralListProps): ReferralListViewProps {
-  const {id, accountId} = props;
+  //@ts-ignore
+  const {userId: id, accountId} = window.widgetIdent;
+  console.log(id)
 
   const {envelope, states, callbacks} = usePaginatedQuery(
     getReferrals,
@@ -122,20 +124,22 @@ export function useReferralList(props: ReferralListProps): ReferralListViewProps
   const referralsCount = envelope?.totalCount
   const {loading, currentPage} = states;
   const {setCurrentPage} = callbacks
-  // const queryResult = useQuery(getUser, variables);
-  // console.log(queryResult);
+
   return {
-    ...props,
     states: {
       loading,
       offset: currentPage,
+      styles: {...props},
     },
     data: {
       referrals,
-      referralsCount
+      referralsCount,
+      referraltype: 'converted', //TODO idk what this is
+      rewardTranslations: {}, //TODO or this
     },
     callbacks: {
-      paginate: setCurrentPage
+      paginate: setCurrentPage,
+      intl: ()=>{} // TODO get rid of this, top priority
     }
   // return {
   //   states: {
