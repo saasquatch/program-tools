@@ -16,6 +16,7 @@ const useDocx = {
 export const config: Config = {
   namespace: "components-starter",
   globalScript: "src/global/global.ts",
+  globalStyle: 'src/global/global.css',
   buildEs5: true,
   outputTargets:
     //@ts-ignore
