@@ -141,7 +141,7 @@ export function useReferralList(props: ReferralListProps): ReferralListViewProps
     },
     data: {
       //@ts-ignore
-      referrals, // TODO THIS IS BROKEN
+      referrals, 
       referralsCount,
       referraltype: 'converted', //TODO idk what this is
       rewardTranslations: {}, //TODO or this
@@ -149,27 +149,5 @@ export function useReferralList(props: ReferralListProps): ReferralListViewProps
     callbacks: {
       paginate: setCurrentPage,
     },
-    // return {
-    //   states: {
-    //     loading: false,
-    //     offset: 0,
-    //     styles: {
-    //       ...props,
-    //     },
-    //   },
-    //   data: {
-    //     referrals: [],
-    //     referraltype: 'converted',
-    //     referralsCount: 0,
-    //     rewardTranslations: {},
-    //   },
-    //   callbacks: {
-    //     intl: () => {
-    //       console.log('intl');
-    //     },
-    //     paginate: () => {
-    //       console.log('paginate');
-    //     },
-    //   },
   };
 }
