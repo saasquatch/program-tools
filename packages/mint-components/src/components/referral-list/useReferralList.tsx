@@ -139,7 +139,6 @@ export function useReferralList(props: ReferralListProps): ReferralListViewProps
     },
     callbacks: {
       paginate: setCurrentPage,
-      intl: ()=>{} // TODO get rid of this, top priority
     }
   // return {
   //   states: {

@@ -20,7 +20,6 @@ export type ReferralComponentProps = {
       showStatus: boolean;
     };
   };
-  intl: any;
   callbacks: {
     hasAvailableRewards: (referral: Referral) => boolean;
     allRewardsRedeemed: (referral: Referral) => boolean;
@@ -106,15 +105,16 @@ const ReferralComponentView = (props: ReferralComponentProps) => {
 
   // TODO: probably a better way to do this
   const relative = (new Date().getTime() - dateReferralStarted) * -1;
-  const date = props.intl.formatRelativeTime(
-    Math.ceil(relative / (60 * 60 * 24 * 1000)),
-    "day",
-    {
-      localeMatcher: "lookup",
-      numeric: "auto",
-      style: "long",
-    }
-  );
+  const date = "SOME DATE IDK intl WAS REMOVED"
+  // const date = props.intl.formatRelativeTime(
+  //   Math.ceil(relative / (60 * 60 * 24 * 1000)),
+  //   "day",
+  //   {
+  //     localeMatcher: "lookup",
+  //     numeric: "auto",
+  //     style: "long",
+  //   }
+  // );
 
   const rewardStatus = callbacks.getRewardStatus(data?.referral);
   const rewardAvailable = data.referral.rewards.find((reward: Reward) =>

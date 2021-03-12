@@ -79,7 +79,6 @@ export interface ReferralListViewProps {
     rewardTranslations: unknown;
   };
   callbacks: {
-    intl: any;
     paginate: any;
   };
 }
@@ -134,16 +133,20 @@ const ReferralListView: FunctionalComponent<ReferralListViewProps> = (props: Ref
     if (hasAvailableRewards(referral)) {
       const countAvailable = rewards.filter(obj => obj.statuses.some(e => e === 'AVAILABLE')).length;
       return countAvailable > 1
-        ? formatMessage(styles.rewardsavailabletext, callbacks.intl.locale, {
-            count: countAvailable,
-          })
+        // this does nothing as of right now, commenting
+        // ? formatMessage(styles.rewardsavailabletext, callbacks.intl.locale, {
+        //     count: countAvailable,
+        //   })
+        ? styles.rewardsavailabletext
         : styles.rewardsavailabletext;
     }
     const countRedeemed = rewards.filter(obj => obj.statuses.some(e => e === 'REDEEMED')).length;
     return countRedeemed > 1
-      ? formatMessage(styles.rewardsavailabletext, callbacks.intl.locale, {
-          count: countRedeemed,
-        })
+      // this does nothing as of right now, commenting
+      // ? formatMessage(styles.rewardsavailabletext, callbacks.intl.locale, {
+      //     count: countRedeemed,
+      //   })
+      ? styles.rewardredeemedtext
       : styles.rewardredeemedtext;
   }
 
@@ -185,7 +188,6 @@ const ReferralListView: FunctionalComponent<ReferralListViewProps> = (props: Ref
                       showStatus: props.states.styles.showStatus,
                     },
                   }}
-                  intl={callbacks.intl}
                 />
               );
             })}
