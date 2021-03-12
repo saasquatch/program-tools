@@ -21,17 +21,13 @@ export namespace Components {
         "middle": string;
     }
     interface SqmBigStat {
-        "statdescription": any;
     }
     interface SqmLeaderboard {
-        "posttext": string;
-        "pretext": string;
-        "rank"?: string;
+        "statsheading": string;
+        "usersheading": string;
     }
     interface SqmLeaderboardRank {
-        "posttext": string;
-        "pretext": string;
-        "rank": string;
+        "rank"?: string;
     }
     interface SqmReferralList {
         "downloadedtext": string;
@@ -51,27 +47,26 @@ export namespace Components {
         "unknownuser": string;
     }
     interface SqmShareButton {
-        "customstyle"?: string;
         "disabled"?: boolean;
-        "href"?: string;
-        "icon"?: string;
-        "iconlabel"?: string;
-        "iconslot"?: "prefix" | "suffix";
-        "label"?: string;
-        "loading"?: boolean;
-        "name"?: string;
+        "hideicon"?: boolean;
+        "iconslot"?: 'prefix' | 'suffix';
+        /**
+          * Which medium sharing should occur on
+         */
+        "medium": 'facebook' | 'twitter' | 'email' | 'TODO';
         "pill"?: boolean;
-        "size"?: "small" | "medium" | "large";
-        "target"?: "_blank" | "_parent" | "_self" | "_top";
-        "type"?: "primary" | "success" | "info" | "warning" | "danger" | "default" | "text";
-        "value"?: string;
+        /**
+          * Optional programId, or uses the programId context where this button is rendered.
+         */
+        "programId"?: string;
+        "size"?: 'small' | 'medium' | 'large';
+        "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
     }
     interface SqmShareLink {
-        "buttondisabled"?: boolean;
-        "customstyle"?: string;
-        "disabletooltip"?: boolean;
+        "disabled"?: boolean;
         "icon"?: string;
         "iconlabel"?: string;
+        "sharelink"?: string;
         "tooltiptext"?: string;
     }
     interface SqmStencilbook {
@@ -153,16 +148,12 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface SqmBigStat {
-        "statdescription"?: any;
     }
     interface SqmLeaderboard {
-        "posttext"?: string;
-        "pretext"?: string;
-        "rank"?: string;
+        "statsheading"?: string;
+        "usersheading"?: string;
     }
     interface SqmLeaderboardRank {
-        "posttext"?: string;
-        "pretext"?: string;
         "rank"?: string;
     }
     interface SqmReferralList {
@@ -183,27 +174,26 @@ declare namespace LocalJSX {
         "unknownuser"?: string;
     }
     interface SqmShareButton {
-        "customstyle"?: string;
         "disabled"?: boolean;
-        "href"?: string;
-        "icon"?: string;
-        "iconlabel"?: string;
-        "iconslot"?: "prefix" | "suffix";
-        "label"?: string;
-        "loading"?: boolean;
-        "name"?: string;
+        "hideicon"?: boolean;
+        "iconslot"?: 'prefix' | 'suffix';
+        /**
+          * Which medium sharing should occur on
+         */
+        "medium"?: 'facebook' | 'twitter' | 'email' | 'TODO';
         "pill"?: boolean;
-        "size"?: "small" | "medium" | "large";
-        "target"?: "_blank" | "_parent" | "_self" | "_top";
-        "type"?: "primary" | "success" | "info" | "warning" | "danger" | "default" | "text";
-        "value"?: string;
+        /**
+          * Optional programId, or uses the programId context where this button is rendered.
+         */
+        "programId"?: string;
+        "size"?: 'small' | 'medium' | 'large';
+        "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
     }
     interface SqmShareLink {
-        "buttondisabled"?: boolean;
-        "customstyle"?: string;
-        "disabletooltip"?: boolean;
+        "disabled"?: boolean;
         "icon"?: string;
         "iconlabel"?: string;
+        "sharelink"?: string;
         "tooltiptext"?: string;
     }
     interface SqmStencilbook {
