@@ -23,6 +23,12 @@ export { useLazyQuery } from "./hooks/graphql/useLazyQuery";
 export { navigation, useCurrentPage } from "./hooks/useNavigation";
 
 //
+//      Pagination
+//
+export { usePagination } from "./hooks/pagination/usePagination";
+export { usePaginatedQuery } from "./hooks/pagination/usePaginatedQuery";
+
+//
 //      Generic low-level helpers
 //
 export { useDebounce, useDebouncedCallback } from "./hooks/useDebounce";
