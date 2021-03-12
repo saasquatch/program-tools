@@ -4,7 +4,23 @@ import { useQuery } from '@saasquatch/component-boilerplate';
 import { usePaginatedCountQuery } from '../../hooks/usePaginatedCountQuery';
 import { usePaginatedQuery } from '../../hooks/usePaginatedQuery';
 
-type ReferralListProps = any;
+// type ReferralListProps = {
+//   unknownuser: string;
+//   pickrewardtext: string;
+//   showStatus: boolean;
+//   downloadedtext: string;
+//   downloadedunqualifiedtext: string;
+//   purchasedeligibletext: string;
+//   purchasednoteligibletext: string;
+//   newreferraltext: string;
+//   rewardpendingtext: string;
+//   rewardsavailabletext: string;
+//   rewardredeemedtext: string;
+//   paginateless: string;
+//   paginatemore: string;
+//   noreferralsyet: string;
+//   titleText: string;
+// };
 
 const getReferrals = gql`
   query($accountId: String!, $id: String!, $limit: Int!, $offset: Int!, $filter: ReferralFilterInput) {
@@ -103,5 +119,27 @@ export function useReferralList(props: ReferralListProps): ReferralListViewProps
     callbacks: {
       paginate: setCurrentPage
     }
+  // return {
+  //   states: {
+  //     loading: false,
+  //     offset: 0,
+  //     styles: {
+  //       ...props,
+  //     },
+  //   },
+  //   data: {
+  //     referrals: [],
+  //     referraltype: 'converted',
+  //     referralsCount: 0,
+  //     rewardTranslations: {},
+  //   },
+  //   callbacks: {
+  //     intl: () => {
+  //       console.log('intl');
+  //     },
+  //     paginate: () => {
+  //       console.log('paginate');
+  //     },
+  //   },
   };
 }

@@ -25,8 +25,11 @@ function Lists() {
 //   cache
 // );
 
-const intl = () => {
-  return { locale: 'en_CA' };
+const intl = {
+  locale: 'en_CA',
+  formatRelativeTime: () => {
+    return 'A long time ago';
+  },
 };
 
 export const defaultReferralList = () => (
