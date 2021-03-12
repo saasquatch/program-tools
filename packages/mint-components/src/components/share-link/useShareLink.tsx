@@ -10,24 +10,22 @@ interface ShareLinkProps {
   disabled?: boolean;
   variables?: {
     programId: string;
-    engagementMedium: string;
-    shareMedium: string;
   };
 }
 
 const MessageLinkQuery = gql`
-  query($programId: ID, $engagementMedium: UserEngagementMedium!, $shareMedium: ReferralShareMedium!) {
-    viewer {
-      __typename
-      ... on User {
-        messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: $shareMedium)
-      }
+  query($id: String!, $accountId: String!, $programId: ID) {
+    user(id: $id, accountId: $accountId) {
+      shareLink(programId: $programId)
     }
   }
 `;
 
 export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
-  const res = useQuery(MessageLinkQuery, props.variables);
+  //@ts-ignore
+  const { userId: id, accountId } = window.widgetIdent;
+
+  const res = useQuery(MessageLinkQuery, { ...props.variables, id, accountId });
   console.log(res);
-  return { ...props, sharelink: res?.data?.viewer?.messageLink ?? '' };
+  return { ...props, sharelink: res?.data?.user?.shareLink ?? '' };
 }

@@ -30,8 +30,6 @@ export const BareBonesView = () => {
   setupGraphQL();
   const variables = {
     programId: 'a-referral-program',
-    engagementMedium: 'HOSTED',
-    shareMedium: 'FACEBOOK',
   };
   const res = useShareLink({variables} as any);
   // console.log(res.data.referrals)
@@ -46,7 +44,5 @@ export const RegularView = () => {
   setupGraphQL()
   return <ShareLinkView {...useShareLink({variables: {
     programId: 'a-referral-program',
-    engagementMedium: 'HOSTED',
-    shareMedium: 'FACEBOOK',
   }})} />;
 };
