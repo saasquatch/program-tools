@@ -105,7 +105,7 @@ const ReferralComponentView = (props: ReferralComponentProps) => {
 
   // TODO: probably a better way to do this
   const relative = (new Date().getTime() - dateReferralStarted) * -1;
-  const date = "SOME DATE IDK intl WAS REMOVED"
+  const date = "(hardcoded intl date formatting)"
   // const date = props.intl.formatRelativeTime(
   //   Math.ceil(relative / (60 * 60 * 24 * 1000)),
   //   "day",

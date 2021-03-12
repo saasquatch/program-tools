@@ -46,7 +46,8 @@ const ButtonsContainer = css`
 export interface ReferralListViewProps {
   states: {
     loading: boolean;
-    offset: number;
+    page: number;
+    pageCount: number;
     styles: {
       unknownuser: string;
       pickrewardtext: string;
@@ -107,7 +108,7 @@ const ReferralListView: FunctionalComponent<ReferralListViewProps> = (props: Ref
 
   function getReferralStatus(referral: Referral) {
     const referredUser = referral.referredUser;
-    if (referredUser.customFields.Saasquatch_Referral_Status__c) {
+    if (referredUser?.customFields?.Saasquatch_Referral_Status__c) {
       const status = referredUser.customFields.Saasquatch_Referral_Status__c;
       switch (status) {
         case 'Downloaded - qualified':
@@ -194,10 +195,10 @@ const ReferralListView: FunctionalComponent<ReferralListViewProps> = (props: Ref
             {referredByRow}
           </div>
           <div class={`${ButtonsContainer}`}>
-            <sl-button size="small" disabled={states.offset === 0} loading={states.loading} onClick={event => paginate(states.offset - 3, event)}>
+            <sl-button size="small" disabled={states.page === 0} loading={states.loading} onClick={event => paginate(states.page - 1, event)}>
               {styles.paginateless}
             </sl-button>
-            <sl-button size="small" loading={states.loading} disabled={states.offset >= data.referralsCount - 3} onClick={event => paginate(states.offset + 3, event)}>
+            <sl-button size="small" loading={states.loading} disabled={states.page >= states.pageCount - 1} onClick={event => paginate(states.page + 1, event)}>
               {styles.paginatemore}
             </sl-button>
           </div>
