@@ -18,12 +18,19 @@ export { useQuery } from "./hooks/graphql/useQuery";
 export { useMutation } from "./hooks/graphql/useMutation";
 export { useLazyQuery } from "./hooks/graphql/useLazyQuery";
 
+//      Navigation
+
+export { navigation, useCurrentPage } from "./hooks/useNavigation";
+
 //
 //      Generic low-level helpers
 //
 export { useDebounce, useDebouncedCallback } from "./hooks/useDebounce";
 export { useTick } from "./hooks/useTick";
-export { useHost, setImplementation as setUseHostImplementation } from "./hooks/useHost";
+export {
+  useHost,
+  setImplementation as setUseHostImplementation,
+} from "./hooks/useHost";
 
 //
 //      Common higher-level functionality
