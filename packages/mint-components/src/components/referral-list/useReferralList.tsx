@@ -1,26 +1,6 @@
 import { ReferralListViewProps } from './referral-list-view';
 import gql from 'graphql-tag';
-import { useQuery } from '@saasquatch/component-boilerplate';
-import { usePaginatedCountQuery } from '../../hooks/usePaginatedCountQuery';
 import { usePaginatedQuery } from '../../hooks/usePaginatedQuery';
-
-type ReferralListProps = {
-  unknownuser: string;
-  pickrewardtext: string;
-  showStatus: boolean;
-  downloadedtext: string;
-  downloadedunqualifiedtext: string;
-  purchasedeligibletext: string;
-  purchasednoteligibletext: string;
-  newreferraltext: string;
-  rewardpendingtext: string;
-  rewardsavailabletext: string;
-  rewardredeemedtext: string;
-  paginateless: string;
-  paginatemore: string;
-  noreferralsyet: string;
-  titleText: string;
-};
 
 const getReferrals = gql`
   query($accountId: String!, $id: String!, $limit: Int!, $offset: Int!, $filter: ReferralFilterInput) {
@@ -60,6 +40,34 @@ const getReferrals = gql`
           program {
             id
             name
+          }
+          rewards {
+            id
+            type
+            value
+            unit
+            name
+            dateGiven
+            dateExpires
+            dateCancelled
+            fuelTankCode
+            fuelTankType
+            currency
+            prettyValue
+            statuses
+            globalRewardKey
+            rewardRedemptionTransactions {
+              data {
+                exchangedRewards {
+                  data {
+                    prettyValue
+                    type
+                    fuelTankCode
+                    globalRewardKey
+                  }
+                }
+              }
+            }
           }
           childNodes(limit: 10, offset: 0) {
             data {
@@ -108,59 +116,38 @@ type ReferralListProps = {
 
 export function useReferralList(props: ReferralListProps): ReferralListViewProps {
   //@ts-ignore
-  const {userId: id, accountId} = window.widgetIdent;
-  console.log(id)
+  const { userId: id, accountId } = window.widgetIdent;
 
-  const {envelope, states, callbacks} = usePaginatedQuery(
+  const { envelope, states, callbacks } = usePaginatedQuery(
     getReferrals,
     data => data?.user?.referrals,
-    { limit: 10, offset: 0 },
+    { limit: 3, offset: 0 },
     {
       accountId,
       id,
     },
   );
-  const referrals = envelope?.data
-  const referralsCount = envelope?.totalCount
-  const {loading, currentPage} = states;
-  const {setCurrentPage} = callbacks
+  const referrals = envelope?.data;
+  const referralsCount = envelope?.totalCount;
+  const { loading, currentPage } = states;
+  const { setCurrentPage } = callbacks;
 
   return {
     states: {
       loading,
-      offset: currentPage,
-      styles: {...props},
+      page: currentPage,
+      pageCount: states.pageCount,
+      styles: { ...props },
     },
     data: {
-      referrals,
+      //@ts-ignore
+      referrals, 
       referralsCount,
       referraltype: 'converted', //TODO idk what this is
       rewardTranslations: {}, //TODO or this
     },
     callbacks: {
       paginate: setCurrentPage,
-    }
-  // return {
-  //   states: {
-  //     loading: false,
-  //     offset: 0,
-  //     styles: {
-  //       ...props,
-  //     },
-  //   },
-  //   data: {
-  //     referrals: [],
-  //     referraltype: 'converted',
-  //     referralsCount: 0,
-  //     rewardTranslations: {},
-  //   },
-  //   callbacks: {
-  //     intl: () => {
-  //       console.log('intl');
-  //     },
-  //     paginate: () => {
-  //       console.log('paginate');
-  //     },
-  //   },
+    },
   };
 }
