@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, VNode } from '@stencil/core';
 import { LeaderboardView } from './leaderboard-view';
 import { useLeaderboard } from './useLeaderboard';
 
@@ -11,6 +11,11 @@ export class Leaderboard {
   @Prop() usersheading: string;
   @Prop() statsheading: string;
   render() {
-    return <LeaderboardView {...useLeaderboard(this)} />;
+    const props = {
+      empty:<slot name="empty"/>,
+      loadingstate:<slot name="loading" />,
+      ...this,
+    };
+    return <LeaderboardView {...useLeaderboard(props)} />;
   }
 }
