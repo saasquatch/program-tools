@@ -3,7 +3,7 @@ import ReferralListView from '../components/referral-list/referral-list-view';
 import { useReferralList } from '../components/referral-list/useReferralList';
 
 export default {
-  title: 'useReferralList',
+  title: 'Hooks / useReferralList',
 };
 
 function setupGraphQL() {
