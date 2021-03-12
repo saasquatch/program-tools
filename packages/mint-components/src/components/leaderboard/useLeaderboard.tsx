@@ -1,3 +1,4 @@
+import { h } from '@stencil/core';
 import { LeaderboardViewProps } from './leaderboard-view';
 
 interface LeaderboardProps {
@@ -6,5 +7,5 @@ interface LeaderboardProps {
 }
 
 export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
-  return { referrers: [], ...props };
+  return { loading: false, empty: <div></div>, loadingstate: <div></div>, hasleaders: true, referrers: [], ...props };
 }

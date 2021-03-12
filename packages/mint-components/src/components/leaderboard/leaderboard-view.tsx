@@ -1,3 +1,4 @@
+import { VNode } from '@stencil/core';
 import { h } from '@stencil/core';
 import { css } from 'emotion';
 import { gap, seperateContent } from '../../global/mixins';
@@ -20,24 +21,37 @@ const Row = css`
 export interface LeaderboardViewProps {
   usersheading: string;
   statsheading: string;
+  empty: VNode;
+  loadingstate: VNode;
+  loading: boolean;
+  hasleaders: boolean;
   referrers: { name: string; score: string }[];
+  // Needs loading state and empty state
 }
 
 export function LeaderboardView(props: LeaderboardViewProps) {
+  if (props.loading) {
+    return props.loadingstate;
+  }
   return (
-    <div class={ColumnWrapper}>
-      <div class={Row}>
-        <b>{props.usersheading}</b>
-        <b>{props.statsheading}</b>
-      </div>
-      {props.referrers.map(referrer => {
-        return (
+    <div>
+      {!props.hasleaders && props.empty}
+      {props.hasleaders && (
+        <div class={ColumnWrapper}>
           <div class={Row}>
-            <span>{referrer.name}</span>
-            <span>{referrer.score}</span>
+            <b>{props.usersheading}</b>
+            <b>{props.statsheading}</b>
           </div>
-        );
-      })}
+          {props.referrers.map(referrer => {
+            return (
+              <div class={Row}>
+                <span>{referrer.name}</span>
+                <span>{referrer.score}</span>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

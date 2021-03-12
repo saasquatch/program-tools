@@ -8,6 +8,8 @@ export interface ShareLinkViewProps {
   icon?: string;
   iconlabel?: string;
   tooltiptext?: string;
+
+  onClick?: () => void;
 }
 
 const copyInput = css`
@@ -30,7 +32,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         disabled={props.disabled}
       >
         <sl-input class={copyInput} value={props.sharelink} disabled readonly>
-          <sl-icon-button slot="suffix" name="clipboard" disabled={props.disabled} />
+          <sl-icon-button onClick={props.onClick} slot="suffix" name="clipboard" disabled={props.disabled} />
         </sl-input>
       </sl-tooltip>
     </div>
