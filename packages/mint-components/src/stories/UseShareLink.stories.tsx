@@ -1,5 +1,6 @@
 import { h } from '@stencil/core';
 import { useState } from 'haunted';
+import { ShareLinkView } from '../components/share-link/share-link-view';
 import { useShareLink } from '../components/share-link/useShareLink';
 
 export default {
@@ -32,26 +33,11 @@ export const BareBonesView = () => {
     engagementMedium: 'HOSTED',
     shareMedium: 'FACEBOOK',
   };
-  const res = useShareLink(variables as any);
-  console.log(res.data.referrals)
+  const res = useShareLink({variables} as any);
+  // console.log(res.data.referrals)
   return (
     <div>
-      <div>
-        Displaying data for user:{' '}
-        <code>
-          <strong>{(window as any).widgetIdent.userId}</strong>
-        </code>
-      </div>
-      <div>
-        <p>Page: {res.states.page + 1}</p>
-      </div>
-      <div>
-        <button onClick={() => res.callbacks.paginate(res.states.page - 1)}> {'<'} </button>
-        <button onClick={() => res.callbacks.paginate(res.states.page + 1)}> {'>'} </button>
-      </div>
-      <div>
-        <code>{res.states.loading ? 'LOADING...' : JSON.stringify(res.data.referrals)}</code>
-      </div>
+      Sharelink: <code style={{borderStyle: "solid", borderWidth: "1px", padding: "2px"}}>{res.sharelink}</code>
     </div>
   );
 };
@@ -92,7 +78,11 @@ export const BareBonesView = () => {
 //   titleText: "TITLE_TEXT",
 // };
 
-// export const RegularView = () => {
-//   setupGraphQL()
-//   return <ReferralLinkView {...useReferralList(defaultStyle)} />;
-// };
+export const RegularView = () => {
+  setupGraphQL()
+  return <ShareLinkView {...useShareLink({variables: {
+    programId: 'a-referral-program',
+    engagementMedium: 'HOSTED',
+    shareMedium: 'FACEBOOK',
+  }})} />;
+};
