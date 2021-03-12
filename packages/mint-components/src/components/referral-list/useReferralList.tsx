@@ -88,6 +88,24 @@ const getReferrals = gql`
   }
 `;
 
+type ReferralListProps = {
+  unknownuser: string;
+  pickrewardtext: string;
+  showStatus: boolean;
+  downloadedtext: string;
+  downloadedunqualifiedtext: string;
+  purchasedeligibletext: string;
+  purchasednoteligibletext: string;
+  newreferraltext: string;
+  rewardpendingtext: string;
+  rewardsavailabletext: string;
+  rewardredeemedtext: string;
+  paginateless: string;
+  paginatemore: string;
+  noreferralsyet: string;
+  titleText: string;
+};
+
 export function useReferralList(props: ReferralListProps): ReferralListViewProps {
   const {id, accountId} = props;
 
