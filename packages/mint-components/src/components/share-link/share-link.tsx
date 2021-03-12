@@ -8,14 +8,11 @@ import { useShareLink } from './useShareLink';
   shadow: true,
 })
 export class MyComponent {
-  @Prop() buttondisabled?: boolean;
   @Prop() icon?: string;
   @Prop() iconlabel?: string;
   @Prop() tooltiptext?: string;
-
-  // Should probably jus tbe `disabled`
-  @Prop() disabletooltip?: boolean;
-  @Prop() customstyle?: string;
+  @Prop() sharelink?: string;
+  @Prop() disabled?: boolean;
 
   render() {
     return <ShareLinkView {...useShareLink(this)} />;
