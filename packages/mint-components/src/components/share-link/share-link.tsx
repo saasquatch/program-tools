@@ -7,7 +7,7 @@ import { useShareLink } from './useShareLink';
   styleUrl: 'share-link.css',
   shadow: true,
 })
-export class MyComponent {
+export class ShareLink {
   @Prop() icon?: string;
   @Prop() iconlabel?: string;
   @Prop() tooltiptext?: string;

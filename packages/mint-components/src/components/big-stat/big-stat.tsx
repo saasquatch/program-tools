@@ -12,7 +12,7 @@ import { useBigStat } from './useBigStat';
   styleUrl: 'big-stat.css',
   shadow: true,
 })
-export class MyComponent {
+export class BigStat {
   render() {
     return (
       <BigStatView {...useBigStat()}>

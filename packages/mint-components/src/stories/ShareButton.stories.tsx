@@ -5,17 +5,22 @@ export default {
   title: 'Share Button',
 };
 
-export const WithoutIcon = () => {
-  const props = {};
-  return <ShareButtonView {...props}>Share</ShareButtonView>;
-};
-
 export const WithIcon = () => {
-  const props = { label: 'Share', icon: 'facebook', iconslot: 'suffix' } as const;
+  const props = { medium: 'facebook', iconslot: 'suffix' } as const;
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
 
-export const TextButton = () => {
-  const props = { label: 'Share', type: 'text' } as const;
+export const TextStyle = () => {
+  const props = { medium: 'facebook', type: 'text', iconslot: 'suffix' } as const;
+  return <ShareButtonView {...props}>Share</ShareButtonView>;
+};
+
+export const WithoutIcon = () => {
+  const props = { medium: 'facebook', hideicon: true } as const;
+  return <ShareButtonView {...props}>Share</ShareButtonView>;
+};
+
+export const TextStyleWithoutIcon = () => {
+  const props = { medium: 'facebook', type: 'text', hideicon: true } as const;
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };

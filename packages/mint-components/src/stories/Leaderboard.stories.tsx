@@ -6,15 +6,18 @@ export default {
 };
 
 export const Empty = () => {
-  const props = { pretext: 'You are currently ranked ', rank: '1st', posttext: '!', referrers: [] };
+  const props = {
+    usersheading: 'TOP REFERRERS',
+    statsheading: 'NEW TITANS',
+    referrers: [],
+  };
   return <LeaderboardView {...props} />;
 };
 
 export const One = () => {
   const props = {
-    pretext: 'You are currently ranked ',
-    rank: '1st',
-    posttext: '!',
+    usersheading: 'TOP REFERRERS',
+    statsheading: 'NEW TITANS',
     referrers: [{ name: 'Viktor V.', score: '82' }],
   };
   return <LeaderboardView {...props} />;
@@ -22,24 +25,8 @@ export const One = () => {
 
 export const Five = () => {
   const props = {
-    pretext: 'You are currently ranked ',
-    rank: '1st',
-    posttext: '!',
-    referrers: [
-      { name: 'Viktor V.', score: '82' },
-      { name: 'MF D.', score: '73' },
-      { name: 'Freddie G.', score: '64' },
-      { name: 'Benny B.', score: '55' },
-      { name: 'Mos D.', score: '46' },
-    ],
-  };
-  return <LeaderboardView {...props} />;
-};
-
-export const MissingRank = () => {
-  const props = {
-    pretext: 'You are currently ranked ',
-    posttext: '!',
+    usersheading: 'TOP REFERRERS',
+    statsheading: 'NEW TITANS',
     referrers: [
       { name: 'Viktor V.', score: '82' },
       { name: 'MF D.', score: '73' },

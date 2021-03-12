@@ -31,6 +31,7 @@ export class ShareButon {
   @Prop() type?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
   @Prop() size?: 'small' | 'medium' | 'large';
   @Prop() iconslot?: 'prefix' | 'suffix';
+  @Prop() hideicon?: boolean;
 
   render() {
     return (

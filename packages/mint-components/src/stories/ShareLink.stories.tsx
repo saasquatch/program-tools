@@ -7,7 +7,7 @@ export default {
 
 export const Default = () => {
   const props = {
-    shareLink: 'https://noah.example.com',
+    sharelink: 'https://noah.example.com',
   };
   return <ShareLinkView {...props} />;
 };

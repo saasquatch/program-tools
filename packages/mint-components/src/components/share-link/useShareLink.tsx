@@ -1,7 +1,16 @@
 import { ShareLinkViewProps } from './share-link-view';
 
-interface ShareLinkProps extends ShareLinkViewProps {}
+interface ShareLinkProps {
+  icon?: string;
+  iconlabel?: string;
+  tooltiptext?: string;
+  sharelink?: string;
+  disabled?: boolean;
+}
 
 export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
-  return props;
+  return {
+    sharelink: 'https://www.saasquatch.com/',
+    ...props,
+  };
 }

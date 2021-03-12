@@ -1,3 +1,4 @@
+import { h } from '@stencil/core';
 import { LeaderboardRankView } from '../components/leaderboard-rank/leaderboard-rank-view';
 
 export default {
@@ -5,12 +6,11 @@ export default {
 };
 
 export const First = () => {
-  const props = { pretext: 'You are currently ranked ', rank: '1st', posttext: '!' };
-  // return LeaderboardRankView(props);
+  const props = { rank: '1st' };
 
   return (
     <p>
-      Your rank is <LeaderboardRankView /> on the leaderboard
+      Your rank is <LeaderboardRankView {...props} /> on the leaderboard
     </p>
   );
 };
