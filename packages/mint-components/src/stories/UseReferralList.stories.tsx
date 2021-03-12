@@ -1,4 +1,3 @@
-import { useState, useEffect } from '@saasquatch/universal-hooks';
 import { h } from '@stencil/core';
 import ReferralListView from '../components/referral-list/referral-list-view';
 import { useReferralList } from '../components/referral-list/useReferralList';
