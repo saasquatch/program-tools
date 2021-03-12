@@ -19,18 +19,21 @@ const Row = css`
 `;
 
 export interface LeaderboardViewProps {
-  placementtext: string;
+  pretext: string;
+  posttext: string;
+  rank?: string;
   referrers: { name: string; score: string }[];
 }
 
 export function LeaderboardView(props: LeaderboardViewProps) {
+  console.log("leaderboard",props);
   return (
     <div class={ColumnWrapper}>
       <h3 class={H4} style={{ textAlign: 'center' }}>
         Leaderboard for our F-150 Ford Raptor Giveaway 🚚
       </h3>
       <div class={Row}>
-        <p class={P}>{props.placementtext}</p>
+        <sqm-leaderboard-rank pretext={props.pretext} posttext={props.posttext} rank={props.rank}></sqm-leaderboard-rank>
         <p class={`${P} subtitle`}>Updated hourly</p>
       </div>
       <div class={Row}>
