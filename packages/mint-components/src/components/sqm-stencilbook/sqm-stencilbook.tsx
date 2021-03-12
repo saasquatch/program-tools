@@ -5,10 +5,11 @@ import * as hooks from '@saasquatch/stencil-hooks';
 import * as ShareButton from '../../stories/ShareButton.stories';
 import * as ShareLink from '../../stories/ShareLink.stories';
 import * as ReferraList from '../../stories/ReferralList.stories';
+import * as UseReferralList from "../../stories/UseReferralList.stories"
 
 import { CucumberAddon } from './CucumberAddon';
 
-const stories = [ShareButton, ShareLink, ReferraList];
+const stories = [ShareButton, ShareLink, ReferraList, UseReferralList];
 
 /**
  * For internal documentation
