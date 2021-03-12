@@ -26,7 +26,6 @@ export interface LeaderboardViewProps {
   loading: boolean;
   hasleaders: boolean;
   referrers: { name: string; score: string }[];
-  // Needs loading state and empty state
 }
 
 export function LeaderboardView(props: LeaderboardViewProps) {
