@@ -5,13 +5,14 @@ import * as hooks from '@saasquatch/stencil-hooks';
 import * as ShareButton from '../../stories/ShareButton.stories';
 import * as ShareLink from '../../stories/ShareLink.stories';
 import * as ReferraList from '../../stories/ReferralList.stories';
+import * as UseReferralList from '../../stories/UseReferralList.stories';
 import * as BigStat from '../../stories/BigStat.stories';
 import * as Leaderboard from '../../stories/Leaderboard.stories';
-import * as LeaderBoardRank from '../../stories/LeaderBoardRank.stories';
+import * as LeaderboardRank from '../../stories/LeaderboardRank.stories';
 
 import { CucumberAddon } from './CucumberAddon';
 
-const stories = [ShareButton, ShareLink, ReferraList, BigStat, Leaderboard, LeaderBoardRank];
+const stories = [ShareButton, ShareLink, ReferraList, BigStat, Leaderboard, LeaderboardRank, UseReferralList];
 
 /**
  * For internal documentation
