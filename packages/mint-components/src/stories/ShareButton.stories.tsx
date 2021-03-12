@@ -1,3 +1,4 @@
+import { h } from '@stencil/core';
 import { ShareButtonView } from '../components/share-button/share-button-view';
 
 export default {
@@ -5,16 +6,16 @@ export default {
 };
 
 export const WithoutIcon = () => {
-  const props = { label: 'Share' };
-  return ShareButtonView(props);
+  const props = {};
+  return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
 
 export const WithIcon = () => {
-  const props = { label: 'Share', icon:"facebook", iconslot:"suffix" } as const;
-  return ShareButtonView(props);
+  const props = { label: 'Share', icon: 'facebook', iconslot: 'suffix' } as const;
+  return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
 
 export const TextButton = () => {
-  const props = { label: 'Share', type:'text' } as const;
-  return ShareButtonView(props);
+  const props = { label: 'Share', type: 'text' } as const;
+  return <ShareButtonView {...props}>Share</ShareButtonView>;
 };

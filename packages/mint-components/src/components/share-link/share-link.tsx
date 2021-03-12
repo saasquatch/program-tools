@@ -12,6 +12,8 @@ export class MyComponent {
   @Prop() icon?: string;
   @Prop() iconlabel?: string;
   @Prop() tooltiptext?: string;
+
+  // Should probably jus tbe `disabled`
   @Prop() disabletooltip?: boolean;
   @Prop() customstyle?: string;
 

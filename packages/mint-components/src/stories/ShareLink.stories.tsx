@@ -1,3 +1,4 @@
+import { h } from '@stencil/core';
 import { ShareLinkView } from '../components/share-link/share-link-view';
 
 export default {
@@ -5,6 +6,8 @@ export default {
 };
 
 export const Default = () => {
-  const props = {};
-  return ShareLinkView(props);
+  const props = {
+    shareLink: 'https://noah.example.com',
+  };
+  return <ShareLinkView {...props} />;
 };

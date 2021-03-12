@@ -6,5 +6,11 @@ export default {
 
 export const First = () => {
   const props = { pretext: 'You are currently ranked ', rank: '1st', posttext: '!' };
-  return LeaderboardRankView(props);
+  // return LeaderboardRankView(props);
+
+  return (
+    <p>
+      Your rank is <LeaderboardRankView /> on the leaderboard
+    </p>
+  );
 };

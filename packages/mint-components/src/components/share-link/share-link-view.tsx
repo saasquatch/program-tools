@@ -2,6 +2,8 @@ import { h } from '@stencil/core';
 import { css } from 'emotion';
 
 export interface ShareLinkViewProps {
+  shareLink: string;
+
   buttondisabled?: boolean;
   icon?: string;
   iconlabel?: string;
@@ -35,11 +37,11 @@ export function ShareLinkView(props: ShareLinkViewProps) {
           css={css`
             ${props.customstyle}
           `}
-          value="https://ssqt.co"
+          value={props.shareLink}
           disabled
           readonly
         >
-          <sl-icon-button slot="suffix" name="clipboard"/>
+          <sl-icon-button slot="suffix" name="clipboard" />
         </sl-input>
       </sl-tooltip>
     </div>
