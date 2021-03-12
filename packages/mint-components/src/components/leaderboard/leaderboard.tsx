@@ -10,8 +10,6 @@ import { useLeaderboard } from './useLeaderboard';
 export class Leaderboard {
   @Prop() usersheading: string;
   @Prop() statsheading: string;
-  @Prop() empty: VNode;
-  @Prop() loadingstate: VNode;
   render() {
     const props = {
       empty:<slot name="empty"/>,
