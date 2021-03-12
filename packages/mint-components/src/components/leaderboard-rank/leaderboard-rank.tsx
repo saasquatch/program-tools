@@ -8,8 +8,11 @@ import { useLeaderboardRank } from './useLeaderboardRank';
   shadow: true,
 })
 export class MyComponent {
-
+  @Prop() pretext: string;
+  @Prop() posttext: string;
+  @Prop() rank: string
   render() {
+    console.log("called rank");
     return <LeaderboardRankView {...useLeaderboardRank(this)} />;
   }
 }

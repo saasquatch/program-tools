@@ -1,8 +1,8 @@
 import { LeaderboardViewProps } from './leaderboard-view';
 
-interface LeaderboardProps {
-  placementtext: string;
-}
+interface LeaderboardProps {  pretext: string;
+  posttext: string;
+  rank?: string;}
 
 export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   return { referrers: [], ...props };

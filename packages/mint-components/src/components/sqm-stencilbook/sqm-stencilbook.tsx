@@ -7,10 +7,11 @@ import * as ShareLink from '../../stories/ShareLink.stories';
 import * as ReferraList from '../../stories/ReferralList.stories';
 import * as BigStat from '../../stories/BigStat.stories';
 import * as Leaderboard from '../../stories/Leaderboard.stories';
+import * as LeaderBoardRank from '../../stories/LeaderBoardRank.stories';
 
 import { CucumberAddon } from './CucumberAddon';
 
-const stories = [ShareButton, ShareLink, ReferraList, BigStat, Leaderboard];
+const stories = [ShareButton, ShareLink, ReferraList, BigStat, Leaderboard, LeaderBoardRank];
 
 /**
  * For internal documentation

@@ -24,9 +24,14 @@ export namespace Components {
         "statdescription": any;
     }
     interface SqmLeaderboard {
-        "placementtext": string;
+        "posttext": string;
+        "pretext": string;
+        "rank"?: string;
     }
     interface SqmLeaderboardRank {
+        "posttext": string;
+        "pretext": string;
+        "rank": string;
     }
     interface SqmReferralList {
         "downloadedtext": string;
@@ -151,9 +156,14 @@ declare namespace LocalJSX {
         "statdescription"?: any;
     }
     interface SqmLeaderboard {
-        "placementtext"?: string;
+        "posttext"?: string;
+        "pretext"?: string;
+        "rank"?: string;
     }
     interface SqmLeaderboardRank {
+        "posttext"?: string;
+        "pretext"?: string;
+        "rank"?: string;
     }
     interface SqmReferralList {
         "downloadedtext"?: string;

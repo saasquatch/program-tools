@@ -8,9 +8,9 @@ import { useLeaderboard } from './useLeaderboard';
   shadow: true,
 })
 export class MyComponent {
-
-  @Prop() placementtext: string;
-
+  @Prop() pretext: string;
+  @Prop() posttext: string;
+  @Prop() rank?: string;
   render() {
     return <LeaderboardView {...useLeaderboard(this)} />;
   }
