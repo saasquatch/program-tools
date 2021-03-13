@@ -196,12 +196,27 @@ export function useUserIdentity(): UserIdentity | undefined {
     case "SquatchAdmin":
     case "None":
       // Not logged in for admin portal / none default case
-      return undefined;
+      // SB: test user from 00salmon test on staging
+      return {
+        id:"englishedward",
+        accountId:"englishedward",
+        jwt:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImVuZ2xpc2hlZHdhcmQiLCJpZCI6ImVuZ2xpc2hlZHdhcmQifX0.EMWxwv_pkNFUV2Mmqd-FEctDD7a63ut1mhwXvwkj5V0"
+      };
   }
 }
 
 // Fake tenant alias in
-const FAKE_TENANT = "demo";
+// SB: 00salmon test tenantAlias
+const FAKE_TENANT = "test_a8b41jotf8a1v";
+
+// window.widgetIdent = {
+//   tenantAlias: "test_a8b41jotf8a1v",
+//   appDomain: "https://staging.referralsaasquatch.com",
+//   token:
+//     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImVuZ2xpc2hlZHdhcmQiLCJpZCI6ImVuZ2xpc2hlZHdhcmQifX0.EMWxwv_pkNFUV2Mmqd-FEctDD7a63ut1mhwXvwkj5V0",
+//   userId: "englishedward",
+//   accountId: "englishedward",
+// };
 
 export function useTenantAlias(): string {
   const sdk = getEnvironmentSDK();
@@ -217,7 +232,7 @@ export function useTenantAlias(): string {
   }
 }
 
-const DEFAULT_DOMAIN = "https://app.referralsaasquatch.com";
+const DEFAULT_DOMAIN = "https://staging.referralsaasquatch.com";
 export function useAppDomain(): string {
   const sdk = getEnvironmentSDK();
   switch (sdk.type) {
