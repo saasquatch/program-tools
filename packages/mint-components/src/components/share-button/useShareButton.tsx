@@ -1,12 +1,9 @@
-import { useQuery } from '@saasquatch/component-boilerplate';
+import { useQuery, useEngagementMedium, useProgramId } from '@saasquatch/component-boilerplate';
 import gql from 'graphql-tag';
 import { ShareButtonViewProps } from './share-button-view';
 
 interface ShareButtonProps extends ShareButtonViewProps {
-  variables?: {
-    programId: string;
-    engagementMedium: string;
-  };
+  programId?: string
 }
 
 const MessageLinkQuery = gql`
@@ -22,15 +19,16 @@ const MessageLinkQuery = gql`
 
 export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
   const variables = {
-    ...props.variables,
-    shareMedium: props.medium.toUpperCase()
-  }
+    engagementMedium: useEngagementMedium(),
+    programId: props.programId,
+    shareMedium: props.medium.toUpperCase(),
+  };
 
   const res = useQuery(MessageLinkQuery, variables);
 
   function onClick() {
-    window.open(res.data?.viewer?.messageLink ?? "https://www.youtube.com/watch?v=dQw4w9WgXcQ")
-  } 
+    window.open(res.data?.viewer?.messageLink ?? 'https://example.com');
+  }
 
   return { ...props, onClick };
 }
