@@ -27,7 +27,8 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
   const res = useQuery(MessageLinkQuery, variables);
 
   function onClick() {
-    window.open(res.data?.viewer?.messageLink ?? 'https://example.com');
+  res.data?.viewer?.messageLink ? 
+    window.open(res.data.viewer.messageLink) : alert("error: message link undefined!");
   }
 
   return { ...props, onClick };
