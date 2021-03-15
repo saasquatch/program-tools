@@ -5,13 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { VNode } from "@stencil/core";
 export namespace Components {
     interface SqmBigStat {
     }
     interface SqmLeaderboard {
-        "empty": VNode;
-        "loadingstate": VNode;
         "statsheading": string;
         "usersheading": string;
     }
@@ -94,8 +91,6 @@ declare namespace LocalJSX {
     interface SqmBigStat {
     }
     interface SqmLeaderboard {
-        "empty"?: VNode;
-        "loadingstate"?: VNode;
         "statsheading"?: string;
         "usersheading"?: string;
     }
