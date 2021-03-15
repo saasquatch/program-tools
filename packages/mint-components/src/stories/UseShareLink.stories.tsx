@@ -32,7 +32,6 @@ export const BareBonesView = () => {
     programId: 'a-referral-program',
   };
   const res = useShareLink({variables} as any);
-  // console.log(res.data.referrals)
   return (
     <div>
       Sharelink: <code style={{borderStyle: "solid", borderWidth: "1px", padding: "2px"}}>{res.sharelink}</code>
