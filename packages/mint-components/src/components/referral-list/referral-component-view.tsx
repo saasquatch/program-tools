@@ -97,14 +97,14 @@ const ReferralComponentView = (props: ReferralComponentProps) => {
   const { states, data, callbacks } = props;
   const { styles } = states;
 
-  const { dateReferralStarted } = data?.referral;
+  // const { dateReferralStarted } = data?.referral;
 
   // !: Hook stuff?
   const name = callbacks.getName(data?.referral);
   const status = props.states.styles.showStatus ? callbacks.getReferralStatus(data?.referral) : "";
 
   // TODO: probably a better way to do this
-  const relative = (new Date().getTime() - dateReferralStarted) * -1;
+  // const relative = (new Date().getTime() - dateReferralStarted) * -1;
   const date = "(hardcoded intl date formatting)"
   // const date = props.intl.formatRelativeTime(
   //   Math.ceil(relative / (60 * 60 * 24 * 1000)),

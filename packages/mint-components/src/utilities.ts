@@ -7,5 +7,5 @@
 // TODO fix IntlMessageFormat
 
 export function formatMessage(message: string, locale: string, variables: Record<string, any>) {
-  return message;
+  return message + locale + variables;
 }

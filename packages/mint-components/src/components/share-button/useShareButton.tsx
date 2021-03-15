@@ -1,4 +1,4 @@
-import { useQuery, useEngagementMedium, useProgramId } from '@saasquatch/component-boilerplate';
+import { useQuery, useEngagementMedium } from '@saasquatch/component-boilerplate';
 import gql from 'graphql-tag';
 import { ShareButtonViewProps } from './share-button-view';
 

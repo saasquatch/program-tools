@@ -1,7 +1,7 @@
 import { h, VNode } from '@stencil/core';
 import { FunctionalComponent } from '@stencil/router/dist/types/stencil.core';
 import { css } from 'emotion';
-import { formatMessage } from '../../utilities';
+// import { formatMessage } from '../../utilities';
 import { LoadingState } from './loading-state';
 import ReferralComponentView from './referral-component-view';
 

@@ -1,7 +1,10 @@
 import { Config } from "@stencil/core";
 import { sass } from "@stencil/sass";
 import createDocxGenerator from "stencil-docx-docs";
-
+import alias from "@rollup/plugin-alias";
+import copy from "rollup-plugin-copy";
+import css from 'rollup-plugin-css-only'
+import path from "path";
 const useDocx = {
   type: "docs-custom",
   generator: createDocxGenerator({
@@ -52,6 +55,36 @@ export const config: Config = {
         ]
       : [],
   plugins: [sass()],
+  rollupPlugins: {
+    before: [
+      alias({
+        entries: [
+          {
+            find: "@saasquatch/universal-hooks",
+            replacement: path.resolve(
+              __dirname,
+              "node_modules",
+              "@saasquatch/stencil-hooks"
+            ),
+          },
+        ],
+      }),
+      css({
+        output: 'bundle.css' 
+      }),
+      copy({
+        targets: [
+          {
+            src: path.resolve(
+              __dirname,
+              "node_modules/@shoelace-style/shoelace/dist/assets"
+            ),
+            dest: path.resolve(__dirname, "dist/shoelace"),
+          },
+        ],
+      }),
+    ],
+  },
   extras: {
     // Don't use Stencil's built in Safari10 check, it breaks the non-ES modules build
     // NOTE: This looks like it might be fixed in Stencil 1.8.x - https://github.com/ionic-team/stencil/issues/1900
