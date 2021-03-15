@@ -1,3 +1,4 @@
+import { withHooks } from '@saasquatch/stencil-hooks';
 import { Component, h } from '@stencil/core';
 import { BigStatView } from './big-stat-view';
 import { useBigStat } from './useBigStat';
@@ -13,9 +14,16 @@ import { useBigStat } from './useBigStat';
   shadow: true,
 })
 export class BigStat {
+
+  constructor() {
+    withHooks(this);
+  }
+  disconnectedCallback() {}
+  
   render() {
+    const props = useBigStat();
     return (
-      <BigStatView {...useBigStat()}>
+      <BigStatView {...props}>
         <slot />
       </BigStatView>
     );

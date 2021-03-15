@@ -1,3 +1,4 @@
+import { withHooks } from '@saasquatch/stencil-hooks';
 import { Component, Prop, h } from '@stencil/core';
 import { ShareButtonView } from './share-button-view';
 import { useShareButton } from './useShareButton';
@@ -33,9 +34,15 @@ export class ShareButon {
   @Prop() iconslot?: 'prefix' | 'suffix';
   @Prop() hideicon?: boolean;
 
+  constructor() {
+    withHooks(this);
+  }
+  disconnectedCallback() {}
+
   render() {
+    const props = useShareButton(this);
     return (
-      <ShareButtonView {...useShareButton(this)}>
+      <ShareButtonView {...props}>
         <slot />
       </ShareButtonView>
     );
