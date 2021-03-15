@@ -36,7 +36,7 @@
     "ts-node": "^7.0.1"
   },
   "dependencies": {
-    "@saasquatch/component-boilerplate": "^1.0.0-beta7",
+    "@saasquatch/component-boilerplate": "^1.0.0-beta10.3",
     "@saasquatch/stencil-hooks": "^1.0.1",
     "@saasquatch/stencilbook": "0.0.1-beta4",
     "@saasquatch/universal-hooks": "^0.1.3",

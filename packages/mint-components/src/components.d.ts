@@ -5,18 +5,17 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { VNode } from "@stencil/core";
 export namespace Components {
     interface SqmBigStat {
     }
     interface SqmLeaderboard {
-        "empty": VNode;
-        "loadingstate": VNode;
         "statsheading": string;
         "usersheading": string;
     }
     interface SqmLeaderboardRank {
         "rank"?: string;
+    }
+    interface SqmRouter {
     }
     interface SqmShareButton {
         "disabled"?: boolean;
@@ -63,6 +62,12 @@ declare global {
         prototype: HTMLSqmLeaderboardRankElement;
         new (): HTMLSqmLeaderboardRankElement;
     };
+    interface HTMLSqmRouterElement extends Components.SqmRouter, HTMLStencilElement {
+    }
+    var HTMLSqmRouterElement: {
+        prototype: HTMLSqmRouterElement;
+        new (): HTMLSqmRouterElement;
+    };
     interface HTMLSqmShareButtonElement extends Components.SqmShareButton, HTMLStencilElement {
     }
     var HTMLSqmShareButtonElement: {
@@ -85,6 +90,7 @@ declare global {
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
+        "sqm-router": HTMLSqmRouterElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
@@ -94,13 +100,13 @@ declare namespace LocalJSX {
     interface SqmBigStat {
     }
     interface SqmLeaderboard {
-        "empty"?: VNode;
-        "loadingstate"?: VNode;
         "statsheading"?: string;
         "usersheading"?: string;
     }
     interface SqmLeaderboardRank {
         "rank"?: string;
+    }
+    interface SqmRouter {
     }
     interface SqmShareButton {
         "disabled"?: boolean;
@@ -131,6 +137,7 @@ declare namespace LocalJSX {
         "sqm-big-stat": SqmBigStat;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
+        "sqm-router": SqmRouter;
         "sqm-share-button": SqmShareButton;
         "sqm-share-link": SqmShareLink;
         "sqm-stencilbook": SqmStencilbook;
@@ -143,6 +150,7 @@ declare module "@stencil/core" {
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
+            "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
