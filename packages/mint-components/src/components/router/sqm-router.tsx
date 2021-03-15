@@ -9,7 +9,7 @@ import { useRouter } from './useRouter';
  */
 @Component({
   tag: 'sqm-router',
-  styles: './sqm-router.css',
+  styleUrl: 'sqm-router.css',
 })
 export class StencilStorybook {
   @State()

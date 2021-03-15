@@ -33,9 +33,10 @@ const templates = `
     </template>
 `;
 
-export const Default = () => {
+export const Navigation = () => {
   return (
     <div>
+      <button onClick={() => navigation.push('/')}>/</button>
       <button onClick={() => navigation.push('/foo')}>/foo</button>
       <button onClick={() => navigation.push('/bar')}>/bar</button>
       <button onClick={() => navigation.push('/baz/bang')}>/baz/bang</button>
@@ -43,6 +44,24 @@ export const Default = () => {
       <button onClick={() => navigation.forward()}>Forward</button>
       <hr />
       <sqm-router innerHTML={templates}></sqm-router>
+    </div>
+  );
+};
+
+export const Styling = () => {
+  return (
+    <div>
+      <button onClick={() => navigation.push('/foo')}>/</button>
+      <hr />
+      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <sqm-router
+          innerHTML={`<template path="/">
+      
+      <div>Column 1</div>
+      <div>Column 2 </div>
+      </template>`}
+        ></sqm-router>
+      </div>
     </div>
   );
 };
