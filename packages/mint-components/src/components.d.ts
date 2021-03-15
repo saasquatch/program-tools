@@ -21,6 +21,7 @@ export namespace Components {
         "middle": string;
     }
     interface SqmBigStat {
+        "type": string;
     }
     interface SqmLeaderboard {
         "statsheading": string;
@@ -148,6 +149,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface SqmBigStat {
+        "type"?: string;
     }
     interface SqmLeaderboard {
         "statsheading"?: string;

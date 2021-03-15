@@ -1,4 +1,4 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, Prop } from '@stencil/core';
 import { BigStatView } from './big-stat-view';
 import { useBigStat } from './useBigStat';
 
@@ -13,10 +13,16 @@ import { useBigStat } from './useBigStat';
   shadow: true,
 })
 export class BigStat {
+  // type is a URL path with parameters
+  @Prop() type: string
+
   render() {
+    const {props, label} = useBigStat(this)
     return (
-      <BigStatView {...useBigStat()}>
-        <slot />
+      <BigStatView {...props}>
+        <slot>
+          {label}
+        </slot>
       </BigStatView>
     );
   }
