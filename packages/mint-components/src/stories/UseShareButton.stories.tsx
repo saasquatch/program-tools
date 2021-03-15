@@ -1,7 +1,6 @@
 import { h } from '@stencil/core';
 import { ShareButtonView } from '../components/share-button/share-button-view';
 import { useShareButton } from '../components/share-button/useShareButton';
-import { useProgramContext } from '@saasquatch/component-boilerplate/dist/environment/ProgramContext';
 
 export default {
   title: 'Hooks / useShareButton',
@@ -32,7 +31,6 @@ export const BareBonesView = () => {
   setupGraphQL();
   const programId = 'a-referral-program';
   const res = [useShareButton({ programId, medium: 'facebook' }), useShareButton({ programId, medium: 'twitter' }), useShareButton({ programId, medium: 'email' })];
-  // console.log(res.data.referrals)
   return (
     <div>
       {res.map(r => (
