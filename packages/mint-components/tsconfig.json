@@ -21,7 +21,7 @@
     "jsx": "react",
     "jsxFactory": "h",
     // "noImplicitAny": true,
-		"types": []
+		"types": ["resize-observer-browser"]
   },
   "include": [
     "src",

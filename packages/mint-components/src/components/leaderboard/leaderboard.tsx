@@ -1,4 +1,4 @@
-import { Component, Prop, h, VNode } from '@stencil/core';
+import { Component, Prop, h } from '@stencil/core';
 import { LeaderboardView } from './leaderboard-view';
 import { useLeaderboard } from './useLeaderboard';
 
