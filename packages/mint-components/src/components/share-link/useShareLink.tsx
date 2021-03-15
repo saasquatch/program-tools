@@ -8,28 +8,24 @@ interface ShareLinkProps {
   tooltiptext?: string;
   sharelink?: string;
   disabled?: boolean;
-  variables: {
-    programId: string,
-    engagemantMedium: string,
-    shareMedium: string,
-  }
+  variables?: {
+    programId: string;
+  };
 }
 
 const MessageLinkQuery = gql`
-  query($programId: ID, $engagementMedium: UserEngagementMedium!, $shareMedium: ReferralShareMedium!) {
-    viewer {
-      __typename
-      ... on User {
-        messageLink(programId: $programId, engagementMedium: $engagementMedium, shareMedium: $shareMedium)
-      }
+  query($id: String!, $accountId: String!, $programId: ID) {
+    user(id: $id, accountId: $accountId) {
+      shareLink(programId: $programId)
     }
   }
 `;
 
-// TODO make return types strict
-// blocked by Logan's refactor
-export function useShareLink(props: ShareLinkProps & any): ShareLinkViewProps & any {
-  const res = useQuery(MessageLinkQuery, props.variables);
-  console.log(res)
-  return {...props, res};
+export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
+  //@ts-ignore
+  const { userId: id, accountId } = window.widgetIdent;
+
+  const res = useQuery(MessageLinkQuery, { ...props.variables, id, accountId });
+  console.log(res);
+  return { ...props, sharelink: res?.data?.user?.shareLink ?? '' };
 }
