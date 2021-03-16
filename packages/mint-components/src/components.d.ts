@@ -6,20 +6,6 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
-    }
     interface SqmBigStat {
         "type": string;
     }
@@ -30,22 +16,7 @@ export namespace Components {
     interface SqmLeaderboardRank {
         "rank"?: string;
     }
-    interface SqmReferralList {
-        "downloadedtext": string;
-        "downloadedunqualifiedtext": string;
-        "newreferraltext": string;
-        "noreferralsyet": string;
-        "paginateless": string;
-        "paginatemore": string;
-        "pickrewardtext": string;
-        "purchasedeligibletext": string;
-        "purchasednoteligibletext": string;
-        "rewardpendingtext": string;
-        "rewardredeemedtext": string;
-        "rewardsavailabletext": string;
-        "showStatus": boolean;
-        "titleText": string;
-        "unknownuser": string;
+    interface SqmRouter {
     }
     interface SqmShareButton {
         "disabled"?: boolean;
@@ -74,12 +45,6 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLSqmBigStatElement extends Components.SqmBigStat, HTMLStencilElement {
     }
     var HTMLSqmBigStatElement: {
@@ -98,11 +63,11 @@ declare global {
         prototype: HTMLSqmLeaderboardRankElement;
         new (): HTMLSqmLeaderboardRankElement;
     };
-    interface HTMLSqmReferralListElement extends Components.SqmReferralList, HTMLStencilElement {
+    interface HTMLSqmRouterElement extends Components.SqmRouter, HTMLStencilElement {
     }
-    var HTMLSqmReferralListElement: {
-        prototype: HTMLSqmReferralListElement;
-        new (): HTMLSqmReferralListElement;
+    var HTMLSqmRouterElement: {
+        prototype: HTMLSqmRouterElement;
+        new (): HTMLSqmRouterElement;
     };
     interface HTMLSqmShareButtonElement extends Components.SqmShareButton, HTMLStencilElement {
     }
@@ -123,31 +88,16 @@ declare global {
         new (): HTMLSqmStencilbookElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
-        "sqm-referral-list": HTMLSqmReferralListElement;
+        "sqm-router": HTMLSqmRouterElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
-    }
     interface SqmBigStat {
         "type"?: string;
     }
@@ -158,22 +108,7 @@ declare namespace LocalJSX {
     interface SqmLeaderboardRank {
         "rank"?: string;
     }
-    interface SqmReferralList {
-        "downloadedtext"?: string;
-        "downloadedunqualifiedtext"?: string;
-        "newreferraltext"?: string;
-        "noreferralsyet"?: string;
-        "paginateless"?: string;
-        "paginatemore"?: string;
-        "pickrewardtext"?: string;
-        "purchasedeligibletext"?: string;
-        "purchasednoteligibletext"?: string;
-        "rewardpendingtext"?: string;
-        "rewardredeemedtext"?: string;
-        "rewardsavailabletext"?: string;
-        "showStatus"?: boolean;
-        "titleText"?: string;
-        "unknownuser"?: string;
+    interface SqmRouter {
     }
     interface SqmShareButton {
         "disabled"?: boolean;
@@ -201,11 +136,10 @@ declare namespace LocalJSX {
     interface SqmStencilbook {
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
         "sqm-big-stat": SqmBigStat;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
-        "sqm-referral-list": SqmReferralList;
+        "sqm-router": SqmRouter;
         "sqm-share-button": SqmShareButton;
         "sqm-share-link": SqmShareLink;
         "sqm-stencilbook": SqmStencilbook;
@@ -215,11 +149,10 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
-            "sqm-referral-list": LocalJSX.SqmReferralList & JSXBase.HTMLAttributes<HTMLSqmReferralListElement>;
+            "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;

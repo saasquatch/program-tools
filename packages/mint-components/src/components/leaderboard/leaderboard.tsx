@@ -1,4 +1,5 @@
-import { Component, Prop, h, VNode } from '@stencil/core';
+import { withHooks } from '@saasquatch/stencil-hooks';
+import { Component, Prop, h } from '@stencil/core';
 import { LeaderboardView } from './leaderboard-view';
 import { useLeaderboard } from './useLeaderboard';
 
@@ -10,12 +11,19 @@ import { useLeaderboard } from './useLeaderboard';
 export class Leaderboard {
   @Prop() usersheading: string;
   @Prop() statsheading: string;
+
+  constructor() {
+    withHooks(this);
+  }
+  disconnectedCallback() {}
+
   render() {
     const props = {
       empty:<slot name="empty"/>,
       loadingstate:<slot name="loading" />,
       ...this,
     };
-    return <LeaderboardView {...useLeaderboard(props)} />;
+    const viewprops = useLeaderboard(props);
+    return <LeaderboardView {...viewprops} />;
   }
 }

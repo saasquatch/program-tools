@@ -37,6 +37,7 @@ const View = (type: string) => {
     programId: 'a-referral-program',
     type,
     render: () => {},
+    disconnectedCallback: () => {}
   });
   return <BigStatView {...props}>{label}</BigStatView>;
 };

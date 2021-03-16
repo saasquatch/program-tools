@@ -1,4 +1,4 @@
-import { h, VNode } from '@stencil/core';
+import { VNode } from '@stencil/core';
 import { LeaderboardViewProps } from './leaderboard-view';
 
 interface LeaderboardProps {

@@ -1,3 +1,4 @@
+import { withHooks } from '@saasquatch/stencil-hooks';
 import { Component, Prop, h } from '@stencil/core';
 import { LeaderboardRankView } from './leaderboard-rank-view';
 import { useLeaderboardRank } from './useLeaderboardRank';
@@ -8,8 +9,15 @@ import { useLeaderboardRank } from './useLeaderboardRank';
   shadow: true,
 })
 export class LeaderboardRank {
-  @Prop() rank?: string
+  @Prop() rank?: string;
+
+  constructor() {
+    withHooks(this);
+  }
+  disconnectedCallback() {}
+
   render() {
-    return <LeaderboardRankView {...useLeaderboardRank(this)} />;
+    const props = useLeaderboardRank(this);
+    return <LeaderboardRankView {...props} />;
   }
 }

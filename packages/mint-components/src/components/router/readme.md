@@ -1,4 +1,4 @@
-# stencil-storybook
+# sqm-router
 
 
 
@@ -7,15 +7,15 @@
 
 ## Dependencies
 
-### Depends on
+### Used by
 
-- [sqm-router](../router)
+ - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-stencilbook --> sqm-router
-  style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
+  style sqm-router fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

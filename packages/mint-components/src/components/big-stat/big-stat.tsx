@@ -1,4 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
+import { withHooks } from '@saasquatch/stencil-hooks';
 import { BigStatView } from './big-stat-view';
 import { useBigStat } from './useBigStat';
 
@@ -15,6 +16,11 @@ import { useBigStat } from './useBigStat';
 export class BigStat {
   // type is a URL path with parameters
   @Prop() type: string
+
+  constructor() {
+    withHooks(this);
+  }
+  disconnectedCallback() {}
 
   render() {
     const {props, label} = useBigStat(this)

@@ -1,3 +1,4 @@
+import { withHooks } from '@saasquatch/stencil-hooks';
 import { Component, Prop, h } from '@stencil/core';
 import { ShareLinkView } from './share-link-view';
 import { useShareLink } from './useShareLink';
@@ -14,7 +15,13 @@ export class ShareLink {
   @Prop() sharelink?: string;
   @Prop() disabled?: boolean;
 
+  constructor() {
+    withHooks(this);
+  }
+  disconnectedCallback() {}
+
   render() {
-    return <ShareLinkView {...useShareLink(this)} />;
+    const props = useShareLink(this);
+    return <ShareLinkView {...props} />;
   }
 }
