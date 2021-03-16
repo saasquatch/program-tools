@@ -37,7 +37,6 @@
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "history": "^5.0.0",
-    "jsonpointer": "^4.1.0",
-    "lodash.clonedeep": "^4.5.0"
+    "jsonpointer": "^4.1.0"
   }
 }
