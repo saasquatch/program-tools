@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property | Attribute | Description | Type     | Default     |
+| -------- | --------- | ----------- | -------- | ----------- |
+| `type`   | `type`    |             | `string` | `undefined` |
+
+
 ## Slots
 
 | Slot                                 | Description |

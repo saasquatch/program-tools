@@ -1,85 +1,88 @@
-import { Config } from "@stencil/core";
-import { sass } from "@stencil/sass";
-import createDocxGenerator from "stencil-docx-docs";
-import alias from "@rollup/plugin-alias";
-import copy from "rollup-plugin-copy";
-import css from 'rollup-plugin-css-only'
-import path from "path";
+import { Config } from '@stencil/core';
+import { sass } from '@stencil/sass';
+import createDocxGenerator from 'stencil-docx-docs';
+import alias from '@rollup/plugin-alias';
+import copy from 'rollup-plugin-copy';
+import css from 'rollup-plugin-css-only';
+import path from 'path';
+import { JsonDocs } from '@stencil/core/internal';
+import { grapesJSGenerator } from './plugin/generator';
 const useDocx = {
-  type: "docs-custom",
+  type: 'docs-custom',
   generator: createDocxGenerator({
-    outDir: "docs",
-    textFont: "Calibri",
-    excludeTags: ["undocumented"],
-    title: "Mint Components",
-    author: "SaaSquatch",
+    outDir: 'docs',
+    textFont: 'Calibri',
+    excludeTags: ['undocumented'],
+    title: 'Mint Components',
+    author: 'SaaSquatch',
   }),
 } as const;
 
+const useGrapesjs = {
+  type: 'docs-custom',
+  generator: grapesJSGenerator,
+} as const;
+
 export const config: Config = {
-  namespace: "components-starter",
-  globalScript: "src/global/global.ts",
+  namespace: 'components-starter',
+  globalScript: 'src/global/global.ts',
   globalStyle: 'src/global/global.css',
   buildEs5: true,
   outputTargets:
     //@ts-ignore
-    process.env.NODE_ENV === "dev"
+    process.env.NODE_ENV === 'dev'
       ? [
           {
-            type: "dist",
-            esmLoaderPath: "../loader",
+            type: 'dist',
+            esmLoaderPath: '../loader',
           },
           {
-            type: "www",
+            type: 'www',
             serviceWorker: null, // disable service workers
           },
           useDocx,
+          useGrapesjs,
         ]
       : //@ts-ignore
-      process.env.NODE_ENV === "widget"
+      process.env.NODE_ENV === 'widget'
       ? [
           {
-            type: "dist",
-            copy: [{ src: "entrypoint.js" }],
+            type: 'dist',
+            copy: [{ src: 'entrypoint.js' }],
           },
           useDocx,
+          useGrapesjs,
         ]
       : //@ts-ignore
-      process.env.NODE_ENV === "portal"
+      process.env.NODE_ENV === 'portal'
       ? [
           {
-            type: "www",
-            copy: [{ src: "entrypoint.js" }],
+            type: 'www',
+            copy: [{ src: 'entrypoint.js' }],
           },
           useDocx,
+          useGrapesjs,
         ]
-      : [],
+      : [useDocx, useGrapesjs],
   plugins: [sass()],
   rollupPlugins: {
     before: [
       alias({
         entries: [
           {
-            find: "@saasquatch/universal-hooks",
-            replacement: path.resolve(
-              __dirname,
-              "node_modules",
-              "@saasquatch/stencil-hooks"
-            ),
+            find: '@saasquatch/universal-hooks',
+            replacement: path.resolve(__dirname, 'node_modules', '@saasquatch/stencil-hooks'),
           },
         ],
       }),
       css({
-        output: 'bundle.css' 
+        output: 'bundle.css',
       }),
       copy({
         targets: [
           {
-            src: path.resolve(
-              __dirname,
-              "node_modules/@shoelace-style/shoelace/dist/assets"
-            ),
-            dest: path.resolve(__dirname, "dist/shoelace"),
+            src: path.resolve(__dirname, 'node_modules/@shoelace-style/shoelace/dist/assets'),
+            dest: path.resolve(__dirname, 'dist/shoelace'),
           },
         ],
       }),
@@ -96,7 +99,7 @@ export const config: Config = {
   testing: {
     // preset: 'ts-jest',
     moduleNameMapper: {
-      haunted: "<rootDir>/__tests__/hacks/haunted.cjs.js",
+      haunted: '<rootDir>/__tests__/hacks/haunted.cjs.js',
     },
   },
 };

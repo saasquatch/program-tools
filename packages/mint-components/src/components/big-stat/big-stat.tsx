@@ -14,8 +14,11 @@ import { useBigStat } from './useBigStat';
   shadow: true,
 })
 export class BigStat {
-  // type is a URL path with parameters
-  @Prop() type: string
+  /**
+   * @uiName Stat Type
+   * @uiWidget ColorPicker
+   */
+  @Prop() type: string;
 
   constructor() {
     withHooks(this);
@@ -23,12 +26,10 @@ export class BigStat {
   disconnectedCallback() {}
 
   render() {
-    const {props, label} = useBigStat(this)
+    const { props, label } = useBigStat(this);
     return (
       <BigStatView {...props}>
-        <slot>
-          {label}
-        </slot>
+        <slot>{label}</slot>
       </BigStatView>
     );
   }

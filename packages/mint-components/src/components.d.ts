@@ -7,6 +7,10 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface SqmBigStat {
+        /**
+          * @uiName Stat Type
+          * @uiWidget ColorPicker
+         */
         "type": string;
     }
     interface SqmLeaderboard {
@@ -99,6 +103,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface SqmBigStat {
+        /**
+          * @uiName Stat Type
+          * @uiWidget ColorPicker
+         */
         "type"?: string;
     }
     interface SqmLeaderboard {

@@ -1,5 +1,5 @@
 import { h } from '@stencil/core';
-import { useState } from 'haunted';
+// import { useState } from 'haunted';
 import { BigStatView } from '../components/big-stat/big-stat-view';
 import { useBigStat } from '../components/big-stat/useBigStat';
 
@@ -26,10 +26,10 @@ function setupGraphQL() {
   return { id, accountId };
 }
 
-function useRerender() {
-  const [, set] = useState(false);
-  return () => set(b => !b);
-}
+// function useRerender() {
+//   const [, set] = useState(false);
+//   return () => set(b => !b);
+// }
 
 const View = (type: string) => {
   setupGraphQL();
@@ -37,7 +37,7 @@ const View = (type: string) => {
     programId: 'a-referral-program',
     type,
     render: () => {},
-    disconnectedCallback: () => {}
+    disconnectedCallback: () => {},
   });
   return <BigStatView {...props}>{label}</BigStatView>;
 };

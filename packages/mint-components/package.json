@@ -36,7 +36,8 @@
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-css-only": "^3.1.0",
     "stencil-docx-docs": "0.0.2",
-    "ts-node": "^7.0.1"
+    "ts-node": "^7.0.1",
+    "workbox-build": "4.3.1"
   },
   "dependencies": {
     "@saasquatch/component-boilerplate": "^1.0.0-beta10.3",
