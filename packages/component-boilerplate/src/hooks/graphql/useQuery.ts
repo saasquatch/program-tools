@@ -6,6 +6,7 @@ import {
   useBaseQuery,
 } from "./useBaseQuery";
 import { useTick } from "../useTick";
+import cloneDeep from "lodash.clonedeep"
 
 export const initialQueryState: BaseQueryData = {
   loading: true,
@@ -26,9 +27,9 @@ export function useQuery<T = any>(
 
   useDeepMemo(() => {
     update(variables);
-  }, [variables, update, tick]);
+  }, [query, variables, update, tick]);
   return {
-    ...state,
+    ...cloneDeep(state),
     // can override props when refetching for new pagination, offset, etc
     refetch: forceUpdate,
   };
