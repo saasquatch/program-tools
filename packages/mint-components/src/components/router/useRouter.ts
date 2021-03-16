@@ -10,7 +10,6 @@ export function useRouter() {
   const [container, setContainer] = useState<HTMLDivElement>(undefined);
 
   const page = location.pathname;
-
   useEffect(() => {
     if (!container || !slot) {
       debug('DOM not ready for navigation rendering on:', page);
@@ -19,8 +18,10 @@ export function useRouter() {
     const template = slot.querySelector<HTMLTemplateElement>(`template[path="${page}"]`);
 
     if (!template) {
-      // No matching page, go to default page
-      debug('No matching page found for ', page, ' so navigating to /login');
+      // No matching page, display nothing
+      debug('No matching page found for ', page, ' so displaying nothing');
+      container.innerHTML = ""
+      container.dataset.page = page;
       return;
     }
 

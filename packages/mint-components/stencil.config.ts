@@ -24,7 +24,7 @@ const useGrapesjs = {
 } as const;
 
 export const config: Config = {
-  namespace: 'components-starter',
+  namespace: 'mint-components',
   globalScript: 'src/global/global.ts',
   globalStyle: 'src/global/global.css',
   buildEs5: true,
