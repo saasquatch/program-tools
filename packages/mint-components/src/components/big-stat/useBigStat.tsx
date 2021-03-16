@@ -7,27 +7,17 @@ import { QueryData } from '@saasquatch/component-boilerplate/dist/hooks/graphql/
 
 const LOADING = '...';
 
-const debuggableQuery = (query: Parameters<typeof useQuery>[0], variables: unknown, getStat: (res: QueryData<any>) => string) => {
+const debugQuery = (query: Parameters<typeof useQuery>[0], variables: unknown, getStat: (res: QueryData<any>) => string) => {
   const res = useQuery(query, variables);
-  const stat = getStat(res);
-  if (!stat && !res.loading) {
-    console.log('issue getting stat:', res);
+  if (!res?.data && !res.loading) {
+    console.log('issue getting stat:', res?.data);
   }
-  return stat;
-};
-
-const retryingQuery = (query: Parameters<typeof useQuery>[0], variables: unknown, getStat: (res: QueryData<any>) => string) => {
-  const res = useQuery(query, variables);
   const stat = getStat(res);
-  if (!stat && !res.loading) {
-    res.refetch();
-    console.log('issue getting stat:', res);
-  }
   return stat;
 };
 
 const referralsCountQuery = (programId: string) =>
-  debuggableQuery(
+  debugQuery(
     gql`
       query($programId: ID!) {
         viewer {
@@ -44,7 +34,7 @@ const referralsCountQuery = (programId: string) =>
   );
 
 const rewardsRedeemedQuery = (programId: string, type: string, unit: string) =>
-  retryingQuery(
+  debugQuery(
     gql`
       query($programId: ID!, $type: RewardType, $unit: String!) {
         viewer {
@@ -59,11 +49,11 @@ const rewardsRedeemedQuery = (programId: string, type: string, unit: string) =>
       }
     `,
     { programId, type, unit },
-    res => res.data?.viewer?.rewardBalanceDetails?.pop()?.prettyRedeemedCredit,
+    res => res.data?.viewer?.rewardBalanceDetails?.[0]?.prettyRedeemedCredit,
   );
 
 const rewardsAssignedQuery = (programId: string, type: string, unit: string) =>
-  retryingQuery(
+  debugQuery(
     gql`
       query($programId: ID!, $type: RewardType, $unit: String!) {
         viewer {
@@ -78,11 +68,11 @@ const rewardsAssignedQuery = (programId: string, type: string, unit: string) =>
       }
     `,
     { programId, type, unit },
-    res => res.data?.viewer?.rewardBalanceDetails?.pop()?.prettyAssignedCredit,
+    res => res.data?.viewer?.rewardBalanceDetails?.[0]?.prettyAssignedCredit,
   );
 
 const rewardsAvailableQuery = (programId: string, type: string, unit: string) =>
-  retryingQuery(
+  debugQuery(
     gql`
       query($programId: ID!, $type: RewardType, $unit: String!) {
         viewer {
@@ -97,10 +87,8 @@ const rewardsAvailableQuery = (programId: string, type: string, unit: string) =>
       }
     `,
     { programId, type, unit },
-    res => res.data?.viewer?.rewardBalanceDetails?.pop()?.prettyAvailableValue,
+    res => res.data?.viewer?.rewardBalanceDetails?.[0]?.prettyAvailableValue,
   );
-
-// const rewardBalance = (programId: string, type: string, unit: string) => ""
 
 // functions are of the form (programId: string, ...args: string) => string
 const queries: {
