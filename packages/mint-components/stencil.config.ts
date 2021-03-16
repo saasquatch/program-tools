@@ -63,7 +63,18 @@ export const config: Config = {
           useDocx,
           useGrapesjs,
         ]
-      : [useDocx, useGrapesjs],
+      : [
+          {
+            type: 'dist',
+            esmLoaderPath: '../loader',
+          },
+          {
+            type: 'www',
+            serviceWorker: null, // disable service workers
+          },
+          useDocx,
+          useGrapesjs,
+        ],
   plugins: [sass()],
   rollupPlugins: {
     before: [
