@@ -3,6 +3,9 @@ import { Component, Prop, h } from '@stencil/core';
 import { LeaderboardView } from './leaderboard-view';
 import { useLeaderboard } from './useLeaderboard';
 
+/**
+ * @uiName Leaderboard
+ */
 @Component({
   tag: 'sqm-leaderboard',
   styleUrl: 'leaderboard.css',
@@ -19,8 +22,8 @@ export class Leaderboard {
 
   render() {
     const props = {
-      empty:<slot name="empty"/>,
-      loadingstate:<slot name="loading" />,
+      empty: <slot name="empty" />,
+      loadingstate: <slot name="loading" />,
       ...this,
     };
     const viewprops = useLeaderboard(props);

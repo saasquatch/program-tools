@@ -5,7 +5,7 @@ import { useBigStat } from './useBigStat';
 
 /**
  *
- *
+ * @uiName Big Stat
  * @slot the description of the component
  */
 @Component({
@@ -16,7 +16,6 @@ import { useBigStat } from './useBigStat';
 export class BigStat {
   /**
    * @uiName Stat Type
-   * @uiWidget ColorPicker
    */
   @Prop() type: string;
 

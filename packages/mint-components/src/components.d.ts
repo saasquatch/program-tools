@@ -9,7 +9,6 @@ export namespace Components {
     interface SqmBigStat {
         /**
           * @uiName Stat Type
-          * @uiWidget ColorPicker
          */
         "type": string;
     }
@@ -23,19 +22,44 @@ export namespace Components {
     interface SqmRouter {
     }
     interface SqmShareButton {
+        /**
+          * @uiName Disabled
+         */
         "disabled"?: boolean;
+        /**
+          * @uiName Hide the icon
+          * @uiType string
+         */
         "hideicon"?: boolean;
+        /**
+          * @uiName Icon Location
+          * @uiType string
+         */
         "iconslot"?: 'prefix' | 'suffix';
         /**
           * Which medium sharing should occur on
+          * @uiName Share Medium
+          * @uiType string
          */
         "medium": 'facebook' | 'twitter' | 'email' | 'TODO';
+        /**
+          * @uiName Display as pill
+         */
         "pill"?: boolean;
         /**
           * Optional programId, or uses the programId context where this button is rendered.
+          * @uiName Program
          */
         "programId"?: string;
+        /**
+          * @uiName Button Size
+          * @uiType string
+         */
         "size"?: 'small' | 'medium' | 'large';
+        /**
+          * @uiType string
+          * @uiName Button Style
+         */
         "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
     }
     interface SqmShareLink {
@@ -105,7 +129,6 @@ declare namespace LocalJSX {
     interface SqmBigStat {
         /**
           * @uiName Stat Type
-          * @uiWidget ColorPicker
          */
         "type"?: string;
     }
@@ -119,19 +142,44 @@ declare namespace LocalJSX {
     interface SqmRouter {
     }
     interface SqmShareButton {
+        /**
+          * @uiName Disabled
+         */
         "disabled"?: boolean;
+        /**
+          * @uiName Hide the icon
+          * @uiType string
+         */
         "hideicon"?: boolean;
+        /**
+          * @uiName Icon Location
+          * @uiType string
+         */
         "iconslot"?: 'prefix' | 'suffix';
         /**
           * Which medium sharing should occur on
+          * @uiName Share Medium
+          * @uiType string
          */
         "medium"?: 'facebook' | 'twitter' | 'email' | 'TODO';
+        /**
+          * @uiName Display as pill
+         */
         "pill"?: boolean;
         /**
           * Optional programId, or uses the programId context where this button is rendered.
+          * @uiName Program
          */
         "programId"?: string;
+        /**
+          * @uiName Button Size
+          * @uiType string
+         */
         "size"?: 'small' | 'medium' | 'large';
+        /**
+          * @uiType string
+          * @uiName Button Style
+         */
         "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
     }
     interface SqmShareLink {

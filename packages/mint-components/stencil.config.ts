@@ -5,9 +5,9 @@ import alias from '@rollup/plugin-alias';
 import copy from 'rollup-plugin-copy';
 import css from 'rollup-plugin-css-only';
 import path from 'path';
-import { JsonDocs } from '@stencil/core/internal';
+import { JsonDocs, OutputTarget } from '@stencil/core/internal';
 import { grapesJSGenerator } from './plugin/generator';
-const useDocx = {
+const useDocx: OutputTarget = {
   type: 'docs-custom',
   generator: createDocxGenerator({
     outDir: 'docs',
@@ -17,64 +17,40 @@ const useDocx = {
     author: 'SaaSquatch',
   }),
 } as const;
-
-const useGrapesjs = {
+const copyGrapesJS = { src: '../docs/grapesjs.js', dest: 'grapesjs.js', warn: true } as const;
+const useGrapesjs: OutputTarget = {
   type: 'docs-custom',
   generator: grapesJSGenerator,
+  strict: true,
 } as const;
 
+const outputTargets: OutputTarget[] = [
+  useDocx,
+  useGrapesjs,
+  {
+    type: 'dist',
+    esmLoaderPath: '../loader',
+    copy: [{ src: 'entrypoint.js' }],
+  },
+  {
+    type: 'www',
+    serviceWorker: null,
+    copy: [{ src: 'entrypoint.js' }],
+  },
+];
 export const config: Config = {
-  namespace: 'components-starter',
+  namespace: 'mint-components',
   globalScript: 'src/global/global.ts',
   globalStyle: 'src/global/global.css',
   buildEs5: true,
-  outputTargets:
-    //@ts-ignore
-    process.env.NODE_ENV === 'dev'
-      ? [
-          {
-            type: 'dist',
-            esmLoaderPath: '../loader',
-          },
-          {
-            type: 'www',
-            serviceWorker: null, // disable service workers
-          },
-          useDocx,
-          useGrapesjs,
-        ]
-      : //@ts-ignore
-      process.env.NODE_ENV === 'widget'
-      ? [
-          {
-            type: 'dist',
-            copy: [{ src: 'entrypoint.js' }],
-          },
-          useDocx,
-          useGrapesjs,
-        ]
-      : //@ts-ignore
-      process.env.NODE_ENV === 'portal'
-      ? [
-          {
-            type: 'www',
-            copy: [{ src: 'entrypoint.js' }],
-          },
-          useDocx,
-          useGrapesjs,
-        ]
-      : [
-          {
-            type: 'dist',
-            esmLoaderPath: '../loader',
-          },
-          {
-            type: 'www',
-            serviceWorker: null, // disable service workers
-          },
-          useDocx,
-          useGrapesjs,
-        ],
+  outputTargets: outputTargets.filter(t => {
+    if (process.env.BUILD === 'DOCS' && t.type !== 'docs-custom') {
+      // Skipping non-docs in non-docs build
+      console.log('Skipping', t.type, 'in docs build');
+      return false;
+    }
+    return true;
+  }),
   plugins: [sass()],
   rollupPlugins: {
     before: [

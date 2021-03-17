@@ -1,4 +1,4 @@
-import { JsonDocs } from '@stencil/core/internal';
+import { JsonDocs, JsonDocsTag } from '@stencil/core/internal';
 import * as ts from 'typescript';
 import fsSync from 'fs';
 import path from 'path';
@@ -12,16 +12,22 @@ const TEMPLATE = path.resolve(__dirname, './template.ts');
 export async function grapesJSGenerator(docsJson: JsonDocs) {
   const templateSrc = await fs.readFile(TEMPLATE, { encoding: 'utf-8' });
   const metaSrc = JSON.stringify(convertToGrapesJSMeta(docsJson));
-  const source = `const components=${metaSrc}
+  const source = `const components=${metaSrc};
   ${templateSrc}
   `;
 
-  let result = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS } });
+  let result = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.System } });
 
+  // await writeFile('dist/grapesjs.js', result.outputText);
+  await writeFile('docs/grapesjs.js', result.outputText);
+  // await writeFile('www/grapesjs.js', result.outputText);
+}
+
+async function writeFile(file: string, content: string) {
   let filehandle: FileHandle;
   try {
-    filehandle = await fs.open('dist/grapesjs.js', 'w');
-    await filehandle.write(result.outputText);
+    filehandle = await fs.open(file, 'w');
+    await filehandle.write(content);
   } finally {
     if (filehandle !== undefined) await filehandle.close();
   }
@@ -33,22 +39,31 @@ function convertToGrapesJSMeta(docs: JsonDocs): GrapesJSModel[] {
       return {
         ...prev,
         [prop.attr ?? prop.name]: {
-          'ui:widget': prop.docsTags.find(t => t.name === 'uiWidget')?.text,
-          'ui:name': prop.docsTags.find(t => t.name === 'uiName')?.text,
+          'ui:widget': tagValue(prop.docsTags, 'uiWidget'),
+          'ui:name': uiName(prop),
         },
       };
     }, {});
     return {
       tag: comp.tag,
-      name: comp.docsTags.find(t => t.name === 'uiName')?.text ?? comp.tag,
+      name: uiName(comp) ?? comp.tag,
       uiSchema,
       traits: comp.props.map(p => {
         return {
-          name: p.docsTags.find(t => t.name === 'uiName')?.text ?? p.attr ?? p.name,
-          type: p.type,
-          title: p.attr ?? p.name,
+          name: p.attr ?? p.name,
+          type: uiType(p) ?? p.type,
+          title: uiName(p) ?? p.attr ?? p.name,
         };
       }),
     };
   });
 }
+
+function tagValue(tags: JsonDocsTag[], name: string): string | undefined {
+  return tags.find(t => t.name === name)?.text;
+}
+type HasDocsTags = { docsTags: JsonDocsTag[] };
+const uiName = (x: HasDocsTags) => tagValue(x.docsTags, 'uiName');
+const uiType = (x: HasDocsTags) => tagValue(x.docsTags, 'uiType');
+
+const logTags = (x: HasDocsTags) => x.docsTags.map(t => t.name + '=' + t.text).join(',');

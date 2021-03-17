@@ -14,8 +14,10 @@
   ],
   "scripts": {
     "build": "stencil build --docs",
-    "build-widget": "cross-env NODE_ENV=widget stencil build --docs",
-    "start": "stencil build --dev --watch --serve",
+    "build-widget": "stencil build --docs",
+    "build:grapes": "cross-env BUILD=DOCS stencil build --watch --docs",
+    "serve:grapes": "npx http-server dist --cors -c-1",
+    "start": "stencil build --dev --watch --serve --docs",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate"

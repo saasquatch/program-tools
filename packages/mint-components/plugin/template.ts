@@ -1,5 +1,3 @@
-import type { JsonDocs } from '@stencil/core/internal';
-
 /**
  * Provided by the generator
  */
@@ -15,8 +13,8 @@ export type GrapesJSModel = {
   }[];
   uiSchema?: any;
 };
-
-export default (editor, config = {}) => {
+type GrapesJSEditor = any;
+export default (editor: GrapesJSEditor, config = {}) => {
   // Get DomComponents module
   const comps = editor.DomComponents;
 

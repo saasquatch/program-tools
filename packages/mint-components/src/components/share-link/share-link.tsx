@@ -3,6 +3,9 @@ import { Component, Prop, h } from '@stencil/core';
 import { ShareLinkView } from './share-link-view';
 import { useShareLink } from './useShareLink';
 
+/**
+ * @uiName Share Link
+ */
 @Component({
   tag: 'sqm-share-link',
   styleUrl: 'share-link.css',

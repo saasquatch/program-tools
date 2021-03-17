@@ -3,6 +3,9 @@ import { Component, Prop, h } from '@stencil/core';
 import { LeaderboardRankView } from './leaderboard-rank-view';
 import { useLeaderboardRank } from './useLeaderboardRank';
 
+/**
+ * @uiName Leaderboard Rank
+ */
 @Component({
   tag: 'sqm-leaderboard-rank',
   styleUrl: 'leaderboard-rank.css',
