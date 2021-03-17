@@ -14,7 +14,13 @@ export namespace Components {
         "type": string;
     }
     interface SqmLeaderboard {
+        /**
+          * @uiName Stats Column Heading
+         */
         "statsheading": string;
+        /**
+          * @uiName User Column Heading
+         */
         "usersheading": string;
     }
     interface SqmLeaderboardRank {
@@ -149,7 +155,13 @@ declare namespace LocalJSX {
         "type"?: string;
     }
     interface SqmLeaderboard {
+        /**
+          * @uiName Stats Column Heading
+         */
         "statsheading"?: string;
+        /**
+          * @uiName User Column Heading
+         */
         "usersheading"?: string;
     }
     interface SqmLeaderboardRank {
