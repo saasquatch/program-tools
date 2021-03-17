@@ -11,3 +11,20 @@ export const Default = () => {
   };
   return <ShareLinkView {...props} />;
 };
+
+export const Tooltip = () => {
+  const props = {
+    sharelink: 'https://noah.example.com',
+    tooltiptext: 'Some text for the tooltip',
+  };
+  return <ShareLinkView {...props} />;
+};
+
+export const Disabled = () => {
+  const props = {
+    sharelink: 'https://noah.example.com',
+    tooltiptext: "You'll never see me",
+    disabled: true,
+  };
+  return <ShareLinkView {...props} />;
+};

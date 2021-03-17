@@ -14,6 +14,12 @@ import { useShareLink } from './useShareLink';
 })
 export class ShareLink {
   /**
+   * The ID of the program that should generate the link.
+   * 
+   * @uiName Program ID
+   */
+  @Prop() programId: string
+  /**
    * @uiName Icon
    */
   @Prop() icon?: string;
