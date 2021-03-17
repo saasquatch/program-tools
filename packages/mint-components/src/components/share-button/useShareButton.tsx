@@ -22,11 +22,22 @@ const MessageLinkQuery = gql`
   }
 `;
 
-function NativeShare(props: { sharetitle: string; sharetext: string }, res: any) {
+const ShareLinkQuery = gql`
+  query($programId: ID, $engagementMedium: UserEngagementMedium!) {
+    viewer {
+      __typename
+      ... on User {
+        shareLink(programId: $programId, engagementMedium: $engagementMedium)
+      }
+    }
+  }
+`;
+
+function NativeShare(props: { sharetitle: string; sharetext: string }, directLink: string) {
   const title = props.sharetitle || 'Share title';
   const text = props.sharetext || 'Share text';
 
-  if (res?.data?.viewer?.messageLink === 'undefined') {
+  if (directLink === 'undefined') {
     return alert('error: message link undefined!');
   }
 
@@ -35,7 +46,7 @@ function NativeShare(props: { sharetitle: string; sharetext: string }, res: any)
       .share({
         title,
         text,
-        url: res.data.viewer.messageLink,
+        url: directLink,
       })
       .catch(error => console.error('Error on web share', error));
   } else {
@@ -43,21 +54,13 @@ function NativeShare(props: { sharetitle: string; sharetext: string }, res: any)
   }
 }
 
-function FacebookShare(programId: string, res: any) {
-  const variables = {
-    engagementMedium: useEngagementMedium(),
-    programId: programId,
-    shareMedium: 'DIRECT',
-  };
-
-  const directRes = useQuery(MessageLinkQuery, variables);
-
-  if (res.data?.viewer?.messageLink === 'undefined' || directRes.data?.viewer?.messageLink === 'undefined') {
+function FacebookShare(directLink: string, res: any) {
+  if (res.data?.viewer?.messageLink === 'undefined' || directLink === 'undefined') {
     return alert('error: message link undefined!');
   }
 
-  if (typeof SquatchAndroid !== 'undefined') {
-    return SquatchAndroid.shareOnFacebook(directRes.data.viewer.messageLink, res.data.viewer.messageLink);
+  if (typeof SquatchAndroid.shareOnFacebook !== 'undefined') {
+    return SquatchAndroid.shareOnFacebook(directLink, res.data.viewer.messageLink);
   } else {
     return GenericShare(res);
   }
@@ -73,18 +76,27 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
   const variables = {
     engagementMedium: useEngagementMedium(),
     programId: programId,
-    shareMedium: medium.toUpperCase() === 'NATIVE' ? 'DIRECT' : medium.toUpperCase(),
+    shareMedium: medium.toUpperCase(),
   };
 
   const res = useQuery(MessageLinkQuery, variables);
 
+  const directVariables = {
+    engagementMedium: useEngagementMedium(),
+    programId: programId,
+  };
+
+  const directLink = useQuery(ShareLinkQuery, directVariables)?.data?.viewer?.shareLink;
+
+  console.log(directLink);
+
   function onClick() {
     switch (medium.toLocaleUpperCase()) {
       case 'FACEBOOK':
-        FacebookShare(props.programId, res);
+        FacebookShare(directLink, res);
         break;
-      case 'NATIVE':
-        NativeShare({ sharetitle, sharetext }, res);
+      case 'DIRECT':
+        NativeShare({ sharetitle, sharetext }, directLink);
         break;
       default:
         GenericShare(res);

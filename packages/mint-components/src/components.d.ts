@@ -51,7 +51,7 @@ export namespace Components {
           * @uiEnum ["facebook", "twitter", "email" ]
           * @uiEnumNames ["FaceBox", "Tweeeter", "CompuMail"]
          */
-        "medium": 'facebook' | 'twitter' | 'email' | 'TODO';
+        "medium": 'facebook' | 'twitter' | 'email' | 'direct' | 'linkedin' | 'sms' | 'fbmessenger' | 'whatsapp' | 'linemessenger' | 'pinterest' | 'reminder' | 'unknown';
         /**
           * @uiName Display as pill
          */
@@ -210,7 +210,7 @@ declare namespace LocalJSX {
           * @uiEnum ["facebook", "twitter", "email" ]
           * @uiEnumNames ["FaceBox", "Tweeeter", "CompuMail"]
          */
-        "medium"?: 'facebook' | 'twitter' | 'email' | 'TODO';
+        "medium"?: 'facebook' | 'twitter' | 'email' | 'direct' | 'linkedin' | 'sms' | 'fbmessenger' | 'whatsapp' | 'linemessenger' | 'pinterest' | 'reminder' | 'unknown';
         /**
           * @uiName Display as pill
          */

@@ -29,7 +29,7 @@ export class ShareButon {
    * @uiEnum ["facebook", "twitter", "email" ]
    * @uiEnumNames ["FaceBox", "Tweeeter", "CompuMail"]
    */
-  @Prop() medium: 'facebook' | 'twitter' | 'email' | 'TODO';
+  @Prop() medium: 'facebook' | 'twitter' | 'email' | 'direct' | 'linkedin' | 'sms' | 'fbmessenger' | 'whatsapp' | 'linemessenger' | 'pinterest' | 'reminder' | 'unknown';
   /**
    * Optional programId, or uses the programId context where this button is rendered.
    *

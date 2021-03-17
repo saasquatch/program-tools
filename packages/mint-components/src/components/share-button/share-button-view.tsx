@@ -1,7 +1,7 @@
 import { h, VNode } from '@stencil/core';
 
 export interface ShareButtonViewProps {
-  medium: 'facebook' | 'twitter' | 'email' | 'TODO';
+  medium: 'facebook' | 'twitter' | 'email' | 'direct' | 'linkedin' | 'sms' | 'fbmessenger' | 'whatsapp' | 'linemessenger' | 'pinterest' | 'reminder' | 'unknown';
 
   loading?: boolean;
   disabled?: boolean;
