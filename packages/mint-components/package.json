@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/mint-components",
-  "version": "0.0.1-0",
+  "version": "0.0.1-4",
   "description": "Stencil Component Starter",
   "main": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -42,7 +42,7 @@
     "workbox-build": "4.3.1"
   },
   "dependencies": {
-    "@saasquatch/component-boilerplate": "^1.0.0-beta10.3",
+    "@saasquatch/component-boilerplate": "^1.0.0-beta10.4",
     "@saasquatch/stencil-hooks": "^1.0.1",
     "@saasquatch/stencilbook": "0.0.1-beta4",
     "@saasquatch/universal-hooks": "^0.1.3",
