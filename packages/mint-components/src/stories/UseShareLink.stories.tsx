@@ -1,5 +1,4 @@
 import { h } from '@stencil/core';
-// import { useState } from 'haunted';
 import { ShareLinkView } from '../components/share-link/share-link-view';
 import { useShareLink } from '../components/share-link/useShareLink';
 
@@ -28,20 +27,15 @@ function setupGraphQL() {
 
 export const BareBonesView = () => {
   setupGraphQL();
-  const variables = {
-    programId: 'a-referral-program',
-  };
-  const res = useShareLink({variables} as any);
+  const res = useShareLink({ programId: 'a-referral-program' });
   return (
     <div>
-      Sharelink: <code style={{borderStyle: "solid", borderWidth: "1px", padding: "2px"}}>{res.sharelink}</code>
+      Sharelink: <code style={{ borderStyle: 'solid', borderWidth: '1px', padding: '2px' }}>{res.sharelink}</code>
     </div>
   );
 };
 
 export const RegularView = () => {
-  setupGraphQL()
-  return <ShareLinkView {...useShareLink({variables: {
-    programId: 'a-referral-program',
-  }})} />;
+  setupGraphQL();
+  return <ShareLinkView {...useShareLink({ programId: 'a-referral-program', tooltiptext: 'Copied to clipboard' })} />;
 };
