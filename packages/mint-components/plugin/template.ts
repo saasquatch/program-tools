@@ -10,6 +10,8 @@ export type GrapesJSModel = {
     type: string;
     title: string;
     name: string;
+    enum?: unknown[];
+    enumNames?: unknown[];
   }[];
   uiSchema?: any;
 };

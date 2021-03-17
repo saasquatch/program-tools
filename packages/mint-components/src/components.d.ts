@@ -9,6 +9,7 @@ export namespace Components {
     interface SqmBigStat {
         /**
           * @uiName Stat Type
+          * @uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_CAD/prettyValue", "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit", "/rewardBalance/CREDIT/CASH_USD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_USD/prettyValue", "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"]
          */
         "type": string;
     }
@@ -28,18 +29,21 @@ export namespace Components {
         "disabled"?: boolean;
         /**
           * @uiName Hide the icon
-          * @uiType string
          */
         "hideicon"?: boolean;
         /**
           * @uiName Icon Location
           * @uiType string
+          * @uiEnum ["prefix", "suffix" ]
+          * @uiEnumNames ["Prefix", "Suffix"]
          */
         "iconslot"?: 'prefix' | 'suffix';
         /**
-          * Which medium sharing should occur on
+          * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
           * @uiType string
+          * @uiEnum ["facebook", "twitter", "email" ]
+          * @uiEnumNames ["FaceBox", "Tweeeter", "CompuMail"]
          */
         "medium": 'facebook' | 'twitter' | 'email' | 'TODO';
         /**
@@ -48,25 +52,36 @@ export namespace Components {
         "pill"?: boolean;
         /**
           * Optional programId, or uses the programId context where this button is rendered.
-          * @uiName Program
+          * @uiName Program ID
          */
         "programId"?: string;
         /**
           * @uiName Button Size
           * @uiType string
+          * @uiEnum ["small", "medium", "large" ]
+          * @uiEnumNames ["Small", "Medium", "Large"]
          */
         "size"?: 'small' | 'medium' | 'large';
         /**
           * @uiType string
           * @uiName Button Style
+          * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
          */
         "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
     }
     interface SqmShareLink {
-        "disabled"?: boolean;
+        /**
+          * @uiName Icon
+         */
         "icon"?: string;
+        /**
+          * @uiName Icon Label
+         */
         "iconlabel"?: string;
-        "sharelink"?: string;
+        /**
+          * This is shown after someone has successfully copied the link to the clipboard.
+          * @uiName Tooltip text
+         */
         "tooltiptext"?: string;
     }
     interface SqmStencilbook {
@@ -129,6 +144,7 @@ declare namespace LocalJSX {
     interface SqmBigStat {
         /**
           * @uiName Stat Type
+          * @uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_CAD/prettyValue", "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit", "/rewardBalance/CREDIT/CASH_USD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_USD/prettyValue", "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"]
          */
         "type"?: string;
     }
@@ -148,18 +164,21 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         /**
           * @uiName Hide the icon
-          * @uiType string
          */
         "hideicon"?: boolean;
         /**
           * @uiName Icon Location
           * @uiType string
+          * @uiEnum ["prefix", "suffix" ]
+          * @uiEnumNames ["Prefix", "Suffix"]
          */
         "iconslot"?: 'prefix' | 'suffix';
         /**
-          * Which medium sharing should occur on
+          * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
           * @uiType string
+          * @uiEnum ["facebook", "twitter", "email" ]
+          * @uiEnumNames ["FaceBox", "Tweeeter", "CompuMail"]
          */
         "medium"?: 'facebook' | 'twitter' | 'email' | 'TODO';
         /**
@@ -168,25 +187,36 @@ declare namespace LocalJSX {
         "pill"?: boolean;
         /**
           * Optional programId, or uses the programId context where this button is rendered.
-          * @uiName Program
+          * @uiName Program ID
          */
         "programId"?: string;
         /**
           * @uiName Button Size
           * @uiType string
+          * @uiEnum ["small", "medium", "large" ]
+          * @uiEnumNames ["Small", "Medium", "Large"]
          */
         "size"?: 'small' | 'medium' | 'large';
         /**
           * @uiType string
           * @uiName Button Style
+          * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
          */
         "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
     }
     interface SqmShareLink {
-        "disabled"?: boolean;
+        /**
+          * @uiName Icon
+         */
         "icon"?: string;
+        /**
+          * @uiName Icon Label
+         */
         "iconlabel"?: string;
-        "sharelink"?: string;
+        /**
+          * This is shown after someone has successfully copied the link to the clipboard.
+          * @uiName Tooltip text
+         */
         "tooltiptext"?: string;
     }
     interface SqmStencilbook {

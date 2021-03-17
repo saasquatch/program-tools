@@ -4,6 +4,7 @@ import { useMemo } from '@saasquatch/universal-hooks';
 import { useQuery } from '@saasquatch/component-boilerplate';
 import gql from 'graphql-tag';
 import { QueryData } from '@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery';
+import { BigStatViewProps } from './big-stat-view';
 
 const LOADING = '...';
 
@@ -116,12 +117,7 @@ const queries: {
 };
 
 // this should be exposed in documentation somehow
-const patterns = [
-  '/(referralsCount)', 
-  '/(rewardsAssigned)/:type/:unit', 
-  '/(rewardsRedeemed)/:type/:unit',
-  '/(rewardsAvailable)/:type/:unit'
-].map(pattern => pathToRegexp(pattern));
+const patterns = ['/(referralsCount)', '/(rewardsAssigned)/:type/:unit', '/(rewardsRedeemed)/:type/:unit', '/(rewardsAvailable)/:type/:unit'].map(pattern => pathToRegexp(pattern));
 
 export function useBigStat({ type, programId }: BigStat & { programId?: string }) {
   const re = useMemo(() => patterns.find(re => re.test(type)), [type]);
@@ -135,3 +131,7 @@ export function useBigStat({ type, programId }: BigStat & { programId?: string }
 
   return { label, props: { statvalue: stat ?? LOADING } };
 }
+export type BigStatHook = {
+  props: BigStatViewProps;
+  label: string;
+};

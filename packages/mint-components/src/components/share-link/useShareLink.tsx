@@ -6,8 +6,6 @@ interface ShareLinkProps {
   icon?: string;
   iconlabel?: string;
   tooltiptext?: string;
-  sharelink?: string;
-  disabled?: boolean;
   variables?: {
     programId: string;
   };

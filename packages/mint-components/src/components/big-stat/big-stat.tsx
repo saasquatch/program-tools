@@ -1,7 +1,8 @@
 import { Component, h, Prop } from '@stencil/core';
 import { withHooks } from '@saasquatch/stencil-hooks';
 import { BigStatView } from './big-stat-view';
-import { useBigStat } from './useBigStat';
+import { BigStatHook, useBigStat } from './useBigStat';
+import { isDemo } from '../../utils/isDemo';
 
 /**
  *
@@ -16,6 +17,12 @@ import { useBigStat } from './useBigStat';
 export class BigStat {
   /**
    * @uiName Stat Type
+   * @uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit",
+      "/rewardBalance/CREDIT/CASH_CAD/prettyValue",
+      "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit",
+      "/rewardBalance/CREDIT/CASH_USD/prettyPendingCredit",
+      "/rewardBalance/CREDIT/CASH_USD/prettyValue",
+      "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"]
    */
   @Prop() type: string;
 
@@ -25,11 +32,21 @@ export class BigStat {
   disconnectedCallback() {}
 
   render() {
-    const { props, label } = useBigStat(this);
+    const { props, label } = isDemo() ? useDemoBigState(this) : useBigStat(this);
     return (
       <BigStatView {...props}>
         <slot>{label}</slot>
       </BigStatView>
     );
   }
+}
+
+function useDemoBigState(props: BigStat): BigStatHook {
+  // TODO: Infer a smarter value and label from Stat type??
+  return {
+    props: {
+      statvalue: props.type === 'number' ? '$10,000' : '10 points',
+    },
+    label: 'Demo Label',
+  };
 }

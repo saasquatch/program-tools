@@ -7,13 +7,11 @@
 
 ## Properties
 
-| Property      | Attribute     | Description | Type      | Default     |
-| ------------- | ------------- | ----------- | --------- | ----------- |
-| `disabled`    | `disabled`    |             | `boolean` | `undefined` |
-| `icon`        | `icon`        |             | `string`  | `undefined` |
-| `iconlabel`   | `iconlabel`   |             | `string`  | `undefined` |
-| `sharelink`   | `sharelink`   |             | `string`  | `undefined` |
-| `tooltiptext` | `tooltiptext` |             | `string`  | `undefined` |
+| Property      | Attribute     | Description                                                                    | Type     | Default     |
+| ------------- | ------------- | ------------------------------------------------------------------------------ | -------- | ----------- |
+| `icon`        | `icon`        |                                                                                | `string` | `undefined` |
+| `iconlabel`   | `iconlabel`   |                                                                                | `string` | `undefined` |
+| `tooltiptext` | `tooltiptext` | This is shown after someone has successfully copied the link to the clipboard. | `string` | `undefined` |
 
 
 ----------------------------------------------
