@@ -12,7 +12,13 @@ import { useLeaderboard } from './useLeaderboard';
   shadow: true,
 })
 export class Leaderboard {
+  /** 
+   * @uiName User Column Heading
+   * */  
   @Prop() usersheading: string;
+    /** 
+   * @uiName Stats Column Heading
+   * */  
   @Prop() statsheading: string;
 
   constructor() {
