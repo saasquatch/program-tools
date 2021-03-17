@@ -62,6 +62,14 @@ export namespace Components {
          */
         "programId"?: string;
         /**
+          * @uiName Text used for native sharing (mobile only)
+         */
+        "sharetext"?: string;
+        /**
+          * @uiName Title used for native sharing (mobile only)
+         */
+        "sharetitle"?: string;
+        /**
           * @uiName Button Size
           * @uiType string
           * @uiEnum ["small", "medium", "large" ]
@@ -202,6 +210,14 @@ declare namespace LocalJSX {
           * @uiName Program ID
          */
         "programId"?: string;
+        /**
+          * @uiName Text used for native sharing (mobile only)
+         */
+        "sharetext"?: string;
+        /**
+          * @uiName Title used for native sharing (mobile only)
+         */
+        "sharetitle"?: string;
         /**
           * @uiName Button Size
           * @uiType string

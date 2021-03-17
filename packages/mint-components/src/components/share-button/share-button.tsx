@@ -73,6 +73,14 @@ export class ShareButon {
    * @uiName Hide the icon
    */
   @Prop() hideicon?: boolean = false;
+  /**
+   * @uiName Title used for native sharing (mobile only)
+   */
+  @Prop() sharetitle?: string;
+    /**
+   * @uiName Text used for native sharing (mobile only)
+   */
+  @Prop() sharetext?: string;
 
   constructor() {
     withHooks(this);
