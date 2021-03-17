@@ -48,8 +48,8 @@ export namespace Components {
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
           * @uiType string
-          * @uiEnum ["facebook", "twitter", "email" ]
-          * @uiEnumNames ["FaceBox", "Tweeeter", "CompuMail"]
+          * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest", "reminder", "unknown" ]
+          * @uiEnumNames ["Facebook", "Twitter", "Email", "Direct", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
          */
         "medium": 'facebook' | 'twitter' | 'email' | 'direct' | 'linkedin' | 'sms' | 'fbmessenger' | 'whatsapp' | 'linemessenger' | 'pinterest' | 'reminder' | 'unknown';
         /**
@@ -207,8 +207,8 @@ declare namespace LocalJSX {
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
           * @uiType string
-          * @uiEnum ["facebook", "twitter", "email" ]
-          * @uiEnumNames ["FaceBox", "Tweeeter", "CompuMail"]
+          * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest", "reminder", "unknown" ]
+          * @uiEnumNames ["Facebook", "Twitter", "Email", "Direct", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
          */
         "medium"?: 'facebook' | 'twitter' | 'email' | 'direct' | 'linkedin' | 'sms' | 'fbmessenger' | 'whatsapp' | 'linemessenger' | 'pinterest' | 'reminder' | 'unknown';
         /**

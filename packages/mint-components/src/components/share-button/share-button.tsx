@@ -26,8 +26,8 @@ export class ShareButon {
    *
    * @uiName Share Medium
    * @uiType string
-   * @uiEnum ["facebook", "twitter", "email" ]
-   * @uiEnumNames ["FaceBox", "Tweeeter", "CompuMail"]
+   * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest", "reminder", "unknown" ]
+   * @uiEnumNames ["Facebook", "Twitter", "Email", "Direct", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
    */
   @Prop() medium: 'facebook' | 'twitter' | 'email' | 'direct' | 'linkedin' | 'sms' | 'fbmessenger' | 'whatsapp' | 'linemessenger' | 'pinterest' | 'reminder' | 'unknown';
   /**
