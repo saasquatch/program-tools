@@ -90,6 +90,11 @@ export namespace Components {
          */
         "programId": string;
         /**
+          * The number of milliseconds that the tooltip will appear for
+          * @uiName Tooltip lifespan
+         */
+        "tooltiplifespan"?: number;
+        /**
           * This is shown after someone has successfully copied the link to the clipboard.
           * @uiName Tooltip text
          */
@@ -235,6 +240,11 @@ declare namespace LocalJSX {
           * @uiName Program ID
          */
         "programId"?: string;
+        /**
+          * The number of milliseconds that the tooltip will appear for
+          * @uiName Tooltip lifespan
+         */
+        "tooltiplifespan"?: number;
         /**
           * This is shown after someone has successfully copied the link to the clipboard.
           * @uiName Tooltip text

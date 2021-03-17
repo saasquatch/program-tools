@@ -33,6 +33,12 @@ export class ShareLink {
    * @uiName Tooltip text
    */
   @Prop() tooltiptext?: string;
+  /**
+   * The number of milliseconds that the tooltip will appear for
+   * 
+   * @uiName Tooltip lifespan
+   */
+  @Prop() tooltiplifespan?: number;
 
   constructor() {
     withHooks(this);
