@@ -15,7 +15,7 @@ const debugQuery = (
 ) => {
   const res = useQuery(query, variables);
   if (!res?.data && !res.loading) {
-    console.log("issue getting stat:", res?.data);
+    console.log("issue getting stat:", res);
   }
   const stat = getStat(res);
   return stat;
@@ -27,10 +27,28 @@ const referralsCountQuery = (programId: string) =>
       query($programId: ID!) {
         viewer {
           ... on User {
+            referrals(filter: { programId_eq: $programId }) {
+              totalCount
+            }
+          }
+        }
+      }
+    `,
+    { programId },
+    (res) => res.data?.viewer?.referrals?.totalCount?.toString()
+  );
+
+const referralsMonthQuery = (programId: string) =>
+  debugQuery(
+    gql`
+      query($programId: ID!) {
+        viewer {
+          ... on User {
             referrals(
-              limit: 1
-              offset: 0
-              filter: { programId_eq: $programId }
+              filter: {
+                programId_eq: $programId
+                dateReferralStarted_timeframe: "this_month"
+              }
             ) {
               totalCount
             }
@@ -40,6 +58,89 @@ const referralsCountQuery = (programId: string) =>
     `,
     { programId },
     (res) => res.data?.viewer?.referrals?.totalCount?.toString()
+  );
+
+const referralsWeekQuery = (programId: string) =>
+  debugQuery(
+    gql`
+      query($programId: ID!) {
+        viewer {
+          ... on User {
+            referrals(
+              filter: {
+                programId_eq: $programId
+                dateReferralStarted_timeframe: "this_week"
+              }
+            ) {
+              totalCount
+            }
+          }
+        }
+      }
+    `,
+    { programId },
+    (res) => res.data?.viewer?.referrals?.totalCount?.toString()
+  );
+
+const rewardsCountQuery = (programId: string) =>
+  debugQuery(
+    gql`
+      query($programId: ID!) {
+        viewer {
+          ... on User {
+            rewards(filter: { programId_eq: $programId }) {
+              totalCount
+            }
+          }
+        }
+      }
+    `,
+    { programId },
+    (res) => res.data?.viewer?.rewards?.totalCount?.toString()
+  );
+
+const rewardsMonthQuery = (programId: string) =>
+  debugQuery(
+    gql`
+      query($programId: ID!) {
+        viewer {
+          ... on User {
+            rewards(
+              filter: {
+                programId_eq: $programId
+                dateGiven_timeframe: "this_month"
+              }
+            ) {
+              totalCount
+            }
+          }
+        }
+      }
+    `,
+    { programId },
+    (res) => res.data?.viewer?.rewards?.totalCount?.toString()
+  );
+
+const rewardsWeekQuery = (programId: string) =>
+  debugQuery(
+    gql`
+      query($programId: ID!) {
+        viewer {
+          ... on User {
+            rewards(
+              filter: {
+                programId_eq: $programId
+                dateGiven_timeframe: "this_week"
+              }
+            ) {
+              totalCount
+            }
+          }
+        }
+      }
+    `,
+    { programId },
+    (res) => res.data?.viewer?.rewards?.totalCount?.toString()
   );
 
 const rewardsRedeemedQuery = (programId: string, type: string, unit: string) =>
@@ -108,6 +209,48 @@ const rewardsAvailableQuery = (programId: string, type: string, unit: string) =>
     (res) => res.data?.viewer?.rewardBalanceDetails?.[0]?.prettyAvailableValue
   );
 
+const parseRewardValueFormat = {
+  prettyValue: "UNIT_FORMATTED",
+  value: "NUMBER_UNFORMATTED",
+};
+const rewardsBalanceQuery = (
+  programId: string,
+  type: string,
+  unit: string,
+  format = "prettyValue",
+  global = "false"
+) =>
+  debugQuery(
+    gql`
+      query(
+        $programId: ID
+        $type: RewardType!
+        $unit: String!
+        $format: RewardValueFormatType!
+      ) {
+        viewer {
+          ... on User {
+            rewardBalanceDetails(
+              programId: $programId
+              filter: { type_eq: $type, unit_eq: $unit }
+            ) {
+              ... on CreditRewardBalance {
+                prettyAvailableValue(formatType: $format)
+              }
+            }
+          }
+        }
+      }
+    `,
+    {
+      programId: global === "false" ? programId : null,
+      type,
+      unit,
+      format: parseRewardValueFormat[format] ?? "UNIT_FORMATTED",
+    },
+    (res) => res.data?.viewer?.rewardBalanceDetails?.[0]?.prettyAvailableValue
+  );
+
 // functions are of the form (programId: string, ...args: string) => string
 const queries: {
   [key: string]: {
@@ -115,10 +258,6 @@ const queries: {
     query: (programId: string, ...args: string[]) => string;
   };
 } = {
-  referralsCount: {
-    label: "Referrals Submitted",
-    query: referralsCountQuery,
-  },
   rewardsAssigned: {
     label: "Rewards Earned",
     query: rewardsAssignedQuery,
@@ -131,15 +270,51 @@ const queries: {
     label: "Rewards Available",
     query: rewardsAvailableQuery,
   },
+  referralsCount: {
+    label: "Referrals - Count",
+    query: referralsCountQuery,
+  },
+  referralsMonth: {
+    label: "Referrals - This Month",
+    query: referralsMonthQuery,
+  },
+  referralsWeek: {
+    label: "Referrals - This Week",
+    query: referralsWeekQuery,
+  },
+  rewardsCount: {
+    label: "Rewards - Count",
+    query: rewardsCountQuery,
+  },
+  rewardsMonth: {
+    label: "Rewards - This Month",
+    query: rewardsMonthQuery,
+  },
+  rewardsWeek: {
+    label: "Rewards - This Week",
+    query: rewardsWeekQuery,
+  },
+  rewardBalance: {
+    label: "Balance - Credit Earned",
+    query: rewardsBalanceQuery,
+  },
 };
 
 // this should be exposed in documentation somehow
-const patterns = [
+const paths = [
   "/(referralsCount)",
+  "/(referralsMonth)",
+  "/(referralsWeek)",
+  "/(rewardsCount)",
+  "/(rewardsMonth)",
+  "/(rewardsWeek)",
   "/(rewardsAssigned)/:type/:unit",
   "/(rewardsRedeemed)/:type/:unit",
   "/(rewardsAvailable)/:type/:unit",
-].map((pattern) => pathToRegexp(pattern));
+  "/(rewardBalance)/:type/:unit/:format?/:global?",
+];
+
+const patterns = paths.map((pattern) => pathToRegexp(pattern));
 
 export function useBigStat({
   type,
