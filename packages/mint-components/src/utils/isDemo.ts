@@ -7,5 +7,6 @@ const getEnvironment = () => 'None' as const;
  */
 export function isDemo(): boolean {
   const envType = getEnvironment();
+  console.log(envType)
   return envType === 'None' || envType === 'SquatchAdmin';
 }

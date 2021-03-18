@@ -3,6 +3,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { BigStatView } from "./big-stat-view";
 import { BigStatHook, useBigStat } from "./useBigStat";
 import { isDemo } from "../../utils/isDemo";
+import { useDemoBigStat } from "./useDemoBigStat";
 
 /**
  *
@@ -36,7 +37,7 @@ export class BigStat {
 
   render() {
     const { props, label } = isDemo()
-      ? useDemoBigState(this)
+      ? useDemoBigStat(this)
       : useBigStat(this);
     return (
       <BigStatView {...props}>
@@ -44,20 +45,4 @@ export class BigStat {
       </BigStatView>
     );
   }
-}
-
-function useDemoBigState(props: BigStat): BigStatHook {
-  // TODO: Infer a smarter value and label from Stat type??
-  return {
-    props: {
-      statvalue: props.type === "number" ? "$10,000" : "10 points",
-    },
-    // create label from first part of path only using formatting 
-    // "/rewardBalance/CREDIT/CASH_USD/prettyValue" => "Reward Balance"
-    label:
-      /^\/(\w+)/
-        .exec(props.type)[1]
-        ?.replace(/^([a-z])/, (_, c) => c.toUpperCase())
-        ?.replace(/([a-z])([A-Z])/, "$1 $2") ?? "Demo Label",
-  };
 }
