@@ -88,8 +88,6 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   const directLink = useQuery(ShareLinkQuery, directVariables)?.data?.viewer?.shareLink;
 
-  console.log(directLink);
-
   function onClick() {
     switch (medium.toLocaleUpperCase()) {
       case 'FACEBOOK':

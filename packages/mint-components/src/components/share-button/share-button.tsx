@@ -1,16 +1,16 @@
-import { withHooks } from '@saasquatch/stencil-hooks';
-import { Component, Prop, h } from '@stencil/core';
-import { isDemo } from '../../utils/isDemo';
-import { ShareButtonView, ShareButtonViewProps } from './share-button-view';
-import { useShareButton } from './useShareButton';
+import { withHooks } from "@saasquatch/stencil-hooks";
+import { Component, Prop, h } from "@stencil/core";
+import { isDemo } from "../../utils/isDemo";
+import { ShareButtonView, ShareButtonViewProps } from "./share-button-view";
+import { useShareButton } from "./useShareButton";
 
 /**
  * @uiName Share Button
  * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
  */
 @Component({
-  tag: 'sqm-share-button',
-  styleUrl: 'share-button.css',
+  tag: "sqm-share-button",
+  styleUrl: "share-button.css",
   shadow: true,
 })
 export class ShareButon {
@@ -27,9 +27,21 @@ export class ShareButon {
    * @uiName Share Medium
    * @uiType string
    * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest", "reminder", "unknown" ]
-   * @uiEnumNames ["Facebook", "Twitter", "Email", "Direct", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
+   * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
    */
-  @Prop() medium: 'facebook' | 'twitter' | 'email' | 'direct' | 'linkedin' | 'sms' | 'fbmessenger' | 'whatsapp' | 'linemessenger' | 'pinterest' | 'reminder' | 'unknown';
+  @Prop() medium:
+    | "facebook"
+    | "twitter"
+    | "email"
+    | "direct"
+    | "linkedin"
+    | "sms"
+    | "fbmessenger"
+    | "whatsapp"
+    | "linemessenger"
+    | "pinterest"
+    | "reminder"
+    | "unknown";
   /**
    * Optional programId, or uses the programId context where this button is rendered.
    *
@@ -54,21 +66,28 @@ export class ShareButon {
    * @uiName Button Style
    * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
    */
-  @Prop() type?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text' = 'primary';
+  @Prop() type?:
+    | "primary"
+    | "success"
+    | "info"
+    | "warning"
+    | "danger"
+    | "default"
+    | "text" = "primary";
   /**
    * @uiName Button Size
    * @uiType string
    * @uiEnum ["small", "medium", "large" ]
    * @uiEnumNames ["Small", "Medium", "Large"]
    */
-  @Prop() size?: 'small' | 'medium' | 'large';
+  @Prop() size?: "small" | "medium" | "large";
   /**
    * @uiName Icon Location
    * @uiType string
    * @uiEnum ["prefix", "suffix" ]
    * @uiEnumNames ["Prefix", "Suffix"]
    */
-  @Prop() iconslot?: 'prefix' | 'suffix' = 'prefix';
+  @Prop() iconslot?: "prefix" | "suffix" = "prefix";
   /**
    * @uiName Hide the icon
    */
@@ -77,7 +96,7 @@ export class ShareButon {
    * @uiName Title used for native sharing (mobile only)
    */
   @Prop() sharetitle?: string;
-    /**
+  /**
    * @uiName Text used for native sharing (mobile only)
    */
   @Prop() sharetext?: string;

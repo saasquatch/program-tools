@@ -1,7 +1,7 @@
 import { VNode } from '@stencil/core';
 import { LeaderboardViewProps } from './leaderboard-view';
 
-interface LeaderboardProps {
+export interface LeaderboardProps {
   usersheading: string;
   statsheading: string;
   empty: VNode;

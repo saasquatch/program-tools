@@ -8,8 +8,9 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface SqmBigStat {
         /**
+          * Select what type of stat to display. Manual paths are also supported.
+          * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
-          * @uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_CAD/prettyValue", "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit", "/rewardBalance/CREDIT/CASH_USD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_USD/prettyValue", "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"]
          */
         "type": string;
     }
@@ -46,15 +47,26 @@ export namespace Components {
           * @uiEnum ["prefix", "suffix" ]
           * @uiEnumNames ["Prefix", "Suffix"]
          */
-        "iconslot"?: 'prefix' | 'suffix';
+        "iconslot"?: "prefix" | "suffix";
         /**
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
           * @uiType string
           * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest", "reminder", "unknown" ]
-          * @uiEnumNames ["Facebook", "Twitter", "Email", "Direct", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
+          * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
          */
-        "medium": 'facebook' | 'twitter' | 'email' | 'direct' | 'linkedin' | 'sms' | 'fbmessenger' | 'whatsapp' | 'linemessenger' | 'pinterest' | 'reminder' | 'unknown';
+        "medium": | "facebook"
+    | "twitter"
+    | "email"
+    | "direct"
+    | "linkedin"
+    | "sms"
+    | "fbmessenger"
+    | "whatsapp"
+    | "linemessenger"
+    | "pinterest"
+    | "reminder"
+    | "unknown";
         /**
           * @uiName Display as pill
          */
@@ -78,13 +90,19 @@ export namespace Components {
           * @uiEnum ["small", "medium", "large" ]
           * @uiEnumNames ["Small", "Medium", "Large"]
          */
-        "size"?: 'small' | 'medium' | 'large';
+        "size"?: "small" | "medium" | "large";
         /**
           * @uiType string
           * @uiName Button Style
           * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
          */
-        "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
+        "type"?: | "primary"
+    | "success"
+    | "info"
+    | "warning"
+    | "danger"
+    | "default"
+    | "text";
     }
     interface SqmShareLink {
         /**
@@ -170,8 +188,9 @@ declare global {
 declare namespace LocalJSX {
     interface SqmBigStat {
         /**
+          * Select what type of stat to display. Manual paths are also supported.
+          * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
-          * @uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_CAD/prettyValue", "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit", "/rewardBalance/CREDIT/CASH_USD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_USD/prettyValue", "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"]
          */
         "type"?: string;
     }
@@ -208,15 +227,26 @@ declare namespace LocalJSX {
           * @uiEnum ["prefix", "suffix" ]
           * @uiEnumNames ["Prefix", "Suffix"]
          */
-        "iconslot"?: 'prefix' | 'suffix';
+        "iconslot"?: "prefix" | "suffix";
         /**
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
           * @uiType string
           * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest", "reminder", "unknown" ]
-          * @uiEnumNames ["Facebook", "Twitter", "Email", "Direct", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
+          * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
          */
-        "medium"?: 'facebook' | 'twitter' | 'email' | 'direct' | 'linkedin' | 'sms' | 'fbmessenger' | 'whatsapp' | 'linemessenger' | 'pinterest' | 'reminder' | 'unknown';
+        "medium"?: | "facebook"
+    | "twitter"
+    | "email"
+    | "direct"
+    | "linkedin"
+    | "sms"
+    | "fbmessenger"
+    | "whatsapp"
+    | "linemessenger"
+    | "pinterest"
+    | "reminder"
+    | "unknown";
         /**
           * @uiName Display as pill
          */
@@ -240,13 +270,19 @@ declare namespace LocalJSX {
           * @uiEnum ["small", "medium", "large" ]
           * @uiEnumNames ["Small", "Medium", "Large"]
          */
-        "size"?: 'small' | 'medium' | 'large';
+        "size"?: "small" | "medium" | "large";
         /**
           * @uiType string
           * @uiName Button Style
           * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
          */
-        "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
+        "type"?: | "primary"
+    | "success"
+    | "info"
+    | "warning"
+    | "danger"
+    | "default"
+    | "text";
     }
     interface SqmShareLink {
         /**
