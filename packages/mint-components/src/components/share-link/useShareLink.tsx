@@ -31,6 +31,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const [open, setOpen] = useState(false);
 
   function onClick() {
+    // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
+    // Only if called from a user-initiated event
     navigator.clipboard.writeText(sharelink);
     setOpen(true);
     setTimeout(() => setOpen(false), props.tooltiplifespan);
