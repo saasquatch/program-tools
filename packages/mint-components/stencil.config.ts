@@ -30,12 +30,10 @@ const outputTargets: OutputTarget[] = [
   {
     type: 'dist',
     esmLoaderPath: '../loader',
-    copy: [{ src: 'entrypoint.js' }],
   },
   {
     type: 'www',
     serviceWorker: null,
-    copy: [{ src: 'entrypoint.js' }],
   },
 ];
 export const config: Config = {
