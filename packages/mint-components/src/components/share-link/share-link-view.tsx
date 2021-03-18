@@ -23,9 +23,6 @@ export function ShareLinkView(props: ShareLinkViewProps) {
   return (
     <div>
       <sl-tooltip
-        css={css`
-          margin-top: 12px;
-        `}
         trigger="manual"
         content={props.tooltiptext}
         placement="top-end"
