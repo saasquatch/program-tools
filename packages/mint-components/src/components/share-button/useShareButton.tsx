@@ -91,6 +91,8 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   const environment = getEnvironmentSDK();
 
+  const hide = (medium.toLocaleUpperCase() === 'SMS' && navigator.platform !== 'Android') || (medium.toLocaleUpperCase() === 'SMS' && navigator.platform !== 'iPhone')
+
   function onClick() {
     if(medium.toLocaleUpperCase() === 'FACEBOOK' && environment.type === 'SquatchAndroid'){
       FacebookShare(directLink, res);
@@ -101,5 +103,5 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
     }
   }
 
-  return { ...props, onClick };
+  return { ...props, onClick, hide };
 }
