@@ -106,20 +106,20 @@ export namespace Components {
     }
     interface SqmShareLink {
         /**
-          * The ID of the program that should generate the link.
+          * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
          */
-        "programId": string;
+        "programId"?: string;
         /**
           * The number of milliseconds that the tooltip will appear for
           * @uiName Tooltip lifespan
          */
-        "tooltiplifespan"?: number;
+        "tooltiplifespan": number;
         /**
           * This is shown after someone has successfully copied the link to the clipboard.
           * @uiName Tooltip text
          */
-        "tooltiptext"?: string;
+        "tooltiptext": string;
     }
     interface SqmStencilbook {
     }
@@ -278,7 +278,7 @@ declare namespace LocalJSX {
     }
     interface SqmShareLink {
         /**
-          * The ID of the program that should generate the link.
+          * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
          */
         "programId"?: string;
