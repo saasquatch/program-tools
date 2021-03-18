@@ -23,7 +23,7 @@ export class BigStat {
   //  "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"]
   /**
    * Select what type of stat to display. Manual paths are also supported.
-   * 
+   *
    * @uiWidget StatTypeSelectWidget
    * @uiName Stat Type
    */
@@ -52,6 +52,12 @@ function useDemoBigState(props: BigStat): BigStatHook {
     props: {
       statvalue: props.type === "number" ? "$10,000" : "10 points",
     },
-    label: "Demo Label",
+    // create label from first part of path only using formatting 
+    // "/rewardBalance/CREDIT/CASH_USD/prettyValue" => "Reward Balance"
+    label:
+      /^\/(\w+)/
+        .exec(props.type)[1]
+        ?.replace(/^([a-z])/, (_, c) => c.toUpperCase())
+        ?.replace(/([a-z])([A-Z])/, "$1 $2") ?? "Demo Label",
   };
 }
