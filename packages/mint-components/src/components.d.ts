@@ -8,8 +8,9 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface SqmBigStat {
         /**
+          * Select what type of stat to display. Manual paths are also supported.
+          * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
-          * @uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_CAD/prettyValue", "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit", "/rewardBalance/CREDIT/CASH_USD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_USD/prettyValue", "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"]
          */
         "type": string;
     }
@@ -24,6 +25,9 @@ export namespace Components {
         "usersheading": string;
     }
     interface SqmLeaderboardRank {
+        /**
+          * @uiName Default rank
+         */
         "rank"?: string;
     }
     interface SqmRouter {
@@ -48,10 +52,10 @@ export namespace Components {
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
           * @uiType string
-          * @uiEnum ["facebook", "twitter", "email" ]
-          * @uiEnumNames ["FaceBox", "Tweeeter", "CompuMail"]
+          * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest", "reminder", "unknown" ]
+          * @uiEnumNames ["Facebook", "Twitter", "Email", "Direct", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
          */
-        "medium": 'facebook' | 'twitter' | 'email' | 'TODO';
+        "medium": 'facebook' | 'twitter' | 'email' | 'direct' | 'linkedin' | 'sms' | 'fbmessenger' | 'whatsapp' | 'linemessenger' | 'pinterest' | 'reminder' | 'unknown';
         /**
           * @uiName Display as pill
          */
@@ -61,6 +65,14 @@ export namespace Components {
           * @uiName Program ID
          */
         "programId"?: string;
+        /**
+          * @uiName Text used for native sharing (mobile only)
+         */
+        "sharetext"?: string;
+        /**
+          * @uiName Title used for native sharing (mobile only)
+         */
+        "sharetitle"?: string;
         /**
           * @uiName Button Size
           * @uiType string
@@ -84,6 +96,16 @@ export namespace Components {
           * @uiName Icon Label
          */
         "iconlabel"?: string;
+        /**
+          * The ID of the program that should generate the link.
+          * @uiName Program ID
+         */
+        "programId": string;
+        /**
+          * The number of milliseconds that the tooltip will appear for
+          * @uiName Tooltip lifespan
+         */
+        "tooltiplifespan"?: number;
         /**
           * This is shown after someone has successfully copied the link to the clipboard.
           * @uiName Tooltip text
@@ -149,8 +171,9 @@ declare global {
 declare namespace LocalJSX {
     interface SqmBigStat {
         /**
+          * Select what type of stat to display. Manual paths are also supported.
+          * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
-          * @uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_CAD/prettyValue", "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit", "/rewardBalance/CREDIT/CASH_USD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_USD/prettyValue", "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"]
          */
         "type"?: string;
     }
@@ -165,6 +188,9 @@ declare namespace LocalJSX {
         "usersheading"?: string;
     }
     interface SqmLeaderboardRank {
+        /**
+          * @uiName Default rank
+         */
         "rank"?: string;
     }
     interface SqmRouter {
@@ -189,10 +215,10 @@ declare namespace LocalJSX {
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
           * @uiType string
-          * @uiEnum ["facebook", "twitter", "email" ]
-          * @uiEnumNames ["FaceBox", "Tweeeter", "CompuMail"]
+          * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest", "reminder", "unknown" ]
+          * @uiEnumNames ["Facebook", "Twitter", "Email", "Direct", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
          */
-        "medium"?: 'facebook' | 'twitter' | 'email' | 'TODO';
+        "medium"?: 'facebook' | 'twitter' | 'email' | 'direct' | 'linkedin' | 'sms' | 'fbmessenger' | 'whatsapp' | 'linemessenger' | 'pinterest' | 'reminder' | 'unknown';
         /**
           * @uiName Display as pill
          */
@@ -202,6 +228,14 @@ declare namespace LocalJSX {
           * @uiName Program ID
          */
         "programId"?: string;
+        /**
+          * @uiName Text used for native sharing (mobile only)
+         */
+        "sharetext"?: string;
+        /**
+          * @uiName Title used for native sharing (mobile only)
+         */
+        "sharetitle"?: string;
         /**
           * @uiName Button Size
           * @uiType string
@@ -225,6 +259,16 @@ declare namespace LocalJSX {
           * @uiName Icon Label
          */
         "iconlabel"?: string;
+        /**
+          * The ID of the program that should generate the link.
+          * @uiName Program ID
+         */
+        "programId"?: string;
+        /**
+          * The number of milliseconds that the tooltip will appear for
+          * @uiName Tooltip lifespan
+         */
+        "tooltiplifespan"?: number;
         /**
           * This is shown after someone has successfully copied the link to the clipboard.
           * @uiName Tooltip text

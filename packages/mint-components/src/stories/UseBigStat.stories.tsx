@@ -43,9 +43,15 @@ const View = (type: string) => {
 };
 
 export const ReferralsCount = () => View('/referralsCount');
+export const ReferralsMonth = () => View('/referralsMonth');
+export const ReferralsWeek = () => View('/referralsWeek');
+export const RewardsCount = () => View('/rewardsCount');
+export const RewardsMonth = () => View('/rewardsMonth');
+export const RewardsWeek = () => View('/rewardsWeek');
 export const RewardsAssigned = () => View('/rewardsAssigned/CREDIT/COFFEE');
 export const RewardsRedeemed = () => View('/rewardsRedeemed/CREDIT/COFFEE');
 export const RewardsAvailable = () => View('/rewardsAvailable/CREDIT/COFFEE');
+export const RewardBalance = () => View('/rewardBalance/CREDIT/COFFEE/prettyValue');
 
 // export const RegularView = () => {
 //   setupGraphQL();

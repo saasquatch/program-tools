@@ -3,12 +3,10 @@ import gql from 'graphql-tag';
 import { ShareLinkViewProps } from './share-link-view';
 
 interface ShareLinkProps {
+  programId: string;
   icon?: string;
   iconlabel?: string;
   tooltiptext?: string;
-  variables?: {
-    programId: string;
-  };
 }
 
 const MessageLinkQuery = gql`
@@ -22,8 +20,9 @@ const MessageLinkQuery = gql`
 export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   //@ts-ignore
   const { userId: id, accountId } = window.widgetIdent;
+  const { programId } = props;
 
-  const res = useQuery(MessageLinkQuery, { ...props.variables, id, accountId });
-  console.log(res);
+  const res = useQuery(MessageLinkQuery, { programId, id, accountId });
+
   return { ...props, sharelink: res?.data?.user?.shareLink ?? '' };
 }

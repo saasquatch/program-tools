@@ -14,6 +14,12 @@ import { useShareLink } from './useShareLink';
 })
 export class ShareLink {
   /**
+   * The ID of the program that should generate the link.
+   * 
+   * @uiName Program ID
+   */
+  @Prop() programId: string
+  /**
    * @uiName Icon
    */
   @Prop() icon?: string;
@@ -27,6 +33,12 @@ export class ShareLink {
    * @uiName Tooltip text
    */
   @Prop() tooltiptext?: string;
+  /**
+   * The number of milliseconds that the tooltip will appear for
+   * 
+   * @uiName Tooltip lifespan
+   */
+  @Prop() tooltiplifespan?: number;
 
   constructor() {
     withHooks(this);

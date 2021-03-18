@@ -1,12 +1,13 @@
 {
   "name": "@saasquatch/mint-components",
-  "version": "0.0.1-4",
+  "version": "0.0.1-6",
   "description": "Stencil Component Starter",
-  "main": "dist/index.js",
-  "es2015": "dist/esm/index.mjs",
-  "es2017": "dist/esm/index.mjs",
+  "main": "dist/index.cjs.js",
+  "es2015": "dist/esm/index.js",
+  "es2017": "dist/esm/index.js",
   "types": "dist/types/components.d.ts",
-  "module": "dist/index.mjs",
+  "module": "dist/index.js",
+  "jsnext:main": "dist/esm/index.js",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "files": [
@@ -25,7 +26,7 @@
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.2",
-    "@stencil/core": "^1.17.4",
+    "@stencil/core": "^2.4.0",
     "@stencil/router": "^1.0.1",
     "@stencil/sass": "^1.3.2",
     "@stencil/utils": "latest",
@@ -42,9 +43,9 @@
     "workbox-build": "4.3.1"
   },
   "dependencies": {
-    "@saasquatch/component-boilerplate": "^1.0.0-beta10.4",
-    "@saasquatch/stencil-hooks": "^1.0.1",
-    "@saasquatch/stencilbook": "0.0.1-beta4",
+    "@saasquatch/component-boilerplate": "^1.0.0-beta10.5",
+    "@saasquatch/stencil-hooks": "^2.0.0",
+    "@saasquatch/stencilbook": "0.0.1-beta6",
     "@saasquatch/universal-hooks": "^0.1.3",
     "@shoelace-style/shoelace": "^2.0.0-beta.32",
     "@stencil/helmet": "^0.3.2",
