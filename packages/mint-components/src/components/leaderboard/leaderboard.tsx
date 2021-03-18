@@ -33,17 +33,19 @@ export class Leaderboard {
       loadingstate: <slot name="loading" />,
       ...this,
     };
-    const viewprops = isDemo() ? useLeaderboardDemo(props) : useLeaderboard(props);
+    const viewprops = isDemo()
+      ? useLeaderboardDemo(props)
+      : useLeaderboard(props);
     return <LeaderboardView {...viewprops} />;
   }
 }
 
 function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
   return {
-    usersheading: props.usersheading,
-    statsheading: props.statsheading,
-    empty: props.empty,
-    loadingstate: props.loadingstate,
+    usersheading: props.usersheading ? props.usersheading : "TOP REFERRERS",
+    statsheading: props.statsheading ? props.statsheading : "NEW TITANS",
+    empty: props.empty ? props.empty : <div>Empty</div>,
+    loadingstate: props.loadingstate ? props.loadingstate : <div>Loading</div>,
     loading: false,
     hasleaders: true,
     referrers: [

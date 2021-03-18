@@ -31,6 +31,6 @@ export class LeaderboardRank {
 
 function useLeaderboardRankDemo(props: LeaderboardRankProps): LeaderboardRankViewProps {
   return {
-    rank: props.rank || "1st"
+    rank: props.rank ? props.rank : "1st"
   };
 }
