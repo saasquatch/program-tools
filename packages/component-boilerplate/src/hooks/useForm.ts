@@ -85,6 +85,7 @@ const VALIDATE_FORM = gql`
 
 type UseFormProps = {
   formKey: string;
+  formRef: HTMLFormElement;
 };
 
 type FormState = {
@@ -107,7 +108,7 @@ type FormState = {
 // };
 
 export function useForm(props: UseFormProps) {
-  const { formKey } = props;
+  const { formKey, formRef } = props;
 
   const variables = {
     key: formKey,
@@ -117,7 +118,7 @@ export function useForm(props: UseFormProps) {
   const [submit, { data: submitData }] = useMutation(SUBMIT_FORM);
   const [
     validate,
-    { data: validationData, errors: validationErrors },
+    { data: validationData },
   ] = useLazyQuery(VALIDATE_FORM);
 
   const initialState = {
@@ -152,21 +153,36 @@ export function useForm(props: UseFormProps) {
   }, []);
 
   useEffect(() => {
-    if (!loadingForm && data) {
+    async function getFormData() {
       setFormState({
         enabled: data?.form.initialData?.isEnabled,
         disabledMessage: data?.form?.initialData?.isEnabledErrorMessage,
       });
 
       const initialData = data?.form?.initialData?.initialData;
+      const htmlForm = formRef;
 
-      const htmlForm = document.getElementById(formKey) as HTMLFormElement;
+      if (!htmlForm) return;
 
-      const inputs = htmlForm.elements;
-      const formContent = new FormData(htmlForm);
+      // abstract out sl-form specific checks
+      const inputs =
+        htmlForm.localName === "sl-form"
+          ? await htmlForm.getFormControls()
+          : htmlForm.elements;
 
-      formContent.forEach((value, key) => {
-        const input = inputs.namedItem(key) as HTMLInputElement;
+      const formContent =
+        htmlForm.localName === "sl-form"
+          ? await htmlForm.getFormData()
+          : new FormData(htmlForm);
+
+      console.log({ htmlForm, formContent });
+      formContent?.forEach((value, key) => {
+        console.log({ value, key, inputs });
+        const input =
+          htmlForm.localName === "sl-form"
+            ? inputs.find((input) => input.name === key)
+            : (inputs.namedItem(key) as HTMLInputElement);
+
         try {
           if (input.type == "checkbox") {
             input.checked = jsonpointer.get(initialData, key);
@@ -178,6 +194,7 @@ export function useForm(props: UseFormProps) {
         }
       });
     }
+    if (!loadingForm && data) getFormData();
   }, [loadingForm]);
 
   useEffect(() => {
@@ -266,9 +283,14 @@ export function useForm(props: UseFormProps) {
   async function handleSubmit(e: any) {
     e.preventDefault();
 
+    
     setFormState({ validating: true });
     const form = e.target;
-    const data = new FormData(form);
+    console.log(form)
+    const data =
+      form.localName === "sl-form"
+        ? await form.getFormData()
+        : new FormData(form);
 
     let formData = {};
 
@@ -297,6 +319,7 @@ export function useForm(props: UseFormProps) {
     },
     callbacks: {
       handleSubmit,
+      validateForm,
       setFormState,
       getValidationErrors,
       getSubmissionErrors,

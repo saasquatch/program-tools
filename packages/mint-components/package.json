@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@formatjs/intl": "^1.8.4",
-    "@saasquatch/component-boilerplate": "^1.0.0-beta12",
+    "@saasquatch/component-boilerplate": "^1.0.0-beta14",
     "@saasquatch/stencil-hooks": "^2.0.0",
     "@saasquatch/stencilbook": "0.0.1-beta6",
     "@saasquatch/universal-hooks": "^0.1.3",

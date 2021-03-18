@@ -22,7 +22,14 @@ function makeHistory(): History {
       return createMemoryHistory();
   }
 }
-const history = makeHistory();
+
+declare global {
+  interface Window {
+    squatchHistory: History;
+  }
+}
+
+window.squatchHistory = makeHistory();
 
 /**
  * Provides a way of navigating pages. Can be called from views or hooks or any code on the page.
@@ -32,12 +39,12 @@ const history = makeHistory();
  * To listen to page changes use `useCurrentPage`
  */
 export const navigation: Navigation = {
-  createHref: (...args) => history.createHref(...args),
-  push: (...args) => history.push(...args),
-  replace: (...args) => history.replace(...args),
-  go: (...args) => history.go(...args),
-  back: () => history.back(),
-  forward: (...args) => history.forward(...args),
+  createHref: (...args) => window.squatchHistory.createHref(...args),
+  push: (...args) => window.squatchHistory.push(...args),
+  replace: (...args) => window.squatchHistory.replace(...args),
+  go: (...args) => window.squatchHistory.go(...args),
+  back: () => window.squatchHistory.back(),
+  forward: (...args) => window.squatchHistory.forward(...args),
 };
 
 /**
@@ -46,14 +53,14 @@ export const navigation: Navigation = {
 export function useCurrentPage(): HistLocation {
   const [, tick] = useTick();
   useEffect(() => {
-    const cleanup = history.listen(() => {
+    const cleanup = window.squatchHistory.listen(() => {
       // re-render
       tick();
     });
     return cleanup;
   }, []);
 
-  return history.location;
+  return window.squatchHistory.location;
 }
 
 /**
