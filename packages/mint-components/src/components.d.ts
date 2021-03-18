@@ -8,8 +8,9 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface SqmBigStat {
         /**
+          * Select what type of stat to display. Manual paths are also supported.
+          * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
-          * @uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_CAD/prettyValue", "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit", "/rewardBalance/CREDIT/CASH_USD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_USD/prettyValue", "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"]
          */
         "type": string;
     }
@@ -170,8 +171,9 @@ declare global {
 declare namespace LocalJSX {
     interface SqmBigStat {
         /**
+          * Select what type of stat to display. Manual paths are also supported.
+          * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
-          * @uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_CAD/prettyValue", "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit", "/rewardBalance/CREDIT/CASH_USD/prettyPendingCredit", "/rewardBalance/CREDIT/CASH_USD/prettyValue", "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"]
          */
         "type"?: string;
     }
