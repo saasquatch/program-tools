@@ -1,22 +1,26 @@
-import { withHooks } from '@saasquatch/stencil-hooks';
-import { Component, Prop, h } from '@stencil/core';
-import { isDemo } from '../../utils/isDemo';
-import { LeaderboardRankView, LeaderboardRankViewProps } from './leaderboard-rank-view';
-import { LeaderboardRankProps, useLeaderboardRank } from './useLeaderboardRank';
+import { withHooks } from "@saasquatch/stencil-hooks";
+import { Component, Prop, h } from "@stencil/core";
+import { isDemo } from "../../utils/isDemo";
+import {
+  LeaderboardRankView,
+  LeaderboardRankViewProps,
+} from "./leaderboard-rank-view";
+import { LeaderboardRankProps, useLeaderboardRank } from "./useLeaderboardRank";
 
 /**
  * @uiName Leaderboard Rank
  */
 @Component({
-  tag: 'sqm-leaderboard-rank',
-  styleUrl: 'leaderboard-rank.css',
+  tag: "sqm-leaderboard-rank",
+  styleUrl: "leaderboard-rank.css",
   shadow: true,
 })
 export class LeaderboardRank {
   /**
    * @uiName Default rank
    */
-  @Prop() rank?: string;
+  @Prop() rankType: "rowNumber" | "rank" | "denseRank";
+  @Prop() rankText: string;
 
   constructor() {
     withHooks(this);
@@ -24,13 +28,19 @@ export class LeaderboardRank {
   disconnectedCallback() {}
 
   render() {
-    const props = isDemo() ? useLeaderboardRankDemo(this) : useLeaderboardRank(this);;
+    const props = isDemo()
+      ? useLeaderboardRankDemo(this)
+      : useLeaderboardRank(this);
     return <LeaderboardRankView {...props} />;
   }
 }
 
-function useLeaderboardRankDemo(props: LeaderboardRankProps): LeaderboardRankViewProps {
+function useLeaderboardRankDemo(
+  props: LeaderboardRankProps
+): LeaderboardRankViewProps {
   return {
-    rank: props.rank ? props.rank : "1st"
+    data: {
+      rank: props.rankText || "1st",
+    },
   };
 }

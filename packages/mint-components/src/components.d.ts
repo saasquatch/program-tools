@@ -15,6 +15,7 @@ export namespace Components {
         "type": string;
     }
     interface SqmLeaderboard {
+        "rankType": "rowNumber" | "rank" | "denseRank";
         /**
           * @uiName Stats Column Heading
          */
@@ -25,10 +26,11 @@ export namespace Components {
         "usersheading": string;
     }
     interface SqmLeaderboardRank {
+        "rankText": string;
         /**
           * @uiName Default rank
          */
-        "rank"?: string;
+        "rankType": "rowNumber" | "rank" | "denseRank";
     }
     interface SqmRouter {
     }
@@ -195,6 +197,7 @@ declare namespace LocalJSX {
         "type"?: string;
     }
     interface SqmLeaderboard {
+        "rankType"?: "rowNumber" | "rank" | "denseRank";
         /**
           * @uiName Stats Column Heading
          */
@@ -205,10 +208,11 @@ declare namespace LocalJSX {
         "usersheading"?: string;
     }
     interface SqmLeaderboardRank {
+        "rankText"?: string;
         /**
           * @uiName Default rank
          */
-        "rank"?: string;
+        "rankType"?: "rowNumber" | "rank" | "denseRank";
     }
     interface SqmRouter {
     }
