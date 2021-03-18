@@ -12,6 +12,9 @@ import { useLeaderboardRank } from './useLeaderboardRank';
   shadow: true,
 })
 export class LeaderboardRank {
+  /**
+   * @uiName Default rank
+   */
   @Prop() rank?: string;
 
   constructor() {
