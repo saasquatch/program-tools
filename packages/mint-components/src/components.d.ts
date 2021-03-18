@@ -24,6 +24,9 @@ export namespace Components {
         "usersheading": string;
     }
     interface SqmLeaderboardRank {
+        /**
+          * @uiName Default rank
+         */
         "rank"?: string;
     }
     interface SqmRouter {
@@ -183,6 +186,9 @@ declare namespace LocalJSX {
         "usersheading"?: string;
     }
     interface SqmLeaderboardRank {
+        /**
+          * @uiName Default rank
+         */
         "rank"?: string;
     }
     interface SqmRouter {
