@@ -43,7 +43,7 @@
     "workbox-build": "4.3.1"
   },
   "dependencies": {
-    "@saasquatch/component-boilerplate": "^1.0.0-beta10.5",
+    "@saasquatch/component-boilerplate": "^1.0.0-beta11",
     "@saasquatch/stencil-hooks": "^2.0.0",
     "@saasquatch/stencilbook": "0.0.1-beta6",
     "@saasquatch/universal-hooks": "^0.1.3",

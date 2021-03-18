@@ -174,6 +174,11 @@ export function getEnvironmentSDK(): EnvironmentSDK {
   };
 }
 
+export function isDemo() {
+  const sdk = getEnvironmentSDK();
+  return sdk.type === "None" || sdk.type === "SquatchAdmin";
+}
+
 type UserIdentity = {
   id: string;
   accountId: string;

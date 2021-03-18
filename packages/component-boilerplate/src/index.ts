@@ -9,6 +9,8 @@ export {
   useAppDomain,
   useToken,
   useLocale,
+  isDemo,
+  getEnvironmentSDK
 } from "./environment/environment";
 
 //
