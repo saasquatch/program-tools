@@ -15,6 +15,7 @@ import { isDemo } from '../../utils/isDemo';
   shadow: true,
 })
 export class BigStat {
+  // @uiWidget StatTypeSelectWidget
   /**
    * @uiName Stat Type
    * @uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit",
