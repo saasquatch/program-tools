@@ -2,6 +2,8 @@ import 'babel-polyfill';
 import {useHost} from "@saasquatch/stencil-hooks";
 import {setUseHostImplementation} from "@saasquatch/component-boilerplate";
 
+setUseHostImplementation(useHost);
+
 import {
   SlAlert,
   SlAnimation,
@@ -100,5 +102,3 @@ try {
 } catch (error) {
   console.error("components already registered");
 }
-
-setUseHostImplementation(useHost);

@@ -89,14 +89,6 @@ export namespace Components {
     }
     interface SqmShareLink {
         /**
-          * @uiName Icon
-         */
-        "icon"?: string;
-        /**
-          * @uiName Icon Label
-         */
-        "iconlabel"?: string;
-        /**
           * The ID of the program that should generate the link.
           * @uiName Program ID
          */
@@ -251,14 +243,6 @@ declare namespace LocalJSX {
         "type"?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'default' | 'text';
     }
     interface SqmShareLink {
-        /**
-          * @uiName Icon
-         */
-        "icon"?: string;
-        /**
-          * @uiName Icon Label
-         */
-        "iconlabel"?: string;
         /**
           * The ID of the program that should generate the link.
           * @uiName Program ID

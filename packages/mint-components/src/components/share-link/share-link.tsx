@@ -20,14 +20,6 @@ export class ShareLink {
    */
   @Prop() programId: string
   /**
-   * @uiName Icon
-   */
-  @Prop() icon?: string;
-  /**
-   * @uiName Icon Label
-   */
-  @Prop() iconlabel?: string;
-  /**
    * This is shown after someone has successfully copied the link to the clipboard.
    *
    * @uiName Tooltip text
@@ -54,9 +46,8 @@ export class ShareLink {
 function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
   return {
     sharelink: 'https://www.example.com/sharelink/abc',
-    icon: props.icon,
-    iconlabel: props.iconlabel,
     tooltiptext: props.tooltiptext,
+    open: false,
     onClick: () => {
       // TODO: PRovide UI feedback via Admin SDK
     },
