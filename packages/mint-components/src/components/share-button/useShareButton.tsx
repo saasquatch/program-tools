@@ -2,6 +2,7 @@ import { useQuery, useEngagementMedium } from '@saasquatch/component-boilerplate
 import gql from 'graphql-tag';
 import { ShareButtonViewProps } from './share-button-view';
 import { PlatformNativeActions } from '../../global/android';
+import { getEnvironmentSDK } from '@saasquatch/component-boilerplate/dist/environment/environment';
 
 declare const SquatchAndroid: PlatformNativeActions | undefined;
 
@@ -88,17 +89,15 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   const directLink = useQuery(ShareLinkQuery, directVariables)?.data?.viewer?.shareLink;
 
+  const environment = getEnvironmentSDK();
+
   function onClick() {
-    switch (medium.toLocaleUpperCase()) {
-      case 'FACEBOOK':
-        FacebookShare(directLink, res);
-        break;
-      case 'DIRECT':
-        NativeShare({ sharetitle, sharetext }, directLink);
-        break;
-      default:
-        GenericShare(res);
-        break;
+    if(medium.toLocaleUpperCase() === 'FACEBOOK' && environment.type === 'SquatchAndroid'){
+      FacebookShare(directLink, res);
+    } else if (medium.toLocaleUpperCase() === 'DIRECT'){
+      NativeShare({ sharetitle, sharetext }, directLink);
+    } else{
+      GenericShare(res);
     }
   }
 

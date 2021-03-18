@@ -3,10 +3,10 @@ import { css } from "emotion";
 
 export interface ShareLinkViewProps {
   sharelink: string;
-  open: boolean
+  open: boolean;
 
   disabled?: boolean;
-  tooltiptext?: string;
+  tooltiptext: string;
 
   onClick?: () => void;
 }
@@ -27,7 +27,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         content={props.tooltiptext}
         placement="top-end"
         disabled={props.disabled}
-        open={props.open && props.tooltiptext}
+        open={props.open}
       >
         <sl-input class={copyInput} value={props.sharelink} disabled readonly>
           <sl-icon-button
