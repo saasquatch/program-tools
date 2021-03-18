@@ -1,6 +1,6 @@
 import { LeaderboardRankViewProps } from './leaderboard-rank-view';
 
-interface LeaderboardRankProps {
+export interface LeaderboardRankProps {
   rank?: string;
 }
 
