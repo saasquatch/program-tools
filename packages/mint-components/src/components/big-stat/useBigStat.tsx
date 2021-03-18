@@ -301,7 +301,7 @@ const queries: {
 };
 
 // this should be exposed in documentation somehow
-const paths = [
+export const StatPaths = [
   "/(referralsCount)",
   "/(referralsMonth)",
   "/(referralsWeek)",
@@ -314,13 +314,13 @@ const paths = [
   "/(rewardBalance)/:type/:unit/:format?/:global?",
 ];
 
-const patterns = paths.map((pattern) => pathToRegexp(pattern));
+export const StatPatterns = StatPaths.map((pattern) => pathToRegexp(pattern));
 
 export function useBigStat({
   type,
   programId,
 }: BigStat & { programId?: string }) {
-  const re = useMemo(() => patterns.find((re) => re.test(type)), [type]);
+  const re = useMemo(() => StatPatterns.find((re) => re.test(type)), [type]);
   if (re === undefined) {
     return { label: "BAD TYPE PROP", props: { statvalue: "!!!" } };
   }

@@ -1,44 +1,41 @@
-import { useQuery } from "@saasquatch/component-boilerplate";
+import { useProgramId, useQuery } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import gql from "graphql-tag";
 import { ShareLinkViewProps } from "./share-link-view";
 
 interface ShareLinkProps {
-  programId: string;
-  icon?: string;
-  iconlabel?: string;
-  tooltiptext?: string;
-  tooltiplifespan?: number;
+  programId?: string;
+  tooltiptext: string;
+  tooltiplifespan: number;
 }
 
 const MessageLinkQuery = gql`
-  query($id: String!, $accountId: String!, $programId: ID) {
-    user(id: $id, accountId: $accountId) {
-      shareLink(programId: $programId)
+  query($programId: ID) {
+    user: viewer {
+      ... on User {
+        shareLink(programId: $programId)
+      }
     }
   }
 `;
 
-const DEFAULT_TOOLTIP_LIFESPAN = 1000;
-
 export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
-  //@ts-ignore
-  const { userId: id, accountId } = window.widgetIdent;
-  const { programId } = props;
+  const { programId = useProgramId() } = props;
 
-  const res = useQuery(MessageLinkQuery, { programId, id, accountId });
-  const sharelink = res?.data?.user?.shareLink ?? "";
+  const res = useQuery(MessageLinkQuery, { programId });
+  const sharelink =
+    res?.data?.user?.shareLink ??
+    // Shown during loading
+    "...";
 
-  // TODO move to hook and write stories
   const [open, setOpen] = useState(false);
 
   function onClick() {
+    // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
+    // Only if called from a user-initiated event
     navigator.clipboard.writeText(sharelink);
     setOpen(true);
-    setTimeout(
-      () => setOpen(false),
-      props.tooltiplifespan ?? DEFAULT_TOOLTIP_LIFESPAN
-    );
+    setTimeout(() => setOpen(false), props.tooltiplifespan);
   }
 
   return { ...props, onClick, open, sharelink };
