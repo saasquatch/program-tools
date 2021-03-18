@@ -311,7 +311,7 @@ const paths = [
   "/(rewardsAssigned)/:type/:unit",
   "/(rewardsRedeemed)/:type/:unit",
   "/(rewardsAvailable)/:type/:unit",
-  "/(rewardBalance)/:type/:unit/:format?",
+  "/(rewardBalance)/:type/:unit/:format?/:global?",
 ];
 
 const patterns = paths.map((pattern) => pathToRegexp(pattern));
