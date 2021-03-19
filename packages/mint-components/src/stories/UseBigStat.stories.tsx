@@ -1,7 +1,9 @@
 import { h } from '@stencil/core';
 // import { useState } from 'haunted';
 import { BigStatView } from '../components/big-stat/big-stat-view';
+import { useDemoBigStat } from '../components/big-stat/useDemoBigStat';
 import { useBigStat } from '../components/big-stat/useBigStat';
+import { useState } from 'haunted';
 
 export default {
   title: 'Hooks / useBigStat',
@@ -41,6 +43,28 @@ const View = (type: string) => {
   });
   return <BigStatView {...props}>{label}</BigStatView>;
 };
+
+const DemoView = () => {
+  const [type, setType] = useState('/someRandomThing/with/someArguments/1234');
+  const { props, label } = useDemoBigStat({
+    type,
+    render: () => {},
+    disconnectedCallback: () => {},
+  });
+  return <div>
+    <div>
+      Stat type: <input type="text" value={type} 
+        onInput={(e) => setType((e.target as HTMLInputElement).value)} >
+        </input>
+    </div>
+    <hr />
+    <div>
+      <BigStatView {...props}>{label}</BigStatView>
+    </div>
+  </div>
+};
+
+export const Demo = () => DemoView()
 
 export const ReferralsCount = () => View('/referralsCount');
 export const ReferralsMonth = () => View('/referralsMonth');
