@@ -8,7 +8,6 @@ export default {
 export const Default = () => {
   const props = {
     sharelink: "https://noah.example.com",
-    tooltiptext: "",
     open: false,
     tooltiptext: "Copied!"
   };
@@ -27,7 +26,6 @@ export const Tooltip = () => {
 export const Disabled = () => {
   const props = {
     sharelink: "https://noah.example.com",
-    tooltiptext: "",
     disabled: true,
     open: true,
     tooltiptext: "Copied!"
