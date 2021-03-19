@@ -2,8 +2,7 @@ import { useQuery } from "@saasquatch/component-boilerplate";
 import gql from "graphql-tag";
 import { LeaderboardRankViewProps } from "./leaderboard-rank-view";
 import { createIntl, createIntlCache } from "@formatjs/intl";
-import debugFn from "debug";
-const debug = debugFn("sq:useLeaderboardRank");
+
 export interface LeaderboardRankProps {
   rankType: "rowNumber" | "rank" | "denseRank";
   rankText: string;
@@ -23,14 +22,6 @@ const GET_RANK = gql`
   }
 `;
 
-// const GET_LEADERBOARD_UPDATED = gql`
-//   query {
-//     userLeaderboard(type: "topConvertedReferrers") {
-//       dateModified
-//     }
-//   }
-// `;
-
 export function useLeaderboardRank(
   props: LeaderboardRankProps
 ): LeaderboardRankViewProps {
@@ -42,13 +33,6 @@ export function useLeaderboardRank(
     },
     cache
   );
-  // const leaderboardVariables = {
-  //   type: "topConvertedReferrers",
-  // };
-  // const { data: leaderboardData, loading: loadingLeaderboard } = useQuery(
-  //   GET_LEADERBOARD_UPDATED,
-  //   leaderboardVariables
-  // );
 
   const rankVariables = {
     type: "topStartedReferrers",
@@ -64,36 +48,9 @@ export function useLeaderboardRank(
       )
     : "unranked";
 
-  // const now = new Date();
-  // const relative =
-  //   (new Date(now.getTime() + now.getTimezoneOffset() * 60000).getTime() -
-  //     leaderboardData?.userLeaderboard?.dateModified) *
-  //   -1;
-
-  debug(
-    "rank",
-    rankData?.viewer?.leaderboardRank,
-    "intl formatted:",
-    intl.formatMessage(
-      { id: "rankText", defaultMessage: props.rankText },
-      {
-        rank: rankData?.viewer?.leaderboardRank?.[props.rankType],
-      }
-    )
-  );
   return {
     data: {
       rank: fullRankText,
-      // rankType: props.rankType,
-      // lastUpdated: intl.formatRelativeTime(
-      //   Math.ceil(relative / (60 * 60 * 24 * 1000)),
-      //   "seconds",
-      //   {
-      //     localeMatcher: "lookup",
-      //     numeric: "auto",
-      //     style: "short",
-      //   }
-      // ),
     },
   };
 }

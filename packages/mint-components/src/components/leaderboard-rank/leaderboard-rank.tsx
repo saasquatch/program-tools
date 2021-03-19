@@ -42,15 +42,17 @@ function useLeaderboardRankDemo(
   const intl = createIntl({
     locale: "en",
   });
+
+  const rank =
+    intl.formatMessage(
+      { id: "rankText", defaultMessage: props.rankText },
+      {
+        rank: 1,
+      }
+    ) || "1st";
   return {
     data: {
-      rank:
-        intl.formatMessage(
-          { id: "rankText", defaultMessage: props.rankText },
-          {
-            rank: 1,
-          }
-        ) || "1st",
+      rank,
     },
   };
 }
