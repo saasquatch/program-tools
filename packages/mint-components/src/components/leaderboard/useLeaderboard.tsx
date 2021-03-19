@@ -52,7 +52,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   return {
     states: {
       loading: loadingLeaderboard,
-      hasLeaders: sortedLeaderboard.length > 0,
+      hasLeaders: sortedLeaderboard?.length > 0,
       styles: props,
     },
     data: {
