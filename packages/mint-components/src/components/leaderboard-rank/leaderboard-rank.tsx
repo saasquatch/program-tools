@@ -1,3 +1,4 @@
+import { createIntl } from "@formatjs/intl";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import { isDemo } from "../../utils/isDemo";
@@ -38,9 +39,18 @@ export class LeaderboardRank {
 function useLeaderboardRankDemo(
   props: LeaderboardRankProps
 ): LeaderboardRankViewProps {
+  const intl = createIntl({
+    locale: "en",
+  });
   return {
     data: {
-      rank: props.rankText || "1st",
+      rank:
+        intl.formatMessage(
+          { id: "rankText", defaultMessage: props.rankText },
+          {
+            rank: 1,
+          }
+        ) || "1st",
     },
   };
 }

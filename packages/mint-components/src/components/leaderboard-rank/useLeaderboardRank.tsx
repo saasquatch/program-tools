@@ -2,7 +2,8 @@ import { useQuery } from "@saasquatch/component-boilerplate";
 import gql from "graphql-tag";
 import { LeaderboardRankViewProps } from "./leaderboard-rank-view";
 import { createIntl, createIntlCache } from "@formatjs/intl";
-
+import debugFn from "debug";
+const debug = debugFn("sq:useLeaderboardRank");
 export interface LeaderboardRankProps {
   rankType: "rowNumber" | "rank" | "denseRank";
   rankText: string;
@@ -69,11 +70,18 @@ export function useLeaderboardRank(
   //     leaderboardData?.userLeaderboard?.dateModified) *
   //   -1;
 
+  debug(
+    "rank",
+    rankData?.viewer?.leaderboardRank,
+    "intl formatted:",
+    intl.formatMessage(
+      { id: "rankText", defaultMessage: props.rankText },
+      {
+        rank: rankData?.viewer?.leaderboardRank?.[props.rankType],
+      }
+    )
+  );
   return {
-    // states: {
-    //   loading: loadingLeaderboard || loadingRank,
-    //   styles: props,
-    // },
     data: {
       rank: fullRankText,
       // rankType: props.rankType,
@@ -87,6 +95,5 @@ export function useLeaderboardRank(
       //   }
       // ),
     },
-    // callbacks: {},
   };
 }
