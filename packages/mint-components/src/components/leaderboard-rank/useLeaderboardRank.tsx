@@ -6,6 +6,7 @@ import { createIntl, createIntlCache } from "@formatjs/intl";
 export interface LeaderboardRankProps {
   rankType: "rowNumber" | "rank" | "denseRank";
   rankText: string;
+  unrankedText:string;
 }
 
 const GET_RANK = gql`
@@ -46,7 +47,7 @@ export function useLeaderboardRank(
           rank: rankData?.viewer?.leaderboardRank?.[props.rankType],
         }
       )
-    : "unranked";
+    : props.unrankedText || "unranked";
 
   return {
     data: {

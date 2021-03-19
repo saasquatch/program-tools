@@ -31,6 +31,7 @@ export namespace Components {
           * @uiName Default rank
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
+        "unrankedText": string;
     }
     interface SqmRoute {
         "path": string;
@@ -215,6 +216,7 @@ declare namespace LocalJSX {
           * @uiName Default rank
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
+        "unrankedText"?: string;
     }
     interface SqmRoute {
         "path"?: string;

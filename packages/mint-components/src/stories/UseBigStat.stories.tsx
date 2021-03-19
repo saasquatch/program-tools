@@ -40,6 +40,7 @@ const View = (type: string) => {
     type,
     render: () => {},
     disconnectedCallback: () => {},
+    ignored:true
   });
   return <BigStatView {...props}>{label}</BigStatView>;
 };
@@ -50,6 +51,7 @@ const DemoView = () => {
     type,
     render: () => {},
     disconnectedCallback: () => {},
+    ignored: true
   });
   return <div>
     <div>

@@ -1,9 +1,9 @@
-import { Component, h, Prop } from "@stencil/core";
+import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { BigStatView } from "./big-stat-view";
 import { useBigStat } from "./useBigStat";
-import { isDemo } from "../../utils/isDemo";
 import { useDemoBigStat } from "./useDemoBigStat";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  *
@@ -29,6 +29,9 @@ export class BigStat {
    * @uiName Stat Type
    */
   @Prop() type: string;
+
+  @State()
+  ignored = true;
 
   constructor() {
     withHooks(this);

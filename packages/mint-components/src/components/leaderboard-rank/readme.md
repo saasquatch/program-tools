@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property   | Attribute   | Description | Type                                   | Default     |
-| ---------- | ----------- | ----------- | -------------------------------------- | ----------- |
-| `rankText` | `rank-text` |             | `string`                               | `undefined` |
-| `rankType` | `rank-type` |             | `"denseRank" \| "rank" \| "rowNumber"` | `undefined` |
+| Property       | Attribute       | Description | Type                                   | Default     |
+| -------------- | --------------- | ----------- | -------------------------------------- | ----------- |
+| `rankText`     | `rank-text`     |             | `string`                               | `undefined` |
+| `rankType`     | `rank-type`     |             | `"denseRank" \| "rank" \| "rowNumber"` | `undefined` |
+| `unrankedText` | `unranked-text` |             | `string`                               | `undefined` |
 
 
 ----------------------------------------------

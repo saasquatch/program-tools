@@ -1,6 +1,6 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
-import { isDemo } from "../../utils/isDemo";
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { ShareButtonView, ShareButtonViewProps } from "./share-button-view";
 import { useShareButton } from "./useShareButton";
 

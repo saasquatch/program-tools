@@ -1,6 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, Prop, h } from "@stencil/core";
+import { Component, Prop, h, State} from "@stencil/core";
 import { LeaderboardView, LeaderboardViewProps } from "./leaderboard-view";
 import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 
@@ -24,6 +24,9 @@ export class Leaderboard {
 
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
 
+  @State()
+  ignored = true;
+
   constructor() {
     withHooks(this);
   }
@@ -33,7 +36,9 @@ export class Leaderboard {
     const props = {
       empty: <slot name="empty" />,
       loadingstate: <slot name="loading" />,
-      ...this,
+      usersheading:this.usersheading,
+      statsheading:this.statsheading,
+      rankType: this.rankType
     };
     const viewprops = isDemo()
       ? useLeaderboardDemo(props)

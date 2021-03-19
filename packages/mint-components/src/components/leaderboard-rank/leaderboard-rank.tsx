@@ -1,7 +1,7 @@
 import { createIntl } from "@formatjs/intl";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
-import { isDemo } from "../../utils/isDemo";
+import { isDemo } from "@saasquatch/component-boilerplate";
 import {
   LeaderboardRankView,
   LeaderboardRankViewProps,
@@ -22,6 +22,7 @@ export class LeaderboardRank {
    */
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
   @Prop() rankText: string;
+  @Prop() unrankedText: string;
 
   constructor() {
     withHooks(this);
