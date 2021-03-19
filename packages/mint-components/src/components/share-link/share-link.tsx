@@ -1,44 +1,44 @@
-import { withHooks } from '@saasquatch/stencil-hooks';
-import { Component, Prop, h } from '@stencil/core';
-import { isDemo } from '../../utils/isDemo';
-import { ShareLinkView, ShareLinkViewProps } from './share-link-view';
-import { useShareLink } from './useShareLink';
+import { withHooks } from "@saasquatch/stencil-hooks";
+import { Component, Prop, h } from "@stencil/core";
+import { isDemo } from "../../utils/isDemo";
+import { ShareLinkView, ShareLinkViewProps } from "./share-link-view";
+import { useShareLink } from "./useShareLink";
+
+const DEFAULT_TOOLTIP_LIFESPAN = 1000;
 
 /**
  * @uiName Share Link
  */
 @Component({
-  tag: 'sqm-share-link',
-  styleUrl: 'share-link.css',
+  tag: "sqm-share-link",
+  styleUrl: "share-link.css",
   shadow: true,
 })
 export class ShareLink {
   /**
-   * The ID of the program that should generate the link.
-   * 
+   * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
+   *
    * @uiName Program ID
    */
-  @Prop() programId: string
-  /**
-   * @uiName Icon
-   */
-  @Prop() icon?: string;
-  /**
-   * @uiName Icon Label
-   */
-  @Prop() iconlabel?: string;
+  @Prop() programId?: string;
   /**
    * This is shown after someone has successfully copied the link to the clipboard.
    *
    * @uiName Tooltip text
    */
-  @Prop() tooltiptext?: string;
+  @Prop({
+    attribute: "tooltip-text",
+  })
+  tooltiptext: string = "Copied to Clipboard";
   /**
    * The number of milliseconds that the tooltip will appear for
-   * 
+   *
    * @uiName Tooltip lifespan
    */
-  @Prop() tooltiplifespan?: number;
+  @Prop({
+    attribute: "tooltip-lifespan",
+  })
+  tooltiplifespan: number = DEFAULT_TOOLTIP_LIFESPAN;
 
   constructor() {
     withHooks(this);
@@ -53,10 +53,9 @@ export class ShareLink {
 
 function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
   return {
-    sharelink: 'https://www.example.com/sharelink/abc',
-    icon: props.icon,
-    iconlabel: props.iconlabel,
+    sharelink: "https://www.example.com/sharelink/abc",
     tooltiptext: props.tooltiptext,
+    open: false,
     onClick: () => {
       // TODO: PRovide UI feedback via Admin SDK
     },

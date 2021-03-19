@@ -2,6 +2,7 @@ import { useQuery, useEngagementMedium } from '@saasquatch/component-boilerplate
 import gql from 'graphql-tag';
 import { ShareButtonViewProps } from './share-button-view';
 import { PlatformNativeActions } from '../../global/android';
+import { getEnvironmentSDK, useProgramId } from '@saasquatch/component-boilerplate/dist/environment/environment';
 
 declare const SquatchAndroid: PlatformNativeActions | undefined;
 
@@ -71,7 +72,9 @@ function GenericShare(res: any) {
 }
 
 export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
-  const { sharetitle, sharetext, medium, programId } = props;
+  const { sharetitle, sharetext, medium } = props;
+
+  const programId = props.programId ? props.programId : useProgramId();
 
   const variables = {
     engagementMedium: useEngagementMedium(),
@@ -88,19 +91,19 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   const directLink = useQuery(ShareLinkQuery, directVariables)?.data?.viewer?.shareLink;
 
+  const environment = getEnvironmentSDK();
+
+  const hide = (medium.toLocaleUpperCase() === 'SMS' && navigator.platform !== 'Android') || (medium.toLocaleUpperCase() === 'SMS' && navigator.platform !== 'iPhone')
+
   function onClick() {
-    switch (medium.toLocaleUpperCase()) {
-      case 'FACEBOOK':
-        FacebookShare(directLink, res);
-        break;
-      case 'DIRECT':
-        NativeShare({ sharetitle, sharetext }, directLink);
-        break;
-      default:
-        GenericShare(res);
-        break;
+    if(medium.toLocaleUpperCase() === 'FACEBOOK' && environment.type === 'SquatchAndroid'){
+      FacebookShare(directLink, res);
+    } else if (medium.toLocaleUpperCase() === 'DIRECT'){
+      NativeShare({ sharetitle, sharetext }, directLink);
+    } else{
+      GenericShare(res);
     }
   }
 
-  return { ...props, onClick };
+  return { ...props, onClick, hide };
 }

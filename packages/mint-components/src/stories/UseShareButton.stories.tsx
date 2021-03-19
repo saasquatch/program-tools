@@ -30,7 +30,7 @@ function setupGraphQL() {
 export const BareBonesView = () => {
   setupGraphQL();
   const programId = 'a-referral-program';
-  const res = [useShareButton({ programId, medium: 'facebook' }), useShareButton({ programId, medium: 'twitter' }), useShareButton({ programId, medium: 'email' }), useShareButton({ programId, medium: 'direct' })];
+  const res = [useShareButton({ programId, medium: 'facebook' }), useShareButton({ programId, medium: 'twitter' }), useShareButton({ programId, medium: 'email' }), useShareButton({ programId, medium: 'direct' }), useShareButton({ programId, medium: 'direct' })];
   return (
     <div>
       {res.map(r => (
