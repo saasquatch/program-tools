@@ -1,7 +1,7 @@
 import { Component, h, Prop } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { BigStatView } from "./big-stat-view";
-import { BigStatHook, useBigStat } from "./useBigStat";
+import { useBigStat } from "./useBigStat";
 import { isDemo } from "../../utils/isDemo";
 import { useDemoBigStat } from "./useDemoBigStat";
 
@@ -36,9 +36,7 @@ export class BigStat {
   disconnectedCallback() {}
 
   render() {
-    const { props, label } = isDemo()
-      ? useDemoBigStat(this)
-      : useBigStat(this);
+    const { props, label } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
     return (
       <BigStatView {...props}>
         <slot>{label}</slot>
