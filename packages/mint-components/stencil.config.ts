@@ -5,8 +5,8 @@ import alias from "@rollup/plugin-alias";
 import copy from "rollup-plugin-copy";
 import css from "rollup-plugin-css-only";
 import path from "path";
-import { JsonDocs, OutputTarget } from "@stencil/core/internal";
-import { grapesJSGenerator } from "./plugin/generator";
+import { OutputTarget } from "@stencil/core/internal";
+import { grapesJsOutput } from "@saasquatch/stencil-grapes-plugin";
 const useDocx: OutputTarget = {
   type: "docs-custom",
   generator: createDocxGenerator({
@@ -22,11 +22,7 @@ const copyGrapesJS = {
   dest: "grapesjs.js",
   warn: true,
 } as const;
-const useGrapesjs: OutputTarget = {
-  type: "docs-custom",
-  generator: grapesJSGenerator,
-  strict: true,
-} as const;
+const useGrapesjs: OutputTarget = grapesJsOutput({});
 
 const outputTargets: OutputTarget[] = [
   useDocx,

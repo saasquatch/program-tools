@@ -9,7 +9,7 @@ export const Default = () => {
   const props = {
     sharelink: "https://noah.example.com",
     open: false,
-    tooltiptext: "Copied!"
+    tooltiptext: "Copied!",
   };
   return <ShareLinkView {...props} />;
 };
@@ -28,7 +28,7 @@ export const Disabled = () => {
     sharelink: "https://noah.example.com",
     disabled: true,
     open: true,
-    tooltiptext: "Copied!"
+    tooltiptext: "Copied!",
   };
   return <ShareLinkView {...props} />;
 };
