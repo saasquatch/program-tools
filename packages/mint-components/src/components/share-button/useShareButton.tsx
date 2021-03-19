@@ -2,7 +2,7 @@ import { useQuery, useEngagementMedium } from '@saasquatch/component-boilerplate
 import gql from 'graphql-tag';
 import { ShareButtonViewProps } from './share-button-view';
 import { PlatformNativeActions } from '../../global/android';
-import { getEnvironmentSDK } from '@saasquatch/component-boilerplate/dist/environment/environment';
+import { getEnvironmentSDK, useProgramId } from '@saasquatch/component-boilerplate/dist/environment/environment';
 
 declare const SquatchAndroid: PlatformNativeActions | undefined;
 
@@ -72,7 +72,9 @@ function GenericShare(res: any) {
 }
 
 export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
-  const { sharetitle, sharetext, medium, programId } = props;
+  const { sharetitle, sharetext, medium } = props;
+
+  const programId = props.programId ? props.programId : useProgramId();
 
   const variables = {
     engagementMedium: useEngagementMedium(),

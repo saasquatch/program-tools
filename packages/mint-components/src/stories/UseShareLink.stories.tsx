@@ -27,7 +27,7 @@ function setupGraphQL() {
 
 export const BareBonesView = () => {
   setupGraphQL();
-  const res = useShareLink({ programId: "a-referral-program" });
+  const res = useShareLink({ programId: "a-referral-program", tooltiptext: "Copied!", tooltiplifespan: 1000 });
   return (
     <div>
       Sharelink:{" "}
@@ -47,6 +47,7 @@ export const RegularView = () => {
       {...useShareLink({
         programId: "a-referral-program",
         tooltiptext: "Copied to clipboard",
+        tooltiplifespan: 1000
       })}
     />
   );
