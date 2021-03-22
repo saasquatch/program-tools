@@ -12,8 +12,8 @@ import { LeaderboardRankProps, useLeaderboardRank } from "./useLeaderboardRank";
  * @uiName Leaderboard Rank
  */
 @Component({
-  tag: "sqm-leaderboard-rank",
-  styleUrl: "leaderboard-rank.css",
+  tag: 'sqm-leaderboard-rank',
+  styleUrl: 'leaderboard-rank.scss',
   shadow: true,
 })
 export class LeaderboardRank {

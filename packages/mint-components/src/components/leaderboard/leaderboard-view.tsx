@@ -1,22 +1,5 @@
-import { h, VNode } from "@stencil/core";
-import { css } from "emotion";
-import { gap, seperateContent } from "../../global/mixins";
-import { Column } from "../styles/Spacing";
-
-const ColumnWrapper = css`
-  ${Column}
-  ${gap("top", "0")}
-`;
-
-const Row = css`
-  ${seperateContent()}
-  padding: var(--sl-spacing-x-small) var(--sl-spacing-small);
-
-  &:not(:last-child) {
-    border-bottom: 1px solid var(--sl-color-panel);
-  }
-`;
-
+import { VNode } from "@stencil/core";
+import { h } from "@stencil/core";
 export interface LeaderboardViewProps {
   states: {
     loading: boolean;
@@ -51,14 +34,14 @@ export function LeaderboardView(props: LeaderboardViewProps) {
     <div>
       {!states.hasLeaders && elements.empty}
       {states.hasLeaders && (
-        <div class={ColumnWrapper}>
-          <div class={Row}>
+        <div class="Column">
+          <div class="SeparateContent">
             <b>{styles.usersheading}</b>
             <b>{styles.statsheading}</b>
           </div>
           {data.leaderboard?.map((user) => {
             return (
-              <div class={Row}>
+              <div class="SeparateContent">
                 <span>{`${user.firstName} ${user.lastInitial} `}</span>
                 <span>{user.value}</span>
               </div>

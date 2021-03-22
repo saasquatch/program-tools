@@ -317,6 +317,11 @@ export const StatPaths = [
 
 export const StatPatterns = StatPaths.map((pattern) => pathToRegexp(pattern));
 
+export function parsePath(type: string): string[] | undefined {
+  const re = useMemo(() => StatPatterns.find((re) => re.test(type)), [type]);
+  return re?.exec(type).slice(1);
+}
+
 export function useBigStat({
   statType,
 }: BigStat) {

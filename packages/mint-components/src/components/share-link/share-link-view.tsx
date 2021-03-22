@@ -1,5 +1,4 @@
 import { h } from "@stencil/core";
-import { css } from "emotion";
 
 export interface ShareLinkViewProps {
   sharelink: string;
@@ -11,14 +10,6 @@ export interface ShareLinkViewProps {
   onClick?: () => void;
 }
 
-const copyInput = css`
-  &::part(base) {
-    background: white;
-    opacity: 1;
-    cursor: pointer;
-  }
-`;
-
 export function ShareLinkView(props: ShareLinkViewProps) {
   return (
     <div>
@@ -29,7 +20,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         disabled={props.disabled}
         open={props.open}
       >
-        <sl-input class={copyInput} value={props.sharelink} disabled readonly>
+        <sl-input value={props.sharelink} disabled readonly>
           <sl-icon-button
             onClick={() => props.onClick?.()}
             slot="suffix"

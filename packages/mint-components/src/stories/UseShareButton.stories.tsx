@@ -30,7 +30,7 @@ function setupGraphQL() {
 export const BareBonesView = () => {
   setupGraphQL();
   const programId = 'a-referral-program';
-  const res = [useShareButton({ programId, medium: 'facebook' }), useShareButton({ programId, medium: 'twitter' }), useShareButton({ programId, medium: 'email' }), useShareButton({ programId, medium: 'direct' }), useShareButton({ programId, medium: 'direct' })];
+  const res = [useShareButton({ programId, medium: 'facebook' }), useShareButton({ programId, medium: 'twitter' }), useShareButton({ programId, medium: 'email' }), useShareButton({ programId, medium: 'direct' }), useShareButton({ programId, medium: 'sms' })];
   return (
     <div>
       {res.map(r => (
@@ -45,7 +45,7 @@ export const BareBonesView = () => {
 export const RegularView = () => {
   setupGraphQL();
   const programId = 'a-referral-program';
-  const mediums: Array<ReturnType<typeof useShareButton>['medium']> = ['facebook', 'twitter', 'email'];
+  const mediums: Array<ReturnType<typeof useShareButton>['medium']> = ['facebook', 'twitter', 'email', 'direct', 'sms'];
   return (
     <div>
       {mediums.map(medium => (
