@@ -7,20 +7,20 @@ import {
   useRef,
   useState,
 } from "@saasquatch/universal-hooks";
-// import {
-//   act,
-//   renderHook,
-//   setTestImplementation,
-// } from "@saasquatch/universal-hooks-testing-library";
+import {
+  act,
+  renderHook,
+  setTestImplementation,
+} from "@saasquatch/universal-hooks-testing-library";
 import * as React from "react";
-// import * as ReactTestLib from "@testing-library/react-hooks";
-import { act, renderHook } from "@testing-library/react-hooks";
+import * as ReactTestLib from "@testing-library/react-hooks";
+// import { act, renderHook } from "@testing-library/react-hooks";
 import { setUseHostImplementation, useQuery } from "../dist";
 import { gql, GraphQLClient } from "graphql-request";
 import { RequestDocument } from "graphql-request/dist/types";
 
 setImplementation(React);
-// setTestImplementation(ReactTestLib);
+setTestImplementation(ReactTestLib);
 
 const spyGraphQLRequest = jest.spyOn(GraphQLClient.prototype, "request");
 const renderCounter = jest.fn(() => {});
