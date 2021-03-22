@@ -328,4 +328,40 @@ describe("useQuery", () => {
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(queryB, variablesB);
     expect(result.current.data).toBe(resolvedData);
   });
+
+  test("loading while query hasn't returned", async () => {
+    const query = gql`invalid graphql query`;
+    const variables = { total: "nonsense" };
+    const resolvedData = Symbol("arbitrary data of arbitrary type");
+
+    let unblock: Function;
+    const loadingBlocker = new Promise((resolve, _) => {
+      unblock = () => resolve(resolvedData);
+    });
+
+    spyGraphQLRequest.mockReturnValue(loadingBlocker);
+    const queryFired = queryFiredTracker();
+
+    function hook() {
+      useTesting();
+      return useQuery(query, variables);
+    }
+    let result: { current: ReturnType<typeof hook> };
+    await act(async () => {
+      result = renderHook(hook)["result"];
+    });
+
+    expect(queryFired()).toBe(true);
+    expect(spyGraphQLRequest).toHaveBeenLastCalledWith(query, variables);
+    expect(result.current.loading).toBe(true)
+    expect(result.current.data).toBe(undefined);
+
+    await act(async () => {
+      unblock()
+    });
+
+    expect(queryFired()).toBe(false);
+    expect(result.current.loading).toBe(false)
+    expect(result.current.data).toBe(resolvedData);
+  });
 });
