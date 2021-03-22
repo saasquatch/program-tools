@@ -1,0 +1,31 @@
+@mixin P {
+  p,
+  .P {
+    font-size: var(--sl-font-size-small);
+    color: var(--sl-color-gray-800);
+    margin-top: 0px;
+
+    &.Subtitle {
+      color: var(--sl-color-gray-500);
+      margin: 0px;
+    }
+  }
+}
+
+@mixin Column {
+  .Column {
+    display: flex;
+    flex-direction: column;
+    & > :not(:first-child) {
+      margin-top: var(--sl-spacing-medium);
+    }
+  }
+}
+
+@mixin SeperateContent {
+  .SeperateContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

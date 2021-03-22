@@ -9,7 +9,7 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
  */
 @Component({
   tag: "sqm-leaderboard",
-  styleUrl: "leaderboard.css",
+  styleUrl: "leaderboard.scss",
   shadow: true,
 })
 export class Leaderboard {

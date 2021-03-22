@@ -11,7 +11,7 @@ const DEFAULT_TOOLTIP_LIFESPAN = 1000;
  */
 @Component({
   tag: "sqm-share-link",
-  styleUrl: "share-link.css",
+  styleUrl: "share-link.scss",
   shadow: true,
 })
 export class ShareLink {

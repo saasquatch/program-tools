@@ -48,7 +48,7 @@ export const config: Config = {
     }
     return true;
   }),
-  plugins: [sass()],
+  plugins: [sass({ injectGlobalPaths: ["src/global/mixins.scss"] })],
   rollupPlugins: {
     before: [
       alias({
