@@ -14,15 +14,9 @@ import {
 // } from "@saasquatch/universal-hooks-testing-library";
 import * as React from "react";
 // import * as ReactTestLib from "@testing-library/react-hooks";
-import {
-  act,
-  renderHook,
-  RenderHookResult,
-} from "@testing-library/react-hooks";
-import { setUseHostImplementation, useProgramId, useQuery } from "../dist";
+import { act, renderHook } from "@testing-library/react-hooks";
+import { setUseHostImplementation, useQuery } from "../dist";
 import { gql, GraphQLClient } from "graphql-request";
-import * as environment from "../src/environment/environment";
-import { SquatchPortalInstance } from "../src/environment/SquatchPortal";
 import { RequestDocument } from "graphql-request/dist/types";
 
 setImplementation(React);
@@ -38,12 +32,43 @@ function useTesting() {
   renderCounter();
 }
 
+// an actual query causes 3 renders, whereas a cached query causes 1
+function renderTypeTracker() {
+  let prev = 0;
+  let curr = 0;
+  return () => {
+    curr = renderCounter.mock.calls.length;
+    let ret: "CACHED" | "UNCACHED" | "UNKNOWN";
+    switch (curr - prev) {
+      case 1:
+        ret = "CACHED";
+        break;
+      case 3:
+        ret = "UNCACHED";
+        break;
+      default:
+        ret = "UNKNOWN";
+        break;
+    }
+    prev = curr;
+    return ret;
+  };
+}
+
+function queryFiredTracker() {
+  let prev = 0;
+  let curr = 0;
+  return () => {
+    curr = spyGraphQLRequest.mock.calls.length;
+    const ret = curr - prev !== 0;
+    prev = curr;
+    return ret;
+  };
+}
+
 // NOTE: always put effects in an act block like this:
 //   await act(async () => {...code...})
 // even if there is no await inside, it can prevent async errors
-
-// patterns to note:
-// - an actual query causes 3 renders, whereas a cached query causes 1
 
 describe("useQuery", () => {
   afterEach(() => {
@@ -57,6 +82,7 @@ describe("useQuery", () => {
     const resolvedData = {};
 
     spyGraphQLRequest.mockResolvedValue(resolvedData);
+    const queryFired = queryFiredTracker();
 
     function hook() {
       useTesting();
@@ -67,7 +93,7 @@ describe("useQuery", () => {
       result = renderHook(hook)["result"];
     });
 
-    expect(spyGraphQLRequest).toBeCalledTimes(1);
+    expect(queryFired()).toBe(true);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(query, variables);
     expect(result.current.data).toBe(resolvedData);
   });
@@ -78,6 +104,7 @@ describe("useQuery", () => {
     const resolvedData = Symbol("arbitrary data of arbitrary type");
 
     spyGraphQLRequest.mockResolvedValue(resolvedData);
+    const queryFired = queryFiredTracker();
 
     function hook() {
       useTesting();
@@ -88,7 +115,7 @@ describe("useQuery", () => {
       result = renderHook(hook)["result"];
     });
 
-    expect(spyGraphQLRequest).toBeCalledTimes(1);
+    expect(queryFired()).toBe(true);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(query, variables);
     expect(result.current.data).toBe(resolvedData);
   });
@@ -99,6 +126,8 @@ describe("useQuery", () => {
     const resolvedData = Symbol("arbitrary data of arbitrary type");
 
     spyGraphQLRequest.mockResolvedValue(resolvedData);
+    const renderType = renderTypeTracker();
+    const queryFired = queryFiredTracker();
 
     function hook({ q, v }: { q: RequestDocument; v: unknown }) {
       useTesting();
@@ -113,8 +142,8 @@ describe("useQuery", () => {
       ({ result, rerender } = ret);
     });
 
-    expect(renderCounter).toHaveBeenCalledTimes(3);
-    expect(spyGraphQLRequest).toBeCalledTimes(1);
+    expect(renderType()).toBe("UNCACHED");
+    expect(queryFired()).toBe(true);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(query, variables);
     expect(result.current.data).toBe(resolvedData);
 
@@ -122,8 +151,8 @@ describe("useQuery", () => {
       rerender({ q: query, v: variables });
     });
 
-    expect(renderCounter).toHaveBeenCalledTimes(4);
-    expect(spyGraphQLRequest).toBeCalledTimes(1);
+    expect(renderType()).toBe("CACHED");
+    expect(queryFired()).toBe(false);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(query, variables);
     expect(result.current.data).toBe(resolvedData);
   });
@@ -131,10 +160,12 @@ describe("useQuery", () => {
   test("cache miss on new query", async () => {
     const queryA = gql`A`;
     const queryB = gql`B`;
-       const variables = { total: "nonsense" };
+    const variables = { total: "nonsense" };
     const resolvedData = Symbol("arbitrary data of arbitrary type");
 
     spyGraphQLRequest.mockResolvedValue(resolvedData);
+    const renderType = renderTypeTracker();
+    const queryFired = queryFiredTracker();
 
     function hook({ q, v }: { q: RequestDocument; v: unknown }) {
       useTesting();
@@ -149,8 +180,8 @@ describe("useQuery", () => {
       ({ result, rerender } = ret);
     });
 
-    expect(renderCounter).toHaveBeenCalledTimes(3);
-    expect(spyGraphQLRequest).toBeCalledTimes(1);
+    expect(renderType()).toBe("UNCACHED");
+    expect(queryFired()).toBe(true);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(queryA, variables);
     expect(result.current.data).toBe(resolvedData);
 
@@ -158,8 +189,8 @@ describe("useQuery", () => {
       rerender({ q: queryB, v: variables });
     });
 
-    expect(renderCounter).toHaveBeenCalledTimes(6);
-    expect(spyGraphQLRequest).toBeCalledTimes(2);
+    expect(renderType()).toBe("UNCACHED");
+    expect(queryFired()).toBe(true);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(queryB, variables);
     expect(result.current.data).toBe(resolvedData);
   });
@@ -171,6 +202,8 @@ describe("useQuery", () => {
     const resolvedData = Symbol("arbitrary data of arbitrary type");
 
     spyGraphQLRequest.mockResolvedValue(resolvedData);
+    const renderType = renderTypeTracker();
+    const queryFired = queryFiredTracker();
 
     function hook({ q, v }: { q: RequestDocument; v: unknown }) {
       useTesting();
@@ -185,8 +218,8 @@ describe("useQuery", () => {
       ({ result, rerender } = ret);
     });
 
-    expect(renderCounter).toHaveBeenCalledTimes(3);
-    expect(spyGraphQLRequest).toBeCalledTimes(1);
+    expect(renderType()).toBe("UNCACHED");
+    expect(queryFired()).toBe(true);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(query, variablesA);
     expect(result.current.data).toBe(resolvedData);
 
@@ -194,11 +227,11 @@ describe("useQuery", () => {
       rerender({ q: query, v: variablesB });
     });
 
-    expect(renderCounter).toHaveBeenCalledTimes(6);
-    expect(spyGraphQLRequest).toBeCalledTimes(2);
+    expect(renderType()).toBe("UNCACHED");
+    expect(queryFired()).toBe(true);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(query, variablesB);
     expect(result.current.data).toBe(resolvedData);
-  })
+  });
 
   test("cache miss on new query variables", async () => {
     const queryA = gql`A`;
@@ -208,6 +241,8 @@ describe("useQuery", () => {
     const resolvedData = Symbol("arbitrary data of arbitrary type");
 
     spyGraphQLRequest.mockResolvedValue(resolvedData);
+    const renderType = renderTypeTracker();
+    const queryFired = queryFiredTracker();
 
     function hook({ q, v }: { q: RequestDocument; v: unknown }) {
       useTesting();
@@ -222,8 +257,8 @@ describe("useQuery", () => {
       ({ result, rerender } = ret);
     });
 
-    expect(renderCounter).toHaveBeenCalledTimes(3);
-    expect(spyGraphQLRequest).toBeCalledTimes(1);
+    expect(renderType()).toBe("UNCACHED");
+    expect(queryFired()).toBe(true);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(queryA, variablesA);
     expect(result.current.data).toBe(resolvedData);
 
@@ -231,11 +266,11 @@ describe("useQuery", () => {
       rerender({ q: queryB, v: variablesB });
     });
 
-    expect(renderCounter).toHaveBeenCalledTimes(6);
-    expect(spyGraphQLRequest).toBeCalledTimes(2);
+    expect(renderType()).toBe("UNCACHED");
+    expect(queryFired()).toBe(true);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(queryB, variablesB);
     expect(result.current.data).toBe(resolvedData);
-  })
+  });
 
   test("cache only stores 1 entry", async () => {
     const queryA = gql`A`;
@@ -245,6 +280,8 @@ describe("useQuery", () => {
     const resolvedData = Symbol("arbitrary data of arbitrary type");
 
     spyGraphQLRequest.mockResolvedValue(resolvedData);
+    const renderType = renderTypeTracker();
+    const queryFired = queryFiredTracker();
 
     function hook({ q, v }: { q: RequestDocument; v: unknown }) {
       useTesting();
@@ -259,8 +296,8 @@ describe("useQuery", () => {
       ({ result, rerender } = ret);
     });
 
-    expect(renderCounter).toHaveBeenCalledTimes(3);
-    expect(spyGraphQLRequest).toBeCalledTimes(1);
+    expect(renderType()).toBe("UNCACHED");
+    expect(queryFired()).toBe(true);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(queryA, variablesA);
     expect(result.current.data).toBe(resolvedData);
 
@@ -268,8 +305,8 @@ describe("useQuery", () => {
       rerender({ q: queryB, v: variablesB });
     });
 
-    expect(renderCounter).toHaveBeenCalledTimes(6);
-    expect(spyGraphQLRequest).toBeCalledTimes(2);
+    expect(renderType()).toBe("UNCACHED");
+    expect(queryFired()).toBe(true);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(queryB, variablesB);
     expect(result.current.data).toBe(resolvedData);
 
@@ -277,8 +314,8 @@ describe("useQuery", () => {
       rerender({ q: queryA, v: variablesA });
     });
 
-    expect(renderCounter).toHaveBeenCalledTimes(9);
-    expect(spyGraphQLRequest).toBeCalledTimes(3);
+    expect(renderType()).toBe("UNCACHED");
+    expect(queryFired()).toBe(true);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(queryA, variablesA);
     expect(result.current.data).toBe(resolvedData);
 
@@ -286,10 +323,9 @@ describe("useQuery", () => {
       rerender({ q: queryB, v: variablesB });
     });
 
-    expect(renderCounter).toHaveBeenCalledTimes(12);
-    expect(spyGraphQLRequest).toBeCalledTimes(4);
+    expect(renderType()).toBe("UNCACHED");
+    expect(queryFired()).toBe(true);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(queryB, variablesB);
     expect(result.current.data).toBe(resolvedData);
-  })
-
+  });
 });
