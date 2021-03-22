@@ -12,7 +12,7 @@ export namespace Components {
           * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
          */
-        "type": string;
+        "statType": string;
     }
     interface SqmLeaderboard {
         "rankType": "rowNumber" | "rank" | "denseRank";
@@ -197,7 +197,7 @@ declare namespace LocalJSX {
           * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
          */
-        "type"?: string;
+        "statType"?: string;
     }
     interface SqmLeaderboard {
         "rankType"?: "rowNumber" | "rank" | "denseRank";
