@@ -54,11 +54,17 @@ import {
   SlTag,
   SlTextarea,
   SlTooltip,
-  setBasePath
+  setBasePath,
+  registerIconLibrary
 } from "@shoelace-style/shoelace";
 
 try {
-  setBasePath("/dist/shoelace")
+  setBasePath("/dist/shoelace");
+  // SlAlert.register();
+  registerIconLibrary('default', {
+    // same link that shoelace uses internally
+    resolver: name => `https://cdn.jsdelivr.net/npm/bootstrap-icons@1.0.0/icons/${name}.svg`
+  });
   // SlAlert.register();
   customElements.define("sl-alert", SlAlert);
   customElements.define("sl-animation", SlAnimation);
