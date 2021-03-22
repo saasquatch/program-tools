@@ -27,7 +27,7 @@ export const column = () => css`
   flex-direction: column;
 `;
 
-export const seperateContent = () => css`
+export const separateContent = () => css`
   display: flex;
   justify-content: space-between;
   align-items: center;
