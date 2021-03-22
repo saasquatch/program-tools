@@ -28,7 +28,7 @@ export class BigStat {
    * @uiWidget StatTypeSelectWidget
    * @uiName Stat Type
    */
-  @Prop() type: string;
+  @Prop() statType: string;
 
   @State()
   ignored = true;

@@ -5,7 +5,7 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
   // create label from first part of path only using formatting
   // "/rewardBalance/CREDIT/CASH_USD/prettyValue" => "Reward Balance"
   let label = /^\/(\w+)/
-    .exec(props.type)?.[1]
+    .exec(props.statType)?.[1]
     ?.replace(/^([a-z])/, (_, c) => c.toUpperCase());
 
   // we don't have replaceAll :(
