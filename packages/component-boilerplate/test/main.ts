@@ -233,7 +233,45 @@ describe("useQuery", () => {
     expect(result.current.data).toBe(resolvedData);
   });
 
-  test("cache miss on new query variables", async () => {
+  test("cache hit on deep equal variables", async () => {
+    const query = gql`hello`;
+    const variablesA = { really: { really: "super" }, deep: { equal: "ity" } };
+    const variablesB = { really: { really: "super" }, deep: { equal: "ity" } };
+    const resolvedData = Symbol("arbitrary data of arbitrary type");
+
+    spyGraphQLRequest.mockResolvedValue(resolvedData);
+    const renderType = renderTypeTracker();
+    const queryFired = queryFiredTracker();
+
+    function hook({ q, v }: { q: RequestDocument; v: unknown }) {
+      useTesting();
+      return useQuery(q, v);
+    }
+    let result: { current: ReturnType<typeof hook> };
+    let rerender: (props?: { q: RequestDocument; v: unknown }) => void;
+    await act(async () => {
+      const ret = renderHook(hook, {
+        initialProps: { q: query, v: variablesA },
+      });
+      ({ result, rerender } = ret);
+    });
+
+    expect(renderType()).toBe("UNCACHED");
+    expect(queryFired()).toBe(true);
+    expect(spyGraphQLRequest).toHaveBeenLastCalledWith(query, variablesA);
+    expect(result.current.data).toBe(resolvedData);
+
+    await act(async () => {
+      rerender({ q: query, v: variablesB });
+    });
+
+    expect(renderType()).toBe("CACHED");
+    expect(queryFired()).toBe(false);
+    expect(spyGraphQLRequest).toHaveBeenLastCalledWith(query, variablesA);
+    expect(result.current.data).toBe(resolvedData);
+  });
+
+  test("cache miss on new query and variables", async () => {
     const queryA = gql`A`;
     const queryB = gql`B`;
     const variablesA = { a: "A" };
@@ -353,15 +391,15 @@ describe("useQuery", () => {
 
     expect(queryFired()).toBe(true);
     expect(spyGraphQLRequest).toHaveBeenLastCalledWith(query, variables);
-    expect(result.current.loading).toBe(true)
+    expect(result.current.loading).toBe(true);
     expect(result.current.data).toBe(undefined);
 
     await act(async () => {
-      unblock()
+      unblock();
     });
 
     expect(queryFired()).toBe(false);
-    expect(result.current.loading).toBe(false)
+    expect(result.current.loading).toBe(false);
     expect(result.current.data).toBe(resolvedData);
   });
 });
