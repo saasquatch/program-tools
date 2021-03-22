@@ -1,5 +1,5 @@
 @include Column;
-@include SeperateContent;
+@include SeparateContent;
 
 .Column {
   & > :not(:first-child) {
