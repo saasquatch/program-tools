@@ -86,6 +86,7 @@ const VALIDATE_FORM = gql`
 type UseFormProps = {
   formKey: string;
   formRef: HTMLFormElement;
+  setInitialData?: (htmlForm?: HTMLFormElement, initialData?: unknown) => void;
 };
 
 type FormState = {
@@ -116,10 +117,7 @@ export function useForm(props: UseFormProps) {
 
   const [getForm, { data, loading: loadingForm }] = useLazyQuery(GET_FORM);
   const [submit, { data: submitData }] = useMutation(SUBMIT_FORM);
-  const [
-    validate,
-    { data: validationData },
-  ] = useLazyQuery(VALIDATE_FORM);
+  const [validate, { data: validationData }] = useLazyQuery(VALIDATE_FORM);
 
   const initialState = {
     enabled: false,
@@ -153,17 +151,7 @@ export function useForm(props: UseFormProps) {
   }, []);
 
   useEffect(() => {
-    async function getFormData() {
-      setFormState({
-        enabled: data?.form.initialData?.isEnabled,
-        disabledMessage: data?.form?.initialData?.isEnabledErrorMessage,
-      });
-
-      const initialData = data?.form?.initialData?.initialData;
-      const htmlForm = formRef;
-
-      if (!htmlForm) return;
-
+    async function setInitialData(htmlForm, initialData) {
       // abstract out sl-form specific checks
       const inputs =
         htmlForm.localName === "sl-form"
@@ -194,7 +182,22 @@ export function useForm(props: UseFormProps) {
         }
       });
     }
-    if (!loadingForm && data) getFormData();
+    function initialize() {
+      setFormState({
+        enabled: data?.form.initialData?.isEnabled,
+        disabledMessage: data?.form?.initialData?.isEnabledErrorMessage,
+      });
+      const htmlForm = formRef;
+
+      if (!htmlForm) return;
+
+      const initialData = data?.form?.initialData?.initialData;
+
+      props.setInitialData !== undefined
+        ? props.setInitialData(htmlForm, initialData)
+        : setInitialData(htmlForm, initialData);
+    }
+    if (!loadingForm && data) initialize();
   }, [loadingForm]);
 
   useEffect(() => {
@@ -283,10 +286,9 @@ export function useForm(props: UseFormProps) {
   async function handleSubmit(e: any) {
     e.preventDefault();
 
-    
     setFormState({ validating: true });
     const form = e.target;
-    console.log(form)
+    console.log(form);
     const data = new FormData(form);
 
     let formData = {};
