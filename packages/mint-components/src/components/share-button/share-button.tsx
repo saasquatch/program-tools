@@ -10,7 +10,7 @@ import { useShareButton } from "./useShareButton";
  */
 @Component({
   tag: "sqm-share-button",
-  styleUrl: "share-button.css",
+  styleUrl: "share-button.scss",
   shadow: true,
 })
 export class ShareButon {
