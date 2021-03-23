@@ -1,7 +1,7 @@
 {
   "name": "@saasquatch/mint-components",
   "version": "0.0.1-8",
-  "description": "Stencil Component Starter",
+  "description": "Mint Components for the SaaSquatch content platform.",
   "main": "dist/index.cjs.js",
   "es2015": "dist/esm/index.js",
   "es2017": "dist/esm/index.js",
@@ -21,7 +21,8 @@
     "start": "stencil build --dev --watch --serve --docs",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "specs": "picklesdoc xlsx src docs --testers=2"
   },
   "license": "MIT",
   "devDependencies": {
@@ -54,6 +55,7 @@
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",
     "highlight.js": "^10.6.0",
-    "path-to-regexp": "^6.2.0"
+    "path-to-regexp": "^6.2.0",
+    "picklesdoc": "^1.1.1"
   }
 }
