@@ -287,10 +287,7 @@ export function useForm(props: UseFormProps) {
     setFormState({ validating: true });
     const form = e.target;
     console.log(form)
-    const data =
-      form.localName === "sl-form"
-        ? await form.getFormData()
-        : new FormData(form);
+    const data = new FormData(form);
 
     let formData = {};
 
