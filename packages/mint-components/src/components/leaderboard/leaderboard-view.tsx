@@ -1,23 +1,5 @@
-import { VNode } from '@stencil/core';
-import { h } from '@stencil/core';
-import { css } from 'emotion';
-import { gap, seperateContent } from '../../global/mixins';
-import { Column } from '../styles/Spacing';
-
-const ColumnWrapper = css`
-  ${Column}
-  ${gap('top', '0')}
-`;
-
-const Row = css`
-  ${seperateContent()}
-  padding: var(--sl-spacing-x-small) var(--sl-spacing-small);
-
-  &:not(:last-child) {
-    border-bottom: 1px solid var(--sl-color-panel);
-  }
-`;
-
+import { VNode } from "@stencil/core";
+import { h } from "@stencil/core";
 export interface LeaderboardViewProps {
   usersheading: string;
   statsheading: string;
@@ -36,14 +18,14 @@ export function LeaderboardView(props: LeaderboardViewProps) {
     <div>
       {!props.hasleaders && props.empty}
       {props.hasleaders && (
-        <div class={ColumnWrapper}>
-          <div class={Row}>
+        <div class="Column">
+          <div class="SeperateContent">
             <b>{props.usersheading}</b>
             <b>{props.statsheading}</b>
           </div>
-          {props.referrers.map(referrer => {
+          {props.referrers.map((referrer) => {
             return (
-              <div class={Row}>
+              <div class="SeperateContent">
                 <span>{referrer.name}</span>
                 <span>{referrer.score}</span>
               </div>

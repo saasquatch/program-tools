@@ -316,15 +316,20 @@ export const StatPaths = [
 
 export const StatPatterns = StatPaths.map((pattern) => pathToRegexp(pattern));
 
+export function parsePath(type: string): string[] | undefined {
+  const re = useMemo(() => StatPatterns.find((re) => re.test(type)), [type]);
+  return re?.exec(type).slice(1);
+}
+
 export function useBigStat({
   type,
   programId,
 }: BigStat & { programId?: string }) {
-  const re = useMemo(() => StatPatterns.find((re) => re.test(type)), [type]);
-  if (re === undefined) {
+  const parsed = parsePath(type);
+  if (parsed === undefined) {
     return { label: "BAD TYPE PROP", props: { statvalue: "!!!" } };
   }
-  const [queryName, ...queryArgs] = re.exec(type).slice(1);
+  const [queryName, ...queryArgs] = parsed;
 
   const label = queries[queryName].label;
   const stat = queries[queryName].query(programId, ...queryArgs);

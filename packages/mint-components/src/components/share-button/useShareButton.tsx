@@ -2,7 +2,7 @@ import { useQuery, useEngagementMedium } from '@saasquatch/component-boilerplate
 import gql from 'graphql-tag';
 import { ShareButtonViewProps } from './share-button-view';
 import { PlatformNativeActions } from '../../global/android';
-import { getEnvironmentSDK, useProgramId } from '@saasquatch/component-boilerplate/dist/environment/environment';
+import { useProgramId, getEnvironmentSDK } from '@saasquatch/component-boilerplate';
 
 declare const SquatchAndroid: PlatformNativeActions | undefined;
 
@@ -93,7 +93,7 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   const environment = getEnvironmentSDK();
 
-  const hide = (medium.toLocaleUpperCase() === 'SMS' && navigator.platform !== 'Android') || (medium.toLocaleUpperCase() === 'SMS' && navigator.platform !== 'iPhone')
+  const hide = (medium.toLocaleUpperCase() === 'SMS' && navigator.platform !== 'Android') || (medium.toLocaleUpperCase() === 'SMS' && navigator.platform !== 'iPhone') || (medium.toLocaleUpperCase() === 'DIRECT' && !window.navigator.share)
 
   function onClick() {
     if(medium.toLocaleUpperCase() === 'FACEBOOK' && environment.type === 'SquatchAndroid'){

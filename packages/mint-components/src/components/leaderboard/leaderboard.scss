@@ -1,0 +1,16 @@
+@include Column;
+@include SeperateContent;
+
+.Column {
+  & > :not(:first-child) {
+    margin-top: 0;
+  }
+}
+
+.SeperateContent {
+  padding: var(--sl-spacing-x-small) 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--sl-color-panel);
+  }
+}
