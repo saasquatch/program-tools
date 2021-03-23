@@ -16,10 +16,10 @@ export class StencilStorybook {
   @State()
   ignored = true;
 
-  @Prop() path: string;
   /**
    * @uiName Navigation path name
    */
+  @Prop() path: string;
 
   constructor() {
     withHooks(this);
