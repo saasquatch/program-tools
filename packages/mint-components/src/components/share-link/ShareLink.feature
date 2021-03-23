@@ -20,3 +20,9 @@ Feature: Share Link
     When the component renders
     And the clipboard icon is clicked
     Then a tooltip will appear for ~2 seconds
+
+  Scenario: Demo
+    Given isDemo() returns true
+    Then the share link will be "https://www.example.com/sharelink/abc"
+    And the component won't be interactive
+    And the tooltip will be hidden
