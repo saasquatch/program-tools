@@ -8,7 +8,7 @@
 }
 
 .SeparateContent {
-  padding: var(--sl-spacing-x-small) var(--sl-spacing-small);
+  padding: var(--sl-spacing-x-small) 0;
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--sl-color-panel);
