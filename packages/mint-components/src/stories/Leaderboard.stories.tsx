@@ -1,13 +1,16 @@
-import { h } from '@stencil/core';
-import { LeaderboardView } from '../components/leaderboard/leaderboard-view';
+import { h } from "@stencil/core";
+import { LeaderboardView } from "../components/leaderboard/leaderboard-view";
 
 export default {
-  title: 'Leaderboard',
+  title: "Leaderboard",
+  parameters: {
+    tagname: "sqm-leaderboard",
+  },
 };
 
 const defaultProps = {
-  usersheading: 'TOP REFERRERS',
-  statsheading: 'NEW TITANS',
+  usersheading: "TOP REFERRERS",
+  statsheading: "NEW TITANS",
   empty: <div>Empty</div>,
   loadingstate: <div>Loading</div>,
 };
@@ -36,7 +39,7 @@ export const One = () => {
   const props = {
     loading: false,
     hasleaders: true,
-    referrers: [{ name: 'Viktor V.', score: '82' }],
+    referrers: [{ name: "Viktor V.", score: "82" }],
     ...defaultProps,
   };
   return <LeaderboardView {...props} />;
@@ -47,11 +50,11 @@ export const Five = () => {
     loading: false,
     hasleaders: true,
     referrers: [
-      { name: 'Viktor V.', score: '82' },
-      { name: 'MF D.', score: '73' },
-      { name: 'Freddie G.', score: '64' },
-      { name: 'Benny B.', score: '55' },
-      { name: 'Mos D.', score: '46' },
+      { name: "Viktor V.", score: "82" },
+      { name: "MF D.", score: "73" },
+      { name: "Freddie G.", score: "64" },
+      { name: "Benny B.", score: "55" },
+      { name: "Mos D.", score: "46" },
     ],
     ...defaultProps,
   };
