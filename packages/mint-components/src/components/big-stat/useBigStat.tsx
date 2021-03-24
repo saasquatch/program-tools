@@ -163,7 +163,15 @@ const rewardsRedeemedQuery = (programId: string, type: string, unit: string) =>
       }
     `,
     { programId, type, unit },
-    (res) => res.data?.viewer?.rewardBalanceDetails?.[0]?.prettyRedeemedCredit
+    (res) => {
+      const arr = res.data?.viewer?.rewardBalanceDetails;
+      if (arr === undefined) {
+        return undefined;
+      } else if (arr?.length === 0) {
+        return "NOT FOUND";
+      }
+      return arr?.[0]?.prettyRedeemedCredit;
+    }
   );
 
 const rewardsAssignedQuery = (programId: string, type: string, unit: string) =>
@@ -185,7 +193,15 @@ const rewardsAssignedQuery = (programId: string, type: string, unit: string) =>
       }
     `,
     { programId, type, unit },
-    (res) => res.data?.viewer?.rewardBalanceDetails?.[0]?.prettyAssignedCredit
+    (res) => {
+      const arr = res.data?.viewer?.rewardBalanceDetails;
+      if (arr === undefined) {
+        return undefined;
+      } else if (arr?.length === 0) {
+        return "NOT FOUND";
+      }
+      return arr?.[0]?.prettyAssignedCredit;
+    }
   );
 
 const rewardsAvailableQuery = (programId: string, type: string, unit: string) =>
@@ -207,7 +223,16 @@ const rewardsAvailableQuery = (programId: string, type: string, unit: string) =>
       }
     `,
     { programId, type, unit },
-    (res) => res.data?.viewer?.rewardBalanceDetails?.[0]?.prettyAvailableValue
+    (res) => {
+      const arr = res.data?.viewer?.rewardBalanceDetails;
+      if (arr === undefined) {
+        return undefined;
+      } else if (arr?.length === 0) {
+        return "NOT FOUND";
+      }
+      return arr?.[0]?.prettyAvailableValue
+    }
+    // (res) => res.data?.viewer?.rewardBalanceDetails?.[0]?.prettyAvailableValue
   );
 
 const parseRewardValueFormat = {
