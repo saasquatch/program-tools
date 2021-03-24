@@ -33,13 +33,13 @@ function setupGraphQL() {
 //   return () => set(b => !b);
 // }
 
-const View = (type: string) => {
+const View = (statType: string) => {
   setupGraphQL();
   const { props, label } = useBigStat({
-    programId: 'a-referral-program',
-    type,
+    statType,
     render: () => {},
     disconnectedCallback: () => {},
+    ignored:true
   });
   return <BigStatView {...props}>{label}</BigStatView>;
 };
@@ -47,9 +47,10 @@ const View = (type: string) => {
 const DemoView = () => {
   const [type, setType] = useState('/someRandomThing/with/someArguments/1234');
   const { props, label } = useDemoBigStat({
-    type,
+    statType:type,
     render: () => {},
     disconnectedCallback: () => {},
+    ignored: true
   });
   return <div>
     <div>

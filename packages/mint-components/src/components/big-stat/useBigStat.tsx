@@ -1,11 +1,12 @@
 import { BigStat } from "./big-stat";
 import { pathToRegexp } from "path-to-regexp";
 import { useMemo } from "@saasquatch/universal-hooks";
-import { useQuery } from "@saasquatch/component-boilerplate";
+import { useQuery, useProgramId } from "@saasquatch/component-boilerplate";
 import gql from "graphql-tag";
 import { QueryData } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
 import { BigStatViewProps } from "./big-stat-view";
-
+import debugFn from "debug";
+const debug = debugFn("sq:useBigStat");
 const LOADING = "...";
 
 const debugQuery = (
@@ -308,10 +309,10 @@ export const StatPaths = [
   "/(rewardsCount)",
   "/(rewardsMonth)",
   "/(rewardsWeek)",
-  "/(rewardsAssigned)/:type/:unit",
-  "/(rewardsRedeemed)/:type/:unit",
-  "/(rewardsAvailable)/:type/:unit",
-  "/(rewardBalance)/:type/:unit/:format?/:global?",
+  "/(rewardsAssigned)/:statType/:unit",
+  "/(rewardsRedeemed)/:statType/:unit",
+  "/(rewardsAvailable)/:statType/:unit",
+  "/(rewardBalance)/:statType/:unit/:format?/:global?",
 ];
 
 export const StatPatterns = StatPaths.map((pattern) => pathToRegexp(pattern));
@@ -322,18 +323,20 @@ export function parsePath(type: string): string[] | undefined {
 }
 
 export function useBigStat({
-  type,
-  programId,
-}: BigStat & { programId?: string }) {
-  const parsed = parsePath(type);
-  if (parsed === undefined) {
+  statType,
+}: BigStat) {
+  const programId = useProgramId();
+  debug({programId, statType})
+  const re = useMemo(() => StatPatterns.find((re) => re.test(statType)), [statType]);
+  if (re === undefined) {
     return { label: "BAD TYPE PROP", props: { statvalue: "!!!" } };
   }
-  const [queryName, ...queryArgs] = parsed;
+  const [queryName, ...queryArgs] = re.exec(statType).slice(1);
 
   const label = queries[queryName].label;
   const stat = queries[queryName].query(programId, ...queryArgs);
 
+  debug("stat:", stat)
   return { label, props: { statvalue: stat ?? LOADING } };
 }
 export type BigStatHook = {

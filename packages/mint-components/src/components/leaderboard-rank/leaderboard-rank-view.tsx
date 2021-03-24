@@ -1,9 +1,12 @@
 import { h } from '@stencil/core';
 
 export interface LeaderboardRankViewProps {
-  rank: string;
+  data: {
+    rank: string;
+  };
 }
 
 export function LeaderboardRankView(props: LeaderboardRankViewProps) {
-  return <span class="P">{props.rank}</span>;
+  const { data } = props;
+  return <span class="P">{data.rank}</span>;
 }

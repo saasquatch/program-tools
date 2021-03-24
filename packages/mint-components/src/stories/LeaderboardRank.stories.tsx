@@ -1,12 +1,12 @@
-import { h } from '@stencil/core';
-import { LeaderboardRankView } from '../components/leaderboard-rank/leaderboard-rank-view';
+import { h } from "@stencil/core";
+import { LeaderboardRankView } from "../components/leaderboard-rank/leaderboard-rank-view";
 
 export default {
-  title: 'Leaderboard Rank',
+  title: "Leaderboard Rank",
 };
 
 export const First = () => {
-  const props = { rank: '1st' };
+  const props = { data: { rank: "1st" } };
 
   return (
     <p>

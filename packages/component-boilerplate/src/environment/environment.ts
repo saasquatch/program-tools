@@ -127,16 +127,6 @@ export function getEnvironment(): Environment {
  * Get the SDK for interacting with the host environment
  */
 export function getEnvironmentSDK(): EnvironmentSDK {
-  if (window.frameElement && (window.frameElement as any)["squatchJsApi"]) {
-    return {
-      type: "SquatchJS2",
-      //@ts-ignore
-      api: window.frameElement["squatchJsApi"],
-      //@ts-ignore
-      widgetIdent: window["widgetIdent"],
-    };
-  }
-
   //@ts-ignore
   if (window["SquatchAndroid"]) {
     return {
@@ -148,7 +138,6 @@ export function getEnvironmentSDK(): EnvironmentSDK {
     };
   }
 
-  // TODO: Needs formalizing
   //@ts-ignore
   if (window["SquatchPortal"]) {
     return {
@@ -159,7 +148,6 @@ export function getEnvironmentSDK(): EnvironmentSDK {
     };
   }
 
-  // TODO: Needs formalizing
   //@ts-ignore
   if (window["SquatchAdmin"]) {
     return {
@@ -169,9 +157,24 @@ export function getEnvironmentSDK(): EnvironmentSDK {
     };
   }
 
+  if (window["widgetIdent"]) {
+    return {
+      type: "SquatchJS2",
+      //@ts-ignore
+      api: window.frameElement?.["squatchJsApi"],
+      //@ts-ignore
+      widgetIdent: window["widgetIdent"],
+    };
+  }
+
   return {
     type: "None",
   };
+}
+
+export function isDemo() {
+  const sdk = getEnvironmentSDK();
+  return sdk.type === "None" || sdk.type === "SquatchAdmin";
 }
 
 type UserIdentity = {
