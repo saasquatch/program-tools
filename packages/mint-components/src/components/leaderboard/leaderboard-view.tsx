@@ -1,33 +1,49 @@
 import { VNode } from "@stencil/core";
 import { h } from "@stencil/core";
 export interface LeaderboardViewProps {
-  usersheading: string;
-  statsheading: string;
-  empty: VNode;
-  loadingstate: VNode;
-  loading: boolean;
-  hasleaders: boolean;
-  referrers: { name: string; score: string }[];
+  states: {
+    loading: boolean;
+    hasLeaders: boolean;
+    styles: {
+      usersheading: string;
+      statsheading: string;
+    };
+  };
+  data: {
+    rankType: string;
+    leaderboard: {
+      value: number;
+      rank: string;
+      firstName: string;
+      lastInitial: string;
+    }[];
+  };
+  elements: {
+    empty: VNode;
+    loadingstate: VNode;
+  };
 }
 
 export function LeaderboardView(props: LeaderboardViewProps) {
-  if (props.loading) {
-    return props.loadingstate;
+  const { states, data, elements } = props;
+  const { styles } = states;
+  if (states.loading) {
+    return elements.loadingstate;
   }
   return (
     <div>
-      {!props.hasleaders && props.empty}
-      {props.hasleaders && (
+      {!states.hasLeaders && elements.empty}
+      {states.hasLeaders && (
         <div class="Column">
-          <div class="SeperateContent">
-            <b>{props.usersheading}</b>
-            <b>{props.statsheading}</b>
+          <div class="SeparateContent">
+            <b>{styles.usersheading}</b>
+            <b>{styles.statsheading}</b>
           </div>
-          {props.referrers.map((referrer) => {
+          {data.leaderboard?.map((user) => {
             return (
-              <div class="SeperateContent">
-                <span>{referrer.name}</span>
-                <span>{referrer.score}</span>
+              <div class="SeparateContent">
+                <span>{`${user.firstName} ${user.lastInitial} `}</span>
+                <span>{user.value}</span>
               </div>
             );
           })}

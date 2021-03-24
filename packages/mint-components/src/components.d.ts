@@ -12,9 +12,10 @@ export namespace Components {
           * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
          */
-        "type": string;
+        "statType": string;
     }
     interface SqmLeaderboard {
+        "rankType": "rowNumber" | "rank" | "denseRank";
         /**
           * @uiName Stats Column Heading
          */
@@ -25,10 +26,12 @@ export namespace Components {
         "usersheading": string;
     }
     interface SqmLeaderboardRank {
+        "rankText": string;
         /**
           * @uiName Default rank
          */
-        "rank"?: string;
+        "rankType": "rowNumber" | "rank" | "denseRank";
+        "unrankedText": string;
     }
     interface SqmRouter {
     }
@@ -184,9 +187,10 @@ declare namespace LocalJSX {
           * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
          */
-        "type"?: string;
+        "statType"?: string;
     }
     interface SqmLeaderboard {
+        "rankType"?: "rowNumber" | "rank" | "denseRank";
         /**
           * @uiName Stats Column Heading
          */
@@ -197,10 +201,12 @@ declare namespace LocalJSX {
         "usersheading"?: string;
     }
     interface SqmLeaderboardRank {
+        "rankText"?: string;
         /**
           * @uiName Default rank
          */
-        "rank"?: string;
+        "rankType"?: "rowNumber" | "rank" | "denseRank";
+        "unrankedText"?: string;
     }
     interface SqmRouter {
     }

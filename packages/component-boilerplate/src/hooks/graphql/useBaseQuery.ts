@@ -12,7 +12,7 @@ export interface BaseQueryData<T = unknown> {
 }
 
 export type QueryData<T> = BaseQueryData<T> & {
-  refetch: () => unknown;
+  refetch: (variables?:unknown) => unknown;
 };
 
 /**
