@@ -33,7 +33,18 @@ export namespace Components {
         "rankType": "rowNumber" | "rank" | "denseRank";
         "unrankedText": string;
     }
+    interface SqmPopupContainer {
+        "closeButton": boolean;
+        "closeButtonText": string;
+        /**
+          * Show SaaSquatch Powered By messaging
+         */
+        "poweredBy": boolean;
+    }
     interface SqmRoute {
+        /**
+          * @uiName Navigation path name
+         */
         "path": string;
     }
     interface SqmRouter {
@@ -149,6 +160,12 @@ declare global {
         prototype: HTMLSqmLeaderboardRankElement;
         new (): HTMLSqmLeaderboardRankElement;
     };
+    interface HTMLSqmPopupContainerElement extends Components.SqmPopupContainer, HTMLStencilElement {
+    }
+    var HTMLSqmPopupContainerElement: {
+        prototype: HTMLSqmPopupContainerElement;
+        new (): HTMLSqmPopupContainerElement;
+    };
     interface HTMLSqmRouteElement extends Components.SqmRoute, HTMLStencilElement {
     }
     var HTMLSqmRouteElement: {
@@ -183,6 +200,7 @@ declare global {
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
+        "sqm-popup-container": HTMLSqmPopupContainerElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
@@ -218,7 +236,18 @@ declare namespace LocalJSX {
         "rankType"?: "rowNumber" | "rank" | "denseRank";
         "unrankedText"?: string;
     }
+    interface SqmPopupContainer {
+        "closeButton"?: boolean;
+        "closeButtonText"?: string;
+        /**
+          * Show SaaSquatch Powered By messaging
+         */
+        "poweredBy"?: boolean;
+    }
     interface SqmRoute {
+        /**
+          * @uiName Navigation path name
+         */
         "path"?: string;
     }
     interface SqmRouter {
@@ -318,6 +347,7 @@ declare namespace LocalJSX {
         "sqm-big-stat": SqmBigStat;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
+        "sqm-popup-container": SqmPopupContainer;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
         "sqm-share-button": SqmShareButton;
@@ -332,6 +362,7 @@ declare module "@stencil/core" {
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
+            "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
