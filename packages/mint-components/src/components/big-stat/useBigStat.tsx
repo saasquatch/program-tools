@@ -232,7 +232,6 @@ const rewardsAvailableQuery = (programId: string, type: string, unit: string) =>
       }
       return arr?.[0]?.prettyAvailableValue
     }
-    // (res) => res.data?.viewer?.rewardBalanceDetails?.[0]?.prettyAvailableValue
   );
 
 const parseRewardValueFormat = {
