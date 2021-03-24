@@ -26,3 +26,15 @@ Feature: Share Link
     Then the share link will be "https://www.example.com/sharelink/abc"
     And the component won't be interactive
     And the tooltip will be hidden
+
+  Scenario: Program ID from prop
+    Given the programId prop is set to "program-a"
+    And window.widgetIdent.programId is set to "program-b"
+    When the component renders
+    Then the share link will be for "program-a"
+
+  Scenario: Program ID from window
+    Given the programId prop is unset
+    And window.widgetIdent.programId is set to "program-b"
+    When the component renders
+    Then the share link will be for "program-b"
