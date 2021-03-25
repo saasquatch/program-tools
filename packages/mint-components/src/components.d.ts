@@ -34,10 +34,24 @@ export namespace Components {
         "unrankedText": string;
     }
     interface SqmPopupContainer {
+        /**
+          * @uiName Display a close button on the popup
+         */
         "closeButton": boolean;
+        /**
+          * @uiName Text to be used as the close button
+         */
         "closeButtonText": string;
         /**
-          * Show SaaSquatch Powered By messaging
+          * @uiName Specify padding on the popup contents when in embedded mode
+         */
+        "embedPadding"?: "none" | "small" | "medium" | "large";
+        /**
+          * @uiName Specify padding on the popup contents when in popup mode
+         */
+        "popupPadding"?: "none" | "small" | "medium" | "large";
+        /**
+          * @uiName Show SaaSquatch Powered By messaging
          */
         "poweredBy": boolean;
     }
@@ -237,10 +251,24 @@ declare namespace LocalJSX {
         "unrankedText"?: string;
     }
     interface SqmPopupContainer {
+        /**
+          * @uiName Display a close button on the popup
+         */
         "closeButton"?: boolean;
+        /**
+          * @uiName Text to be used as the close button
+         */
         "closeButtonText"?: string;
         /**
-          * Show SaaSquatch Powered By messaging
+          * @uiName Specify padding on the popup contents when in embedded mode
+         */
+        "embedPadding"?: "none" | "small" | "medium" | "large";
+        /**
+          * @uiName Specify padding on the popup contents when in popup mode
+         */
+        "popupPadding"?: "none" | "small" | "medium" | "large";
+        /**
+          * @uiName Show SaaSquatch Powered By messaging
          */
         "poweredBy"?: boolean;
     }

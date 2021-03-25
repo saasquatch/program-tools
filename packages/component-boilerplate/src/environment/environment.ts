@@ -276,5 +276,5 @@ function getCleanLocale() {
   if (!splitLocale || splitLocale.length === 1) return locale;
   const language = splitLocale[0];
   const country = splitLocale[1];
-  return `${language}-${country.toUpperCase()}`;
+  return `${language}_${country.toUpperCase()}`;
 }
