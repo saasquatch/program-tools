@@ -46,7 +46,7 @@ Feature: Router
 
   Scenario: First matching element is chosen, with precedence
     Given the following elements are declared in order on the DOM:
-      | type     | path   | name   |
+      | type     | path   | id     |
       | route    | /      | RootA  |
       | route    | /      | RootB  |
       | template | /      | RootC  |
