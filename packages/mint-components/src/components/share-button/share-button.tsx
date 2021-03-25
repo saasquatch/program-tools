@@ -89,6 +89,10 @@ export class ShareButon {
    */
   @Prop() iconslot?: "prefix" | "suffix" = "prefix";
   /**
+   * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
+   */
+  @Prop() icon?: string;
+  /**
    * @uiName Hide the icon
    */
   @Prop() hideicon?: boolean = false;
