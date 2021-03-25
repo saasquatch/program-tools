@@ -44,7 +44,11 @@ export function usePopupContainer(props: UsePopupContainerProps) {
   return {
     states: {
       showCloseButton: props.closeButton && engagementMedium === "POPUP",
-      styles: { ...props, padding },
+      styles: {
+        ...props,
+        padding,
+        closeButtonText: props.closeButtonText ? props.closeButtonText : "X",
+      },
     },
     data: {},
     callbacks: { closePopup },

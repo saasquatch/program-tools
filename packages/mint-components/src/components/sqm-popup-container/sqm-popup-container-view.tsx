@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { h, Host } from "@stencil/core";
 import { usePopupContainer } from "./usePopupContainer";
 
 type PopupContainerViewProps = ReturnType<typeof usePopupContainer>;
@@ -7,14 +7,16 @@ const PopupContainerView = (props: PopupContainerViewProps) => {
   const { styles } = states;
 
   return (
-    <div class="container" style={{ padding: props.states.styles.padding }}>
-      <span
-        class="close squatch-header-close"
-        data-close-panel="#squatch-panel"
-        onClick={() => callbacks.closePopup()}
-      >
-        {styles.closeButtonText}
-      </span>
+    <Host class="squatch-container" style={{ padding: props.states.styles.padding }}>
+      {styles.closeButton && (
+        <span
+          class="close squatch-header-close"
+          data-close-panel="#squatch-panel"
+          onClick={() => callbacks.closePopup()}
+        >
+          {styles.closeButtonText}
+        </span>
+      )}
       <slot />
       {styles.poweredBy ? (
         <a
@@ -27,7 +29,7 @@ const PopupContainerView = (props: PopupContainerViewProps) => {
       ) : (
         ""
       )}
-    </div>
+    </Host>
   );
 };
 
