@@ -1,6 +1,6 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, Prop, h } from "@stencil/core";
-import { isDemo } from "../../utils/isDemo";
+import { Component, Prop, h, State} from "@stencil/core";
 import { LeaderboardView, LeaderboardViewProps } from "./leaderboard-view";
 import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 
@@ -22,6 +22,11 @@ export class Leaderboard {
    * */
   @Prop() statsheading: string;
 
+  @Prop() rankType: "rowNumber" | "rank" | "denseRank";
+
+  @State()
+  ignored = true;
+
   constructor() {
     withHooks(this);
   }
@@ -31,7 +36,9 @@ export class Leaderboard {
     const props = {
       empty: <slot name="empty" />,
       loadingstate: <slot name="loading" />,
-      ...this,
+      usersheading:this.usersheading,
+      statsheading:this.statsheading,
+      rankType: this.rankType
     };
     const viewprops = isDemo()
       ? useLeaderboardDemo(props)
@@ -42,18 +49,31 @@ export class Leaderboard {
 
 function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
   return {
-    usersheading: props.usersheading ? props.usersheading : "TOP REFERRERS",
-    statsheading: props.statsheading ? props.statsheading : "NEW TITANS",
-    empty: props.empty ? props.empty : <div>Empty</div>,
-    loadingstate: props.loadingstate ? props.loadingstate : <div>Loading</div>,
-    loading: false,
-    hasleaders: true,
-    referrers: [
-      { name: "Viktor V.", score: "82" },
-      { name: "MF D.", score: "73" },
-      { name: "Freddie G.", score: "64" },
-      { name: "Benny B.", score: "55" },
-      { name: "Mos D.", score: "46" },
-    ],
+    states: {
+      loading: false,
+      hasLeaders: true,
+      styles: {
+        usersheading: props.usersheading ? props.usersheading : "TOP REFERRERS",
+        statsheading: props.statsheading ? props.statsheading : "NEW TITANS",
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: [
+        { firstName: "Viktor", lastInitial: "V", value: 82, rank: "1" },
+        { firstName: "MF", lastInitial: "D", value: 73, rank: "2" },
+        { firstName: "Freddie", lastInitial: "G", value: 64, rank: "3" },
+        { firstName: "Benny", lastInitial: "B", value: 55, rank: "4" },
+        { firstName: "Mos", lastInitial: "D", value: 46, rank: "5" },
+      ],
+    },
+    elements: {
+      empty: props.empty ? props.empty : <div>Empty</div>,
+      loadingstate: props.loadingstate ? (
+        props.loadingstate
+      ) : (
+        <div>Loading</div>
+      ),
+    },
   };
 }

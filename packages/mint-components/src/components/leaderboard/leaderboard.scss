@@ -1,5 +1,5 @@
 @include Column;
-@include SeperateContent;
+@include SeparateContent;
 
 .Column {
   & > :not(:first-child) {
@@ -7,7 +7,7 @@
   }
 }
 
-.SeperateContent {
+.SeparateContent {
   padding: var(--sl-spacing-x-small) 0;
 
   &:not(:last-child) {
