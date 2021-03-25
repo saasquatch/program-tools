@@ -1,7 +1,12 @@
 import { useCurrentPage } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { pathToRegexp } from "path-to-regexp";
 import debugFn from "debug";
 const debug = debugFn("sq:useRouter");
+
+type Route = {
+  path: string;
+};
 
 export function useRouter() {
   const location = useCurrentPage();
@@ -18,10 +23,19 @@ export function useRouter() {
     const template = slot.querySelector<HTMLTemplateElement>(
       `template[path="${page}"]`
     );
-    const route = slot.querySelector<HTMLElement>(
-      `sqm-route[path^="${page}"]`
-    );
 
+    const routes = slot.querySelectorAll<HTMLElement & Route>(`sqm-route`);
+    const routesArray = Array.from(routes);
+
+    const route = routesArray.find((route) => {
+      const regexp = pathToRegexp(route.path);
+      const match = regexp.exec(page);
+      if (match?.length) return route;
+    });
+
+    // const route = slot.querySelector<HTMLElement>(`sqm-route[path="${page}"]`);
+
+    debug({ routes, page, route, container });
     if (!route && !template) {
       // No matching page, display nothing
       debug("No matching page found for ", page, " so displaying nothing");
@@ -42,7 +56,7 @@ export function useRouter() {
       // container.appendChild(element);
     } else if (route) {
       container.innerHTML = route.innerHTML;
-      debug("route container innerHTML:", container.innerHTML)
+      debug("route container innerHTML:", container.innerHTML);
       container.dataset.page = page;
     }
   }, [slot, container, page]);

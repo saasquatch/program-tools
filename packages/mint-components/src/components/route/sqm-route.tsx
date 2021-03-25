@@ -1,7 +1,7 @@
 import { h, Component, State, Prop, Host } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useRoute } from "./useRoute";
-
+import { pathToRegexp } from "path-to-regexp";
 export interface RouteProps {
   path: string;
 }
@@ -29,6 +29,7 @@ export class StencilStorybook {
 
   render() {
     const { states } = useRoute(this);
-    return states.currentPath === states.path ? <slot /> : <Host></Host>;
+    const regexp = pathToRegexp(states.path);
+    return regexp.exec(states.currentPath) ? <slot /> : <Host></Host>;
   }
 }

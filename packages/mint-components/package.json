@@ -1,7 +1,7 @@
 {
   "name": "@saasquatch/mint-components",
-  "version": "0.0.1-42",
-  "description": "Mint Components for the SaaSquatch content platform.",
+  "version": "0.0.1-44",
+  "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
   "es2015": "dist/esm/index.js",
   "es2017": "dist/esm/index.js",
