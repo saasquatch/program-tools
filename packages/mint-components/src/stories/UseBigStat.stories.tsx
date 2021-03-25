@@ -12,6 +12,7 @@ export default {
 function setupGraphQL() {
   const id = 'worried-camera@uexwltgh.mailosaur.net';
   const accountId = id;
+  const programId = "a-referral-program"
 
   //@ts-ignore
   window.SquatchAndroid = true;
@@ -24,6 +25,7 @@ function setupGraphQL() {
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6IndvcnJpZWQtY2FtZXJhQHVleHdsdGdoLm1haWxvc2F1ci5uZXQiLCJpZCI6IndvcnJpZWQtY2FtZXJhQHVleHdsdGdoLm1haWxvc2F1ci5uZXQifX0.-WGV4_bzGCFp-OTIO-h-yp0MlgtkdufT_GgI4T691OY',
     userId: id,
     accountId,
+    programId,
   };
   return { id, accountId };
 }

@@ -10,6 +10,11 @@ export const WithIcon = () => {
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
 
+export const WithIconOverride = () => {
+  const props = { medium: 'facebook', icon: 'person-badge', iconslot: 'suffix' } as const;
+  return <ShareButtonView {...props}>Share</ShareButtonView>;
+};
+
 export const TextStyle = () => {
   const props = { medium: 'facebook', type: 'text', iconslot: 'suffix' } as const;
   return <ShareButtonView {...props}>Share</ShareButtonView>;

@@ -28,6 +28,7 @@ export interface ShareButtonViewProps {
     | "text";
   size?: "small" | "medium" | "large";
 
+  icon?: string;
   hideicon?: boolean;
   iconslot?: "prefix" | "suffix";
 
@@ -49,7 +50,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
       onClick={props.onClick}
     >
       {!props.hideicon && (
-        <sl-icon slot={props.iconslot} name={props.medium}></sl-icon>
+        <sl-icon slot={props.iconslot} name={props.icon ? props.icon : props.medium}></sl-icon>
       )}
       {children}
     </sl-button>

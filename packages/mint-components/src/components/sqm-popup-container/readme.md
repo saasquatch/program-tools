@@ -7,11 +7,13 @@
 
 ## Properties
 
-| Property          | Attribute           | Description                          | Type      | Default     |
-| ----------------- | ------------------- | ------------------------------------ | --------- | ----------- |
-| `closeButton`     | `close-button`      |                                      | `boolean` | `undefined` |
-| `closeButtonText` | `close-button-text` |                                      | `string`  | `undefined` |
-| `poweredBy`       | `powered-by`        | Show SaaSquatch Powered By messaging | `boolean` | `undefined` |
+| Property          | Attribute           | Description | Type                                       | Default     |
+| ----------------- | ------------------- | ----------- | ------------------------------------------ | ----------- |
+| `closeButton`     | `close-button`      |             | `boolean`                                  | `undefined` |
+| `closeButtonText` | `close-button-text` |             | `string`                                   | `undefined` |
+| `embedPadding`    | `embed-padding`     |             | `"large" \| "medium" \| "none" \| "small"` | `undefined` |
+| `popupPadding`    | `popup-padding`     |             | `"large" \| "medium" \| "none" \| "small"` | `undefined` |
+| `poweredBy`       | `powered-by`        |             | `boolean`                                  | `undefined` |
 
 
 ----------------------------------------------
