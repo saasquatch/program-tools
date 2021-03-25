@@ -1,11 +1,13 @@
-import { BigStat } from "./big-stat";
+import gql from "graphql-tag";
 import { pathToRegexp } from "path-to-regexp";
 import { useMemo } from "@saasquatch/universal-hooks";
-import { useQuery, useProgramId } from "@saasquatch/component-boilerplate";
-import gql from "graphql-tag";
+import { useQuery, useProgramId, useLocale } from "@saasquatch/component-boilerplate";
 import { QueryData } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
-import { BigStatViewProps } from "./big-stat-view";
 import debugFn from "debug";
+
+import { BigStat } from "./big-stat";
+import { BigStatViewProps } from "./big-stat-view";
+
 const debug = debugFn("sq:useBigStat");
 const LOADING = "...";
 
@@ -16,7 +18,7 @@ const debugQuery = (
 ) => {
   const res = useQuery(query, variables);
   if (!res?.data && !res.loading) {
-    console.log("issue getting stat:", res);
+    console.error("issue getting stat:", res);
   }
   const stat = getStat(res);
   return stat;
@@ -144,11 +146,13 @@ const rewardsWeekQuery = (programId: string) =>
     (res) => res.data?.viewer?.rewards?.totalCount?.toString()
   );
 
-const rewardsRedeemedQuery = (programId: string, type: string, unit: string) =>
+
+const rewardsRedeemedQuery = (programId: string, type: string, unit: string, locale: string) =>
   debugQuery(
     gql`
-      query($programId: ID!, $type: RewardType, $unit: String!) {
-        viewer {
+      query($programId: ID!, $type: RewardType, $unit: String!, $locale: RSLocale) {
+        fallback: formatRewardPrettyValue(value: 0, unit: $unit, locale: $locale, formatType: UNIT_FORMATTED)
+        viewer: viewer {
           ... on User {
             rewardBalanceDetails(
               programId: $programId
@@ -162,23 +166,20 @@ const rewardsRedeemedQuery = (programId: string, type: string, unit: string) =>
         }
       }
     `,
-    { programId, type, unit },
+    { programId, type, unit, locale },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
-      if (arr === undefined) {
-        return undefined;
-      } else if (arr?.length === 0) {
-        return "NOT FOUND";
-      }
-      return arr?.[0]?.prettyRedeemedCredit;
+      const fallback = res.data?.fallback;
+      return arr?.[0]?.prettyReedemedCredit || fallback;
     }
   );
 
-const rewardsAssignedQuery = (programId: string, type: string, unit: string) =>
+const rewardsAssignedQuery = (programId: string, type: string, unit: string, locale: string) =>
   debugQuery(
     gql`
-      query($programId: ID!, $type: RewardType, $unit: String!) {
-        viewer {
+      query($programId: ID!, $type: RewardType, $unit: String!, $locale: RSLocale) {
+        fallback: formatRewardPrettyValue(value: 0, unit: $unit, locale: $locale, formatType: UNIT_FORMATTED)
+        viewer: viewer {
           ... on User {
             rewardBalanceDetails(
               programId: $programId
@@ -192,23 +193,20 @@ const rewardsAssignedQuery = (programId: string, type: string, unit: string) =>
         }
       }
     `,
-    { programId, type, unit },
+    { programId, type, unit, locale },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
-      if (arr === undefined) {
-        return undefined;
-      } else if (arr?.length === 0) {
-        return "NOT FOUND";
-      }
-      return arr?.[0]?.prettyAssignedCredit;
+      const fallback = res.data?.fallback;
+      return arr?.[0]?.prettyAssignedCredit || fallback;
     }
   );
 
-const rewardsAvailableQuery = (programId: string, type: string, unit: string) =>
+const rewardsAvailableQuery = (programId: string, type: string, unit: string, locale: string) =>
   debugQuery(
     gql`
-      query($programId: ID!, $type: RewardType, $unit: String!) {
-        viewer {
+      query($programId: ID!, $type: RewardType, $unit: String!, $locale: RSLocale) {
+        fallback: formatRewardPrettyValue(value: 0, unit: $unit, locale: $locale, formatType: UNIT_FORMATTED)
+        viewer: viewer {
           ... on User {
             rewardBalanceDetails(
               programId: $programId
@@ -222,15 +220,11 @@ const rewardsAvailableQuery = (programId: string, type: string, unit: string) =>
         }
       }
     `,
-    { programId, type, unit },
+    { programId, type, unit, locale },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
-      if (arr === undefined) {
-        return undefined;
-      } else if (arr?.length === 0) {
-        return "NOT FOUND";
-      }
-      return arr?.[0]?.prettyAvailableValue
+      const fallback = res.data?.fallback;
+      return arr?.[0]?.prettyAvailableValue || fallback;
     }
   );
 
@@ -275,12 +269,8 @@ const rewardsBalanceQuery = (
     },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
-      if (arr === undefined) {
-        return undefined;
-      } else if (arr?.length === 0) {
-        return "NOT FOUND";
-      }
-      return arr?.[0]?.prettyAvailableValue
+      const fallback = "TODO";
+      return arr?.[0]?.prettyAvailableValue || fallback;
     }
   );
 
@@ -358,6 +348,7 @@ export function useBigStat({
   statType,
 }: BigStat) {
   const programId = useProgramId();
+  const locale = useLocale();
   debug({programId, statType})
   const re = useMemo(() => StatPatterns.find((re) => re.test(statType)), [statType]);
   if (re === undefined) {
@@ -366,11 +357,12 @@ export function useBigStat({
   const [queryName, ...queryArgs] = re.exec(statType).slice(1);
 
   const label = queries[queryName].label;
-  const stat = queries[queryName].query(programId, ...queryArgs);
+  const stat = queries[queryName].query(programId, ...queryArgs, locale);
 
   debug("stat:", stat)
   return { label, props: { statvalue: stat ?? LOADING } };
 }
+
 export type BigStatHook = {
   props: BigStatViewProps;
   label: string;

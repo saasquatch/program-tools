@@ -47,7 +47,7 @@
     "workbox-build": "4.3.1"
   },
   "dependencies": {
-    "@saasquatch/component-boilerplate": "^1.0.0-beta17",
+    "@saasquatch/component-boilerplate": "^1.0.0-beta19",
     "@saasquatch/stencil-grapes-plugin": "^0.1.1",
     "@saasquatch/stencil-hooks": "^2.0.0",
     "@saasquatch/stencilbook": "0.0.1-beta6",
