@@ -1,6 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, Prop, h, State} from "@stencil/core";
+import { Component, Prop, h, State } from "@stencil/core";
+import { withShadowView } from "../../ShadowViewAddon";
 import { LeaderboardView, LeaderboardViewProps } from "./leaderboard-view";
 import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 
@@ -29,6 +30,7 @@ export class Leaderboard {
 
   constructor() {
     withHooks(this);
+    withShadowView(this);
   }
   disconnectedCallback() {}
 
@@ -36,9 +38,9 @@ export class Leaderboard {
     const props = {
       empty: <slot name="empty" />,
       loadingstate: <slot name="loading" />,
-      usersheading:this.usersheading,
-      statsheading:this.statsheading,
-      rankType: this.rankType
+      usersheading: this.usersheading,
+      statsheading: this.statsheading,
+      rankType: this.rankType,
     };
     const viewprops = isDemo()
       ? useLeaderboardDemo(props)

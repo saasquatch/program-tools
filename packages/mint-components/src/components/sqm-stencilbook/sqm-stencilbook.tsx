@@ -48,7 +48,7 @@ export class StencilStorybook {
       h,
       hooks,
       title: "Mint Components",
-      addons: [ShadowViewAddon, CucumberAddon],
+      addons: [CucumberAddon, ShadowViewAddon],
     });
     return <Host class={Style}>{children}</Host>;
   }
