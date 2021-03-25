@@ -232,7 +232,6 @@ const rewardsAvailableQuery = (programId: string, type: string, unit: string) =>
       }
       return arr?.[0]?.prettyAvailableValue
     }
-    // (res) => res.data?.viewer?.rewardBalanceDetails?.[0]?.prettyAvailableValue
   );
 
 const parseRewardValueFormat = {
@@ -274,7 +273,15 @@ const rewardsBalanceQuery = (
       unit,
       format: parseRewardValueFormat[format] ?? "UNIT_FORMATTED",
     },
-    (res) => res.data?.viewer?.rewardBalanceDetails?.[0]?.prettyAvailableValue
+    (res) => {
+      const arr = res.data?.viewer?.rewardBalanceDetails;
+      if (arr === undefined) {
+        return undefined;
+      } else if (arr?.length === 0) {
+        return "NOT FOUND";
+      }
+      return arr?.[0]?.prettyAvailableValue
+    }
   );
 
 // functions are of the form (programId: string, ...args: string) => string
