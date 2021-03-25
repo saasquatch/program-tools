@@ -16,51 +16,35 @@ function newTemplate(id: string, path: string) {
 
 function newPageFunctions(page: Readonly<E2EPage>) {
   return {
-    expectComponent: async (selector: string) =>
-      // expect(await page.find(selector)).not.toBeNull(),
+    expectElement: async (selector: string) =>
       // convert to string because jest pretty printing the object causes errors
       expect((await page.find(selector))?.id).not.toBeUndefined(),
-    dontExpectComponent: async (selector: string) =>
-      // expect(await page.find(selector)).toBeNull(),
-      // convert to string because jest pretty printing the object causes errors
+    dontExpectElement: async (selector: string) =>
       expect((await page.find(selector))?.id).toBeUndefined(),
+    expectTemplate: async (selector: string) =>
+      expect((await page.find("#" + selector))?.id).not.toBeUndefined(),
+    dontExpectTemplate: async (selector: string) =>
+      expect((await page.find("#" + selector))?.id).toBeUndefined(),
+    expectRoute: async (selector: string) =>
+      expect(
+        (await page.find('div[style="display: contents;"] > div#' + selector))
+          ?.id
+      ).not.toBeUndefined(),
+    dontExpectRoute: async (selector: string) =>
+      expect(
+        (await page.find('div[style="display: contents;"] > div#' + selector))
+          ?.id
+      ).toBeUndefined(),
     history: {
-      push: (path: string) => page.evaluate((x) => window.squatchHistory.push(x), path),
+      push: (path: string) =>
+        page.evaluate((x) => window.squatchHistory.push(x), path),
+      back: () => page.evaluate(() => window.squatchHistory.back()),
     },
   };
 }
 
 describe("sqm-router", () => {
-  test("Simple with templates", async () => {
-    const html = /*html*/ `
-    <sqm-router>
-      ${newTemplate("RouteA", "/")}
-      ${newTemplate("RouteB", "/B")}
-    </sqm-router>
-    `;
-
-    const page = await newE2EPage();
-    await page.setContent(html);
-
-    const {
-      expectComponent,
-      dontExpectComponent,
-      history,
-    } = newPageFunctions(page);
-
-    await expectComponent("sqm-router")
-
-    await expectComponent("#RouteA")
-    await dontExpectComponent("#RouteB")
-
-    await history.push("/B")
-
-    await dontExpectComponent("#RouteA")
-    await expectComponent("#RouteB")
-    await page.close();
-  });
-
-  test("Simple with sqm-route", async () => {
+  test("Default route", async () => {
     const html = /*html*/ `
     <sqm-router>
       ${newRoute("RouteA", "/")}
@@ -72,44 +56,213 @@ describe("sqm-router", () => {
     await page.setContent(html);
 
     const {
-      expectComponent,
-      dontExpectComponent,
+      expectElement,
+      expectRoute,
+      dontExpectRoute,
+    } = newPageFunctions(page);
+
+    await expectElement("sqm-router");
+
+    await expectRoute("RouteA");
+    await dontExpectRoute("RouteB");
+
+    page.close();
+  });
+
+  test("Changing pages", async () => {
+    const html = /*html*/ `
+    <sqm-router>
+      ${newRoute("RouteA", "/")}
+      ${newRoute("RouteB", "/B")}
+    </sqm-router>
+    `;
+
+    const page = await newE2EPage();
+    await page.setContent(html);
+
+    const {
+      expectElement,
+      expectRoute,
+      dontExpectRoute,
       history,
     } = newPageFunctions(page);
 
-    await expectComponent("sqm-router")
+    await expectElement("sqm-router");
 
-    await expectComponent("#RouteA")
-    // FIXME vvv FAILS HERE vvv
-    // it's not behaving in puppeteer
-    await dontExpectComponent("#RouteB")
+    await expectRoute("RouteA");
+    await dontExpectRoute("RouteB");
 
-    await history.push("/B")
+    await history.push("/B");
+    await page.waitForChanges();
 
-    await dontExpectComponent("#RouteA")
-    await expectComponent("#RouteB")
-    await page.close();
+    await dontExpectRoute("RouteA");
+    await expectRoute("RouteB");
+
+    await history.push("/");
+    await page.waitForChanges();
+
+    await expectRoute("RouteA");
+    await dontExpectRoute("RouteB");
+
+    page.close();
   });
 
-  // test("scrap", async () => {
-  //   const html = /*html*/ `
-  //   <sqm-router>
-  //     ${newTemplate("RouteA", "/")}
-  //     ${newTemplate("RouteB", "/B")}
-  //   </sqm-router>
-  //   `;
+  test("Going back", async () => {
+    const html = /*html*/ `
+    <sqm-router>
+      ${newRoute("RouteA", "/")}
+      ${newRoute("RouteB", "/B")}
+      ${newRoute("RouteC", "/C")}
+    </sqm-router>
+    `;
 
-  //   const page = await newE2EPage();
-  //   await page.setContent(html);
+    const page = await newE2EPage();
+    await page.setContent(html);
 
-  //   expect(await page.find("sqm-router")).not.toBeNull();
+    const {
+      expectElement,
+      expectRoute,
+      dontExpectRoute,
+      history,
+    } = newPageFunctions(page);
 
-  //   expect(await page.find("#RouteA")).not.toBeNull();
-  //   expect(await page.find("#RouteB")).toBeNull();
+    await expectElement("sqm-router");
 
-  //   await page.evaluate((x) => window.squatchHistory.push(x), "/B")
+    await expectRoute("RouteA");
+    await dontExpectRoute("RouteB");
+    await dontExpectRoute("RouteC");
 
-  //   expect(await page.find("#RouteA")).toBeNull();
-  //   expect(await page.find("#RouteB")).not.toBeNull();
-  // });
+    await history.push("/B");
+    await page.waitForChanges();
+
+    await dontExpectRoute("RouteA");
+    await expectRoute("RouteB");
+    await dontExpectRoute("RouteC");
+
+    await history.push("/C");
+    await page.waitForChanges();
+
+    await dontExpectRoute("RouteA");
+    await dontExpectRoute("RouteB");
+    await expectRoute("RouteC");
+
+    await history.back();
+    await page.waitForChanges();
+
+    await dontExpectRoute("RouteA");
+    await expectRoute("RouteB");
+    await dontExpectRoute("RouteC");
+
+    await history.back();
+    await page.waitForChanges();
+
+    await expectRoute("RouteA");
+    await dontExpectRoute("RouteB");
+    await dontExpectRoute("RouteC");
+
+    page.close();
+  });
+
+  test("Template has precedence over route", async () => {
+    const html = /*html*/ `
+    <sqm-router>
+      ${newRoute("RouteA", "/")}
+      ${newTemplate("RouteB", "/")}
+      ${newRoute("RouteC", "/B")}
+    </sqm-router>
+    `;
+
+    const page = await newE2EPage();
+    await page.setContent(html);
+
+    const {
+      expectElement,
+      expectTemplate,
+      dontExpectTemplate,
+      expectRoute,
+      dontExpectRoute,
+      history,
+    } = newPageFunctions(page);
+
+    await expectElement("sqm-router");
+
+    await dontExpectRoute("RouteA");
+    await expectTemplate("RouteB");
+    await dontExpectRoute("RouteC");
+
+    await history.push("/B");
+    await page.waitForChanges();
+
+    await dontExpectRoute("RouteA");
+    await dontExpectTemplate("RouteB");
+    await expectRoute("RouteC");
+
+    await history.push("/");
+    await page.waitForChanges();
+
+    await dontExpectRoute("RouteA");
+    await expectTemplate("RouteB");
+    await dontExpectRoute("RouteC");
+
+    page.close();
+  })
+
+  test("First matching element is chosen, with precedence", async ()=>{
+    const html = /*html*/ `
+    <sqm-router>
+      ${newRoute("RootA", "/")}
+      ${newRoute("RootB", "/")}
+      ${newTemplate("RootC", "/")}
+      ${newTemplate("RootD", "/")}
+      ${newRoute("StuffA", "/stuff")}
+      ${newRoute("StuffB", "/stuff")}
+    </sqm-router>
+    `;
+
+    const page = await newE2EPage();
+    await page.setContent(html);
+
+    const {
+      expectElement,
+      expectTemplate,
+      dontExpectTemplate,
+      expectRoute,
+      dontExpectRoute,
+      history,
+    } = newPageFunctions(page);
+
+    await expectElement("sqm-router");
+
+    await dontExpectRoute("RootA");
+    await dontExpectRoute("RootB");
+    await expectTemplate("RootC");
+    await dontExpectTemplate("RootD");
+    await dontExpectRoute("StuffA");
+    await dontExpectRoute("StuffB");
+
+    await history.push("/stuff");
+    await page.waitForChanges();
+
+    await dontExpectRoute("RootA");
+    await dontExpectRoute("RootB");
+    await dontExpectTemplate("RootC");
+    await dontExpectTemplate("RootD");
+    await expectRoute("StuffA");
+    await dontExpectRoute("StuffB");
+
+    await history.push("/");
+    await page.waitForChanges();
+
+    await dontExpectRoute("RootA");
+    await dontExpectRoute("RootB");
+    await expectTemplate("RootC");
+    await dontExpectTemplate("RootD");
+    await dontExpectRoute("StuffA");
+    await dontExpectRoute("StuffB");
+
+    page.close();
+  })
 });
+
+// nice debugging tool
+//   console.log(await page.evaluate(()=>document.body.innerHTML))
