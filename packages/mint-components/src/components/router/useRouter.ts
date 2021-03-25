@@ -19,7 +19,7 @@ export function useRouter() {
       `template[path="${page}"]`
     );
     const route = slot.querySelector<HTMLElement>(
-      `sqm-route[path="${page}"]`
+      `sqm-route[path^="${page}"]`
     );
 
     if (!route && !template) {
