@@ -8,6 +8,8 @@ import { forceUpdate, h, VNode } from "@stencil/core";
  */
 function overrideRender(children: VNode[]) {
   return (ref: HTMLElement) => {
+    // Ref goes to null when unmounted
+    if (!ref) return;
     // @ts-ignore
     ref.render = () => children;
     forceUpdate(ref);
@@ -21,5 +23,11 @@ export const ShadowViewAddon: AddOn = ({ story }, children) => {
   let TagName: string = (story.parent.parameters as any)?.tagname;
 
   if (!TagName) return children;
-  return <TagName ref={overrideRender(children)} />;
+  return (
+    <TagName
+      ref={overrideRender(children)}
+      key={Math.random()}
+      for={story.key}
+    />
+  );
 };
