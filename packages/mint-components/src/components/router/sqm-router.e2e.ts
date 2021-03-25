@@ -55,11 +55,9 @@ describe("sqm-router", () => {
     const page = await newE2EPage();
     await page.setContent(html);
 
-    const {
-      expectElement,
-      expectRoute,
-      dontExpectRoute,
-    } = newPageFunctions(page);
+    const { expectElement, expectRoute, dontExpectRoute } = newPageFunctions(
+      page
+    );
 
     await expectElement("sqm-router");
 
@@ -205,9 +203,9 @@ describe("sqm-router", () => {
     await dontExpectRoute("RouteC");
 
     page.close();
-  })
+  });
 
-  test("First matching element is chosen, with precedence", async ()=>{
+  test("First matching element is chosen, with precedence", async () => {
     const html = /*html*/ `
     <sqm-router>
       ${newRoute("RootA", "/")}
@@ -261,7 +259,7 @@ describe("sqm-router", () => {
     await dontExpectRoute("StuffB");
 
     page.close();
-  })
+  });
 });
 
 // nice debugging tool
