@@ -7,7 +7,7 @@ const PopupContainerView = (props: PopupContainerViewProps) => {
   const { styles } = states;
 
   return (
-    <div>
+    <div style={{ padding: props.states.styles.padding }}>
       <span
         class="close squatch-header-close"
         data-close-panel="#squatch-panel"
