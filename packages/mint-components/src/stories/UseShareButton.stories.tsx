@@ -1,5 +1,4 @@
 import { h } from "@stencil/core";
-import { ShareButtonView } from "../components/share-button/share-button-view";
 import { useShareButton } from "../components/share-button/useShareButton";
 
 import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
