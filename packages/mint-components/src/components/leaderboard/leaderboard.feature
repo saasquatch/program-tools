@@ -1,7 +1,7 @@
 @owner:noah
 @author:noah
 
-Feature: Leaderboard Rank
+Feature: Leaderboard
 
     The leaderboard displays the top referrers along with their scores
 

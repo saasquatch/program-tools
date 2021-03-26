@@ -64,9 +64,7 @@ export const RegularView = createHookStory(() => {
     <div>
       {mediums.map((medium) => (
         <div>
-          <ShareButtonView {...useShareButton({ programId, medium })}>
-            BUTTON_TEXT
-          </ShareButtonView>
+          <sqm-share-button {...{programId, medium}}>BUTTON_TEXT</sqm-share-button> 
         </div>
       ))}
     </div>

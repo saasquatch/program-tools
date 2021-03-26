@@ -8,7 +8,7 @@ type Route = {
   path: string;
 };
 
-function matchPath(pattern: string, page:string) {
+function matchPath(pattern: string, page: string) {
   const regexp = pathToRegexp(pattern);
   return regexp.exec(page);
 }
@@ -25,7 +25,7 @@ export function useRouter() {
       debug("DOM not ready for navigation rendering on:", page);
       return;
     }
-    const template = slot.querySelector<HTMLTemplateElement>(
+    const template = slot.querySelector<HTMLTemplateElement & Route>(
       `template[path="${page}"]`
     );
 
@@ -49,14 +49,16 @@ export function useRouter() {
 
     debug("Page updated to ", page, template, route);
 
-    debug({containerPage:container.dataset.page, page, routePath:route.path})
+    let previousPath, currentPath;
 
-    const previousPath = matchPath(route?.path, container.dataset.page);
-    const currentPath = matchPath(route?.path, page);
+    if (route) {
+      previousPath = !!matchPath(route?.path, container.dataset.page);
+      currentPath = !!matchPath(route?.path, page);
+    }
 
-    debug({previousPath, currentPath})
-    if (previousPath && currentPath) {
-      debug("don't rerender")
+    // if pathToRegexp results truthy or page is an exact match
+    if ((previousPath && currentPath) || page === container.dataset.page) {
+      debug("don't rerender");
       // Same page, do not re-render
       // Reduces dom mutations, speeds up page speed
     } else if (template) {

@@ -19,7 +19,7 @@
 | `sharetext`  | `sharetext`  |                                                                                                                           | `string`                                                                                                                                                            | `undefined` |
 | `sharetitle` | `sharetitle` |                                                                                                                           | `string`                                                                                                                                                            | `undefined` |
 | `size`       | `size`       |                                                                                                                           | `"large" \| "medium" \| "small"`                                                                                                                                    | `undefined` |
-| `type`       | `type`       |                                                                                                                           | `"danger" \| "default" \| "info" \| "primary" \| "success" \| "text" \| "warning"`                                                                                  | `"primary"` |
+| `type`       | `type`       |                                                                                                                           | `"danger" \| "default" \| "info" \| "primary" \| "success" \| "text" \| "warning"`                                                                                  | `"default"` |
 
 
 ## Dependencies
