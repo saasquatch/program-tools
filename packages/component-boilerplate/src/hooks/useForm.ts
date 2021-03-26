@@ -314,6 +314,8 @@ export function useForm(props: UseFormProps) {
     },
     data: {
       formKey,
+      validationData,
+      submitData,
       schema: data?.form?.schema,
     },
     callbacks: {
