@@ -237,7 +237,8 @@ const rewardsBalanceQuery = (
   type: string,
   unit: string,
   format = "prettyValue",
-  global = "false"
+  global = "false",
+  locale: string,
 ) =>
   debugQuery(
     gql`
@@ -246,8 +247,10 @@ const rewardsBalanceQuery = (
         $type: RewardType!
         $unit: String!
         $format: RewardValueFormatType!
+        $locale: RSLocale
       ) {
-        viewer {
+        fallback: formatRewardPrettyValue(value: 0, unit: $unit, locale: $locale, formatType: UNIT_FORMATTED)
+        viewer: viewer {
           ... on User {
             rewardBalanceDetails(
               programId: $programId
@@ -266,10 +269,11 @@ const rewardsBalanceQuery = (
       type,
       unit,
       format: parseRewardValueFormat[format] ?? "UNIT_FORMATTED",
+      locale
     },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
-      const fallback = "TODO";
+      const fallback = res.data?.fallback;
       return arr?.[0]?.prettyAvailableValue || fallback;
     }
   );

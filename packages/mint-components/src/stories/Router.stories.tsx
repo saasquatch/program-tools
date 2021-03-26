@@ -101,7 +101,8 @@ export const RouteNavigation = () => {
 export const Styling = () => {
   return (
     <div>
-      <button onClick={() => navigation.push("/foo")}>/</button>
+      <button onClick={() => navigation.push("/")}>/</button>
+      <button onClick={() => navigation.push("/foo")}>/foo</button>
       <hr />
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <sqm-router
