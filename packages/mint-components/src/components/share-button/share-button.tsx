@@ -3,6 +3,7 @@ import { Component, Prop, h } from "@stencil/core";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { ShareButtonView, ShareButtonViewProps } from "./share-button-view";
 import { useShareButton } from "./useShareButton";
+import { getProps } from "./helpers";
 
 /**
  * @uiName Share Button
@@ -73,7 +74,7 @@ export class ShareButon {
     | "warning"
     | "danger"
     | "default"
-    | "text" = "primary";
+    | "text" = "default";
   /**
    * @uiName Button Size
    * @uiType string
@@ -111,7 +112,9 @@ export class ShareButon {
   disconnectedCallback() {}
 
   render() {
-    const props = isDemo() ? useDemoShareButton(this) : useShareButton(this);
+    const thisProps = getProps(this)
+    const props = isDemo() ? useDemoShareButton(thisProps) : useShareButton(thisProps);
+    console.log("Props:", props)
     return (
       <ShareButtonView {...props}>
         <slot />
