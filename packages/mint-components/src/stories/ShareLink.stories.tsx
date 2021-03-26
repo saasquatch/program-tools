@@ -32,3 +32,8 @@ export const Disabled = () => {
   };
   return <ShareLinkView {...props} />;
 };
+
+
+export const FullStack = () => {
+  return <sqm-share-link></sqm-share-link>;
+};

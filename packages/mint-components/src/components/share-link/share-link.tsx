@@ -1,4 +1,4 @@
-import { withHooks } from "@saasquatch/stencil-hooks";
+import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { ShareLinkView, ShareLinkViewProps } from "./share-link-view";
@@ -52,12 +52,18 @@ export class ShareLink {
 }
 
 function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
+  const [open, setOpen] = useState(false);
+  const sharelink = "https://www.example.com/sharelink/abc";
   return {
-    sharelink: "https://www.example.com/sharelink/abc",
+    sharelink,
     tooltiptext: props.tooltiptext,
-    open: false,
+    open,
     onClick: () => {
-      // TODO: PRovide UI feedback via Admin SDK
+      // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
+      // Only if called from a user-initiated event
+      navigator.clipboard.writeText(sharelink);
+      setOpen(true);
+      setTimeout(() => setOpen(false), props.tooltiplifespan);
     },
   };
 }

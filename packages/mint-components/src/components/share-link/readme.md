@@ -14,6 +14,19 @@
 | `tooltiptext`     | `tooltip-text`     | This is shown after someone has successfully copied the link to the clipboard.                                          | `string` | `"Copied to Clipboard"`    |
 
 
+## Dependencies
+
+### Used by
+
+ - [sqm-stencilbook](../sqm-stencilbook)
+
+### Graph
+```mermaid
+graph TD;
+  sqm-stencilbook --> sqm-share-link
+  style sqm-share-link fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
