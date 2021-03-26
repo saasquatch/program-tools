@@ -3,7 +3,7 @@ import { Component, Prop, h } from "@stencil/core";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { ShareButtonView, ShareButtonViewProps } from "./share-button-view";
 import { useShareButton } from "./useShareButton";
-import { getProps } from "./helpers";
+import { getProps } from "../../utils/utils";
 
 /**
  * @uiName Share Button
