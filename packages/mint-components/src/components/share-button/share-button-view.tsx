@@ -39,7 +39,7 @@ export interface ShareButtonViewProps {
 
 export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   return props.hide ? (
-    <span />
+    <span style={{display:"none"}} />
   ) : (
     <sl-button
       loading={props.loading}
