@@ -44,7 +44,6 @@ const View = (statType: string) => {
 };
 
 const DemoView = () => {
-  console.log(`DemoView - CALLED`);
   const [type, setType] = useState("/someRandomThing/with/someArguments/1234");
   const { props, label } = useDemoBigStat({
     statType: type,

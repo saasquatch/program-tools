@@ -114,7 +114,6 @@ export class ShareButon {
   render() {
     const thisProps = getProps(this)
     const props = isDemo() ? useDemoShareButton(thisProps) : useShareButton(thisProps);
-    console.log("Props:", props)
     return (
       <ShareButtonView {...props}>
         <slot />
