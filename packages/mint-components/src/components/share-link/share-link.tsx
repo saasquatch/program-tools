@@ -3,6 +3,7 @@ import { Component, Prop, h } from "@stencil/core";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { ShareLinkView, ShareLinkViewProps } from "./share-link-view";
 import { useShareLink } from "./useShareLink";
+import { getProps } from "../../utils/utils";
 
 const DEFAULT_TOOLTIP_LIFESPAN = 1000;
 
@@ -46,7 +47,8 @@ export class ShareLink {
   disconnectedCallback() {}
 
   render() {
-    const props = isDemo() ? useDemoShareLink(this) : useShareLink(this);
+    const thisProps = getProps(this)
+    const props = isDemo() ? useDemoShareLink(thisProps) : useShareLink(thisProps);
     return <ShareLinkView {...props} />;
   }
 }

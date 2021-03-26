@@ -2,6 +2,7 @@ import { h, Component, Prop } from "@stencil/core";
 import PopupContainerView from "./sqm-popup-container-view";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { usePopupContainer } from "./usePopupContainer";
+import { getProps } from "../../utils/utils";
 
 /**
  * @uiName Popup container for widgets
@@ -30,6 +31,7 @@ export class GlobalContainer {
   disconnectedCallback() {}
 
   render() {
-    return <PopupContainerView {...usePopupContainer(this)} />;
+    const thisProps = getProps(this)
+    return <PopupContainerView {...usePopupContainer(thisProps)} />;
   }
 }
