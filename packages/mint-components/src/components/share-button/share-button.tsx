@@ -130,6 +130,7 @@ function useDemoShareButton(props: ShareButon): ShareButtonViewProps {
     size: props.size,
     hideicon: props.hideicon,
     iconslot: props.iconslot,
+    icon: props.icon,
     hide: false,
     onClick: () => {
       // TODO: PRovide visual feedback

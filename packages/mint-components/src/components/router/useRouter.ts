@@ -8,6 +8,11 @@ type Route = {
   path: string;
 };
 
+function matchPath(pattern: string, page:string) {
+  const regexp = pathToRegexp(pattern);
+  return regexp.exec(page);
+}
+
 export function useRouter() {
   const location = useCurrentPage();
 
@@ -28,9 +33,7 @@ export function useRouter() {
     const routesArray = Array.from(routes);
 
     const route = routesArray.find((route) => {
-      const regexp = pathToRegexp(route.path);
-      const match = regexp.exec(page);
-      if (match?.length) return route;
+      if (matchPath(route.path, page)?.length) return route;
     });
 
     // const route = slot.querySelector<HTMLElement>(`sqm-route[path="${page}"]`);
@@ -46,7 +49,14 @@ export function useRouter() {
 
     debug("Page updated to ", page, template, route);
 
-    if (container.dataset.page === page) {
+    debug({containerPage:container.dataset.page, page, routePath:route.path})
+
+    const previousPath = matchPath(route?.path, container.dataset.page);
+    const currentPath = matchPath(route?.path, page);
+
+    debug({previousPath, currentPath})
+    if (previousPath && currentPath) {
+      debug("don't rerender")
       // Same page, do not re-render
       // Reduces dom mutations, speeds up page speed
     } else if (template) {
