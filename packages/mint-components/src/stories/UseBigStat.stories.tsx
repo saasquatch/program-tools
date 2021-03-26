@@ -1,28 +1,29 @@
-import { h } from '@stencil/core';
-// import { useState } from 'haunted';
-import { BigStatView } from '../components/big-stat/big-stat-view';
-import { useDemoBigStat } from '../components/big-stat/useDemoBigStat';
-import { useBigStat } from '../components/big-stat/useBigStat';
-import { useState } from 'haunted';
+import { h } from "@stencil/core";
+import { BigStatView } from "../components/big-stat/big-stat-view";
+import { useDemoBigStat } from "../components/big-stat/useDemoBigStat";
+import { useBigStat } from "../components/big-stat/useBigStat";
+import { useState } from "@saasquatch/stencil-hooks";
+
+import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
 
 export default {
-  title: 'Hooks / useBigStat',
+  title: "Hooks / useBigStat",
 };
 
 function setupGraphQL() {
-  const id = 'worried-camera@uexwltgh.mailosaur.net';
+  const id = "worried-camera@uexwltgh.mailosaur.net";
   const accountId = id;
-  const programId = "a-referral-program"
+  const programId = "a-referral-program";
 
   //@ts-ignore
   window.SquatchAndroid = true;
   //@ts-ignore
   window.widgetIdent = {
-    tenantAlias: 'test_as36zjtpfy7oo',
-    appDomain: 'https://staging.referralsaasquatch.com',
+    tenantAlias: "test_as36zjtpfy7oo",
+    appDomain: "https://staging.referralsaasquatch.com",
     token:
       // you have to change this if you change the id or accountId
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6IndvcnJpZWQtY2FtZXJhQHVleHdsdGdoLm1haWxvc2F1ci5uZXQiLCJpZCI6IndvcnJpZWQtY2FtZXJhQHVleHdsdGdoLm1haWxvc2F1ci5uZXQifX0.-WGV4_bzGCFp-OTIO-h-yp0MlgtkdufT_GgI4T691OY',
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6IndvcnJpZWQtY2FtZXJhQHVleHdsdGdoLm1haWxvc2F1ci5uZXQiLCJpZCI6IndvcnJpZWQtY2FtZXJhQHVleHdsdGdoLm1haWxvc2F1ci5uZXQifX0.-WGV4_bzGCFp-OTIO-h-yp0MlgtkdufT_GgI4T691OY",
     userId: id,
     accountId,
     programId,
@@ -30,75 +31,62 @@ function setupGraphQL() {
   return { id, accountId };
 }
 
-// function useRerender() {
-//   const [, set] = useState(false);
-//   return () => set(b => !b);
-// }
-
 const View = (statType: string) => {
+  console.log(`View("${statType}") - CALLED`);
   setupGraphQL();
   const { props, label } = useBigStat({
     statType,
     render: () => {},
     disconnectedCallback: () => {},
-    ignored:true
+    ignored: true,
   });
   return <BigStatView {...props}>{label}</BigStatView>;
 };
 
 const DemoView = () => {
-  const [type, setType] = useState('/someRandomThing/with/someArguments/1234');
+  console.log(`DemoView - CALLED`);
+  const [type, setType] = useState("/someRandomThing/with/someArguments/1234");
   const { props, label } = useDemoBigStat({
-    statType:type,
+    statType: type,
     render: () => {},
     disconnectedCallback: () => {},
-    ignored: true
+    ignored: true,
   });
-  return <div>
+  return (
     <div>
-      Stat type: <input type="text" value={type} 
-        onInput={(e) => setType((e.target as HTMLInputElement).value)} >
-        </input>
+      <div>
+        Stat type:{" "}
+        <input
+          type="text"
+          value={type}
+          onInput={(e) => setType((e.target as HTMLInputElement).value)}
+        ></input>
+      </div>
+      <hr />
+      <div>
+        <BigStatView {...props}>{label}</BigStatView>
+      </div>
     </div>
-    <hr />
-    <div>
-      <BigStatView {...props}>{label}</BigStatView>
-    </div>
-  </div>
+  );
 };
 
-export const Demo = () => DemoView()
+export const Demo = createHookStory(DemoView);
 
-export const ReferralsCount = () => View('/referralsCount');
-export const ReferralsMonth = () => View('/referralsMonth');
-export const ReferralsWeek = () => View('/referralsWeek');
-export const RewardsCount = () => View('/rewardsCount');
-export const RewardsMonth = () => View('/rewardsMonth');
-export const RewardsWeek = () => View('/rewardsWeek');
-export const RewardsAssigned = () => View('/rewardsAssigned/CREDIT/COFFEE');
-export const RewardsRedeemed = () => View('/rewardsRedeemed/CREDIT/COFFEE');
-export const RewardsAvailable = () => View('/rewardsAvailable/CREDIT/COFFEE');
-export const RewardBalance = () => View('/rewardBalance/CREDIT/COFFEE/prettyValue');
-
-// export const RegularView = () => {
-//   setupGraphQL();
-//   const variables = {
-//     programId: 'a-referral-program',
-//     render: () => {},
-//   };
-//   const res = ['/referralsCount', '/rewardsCount'].map(type =>
-//     useBigStat({
-//       ...variables,
-//       type: type,
-//     }),
-//   );
-//   return (
-//     <div style={{ display: 'flex' }}>
-//       {res.map(r => (
-//         <div style={{ margin: '5px' }}>
-//           <BigStatView {...r.props}>{r.label}</BigStatView>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
+export const ReferralsCount = createHookStory(() => View("/referralsCount"));
+export const ReferralsMonth = createHookStory(() => View("/referralsMonth"));
+export const ReferralsWeek = createHookStory(() => View("/referralsWeek"));
+export const RewardsCount = createHookStory(() => View("/rewardsCount"));
+export const RewardsMonth = createHookStory(() => View("/rewardsMonth"));
+export const RewardsWeek = createHookStory(() => View("/rewardsWeek"));
+export const RewardsAssigned = createHookStory(() =>
+  View("/rewardsAssigned/CREDIT/COFFEE")
+);
+export const RewardsRedeemed = createHookStory(() =>
+  View("/rewardsRedeemed/CREDIT/COFFEE")
+);
+export const RewardsAvailable = createHookStory(() =>
+  View("/rewardsAvailable/CREDIT/COFFEE")
+);
+export const RewardBalance = createHookStory(() =>
+  View("/rewardBalance/CREDIT/COFFEE/prettyValue")
+);

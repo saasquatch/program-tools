@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { FunctionalComponent } from "@stencil/core";
 export namespace Components {
     interface SqmBigStat {
         /**
@@ -13,6 +14,9 @@ export namespace Components {
           * @uiName Stat Type
          */
         "statType": string;
+    }
+    interface SqmHookStoryContainer {
+        "hookStory": FunctionalComponent;
     }
     interface SqmLeaderboard {
         "rankType": "rowNumber" | "rank" | "denseRank";
@@ -166,6 +170,12 @@ declare global {
         prototype: HTMLSqmBigStatElement;
         new (): HTMLSqmBigStatElement;
     };
+    interface HTMLSqmHookStoryContainerElement extends Components.SqmHookStoryContainer, HTMLStencilElement {
+    }
+    var HTMLSqmHookStoryContainerElement: {
+        prototype: HTMLSqmHookStoryContainerElement;
+        new (): HTMLSqmHookStoryContainerElement;
+    };
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
     var HTMLSqmLeaderboardElement: {
@@ -216,6 +226,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "sqm-big-stat": HTMLSqmBigStatElement;
+        "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
@@ -234,6 +245,9 @@ declare namespace LocalJSX {
           * @uiName Stat Type
          */
         "statType"?: string;
+    }
+    interface SqmHookStoryContainer {
+        "hookStory"?: FunctionalComponent;
     }
     interface SqmLeaderboard {
         "rankType"?: "rowNumber" | "rank" | "denseRank";
@@ -381,6 +395,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "sqm-big-stat": SqmBigStat;
+        "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-popup-container": SqmPopupContainer;
@@ -396,6 +411,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
+            "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;

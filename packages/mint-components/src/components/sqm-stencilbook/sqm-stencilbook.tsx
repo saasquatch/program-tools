@@ -13,6 +13,7 @@ import * as UseShareButton from "../../stories/UseShareButton.stories";
 import * as UseBigStat from "../../stories/UseBigStat.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
+import { HookStoryAddon } from "./HookStoryAddon";
 import { ShadowViewAddon } from "../../ShadowViewAddon";
 
 const stories = [
@@ -48,7 +49,7 @@ export class StencilStorybook {
       h,
       hooks,
       title: "Mint Components",
-      addons: [CucumberAddon, ShadowViewAddon],
+      addons: [CucumberAddon, ShadowViewAddon, HookStoryAddon],
     });
     return <Host class={Style}>{children}</Host>;
   }

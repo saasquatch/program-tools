@@ -2,6 +2,8 @@ import { h } from "@stencil/core";
 import { ShareLinkView } from "../components/share-link/share-link-view";
 import { useShareLink } from "../components/share-link/useShareLink";
 
+import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
+
 export default {
   title: "Hooks / useShareLink",
 };
@@ -25,7 +27,7 @@ function setupGraphQL() {
   return { id, accountId };
 }
 
-export const BareBonesView = () => {
+export const BareBonesView = createHookStory(() => {
   setupGraphQL();
   const res = useShareLink({
     programId: "a-referral-program",
@@ -42,9 +44,9 @@ export const BareBonesView = () => {
       </code>
     </div>
   );
-};
+});
 
-export const RegularView = () => {
+export const RegularView = createHookStory(() => {
   setupGraphQL();
   return (
     <ShareLinkView
@@ -55,9 +57,9 @@ export const RegularView = () => {
       })}
     />
   );
-};
+});
 
-export const FastTooltip = () => {
+export const FastTooltip = createHookStory(() => {
   setupGraphQL();
   return (
     <ShareLinkView
@@ -69,4 +71,4 @@ export const FastTooltip = () => {
       })}
     />
   );
-};
+});
