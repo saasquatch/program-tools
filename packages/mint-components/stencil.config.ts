@@ -18,8 +18,8 @@ const useDocx: OutputTarget = {
   }),
 } as const;
 const copyGrapesJS = {
-  src: "../docs/grapesjs.js",
-  dest: "grapesjs.js",
+  src: path.resolve(__dirname, "docs/grapesjs.js"),
+  dest: path.resolve(__dirname, "dist/grapesjs.js"),
   warn: true,
 } as const;
 const useGrapesjs: OutputTarget = grapesJsOutput({});
@@ -75,6 +75,7 @@ export const config: Config = {
             ),
             dest: path.resolve(__dirname, "dist/shoelace"),
           },
+          copyGrapesJS,
         ],
       }),
     ],

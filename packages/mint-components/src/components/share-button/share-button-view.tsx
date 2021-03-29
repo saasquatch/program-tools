@@ -1,4 +1,4 @@
-import { h, VNode } from "@stencil/core";
+import { h, Host, VNode } from "@stencil/core";
 
 export interface ShareButtonViewProps {
   medium:
@@ -39,20 +39,25 @@ export interface ShareButtonViewProps {
 
 export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   return props.hide ? (
-    <span />
+    <Host style={{ display: "none" }}></Host>
   ) : (
-    <sl-button
-      loading={props.loading}
-      disabled={props.disabled}
-      pill={props.pill}
-      size={props.size}
-      type={props.type}
-      onClick={props.onClick}
-    >
-      {!props.hideicon && (
-        <sl-icon slot={props.iconslot} name={props.icon ? props.icon : props.medium}></sl-icon>
-      )}
-      {children}
-    </sl-button>
+    <Host>
+      <sl-button
+        loading={props.loading}
+        disabled={props.disabled}
+        pill={props.pill}
+        size={props.size}
+        type={props.type}
+        onClick={props.onClick}
+      >
+        {!props.hideicon && (
+          <sl-icon
+            slot={props.iconslot}
+            name={props.icon ? props.icon : props.medium}
+          ></sl-icon>
+        )}
+        {children}
+      </sl-button>
+    </Host>
   );
 }
