@@ -31,6 +31,8 @@ const GET_LEADERBOARD = gql`
   }
 `;
 
+function sortRanks() {}
+
 export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   const leaderboardVariables = {
     type: "topConvertedReferrers",
@@ -40,7 +42,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     leaderboardVariables
   );
 
-  const sortedLeaderboard = leaderboardData?.userLeaderboard?.rows.flatMap(
+  const flattenedLeaderBoard = leaderboardData?.userLeaderboard?.rows.flatMap(
     (user) => ({
       value: user.value,
       firstName: user.firstName,
@@ -48,6 +50,13 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
       rank: user.rank?.[props.rankType],
     })
   );
+
+  const sortedLeaderboard = flattenedLeaderBoard.sort(function (
+    a: { rank: number },
+    b: { rank: number }
+  ) {
+    return a.rank - b.rank;
+  });
 
   return {
     states: {
