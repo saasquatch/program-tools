@@ -31,8 +31,6 @@ const GET_LEADERBOARD = gql`
   }
 `;
 
-function sortRanks() {}
-
 export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   const leaderboardVariables = {
     type: "topConvertedReferrers",
