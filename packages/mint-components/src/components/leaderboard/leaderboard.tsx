@@ -24,6 +24,10 @@ export class Leaderboard {
   @Prop() statsheading: string;
 
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
+  /**
+   * @uiName Leaderboard type
+   */
+  @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
 
   @State()
   ignored = true;
@@ -41,6 +45,7 @@ export class Leaderboard {
       usersheading: this.usersheading,
       statsheading: this.statsheading,
       rankType: this.rankType,
+      leaderboardType: this.leaderboardType,
     };
     const viewprops = isDemo()
       ? useLeaderboardDemo(props)

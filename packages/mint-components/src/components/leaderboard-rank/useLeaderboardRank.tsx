@@ -6,6 +6,7 @@ import { createIntl, createIntlCache } from "@formatjs/intl";
 export interface LeaderboardRankProps {
   rankType: "rowNumber" | "rank" | "denseRank";
   rankText: string;
+  leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   unrankedText:string;
 }
 
@@ -36,7 +37,7 @@ export function useLeaderboardRank(
   );
 
   const rankVariables = {
-    type: "topStartedReferrers",
+    type: props.leaderboardType,
   };
   const { data: rankData } = useQuery(GET_RANK, rankVariables);
 

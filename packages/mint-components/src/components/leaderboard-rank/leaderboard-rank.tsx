@@ -22,6 +22,10 @@ export class LeaderboardRank {
    */
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
   @Prop() rankText: string;
+  /**
+   * @uiName Leaderboard type
+   */
+  @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   @Prop() unrankedText: string;
 
   constructor() {

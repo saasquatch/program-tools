@@ -19,6 +19,10 @@ export namespace Components {
         "hookStory": FunctionalComponent;
     }
     interface SqmLeaderboard {
+        /**
+          * @uiName Leaderboard type
+         */
+        "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
         "rankType": "rowNumber" | "rank" | "denseRank";
         /**
           * @uiName Stats Column Heading
@@ -30,6 +34,10 @@ export namespace Components {
         "usersheading": string;
     }
     interface SqmLeaderboardRank {
+        /**
+          * @uiName Leaderboard type
+         */
+        "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
         "rankText": string;
         /**
           * @uiName Default rank
@@ -250,6 +258,10 @@ declare namespace LocalJSX {
         "hookStory"?: FunctionalComponent;
     }
     interface SqmLeaderboard {
+        /**
+          * @uiName Leaderboard type
+         */
+        "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
         "rankType"?: "rowNumber" | "rank" | "denseRank";
         /**
           * @uiName Stats Column Heading
@@ -261,6 +273,10 @@ declare namespace LocalJSX {
         "usersheading"?: string;
     }
     interface SqmLeaderboardRank {
+        /**
+          * @uiName Leaderboard type
+         */
+        "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
         "rankText"?: string;
         /**
           * @uiName Default rank

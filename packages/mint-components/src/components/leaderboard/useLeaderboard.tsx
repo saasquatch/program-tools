@@ -8,6 +8,7 @@ export interface LeaderboardProps {
   statsheading: string;
   // heading: string;
   rankType: "rowNumber" | "rank" | "denseRank";
+  leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   // updatefrequency: string;
   empty: VNode;
   loadingstate: VNode;
@@ -33,7 +34,7 @@ const GET_LEADERBOARD = gql`
 
 export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   const leaderboardVariables = {
-    type: "topConvertedReferrers",
+    type: props.leaderboardType,
   };
   const { data: leaderboardData, loading: loadingLeaderboard } = useQuery(
     GET_LEADERBOARD,

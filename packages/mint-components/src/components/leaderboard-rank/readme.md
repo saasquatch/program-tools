@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property       | Attribute       | Description | Type                                   | Default     |
-| -------------- | --------------- | ----------- | -------------------------------------- | ----------- |
-| `rankText`     | `rank-text`     |             | `string`                               | `undefined` |
-| `rankType`     | `rank-type`     |             | `"denseRank" \| "rank" \| "rowNumber"` | `undefined` |
-| `unrankedText` | `unranked-text` |             | `string`                               | `undefined` |
+| Property          | Attribute          | Description | Type                                               | Default     |
+| ----------------- | ------------------ | ----------- | -------------------------------------------------- | ----------- |
+| `leaderboardType` | `leaderboard-type` |             | `"topConvertedReferrers" \| "topStartedReferrers"` | `undefined` |
+| `rankText`        | `rank-text`        |             | `string`                                           | `undefined` |
+| `rankType`        | `rank-type`        |             | `"denseRank" \| "rank" \| "rowNumber"`             | `undefined` |
+| `unrankedText`    | `unranked-text`    |             | `string`                                           | `undefined` |
 
 
 ----------------------------------------------
