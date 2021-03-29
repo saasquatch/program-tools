@@ -7,6 +7,7 @@ import css from "rollup-plugin-css-only";
 import path from "path";
 import { OutputTarget } from "@stencil/core/internal";
 import { grapesJsOutput } from "@saasquatch/stencil-grapes-plugin";
+import { ShoelaceComponents } from "./shoelace-definitions";
 const useDocx: OutputTarget = {
   type: "docs-custom",
   generator: createDocxGenerator({
@@ -22,7 +23,9 @@ const copyGrapesJS = {
   dest: "grapesjs",
   warn: true,
 } as const;
-const useGrapesjs: OutputTarget = grapesJsOutput({});
+const useGrapesjs: OutputTarget = grapesJsOutput({
+  components: ShoelaceComponents,
+});
 
 const outputTargets: OutputTarget[] = [
   useDocx,
@@ -73,8 +76,8 @@ export const config: Config = {
             dest: "shoelace",
           },
           {
-            src:"node_modules/@shoelace-style/shoelace/dist/themes",
-            dest: "shoelace/themes"
+            src: "node_modules/@shoelace-style/shoelace/dist/themes",
+            dest: "shoelace/themes",
           },
           copyGrapesJS,
         ],
