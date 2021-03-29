@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/stencil-grapes-plugin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A stencil docs generator for generating GrapesJS plugins",
   "source": "src/generator.ts",
   "main": "dist/generator.js",
