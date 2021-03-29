@@ -6,8 +6,6 @@ import type {
 import * as ts from "typescript";
 import fsSync from "fs";
 import path from "path";
-import { FileHandle } from "fs/promises";
-import { GrapesJSModel } from "../template/TEMPLATE";
 
 const fs = fsSync.promises;
 
@@ -15,12 +13,29 @@ const TEMPLATE = path.resolve(__dirname, "../template/TEMPLATE.ts");
 
 type HasDocsTags = { docsTags: JsonDocsTag[] };
 
+export type GrapesJSModel = {
+  tag: string;
+  name: string;
+  traits: {
+    type: string;
+    title: string;
+    name: string;
+    enum?: unknown[];
+    enumNames?: unknown[];
+  }[];
+  uiSchema?: any;
+};
+
 export type Config = {
   /** The output directory for the plugin (i.e. docs) */
   outDir: string;
   /** The output file name (i.e. grapes.js) */
   outFile: string;
   templateFile: string;
+  /**
+   * A static list of GrapesJS components to export
+   */
+  components: GrapesJSModel[];
 };
 
 /**
@@ -32,10 +47,13 @@ export function grapesJsOutput({
   outDir = "docs",
   outFile = "grapesjs.js",
   templateFile = TEMPLATE,
+  components = [],
 }: Partial<Config>): OutputTargetDocsCustom {
   async function generator(docsJson: JsonDocs) {
     const templateSrc = await fs.readFile(templateFile, { encoding: "utf-8" });
-    const metaSrc = JSON.stringify(convertToGrapesJSMeta(docsJson));
+    const stencilComponents = convertToGrapesJSMeta(docsJson);
+    const allComponents = [...stencilComponents, ...components];
+    const metaSrc = JSON.stringify(allComponents);
     const source = `const components=${metaSrc};
     ${templateSrc}
     `;
