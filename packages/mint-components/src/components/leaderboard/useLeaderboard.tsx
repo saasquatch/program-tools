@@ -49,7 +49,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     })
   );
 
-  const sortedLeaderboard = flattenedLeaderBoard.sort(function (
+  const sortedLeaderboard = flattenedLeaderBoard?.sort(function (
     a: { rank: number },
     b: { rank: number }
   ) {
