@@ -31,8 +31,6 @@ const GET_LEADERBOARD = gql`
   }
 `;
 
-function sortRanks() {}
-
 export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   const leaderboardVariables = {
     type: "topConvertedReferrers",
@@ -51,7 +49,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     })
   );
 
-  const sortedLeaderboard = flattenedLeaderBoard.sort(function (
+  const sortedLeaderboard = flattenedLeaderBoard?.sort(function (
     a: { rank: number },
     b: { rank: number }
   ) {
