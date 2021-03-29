@@ -152,24 +152,14 @@ export function useForm(props: UseFormProps) {
 
   useEffect(() => {
     async function setInitialData(htmlForm, initialData) {
-      // abstract out sl-form specific checks
-      const inputs =
-        htmlForm.localName === "sl-form"
-          ? await htmlForm.getFormControls()
-          : htmlForm.elements;
+      const inputs = htmlForm.elements;
 
-      const formContent =
-        htmlForm.localName === "sl-form"
-          ? await htmlForm.getFormData()
-          : new FormData(htmlForm);
+      const formContent = new FormData(htmlForm);
 
-      console.log({ htmlForm, formContent });
+      debug({ htmlForm, formContent });
       formContent?.forEach((value, key) => {
-        console.log({ value, key, inputs });
-        const input =
-          htmlForm.localName === "sl-form"
-            ? inputs.find((input) => input.name === key)
-            : (inputs.namedItem(key) as HTMLInputElement);
+        debug({ value, key, inputs });
+        const input = inputs.namedItem(key) as HTMLInputElement;
 
         try {
           if (input.type == "checkbox") {
@@ -288,7 +278,7 @@ export function useForm(props: UseFormProps) {
 
     setFormState({ validating: true });
     const form = e.target;
-    console.log(form);
+    debug("submit form", form);
     const data = new FormData(form);
 
     let formData = {};
