@@ -146,10 +146,12 @@ export function useForm(props: UseFormProps) {
     formData,
   } = formState;
 
+  // retrieve form schema and initial data
   useEffect(() => {
     getForm(variables);
   }, []);
 
+  // load initial data into form
   useEffect(() => {
     async function setInitialData(htmlForm, initialData) {
       const inputs = htmlForm.elements;
@@ -190,6 +192,7 @@ export function useForm(props: UseFormProps) {
     if (!loadingForm && data) initialize();
   }, [loadingForm]);
 
+  // submit if form data is valid
   useEffect(() => {
     if (!!validationData) {
       setFormState({
