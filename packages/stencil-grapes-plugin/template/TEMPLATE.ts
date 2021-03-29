@@ -1,27 +1,17 @@
+import { GrapesJSModel } from "../dist/generator";
+
 /**
  * Provided by the generator
  */
 declare const components: GrapesJSModel[];
 
-export type GrapesJSModel = {
-  tag: string;
-  name: string;
-  traits: {
-    type: string;
-    title: string;
-    name: string;
-    enum?: unknown[];
-    enumNames?: unknown[];
-  }[];
-  uiSchema?: any;
-};
 type GrapesJSEditor = any;
 export default (editor: GrapesJSEditor, config = {}) => {
   // Get DomComponents module
   const comps = editor.DomComponents;
 
   // Get the model and the view from the default Component type
-  const defaultType = comps.getType('default');
+  const defaultType = comps.getType("default");
   const defaultModel = defaultType.model;
   const defaultView = defaultType.view;
 
@@ -42,12 +32,12 @@ export default (editor: GrapesJSEditor, config = {}) => {
           }),
         },
         {
-          isComponent: function (el) {
+          isComponent: function (el: HTMLElement) {
             if (el.tagName === tag.toUpperCase()) {
               return { type: tag.toLowerCase() };
             }
           },
-        },
+        }
       ),
       view: defaultView.extend({
         render: function () {
@@ -58,7 +48,9 @@ export default (editor: GrapesJSEditor, config = {}) => {
     });
   }
   if (!components) {
-    throw new Error('Error registering components. This is likely due to a build problem in the source library. See GrapesJS generator.ts');
+    throw new Error(
+      "Error registering components. This is likely due to a build problem in the source library. See GrapesJS generator.ts"
+    );
   }
   components.forEach(registerComponent);
 };

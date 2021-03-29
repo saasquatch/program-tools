@@ -16,7 +16,24 @@ export const config: Config = {
       type: "docs-json",
       file: "docs/docs.json",
     },
-    grapesJsOutput({}),
+    grapesJsOutput({
+      components: [
+        {
+          tag: "eg-thing",
+          name: "Example THing",
+          traits: [
+            {
+              type: "string",
+              title: "my-attr",
+              name: "my-attr",
+            },
+          ],
+          uiSchema: {
+            "ui:widget": "TextFancy",
+          },
+        },
+      ],
+    }),
     {
       type: "www",
       serviceWorker: null, // disable service workers
