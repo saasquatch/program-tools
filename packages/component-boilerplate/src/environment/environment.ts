@@ -1,10 +1,18 @@
-import { useHost } from "../hooks/useHost";
 import { useProgramContext } from "./ProgramContext";
 import {
   PortalEnv,
   SquatchPortal,
   SquatchPortalInstance,
 } from "./SquatchPortal";
+
+/**
+ * User identity context helpers
+ */
+export {
+  useUserIdentity,
+  useToken,
+  setUserIdentity,
+} from "./UserIdentityContext";
 
 /**
  * Provided by the SaaSquatch GraphQL backend when a widget is rendered.
@@ -177,32 +185,6 @@ export function isDemo() {
   return sdk.type === "None" || sdk.type === "SquatchAdmin";
 }
 
-type UserIdentity = {
-  id: string;
-  accountId: string;
-  jwt?: string;
-};
-
-export function useUserIdentity(): UserIdentity | undefined {
-  const sdk = getEnvironmentSDK();
-  const host = useHost();
-  switch (sdk.type) {
-    case "SquatchAndroid":
-    case "SquatchJS2":
-      return {
-        id: sdk.widgetIdent.userId,
-        accountId: sdk.widgetIdent.accountId,
-        jwt: sdk.widgetIdent.token,
-      };
-    case "SquatchPortal":
-      return sdk.context.userContext.useContext(host);
-    case "SquatchAdmin":
-    case "None":
-      // Not logged in for admin portal / none default case
-      return undefined;
-  }
-}
-
 // Fake tenant alias in
 const FAKE_TENANT = "demo";
 
@@ -233,10 +215,6 @@ export function useAppDomain(): string {
     case "None":
       return DEFAULT_DOMAIN;
   }
-}
-
-export function useToken(): string | undefined {
-  return useUserIdentity()?.jwt;
 }
 
 export type UserId = {

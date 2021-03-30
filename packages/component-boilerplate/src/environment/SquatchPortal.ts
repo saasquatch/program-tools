@@ -1,4 +1,5 @@
 import { createContext } from "@saasquatch/dom-context-hooks";
+import { WidgetIdent } from "./environment";
 
 /**
  * Environment provided by components hosted in a web component (`sqh-widget`)
@@ -11,17 +12,14 @@ declare global {
   }
 }
 
-export type PortalEnv = {
-  tenantAlias: string;
-  appDomain: string;
-};
-
-export type UserIdentifier = {
-  id: string;
-  accountId: string;
-};
+/**
+ * Portal env doesn't include User Id
+ */
+export type PortalEnv = Pick<
+  WidgetIdent,
+  "tenantAlias" | "appDomain" | "programId"
+>;
 
 export const SquatchPortalInstance = {
-  userContext: createContext<UserIdentifier>("sq-context:user"),
   localeContext: createContext<string>("sq-context:locale"),
 } as const;

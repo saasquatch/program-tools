@@ -2,15 +2,25 @@
  * Identity and environment
  */
 export {
+  /*
+   * Identity
+   */
   useUserIdentity,
+  setUserIdentity,
+  useToken,
+  /*
+   * Core environment
+   */
+  getEnvironmentSDK,
   useTenantAlias,
   useProgramId,
-  useEngagementMedium,
   useAppDomain,
-  useToken,
-  useLocale,
   isDemo,
-  getEnvironmentSDK
+  /*
+   * Personalization environment
+   */
+  useEngagementMedium,
+  useLocale,
 } from "./environment/environment";
 
 //
