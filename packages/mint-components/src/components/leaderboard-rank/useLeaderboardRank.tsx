@@ -11,10 +11,10 @@ export interface LeaderboardRankProps {
 }
 
 const GET_RANK = gql`
-  query {
+  query ($type: String!) {
     viewer {
       ... on User {
-        leaderboardRank(type: "topStartedReferrers") {
+        leaderboardRank(type: $type) {
           rowNumber
           rank
           denseRank
