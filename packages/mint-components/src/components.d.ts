@@ -15,6 +15,15 @@ export namespace Components {
          */
         "statType": string;
     }
+    interface SqmEditProfile {
+        "canceltext": string;
+        "currentregiontext": string;
+        "editprofileheader": string;
+        "editprofiletext": string;
+        "firstnametext": string;
+        "lastnametext": string;
+        "updatetext": string;
+    }
     interface SqmHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
@@ -178,6 +187,12 @@ declare global {
         prototype: HTMLSqmBigStatElement;
         new (): HTMLSqmBigStatElement;
     };
+    interface HTMLSqmEditProfileElement extends Components.SqmEditProfile, HTMLStencilElement {
+    }
+    var HTMLSqmEditProfileElement: {
+        prototype: HTMLSqmEditProfileElement;
+        new (): HTMLSqmEditProfileElement;
+    };
     interface HTMLSqmHookStoryContainerElement extends Components.SqmHookStoryContainer, HTMLStencilElement {
     }
     var HTMLSqmHookStoryContainerElement: {
@@ -234,6 +249,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "sqm-big-stat": HTMLSqmBigStatElement;
+        "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
@@ -253,6 +269,15 @@ declare namespace LocalJSX {
           * @uiName Stat Type
          */
         "statType"?: string;
+    }
+    interface SqmEditProfile {
+        "canceltext"?: string;
+        "currentregiontext"?: string;
+        "editprofileheader"?: string;
+        "editprofiletext"?: string;
+        "firstnametext"?: string;
+        "lastnametext"?: string;
+        "updatetext"?: string;
     }
     interface SqmHookStoryContainer {
         "hookStory"?: FunctionalComponent;
@@ -411,6 +436,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "sqm-big-stat": SqmBigStat;
+        "sqm-edit-profile": SqmEditProfile;
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
@@ -427,6 +453,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
+            "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
