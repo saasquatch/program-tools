@@ -15,8 +15,8 @@ export interface LeaderboardProps {
 }
 
 const GET_LEADERBOARD = gql`
-  query {
-    userLeaderboard(type: "topConvertedReferrers") {
+  query ($type: String!) {
+    userLeaderboard(type: $type) {
       dateModified
       rows {
         value
