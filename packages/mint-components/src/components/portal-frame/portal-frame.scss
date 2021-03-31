@@ -1,0 +1,10 @@
+@include Wrapper;
+
+.FooterWrapper {
+  max-width: 100%;
+  padding: var(--sl-spacing-medium) var(--sl-spacing-x-large);
+  background: var(--sl-color-gray-200);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

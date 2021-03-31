@@ -28,10 +28,10 @@ export interface EditProfileViewProps {
     };
   };
   callbacks: {
-    onSubmit: (any) => void;
+    onSubmit: (props: any) => void;
     resetForm: () => void;
     onChange: () => void;
-    setShowEdit: (boolean) => void;
+    setShowEdit: (props: boolean) => void;
   };
 }
 

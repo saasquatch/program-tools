@@ -1,8 +1,8 @@
 import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { isDemo } from "@saasquatch/component-boilerplate";
 import EditProfileView, { EditProfileViewProps } from "./edit-profile-view";
 import { EditProfileProps, useEditProfile } from "./useEditProfile";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  * @uiName Edit Profile
