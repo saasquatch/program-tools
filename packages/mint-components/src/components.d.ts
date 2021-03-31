@@ -76,6 +76,11 @@ export namespace Components {
          */
         "poweredBy": boolean;
     }
+    interface SqmPortalFrame {
+        "description": string;
+        "headertext": string;
+        "includeDropdown": boolean;
+    }
     interface SqmRoute {
         /**
           * @uiName Navigation path name
@@ -217,6 +222,12 @@ declare global {
         prototype: HTMLSqmPopupContainerElement;
         new (): HTMLSqmPopupContainerElement;
     };
+    interface HTMLSqmPortalFrameElement extends Components.SqmPortalFrame, HTMLStencilElement {
+    }
+    var HTMLSqmPortalFrameElement: {
+        prototype: HTMLSqmPortalFrameElement;
+        new (): HTMLSqmPortalFrameElement;
+    };
     interface HTMLSqmRouteElement extends Components.SqmRoute, HTMLStencilElement {
     }
     var HTMLSqmRouteElement: {
@@ -254,6 +265,7 @@ declare global {
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
+        "sqm-portal-frame": HTMLSqmPortalFrameElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
@@ -330,6 +342,11 @@ declare namespace LocalJSX {
           * @uiName Show SaaSquatch Powered By messaging
          */
         "poweredBy"?: boolean;
+    }
+    interface SqmPortalFrame {
+        "description"?: string;
+        "headertext"?: string;
+        "includeDropdown"?: boolean;
     }
     interface SqmRoute {
         /**
@@ -441,6 +458,7 @@ declare namespace LocalJSX {
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-popup-container": SqmPopupContainer;
+        "sqm-portal-frame": SqmPortalFrame;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
         "sqm-share-button": SqmShareButton;
@@ -458,6 +476,7 @@ declare module "@stencil/core" {
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
+            "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
