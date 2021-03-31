@@ -30,7 +30,7 @@ export interface EditProfileViewProps {
   callbacks: {
     onSubmit: (props: any) => void;
     resetForm: () => void;
-    onChange: () => void;
+    onChange: (e) => void;
     setShowEdit: (props: boolean) => void;
   };
 }
@@ -115,7 +115,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
             <sl-button
               onClick={() => {
                 callbacks.setShowEdit(false);
-                callbacks.resetForm();
+                // callbacks.resetForm();
               }}
             >
               {text.canceltext}

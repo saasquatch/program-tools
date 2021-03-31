@@ -36,6 +36,7 @@ export class EditProfile {
 }
 
 function useEditProfileDemo(props: EditProfileProps): EditProfileViewProps {
+  console.log("DEMO DEMO DEMO")
   return {
     states: {
       loading: false,

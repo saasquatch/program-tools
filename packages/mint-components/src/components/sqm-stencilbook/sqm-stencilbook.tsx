@@ -11,6 +11,7 @@ import * as LeaderboardRank from "../../stories/LeaderboardRank.stories";
 import * as UseShareLink from "../../stories/UseShareLink.stories";
 import * as UseShareButton from "../../stories/UseShareButton.stories";
 import * as UseBigStat from "../../stories/UseBigStat.stories";
+import * as UseEditProfile from "../../stories/UseEditProfile.stories"
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -25,6 +26,7 @@ const stories = [
   UseShareLink,
   UseShareButton,
   UseBigStat,
+  UseEditProfile,
   Router,
 ];
 
