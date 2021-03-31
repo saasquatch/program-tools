@@ -308,7 +308,41 @@ const API = {
         });
     },
     loadEvent() {
-      return Promise.resolve({ event: "loadEvent" });
+      const widgetId = widgetIdent();
+
+      if (widgetId["env"] === "demo" || !widgetId) return Promise.resolve({});
+
+      const {
+        userId,
+        accountId,
+        programId = "classic",
+        engagementMedium,
+      } = widgetId;
+
+      const variables = {
+        eventMeta: {
+          id: userId,
+          accountId,
+          programId,
+          type: "USER_REFERRAL_PROGRAM_LOADED_EVENT",
+          meta: {
+            engagementMedium,
+          },
+        },
+      };
+
+      return apolloClient()
+        .mutate({
+          mutation: gql`
+            mutation($eventMeta: UserAnalyticsEvent!) {
+              createUserAnalyticsEvent(eventMeta: $eventMeta)
+            }
+          `,
+          variables,
+        })
+        .then((result) => {
+          return result.data.createUserAnalyticsEvent;
+        });
     },
   },
   graphql: {
