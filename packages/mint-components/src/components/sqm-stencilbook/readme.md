@@ -13,6 +13,7 @@
 - [sqm-share-link](../share-link)
 - [sqm-router](../router)
 - [sqm-hook-story-container](../sqm-hook-story-container)
+- [sqm-edit-profile](../edit-profile)
 
 ### Graph
 ```mermaid
@@ -21,6 +22,7 @@ graph TD;
   sqm-stencilbook --> sqm-share-link
   sqm-stencilbook --> sqm-router
   sqm-stencilbook --> sqm-hook-story-container
+  sqm-stencilbook --> sqm-edit-profile
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
