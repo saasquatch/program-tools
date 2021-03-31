@@ -49,8 +49,16 @@ const defaultProps = {
   },
 };
 
-export const FrameWithMenu = () => {
+export const EditProfileFormDisabled = () => {
   const props = defaultProps;
+  return <EditProfileView {...props} />;
+};
+
+export const EditProfileFormEnabled = () => {
+  const props = {
+    ...defaultProps,
+    states: { ...defaultProps.states, showEdit: true },
+  };
   return <EditProfileView {...props} />;
 };
 
