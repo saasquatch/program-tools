@@ -6,8 +6,17 @@ import "@formatjs/intl-pluralrules/dist/locale-data/en";
 import 'babel-polyfill';
 import {useHost} from "@saasquatch/stencil-hooks";
 import {setUseHostImplementation} from "@saasquatch/component-boilerplate";
+import { createIntl, createIntlCache } from "@formatjs/intl";
 
 setUseHostImplementation(useHost);
+
+const cache = createIntlCache();
+export const intl = createIntl(
+  {
+    locale: "en",
+  },
+  cache
+);
 
 import {
   SlAlert,
