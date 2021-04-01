@@ -1,6 +1,7 @@
+@include HostBlock;
+
 :host {
   min-height: 100vh;
-  display: block;
 }
 
 .Frame {

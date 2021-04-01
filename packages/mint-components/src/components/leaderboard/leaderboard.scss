@@ -1,5 +1,6 @@
 @include Column;
 @include SeparateContent;
+@include HostBlock;
 
 .Column {
   & > :not(:first-child) {

@@ -1,3 +1,5 @@
-:host, sl-button {
+@include HostBlock;
+
+sl-button {
   display: block;
 }

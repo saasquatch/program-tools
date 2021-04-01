@@ -12,7 +12,7 @@ import { isDemo } from "@saasquatch/component-boilerplate";
  */
 @Component({
   tag: "sqm-big-stat",
-  styleUrl: "big-stat.css",
+  styleUrl: "big-stat.scss",
   shadow: true,
 })
 export class BigStat {
