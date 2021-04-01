@@ -77,9 +77,12 @@ export namespace Components {
         "poweredBy": boolean;
     }
     interface SqmPortalFrame {
+        "dashboardPath": string;
         "description": string;
         "headertext": string;
         "includeDropdown": boolean;
+        "logoutPath": string;
+        "profilePath": string;
     }
     interface SqmRoute {
         /**
@@ -344,9 +347,12 @@ declare namespace LocalJSX {
         "poweredBy"?: boolean;
     }
     interface SqmPortalFrame {
+        "dashboardPath"?: string;
         "description"?: string;
         "headertext"?: string;
         "includeDropdown"?: boolean;
+        "logoutPath"?: string;
+        "profilePath"?: string;
     }
     interface SqmRoute {
         /**

@@ -9,9 +9,12 @@
 
 | Property          | Attribute          | Description | Type      | Default     |
 | ----------------- | ------------------ | ----------- | --------- | ----------- |
+| `dashboardPath`   | `dashboard-path`   |             | `string`  | `undefined` |
 | `description`     | `description`      |             | `string`  | `undefined` |
 | `headertext`      | `headertext`       |             | `string`  | `undefined` |
 | `includeDropdown` | `include-dropdown` |             | `boolean` | `undefined` |
+| `logoutPath`      | `logout-path`      |             | `string`  | `undefined` |
+| `profilePath`     | `profile-path`     |             | `string`  | `undefined` |
 
 
 ## Dependencies
