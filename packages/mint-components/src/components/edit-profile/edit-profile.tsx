@@ -3,6 +3,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import EditProfileView, { EditProfileViewProps } from "./edit-profile-view";
 import { EditProfileProps, useEditProfile } from "./useEditProfile";
 import { isDemo } from "@saasquatch/component-boilerplate";
+import { getProps } from "../../utils/utils";
 
 /**
  * @uiName Edit Profile
@@ -16,12 +17,33 @@ export class EditProfile {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Heading
+   */
   @Prop() editprofileheader: string;
+  /**
+   * @uiName Enable editing button text
+   */
   @Prop() editprofiletext: string;
-  @Prop() firstnametext: string;
-  @Prop() lastnametext: string;
+  /**
+   * @uiName Cancel button text
+   */
   @Prop() canceltext: string;
+  /**
+   * @uiName Update info button text
+   */
   @Prop() updatetext: string;
+  /**
+   * @uiName First name field label
+   */
+  @Prop() firstnametext: string;
+  /**
+   * @uiName Last name field label
+   */
+  @Prop() lastnametext: string;
+  /**
+   * @uiName Region field label
+   */
   @Prop() currentregiontext: string;
 
   constructor() {
@@ -30,13 +52,15 @@ export class EditProfile {
   disconnectedCallback() {}
 
   render() {
-    const props = isDemo() ? useEditProfileDemo(this) : useEditProfile(this);
+    const props = isDemo()
+      ? useEditProfileDemo(getProps(this))
+      : useEditProfile(getProps(this));
     return <EditProfileView {...props} />;
   }
 }
 
 function useEditProfileDemo(props: EditProfileProps): EditProfileViewProps {
-  console.log("DEMO DEMO DEMO")
+  console.log("DEMO DEMO DEMO");
   return {
     states: {
       loading: false,
@@ -55,13 +79,19 @@ function useEditProfileDemo(props: EditProfileProps): EditProfileViewProps {
       },
       showEdit: false,
       text: {
-        editprofileheader: props.editprofileheader ? props.editprofileheader : "Edit Profile",
-        editprofiletext: props.editprofiletext ? props.editprofiletext : "Update your profile.",
-        firstnametext: props.firstnametext ? props.firstnametext : "Bill",
-        lastnametext: props.lastnametext ? props.lastnametext : "Bob",
+        editprofileheader: props.editprofileheader
+          ? props.editprofileheader
+          : "Edit Profile",
+        editprofiletext: props.editprofiletext
+          ? props.editprofiletext
+          : "Update your profile.",
+        firstnametext: props.firstnametext ? props.firstnametext : "First Name",
+        lastnametext: props.lastnametext ? props.lastnametext : "Last Name",
         canceltext: props.canceltext ? props.canceltext : "Cancel",
         updatetext: props.updatetext ? props.updatetext : "Update",
-        currentregiontext: props.currentregiontext ? props.currentregiontext : "Canada",
+        currentregiontext: props.currentregiontext
+          ? props.currentregiontext
+          : "Region",
       },
     },
     callbacks: {

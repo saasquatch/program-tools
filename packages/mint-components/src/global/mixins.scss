@@ -73,3 +73,12 @@
     display: flex;
   }
 }
+
+@mixin HostBlock {
+  :host {
+    display: block;
+  }
+  :host([hidden]) {
+    display: none;
+  }
+}
