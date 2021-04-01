@@ -12,5 +12,7 @@ export function useProgramContext() {
   // TODO: implement domContext
   // const host = useHost();
   // return useDomContext<string>(host, "sq-context:program-id");
-  return window.widgetIdent?.programId
+
+  // ALSO TODO: figure out programContext for portal environment (this will do for now)
+  return window.widgetIdent?.programId || window.SquatchPortal?.programId;
 }
