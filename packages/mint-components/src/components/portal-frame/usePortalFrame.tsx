@@ -1,4 +1,8 @@
-import { navigation, useTick } from "@saasquatch/component-boilerplate";
+import {
+  navigation,
+  useTick,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
 import { useRef } from "@saasquatch/universal-hooks";
 import { SlMenu, SlMenuItem } from "@shoelace-style/shoelace";
 import { useEffect } from "haunted";
@@ -6,7 +10,6 @@ import { PortalFrame } from "./portal-frame";
 import { PortalFrameViewProps } from "./portal-frame-view";
 
 export interface PortalFrameProps {
-  includeDropdown: boolean;
   headertext: string;
   description: string;
 }
@@ -38,6 +41,8 @@ export function usePortalFrame(props: PortalFrame): PortalFrameViewProps {
   const ref = useRef<SlMenu>();
   const [_, rerender] = useTick();
 
+  const user = useUserIdentity();
+
   useEffect(() => {
     ref.current?.addEventListener("sl-select", (e: SelectEvent) =>
       handleMenu(e, props)
@@ -46,7 +51,7 @@ export function usePortalFrame(props: PortalFrame): PortalFrameViewProps {
 
   return {
     states: {
-      includeDropdown: props.includeDropdown,
+      includeDropdown: (user.id || user.accountId || user.jwt) !== undefined,
       styles: {
         headertext: props.headertext,
         description: props.description,

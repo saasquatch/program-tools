@@ -16,7 +16,6 @@ export class PortalFrame {
   @State()
   ignored = true;
 
-  @Prop() includeDropdown: boolean;
   @Prop() headertext: string;
   @Prop() description: string;
 

@@ -1,5 +1,4 @@
 import { VNode, h } from "@stencil/core";
-import { registerCustomQueryHandler } from "puppeteer";
 
 export interface PortalFrameViewProps {
   states: {

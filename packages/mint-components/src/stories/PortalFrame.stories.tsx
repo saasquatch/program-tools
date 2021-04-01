@@ -23,6 +23,19 @@ function setupGraphQL() {
   return { id, accountId };
 }
 
+function setupLoggedOut() {
+  const programId = "a-referral-program";
+
+  //@ts-ignore
+  window.SquatchAndroid = true;
+  //@ts-ignore
+  window.widgetIdent = {
+    tenantAlias: "test_as36zjtpfy7oo",
+    appDomain: "https://staging.referralsaasquatch.com",
+    programId,
+  };
+}
+
 export default {
   title: "Portal Frame",
 };
@@ -65,48 +78,44 @@ export const FrameWithoutMenu = () => {
   return <PortalFrameView {...props} />;
 };
 
-export const FullStackFrameWithMenu = () => {
+export const FullStackFrame = () => {
   setupGraphQL();
   return (
-    <div>
-      <sqm-portal-frame
-        includeDropdown={true}
-        headertext="Service Titan"
-        description="Portal Description"
-        dashboard-path="/dashboard"
-        profile-path="/profile"
-        logout-path="/logout"
-      ></sqm-portal-frame>
-      <p>
-        Current path:{" "}
-        <code>
-          <strong>{useCurrentPage()?.pathname}</strong>
-        </code>
-      </p>
-      <button onClick={navigation.back}>Go Back</button>
-    </div>
+  <div>
+    <sqm-portal-frame
+      headertext="Service Titan"
+      description="Portal Description"
+      dashboard-path="/dashboard"
+      profile-path="/profile"
+      logout-path="/logout"
+    >
+      <h1>Something</h1>
+    </sqm-portal-frame>
+    <p>
+      Current path: <code><strong>{useCurrentPage()?.pathname}</strong></code>
+    </p>
+    <button onClick={navigation.back}>Go Back</button>
+  </div>
   );
 };
 
-export const FullStackFrameWithoutMenu = () => {
-  setupGraphQL();
+export const FullStackFrameLoggedOut = () => {
+  setupLoggedOut();
   return (
-    <div>
-      <sqm-portal-frame
-        includeDropdown={false}
-        headertext="Service Titan"
-        description="Portal Description"
-        dashboard-path="/dashboard"
-        profile-path="/profile"
-        logout-path="/logout"
-      ></sqm-portal-frame>
-      <p>
-        Current path:{" "}
-        <code>
-          <strong>{useCurrentPage()?.pathname}</strong>
-        </code>
-      </p>
-      <button onClick={navigation.back}>Go Back</button>
-    </div>
+  <div>
+    <sqm-portal-frame
+      headertext="Service Titan"
+      description="Portal Description"
+      dashboard-path="/dashboard"
+      profile-path="/profile"
+      logout-path="/logout"
+    >
+      <h1>Something</h1>
+    </sqm-portal-frame>
+    <p>
+      Current path: <code><strong>{useCurrentPage()?.pathname}</strong></code>
+    </p>
+    <button onClick={navigation.back}>Go Back</button>
+  </div>
   );
 };

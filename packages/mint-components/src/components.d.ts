@@ -80,7 +80,6 @@ export namespace Components {
         "dashboardPath": string;
         "description": string;
         "headertext": string;
-        "includeDropdown": boolean;
         "logoutPath": string;
         "profilePath": string;
     }
@@ -350,7 +349,6 @@ declare namespace LocalJSX {
         "dashboardPath"?: string;
         "description"?: string;
         "headertext"?: string;
-        "includeDropdown"?: boolean;
         "logoutPath"?: string;
         "profilePath"?: string;
     }
