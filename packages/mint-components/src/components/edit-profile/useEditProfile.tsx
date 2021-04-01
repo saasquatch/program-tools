@@ -67,6 +67,7 @@ const defaultFormState = {
 export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
   const { accountId, id } = useUserIdentity();
   const [showEdit, setShowEdit] = useState(false);
+  const [errors, setErrors] = useState<Object>({});
   const [userData, setUserData] = useState<null | {
     id: string;
     accountId: string;
@@ -89,6 +90,21 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
   const [upsertUser, upsertUserResponse] = useMutation(UPSERT_USER);
 
   useEffect(() => {
+    if (upsertUserResponse.loading || !showEdit) return;
+
+    if (upsertUserResponse.errors) {
+      console.log("setting error state");
+      setFormState((state) => ({
+        ...state,
+        error: upsertUserResponse.errors?.response.errors?.[0].message,
+      }));
+    } else {
+      userDataResponse.refetch();
+      setShowEdit(false);
+    }
+  }, [upsertUserResponse.loading]);
+
+  useEffect(() => {
     setUserData((data) => ({ ...data, ...userDataResponse.data?.viewer }));
   }, [userDataResponse.data]);
   console.log("GET_USER", userDataResponse);
@@ -100,7 +116,10 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
     states: {
       loading: userDataResponse.loading,
       submitDisabled: false,
-      formState,
+      formState: {
+        ...formState,
+        errors
+      },
       // formState: {
       //   currentRegion: "Canada",
       //   firstName: "Bill",
@@ -126,21 +145,36 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
       },
     },
     callbacks: {
-      onSubmit: (e) => {
-        // console.log("onSubmit", e);
-        console.log("UPSERTING!!!");
-        upsertUser({
-          id,
-          accountId,
-          firstName: formState.firstName,
-          lastName: formState.lastName,
-        });
-        console.log("Done upserting!!!");
+      onSubmit: () => {
+        setErrors({})
+        if (formState.firstName && formState.lastName) {
+          upsertUser({
+            id,
+            accountId,
+            firstName: formState.firstName,
+            lastName: formState.lastName,
+          });
+          return;
+        }
+        if (!formState.firstName) {
+          setErrors((e) => ({
+            ...e,
+            firstName: {
+              message: "Field can't be empty",
+            },
+          }));
+        }
+        if (!formState.lastName) {
+          setErrors((e) => ({
+            ...e,
+            lastName: {
+              message: "Field can't be empty",
+            },
+          }));
+        }
       },
       resetForm: () => {
-        console.log("resetting");
         setUserData(userDataResponse.data?.viewer);
-        console.log("did 1");
         setFormState({
           ...defaultFormState,
           ...userDataResponse.data?.viewer,
@@ -151,7 +185,6 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
             : "Unknown",
           error: userDataResponse.errors?.response.errors?.[0].message,
         });
-        console.log("did 2");
       },
       onChange: (e) => {
         const { name, value } = e.originalTarget;
