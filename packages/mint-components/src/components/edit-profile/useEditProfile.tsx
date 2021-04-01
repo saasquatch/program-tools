@@ -67,7 +67,6 @@ const defaultFormState = {
 export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
   const { accountId, id } = useUserIdentity();
   const [showEdit, setShowEdit] = useState(false);
-  const [errors, setErrors] = useState<Object>({});
   const [userData, setUserData] = useState<null | {
     id: string;
     accountId: string;
@@ -93,7 +92,6 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
     if (upsertUserResponse.loading || !showEdit) return;
 
     if (upsertUserResponse.errors) {
-      console.log("setting error state");
       setFormState((state) => ({
         ...state,
         error: upsertUserResponse.errors?.response.errors?.[0].message,
@@ -116,23 +114,8 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
     states: {
       loading: userDataResponse.loading,
       submitDisabled: false,
-      formState: {
-        ...formState,
-        errors
-      },
-      // formState: {
-      //   currentRegion: "Canada",
-      //   firstName: "Bill",
-      //   lastName: "Bob",
-      //   errors: {},
-      //   error: "An error string",
-      // },
-      user: {
-        ...userData,
-        // firstName: "Bill",
-        // lastName: "Bob",
-        // email: "billbob@example.com",
-      },
+      formState,
+      user: userData,
       showEdit,
       text: {
         editprofileheader: props.editprofileheader,
@@ -146,7 +129,6 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
     },
     callbacks: {
       onSubmit: () => {
-        setErrors({})
         if (formState.firstName && formState.lastName) {
           upsertUser({
             id,
@@ -154,36 +136,31 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
             firstName: formState.firstName,
             lastName: formState.lastName,
           });
+          setFormState((s) => ({ ...s, errors: {} }));
           return;
         }
+
+        const errors = {};
         if (!formState.firstName) {
-          setErrors((e) => ({
-            ...e,
-            firstName: {
-              message: "Field can't be empty",
-            },
-          }));
+          errors["firstName"] = { message: "Field can't be empty" };
         }
         if (!formState.lastName) {
-          setErrors((e) => ({
-            ...e,
-            lastName: {
-              message: "Field can't be empty",
-            },
-          }));
+          errors["lastName"] = { message: "Field can't be empty" };
         }
+        setFormState((e) => ({ ...e, errors }));
       },
       resetForm: () => {
+        const currentRegion = userDataResponse?.data?.viewer?.countryCode
+          ? intl.formatDisplayName(userDataResponse.data.viewer.countryCode, {
+              type: "region",
+            })
+          : "Unknown";
+
         setUserData(userDataResponse.data?.viewer);
         setFormState({
           ...defaultFormState,
           ...userDataResponse.data?.viewer,
-          currentRegion: userDataResponse?.data?.viewer?.countryCode
-            ? intl.formatDisplayName(userDataResponse.data.viewer.countryCode, {
-                type: "region",
-              })
-            : "Unknown",
-          error: userDataResponse.errors?.response.errors?.[0].message,
+          currentRegion,
         });
       },
       onChange: (e) => {

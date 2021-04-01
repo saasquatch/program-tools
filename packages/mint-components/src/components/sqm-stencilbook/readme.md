@@ -15,7 +15,6 @@
 - [sqm-portal-frame](../portal-frame)
 - [sqm-edit-profile](../edit-profile)
 - [sqm-hook-story-container](../sqm-hook-story-container)
-- [sqm-edit-profile](../edit-profile)
 
 ### Graph
 ```mermaid
@@ -26,7 +25,6 @@ graph TD;
   sqm-stencilbook --> sqm-portal-frame
   sqm-stencilbook --> sqm-edit-profile
   sqm-stencilbook --> sqm-hook-story-container
-  sqm-stencilbook --> sqm-edit-profile
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
