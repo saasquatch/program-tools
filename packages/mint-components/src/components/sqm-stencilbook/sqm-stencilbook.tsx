@@ -8,6 +8,8 @@ import * as BigStat from "../../stories/BigStat.stories";
 import * as Leaderboard from "../../stories/Leaderboard.stories";
 import * as Router from "../../stories/Router.stories";
 import * as LeaderboardRank from "../../stories/LeaderboardRank.stories";
+import * as PortalFrame from "../../stories/PortalFrame.stories";
+import * as EditProfile from "../../stories/EditProfileForm.stories";
 import * as UseShareLink from "../../stories/UseShareLink.stories";
 import * as UseShareButton from "../../stories/UseShareButton.stories";
 import * as UseBigStat from "../../stories/UseBigStat.stories";
@@ -28,6 +30,8 @@ const stories = [
   UseBigStat,
   UseEditProfile,
   Router,
+  PortalFrame,
+  EditProfile,
 ];
 
 /**
