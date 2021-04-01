@@ -1,6 +1,5 @@
 import { h } from "@stencil/core";
 import EditProfileView from "../components/edit-profile/edit-profile-view";
-import { LeaderboardRankView } from "../components/leaderboard-rank/leaderboard-rank-view";
 
 export default {
   title: "Edit Profile Form",

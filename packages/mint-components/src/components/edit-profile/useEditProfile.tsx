@@ -105,10 +105,6 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
   useEffect(() => {
     setUserData((data) => ({ ...data, ...userDataResponse.data?.viewer }));
   }, [userDataResponse.data]);
-  console.log("GET_USER", userDataResponse);
-  console.log("UPSERT_USER", upsertUserResponse);
-  console.log("formState", formState);
-  console.log("userData", userData);
 
   return {
     states: {
