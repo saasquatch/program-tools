@@ -22,7 +22,7 @@ export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
   const { states, data } = props;
   const { styles } = states;
   return (
-    <div>
+    <div class="Frame">
       <div class="HeaderWrapper">
         <div style={{ display: "flex", flexDirection: "column" }}>
           <span

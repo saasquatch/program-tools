@@ -16,12 +16,33 @@ export namespace Components {
         "statType": string;
     }
     interface SqmEditProfile {
+        /**
+          * @uiName Cancel button text
+         */
         "canceltext": string;
+        /**
+          * @uiName Region field label
+         */
         "currentregiontext": string;
+        /**
+          * @uiName Heading
+         */
         "editprofileheader": string;
+        /**
+          * @uiName Enable editing button text
+         */
         "editprofiletext": string;
+        /**
+          * @uiName First name field label
+         */
         "firstnametext": string;
+        /**
+          * @uiName Last name field label
+         */
         "lastnametext": string;
+        /**
+          * @uiName Update info button text
+         */
         "updatetext": string;
     }
     interface SqmHookStoryContainer {
@@ -77,10 +98,29 @@ export namespace Components {
         "poweredBy": boolean;
     }
     interface SqmPortalFrame {
+        /**
+          * @uiName Path to dashboard
+         */
         "dashboardPath": string;
+        /**
+          * @uiName Description text
+         */
         "description": string;
+        /**
+          * @uiName Heading text
+         */
         "headertext": string;
+        /**
+          * @uiName Include dropdown menu
+         */
+        "includeDropdown": boolean;
+        /**
+          * @uiName Path to logout
+         */
         "logoutPath": string;
+        /**
+          * @uiName Path to profile
+         */
         "profilePath": string;
     }
     interface SqmRoute {
@@ -285,12 +325,33 @@ declare namespace LocalJSX {
         "statType"?: string;
     }
     interface SqmEditProfile {
+        /**
+          * @uiName Cancel button text
+         */
         "canceltext"?: string;
+        /**
+          * @uiName Region field label
+         */
         "currentregiontext"?: string;
+        /**
+          * @uiName Heading
+         */
         "editprofileheader"?: string;
+        /**
+          * @uiName Enable editing button text
+         */
         "editprofiletext"?: string;
+        /**
+          * @uiName First name field label
+         */
         "firstnametext"?: string;
+        /**
+          * @uiName Last name field label
+         */
         "lastnametext"?: string;
+        /**
+          * @uiName Update info button text
+         */
         "updatetext"?: string;
     }
     interface SqmHookStoryContainer {
@@ -346,10 +407,29 @@ declare namespace LocalJSX {
         "poweredBy"?: boolean;
     }
     interface SqmPortalFrame {
+        /**
+          * @uiName Path to dashboard
+         */
         "dashboardPath"?: string;
+        /**
+          * @uiName Description text
+         */
         "description"?: string;
+        /**
+          * @uiName Heading text
+         */
         "headertext"?: string;
+        /**
+          * @uiName Include dropdown menu
+         */
+        "includeDropdown"?: boolean;
+        /**
+          * @uiName Path to logout
+         */
         "logoutPath"?: string;
+        /**
+          * @uiName Path to profile
+         */
         "profilePath"?: string;
     }
     interface SqmRoute {
