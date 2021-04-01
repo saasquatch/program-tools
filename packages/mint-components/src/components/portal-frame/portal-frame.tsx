@@ -29,6 +29,18 @@ export class PortalFrame {
    * @uiName Description text
    */
   @Prop() description: string;
+  /**
+   * @uiName Path to dashboard
+   */
+  @Prop() dashboardPath: string;
+  /**
+   * @uiName Path to profile
+   */
+  @Prop() profilePath: string;
+  /**
+   * @uiName Path to logout
+   */
+  @Prop() logoutPath: string;
 
   constructor() {
     withHooks(this);
@@ -48,7 +60,6 @@ export class PortalFrame {
 }
 
 function usePortalFrameDemo(props: PortalFrameProps): PortalFrameViewProps {
-  console.log(props);
   return {
     states: {
       includeDropdown: true,
@@ -60,5 +71,9 @@ function usePortalFrameDemo(props: PortalFrameProps): PortalFrameViewProps {
     data: {
       email: "example@example.com",
     },
+    callbacks: {
+      rerender: () => {},
+    },
+    ref: { current: undefined },
   };
 }
