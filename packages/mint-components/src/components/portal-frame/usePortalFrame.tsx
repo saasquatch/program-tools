@@ -39,7 +39,7 @@ function handleMenu(
 
 export function usePortalFrame(props: PortalFrame): PortalFrameViewProps {
   const ref = useRef<SlMenu>();
-  const [_, rerender] = useTick();
+  const [, rerender] = useTick();
 
   const user = useUserIdentity();
 

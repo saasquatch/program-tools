@@ -64,6 +64,7 @@ function usePortalFrameDemo(props: PortalFrameProps): PortalFrameViewProps {
     states: {
       includeDropdown: true,
       styles: {
+        ...props,
         headertext: "Portal Heading",
         description: "Portal Description",
       },

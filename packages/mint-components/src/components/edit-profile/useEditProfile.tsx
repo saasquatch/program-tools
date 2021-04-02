@@ -65,7 +65,7 @@ const defaultFormState = {
 };
 
 export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
-  const { accountId, id } = useUserIdentity();
+  const userIdent = useUserIdentity();
   const [showEdit, setShowEdit] = useState(false);
   const [userData, setUserData] = useState<null | {
     id: string;
@@ -131,8 +131,8 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
       onSubmit: () => {
         if (formState.firstName && formState.lastName) {
           upsertUser({
-            id,
-            accountId,
+            id:userIdent?.id,
+            accountId:userIdent?.accountId,
             firstName: formState.firstName,
             lastName: formState.lastName,
           });
