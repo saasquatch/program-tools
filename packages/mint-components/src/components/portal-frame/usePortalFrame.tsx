@@ -51,7 +51,7 @@ export function usePortalFrame(props: PortalFrame): PortalFrameViewProps {
 
   return {
     states: {
-      includeDropdown: (user.id || user.accountId || user.jwt) !== undefined,
+      includeDropdown: (user?.id || user?.accountId || user?.jwt) !== undefined,
       styles: {
         headertext: props.headertext,
         description: props.description,
