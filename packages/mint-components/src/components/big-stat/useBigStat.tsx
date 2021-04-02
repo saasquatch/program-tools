@@ -1,7 +1,12 @@
-import gql from "graphql-tag";
+import {gql} from "graphql-request";
 import { pathToRegexp } from "path-to-regexp";
 import { useMemo } from "@saasquatch/universal-hooks";
-import { useQuery, useProgramId, useLocale } from "@saasquatch/component-boilerplate";
+import {
+  useQuery,
+  useProgramId,
+  useLocale,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
 import { QueryData } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
 import debugFn from "debug";
 
@@ -146,12 +151,26 @@ const rewardsWeekQuery = (programId: string) =>
     (res) => res.data?.viewer?.rewards?.totalCount?.toString()
   );
 
-
-const rewardsRedeemedQuery = (programId: string, type: string, unit: string, locale: string) =>
+const rewardsRedeemedQuery = (
+  programId: string,
+  type: string,
+  unit: string,
+  locale: string
+) =>
   debugQuery(
     gql`
-      query($programId: ID!, $type: RewardType, $unit: String!, $locale: RSLocale) {
-        fallback: formatRewardPrettyValue(value: 0, unit: $unit, locale: $locale, formatType: UNIT_FORMATTED)
+      query(
+        $programId: ID!
+        $type: RewardType
+        $unit: String!
+        $locale: RSLocale
+      ) {
+        fallback: formatRewardPrettyValue(
+          value: 0
+          unit: $unit
+          locale: $locale
+          formatType: UNIT_FORMATTED
+        )
         viewer: viewer {
           ... on User {
             rewardBalanceDetails(
@@ -174,11 +193,26 @@ const rewardsRedeemedQuery = (programId: string, type: string, unit: string, loc
     }
   );
 
-const rewardsAssignedQuery = (programId: string, type: string, unit: string, locale: string) =>
+const rewardsAssignedQuery = (
+  programId: string,
+  type: string,
+  unit: string,
+  locale: string
+) =>
   debugQuery(
     gql`
-      query($programId: ID!, $type: RewardType, $unit: String!, $locale: RSLocale) {
-        fallback: formatRewardPrettyValue(value: 0, unit: $unit, locale: $locale, formatType: UNIT_FORMATTED)
+      query(
+        $programId: ID!
+        $type: RewardType
+        $unit: String!
+        $locale: RSLocale
+      ) {
+        fallback: formatRewardPrettyValue(
+          value: 0
+          unit: $unit
+          locale: $locale
+          formatType: UNIT_FORMATTED
+        )
         viewer: viewer {
           ... on User {
             rewardBalanceDetails(
@@ -201,11 +235,26 @@ const rewardsAssignedQuery = (programId: string, type: string, unit: string, loc
     }
   );
 
-const rewardsAvailableQuery = (programId: string, type: string, unit: string, locale: string) =>
+const rewardsAvailableQuery = (
+  programId: string,
+  type: string,
+  unit: string,
+  locale: string
+) =>
   debugQuery(
     gql`
-      query($programId: ID!, $type: RewardType, $unit: String!, $locale: RSLocale) {
-        fallback: formatRewardPrettyValue(value: 0, unit: $unit, locale: $locale, formatType: UNIT_FORMATTED)
+      query(
+        $programId: ID!
+        $type: RewardType
+        $unit: String!
+        $locale: RSLocale
+      ) {
+        fallback: formatRewardPrettyValue(
+          value: 0
+          unit: $unit
+          locale: $locale
+          formatType: UNIT_FORMATTED
+        )
         viewer: viewer {
           ... on User {
             rewardBalanceDetails(
@@ -238,7 +287,7 @@ const rewardsBalanceQuery = (
   unit: string,
   format = "prettyValue",
   global = "false",
-  locale: string,
+  locale: string
 ) =>
   debugQuery(
     gql`
@@ -249,7 +298,12 @@ const rewardsBalanceQuery = (
         $format: RewardValueFormatType!
         $locale: RSLocale
       ) {
-        fallback: formatRewardPrettyValue(value: 0, unit: $unit, locale: $locale, formatType: UNIT_FORMATTED)
+        fallback: formatRewardPrettyValue(
+          value: 0
+          unit: $unit
+          locale: $locale
+          formatType: UNIT_FORMATTED
+        )
         viewer: viewer {
           ... on User {
             rewardBalanceDetails(
@@ -269,7 +323,7 @@ const rewardsBalanceQuery = (
       type,
       unit,
       format: parseRewardValueFormat[format] ?? "UNIT_FORMATTED",
-      locale
+      locale,
     },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
@@ -348,22 +402,24 @@ export function parsePath(type: string): string[] | undefined {
   return re?.exec(type).slice(1);
 }
 
-export function useBigStat({
-  statType,
-}: BigStat) {
+export function useBigStat({ statType }: BigStat) {
   const programId = useProgramId();
   const locale = useLocale();
-  debug({programId, statType})
-  const re = useMemo(() => StatPatterns.find((re) => re.test(statType)), [statType]);
+  const userIdent = useUserIdentity();
+  debug({ programId, statType });
+  const re = useMemo(() => StatPatterns.find((re) => re.test(statType)), [
+    statType,
+  ]);
   if (re === undefined) {
     return { label: "BAD TYPE PROP", props: { statvalue: "!!!" } };
   }
   const [queryName, ...queryArgs] = re.exec(statType).slice(1);
 
   const label = queries[queryName].label;
-  const stat = queries[queryName].query(programId, ...queryArgs, locale);
 
-  debug("stat:", stat)
+  const stat =
+    userIdent?.jwt && queries[queryName].query(programId, ...queryArgs, locale);
+  debug("stat:", stat);
   return { label, props: { statvalue: stat ?? LOADING } };
 }
 
