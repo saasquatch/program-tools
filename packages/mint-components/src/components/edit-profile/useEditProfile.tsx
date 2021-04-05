@@ -168,7 +168,7 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
         });
       },
       onChange: (e) => {
-        const { name, value } = e.originalTarget;
+        const { name, value } = e.target;
         setFormState((data) => ({ ...data, [name]: value }));
       },
       setShowEdit,
