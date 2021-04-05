@@ -80,6 +80,7 @@ function usePortalFrameDemo(props: PortalFrame): PortalFrameViewProps {
     states: {
       includeDropdown: true,
       styles: {
+        ...props,
         headertext: "Portal Heading",
         description: "Portal Description",
         logoutLabel: "Logout",
