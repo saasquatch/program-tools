@@ -2,7 +2,7 @@ import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { PortalFrameView, PortalFrameViewProps } from "./portal-frame-view";
-import { usePortalFrame, PortalFrameProps } from "./usePortalFrame";
+import { usePortalFrame } from "./usePortalFrame";
 import { getProps } from "../../utils/utils";
 
 /**
@@ -41,6 +41,22 @@ export class PortalFrame {
    * @uiName Path to logout
    */
   @Prop() logoutPath: string;
+  /**
+   * @uiName Label for the logout entry of header menu
+   */
+  @Prop() logoutLabel: string;
+  /**
+   * @uiName Label for the dashboard entry of header menu
+   */
+  @Prop() dashboardLabel: string;
+  /**
+   * @uiName Label for the edit profile entry of header menu
+   */
+  @Prop() editProfileLabel: string;
+  /**
+   * @uiName Label on the header menu
+   */
+  @Prop() menuLabel: string;
 
   constructor() {
     withHooks(this);
@@ -59,13 +75,17 @@ export class PortalFrame {
   }
 }
 
-function usePortalFrameDemo(props: PortalFrameProps): PortalFrameViewProps {
+function usePortalFrameDemo(props: PortalFrame): PortalFrameViewProps {
   return {
     states: {
       includeDropdown: true,
       styles: {
         headertext: "Portal Heading",
         description: "Portal Description",
+        logoutLabel: "Logout",
+        menuLabel: "Menu",
+        editProfileLabel: "Edit Profile",
+        dashboardLabel: "Dashboard"
       },
     },
     data: {

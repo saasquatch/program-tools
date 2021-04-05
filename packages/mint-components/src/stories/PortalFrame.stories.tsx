@@ -58,6 +58,10 @@ export const FrameWithMenu = () => {
       styles: {
         headertext: "Service Titan",
         description: "Portal description",
+        logoutLabel: "Logout",
+        menuLabel: "Menu",
+        editProfileLabel: "Edit Profile",
+        dashboardLabel: "Dashboard",
       },
     },
   };
@@ -72,6 +76,10 @@ export const FrameWithoutMenu = () => {
       styles: {
         headertext: "Service Titan",
         description: "Portal description",
+        logoutLabel: "Logout",
+        menuLabel: "Menu",
+        editProfileLabel: "Edit Profile",
+        dashboardLabel: "Dashboard",
       },
     },
   };
@@ -81,41 +89,55 @@ export const FrameWithoutMenu = () => {
 export const FullStackFrame = () => {
   setupGraphQL();
   return (
-  <div>
-    <sqm-portal-frame
-      headertext="Service Titan"
-      description="Portal Description"
-      dashboard-path="/dashboard"
-      profile-path="/profile"
-      logout-path="/logout"
-    >
-      <h1>Something</h1>
-    </sqm-portal-frame>
-    <p>
-      Current path: <code><strong>{useCurrentPage()?.pathname}</strong></code>
-    </p>
-    <button onClick={navigation.back}>Go Back</button>
-  </div>
+    <div>
+      <sqm-portal-frame
+        headertext="Service Titan"
+        description="Portal Description"
+        dashboard-path="/dashboard"
+        profile-path="/profile"
+        logout-path="/logout"
+        logout-label="Logout"
+        menu-label="Menu"
+        edit-profile-label="Edit Profile"
+        dashboard-label="Dashboard"
+      >
+        <h1>Something</h1>
+      </sqm-portal-frame>
+      <p>
+        Current path:{" "}
+        <code>
+          <strong>{useCurrentPage()?.pathname}</strong>
+        </code>
+      </p>
+      <button onClick={navigation.back}>Go Back</button>
+    </div>
   );
 };
 
 export const FullStackFrameLoggedOut = () => {
   setupLoggedOut();
   return (
-  <div>
-    <sqm-portal-frame
-      headertext="Service Titan"
-      description="Portal Description"
-      dashboard-path="/dashboard"
-      profile-path="/profile"
-      logout-path="/logout"
-    >
-      <h1>Something</h1>
-    </sqm-portal-frame>
-    <p>
-      Current path: <code><strong>{useCurrentPage()?.pathname}</strong></code>
-    </p>
-    <button onClick={navigation.back}>Go Back</button>
-  </div>
+    <div>
+      <sqm-portal-frame
+        headertext="Service Titan"
+        description="Portal Description"
+        dashboard-path="/dashboard"
+        profile-path="/profile"
+        logout-path="/logout"
+        logout-label="Logout"
+        menu-label="Menu"
+        edit-profile-label="Edit Profile"
+        dashboard-label="Dashboard"
+      >
+        <h1>Something</h1>
+      </sqm-portal-frame>
+      <p>
+        Current path:{" "}
+        <code>
+          <strong>{useCurrentPage()?.pathname}</strong>
+        </code>
+      </p>
+      <button onClick={navigation.back}>Go Back</button>
+    </div>
   );
 };
