@@ -15,20 +15,31 @@ import {
 import * as React from "react";
 import * as ReactTestLib from "@testing-library/react-hooks";
 // import { act, renderHook } from "@testing-library/react-hooks";
-import { setUseHostImplementation, useQuery } from "../dist";
+import { useQuery } from "../src/hooks/graphql/useQuery";
 import { gql, GraphQLClient } from "graphql-request";
 import { RequestDocument } from "graphql-request/dist/types";
+
+import useGraphQLClient from "../src/hooks/graphql/useGraphQLClient";
+jest.mock("../src/hooks/graphql/useGraphQLClient");
+// @ts-ignore -- typescript doesn't know that Jest has mocked this function in the above `jest.mock` function
+useGraphQLClient.mockImplementation(
+  () =>
+    new GraphQLClient(
+      "https://app.referralsaasquatch.com/api/v1/test_faketenant/graphql"
+    )
+);
 
 setImplementation(React);
 setTestImplementation(ReactTestLib);
 
 const spyGraphQLRequest = jest.spyOn(GraphQLClient.prototype, "request");
+
 const renderCounter = jest.fn(() => {});
 
 function useTesting() {
   // nobody should actually use useHost's return value
   // if they do, mock them
-  setUseHostImplementation(() => null);
+  // setUseHostImplementation(() => null);
   renderCounter();
 }
 
