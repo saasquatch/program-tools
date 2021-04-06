@@ -15,7 +15,7 @@ import {
 import * as React from "react";
 import * as ReactTestLib from "@testing-library/react-hooks";
 // import { act, renderHook } from "@testing-library/react-hooks";
-import { setUseHostImplementation, useQuery } from "../dist";
+import { setUseHostImplementation, useQuery } from "../src";
 import { gql, GraphQLClient } from "graphql-request";
 import { RequestDocument } from "graphql-request/dist/types";
 
