@@ -7,14 +7,14 @@ import {
   useRef,
   useState,
 } from "@saasquatch/universal-hooks";
-import {
-  act,
-  renderHook,
-  setTestImplementation,
-} from "@saasquatch/universal-hooks-testing-library";
+// import {
+//   act,
+//   renderHook,
+//   setTestImplementation,
+// } from "@saasquatch/universal-hooks-testing-library";
 import * as React from "react";
 import * as ReactTestLib from "@testing-library/react-hooks";
-// import { act, renderHook } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react-hooks";
 import { useQuery } from "../src/hooks/graphql/useQuery";
 import { gql, GraphQLClient } from "graphql-request";
 import { RequestDocument } from "graphql-request/dist/types";
@@ -30,7 +30,7 @@ useGraphQLClient.mockImplementation(
 );
 
 setImplementation(React);
-setTestImplementation(ReactTestLib);
+// setTestImplementation(ReactTestLib);
 
 const spyGraphQLRequest = jest.spyOn(GraphQLClient.prototype, "request");
 
@@ -80,6 +80,39 @@ function queryFiredTracker() {
 // NOTE: always put effects in an act block like this:
 //   await act(async () => {...code...})
 // even if there is no await inside, it can prevent async errors
+
+describe("Mock Service Workers", () => {
+  const HELLO_QUERY = gql`
+    query MockTest($name: String!) {
+      greeting(name: $name) {
+        message
+      }
+    }
+  `;
+
+  test("HelloQuery", async () => {
+    const variables = { name: "Robert" };
+    const resolvedData = { greeting: { message: "Hello, Robert!" } };
+
+    function hook() {
+      return useQuery(HELLO_QUERY, variables);
+    }
+
+    let result: { current: ReturnType<typeof hook> };
+    await act(async () => {
+      const rendered = renderHook(hook);
+      await rendered.waitForNextUpdate();
+      await rendered.waitForValueToChange(
+        () => rendered.result.current.loading
+      );
+      result = rendered.result;
+    });
+
+    console.log("Loading query data");
+    console.log(result.current);
+    expect(result.current.data).toEqual(resolvedData);
+  });
+});
 
 describe("useQuery", () => {
   afterEach(() => {

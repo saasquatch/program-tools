@@ -12,6 +12,9 @@ const config: Config.InitialOptions = {
     // "^.+\\.(ts|tsx|js|jsx)$": "esbuild-jest",
   },
   // transformIgnorePatterns: [`node_modules/(?!(${esModules})/)`]
+
+  // for Mock Service Workers
+  setupFilesAfterEnv: ["./jest.setup.ts"],
 };
 
 export default config;
