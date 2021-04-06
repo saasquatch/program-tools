@@ -1,6 +1,6 @@
 import { GraphQLClient } from "graphql-request";
 import { useCallback, useReducer } from "@saasquatch/universal-hooks";
-import { useGraphQLClient } from "./useGraphQLClient";
+import useGraphQLClient from "./useGraphQLClient";
 import { RequestDocument } from "graphql-request/dist/types";
 
 export type GqlType = RequestDocument;
@@ -12,7 +12,7 @@ export interface BaseQueryData<T = unknown> {
 }
 
 export type QueryData<T> = BaseQueryData<T> & {
-  refetch: (variables?:unknown) => unknown;
+  refetch: (variables?: unknown) => unknown;
 };
 
 /**

@@ -23,7 +23,7 @@ function createGraphQlClient(
 
 const memoizedClient = memoize(createGraphQlClient);
 
-export function useGraphQLClient(): GraphQLClient {
+function useGraphQLClient(): GraphQLClient {
   const token = useToken();
   const appDomain = useAppDomain();
   const tenantAlias = useTenantAlias();
@@ -32,3 +32,5 @@ export function useGraphQLClient(): GraphQLClient {
   const client: GraphQLClient = memoizedClient(appDomain, tenantAlias, token);
   return client;
 }
+
+export default useGraphQLClient;
