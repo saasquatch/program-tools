@@ -7,6 +7,10 @@ export interface PortalFrameViewProps {
     styles: {
       headertext: string;
       description: string;
+      logoutLabel: string;
+      dashboardLabel: string;
+      editProfileLabel: string;
+      menuLabel: string;
     };
   };
   data: {
@@ -40,24 +44,22 @@ export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
         {states.includeDropdown && (
           <sl-dropdown>
             <sl-button slot="trigger" caret onClick={props.callbacks.rerender}>
-              Menu
+              {styles.menuLabel}
             </sl-button>
             {/* <sl-menu ref={(r)=>{props.ref.current = r}} onChange={e=>console.log("changed", e)}> */}
             <sl-menu
               ref={(r) => {
-                if (props.ref.current === undefined){
+                if (props.ref.current === undefined) {
                   props.ref.current = r;
                   props.callbacks.rerender();
                 }
               }}
-              // onChange={(e) => console.log(e)}
             >
-              {/* <sl-menu> */}
               {/* Should really populate from array */}
-              <sl-menu-item value="dashboard">Dashboard</sl-menu-item>
-              <sl-menu-item value="edit-profile">Edit Profile</sl-menu-item>
+              <sl-menu-item value="dashboard">{styles.dashboardLabel}</sl-menu-item>
+              <sl-menu-item value="edit-profile">{styles.editProfileLabel}</sl-menu-item>
               <sl-menu-divider></sl-menu-divider>
-              <sl-menu-item value="bye">Logout</sl-menu-item>
+              <sl-menu-item value="bye">{styles.logoutLabel}</sl-menu-item>
             </sl-menu>
           </sl-dropdown>
         )}

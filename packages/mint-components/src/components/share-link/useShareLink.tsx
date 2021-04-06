@@ -29,7 +29,6 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
 
   const [getLink, { data }] = useLazyQuery(MessageLinkQuery);
 
-  console.log("shareLink", user?.jwt, data);
   useEffect(() => {
     if (user?.jwt) getLink({ programId });
   }, [user?.jwt]);

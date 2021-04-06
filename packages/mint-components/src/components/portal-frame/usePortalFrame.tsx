@@ -9,11 +9,6 @@ import { useEffect } from "haunted";
 import { PortalFrame } from "./portal-frame";
 import { PortalFrameViewProps } from "./portal-frame-view";
 
-export interface PortalFrameProps {
-  headertext: string;
-  description: string;
-}
-
 type SelectEvent = Event & { detail: { item: SlMenuItem } };
 
 function handleMenu(
@@ -55,6 +50,10 @@ export function usePortalFrame(props: PortalFrame): PortalFrameViewProps {
       styles: {
         headertext: props.headertext,
         description: props.description,
+        logoutLabel: props.logoutLabel,
+        menuLabel: props.menuLabel,
+        dashboardLabel: props.dashboardLabel,
+        editProfileLabel: props.editProfileLabel,
       },
     },
     data: {

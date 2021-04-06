@@ -99,6 +99,10 @@ export namespace Components {
     }
     interface SqmPortalFrame {
         /**
+          * @uiName Label for the dashboard entry of header menu
+         */
+        "dashboardLabel": string;
+        /**
           * @uiName Path to dashboard
          */
         "dashboardPath": string;
@@ -106,6 +110,10 @@ export namespace Components {
           * @uiName Description text
          */
         "description": string;
+        /**
+          * @uiName Label for the edit profile entry of header menu
+         */
+        "editProfileLabel": string;
         /**
           * @uiName Heading text
          */
@@ -115,9 +123,17 @@ export namespace Components {
          */
         "includeDropdown": boolean;
         /**
+          * @uiName Label for the logout entry of header menu
+         */
+        "logoutLabel": string;
+        /**
           * @uiName Path to logout
          */
         "logoutPath": string;
+        /**
+          * @uiName Label on the header menu
+         */
+        "menuLabel": string;
         /**
           * @uiName Path to profile
          */
@@ -408,6 +424,10 @@ declare namespace LocalJSX {
     }
     interface SqmPortalFrame {
         /**
+          * @uiName Label for the dashboard entry of header menu
+         */
+        "dashboardLabel"?: string;
+        /**
           * @uiName Path to dashboard
          */
         "dashboardPath"?: string;
@@ -415,6 +435,10 @@ declare namespace LocalJSX {
           * @uiName Description text
          */
         "description"?: string;
+        /**
+          * @uiName Label for the edit profile entry of header menu
+         */
+        "editProfileLabel"?: string;
         /**
           * @uiName Heading text
          */
@@ -424,9 +448,17 @@ declare namespace LocalJSX {
          */
         "includeDropdown"?: boolean;
         /**
+          * @uiName Label for the logout entry of header menu
+         */
+        "logoutLabel"?: string;
+        /**
           * @uiName Path to logout
          */
         "logoutPath"?: string;
+        /**
+          * @uiName Label on the header menu
+         */
+        "menuLabel"?: string;
         /**
           * @uiName Path to profile
          */

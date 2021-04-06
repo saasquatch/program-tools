@@ -112,7 +112,6 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   const [getLink, res] = useLazyQuery(MessageLinkQuery);
 
-  console.log("shareButton", user?.jwt, res);
   useEffect(() => {
     if (user?.jwt) getLink(variables);
   }, [user?.jwt]);
