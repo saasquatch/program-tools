@@ -9,6 +9,7 @@ type Route = {
 };
 
 function matchPath(pattern: string, page: string) {
+  if (!pattern) return;
   const regexp = pathToRegexp(pattern);
   return regexp.exec(page);
 }
@@ -25,18 +26,26 @@ export function useRouter() {
       debug("DOM not ready for navigation rendering on:", page);
       return;
     }
-    const template = slot.querySelector<HTMLTemplateElement & Route>(
-      `template[path="${page}"]`
-    );
 
+    // <template>
+    const templates = slot.querySelectorAll<HTMLTemplateElement & Route>(
+      `template`
+    );
+    const templatesArray = Array.from(templates);
+
+    const template = templatesArray.find((template) => {
+      //@ts-ignore - can't access attributes directly before template is initialized
+      const path = template.attributes?.path?.nodeValue;
+      if (matchPath(path, page)?.length) return template;
+    });
+
+    // <sqm-route>
     const routes = slot.querySelectorAll<HTMLElement & Route>(`sqm-route`);
     const routesArray = Array.from(routes);
 
     const route = routesArray.find((route) => {
       if (matchPath(route.path, page)?.length) return route;
     });
-
-    // const route = slot.querySelector<HTMLElement>(`sqm-route[path="${page}"]`);
 
     debug({ routes, page, route, container });
     if (!route && !template) {
@@ -54,6 +63,9 @@ export function useRouter() {
     if (route) {
       previousPath = !!matchPath(route?.path, container.dataset.page);
       currentPath = !!matchPath(route?.path, page);
+    } else if (template) {
+      previousPath = !!matchPath(template?.path, container.dataset.page);
+      currentPath = !!matchPath(template?.path, page);
     }
 
     // if pathToRegexp results truthy or page is an exact match

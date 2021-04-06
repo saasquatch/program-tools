@@ -31,6 +31,11 @@ const templates = `
     ░░░░░░░░░▀▀░░░░░░░▀░░░░░░░░░
     </pre>
     </template>
+    <template path="/refer/:page"><h3>/refer/:page</h3>
+    <pre>
+      refer/:page
+    </pre>
+    </template>
 `;
 
 const routes = `
@@ -72,6 +77,9 @@ export const TemplateNavigation = () => {
       <button onClick={() => navigation.push("/foo")}>/foo</button>
       <button onClick={() => navigation.push("/bar")}>/bar</button>
       <button onClick={() => navigation.push("/baz/bang")}>/baz/bang</button>
+      <button onClick={() => navigation.push("/refer")}>/refer</button>
+      <button onClick={() => navigation.push("/refer/1")}>/refer/1</button>
+      <button onClick={() => navigation.push("/refer/2")}>/refer/2</button>
       <button onClick={() => navigation.back()}>Back</button>
       <button onClick={() => navigation.forward()}>Forward</button>
       <hr />
