@@ -20,7 +20,11 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         disabled={props.disabled}
         open={props.open}
       >
-        <sl-input value={props.sharelink} readonly>
+        <sl-input
+          exportparts="label: inputlabel"
+          value={props.sharelink}
+          readonly
+        >
           <sl-icon-button
             onClick={() => props.onClick?.()}
             slot="suffix"
