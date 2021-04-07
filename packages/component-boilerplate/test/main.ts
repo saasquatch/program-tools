@@ -1,6 +1,8 @@
 import {
   setImplementation,
 } from "@saasquatch/universal-hooks";
+// use React testing lib until i implement async utils
+// which may or may not happen
 // import {
 //   act,
 //   renderHook,
@@ -25,56 +27,6 @@ useGraphQLClient.mockImplementation(
 );
 
 setImplementation(React);
-// setTestImplementation(ReactTestLib);
-
-// const spyGraphQLRequest = jest.spyOn(GraphQLClient.prototype, "request");
-
-const renderCounter = jest.fn(() => {});
-
-function useTesting() {
-  // nobody should actually use useHost's return value
-  // if they do, mock them
-  // setUseHostImplementation(() => null);
-  renderCounter();
-}
-
-// an actual query causes 3 renders, whereas a cached query causes 1
-function renderTypeTracker() {
-  let prev = 0;
-  let curr = 0;
-  return () => {
-    curr = renderCounter.mock.calls.length;
-    let ret: "CACHED" | "UNCACHED" | "UNKNOWN";
-    switch (curr - prev) {
-      case 1:
-        ret = "CACHED";
-        break;
-      case 3:
-        ret = "UNCACHED";
-        break;
-      default:
-        ret = "UNKNOWN";
-        break;
-    }
-    prev = curr;
-    return ret;
-  };
-}
-
-// function queryFiredTracker() {
-//   let prev = 0;
-//   let curr = 0;
-//   return () => {
-//     curr = spyGraphQLRequest.mock.calls.length;
-//     const ret = curr - prev !== 0;
-//     prev = curr;
-//     return ret;
-//   };
-// }
-
-// NOTE: always put effects in an act block like this:
-//   await act(async () => {...code...})
-// even if there is no await inside, it can prevent async errors
 
 describe("Mock Service Workers", () => {
   const MOCK_TEST = gql`
@@ -109,8 +61,6 @@ describe("Mock Service Workers", () => {
       result = rendered.result;
     });
 
-    // console.log("Loading query data");
-    // console.log(result.current);
     expect(result.current.data).toStrictEqual(resolvedData);
   });
 
@@ -132,17 +82,13 @@ describe("Mock Service Workers", () => {
       result = rendered.result;
     });
 
-    // console.log("Loading query data");
-    // console.log(result.current);
     expect(result.current.data).toStrictEqual(resolvedData);
   });
 
   test("Loading", async () => {
     const hook = () => useQuery(EMPTY, {});
 
-    console.log("-- BEFORE lock");
     await axios.post("/lock");
-    console.log("-- AFTER lock");
 
     let result: { current: ReturnType<typeof hook> };
     let rerender: (props?: { q: RequestDocument; v: unknown }) => void;
@@ -152,10 +98,8 @@ describe("Mock Service Workers", () => {
       const ret = renderHook(hook);
       ({ result, rerender, waitForNextUpdate, waitForValueToChange } = ret);
       await waitForNextUpdate();
-      // await waitForValueToChange(() => result.current.loading);
     });
 
-    console.log("Supposed to be loading:", result.current);
     expect(result.current.loading).toBe(true);
     expect(result.current.data).toBeUndefined();
 
@@ -189,18 +133,12 @@ describe("useQuery", () => {
     }
   `;
 
-  afterEach(() => {
-    // spyGraphQLRequest.mockReset();
-    renderCounter.mockReset();
-  });
-
   test("empty", async () => {
     const query = EMPTY;
     const variables = {};
     const resolvedData = { empty: null };
 
     function hook() {
-      useTesting();
       return useQuery(query, variables);
     }
     let result: { current: ReturnType<typeof hook> };
@@ -255,7 +193,6 @@ describe("useQuery", () => {
     const resolvedData = { echo: { color: "green" } };
 
     function hook({ q, v }: { q: RequestDocument; v: unknown }) {
-      useTesting();
       return useQuery(q, v);
     }
     let result: { current: ReturnType<typeof hook> };
@@ -299,7 +236,6 @@ describe("useQuery", () => {
     const resolvedData = { empty: null };
 
     function hook({ q, v }: { q: RequestDocument; v: unknown }) {
-      useTesting();
       return useQuery(q, v);
     }
     let result: { current: ReturnType<typeof hook> };
@@ -387,44 +323,6 @@ describe("useQuery", () => {
 
     expect(recievedB.data.id).not.toBe(recievedA.data.id);
   });
-
-  // test("cache hit on deep equal variables", async () => {
-  //   const query = gql`hello`;
-  //   const variablesA = { really: { really: "super" }, deep: { equal: "ity" } };
-  //   const variablesB = { really: { really: "super" }, deep: { equal: "ity" } };
-  //   const resolvedData = Symbol("arbitrary data of arbitrary type");
-
-  //   spyGraphQLRequest.mockResolvedValue(resolvedData);
-  //   const renderType = renderTypeTracker();
-  //   const queryFired = queryFiredTracker();
-
-  //   function hook({ q, v }: { q: RequestDocument; v: unknown }) {
-  //     useTesting();
-  //     return useQuery(q, v);
-  //   }
-  //   let result: { current: ReturnType<typeof hook> };
-  //   let rerender: (props?: { q: RequestDocument; v: unknown }) => void;
-  //   await act(async () => {
-  //     const ret = renderHook(hook, {
-  //       initialProps: { q: query, v: variablesA },
-  //     });
-  //     ({ result, rerender } = ret);
-  //   });
-
-  //   expect(renderType()).toBe("UNCACHED");
-  //   expect(queryFired()).toBe(true);
-  //   expect(spyGraphQLRequest).toHaveBeenLastCalledWith(query, variablesA);
-  //   expect(result.current.data).toBe(resolvedData);
-
-  //   await act(async () => {
-  //     rerender({ q: query, v: variablesB });
-  //   });
-
-  //   expect(renderType()).toBe("CACHED");
-  //   expect(queryFired()).toBe(false);
-  //   expect(spyGraphQLRequest).toHaveBeenLastCalledWith(query, variablesA);
-  //   expect(result.current.data).toBe(resolvedData);
-  // });
 
   test("cache miss on new query and variables", async () => {
     const queryA = EMPTY;

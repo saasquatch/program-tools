@@ -14,10 +14,8 @@ async function maybeLock() {
   lock.locked = false;
   await new Promise<void>((resolve) => {
     lock.unlock = resolve;
-    console.log("inside promise:", lock)
   });
   lock.unlock = null;
-  console.log("after promise:", lock)
 };
 
 export const handlers = [
@@ -34,18 +32,12 @@ export const handlers = [
   }),
 
   rest.post("/unlock", (req, res, ctx) => {
-    console.log("start of /unlock:", lock)
     if (!lock.unlock) {
-      // console.log("500 error, not locked")
-      // console.log("lock:", lock)
-      // return res(ctx.status(500, "Not locked"))
-      
       // sometimes axios will fire 2 requests, let's be nice about it
       return res(ctx.status(200, "Already unlocked but ok"))
     }
-    console.log("UNLOCKING!!!!")
     lock.unlock()
-    console.log("UNLOCKEDDDD!!!!")
+    // TODO forgot to return smh, fix after cleanup
   }),
 
   graphql.query("MockTest", async (req, res, ctx) => {
@@ -62,7 +54,6 @@ export const handlers = [
 
   graphql.query("Empty", async (req, res, ctx) => {
     await maybeLock();
-    console.log("DONE LOCKING EMPTY :)")
     prevReq = req;
     return res(ctx.data({ empty: null }));
   }),
