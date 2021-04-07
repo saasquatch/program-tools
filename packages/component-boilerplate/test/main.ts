@@ -1,6 +1,4 @@
-import {
-  setImplementation,
-} from "@saasquatch/universal-hooks";
+import { setImplementation } from "@saasquatch/universal-hooks";
 // use React testing lib until i implement async utils
 // which may or may not happen
 // import {
@@ -94,9 +92,10 @@ describe("Mock Service Workers", () => {
     let rerender: (props?: { q: RequestDocument; v: unknown }) => void;
     let waitForNextUpdate: () => Promise<void>;
     let waitForValueToChange: (selector: () => unknown) => Promise<void>;
+    let waitFor: (f: () => (boolean | void)) => Promise<void>;
     await act(async () => {
       const ret = renderHook(hook);
-      ({ result, rerender, waitForNextUpdate, waitForValueToChange } = ret);
+      ({ result, rerender, waitForNextUpdate, waitForValueToChange, waitFor } = ret);
       await waitForNextUpdate();
     });
 
@@ -106,6 +105,7 @@ describe("Mock Service Workers", () => {
     await act(async () => {
       await axios.post("/unlock");
     });
+    await waitFor(() => !result.current.loading)
 
     expect(result.current.loading).toBe(false);
     expect(result.current.data).toStrictEqual({ empty: null });
@@ -452,9 +452,10 @@ describe("useQuery", () => {
 
     let result: { current: ReturnType<typeof hook> };
     let waitForNextUpdate: () => Promise<void>;
+    let waitFor: (f: () => (boolean | void)) => Promise<void>;
     await act(async () => {
       const ret = renderHook(hook);
-      ({ result, waitForNextUpdate } = ret);
+      ({ result, waitForNextUpdate, waitFor } = ret);
       await waitForNextUpdate();
     });
 
@@ -464,6 +465,7 @@ describe("useQuery", () => {
     await act(async () => {
       await axios.post("/unlock");
     });
+    await waitFor(() => !result.current.loading)
 
     expect(result.current.loading).toBe(false);
     expect(result.current.data).toStrictEqual(resolvedData);

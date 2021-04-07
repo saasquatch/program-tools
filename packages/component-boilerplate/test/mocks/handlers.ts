@@ -33,11 +33,10 @@ export const handlers = [
 
   rest.post("/unlock", (req, res, ctx) => {
     if (!lock.unlock) {
-      // sometimes axios will fire 2 requests, let's be nice about it
-      return res(ctx.status(200, "Already unlocked but ok"))
+      return res(ctx.status(500, "Already unlocked"))
     }
     lock.unlock()
-    // TODO forgot to return smh, fix after cleanup
+    return res(ctx.status(200));
   }),
 
   graphql.query("MockTest", async (req, res, ctx) => {
