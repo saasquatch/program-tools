@@ -98,16 +98,6 @@ type FormState = {
   formData: object;
 };
 
-// type ValidateFormResult = {
-//   data?: {
-//     validateForm: {
-//       valid: boolean;
-//       results: [];
-//     };
-//   };
-//   errors?: [{ message: string }];
-// };
-
 export function useForm(props: UseFormProps) {
   const { formKey, formRef } = props;
 
@@ -116,8 +106,8 @@ export function useForm(props: UseFormProps) {
   };
 
   const [getForm, { data, loading: loadingForm }] = useLazyQuery(GET_FORM);
-  const [submit, { data: submitData }] = useMutation(SUBMIT_FORM);
-  const [validate, { data: validationData }] = useLazyQuery(VALIDATE_FORM);
+  const [submit, submitData] = useMutation(SUBMIT_FORM);
+  const [validate, validationData] = useLazyQuery(VALIDATE_FORM);
 
   const initialState = {
     enabled: false,
@@ -197,21 +187,21 @@ export function useForm(props: UseFormProps) {
     if (!!validationData) {
       setFormState({
         validating: false,
-        valid: validationData?.validateForm?.valid || false,
+        valid: validationData?.data?.validateForm?.valid || false,
       });
 
-      if (validationData?.validateForm?.valid) {
+      if (validationData?.data?.validateForm?.valid) {
         submit({
           formSubmissionInput: { key: formKey, formData },
         });
       }
     }
-  }, [validationData?.validateForm?.valid]);
+  }, [validationData?.data?.validateForm?.valid]);
 
   function getSubmissionErrors(): Array<SubmissionError> {
     if (!submitData) return [];
 
-    const submissionResults = submitData.submitForm.results;
+    const submissionResults = submitData.data?.submitForm.results;
 
     return (
       submissionResults?.map((error) => {
@@ -244,7 +234,7 @@ export function useForm(props: UseFormProps) {
 
   function getValidationErrors(): ValidationErrors {
     const validationErrors =
-      validationData?.validateForm?.results[0]?.result?.errors;
+      validationData?.data?.validateForm?.results[0]?.result?.errors;
 
     function getErrorAtPath(path: string) {
       return validationErrors?.filter((result) => {
@@ -300,7 +290,7 @@ export function useForm(props: UseFormProps) {
     states: {
       enabled,
       disabledMessage,
-      loading: loadingForm,
+      loadingForm,
       validating,
       valid,
       error,
