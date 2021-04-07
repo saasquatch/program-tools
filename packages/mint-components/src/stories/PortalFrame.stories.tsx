@@ -63,14 +63,14 @@ export const FrameWithMenu = () => {
   return (
     <PortalFrameView {...props}>
       <sqm-navigation-menu menu-label="Menu">
-        <sl-menu-item exportparts="base: menuitembase" value="/widget">
+        <sl-menu-item exportparts="base: menuitem-base" value="/widget">
           Dashboard
         </sl-menu-item>
-        <sl-menu-item exportparts="base: menuitembase" value="/editProfile">
+        <sl-menu-item exportparts="base: menuitem-base" value="/editProfile">
           Edit Profile
         </sl-menu-item>
         <sl-menu-divider></sl-menu-divider>
-        <sl-menu-item exportparts="base: menuitembase" value="/logout">
+        <sl-menu-item exportparts="base: menuitem-base" value="/logout">
           Logout
         </sl-menu-item>
       </sqm-navigation-menu>
@@ -100,10 +100,10 @@ export const FullStackFrame = () => {
         description="Portal Description"
       >
         <sqm-navigation-menu menu-label="Menu">
-          <sl-menu-item value="/widget">Dashboard</sl-menu-item>
-          <sl-menu-item value="/editProfile">Edit Profile</sl-menu-item>
+          <sl-menu-item exportparts="base: menuitem-base" value="/widget">Dashboard</sl-menu-item>
+          <sl-menu-item exportparts="base: menuitem-base" value="/editProfile">Edit Profile</sl-menu-item>
           <sl-menu-divider></sl-menu-divider>
-          <sl-menu-item value="/logout">Logout</sl-menu-item>
+          <sl-menu-item exportparts="base: menuitem-base" value="/logout">Logout</sl-menu-item>
         </sqm-navigation-menu>
         <h1>Something</h1>
       </sqm-portal-frame>
@@ -127,10 +127,10 @@ export const FullStackFrameLoggedOut = () => {
         description="Portal Description"
       >
         <sqm-navigation-menu menu-label="Menu">
-          <sl-menu-item value="/widget">Dashboard</sl-menu-item>
-          <sl-menu-item value="/editProfile">Edit Profile</sl-menu-item>
+          <sl-menu-item exportparts="base: menuitem-base" value="/widget">Dashboard</sl-menu-item>
+          <sl-menu-item exportparts="base: menuitem-base" value="/editProfile">Edit Profile</sl-menu-item>
           <sl-menu-divider></sl-menu-divider>
-          <sl-menu-item value="/logout">Logout</sl-menu-item>
+          <sl-menu-item exportparts="base: menuitem-base" value="/logout">Logout</sl-menu-item>
         </sqm-navigation-menu>
         <h1>Something</h1>
       </sqm-portal-frame>

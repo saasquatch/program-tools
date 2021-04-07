@@ -23,7 +23,7 @@ export function NavigationMenuView(props: NavigationMenuViewProps) {
         slot="trigger"
         caret
         onClick={props.callbacks.rerender}
-        exportparts="base: defaultbutton"
+        exportparts="base: defaultbutton-base"
       >
         {styles.menuLabel}
       </sl-button>
