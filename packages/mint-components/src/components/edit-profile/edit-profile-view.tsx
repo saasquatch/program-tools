@@ -55,7 +55,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
         <form class="FormWrapper" onSubmit={callbacks.onSubmit}>
           <div class="FormSection">
             <sl-input
-              exportparts="label: inputlabel"
+              exportparts="label: input-label"
               value={states.formState.firstName}
               onInput={callbacks.onChange}
               label={text.firstnametext}
@@ -71,7 +71,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
               }
             />
             <sl-input
-              exportparts="label: inputlabel"
+              exportparts="label: input-label"
               value={states.formState.lastName}
               onInput={callbacks.onChange}
               label={text.lastnametext}
@@ -89,7 +89,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
           </div>
           {states.formState.currentRegion && (
             <sl-input
-              exportparts="label: inputlabel"
+              exportparts="label: input-label"
               disabled
               value={states.formState.currentRegion}
               label={text.currentregiontext}
@@ -112,7 +112,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
                 callbacks.onSubmit(e);
               }}
               submit
-              exportparts="base: primarybutton"
+              exportparts="base: primarybutton-base"
             >
               {text.updatetext}
             </sl-button>
@@ -121,7 +121,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
                 callbacks.setShowEdit(false);
                 // callbacks.resetForm();
               }}
-              exportparts="base: defaultbutton"
+              exportparts="base: defaultbutton-base"
             >
               {text.canceltext}
             </sl-button>
@@ -162,7 +162,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
           callbacks.resetForm();
           callbacks.setShowEdit(true);
         }}
-        exportparts="base: primarybutton"
+        exportparts="base: primarybutton-base"
       >
         {text.editprofiletext}
       </sl-button>

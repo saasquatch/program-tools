@@ -45,6 +45,16 @@ export namespace Components {
          */
         "updatetext": string;
     }
+    interface SqmFormMessage {
+        /**
+          * @uiName Icon to use in alert
+         */
+        "icon"?: string;
+        /**
+          * @uiName Type of alert
+         */
+        "type": string;
+    }
     interface SqmHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
@@ -234,6 +244,12 @@ declare global {
         prototype: HTMLSqmEditProfileElement;
         new (): HTMLSqmEditProfileElement;
     };
+    interface HTMLSqmFormMessageElement extends Components.SqmFormMessage, HTMLStencilElement {
+    }
+    var HTMLSqmFormMessageElement: {
+        prototype: HTMLSqmFormMessageElement;
+        new (): HTMLSqmFormMessageElement;
+    };
     interface HTMLSqmHookStoryContainerElement extends Components.SqmHookStoryContainer, HTMLStencilElement {
     }
     var HTMLSqmHookStoryContainerElement: {
@@ -303,6 +319,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
+        "sqm-form-message": HTMLSqmFormMessageElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
@@ -354,6 +371,16 @@ declare namespace LocalJSX {
           * @uiName Update info button text
          */
         "updatetext"?: string;
+    }
+    interface SqmFormMessage {
+        /**
+          * @uiName Icon to use in alert
+         */
+        "icon"?: string;
+        /**
+          * @uiName Type of alert
+         */
+        "type"?: string;
     }
     interface SqmHookStoryContainer {
         "hookStory"?: FunctionalComponent;
@@ -533,6 +560,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "sqm-big-stat": SqmBigStat;
         "sqm-edit-profile": SqmEditProfile;
+        "sqm-form-message": SqmFormMessage;
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
@@ -552,6 +580,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
+            "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
