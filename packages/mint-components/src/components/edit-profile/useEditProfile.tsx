@@ -1,6 +1,6 @@
 import {
+  useLazyQuery,
   useMutation,
-  useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { gql } from "graphql-request";
@@ -84,35 +84,40 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
     error: string;
   }>(defaultFormState);
 
-  const userDataResponse = useQuery(GET_USER, {});
+  const [getUser, userDataResponse] = useLazyQuery(GET_USER);
 
   const [upsertUser, upsertUserResponse] = useMutation(UPSERT_USER);
 
   useEffect(() => {
-    if (upsertUserResponse.loading || !showEdit) return;
+    console.log(userIdent?.jwt);
+    if (userIdent?.jwt) getUser({});
+  }, [userIdent?.jwt]);
 
-    if (upsertUserResponse.errors) {
+  useEffect(() => {
+    if (upsertUserResponse?.loading || !showEdit) return;
+
+    if (upsertUserResponse?.errors) {
       setFormState((state) => ({
         ...state,
-        error: upsertUserResponse.errors?.response.errors?.[0].message,
+        error: upsertUserResponse?.errors?.response.errors?.[0].message,
       }));
     } else {
-      console.log("upsert response data:", upsertUserResponse.data);
+      console.log("upsert response data:", upsertUserResponse?.data);
       setUserData((state) => ({
         ...state,
-        ...upsertUserResponse.data?.upsertUser,
+        ...upsertUserResponse?.data?.upsertUser,
       }));
       setShowEdit(false);
     }
-  }, [upsertUserResponse.loading]);
+  }, [upsertUserResponse?.loading]);
 
   useEffect(() => {
-    setUserData((data) => ({ ...data, ...userDataResponse.data?.viewer }));
-  }, [userDataResponse.data]);
+    setUserData((data) => ({ ...data, ...userDataResponse?.data?.viewer }));
+  }, [userDataResponse?.data]);
 
   return {
     states: {
-      loading: userDataResponse.loading,
+      loading: userDataResponse?.loading || upsertUserResponse.loading,
       submitDisabled: false,
       formState,
       user: userData,
@@ -131,8 +136,8 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
       onSubmit: () => {
         if (formState.firstName && formState.lastName) {
           upsertUser({
-            id:userIdent?.id,
-            accountId:userIdent?.accountId,
+            id: userIdent?.id,
+            accountId: userIdent?.accountId,
             firstName: formState.firstName,
             lastName: formState.lastName,
           });
