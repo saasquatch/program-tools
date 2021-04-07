@@ -34,20 +34,20 @@ export function LeaderboardView(props: LeaderboardViewProps) {
     <div>
       {!states.hasLeaders && elements.empty}
       {states.hasLeaders && (
-        <div class="Column">
-          <div class="SeparateContent">
-            <b>{styles.usersheading}</b>
-            <b>{styles.statsheading}</b>
-          </div>
+        <table>
+          <tr>
+            <th class="User">{styles.usersheading}</th>
+            <th class="Score">{styles.statsheading}</th>
+          </tr>
           {data.leaderboard?.map((user) => {
             return (
-              <div class="SeparateContent">
-                <span>{`${user.firstName} ${user.lastInitial} `}</span>
-                <span>{user.value}</span>
-              </div>
+              <tr class="SeparateContent">
+                <td class="User">{`${user.firstName} ${user.lastInitial} `}</td>
+                <td class="Score">{user.value}</td>
+              </tr>
             );
           })}
-        </div>
+        </table>
       )}
     </div>
   );
