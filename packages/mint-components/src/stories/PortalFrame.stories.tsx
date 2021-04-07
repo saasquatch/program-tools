@@ -54,32 +54,37 @@ export const FrameWithMenu = () => {
   const props = {
     ...defaultProps,
     states: {
-      includeDropdown: true,
       styles: {
         headertext: "Service Titan",
         description: "Portal description",
-        logoutLabel: "Logout",
-        menuLabel: "Menu",
-        editProfileLabel: "Edit Profile",
-        dashboardLabel: "Dashboard",
       },
     },
   };
-  return <PortalFrameView {...props} />;
+  return (
+    <PortalFrameView {...props}>
+      <sqm-navigation-menu menu-label="Menu">
+        <sl-menu-item exportparts="base: menuitem-base" value="/widget">
+          Dashboard
+        </sl-menu-item>
+        <sl-menu-item exportparts="base: menuitem-base" value="/editProfile">
+          Edit Profile
+        </sl-menu-item>
+        <sl-menu-divider></sl-menu-divider>
+        <sl-menu-item exportparts="base: menuitem-base" value="/logout">
+          Logout
+        </sl-menu-item>
+      </sqm-navigation-menu>
+    </PortalFrameView>
+  );
 };
 
 export const FrameWithoutMenu = () => {
   const props = {
     ...defaultProps,
     states: {
-      includeDropdown: false,
       styles: {
         headertext: "Service Titan",
         description: "Portal description",
-        logoutLabel: "Logout",
-        menuLabel: "Menu",
-        editProfileLabel: "Edit Profile",
-        dashboardLabel: "Dashboard",
       },
     },
   };
@@ -93,14 +98,13 @@ export const FullStackFrame = () => {
       <sqm-portal-frame
         headertext="Service Titan"
         description="Portal Description"
-        dashboard-path="/dashboard"
-        profile-path="/profile"
-        logout-path="/logout"
-        logout-label="Logout"
-        menu-label="Menu"
-        edit-profile-label="Edit Profile"
-        dashboard-label="Dashboard"
       >
+        <sqm-navigation-menu menu-label="Menu">
+          <sl-menu-item exportparts="base: menuitem-base" value="/widget">Dashboard</sl-menu-item>
+          <sl-menu-item exportparts="base: menuitem-base" value="/editProfile">Edit Profile</sl-menu-item>
+          <sl-menu-divider></sl-menu-divider>
+          <sl-menu-item exportparts="base: menuitem-base" value="/logout">Logout</sl-menu-item>
+        </sqm-navigation-menu>
         <h1>Something</h1>
       </sqm-portal-frame>
       <p>
@@ -121,14 +125,13 @@ export const FullStackFrameLoggedOut = () => {
       <sqm-portal-frame
         headertext="Service Titan"
         description="Portal Description"
-        dashboard-path="/dashboard"
-        profile-path="/profile"
-        logout-path="/logout"
-        logout-label="Logout"
-        menu-label="Menu"
-        edit-profile-label="Edit Profile"
-        dashboard-label="Dashboard"
       >
+        <sqm-navigation-menu menu-label="Menu">
+          <sl-menu-item exportparts="base: menuitem-base" value="/widget">Dashboard</sl-menu-item>
+          <sl-menu-item exportparts="base: menuitem-base" value="/editProfile">Edit Profile</sl-menu-item>
+          <sl-menu-divider></sl-menu-divider>
+          <sl-menu-item exportparts="base: menuitem-base" value="/logout">Logout</sl-menu-item>
+        </sqm-navigation-menu>
         <h1>Something</h1>
       </sqm-portal-frame>
       <p>
