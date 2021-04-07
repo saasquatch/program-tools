@@ -49,6 +49,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
         size={props.size}
         type={props.type}
         onClick={props.onClick}
+        exportparts={`base: ${props.type}sharebutton`}
       >
         {!props.hideicon && (
           <sl-icon

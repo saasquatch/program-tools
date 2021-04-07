@@ -1,1 +1,14 @@
 @include HostBlock;
+
+.Stat {
+  font-size: var(--sl-font-size-x-large);
+  text-align: center;
+}
+
+.Description {
+  font-size: var(--sl-font-size-x-small);
+  font-weight: 600;
+  color: var(--sl-color-gray-600);
+  text-transform: uppercase;
+  text-align: center;
+}

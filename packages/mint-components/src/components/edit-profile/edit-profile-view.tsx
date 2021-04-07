@@ -55,6 +55,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
         <form class="FormWrapper" onSubmit={callbacks.onSubmit}>
           <div class="FormSection">
             <sl-input
+              exportparts="label: inputlabel"
               value={states.formState.firstName}
               onInput={callbacks.onChange}
               label={text.firstnametext}
@@ -70,6 +71,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
               }
             />
             <sl-input
+              exportparts="label: inputlabel"
               value={states.formState.lastName}
               onInput={callbacks.onChange}
               label={text.lastnametext}
@@ -87,6 +89,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
           </div>
           {states.formState.currentRegion && (
             <sl-input
+              exportparts="label: inputlabel"
               disabled
               value={states.formState.currentRegion}
               label={text.currentregiontext}
@@ -109,6 +112,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
                 callbacks.onSubmit(e);
               }}
               submit
+              exportparts="base: primarybutton"
             >
               {text.updatetext}
             </sl-button>
@@ -117,6 +121,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
                 callbacks.setShowEdit(false);
                 // callbacks.resetForm();
               }}
+              exportparts="base: defaultbutton"
             >
               {text.canceltext}
             </sl-button>
@@ -157,6 +162,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
           callbacks.resetForm();
           callbacks.setShowEdit(true);
         }}
+        exportparts="base: primarybutton"
       >
         {text.editprofiletext}
       </sl-button>
