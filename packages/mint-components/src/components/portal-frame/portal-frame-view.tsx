@@ -43,7 +43,7 @@ export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
         </div>
         {states.includeDropdown && (
           <sl-dropdown>
-            <sl-button slot="trigger" caret onClick={props.callbacks.rerender}>
+            <sl-button slot="trigger" caret onClick={props.callbacks.rerender} exportparts="base: defaultbutton">
               {styles.menuLabel}
             </sl-button>
             {/* <sl-menu ref={(r)=>{props.ref.current = r}} onChange={e=>console.log("changed", e)}> */}

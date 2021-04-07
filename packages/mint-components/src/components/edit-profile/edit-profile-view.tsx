@@ -109,6 +109,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
                 callbacks.onSubmit(e);
               }}
               submit
+              exportparts="base: primarybutton"
             >
               {text.updatetext}
             </sl-button>
@@ -117,6 +118,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
                 callbacks.setShowEdit(false);
                 // callbacks.resetForm();
               }}
+              exportparts="base: defaultbutton"
             >
               {text.canceltext}
             </sl-button>
@@ -157,6 +159,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
           callbacks.resetForm();
           callbacks.setShowEdit(true);
         }}
+        exportparts="base: primarybutton"
       >
         {text.editprofiletext}
       </sl-button>
