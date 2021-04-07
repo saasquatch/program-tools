@@ -17,7 +17,7 @@ export interface NavigationMenuViewProps {
 export function NavigationMenuView(props: NavigationMenuViewProps) {
   const { states } = props;
   const { styles } = states;
-  return (
+  return states.includeDropdown ? (
     <sl-dropdown>
       <sl-button
         slot="trigger"
@@ -38,5 +38,7 @@ export function NavigationMenuView(props: NavigationMenuViewProps) {
         <slot />
       </sl-menu>
     </sl-dropdown>
+  ) : (
+    ""
   );
 }
