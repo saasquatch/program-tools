@@ -65,7 +65,16 @@ export const FrameWithMenu = () => {
       },
     },
   };
-  return <PortalFrameView {...props} />;
+  return (
+    <PortalFrameView {...props}>
+      <sqm-navigation-menu menu-label="Menu">
+        <sl-menu-item value="/widget">Dashboard</sl-menu-item>
+        <sl-menu-item value="/editProfile">Edit Profile</sl-menu-item>
+        <sl-menu-divider></sl-menu-divider>
+        <sl-menu-item value="/logout">Logout</sl-menu-item>
+      </sqm-navigation-menu>
+    </PortalFrameView>
+  );
 };
 
 export const FrameWithoutMenu = () => {
@@ -101,6 +110,12 @@ export const FullStackFrame = () => {
         edit-profile-label="Edit Profile"
         dashboard-label="Dashboard"
       >
+        <sqm-navigation-menu menu-label="Menu">
+          <sl-menu-item value="/widget">Dashboard</sl-menu-item>
+          <sl-menu-item value="/editProfile">Edit Profile</sl-menu-item>
+          <sl-menu-divider></sl-menu-divider>
+          <sl-menu-item value="/logout">Logout</sl-menu-item>
+        </sqm-navigation-menu>
         <h1>Something</h1>
       </sqm-portal-frame>
       <p>
