@@ -25,9 +25,6 @@ export class NavigationMenu {
    */
   @Prop() includeDropdown: boolean;
   /**
-   * @uiName Heading text
-   */
-  /**
    * @uiName Label on the header menu
    */
   @Prop() menuLabel: string;
