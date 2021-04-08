@@ -28,7 +28,7 @@ export class FormHeader {
 
     if (this.type === "error") {
       return (
-        <sl-alert exportparts="base: erroralert-base" class="Error" type="danger" open>
+        <sl-alert exportparts="base: erroralert-base icon:erroralert-icon" class="Error" type="danger" open>
           <sl-icon
             slot="icon"
             name={`${this.icon ? this.icon : "exclamation-octagon"}`}
@@ -38,7 +38,7 @@ export class FormHeader {
       );
     } else {
       return (
-        <sl-alert exportparts="base: successalert-base" class="Success" type="success" open>
+        <sl-alert exportparts="base: successalert-base icon:successalert-icon" class="Success" type="success" open>
           <sl-icon
             slot="icon"
             name={`${this.icon ? this.icon : "check2-circle"}`}
