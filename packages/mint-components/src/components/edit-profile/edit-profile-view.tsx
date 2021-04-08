@@ -60,7 +60,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
               onInput={callbacks.onChange}
               label={text.firstnametext}
               {...(errors.firstName && errors.firstName.status !== "valid"
-                ? { class: "Errortext", helpText: "Cannot be empty" }
+                ? { class: "ErrorStyles", helpText: "Cannot be empty" }
                 : [])}
               id="firstName"
               name="firstName"
@@ -78,7 +78,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
               id="lastName"
               name="lastName"
               {...(errors.lastName && errors.lastName.status !== "valid"
-                ? { class: "Errortext", helpText: "Cannot be empty" }
+                ? { class: "ErrorStyles", helpText: "Cannot be empty" }
                 : [])}
               error={
                 errors.lastName && errors.lastName.status !== "valid"
@@ -105,6 +105,15 @@ const EditProfileView = (props: EditProfileViewProps) => {
           )}
           <div class="ButtonWrapper">
             <sl-button
+              onClick={() => {
+                callbacks.setShowEdit(false);
+                // callbacks.resetForm();
+              }}
+              exportparts="base: defaultbutton-base"
+            >
+              {text.canceltext}
+            </sl-button>
+            <sl-button
               type="primary"
               loading={states.loading}
               disabled={states.submitDisabled}
@@ -115,15 +124,6 @@ const EditProfileView = (props: EditProfileViewProps) => {
               exportparts="base: primarybutton-base"
             >
               {text.updatetext}
-            </sl-button>
-            <sl-button
-              onClick={() => {
-                callbacks.setShowEdit(false);
-                // callbacks.resetForm();
-              }}
-              exportparts="base: defaultbutton-base"
-            >
-              {text.canceltext}
             </sl-button>
           </div>
         </form>

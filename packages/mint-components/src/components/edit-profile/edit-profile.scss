@@ -19,6 +19,8 @@
   display: flex;
   margin-top: 24px;
 
+  justify-content: flex-end;
+
   & > :not(:first-child) {
     margin-left: 12px;
   }
@@ -26,7 +28,7 @@
 
 .CardWrapper {
   box-sizing: border-box;
-  background: white;
+  background: var(--sl-color-white);
   padding: 40px 30px;
   display: flex;
   flex-direction: column;
