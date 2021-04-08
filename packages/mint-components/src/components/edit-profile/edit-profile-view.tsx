@@ -1,4 +1,4 @@
-import { h, Host } from "@stencil/core";
+import { h } from "@stencil/core";
 
 export interface EditProfileViewProps {
   states: {
