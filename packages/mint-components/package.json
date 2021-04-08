@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/mint-components",
-  "version": "1.0.0-18",
+  "version": "1.0.0-19",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
   "es2015": "dist/esm/index.js",
