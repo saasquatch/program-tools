@@ -2,13 +2,13 @@ import { css } from "emotion";
 
 export const H2 = css`
   font-size: var(--sl-font-size-large);
-  font-weight: 600;
+  font-weight: var(--sl-font-weight-semibold);
   margin: 0;
 `;
 
 export const H4 = css`
   font-size: var(--sl-font-size-medium);
-  font-weight: 600;
+  font-weight: var(--sl-font-weight-semibold);
   margin: 0;
 `;
 
