@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { h, Host } from "@stencil/core";
 
 export interface EditProfileViewProps {
   states: {
@@ -55,7 +55,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
         <form class="FormWrapper" onSubmit={callbacks.onSubmit}>
           {states.formState.error && (
             <sqm-form-message type="error" exportparts="erroralert-icon">
-              {states.formState.error}
+              <div part="erroralert-text">{states.formState.error}</div>
             </sqm-form-message>
           )}
           <div class="FormSection">
