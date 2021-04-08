@@ -13,9 +13,9 @@
 - [sqm-share-link](../share-link)
 - [sqm-router](../router)
 - [sqm-portal-frame](../portal-frame)
-- [sqm-navigation-menu](../navigation-menu)
 - [sqm-edit-profile](../edit-profile)
 - [sqm-hook-story-container](../sqm-hook-story-container)
+- [sqm-navigation-menu](../navigation-menu)
 
 ### Graph
 ```mermaid
@@ -24,9 +24,9 @@ graph TD;
   sqm-stencilbook --> sqm-share-link
   sqm-stencilbook --> sqm-router
   sqm-stencilbook --> sqm-portal-frame
-  sqm-stencilbook --> sqm-navigation-menu
   sqm-stencilbook --> sqm-edit-profile
   sqm-stencilbook --> sqm-hook-story-container
+  sqm-stencilbook --> sqm-navigation-menu
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
