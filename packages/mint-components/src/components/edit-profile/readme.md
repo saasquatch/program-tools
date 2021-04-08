@@ -24,9 +24,14 @@
 
  - [sqm-stencilbook](../sqm-stencilbook)
 
+### Depends on
+
+- [sqm-form-message](../sqm-form-message)
+
 ### Graph
 ```mermaid
 graph TD;
+  sqm-edit-profile --> sqm-form-message
   sqm-stencilbook --> sqm-edit-profile
   style sqm-edit-profile fill:#f9f,stroke:#333,stroke-width:4px
 ```

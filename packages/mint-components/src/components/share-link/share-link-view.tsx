@@ -21,7 +21,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         open={props.open}
       >
         <sl-input
-          exportparts="label: inputlabel"
+          exportparts="label: input-label"
           value={props.sharelink}
           readonly
         >

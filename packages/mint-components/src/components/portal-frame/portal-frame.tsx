@@ -18,10 +18,6 @@ export class PortalFrame {
   ignored = true;
 
   /**
-   * @uiName Include dropdown menu
-   */
-  @Prop() includeDropdown: boolean;
-  /**
    * @uiName Heading text
    */
   @Prop() headertext: string;
@@ -29,35 +25,6 @@ export class PortalFrame {
    * @uiName Description text
    */
   @Prop() description: string;
-  /**
-   * @uiName Path to dashboard
-   */
-  @Prop() dashboardPath: string;
-  /**
-   * @uiName Path to profile
-   */
-  @Prop() profilePath: string;
-  /**
-   * @uiName Path to logout
-   */
-  @Prop() logoutPath: string;
-  /**
-   * @uiName Label for the logout entry of header menu
-   */
-  @Prop() logoutLabel: string;
-  /**
-   * @uiName Label for the dashboard entry of header menu
-   */
-  @Prop() dashboardLabel: string;
-  /**
-   * @uiName Label for the edit profile entry of header menu
-   */
-  @Prop() editProfileLabel: string;
-  /**
-   * @uiName Label on the header menu
-   */
-  @Prop() menuLabel: string;
-
   constructor() {
     withHooks(this);
   }
@@ -78,15 +45,10 @@ export class PortalFrame {
 function usePortalFrameDemo(props: PortalFrame): PortalFrameViewProps {
   return {
     states: {
-      includeDropdown: true,
       styles: {
         ...props,
         headertext: "Portal Heading",
         description: "Portal Description",
-        logoutLabel: "Logout",
-        menuLabel: "Menu",
-        editProfileLabel: "Edit Profile",
-        dashboardLabel: "Dashboard"
       },
     },
     data: {
@@ -95,6 +57,5 @@ function usePortalFrameDemo(props: PortalFrame): PortalFrameViewProps {
     callbacks: {
       rerender: () => {},
     },
-    ref: { current: undefined },
   };
 }

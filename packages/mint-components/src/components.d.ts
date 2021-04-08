@@ -45,6 +45,16 @@ export namespace Components {
          */
         "updatetext": string;
     }
+    interface SqmFormMessage {
+        /**
+          * @uiName Icon to use in alert
+         */
+        "icon"?: string;
+        /**
+          * @uiName Type of alert
+         */
+        "type": string;
+    }
     interface SqmHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
@@ -75,6 +85,16 @@ export namespace Components {
         "rankType": "rowNumber" | "rank" | "denseRank";
         "unrankedText": string;
     }
+    interface SqmNavigationMenu {
+        /**
+          * @uiName Include dropdown menu
+         */
+        "includeDropdown": boolean;
+        /**
+          * @uiName Label on the header menu
+         */
+        "menuLabel": string;
+    }
     interface SqmPopupContainer {
         /**
           * @uiName Display a close button on the popup
@@ -99,45 +119,13 @@ export namespace Components {
     }
     interface SqmPortalFrame {
         /**
-          * @uiName Label for the dashboard entry of header menu
-         */
-        "dashboardLabel": string;
-        /**
-          * @uiName Path to dashboard
-         */
-        "dashboardPath": string;
-        /**
           * @uiName Description text
          */
         "description": string;
         /**
-          * @uiName Label for the edit profile entry of header menu
-         */
-        "editProfileLabel": string;
-        /**
           * @uiName Heading text
          */
         "headertext": string;
-        /**
-          * @uiName Include dropdown menu
-         */
-        "includeDropdown": boolean;
-        /**
-          * @uiName Label for the logout entry of header menu
-         */
-        "logoutLabel": string;
-        /**
-          * @uiName Path to logout
-         */
-        "logoutPath": string;
-        /**
-          * @uiName Label on the header menu
-         */
-        "menuLabel": string;
-        /**
-          * @uiName Path to profile
-         */
-        "profilePath": string;
     }
     interface SqmRoute {
         /**
@@ -256,6 +244,12 @@ declare global {
         prototype: HTMLSqmEditProfileElement;
         new (): HTMLSqmEditProfileElement;
     };
+    interface HTMLSqmFormMessageElement extends Components.SqmFormMessage, HTMLStencilElement {
+    }
+    var HTMLSqmFormMessageElement: {
+        prototype: HTMLSqmFormMessageElement;
+        new (): HTMLSqmFormMessageElement;
+    };
     interface HTMLSqmHookStoryContainerElement extends Components.SqmHookStoryContainer, HTMLStencilElement {
     }
     var HTMLSqmHookStoryContainerElement: {
@@ -273,6 +267,12 @@ declare global {
     var HTMLSqmLeaderboardRankElement: {
         prototype: HTMLSqmLeaderboardRankElement;
         new (): HTMLSqmLeaderboardRankElement;
+    };
+    interface HTMLSqmNavigationMenuElement extends Components.SqmNavigationMenu, HTMLStencilElement {
+    }
+    var HTMLSqmNavigationMenuElement: {
+        prototype: HTMLSqmNavigationMenuElement;
+        new (): HTMLSqmNavigationMenuElement;
     };
     interface HTMLSqmPopupContainerElement extends Components.SqmPopupContainer, HTMLStencilElement {
     }
@@ -319,9 +319,11 @@ declare global {
     interface HTMLElementTagNameMap {
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
+        "sqm-form-message": HTMLSqmFormMessageElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
+        "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
         "sqm-route": HTMLSqmRouteElement;
@@ -370,6 +372,16 @@ declare namespace LocalJSX {
          */
         "updatetext"?: string;
     }
+    interface SqmFormMessage {
+        /**
+          * @uiName Icon to use in alert
+         */
+        "icon"?: string;
+        /**
+          * @uiName Type of alert
+         */
+        "type"?: string;
+    }
     interface SqmHookStoryContainer {
         "hookStory"?: FunctionalComponent;
     }
@@ -400,6 +412,16 @@ declare namespace LocalJSX {
         "rankType"?: "rowNumber" | "rank" | "denseRank";
         "unrankedText"?: string;
     }
+    interface SqmNavigationMenu {
+        /**
+          * @uiName Include dropdown menu
+         */
+        "includeDropdown"?: boolean;
+        /**
+          * @uiName Label on the header menu
+         */
+        "menuLabel"?: string;
+    }
     interface SqmPopupContainer {
         /**
           * @uiName Display a close button on the popup
@@ -424,45 +446,13 @@ declare namespace LocalJSX {
     }
     interface SqmPortalFrame {
         /**
-          * @uiName Label for the dashboard entry of header menu
-         */
-        "dashboardLabel"?: string;
-        /**
-          * @uiName Path to dashboard
-         */
-        "dashboardPath"?: string;
-        /**
           * @uiName Description text
          */
         "description"?: string;
         /**
-          * @uiName Label for the edit profile entry of header menu
-         */
-        "editProfileLabel"?: string;
-        /**
           * @uiName Heading text
          */
         "headertext"?: string;
-        /**
-          * @uiName Include dropdown menu
-         */
-        "includeDropdown"?: boolean;
-        /**
-          * @uiName Label for the logout entry of header menu
-         */
-        "logoutLabel"?: string;
-        /**
-          * @uiName Path to logout
-         */
-        "logoutPath"?: string;
-        /**
-          * @uiName Label on the header menu
-         */
-        "menuLabel"?: string;
-        /**
-          * @uiName Path to profile
-         */
-        "profilePath"?: string;
     }
     interface SqmRoute {
         /**
@@ -570,9 +560,11 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "sqm-big-stat": SqmBigStat;
         "sqm-edit-profile": SqmEditProfile;
+        "sqm-form-message": SqmFormMessage;
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
+        "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-popup-container": SqmPopupContainer;
         "sqm-portal-frame": SqmPortalFrame;
         "sqm-route": SqmRoute;
@@ -588,9 +580,11 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
+            "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
+            "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;

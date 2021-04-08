@@ -1,0 +1,15 @@
+sl-alert::part(base){
+    border: 1px solid;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgb(20 20 20 / 10%);
+}
+
+.Error::part(base){
+    background-color: var(--sl-color-danger-100);
+    border-color: var(--sl-color-danger-200);
+}
+
+.Success::part(base){
+    background-color: var(--sl-color-success-100);
+    border-color: var(--sl-color-success-200);
+}
