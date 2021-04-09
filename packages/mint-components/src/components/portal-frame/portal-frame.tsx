@@ -25,6 +25,10 @@ export class PortalFrame {
    * @uiName Description text
    */
   @Prop() description: string;
+  /**
+   * @uiName Support email in footer
+   */
+  @Prop() email: string;
   constructor() {
     withHooks(this);
   }

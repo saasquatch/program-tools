@@ -13,7 +13,7 @@ export function usePortalFrame(props: PortalFrame): PortalFrameViewProps {
       },
     },
     data: {
-      email: "example@example.com",
+      email: props.email,
     },
     callbacks: {
       rerender,
