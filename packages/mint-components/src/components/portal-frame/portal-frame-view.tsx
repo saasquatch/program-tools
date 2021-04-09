@@ -8,7 +8,7 @@ export interface PortalFrameViewProps {
     };
   };
   data: {
-    email: string;
+    email: VNode;
   };
   callbacks: {
     rerender: Function;
@@ -38,7 +38,7 @@ export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
       </div>
       {children}
       <div class="FooterWrapper">
-        <span>Need help? {data.email}</span>
+        {data.email}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { Component, h, Prop, State } from "@stencil/core";
+import { Component, h, Prop, State, VNode } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { PortalFrameView, PortalFrameViewProps } from "./portal-frame-view";
@@ -25,19 +25,16 @@ export class PortalFrame {
    * @uiName Description text
    */
   @Prop() description: string;
-  /**
-   * @uiName Support email in footer
-   */
-  @Prop() email: string;
   constructor() {
     withHooks(this);
   }
   disconnectedCallback() {}
 
   render() {
+    const footerContent = <slot name="footer" />;
     const props = isDemo()
-      ? usePortalFrameDemo(getProps(this))
-      : usePortalFrame(getProps(this));
+      ? usePortalFrameDemo(getProps(this), footerContent)
+      : usePortalFrame(getProps(this), footerContent);
     return (
       <PortalFrameView {...props}>
         <slot />
@@ -46,7 +43,10 @@ export class PortalFrame {
   }
 }
 
-function usePortalFrameDemo(props: PortalFrame): PortalFrameViewProps {
+function usePortalFrameDemo(
+  props: PortalFrame,
+  footerContent: VNode
+): PortalFrameViewProps {
   return {
     states: {
       styles: {
@@ -56,7 +56,7 @@ function usePortalFrameDemo(props: PortalFrame): PortalFrameViewProps {
       },
     },
     data: {
-      email: "example@example.com",
+      email: footerContent ? footerContent : <span>example@example.com</span>,
     },
     callbacks: {
       rerender: () => {},
