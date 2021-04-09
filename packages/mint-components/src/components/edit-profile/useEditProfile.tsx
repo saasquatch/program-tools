@@ -152,6 +152,9 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
         if (!formState.lastName) {
           errors["lastName"] = { message: "Field can't be empty" };
         }
+        if(errors !== {}){
+          setFormState((e) => ({ ...e, error: "Please correct the errors below to update your profile" }));
+        }
         setFormState((e) => ({ ...e, errors }));
       },
       resetForm: () => {
