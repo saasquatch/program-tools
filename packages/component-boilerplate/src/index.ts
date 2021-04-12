@@ -14,6 +14,7 @@ export {
   getEnvironmentSDK,
   useTenantAlias,
   useProgramId,
+  setProgramId,
   useAppDomain,
   isDemo,
   /*
