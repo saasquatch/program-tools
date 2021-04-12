@@ -4,6 +4,7 @@ import debugFn from "debug";
 import jsonpointer from "jsonpointer";
 import { useMutation } from "./graphql/useMutation";
 import { useLazyQuery } from "./graphql/useLazyQuery";
+import { useDeepMemo } from "./useDeepMemo";
 export const debug = debugFn("sq:useForm");
 
 const GET_FORM = gql`
@@ -96,6 +97,8 @@ type FormState = {
   disabledMessage: string;
   error: string;
   formData: object;
+  validationData: any;
+  submitData: any;
 };
 
 export function useForm(props: UseFormProps) {
@@ -111,12 +114,14 @@ export function useForm(props: UseFormProps) {
 
   const initialState = {
     enabled: false,
-    disabledMessage: "",
     validating: false,
     valid: true,
     validationMessage: "",
     error: "",
+    disabledMessage: "",
     formData: {},
+    validationData,
+    submitData,
   };
 
   const [formState, setFormState] = useReducer<FormState, Partial<FormState>>(
@@ -140,6 +145,16 @@ export function useForm(props: UseFormProps) {
   useEffect(() => {
     getForm(variables);
   }, []);
+
+  useDeepMemo(() => {
+    debug("submitData useEffect", submitData);
+    setFormState({ submitData });
+  }, [submitData?.data]);
+
+  useDeepMemo(() => {
+    debug("validationData useEffect", validationData);
+    setFormState({ validationData });
+  }, [validationData?.data]);
 
   // load initial data into form
   useEffect(() => {
@@ -184,24 +199,24 @@ export function useForm(props: UseFormProps) {
 
   // submit if form data is valid
   useEffect(() => {
-    if (!!validationData) {
+    if (!!formState.validationData) {
       setFormState({
         validating: false,
-        valid: validationData?.data?.validateForm?.valid || false,
+        valid: formState.validationData?.data?.validateForm?.valid || false,
       });
 
-      if (validationData?.data?.validateForm?.valid) {
+      if (formState.validationData?.data?.validateForm?.valid) {
         submit({
           formSubmissionInput: { key: formKey, formData },
         });
       }
     }
-  }, [validationData?.data?.validateForm?.valid]);
+  }, [formState.validationData?.data?.validateForm?.valid]);
 
   function getSubmissionErrors(): Array<SubmissionError> {
-    if (!submitData) return [];
+    if (!formState.submitData) return [];
 
-    const submissionResults = submitData.data?.submitForm.results;
+    const submissionResults = formState.submitData.data?.submitForm.results;
 
     return (
       submissionResults?.map((error) => {
@@ -294,11 +309,11 @@ export function useForm(props: UseFormProps) {
       validating,
       valid,
       error,
+      validationData: formState.validationData,
+      submitData: formState.submitData,
     },
     data: {
       formKey,
-      validationData,
-      submitData,
       schema: data?.form?.schema,
     },
     callbacks: {
