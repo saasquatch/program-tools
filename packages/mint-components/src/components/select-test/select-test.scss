@@ -1,0 +1,16 @@
+*::part(base) > .select__box {
+  background-color: red;
+}
+
+sl-select{
+  background-color: red;
+}
+
+*::part(base) > div {
+  background-color: red;
+}
+
+*::part(base) {
+    background-color: red;
+  }
+  

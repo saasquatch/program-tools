@@ -102,12 +102,6 @@ const EditProfileView = (props: EditProfileViewProps) => {
               name="currentRegion"
             />
           )}
-          {states.formState.error && (
-            <sl-alert type="danger" open>
-              <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
-              <strong>{states.formState.error}</strong>
-            </sl-alert>
-          )}
           <div class="ButtonWrapper">
             <sl-button
               onClick={() => {

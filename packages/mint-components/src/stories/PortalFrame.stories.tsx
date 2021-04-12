@@ -99,7 +99,7 @@ export const FullStackFrame = () => {
         headertext="Service Titan"
         description="Portal Description"
       >
-        <span slot="footer">sample@example.com</span>
+        <a slot="footer" class="FooterEmail" href="mailto:referrals@servicetitan.com">referrals@servicetitan.com</a>
         <sqm-navigation-menu menu-label="Menu">
           <sl-menu-item exportparts="base: menuitem-base" value="/widget">Dashboard</sl-menu-item>
           <sl-menu-item exportparts="base: menuitem-base" value="/editProfile">Edit Profile</sl-menu-item>
