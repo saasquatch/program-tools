@@ -21,10 +21,12 @@ query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!, $refe
     referrerUser{
       firstName
       lastName
+      customFields
     }
     referredUser{
       firstName
       lastName
+      customFields
     }
   }
 
@@ -73,10 +75,12 @@ export const nonRewardEmailQueryForReferralPrograms = `query ($userId:String!, $
     referrerUser{
       firstName
       lastName
+      customFields
     }
     referredUser{
       firstName
       lastName
+      customFields
     }
   }
 
