@@ -1,18 +1,41 @@
-// import { useDomContext } from "@saasquatch/dom-context-hooks";
-// import { useHost } from "../hooks/useHost";
+import { useDomContext } from "@saasquatch/dom-context-hooks";
+import { ContextProvider } from "dom-context";
+import { useHost } from "..";
 import { WidgetIdent } from "./environment";
+
+const CONTEXT_NAME = "sq:program-id";
 
 declare global {
   interface Window {
     widgetIdent: WidgetIdent;
+    squatchProgramId: ContextProvider<string>;
   }
 }
 
-export function useProgramContext() {
-  // TODO: implement domContext
-  // const host = useHost();
-  // return useDomContext<string>(host, "sq-context:program-id");
+function _lazilyStartGlobally() {
+  const globalProvider = window.squatchProgramId;
+  if (!globalProvider) {
+    // Lazily creates a global provider
+    window.squatchProgramId = new ContextProvider<string>({
+      element: document.documentElement,
+      initialState: window.widgetIdent?.programId || undefined,
+      contextName: CONTEXT_NAME,
+    }).start();
+  }
+}
 
-  // ALSO TODO: figure out programContext for portal environment (this will do for now)
-  return window.widgetIdent?.programId || window.SquatchPortal?.programId;
+export function useProgramId(): string | undefined {
+  _lazilyStartGlobally();
+  const host = useHost();
+  return useDomContext<string>(host, CONTEXT_NAME);
+}
+
+/**
+ * Overide the globally defined Program ID context
+ *
+ * @param programId the new programID used by the user, or undefined if logged out
+ */
+export function setProgramId(programId: string) {
+  const globalProvider = window.squatchProgramId;
+  globalProvider.context = programId;
 }

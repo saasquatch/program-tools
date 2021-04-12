@@ -1,9 +1,13 @@
-import { useProgramContext } from "./ProgramContext";
 import {
   PortalEnv,
   SquatchPortal,
   SquatchPortalInstance,
 } from "./SquatchPortal";
+
+/**
+ * Program ID context helpers
+ */
+export { useProgramId, setProgramId } from "./ProgramContext";
 
 /**
  * User identity context helpers
@@ -236,11 +240,6 @@ export function useEngagementMedium(): EngagementMedium {
     case "None":
       return DEFAULT_MEDIUM;
   }
-}
-
-export function useProgramId(): string | undefined {
-  // TODO: Widgets MIGHT have program ID available at the top level via widget ident
-  return useProgramContext();
 }
 
 export function useLocale(): string {
