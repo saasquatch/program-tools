@@ -14,6 +14,7 @@ import * as UseShareLink from "../../stories/UseShareLink.stories";
 import * as UseShareButton from "../../stories/UseShareButton.stories";
 import * as UseBigStat from "../../stories/UseBigStat.stories";
 import * as UseEditProfile from "../../stories/UseEditProfile.stories"
+import * as SelectTest from "../../stories/SelectTest.stories"
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -32,6 +33,7 @@ const stories = [
   Router,
   PortalFrame,
   EditProfile,
+  SelectTest
 ];
 
 /**
