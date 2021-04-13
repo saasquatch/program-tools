@@ -53,12 +53,12 @@ const EditProfileView = (props: EditProfileViewProps) => {
           {text.editprofileheader}
         </h2>
         <form class="FormWrapper" onSubmit={callbacks.onSubmit}>
-          {states.formState.error && (
-            <sqm-form-message type="error" exportparts="erroralert-icon">
-              <div part="erroralert-text">{states.formState.error}</div>
-            </sqm-form-message>
-          )}
           <div class="FormSection">
+            {states.formState.error && (
+              <sqm-form-message type="error" exportparts="erroralert-icon">
+                <div part="erroralert-text">{states.formState.error}</div>
+              </sqm-form-message>
+            )}
             <sl-input
               exportparts="label: input-label"
               value={states.formState.firstName}

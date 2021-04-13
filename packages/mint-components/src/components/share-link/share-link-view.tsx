@@ -28,7 +28,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
           <sl-icon-button
             onClick={() => props.onClick?.()}
             slot="suffix"
-            name="clipboard"
+            name="files"
             disabled={props.disabled}
           />
         </sl-input>
