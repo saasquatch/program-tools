@@ -128,8 +128,7 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   const hide =
     (medium.toLocaleUpperCase() === "SMS" &&
-      navigator.platform !== "Android") ||
-    (medium.toLocaleUpperCase() === "SMS" && navigator.platform !== "iPhone") ||
+      window.orientation === undefined) ||
     (medium.toLocaleUpperCase() === "DIRECT" && !window.navigator.share);
 
   function onClick() {
