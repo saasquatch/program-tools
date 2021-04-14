@@ -149,12 +149,12 @@ export function useForm(props: UseFormProps) {
   useDeepMemo(() => {
     debug("submitData useEffect", submitData);
     setFormState({ submitData });
-  }, [submitData?.data]);
+  }, [submitData]);
 
   useDeepMemo(() => {
     debug("validationData useEffect", validationData);
     setFormState({ validationData });
-  }, [validationData?.data]);
+  }, [validationData]);
 
   // load initial data into form
   useEffect(() => {
