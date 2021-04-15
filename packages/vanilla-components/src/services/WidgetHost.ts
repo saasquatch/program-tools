@@ -424,6 +424,7 @@ const API = {
               $programId_exists: Boolean!
             ) {
               user(id: $userId, accountId: $accountId) {
+                locale
                 referrals(
                   limit: $limit
                   offset: $offset
@@ -654,35 +655,6 @@ const API = {
                     fuelTankCode
                   }
                 }
-              }
-            }
-          `,
-          variables,
-        })
-        .then((res) => res.data.user);
-    },
-    getLocale() {
-      const widgetId = widgetIdent();
-
-      if (widgetId["env"] === "demo" || !widgetId) {
-        return {
-          locale: demoUser.locale,
-        };
-      }
-
-      const { userId, accountId } = widgetId;
-
-      const variables = {
-        userId,
-        accountId,
-      };
-
-      return this.getClient()
-        .query({
-          query: gql`
-            query($userId: String!, $accountId: String!) {
-              user(id: $userId, accountId: $accountId) {
-                locale
               }
             }
           `,

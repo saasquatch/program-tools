@@ -50,6 +50,7 @@ export class ReferralList {
   @State() rewards: Array<any>;
   @State() loading: boolean;
   @State() offset: number = 0;
+  @State() locale: string;
 
   constructor() {
     this.loading = true;
@@ -63,6 +64,7 @@ export class ReferralList {
           this.referredBy = res.referredByReferral;
           this.referralsCount = res.referrals.totalCount;
           this.loading = false;
+          this.locale = res.locale
         })
         .catch((e) => {
           this.onError(e);
@@ -129,6 +131,7 @@ export class ReferralList {
             referraltype={referraltype}
             unknownuser={this.unknownuser}
             internationalization={this.internationalization}
+            locale={this.locale}
           ></sqh-referral-component>
         );
       });
@@ -143,6 +146,7 @@ export class ReferralList {
           referraltype="referrer"
           unknownuser={this.unknownuser}
           internationalization={this.internationalization}
+          locale={this.locale}
         ></sqh-referral-component>
       );
     }

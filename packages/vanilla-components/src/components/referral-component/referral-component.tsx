@@ -1,4 +1,4 @@
-import { h, Component, Prop } from "@stencil/core";
+import { h, Component, Prop, State } from "@stencil/core";
 import FormatJS from "../../services/FormatJs";
 import { API } from "../../services/WidgetHost";
 
@@ -12,6 +12,7 @@ export class ReferralComponent {
   @Prop() referralvariables: ReferralVariables;
   @Prop() unknownuser: String;
   @Prop() internationalization: boolean;
+  @Prop() locale: string;
 
   getName() {
     const referral = this.referral as Referral;
@@ -28,10 +29,6 @@ export class ReferralComponent {
     }
 
     return this.unknownuser;
-  }
-
-  getLocale(): string {
-    return API.graphql.getLocale();
   }
 
   getIcon() {
@@ -184,17 +181,17 @@ export class ReferralComponent {
 
   render() {
     const { dateReferralStarted, rewards } = this.referral;
-    const locale = this.internationalization ? this.getLocale() : "en-US";
+    const userLocale = this.internationalization ? this.locale  : "en-US";
 
     const formatVariables = {
-      date: FormatJS.formatRelative(dateReferralStarted, locale),
+      date: FormatJS.formatRelative(dateReferralStarted, userLocale),
       extrarewards: rewards.length - 1,
     };
     const name = this.getName();
     const icon = this.getIcon();
-    const content = this.getContent(formatVariables, locale);
+    const content = this.getContent(formatVariables, userLocale);
     const value = this.getValue();
-    const valuecontent = this.getValueContent(formatVariables, locale);
+    const valuecontent = this.getValueContent(formatVariables, userLocale);
     const customernote = this.getNote();
     return (
       <div class="squatch-referrals-row">

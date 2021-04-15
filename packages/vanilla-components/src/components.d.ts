@@ -57,6 +57,7 @@ export namespace Components {
     }
     interface SqhReferralComponent {
         "internationalization": boolean;
+        "locale": string;
         "referral": Referral | ReferredByReferral;
         "referraltype": "converted" | "pending" | "referrer";
         "referralvariables": ReferralVariables;
@@ -384,6 +385,7 @@ declare namespace LocalJSX {
     }
     interface SqhReferralComponent {
         "internationalization"?: boolean;
+        "locale"?: string;
         "referral"?: Referral | ReferredByReferral;
         "referraltype"?: "converted" | "pending" | "referrer";
         "referralvariables"?: ReferralVariables;
