@@ -701,7 +701,8 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'valuecontent' },
           { type: 'string', name: 'paginatemore' },
           { type: 'string', name: 'paginateless' },
-          { type: 'string', name: 'unknownuser' }
+          { type: 'string', name: 'unknownuser' },
+          { type: 'boolean', name: 'internationalization'}
         ],
         uiSchema: {
           ishidden: { 'ui:widget': 'hidden' },
@@ -760,6 +761,10 @@ export default (editor, config = {}) => {
                     'unknownuser': {
                       'type': 'string',
                       'title': 'Label For Unknown User'
+                    },
+                    'internationalization':{
+                      'type': 'boolean',
+                      'title': 'Internationalize dates'
                     },
                     'paginatemore': {
                       'type': 'string',
