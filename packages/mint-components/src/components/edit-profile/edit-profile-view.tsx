@@ -64,6 +64,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
               value={states.formState.firstName}
               onInput={callbacks.onChange}
               label={text.firstnametext}
+              disabled={states.loading}
               {...(errors.firstName && errors.firstName.status !== "valid"
                 ? { class: "ErrorStyles", helpText: "Cannot be empty" }
                 : [])}
@@ -80,6 +81,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
               value={states.formState.lastName}
               onInput={callbacks.onChange}
               label={text.lastnametext}
+              disabled={states.loading}
               id="lastName"
               name="lastName"
               {...(errors.lastName && errors.lastName.status !== "valid"

@@ -120,14 +120,6 @@ export namespace Components {
         "poweredBy": boolean;
     }
     interface SqmPortalFrame {
-        /**
-          * @uiName Description text
-         */
-        "description": string;
-        /**
-          * @uiName Heading text
-         */
-        "headertext": string;
     }
     interface SqmRoute {
         /**
@@ -456,14 +448,6 @@ declare namespace LocalJSX {
         "poweredBy"?: boolean;
     }
     interface SqmPortalFrame {
-        /**
-          * @uiName Description text
-         */
-        "description"?: string;
-        /**
-          * @uiName Heading text
-         */
-        "headertext"?: string;
     }
     interface SqmRoute {
         /**

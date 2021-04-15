@@ -1,9 +1,8 @@
-import { Component, h, Prop, State, VNode } from "@stencil/core";
+import { Component, h, State, VNode } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { PortalFrameView, PortalFrameViewProps } from "./portal-frame-view";
 import { usePortalFrame } from "./usePortalFrame";
-import { getProps } from "../../utils/utils";
 
 /**
  * @uiName Portal Frame
@@ -17,14 +16,6 @@ export class PortalFrame {
   @State()
   ignored = true;
 
-  /**
-   * @uiName Heading text
-   */
-  @Prop() headertext: string;
-  /**
-   * @uiName Description text
-   */
-  @Prop() description: string;
   constructor() {
     withHooks(this);
   }
@@ -32,9 +23,10 @@ export class PortalFrame {
 
   render() {
     const footerContent = <slot name="footer" />;
+    const headerContent = <slot name="header" />;
     const props = isDemo()
-      ? usePortalFrameDemo(getProps(this), footerContent)
-      : usePortalFrame(getProps(this), footerContent);
+      ? usePortalFrameDemo(footerContent, headerContent)
+      : usePortalFrame(footerContent, headerContent);
     return (
       <PortalFrameView {...props}>
         <slot />
@@ -44,19 +36,29 @@ export class PortalFrame {
 }
 
 function usePortalFrameDemo(
-  props: PortalFrame,
-  footerContent: VNode
+  footerContent: VNode,
+  headerContent: VNode
 ): PortalFrameViewProps {
   return {
-    states: {
-      styles: {
-        ...props,
-        headertext: "Portal Heading",
-        description: "Portal Description",
-      },
-    },
     data: {
-      email: footerContent ? footerContent : <span>example@example.com</span>,
+      footer: footerContent ? footerContent : <span>example@example.com</span>,
+      header: headerContent ? (
+        headerContent
+      ) : (
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <span
+            style={{
+              fontSize: "var(--sl-font-size-large)",
+              fontWeight: "bold",
+            }}
+          >
+            Portal Header
+          </span>
+          <span style={{ fontSize: "var(--sl-font-size-small)" }}>
+            A description for the portal
+          </span>
+        </div>
+      ),
     },
     callbacks: {
       rerender: () => {},

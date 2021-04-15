@@ -1,14 +1,9 @@
 import { VNode, h } from "@stencil/core";
 
 export interface PortalFrameViewProps {
-  states: {
-    styles: {
-      headertext: string;
-      description: string;
-    };
-  };
   data: {
-    email: VNode;
+    footer: VNode;
+    header: VNode;
   };
   callbacks: {
     rerender: Function;
@@ -16,30 +11,15 @@ export interface PortalFrameViewProps {
 }
 
 export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
-  const { states, data } = props;
-  const { styles } = states;
+  const { data } = props;
   return (
     <div class="Frame">
       <div class="HeaderWrapper">
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <span
-            style={{
-              fontSize: "var(--sl-font-size-large)",
-              fontWeight: "bold",
-            }}
-          >
-            {styles.headertext}
-          </span>
-          <span style={{ fontSize: "var(--sl-font-size-small)" }}>
-            {styles.description}
-          </span>
-        </div>
+        {data.header}
         <slot name="sqm-navigation-menu" />
       </div>
       {children}
-      <div class="FooterWrapper">
-        {data.email}
-      </div>
+      <div class="FooterWrapper">{data.footer}</div>
     </div>
   );
 }

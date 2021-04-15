@@ -42,7 +42,22 @@ export default {
 
 const defaultProps = {
   data: {
-    email: <span>example@example.com</span>
+    footer: <span>example@example.com</span>,
+    header: (
+      <div slot="header" style={{ display: "flex", flexDirection: "column" }}>
+        <span
+          style={{
+            fontSize: "var(--sl-font-size-large)",
+            fontWeight: "bold",
+          }}
+        >
+          Portal Header
+        </span>
+        <span style={{ fontSize: "var(--sl-font-size-small)" }}>
+          A description for the portal
+        </span>
+      </div>
+    ),
   },
   callbacks: {
     rerender: () => {},
@@ -53,12 +68,6 @@ const defaultProps = {
 export const FrameWithMenu = () => {
   const props = {
     ...defaultProps,
-    states: {
-      styles: {
-        headertext: "Service Titan",
-        description: "Portal description",
-      },
-    },
   };
   return (
     <PortalFrameView {...props}>
@@ -81,12 +90,6 @@ export const FrameWithMenu = () => {
 export const FrameWithoutMenu = () => {
   const props = {
     ...defaultProps,
-    states: {
-      styles: {
-        headertext: "Service Titan",
-        description: "Portal description",
-      },
-    },
   };
   return <PortalFrameView {...props} />;
 };
@@ -95,16 +98,38 @@ export const FullStackFrame = () => {
   setupGraphQL();
   return (
     <div>
-      <sqm-portal-frame
-        headertext="Service Titan"
-        description="Portal Description"
-      >
-        <a slot="footer" class="FooterEmail" href="mailto:referrals@servicetitan.com">referrals@servicetitan.com</a>
+      <sqm-portal-frame>
+        <div slot="header" style={{ display: "flex", flexDirection: "column" }}>
+          <span
+            style={{
+              fontSize: "var(--sl-font-size-large)",
+              fontWeight: "bold",
+            }}
+          >
+            Portal Header
+          </span>
+          <span style={{ fontSize: "var(--sl-font-size-small)" }}>
+            A description for the portal
+          </span>
+        </div>
+        <a
+          slot="footer"
+          class="FooterEmail"
+          href="mailto:referrals@servicetitan.com"
+        >
+          referrals@servicetitan.com
+        </a>
         <sqm-navigation-menu menu-label="Menu">
-          <sl-menu-item exportparts="base: menuitem-base" value="/widget">Dashboard</sl-menu-item>
-          <sl-menu-item exportparts="base: menuitem-base" value="/editProfile">Edit Profile</sl-menu-item>
+          <sl-menu-item exportparts="base: menuitem-base" value="/widget">
+            Dashboard
+          </sl-menu-item>
+          <sl-menu-item exportparts="base: menuitem-base" value="/editProfile">
+            Edit Profile
+          </sl-menu-item>
           <sl-menu-divider></sl-menu-divider>
-          <sl-menu-item exportparts="base: menuitem-base" value="/logout">Logout</sl-menu-item>
+          <sl-menu-item exportparts="base: menuitem-base" value="/logout">
+            Logout
+          </sl-menu-item>
         </sqm-navigation-menu>
         <h1>Something</h1>
       </sqm-portal-frame>
@@ -123,16 +148,32 @@ export const FullStackFrameLoggedOut = () => {
   setupLoggedOut();
   return (
     <div>
-      <sqm-portal-frame
-        headertext="Service Titan"
-        description="Portal Description"
-      >
+      <sqm-portal-frame>
+        <div slot="header" style={{ display: "flex", flexDirection: "column" }}>
+          <span
+            style={{
+              fontSize: "var(--sl-font-size-large)",
+              fontWeight: "bold",
+            }}
+          >
+            Portal Header
+          </span>
+          <span style={{ fontSize: "var(--sl-font-size-small)" }}>
+            A description for the portal
+          </span>
+        </div>
         <span slot="footer">sample@example.com</span>
         <sqm-navigation-menu menu-label="Menu">
-          <sl-menu-item exportparts="base: menuitem-base" value="/widget">Dashboard</sl-menu-item>
-          <sl-menu-item exportparts="base: menuitem-base" value="/editProfile">Edit Profile</sl-menu-item>
+          <sl-menu-item exportparts="base: menuitem-base" value="/widget">
+            Dashboard
+          </sl-menu-item>
+          <sl-menu-item exportparts="base: menuitem-base" value="/editProfile">
+            Edit Profile
+          </sl-menu-item>
           <sl-menu-divider></sl-menu-divider>
-          <sl-menu-item exportparts="base: menuitem-base" value="/logout">Logout</sl-menu-item>
+          <sl-menu-item exportparts="base: menuitem-base" value="/logout">
+            Logout
+          </sl-menu-item>
         </sqm-navigation-menu>
         <h1>Something</h1>
       </sqm-portal-frame>
