@@ -86,6 +86,9 @@ export const RewardsRedeemed = createHookStory(() =>
 export const RewardsAvailable = createHookStory(() =>
   View("/rewardsAvailable/CREDIT/COFFEE")
 );
+export const RewardsAvailableWithSlash = createHookStory(() =>
+  View("/rewardsAvailable/CREDIT/CASH/USD")
+);
 export const RewardBalance = createHookStory(() =>
   View("/rewardBalance/CREDIT/COFFEE/prettyValue")
 );

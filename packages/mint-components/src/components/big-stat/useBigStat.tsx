@@ -1,4 +1,4 @@
-import {gql} from "graphql-request";
+import { gql } from "graphql-request";
 import { pathToRegexp } from "path-to-regexp";
 import { useMemo } from "@saasquatch/universal-hooks";
 import {
@@ -153,11 +153,13 @@ const rewardsWeekQuery = (programId: string) =>
 
 const rewardsRedeemedQuery = (
   programId: string,
+  locale: string,
   type: string,
-  unit: string,
-  locale: string
-) =>
-  debugQuery(
+  baseUnit: string,
+  unitType?: string
+) => {
+  const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
+  return debugQuery(
     gql`
       query(
         $programId: ID!
@@ -192,14 +194,17 @@ const rewardsRedeemedQuery = (
       return arr?.[0]?.prettyReedemedCredit || fallback;
     }
   );
+};
 
 const rewardsAssignedQuery = (
   programId: string,
+  locale: string,
   type: string,
-  unit: string,
-  locale: string
-) =>
-  debugQuery(
+  baseUnit: string,
+  unitType?: string
+) => {
+  const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
+  return debugQuery(
     gql`
       query(
         $programId: ID!
@@ -234,14 +239,17 @@ const rewardsAssignedQuery = (
       return arr?.[0]?.prettyAssignedCredit || fallback;
     }
   );
+};
 
 const rewardsAvailableQuery = (
   programId: string,
+  locale: string,
   type: string,
-  unit: string,
-  locale: string
-) =>
-  debugQuery(
+  baseUnit: string,
+  unitType?: string
+) => {
+  const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
+  return debugQuery(
     gql`
       query(
         $programId: ID!
@@ -276,6 +284,7 @@ const rewardsAvailableQuery = (
       return arr?.[0]?.prettyAvailableValue || fallback;
     }
   );
+};
 
 const parseRewardValueFormat = {
   prettyValue: "UNIT_FORMATTED",
@@ -283,13 +292,15 @@ const parseRewardValueFormat = {
 };
 const rewardsBalanceQuery = (
   programId: string,
+  locale: string,
   type: string,
-  unit: string,
+  baseUnit: string,
+  unitType?: string,
   format = "prettyValue",
-  global = "false",
-  locale: string
-) =>
-  debugQuery(
+  global = "false"
+) => {
+  const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
+  return debugQuery(
     gql`
       query(
         $programId: ID
@@ -331,6 +342,7 @@ const rewardsBalanceQuery = (
       return arr?.[0]?.prettyAvailableValue || fallback;
     }
   );
+};
 
 // functions are of the form (programId: string, ...args: string) => string
 const queries: {
@@ -389,10 +401,10 @@ export const StatPaths = [
   "/(rewardsCount)",
   "/(rewardsMonth)",
   "/(rewardsWeek)",
-  "/(rewardsAssigned)/:statType/:unit",
-  "/(rewardsRedeemed)/:statType/:unit",
-  "/(rewardsAvailable)/:statType/:unit",
-  "/(rewardBalance)/:statType/:unit/:format?/:global?",
+  "/(rewardsAssigned)/:statType/:unit/:valueType?",
+  "/(rewardsRedeemed)/:statType/:unit/:valueType?",
+  "/(rewardsAvailable)/:statType/:unit/:valueType?",
+  "/(rewardBalance)/:statType/:unit/:valueType?/:format?/:global?",
 ];
 
 export const StatPatterns = StatPaths.map((pattern) => pathToRegexp(pattern));
@@ -418,7 +430,7 @@ export function useBigStat({ statType }: BigStat) {
   const label = queries[queryName].label;
 
   const stat =
-    userIdent?.jwt && queries[queryName].query(programId, ...queryArgs, locale);
+    userIdent?.jwt && queries[queryName].query(programId, locale, ...queryArgs);
   debug("stat:", stat);
   return { label, props: { statvalue: stat ?? LOADING } };
 }
