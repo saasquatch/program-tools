@@ -64,7 +64,7 @@ export class ReferralList {
           this.referredBy = res.referredByReferral;
           this.referralsCount = res.referrals.totalCount;
           this.loading = false;
-          this.locale = res.locale
+          this.locale = res.locale;
         })
         .catch((e) => {
           this.onError(e);
@@ -130,8 +130,7 @@ export class ReferralList {
             referralvariables={referralvariables}
             referraltype={referraltype}
             unknownuser={this.unknownuser}
-            internationalization={this.internationalization}
-            locale={this.locale}
+            locale={this.internationalization ? this.locale : "en-US"}
           ></sqh-referral-component>
         );
       });
@@ -145,8 +144,7 @@ export class ReferralList {
           referralvariables={referralvariables}
           referraltype="referrer"
           unknownuser={this.unknownuser}
-          internationalization={this.internationalization}
-          locale={this.locale}
+          locale={this.internationalization ? this.locale : "en-US"}
         ></sqh-referral-component>
       );
     }
