@@ -41,6 +41,8 @@ export class ReferralList {
   @Prop() cancelledcolor: string;
   @Prop() cancelledcontent: string;
   @Prop() cancelledvalue: string;
+  //internationalization props
+  @Prop() internationalization: boolean;
 
   @State() referrals: Referral[];
   @State() referralsCount: number;
@@ -126,6 +128,7 @@ export class ReferralList {
             referralvariables={referralvariables}
             referraltype={referraltype}
             unknownuser={this.unknownuser}
+            internationalization={this.internationalization}
           ></sqh-referral-component>
         );
       });
@@ -139,6 +142,7 @@ export class ReferralList {
           referralvariables={referralvariables}
           referraltype="referrer"
           unknownuser={this.unknownuser}
+          internationalization={this.internationalization}
         ></sqh-referral-component>
       );
     }

@@ -5,12 +5,13 @@
 
 ## Properties
 
-| Property            | Attribute      | Description | Type                                     | Default     |
-| ------------------- | -------------- | ----------- | ---------------------------------------- | ----------- |
-| `referral`          | --             |             | `Referral \| ReferredByReferral`         | `undefined` |
-| `referraltype`      | `referraltype` |             | `"converted" \| "pending" \| "referrer"` | `undefined` |
-| `referralvariables` | --             |             | `ReferralVariables`                      | `undefined` |
-| `unknownuser`       | --             |             | `String`                                 | `undefined` |
+| Property               | Attribute              | Description | Type                                     | Default     |
+| ---------------------- | ---------------------- | ----------- | ---------------------------------------- | ----------- |
+| `internationalization` | `internationalization` |             | `boolean`                                | `undefined` |
+| `referral`             | --                     |             | `Referral \| ReferredByReferral`         | `undefined` |
+| `referraltype`         | `referraltype`         |             | `"converted" \| "pending" \| "referrer"` | `undefined` |
+| `referralvariables`    | --                     |             | `ReferralVariables`                      | `undefined` |
+| `unknownuser`          | --                     |             | `String`                                 | `undefined` |
 
 
 ## Dependencies

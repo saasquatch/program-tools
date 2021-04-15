@@ -41,6 +41,7 @@ const demoUser = {
   shareLink: "http://ssqt.co",
   fueltankCode: "12AS3F",
   referralcode: "RIDDIKULUS",
+  locale: "en_US",
   messageLink: {
     EMAIL: "http://short.staging.referralsaasquatch.com/mJjFXu",
     FACEBOOK: "http://short.staging.referralsaasquatch.com/mwjFXu",
@@ -129,7 +130,7 @@ const demoUser = {
           lastName: "Finnigan",
         },
         rewards: [],
-      }
+      },
     ],
   },
   referredByReferral: {
@@ -660,7 +661,35 @@ const API = {
         })
         .then((res) => res.data.user);
     },
+    getLocale() {
+      const widgetId = widgetIdent();
 
+      if (widgetId["env"] === "demo" || !widgetId) {
+        return {
+          locale: demoUser.locale,
+        };
+      }
+
+      const { userId, accountId } = widgetId;
+
+      const variables = {
+        userId,
+        accountId,
+      };
+
+      return this.getClient()
+        .query({
+          query: gql`
+            query($userId: String!, $accountId: String!) {
+              user(id: $userId, accountId: $accountId) {
+                locale
+              }
+            }
+          `,
+          variables,
+        })
+        .then((res) => res.data.user);
+    },
     getMessageLinks(mediums: Array<string>) {
       const widgetId = widgetIdent();
 

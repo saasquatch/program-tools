@@ -1,5 +1,6 @@
 import { h, Component, Prop } from "@stencil/core";
 import FormatJS from "../../services/FormatJs";
+import { API } from "../../services/WidgetHost";
 
 @Component({
   tag: "sqh-referral-component",
@@ -10,6 +11,7 @@ export class ReferralComponent {
   @Prop() referraltype: "converted" | "pending" | "referrer";
   @Prop() referralvariables: ReferralVariables;
   @Prop() unknownuser: String;
+  @Prop() internationalization: boolean;
 
   getName() {
     const referral = this.referral as Referral;
@@ -28,6 +30,10 @@ export class ReferralComponent {
     return this.unknownuser;
   }
 
+  getLocale(): string {
+    return API.graphql.getLocale();
+  }
+
   getIcon() {
     if (
       (this.referraltype === "converted" || this.referraltype === "referrer") &&
@@ -40,12 +46,13 @@ export class ReferralComponent {
     return `icon-attention`;
   }
 
-  getContent(formatVariables) {
+  getContent(formatVariables, locale: string) {
     // When reward is expired and Expired Content was set
     if (this.rewardIsExpired() && this.referralvariables.expiredcontent) {
       return FormatJS.format(
         this.referralvariables.expiredcontent,
-        formatVariables
+        formatVariables,
+        locale
       );
     }
 
@@ -53,14 +60,16 @@ export class ReferralComponent {
     if (this.rewardIsCancelled() && this.referralvariables.cancelledcontent) {
       return FormatJS.format(
         this.referralvariables.cancelledcontent,
-        formatVariables
+        formatVariables,
+        locale
       );
     }
 
     if (this.referraltype) {
       return FormatJS.format(
         this.referralvariables[`${this.referraltype}content`],
-        formatVariables
+        formatVariables,
+        locale
       );
     }
 
@@ -114,7 +123,7 @@ export class ReferralComponent {
     return rewards[0].prettyValue;
   }
 
-  getValueContent(formatVariables) {
+  getValueContent(formatVariables, locale: string) {
     const { rewards } = this.referral;
 
     // When the reward is pending and there are no other rewards
@@ -125,34 +134,45 @@ export class ReferralComponent {
       if (this.rewardIsExpired())
         return FormatJS.format(
           this.referralvariables.expiredvalue,
-          formatVariables
+          formatVariables,
+          locale
         );
 
       // Cancelled content only applies when there is 1 reward in the referral
       if (this.rewardIsCancelled())
         return FormatJS.format(
           this.referralvariables.cancelledvalue,
-          formatVariables
+          formatVariables,
+          locale
         );
 
       // Redeemed content only applies when there is 1 reward in the referral
       if (this.rewardIsRedeemed())
         return FormatJS.format(
           this.referralvariables.redeemedvalue || "Redeemed",
-          formatVariables
+          formatVariables,
+          locale
         );
 
       // Expiry date only shown if there is 1 reward with dateExpires set in the referral
       if (this.referralvariables.showexpiry && rewards[0].dateExpires) {
-        const expiryDate = FormatJS.formatRelative(rewards[0].dateExpires);
-        return FormatJS.format(`Expires ${expiryDate}`, formatVariables);
+        const expiryDate = FormatJS.formatRelative(
+          rewards[0].dateExpires,
+          locale
+        );
+        return FormatJS.format(
+          `Expires ${expiryDate}`,
+          formatVariables,
+          locale
+        );
       }
 
       return "";
     }
     return FormatJS.format(
       this.referralvariables.valuecontent,
-      formatVariables
+      formatVariables,
+      locale
     );
   }
 
@@ -164,16 +184,17 @@ export class ReferralComponent {
 
   render() {
     const { dateReferralStarted, rewards } = this.referral;
+    const locale = this.internationalization ? this.getLocale() : "en-US";
 
     const formatVariables = {
-      date: FormatJS.formatRelative(dateReferralStarted),
+      date: FormatJS.formatRelative(dateReferralStarted, locale),
       extrarewards: rewards.length - 1,
     };
     const name = this.getName();
     const icon = this.getIcon();
-    const content = this.getContent(formatVariables);
+    const content = this.getContent(formatVariables, locale);
     const value = this.getValue();
-    const valuecontent = this.getValueContent(formatVariables);
+    const valuecontent = this.getValueContent(formatVariables, locale);
     const customernote = this.getNote();
     return (
       <div class="squatch-referrals-row">
