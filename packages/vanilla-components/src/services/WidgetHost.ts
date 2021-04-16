@@ -397,7 +397,7 @@ const API = {
           totalCount: refs.totalCount,
           data: refs.data.slice(offset, offset + limit),
         };
-        const user = { referrals, referredByReferral };
+        const user = { referrals, referredByReferral, locale: "en-US" };
         return Promise.resolve(user);
       }
 
