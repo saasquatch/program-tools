@@ -8,10 +8,10 @@ const useGrapesjs: OutputTarget = grapesJsOutput({});
 
 export const config: Config = {
   namespace: 'bedrock-components',
+  buildEs5: true,
   outputTargets: [
     {
       type: 'dist',
-      esmLoaderPath: '../loader',
     },
     {
       type: 'dist-custom-elements-bundle',
