@@ -15,7 +15,7 @@
   width: 100%;
   max-width: 100%;
   padding: var(--sl-spacing-medium) var(--sl-spacing-x-large);
-  background: var(--sl-color-gray-200);
+  background: var(--sqm-footer-background);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -33,7 +33,7 @@
   padding: var(--sl-spacing-small) var(--sl-spacing-large);
   align-items: center;
 
-  background-color: var(--sl-color-gray-200);
+  background-color: var(--sqm-header-background);
 
   @media screen and (max-width: 499px) {
     flex-direction: row-reverse;
