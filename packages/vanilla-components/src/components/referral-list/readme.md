@@ -15,6 +15,7 @@
 | `expiredcolor`         | `expiredcolor`         |             | `string`  | `undefined` |
 | `expiredcontent`       | `expiredcontent`       |             | `string`  | `undefined` |
 | `expiredvalue`         | `expiredvalue`         |             | `string`  | `undefined` |
+| `expiresvalue`         | `expiresvalue`         |             | `string`  | `undefined` |
 | `internationalization` | `internationalization` |             | `boolean` | `undefined` |
 | `ishidden`             | `ishidden`             |             | `boolean` | `undefined` |
 | `noreferralsyet`       | `noreferralsyet`       |             | `string`  | `undefined` |

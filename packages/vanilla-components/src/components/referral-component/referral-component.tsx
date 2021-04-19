@@ -155,8 +155,8 @@ export class ReferralComponent {
           this.locale
         );
         return FormatJS.format(
-          `Expires ${expiryDate}`,
-          formatVariables,
+          this.referralvariables.expiresvalue || `Expires ${expiryDate}`,
+          {...formatVariables, expiryDate },
           this.locale
         );
       }

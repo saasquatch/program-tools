@@ -71,6 +71,7 @@ export namespace Components {
         "expiredcolor": string;
         "expiredcontent": string;
         "expiredvalue": string;
+        "expiresvalue": string;
         "internationalization": boolean;
         "ishidden": boolean;
         "noreferralsyet": string;
@@ -398,6 +399,7 @@ declare namespace LocalJSX {
         "expiredcolor"?: string;
         "expiredcontent"?: string;
         "expiredvalue"?: string;
+        "expiresvalue"?: string;
         "internationalization"?: boolean;
         "ishidden"?: boolean;
         "noreferralsyet"?: string;
