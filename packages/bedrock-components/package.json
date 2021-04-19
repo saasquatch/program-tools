@@ -1,7 +1,7 @@
 {
   "name": "bedrock-components",
   "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "description": "Bedrock Components for SaaSquatch.",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -12,8 +12,10 @@
   "unpkg": "dist/bedrock-components/bedrock-components.esm.js",
   "files": [
     "dist/",
-    "loader/"
+    "loader/",
+    "docs/"
   ],
+  "repository": "https://github.com/saasquatch/program-tools/tree/master/packages/bedrock-components",
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
