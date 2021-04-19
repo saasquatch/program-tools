@@ -392,12 +392,12 @@ const API = {
       const widgetId = widgetIdent();
 
       if (widgetId["env"] === "demo" || !widgetId) {
-        const { referrals: refs, referredByReferral } = demoUser;
+        const { referrals: refs, referredByReferral, locale } = demoUser;
         const referrals = {
           totalCount: refs.totalCount,
           data: refs.data.slice(offset, offset + limit),
         };
-        const user = { referrals, referredByReferral, locale: "en-US" };
+        const user = { referrals, referredByReferral, locale };
         return Promise.resolve(user);
       }
 
