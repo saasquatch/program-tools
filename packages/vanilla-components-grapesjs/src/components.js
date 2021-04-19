@@ -693,6 +693,7 @@ export default (editor, config = {}) => {
           { type: 'string', name: 'convertedcontent' },
           { type: 'string', name: 'expiredcolor' },
           { type: 'string', name: 'expiredvalue' },
+          { type: 'string', name: 'expiresvalue'},
           { type: 'string', name: 'expiredcontent' },
           { type: 'string', name: 'cancelledcolor' },
           { type: 'string', name: 'cancelledvalue' },
@@ -774,6 +775,22 @@ export default (editor, config = {}) => {
                       'type': 'string',
                       'title': 'Previous Text'
                     },
+
+                  },
+                  "dependencies":{
+                    "showexpiry":{
+                      "oneOf": [
+                        {
+                          "properties":{
+                            "showexpiry": {"const": true},
+                            "expiresvalue":{
+                              "title": "Expires Description",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      ]
+                    }
                   }
                 },
                 {
