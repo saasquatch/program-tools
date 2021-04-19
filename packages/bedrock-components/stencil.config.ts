@@ -9,6 +9,7 @@ const useGrapesjs: OutputTarget = grapesJsOutput({});
 export const config: Config = {
   namespace: 'bedrock-components',
   buildEs5: true,
+  globalScript: 'src/global/global.ts',
   outputTargets: [
     {
       type: 'dist',

@@ -20,12 +20,13 @@ export type ConditionalSegmentProps = {
 export type UseConditionalSection = {
   shouldDisplay: boolean;
 };
-export function useConditionalSection(props: ConditionalSegmentProps) {
+export function useConditionalSection({ expression = 'false' }: ConditionalSegmentProps) {
   const { loading, data } = useQuery(UserQuery, {});
 
   const expr = useMemo(() => {
-    return jsonata(props.expression);
-  }, [props.expression]);
+    // Defaults to false
+    return jsonata(expression);
+  }, [expression]);
 
   let result: any;
   try {
