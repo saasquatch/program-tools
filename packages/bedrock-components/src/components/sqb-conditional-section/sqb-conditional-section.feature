@@ -36,3 +36,13 @@ Feature: Conditional Section
     Then "Hello" will not be shown
     When the user's custom field "foo" is set to true
     Then "Hello" will be shown
+
+  @review
+  @minutae
+  Scenario: JSONata strings using user data require an authenticated user
+    Given the component's condition prop is set to "user.customFields.foo = true"
+    And the component contains the text "Hello"
+    And there is no authenticated user available
+    Then the JSONata evaluation will fail
+    And "Hello" will not be shown
+
