@@ -42,7 +42,7 @@ export const config: Config = {
   namespace: "mint-components",
   globalScript: "src/global/global.ts",
   globalStyle: "src/global/global.css",
-  buildEs5: false,
+  buildEs5: true,
   outputTargets: outputTargets.filter((t) => {
     if (process.env.BUILD === "DOCS" && t.type !== "docs-custom") {
       // Skipping non-docs in non-docs build

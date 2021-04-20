@@ -191,7 +191,7 @@ const rewardsRedeemedQuery = (
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
-      return arr?.[0]?.prettyReedemedCredit || fallback;
+      return arr?.[0]?.prettyRedeemedCredit || fallback;
     }
   );
 };
