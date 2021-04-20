@@ -85,6 +85,7 @@ interface ReferralVariables {
   valuecontent: string;
   expiredvalue: string;
   expiredcontent: string;
+  expiresvalue: string;
   redeemedvalue: string;
   showexpiry: boolean;
   shownotes: boolean;

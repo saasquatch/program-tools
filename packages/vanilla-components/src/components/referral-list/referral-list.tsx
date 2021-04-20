@@ -37,10 +37,13 @@ export class ReferralList {
   @Prop() expiredcolor: string;
   @Prop() expiredcontent: string;
   @Prop() expiredvalue: string;
+  @Prop() expiresvalue: string;
   // cancelled reward props
   @Prop() cancelledcolor: string;
   @Prop() cancelledcontent: string;
   @Prop() cancelledvalue: string;
+  //internationalization props
+  @Prop() internationalization: boolean;
 
   @State() referrals: Referral[];
   @State() referralsCount: number;
@@ -48,6 +51,7 @@ export class ReferralList {
   @State() rewards: Array<any>;
   @State() loading: boolean;
   @State() offset: number = 0;
+  @State() locale: string;
 
   constructor() {
     this.loading = true;
@@ -61,6 +65,7 @@ export class ReferralList {
           this.referredBy = res.referredByReferral;
           this.referralsCount = res.referrals.totalCount;
           this.loading = false;
+          this.locale = res.locale;
         })
         .catch((e) => {
           this.onError(e);
@@ -108,6 +113,7 @@ export class ReferralList {
       valuecontent: this.valuecontent,
       expiredcontent: this.expiredcontent,
       expiredvalue: this.expiredvalue,
+      expiresvalue: this.expiresvalue,
       redeemedvalue: this.redeemedvalue,
       showexpiry: this.showexpiry,
       shownotes: this.shownotes,
@@ -126,6 +132,7 @@ export class ReferralList {
             referralvariables={referralvariables}
             referraltype={referraltype}
             unknownuser={this.unknownuser}
+            locale={this.internationalization ? this.locale : "en-US"}
           ></sqh-referral-component>
         );
       });
@@ -139,6 +146,7 @@ export class ReferralList {
           referralvariables={referralvariables}
           referraltype="referrer"
           unknownuser={this.unknownuser}
+          locale={this.internationalization ? this.locale : "en-US"}
         ></sqh-referral-component>
       );
     }

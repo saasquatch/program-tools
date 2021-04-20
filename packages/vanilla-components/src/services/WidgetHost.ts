@@ -41,6 +41,7 @@ const demoUser = {
   shareLink: "http://ssqt.co",
   fueltankCode: "12AS3F",
   referralcode: "RIDDIKULUS",
+  locale: "en_US",
   messageLink: {
     EMAIL: "http://short.staging.referralsaasquatch.com/mJjFXu",
     FACEBOOK: "http://short.staging.referralsaasquatch.com/mwjFXu",
@@ -129,7 +130,7 @@ const demoUser = {
           lastName: "Finnigan",
         },
         rewards: [],
-      }
+      },
     ],
   },
   referredByReferral: {
@@ -391,12 +392,12 @@ const API = {
       const widgetId = widgetIdent();
 
       if (widgetId["env"] === "demo" || !widgetId) {
-        const { referrals: refs, referredByReferral } = demoUser;
+        const { referrals: refs, referredByReferral, locale } = demoUser;
         const referrals = {
           totalCount: refs.totalCount,
           data: refs.data.slice(offset, offset + limit),
         };
-        const user = { referrals, referredByReferral };
+        const user = { referrals, referredByReferral, locale };
         return Promise.resolve(user);
       }
 
@@ -423,6 +424,7 @@ const API = {
               $programId_exists: Boolean!
             ) {
               user(id: $userId, accountId: $accountId) {
+                locale
                 referrals(
                   limit: $limit
                   offset: $offset
@@ -660,7 +662,6 @@ const API = {
         })
         .then((res) => res.data.user);
     },
-
     getMessageLinks(mediums: Array<string>) {
       const widgetId = widgetIdent();
 
