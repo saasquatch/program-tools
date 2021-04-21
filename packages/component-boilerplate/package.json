@@ -35,7 +35,6 @@
     "typescript": "^4.1.5"
   },
   "dependencies": {
-    "@formatjs/intl": "^1.8.2",
     "@saasquatch/dom-context-hooks": "^1.0.0",
     "@saasquatch/universal-hooks": "^1.0.0",
     "@wry/equality": "^0.3.3",
