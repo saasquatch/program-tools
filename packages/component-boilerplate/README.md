@@ -1,6 +1,6 @@
 # SaaSquatch Component Boilerplate
 
-This is a collection of essential stencil hooks for use in building web components for the SaaSquatch platform.
+This is a collection of essential universal hooks for use in building web components for the SaaSquatch platform.
 
 ## Documentation
 
