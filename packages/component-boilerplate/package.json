@@ -8,10 +8,6 @@
   "exports": "./dist/index.modern.js",
   "module": "dist/index.module.js",
   "types": "dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/saasquatch/program-tools.git"
-  },
   "files": [
     "dist"
   ],
@@ -20,8 +16,6 @@
     "test": "jest",
     "test-watch": "jest --watch"
   },
-  "author": "SaaSquatch",
-  "license": "ISC",
   "devDependencies": {
     "@saasquatch/universal-hooks-testing-library": "^0.1.0",
     "@testing-library/react-hooks": "^5.1.0",
@@ -52,5 +46,15 @@
     "graphql-request": "^3.4.0",
     "history": "^5.0.0",
     "jsonpointer": "^4.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saasquatch/program-tools.git"
+  },
+  "author": "SaaSquatch Team",
+  "bugs": {
+    "url": "https://github.com/saasquatch/program-tools"
+  },
+  "homepage": "https://github.com/saasquatch/program-tools",
+  "license": "ISC"
 }
