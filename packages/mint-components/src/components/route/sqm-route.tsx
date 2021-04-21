@@ -1,7 +1,5 @@
-import { h, Component, State, Prop, Host } from "@stencil/core";
+import { h, Component, State, Prop } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { useRoute } from "./useRoute";
-import { pathToRegexp } from "path-to-regexp";
 export interface RouteProps {
   path: string;
 }
@@ -11,6 +9,7 @@ export interface RouteProps {
  */
 @Component({
   tag: "sqm-route",
+  shadow: true,
 })
 export class StencilStorybook {
   @State()
@@ -28,8 +27,6 @@ export class StencilStorybook {
   disconnectedCallback() {}
 
   render() {
-    const { states } = useRoute(this);
-    const regexp = pathToRegexp(states.path);
-    return regexp.exec(states.currentPath) ? <slot /> : <Host></Host>;
+    return <slot />;
   }
 }
