@@ -123,7 +123,7 @@ function jsonTagValue(tags: HasDocsTags, name: string) {
 }
 function hasTag(tagName: string) {
   return (d: HasDocsTags) =>
-    d.docsTags?.find((t) => t.name === "tagName") ? true : false;
+    d.docsTags?.find((t) => t.name === tagName) ? true : false;
 }
 
 const isUndocumented = () => hasTag("undocumented");
