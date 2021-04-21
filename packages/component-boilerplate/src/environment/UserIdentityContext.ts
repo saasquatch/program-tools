@@ -54,6 +54,7 @@ function _getInitialValue(): UserIdentity | undefined {
  * @param identity the new identity of the user, or undefined if logged out
  */
 export function setUserIdentity(identity?: UserIdentity) {
+  _lazilyStartGlobally();
   const globalProvider = window.squatchUserIdentity;
   globalProvider.context = identity;
 }
