@@ -19,7 +19,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/saasquatch/program-tools.git"
+    "url": "git+https://github.com/saasquatch/program-tools.git",
+    "directory": "packages/stencilbook"
   },
   "author": "SaaSquatch Team",
   "bugs": {
