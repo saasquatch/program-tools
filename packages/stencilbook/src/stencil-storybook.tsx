@@ -1,5 +1,5 @@
 import { h as StencilH, FunctionalComponent, VNode } from "@stencil/core";
-import * as Hooks from "@saasquatch/stencil-hooks";
+import { useState, useMemo } from "@saasquatch/universal-hooks";
 
 import startCase from "lodash.startcase";
 import { Style } from "./stencil-storybook.styles";
@@ -36,17 +36,15 @@ export function useStencilbook(
   imports: unknown[],
   {
     h = StencilH,
-    hooks = Hooks,
     title = "Stencilbook",
     addons = [],
   }: {
     h?: typeof StencilH;
-    hooks?: typeof Hooks;
     title?: string;
     addons?: AddOn[];
   }
 ): Return {
-  const stories: OrganisedStoryWithSubs = hooks.useMemo(
+  const stories: OrganisedStoryWithSubs = useMemo(
     () =>
       imports
         .map(loadStory)
@@ -54,11 +52,11 @@ export function useStencilbook(
     imports
   );
 
-  const [Selected, setSelectedInternal] = hooks.useState<Selection>(undefined);
+  const [Selected, setSelectedInternal] = useState<Selection>(undefined);
   const selectedKey = Selected?.key;
-  const [layout, setLayout] = hooks.useState<Layout>("desktop");
-  const [showSidebar, setShowSidebar] = hooks.useState<boolean>(true);
-  const [darkCanvas, setDarkCanvas] = hooks.useState<boolean>(false);
+  const [layout, setLayout] = useState<Layout>("desktop");
+  const [showSidebar, setShowSidebar] = useState<boolean>(true);
+  const [darkCanvas, setDarkCanvas] = useState<boolean>(false);
   function setSelected(
     story: FunctionalComponent,
     key: string,
