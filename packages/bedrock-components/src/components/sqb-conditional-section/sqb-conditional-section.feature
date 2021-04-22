@@ -41,4 +41,3 @@ Feature: Conditional Section
     And there is no authenticated user available
     Then the JSONata evaluation will fail
     And "Hello" will not be shown
-
