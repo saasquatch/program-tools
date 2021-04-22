@@ -5,7 +5,6 @@ Feature: Conditional Section
 
   Conditional Section adds JSONata conditional logic that can display or hide children components based on user segments or custom fields
 
-  @review
   @motivating
   Scenario: Content is hidden or shown depending on user segments
     Given the component's condition prop is set to "'vip' in user.segments"
@@ -45,4 +44,3 @@ Feature: Conditional Section
     And there is no authenticated user available
     Then the JSONata evaluation will fail
     And "Hello" will not be shown
-
