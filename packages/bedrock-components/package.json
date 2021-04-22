@@ -15,6 +15,8 @@
     "loader/",
     "docs/"
   ],
+  "license": "MIT",
+  "author": "SaaSquatch Team",
   "repository": "https://github.com/saasquatch/program-tools/tree/master/packages/bedrock-components",
   "scripts": {
     "build": "stencil build --docs",
@@ -31,7 +33,6 @@
     "@stencil/core": "^2.4.0",
     "jsonata": "^1.8.4"
   },
-  "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.2"
   }
