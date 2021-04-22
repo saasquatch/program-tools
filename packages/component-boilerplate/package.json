@@ -1,0 +1,60 @@
+{
+  "name": "@saasquatch/component-boilerplate",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Boilerplate for writing web components for the SaaSquatch widget environments",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "exports": "./dist/index.modern.js",
+  "module": "dist/index.module.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "microbundle",
+    "test": "jest",
+    "test-watch": "jest --watch"
+  },
+  "devDependencies": {
+    "@saasquatch/universal-hooks-testing-library": "^1.0.0",
+    "@testing-library/react-hooks": "^5.1.0",
+    "@types/debounce": "^1.2.0",
+    "@types/debug": "^4.1.5",
+    "@types/jest": "^26.0.20",
+    "axios": "^0.21.1",
+    "esbuild-jest": "^0.5.0",
+    "jest": "^26.6.3",
+    "jest-cucumber": "^3.0.1",
+    "microbundle": "^0.13.0",
+    "msw": "^0.28.1",
+    "react": "^17.0.1",
+    "react-test-renderer": "^17.0.1",
+    "ts-jest": "^26.5.4",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5"
+  },
+  "dependencies": {
+    "@saasquatch/dom-context-hooks": "^1.0.0",
+    "@saasquatch/universal-hooks": "^1.0.0",
+    "@wry/equality": "^0.3.3",
+    "debounce": "^1.2.0",
+    "dom-context": "^1.0.1",
+    "fast-memoize": "^2.5.2",
+    "graphql": "^15.5.0",
+    "graphql-request": "^3.4.0",
+    "history": "^5.0.0",
+    "jsonpointer": "^4.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saasquatch/program-tools.git",
+    "directory": "packages/component-boilerplate"
+  },
+  "author": "SaaSquatch Team",
+  "bugs": {
+    "url": "https://github.com/saasquatch/program-tools"
+  },
+  "homepage": "https://github.com/saasquatch/program-tools",
+  "license": "ISC"
+}
