@@ -17,7 +17,11 @@
   ],
   "license": "MIT",
   "author": "SaaSquatch Team",
-  "repository": "https://github.com/saasquatch/program-tools/tree/master/packages/bedrock-components",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saasquatch/program-tools.git",
+    "directory": "packages/bedrock-components"
+  },
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
