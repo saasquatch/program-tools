@@ -110,6 +110,7 @@ export function inferType(val: string): any {
 				return asObject;
 			}
 		} catch (e) {
+			// return val
 			return undefined;
 		}
 	}
