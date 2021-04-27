@@ -70,8 +70,9 @@ export function getGoalAnalyticTimestamp(trigger: any): number {
 
 /**
  * Translates a string type into its proper JavaScript type.
- * Only supports conversion to number, boolean, null and undefined values.
- * Objects and arrays are not supported.
+ * Supports conversion to number, boolean, null and undefined values.
+ * Objects and Arrays will be converted, if an input looks like an object or array,
+ * but is not valid (ex. [[] or {"""}) undefined will be returned.
  *
  * @example
  * "29" => 29 (number)
@@ -110,7 +111,6 @@ export function inferType(val: string): any {
 				return asObject;
 			}
 		} catch (e) {
-			// return val
 			return undefined;
 		}
 	}
