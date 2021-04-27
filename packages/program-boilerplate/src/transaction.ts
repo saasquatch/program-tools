@@ -177,6 +177,7 @@ export default class Transaction {
    dynamicProperties,
   };
 
+  // this does nothing because { userEvent: undefined } will never === undefined, etc
   const validProperties = [{ userEvent }, { rewardSource }, { status }].filter(
    (prop) => prop !== undefined
   );
@@ -198,7 +199,7 @@ export default class Transaction {
   *
   * @param {string} emailKey Key of email template (as defined in Contentful).
   * @param {User}   user     The user to be sent a email to
-  * @param {string} rewardId The reward id
+  * @param {string} rewardId The reward id, will throw error if undefined
   */
  generateSimpleEmail({
   emailKey,
