@@ -39,11 +39,14 @@ describe("#inferType", () => {
     });
   });
 
+  test("strings that look like objects but that are invalid return undefined", () => {
+    expect(inferType("{:-)}")).toBe(undefined);
+    expect(inferType("[:-)]")).toBe(undefined);
+  });
+
   test("otherwise input is inferred as a string", () => {
     expect(inferType("UNDEFINED")).toBe("UNDEFINED");
     expect(inferType("Null")).toBe("Null");
-    // this is failing v
-    // expect(inferType("{:-)]")).toBe("{:-)}");
     expect(inferType("yes")).toBe("yes");
     expect(inferType(":D")).toBe(":D");
   });
