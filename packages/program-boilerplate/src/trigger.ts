@@ -91,6 +91,7 @@ function handleProgramTrigger(
   } catch (e) {
     const errorMes = {
       error: 'An error occurred in a webtask',
+      // consider not returning stack trace for security reasons
       message: e.stack,
     };
 
@@ -137,6 +138,7 @@ function handleProgramIntrospection(
   } catch (e) {
     const errorMes = {
       error: 'An error occurred in a webtask',
+      // consider not returning stack trace for security reasons
       message: e.stack,
     };
 
@@ -214,6 +216,7 @@ function handleProgramVariableSchemaRequest(
     } catch (e) {
       const errorMes = {
         error: 'An error occurred in a webtask (PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST)',
+        // consider not returning stack trace for security reasons
         message: e.stack,
       };
 
