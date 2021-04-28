@@ -1,4 +1,5 @@
 import * as jsonata from "jsonata";
+import { setLogLevel } from "../src/logger";
 import { timeboxExpression, safeJsonata } from "../src/jsonata";
 
 describe("#timeboxExpression", () => {
@@ -21,12 +22,8 @@ describe("#timeboxExpression", () => {
 });
 
 describe("#safeJsonata", () => {
-  const cachedLogger = console.log;
   beforeAll(() => {
-    console.log = () => {};
-  });
-  afterAll(() => {
-    console.log = cachedLogger;
+    setLogLevel("error");
   });
 
   const infExpr = "( $inf := function(){$inf()}; $inf())";
