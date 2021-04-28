@@ -189,6 +189,7 @@ export type ValidationResult = {
   results: RequirementValidationResult[];
 };
 
+// I believe this should just be any
 export type ProgramVariableSchemaResult = {
   schema: any;
 };

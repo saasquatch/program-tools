@@ -51,7 +51,8 @@ export function triggerProgram(
       body = body as ProgramVariableSchemaRequestBody;
       return handleProgramVariableSchemaRequest(body, program);
     default:
-      console.log('UNREACHABLE CODE REACHED!!');
+    // use winston logger instead  
+    console.log('UNREACHABLE CODE REACHED!!');
       return {
         json: {
           message: `Unrecognized messageType ${body.messageType}`,
@@ -93,6 +94,7 @@ function handleProgramTrigger(
       message: e.stack,
     };
 
+    // use winston logger instead
     console.log(errorMes);
 
     return {
@@ -138,6 +140,7 @@ function handleProgramIntrospection(
       message: e.stack,
     };
 
+    // use winston logger instead
     console.log(errorMes);
 
     return {
@@ -168,6 +171,7 @@ function handleProgramValidation(
       : undefined;
 
     if (!requirementHandler) {
+      // this return goes to no where
       return {
         json: {
           message: `Requirement handler for key ${r.key} not implemented`,
@@ -175,6 +179,7 @@ function handleProgramValidation(
         code: 501,
       };
     } else {
+      // should maybe add error handling
       results.push({
         key: r.key,
         results: requirementHandler(r.queryResult, body.program, body.time),
@@ -212,6 +217,7 @@ function handleProgramVariableSchemaRequest(
         message: e.stack,
       };
 
+      // use winston logger instead
       console.log(errorMes);
     }
     if (!newSchema) {
