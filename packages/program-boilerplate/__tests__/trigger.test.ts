@@ -4,6 +4,8 @@ import {
   RequirementValidationHandler,
   TriggerType,
   ProgramVariableSchemaResult,
+  ProgramTriggerBody,
+  Program,
 } from "../src/types/rpc";
 
 const cachedLogger = console.log;
@@ -14,6 +16,26 @@ afterAll(() => {
   console.log = cachedLogger;
 });
 describe("triggerProgram", () => {
+  describe("body has invalid messageType", () => {
+    const testBody = {
+      messageType: "NOT_YET_ADDED_TO_BOILERPLATE",
+    };
+    const program = {
+      NOT_YET_ADDED_TO_BOILERPLATE: () => {},
+    };
+    test("501 is returned", () => {
+      const result = triggerProgram(
+        (testBody as unknown) as ProgramTriggerBody,
+        (program as unknown) as Program
+      );
+      expect(result).toStrictEqual({
+        json: {
+          message: `Unrecognized messageType NOT_YET_ADDED_TO_BOILERPLATE`,
+        },
+        code: 501,
+      });
+    });
+  });
   describe("body has messageType PROGRAM_INTROSPECTION", () => {
     const testBody = {
       messageType: "PROGRAM_INTROSPECTION" as "PROGRAM_INTROSPECTION",
