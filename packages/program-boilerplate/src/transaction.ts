@@ -176,21 +176,14 @@ export default class Transaction {
       referralId: referralId,
       overrideProperties,
       dynamicProperties,
+      userEvent,
+      rewardSource,
+      status,
     };
-
-    // this does nothing because { userEvent: undefined } will never === undefined, etc
-    const validProperties = [
-      { userEvent },
-      { rewardSource },
-      { status },
-    ].filter((prop) => prop !== undefined);
-    const updatedRewardData = validProperties.reduce((currentData, prop) => {
-      return { ...currentData, ...prop };
-    }, rewardData);
 
     const newMutation = {
       type: "CREATE_REWARD",
-      data: updatedRewardData,
+      data: rewardData,
     };
 
     this.mutations = [...this.mutations, newMutation];

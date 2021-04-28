@@ -1,3 +1,4 @@
+import { getLogger } from "./logger";
 import Transaction from "./transaction";
 
 import {
@@ -9,6 +10,7 @@ import {
   Program,
   TriggerType,
   ValidationResult,
+  ProgramTriggerError,
 } from "./types/rpc";
 
 /**
@@ -51,12 +53,13 @@ export function triggerProgram(
       body = body as ProgramVariableSchemaRequestBody;
       return handleProgramVariableSchemaRequest(body, program);
     default:
-      // use winston logger instead
-      console.log("UNREACHABLE CODE REACHED!!");
+      getLogger().warn("UNREACHABLE CODE REACHED!!");
+      const error = generateProgramTriggerError({
+        error: `Unrecognized messageType`,
+        message: `Unrecognized messageType ${body.messageType}`,
+      });
       return {
-        json: {
-          message: `Unrecognized messageType ${body.messageType}`,
-        },
+        json: error,
         code: 501,
       };
   }
@@ -89,14 +92,9 @@ function handleProgramTrigger(
       code: 200,
     };
   } catch (e) {
-    const errorMes = {
-      error: "An error occurred in a webtask",
-      // consider not returning stack trace for security reasons
-      message: e.stack,
-    };
+    const errorMes = generateProgramTriggerError();
 
-    // use winston logger instead
-    console.log(errorMes);
+    getLogger().error(JSON.stringify(errorMes));
 
     return {
       json: errorMes,
@@ -136,14 +134,9 @@ function handleProgramIntrospection(
       code: 200,
     };
   } catch (e) {
-    const errorMes = {
-      error: "An error occurred in a webtask",
-      // consider not returning stack trace for security reasons
-      message: e.stack,
-    };
+    const errorMes = generateProgramTriggerError();
 
-    // use winston logger instead
-    console.log(errorMes);
+    getLogger().error(JSON.stringify(errorMes));
 
     return {
       json: errorMes,
@@ -166,28 +159,42 @@ function handleProgramValidation(
 ): ProgramTriggerResult {
   const results: ValidationResult[] = [];
 
-  body.validationRequests.forEach((r) => {
+  const validationRequests = body.validationRequests;
+
+  for (const validationRequest of validationRequests) {
     const validationHandlers = program["PROGRAM_VALIDATION"];
     const requirementHandler = validationHandlers
-      ? validationHandlers[r.key]
+      ? validationHandlers[validationRequest.key]
       : undefined;
 
     if (!requirementHandler) {
-      // this return goes to no where
       return {
-        json: {
-          message: `Requirement handler for key ${r.key} not implemented`,
-        },
+        json: generateProgramTriggerError({
+          message: `Requirement handler for key ${validationRequest.key} not implemented`,
+        }),
         code: 501,
       };
-    } else {
-      // should maybe add error handling
-      results.push({
-        key: r.key,
-        results: requirementHandler(r.queryResult, body.program, body.time),
-      });
     }
-  });
+
+    try {
+      const result = requirementHandler(
+        validationRequest.queryResult,
+        body.program,
+        body.time
+      );
+      results.push({
+        key: validationRequest.key,
+        results: result,
+      });
+    } catch (e) {
+      return {
+        json: generateProgramTriggerError({
+          message: `Requirement handler for key ${validationRequest.key} failed`,
+        }),
+        code: 501,
+      };
+    }
+  }
 
   return {
     json: { validationResults: results },
@@ -205,6 +212,7 @@ function handleProgramVariableSchemaRequest(
   const handleSchemaRequest =
     program["PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST"];
   if (!handleSchemaRequest) {
+    // why 204 not error?
     return {
       json: {},
       code: 204,
@@ -214,15 +222,12 @@ function handleProgramVariableSchemaRequest(
     try {
       newSchema = handleSchemaRequest(schema, triggerType, scheduleKey);
     } catch (e) {
-      const errorMes = {
+      const errorMes = generateProgramTriggerError({
         error:
           "An error occurred in a webtask (PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST)",
-        // consider not returning stack trace for security reasons
-        message: e.stack,
-      };
+      });
 
-      // use winston logger instead
-      console.log(errorMes);
+      getLogger().error(JSON.stringify(errorMes));
     }
     if (!newSchema) {
       return {
@@ -237,4 +242,15 @@ function handleProgramVariableSchemaRequest(
       code: 200,
     };
   }
+}
+
+function generateProgramTriggerError(info?: {
+  error?: string;
+  message?: string;
+}): ProgramTriggerError {
+  return {
+    error: "An error occurred in a webtask",
+    message: "An unspecified error occurred in the program",
+    ...info,
+  };
 }

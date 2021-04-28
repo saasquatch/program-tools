@@ -14,12 +14,16 @@ const logger = getLogger(process.env.PROGRAM_LOG_LEVEL || "debug");
  * @param {Number} timeout - max time in ms
  * @param {Number} maxDepth - max stack depth
  */
-export function timeboxExpression(expr: jsonata.Expression) {
+export function timeboxExpression(
+  expr: jsonata.Expression,
+  timeout: number = TIMEOUT,
+  maxDepth: number = MAXDEPTH
+) {
   let depth = 0;
   const time = Date.now();
 
   let checkRunnaway = function () {
-    if (depth > MAXDEPTH) {
+    if (depth > maxDepth) {
       // stack too deep
       throw {
         code: "U1001",
@@ -28,7 +32,7 @@ export function timeboxExpression(expr: jsonata.Expression) {
         stack: new Error().stack,
       };
     }
-    if (Date.now() - time > TIMEOUT) {
+    if (Date.now() - time > timeout) {
       // expression has run for too long
       throw {
         code: "U1002",
