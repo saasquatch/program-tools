@@ -173,7 +173,9 @@ export function DefaultObjectTemplate(props: ObjectFieldTemplateProps) {
     <div>
       {title && <Label label={title} required={required} id={idSchema.$id} />}
       {description && (
-        <DescriptionContainer>{description}</DescriptionContainer>
+        <DescriptionContainer>
+          <p>{description}</p>
+        </DescriptionContainer>
       )}
       {properties.map((prop) => prop.content)}
     </div>
