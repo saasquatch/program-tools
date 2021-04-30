@@ -1,4 +1,4 @@
-import { useQuery } from "@saasquatch/component-boilerplate";
+import { useProgramId, useQuery } from "@saasquatch/component-boilerplate";
 import { VNode } from "@stencil/core";
 import { gql } from "graphql-request";
 import { LeaderboardViewProps } from "./leaderboard-view";
@@ -6,17 +6,15 @@ import { LeaderboardViewProps } from "./leaderboard-view";
 export interface LeaderboardProps {
   usersheading: string;
   statsheading: string;
-  // heading: string;
   rankType: "rowNumber" | "rank" | "denseRank";
   leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
-  // updatefrequency: string;
   empty: VNode;
   loadingstate: VNode;
 }
 
 const GET_LEADERBOARD = gql`
-  query ($type: String!) {
-    userLeaderboard(type: $type) {
+  query($type: String!, $filter: UserLeaderboardFilterInput) {
+    userLeaderboard(type: $type, filter:$filter) {
       dateModified
       rows {
         value
@@ -33,8 +31,10 @@ const GET_LEADERBOARD = gql`
 `;
 
 export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
+  const programId = useProgramId();
   const leaderboardVariables = {
     type: props.leaderboardType,
+    filter: { programId_eq: programId },
   };
   const { data: leaderboardData, loading: loadingLeaderboard } = useQuery(
     GET_LEADERBOARD,

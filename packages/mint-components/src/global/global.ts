@@ -3,13 +3,14 @@ import "@formatjs/intl-relativetimeformat/dist/locale-data/en";
 
 import "@formatjs/intl-pluralrules/polyfill";
 import "@formatjs/intl-pluralrules/dist/locale-data/en";
-import 'babel-polyfill';
-import {useHost} from "@saasquatch/stencil-hooks";
-import {setUseHostImplementation} from "@saasquatch/component-boilerplate";
+import "babel-polyfill";
+import { useHost } from "@saasquatch/stencil-hooks";
+import { setUseHostImplementation } from "@saasquatch/component-boilerplate";
 import { createIntl, createIntlCache } from "@formatjs/intl";
-
+import debugFn from "debug";
 setUseHostImplementation(useHost);
 
+const debug = debugFn("sq:global");
 const cache = createIntlCache();
 export const intl = createIntl(
   {
@@ -64,15 +65,16 @@ import {
   SlTextarea,
   SlTooltip,
   setBasePath,
-  registerIconLibrary
+  registerIconLibrary,
 } from "@shoelace-style/shoelace";
 
 try {
   setBasePath("/dist/shoelace");
   // SlAlert.register();
-  registerIconLibrary('default', {
+  registerIconLibrary("default", {
     // same link that shoelace uses internally
-    resolver: name => `https://fast.ssqt.io/npm/bootstrap-icons@1.2.0/icons/${name}.svg`
+    resolver: (name) =>
+      `https://fast.ssqt.io/npm/bootstrap-icons@1.2.0/icons/${name}.svg`,
   });
   // SlAlert.register();
   customElements.define("sl-alert", SlAlert);
@@ -120,5 +122,5 @@ try {
   customElements.define("sl-textarea", SlTextarea);
   customElements.define("sl-tooltip", SlTooltip);
 } catch (error) {
-  console.error("components already registered");
+  debug("components already registered");
 }
