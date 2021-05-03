@@ -1,4 +1,9 @@
-import { useProgramId, useQuery } from "@saasquatch/component-boilerplate";
+import {
+  useProgramId,
+  useLazyQuery,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
+import { useEffect } from "@saasquatch/universal-hooks";
 import { VNode } from "@stencil/core";
 import { gql } from "graphql-request";
 import { LeaderboardViewProps } from "./leaderboard-view";
@@ -14,7 +19,7 @@ export interface LeaderboardProps {
 
 const GET_LEADERBOARD = gql`
   query($type: String!, $filter: UserLeaderboardFilterInput) {
-    userLeaderboard(type: $type, filter:$filter) {
+    userLeaderboard(type: $type, filter: $filter) {
       dateModified
       rows {
         value
@@ -32,14 +37,19 @@ const GET_LEADERBOARD = gql`
 
 export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   const programId = useProgramId();
+  const user = useUserIdentity();
   const leaderboardVariables = {
     type: props.leaderboardType,
     filter: { programId_eq: programId },
   };
-  const { data: leaderboardData, loading: loadingLeaderboard } = useQuery(
-    GET_LEADERBOARD,
-    leaderboardVariables
-  );
+  const [
+    getData,
+    { data: leaderboardData, loading: loadingLeaderboard },
+  ] = useLazyQuery(GET_LEADERBOARD);
+
+  useEffect(() => {
+    if (user?.jwt) getData(leaderboardVariables);
+  }, [user?.jwt]);
 
   const flattenedLeaderBoard = leaderboardData?.userLeaderboard?.rows.flatMap(
     (user) => ({

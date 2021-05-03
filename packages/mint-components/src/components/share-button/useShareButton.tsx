@@ -1,5 +1,4 @@
 import {
-  useQuery,
   useEngagementMedium,
   useUserIdentity,
   useLazyQuery,
@@ -110,19 +109,23 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
     shareMedium: medium.toUpperCase(),
   };
 
-  const [getLink, res] = useLazyQuery(MessageLinkQuery);
+  const [getMessageLink, res] = useLazyQuery(MessageLinkQuery);
+
+  const [getShareLink, { data: shareRes }] = useLazyQuery(ShareLinkQuery);
 
   useEffect(() => {
-    if (user?.jwt) getLink(variables);
+    if (user?.jwt) {
+      typeof SquatchAndroid !== "undefined" && getMessageLink(variables);
+      getShareLink(directVariables);
+    }
   }, [user?.jwt]);
+
+  const directLink = shareRes?.data?.viewer?.shareLink;
 
   const directVariables = {
     engagementMedium: useEngagementMedium(),
     programId: programId,
   };
-
-  const directLink = useQuery(ShareLinkQuery, directVariables)?.data?.viewer
-    ?.shareLink;
 
   const environment = getEnvironmentSDK();
 

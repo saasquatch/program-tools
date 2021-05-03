@@ -13,8 +13,6 @@ function setupGraphQL() {
   const programId = "a-referral-program";
 
   //@ts-ignore
-  window.SquatchAndroid = true;
-  //@ts-ignore
   window.widgetIdent = {
     tenantAlias: "test_as36zjtpfy7oo",
     appDomain: "https://staging.referralsaasquatch.com",
@@ -63,7 +61,9 @@ export const RegularView = createHookStory(() => {
     <div>
       {mediums.map((medium) => (
         <div>
-          <sqm-share-button {...{programId, medium}}>BUTTON_TEXT</sqm-share-button> 
+          <sqm-share-button {...{ programId, medium }}>
+            BUTTON_TEXT
+          </sqm-share-button>
         </div>
       ))}
     </div>
