@@ -67,6 +67,7 @@ export function useRouter() {
     if (!route && !template) {
       // No matching page, display nothing
       debug("No matching page found for ", page, ", so only update container");
+      // container.innerHTML = "";
       container.dataset.page = page;
       return;
     }
@@ -84,13 +85,9 @@ export function useRouter() {
       container.dataset.page = page;
       // container.appendChild(element);
     } else if (route) {
-      // if (container.firstElementChild) {
-      //   const oldRoute = container.replaceChild(container.lastElementChild);
-      //   slot.appendChild(oldRoute);
-      // } else {
-      // }
       if (container.firstElementChild) {
-        swapDom(route, container);
+        route.parentNode.appendChild(container.lastElementChild);
+        container.innerHTML = route.outerHTML;
       } else {
         container.appendChild(route);
       }
@@ -105,12 +102,4 @@ export function useRouter() {
       setContainer,
     },
   };
-}
-
-function swapDom(hidden, shown) {
-  // var bParent = b.parentNode;
-  hidden.parentNode.appendChild(
-    shown.lastElementChild
-  );
-  shown.insertBefore(hidden, shown.firstElementChild);
 }

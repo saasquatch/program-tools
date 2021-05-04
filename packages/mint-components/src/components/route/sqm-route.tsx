@@ -1,4 +1,4 @@
-import { h, Component, State, Prop } from "@stencil/core";
+import { h, Component, State, Prop, Host } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 export interface RouteProps {
   path: string;
@@ -27,6 +27,10 @@ export class StencilStorybook {
   disconnectedCallback() {}
 
   render() {
-    return <slot />;
+    return (
+      <Host style={{ display: "contents" }}>
+        <slot />
+      </Host>
+    );
   }
 }
