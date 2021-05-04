@@ -115,6 +115,7 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   useEffect(() => {
     if (user?.jwt) {
+      console.log("query!")
       typeof SquatchAndroid !== "undefined" && getMessageLink(variables);
       getShareLink(directVariables);
     }

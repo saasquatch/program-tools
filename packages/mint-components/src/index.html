@@ -2,25 +2,351 @@
 <html dir="ltr" lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
     <title>Mint Components Stencilbook</title>
 
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.27/dist/shoelace/shoelace.esm.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.27/dist/shoelace/shoelace.css" />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.27/dist/shoelace/shoelace.esm.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.27/dist/shoelace/shoelace.css"
+    />
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito%20Sans" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Nunito%20Sans"
+    />
     <link rel="stylesheet" href="/build/mint-components.css" />
-
+    <script src="https://unpkg.com/@saasquatch/service-titan-components@1.0.0-69/dist/components-starter/components-starter.js"></script>
     <script type="module" src="/build/mint-components.esm.js"></script>
     <script nomodule src="/build/mint-components.js"></script>
   </head>
   <body>
-    <script>
+    <!-- <script>
       if (!localStorage.getItem('IEAlert') && window.document.documentMode) {
         localStorage.setItem('IEAlert', true);
         alert('Internet Explorer is not fully supported. We recommend upgrading your browser for the best experience.');
       }
     </script>
-    <sqm-stencilbook></sqm-stencilbook>
+    <sqm-stencilbook></sqm-stencilbook> -->
+    <script>
+      window.widgetIdent = {
+        tenantAlias: "test_a8b41jotf8a1v",
+        appDomain: "https://staging.referralsaasquatch.com",
+        token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImVuZ2xpc2hlZHdhcmQiLCJpZCI6ImVuZ2xpc2hlZHdhcmQifX0.EMWxwv_pkNFUV2Mmqd-FEctDD7a63ut1mhwXvwkj5V0",
+        userId: "englishedward",
+        accountId: "englishedward",
+        programId: "a",
+      };
+      if (!localStorage.getItem("IEAlert") && window.document.documentMode) {
+        localStorage.setItem("IEAlert", true);
+        alert(
+          "Internet Explorer is not fully supported. We recommend upgrading your browser for the best experience."
+        );
+      }
+      // window.SquatchPortal = {
+      //   tenantAlias: "test_a8b41jotf8a1v",
+      //   appDomain: "https://staging.referralsaasquatch.com",
+      //   // programId: "a",
+      //   FIREBASE: {
+      //     apiKey: "AIzaSyC01MIG7vzswE2J_HFE6KQgV6J7O9DDBkE",
+      //     authDomain: "new-sam-test-project-12yiv125.firebaseapp.com",
+      //     databaseURL: "https://new-sam-test-project-12yiv125.firebaseio.com",
+      //     projectId: "new-sam-test-project-12yiv125",
+      //     storageBucket: "new-sam-test-project-12yiv125.appspot.com",
+      //     messagingSenderId: "719661869868",
+      //   },
+      // };
+    </script>
+    <!-- <stn-portal-entrypoint widget-type="w/portal"></stn-portal-entrypoint> -->
+
+    <!-- <stn-stencilbook></stn-stencilbook> -->
+
+    <sqm-popup-container
+      poweredby="true"
+      close-button="true"
+      close-button-text="X"
+    >
+      <sqm-router>
+        <sqm-route path="/">
+          <stn-wrapper-column>
+            <h2 class="Title">Refer Your Friends & Receive Rewards!</h2>
+            <stn-navigation-button
+              path="/refer/1"
+              button-text="Submit Your Referral Here!"
+            >
+            </stn-navigation-button>
+            <p class="Subtitle">or share your link with a friend</p>
+            <sqm-share-link> </sqm-share-link>
+            <stn-row gap="medium">
+              <sqm-share-button
+                medium="email"
+                icon="envelope"
+                iconslot="prefix"
+              >
+                <span>Email</span>
+              </sqm-share-button>
+              <sqm-share-button
+                medium="facebook"
+                icon="facebook"
+                iconslot="prefix"
+              >
+                <span>Facebook</span>
+              </sqm-share-button>
+              <sqm-share-button
+                medium="sms"
+                icon="phone-vibrate"
+                iconslot="prefix"
+              >
+                <span>SMS</span>
+              </sqm-share-button>
+            </stn-row>
+            <stn-row space="even">
+              <sqm-big-stat stat-type="/referralsCount">
+                Referrals Submitted
+              </sqm-big-stat>
+              <sqm-big-stat stat-type="/rewardsAssigned/CREDIT/CASH/USD">
+                Total Rewards Earned
+              </sqm-big-stat>
+              <sqm-big-stat stat-type="/rewardsRedeemed/CREDIT/CASH/USD">
+                Rewards Paid
+              </sqm-big-stat>
+            </stn-row>
+            <stn-w9-alert link="https://example.com"> </stn-w9-alert>
+            <stn-payment-alert requiredsegment="paymentInfo">
+            </stn-payment-alert>
+            <sl-tab-group>
+              <sl-tab slot="nav" panel="referrals" open="{!leaderboard}">
+                Your Referrals
+              </sl-tab>
+              <sl-tab slot="nav" panel="leaderboard" open="{leaderboard}">
+                Leaderboard
+              </sl-tab>
+              <sl-tab-panel name="referrals">
+                <stn-referral-list
+                  inprogresstext="Pending"
+                  convertedtext="Available"
+                  redeemedtext="{prettyValue} Redeemed"
+                  expiredtext="{prettyValue} Expired"
+                  cancelledtext="{prettyValue} Cancelled"
+                  pendingtext="{prettyValue} Pending"
+                >
+                </stn-referral-list>
+              </sl-tab-panel>
+              <sl-tab-panel name="leaderboard">
+                <stn-leaderboard-header
+                  heading="Leaderboard for our F-150 Ford Raptor Giveaway 🚚"
+                  updatedtext="Last Updated {lastUpdated}"
+                  leaderboard-type="topConvertedReferrers"
+                >
+                  <sqm-leaderboard-rank
+                    rank-type="denseRank"
+                    rank-text="You are currently in {rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th} } place!"
+                    unranked-text="You are currently not ranked or your rank is over 1000"
+                    leaderboard-type="topConvertedReferrers"
+                  >
+                  </sqm-leaderboard-rank>
+                </stn-leaderboard-header>
+                <sqm-leaderboard
+                  usersheading="TOP REFERRERS"
+                  statsheading="NEW TITANS"
+                  rank-type="rowNumber"
+                  leaderboard-type="topConvertedReferrers"
+                >
+                </sqm-leaderboard>
+              </sl-tab-panel>
+            </sl-tab-group>
+            <stn-footer
+              showterms="true"
+              showpaymentinfo="true"
+              showsupport="true"
+              termstext="Terms and Conditions"
+              faqtext="FAQ"
+              paymentinfotext="View your Payment Information"
+              faq-path="/faq"
+              payment-info-path="/paymentInfo"
+            >
+              <p class="P SupportText">
+                For referral program support, contact
+                <a href="mailto:referrals@servicetitan.com" target="_blank">
+                  referrals@servicetitan.com
+                </a>
+              </p>
+            </stn-footer>
+          </stn-wrapper-column>
+        </sqm-route>
+        <sqm-route path="/paymentinfo">
+          <div>
+            <stn-payment-info>
+              <stn-payment-form form-key="payment-info-form">
+              </stn-payment-form>
+            </stn-payment-info>
+            <stn-footer
+              showterms="true"
+              showpaymentinfo="true"
+              showsupport="true"
+              termstext="Terms and Conditions"
+              faqtext="FAQ"
+              paymentinfotext="View your Payment Information"
+              faq-path="/faq"
+              payment-info-path="/paymentInfo"
+            >
+              <p class="P SupportText">
+                For referral program support, contact
+                <a href="mailto:referrals@servicetitan.com" target="_blank">
+                  referrals@servicetitan.com
+                </a>
+              </p>
+            </stn-footer>
+          </div>
+        </sqm-route>
+        <sqm-route path="/faq">
+          <stn-faq>
+            <sl-details summary="What is a referral?" open="">
+              A referral occurs when a ServiceTitan customer connects our sales
+              team with a service business they feel could benefit from our
+              software.
+              <br />
+              <br />
+              Please note that you can’t refer yourself, a customer who is
+              already using ServiceTitan, or a business that is already in
+              contact with our sales team.
+            </sl-details>
+            <sl-details summary="Who should I refer to ServiceTitan?">
+              If you know a service business with at least three technicians,
+              one full-time office employee, and they work in at least one of
+              the industries listed
+              <a href="https://www.servicetitan.com/industries" target="_blank"
+                >here</a
+              >, we encourage you to refer them to us. We are always adding new
+              markets, so be sure to check back often to see what we’ve added.
+            </sl-details>
+            <sl-details summary="How do I receive a $500 Demo Reward?">
+              If our sales team determines ServiceTitan would be a good fit for
+              your referral, we will contact them to schedule a software demo.
+              If they qualify and attend the demo within 30 days of your
+              referral submission, you are eligible for a $500 Demo Reward.
+              <br />
+              <br />
+              Please note that you can’t refer yourself, a customer who is
+              already using ServiceTitan, or a business that is already in
+              contact with our sales team.
+            </sl-details>
+            <sl-details summary="How do I receive a New Titan Reward?">
+              Once your referral is live on ServiceTitan for 90 days, you are
+              eligible to receive a New Titan Reward. The reward is a percentage
+              of your referral’s annual spend with ServiceTitan, excluding Pro
+              Products.
+              <br />
+              <br />
+              The value of your New Titan reward increases based on the number
+              of businesses you refer to us:
+              <ul>
+                <li>1st referral: 10% of your referral’s annual spend</li>
+                <li>2nd referral: 15% of your referral’s annual spend</li>
+                <li>
+                  3rd referral and beyond: 20% of your referral’s annual spend
+                </li>
+              </ul>
+              Each New Titan Reward is capped at $10,000—but there is no limit
+              to how many of these rewards you can receive.
+              <br />
+              <br />
+              Please note that you can’t refer yourself, a customer who is
+              already using ServiceTitan, or a business that is already in
+              contact with our sales team.
+            </sl-details>
+            <sl-details summary="How do I win the Ford F-150 Raptor?">
+              The ServiceTitan customer with the most referrals that sign up and
+              stay live with ServiceTitan for 90 days from 6/30/2020 to
+              8/31/2021 will win a 2021 Ford F-150 Raptor and a custom-designed
+              wrap of their choosing.
+              <br />
+              <br />Please note that if you’ve already won a Ford F-150 Raptor
+              from us in the past, you will not be eligible a second time. Only
+              ServiceTitan customers are eligible for this prize.
+            </sl-details>
+            <sl-details summary="When will I receive my Referral Rewards?">
+              For the $500 Demo Reward, a $500 gift card will be delivered to
+              you via email once you are deemed eligible.
+              <br />
+              <br />
+              For the New Titan Reward, payments take about three to four weeks
+              to arrive once you’ve been notified of your eligibility.
+              <br />
+              <br />
+              If you earn a total of $600 or more, we’ll provide you with a W-9
+              Tax Form to complete and submit to us.
+            </sl-details>
+            <sl-details summary="What are the official rules?">
+              Please read the full terms and conditions for our Customer
+              Referral Rewards Program and Competitions
+              <a
+                href="https://www.servicetitan.com/legal/referrals-terms-and-conditions"
+                target="_blank"
+                >here</a
+              >.
+              <br />
+              <br />
+              As a participant in ServiceTitan referral programs, in the event
+              you post or share information about ServiceTitan or such programs
+              via social media, you must disclose your material connection to
+              ServiceTitan and follow the Federal Trade Commission’s Guides
+              Concerning the Use of Endorsements and Testimonials in
+              Advertising. The following hashtags should be used in all social
+              media posts: #Sponsored, #ST_ReferralProgram. #STEmployee.
+            </sl-details>
+            <sl-details summary="Who do I contact if I have questions?">
+              Please email
+              <a href="mailto:referrals@servicetitan.com" target="_blank"
+                >referrals@servicetitan.com</a
+              >
+              with any ServiceTitan referral related questions. We’re happy to
+              help!
+              <br />
+              <br />
+              If you're interested in our affiliate program, please email
+              <a href="mailto:affiliates@servicetitan.com" target="_blank"
+                >affiliates@servicetitan.com</a
+              >.
+            </sl-details>
+          </stn-faq>
+        </sqm-route>
+        <sqm-route path="/refer/:page">
+          <stn-wrapper-column>
+            <stn-customer-lead-submit
+              page-one-path="/refer/1"
+              page-two-path="/refer/2"
+              home-path="/"
+              form-key="customer-lead-submit"
+            >
+            </stn-customer-lead-submit>
+            <stn-footer
+              showterms="true"
+              showpaymentinfo="true"
+              showsupport="true"
+              termstext="Terms and Conditions"
+              faqtext="FAQ"
+              paymentinfotext="View your Payment Information"
+              faq-path="/faq"
+              payment-info-path="/paymentInfo"
+            >
+              <p class="P SupportText">
+                For referral program support, contact
+                <a href="mailto:referrals@servicetitan.com" target="_blank">
+                  referrals@servicetitan.com
+                </a>
+              </p>
+            </stn-footer>
+          </stn-wrapper-column>
+        </sqm-route>
+      </sqm-router>
+    </sqm-popup-container>
   </body>
 </html>
