@@ -88,7 +88,6 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
   const [upsertUser, upsertUserResponse] = useMutation(UPSERT_USER);
 
   useEffect(() => {
-    console.log(userIdent?.jwt);
     if (userIdent?.jwt) getUser({});
   }, [userIdent?.jwt]);
 
@@ -101,7 +100,6 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
         error: upsertUserResponse?.errors?.response.errors?.[0].message,
       }));
     } else {
-      console.log("upsert response data:", upsertUserResponse?.data);
       setUserData((state) => ({
         ...state,
         ...upsertUserResponse?.data?.upsertUser,

@@ -33,15 +33,6 @@ const MessageLinkQuery = gql`
           engagementMedium: $engagementMedium
           shareMedium: $shareMedium
         )
-      }
-    }
-  }
-`;
-
-const ShareLinkQuery = gql`
-  query($programId: ID, $engagementMedium: UserEngagementMedium!) {
-    viewer {
-      ... on User {
         shareLink(programId: $programId, engagementMedium: $engagementMedium)
       }
     }
@@ -109,22 +100,13 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
 
   const [getMessageLink, res] = useLazyQuery(MessageLinkQuery);
 
-  const [getShareLink, { data: shareRes }] = useLazyQuery(ShareLinkQuery);
-
   useEffect(() => {
     if (user?.jwt) {
-      console.log("query!")
-      typeof SquatchAndroid !== "undefined" && getMessageLink(variables);
-      getShareLink(directVariables);
+      getMessageLink(variables);
     }
   }, [user?.jwt]);
 
-  const directLink = shareRes?.data?.viewer?.shareLink;
-
-  const directVariables = {
-    engagementMedium: useEngagementMedium(),
-    programId: programId,
-  };
+  const directLink = res?.data?.viewer?.shareLink;
 
   const environment = getEnvironmentSDK();
 

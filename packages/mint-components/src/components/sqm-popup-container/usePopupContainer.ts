@@ -20,7 +20,6 @@ type API = {
 
 export function usePopupContainer(props: UsePopupContainerProps) {
   const engagementMedium = useEngagementMedium();
-  console.log("use popup")
   function closePopup() {
     if (useEngagementMedium() === "POPUP") {
       window.frameElement["squatchJsApi"]?.close();
