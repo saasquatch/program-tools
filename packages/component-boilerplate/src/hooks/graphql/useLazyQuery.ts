@@ -2,8 +2,8 @@ import {
   BaseQueryData,
   GqlType,
   QueryData,
-  useBaseQuery,
 } from "./useBaseQuery";
+import { useBatchedQuery } from "./useBatchedQuery";
 
 const initialLazyQueryState: BaseQueryData = {
   loading: false,
@@ -14,7 +14,7 @@ const initialLazyQueryState: BaseQueryData = {
 export function useLazyQuery<T = any>(
   query: GqlType
 ): [(e: unknown) => unknown, QueryData<T>] {
-  const [state, update] = useBaseQuery<T>(
+  const [state, update] = useBatchedQuery<T>(
     query,
     initialLazyQueryState as BaseQueryData<T>
   );

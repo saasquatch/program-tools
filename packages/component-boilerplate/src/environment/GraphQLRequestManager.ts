@@ -21,7 +21,7 @@ import combineQuery from "graphql-combine-query";
 
 //naive solution: bufferTime
 const MAX_REQUESTS = 10;
-const REQUEST_INTERVAL = 100;
+const REQUEST_INTERVAL = 500;
 
 const subject = new Subject();
 
@@ -133,31 +133,34 @@ const buffer = subject.pipe(
 
 // look into replacing subscribe
 buffer.subscribe(async (queryObjArray: QueryObj[]) => {
+  console.log("query obj arr", queryObjArray);
   if (!queryObjArray.length) {
     return;
   }
   // merge the requests and send them
   //  const queryName = queryObjArray.map(queryObj => queryObj.query.).join('_')
-  const mergedQuery = combineQuery("BatchedUserQuery");
+  let mergedQuery = combineQuery("BatchedUserQuery") as any;
   let newDocument;
   let newVariables;
   for (const queryObj of queryObjArray) {
     const { query, variables } = queryObj;
     const parsedQuery = typeof query === "string" ? parse(query) : query;
-    console.log(parsedQuery);
+    console.log(query);
     // make reliable
-    const id = uuid().replace(/\d+/g, "").replace(/-/g, "");
+    const id = uuid().replace(/-/g, "");
     (queryObj as any).id = id;
     // const renameFn = (name) => id;
     const renameFn = (name) => `${name}_${id}`;
-    const newQuery = mergedQuery.addN(
+    mergedQuery = mergedQuery.addN(
       parsedQuery,
       [variables],
-      undefined,
+      renameFn,
       renameFn
     );
-    newDocument = newQuery.document;
-    newVariables = newQuery.variables;
+    console.log("mergedQuery", mergedQuery);
+
+    newDocument = mergedQuery.document;
+    newVariables = mergedQuery.variables;
   }
   //request client
 
@@ -181,7 +184,7 @@ buffer.subscribe(async (queryObjArray: QueryObj[]) => {
       return data;
     }, {});
 
-    queryObj2.cb(null, { data });
+    queryObj2.cb(null, data);
   }
 });
 

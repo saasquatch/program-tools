@@ -189,6 +189,7 @@ const rewardsRedeemedQuery = (
     `,
     { programId, type, unit, locale },
     (res) => {
+      console.log("big stat res", res);
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
       return arr?.[0]?.prettyRedeemedCredit || fallback;
