@@ -47,17 +47,6 @@ export function useRouter() {
       if (matchPath(route.path, page)?.length) return route;
     });
 
-    debug({ routes, page, route, container });
-    if (!route && !template) {
-      // No matching page, display nothing
-      debug("No matching page found for ", page, " so displaying nothing");
-      container.innerHTML = "";
-      container.dataset.page = page;
-      return;
-    }
-
-    debug("Page updated to ", page, template, route);
-
     let previousPath, currentPath;
 
     if (route) {
@@ -67,6 +56,23 @@ export function useRouter() {
       previousPath = !!matchPath(template?.path, container.dataset.page);
       currentPath = !!matchPath(template?.path, page);
     }
+
+    debug({
+      previousPath,
+      currentPath,
+      containerDatasetPage: container.dataset.page,
+      page,
+    });
+    // if no routes found, and the old route doesn't match the new route
+    if (!route && !template) {
+      // No matching page, display nothing
+      debug("No matching page found for ", page, ", so only update container");
+      // container.innerHTML = "";
+      container.dataset.page = page;
+      return;
+    }
+
+    debug("Page updated to ", page, template, route);
 
     // if pathToRegexp results truthy or page is an exact match
     if ((previousPath && currentPath) || page === container.dataset.page) {
@@ -79,8 +85,13 @@ export function useRouter() {
       container.dataset.page = page;
       // container.appendChild(element);
     } else if (route) {
-      container.innerHTML = route.innerHTML;
-      debug("route container innerHTML:", container.innerHTML);
+      if (container.firstElementChild) {
+        route.parentNode.appendChild(container.lastElementChild);
+        container.innerHTML = route.outerHTML;
+      } else {
+        container.appendChild(route);
+      }
+
       container.dataset.page = page;
     }
   }, [slot, container, page]);
