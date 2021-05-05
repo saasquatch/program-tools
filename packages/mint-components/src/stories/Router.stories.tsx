@@ -63,8 +63,6 @@ const routes = `
     ░░░░░░░░░▀▀░░░░░░░▀░░░░░░░░░
     </pre>
     </sqm-route>
-    <sqm-route path="/events"><button id="clickMe">Click me</button>
-    </sqm-route>
     <sqm-route path="/refer/:page"><h3>/refer/:page</h3>
     <pre>
       refer/:page
@@ -90,8 +88,6 @@ export const TemplateNavigation = () => {
   );
 };
 
-
-
 export const RouteNavigation = () => {
   return (
     <div>
@@ -99,7 +95,6 @@ export const RouteNavigation = () => {
       <button onClick={() => navigation.push("/foo")}>/foo</button>
       <button onClick={() => navigation.push("/bar")}>/bar</button>
       <button onClick={() => navigation.push("/baz/bang")}>/baz/bang</button>
-      <button onClick={() => navigation.push("/events")}>/events</button>
       <button onClick={() => navigation.push("/refer")}>/refer</button>
       <button onClick={() => navigation.push("/refer/1")}>/refer/1</button>
       <button onClick={() => navigation.push("/refer/2")}>/refer/2</button>

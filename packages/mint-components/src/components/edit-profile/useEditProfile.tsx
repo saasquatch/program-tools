@@ -21,7 +21,6 @@ export interface EditProfileProps {
 const GET_USER = gql`
   query {
     viewer {
-      __typename
       ... on User {
         id
         accountId

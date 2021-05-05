@@ -27,7 +27,6 @@ const MessageLinkQuery = gql`
     $shareMedium: ReferralShareMedium!
   ) {
     viewer {
-      __typename
       ... on User {
         messageLink(
           programId: $programId
@@ -42,7 +41,6 @@ const MessageLinkQuery = gql`
 const ShareLinkQuery = gql`
   query($programId: ID, $engagementMedium: UserEngagementMedium!) {
     viewer {
-      __typename
       ... on User {
         shareLink(programId: $programId, engagementMedium: $engagementMedium)
       }
