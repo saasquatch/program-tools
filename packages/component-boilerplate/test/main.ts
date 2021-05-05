@@ -10,7 +10,8 @@ import * as React from "react";
 // import * as ReactTestLib from "@testing-library/react-hooks";
 import { act, renderHook } from "@testing-library/react-hooks";
 import { useQuery } from "../src/hooks/graphql/useQuery";
-import { gql, GraphQLClient } from "graphql-request";
+import { GraphQLClient } from "graphql-request";
+import gql from "graphql-tag";
 import axios from "axios";
 
 import useGraphQLClient from "../src/hooks/graphql/useGraphQLClient";
@@ -44,7 +45,6 @@ describe("Mock Service Workers", () => {
   test("MockTest", async () => {
     const variables = { name: "Robert" };
     const resolvedData = { greeting: { message: "Hello, Robert!" } };
-
     function hook() {
       return useQuery(MOCK_TEST, variables);
     }
@@ -92,10 +92,16 @@ describe("Mock Service Workers", () => {
     let rerender: (props?: { q: RequestDocument; v: unknown }) => void;
     let waitForNextUpdate: () => Promise<void>;
     let waitForValueToChange: (selector: () => unknown) => Promise<void>;
-    let waitFor: (f: () => (boolean | void)) => Promise<void>;
+    let waitFor: (f: () => boolean | void) => Promise<void>;
     await act(async () => {
       const ret = renderHook(hook);
-      ({ result, rerender, waitForNextUpdate, waitForValueToChange, waitFor } = ret);
+      ({
+        result,
+        rerender,
+        waitForNextUpdate,
+        waitForValueToChange,
+        waitFor,
+      } = ret);
       await waitForNextUpdate();
     });
 
@@ -105,7 +111,7 @@ describe("Mock Service Workers", () => {
     await act(async () => {
       await axios.post("/unlock");
     });
-    await waitFor(() => !result.current.loading)
+    await waitFor(() => !result.current.loading);
 
     expect(result.current.loading).toBe(false);
     expect(result.current.data).toStrictEqual({ empty: null });
@@ -452,7 +458,7 @@ describe("useQuery", () => {
 
     let result: { current: ReturnType<typeof hook> };
     let waitForNextUpdate: () => Promise<void>;
-    let waitFor: (f: () => (boolean | void)) => Promise<void>;
+    let waitFor: (f: () => boolean | void) => Promise<void>;
     await act(async () => {
       const ret = renderHook(hook);
       ({ result, waitForNextUpdate, waitFor } = ret);
@@ -465,7 +471,7 @@ describe("useQuery", () => {
     await act(async () => {
       await axios.post("/unlock");
     });
-    await waitFor(() => !result.current.loading)
+    await waitFor(() => !result.current.loading);
 
     expect(result.current.loading).toBe(false);
     expect(result.current.data).toStrictEqual(resolvedData);
