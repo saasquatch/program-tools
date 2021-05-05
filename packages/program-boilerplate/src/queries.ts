@@ -6,6 +6,7 @@ query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!, $refe
   user(id:$userId, accountId:$accountId) {
     firstName
     lastName
+    customFields
     referralCode(programId:$programId)
     shareLink(programId:$programId,useCleanLink:true)
     facebook: messageLink(programId:$programId,shareMedium:FACEBOOK,engagementMedium:EMAIL)
@@ -20,10 +21,12 @@ query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!, $refe
     referrerUser{
       firstName
       lastName
+      customFields
     }
     referredUser{
       firstName
       lastName
+      customFields
     }
   }
 
@@ -57,6 +60,7 @@ export const nonRewardEmailQueryForReferralPrograms = `query ($userId:String!, $
   user(id:$userId, accountId:$accountId) {
     firstName
     lastName
+    customFields
     referralCode(programId:$programId)
     shareLink(programId:$programId,useCleanLink:true)
     facebook: messageLink(programId:$programId,shareMedium:FACEBOOK)
@@ -71,10 +75,12 @@ export const nonRewardEmailQueryForReferralPrograms = `query ($userId:String!, $
     referrerUser{
       firstName
       lastName
+      customFields
     }
     referredUser{
       firstName
       lastName
+      customFields
     }
   }
 
@@ -94,6 +100,7 @@ query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!) {
   user(id:$userId, accountId:$accountId) {
     firstName
     lastName
+    customFields
     email:messageLink(programId:$programId,shareMedium:EMAIL)
   }
 

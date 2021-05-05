@@ -36,6 +36,7 @@ export function useProgramId(): string | undefined {
  * @param programId the new programID used by the user, or undefined if logged out
  */
 export function setProgramId(programId: string) {
+  _lazilyStartGlobally();
   const globalProvider = window.squatchProgramId;
   globalProvider.context = programId;
 }

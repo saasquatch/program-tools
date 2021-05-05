@@ -1,5 +1,4 @@
 import { h, Component, Prop } from "@stencil/core";
-// import FormatJs from '../../services/FormatJs';
 
 @Component({
   tag: "sqh-rewards-actions",

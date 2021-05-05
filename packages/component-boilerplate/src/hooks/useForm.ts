@@ -247,10 +247,16 @@ export function useForm(props: UseFormProps) {
     );
   }
 
+  /**
+   * Schema validation based on return data from validateForm results
+   */
   function getValidationErrors(): ValidationErrors {
     const validationErrors =
       validationData?.data?.validateForm?.results[0]?.result?.errors;
 
+    /**
+     * Provide a JSON path and receive any errors at that path
+     */
     function getErrorAtPath(path: string) {
       return validationErrors?.filter((result) => {
         const instanceLocation = result.instanceLocation.substring(1);
@@ -258,6 +264,10 @@ export function useForm(props: UseFormProps) {
       });
     }
 
+    /**
+     * Provide a JSON path and receive any errors at that path,
+     * and any errors for nested paths
+     */
     function getSubErrorsAtPath(path: string) {
       return validationErrors?.filter((result: ValidationError) => {
         const instanceLocation = result.instanceLocation.substring(1);
@@ -281,6 +291,9 @@ export function useForm(props: UseFormProps) {
     });
   }
 
+  /**
+   * Submit function for regular <form> submissions
+   */
   async function handleSubmit(e: any) {
     e.preventDefault();
 

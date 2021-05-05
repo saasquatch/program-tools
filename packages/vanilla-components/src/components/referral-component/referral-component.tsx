@@ -1,6 +1,5 @@
 import { h, Component, Prop } from "@stencil/core";
 import FormatJS from "../../services/FormatJs";
-
 @Component({
   tag: "sqh-referral-component",
   styleUrl: "referral-component.scss",
@@ -10,6 +9,7 @@ export class ReferralComponent {
   @Prop() referraltype: "converted" | "pending" | "referrer";
   @Prop() referralvariables: ReferralVariables;
   @Prop() unknownuser: String;
+  @Prop() locale: string;
 
   getName() {
     const referral = this.referral as Referral;
@@ -45,7 +45,8 @@ export class ReferralComponent {
     if (this.rewardIsExpired() && this.referralvariables.expiredcontent) {
       return FormatJS.format(
         this.referralvariables.expiredcontent,
-        formatVariables
+        formatVariables,
+        this.locale
       );
     }
 
@@ -53,14 +54,16 @@ export class ReferralComponent {
     if (this.rewardIsCancelled() && this.referralvariables.cancelledcontent) {
       return FormatJS.format(
         this.referralvariables.cancelledcontent,
-        formatVariables
+        formatVariables,
+        this.locale
       );
     }
 
     if (this.referraltype) {
       return FormatJS.format(
         this.referralvariables[`${this.referraltype}content`],
-        formatVariables
+        formatVariables,
+        this.locale
       );
     }
 
@@ -125,34 +128,45 @@ export class ReferralComponent {
       if (this.rewardIsExpired())
         return FormatJS.format(
           this.referralvariables.expiredvalue,
-          formatVariables
+          formatVariables,
+          this.locale
         );
 
       // Cancelled content only applies when there is 1 reward in the referral
       if (this.rewardIsCancelled())
         return FormatJS.format(
           this.referralvariables.cancelledvalue,
-          formatVariables
+          formatVariables,
+          this.locale
         );
 
       // Redeemed content only applies when there is 1 reward in the referral
       if (this.rewardIsRedeemed())
         return FormatJS.format(
           this.referralvariables.redeemedvalue || "Redeemed",
-          formatVariables
+          formatVariables,
+          this.locale
         );
 
       // Expiry date only shown if there is 1 reward with dateExpires set in the referral
       if (this.referralvariables.showexpiry && rewards[0].dateExpires) {
-        const expiryDate = FormatJS.formatRelative(rewards[0].dateExpires);
-        return FormatJS.format(`Expires ${expiryDate}`, formatVariables);
+        const expiryDate = FormatJS.formatRelative(
+          rewards[0].dateExpires,
+          this.locale
+        );
+        return FormatJS.format(
+          this.referralvariables.expiresvalue || `Expires ${expiryDate}`,
+          {...formatVariables, expiryDate },
+          this.locale
+        );
       }
 
       return "";
     }
     return FormatJS.format(
       this.referralvariables.valuecontent,
-      formatVariables
+      formatVariables,
+      this.locale
     );
   }
 
@@ -166,7 +180,7 @@ export class ReferralComponent {
     const { dateReferralStarted, rewards } = this.referral;
 
     const formatVariables = {
-      date: FormatJS.formatRelative(dateReferralStarted),
+      date: FormatJS.formatRelative(dateReferralStarted, this.locale),
       extrarewards: rewards.length - 1,
     };
     const name = this.getName();
