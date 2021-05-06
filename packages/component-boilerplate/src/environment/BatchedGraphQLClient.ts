@@ -43,7 +43,7 @@ export class BatchedGraphQLClient extends GraphQLClient {
 
         console.log("____MERGED____", mergedQuery);
         // make the request
-        const mergedQueryResult = await super.request(
+        const mergedQueryResult = await this.superRequest(
           mergedQuery,
           mergedVariables
         );
@@ -55,6 +55,9 @@ export class BatchedGraphQLClient extends GraphQLClient {
         rejectAllQueryAddedEventsWithError(queryAddedEvents, e);
       }
     });
+  }
+  superRequest<T>(query, variables) {
+    return super.request(query, variables);
   }
   request<T>(query, variables) {
     return new Promise<T>((resolve, reject) => {
