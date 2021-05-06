@@ -97,13 +97,7 @@ export function useBatchedQuery<T = any>(
       //   }
       dispatch({ type: "loading" });
       try {
-        const res = await new Promise<T>((resolve, reject) => {
-          addQuery({
-            query,
-            variables,
-            cb: (err, res) => (err ? reject(err) : resolve(res)),
-          });
-        });
+        const res = await addQuery<T>(query, variables as any); //Todo: fix type
         dispatch({ type: "data", payload: res });
       } catch (e) {
         dispatch({ type: "errors", payload: e });

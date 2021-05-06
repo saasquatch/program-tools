@@ -1,108 +1,19 @@
-//TODO: rename this file
+//TODO: rename this file?
 import { Subject } from "rxjs";
 import { bufferTime } from "rxjs/operators";
 import { v4 as uuid } from "uuid";
 import { RequestDocument } from "graphql-request/dist/types";
 import { GraphQLClient } from "graphql-request";
-import { print, parse } from "graphql";
+import { print, parse, DocumentNode, getOperationAST } from "graphql";
 
+//TODO: replace this package with some util functions and remove.
 import combineQuery from "graphql-combine-query";
-// import { GraphQLClient } from "graphql-request";
-// import { ContextProvider } from "dom-context";
-// import { getEnvironmentSDK } from "..";
 
-// const CONTEXT_NAME = "sq:user-identity";
-
-// export type UserIdentity = {
-//   id: string;
-//   accountId: string;
-//   jwt?: string;
-// };
-
-//naive solution: bufferTime
 const MAX_REQUESTS = 10;
-const REQUEST_INTERVAL = 500;
+const REQUEST_INTERVAL = 500; //ms
 
 const subject = new Subject();
 
-//todo: improve types
-interface QueryObj {
-  query: RequestDocument;
-  variables: any;
-  cb: Function;
-}
-
-// export function getTenantAlias(): string {
-//   const sdk = getEnvironmentSDK();
-//   switch (sdk.type) {
-//     case "SquatchAndroid":
-//     case "SquatchJS2":
-//       return sdk.widgetIdent.tenantAlias;
-//     case "SquatchAdmin":
-//     case "None":
-//       return "demo";
-//     case "SquatchPortal":
-//       return sdk.env.tenantAlias;
-//   }
-// }
-
-// const DEFAULT_DOMAIN = "https://app.referralsaasquatch.com";
-// export function getAppDomain(): string {
-//   const sdk = getEnvironmentSDK();
-//   switch (sdk.type) {
-//     case "SquatchAndroid":
-//     case "SquatchJS2":
-//       return sdk.widgetIdent.appDomain;
-//     case "SquatchPortal":
-//       return sdk.env?.appDomain || DEFAULT_DOMAIN;
-//     case "SquatchAdmin":
-//     case "None":
-//       return DEFAULT_DOMAIN;
-//   }
-// }
-
-// function _lazilyStartGlobally() {
-//   const globalProvider = window.squatchUserIdentity;
-//   if (!globalProvider) {
-//     // Lazily creates a global provider
-//     window.squatchUserIdentity = new ContextProvider<UserIdentity>({
-//       element: document.documentElement,
-//       initialState: _getInitialValue(),
-//       contextName: CONTEXT_NAME,
-//     }).start();
-//   }
-// }
-
-// function _getInitialValue(): UserIdentity | undefined {
-//   const sdk = getEnvironmentSDK();
-//   switch (sdk.type) {
-//     case "SquatchAndroid":
-//     case "SquatchJS2":
-//       return {
-//         id: sdk.widgetIdent.userId,
-//         accountId: sdk.widgetIdent.accountId,
-//         jwt: sdk.widgetIdent.token,
-//       };
-//     case "SquatchPortal":
-//       // TODO: Could this come from localstorage? Or a cookie?
-//       return undefined;
-//     case "SquatchAdmin":
-//     case "None":
-//       // Not logged in for admin portal / none default case
-//       return undefined;
-//   }
-// }
-
-// function createGraphQlClient(): GraphQLClient {
-//   const uri = getAppDomain() + "/api/v1/" + getTenantAlias() + "/graphql";
-//   const headers = {
-//     Authorization: `Bearer ${useToken() || ""}`,
-//   };
-//   const newClient = new GraphQLClient(uri, {
-//     headers,
-//   });
-//   return newClient;
-// }
 const gqlClient = new GraphQLClient(
   "https://staging.referralsaasquatch.com/api/v1/test_a8b41jotf8a1v/graphql",
   {
@@ -112,84 +23,150 @@ const gqlClient = new GraphQLClient(
     },
   }
 );
-// const res = await new Promise((resolve, reject) => {
-//   addQuery({
-//     query,
-//     variables,
-//     cb: (err, result) => {
-//       if (err) reject(err);
-//       resolve(result);
-//     },
-//   });
-// });
 
-export function addQuery(queryObj: any) {
-  subject.next(queryObj);
+interface QueryAddedEvent {
+  query: RequestDocument;
+  variables: { [key: string]: unknown };
+  id: string; // uuid with '-'s removed
+  resolve: (data: any) => void;
+  reject: (err: any) => void;
+}
+
+interface MergedQueryAddedEvents {
+  mergedQuery: RequestDocument;
+  mergedVariables: { [key: string]: unknown };
+  queryAddedEvents: QueryAddedEvent[];
+}
+
+const generateQueryAddedEventId = () => uuid().replace(/-/g, "");
+
+const aliasFieldOrVariableFn = (name, id) => `${name}_${id}`;
+
+const removeAliasFromField = (field: string, id) => field.replace(`_${id}`, "");
+
+export function addQuery<T>(
+  query: RequestDocument,
+  variables: { [key: string]: unknown }
+) {
+  return new Promise<T>((resolve, reject) => {
+    const QueryAddedEvent: QueryAddedEvent = {
+      query,
+      variables,
+      id: generateQueryAddedEventId(),
+      resolve,
+      reject,
+    };
+    subject.next(QueryAddedEvent);
+  });
 }
 
 const buffer = subject.pipe(
   bufferTime(REQUEST_INTERVAL, undefined, MAX_REQUESTS)
 );
 
-// look into replacing subscribe
-buffer.subscribe(async (queryObjArray: QueryObj[]) => {
-  console.log("query obj arr", queryObjArray);
-  if (!queryObjArray.length) {
-    return;
-  }
-  // merge the requests and send them
-  //  const queryName = queryObjArray.map(queryObj => queryObj.query.).join('_')
-  let mergedQuery = combineQuery("BatchedUserQuery") as any;
-  let newDocument;
-  let newVariables;
-  for (const queryObj of queryObjArray) {
-    const { query, variables } = queryObj;
-    const parsedQuery = typeof query === "string" ? parse(query) : query;
-    console.log(query);
-    // make reliable
-    const id = uuid().replace(/-/g, "");
-    (queryObj as any).id = id;
-    // const renameFn = (name) => id;
-    const renameFn = (name) => `${name}_${id}`;
-    mergedQuery = mergedQuery.addN(
+const mergeQueryAddedEvents = (
+  events: QueryAddedEvent[]
+): MergedQueryAddedEvents => {
+  let mergedQueryBuilder = combineQuery("") as any;
+  let mergedQueryName = "";
+  let mergedQuery;
+  let mergedVariables;
+  for (const queryAddedEvent of events) {
+    const { query, variables, id } = queryAddedEvent;
+    const parsedQuery: DocumentNode =
+      typeof query === "string" ? parse(query) : query;
+
+    const renameFn = (name) => aliasFieldOrVariableFn(name, id);
+    mergedQueryBuilder = mergedQueryBuilder.addN(
       parsedQuery,
       [variables],
       renameFn,
       renameFn
     );
-    console.log("mergedQuery", mergedQuery);
 
-    newDocument = mergedQuery.document;
-    newVariables = mergedQuery.variables;
+    const operationNames = parsedQuery.definitions
+      .reduce((acc, def) => {
+        if (def && def.kind === "OperationDefinition" && def.name) {
+          acc.push(def.name);
+        }
+        return acc;
+      }, [])
+      .join("_");
+    mergedQueryName = mergedQueryName
+      ? `${mergedQueryName}_${operationNames}`
+      : mergedQueryName;
+    mergedQuery = mergedQueryBuilder.document;
+    mergedVariables = mergedQueryBuilder.variables || {};
   }
-  //request client
+  // replace operation name
+  mergedQuery.definitions.find((def) => {
+    if (def.kind === "OperationDefinition") def.name = mergedQueryName;
+  });
+  mergedQuery = print(mergedQuery);
+  console.log(mergedQuery);
+  return {
+    mergedQuery,
+    mergedVariables,
+    queryAddedEvents: events,
+  };
+};
 
-  const queryStr = print(newDocument);
-  console.log(queryStr);
-  const result = await gqlClient.request(queryStr, newVariables || {});
-  console.log(result);
-
-  const aliases = Object.keys(result);
-  for (const queryObj2 of queryObjArray) {
+const resolveMergedQueryResult = (
+  mergedQueryResult: any,
+  events: QueryAddedEvent[]
+): void => {
+  const aliases = Object.keys(mergedQueryResult);
+  for (const event of events) {
     //figure out what data we need
-    const id = (queryObj2 as any).id;
-
-    // if only one top level field, remove _name and just use this
-    // const data = result[id]
+    const { id } = event;
 
     const data = aliases.reduce((data, key) => {
       if (key.endsWith(id)) {
-        data = { ...data, [key.replace(`_${id}`, "")]: result[key] };
+        data = {
+          ...data,
+          [removeAliasFromField(key, id)]: mergedQueryResult[key],
+        };
       }
       return data;
     }, {});
 
-    queryObj2.cb(null, data);
+    event.resolve(data);
+  }
+};
+
+// error handling
+
+const rejectAllQueryAddedEventsWithError = (
+  events: QueryAddedEvent[],
+  err: Error
+): void => {
+  for (const event of events) {
+    const { reject } = event;
+    reject(err);
+  }
+};
+
+// look into replacing subscribe
+buffer.subscribe(async (queryAddedEvents: QueryAddedEvent[]) => {
+  // no requests in the last REQUEST_INTERVAL ms
+  if (!queryAddedEvents.length) {
+    return;
+  }
+  try {
+    // merge the requests
+    const { mergedQuery, mergedVariables } = mergeQueryAddedEvents(
+      queryAddedEvents
+    );
+
+    // make the request
+    const mergedQueryResult = await gqlClient.request(
+      mergedQuery,
+      mergedVariables
+    );
+
+    //resolve the results
+    resolveMergedQueryResult(mergedQueryResult, queryAddedEvents);
+  } catch (e) {
+    rejectAllQueryAddedEventsWithError(queryAddedEvents, e);
   }
 });
-
-//
-// const bufferWithMinAndMaxTime
-
-// //
-// const bufferWithMaxItems
