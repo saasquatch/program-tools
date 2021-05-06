@@ -13,7 +13,7 @@ import combineQuery from "graphql-combine-query";
  * constants *
  *************/
 const MAX_REQUESTS = 10;
-const REQUEST_INTERVAL = 500; //ms
+const REQUEST_INTERVAL = 300; //ms
 
 const subject = new Subject();
 
@@ -78,18 +78,21 @@ buffer.subscribe(async (queryAddedEvents: QueryAddedEvent[]) => {
   if (!queryAddedEvents.length) {
     return;
   }
+  console.log("____QUERIES____", queryAddedEvents);
   try {
     // merge the requests
     const { mergedQuery, mergedVariables } = mergeQueryAddedEvents(
       queryAddedEvents
     );
 
+    console.log("____MERGED____", mergedQuery);
     // make the request
     const mergedQueryResult = await gqlClient.request(
       mergedQuery,
       mergedVariables
     );
 
+    console.log("____RESULT____", mergedQueryResult);
     //resolve the results
     resolveMergedQueryResult(mergedQueryResult, queryAddedEvents);
   } catch (e) {
@@ -106,16 +109,10 @@ const aliasFieldOrVariableFn = (name, id) => `${name}_${id}`;
 
 const removeAliasFromField = (field: string, id) => field.replace(`_${id}`, "");
 
-// const mergeGraphQLQueries = (queries: Query[]): Query => {
-//     queries.
-//     return
-// }
-
 const mergeQueryAddedEvents = (
   events: QueryAddedEvent[]
 ): MergedQueryAddedEvents => {
-  let mergedQueryBuilder = combineQuery("") as any;
-  let mergedQueryName = "";
+  let mergedQueryBuilder = combineQuery("MergedQuery") as any;
   let mergedQuery;
   let mergedVariables;
   for (const queryAddedEvent of events) {
@@ -131,26 +128,12 @@ const mergeQueryAddedEvents = (
       renameFn
     );
 
-    const operationNames = parsedQuery.definitions
-      .reduce((acc, def) => {
-        if (def && def.kind === "OperationDefinition" && def.name) {
-          acc.push(def.name);
-        }
-        return acc;
-      }, [])
-      .join("_");
-    mergedQueryName = mergedQueryName
-      ? `${mergedQueryName}_${operationNames}`
-      : mergedQueryName;
     mergedQuery = mergedQueryBuilder.document;
     mergedVariables = mergedQueryBuilder.variables || {};
   }
-  // replace operation name
-  mergedQuery.definitions.find((def) => {
-    if (def.kind === "OperationDefinition") def.name = mergedQueryName;
-  });
+
   mergedQuery = print(mergedQuery);
-  console.log(mergedQuery);
+
   return {
     mergedQuery,
     mergedVariables,
@@ -178,7 +161,7 @@ const resolveMergedQueryResult = (
       }
       return data;
     }, {});
-
+    console.log("____RESOLVED____", data);
     event.resolve(data);
   }
 };

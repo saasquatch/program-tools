@@ -1,25 +1,21 @@
 import { setImplementation } from "@saasquatch/universal-hooks";
 // use React testing lib until i implement async utils
 // which may or may not happen
-import {
-  act,
-  renderHook,
-  setTestImplementation,
-} from "@saasquatch/universal-hooks-testing-library";
-
+// import {
+//   act,
+//   renderHook,
+//   setTestImplementation,
+// } from "@saasquatch/universal-hooks-testing-library";
 import * as React from "react";
-import * as ReactTestLib from "@testing-library/react-hooks";
-
-// import * as haunted from "haunted";
-// import * as hauntedTestingLib from "@saasquatch/haunted-hooks-testing-library";
-
+// import * as ReactTestLib from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react-hooks";
 import { useQuery } from "../src/hooks/graphql/useQuery";
-import { gql, GraphQLClient } from "graphql-request";
+import { GraphQLClient } from "graphql-request";
+import { gql } from "graphql-request";
 import axios from "axios";
 
 import useGraphQLClient from "../src/hooks/graphql/useGraphQLClient";
 import { RequestDocument } from "graphql-request/dist/types";
-import { timeout } from "rxjs/operators";
 // jest.mock("../src/hooks/graphql/useGraphQLClient");
 // // @ts-ignore -- typescript doesn't know that Jest has mocked this function in the above `jest.mock` function
 // useGraphQLClient.mockImplementation(
@@ -29,9 +25,19 @@ import { timeout } from "rxjs/operators";
 //     )
 // );
 
-function runTestSuite() {
-  const QUERY_STAGING = gql`
-    query {
+setImplementation(React);
+
+describe("Mock Service Workers", () => {
+  const MOCK_TEST = gql`
+    query MockTest($name: String!) {
+      greeting(name: $name) {
+        message
+      }
+    }
+  `;
+
+  const TEST_QUERY = gql`
+    query GetUser {
       viewer {
         ... on User {
           id
@@ -44,85 +50,33 @@ function runTestSuite() {
       }
     }
   `;
-  describe("Hit staging with a batched request and see what we get!", () => {
-    test("Send a couple requests - should get batched", async () => {
-      function hook() {
-        return useQuery(QUERY_STAGING, {});
-      }
 
-      function hook2() {
-        return useQuery(QUERY_STAGING, {});
-      }
+  const EMPTY = gql`
+    query Empty {
+      empty
+    }
+  `;
 
-      let result: { current: ReturnType<typeof hook> };
-      let result2: { current: ReturnType<typeof hook> };
-      await act(async () => {
-        const rendered1 = renderHook(hook) as any;
-        // rendered1.rerender();
-        await rendered1.waitForNextUpdate();
-        await rendered1.waitForValueToChange(
-          () => rendered1.result.current.loading,
-          { timeout: 5000 }
-        );
-        result = rendered1.result;
+  // test("MockTest", async () => {
+  //   const variables = { name: "Robert" };
+  //   const resolvedData = { greeting: { message: "Hello, Robert!" } };
+  //   function hook() {
+  //     return useQuery(MOCK_TEST, variables);
+  //   }
 
-        // const rendered2 = renderHook(hook2) as any;
-        // await rendered2.waitForNextUpdate();
-        // // await rendered2.waitForValueToChange(
-        // //   () => rendered2.result.current.loading,
-        // //   { timeout: 5000 }
-        // // );
-        // result2 = rendered2.result;
-      });
-
-      // const recieved = await axios.get("/lastquery");
-      // expect(recieved.data.body).toStrictEqual({
-      //   query: QUERY_STAGING.toString(),
-      //   variables: {},
-      // });
-
-      expect(result.current.data).toStrictEqual({});
-      expect(result2.current.data).toStrictEqual({});
-    });
-  });
-
-  //____________v OLD TESTS v__________
-
-  // describe("Mock Service Workers", () => {
-  //   const MOCK_TEST = gql`
-  //     query MockTest($name: String!) {
-  //       greeting(name: $name) {
-  //         message
-  //       }
-  //     }
-  //   `;
-
-  //   const EMPTY = gql`
-  //     query Empty {
-  //       empty
-  //     }
-  //   `;
-
-  //   test("MockTest", async () => {
-  //     const variables = { name: "Robert" };
-  //     const resolvedData = { greeting: { message: "Hello, Robert!" } };
-
-  //     function hook() {
-  //       return useQuery(MOCK_TEST, variables);
-  //     }
-
-  //     let result: { current: ReturnType<typeof hook> };
-  //     await act(async () => {
-  //       const rendered = renderHook(hook);
-  //       await rendered.waitForNextUpdate();
-  //       await rendered.waitForValueToChange(
-  //         () => rendered.result.current.loading
-  //       );
-  //       result = rendered.result;
-  //     });
-
-  //     expect(result.current.data).toStrictEqual(resolvedData);
+  //   let result: { current: ReturnType<typeof hook> };
+  //   await act(async () => {
+  //     const rendered = renderHook(hook);
+  //     await rendered.waitForNextUpdate();
+  //     await rendered.waitForValueToChange(
+  //       () => rendered.result.current.loading
+  //     );
+  //     result = rendered.result;
   //   });
+
+  //   console.log(result.current.data);
+  //   expect(result.current.data).toStrictEqual(resolvedData);
+  // });
 
   //   test("Empty", async () => {
   //     const variables = {};
@@ -228,32 +182,45 @@ function runTestSuite() {
   //     });
   //   });
 
-  //   test("basic", async () => {
-  //     const query = ECHO;
-  //     const variables = { color: "green" };
-  //     const resolvedData = { echo: { color: "green" } };
+  test("basic", async () => {
+    const query = TEST_QUERY;
+    const variables = { color: "green" };
+    const resolvedData = {};
 
-  //     function hook() {
-  //       return useQuery(query, variables);
-  //     }
-  //     let result: { current: ReturnType<typeof hook> };
-  //     await act(async () => {
-  //       const rendered = renderHook(hook);
-  //       await rendered.waitForNextUpdate();
-  //       await rendered.waitForValueToChange(
-  //         () => rendered.result.current.loading
-  //       );
-  //       result = rendered.result;
-  //     });
+    function hook() {
+      return useQuery(query, {});
+    }
+    function hook2() {
+      return useQuery(query, {});
+    }
+    let result: { current: ReturnType<typeof hook> };
+    let result2: { current: ReturnType<typeof hook> };
+    await act(async () => {
+      const rendered = renderHook(hook);
+      const rendered2 = renderHook(hook2);
 
-  //     expect(result.current.data).toStrictEqual(resolvedData);
+      await rendered.waitForNextUpdate();
+      await rendered.waitForValueToChange(
+        () => rendered.result.current.loading
+      );
+      result = rendered.result;
 
-  //     const recieved = await axios.get("/lastquery");
-  //     expect(recieved.data.body).toStrictEqual({
-  //       query: query.toString(),
-  //       variables,
-  //     });
-  //   });
+      await rendered2.waitForNextUpdate();
+      await rendered2.waitForValueToChange(
+        () => rendered2.result.current.loading
+      );
+      result2 = rendered2.result;
+    });
+
+    expect(result.current.data).toStrictEqual(resolvedData);
+    expect(result2.current.data).toStrictEqual(resolvedData);
+
+    const recieved = await axios.get("/lastquery");
+    expect(recieved.data.body).toStrictEqual({
+      query: query.toString(),
+      variables,
+    });
+  });
 
   //   test("caches on identical query", async () => {
   //     const query = ECHO;
@@ -538,17 +505,4 @@ function runTestSuite() {
   //     expect(result.current.loading).toBe(false);
   //     expect(result.current.data).toStrictEqual(resolvedData);
   //   });
-  // });
-}
-
-describe("Hooks with React", () => {
-  setImplementation(React);
-  setTestImplementation(ReactTestLib);
-  runTestSuite();
 });
-
-// describe("Hooks with haunted", () => {
-//   setImplementation(haunted);
-//   setTestImplementation(hauntedTestingLib);
-//   runTestSuite();
-// });
