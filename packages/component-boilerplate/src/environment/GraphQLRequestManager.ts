@@ -9,6 +9,9 @@ import { print, parse, DocumentNode, getOperationAST } from "graphql";
 //TODO: replace this package with some util functions and remove.
 import combineQuery from "graphql-combine-query";
 
+/*************
+ * constants *
+ *************/
 const MAX_REQUESTS = 10;
 const REQUEST_INTERVAL = 500; //ms
 
@@ -24,6 +27,14 @@ const gqlClient = new GraphQLClient(
   }
 );
 
+/*************
+ *   types   *
+ *************/
+interface Query {
+  query: RequestDocument;
+  variables: { [key: string]: unknown };
+}
+
 interface QueryAddedEvent {
   query: RequestDocument;
   variables: { [key: string]: unknown };
@@ -38,31 +49,67 @@ interface MergedQueryAddedEvents {
   queryAddedEvents: QueryAddedEvent[];
 }
 
-const generateQueryAddedEventId = () => uuid().replace(/-/g, "");
-
-const aliasFieldOrVariableFn = (name, id) => `${name}_${id}`;
-
-const removeAliasFromField = (field: string, id) => field.replace(`_${id}`, "");
-
+/*************
+ *   main    *
+ *************/
 export function addQuery<T>(
   query: RequestDocument,
   variables: { [key: string]: unknown }
 ) {
   return new Promise<T>((resolve, reject) => {
-    const QueryAddedEvent: QueryAddedEvent = {
+    const queryAddedEvent: QueryAddedEvent = {
       query,
       variables,
       id: generateQueryAddedEventId(),
       resolve,
       reject,
     };
-    subject.next(QueryAddedEvent);
+    subject.next(queryAddedEvent);
   });
 }
 
 const buffer = subject.pipe(
   bufferTime(REQUEST_INTERVAL, undefined, MAX_REQUESTS)
 );
+
+// look into replacing subscribe
+buffer.subscribe(async (queryAddedEvents: QueryAddedEvent[]) => {
+  // no requests in the last REQUEST_INTERVAL ms
+  if (!queryAddedEvents.length) {
+    return;
+  }
+  try {
+    // merge the requests
+    const { mergedQuery, mergedVariables } = mergeQueryAddedEvents(
+      queryAddedEvents
+    );
+
+    // make the request
+    const mergedQueryResult = await gqlClient.request(
+      mergedQuery,
+      mergedVariables
+    );
+
+    //resolve the results
+    resolveMergedQueryResult(mergedQueryResult, queryAddedEvents);
+  } catch (e) {
+    rejectAllQueryAddedEventsWithError(queryAddedEvents, e);
+  }
+});
+
+/*************
+ *   utils   *
+ *************/
+const generateQueryAddedEventId = () => uuid().replace(/-/g, "");
+
+const aliasFieldOrVariableFn = (name, id) => `${name}_${id}`;
+
+const removeAliasFromField = (field: string, id) => field.replace(`_${id}`, "");
+
+// const mergeGraphQLQueries = (queries: Query[]): Query => {
+//     queries.
+//     return
+// }
 
 const mergeQueryAddedEvents = (
   events: QueryAddedEvent[]
@@ -115,6 +162,8 @@ const resolveMergedQueryResult = (
   mergedQueryResult: any,
   events: QueryAddedEvent[]
 ): void => {
+  //Todo: what to do if the query result is empty?
+  // resolveAllQueryAddedEventsWith(events, {}) ?
   const aliases = Object.keys(mergedQueryResult);
   for (const event of events) {
     //figure out what data we need
@@ -145,28 +194,3 @@ const rejectAllQueryAddedEventsWithError = (
     reject(err);
   }
 };
-
-// look into replacing subscribe
-buffer.subscribe(async (queryAddedEvents: QueryAddedEvent[]) => {
-  // no requests in the last REQUEST_INTERVAL ms
-  if (!queryAddedEvents.length) {
-    return;
-  }
-  try {
-    // merge the requests
-    const { mergedQuery, mergedVariables } = mergeQueryAddedEvents(
-      queryAddedEvents
-    );
-
-    // make the request
-    const mergedQueryResult = await gqlClient.request(
-      mergedQuery,
-      mergedVariables
-    );
-
-    //resolve the results
-    resolveMergedQueryResult(mergedQueryResult, queryAddedEvents);
-  } catch (e) {
-    rejectAllQueryAddedEventsWithError(queryAddedEvents, e);
-  }
-});
