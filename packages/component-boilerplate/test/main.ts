@@ -7,6 +7,8 @@ import { setImplementation } from "@saasquatch/universal-hooks";
 //   setTestImplementation,
 // } from "@saasquatch/universal-hooks-testing-library";
 import * as React from "react";
+import { useHost } from "../src/hooks/useHost";
+import { setUseHostImplementation } from "../src";
 // import * as ReactTestLib from "@testing-library/react-hooks";
 import { act, renderHook } from "@testing-library/react-hooks";
 import { useQuery } from "../src/hooks/graphql/useQuery";
@@ -26,6 +28,7 @@ import { RequestDocument } from "graphql-request/dist/types";
 // );
 
 setImplementation(React);
+setUseHostImplementation(useHost);
 
 describe("Mock Service Workers", () => {
   const MOCK_TEST = gql`

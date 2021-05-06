@@ -1,9 +1,5 @@
-import {
-  BaseQueryData,
-  GqlType,
-  QueryData,
-} from "./useBaseQuery";
-import { useBatchedQuery } from "./useBatchedQuery";
+import { BaseQueryData, GqlType, QueryData } from "./useBaseQuery";
+import { useBaseQuery } from "./useBaseQuery";
 
 const initialLazyQueryState: BaseQueryData = {
   loading: false,
@@ -14,7 +10,7 @@ const initialLazyQueryState: BaseQueryData = {
 export function useLazyQuery<T = any>(
   query: GqlType
 ): [(e: unknown) => unknown, QueryData<T>] {
-  const [state, update] = useBatchedQuery<T>(
+  const [state, update] = useBaseQuery<T>(
     query,
     initialLazyQueryState as BaseQueryData<T>
   );
@@ -24,7 +20,7 @@ export function useLazyQuery<T = any>(
     {
       ...state,
       // can override props when refetching for new pagination, offset, etc
-      refetch: (variables) => update(variables)
+      refetch: (variables) => update(variables),
     },
   ];
 }
