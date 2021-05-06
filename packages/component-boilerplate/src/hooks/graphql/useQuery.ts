@@ -1,11 +1,7 @@
 import { useDeepMemo } from "../useDeepMemo";
-import {
-  BaseQueryData,
-  GqlType,
-  QueryData,
-} from "./useBaseQuery";
+import { BaseQueryData, GqlType, QueryData } from "./useBaseQuery";
 import { useTick } from "../useTick";
-import { useBatchedQuery } from "./useBatchedQuery";
+import { useBaseQuery } from "./useBaseQuery";
 
 // from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
 function deepFreeze(object) {
@@ -35,7 +31,7 @@ export function useQuery<T = any>(
   query: GqlType,
   variables: unknown
 ): QueryData<T> {
-  const [state, update] = useBatchedQuery<T>(
+  const [state, update] = useBaseQuery<T>(
     query,
     initialQueryState as BaseQueryData<T>
   );
