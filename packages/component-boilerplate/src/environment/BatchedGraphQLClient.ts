@@ -143,7 +143,7 @@ const mergeQueryAddedEvents = (
         return acc;
       }
     },
-    combineQuery("MergedQuery")
+    combineQuery("BatchedQuery")
   ) as CombinedQueryBuilder;
 
   const mergedQuery = document && print(document);
