@@ -1,6 +1,6 @@
 //TODO: rename this file?
-import { Subject } from "rxjs";
-import { bufferTime } from "rxjs/operators";
+import { iif, Observable, Subject } from "rxjs";
+import { bufferTime, scan } from "rxjs/operators";
 import { v4 as uuid } from "uuid";
 import { RequestDocument } from "graphql-request/dist/types";
 import { GraphQLClient } from "graphql-request";
@@ -24,6 +24,8 @@ export class BatchedGraphQLClient extends GraphQLClient {
   constructor(url: string, opts?: any) {
     super(url, opts);
 
+    const unmergable = new Subject();
+    // const merged$ = new Observable();
     const buffer = this.subject.pipe(
       bufferTime(REQUEST_INTERVAL, undefined, MAX_REQUESTS)
     );
@@ -34,12 +36,19 @@ export class BatchedGraphQLClient extends GraphQLClient {
       if (!queryAddedEvents.length) {
         return;
       }
-      try {
-        // merge the requests
-        const { mergedQuery, mergedVariables } = mergeQueryAddedEvents(
-          queryAddedEvents
-        );
+      // merge the requests
+      const {
+        mergedQuery,
+        mergedVariables,
+        mergedQueryAddedEvents,
+        unmergedQueryAddedEvents,
+      } = mergeQueryAddedEvents(queryAddedEvents);
 
+      // push queries that failed to merge to a separate stream to be processed
+      for (const unmergedQuery of unmergedQueryAddedEvents)
+        unmergable.next(unmergedQuery);
+
+      try {
         // make the request
         const mergedQueryResult = await this.superRequest(
           mergedQuery,
@@ -47,13 +56,24 @@ export class BatchedGraphQLClient extends GraphQLClient {
         );
 
         //resolve the results
-        resolveMergedQueryResult(mergedQueryResult, queryAddedEvents);
+        resolveMergedQueryResult(mergedQueryResult, mergedQueryAddedEvents);
       } catch (e) {
-        rejectAllQueryAddedEventsWithError(queryAddedEvents, e);
+        rejectAllQueryAddedEventsWithError(mergedQueryAddedEvents, e);
+      }
+    });
+
+    //process unmergable requests as they come in
+    unmergable.subscribe(async (event: QueryAddedEvent) => {
+      try {
+        const { query, variables } = event;
+        const result = await this.superRequest(query, variables);
+        resolveSingleQueryResult(result, event);
+      } catch (e) {
+        rejectQueryAddedEventWithError(event, e);
       }
     });
   }
-  superRequest<T>(query, variables) {
+  superRequest<T>(query: RequestDocument, variables?: any) {
     return super.request(query, variables);
   }
   request<T>(query, variables) {
@@ -83,9 +103,10 @@ interface QueryAddedEvent {
 }
 
 interface MergedQueryAddedEvents {
-  mergedQuery: RequestDocument;
-  mergedVariables: { [key: string]: unknown };
-  queryAddedEvents: QueryAddedEvent[];
+  mergedQuery?: RequestDocument;
+  mergedVariables?: { [key: string]: unknown };
+  mergedQueryAddedEvents: QueryAddedEvent[];
+  unmergedQueryAddedEvents: QueryAddedEvent[];
 }
 
 /*************
@@ -100,26 +121,45 @@ const removeAliasFromField = (field: string, id) => field.replace(`_${id}`, "");
 const mergeQueryAddedEvents = (
   events: QueryAddedEvent[]
 ): MergedQueryAddedEvents => {
-  const { document: mergedQuery, variables: mergedVariables } = events.reduce(
+  const mergedQueryAddedEvents = [];
+  const unmergedQueryAddedEvents = [];
+  const { document, variables } = events.reduce(
     (
       acc: NewCombinedQueryBuilder | CombinedQueryBuilder,
       curr: QueryAddedEvent
-    ): CombinedQueryBuilder => {
+    ): NewCombinedQueryBuilder | CombinedQueryBuilder => {
       const { query, variables, id } = curr;
-      const parsedQuery: DocumentNode =
-        typeof query === "string" ? parse(query) : query;
+      try {
+        const parsedQuery: DocumentNode =
+          typeof query === "string" ? parse(query) : query;
 
-      const renameFn = (name) => aliasFieldOrVariableFn(name, id);
-      return acc.addN(parsedQuery, [variables], renameFn, renameFn);
+        const renameFn = (name) => aliasFieldOrVariableFn(name, id);
+        // if this fails, event will be added to unmergedQueryAddedEvents
+        acc = acc.addN(parsedQuery, [variables], renameFn, renameFn);
+        mergedQueryAddedEvents.push(curr);
+        return acc;
+      } catch (e) {
+        unmergedQueryAddedEvents.push(curr);
+        return acc;
+      }
     },
     combineQuery("MergedQuery")
   ) as CombinedQueryBuilder;
 
+  const mergedQuery = document && print(document);
+  const mergedVariables = variables;
+
   return {
-    mergedQuery: print(mergedQuery),
+    mergedQuery,
     mergedVariables,
-    queryAddedEvents: events,
+    mergedQueryAddedEvents,
+    unmergedQueryAddedEvents,
   };
+};
+
+const resolveSingleQueryResult = (queryResult: any, event: QueryAddedEvent) => {
+  const { resolve } = event;
+  resolve(queryResult);
 };
 
 const resolveMergedQueryResult = (
@@ -145,6 +185,14 @@ const resolveMergedQueryResult = (
 };
 
 // error handling
+
+const rejectQueryAddedEventWithError = (
+  event: QueryAddedEvent,
+  err: Error
+): void => {
+  const { reject } = event;
+  reject(err);
+};
 
 const rejectAllQueryAddedEventsWithError = (
   events: QueryAddedEvent[],
