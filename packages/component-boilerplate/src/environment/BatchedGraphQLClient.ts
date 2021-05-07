@@ -58,7 +58,7 @@ export class BatchedGraphQLClient extends GraphQLClient {
         //resolve the results
         resolveMergedQueryResult(mergedQueryResult, mergedQueryAddedEvents);
       } catch (e) {
-        rejectAllQueryAddedEventsWithError(queryAddedEvents, e);
+        rejectAllQueryAddedEventsWithError(mergedQueryAddedEvents, e);
       }
     });
 
