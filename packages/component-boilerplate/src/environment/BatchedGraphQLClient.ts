@@ -16,7 +16,7 @@ import combineQuery, {
  * constants *
  *************/
 const MAX_REQUESTS = 10;
-const REQUEST_INTERVAL = 300; //ms
+const REQUEST_INTERVAL = 200; //ms
 
 export class BatchedGraphQLClient extends GraphQLClient {
   subject = new Subject();
@@ -34,21 +34,18 @@ export class BatchedGraphQLClient extends GraphQLClient {
       if (!queryAddedEvents.length) {
         return;
       }
-      console.log("____QUERIES____", queryAddedEvents);
       try {
         // merge the requests
         const { mergedQuery, mergedVariables } = mergeQueryAddedEvents(
           queryAddedEvents
         );
 
-        console.log("____MERGED____", mergedQuery);
         // make the request
         const mergedQueryResult = await this.superRequest(
           mergedQuery,
           mergedVariables
         );
 
-        console.log("____RESULT____", mergedQueryResult);
         //resolve the results
         resolveMergedQueryResult(mergedQueryResult, queryAddedEvents);
       } catch (e) {
@@ -73,18 +70,6 @@ export class BatchedGraphQLClient extends GraphQLClient {
   }
 }
 
-// const subject = new Subject();
-
-// const gqlClient = new GraphQLClient(
-//   "https://staging.referralsaasquatch.com/api/v1/test_a8b41jotf8a1v/graphql",
-//   {
-//     headers: {
-//       Authorization:
-//         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImVuZ2xpc2hlZHdhcmQiLCJpZCI6ImVuZ2xpc2hlZHdhcmQifX0.EMWxwv_pkNFUV2Mmqd-FEctDD7a63ut1mhwXvwkj5V0",
-//     },
-//   }
-// );
-
 /*************
  *   types   *
  *************/
@@ -102,10 +87,6 @@ interface MergedQueryAddedEvents {
   mergedVariables: { [key: string]: unknown };
   queryAddedEvents: QueryAddedEvent[];
 }
-
-/*************
- *   main    *
- *************/
 
 /*************
  *   utils   *
@@ -159,7 +140,6 @@ const resolveMergedQueryResult = (
       }
       return data;
     }, {});
-    console.log("____RESOLVED____", data);
     event.resolve(data);
   }
 };
