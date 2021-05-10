@@ -87,7 +87,7 @@ describe("Mock Service Workers", () => {
   test("Loading", async () => {
     const hook = () => useQuery(EMPTY, {});
 
-    await axios.post("/lock");
+    // await axios.post("/lock");
 
     let result: { current: ReturnType<typeof hook> };
     let rerender: (props?: { q: RequestDocument; v: unknown }) => void;
@@ -109,9 +109,9 @@ describe("Mock Service Workers", () => {
     expect(result.current.loading).toBe(true);
     expect(result.current.data).toBeUndefined();
 
-    await act(async () => {
-      await axios.post("/unlock");
-    });
+    // await act(async () => {
+    //   await axios.post("/unlock");
+    // });
     console.log(2);
     await waitFor(() => !result.current.loading);
 
@@ -456,7 +456,7 @@ describe("useQuery", () => {
       return useQuery(query, variables);
     }
 
-    await axios.post("/lock");
+    // await axios.post("/lock");
 
     let result: { current: ReturnType<typeof hook> };
     let waitForNextUpdate: () => Promise<void>;
@@ -473,9 +473,9 @@ describe("useQuery", () => {
     expect(result.current.loading).toBe(true);
     expect(result.current.data).toBeUndefined();
 
-    await act(async () => {
-      await axios.post("/unlock");
-    });
+    // await act(async () => {
+    //   await axios.post("/unlock");
+    // });
     await waitFor(() => !result.current.loading);
 
     expect(result.current.loading).toBe(false);

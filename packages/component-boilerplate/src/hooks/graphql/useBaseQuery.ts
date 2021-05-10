@@ -1,5 +1,10 @@
 import { GraphQLClient } from "graphql-request";
-import { useCallback, useReducer } from "@saasquatch/universal-hooks";
+import {
+  useCallback,
+  useEffect,
+  useReducer,
+  useRef,
+} from "@saasquatch/universal-hooks";
 import useGraphQLClient from "./useGraphQLClient";
 import { RequestDocument } from "graphql-request/dist/types";
 
@@ -79,7 +84,7 @@ export function useBaseQuery<T = any>(
   initialState: BaseQueryData<T>
 ): [BaseQueryData<T>, (variables: unknown) => unknown] {
   const client: GraphQLClient = useGraphQLClient();
-
+  const isMountedRef = useIsMountedRef();
   const [state, dispatch] = useReducer<BaseQueryData<T>, Action<T>>(
     reducer,
     initialState
@@ -100,9 +105,10 @@ export function useBaseQuery<T = any>(
         dispatch({ type: "loading" });
         const res = await client.request(query, variables);
         if (res.errors) {
-          dispatch({ type: "errors", payload: res.errors });
+          if (isMountedRef.current)
+            dispatch({ type: "errors", payload: res.errors });
         } else {
-          dispatch({ type: "data", payload: res });
+          if (isMountedRef.current) dispatch({ type: "data", payload: res });
         }
       } catch (error) {
         dispatch({ type: "errors", payload: error });
@@ -110,5 +116,16 @@ export function useBaseQuery<T = any>(
     },
     [client, query, dispatch]
   );
+
   return [state, update];
+}
+
+// async cleanup
+function useIsMountedRef() {
+  const isMountedRef = useRef(null);
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => (isMountedRef.current = false);
+  });
+  return isMountedRef;
 }
