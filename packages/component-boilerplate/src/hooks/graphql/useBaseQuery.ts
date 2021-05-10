@@ -120,7 +120,7 @@ export function useBaseQuery<T = any>(
   return [state, update];
 }
 
-// async cleanup
+// async cleanup -- https://www.debuggr.io/react-update-unmounted-component/
 function useIsMountedRef() {
   const isMountedRef = useRef(null);
   useEffect(() => {
