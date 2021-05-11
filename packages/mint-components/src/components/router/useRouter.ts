@@ -28,10 +28,11 @@ export function useRouter() {
     const routes = host.querySelectorAll<HTMLElement & Route>(`sqm-route`);
     const routesArray = Array.from(routes);
     routesArray.forEach((route) => {
-      const x = document.createElement("template");
-      x.setAttribute("path", route.path);
-      x.innerHTML = route.innerHTML;
-      route.outerHTML = x.outerHTML;
+      const newTemplate = document.createElement("template");
+      newTemplate.setAttribute("path", route.path);
+      newTemplate.innerHTML = route.innerHTML;
+      route.parentNode.appendChild(newTemplate);
+      route.parentNode.removeChild(route);
     });
   }, []);
 
@@ -48,12 +49,12 @@ export function useRouter() {
     const templatesArray = Array.from(templates);
 
     const template = templatesArray.find((template) => {
-      //@ts-ignore - can't access attributes directly before template is rendered
+      //@ts-ignore
       const path = template.attributes?.path?.nodeValue;
       if (matchPath(path, page)?.length) return template;
     });
 
-    //@ts-ignore - can't access attributes directly before template is rendered
+    //@ts-ignore - can't access template attributes directly
     const templatePath = template?.attributes?.path?.nodeValue;
 
     debug({
