@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/mint-components",
-  "version": "1.0.0-59",
+  "version": "1.0.0-62",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
   "es2015": "dist/esm/index.js",
@@ -32,6 +32,7 @@
     "@formatjs/intl-pluralrules": "^1.5.8",
     "@formatjs/intl-relativetimeformat": "^4.5.15",
     "@formatjs/intl-utils": "^2.2.5",
+    "@lit/reactive-element": "^1.0.0-rc.2",
     "@rollup/plugin-alias": "^3.1.2",
     "@stencil/core": "^2.4.0",
     "@stencil/router": "^1.0.1",
@@ -43,7 +44,7 @@
     "clipboard": "^1.7.1",
     "cross-env": "^7.0.2",
     "docx": "^5.4.1",
-    "dom-context": "0.0.5",
+    "dom-context": "^1.2.0",
     "emotion": "^9.2.6",
     "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
@@ -55,9 +56,9 @@
     "workbox-build": "4.3.1"
   },
   "dependencies": {
-    "@saasquatch/component-boilerplate": "^1.0.1-12",
+    "@saasquatch/component-boilerplate": "^1.0.1-17",
     "@saasquatch/stencil-grapes-plugin": "^0.1.2",
-    "@saasquatch/stencil-hooks": "^2.0.0",
+    "@saasquatch/stencil-hooks": "^2.0.1-0",
     "@saasquatch/stencilbook": "0.0.1-beta6",
     "@saasquatch/universal-hooks": "^0.1.3",
     "@shoelace-style/shoelace": "^2.0.0-beta.32",

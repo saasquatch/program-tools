@@ -126,12 +126,10 @@ export function useBaseQuery<T = any>(
 function useIsMountedRef() {
   const isMountedRef = useRef(null);
   useEffect(() => {
-    console.log("MOUNTED")
     isMountedRef.current = true;
     return () => {
-      console.log("UNMOUNTED")
       isMountedRef.current = false;
-    }
+    };
   });
   return isMountedRef;
 }
