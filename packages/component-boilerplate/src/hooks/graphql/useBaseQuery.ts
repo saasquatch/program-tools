@@ -7,6 +7,7 @@ import {
 } from "@saasquatch/universal-hooks";
 import useGraphQLClient from "./useGraphQLClient";
 import { RequestDocument } from "graphql-request/dist/types";
+import { BatchedGraphQLClient } from "../../environment/BatchedGraphQLClient";
 
 export type GqlType = RequestDocument;
 
@@ -83,7 +84,7 @@ export function useBaseQuery<T = any>(
   query: GqlType,
   initialState: BaseQueryData<T>
 ): [BaseQueryData<T>, (variables: unknown) => unknown] {
-  const client: GraphQLClient = useGraphQLClient();
+  const client: BatchedGraphQLClient = useGraphQLClient();
   const isMountedRef = useIsMountedRef();
   const [state, dispatch] = useReducer<BaseQueryData<T>, Action<T>>(
     reducer,
@@ -103,13 +104,9 @@ export function useBaseQuery<T = any>(
       }
       try {
         dispatch({ type: "loading" });
-        const res = await client.request(query, variables);
-        if (res.errors) {
-          if (isMountedRef.current)
-            dispatch({ type: "errors", payload: res.errors });
-        } else {
-          if (isMountedRef.current) dispatch({ type: "data", payload: res });
-        }
+        const res = await client.request<T>(query, variables);
+
+        if (isMountedRef.current) dispatch({ type: "data", payload: res });
       } catch (error) {
         dispatch({ type: "errors", payload: error });
       }

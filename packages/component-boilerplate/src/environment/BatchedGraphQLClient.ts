@@ -60,6 +60,9 @@ export class BatchedGraphQLClient extends GraphQLClient {
         // So, there is possibly both data and errors here.
         if (e instanceof ClientError) {
           const { data, errors } = e.response;
+          if (!data) {
+            rejectAllQueryAddedEventsWithError(mergedQueryAddedEvents, e);
+          }
           const aliases = Object.keys(data);
           let eventsToResolve = [...mergedQueryAddedEvents];
           // reject all that errored:
@@ -83,7 +86,7 @@ export class BatchedGraphQLClient extends GraphQLClient {
                   1
                 )[0];
                 const { query, variables } = erroredEvent;
-
+                // rebuild error to be event specific
                 const errorResponse = { ...e.response };
                 errorResponse.error = [error];
                 const newError = new ClientError(errorResponse, {
@@ -118,40 +121,6 @@ export class BatchedGraphQLClient extends GraphQLClient {
     return super.request<T>(query, variables);
   }
 
-  // async superRequest<T = any>(
-  //   document: RequestDocument,
-  //   variables?: any
-  // ): Promise<T> {
-  //   let { headers, fetch: localFetch = crossFetch, ...others } = super.options;
-  //   const resolvedDoc = resolveRequestDocument(document);
-  //   const body = createRequestBody(resolvedDoc, variables);
-
-  //   const response = await localFetch(this.url, {
-  //     method: "POST",
-  //     headers: {
-  //       ...(typeof body === "string"
-  //         ? { "Content-Type": "application/json" }
-  //         : {}),
-  //       ...resolveHeaders(headers),
-  //     },
-  //     body,
-  //     ...others,
-  //   });
-
-  //   return await getResult(response);
-
-  //   // todo: move this logic to resolving logic
-  //   if (response.ok && !result.errors && result.data) {
-  //     return result.data;
-  //   } else {
-  //     const errorResult =
-  //       typeof result === "string" ? { error: result } : result;
-  //     throw new ClientError(
-  //       { ...errorResult, status: response.status, headers: response.headers },
-  //       { query: resolvedDoc, variables }
-  //     );
-  //   }
-  // }
   request<T>(query, variables) {
     return new Promise<T>((resolve, reject) => {
       const queryAddedEvent: QueryAddedEvent = {
@@ -241,9 +210,9 @@ const removeAliasesFromDataResult = (
   queryResult: any,
   event: QueryAddedEvent
 ) => {
+  if (!queryResult) return queryResult;
   const aliases = Object.keys(queryResult);
   const { id } = event;
-
   return aliases.reduce((data, key) => {
     if (key.endsWith(id)) {
       data = {
@@ -271,8 +240,6 @@ const resolveMergedQueryResult = (
     event.resolve(data);
   }
 };
-
-// error handling TODO: THIS NEED OVERHAUL - PROPER MAPPING NEEDS TO BE DONE
 
 const rejectQueryAddedEventWithError = (
   event: QueryAddedEvent,
