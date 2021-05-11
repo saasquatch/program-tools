@@ -104,11 +104,13 @@ export function useBaseQuery<T = any>(
       try {
         dispatch({ type: "loading" });
         const res = await client.request(query, variables);
+        while (!isMountedRef.current) {
+          await new Promise((resolve) => setTimeout(resolve, 200));
+        }
         if (res.errors) {
-          if (isMountedRef.current)
-            dispatch({ type: "errors", payload: res.errors });
+          dispatch({ type: "errors", payload: res.errors });
         } else {
-          if (isMountedRef.current) dispatch({ type: "data", payload: res });
+          dispatch({ type: "data", payload: res });
         }
       } catch (error) {
         dispatch({ type: "errors", payload: error });
@@ -124,8 +126,12 @@ export function useBaseQuery<T = any>(
 function useIsMountedRef() {
   const isMountedRef = useRef(null);
   useEffect(() => {
+    console.log("MOUNTED")
     isMountedRef.current = true;
-    return () => (isMountedRef.current = false);
+    return () => {
+      console.log("UNMOUNTED")
+      isMountedRef.current = false;
+    }
   });
   return isMountedRef;
 }

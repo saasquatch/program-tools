@@ -4,7 +4,7 @@ import { pathToRegexp } from "path-to-regexp";
 import debugFn from "debug";
 const debug = debugFn("sq:useRouter");
 
-type Route = {
+export type Route = {
   path: string;
 };
 
@@ -21,6 +21,19 @@ export function useRouter() {
   const [container, setContainer] = useState<HTMLDivElement>(undefined);
 
   const page = location.pathname;
+
+  // convert sqm-routes into templates
+  useEffect(() => {
+    const routes = document.querySelectorAll<HTMLElement & Route>(`sqm-route`);
+    const routesArray = Array.from(routes);
+    routesArray.forEach((route) => {
+      const x = document.createElement("template");
+      x.setAttribute("path", route.path);
+      x.innerHTML = route.innerHTML;
+      route.outerHTML = x.outerHTML;
+    });
+  }, []);
+
   useEffect(() => {
     if (!container || !slot) {
       debug("DOM not ready for navigation rendering on:", page);
@@ -39,20 +52,9 @@ export function useRouter() {
       if (matchPath(path, page)?.length) return template;
     });
 
-    // <sqm-route>
-    const routes = slot.querySelectorAll<HTMLElement & Route>(`sqm-route`);
-    const routesArray = Array.from(routes);
-
-    const route = routesArray.find((route) => {
-      if (matchPath(route.path, page)?.length) return route;
-    });
-
     let previousPath, currentPath;
 
-    if (route) {
-      previousPath = !!matchPath(route?.path, container.dataset.page);
-      currentPath = !!matchPath(route?.path, page);
-    } else if (template) {
+    if (template) {
       previousPath = !!matchPath(template?.path, container.dataset.page);
       currentPath = !!matchPath(template?.path, page);
     }
@@ -64,15 +66,22 @@ export function useRouter() {
       page,
     });
     // if no routes found, and the old route doesn't match the new route
-    if (!route && !template) {
+    if (
+      // !route &&
+      !template
+    ) {
       // No matching page, display nothing
-      debug("No matching page found for ", page, ", so only update container");
-      // container.innerHTML = "";
+      debug("No matching page found for ", page, ", so render nothing");
+      container.innerHTML = "";
       container.dataset.page = page;
       return;
     }
 
-    debug("Page updated to ", page, template, route);
+    debug(
+      "Page updated to ",
+      page,
+      template
+    );
 
     // if pathToRegexp results truthy or page is an exact match
     if ((previousPath && currentPath) || page === container.dataset.page) {
@@ -80,18 +89,7 @@ export function useRouter() {
       // Same page, do not re-render
       // Reduces dom mutations, speeds up page speed
     } else if (template) {
-      // const element = template.content.cloneNode(true);
       container.innerHTML = template.innerHTML;
-      container.dataset.page = page;
-      // container.appendChild(element);
-    } else if (route) {
-      if (container.firstElementChild) {
-        route.parentNode.appendChild(container.lastElementChild);
-        container.innerHTML = route.outerHTML;
-      } else {
-        container.appendChild(route);
-      }
-
       container.dataset.page = page;
     }
   }, [slot, container, page]);
