@@ -21,7 +21,7 @@
   "dependencies": {
     "jsonata": "^1.8.4",
     "jsonata-ui-core": "^1.7.12",
-    "jsonata-visual-editor": "^0.3.9",
+    "jsonata-visual-editor": "^0.3.10-1",
     "react-bootstrap": "^1.5.2",
     "react-select": "^1.3.0"
   },
