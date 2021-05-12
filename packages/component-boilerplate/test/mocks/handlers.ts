@@ -1,11 +1,3 @@
-import {
-  parse,
-  OperationDefinitionNode,
-  SelectionNode,
-  FragmentDefinitionNode,
-  FieldNode,
-  FragmentSpreadNode,
-} from "graphql";
 import { rest } from "msw";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { addMocksToSchema } from "@graphql-tools/mock";
@@ -76,18 +68,14 @@ export const handlers = [
           votes: Int
         }
 
-        type Echo {
-          color: String
-        }
         type Empty {
-          name: String
+          empty: String
         }
         
         # the schema allows the following query:
         type Query {
           post(id: ID!): Post
           posts: [Post]
-          echo(color: String): Echo
           empty: Empty
         }
         
@@ -106,92 +94,31 @@ export const handlers = [
         }
     `;
 
-      // Make a GraphQL schema with no resolvers
-      const schema = makeExecutableSchema({ typeDefs });
-
-      const mocks = {
-        Echo: (_, vars) => {
-          console.log("echo", vars);
-          return {
-            color: vars["color"],
-          };
+      const resolvers = {
+        Query: {
+          empty() {
+            return null;
+          },
         },
-        Empty: () => ({ empty: null }),
       };
+      // Make a GraphQL schema with no resolvers
+      const schema = makeExecutableSchema({ typeDefs, resolvers });
 
       // Create a new schema with mocks
       const schemaWithMocks = addMocksToSchema({
         schema,
-        mocks,
-        preserveResolvers: false,
+        preserveResolvers: true,
       });
-      //   resolvers: () => ({
-      //     Query: {
-      //       Empty: () => {
-      //         console.log("hello");
-      //         return {
-      //           empty: null,
-      //         };
-      //       },
-      //     },
-      //   }),
-      // } as any);
+
       const query = (req.body as any).query;
       const variables = (req.body as any).variables;
-      // const parsedQuery = parse(JSON.stringify(query));
-      // console.log("?");
 
       const response = await graphql({
         schema: schemaWithMocks,
         source: query,
         variableValues: variables,
       });
-      console.log(response);
-      // console.log(parsedQuery);
-      // const response = await (parsedQuery
-      //   .definitions[0] as OperationDefinitionNode).selectionSet.selections.reduce(
-      //   async (response: any, selection: FieldNode | FragmentSpreadNode) => {
-      //     const alias = (selection as any).alias.value;
-      //     const id = alias.split("_")[1];
-      //     switch (selection.name.value) {
-      //       case "greeting":
-      //         return {
-      //           ...response,
-      //           [alias]: {
-      //             message: `Hello, ${variables[`name_${id}`]}!`,
-      //           },
-      //         };
-      //       case "empty":
-      //         return {
-      //           ...response,
-      //           [alias]: null,
-      //         };
-      //       case "echo":
-      //         return {
-      //           ...response,
-      //           [alias]: Object.keys(variables).reduce(
-      //             (variables, aliasedVar) =>
-      //               aliasedVar.endsWith(id)
-      //                 ? {
-      //                     ...variables,
-      //                     [aliasedVar.replace(`_${id}`, "")]: variables[
-      //                       aliasedVar
-      //                     ],
-      //                   }
-      //                 : { ...variables },
-      //             {}
-      //           ),
-      //         };
-      //       default:
-      //         return await graphql({
-      //           schema: schemaWithMocks,
-      //           source: query,
-      //           variableValues: variables,
-      //         });
-      //     }
-      //   },
-      //   {}
-      // );
+
       prevReq = req;
       return res(ctx.json(response));
     }

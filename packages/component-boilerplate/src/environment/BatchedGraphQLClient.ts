@@ -59,9 +59,13 @@ export class BatchedGraphQLClient extends GraphQLClient {
       } catch (e) {
         // So, there is possibly both data and errors here.
         if (e instanceof ClientError) {
+          console.log(e);
           const { data, errors } = e.response;
           if (!data) {
-            rejectAllQueryAddedEventsWithError(mergedQueryAddedEvents, e);
+            return rejectAllQueryAddedEventsWithError(
+              mergedQueryAddedEvents,
+              e
+            );
           }
           const aliases = Object.keys(data);
           let eventsToResolve = [...mergedQueryAddedEvents];

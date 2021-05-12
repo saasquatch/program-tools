@@ -42,6 +42,15 @@ const MOCK_TEST_2 = gql`
     }
   }
 `;
+
+const EMPTY = gql`
+  query {
+    empty {
+      empty
+    }
+  }
+`;
+
 describe("Mock Service Workers", () => {
   test("MockTest", async () => {
     const variables = { id: 6 };
@@ -65,31 +74,29 @@ describe("Mock Service Workers", () => {
     expect(typeof result.current.data.post.title).toEqual("string");
   });
 
-  // test("Empty", async () => {
-  //   const variables = {};
-  //   const resolvedData = { empty: null };
+  test("Empty", async () => {
+    const variables = {};
+    const resolvedData = { empty: null };
 
-  //   function hook() {
-  //     return useQuery(EMPTY, variables);
-  //   }
+    function hook() {
+      return useQuery(EMPTY, variables);
+    }
 
-  //   let result: { current: ReturnType<typeof hook> };
-  //   await act(async () => {
-  //     const rendered = renderHook(hook);
-  //     await rendered.waitForNextUpdate();
-  //     await rendered.waitForValueToChange(
-  //       () => rendered.result.current.loading
-  //     );
-  //     result = rendered.result;
-  //   });
+    let result: { current: ReturnType<typeof hook> };
+    await act(async () => {
+      const rendered = renderHook(hook);
+      await rendered.waitForNextUpdate();
+      await rendered.waitForValueToChange(
+        () => rendered.result.current.loading
+      );
+      result = rendered.result;
+    });
 
-  //   expect(result.current.data).toStrictEqual(resolvedData);
-  // });
+    expect(result.current.data).toStrictEqual(resolvedData);
+  });
 
   test("Loading", async () => {
     const hook = () => useQuery(MOCK_TEST, { id: 4 });
-
-    // await axios.post("/lock");
 
     let result: { current: ReturnType<typeof hook> };
     let rerender: (props?: { q: RequestDocument; v: unknown }) => void;
@@ -111,9 +118,6 @@ describe("Mock Service Workers", () => {
     expect(result.current.loading).toBe(true);
     expect(result.current.data).toBeUndefined();
 
-    // await act(async () => {
-    //   await axios.post("/unlock");
-    // });
     await waitFor(() => !result.current.loading);
 
     expect(result.current.loading).toBe(false);
@@ -122,38 +126,26 @@ describe("Mock Service Workers", () => {
 });
 
 describe("useQuery", () => {
-  const EMPTY = gql`
-    query Empty {
-      empty
+  test("empty", async () => {
+    const query = EMPTY;
+    const variables = {};
+    const resolvedData = { empty: null };
+
+    function hook() {
+      return useQuery(query, variables);
     }
-  `;
+    let result: { current: ReturnType<typeof hook> };
+    await act(async () => {
+      const rendered = renderHook(hook);
+      await rendered.waitForNextUpdate();
+      await rendered.waitForValueToChange(
+        () => rendered.result.current.loading
+      );
+      result = rendered.result;
+    });
 
-  // test("empty", async () => {
-  //   const query = EMPTY;
-  //   const variables = {};
-  //   const resolvedData = { empty: null };
-
-  //   function hook() {
-  //     return useQuery(query, variables);
-  //   }
-  //   let result: { current: ReturnType<typeof hook> };
-  //   await act(async () => {
-  //     const rendered = renderHook(hook);
-  //     await rendered.waitForNextUpdate();
-  //     await rendered.waitForValueToChange(
-  //       () => rendered.result.current.loading
-  //     );
-  //     result = rendered.result;
-  //   });
-
-  //   expect(result.current.data).toStrictEqual(resolvedData);
-
-  //   // const recieved = await axios.get("/lastquery");
-  //   // expect(recieved.data.body).toStrictEqual({
-  //   //   query: query.toString(),
-  //   //   variables,
-  //   // });
-  // });
+    expect(result.current.data).toStrictEqual(resolvedData);
+  });
 
   test("basic", async () => {
     const query = MOCK_TEST;
@@ -291,7 +283,7 @@ describe("useQuery", () => {
     expect(result.current.data.post).toHaveProperty("title");
     expect(result.current.data.post).toHaveProperty("id");
     expect(typeof result.current.data.post.title).toEqual("string");
-    expect(result.current.data.post.id).toEqual("2");
+    expect(typeof result.current.data.post.id).toEqual("string");
 
     const recievedA = await axios.get("/lastquery");
 
@@ -306,318 +298,312 @@ describe("useQuery", () => {
     expect(result.current.data.post).toHaveProperty("title");
     expect(result.current.data.post).toHaveProperty("id");
     expect(typeof result.current.data.post.title).toEqual("string");
-    expect(result.current.data.post.id).toEqual("4");
+    expect(typeof result.current.data.post.id).toEqual("string");
 
     const recievedB = await axios.get("/lastquery");
 
     expect(recievedB.data.id).not.toBe(recievedA.data.id);
   });
 
-  //   test("cache miss on new query and variables", async () => {
-  //     const queryA = EMPTY;
-  //     const queryB = ECHO;
-  //     const variablesA = {};
-  //     const variablesB = { color: "Blue" };
-  //     const resolvedDataA = { empty: null };
-  //     const resolvedDataB = { echo: { color: "Blue" } };
+  test("cache miss on new query and variables", async () => {
+    const queryA = MOCK_TEST;
+    const queryB = MOCK_TEST_2;
+    const variablesA = { id: 6 };
+    const variablesB = { id: 8 };
 
-  //     function hook({ q, v }: { q: RequestDocument; v: unknown }) {
-  //       return useQuery(q, v);
-  //     }
-  //     let result: { current: ReturnType<typeof hook> };
-  //     let rerender: (props?: { q: RequestDocument; v: unknown }) => void;
-  //     let waitForNextUpdate: () => Promise<void>;
-  //     let waitForValueToChange: (selector: () => unknown) => Promise<void>;
-  //     await act(async () => {
-  //       const ret = renderHook(hook, {
-  //         initialProps: { q: queryA, v: variablesA },
-  //       });
-  //       ({ result, rerender, waitForNextUpdate, waitForValueToChange } = ret);
-  //       await waitForNextUpdate();
-  //       await waitForValueToChange(() => result.current.loading);
-  //     });
+    function hook({ q, v }: { q: RequestDocument; v: unknown }) {
+      return useQuery(q, v);
+    }
+    let result: { current: ReturnType<typeof hook> };
+    let rerender: (props?: { q: RequestDocument; v: unknown }) => void;
+    let waitForNextUpdate: () => Promise<void>;
+    let waitForValueToChange: (selector: () => unknown) => Promise<void>;
+    await act(async () => {
+      const ret = renderHook(hook, {
+        initialProps: { q: queryA, v: variablesA },
+      });
+      ({ result, rerender, waitForNextUpdate, waitForValueToChange } = ret);
+      await waitForNextUpdate();
+      await waitForValueToChange(() => result.current.loading);
+    });
 
-  //     expect(result.current.data).toStrictEqual(resolvedDataA);
+    expect(result.current.data).not.toEqual(undefined);
+    expect(result.current.data).toHaveProperty("post");
+    expect(result.current.data.post).toHaveProperty("title");
+    expect(typeof result.current.data.post.title).toEqual("string");
 
-  //     const recievedA = await axios.get("/lastquery");
-  //     // expect(recievedA.data.body).toStrictEqual({
-  //     //   query: queryA.toString(),
-  //     //   variables: variablesA,
-  //     // });
+    const recievedA = await axios.get("/lastquery");
 
-  //     await act(async () => {
-  //       rerender({ q: queryB, v: variablesB });
-  //       await waitForNextUpdate();
-  //       await waitForValueToChange(() => result.current.loading);
-  //     });
+    await act(async () => {
+      rerender({ q: queryB, v: variablesB });
+      await waitForNextUpdate();
+      await waitForValueToChange(() => result.current.loading);
+    });
 
-  //     expect(result.current.data).toStrictEqual(resolvedDataB);
+    expect(result.current.data).not.toEqual(undefined);
+    expect(result.current.data).toHaveProperty("post");
+    expect(result.current.data.post).toHaveProperty("title");
+    expect(result.current.data.post).toHaveProperty("id");
+    expect(typeof result.current.data.post.title).toEqual("string");
+    expect(typeof result.current.data.post.id).toEqual("string");
 
-  //     const recievedB = await axios.get("/lastquery");
-  //     // expect(recievedB.data.body).toStrictEqual({
-  //     //   query: queryB.toString(),
-  //     //   variables: variablesB,
-  //     // });
+    const recievedB = await axios.get("/lastquery");
 
-  //     expect(recievedB.data.id).not.toBe(recievedA.data.id);
-  //   });
+    expect(recievedB.data.id).not.toBe(recievedA.data.id);
+  });
 
-  //   test("cache only stores 1 entry", async () => {
-  //     const queryA = EMPTY;
-  //     const queryB = ECHO;
-  //     const variablesA = {};
-  //     const variablesB = { color: "Blue" };
-  //     const resolvedDataA = { empty: null };
-  //     const resolvedDataB = { echo: { color: "Blue" } };
+  test("cache only stores 1 entry", async () => {
+    const queryA = MOCK_TEST;
+    const queryB = MOCK_TEST_2;
+    const variablesA = { id: 6 };
+    const variablesB = { id: 8 };
 
-  //     function hook({ q, v }: { q: RequestDocument; v: unknown }) {
-  //       return useQuery(q, v);
-  //     }
-  //     let result: { current: ReturnType<typeof hook> };
-  //     let rerender: (props?: { q: RequestDocument; v: unknown }) => void;
-  //     let waitForNextUpdate: () => Promise<void>;
-  //     let waitForValueToChange: (selector: () => unknown) => Promise<void>;
-  //     await act(async () => {
-  //       const ret = renderHook(hook, {
-  //         initialProps: { q: queryA, v: variablesA },
-  //       });
-  //       ({ result, rerender, waitForNextUpdate, waitForValueToChange } = ret);
-  //       await waitForNextUpdate();
-  //       await waitForValueToChange(() => result.current.loading);
-  //     });
+    function hook({ q, v }: { q: RequestDocument; v: unknown }) {
+      return useQuery(q, v);
+    }
+    let result: { current: ReturnType<typeof hook> };
+    let rerender: (props?: { q: RequestDocument; v: unknown }) => void;
+    let waitForNextUpdate: () => Promise<void>;
+    let waitForValueToChange: (selector: () => unknown) => Promise<void>;
+    await act(async () => {
+      const ret = renderHook(hook, {
+        initialProps: { q: queryA, v: variablesA },
+      });
+      ({ result, rerender, waitForNextUpdate, waitForValueToChange } = ret);
+      await waitForNextUpdate();
+      await waitForValueToChange(() => result.current.loading);
+    });
 
-  //     expect(result.current.data).toStrictEqual(resolvedDataA);
+    expect(result.current.data).not.toEqual(undefined);
+    expect(result.current.data).toHaveProperty("post");
+    expect(result.current.data.post).toHaveProperty("title");
+    expect(typeof result.current.data.post.title).toEqual("string");
 
-  //     const recievedA = await axios.get("/lastquery");
-  //     // expect(recievedA.data.body).toStrictEqual({
-  //     //   query: queryA.toString(),
-  //     //   variables: variablesA,
-  //     // });
+    const recievedA = await axios.get("/lastquery");
 
-  //     await act(async () => {
-  //       rerender({ q: queryB, v: variablesB });
-  //       await waitForNextUpdate();
-  //       await waitForValueToChange(() => result.current.loading);
-  //     });
+    await act(async () => {
+      rerender({ q: queryB, v: variablesB });
+      await waitForNextUpdate();
+      await waitForValueToChange(() => result.current.loading);
+    });
 
-  //     expect(result.current.data).toStrictEqual(resolvedDataB);
+    expect(result.current.data).not.toEqual(undefined);
+    expect(result.current.data).toHaveProperty("post");
+    expect(result.current.data.post).toHaveProperty("title");
+    expect(result.current.data.post).toHaveProperty("id");
+    expect(typeof result.current.data.post.title).toEqual("string");
+    expect(typeof result.current.data.post.id).toEqual("string");
 
-  //     const recievedB = await axios.get("/lastquery");
-  //     // expect(recievedB.data.body).toStrictEqual({
-  //     //   query: queryB.toString(),
-  //     //   variables: variablesB,
-  //     // });
+    const recievedB = await axios.get("/lastquery");
 
-  //     expect(recievedB.data.id).not.toBe(recievedA.data.id);
+    expect(recievedB.data.id).not.toBe(recievedA.data.id);
 
-  //     await act(async () => {
-  //       rerender({ q: queryA, v: variablesA });
-  //       await waitForNextUpdate();
-  //       await waitForValueToChange(() => result.current.loading);
-  //     });
+    await act(async () => {
+      rerender({ q: queryA, v: variablesA });
+      await waitForNextUpdate();
+      await waitForValueToChange(() => result.current.loading);
+    });
 
-  //     expect(result.current.data).toStrictEqual(resolvedDataA);
+    expect(result.current.data).not.toEqual(undefined);
+    expect(result.current.data).toHaveProperty("post");
+    expect(result.current.data.post).toHaveProperty("title");
+    expect(typeof result.current.data.post.title).toEqual("string");
 
-  //     const recievedC = await axios.get("/lastquery");
-  //     // expect(recievedC.data.body).toStrictEqual({
-  //     //   query: queryA.toString(),
-  //     //   variables: variablesA,
-  //     // });
+    const recievedC = await axios.get("/lastquery");
 
-  //     expect(recievedC.data.id).not.toBe(recievedB.data.id);
-  //     expect(recievedC.data.id).not.toBe(recievedA.data.id);
-  //   });
+    expect(recievedC.data.id).not.toBe(recievedB.data.id);
+    expect(recievedC.data.id).not.toBe(recievedA.data.id);
+  });
 
-  //   test("loading while query hasn't returned", async () => {
-  //     const query = EMPTY;
-  //     const variables = {};
-  //     const resolvedData = { empty: null };
+  test("loading while query hasn't returned", async () => {
+    const query = MOCK_TEST;
+    const variables = { id: "test" };
+    const resolvedData = { empty: null };
 
-  //     function hook() {
-  //       return useQuery(query, variables);
-  //     }
+    function hook() {
+      return useQuery(query, variables);
+    }
 
-  //     // await axios.post("/lock");
+    let result: { current: ReturnType<typeof hook> };
+    let waitForNextUpdate: () => Promise<void>;
+    let waitFor: (
+      f: () => boolean | void,
+      opts?: { interval?: number; timeout?: number }
+    ) => Promise<void>;
+    await act(async () => {
+      const ret = renderHook(hook);
+      ({ result, waitForNextUpdate, waitFor } = ret);
+      await waitForNextUpdate();
+    });
 
-  //     let result: { current: ReturnType<typeof hook> };
-  //     let waitForNextUpdate: () => Promise<void>;
-  //     let waitFor: (
-  //       f: () => boolean | void,
-  //       opts?: { interval?: number; timeout?: number }
-  //     ) => Promise<void>;
-  //     await act(async () => {
-  //       const ret = renderHook(hook);
-  //       ({ result, waitForNextUpdate, waitFor } = ret);
-  //       await waitForNextUpdate();
-  //     });
+    expect(result.current.loading).toBe(true);
+    expect(result.current.data).toBeUndefined();
 
-  //     expect(result.current.loading).toBe(true);
-  //     expect(result.current.data).toBeUndefined();
+    await waitFor(() => !result.current.loading);
 
-  //     // await act(async () => {
-  //     //   await axios.post("/unlock");
-  //     // });
-  //     await waitFor(() => !result.current.loading);
+    expect(result.current.loading).toBe(false);
+    expect(result.current.data).not.toEqual(undefined);
+    expect(result.current.data).toHaveProperty("post");
+    expect(result.current.data.post).toHaveProperty("title");
+    expect(typeof result.current.data.post.title).toEqual("string");
+  });
 
-  //     expect(result.current.loading).toBe(false);
-  //     expect(result.current.data).toStrictEqual(resolvedData);
-  //   });
+  describe("query batching", () => {
+    test("basic batching", async () => {
+      const query = MOCK_TEST;
+      const variables = { id: 3 };
+      const query2 = MOCK_TEST_2;
+      const variables2 = { id: 4 };
+      function hook() {
+        return useQuery(query, variables);
+      }
+      function hook2() {
+        return useQuery(query2, variables2);
+      }
+      let result: { current: ReturnType<typeof hook> };
+      let result2: { current: ReturnType<typeof hook> };
+      await act(async () => {
+        const rendered = renderHook(hook);
+        const rendered2 = renderHook(hook2);
 
-  //   describe("query batching", () => {
-  //     test("basic batching", async () => {
-  //       const query = ECHO;
-  //       const variables = { colour: "aquamarine" };
-  //       const query2 = ECHO;
-  //       const variables2 = { colour: "blue" };
-  //       const resolvedData = { echo: { colour: "aquamarine" } };
-  //       const resolvedData2 = { echo: { colour: "blue" } };
-  //       function hook() {
-  //         return useQuery(query, variables);
-  //       }
-  //       function hook2() {
-  //         return useQuery(query2, variables2);
-  //       }
-  //       let result: { current: ReturnType<typeof hook> };
-  //       let result2: { current: ReturnType<typeof hook> };
-  //       await act(async () => {
-  //         const rendered = renderHook(hook);
-  //         const rendered2 = renderHook(hook2);
+        await rendered.waitForNextUpdate();
+        await rendered.waitForValueToChange(
+          () => rendered2.result.current.loading
+        );
+        result = rendered.result;
+        result2 = rendered2.result;
+      });
 
-  //         await rendered.waitForNextUpdate();
-  //         await rendered.waitForValueToChange(
-  //           () => rendered2.result.current.loading
-  //         );
-  //         result = rendered.result;
-  //         result2 = rendered2.result;
-  //       });
+      expect(result.current.data).not.toEqual(undefined);
+      expect(result.current.data).toHaveProperty("post");
+      expect(result.current.data.post).toHaveProperty("title");
+      expect(typeof result.current.data.post.title).toEqual("string");
 
-  //       expect(result.current.data).toStrictEqual(resolvedData);
-  //       expect(result2.current.data).toStrictEqual(resolvedData2);
+      expect(result2.current.data).not.toEqual(undefined);
+      expect(result2.current.data).toHaveProperty("post");
+      expect(result2.current.data.post).toHaveProperty("title");
+      expect(result2.current.data.post).toHaveProperty("id");
+      expect(typeof result2.current.data.post.title).toEqual("string");
+      expect(typeof result2.current.data.post.id).toEqual("string");
 
-  //       const recieved = await axios.get("/lastquery");
-  //       const body = recieved.data.body;
-  //       expect(Object.keys(body.variables).length).toEqual(2);
-  //       expect(
-  //         (parse(body.query).definitions[0] as OperationDefinitionNode)
-  //           .selectionSet.selections.length
-  //       ).toEqual(2);
-  //     });
+      const recieved = await axios.get("/lastquery");
+      const body = recieved.data.body;
+      expect(Object.keys(body.variables).length).toEqual(2);
+      expect(
+        (parse(body.query).definitions[0] as OperationDefinitionNode)
+          .selectionSet.selections.length
+      ).toEqual(2);
+    });
 
-  //     test("query can't be batched", async () => {
-  //       const query = ECHO;
-  //       const variables = { colour: "aquamarine" };
-  //       const query2 = gql`
-  //         query {
-  //           echo {
-  //             color
+    // test("query can't be batched", async () => {
+    //   const query = MOCK_TEST;
+    //   const query2 = gql`
+    //         query {
+    //           -
+    //         }
+    //       `;
+    //   function hook() {
+    //     return useQuery(query, {});
+    //   }
+    //   function hook2() {
+    //     return useQuery(query2, {});
+    //   }
+    //   let result: { current: ReturnType<typeof hook> };
+    //   let result2: { current: ReturnType<typeof hook> };
+    //   await act(async () => {
+    //     const rendered = renderHook(hook);
+    //     const rendered2 = renderHook(hook2);
 
-  //         }
-  //       `;
-  //       const variables2 = { colour: "blue" };
-  //       const resolvedData = { echo: { colour: "aquamarine" } };
-  //       const resolvedData2 = { echo: { colour: "blue" } };
-  //       function hook() {
-  //         return useQuery(query, variables);
-  //       }
-  //       function hook2() {
-  //         return useQuery(query2, variables2);
-  //       }
-  //       let result: { current: ReturnType<typeof hook> };
-  //       let result2: { current: ReturnType<typeof hook> };
-  //       await act(async () => {
-  //         const rendered = renderHook(hook);
-  //         const rendered2 = renderHook(hook2);
+    //     await rendered.waitForNextUpdate();
+    //     await rendered.waitForValueToChange(
+    //       () => rendered2.result.current.loading
+    //     );
+    //     result = rendered.result;
+    //     result2 = rendered2.result;
+    //   });
 
-  //         await rendered.waitForNextUpdate();
-  //         await rendered.waitForValueToChange(
-  //           () => rendered2.result.current.loading
-  //         );
-  //         result = rendered.result;
-  //         result2 = rendered2.result;
-  //       });
+    //   console.log(result.current.data);
+    //   console.log(result2.current.data);
 
-  //       expect(result.current.data).toStrictEqual(resolvedData);
-  //       expect(result2.current.data).toStrictEqual(resolvedData2);
+    //   const recieved = await axios.get("/lastquery");
+    //   const body = recieved.data.body;
+    //   expect(Object.keys(body.variables).length).toEqual(2);
+    //   expect(
+    //     (parse(body.query).definitions[0] as OperationDefinitionNode)
+    //       .selectionSet.selections.length
+    //   ).toEqual(2);
+    // });
 
-  //       const recieved = await axios.get("/lastquery");
-  //       const body = recieved.data.body;
-  //       expect(Object.keys(body.variables).length).toEqual(2);
-  //       expect(
-  //         (parse(body.query).definitions[0] as OperationDefinitionNode)
-  //           .selectionSet.selections.length
-  //       ).toEqual(2);
-  //     });
+    //     test("no data is returned", async () => {
+    //       // const query = ECHO;
+    //       // const variables = { colour: "aquamarine" };
+    //       // const query2 = ECHO;
+    //       // const variables2 = { colour: "blue" };
+    //       // const resolvedData = { echo: { colour: "aquamarine" } };
+    //       // const resolvedData2 = { echo: { colour: "blue" } };
+    //       // function hook() {
+    //       //   return useQuery(query, variables);
+    //       // }
+    //       // function hook2() {
+    //       //   return useQuery(query2, variables2);
+    //       // }
+    //       // let result: { current: ReturnType<typeof hook> };
+    //       // let result2: { current: ReturnType<typeof hook> };
+    //       // await act(async () => {
+    //       //   const rendered = renderHook(hook);
+    //       //   const rendered2 = renderHook(hook2);
+    //       //   await rendered.waitForNextUpdate();
+    //       //   await rendered.waitForValueToChange(
+    //       //     () => rendered2.result.current.loading
+    //       //   );
+    //       //   result = rendered.result;
+    //       //   result2 = rendered2.result;
+    //       // });
+    //       // expect(result.current.data).toStrictEqual(resolvedData);
+    //       // expect(result2.current.data).toStrictEqual(resolvedData2);
+    //       // const recieved = await axios.get("/lastquery");
+    //       // const body = recieved.data.body;
+    //       // expect(Object.keys(body.variables).length).toEqual(2);
+    //       // expect(
+    //       //   (parse(body.query).definitions[0] as OperationDefinitionNode).selectionSet
+    //       //     .selections.length
+    //       // ).toEqual(2);
+    //     });
 
-  //     test("no data is returned", async () => {
-  //       // const query = ECHO;
-  //       // const variables = { colour: "aquamarine" };
-  //       // const query2 = ECHO;
-  //       // const variables2 = { colour: "blue" };
-  //       // const resolvedData = { echo: { colour: "aquamarine" } };
-  //       // const resolvedData2 = { echo: { colour: "blue" } };
-  //       // function hook() {
-  //       //   return useQuery(query, variables);
-  //       // }
-  //       // function hook2() {
-  //       //   return useQuery(query2, variables2);
-  //       // }
-  //       // let result: { current: ReturnType<typeof hook> };
-  //       // let result2: { current: ReturnType<typeof hook> };
-  //       // await act(async () => {
-  //       //   const rendered = renderHook(hook);
-  //       //   const rendered2 = renderHook(hook2);
-  //       //   await rendered.waitForNextUpdate();
-  //       //   await rendered.waitForValueToChange(
-  //       //     () => rendered2.result.current.loading
-  //       //   );
-  //       //   result = rendered.result;
-  //       //   result2 = rendered2.result;
-  //       // });
-  //       // expect(result.current.data).toStrictEqual(resolvedData);
-  //       // expect(result2.current.data).toStrictEqual(resolvedData2);
-  //       // const recieved = await axios.get("/lastquery");
-  //       // const body = recieved.data.body;
-  //       // expect(Object.keys(body.variables).length).toEqual(2);
-  //       // expect(
-  //       //   (parse(body.query).definitions[0] as OperationDefinitionNode).selectionSet
-  //       //     .selections.length
-  //       // ).toEqual(2);
-  //     });
-
-  //     test("single query errors in batched query", async () => {
-  //       // const query = ECHO;
-  //       // const variables = { colour: "aquamarine" };
-  //       // const query2 = ECHO;
-  //       // const variables2 = { colour: "blue" };
-  //       // const resolvedData = { echo: { colour: "aquamarine" } };
-  //       // const resolvedData2 = { echo: { colour: "blue" } };
-  //       // function hook() {
-  //       //   return useQuery(query, variables);
-  //       // }
-  //       // function hook2() {
-  //       //   return useQuery(query2, variables2);
-  //       // }
-  //       // let result: { current: ReturnType<typeof hook> };
-  //       // let result2: { current: ReturnType<typeof hook> };
-  //       // await act(async () => {
-  //       //   const rendered = renderHook(hook);
-  //       //   const rendered2 = renderHook(hook2);
-  //       //   await rendered.waitForNextUpdate();
-  //       //   await rendered.waitForValueToChange(
-  //       //     () => rendered2.result.current.loading
-  //       //   );
-  //       //   result = rendered.result;
-  //       //   result2 = rendered2.result;
-  //       // });
-  //       // expect(result.current.data).toStrictEqual(resolvedData);
-  //       // expect(result2.current.data).toStrictEqual(resolvedData2);
-  //       // const recieved = await axios.get("/lastquery");
-  //       // const body = recieved.data.body;
-  //       // expect(Object.keys(body.variables).length).toEqual(2);
-  //       // expect(
-  //       //   (parse(body.query).definitions[0] as OperationDefinitionNode).selectionSet
-  //       //     .selections.length
-  //       // ).toEqual(2);
-  //     });
-  //   });
+    //     test("single query errors in batched query", async () => {
+    //       // const query = ECHO;
+    //       // const variables = { colour: "aquamarine" };
+    //       // const query2 = ECHO;
+    //       // const variables2 = { colour: "blue" };
+    //       // const resolvedData = { echo: { colour: "aquamarine" } };
+    //       // const resolvedData2 = { echo: { colour: "blue" } };
+    //       // function hook() {
+    //       //   return useQuery(query, variables);
+    //       // }
+    //       // function hook2() {
+    //       //   return useQuery(query2, variables2);
+    //       // }
+    //       // let result: { current: ReturnType<typeof hook> };
+    //       // let result2: { current: ReturnType<typeof hook> };
+    //       // await act(async () => {
+    //       //   const rendered = renderHook(hook);
+    //       //   const rendered2 = renderHook(hook2);
+    //       //   await rendered.waitForNextUpdate();
+    //       //   await rendered.waitForValueToChange(
+    //       //     () => rendered2.result.current.loading
+    //       //   );
+    //       //   result = rendered.result;
+    //       //   result2 = rendered2.result;
+    //       // });
+    //       // expect(result.current.data).toStrictEqual(resolvedData);
+    //       // expect(result2.current.data).toStrictEqual(resolvedData2);
+    //       // const recieved = await axios.get("/lastquery");
+    //       // const body = recieved.data.body;
+    //       // expect(Object.keys(body.variables).length).toEqual(2);
+    //       // expect(
+    //       //   (parse(body.query).definitions[0] as OperationDefinitionNode).selectionSet
+    //       //     .selections.length
+    //       // ).toEqual(2);
+    //     });
+  });
 });
