@@ -104,10 +104,7 @@ export function useBaseQuery<T = any>(
       try {
         dispatch({ type: "loading" });
         const res = await client.request<T>(query, variables);
-        while (!isMountedRef.current) {
-          await new Promise((resolve) => setTimeout(resolve, 200));
-        }
-
+        if (!isMountedRef.current) return;
         dispatch({ type: "data", payload: res });
       } catch (error) {
         dispatch({ type: "errors", payload: error });
