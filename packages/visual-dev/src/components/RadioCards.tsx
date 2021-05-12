@@ -12,7 +12,7 @@ interface DetailedRadiosWidgetProps {
       label: string;
       description: string;
       primaryInfo?: any;
-      name: string
+      name: string;
     }>;
     currentLink: string;
     currentCode: string;
@@ -59,8 +59,9 @@ const RadioCards: React.FC<DetailedRadiosWidgetProps> = (
       {props.options.radioOptions.map((option) => {
         const { key, primaryInfo, name, ...options } = option;
         const checked = props.value === key;
+        const cardProps = cardFormat ? { checked } : {};
         return (
-          <Card key={props.id + "_" + key} checked={checked}>
+          <Card key={props.id + "_" + key} {...cardProps}>
             <DetailedRadio
               checked={checked}
               onChange={props.onChange}
