@@ -1,4 +1,3 @@
-import { GraphQLClient } from "graphql-request";
 import {
   useCallback,
   useEffect,
@@ -105,8 +104,11 @@ export function useBaseQuery<T = any>(
       try {
         dispatch({ type: "loading" });
         const res = await client.request<T>(query, variables);
+        while (!isMountedRef.current) {
+          await new Promise((resolve) => setTimeout(resolve, 200));
+        }
 
-        if (isMountedRef.current) dispatch({ type: "data", payload: res });
+        dispatch({ type: "data", payload: res });
       } catch (error) {
         dispatch({ type: "errors", payload: error });
       }
@@ -122,7 +124,9 @@ function useIsMountedRef() {
   const isMountedRef = useRef(null);
   useEffect(() => {
     isMountedRef.current = true;
-    return () => (isMountedRef.current = false);
+    return () => {
+      isMountedRef.current = false;
+    };
   });
   return isMountedRef;
 }

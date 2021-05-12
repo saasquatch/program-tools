@@ -41,6 +41,7 @@ export class ShareLink {
   })
   tooltiplifespan: number = DEFAULT_TOOLTIP_LIFESPAN;
 
+
   constructor() {
     withHooks(this);
   }

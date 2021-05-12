@@ -104,10 +104,6 @@ type FormState = {
 export function useForm(props: UseFormProps) {
   const { formKey, formRef } = props;
 
-  const variables = {
-    key: formKey,
-  };
-
   const [getForm, { data, loading: loadingForm }] = useLazyQuery(GET_FORM);
   const [submit, submitData] = useMutation(SUBMIT_FORM);
   const [validate, validationData] = useLazyQuery(VALIDATE_FORM);
@@ -140,11 +136,6 @@ export function useForm(props: UseFormProps) {
     error,
     formData,
   } = formState;
-
-  // retrieve form schema and initial data
-  useEffect(() => {
-    getForm(variables);
-  }, []);
 
   useDeepMemo(() => {
     debug("submitData useEffect", submitData);
@@ -330,6 +321,7 @@ export function useForm(props: UseFormProps) {
       schema: data?.form?.schema,
     },
     callbacks: {
+      getForm,
       handleSubmit,
       validateForm,
       setFormState,

@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
     <title>Mint Components Stencilbook</title>
-
+<!-- 
     <script
       type="module"
       src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.27/dist/shoelace/shoelace.esm.js"
@@ -15,14 +15,14 @@
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.27/dist/shoelace/shoelace.css"
-    />
+    /> -->
 
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Nunito%20Sans"
     />
     <link rel="stylesheet" href="/build/mint-components.css" />
-    <script src="https://unpkg.com/@saasquatch/service-titan-components@1.0.0-70/dist/components-starter/components-starter.js"></script>
+    <script type="module" src="https://unpkg.com/@saasquatch/service-titan-components@1.0.0-86/dist/components-starter/components-starter.esm.js"></script>
     <script type="module" src="/build/mint-components.esm.js"></script>
     <script nomodule src="/build/mint-components.js"></script>
   </head>
@@ -348,5 +348,59 @@
         </sqm-route>
       </sqm-router>
     </sqm-popup-container>
+    
+    <!-- <sqm-router>
+      <sqm-route path="/">
+        <stn-wrapper-column>
+          <h2 class="Title">Refer Your Friends & Receive Rewards!</h2>
+          <stn-navigation-button
+            path="/refer/1"
+            button-text="Submit Your Referral Here!"
+          >
+          </stn-navigation-button>
+          <p class="Subtitle">or share your link with a friend</p>
+          <sqm-share-link> </sqm-share-link>
+          <stn-row space="even">
+            <sqm-big-stat stat-type="/referralsCount">
+              Referrals Submitted
+            </sqm-big-stat>
+            <sqm-big-stat stat-type="/rewardsAssigned/CREDIT/CASH/USD">
+              Total Rewards Earned
+            </sqm-big-stat>
+            <sqm-big-stat stat-type="/rewardsRedeemed/CREDIT/CASH/USD">
+              Rewards Paid
+            </sqm-big-stat>
+          </stn-row>
+        </stn-wrapper-column>
+      </sqm-route>
+      <sqm-route path="/refer/:page">
+        <stn-wrapper-column>
+          <stn-customer-lead-submit
+            page-one-path="/refer/1"
+            page-two-path="/refer/2"
+            home-path="/"
+            form-key="customer-lead-submit"
+          >
+          </stn-customer-lead-submit>
+          <stn-footer
+            showterms="true"
+            showpaymentinfo="true"
+            showsupport="true"
+            termstext="Terms and Conditions"
+            faqtext="FAQ"
+            paymentinfotext="View your Payment Information"
+            faq-path="/faq"
+            payment-info-path="/paymentInfo"
+          >
+            <p class="P SupportText">
+              For referral program support, contact
+              <a href="mailto:referrals@servicetitan.com" target="_blank">
+                referrals@servicetitan.com
+              </a>
+            </p>
+          </stn-footer>
+        </stn-wrapper-column>
+      </sqm-route>
+    </sqm-router> -->
   </body>
 </html>
