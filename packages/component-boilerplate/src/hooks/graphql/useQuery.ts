@@ -29,7 +29,8 @@ export const initialQueryState: BaseQueryData = {
 
 export function useQuery<T = any>(
   query: GqlType,
-  variables: unknown
+  variables: unknown,
+  skip?: boolean
 ): QueryData<T> {
   const [state, update] = useBaseQuery<T>(
     query,
@@ -39,7 +40,7 @@ export function useQuery<T = any>(
   const [tick, forceUpdate] = useTick();
 
   useDeepMemo(() => {
-    update(variables);
+    !skip && update(variables);
   }, [query, variables, update, tick]);
   return deepFreeze({
     ...state,
