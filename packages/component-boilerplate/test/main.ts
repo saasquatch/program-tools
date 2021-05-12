@@ -16,7 +16,13 @@ import axios from "axios";
 import useGraphQLClient from "../src/hooks/graphql/useGraphQLClient";
 import { RequestDocument } from "graphql-request/dist/types";
 import { BatchedGraphQLClient } from "../src/environment/BatchedGraphQLClient";
-import { OperationDefinitionNode, parse } from "graphql";
+import {
+  FragmentDefinitionNode,
+  FragmentSpreadNode,
+  OperationDefinitionNode,
+  parse,
+} from "graphql";
+
 jest.mock("../src/hooks/graphql/useGraphQLClient");
 const client = new BatchedGraphQLClient(
   "https://app.referralsaasquatch.com/api/v1/test_faketenant/graphql"
@@ -47,6 +53,22 @@ const EMPTY = gql`
   query {
     empty {
       empty
+    }
+  }
+`;
+
+const ERRORS = gql`
+  query {
+    willthrowerror {
+      valueyouwillnotget
+    }
+  }
+`;
+
+const ERRORS_VAR = gql`
+  query ErrorsWithVar($id: ID!) {
+    willthrowerrorvarreq(id: $id) {
+      valueyouwillnotget
     }
   }
 `;
@@ -495,115 +517,547 @@ describe("useQuery", () => {
       ).toEqual(2);
     });
 
-    // test("query can't be batched", async () => {
-    //   const query = MOCK_TEST;
-    //   const query2 = gql`
-    //         query {
-    //           -
-    //         }
-    //       `;
-    //   function hook() {
-    //     return useQuery(query, {});
-    //   }
-    //   function hook2() {
-    //     return useQuery(query2, {});
-    //   }
-    //   let result: { current: ReturnType<typeof hook> };
-    //   let result2: { current: ReturnType<typeof hook> };
-    //   await act(async () => {
-    //     const rendered = renderHook(hook);
-    //     const rendered2 = renderHook(hook2);
+    test("query can't be batched", async () => {
+      const query = MOCK_TEST;
+      const queryid = "aVerySpecificQueryID";
+      const query2 = gql`
+            query {
+              -
+            }
+          `;
+      const query2Vars = { test: 3 };
+      function hook() {
+        return useQuery(query, { id: queryid });
+      }
+      function hook2() {
+        return useQuery(query2, query2Vars);
+      }
+      let result: { current: ReturnType<typeof hook> };
+      let result2: { current: ReturnType<typeof hook> };
+      await act(async () => {
+        const rendered = renderHook(hook);
+        const rendered2 = renderHook(hook2);
 
-    //     await rendered.waitForNextUpdate();
-    //     await rendered.waitForValueToChange(
-    //       () => rendered2.result.current.loading
-    //     );
-    //     result = rendered.result;
-    //     result2 = rendered2.result;
-    //   });
+        await rendered.waitForNextUpdate();
+        await rendered.waitForValueToChange(
+          () => rendered2.result.current.loading
+        );
+        result = rendered.result;
+        result2 = rendered2.result;
+      });
 
-    //   console.log(result.current.data);
-    //   console.log(result2.current.data);
+      expect(result.current.data).not.toEqual(undefined);
+      expect(result.current.data).toHaveProperty("post");
+      expect(result.current.data.post).toHaveProperty("title");
+      expect(typeof result.current.data.post.title).toEqual("string");
 
-    //   const recieved = await axios.get("/lastquery");
-    //   const body = recieved.data.body;
-    //   expect(Object.keys(body.variables).length).toEqual(2);
-    //   expect(
-    //     (parse(body.query).definitions[0] as OperationDefinitionNode)
-    //       .selectionSet.selections.length
-    //   ).toEqual(2);
-    // });
+      expect(result2.current.data).toEqual(undefined);
+      expect(result2.current.errors).toBeDefined();
+      expect(result2.current.errors.response.errors.length).toEqual(1);
 
-    //     test("no data is returned", async () => {
-    //       // const query = ECHO;
-    //       // const variables = { colour: "aquamarine" };
-    //       // const query2 = ECHO;
-    //       // const variables2 = { colour: "blue" };
-    //       // const resolvedData = { echo: { colour: "aquamarine" } };
-    //       // const resolvedData2 = { echo: { colour: "blue" } };
-    //       // function hook() {
-    //       //   return useQuery(query, variables);
-    //       // }
-    //       // function hook2() {
-    //       //   return useQuery(query2, variables2);
-    //       // }
-    //       // let result: { current: ReturnType<typeof hook> };
-    //       // let result2: { current: ReturnType<typeof hook> };
-    //       // await act(async () => {
-    //       //   const rendered = renderHook(hook);
-    //       //   const rendered2 = renderHook(hook2);
-    //       //   await rendered.waitForNextUpdate();
-    //       //   await rendered.waitForValueToChange(
-    //       //     () => rendered2.result.current.loading
-    //       //   );
-    //       //   result = rendered.result;
-    //       //   result2 = rendered2.result;
-    //       // });
-    //       // expect(result.current.data).toStrictEqual(resolvedData);
-    //       // expect(result2.current.data).toStrictEqual(resolvedData2);
-    //       // const recieved = await axios.get("/lastquery");
-    //       // const body = recieved.data.body;
-    //       // expect(Object.keys(body.variables).length).toEqual(2);
-    //       // expect(
-    //       //   (parse(body.query).definitions[0] as OperationDefinitionNode).selectionSet
-    //       //     .selections.length
-    //       // ).toEqual(2);
-    //     });
+      const recieved = await axios.get("/lastquery?n=2");
+      const [res1, res2] = recieved.data;
+      // unbatchable query is sent by itself without batching
+      expect(res1.body.query).toEqual(query2);
+      expect(res1.body.variables).toStrictEqual(query2Vars);
 
-    //     test("single query errors in batched query", async () => {
-    //       // const query = ECHO;
-    //       // const variables = { colour: "aquamarine" };
-    //       // const query2 = ECHO;
-    //       // const variables2 = { colour: "blue" };
-    //       // const resolvedData = { echo: { colour: "aquamarine" } };
-    //       // const resolvedData2 = { echo: { colour: "blue" } };
-    //       // function hook() {
-    //       //   return useQuery(query, variables);
-    //       // }
-    //       // function hook2() {
-    //       //   return useQuery(query2, variables2);
-    //       // }
-    //       // let result: { current: ReturnType<typeof hook> };
-    //       // let result2: { current: ReturnType<typeof hook> };
-    //       // await act(async () => {
-    //       //   const rendered = renderHook(hook);
-    //       //   const rendered2 = renderHook(hook2);
-    //       //   await rendered.waitForNextUpdate();
-    //       //   await rendered.waitForValueToChange(
-    //       //     () => rendered2.result.current.loading
-    //       //   );
-    //       //   result = rendered.result;
-    //       //   result2 = rendered2.result;
-    //       // });
-    //       // expect(result.current.data).toStrictEqual(resolvedData);
-    //       // expect(result2.current.data).toStrictEqual(resolvedData2);
-    //       // const recieved = await axios.get("/lastquery");
-    //       // const body = recieved.data.body;
-    //       // expect(Object.keys(body.variables).length).toEqual(2);
-    //       // expect(
-    //       //   (parse(body.query).definitions[0] as OperationDefinitionNode).selectionSet
-    //       //     .selections.length
-    //       // ).toEqual(2);
-    //     });
+      //batched query only has one entry
+      expect(
+        (parse(res2.body.query).definitions[0] as OperationDefinitionNode)
+          .selectionSet.selections.length
+      ).toEqual(1);
+      expect(Object.values(res2.body.variables)[0]).toEqual(queryid);
+    });
+
+    test("batched queries errors", async () => {
+      const query = ERRORS;
+      const query2 = ERRORS;
+
+      function hook() {
+        return useQuery(query, {});
+      }
+      function hook2() {
+        return useQuery(query2, {});
+      }
+      let result: { current: ReturnType<typeof hook> };
+      let result2: { current: ReturnType<typeof hook> };
+      await act(async () => {
+        const rendered = renderHook(hook);
+        const rendered2 = renderHook(hook2);
+        await rendered.waitForNextUpdate();
+        await rendered.waitForValueToChange(
+          () => rendered2.result.current.loading
+        );
+        result = rendered.result;
+        result2 = rendered2.result;
+      });
+
+      expect(result.current.data).toEqual(undefined);
+      expect(result.current.errors.request.query).toEqual(query);
+      expect(result.current.errors).toBeDefined();
+      expect(result.current.errors.response.data).toStrictEqual({
+        willthrowerror: null,
+      });
+      expect(result.current.errors.response.errors[0].message).toEqual(
+        "Intentional Testing Error"
+      );
+      expect(result.current.errors.response.errors.length).toEqual(1);
+
+      expect(result2.current.data).toEqual(undefined);
+      expect(result2.current.errors.request.query).toEqual(query2);
+      expect(result2.current.errors).toBeDefined();
+      expect(result2.current.errors.response.data).toStrictEqual({
+        willthrowerror: null,
+      });
+      expect(result2.current.errors.response.errors[0].message).toEqual(
+        "Intentional Testing Error"
+      );
+      expect(result2.current.errors.response.errors.length).toEqual(1);
+
+      const recieved = await axios.get("/lastquery");
+      const body = recieved.data.body;
+      // query still should have been batched properly
+      expect(
+        (parse(body.query).definitions[0] as OperationDefinitionNode)
+          .selectionSet.selections.length
+      ).toEqual(2);
+    });
+
+    test("batched query with variables errors", async () => {
+      const query = ERRORS_VAR;
+      const vars = { id: "qwe" };
+      const query2 = ERRORS_VAR;
+      const vars2 = { id: "oiu" };
+
+      function hook() {
+        return useQuery(query, vars);
+      }
+      function hook2() {
+        return useQuery(query2, vars2);
+      }
+      let result: { current: ReturnType<typeof hook> };
+      let result2: { current: ReturnType<typeof hook> };
+      await act(async () => {
+        const rendered = renderHook(hook);
+        const rendered2 = renderHook(hook2);
+        await rendered.waitForNextUpdate();
+        await rendered.waitForValueToChange(
+          () => rendered2.result.current.loading
+        );
+        result = rendered.result;
+        result2 = rendered2.result;
+      });
+
+      expect(result.current.data).toEqual(undefined);
+      expect(result.current.errors.request.query).toEqual(query);
+      expect(result.current.errors.request.variables).toStrictEqual(vars);
+      expect(result.current.errors).toBeDefined();
+      expect(result.current.errors.response.data).toStrictEqual({
+        willthrowerrorvarreq: null,
+      });
+      expect(result.current.errors.response.errors.length).toEqual(1);
+      expect(result.current.errors.response.errors[0].message).toEqual(
+        "Intentional Testing Error"
+      );
+
+      expect(result2.current.data).toEqual(undefined);
+      expect(result2.current.errors.request.query).toEqual(query2);
+      expect(result2.current.errors.request.variables).toStrictEqual(vars2);
+      expect(result2.current.errors).toBeDefined();
+      expect(result2.current.errors.response.data).toStrictEqual({
+        willthrowerrorvarreq: null,
+      });
+      expect(result2.current.errors.response.errors.length).toEqual(1);
+      expect(result2.current.errors.response.errors[0].message).toEqual(
+        "Intentional Testing Error"
+      );
+
+      const recieved = await axios.get("/lastquery");
+      const body = recieved.data.body;
+      // query still should have been batched properly
+      expect(
+        (parse(body.query).definitions[0] as OperationDefinitionNode)
+          .selectionSet.selections.length
+      ).toEqual(2);
+    });
+
+    test("single query errors in batched query", async () => {
+      const query = MOCK_TEST;
+      const variables = { id: 66 };
+      const query2 = ERRORS;
+
+      function hook() {
+        return useQuery(query, variables);
+      }
+      function hook2() {
+        return useQuery(query2, {});
+      }
+      let result: { current: ReturnType<typeof hook> };
+      let result2: { current: ReturnType<typeof hook> };
+      await act(async () => {
+        const rendered = renderHook(hook);
+        const rendered2 = renderHook(hook2);
+        await rendered.waitForNextUpdate();
+        await rendered.waitForValueToChange(
+          () => rendered2.result.current.loading
+        );
+        result = rendered.result;
+        result2 = rendered2.result;
+      });
+
+      expect(result.current.data).not.toEqual(undefined);
+      expect(result.current.data).toHaveProperty("post");
+      expect(result.current.data.post).toHaveProperty("title");
+      expect(typeof result.current.data.post.title).toEqual("string");
+      expect(result.current.errors).toEqual(undefined);
+
+      expect(result2.current.data).toEqual(undefined);
+      expect(result2.current.errors).toBeDefined();
+      expect(result2.current.errors.request.query).toEqual(query2);
+      expect(result2.current.errors.response.data).toStrictEqual({
+        willthrowerror: null,
+      });
+      expect(result2.current.errors.response.errors[0].message).toEqual(
+        "Intentional Testing Error"
+      );
+      expect(result2.current.errors.response.errors.length).toEqual(1);
+
+      const recieved = await axios.get("/lastquery");
+      const body = recieved.data.body;
+      // query still should have been batched properly
+      expect(
+        (parse(body.query).definitions[0] as OperationDefinitionNode)
+          .selectionSet.selections.length
+      ).toEqual(2);
+    });
+
+    test("batching with fragments", async () => {
+      const FRAGMENT_QUERY = gql`
+        fragment NameParts on Author {
+          firstName
+          lastName
+        }
+        query {
+          author {
+            ...NameParts
+          }
+        }
+      `;
+      const query = MOCK_TEST;
+      const variables = { id: 3 };
+      const query2 = FRAGMENT_QUERY;
+      const variables2 = {};
+      function hook() {
+        return useQuery(query, variables);
+      }
+      function hook2() {
+        return useQuery(query2, variables2);
+      }
+      let result: { current: ReturnType<typeof hook> };
+      let result2: { current: ReturnType<typeof hook> };
+      await act(async () => {
+        const rendered = renderHook(hook);
+        const rendered2 = renderHook(hook2);
+
+        await rendered.waitForNextUpdate();
+        await rendered.waitForValueToChange(
+          () => rendered2.result.current.loading
+        );
+        result = rendered.result;
+        result2 = rendered2.result;
+      });
+
+      expect(result.current.data).not.toEqual(undefined);
+      expect(result.current.data).toHaveProperty("post");
+      expect(result.current.data.post).toHaveProperty("title");
+      expect(typeof result.current.data.post.title).toEqual("string");
+
+      expect(result2.current.data).not.toEqual(undefined);
+      expect(result2.current.data).toHaveProperty("author");
+      expect(result2.current.data.author).toHaveProperty("firstName");
+      expect(result2.current.data.author).toHaveProperty("lastName");
+      expect(typeof result2.current.data.author.firstName).toEqual("string");
+      expect(typeof result2.current.data.author.lastName).toEqual("string");
+
+      const recieved = await axios.get("/lastquery");
+      const body = recieved.data.body;
+      expect(Object.keys(body.variables).length).toEqual(1);
+
+      const fragmentDefinition = parse(body.query).definitions.find(
+        (op: OperationDefinitionNode | FragmentDefinitionNode) => {
+          return op.kind === "FragmentDefinition";
+        }
+      ) as FragmentDefinitionNode;
+      const operationDefinition = parse(body.query).definitions.find(
+        (op: OperationDefinitionNode | FragmentDefinitionNode) => {
+          return op.kind === "OperationDefinition";
+        }
+      ) as OperationDefinitionNode;
+      expect(fragmentDefinition).toBeDefined();
+      expect(operationDefinition).toBeDefined();
+      expect(operationDefinition.selectionSet.selections.length).toEqual(2);
+    });
+
+    test.skip("batching with multiple fragments with conflicting names", async () => {
+      const FRAGMENT_QUERY = gql`
+        fragment NameParts on Author {
+          firstName
+          lastName
+        }
+        query {
+          author {
+            ...NameParts
+          }
+        }
+      `;
+
+      const FRAGMENT_QUERY_2 = gql`
+        fragment NameParts on Author {
+          firstName
+        }
+        query {
+          author {
+            ...NameParts
+          }
+        }
+      `;
+      const query = FRAGMENT_QUERY;
+      const variables = {};
+      const query2 = FRAGMENT_QUERY_2;
+      const variables2 = {};
+      function hook() {
+        return useQuery(query, variables);
+      }
+      function hook2() {
+        return useQuery(query2, variables2);
+      }
+      let result: { current: ReturnType<typeof hook> };
+      let result2: { current: ReturnType<typeof hook> };
+      await act(async () => {
+        const rendered = renderHook(hook);
+        const rendered2 = renderHook(hook2);
+
+        await rendered.waitForNextUpdate();
+        await rendered.waitForValueToChange(
+          () => rendered2.result.current.loading
+        );
+        result = rendered.result;
+        result2 = rendered2.result;
+      });
+
+      const recieved = await axios.get("/lastquery");
+      const body = recieved.data.body;
+
+      // broken -- only first NameParts fragment is seen
+      console.log("REQUEST", recieved.data.body);
+      console.log("result1 data", result.current.data);
+      console.log("result1 errors", result.current.errors);
+      console.log("result2 data", result2.current.data);
+      console.log("result2 errors", result2.current.errors);
+
+      expect(result.current.data).not.toEqual(undefined);
+      expect(result.current.data).toHaveProperty("author");
+      expect(result.current.data.author).toHaveProperty("firstName");
+      expect(result.current.data.author).toHaveProperty("lastName");
+      expect(typeof result.current.data.author.firstName).toEqual("string");
+      expect(typeof result.current.data.author.lastName).toEqual("string");
+
+      expect(result2.current.data).not.toEqual(undefined);
+      expect(result2.current.data).toHaveProperty("author");
+      expect(result2.current.data.author).toHaveProperty("firstName");
+      expect(result2.current.data.author).not.toHaveProperty("lastName");
+      expect(typeof result2.current.data.author.firstName).toEqual("string");
+
+      const fragmentDefinition = parse(body.query).definitions.find(
+        (op: OperationDefinitionNode | FragmentDefinitionNode) => {
+          return op.kind === "FragmentDefinition";
+        }
+      ) as FragmentDefinitionNode;
+      const operationDefinition = parse(body.query).definitions.find(
+        (op: OperationDefinitionNode | FragmentDefinitionNode) => {
+          return op.kind === "OperationDefinition";
+        }
+      ) as OperationDefinitionNode;
+      expect(fragmentDefinition).toBeDefined();
+      expect(operationDefinition).toBeDefined();
+      expect(operationDefinition.selectionSet.selections.length).toEqual(2);
+    });
+
+    test("batching with mutation", async () => {
+      const query = MOCK_TEST;
+      const variables = { id: 33333 };
+      const query2 = gql`
+        mutation UpvotePost($postId: ID!) {
+          upvotePost(postId: $postId) {
+            title
+            votes
+          }
+        }
+      `;
+      const variables2 = { postId: 4 };
+      function hook() {
+        return useQuery(query, variables);
+      }
+      function hook2() {
+        return useQuery(query2, variables2);
+      }
+      let result: { current: ReturnType<typeof hook> };
+      let result2: { current: ReturnType<typeof hook> };
+      await act(async () => {
+        const rendered = renderHook(hook);
+        const rendered2 = renderHook(hook2);
+
+        await rendered.waitForNextUpdate();
+        await rendered.waitForValueToChange(
+          () => rendered2.result.current.loading
+        );
+        result = rendered.result;
+        result2 = rendered2.result;
+      });
+
+      expect(result.current.data).not.toEqual(undefined);
+      expect(result.current.data).toHaveProperty("post");
+      expect(result.current.data.post).toHaveProperty("title");
+      expect(typeof result.current.data.post.title).toEqual("string");
+
+      expect(result2.current.data).not.toEqual(undefined);
+      expect(result2.current.data).toHaveProperty("upvotePost");
+      expect(result2.current.data.upvotePost).toHaveProperty("title");
+      expect(result2.current.data.upvotePost).toHaveProperty("votes");
+      expect(typeof result2.current.data.upvotePost.title).toEqual("string");
+      expect(typeof result2.current.data.upvotePost.votes).toEqual("number");
+
+      const recieved = await axios.get("/lastquery?n=2");
+      const [res1, res2] = recieved.data;
+      // unbatchable query is sent by itself without batching
+      expect(res1.body.query).toEqual(query2);
+      expect(res1.body.variables).toStrictEqual(variables2);
+
+      //batched query only has one entry
+      expect(
+        (parse(res2.body.query).definitions[0] as OperationDefinitionNode)
+          .selectionSet.selections.length
+      ).toEqual(1);
+      expect(Object.values(res2.body.variables)[0]).toEqual(33333);
+    });
+
+    test.skip("batching with nested directive", async () => {
+      const query = gql`
+        query Conditional($id: ID!, $condition: Boolean!) {
+          post(id: $id) {
+            title @include(if: $condition)
+          }
+        }
+      `;
+      const variables = { condition: true, id: 3 };
+      const variables2 = { condition: false, id: 4 };
+      function hook() {
+        return useQuery(query, variables);
+      }
+      function hook2() {
+        return useQuery(query, variables2);
+      }
+      let result: { current: ReturnType<typeof hook> };
+      let result2: { current: ReturnType<typeof hook> };
+      await act(async () => {
+        const rendered = renderHook(hook);
+        const rendered2 = renderHook(hook2);
+
+        await rendered.waitForNextUpdate();
+        await rendered.waitForValueToChange(
+          () => rendered2.result.current.loading
+        );
+        result = rendered.result;
+        result2 = rendered2.result;
+      });
+
+      const recieved = await axios.get("/lastquery");
+      // currently broken -- variable in directive not aliased
+      console.log("REQUEST", recieved.data.body);
+      console.log("result1 data", result.current.data);
+      console.log("result1 errors", result.current.errors);
+      console.log("result2 data", result2.current.data);
+      console.log("result2 errors", result2.current.errors);
+      expect(result.current.data).not.toEqual(undefined);
+      expect(result.current.data).toHaveProperty("post");
+      expect(result.current.data.post).toHaveProperty("title");
+      expect(typeof result.current.data.post.title).toEqual("string");
+
+      expect(result2.current.data).not.toEqual(undefined);
+
+      expect(result2.current.data).not.toEqual(undefined);
+      expect(result2.current.data).toHaveProperty("post");
+      expect(result2.current.data.post).not.toHaveProperty("title");
+
+      // const [res1, res2] = recieved.data;
+      // // unbatchable query is sent by itself without batching
+      // expect(res1.body.query).toEqual(query);
+      // expect(res1.body.variables).toStrictEqual(variables2);
+
+      // //batched query only has one entry
+      // expect(
+      //   (parse(res2.body.query).definitions[0] as OperationDefinitionNode)
+      //     .selectionSet.selections.length
+      // ).toEqual(1);
+      // expect(Object.values(res2.body.variables)[0]).toEqual(33333);
+    });
+
+    test.skip("batching with top level directive", async () => {
+      const query = gql`
+        query Conditional($id: ID!, $condition: Boolean!)
+        @include(if: $condition) {
+          post(id: $id) {
+            title
+          }
+        }
+      `;
+      const variables = { condition: true, id: 3 };
+      const variables2 = { condition: false, id: 4 };
+      function hook() {
+        return useQuery(query, variables);
+      }
+      function hook2() {
+        return useQuery(query, variables2);
+      }
+      let result: { current: ReturnType<typeof hook> };
+      let result2: { current: ReturnType<typeof hook> };
+      await act(async () => {
+        const rendered = renderHook(hook);
+        const rendered2 = renderHook(hook2);
+
+        await rendered.waitForNextUpdate();
+        await rendered.waitForValueToChange(
+          () => rendered2.result.current.loading
+        );
+        result = rendered.result;
+        result2 = rendered2.result;
+      });
+
+      const recieved = await axios.get("/lastquery");
+      // currently broken -- directives are merged on same query
+      console.log("REQUEST", recieved.data.body);
+      console.log("result1 data", result.current.data);
+      console.log("result1 errors", result.current.errors);
+      console.log("result2 data", result2.current.data);
+      console.log("result2 errors", result2.current.errors);
+      expect(result.current.data).not.toEqual(undefined);
+      expect(result.current.data).toHaveProperty("post");
+      expect(result.current.data.post).toHaveProperty("title");
+      expect(typeof result.current.data.post.title).toEqual("string");
+
+      expect(result2.current.data).toEqual(undefined);
+
+      // const [res1, res2] = recieved.data;
+      // // unbatchable query is sent by itself without batching
+      // expect(res1.body.query).toEqual(query);
+      // expect(res1.body.variables).toStrictEqual(variables2);
+
+      // //batched query only has one entry
+      // expect(
+      //   (parse(res2.body.query).definitions[0] as OperationDefinitionNode)
+      //     .selectionSet.selections.length
+      // ).toEqual(1);
+      // expect(Object.values(res2.body.variables)[0]).toEqual(33333);
+    });
   });
 });

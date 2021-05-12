@@ -3,7 +3,7 @@ import { bufferTime } from "rxjs/operators";
 import { v4 as uuid } from "uuid";
 import { ClientError, RequestDocument } from "graphql-request/dist/types";
 import { GraphQLClient } from "graphql-request";
-import { print, parse, DocumentNode } from "graphql";
+import { print, parse, DocumentNode, GraphQLError } from "graphql";
 
 //TODO: replace this package with some util functions and remove.
 import combineQuery, {
@@ -53,13 +53,11 @@ export class BatchedGraphQLClient extends GraphQLClient {
           mergedQuery,
           mergedVariables
         );
-
         //resolve the results
         resolveMergedQueryResult(mergedQueryResult, mergedQueryAddedEvents);
       } catch (e) {
         // So, there is possibly both data and errors here.
         if (e instanceof ClientError) {
-          console.log(e);
           const { data, errors } = e.response;
           if (!data) {
             return rejectAllQueryAddedEventsWithError(
@@ -73,15 +71,13 @@ export class BatchedGraphQLClient extends GraphQLClient {
           for (const error of errors) {
             let erroredEvent: QueryAddedEvent;
             // todo: this needs testing, is path going to work??
-            error.path.find((key, index) => {
+            error.path.find((key, index, path) => {
               if (aliases.includes(key)) {
                 const erroredId = getIdFromAliasedField(key);
                 const indexOfErroredEvent = eventsToResolve.findIndex(
                   (event) => event.id === erroredId
                 );
                 if (indexOfErroredEvent === -1) return false;
-                // remove from data
-                delete data[key];
                 // remove from aliases
                 aliases.splice(index, 1);
                 // remove from events
@@ -89,10 +85,21 @@ export class BatchedGraphQLClient extends GraphQLClient {
                   indexOfErroredEvent,
                   1
                 )[0];
+                // rebuild data
+                const eventSpecificData = removeAliasesFromDataResult(
+                  e.response.data,
+                  erroredEvent
+                );
+                // fix path
+                path[index] = removeAliasFromField(path[index], erroredId);
                 const { query, variables } = erroredEvent;
                 // rebuild error to be event specific
-                const errorResponse = { ...e.response };
-                errorResponse.error = [error];
+                const errorResponse = {
+                  ...e.response,
+                  errors: [error],
+                  data: eventSpecificData,
+                  path,
+                };
                 const newError = new ClientError(errorResponse, {
                   query: typeof query !== "string" ? print(query) : query,
                   variables,
@@ -229,9 +236,8 @@ const removeAliasesFromDataResult = (
 };
 
 const resolveSingleQueryResult = (queryResult: any, event: QueryAddedEvent) => {
-  const data = removeAliasesFromDataResult(queryResult, event);
   const { resolve } = event;
-  resolve(data);
+  resolve(queryResult);
 };
 
 const resolveMergedQueryResult = (
@@ -249,9 +255,6 @@ const rejectQueryAddedEventWithError = (
   event: QueryAddedEvent,
   err: Error
 ): void => {
-  if (err instanceof ClientError) {
-    err.response.data = removeAliasesFromDataResult(err.response.data, event);
-  }
   const { reject } = event;
   reject(err);
 };
@@ -261,9 +264,6 @@ const rejectAllQueryAddedEventsWithError = (
   err: Error
 ): void => {
   for (const event of events) {
-    if (err instanceof ClientError) {
-      err.response.data = removeAliasesFromDataResult(err.response.data, event);
-    }
     const { reject } = event;
     reject(err);
   }

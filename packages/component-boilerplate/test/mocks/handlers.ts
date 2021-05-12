@@ -4,7 +4,7 @@ import { addMocksToSchema } from "@graphql-tools/mock";
 import { graphql } from "graphql";
 
 let prevReq: Object = {};
-
+let prevReqs: Object[] = [];
 const lock = {
   locked: false,
   unlock: null as null | (() => void),
@@ -25,6 +25,11 @@ async function maybeLock() {
 
 export const handlers = [
   rest.get("/lastquery", (req, res, ctx) => {
+    const count = req.url.searchParams.get("n");
+    if (count) {
+      const lastN = prevReqs.slice(-1 * Number(count));
+      return res(ctx.body(JSON.stringify(lastN)));
+    }
     return res(ctx.body(JSON.stringify(prevReq)));
   }),
 
@@ -71,12 +76,20 @@ export const handlers = [
         type Empty {
           empty: String
         }
+
+        type WillThrowError {
+          id: ID!
+          valueyouwillnotget: String
+        }
         
         # the schema allows the following query:
         type Query {
           post(id: ID!): Post
           posts: [Post]
+          author: Author
           empty: Empty
+          willthrowerror: WillThrowError
+          willthrowerrorvarreq(id: ID!): WillThrowError
         }
         
         # this schema allows the following mutation:
@@ -99,6 +112,12 @@ export const handlers = [
           empty() {
             return null;
           },
+          willthrowerror() {
+            throw new Error("Intentional Testing Error");
+          },
+          willthrowerrorvarreq() {
+            throw new Error("Intentional Testing Error");
+          },
         },
       };
       // Make a GraphQL schema with no resolvers
@@ -120,6 +139,8 @@ export const handlers = [
       });
 
       prevReq = req;
+      // with batching we need to look back at the previous few requests
+      prevReqs.push(req);
       return res(ctx.json(response));
     }
   ),
