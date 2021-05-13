@@ -41,7 +41,7 @@ export function useQuery<T = any>(
 
   useDeepMemo(() => {
     !skip && update(variables);
-  }, [query, variables, update, tick]);
+  }, [query, variables, update, tick, skip]);
   return deepFreeze({
     ...state,
     // can override props when refetching for new pagination, offset, etc

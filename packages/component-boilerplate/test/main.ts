@@ -192,6 +192,36 @@ describe("useQuery", () => {
     expect(typeof result.current.data.post.title).toEqual("string");
   });
 
+  test("skip query option", async () => {
+    const query = MOCK_TEST;
+    const variables = { id: 4 };
+    function hook({ skip }) {
+      return useQuery(query, variables, skip);
+    }
+    let result: { current: ReturnType<typeof hook> };
+    let rerender: (props?: { skip: boolean }) => void;
+    let waitForNextUpdate: () => Promise<void>;
+    await act(async () => {
+      ({ result, rerender, waitForNextUpdate } = renderHook(hook, {
+        initialProps: { skip: true },
+      }));
+      await waitForNextUpdate();
+    });
+
+    expect(result.current.loading).toBe(true);
+    expect(result.current.data).toBeUndefined();
+
+    await act(async () => {
+      await rerender({ skip: false });
+      await waitForNextUpdate();
+    });
+
+    expect(result.current.data).not.toEqual(undefined);
+    expect(result.current.data).toHaveProperty("post");
+    expect(result.current.data.post).toHaveProperty("title");
+    expect(typeof result.current.data.post.title).toEqual("string");
+  });
+
   test("caches on identical query", async () => {
     const query = MOCK_TEST;
     const variables = { id: 3 };
