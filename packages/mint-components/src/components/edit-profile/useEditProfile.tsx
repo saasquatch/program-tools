@@ -1,5 +1,5 @@
 import {
-  useLazyQuery,
+  useQuery,
   useMutation,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
@@ -83,13 +83,9 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
     error: string;
   }>(defaultFormState);
 
-  const [getUser, userDataResponse] = useLazyQuery(GET_USER);
+  const userDataResponse = useQuery(GET_USER, {}, !userIdent?.jwt);
 
   const [upsertUser, upsertUserResponse] = useMutation(UPSERT_USER);
-
-  useEffect(() => {
-    if (userIdent?.jwt) getUser({});
-  }, [userIdent?.jwt]);
 
   useEffect(() => {
     if (upsertUserResponse?.loading || !showEdit) return;
@@ -149,8 +145,11 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
         if (!formState.lastName) {
           errors["lastName"] = { message: "Field can't be empty" };
         }
-        if(errors !== {}){
-          setFormState((e) => ({ ...e, error: "Please correct the errors below to update your profile." }));
+        if (errors !== {}) {
+          setFormState((e) => ({
+            ...e,
+            error: "Please correct the errors below to update your profile.",
+          }));
         }
         setFormState((e) => ({ ...e, errors }));
       },
