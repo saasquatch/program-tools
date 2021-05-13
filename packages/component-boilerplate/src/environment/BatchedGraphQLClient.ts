@@ -5,7 +5,6 @@ import { ClientError, RequestDocument } from "graphql-request/dist/types";
 import { GraphQLClient } from "graphql-request";
 import { print, parse, DocumentNode, GraphQLError } from "graphql";
 
-//TODO: replace this package with some util functions and remove.
 import combineQuery, {
   CombinedQueryBuilder,
   NewCombinedQueryBuilder,
@@ -46,6 +45,11 @@ export class BatchedGraphQLClient extends GraphQLClient {
       // push queries that failed to merge to a separate stream to be processed
       for (const unmergedQuery of unmergedQueryAddedEvents)
         unmergable.next(unmergedQuery);
+
+      // If there are no merged queries, all were unmergeable and we can exit here
+      if (!mergedQueryAddedEvents.length) {
+        return;
+      }
 
       try {
         // make the request
@@ -192,6 +196,18 @@ const mergeQueryAddedEvents = (
       try {
         const parsedQuery: DocumentNode =
           typeof query === "string" ? parse(query) : query;
+        // if fragment exists, this request should be processed separately
+        const fragmentDefinition = parsedQuery.definitions.find(
+          (node) => node.kind === "FragmentDefinition"
+        );
+        // '@' is reserved for directives, and since both top level and nested directives are broken, we dont want any.
+        const queryStr = typeof query === "string" ? query : print(query);
+        const containsDirective = /@/.test(queryStr);
+
+        if (fragmentDefinition || containsDirective) {
+          unmergedQueryAddedEvents.push(curr);
+          return acc;
+        }
 
         const renameFn = (name) => aliasFieldOrVariableFn(name, id);
         // if this fails, event will be added to unmergedQueryAddedEvents

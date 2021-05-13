@@ -56,6 +56,11 @@ export const handlers = [
       await maybeLock();
       // Example taken from graphql-tools docs
       const typeDefs = `
+
+        directive @limit(
+          count: Int = 5
+        ) on QUERY
+
         type Author {
           id: ID! # the ! means that every author object _must_ have an id
           firstName: String

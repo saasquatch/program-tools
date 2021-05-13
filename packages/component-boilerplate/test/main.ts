@@ -744,7 +744,7 @@ describe("useQuery", () => {
         }
       `;
       const query = MOCK_TEST;
-      const variables = { id: 3 };
+      const variables = { id: "testMockId" };
       const query2 = FRAGMENT_QUERY;
       const variables2 = {};
       function hook() {
@@ -779,26 +779,21 @@ describe("useQuery", () => {
       expect(typeof result2.current.data.author.firstName).toEqual("string");
       expect(typeof result2.current.data.author.lastName).toEqual("string");
 
-      const recieved = await axios.get("/lastquery");
-      const body = recieved.data.body;
-      expect(Object.keys(body.variables).length).toEqual(1);
+      const recieved = await axios.get("/lastquery?n=2");
+      const [res1, res2] = recieved.data;
+      // unbatchable query is sent by itself without batching
+      expect(res1.body.query).toEqual(query2);
+      expect(res1.body.variables).toStrictEqual(variables2);
 
-      const fragmentDefinition = parse(body.query).definitions.find(
-        (op: OperationDefinitionNode | FragmentDefinitionNode) => {
-          return op.kind === "FragmentDefinition";
-        }
-      ) as FragmentDefinitionNode;
-      const operationDefinition = parse(body.query).definitions.find(
-        (op: OperationDefinitionNode | FragmentDefinitionNode) => {
-          return op.kind === "OperationDefinition";
-        }
-      ) as OperationDefinitionNode;
-      expect(fragmentDefinition).toBeDefined();
-      expect(operationDefinition).toBeDefined();
-      expect(operationDefinition.selectionSet.selections.length).toEqual(2);
+      //batched query only has one entry
+      expect(
+        (parse(res2.body.query).definitions[0] as OperationDefinitionNode)
+          .selectionSet.selections.length
+      ).toEqual(1);
+      expect(Object.values(res2.body.variables)[0]).toEqual("testMockId");
     });
 
-    test.skip("batching with multiple fragments with conflicting names", async () => {
+    test("batching with multiple fragments with conflicting names", async () => {
       const FRAGMENT_QUERY = gql`
         fragment NameParts on Author {
           firstName
@@ -845,16 +840,6 @@ describe("useQuery", () => {
         result2 = rendered2.result;
       });
 
-      const recieved = await axios.get("/lastquery");
-      const body = recieved.data.body;
-
-      // broken -- only first NameParts fragment is seen
-      console.log("REQUEST", recieved.data.body);
-      console.log("result1 data", result.current.data);
-      console.log("result1 errors", result.current.errors);
-      console.log("result2 data", result2.current.data);
-      console.log("result2 errors", result2.current.errors);
-
       expect(result.current.data).not.toEqual(undefined);
       expect(result.current.data).toHaveProperty("author");
       expect(result.current.data.author).toHaveProperty("firstName");
@@ -868,17 +853,72 @@ describe("useQuery", () => {
       expect(result2.current.data.author).not.toHaveProperty("lastName");
       expect(typeof result2.current.data.author.firstName).toEqual("string");
 
-      const fragmentDefinition = parse(body.query).definitions.find(
-        (op: OperationDefinitionNode | FragmentDefinitionNode) => {
-          return op.kind === "FragmentDefinition";
+      const recieved = await axios.get("/lastquery?n=2");
+      const [res1, res2] = recieved.data;
+      // unbatchable query is sent by itself without batching
+      expect(res1.body.query).toEqual(query);
+      expect(res1.body.variables).toStrictEqual(variables);
+
+      // unbatchable query is sent by itself without batching
+      expect(res2.body.query).toEqual(query2);
+      expect(res2.body.variables).toStrictEqual(variables2);
+    });
+
+    test("batching with inline fragments", async () => {
+      const FRAGMENT_QUERY = gql`
+        query {
+          author {
+            ... on Author {
+              firstName
+              lastName
+            }
+          }
         }
-      ) as FragmentDefinitionNode;
+      `;
+      const query = FRAGMENT_QUERY;
+      const variables = {};
+      const query2 = MOCK_TEST;
+      const variables2 = { id: 4 };
+      function hook() {
+        return useQuery(query, variables);
+      }
+      function hook2() {
+        return useQuery(query2, variables2);
+      }
+      let result: { current: ReturnType<typeof hook> };
+      let result2: { current: ReturnType<typeof hook> };
+      await act(async () => {
+        const rendered = renderHook(hook);
+        const rendered2 = renderHook(hook2);
+
+        await rendered.waitForNextUpdate();
+        await rendered.waitForValueToChange(
+          () => rendered2.result.current.loading
+        );
+        result = rendered.result;
+        result2 = rendered2.result;
+      });
+
+      const recieved = await axios.get("/lastquery");
+      const body = recieved.data.body;
+
+      expect(result.current.data).not.toEqual(undefined);
+      expect(result.current.data).toHaveProperty("author");
+      expect(result.current.data.author).toHaveProperty("firstName");
+      expect(result.current.data.author).toHaveProperty("lastName");
+      expect(typeof result.current.data.author.firstName).toEqual("string");
+      expect(typeof result.current.data.author.lastName).toEqual("string");
+
+      expect(result2.current.data).not.toEqual(undefined);
+      expect(result2.current.data).toHaveProperty("post");
+      expect(result2.current.data.post).toHaveProperty("title");
+      expect(typeof result2.current.data.post.title).toEqual("string");
+
       const operationDefinition = parse(body.query).definitions.find(
         (op: OperationDefinitionNode | FragmentDefinitionNode) => {
           return op.kind === "OperationDefinition";
         }
       ) as OperationDefinitionNode;
-      expect(fragmentDefinition).toBeDefined();
       expect(operationDefinition).toBeDefined();
       expect(operationDefinition.selectionSet.selections.length).toEqual(2);
     });
@@ -941,7 +981,7 @@ describe("useQuery", () => {
       expect(Object.values(res2.body.variables)[0]).toEqual(33333);
     });
 
-    test.skip("batching with nested directive", async () => {
+    test("batching with nested directive", async () => {
       const query = gql`
         query Conditional($id: ID!, $condition: Boolean!) {
           post(id: $id) {
@@ -967,52 +1007,41 @@ describe("useQuery", () => {
         await rendered.waitForValueToChange(
           () => rendered2.result.current.loading
         );
+
         result = rendered.result;
         result2 = rendered2.result;
       });
 
-      const recieved = await axios.get("/lastquery");
-      // currently broken -- variable in directive not aliased
-      console.log("REQUEST", recieved.data.body);
-      console.log("result1 data", result.current.data);
-      console.log("result1 errors", result.current.errors);
-      console.log("result2 data", result2.current.data);
-      console.log("result2 errors", result2.current.errors);
       expect(result.current.data).not.toEqual(undefined);
       expect(result.current.data).toHaveProperty("post");
       expect(result.current.data.post).toHaveProperty("title");
       expect(typeof result.current.data.post.title).toEqual("string");
 
       expect(result2.current.data).not.toEqual(undefined);
-
-      expect(result2.current.data).not.toEqual(undefined);
       expect(result2.current.data).toHaveProperty("post");
       expect(result2.current.data.post).not.toHaveProperty("title");
 
-      // const [res1, res2] = recieved.data;
-      // // unbatchable query is sent by itself without batching
-      // expect(res1.body.query).toEqual(query);
-      // expect(res1.body.variables).toStrictEqual(variables2);
+      const recieved = await axios.get("/lastquery?n=2");
+      const [res1, res2] = recieved.data;
+      // unbatchable query is sent by itself without batching
+      expect(res1.body.query).toEqual(query);
+      expect(res1.body.variables).toStrictEqual(variables);
 
-      // //batched query only has one entry
-      // expect(
-      //   (parse(res2.body.query).definitions[0] as OperationDefinitionNode)
-      //     .selectionSet.selections.length
-      // ).toEqual(1);
-      // expect(Object.values(res2.body.variables)[0]).toEqual(33333);
+      // unbatchable query is sent by itself without batching
+      expect(res2.body.query).toEqual(query);
+      expect(res2.body.variables).toStrictEqual(variables2);
     });
 
-    test.skip("batching with top level directive", async () => {
+    test("batching with top level directive", async () => {
       const query = gql`
-        query Conditional($id: ID!, $condition: Boolean!)
-        @include(if: $condition) {
+        query Limited($id: ID!, $count: Int!) @limit(count: $count) {
           post(id: $id) {
             title
           }
         }
       `;
-      const variables = { condition: true, id: 3 };
-      const variables2 = { condition: false, id: 4 };
+      const variables = { count: 4, id: 3 };
+      const variables2 = { count: 5, id: 4 };
       function hook() {
         return useQuery(query, variables);
       }
@@ -1033,31 +1062,25 @@ describe("useQuery", () => {
         result2 = rendered2.result;
       });
 
-      const recieved = await axios.get("/lastquery");
-      // currently broken -- directives are merged on same query
-      console.log("REQUEST", recieved.data.body);
-      console.log("result1 data", result.current.data);
-      console.log("result1 errors", result.current.errors);
-      console.log("result2 data", result2.current.data);
-      console.log("result2 errors", result2.current.errors);
       expect(result.current.data).not.toEqual(undefined);
       expect(result.current.data).toHaveProperty("post");
       expect(result.current.data.post).toHaveProperty("title");
       expect(typeof result.current.data.post.title).toEqual("string");
 
-      expect(result2.current.data).toEqual(undefined);
+      expect(result.current.data).not.toEqual(undefined);
+      expect(result.current.data).toHaveProperty("post");
+      expect(result.current.data.post).toHaveProperty("title");
+      expect(typeof result.current.data.post.title).toEqual("string");
 
-      // const [res1, res2] = recieved.data;
-      // // unbatchable query is sent by itself without batching
-      // expect(res1.body.query).toEqual(query);
-      // expect(res1.body.variables).toStrictEqual(variables2);
+      const recieved = await axios.get("/lastquery?n=2");
+      const [res1, res2] = recieved.data;
+      // unbatchable query is sent by itself without batching
+      expect(res1.body.query).toEqual(query);
+      expect(res1.body.variables).toStrictEqual(variables);
 
-      // //batched query only has one entry
-      // expect(
-      //   (parse(res2.body.query).definitions[0] as OperationDefinitionNode)
-      //     .selectionSet.selections.length
-      // ).toEqual(1);
-      // expect(Object.values(res2.body.variables)[0]).toEqual(33333);
+      // unbatchable query is sent by itself without batching
+      expect(res2.body.query).toEqual(query);
+      expect(res2.body.variables).toStrictEqual(variables2);
     });
   });
 });
