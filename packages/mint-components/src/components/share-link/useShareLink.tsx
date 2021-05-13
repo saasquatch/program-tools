@@ -1,9 +1,9 @@
 import {
-  useLazyQuery,
   useProgramId,
+  useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { ShareLinkViewProps } from "./share-link-view";
 
@@ -27,11 +27,7 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const { programId = useProgramId() } = props;
   const user = useUserIdentity();
 
-  const [getLink, { data }] = useLazyQuery(MessageLinkQuery);
-
-  useEffect(() => {
-    if (user?.jwt) getLink({ programId });
-  }, [user?.jwt]);
+  const { data } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
 
   const sharelink =
     data?.user?.shareLink ??

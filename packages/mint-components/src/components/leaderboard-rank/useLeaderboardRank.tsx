@@ -1,12 +1,11 @@
 import {
   useProgramId,
-  useLazyQuery,
+  useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import gql from "graphql-tag";
 import { LeaderboardRankViewProps } from "./leaderboard-rank-view";
 import { intl } from "../../global/global";
-import { useEffect } from "@saasquatch/universal-hooks";
 
 export interface LeaderboardRankProps {
   rankType: "rowNumber" | "rank" | "denseRank";
@@ -40,11 +39,13 @@ export function useLeaderboardRank(
     filter: { programId_eq: programId },
   };
 
-  const [getData, { data: rankData }] = useLazyQuery(GET_RANK);
+  const { data: rankData } = useQuery(GET_RANK, rankVariables, !user?.jwt);
 
-  useEffect(() => {
-    if (user?.jwt) getData(rankVariables);
-  }, [user?.jwt]);
+  // const [getData, { data: rankData }] = useLazyQuery(GET_RANK);
+
+  // useEffect(() => {
+  //   if (user?.jwt) getData(rankVariables);
+  // }, [user?.jwt]);
 
   const fullRankText = rankData?.viewer?.leaderboardRank
     ? intl.formatMessage(

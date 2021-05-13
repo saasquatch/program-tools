@@ -1,7 +1,7 @@
 import {
   useEngagementMedium,
   useUserIdentity,
-  useLazyQuery,
+  useQuery,
 } from "@saasquatch/component-boilerplate";
 import gql from "graphql-tag";
 import { ShareButtonViewProps } from "./share-button-view";
@@ -10,7 +10,6 @@ import {
   useProgramId,
   getEnvironmentSDK,
 } from "@saasquatch/component-boilerplate";
-import { useEffect } from "@saasquatch/universal-hooks";
 
 declare const SquatchAndroid: PlatformNativeActions | undefined;
 
@@ -98,13 +97,7 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
     shareMedium: medium.toUpperCase(),
   };
 
-  const [getMessageLink, res] = useLazyQuery(MessageLinkQuery);
-
-  useEffect(() => {
-    if (user?.jwt) {
-      getMessageLink(variables);
-    }
-  }, [user?.jwt]);
+  const res = useQuery(MessageLinkQuery, variables, !user?.jwt);
 
   const directLink = res?.data?.viewer?.shareLink;
 
