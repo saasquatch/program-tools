@@ -22,7 +22,8 @@ export function usePaginatedQuery<
   query: any,
   dataPath: (data: any) => Envelope<TData>,
   pageVars: PageVars,
-  extraVars: TVars = {} as TVars
+  extraVars: TVars = {} as TVars,
+  skip: boolean = false,
 ) {
   const {
     limit,
@@ -34,7 +35,7 @@ export function usePaginatedQuery<
 
   const variables = { limit, offset, ...extraVars };
 
-  const { loading, errors, data, refetch } = useQuery(query, variables);
+  const { loading, errors, data, refetch } = useQuery(query, variables, skip);
 
   // this value needs to be accessed using the ? operator
   // react throws a hook error otherwise

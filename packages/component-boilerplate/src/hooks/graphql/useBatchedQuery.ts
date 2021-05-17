@@ -1,12 +1,7 @@
-import {
-  useCallback,
-  useEffect,
-  useReducer,
-  useRef,
-} from "@saasquatch/universal-hooks";
+import { GraphQLClient } from "graphql-request";
+import { useCallback, useReducer } from "@saasquatch/universal-hooks";
 import useGraphQLClient from "./useGraphQLClient";
 import { RequestDocument } from "graphql-request/dist/types";
-import { BatchedGraphQLClient } from "../../environment/BatchedGraphQLClient";
 
 export type GqlType = RequestDocument;
 
@@ -79,12 +74,12 @@ function reducer<T>(
   }
 }
 
-export function useBaseQuery<T = any>(
+export function useBatchedQuery<T = any>(
   query: GqlType,
   initialState: BaseQueryData<T>
 ): [BaseQueryData<T>, (variables: unknown) => unknown] {
-  const client: BatchedGraphQLClient = useGraphQLClient();
-  const isMountedRef = useIsMountedRef();
+  const client: GraphQLClient = useGraphQLClient();
+
   const [state, dispatch] = useReducer<BaseQueryData<T>, Action<T>>(
     reducer,
     initialState
@@ -101,29 +96,15 @@ export function useBaseQuery<T = any>(
         });
         return;
       }
+      dispatch({ type: "loading" });
       try {
-        dispatch({ type: "loading" });
         const res = await client.request<T>(query, variables);
-        if (!isMountedRef.current) return;
         dispatch({ type: "data", payload: res });
-      } catch (error) {
-        dispatch({ type: "errors", payload: error });
+      } catch (e) {
+        dispatch({ type: "errors", payload: e });
       }
     },
-    [client, query, dispatch]
+    [query, dispatch]
   );
-
   return [state, update];
-}
-
-// async cleanup -- https://www.debuggr.io/react-update-unmounted-component/
-function useIsMountedRef() {
-  const isMountedRef = useRef(null);
-  useEffect(() => {
-    isMountedRef.current = true;
-    return () => {
-      isMountedRef.current = false;
-    };
-  });
-  return isMountedRef;
 }
