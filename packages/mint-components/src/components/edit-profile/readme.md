@@ -15,6 +15,7 @@
 | `editprofiletext`   | `editprofiletext`   |             | `string` | `undefined` |
 | `firstnametext`     | `firstnametext`     |             | `string` | `undefined` |
 | `lastnametext`      | `lastnametext`      |             | `string` | `undefined` |
+| `showregion`        | `showregion`        |             | `string` | `undefined` |
 | `updatetext`        | `updatetext`        |             | `string` | `undefined` |
 
 

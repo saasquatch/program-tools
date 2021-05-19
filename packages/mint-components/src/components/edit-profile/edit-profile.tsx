@@ -45,6 +45,10 @@ export class EditProfile {
    * @uiName Region field label
    */
   @Prop() currentregiontext: string;
+  /**
+   * @uiName Show or hide current region
+   */
+  @Prop() showregion: string;
 
   constructor() {
     withHooks(this);
@@ -92,6 +96,7 @@ function useEditProfileDemo(props: EditProfileProps): EditProfileViewProps {
         currentregiontext: props.currentregiontext
           ? props.currentregiontext
           : "Region",
+        showregion:true
       },
     },
     callbacks: {

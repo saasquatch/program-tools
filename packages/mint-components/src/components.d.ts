@@ -43,6 +43,10 @@ export namespace Components {
          */
         "lastnametext": string;
         /**
+          * @uiName Show or hide current region
+         */
+        "showregion": string;
+        /**
           * @uiName Update info button text
          */
         "updatetext": string;
@@ -370,6 +374,10 @@ declare namespace LocalJSX {
           * @uiName Last name field label
          */
         "lastnametext"?: string;
+        /**
+          * @uiName Show or hide current region
+         */
+        "showregion"?: string;
         /**
           * @uiName Update info button text
          */

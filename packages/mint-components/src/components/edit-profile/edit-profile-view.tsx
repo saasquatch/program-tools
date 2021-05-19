@@ -25,6 +25,7 @@ export interface EditProfileViewProps {
       canceltext: string;
       updatetext: string;
       currentregiontext: string;
+      showregion: boolean;
     };
   };
   callbacks: {
@@ -94,7 +95,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
               }
             />
           </div>
-          {states.formState.currentRegion && (
+          {text.showregion && states.formState.currentRegion && (
             <sl-input
               exportparts="label: input-label"
               disabled
