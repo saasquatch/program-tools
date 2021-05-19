@@ -37,10 +37,12 @@ export function useStencilbook(
   {
     h = StencilH,
     title = "Stencilbook",
+    homepage = <h3>Select a story!</h3>,
     addons = [],
   }: {
     h?: typeof StencilH;
     title?: string;
+    homepage?: VNode;
     addons?: AddOn[];
   }
 ): Return {
@@ -203,7 +205,7 @@ export function useStencilbook(
       </div>
       <WidthSelector />
       <div class={`component ${responsiveWidth}`}>
-        {!selectedKey && <h3>Select a story!</h3>}
+        {!selectedKey && homepage}
         {selectedKey && (
           <div>
             {/* <pre>{selected.specs}</pre> */}
