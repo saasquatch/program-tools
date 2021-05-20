@@ -171,15 +171,17 @@ interface MergedQueryAddedEvents {
 /*************
  *   utils   *
  *************/
-const generateQueryAddedEventId = () => nanoid().replace(/-/g, "");
+const generateQueryAddedEventId = () => nanoid().replace(/[-_]/g, "");
 
 const aliasFieldOrVariableFn = (name, id) => `${name}_${id}`;
 
 const removeAliasFromField = (field: string, id: string) =>
   field.replace(`_${id}`, "");
 
-const getIdFromAliasedField = (field: string): string =>
-  field.split("_")[1] || "";
+const getIdFromAliasedField = (field: string): string => {
+  const fieldArray = field.split("_");
+  return fieldArray[fieldArray.length-1];
+}
 
 const mergeQueryAddedEvents = (
   events: QueryAddedEvent[]
