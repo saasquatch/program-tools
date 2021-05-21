@@ -7,8 +7,6 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { FunctionalComponent } from "@stencil/core";
 export namespace Components {
-    interface SelectTest {
-    }
     interface SqmBigStat {
         /**
           * Select what type of stat to display. Manual paths are also supported.
@@ -230,12 +228,6 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLSelectTestElement extends Components.SelectTest, HTMLStencilElement {
-    }
-    var HTMLSelectTestElement: {
-        prototype: HTMLSelectTestElement;
-        new (): HTMLSelectTestElement;
-    };
     interface HTMLSqmBigStatElement extends Components.SqmBigStat, HTMLStencilElement {
     }
     var HTMLSqmBigStatElement: {
@@ -321,7 +313,6 @@ declare global {
         new (): HTMLSqmStencilbookElement;
     };
     interface HTMLElementTagNameMap {
-        "select-test": HTMLSelectTestElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
@@ -339,8 +330,6 @@ declare global {
     }
 }
 declare namespace LocalJSX {
-    interface SelectTest {
-    }
     interface SqmBigStat {
         /**
           * Select what type of stat to display. Manual paths are also supported.
@@ -561,7 +550,6 @@ declare namespace LocalJSX {
     interface SqmStencilbook {
     }
     interface IntrinsicElements {
-        "select-test": SelectTest;
         "sqm-big-stat": SqmBigStat;
         "sqm-edit-profile": SqmEditProfile;
         "sqm-form-message": SqmFormMessage;
@@ -582,7 +570,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "select-test": LocalJSX.SelectTest & JSXBase.HTMLAttributes<HTMLSelectTestElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;

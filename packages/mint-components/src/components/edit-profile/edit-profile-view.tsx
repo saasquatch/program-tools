@@ -25,7 +25,7 @@ export interface EditProfileViewProps {
       canceltext: string;
       updatetext: string;
       currentregiontext: string;
-      showregion: boolean;
+      showregion?: boolean;
     };
   };
   callbacks: {

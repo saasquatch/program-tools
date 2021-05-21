@@ -13,9 +13,8 @@ import * as EditProfile from "../../stories/EditProfileForm.stories";
 import * as UseShareLink from "../../stories/UseShareLink.stories";
 import * as UseShareButton from "../../stories/UseShareButton.stories";
 import * as UseBigStat from "../../stories/UseBigStat.stories";
-import * as UseEditProfile from "../../stories/UseEditProfile.stories"
-import * as SelectTest from "../../stories/SelectTest.stories"
-import * as FormMessage from "../../stories/FormMessage.stories"
+import * as UseEditProfile from "../../stories/UseEditProfile.stories";
+import * as FormMessage from "../../stories/FormMessage.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -34,8 +33,7 @@ const stories = [
   Router,
   PortalFrame,
   EditProfile,
-  SelectTest,
-  FormMessage
+  FormMessage,
 ];
 
 /**
