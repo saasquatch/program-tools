@@ -5,7 +5,7 @@ import { isDemo } from "@saasquatch/component-boilerplate";
 import {
   LeaderboardRankView,
   LeaderboardRankViewProps,
-} from "./leaderboard-rank-view";
+} from "./sqm-leaderboard-rank-view";
 import { LeaderboardRankProps, useLeaderboardRank } from "./useLeaderboardRank";
 
 /**
@@ -13,7 +13,7 @@ import { LeaderboardRankProps, useLeaderboardRank } from "./useLeaderboardRank";
  */
 @Component({
   tag: 'sqm-leaderboard-rank',
-  styleUrl: 'leaderboard-rank.scss',
+  styleUrl: 'sqm-leaderboard-rank.scss',
   shadow: true,
 })
 export class LeaderboardRank {

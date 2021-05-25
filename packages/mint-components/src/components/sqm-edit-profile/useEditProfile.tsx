@@ -5,7 +5,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { gql } from "graphql-request";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { EditProfileViewProps } from "./edit-profile-view";
+import { EditProfileViewProps } from "./sqm-edit-profile-view";
 import { intl } from "../../global/global";
 
 export interface EditProfileProps {

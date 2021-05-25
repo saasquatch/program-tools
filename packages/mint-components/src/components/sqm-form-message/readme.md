@@ -17,7 +17,7 @@
 
 ### Used by
 
- - [sqm-edit-profile](../edit-profile)
+ - [sqm-edit-profile](../sqm-edit-profile)
  - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph

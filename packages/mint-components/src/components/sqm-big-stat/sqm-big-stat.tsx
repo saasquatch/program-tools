@@ -1,6 +1,6 @@
 import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { BigStatView } from "./big-stat-view";
+import { BigStatView } from "./sqm-big-stat-view";
 import { useBigStat } from "./useBigStat";
 import { useDemoBigStat } from "./useDemoBigStat";
 import { isDemo } from "@saasquatch/component-boilerplate";
@@ -12,7 +12,7 @@ import { isDemo } from "@saasquatch/component-boilerplate";
  */
 @Component({
   tag: "sqm-big-stat",
-  styleUrl: "big-stat.scss",
+  styleUrl: "sqm-big-stat.scss",
   shadow: true,
 })
 export class BigStat {

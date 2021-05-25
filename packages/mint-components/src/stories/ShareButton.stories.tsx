@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { ShareButtonView } from "../components/share-button/share-button-view";
+import { ShareButtonView } from "../components/sqm-share-button/sqm-share-button-view";
 
 export default {
   title: "Share Button",

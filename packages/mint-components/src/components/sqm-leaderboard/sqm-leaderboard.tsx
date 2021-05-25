@@ -2,7 +2,7 @@ import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h, State } from "@stencil/core";
 import { withShadowView } from "../../ShadowViewAddon";
-import { LeaderboardView, LeaderboardViewProps } from "./leaderboard-view";
+import { LeaderboardView, LeaderboardViewProps } from "./sqm-leaderboard-view";
 import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 
 /**
@@ -10,7 +10,7 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
  */
 @Component({
   tag: "sqm-leaderboard",
-  styleUrl: "leaderboard.scss",
+  styleUrl: "sqm-leaderboard.scss",
   shadow: true,
 })
 export class Leaderboard {

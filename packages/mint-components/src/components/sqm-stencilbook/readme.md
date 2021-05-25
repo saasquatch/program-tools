@@ -9,12 +9,12 @@
 
 ### Depends on
 
-- [sqm-share-button](../share-button)
-- [sqm-share-link](../share-link)
-- [sqm-router](../router)
-- [sqm-navigation-menu](../navigation-menu)
-- [sqm-portal-frame](../portal-frame)
-- [sqm-edit-profile](../edit-profile)
+- [sqm-share-button](../sqm-share-button)
+- [sqm-share-link](../sqm-share-link)
+- [sqm-router](../sqm-router)
+- [sqm-navigation-menu](../sqm-navigation-menu)
+- [sqm-portal-frame](../sqm-portal-frame)
+- [sqm-edit-profile](../sqm-edit-profile)
 - [sqm-form-message](../sqm-form-message)
 - [sqm-hook-story-container](../sqm-hook-story-container)
 

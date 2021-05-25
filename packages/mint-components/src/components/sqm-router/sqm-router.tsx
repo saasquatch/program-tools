@@ -9,7 +9,7 @@ import { useRouter } from "./useRouter";
   tag: "sqm-router",
   styleUrl: "sqm-router.css",
 })
-export class StencilStorybook {
+export class SqmRouter {
   @State()
   ignored = true;
 

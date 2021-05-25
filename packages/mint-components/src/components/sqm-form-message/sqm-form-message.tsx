@@ -6,10 +6,10 @@ import { Component, h, Prop, State } from "@stencil/core";
  */
 @Component({
   tag: "sqm-form-message",
-  styleUrl: "form-message.scss",
+  styleUrl: "sqm-form-message.scss",
   shadow: true,
 })
-export class FormHeader {
+export class FormMessage {
   @State()
   ignored = true;
 

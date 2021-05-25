@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
-import { BigStatView } from "../components/big-stat/big-stat-view";
-import { useDemoBigStat } from "../components/big-stat/useDemoBigStat";
-import { useBigStat } from "../components/big-stat/useBigStat";
+import { BigStatView } from "../components/sqm-big-stat/sqm-big-stat-view";
+import { useDemoBigStat } from "../components/sqm-big-stat/useDemoBigStat";
+import { useBigStat } from "../components/sqm-big-stat/useBigStat";
 import { useState } from "@saasquatch/stencil-hooks";
 
 import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";

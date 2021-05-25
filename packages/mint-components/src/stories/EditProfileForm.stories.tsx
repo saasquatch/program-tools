@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import EditProfileView from "../components/edit-profile/edit-profile-view";
+import EditProfileView from "../components/sqm-edit-profile/sqm-edit-profile-view";
 
 export default {
   title: "Edit Profile Form",

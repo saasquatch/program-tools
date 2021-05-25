@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { LeaderboardRankView } from "../components/leaderboard-rank/leaderboard-rank-view";
+import { LeaderboardRankView } from "../components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 
 export default {
   title: "Leaderboard Rank",

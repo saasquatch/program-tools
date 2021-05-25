@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
-import { ShareLinkView } from "../components/share-link/share-link-view";
-import { useShareLink } from "../components/share-link/useShareLink";
+import { ShareLinkView } from "../components/sqm-share-link/sqm-share-link-view";
+import { useShareLink } from "../components/sqm-share-link/useShareLink";
 
 import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
 

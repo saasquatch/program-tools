@@ -5,7 +5,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { VNode } from "@stencil/core";
 import { gql } from "graphql-request";
-import { LeaderboardViewProps } from "./leaderboard-view";
+import { LeaderboardViewProps } from "./sqm-leaderboard-view";
 
 export interface LeaderboardProps {
   usersheading: string;

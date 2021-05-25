@@ -1,6 +1,6 @@
 import { navigation, useCurrentPage } from "@saasquatch/component-boilerplate";
 import { h } from "@stencil/core";
-import { PortalFrameView } from "../components/portal-frame/portal-frame-view";
+import { PortalFrameView } from "../components/sqm-portal-frame/sqm-portal-frame-view";
 
 function setupGraphQL() {
   const id = "worried-camera@uexwltgh.mailosaur.net";

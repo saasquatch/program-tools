@@ -12,7 +12,7 @@ import { getProps } from "../../utils/utils";
   tag: "sqm-popup-container",
   styleUrl: "sqm-popup-container.scss",
 })
-export class GlobalContainer {
+export class PopupContainer {
   /** @uiName Show SaaSquatch Powered By messaging */
   @Prop() poweredBy: boolean;
   /** @uiName Display a close button on the popup */

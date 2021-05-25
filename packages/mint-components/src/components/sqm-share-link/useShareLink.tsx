@@ -5,7 +5,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
-import { ShareLinkViewProps } from "./share-link-view";
+import { ShareLinkViewProps } from "./sqm-share-link-view";
 
 interface ShareLinkProps {
   programId?: string;

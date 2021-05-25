@@ -1,4 +1,4 @@
-import { BigStat } from "./big-stat";
+import { BigStat } from "./sqm-big-stat";
 import { BigStatHook } from "./useBigStat";
 
 export function useDemoBigStat(props: BigStat): BigStatHook {

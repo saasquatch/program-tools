@@ -1,7 +1,7 @@
 import { Component, h, State, VNode } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { isDemo } from "@saasquatch/component-boilerplate";
-import { PortalFrameView, PortalFrameViewProps } from "./portal-frame-view";
+import { PortalFrameView, PortalFrameViewProps } from "./sqm-portal-frame-view";
 import { usePortalFrame } from "./usePortalFrame";
 
 /**
@@ -9,7 +9,7 @@ import { usePortalFrame } from "./usePortalFrame";
  */
 @Component({
   tag: "sqm-portal-frame",
-  styleUrl: "portal-frame.scss",
+  styleUrl: "sqm-portal-frame.scss",
   shadow: true,
 })
 export class PortalFrame {

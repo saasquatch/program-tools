@@ -1,7 +1,7 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import { isDemo } from "@saasquatch/component-boilerplate";
-import { ShareButtonView, ShareButtonViewProps } from "./share-button-view";
+import { ShareButtonView, ShareButtonViewProps } from "./sqm-share-button-view";
 import { useShareButton } from "./useShareButton";
 import { getProps } from "../../utils/utils";
 
@@ -11,10 +11,10 @@ import { getProps } from "../../utils/utils";
  */
 @Component({
   tag: "sqm-share-button",
-  styleUrl: "share-button.scss",
+  styleUrl: "sqm-share-button.scss",
   shadow: true,
 })
-export class ShareButon {
+export class ShareButton {
   //
   //  Required attrs to make it work
   //
@@ -122,7 +122,7 @@ export class ShareButon {
   }
 }
 
-function useDemoShareButton(props: ShareButon): ShareButtonViewProps {
+function useDemoShareButton(props: ShareButton): ShareButtonViewProps {
   return {
     medium: props.medium,
     loading: false,

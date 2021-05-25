@@ -1,5 +1,5 @@
 import { h } from '@stencil/core';
-import { BigStatView } from '../components/big-stat/big-stat-view';
+import { BigStatView } from '../components/sqm-big-stat/sqm-big-stat-view';
 
 export default {
   title: 'Big Stat',

@@ -6,8 +6,8 @@ import {
 import { useRef } from "@saasquatch/universal-hooks";
 import { SlMenu, SlMenuItem } from "@shoelace-style/shoelace";
 import { useEffect } from "haunted";
-import { NavigationMenu } from "./navigation-menu";
-import { NavigationMenuViewProps } from "./navigation-menu-view";
+import { NavigationMenu } from "./sqm-navigation-menu";
+import { NavigationMenuViewProps } from "./sqm-navigation-menu-view";
 
 type SelectEvent = Event & { detail: { item: SlMenuItem } };
 

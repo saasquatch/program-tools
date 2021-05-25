@@ -10,7 +10,7 @@ export interface RouteProps {
   tag: "sqm-route",
   shadow: true,
 })
-export class StencilStorybook {
+export class SqmRoute {
   @State()
   ignored = true;
 

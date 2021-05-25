@@ -1,7 +1,7 @@
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import { isDemo } from "@saasquatch/component-boilerplate";
-import { ShareLinkView, ShareLinkViewProps } from "./share-link-view";
+import { ShareLinkView, ShareLinkViewProps } from "./sqm-share-link-view";
 import { useShareLink } from "./useShareLink";
 import { getProps } from "../../utils/utils";
 
@@ -12,7 +12,7 @@ const DEFAULT_TOOLTIP_LIFESPAN = 1000;
  */
 @Component({
   tag: "sqm-share-link",
-  styleUrl: "share-link.scss",
+  styleUrl: "sqm-share-link.scss",
   shadow: true,
 })
 export class ShareLink {

@@ -10,8 +10,8 @@ import {
 import { QueryData } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
 import debugFn from "debug";
 
-import { BigStat } from "./big-stat";
-import { BigStatViewProps } from "./big-stat-view";
+import { BigStat } from "./sqm-big-stat";
+import { BigStatViewProps } from "./sqm-big-stat-view";
 
 const debug = debugFn("sq:useBigStat");
 const LOADING = "...";

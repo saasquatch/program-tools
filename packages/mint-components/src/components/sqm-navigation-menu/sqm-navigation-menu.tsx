@@ -4,7 +4,7 @@ import { isDemo } from "@saasquatch/component-boilerplate";
 import {
   NavigationMenuView,
   NavigationMenuViewProps,
-} from "./navigation-menu-view";
+} from "./sqm-navigation-menu-view";
 import { useNavigationMenu } from "./useNavigationMenu";
 import { getProps } from "../../utils/utils";
 
@@ -13,7 +13,7 @@ import { getProps } from "../../utils/utils";
  */
 @Component({
   tag: "sqm-navigation-menu",
-  styleUrl: "navigation-menu.scss",
+  styleUrl: "sqm-navigation-menu.scss",
   shadow: true,
 })
 export class NavigationMenu {

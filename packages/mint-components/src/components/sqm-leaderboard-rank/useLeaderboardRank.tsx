@@ -4,7 +4,7 @@ import {
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import gql from "graphql-tag";
-import { LeaderboardRankViewProps } from "./leaderboard-rank-view";
+import { LeaderboardRankViewProps } from "./sqm-leaderboard-rank-view";
 import { intl } from "../../global/global";
 
 export interface LeaderboardRankProps {

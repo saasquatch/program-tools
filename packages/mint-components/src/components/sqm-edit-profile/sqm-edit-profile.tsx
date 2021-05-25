@@ -1,6 +1,6 @@
 import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import EditProfileView, { EditProfileViewProps } from "./edit-profile-view";
+import EditProfileView, { EditProfileViewProps } from "./sqm-edit-profile-view";
 import { EditProfileProps, useEditProfile } from "./useEditProfile";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { getProps } from "../../utils/utils";
@@ -10,7 +10,7 @@ import { getProps } from "../../utils/utils";
  */
 @Component({
   tag: "sqm-edit-profile",
-  styleUrl: "edit-profile.scss",
+  styleUrl: "sqm-edit-profile.scss",
   shadow: true,
 })
 export class EditProfile {
