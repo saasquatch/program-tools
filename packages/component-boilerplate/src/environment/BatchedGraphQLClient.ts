@@ -171,17 +171,20 @@ interface MergedQueryAddedEvents {
 /*************
  *   utils   *
  *************/
+// Remove dashes and underscores from alias
 const generateQueryAddedEventId = () => nanoid().replace(/[-_]/g, "");
 
+// Numbers not allowed in graphQL alias, so ID must be added to the end
 const aliasFieldOrVariableFn = (name, id) => `${name}_${id}`;
 
+// ID will always be at the end of the alias separated by a single "_"
 const removeAliasFromField = (field: string, id: string) =>
   field.replace(`_${id}`, "");
 
 const getIdFromAliasedField = (field: string): string => {
   const fieldArray = field.split("_");
-  return fieldArray[fieldArray.length-1];
-}
+  return fieldArray[fieldArray.length - 1];
+};
 
 const mergeQueryAddedEvents = (
   events: QueryAddedEvent[]
