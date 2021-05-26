@@ -3,6 +3,7 @@ import {
   rewardEmailQuery,
   nonRewardEmailQueryForReferralPrograms,
   rewardEmailQueryForNonReferralPrograms,
+  nonRewardEmailQueryForNonReferralPrograms,
 } from "./queries";
 
 import { ProgramTriggerBody } from "./types/rpc";
@@ -192,36 +193,49 @@ export default class Transaction {
       data: updatedRewardData,
     };
 
-    this.mutations = [...this.mutations, newMutation];
-    return { rewardId };
-  }
+  this.mutations = [...this.mutations, newMutation];
+  return { rewardId };
+ }
 
-  /**
-   * Generates an email for the user.
-   *
-   * @param {string} emailKey Key of email template (as defined in Contentful).
-   * @param {User}   user     The user to be sent a email to
-   * @param {string} rewardId The reward id, will throw error if undefined
-   */
-  generateSimpleEmail({
-    emailKey,
-    user,
+ /**
+  * Generates an email for the user.
+  *
+  * @param {string} emailKey Key of email template (as defined in Contentful).
+  * @param {User}   user     The user to be sent a email to
+  * @param {string} rewardId The reward id
+  */
+ generateSimpleEmail({
+  emailKey,
+  user,
+  rewardId,
+ }: {
+  emailKey: string;
+  user: User;
+  rewardId?: string;
+ }) {
+  const variables = {
+   userId: user.id,
+   accountId: user.accountId,
+   rewardId: rewardId,
+   programId: this.context.body.program.id,
+  };
+
+  const queryVariables = rewardId ? { ...variables, rewardId } : variables;
+  const newMutation = {
+   type: "SEND_EMAIL",
+   data: {
+    user: {
+     id: user.id,
+     accountId: user.accountId,
+    },
     rewardId,
-  }: {
-    emailKey: string;
-    user: User;
-    rewardId: any;
-  }) {
-    if (!rewardId) {
-      throw new Error("rewardId must be provided before email sent.");
-    }
-
-    const queryVariables = {
-      userId: user.id,
-      accountId: user.accountId,
-      rewardId: rewardId,
-      programId: this.context.body.program.id,
-    };
+    key: emailKey,
+    queryVariables,
+    query: rewardId
+     ? rewardEmailQueryForNonReferralPrograms
+     : nonRewardEmailQueryForNonReferralPrograms,
+   },
+  };
 
     const newMutation = {
       type: "SEND_EMAIL",
