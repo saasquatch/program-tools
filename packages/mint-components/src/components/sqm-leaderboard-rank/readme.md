@@ -1,4 +1,4 @@
-# sq-leaderboard-rank
+# sqm-leaderboard-rank
 
 
 

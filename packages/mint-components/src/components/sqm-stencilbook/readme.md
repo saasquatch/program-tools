@@ -1,4 +1,4 @@
-# stencil-storybook
+# sqm-stencilbook
 
 
 
