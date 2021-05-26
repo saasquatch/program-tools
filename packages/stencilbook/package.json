@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/stencilbook",
-  "version": "0.0.1-8",
+  "version": "1.0.0",
   "description": "Storybook, but built with Stencil. Used to provide an easy to view and test implemented components and all of their states / specs, and to easily share progress with customers.",
   "source": "src/index.ts",
   "main": "dist/index.js",
