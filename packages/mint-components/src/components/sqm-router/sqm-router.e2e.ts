@@ -4,7 +4,7 @@ function newRoute(id: string, path: string) {
   return /*html*/ `
   <sqm-route path="${path}">
     <div id=${id}></div>
-  <sqm-route>`;
+  </sqm-route>`;
 }
 
 function newTemplate(id: string, path: string) {
