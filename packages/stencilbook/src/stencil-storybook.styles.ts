@@ -30,6 +30,7 @@ export const Style = css`
     margin-bottom: 24px;
     color: white;
     background: #333;
+    cursor: pointer;
 
     h2 {
       letter-spacing: 3px;

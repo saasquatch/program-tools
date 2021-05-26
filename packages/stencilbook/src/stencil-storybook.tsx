@@ -1,5 +1,5 @@
 import { h as StencilH, FunctionalComponent, VNode } from "@stencil/core";
-import * as Hooks from "@saasquatch/stencil-hooks";
+import { useState, useMemo } from "@saasquatch/universal-hooks";
 
 import startCase from "lodash.startcase";
 import { Style } from "./stencil-storybook.styles";
@@ -36,17 +36,17 @@ export function useStencilbook(
   imports: unknown[],
   {
     h = StencilH,
-    hooks = Hooks,
     title = "Stencilbook",
+    homepage = <h3>Select a story!</h3>,
     addons = [],
   }: {
     h?: typeof StencilH;
-    hooks?: typeof Hooks;
     title?: string;
+    homepage?: VNode;
     addons?: AddOn[];
   }
 ): Return {
-  const stories: OrganisedStoryWithSubs = hooks.useMemo(
+  const stories: OrganisedStoryWithSubs = useMemo(
     () =>
       imports
         .map(loadStory)
@@ -54,11 +54,11 @@ export function useStencilbook(
     imports
   );
 
-  const [Selected, setSelectedInternal] = hooks.useState<Selection>(undefined);
+  const [Selected, setSelectedInternal] = useState<Selection>(undefined);
   const selectedKey = Selected?.key;
-  const [layout, setLayout] = hooks.useState<Layout>("desktop");
-  const [showSidebar, setShowSidebar] = hooks.useState<boolean>(true);
-  const [darkCanvas, setDarkCanvas] = hooks.useState<boolean>(false);
+  const [layout, setLayout] = useState<Layout>("desktop");
+  const [showSidebar, setShowSidebar] = useState<boolean>(true);
+  const [darkCanvas, setDarkCanvas] = useState<boolean>(false);
   function setSelected(
     story: FunctionalComponent,
     key: string,
@@ -151,10 +151,14 @@ export function useStencilbook(
     return <Component />;
   };
 
+  const GoHome = () => {
+    setSelectedInternal(undefined);
+  };
+
   const View = () => (
     <div class="story-book-outer-div">
       <div class={`story-div ${!showSidebar ? hide : ""}`}>
-        <div class="header">
+        <div class="header" onClick={() => GoHome()}>
           <h2>{title}</h2>
         </div>
         <ul class="parentStoryList">
@@ -205,7 +209,7 @@ export function useStencilbook(
       </div>
       <WidthSelector />
       <div class={`component ${responsiveWidth}`}>
-        {!selectedKey && <h3>Select a story!</h3>}
+        {!selectedKey && homepage}
         {selectedKey && (
           <div>
             {/* <pre>{selected.specs}</pre> */}
