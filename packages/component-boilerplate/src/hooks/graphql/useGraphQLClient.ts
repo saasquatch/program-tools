@@ -1,5 +1,5 @@
-import { GraphQLClient } from "graphql-request";
 import memoize from "fast-memoize";
+import { BatchedGraphQLClient } from "../../environment/BatchedGraphQLClient";
 import {
   useAppDomain,
   useTenantAlias,
@@ -10,12 +10,12 @@ function createGraphQlClient(
   appDomain: string,
   tenantAlias: string,
   token?: string
-): GraphQLClient {
+): BatchedGraphQLClient {
   const uri = appDomain + "/api/v1/" + tenantAlias + "/graphql";
   const headers = {
     Authorization: `Bearer ${token || ""}`,
   };
-  const newClient = new GraphQLClient(uri, {
+  const newClient = new BatchedGraphQLClient(uri, {
     headers,
   });
   return newClient;
@@ -23,13 +23,17 @@ function createGraphQlClient(
 
 const memoizedClient = memoize(createGraphQlClient);
 
-function useGraphQLClient(): GraphQLClient {
+function useGraphQLClient(): BatchedGraphQLClient {
   const token = useToken();
   const appDomain = useAppDomain();
   const tenantAlias = useTenantAlias();
 
   // Memoization is shared. One client per domain, tenant and token (or null)
-  const client: GraphQLClient = memoizedClient(appDomain, tenantAlias, token);
+  const client: BatchedGraphQLClient = memoizedClient(
+    appDomain,
+    tenantAlias,
+    token
+  );
   return client;
 }
 

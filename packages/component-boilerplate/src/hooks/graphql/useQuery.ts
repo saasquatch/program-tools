@@ -33,7 +33,8 @@ export const initialQueryState: BaseQueryData = {
 
 export function useQuery<T = any>(
   query: GqlType,
-  variables: unknown
+  variables: unknown,
+  skip?: boolean
 ): QueryData<T> {
   const [state, update] = useBaseQuery<T>(
     query,
@@ -43,8 +44,8 @@ export function useQuery<T = any>(
   const [tick, forceUpdate] = useTick();
 
   useDeepMemo(() => {
-    update(variables);
-  }, [query, variables, update, tick]);
+    !skip && update(variables);
+  }, [query, variables, update, tick, skip]);
   return deepFreeze({
     ...state,
     // can override props when refetching for new pagination, offset, etc

@@ -24,7 +24,7 @@ export function useLazyQuery<T = any>(
     {
       ...state,
       // can override props when refetching for new pagination, offset, etc
-      refetch: (variables) => update(variables)
+      refetch: (variables) => update(variables),
     },
   ];
 }

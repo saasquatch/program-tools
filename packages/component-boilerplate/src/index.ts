@@ -21,6 +21,7 @@ export {
    * Personalization environment
    */
   useEngagementMedium,
+  useLocale,
 } from "./environment/environment";
 
 //

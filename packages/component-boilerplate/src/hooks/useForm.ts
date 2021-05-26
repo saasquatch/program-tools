@@ -8,7 +8,7 @@ import { useDeepMemo } from "./useDeepMemo";
 export const debug = debugFn("sq:useForm");
 
 const GET_FORM = gql`
-  query($key: String!) {
+  query ($key: String!) {
     form(key: $key) {
       schema
       initialData {
@@ -21,7 +21,7 @@ const GET_FORM = gql`
 `;
 
 const SUBMIT_FORM = gql`
-  mutation($formSubmissionInput: FormSubmissionInput!) {
+  mutation ($formSubmissionInput: FormSubmissionInput!) {
     submitForm(formSubmissionInput: $formSubmissionInput) {
       success
       results {
@@ -53,7 +53,7 @@ const SUBMIT_FORM = gql`
 `;
 
 const VALIDATE_FORM = gql`
-  query($formValidationInput: FormValidationInput!) {
+  query ($formValidationInput: FormValidationInput!) {
     validateForm(formValidationInput: $formValidationInput) {
       valid
       results {
@@ -104,10 +104,6 @@ type FormState = {
 export function useForm(props: UseFormProps) {
   const { formKey, formRef } = props;
 
-  const variables = {
-    key: formKey,
-  };
-
   const [getForm, { data, loading: loadingForm }] = useLazyQuery(GET_FORM);
   const [submit, submitData] = useMutation(SUBMIT_FORM);
   const [validate, validationData] = useLazyQuery(VALIDATE_FORM);
@@ -132,19 +128,8 @@ export function useForm(props: UseFormProps) {
     initialState
   );
 
-  const {
-    enabled,
-    disabledMessage,
-    validating,
-    valid,
-    error,
-    formData,
-  } = formState;
-
-  // retrieve form schema and initial data
-  useEffect(() => {
-    getForm(variables);
-  }, []);
+  const { enabled, disabledMessage, validating, valid, error, formData } =
+    formState;
 
   useDeepMemo(() => {
     debug("submitData useEffect", submitData);
@@ -213,6 +198,9 @@ export function useForm(props: UseFormProps) {
     }
   }, [formState.validationData?.data?.validateForm?.valid]);
 
+  /**
+   * Schema, network, and integration errors after submission to GraphQL
+   */
   function getSubmissionErrors(): Array<SubmissionError> {
     if (!formState.submitData) return [];
 
@@ -330,8 +318,13 @@ export function useForm(props: UseFormProps) {
       schema: data?.form?.schema,
     },
     callbacks: {
+      /** Retrieve schema and initial data if provided from backend */
+      getForm,
+      /** Validate and submit <form> element data */
       handleSubmit,
+      /** Validates form data and submits if valid */
       validateForm,
+      /** Set form state for custom validation errors and multi-page forms */
       setFormState,
       getValidationErrors,
       getSubmissionErrors,
