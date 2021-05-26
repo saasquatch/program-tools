@@ -1,6 +1,6 @@
 import { h, Component, Host, State } from "@stencil/core";
 import { useStencilbook } from "@saasquatch/stencilbook";
-import * as hooks from "@saasquatch/stencil-hooks";
+import { withHooks } from "@saasquatch/stencil-hooks";
 
 import * as ShareButton from "../../stories/ShareButton.stories";
 import * as ShareLink from "../../stories/ShareLink.stories";
@@ -49,13 +49,12 @@ export class StencilStorybook {
   ignored = true;
 
   constructor() {
-    hooks.withHooks(this);
+    withHooks(this);
   }
   disconnectedCallback() {}
   render() {
     const { class: Style, children } = useStencilbook(stories, {
       h,
-      hooks,
       title: "Mint Components",
       addons: [CucumberAddon, ShadowViewAddon, HookStoryAddon],
     });
