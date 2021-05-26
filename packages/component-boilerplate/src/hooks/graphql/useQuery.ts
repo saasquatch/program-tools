@@ -1,7 +1,11 @@
 import { useDeepMemo } from "../useDeepMemo";
-import { BaseQueryData, GqlType, QueryData } from "./useBaseQuery";
+import {
+  BaseQueryData,
+  GqlType,
+  QueryData,
+  useBaseQuery,
+} from "./useBaseQuery";
 import { useTick } from "../useTick";
-import { useBaseQuery } from "./useBaseQuery";
 
 // from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
 function deepFreeze(object) {
