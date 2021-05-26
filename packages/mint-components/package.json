@@ -55,11 +55,11 @@
     "workbox-build": "4.3.1"
   },
   "dependencies": {
-    "@saasquatch/component-boilerplate": "^1.0.1-21",
+    "@saasquatch/component-boilerplate": "^1.1.0",
     "@saasquatch/stencil-grapes-plugin": "^0.1.2",
     "@saasquatch/stencil-hooks": "^2.0.1-0",
-    "@saasquatch/stencilbook": "0.0.1-beta6",
-    "@saasquatch/universal-hooks": "^0.1.3",
+    "@saasquatch/stencilbook": "1.0.0",
+    "@saasquatch/universal-hooks": "^1.0.0",
     "@shoelace-style/shoelace": "^2.0.0-beta.32",
     "@stencil/helmet": "^0.3.2",
     "babel-polyfill": "^6.26.0",
