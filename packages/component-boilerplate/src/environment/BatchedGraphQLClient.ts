@@ -1,9 +1,9 @@
 import { Subject } from "rxjs";
 import { bufferTime } from "rxjs/operators";
-import { v4 as uuid } from "uuid";
+import { nanoid } from "nanoid";
 import { ClientError, RequestDocument } from "graphql-request/dist/types";
 import { GraphQLClient } from "graphql-request";
-import { print, parse, DocumentNode, GraphQLError } from "graphql";
+import { print, parse, DocumentNode } from "graphql";
 
 import combineQuery, {
   CombinedQueryBuilder,
@@ -23,7 +23,6 @@ export class BatchedGraphQLClient extends GraphQLClient {
     super(url, opts);
 
     const unmergable = new Subject();
-    // const merged$ = new Observable();
     const buffer = this.subject.pipe(
       bufferTime(REQUEST_INTERVAL, undefined, MAX_REQUESTS)
     );
@@ -157,7 +156,7 @@ export class BatchedGraphQLClient extends GraphQLClient {
 interface QueryAddedEvent {
   query: RequestDocument;
   variables: { [key: string]: unknown };
-  id: string; // uuid with '-'s removed
+  id: string; // nanoid with '-'s removed
   resolve: (data: any) => void;
   reject: (err: any) => void;
 }
@@ -172,15 +171,20 @@ interface MergedQueryAddedEvents {
 /*************
  *   utils   *
  *************/
-const generateQueryAddedEventId = () => uuid().replace(/-/g, "");
+// Remove dashes and underscores from alias
+const generateQueryAddedEventId = () => nanoid().replace(/[-_]/g, "");
 
+// Numbers not allowed in graphQL alias, so ID must be added to the end
 const aliasFieldOrVariableFn = (name, id) => `${name}_${id}`;
 
+// ID will always be at the end of the alias separated by a single "_"
 const removeAliasFromField = (field: string, id: string) =>
   field.replace(`_${id}`, "");
 
-const getIdFromAliasedField = (field: string): string =>
-  field.split("_")[1] || "";
+const getIdFromAliasedField = (field: string): string => {
+  const fieldArray = field.split("_");
+  return fieldArray[fieldArray.length - 1];
+};
 
 const mergeQueryAddedEvents = (
   events: QueryAddedEvent[]

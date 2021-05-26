@@ -1,6 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import {
+  FieldTemplateProps,
+  ObjectFieldTemplateProps,
+} from "react-jsonschema-form";
+
+import {
   ColumnContainer,
   RowContainer,
   StyledHR,
@@ -26,24 +31,12 @@ const DescriptionContainer = styled.div`
     font-weight: normal;
     color: #575757;
   }
-`
+`;
 
 type LabelProps = {
   label: string | React.ReactElement;
   required: boolean;
   id: string;
-};
-
-type DefaultTemplateProps = {
-  id: string;
-  label: string | React.ReactElement;
-  children: React.ReactNode;
-  errors: React.ReactElement;
-  help: React.ReactElement;
-  description: string | React.ReactElement;
-  hidden: boolean;
-  required: boolean;
-  displayLabel: boolean;
 };
 
 export const ActionsArrayTemplate = (props: any) => {
@@ -133,7 +126,11 @@ function Label(props: LabelProps) {
   }
   return (
     <div style={{ marginTop: "40px", marginBottom: "10px" }}>
-      <label className="control-label" htmlFor={id} style={{marginBottom:"0px"}}>
+      <label
+        className="control-label"
+        htmlFor={id}
+        style={{ marginBottom: "0px" }}
+      >
         <H3 noMargin={true}>{label}</H3>
         {required && <RequiredSpan> (required)</RequiredSpan>}
       </label>
@@ -141,7 +138,7 @@ function Label(props: LabelProps) {
   );
 }
 
-export function DefaultTemplate(props: DefaultTemplateProps) {
+export function DefaultTemplate(props: FieldTemplateProps) {
   const {
     id,
     label,
@@ -165,6 +162,22 @@ export function DefaultTemplate(props: DefaultTemplateProps) {
       {children}
       {errors}
       {help}
+    </div>
+  );
+}
+
+export function DefaultObjectTemplate(props: ObjectFieldTemplateProps) {
+  const { title, description, properties, idSchema, required } = props;
+
+  return (
+    <div>
+      {title && <Label label={title} required={required} id={idSchema.$id} />}
+      {description && (
+        <DescriptionContainer>
+          <p>{description}</p>
+        </DescriptionContainer>
+      )}
+      {properties.map((prop) => prop.content)}
     </div>
   );
 }
