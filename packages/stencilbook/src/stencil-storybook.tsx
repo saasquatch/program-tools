@@ -151,10 +151,14 @@ export function useStencilbook(
     return <Component />;
   };
 
+  const GoHome = () => {
+    setSelectedInternal(undefined);
+  };
+
   const View = () => (
     <div class="story-book-outer-div">
       <div class={`story-div ${!showSidebar ? hide : ""}`}>
-        <div class="header">
+        <div class="header" onClick={() => GoHome()}>
           <h2>{title}</h2>
         </div>
         <ul class="parentStoryList">
