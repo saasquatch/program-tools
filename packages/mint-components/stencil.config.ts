@@ -18,12 +18,8 @@ const useDocx: OutputTarget = {
     author: "SaaSquatch",
   }),
 } as const;
-const copyGrapesJS = {
-  src: "docs/grapesjs.js",
-  dest: "grapesjs",
-  warn: true,
-} as const;
 const useGrapesjs: OutputTarget = grapesJsOutput({
+  outDir: "grapesjs",
   components: ShoelaceComponents,
 });
 
@@ -79,7 +75,6 @@ export const config: Config = {
             src: "node_modules/@shoelace-style/shoelace/dist/themes",
             dest: "shoelace/themes",
           },
-          copyGrapesJS,
         ],
       }),
     ],
