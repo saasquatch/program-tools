@@ -15,10 +15,6 @@
     "grapesjs/",
     "shoelace/"
   ],
-  "directories": {
-    "grapesjs": "./grapesjs",
-    "shoelace": "./shoelace"
-  },
   "scripts": {
     "build": "stencil build --docs",
     "build:grapes": "cross-env BUILD=DOCS stencil build --watch --docs",
