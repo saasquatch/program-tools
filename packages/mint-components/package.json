@@ -16,7 +16,7 @@
     "shoelace/"
   ],
   "directories": {
-    "grapesjs:": "./grapesjs",
+    "grapesjs": "./grapesjs",
     "shoelace": "./shoelace"
   },
   "scripts": {
