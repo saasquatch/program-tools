@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "@saasquatch/component-boilerplate": "^1.1.0",
-    "@saasquatch/stencil-grapes-plugin": "^0.1.2",
+    "@saasquatch/stencil-grapes-plugin": "^1.0.0",
     "@saasquatch/stencil-hooks": "^2.0.1-0",
     "@saasquatch/stencilbook": "^1.0.0",
     "@saasquatch/universal-hooks": "^1.0.0",
