@@ -87,16 +87,4 @@ export const config: Config = {
     cloneNodeFix: true,
     slotChildNodesFix: true,
   },
-  testing: {
-    // preset: 'ts-jest',
-    moduleNameMapper: {
-      haunted: "<rootDir>/__tests__/hacks/haunted.cjs.js",
-    },
-  },
 };
-
-// exports.devServer = {
-//   root: 'www',
-//   watchGlob: '**/**',
-//   httpPort: process.env.PORT || 3333
-// };
