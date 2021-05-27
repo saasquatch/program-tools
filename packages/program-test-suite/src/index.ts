@@ -41,8 +41,12 @@ export function runProgramTests(
   }
 
   for (let feature of features) {
+    // Put the tags of the scenarios into the title so we can find the tags later
     for (let scenario of feature.scenarios) {
-      // Put the tags of the scenarios into the title so we can find the tags later
+      if (scenario.tags.length)
+        scenario.title = `${scenario.title} :: [${scenario.tags.join(",")}]`;
+    }
+    for (let scenario of feature.scenarioOutlines) {
       if (scenario.tags.length)
         scenario.title = `${scenario.title} :: [${scenario.tags.join(",")}]`;
     }
