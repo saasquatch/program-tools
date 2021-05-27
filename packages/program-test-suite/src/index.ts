@@ -46,9 +46,13 @@ export function runProgramTests(
       if (scenario.tags.length)
         scenario.title = `${scenario.title} :: [${scenario.tags.join(",")}]`;
     }
-    for (let scenario of feature.scenarioOutlines) {
-      if (scenario.tags.length)
-        scenario.title = `${scenario.title} :: [${scenario.tags.join(",")}]`;
+    for (let scenarioOutline of feature.scenarioOutlines) {
+      for (let scenario of scenarioOutline.scenarios) {
+        if (scenarioOutline.tags.length)
+          scenario.title = `${scenario.title} :: [${scenarioOutline.tags.join(
+            ","
+          )}]`;
+      }
     }
   }
 
