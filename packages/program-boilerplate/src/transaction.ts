@@ -193,50 +193,33 @@ export default class Transaction {
       data: updatedRewardData,
     };
 
-  this.mutations = [...this.mutations, newMutation];
-  return { rewardId };
- }
+    this.mutations = [...this.mutations, newMutation];
+    return { rewardId };
+  }
 
- /**
-  * Generates an email for the user.
-  *
-  * @param {string} emailKey Key of email template (as defined in Contentful).
-  * @param {User}   user     The user to be sent a email to
-  * @param {string} rewardId The reward id
-  */
- generateSimpleEmail({
-  emailKey,
-  user,
-  rewardId,
- }: {
-  emailKey: string;
-  user: User;
-  rewardId?: string;
- }) {
-  const variables = {
-   userId: user.id,
-   accountId: user.accountId,
-   rewardId: rewardId,
-   programId: this.context.body.program.id,
-  };
-
-  const queryVariables = rewardId ? { ...variables, rewardId } : variables;
-  const newMutation = {
-   type: "SEND_EMAIL",
-   data: {
-    user: {
-     id: user.id,
-     accountId: user.accountId,
-    },
+  /**
+   * Generates an email for the user.
+   *
+   * @param {string} emailKey Key of email template (as defined in Contentful).
+   * @param {User}   user     The user to be sent a email to
+   * @param {string} rewardId The reward id
+   */
+  generateSimpleEmail({
+    emailKey,
+    user,
     rewardId,
-    key: emailKey,
-    queryVariables,
-    query: rewardId
-     ? rewardEmailQueryForNonReferralPrograms
-     : nonRewardEmailQueryForNonReferralPrograms,
-   },
-  };
+  }: {
+    emailKey: string;
+    user: User;
+    rewardId?: string;
+  }) {
+    const variables = {
+      userId: user.id,
+      accountId: user.accountId,
+      programId: this.context.body.program.id,
+    };
 
+    const queryVariables = rewardId ? { ...variables, rewardId } : variables;
     const newMutation = {
       type: "SEND_EMAIL",
       data: {
@@ -244,10 +227,12 @@ export default class Transaction {
           id: user.id,
           accountId: user.accountId,
         },
+        rewardId,
         key: emailKey,
-        queryVariables: queryVariables,
-        query: rewardEmailQueryForNonReferralPrograms,
-        rewardId: rewardId,
+        queryVariables,
+        query: rewardId
+          ? rewardEmailQueryForNonReferralPrograms
+          : nonRewardEmailQueryForNonReferralPrograms,
       },
     };
 

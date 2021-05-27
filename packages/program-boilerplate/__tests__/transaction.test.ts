@@ -2,6 +2,7 @@ import {
   nonRewardEmailQueryForReferralPrograms,
   rewardEmailQuery,
   rewardEmailQueryForNonReferralPrograms,
+  nonRewardEmailQueryForNonReferralPrograms,
 } from "../src/queries";
 import Transaction from "../src/transaction";
 
@@ -172,7 +173,7 @@ describe("Transaction class", () => {
   describe("#generateSimpleEmail", () => {
     const rewardId = "testRewardKey523";
     const emailKey = "testEmailKey2344";
-    test("sendEmail mutation is pushed to mutations", () => {
+    test("sendEmail mutation is pushed to mutations (with reward)", () => {
       transaction.generateSimpleEmail({ emailKey, user: testUser, rewardId });
       expect(transaction.mutations).toStrictEqual([
         {
@@ -196,14 +197,27 @@ describe("Transaction class", () => {
       ]);
     });
 
-    test("throws if no rewardId", () => {
-      expect(() => {
-        transaction.generateSimpleEmail({
-          emailKey,
-          user: testUser,
-          rewardId: undefined,
-        });
-      }).toThrow("rewardId must be provided before email sent.");
+    test("sendEmail mutation is pushed to mutations (without reward)", () => {
+      transaction.generateSimpleEmail({ emailKey, user: testUser });
+      expect(transaction.mutations).toStrictEqual([
+        {
+          type: "SEND_EMAIL",
+          data: {
+            user: {
+              id: "reffererID",
+              accountId: "reffererACCOUNTID",
+            },
+            key: emailKey,
+            rewardId: undefined,
+            queryVariables: {
+              userId: "reffererID",
+              accountId: "reffererACCOUNTID",
+              programId: "testProgramId",
+            },
+            query: nonRewardEmailQueryForNonReferralPrograms,
+          },
+        },
+      ]);
     });
   });
 
