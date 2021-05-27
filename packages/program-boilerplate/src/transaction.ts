@@ -3,6 +3,7 @@ import {
   rewardEmailQuery,
   nonRewardEmailQueryForReferralPrograms,
   rewardEmailQueryForNonReferralPrograms,
+  nonRewardEmailQueryForNonReferralPrograms,
 } from "./queries";
 
 import { ProgramTriggerBody } from "./types/rpc";
@@ -201,7 +202,7 @@ export default class Transaction {
    *
    * @param {string} emailKey Key of email template (as defined in Contentful).
    * @param {User}   user     The user to be sent a email to
-   * @param {string} rewardId The reward id, will throw error if undefined
+   * @param {string} rewardId The reward id
    */
   generateSimpleEmail({
     emailKey,
@@ -210,19 +211,15 @@ export default class Transaction {
   }: {
     emailKey: string;
     user: User;
-    rewardId: any;
+    rewardId?: string;
   }) {
-    if (!rewardId) {
-      throw new Error("rewardId must be provided before email sent.");
-    }
-
-    const queryVariables = {
+    const variables = {
       userId: user.id,
       accountId: user.accountId,
-      rewardId: rewardId,
       programId: this.context.body.program.id,
     };
 
+    const queryVariables = rewardId ? { ...variables, rewardId } : variables;
     const newMutation = {
       type: "SEND_EMAIL",
       data: {
@@ -230,10 +227,12 @@ export default class Transaction {
           id: user.id,
           accountId: user.accountId,
         },
+        rewardId,
         key: emailKey,
-        queryVariables: queryVariables,
-        query: rewardEmailQueryForNonReferralPrograms,
-        rewardId: rewardId,
+        queryVariables,
+        query: rewardId
+          ? rewardEmailQueryForNonReferralPrograms
+          : nonRewardEmailQueryForNonReferralPrograms,
       },
     };
 
