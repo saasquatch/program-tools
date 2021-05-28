@@ -2,7 +2,10 @@ import { h } from "@stencil/core";
 import { AddOn } from "@saasquatch/stencilbook";
 import { css } from "emotion";
 
-import hljs from "highlight.js";
+import hljs from "highlight.js/lib/core";
+import gherkin from "highlight.js/lib/languages/gherkin";
+
+hljs.registerLanguage("gherkin", gherkin);
 
 const Story = css`
   white-space: pre-line;
