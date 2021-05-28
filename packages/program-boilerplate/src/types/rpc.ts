@@ -1,4 +1,4 @@
-import Transaction from '../transaction';
+import Transaction from "../transaction";
 
 /********************************************************/
 /*                          API                         */
@@ -8,14 +8,14 @@ import Transaction from '../transaction';
  * The different trigger handlers the programs can export
  */
 export type TriggerType =
-  | 'AFTER_USER_CREATED_OR_UPDATED'
-  | 'AFTER_USER_EVENT_PROCESSED'
-  | 'REFERRAL'
-  | 'PROGRAM_INTROSPECTION'
-  | 'SCHEDULED'
-  | 'REWARD_SCHEDULED'
-  | 'PROGRAM_VALIDATION'
-  | 'PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST';
+  | "AFTER_USER_CREATED_OR_UPDATED"
+  | "AFTER_USER_EVENT_PROCESSED"
+  | "REFERRAL"
+  | "PROGRAM_INTROSPECTION"
+  | "SCHEDULED"
+  | "REWARD_SCHEDULED"
+  | "PROGRAM_VALIDATION"
+  | "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST";
 
 /**
  * The Program type
@@ -40,7 +40,7 @@ export type Program = {
  * may not be complete.
  */
 export type ProgramTriggerBody = {
-  messageType: 'PROGRAM_TRIGGER';
+  messageType: "PROGRAM_TRIGGER";
   activeTrigger: any;
   program: any;
   tenant: {
@@ -55,7 +55,7 @@ export type ProgramTriggerBody = {
  * A JSON request body for the PROGRAM_INTROSPECTION case
  */
 export type ProgramIntrospectionBody = {
-  messageType: 'PROGRAM_INTROSPECTION';
+  messageType: "PROGRAM_INTROSPECTION";
   template: any;
   rules: any;
   program: any;
@@ -88,7 +88,7 @@ export type ValidationProgramField = {
  * A JSON request body for the PROGRAM_VALIDATION case
  */
 export type ProgramValidationBody = {
-  messageType: 'PROGRAM_VALIDATION';
+  messageType: "PROGRAM_VALIDATION";
   validationRequests: ValidationRequest[];
   program: ValidationProgramField;
   time: number;
@@ -99,7 +99,7 @@ export type ProgramValidationBody = {
  * requesting custom schema
  */
 export type ProgramVariableSchemaRequestBody = {
-  messageType: 'PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST';
+  messageType: "PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST";
   schema: any;
   triggerType: TriggerType;
   scheduleKey?: string;
@@ -124,7 +124,7 @@ export type ProgramIntrospectionHandler = (
   tenant?: {
     tenantAlias: string;
     isLiveMode: boolean;
-  },
+  }
 ) => any;
 
 /**
@@ -138,13 +138,13 @@ export type ProgramIntrospectionHandler = (
 export type RequirementValidationHandler = (
   queryResult: any,
   program: ValidationProgramField,
-  time: number,
+  time: number
 ) => RequirementValidationResult[];
 
 export type ProgramVariableSchemaHandler = (
   schema: any,
   triggerType: TriggerType,
-  scheduleKey?: string,
+  scheduleKey?: string
 ) => ProgramVariableSchemaResult;
 
 /**
@@ -176,7 +176,7 @@ export type ProgramTriggerResult = {
 export type RequirementValidationResult = {
   message: string;
   longDescription: string;
-  status: 'ERROR' | 'WARN' | 'SUCCESS';
+  status: "ERROR" | "WARN" | "SUCCESS";
 };
 
 /**
@@ -189,6 +189,7 @@ export type ValidationResult = {
   results: RequirementValidationResult[];
 };
 
+// I believe this should just be any
 export type ProgramVariableSchemaResult = {
   schema: any;
 };
