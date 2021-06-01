@@ -1,11 +1,9 @@
 {
   "name": "@saasquatch/program-boilerplate",
-  "version": "3.5.7-1",
+  "version": "3.5.7",
   "description": "Boilerplate for writing programs",
   "main": "dist/index.js",
-  "files": [
-    "dist/"
-  ],
+  "files": ["dist/"],
   "scripts": {
     "build": "tsc --declaration",
     "build:docs": "typedoc --out ./docs ./src --ignoreCompilerErrors --media assets --hideGenerator",
