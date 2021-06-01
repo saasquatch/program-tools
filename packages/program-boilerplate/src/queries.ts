@@ -132,7 +132,7 @@ export const rewardEmailQueryForNonReferralPrograms = `
 `;
 
 export const nonRewardEmailQueryForNonReferralPrograms = `
-  query ($userId:String!, $accountId:String!, $rewardId:ID!, $programId:ID!) {
+  query ($userId:String!, $accountId:String!, $programId:ID!) {
     user(id:$userId, accountId:$accountId) {
       firstName
       lastName
