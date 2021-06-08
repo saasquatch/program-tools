@@ -7,16 +7,16 @@
 
 ## Properties
 
-| Property            | Attribute           | Description | Type     | Default     |
-| ------------------- | ------------------- | ----------- | -------- | ----------- |
-| `canceltext`        | `canceltext`        |             | `string` | `undefined` |
-| `currentregiontext` | `currentregiontext` |             | `string` | `undefined` |
-| `editprofileheader` | `editprofileheader` |             | `string` | `undefined` |
-| `editprofiletext`   | `editprofiletext`   |             | `string` | `undefined` |
-| `firstnametext`     | `firstnametext`     |             | `string` | `undefined` |
-| `lastnametext`      | `lastnametext`      |             | `string` | `undefined` |
-| `showregion`        | `showregion`        |             | `string` | `undefined` |
-| `updatetext`        | `updatetext`        |             | `string` | `undefined` |
+| Property            | Attribute           | Description | Type      | Default     |
+| ------------------- | ------------------- | ----------- | --------- | ----------- |
+| `canceltext`        | `canceltext`        |             | `string`  | `undefined` |
+| `currentregiontext` | `currentregiontext` |             | `string`  | `undefined` |
+| `editprofileheader` | `editprofileheader` |             | `string`  | `undefined` |
+| `editprofiletext`   | `editprofiletext`   |             | `string`  | `undefined` |
+| `firstnametext`     | `firstnametext`     |             | `string`  | `undefined` |
+| `lastnametext`      | `lastnametext`      |             | `string`  | `undefined` |
+| `showregion`        | `showregion`        |             | `boolean` | `undefined` |
+| `updatetext`        | `updatetext`        |             | `string`  | `undefined` |
 
 
 ## Dependencies

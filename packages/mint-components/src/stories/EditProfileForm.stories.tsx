@@ -70,7 +70,8 @@ export const FullStackFrameWithMenu = () => {
       lastnametext="Bob"
       canceltext="Cancel"
       updatetext="Update"
-      currentregiontext="Canada"
+      currentregiontext="Current Region"
+      showregion={true}
     ></sqm-edit-profile>
   );
 };

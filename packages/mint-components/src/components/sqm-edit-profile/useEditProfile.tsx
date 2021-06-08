@@ -16,6 +16,7 @@ export interface EditProfileProps {
   canceltext: string;
   updatetext: string;
   currentregiontext: string;
+  showregion: boolean;
 }
 
 const GET_USER = gql`
@@ -34,7 +35,7 @@ const GET_USER = gql`
 `;
 
 const UPSERT_USER = gql`
-  mutation(
+  mutation (
     $id: String!
     $accountId: String!
     $firstName: String!
@@ -66,22 +67,24 @@ const defaultFormState = {
 export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
   const userIdent = useUserIdentity();
   const [showEdit, setShowEdit] = useState(false);
-  const [userData, setUserData] = useState<null | {
-    id: string;
-    accountId: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    countryCode: string;
-  }>(undefined);
+  const [userData, setUserData] =
+    useState<null | {
+      id: string;
+      accountId: string;
+      firstName: string;
+      lastName: string;
+      email: string;
+      countryCode: string;
+    }>(undefined);
 
-  const [formState, setFormState] = useState<{
-    currentRegion: string;
-    firstName: string;
-    lastName: string;
-    errors: any;
-    error: string;
-  }>(defaultFormState);
+  const [formState, setFormState] =
+    useState<{
+      currentRegion: string;
+      firstName: string;
+      lastName: string;
+      errors: any;
+      error: string;
+    }>(defaultFormState);
 
   const userDataResponse = useQuery(GET_USER, {}, !userIdent?.jwt);
 
@@ -123,6 +126,7 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
         canceltext: props.canceltext,
         updatetext: props.updatetext,
         currentregiontext: props.currentregiontext,
+        showregion: props.showregion,
       },
     },
     callbacks: {
@@ -158,7 +162,7 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
           ? intl.formatDisplayName(userDataResponse.data.viewer.countryCode, {
               type: "region",
             })
-          : "Unknown";
+          : "";
 
         setUserData({
           ...userDataResponse.data?.viewer,

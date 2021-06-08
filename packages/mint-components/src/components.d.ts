@@ -43,7 +43,7 @@ export namespace Components {
         /**
           * @uiName Show or hide current region
          */
-        "showregion": string;
+        "showregion": boolean;
         /**
           * @uiName Update info button text
          */
@@ -366,7 +366,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Show or hide current region
          */
-        "showregion"?: string;
+        "showregion"?: boolean;
         /**
           * @uiName Update info button text
          */

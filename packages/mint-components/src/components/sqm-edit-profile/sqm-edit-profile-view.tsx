@@ -109,7 +109,6 @@ const EditProfileView = (props: EditProfileViewProps) => {
             <sl-button
               onClick={() => {
                 callbacks.setShowEdit(false);
-                // callbacks.resetForm();
               }}
               exportparts="base: defaultbutton-base"
             >
