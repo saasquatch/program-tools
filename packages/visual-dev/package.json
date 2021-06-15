@@ -1,10 +1,12 @@
 {
   "name": "@saasquatch/visual-dev",
-  "version": "0.2.1-1",
+  "version": "0.2.1-2",
   "description": "SaaSquatch visual dev",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "lint": "standard",
@@ -58,11 +60,23 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "jsdom",
-    "testPathIgnorePatterns": ["dist/"]
+    "testPathIgnorePatterns": [
+      "dist/"
+    ]
   },
   "standard": {
-    "ignore": ["node_modules/", "dist/"],
-    "globals": ["describe", "it", "test", "expect", "afterAll", "jest"]
+    "ignore": [
+      "node_modules/",
+      "dist/"
+    ],
+    "globals": [
+      "describe",
+      "it",
+      "test",
+      "expect",
+      "afterAll",
+      "jest"
+    ]
   },
   "repository": {
     "type": "git",
