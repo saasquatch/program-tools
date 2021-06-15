@@ -1,11 +1,13 @@
 {
   "name": "@saasquatch/integration-boilerplate-node",
-  "version": "0.0.0",
+  "version": "1.0.0-0",
   "description": "Node/Express boilerplate for building SaaSquatch integrations",
   "engines": {
     "node": "^14"
   },
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
