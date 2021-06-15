@@ -1,12 +1,12 @@
 import { ConfigProvider, key, optional, loadConfiguration } from "typed-config";
 
 // FIXME: This exists because of a bug in typed-config, see https://github.com/christav/typed-config/issues/1
-function asNumber(_obj: any, _name: string, val: any) {
+export function asNumber(_obj: any, _name: string, val: any) {
   return +val;
 }
 
 // FIXME: This exists because of a bug in typed-config, see https://github.com/christav/typed-config/issues/1
-function asBoolean(_obj: any, _name: string, val: any): boolean {
+export function asBoolean(_obj: any, _name: string, val: any): boolean {
   return (val as string).toLowerCase() === "true";
 }
 
