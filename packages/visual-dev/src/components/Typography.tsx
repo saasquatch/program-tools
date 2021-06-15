@@ -46,11 +46,11 @@ export const H3 = styled.h3<H3Props>`
   line-height: 13px;
   font-weight: 600;
   font-size: 13px;
-  margin-bottom: ${(props) => props.noMargin ? '0' : `8px`};
-  ${(props) => props.noMargin && 'margin: 0'};
+  margin-bottom: ${(props) => (props.noMargin ? "0" : `8px`)};
+  ${(props) => props.noMargin && "margin: 0"};
 `;
 
-export const P = styled.p<{ bold?: boolean, noMargin?: boolean }>`
+export const P = styled.p<{ bold?: boolean; noMargin?: boolean }>`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 13px;
   color: ${(props) => props.color || `#575757`};
@@ -74,12 +74,12 @@ export const NumberedStep = styled.div`
 export const AttributeHeading = styled.h3`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   color: #808080;
-  font-weight: normal
+  font-weight: normal;
   font-size: 12px;
   line-height: 14px;
   margin: 0px;
   padding: 0px;
-`
+`;
 
 export const WidgetTitle = styled.h2`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
@@ -89,9 +89,9 @@ export const WidgetTitle = styled.h2`
   line-height: 16px;
   margin: 0px;
   padding: 0px;
-`
+`;
 
-export const ErrorBlock = styled(P)<{margin?: string}>`
+export const ErrorBlock = styled(P)<{ margin?: string }>`
   color: #f92929;
   margin: ${(props) => props.margin || `0px`};
-`
+`;
