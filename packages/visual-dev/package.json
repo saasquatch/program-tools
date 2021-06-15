@@ -4,16 +4,13 @@
   "description": "SaaSquatch visual dev",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "tsc",
     "lint": "standard",
     "format": "prettier-standard --format",
     "test": "echo test",
-    "storybook": "start-storybook",
-    "prebuild": "npm run lint && npm run format"
+    "storybook": "start-storybook"
   },
   "keywords": [],
   "author": "SaaSquatch Team",
@@ -61,23 +58,11 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "jsdom",
-    "testPathIgnorePatterns": [
-      "dist/"
-    ]
+    "testPathIgnorePatterns": ["dist/"]
   },
   "standard": {
-    "ignore": [
-      "node_modules/",
-      "dist/"
-    ],
-    "globals": [
-      "describe",
-      "it",
-      "test",
-      "expect",
-      "afterAll",
-      "jest"
-    ]
+    "ignore": ["node_modules/", "dist/"],
+    "globals": ["describe", "it", "test", "expect", "afterAll", "jest"]
   },
   "repository": {
     "type": "git",
