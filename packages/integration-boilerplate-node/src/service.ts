@@ -291,12 +291,15 @@ export class IntegrationService<
       server.use(
         "/",
         createProxyMiddleware({
-          target: this.config.proxyFrontendPort,
+          target: this.config.proxyFrontend,
           changeOrigin: true,
         })
       );
     } else {
-      const frontendPath = path.join(__dirname, this.config.staticFrontendPath);
+      const frontendPath = path.join(
+        require.main!.path,
+        this.config.staticFrontendPath
+      );
       server.use(express.static(frontendPath));
       server.get("/*", (_req, res) => {
         res.sendFile(path.join(frontendPath, this.config.staticFrontendIndex));
