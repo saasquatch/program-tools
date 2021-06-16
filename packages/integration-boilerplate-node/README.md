@@ -46,8 +46,7 @@ SaaSquatch integrations are authenticated in two primary ways:
 
 - As an OAuth application which provides access to SaaSquatch APIs from your integration. This requires an Auth0
   application configured in SaaSquatch's backend for your integration.
-- With a tenant-scoped token provided to your integration's frontend in the various contexts in which it is called from
-  the SaaSquatch portal.
+- With a tenant-scoped token provided to your integration's frontend on the Integrations page of the SaaSquatch portal.
 
 We are working on making it easier for customers to build their own integrations, however for now only SaaSquatch's
 integration team is able to properly configure the necessary resources for authenticating an integration.
@@ -127,7 +126,8 @@ automatically to webhook and form handlers.
 
 Form handler configuration is configuration specific to a particular form, and is configured by your integration's
 configuration frontend when called in a form's configuration context (either to configure initial data actions, or
-submit actions).
+submit actions). The form handler configuration is available in the form handler context passed to a form handler
+function.
 
 ### Handlers
 
@@ -135,32 +135,126 @@ A number of "on-rails" handler function definitions are available making simple 
 
 #### Webhook handler
 
-TODO
+A webhook handler takes the following arguments:
 
-#### Form submit handler
+| Argument  | Description                                                                                                     |
+| --------- | --------------------------------------------------------------------------------------------------------------- |
+| `service` | The integration service, which gives you access to service config, and the built-in logger.                     |
+| `webhook` | The body of the webhook. SaaSquatch webhooks contain a `type` property to determine what kind of webhook it is. |
+| `config`  | The integration configuration for the tenant for which the webhook was sent.                                    |
+| `graphql` | A tenant-scoped GraphQL function for performing queries against SaaSquatch's GraphQL API.                       |
+| `res`     | The Express Response object                                                                                     |
 
-TODO
+For webhooks to be considered successful by SaaSquatch, it must return a 200 HTTP status. If you define a
+webhook handler, you are responsible for sending the response status.
 
-#### Form initial data handler
+Webhook handlers do not need to return a body.
 
-TODO
+#### Form handlers
 
-#### Form validation handler
+There are 4 types of form handler: `formSubmitHandler`, `formValidateHandler`, `formIntrospectionHandler`,
+`formInitialDataHandler` called at different times in a form's lifecycle. They all take the following arguments:
 
-TODO
+| Argument  | Description                                                                                                                                                                     |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `service` | The integration service, which gives you access to service config, and the built-in logger.                                                                                     |
+| `context` | The form context, see the [schema definition](https://github.com/saasquatch/schema/blob/master/src/json/form/FormHandlerRequestBody.schema.json) for the properties it contains |
+| `graphql` | A tenant-scoped GraphQL function for performing queries against SaaSquatch's GraphQL API.                                                                                       |
 
-#### Form introspection handler
+The expected response body of a form handler depends on the type, and the expected responses can be found in the
+schema:
 
-TODO
+- [FormHandlerSubmitResponseBody](https://github.com/saasquatch/schema/blob/master/src/json/form/FormHandlerSubmitResponseBody.schema.json)
+- [FormHandlerValidateResponseBody](https://github.com/saasquatch/schema/blob/master/src/json/form/FormHandlerValidateResponseBody.schema.json)
+- [FormHandlerIntrospectionResponseBody](https://github.com/saasquatch/schema/blob/master/src/json/form/FormHandlerIntrospectionResponseBody.schema.json)
+- [FormHandlerInitialDataResponseBody](https://github.com/saasquatch/schema/blob/master/src/json/form/FormHandlerInitialDataResponseBody.schema.json)
+
+Form handlers can also return an error response, which is defined in
+[FormHandlerErrorResponseBody](https://github.com/saasquatch/schema/blob/master/src/json/form/FormHandlerErrorResponseBody.schema.json).
+
+The Typescript types are based on these schemas and should help you make sure your handlers are returning the right
+kind of data.
 
 ## Advanced Use Cases
 
-TODO
-
 ### Custom routing
 
-TODO
+Many integrations can get away with only providing handlers for webhooks and forms, however more complex integrations
+that may respond to webhooks from 3rd party systems need to define their own routing and middleware.
+
+This is achievable by providing an `express.Router` to the `customRouter` option when creating the service:
+
+```ts
+import { Router } from "express";
+import { createIntegrationService } from "@saasquatch/integration-boilerplate-node";
+
+async function main() {
+  const router = express.Router();
+  const service = await createIntegrationService({
+    customRouter: router,
+  });
+
+  router.get("/myCustomRoute", (req, res) => {
+    res.send("Hello World");
+  });
+
+  service.run();
+}
+
+main();
+```
+
+_NOTE_: There are two reserved routes for the built-in handlers, `/form` and `/webhook`. Don't override these if you
+want them to work.
 
 ### GraphQL
 
-TODO
+In your custom routes, you may need to make GraphQL queries based on data coming in from 3rd party services. The first
+thing to say is **make sure you are appropriately authenticating incoming requests from 3rd parties!**.
+
+To get the integration config for the tenant and a tenant-scoped GraphQL function, you can call `getTenant` on the
+service passing the tenant alias, which will return to you the integration config for the tenant and a tenant-scoped GraphQL function.
+
+_NOTE_: If happen to pass a tenant alias for a tenant that does not have your integration enabled, then `getTenant`
+will fail.
+
+Here's an example:
+
+```ts
+import { Router } from "express";
+import { createIntegrationService } from "@saasquatch/integration-boilerplate-node";
+
+async function main() {
+  const router = express.Router();
+  const service = await createIntegrationService({
+    handlers: {
+      webhookHandler(service, webhook, config, graphql, res) {
+        service.logger.info("Handling a webhook! %o", webhook);
+        res.sendStatus(200);
+      },
+    },
+    customRouter: router,
+  });
+
+  router.get("/some3rdPartyWebhook/:tenantAlias", async (req, res) => {
+    // Ensure that the webhook is legitimate - implement something like this, or a middleware for this route
+    // to validate the webhook is coming from the service you expect
+    validate3rdPartyWebhook();
+
+    // config - the tenant's integration config
+    // graphql - a tenant-scoped GraphQL function
+    const [config, graphql] = await service.getTenant(req.params.tenantAlias);
+
+    const response = await graphql("query { ... }");
+
+    res.sendStatus(200);
+  });
+
+  service.run();
+}
+
+main();
+```
+
+The `graphql` function can be typed with the response, i.e `graphql<MyResponseType>("query { ... }")` and takes
+optional `variables` and `operationName` arguments.

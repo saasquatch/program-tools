@@ -113,6 +113,12 @@ export class IntegrationService<
     });
   }
 
+  async getTenant(tenantAlias: string) {
+    const config = await this.getIntegrationConfig(tenantAlias);
+    const graphql = this.getTenantScopedGraphQL(tenantAlias);
+    return [config, graphql];
+  }
+
   async getIntegrationConfig(tenantAlias: string): Promise<IntegrationConfig> {
     if (this.tenantIntegrationConfigCache.has(tenantAlias)) {
       this.logger.debug(
@@ -158,7 +164,7 @@ export class IntegrationService<
     }
   }
 
-  private tenantScopedGraphQL(
+  private getTenantScopedGraphQL(
     tenantAlias: string
   ): types.TenantScopedGraphQLFn {
     return <QueryResponseShape>(
@@ -269,7 +275,7 @@ export class IntegrationService<
         req,
         res,
         this,
-        this.tenantScopedGraphQL(req.body.tenantAlias)
+        this.getTenantScopedGraphQL(req.body.tenantAlias)
       );
     });
 
@@ -278,7 +284,7 @@ export class IntegrationService<
         req,
         res,
         this,
-        this.tenantScopedGraphQL(req.body.tenantAlias)
+        this.getTenantScopedGraphQL(req.body.tenantAlias)
       );
     });
 
