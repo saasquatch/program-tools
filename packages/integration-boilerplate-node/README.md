@@ -64,19 +64,24 @@ createIntegrationService<ServiceConfig, IntegrationConfig, FormConfig>();
 #### Service configuration
 
 Service configuration parameters are configured with environment variables, which are typed through the use of the
-[`typed-config`](https://github.com/christav/typed-config) package. There are a number ofbuilt in service configuration
-parameters required by all integrations. These are:
+[`typed-config`](https://github.com/christav/typed-config) package. There are a number of built-in service configuration
+parameters common to all integrations. These are:
 
-| Environment Variable       | Property                | Default                    | Description                                                                        |
-| -------------------------- | ----------------------- | -------------------------- | ---------------------------------------------------------------------------------- |
-| PORT                       | port                    | 10000                      | The port on which to run the microservice                                          |
-| SERVER_LOG_LEVEL           | serverLogLevel          | info                       | The log level for the default logger                                               |
-| ENFORCE_HTTPS              | enforceHttps            | true                       | Enforce HTTPS on the Express server                                                |
-| PROXY_FRONTEND             | proxyFrontend           | false                      | Proxy the integration frontend through the Express server (useful for development) |
-| SAASQUATCH_APP_DOMAIN      | saasquatchAppDomain     | app.referralsaasquatch.com | The domain of the SaaSquatch core application                                      |
-| SAASQUATCH_AUTH0_DOMAIN    | saasquatchAuth0Domain   | <none>                     | The Auth0 domain for OAuth authentication to the SaaSquatch API                    |
-| SAASQUATCH_AUTH0_CLIENT_ID | saasquatchAuth0ClientId | <none>                     | The Auth0 client ID for OAuth authentication to the SaaSquatch API                 |
-| SAASQUATCH_AUTH0_SECRET    | saasquatchAuth0Secret   | <none>                     | The Auth0 client secret for OAuth authentication to the SaaSquatch API             |
+| Environment Variable       | Property                | Default                    | Description                                                                                                  |
+| -------------------------- | ----------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| PORT                       | port                    | 10000                      | The port on which to run the microservice                                                                    |
+| SERVER_LOG_LEVEL           | serverLogLevel          | info                       | The log level for the default logger                                                                         |
+| ENFORCE_HTTPS              | enforceHttps            | true                       | Enforce HTTPS on the Express server                                                                          |
+| PROXY_FRONTEND             | proxyFrontend           | <none>                     | Proxy the integration frontend through the Express server, specify a URL like http://localhost:3000          |
+| STATIC_FRONTEND_PATH       | staticFrontendPath      | .../../frontend/build      | The location (relative to your main module) of the integration's frontend (ignored if PROXY_FRONTEND is set) |
+| STATIC_FRONTEND_INDEX      | staticFrontendIndex     | index.html                 | The root file of your integration frontend (ignored if PROXY_FRONTEND is set)                                |
+| SAASQUATCH_APP_DOMAIN      | saasquatchAppDomain     | app.referralsaasquatch.com | The domain of the SaaSquatch core application                                                                |
+| SAASQUATCH_AUTH0_DOMAIN    | saasquatchAuth0Domain   | <none>                     | The Auth0 domain for OAuth authentication to the SaaSquatch API                                              |
+| SAASQUATCH_AUTH0_CLIENT_ID | saasquatchAuth0ClientId | <none>                     | The Auth0 client ID for OAuth authentication to the SaaSquatch API                                           |
+| SAASQUATCH_AUTH0_SECRET    | saasquatchAuth0Secret   | <none>                     | The Auth0 client secret for OAuth authentication to the SaaSquatch API                                       |
+
+The authentication parameters `SAASQUATCH_AUTH0_*` are required, and do not have defaults. Your service will not start
+without them.
 
 Service configuration can be customized by extending `BaseConfig` using the primitives of `typed-config`:
 
