@@ -36,9 +36,9 @@ export class BaseConfig {
   @optional(true)
   public enforceHttps!: boolean;
 
-  @key("PROXY_FRONTEND", asBoolean)
-  @optional(false)
-  public proxyFrontend!: boolean;
+  @key("PROXY_FRONTEND")
+  @optional("")
+  public proxyFrontend!: string;
 
   @key("SAASQUATCH_APP_DOMAIN")
   @optional("app.referralsaasquatch.com")
@@ -52,6 +52,14 @@ export class BaseConfig {
 
   @key("SAASQUATCH_AUTH0_SECRET")
   public saasquatchAuth0Secret!: string;
+
+  @key("STATIC_FRONTEND_PATH")
+  @optional("../../frontend/build")
+  public staticFrontendPath!: string;
+
+  @key("STATIC_FRONTEND_INDEX")
+  @optional("index.html")
+  public staticFrontendIndex!: string;
 }
 
 export async function loadConfig<T extends BaseConfig>(

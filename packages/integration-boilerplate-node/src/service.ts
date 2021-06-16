@@ -291,14 +291,15 @@ export class IntegrationService<
       server.use(
         "/",
         createProxyMiddleware({
-          target: "http://localhost:3000",
+          target: this.config.proxyFrontendPort,
           changeOrigin: true,
         })
       );
     } else {
-      server.use(express.static(path.join(__dirname, "/../frontend/build")));
+      const frontendPath = path.join(__dirname, this.config.staticFrontendPath);
+      server.use(express.static(frontendPath));
       server.get("/*", (_req, res) => {
-        res.sendFile(path.join(__dirname, "/../frontend/build/index.html"));
+        res.sendFile(path.join(frontendPath, this.config.staticFrontendIndex));
       });
     }
 
