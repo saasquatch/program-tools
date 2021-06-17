@@ -7,7 +7,7 @@
   <a href="https://www.npmjs.com/package/@saasquatch/integration-boilerplate-node"><img src="https://img.shields.io/npm/dm/@saasquatch/integration-boilerplate-node.svg?style=flat-square" alt="NPM downloads"/> </a>
 </p>
 
-[SaaSquatch](https://saasquatch.com) provides an application for managing referral and rewards programs for digital
+[SaaSquatch](https://saasquatch.com) is a platform for managing referral and rewards programs for digital
 businesses. Integrations with SaaSquatch are typically built as microservices which respond to
 [webhooks](https://docs.saasquatch.com/api/webhooks/) and form handler triggers from SaaSquatch's forms platform.
 
@@ -138,13 +138,13 @@ A number of "on-rails" handler function definitions are available making simple 
 
 A webhook handler takes the following arguments:
 
-| Argument  | Description                                                                                                     |
-| --------- | --------------------------------------------------------------------------------------------------------------- |
-| `service` | The integration service, which gives you access to service config, and the built-in logger.                     |
-| `webhook` | The body of the webhook. SaaSquatch webhooks contain a `type` property to determine what kind of webhook it is. |
-| `config`  | The integration configuration for the tenant for which the webhook was sent.                                    |
-| `graphql` | A tenant-scoped GraphQL function for performing queries against SaaSquatch's GraphQL API.                       |
-| `res`     | The Express Response object                                                                                     |
+| Argument  | Description                                                                                                    |
+| --------- | -------------------------------------------------------------------------------------------------------------- |
+| `service` | The integration service, which gives you access to service config, and the built-in logger                     |
+| `webhook` | The body of the webhook. SaaSquatch webhooks contain a `type` property to determine what kind of webhook it is |
+| `config`  | The integration configuration for the tenant for which the webhook was sent                                    |
+| `graphql` | A tenant-scoped GraphQL function for performing queries against SaaSquatch's GraphQL API                       |
+| `res`     | The Express Response object                                                                                    |
 
 For webhooks to be considered successful by SaaSquatch, it must return a 200 HTTP status. If you define a
 webhook handler, you are responsible for sending the response status.
@@ -158,9 +158,9 @@ There are 4 types of form handler: `formSubmitHandler`, `formValidateHandler`, `
 
 | Argument  | Description                                                                                                                                                                     |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `service` | The integration service, which gives you access to service config, and the built-in logger.                                                                                     |
+| `service` | The integration service, which gives you access to service config, and the built-in logger                                                                                      |
 | `context` | The form context, see the [schema definition](https://github.com/saasquatch/schema/blob/master/src/json/form/FormHandlerRequestBody.schema.json) for the properties it contains |
-| `graphql` | A tenant-scoped GraphQL function for performing queries against SaaSquatch's GraphQL API.                                                                                       |
+| `graphql` | A tenant-scoped GraphQL function for performing queries against SaaSquatch's GraphQL API                                                                                        |
 
 The expected response body of a form handler depends on the type, and the expected responses can be found in the
 schema:

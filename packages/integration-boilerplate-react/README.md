@@ -7,7 +7,7 @@
   <a href="https://www.npmjs.com/package/@saasquatch/integration-boilerplate-react"><img src="https://img.shields.io/npm/dm/@saasquatch/integration-boilerplate-react.svg?style=flat-square" alt="NPM downloads"/> </a>
 </p>
 
-[SaaSquatch](https://saasquatch.com) provides an application for managing referral and rewards programs for digital
+[SaaSquatch](https://saasquatch.com) is a platform for managing referral and rewards programs for digital
 businesses. Integrations with SaaSquatch are typically built as microservices which respond to
 [webhooks](https://docs.saasquatch.com/api/webhooks/) and form handler triggers from SaaSquatch's forms platform.
 
