@@ -189,7 +189,7 @@ import { Router } from "express";
 import { createIntegrationService } from "@saasquatch/integration-boilerplate-node";
 
 async function main() {
-  const router = express.Router();
+  const router = Router();
   const service = await createIntegrationService({
     customRouter: router,
   });
@@ -206,6 +206,43 @@ main();
 
 _NOTE_: There are two reserved routes for the built-in handlers, `/form` and `/webhook`. Don't override these if you
 want them to work.
+
+### Custom routes called from Integrations page
+
+Within the Integrations page in the SaaSquatch portal, your integration's configuration interface is provided with a
+tenant scoped token. For routes that are called by your configuration interface, there is a special middleware which
+will validate the token and place the `tenantAlias` directly on the request for you. This makes it easier to implement
+things like OAuth flows with 3rd party services or use your integration to securely query GraphQL for data required by your
+integration's frontend (like a list of programs, for example).
+
+Integration configuration frontends are loaded in iframes and use [Penpal](https://github.com/Aaronius/penpal#readme) for
+communication with the SaaSquatch portal. How to easily build an integration frontend is the concern of
+[integration-boilerplate-react](https://github.com/saasquatch/program-tools/tree/master/packages/integration-boilerplate-react).
+
+In your configuration interface you could do this:
+
+```ts
+fetch("/called-from-config-ui", {
+  headers: { Authorization: `Bearer ${penpal.tenantScopedToken}` },
+});
+```
+
+And respond to it in the integration like this:
+
+```ts
+router.get(
+  "/called-from-config-ui",
+  service.tenantScopedTokenMiddleware, // This is the middleware you should use
+  async (req, res) => {
+    // The tenantAlias is on the req object
+    const { graphql } = await service.getTenant(req.tenantAlias!);
+
+    const response = await graphql("query { ... }");
+
+    res.sendStatus(200);
+  }
+);
+```
 
 ### GraphQL
 
@@ -243,7 +280,7 @@ async function main() {
 
     // config - the tenant's integration config
     // graphql - a tenant-scoped GraphQL function
-    const [config, graphql] = await service.getTenant(req.params.tenantAlias);
+    const { config, graphql } = await service.getTenant(req.params.tenantAlias);
 
     const response = await graphql("query { ... }");
 

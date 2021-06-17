@@ -101,6 +101,18 @@ export class Auth {
   }
 
   /**
+   * Validate a tenant-scoped token (from SaaSquatch Integrations page)
+   *
+   * @param token the tenant-scoped token
+   */
+  async validateSaaSquatchToken(token: string) {
+    return await validateWithJwks(token, this.getJwksClient(), {
+      issuer: `https://${this.appDomain}/`,
+      // TODO(johan): Validate audience when the backend is updated to pass it
+    });
+  }
+
+  /**
    * Get a SaaSquatch API access token from Auth0.
    */
   async getSaasquatchApiToken(): Promise<string> {

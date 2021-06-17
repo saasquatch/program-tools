@@ -11,7 +11,10 @@ import * as types from "./types";
 import { BaseConfig, loadConfig } from "./config";
 import { createLogger } from "./logger";
 import { Auth } from "./auth";
-import { createSaasquatchTokenMiddleware } from "./middleware";
+import {
+  createSaasquatchRequestMiddleware,
+  createSaasquatchTokenMiddleware,
+} from "./middleware";
 import { webhookHandler } from "./webhookHandler";
 import { formHandler } from "./formHandler";
 import { IntegrationConfigError, GraphQLError } from "./errors";
@@ -82,6 +85,9 @@ export class IntegrationService<
     IntegrationConfig,
     FormConfig
   >;
+  readonly tenantScopedTokenMiddleware: ReturnType<
+    typeof createSaasquatchTokenMiddleware
+  >;
 
   private server: Express;
   private tenantIntegrationConfigCache: NodeCache;
@@ -100,6 +106,10 @@ export class IntegrationService<
       config.saasquatchAuth0Domain,
       this.logger
     );
+    this.tenantScopedTokenMiddleware = createSaasquatchTokenMiddleware(
+      this.auth,
+      this.logger
+    );
     this.server = this.createExpressServer();
     this.tenantIntegrationConfigCache = new NodeCache({
       stdTTL: 60,
@@ -116,7 +126,7 @@ export class IntegrationService<
   async getTenant(tenantAlias: string) {
     const config = await this.getIntegrationConfig(tenantAlias);
     const graphql = this.getTenantScopedGraphQL(tenantAlias);
-    return [config, graphql];
+    return { config, graphql };
   }
 
   async getIntegrationConfig(tenantAlias: string): Promise<IntegrationConfig> {
@@ -265,7 +275,7 @@ export class IntegrationService<
     //  Support application/x-www-form-urlencoded bodies
     server.use(express.urlencoded({ extended: false }));
 
-    const requireSaaSquatchSignature = createSaasquatchTokenMiddleware(
+    const requireSaaSquatchSignature = createSaasquatchRequestMiddleware(
       this.auth,
       this.logger
     );
