@@ -46,7 +46,8 @@ SaaSquatch integrations are authenticated in two primary ways:
 
 - As an OAuth application which provides access to SaaSquatch APIs from your integration. This requires an Auth0
   application configured in SaaSquatch's backend for your integration.
-- With a tenant-scoped token provided to your integration's frontend on the Integrations page of the SaaSquatch portal.
+- With a tenant-scoped token provided to your integration's frontend on the Integrations page of the SaaSquatch portal
+  and in the form configuration contexts for initial data and submit actions.
 
 We are working on making it easier for customers to build their own integrations, however for now only SaaSquatch's
 integration team is able to properly configure the necessary resources for authenticating an integration.
@@ -227,9 +228,12 @@ fetch("/called-from-config-ui", {
 });
 ```
 
-And respond to it in the integration like this:
+And respond to it in the integration like this (see the section on GraphQL below to understand the call to
+`service.getTenant`):
 
 ```ts
+import { gql } from "@saasquatch/integration-boilerplate-node";
+
 router.get(
   "/called-from-config-ui",
   service.tenantScopedTokenMiddleware, // This is the middleware you should use
@@ -237,7 +241,7 @@ router.get(
     // The tenantAlias is on the req object
     const { graphql } = await service.getTenant(req.tenantAlias!);
 
-    const response = await graphql("query { ... }");
+    const response = await graphql(gql`query { ... }`);
 
     res.sendStatus(200);
   }
@@ -247,7 +251,7 @@ router.get(
 ### GraphQL
 
 In your custom routes, you may need to make GraphQL queries based on data coming in from 3rd party services. The first
-thing to say is **make sure you are appropriately authenticating incoming requests from 3rd parties!**.
+thing to say is **make sure you are appropriately authenticating incoming requests from 3rd parties!**
 
 To get the integration config for the tenant and a tenant-scoped GraphQL function, you can call `getTenant` on the
 service passing the tenant alias, which will return to you the integration config for the tenant and a tenant-scoped GraphQL function.
@@ -259,7 +263,10 @@ Here's an example:
 
 ```ts
 import { Router } from "express";
-import { createIntegrationService } from "@saasquatch/integration-boilerplate-node";
+import {
+  createIntegrationService,
+  gql,
+} from "@saasquatch/integration-boilerplate-node";
 
 async function main() {
   const router = express.Router();
@@ -282,7 +289,7 @@ async function main() {
     // graphql - a tenant-scoped GraphQL function
     const { config, graphql } = await service.getTenant(req.params.tenantAlias);
 
-    const response = await graphql("query { ... }");
+    const response = await graphql(gql`query { ... }`);
 
     res.sendStatus(200);
   });
@@ -293,5 +300,4 @@ async function main() {
 main();
 ```
 
-The `graphql` function can be typed with the response, i.e `graphql<MyResponseType>("query { ... }")` and takes
-optional `variables` and `operationName` arguments.
+The `graphql` function can be typed with the response, i.e `graphql<MyResponseType>(...)` and takes optional `variables` and `operationName` arguments.
