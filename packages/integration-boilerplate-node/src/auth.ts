@@ -143,8 +143,6 @@ export class Auth {
 
       const json = await response.json();
 
-      this.logger.debug("Auth0 SaaSquatch token response: %o", json);
-
       if (response.status !== 200) {
         throw new Error(`Invalid response from Auth0: ${JSON.stringify(json)}`);
       }
@@ -153,6 +151,7 @@ export class Auth {
         throw new Error("No access_token in Auth0 response");
       }
 
+      this.logger.debug("Successful Auth0 SaaSquatch API token response");
       this.saasquatchTokenCache.set("the", json.access_token);
 
       return json.access_token;
