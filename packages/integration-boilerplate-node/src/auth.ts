@@ -108,7 +108,7 @@ export class Auth {
   async validateSaaSquatchToken(token: string) {
     return await validateWithJwks(token, this.getJwksClient(), {
       issuer: `https://${this.appDomain}/`,
-      // TODO(johan): Validate audience when the backend is updated to pass it
+      audience: `${this.auth0ClientId}@clients.machines.saasquat.ch`,
     });
   }
 
