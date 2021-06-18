@@ -13,7 +13,7 @@ export function createSaasquatchRequestMiddleware(auth: Auth, logger: Logger) {
         req.header("x-hook-jws-rfc-7797")!
       );
     } catch (e) {
-      const error = "Permission denied - JWT validation failed.";
+      const error = `Permission denied - JWT validation failed: ${e.message}`;
       logger.error(error);
       res.status(403).send({ errorCode: "PERMISSION_DENIED", error });
       return;

@@ -88,16 +88,17 @@ export class Auth {
    * @param requestBody The raw text of the request body.
    * @param jwsNoPayloadHeader The value of the X-Hook-JWS-RFC-7797 header.
    */
-  validateSaaSquatchRequest(
+  async validateSaaSquatchRequest(
     requestBody: string,
     jwsNoPayloadHeader: string
-  ): Promise<object> {
+  ) {
     const requestBodyBase64 = Base64.encodeURI(requestBody);
     const token = jwsNoPayloadHeader.replace(
       "..",
       "." + requestBodyBase64 + "."
     );
-    return validateWithJwks(token, this.getJwksClient());
+
+    return await validateWithJwks(token, this.getJwksClient());
   }
 
   /**

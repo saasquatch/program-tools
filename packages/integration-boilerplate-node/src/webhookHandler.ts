@@ -30,7 +30,7 @@ export async function webhookHandler<
       try {
         await service.options.handlers.webhookHandler!(
           service,
-          req.body,
+          webhook,
           config,
           graphql,
           res
