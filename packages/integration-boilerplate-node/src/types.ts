@@ -92,6 +92,6 @@ export type FormHandlerResponse =
 
 export type TenantScopedGraphQLFn = <QueryResponseShape>(
   query: string,
-  variables?: unknown,
+  variables?: Record<string, any>,
   operationName?: string
 ) => Promise<QueryResponseShape>;

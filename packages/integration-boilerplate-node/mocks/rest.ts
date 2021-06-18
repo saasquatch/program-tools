@@ -68,7 +68,7 @@ Ucu7VKEXVqM6XySHxG5Slymf2bxQ2uGWgO13yygi+wgBK1NqNzJ4MrWy5y4Aatla
 export default [
   // Mocked JWKS
   rest.get(
-    "https://mocked.saasquatch.com/.well-known/jwks.json",
+    "https://mocked_saasquatch/.well-known/jwks.json",
     (_req, res, ctx) =>
       res(
         ctx.status(200),
@@ -99,7 +99,7 @@ export default [
 
   // Mocked integration config endpoint
   rest.get(
-    "https://mocked.saasquatch.com/api/v1/testing/integration/SAASQUATCH_AUTH0_CLIENT_ID",
+    "https://mocked_saasquatch/api/v1/testing/integration/SAASQUATCH_AUTH0_CLIENT_ID",
     (_req, res, ctx) =>
       res(
         ctx.status(200),

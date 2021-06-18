@@ -179,7 +179,7 @@ export class IntegrationService<
   ): types.TenantScopedGraphQLFn {
     return <QueryResponseShape>(
       query: string,
-      variables?: unknown,
+      variables?: Record<string, any>,
       operationName?: string
     ) => {
       return this.graphql<QueryResponseShape>(
@@ -194,7 +194,7 @@ export class IntegrationService<
   private async graphql<QueryResponseShape = unknown>(
     tenantAlias: string,
     query: string,
-    variables?: unknown,
+    variables?: Record<string, any>,
     operationName?: string
   ): Promise<QueryResponseShape> {
     const apiToken = await this.auth.getSaasquatchApiToken();

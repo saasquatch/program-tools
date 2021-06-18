@@ -14,9 +14,9 @@ jest.useFakeTimers();
   "SAASQUATCH_AUTH0_SECRET",
   "SAASQUATCH_AUTH0_DOMAIN",
 ].forEach((e) => (process.env[e] = e));
-process.env["SERVER_LOG_LEVEL"] = "error";
+process.env["SERVER_LOG_LEVEL"] = "none";
 process.env["ENFORCE_HTTPS"] = "false";
-process.env["SAASQUATCH_APP_DOMAIN"] = "mocked.saasquatch.com";
+process.env["SAASQUATCH_APP_DOMAIN"] = "mocked_saasquatch";
 
 const features = loadFeatures("__tests__/features/**/*.feature");
 autoBindSteps(features, steps);
