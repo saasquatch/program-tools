@@ -196,7 +196,7 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
   });
 
   and("the body is:", (body) => {
-    requestInit = { ...requestInit, body };
+    requestInit = { ...requestInit, body: JSON.stringify(JSON.parse(body)) };
   });
 
   when("the request is sent", async () => {
