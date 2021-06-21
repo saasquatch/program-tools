@@ -22,12 +22,18 @@ export class Leaderboard {
    * @uiName Stats Column Heading
    * */
   @Prop() statsheading: string;
-
+  /**
+   * @uiName Rank type
+   */
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
   /**
    * @uiName Leaderboard type
    */
   @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
+  /**
+   * @uiName Leaderboard time interval
+   */
+  @Prop() interval: string;
 
   @State()
   ignored = true;
@@ -46,6 +52,7 @@ export class Leaderboard {
       statsheading: this.statsheading,
       rankType: this.rankType,
       leaderboardType: this.leaderboardType,
+      interval: this.interval,
     };
     const viewprops = isDemo()
       ? useLeaderboardDemo(props)

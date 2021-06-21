@@ -9,6 +9,7 @@
 
 | Property          | Attribute          | Description | Type                                               | Default     |
 | ----------------- | ------------------ | ----------- | -------------------------------------------------- | ----------- |
+| `interval`        | `interval`         |             | `string`                                           | `undefined` |
 | `leaderboardType` | `leaderboard-type` |             | `"topConvertedReferrers" \| "topStartedReferrers"` | `undefined` |
 | `rankType`        | `rank-type`        |             | `"denseRank" \| "rank" \| "rowNumber"`             | `undefined` |
 | `statsheading`    | `statsheading`     |             | `string`                                           | `undefined` |

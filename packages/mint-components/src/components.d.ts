@@ -64,9 +64,16 @@ export namespace Components {
     }
     interface SqmLeaderboard {
         /**
+          * @uiName Leaderboard time interval
+         */
+        "interval": string;
+        /**
           * @uiName Leaderboard type
          */
         "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
+        /**
+          * @uiName Rank type
+         */
         "rankType": "rowNumber" | "rank" | "denseRank";
         /**
           * @uiName Stats Column Heading
@@ -78,6 +85,10 @@ export namespace Components {
         "usersheading": string;
     }
     interface SqmLeaderboardRank {
+        /**
+          * @uiName Leaderboard time interval
+         */
+        "interval": string;
         /**
           * @uiName Leaderboard type
          */
@@ -387,9 +398,16 @@ declare namespace LocalJSX {
     }
     interface SqmLeaderboard {
         /**
+          * @uiName Leaderboard time interval
+         */
+        "interval"?: string;
+        /**
           * @uiName Leaderboard type
          */
         "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
+        /**
+          * @uiName Rank type
+         */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
         /**
           * @uiName Stats Column Heading
@@ -401,6 +419,10 @@ declare namespace LocalJSX {
         "usersheading"?: string;
     }
     interface SqmLeaderboardRank {
+        /**
+          * @uiName Leaderboard time interval
+         */
+        "interval"?: string;
         /**
           * @uiName Leaderboard type
          */

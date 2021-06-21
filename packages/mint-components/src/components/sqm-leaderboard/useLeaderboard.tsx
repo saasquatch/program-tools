@@ -12,12 +12,13 @@ export interface LeaderboardProps {
   statsheading: string;
   rankType: "rowNumber" | "rank" | "denseRank";
   leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
+  interval: string;
   empty: VNode;
   loadingstate: VNode;
 }
 
 const GET_LEADERBOARD = gql`
-  query($type: String!, $filter: UserLeaderboardFilterInput) {
+  query ($type: String!, $filter: UserLeaderboardFilterInput) {
     userLeaderboard(type: $type, filter: $filter) {
       dateModified
       rows {
@@ -41,6 +42,10 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     type: props.leaderboardType,
     filter: { programId_eq: programId },
   };
+
+  if (props.interval) {
+    variables.filter["interval"] = props.interval;
+  }
   const { data: leaderboardData, loading: loadingLeaderboard } = useQuery(
     GET_LEADERBOARD,
     variables,

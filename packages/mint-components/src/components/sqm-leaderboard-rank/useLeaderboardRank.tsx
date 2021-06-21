@@ -12,10 +12,11 @@ export interface LeaderboardRankProps {
   rankText: string;
   leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   unrankedText: string;
+  interval: string;
 }
 
 const GET_RANK = gql`
-  query($type: String!, $filter: UserLeaderboardFilterInput) {
+  query ($type: String!, $filter: UserLeaderboardFilterInput) {
     viewer {
       ... on User {
         leaderboardRank(type: $type, filter: $filter) {
@@ -39,13 +40,11 @@ export function useLeaderboardRank(
     filter: { programId_eq: programId },
   };
 
+  if (props.interval) {
+    rankVariables.filter["interval"] = props.interval;
+  }
+
   const { data: rankData } = useQuery(GET_RANK, rankVariables, !user?.jwt);
-
-  // const [getData, { data: rankData }] = useLazyQuery(GET_RANK);
-
-  // useEffect(() => {
-  //   if (user?.jwt) getData(rankVariables);
-  // }, [user?.jwt]);
 
   const fullRankText = rankData?.viewer?.leaderboardRank
     ? intl.formatMessage(

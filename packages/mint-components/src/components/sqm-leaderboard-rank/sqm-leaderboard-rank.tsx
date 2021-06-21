@@ -12,8 +12,8 @@ import { LeaderboardRankProps, useLeaderboardRank } from "./useLeaderboardRank";
  * @uiName Leaderboard Rank
  */
 @Component({
-  tag: 'sqm-leaderboard-rank',
-  styleUrl: 'sqm-leaderboard-rank.scss',
+  tag: "sqm-leaderboard-rank",
+  styleUrl: "sqm-leaderboard-rank.scss",
   shadow: true,
 })
 export class LeaderboardRank {
@@ -27,6 +27,10 @@ export class LeaderboardRank {
    */
   @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   @Prop() unrankedText: string;
+  /**
+   * @uiName Leaderboard time interval
+   */
+  @Prop() interval: string;
 
   constructor() {
     withHooks(this);
