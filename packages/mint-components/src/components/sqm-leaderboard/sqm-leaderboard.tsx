@@ -24,14 +24,18 @@ export class Leaderboard {
   @Prop() statsheading: string;
   /**
    * @uiName Rank type
+   * @uiType string
    */
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
   /**
    * @uiName Leaderboard type
+   * @uiType string
    */
   @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   /**
    * @uiName Leaderboard time interval
+   * @uiWidget DateRange
+   * @uiOptions {"allowHistoricStartDate":true}
    */
   @Prop() interval: string;
 

@@ -19,16 +19,20 @@ import { LeaderboardRankProps, useLeaderboardRank } from "./useLeaderboardRank";
 export class LeaderboardRank {
   /**
    * @uiName Default rank
+   * @uiType string
    */
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
   @Prop() rankText: string;
   /**
    * @uiName Leaderboard type
+   * @uiType string
    */
   @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   @Prop() unrankedText: string;
   /**
    * @uiName Leaderboard time interval
+   * @uiWidget DateRange
+   * @uiOptions {"allowHistoricStartDate":true}
    */
   @Prop() interval: string;
 

@@ -65,14 +65,17 @@ export namespace Components {
     interface SqmLeaderboard {
         /**
           * @uiName Leaderboard time interval
+          * @uiWidget DateRange
          */
         "interval": string;
         /**
           * @uiName Leaderboard type
+          * @uiType string
          */
         "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
         /**
           * @uiName Rank type
+          * @uiType string
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
         /**
@@ -87,15 +90,18 @@ export namespace Components {
     interface SqmLeaderboardRank {
         /**
           * @uiName Leaderboard time interval
+          * @uiWidget DateRange
          */
         "interval": string;
         /**
           * @uiName Leaderboard type
+          * @uiType string
          */
         "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
         "rankText": string;
         /**
           * @uiName Default rank
+          * @uiType string
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
         "unrankedText": string;
@@ -121,10 +127,12 @@ export namespace Components {
         "closeButtonText": string;
         /**
           * @uiName Specify padding on the popup contents when in embedded mode
+          * @uiType string
          */
         "embedPadding"?: "none" | "small" | "medium" | "large";
         /**
           * @uiName Specify padding on the popup contents when in popup mode
+          * @uiType string
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
@@ -399,14 +407,17 @@ declare namespace LocalJSX {
     interface SqmLeaderboard {
         /**
           * @uiName Leaderboard time interval
+          * @uiWidget DateRange
          */
         "interval"?: string;
         /**
           * @uiName Leaderboard type
+          * @uiType string
          */
         "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
         /**
           * @uiName Rank type
+          * @uiType string
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
         /**
@@ -421,15 +432,18 @@ declare namespace LocalJSX {
     interface SqmLeaderboardRank {
         /**
           * @uiName Leaderboard time interval
+          * @uiWidget DateRange
          */
         "interval"?: string;
         /**
           * @uiName Leaderboard type
+          * @uiType string
          */
         "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
         "rankText"?: string;
         /**
           * @uiName Default rank
+          * @uiType string
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
         "unrankedText"?: string;
@@ -455,10 +469,12 @@ declare namespace LocalJSX {
         "closeButtonText"?: string;
         /**
           * @uiName Specify padding on the popup contents when in embedded mode
+          * @uiType string
          */
         "embedPadding"?: "none" | "small" | "medium" | "large";
         /**
           * @uiName Specify padding on the popup contents when in popup mode
+          * @uiType string
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**

@@ -19,9 +19,15 @@ export class PopupContainer {
   @Prop() closeButton: boolean;
   /** @uiName Text to be used as the close button */
   @Prop() closeButtonText: string;
-  /**  @uiName Specify padding on the popup contents when in embedded mode */
+  /**
+   *  @uiName Specify padding on the popup contents when in embedded mode
+   *  @uiType string
+   */
   @Prop() embedPadding?: "none" | "small" | "medium" | "large";
-  /** @uiName  Specify padding on the popup contents when in popup mode */
+  /**
+   * @uiName  Specify padding on the popup contents when in popup mode
+   * @uiType string
+   */
   @Prop() popupPadding?: "none" | "small" | "medium" | "large";
 
   constructor() {
@@ -31,7 +37,7 @@ export class PopupContainer {
   disconnectedCallback() {}
 
   render() {
-    const thisProps = getProps(this)
+    const thisProps = getProps(this);
     return <PopupContainerView {...usePopupContainer(thisProps)} />;
   }
 }
