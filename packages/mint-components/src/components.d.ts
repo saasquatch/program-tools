@@ -66,6 +66,7 @@ export namespace Components {
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
+          * @uiOptions {"allowPastDates":true}
          */
         "interval": string;
         /**
@@ -91,6 +92,7 @@ export namespace Components {
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
+          * @uiOptions {"allowPastDates":true}
          */
         "interval": string;
         /**
@@ -408,6 +410,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
+          * @uiOptions {"allowPastDates":true}
          */
         "interval"?: string;
         /**
@@ -433,6 +436,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
+          * @uiOptions {"allowPastDates":true}
          */
         "interval"?: string;
         /**
