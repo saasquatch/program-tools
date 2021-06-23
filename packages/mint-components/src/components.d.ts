@@ -66,7 +66,7 @@ export namespace Components {
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true}
+          * @uiOptions {"allowPastDates":true, "months": 1}
          */
         "interval": string;
         /**
@@ -92,7 +92,7 @@ export namespace Components {
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true}
+          * @uiOptions {"allowPastDates":true, "months": 1}
          */
         "interval": string;
         /**
@@ -410,7 +410,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true}
+          * @uiOptions {"allowPastDates":true, "months": 1}
          */
         "interval"?: string;
         /**
@@ -436,7 +436,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true}
+          * @uiOptions {"allowPastDates":true, "months": 1}
          */
         "interval"?: string;
         /**
