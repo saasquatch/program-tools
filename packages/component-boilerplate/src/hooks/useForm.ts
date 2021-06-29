@@ -87,6 +87,8 @@ const VALIDATE_FORM = gql`
 type UseFormProps = {
   formKey: string;
   formRef: HTMLFormElement;
+  /** Flag to submit the form automatically once validated */
+  autoSubmit?: boolean;
   setInitialData?: (htmlForm?: HTMLFormElement, initialData?: unknown) => void;
 };
 
@@ -102,7 +104,7 @@ type FormState = {
 };
 
 export function useForm(props: UseFormProps) {
-  const { formKey, formRef } = props;
+  const { formKey, formRef, autoSubmit = false } = props;
 
   const [getForm, { data, loading: loadingForm }] = useLazyQuery(GET_FORM);
   const [submit, submitData] = useMutation(SUBMIT_FORM);
@@ -190,7 +192,7 @@ export function useForm(props: UseFormProps) {
         valid: formState.validationData?.data?.validateForm?.valid || false,
       });
 
-      if (formState.validationData?.data?.validateForm?.valid) {
+      if (autoSubmit && formState.validationData?.data?.validateForm?.valid) {
         submit({
           formSubmissionInput: { key: formKey, formData },
         });
@@ -279,6 +281,15 @@ export function useForm(props: UseFormProps) {
     });
   }
 
+  async function submitForm(formData) {
+    await submit({
+      formSubmissionInput: {
+        key: formKey,
+        formData,
+      },
+    });
+  }
+
   /**
    * Submit function for regular <form> submissions
    */
@@ -322,8 +333,10 @@ export function useForm(props: UseFormProps) {
       getForm,
       /** Validate and submit <form> element data */
       handleSubmit,
-      /** Validates form data and submits if valid */
+      /** Validates form data and submits form if autoSubmit flag is true */
       validateForm,
+      /** Submits form data */
+      submitForm,
       /** Set form state for custom validation errors and multi-page forms */
       setFormState,
       getValidationErrors,
