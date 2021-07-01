@@ -24,6 +24,7 @@
 ```mermaid
 graph TD;
   sqm-edit-profile --> sqm-form-message
+  sqm-portal-login --> sqm-form-message
   sqm-stencilbook --> sqm-form-message
   style sqm-form-message fill:#f9f,stroke:#333,stroke-width:4px
 ```

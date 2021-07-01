@@ -145,6 +145,8 @@ export namespace Components {
     }
     interface SqmPortalFrame {
     }
+    interface SqmPortalLogin {
+    }
     interface SqmRoute {
         /**
           * @uiName Navigation path name
@@ -304,6 +306,12 @@ declare global {
         prototype: HTMLSqmPortalFrameElement;
         new (): HTMLSqmPortalFrameElement;
     };
+    interface HTMLSqmPortalLoginElement extends Components.SqmPortalLogin, HTMLStencilElement {
+    }
+    var HTMLSqmPortalLoginElement: {
+        prototype: HTMLSqmPortalLoginElement;
+        new (): HTMLSqmPortalLoginElement;
+    };
     interface HTMLSqmRouteElement extends Components.SqmRoute, HTMLStencilElement {
     }
     var HTMLSqmRouteElement: {
@@ -344,6 +352,7 @@ declare global {
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
+        "sqm-portal-login": HTMLSqmPortalLoginElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
@@ -490,6 +499,8 @@ declare namespace LocalJSX {
     }
     interface SqmPortalFrame {
     }
+    interface SqmPortalLogin {
+    }
     interface SqmRoute {
         /**
           * @uiName Navigation path name
@@ -603,6 +614,7 @@ declare namespace LocalJSX {
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-popup-container": SqmPopupContainer;
         "sqm-portal-frame": SqmPortalFrame;
+        "sqm-portal-login": SqmPortalLogin;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
         "sqm-share-button": SqmShareButton;
@@ -623,6 +635,7 @@ declare module "@stencil/core" {
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
+            "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
