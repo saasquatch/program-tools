@@ -1,7 +1,6 @@
-import { navigation } from "@saasquatch/component-boilerplate";
 import { h } from "@stencil/core";
 
-export interface PortalLoginViewProps {
+export interface PortalEmailVerificationViewProps {
   states: {
     error: string;
     loading: boolean;
@@ -11,11 +10,13 @@ export interface PortalLoginViewProps {
   };
 }
 
-export function PortalLoginView(props: PortalLoginViewProps) {
+export function PortalEmailVerificationView(
+  props: PortalEmailVerificationViewProps
+) {
   const { states, refs } = props;
   return (
     <div class="Wrapper Column">
-      <sl-form class="Column" ref={refs.formRef} id="portal-login">
+      <sl-form class="Column" ref={refs.formRef} id="portal-email-verification">
         {props.states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">
             <div part="erroralert-text">{props.states.error}</div>
@@ -29,15 +30,6 @@ export function PortalLoginView(props: PortalLoginViewProps) {
           disabled={states.loading}
           required
         ></sl-input>
-        <sl-input
-          exportparts="label: input-label"
-          type="password"
-          name="/password"
-          label="Password"
-          disabled={states.loading}
-          required
-        ></sl-input>
-        <a onClick={() => navigation.push("/reset")}>Forgot password?</a>
         <div>
           <sl-button
             submit
@@ -45,10 +37,7 @@ export function PortalLoginView(props: PortalLoginViewProps) {
             exportparts="base: primarybutton-base"
             type="primary"
           >
-            Login
-          </sl-button>
-          <sl-button type="text" onClick={() => navigation.push("/register")}>
-            Sign up
+            Request Verification
           </sl-button>
         </div>
       </sl-form>

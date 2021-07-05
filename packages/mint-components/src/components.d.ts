@@ -143,9 +143,13 @@ export namespace Components {
          */
         "poweredBy": boolean;
     }
+    interface SqmPortalEmailVerification {
+    }
     interface SqmPortalFrame {
     }
     interface SqmPortalLogin {
+    }
+    interface SqmPortalVerifyEmail {
     }
     interface SqmRoute {
         /**
@@ -300,6 +304,12 @@ declare global {
         prototype: HTMLSqmPopupContainerElement;
         new (): HTMLSqmPopupContainerElement;
     };
+    interface HTMLSqmPortalEmailVerificationElement extends Components.SqmPortalEmailVerification, HTMLStencilElement {
+    }
+    var HTMLSqmPortalEmailVerificationElement: {
+        prototype: HTMLSqmPortalEmailVerificationElement;
+        new (): HTMLSqmPortalEmailVerificationElement;
+    };
     interface HTMLSqmPortalFrameElement extends Components.SqmPortalFrame, HTMLStencilElement {
     }
     var HTMLSqmPortalFrameElement: {
@@ -311,6 +321,12 @@ declare global {
     var HTMLSqmPortalLoginElement: {
         prototype: HTMLSqmPortalLoginElement;
         new (): HTMLSqmPortalLoginElement;
+    };
+    interface HTMLSqmPortalVerifyEmailElement extends Components.SqmPortalVerifyEmail, HTMLStencilElement {
+    }
+    var HTMLSqmPortalVerifyEmailElement: {
+        prototype: HTMLSqmPortalVerifyEmailElement;
+        new (): HTMLSqmPortalVerifyEmailElement;
     };
     interface HTMLSqmRouteElement extends Components.SqmRoute, HTMLStencilElement {
     }
@@ -351,8 +367,10 @@ declare global {
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
+        "sqm-portal-email-verification": HTMLSqmPortalEmailVerificationElement;
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
         "sqm-portal-login": HTMLSqmPortalLoginElement;
+        "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
@@ -497,9 +515,13 @@ declare namespace LocalJSX {
          */
         "poweredBy"?: boolean;
     }
+    interface SqmPortalEmailVerification {
+    }
     interface SqmPortalFrame {
     }
     interface SqmPortalLogin {
+    }
+    interface SqmPortalVerifyEmail {
     }
     interface SqmRoute {
         /**
@@ -613,8 +635,10 @@ declare namespace LocalJSX {
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-popup-container": SqmPopupContainer;
+        "sqm-portal-email-verification": SqmPortalEmailVerification;
         "sqm-portal-frame": SqmPortalFrame;
         "sqm-portal-login": SqmPortalLogin;
+        "sqm-portal-verify-email": SqmPortalVerifyEmail;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
         "sqm-share-button": SqmShareButton;
@@ -634,8 +658,10 @@ declare module "@stencil/core" {
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
+            "sqm-portal-email-verification": LocalJSX.SqmPortalEmailVerification & JSXBase.HTMLAttributes<HTMLSqmPortalEmailVerificationElement>;
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
+            "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;

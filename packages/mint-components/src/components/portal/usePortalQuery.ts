@@ -1,7 +1,7 @@
 import request from "graphql-request";
 import { useCallback, useReducer } from "@saasquatch/universal-hooks";
 import { RequestDocument } from "graphql-request/dist/types";
-import { isDemo, useTenantAlias } from "@saasquatch/component-boilerplate";
+// import {  useTenantAlias } from "@saasquatch/component-boilerplate";
 
 export type GqlType = RequestDocument;
 
@@ -66,7 +66,7 @@ export function usePortalQuery<T = any>(
   initialState: PortalQueryData<T>
 ): [PortalQueryData<T>, (variables: unknown) => unknown] {
   const portalDomain = "http://localhost:4000"; //usePortalDomain();
-  const tenantAlias = isDemo() ? "test_akdq8a9wyvzba" : useTenantAlias();
+  const tenantAlias = "test_akdq8a9wyvzba"; // useTenantAlias();
   const uri = portalDomain + "/tenant/" + tenantAlias + "/graphql";
 
   const [state, dispatch] = useReducer<PortalQueryData<T>, Action<T>>(
