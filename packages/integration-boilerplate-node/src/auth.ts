@@ -63,11 +63,9 @@ export class Auth {
     this.jwksClientCache = new NodeCache({
       stdTTL: 86400, // 1 day
       useClones: false,
-      maxKeys: 1,
     });
     this.saasquatchTokenCache = new NodeCache({
       stdTTL: 3600 * 6, // 6 hours
-      maxKeys: 1,
     });
   }
 
