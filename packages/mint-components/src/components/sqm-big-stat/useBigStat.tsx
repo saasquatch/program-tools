@@ -374,10 +374,10 @@ const rewardsBalanceQuery = (
 const creditAndIntegrationQuery = (
   programId: string,
   locale: string,
-  type: string,
+  // type: string,
   baseUnit: string,
   unitType?: string,
-  format = "prettyValue",
+  // format = "prettyValue",
   global = "false"
 ) => {
   console.log();
