@@ -14,7 +14,7 @@ const PortalLoginMutation = gql`
   mutation PortalLogin($email: String!, $password: String!) {
     authenticateUser(input: { email: $email, password: $password }) {
       squatchJWT
-      customData
+      sessionData
     }
   }
 `;

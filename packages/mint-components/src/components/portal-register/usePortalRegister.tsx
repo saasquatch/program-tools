@@ -20,7 +20,7 @@ const PortalRegisterMutation = gql`
       input: { email: $email, password: $password, formData: $formData }
     ) {
       squatchJWT
-      customData
+      sessionData
     }
   }
 `;
