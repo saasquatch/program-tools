@@ -145,9 +145,13 @@ export namespace Components {
     }
     interface SqmPortalEmailVerification {
     }
+    interface SqmPortalForgotPassword {
+    }
     interface SqmPortalFrame {
     }
     interface SqmPortalLogin {
+    }
+    interface SqmPortalResetPassword {
     }
     interface SqmPortalVerifyEmail {
     }
@@ -310,6 +314,12 @@ declare global {
         prototype: HTMLSqmPortalEmailVerificationElement;
         new (): HTMLSqmPortalEmailVerificationElement;
     };
+    interface HTMLSqmPortalForgotPasswordElement extends Components.SqmPortalForgotPassword, HTMLStencilElement {
+    }
+    var HTMLSqmPortalForgotPasswordElement: {
+        prototype: HTMLSqmPortalForgotPasswordElement;
+        new (): HTMLSqmPortalForgotPasswordElement;
+    };
     interface HTMLSqmPortalFrameElement extends Components.SqmPortalFrame, HTMLStencilElement {
     }
     var HTMLSqmPortalFrameElement: {
@@ -321,6 +331,12 @@ declare global {
     var HTMLSqmPortalLoginElement: {
         prototype: HTMLSqmPortalLoginElement;
         new (): HTMLSqmPortalLoginElement;
+    };
+    interface HTMLSqmPortalResetPasswordElement extends Components.SqmPortalResetPassword, HTMLStencilElement {
+    }
+    var HTMLSqmPortalResetPasswordElement: {
+        prototype: HTMLSqmPortalResetPasswordElement;
+        new (): HTMLSqmPortalResetPasswordElement;
     };
     interface HTMLSqmPortalVerifyEmailElement extends Components.SqmPortalVerifyEmail, HTMLStencilElement {
     }
@@ -368,8 +384,10 @@ declare global {
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
         "sqm-portal-email-verification": HTMLSqmPortalEmailVerificationElement;
+        "sqm-portal-forgot-password": HTMLSqmPortalForgotPasswordElement;
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
         "sqm-portal-login": HTMLSqmPortalLoginElement;
+        "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
         "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
@@ -517,9 +535,13 @@ declare namespace LocalJSX {
     }
     interface SqmPortalEmailVerification {
     }
+    interface SqmPortalForgotPassword {
+    }
     interface SqmPortalFrame {
     }
     interface SqmPortalLogin {
+    }
+    interface SqmPortalResetPassword {
     }
     interface SqmPortalVerifyEmail {
     }
@@ -636,8 +658,10 @@ declare namespace LocalJSX {
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-popup-container": SqmPopupContainer;
         "sqm-portal-email-verification": SqmPortalEmailVerification;
+        "sqm-portal-forgot-password": SqmPortalForgotPassword;
         "sqm-portal-frame": SqmPortalFrame;
         "sqm-portal-login": SqmPortalLogin;
+        "sqm-portal-reset-password": SqmPortalResetPassword;
         "sqm-portal-verify-email": SqmPortalVerifyEmail;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
@@ -659,8 +683,10 @@ declare module "@stencil/core" {
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
             "sqm-portal-email-verification": LocalJSX.SqmPortalEmailVerification & JSXBase.HTMLAttributes<HTMLSqmPortalEmailVerificationElement>;
+            "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword & JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
+            "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
             "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;

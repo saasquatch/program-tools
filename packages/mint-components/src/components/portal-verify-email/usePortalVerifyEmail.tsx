@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useCallback, useEffect, useState } from "@saasquatch/universal-hooks";
 import { usePortalQuery } from "../portal/usePortalQuery";
 
 const PortalVerifyEmailMutation = gql`
@@ -19,6 +19,18 @@ export function usePortalVerifyEmail() {
   const oobCode = urlParams.get("oobCode");
 
   const [verified, setVerified] = useState(false);
+  const formRef = useCallback((node) => {
+    node.addEventListener("sl-submit", async (_event: any) => {
+      if (verified) {
+        // redirect
+        return;
+      }
+      if (oobCode) {
+        console.log(oobCode);
+        await request({ oobCode });
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (data?.verifyEmail?.success) {
@@ -27,21 +39,14 @@ export function usePortalVerifyEmail() {
     }
   }, [data?.verifyEmail?.success]);
 
-  const verify = async () => {
-    if (oobCode) {
-      console.log(oobCode);
-      await request({ oobCode });
-    }
-  };
-
   return {
     states: {
       loading,
       error,
       verified,
     },
-    callbacks: {
-      verify,
+    refs: {
+      formRef,
     },
   };
 }

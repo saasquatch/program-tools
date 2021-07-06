@@ -1,18 +1,17 @@
-import { navigation } from "@saasquatch/component-boilerplate";
 import { h } from "@stencil/core";
 
-export interface PortalVerifyEmailViewProps {
+export interface PortalResetPasswordViewProps {
   states: {
     error: string;
     loading: boolean;
-    verified: boolean;
+    reset: boolean;
   };
   refs: {
-    formRef: any;
+    formRef: (node: any) => void;
   };
 }
 
-export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
+export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
   const { states, refs } = props;
   return (
     <div class="Wrapper Column">
@@ -23,8 +22,18 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
           </sqm-form-message>
         )}
         <sl-title>
-          {states.verified ? "Email Verified" : "Please Verify Your Email"}
+          {states.reset ? "Password Reset" : "Reset your password"}
         </sl-title>
+        {!states.reset && (
+          <sl-input
+            exportparts="label: input-label"
+            type="password"
+            name="/password"
+            label="Password"
+            disabled={states.loading}
+            required
+          ></sl-input>
+        )}
         <div>
           <sl-button
             submit
@@ -32,7 +41,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
             exportparts="base: primarybutton-base"
             type="primary"
           >
-            {states.verified ? "Continue" : "Verify Email"}
+            {states.reset ? "Continue" : "Reset Password"}
           </sl-button>
         </div>
       </sl-form>

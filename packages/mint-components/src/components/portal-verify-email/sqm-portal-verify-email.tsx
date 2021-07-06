@@ -26,14 +26,14 @@ export class PortalVerifyEmail {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks } =
+    const { states, refs } =
       false && isDemo() ? usePortalVerifyEmailDemo() : usePortalVerifyEmail();
-    return <PortalVerifyEmailView states={states} callbacks={callbacks} />;
+    return <PortalVerifyEmailView states={states} refs={refs} />;
   }
 }
 function usePortalVerifyEmailDemo(): PortalVerifyEmailViewProps {
   return {
     states: { error: "", loading: false, verified: false },
-    callbacks: { verify: () => {} },
+    refs: { formRef: {} },
   };
 }
