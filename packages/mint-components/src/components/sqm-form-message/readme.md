@@ -27,6 +27,7 @@ graph TD;
   sqm-portal-email-verification --> sqm-form-message
   sqm-portal-forgot-password --> sqm-form-message
   sqm-portal-login --> sqm-form-message
+  sqm-portal-register --> sqm-form-message
   sqm-portal-reset-password --> sqm-form-message
   sqm-portal-verify-email --> sqm-form-message
   sqm-stencilbook --> sqm-form-message

@@ -1,4 +1,3 @@
-import { navigation } from "@saasquatch/component-boilerplate";
 import { h } from "@stencil/core";
 
 export interface PortalVerifyEmailViewProps {

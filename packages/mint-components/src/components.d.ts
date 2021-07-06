@@ -151,6 +151,8 @@ export namespace Components {
     }
     interface SqmPortalLogin {
     }
+    interface SqmPortalRegister {
+    }
     interface SqmPortalResetPassword {
     }
     interface SqmPortalVerifyEmail {
@@ -332,6 +334,12 @@ declare global {
         prototype: HTMLSqmPortalLoginElement;
         new (): HTMLSqmPortalLoginElement;
     };
+    interface HTMLSqmPortalRegisterElement extends Components.SqmPortalRegister, HTMLStencilElement {
+    }
+    var HTMLSqmPortalRegisterElement: {
+        prototype: HTMLSqmPortalRegisterElement;
+        new (): HTMLSqmPortalRegisterElement;
+    };
     interface HTMLSqmPortalResetPasswordElement extends Components.SqmPortalResetPassword, HTMLStencilElement {
     }
     var HTMLSqmPortalResetPasswordElement: {
@@ -387,6 +395,7 @@ declare global {
         "sqm-portal-forgot-password": HTMLSqmPortalForgotPasswordElement;
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
         "sqm-portal-login": HTMLSqmPortalLoginElement;
+        "sqm-portal-register": HTMLSqmPortalRegisterElement;
         "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
         "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
         "sqm-route": HTMLSqmRouteElement;
@@ -541,6 +550,8 @@ declare namespace LocalJSX {
     }
     interface SqmPortalLogin {
     }
+    interface SqmPortalRegister {
+    }
     interface SqmPortalResetPassword {
     }
     interface SqmPortalVerifyEmail {
@@ -661,6 +672,7 @@ declare namespace LocalJSX {
         "sqm-portal-forgot-password": SqmPortalForgotPassword;
         "sqm-portal-frame": SqmPortalFrame;
         "sqm-portal-login": SqmPortalLogin;
+        "sqm-portal-register": SqmPortalRegister;
         "sqm-portal-reset-password": SqmPortalResetPassword;
         "sqm-portal-verify-email": SqmPortalVerifyEmail;
         "sqm-route": SqmRoute;
@@ -686,6 +698,7 @@ declare module "@stencil/core" {
             "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword & JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
+            "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
             "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
