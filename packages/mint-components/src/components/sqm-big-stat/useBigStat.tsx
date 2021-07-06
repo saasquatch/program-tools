@@ -45,7 +45,7 @@ const referralsCountQuery = (programId: string) =>
     { programId },
     (res) => res.data?.viewer?.referrals?.totalCount?.toString()
   );
-  const programGoalsQuery = () =>
+const programGoalsQuery = (goalId: string) =>
   debugQuery(
     gql`
       query {
@@ -59,10 +59,18 @@ const referralsCountQuery = (programId: string) =>
         }
       }
     `,
-    {},
-    (res) => [res.data?.viewer?.programGoals]?.[0]
+    { goalId },
+    (res) => {
+      let count =0;
+      const goals = [res.data?.viewer?.programGoals]?.[0];
+      goals.forEach((element) => {
+        if (element.goalId === goalId) {
+          count = element.count;
+        }
+      });
+      return count.toString();
+    }
   );
-
 
 const referralsMonthQuery = (programId: string) =>
   debugQuery(
