@@ -63,6 +63,7 @@ const programGoalsQuery = (goalId: string) =>
     (res) => {
       let count =0;
       const goals = [res.data?.viewer?.programGoals]?.[0];
+      console.log("IS THIS THING ON?")
       goals.forEach((element) => {
         if (element.goalId === goalId) {
           count = element.count;
