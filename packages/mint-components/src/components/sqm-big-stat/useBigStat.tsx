@@ -499,7 +499,7 @@ const queries: {
 
 // this should be exposed in documentation somehow
 export const StatPaths = [
-  "/(programGoals)",
+  "/(programGoals)/:goalId",
   "/(referralsCount)",
   "/(referralsMonth)",
   "/(referralsWeek)",
