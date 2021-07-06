@@ -5,7 +5,7 @@ import {
   useQuery,
   useProgramId,
   useUserIdentity,
-  useLocale
+  useLocale,
 } from "@saasquatch/component-boilerplate";
 import { QueryData } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
 import debugFn from "debug";
@@ -32,7 +32,7 @@ const debugQuery = (
 const referralsCountQuery = (programId: string) =>
   debugQuery(
     gql`
-      query($programId: ID!) {
+      query ($programId: ID!) {
         viewer {
           ... on User {
             referrals(filter: { programId_eq: $programId }) {
@@ -45,11 +45,29 @@ const referralsCountQuery = (programId: string) =>
     { programId },
     (res) => res.data?.viewer?.referrals?.totalCount?.toString()
   );
+  const programGoalsQuery = () =>
+  debugQuery(
+    gql`
+      query {
+        viewer {
+          ... on User {
+            programGoals {
+              goalId
+              count
+            }
+          }
+        }
+      }
+    `,
+    {},
+    (res) => [res.data?.viewer?.programGoals]?.[0]
+  );
+
 
 const referralsMonthQuery = (programId: string) =>
   debugQuery(
     gql`
-      query($programId: ID!) {
+      query ($programId: ID!) {
         viewer {
           ... on User {
             referrals(
@@ -71,7 +89,7 @@ const referralsMonthQuery = (programId: string) =>
 const referralsWeekQuery = (programId: string) =>
   debugQuery(
     gql`
-      query($programId: ID!) {
+      query ($programId: ID!) {
         viewer {
           ... on User {
             referrals(
@@ -93,7 +111,7 @@ const referralsWeekQuery = (programId: string) =>
 const rewardsCountQuery = (programId: string) =>
   debugQuery(
     gql`
-      query($programId: ID!) {
+      query ($programId: ID!) {
         viewer {
           ... on User {
             rewards(filter: { programId_eq: $programId }) {
@@ -110,7 +128,7 @@ const rewardsCountQuery = (programId: string) =>
 const rewardsMonthQuery = (programId: string) =>
   debugQuery(
     gql`
-      query($programId: ID!) {
+      query ($programId: ID!) {
         viewer {
           ... on User {
             rewards(
@@ -132,7 +150,7 @@ const rewardsMonthQuery = (programId: string) =>
 const rewardsWeekQuery = (programId: string) =>
   debugQuery(
     gql`
-      query($programId: ID!) {
+      query ($programId: ID!) {
         viewer {
           ... on User {
             rewards(
@@ -161,7 +179,7 @@ const rewardsRedeemedQuery = (
   const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
   return debugQuery(
     gql`
-      query(
+      query (
         $programId: ID!
         $type: RewardType
         $unit: String!
@@ -189,7 +207,6 @@ const rewardsRedeemedQuery = (
     `,
     { programId, type, unit, locale },
     (res) => {
-
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
       return arr?.[0]?.prettyRedeemedCredit || fallback;
@@ -207,7 +224,7 @@ const rewardsAssignedQuery = (
   const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
   return debugQuery(
     gql`
-      query(
+      query (
         $programId: ID!
         $type: RewardType
         $unit: String!
@@ -252,7 +269,7 @@ const rewardsAvailableQuery = (
   const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
   return debugQuery(
     gql`
-      query(
+      query (
         $programId: ID!
         $type: RewardType
         $unit: String!
@@ -303,7 +320,7 @@ const rewardsBalanceQuery = (
   const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
   return debugQuery(
     gql`
-      query(
+      query (
         $programId: ID
         $type: RewardType!
         $unit: String!
@@ -343,6 +360,76 @@ const rewardsBalanceQuery = (
       return arr?.[0]?.prettyAvailableValue || fallback;
     }
   );
+};
+
+const creditAndIntegrationQuery = (
+  programId: string,
+  locale: string,
+  type: string,
+  baseUnit: string,
+  unitType?: string,
+  format = "prettyValue",
+  global = "false"
+) => {
+  console.log();
+  const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
+  const res = useQuery(
+    gql`
+      query ($programId: ID, $unit: String!, $locale: RSLocale) {
+        fallback: formatRewardPrettyValue(
+          value: 0
+          unit: $unit
+          locale: $locale
+          formatType: UNIT_FORMATTED
+        )
+        viewer: viewer {
+          ... on User {
+            rewards(
+              filter: {
+                type_in: [INTEGRATION, CREDIT]
+                unit_eq: $unit
+                programId_eq: $programId
+              }
+              limit: 1000
+            ) {
+              data {
+                type
+                value
+                currency
+              }
+            }
+          }
+        }
+      }
+    `,
+    {
+      programId: global === "false" ? programId : null,
+      // type,
+      unit,
+      // format: parseRewardValueFormat[format] ?? "UNIT_FORMATTED",
+      locale,
+    }
+    // (res) => {
+
+    //   return res.data;
+    // }
+  );
+
+  const arr = res.data?.viewer?.rewards?.data;
+  const fallback = res?.data?.fallback;
+  console.log({ res, unit, arr, unitType });
+  const giftcardAgg =
+    arr?.length &&
+    arr?.reduce(
+      (sum, giftcard) =>
+        giftcard.currency === unitType || unit ? (sum += giftcard.value) : sum,
+      0
+    );
+
+  const currencyRewards = giftcardAgg;
+  console.log("the goods", currencyRewards);
+
+  return currencyRewards?.toString() || fallback;
 };
 
 // functions are of the form (programId: string, ...args: string) => string
@@ -392,10 +479,19 @@ const queries: {
     label: "Balance - Credit Earned",
     query: rewardsBalanceQuery,
   },
+  creditAndIntegrationBalance: {
+    label: "Balance - Credit and Gift Cards Earned",
+    query: creditAndIntegrationQuery,
+  },
+  programGoals: {
+    label: "Program Goals",
+    query: programGoalsQuery,
+  },
 };
 
 // this should be exposed in documentation somehow
 export const StatPaths = [
+  "/(programGoals)",
   "/(referralsCount)",
   "/(referralsMonth)",
   "/(referralsWeek)",
@@ -406,6 +502,7 @@ export const StatPaths = [
   "/(rewardsRedeemed)/:statType/:unit/:valueType?",
   "/(rewardsAvailable)/:statType/:unit/:valueType?",
   "/(rewardBalance)/:statType/:unit/:valueType?/:format?/:global?",
+  "/(creditAndIntegrationBalance)/:statType/:unit/:valueType?",
 ];
 
 export const StatPatterns = StatPaths.map((pattern) => pathToRegexp(pattern));
@@ -420,9 +517,10 @@ export function useBigStat({ statType }: BigStat) {
   const locale = useLocale();
   const userIdent = useUserIdentity();
   debug({ programId, statType });
-  const re = useMemo(() => StatPatterns.find((re) => re.test(statType)), [
-    statType,
-  ]);
+  const re = useMemo(
+    () => StatPatterns.find((re) => re.test(statType)),
+    [statType]
+  );
   if (re === undefined) {
     return { label: "BAD TYPE PROP", props: { statvalue: "!!!" } };
   }
