@@ -93,5 +93,5 @@ export const RewardBalance = createHookStory(() =>
   View("/rewardBalance/CREDIT/COFFEE/prettyValue")
 );
 export const ProgramGoals = createHookStory(() =>{
-  return View("/programGoals/conversionCount/Paid-Member-Goal/referrals")
+  return View("/programGoals/count/Paid-Member-Goal/referrals")
 });

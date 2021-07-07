@@ -18,6 +18,7 @@ const LOADING = "...";
 
 type Goal = {
   goalId: string;
+  programId: string;
   count: number;
   firstDate: number;
   lastDate: number;
@@ -68,21 +69,21 @@ const programGoalsQuery = (
           ... on User {
             programGoals {
               goalId
+              programId
               count
-              firstDate
-              lastDate
               conversionCount
             }
           }
         }
       }
     `,
-    { goalId },
+    {},
     (res) => {
       const goal = res.data?.viewer?.programGoals?.filter(
-        (goal: Goal) => goal.goalId === goalId
+        (goal: Goal) => goal.goalId === goalId && goal.programId === programId
       );
-      return goal?.[0]?.[metricType]?.toString();
+      console.log(goal)
+      return goal?.[0]?.[metricType]?.toString() || 0;
     }
   );
 };
