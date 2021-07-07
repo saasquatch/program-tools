@@ -11,19 +11,19 @@ export default {
 };
 
 function setupGraphQL() {
-  const id = "worried-camera@uexwltgh.mailosaur.net";
+  const id = "bj123";
   const accountId = id;
-  const programId = "a-referral-program";
+  const programId = "ny-post-referrals";
 
   //@ts-ignore
   window.SquatchAndroid = true;
   //@ts-ignore
   window.widgetIdent = {
-    tenantAlias: "test_as36zjtpfy7oo",
+    tenantAlias: "test_a7yoz8854cf6x",
     appDomain: "https://staging.referralsaasquatch.com",
     token:
       // you have to change this if you change the id or accountId
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6IndvcnJpZWQtY2FtZXJhQHVleHdsdGdoLm1haWxvc2F1ci5uZXQiLCJpZCI6IndvcnJpZWQtY2FtZXJhQHVleHdsdGdoLm1haWxvc2F1ci5uZXQifX0.-WGV4_bzGCFp-OTIO-h-yp0MlgtkdufT_GgI4T691OY",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImJqMTIzIiwiaWQiOiJiajEyMyJ9fQ.rmJZebIyj-xThGi0WO6LSyE573vb1HkfLc8lFfqMmgs",
     userId: id,
     accountId,
     programId,
@@ -92,3 +92,6 @@ export const RewardsAvailableWithSlash = createHookStory(() =>
 export const RewardBalance = createHookStory(() =>
   View("/rewardBalance/CREDIT/COFFEE/prettyValue")
 );
+export const ProgramGoals = createHookStory(() =>{
+  return View("/programGoals/conversionCount/Paid-Member-Goal/referrals")
+});

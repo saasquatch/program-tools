@@ -16,6 +16,14 @@ import { BigStatViewProps } from "./sqm-big-stat-view";
 const debug = debugFn("sq:useBigStat");
 const LOADING = "...";
 
+type Goal = {
+  goalId: string;
+  count: number;
+  firstDate: number;
+  lastDate: number;
+  conversionCount: number;
+};
+
 const debugQuery = (
   query: Parameters<typeof useQuery>[0],
   variables: unknown,
@@ -43,10 +51,17 @@ const referralsCountQuery = (programId: string) =>
       }
     `,
     { programId },
+
     (res) => res.data?.viewer?.referrals?.totalCount?.toString()
   );
-const programGoalsQuery = (goalId: string) =>
-  debugQuery(
+const programGoalsQuery = (
+  programId: string,
+  locale: string,
+  metricType: string,
+  goalId: string
+) => {
+  console.log(goalId);
+  return debugQuery(
     gql`
       query {
         viewer {
@@ -54,6 +69,9 @@ const programGoalsQuery = (goalId: string) =>
             programGoals {
               goalId
               count
+              firstDate
+              lastDate
+              conversionCount
             }
           }
         }
@@ -61,17 +79,13 @@ const programGoalsQuery = (goalId: string) =>
     `,
     { goalId },
     (res) => {
-      let count =0;
-      const goals = [res.data?.viewer?.programGoals]?.[0];
-      console.log("IS THIS THING ON?")
-      goals.forEach((element) => {
-        if (element.goalId === goalId) {
-          count = element.count;
-        }
-      });
-      return count.toString();
+      const goal = res.data?.viewer?.programGoals?.filter(
+        (goal: Goal) => goal.goalId === goalId
+      );
+      return goal?.[0]?.[metricType]?.toString();
     }
   );
+};
 
 const referralsMonthQuery = (programId: string) =>
   debugQuery(
@@ -500,7 +514,7 @@ const queries: {
 
 // this should be exposed in documentation somehow
 export const StatPaths = [
-  "/(programGoals)/:goalId",
+  "/(programGoals)/:metricType/:goalId(.*)",
   "/(referralsCount)",
   "/(referralsMonth)",
   "/(referralsWeek)",
