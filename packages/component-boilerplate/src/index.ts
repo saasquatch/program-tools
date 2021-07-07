@@ -30,6 +30,7 @@ export {
 export { useQuery } from "./hooks/graphql/useQuery";
 export { useMutation } from "./hooks/graphql/useMutation";
 export { useLazyQuery } from "./hooks/graphql/useLazyQuery";
+export { customQueryHooksFactory } from "./hooks/graphql/useCustomQuery";
 
 //      Navigation
 
