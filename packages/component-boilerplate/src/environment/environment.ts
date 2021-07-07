@@ -215,6 +215,15 @@ export function useAppDomain(): string {
   }
 }
 
+const DEFAULT_PORTAL_AUTH_URL = "https://portal-auth.referralsaasquatch.com"; //todo: finalize
+export function usePortalAuthUrl(): string {
+  const sdk = getEnvironmentSDK();
+  if (sdk.type === "SquatchPortal") {
+    return sdk.env?.portalAuthUrl || DEFAULT_PORTAL_AUTH_URL;
+  }
+  return DEFAULT_PORTAL_AUTH_URL;
+}
+
 export type UserId = {
   id: string;
   accountId: string;

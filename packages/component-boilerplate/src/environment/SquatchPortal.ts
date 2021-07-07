@@ -16,4 +16,4 @@ declare global {
 export type PortalEnv = Pick<
   WidgetIdent,
   "tenantAlias" | "appDomain" | "programId"
->;
+> & { portalAuthUrl: string };
