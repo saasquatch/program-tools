@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property               | Attribute                 | Description | Type     | Default      |
+| ---------------------- | ------------------------- | ----------- | -------- | ------------ |
+| `nextPageUrlParameter` | `next-page-url-parameter` |             | `string` | `"nextPage"` |
+
+
 ## Dependencies
 
 ### Depends on

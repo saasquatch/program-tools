@@ -144,18 +144,28 @@ export namespace Components {
         "poweredBy": boolean;
     }
     interface SqmPortalEmailVerification {
+        "nextPageUrlParameter": string;
     }
     interface SqmPortalForgotPassword {
+        "nextPageUrlParameter": string;
     }
     interface SqmPortalFrame {
     }
     interface SqmPortalLogin {
+        "nextPage": string;
+        "nextPageUrlParameter": string;
     }
     interface SqmPortalRegister {
+        "nextPage": string;
+        "nextPageUrlParameter": string;
     }
     interface SqmPortalResetPassword {
+        "nextPage": string;
+        "nextPageUrlParameter": string;
     }
     interface SqmPortalVerifyEmail {
+        "nextPage": string;
+        "nextPageUrlParameter": string;
     }
     interface SqmRoute {
         /**
@@ -543,18 +553,28 @@ declare namespace LocalJSX {
         "poweredBy"?: boolean;
     }
     interface SqmPortalEmailVerification {
+        "nextPageUrlParameter"?: string;
     }
     interface SqmPortalForgotPassword {
+        "nextPageUrlParameter"?: string;
     }
     interface SqmPortalFrame {
     }
     interface SqmPortalLogin {
+        "nextPage"?: string;
+        "nextPageUrlParameter"?: string;
     }
     interface SqmPortalRegister {
+        "nextPage"?: string;
+        "nextPageUrlParameter"?: string;
     }
     interface SqmPortalResetPassword {
+        "nextPage"?: string;
+        "nextPageUrlParameter"?: string;
     }
     interface SqmPortalVerifyEmail {
+        "nextPage"?: string;
+        "nextPageUrlParameter"?: string;
     }
     interface SqmRoute {
         /**

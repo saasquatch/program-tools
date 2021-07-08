@@ -4,8 +4,8 @@ import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { usePortalQuery } from "../portal/usePortalQuery";
 
 const PortalEmailVerificationMutation = gql`
-  mutation PortalEmailVerification($email: String!, $nextPage: String) {
-    requestVerificationEmail(input: { email: $email, nextPage: $nextPage }) {
+  mutation PortalEmailVerification($email: String!, $urlParams: JSONObject) {
+    requestVerificationEmail(input: { email: $email, urlParams: $urlParams }) {
       success
     }
   }
@@ -28,7 +28,8 @@ export function usePortalEmailVerification({ nextPageUrlParameter }) {
     formData?.forEach((value, key) => {
       jsonpointer.set(formData, key, value);
     });
-    const variables = { email: formData.email, nextPage };
+    const urlParams = nextPage ? { [nextPageUrlParameter]: nextPage } : null;
+    const variables = { email: formData.email, urlParams };
 
     await request(variables);
   };

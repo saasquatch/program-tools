@@ -4,8 +4,8 @@ import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { usePortalQuery } from "../portal/usePortalQuery";
 
 const PortalForgotPasswordMutation = gql`
-  mutation PortalForgotPassword($email: String!, $nextPage: String) {
-    requestPasswordResetEmail(input: { email: $email }) {
+  mutation PortalForgotPassword($email: String!, $urlParams: JSONObject) {
+    requestPasswordResetEmail(input: { email: $email, urlParams: $urlParams }) {
       success
     }
   }
@@ -27,7 +27,8 @@ export function usePortalForgotPassword({ nextPageUrlParameter }) {
     formData?.forEach((value, key) => {
       jsonpointer.set(formData, key, value);
     });
-    const variables = { email: formData.email, nextPage };
+    const urlParams = nextPage ? { [nextPageUrlParameter]: nextPage } : null;
+    const variables = { email: formData.email, urlParams };
 
     await request(variables);
   };
