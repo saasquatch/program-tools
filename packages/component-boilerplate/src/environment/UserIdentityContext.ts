@@ -8,6 +8,7 @@ export type UserIdentity = {
   id: string;
   accountId: string;
   jwt?: string;
+  sessionData?: { [key: string]: any };
 };
 
 declare global {
@@ -57,6 +58,13 @@ export function setUserIdentity(identity?: UserIdentity) {
   _lazilyStartGlobally();
   const globalProvider = window.squatchUserIdentity;
   globalProvider.context = identity;
+}
+
+/**
+ * Gets the SessionData of the current user, or undefined if logged out
+ */
+export function useSessionData(): { [key: string]: any } | undefined {
+  return useUserIdentity()?.sessionData;
 }
 
 /**
