@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import { pathToRegexp } from "path-to-regexp";
+import { pathToRegexp, match } from "path-to-regexp";
 import { useMemo } from "@saasquatch/universal-hooks";
 import {
   useQuery,
@@ -61,7 +61,6 @@ const programGoalsQuery = (
   metricType: string,
   goalId: string
 ) => {
-  console.log(goalId);
   return debugQuery(
     gql`
       query {
@@ -77,12 +76,11 @@ const programGoalsQuery = (
         }
       }
     `,
-    {},
+    { programId, metricType, goalId, locale },
     (res) => {
       const goal = res.data?.viewer?.programGoals?.filter(
         (goal: Goal) => goal.goalId === goalId && goal.programId === programId
       );
-      console.log(goal)
       return goal?.[0]?.[metricType]?.toString() || 0;
     }
   );
@@ -386,76 +384,6 @@ const rewardsBalanceQuery = (
   );
 };
 
-const creditAndIntegrationQuery = (
-  programId: string,
-  locale: string,
-  // type: string,
-  baseUnit: string,
-  unitType?: string,
-  // format = "prettyValue",
-  global = "false"
-) => {
-  console.log();
-  const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
-  const res = useQuery(
-    gql`
-      query ($programId: ID, $unit: String!, $locale: RSLocale) {
-        fallback: formatRewardPrettyValue(
-          value: 0
-          unit: $unit
-          locale: $locale
-          formatType: UNIT_FORMATTED
-        )
-        viewer: viewer {
-          ... on User {
-            rewards(
-              filter: {
-                type_in: [INTEGRATION, CREDIT]
-                unit_eq: $unit
-                programId_eq: $programId
-              }
-              limit: 1000
-            ) {
-              data {
-                type
-                value
-                currency
-              }
-            }
-          }
-        }
-      }
-    `,
-    {
-      programId: global === "false" ? programId : null,
-      // type,
-      unit,
-      // format: parseRewardValueFormat[format] ?? "UNIT_FORMATTED",
-      locale,
-    }
-    // (res) => {
-
-    //   return res.data;
-    // }
-  );
-
-  const arr = res.data?.viewer?.rewards?.data;
-  const fallback = res?.data?.fallback;
-  console.log({ res, unit, arr, unitType });
-  const giftcardAgg =
-    arr?.length &&
-    arr?.reduce(
-      (sum, giftcard) =>
-        giftcard.currency === unitType || unit ? (sum += giftcard.value) : sum,
-      0
-    );
-
-  const currencyRewards = giftcardAgg;
-  console.log("the goods", currencyRewards);
-
-  return currencyRewards?.toString() || fallback;
-};
-
 // functions are of the form (programId: string, ...args: string) => string
 const queries: {
   [key: string]: {
@@ -503,10 +431,6 @@ const queries: {
     label: "Balance - Credit Earned",
     query: rewardsBalanceQuery,
   },
-  creditAndIntegrationBalance: {
-    label: "Balance - Credit and Gift Cards Earned",
-    query: creditAndIntegrationQuery,
-  },
   programGoals: {
     label: "Program Goals",
     query: programGoalsQuery,
@@ -515,7 +439,7 @@ const queries: {
 
 // this should be exposed in documentation somehow
 export const StatPaths = [
-  "/(programGoals)/:metricType/:goalId(.*)",
+  "/(programGoals)/:metricType/:goalId",
   "/(referralsCount)",
   "/(referralsMonth)",
   "/(referralsWeek)",
@@ -529,11 +453,16 @@ export const StatPaths = [
   "/(creditAndIntegrationBalance)/:statType/:unit/:valueType?",
 ];
 
-export const StatPatterns = StatPaths.map((pattern) => pathToRegexp(pattern));
+export const StatPatterns = StatPaths.map(
+  (pattern) =>match(pattern, { decode: decodeURIComponent })
+);
 
 export function parsePath(type: string): string[] | undefined {
-  const re = useMemo(() => StatPatterns.find((re) => re.test(type)), [type]);
-  return re?.exec(type).slice(1);
+  const re = useMemo(
+    () => StatPatterns.find((re) => re(type)),[type]
+  );
+  //@ts-ignore
+  return Object.values(re(type).params);
 }
 
 export function useBigStat({ statType }: BigStat) {
@@ -542,13 +471,14 @@ export function useBigStat({ statType }: BigStat) {
   const userIdent = useUserIdentity();
   debug({ programId, statType });
   const re = useMemo(
-    () => StatPatterns.find((re) => re.test(statType)),
-    [statType]
+    () => StatPatterns.find((re) => re(statType)),[statType]
   );
   if (re === undefined) {
     return { label: "BAD TYPE PROP", props: { statvalue: "!!!" } };
   }
-  const [queryName, ...queryArgs] = re.exec(statType).slice(1);
+
+  //@ts-ignore
+  const [queryName, ...queryArgs] = Object.values(re(statType).params);
 
   const label = queries[queryName].label;
 
