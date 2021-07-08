@@ -1,4 +1,3 @@
-import { navigation } from "@saasquatch/component-boilerplate";
 import { h } from "@stencil/core";
 
 export interface PortalRegisterViewProps {
@@ -6,16 +5,16 @@ export interface PortalRegisterViewProps {
     error: string;
     loading: boolean;
   };
-  refs: {
-    formRef: any;
+  callbacks: {
+    submit;
   };
 }
 
 export function PortalRegisterView(props: PortalRegisterViewProps) {
-  const { states, refs } = props;
+  const { states, callbacks } = props;
   return (
     <div class="Wrapper Column">
-      <sl-form class="Column" ref={refs.formRef} id="portal-register">
+      <sl-form class="Column" onSl-submit={callbacks.submit}>
         {props.states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">
             <div part="erroralert-text">{props.states.error}</div>
@@ -45,10 +44,9 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             type="primary"
           >
             Register
+            {/* slot button text */}
           </sl-button>
-          <sl-button type="text" onClick={() => navigation.push("/login")}>
-            Sign in
-          </sl-button>
+          {/* slot Sign in button */}
         </div>
       </sl-form>
     </div>

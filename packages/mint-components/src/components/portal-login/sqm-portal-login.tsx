@@ -1,6 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, State } from "@stencil/core";
+import { Component, h, Prop, State } from "@stencil/core";
 import { PortalLoginView, PortalLoginViewProps } from "./sqm-portal-login-view";
 import { usePortalLogin } from "./usePortalLogin";
 
@@ -16,6 +16,12 @@ export class PortalLogin {
   @State()
   ignored = true;
 
+  @Prop()
+  nextPage = "/";
+
+  @Prop()
+  nextPageUrlParameter = "nextPage";
+
   constructor() {
     withHooks(this);
   }
@@ -23,14 +29,22 @@ export class PortalLogin {
   disconnectedCallback() {}
 
   render() {
-    const { states, refs } =
-      false && isDemo() ? useLoginDemo() : usePortalLogin();
-    return <PortalLoginView states={states} refs={refs} />;
+    const { states, callbacks } =
+      false && isDemo() ? useLoginDemo(this) : usePortalLogin(this);
+    return <PortalLoginView states={states} callbacks={callbacks} />;
   }
 }
-function useLoginDemo(): PortalLoginViewProps {
+function useLoginDemo({
+  nextPage,
+  nextPageUrlParameter,
+}): PortalLoginViewProps {
   return {
     states: { error: "", loading: false },
-    refs: { formRef: {} },
+    callbacks: {
+      submit: async (_event) => {
+        nextPage;
+        nextPageUrlParameter;
+      },
+    },
   };
 }

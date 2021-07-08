@@ -4,17 +4,18 @@ export interface PortalForgotPasswordViewProps {
   states: {
     error: string;
     loading: boolean;
+    success: boolean;
   };
-  refs: {
-    formRef: any;
+  callbacks: {
+    submit: (event: any) => Promise<void>;
   };
 }
 
 export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
-  const { states, refs } = props;
+  const { states, callbacks } = props;
   return (
     <div class="Wrapper Column">
-      <sl-form class="Column" ref={refs.formRef} id="portal-email-verification">
+      <sl-form class="Column" onSl-submit={callbacks.submit}>
         {props.states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">
             <div part="erroralert-text">{props.states.error}</div>

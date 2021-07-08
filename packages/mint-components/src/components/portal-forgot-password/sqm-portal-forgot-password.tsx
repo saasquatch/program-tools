@@ -1,6 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, State } from "@stencil/core";
+import { Component, h, Prop, State } from "@stencil/core";
 import {
   PortalForgotPasswordView,
   PortalForgotPasswordViewProps,
@@ -19,6 +19,9 @@ export class PortalForgotPassword {
   @State()
   ignored = true;
 
+  @Prop()
+  nextPageUrlParameter = "nextPage";
+
   constructor() {
     withHooks(this);
   }
@@ -26,16 +29,22 @@ export class PortalForgotPassword {
   disconnectedCallback() {}
 
   render() {
-    const { states, refs } =
+    const { states, callbacks } =
       false && isDemo()
-        ? usePortalForgotPasswordDemo()
-        : usePortalForgotPassword();
-    return <PortalForgotPasswordView states={states} refs={refs} />;
+        ? usePortalForgotPasswordDemo(this)
+        : usePortalForgotPassword(this);
+    return <PortalForgotPasswordView states={states} callbacks={callbacks} />;
   }
 }
-function usePortalForgotPasswordDemo(): PortalForgotPasswordViewProps {
+function usePortalForgotPasswordDemo({
+  nextPageUrlParameter,
+}): PortalForgotPasswordViewProps {
   return {
-    states: { error: "", loading: false },
-    refs: { formRef: {} },
+    states: { error: "", loading: false, success: false },
+    callbacks: {
+      submit: async (_event) => {
+        nextPageUrlParameter;
+      },
+    },
   };
 }

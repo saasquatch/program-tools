@@ -1,12 +1,11 @@
 import gql from "graphql-tag";
 import jsonpointer from "jsonpointer";
-import { useEffect, useCallback } from "@saasquatch/universal-hooks";
+import { useEffect } from "@saasquatch/universal-hooks";
 import { usePortalQuery } from "../portal/usePortalQuery";
 import decode from "jwt-decode";
 import {
+  navigation,
   setUserIdentity,
-  // setUserIdentity,
-  useCurrentPage,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 
@@ -27,42 +26,45 @@ interface DecodedSquatchJWT {
   };
 }
 
-export function usePortalLogin() {
+export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
   const [{ loading, data, error }, request] = usePortalQuery(
     PortalLoginMutation,
     { loading: false }
   );
-  const currentPage = useCurrentPage();
   const userIdent = useUserIdentity();
 
-  const formRef = useCallback((node) => {
-    node.addEventListener("sl-submit", async (event: any) => {
-      console.log("sl-submit");
+  const urlParams = new URLSearchParams(window.location.search);
+  const nextPageOverride = urlParams.get(nextPageUrlParameter);
 
-      let formData = event.detail.formData;
+  const submit = async (event: any) => {
+    let formData = event.detail.formData;
 
-      formData?.forEach((value, key) => {
-        jsonpointer.set(formData, key, value);
-      });
-      const variables = { email: formData.email, password: formData.password };
-
-      await request(variables);
+    formData?.forEach((value, key) => {
+      jsonpointer.set(formData, key, value);
     });
-  }, []);
+    const variables = { email: formData.email, password: formData.password };
+
+    await request(variables);
+  };
 
   useEffect(() => {
-    if (data) {
+    if (data?.authenticateUser) {
       const { authenticateUser } = data;
       const jwt = authenticateUser.squatchJWT;
+      // const sessionData = authenticateUser.sessionData;
       const { user } = decode<DecodedSquatchJWT>(jwt);
-      setUserIdentity({ jwt, id: user.id, accountId: user.accountId });
+      setUserIdentity({
+        jwt,
+        id: user.id,
+        accountId: user.accountId,
+        // sessionData,
+      });
     }
-  }, [data]);
+  }, [data?.authenticateUser]);
 
   useEffect(() => {
-    if (userIdent?.jwt && currentPage.pathname === "/") {
-      console.log("logged in");
-      console.log(userIdent);
+    if (userIdent?.jwt) {
+      navigation.push(nextPageOverride || nextPage);
     }
   }, [userIdent?.jwt]);
 
@@ -71,8 +73,8 @@ export function usePortalLogin() {
       loading,
       error,
     },
-    refs: {
-      formRef,
+    callbacks: {
+      submit,
     },
   };
 }

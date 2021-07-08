@@ -1,6 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, State } from "@stencil/core";
+import { Component, h, Prop, State } from "@stencil/core";
 import {
   PortalRegisterView,
   PortalRegisterViewProps,
@@ -19,6 +19,12 @@ export class PortalRegister {
   @State()
   ignored = true;
 
+  @Prop()
+  nextPage = "/";
+
+  @Prop()
+  nextPageUrlParameter = "nextPage";
+
   constructor() {
     withHooks(this);
   }
@@ -26,14 +32,22 @@ export class PortalRegister {
   disconnectedCallback() {}
 
   render() {
-    const { states, refs } =
-      false && isDemo() ? useRegisterDemo() : usePortalRegister();
-    return <PortalRegisterView states={states} refs={refs} />;
+    const { states, callbacks } =
+      false && isDemo() ? useRegisterDemo(this) : usePortalRegister(this);
+    return <PortalRegisterView states={states} callbacks={callbacks} />;
   }
 }
-function useRegisterDemo(): PortalRegisterViewProps {
+function useRegisterDemo({
+  nextPage,
+  nextPageUrlParameter,
+}): PortalRegisterViewProps {
   return {
     states: { error: "", loading: false },
-    refs: { formRef: {} },
+    callbacks: {
+      submit: async (_event) => {
+        nextPage;
+        nextPageUrlParameter;
+      },
+    },
   };
 }

@@ -1,6 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, State } from "@stencil/core";
+import { Component, h, Prop, State } from "@stencil/core";
 import {
   PortalVerifyEmailView,
   PortalVerifyEmailViewProps,
@@ -19,6 +19,12 @@ export class PortalVerifyEmail {
   @State()
   ignored = true;
 
+  @Prop()
+  nextPage = "/";
+
+  @Prop()
+  nextPageUrlParameter = "nextPage";
+
   constructor() {
     withHooks(this);
   }
@@ -26,14 +32,24 @@ export class PortalVerifyEmail {
   disconnectedCallback() {}
 
   render() {
-    const { states, refs } =
-      false && isDemo() ? usePortalVerifyEmailDemo() : usePortalVerifyEmail();
-    return <PortalVerifyEmailView states={states} refs={refs} />;
+    const { states, callbacks } =
+      false && isDemo()
+        ? usePortalVerifyEmailDemo(this)
+        : usePortalVerifyEmail(this);
+    return <PortalVerifyEmailView states={states} callbacks={callbacks} />;
   }
 }
-function usePortalVerifyEmailDemo(): PortalVerifyEmailViewProps {
+function usePortalVerifyEmailDemo({
+  nextPage,
+  nextPageUrlParameter,
+}): PortalVerifyEmailViewProps {
   return {
     states: { error: "", loading: false, verified: false },
-    refs: { formRef: {} },
+    callbacks: {
+      submit: async (_event) => {
+        nextPage;
+        nextPageUrlParameter;
+      },
+    },
   };
 }

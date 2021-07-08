@@ -1,51 +1,70 @@
 import gql from "graphql-tag";
+import decode from "jwt-decode";
 import jsonpointer from "jsonpointer";
-import { useCallback, useEffect, useState } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { usePortalQuery } from "../portal/usePortalQuery";
+import { navigation, setUserIdentity } from "@saasquatch/component-boilerplate";
 
 const PortalResetPasswordMutation = gql`
   mutation PortalResetPassword($oobCode: String!, $password: String!) {
     resetPassword(input: { password: $password, oobCode: $oobCode }) {
-      success
+      squatchJWT
+      sessionData
     }
   }
 `;
 
-export function usePortalResetPassword() {
+interface DecodedSquatchJWT {
+  user: {
+    accountId: string;
+    id: string;
+    email: string;
+  };
+}
+
+export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
   const [{ loading, data, error }, request] = usePortalQuery(
     PortalResetPasswordMutation,
     { loading: false }
   );
+
   const urlParams = new URLSearchParams(window.location.search);
   const oobCode = urlParams.get("oobCode");
 
+  const nextPageOverride = urlParams.get(nextPageUrlParameter);
+
   const [reset, setReset] = useState(false);
 
-  const formRef = useCallback((node) => {
-    node.addEventListener("sl-submit", async (event: any) => {
-      if (reset) {
-        //redirect
-        return;
-      }
-      console.log("sl-submit");
+  const submit = async (event: any) => {
+    if (reset) {
+      return navigation.push(nextPageOverride || nextPage);
+    }
 
-      let formData = event.detail.formData;
+    let formData = event.detail.formData;
 
-      formData?.forEach((value, key) => {
-        jsonpointer.set(formData, key, value);
-      });
-      const variables = { oobCode, password: formData.password };
-
-      await request(variables);
+    formData?.forEach((value, key) => {
+      jsonpointer.set(formData, key, value);
     });
-  }, []);
+    const variables = { oobCode, password: formData.password };
+
+    await request(variables);
+  };
 
   useEffect(() => {
-    if (data?.resetPassword?.success) {
-      console.log("password reset");
+    if (data?.resetPassword) {
+      const { registerUser } = data;
+      const jwt = registerUser.squatchJWT;
+      // const sessionData = registerUser.sessionData;
+      const { user } = decode<DecodedSquatchJWT>(jwt);
+      setUserIdentity({
+        jwt,
+        id: user.id,
+        accountId: user.accountId,
+        // sessionData,
+      });
       setReset(true);
     }
-  }, [data?.resetPassword?.success]);
+  }, [data?.resetPassword]);
 
   return {
     states: {
@@ -53,8 +72,6 @@ export function usePortalResetPassword() {
       error,
       reset,
     },
-    refs: {
-      formRef,
-    },
+    callbacks: { submit },
   };
 }

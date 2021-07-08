@@ -1,39 +1,41 @@
 import gql from "graphql-tag";
 import jsonpointer from "jsonpointer";
-import { useEffect, useCallback } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { usePortalQuery } from "../portal/usePortalQuery";
 
 const PortalEmailVerificationMutation = gql`
-  mutation PortalEmailVerification($email: String!) {
-    requestVerificationEmail(input: { email: $email }) {
+  mutation PortalEmailVerification($email: String!, $nextPage: String) {
+    requestVerificationEmail(input: { email: $email, nextPage: $nextPage }) {
       success
     }
   }
 `;
 
-export function usePortalEmailVerification() {
+export function usePortalEmailVerification({ nextPageUrlParameter }) {
   const [{ loading, data, error }, request] = usePortalQuery(
     PortalEmailVerificationMutation,
     { loading: false }
   );
-  const formRef = useCallback((node) => {
-    node.addEventListener("sl-submit", async (event: any) => {
-      console.log("sl-submit");
 
-      let formData = event.detail.formData;
+  const [success, setSuccess] = useState(false);
 
-      formData?.forEach((value, key) => {
-        jsonpointer.set(formData, key, value);
-      });
-      const variables = { email: formData.email };
+  const urlParams = new URLSearchParams(window.location.search);
+  const nextPage = urlParams.get(nextPageUrlParameter);
 
-      await request(variables);
+  const submit = async (event: any) => {
+    let formData = event.detail.formData;
+
+    formData?.forEach((value, key) => {
+      jsonpointer.set(formData, key, value);
     });
-  }, []);
+    const variables = { email: formData.email, nextPage };
+
+    await request(variables);
+  };
 
   useEffect(() => {
     if (data?.requestVerificationEmail?.success) {
-      console.log("email requested");
+      setSuccess(true);
     }
   }, [data?.requestVerificationEmail?.success]);
 
@@ -41,9 +43,10 @@ export function usePortalEmailVerification() {
     states: {
       loading,
       error,
+      success,
     },
-    refs: {
-      formRef,
+    callbacks: {
+      submit,
     },
   };
 }

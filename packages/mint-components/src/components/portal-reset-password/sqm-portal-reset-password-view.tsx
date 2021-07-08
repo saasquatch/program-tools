@@ -6,16 +6,16 @@ export interface PortalResetPasswordViewProps {
     loading: boolean;
     reset: boolean;
   };
-  refs: {
-    formRef: (node: any) => void;
+  callbacks: {
+    submit: (node: any) => void;
   };
 }
 
 export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
-  const { states, refs } = props;
+  const { states, callbacks } = props;
   return (
     <div class="Wrapper Column">
-      <sl-form class="Column" ref={refs.formRef} id="portal-verify-email">
+      <sl-form class="Column" onSl-submit={callbacks.submit}>
         {props.states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">
             <div part="erroralert-text">{props.states.error}</div>

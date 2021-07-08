@@ -1,6 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, State } from "@stencil/core";
+import { Component, h, Prop, State } from "@stencil/core";
 import {
   PortalResetPasswordView,
   PortalResetPasswordViewProps,
@@ -19,6 +19,12 @@ export class PortalResetPassword {
   @State()
   ignored = true;
 
+  @Prop()
+  nextPage = "/";
+
+  @Prop()
+  nextPageUrlParameter = "nextPage";
+
   constructor() {
     withHooks(this);
   }
@@ -26,16 +32,24 @@ export class PortalResetPassword {
   disconnectedCallback() {}
 
   render() {
-    const { states, refs } =
+    const { states, callbacks } =
       false && isDemo()
-        ? usePortalResetPasswordDemo()
-        : usePortalResetPassword();
-    return <PortalResetPasswordView states={states} refs={refs} />;
+        ? usePortalResetPasswordDemo(this)
+        : usePortalResetPassword(this);
+    return <PortalResetPasswordView states={states} callbacks={callbacks} />;
   }
 }
-function usePortalResetPasswordDemo(): PortalResetPasswordViewProps {
+function usePortalResetPasswordDemo({
+  nextPage,
+  nextPageUrlParameter,
+}): PortalResetPasswordViewProps {
   return {
     states: { error: "", loading: false, reset: false },
-    refs: { formRef: (_node) => {} },
+    callbacks: {
+      submit: async (_event) => {
+        nextPage;
+        nextPageUrlParameter;
+      },
+    },
   };
 }

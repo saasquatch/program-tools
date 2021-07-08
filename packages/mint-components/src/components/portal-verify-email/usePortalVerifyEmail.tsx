@@ -1,6 +1,7 @@
 import gql from "graphql-tag";
-import { useCallback, useEffect, useState } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { usePortalQuery } from "../portal/usePortalQuery";
+import { navigation } from "@saasquatch/component-boilerplate";
 
 const PortalVerifyEmailMutation = gql`
   mutation PortalVerifyEmail($oobCode: String!) {
@@ -10,7 +11,7 @@ const PortalVerifyEmailMutation = gql`
   }
 `;
 
-export function usePortalVerifyEmail() {
+export function usePortalVerifyEmail({ nextPage, nextPageUrlParameter }) {
   const [{ loading, data, error }, request] = usePortalQuery(
     PortalVerifyEmailMutation,
     { loading: false }
@@ -18,23 +19,20 @@ export function usePortalVerifyEmail() {
   const urlParams = new URLSearchParams(window.location.search);
   const oobCode = urlParams.get("oobCode");
 
+  const nextPageOverride = urlParams.get(nextPageUrlParameter);
+
   const [verified, setVerified] = useState(false);
-  const formRef = useCallback((node) => {
-    node.addEventListener("sl-submit", async (_event: any) => {
-      if (verified) {
-        // redirect
-        return;
-      }
-      if (oobCode) {
-        console.log(oobCode);
-        await request({ oobCode });
-      }
-    });
-  }, []);
+  const submit = async (_event: any) => {
+    if (verified) {
+      return navigation.push(nextPageOverride || nextPage);
+    }
+    if (oobCode) {
+      await request({ oobCode });
+    }
+  };
 
   useEffect(() => {
     if (data?.verifyEmail?.success) {
-      console.log("email verified");
       setVerified(true);
     }
   }, [data?.verifyEmail?.success]);
@@ -45,8 +43,8 @@ export function usePortalVerifyEmail() {
       error,
       verified,
     },
-    refs: {
-      formRef,
+    callbacks: {
+      submit,
     },
   };
 }

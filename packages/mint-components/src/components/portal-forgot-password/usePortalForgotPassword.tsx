@@ -1,39 +1,40 @@
 import gql from "graphql-tag";
 import jsonpointer from "jsonpointer";
-import { useEffect, useCallback } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { usePortalQuery } from "../portal/usePortalQuery";
 
 const PortalForgotPasswordMutation = gql`
-  mutation PortalForgotPassword($email: String!) {
+  mutation PortalForgotPassword($email: String!, $nextPage: String) {
     requestPasswordResetEmail(input: { email: $email }) {
       success
     }
   }
 `;
 
-export function usePortalForgotPassword() {
+export function usePortalForgotPassword({ nextPageUrlParameter }) {
   const [{ loading, data, error }, request] = usePortalQuery(
     PortalForgotPasswordMutation,
     { loading: false }
   );
-  const formRef = useCallback((node) => {
-    node.addEventListener("sl-submit", async (event: any) => {
-      console.log("sl-submit");
+  const [success, setSuccess] = useState(false);
 
-      let formData = event.detail.formData;
+  const urlParams = new URLSearchParams(window.location.search);
+  const nextPage = urlParams.get(nextPageUrlParameter);
 
-      formData?.forEach((value, key) => {
-        jsonpointer.set(formData, key, value);
-      });
-      const variables = { email: formData.email };
+  const submit = async (event: any) => {
+    let formData = event.detail.formData;
 
-      await request(variables);
+    formData?.forEach((value, key) => {
+      jsonpointer.set(formData, key, value);
     });
-  }, []);
+    const variables = { email: formData.email, nextPage };
+
+    await request(variables);
+  };
 
   useEffect(() => {
     if (data?.requestPasswordResetEmail?.success) {
-      console.log("email requested");
+      setSuccess(true);
     }
   }, [data?.requestPasswordResetEmail?.success]);
 
@@ -41,9 +42,10 @@ export function usePortalForgotPassword() {
     states: {
       loading,
       error,
+      success,
     },
-    refs: {
-      formRef,
+    callbacks: {
+      submit,
     },
   };
 }
