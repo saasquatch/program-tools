@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import { pathToRegexp, match } from "path-to-regexp";
+import { match, MatchResult } from "path-to-regexp";
 import { useMemo } from "@saasquatch/universal-hooks";
 import {
   useQuery,
@@ -453,16 +453,16 @@ export const StatPaths = [
   "/(creditAndIntegrationBalance)/:statType/:unit/:valueType?",
 ];
 
-export const StatPatterns = StatPaths.map(
-  (pattern) =>match(pattern, { decode: decodeURIComponent })
+export const StatPatterns = StatPaths.map((pattern) =>
+  match(pattern, { decode: decodeURIComponent })
 );
 
 export function parsePath(type: string): string[] | undefined {
-  const re = useMemo(
-    () => StatPatterns.find((re) => re(type)),[type]
-  );
-  //@ts-ignore
-  return Object.values(re(type).params);
+  const re = useMemo(() => StatPatterns.find((re) => re(type)), [type]);
+
+  const result = re(type) as MatchResult<object>;
+
+  return Object.values(result.params);
 }
 
 export function useBigStat({ statType }: BigStat) {
@@ -470,15 +470,13 @@ export function useBigStat({ statType }: BigStat) {
   const locale = useLocale();
   const userIdent = useUserIdentity();
   debug({ programId, statType });
-  const re = useMemo(
-    () => StatPatterns.find((re) => re(statType)),[statType]
-  );
+  const re = useMemo(() => StatPatterns.find((re) => re(statType)), [statType]);
   if (re === undefined) {
     return { label: "BAD TYPE PROP", props: { statvalue: "!!!" } };
   }
 
-  //@ts-ignore
-  const [queryName, ...queryArgs] = Object.values(re(statType).params);
+  const result = re(statType) as MatchResult<object>;
+  const [queryName, ...queryArgs] = Object.values(result.params);
 
   const label = queries[queryName].label;
 
