@@ -10,11 +10,7 @@
   "jsnext:main": "dist/esm/index.js",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "files": [
-    "dist/",
-    "grapesjs/",
-    "shoelace/"
-  ],
+  "files": ["dist/", "grapesjs/", "shoelace/"],
   "scripts": {
     "build": "stencil build --docs",
     "build:grapes": "cross-env BUILD=DOCS stencil build --watch --docs",
