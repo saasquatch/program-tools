@@ -12,6 +12,7 @@ export namespace Components {
           * Select what type of stat to display. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
+          * @uiOptions {"showGoals": true}
          */
         "statType": string;
     }
@@ -356,6 +357,7 @@ declare namespace LocalJSX {
           * Select what type of stat to display. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
+          * @uiOptions {"showGoals": true}
          */
         "statType"?: string;
     }
