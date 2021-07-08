@@ -1,0 +1,49 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+        "sessionData": {
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "additionalProperties": true,
+                        "properties": {
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "type": [
+                                        "null",
+                                        "string",
+                                        "number",
+                                        "boolean"
+                                    ]
+                                }
+                            ]
+                        },
+                        "type": "array"
+                    },
+                    {
+                        "type": [
+                            "null",
+                            "string",
+                            "number",
+                            "boolean"
+                        ]
+                    }
+                ]
+            },
+            "type": "object"
+        }
+    },
+    "type": "object"
+}
+

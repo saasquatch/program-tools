@@ -1,0 +1,48 @@
+{
+  "name": "portal-auth-service",
+  "version": "0.0.1",
+  "description": "Common server for SaaSquatch custom portals. Built ontop of Google Identity Platform.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node ./dist",
+    "start:dev": "ts-node ./src/index.ts",
+    "test": "jest"
+  },
+  "engines": {
+    "node": "14.16.1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.25.0",
+    "apollo-server-express": "^2.25.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "firebase": "^8.6.1",
+    "firebase-admin": "^9.8.0",
+    "graphql": "^15.5.0",
+    "graphql-request": "^3.4.0",
+    "graphql-type-json": "^0.3.2",
+    "jsonata": "^1.8.4",
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^2.6.1",
+    "node-jose": "^2.0.0",
+    "typescript": "^4.3.4",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.1",
+    "@types/node-fetch": "^2.5.10",
+    "@types/node-jose": "^1.1.6",
+    "@types/sinon": "^10.0.2",
+    "@types/supertest": "^2.0.11",
+    "@types/uuid": "^8.3.0",
+    "jest-cucumber": "^3.0.1",
+    "msw": "^0.29.0",
+    "sinon": "^11.1.1",
+    "supertest": "^6.1.3",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^9.1.1"
+  }
+}

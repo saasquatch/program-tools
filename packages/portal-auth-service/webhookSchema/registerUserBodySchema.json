@@ -1,0 +1,59 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": {
+        "anyOf": [
+            {
+                "additionalProperties": true,
+                "properties": {
+                },
+                "type": "object"
+            },
+            {
+                "items": {
+                    "anyOf": [
+                        {
+                            "additionalProperties": true,
+                            "properties": {
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "type": [
+                                "null",
+                                "string",
+                                "number",
+                                "boolean"
+                            ]
+                        }
+                    ]
+                },
+                "type": "array"
+            },
+            {
+                "type": [
+                    "null",
+                    "string",
+                    "number",
+                    "boolean"
+                ]
+            }
+        ]
+    },
+    "properties": {
+        "accountId": {
+            "type": "string"
+        },
+        "email": {
+            "type": "string"
+        },
+        "id": {
+            "type": "string"
+        },
+        "tenantAlias": {
+            "type": "string"
+        }
+    },
+    "required": ["accountId", "email", "id", "tenantAlias"],
+    "type": "object"
+}
+

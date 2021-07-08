@@ -1,0 +1,159 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+        "sessionData": {
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "additionalProperties": true,
+                        "properties": {
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "additionalProperties": true,
+                                    "properties": {
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "type": [
+                                        "null",
+                                        "string",
+                                        "number",
+                                        "boolean"
+                                    ]
+                                }
+                            ]
+                        },
+                        "type": "array"
+                    },
+                    {
+                        "type": [
+                            "null",
+                            "string",
+                            "number",
+                            "boolean"
+                        ]
+                    }
+                ]
+            },
+            "type": "object"
+        },
+        "userUpsert": {
+            "properties": {
+                "accountId": {
+                    "type": "string"
+                },
+                "cookies": {
+                    "type": "string"
+                },
+                "countryCode": {
+                    "type": "string"
+                },
+                "customFields": {
+                    "additionalProperties": {
+                        "type": [
+                            "string",
+                            "number",
+                            "boolean"
+                        ]
+                    },
+                    "type": "object"
+                },
+                "dateCreated": {
+                    "type": "integer"
+                },
+                "dateUsTaxFormSubmitted": {
+                    "type": "integer"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imageUrl": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "locale": {
+                    "type": "string"
+                },
+                "paymentProviderId": {
+                    "type": "string"
+                },
+                "programGoals": {
+                    "items": {
+                        "properties": {
+                            "conversionCount": {
+                                "type": "integer"
+                            },
+                            "count": {
+                                "type": "integer"
+                            },
+                            "firstDate": {
+                                "type": "integer"
+                            },
+                            "goalId": {
+                                "type": "string"
+                            },
+                            "lastDate": {
+                                "type": "integer"
+                            },
+                            "programId": {
+                                "type": [
+                                    "string",
+                                    "integer"
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "referable": {
+                    "type": "boolean"
+                },
+                "referralCode": {
+                    "type": "string"
+                },
+                "referralCodes": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "type": "object"
+                },
+                "referredByCodes": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "segments": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "shareLinks": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "type": "object"
+}
+
