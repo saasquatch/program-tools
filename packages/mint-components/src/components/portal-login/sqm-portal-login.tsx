@@ -29,8 +29,9 @@ export class PortalLogin {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks } =
-      false && isDemo() ? useLoginDemo(this) : usePortalLogin(this);
+    const { states, callbacks } = isDemo()
+      ? useLoginDemo(this)
+      : usePortalLogin(this);
     return <PortalLoginView states={states} callbacks={callbacks} />;
   }
 }

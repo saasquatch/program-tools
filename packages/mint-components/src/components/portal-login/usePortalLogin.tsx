@@ -23,6 +23,7 @@ interface DecodedSquatchJWT {
     accountId: string;
     id: string;
     email: string;
+    verified: boolean;
   };
 }
 
@@ -51,13 +52,16 @@ export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
     if (data?.authenticateUser) {
       const { authenticateUser } = data;
       const jwt = authenticateUser.squatchJWT;
-      // const sessionData = authenticateUser.sessionData;
       const { user } = decode<DecodedSquatchJWT>(jwt);
+      const sessionData = {
+        ...authenticateUser.sessionData,
+        verified: user.verified,
+      };
       setUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,
-        // sessionData,
+        sessionData,
       });
     }
   }, [data?.authenticateUser]);

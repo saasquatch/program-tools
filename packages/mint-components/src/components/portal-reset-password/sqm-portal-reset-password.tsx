@@ -32,10 +32,9 @@ export class PortalResetPassword {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks } =
-      false && isDemo()
-        ? usePortalResetPasswordDemo(this)
-        : usePortalResetPassword(this);
+    const { states, callbacks } = isDemo()
+      ? usePortalResetPasswordDemo(this)
+      : usePortalResetPassword(this);
     return <PortalResetPasswordView states={states} callbacks={callbacks} />;
   }
 }

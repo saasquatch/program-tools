@@ -32,10 +32,9 @@ export class PortalVerifyEmail {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks } =
-      false && isDemo()
-        ? usePortalVerifyEmailDemo(this)
-        : usePortalVerifyEmail(this);
+    const { states, callbacks } = isDemo()
+      ? usePortalVerifyEmailDemo(this)
+      : usePortalVerifyEmail(this);
     return <PortalVerifyEmailView states={states} callbacks={callbacks} />;
   }
 }

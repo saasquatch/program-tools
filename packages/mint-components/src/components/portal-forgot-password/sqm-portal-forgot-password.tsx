@@ -29,10 +29,9 @@ export class PortalForgotPassword {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks } =
-      false && isDemo()
-        ? usePortalForgotPasswordDemo(this)
-        : usePortalForgotPassword(this);
+    const { states, callbacks } = isDemo()
+      ? usePortalForgotPasswordDemo(this)
+      : usePortalForgotPassword(this);
     return <PortalForgotPasswordView states={states} callbacks={callbacks} />;
   }
 }

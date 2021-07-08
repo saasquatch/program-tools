@@ -19,6 +19,7 @@ interface DecodedSquatchJWT {
     accountId: string;
     id: string;
     email: string;
+    verified: boolean;
   };
 }
 
@@ -52,15 +53,18 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
 
   useEffect(() => {
     if (data?.resetPassword) {
-      const { registerUser } = data;
-      const jwt = registerUser.squatchJWT;
-      // const sessionData = registerUser.sessionData;
+      const { resetPassword } = data;
+      const jwt = resetPassword.squatchJWT;
       const { user } = decode<DecodedSquatchJWT>(jwt);
+      const sessionData = {
+        ...resetPassword.sessionData,
+        verified: user.verified,
+      };
       setUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,
-        // sessionData,
+        sessionData,
       });
       setReset(true);
     }

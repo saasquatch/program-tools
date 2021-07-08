@@ -29,10 +29,9 @@ export class PortalEmailVerification {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks } =
-      false && isDemo()
-        ? usePortalEmailVerificationDemo(this)
-        : usePortalEmailVerification(this);
+    const { states, callbacks } = isDemo()
+      ? usePortalEmailVerificationDemo(this)
+      : usePortalEmailVerification(this);
     return (
       <PortalEmailVerificationView states={states} callbacks={callbacks} />
     );

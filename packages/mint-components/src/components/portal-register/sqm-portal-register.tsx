@@ -32,8 +32,9 @@ export class PortalRegister {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks } =
-      false && isDemo() ? useRegisterDemo(this) : usePortalRegister(this);
+    const { states, callbacks } = isDemo()
+      ? useRegisterDemo(this)
+      : usePortalRegister(this);
     return <PortalRegisterView states={states} callbacks={callbacks} />;
   }
 }
