@@ -6,7 +6,7 @@ import { queueEmail } from "../util/queueEmail";
 
 interface RequestPasswordResetEmailInput {
   email: string;
-  nextPageUrlParam?: string;
+  urlParams?: { [key: string]: string };
 }
 
 export const requestPasswordResetEmail = async (
@@ -15,7 +15,7 @@ export const requestPasswordResetEmail = async (
   context: { tenantAlias: string }
 ) => {
   const { tenantAlias } = context;
-  const { email, nextPageUrlParam } = args.input;
+  const { email, urlParams } = args.input;
   const actionCodeSettings = {
     // URL you want to redirect back to. The domain (www.example.com) for
     // this URL must be whitelisted in the Firebase Console.
@@ -61,11 +61,9 @@ export const requestPasswordResetEmail = async (
   const user = users.data?.[0];
   const squatchUser = { ...user, tenantAlias };
   const key = config(tenantAlias).RESET_PASSWORD_EMAIL_KEY;
-  const link = `${
-    config(tenantAlias).PORTAL_DOMAIN
-  }/resetPassword?oobCode=${oobCode}${
-    nextPageUrlParam ?? `&${nextPageUrlParam}`
-  }`;
+
+  const params = new URLSearchParams({ ...urlParams, oobCode }).toString();
+  const link = `${config(tenantAlias).PORTAL_DOMAIN}/resetPassword?${params}`;
 
   await queueEmail(squatchUser, key, link);
 

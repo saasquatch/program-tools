@@ -6,7 +6,7 @@ import { queueEmail } from "../util/queueEmail";
 
 interface RequestVerificationEmailInput {
   email: string;
-  nextPageUrlParam?: string;
+  urlParams?: { [key: string]: string };
 }
 
 export const requestVerificationEmail = async (
@@ -15,7 +15,7 @@ export const requestVerificationEmail = async (
   context: { tenantAlias: string }
 ) => {
   const { tenantAlias } = context;
-  const { email, nextPageUrlParam } = args.input;
+  const { email, urlParams } = args.input;
   const actionCodeSettings = {
     // URL you want to redirect back to. The domain (www.example.com) for
     // this URL must be whitelisted in the Firebase Console.
@@ -61,9 +61,9 @@ export const requestVerificationEmail = async (
   const user = users.data?.[0];
   const squatchUser = { ...user, tenantAlias };
   const key = config(tenantAlias).VERIFY_EMAIL_EMAIL_KEY;
-  const link = `${
-    config(tenantAlias).PORTAL_DOMAIN
-  }/verifyEmail?oobCode=${oobCode}`;
+
+  const params = new URLSearchParams({ ...urlParams, oobCode }).toString();
+  const link = `${config(tenantAlias).PORTAL_DOMAIN}/verifyEmail?${params}`;
 
   await queueEmail(squatchUser, key, link);
 

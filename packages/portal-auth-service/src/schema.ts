@@ -29,7 +29,7 @@ export const schema = gql`
 
   input EmailRequestInput {
     email: String!
-    nextPageUrlParam: String
+    urlParams: JSONObject
   }
 
   input VerifyEmailInput {
