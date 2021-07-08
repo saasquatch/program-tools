@@ -68,9 +68,10 @@ export function usePortalQuery<T = any>(
   query: GqlType,
   initialState: PortalQueryData<T>
 ): [PortalQueryData<T>, (variables: unknown) => unknown] {
-  const portalDomain = usePortalAuthUrl();
+  const portalAuthUrl = usePortalAuthUrl();
   const tenantAlias = useTenantAlias();
-  const uri = portalDomain + "/tenant/" + tenantAlias + "/graphql";
+  const url = new URL(portalAuthUrl);
+  url.pathname = "/tenant/" + tenantAlias + "/graphql";
 
   const [state, dispatch] = useReducer<PortalQueryData<T>, Action<T>>(
     reducer,
@@ -81,7 +82,7 @@ export function usePortalQuery<T = any>(
     async function (variables: unknown) {
       try {
         dispatch({ type: "loading" });
-        const res = await request<T>(uri, query, variables);
+        const res = await request<T>(url.toString(), query, variables);
 
         dispatch({ type: "data", payload: res });
       } catch (e) {
