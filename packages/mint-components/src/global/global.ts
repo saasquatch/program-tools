@@ -69,7 +69,7 @@ import {
 } from "@shoelace-style/shoelace";
 
 try {
-  setBasePath("/shoelace");
+  setBasePath("/dist/shoelace");
   // SlAlert.register();
   registerIconLibrary("default", {
     // same link that shoelace uses internally
