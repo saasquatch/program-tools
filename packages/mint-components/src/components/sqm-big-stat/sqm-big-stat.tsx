@@ -28,7 +28,7 @@ export class BigStat {
    *
    * @uiWidget StatTypeSelectWidget
    * @uiName Stat Type
-   * @uiOptions {"showGoals": true}
+   * @uiOptions {"version": 1.1}
    */
   @Prop() statType: string;
 
