@@ -124,3 +124,13 @@ try {
 } catch (error) {
   debug("components already registered");
 }
+
+import { insertCSS } from "../insertcss";
+
+import CSS from "./styles";
+
+try {
+  insertCSS(CSS as any);
+} catch (error) {
+  debug(error);
+}

@@ -10,12 +10,16 @@
   "jsnext:main": "dist/esm/index.js",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "files": ["dist/", "grapesjs/", "shoelace/"],
+  "files": [
+    "dist/",
+    "grapesjs/",
+    "shoelace/"
+  ],
   "scripts": {
     "build": "stencil build --docs",
     "build:grapes": "cross-env BUILD=DOCS stencil build --watch --docs",
     "serve:grapes": "npx http-server . --cors -c-1 -p 8080",
-    "start": "stencil build --dev --watch --serve --docs",
+    "start": "cross-env NODE_ENV=dev stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
