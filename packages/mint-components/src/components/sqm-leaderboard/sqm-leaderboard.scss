@@ -1,0 +1,32 @@
+@include HostBlock;
+
+table {
+  width: 100%;
+}
+
+th {
+  font-size: var(--sl-font-size-small);
+  font-weight: var(--sl-font-weight-semibold);
+  text-align: left;
+}
+
+td {
+  font-size: var(--sl-font-size-medium);
+  font-weight: var(--sl-font-weight-normal);
+}
+
+td,
+th {
+  color: var(--sl-color-gray-800);
+
+  padding: var(--sl-spacing-x-small) var(--sl-spacing-small);
+}
+
+.User {
+  width: 100%;
+}
+
+.Score {
+  width: auto;
+  white-space: nowrap;
+}

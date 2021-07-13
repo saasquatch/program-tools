@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Mint Components Stencilbook</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Nunito%20Sans"
+    />
+    <!-- <link rel="stylesheet" href="/build/mint-components.css" /> -->
+    <script type="module" src="/build/mint-components.esm.js"></script>
+    <script nomodule src="/build/mint-components.js"></script>
+  </head>
+  <body>
+    <script>
+      window.widgetIdent = {
+        tenantAlias: "test_a7yoz8854cf6x",
+        appDomain: "https://staging.referralsaasquatch.com",
+        token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImJqMTIzIiwiaWQiOiJiajEyMyJ9fQ.rmJZebIyj-xThGi0WO6LSyE573vb1HkfLc8lFfqMmgs",
+        userId: "bj123",
+        accountId: "bj123",
+        programId: "ny-post-referrals",
+      };
+      if (!localStorage.getItem("IEAlert") && window.document.documentMode) {
+        localStorage.setItem("IEAlert", true);
+        alert(
+          "Internet Explorer is not fully supported. We recommend upgrading your browser for the best experience."
+        );
+      }
+    </script>
+    <!-- Portal Register
+    <sqm-portal-register></sqm-portal-register>
+    Portal Login
+    <sqm-portal-login></sqm-portal-login>
+    Email Verification
+    <sqm-portal-email-verification></sqm-portal-email-verification>
+    Verify Email
+    <sqm-portal-verify-email></sqm-portal-verify-email>
+    Forgot Password
+    <sqm-portal-forgot-password></sqm-portal-forgot-password>
+    Reset Password
+    <sqm-portal-reset-password></sqm-portal-reset-password> -->
+    <sqm-stencilbook></sqm-stencilbook>
+  </body>
+</html>
