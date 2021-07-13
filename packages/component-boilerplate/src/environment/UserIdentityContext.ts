@@ -56,9 +56,8 @@ async function ensureIndexedDB(): Promise<IDBDatabase> {
       db.onclose = function (_ev) {
         _db = null;
       };
-      const objectStore = db.createObjectStore(CONTEXT_NAME, {
-        keyPath: CONTEXT_NAME,
-      });
+      const objectStore = db.createObjectStore(CONTEXT_NAME);
+
       objectStore.createIndex("id", "id", { unique: false });
       objectStore.createIndex("accountId", "accountId", { unique: false });
       objectStore.createIndex("jwt", "jwt", { unique: false });
@@ -115,7 +114,7 @@ export async function setPersistedUserIdentity(identity?: UserIdentity) {
       resolve();
     };
     const store = tx.objectStore(CONTEXT_NAME);
-    store.put({ ...identity, CONTEXT_NAME });
+    store.put({ ...identity }, "user");
   });
   return setUserIdentity(identity);
 }
@@ -158,14 +157,12 @@ export async function usePersistedUserIdentity(): Promise<
         resolve(undefined);
       };
       const store = tx.objectStore(CONTEXT_NAME);
-      const request = store.get(CONTEXT_NAME);
+      const request = store.get("user");
       request.onerror = (_ev) => {
         resolve(undefined);
       };
       request.onsuccess = (_ev) => {
-        const data = request.result;
-        delete data[CONTEXT_NAME];
-        resolve(data);
+        resolve(request.result || undefined);
       };
     });
   }
