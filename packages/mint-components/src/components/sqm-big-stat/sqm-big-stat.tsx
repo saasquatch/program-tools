@@ -12,7 +12,6 @@ import { isDemo } from "@saasquatch/component-boilerplate";
  */
 @Component({
   tag: "sqm-big-stat",
-  styleUrl: "sqm-big-stat.scss",
   shadow: true,
 })
 export class BigStat {

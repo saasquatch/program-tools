@@ -15,6 +15,7 @@ import * as UseShareButton from "../../stories/UseShareButton.stories";
 import * as UseBigStat from "../../stories/UseBigStat.stories";
 import * as UseEditProfile from "../../stories/UseEditProfile.stories";
 import * as FormMessage from "../../stories/FormMessage.stories";
+import * as Dashboard from "../../stories/Dashboard.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -34,6 +35,7 @@ const stories = [
   PortalFrame,
   EditProfile,
   FormMessage,
+  Dashboard,
 ];
 
 /**

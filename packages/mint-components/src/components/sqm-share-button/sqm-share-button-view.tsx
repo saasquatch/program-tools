@@ -1,4 +1,6 @@
-import { h, Host, VNode } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
+import jss from "jss";
+import preset from "jss-preset-default";
 
 export interface ShareButtonViewProps {
   medium:
@@ -37,11 +39,18 @@ export interface ShareButtonViewProps {
   hide?: boolean;
 }
 
+const style ={}
+
+jss.setup(preset());
+const sheet = jss.createStyleSheet(style);
+const styleString = sheet.toString();
+
 export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   return props.hide ? (
-    <Host style={{ display: "none" }}></Host>
+    <div style={{ display: "none" }}></div>
   ) : (
-    <Host>
+    <div>
+      <style type="text/css">{styleString}</style>
       <sl-button
         loading={props.loading}
         disabled={props.disabled}
@@ -59,6 +68,6 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
         )}
         {children}
       </sl-button>
-    </Host>
+    </div>
   );
 }

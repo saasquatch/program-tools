@@ -1,4 +1,6 @@
 import { h } from "@stencil/core";
+import jss from "jss";
+import preset from "jss-preset-default";
 
 export interface ShareLinkViewProps {
   sharelink: string;
@@ -10,9 +12,20 @@ export interface ShareLinkViewProps {
   onClick?: () => void;
 }
 
+const style = {
+  "sl-input": {
+    "&::part(base)": { background: "white", opacity: "1", cursor: "pointer" },
+  },
+};
+
+jss.setup(preset());
+const sheet = jss.createStyleSheet(style);
+const styleString = sheet.toString();
+
 export function ShareLinkView(props: ShareLinkViewProps) {
   return (
     <div>
+      <style type="text/css">{styleString}</style>
       <sl-tooltip
         trigger="manual"
         content={props.tooltiptext}
