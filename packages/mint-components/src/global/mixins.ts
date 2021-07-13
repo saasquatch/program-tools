@@ -53,3 +53,12 @@ export const gap = (props: GapProps) => {
     };
   }
 };
+
+export const HostBlock = {
+  ":host": {
+    display: "block",
+  },
+  ":host([hidden])": {
+    display: "none",
+  },
+};
