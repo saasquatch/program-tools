@@ -9,10 +9,16 @@ export interface PortalForgotPasswordViewProps {
   callbacks: {
     submit: (event: any) => Promise<void>;
   };
+  content: {
+    secondaryButton: any;
+    messageSlot: any;
+    emailLabel?: string;
+    submitLabel?: string;
+  };
 }
 
 export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
-  const { states, callbacks } = props;
+  const { states, callbacks, content } = props;
   return (
     <div class="Wrapper Column">
       <sl-form class="Column" onSl-submit={callbacks.submit}>
@@ -21,11 +27,12 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
+        {content.messageSlot}
         <sl-input
           exportparts="label: input-label"
           type="email"
           name="/email"
-          label="Email"
+          label={content.emailLabel || "Email"}
           disabled={states.loading}
           required
         ></sl-input>
@@ -36,8 +43,9 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
             exportparts="base: primarybutton-base"
             type="primary"
           >
-            Request Password Reset
+            {content.submitLabel || "Reset Password"}
           </sl-button>
+          {content.secondaryButton}
         </div>
       </sl-form>
     </div>

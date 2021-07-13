@@ -31,14 +31,19 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
 
   const urlParams = new URLSearchParams(window.location.search);
   const oobCode = urlParams.get("oobCode");
+  urlParams.delete("oobCode");
 
   const nextPageOverride = urlParams.get(nextPageUrlParameter);
+  urlParams.delete(nextPageUrlParameter);
 
   const [reset, setReset] = useState(false);
 
   const submit = async (event: any) => {
     if (reset) {
-      return navigation.push(nextPageOverride || nextPage);
+      return navigation.push({
+        pathname: nextPageOverride || nextPage,
+        search: urlParams.toString(),
+      });
     }
 
     let formData = event.detail.formData;
@@ -59,6 +64,7 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
       const sessionData = {
         ...resetPassword.sessionData,
         verified: user.verified,
+        email: user.email,
       };
       setUserIdentity({
         jwt,

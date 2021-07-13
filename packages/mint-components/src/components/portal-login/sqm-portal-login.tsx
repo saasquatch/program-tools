@@ -1,4 +1,4 @@
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { isDemo, navigation } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import { PortalLoginView, PortalLoginViewProps } from "./sqm-portal-login-view";
@@ -22,6 +22,15 @@ export class PortalLogin {
   @Prop()
   nextPageUrlParameter = "nextPage";
 
+  @Prop()
+  emailLabel = "Email";
+
+  @Prop()
+  passwordLabel = "Password";
+
+  @Prop()
+  submitLabel = "Sign In";
+
   constructor() {
     withHooks(this);
   }
@@ -32,13 +41,42 @@ export class PortalLogin {
     const { states, callbacks } = isDemo()
       ? useLoginDemo(this)
       : usePortalLogin(this);
-    return <PortalLoginView states={states} callbacks={callbacks} />;
+    const content = {
+      forgotPasswordButton: (
+        <slot name="forgotPassword">
+          <a onClick={() => navigation.push("/forgotPassword")}>
+            Forgot Password?
+          </a>
+        </slot>
+      ),
+      secondaryButton: (
+        <slot name="secondaryButton">
+          <sl-button
+            type="text"
+            disabled={states.loading}
+            onClick={() => navigation.push("/register")}
+          >
+            Register
+          </sl-button>
+        </slot>
+      ),
+      emailLabel: this.emailLabel,
+      passwordLabel: this.passwordLabel,
+      submitLabel: this.submitLabel,
+    };
+    return (
+      <PortalLoginView
+        states={states}
+        callbacks={callbacks}
+        content={content}
+      />
+    );
   }
 }
 function useLoginDemo({
   nextPage,
   nextPageUrlParameter,
-}): PortalLoginViewProps {
+}): Partial<PortalLoginViewProps> {
   return {
     states: { error: "", loading: false },
     callbacks: {

@@ -18,13 +18,18 @@ export function usePortalVerifyEmail({ nextPage, nextPageUrlParameter }) {
   );
   const urlParams = new URLSearchParams(window.location.search);
   const oobCode = urlParams.get("oobCode");
+  urlParams.delete("oobCode");
 
   const nextPageOverride = urlParams.get(nextPageUrlParameter);
+  urlParams.delete(nextPageUrlParameter);
 
   const [verified, setVerified] = useState(false);
   const submit = async (_event: any) => {
     if (verified) {
-      return navigation.push(nextPageOverride || nextPage);
+      return navigation.push({
+        pathname: nextPageOverride || nextPage,
+        search: urlParams.toString(),
+      });
     }
     if (oobCode) {
       await request({ oobCode });

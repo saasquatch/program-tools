@@ -8,10 +8,17 @@ export interface PortalLoginViewProps {
   callbacks: {
     submit: (event: any) => Promise<void>;
   };
+  content: {
+    forgotPasswordButton?: any;
+    secondaryButton?: any;
+    emailLabel?: string;
+    passwordLabel?: string;
+    submitLabel?: string;
+  };
 }
 
 export function PortalLoginView(props: PortalLoginViewProps) {
-  const { states, callbacks } = props;
+  const { states, callbacks, content } = props;
   return (
     <div class="Wrapper Column">
       <sl-form class="Column" onSl-submit={callbacks.submit}>
@@ -24,7 +31,7 @@ export function PortalLoginView(props: PortalLoginViewProps) {
           exportparts="label: input-label"
           type="email"
           name="/email"
-          label="Email"
+          label={content.emailLabel || "Email"}
           disabled={states.loading}
           required
         ></sl-input>
@@ -32,11 +39,11 @@ export function PortalLoginView(props: PortalLoginViewProps) {
           exportparts="label: input-label"
           type="password"
           name="/password"
-          label="Password"
+          label={content.passwordLabel || "Password"}
           disabled={states.loading}
           required
         ></sl-input>
-        {/* slot forgot password */}
+        {content.forgotPasswordButton}
         <div>
           <sl-button
             submit
@@ -44,10 +51,9 @@ export function PortalLoginView(props: PortalLoginViewProps) {
             exportparts="base: primarybutton-base"
             type="primary"
           >
-            Login
-            {/* slot Login button text */}
+            {content.submitLabel || "Login"}
           </sl-button>
-          {/* slot register */}
+          {content.secondaryButton}
         </div>
       </sl-form>
     </div>

@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
-import jsonpointer from "jsonpointer";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { usePortalQuery } from "../portal/usePortalQuery";
+import { useUserIdentity } from "@saasquatch/component-boilerplate";
 
 const PortalEmailVerificationMutation = gql`
   mutation PortalEmailVerification($email: String!, $urlParams: JSONObject) {
@@ -17,19 +17,18 @@ export function usePortalEmailVerification({ nextPageUrlParameter }) {
     { loading: false }
   );
 
+  const userIdent = useUserIdentity();
+  const email = userIdent?.sessionData?.email;
   const [success, setSuccess] = useState(false);
 
   const urlParams = new URLSearchParams(window.location.search);
   const nextPage = urlParams.get(nextPageUrlParameter);
 
-  const submit = async (event: any) => {
-    let formData = event.detail.formData;
+  const submit = async () => {
+    if (!email) return;
 
-    formData?.forEach((value, key) => {
-      jsonpointer.set(formData, key, value);
-    });
     const urlParams = nextPage ? { [nextPageUrlParameter]: nextPage } : null;
-    const variables = { email: formData.email, urlParams };
+    const variables = { email, urlParams };
 
     await request(variables);
   };
@@ -48,6 +47,9 @@ export function usePortalEmailVerification({ nextPageUrlParameter }) {
     },
     callbacks: {
       submit,
+    },
+    content: {
+      email,
     },
   };
 }

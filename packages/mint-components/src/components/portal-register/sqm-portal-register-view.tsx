@@ -8,10 +8,17 @@ export interface PortalRegisterViewProps {
   callbacks: {
     submit;
   };
+  content: {
+    formData?: any;
+    secondaryButton?: any;
+    emailLabel?: string;
+    passwordLabel?: string;
+    submitLabel?: string;
+  };
 }
 
 export function PortalRegisterView(props: PortalRegisterViewProps) {
-  const { states, callbacks } = props;
+  const { states, callbacks, content } = props;
   return (
     <div class="Wrapper Column">
       <sl-form class="Column" onSl-submit={callbacks.submit}>
@@ -24,7 +31,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
           exportparts="label: input-label"
           type="email"
           name="/email"
-          label="Email"
+          label={content.emailLabel || "Email"}
           disabled={states.loading}
           required
         ></sl-input>
@@ -32,10 +39,11 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
           exportparts="label: input-label"
           type="password"
           name="/password"
-          label="Password"
+          label={content.passwordLabel || "Password"}
           disabled={states.loading}
           required
         ></sl-input>
+        {content.formData}
         <div>
           <sl-button
             submit
@@ -43,10 +51,9 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             exportparts="base: primarybutton-base"
             type="primary"
           >
-            Register
-            {/* slot button text */}
+            {content.submitLabel || "Register"}
           </sl-button>
-          {/* slot Sign in button */}
+          {content.secondaryButton}
         </div>
       </sl-form>
     </div>

@@ -147,17 +147,35 @@ export namespace Components {
         "nextPageUrlParameter": string;
     }
     interface SqmPortalForgotPassword {
+        "emailLabel": string;
         "nextPageUrlParameter": string;
+        "submitLabel": string;
     }
     interface SqmPortalFrame {
     }
     interface SqmPortalLogin {
+        "emailLabel": string;
         "nextPage": string;
         "nextPageUrlParameter": string;
+        "passwordLabel": string;
+        "submitLabel": string;
+    }
+    interface SqmPortalLogout {
+        "logoutOnRender": boolean;
+        "nextPage": string;
+    }
+    interface SqmPortalProtectedRoute {
+        "authenticated": any;
+        "redirectTo": any;
+        "redirectToUnverified": any;
+        "verified": any;
     }
     interface SqmPortalRegister {
+        "emailLabel": string;
         "nextPage": string;
         "nextPageUrlParameter": string;
+        "passwordLabel": string;
+        "submitLabel": string;
     }
     interface SqmPortalResetPassword {
         "nextPage": string;
@@ -344,6 +362,18 @@ declare global {
         prototype: HTMLSqmPortalLoginElement;
         new (): HTMLSqmPortalLoginElement;
     };
+    interface HTMLSqmPortalLogoutElement extends Components.SqmPortalLogout, HTMLStencilElement {
+    }
+    var HTMLSqmPortalLogoutElement: {
+        prototype: HTMLSqmPortalLogoutElement;
+        new (): HTMLSqmPortalLogoutElement;
+    };
+    interface HTMLSqmPortalProtectedRouteElement extends Components.SqmPortalProtectedRoute, HTMLStencilElement {
+    }
+    var HTMLSqmPortalProtectedRouteElement: {
+        prototype: HTMLSqmPortalProtectedRouteElement;
+        new (): HTMLSqmPortalProtectedRouteElement;
+    };
     interface HTMLSqmPortalRegisterElement extends Components.SqmPortalRegister, HTMLStencilElement {
     }
     var HTMLSqmPortalRegisterElement: {
@@ -405,6 +435,8 @@ declare global {
         "sqm-portal-forgot-password": HTMLSqmPortalForgotPasswordElement;
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
         "sqm-portal-login": HTMLSqmPortalLoginElement;
+        "sqm-portal-logout": HTMLSqmPortalLogoutElement;
+        "sqm-portal-protected-route": HTMLSqmPortalProtectedRouteElement;
         "sqm-portal-register": HTMLSqmPortalRegisterElement;
         "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
         "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
@@ -556,17 +588,35 @@ declare namespace LocalJSX {
         "nextPageUrlParameter"?: string;
     }
     interface SqmPortalForgotPassword {
+        "emailLabel"?: string;
         "nextPageUrlParameter"?: string;
+        "submitLabel"?: string;
     }
     interface SqmPortalFrame {
     }
     interface SqmPortalLogin {
+        "emailLabel"?: string;
         "nextPage"?: string;
         "nextPageUrlParameter"?: string;
+        "passwordLabel"?: string;
+        "submitLabel"?: string;
+    }
+    interface SqmPortalLogout {
+        "logoutOnRender"?: boolean;
+        "nextPage"?: string;
+    }
+    interface SqmPortalProtectedRoute {
+        "authenticated"?: any;
+        "redirectTo"?: any;
+        "redirectToUnverified"?: any;
+        "verified"?: any;
     }
     interface SqmPortalRegister {
+        "emailLabel"?: string;
         "nextPage"?: string;
         "nextPageUrlParameter"?: string;
+        "passwordLabel"?: string;
+        "submitLabel"?: string;
     }
     interface SqmPortalResetPassword {
         "nextPage"?: string;
@@ -692,6 +742,8 @@ declare namespace LocalJSX {
         "sqm-portal-forgot-password": SqmPortalForgotPassword;
         "sqm-portal-frame": SqmPortalFrame;
         "sqm-portal-login": SqmPortalLogin;
+        "sqm-portal-logout": SqmPortalLogout;
+        "sqm-portal-protected-route": SqmPortalProtectedRoute;
         "sqm-portal-register": SqmPortalRegister;
         "sqm-portal-reset-password": SqmPortalResetPassword;
         "sqm-portal-verify-email": SqmPortalVerifyEmail;
@@ -718,6 +770,8 @@ declare module "@stencil/core" {
             "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword & JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
+            "sqm-portal-logout": LocalJSX.SqmPortalLogout & JSXBase.HTMLAttributes<HTMLSqmPortalLogoutElement>;
+            "sqm-portal-protected-route": LocalJSX.SqmPortalProtectedRoute & JSXBase.HTMLAttributes<HTMLSqmPortalProtectedRouteElement>;
             "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
             "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;

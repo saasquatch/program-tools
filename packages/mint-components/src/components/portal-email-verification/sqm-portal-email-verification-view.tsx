@@ -9,12 +9,19 @@ export interface PortalEmailVerificationViewProps {
   callbacks: {
     submit: (event: any) => Promise<void>;
   };
+  content: {
+    email: string;
+  };
 }
 
 export function PortalEmailVerificationView(
   props: PortalEmailVerificationViewProps
 ) {
-  const { states, callbacks } = props;
+  const {
+    states,
+    callbacks,
+    content: { email },
+  } = props;
   return (
     <div class="Wrapper Column">
       <sl-form class="Column" onSl-submit={callbacks.submit}>
@@ -23,14 +30,11 @@ export function PortalEmailVerificationView(
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
-        <sl-input
-          exportparts="label: input-label"
-          type="email"
-          name="/email"
-          label="Email"
-          disabled={states.loading}
-          required
-        ></sl-input>
+        <h2>Verify Your Email</h2>
+        <p>
+          A verification email was sent to {email}. Please verify your email to
+          continue to the portal.
+        </p>
         <div>
           <sl-button
             submit
@@ -38,7 +42,7 @@ export function PortalEmailVerificationView(
             exportparts="base: primarybutton-base"
             type="primary"
           >
-            Request Verification
+            Re-send Email
           </sl-button>
         </div>
       </sl-form>

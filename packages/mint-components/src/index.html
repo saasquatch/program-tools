@@ -17,33 +17,132 @@
   </head>
   <body>
     <script>
-      window.widgetIdent = {
-        tenantAlias: "test_a7yoz8854cf6x",
+      window.SquatchPortal = {
+        tenantAlias: "test_akdq8a9wyvzba",
         appDomain: "https://staging.referralsaasquatch.com",
-        token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImJqMTIzIiwiaWQiOiJiajEyMyJ9fQ.rmJZebIyj-xThGi0WO6LSyE573vb1HkfLc8lFfqMmgs",
-        userId: "bj123",
-        accountId: "bj123",
-        programId: "ny-post-referrals",
-      };
-      if (!localStorage.getItem("IEAlert") && window.document.documentMode) {
-        localStorage.setItem("IEAlert", true);
-        alert(
-          "Internet Explorer is not fully supported. We recommend upgrading your browser for the best experience."
-        );
+        portalAuthUrl: "http://localhost:4000"
+      }
+
+      if (!localStorage.getItem('IEAlert') && window.document.documentMode) {
+        localStorage.setItem('IEAlert', true);
+        alert('Internet Explorer is not fully supported. We recommend upgrading your browser for the best experience.');
       }
     </script>
-    Portal Register
-    <sqm-portal-register></sqm-portal-register>
-    Portal Login
-    <sqm-portal-login></sqm-portal-login>
-    Email Verification
-    <sqm-portal-email-verification></sqm-portal-email-verification>
-    Verify Email
-    <sqm-portal-verify-email></sqm-portal-verify-email>
-    Forgot Password
-    <sqm-portal-forgot-password></sqm-portal-forgot-password>
-    Reset Password
-    <sqm-portal-reset-password></sqm-portal-reset-password>
+    <sqm-portal-frame>
+      <sqm-router>
+        <template path="/register">
+          <sqm-portal-register email-label="Business Email">
+            <div slot="formData">
+              <sl-input
+                exportparts="label: input-label"
+                type="text"
+                name="/firstName"
+                label="First Name"
+                required
+              ></sl-input>
+              <sl-input
+                exportparts="label: input-label"
+                type="text"
+                name="/lastName"
+                label="Last Name"
+                required
+              ></sl-input>
+              <sl-input
+                exportparts="label: input-label"
+                type="text"
+                name="/phoneNumber"
+                label="Phone Number"
+                required
+              ></sl-input>
+              <sl-input
+                exportparts="label: input-label"
+                type="text"
+                name="/company"
+                label="Company"
+                required
+              ></sl-input>
+              <sl-input
+                exportparts="label: input-label"
+                type="text"
+                name="/address"
+                label="Address"
+                required
+              ></sl-input>
+              <sl-input
+                exportparts="label: input-label"
+                type="text"
+                name="/unitNumber"
+                label="Suite, Unit, etc."
+              ></sl-input>
+              <sl-input
+                exportparts="label: input-label"
+                type="text"
+                name="/city"
+                label="City"
+                required
+              ></sl-input>
+              <sl-input
+                exportparts="label: input-label"
+                type="text"
+                name="/state"
+                label="State"
+                required
+              ></sl-input>
+              <sl-input
+                exportparts="label: input-label"
+                type="text"
+                name="/postalCode"
+                label="ZIP"
+                required
+              ></sl-input>
+              <sl-input
+                exportparts="label: input-label"
+                type="text"
+                name="/country"
+                label="Country"
+                value="USA"
+                disabled=true
+              ></sl-input>
+              <sl-input
+                exportparts="label: input-label"
+                type="text"
+                name="/referredByCode"
+                label="Referral Code"
+              ></sl-input>
+            </div>
+          </sqm-portal-register>
+        </template>
+
+        <template path="/emailVerification">
+          <sqm-portal-protected-route authenticated=true redirect-to="/login"></sqm-portal-protected-route>
+          <sqm-portal-email-verification></sqm-portal-email-verification>
+        </template>
+
+        <template path="/login">
+          <sqm-portal-login email-label="Business Email"></sqm-portal-login>
+        </template>
+
+        <template path="/verifyEmail">
+          <sqm-portal-verify-email></sqm-portal-verify-email>
+        </template>
+
+        <template path="/forgotPassword">
+          <sqm-portal-forgot-password email-label="Business Email"></sqm-portal-forgot-password>
+        </template>
+
+        <template path="/resetPassword">
+          <sqm-portal-reset-password></sqm-portal-reset-password>
+        </template>
+
+        <template path="/">
+          <sqm-portal-protected-route authenticated=true verified=true redirect-to="/login" redirect-to-unverified="/emailVerification"></sqm-portal-protected-route>
+          <sqm-share-button medium="facebook"></sqm-share-button>
+        </template>
+
+        <template path="/logout">
+          <sqm-portal-logout next-page="/login"></sqm-portal-logout>
+        </template>
+      </sqm-router>
+    </sqm-portal-frame>
   </body>
 </html>

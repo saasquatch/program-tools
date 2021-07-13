@@ -1,4 +1,4 @@
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { isDemo, navigation } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import {
@@ -25,6 +25,15 @@ export class PortalRegister {
   @Prop()
   nextPageUrlParameter = "nextPage";
 
+  @Prop()
+  emailLabel = "Email";
+
+  @Prop()
+  passwordLabel = "Password";
+
+  @Prop()
+  submitLabel = "Register";
+
   constructor() {
     withHooks(this);
   }
@@ -35,13 +44,36 @@ export class PortalRegister {
     const { states, callbacks } = isDemo()
       ? useRegisterDemo(this)
       : usePortalRegister(this);
-    return <PortalRegisterView states={states} callbacks={callbacks} />;
+    const content = {
+      formData: <slot name="formData"></slot>,
+      secondaryButton: (
+        <slot name="secondaryButton">
+          <sl-button
+            type="text"
+            disabled={states.loading}
+            onClick={() => navigation.push("/login")}
+          >
+            Sign In
+          </sl-button>
+        </slot>
+      ),
+      emailLabel: this.emailLabel,
+      passwordLabel: this.passwordLabel,
+      submitLabel: this.submitLabel,
+    };
+    return (
+      <PortalRegisterView
+        states={states}
+        callbacks={callbacks}
+        content={content}
+      ></PortalRegisterView>
+    );
   }
 }
 function useRegisterDemo({
   nextPage,
   nextPageUrlParameter,
-}): PortalRegisterViewProps {
+}): Pick<PortalRegisterViewProps, "states" | "callbacks"> {
   return {
     states: { error: "", loading: false },
     callbacks: {
