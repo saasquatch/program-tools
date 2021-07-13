@@ -26,8 +26,10 @@ export { useProgramId, setProgramId } from "./ProgramContext";
  */
 export {
   useUserIdentity,
+  usePersistedUserIdentity,
   useToken,
   setUserIdentity,
+  setPersistedUserIdentity,
 } from "./UserIdentityContext";
 
 /**
