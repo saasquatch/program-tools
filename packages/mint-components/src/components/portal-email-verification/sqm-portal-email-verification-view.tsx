@@ -30,6 +30,14 @@ export function PortalEmailVerificationView(
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
+        {props.states.success && (
+          <sqm-form-message type="success" exportparts="successalert-icon">
+            <div part="successalert-text">
+              Your verification email has been resent successfully
+            </div>
+          </sqm-form-message>
+        )}
+
         <h2>Verify Your Email</h2>
         <p>
           A verification email was sent to {email}. Please verify your email to

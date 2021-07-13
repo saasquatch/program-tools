@@ -27,6 +27,14 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
+        {props.states.success && (
+          <sqm-form-message type="success" exportparts="successalert-icon">
+            <div part="successalert-text">
+              If an account with that email exists, a password reset email will
+              be sent.
+            </div>
+          </sqm-form-message>
+        )}
         {content.messageSlot}
         <sl-input
           exportparts="label: input-label"
