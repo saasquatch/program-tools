@@ -3,7 +3,10 @@ import decode from "jwt-decode";
 import jsonpointer from "jsonpointer";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { usePortalQuery } from "../portal/usePortalQuery";
-import { navigation, setUserIdentity } from "@saasquatch/component-boilerplate";
+import {
+  navigation,
+  setPersistedUserIdentity,
+} from "@saasquatch/component-boilerplate";
 
 const PortalResetPasswordMutation = gql`
   mutation PortalResetPassword($oobCode: String!, $password: String!) {
@@ -66,13 +69,14 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
         verified: user.verified,
         email: user.email,
       };
-      setUserIdentity({
+      setPersistedUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,
         sessionData,
+      }).then(() => {
+        setReset(true);
       });
-      setReset(true);
     }
   }, [data?.resetPassword]);
 

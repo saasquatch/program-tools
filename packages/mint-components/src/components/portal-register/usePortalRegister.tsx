@@ -5,7 +5,7 @@ import { usePortalQuery } from "../portal/usePortalQuery";
 import decode from "jwt-decode";
 import {
   navigation,
-  setUserIdentity,
+  setPersistedUserIdentity,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { usePortalEmailVerification } from "../portal-email-verification/usePortalEmailVerification";
@@ -75,7 +75,7 @@ export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
         verified: user.verified,
         email: user.email,
       };
-      setUserIdentity({
+      setPersistedUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,

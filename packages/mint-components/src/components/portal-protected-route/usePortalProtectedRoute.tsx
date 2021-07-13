@@ -1,12 +1,15 @@
-import { useUserIdentity, navigation } from "@saasquatch/component-boilerplate";
+import {
+  usePersistedUserIdentity,
+  navigation,
+} from "@saasquatch/component-boilerplate";
 
-export function usePortalProtectedRoute({
+export async function usePortalProtectedRoute({
   authenticated,
   verified,
   redirectTo,
   redirectToUnverified,
 }) {
-  const userIdent = useUserIdentity();
+  const userIdent = await usePersistedUserIdentity();
 
   if (authenticated || verified) {
     if (!userIdent?.jwt) return navigation.push(redirectTo);

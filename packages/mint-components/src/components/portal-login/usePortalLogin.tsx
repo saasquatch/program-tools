@@ -5,7 +5,7 @@ import { usePortalQuery } from "../portal/usePortalQuery";
 import decode from "jwt-decode";
 import {
   navigation,
-  setUserIdentity,
+  setPersistedUserIdentity,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 
@@ -59,7 +59,7 @@ export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
         verified: user.verified,
         email: user.email,
       };
-      setUserIdentity({
+      setPersistedUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,
