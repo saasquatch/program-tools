@@ -16,6 +16,9 @@ import * as UseBigStat from "../../stories/UseBigStat.stories";
 import * as UseEditProfile from "../../stories/UseEditProfile.stories";
 import * as FormMessage from "../../stories/FormMessage.stories";
 import * as Dashboard from "../../stories/Dashboard.stories";
+import * as Activity from "../../stories/Activity.stories";
+import * as Commissions from "../../stories/Commissions.stories";
+import * as EditProfilePage from "../../stories/EditProfilePage.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -36,6 +39,9 @@ const stories = [
   EditProfile,
   FormMessage,
   Dashboard,
+  Activity,
+  Commissions,
+  EditProfilePage,
 ];
 
 /**
