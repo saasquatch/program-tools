@@ -7,6 +7,16 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { FunctionalComponent } from "@stencil/core";
 export namespace Components {
+    interface SqmAssetCard {
+        /**
+          * @uiName Banner image
+         */
+        "imgUrl": string;
+        /**
+          * @uiName Banner title
+         */
+        "titleText": string;
+    }
     interface SqmBigStat {
         /**
           * Select what type of stat to display. Manual paths are also supported.
@@ -288,6 +298,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLSqmAssetCardElement extends Components.SqmAssetCard, HTMLStencilElement {
+    }
+    var HTMLSqmAssetCardElement: {
+        prototype: HTMLSqmAssetCardElement;
+        new (): HTMLSqmAssetCardElement;
+    };
     interface HTMLSqmBigStatElement extends Components.SqmBigStat, HTMLStencilElement {
     }
     var HTMLSqmBigStatElement: {
@@ -421,6 +437,7 @@ declare global {
         new (): HTMLSqmStencilbookElement;
     };
     interface HTMLElementTagNameMap {
+        "sqm-asset-card": HTMLSqmAssetCardElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
@@ -446,6 +463,16 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface SqmAssetCard {
+        /**
+          * @uiName Banner image
+         */
+        "imgUrl"?: string;
+        /**
+          * @uiName Banner title
+         */
+        "titleText"?: string;
+    }
     interface SqmBigStat {
         /**
           * Select what type of stat to display. Manual paths are also supported.
@@ -726,6 +753,7 @@ declare namespace LocalJSX {
     interface SqmStencilbook {
     }
     interface IntrinsicElements {
+        "sqm-asset-card": SqmAssetCard;
         "sqm-big-stat": SqmBigStat;
         "sqm-edit-profile": SqmEditProfile;
         "sqm-form-message": SqmFormMessage;
@@ -754,6 +782,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "sqm-asset-card": LocalJSX.SqmAssetCard & JSXBase.HTMLAttributes<HTMLSqmAssetCardElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
