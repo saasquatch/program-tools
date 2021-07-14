@@ -2,7 +2,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Method, Host, State, Prop } from "@stencil/core";
 
 @Component({
-  tag: "sqm-referral-table-referral-date-column",
+  tag: "sqm-referral-table-date-column",
   styleUrl: "../sqm-referral-table/sqm-referral-table.scss",
   shadow: true,
 })
@@ -20,9 +20,9 @@ export class ReferralTableDateColumn {
   @Method()
   async renderCell(data) {
     return (
-      <sqm-referral-table-referral-date-cell
+      <sqm-referral-table-date-cell
         date={data[this.dateShown]}
-      ></sqm-referral-table-referral-date-cell>
+      ></sqm-referral-table-date-cell>
     );
   }
 

@@ -3,11 +3,11 @@ import { Component, h, Prop, State } from "@stencil/core";
 import { DateTime } from "luxon";
 
 @Component({
-  tag: "sqm-referral-table-referral-date-cell",
+  tag: "sqm-referral-table-date-cell",
   styleUrl: "../sqm-referral-table/sqm-referral-table.scss",
   shadow: true,
 })
-export class ReferralTableColumn {
+export class ReferralDateCell {
   @State()
   ignored = true;
 
@@ -18,6 +18,7 @@ export class ReferralTableColumn {
   disconnectedCallback() {}
 
   render() {
+    // needs hook to use locale
     const date = this.date
       ? DateTime.fromMillis(this.date)?.toLocaleString(DateTime.DATE_MED)
       : "";

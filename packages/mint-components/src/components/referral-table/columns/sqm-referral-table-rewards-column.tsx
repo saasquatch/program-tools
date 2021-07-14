@@ -16,7 +16,7 @@ export class ReferralTableRewardsColumn {
   disconnectedCallback() {}
   @Method()
   async renderCell(data) {
-    return <span>{data.prettyValue}</span>;
+    return <sqm-referral-table-rewards-cell reward={data.prettyValue}></sqm-referral-table-rewards-cell>;
   }
 
   @Method()

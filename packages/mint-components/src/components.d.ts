@@ -175,16 +175,17 @@ export namespace Components {
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
-    interface SqmReferralTableReferralDateCell {
+    interface SqmReferralTableDateCell {
         "date": number;
     }
-    interface SqmReferralTableReferralDateColumn {
+    interface SqmReferralTableDateColumn {
         "dateLabel": string;
         "dateShown": string;
         "renderCell": (data: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableRewardsCell {
+        "reward": string;
     }
     interface SqmReferralTableRewardsColumn {
         "renderCell": (data: any) => Promise<any>;
@@ -198,6 +199,7 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableUserCell {
+        "name": string;
     }
     interface SqmReferralTableUserColumn {
         "renderCell": (data: any) => Promise<any>;
@@ -416,17 +418,17 @@ declare global {
         prototype: HTMLSqmReferralTableColumnElement;
         new (): HTMLSqmReferralTableColumnElement;
     };
-    interface HTMLSqmReferralTableReferralDateCellElement extends Components.SqmReferralTableReferralDateCell, HTMLStencilElement {
+    interface HTMLSqmReferralTableDateCellElement extends Components.SqmReferralTableDateCell, HTMLStencilElement {
     }
-    var HTMLSqmReferralTableReferralDateCellElement: {
-        prototype: HTMLSqmReferralTableReferralDateCellElement;
-        new (): HTMLSqmReferralTableReferralDateCellElement;
+    var HTMLSqmReferralTableDateCellElement: {
+        prototype: HTMLSqmReferralTableDateCellElement;
+        new (): HTMLSqmReferralTableDateCellElement;
     };
-    interface HTMLSqmReferralTableReferralDateColumnElement extends Components.SqmReferralTableReferralDateColumn, HTMLStencilElement {
+    interface HTMLSqmReferralTableDateColumnElement extends Components.SqmReferralTableDateColumn, HTMLStencilElement {
     }
-    var HTMLSqmReferralTableReferralDateColumnElement: {
-        prototype: HTMLSqmReferralTableReferralDateColumnElement;
-        new (): HTMLSqmReferralTableReferralDateColumnElement;
+    var HTMLSqmReferralTableDateColumnElement: {
+        prototype: HTMLSqmReferralTableDateColumnElement;
+        new (): HTMLSqmReferralTableDateColumnElement;
     };
     interface HTMLSqmReferralTableRewardsCellElement extends Components.SqmReferralTableRewardsCell, HTMLStencilElement {
     }
@@ -513,8 +515,8 @@ declare global {
         "sqm-referral-table": HTMLSqmReferralTableElement;
         "sqm-referral-table-cell": HTMLSqmReferralTableCellElement;
         "sqm-referral-table-column": HTMLSqmReferralTableColumnElement;
-        "sqm-referral-table-referral-date-cell": HTMLSqmReferralTableReferralDateCellElement;
-        "sqm-referral-table-referral-date-column": HTMLSqmReferralTableReferralDateColumnElement;
+        "sqm-referral-table-date-cell": HTMLSqmReferralTableDateCellElement;
+        "sqm-referral-table-date-column": HTMLSqmReferralTableDateColumnElement;
         "sqm-referral-table-rewards-cell": HTMLSqmReferralTableRewardsCellElement;
         "sqm-referral-table-rewards-column": HTMLSqmReferralTableRewardsColumnElement;
         "sqm-referral-table-status-cell": HTMLSqmReferralTableStatusCellElement;
@@ -695,14 +697,15 @@ declare namespace LocalJSX {
     }
     interface SqmReferralTableColumn {
     }
-    interface SqmReferralTableReferralDateCell {
+    interface SqmReferralTableDateCell {
         "date"?: number;
     }
-    interface SqmReferralTableReferralDateColumn {
+    interface SqmReferralTableDateColumn {
         "dateLabel"?: string;
         "dateShown"?: string;
     }
     interface SqmReferralTableRewardsCell {
+        "reward"?: string;
     }
     interface SqmReferralTableRewardsColumn {
     }
@@ -712,6 +715,7 @@ declare namespace LocalJSX {
     interface SqmReferralTableStatusColumn {
     }
     interface SqmReferralTableUserCell {
+        "name"?: string;
     }
     interface SqmReferralTableUserColumn {
     }
@@ -837,8 +841,8 @@ declare namespace LocalJSX {
         "sqm-referral-table": SqmReferralTable;
         "sqm-referral-table-cell": SqmReferralTableCell;
         "sqm-referral-table-column": SqmReferralTableColumn;
-        "sqm-referral-table-referral-date-cell": SqmReferralTableReferralDateCell;
-        "sqm-referral-table-referral-date-column": SqmReferralTableReferralDateColumn;
+        "sqm-referral-table-date-cell": SqmReferralTableDateCell;
+        "sqm-referral-table-date-column": SqmReferralTableDateColumn;
         "sqm-referral-table-rewards-cell": SqmReferralTableRewardsCell;
         "sqm-referral-table-rewards-column": SqmReferralTableRewardsColumn;
         "sqm-referral-table-status-cell": SqmReferralTableStatusCell;
@@ -874,8 +878,8 @@ declare module "@stencil/core" {
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;
             "sqm-referral-table-cell": LocalJSX.SqmReferralTableCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableCellElement>;
             "sqm-referral-table-column": LocalJSX.SqmReferralTableColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableColumnElement>;
-            "sqm-referral-table-referral-date-cell": LocalJSX.SqmReferralTableReferralDateCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableReferralDateCellElement>;
-            "sqm-referral-table-referral-date-column": LocalJSX.SqmReferralTableReferralDateColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableReferralDateColumnElement>;
+            "sqm-referral-table-date-cell": LocalJSX.SqmReferralTableDateCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableDateCellElement>;
+            "sqm-referral-table-date-column": LocalJSX.SqmReferralTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableDateColumnElement>;
             "sqm-referral-table-rewards-cell": LocalJSX.SqmReferralTableRewardsCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableRewardsCellElement>;
             "sqm-referral-table-rewards-column": LocalJSX.SqmReferralTableRewardsColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableRewardsColumnElement>;
             "sqm-referral-table-status-cell": LocalJSX.SqmReferralTableStatusCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusCellElement>;

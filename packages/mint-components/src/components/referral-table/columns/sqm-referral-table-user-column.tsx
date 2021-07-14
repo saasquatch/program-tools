@@ -22,7 +22,11 @@ export class ReferralTableUserColumn {
   disconnectedCallback() {}
   @Method()
   async renderCell(data) {
-    return <span>{`${data.firstName} ${data.lastName}`}</span>;
+    return (
+      <sqm-referral-table-user-cell
+        name={`${data.firstName} ${data.lastName}`}
+      ></sqm-referral-table-user-cell>
+    );
   }
 
   @Method()
