@@ -19,6 +19,7 @@ import * as Dashboard from "../../stories/Dashboard.stories";
 import * as Activity from "../../stories/Activity.stories";
 import * as Commissions from "../../stories/Commissions.stories";
 import * as EditProfilePage from "../../stories/EditProfilePage.stories";
+import * as PortalLogin from "../../stories/PortalLogin.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -42,6 +43,7 @@ const stories = [
   Activity,
   Commissions,
   EditProfilePage,
+  PortalLogin,
 ];
 
 /**
