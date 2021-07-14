@@ -33,17 +33,20 @@
         );
       }
     </script>
-    Portal Register
-    <sqm-portal-register></sqm-portal-register>
-    Portal Login
-    <sqm-portal-login></sqm-portal-login>
-    Email Verification
-    <sqm-portal-email-verification></sqm-portal-email-verification>
-    Verify Email
-    <sqm-portal-verify-email></sqm-portal-verify-email>
-    Forgot Password
-    <sqm-portal-forgot-password></sqm-portal-forgot-password>
-    Reset Password
-    <sqm-portal-reset-password></sqm-portal-reset-password>
+    <sqm-referral-table>
+      <sqm-referral-table-status-column></sqm-referral-table-status-column>
+      <sqm-referral-table-user-column></sqm-referral-table-user-column>
+      <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+      <sqm-referral-table-referral-date-column
+        date-label="Date Started"
+        date-shown="dateStarted"
+      ></sqm-referral-table-referral-date-column>
+      <sqm-referral-table-referral-date-column></sqm-referral-table-referral-date-column>
+    </sqm-referral-table>
+    <!-- <sqm-referral-table-user-column label="Customer" /> -->
+    <!-- <sqm-referral-table-rewards-column />
+      <sqm-referral-table-referral-date-column label="Referred"  date="goals/made-purchase"/>
+      <sqm-referral-table-column />
+      <div slot="footer"></div> -->
   </body>
 </html>

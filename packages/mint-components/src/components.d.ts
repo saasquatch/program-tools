@@ -167,6 +167,42 @@ export namespace Components {
         "nextPage": string;
         "nextPageUrlParameter": string;
     }
+    interface SqmReferralTable {
+    }
+    interface SqmReferralTableCell {
+    }
+    interface SqmReferralTableColumn {
+        "renderCell": (data: Referral) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+    }
+    interface SqmReferralTableReferralDateCell {
+        "date": number;
+    }
+    interface SqmReferralTableReferralDateColumn {
+        "dateLabel": string;
+        "dateShown": string;
+        "renderCell": (data: any) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+    }
+    interface SqmReferralTableRewardsCell {
+    }
+    interface SqmReferralTableRewardsColumn {
+        "renderCell": (data: any) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+    }
+    interface SqmReferralTableStatusCell {
+        "statusText": string;
+    }
+    interface SqmReferralTableStatusColumn {
+        "renderCell": (data: any) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+    }
+    interface SqmReferralTableUserCell {
+    }
+    interface SqmReferralTableUserColumn {
+        "renderCell": (data: any) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+    }
     interface SqmRoute {
         /**
           * @uiName Navigation path name
@@ -362,6 +398,72 @@ declare global {
         prototype: HTMLSqmPortalVerifyEmailElement;
         new (): HTMLSqmPortalVerifyEmailElement;
     };
+    interface HTMLSqmReferralTableElement extends Components.SqmReferralTable, HTMLStencilElement {
+    }
+    var HTMLSqmReferralTableElement: {
+        prototype: HTMLSqmReferralTableElement;
+        new (): HTMLSqmReferralTableElement;
+    };
+    interface HTMLSqmReferralTableCellElement extends Components.SqmReferralTableCell, HTMLStencilElement {
+    }
+    var HTMLSqmReferralTableCellElement: {
+        prototype: HTMLSqmReferralTableCellElement;
+        new (): HTMLSqmReferralTableCellElement;
+    };
+    interface HTMLSqmReferralTableColumnElement extends Components.SqmReferralTableColumn, HTMLStencilElement {
+    }
+    var HTMLSqmReferralTableColumnElement: {
+        prototype: HTMLSqmReferralTableColumnElement;
+        new (): HTMLSqmReferralTableColumnElement;
+    };
+    interface HTMLSqmReferralTableReferralDateCellElement extends Components.SqmReferralTableReferralDateCell, HTMLStencilElement {
+    }
+    var HTMLSqmReferralTableReferralDateCellElement: {
+        prototype: HTMLSqmReferralTableReferralDateCellElement;
+        new (): HTMLSqmReferralTableReferralDateCellElement;
+    };
+    interface HTMLSqmReferralTableReferralDateColumnElement extends Components.SqmReferralTableReferralDateColumn, HTMLStencilElement {
+    }
+    var HTMLSqmReferralTableReferralDateColumnElement: {
+        prototype: HTMLSqmReferralTableReferralDateColumnElement;
+        new (): HTMLSqmReferralTableReferralDateColumnElement;
+    };
+    interface HTMLSqmReferralTableRewardsCellElement extends Components.SqmReferralTableRewardsCell, HTMLStencilElement {
+    }
+    var HTMLSqmReferralTableRewardsCellElement: {
+        prototype: HTMLSqmReferralTableRewardsCellElement;
+        new (): HTMLSqmReferralTableRewardsCellElement;
+    };
+    interface HTMLSqmReferralTableRewardsColumnElement extends Components.SqmReferralTableRewardsColumn, HTMLStencilElement {
+    }
+    var HTMLSqmReferralTableRewardsColumnElement: {
+        prototype: HTMLSqmReferralTableRewardsColumnElement;
+        new (): HTMLSqmReferralTableRewardsColumnElement;
+    };
+    interface HTMLSqmReferralTableStatusCellElement extends Components.SqmReferralTableStatusCell, HTMLStencilElement {
+    }
+    var HTMLSqmReferralTableStatusCellElement: {
+        prototype: HTMLSqmReferralTableStatusCellElement;
+        new (): HTMLSqmReferralTableStatusCellElement;
+    };
+    interface HTMLSqmReferralTableStatusColumnElement extends Components.SqmReferralTableStatusColumn, HTMLStencilElement {
+    }
+    var HTMLSqmReferralTableStatusColumnElement: {
+        prototype: HTMLSqmReferralTableStatusColumnElement;
+        new (): HTMLSqmReferralTableStatusColumnElement;
+    };
+    interface HTMLSqmReferralTableUserCellElement extends Components.SqmReferralTableUserCell, HTMLStencilElement {
+    }
+    var HTMLSqmReferralTableUserCellElement: {
+        prototype: HTMLSqmReferralTableUserCellElement;
+        new (): HTMLSqmReferralTableUserCellElement;
+    };
+    interface HTMLSqmReferralTableUserColumnElement extends Components.SqmReferralTableUserColumn, HTMLStencilElement {
+    }
+    var HTMLSqmReferralTableUserColumnElement: {
+        prototype: HTMLSqmReferralTableUserColumnElement;
+        new (): HTMLSqmReferralTableUserColumnElement;
+    };
     interface HTMLSqmRouteElement extends Components.SqmRoute, HTMLStencilElement {
     }
     var HTMLSqmRouteElement: {
@@ -408,6 +510,17 @@ declare global {
         "sqm-portal-register": HTMLSqmPortalRegisterElement;
         "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
         "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
+        "sqm-referral-table": HTMLSqmReferralTableElement;
+        "sqm-referral-table-cell": HTMLSqmReferralTableCellElement;
+        "sqm-referral-table-column": HTMLSqmReferralTableColumnElement;
+        "sqm-referral-table-referral-date-cell": HTMLSqmReferralTableReferralDateCellElement;
+        "sqm-referral-table-referral-date-column": HTMLSqmReferralTableReferralDateColumnElement;
+        "sqm-referral-table-rewards-cell": HTMLSqmReferralTableRewardsCellElement;
+        "sqm-referral-table-rewards-column": HTMLSqmReferralTableRewardsColumnElement;
+        "sqm-referral-table-status-cell": HTMLSqmReferralTableStatusCellElement;
+        "sqm-referral-table-status-column": HTMLSqmReferralTableStatusColumnElement;
+        "sqm-referral-table-user-cell": HTMLSqmReferralTableUserCellElement;
+        "sqm-referral-table-user-column": HTMLSqmReferralTableUserColumnElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
@@ -576,6 +689,32 @@ declare namespace LocalJSX {
         "nextPage"?: string;
         "nextPageUrlParameter"?: string;
     }
+    interface SqmReferralTable {
+    }
+    interface SqmReferralTableCell {
+    }
+    interface SqmReferralTableColumn {
+    }
+    interface SqmReferralTableReferralDateCell {
+        "date"?: number;
+    }
+    interface SqmReferralTableReferralDateColumn {
+        "dateLabel"?: string;
+        "dateShown"?: string;
+    }
+    interface SqmReferralTableRewardsCell {
+    }
+    interface SqmReferralTableRewardsColumn {
+    }
+    interface SqmReferralTableStatusCell {
+        "statusText"?: string;
+    }
+    interface SqmReferralTableStatusColumn {
+    }
+    interface SqmReferralTableUserCell {
+    }
+    interface SqmReferralTableUserColumn {
+    }
     interface SqmRoute {
         /**
           * @uiName Navigation path name
@@ -695,6 +834,17 @@ declare namespace LocalJSX {
         "sqm-portal-register": SqmPortalRegister;
         "sqm-portal-reset-password": SqmPortalResetPassword;
         "sqm-portal-verify-email": SqmPortalVerifyEmail;
+        "sqm-referral-table": SqmReferralTable;
+        "sqm-referral-table-cell": SqmReferralTableCell;
+        "sqm-referral-table-column": SqmReferralTableColumn;
+        "sqm-referral-table-referral-date-cell": SqmReferralTableReferralDateCell;
+        "sqm-referral-table-referral-date-column": SqmReferralTableReferralDateColumn;
+        "sqm-referral-table-rewards-cell": SqmReferralTableRewardsCell;
+        "sqm-referral-table-rewards-column": SqmReferralTableRewardsColumn;
+        "sqm-referral-table-status-cell": SqmReferralTableStatusCell;
+        "sqm-referral-table-status-column": SqmReferralTableStatusColumn;
+        "sqm-referral-table-user-cell": SqmReferralTableUserCell;
+        "sqm-referral-table-user-column": SqmReferralTableUserColumn;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
         "sqm-share-button": SqmShareButton;
@@ -721,6 +871,17 @@ declare module "@stencil/core" {
             "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
             "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
+            "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;
+            "sqm-referral-table-cell": LocalJSX.SqmReferralTableCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableCellElement>;
+            "sqm-referral-table-column": LocalJSX.SqmReferralTableColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableColumnElement>;
+            "sqm-referral-table-referral-date-cell": LocalJSX.SqmReferralTableReferralDateCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableReferralDateCellElement>;
+            "sqm-referral-table-referral-date-column": LocalJSX.SqmReferralTableReferralDateColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableReferralDateColumnElement>;
+            "sqm-referral-table-rewards-cell": LocalJSX.SqmReferralTableRewardsCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableRewardsCellElement>;
+            "sqm-referral-table-rewards-column": LocalJSX.SqmReferralTableRewardsColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableRewardsColumnElement>;
+            "sqm-referral-table-status-cell": LocalJSX.SqmReferralTableStatusCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusCellElement>;
+            "sqm-referral-table-status-column": LocalJSX.SqmReferralTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusColumnElement>;
+            "sqm-referral-table-user-cell": LocalJSX.SqmReferralTableUserCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserCellElement>;
+            "sqm-referral-table-user-column": LocalJSX.SqmReferralTableUserColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserColumnElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
