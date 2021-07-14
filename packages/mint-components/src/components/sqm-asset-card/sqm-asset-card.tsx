@@ -43,7 +43,7 @@ function useAssetCardDemo(props: AssetCard): AssetCardViewProps {
     text: {
       titleText: "Marketing Banner",
     },
-    imgUrl: null,
+    imgUrl: "../../assets/saasquatch-logo.png",
     callbacks: {},
   };
 }
