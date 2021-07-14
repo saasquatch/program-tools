@@ -9,7 +9,7 @@ import { usePortalFrame } from "./usePortalFrame";
  */
 @Component({
   tag: "sqm-portal-frame",
-  styleUrl: "sqm-portal-frame.scss",
+  // styleUrl: "sqm-portal-frame.scss",
   shadow: true,
 })
 export class PortalFrame {

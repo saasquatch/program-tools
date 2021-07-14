@@ -1,19 +1,19 @@
 import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
+import { HostBlock } from "../../global/mixins";
 
 export interface ShareLinkViewProps {
   sharelink: string;
   open: boolean;
-
   disabled?: boolean;
   tooltiptext: string;
-
   onClick?: () => void;
 }
 
 const style = {
-  "sl-input": {
+  HostBlock: HostBlock,
+  inputStyle: {
     "&::part(base)": { background: "white", opacity: "1", cursor: "pointer" },
   },
 };
@@ -34,6 +34,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         open={props.open}
       >
         <sl-input
+          class={sheet.classes.inputStyle}
           exportparts="label: input-label"
           value={props.sharelink}
           readonly

@@ -15,6 +15,8 @@ import { isDemo } from "@saasquatch/component-boilerplate";
   shadow: true,
 })
 export class BigStat {
+  // TODO: Add prop to swap order of the stat value and stat description
+
   // uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit",
   //  "/rewardBalance/CREDIT/CASH_CAD/prettyValue",
   //  "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit",

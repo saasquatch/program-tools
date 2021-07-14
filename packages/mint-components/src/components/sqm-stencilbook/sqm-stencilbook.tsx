@@ -18,6 +18,10 @@ import * as FormMessage from "../../stories/FormMessage.stories";
 import * as Dashboard from "../../stories/Dashboard.stories";
 import * as SidebarItem from "../../stories/SidebarItem.stories";
 import * as NavigationSidebar from "../../stories/NavigationSidebar.stories";
+import * as Activity from "../../stories/Activity.stories";
+import * as Commissions from "../../stories/Commissions.stories";
+import * as EditProfilePage from "../../stories/EditProfilePage.stories";
+import * as PortalLogin from "../../stories/PortalLogin.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -40,6 +44,10 @@ const stories = [
   Dashboard,
   SidebarItem,
   NavigationSidebar,
+  Activity,
+  Commissions,
+  EditProfilePage,
+  PortalLogin,
 ];
 
 /**
