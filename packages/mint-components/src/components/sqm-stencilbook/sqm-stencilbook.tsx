@@ -15,12 +15,9 @@ import * as UseShareButton from "../../stories/UseShareButton.stories";
 import * as UseBigStat from "../../stories/UseBigStat.stories";
 import * as UseEditProfile from "../../stories/UseEditProfile.stories";
 import * as FormMessage from "../../stories/FormMessage.stories";
-import * as Dashboard from "../../stories/Dashboard.stories";
+import * as NewPortal from "../../stories/NewPortal.stories";
 import * as SidebarItem from "../../stories/SidebarItem.stories";
 import * as NavigationSidebar from "../../stories/NavigationSidebar.stories";
-import * as Activity from "../../stories/Activity.stories";
-import * as Commissions from "../../stories/Commissions.stories";
-import * as EditProfilePage from "../../stories/EditProfilePage.stories";
 import * as PortalLogin from "../../stories/PortalLogin.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
@@ -41,12 +38,9 @@ const stories = [
   PortalFrame,
   EditProfile,
   FormMessage,
-  Dashboard,
+  NewPortal,
   SidebarItem,
   NavigationSidebar,
-  Activity,
-  Commissions,
-  EditProfilePage,
   PortalLogin,
 ];
 

@@ -14,7 +14,7 @@ export interface NavigationSidebarViewProps {
 }
 
 const style = {
-  ProgramDropdown: {},
+  ProgramDropdown: { margin: "0 0 28px" },
   ItemsContainer: { ...gap({ direction: "column" as const, size: "4px" }) },
 };
 
@@ -27,10 +27,13 @@ export function NavigationSidebarView(
   children: VNode
 ) {
   return (
-    <div>
+    <div part="base">
       <style type="text/css">{styleString}</style>
-      <sl-select class={sheet.classes.ProgramDropdown}>
-        <div class={sheet.classes.ItemsContainer}>
+      <sl-select
+        exportparts="base: programselect-base"
+        class={sheet.classes.ProgramDropdown}
+      >
+        <div class={sheet.classes.ProgramDropdown}>
           {props.data.programs.map((program) => {
             return (
               <sl-menu-item value={program.key}>{program.label}</sl-menu-item>
@@ -38,7 +41,7 @@ export function NavigationSidebarView(
           })}
         </div>
       </sl-select>
-      <div>{children}</div>
+      <div class={sheet.classes.ItemsContainer}>{children}</div>
     </div>
   );
 }

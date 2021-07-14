@@ -6,7 +6,7 @@ export default {
   title: "Navigation Sidebar",
 };
 
-export const Default = () => {
+export const DefaultNavigationSidebar = () => {
   const barProps = {
     data: {
       programs: [
