@@ -12,7 +12,6 @@ import { usePortalEmailVerification } from "./usePortalEmailVerification";
  */
 @Component({
   tag: "sqm-portal-email-verification",
-  styleUrl: "sqm-portal-email-verification.scss",
   shadow: true,
 })
 export class PortalEmailVerification {

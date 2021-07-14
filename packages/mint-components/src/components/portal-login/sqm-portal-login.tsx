@@ -9,7 +9,6 @@ import { usePortalLogin } from "./usePortalLogin";
  */
 @Component({
   tag: "sqm-portal-login",
-  styleUrl: "sqm-portal-login.scss",
   shadow: true,
 })
 export class PortalLogin {
