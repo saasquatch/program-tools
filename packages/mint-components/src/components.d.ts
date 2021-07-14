@@ -119,6 +119,8 @@ export namespace Components {
          */
         "menuLabel": string;
     }
+    interface SqmNavigationSidebar {
+    }
     interface SqmPopupContainer {
         /**
           * @uiName Display a close button on the popup
@@ -268,6 +270,20 @@ export namespace Components {
          */
         "tooltiptext": string;
     }
+    interface SqmSidebarItem {
+        /**
+          * @uiName Icon
+         */
+        "icon": string;
+        /**
+          * @uiName Label
+         */
+        "label": string;
+        /**
+          * @uiName Navigation path
+         */
+        "path": string;
+    }
     interface SqmStencilbook {
     }
 }
@@ -313,6 +329,12 @@ declare global {
     var HTMLSqmNavigationMenuElement: {
         prototype: HTMLSqmNavigationMenuElement;
         new (): HTMLSqmNavigationMenuElement;
+    };
+    interface HTMLSqmNavigationSidebarElement extends Components.SqmNavigationSidebar, HTMLStencilElement {
+    }
+    var HTMLSqmNavigationSidebarElement: {
+        prototype: HTMLSqmNavigationSidebarElement;
+        new (): HTMLSqmNavigationSidebarElement;
     };
     interface HTMLSqmPopupContainerElement extends Components.SqmPopupContainer, HTMLStencilElement {
     }
@@ -386,6 +408,12 @@ declare global {
         prototype: HTMLSqmShareLinkElement;
         new (): HTMLSqmShareLinkElement;
     };
+    interface HTMLSqmSidebarItemElement extends Components.SqmSidebarItem, HTMLStencilElement {
+    }
+    var HTMLSqmSidebarItemElement: {
+        prototype: HTMLSqmSidebarItemElement;
+        new (): HTMLSqmSidebarItemElement;
+    };
     interface HTMLSqmStencilbookElement extends Components.SqmStencilbook, HTMLStencilElement {
     }
     var HTMLSqmStencilbookElement: {
@@ -400,6 +428,7 @@ declare global {
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
+        "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
         "sqm-portal-email-verification": HTMLSqmPortalEmailVerificationElement;
         "sqm-portal-forgot-password": HTMLSqmPortalForgotPasswordElement;
@@ -412,6 +441,7 @@ declare global {
         "sqm-router": HTMLSqmRouterElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
+        "sqm-sidebar-item": HTMLSqmSidebarItemElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
     }
 }
@@ -527,6 +557,8 @@ declare namespace LocalJSX {
           * @uiName Label on the header menu
          */
         "menuLabel"?: string;
+    }
+    interface SqmNavigationSidebar {
     }
     interface SqmPopupContainer {
         /**
@@ -677,6 +709,20 @@ declare namespace LocalJSX {
          */
         "tooltiptext"?: string;
     }
+    interface SqmSidebarItem {
+        /**
+          * @uiName Icon
+         */
+        "icon"?: string;
+        /**
+          * @uiName Label
+         */
+        "label"?: string;
+        /**
+          * @uiName Navigation path
+         */
+        "path"?: string;
+    }
     interface SqmStencilbook {
     }
     interface IntrinsicElements {
@@ -687,6 +733,7 @@ declare namespace LocalJSX {
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-navigation-menu": SqmNavigationMenu;
+        "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-popup-container": SqmPopupContainer;
         "sqm-portal-email-verification": SqmPortalEmailVerification;
         "sqm-portal-forgot-password": SqmPortalForgotPassword;
@@ -699,6 +746,7 @@ declare namespace LocalJSX {
         "sqm-router": SqmRouter;
         "sqm-share-button": SqmShareButton;
         "sqm-share-link": SqmShareLink;
+        "sqm-sidebar-item": SqmSidebarItem;
         "sqm-stencilbook": SqmStencilbook;
     }
 }
@@ -713,6 +761,7 @@ declare module "@stencil/core" {
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
+            "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
             "sqm-portal-email-verification": LocalJSX.SqmPortalEmailVerification & JSXBase.HTMLAttributes<HTMLSqmPortalEmailVerificationElement>;
             "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword & JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
@@ -725,6 +774,7 @@ declare module "@stencil/core" {
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
+            "sqm-sidebar-item": LocalJSX.SqmSidebarItem & JSXBase.HTMLAttributes<HTMLSqmSidebarItemElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
         }
     }
