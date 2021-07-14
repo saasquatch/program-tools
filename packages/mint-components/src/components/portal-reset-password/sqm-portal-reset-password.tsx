@@ -12,7 +12,6 @@ import { usePortalResetPassword } from "./usePortalResetPassword";
  */
 @Component({
   tag: "sqm-portal-reset-password",
-  styleUrl: "sqm-portal-reset-password.scss",
   shadow: true,
 })
 export class PortalResetPassword {

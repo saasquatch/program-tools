@@ -12,7 +12,6 @@ import { usePortalRegister } from "./usePortalRegister";
  */
 @Component({
   tag: "sqm-portal-register",
-  styleUrl: "sqm-portal-register.scss",
   shadow: true,
 })
 export class PortalRegister {

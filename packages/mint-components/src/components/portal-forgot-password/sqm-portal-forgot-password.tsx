@@ -12,7 +12,6 @@ import { usePortalForgotPassword } from "./usePortalForgotPassword";
  */
 @Component({
   tag: "sqm-portal-forgot-password",
-  styleUrl: "sqm-portal-forgot-password.scss",
   shadow: true,
 })
 export class PortalForgotPassword {
