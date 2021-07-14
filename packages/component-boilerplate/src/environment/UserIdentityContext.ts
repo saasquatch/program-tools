@@ -63,7 +63,15 @@ async function ensureIndexedDB(): Promise<IDBDatabase> {
       objectStore.createIndex("jwt", "jwt", { unique: false });
       objectStore.createIndex("sessionData", "sessionData", { unique: false });
 
-      resolve(db);
+      objectStore.transaction.onerror = () => {
+        console.error("Connection to indexedDB failed.");
+        _db = null;
+        resolve(null);
+      };
+
+      objectStore.transaction.oncomplete = () => {
+        resolve(db);
+      };
     };
   });
   return _db;
