@@ -12,7 +12,6 @@ import { usePortalVerifyEmail } from "./usePortalVerifyEmail";
  */
 @Component({
   tag: "sqm-portal-verify-email",
-  styleUrl: "sqm-portal-verify-email.scss",
   shadow: true,
 })
 export class PortalVerifyEmail {
@@ -43,7 +42,12 @@ function usePortalVerifyEmailDemo({
   nextPageUrlParameter,
 }): PortalVerifyEmailViewProps {
   return {
-    states: { error: "", loading: false, verified: false },
+    states: {
+      error: "",
+      loading: false,
+      verified: false,
+      resendSuccess: false,
+    },
     callbacks: {
       submit: async (_event) => {
         nextPage;
