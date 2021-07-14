@@ -173,6 +173,9 @@ export async function usePersistedUserIdentity(): Promise<
         resolve(request.result || undefined);
       };
     });
+    if (userIdent) {
+      setUserIdentity(userIdent);
+    }
   }
   return userIdent;
 }
