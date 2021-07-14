@@ -12,7 +12,7 @@ const defaultProps: PortalForgotPasswordViewProps = {
   states: {
     error: "",
     loading: false,
-    success: false,
+    resendSuccess: false,
   },
   callbacks: {
     submit: async (e) => await e,
@@ -23,7 +23,7 @@ const errorProps: PortalForgotPasswordViewProps = {
   states: {
     error: "Something went wrong. Please try again.",
     loading: false,
-    success: false,
+    resendSuccess: false,
   },
   callbacks: {
     submit: async (e) => await e,
@@ -34,7 +34,7 @@ const loadingProps: PortalForgotPasswordViewProps = {
   states: {
     error: "",
     loading: true,
-    success: false,
+    resendSuccess: false,
   },
   callbacks: {
     submit: async (e) => await e,
@@ -45,7 +45,7 @@ const successProps: PortalForgotPasswordViewProps = {
   states: {
     error: "",
     loading: false,
-    success: true,
+    resendSuccess: true,
   },
   callbacks: {
     submit: async (e) => await e,

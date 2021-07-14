@@ -42,6 +42,7 @@ export function usePortalVerifyEmail({ nextPage, nextPageUrlParameter }) {
       loading,
       error,
       verified,
+      resendSuccess: true, // TODO unhardcode
     },
     callbacks: {
       submit,

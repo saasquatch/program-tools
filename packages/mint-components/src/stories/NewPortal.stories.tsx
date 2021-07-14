@@ -20,7 +20,11 @@ const style = {
   StatContainer: {
     display: "flex",
     "margin-bottom": "25px",
-    ...gap({ direction: "row", size: "32px" }),
+    "& > :not(:last-child)": {
+      "border-right": "1px solid #EAEAEA",
+      "padding-right": "32px",
+      "margin-right": "32px",
+    },
   },
   InfoContainer: {},
   ShareItemContainer: {
@@ -106,6 +110,7 @@ const barProps = {
     ],
   },
 };
+
 const item1Props = {
   states: {
     active: false,
@@ -118,6 +123,7 @@ const item1Props = {
     onClick: (e: MouseEvent) => console.log(e),
   },
 };
+
 const item2Props = {
   states: {
     active: true,
@@ -129,6 +135,17 @@ const item2Props = {
   callbacks: {
     onClick: (e: MouseEvent) => console.log(e),
   },
+};
+
+const Sidebar = () => {
+  return (
+    <div class={sheet.classes.SidebarContainer}>
+      <NavigationSidebarView {...barProps}>
+        <SidebarItemView {...item1Props} />
+        <SidebarItemView {...item2Props} />
+      </NavigationSidebarView>
+    </div>
+  );
 };
 
 export const Dashboard = () => {
@@ -193,12 +210,7 @@ export const Dashboard = () => {
   return (
     <div class={sheet.classes.FullPageContainer}>
       <style type="text/css">{styleString}</style>
-      <div class={sheet.classes.SidebarContainer}>
-        <NavigationSidebarView {...barProps}>
-          <SidebarItemView {...item1Props} />
-          <SidebarItemView {...item2Props} />
-        </NavigationSidebarView>
-      </div>
+      <Sidebar />
       <div class={sheet.classes.MainContainer}>
         <div class={sheet.classes.HeaderContainer}>
           <p>Welcome back,</p>
@@ -248,49 +260,54 @@ export const Dashboard = () => {
 
 export const EditProfile = () => {
   return (
-    <div>
+    <div class={sheet.classes.FullPageContainer}>
       <style type="text/css">{styleString}</style>
-      <h1 class={sheet.classes.Header}>Edit your profile</h1>
-      <h2 class={sheet.classes.FormHeader}>Personal Information</h2>
+      <Sidebar />
+      <div class={sheet.classes.MainContainer}>
+        <h1 class={sheet.classes.Header}>Edit your profile</h1>
+        <h2 class={sheet.classes.FormHeader}>Personal Information</h2>
+        <form>
+          <div class={sheet.classes.NameContainer}>
+            <sl-input label="First Name"></sl-input>
+            <sl-input label="Last Name"></sl-input>
+          </div>
+          <sl-input class={sheet.classes.InputStyle} label="Email"></sl-input>
+          <sl-input class={sheet.classes.InputStyle} label="Country"></sl-input>
+          <sl-button style={{ marginBottom: "54px" }}>Submit Changes</sl-button>
+        </form>
 
-      <form>
-        <div class={sheet.classes.NameContainer}>
-          <sl-input label="First Name"></sl-input>
-          <sl-input label="Last Name"></sl-input>
-        </div>
-        <sl-input class={sheet.classes.InputStyle} label="Email"></sl-input>
-        <sl-input class={sheet.classes.InputStyle} label="Country"></sl-input>
-        <sl-button style={{ marginBottom: "54px" }}>Submit Changes</sl-button>
-      </form>
+        <hr />
 
-      <hr />
-
-      <h2 style={{ marginTop: "43px", marginBottom: "19px" }}>Password</h2>
-      <sl-button>Change your password...</sl-button>
+        <h2 style={{ marginTop: "43px", marginBottom: "19px" }}>Password</h2>
+        <sl-button>Change your password...</sl-button>
+      </div>
     </div>
   );
 };
 
 export const Commissions = () => {
   return (
-    <div>
+    <div class={sheet.classes.FullPageContainer}>
       <style type="text/css">{styleString}</style>
-      <div class={sheet.classes.HeaderContainer}>
-        <h1 class={sheet.classes.Header}>Commissions</h1>
-        <p class={sheet.classes.HeaderSubtitle}>
-          for the{" "}
-          <span class={sheet.classes.HeaderSubtitleBold}>
-            Partner Program #1
-          </span>{" "}
-          program
-        </p>
-      </div>
+      <Sidebar />
+      <div class={sheet.classes.MainContainer}>
+        <div class={sheet.classes.HeaderContainer}>
+          <h1 class={sheet.classes.Header}>Commissions</h1>
+          <p class={sheet.classes.HeaderSubtitle}>
+            for the{" "}
+            <span class={sheet.classes.HeaderSubtitleBold}>
+              Partner Program #1
+            </span>{" "}
+            program
+          </p>
+        </div>
 
-      <div class={sheet.classes.StatContainer}>
-        <BigStatView {...{ statvalue: "$ 1,000" }}>Total Earned</BigStatView>
-        <BigStatView {...{ statvalue: "$ 800" }}>Available</BigStatView>
-        <BigStatView {...{ statvalue: "$ 180" }}>Pending</BigStatView>
-        <BigStatView {...{ statvalue: "$ 20" }}>Redeemed</BigStatView>
+        <div class={sheet.classes.StatContainer}>
+          <BigStatView {...{ statvalue: "$ 1,000" }}>Total Earned</BigStatView>
+          <BigStatView {...{ statvalue: "$ 800" }}>Available</BigStatView>
+          <BigStatView {...{ statvalue: "$ 180" }}>Pending</BigStatView>
+          <BigStatView {...{ statvalue: "$ 20" }}>Redeemed</BigStatView>
+        </div>
       </div>
     </div>
   );
@@ -298,34 +315,36 @@ export const Commissions = () => {
 
 export const Activity = () => {
   return (
-    <div>
+    <div class={sheet.classes.FullPageContainer}>
       <style type="text/css">{styleString}</style>
-      <div class={sheet.classes.HeaderContainer}>
-        <h1 class={sheet.classes.Header}>Activity</h1>
-        <p class={sheet.classes.HeaderSubtitle}>
-          for the{" "}
-          <span class={sheet.classes.HeaderSubtitleBold}>
-            Partner Program #1
-          </span>{" "}
-          program
-        </p>
-      </div>
+      <Sidebar />
+      <div class={sheet.classes.MainContainer}>
+        <div class={sheet.classes.HeaderContainer}>
+          <h1 class={sheet.classes.Header}>Activity</h1>
+          <p class={sheet.classes.HeaderSubtitle}>
+            for the{" "}
+            <span class={sheet.classes.HeaderSubtitleBold}>
+              Partner Program #1
+            </span>{" "}
+            program
+          </p>
+        </div>
+        <h2 class={sheet.classes.StatHeader}>Referral Activity</h2>
+        <div class={sheet.classes.StatContainer}>
+          <BigStatView {...{ statvalue: "1,000" }}>Total Referrals</BigStatView>
+          <BigStatView {...{ statvalue: "800" }}>Converted</BigStatView>
+          <BigStatView {...{ statvalue: "180" }}>Pending</BigStatView>
+          <BigStatView {...{ statvalue: "20" }}>Disqualified</BigStatView>
+        </div>
 
-      <h2 class={sheet.classes.StatHeader}>Referral Activity</h2>
-
-      <div class={sheet.classes.StatContainer}>
-        <BigStatView {...{ statvalue: "1,000" }}>Total Referrals</BigStatView>
-        <BigStatView {...{ statvalue: "800" }}>Converted</BigStatView>
-        <BigStatView {...{ statvalue: "180" }}>Pending</BigStatView>
-        <BigStatView {...{ statvalue: "20" }}>Disqualified</BigStatView>
-      </div>
-
-      <h2 class={sheet.classes.StatHeader}>Traffic Generated</h2>
-
-      <div class={sheet.classes.StatContainer}>
-        <BigStatView {...{ statvalue: "1,000" }}>Clicks</BigStatView>
-        <BigStatView {...{ statvalue: "800" }}>From share link</BigStatView>
-        <BigStatView {...{ statvalue: "180" }}>From share mediums</BigStatView>
+        <h2 class={sheet.classes.StatHeader}>Traffic Generated</h2>
+        <div class={sheet.classes.StatContainer}>
+          <BigStatView {...{ statvalue: "1,000" }}>Clicks</BigStatView>
+          <BigStatView {...{ statvalue: "800" }}>From share link</BigStatView>
+          <BigStatView {...{ statvalue: "180" }}>
+            From share mediums
+          </BigStatView>
+        </div>
       </div>
     </div>
   );

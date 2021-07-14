@@ -39,7 +39,7 @@ function usePortalForgotPasswordDemo({
   nextPageUrlParameter,
 }): PortalForgotPasswordViewProps {
   return {
-    states: { error: "", loading: false, success: false },
+    states: { error: "", loading: false, resendSuccess: true },
     callbacks: {
       submit: async (_event) => {
         nextPageUrlParameter;
