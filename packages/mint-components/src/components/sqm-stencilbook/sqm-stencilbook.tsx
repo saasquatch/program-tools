@@ -22,6 +22,11 @@ import * as Activity from "../../stories/Activity.stories";
 import * as Commissions from "../../stories/Commissions.stories";
 import * as EditProfilePage from "../../stories/EditProfilePage.stories";
 import * as PortalLogin from "../../stories/PortalLogin.stories";
+import * as PortalRegister from "../../stories/PortalRegister.stories";
+import * as PortalForgotPassword from "../../stories/PortalForgotPassword.stories";
+import * as PortalEmailVerification from "../../stories/PortalEmailVerification.stories";
+import * as PortalResetPassword from "../../stories/PortalResetPassword.stories";
+import * as PortalVerifyEmail from "../../stories/PortalVerifyEmail.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -48,6 +53,11 @@ const stories = [
   Commissions,
   EditProfilePage,
   PortalLogin,
+  PortalRegister,
+  PortalForgotPassword,
+  PortalEmailVerification,
+  PortalResetPassword,
+  PortalVerifyEmail,
 ];
 
 /**
