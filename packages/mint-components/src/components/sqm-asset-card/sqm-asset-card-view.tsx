@@ -30,6 +30,7 @@ const style = {
     "font-weight": 500,
     color: "#555555",
     "max-width": "85%",
+    "overflow-wrap": "break-word",
   },
 
   CardImg: {
