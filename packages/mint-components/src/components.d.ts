@@ -163,6 +163,20 @@ export namespace Components {
          */
         "poweredBy": boolean;
     }
+    interface SqmPortalContainer {
+        /**
+          * @uiName Direction
+         */
+        "direction": "row" | "column";
+        /**
+          * @uiName Gap
+         */
+        "gap": string;
+        /**
+          * @uiName Padding
+         */
+        "padding": string;
+    }
     interface SqmPortalEmailVerification {
         "nextPageUrlParameter": string;
     }
@@ -172,6 +186,12 @@ export namespace Components {
         "submitLabel": string;
     }
     interface SqmPortalFrame {
+    }
+    interface SqmPortalLayout {
+        /**
+          * @uiName Direction
+         */
+        "direction": "row" | "column";
     }
     interface SqmPortalLogin {
         "emailLabel": string;
@@ -400,6 +420,12 @@ declare global {
         prototype: HTMLSqmPopupContainerElement;
         new (): HTMLSqmPopupContainerElement;
     };
+    interface HTMLSqmPortalContainerElement extends Components.SqmPortalContainer, HTMLStencilElement {
+    }
+    var HTMLSqmPortalContainerElement: {
+        prototype: HTMLSqmPortalContainerElement;
+        new (): HTMLSqmPortalContainerElement;
+    };
     interface HTMLSqmPortalEmailVerificationElement extends Components.SqmPortalEmailVerification, HTMLStencilElement {
     }
     var HTMLSqmPortalEmailVerificationElement: {
@@ -417,6 +443,12 @@ declare global {
     var HTMLSqmPortalFrameElement: {
         prototype: HTMLSqmPortalFrameElement;
         new (): HTMLSqmPortalFrameElement;
+    };
+    interface HTMLSqmPortalLayoutElement extends Components.SqmPortalLayout, HTMLStencilElement {
+    }
+    var HTMLSqmPortalLayoutElement: {
+        prototype: HTMLSqmPortalLayoutElement;
+        new (): HTMLSqmPortalLayoutElement;
     };
     interface HTMLSqmPortalLoginElement extends Components.SqmPortalLogin, HTMLStencilElement {
     }
@@ -513,9 +545,11 @@ declare global {
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
+        "sqm-portal-container": HTMLSqmPortalContainerElement;
         "sqm-portal-email-verification": HTMLSqmPortalEmailVerificationElement;
         "sqm-portal-forgot-password": HTMLSqmPortalForgotPasswordElement;
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
+        "sqm-portal-layout": HTMLSqmPortalLayoutElement;
         "sqm-portal-login": HTMLSqmPortalLoginElement;
         "sqm-portal-logout": HTMLSqmPortalLogoutElement;
         "sqm-portal-protected-route": HTMLSqmPortalProtectedRouteElement;
@@ -689,6 +723,20 @@ declare namespace LocalJSX {
          */
         "poweredBy"?: boolean;
     }
+    interface SqmPortalContainer {
+        /**
+          * @uiName Direction
+         */
+        "direction"?: "row" | "column";
+        /**
+          * @uiName Gap
+         */
+        "gap"?: string;
+        /**
+          * @uiName Padding
+         */
+        "padding"?: string;
+    }
     interface SqmPortalEmailVerification {
         "nextPageUrlParameter"?: string;
     }
@@ -698,6 +746,12 @@ declare namespace LocalJSX {
         "submitLabel"?: string;
     }
     interface SqmPortalFrame {
+    }
+    interface SqmPortalLayout {
+        /**
+          * @uiName Direction
+         */
+        "direction"?: "row" | "column";
     }
     interface SqmPortalLogin {
         "emailLabel"?: string;
@@ -875,9 +929,11 @@ declare namespace LocalJSX {
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-popup-container": SqmPopupContainer;
+        "sqm-portal-container": SqmPortalContainer;
         "sqm-portal-email-verification": SqmPortalEmailVerification;
         "sqm-portal-forgot-password": SqmPortalForgotPassword;
         "sqm-portal-frame": SqmPortalFrame;
+        "sqm-portal-layout": SqmPortalLayout;
         "sqm-portal-login": SqmPortalLogin;
         "sqm-portal-logout": SqmPortalLogout;
         "sqm-portal-protected-route": SqmPortalProtectedRoute;
@@ -908,9 +964,11 @@ declare module "@stencil/core" {
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
+            "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;
             "sqm-portal-email-verification": LocalJSX.SqmPortalEmailVerification & JSXBase.HTMLAttributes<HTMLSqmPortalEmailVerificationElement>;
             "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword & JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
+            "sqm-portal-layout": LocalJSX.SqmPortalLayout & JSXBase.HTMLAttributes<HTMLSqmPortalLayoutElement>;
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
             "sqm-portal-logout": LocalJSX.SqmPortalLogout & JSXBase.HTMLAttributes<HTMLSqmPortalLogoutElement>;
             "sqm-portal-protected-route": LocalJSX.SqmPortalProtectedRoute & JSXBase.HTMLAttributes<HTMLSqmPortalProtectedRouteElement>;

@@ -5,13 +5,11 @@ import preset from "jss-preset-default";
 export interface PortalSectionProps {
   labelMargin: string;
   padding: string;
+  label: VNode;
+  content: VNode;
 }
 
-export function PortalSectionView(
-  props: PortalSectionProps,
-  label: VNode,
-  content: VNode
-) {
+export function PortalSectionView(props: PortalSectionProps) {
   const style = {
     LabelContainer: {
       margin: props.labelMargin,
@@ -25,8 +23,8 @@ export function PortalSectionView(
   return (
     <div>
       <style type="text/css">{styleString}</style>
-      <div class={sheet.classes.LabelContainer}>{label}</div>
-      {content}
+      <div class={sheet.classes.LabelContainer}>{props.label}</div>
+      {props.content}
     </div>
   );
 }

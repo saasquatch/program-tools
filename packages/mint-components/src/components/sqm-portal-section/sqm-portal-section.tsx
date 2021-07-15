@@ -27,6 +27,6 @@ export class PortalSection {
   render() {
     const label = <slot name="label" />;
     const content = <slot name="content" />;
-    return <PortalSectionView {...(getProps(this), label, content)} />;
+    return <PortalSectionView {...{ ...getProps(this), label, content }} />;
   }
 }
