@@ -17,14 +17,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordProps) {
   const styleString = sheet.toString();
 
   return (
-    <PortalSectionView
-      {...{
-        labelMargin: "24px",
-        padding: "50px",
-        label: <TextView {...{ type: "h2" }}>Password</TextView>,
-        content: <sl-button>Change your password...</sl-button>,
-      }}
-    >
+    <div>
       <sl-dialog open={props.states.open}>
         <PortalSectionView
           {...{
@@ -49,7 +42,16 @@ export function PortalChangePasswordView(props: PortalChangePasswordProps) {
           }}
         ></PortalSectionView>
       </sl-dialog>
-      <style type="text/css">{styleString}</style>
-    </PortalSectionView>
+      <PortalSectionView
+        {...{
+          labelMargin: "24px",
+          padding: "50px",
+          label: <TextView {...{ type: "h2" }}>Password</TextView>,
+          content: <sl-button>Change your password...</sl-button>,
+        }}
+      >
+        <style type="text/css">{styleString}</style>
+      </PortalSectionView>
+    </div>
   );
 }
