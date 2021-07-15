@@ -5,9 +5,10 @@ import { usePortalQuery } from "../portal/usePortalQuery";
 import decode from "jwt-decode";
 import {
   navigation,
-  setUserIdentity,
+  setPersistedUserIdentity,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
+import { usePortalEmailVerification } from "../portal-email-verification/usePortalEmailVerification";
 
 const PortalRegisterMutation = gql`
   mutation PortalRegister(
@@ -39,20 +40,28 @@ export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
     { loading: false }
   );
   const userIdent = useUserIdentity();
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const nextPageOverride = urlParams.get(nextPageUrlParameter);
+  const {
+    states: emailVerificationStates,
+    callbacks: { submit: submitEmailVerificationRequest },
+  } = usePortalEmailVerification({
+    nextPageUrlParameter,
+  });
 
   const submit = async (event: any) => {
-    console.log("sl-submit");
-
     let formData = event.detail.formData;
 
     formData?.forEach((value, key) => {
       jsonpointer.set(formData, key, value);
     });
-    const variables = { email: formData.email, password: formData.password };
-
+    const { email, password } = formData;
+    delete formData.email;
+    delete formData.password;
+    formData = { ...formData };
+    const variables = {
+      email,
+      password,
+      formData,
+    };
     await request(variables);
   };
 
@@ -64,8 +73,9 @@ export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
       const sessionData = {
         ...registerUser.sessionData,
         verified: user.verified,
+        email: user.email,
       };
-      setUserIdentity({
+      setPersistedUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,
@@ -76,14 +86,18 @@ export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
 
   useEffect(() => {
     if (userIdent?.jwt) {
-      navigation.push(nextPageOverride || nextPage);
+      submitEmailVerificationRequest();
     }
   }, [userIdent?.jwt]);
 
+  useEffect(() => {
+    if (emailVerificationStates.success) navigation.push(nextPage);
+  }, [emailVerificationStates.success]);
+
   return {
     states: {
-      loading,
-      error,
+      loading: loading || emailVerificationStates.loading,
+      error: error ? error : emailVerificationStates.error,
     },
     callbacks: {
       submit,

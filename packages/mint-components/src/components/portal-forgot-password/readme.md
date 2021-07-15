@@ -7,9 +7,11 @@
 
 ## Properties
 
-| Property               | Attribute                 | Description | Type     | Default      |
-| ---------------------- | ------------------------- | ----------- | -------- | ------------ |
-| `nextPageUrlParameter` | `next-page-url-parameter` |             | `string` | `"nextPage"` |
+| Property               | Attribute                 | Description | Type     | Default                    |
+| ---------------------- | ------------------------- | ----------- | -------- | -------------------------- |
+| `emailLabel`           | `email-label`             |             | `string` | `"Email"`                  |
+| `nextPageUrlParameter` | `next-page-url-parameter` |             | `string` | `"nextPage"`               |
+| `submitLabel`          | `submit-label`            |             | `string` | `"Request Password Reset"` |
 
 
 ## Dependencies

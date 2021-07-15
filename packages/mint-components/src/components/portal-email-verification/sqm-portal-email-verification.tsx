@@ -28,11 +28,15 @@ export class PortalEmailVerification {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks } = isDemo()
+    const { states, callbacks, content } = isDemo()
       ? usePortalEmailVerificationDemo(this)
       : usePortalEmailVerification(this);
     return (
-      <PortalEmailVerificationView states={states} callbacks={callbacks} />
+      <PortalEmailVerificationView
+        states={states}
+        callbacks={callbacks}
+        content={content}
+      />
     );
   }
 }
@@ -45,6 +49,9 @@ function usePortalEmailVerificationDemo({
       submit: async (_event) => {
         nextPageUrlParameter;
       },
+    },
+    content: {
+      email: "test@example.com",
     },
   };
 }

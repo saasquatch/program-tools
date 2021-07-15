@@ -8,7 +8,6 @@ export interface PortalVerifyEmailViewProps {
     error: string;
     loading: boolean;
     verified: boolean;
-    resendSuccess: boolean;
   };
   callbacks: { submit: (event: any) => Promise<void> };
 }
@@ -38,12 +37,6 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
           <sqm-form-message type="error" exportparts="erroralert-icon">
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
-        )}
-        {props.states.resendSuccess && (
-          <sl-alert type="success" open>
-            <sl-icon slot="icon" name="check2-circle"></sl-icon>
-            Your verification email has been resent successfully.
-          </sl-alert>
         )}
         <sl-title>
           {states.verified ? "Email Verified" : "Please Verify Your Email"}

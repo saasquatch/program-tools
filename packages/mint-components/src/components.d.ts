@@ -167,21 +167,49 @@ export namespace Components {
         "nextPageUrlParameter": string;
     }
     interface SqmPortalForgotPassword {
+        "emailLabel": string;
         "nextPageUrlParameter": string;
+        "submitLabel": string;
     }
     interface SqmPortalFrame {
     }
     interface SqmPortalLogin {
+        "emailLabel": string;
         "nextPage": string;
         "nextPageUrlParameter": string;
+        "passwordLabel": string;
+        "submitLabel": string;
+    }
+    interface SqmPortalLogout {
+        "logoutOnRender": boolean;
+        "nextPage": string;
+    }
+    interface SqmPortalProtectedRoute {
+        "authenticated": any;
+        "redirectTo": any;
+        "redirectToUnverified": any;
+        "verified": any;
     }
     interface SqmPortalRegister {
+        "emailLabel": string;
         "nextPage": string;
         "nextPageUrlParameter": string;
+        "passwordLabel": string;
+        "submitLabel": string;
     }
     interface SqmPortalResetPassword {
         "nextPage": string;
         "nextPageUrlParameter": string;
+    }
+    interface SqmPortalSection {
+        /**
+          * @uiName Label margin style
+         */
+        "labelMargin": string;
+        /**
+          * @uiName Section padding
+         */
+        "padding": string;
     }
     interface SqmPortalVerifyEmail {
         "nextPage": string;
@@ -304,6 +332,12 @@ export namespace Components {
     }
     interface SqmStencilbook {
     }
+    interface SqmText {
+        /**
+          * @uiName Text style
+         */
+        "type": "p" | "pLight" | "h1" | "h2" | "h3";
+    }
 }
 declare global {
     interface HTMLSqmAssetCardElement extends Components.SqmAssetCard, HTMLStencilElement {
@@ -390,6 +424,18 @@ declare global {
         prototype: HTMLSqmPortalLoginElement;
         new (): HTMLSqmPortalLoginElement;
     };
+    interface HTMLSqmPortalLogoutElement extends Components.SqmPortalLogout, HTMLStencilElement {
+    }
+    var HTMLSqmPortalLogoutElement: {
+        prototype: HTMLSqmPortalLogoutElement;
+        new (): HTMLSqmPortalLogoutElement;
+    };
+    interface HTMLSqmPortalProtectedRouteElement extends Components.SqmPortalProtectedRoute, HTMLStencilElement {
+    }
+    var HTMLSqmPortalProtectedRouteElement: {
+        prototype: HTMLSqmPortalProtectedRouteElement;
+        new (): HTMLSqmPortalProtectedRouteElement;
+    };
     interface HTMLSqmPortalRegisterElement extends Components.SqmPortalRegister, HTMLStencilElement {
     }
     var HTMLSqmPortalRegisterElement: {
@@ -401,6 +447,12 @@ declare global {
     var HTMLSqmPortalResetPasswordElement: {
         prototype: HTMLSqmPortalResetPasswordElement;
         new (): HTMLSqmPortalResetPasswordElement;
+    };
+    interface HTMLSqmPortalSectionElement extends Components.SqmPortalSection, HTMLStencilElement {
+    }
+    var HTMLSqmPortalSectionElement: {
+        prototype: HTMLSqmPortalSectionElement;
+        new (): HTMLSqmPortalSectionElement;
     };
     interface HTMLSqmPortalVerifyEmailElement extends Components.SqmPortalVerifyEmail, HTMLStencilElement {
     }
@@ -444,6 +496,12 @@ declare global {
         prototype: HTMLSqmStencilbookElement;
         new (): HTMLSqmStencilbookElement;
     };
+    interface HTMLSqmTextElement extends Components.SqmText, HTMLStencilElement {
+    }
+    var HTMLSqmTextElement: {
+        prototype: HTMLSqmTextElement;
+        new (): HTMLSqmTextElement;
+    };
     interface HTMLElementTagNameMap {
         "sqm-asset-card": HTMLSqmAssetCardElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
@@ -459,8 +517,11 @@ declare global {
         "sqm-portal-forgot-password": HTMLSqmPortalForgotPasswordElement;
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
         "sqm-portal-login": HTMLSqmPortalLoginElement;
+        "sqm-portal-logout": HTMLSqmPortalLogoutElement;
+        "sqm-portal-protected-route": HTMLSqmPortalProtectedRouteElement;
         "sqm-portal-register": HTMLSqmPortalRegisterElement;
         "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
+        "sqm-portal-section": HTMLSqmPortalSectionElement;
         "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
@@ -468,6 +529,7 @@ declare global {
         "sqm-share-link": HTMLSqmShareLinkElement;
         "sqm-sidebar-item": HTMLSqmSidebarItemElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
+        "sqm-text": HTMLSqmTextElement;
     }
 }
 declare namespace LocalJSX {
@@ -631,21 +693,49 @@ declare namespace LocalJSX {
         "nextPageUrlParameter"?: string;
     }
     interface SqmPortalForgotPassword {
+        "emailLabel"?: string;
         "nextPageUrlParameter"?: string;
+        "submitLabel"?: string;
     }
     interface SqmPortalFrame {
     }
     interface SqmPortalLogin {
+        "emailLabel"?: string;
         "nextPage"?: string;
         "nextPageUrlParameter"?: string;
+        "passwordLabel"?: string;
+        "submitLabel"?: string;
+    }
+    interface SqmPortalLogout {
+        "logoutOnRender"?: boolean;
+        "nextPage"?: string;
+    }
+    interface SqmPortalProtectedRoute {
+        "authenticated"?: any;
+        "redirectTo"?: any;
+        "redirectToUnverified"?: any;
+        "verified"?: any;
     }
     interface SqmPortalRegister {
+        "emailLabel"?: string;
         "nextPage"?: string;
         "nextPageUrlParameter"?: string;
+        "passwordLabel"?: string;
+        "submitLabel"?: string;
     }
     interface SqmPortalResetPassword {
         "nextPage"?: string;
         "nextPageUrlParameter"?: string;
+    }
+    interface SqmPortalSection {
+        /**
+          * @uiName Label margin style
+         */
+        "labelMargin"?: string;
+        /**
+          * @uiName Section padding
+         */
+        "padding"?: string;
     }
     interface SqmPortalVerifyEmail {
         "nextPage"?: string;
@@ -768,6 +858,12 @@ declare namespace LocalJSX {
     }
     interface SqmStencilbook {
     }
+    interface SqmText {
+        /**
+          * @uiName Text style
+         */
+        "type"?: "p" | "pLight" | "h1" | "h2" | "h3";
+    }
     interface IntrinsicElements {
         "sqm-asset-card": SqmAssetCard;
         "sqm-big-stat": SqmBigStat;
@@ -783,8 +879,11 @@ declare namespace LocalJSX {
         "sqm-portal-forgot-password": SqmPortalForgotPassword;
         "sqm-portal-frame": SqmPortalFrame;
         "sqm-portal-login": SqmPortalLogin;
+        "sqm-portal-logout": SqmPortalLogout;
+        "sqm-portal-protected-route": SqmPortalProtectedRoute;
         "sqm-portal-register": SqmPortalRegister;
         "sqm-portal-reset-password": SqmPortalResetPassword;
+        "sqm-portal-section": SqmPortalSection;
         "sqm-portal-verify-email": SqmPortalVerifyEmail;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
@@ -792,6 +891,7 @@ declare namespace LocalJSX {
         "sqm-share-link": SqmShareLink;
         "sqm-sidebar-item": SqmSidebarItem;
         "sqm-stencilbook": SqmStencilbook;
+        "sqm-text": SqmText;
     }
 }
 export { LocalJSX as JSX };
@@ -812,8 +912,11 @@ declare module "@stencil/core" {
             "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword & JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
+            "sqm-portal-logout": LocalJSX.SqmPortalLogout & JSXBase.HTMLAttributes<HTMLSqmPortalLogoutElement>;
+            "sqm-portal-protected-route": LocalJSX.SqmPortalProtectedRoute & JSXBase.HTMLAttributes<HTMLSqmPortalProtectedRouteElement>;
             "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
+            "sqm-portal-section": LocalJSX.SqmPortalSection & JSXBase.HTMLAttributes<HTMLSqmPortalSectionElement>;
             "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
@@ -821,6 +924,7 @@ declare module "@stencil/core" {
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
             "sqm-sidebar-item": LocalJSX.SqmSidebarItem & JSXBase.HTMLAttributes<HTMLSqmSidebarItemElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
+            "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
         }
     }
 }

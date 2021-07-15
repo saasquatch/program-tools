@@ -11,6 +11,13 @@ export interface PortalLoginViewProps {
   callbacks: {
     submit: (event: any) => Promise<void>;
   };
+  content: {
+    forgotPasswordButton?: any;
+    secondaryButton?: any;
+    emailLabel?: string;
+    passwordLabel?: string;
+    submitLabel?: string;
+  };
 }
 
 const style = {
@@ -29,7 +36,7 @@ const sheet = jss.createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function PortalLoginView(props: PortalLoginViewProps) {
-  const { states, callbacks } = props;
+  const { states, callbacks, content } = props;
   return (
     <div class={sheet.classes.Wrapper}>
       <style type="text/css">{styleString}</style>
@@ -43,7 +50,7 @@ export function PortalLoginView(props: PortalLoginViewProps) {
           exportparts="label: input-label"
           type="email"
           name="/email"
-          label="Email"
+          label={content.emailLabel || "Email"}
           disabled={states.loading}
           required
         ></sl-input>
@@ -51,11 +58,11 @@ export function PortalLoginView(props: PortalLoginViewProps) {
           exportparts="label: input-label"
           type="password"
           name="/password"
-          label="Password"
+          label={content.passwordLabel || "Password"}
           disabled={states.loading}
           required
         ></sl-input>
-        {/* slot forgot password */}
+        {content.forgotPasswordButton}
         <div>
           <sl-button
             submit
@@ -63,10 +70,9 @@ export function PortalLoginView(props: PortalLoginViewProps) {
             exportparts="base: primarybutton-base"
             type="primary"
           >
-            Login
-            {/* slot Login button text */}
+            {content.submitLabel || "Login"}
           </sl-button>
-          {/* slot register */}
+          {content.secondaryButton}
         </div>
       </sl-form>
     </div>

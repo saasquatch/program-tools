@@ -1,0 +1,65 @@
+import { h, VNode } from "@stencil/core";
+import jss from "jss";
+import preset from "jss-preset-default";
+
+export interface TextViewProps {
+  type: "p" | "pLight" | "h1" | "h2" | "h3";
+}
+
+export function TextView(props: TextViewProps, children: VNode) {
+  const style = {
+    p: {
+      "font-size": "14px",
+      "line-height": "16px",
+      "font-weight": "400",
+      color: "#555555",
+      margin: "0",
+    },
+    pLight: {
+      "font-size": "12px",
+      "line-height": "14px",
+      "font-weight": "400",
+      color: "#777777",
+      margin: "0",
+    },
+    title: {
+      "font-size": "36px",
+      "line-height": "40px",
+      "font-weight": "500",
+      color: "#555555",
+      margin: "0",
+    },
+    h1: {
+      "font-size": "24px",
+      "line-height": "26px",
+      "font-weight": "500",
+      color: "#555555",
+      margin: "0",
+    },
+    h2: {
+      "font-size": "18px",
+      "line-height": "16px",
+      "font-weight": "500",
+      color: "#555555",
+      margin: "0",
+    },
+    h3: {
+      "font-size": "13px",
+      "line-height": "15px",
+      "font-weight": "500",
+      color: "#555555",
+      margin: "0",
+    },
+  };
+
+  jss.setup(preset());
+  const sheet = jss.createStyleSheet(style);
+  const styleString = sheet.toString();
+
+  return (
+    <p class={sheet.classes[props.type]}>
+      <style type="text/css">{styleString}</style>
+      {children}
+    </p>
+  );
+}
