@@ -17,6 +17,7 @@ const defaultProps: PortalEmailVerificationViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
+  content: { email: "email@example.com" },
 };
 
 const errorProps: PortalEmailVerificationViewProps = {
@@ -28,6 +29,7 @@ const errorProps: PortalEmailVerificationViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
+  content: { email: "email@example.com" },
 };
 
 const loadingProps: PortalEmailVerificationViewProps = {
@@ -39,6 +41,7 @@ const loadingProps: PortalEmailVerificationViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
+  content: { email: "email@example.com" },
 };
 
 const successProps: PortalEmailVerificationViewProps = {
@@ -50,6 +53,7 @@ const successProps: PortalEmailVerificationViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
+  content: { email: "email@example.com" },
 };
 
 export const Default = () => <PortalEmailVerificationView {...defaultProps} />;

@@ -16,6 +16,7 @@ const defaultProps: PortalRegisterViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
   },
+  content:{}
 };
 
 const errorProps: PortalRegisterViewProps = {
@@ -26,6 +27,7 @@ const errorProps: PortalRegisterViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
   },
+  content:{}
 };
 
 const loadingProps: PortalRegisterViewProps = {
@@ -36,6 +38,7 @@ const loadingProps: PortalRegisterViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
   },
+  content:{}
 };
 
 export const Default = () => <PortalRegisterView {...defaultProps} />;
