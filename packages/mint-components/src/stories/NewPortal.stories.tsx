@@ -220,12 +220,12 @@ export const Dashboard = () => {
       <Sidebar />
       <PortalLayoutView {...{ direction: "column" }}>
         <PortalContainerView
-          {...{ direction: "column", padding: "50px", gap: "48px" }}
+          {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
         >
           <PortalSectionView
             {...{
               labelMargin: "4px",
-              padding: "0",
+              padding: "none",
               label: <TextView type="p">Welcome back,</TextView>,
               content: <TextView type="h1">John Smith</TextView>,
             }}
@@ -240,12 +240,12 @@ export const Dashboard = () => {
           </StatContainerView>
         </PortalContainerView>
         <PortalContainerView
-          {...{ direction: "column", padding: "50px", gap: "48px" }}
+          {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
         >
           <PortalSectionView
             {...{
               labelMargin: "24px",
-              padding: "0",
+              padding: "none",
               label: <TextView type="h2">Partner and Profit</TextView>,
               content: (
                 <TextView type="p">
@@ -258,7 +258,7 @@ export const Dashboard = () => {
           <PortalSectionView
             {...{
               labelMargin: "12px",
-              padding: "0",
+              padding: "none",
               label: <TextView type="h3">Share your referral link</TextView>,
               content: <ShareLinkView {...sharelinkProps} />,
             }}
@@ -266,7 +266,7 @@ export const Dashboard = () => {
           <PortalSectionView
             {...{
               labelMargin: "12px",
-              padding: "0",
+              padding: "none",
               label: <TextView type="h3">Share your referral code</TextView>,
               content: <ShareLinkView {...sharecodeProps} />,
             }}
@@ -274,7 +274,7 @@ export const Dashboard = () => {
           <PortalSectionView
             {...{
               labelMargin: "12px",
-              padding: "0",
+              padding: "none",
               label: <TextView type="h3">Share via social media</TextView>,
               content: (
                 <div class={sheet.classes.ShareButtonContainer}>
@@ -317,12 +317,12 @@ export const Commissions = () => {
       <Sidebar />
       <PortalLayoutView {...{ direction: "column" }}>
         <PortalContainerView
-          {...{ direction: "column", padding: "50px", gap: "48px" }}
+          {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
         >
           <PortalSectionView
             {...{
               labelMargin: "4px",
-              padding: "0",
+              padding: "none",
               label: <TextView {...{ type: "h1" }}>Commissions</TextView>,
               content: (
                 <TextView {...{ type: "pLight" }}>
@@ -356,12 +356,12 @@ export const Activity = () => {
       <Sidebar />
       <PortalLayoutView {...{ direction: "column" }}>
         <PortalContainerView
-          {...{ direction: "column", padding: "50px", gap: "48px" }}
+          {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
         >
           <PortalSectionView
             {...{
               labelMargin: "4px",
-              padding: "0",
+              padding: "none",
               label: <TextView type="h1">Activity</TextView>,
               content: (
                 <TextView type="pLight">
@@ -377,7 +377,7 @@ export const Activity = () => {
           <PortalSectionView
             {...{
               labelMargin: "24px",
-              padding: "0",
+              padding: "none",
               label: <TextView type="h2">Referral Activity</TextView>,
               content: (
                 <StatContainerView {...{ space: "64px" }}>
@@ -397,7 +397,7 @@ export const Activity = () => {
         <PortalSectionView
           {...{
             labelMargin: "24px",
-            padding: "50px",
+            padding: "xxx-large",
             label: <TextView type="h2">Traffic Generated</TextView>,
             content: (
               <StatContainerView {...{ space: "64px" }}>

@@ -1,10 +1,11 @@
 import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
+import { Spacing } from "../../global/mixins";
 
 export interface PortalSectionProps {
   labelMargin: string;
-  padding: string;
+  padding: Spacing;
   label: VNode;
   content: VNode;
 }
@@ -12,10 +13,13 @@ export interface PortalSectionProps {
 export function PortalSectionView(props: PortalSectionProps) {
   const style = {
     LabelContainer: {
-      'margin-bottom': props.labelMargin,
+      "margin-bottom": props.labelMargin,
     },
     SectionContainer: {
-      padding: props.padding,
+      padding:
+        props.padding === "none"
+          ? props.padding
+          : `var(--sl-spacing-${props.padding})`,
     },
   };
 
