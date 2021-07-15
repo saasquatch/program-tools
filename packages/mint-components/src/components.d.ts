@@ -19,6 +19,14 @@ export namespace Components {
     }
     interface SqmBigStat {
         /**
+          * @uiName Alignment - controls the alignment of the flexbox
+         */
+        "alignment"?: "left" | "right" | "center";
+        /**
+          * @uiName Flex Reverse - controls the order of the stat value & description column
+         */
+        "flexReverse"?: boolean;
+        /**
           * Select what type of stat to display. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
@@ -474,6 +482,14 @@ declare namespace LocalJSX {
         "titleText"?: string;
     }
     interface SqmBigStat {
+        /**
+          * @uiName Alignment - controls the alignment of the flexbox
+         */
+        "alignment"?: "left" | "right" | "center";
+        /**
+          * @uiName Flex Reverse - controls the order of the stat value & description column
+         */
+        "flexReverse"?: boolean;
         /**
           * Select what type of stat to display. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget

@@ -465,14 +465,18 @@ export function parsePath(type: string): string[] | undefined {
   return Object.values(result.params);
 }
 
-export function useBigStat({ statType }: BigStat) {
+export function useBigStat(props: BigStat): BigStatHook {
+  const { statType, flexReverse, alignment } = props;
   const programId = useProgramId();
   const locale = useLocale();
   const userIdent = useUserIdentity();
   debug({ programId, statType });
   const re = useMemo(() => StatPatterns.find((re) => re(statType)), [statType]);
   if (re === undefined) {
-    return { label: "BAD TYPE PROP", props: { statvalue: "!!!" } };
+    return {
+      props: { statvalue: "!!!", flexReverse, alignment },
+      label: "BAD PROP TYPE",
+    };
   }
 
   const result = re(statType) as MatchResult<object>;
@@ -483,7 +487,10 @@ export function useBigStat({ statType }: BigStat) {
   const stat =
     userIdent?.jwt && queries[queryName].query(programId, locale, ...queryArgs);
   debug("stat:", stat);
-  return { label, props: { statvalue: stat ?? LOADING } };
+  return {
+    props: { statvalue: stat ?? LOADING, flexReverse, alignment },
+    label,
+  };
 }
 
 export type BigStatHook = {
