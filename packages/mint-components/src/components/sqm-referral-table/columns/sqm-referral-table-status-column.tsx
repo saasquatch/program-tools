@@ -1,4 +1,3 @@
-import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Method, Host, State } from "@stencil/core";
 
 @Component({
@@ -10,13 +9,9 @@ export class ReferralTableStatusColumn {
   @State()
   ignored = true;
 
-  constructor() {
-    withHooks(this);
-  }
-  disconnectedCallback() {}
   @Method()
   async renderCell(data) {
-    console.log("renderCell data", {data});
+    console.log("renderCell data", { data });
     return (
       <sqm-referral-table-status-cell
         status-text={data.status}

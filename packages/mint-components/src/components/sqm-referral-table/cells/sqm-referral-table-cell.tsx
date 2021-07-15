@@ -1,5 +1,5 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, State } from "@stencil/core";
+import { Component, h, Prop, State } from "@stencil/core";
 
 @Component({
   tag: "sqm-referral-table-cell",
@@ -10,12 +10,14 @@ export class ReferralTableColumn {
   @State()
   ignored = true;
 
+  @Prop() innerTemplate: string;
+
   constructor() {
     withHooks(this);
   }
   disconnectedCallback() {}
 
   render() {
-    return <div class="MyStyle">content</div>;
+    return <div class="MyStyle" innerHTML={this.innerTemplate}></div>;
   }
 }

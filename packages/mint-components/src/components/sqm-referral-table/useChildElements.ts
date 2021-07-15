@@ -4,7 +4,7 @@ import { useEffect } from "@saasquatch/universal-hooks";
 const defaults = [
   "sqm-referral-table-user-column",
   "sqm-referral-table-status-column",
-  "sqm-referral-table-reward-column",
+  "sqm-referral-table-rewards-column",
   "sqm-referral-table-date-column",
 ];
 function getDefaultColumns() {

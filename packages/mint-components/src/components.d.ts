@@ -168,11 +168,14 @@ export namespace Components {
         "nextPageUrlParameter": string;
     }
     interface SqmReferralTable {
+        "programId": string;
     }
     interface SqmReferralTableCell {
+        "innerTemplate": string;
     }
     interface SqmReferralTableColumn {
-        "renderCell": (data: Referral) => Promise<any>;
+        "columnLabel": string;
+        "renderCell": (_: any, host: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableDateCell {
@@ -202,6 +205,14 @@ export namespace Components {
         "name": string;
     }
     interface SqmReferralTableUserColumn {
+        /**
+          * @uiName Name displayed for anonymous users
+         */
+        "anonymousUser": string;
+        /**
+          * @uiName Name displayed for deleted users
+         */
+        "deletedUser": string;
         "renderCell": (data: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
@@ -692,10 +703,13 @@ declare namespace LocalJSX {
         "nextPageUrlParameter"?: string;
     }
     interface SqmReferralTable {
+        "programId"?: string;
     }
     interface SqmReferralTableCell {
+        "innerTemplate"?: string;
     }
     interface SqmReferralTableColumn {
+        "columnLabel"?: string;
     }
     interface SqmReferralTableDateCell {
         "date"?: number;
@@ -718,6 +732,14 @@ declare namespace LocalJSX {
         "name"?: string;
     }
     interface SqmReferralTableUserColumn {
+        /**
+          * @uiName Name displayed for anonymous users
+         */
+        "anonymousUser"?: string;
+        /**
+          * @uiName Name displayed for deleted users
+         */
+        "deletedUser"?: string;
     }
     interface SqmRoute {
         /**

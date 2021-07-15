@@ -1,5 +1,4 @@
-import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Method, Host, State } from "@stencil/core";
+import { Component, h, Method, Host, State, Prop } from "@stencil/core";
 
 // interface User {
 //   firstName: string;
@@ -16,16 +15,28 @@ export class ReferralTableUserColumn {
   @State()
   ignored = true;
 
-  constructor() {
-    withHooks(this);
-  }
-  disconnectedCallback() {}
+  /**
+   * @uiName Name displayed for anonymous users
+   */
+  @Prop() anonymousUser: string = "Anonymous User";
+  /**
+   * @uiName Name displayed for deleted users
+   */
+  @Prop() deletedUser: string = "Deleted User";
+
   @Method()
   async renderCell(data) {
+    let name: string;
+    if (!data) {
+      name = this.deletedUser;
+    } else if (!data?.firstName && !data.lastName) {
+      name = this.anonymousUser;
+    } else {
+      name = `${data?.firstName} ${data?.lastName}`;
+    }
+
     return (
-      <sqm-referral-table-user-cell
-        name={`${data.firstName} ${data.lastName}`}
-      ></sqm-referral-table-user-cell>
+      <sqm-referral-table-user-cell name={name}></sqm-referral-table-user-cell>
     );
   }
 

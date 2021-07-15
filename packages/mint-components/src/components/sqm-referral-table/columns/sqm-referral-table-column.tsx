@@ -1,5 +1,4 @@
-import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Method, Host, State } from "@stencil/core";
+import { Component, h, Method, Host, State, Prop } from "@stencil/core";
 
 @Component({
   tag: "sqm-referral-table-column",
@@ -10,21 +9,28 @@ export class ReferralTableColumn {
   @State()
   ignored = true;
 
-  constructor() {
-    withHooks(this);
-  }
-  disconnectedCallback() {}
+  @Prop() columnLabel: string;
+
   @Method()
-  async renderCell(data: Referral) {
-    return <span>{data.dateConverted}</span>;
+  async renderCell(_, host) {
+    // this is insecure, <script> tags can be added
+    return (
+      <sqm-referral-table-cell
+        inner-template={host.innerHTML}
+      ></sqm-referral-table-cell>
+    );
   }
 
   @Method()
   async renderLabel() {
-    return "Date Converted";
+    return this.columnLabel;
   }
 
   render() {
-    return <Host style={{ display: "none" }} />;
+    return (
+      <Host style={{ display: "none" }}>
+        <slot />
+      </Host>
+    );
   }
 }

@@ -33,7 +33,7 @@
         );
       }
     </script>
-    <sqm-referral-table>
+    <sqm-referral-table program-id="ny-post-referrals">
       <sqm-referral-table-status-column></sqm-referral-table-status-column>
       <sqm-referral-table-user-column></sqm-referral-table-user-column>
       <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
@@ -42,7 +42,18 @@
         date-shown="dateStarted"
       ></sqm-referral-table-date-column>
       <sqm-referral-table-date-column></sqm-referral-table-date-column>
+      <sqm-referral-table-column column-label="Something">
+        <sqm-share-button medium="facebook" icon="facebook" iconslot="prefix">
+          <span>Facebook</span>
+        </sqm-share-button>
+        <!-- <script>
+          alert("haha!");
+        </script> -->
+      </sqm-referral-table-column>
     </sqm-referral-table>
+    <!-- <sqm-share-button medium="facebook" icon="facebook" iconslot="prefix">
+      <span>Facebook</span>
+    </sqm-share-button> -->
     <!-- <sqm-referral-table-user-column label="Customer" /> -->
     <!-- <sqm-referral-table-rewards-column />
       <sqm-referral-table-referral-date-column label="Referred"  date="goals/made-purchase"/>
