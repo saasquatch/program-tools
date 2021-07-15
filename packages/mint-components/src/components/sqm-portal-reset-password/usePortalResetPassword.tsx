@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 import decode from "jwt-decode";
 import jsonpointer from "jsonpointer";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { usePortalQuery } from "../portal/usePortalQuery";
+import { usePortalQuery } from "../sqm-portal/usePortalQuery";
 import {
   navigation,
   setPersistedUserIdentity,

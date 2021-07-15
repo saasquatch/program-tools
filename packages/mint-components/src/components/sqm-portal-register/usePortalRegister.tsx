@@ -1,14 +1,14 @@
 import gql from "graphql-tag";
 import jsonpointer from "jsonpointer";
 import { useEffect } from "@saasquatch/universal-hooks";
-import { usePortalQuery } from "../portal/usePortalQuery";
+import { usePortalQuery } from "../sqm-portal/usePortalQuery";
 import decode from "jwt-decode";
 import {
   navigation,
   setPersistedUserIdentity,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import { usePortalEmailVerification } from "../portal-email-verification/usePortalEmailVerification";
+import { usePortalEmailVerification } from "../sqm-portal-email-verification/usePortalEmailVerification";
 
 const PortalRegisterMutation = gql`
   mutation PortalRegister(

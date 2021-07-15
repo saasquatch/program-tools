@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import jsonpointer from "jsonpointer";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { usePortalQuery } from "../portal/usePortalQuery";
+import { usePortalQuery } from "../sqm-portal/usePortalQuery";
 
 const PortalForgotPasswordMutation = gql`
   mutation PortalForgotPassword($email: String!, $urlParams: JSONObject) {

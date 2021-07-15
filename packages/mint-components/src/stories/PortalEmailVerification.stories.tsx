@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import {
   PortalEmailVerificationView,
   PortalEmailVerificationViewProps,
-} from "../components/portal-email-verification/sqm-portal-email-verification-view";
+} from "../components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 
 export default {
   title: "Portal Email Verification",
