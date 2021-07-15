@@ -350,6 +350,12 @@ export namespace Components {
          */
         "path": string;
     }
+    interface SqmStatContainer {
+        /**
+          * @uiName Space between stats
+         */
+        "space": string;
+    }
     interface SqmStencilbook {
     }
     interface SqmText {
@@ -522,6 +528,12 @@ declare global {
         prototype: HTMLSqmSidebarItemElement;
         new (): HTMLSqmSidebarItemElement;
     };
+    interface HTMLSqmStatContainerElement extends Components.SqmStatContainer, HTMLStencilElement {
+    }
+    var HTMLSqmStatContainerElement: {
+        prototype: HTMLSqmStatContainerElement;
+        new (): HTMLSqmStatContainerElement;
+    };
     interface HTMLSqmStencilbookElement extends Components.SqmStencilbook, HTMLStencilElement {
     }
     var HTMLSqmStencilbookElement: {
@@ -562,6 +574,7 @@ declare global {
         "sqm-share-button": HTMLSqmShareButtonElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
         "sqm-sidebar-item": HTMLSqmSidebarItemElement;
+        "sqm-stat-container": HTMLSqmStatContainerElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
         "sqm-text": HTMLSqmTextElement;
     }
@@ -910,6 +923,12 @@ declare namespace LocalJSX {
          */
         "path"?: string;
     }
+    interface SqmStatContainer {
+        /**
+          * @uiName Space between stats
+         */
+        "space"?: string;
+    }
     interface SqmStencilbook {
     }
     interface SqmText {
@@ -946,6 +965,7 @@ declare namespace LocalJSX {
         "sqm-share-button": SqmShareButton;
         "sqm-share-link": SqmShareLink;
         "sqm-sidebar-item": SqmSidebarItem;
+        "sqm-stat-container": SqmStatContainer;
         "sqm-stencilbook": SqmStencilbook;
         "sqm-text": SqmText;
     }
@@ -981,6 +1001,7 @@ declare module "@stencil/core" {
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
             "sqm-sidebar-item": LocalJSX.SqmSidebarItem & JSXBase.HTMLAttributes<HTMLSqmSidebarItemElement>;
+            "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
         }

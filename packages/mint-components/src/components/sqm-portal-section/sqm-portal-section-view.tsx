@@ -12,7 +12,10 @@ export interface PortalSectionProps {
 export function PortalSectionView(props: PortalSectionProps) {
   const style = {
     LabelContainer: {
-      margin: props.labelMargin,
+      'bottom-margin': props.labelMargin,
+    },
+    SectionContainer: {
+      padding: props.padding,
     },
   };
 
@@ -21,7 +24,7 @@ export function PortalSectionView(props: PortalSectionProps) {
   const styleString = sheet.toString();
 
   return (
-    <div>
+    <div class={sheet.classes.SectionContainer}>
       <style type="text/css">{styleString}</style>
       <div class={sheet.classes.LabelContainer}>{props.label}</div>
       {props.content}

@@ -11,6 +11,7 @@ import { TextView } from "../components/sqm-text/sqm-text-view";
 import { PortalSectionView } from "../components/sqm-portal-section/sqm-portal-section-view";
 import { PortalContainerView } from "../components/sqm-portal-container/sqm-portal-container-view";
 import { PortalLayoutView } from "../components/sqm-portal-layout/sqm-portal-layout-view";
+import { StatContainerView } from "../components/sqm-stat-container/sqm-stat-container-view";
 
 export default {
   title: "New Portal",
@@ -212,36 +213,36 @@ export const Dashboard = () => {
   };
 
   return (
-    <PortalLayoutView {...{direction:"row"}}>
+    <PortalLayoutView {...{ direction: "row" }}>
       <style type="text/css">{styleString}</style>
       <Sidebar />
-      <PortalLayoutView {...{direction:"column"}}>
+      <PortalLayoutView {...{ direction: "column" }}>
         <PortalContainerView
           {...{ direction: "column", padding: "50px", gap: "48px" }}
         >
           <PortalSectionView
             {...{
-              labelMargin: "0 0 4px",
+              labelMargin: "4px",
               padding: "0",
               label: <TextView type="p">Welcome back,</TextView>,
               content: <TextView type="h1">John Smith</TextView>,
             }}
           ></PortalSectionView>
-          <div class={sheet.classes.StatContainer}>
+          <StatContainerView {...{ space: "64px" }}>
             <BigStatView {...{ statvalue: "2,345" }}>Clicks</BigStatView>
             <BigStatView {...{ statvalue: "58" }}>Referrals</BigStatView>
             <BigStatView {...{ statvalue: "$10,540" }}>Earned</BigStatView>
             <BigStatView {...{ statvalue: "$2,305" }}>
               Awaiting Payout
             </BigStatView>
-          </div>
+          </StatContainerView>
         </PortalContainerView>
         <PortalContainerView
           {...{ direction: "column", padding: "50px", gap: "48px" }}
         >
           <PortalSectionView
             {...{
-              labelMargin: "0 0 24px",
+              labelMargin: "24px",
               padding: "0",
               label: <TextView type="h2">Partner and Profit</TextView>,
               content: (
@@ -254,7 +255,7 @@ export const Dashboard = () => {
           ></PortalSectionView>
           <PortalSectionView
             {...{
-              labelMargin: "0 0 12px",
+              labelMargin: "12px",
               padding: "0",
               label: <TextView type="h3">Share your referral link</TextView>,
               content: <ShareLinkView {...sharelinkProps} />,
@@ -262,7 +263,7 @@ export const Dashboard = () => {
           ></PortalSectionView>
           <PortalSectionView
             {...{
-              labelMargin: "0 0 12px",
+              labelMargin: "12px",
               padding: "0",
               label: <TextView type="h3">Share your referral code</TextView>,
               content: <ShareLinkView {...sharecodeProps} />,
@@ -270,7 +271,7 @@ export const Dashboard = () => {
           ></PortalSectionView>
           <PortalSectionView
             {...{
-              labelMargin: "0 0 12px",
+              labelMargin: "12px",
               padding: "0",
               label: <TextView type="h3">Share via social media</TextView>,
               content: (
@@ -323,65 +324,107 @@ export const EditProfile = () => {
 
 export const Commissions = () => {
   return (
-    <div class={sheet.classes.FullPageContainer}>
+    <PortalLayoutView {...{ direction: "row" }}>
       <style type="text/css">{styleString}</style>
       <Sidebar />
-      <div class={sheet.classes.MainContainer}>
-        <div class={sheet.classes.HeaderContainer}>
-          <h1 class={sheet.classes.Header}>Commissions</h1>
-          <p class={sheet.classes.HeaderSubtitle}>
-            for the{" "}
-            <span class={sheet.classes.HeaderSubtitleBold}>
-              Partner Program #1
-            </span>{" "}
-            program
-          </p>
-        </div>
-
-        <div class={sheet.classes.StatContainer}>
-          <BigStatView {...{ statvalue: "$ 1,000" }}>Total Earned</BigStatView>
-          <BigStatView {...{ statvalue: "$ 800" }}>Available</BigStatView>
-          <BigStatView {...{ statvalue: "$ 180" }}>Pending</BigStatView>
-          <BigStatView {...{ statvalue: "$ 20" }}>Redeemed</BigStatView>
-        </div>
-      </div>
-    </div>
+      <PortalLayoutView {...{ direction: "column" }}>
+        <PortalContainerView
+          {...{ direction: "column", padding: "50px", gap: "48px" }}
+        >
+          <PortalSectionView
+            {...{
+              labelMargin: "4px",
+              padding: "0",
+              label: <TextView {...{ type: "h1" }}>Commissions</TextView>,
+              content: (
+                <TextView {...{ type: "pLight" }}>
+                  for the{" "}
+                  <span class={sheet.classes.HeaderSubtitleBold}>
+                    Partner Program #1
+                  </span>{" "}
+                  program
+                </TextView>
+              ),
+            }}
+          ></PortalSectionView>
+          <StatContainerView {...{ space: "64px" }}>
+            <BigStatView {...{ statvalue: "$ 1,000" }}>
+              Total Earned
+            </BigStatView>
+            <BigStatView {...{ statvalue: "$ 800" }}>Available</BigStatView>
+            <BigStatView {...{ statvalue: "$ 180" }}>Pending</BigStatView>
+            <BigStatView {...{ statvalue: "$ 20" }}>Redeemed</BigStatView>
+          </StatContainerView>
+        </PortalContainerView>
+      </PortalLayoutView>
+    </PortalLayoutView>
   );
 };
 
 export const Activity = () => {
   return (
-    <div class={sheet.classes.FullPageContainer}>
+    <PortalLayoutView {...{ direction: "row" }}>
       <style type="text/css">{styleString}</style>
       <Sidebar />
-      <div class={sheet.classes.MainContainer}>
-        <div class={sheet.classes.HeaderContainer}>
-          <h1 class={sheet.classes.Header}>Activity</h1>
-          <p class={sheet.classes.HeaderSubtitle}>
-            for the{" "}
-            <span class={sheet.classes.HeaderSubtitleBold}>
-              Partner Program #1
-            </span>{" "}
-            program
-          </p>
-        </div>
-        <h2 class={sheet.classes.StatHeader}>Referral Activity</h2>
-        <div class={sheet.classes.StatContainer}>
-          <BigStatView {...{ statvalue: "1,000" }}>Total Referrals</BigStatView>
-          <BigStatView {...{ statvalue: "800" }}>Converted</BigStatView>
-          <BigStatView {...{ statvalue: "180" }}>Pending</BigStatView>
-          <BigStatView {...{ statvalue: "20" }}>Disqualified</BigStatView>
-        </div>
-
-        <h2 class={sheet.classes.StatHeader}>Traffic Generated</h2>
-        <div class={sheet.classes.StatContainer}>
-          <BigStatView {...{ statvalue: "1,000" }}>Clicks</BigStatView>
-          <BigStatView {...{ statvalue: "800" }}>From share link</BigStatView>
-          <BigStatView {...{ statvalue: "180" }}>
-            From share mediums
-          </BigStatView>
-        </div>
-      </div>
-    </div>
+      <PortalLayoutView {...{ direction: "column" }}>
+        <PortalContainerView
+          {...{ direction: "column", padding: "50px", gap: "48px" }}
+        >
+          <PortalSectionView
+            {...{
+              labelMargin: "4px",
+              padding: "0",
+              label: <TextView type="h1">Activity</TextView>,
+              content: (
+                <TextView type="pLight">
+                  for the{" "}
+                  <span class={sheet.classes.HeaderSubtitleBold}>
+                    Partner Program #1
+                  </span>{" "}
+                  program
+                </TextView>
+              ),
+            }}
+          ></PortalSectionView>
+          <PortalSectionView
+            {...{
+              labelMargin: "24px",
+              padding: "0",
+              label: <TextView type="h2">Referral Activity</TextView>,
+              content: (
+                <StatContainerView {...{ space: "64px" }}>
+                  <BigStatView {...{ statvalue: "1,000" }}>
+                    Total Referrals
+                  </BigStatView>
+                  <BigStatView {...{ statvalue: "800" }}>Converted</BigStatView>
+                  <BigStatView {...{ statvalue: "180" }}>Pending</BigStatView>
+                  <BigStatView {...{ statvalue: "20" }}>
+                    Disqualified
+                  </BigStatView>
+                </StatContainerView>
+              ),
+            }}
+          ></PortalSectionView>
+        </PortalContainerView>
+        <PortalSectionView
+          {...{
+            labelMargin: "24px",
+            padding: "50px",
+            label: <TextView type="h2">Traffic Generated</TextView>,
+            content: (
+              <StatContainerView {...{ space: "64px" }}>
+                <BigStatView {...{ statvalue: "1,000" }}>Clicks</BigStatView>
+                <BigStatView {...{ statvalue: "800" }}>
+                  From share link
+                </BigStatView>
+                <BigStatView {...{ statvalue: "180" }}>
+                  From share mediums
+                </BigStatView>
+              </StatContainerView>
+            ),
+          }}
+        ></PortalSectionView>
+      </PortalLayoutView>
+    </PortalLayoutView>
   );
 };

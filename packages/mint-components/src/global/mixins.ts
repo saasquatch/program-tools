@@ -63,7 +63,7 @@ export const HostBlock = {
   },
 };
 
-export const P= {
+export const P = {
   "font-size": "var(--sl-font-size-small)",
   color: "var(--sl-color-gray-800)",
   "margin-top": "0px",
@@ -74,7 +74,7 @@ export const P= {
   },
 };
 
-export const Column= {
+export const Column = {
   display: "flex",
   "flex-direction": "column",
   "& > :not(:first-child)": {
@@ -82,7 +82,7 @@ export const Column= {
   },
 };
 
-export const SeparateContent= {
+export const SeparateContent = {
   display: "flex",
   "justify-content": "space-between",
   "align-items": "center",
@@ -115,7 +115,7 @@ export const ErrorStyles = {
   },
 };
 
-export const Wrapper= {
+export const Wrapper = {
   "box-sizing": "border-box",
   width: "100%",
   "max-width": "var(--st-content-max-width)",
@@ -124,3 +124,5 @@ export const Wrapper= {
   "background-color": "var(--st-content-background)",
   display: "flex",
 };
+
+export type Spacing = "xxx-small" | "xx-small" | "x-small" | "small" | "medium" | "large" | "x-large" | "xx-large" | "xxx-large" | "xxxx-large";
