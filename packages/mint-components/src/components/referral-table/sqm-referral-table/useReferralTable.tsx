@@ -1,9 +1,9 @@
 // import { useQuery } from "@saasquatch/component-boilerplate";
+import { useHost, useTick } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { Host, h } from "@stencil/core";
 // import gql from "graphql-tag";
 import { useChildElements } from "../useChildElements";
-
 
 // const GET_REFERRAL_DATA = gql`
 //   query getReferrals(
@@ -126,10 +126,10 @@ import { useChildElements } from "../useChildElements";
 //   safeHTML: string;
 // }
 
-
 export function useReferralTable() {
   // const { data } = useQuery(GET_REFERRAL_DATA, {});
-
+  const host = useHost();
+  const [tick, rerender] = useTick();
   const [content, setContent] = useState(<Host style={{ display: "none" }} />);
 
   // TODO: needs to include reward data too
@@ -155,6 +155,13 @@ export function useReferralTable() {
   const components = useChildElements();
 
   console.log({ components });
+
+  useEffect(() => {
+    host.addEventListener("attributeUpdated", () => rerender());
+    return () => {
+      host.removeEventListener("attributeUpdated", rerender);
+    };
+  }, []);
 
   //TODO: sort out this mess of Promise.all's (but it works)
   async function getComponentData() {
@@ -187,6 +194,6 @@ export function useReferralTable() {
 
   useEffect(() => {
     getComponentData();
-  }, [components]);
+  }, [components, tick]);
   return content;
 }

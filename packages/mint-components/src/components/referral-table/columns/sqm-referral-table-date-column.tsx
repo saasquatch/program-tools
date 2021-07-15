@@ -1,4 +1,6 @@
+import { useHost } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
+import { useEffect } from "@saasquatch/universal-hooks";
 import { Component, h, Method, Host, State, Prop } from "@stencil/core";
 
 @Component({
@@ -17,6 +19,7 @@ export class ReferralTableDateColumn {
     withHooks(this);
   }
   disconnectedCallback() {}
+
   @Method()
   async renderCell(data) {
     return (
@@ -32,6 +35,21 @@ export class ReferralTableDateColumn {
   }
 
   render() {
+    useReferralTableDate(this);
+
     return <Host style={{ display: "none" }} />;
   }
+}
+
+function useReferralTableDate(props) {
+  const host = useHost();
+  useEffect(() => {
+    host.dispatchEvent(
+      new CustomEvent("attributeUpdated", {
+        detail: true,
+        bubbles: true,
+        composed: true,
+      })
+    );
+  }, [props.dateLabel, props.dateShown]);
 }

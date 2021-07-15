@@ -15,8 +15,6 @@ export class ReferralTable {
   @State()
   ignored = true;
 
-  @State() components: any;
-
   constructor() {
     withHooks(this);
   }
