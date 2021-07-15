@@ -66,7 +66,6 @@ export const EmailVerificationLoading = () => (
   <PortalEmailVerificationView {...loadingProps} />
 );
 
-// Currently does not show any success message to the user
 export const EmailVerificationSuccess = () => (
   <PortalEmailVerificationView {...successProps} />
 );

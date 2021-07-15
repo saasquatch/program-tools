@@ -7,6 +7,10 @@ import preset from "jss-preset-default";
 import { gap } from "../global/mixins";
 import { NavigationSidebarView } from "../components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { SidebarItemView } from "../components/sqm-sidebar-item/sqm-sidebar-item-view";
+import { TextView } from "../components/sqm-text/sqm-text-view";
+import { PortalSectionView } from "../components/sqm-portal-section/sqm-portal-section-view";
+import { PortalContainerView } from "../components/sqm-portal-container/sqm-portal-container-view";
+import { PortalLayoutView } from "../components/sqm-portal-layout/sqm-portal-layout-view";
 
 export default {
   title: "New Portal",
@@ -208,53 +212,85 @@ export const Dashboard = () => {
   };
 
   return (
-    <div class={sheet.classes.FullPageContainer}>
+    <PortalLayoutView {...{direction:"row"}}>
       <style type="text/css">{styleString}</style>
       <Sidebar />
-      <div class={sheet.classes.MainContainer}>
-        <div class={sheet.classes.HeaderContainer}>
-          <p>Welcome back,</p>
-          <h1>John Smith</h1>
-        </div>
-        <div class={sheet.classes.StatContainer}>
-          <BigStatView {...{ statvalue: "2,345" }}>Clicks</BigStatView>
-          <BigStatView {...{ statvalue: "58" }}>Referrals</BigStatView>
-          <BigStatView {...{ statvalue: "$10,540" }}>Earned</BigStatView>
-          <BigStatView {...{ statvalue: "$2,305" }}>
-            Awaiting Payout
-          </BigStatView>
-        </div>
-        <div class={sheet.classes.ShareContainer}>
-          <h2>Partner and Profit</h2>
-          <p>
-            Get rewarded for referring potential customers to MyCompany. Earn
-            commission for each successful lead you send our way{" "}
-          </p>
-          <div class={sheet.classes.ShareItemContainer}>
-            <h3>Share your referral link</h3>
-            <ShareLinkView {...sharelinkProps} />
+      <PortalLayoutView {...{direction:"column"}}>
+        <PortalContainerView
+          {...{ direction: "column", padding: "50px", gap: "48px" }}
+        >
+          <PortalSectionView
+            {...{
+              labelMargin: "0 0 4px",
+              padding: "0",
+              label: <TextView type="p">Welcome back,</TextView>,
+              content: <TextView type="h1">John Smith</TextView>,
+            }}
+          ></PortalSectionView>
+          <div class={sheet.classes.StatContainer}>
+            <BigStatView {...{ statvalue: "2,345" }}>Clicks</BigStatView>
+            <BigStatView {...{ statvalue: "58" }}>Referrals</BigStatView>
+            <BigStatView {...{ statvalue: "$10,540" }}>Earned</BigStatView>
+            <BigStatView {...{ statvalue: "$2,305" }}>
+              Awaiting Payout
+            </BigStatView>
           </div>
-          <div class={sheet.classes.ShareItemContainer}>
-            <h3>Share your referral code</h3>
-            <ShareLinkView {...sharecodeProps} />
-          </div>
-          <div class={sheet.classes.ShareItemContainer}>
-            <h3>Share via social medial</h3>
-            <div class={sheet.classes.ShareButtonContainer}>
-              <ShareButtonView {...twitterButtonProps}>
-                Tweet about us
-              </ShareButtonView>
-              <ShareButtonView {...facebookButtonProps}>
-                Share on Facebook
-              </ShareButtonView>
-              <ShareButtonView {...linkedinButtonProps}>
-                Post on Linkedin
-              </ShareButtonView>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        </PortalContainerView>
+        <PortalContainerView
+          {...{ direction: "column", padding: "50px", gap: "48px" }}
+        >
+          <PortalSectionView
+            {...{
+              labelMargin: "0 0 24px",
+              padding: "0",
+              label: <TextView type="h2">Partner and Profit</TextView>,
+              content: (
+                <TextView type="p">
+                  Get rewarded for referring potential customers to MyCompany.
+                  Earn commission for each successful lead you send our way
+                </TextView>
+              ),
+            }}
+          ></PortalSectionView>
+          <PortalSectionView
+            {...{
+              labelMargin: "0 0 12px",
+              padding: "0",
+              label: <TextView type="h3">Share your referral link</TextView>,
+              content: <ShareLinkView {...sharelinkProps} />,
+            }}
+          ></PortalSectionView>
+          <PortalSectionView
+            {...{
+              labelMargin: "0 0 12px",
+              padding: "0",
+              label: <TextView type="h3">Share your referral code</TextView>,
+              content: <ShareLinkView {...sharecodeProps} />,
+            }}
+          ></PortalSectionView>
+          <PortalSectionView
+            {...{
+              labelMargin: "0 0 12px",
+              padding: "0",
+              label: <TextView type="h3">Share via social media</TextView>,
+              content: (
+                <div class={sheet.classes.ShareButtonContainer}>
+                  <ShareButtonView {...twitterButtonProps}>
+                    Tweet about us
+                  </ShareButtonView>
+                  <ShareButtonView {...facebookButtonProps}>
+                    Share on Facebook
+                  </ShareButtonView>
+                  <ShareButtonView {...linkedinButtonProps}>
+                    Post on Linkedin
+                  </ShareButtonView>
+                </div>
+              ),
+            }}
+          ></PortalSectionView>
+        </PortalContainerView>
+      </PortalLayoutView>
+    </PortalLayoutView>
   );
 };
 

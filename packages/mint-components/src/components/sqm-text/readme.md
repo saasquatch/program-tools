@@ -7,11 +7,9 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `icon`   | `icon`    |             | `string` | `undefined` |
-| `label`  | `label`   |             | `string` | `undefined` |
-| `path`   | `path`    |             | `string` | `undefined` |
+| Property | Attribute | Description | Type                                      | Default |
+| -------- | --------- | ----------- | ----------------------------------------- | ------- |
+| `type`   | `type`    |             | `"h1" \| "h2" \| "h3" \| "p" \| "pLight"` | `"p"`   |
 
 
 ----------------------------------------------
