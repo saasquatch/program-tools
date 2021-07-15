@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import {
   PortalRegisterView,
   PortalRegisterViewProps,
-} from "../components/portal-register/sqm-portal-register-view";
+} from "../components/sqm-portal-register/sqm-portal-register-view";
 
 export default {
   title: "Portal Register",

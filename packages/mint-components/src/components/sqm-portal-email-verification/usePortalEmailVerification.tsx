@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { usePortalQuery } from "../portal/usePortalQuery";
+import { usePortalQuery } from "../sqm-portal/usePortalQuery";
 import { useUserIdentity } from "@saasquatch/component-boilerplate";
 
 const PortalEmailVerificationMutation = gql`
