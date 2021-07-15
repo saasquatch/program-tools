@@ -13,7 +13,6 @@ const defaultProps: PortalVerifyEmailViewProps = {
     error: "",
     loading: false,
     verified: false,
-    resendSuccess: false,
   },
   callbacks: {
     submit: async (e) => await e,
@@ -25,7 +24,6 @@ const errorProps: PortalVerifyEmailViewProps = {
     error: "Something went wrong. Please try again.",
     loading: false,
     verified: false,
-    resendSuccess: false,
   },
   callbacks: {
     submit: async (e) => await e,
@@ -37,7 +35,6 @@ const loadingProps: PortalVerifyEmailViewProps = {
     error: "",
     loading: true,
     verified: false,
-    resendSuccess: false,
   },
   callbacks: {
     submit: async (e) => await e,
@@ -49,7 +46,6 @@ const resendProps: PortalVerifyEmailViewProps = {
     error: "",
     loading: false,
     verified: false,
-    resendSuccess: true,
   },
   callbacks: {
     submit: async (e) => await e,
@@ -61,7 +57,6 @@ const verifiedProps: PortalVerifyEmailViewProps = {
     error: "",
     loading: false,
     verified: true,
-    resendSuccess: false,
   },
   callbacks: {
     submit: async (e) => await e,
