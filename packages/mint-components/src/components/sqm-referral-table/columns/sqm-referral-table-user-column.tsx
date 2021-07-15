@@ -9,7 +9,7 @@ import { Component, h, Method, Host, State } from "@stencil/core";
 
 @Component({
   tag: "sqm-referral-table-user-column",
-  styleUrl: "../sqm-referral-table/sqm-referral-table.scss",
+  styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
 export class ReferralTableUserColumn {

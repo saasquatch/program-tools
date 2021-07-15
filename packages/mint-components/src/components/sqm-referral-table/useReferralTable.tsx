@@ -3,7 +3,7 @@ import { useHost, useTick } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { Host, h } from "@stencil/core";
 // import gql from "graphql-tag";
-import { useChildElements } from "../useChildElements";
+import { useChildElements } from "./useChildElements";
 
 // const GET_REFERRAL_DATA = gql`
 //   query getReferrals(
@@ -157,7 +157,7 @@ export function useReferralTable() {
   console.log({ components });
 
   useEffect(() => {
-    host.addEventListener("attributeUpdated", () => rerender());
+    host.addEventListener("attributeUpdated", rerender);
     return () => {
       host.removeEventListener("attributeUpdated", rerender);
     };

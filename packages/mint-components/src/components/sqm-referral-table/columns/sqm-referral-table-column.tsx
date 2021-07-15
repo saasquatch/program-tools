@@ -2,11 +2,11 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Method, Host, State } from "@stencil/core";
 
 @Component({
-  tag: "sqm-referral-table-rewards-column",
-  styleUrl: "../sqm-referral-table/sqm-referral-table.scss",
+  tag: "sqm-referral-table-column",
+  styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
-export class ReferralTableRewardsColumn {
+export class ReferralTableColumn {
   @State()
   ignored = true;
 
@@ -15,13 +15,13 @@ export class ReferralTableRewardsColumn {
   }
   disconnectedCallback() {}
   @Method()
-  async renderCell(data) {
-    return <sqm-referral-table-rewards-cell reward={data.prettyValue}></sqm-referral-table-rewards-cell>;
+  async renderCell(data: Referral) {
+    return <span>{data.dateConverted}</span>;
   }
 
   @Method()
   async renderLabel() {
-    return "Rewards";
+    return "Date Converted";
   }
 
   render() {

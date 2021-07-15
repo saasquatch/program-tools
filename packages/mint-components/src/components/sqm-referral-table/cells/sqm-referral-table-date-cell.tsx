@@ -4,7 +4,7 @@ import { DateTime } from "luxon";
 
 @Component({
   tag: "sqm-referral-table-date-cell",
-  styleUrl: "../sqm-referral-table/sqm-referral-table.scss",
+  styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
 export class ReferralDateCell {
