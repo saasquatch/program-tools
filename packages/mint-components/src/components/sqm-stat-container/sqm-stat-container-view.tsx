@@ -8,7 +8,7 @@ export interface StatContainerProps {
 
 export function StatContainerView(props: StatContainerProps, children: VNode) {
   const divideSpace = () => {
-    return Math.floor(Number(props.space) / 2);
+    return Math.floor(parseInt(props.space) / 2);
   };
 
   const style = {

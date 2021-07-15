@@ -163,6 +163,8 @@ export namespace Components {
          */
         "poweredBy": boolean;
     }
+    interface SqmPortalChangePassword {
+    }
     interface SqmPortalContainer {
         /**
           * @uiName Direction
@@ -203,6 +205,8 @@ export namespace Components {
     interface SqmPortalLogout {
         "logoutOnRender": boolean;
         "nextPage": string;
+    }
+    interface SqmPortalProfile {
     }
     interface SqmPortalProtectedRoute {
         "authenticated": any;
@@ -426,6 +430,12 @@ declare global {
         prototype: HTMLSqmPopupContainerElement;
         new (): HTMLSqmPopupContainerElement;
     };
+    interface HTMLSqmPortalChangePasswordElement extends Components.SqmPortalChangePassword, HTMLStencilElement {
+    }
+    var HTMLSqmPortalChangePasswordElement: {
+        prototype: HTMLSqmPortalChangePasswordElement;
+        new (): HTMLSqmPortalChangePasswordElement;
+    };
     interface HTMLSqmPortalContainerElement extends Components.SqmPortalContainer, HTMLStencilElement {
     }
     var HTMLSqmPortalContainerElement: {
@@ -467,6 +477,12 @@ declare global {
     var HTMLSqmPortalLogoutElement: {
         prototype: HTMLSqmPortalLogoutElement;
         new (): HTMLSqmPortalLogoutElement;
+    };
+    interface HTMLSqmPortalProfileElement extends Components.SqmPortalProfile, HTMLStencilElement {
+    }
+    var HTMLSqmPortalProfileElement: {
+        prototype: HTMLSqmPortalProfileElement;
+        new (): HTMLSqmPortalProfileElement;
     };
     interface HTMLSqmPortalProtectedRouteElement extends Components.SqmPortalProtectedRoute, HTMLStencilElement {
     }
@@ -557,6 +573,7 @@ declare global {
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
+        "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
         "sqm-portal-container": HTMLSqmPortalContainerElement;
         "sqm-portal-email-verification": HTMLSqmPortalEmailVerificationElement;
         "sqm-portal-forgot-password": HTMLSqmPortalForgotPasswordElement;
@@ -564,6 +581,7 @@ declare global {
         "sqm-portal-layout": HTMLSqmPortalLayoutElement;
         "sqm-portal-login": HTMLSqmPortalLoginElement;
         "sqm-portal-logout": HTMLSqmPortalLogoutElement;
+        "sqm-portal-profile": HTMLSqmPortalProfileElement;
         "sqm-portal-protected-route": HTMLSqmPortalProtectedRouteElement;
         "sqm-portal-register": HTMLSqmPortalRegisterElement;
         "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
@@ -736,6 +754,8 @@ declare namespace LocalJSX {
          */
         "poweredBy"?: boolean;
     }
+    interface SqmPortalChangePassword {
+    }
     interface SqmPortalContainer {
         /**
           * @uiName Direction
@@ -776,6 +796,8 @@ declare namespace LocalJSX {
     interface SqmPortalLogout {
         "logoutOnRender"?: boolean;
         "nextPage"?: string;
+    }
+    interface SqmPortalProfile {
     }
     interface SqmPortalProtectedRoute {
         "authenticated"?: any;
@@ -948,6 +970,7 @@ declare namespace LocalJSX {
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-popup-container": SqmPopupContainer;
+        "sqm-portal-change-password": SqmPortalChangePassword;
         "sqm-portal-container": SqmPortalContainer;
         "sqm-portal-email-verification": SqmPortalEmailVerification;
         "sqm-portal-forgot-password": SqmPortalForgotPassword;
@@ -955,6 +978,7 @@ declare namespace LocalJSX {
         "sqm-portal-layout": SqmPortalLayout;
         "sqm-portal-login": SqmPortalLogin;
         "sqm-portal-logout": SqmPortalLogout;
+        "sqm-portal-profile": SqmPortalProfile;
         "sqm-portal-protected-route": SqmPortalProtectedRoute;
         "sqm-portal-register": SqmPortalRegister;
         "sqm-portal-reset-password": SqmPortalResetPassword;
@@ -984,6 +1008,7 @@ declare module "@stencil/core" {
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
+            "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;
             "sqm-portal-email-verification": LocalJSX.SqmPortalEmailVerification & JSXBase.HTMLAttributes<HTMLSqmPortalEmailVerificationElement>;
             "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword & JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
@@ -991,6 +1016,7 @@ declare module "@stencil/core" {
             "sqm-portal-layout": LocalJSX.SqmPortalLayout & JSXBase.HTMLAttributes<HTMLSqmPortalLayoutElement>;
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
             "sqm-portal-logout": LocalJSX.SqmPortalLogout & JSXBase.HTMLAttributes<HTMLSqmPortalLogoutElement>;
+            "sqm-portal-profile": LocalJSX.SqmPortalProfile & JSXBase.HTMLAttributes<HTMLSqmPortalProfileElement>;
             "sqm-portal-protected-route": LocalJSX.SqmPortalProtectedRoute & JSXBase.HTMLAttributes<HTMLSqmPortalProtectedRouteElement>;
             "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;

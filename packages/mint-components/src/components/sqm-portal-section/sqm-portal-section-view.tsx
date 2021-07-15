@@ -12,7 +12,7 @@ export interface PortalSectionProps {
 export function PortalSectionView(props: PortalSectionProps) {
   const style = {
     LabelContainer: {
-      'bottom-margin': props.labelMargin,
+      'margin-bottom': props.labelMargin,
     },
     SectionContainer: {
       padding: props.padding,

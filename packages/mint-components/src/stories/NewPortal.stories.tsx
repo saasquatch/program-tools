@@ -12,6 +12,8 @@ import { PortalSectionView } from "../components/sqm-portal-section/sqm-portal-s
 import { PortalContainerView } from "../components/sqm-portal-container/sqm-portal-container-view";
 import { PortalLayoutView } from "../components/sqm-portal-layout/sqm-portal-layout-view";
 import { StatContainerView } from "../components/sqm-stat-container/sqm-stat-container-view";
+import { PortalProfileView } from "../components/sqm-portal-profile/sqm-portal-profile-view";
+import { PortalChangePasswordView } from "../components/sqm-portal-change-password/sqm-portal-change-password-view";
 
 export default {
   title: "New Portal",
@@ -297,28 +299,14 @@ export const Dashboard = () => {
 
 export const EditProfile = () => {
   return (
-    <div class={sheet.classes.FullPageContainer}>
+    <PortalLayoutView {...{ direction: "row" }}>
       <style type="text/css">{styleString}</style>
       <Sidebar />
-      <div class={sheet.classes.MainContainer}>
-        <h1 class={sheet.classes.Header}>Edit your profile</h1>
-        <h2 class={sheet.classes.FormHeader}>Personal Information</h2>
-        <form>
-          <div class={sheet.classes.NameContainer}>
-            <sl-input label="First Name"></sl-input>
-            <sl-input label="Last Name"></sl-input>
-          </div>
-          <sl-input class={sheet.classes.InputStyle} label="Email"></sl-input>
-          <sl-input class={sheet.classes.InputStyle} label="Country"></sl-input>
-          <sl-button style={{ marginBottom: "54px" }}>Submit Changes</sl-button>
-        </form>
-
-        <hr />
-
-        <h2 style={{ marginTop: "43px", marginBottom: "19px" }}>Password</h2>
-        <sl-button>Change your password...</sl-button>
-      </div>
-    </div>
+      <PortalLayoutView {...{ direction: "column" }}>
+        <PortalProfileView />
+        <PortalChangePasswordView {...{ states: { open: true } }} />
+      </PortalLayoutView>
+    </PortalLayoutView>
   );
 };
 
