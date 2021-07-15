@@ -1,11 +1,11 @@
 import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { gap } from "../../global/mixins";
+import { gap, Spacing } from "../../global/mixins";
 
 interface PortalContainerViewProps {
   direction: "row" | "column";
-  padding: string;
+  padding: Spacing;
   gap: string;
 }
 
@@ -17,7 +17,10 @@ export function PortalContainerView(
     Container: {
       display: "flex",
       "flex-direction": props.direction,
-      padding: props.padding,
+      padding:
+        props.padding === "none"
+          ? props.padding
+          : `var(--sl-spacing-${props.padding})`,
       ...gap({ direction: props.direction, size: props.gap }),
     },
   };

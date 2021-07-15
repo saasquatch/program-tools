@@ -20,7 +20,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordProps) {
     <PortalSectionView
       {...{
         labelMargin: "24px",
-        padding: "50px",
+        padding: "xxx-large",
         label: <TextView {...{ type: "h2" }}>Password</TextView>,
         content: <sl-button>Change your password...</sl-button>,
       }}
@@ -29,17 +29,17 @@ export function PortalChangePasswordView(props: PortalChangePasswordProps) {
         <PortalSectionView
           {...{
             labelMargin: "64px",
-            padding: "0",
+            padding: "none",
             label: <TextView {...{ type: "h2" }}>Change password</TextView>,
             content: (
               <PortalContainerView
-                {...{ direction: "column", padding: "0", gap: "32px" }}
+                {...{ direction: "column", padding: "none", gap: "32px" }}
               >
                 <sl-input label="Old password"></sl-input>
                 <sl-input label="New password"></sl-input>
                 <sl-input label="Confirm new password"></sl-input>
                 <PortalContainerView
-                  {...{ direction: "row", padding: "0", gap: "20px" }}
+                  {...{ direction: "row", padding: "none", gap: "20px" }}
                 >
                   <sl-button type="text">Cancel</sl-button>
                   <sl-button type="default">Change Password</sl-button>

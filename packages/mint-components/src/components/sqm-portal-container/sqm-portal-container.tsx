@@ -2,6 +2,7 @@ import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { PortalContainerView } from "./sqm-portal-container-view";
 import { getProps } from "../../utils/utils";
+import { Spacing } from "../../global/mixins";
 
 /**
  * @uiName Portal Container
@@ -17,7 +18,7 @@ export class PortalContainer {
   /** @uiName Direction */
   @Prop() direction: "row" | "column" = "column";
   /** @uiName Padding */
-  @Prop() padding: string;
+  @Prop() padding: Spacing;
   /** @uiName Gap */
   @Prop() gap: string;
 

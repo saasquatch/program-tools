@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { FunctionalComponent } from "@stencil/core";
+import { Spacing } from "./global/mixins";
 export namespace Components {
     interface SqmAssetCard {
         /**
@@ -177,7 +178,7 @@ export namespace Components {
         /**
           * @uiName Padding
          */
-        "padding": string;
+        "padding": Spacing;
     }
     interface SqmPortalEmailVerification {
         "nextPageUrlParameter": string;
@@ -235,7 +236,7 @@ export namespace Components {
         /**
           * @uiName Section padding
          */
-        "padding": string;
+        "padding": Spacing;
     }
     interface SqmPortalVerifyEmail {
         "nextPage": string;
@@ -770,7 +771,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Padding
          */
-        "padding"?: string;
+        "padding"?: Spacing;
     }
     interface SqmPortalEmailVerification {
         "nextPageUrlParameter"?: string;
@@ -828,7 +829,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Section padding
          */
-        "padding"?: string;
+        "padding"?: Spacing;
     }
     interface SqmPortalVerifyEmail {
         "nextPage"?: string;

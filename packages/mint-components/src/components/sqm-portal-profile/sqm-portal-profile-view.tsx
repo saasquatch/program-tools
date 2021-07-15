@@ -5,9 +5,7 @@ import { PortalContainerView } from "../sqm-portal-container/sqm-portal-containe
 import { PortalSectionView } from "../sqm-portal-section/sqm-portal-section-view";
 import { TextView } from "../sqm-text/sqm-text-view";
 
-export interface PortalProfileProps {
-  
-}
+export interface PortalProfileProps {}
 
 export function PortalProfileView() {
   const style = {
@@ -24,14 +22,14 @@ export function PortalProfileView() {
 
   return (
     <PortalContainerView
-      {...{ direction: "column", padding: "50px", gap: "48px" }}
+      {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
     >
       <style type="text/css">{styleString}</style>
       <TextView {...{ type: "h1" }}>Edit your profile</TextView>
       <TextView {...{ type: "h2" }}>Personal Information</TextView>
       <form class={sheet.classes.FormStyle}>
         <PortalContainerView
-          {...{ direction: "row", padding: "0", gap: "32px" }}
+          {...{ direction: "row", padding: "none", gap: "32px" }}
         >
           <sl-input label="First Name"></sl-input>
           <sl-input label="Last Name"></sl-input>

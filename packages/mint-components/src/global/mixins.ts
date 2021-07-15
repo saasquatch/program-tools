@@ -125,4 +125,32 @@ export const Wrapper = {
   display: "flex",
 };
 
-export type Spacing = "xxx-small" | "xx-small" | "x-small" | "small" | "medium" | "large" | "x-large" | "xx-large" | "xxx-large" | "xxxx-large";
+export type FontSize =
+  | "xx-small"
+  | "x-small"
+  | "small"
+  | "medium"
+  | "large"
+  | "x-large"
+  | "xx-large"
+  | "xxx-large"
+  | "xxxx-large";
+
+export type FontWeight = "light" | "normal" | "semibold" | "bold";
+
+export type LetterSpacing = "dense" | "normal" | "loose";
+
+export type LineHeight = "dense" | "normal" | "loose";
+
+export type Spacing =
+  | "none"
+  | "xxx-small"
+  | "xx-small"
+  | "x-small"
+  | "small"
+  | "medium"
+  | "large"
+  | "x-large"
+  | "xx-large"
+  | "xxx-large"
+  | "xxxx-large";
