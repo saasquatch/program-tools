@@ -13,6 +13,7 @@ const defaultProps: PortalResetPasswordViewProps = {
     error: "",
     loading: false,
     reset: false,
+    confirmPassword: true,
   },
   callbacks: {
     submit: async (e) => await e,
@@ -24,6 +25,7 @@ const errorProps: PortalResetPasswordViewProps = {
     error: "Something went wrong. Please try again.",
     loading: false,
     reset: false,
+    confirmPassword: true,
   },
   callbacks: {
     submit: async (e) => await e,
@@ -35,6 +37,7 @@ const loadingProps: PortalResetPasswordViewProps = {
     error: "",
     loading: true,
     reset: false,
+    confirmPassword: true,
   },
   callbacks: {
     submit: async (e) => await e,

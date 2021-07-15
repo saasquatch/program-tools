@@ -215,6 +215,7 @@ export namespace Components {
         "verified": any;
     }
     interface SqmPortalRegister {
+        "confirmPassword": boolean;
         "emailLabel": string;
         "nextPage": string;
         "nextPageUrlParameter": string;
@@ -222,6 +223,7 @@ export namespace Components {
         "submitLabel": string;
     }
     interface SqmPortalResetPassword {
+        "confirmPassword"?: boolean;
         "nextPage": string;
         "nextPageUrlParameter": string;
     }
@@ -806,6 +808,7 @@ declare namespace LocalJSX {
         "verified"?: any;
     }
     interface SqmPortalRegister {
+        "confirmPassword"?: boolean;
         "emailLabel"?: string;
         "nextPage"?: string;
         "nextPageUrlParameter"?: string;
@@ -813,6 +816,7 @@ declare namespace LocalJSX {
         "submitLabel"?: string;
     }
     interface SqmPortalResetPassword {
+        "confirmPassword"?: boolean;
         "nextPage"?: string;
         "nextPageUrlParameter"?: string;
     }

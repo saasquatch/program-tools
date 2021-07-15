@@ -33,6 +33,9 @@ export class PortalRegister {
   @Prop()
   submitLabel = "Register";
 
+  @Prop()
+  confirmPassword: boolean = false;
+
   constructor() {
     withHooks(this);
   }
@@ -74,7 +77,7 @@ function useRegisterDemo({
   nextPageUrlParameter,
 }): Pick<PortalRegisterViewProps, "states" | "callbacks"> {
   return {
-    states: { error: "", loading: false },
+    states: { error: "", loading: false, confirmPassword: true },
     callbacks: {
       submit: async (_event) => {
         nextPage;

@@ -7,6 +7,7 @@ export interface PortalRegisterViewProps {
   states: {
     error: string;
     loading: boolean;
+    confirmPassword?: boolean;
   };
   callbacks: {
     submit;
@@ -28,6 +29,12 @@ const style = {
   ":host": {
     margin: "0 auto",
     width: "100%",
+  },
+
+  InputContainer: {
+    "& > :not(:last-child)": {
+      "margin-bottom": "20px",
+    },
   },
 };
 
@@ -54,14 +61,36 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
           disabled={states.loading}
           required
         ></sl-input>
-        <sl-input
-          exportparts="label: input-label"
-          type="password"
-          name="/password"
-          label={content.passwordLabel || "Password"}
-          disabled={states.loading}
-          required
-        ></sl-input>
+        {states.confirmPassword ? (
+          <div class={sheet.classes.InputContainer}>
+            <sl-input
+              exportparts="label: input-label"
+              type="password"
+              name="/password"
+              label={content.passwordLabel || "Password"}
+              disabled={states.loading}
+              required
+            ></sl-input>
+            <sl-input
+              exportparts="label: input-label"
+              type="password"
+              name="/confirmPassword"
+              label="Confirm Password"
+              disabled={states.loading}
+              required
+            ></sl-input>
+          </div>
+        ) : (
+          <sl-input
+            exportparts="label: input-label"
+            type="password"
+            name="/password"
+            label={content.passwordLabel || "Password"}
+            disabled={states.loading}
+            required
+          ></sl-input>
+        )}
+
         {content.formData}
         <div>
           <sl-button
