@@ -4,6 +4,7 @@ import { BigStatView } from "./sqm-big-stat-view";
 import { useBigStat } from "./useBigStat";
 import { useDemoBigStat } from "./useDemoBigStat";
 import { isDemo } from "@saasquatch/component-boilerplate";
+import { EnumValueNode } from "graphql";
 
 /**
  *
@@ -15,8 +16,6 @@ import { isDemo } from "@saasquatch/component-boilerplate";
   shadow: true,
 })
 export class BigStat {
-  // TODO: Add prop to swap order of the stat value and stat description
-
   // uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit",
   //  "/rewardBalance/CREDIT/CASH_CAD/prettyValue",
   //  "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit",
@@ -32,6 +31,15 @@ export class BigStat {
    * @uiOptions {"showGoals": true}
    */
   @Prop() statType: string;
+
+  /**
+   * @uiName Flex Reverse - controls the order of the stat value & description column
+   */
+  @Prop() flexReverse?: boolean = false;
+  /**
+   * @uiName Alignment - controls the alignment of the flexbox
+   */
+  @Prop() alignment?: "left" | "right" | "center";
 
   @State()
   ignored = true;
