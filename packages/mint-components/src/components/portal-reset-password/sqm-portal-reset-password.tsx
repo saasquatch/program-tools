@@ -24,6 +24,9 @@ export class PortalResetPassword {
   @Prop()
   nextPageUrlParameter = "nextPage";
 
+  @Prop()
+  confirmPassword?: boolean = false;
+
   constructor() {
     withHooks(this);
   }
@@ -42,7 +45,7 @@ function usePortalResetPasswordDemo({
   nextPageUrlParameter,
 }): PortalResetPasswordViewProps {
   return {
-    states: { error: "", loading: false, reset: false },
+    states: { error: "", loading: false, reset: false, confirmPassword: true },
     callbacks: {
       submit: async (_event) => {
         nextPage;

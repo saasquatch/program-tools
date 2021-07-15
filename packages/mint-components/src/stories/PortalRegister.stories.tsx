@@ -12,33 +12,36 @@ const defaultProps: PortalRegisterViewProps = {
   states: {
     error: "",
     loading: false,
+    confirmPassword: true,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
   },
-  content:{}
+  content: {},
 };
 
 const errorProps: PortalRegisterViewProps = {
   states: {
     error: "Something went wrong. Please try again.",
     loading: false,
+    confirmPassword: true,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
   },
-  content:{}
+  content: {},
 };
 
 const loadingProps: PortalRegisterViewProps = {
   states: {
     error: "",
     loading: true,
+    confirmPassword: true,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
   },
-  content:{}
+  content: {},
 };
 
 export const Default = () => <PortalRegisterView {...defaultProps} />;
