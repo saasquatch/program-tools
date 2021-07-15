@@ -7,10 +7,16 @@ export interface PortalForgotPasswordViewProps {
   states: {
     error: string;
     loading: boolean;
-    resendSuccess: boolean;
+    success: boolean;
   };
   callbacks: {
     submit: (event: any) => Promise<void>;
+  };
+  content: {
+    secondaryButton: any;
+    messageSlot: any;
+    emailLabel?: string;
+    submitLabel?: string;
   };
 }
 
@@ -30,7 +36,7 @@ const sheet = jss.createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
-  const { states, callbacks } = props;
+  const { states, callbacks, content } = props;
   return (
     <div class={sheet.classes.Wrapper}>
       <style type="text/css">{styleString}</style>
@@ -40,17 +46,20 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
-        {props.states.resendSuccess && (
-          <sl-alert type="success" open>
-            <sl-icon slot="icon" name="check2-circle"></sl-icon>
-            Your verification email has been resent successfully.
-          </sl-alert>
+        {props.states.success && (
+          <sqm-form-message type="success" exportparts="successalert-icon">
+            <div part="successalert-text">
+              If an account with that email exists, a password reset email will
+              be sent.
+            </div>
+          </sqm-form-message>
         )}
+        {content.messageSlot}
         <sl-input
           exportparts="label: input-label"
           type="email"
           name="/email"
-          label="Email"
+          label={content.emailLabel || "Email"}
           disabled={states.loading}
           required
         ></sl-input>
@@ -61,8 +70,9 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
             exportparts="base: primarybutton-base"
             type="primary"
           >
-            Request Password Reset
+            {content.submitLabel || "Reset Password"}
           </sl-button>
+          {content.secondaryButton}
         </div>
       </sl-form>
     </div>

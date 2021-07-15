@@ -43,7 +43,7 @@ export function usePortalForgotPassword({ nextPageUrlParameter }) {
     states: {
       loading,
       error,
-      resendSuccess: success,
+      success,
     },
     callbacks: {
       submit,

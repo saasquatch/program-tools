@@ -42,12 +42,7 @@ function usePortalVerifyEmailDemo({
   nextPageUrlParameter,
 }): PortalVerifyEmailViewProps {
   return {
-    states: {
-      error: "",
-      loading: false,
-      verified: false,
-      resendSuccess: false,
-    },
+    states: { error: "", loading: false, verified: false },
     callbacks: {
       submit: async (_event) => {
         nextPage;

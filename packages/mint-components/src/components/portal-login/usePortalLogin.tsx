@@ -5,7 +5,7 @@ import { usePortalQuery } from "../portal/usePortalQuery";
 import decode from "jwt-decode";
 import {
   navigation,
-  setUserIdentity,
+  setPersistedUserIdentity,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 
@@ -36,6 +36,7 @@ export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
 
   const urlParams = new URLSearchParams(window.location.search);
   const nextPageOverride = urlParams.get(nextPageUrlParameter);
+  urlParams.delete(nextPageUrlParameter);
 
   const submit = async (event: any) => {
     let formData = event.detail.formData;
@@ -56,8 +57,9 @@ export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
       const sessionData = {
         ...authenticateUser.sessionData,
         verified: user.verified,
+        email: user.email,
       };
-      setUserIdentity({
+      setPersistedUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,
@@ -68,7 +70,10 @@ export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
 
   useEffect(() => {
     if (userIdent?.jwt) {
-      navigation.push(nextPageOverride || nextPage);
+      navigation.push({
+        pathname: nextPageOverride || nextPage,
+        search: urlParams.toString(),
+      });
     }
   }, [userIdent?.jwt]);
 
