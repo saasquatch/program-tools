@@ -222,6 +222,10 @@ export namespace Components {
         "nextPage": string;
     }
     interface SqmPortalProfile {
+        "countrytext": string;
+        "emailtext": string;
+        "firstnametext": string;
+        "lastnametext": string;
     }
     interface SqmPortalProtectedRoute {
         "authenticated": any;
@@ -941,6 +945,10 @@ declare namespace LocalJSX {
         "nextPage"?: string;
     }
     interface SqmPortalProfile {
+        "countrytext"?: string;
+        "emailtext"?: string;
+        "firstnametext"?: string;
+        "lastnametext"?: string;
     }
     interface SqmPortalProtectedRoute {
         "authenticated"?: any;

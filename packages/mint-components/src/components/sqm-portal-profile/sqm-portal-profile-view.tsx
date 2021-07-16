@@ -6,7 +6,11 @@ import { PresetText } from "../../functional-components/PresetText";
 
 export interface PortalProfileProps {}
 
-export function PortalProfileView() {
+export function PortalProfileView(props) {
+  const { states, callbacks } = props;
+
+  const { text, errors } = states;
+
   const style = {
     FormStyle: {
       "& >*:not(:last-child)": {
@@ -26,16 +30,57 @@ export function PortalProfileView() {
       <style type="text/css">{styleString}</style>
       <PresetText {...{ type: "h1" }}>Edit your profile</PresetText>
       <PresetText {...{ type: "h2" }}>Personal Information</PresetText>
-      <form class={sheet.classes.FormStyle}>
+      <form class={sheet.classes.FormStyle} onSubmit={callbacks.onSubmit}>
         <PortalContainerView
           {...{ direction: "row", padding: "none", gap: "32px" }}
         >
-          <sl-input label="First Name"></sl-input>
-          <sl-input label="Last Name"></sl-input>
+          <sl-input
+            value={states.user?.firstName}
+            onInput={callbacks.onChange}
+            label={text.firstnametext}
+            disabled={states.loading}
+            {...(errors?.firstName && errors?.firstName.status !== "valid"
+              ? { class: "ErrorStyles", helpText: "Cannot be empty" }
+              : [])}
+            id="firstName"
+            name="firstName"
+            error={
+              errors?.firstName && errors?.firstName.status !== "valid"
+                ? errors?.firstName.message
+                : undefined
+            }
+          ></sl-input>
+          <sl-input
+            exportparts="label: input-label"
+            value={states.user?.lastName}
+            onInput={callbacks.onChange}
+            label={text.lastnametext}
+            disabled={states.loading}
+            id="lastName"
+            name="lastName"
+            {...(errors?.lastName && errors?.lastName.status !== "valid"
+              ? { class: "ErrorStyles", helpText: "Cannot be empty" }
+              : [])}
+            error={
+              errors?.lastName && errors?.lastName.status !== "valid"
+                ? errors?.lastName.message
+                : undefined
+            }
+          ></sl-input>
         </PortalContainerView>
-        <sl-input label="Email"></sl-input>
+        <sl-input label="Email" value={states.user?.email}></sl-input>
         <sl-input label="Country"></sl-input>
-        <sl-button>Submit Changes</sl-button>
+        <sl-button
+          type="primary"
+          loading={states.loading}
+          disabled={states.submitDisabled}
+          onClick={(e) => {
+            callbacks.onSubmit(e);
+          }}
+          submit
+        >
+          Submit Changes
+        </sl-button>
       </form>
     </PortalContainerView>
   );
