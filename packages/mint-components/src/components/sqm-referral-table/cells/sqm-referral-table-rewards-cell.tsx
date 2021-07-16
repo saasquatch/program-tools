@@ -5,7 +5,7 @@ import { Component, h, Prop } from "@stencil/core";
   styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
-export class ReferralTableColumn {
+export class ReferralTableRewardsCell {
   @Prop() reward: string;
 
   render() {

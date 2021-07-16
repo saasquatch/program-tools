@@ -7,7 +7,7 @@ import { DateTime } from "luxon";
   styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
-export class ReferralDateCell {
+export class ReferralTableDateCell {
   @State()
   ignored = true;
 

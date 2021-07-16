@@ -6,7 +6,7 @@ import { Component, h, Prop, State } from "@stencil/core";
   styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
-export class ReferralTableColumn {
+export class ReferralTableCell {
   @State()
   ignored = true;
 

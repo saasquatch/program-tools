@@ -5,7 +5,7 @@ import { Component, h, Prop } from "@stencil/core";
   styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
-export class ReferralTableColumn {
+export class ReferralTableStatusCell {
   @Prop() statusText: string;
   render() {
     return <sl-badge type="primary">{this.statusText}</sl-badge>;
