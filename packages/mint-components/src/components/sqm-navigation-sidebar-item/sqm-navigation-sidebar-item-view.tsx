@@ -16,7 +16,9 @@ export interface NavigationSidebarItemViewProps {
   };
 }
 
-export function NavigationSidebarItemView(props: NavigationSidebarItemViewProps) {
+export function NavigationSidebarItemView(
+  props: NavigationSidebarItemViewProps
+) {
   const { states, data, callbacks } = props;
 
   const style = {
@@ -27,6 +29,10 @@ export function NavigationSidebarItemView(props: NavigationSidebarItemViewProps)
       padding: "8px",
       "align-items": "center",
       ...gap({ direction: "row" as const, size: "14px" }),
+      "&:hover": {
+        cursor: "pointer",
+        background: !states.active && "#fcfcfc",
+      },
     },
     Label: {
       margin: "0",

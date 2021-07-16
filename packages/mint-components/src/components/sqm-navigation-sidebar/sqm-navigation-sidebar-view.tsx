@@ -4,12 +4,12 @@ import jss from "jss";
 import preset from "jss-preset-default";
 import { gap } from "../../global/mixins";
 
-
-export interface NavigationSidebarViewProps {
-}
+export interface NavigationSidebarViewProps {}
 
 const style = {
-  ItemsContainer: { ...gap({ direction: "column" as const, size: "4px" }) },
+  ItemsContainer: {
+    ...gap({ direction: "column" as const, size: "4px" }),
+  },
 };
 
 jss.setup(preset());

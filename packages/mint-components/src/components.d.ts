@@ -242,16 +242,6 @@ export namespace Components {
         "nextPage": string;
         "nextPageUrlParameter": string;
     }
-    interface SqmPortalSection {
-        /**
-          * @uiName Label margin style
-         */
-        "labelMargin": Spacing;
-        /**
-          * @uiName Section padding
-         */
-        "padding": Spacing;
-    }
     interface SqmPortalVerifyEmail {
         "nextPage": string;
         "nextPageUrlParameter": string;
@@ -413,7 +403,7 @@ export namespace Components {
         /**
           * @uiName Space between stats
          */
-        "space": Spacing;
+        "space": string;
     }
     interface SqmStencilbook {
     }
@@ -428,7 +418,7 @@ export namespace Components {
         /**
           * @uiName Label margin style
          */
-        "labelMargin": string;
+        "labelMargin": Spacing;
         /**
           * @uiName Section padding
          */
@@ -975,16 +965,6 @@ declare namespace LocalJSX {
         "nextPage"?: string;
         "nextPageUrlParameter"?: string;
     }
-    interface SqmPortalSection {
-        /**
-          * @uiName Label margin style
-         */
-        "labelMargin"?: Spacing;
-        /**
-          * @uiName Section padding
-         */
-        "padding"?: Spacing;
-    }
     interface SqmPortalVerifyEmail {
         "nextPage"?: string;
         "nextPageUrlParameter"?: string;
@@ -1136,7 +1116,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Space between stats
          */
-        "space"?: Spacing;
+        "space"?: string;
     }
     interface SqmStencilbook {
     }
@@ -1151,7 +1131,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Label margin style
          */
-        "labelMargin"?: string;
+        "labelMargin"?: Spacing;
         /**
           * @uiName Section padding
          */
