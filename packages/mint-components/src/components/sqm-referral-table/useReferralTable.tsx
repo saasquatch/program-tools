@@ -139,7 +139,7 @@ export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
     },
     { filter }
   );
-  useRerenderListener();
+  const tick = useRerenderListener();
   const [content, setContent] = useState<ReferralTableViewProps["elements"]>({
     columns: [],
     rows: [],
@@ -196,7 +196,7 @@ export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
   useEffect(() => {
     if (!referralData) return;
     getComponentData();
-  }, [referralData, components]);
+  }, [referralData, components, tick]);
 
   // TODO: Loading state - while initial rendering rows?
   // TODO: Empty state

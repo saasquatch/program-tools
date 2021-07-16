@@ -28,7 +28,7 @@ export function useRequestRerender(deps: unknown[]) {
  */
 export function useRerenderListener() {
   const host = useHost();
-  const [, rerender] = useTick();
+  const [tick, rerender] = useTick();
   useEffect(() => {
     const listener = (e: CustomEvent) => {
       // Preventes recursively nested components from sending requests up all the way
@@ -40,4 +40,5 @@ export function useRerenderListener() {
       host.removeEventListener(RENDER_EVENT, listener);
     };
   }, []);
+  return tick;
 }
