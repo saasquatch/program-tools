@@ -165,10 +165,9 @@ export namespace Components {
         "nextPage": string;
     }
     interface SqmPortalProtectedRoute {
-        "authenticated": any;
-        "redirectTo": any;
-        "redirectToUnverified": any;
-        "verified": any;
+        "redirectTo": string;
+        "redirectToUnverified"?: string;
+        "requireEmailVerification"?: boolean;
     }
     interface SqmPortalRegister {
         "emailLabel": string;
@@ -606,10 +605,9 @@ declare namespace LocalJSX {
         "nextPage"?: string;
     }
     interface SqmPortalProtectedRoute {
-        "authenticated"?: any;
-        "redirectTo"?: any;
-        "redirectToUnverified"?: any;
-        "verified"?: any;
+        "redirectTo"?: string;
+        "redirectToUnverified"?: string;
+        "requireEmailVerification"?: boolean;
     }
     interface SqmPortalRegister {
         "emailLabel"?: string;

@@ -3,10 +3,7 @@ import decode from "jwt-decode";
 import jsonpointer from "jsonpointer";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { usePortalQuery } from "../portal/usePortalQuery";
-import {
-  navigation,
-  setPersistedUserIdentity,
-} from "@saasquatch/component-boilerplate";
+import { navigation, setUserIdentity } from "@saasquatch/component-boilerplate";
 
 const VerifyManagedIdentityPasswordResetCodeMutation = gql`
   mutation VerifyPasswordResetCode($oobCode: String!) {
@@ -89,7 +86,7 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
     await resetPassword(variables);
   };
 
-  const continueCb = (event: any) => {
+  const continueCb = (_event: any) => {
     navigation.push({
       pathname: "/",
       search: urlParams.toString(),
@@ -98,24 +95,22 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
 
   useEffect(() => {
     if (resetPasswordState.data?.resetManagedIdentityPassword) {
-      const { resetManagedIdentityPassword } = resetPasswordState.data;
-      const jwt = resetManagedIdentityPassword.token;
+      const { resetManagedIdentityPassword: res } = resetPasswordState.data;
+      const jwt = res.token;
       const { user } = decode<DecodedSquatchJWT>(jwt);
-      const sessionData = {
-        ...resetManagedIdentityPassword.sessionData,
-        verified: resetManagedIdentityPassword.emailVerified,
-        email: resetManagedIdentityPassword.email,
-      };
-      setPersistedUserIdentity({
+      setUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,
-        sessionData,
-      }).then(() => {
-        navigation.push({
-          pathname: nextPageOverride || nextPage,
-          search: urlParams.toString(),
-        });
+        managedIdentity: {
+          email: res.email,
+          emailVerified: res.emailVerified,
+          sessionData: res.sessionData,
+        },
+      });
+      navigation.push({
+        pathname: nextPageOverride || nextPage,
+        search: urlParams.toString(),
       });
     }
   }, [resetPasswordState.data?.resetManagedIdentityPassword]);

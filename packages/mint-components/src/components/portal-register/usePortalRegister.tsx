@@ -5,7 +5,7 @@ import { usePortalQuery } from "../portal/usePortalQuery";
 import decode from "jwt-decode";
 import {
   navigation,
-  setPersistedUserIdentity,
+  setUserIdentity,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { usePortalEmailVerification } from "../portal-email-verification/usePortalEmailVerification";
@@ -82,19 +82,18 @@ export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
 
   useEffect(() => {
     if (data?.registerManagedIdentityWithEmailAndPassword) {
-      const { registerManagedIdentityWithEmailAndPassword } = data;
-      const jwt = registerManagedIdentityWithEmailAndPassword.token;
+      const { registerManagedIdentityWithEmailAndPassword: res } = data;
+      const jwt = res.token;
       const { user } = decode<DecodedSquatchJWT>(jwt);
-      const sessionData = {
-        ...registerManagedIdentityWithEmailAndPassword.sessionData,
-        verified: registerManagedIdentityWithEmailAndPassword.emailVerified,
-        email: registerManagedIdentityWithEmailAndPassword.email,
-      };
-      setPersistedUserIdentity({
+      setUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,
-        sessionData,
+        managedIdentity: {
+          email: res.email,
+          emailVerified: res.emailVerified,
+          sessionData: res.sessionData,
+        },
       });
     }
   }, [data?.registerManagedIdentityWithEmailAndPassword]);

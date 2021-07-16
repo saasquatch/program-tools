@@ -30,7 +30,7 @@ export function usePortalEmailVerification({ nextPageUrlParameter }) {
     );
 
   const userIdent = useUserIdentity();
-  const email = userIdent?.sessionData?.email;
+  const email = userIdent?.managedIdentity?.email;
   const [success, setSuccess] = useState(false);
 
   const urlParams = new URLSearchParams(window.location.search);

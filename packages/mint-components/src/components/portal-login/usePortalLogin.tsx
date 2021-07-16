@@ -5,7 +5,7 @@ import { usePortalQuery } from "../portal/usePortalQuery";
 import decode from "jwt-decode";
 import {
   navigation,
-  setPersistedUserIdentity,
+  setUserIdentity,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 
@@ -65,19 +65,18 @@ export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
 
   useEffect(() => {
     if (data?.authenticateManagedIdentityWithEmailAndPassword) {
-      const { authenticateManagedIdentityWithEmailAndPassword } = data;
-      const jwt = authenticateManagedIdentityWithEmailAndPassword.token;
+      const { authenticateManagedIdentityWithEmailAndPassword: res } = data;
+      const jwt = res.token;
       const { user } = decode<DecodedSquatchJWT>(jwt);
-      const sessionData = {
-        ...authenticateManagedIdentityWithEmailAndPassword.sessionData,
-        verified: authenticateManagedIdentityWithEmailAndPassword.emailVerified,
-        email: authenticateManagedIdentityWithEmailAndPassword.email,
-      };
-      setPersistedUserIdentity({
+      setUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,
-        sessionData,
+        managedIdentity: {
+          email: res.email,
+          emailVerified: res.emailVerified,
+          sessionData: res.sessionData,
+        },
       });
     }
   }, [data?.authenticateManagedIdentityWithEmailAndPassword]);

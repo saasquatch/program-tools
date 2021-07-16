@@ -20,12 +20,14 @@
       window.SquatchPortal = {
         tenantAlias: "test_akdq8a9wyvzba",
         appDomain: "https://staging.referralsaasquatch.com",
-        portalAuthUrl: "http://localhost:4000"
-      }
+        portalAuthUrl: "http://localhost:4000",
+      };
 
-      if (!localStorage.getItem('IEAlert') && window.document.documentMode) {
-        localStorage.setItem('IEAlert', true);
-        alert('Internet Explorer is not fully supported. We recommend upgrading your browser for the best experience.');
+      if (!localStorage.getItem("IEAlert") && window.document.documentMode) {
+        localStorage.setItem("IEAlert", true);
+        alert(
+          "Internet Explorer is not fully supported. We recommend upgrading your browser for the best experience."
+        );
       }
     </script>
     <sqm-portal-frame>
@@ -101,7 +103,7 @@
                 name="/country"
                 label="Country"
                 value="USA"
-                disabled=true
+                disabled="true"
               ></sl-input>
               <sl-input
                 exportparts="label: input-label"
@@ -114,7 +116,9 @@
         </template>
 
         <template path="/emailVerification">
-          <sqm-portal-protected-route authenticated=true redirect-to="/login"></sqm-portal-protected-route>
+          <sqm-portal-protected-route
+            redirect-to="/login"
+          ></sqm-portal-protected-route>
           <sqm-portal-email-verification></sqm-portal-email-verification>
         </template>
 
@@ -127,7 +131,9 @@
         </template>
 
         <template path="/forgotPassword">
-          <sqm-portal-forgot-password email-label="Business Email"></sqm-portal-forgot-password>
+          <sqm-portal-forgot-password
+            email-label="Business Email"
+          ></sqm-portal-forgot-password>
         </template>
 
         <template path="/resetPassword">
@@ -135,7 +141,11 @@
         </template>
 
         <template path="/">
-          <sqm-portal-protected-route authenticated=true verified=true redirect-to="/login" redirect-to-unverified="/emailVerification"></sqm-portal-protected-route>
+          <sqm-portal-protected-route
+            require-email-verification="true"
+            redirect-to="/login"
+            redirect-to-unverified="/emailVerification"
+          ></sqm-portal-protected-route>
           <sqm-share-button medium="facebook"></sqm-share-button>
         </template>
 
