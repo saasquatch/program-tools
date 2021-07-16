@@ -11,27 +11,41 @@ import {
 
 const PortalLoginMutation = gql`
   mutation PortalLogin($email: String!, $password: String!) {
-    authenticateUser(input: { email: $email, password: $password }) {
-      squatchJWT
+    authenticateManagedIdentityWithEmailAndPassword(
+      authenticateManagedIdentityWithEmailAndPasswordInput: {
+        email: $email
+        password: $password
+      }
+    ) {
+      token
+      email
+      emailVerified
       sessionData
     }
   }
 `;
 
+interface PortalLoginMutationResult {
+  authenticateManagedIdentityWithEmailAndPassword: {
+    token: string;
+    email: string;
+    emailVerified: boolean;
+    sessionData: Record<string, any>;
+  };
+}
+
 interface DecodedSquatchJWT {
   user: {
     accountId: string;
     id: string;
-    email: string;
-    verified: boolean;
   };
 }
 
 export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
-  const [{ loading, data, error }, request] = usePortalQuery(
-    PortalLoginMutation,
-    { loading: false }
-  );
+  const [{ loading, data, error }, request] =
+    usePortalQuery<PortalLoginMutationResult>(PortalLoginMutation, {
+      loading: false,
+    });
   const userIdent = useUserIdentity();
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -50,14 +64,14 @@ export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
   };
 
   useEffect(() => {
-    if (data?.authenticateUser) {
-      const { authenticateUser } = data;
-      const jwt = authenticateUser.squatchJWT;
+    if (data?.authenticateManagedIdentityWithEmailAndPassword) {
+      const { authenticateManagedIdentityWithEmailAndPassword } = data;
+      const jwt = authenticateManagedIdentityWithEmailAndPassword.token;
       const { user } = decode<DecodedSquatchJWT>(jwt);
       const sessionData = {
-        ...authenticateUser.sessionData,
-        verified: user.verified,
-        email: user.email,
+        ...authenticateManagedIdentityWithEmailAndPassword.sessionData,
+        verified: authenticateManagedIdentityWithEmailAndPassword.emailVerified,
+        email: authenticateManagedIdentityWithEmailAndPassword.email,
       };
       setPersistedUserIdentity({
         jwt,
@@ -66,7 +80,7 @@ export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
         sessionData,
       });
     }
-  }, [data?.authenticateUser]);
+  }, [data?.authenticateManagedIdentityWithEmailAndPassword]);
 
   useEffect(() => {
     if (userIdent?.jwt) {

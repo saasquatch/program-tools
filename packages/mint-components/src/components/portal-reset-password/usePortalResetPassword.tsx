@@ -10,12 +10,28 @@ import {
 
 const PortalResetPasswordMutation = gql`
   mutation PortalResetPassword($oobCode: String!, $password: String!) {
-    resetPassword(input: { password: $password, oobCode: $oobCode }) {
-      squatchJWT
+    resetManagedIdentityPassword(
+      resetManagedIdentityPasswordInput: {
+        password: $password
+        oobCode: $oobCode
+      }
+    ) {
+      token
+      email
+      emailVerified
       sessionData
     }
   }
 `;
+
+interface PortalResetPasswordMutationResult {
+  resetManagedIdentityPassword: {
+    token: string;
+    email: string;
+    emailVerified: boolean;
+    sessionData: Record<string, any>;
+  };
+}
 
 interface DecodedSquatchJWT {
   user: {
@@ -27,10 +43,11 @@ interface DecodedSquatchJWT {
 }
 
 export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
-  const [{ loading, data, error }, request] = usePortalQuery(
-    PortalResetPasswordMutation,
-    { loading: false }
-  );
+  const [{ loading, data, error }, request] =
+    usePortalQuery<PortalResetPasswordMutationResult>(
+      PortalResetPasswordMutation,
+      { loading: false }
+    );
 
   const urlParams = new URLSearchParams(window.location.search);
   const oobCode = urlParams.get("oobCode");
@@ -60,14 +77,14 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
   };
 
   useEffect(() => {
-    if (data?.resetPassword) {
-      const { resetPassword } = data;
-      const jwt = resetPassword.squatchJWT;
+    if (data?.resetManagedIdentityPassword) {
+      const { resetManagedIdentityPassword } = data;
+      const jwt = resetManagedIdentityPassword.token;
       const { user } = decode<DecodedSquatchJWT>(jwt);
       const sessionData = {
-        ...resetPassword.sessionData,
-        verified: user.verified,
-        email: user.email,
+        ...resetManagedIdentityPassword.sessionData,
+        verified: resetManagedIdentityPassword.emailVerified,
+        email: resetManagedIdentityPassword.email,
       };
       setPersistedUserIdentity({
         jwt,
@@ -78,7 +95,7 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
         setReset(true);
       });
     }
-  }, [data?.resetPassword]);
+  }, [data?.resetManagedIdentityPassword]);
 
   return {
     states: {

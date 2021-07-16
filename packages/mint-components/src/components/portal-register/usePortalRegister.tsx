@@ -14,16 +14,31 @@ const PortalRegisterMutation = gql`
   mutation PortalRegister(
     $email: String!
     $password: String!
-    $formData: JSONObject
+    $formData: RSJsonNode
   ) {
-    registerUser(
-      input: { email: $email, password: $password, formData: $formData }
+    registerManagedIdentityWithEmailAndPassword(
+      registerManagedIdentityWithEmailAndPasswordInput: {
+        email: $email
+        password: $password
+        formData: $formData
+      }
     ) {
-      squatchJWT
+      token
+      email
+      emailVerified
       sessionData
     }
   }
 `;
+
+interface PortalRegisterMutationResult {
+  registerManagedIdentityWithEmailAndPassword: {
+    token: string;
+    email: string;
+    emailVerified: boolean;
+    sessionData: Record<string, any>;
+  };
+}
 
 interface DecodedSquatchJWT {
   user: {
@@ -35,10 +50,10 @@ interface DecodedSquatchJWT {
 }
 
 export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
-  const [{ loading, data, error }, request] = usePortalQuery(
-    PortalRegisterMutation,
-    { loading: false }
-  );
+  const [{ loading, data, error }, request] =
+    usePortalQuery<PortalRegisterMutationResult>(PortalRegisterMutation, {
+      loading: false,
+    });
   const userIdent = useUserIdentity();
   const {
     states: emailVerificationStates,
@@ -66,14 +81,14 @@ export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
   };
 
   useEffect(() => {
-    if (data?.registerUser) {
-      const { registerUser } = data;
-      const jwt = registerUser.squatchJWT;
+    if (data?.registerManagedIdentityWithEmailAndPassword) {
+      const { registerManagedIdentityWithEmailAndPassword } = data;
+      const jwt = registerManagedIdentityWithEmailAndPassword.token;
       const { user } = decode<DecodedSquatchJWT>(jwt);
       const sessionData = {
-        ...registerUser.sessionData,
-        verified: user.verified,
-        email: user.email,
+        ...registerManagedIdentityWithEmailAndPassword.sessionData,
+        verified: registerManagedIdentityWithEmailAndPassword.emailVerified,
+        email: registerManagedIdentityWithEmailAndPassword.email,
       };
       setPersistedUserIdentity({
         jwt,
@@ -82,7 +97,7 @@ export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
         sessionData,
       });
     }
-  }, [data?.registerUser]);
+  }, [data?.registerManagedIdentityWithEmailAndPassword]);
 
   useEffect(() => {
     if (userIdent?.jwt) {

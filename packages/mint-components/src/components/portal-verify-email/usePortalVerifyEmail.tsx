@@ -5,17 +5,25 @@ import { navigation } from "@saasquatch/component-boilerplate";
 
 const PortalVerifyEmailMutation = gql`
   mutation PortalVerifyEmail($oobCode: String!) {
-    verifyEmail(input: { oobCode: $oobCode }) {
+    verifyManagedIdentityEmail(
+      verifyManagedIdentityEmailInput: { oobCode: $oobCode }
+    ) {
       success
     }
   }
 `;
 
+interface PortalVerifyEmailMutationResult {
+  verifyManagedIdentityEmail: {
+    success: boolean;
+  };
+}
+
 export function usePortalVerifyEmail({ nextPage, nextPageUrlParameter }) {
-  const [{ loading, data, error }, request] = usePortalQuery(
-    PortalVerifyEmailMutation,
-    { loading: false }
-  );
+  const [{ loading, data, error }, request] =
+    usePortalQuery<PortalVerifyEmailMutationResult>(PortalVerifyEmailMutation, {
+      loading: false,
+    });
   const urlParams = new URLSearchParams(window.location.search);
   const oobCode = urlParams.get("oobCode");
   urlParams.delete("oobCode");
@@ -37,10 +45,10 @@ export function usePortalVerifyEmail({ nextPage, nextPageUrlParameter }) {
   };
 
   useEffect(() => {
-    if (data?.verifyEmail?.success) {
+    if (data?.verifyManagedIdentityEmail?.success) {
       setVerified(true);
     }
-  }, [data?.verifyEmail?.success]);
+  }, [data?.verifyManagedIdentityEmail?.success]);
 
   return {
     states: {

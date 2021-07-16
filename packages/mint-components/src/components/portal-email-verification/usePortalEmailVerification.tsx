@@ -4,18 +4,30 @@ import { usePortalQuery } from "../portal/usePortalQuery";
 import { useUserIdentity } from "@saasquatch/component-boilerplate";
 
 const PortalEmailVerificationMutation = gql`
-  mutation PortalEmailVerification($email: String!, $urlParams: JSONObject) {
-    requestVerificationEmail(input: { email: $email, urlParams: $urlParams }) {
+  mutation PortalEmailVerification($email: String!, $urlParams: RSJsonNode) {
+    requestManagedIdentityVerificationEmail(
+      requestManagedIdentityVerificationEmailInput: {
+        email: $email
+        urlParams: $urlParams
+      }
+    ) {
       success
     }
   }
 `;
 
+interface PortalEmailVerificationMutationResult {
+  requestManagedIdentityVerificationEmail: {
+    success: boolean;
+  };
+}
+
 export function usePortalEmailVerification({ nextPageUrlParameter }) {
-  const [{ loading, data, error }, request] = usePortalQuery(
-    PortalEmailVerificationMutation,
-    { loading: false }
-  );
+  const [{ loading, data, error }, request] =
+    usePortalQuery<PortalEmailVerificationMutationResult>(
+      PortalEmailVerificationMutation,
+      { loading: false }
+    );
 
   const userIdent = useUserIdentity();
   const email = userIdent?.sessionData?.email;
@@ -34,10 +46,10 @@ export function usePortalEmailVerification({ nextPageUrlParameter }) {
   };
 
   useEffect(() => {
-    if (data?.requestVerificationEmail?.success) {
+    if (data?.requestManagedIdentityVerificationEmail?.success) {
       setSuccess(true);
     }
-  }, [data?.requestVerificationEmail?.success]);
+  }, [data?.requestManagedIdentityVerificationEmail?.success]);
 
   return {
     states: {
