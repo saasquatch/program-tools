@@ -12,7 +12,7 @@ export class ReferralTableDateColumn {
   @State()
   ignored = true;
 
-  @Prop() dateLabel: string = "Date Converted";
+  @Prop() columnTitle: string = "Date Converted";
   @Prop() dateShown: string = "dateConverted";
 
   constructor() {
@@ -31,7 +31,7 @@ export class ReferralTableDateColumn {
 
   @Method()
   async renderLabel() {
-    return this.dateLabel;
+    return this.columnTitle;
   }
 
   render() {

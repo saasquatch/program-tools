@@ -15,6 +15,7 @@ export class ReferralTableUserColumn {
   @State()
   ignored = true;
 
+  @Prop() columnTitle: string = "Customer";
   /**
    * @uiName Name displayed for anonymous users
    */
@@ -42,7 +43,7 @@ export class ReferralTableUserColumn {
 
   @Method()
   async renderLabel() {
-    return "Customer";
+    return this.columnTitle;
   }
 
   render() {

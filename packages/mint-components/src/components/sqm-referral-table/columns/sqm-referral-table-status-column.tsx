@@ -1,4 +1,4 @@
-import { Component, h, Method, Host, State } from "@stencil/core";
+import { Component, h, Method, Host, State, Prop } from "@stencil/core";
 
 @Component({
   tag: "sqm-referral-table-status-column",
@@ -8,6 +8,8 @@ import { Component, h, Method, Host, State } from "@stencil/core";
 export class ReferralTableStatusColumn {
   @State()
   ignored = true;
+
+  @Prop() columnTitle: string = "Status";
 
   @Method()
   async renderCell(data) {
@@ -21,7 +23,7 @@ export class ReferralTableStatusColumn {
 
   @Method()
   async renderLabel() {
-    return "Status";
+    return this.columnTitle;
   }
 
   render() {

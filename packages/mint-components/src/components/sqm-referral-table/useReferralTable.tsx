@@ -182,19 +182,22 @@ export function useReferralTable(props: ReferralTable) {
   //TODO: sort out this mess of Promise.all's (but it works)
   async function getComponentData() {
     // get the column titles (renderLabel is asynchronous)
-    const columnsPromise = components?.map((c: any) => {
-      console.log(
-        { column: c },
-        c.hasOwnProperty("renderLabel"),
-        "renderLabel" in c
-      );
+
+    const columnsPromise = components?.map(async (c: any) => {
+      const tag = c.tagName.toLowerCase();
+      console.log({
+        column: c,
+        tag,
+      });
+
+      // await customElements.whenDefined(tag);
+
+      console.log(c.hasOwnProperty("renderLabel"), "renderLabel" in c);
       return c.renderLabel();
     });
 
     console.log({ columnsPromise });
-    const columns = await Promise.all(columnsPromise);
 
-    console.log({ columns });
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r) => {
       const rowsPromise = components?.map(async (c: any) => {
@@ -207,6 +210,8 @@ export function useReferralTable(props: ReferralTable) {
       // remove tr's, just return array
       return rows;
     });
+
+    const columns = await Promise.all(columnsPromise);
     const rows = await Promise.all(cellsPromise);
 
     console.log({ columns, data, rows, cellsPromise });

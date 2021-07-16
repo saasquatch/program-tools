@@ -174,7 +174,7 @@ export namespace Components {
         "innerTemplate": string;
     }
     interface SqmReferralTableColumn {
-        "columnLabel": string;
+        "columnTitle": string;
         "renderCell": (_: any, host: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
@@ -182,7 +182,7 @@ export namespace Components {
         "date": number;
     }
     interface SqmReferralTableDateColumn {
-        "dateLabel": string;
+        "columnTitle": string;
         "dateShown": string;
         "renderCell": (data: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
@@ -191,6 +191,7 @@ export namespace Components {
         "reward": string;
     }
     interface SqmReferralTableRewardsColumn {
+        "columnTitle": string;
         "renderCell": (data: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
@@ -198,6 +199,7 @@ export namespace Components {
         "statusText": string;
     }
     interface SqmReferralTableStatusColumn {
+        "columnTitle": string;
         "renderCell": (data: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
@@ -209,6 +211,7 @@ export namespace Components {
           * @uiName Name displayed for anonymous users
          */
         "anonymousUser": string;
+        "columnTitle": string;
         /**
           * @uiName Name displayed for deleted users
          */
@@ -709,24 +712,26 @@ declare namespace LocalJSX {
         "innerTemplate"?: string;
     }
     interface SqmReferralTableColumn {
-        "columnLabel"?: string;
+        "columnTitle"?: string;
     }
     interface SqmReferralTableDateCell {
         "date"?: number;
     }
     interface SqmReferralTableDateColumn {
-        "dateLabel"?: string;
+        "columnTitle"?: string;
         "dateShown"?: string;
     }
     interface SqmReferralTableRewardsCell {
         "reward"?: string;
     }
     interface SqmReferralTableRewardsColumn {
+        "columnTitle"?: string;
     }
     interface SqmReferralTableStatusCell {
         "statusText"?: string;
     }
     interface SqmReferralTableStatusColumn {
+        "columnTitle"?: string;
     }
     interface SqmReferralTableUserCell {
         "name"?: string;
@@ -736,6 +741,7 @@ declare namespace LocalJSX {
           * @uiName Name displayed for anonymous users
          */
         "anonymousUser"?: string;
+        "columnTitle"?: string;
         /**
           * @uiName Name displayed for deleted users
          */

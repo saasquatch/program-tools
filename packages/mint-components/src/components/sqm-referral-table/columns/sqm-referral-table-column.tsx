@@ -9,7 +9,7 @@ export class ReferralTableColumn {
   @State()
   ignored = true;
 
-  @Prop() columnLabel: string;
+  @Prop() columnTitle: string;
 
   @Method()
   async renderCell(_, host) {
@@ -23,7 +23,7 @@ export class ReferralTableColumn {
 
   @Method()
   async renderLabel() {
-    return this.columnLabel;
+    return Promise.resolve(this.columnTitle);
   }
 
   render() {
