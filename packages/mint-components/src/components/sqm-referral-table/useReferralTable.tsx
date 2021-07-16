@@ -1,12 +1,11 @@
 import {
   usePaginatedQuery,
-  useProgramId,
+  useProgramId
 } from "@saasquatch/component-boilerplate";
-import { useHost, useTick } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { Host, h, VNode } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import gql from "graphql-tag";
-import { RENDER_EVENT, useRerenderListener } from "./re-render";
+import { useRerenderListener } from "./re-render";
 import { ReferralTable } from "./sqm-referral-table";
 import { ReferralTableViewProps } from "./sqm-referral-table-view";
 import { useChildElements } from "./useChildElements";
@@ -149,7 +148,7 @@ export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
   // TODO: Let the referral cells handle this
   const data = referralData?.data;
 
-  // TODO: needs to include reward data too
+  // TODO: Demo Hook - needs to include reward data too
   // const data2 = {
   //   rows: [
   //     {
@@ -199,7 +198,7 @@ export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
     getComponentData();
   }, [referralData, components]);
 
-  // TODO: Loading state
+  // TODO: Loading state - while initial rendering rows?
   // TODO: Empty state
   return {
     states: {
