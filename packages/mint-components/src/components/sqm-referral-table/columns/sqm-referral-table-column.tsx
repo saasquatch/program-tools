@@ -1,3 +1,4 @@
+import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, getElement, h, Host, Method, Prop } from "@stencil/core";
 import { useRequestRerender } from "../re-render";
 import { ReferralTableColumn } from "./ReferralTableColumn";
@@ -10,6 +11,11 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
 export class ReferralTableGenericColumn implements ReferralTableColumn{
   @Prop() columnTitle: string;
 
+  constructor() {
+    withHooks(this);
+  }
+  disconnectedCallback() {}
+  
   @Method()
   async renderCell(_:Referral) {
     // this is insecure, <script> tags can be added
