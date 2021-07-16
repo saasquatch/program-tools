@@ -18,6 +18,8 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
   return {
     props: {
       statvalue: "12345",
+      flexReverse: false,
+      alignment: "center",
     },
     label: label ?? "Demo Label",
   };

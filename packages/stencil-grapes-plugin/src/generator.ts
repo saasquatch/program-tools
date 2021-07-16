@@ -90,6 +90,7 @@ function convertToGrapesJSMeta(docs: JsonDocs): GrapesJSModel[] {
             "ui:widget": tagValue(prop.docsTags, "uiWidget"),
             "ui:name": uiName(prop),
             "ui:help": prop.docs,
+            "ui:options": jsonTagValue(prop, "uiOptions"),
           },
         };
       },

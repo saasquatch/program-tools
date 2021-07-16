@@ -1,4 +1,7 @@
-import { h, Host, VNode } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
+import jss from "jss";
+import preset from "jss-preset-default";
+import { HostBlock } from "../../global/mixins";
 
 export interface ShareButtonViewProps {
   medium:
@@ -31,18 +34,29 @@ export interface ShareButtonViewProps {
   icon?: string;
   hideicon?: boolean;
   iconslot?: "prefix" | "suffix";
-
   onClick?: () => void;
-
   hide?: boolean;
 }
 
+const style = {
+  HostBlock: HostBlock,
+  buttonStyle: {
+    display: "block",
+  },
+};
+
+jss.setup(preset());
+const sheet = jss.createStyleSheet(style);
+const styleString = sheet.toString();
+
 export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   return props.hide ? (
-    <Host style={{ display: "none" }}></Host>
+    <div style={{ display: "none" }}></div>
   ) : (
-    <Host>
+    <div>
+      <style type="text/css">{styleString}</style>
       <sl-button
+        class={sheet.classes.buttonStyle}
         loading={props.loading}
         disabled={props.disabled}
         pill={props.pill}
@@ -59,6 +73,6 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
         )}
         {children}
       </sl-button>
-    </Host>
+    </div>
   );
 }

@@ -15,6 +15,16 @@ import * as UseShareButton from "../../stories/UseShareButton.stories";
 import * as UseBigStat from "../../stories/UseBigStat.stories";
 import * as UseEditProfile from "../../stories/UseEditProfile.stories";
 import * as FormMessage from "../../stories/FormMessage.stories";
+import * as NewPortal from "../../stories/NewPortal.stories";
+import * as SidebarItem from "../../stories/SidebarItem.stories";
+import * as NavigationSidebar from "../../stories/NavigationSidebar.stories";
+import * as PortalLogin from "../../stories/PortalLogin.stories";
+import * as PortalRegister from "../../stories/PortalRegister.stories";
+import * as PortalForgotPassword from "../../stories/PortalForgotPassword.stories";
+import * as PortalEmailVerification from "../../stories/PortalEmailVerification.stories";
+import * as PortalResetPassword from "../../stories/PortalResetPassword.stories";
+import * as PortalVerifyEmail from "../../stories/PortalVerifyEmail.stories";
+import * as AssetCard from "../../stories/AssetCard.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -34,6 +44,16 @@ const stories = [
   PortalFrame,
   EditProfile,
   FormMessage,
+  NewPortal,
+  SidebarItem,
+  NavigationSidebar,
+  PortalLogin,
+  PortalRegister,
+  PortalForgotPassword,
+  PortalEmailVerification,
+  PortalResetPassword,
+  PortalVerifyEmail,
+  AssetCard,
 ];
 
 /**

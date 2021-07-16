@@ -4,6 +4,7 @@ import { BigStatView } from "./sqm-big-stat-view";
 import { useBigStat } from "./useBigStat";
 import { useDemoBigStat } from "./useDemoBigStat";
 import { isDemo } from "@saasquatch/component-boilerplate";
+import { EnumValueNode } from "graphql";
 
 /**
  *
@@ -12,7 +13,6 @@ import { isDemo } from "@saasquatch/component-boilerplate";
  */
 @Component({
   tag: "sqm-big-stat",
-  styleUrl: "sqm-big-stat.scss",
   shadow: true,
 })
 export class BigStat {
@@ -31,6 +31,15 @@ export class BigStat {
    * @uiOptions {"showGoals": true}
    */
   @Prop() statType: string;
+
+  /**
+   * @uiName Flex Reverse - controls the order of the stat value & description column
+   */
+  @Prop() flexReverse?: boolean = false;
+  /**
+   * @uiName Alignment - controls the alignment of the flexbox
+   */
+  @Prop() alignment?: "left" | "right" | "center";
 
   @State()
   ignored = true;
