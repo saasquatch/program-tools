@@ -1,8 +1,8 @@
-import { h } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 
 export interface ReferralTableViewProps {
-  columns: Element[];
-  rows: Element[][];
+  columns: VNode[];
+  rows: VNode[][];
 }
 
 export function ReferralTableView(props: ReferralTableViewProps) {

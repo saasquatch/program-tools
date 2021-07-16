@@ -15,12 +15,11 @@ function getDefaultColumns() {
 
 export function useChildElements() {
   const host = useHost();
-  const children = Array.from(host.children);
   // const children = Array.from(host.children);
   console.log(getDefaultColumns());
 
   // TODO: default elements are created without their @Methods
-  const initialState = host.children.length ? children : getDefaultColumns();
+  const initialState = host.children.length ? Array.from(host.children) : getDefaultColumns();
   const [childElements, setChildElements] = useState(initialState);
 
   useEffect(() => {
