@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { SidebarItemView } from "../components/sqm-sidebar-item/sqm-sidebar-item-view";
+import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 
 export default {
   title: "Sidebar Item",
@@ -18,7 +18,7 @@ export const InactiveItem = () => {
       onClick: (e: MouseEvent) => console.log(e),
     },
   };
-  return <SidebarItemView {...props} />;
+  return <NavigationSidebarItemView {...props} />;
 };
 
 export const ActiveItem = () => {
@@ -34,5 +34,5 @@ export const ActiveItem = () => {
       onClick: (e: MouseEvent) => console.log(e),
     },
   };
-  return <SidebarItemView {...props} />;
+  return <NavigationSidebarItemView {...props} />;
 };

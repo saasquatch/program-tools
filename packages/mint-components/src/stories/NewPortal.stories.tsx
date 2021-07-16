@@ -6,11 +6,11 @@ import jss from "jss";
 import preset from "jss-preset-default";
 import { gap } from "../global/mixins";
 import { NavigationSidebarView } from "../components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
-import { SidebarItemView } from "../components/sqm-sidebar-item/sqm-sidebar-item-view";
+import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { TextView } from "../components/sqm-text/sqm-text-view";
-import { PortalSectionView } from "../components/sqm-portal-section/sqm-portal-section-view";
+import { PortalSectionView } from "../components/sqm-titled-section/sqm-portal-section-view";
 import { PortalContainerView } from "../components/sqm-portal-container/sqm-portal-container-view";
-import { PortalLayoutView } from "../components/sqm-portal-layout/sqm-portal-layout-view";
+import { DividedLayoutView } from "../components/sqm-divided-layout/sqm-divided-layout-view";
 import { StatContainerView } from "../components/sqm-stat-container/sqm-stat-container-view";
 import { PortalProfileView } from "../components/sqm-portal-profile/sqm-portal-profile-view";
 import { PortalChangePasswordView } from "../components/sqm-portal-change-password/sqm-portal-change-password-view";
@@ -148,8 +148,8 @@ const Sidebar = () => {
   return (
     <div class={sheet.classes.SidebarContainer}>
       <NavigationSidebarView {...barProps}>
-        <SidebarItemView {...item1Props} />
-        <SidebarItemView {...item2Props} />
+        <NavigationSidebarItemView {...item1Props} />
+        <NavigationSidebarItemView {...item2Props} />
       </NavigationSidebarView>
     </div>
   );
@@ -215,10 +215,10 @@ export const Dashboard = () => {
   };
 
   return (
-    <PortalLayoutView {...{ direction: "row" }}>
+    <DividedLayoutView {...{ direction: "row" }}>
       <style type="text/css">{styleString}</style>
       <Sidebar />
-      <PortalLayoutView {...{ direction: "column" }}>
+      <DividedLayoutView {...{ direction: "column" }}>
         <PortalContainerView
           {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
         >
@@ -292,30 +292,30 @@ export const Dashboard = () => {
             }}
           ></PortalSectionView>
         </PortalContainerView>
-      </PortalLayoutView>
-    </PortalLayoutView>
+      </DividedLayoutView>
+    </DividedLayoutView>
   );
 };
 
 export const EditProfile = () => {
   return (
-    <PortalLayoutView {...{ direction: "row" }}>
+    <DividedLayoutView {...{ direction: "row" }}>
       <style type="text/css">{styleString}</style>
       <Sidebar />
-      <PortalLayoutView {...{ direction: "column" }}>
+      <DividedLayoutView {...{ direction: "column" }}>
         <PortalProfileView />
         <PortalChangePasswordView {...{ states: { open: true } }} />
-      </PortalLayoutView>
-    </PortalLayoutView>
+      </DividedLayoutView>
+    </DividedLayoutView>
   );
 };
 
 export const Commissions = () => {
   return (
-    <PortalLayoutView {...{ direction: "row" }}>
+    <DividedLayoutView {...{ direction: "row" }}>
       <style type="text/css">{styleString}</style>
       <Sidebar />
-      <PortalLayoutView {...{ direction: "column" }}>
+      <DividedLayoutView {...{ direction: "column" }}>
         <PortalContainerView
           {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
         >
@@ -344,17 +344,17 @@ export const Commissions = () => {
             <BigStatView {...{ statvalue: "$ 20" }}>Redeemed</BigStatView>
           </StatContainerView>
         </PortalContainerView>
-      </PortalLayoutView>
-    </PortalLayoutView>
+      </DividedLayoutView>
+    </DividedLayoutView>
   );
 };
 
 export const Activity = () => {
   return (
-    <PortalLayoutView {...{ direction: "row" }}>
+    <DividedLayoutView {...{ direction: "row" }}>
       <style type="text/css">{styleString}</style>
       <Sidebar />
-      <PortalLayoutView {...{ direction: "column" }}>
+      <DividedLayoutView {...{ direction: "column" }}>
         <PortalContainerView
           {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
         >
@@ -412,7 +412,7 @@ export const Activity = () => {
             ),
           }}
         ></PortalSectionView>
-      </PortalLayoutView>
-    </PortalLayoutView>
+      </DividedLayoutView>
+    </DividedLayoutView>
   );
 };

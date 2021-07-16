@@ -5,7 +5,7 @@ import { AssetCardView, AssetCardViewProps } from "./sqm-asset-card-view";
 import { useAssetCard } from "./useAssetCard";
 
 /**
- * @uiName Marketing Banner
+ * @uiName Asset Card
  */
 @Component({
   tag: "sqm-asset-card",

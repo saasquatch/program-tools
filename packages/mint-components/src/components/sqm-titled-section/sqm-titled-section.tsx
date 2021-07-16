@@ -1,19 +1,18 @@
-import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { PortalSectionView } from "./sqm-portal-section-view";
-import { getProps } from "../../utils/utils";
+import { Component, h, Prop } from "@stencil/core";
 import { Spacing } from "../../global/mixins";
+import { getProps } from "../../utils/utils";
+import { PortalSectionView } from "./sqm-portal-section-view";
 
 /**
- * @uiName Portal Section
+ * @uiName Section (with title)
  */
 @Component({
-  tag: "sqm-portal-section",
+  tag: "sqm-titled-section",
   shadow: true,
 })
-export class PortalSection {
-  @State()
-  ignored = true;
+export class TitledSection {
+  @Prop() label: string;
 
   /**@uiName Label margin style */
   @Prop() labelMargin: Spacing = "small";
@@ -26,7 +25,7 @@ export class PortalSection {
   disconnectedCallback() {}
 
   render() {
-    const label = <slot name="label" />;
+    const label = <slot name="label">{this.label}</slot>;
     const content = <slot name="content" />;
     return <PortalSectionView {...{ ...getProps(this), label, content }} />;
   }
