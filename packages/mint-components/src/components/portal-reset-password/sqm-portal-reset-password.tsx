@@ -43,12 +43,18 @@ function usePortalResetPasswordDemo({
   nextPageUrlParameter,
 }): PortalResetPasswordViewProps {
   return {
-    states: { error: "", loading: false, reset: false },
+    states: {
+      error: "",
+      loading: false,
+      oobCodeValidating: false,
+      oobCodeValid: true,
+    },
     callbacks: {
       submit: async (_event) => {
         nextPage;
         nextPageUrlParameter;
       },
+      continueCb: (_event) => {},
     },
   };
 }

@@ -1,12 +1,28 @@
 import gql from "graphql-tag";
 import decode from "jwt-decode";
 import jsonpointer from "jsonpointer";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useEffect } from "@saasquatch/universal-hooks";
 import { usePortalQuery } from "../portal/usePortalQuery";
 import {
   navigation,
   setPersistedUserIdentity,
 } from "@saasquatch/component-boilerplate";
+
+const VerifyManagedIdentityPasswordResetCodeMutation = gql`
+  mutation VerifyPasswordResetCode($oobCode: String!) {
+    verifyManagedIdentityPasswordResetCode(
+      verifyManagedIdentityPasswordResetCodeInput: { oobCode: $oobCode }
+    ) {
+      success
+    }
+  }
+`;
+
+interface VerifyManagedIdentityPasswordResetCodeMutationResult {
+  verifyManagedIdentityPasswordResetCode: {
+    success: boolean;
+  };
+}
 
 const PortalResetPasswordMutation = gql`
   mutation PortalResetPassword($oobCode: String!, $password: String!) {
@@ -43,7 +59,13 @@ interface DecodedSquatchJWT {
 }
 
 export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
-  const [{ loading, data, error }, request] =
+  const [verifyPasswordResetCodeState, verifyPasswordResetCode] =
+    usePortalQuery<VerifyManagedIdentityPasswordResetCodeMutationResult>(
+      VerifyManagedIdentityPasswordResetCodeMutation,
+      { loading: true }
+    );
+
+  const [resetPasswordState, resetPassword] =
     usePortalQuery<PortalResetPasswordMutationResult>(
       PortalResetPasswordMutation,
       { loading: false }
@@ -56,16 +78,7 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
   const nextPageOverride = urlParams.get(nextPageUrlParameter);
   urlParams.delete(nextPageUrlParameter);
 
-  const [reset, setReset] = useState(false);
-
   const submit = async (event: any) => {
-    if (reset) {
-      return navigation.push({
-        pathname: nextPageOverride || nextPage,
-        search: urlParams.toString(),
-      });
-    }
-
     let formData = event.detail.formData;
 
     formData?.forEach((value, key) => {
@@ -73,12 +86,19 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
     });
     const variables = { oobCode, password: formData.password };
 
-    await request(variables);
+    await resetPassword(variables);
+  };
+
+  const continueCb = (event: any) => {
+    navigation.push({
+      pathname: "/",
+      search: urlParams.toString(),
+    });
   };
 
   useEffect(() => {
-    if (data?.resetManagedIdentityPassword) {
-      const { resetManagedIdentityPassword } = data;
+    if (resetPasswordState.data?.resetManagedIdentityPassword) {
+      const { resetManagedIdentityPassword } = resetPasswordState.data;
       const jwt = resetManagedIdentityPassword.token;
       const { user } = decode<DecodedSquatchJWT>(jwt);
       const sessionData = {
@@ -92,17 +112,27 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
         accountId: user.accountId,
         sessionData,
       }).then(() => {
-        setReset(true);
+        navigation.push({
+          pathname: nextPageOverride || nextPage,
+          search: urlParams.toString(),
+        });
       });
     }
-  }, [data?.resetManagedIdentityPassword]);
+  }, [resetPasswordState.data?.resetManagedIdentityPassword]);
+
+  useEffect(() => {
+    verifyPasswordResetCode({ oobCode });
+  }, [oobCode]);
 
   return {
     states: {
-      loading,
-      error,
-      reset,
+      loading: resetPasswordState.loading,
+      error: resetPasswordState.error,
+      oobCodeValidating: verifyPasswordResetCodeState.loading,
+      oobCodeValid:
+        verifyPasswordResetCodeState.data
+          ?.verifyManagedIdentityPasswordResetCode.success,
     },
-    callbacks: { submit },
+    callbacks: { submit, continueCb },
   };
 }

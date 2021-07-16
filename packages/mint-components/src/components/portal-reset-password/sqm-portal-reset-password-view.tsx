@@ -4,15 +4,43 @@ export interface PortalResetPasswordViewProps {
   states: {
     error: string;
     loading: boolean;
-    reset: boolean;
+    oobCodeValidating: boolean;
+    oobCodeValid?: boolean;
   };
   callbacks: {
     submit: (node: any) => void;
+    continueCb: (node: any) => void;
   };
 }
 
 export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
   const { states, callbacks } = props;
+
+  if (states.oobCodeValidating) {
+    return <div />;
+  }
+
+  if (!states.oobCodeValid) {
+    return (
+      <div class="Wrapper Column">
+        <sqm-form-message type="error" exportparts="erroralert-icon">
+          <div part="erroralert-text">
+            The password reset code is invalid or has expired, please try again.
+          </div>
+        </sqm-form-message>
+        <div>
+          <sl-button
+            onClick={callbacks.continueCb}
+            exportparts="base: primarybutton-base"
+            type="primary"
+          >
+            Continue
+          </sl-button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div class="Wrapper Column">
       <sl-form class="Column" onSl-submit={callbacks.submit}>
@@ -21,19 +49,15 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
-        <sl-title>
-          {states.reset ? "Password Reset" : "Reset your password"}
-        </sl-title>
-        {!states.reset && (
-          <sl-input
-            exportparts="label: input-label"
-            type="password"
-            name="/password"
-            label="Password"
-            disabled={states.loading}
-            required
-          ></sl-input>
-        )}
+        <sl-title>Reset your password</sl-title>
+        <sl-input
+          exportparts="label: input-label"
+          type="password"
+          name="/password"
+          label="Password"
+          disabled={states.loading}
+          required
+        ></sl-input>
         <div>
           <sl-button
             submit
@@ -41,7 +65,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
             exportparts="base: primarybutton-base"
             type="primary"
           >
-            {states.reset ? "Continue" : "Reset Password"}
+            Reset Password
           </sl-button>
         </div>
       </sl-form>
