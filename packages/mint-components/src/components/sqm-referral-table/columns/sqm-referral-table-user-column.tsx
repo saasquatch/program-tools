@@ -1,20 +1,13 @@
-import { Component, h, Method, Host, State, Prop } from "@stencil/core";
-
-// interface User {
-//   firstName: string;
-//   lastName: string;
-//   email: string;
-// }
+import { Component, h, Host, Method, Prop } from "@stencil/core";
+import { useRequestRerender } from "../re-render";
+import { ReferralTableColumn } from "./ReferralTableColumn";
 
 @Component({
   tag: "sqm-referral-table-user-column",
   styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
-export class ReferralTableUserColumn {
-  @State()
-  ignored = true;
-
+export class ReferralTableUserColumn implements ReferralTableColumn {
   @Prop() columnTitle: string = "Customer";
   /**
    * @uiName Name displayed for anonymous users
@@ -26,14 +19,14 @@ export class ReferralTableUserColumn {
   @Prop() deletedUser: string = "Deleted User";
 
   @Method()
-  async renderCell(data) {
+  async renderCell(data: Referral) {
     let name: string;
     if (!data) {
       name = this.deletedUser;
-    } else if (!data?.firstName && !data.lastName) {
+    } else if (!data?.referredUser?.firstName && !data.referredUser?.lastName) {
       name = this.anonymousUser;
     } else {
-      name = `${data?.firstName} ${data?.lastName}`;
+      name = `${data?.referredUser?.firstName} ${data?.referredUser?.lastName}`;
     }
 
     return (
@@ -47,6 +40,11 @@ export class ReferralTableUserColumn {
   }
 
   render() {
+    useRequestRerender([
+      this.deletedUser,
+      this.anonymousUser,
+      this.columnTitle,
+    ]);
     return <Host style={{ display: "none" }} />;
   }
 }

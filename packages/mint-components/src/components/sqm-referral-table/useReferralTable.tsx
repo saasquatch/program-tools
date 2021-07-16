@@ -1,8 +1,12 @@
-import { usePaginatedQuery } from "@saasquatch/component-boilerplate";
+import {
+  usePaginatedQuery,
+  useProgramId,
+} from "@saasquatch/component-boilerplate";
 import { useHost, useTick } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { Host, h, VNode } from "@stencil/core";
 import gql from "graphql-tag";
+import { RENDER_EVENT, useRerenderListener } from "./re-render";
 import { ReferralTable } from "./sqm-referral-table";
 import { ReferralTableViewProps } from "./sqm-referral-table-view";
 import { useChildElements } from "./useChildElements";
@@ -117,17 +121,12 @@ const GET_REFERRAL_DATA = gql`
   }
 `;
 
-// interface ReferralTableProps {
-//   renderCell(data: Referral): SafeHTML | VNode;
-//   renderInCell(el: HTMLElement, data: Referral): SafeHTML | VNode;
-//   renderLabel(): string;
-// }
-
-// interface SafeHTML {
-//   safeHTML: string;
-// }
-
 export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
+  const programIdContext = useProgramId();
+  // Default to context, overriden by props
+  const programId = props.programId ?? programIdContext;
+  // If no program ID, shows all programs
+  const filter = programId ? { programId_eq: programId } : {};
   const {
     envelope: referralData,
     states,
@@ -139,25 +138,16 @@ export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
       limit: 5,
       offset: 0,
     },
-    { filter: { programId_eq: props.programId } }
+    { filter }
   );
-  const host = useHost();
-  const [tick, rerender] = useTick();
-  const [content, setContent] = useState<ReferralTableViewProps["elements"]>(
-    <Host style={{ display: "none" }} />
-  );
+  useRerenderListener();
+  const [content, setContent] = useState<ReferralTableViewProps["elements"]>({
+    columns: [],
+    rows: [],
+  });
 
-  console.log({ referralData });
-
-  const data = referralData?.data?.map((referral) => ({
-    // todo: real status grabbing function
-    status: !!referral.dateConverted ? "Converted" : "In Progress",
-    firstName: referral.referredUser?.firstName,
-    lastName: referral.referredUser?.lastName,
-    prettyValue: referral.rewards?.[0]?.prettyValue,
-    dateConverted: referral.dateConverted,
-    dateStarted: referral.dateReferralStarted,
-  }));
+  // TODO: Let the referral cells handle this
+  const data = referralData?.data;
 
   // TODO: needs to include reward data too
   // const data2 = {
@@ -181,24 +171,12 @@ export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
 
   const components = useChildElements();
 
-  console.log({ components });
-
-  useEffect(() => {
-    host.addEventListener("attributeUpdated", rerender);
-    return () => {
-      host.removeEventListener("attributeUpdated", rerender);
-    };
-  }, []);
-
-  //TODO: sort out this mess of Promise.all's (but it works)
   async function getComponentData() {
     // get the column titles (renderLabel is asynchronous)
 
     const columnsPromise = components?.map(async (c: any) =>
       tryMethod(c, () => c.renderLabel())
     );
-
-    console.log({ columnsPromise });
 
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r) => {
@@ -212,8 +190,6 @@ export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
     const columns = await Promise.all(columnsPromise);
     const rows = await Promise.all(cellsPromise);
 
-    console.log({ columns, data, rows, cellsPromise });
-
     // Set the content to render
     setContent({ columns, rows });
   }
@@ -221,7 +197,10 @@ export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
   useEffect(() => {
     if (!referralData) return;
     getComponentData();
-  }, [referralData, components, tick]);
+  }, [referralData, components]);
+
+  // TODO: Loading state
+  // TODO: Empty state
   return {
     states: {
       hasNext: states.currentPage < states.pageCount - 1,

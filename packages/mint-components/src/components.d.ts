@@ -251,6 +251,10 @@ export namespace Components {
         "nextPageUrlParameter": string;
     }
     interface SqmReferralTable {
+        /**
+          * Filters to only show referrals in this program. Will default to filtering by the program context where  this table lives. If no program ID is set or provided by context, then shows all referrals from all programs.
+          * @uiName Program
+         */
         "programId": string;
     }
     interface SqmReferralTableCell {
@@ -258,7 +262,7 @@ export namespace Components {
     }
     interface SqmReferralTableColumn {
         "columnTitle": string;
-        "renderCell": (_: any, host: any) => Promise<any>;
+        "renderCell": (_: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableDateCell {
@@ -267,7 +271,7 @@ export namespace Components {
     interface SqmReferralTableDateColumn {
         "columnTitle": string;
         "dateShown": string;
-        "renderCell": (data: any) => Promise<any>;
+        "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableRewardsCell {
@@ -275,7 +279,7 @@ export namespace Components {
     }
     interface SqmReferralTableRewardsColumn {
         "columnTitle": string;
-        "renderCell": (data: any) => Promise<any>;
+        "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableStatusCell {
@@ -283,7 +287,7 @@ export namespace Components {
     }
     interface SqmReferralTableStatusColumn {
         "columnTitle": string;
-        "renderCell": (data: any) => Promise<any>;
+        "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableUserCell {
@@ -299,7 +303,7 @@ export namespace Components {
           * @uiName Name displayed for deleted users
          */
         "deletedUser": string;
-        "renderCell": (data: any) => Promise<any>;
+        "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRoute {
@@ -974,6 +978,10 @@ declare namespace LocalJSX {
         "nextPageUrlParameter"?: string;
     }
     interface SqmReferralTable {
+        /**
+          * Filters to only show referrals in this program. Will default to filtering by the program context where  this table lives. If no program ID is set or provided by context, then shows all referrals from all programs.
+          * @uiName Program
+         */
         "programId"?: string;
     }
     interface SqmReferralTableCell {
