@@ -194,25 +194,17 @@ export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
   async function getComponentData() {
     // get the column titles (renderLabel is asynchronous)
 
-    const columnsPromise = components?.map(async (c: any) => {
-      return tryMethod(c, () => c.renderLabel());
-    });
+    const columnsPromise = components?.map(async (c: any) =>
+      tryMethod(c, () => c.renderLabel())
+    );
 
     console.log({ columnsPromise });
 
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r) => {
-      const rowsPromise = components?.map(async (c: any) => {
-        const tag = c.tagName.toLowerCase();
-        console.log({
-          column: c,
-          tag,
-        });
-        await customElements.whenDefined(tag);
-
-        const cell = await c.renderCell(r, c);
-        return cell;
-      });
+      const rowsPromise = components?.map(async (c: any) =>
+        tryMethod(c, () => c.renderCell(r, c))
+      );
       const rows = await Promise.all(rowsPromise);
       return rows;
     });
@@ -267,6 +259,7 @@ async function tryMethod(
   } catch (e) {
     // renderLabel did not return a promise, so this method probably doesn't exist
     // therefore, we IGNORE the label
+    console.error("label promise failed", e);
     return <span />;
   }
   try {
