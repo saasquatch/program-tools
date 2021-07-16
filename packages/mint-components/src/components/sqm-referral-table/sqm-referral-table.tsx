@@ -23,10 +23,14 @@ export class ReferralTable {
   disconnectedCallback() {}
 
   render() {
-    const { columns, rows } = useReferralTable(this);
+    const { states, callbacks, elements } = useReferralTable(this);
 
     return (
-      <ReferralTableView columns={columns} rows={rows}></ReferralTableView>
+      <ReferralTableView
+        states={states}
+        callbacks={callbacks}
+        elements={elements}
+      ></ReferralTableView>
     );
   }
 }

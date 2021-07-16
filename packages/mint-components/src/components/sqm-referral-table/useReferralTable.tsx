@@ -1,4 +1,4 @@
-import { useQuery } from "@saasquatch/component-boilerplate";
+import { usePaginatedQuery } from "@saasquatch/component-boilerplate";
 import { useHost, useTick } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { Host, h } from "@stencil/core";
@@ -127,18 +127,26 @@ const GET_REFERRAL_DATA = gql`
 // }
 
 export function useReferralTable(props: ReferralTable) {
-  const { data: referralData } = useQuery(GET_REFERRAL_DATA, {
-    filter: { programId_eq: props.programId },
-    limit: 10,
-    offset: 0,
-  });
+  const {
+    envelope: referralData,
+    states,
+    callbacks,
+  } = usePaginatedQuery<Referral>(
+    GET_REFERRAL_DATA,
+    (data) => data?.viewer?.referrals,
+    {
+      limit: 5,
+      offset: 0,
+    },
+    { filter: { programId_eq: props.programId } }
+  );
   const host = useHost();
   const [tick, rerender] = useTick();
   const [content, setContent] = useState(<Host style={{ display: "none" }} />);
 
   console.log({ referralData });
 
-  const data = referralData?.viewer?.referrals?.data?.map((referral) => ({
+  const data = referralData?.data?.map((referral) => ({
     // todo: real status grabbing function
     status: !!referral.dateConverted ? "Converted" : "In Progress",
     firstName: referral.referredUser?.firstName,
@@ -202,12 +210,9 @@ export function useReferralTable(props: ReferralTable) {
     const cellsPromise = data?.map(async (r) => {
       const rowsPromise = components?.map(async (c: any) => {
         const cell = await c.renderCell(r, c);
-        // remove td's, just return array
         return cell;
       });
       const rows = await Promise.all(rowsPromise);
-
-      // remove tr's, just return array
       return rows;
     });
 
@@ -224,5 +229,19 @@ export function useReferralTable(props: ReferralTable) {
     if (!referralData) return;
     getComponentData();
   }, [referralData, components, tick]);
-  return content;
+  return {
+    states: {
+      hasNext: states.currentPage < states.pageCount - 1,
+      hasPrev: states.currentPage > 0,
+      loading: states.loading,
+    },
+    elements: {
+      columns: content.columns,
+      rows: content.rows,
+    },
+    callbacks: {
+      nextPage: () => callbacks.setCurrentPage(states.currentPage + 1),
+      prevPage: () => callbacks.setCurrentPage(states.currentPage - 1),
+    },
+  };
 }

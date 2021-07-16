@@ -1,12 +1,21 @@
 import { h } from "@stencil/core";
 
 export interface ReferralTableViewProps {
-  columns: Element[];
-  rows: Element[][];
+  states: {
+    hasPrev: boolean;
+    loading: boolean;
+    hasNext: boolean;
+  };
+  callbacks: {
+    prevPage: () => void;
+    nextPage: () => void;
+  };
+  elements: { columns: Element[]; rows: Element[][] };
 }
 
 export function ReferralTableView(props: ReferralTableViewProps) {
-  const { columns, rows } = props;
+  const { states, callbacks, elements } = props;
+  const { columns, rows } = elements;
 
   return (
     <table>
@@ -26,6 +35,24 @@ export function ReferralTableView(props: ReferralTableViewProps) {
           </tr>
         ))}
       </tbody>
+      <sl-button
+        size="small"
+        disabled={!states.hasPrev}
+        loading={states.loading}
+        onClick={callbacks.prevPage}
+        exportparts="base: defaultbutton-base"
+      >
+        Prev
+      </sl-button>
+      <sl-button
+        size="small"
+        loading={states.loading}
+        disabled={!states.hasNext}
+        onClick={callbacks.nextPage}
+        exportparts="base: defaultbutton-base"
+      >
+        Next
+      </sl-button>
     </table>
   );
 }

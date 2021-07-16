@@ -20,7 +20,7 @@ export function useChildElements() {
   console.log(getDefaultColumns());
 
   // TODO: default elements are created without their @Methods
-  const initialState = host.children.length ? children : getDefaultColumns();
+  const initialState = host.children?.length ? children : getDefaultColumns();
   const [childElements, setChildElements] = useState(initialState);
 
   useEffect(() => {

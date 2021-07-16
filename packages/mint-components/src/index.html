@@ -17,15 +17,15 @@
   </head>
   <body>
     <script>
-      // window.widgetIdent = {
-      //   tenantAlias: "test_a7yoz8854cf6x",
-      //   appDomain: "https://staging.referralsaasquatch.com",
-      //   token:
-      //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImJqMTIzIiwiaWQiOiJiajEyMyJ9fQ.rmJZebIyj-xThGi0WO6LSyE573vb1HkfLc8lFfqMmgs",
-      //   userId: "bj123",
-      //   accountId: "bj123",
-      //   programId: "ny-post-referrals",
-      // };
+      window.widgetIdent = {
+        tenantAlias: "test_a7yoz8854cf6x",
+        appDomain: "https://staging.referralsaasquatch.com",
+        token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImJqMTIzIiwiaWQiOiJiajEyMyIsImZpcnN0TmFtZSI6IkJhZyIsImxhc3ROYW1lIjoiSmFjayJ9fQ.pkKuGeUb5AnhT0A4KuRsvumGcrOaxMx26Yy7QX1ZLzI",
+        userId: "bj123",
+        accountId: "bj123",
+        programId: "ny-post-referrals",
+      };
       if (!localStorage.getItem("IEAlert") && window.document.documentMode) {
         localStorage.setItem("IEAlert", true);
         alert(
@@ -33,7 +33,7 @@
         );
       }
     </script>
-    <!-- <sqm-referral-table program-id="ny-post-referrals">
+    <sqm-referral-table program-id="ny-post-referrals">
       <sqm-referral-table-status-column></sqm-referral-table-status-column>
       <sqm-referral-table-user-column></sqm-referral-table-user-column>
       <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
@@ -47,7 +47,7 @@
           <span>Facebook</span>
         </sqm-share-button>
       </sqm-referral-table-column>
-    </sqm-referral-table> -->
+    </sqm-referral-table>
     <!-- <sqm-share-button medium="facebook" icon="facebook" iconslot="prefix">
       <span>Facebook</span>
     </sqm-share-button> -->
@@ -68,7 +68,8 @@
     <sqm-portal-forgot-password></sqm-portal-forgot-password>
     Reset Password
     <sqm-portal-reset-password></sqm-portal-reset-password> -->
-    <sqm-stencilbook></sqm-stencilbook>
+    <!-- <sqm-stencilbook></sqm-stencilbook> -->
+    <sqm-portal-profile></sqm-portal-profile>
     <!-- <sqm-asset-card title-text="Marketing Banner Test"></sqm-asset-card> -->
   </body>
 </html>
