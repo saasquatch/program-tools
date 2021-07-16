@@ -242,7 +242,6 @@ export namespace Components {
         "nextPage": string;
         "nextPageUrlParameter": string;
     }
-<<<<<<< HEAD
     interface SqmPortalSection {
         /**
           * @uiName Label margin style
@@ -253,8 +252,6 @@ export namespace Components {
          */
         "padding": Spacing;
     }
-=======
->>>>>>> d0bfcfda2826db1fb820863d8b7710099fe80d60
     interface SqmPortalVerifyEmail {
         "nextPage": string;
         "nextPageUrlParameter": string;
@@ -978,7 +975,6 @@ declare namespace LocalJSX {
         "nextPage"?: string;
         "nextPageUrlParameter"?: string;
     }
-<<<<<<< HEAD
     interface SqmPortalSection {
         /**
           * @uiName Label margin style
@@ -989,8 +985,6 @@ declare namespace LocalJSX {
          */
         "padding"?: Spacing;
     }
-=======
->>>>>>> d0bfcfda2826db1fb820863d8b7710099fe80d60
     interface SqmPortalVerifyEmail {
         "nextPage"?: string;
         "nextPageUrlParameter"?: string;
