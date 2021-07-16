@@ -1,5 +1,6 @@
 interface Referral {
   id: string;
+  dateConverted: number;
   dateReferralStarted: number;
   dateReferralPaid: number;
   dateReferralEnded: number;
@@ -14,7 +15,7 @@ interface Referral {
   };
   rewards: Reward[];
 }
-  
+
 interface Reward {
   id: string;
   type: string;
@@ -29,7 +30,7 @@ interface Reward {
   currency: string;
   prettyValue: string;
   statuses: string[];
-  globalRewardKey?:string;
+  globalRewardKey?: string;
   rewardRedemptionTransactions: {
     data: [
       {
@@ -39,7 +40,7 @@ interface Reward {
               prettyValue: string;
               type: string;
               fuelTankCode: string;
-              globalRewardKey?:string;
+              globalRewardKey?: string;
             }
           ];
         };
