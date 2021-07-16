@@ -6,9 +6,7 @@ export {
    * Identity
    */
   useUserIdentity,
-  usePersistedUserIdentity,
   setUserIdentity,
-  setPersistedUserIdentity,
   useToken,
   /*
    * Core environment
