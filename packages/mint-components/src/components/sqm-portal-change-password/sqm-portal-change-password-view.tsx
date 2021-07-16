@@ -21,7 +21,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordProps) {
       <sl-dialog open={props.states.open}>
         <PortalSectionView
           {...{
-            labelMargin: "64px",
+            labelMargin: "xxxx-large",
             padding: "none",
             label: <TextView {...{ type: "h2" }}>Change password</TextView>,
             content: (
@@ -44,7 +44,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordProps) {
       </sl-dialog>
       <PortalSectionView
         {...{
-          labelMargin: "24px",
+          labelMargin: "x-large",
           padding: "xxx-large",
           label: <TextView {...{ type: "h2" }}>Password</TextView>,
           content: <sl-button>Change your password...</sl-button>,

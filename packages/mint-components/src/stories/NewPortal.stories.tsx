@@ -224,7 +224,7 @@ export const Dashboard = () => {
         >
           <PortalSectionView
             {...{
-              labelMargin: "4px",
+              labelMargin: "xx-small",
               padding: "none",
               label: <TextView type="p">Welcome back,</TextView>,
               content: <TextView type="h1">John Smith</TextView>,
@@ -244,7 +244,7 @@ export const Dashboard = () => {
         >
           <PortalSectionView
             {...{
-              labelMargin: "24px",
+              labelMargin: "x-large",
               padding: "none",
               label: <TextView type="h2">Partner and Profit</TextView>,
               content: (
@@ -257,7 +257,7 @@ export const Dashboard = () => {
           ></PortalSectionView>
           <PortalSectionView
             {...{
-              labelMargin: "12px",
+              labelMargin: "small",
               padding: "none",
               label: <TextView type="h3">Share your referral link</TextView>,
               content: <ShareLinkView {...sharelinkProps} />,
@@ -265,7 +265,7 @@ export const Dashboard = () => {
           ></PortalSectionView>
           <PortalSectionView
             {...{
-              labelMargin: "12px",
+              labelMargin: "small",
               padding: "none",
               label: <TextView type="h3">Share your referral code</TextView>,
               content: <ShareLinkView {...sharecodeProps} />,
@@ -273,7 +273,7 @@ export const Dashboard = () => {
           ></PortalSectionView>
           <PortalSectionView
             {...{
-              labelMargin: "12px",
+              labelMargin: "small",
               padding: "none",
               label: <TextView type="h3">Share via social media</TextView>,
               content: (
@@ -321,7 +321,7 @@ export const Commissions = () => {
         >
           <PortalSectionView
             {...{
-              labelMargin: "4px",
+              labelMargin: "xx-small",
               padding: "none",
               label: <TextView {...{ type: "h1" }}>Commissions</TextView>,
               content: (
@@ -360,7 +360,7 @@ export const Activity = () => {
         >
           <PortalSectionView
             {...{
-              labelMargin: "4px",
+              labelMargin: "xx-small",
               padding: "none",
               label: <TextView type="h1">Activity</TextView>,
               content: (
@@ -376,7 +376,7 @@ export const Activity = () => {
           ></PortalSectionView>
           <PortalSectionView
             {...{
-              labelMargin: "24px",
+              labelMargin: "x-large",
               padding: "none",
               label: <TextView type="h2">Referral Activity</TextView>,
               content: (
@@ -396,7 +396,7 @@ export const Activity = () => {
         </PortalContainerView>
         <PortalSectionView
           {...{
-            labelMargin: "24px",
+            labelMargin: "x-large",
             padding: "xxx-large",
             label: <TextView type="h2">Traffic Generated</TextView>,
             content: (

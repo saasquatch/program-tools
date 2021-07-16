@@ -16,7 +16,7 @@ export class PortalSection {
   ignored = true;
 
   /**@uiName Label margin style */
-  @Prop() labelMargin: string = "12px";
+  @Prop() labelMargin: Spacing = "small";
   /** @uiName Section padding */
   @Prop() padding: Spacing = "none";
 

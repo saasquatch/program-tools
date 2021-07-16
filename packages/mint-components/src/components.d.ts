@@ -232,7 +232,7 @@ export namespace Components {
         /**
           * @uiName Label margin style
          */
-        "labelMargin": string;
+        "labelMargin": Spacing;
         /**
           * @uiName Section padding
          */
@@ -361,7 +361,7 @@ export namespace Components {
         /**
           * @uiName Space between stats
          */
-        "space": string;
+        "space": Spacing;
     }
     interface SqmStencilbook {
     }
@@ -825,7 +825,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Label margin style
          */
-        "labelMargin"?: string;
+        "labelMargin"?: Spacing;
         /**
           * @uiName Section padding
          */
@@ -954,7 +954,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Space between stats
          */
-        "space"?: string;
+        "space"?: Spacing;
     }
     interface SqmStencilbook {
     }

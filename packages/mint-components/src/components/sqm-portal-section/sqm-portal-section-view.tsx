@@ -4,7 +4,7 @@ import preset from "jss-preset-default";
 import { Spacing } from "../../global/mixins";
 
 export interface PortalSectionProps {
-  labelMargin: string;
+  labelMargin: Spacing;
   padding: Spacing;
   label: VNode;
   content: VNode;
@@ -13,7 +13,10 @@ export interface PortalSectionProps {
 export function PortalSectionView(props: PortalSectionProps) {
   const style = {
     LabelContainer: {
-      "margin-bottom": props.labelMargin,
+      "margin-bottom":
+        props.labelMargin === "none"
+          ? props.labelMargin
+          : `var(--sl-spacing-${props.labelMargin})`,
     },
     SectionContainer: {
       padding:
