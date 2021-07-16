@@ -2,12 +2,12 @@ import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 
-interface PortalLayoutViewProps {
+interface DividedLayoutViewProps {
   direction: "row" | "column";
 }
 
-export function PortalLayoutView(
-  props: PortalLayoutViewProps,
+export function DividedLayoutView(
+  props: DividedLayoutViewProps,
   children: VNode
 ) {
   const getBorder = () => {

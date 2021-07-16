@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { PortalContainerView } from "../sqm-portal-container/sqm-portal-container-view";
-import { PortalSectionView } from "../sqm-portal-section/sqm-portal-section-view";
+import { PortalSectionView } from "../sqm-titled-section/sqm-portal-section-view";
 import { TextView } from "../sqm-text/sqm-text-view";
 
 export interface PortalChangePasswordProps {

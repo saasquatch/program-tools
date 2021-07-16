@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
 import { NavigationSidebarView } from "../components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
-import { SidebarItemView } from "../components/sqm-sidebar-item/sqm-sidebar-item-view";
+import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 
 export default {
   title: "Navigation Sidebar",
@@ -47,8 +47,8 @@ export const DefaultNavigationSidebar = () => {
   };
   return (
     <NavigationSidebarView {...barProps}>
-      <SidebarItemView {...item1Props} />
-      <SidebarItemView {...item2Props} />
+      <NavigationSidebarItemView {...item1Props} />
+      <NavigationSidebarItemView {...item2Props} />
     </NavigationSidebarView>
   );
 };

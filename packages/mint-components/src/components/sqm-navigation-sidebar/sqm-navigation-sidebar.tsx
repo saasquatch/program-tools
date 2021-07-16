@@ -1,14 +1,12 @@
-import { Component, h, Host, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { Component, h, State } from "@stencil/core";
 import {
-  NavigationSidebarView,
-  NavigationSidebarViewProps,
+  NavigationSidebarView
 } from "./sqm-navigation-sidebar-view";
-import { useNavigationSidebar } from "./useNavigationSidebar";
-import { getProps } from "../../utils/utils";
 
 /**
+ * A holder for navigation menu items
+ * 
  * @uiName Navigation Sidebar
  */
 @Component({
@@ -25,32 +23,10 @@ export class NavigationSidebar {
   disconnectedCallback() {}
 
   render() {
-    const props = isDemo()
-      ? useNavigationSidebarDemo(getProps(this))
-      : useNavigationSidebar(getProps(this));
     return (
-      <NavigationSidebarView {...props}>
+      <NavigationSidebarView>
         <slot />
       </NavigationSidebarView>
     );
   }
-}
-
-function useNavigationSidebarDemo(
-  props: NavigationSidebar
-): NavigationSidebarViewProps {
-  return {
-    data: {
-      programs: [
-        {
-          key: "program1",
-          label: "My Referral Program",
-        },
-        {
-          key: "program2",
-          label: "My Rewards Program",
-        },
-      ],
-    },
-  };
 }

@@ -3,7 +3,7 @@ import jss from "jss";
 import preset from "jss-preset-default";
 import { gap } from "../../global/mixins";
 
-export interface SidebarItemViewProps {
+export interface NavigationSidebarItemViewProps {
   states: {
     active: boolean;
   };
@@ -16,7 +16,7 @@ export interface SidebarItemViewProps {
   };
 }
 
-export function SidebarItemView(props: SidebarItemViewProps) {
+export function NavigationSidebarItemView(props: NavigationSidebarItemViewProps) {
   const { states, data, callbacks } = props;
 
   const style = {
