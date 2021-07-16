@@ -412,10 +412,6 @@ export namespace Components {
     interface SqmStencilbook {
     }
     interface SqmText {
-        /**
-          * @uiName Text style
-         */
-        "type": "p" | "pLight" | "h1" | "h2" | "h3";
     }
     interface SqmTitledSection {
         "label": string;
@@ -1129,10 +1125,6 @@ declare namespace LocalJSX {
     interface SqmStencilbook {
     }
     interface SqmText {
-        /**
-          * @uiName Text style
-         */
-        "type"?: "p" | "pLight" | "h1" | "h2" | "h3";
     }
     interface SqmTitledSection {
         "label"?: string;

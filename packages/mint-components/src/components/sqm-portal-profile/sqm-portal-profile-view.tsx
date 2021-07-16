@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { PortalContainerView } from "../sqm-portal-container/sqm-portal-container-view";
-import { TextView } from "../sqm-text/sqm-text-view";
+import { PresetText } from "../../functional-components/PresetText";
 
 export interface PortalProfileProps {}
 
@@ -28,8 +28,8 @@ export function PortalProfileView(props) {
       {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
     >
       <style type="text/css">{styleString}</style>
-      <TextView {...{ type: "h1" }}>Edit your profile</TextView>
-      <TextView {...{ type: "h2" }}>Personal Information</TextView>
+      <PresetText {...{ type: "h1" }}>Edit your profile</PresetText>
+      <PresetText {...{ type: "h2" }}>Personal Information</PresetText>
       <form class={sheet.classes.FormStyle} onSubmit={callbacks.onSubmit}>
         <PortalContainerView
           {...{ direction: "row", padding: "none", gap: "32px" }}
