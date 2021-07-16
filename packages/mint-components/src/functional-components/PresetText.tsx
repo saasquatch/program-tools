@@ -2,11 +2,11 @@ import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 
-export interface TextViewProps {
-  type: "p" | "pLight" | "h1" | "h2" | "h3";
+export interface PresetTextProps {
+  type: "p" | "pLight" | "h1" | "h2" | "h3" | "h4";
 }
 
-export function TextView(props: TextViewProps, children: VNode) {
+export function PresetText(props: PresetTextProps, children: VNode) {
   const style = {
     p: {
       "font-size": "14px",
@@ -22,28 +22,28 @@ export function TextView(props: TextViewProps, children: VNode) {
       color: "#777777",
       margin: "0",
     },
-    title: {
+    h1: {
       "font-size": "36px",
       "line-height": "40px",
       "font-weight": "500",
       color: "#555555",
       margin: "0",
     },
-    h1: {
+    h2: {
       "font-size": "24px",
       "line-height": "26px",
       "font-weight": "500",
       color: "#555555",
       margin: "0",
     },
-    h2: {
+    h3: {
       "font-size": "18px",
       "line-height": "16px",
       "font-weight": "500",
       color: "#555555",
       margin: "0",
     },
-    h3: {
+    h4: {
       "font-size": "13px",
       "line-height": "15px",
       "font-weight": "500",

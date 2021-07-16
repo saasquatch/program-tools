@@ -573,7 +573,7 @@ sl-details::part(summary) {
   cursor:pointer;
 }
 
-}
+
 
 `;
 
