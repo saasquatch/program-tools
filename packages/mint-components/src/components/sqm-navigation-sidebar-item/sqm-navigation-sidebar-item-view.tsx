@@ -24,14 +24,14 @@ export function NavigationSidebarItemView(
   const style = {
     ItemContainer: {
       display: "flex",
-      "background-color": `${states.active ? "#eeeeee" : "#ffffff"}`,
+      "background-color": `${states.active ? "#eaeaea" : "#ffffff"}`,
       "border-radius": "8px",
       padding: "8px",
       "align-items": "center",
       ...gap({ direction: "row" as const, size: "14px" }),
       "&:hover": {
         cursor: "pointer",
-        background: !states.active && "#fcfcfc",
+        background: states.active ? "#dddddd" : "#f7f7f7",
       },
     },
     Label: {

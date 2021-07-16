@@ -1,9 +1,10 @@
 import { usePaginatedQuery } from "@saasquatch/component-boilerplate";
 import { useHost, useTick } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { Host, h } from "@stencil/core";
+import { Host, h, VNode } from "@stencil/core";
 import gql from "graphql-tag";
 import { ReferralTable } from "./sqm-referral-table";
+import { ReferralTableViewProps } from "./sqm-referral-table-view";
 import { useChildElements } from "./useChildElements";
 
 const GET_REFERRAL_DATA = gql`
@@ -126,7 +127,7 @@ const GET_REFERRAL_DATA = gql`
 //   safeHTML: string;
 // }
 
-export function useReferralTable(props: ReferralTable) {
+export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
   const {
     envelope: referralData,
     states,
@@ -142,7 +143,9 @@ export function useReferralTable(props: ReferralTable) {
   );
   const host = useHost();
   const [tick, rerender] = useTick();
-  const [content, setContent] = useState(<Host style={{ display: "none" }} />);
+  const [content, setContent] = useState<ReferralTableViewProps["elements"]>(
+    <Host style={{ display: "none" }} />
+  );
 
   console.log({ referralData });
 
@@ -192,16 +195,7 @@ export function useReferralTable(props: ReferralTable) {
     // get the column titles (renderLabel is asynchronous)
 
     const columnsPromise = components?.map(async (c: any) => {
-      const tag = c.tagName.toLowerCase();
-      console.log({
-        column: c,
-        tag,
-      });
-
-      // await customElements.whenDefined(tag);
-
-      console.log(c.hasOwnProperty("renderLabel"), "renderLabel" in c);
-      return c.renderLabel();
+      return tryMethod(c, () => c.renderLabel());
     });
 
     console.log({ columnsPromise });
@@ -209,6 +203,13 @@ export function useReferralTable(props: ReferralTable) {
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r) => {
       const rowsPromise = components?.map(async (c: any) => {
+        const tag = c.tagName.toLowerCase();
+        console.log({
+          column: c,
+          tag,
+        });
+        await customElements.whenDefined(tag);
+
         const cell = await c.renderCell(r, c);
         return cell;
       });
@@ -244,4 +245,42 @@ export function useReferralTable(props: ReferralTable) {
       prevPage: () => callbacks.setCurrentPage(states.currentPage - 1),
     },
   };
+}
+
+function generateUserError(e: any) {
+  try {
+    return JSON.stringify(e);
+  } catch (e) {
+    return "An unknown error";
+  }
+}
+
+async function tryMethod(
+  c: HTMLElement,
+  callback: () => Promise<VNode>
+): Promise<VNode> {
+  const tag = c.tagName.toLowerCase();
+  await customElements.whenDefined(tag);
+  let labelPromise: Promise<VNode>;
+  try {
+    labelPromise = callback();
+  } catch (e) {
+    // renderLabel did not return a promise, so this method probably doesn't exist
+    // therefore, we IGNORE the label
+    return <span />;
+  }
+  try {
+    return await labelPromise;
+  } catch (e) {
+    // The column returned a promise, and that promise failed.
+    // This should not happen so we fail fast
+    console.error("Error rendering label", e);
+    const userError = generateUserError(e);
+    return (
+      <details>
+        <summary>Error</summary>
+        {userError}
+      </details>
+    );
+  }
 }

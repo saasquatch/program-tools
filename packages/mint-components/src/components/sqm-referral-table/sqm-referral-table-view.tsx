@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 
 export interface ReferralTableViewProps {
   states: {
@@ -10,7 +10,7 @@ export interface ReferralTableViewProps {
     prevPage: () => void;
     nextPage: () => void;
   };
-  elements: { columns: Element[]; rows: Element[][] };
+  elements: { columns: VNode[]; rows: VNode[][] };
 }
 
 export function ReferralTableView(props: ReferralTableViewProps) {
