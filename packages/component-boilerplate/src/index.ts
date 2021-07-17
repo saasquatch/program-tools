@@ -28,10 +28,12 @@ export {
 //
 //      GraphQL API
 //
+export { BatchedGraphQLClient } from "./environment/BatchedGraphQLClient";
 export { useQuery } from "./hooks/graphql/useQuery";
 export { useMutation } from "./hooks/graphql/useMutation";
 export { useLazyQuery } from "./hooks/graphql/useLazyQuery";
 export { customQueryHooksFactory } from "./hooks/graphql/useCustomQuery";
+export { useGraphQLClient, GRAPHQL_CONTEXT } from "./hooks/graphql/useGraphQLClient";
 
 //      Navigation
 

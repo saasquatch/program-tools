@@ -5,6 +5,11 @@ import {
   useTenantAlias,
   useToken,
 } from "../../environment/environment";
+import { useDomContext, useDomContextState } from "@saasquatch/dom-context-hooks";
+import { useHost } from "../useHost";
+import { GraphQLClient } from "graphql-request";
+
+export const GRAPHQL_CONTEXT = "sq:graphql-client";
 
 function createGraphQlClient(
   appDomain: string,
@@ -23,18 +28,25 @@ function createGraphQlClient(
 
 const memoizedClient = memoize(createGraphQlClient);
 
-function useGraphQLClient(): BatchedGraphQLClient {
+export function useGraphQLClient(): GraphQLClient {
   const token = useToken();
   const appDomain = useAppDomain();
   const tenantAlias = useTenantAlias();
 
   // Memoization is shared. One client per domain, tenant and token (or null)
-  const client: BatchedGraphQLClient = memoizedClient(
+  const localClient: BatchedGraphQLClient = memoizedClient(
     appDomain,
     tenantAlias,
     token
   );
-  return client;
+  const host = useHost();
+  const clientFromContext = useDomContext<GraphQLClient>(
+    host,
+    GRAPHQL_CONTEXT,
+    // Won't poll / re-attempt
+    { attempts: 0 }
+  );
+  return clientFromContext ?? localClient;
 }
 
 export default useGraphQLClient;
