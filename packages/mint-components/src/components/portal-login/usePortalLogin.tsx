@@ -1,11 +1,11 @@
 import gql from "graphql-tag";
 import jsonpointer from "jsonpointer";
 import { useEffect } from "@saasquatch/universal-hooks";
-import { usePortalQuery } from "../portal/usePortalQuery";
 import decode from "jwt-decode";
 import {
   navigation,
   setUserIdentity,
+  useMutation,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 
@@ -42,10 +42,8 @@ interface DecodedSquatchJWT {
 }
 
 export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
-  const [{ loading, data, error }, request] =
-    usePortalQuery<PortalLoginMutationResult>(PortalLoginMutation, {
-      loading: false,
-    });
+  const [request, { loading, data, errors }] =
+    useMutation<PortalLoginMutationResult>(PortalLoginMutation);
   const userIdent = useUserIdentity();
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -93,7 +91,7 @@ export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
   return {
     states: {
       loading,
-      error,
+      error: errors?.response?.errors?.[0]?.message,
     },
     callbacks: {
       submit,

@@ -1,10 +1,10 @@
 import gql from "graphql-tag";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { usePortalQuery } from "../portal/usePortalQuery";
 import {
   navigation,
   useUserIdentity,
   setUserIdentity,
+  useMutation,
 } from "@saasquatch/component-boilerplate";
 
 const PortalVerifyEmailMutation = gql`
@@ -25,10 +25,8 @@ interface PortalVerifyEmailMutationResult {
 
 export function usePortalVerifyEmail({ nextPage, nextPageUrlParameter }) {
   const userIdentity = useUserIdentity();
-  const [{ loading, data, error }, request] =
-    usePortalQuery<PortalVerifyEmailMutationResult>(PortalVerifyEmailMutation, {
-      loading: false,
-    });
+  const [request, { loading, data, errors }] =
+    useMutation<PortalVerifyEmailMutationResult>(PortalVerifyEmailMutation);
   const [verified, setVerified] = useState(false);
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -83,7 +81,7 @@ export function usePortalVerifyEmail({ nextPage, nextPageUrlParameter }) {
   return {
     states: {
       loading,
-      error,
+      error: errors?.response?.errors?.[0]?.message,
       verified,
     },
     callbacks: {

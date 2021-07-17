@@ -1,11 +1,11 @@
 import gql from "graphql-tag";
 import jsonpointer from "jsonpointer";
 import { useEffect } from "@saasquatch/universal-hooks";
-import { usePortalQuery } from "../portal/usePortalQuery";
 import decode from "jwt-decode";
 import {
   navigation,
   setUserIdentity,
+  useMutation,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { usePortalEmailVerification } from "../portal-email-verification/usePortalEmailVerification";
@@ -50,10 +50,8 @@ interface DecodedSquatchJWT {
 }
 
 export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
-  const [{ loading, data, error }, request] =
-    usePortalQuery<PortalRegisterMutationResult>(PortalRegisterMutation, {
-      loading: false,
-    });
+  const [request, { loading, data, errors }] =
+    useMutation<PortalRegisterMutationResult>(PortalRegisterMutation);
   const userIdent = useUserIdentity();
   const {
     states: emailVerificationStates,
@@ -111,7 +109,9 @@ export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
   return {
     states: {
       loading: loading || emailVerificationStates.loading,
-      error: error ? error : emailVerificationStates.error,
+      error: errors
+        ? errors?.response?.errors?.[0]?.message
+        : emailVerificationStates.error,
     },
     callbacks: {
       submit,

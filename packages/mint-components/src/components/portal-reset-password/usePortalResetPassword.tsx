@@ -2,8 +2,11 @@ import gql from "graphql-tag";
 import decode from "jwt-decode";
 import jsonpointer from "jsonpointer";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { usePortalQuery } from "../portal/usePortalQuery";
-import { navigation, setUserIdentity } from "@saasquatch/component-boilerplate";
+import {
+  navigation,
+  setUserIdentity,
+  useMutation,
+} from "@saasquatch/component-boilerplate";
 
 const VerifyManagedIdentityPasswordResetCodeMutation = gql`
   mutation VerifyPasswordResetCode($oobCode: String!) {
@@ -58,17 +61,13 @@ interface DecodedSquatchJWT {
 export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
   const [reset, setReset] = useState(false);
 
-  const [verifyPasswordResetCodeState, verifyPasswordResetCode] =
-    usePortalQuery<VerifyManagedIdentityPasswordResetCodeMutationResult>(
-      VerifyManagedIdentityPasswordResetCodeMutation,
-      { loading: true }
+  const [verifyPasswordResetCode, verifyPasswordResetCodeState] =
+    useMutation<VerifyManagedIdentityPasswordResetCodeMutationResult>(
+      VerifyManagedIdentityPasswordResetCodeMutation
     );
 
-  const [resetPasswordState, resetPassword] =
-    usePortalQuery<PortalResetPasswordMutationResult>(
-      PortalResetPasswordMutation,
-      { loading: false }
-    );
+  const [resetPassword, resetPasswordState] =
+    useMutation<PortalResetPasswordMutationResult>(PortalResetPasswordMutation);
 
   const urlParams = new URLSearchParams(window.location.search);
   const oobCode = urlParams.get("oobCode");
@@ -131,8 +130,8 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
   return {
     states: {
       loading: resetPasswordState.loading,
-      error: resetPasswordState.error,
       reset,
+      error: resetPasswordState.errors?.response?.errors?.[0]?.message,
       oobCodeValidating: verifyPasswordResetCodeState.loading,
       oobCodeValid:
         verifyPasswordResetCodeState.data

@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import jsonpointer from "jsonpointer";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { usePortalQuery } from "../portal/usePortalQuery";
+import { useMutation } from "@saasquatch/component-boilerplate";
 
 const PortalForgotPasswordMutation = gql`
   mutation PortalForgotPassword($email: String!, $urlParams: RSJsonNode) {
@@ -23,10 +23,9 @@ interface PortalForgotPasswordMutationResult {
 }
 
 export function usePortalForgotPassword({ nextPageUrlParameter }) {
-  const [{ loading, data, error }, request] =
-    usePortalQuery<PortalForgotPasswordMutationResult>(
-      PortalForgotPasswordMutation,
-      { loading: false }
+  const [request, { loading, data, errors }] =
+    useMutation<PortalForgotPasswordMutationResult>(
+      PortalForgotPasswordMutation
     );
   const [success, setSuccess] = useState(false);
 
@@ -54,7 +53,7 @@ export function usePortalForgotPassword({ nextPageUrlParameter }) {
   return {
     states: {
       loading,
-      error,
+      error: errors?.response?.errors?.[0]?.message,
       success,
     },
     callbacks: {

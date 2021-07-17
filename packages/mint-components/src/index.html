@@ -31,128 +31,130 @@
       }
     </script>
     <sqm-portal-frame>
-      <sqm-router>
-        <template path="/register">
-          <sqm-portal-register email-label="Business Email">
-            <div slot="formData">
-              <sl-input
-                exportparts="label: input-label"
-                type="text"
-                name="/firstName"
-                label="First Name"
-                required
-              ></sl-input>
-              <sl-input
-                exportparts="label: input-label"
-                type="text"
-                name="/lastName"
-                label="Last Name"
-                required
-              ></sl-input>
-              <sl-input
-                exportparts="label: input-label"
-                type="text"
-                name="/phoneNumber"
-                label="Phone Number"
-                required
-              ></sl-input>
-              <sl-input
-                exportparts="label: input-label"
-                type="text"
-                name="/company"
-                label="Company"
-                required
-              ></sl-input>
-              <sl-input
-                exportparts="label: input-label"
-                type="text"
-                name="/address"
-                label="Address"
-                required
-              ></sl-input>
-              <sl-input
-                exportparts="label: input-label"
-                type="text"
-                name="/unitNumber"
-                label="Suite, Unit, etc."
-              ></sl-input>
-              <sl-input
-                exportparts="label: input-label"
-                type="text"
-                name="/city"
-                label="City"
-                required
-              ></sl-input>
-              <sl-input
-                exportparts="label: input-label"
-                type="text"
-                name="/state"
-                label="State"
-                required
-              ></sl-input>
-              <sl-input
-                exportparts="label: input-label"
-                type="text"
-                name="/postalCode"
-                label="ZIP"
-                required
-              ></sl-input>
-              <sl-input
-                exportparts="label: input-label"
-                type="text"
-                name="/country"
-                label="Country"
-                value="USA"
-                disabled="true"
-              ></sl-input>
-              <sl-input
-                exportparts="label: input-label"
-                type="text"
-                name="/referredByCode"
-                label="Referral Code"
-              ></sl-input>
-            </div>
-          </sqm-portal-register>
-        </template>
+      <sqm-portal-managed-identity-graphql-client-provider domain="http://localhost:4000">
+        <sqm-router>
+          <template path="/register">
+            <sqm-portal-register email-label="Business Email">
+              <div slot="formData">
+                <sl-input
+                  exportparts="label: input-label"
+                  type="text"
+                  name="/firstName"
+                  label="First Name"
+                  required
+                ></sl-input>
+                <sl-input
+                  exportparts="label: input-label"
+                  type="text"
+                  name="/lastName"
+                  label="Last Name"
+                  required
+                ></sl-input>
+                <sl-input
+                  exportparts="label: input-label"
+                  type="text"
+                  name="/phoneNumber"
+                  label="Phone Number"
+                  required
+                ></sl-input>
+                <sl-input
+                  exportparts="label: input-label"
+                  type="text"
+                  name="/company"
+                  label="Company"
+                  required
+                ></sl-input>
+                <sl-input
+                  exportparts="label: input-label"
+                  type="text"
+                  name="/address"
+                  label="Address"
+                  required
+                ></sl-input>
+                <sl-input
+                  exportparts="label: input-label"
+                  type="text"
+                  name="/unitNumber"
+                  label="Suite, Unit, etc."
+                ></sl-input>
+                <sl-input
+                  exportparts="label: input-label"
+                  type="text"
+                  name="/city"
+                  label="City"
+                  required
+                ></sl-input>
+                <sl-input
+                  exportparts="label: input-label"
+                  type="text"
+                  name="/state"
+                  label="State"
+                  required
+                ></sl-input>
+                <sl-input
+                  exportparts="label: input-label"
+                  type="text"
+                  name="/postalCode"
+                  label="ZIP"
+                  required
+                ></sl-input>
+                <sl-input
+                  exportparts="label: input-label"
+                  type="text"
+                  name="/country"
+                  label="Country"
+                  value="USA"
+                  disabled="true"
+                ></sl-input>
+                <sl-input
+                  exportparts="label: input-label"
+                  type="text"
+                  name="/referredByCode"
+                  label="Referral Code"
+                ></sl-input>
+              </div>
+            </sqm-portal-register>
+          </template>
 
-        <template path="/emailVerification">
-          <sqm-portal-protected-route
-            redirect-to="/login"
-          ></sqm-portal-protected-route>
-          <sqm-portal-email-verification></sqm-portal-email-verification>
-        </template>
+          <template path="/emailVerification">
+            <sqm-portal-protected-route
+              redirect-to="/login"
+            ></sqm-portal-protected-route>
+            <sqm-portal-email-verification></sqm-portal-email-verification>
+          </template>
 
-        <template path="/login">
-          <sqm-portal-login email-label="Business Email"></sqm-portal-login>
-        </template>
+          <template path="/login">
+            <sqm-portal-login email-label="Business Email"></sqm-portal-login>
+          </template>
 
-        <template path="/verifyEmail">
-          <sqm-portal-verify-email></sqm-portal-verify-email>
-        </template>
+          <template path="/verifyEmail">
+            <sqm-portal-verify-email></sqm-portal-verify-email>
+          </template>
 
-        <template path="/forgotPassword">
-          <sqm-portal-forgot-password
-            email-label="Business Email"
-          ></sqm-portal-forgot-password>
-        </template>
+          <template path="/forgotPassword">
+            <sqm-portal-forgot-password
+              email-label="Business Email"
+            ></sqm-portal-forgot-password>
+          </template>
 
-        <template path="/resetPassword">
-          <sqm-portal-reset-password></sqm-portal-reset-password>
-        </template>
-
-        <template path="/">
-          <sqm-portal-protected-route
-            require-email-verification="true"
-            redirect-to="/login"
-            redirect-to-unverified="/emailVerification"
-          ></sqm-portal-protected-route>
-          <sqm-share-button medium="facebook"></sqm-share-button>
-        </template>
-
-        <template path="/logout">
-          <sqm-portal-logout next-page="/login"></sqm-portal-logout>
-        </template>
-      </sqm-router>
+          <template path="/resetPassword">
+            <sqm-portal-reset-password></sqm-portal-reset-password>
+          </template>
+          <template path="/logout">
+            <sqm-portal-logout next-page="/login"></sqm-portal-logout>
+          </template>
+        </sqm-router>
+      </sqm-portal-managed-identity-graphql-client-provider>
+        <sqm-router>
+          <template path="/">
+            <sqm-portal-protected-route
+              require-email-verification="true"
+              redirect-to="/login"
+              redirect-to-unverified="/emailVerification"
+            ></sqm-portal-protected-route>
+            <sqm-share-button medium="facebook"></sqm-share-button>
+          </template>
+        </sqm-router>
     </sqm-portal-frame>
   </body>
 </html>

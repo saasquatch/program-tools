@@ -161,8 +161,10 @@ export namespace Components {
         "submitLabel": string;
     }
     interface SqmPortalLogout {
-        "logoutOnRender": boolean;
         "nextPage": string;
+    }
+    interface SqmPortalManagedIdentityGraphqlClientProvider {
+        "domain": string;
     }
     interface SqmPortalProtectedRoute {
         "redirectTo": string;
@@ -367,6 +369,12 @@ declare global {
         prototype: HTMLSqmPortalLogoutElement;
         new (): HTMLSqmPortalLogoutElement;
     };
+    interface HTMLSqmPortalManagedIdentityGraphqlClientProviderElement extends Components.SqmPortalManagedIdentityGraphqlClientProvider, HTMLStencilElement {
+    }
+    var HTMLSqmPortalManagedIdentityGraphqlClientProviderElement: {
+        prototype: HTMLSqmPortalManagedIdentityGraphqlClientProviderElement;
+        new (): HTMLSqmPortalManagedIdentityGraphqlClientProviderElement;
+    };
     interface HTMLSqmPortalProtectedRouteElement extends Components.SqmPortalProtectedRoute, HTMLStencilElement {
     }
     var HTMLSqmPortalProtectedRouteElement: {
@@ -435,6 +443,7 @@ declare global {
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
         "sqm-portal-login": HTMLSqmPortalLoginElement;
         "sqm-portal-logout": HTMLSqmPortalLogoutElement;
+        "sqm-portal-managed-identity-graphql-client-provider": HTMLSqmPortalManagedIdentityGraphqlClientProviderElement;
         "sqm-portal-protected-route": HTMLSqmPortalProtectedRouteElement;
         "sqm-portal-register": HTMLSqmPortalRegisterElement;
         "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
@@ -601,8 +610,10 @@ declare namespace LocalJSX {
         "submitLabel"?: string;
     }
     interface SqmPortalLogout {
-        "logoutOnRender"?: boolean;
         "nextPage"?: string;
+    }
+    interface SqmPortalManagedIdentityGraphqlClientProvider {
+        "domain"?: string;
     }
     interface SqmPortalProtectedRoute {
         "redirectTo"?: string;
@@ -741,6 +752,7 @@ declare namespace LocalJSX {
         "sqm-portal-frame": SqmPortalFrame;
         "sqm-portal-login": SqmPortalLogin;
         "sqm-portal-logout": SqmPortalLogout;
+        "sqm-portal-managed-identity-graphql-client-provider": SqmPortalManagedIdentityGraphqlClientProvider;
         "sqm-portal-protected-route": SqmPortalProtectedRoute;
         "sqm-portal-register": SqmPortalRegister;
         "sqm-portal-reset-password": SqmPortalResetPassword;
@@ -769,6 +781,7 @@ declare module "@stencil/core" {
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
             "sqm-portal-logout": LocalJSX.SqmPortalLogout & JSXBase.HTMLAttributes<HTMLSqmPortalLogoutElement>;
+            "sqm-portal-managed-identity-graphql-client-provider": LocalJSX.SqmPortalManagedIdentityGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmPortalManagedIdentityGraphqlClientProviderElement>;
             "sqm-portal-protected-route": LocalJSX.SqmPortalProtectedRoute & JSXBase.HTMLAttributes<HTMLSqmPortalProtectedRouteElement>;
             "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;

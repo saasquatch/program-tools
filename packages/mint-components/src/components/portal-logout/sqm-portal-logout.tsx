@@ -17,9 +17,6 @@ export class PortalLogout {
   @Prop()
   nextPage = "/";
 
-  @Prop()
-  logoutOnRender = true;
-
   constructor() {
     withHooks(this);
   }
@@ -30,10 +27,4 @@ export class PortalLogout {
     isDemo() ? useLogoutDemo(this) : usePortalLogout(this);
   }
 }
-function useLogoutDemo({ logoutOnRender }): { logout: () => void } {
-  return {
-    logout: () => {
-      logoutOnRender;
-    },
-  };
-}
+function useLogoutDemo({}): void {}
