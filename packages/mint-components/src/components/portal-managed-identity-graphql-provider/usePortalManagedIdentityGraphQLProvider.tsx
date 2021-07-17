@@ -21,7 +21,7 @@ export async function usePortalManagedIdentityGraphQLClientProvider({
     tenantAlias,
     token
   );
-  const [_client, setGraphQLClient] = useDomContextState<GraphQLClient>(
+  const [, setGraphQLClient] = useDomContextState<GraphQLClient>(
     GRAPHQL_CONTEXT,
     managedIdentityClient
   );

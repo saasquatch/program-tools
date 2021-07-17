@@ -7,12 +7,11 @@
 
 ## Properties
 
-| Property               | Attribute                | Description | Type  | Default     |
-| ---------------------- | ------------------------ | ----------- | ----- | ----------- |
-| `authenticated`        | `authenticated`          |             | `any` | `undefined` |
-| `redirectTo`           | `redirect-to`            |             | `any` | `undefined` |
-| `redirectToUnverified` | `redirect-to-unverified` |             | `any` | `undefined` |
-| `verified`             | `verified`               |             | `any` | `undefined` |
+| Property                   | Attribute                    | Description | Type      | Default                |
+| -------------------------- | ---------------------------- | ----------- | --------- | ---------------------- |
+| `redirectTo`               | `redirect-to`                |             | `string`  | `"/"`                  |
+| `redirectToUnverified`     | `redirect-to-unverified`     |             | `string`  | `"/emailVerification"` |
+| `requireEmailVerification` | `require-email-verification` |             | `boolean` | `false`                |
 
 
 ----------------------------------------------

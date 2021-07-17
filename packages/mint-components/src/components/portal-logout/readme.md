@@ -7,10 +7,9 @@
 
 ## Properties
 
-| Property         | Attribute          | Description | Type      | Default |
-| ---------------- | ------------------ | ----------- | --------- | ------- |
-| `logoutOnRender` | `logout-on-render` |             | `boolean` | `true`  |
-| `nextPage`       | `next-page`        |             | `string`  | `"/"`   |
+| Property   | Attribute   | Description | Type     | Default |
+| ---------- | ----------- | ----------- | -------- | ------- |
+| `nextPage` | `next-page` |             | `string` | `"/"`   |
 
 
 ----------------------------------------------
