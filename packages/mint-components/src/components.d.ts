@@ -166,8 +166,8 @@ export namespace Components {
     }
     interface SqmPortalProtectedRoute {
         "redirectTo": string;
-        "redirectToUnverified"?: string;
-        "requireEmailVerification"?: boolean;
+        "redirectToUnverified": string;
+        "requireEmailVerification": boolean;
     }
     interface SqmPortalRegister {
         "emailLabel": string;

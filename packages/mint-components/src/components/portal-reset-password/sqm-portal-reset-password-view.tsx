@@ -4,17 +4,42 @@ export interface PortalResetPasswordViewProps {
   states: {
     error: string;
     loading: boolean;
+    reset: boolean;
     oobCodeValidating: boolean;
     oobCodeValid?: boolean;
   };
   callbacks: {
-    submit: (node: any) => void;
-    continueCb: (node: any) => void;
+    submit: (event: any) => void;
+    failed: () => void;
+    gotoNextPage: () => void;
   };
 }
 
 export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
   const { states, callbacks } = props;
+
+  if (states.reset) {
+    return (
+      <div class="Wrapper Column">
+        <sqm-form-message exportparts="success-icon">
+          <div part="successalert-text">
+            Your password has been reset and you are being redirected. If you
+            are not redirected, please click Continue.
+          </div>
+        </sqm-form-message>
+        <div>
+          <sl-button
+            onClick={callbacks.gotoNextPage}
+            loading={states.loading}
+            exportparts="base: primarybutton-base"
+            type="primary"
+          >
+            Continue
+          </sl-button>
+        </div>
+      </div>
+    );
+  }
 
   if (states.oobCodeValidating) {
     return <div />;
@@ -30,7 +55,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
         </sqm-form-message>
         <div>
           <sl-button
-            onClick={callbacks.continueCb}
+            onClick={callbacks.failed}
             exportparts="base: primarybutton-base"
             type="primary"
           >

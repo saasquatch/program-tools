@@ -46,15 +46,17 @@ function usePortalResetPasswordDemo({
     states: {
       error: "",
       loading: false,
+      reset: false,
       oobCodeValidating: false,
       oobCodeValid: true,
     },
     callbacks: {
-      submit: async (_event) => {
+      submit: async (_event: any) => {
         nextPage;
         nextPageUrlParameter;
       },
-      continueCb: (_event) => {},
+      failed: () => {},
+      gotoNextPage: () => {},
     },
   };
 }

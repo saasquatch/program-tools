@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import decode from "jwt-decode";
 import jsonpointer from "jsonpointer";
-import { useEffect } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { usePortalQuery } from "../portal/usePortalQuery";
 import { navigation, setUserIdentity } from "@saasquatch/component-boilerplate";
 
@@ -56,6 +56,8 @@ interface DecodedSquatchJWT {
 }
 
 export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
+  const [reset, setReset] = useState(false);
+
   const [verifyPasswordResetCodeState, verifyPasswordResetCode] =
     usePortalQuery<VerifyManagedIdentityPasswordResetCodeMutationResult>(
       VerifyManagedIdentityPasswordResetCodeMutation,
@@ -86,7 +88,14 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
     await resetPassword(variables);
   };
 
-  const continueCb = (_event: any) => {
+  const gotoNextPage = () => {
+    navigation.push({
+      pathname: nextPageOverride || nextPage,
+      search: urlParams.toString(),
+    });
+  };
+
+  const failed = () => {
     navigation.push({
       pathname: "/",
       search: urlParams.toString(),
@@ -108,10 +117,10 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
           sessionData: res.sessionData,
         },
       });
-      navigation.push({
-        pathname: nextPageOverride || nextPage,
-        search: urlParams.toString(),
-      });
+      setReset(true);
+      setTimeout(() => {
+        gotoNextPage();
+      }, 5000);
     }
   }, [resetPasswordState.data?.resetManagedIdentityPassword]);
 
@@ -123,11 +132,12 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
     states: {
       loading: resetPasswordState.loading,
       error: resetPasswordState.error,
+      reset,
       oobCodeValidating: verifyPasswordResetCodeState.loading,
       oobCodeValid:
         verifyPasswordResetCodeState.data
           ?.verifyManagedIdentityPasswordResetCode.success,
     },
-    callbacks: { submit, continueCb },
+    callbacks: { submit, failed, gotoNextPage },
   };
 }

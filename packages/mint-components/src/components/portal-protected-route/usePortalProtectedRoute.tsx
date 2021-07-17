@@ -2,8 +2,8 @@ import { useUserIdentity, navigation } from "@saasquatch/component-boilerplate";
 
 interface PortalProtectedRouteProps {
   redirectTo: string;
-  requireEmailVerification?: boolean;
-  redirectToUnverified?: string;
+  requireEmailVerification: boolean;
+  redirectToUnverified: string;
 }
 
 export function usePortalProtectedRoute({
