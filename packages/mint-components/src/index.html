@@ -31,6 +31,11 @@
       }
     </script>
     <sqm-portal-frame>
+      <sqm-navigation-menu menu-label="Logout">
+        <stn-menu-container>
+            <sl-menu-item value="/logout">Logout</sl-menu-item>
+        </stn-menu-container>
+      </sqm-navigation-menu>
       <sqm-portal-managed-identity-graphql-client-provider domain="http://localhost:4000">
         <sqm-router>
           <template path="/register">
