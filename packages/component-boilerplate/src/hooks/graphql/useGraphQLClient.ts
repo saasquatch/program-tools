@@ -5,7 +5,7 @@ import {
   useTenantAlias,
   useToken,
 } from "../../environment/environment";
-import { useDomContext, useDomContextState } from "@saasquatch/dom-context-hooks";
+import { useDomContext } from "@saasquatch/dom-context-hooks";
 import { useHost } from "../useHost";
 import { GraphQLClient } from "graphql-request";
 
@@ -15,7 +15,7 @@ function createGraphQlClient(
   appDomain: string,
   tenantAlias: string,
   token?: string
-): BatchedGraphQLClient {
+): GraphQLClient {
   const uri = appDomain + "/api/v1/" + tenantAlias + "/graphql";
   const headers = {
     Authorization: `Bearer ${token || ""}`,
@@ -26,15 +26,15 @@ function createGraphQlClient(
   return newClient;
 }
 
-const memoizedClient = memoize(createGraphQlClient);
+export const memoizedGraphQLClient = memoize(createGraphQlClient);
 
-export function useGraphQLClient(): GraphQLClient {
+function useGraphQLClient(): GraphQLClient {
   const token = useToken();
   const appDomain = useAppDomain();
   const tenantAlias = useTenantAlias();
 
   // Memoization is shared. One client per domain, tenant and token (or null)
-  const localClient: BatchedGraphQLClient = memoizedClient(
+  const localClient: GraphQLClient = memoizedGraphQLClient(
     appDomain,
     tenantAlias,
     token
