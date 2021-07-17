@@ -1,9 +1,13 @@
-import { useQuery } from "@saasquatch/component-boilerplate";
-import { useHost, useTick } from "@saasquatch/component-boilerplate";
+import {
+  usePaginatedQuery,
+  useProgramId
+} from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { Host, h } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import gql from "graphql-tag";
+import { useRerenderListener } from "./re-render";
 import { ReferralTable } from "./sqm-referral-table";
+import { ReferralTableViewProps } from "./sqm-referral-table-view";
 import { useChildElements } from "./useChildElements";
 
 const GET_REFERRAL_DATA = gql`
@@ -116,39 +120,35 @@ const GET_REFERRAL_DATA = gql`
   }
 `;
 
-// interface ReferralTableProps {
-//   renderCell(data: Referral): SafeHTML | VNode;
-//   renderInCell(el: HTMLElement, data: Referral): SafeHTML | VNode;
-//   renderLabel(): string;
-// }
-
-// interface SafeHTML {
-//   safeHTML: string;
-// }
-
-export function useReferralTable(props: ReferralTable) {
-  const { data: referralData } = useQuery(GET_REFERRAL_DATA, {
-    filter: { programId_eq: props.programId },
-    limit: 10,
-    offset: 0,
+export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
+  const programIdContext = useProgramId();
+  // Default to context, overriden by props
+  const programId = props.programId ?? programIdContext;
+  // If no program ID, shows all programs
+  const filter = programId ? { programId_eq: programId } : {};
+  const {
+    envelope: referralData,
+    states,
+    callbacks,
+  } = usePaginatedQuery<Referral>(
+    GET_REFERRAL_DATA,
+    (data) => data?.viewer?.referrals,
+    {
+      limit: 5,
+      offset: 0,
+    },
+    { filter }
+  );
+  const tick = useRerenderListener();
+  const [content, setContent] = useState<ReferralTableViewProps["elements"]>({
+    columns: [],
+    rows: [],
   });
-  const host = useHost();
-  const [tick, rerender] = useTick();
-  const [content, setContent] = useState(<Host style={{ display: "none" }} />);
 
-  console.log({ referralData });
+  // TODO: Let the referral cells handle this
+  const data = referralData?.data;
 
-  const data = referralData?.viewer?.referrals?.data?.map((referral) => ({
-    // todo: real status grabbing function
-    status: !!referral.dateConverted ? "Converted" : "In Progress",
-    firstName: referral.referredUser?.firstName,
-    lastName: referral.referredUser?.lastName,
-    prettyValue: referral.rewards?.[0]?.prettyValue,
-    dateConverted: referral.dateConverted,
-    dateStarted: referral.dateReferralStarted,
-  }));
-
-  // TODO: needs to include reward data too
+  // TODO: Demo Hook - needs to include reward data too
   // const data2 = {
   //   rows: [
   //     {
@@ -170,51 +170,24 @@ export function useReferralTable(props: ReferralTable) {
 
   const components = useChildElements();
 
-  console.log({ components });
-
-  useEffect(() => {
-    host.addEventListener("attributeUpdated", rerender);
-    return () => {
-      host.removeEventListener("attributeUpdated", rerender);
-    };
-  }, []);
-
-  //TODO: sort out this mess of Promise.all's (but it works)
   async function getComponentData() {
     // get the column titles (renderLabel is asynchronous)
 
-    const columnsPromise = components?.map(async (c: any) => {
-      const tag = c.tagName.toLowerCase();
-      console.log({
-        column: c,
-        tag,
-      });
-
-      // await customElements.whenDefined(tag);
-
-      console.log(c.hasOwnProperty("renderLabel"), "renderLabel" in c);
-      return c.renderLabel();
-    });
-
-    console.log({ columnsPromise });
+    const columnsPromise = components?.map(async (c: any) =>
+      tryMethod(c, () => c.renderLabel())
+    );
 
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r) => {
-      const rowsPromise = components?.map(async (c: any) => {
-        const cell = await c.renderCell(r, c);
-        // remove td's, just return array
-        return cell;
-      });
+      const rowsPromise = components?.map(async (c: any) =>
+        tryMethod(c, () => c.renderCell(r, c))
+      );
       const rows = await Promise.all(rowsPromise);
-
-      // remove tr's, just return array
       return rows;
     });
 
     const columns = await Promise.all(columnsPromise);
     const rows = await Promise.all(cellsPromise);
-
-    console.log({ columns, data, rows, cellsPromise });
 
     // Set the content to render
     setContent({ columns, rows });
@@ -224,5 +197,61 @@ export function useReferralTable(props: ReferralTable) {
     if (!referralData) return;
     getComponentData();
   }, [referralData, components, tick]);
-  return content;
+
+  // TODO: Loading state - while initial rendering rows?
+  // TODO: Empty state
+  return {
+    states: {
+      hasNext: states.currentPage < states.pageCount - 1,
+      hasPrev: states.currentPage > 0,
+      loading: states.loading,
+    },
+    elements: {
+      columns: content.columns,
+      rows: content.rows,
+    },
+    callbacks: {
+      nextPage: () => callbacks.setCurrentPage(states.currentPage + 1),
+      prevPage: () => callbacks.setCurrentPage(states.currentPage - 1),
+    },
+  };
+}
+
+function generateUserError(e: any) {
+  try {
+    return JSON.stringify(e);
+  } catch (e) {
+    return "An unknown error";
+  }
+}
+
+async function tryMethod(
+  c: HTMLElement,
+  callback: () => Promise<VNode>
+): Promise<VNode> {
+  const tag = c.tagName.toLowerCase();
+  await customElements.whenDefined(tag);
+  let labelPromise: Promise<VNode>;
+  try {
+    labelPromise = callback();
+  } catch (e) {
+    // renderLabel did not return a promise, so this method probably doesn't exist
+    // therefore, we IGNORE the label
+    console.error("label promise failed", e);
+    return <span />;
+  }
+  try {
+    return await labelPromise;
+  } catch (e) {
+    // The column returned a promise, and that promise failed.
+    // This should not happen so we fail fast
+    console.error("Error rendering label", e);
+    const userError = generateUserError(e);
+    return (
+      <details>
+        <summary>Error</summary>
+        {userError}
+      </details>
+    );
+  }
 }

@@ -1,17 +1,14 @@
-import { useHost } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { useEffect } from "@saasquatch/universal-hooks";
-import { Component, h, Method, Host, State, Prop } from "@stencil/core";
+import { Component, h, Host, Method, Prop } from "@stencil/core";
+import { useRequestRerender } from "../re-render";
+import { ReferralTableColumn } from "./ReferralTableColumn";
 
 @Component({
   tag: "sqm-referral-table-date-column",
   styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
-export class ReferralTableDateColumn {
-  @State()
-  ignored = true;
-
+export class ReferralTableDateColumn implements ReferralTableColumn {
   @Prop() columnTitle: string = "Date Converted";
   @Prop() dateShown: string = "dateConverted";
 
@@ -21,7 +18,8 @@ export class ReferralTableDateColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data) {
+  async renderCell(data:Referral) {
+    // TODO - Validate `dateShown` against a set of known values
     return (
       <sqm-referral-table-date-cell
         date={data[this.dateShown]}
@@ -35,21 +33,7 @@ export class ReferralTableDateColumn {
   }
 
   render() {
-    useReferralTableDate(this);
-
+    useRequestRerender([this.dateShown, this.columnTitle]);
     return <Host style={{ display: "none" }} />;
   }
-}
-
-function useReferralTableDate(props) {
-  const host = useHost();
-  useEffect(() => {
-    host.dispatchEvent(
-      new CustomEvent("attributeUpdated", {
-        detail: true,
-        bubbles: true,
-        composed: true,
-      })
-    );
-  }, [props.dateLabel, props.dateShown]);
 }

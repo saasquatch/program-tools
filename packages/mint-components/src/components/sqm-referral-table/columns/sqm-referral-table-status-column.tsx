@@ -1,22 +1,29 @@
-import { Component, h, Method, Host, State, Prop } from "@stencil/core";
+import { withHooks } from "@saasquatch/stencil-hooks";
+import { Component, h, Host, Method, Prop } from "@stencil/core";
+import { useRequestRerender } from "../re-render";
+import { ReferralTableColumn } from "./ReferralTableColumn";
 
 @Component({
   tag: "sqm-referral-table-status-column",
   styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
-export class ReferralTableStatusColumn {
-  @State()
-  ignored = true;
-
+export class ReferralTableStatusColumn implements ReferralTableColumn {
   @Prop() columnTitle: string = "Status";
 
+  constructor() {
+    withHooks(this);
+  }
+  disconnectedCallback() {}
+
   @Method()
-  async renderCell(data) {
+  async renderCell(data: Referral) {
     console.log("renderCell data", { data });
+    // TODO: Make ICU and more complete
+    const statusText = data.dateConverted ? "Converted" : "In Progress";
     return (
       <sqm-referral-table-status-cell
-        status-text={data.status}
+        status-text={statusText}
       ></sqm-referral-table-status-cell>
     );
   }
@@ -27,6 +34,7 @@ export class ReferralTableStatusColumn {
   }
 
   render() {
+    useRequestRerender([this.columnTitle]);
     return <Host style={{ display: "none" }} />;
   }
 }

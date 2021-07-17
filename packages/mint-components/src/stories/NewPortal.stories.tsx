@@ -7,7 +7,7 @@ import preset from "jss-preset-default";
 import { gap } from "../global/mixins";
 import { NavigationSidebarView } from "../components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
-import { TextView } from "../components/sqm-text/sqm-text-view";
+import { PresetText } from "../functional-components/PresetText";
 import { PortalSectionView } from "../components/sqm-titled-section/sqm-portal-section-view";
 import { PortalContainerView } from "../components/sqm-portal-container/sqm-portal-container-view";
 import { DividedLayoutView } from "../components/sqm-divided-layout/sqm-divided-layout-view";
@@ -226,8 +226,16 @@ export const Dashboard = () => {
             {...{
               labelMargin: "xx-small",
               padding: "none",
-              label: <TextView type="p">Welcome back,</TextView>,
-              content: <TextView type="h1">John Smith</TextView>,
+              label: (
+                <sqm-text>
+                  <p>Welcome back,</p>
+                </sqm-text>
+              ),
+              content: (
+                <sqm-text>
+                  <h1>John Smith</h1>
+                </sqm-text>
+              ),
             }}
           ></PortalSectionView>
           {/* <StatContainerView {...{ space: "64px" }}>
@@ -246,12 +254,18 @@ export const Dashboard = () => {
             {...{
               labelMargin: "x-large",
               padding: "none",
-              label: <TextView type="h2">Partner and Profit</TextView>,
+              label: (
+                <sqm-text>
+                  <h2>Partner and Profit</h2>
+                </sqm-text>
+              ),
               content: (
-                <TextView type="p">
-                  Get rewarded for referring potential customers to MyCompany.
-                  Earn commission for each successful lead you send our way
-                </TextView>
+                <sqm-text>
+                  <p>
+                    Get rewarded for referring potential customers to MyCompany.
+                    Earn commission for each successful lead you send our way
+                  </p>
+                </sqm-text>
               ),
             }}
           ></PortalSectionView>
@@ -259,7 +273,11 @@ export const Dashboard = () => {
             {...{
               labelMargin: "small",
               padding: "none",
-              label: <TextView type="h3">Share your referral link</TextView>,
+              label: (
+                <sqm-text>
+                  <h3>Share your referral link</h3>
+                </sqm-text>
+              ),
               content: <ShareLinkView {...sharelinkProps} />,
             }}
           ></PortalSectionView>
@@ -267,7 +285,11 @@ export const Dashboard = () => {
             {...{
               labelMargin: "small",
               padding: "none",
-              label: <TextView type="h3">Share your referral code</TextView>,
+              label: (
+                <sqm-text>
+                  <h3>Share your referral code</h3>
+                </sqm-text>
+              ),
               content: <ShareLinkView {...sharecodeProps} />,
             }}
           ></PortalSectionView>
@@ -275,7 +297,11 @@ export const Dashboard = () => {
             {...{
               labelMargin: "small",
               padding: "none",
-              label: <TextView type="h3">Share via social media</TextView>,
+              label: (
+                <sqm-text>
+                  <h3>Share via social media</h3>
+                </sqm-text>
+              ),
               content: (
                 <PortalContainerView
                   {...{
@@ -330,15 +356,21 @@ export const Commissions = () => {
             {...{
               labelMargin: "xx-small",
               padding: "none",
-              label: <TextView {...{ type: "h1" }}>Commissions</TextView>,
+              label: (
+                <sqm-text>
+                  <h2>Commissions</h2>
+                </sqm-text>
+              ),
               content: (
-                <TextView {...{ type: "pLight" }}>
-                  for the{" "}
-                  <span class={sheet.classes.HeaderSubtitleBold}>
-                    Partner Program #1
-                  </span>{" "}
-                  program
-                </TextView>
+                <sqm-text>
+                  <p>
+                    for the{" "}
+                    <span class={sheet.classes.HeaderSubtitleBold}>
+                      Partner Program #1
+                    </span>{" "}
+                    program
+                  </p>
+                </sqm-text>
               ),
             }}
           ></PortalSectionView>
@@ -369,15 +401,21 @@ export const Activity = () => {
             {...{
               labelMargin: "xx-small",
               padding: "none",
-              label: <TextView type="h1">Activity</TextView>,
+              label: (
+                <sqm-text>
+                  <h2>Activity</h2>
+                </sqm-text>
+              ),
               content: (
-                <TextView type="pLight">
-                  for the{" "}
-                  <span class={sheet.classes.HeaderSubtitleBold}>
-                    Partner Program #1
-                  </span>{" "}
-                  program
-                </TextView>
+                <sqm-text>
+                  <p>
+                    for the{" "}
+                    <span class={sheet.classes.HeaderSubtitleBold}>
+                      Partner Program #1
+                    </span>{" "}
+                    program
+                  </p>
+                </sqm-text>
               ),
             }}
           ></PortalSectionView>
@@ -385,7 +423,11 @@ export const Activity = () => {
             {...{
               labelMargin: "x-large",
               padding: "none",
-              label: <TextView type="h2">Referral Activity</TextView>,
+              label: (
+                <sqm-text>
+                  <h3>Referral Activity</h3>
+                </sqm-text>
+              ),
               content: (
                 <StatContainerView {...{ space: "64px" }}>
                   <BigStatView {...{ statvalue: "1,000" }}>
@@ -405,7 +447,11 @@ export const Activity = () => {
           {...{
             labelMargin: "x-large",
             padding: "xxx-large",
-            label: <TextView type="h2">Traffic Generated</TextView>,
+            label: (
+              <sqm-text>
+                <h3>Traffic Generated</h3>
+              </sqm-text>
+            ),
             content: (
               <StatContainerView {...{ space: "64px" }}>
                 <BigStatView {...{ statvalue: "1,000" }}>Clicks</BigStatView>
