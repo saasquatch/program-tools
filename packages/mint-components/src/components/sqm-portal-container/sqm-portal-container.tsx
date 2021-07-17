@@ -21,6 +21,8 @@ export class PortalContainer {
   @Prop() padding: Spacing;
   /** @uiName Gap */
   @Prop() gap: string;
+  /** @uiName Gap */
+  @Prop() minWidth?: string;
 
   constructor() {
     withHooks(this);

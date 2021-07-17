@@ -2,7 +2,6 @@ import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { PortalContainerView } from "../sqm-portal-container/sqm-portal-container-view";
-import { PortalSectionView } from "../sqm-titled-section/sqm-portal-section-view";
 import { TextView } from "../sqm-text/sqm-text-view";
 
 export interface PortalProfileProps {}
@@ -22,14 +21,24 @@ export function PortalProfileView() {
 
   return (
     <PortalContainerView
-      {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
+      {...{
+        direction: "row",
+        padding: "xxx-large",
+        gap: "48px",
+        minWidth: "600px",
+      }}
     >
       <style type="text/css">{styleString}</style>
       <TextView {...{ type: "h1" }}>Edit your profile</TextView>
       <TextView {...{ type: "h2" }}>Personal Information</TextView>
       <form class={sheet.classes.FormStyle}>
         <PortalContainerView
-          {...{ direction: "row", padding: "none", gap: "32px" }}
+          {...{
+            direction: "row",
+            padding: "none",
+            gap: "32px",
+            minWidth: "200px",
+          }}
         >
           <sl-input label="First Name"></sl-input>
           <sl-input label="Last Name"></sl-input>

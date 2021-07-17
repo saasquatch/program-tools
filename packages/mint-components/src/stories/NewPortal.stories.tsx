@@ -230,14 +230,14 @@ export const Dashboard = () => {
               content: <TextView type="h1">John Smith</TextView>,
             }}
           ></PortalSectionView>
-          <StatContainerView {...{ space: "64px" }}>
+          {/* <StatContainerView {...{ space: "64px" }}>
             <BigStatView {...{ statvalue: "2,345" }}>Clicks</BigStatView>
             <BigStatView {...{ statvalue: "58" }}>Referrals</BigStatView>
             <BigStatView {...{ statvalue: "$10,540" }}>Earned</BigStatView>
             <BigStatView {...{ statvalue: "$2,305" }}>
               Awaiting Payout
             </BigStatView>
-          </StatContainerView>
+          </StatContainerView> */}
         </PortalContainerView>
         <PortalContainerView
           {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
@@ -277,7 +277,14 @@ export const Dashboard = () => {
               padding: "none",
               label: <TextView type="h3">Share via social media</TextView>,
               content: (
-                <div class={sheet.classes.ShareButtonContainer}>
+                <PortalContainerView
+                  {...{
+                    direction: "row",
+                    padding: "large",
+                    gap: "48px",
+                    minWidth: "150px",
+                  }}
+                >
                   <ShareButtonView {...twitterButtonProps}>
                     Tweet about us
                   </ShareButtonView>
@@ -287,7 +294,7 @@ export const Dashboard = () => {
                   <ShareButtonView {...linkedinButtonProps}>
                     Post on Linkedin
                   </ShareButtonView>
-                </div>
+                </PortalContainerView>
               ),
             }}
           ></PortalSectionView>

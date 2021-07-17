@@ -7,6 +7,7 @@ interface PortalContainerViewProps {
   direction: "row" | "column";
   padding: Spacing;
   gap: string;
+  minWidth?: string;
 }
 
 export function PortalContainerView(
@@ -15,13 +16,18 @@ export function PortalContainerView(
 ) {
   const style = {
     Container: {
-      display: "flex",
-      "flex-direction": props.direction,
+      display: "grid",
+
+      "grid-template-columns":
+        props.direction === "row"
+          ? `repeat(auto-fill, minmax(${props.minWidth}, auto))`
+          : "",
+
+      "grid-gap": props.gap,
       padding:
         props.padding === "none"
           ? props.padding
           : `var(--sl-spacing-${props.padding})`,
-      ...gap({ direction: props.direction, size: props.gap }),
     },
   };
 
