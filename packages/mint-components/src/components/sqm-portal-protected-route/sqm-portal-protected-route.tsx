@@ -15,16 +15,13 @@ export class PortalProtectedRoute {
   ignored = true;
 
   @Prop()
-  authenticated;
+  redirectTo = "/";
 
   @Prop()
-  verified;
+  requireEmailVerification = false;
 
   @Prop()
-  redirectTo;
-
-  @Prop()
-  redirectToUnverified;
+  redirectToUnverified = "/emailVerification";
 
   constructor() {
     withHooks(this);
@@ -38,6 +35,7 @@ export class PortalProtectedRoute {
       : usePortalProtectedRoute(this);
   }
 }
+
 function usePortalProtectedRouteDemo({}) {
   return;
 }

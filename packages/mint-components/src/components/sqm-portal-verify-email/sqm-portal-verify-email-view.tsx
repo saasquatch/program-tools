@@ -9,7 +9,10 @@ export interface PortalVerifyEmailViewProps {
     loading: boolean;
     verified: boolean;
   };
-  callbacks: { submit: (event: any) => Promise<void> };
+  callbacks: {
+    gotoNextPage: () => void;
+    failed: () => void;
+  };
 }
 
 const style = {
@@ -29,29 +32,50 @@ const styleString = sheet.toString();
 
 export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
   const { states, callbacks } = props;
-  return (
-    <div class={sheet.classes.Wrapper}>
-      <style type="text/css">{styleString}</style>
-      <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
-        {props.states.error && (
-          <sqm-form-message type="error" exportparts="erroralert-icon">
-            <div part="erroralert-text">{props.states.error}</div>
-          </sqm-form-message>
-        )}
-        <sl-title>
-          {states.verified ? "Email Verified" : "Please Verify Your Email"}
-        </sl-title>
+
+  if (states.verified) {
+    return (
+      <div class="Wrapper Column">
+        <sqm-form-message exportparts="success-icon">
+          <div part="successalert-text">
+            Your email has been verified and you are being redirected. If you
+            are not redirected, please click Continue.
+          </div>
+        </sqm-form-message>
         <div>
           <sl-button
-            submit
+            onClick={callbacks.gotoNextPage}
             loading={states.loading}
             exportparts="base: primarybutton-base"
             type="primary"
           >
-            {states.verified ? "Continue" : "Verify Email"}
+            Continue
           </sl-button>
         </div>
-      </sl-form>
-    </div>
-  );
+      </div>
+    );
+  }
+
+  if (props.states.error) {
+    return (
+      <div class="Wrapper Column">
+        <sqm-form-message type="error" exportparts="erroralert-icon">
+          <div part="erroralert-text">
+            The email verification code is invalid or has expired, please try
+            again.
+          </div>
+        </sqm-form-message>
+        <div>
+          <sl-button
+            onClick={callbacks.failed}
+            loading={states.loading}
+            exportparts="base: primarybutton-base"
+            type="primary"
+          >
+            Continue
+          </sl-button>
+        </div>
+      </div>
+    );
+  }
 }

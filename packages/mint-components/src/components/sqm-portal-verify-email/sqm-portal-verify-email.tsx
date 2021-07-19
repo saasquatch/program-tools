@@ -44,10 +44,11 @@ function usePortalVerifyEmailDemo({
   return {
     states: { error: "", loading: false, verified: false },
     callbacks: {
-      submit: async (_event) => {
+      failed: () => {
         nextPage;
         nextPageUrlParameter;
       },
+      gotoNextPage: () => {},
     },
   };
 }

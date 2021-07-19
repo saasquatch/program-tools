@@ -261,7 +261,15 @@ export const EditProfile = () => {
       <Sidebar />
       <DividedLayoutView {...{ direction: "column" }}>
         <PortalProfileView />
-        <PortalChangePasswordView {...{ states: { open: true } }} />
+        <PortalChangePasswordView
+          {...{
+            states: { open: true, error: "" },
+            callbacks: {
+              setOpen: () => console.log("open"),
+              submit: () => console.log("submit"),
+            },
+          }}
+        />
       </DividedLayoutView>
     </DividedLayoutView>
   );

@@ -6,10 +6,15 @@ import { PortalSectionView } from "../sqm-titled-section/sqm-portal-section-view
 import { PresetText } from "../../functional-components/PresetText";
 
 export interface PortalChangePasswordProps {
-  states: { open: boolean };
+  states: { open: boolean; error: string };
+  callbacks: {
+    setOpen: (open: boolean) => void;
+    submit: (event: MouseEvent) => void;
+  };
 }
 
 export function PortalChangePasswordView(props: PortalChangePasswordProps) {
+  const { states, callbacks } = props;
   const style = {};
 
   jss.setup(preset());
@@ -18,7 +23,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordProps) {
 
   return (
     <div>
-      <sl-dialog open={props.states.open}>
+      <sl-dialog open={states.open} onSl-hide={() => callbacks.setOpen(false)}>
         <PortalSectionView
           {...{
             labelMargin: "xxxx-large",
@@ -28,15 +33,34 @@ export function PortalChangePasswordView(props: PortalChangePasswordProps) {
               <PortalContainerView
                 {...{ direction: "column", padding: "none", gap: "32px" }}
               >
-                <sl-input label="Old password"></sl-input>
-                <sl-input label="New password"></sl-input>
-                <sl-input label="Confirm new password"></sl-input>
-                <PortalContainerView
-                  {...{ direction: "row", padding: "none", gap: "20px" }}
-                >
-                  <sl-button type="text">Cancel</sl-button>
-                  <sl-button type="default">Change Password</sl-button>
-                </PortalContainerView>
+                <sl-form onSl-submit={callbacks.submit}>
+                  <sl-input
+                    name="/oldPassword"
+                    label="Old password"
+                    required
+                    type="password"
+                  ></sl-input>
+                  <sl-input
+                    name="/newPasswordOne"
+                    label="New password"
+                    required
+                    type="password"
+                  ></sl-input>
+                  <sl-input
+                    name="/newPasswordTwo"
+                    label="Confirm new password"
+                    required
+                    type="password"
+                  ></sl-input>
+                  <PortalContainerView
+                    {...{ direction: "row", padding: "none", gap: "20px" }}
+                  >
+                    <sl-button type="text">Cancel</sl-button>
+                    <sl-button type="default" submit>
+                      Change Password
+                    </sl-button>
+                  </PortalContainerView>
+                </sl-form>
               </PortalContainerView>
             ),
           }}
@@ -47,7 +71,11 @@ export function PortalChangePasswordView(props: PortalChangePasswordProps) {
           labelMargin: "x-large",
           padding: "xxx-large",
           label: <PresetText {...{ type: "h2" }}>Password</PresetText>,
-          content: <sl-button>Change your password...</sl-button>,
+          content: (
+            <sl-button onClick={() => callbacks.setOpen(true)}>
+              Change your password...
+            </sl-button>
+          ),
         }}
       >
         <style type="text/css">{styleString}</style>

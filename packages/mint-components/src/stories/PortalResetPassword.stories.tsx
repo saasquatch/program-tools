@@ -14,9 +14,13 @@ const defaultProps: PortalResetPasswordViewProps = {
     loading: false,
     reset: false,
     confirmPassword: true,
+    oobCodeValidating: false,
+    oobCodeValid: true
   },
   callbacks: {
     submit: async (e) => await e,
+    gotoNextPage: () => console.log("next page"),
+    failed: () => console.log("failed"),
   },
 };
 
@@ -26,9 +30,13 @@ const errorProps: PortalResetPasswordViewProps = {
     loading: false,
     reset: false,
     confirmPassword: true,
+    oobCodeValidating: false,
+    oobCodeValid: true
   },
   callbacks: {
     submit: async (e) => await e,
+    gotoNextPage: () => console.log("next page"),
+    failed: () => console.log("failed"),
   },
 };
 
@@ -38,9 +46,13 @@ const loadingProps: PortalResetPasswordViewProps = {
     loading: true,
     reset: false,
     confirmPassword: true,
+    oobCodeValidating: false,
+    oobCodeValid: true
   },
   callbacks: {
     submit: async (e) => await e,
+    gotoNextPage: () => console.log("next page"),
+    failed: () => console.log("failed"),
   },
 };
 
@@ -49,9 +61,13 @@ const successProps: PortalResetPasswordViewProps = {
     error: "",
     loading: false,
     reset: true,
+    oobCodeValidating: false,
+    oobCodeValid: true
   },
   callbacks: {
     submit: async (e) => await e,
+    gotoNextPage: () => console.log("next page"),
+    failed: () => console.log("failed"),
   },
 };
 
