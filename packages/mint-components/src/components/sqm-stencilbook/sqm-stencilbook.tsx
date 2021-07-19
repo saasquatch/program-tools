@@ -25,6 +25,7 @@ import * as PortalEmailVerification from "../../stories/PortalEmailVerification.
 import * as PortalResetPassword from "../../stories/PortalResetPassword.stories";
 import * as PortalVerifyEmail from "../../stories/PortalVerifyEmail.stories";
 import * as AssetCard from "../../stories/AssetCard.stories";
+import * as DividedLayout from "../../stories/DividedLayout.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -54,6 +55,7 @@ const stories = [
   PortalResetPassword,
   PortalVerifyEmail,
   AssetCard,
+  DividedLayout,
 ];
 
 /**

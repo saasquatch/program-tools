@@ -4,6 +4,7 @@ import jsonpointer from "jsonpointer";
 import gql from "graphql-tag";
 import { useMutation, useUserIdentity } from "@saasquatch/component-boilerplate";
 
+// TODO: finalize the change password query for logged in users
 const CHANGE_PASSWORD = gql`
   mutation ResetPassword($email: String!, $password: String!) {
     authenticateUser(input: { email: $email, password: $password }) {
