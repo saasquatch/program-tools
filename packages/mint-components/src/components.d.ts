@@ -292,6 +292,8 @@ export namespace Components {
     }
     interface SqmReferralTableStatusColumn {
         "columnTitle": string;
+        "convertedStatusText": string;
+        "inProgressStatusText": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
@@ -1025,6 +1027,8 @@ declare namespace LocalJSX {
     }
     interface SqmReferralTableStatusColumn {
         "columnTitle"?: string;
+        "convertedStatusText"?: string;
+        "inProgressStatusText"?: string;
     }
     interface SqmReferralTableUserCell {
         "name"?: string;

@@ -10,6 +10,8 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
 })
 export class ReferralTableStatusColumn implements ReferralTableColumn {
   @Prop() columnTitle: string = "Status";
+  @Prop() convertedStatusText: string = "Converted";
+  @Prop() inProgressStatusText: string = "In Progress";
 
   constructor() {
     withHooks(this);
@@ -20,7 +22,9 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
   async renderCell(data: Referral) {
     console.log("renderCell data", { data });
     // TODO: Make ICU and more complete
-    const statusText = data.dateConverted ? "Converted" : "In Progress";
+    const statusText = data.dateConverted
+      ? this.convertedStatusText
+      : this.inProgressStatusText;
     return (
       <sqm-referral-table-status-cell
         status-text={statusText}
