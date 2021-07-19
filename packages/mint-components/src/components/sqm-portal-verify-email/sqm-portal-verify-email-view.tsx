@@ -35,7 +35,8 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
 
   if (states.verified) {
     return (
-      <div class="Wrapper Column">
+      <div class={sheet.classes.Wrapper}>
+        <style type="text/css">{styleString}</style>
         <sqm-form-message exportparts="success-icon">
           <div part="successalert-text">
             Your email has been verified and you are being redirected. If you
@@ -58,7 +59,8 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
 
   if (props.states.error) {
     return (
-      <div class="Wrapper Column">
+      <div class={sheet.classes.Wrapper}>
+        <style type="text/css">{styleString}</style>
         <sqm-form-message type="error" exportparts="erroralert-icon">
           <div part="erroralert-text">
             The email verification code is invalid or has expired, please try
