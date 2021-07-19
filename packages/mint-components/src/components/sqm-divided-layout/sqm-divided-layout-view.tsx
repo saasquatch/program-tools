@@ -26,6 +26,9 @@ export function DividedLayoutView(
       "& > :not(:last-child)": {
         ...getBorder(),
       },
+      "& > ::slotted(*:not(:last-child))": {
+        ...getBorder(),
+      },
     },
   };
 
