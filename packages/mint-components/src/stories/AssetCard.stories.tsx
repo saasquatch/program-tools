@@ -14,7 +14,6 @@ export const Default = () => {
   return <AssetCardView {...props} />;
 };
 
-
 export const CardWithLongText = () => {
   const props = {
     text: { titleText: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, sunt dolores? Dolore temporibus autem officia blanditiis minus in voluptatem molestiae!" },
