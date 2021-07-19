@@ -1,6 +1,6 @@
 import {
   usePaginatedQuery,
-  useProgramId
+  useProgramId,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { h, VNode } from "@stencil/core";
@@ -172,7 +172,6 @@ export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
 
   async function getComponentData() {
     // get the column titles (renderLabel is asynchronous)
-
     const columnsPromise = components?.map(async (c: any) =>
       tryMethod(c, () => c.renderLabel())
     );
