@@ -7,7 +7,6 @@ import preset from "jss-preset-default";
 import { gap } from "../global/mixins";
 import { NavigationSidebarView } from "../components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
-import { PresetText } from "../functional-components/PresetText";
 import { PortalSectionView } from "../components/sqm-titled-section/sqm-portal-section-view";
 import { PortalContainerView } from "../components/sqm-portal-container/sqm-portal-container-view";
 import { DividedLayoutView } from "../components/sqm-divided-layout/sqm-divided-layout-view";
@@ -20,82 +19,9 @@ export default {
 };
 
 const style = {
-  HeaderContainer: {
-    display: "flex",
-    "flex-direction": "column",
-  },
-  StatContainer: {
-    display: "flex",
-    "margin-bottom": "25px",
-    "& > :not(:last-child)": {
-      "border-right": "1px solid #EAEAEA",
-      "padding-right": "32px",
-      "margin-right": "32px",
-    },
-  },
-  InfoContainer: {},
-  ShareItemContainer: {
-    "& > h3": {
-      margin: "0 0 12px",
-    },
-  },
-  ShareContainer: {
-    "& > div": {
-      "margin-bottom": "48px",
-    },
-    padding: "50px",
-    "border-top": "1px solid #EAEAEA",
-  },
-  ShareButtonContainer: {
-    display: "flex",
-    ...gap({ direction: "row", size: "32px" }),
-  },
-  FullPageContainer: {
-    display: "flex",
-    "background-color": "#fff",
-  },
-  SidebarContainer: {
-    padding: "20px 15px",
-    "border-right": "1px solid #EAEAEA",
-    width: "100%",
-    "max-width": "320px",
-  },
-  MainContainer: {
-    "& >*": {
-      "padding-left": "50px",
-    },
-  },
-  Header: {
-    "margin-bottom": "50px",
-    color: "#555555",
-  },
-
-  FormHeader: {
-    "margin-bottom": "34px",
-    color: "#555555",
-  },
-  NameContainer: {
-    display: "flex",
-    "margin-bottom": "32px",
-    "& > :not(:last-child)": {
-      "margin-right": "32px",
-    },
-  },
-  InputStyle: {
-    "max-width": "510px",
-    "margin-bottom": "32px",
-  },
-  HeaderSubtitle: {
-    color: "#777777",
-    margin: "0",
-  },
   HeaderSubtitleBold: {
     "font-weight": 500,
     "text-decoration": "underline",
-  },
-  StatHeader: {
-    "margin-bottom": "24px",
-    color: "#555555",
   },
 };
 
@@ -146,12 +72,10 @@ const item2Props = {
 
 const Sidebar = () => {
   return (
-    <div class={sheet.classes.SidebarContainer}>
-      <NavigationSidebarView {...barProps}>
-        <NavigationSidebarItemView {...item1Props} />
-        <NavigationSidebarItemView {...item2Props} />
-      </NavigationSidebarView>
-    </div>
+    <NavigationSidebarView {...barProps}>
+      <NavigationSidebarItemView {...item1Props} />
+      <NavigationSidebarItemView {...item2Props} />
+    </NavigationSidebarView>
   );
 };
 

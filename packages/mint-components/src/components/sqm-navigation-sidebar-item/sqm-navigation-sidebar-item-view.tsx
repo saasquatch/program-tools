@@ -37,6 +37,9 @@ export function NavigationSidebarItemView(
     Label: {
       margin: "0",
     },
+    Icon:{
+      'flex-shrink': '0',
+    }
   };
 
   jss.setup(preset());
@@ -46,7 +49,7 @@ export function NavigationSidebarItemView(
   return (
     <div onClick={callbacks.onClick} class={sheet.classes.ItemContainer}>
       <style type="text/css">{styleString}</style>
-      <sl-icon name={data.icon}></sl-icon>
+      <sl-icon class={sheet.classes.Icon} name={data.icon}></sl-icon>
       <p class={sheet.classes.Label}>{data.label}</p>
     </div>
   );
