@@ -11,7 +11,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Nunito%20Sans"
     />
-    <link rel="stylesheet" href="/build/mint-components.css" />
+    <!-- <link rel="stylesheet" href="/build/mint-components.css" /> -->
     <script type="module" src="/build/mint-components.esm.js"></script>
     <script nomodule src="/build/mint-components.js"></script>
   </head>
@@ -21,10 +21,11 @@
         tenantAlias: "test_a7yoz8854cf6x",
         appDomain: "https://staging.referralsaasquatch.com",
         token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImJqMTIzIiwiaWQiOiJiajEyMyJ9fQ.rmJZebIyj-xThGi0WO6LSyE573vb1HkfLc8lFfqMmgs",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImJqMTIzIiwiaWQiOiJiajEyMyIsImZpcnN0TmFtZSI6IkJhZyIsImxhc3ROYW1lIjoiSmFjayJ9fQ.pkKuGeUb5AnhT0A4KuRsvumGcrOaxMx26Yy7QX1ZLzI",
         userId: "bj123",
         accountId: "bj123",
         programId: "ny-post-referrals",
+        portalAuthUrl: "http://localhost:4000",
       };
       if (!localStorage.getItem("IEAlert") && window.document.documentMode) {
         localStorage.setItem("IEAlert", true);
@@ -33,6 +34,45 @@
         );
       }
     </script>
+    <!-- <sqm-portal-change-password></sqm-portal-change-password> -->
+    <!-- <sqm-referral-table program-id="ny-post-referrals">
+      <sqm-referral-table-status-column></sqm-referral-table-status-column>
+      <sqm-referral-table-user-column></sqm-referral-table-user-column>
+      <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+      <sqm-referral-table-date-column
+        column-title="Date Started"
+        date-shown="dateStarted"
+      ></sqm-referral-table-date-column>
+      <sqm-referral-table-date-column></sqm-referral-table-date-column>
+      <sqm-referral-table-column column-title="Something">
+        <sqm-share-button medium="facebook" icon="facebook" iconslot="prefix">
+          <span>Facebook</span>
+        </sqm-share-button>
+      </sqm-referral-table-column>
+    </sqm-referral-table> -->
+    <!-- <sqm-share-button medium="facebook" icon="facebook" iconslot="prefix">
+      <span>Facebook</span>
+    </sqm-share-button> -->
+    <!-- <sqm-referral-table-user-column label="Customer" /> -->
+    <!-- <sqm-referral-table-rewards-column />
+      <sqm-referral-table-referral-date-column label="Referred"  date="goals/made-purchase"/>
+      <sqm-referral-table-column />
+      <div slot="footer"></div> -->
+    <!-- Portal Register
+    <sqm-portal-register></sqm-portal-register>
+    Portal Login
+    <sqm-portal-login></sqm-portal-login>
+    Email Verification
+    <sqm-portal-email-verification></sqm-portal-email-verification>
+    Verify Email
+    <sqm-portal-verify-email></sqm-portal-verify-email>
+    Forgot Password
+    <sqm-portal-forgot-password></sqm-portal-forgot-password>
+    Reset Password
+    <sqm-portal-reset-password></sqm-portal-reset-password> -->
+
     <sqm-stencilbook></sqm-stencilbook>
+
+    <!-- <sqm-asset-card title-text="Marketing Banner Test"></sqm-asset-card> -->
   </body>
 </html>

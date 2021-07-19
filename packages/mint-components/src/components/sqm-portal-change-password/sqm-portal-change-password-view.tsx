@@ -1,0 +1,85 @@
+import { h } from "@stencil/core";
+import jss from "jss";
+import preset from "jss-preset-default";
+import { PortalContainerView } from "../sqm-portal-container/sqm-portal-container-view";
+import { PortalSectionView } from "../sqm-titled-section/sqm-portal-section-view";
+import { PresetText } from "../../functional-components/PresetText";
+
+export interface PortalChangePasswordProps {
+  states: { open: boolean; error: string };
+  callbacks: {
+    setOpen: (open: boolean) => void;
+    submit: (event: MouseEvent) => void;
+  };
+}
+
+export function PortalChangePasswordView(props: PortalChangePasswordProps) {
+  const { states, callbacks } = props;
+  const style = {};
+
+  jss.setup(preset());
+  const sheet = jss.createStyleSheet(style);
+  const styleString = sheet.toString();
+
+  return (
+    <div>
+      <sl-dialog open={states.open} onSl-hide={() => callbacks.setOpen(false)}>
+        <PortalSectionView
+          {...{
+            labelMargin: "xxxx-large",
+            padding: "none",
+            label: <PresetText {...{ type: "h2" }}>Change password</PresetText>,
+            content: (
+              <PortalContainerView
+                {...{ direction: "column", padding: "none", gap: "32px" }}
+              >
+                <sl-form onSl-submit={callbacks.submit}>
+                  <sl-input
+                    name="/oldPassword"
+                    label="Old password"
+                    required
+                    type="password"
+                  ></sl-input>
+                  <sl-input
+                    name="/newPasswordOne"
+                    label="New password"
+                    required
+                    type="password"
+                  ></sl-input>
+                  <sl-input
+                    name="/newPasswordTwo"
+                    label="Confirm new password"
+                    required
+                    type="password"
+                  ></sl-input>
+                  <PortalContainerView
+                    {...{ direction: "row", padding: "none", gap: "20px" }}
+                  >
+                    <sl-button type="text">Cancel</sl-button>
+                    <sl-button type="default" submit>
+                      Change Password
+                    </sl-button>
+                  </PortalContainerView>
+                </sl-form>
+              </PortalContainerView>
+            ),
+          }}
+        ></PortalSectionView>
+      </sl-dialog>
+      <PortalSectionView
+        {...{
+          labelMargin: "x-large",
+          padding: "xxx-large",
+          label: <PresetText {...{ type: "h2" }}>Password</PresetText>,
+          content: (
+            <sl-button onClick={() => callbacks.setOpen(true)}>
+              Change your password...
+            </sl-button>
+          ),
+        }}
+      >
+        <style type="text/css">{styleString}</style>
+      </PortalSectionView>
+    </div>
+  );
+}

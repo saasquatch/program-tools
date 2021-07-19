@@ -23,30 +23,33 @@ const useGrapesjs: OutputTarget = grapesJsOutput({
   components: ShoelaceComponents,
 });
 
-const outputTargets: OutputTarget[] = [
-  useDocx,
-  useGrapesjs,
-  {
-    type: "dist",
-  },
-  {
-    type: "www",
-    serviceWorker: null,
-  },
-];
 export const config: Config = {
   namespace: "mint-components",
   globalScript: "src/global/global.ts",
-  globalStyle: "src/global/global.css",
-  buildEs5: process.env.ENV !== "dev",
-  outputTargets: outputTargets.filter((t) => {
-    if (process.env.BUILD === "DOCS" && t.type !== "docs-custom") {
-      // Skipping non-docs in non-docs build
-      console.log("Skipping", t.type, "in docs build");
-      return false;
-    }
-    return true;
-  }),
+  // globalStyle: "src/global/global.css",
+  buildEs5: true,
+  outputTargets:
+    //@ts-ignore
+    process.env.NODE_ENV === "dev"
+      ? [
+          {
+            type: "dist",
+          },
+          {
+            type: "www",
+            serviceWorker: null, // disable service workers
+            copy: [{ src: "global/styles.ts" }],
+          },
+          useDocx,
+        ]
+      : [
+          {
+            type: "dist",
+            copy: [{ src: "global/styles.ts" }],
+          },
+          useDocx,
+          useGrapesjs,
+        ],
   plugins: [sass({ injectGlobalPaths: ["src/global/mixins.scss"] })],
   rollupPlugins: {
     before: [
@@ -80,9 +83,6 @@ export const config: Config = {
     ],
   },
   extras: {
-    // Don't use Stencil's built in Safari10 check, it breaks the non-ES modules build
-    // NOTE: This looks like it might be fixed in Stencil 1.8.x - https://github.com/ionic-team/stencil/issues/1900
-    safari10: false,
     appendChildSlotFix: true,
     cloneNodeFix: true,
     slotChildNodesFix: true,

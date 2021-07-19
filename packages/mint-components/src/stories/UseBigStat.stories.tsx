@@ -92,7 +92,7 @@ export const RewardsAvailableWithSlash = createHookStory(() =>
 export const RewardBalance = createHookStory(() =>
   View("/rewardBalance/CREDIT/COFFEE/prettyValue")
 );
-export const ProgramGoals = createHookStory(() =>{
-  const dummy = encodeURIComponent("Paid-Member-Goal/referrals")
-  return View("/programGoals/count/"+`${dummy}`)
+export const ProgramGoals = createHookStory(() => {
+  const dummy = encodeURIComponent("Paid-Member-Goal/referrals");
+  return View("/programGoals/count/" + `${dummy}`);
 });

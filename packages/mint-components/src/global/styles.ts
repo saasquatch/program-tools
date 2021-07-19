@@ -182,7 +182,9 @@ const style = `
   --sl-color-primary-800: var(--sl-color-primary-600);
   --sl-color-primary-900: var(--sl-color-primary-600);
   --sl-color-primary-950: var(--sl-color-primary-600);
+
   --sl-color-primary-text: var(--sl-color-white);
+
   /** Syuccess Colors from: https://anvil.servicetitan.com/foundations/color/ **/
   --sl-color-success-50: #f0fdf4;
   --sl-color-success-100: #e1fdef;
@@ -196,7 +198,9 @@ const style = `
   --sl-color-success-800: var(--sl-color-success-600);
   --sl-color-success-900: var(--sl-color-success-600);
   --sl-color-success-950: var(--sl-color-success-600);
+
   --sl-color-success-text: var(--sl-color-white);
+
   /** Delegating to Anvil Grey colors from above **/
   --sl-color-info-50: var(--sl-color-gray-50);
   --sl-color-info-100: var(--sl-color-gray-100);
@@ -400,9 +404,11 @@ h2, .Title {
   color: var(--sl-color-gray-800);
   margin-top: 0px;
 }
+
 .Title {
   text-align: center;
 }
+
 .Subtitle {
   text-align: center;
   margin-bottom: 0px;
@@ -417,9 +423,11 @@ stn-wrapper-column {
   margin: var(--sl-spacing-x-large) auto;
   background-color: var(--st-content-background);
 }
+
 stn-wrapper-column > :not(:first-child), stn-wrapper-item > :not(:first-child) {
   margin-top: var(--sl-spacing-medium);
 }
+
 stn-wrapper-item, stn-wrapper-column{
   display: flex;
   flex-direction: column;
@@ -431,24 +439,31 @@ stn-wrapper-item {
   padding: var(--sl-spacing-large);
   background-color: var(--st-content-background);
 }
+
 stn-row {
   display: flex;
 }
+
 stn-row[gap="medium"] > :not(:first-child) {
   margin-left: var(--sl-spacing-medium);
 }
+
 sl-button::part(base){
   width: 100%;
 }
+
 sqm-share-button{
   flex: 1;
 }
+
 stn-row[space="even"] > * {
   flex: 1 1 0;
 }
+
 stn-row[topmargin="x-large"] {
   margin-top: var(--sl-spacing-x-large);
 }
+
 sl-details::part(base){
   background-color: var(--sl-color-white);
   border-color: var(--sl-color-gray-300)
@@ -464,7 +479,7 @@ sl-details::part(summary) {
   border-color: var(--sl-color-gray-800);
 }
 *::part(defaultbutton-base):hover{
-  background-color: rgba(20,20,20,.08);;
+  background-color: rgba(20,20,20,.08);
 }
 *::part(defaultbutton-base):active{
   background-color: rgba(20,20,20,.16);
@@ -485,9 +500,11 @@ sl-details::part(summary) {
   background-color: var(--sl-color-primary-500);
   border-color: var(--sl-color-primary-500);
 }
+
 *::part(primarybutton-base):focus{
   box-shadow: none;
 }
+
 *::part(input-label), *::part(select-label), *::part(textarea-label){
   font-size: var(--sl-input-font-size-small);
   font-weight: var(--sl-font-weight-semibold);
@@ -500,12 +517,15 @@ sl-details::part(summary) {
   align-items: flex-start;
   padding-top: var(--sl-spacing-large);
 }
+
 *::part(erroralert-text){
   color: var(--sl-color-danger-500);
 }
+
 *::part(successalert-text) {
   color: var(--sl-color-success-600);
 }
+
 *::part(successalert-text),
 *::part(erroralert-text) {
   font-size: var(--sl-font-size-medium);
@@ -525,7 +545,9 @@ sl-details::part(summary) {
   margin: 0px;
   cursor:pointer;
 }
-}
+
+
+
 `;
 
 export default style;
