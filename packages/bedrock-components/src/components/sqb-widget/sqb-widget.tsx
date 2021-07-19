@@ -9,7 +9,7 @@ import { useWidget } from './useWidget';
 @Component({
   tag: 'sqb-widget',
 })
-export class PortalEntrypoint {
+export class SqbWidget {
   @Prop() widgetType: string;
 
   constructor() {
