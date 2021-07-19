@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/bedrock-components",
-  "version": "1.0.1",
+  "version": "1.0.2-0",
   "description": "Bedrock Components for SaaSquatch.",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
@@ -12,7 +12,6 @@
   "unpkg": "dist/bedrock-components/bedrock-components.esm.js",
   "files": [
     "dist/",
-    "loader/",
     "docs/"
   ],
   "license": "MIT",
@@ -30,7 +29,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@saasquatch/component-boilerplate": "^1.0.0",
+    "@saasquatch/component-boilerplate": "^1.1.0",
     "@saasquatch/stencil-hooks": "^2.0.0",
     "@saasquatch/universal-hooks": "^1.0.0",
     "@stencil/core": "^2.4.0",

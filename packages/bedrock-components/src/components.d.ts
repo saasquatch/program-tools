@@ -20,6 +20,9 @@ export namespace Components {
          */
         "programId": string;
     }
+    interface SqbWidget {
+        "widgetType": string;
+    }
 }
 declare global {
     interface HTMLSqbConditionalSectionElement extends Components.SqbConditionalSection, HTMLStencilElement {
@@ -34,9 +37,16 @@ declare global {
         prototype: HTMLSqbProgramSectionElement;
         new (): HTMLSqbProgramSectionElement;
     };
+    interface HTMLSqbWidgetElement extends Components.SqbWidget, HTMLStencilElement {
+    }
+    var HTMLSqbWidgetElement: {
+        prototype: HTMLSqbWidgetElement;
+        new (): HTMLSqbWidgetElement;
+    };
     interface HTMLElementTagNameMap {
         "sqb-conditional-section": HTMLSqbConditionalSectionElement;
         "sqb-program-section": HTMLSqbProgramSectionElement;
+        "sqb-widget": HTMLSqbWidgetElement;
     }
 }
 declare namespace LocalJSX {
@@ -54,9 +64,13 @@ declare namespace LocalJSX {
          */
         "programId"?: string;
     }
+    interface SqbWidget {
+        "widgetType"?: string;
+    }
     interface IntrinsicElements {
         "sqb-conditional-section": SqbConditionalSection;
         "sqb-program-section": SqbProgramSection;
+        "sqb-widget": SqbWidget;
     }
 }
 export { LocalJSX as JSX };
@@ -65,6 +79,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "sqb-conditional-section": LocalJSX.SqbConditionalSection & JSXBase.HTMLAttributes<HTMLSqbConditionalSectionElement>;
             "sqb-program-section": LocalJSX.SqbProgramSection & JSXBase.HTMLAttributes<HTMLSqbProgramSectionElement>;
+            "sqb-widget": LocalJSX.SqbWidget & JSXBase.HTMLAttributes<HTMLSqbWidgetElement>;
         }
     }
 }
