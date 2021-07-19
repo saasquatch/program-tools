@@ -4,12 +4,44 @@ import preset from "jss-preset-default";
 import { PortalContainerView } from "../sqm-portal-container/sqm-portal-container-view";
 import { PresetText } from "../../functional-components/PresetText";
 
-export interface PortalProfileProps {}
+export interface PortalProfileViewProps {
+  states: {
+    loading: boolean;
+    submitDisabled: boolean;
+    formState: {
+      country: string;
+      firstName: string;
+      lastName: string;
+      errors: any;
+      error: string;
+    };
+    user: {
+      id: string;
+      accountId: string;
+      firstName: string;
+      lastName: string;
+      email: string;
+      countryCode: string;
+    };
+    text: {
+      firstnametext: string;
+      lastnametext: string;
+      emailtext: string;
+      countrytext: string;
+    };
+  };
+  callbacks: {
+    onSubmit: (props: any) => void;
+    onChange: (e) => void;
+  };
+}
 
-export function PortalProfileView(props) {
+export function PortalProfileView(props: PortalProfileViewProps) {
   const { states, callbacks } = props;
 
-  const { text, errors } = states;
+  const { text, formState } = states;
+
+  const { errors } = formState;
 
   const style = {
     FormStyle: {

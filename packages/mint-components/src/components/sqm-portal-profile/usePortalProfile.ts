@@ -6,6 +6,7 @@ import {
 import { gql } from "graphql-request";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { intl } from "../../global/global";
+import { PortalProfileViewProps } from "./sqm-portal-profile-view";
 
 export interface PortalProfileProps {
   firstnametext: string;
@@ -60,7 +61,9 @@ const defaultFormState = {
   error: "",
 };
 
-export function usePortalProfile(props: PortalProfileProps) {
+export function usePortalProfile(
+  props: PortalProfileProps
+): PortalProfileViewProps {
   const userIdent = useUserIdentity();
   const [userData, setUserData] = useState<null | {
     id: string;

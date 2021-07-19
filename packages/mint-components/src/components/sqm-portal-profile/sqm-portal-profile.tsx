@@ -1,7 +1,12 @@
 import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { PortalProfileView } from "./sqm-portal-profile-view";
-import { usePortalProfile } from "./usePortalProfile";
+import {
+  PortalProfileView,
+  PortalProfileViewProps,
+} from "./sqm-portal-profile-view";
+import { PortalProfileProps, usePortalProfile } from "./usePortalProfile";
+import { getProps } from "../../utils/utils";
+import { isDemo } from "@saasquatch/component-boilerplate";
 
 /**
  * @uiName Portal Profile
@@ -25,8 +30,43 @@ export class PortalProfile {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks } = usePortalProfile(this);
-    console.log({states, callbacks});
-    return <PortalProfileView states={states} callbacks={callbacks} />;
+    const props = isDemo()
+      ? usePortalProfileDemo(getProps(this))
+      : usePortalProfile(getProps(this));
+    return <PortalProfileView {...props} />;
   }
+}
+
+function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
+  return {
+    states: {
+      loading: false,
+      submitDisabled: false,
+      user: {
+        id: "01",
+        accountId: "111100000",
+        firstName: "Joe",
+        lastName: "Smith",
+        email: "jsmith@gmail.com",
+        countryCode: "5000",
+      },
+      text: {
+        firstnametext: "First Name",
+        lastnametext: "Last Name",
+        emailtext: "Email",
+        countrytext: "Country",
+      },
+      formState: {
+        country: "Canada",
+        firstName: "Joe",
+        lastName: "Smith",
+        errors: null,
+        error: "",
+      },
+    },
+    callbacks: {
+      onSubmit: (e) => console.log(e),
+      onChange: (e) => console.log(e),
+    },
+  };
 }

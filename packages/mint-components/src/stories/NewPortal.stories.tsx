@@ -260,7 +260,39 @@ export const EditProfile = () => {
       <style type="text/css">{styleString}</style>
       <Sidebar />
       <DividedLayoutView {...{ direction: "column" }}>
-        <PortalProfileView />
+        <PortalProfileView
+          {...{
+            states: {
+              loading: false,
+              submitDisabled: false,
+              user: {
+                id: "01",
+                accountId: "111100000",
+                firstName: "Joe",
+                lastName: "Smith",
+                email: "jsmith@gmail.com",
+                countryCode: "5000",
+              },
+              text: {
+                firstnametext: "First Name",
+                lastnametext: "Last Name",
+                emailtext: "Email",
+                countrytext: "Country",
+              },
+              formState: {
+                country: "Canada",
+                firstName: "Joe",
+                lastName: "Smith",
+                errors: null,
+                error: "",
+              },
+            },
+            callbacks: {
+              onSubmit: (e) => console.log(e),
+              onChange: (e) => console.log(e),
+            },
+          }}
+        />
         <PortalChangePasswordView
           {...{
             states: { open: true, error: "" },
