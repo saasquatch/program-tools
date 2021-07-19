@@ -57,7 +57,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
     );
   }
 
-  if (props.states.error) {
+  if (states.error) {
     return (
       <div class={sheet.classes.Wrapper}>
         <style type="text/css">{styleString}</style>

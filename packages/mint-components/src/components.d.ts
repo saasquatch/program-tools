@@ -222,8 +222,10 @@ export namespace Components {
         "submitLabel": string;
     }
     interface SqmPortalLogout {
-        "logoutOnRender": boolean;
         "nextPage": string;
+    }
+    interface SqmPortalManagedIdentityGraphqlClientProvider {
+        "domain": string;
     }
     interface SqmPortalProfile {
         "countrytext": string;
@@ -232,10 +234,9 @@ export namespace Components {
         "lastnametext": string;
     }
     interface SqmPortalProtectedRoute {
-        "authenticated": any;
-        "redirectTo": any;
-        "redirectToUnverified": any;
-        "verified": any;
+        "redirectTo": string;
+        "redirectToUnverified": string;
+        "requireEmailVerification": boolean;
     }
     interface SqmPortalRegister {
         "confirmPassword": boolean;
@@ -548,6 +549,12 @@ declare global {
         prototype: HTMLSqmPortalLogoutElement;
         new (): HTMLSqmPortalLogoutElement;
     };
+    interface HTMLSqmPortalManagedIdentityGraphqlClientProviderElement extends Components.SqmPortalManagedIdentityGraphqlClientProvider, HTMLStencilElement {
+    }
+    var HTMLSqmPortalManagedIdentityGraphqlClientProviderElement: {
+        prototype: HTMLSqmPortalManagedIdentityGraphqlClientProviderElement;
+        new (): HTMLSqmPortalManagedIdentityGraphqlClientProviderElement;
+    };
     interface HTMLSqmPortalProfileElement extends Components.SqmPortalProfile, HTMLStencilElement {
     }
     var HTMLSqmPortalProfileElement: {
@@ -712,6 +719,7 @@ declare global {
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
         "sqm-portal-login": HTMLSqmPortalLoginElement;
         "sqm-portal-logout": HTMLSqmPortalLogoutElement;
+        "sqm-portal-managed-identity-graphql-client-provider": HTMLSqmPortalManagedIdentityGraphqlClientProviderElement;
         "sqm-portal-profile": HTMLSqmPortalProfileElement;
         "sqm-portal-protected-route": HTMLSqmPortalProtectedRouteElement;
         "sqm-portal-register": HTMLSqmPortalRegisterElement;
@@ -953,8 +961,10 @@ declare namespace LocalJSX {
         "submitLabel"?: string;
     }
     interface SqmPortalLogout {
-        "logoutOnRender"?: boolean;
         "nextPage"?: string;
+    }
+    interface SqmPortalManagedIdentityGraphqlClientProvider {
+        "domain"?: string;
     }
     interface SqmPortalProfile {
         "countrytext"?: string;
@@ -963,10 +973,9 @@ declare namespace LocalJSX {
         "lastnametext"?: string;
     }
     interface SqmPortalProtectedRoute {
-        "authenticated"?: any;
-        "redirectTo"?: any;
-        "redirectToUnverified"?: any;
-        "verified"?: any;
+        "redirectTo"?: string;
+        "redirectToUnverified"?: string;
+        "requireEmailVerification"?: boolean;
     }
     interface SqmPortalRegister {
         "confirmPassword"?: boolean;
@@ -1173,6 +1182,7 @@ declare namespace LocalJSX {
         "sqm-portal-frame": SqmPortalFrame;
         "sqm-portal-login": SqmPortalLogin;
         "sqm-portal-logout": SqmPortalLogout;
+        "sqm-portal-managed-identity-graphql-client-provider": SqmPortalManagedIdentityGraphqlClientProvider;
         "sqm-portal-profile": SqmPortalProfile;
         "sqm-portal-protected-route": SqmPortalProtectedRoute;
         "sqm-portal-register": SqmPortalRegister;
@@ -1222,6 +1232,7 @@ declare module "@stencil/core" {
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
             "sqm-portal-logout": LocalJSX.SqmPortalLogout & JSXBase.HTMLAttributes<HTMLSqmPortalLogoutElement>;
+            "sqm-portal-managed-identity-graphql-client-provider": LocalJSX.SqmPortalManagedIdentityGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmPortalManagedIdentityGraphqlClientProviderElement>;
             "sqm-portal-profile": LocalJSX.SqmPortalProfile & JSXBase.HTMLAttributes<HTMLSqmPortalProfileElement>;
             "sqm-portal-protected-route": LocalJSX.SqmPortalProtectedRoute & JSXBase.HTMLAttributes<HTMLSqmPortalProtectedRouteElement>;
             "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
