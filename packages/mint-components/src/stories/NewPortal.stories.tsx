@@ -4,7 +4,6 @@ import { ShareButtonView } from "../components/sqm-share-button/sqm-share-button
 import { ShareLinkView } from "../components/sqm-share-link/sqm-share-link-view";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { gap } from "../global/mixins";
 import { NavigationSidebarView } from "../components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PortalSectionView } from "../components/sqm-titled-section/sqm-portal-section-view";

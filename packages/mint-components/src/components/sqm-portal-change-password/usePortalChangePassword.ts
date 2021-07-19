@@ -2,7 +2,10 @@ import { useState } from "@saasquatch/universal-hooks";
 import { PortalChangePassword } from "./sqm-portal-change-password";
 import jsonpointer from "jsonpointer";
 import gql from "graphql-tag";
-import { useMutation, useUserIdentity } from "@saasquatch/component-boilerplate";
+import {
+  useMutation,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
 
 // TODO: finalize the change password query for logged in users
 const CHANGE_PASSWORD = gql`
@@ -14,8 +17,8 @@ const CHANGE_PASSWORD = gql`
   }
 `;
 
-export function usePortalChangePassword(props: PortalChangePassword) {
-  // const [{ loading, data, error }, request] = useMutation(CHANGE_PASSWORD);
+export function usePortalChangePassword(_props: PortalChangePassword) {
+  const [request, { loading /*data, errors */ }] = useMutation(CHANGE_PASSWORD);
   const [open, setOpen] = useState(false);
 
   const user = useUserIdentity();
@@ -31,7 +34,7 @@ export function usePortalChangePassword(props: PortalChangePassword) {
       password: formData.password,
     };
 
-    // await request(variables);
+    await request(variables);
     console.log(
       { formData },
       formData?.newPasswordOne,
@@ -41,7 +44,8 @@ export function usePortalChangePassword(props: PortalChangePassword) {
   return {
     states: {
       open,
-      error:"",
+      loading,
+      error: "",
     },
     data: {},
     callbacks: {

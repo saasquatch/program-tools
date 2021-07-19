@@ -1,7 +1,7 @@
 import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { gap, Spacing } from "../../global/mixins";
+import { Spacing } from "../../global/mixins";
 
 interface PortalContainerViewProps {
   direction: "row" | "column";

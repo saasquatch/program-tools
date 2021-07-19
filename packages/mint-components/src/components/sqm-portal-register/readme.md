@@ -7,13 +7,14 @@
 
 ## Properties
 
-| Property               | Attribute                 | Description | Type     | Default      |
-| ---------------------- | ------------------------- | ----------- | -------- | ------------ |
-| `emailLabel`           | `email-label`             |             | `string` | `"Email"`    |
-| `nextPage`             | `next-page`               |             | `string` | `"/"`        |
-| `nextPageUrlParameter` | `next-page-url-parameter` |             | `string` | `"nextPage"` |
-| `passwordLabel`        | `password-label`          |             | `string` | `"Password"` |
-| `submitLabel`          | `submit-label`            |             | `string` | `"Register"` |
+| Property               | Attribute                 | Description | Type      | Default      |
+| ---------------------- | ------------------------- | ----------- | --------- | ------------ |
+| `confirmPassword`      | `confirm-password`        |             | `boolean` | `false`      |
+| `emailLabel`           | `email-label`             |             | `string`  | `"Email"`    |
+| `nextPage`             | `next-page`               |             | `string`  | `"/"`        |
+| `nextPageUrlParameter` | `next-page-url-parameter` |             | `string`  | `"nextPage"` |
+| `passwordLabel`        | `password-label`          |             | `string`  | `"Password"` |
+| `submitLabel`          | `submit-label`            |             | `string`  | `"Register"` |
 
 
 ## Dependencies

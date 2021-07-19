@@ -40,7 +40,7 @@ export class NavigationSidebarItem {
   }
 }
 
-function useSidebarItemDemo(props: NavigationSidebarItem): NavigationSidebarItemViewProps {
+function useSidebarItemDemo(_props: NavigationSidebarItem): NavigationSidebarItemViewProps {
   return {
     states: {
       active: false,

@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type     | Default      |
-| ------------- | -------------- | ----------- | -------- | ------------ |
-| `labelMargin` | `label-margin` |             | `string` | `"0 0 20px"` |
-| `padding`     | `padding`      |             | `string` | `"0"`        |
+| Property      | Attribute      | Description | Type                                                                                                                                           | Default     |
+| ------------- | -------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `label`       | `label`        |             | `string`                                                                                                                                       | `undefined` |
+| `labelMargin` | `label-margin` |             | `"large" \| "medium" \| "none" \| "small" \| "x-large" \| "x-small" \| "xx-large" \| "xx-small" \| "xxx-large" \| "xxx-small" \| "xxxx-large"` | `"small"`   |
+| `padding`     | `padding`      |             | `"large" \| "medium" \| "none" \| "small" \| "x-large" \| "x-small" \| "xx-large" \| "xx-small" \| "xxx-large" \| "xxx-small" \| "xxxx-large"` | `"none"`    |
 
 
 ----------------------------------------------

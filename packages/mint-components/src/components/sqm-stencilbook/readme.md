@@ -17,6 +17,7 @@
 - [sqm-edit-profile](../sqm-edit-profile)
 - [sqm-form-message](../sqm-form-message)
 - [sqm-hook-story-container](../sqm-hook-story-container)
+- [sqm-text](../sqm-text)
 
 ### Graph
 ```mermaid
@@ -29,6 +30,7 @@ graph TD;
   sqm-stencilbook --> sqm-edit-profile
   sqm-stencilbook --> sqm-form-message
   sqm-stencilbook --> sqm-hook-story-container
+  sqm-stencilbook --> sqm-text
   sqm-edit-profile --> sqm-form-message
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```

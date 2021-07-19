@@ -18,12 +18,12 @@
 ### Used by
 
  - [sqm-edit-profile](../sqm-edit-profile)
- - [sqm-portal-email-verification](../portal-email-verification)
- - [sqm-portal-forgot-password](../portal-forgot-password)
- - [sqm-portal-login](../portal-login)
- - [sqm-portal-register](../portal-register)
- - [sqm-portal-reset-password](../portal-reset-password)
- - [sqm-portal-verify-email](../portal-verify-email)
+ - [sqm-portal-email-verification](../sqm-portal-email-verification)
+ - [sqm-portal-forgot-password](../sqm-portal-forgot-password)
+ - [sqm-portal-login](../sqm-portal-login)
+ - [sqm-portal-register](../sqm-portal-register)
+ - [sqm-portal-reset-password](../sqm-portal-reset-password)
+ - [sqm-portal-verify-email](../sqm-portal-verify-email)
  - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph

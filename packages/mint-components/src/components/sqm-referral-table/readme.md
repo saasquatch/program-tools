@@ -7,13 +7,9 @@
 
 ## Properties
 
-| Property          | Attribute          | Description | Type                                               | Default     |
-| ----------------- | ------------------ | ----------- | -------------------------------------------------- | ----------- |
-| `interval`        | `interval`         |             | `string`                                           | `undefined` |
-| `leaderboardType` | `leaderboard-type` |             | `"topConvertedReferrers" \| "topStartedReferrers"` | `undefined` |
-| `rankType`        | `rank-type`        |             | `"denseRank" \| "rank" \| "rowNumber"`             | `undefined` |
-| `statsheading`    | `statsheading`     |             | `string`                                           | `undefined` |
-| `usersheading`    | `usersheading`     |             | `string`                                           | `undefined` |
+| Property    | Attribute    | Description                                                                                                                                                                                                           | Type     | Default     |
+| ----------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `programId` | `program-id` | Filters to only show referrals in this program. Will default to filtering by the program context where  this table lives. If no program ID is set or provided by context, then shows all referrals from all programs. | `string` | `undefined` |
 
 
 ----------------------------------------------

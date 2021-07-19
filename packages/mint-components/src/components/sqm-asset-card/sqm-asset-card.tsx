@@ -38,7 +38,7 @@ export class AssetCard {
   }
 }
 
-function useAssetCardDemo(props: AssetCard): AssetCardViewProps {
+function useAssetCardDemo(_props: AssetCard): AssetCardViewProps {
   return {
     text: {
       titleText: "Marketing Banner",

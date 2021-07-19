@@ -1,5 +1,4 @@
 import { h } from "@stencil/core";
-import { AssetCardView } from "../components/sqm-asset-card/sqm-asset-card-view";
 import { DividedLayoutView } from "../components/sqm-divided-layout/sqm-divided-layout-view";
 import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { NavigationSidebarView } from "../components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
