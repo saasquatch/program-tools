@@ -1,21 +1,32 @@
 import gql from "graphql-tag";
 import jsonpointer from "jsonpointer";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { usePortalQuery } from "../sqm-portal/usePortalQuery";
+import { useMutation } from "@saasquatch/component-boilerplate";
 
 const PortalForgotPasswordMutation = gql`
-  mutation PortalForgotPassword($email: String!, $urlParams: JSONObject) {
-    requestPasswordResetEmail(input: { email: $email, urlParams: $urlParams }) {
+  mutation PortalForgotPassword($email: String!, $urlParams: RSJsonNode) {
+    requestManagedIdentityPasswordResetEmail(
+      requestManagedIdentityPasswordResetEmailInput: {
+        email: $email
+        urlParams: $urlParams
+      }
+    ) {
       success
     }
   }
 `;
 
+interface PortalForgotPasswordMutationResult {
+  requestManagedIdentityPasswordResetEmail: {
+    success: boolean;
+  };
+}
+
 export function usePortalForgotPassword({ nextPageUrlParameter }) {
-  const [{ loading, data, error }, request] = usePortalQuery(
-    PortalForgotPasswordMutation,
-    { loading: false }
-  );
+  const [request, { loading, data, errors }] =
+    useMutation<PortalForgotPasswordMutationResult>(
+      PortalForgotPasswordMutation
+    );
   const [success, setSuccess] = useState(false);
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -34,15 +45,15 @@ export function usePortalForgotPassword({ nextPageUrlParameter }) {
   };
 
   useEffect(() => {
-    if (data?.requestPasswordResetEmail?.success) {
+    if (data?.requestManagedIdentityPasswordResetEmail?.success) {
       setSuccess(true);
     }
-  }, [data?.requestPasswordResetEmail?.success]);
+  }, [data?.requestManagedIdentityPasswordResetEmail?.success]);
 
   return {
     states: {
       loading,
-      error,
+      error: errors?.response?.errors?.[0]?.message,
       success,
     },
     callbacks: {

@@ -1,55 +1,92 @@
 import gql from "graphql-tag";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { usePortalQuery } from "../sqm-portal/usePortalQuery";
-import { navigation } from "@saasquatch/component-boilerplate";
+import {
+  navigation,
+  useUserIdentity,
+  setUserIdentity,
+  useMutation,
+} from "@saasquatch/component-boilerplate";
 
 const PortalVerifyEmailMutation = gql`
   mutation PortalVerifyEmail($oobCode: String!) {
-    verifyEmail(input: { oobCode: $oobCode }) {
+    verifyManagedIdentityEmail(
+      verifyManagedIdentityEmailInput: { oobCode: $oobCode }
+    ) {
       success
     }
   }
 `;
 
+interface PortalVerifyEmailMutationResult {
+  verifyManagedIdentityEmail: {
+    success: boolean;
+  };
+}
+
 export function usePortalVerifyEmail({ nextPage, nextPageUrlParameter }) {
-  const [{ loading, data, error }, request] = usePortalQuery(
-    PortalVerifyEmailMutation,
-    { loading: false }
-  );
+  const userIdentity = useUserIdentity();
+  const [request, { loading, data, errors }] =
+    useMutation<PortalVerifyEmailMutationResult>(PortalVerifyEmailMutation);
+  const [verified, setVerified] = useState(false);
+
   const urlParams = new URLSearchParams(window.location.search);
   const oobCode = urlParams.get("oobCode");
+  const nextPageOverride = urlParams.get(nextPageUrlParameter);
+
   urlParams.delete("oobCode");
 
-  const nextPageOverride = urlParams.get(nextPageUrlParameter);
-  urlParams.delete(nextPageUrlParameter);
+  const failed = () => {
+    return navigation.push({
+      pathname: "/",
+      search: urlParams.toString(),
+    });
+  };
 
-  const [verified, setVerified] = useState(false);
-  const submit = async (_event: any) => {
-    if (verified) {
-      return navigation.push({
-        pathname: nextPageOverride || nextPage,
-        search: urlParams.toString(),
-      });
-    }
+  const gotoNextPage = () => {
+    urlParams.delete(nextPageUrlParameter);
+    return navigation.push({
+      pathname: nextPageOverride || nextPage,
+      search: urlParams.toString(),
+    });
+  };
+
+  const submit = async () => {
     if (oobCode) {
       await request({ oobCode });
     }
   };
 
   useEffect(() => {
-    if (data?.verifyEmail?.success) {
+    if (data?.verifyManagedIdentityEmail?.success) {
+      if (userIdentity) {
+        setUserIdentity({
+          ...userIdentity,
+          managedIdentity: {
+            ...userIdentity.managedIdentity,
+            emailVerified: true,
+          },
+        });
+      }
       setVerified(true);
+      setTimeout(() => {
+        gotoNextPage();
+      }, 5000);
     }
-  }, [data?.verifyEmail?.success]);
+  }, [data?.verifyManagedIdentityEmail?.success]);
+
+  useEffect(() => {
+    submit();
+  }, []);
 
   return {
     states: {
       loading,
-      error,
+      error: errors?.response?.errors?.[0]?.message,
       verified,
     },
     callbacks: {
-      submit,
+      failed,
+      gotoNextPage,
     },
   };
 }

@@ -1,37 +1,49 @@
 import gql from "graphql-tag";
 import jsonpointer from "jsonpointer";
 import { useEffect } from "@saasquatch/universal-hooks";
-import { usePortalQuery } from "../sqm-portal/usePortalQuery";
 import decode from "jwt-decode";
 import {
   navigation,
-  setPersistedUserIdentity,
+  setUserIdentity,
+  useMutation,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 
 const PortalLoginMutation = gql`
   mutation PortalLogin($email: String!, $password: String!) {
-    authenticateUser(input: { email: $email, password: $password }) {
-      squatchJWT
+    authenticateManagedIdentityWithEmailAndPassword(
+      authenticateManagedIdentityWithEmailAndPasswordInput: {
+        email: $email
+        password: $password
+      }
+    ) {
+      token
+      email
+      emailVerified
       sessionData
     }
   }
 `;
 
+interface PortalLoginMutationResult {
+  authenticateManagedIdentityWithEmailAndPassword: {
+    token: string;
+    email: string;
+    emailVerified: boolean;
+    sessionData: Record<string, any>;
+  };
+}
+
 interface DecodedSquatchJWT {
   user: {
     accountId: string;
     id: string;
-    email: string;
-    verified: boolean;
   };
 }
 
 export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
-  const [{ loading, data, error }, request] = usePortalQuery(
-    PortalLoginMutation,
-    { loading: false }
-  );
+  const [request, { loading, data, errors }] =
+    useMutation<PortalLoginMutationResult>(PortalLoginMutation);
   const userIdent = useUserIdentity();
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -50,23 +62,22 @@ export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
   };
 
   useEffect(() => {
-    if (data?.authenticateUser) {
-      const { authenticateUser } = data;
-      const jwt = authenticateUser.squatchJWT;
+    if (data?.authenticateManagedIdentityWithEmailAndPassword) {
+      const { authenticateManagedIdentityWithEmailAndPassword: res } = data;
+      const jwt = res.token;
       const { user } = decode<DecodedSquatchJWT>(jwt);
-      const sessionData = {
-        ...authenticateUser.sessionData,
-        verified: user.verified,
-        email: user.email,
-      };
-      setPersistedUserIdentity({
+      setUserIdentity({
         jwt,
         id: user.id,
         accountId: user.accountId,
-        sessionData,
+        managedIdentity: {
+          email: res.email,
+          emailVerified: res.emailVerified,
+          sessionData: res.sessionData,
+        },
       });
     }
-  }, [data?.authenticateUser]);
+  }, [data?.authenticateManagedIdentityWithEmailAndPassword]);
 
   useEffect(() => {
     if (userIdent?.jwt) {
@@ -80,7 +91,7 @@ export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
   return {
     states: {
       loading,
-      error,
+      error: errors?.response?.errors?.[0]?.message,
     },
     callbacks: {
       submit,

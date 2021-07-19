@@ -15,7 +15,8 @@ const defaultProps: PortalVerifyEmailViewProps = {
     verified: false,
   },
   callbacks: {
-    submit: async (e) => await e,
+    gotoNextPage: () => console.log("next page"),
+    failed: () => console.log("failed"),
   },
 };
 
@@ -26,7 +27,8 @@ const errorProps: PortalVerifyEmailViewProps = {
     verified: false,
   },
   callbacks: {
-    submit: async (e) => await e,
+    gotoNextPage: () => console.log("next page"),
+    failed: () => console.log("failed"),
   },
 };
 
@@ -37,7 +39,8 @@ const loadingProps: PortalVerifyEmailViewProps = {
     verified: false,
   },
   callbacks: {
-    submit: async (e) => await e,
+    gotoNextPage: () => console.log("next page"),
+    failed: () => console.log("failed"),
   },
 };
 
@@ -48,7 +51,8 @@ const resendProps: PortalVerifyEmailViewProps = {
     verified: false,
   },
   callbacks: {
-    submit: async (e) => await e,
+    gotoNextPage: () => console.log("next page"),
+    failed: () => console.log("failed"),
   },
 };
 
@@ -59,7 +63,8 @@ const verifiedProps: PortalVerifyEmailViewProps = {
     verified: true,
   },
   callbacks: {
-    submit: async (e) => await e,
+    gotoNextPage: () => console.log("next page"),
+    failed: () => console.log("failed"),
   },
 };
 

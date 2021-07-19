@@ -9,9 +9,13 @@ export interface PortalResetPasswordViewProps {
     loading: boolean;
     reset: boolean;
     confirmPassword?: boolean;
+    oobCodeValidating: boolean;
+    oobCodeValid: boolean;
   };
   callbacks: {
     submit: (node: any) => void;
+    gotoNextPage: () => void;
+    failed: () => void;
   };
 }
 
