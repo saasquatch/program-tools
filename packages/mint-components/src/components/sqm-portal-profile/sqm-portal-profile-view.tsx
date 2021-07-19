@@ -14,7 +14,7 @@ export interface PortalProfileViewProps {
       lastName: string;
       errors: any;
       error: string;
-    }
+    };
     user: {
       id: string;
       accountId: string;
@@ -22,25 +22,26 @@ export interface PortalProfileViewProps {
       lastName: string;
       email: string;
       countryCode: string;
-    }
+    };
     text: {
       firstnametext: string;
       lastnametext: string;
       emailtext: string;
       countrytext: string;
-    },
-    errors: any;
-  },
+    };
+  };
   callbacks: {
     onSubmit: (props: any) => void;
     onChange: (e) => void;
-  }
+  };
 }
 
 export function PortalProfileView(props: PortalProfileViewProps) {
   const { states, callbacks } = props;
 
-  const { text, errors } = states;
+  const { text, formState } = states;
+
+  const { errors } = formState;
 
   const style = {
     FormStyle: {

@@ -1,6 +1,9 @@
 import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { PortalProfileView, PortalProfileViewProps } from "./sqm-portal-profile-view";
+import {
+  PortalProfileView,
+  PortalProfileViewProps,
+} from "./sqm-portal-profile-view";
 import { PortalProfileProps, usePortalProfile } from "./usePortalProfile";
 import { getProps } from "../../utils/utils";
 import { isDemo } from "@saasquatch/component-boilerplate";
@@ -28,33 +31,13 @@ export class PortalProfile {
 
   render() {
     const props = isDemo()
-    ? usePortalProfileDemo(getProps(this))
-    : usePortalProfile(getProps(this));
-    const { states, callbacks } = usePortalProfile(this);
-    console.log({states, callbacks});
+      ? usePortalProfileDemo(getProps(this))
+      : usePortalProfile(getProps(this));
     return <PortalProfileView {...props} />;
   }
 }
 
-
-// const [userData, setUserData] = useState<null | {
-//   id: string;
-//   accountId: string;
-//   firstName: string;
-//   lastName: string;
-//   email: string;
-//   countryCode: string;
-// }>(undefined);
-
-// const [formState, setFormState] = useState<{
-//   country: string;
-//   firstName: string;
-//   lastName: string;
-//   errors: any;
-//   error: string;
-// }>(defaultFormState);
-
-function usePortalProfileDemo (props: PortalProfileViewProps): PortalProfileViewProps {
+function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
   return {
     states: {
       loading: false,
@@ -65,14 +48,14 @@ function usePortalProfileDemo (props: PortalProfileViewProps): PortalProfileView
         firstName: "Joe",
         lastName: "Smith",
         email: "jsmith@gmail.com",
-        countryCode: "5000"
+        countryCode: "5000",
       },
       text: {
         firstnametext: "First Name",
         lastnametext: "Last Name",
         emailtext: "Email",
         countrytext: "Country",
-      }, 
+      },
       formState: {
         country: "Canada",
         firstName: "Joe",
@@ -80,11 +63,10 @@ function usePortalProfileDemo (props: PortalProfileViewProps): PortalProfileView
         errors: null,
         error: "",
       },
-      errors: null,
     },
     callbacks: {
       onSubmit: (e) => console.log(e),
       onChange: (e) => console.log(e),
-    }
-  }
+    },
+  };
 }
