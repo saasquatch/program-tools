@@ -1,4 +1,4 @@
-import { useLazyQuery, useProgramId, useUserIdentity } from '@saasquatch/component-boilerplate';
+import { useLazyQuery, useUserIdentity } from '@saasquatch/component-boilerplate';
 import { useEffect, useState } from '@saasquatch/universal-hooks';
 import { gql } from 'graphql-request';
 
