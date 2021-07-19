@@ -38,6 +38,12 @@ const style = {
     height: "228px",
     "border-radius": "4px",
   },
+
+  Icon: {
+    "&:hover": {
+      cursor: "pointer",
+    }
+  }
 };
 
 jss.setup(preset());
@@ -60,7 +66,7 @@ export const AssetCardView = (props: AssetCardViewProps) => {
           width="16"
           height="16"
           fill="#000000"
-          class="bi bi-download"
+          class={`bi bi-download ${sheet.classes.Icon}`}
           viewBox="0 0 16 16"
         >
           <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
