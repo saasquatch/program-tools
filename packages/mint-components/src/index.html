@@ -17,16 +17,16 @@
   </head>
   <body>
     <script>
-      window.widgetIdent = {
-        tenantAlias: "test_a7yoz8854cf6x",
-        appDomain: "https://staging.referralsaasquatch.com",
-        token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImJqMTIzIiwiaWQiOiJiajEyMyIsImZpcnN0TmFtZSI6IkJhZyIsImxhc3ROYW1lIjoiSmFjayJ9fQ.pkKuGeUb5AnhT0A4KuRsvumGcrOaxMx26Yy7QX1ZLzI",
-        userId: "bj123",
-        accountId: "bj123",
-        programId: "ny-post-referrals",
-        portalAuthUrl: "http://localhost:4000",
-      };
+      // window.widgetIdent = {
+      //   tenantAlias: "test_a7yoz8854cf6x",
+      //   appDomain: "https://staging.referralsaasquatch.com",
+      //   token:
+      //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImJqMTIzIiwiaWQiOiJiajEyMyIsImZpcnN0TmFtZSI6IkJhZyIsImxhc3ROYW1lIjoiSmFjayJ9fQ.pkKuGeUb5AnhT0A4KuRsvumGcrOaxMx26Yy7QX1ZLzI",
+      //   userId: "bj123",
+      //   accountId: "bj123",
+      //   programId: "ny-post-referrals",
+      //   portalAuthUrl: "http://localhost:4000",
+      // };
       if (!localStorage.getItem("IEAlert") && window.document.documentMode) {
         localStorage.setItem("IEAlert", true);
         alert(
@@ -70,12 +70,11 @@
     <sqm-portal-forgot-password></sqm-portal-forgot-password>
     Reset Password
     <sqm-portal-reset-password></sqm-portal-reset-password> -->
-
-    <!-- <sqm-stencilbook></sqm-stencilbook> -->
+    <sqm-stencilbook></sqm-stencilbook>
 
     <!-- <sqm-portal-register></sqm-portal-register> -->
 
-    <sqm-divided-layout direction="row">
+    <!-- <sqm-divided-layout direction="row">
       <sqm-navigation-sidebar>
         <sqm-navigation-sidebar-item
           path="/"
@@ -94,12 +93,15 @@
         ></sqm-navigation-sidebar-item>
       </sqm-navigation-sidebar>
       <sqm-divided-layout direction="column"
-        ><sqm-portal-container direction="column" padding="xxx-large" gap="xxx-large"
+        ><sqm-portal-container
+          direction="column"
+          padding="xxx-large"
+          gap="xxx-large"
           ><sqm-titled-section label-margin="xx-small"
             ><sqm-text slot="label"> <p>Welcome back,</p> </sqm-text
             ><sqm-text slot="content">
               <h1>
-                <sqm-user-name fallback="Glad to see you"></sqm-user-name>
+                <sqm-user-name fallback="Anonymous User"></sqm-user-name>
               </h1> </sqm-text></sqm-titled-section
           ><sqm-stat-container space="xxxx-large"
             ><sqm-big-stat
@@ -148,18 +150,23 @@
               direction="row"
               padding="none"
               gap="xxx-large"
-              min-width="150px"
-              ><sqm-share-button icon="envelope" medium="email"
-                >Email</sqm-share-button
-              ><sqm-share-button medium="twitter">Tweet</sqm-share-button
-              ><sqm-share-button medium="facebook"
-                >Facebook</sqm-share-button
+              min-width="160px"
+              ><sqm-share-button
+                icon="envelope"
+                medium="email"
+                size="medium"
+                pill="true"
+                >Email a friend</sqm-share-button
+              ><sqm-share-button medium="twitter" size="medium" pill="true"
+                >Tweet about us</sqm-share-button
+              ><sqm-share-button medium="facebook" size="medium" pill="true"
+                >Share on Facebook</sqm-share-button
               ></sqm-portal-container
             ></sqm-titled-section
           ></sqm-portal-container
         ></sqm-divided-layout
       >
-    </sqm-divided-layout>
+    </sqm-divided-layout> -->
 
     <!-- <sqm-user-name></sqm-user-name> -->
 
