@@ -37,7 +37,7 @@ export class PortalProfile {
   }
 }
 
-function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
+function usePortalProfileDemo(_props: PortalProfileProps): PortalProfileViewProps {
   return {
     states: {
       loading: false,

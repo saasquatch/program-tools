@@ -7,9 +7,11 @@
 
 ## Properties
 
-| Property   | Attribute   | Description                                                           | Type     | Default     |
-| ---------- | ----------- | --------------------------------------------------------------------- | -------- | ----------- |
-| `statType` | `stat-type` | Select what type of stat to display. Manual paths are also supported. | `string` | `undefined` |
+| Property      | Attribute      | Description                                                           | Type                            | Default     |
+| ------------- | -------------- | --------------------------------------------------------------------- | ------------------------------- | ----------- |
+| `alignment`   | `alignment`    |                                                                       | `"center" \| "left" \| "right"` | `undefined` |
+| `flexReverse` | `flex-reverse` |                                                                       | `boolean`                       | `false`     |
+| `statType`    | `stat-type`    | Select what type of stat to display. Manual paths are also supported. | `string`                        | `undefined` |
 
 
 ## Slots

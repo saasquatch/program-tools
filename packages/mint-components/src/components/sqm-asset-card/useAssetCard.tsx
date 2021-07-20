@@ -1,4 +1,4 @@
-export const useAssetCard = (props) => {
+export const useAssetCard = (_props) => {
   return {
     text: {
       titleText: "Marketing Banner",
