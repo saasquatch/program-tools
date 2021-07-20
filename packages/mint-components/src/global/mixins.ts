@@ -92,6 +92,14 @@ export const Wrapper = {
   "border-radius": "8px",
 };
 
+export const AuthWrapper = {
+  margin: "auto",
+  ...Wrapper,
+  "max-width": "500px",
+  ...Column,
+  ...gap({ direction: "column", size: "var(--sl-spacing-xxx-large)" }),
+};
+
 export const AuthButtonsContainer = {
   "padding-top": "var(--sl-spacing-medium)",
   display: "flex",

@@ -3,7 +3,7 @@ import jss from "jss";
 import preset from "jss-preset-default";
 
 export interface PresetTextProps {
-  type: "p" | "pLight" | "h1" | "h2" | "h3" | "h4";
+  type: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
 }
 
 export function PresetText(props: PresetTextProps, children: VNode) {
@@ -15,7 +15,7 @@ export function PresetText(props: PresetTextProps, children: VNode) {
       color: "#555555",
       margin: "0",
     },
-    pLight: {
+    subtext: {
       "font-size": "12px",
       "line-height": "14px",
       "font-weight": "400",

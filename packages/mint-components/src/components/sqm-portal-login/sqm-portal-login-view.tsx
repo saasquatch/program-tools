@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { AuthButtonsContainer, Column, gap, Wrapper } from "../../global/mixins";
+import { AuthButtonsContainer, AuthWrapper, Column, gap, Wrapper } from "../../global/mixins";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { PresetText } from "../../functional-components/PresetText";
@@ -23,12 +23,7 @@ export interface PortalLoginViewProps {
 }
 
 const style = {
-  Wrapper: {
-    ...Wrapper,
-    "max-width": "500px",
-    ...Column,
-    ...gap({ direction: "column", size: "var(--sl-spacing-xxx-large)" }),
-  },
+  Wrapper: AuthWrapper,
   Column: {
     ...Column,
     ...gap({ direction: "column", size: "var(--sl-spacing-xx-large)" }),
