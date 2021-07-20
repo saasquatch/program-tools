@@ -414,6 +414,12 @@ export namespace Components {
           * @uiName Tooltip text
          */
         "tooltiptext": string;
+        /**
+          * Shows either the default share link or the referral code
+          * @uiName Type of share link
+          * @uiEnum ["shareLink", "referralCode"]
+         */
+        "type": "shareLink" | "referralCode";
     }
     interface SqmStatContainer {
         /**
@@ -1146,6 +1152,12 @@ declare namespace LocalJSX {
           * @uiName Tooltip text
          */
         "tooltiptext"?: string;
+        /**
+          * Shows either the default share link or the referral code
+          * @uiName Type of share link
+          * @uiEnum ["shareLink", "referralCode"]
+         */
+        "type"?: "shareLink" | "referralCode";
     }
     interface SqmStatContainer {
         /**

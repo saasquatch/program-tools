@@ -11,13 +11,15 @@ interface ShareLinkProps {
   programId?: string;
   tooltiptext: string;
   tooltiplifespan: number;
+  type: "shareLink" | "referralCode";
 }
 
 const MessageLinkQuery = gql`
-  query($programId: ID) {
+  query ($programId: ID) {
     user: viewer {
       ... on User {
         shareLink(programId: $programId)
+        referralCode(programId: $programId)
       }
     }
   }
@@ -29,8 +31,8 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
 
   const { data } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
 
-  const sharelink =
-    data?.user?.shareLink ??
+  const shareString =
+    data?.user?.[props.type] ??
     // Shown during loading
     "...";
 
@@ -39,10 +41,10 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   function onClick() {
     // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
     // Only if called from a user-initiated event
-    navigator.clipboard.writeText(sharelink);
+    navigator.clipboard.writeText(shareString);
     setOpen(true);
     setTimeout(() => setOpen(false), props.tooltiplifespan);
   }
 
-  return { ...props, onClick, open, sharelink };
+  return { ...props, onClick, open, shareString };
 }
