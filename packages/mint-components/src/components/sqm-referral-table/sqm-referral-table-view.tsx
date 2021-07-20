@@ -14,7 +14,12 @@ export interface ReferralTableViewProps {
     prevPage: () => void;
     nextPage: () => void;
   };
-  elements: { columns: VNode[]; rows: VNode[][] };
+  elements: {
+    columns: VNode[];
+    rows: VNode[][];
+    emptyElement?: VNode;
+    loadingElement?: VNode;
+  };
 }
 
 const style = {
@@ -50,10 +55,16 @@ export function ReferralTableView(props: ReferralTableViewProps) {
   const { states, callbacks, elements } = props;
   const { columns, rows } = elements;
 
+  if (states.loading) {
+    return elements.loadingElement;
+  } else if (!elements.rows.length) {
+    return elements.emptyElement;
+  }
+
   return (
     <div>
+      <style type="text/css">{styleString}</style>
       <table class={sheet.classes.Table}>
-        <style type="text/css">{styleString}</style>
         <thead>
           <tr>
             {columns?.map((column) => (

@@ -26,7 +26,10 @@ export class ReferralTable {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks, elements } = useReferralTable(this);
+    const empty = <slot name="empty"/>
+    const loading = <slot name="loading"/>
+
+    const { states, callbacks, elements } = useReferralTable(this, empty, loading);
 
     return (
       <ReferralTableView

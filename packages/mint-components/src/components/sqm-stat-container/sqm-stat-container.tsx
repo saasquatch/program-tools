@@ -2,6 +2,7 @@ import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { StatContainerView } from "./sqm-stat-container-view";
 import { getProps } from "../../utils/utils";
+import { Spacing } from "../../global/mixins";
 
 /**
  * @uiName Stat Container
@@ -15,7 +16,7 @@ export class StatContainer {
   ignored = true;
 
   /**@uiName Space between stats */
-  @Prop() space: string = "64px";
+  @Prop() space: Spacing = "xxx-large";
 
   constructor() {
     withHooks(this);
