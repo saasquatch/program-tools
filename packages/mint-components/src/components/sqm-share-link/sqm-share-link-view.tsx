@@ -4,7 +4,7 @@ import preset from "jss-preset-default";
 import { HostBlock } from "../../global/mixins";
 
 export interface ShareLinkViewProps {
-  sharelink: string;
+  shareString: string;
   open: boolean;
   disabled?: boolean;
   tooltiptext: string;
@@ -36,7 +36,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         <sl-input
           class={sheet.classes.inputStyle}
           exportparts="label: input-label"
-          value={props.sharelink}
+          value={props.shareString}
           readonly
         >
           <sl-icon-button

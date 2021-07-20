@@ -40,6 +40,13 @@ export class ShareLink {
   })
   tooltiplifespan: number = DEFAULT_TOOLTIP_LIFESPAN;
 
+  /**
+   * Shows either the default share link or the referral code
+   *
+   * @uiName Type of share link
+   * @uiEnum ["shareLink", "referralCode"]
+   */
+  @Prop() type: "shareLink" | "referralCode" = "shareLink";
 
   constructor() {
     withHooks(this);
@@ -47,23 +54,25 @@ export class ShareLink {
   disconnectedCallback() {}
 
   render() {
-    const thisProps = getProps(this)
-    const props = isDemo() ? useDemoShareLink(thisProps) : useShareLink(thisProps);
+    const thisProps = getProps(this);
+    const props = isDemo()
+      ? useDemoShareLink(thisProps)
+      : useShareLink(thisProps);
     return <ShareLinkView {...props} />;
   }
 }
 
 function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
   const [open, setOpen] = useState(false);
-  const sharelink = "https://www.example.com/sharelink/abc";
+  const shareString = "https://www.example.com/sharelink/abc";
   return {
-    sharelink,
+    shareString,
     tooltiptext: props.tooltiptext,
     open,
     onClick: () => {
       // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
       // Only if called from a user-initiated event
-      navigator.clipboard.writeText(sharelink);
+      navigator.clipboard.writeText(shareString);
       setOpen(true);
       setTimeout(() => setOpen(false), props.tooltiplifespan);
     },

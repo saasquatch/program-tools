@@ -80,7 +80,7 @@ const Sidebar = () => {
 
 export const Dashboard = () => {
   const sharelinkProps = {
-    sharelink: "https://ssqt.co/johnsmithrox",
+    shareString: "https://ssqt.co/johnsmithrox",
     open: false,
     disabled: false,
     tooltiptext: "Share link copied",
@@ -88,7 +88,7 @@ export const Dashboard = () => {
   };
 
   const sharecodeProps = {
-    sharelink: "JOHNSMITH1",
+    shareString: "JOHNSMITH1",
     open: false,
     disabled: false,
     tooltiptext: "Share code copied",

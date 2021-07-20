@@ -15,7 +15,13 @@ export interface PortalChangePasswordProps {
 
 export function PortalChangePasswordView(props: PortalChangePasswordProps) {
   const { states, callbacks } = props;
-  const style = {};
+  const style = {
+    Error: {
+      "&::part(erroralert-base)": {
+        "margin-bottom": "15px",
+      },
+    },
+  };
 
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);
@@ -23,7 +29,17 @@ export function PortalChangePasswordView(props: PortalChangePasswordProps) {
 
   return (
     <div>
+      <style type="text/css">{styleString}</style>
       <sl-dialog open={states.open} onSl-hide={() => callbacks.setOpen(false)}>
+        {states.error && (
+          <sqm-form-message
+            class={sheet.classes.Error}
+            type="error"
+            exportparts="erroralert-icon"
+          >
+            <div part="erroralert-text">{states.error}</div>
+          </sqm-form-message>
+        )}
         <PortalSectionView
           {...{
             labelMargin: "xxxx-large",
