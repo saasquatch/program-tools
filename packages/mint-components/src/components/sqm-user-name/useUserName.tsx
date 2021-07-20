@@ -17,7 +17,6 @@ const GET_USER_NAME = gql`
 export function useUserName(props: UserName): UserNameViewProps {
   const user = useUserIdentity();
   const res = useQuery(GET_USER_NAME, {}, !user?.jwt);
-  console.log(res);
   const loading = res.loading;
   const username =
     res.data?.viewer?.firstName || res.data?.viewer?.lastName
