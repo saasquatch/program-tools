@@ -42,11 +42,16 @@ export function PortalProfileView(props: PortalProfileViewProps) {
 
   const { text, formState } = states;
 
-  const { errors } = formState;
+  const { errors, error } = formState;
 
   const style = {
     FormStyle: {
       "& >*:not(:last-child)": {
+        "margin-bottom": "32px",
+      },
+    },
+    Error: {
+      "&::part(erroralert-base)": {
         "margin-bottom": "32px",
       },
     },
@@ -75,6 +80,15 @@ export function PortalProfileView(props: PortalProfileViewProps) {
       <PresetText {...{ type: "h1" }}>Edit your profile</PresetText>
       <PresetText {...{ type: "h2" }}>Personal Information</PresetText>
       <form class={sheet.classes.FormStyle} onSubmit={callbacks.onSubmit}>
+        {error && (
+          <sqm-form-message
+            class={sheet.classes.Error}
+            type="error"
+            exportparts="erroralert-icon"
+          >
+            <div part="erroralert-text">{error}</div>
+          </sqm-form-message>
+        )}
         <PortalContainerView
           {...{
             direction: "row",

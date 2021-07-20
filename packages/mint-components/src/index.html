@@ -17,16 +17,16 @@
   </head>
   <body>
     <script>
-      window.widgetIdent = {
-        tenantAlias: "test_a7yoz8854cf6x",
-        appDomain: "https://staging.referralsaasquatch.com",
-        token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImJqMTIzIiwiaWQiOiJiajEyMyIsImZpcnN0TmFtZSI6IkJhZyIsImxhc3ROYW1lIjoiSmFjayJ9fQ.pkKuGeUb5AnhT0A4KuRsvumGcrOaxMx26Yy7QX1ZLzI",
-        userId: "bj123",
-        accountId: "bj123",
-        programId: "ny-post-referrals",
-        portalAuthUrl: "http://localhost:4000",
-      };
+      // window.widgetIdent = {
+      //   tenantAlias: "test_a7yoz8854cf6x",
+      //   appDomain: "https://staging.referralsaasquatch.com",
+      //   token:
+      //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImJqMTIzIiwiaWQiOiJiajEyMyIsImZpcnN0TmFtZSI6IkJhZyIsImxhc3ROYW1lIjoiSmFjayJ9fQ.pkKuGeUb5AnhT0A4KuRsvumGcrOaxMx26Yy7QX1ZLzI",
+      //   userId: "bj123",
+      //   accountId: "bj123",
+      //   programId: "ny-post-referrals",
+      //   portalAuthUrl: "http://localhost:4000",
+      // };
       if (!localStorage.getItem("IEAlert") && window.document.documentMode) {
         localStorage.setItem("IEAlert", true);
         alert(
@@ -70,12 +70,11 @@
     <sqm-portal-forgot-password></sqm-portal-forgot-password>
     Reset Password
     <sqm-portal-reset-password></sqm-portal-reset-password> -->
-
-    <!-- <sqm-stencilbook></sqm-stencilbook> -->
+    <sqm-stencilbook></sqm-stencilbook>
 
     <!-- <sqm-portal-register></sqm-portal-register> -->
 
-    <sqm-divided-layout direction="row">
+    <!-- <sqm-divided-layout direction="row">
       <sqm-navigation-sidebar>
         <sqm-navigation-sidebar-item
           path="/"
@@ -167,7 +166,7 @@
           ></sqm-portal-container
         ></sqm-divided-layout
       >
-    </sqm-divided-layout>
+    </sqm-divided-layout> -->
 
     <!-- <sqm-user-name></sqm-user-name> -->
 

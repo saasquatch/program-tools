@@ -15,7 +15,7 @@ const defaultProps: PortalResetPasswordViewProps = {
     reset: false,
     confirmPassword: true,
     oobCodeValidating: false,
-    oobCodeValid: true
+    oobCodeValid: true,
   },
   callbacks: {
     submit: async (e) => await e,
@@ -31,7 +31,7 @@ const errorProps: PortalResetPasswordViewProps = {
     reset: false,
     confirmPassword: true,
     oobCodeValidating: false,
-    oobCodeValid: true
+    oobCodeValid: true,
   },
   callbacks: {
     submit: async (e) => await e,
@@ -47,7 +47,7 @@ const loadingProps: PortalResetPasswordViewProps = {
     reset: false,
     confirmPassword: true,
     oobCodeValidating: false,
-    oobCodeValid: true
+    oobCodeValid: true,
   },
   callbacks: {
     submit: async (e) => await e,
@@ -62,7 +62,22 @@ const successProps: PortalResetPasswordViewProps = {
     loading: false,
     reset: true,
     oobCodeValidating: false,
-    oobCodeValid: true
+    oobCodeValid: true,
+  },
+  callbacks: {
+    submit: async (e) => await e,
+    gotoNextPage: () => console.log("next page"),
+    failed: () => console.log("failed"),
+  },
+};
+
+const validatingCodeProps: PortalResetPasswordViewProps = {
+  states: {
+    error: "",
+    loading: false,
+    reset: false,
+    oobCodeValidating: false,
+    oobCodeValid: false,
   },
   callbacks: {
     submit: async (e) => await e,
@@ -81,7 +96,10 @@ export const ResetPasswordLoading = () => (
   <PortalResetPasswordView {...loadingProps} />
 );
 
-// Currently does not show any success message to the user
 export const ResetPasswordSuccess = () => (
   <PortalResetPasswordView {...successProps} />
+);
+
+export const CodeValidating = () => (
+  <PortalResetPasswordView {...validatingCodeProps} />
 );
