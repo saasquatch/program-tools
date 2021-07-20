@@ -20,7 +20,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn{
     // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
     return (
       <sqm-referral-table-rewards-cell
-        reward={data.rewards.length + ""}
+        rewards={data.rewards}
       ></sqm-referral-table-rewards-cell>
     );
   }

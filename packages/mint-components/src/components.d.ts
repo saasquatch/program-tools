@@ -280,7 +280,7 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableRewardsCell {
-        "reward": string;
+        "rewards": Reward[];
     }
     interface SqmReferralTableRewardsColumn {
         "columnTitle": string;
@@ -288,6 +288,7 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableStatusCell {
+        "converted": boolean;
         "statusText": string;
     }
     interface SqmReferralTableStatusColumn {
@@ -1017,12 +1018,13 @@ declare namespace LocalJSX {
         "dateShown"?: string;
     }
     interface SqmReferralTableRewardsCell {
-        "reward"?: string;
+        "rewards"?: Reward[];
     }
     interface SqmReferralTableRewardsColumn {
         "columnTitle"?: string;
     }
     interface SqmReferralTableStatusCell {
+        "converted"?: boolean;
         "statusText"?: string;
     }
     interface SqmReferralTableStatusColumn {

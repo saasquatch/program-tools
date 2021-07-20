@@ -6,9 +6,11 @@ import { PresetText } from "../../../functional-components/PresetText";
   shadow: true,
 })
 export class ReferralTableRewardsCell {
-  @Prop() reward: string;
+  @Prop() rewards: Reward[];
 
   render() {
-    return <PresetText type="p">{this.reward}</PresetText>;
+    return this.rewards.map((reward) => (
+      <PresetText type="p">{reward.prettyValue}</PresetText>
+    ));
   }
 }
