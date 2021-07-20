@@ -288,6 +288,7 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableStatusCell {
+        "converted": boolean;
         "statusText": string;
     }
     interface SqmReferralTableStatusColumn {
@@ -434,6 +435,10 @@ export namespace Components {
           * @uiName Section padding
          */
         "padding": Spacing;
+    }
+    interface SqmUserName {
+        "fallback": string;
+        "loadingText": string;
     }
 }
 declare global {
@@ -701,6 +706,12 @@ declare global {
         prototype: HTMLSqmTitledSectionElement;
         new (): HTMLSqmTitledSectionElement;
     };
+    interface HTMLSqmUserNameElement extends Components.SqmUserName, HTMLStencilElement {
+    }
+    var HTMLSqmUserNameElement: {
+        prototype: HTMLSqmUserNameElement;
+        new (): HTMLSqmUserNameElement;
+    };
     interface HTMLElementTagNameMap {
         "sqm-asset-card": HTMLSqmAssetCardElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
@@ -746,6 +757,7 @@ declare global {
         "sqm-stencilbook": HTMLSqmStencilbookElement;
         "sqm-text": HTMLSqmTextElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
+        "sqm-user-name": HTMLSqmUserNameElement;
     }
 }
 declare namespace LocalJSX {
@@ -1023,6 +1035,7 @@ declare namespace LocalJSX {
         "columnTitle"?: string;
     }
     interface SqmReferralTableStatusCell {
+        "converted"?: boolean;
         "statusText"?: string;
     }
     interface SqmReferralTableStatusColumn {
@@ -1166,6 +1179,10 @@ declare namespace LocalJSX {
          */
         "padding"?: Spacing;
     }
+    interface SqmUserName {
+        "fallback"?: string;
+        "loadingText"?: string;
+    }
     interface IntrinsicElements {
         "sqm-asset-card": SqmAssetCard;
         "sqm-big-stat": SqmBigStat;
@@ -1211,6 +1228,7 @@ declare namespace LocalJSX {
         "sqm-stencilbook": SqmStencilbook;
         "sqm-text": SqmText;
         "sqm-titled-section": SqmTitledSection;
+        "sqm-user-name": SqmUserName;
     }
 }
 export { LocalJSX as JSX };
@@ -1261,6 +1279,7 @@ declare module "@stencil/core" {
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
+            "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
         }
     }
 }

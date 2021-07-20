@@ -70,6 +70,7 @@
     <sqm-portal-forgot-password></sqm-portal-forgot-password>
     Reset Password
     <sqm-portal-reset-password></sqm-portal-reset-password> -->
+
     <!-- <sqm-stencilbook></sqm-stencilbook> -->
 
     <!-- <sqm-portal-register></sqm-portal-register> -->
@@ -82,6 +83,11 @@
           label="Dashboard"
         ></sqm-navigation-sidebar-item>
         <sqm-navigation-sidebar-item
+          path="/activity"
+          icon="bar-chart"
+          label="Activity"
+        ></sqm-navigation-sidebar-item>
+        <sqm-navigation-sidebar-item
           path="/logout"
           icon="box-arrow-right"
           label="Logout"
@@ -92,8 +98,9 @@
           ><sqm-titled-section label-margin="xx-small"
             ><sqm-text slot="label"> <p>Welcome back,</p> </sqm-text
             ><sqm-text slot="content">
-              <h1>John Smith</h1>
-            </sqm-text></sqm-titled-section
+              <h1>
+                <sqm-user-name fallback="Glad to see you"></sqm-user-name>
+              </h1> </sqm-text></sqm-titled-section
           ><sqm-stat-container space="64px"
             ><sqm-big-stat
               flex-reverse="true"
@@ -153,6 +160,8 @@
         ></sqm-divided-layout
       >
     </sqm-divided-layout>
+
+    <!-- <sqm-user-name></sqm-user-name> -->
 
     <!-- <sqm-asset-card title-text="Marketing Banner Test"></sqm-asset-card> -->
   </body>

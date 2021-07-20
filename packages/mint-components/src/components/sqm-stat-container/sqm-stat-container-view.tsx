@@ -15,7 +15,7 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
     StatContainer: {
       width: "100%",
       display: "grid",
-      "grid-template-columns": "repeat(auto-fill, minmax(120px, auto))",
+      "grid-template-columns": "repeat(auto-fill, minmax(130px, auto))",
       gap: divideSpace(),
       "& > *": {
         "border-right": "1px solid #EAEAEA",

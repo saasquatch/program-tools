@@ -25,14 +25,14 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
     },
     Stat: {
       "font-size": "var(--sl-font-size-x-large)",
-      "text-align": "center",
+      "text-align": alignment,
     },
     Description: {
       "font-size": "var(--sl-font-size-x-small)",
       "font-weight": "var(--sl-font-weight-semibold)",
       color: "var(--sl-color-gray-600)",
       "text-transform": "uppercase",
-      "text-align": "center",
+      "text-align": alignment,
     },
   };
 

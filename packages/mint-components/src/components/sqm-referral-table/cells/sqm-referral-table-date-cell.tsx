@@ -21,7 +21,7 @@ export class ReferralTableDateCell {
     // needs hook to use locale
     const date = this.date
       ? DateTime.fromMillis(this.date)?.toLocaleString(DateTime.DATE_MED)
-      : "";
+      : "-";
     return <PresetText type="p">{date}</PresetText>;
   }
 }
