@@ -8,7 +8,6 @@ import { useReferralTable } from "./useReferralTable";
  */
 @Component({
   tag: "sqm-referral-table",
-  styleUrl: "sqm-referral-table.scss",
   shadow: true,
 })
 export class ReferralTable {

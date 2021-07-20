@@ -10,10 +10,18 @@ const style = {
   ItemsContainer: {
     width: "100%",
     "max-width": "320px",
+    "box-sizing": "border-box",
     padding: "20px 15px",
     ...gap({ direction: "column" as const, size: "4px" }),
   },
 };
+
+const hostStyle = `
+  :host{    
+    width: 100%;
+    max-width: 320px;
+  }
+`;
 
 jss.setup(preset());
 const sheet = jss.createStyleSheet(style);
@@ -26,7 +34,10 @@ export function NavigationSidebarView(
 ) {
   return (
     <div class={sheet.classes.ItemsContainer}>
-      <style type="text/css">{styleString}</style>
+      <style type="text/css">
+        {hostStyle}
+        {styleString}
+      </style>
       {children}
     </div>
   );

@@ -37,9 +37,9 @@ export function NavigationSidebarItemView(
     Label: {
       margin: "0",
     },
-    Icon:{
-      'flex-shrink': '0',
-    }
+    Icon: {
+      "flex-shrink": "0",
+    },
   };
 
   jss.setup(preset());

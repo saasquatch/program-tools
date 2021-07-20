@@ -4,7 +4,6 @@ import { BigStatView } from "./sqm-big-stat-view";
 import { useBigStat } from "./useBigStat";
 import { useDemoBigStat } from "./useDemoBigStat";
 import { isDemo } from "@saasquatch/component-boilerplate";
-import { EnumValueNode } from "graphql";
 
 /**
  *

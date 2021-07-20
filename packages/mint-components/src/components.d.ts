@@ -280,7 +280,7 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableRewardsCell {
-        "reward": string;
+        "rewards": Reward[];
     }
     interface SqmReferralTableRewardsColumn {
         "columnTitle": string;
@@ -288,10 +288,13 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableStatusCell {
+        "converted": boolean;
         "statusText": string;
     }
     interface SqmReferralTableStatusColumn {
         "columnTitle": string;
+        "convertedStatusText": string;
+        "inProgressStatusText": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
@@ -411,6 +414,12 @@ export namespace Components {
           * @uiName Tooltip text
          */
         "tooltiptext": string;
+        /**
+          * Shows either the default share link or the referral code
+          * @uiName Type of share link
+          * @uiEnum ["shareLink", "referralCode"]
+         */
+        "type": "shareLink" | "referralCode";
     }
     interface SqmStatContainer {
         /**
@@ -1015,16 +1024,19 @@ declare namespace LocalJSX {
         "dateShown"?: string;
     }
     interface SqmReferralTableRewardsCell {
-        "reward"?: string;
+        "rewards"?: Reward[];
     }
     interface SqmReferralTableRewardsColumn {
         "columnTitle"?: string;
     }
     interface SqmReferralTableStatusCell {
+        "converted"?: boolean;
         "statusText"?: string;
     }
     interface SqmReferralTableStatusColumn {
         "columnTitle"?: string;
+        "convertedStatusText"?: string;
+        "inProgressStatusText"?: string;
     }
     interface SqmReferralTableUserCell {
         "name"?: string;
@@ -1140,6 +1152,12 @@ declare namespace LocalJSX {
           * @uiName Tooltip text
          */
         "tooltiptext"?: string;
+        /**
+          * Shows either the default share link or the referral code
+          * @uiName Type of share link
+          * @uiEnum ["shareLink", "referralCode"]
+         */
+        "type"?: "shareLink" | "referralCode";
     }
     interface SqmStatContainer {
         /**

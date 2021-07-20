@@ -4,7 +4,6 @@ import { ShareButtonView } from "../components/sqm-share-button/sqm-share-button
 import { ShareLinkView } from "../components/sqm-share-link/sqm-share-link-view";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { gap } from "../global/mixins";
 import { NavigationSidebarView } from "../components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PortalSectionView } from "../components/sqm-titled-section/sqm-portal-section-view";
@@ -81,7 +80,7 @@ const Sidebar = () => {
 
 export const Dashboard = () => {
   const sharelinkProps = {
-    sharelink: "https://ssqt.co/johnsmithrox",
+    shareString: "https://ssqt.co/johnsmithrox",
     open: false,
     disabled: false,
     tooltiptext: "Share link copied",
@@ -89,7 +88,7 @@ export const Dashboard = () => {
   };
 
   const sharecodeProps = {
-    sharelink: "JOHNSMITH1",
+    shareString: "JOHNSMITH1",
     open: false,
     disabled: false,
     tooltiptext: "Share code copied",

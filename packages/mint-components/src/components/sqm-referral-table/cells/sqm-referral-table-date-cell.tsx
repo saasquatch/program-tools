@@ -1,10 +1,10 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import { DateTime } from "luxon";
+import { PresetText } from "../../../functional-components/PresetText";
 
 @Component({
   tag: "sqm-referral-table-date-cell",
-  styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
 export class ReferralTableDateCell {
@@ -22,6 +22,6 @@ export class ReferralTableDateCell {
     const date = this.date
       ? DateTime.fromMillis(this.date)?.toLocaleString(DateTime.DATE_MED)
       : "";
-    return <div class="MyStyle">{date}</div>;
+    return <PresetText type="p">{date}</PresetText>;
   }
 }

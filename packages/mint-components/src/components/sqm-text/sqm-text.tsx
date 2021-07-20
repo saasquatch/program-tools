@@ -1,4 +1,4 @@
-import { Component, h, Prop, State } from "@stencil/core";
+import { Component, h, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { insertCSS } from "../../insertcss";
 import debugFn from "debug";

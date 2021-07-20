@@ -1,14 +1,16 @@
 import { Component, h, Prop } from "@stencil/core";
+import { PresetText } from "../../../functional-components/PresetText";
 
 @Component({
   tag: "sqm-referral-table-rewards-cell",
-  styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
 export class ReferralTableRewardsCell {
-  @Prop() reward: string;
+  @Prop() rewards: Reward[];
 
   render() {
-    return <div class="MyStyle">{this.reward}</div>;
+    return this.rewards.map((reward) => (
+      <PresetText type="p">{reward.prettyValue}</PresetText>
+    ));
   }
 }

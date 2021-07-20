@@ -24,6 +24,13 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
       "& > :last-child": {
         "border-right": "1px solid #ffffff",
       },
+      "& > ::slotted(*)": {
+        "border-right": "1px solid #EAEAEA",
+        "padding-right": divideSpace(),
+      },
+      "& > ::slotted(*:last-child)": {
+        "border-right": "1px solid #ffffff",
+      },
     },
     StatFrame: {
       display: "flex",
