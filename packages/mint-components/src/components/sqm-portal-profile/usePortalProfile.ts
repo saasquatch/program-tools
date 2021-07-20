@@ -5,7 +5,6 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { gql } from "graphql-request";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
-import { intl } from "../../global/global";
 import { PortalProfileViewProps } from "./sqm-portal-profile-view";
 
 export interface PortalProfileProps {
@@ -104,17 +103,11 @@ export function usePortalProfile(
 
   useEffect(() => {
     setUserData((data) => ({ ...data, ...userDataResponse?.data?.viewer }));
-    const currentRegion = userDataResponse?.data?.viewer?.countryCode
-      ? intl.formatDisplayName(userDataResponse.data.viewer.countryCode, {
-          type: "region",
-        })
-      : "";
 
     setFormState({
       ...defaultFormState,
       ...userDataResponse.data?.viewer,
       ...upsertUserResponse.data?.upsertUser,
-      currentRegion,
     });
   }, [userDataResponse?.data]);
 

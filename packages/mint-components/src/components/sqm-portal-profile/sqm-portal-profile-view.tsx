@@ -3,6 +3,7 @@ import jss from "jss";
 import preset from "jss-preset-default";
 import { PortalContainerView } from "../sqm-portal-container/sqm-portal-container-view";
 import { PresetText } from "../../functional-components/PresetText";
+import { intl } from "../../global/global";
 
 export interface PortalProfileViewProps {
   states: {
@@ -41,11 +42,16 @@ export function PortalProfileView(props: PortalProfileViewProps) {
 
   const { text, formState } = states;
 
-  const { errors } = formState;
+  const { errors, error } = formState;
 
   const style = {
     FormStyle: {
       "& >*:not(:last-child)": {
+        "margin-bottom": "32px",
+      },
+    },
+    Error: {
+      "&::part(erroralert-base)": {
         "margin-bottom": "32px",
       },
     },
@@ -54,6 +60,12 @@ export function PortalProfileView(props: PortalProfileViewProps) {
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
+
+  const country = states.user?.countryCode
+    ? intl.formatDisplayName(states.user?.countryCode, {
+        type: "region",
+      })
+    : "";
 
   return (
     <PortalContainerView
@@ -68,6 +80,15 @@ export function PortalProfileView(props: PortalProfileViewProps) {
       <PresetText {...{ type: "h1" }}>Edit your profile</PresetText>
       <PresetText {...{ type: "h2" }}>Personal Information</PresetText>
       <form class={sheet.classes.FormStyle} onSubmit={callbacks.onSubmit}>
+        {error && (
+          <sqm-form-message
+            class={sheet.classes.Error}
+            type="error"
+            exportparts="erroralert-icon"
+          >
+            <div part="erroralert-text">{error}</div>
+          </sqm-form-message>
+        )}
         <PortalContainerView
           {...{
             direction: "row",
@@ -110,8 +131,8 @@ export function PortalProfileView(props: PortalProfileViewProps) {
             }
           ></sl-input>
         </PortalContainerView>
-        <sl-input label="Email" value={states.user?.email}></sl-input>
-        <sl-input label="Country"></sl-input>
+        <sl-input label="Email" value={states.user?.email} disabled></sl-input>
+        <sl-input label="Country" value={country} disabled></sl-input>
         <sl-button
           type="primary"
           loading={states.loading}

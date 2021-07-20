@@ -20,7 +20,7 @@ export class PortalContainer {
   /** @uiName Padding */
   @Prop() padding: Spacing;
   /** @uiName Gap */
-  @Prop() gap: string;
+  @Prop() gap: Spacing = "xxx-large";
   /** @uiName Gap */
   @Prop() minWidth?: string;
 

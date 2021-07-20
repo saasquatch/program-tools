@@ -21,7 +21,7 @@ export function PortalSectionView(props: PortalSectionProps) {
     SectionContainer: {
       padding:
         props.padding === "none"
-          ? props.padding
+          ? "0"
           : `var(--sl-spacing-${props.padding})`,
     },
   };

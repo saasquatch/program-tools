@@ -17,19 +17,23 @@ export function PortalContainerView(
   const style = {
     Container: {
       display: "grid",
-
       "grid-template-columns":
         props.direction === "row"
           ? `repeat(auto-fill, minmax(${props.minWidth}, auto))`
           : "",
 
-      "grid-gap": props.gap,
+      "grid-gap": `var(--sl-spacing-${props.gap})`,
       padding:
         props.padding === "none"
-          ? props.padding
+          ? "0"
           : `var(--sl-spacing-${props.padding})`,
     },
   };
+
+  const vanillaStyle = `
+  :host{
+    width: 100%;
+  }`;
 
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);
@@ -37,7 +41,10 @@ export function PortalContainerView(
 
   return (
     <div class={sheet.classes.Container}>
-      <style type="text/css">{styleString}</style>
+      <style type="text/css">
+        {vanillaStyle}
+        {styleString}
+      </style>
       {children}
     </div>
   );

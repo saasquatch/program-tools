@@ -5,7 +5,6 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
 
 @Component({
   tag: "sqm-referral-table-status-column",
-  styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
 export class ReferralTableStatusColumn implements ReferralTableColumn {
@@ -28,6 +27,9 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
     return (
       <sqm-referral-table-status-cell
         status-text={statusText}
+        converted={data.dateConverted
+          ? true
+          : false}
       ></sqm-referral-table-status-cell>
     );
   }

@@ -40,7 +40,7 @@ export const BareBonesView = createHookStory(() => {
       <code
         style={{ borderStyle: "solid", borderWidth: "1px", padding: "2px" }}
       >
-        {res.sharelink}
+        {res.shareString}
       </code>
     </div>
   );

@@ -120,7 +120,11 @@ const GET_REFERRAL_DATA = gql`
   }
 `;
 
-export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
+export function useReferralTable(
+  props: ReferralTable,
+  loadingElement: VNode,
+  emptyElement: VNode
+): ReferralTableViewProps {
   const programIdContext = useProgramId();
   // Default to context, overriden by props
   const programId = props.programId ?? programIdContext;
@@ -142,31 +146,10 @@ export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
   const tick = useRerenderListener();
   const [content, setContent] = useState<ReferralTableViewProps["elements"]>({
     columns: [],
-    rows: [],
+    rows: []
   });
 
-  // TODO: Let the referral cells handle this
   const data = referralData?.data;
-
-  // TODO: Demo Hook - needs to include reward data too
-  // const data2 = {
-  //   rows: [
-  //     {
-  //       status: "Converted",
-  //       firstName: "Joe",
-  //       lastName: "Schmoe",
-  //       prettyValue: "$20",
-  //       dateConverted: 1626214500,
-  //     },
-  //     {
-  //       status: "In Progress",
-  //       firstName: "Sponge",
-  //       lastName: "Bob",
-  //       prettyValue: "$50",
-  //       dateStarted: 1626214500,
-  //     },
-  //   ],
-  // };
 
   const components = useChildElements();
 
@@ -197,8 +180,6 @@ export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
     getComponentData();
   }, [referralData, components, tick]);
 
-  // TODO: Loading state - while initial rendering rows?
-  // TODO: Empty state
   return {
     states: {
       hasNext: states.currentPage < states.pageCount - 1,
@@ -208,6 +189,8 @@ export function useReferralTable(props: ReferralTable): ReferralTableViewProps {
     elements: {
       columns: content.columns,
       rows: content.rows,
+      emptyElement,
+      loadingElement,
     },
     callbacks: {
       nextPage: () => callbacks.setCurrentPage(states.currentPage + 1),

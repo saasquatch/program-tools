@@ -5,9 +5,9 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
-import { ShareLinkViewProps } from "./sqm-share-link-view";
+import { ShareLinkViewProps } from "../sqm-share-link/sqm-share-link-view";
 
-interface ShareLinkProps {
+interface ShareCodeProps {
   programId?: string;
   tooltiptext: string;
   tooltiplifespan: number;
@@ -17,20 +17,20 @@ const MessageLinkQuery = gql`
   query ($programId: ID) {
     user: viewer {
       ... on User {
-        shareLink(programId: $programId)
+        referralCode(programId: $programId)
       }
     }
   }
 `;
 
-export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
+export function useShareCode(props: ShareCodeProps): ShareLinkViewProps {
   const { programId = useProgramId() } = props;
   const user = useUserIdentity();
 
   const { data } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
 
   const shareString =
-    data?.user?.shareLink ??
+    data?.user?.referralCode ??
     // Shown during loading
     "...";
 

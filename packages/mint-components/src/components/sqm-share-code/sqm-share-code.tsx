@@ -1,28 +1,31 @@
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h } from "@stencil/core";
 import { isDemo } from "@saasquatch/component-boilerplate";
-import { ShareLinkView, ShareLinkViewProps } from "./sqm-share-link-view";
-import { useShareLink } from "./useShareLink";
+import {
+  ShareLinkView,
+  ShareLinkViewProps,
+} from "../sqm-share-link/sqm-share-link-view";
 import { getProps } from "../../utils/utils";
+import { useShareCode } from "./useShareCode";
 
 const DEFAULT_TOOLTIP_LIFESPAN = 1000;
 
 /**
- * @uiName Share Link
+ * @uiName Share Code
  */
 @Component({
-  tag: "sqm-share-link",
+  tag: "sqm-share-code",
   shadow: true,
 })
-export class ShareLink {
+export class ShareCode {
   /**
-   * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
+   * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
    *
    * @uiName Program ID
    */
   @Prop() programId?: string;
   /**
-   * This is shown after someone has successfully copied the link to the clipboard.
+   * This is shown after someone has successfully copied the cpde to the clipboard.
    *
    * @uiName Tooltip text
    */
@@ -48,13 +51,13 @@ export class ShareLink {
   render() {
     const thisProps = getProps(this);
     const props = isDemo()
-      ? useDemoShareLink(thisProps)
-      : useShareLink(thisProps);
+      ? useDemoShareCode(thisProps)
+      : useShareCode(thisProps);
     return <ShareLinkView {...props} />;
   }
 }
 
-function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
+function useDemoShareCode(props: ShareCode): ShareLinkViewProps {
   const [open, setOpen] = useState(false);
   const shareString = "https://www.example.com/sharelink/abc";
   return {
