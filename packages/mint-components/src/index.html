@@ -94,12 +94,15 @@
         ></sqm-navigation-sidebar-item>
       </sqm-navigation-sidebar>
       <sqm-divided-layout direction="column"
-        ><sqm-portal-container direction="column" padding="xxx-large" gap="xxx-large"
+        ><sqm-portal-container
+          direction="column"
+          padding="xxx-large"
+          gap="xxx-large"
           ><sqm-titled-section label-margin="xx-small"
             ><sqm-text slot="label"> <p>Welcome back,</p> </sqm-text
             ><sqm-text slot="content">
               <h1>
-                <sqm-user-name fallback="Glad to see you"></sqm-user-name>
+                <sqm-user-name fallback="Anonymous User"></sqm-user-name>
               </h1> </sqm-text></sqm-titled-section
           ><sqm-stat-container space="xxxx-large"
             ><sqm-big-stat
@@ -148,12 +151,17 @@
               direction="row"
               padding="none"
               gap="xxx-large"
-              min-width="150px"
-              ><sqm-share-button icon="envelope" medium="email"
-                >Email</sqm-share-button
-              ><sqm-share-button medium="twitter">Tweet</sqm-share-button
-              ><sqm-share-button medium="facebook"
-                >Facebook</sqm-share-button
+              min-width="160px"
+              ><sqm-share-button
+                icon="envelope"
+                medium="email"
+                size="medium"
+                pill="true"
+                >Email a friend</sqm-share-button
+              ><sqm-share-button medium="twitter" size="medium" pill="true"
+                >Tweet about us</sqm-share-button
+              ><sqm-share-button medium="facebook" size="medium" pill="true"
+                >Share on Facebook</sqm-share-button
               ></sqm-portal-container
             ></sqm-titled-section
           ></sqm-portal-container
