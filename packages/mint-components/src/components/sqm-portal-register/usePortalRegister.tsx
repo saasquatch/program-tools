@@ -60,10 +60,18 @@ export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
     nextPageUrlParameter,
   });
 
+  // const [, rerender] = useTick();
+  // const host = useHost();
+
+  // useEffect(() => {
+  //   rerender();
+  // }, [host.children]);
+
   const submit = async (event: any) => {
-    let formData = event.detail.formData;
+    let formData = event.target.getFormData();
 
     formData?.forEach((value, key) => {
+      console.log(key);
       jsonpointer.set(formData, key, value);
     });
     const { email, password } = formData;
