@@ -398,6 +398,23 @@ export namespace Components {
     | "default"
     | "text";
     }
+    interface SqmShareCode {
+        /**
+          * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
+          * @uiName Program ID
+         */
+        "programId"?: string;
+        /**
+          * The number of milliseconds that the tooltip will appear for
+          * @uiName Tooltip lifespan
+         */
+        "tooltiplifespan": number;
+        /**
+          * This is shown after someone has successfully copied the cpde to the clipboard.
+          * @uiName Tooltip text
+         */
+        "tooltiptext": string;
+    }
     interface SqmShareLink {
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
@@ -414,12 +431,6 @@ export namespace Components {
           * @uiName Tooltip text
          */
         "tooltiptext": string;
-        /**
-          * Shows either the default share link or the referral code
-          * @uiName Type of share link
-          * @uiEnum ["shareLink", "referralCode"]
-         */
-        "type": "shareLink" | "referralCode";
     }
     interface SqmStatContainer {
         /**
@@ -682,6 +693,12 @@ declare global {
         prototype: HTMLSqmShareButtonElement;
         new (): HTMLSqmShareButtonElement;
     };
+    interface HTMLSqmShareCodeElement extends Components.SqmShareCode, HTMLStencilElement {
+    }
+    var HTMLSqmShareCodeElement: {
+        prototype: HTMLSqmShareCodeElement;
+        new (): HTMLSqmShareCodeElement;
+    };
     interface HTMLSqmShareLinkElement extends Components.SqmShareLink, HTMLStencilElement {
     }
     var HTMLSqmShareLinkElement: {
@@ -758,6 +775,7 @@ declare global {
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
+        "sqm-share-code": HTMLSqmShareCodeElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
         "sqm-stat-container": HTMLSqmStatContainerElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
@@ -1147,6 +1165,23 @@ declare namespace LocalJSX {
     | "default"
     | "text";
     }
+    interface SqmShareCode {
+        /**
+          * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
+          * @uiName Program ID
+         */
+        "programId"?: string;
+        /**
+          * The number of milliseconds that the tooltip will appear for
+          * @uiName Tooltip lifespan
+         */
+        "tooltiplifespan"?: number;
+        /**
+          * This is shown after someone has successfully copied the cpde to the clipboard.
+          * @uiName Tooltip text
+         */
+        "tooltiptext"?: string;
+    }
     interface SqmShareLink {
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
@@ -1163,12 +1198,6 @@ declare namespace LocalJSX {
           * @uiName Tooltip text
          */
         "tooltiptext"?: string;
-        /**
-          * Shows either the default share link or the referral code
-          * @uiName Type of share link
-          * @uiEnum ["shareLink", "referralCode"]
-         */
-        "type"?: "shareLink" | "referralCode";
     }
     interface SqmStatContainer {
         /**
@@ -1235,6 +1264,7 @@ declare namespace LocalJSX {
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
         "sqm-share-button": SqmShareButton;
+        "sqm-share-code": SqmShareCode;
         "sqm-share-link": SqmShareLink;
         "sqm-stat-container": SqmStatContainer;
         "sqm-stencilbook": SqmStencilbook;
@@ -1286,6 +1316,7 @@ declare module "@stencil/core" {
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
+            "sqm-share-code": LocalJSX.SqmShareCode & JSXBase.HTMLAttributes<HTMLSqmShareCodeElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
             "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
