@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property     | Attribute     | Description | Type     | Default     |
-| ------------ | ------------- | ----------- | -------- | ----------- |
-| `widgetType` | `widget-type` |             | `string` | `undefined` |
+| Property      | Attribute      | Description | Type      | Default     |
+| ------------- | -------------- | ----------- | --------- | ----------- |
+| `requireAuth` | `require-auth` |             | `boolean` | `false`     |
+| `widgetType`  | `widget-type`  |             | `string`  | `undefined` |
 
 
 ----------------------------------------------

@@ -12,6 +12,8 @@ import { useWidget } from './useWidget';
 export class SqbWidget {
   @Prop() widgetType: string;
 
+  @Prop() requireAuth:boolean = false;
+
   constructor() {
     withHooks(this);
   }

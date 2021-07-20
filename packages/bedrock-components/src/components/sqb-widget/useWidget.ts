@@ -1,6 +1,7 @@
 import { useLazyQuery, useUserIdentity } from '@saasquatch/component-boilerplate';
 import { useEffect, useState } from '@saasquatch/universal-hooks';
 import { gql } from 'graphql-request';
+import { SqbWidget } from './sqb-widget';
 
 declare global {
   interface Window {
@@ -37,11 +38,13 @@ const GET_WIDGET = gql`
   }
 `;
 
-export function useWidget(props) {
+export function useWidget(props: SqbWidget) {
   const userIdent = useUserIdentity();
   const [fetch, { data }] = useLazyQuery<GetWidget>(GET_WIDGET);
 
   const [loading, setLoading] = useState(true);
+
+  const isAuthed = props.requireAuth ? userIdent !== undefined : true;
 
   useEffect(() => {
     async function initialize() {
@@ -52,7 +55,7 @@ export function useWidget(props) {
       });
       setLoading(false);
     }
-    if (props.widgetType && userIdent !== undefined) initialize();
+    if (props.widgetType && isAuthed) initialize();
   }, [props.widgetType, userIdent]);
 
   const html = data?.renderWidget?.widgetConfig?.values?.htmlTemplate;

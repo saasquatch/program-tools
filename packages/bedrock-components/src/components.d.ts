@@ -21,6 +21,7 @@ export namespace Components {
         "programId": string;
     }
     interface SqbWidget {
+        "requireAuth": boolean;
         "widgetType": string;
     }
 }
@@ -65,6 +66,7 @@ declare namespace LocalJSX {
         "programId"?: string;
     }
     interface SqbWidget {
+        "requireAuth"?: boolean;
         "widgetType"?: string;
     }
     interface IntrinsicElements {
