@@ -14,7 +14,7 @@ import { useUserName } from "./useUserName";
 export class UserName {
   @State() _ignored: boolean = true;
 
-  @Prop() fallback: string = "";
+  @Prop() fallback: string = "Anonymous User";
   @Prop() loadingText: string = "...";
 
   constructor() {

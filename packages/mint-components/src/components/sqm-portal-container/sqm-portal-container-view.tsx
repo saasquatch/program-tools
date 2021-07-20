@@ -25,7 +25,7 @@ export function PortalContainerView(
       "grid-gap": `var(--sl-spacing-${props.gap})`,
       padding:
         props.padding === "none"
-          ? props.padding
+          ? "0"
           : `var(--sl-spacing-${props.padding})`,
     },
   };
