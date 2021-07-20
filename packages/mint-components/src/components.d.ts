@@ -194,7 +194,7 @@ export namespace Components {
         /**
           * @uiName Gap
          */
-        "gap": string;
+        "gap": Spacing;
         /**
           * @uiName Gap
          */
@@ -425,7 +425,7 @@ export namespace Components {
         /**
           * @uiName Space between stats
          */
-        "space": string;
+        "space": Spacing;
     }
     interface SqmStencilbook {
     }
@@ -953,7 +953,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Gap
          */
-        "gap"?: string;
+        "gap"?: Spacing;
         /**
           * @uiName Gap
          */
@@ -1174,7 +1174,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Space between stats
          */
-        "space"?: string;
+        "space"?: Spacing;
     }
     interface SqmStencilbook {
     }

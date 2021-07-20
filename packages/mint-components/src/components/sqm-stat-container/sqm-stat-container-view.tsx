@@ -8,7 +8,10 @@ export interface StatContainerProps {
 
 export function StatContainerView(props: StatContainerProps, children: VNode) {
   const divideSpace = () => {
-    return Math.floor(parseInt(props.space) / 2);
+    const spaceValue = getComputedStyle(
+      document.documentElement
+    ).getPropertyValue(`--sl-spacing-${props.space}`);
+    return `${Math.floor(parseInt(spaceValue) / 2)}rem`;
   };
 
   const style = {

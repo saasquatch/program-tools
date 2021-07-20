@@ -22,7 +22,7 @@ export function PortalContainerView(
           ? `repeat(auto-fill, minmax(${props.minWidth}, auto))`
           : "",
 
-      "grid-gap": props.gap,
+      "grid-gap": `var(--sl-spacing-${props.gap})`,
       padding:
         props.padding === "none"
           ? props.padding
