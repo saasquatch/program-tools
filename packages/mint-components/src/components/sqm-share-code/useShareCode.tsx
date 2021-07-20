@@ -7,7 +7,7 @@ import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { ShareLinkViewProps } from "../sqm-share-link/sqm-share-link-view";
 
-interface ShareLinkProps {
+interface ShareCodeProps {
   programId?: string;
   tooltiptext: string;
   tooltiplifespan: number;
@@ -23,7 +23,7 @@ const MessageLinkQuery = gql`
   }
 `;
 
-export function useShareCode(props: ShareLinkProps): ShareLinkViewProps {
+export function useShareCode(props: ShareCodeProps): ShareLinkViewProps {
   const { programId = useProgramId() } = props;
   const user = useUserIdentity();
 
