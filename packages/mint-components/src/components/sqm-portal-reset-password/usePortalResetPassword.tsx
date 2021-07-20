@@ -53,8 +53,6 @@ interface DecodedSquatchJWT {
   user: {
     accountId: string;
     id: string;
-    email: string;
-    verified: boolean;
   };
 }
 
