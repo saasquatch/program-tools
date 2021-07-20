@@ -3,7 +3,6 @@ import { Component, h, Prop, State } from "@stencil/core";
 
 @Component({
   tag: "sqm-referral-table-cell",
-  styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
 export class ReferralTableCell {
@@ -18,6 +17,6 @@ export class ReferralTableCell {
   disconnectedCallback() {}
 
   render() {
-    return <div class="MyStyle" innerHTML={this.innerTemplate}></div>;
+    return <div innerHTML={this.innerTemplate}></div>;
   }
 }

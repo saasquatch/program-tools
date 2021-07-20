@@ -57,9 +57,9 @@ export function PresetText(props: PresetTextProps, children: VNode) {
   const styleString = sheet.toString();
 
   return (
-    <p class={sheet.classes[props.type]}>
+    <div class={sheet.classes[props.type]}>
       <style type="text/css">{styleString}</style>
       {children}
-    </p>
+    </div>
   );
 }

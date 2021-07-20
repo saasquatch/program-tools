@@ -5,7 +5,6 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
 
 @Component({
   tag: "sqm-referral-table-rewards-column",
-  styleUrl: "../sqm-referral-table.scss",
   shadow: true,
 })
 export class ReferralTableRewardsColumn implements ReferralTableColumn{
