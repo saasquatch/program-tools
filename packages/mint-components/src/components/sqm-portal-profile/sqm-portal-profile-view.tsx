@@ -3,6 +3,7 @@ import jss from "jss";
 import preset from "jss-preset-default";
 import { PortalContainerView } from "../sqm-portal-container/sqm-portal-container-view";
 import { PresetText } from "../../functional-components/PresetText";
+import { intl } from "../../global/global";
 
 export interface PortalProfileViewProps {
   states: {
@@ -54,6 +55,12 @@ export function PortalProfileView(props: PortalProfileViewProps) {
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
+
+  const country = states.user?.countryCode
+    ? intl.formatDisplayName(states.user?.countryCode, {
+        type: "region",
+      })
+    : "";
 
   return (
     <PortalContainerView
@@ -110,8 +117,8 @@ export function PortalProfileView(props: PortalProfileViewProps) {
             }
           ></sl-input>
         </PortalContainerView>
-        <sl-input label="Email" value={states.user?.email}></sl-input>
-        <sl-input label="Country"></sl-input>
+        <sl-input label="Email" value={states.user?.email} disabled></sl-input>
+        <sl-input label="Country" value={country} disabled></sl-input>
         <sl-button
           type="primary"
           loading={states.loading}
