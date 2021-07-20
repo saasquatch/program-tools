@@ -194,7 +194,7 @@ export namespace Components {
         /**
           * @uiName Gap
          */
-        "gap": string;
+        "gap": Spacing;
         /**
           * @uiName Gap
          */
@@ -398,6 +398,23 @@ export namespace Components {
     | "default"
     | "text";
     }
+    interface SqmShareCode {
+        /**
+          * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
+          * @uiName Program ID
+         */
+        "programId"?: string;
+        /**
+          * The number of milliseconds that the tooltip will appear for
+          * @uiName Tooltip lifespan
+         */
+        "tooltiplifespan": number;
+        /**
+          * This is shown after someone has successfully copied the cpde to the clipboard.
+          * @uiName Tooltip text
+         */
+        "tooltiptext": string;
+    }
     interface SqmShareLink {
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
@@ -414,18 +431,12 @@ export namespace Components {
           * @uiName Tooltip text
          */
         "tooltiptext": string;
-        /**
-          * Shows either the default share link or the referral code
-          * @uiName Type of share link
-          * @uiEnum ["shareLink", "referralCode"]
-         */
-        "type": "shareLink" | "referralCode";
     }
     interface SqmStatContainer {
         /**
           * @uiName Space between stats
          */
-        "space": string;
+        "space": Spacing;
     }
     interface SqmStencilbook {
     }
@@ -441,6 +452,10 @@ export namespace Components {
           * @uiName Section padding
          */
         "padding": Spacing;
+    }
+    interface SqmUserName {
+        "fallback": string;
+        "loadingText": string;
     }
 }
 declare global {
@@ -678,6 +693,12 @@ declare global {
         prototype: HTMLSqmShareButtonElement;
         new (): HTMLSqmShareButtonElement;
     };
+    interface HTMLSqmShareCodeElement extends Components.SqmShareCode, HTMLStencilElement {
+    }
+    var HTMLSqmShareCodeElement: {
+        prototype: HTMLSqmShareCodeElement;
+        new (): HTMLSqmShareCodeElement;
+    };
     interface HTMLSqmShareLinkElement extends Components.SqmShareLink, HTMLStencilElement {
     }
     var HTMLSqmShareLinkElement: {
@@ -707,6 +728,12 @@ declare global {
     var HTMLSqmTitledSectionElement: {
         prototype: HTMLSqmTitledSectionElement;
         new (): HTMLSqmTitledSectionElement;
+    };
+    interface HTMLSqmUserNameElement extends Components.SqmUserName, HTMLStencilElement {
+    }
+    var HTMLSqmUserNameElement: {
+        prototype: HTMLSqmUserNameElement;
+        new (): HTMLSqmUserNameElement;
     };
     interface HTMLElementTagNameMap {
         "sqm-asset-card": HTMLSqmAssetCardElement;
@@ -748,11 +775,13 @@ declare global {
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
+        "sqm-share-code": HTMLSqmShareCodeElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
         "sqm-stat-container": HTMLSqmStatContainerElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
         "sqm-text": HTMLSqmTextElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
+        "sqm-user-name": HTMLSqmUserNameElement;
     }
 }
 declare namespace LocalJSX {
@@ -942,7 +971,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Gap
          */
-        "gap"?: string;
+        "gap"?: Spacing;
         /**
           * @uiName Gap
          */
@@ -1136,6 +1165,23 @@ declare namespace LocalJSX {
     | "default"
     | "text";
     }
+    interface SqmShareCode {
+        /**
+          * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
+          * @uiName Program ID
+         */
+        "programId"?: string;
+        /**
+          * The number of milliseconds that the tooltip will appear for
+          * @uiName Tooltip lifespan
+         */
+        "tooltiplifespan"?: number;
+        /**
+          * This is shown after someone has successfully copied the cpde to the clipboard.
+          * @uiName Tooltip text
+         */
+        "tooltiptext"?: string;
+    }
     interface SqmShareLink {
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
@@ -1152,18 +1198,12 @@ declare namespace LocalJSX {
           * @uiName Tooltip text
          */
         "tooltiptext"?: string;
-        /**
-          * Shows either the default share link or the referral code
-          * @uiName Type of share link
-          * @uiEnum ["shareLink", "referralCode"]
-         */
-        "type"?: "shareLink" | "referralCode";
     }
     interface SqmStatContainer {
         /**
           * @uiName Space between stats
          */
-        "space"?: string;
+        "space"?: Spacing;
     }
     interface SqmStencilbook {
     }
@@ -1179,6 +1219,10 @@ declare namespace LocalJSX {
           * @uiName Section padding
          */
         "padding"?: Spacing;
+    }
+    interface SqmUserName {
+        "fallback"?: string;
+        "loadingText"?: string;
     }
     interface IntrinsicElements {
         "sqm-asset-card": SqmAssetCard;
@@ -1220,11 +1264,13 @@ declare namespace LocalJSX {
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
         "sqm-share-button": SqmShareButton;
+        "sqm-share-code": SqmShareCode;
         "sqm-share-link": SqmShareLink;
         "sqm-stat-container": SqmStatContainer;
         "sqm-stencilbook": SqmStencilbook;
         "sqm-text": SqmText;
         "sqm-titled-section": SqmTitledSection;
+        "sqm-user-name": SqmUserName;
     }
 }
 export { LocalJSX as JSX };
@@ -1270,11 +1316,13 @@ declare module "@stencil/core" {
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
+            "sqm-share-code": LocalJSX.SqmShareCode & JSXBase.HTMLAttributes<HTMLSqmShareCodeElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
             "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
+            "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
         }
     }
 }
