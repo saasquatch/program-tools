@@ -17,6 +17,13 @@ export type UserIdentity = {
   };
 };
 
+export interface DecodedSquatchJWT {
+  user: {
+    accountId: string;
+    id: string;
+  };
+}
+
 declare global {
   interface Window {
     squatchUserIdentity: ContextProvider<UserIdentity>;

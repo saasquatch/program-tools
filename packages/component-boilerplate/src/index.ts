@@ -23,7 +23,14 @@ export {
    */
   useEngagementMedium,
   useLocale,
-} from "./environment/environment";
+} from "./environment";
+export { useAuthenticateWithEmailAndPasswordMutation } from "./hooks/managedIdentity/useAuthenticateWithEmailAndPasswordMutation";
+export { useRegisterWithEmailAndPasswordMutation } from "./hooks/managedIdentity/useRegisterWithEmailAndPasswordMutation";
+export { useResetPasswordMutation } from "./hooks/managedIdentity/useResetPasswordMutation";
+export { useVerifyPasswordResetCodeMutation } from "./hooks/managedIdentity/useVerifyPasswordResetCodeMutation";
+export { useVerifyEmailMutation } from "./hooks/managedIdentity/useVerifyEmailMutation";
+export { useRequestPasswordResetEmailMutation } from "./hooks/managedIdentity/useRequestPasswordResetEmailMutation";
+export { useRequestVerificationEmailMutation } from "./hooks/managedIdentity/useRequestVerificationEmailMutation";
 
 //
 //      GraphQL API
