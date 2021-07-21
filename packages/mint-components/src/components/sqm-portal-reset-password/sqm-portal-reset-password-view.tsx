@@ -14,7 +14,7 @@ export interface PortalResetPasswordViewProps {
     error: string;
     loading: boolean;
     reset: boolean;
-    confirmPassword?: boolean;
+    confirmPassword: boolean;
     oobCodeValidating: boolean;
     oobCodeValid: boolean;
   };
@@ -137,9 +137,6 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
         {states.reset ? "Password Reset" : "Reset your password"}
       </PresetText>
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
-        <sl-title>
-          {states.reset ? "Password Reset" : "Reset your password"}
-        </sl-title>
         {props.states.error && (
           <sqm-form-message
             type="error"

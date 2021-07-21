@@ -7,6 +7,7 @@ import {
   setUserIdentity,
   useMutation,
 } from "@saasquatch/component-boilerplate";
+import { PortalResetPasswordViewProps } from "./sqm-portal-reset-password-view";
 
 const VerifyManagedIdentityPasswordResetCodeMutation = gql`
   mutation VerifyPasswordResetCode($oobCode: String!) {
@@ -58,7 +59,7 @@ interface DecodedSquatchJWT {
   };
 }
 
-export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
+export function usePortalResetPassword({ nextPage, nextPageUrlParameter, confirmPassword }) : PortalResetPasswordViewProps {
   const [reset, setReset] = useState(false);
 
   const [verifyPasswordResetCode, verifyPasswordResetCodeState] =
@@ -131,6 +132,7 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
     states: {
       loading: resetPasswordState.loading,
       reset,
+      confirmPassword,
       error: resetPasswordState.errors?.response?.errors?.[0]?.message,
       oobCodeValidating: verifyPasswordResetCodeState.loading,
       oobCodeValid:

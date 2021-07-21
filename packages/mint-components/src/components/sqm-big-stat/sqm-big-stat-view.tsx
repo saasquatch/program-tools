@@ -14,6 +14,8 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
   const style = {
     Container: {
       display: "flex",
+      height: "100%",
+      "justify-content": "space-between",
       "flex-direction": `${flexReverse ? "column-reverse" : "column"}`,
       "align-items": `${
         alignment === "left"
@@ -33,6 +35,9 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
       color: "var(--sl-color-gray-600)",
       "text-transform": "uppercase",
       "text-align": alignment,
+    },
+    Wrapper: {
+      height: "100%",
     },
   };
 
