@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/mint-components",
-  "version": "1.1.0-17",
+  "version": "1.1.0-18",
   "description": "Mint Components - Built with Shoelace Components",
   "main": "dist/index.cjs.js",
   "es2015": "dist/esm/index.js",
@@ -10,11 +10,7 @@
   "jsnext:main": "dist/esm/index.js",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "files": [
-    "dist/",
-    "grapesjs/",
-    "shoelace/"
-  ],
+  "files": ["dist/", "grapesjs/", "shoelace/"],
   "scripts": {
     "build": "stencil build --docs",
     "build:grapes": "cross-env BUILD=DOCS stencil build --watch --docs",
@@ -53,7 +49,7 @@
     "workbox-build": "4.3.1"
   },
   "dependencies": {
-    "@saasquatch/component-boilerplate": "^1.2.0-9",
+    "@saasquatch/component-boilerplate": "^1.2.0-10",
     "@saasquatch/stencil-grapes-plugin": "^1.0.1",
     "@saasquatch/stencil-hooks": "^2.0.1-0",
     "@saasquatch/stencilbook": "^1.0.0",

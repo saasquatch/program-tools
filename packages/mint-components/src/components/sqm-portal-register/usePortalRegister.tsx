@@ -1,57 +1,15 @@
-import gql from "graphql-tag";
 import jsonpointer from "jsonpointer";
 import { useEffect } from "@saasquatch/universal-hooks";
-import decode from "jwt-decode";
 import {
   navigation,
-  setUserIdentity,
-  useMutation,
   useUserIdentity,
+  useRegisterWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
 import { usePortalEmailVerification } from "../sqm-portal-email-verification/usePortalEmailVerification";
 
-const PortalRegisterMutation = gql`
-  mutation PortalRegister(
-    $email: String!
-    $password: String!
-    $formData: RSJsonNode
-  ) {
-    registerManagedIdentityWithEmailAndPassword(
-      registerManagedIdentityWithEmailAndPasswordInput: {
-        email: $email
-        password: $password
-        formData: $formData
-      }
-    ) {
-      token
-      email
-      emailVerified
-      sessionData
-    }
-  }
-`;
-
-interface PortalRegisterMutationResult {
-  registerManagedIdentityWithEmailAndPassword: {
-    token: string;
-    email: string;
-    emailVerified: boolean;
-    sessionData: Record<string, any>;
-  };
-}
-
-interface DecodedSquatchJWT {
-  user: {
-    accountId: string;
-    id: string;
-    email: string;
-    verified: boolean;
-  };
-}
-
 export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
-  const [request, { loading, data, errors }] =
-    useMutation<PortalRegisterMutationResult>(PortalRegisterMutation);
+  const [request, { loading, errors }] =
+    useRegisterWithEmailAndPasswordMutation();
   const userIdent = useUserIdentity();
   const {
     states: emailVerificationStates,
@@ -60,17 +18,10 @@ export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
     nextPageUrlParameter,
   });
 
-  // const [, rerender] = useTick();
-  // const host = useHost();
-
-  // useEffect(() => {
-  //   rerender();
-  // }, [host.children]);
-
   const submit = async (event: any) => {
     let formData = event.target.getFormData();
 
-    formData?.forEach((value, key) => {
+    formData?.forEach((value: any, key: string) => {
       console.log(key);
       jsonpointer.set(formData, key, value);
     });
@@ -85,24 +36,6 @@ export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
     };
     await request(variables);
   };
-
-  useEffect(() => {
-    if (data?.registerManagedIdentityWithEmailAndPassword) {
-      const { registerManagedIdentityWithEmailAndPassword: res } = data;
-      const jwt = res.token;
-      const { user } = decode<DecodedSquatchJWT>(jwt);
-      setUserIdentity({
-        jwt,
-        id: user.id,
-        accountId: user.accountId,
-        managedIdentity: {
-          email: res.email,
-          emailVerified: res.emailVerified,
-          sessionData: res.sessionData,
-        },
-      });
-    }
-  }, [data?.registerManagedIdentityWithEmailAndPassword]);
 
   useEffect(() => {
     if (userIdent?.jwt) {

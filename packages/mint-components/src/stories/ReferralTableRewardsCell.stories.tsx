@@ -44,18 +44,18 @@ const baseReward: Reward = {
   },
 };
 
-const pendingReward = {
-  statuses: ["PENDING"],
-};
-const cancelledReward = {
-  statuses: ["CANCELLED"],
-};
-const expiredReward = {
-  statuses: ["EXPIRED"],
-};
-const redeemedReward = {
-  statuses: ["REDEEMED"],
-};
+// const pendingReward = {
+//   statuses: ["PENDING"],
+// };
+// const cancelledReward = {
+//   statuses: ["CANCELLED"],
+// };
+// const expiredReward = {
+//   statuses: ["EXPIRED"],
+// };
+// const redeemedReward = {
+//   statuses: ["REDEEMED"],
+// };
 const availableReward = {
   statuses: ["AVAILABLE"],
 };
