@@ -85,9 +85,34 @@ export const Wrapper = {
   width: "100%",
   "max-width": "var(--st-content-max-width)",
   height: "auto",
-  padding: "var(--sl-spacing-large)",
   "background-color": "var(--st-content-background)",
   display: "flex",
+  padding: "var(--sl-spacing-xxx-large)",
+  border: "1px solid #eaeaea",
+  "border-radius": "8px",
+};
+
+export const AuthWrapper = {
+  margin: "auto",
+  ...Wrapper,
+  "max-width": "500px",
+  ...Column,
+  ...gap({ direction: "column", size: "var(--sl-spacing-xxx-large)" }),
+};
+
+export const AuthButtonsContainer = {
+  "padding-top": "var(--sl-spacing-medium)",
+  display: "flex",
+  "flex-direction": "column",
+  width: "100%",
+  "align-items": "center",
+  "&>*": {
+    width: "100%",
+  },
+  ...gap({ direction: "column", size: "var(--sl-spacing-x-large)" }),
+  "& > div": {
+    "text-align": "center",
+  },
 };
 
 export type FontSize =

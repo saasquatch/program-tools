@@ -29,6 +29,7 @@ export class UserName {
 }
 
 function useUserNameDemo(props: UserName): UserNameViewProps {
+  console.log(props);
   return {
     loading: false,
     loadingText: "...",

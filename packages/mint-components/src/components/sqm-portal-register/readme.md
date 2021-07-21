@@ -13,6 +13,7 @@
 | `emailLabel`           | `email-label`             |             | `string`  | `"Email"`    |
 | `nextPage`             | `next-page`               |             | `string`  | `"/"`        |
 | `nextPageUrlParameter` | `next-page-url-parameter` |             | `string`  | `"nextPage"` |
+| `pageLabel`            | `page-label`              |             | `string`  | `"Register"` |
 | `passwordLabel`        | `password-label`          |             | `string`  | `"Password"` |
 | `submitLabel`          | `submit-label`            |             | `string`  | `"Register"` |
 

@@ -218,6 +218,7 @@ export namespace Components {
         "emailLabel": string;
         "nextPage": string;
         "nextPageUrlParameter": string;
+        "pageLabel": string;
         "passwordLabel": string;
         "submitLabel": string;
     }
@@ -243,6 +244,7 @@ export namespace Components {
         "emailLabel": string;
         "nextPage": string;
         "nextPageUrlParameter": string;
+        "pageLabel": string;
         "passwordLabel": string;
         "submitLabel": string;
     }
@@ -995,6 +997,7 @@ declare namespace LocalJSX {
         "emailLabel"?: string;
         "nextPage"?: string;
         "nextPageUrlParameter"?: string;
+        "pageLabel"?: string;
         "passwordLabel"?: string;
         "submitLabel"?: string;
     }
@@ -1020,6 +1023,7 @@ declare namespace LocalJSX {
         "emailLabel"?: string;
         "nextPage"?: string;
         "nextPageUrlParameter"?: string;
+        "pageLabel"?: string;
         "passwordLabel"?: string;
         "submitLabel"?: string;
     }

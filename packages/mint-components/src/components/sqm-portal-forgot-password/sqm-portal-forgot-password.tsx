@@ -52,7 +52,7 @@ export class PortalForgotPassword {
       ),
       messageSlot: (
         <slot name="messageSlot">
-          <p>Enter your email below to receive a password reset link.</p>
+          Enter your email below to receive a password reset link.
         </slot>
       ),
       emailLabel: this.emailLabel,
