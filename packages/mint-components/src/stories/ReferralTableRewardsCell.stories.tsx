@@ -44,6 +44,24 @@ const baseReward: Reward = {
   },
 };
 
+// Reward Type Cases
+const discountReward = {
+  type: "PCT_DISCOUNT",
+};
+
+const creditReward = {
+  type: "CREDIT",
+};
+
+const fuelTankReward = {
+  type: "FUELTANK",
+};
+
+const integrationReward = {
+  type: "INTEGRATION",
+};
+
+// Reward Status Cases
 const pendingReward = {
   statuses: ["PENDING"],
 };
@@ -60,13 +78,110 @@ const availableReward = {
   statuses: ["AVAILABLE"],
 };
 
-const rewards = [{ ...baseReward, ...availableReward }];
+const zeroRewards = [];
 
-export const RewardsCell = () => {
-  console.log(rewards);
+const oneReward = [{ ...baseReward, ...availableReward }];
+
+const twoRewards = [
+  { ...baseReward, ...discountReward },
+  { ...baseReward, ...creditReward },
+];
+
+const threeRewards = [
+  { ...baseReward, ...fuelTankReward },
+  { ...baseReward, ...fuelTankReward },
+  { ...baseReward, ...pendingReward },
+];
+
+const fiveRewards = [
+  { ...baseReward, ...fuelTankReward },
+  { ...baseReward, ...integrationReward },
+  { ...baseReward, ...pendingReward },
+  { ...baseReward, ...cancelledReward },
+  { ...baseReward, ...expiredReward },
+];
+
+const eightRewards = [
+  { ...baseReward, ...redeemedReward },
+  { ...baseReward, ...availableReward },
+  { ...baseReward, ...pendingReward },
+  { ...baseReward, ...cancelledReward },
+  { ...baseReward, ...expiredReward },
+  { ...baseReward, ...pendingReward },
+  { ...baseReward, ...cancelledReward },
+  { ...baseReward, ...expiredReward },
+];
+
+const tenRewards = [
+  { ...baseReward, ...integrationReward },
+  { ...baseReward, ...redeemedReward },
+  { ...baseReward, ...availableReward },
+  { ...baseReward, ...cancelledReward },
+  { ...baseReward, ...expiredReward },
+  { ...baseReward, ...pendingReward },
+  { ...baseReward, ...discountReward },
+  { ...baseReward, ...fuelTankReward },
+  { ...baseReward, ...cancelledReward },
+  { ...baseReward, ...creditReward },
+];
+
+export const zeroRewardsCell = () => {
   return (
     <sqm-referral-table-rewards-cell
-      rewards={rewards}
+      rewards={zeroRewards}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const oneRewardCell = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={oneReward}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const twoRewardsCell = () => {
+  console.log(twoRewards);
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={twoRewards}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const threeRewardsCell = () => {
+  console.log(threeRewards);
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={threeRewards}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const fiveRewardsCell = () => {
+  console.log(fiveRewards);
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={fiveRewards}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const eightRewardsCell = () => {
+  console.log(eightRewards);
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={eightRewards}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const tenRewardsCell = () => {
+  console.log(tenRewards);
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={tenRewards}
     ></sqm-referral-table-rewards-cell>
   );
 };
