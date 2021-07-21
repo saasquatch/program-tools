@@ -13,3 +13,8 @@ sl-alert::part(base) {
   background-color: var(--sl-color-success-100);
   border-color: var(--sl-color-success-200);
 }
+
+.Info::part(base) {
+  background-color: var(--sl-color-primary-100);
+  border-color: var(--sl-color-primary-200);
+}

@@ -25,10 +25,14 @@ export class FormMessage {
   disconnectedCallback() {}
 
   render() {
-
     if (this.type === "error") {
       return (
-        <sl-alert exportparts="base: erroralert-base, icon:erroralert-icon" class="Error" type="danger" open>
+        <sl-alert
+          exportparts="base: erroralert-base, icon:erroralert-icon"
+          class="Error"
+          type="danger"
+          open
+        >
           <sl-icon
             slot="icon"
             name={`${this.icon ? this.icon : "exclamation-octagon"}`}
@@ -36,9 +40,29 @@ export class FormMessage {
           <slot />
         </sl-alert>
       );
+    } else if (this.type === "info") {
+      return (
+        <sl-alert
+          exportparts="base: infoalert-base, icon:infoalert-icon"
+          class="Info"
+          type="primary"
+          open
+        >
+          <sl-icon
+            slot="icon"
+            name={`${this.icon ? this.icon : "info-circle"}`}
+          ></sl-icon>
+          <slot />
+        </sl-alert>
+      );
     } else {
       return (
-        <sl-alert exportparts="base: successalert-base, icon:successalert-icon" class="Success" type="success" open>
+        <sl-alert
+          exportparts="base: successalert-base, icon:successalert-icon"
+          class="Success"
+          type="success"
+          open
+        >
           <sl-icon
             slot="icon"
             name={`${this.icon ? this.icon : "check2-circle"}`}

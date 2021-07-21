@@ -33,13 +33,25 @@ export function DividedLayoutView(
     },
   };
 
+  const vanillaStyle = `
+    ${
+      props.direction === "column" &&
+      `:host{
+      width: 100%
+    }`
+    }
+  `;
+
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
   return (
     <div class={sheet.classes.LayoutContainer}>
-      <style type="text/css">{styleString}</style>
+      <style type="text/css">
+        {/* {vanillaStyle} */}
+        {styleString}
+      </style>
       {children}
     </div>
   );
