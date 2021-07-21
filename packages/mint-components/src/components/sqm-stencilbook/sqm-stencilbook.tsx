@@ -30,6 +30,7 @@ import * as ChangePassword from "../../stories/ChangePassword.stories";
 import * as PortalProfile from "../../stories/PortalProfile.stories";
 import * as ReferralTable from "../../stories/ReferralTable.stories";
 import * as ReferralTableCell from "../../stories/ReferralTableCell.stories";
+import * as ReferralTableRewardsCell from "../../stories/ReferralTableRewardsCell.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -64,6 +65,7 @@ const stories = [
   PortalProfile,
   ReferralTable,
   ReferralTableCell,
+  ReferralTableRewardsCell
 ];
 
 /**

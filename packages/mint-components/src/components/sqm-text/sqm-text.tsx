@@ -66,7 +66,6 @@ export class Text {
   disconnectedCallback() {}
 
   componentWillLoad() {
-    console.log("sqm-text");
     try {
       insertCSS(textStyles);
     } catch (error) {

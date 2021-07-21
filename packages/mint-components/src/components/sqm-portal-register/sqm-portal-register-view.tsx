@@ -30,7 +30,7 @@ export interface PortalRegisterViewProps {
 }
 
 const style = {
-  Wrapper: AuthWrapper,
+  Wrapper: { ...AuthWrapper, "max-width": "600px" },
   Column: {
     ...Column,
     ...gap({ direction: "column", size: "var(--sl-spacing-xx-large)" }),
