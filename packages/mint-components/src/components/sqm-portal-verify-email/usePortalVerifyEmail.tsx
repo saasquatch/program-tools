@@ -1,33 +1,12 @@
-import gql from "graphql-tag";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import {
   navigation,
-  useUserIdentity,
-  setUserIdentity,
-  useMutation,
+  useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
 
-const PortalVerifyEmailMutation = gql`
-  mutation PortalVerifyEmail($oobCode: String!) {
-    verifyManagedIdentityEmail(
-      verifyManagedIdentityEmailInput: { oobCode: $oobCode }
-    ) {
-      success
-    }
-  }
-`;
-
-interface PortalVerifyEmailMutationResult {
-  verifyManagedIdentityEmail: {
-    success: boolean;
-  };
-}
-
 export function usePortalVerifyEmail({ nextPage, nextPageUrlParameter }) {
-  const userIdentity = useUserIdentity();
-  const [request, { loading, data, errors }] =
-    useMutation<PortalVerifyEmailMutationResult>(PortalVerifyEmailMutation);
   const [verified, setVerified] = useState(false);
+  const [request, { loading, data, errors }] = useVerifyEmailMutation();
 
   const urlParams = new URLSearchParams(window.location.search);
   const oobCode = urlParams.get("oobCode");
@@ -58,15 +37,6 @@ export function usePortalVerifyEmail({ nextPage, nextPageUrlParameter }) {
 
   useEffect(() => {
     if (data?.verifyManagedIdentityEmail?.success) {
-      if (userIdentity) {
-        setUserIdentity({
-          ...userIdentity,
-          managedIdentity: {
-            ...userIdentity.managedIdentity,
-            emailVerified: true,
-          },
-        });
-      }
       setVerified(true);
       setTimeout(() => {
         gotoNextPage();
