@@ -249,7 +249,7 @@ export namespace Components {
         "submitLabel": string;
     }
     interface SqmPortalResetPassword {
-        "confirmPassword"?: boolean;
+        "confirmPassword": boolean;
         "nextPage": string;
         "nextPageUrlParameter": string;
     }

@@ -72,10 +72,10 @@
     <sqm-portal-forgot-password></sqm-portal-forgot-password>
     Reset Password
     <sqm-portal-reset-password></sqm-portal-reset-password> -->
-    <!-- <sqm-stencilbook></sqm-stencilbook> -->
+    <sqm-stencilbook></sqm-stencilbook>
 
     <!-- <sqm-portal-register></sqm-portal-register> -->
-    <sqm-portal-frame>
+    <!-- <sqm-portal-frame>
       <sqm-navigation-menu menu-label="Logout">
         <stn-menu-container>
             <sl-menu-item value="/logout">Logout</sl-menu-item>
@@ -129,7 +129,68 @@
             <sqm-share-button medium="facebook"></sqm-share-button>
           </template>
         </sqm-router>
-    </sqm-portal-frame>
+    </sqm-portal-frame> -->
+
+    <!-- <sqm-portal-reset-password></sqm-portal-reset-password> -->
+
+    <!-- <sqm-divided-layout direction="row">
+      <sqm-navigation-sidebar>
+        <sqm-navigation-sidebar-item
+          path="/"
+          icon="house"
+          label="Dashboard"
+        ></sqm-navigation-sidebar-item>
+        <sqm-navigation-sidebar-item
+          path="/activity"
+          icon="bar-chart"
+          label="Activity"
+        ></sqm-navigation-sidebar-item>
+        <sqm-navigation-sidebar-item
+          path="/logout"
+          icon="box-arrow-right"
+          label="Logout"
+        ></sqm-navigation-sidebar-item>
+      </sqm-navigation-sidebar>
+      <sqm-portal-container direction="column" padding="xxx-large" gap="xxx-large">
+        <sqm-text> <h2>Activity</h2></sqm-text>
+        <sqm-stat-container space="xxxx-large"
+          ><sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="completed-referrals"
+          ></sqm-big-stat
+          ><sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="pending-referrals"
+          ></sqm-big-stat
+          ><sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="points-balance"
+          ></sqm-big-stat
+        ></sqm-stat-container>
+        <sqm-referral-table program-id="ny-post-referrals">
+          <sqm-referral-table-column
+            ><sqm-text><p slot="loading">Loading</p></sqm-text>
+            <sqm-text style="width: 100%"
+              ><p slot="empty" style="text-align: center">
+                No referrals yet
+              </p></sqm-text
+            ></sqm-referral-table-column
+          >
+          <sqm-referral-table-user-column></sqm-referral-table-user-column>
+          <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+          <sqm-referral-table-status-column></sqm-referral-table-status-column>
+          <sqm-referral-table-date-column
+            column-title="Date Started"
+            date-shown="dateStarted"
+          ></sqm-referral-table-date-column>
+          <sqm-referral-table-date-column></sqm-referral-table-date-column>
+        </sqm-referral-table>
+      </sqm-portal-container>
+    </sqm-divided-layout> -->
+
     <!-- <sqm-divided-layout direction="row">
       <sqm-navigation-sidebar>
         <sqm-navigation-sidebar-item
@@ -163,17 +224,17 @@
             ><sqm-big-stat
               flex-reverse="true"
               alignment="left"
-              stat-type="completed-referrals"
+              stat-type="/referralsCount"
             ></sqm-big-stat
             ><sqm-big-stat
               flex-reverse="true"
               alignment="left"
-              stat-type="pending-referrals"
+              stat-type="/rewardsCount"
             ></sqm-big-stat
             ><sqm-big-stat
               flex-reverse="true"
               alignment="left"
-              stat-type="points-balance"
+              stat-type="/rewardBalance/CREDIT/CENTS"
             ></sqm-big-stat></sqm-stat-container></sqm-portal-container
         ><sqm-portal-container
           direction="column"
@@ -184,19 +245,17 @@
             ><sqm-text slot="label"> <h2>Partner and Profit</h2> </sqm-text
             ><sqm-text slot="content">
               <p>
-                Get rewarded for referring potential customers to MyCompany.
-                Earn commission for each successful lead you send our way
+                Get rewarded for referring chefs to Food Service Rewards. Earn
+                points for every successful referral
               </p>
             </sqm-text></sqm-titled-section
+          >
+    <fsr-reward-exchange></fsr-reward-exchange>
+    <sqm-titled-section label-margin="small" padding="none"
+            ><sqm-text slot="label"> <h3>Share your referral link</h3> </sqm-text
+            ><sqm-share-link slot="content"></sqm-share-link></sqm-titled-section
           ><sqm-titled-section label-margin="small" padding="none"
-            ><sqm-text slot="label">
-              <h3>Share your referral link</h3> </sqm-text
-            ><sqm-share-link
-              slot="content"
-            ></sqm-share-link></sqm-titled-section
-          ><sqm-titled-section label-margin="small" padding="none"
-            ><sqm-text slot="label">
-              <h3>Share your referral code</h3> </sqm-text
+            ><sqm-text slot="label"> <h3>Share your referral code</h3> </sqm-text
             ><sqm-share-code slot="content"></sqm-share-link
           ></sqm-titled-section>
           <sqm-titled-section label-margin="small" padding="none"
@@ -221,7 +280,7 @@
             ></sqm-titled-section
           ></sqm-portal-container
         ></sqm-divided-layout
-      >
+    >
     </sqm-divided-layout> -->
 
     <!-- <sqm-asset-card title-text="Marketing Banner Test"></sqm-asset-card> -->

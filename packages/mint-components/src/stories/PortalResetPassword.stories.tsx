@@ -24,6 +24,22 @@ const defaultProps: PortalResetPasswordViewProps = {
   },
 };
 
+const defaultPropsNoConfirm: PortalResetPasswordViewProps = {
+  states: {
+    error: "",
+    loading: false,
+    reset: false,
+    confirmPassword: false,
+    oobCodeValidating: false,
+    oobCodeValid: true,
+  },
+  callbacks: {
+    submit: async (e) => await e,
+    gotoNextPage: () => console.log("next page"),
+    failed: () => console.log("failed"),
+  },
+};
+
 const errorProps: PortalResetPasswordViewProps = {
   states: {
     error: "Something went wrong. Please try again.",
@@ -61,6 +77,7 @@ const successProps: PortalResetPasswordViewProps = {
     error: "",
     loading: false,
     reset: true,
+    confirmPassword: true,
     oobCodeValidating: false,
     oobCodeValid: true,
   },
@@ -76,6 +93,7 @@ const validatingCodeProps: PortalResetPasswordViewProps = {
     error: "",
     loading: false,
     reset: false,
+    confirmPassword: true,
     oobCodeValidating: false,
     oobCodeValid: false,
   },
@@ -87,6 +105,10 @@ const validatingCodeProps: PortalResetPasswordViewProps = {
 };
 
 export const Default = () => <PortalResetPasswordView {...defaultProps} />;
+
+export const DefaultWithoutConfirmField = () => (
+  <PortalResetPasswordView {...defaultPropsNoConfirm} />
+);
 
 export const ResetPasswordWithError = () => (
   <PortalResetPasswordView {...errorProps} />

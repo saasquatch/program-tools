@@ -1,71 +1,19 @@
-import gql from "graphql-tag";
-import decode from "jwt-decode";
 import jsonpointer from "jsonpointer";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import {
   navigation,
-  setUserIdentity,
-  useMutation,
+  useVerifyPasswordResetCodeMutation,
+  useResetPasswordMutation,
 } from "@saasquatch/component-boilerplate";
+import { PortalResetPasswordViewProps } from "./sqm-portal-reset-password-view";
 
-const VerifyManagedIdentityPasswordResetCodeMutation = gql`
-  mutation VerifyPasswordResetCode($oobCode: String!) {
-    verifyManagedIdentityPasswordResetCode(
-      verifyManagedIdentityPasswordResetCodeInput: { oobCode: $oobCode }
-    ) {
-      success
-    }
-  }
-`;
-
-interface VerifyManagedIdentityPasswordResetCodeMutationResult {
-  verifyManagedIdentityPasswordResetCode: {
-    success: boolean;
-  };
-}
-
-const PortalResetPasswordMutation = gql`
-  mutation PortalResetPassword($oobCode: String!, $password: String!) {
-    resetManagedIdentityPassword(
-      resetManagedIdentityPasswordInput: {
-        password: $password
-        oobCode: $oobCode
-      }
-    ) {
-      token
-      email
-      emailVerified
-      sessionData
-    }
-  }
-`;
-
-interface PortalResetPasswordMutationResult {
-  resetManagedIdentityPassword: {
-    token: string;
-    email: string;
-    emailVerified: boolean;
-    sessionData: Record<string, any>;
-  };
-}
-
-interface DecodedSquatchJWT {
-  user: {
-    accountId: string;
-    id: string;
-  };
-}
-
-export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
+export function usePortalResetPassword({ nextPage, nextPageUrlParameter, confirmPassword }) : PortalResetPasswordViewProps {
   const [reset, setReset] = useState(false);
 
   const [verifyPasswordResetCode, verifyPasswordResetCodeState] =
-    useMutation<VerifyManagedIdentityPasswordResetCodeMutationResult>(
-      VerifyManagedIdentityPasswordResetCodeMutation
-    );
+    useVerifyPasswordResetCodeMutation();
 
-  const [resetPassword, resetPasswordState] =
-    useMutation<PortalResetPasswordMutationResult>(PortalResetPasswordMutation);
+  const [resetPassword, resetPasswordState] = useResetPasswordMutation();
 
   const urlParams = new URLSearchParams(window.location.search);
   const oobCode = urlParams.get("oobCode");
@@ -77,7 +25,7 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
   const submit = async (event: any) => {
     let formData = event.detail.formData;
 
-    formData?.forEach((value, key) => {
+    formData?.forEach((value: any, key: string) => {
       jsonpointer.set(formData, key, value);
     });
     const variables = { oobCode, password: formData.password };
@@ -101,19 +49,6 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
 
   useEffect(() => {
     if (resetPasswordState.data?.resetManagedIdentityPassword) {
-      const { resetManagedIdentityPassword: res } = resetPasswordState.data;
-      const jwt = res.token;
-      const { user } = decode<DecodedSquatchJWT>(jwt);
-      setUserIdentity({
-        jwt,
-        id: user.id,
-        accountId: user.accountId,
-        managedIdentity: {
-          email: res.email,
-          emailVerified: res.emailVerified,
-          sessionData: res.sessionData,
-        },
-      });
       setReset(true);
       setTimeout(() => {
         gotoNextPage();
@@ -129,6 +64,7 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter }) {
     states: {
       loading: resetPasswordState.loading,
       reset,
+      confirmPassword,
       error: resetPasswordState.errors?.response?.errors?.[0]?.message,
       oobCodeValidating: verifyPasswordResetCodeState.loading,
       oobCodeValid:

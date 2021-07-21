@@ -55,6 +55,7 @@ export function PortalEmailVerificationView(
         {vanillaStyle}
         {styleString}
       </style>
+      <PresetText type="h2">Verify Your Email</PresetText>
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
         {props.states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">
@@ -69,7 +70,6 @@ export function PortalEmailVerificationView(
           </sqm-form-message>
         )}
 
-        <PresetText type="h2">Verify Your Email</PresetText>
         <PresetText type="p">
           A verification email was sent to {email}. Please verify your email to
           continue to the portal.
