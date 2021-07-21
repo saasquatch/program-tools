@@ -21,7 +21,15 @@ export namespace Components {
         "programId": string;
     }
     interface SqbWidget {
+        /**
+          * When enabled then this widget is hidden until a user is logged in. Defaults to false.
+          * @uiName Auth Required
+         */
         "requireAuth": boolean;
+        /**
+          * The type of widget to load. Can be a program's widget, a global widget, or a classic widget. If this prop is missing, then nothing is shown.
+          * @uiName Widget Type
+         */
         "widgetType": string;
     }
 }
@@ -66,7 +74,15 @@ declare namespace LocalJSX {
         "programId"?: string;
     }
     interface SqbWidget {
+        /**
+          * When enabled then this widget is hidden until a user is logged in. Defaults to false.
+          * @uiName Auth Required
+         */
         "requireAuth"?: boolean;
+        /**
+          * The type of widget to load. Can be a program's widget, a global widget, or a classic widget. If this prop is missing, then nothing is shown.
+          * @uiName Widget Type
+         */
         "widgetType"?: string;
     }
     interface IntrinsicElements {
