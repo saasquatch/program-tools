@@ -149,28 +149,7 @@ export function useReferralTable(
     rows: []
   });
 
-  // TODO: Let the referral cells handle this
   const data = referralData?.data;
-
-  // TODO: Demo Hook - needs to include reward data too
-  // const data2 = {
-  //   rows: [
-  //     {
-  //       status: "Converted",
-  //       firstName: "Joe",
-  //       lastName: "Schmoe",
-  //       prettyValue: "$20",
-  //       dateConverted: 1626214500,
-  //     },
-  //     {
-  //       status: "In Progress",
-  //       firstName: "Sponge",
-  //       lastName: "Bob",
-  //       prettyValue: "$50",
-  //       dateStarted: 1626214500,
-  //     },
-  //   ],
-  // };
 
   const components = useChildElements();
 
@@ -201,8 +180,6 @@ export function useReferralTable(
     getComponentData();
   }, [referralData, components, tick]);
 
-  // TODO: Loading state - while initial rendering rows?
-  // TODO: Empty state
   return {
     states: {
       hasNext: states.currentPage < states.pageCount - 1,

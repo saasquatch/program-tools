@@ -10,11 +10,11 @@ export default {
   title: "Portal Profile",
 };
 
-const style = {};
+// const style = {};
 
 jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
-const styleString = sheet.toString();
+// const sheet = jss.createStyleSheet(style);
+// const styleString = sheet.toString();
 
 const defaultProps: PortalProfileViewProps = {
   states: {

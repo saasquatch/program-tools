@@ -36,6 +36,9 @@ export class PortalRegister {
   @Prop()
   confirmPassword: boolean = false;
 
+  @Prop()
+  pageLabel: string = "Register";
+
   constructor() {
     withHooks(this);
   }
@@ -62,6 +65,7 @@ export class PortalRegister {
       emailLabel: this.emailLabel,
       passwordLabel: this.passwordLabel,
       submitLabel: this.submitLabel,
+      pageLabel: this.pageLabel,
     };
     return (
       <PortalRegisterView

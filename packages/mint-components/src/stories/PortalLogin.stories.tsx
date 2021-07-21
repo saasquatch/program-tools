@@ -16,7 +16,7 @@ const defaultProps: PortalLoginViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
-  content:{}
+  content:{pageLabel:"Sign in to your account"}
 };
 
 const errorProps: PortalLoginViewProps = {
@@ -27,7 +27,7 @@ const errorProps: PortalLoginViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
-  content:{}
+  content:{pageLabel:"Sign in to your account"}
 };
 
 const loadingProps: PortalLoginViewProps = {
@@ -38,7 +38,7 @@ const loadingProps: PortalLoginViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
-  content:{}
+  content:{pageLabel:"Sign in to your account"}
 };
 
 export const Default = () => <PortalLoginView {...defaultProps} />;

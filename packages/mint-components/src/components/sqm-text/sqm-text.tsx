@@ -8,28 +8,28 @@ const debug = debugFn("sq:global");
 const textStyles = `
   sqm-text h1 {
     font-size: 36px;
-    font-weight: 500;
+    font-weight: 600;
     color: #555555;
     margin: 0;
   }
 
   sqm-text h2 {
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 600;
     color: #555555;
     margin: 0;
   }
 
   sqm-text h3 {
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     color: #555555;
     margin: 0;
   }
 
   sqm-text h4 {
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     color: #555555;
     margin: 0;
   }

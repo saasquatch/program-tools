@@ -7,11 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `icon`   | `icon`    |             | `string` | `undefined` |
-| `label`  | `label`   |             | `string` | `undefined` |
-| `path`   | `path`    |             | `string` | `undefined` |
+| Property      | Attribute      | Description | Type     | Default            |
+| ------------- | -------------- | ----------- | -------- | ------------------ |
+| `fallback`    | `fallback`     |             | `string` | `"Anonymous User"` |
+| `loadingText` | `loading-text` |             | `string` | `"..."`            |
 
 
 ----------------------------------------------

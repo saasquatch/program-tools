@@ -30,6 +30,9 @@ export class PortalLogin {
   @Prop()
   submitLabel = "Sign In";
 
+  @Prop()
+  pageLabel : string = "Sign in to your account";
+
   constructor() {
     withHooks(this);
   }
@@ -37,13 +40,16 @@ export class PortalLogin {
   disconnectedCallback() {}
 
   render() {
+
     const { states, callbacks } = isDemo()
       ? useLoginDemo(this)
       : usePortalLogin(this);
     const content = {
       forgotPasswordButton: (
         <slot name="forgotPassword">
-          <a onClick={() => navigation.push("/forgotPassword")}>
+          <a
+            onClick={() => navigation.push("/forgotPassword")}
+          >
             Forgot Password?
           </a>
         </slot>
@@ -62,13 +68,14 @@ export class PortalLogin {
       emailLabel: this.emailLabel,
       passwordLabel: this.passwordLabel,
       submitLabel: this.submitLabel,
+      pageLabel: this.pageLabel,
     };
     return (
       <PortalLoginView
         states={states}
         callbacks={callbacks}
         content={content}
-      />
+      ></PortalLoginView>
     );
   }
 }

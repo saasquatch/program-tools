@@ -18,9 +18,11 @@
 ### Used by
 
  - [sqm-edit-profile](../sqm-edit-profile)
+ - [sqm-portal-change-password](../sqm-portal-change-password)
  - [sqm-portal-email-verification](../sqm-portal-email-verification)
  - [sqm-portal-forgot-password](../sqm-portal-forgot-password)
  - [sqm-portal-login](../sqm-portal-login)
+ - [sqm-portal-profile](../sqm-portal-profile)
  - [sqm-portal-register](../sqm-portal-register)
  - [sqm-portal-reset-password](../sqm-portal-reset-password)
  - [sqm-portal-verify-email](../sqm-portal-verify-email)
@@ -30,9 +32,11 @@
 ```mermaid
 graph TD;
   sqm-edit-profile --> sqm-form-message
+  sqm-portal-change-password --> sqm-form-message
   sqm-portal-email-verification --> sqm-form-message
   sqm-portal-forgot-password --> sqm-form-message
   sqm-portal-login --> sqm-form-message
+  sqm-portal-profile --> sqm-form-message
   sqm-portal-register --> sqm-form-message
   sqm-portal-reset-password --> sqm-form-message
   sqm-portal-verify-email --> sqm-form-message

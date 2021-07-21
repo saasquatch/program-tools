@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { Column, HostBlock, Wrapper } from "../../global/mixins";
+import { AuthWrapper, Column, gap } from "../../global/mixins";
 import jss from "jss";
 import preset from "jss-preset-default";
 
@@ -16,15 +16,26 @@ export interface PortalVerifyEmailViewProps {
 }
 
 const style = {
-  Wrapper: { ...Wrapper, ...Column },
-  Column: Column,
-  HostBlock: HostBlock,
-
-  ":host": {
-    margin: "0 auto",
+  Wrapper: AuthWrapper,
+  Column: {
+    ...Column,
+    ...gap({ direction: "column", size: "var(--sl-spacing-xx-large)" }),
+  },
+  ContinueButton: {
     width: "100%",
   },
 };
+
+const vanillaStyle = `
+:host {
+  margin: 0 auto;
+  width: 100%;
+  display: block;
+}
+:host([hidden]): {
+  display: none;
+}
+`;
 
 jss.setup(preset());
 const sheet = jss.createStyleSheet(style);
@@ -36,23 +47,25 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
   if (states.verified) {
     return (
       <div class={sheet.classes.Wrapper}>
-        <style type="text/css">{styleString}</style>
+        <style type="text/css">
+          {vanillaStyle}
+          {styleString}
+        </style>
         <sqm-form-message exportparts="success-icon">
           <div part="successalert-text">
             Your email has been verified and you are being redirected. If you
             are not redirected, please click Continue.
           </div>
         </sqm-form-message>
-        <div>
-          <sl-button
-            onClick={callbacks.gotoNextPage}
-            loading={states.loading}
-            exportparts="base: primarybutton-base"
-            type="primary"
-          >
-            Continue
-          </sl-button>
-        </div>
+        <sl-button
+          class={sheet.classes.ContinueButton}
+          onClick={callbacks.gotoNextPage}
+          loading={states.loading}
+          exportparts="base: primarybutton-base"
+          type="primary"
+        >
+          Continue
+        </sl-button>
       </div>
     );
   }
@@ -67,16 +80,15 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
             again.
           </div>
         </sqm-form-message>
-        <div>
-          <sl-button
-            onClick={callbacks.failed}
-            loading={states.loading}
-            exportparts="base: primarybutton-base"
-            type="primary"
-          >
-            Continue
-          </sl-button>
-        </div>
+        <sl-button
+          class={sheet.classes.ContinueButton}
+          onClick={callbacks.failed}
+          loading={states.loading}
+          exportparts="base: primarybutton-base"
+          type="primary"
+        >
+          Continue
+        </sl-button>
       </div>
     );
   }

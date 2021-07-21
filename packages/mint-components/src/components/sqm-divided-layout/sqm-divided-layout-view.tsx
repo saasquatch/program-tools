@@ -23,6 +23,7 @@ export function DividedLayoutView(
       display: "flex",
       "flex-direction": props.direction,
       "background-color": "#fff",
+      // First style applies when shadow DOM is disabled, second applies when shadow DOM is enabled
       "& > :not(:last-child)": {
         ...getBorder(),
       },

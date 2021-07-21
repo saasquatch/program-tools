@@ -1,7 +1,13 @@
 import { h } from "@stencil/core";
-import { Column, HostBlock, Wrapper } from "../../global/mixins";
+import {
+  AuthButtonsContainer,
+  AuthWrapper,
+  Column,
+  gap,
+} from "../../global/mixins";
 import jss from "jss";
 import preset from "jss-preset-default";
+import { PresetText } from "../../functional-components/PresetText";
 
 export interface PortalResetPasswordViewProps {
   states: {
@@ -20,20 +26,12 @@ export interface PortalResetPasswordViewProps {
 }
 
 const style = {
-  Wrapper: { ...Wrapper, ...Column },
-  Column: Column,
-  HostBlock: HostBlock,
-
-  ":host": {
-    margin: "0 auto",
-    width: "100%",
+  Wrapper: AuthWrapper,
+  Column: {
+    ...Column,
+    ...gap({ direction: "column", size: "var(--sl-spacing-xxx-large)" }),
   },
-
-  InputContainer: {
-    "& > :not(:last-child)": {
-      "margin-bottom": "20px",
-    },
-  },
+  ButtonsContainer: AuthButtonsContainer,
 
   Banner: {
     "&::part(erroralert-base)": {
@@ -53,6 +51,17 @@ const style = {
     },
   },
 };
+
+const vanillaStyle = `
+:host {
+  margin: 0 auto;
+  width: 100%;
+  display: block;
+}
+:host([hidden]): {
+  display: none;
+}
+`;
 
 jss.setup(preset());
 const sheet = jss.createStyleSheet(style);
@@ -120,7 +129,13 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
 
   return (
     <div class={sheet.classes.Wrapper}>
-      <style type="text/css">{styleString}</style>
+      <style type="text/css">
+        {vanillaStyle}
+        {styleString}
+      </style>
+      <PresetText type="h2">
+        {states.reset ? "Password Reset" : "Reset your password"}
+      </PresetText>
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
         <sl-title>
           {states.reset ? "Password Reset" : "Reset your password"}
@@ -134,37 +149,27 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
-        {!states.reset &&
-          (states.confirmPassword ? (
-            <div class={sheet.classes.InputContainer}>
-              <sl-input
-                exportparts="label: input-label"
-                type="password"
-                name="/password"
-                label="Password"
-                disabled={states.loading}
-                required
-              ></sl-input>
-              <sl-input
-                exportparts="label: input-label"
-                type="password"
-                name="/confirmPassword"
-                label="Confirm Password"
-                disabled={states.loading}
-                required
-              ></sl-input>
-            </div>
-          ) : (
-            <sl-input
-              exportparts="label: input-label"
-              type="password"
-              name="/password"
-              label="Password"
-              disabled={states.loading}
-              required
-            ></sl-input>
-          ))}
-        <div>
+        {!states.reset && (
+          <sl-input
+            exportparts="label: input-label"
+            type="password"
+            name="/password"
+            label="Password"
+            disabled={states.loading}
+            required
+          ></sl-input>
+        )}
+        {!states.reset && states.confirmPassword && (
+          <sl-input
+            exportparts="label: input-label"
+            type="password"
+            name="/confirmPassword"
+            label="Confirm Password"
+            disabled={states.loading}
+            required
+          ></sl-input>
+        )}
+        <div class={sheet.classes.ButtonsContainer}>
           <sl-button
             submit
             loading={states.loading}
