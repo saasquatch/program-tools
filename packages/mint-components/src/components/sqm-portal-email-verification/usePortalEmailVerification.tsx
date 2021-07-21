@@ -1,34 +1,12 @@
-import gql from "graphql-tag";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import {
-  useMutation,
   useUserIdentity,
+  useRequestVerificationEmailMutation,
 } from "@saasquatch/component-boilerplate";
-
-const PortalEmailVerificationMutation = gql`
-  mutation PortalEmailVerification($email: String!, $urlParams: RSJsonNode) {
-    requestManagedIdentityVerificationEmail(
-      requestManagedIdentityVerificationEmailInput: {
-        email: $email
-        urlParams: $urlParams
-      }
-    ) {
-      success
-    }
-  }
-`;
-
-interface PortalEmailVerificationMutationResult {
-  requestManagedIdentityVerificationEmail: {
-    success: boolean;
-  };
-}
 
 export function usePortalEmailVerification({ nextPageUrlParameter }) {
   const [request, { loading, data, errors }] =
-    useMutation<PortalEmailVerificationMutationResult>(
-      PortalEmailVerificationMutation
-    );
+    useRequestVerificationEmailMutation();
 
   const userIdent = useUserIdentity();
   const email = userIdent?.managedIdentity?.email;
