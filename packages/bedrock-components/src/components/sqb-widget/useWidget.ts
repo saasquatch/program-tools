@@ -22,6 +22,8 @@ type GetWidget = {
         meta: {
           plugins: unknown[];
           // TODO: Should load dependencies...
+          // We can add this later and that should be forward compatible because it should not RE-load existing dependencies
+          // And this only planned to be used for the time being where dependencies already exist
           dependencies: unknown[];
         };
       };
