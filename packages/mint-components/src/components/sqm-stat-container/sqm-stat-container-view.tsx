@@ -20,6 +20,7 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
       display: "grid",
       "grid-template-columns": "repeat(auto-fill, minmax(130px, auto))",
       gap: divideSpace(),
+      // First set of styles applies when shadow DOM is disabled, second set applies when shadow DOM is enabled
       "& > *": {
         "border-right": "1px solid #EAEAEA",
         "padding-right": divideSpace(),
