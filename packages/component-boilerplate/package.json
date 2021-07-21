@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/component-boilerplate",
-  "version": "1.2.0-9",
+  "version": "1.2.0-10",
   "private": false,
   "description": "Boilerplate for writing web components for the SaaSquatch widget environments",
   "source": "src/index.ts",
@@ -8,9 +8,7 @@
   "exports": "./dist/index.modern.js",
   "module": "dist/index.module.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "microbundle",
     "test": "jest",
