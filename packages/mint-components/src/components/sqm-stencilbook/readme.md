@@ -18,6 +18,11 @@
 - [sqm-form-message](../sqm-form-message)
 - [sqm-hook-story-container](../sqm-hook-story-container)
 - [sqm-text](../sqm-text)
+- [sqm-referral-table-user-cell](../sqm-referral-table/cells)
+- [sqm-referral-table-date-cell](../sqm-referral-table/cells)
+- [sqm-referral-table-cell](../sqm-referral-table/cells)
+- [sqm-referral-table-status-cell](../sqm-referral-table/cells)
+- [sqm-referral-table-rewards-cell](../sqm-referral-table/cells)
 
 ### Graph
 ```mermaid
@@ -31,6 +36,11 @@ graph TD;
   sqm-stencilbook --> sqm-form-message
   sqm-stencilbook --> sqm-hook-story-container
   sqm-stencilbook --> sqm-text
+  sqm-stencilbook --> sqm-referral-table-user-cell
+  sqm-stencilbook --> sqm-referral-table-date-cell
+  sqm-stencilbook --> sqm-referral-table-cell
+  sqm-stencilbook --> sqm-referral-table-status-cell
+  sqm-stencilbook --> sqm-referral-table-rewards-cell
   sqm-edit-profile --> sqm-form-message
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```

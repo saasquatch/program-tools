@@ -33,14 +33,14 @@ export function DividedLayoutView(
     },
   };
 
-  const vanillaStyle = `
-    ${
-      props.direction === "column" &&
-      `:host{
-      width: 100%
-    }`
-    }
-  `;
+  // const vanillaStyle = `
+  //   ${
+  //     props.direction === "column" &&
+  //     `:host{
+  //     width: 100%
+  //   }`
+  //   }
+  // `;
 
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);

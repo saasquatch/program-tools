@@ -7,21 +7,21 @@ export default {
   title: "Referral Table",
 };
 
-const style = {
-  FullWidth: {
-    width: "100%",
-  },
+// const style = {
+//   FullWidth: {
+//     width: "100%",
+//   },
 
-  TextCenter: {
-    "text-align": "center",
-  },
-};
+//   TextCenter: {
+//     "text-align": "center",
+//   },
+// };
 
 jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
-const styleString = sheet.toString();
+// const sheet = jss.createStyleSheet(style);
+// const styleString = sheet.toString();
 
-const rewardProps = [{}];
+// const rewardProps = [{}];
 
 const simpleUserTableProps = {
   states: {
