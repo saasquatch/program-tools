@@ -28,6 +28,8 @@ import * as AssetCard from "../../stories/AssetCard.stories";
 import * as DividedLayout from "../../stories/DividedLayout.stories";
 import * as ChangePassword from "../../stories/ChangePassword.stories";
 import * as PortalProfile from "../../stories/PortalProfile.stories";
+import * as ReferralTable from "../../stories/ReferralTable.stories";
+import * as ReferralTableCell from "../../stories/ReferralTableCell.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -60,6 +62,8 @@ const stories = [
   DividedLayout,
   ChangePassword,
   PortalProfile,
+  ReferralTable,
+  ReferralTableCell,
 ];
 
 /**
