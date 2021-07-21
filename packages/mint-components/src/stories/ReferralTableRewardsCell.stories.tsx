@@ -60,6 +60,12 @@ const availableReward = {
   statuses: ["AVAILABLE"],
 };
 
+// redeemed > cancelled > expired > pending > available
+
+const discountPrettyValue={
+  prettyValue:"20%"
+}
+
 const rewards = [{ ...baseReward, ...availableReward }];
 
 export const RewardsCell = () => {
