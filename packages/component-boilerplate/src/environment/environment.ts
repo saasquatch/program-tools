@@ -22,15 +22,6 @@ export type PortalEnv = Pick<
 export { useProgramId, setProgramId } from "./ProgramContext";
 
 /**
- * User identity context helpers
- */
-export {
-  useUserIdentity,
-  useToken,
-  setUserIdentity,
-} from "./UserIdentityContext";
-
-/**
  * Provided by the SaaSquatch GraphQL backend when a widget is rendered.
  *
  * Source: https://github.com/saasquatch/saasquatch/blob/805e51284f818f8656b6458bcee6181f378819d3/packages/saasquatch-core/app/saasquatch/controllers/api/widget/WidgetApi.java
