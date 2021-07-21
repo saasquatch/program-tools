@@ -15,6 +15,19 @@
 | `lastnametext`  | `lastnametext`  |             | `string` | `"Last Name"`  |
 
 
+## Dependencies
+
+### Depends on
+
+- [sqm-form-message](../sqm-form-message)
+
+### Graph
+```mermaid
+graph TD;
+  sqm-portal-profile --> sqm-form-message
+  style sqm-portal-profile fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

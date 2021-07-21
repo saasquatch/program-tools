@@ -1,5 +1,10 @@
 import { h } from "@stencil/core";
-import { AuthButtonsContainer, AuthWrapper, Column, gap, Wrapper } from "../../global/mixins";
+import {
+  AuthButtonsContainer,
+  AuthWrapper,
+  Column,
+  gap,
+} from "../../global/mixins";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { PresetText } from "../../functional-components/PresetText";
@@ -36,7 +41,7 @@ const style = {
     color: "#AAAAAA",
     margin: "0",
   },
-  ButtonsContainer: AuthButtonsContainer
+  ButtonsContainer: AuthButtonsContainer,
 };
 
 const vanillaStyle = `
