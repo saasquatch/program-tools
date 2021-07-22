@@ -96,7 +96,7 @@ export class ReferralTableRewardsCell {
             )}
             {/* If pending append the days remaing on the end*/}
             {/** future state badge if needed (probably only when the reward is set to expire automatically*/}
-            {reward.dateExpires && state !== "PENDING" && (
+            {reward.dateExpires && state === "AVAILABLE" && (
               <sl-badge type="info" pill>
                 Expiring in {reward.dateExpires}
               </sl-badge>
