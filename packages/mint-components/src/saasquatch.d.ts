@@ -23,6 +23,7 @@ interface Reward {
   unit: string;
   name: string;
   dateGiven: number;
+  dateScheduledFor: number;
   dateExpires: number;
   dateCancelled: number;
   fuelTankCode: string;

@@ -18,6 +18,7 @@ const baseReward: Reward = {
   unit: "POINT",
   name: "test",
   dateGiven: 100000,
+  dateScheduledFor: 1000000,
   dateExpires: 10000000,
   dateCancelled: 134400,
   fuelTankCode: "ABC",
