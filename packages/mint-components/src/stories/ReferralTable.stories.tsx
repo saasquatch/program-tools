@@ -29,6 +29,9 @@ const simpleUserTableProps = {
     hasNext: true,
     loading: false,
   },
+  data: {
+    referralData: [],
+  },
   callbacks: {
     prevPage: () => console.log("Prev"),
     nextPage: () => console.log("Next"),
@@ -63,6 +66,9 @@ const longCellTextTableProps = {
     hasPrev: false,
     hasNext: true,
     loading: false,
+  },
+  data: {
+    referralData: [],
   },
   callbacks: {
     prevPage: () => console.log("Prev"),
@@ -142,6 +148,9 @@ const longColumnTextTableProps = {
     hasNext: true,
     loading: false,
   },
+  data: {
+    referralData: [],
+  },
   callbacks: {
     prevPage: () => console.log("Prev"),
     nextPage: () => console.log("Next"),
@@ -220,6 +229,9 @@ const fullUserTableProps = {
     hasNext: true,
     loading: false,
   },
+  data: {
+    referralData: [],
+  },
   callbacks: {
     prevPage: () => console.log("Prev"),
     nextPage: () => console.log("Next"),
@@ -297,6 +309,9 @@ const loadingTableProps = {
     hasPrev: false,
     hasNext: true,
     loading: false,
+  },
+  data: {
+    referralData: [],
   },
   callbacks: {
     prevPage: () => console.log("Prev"),

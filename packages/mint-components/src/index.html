@@ -284,12 +284,41 @@
         ></sqm-divided-layout
     >
     </sqm-divided-layout> -->
-
+    <sqm-share-button medium="facebook" size="medium" pill="true"
+      >Share on Facebook</sqm-share-button
+    >
     <sqm-referral-table program-id="ny-post-referrals">
-      <sqm-text slot="loading"><p>Loading</p></sqm-text>
-      <sqm-text style="width: 100%" slot="empty"
-        ><p style="text-align: center">No referrals yet</p></sqm-text
-      >
+      <div slot="loading" style="display: contents;">
+        <sqm-table-row>
+          <sqm-table-cell colspan="5"
+            ><sl-skeleton></sl-skeleton
+          ></sqm-table-cell>
+        </sqm-table-row>
+        <sqm-table-row>
+          <sqm-table-cell colspan="5"
+            ><sl-skeleton></sl-skeleton
+          ></sqm-table-cell>
+        </sqm-table-row>
+        <sqm-table-row>
+          <sqm-table-cell colspan="5"
+            ><sl-skeleton></sl-skeleton
+          ></sqm-table-cell>
+        </sqm-table-row>
+        <sqm-table-row>
+          <sqm-table-cell colspan="5"
+            ><sl-skeleton></sl-skeleton
+          ></sqm-table-cell>
+        </sqm-table-row>
+        <sqm-table-row>
+          <sqm-table-cell colspan="5"
+            ><sl-skeleton></sl-skeleton
+          ></sqm-table-cell>
+        </sqm-table-row>
+      </div>
+      <div slot="empty" style="display:contents;">
+        <sqm-table-row>
+          <sqm-table-cell colspan="5" style="text-align:center;">No Referrals Yet</sqm-table-cell>
+      </div>
       <sqm-referral-table-user-column></sqm-referral-table-user-column>
       <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
       <sqm-referral-table-status-column></sqm-referral-table-status-column>

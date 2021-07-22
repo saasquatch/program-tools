@@ -259,7 +259,7 @@ export namespace Components {
     }
     interface SqmReferralTable {
         /**
-          * Filters to only show referrals in this program. Will default to filtering by the program context where  this table lives. If no program ID is set or provided by context, then shows all referrals from all programs.
+          * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs.
           * @uiName Program
          */
         "programId": string;
@@ -441,6 +441,11 @@ export namespace Components {
         "space": Spacing;
     }
     interface SqmStencilbook {
+    }
+    interface SqmTableCell {
+        "colspan": number;
+    }
+    interface SqmTableRow {
     }
     interface SqmText {
     }
@@ -723,6 +728,18 @@ declare global {
         prototype: HTMLSqmStencilbookElement;
         new (): HTMLSqmStencilbookElement;
     };
+    interface HTMLSqmTableCellElement extends Components.SqmTableCell, HTMLStencilElement {
+    }
+    var HTMLSqmTableCellElement: {
+        prototype: HTMLSqmTableCellElement;
+        new (): HTMLSqmTableCellElement;
+    };
+    interface HTMLSqmTableRowElement extends Components.SqmTableRow, HTMLStencilElement {
+    }
+    var HTMLSqmTableRowElement: {
+        prototype: HTMLSqmTableRowElement;
+        new (): HTMLSqmTableRowElement;
+    };
     interface HTMLSqmTextElement extends Components.SqmText, HTMLStencilElement {
     }
     var HTMLSqmTextElement: {
@@ -791,6 +808,8 @@ declare global {
         "sqm-share-link": HTMLSqmShareLinkElement;
         "sqm-stat-container": HTMLSqmStatContainerElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
+        "sqm-table-cell": HTMLSqmTableCellElement;
+        "sqm-table-row": HTMLSqmTableRowElement;
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
@@ -1049,7 +1068,7 @@ declare namespace LocalJSX {
     }
     interface SqmReferralTable {
         /**
-          * Filters to only show referrals in this program. Will default to filtering by the program context where  this table lives. If no program ID is set or provided by context, then shows all referrals from all programs.
+          * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs.
           * @uiName Program
          */
         "programId"?: string;
@@ -1222,6 +1241,11 @@ declare namespace LocalJSX {
     }
     interface SqmStencilbook {
     }
+    interface SqmTableCell {
+        "colspan"?: number;
+    }
+    interface SqmTableRow {
+    }
     interface SqmText {
     }
     interface SqmTextSpan {
@@ -1287,6 +1311,8 @@ declare namespace LocalJSX {
         "sqm-share-link": SqmShareLink;
         "sqm-stat-container": SqmStatContainer;
         "sqm-stencilbook": SqmStencilbook;
+        "sqm-table-cell": SqmTableCell;
+        "sqm-table-row": SqmTableRow;
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
         "sqm-titled-section": SqmTitledSection;
@@ -1340,6 +1366,8 @@ declare module "@stencil/core" {
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
             "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
+            "sqm-table-cell": LocalJSX.SqmTableCell & JSXBase.HTMLAttributes<HTMLSqmTableCellElement>;
+            "sqm-table-row": LocalJSX.SqmTableRow & JSXBase.HTMLAttributes<HTMLSqmTableRowElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;

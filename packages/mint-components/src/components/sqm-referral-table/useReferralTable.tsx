@@ -122,8 +122,8 @@ const GET_REFERRAL_DATA = gql`
 
 export function useReferralTable(
   props: ReferralTable,
-  loadingElement: VNode,
-  emptyElement: VNode
+  emptyElement: VNode,
+  loadingElement: VNode
 ): ReferralTableViewProps {
   const programIdContext = useProgramId();
   // Default to context, overriden by props
@@ -153,7 +153,7 @@ export function useReferralTable(
 
   const components = useChildElements();
 
-  async function getComponentData() {
+  async function getComponentData(components: Element[]) {
     // get the column titles (renderLabel is asynchronous)
     const columnsPromise = components?.map(async (c: any) =>
       tryMethod(c, () => c.renderLabel())
@@ -168,16 +168,18 @@ export function useReferralTable(
       return rows;
     });
 
-    const columns = await Promise.all(columnsPromise);
-    const rows = await Promise.all(cellsPromise);
+    const columns = columnsPromise && (await Promise.all(columnsPromise));
+    const rows = cellsPromise && (await Promise.all(cellsPromise));
 
     // Set the content to render
     setContent({ columns, rows });
   }
 
   useEffect(() => {
-    if (!referralData) return;
-    getComponentData();
+    const columnComponents = components.filter(
+      (component) => component.slot !== "loading" && component.slot !== "empty"
+    );
+    getComponentData(columnComponents);
   }, [referralData, components, tick]);
 
   return {
@@ -185,6 +187,9 @@ export function useReferralTable(
       hasNext: states.currentPage < states.pageCount - 1,
       hasPrev: states.currentPage > 0,
       loading: states.loading,
+    },
+    data: {
+      referralData: data,
     },
     elements: {
       columns: content.columns,
@@ -212,9 +217,6 @@ async function tryMethod(
   callback: () => Promise<VNode>
 ): Promise<VNode> {
   const tag = c.tagName.toLowerCase();
-  if (c.slot === "loading" || c.slot === "empty") {
-    return <span />;
-  }
   await customElements.whenDefined(tag);
   let labelPromise: Promise<VNode>;
   try {
