@@ -2,11 +2,8 @@ import gql from "graphql-tag";
 import { useEffect } from "@saasquatch/universal-hooks";
 
 import { BaseQueryData } from "../graphql/useBaseQuery";
-import {
-  setUserIdentity,
-  useUserIdentity,
-} from "../../environment/UserIdentityContext";
 import { useMutation } from "../graphql/useMutation";
+import { useManagedIdentityQuery } from "./useManagedIdentityQuery";
 
 const VerifyEmailMutation = gql`
   mutation VerifyEmail($oobCode: String!) {
@@ -28,22 +25,13 @@ export function useVerifyEmailMutation(): [
   (e: { oobCode: string }) => unknown,
   BaseQueryData<VerifyEmailResult>
 ] {
-  const userIdentity = useUserIdentity();
+  const [refreshManagedIdentity] = useManagedIdentityQuery();
   const [request, { loading, data, errors }] =
     useMutation<VerifyEmailResult>(VerifyEmailMutation);
 
-  // TODO: This should refetch the managed identity from the identity service instead of deep-setting emailVerified
   useEffect(() => {
     if (data?.verifyManagedIdentityEmail?.success) {
-      if (userIdentity) {
-        setUserIdentity({
-          ...userIdentity,
-          managedIdentity: {
-            ...userIdentity.managedIdentity,
-            emailVerified: true,
-          },
-        });
-      }
+      refreshManagedIdentity();
     }
   }, [data?.verifyManagedIdentityEmail?.success]);
 

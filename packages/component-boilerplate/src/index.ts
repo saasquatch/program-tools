@@ -31,6 +31,7 @@ export { useVerifyPasswordResetCodeMutation } from "./hooks/managedIdentity/useV
 export { useVerifyEmailMutation } from "./hooks/managedIdentity/useVerifyEmailMutation";
 export { useRequestPasswordResetEmailMutation } from "./hooks/managedIdentity/useRequestPasswordResetEmailMutation";
 export { useRequestVerificationEmailMutation } from "./hooks/managedIdentity/useRequestVerificationEmailMutation";
+export { useManagedIdentityQuery } from "./hooks/managedIdentity/useManagedIdentityQuery";
 
 //
 //      GraphQL API
