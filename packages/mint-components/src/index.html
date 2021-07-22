@@ -19,16 +19,16 @@
   </head>
   <body>
     <script>
-      // window.widgetIdent = {
-      //   tenantAlias: "test_a7yoz8854cf6x",
-      //   appDomain: "https://staging.referralsaasquatch.com",
-      //   token:
-      //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImJqMTIzIiwiaWQiOiJiajEyMyIsImZpcnN0TmFtZSI6IkJhZyIsImxhc3ROYW1lIjoiSmFjayJ9fQ.pkKuGeUb5AnhT0A4KuRsvumGcrOaxMx26Yy7QX1ZLzI",
-      //   userId: "bj123",
-      //   accountId: "bj123",
-      //   programId: "ny-post-referrals",
-      //   portalAuthUrl: "http://localhost:4000",
-      // };
+      window.widgetIdent = {
+        tenantAlias: "test_a7yoz8854cf6x",
+        appDomain: "https://staging.referralsaasquatch.com",
+        token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImJqMTIzIiwiaWQiOiJiajEyMyIsImZpcnN0TmFtZSI6IkJhZyIsImxhc3ROYW1lIjoiSmFjayJ9fQ.pkKuGeUb5AnhT0A4KuRsvumGcrOaxMx26Yy7QX1ZLzI",
+        userId: "bj123",
+        accountId: "bj123",
+        programId: "ny-post-referrals",
+        portalAuthUrl: "http://localhost:4000",
+      };
       if (!localStorage.getItem("IEAlert") && window.document.documentMode) {
         localStorage.setItem("IEAlert", true);
         alert(
@@ -74,7 +74,7 @@
     <sqm-portal-reset-password></sqm-portal-reset-password> -->
     <!-- <sqm-stencilbook></sqm-stencilbook> -->
 
-    <sqm-portal-login></sqm-portal-login>
+    <!-- <sqm-portal-login></sqm-portal-login> -->
 
     <!-- <sqm-portal-register></sqm-portal-register> -->
     <!-- <sqm-portal-frame>
@@ -284,6 +284,21 @@
         ></sqm-divided-layout
     >
     </sqm-divided-layout> -->
+
+    <sqm-referral-table program-id="ny-post-referrals">
+      <sqm-text slot="loading"><p>Loading</p></sqm-text>
+      <sqm-text style="width: 100%" slot="empty"
+        ><p style="text-align: center">No referrals yet</p></sqm-text
+      >
+      <sqm-referral-table-user-column></sqm-referral-table-user-column>
+      <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+      <sqm-referral-table-status-column></sqm-referral-table-status-column>
+      <sqm-referral-table-date-column
+        column-title="Date Started"
+        date-shown="dateStarted"
+      ></sqm-referral-table-date-column>
+      <sqm-referral-table-date-column></sqm-referral-table-date-column>
+    </sqm-referral-table>
 
     <!-- <sqm-asset-card title-text="Marketing Banner Test"></sqm-asset-card> -->
   </body>

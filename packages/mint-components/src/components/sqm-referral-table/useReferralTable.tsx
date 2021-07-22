@@ -146,7 +146,7 @@ export function useReferralTable(
   const tick = useRerenderListener();
   const [content, setContent] = useState<ReferralTableViewProps["elements"]>({
     columns: [],
-    rows: []
+    rows: [],
   });
 
   const data = referralData?.data;
@@ -212,6 +212,9 @@ async function tryMethod(
   callback: () => Promise<VNode>
 ): Promise<VNode> {
   const tag = c.tagName.toLowerCase();
+  if (c.slot === "loading" || c.slot === "empty") {
+    return <span />;
+  }
   await customElements.whenDefined(tag);
   let labelPromise: Promise<VNode>;
   try {
