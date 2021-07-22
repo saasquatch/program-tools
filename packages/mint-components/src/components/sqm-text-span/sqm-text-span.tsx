@@ -1,12 +1,6 @@
-import { Component, h, Host, Prop, State } from "@stencil/core";
+import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { TextSpanView } from "./sqm-text-span-view";
-
-const vanillaStyle = `
-  :host{
-    display: inline;
-  }
-`;
 
 /**
  * @uiName Text Span
@@ -31,11 +25,6 @@ export class Text {
   componentWillLoad() {}
 
   render() {
-    return (
-      <Host>
-        <style>{vanillaStyle}</style>
-        <TextSpanView type={this.type}>{this.text}</TextSpanView>
-      </Host>
-    );
+    return <TextSpanView type={this.type}>{this.text}</TextSpanView>;
   }
 }
