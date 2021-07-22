@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/mint-components",
-  "version": "1.1.0-18",
+  "version": "1.1.0-19",
   "description": "Mint Components - Built with Shoelace Components",
   "main": "dist/index.cjs.js",
   "es2015": "dist/esm/index.js",

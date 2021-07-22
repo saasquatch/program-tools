@@ -1,7 +1,6 @@
 import { Component, h, Prop } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { PresetText } from "../../../functional-components/PresetText";
 
 @Component({
   tag: "sqm-referral-table-rewards-cell",
@@ -17,11 +16,11 @@ export class ReferralTableRewardsCell {
   */
 
   render() {
-    const style = {};
+    // const style = {};
 
     jss.setup(preset());
-    const sheet = jss.createStyleSheet(style);
-    const styleString = sheet.toString();
+    // const sheet = jss.createStyleSheet(style);
+    // const styleString = sheet.toString();
 
     const getState = (states: Array<string>): string => {
       const possibleStates = [
