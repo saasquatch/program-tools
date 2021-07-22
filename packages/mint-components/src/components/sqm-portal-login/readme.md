@@ -7,14 +7,13 @@
 
 ## Properties
 
-| Property               | Attribute                 | Description | Type     | Default                     |
-| ---------------------- | ------------------------- | ----------- | -------- | --------------------------- |
-| `emailLabel`           | `email-label`             |             | `string` | `"Email"`                   |
-| `nextPage`             | `next-page`               |             | `string` | `"/"`                       |
-| `nextPageUrlParameter` | `next-page-url-parameter` |             | `string` | `"nextPage"`                |
-| `pageLabel`            | `page-label`              |             | `string` | `"Sign in to your account"` |
-| `passwordLabel`        | `password-label`          |             | `string` | `"Password"`                |
-| `submitLabel`          | `submit-label`            |             | `string` | `"Sign In"`                 |
+| Property        | Attribute        | Description | Type     | Default                     |
+| --------------- | ---------------- | ----------- | -------- | --------------------------- |
+| `emailLabel`    | `email-label`    |             | `string` | `"Email"`                   |
+| `nextPage`      | `next-page`      |             | `string` | `"/"`                       |
+| `pageLabel`     | `page-label`     |             | `string` | `"Sign in to your account"` |
+| `passwordLabel` | `password-label` |             | `string` | `"Password"`                |
+| `submitLabel`   | `submit-label`   |             | `string` | `"Sign In"`                 |
 
 
 ## Dependencies

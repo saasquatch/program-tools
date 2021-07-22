@@ -19,9 +19,6 @@ export class PortalLogin {
   nextPage = "/";
 
   @Prop()
-  nextPageUrlParameter = "nextPage";
-
-  @Prop()
   emailLabel = "Email";
 
   @Prop()
@@ -31,7 +28,7 @@ export class PortalLogin {
   submitLabel = "Sign In";
 
   @Prop()
-  pageLabel : string = "Sign in to your account";
+  pageLabel: string = "Sign in to your account";
 
   constructor() {
     withHooks(this);
@@ -40,16 +37,13 @@ export class PortalLogin {
   disconnectedCallback() {}
 
   render() {
-
     const { states, callbacks } = isDemo()
       ? useLoginDemo(this)
       : usePortalLogin(this);
     const content = {
       forgotPasswordButton: (
         <slot name="forgotPassword">
-          <a
-            onClick={() => navigation.push("/forgotPassword")}
-          >
+          <a onClick={() => navigation.push("/forgotPassword")}>
             Forgot Password?
           </a>
         </slot>
@@ -79,16 +73,12 @@ export class PortalLogin {
     );
   }
 }
-function useLoginDemo({
-  nextPage,
-  nextPageUrlParameter,
-}): Partial<PortalLoginViewProps> {
+function useLoginDemo({ nextPage }): Partial<PortalLoginViewProps> {
   return {
     states: { error: "", loading: false },
     callbacks: {
       submit: async (_event) => {
         nextPage;
-        nextPageUrlParameter;
       },
     },
   };

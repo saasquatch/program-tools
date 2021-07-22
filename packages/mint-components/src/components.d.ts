@@ -85,6 +85,9 @@ export namespace Components {
          */
         "type": string;
     }
+    interface SqmGraphqlClientProvider {
+        "domain": string;
+    }
     interface SqmHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
@@ -205,11 +208,9 @@ export namespace Components {
         "padding": Spacing;
     }
     interface SqmPortalEmailVerification {
-        "nextPageUrlParameter": string;
     }
     interface SqmPortalForgotPassword {
         "emailLabel": string;
-        "nextPageUrlParameter": string;
         "submitLabel": string;
     }
     interface SqmPortalFrame {
@@ -217,16 +218,12 @@ export namespace Components {
     interface SqmPortalLogin {
         "emailLabel": string;
         "nextPage": string;
-        "nextPageUrlParameter": string;
         "pageLabel": string;
         "passwordLabel": string;
         "submitLabel": string;
     }
     interface SqmPortalLogout {
         "nextPage": string;
-    }
-    interface SqmPortalManagedIdentityGraphqlClientProvider {
-        "domain": string;
     }
     interface SqmPortalProfile {
         "countrytext": string;
@@ -243,7 +240,6 @@ export namespace Components {
         "confirmPassword": boolean;
         "emailLabel": string;
         "nextPage": string;
-        "nextPageUrlParameter": string;
         "pageLabel": string;
         "passwordLabel": string;
         "submitLabel": string;
@@ -251,11 +247,9 @@ export namespace Components {
     interface SqmPortalResetPassword {
         "confirmPassword": boolean;
         "nextPage": string;
-        "nextPageUrlParameter": string;
     }
     interface SqmPortalVerifyEmail {
         "nextPage": string;
-        "nextPageUrlParameter": string;
     }
     interface SqmReferralTable {
         /**
@@ -502,6 +496,12 @@ declare global {
         prototype: HTMLSqmFormMessageElement;
         new (): HTMLSqmFormMessageElement;
     };
+    interface HTMLSqmGraphqlClientProviderElement extends Components.SqmGraphqlClientProvider, HTMLStencilElement {
+    }
+    var HTMLSqmGraphqlClientProviderElement: {
+        prototype: HTMLSqmGraphqlClientProviderElement;
+        new (): HTMLSqmGraphqlClientProviderElement;
+    };
     interface HTMLSqmHookStoryContainerElement extends Components.SqmHookStoryContainer, HTMLStencilElement {
     }
     var HTMLSqmHookStoryContainerElement: {
@@ -585,12 +585,6 @@ declare global {
     var HTMLSqmPortalLogoutElement: {
         prototype: HTMLSqmPortalLogoutElement;
         new (): HTMLSqmPortalLogoutElement;
-    };
-    interface HTMLSqmPortalManagedIdentityGraphqlClientProviderElement extends Components.SqmPortalManagedIdentityGraphqlClientProvider, HTMLStencilElement {
-    }
-    var HTMLSqmPortalManagedIdentityGraphqlClientProviderElement: {
-        prototype: HTMLSqmPortalManagedIdentityGraphqlClientProviderElement;
-        new (): HTMLSqmPortalManagedIdentityGraphqlClientProviderElement;
     };
     interface HTMLSqmPortalProfileElement extends Components.SqmPortalProfile, HTMLStencilElement {
     }
@@ -772,6 +766,7 @@ declare global {
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
+        "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
@@ -786,7 +781,6 @@ declare global {
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
         "sqm-portal-login": HTMLSqmPortalLoginElement;
         "sqm-portal-logout": HTMLSqmPortalLogoutElement;
-        "sqm-portal-managed-identity-graphql-client-provider": HTMLSqmPortalManagedIdentityGraphqlClientProviderElement;
         "sqm-portal-profile": HTMLSqmPortalProfileElement;
         "sqm-portal-protected-route": HTMLSqmPortalProtectedRouteElement;
         "sqm-portal-register": HTMLSqmPortalRegisterElement;
@@ -895,6 +889,9 @@ declare namespace LocalJSX {
           * @uiName Type of alert
          */
         "type"?: string;
+    }
+    interface SqmGraphqlClientProvider {
+        "domain"?: string;
     }
     interface SqmHookStoryContainer {
         "hookStory"?: FunctionalComponent;
@@ -1016,11 +1013,9 @@ declare namespace LocalJSX {
         "padding"?: Spacing;
     }
     interface SqmPortalEmailVerification {
-        "nextPageUrlParameter"?: string;
     }
     interface SqmPortalForgotPassword {
         "emailLabel"?: string;
-        "nextPageUrlParameter"?: string;
         "submitLabel"?: string;
     }
     interface SqmPortalFrame {
@@ -1028,16 +1023,12 @@ declare namespace LocalJSX {
     interface SqmPortalLogin {
         "emailLabel"?: string;
         "nextPage"?: string;
-        "nextPageUrlParameter"?: string;
         "pageLabel"?: string;
         "passwordLabel"?: string;
         "submitLabel"?: string;
     }
     interface SqmPortalLogout {
         "nextPage"?: string;
-    }
-    interface SqmPortalManagedIdentityGraphqlClientProvider {
-        "domain"?: string;
     }
     interface SqmPortalProfile {
         "countrytext"?: string;
@@ -1054,7 +1045,6 @@ declare namespace LocalJSX {
         "confirmPassword"?: boolean;
         "emailLabel"?: string;
         "nextPage"?: string;
-        "nextPageUrlParameter"?: string;
         "pageLabel"?: string;
         "passwordLabel"?: string;
         "submitLabel"?: string;
@@ -1062,11 +1052,9 @@ declare namespace LocalJSX {
     interface SqmPortalResetPassword {
         "confirmPassword"?: boolean;
         "nextPage"?: string;
-        "nextPageUrlParameter"?: string;
     }
     interface SqmPortalVerifyEmail {
         "nextPage"?: string;
-        "nextPageUrlParameter"?: string;
     }
     interface SqmReferralTable {
         /**
@@ -1277,6 +1265,7 @@ declare namespace LocalJSX {
         "sqm-divided-layout": SqmDividedLayout;
         "sqm-edit-profile": SqmEditProfile;
         "sqm-form-message": SqmFormMessage;
+        "sqm-graphql-client-provider": SqmGraphqlClientProvider;
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
@@ -1291,7 +1280,6 @@ declare namespace LocalJSX {
         "sqm-portal-frame": SqmPortalFrame;
         "sqm-portal-login": SqmPortalLogin;
         "sqm-portal-logout": SqmPortalLogout;
-        "sqm-portal-managed-identity-graphql-client-provider": SqmPortalManagedIdentityGraphqlClientProvider;
         "sqm-portal-profile": SqmPortalProfile;
         "sqm-portal-protected-route": SqmPortalProtectedRoute;
         "sqm-portal-register": SqmPortalRegister;
@@ -1332,6 +1320,7 @@ declare module "@stencil/core" {
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
+            "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
@@ -1346,7 +1335,6 @@ declare module "@stencil/core" {
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
             "sqm-portal-logout": LocalJSX.SqmPortalLogout & JSXBase.HTMLAttributes<HTMLSqmPortalLogoutElement>;
-            "sqm-portal-managed-identity-graphql-client-provider": LocalJSX.SqmPortalManagedIdentityGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmPortalManagedIdentityGraphqlClientProviderElement>;
             "sqm-portal-profile": LocalJSX.SqmPortalProfile & JSXBase.HTMLAttributes<HTMLSqmPortalProfileElement>;
             "sqm-portal-protected-route": LocalJSX.SqmPortalProtectedRoute & JSXBase.HTMLAttributes<HTMLSqmPortalProtectedRouteElement>;
             "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;

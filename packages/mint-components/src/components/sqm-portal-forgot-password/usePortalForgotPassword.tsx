@@ -2,13 +2,13 @@ import jsonpointer from "jsonpointer";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { useRequestPasswordResetEmailMutation } from "@saasquatch/component-boilerplate";
 
-export function usePortalForgotPassword({ nextPageUrlParameter }) {
+export function usePortalForgotPassword() {
   const [success, setSuccess] = useState(false);
   const [request, { loading, data, errors }] =
     useRequestPasswordResetEmailMutation();
 
   const urlParams = new URLSearchParams(window.location.search);
-  const nextPage = urlParams.get(nextPageUrlParameter);
+  const nextPage = urlParams.get("nextPage");
 
   const submit = async (event: any) => {
     let formData = event.detail.formData;
@@ -16,7 +16,7 @@ export function usePortalForgotPassword({ nextPageUrlParameter }) {
     formData?.forEach((value: any, key: string) => {
       jsonpointer.set(formData, key, value);
     });
-    const urlParams = nextPage ? { [nextPageUrlParameter]: nextPage } : null;
+    const urlParams = nextPage ? { nextPage } : null;
     const variables = { email: formData.email, urlParams };
 
     await request(variables);

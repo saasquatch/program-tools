@@ -6,14 +6,13 @@ import {
   useAuthenticateWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
 
-export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
+export function usePortalLogin({ nextPage }) {
   const [request, { loading, errors }] =
     useAuthenticateWithEmailAndPasswordMutation();
   const userIdent = useUserIdentity();
 
   const urlParams = new URLSearchParams(window.location.search);
-  const nextPageOverride = urlParams.get(nextPageUrlParameter);
-  urlParams.delete(nextPageUrlParameter);
+  const nextPageOverride = urlParams.get("nextPage");
 
   const submit = async (event: any) => {
     let formData = event.detail.formData;
@@ -28,9 +27,10 @@ export function usePortalLogin({ nextPage, nextPageUrlParameter }) {
 
   useEffect(() => {
     if (userIdent?.jwt) {
+      urlParams.delete("nextPage");
       navigation.push({
         pathname: nextPageOverride || nextPage,
-        search: urlParams.toString(),
+        search: "?" + urlParams.toString(),
       });
     }
   }, [userIdent?.jwt]);
