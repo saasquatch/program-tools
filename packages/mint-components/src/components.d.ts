@@ -239,6 +239,7 @@ export namespace Components {
     interface SqmPortalRegister {
         "confirmPassword": boolean;
         "emailLabel": string;
+        "hideInputs": boolean;
         "nextPage": string;
         "pageLabel": string;
         "passwordLabel": string;
@@ -1044,6 +1045,7 @@ declare namespace LocalJSX {
     interface SqmPortalRegister {
         "confirmPassword"?: boolean;
         "emailLabel"?: string;
+        "hideInputs"?: boolean;
         "nextPage"?: string;
         "pageLabel"?: string;
         "passwordLabel"?: string;

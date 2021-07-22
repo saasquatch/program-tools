@@ -34,6 +34,9 @@ export class PortalRegister {
   confirmPassword: boolean = false;
 
   @Prop()
+  hideInputs: boolean = false;
+
+  @Prop()
   pageLabel: string = "Register";
 
   constructor() {
@@ -48,7 +51,6 @@ export class PortalRegister {
       : usePortalRegister(this);
     const content = {
       formData: <slot name="formData"></slot>,
-      messageBanner: <slot name="messageBanner"></slot>,
       secondaryButton: (
         <slot name="secondaryButton">
           <sl-button
@@ -67,7 +69,11 @@ export class PortalRegister {
     };
     return (
       <PortalRegisterView
-        states={states}
+        states={{
+          ...states,
+          hideInputs: this.hideInputs,
+          confirmPassword: this.confirmPassword,
+        }}
         callbacks={callbacks}
         content={content}
       ></PortalRegisterView>

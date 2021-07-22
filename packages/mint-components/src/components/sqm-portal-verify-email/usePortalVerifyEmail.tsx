@@ -17,7 +17,7 @@ export function usePortalVerifyEmail({ nextPage }) {
   const failed = () => {
     return navigation.push({
       pathname: "/",
-      search: "?" + urlParams.toString(),
+      search: urlParams.toString() && "?" + urlParams.toString(),
     });
   };
 
@@ -25,7 +25,7 @@ export function usePortalVerifyEmail({ nextPage }) {
     urlParams.delete("nextPage");
     return navigation.push({
       pathname: nextPageOverride || nextPage,
-      search: "?" + urlParams.toString(),
+      search: urlParams.toString() && "?" + urlParams.toString(),
     });
   };
 
