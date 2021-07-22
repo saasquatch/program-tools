@@ -1,0 +1,39 @@
+<sqm-divided-layout direction="row">
+  <sqm-navigation-sidebar>
+    <sqm-navigation-sidebar-item
+      path="/"
+      icon="house"
+      label="Dashboard"
+    ></sqm-navigation-sidebar-item>
+    <sqm-navigation-sidebar-item
+      path="/activity"
+      icon="bar-chart"
+      label="Activity"
+    ></sqm-navigation-sidebar-item>
+    <sqm-navigation-sidebar-item
+      path="/editProfile"
+      icon="person"
+      label="Edit Profile"
+    ></sqm-navigation-sidebar-item>
+    <sqm-navigation-sidebar-item
+      path="/logout"
+      icon="box-arrow-right"
+      label="Logout"
+    ></sqm-navigation-sidebar-item>
+  </sqm-navigation-sidebar>
+  <sqm-divided-layout direction="column">
+    <sqm-portal-container
+      direction="column"
+      padding="xxx-large"
+      gap="xxx-large"
+    >
+      <sqm-portal-profile></sqm-portal-profile> </sqm-portal-container
+    ><sqm-portal-container
+      direction="column"
+      padding="xxx-large"
+      gap="xxx-large"
+    >
+      <sqm-portal-change-password></sqm-portal-change-password>
+    </sqm-portal-container>
+  </sqm-divided-layout>
+</sqm-divided-layout>
