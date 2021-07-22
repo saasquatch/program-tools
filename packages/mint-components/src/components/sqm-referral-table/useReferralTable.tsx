@@ -164,14 +164,18 @@ export function useReferralTable(
   const components = useChildElements();
 
   async function getComponentData(components: Element[]) {
+    // filter out loading and empty states from columns array
+    const columnComponents = components.filter(
+      (component) => component.slot !== "loading" && component.slot !== "empty"
+    );
     // get the column titles (renderLabel is asynchronous)
-    const columnsPromise = components?.map(async (c: any) =>
+    const columnsPromise = columnComponents?.map(async (c: any) =>
       tryMethod(c, () => c.renderLabel())
     );
 
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r) => {
-      const rowsPromise = components?.map(async (c: any) =>
+      const rowsPromise = columnComponents?.map(async (c: any) =>
         tryMethod(c, () => c.renderCell(r, c))
       );
       const rows = await Promise.all(rowsPromise);
@@ -179,18 +183,16 @@ export function useReferralTable(
     });
 
     const rows = cellsPromise && (await Promise.all(cellsPromise));
+
     setContent({ rows });
     const columns = columnsPromise && (await Promise.all(columnsPromise));
+    // Set the content to render and finish loading components
     setContent({ columns, loading: false });
-    // Set the content to render
   }
 
   useEffect(() => {
-    const columnComponents = components.filter(
-      (component) => component.slot !== "loading" && component.slot !== "empty"
-    );
     setContent({ loading: true });
-    referralData && getComponentData(columnComponents);
+    referralData && getComponentData(components);
   }, [referralData, components, tick]);
 
   return {
