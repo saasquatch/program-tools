@@ -57,8 +57,6 @@ export function ReferralTableView(props: ReferralTableViewProps) {
 
   if (states.loading) {
     return elements.loadingElement;
-  } else if (!elements.rows.length) {
-    return elements.emptyElement;
   }
 
   return (
@@ -86,6 +84,7 @@ export function ReferralTableView(props: ReferralTableViewProps) {
           ))}
         </tbody>
       </table>
+      {rows.length === 0 && elements.emptyElement}
       <div class={sheet.classes.ButtonContainer}>
         <sl-button
           size="small"

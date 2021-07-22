@@ -84,7 +84,7 @@ export class ReferralTableRewardsCell {
           {/* STYLE TAG HERE */}
           <div slot="summary">
             {reward.prettyValue}{" "}
-            {state === "PENDING" && reward.dateExpires ? (
+            {state === "PENDING" && reward.dateScheduledFor !== null ? (
               <sl-badge
                 type={slBadgeType}
                 pill
