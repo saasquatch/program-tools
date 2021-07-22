@@ -61,21 +61,19 @@ export class ReferralTableRewardsCell {
     };
 
     const getTimeDiff = (startTime: any, endTime: number): any => {
-      return startTime.plus(endTime).toRelativeCalendar();
+      // Current implementation only calculates the difference from current time
+      const diff = DateTime.fromMillis(endTime).toRelativeCalendar();
+      return diff;
     };
-
-    console.log(getTimeDiff(DateTime.now(), 86400000));
-    console.log(getTimeDiff(DateTime.now(), 172800000));
-    console.log(getTimeDiff(DateTime.now(), 18000000));
 
     return this.rewards.map((reward) => {
       const state = getState(reward.statuses);
       const slBadgeType = getSLBadgeType(state);
       const badgeText = toTitleCase(state);
       const relativeTime = reward.dateExpires
-        ? getTimeDiff(DateTime.now(), reward.dateExpires)
+        ? getTimeDiff(reward.dateGiven, reward.dateExpires)
         : null;
-
+      console.log(relativeTime);
       return (
         <sl-details>
           {/* STYLE TAG HERE */}
@@ -92,8 +90,6 @@ export class ReferralTableRewardsCell {
                 {badgeText}
               </sl-badge>
             )}
-            {/* If pending append the days remaing on the end*/}
-            {/** future state badge if needed (probably only when the reward is set to expire automatically*/}
             {reward.dateExpires && state === "AVAILABLE" && (
               <sl-badge type="info" pill>
                 {relativeTime === "tomorrow" || relativeTime === "today"
