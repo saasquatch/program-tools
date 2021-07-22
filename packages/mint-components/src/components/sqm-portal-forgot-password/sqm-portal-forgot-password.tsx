@@ -19,9 +19,6 @@ export class PortalForgotPassword {
   ignored = true;
 
   @Prop()
-  nextPageUrlParameter = "nextPage";
-
-  @Prop()
   emailLabel = "Email";
 
   @Prop()
@@ -35,8 +32,8 @@ export class PortalForgotPassword {
 
   render() {
     const { states, callbacks } = isDemo()
-      ? usePortalForgotPasswordDemo(this)
-      : usePortalForgotPassword(this);
+      ? usePortalForgotPasswordDemo()
+      : usePortalForgotPassword();
 
     const content = {
       secondaryButton: (
@@ -67,15 +64,11 @@ export class PortalForgotPassword {
     );
   }
 }
-function usePortalForgotPasswordDemo({
-  nextPageUrlParameter,
-}): Partial<PortalForgotPasswordViewProps> {
+function usePortalForgotPasswordDemo(): Partial<PortalForgotPasswordViewProps> {
   return {
     states: { error: "", loading: false, success: false },
     callbacks: {
-      submit: async (_event) => {
-        nextPageUrlParameter;
-      },
+      submit: async (_event) => {},
     },
   };
 }

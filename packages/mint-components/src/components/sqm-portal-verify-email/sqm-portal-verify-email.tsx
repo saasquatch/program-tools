@@ -21,9 +21,6 @@ export class PortalVerifyEmail {
   @Prop()
   nextPage = "/";
 
-  @Prop()
-  nextPageUrlParameter = "nextPage";
-
   constructor() {
     withHooks(this);
   }
@@ -37,16 +34,12 @@ export class PortalVerifyEmail {
     return <PortalVerifyEmailView states={states} callbacks={callbacks} />;
   }
 }
-function usePortalVerifyEmailDemo({
-  nextPage,
-  nextPageUrlParameter,
-}): PortalVerifyEmailViewProps {
+function usePortalVerifyEmailDemo({ nextPage }): PortalVerifyEmailViewProps {
   return {
     states: { error: "", loading: false, verified: false },
     callbacks: {
       failed: () => {
         nextPage;
-        nextPageUrlParameter;
       },
       gotoNextPage: () => {},
     },
