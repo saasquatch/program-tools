@@ -50,10 +50,19 @@ export function TextSpanView(props: TextSpanView, children: VNode) {
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
+  const vanillaStyle = `
+    sqm-text-span {
+      display: inline;
+    }
+  `;
+
   return (
-    <div class={sheet.classes[props.type]}>
-      <style type="text/css">{styleString}</style>
+    <span class={sheet.classes[props.type]}>
+      <style type="text/css">
+        {vanillaStyle}
+        {styleString}
+      </style>
       {children}
-    </div>
+    </span>
   );
 }
