@@ -1,6 +1,6 @@
 import { Component, h, Host, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { PresetText } from "../../functional-components/PresetText";
+import { TextSpanView } from "./sqm-text-span-view";
 
 const vanillaStyle = `
   :host{
@@ -34,7 +34,7 @@ export class Text {
     return (
       <Host>
         <style>{vanillaStyle}</style>
-        <PresetText type={this.type}>{this.text}</PresetText>
+        <TextSpanView type={this.type}>{this.text}</TextSpanView>
       </Host>
     );
   }

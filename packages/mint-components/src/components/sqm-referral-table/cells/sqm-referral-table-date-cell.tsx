@@ -1,7 +1,7 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import { DateTime } from "luxon";
-import { PresetText } from "../../../functional-components/PresetText";
+import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 
 @Component({
   tag: "sqm-referral-table-date-cell",
@@ -22,6 +22,6 @@ export class ReferralTableDateCell {
     const date = this.date
       ? DateTime.fromMillis(this.date)?.toLocaleString(DateTime.DATE_MED)
       : "-";
-    return <PresetText type="p">{date}</PresetText>;
+    return <TextSpanView type="p">{date}</TextSpanView>;
   }
 }

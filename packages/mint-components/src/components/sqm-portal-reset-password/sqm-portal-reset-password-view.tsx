@@ -7,7 +7,7 @@ import {
 } from "../../global/mixins";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { PresetText } from "../../functional-components/PresetText";
+import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
 export interface PortalResetPasswordViewProps {
   states: {
@@ -133,9 +133,9 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
         {vanillaStyle}
         {styleString}
       </style>
-      <PresetText type="h2">
+      <TextSpanView type="h2">
         {states.reset ? "Password Reset" : "Reset your password"}
-      </PresetText>
+      </TextSpanView>
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
         {props.states.error && (
           <sqm-form-message
