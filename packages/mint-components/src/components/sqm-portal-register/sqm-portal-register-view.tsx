@@ -21,6 +21,7 @@ export interface PortalRegisterViewProps {
   };
   content: {
     formData?: any;
+    messageBanner?: any;
     secondaryButton?: any;
     emailLabel?: string;
     passwordLabel?: string;
@@ -76,6 +77,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
+        {content.messageBanner}
         <sl-input
           exportparts="label: input-label"
           type="email"
