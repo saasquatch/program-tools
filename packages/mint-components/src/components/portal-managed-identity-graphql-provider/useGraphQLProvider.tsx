@@ -8,9 +8,7 @@ import { useDomContextState } from "@saasquatch/stencil-hooks";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { GraphQLClient } from "graphql-request";
 
-export async function usePortalManagedIdentityGraphQLClientProvider({
-  domain,
-}) {
+export async function useGraphQLClientProvider({ domain }) {
   const token = useToken();
   const appDomain = domain;
   const tenantAlias = useTenantAlias();

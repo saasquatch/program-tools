@@ -1,16 +1,16 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Host, Prop, State, h } from "@stencil/core";
-import { usePortalManagedIdentityGraphQLClientProvider } from "./usePortalManagedIdentityGraphQLProvider";
+import { useGraphQLClientProvider } from "./useGraphQLProvider";
 
 /**
  * @uiName Portal Protected Route
  */
 @Component({
-  tag: "sqm-portal-managed-identity-graphql-client-provider",
+  tag: "sqm-graphql-client-provider",
   shadow: false,
 })
-export class PortalManagedIdentityGraphQLClientProvider {
+export class GraphQLClientProvider {
   @State()
   ignored = true;
 
@@ -25,8 +25,8 @@ export class PortalManagedIdentityGraphQLClientProvider {
 
   render() {
     false && isDemo()
-      ? usePortalManagedIdentityGraphQLClientProviderDemo(this)
-      : usePortalManagedIdentityGraphQLClientProvider(this);
+      ? useGraphQLClientProviderDemo(this)
+      : useGraphQLClientProvider(this);
     return (
       <Host style={{ display: "contents" }}>
         <slot></slot>
@@ -34,6 +34,6 @@ export class PortalManagedIdentityGraphQLClientProvider {
     );
   }
 }
-function usePortalManagedIdentityGraphQLClientProviderDemo({ domain }) {
+function useGraphQLClientProviderDemo({ domain }) {
   return domain;
 }

@@ -7,11 +7,10 @@
 
 ## Properties
 
-| Property               | Attribute                 | Description | Type      | Default      |
-| ---------------------- | ------------------------- | ----------- | --------- | ------------ |
-| `confirmPassword`      | `confirm-password`        |             | `boolean` | `false`      |
-| `nextPage`             | `next-page`               |             | `string`  | `"/"`        |
-| `nextPageUrlParameter` | `next-page-url-parameter` |             | `string`  | `"nextPage"` |
+| Property          | Attribute          | Description | Type      | Default |
+| ----------------- | ------------------ | ----------- | --------- | ------- |
+| `confirmPassword` | `confirm-password` |             | `boolean` | `false` |
+| `nextPage`        | `next-page`        |             | `string`  | `"/"`   |
 
 
 ## Dependencies

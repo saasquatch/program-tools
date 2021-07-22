@@ -2,7 +2,7 @@ import { Component, h, Prop } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 // import { PresetText } from "../../../functional-components/PresetText";
-import { DateTime, Duration } from "luxon";
+import { DateTime } from "luxon";
 @Component({
   tag: "sqm-referral-table-rewards-cell",
   shadow: true,

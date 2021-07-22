@@ -7,7 +7,10 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { PortalResetPasswordViewProps } from "./sqm-portal-reset-password-view";
 
-export function usePortalResetPassword({ nextPage, nextPageUrlParameter, confirmPassword }) : PortalResetPasswordViewProps {
+export function usePortalResetPassword({
+  nextPage,
+  confirmPassword,
+}): PortalResetPasswordViewProps {
   const [reset, setReset] = useState(false);
 
   const [verifyPasswordResetCode, verifyPasswordResetCodeState] =
@@ -19,8 +22,7 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter, confirm
   const oobCode = urlParams.get("oobCode");
   urlParams.delete("oobCode");
 
-  const nextPageOverride = urlParams.get(nextPageUrlParameter);
-  urlParams.delete(nextPageUrlParameter);
+  const nextPageOverride = urlParams.get("nextPage");
 
   const submit = async (event: any) => {
     let formData = event.detail.formData;
@@ -34,16 +36,17 @@ export function usePortalResetPassword({ nextPage, nextPageUrlParameter, confirm
   };
 
   const gotoNextPage = () => {
+    urlParams.delete("nextPage");
     navigation.push({
       pathname: nextPageOverride || nextPage,
-      search: urlParams.toString(),
+      search: "?" + urlParams.toString(),
     });
   };
 
   const failed = () => {
     navigation.push({
       pathname: "/",
-      search: urlParams.toString(),
+      search: "?" + urlParams.toString(),
     });
   };
 

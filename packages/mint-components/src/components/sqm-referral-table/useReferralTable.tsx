@@ -2,7 +2,7 @@ import {
   usePaginatedQuery,
   useProgramId,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useEffect, useReducer } from "@saasquatch/universal-hooks";
 import { h, VNode } from "@stencil/core";
 import gql from "graphql-tag";
 import { useRerenderListener } from "./re-render";
@@ -144,10 +144,20 @@ export function useReferralTable(
     { filter }
   );
   const tick = useRerenderListener();
-  const [content, setContent] = useState<ReferralTableViewProps["elements"]>({
-    columns: [],
-    rows: [],
-  });
+  const [content, setContent] = useReducer<
+    ReferralTableViewProps["elements"],
+    Partial<ReferralTableViewProps["elements"]>
+  >(
+    (state, next) => ({
+      ...state,
+      ...next,
+    }),
+    {
+      columns: [],
+      rows: [],
+      loading: false,
+    }
+  );
 
   const data = referralData?.data;
 
@@ -168,25 +178,26 @@ export function useReferralTable(
       return rows;
     });
 
-    const columns = columnsPromise && (await Promise.all(columnsPromise));
     const rows = cellsPromise && (await Promise.all(cellsPromise));
-
+    setContent({ rows });
+    const columns = columnsPromise && (await Promise.all(columnsPromise));
+    setContent({ columns, loading: false });
     // Set the content to render
-    setContent({ columns, rows });
   }
 
   useEffect(() => {
     const columnComponents = components.filter(
       (component) => component.slot !== "loading" && component.slot !== "empty"
     );
-    getComponentData(columnComponents);
+    setContent({ loading: true });
+    referralData && getComponentData(columnComponents);
   }, [referralData, components, tick]);
 
   return {
     states: {
       hasNext: states.currentPage < states.pageCount - 1,
       hasPrev: states.currentPage > 0,
-      loading: states.loading,
+      loading: states.loading || content.loading,
     },
     data: {
       referralData: data,
