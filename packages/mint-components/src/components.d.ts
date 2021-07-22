@@ -444,6 +444,10 @@ export namespace Components {
     }
     interface SqmText {
     }
+    interface SqmTextSpan {
+        "text": string;
+        "type": "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
+    }
     interface SqmTitledSection {
         "label": string;
         /**
@@ -725,6 +729,12 @@ declare global {
         prototype: HTMLSqmTextElement;
         new (): HTMLSqmTextElement;
     };
+    interface HTMLSqmTextSpanElement extends Components.SqmTextSpan, HTMLStencilElement {
+    }
+    var HTMLSqmTextSpanElement: {
+        prototype: HTMLSqmTextSpanElement;
+        new (): HTMLSqmTextSpanElement;
+    };
     interface HTMLSqmTitledSectionElement extends Components.SqmTitledSection, HTMLStencilElement {
     }
     var HTMLSqmTitledSectionElement: {
@@ -782,6 +792,7 @@ declare global {
         "sqm-stat-container": HTMLSqmStatContainerElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
         "sqm-text": HTMLSqmTextElement;
+        "sqm-text-span": HTMLSqmTextSpanElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqm-user-name": HTMLSqmUserNameElement;
     }
@@ -1213,6 +1224,10 @@ declare namespace LocalJSX {
     }
     interface SqmText {
     }
+    interface SqmTextSpan {
+        "text"?: string;
+        "type"?: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
+    }
     interface SqmTitledSection {
         "label"?: string;
         /**
@@ -1273,6 +1288,7 @@ declare namespace LocalJSX {
         "sqm-stat-container": SqmStatContainer;
         "sqm-stencilbook": SqmStencilbook;
         "sqm-text": SqmText;
+        "sqm-text-span": SqmTextSpan;
         "sqm-titled-section": SqmTitledSection;
         "sqm-user-name": SqmUserName;
     }
@@ -1325,6 +1341,7 @@ declare module "@stencil/core" {
             "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
+            "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
         }

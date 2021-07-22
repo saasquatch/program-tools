@@ -1,4 +1,4 @@
-import { Component, h, State } from "@stencil/core";
+import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { insertCSS } from "../../insertcss";
 import debugFn from "debug";
@@ -6,6 +6,10 @@ import debugFn from "debug";
 const debug = debugFn("sq:global");
 
 const textStyles = `
+  sqm-text {
+    display: block;
+  }
+
   sqm-text h1 {
     font-size: 36px;
     font-weight: 600;
@@ -74,6 +78,6 @@ export class Text {
   }
 
   render() {
-    return <slot />;
+    return <slot />
   }
 }

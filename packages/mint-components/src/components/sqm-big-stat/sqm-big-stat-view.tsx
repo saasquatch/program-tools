@@ -46,7 +46,7 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
   const styleString = sheet.toString();
 
   return (
-    <div part="stat-wrapper">
+    <div part="stat-wrapper" class={sheet.classes.Wrapper}>
       <style type="text/css">{styleString}</style>
       <div class={sheet.classes.Container}>
         <div part="stat-value" class={sheet.classes.Stat}>
