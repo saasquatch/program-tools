@@ -21,11 +21,11 @@ export class ReferralTableRewardsCell {
   */
 
   render() {
-    const style = {};
+    // const style = {};
 
     jss.setup(preset());
-    const sheet = jss.createStyleSheet(style);
-    const styleString = sheet.toString();
+    // const sheet = jss.createStyleSheet(style);
+    // const styleString = sheet.toString();
 
     const getState = (states: Array<string>): string => {
       const possibleStates = [

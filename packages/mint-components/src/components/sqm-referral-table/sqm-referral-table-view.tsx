@@ -1,5 +1,5 @@
 import { h, VNode } from "@stencil/core";
-import { PresetText } from "../../functional-components/PresetText";
+import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { gap } from "../../global/mixins";
@@ -69,7 +69,7 @@ export function ReferralTableView(props: ReferralTableViewProps) {
           <tr>
             {columns?.map((column) => (
               <th class={sheet.classes.THead}>
-                <PresetText type="h3">{column}</PresetText>
+                <TextSpanView type="h3">{column}</TextSpanView>
               </th>
             ))}
           </tr>
@@ -79,7 +79,7 @@ export function ReferralTableView(props: ReferralTableViewProps) {
             <tr class={sheet.classes.TRow}>
               {row.map((cell) => (
                 <td class={sheet.classes.TCell}>
-                  <PresetText type="p">{cell}</PresetText>
+                  <TextSpanView type="p">{cell}</TextSpanView>
                 </td>
               ))}
             </tr>

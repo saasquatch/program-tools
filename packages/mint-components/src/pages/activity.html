@@ -1,42 +1,55 @@
-<sqm-divided-layout direction="row">
-  <sqb-widget widget-type="w/side-bar"></sqb-widget>
-    <sqm-portal-container direction="column" padding="xxx-large" gap="xxx-large">
-      <sqm-text> <h2>Activity</h2></sqm-text>
-      <sqm-stat-container space="xxxx-large"
-        ><sqm-big-stat
-          flex-reverse="true"
-          alignment="left"
-          stat-type="/referralsCount"
-        ></sqm-big-stat
-        ><sqm-big-stat
-          flex-reverse="true"
-          alignment="left"
-          stat-type="/rewardsCount"
-        ></sqm-big-stat
-        ><sqm-big-stat
-          flex-reverse="true"
-          alignment="left"
-          stat-type="/rewardBalance/CREDIT/CENTS"
-        ></sqm-big-stat
-      ></sqm-stat-container>
-      <sqm-referral-table program-id="new-sales-rep-referral-program">
-        <sqm-referral-table-column
-          ><sqm-text><p slot="loading">Loading</p></sqm-text>
-          <sqm-text style="width: 100%"
-            ><p slot="empty" style="text-align: center">
-              No referrals yet
-            </p></sqm-text
-          ></sqm-referral-table-column
-        >
-        <sqm-referral-table-user-column></sqm-referral-table-user-column>
-        <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
-          <sqm-referral-table-status-column converted-status-text="Converted" in-progress-status-text="Invited"></sqm-referral-table-status-column>
-          <sqm-referral-table-date-column
-            column-title="Date Started"
-            date-shown="dateReferralStarted"
-          ></sqm-referral-table-date-column>
-          <sqm-referral-table-date-column></sqm-referral-table-date-column>
-        </sqm-referral-table></sqm-portal-container
-    ></sqm-divided-layout
-  >
+<sqm-divided-layout direction="row" style="border-top: 1px solid #eaeaea">
+  <sqm-navigation-sidebar>
+    <sqm-navigation-sidebar-item
+      path="/"
+      icon="house"
+      label="Dashboard"
+    ></sqm-navigation-sidebar-item>
+    <sqm-navigation-sidebar-item
+      path="/activity"
+      icon="bar-chart"
+      label="Activity"
+    ></sqm-navigation-sidebar-item>
+    <sqm-navigation-sidebar-item
+      path="/logout"
+      icon="box-arrow-right"
+      label="Logout"
+    ></sqm-navigation-sidebar-item>
+  </sqm-navigation-sidebar>
+  <sqm-portal-container direction="column" padding="xxx-large" gap="xxx-large">
+    <sqm-text> <h2>Activity</h2></sqm-text>
+    <sqm-stat-container space="xxxx-large"
+      ><sqm-big-stat
+        flex-reverse="true"
+        alignment="left"
+        stat-type="/referralsCount"
+        ><sqm-text><p>Referrals</p></sqm-text></sqm-big-stat
+      ><sqm-big-stat
+        flex-reverse="true"
+        alignment="left"
+        stat-type="/rewardsCount"
+        ><sqm-text><p>Rewards</p></sqm-text></sqm-big-stat
+      ><fsr-points-stat stat-label="Points" flex-reverse="true" alignment="left"></fsr-points-stat
+    ></sqm-stat-container>
+    <sqm-referral-table program-id="new-sales-rep-referral-program">
+      <sqm-referral-table-column
+        ><sqm-text><p slot="loading">Loading</p></sqm-text>
+        <sqm-text style="width: 100%"
+          ><p slot="empty" style="text-align: center">
+            No referrals yet
+          </p></sqm-text
+        ></sqm-referral-table-column
+      >
+      <sqm-referral-table-user-column></sqm-referral-table-user-column>
+      <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+      <sqm-referral-table-status-column
+        converted-status-text="Converted"
+        in-progress-status-text="Invited"
+      ></sqm-referral-table-status-column>
+      <sqm-referral-table-date-column
+        column-title="Date Started"
+        date-shown="dateReferralStarted"
+      ></sqm-referral-table-date-column>
+      <sqm-referral-table-date-column></sqm-referral-table-date-column> </sqm-referral-table
+  ></sqm-portal-container>
 </sqm-divided-layout>

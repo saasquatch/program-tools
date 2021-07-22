@@ -5,18 +5,13 @@
 <!-- Auto Generated Below -->
 
 
-## Dependencies
+## Properties
 
-### Used by
+| Property | Attribute | Description | Type                                               | Default     |
+| -------- | --------- | ----------- | -------------------------------------------------- | ----------- |
+| `text`   | `text`    |             | `string`                                           | `undefined` |
+| `type`   | `type`    |             | `"h1" \| "h2" \| "h3" \| "h4" \| "p" \| "subtext"` | `undefined` |
 
- - [sqm-stencilbook](../sqm-stencilbook)
-
-### Graph
-```mermaid
-graph TD;
-  sqm-stencilbook --> sqm-text
-  style sqm-text fill:#f9f,stroke:#333,stroke-width:4px
-```
 
 ----------------------------------------------
 

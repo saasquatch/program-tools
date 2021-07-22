@@ -8,7 +8,7 @@ import {
 } from "../../global/mixins";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { PresetText } from "../../functional-components/PresetText";
+import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
 export interface PortalRegisterViewProps {
   states: {
@@ -21,6 +21,7 @@ export interface PortalRegisterViewProps {
   };
   content: {
     formData?: any;
+    messageBanner?: any;
     secondaryButton?: any;
     emailLabel?: string;
     passwordLabel?: string;
@@ -69,13 +70,14 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
         {vanillaStyle}
         {styleString}
       </style>
-      <PresetText type="h3">{content.pageLabel}</PresetText>
+      <TextSpanView type="h3">{content.pageLabel}</TextSpanView>
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
         {props.states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
+        {content.messageBanner}
         <sl-input
           exportparts="label: input-label"
           type="email"

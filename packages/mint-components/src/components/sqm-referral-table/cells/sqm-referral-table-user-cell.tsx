@@ -1,5 +1,5 @@
 import { Component, h, Prop } from "@stencil/core";
-import { PresetText } from "../../../functional-components/PresetText";
+import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 
 @Component({
   tag: "sqm-referral-table-user-cell",
@@ -9,6 +9,6 @@ export class ReferralTableUserCell {
   @Prop() name: string;
 
   render() {
-    return <PresetText type="p">{this.name}</PresetText>;
+    return <TextSpanView type="p">{this.name}</TextSpanView>;
   }
 }

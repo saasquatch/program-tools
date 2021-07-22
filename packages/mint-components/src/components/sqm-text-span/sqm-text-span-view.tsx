@@ -2,11 +2,11 @@ import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 
-export interface PresetTextProps {
+export interface TextSpanView {
   type: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
 }
 
-export function PresetText(props: PresetTextProps, children: VNode) {
+export function TextSpanView(props: TextSpanView, children: VNode) {
   const style = {
     p: {
       "font-size": "14px",

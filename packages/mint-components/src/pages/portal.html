@@ -1,0 +1,71 @@
+<sqb-program-section program-id="new-sales-rep-referral-program">
+  <sqm-portal-frame>
+    <sqm-text slot="header">
+      <h2>Food Service Rewards</h2>
+    </sqm-text>
+    <fsr-footer
+      slot="footer"
+      support-email="hello@foodservicerewards.com"
+      terms-link="example.com"
+      faq-link="example.com"
+      padding="large"
+    ></fsr-footer>
+    <sqm-portal-managed-identity-graphql-client-provider
+      domain="https://portal-auth-service-staging.herokuapp.com"
+    >
+      <sqm-router>
+        <template path="/register">
+          <sqb-widget widget-type="w/register"></sqb-widget>
+        </template>
+
+        <template path="/emailVerification">
+          <sqm-portal-protected-route
+            redirect-to="/login"
+          ></sqm-portal-protected-route>
+          <sqm-portal-email-verification></sqm-portal-email-verification>
+        </template>
+
+        <template path="/login">
+          <sqb-widget widget-type="w/login"></sqb-widget>
+        </template>
+
+        <template path="/verifyEmail">
+          <sqm-portal-verify-email></sqm-portal-verify-email>
+        </template>
+
+        <template path="/forgotPassword">
+          <sqm-portal-forgot-password
+            email-label="Business Email"
+          ></sqm-portal-forgot-password>
+        </template>
+
+        <template path="/resetPassword">
+          <sqm-portal-reset-password
+            confirm-password="true"
+          ></sqm-portal-reset-password>
+        </template>
+        <template path="/logout">
+          <sqm-portal-logout next-page="/login"></sqm-portal-logout>
+        </template>
+      </sqm-router>
+    </sqm-portal-managed-identity-graphql-client-provider>
+    <sqm-router>
+      <template path="/">
+        <sqm-portal-protected-route
+          require-email-verification="true"
+          redirect-to="/login"
+          redirect-to-unverified="/emailVerification"
+        ></sqm-portal-protected-route>
+        <sqb-widget widget-type="w/dashboard"></sqb-widget>
+      </template>
+      <template path="/activity">
+        <sqm-portal-protected-route
+          require-email-verification="true"
+          redirect-to="/login"
+          redirect-to-unverified="/emailVerification"
+        ></sqm-portal-protected-route>
+        <sqb-widget widget-type="w/activity"></sqb-widget>
+      </template>
+    </sqm-router>
+  </sqm-portal-frame>
+</sqb-program-section>
