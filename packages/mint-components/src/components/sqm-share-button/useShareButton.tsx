@@ -20,7 +20,7 @@ interface ShareButtonProps extends ShareButtonViewProps {
 }
 
 const MessageLinkQuery = gql`
-  query(
+  query (
     $programId: ID
     $engagementMedium: UserEngagementMedium!
     $shareMedium: ReferralShareMedium!
@@ -97,7 +97,8 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
     shareMedium: medium.toUpperCase(),
   };
 
-  const res = useQuery(MessageLinkQuery, variables, !user?.jwt);
+  // only queries if a programId is available
+  const res = useQuery(MessageLinkQuery, variables, !user?.jwt || !programId);
 
   const directLink = res?.data?.viewer?.shareLink;
 

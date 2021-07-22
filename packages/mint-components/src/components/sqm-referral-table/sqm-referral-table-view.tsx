@@ -10,6 +10,9 @@ export interface ReferralTableViewProps {
     loading: boolean;
     hasNext: boolean;
   };
+  data: {
+    referralData?: Referral[];
+  };
   callbacks: {
     prevPage: () => void;
     nextPage: () => void;
@@ -52,7 +55,7 @@ const sheet = jss.createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function ReferralTableView(props: ReferralTableViewProps) {
-  const { states, callbacks, elements } = props;
+  const { states, data, callbacks, elements } = props;
   const { columns, rows } = elements;
 
   if (states.loading) {
@@ -73,15 +76,19 @@ export function ReferralTableView(props: ReferralTableViewProps) {
           </tr>
         </thead>
         <tbody>
-          {rows?.map((row) => (
-            <tr class={sheet.classes.TRow}>
-              {row.map((cell) => (
-                <td class={sheet.classes.TCell}>
-                  <TextSpanView type="p">{cell}</TextSpanView>
-                </td>
+          {states.loading
+            ? elements.loadingElement
+            : !elements?.rows?.length && !data.referralData?.length
+            ? elements.emptyElement
+            : rows?.map((row) => (
+                <tr class={sheet.classes.TRow}>
+                  {row.map((cell) => (
+                    <td class={sheet.classes.TCell}>
+                      <TextSpanView type="p">{cell}</TextSpanView>
+                    </td>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
         </tbody>
       </table>
       {rows.length === 0 && elements.emptyElement}
