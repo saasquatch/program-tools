@@ -25,7 +25,7 @@ export class PortalResetPassword {
   nextPageUrlParameter = "nextPage";
 
   @Prop()
-  confirmPassword?: boolean = false;
+  confirmPassword: boolean = false;
 
   constructor() {
     withHooks(this);
@@ -49,6 +49,7 @@ function usePortalResetPasswordDemo({
       error: "",
       loading: false,
       reset: false,
+      confirmPassword: true,
       oobCodeValidating: false,
       oobCodeValid: true,
     },

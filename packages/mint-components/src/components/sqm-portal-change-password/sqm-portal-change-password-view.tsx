@@ -3,7 +3,7 @@ import jss from "jss";
 import preset from "jss-preset-default";
 import { PortalContainerView } from "../sqm-portal-container/sqm-portal-container-view";
 import { PortalSectionView } from "../sqm-titled-section/sqm-portal-section-view";
-import { PresetText } from "../../functional-components/PresetText";
+import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
 export interface PortalChangePasswordProps {
   states: { open: boolean; error: string };
@@ -44,7 +44,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordProps) {
           {...{
             labelMargin: "xxxx-large",
             padding: "none",
-            label: <PresetText {...{ type: "h2" }}>Change password</PresetText>,
+            label: <TextSpanView {...{ type: "h2" }}>Change password</TextSpanView>,
             content: (
               <PortalContainerView
                 {...{ direction: "column", padding: "none", gap: "32px" }}
@@ -86,7 +86,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordProps) {
         {...{
           labelMargin: "x-large",
           padding: "xxx-large",
-          label: <PresetText {...{ type: "h2" }}>Password</PresetText>,
+          label: <TextSpanView {...{ type: "h2" }}>Password</TextSpanView>,
           content: (
             <sl-button onClick={() => callbacks.setOpen(true)}>
               Change your password...

@@ -17,11 +17,13 @@
 ### Used by
 
  - [sqm-referral-table-user-column](../columns)
+ - [sqm-stencilbook](../../sqm-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-referral-table-user-column --> sqm-referral-table-user-cell
+  sqm-stencilbook --> sqm-referral-table-user-cell
   style sqm-referral-table-user-cell fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -8,6 +8,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 
 // TODO: finalize the change password query for logged in users
+// TODO(johan): Create a component-boilerplate hook for this when we have this functionality
 const CHANGE_PASSWORD = gql`
   mutation ResetPassword($email: String!, $password: String!) {
     authenticateUser(input: { email: $email, password: $password }) {

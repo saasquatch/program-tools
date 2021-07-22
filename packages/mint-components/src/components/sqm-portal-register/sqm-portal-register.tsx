@@ -51,6 +51,7 @@ export class PortalRegister {
       : usePortalRegister(this);
     const content = {
       formData: <slot name="formData"></slot>,
+      messageBanner: <slot name="messageBanner"></slot>,
       secondaryButton: (
         <slot name="secondaryButton">
           <sl-button

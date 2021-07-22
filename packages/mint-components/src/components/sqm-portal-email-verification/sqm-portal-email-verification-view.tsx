@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import { AuthWrapper, Column, gap } from "../../global/mixins";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { PresetText } from "../../functional-components/PresetText";
+import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
 export interface PortalEmailVerificationViewProps {
   states: {
@@ -55,6 +55,7 @@ export function PortalEmailVerificationView(
         {vanillaStyle}
         {styleString}
       </style>
+      <TextSpanView type="h2">Verify Your Email</TextSpanView>
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
         {props.states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">
@@ -69,11 +70,10 @@ export function PortalEmailVerificationView(
           </sqm-form-message>
         )}
 
-        <PresetText type="h2">Verify Your Email</PresetText>
-        <PresetText type="p">
+        <TextSpanView type="p">
           A verification email was sent to {email}. Please verify your email to
           continue to the portal.
-        </PresetText>
+        </TextSpanView>
         <sl-button
           submit
           loading={states.loading}

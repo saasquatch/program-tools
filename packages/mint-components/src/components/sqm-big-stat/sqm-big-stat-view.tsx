@@ -14,6 +14,8 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
   const style = {
     Container: {
       display: "flex",
+      height: "100%",
+      "justify-content": "space-between",
       "flex-direction": `${flexReverse ? "column-reverse" : "column"}`,
       "align-items": `${
         alignment === "left"
@@ -34,6 +36,9 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
       "text-transform": "uppercase",
       "text-align": alignment,
     },
+    Wrapper: {
+      height: "100%",
+    },
   };
 
   jss.setup(preset());
@@ -41,7 +46,7 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
   const styleString = sheet.toString();
 
   return (
-    <div part="stat-wrapper">
+    <div part="stat-wrapper" class={sheet.classes.Wrapper}>
       <style type="text/css">{styleString}</style>
       <div class={sheet.classes.Container}>
         <div part="stat-value" class={sheet.classes.Stat}>

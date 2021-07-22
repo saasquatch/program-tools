@@ -6,6 +6,10 @@ import debugFn from "debug";
 const debug = debugFn("sq:global");
 
 const textStyles = `
+  sqm-text {
+    display: block;
+  }
+
   sqm-text h1 {
     font-size: 36px;
     font-weight: 600;
@@ -66,7 +70,6 @@ export class Text {
   disconnectedCallback() {}
 
   componentWillLoad() {
-    console.log("sqm-text");
     try {
       insertCSS(textStyles);
     } catch (error) {
