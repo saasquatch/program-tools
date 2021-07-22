@@ -68,6 +68,7 @@ export function PortalLoginView(props: PortalLoginViewProps) {
         {styleString}
       </style>
       <PresetText type="h3">{content.pageLabel}</PresetText>
+      <sqm-text-span text="Test Text" type="h3"></sqm-text-span>
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
         {props.states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">
