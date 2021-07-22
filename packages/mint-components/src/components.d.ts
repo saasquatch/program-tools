@@ -444,8 +444,10 @@ export namespace Components {
     }
     interface SqmTableCell {
         "colspan": number;
+        "padding": string;
     }
     interface SqmTableRow {
+        "border": string;
     }
     interface SqmText {
     }
@@ -1243,8 +1245,10 @@ declare namespace LocalJSX {
     }
     interface SqmTableCell {
         "colspan"?: number;
+        "padding"?: string;
     }
     interface SqmTableRow {
+        "border"?: string;
     }
     interface SqmText {
     }
