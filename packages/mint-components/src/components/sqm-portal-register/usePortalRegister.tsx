@@ -7,16 +7,14 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { usePortalEmailVerification } from "../sqm-portal-email-verification/usePortalEmailVerification";
 
-export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
+export function usePortalRegister({ nextPage }) {
   const [request, { loading, errors }] =
     useRegisterWithEmailAndPasswordMutation();
   const userIdent = useUserIdentity();
   const {
     states: emailVerificationStates,
     callbacks: { submit: submitEmailVerificationRequest },
-  } = usePortalEmailVerification({
-    nextPageUrlParameter,
-  });
+  } = usePortalEmailVerification();
 
   const submit = async (event: any) => {
     let formControls = event.target.getFormControls();

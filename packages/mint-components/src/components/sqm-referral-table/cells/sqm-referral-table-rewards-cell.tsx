@@ -2,7 +2,7 @@ import { Component, h, Prop } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 // import { PresetText } from "../../../functional-components/PresetText";
-import { DateTime, Duration } from "luxon";
+import { DateTime } from "luxon";
 @Component({
   tag: "sqm-referral-table-rewards-cell",
   shadow: true,
@@ -21,11 +21,11 @@ export class ReferralTableRewardsCell {
   */
 
   render() {
-    // const style = {};
+    const style = {};
 
     jss.setup(preset());
-    // const sheet = jss.createStyleSheet(style);
-    // const styleString = sheet.toString();
+    const sheet = jss.createStyleSheet(style);
+    const styleString = sheet.toString();
 
     const getState = (states: Array<string>): string => {
       const possibleStates = [
@@ -61,27 +61,28 @@ export class ReferralTableRewardsCell {
     };
 
     const getTimeDiff = (startTime: any, endTime: number): any => {
-      return startTime.plus(endTime).toRelativeCalendar();
+      // Current implementation only calculates the difference from current time
+      const diff = DateTime.fromMillis(endTime).toRelativeCalendar();
+      return diff;
     };
-
-    console.log(getTimeDiff(DateTime.now(), 86400000));
-    console.log(getTimeDiff(DateTime.now(), 172800000));
-    console.log(getTimeDiff(DateTime.now(), 18000000));
 
     return this.rewards.map((reward) => {
       const state = getState(reward.statuses);
       const slBadgeType = getSLBadgeType(state);
       const badgeText = toTitleCase(state);
-      const relativeTime = reward.dateExpires
-        ? getTimeDiff(DateTime.now(), reward.dateExpires)
+      let relativeTime = reward.dateExpires
+        ? getTimeDiff(reward.dateGiven, reward.dateExpires)
+            .replace("in", "")
+            .trim()
         : null;
-
+      console.log(relativeTime);
       return (
         <sl-details>
-          {/* STYLE TAG HERE */}
+          <style type="text/css">{styleString}</style>
           <div slot="summary">
             {reward.prettyValue}{" "}
-            {state === "PENDING" && reward.dateScheduledFor !== null ? (
+            {/* If state is pending and reward has expiry date, display the relative time inside badge. Otherwise only display the badge text */}
+            {state === "PENDING" && reward.dateExpires ? (
               <sl-badge type={slBadgeType} pill>{`${badgeText} ${
                 relativeTime === "tomorrow" || relativeTime === "today"
                   ? `until ${relativeTime}`
@@ -92,8 +93,6 @@ export class ReferralTableRewardsCell {
                 {badgeText}
               </sl-badge>
             )}
-            {/* If pending append the days remaing on the end*/}
-            {/** future state badge if needed (probably only when the reward is set to expire automatically*/}
             {reward.dateExpires && state === "AVAILABLE" && (
               <sl-badge type="info" pill>
                 {relativeTime === "tomorrow" || relativeTime === "today"

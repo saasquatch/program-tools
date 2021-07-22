@@ -4,7 +4,7 @@ import {
   useRequestVerificationEmailMutation,
 } from "@saasquatch/component-boilerplate";
 
-export function usePortalEmailVerification({ nextPageUrlParameter }) {
+export function usePortalEmailVerification() {
   const [request, { loading, data, errors }] =
     useRequestVerificationEmailMutation();
 
@@ -13,12 +13,12 @@ export function usePortalEmailVerification({ nextPageUrlParameter }) {
   const [success, setSuccess] = useState(false);
 
   const urlParams = new URLSearchParams(window.location.search);
-  const nextPage = urlParams.get(nextPageUrlParameter);
+  const nextPage = urlParams.get("nextPage");
 
   const submit = async () => {
     if (!email) return;
 
-    const urlParams = nextPage ? { [nextPageUrlParameter]: nextPage } : null;
+    const urlParams = nextPage ? { nextPage } : null;
     const variables = { email, urlParams };
 
     await request(variables);

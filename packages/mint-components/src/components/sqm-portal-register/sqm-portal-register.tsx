@@ -22,9 +22,6 @@ export class PortalRegister {
   nextPage = "/";
 
   @Prop()
-  nextPageUrlParameter = "nextPage";
-
-  @Prop()
   emailLabel = "Email";
 
   @Prop()
@@ -79,14 +76,12 @@ export class PortalRegister {
 }
 function useRegisterDemo({
   nextPage,
-  nextPageUrlParameter,
 }): Pick<PortalRegisterViewProps, "states" | "callbacks"> {
   return {
     states: { error: "", loading: false, confirmPassword: true },
     callbacks: {
       submit: async (_event) => {
         nextPage;
-        nextPageUrlParameter;
       },
     },
   };

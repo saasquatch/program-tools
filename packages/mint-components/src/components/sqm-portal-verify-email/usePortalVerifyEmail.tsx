@@ -4,28 +4,28 @@ import {
   useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
 
-export function usePortalVerifyEmail({ nextPage, nextPageUrlParameter }) {
+export function usePortalVerifyEmail({ nextPage }) {
   const [verified, setVerified] = useState(false);
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
 
   const urlParams = new URLSearchParams(window.location.search);
   const oobCode = urlParams.get("oobCode");
-  const nextPageOverride = urlParams.get(nextPageUrlParameter);
+  const nextPageOverride = urlParams.get("nextPage");
 
   urlParams.delete("oobCode");
 
   const failed = () => {
     return navigation.push({
       pathname: "/",
-      search: urlParams.toString(),
+      search: "?" + urlParams.toString(),
     });
   };
 
   const gotoNextPage = () => {
-    urlParams.delete(nextPageUrlParameter);
+    urlParams.delete("nextPage");
     return navigation.push({
       pathname: nextPageOverride || nextPage,
-      search: urlParams.toString(),
+      search: "?" + urlParams.toString(),
     });
   };
 

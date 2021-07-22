@@ -20,6 +20,7 @@ export interface ReferralTableViewProps {
   elements: {
     columns: VNode[];
     rows: VNode[][];
+    loading?: boolean;
     emptyElement?: VNode;
     loadingElement?: VNode;
   };

@@ -2,7 +2,7 @@ import {
   usePaginatedQuery,
   useProgramId,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useEffect, useReducer } from "@saasquatch/universal-hooks";
 import { h, VNode } from "@stencil/core";
 import gql from "graphql-tag";
 import { useRerenderListener } from "./re-render";
@@ -144,49 +144,62 @@ export function useReferralTable(
     { filter }
   );
   const tick = useRerenderListener();
-  const [content, setContent] = useState<ReferralTableViewProps["elements"]>({
-    columns: [],
-    rows: [],
-  });
+  const [content, setContent] = useReducer<
+    ReferralTableViewProps["elements"],
+    Partial<ReferralTableViewProps["elements"]>
+  >(
+    (state, next) => ({
+      ...state,
+      ...next,
+    }),
+    {
+      columns: [],
+      rows: [],
+      loading: false,
+    }
+  );
 
   const data = referralData?.data;
 
   const components = useChildElements();
 
   async function getComponentData(components: Element[]) {
+    // filter out loading and empty states from columns array
+    const columnComponents = components.filter(
+      (component) => component.slot !== "loading" && component.slot !== "empty"
+    );
     // get the column titles (renderLabel is asynchronous)
-    const columnsPromise = components?.map(async (c: any) =>
+    const columnsPromise = columnComponents?.map(async (c: any) =>
       tryMethod(c, () => c.renderLabel())
     );
 
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r) => {
-      const rowsPromise = components?.map(async (c: any) =>
+      const rowsPromise = columnComponents?.map(async (c: any) =>
         tryMethod(c, () => c.renderCell(r, c))
       );
       const rows = await Promise.all(rowsPromise);
       return rows;
     });
 
-    const columns = columnsPromise && (await Promise.all(columnsPromise));
     const rows = cellsPromise && (await Promise.all(cellsPromise));
 
-    // Set the content to render
-    setContent({ columns, rows });
+    setContent({ rows });
+    const columns = columnsPromise && (await Promise.all(columnsPromise));
+    // Set the content to render and finish loading components
+    setContent({ columns, loading: false });
   }
 
   useEffect(() => {
-    const columnComponents = components.filter(
-      (component) => component.slot !== "loading" && component.slot !== "empty"
-    );
-    getComponentData(columnComponents);
+    setContent({ loading: true });
+    referralData && getComponentData(components);
   }, [referralData, components, tick]);
 
   return {
     states: {
       hasNext: states.currentPage < states.pageCount - 1,
       hasPrev: states.currentPage > 0,
-      loading: states.loading,
+      loading: states.loading || content.loading,
     },
     data: {
       referralData: data,

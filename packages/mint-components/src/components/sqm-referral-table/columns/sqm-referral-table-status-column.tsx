@@ -19,7 +19,6 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
 
   @Method()
   async renderCell(data: Referral) {
-    console.log("renderCell data", { data });
     // TODO: Make ICU and more complete
     const statusText = data.dateConverted
       ? this.convertedStatusText
@@ -27,9 +26,7 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
     return (
       <sqm-referral-table-status-cell
         status-text={statusText}
-        converted={data.dateConverted
-          ? true
-          : false}
+        converted={data.dateConverted ? true : false}
       ></sqm-referral-table-status-cell>
     );
   }

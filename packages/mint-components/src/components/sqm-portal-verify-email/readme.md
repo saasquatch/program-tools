@@ -7,10 +7,9 @@
 
 ## Properties
 
-| Property               | Attribute                 | Description | Type     | Default      |
-| ---------------------- | ------------------------- | ----------- | -------- | ------------ |
-| `nextPage`             | `next-page`               |             | `string` | `"/"`        |
-| `nextPageUrlParameter` | `next-page-url-parameter` |             | `string` | `"nextPage"` |
+| Property   | Attribute   | Description | Type     | Default |
+| ---------- | ----------- | ----------- | -------- | ------- |
+| `nextPage` | `next-page` |             | `string` | `"/"`   |
 
 
 ## Dependencies
