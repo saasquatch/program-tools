@@ -2,7 +2,7 @@ import {
   usePaginatedQuery,
   useProgramId,
 } from "@saasquatch/component-boilerplate";
-import { useEffect, useState, useReducer } from "@saasquatch/universal-hooks";
+import { useEffect, useReducer } from "@saasquatch/universal-hooks";
 import { h, VNode } from "@stencil/core";
 import gql from "graphql-tag";
 import { useRerenderListener } from "./re-render";
