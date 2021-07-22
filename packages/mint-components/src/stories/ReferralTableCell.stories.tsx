@@ -48,18 +48,19 @@ export const DateCell = () => {
 
 const rewardsData: Reward = {
   id: "123",
-  type: "reward",
-  value: 100,
-  unit: "test",
+  type: "CREDIT",
+  value: 19,
+  unit: "POINT",
   name: "test",
   dateGiven: 100000,
+  dateScheduledFor: 1000000,
   dateExpires: 10000000,
   dateCancelled: 134400,
   fuelTankCode: "ABC",
   fuelTankType: "Code",
-  currency: "CAD",
-  prettyValue: "$200",
-  statuses: ["Status1"],
+  currency: "null",
+  prettyValue: "19 Points",
+  statuses: ["AVAILABLE"],
   globalRewardKey: "Key",
   rewardRedemptionTransactions: {
     data: [
@@ -67,8 +68,8 @@ const rewardsData: Reward = {
         exchangedRewards: {
           data: [
             {
-              prettyValue: "$100",
-              type: "Code",
+              prettyValue: "19 Points",
+              type: "CREDIT",
               fuelTankCode: "ABC",
               globalRewardKey: "Key",
             },
