@@ -82,7 +82,7 @@ const cancelledReward = {
   statuses: ["PENDING", "CANCELLED"],
 };
 const expiredReward = {
-  statuses: ["CANCELLED", "EXPIRED"],
+  statuses: ["EXPIRED"],
 };
 const redeemedReward = {
   statuses: ["AVAILABLE", "EXPIRED", "REDEEMED"],
