@@ -1,7 +1,7 @@
 import { Component, h, Prop } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { DateTime, Duration } from "luxon";
+// import { DateTime } from "luxon";
 @Component({
   tag: "sqm-referral-table-rewards-cell",
   shadow: true,
@@ -59,20 +59,20 @@ export class ReferralTableRewardsCell {
       return state[0].toUpperCase() + state.slice(1).toLowerCase();
     };
 
-    const getTimeDiff = (startTime: any, endTime: number): any => {
-      // console.log(DateTime.now().plus({ days: 6 }).toRelativeCalendar());
-      // console.log(Duration.fromMillis(1000));
-      // console.log(DateTime.now().diff(DateTime.local()));
-      // const start = DateTime.now();
+    // const getTimeDiff = (startTime: any, endTime: number): any => {
+    //   // console.log(DateTime.now().plus({ days: 6 }).toRelativeCalendar());
+    //   // console.log(Duration.fromMillis(1000));
+    //   // console.log(DateTime.now().diff(DateTime.local()));
+    //   // const start = DateTime.now();
 
-      const end = startTime.plus(endTime);
-      const diff = end.diff(startTime, "days");
-      // console.log(diff);
-      // return diff.shiftTo("days").toObject();
-      // return diff.shiftTo("days").days;
-    };
+    //   // const end = startTime.plus(endTime);
+    //   // const diff = end.diff(startTime, "days");
+    //   // console.log(diff);
+    //   // return diff.shiftTo("days").toObject();
+    //   // return diff.shiftTo("days").days;
+    // };
 
-    console.log(getTimeDiff(DateTime.now(), 1000000000));
+    // console.log(getTimeDiff(DateTime.now(), 1000000000));
 
     return this.rewards.map((reward) => {
       const state = getState(reward.statuses);
