@@ -21,11 +21,11 @@ export class ReferralTableRewardsCell {
   */
 
   render() {
-    // const style = {};
+    const style = {};
 
     jss.setup(preset());
-    // const sheet = jss.createStyleSheet(style);
-    // const styleString = sheet.toString();
+    const sheet = jss.createStyleSheet(style);
+    const styleString = sheet.toString();
 
     const getState = (states: Array<string>): string => {
       const possibleStates = [
@@ -70,15 +70,18 @@ export class ReferralTableRewardsCell {
       const state = getState(reward.statuses);
       const slBadgeType = getSLBadgeType(state);
       const badgeText = toTitleCase(state);
-      const relativeTime = reward.dateExpires
+      let relativeTime = reward.dateExpires
         ? getTimeDiff(reward.dateGiven, reward.dateExpires)
+            .replace("in", "")
+            .trim()
         : null;
       console.log(relativeTime);
       return (
         <sl-details>
-          {/* STYLE TAG HERE */}
+          <style type="text/css">{styleString}</style>
           <div slot="summary">
             {reward.prettyValue}{" "}
+            {/* If state is pending and reward has expiry date, display the relative time inside badge. Otherwise only display the badge text */}
             {state === "PENDING" && reward.dateExpires ? (
               <sl-badge type={slBadgeType} pill>{`${badgeText} ${
                 relativeTime === "tomorrow" || relativeTime === "today"

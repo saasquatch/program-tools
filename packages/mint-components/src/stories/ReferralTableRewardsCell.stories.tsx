@@ -19,7 +19,7 @@ const baseReward: Reward = {
   name: "test",
   dateGiven: 1626989215831,
   dateScheduledFor: 1627162015831,
-  dateExpires: 1627162015831,
+  dateExpires: 1626989215831,
   dateCancelled: 134400,
   fuelTankCode: "ABC",
   fuelTankType: "Code",
