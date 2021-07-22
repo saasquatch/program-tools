@@ -13,18 +13,18 @@ export default {
 
 const baseReward: Reward = {
   id: "123",
-  type: "reward",
-  value: 100,
-  unit: "test",
+  type: "CREDIT",
+  value: 19,
+  unit: "POINT",
   name: "test",
   dateGiven: 100000,
   dateExpires: 10000000,
   dateCancelled: 134400,
   fuelTankCode: "ABC",
   fuelTankType: "Code",
-  currency: "CAD",
-  prettyValue: "$200",
-  statuses: ["Status1"],
+  currency: "null",
+  prettyValue: "19 Points",
+  statuses: ["AVAILABLE"],
   globalRewardKey: "Key",
   rewardRedemptionTransactions: {
     data: [
@@ -32,8 +32,8 @@ const baseReward: Reward = {
         exchangedRewards: {
           data: [
             {
-              prettyValue: "$100",
-              type: "Code",
+              prettyValue: "19 Points",
+              type: "CREDIT",
               fuelTankCode: "ABC",
               globalRewardKey: "Key",
             },
@@ -42,6 +42,14 @@ const baseReward: Reward = {
       },
     ],
   },
+};
+
+const nullExpiresIn = {
+  dateExpires: null,
+};
+
+const nullFuelTank = {
+  fuelTankCode: null,
 };
 
 // Reward Type Cases
@@ -63,16 +71,16 @@ const integrationReward = {
 
 // Reward Status Cases
 const pendingReward = {
-  statuses: ["PENDING"],
+  statuses: ["AVAILABLE", "PENDING"],
 };
 const cancelledReward = {
-  statuses: ["CANCELLED"],
+  statuses: ["PENDING", "CANCELLED"],
 };
 const expiredReward = {
-  statuses: ["EXPIRED"],
+  statuses: ["CANCELLED", "EXPIRED"],
 };
 const redeemedReward = {
-  statuses: ["REDEEMED"],
+  statuses: ["AVAILABLE", "EXPIRED", "REDEEMED"],
 };
 const availableReward = {
   statuses: ["AVAILABLE"],
@@ -83,45 +91,45 @@ const zeroRewards = [];
 const oneReward = [{ ...baseReward, ...availableReward }];
 
 const twoRewards = [
-  { ...baseReward, ...discountReward },
+  { ...baseReward, ...discountReward, ...pendingReward },
   { ...baseReward, ...creditReward },
 ];
 
 const threeRewards = [
   { ...baseReward, ...fuelTankReward },
-  { ...baseReward, ...fuelTankReward },
-  { ...baseReward, ...pendingReward },
+  { ...baseReward, ...fuelTankReward, ...expiredReward, ...nullExpiresIn },
+  { ...baseReward, ...pendingReward, ...nullFuelTank },
 ];
 
 const fiveRewards = [
   { ...baseReward, ...fuelTankReward },
   { ...baseReward, ...integrationReward },
   { ...baseReward, ...pendingReward },
-  { ...baseReward, ...cancelledReward },
-  { ...baseReward, ...expiredReward },
+  { ...baseReward, ...cancelledReward, ...nullExpiresIn, ...nullFuelTank },
+  { ...baseReward, ...expiredReward, ...nullExpiresIn, ...nullFuelTank },
 ];
 
 const eightRewards = [
-  { ...baseReward, ...redeemedReward },
+  { ...baseReward, ...redeemedReward, ...nullFuelTank },
   { ...baseReward, ...availableReward },
   { ...baseReward, ...pendingReward },
   { ...baseReward, ...cancelledReward },
-  { ...baseReward, ...expiredReward },
+  { ...baseReward, ...expiredReward, ...nullExpiresIn },
   { ...baseReward, ...pendingReward },
   { ...baseReward, ...cancelledReward },
-  { ...baseReward, ...expiredReward },
+  { ...baseReward, ...expiredReward, ...nullExpiresIn },
 ];
 
 const tenRewards = [
   { ...baseReward, ...integrationReward },
   { ...baseReward, ...redeemedReward },
   { ...baseReward, ...availableReward },
-  { ...baseReward, ...cancelledReward },
-  { ...baseReward, ...expiredReward },
+  { ...baseReward, ...cancelledReward, ...nullExpiresIn },
+  { ...baseReward, ...expiredReward, ...nullExpiresIn },
   { ...baseReward, ...pendingReward },
   { ...baseReward, ...discountReward },
   { ...baseReward, ...fuelTankReward },
-  { ...baseReward, ...cancelledReward },
+  { ...baseReward, ...cancelledReward, ...nullExpiresIn },
   { ...baseReward, ...creditReward },
 ];
 
