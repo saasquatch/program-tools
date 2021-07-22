@@ -7,7 +7,7 @@ export default {
   title: "Referral Table",
 };
 
-const emptyElement = <div style={{ width: "100%" }}>No Referrals Yet</div>;
+const emptyElement = <div style={{ width: "100%" }}><sqm-text><h3 style={{color:"#777777"}}>No Referrals Yet</h3></sqm-text></div>;
 const loadingElement = (
   <div style={{ width: "100%" }}>
     <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
@@ -37,15 +37,18 @@ jss.setup(preset());
 const emptyTableProps = {
   states: {
     hasPrev: false,
-    hasNext: true,
+    hasNext: false,
     loading: false,
   },
   callbacks: {
     prevPage: () => console.log("Prev"),
     nextPage: () => console.log("Next"),
   },
-
+  data: {
+    referralData: [],
+  },
   elements: {
+    emptyElement,
     columns: [<div>Name</div>, <div>Email</div>, <div>DOB</div>],
     rows: [],
   },
@@ -418,7 +421,7 @@ const loadingTableProps = {
 };
 
 export const EmptyTable = () => {
-  console.log("story")
+  console.log("story");
   return <ReferralTableView {...emptyTableProps}></ReferralTableView>;
 };
 

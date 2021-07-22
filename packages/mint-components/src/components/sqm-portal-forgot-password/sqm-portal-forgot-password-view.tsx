@@ -1,9 +1,8 @@
 import { h } from "@stencil/core";
 import {
   AuthButtonsContainer,
+  AuthColumn,
   AuthWrapper,
-  Column,
-  gap,
 } from "../../global/mixins";
 import jss from "jss";
 import preset from "jss-preset-default";
@@ -28,10 +27,7 @@ export interface PortalForgotPasswordViewProps {
 
 const style = {
   Wrapper: AuthWrapper,
-  Column: {
-    ...Column,
-    ...gap({ direction: "column", size: "var(--sl-spacing-xx-large)" }),
-  },
+  Column: { ...AuthColumn },
   ButtonsContainer: AuthButtonsContainer,
 };
 

@@ -91,7 +91,6 @@ export function ReferralTableView(props: ReferralTableViewProps) {
               ))}
         </tbody>
       </table>
-      {rows.length === 0 && elements.emptyElement}
       <div class={sheet.classes.ButtonContainer}>
         <sl-button
           size="small"
