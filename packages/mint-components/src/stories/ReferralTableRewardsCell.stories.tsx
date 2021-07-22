@@ -49,6 +49,10 @@ const nullExpiresIn = {
   dateExpires: null,
 };
 
+const nullScheduledFor = {
+  dateScheduledFor: null,
+};
+
 const nullFuelTank = {
   fuelTankCode: null,
 };
@@ -134,7 +138,63 @@ const tenRewards = [
   { ...baseReward, ...creditReward },
 ];
 
-export const zeroRewardsCell = () => {
+export const PendingNoUnpend = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseReward, ...pendingReward, ...nullScheduledFor }]}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const PendingWithUnpend = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseReward, ...pendingReward }]}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const AvailableNoExpiry = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseReward, ...availableReward, ...nullExpiresIn }]}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const AvailableWithExpiry = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseReward, ...availableReward }]}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const Redeemed = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseReward, ...redeemedReward }]}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const Cancelled = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseReward, ...cancelledReward }]}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const Expired = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseReward, ...expiredReward }]}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
+export const EmptyCell = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={zeroRewards}
