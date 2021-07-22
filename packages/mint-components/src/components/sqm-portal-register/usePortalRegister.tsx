@@ -19,15 +19,19 @@ export function usePortalRegister({ nextPage, nextPageUrlParameter }) {
   });
 
   const submit = async (event: any) => {
-    let formData = event.target.getFormData();
+    let formControls = event.target.getFormControls();
 
-    formData?.forEach((value: any, key: string) => {
-      console.log(key);
+    let formData: Record<string, any> = {};
+    formControls?.forEach((control) => {
+      if (!control.name) return;
+      const key = control.name;
+      const value = control.value;
       jsonpointer.set(formData, key, value);
     });
     const { email, password } = formData;
     delete formData.email;
     delete formData.password;
+    delete formData.confirmPassword;
     formData = { ...formData };
     const variables = {
       email,
