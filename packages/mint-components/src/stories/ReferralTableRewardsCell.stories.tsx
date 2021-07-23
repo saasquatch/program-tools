@@ -80,9 +80,11 @@ const pendingReward = {
 };
 const cancelledReward = {
   statuses: ["PENDING", "CANCELLED"],
+  dateCancelled: 1626850800000,
 };
 const expiredReward = {
   statuses: ["EXPIRED", "AVAILABLE"],
+  dateExpires: 1626850800000,
 };
 const redeemedReward = {
   statuses: ["AVAILABLE", "EXPIRED", "REDEEMED"],
@@ -101,8 +103,8 @@ const twoRewards = [
 ];
 
 const threeRewards = [
-  { ...baseReward, ...fuelTankReward },
-  { ...baseReward, ...fuelTankReward, ...expiredReward, ...nullExpiresIn },
+  { ...baseReward, ...fuelTankReward, ...nullExpiresIn },
+  { ...baseReward, ...fuelTankReward, ...expiredReward },
   { ...baseReward, ...pendingReward, ...nullFuelTank },
 ];
 
@@ -111,18 +113,18 @@ const fiveRewards = [
   { ...baseReward, ...integrationReward },
   { ...baseReward, ...pendingReward },
   { ...baseReward, ...cancelledReward, ...nullExpiresIn, ...nullFuelTank },
-  { ...baseReward, ...expiredReward, ...nullExpiresIn, ...nullFuelTank },
+  { ...baseReward, ...expiredReward, ...nullFuelTank },
 ];
 
 const eightRewards = [
   { ...baseReward, ...redeemedReward, ...nullFuelTank },
-  { ...baseReward, ...availableReward },
+  { ...baseReward, ...availableReward, ...nullExpiresIn },
   { ...baseReward, ...pendingReward },
   { ...baseReward, ...cancelledReward },
-  { ...baseReward, ...expiredReward, ...nullExpiresIn },
-  { ...baseReward, ...pendingReward },
+  { ...baseReward, ...expiredReward },
+  { ...baseReward, ...pendingReward, ...nullExpiresIn, ...nullScheduledFor },
   { ...baseReward, ...cancelledReward },
-  { ...baseReward, ...expiredReward, ...nullExpiresIn },
+  { ...baseReward, ...expiredReward },
 ];
 
 const tenRewards = [
@@ -130,7 +132,7 @@ const tenRewards = [
   { ...baseReward, ...redeemedReward },
   { ...baseReward, ...availableReward },
   { ...baseReward, ...cancelledReward, ...nullExpiresIn },
-  { ...baseReward, ...expiredReward, ...nullExpiresIn },
+  { ...baseReward, ...expiredReward },
   { ...baseReward, ...pendingReward },
   { ...baseReward, ...discountReward },
   { ...baseReward, ...fuelTankReward },
@@ -211,7 +213,6 @@ export const oneRewardCell = () => {
 };
 
 export const twoRewardsCell = () => {
-  console.log(twoRewards);
   return (
     <sqm-referral-table-rewards-cell
       rewards={twoRewards}
@@ -220,7 +221,6 @@ export const twoRewardsCell = () => {
 };
 
 export const threeRewardsCell = () => {
-  console.log(threeRewards);
   return (
     <sqm-referral-table-rewards-cell
       rewards={threeRewards}
@@ -229,7 +229,6 @@ export const threeRewardsCell = () => {
 };
 
 export const fiveRewardsCell = () => {
-  console.log(fiveRewards);
   return (
     <sqm-referral-table-rewards-cell
       rewards={fiveRewards}
@@ -238,7 +237,6 @@ export const fiveRewardsCell = () => {
 };
 
 export const eightRewardsCell = () => {
-  console.log(eightRewards);
   return (
     <sqm-referral-table-rewards-cell
       rewards={eightRewards}
@@ -247,7 +245,6 @@ export const eightRewardsCell = () => {
 };
 
 export const tenRewardsCell = () => {
-  console.log(tenRewards);
   return (
     <sqm-referral-table-rewards-cell
       rewards={tenRewards}
