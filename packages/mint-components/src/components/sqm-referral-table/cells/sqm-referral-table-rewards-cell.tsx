@@ -127,17 +127,19 @@ export class ReferralTableRewardsCell {
             </div>
           </div>
           <div>
-            <div>
-              <TextSpanView type="p">
-                Reward received on{" "}
-                <span class={sheet.classes.BoldText}>
-                  {DateTime.fromMillis(reward.dateGiven).toLocaleString(
-                    DateTime.DATE_MED
-                  )}
-                </span>
-              </TextSpanView>
-            </div>
-            {(state === "PENDING" && reward.dateScheduledFor) && (
+            {reward.dateGiven && (
+              <div>
+                <TextSpanView type="p">
+                  Reward received on{" "}
+                  <span class={sheet.classes.BoldText}>
+                    {DateTime.fromMillis(reward.dateGiven).toLocaleString(
+                      DateTime.DATE_MED
+                    )}
+                  </span>
+                </TextSpanView>
+              </div>
+            )}
+            {state === "PENDING" && reward.dateScheduledFor && (
               <div>
                 <TextSpanView type="p">
                   Available On{" "}
