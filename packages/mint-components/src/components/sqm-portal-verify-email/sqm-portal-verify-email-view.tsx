@@ -1,7 +1,8 @@
 import { h } from "@stencil/core";
-import { AuthWrapper, Column, gap } from "../../global/mixins";
+import { AuthColumn, AuthWrapper } from "../../global/mixins";
 import jss from "jss";
 import preset from "jss-preset-default";
+import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
 export interface PortalVerifyEmailViewProps {
   states: {
@@ -17,10 +18,7 @@ export interface PortalVerifyEmailViewProps {
 
 const style = {
   Wrapper: AuthWrapper,
-  Column: {
-    ...Column,
-    ...gap({ direction: "column", size: "var(--sl-spacing-xx-large)" }),
-  },
+  Column: AuthColumn,
   ContinueButton: {
     width: "100%",
   },
@@ -51,6 +49,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
           {vanillaStyle}
           {styleString}
         </style>
+        <TextSpanView type="h3">Verify your email</TextSpanView>
         <sqm-form-message exportparts="success-icon">
           <div part="successalert-text">
             Your email has been verified and you are being redirected. If you
@@ -74,6 +73,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
     return (
       <div class={sheet.classes.Wrapper}>
         <style type="text/css">{styleString}</style>
+        <TextSpanView type="h3">Verify your email</TextSpanView>
         <sqm-form-message type="error" exportparts="erroralert-icon">
           <div part="erroralert-text">
             The email verification code is invalid or has expired, please try

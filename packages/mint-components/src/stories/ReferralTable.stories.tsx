@@ -8,6 +8,23 @@ export default {
   title: "Referral Table",
 };
 
+const emptyElement = (
+  <div style={{ width: "100%" }}>
+    <sqm-text>
+      <h3 style={{ color: "#777777" }}>No Referrals Yet</h3>
+    </sqm-text>
+  </div>
+);
+const loadingElement = (
+  <div style={{ width: "100%" }}>
+    <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+    <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+    <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+    <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+    <sl-skeleton></sl-skeleton>
+  </div>
+);
+
 // const style = {
 //   FullWidth: {
 //     width: "100%",
@@ -23,6 +40,26 @@ jss.setup(preset());
 // const styleString = sheet.toString();
 
 // const rewardProps = [{}];
+
+const emptyTableProps = {
+  states: {
+    hasPrev: false,
+    hasNext: false,
+    loading: false,
+  },
+  callbacks: {
+    prevPage: () => console.log("Prev"),
+    nextPage: () => console.log("Next"),
+  },
+  data: {
+    referralData: [],
+  },
+  elements: {
+    emptyElement,
+    columns: [<div>Name</div>, <div>Email</div>, <div>DOB</div>],
+    rows: [],
+  },
+};
 
 const simpleUserTableProps = {
   states: {
@@ -315,7 +352,7 @@ const loadingTableProps = {
   states: {
     hasPrev: false,
     hasNext: true,
-    loading: false,
+    loading: true,
   },
   data: {
     referralData: [],
@@ -326,6 +363,7 @@ const loadingTableProps = {
   },
 
   elements: {
+    loadingElement,
     columns: [
       <div>Name</div>,
       <div>Email</div>,
@@ -392,6 +430,15 @@ const loadingTableProps = {
       ],
     ],
   },
+};
+
+export const EmptyTable = () => {
+  console.log("story");
+  return <ReferralTableView {...emptyTableProps}></ReferralTableView>;
+};
+
+export const LoadingTable = () => {
+  return <ReferralTableView {...loadingTableProps}></ReferralTableView>;
 };
 
 export const SimpleUserTable = () => {

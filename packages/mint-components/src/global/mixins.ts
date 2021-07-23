@@ -42,9 +42,6 @@ export const P = {
 export const Column = {
   display: "flex",
   "flex-direction": "column",
-  "& > :not(:first-child)": {
-    "margin-top": "var(--sl-spacing-medium)",
-  },
 };
 
 export const SeparateContent = {
@@ -97,7 +94,13 @@ export const AuthWrapper = {
   ...Wrapper,
   "max-width": "500px",
   ...Column,
-  ...gap({ direction: "column", size: "var(--sl-spacing-xxx-large)" }),
+  ...gap({ direction: "column", size: "var(--sl-spacing-x-large)" }),
+};
+
+export const AuthColumn = {
+  ...Column,
+  "& > *:not(style, div)": { display: "block" },
+  ...gap({ direction: "column", size: "var(--sl-spacing-large)" }),
 };
 
 export const AuthButtonsContainer = {

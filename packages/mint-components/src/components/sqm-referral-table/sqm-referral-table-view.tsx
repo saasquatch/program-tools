@@ -88,7 +88,6 @@ export function ReferralTableView(props: ReferralTableViewProps) {
               ))}
         </tbody>
       </table>
-
       <div class={sheet.classes.ButtonContainer}>
         <sl-button
           size="small"

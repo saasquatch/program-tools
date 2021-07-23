@@ -1,9 +1,8 @@
 import { h } from "@stencil/core";
 import {
   AuthButtonsContainer,
+  AuthColumn,
   AuthWrapper,
-  Column,
-  gap,
 } from "../../global/mixins";
 import jss from "jss";
 import preset from "jss-preset-default";
@@ -27,10 +26,7 @@ export interface PortalResetPasswordViewProps {
 
 const style = {
   Wrapper: AuthWrapper,
-  Column: {
-    ...Column,
-    ...gap({ direction: "column", size: "var(--sl-spacing-xxx-large)" }),
-  },
+  Column: AuthColumn,
   ButtonsContainer: AuthButtonsContainer,
 
   Banner: {
@@ -74,6 +70,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
     return (
       <div class={`${sheet.classes.Wrapper} ${sheet.classes.Column}`}>
         <style type="text/css">{styleString}</style>
+        <TextSpanView type="h3">Reset your password</TextSpanView>
         <sqm-form-message
           class={sheet.classes.CodeSuccess}
           exportparts="success-icon"

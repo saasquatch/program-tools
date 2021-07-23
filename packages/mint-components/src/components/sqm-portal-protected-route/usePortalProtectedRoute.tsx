@@ -1,4 +1,8 @@
-import { useUserIdentity, navigation } from "@saasquatch/component-boilerplate";
+import {
+  useUserIdentity,
+  navigation,
+  useCurrentPage,
+} from "@saasquatch/component-boilerplate";
 import { useEffect } from "haunted";
 
 interface PortalProtectedRouteProps {
@@ -16,30 +20,23 @@ export function usePortalProtectedRoute({
 
   const authenticated = !!userIdent?.jwt;
   const emailVerified = userIdent?.managedIdentity?.emailVerified;
-  const urlPath = window.location.pathname;
-  const searchParams = new URLSearchParams(window.location.search);
 
+  const { pathname, search } = useCurrentPage();
   const nextPageParam = new URLSearchParams();
-  nextPageParam.append("nextPage", `${urlPath}?${searchParams.toString()}`);
+  nextPageParam.append("nextPage", `${pathname}${search}`);
 
-  const search = "?" + nextPageParam.toString();
-
-  // console.log("-------");
-  // console.log(window.location);
-  // console.log(search);
-  // console.log("-------");
   useEffect(() => {
     if (!authenticated) {
       return navigation.push({
         pathname: redirectTo,
-        search,
+        search: "?" + nextPageParam.toString(),
       });
     }
 
     if (requireEmailVerification && !emailVerified) {
       return navigation.push({
         pathname: redirectToUnverified || redirectTo,
-        search,
+        search: "?" + nextPageParam.toString(),
       });
     }
   }, []);

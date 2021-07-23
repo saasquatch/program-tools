@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { AuthWrapper, Column, gap } from "../../global/mixins";
+import { AuthColumn, AuthWrapper } from "../../global/mixins";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
@@ -20,10 +20,7 @@ export interface PortalEmailVerificationViewProps {
 
 const style = {
   Wrapper: AuthWrapper,
-  Column: {
-    ...Column,
-    ...gap({ direction: "column", size: "var(--sl-spacing-xx-large)" }),
-  },
+  Column: { ...AuthColumn, },
 };
 
 const vanillaStyle = `
@@ -55,7 +52,7 @@ export function PortalEmailVerificationView(
         {vanillaStyle}
         {styleString}
       </style>
-      <TextSpanView type="h2">Verify Your Email</TextSpanView>
+      <TextSpanView type="h3">Verify your email</TextSpanView>
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
         {props.states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">

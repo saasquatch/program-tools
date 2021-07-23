@@ -11,6 +11,7 @@
 | ----------------- | ------------------ | ----------- | --------- | ------------ |
 | `confirmPassword` | `confirm-password` |             | `boolean` | `false`      |
 | `emailLabel`      | `email-label`      |             | `string`  | `"Email"`    |
+| `hideInputs`      | `hide-inputs`      |             | `boolean` | `false`      |
 | `nextPage`        | `next-page`        |             | `string`  | `"/"`        |
 | `pageLabel`       | `page-label`       |             | `string`  | `"Register"` |
 | `passwordLabel`   | `password-label`   |             | `string`  | `"Password"` |

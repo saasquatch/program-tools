@@ -22,7 +22,7 @@
   justify-content: flex-end;
 
   & > :not(:first-child) {
-    margin-left: 12px;
+    margin-left: var(--sl-font-size-x-small);
   }
 }
 

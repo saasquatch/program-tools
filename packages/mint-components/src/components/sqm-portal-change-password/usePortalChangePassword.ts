@@ -21,7 +21,7 @@ const CHANGE_PASSWORD = gql`
 export function usePortalChangePassword(_props: PortalChangePassword) {
   const [request, { loading /*data, errors */ }] = useMutation(CHANGE_PASSWORD);
   const [open, setOpen] = useState(false);
-
+  const [error, setError] = useState("");
   const user = useUserIdentity();
 
   const submit = async (event: any) => {
@@ -30,10 +30,20 @@ export function usePortalChangePassword(_props: PortalChangePassword) {
       jsonpointer.set(formData, key, value);
     });
 
+    if (!user?.managedIdentity?.email) {
+      setError("Please log in again to change your password.");
+      return;
+    }
+
     const variables = {
-      email: user.managedIdentity.email,
+      email: user?.managedIdentity?.email,
       password: formData.password,
     };
+
+    if (formData.newPasswordOne !== formData.newPasswordTwo) {
+      setError("Passwords do not match.");
+      return;
+    }
 
     await request(variables);
     console.log(
@@ -46,7 +56,7 @@ export function usePortalChangePassword(_props: PortalChangePassword) {
     states: {
       open,
       loading,
-      error: "",
+      error,
     },
     data: {},
     callbacks: {

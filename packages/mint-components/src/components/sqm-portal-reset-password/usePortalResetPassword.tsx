@@ -39,14 +39,14 @@ export function usePortalResetPassword({
     urlParams.delete("nextPage");
     navigation.push({
       pathname: nextPageOverride || nextPage,
-      search: "?" + urlParams.toString(),
+      search: urlParams.toString() && "?" + urlParams.toString(),
     });
   };
 
   const failed = () => {
     navigation.push({
       pathname: "/",
-      search: "?" + urlParams.toString(),
+      search: urlParams.toString() && "?" + urlParams.toString(),
     });
   };
 

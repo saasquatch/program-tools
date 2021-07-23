@@ -27,8 +27,8 @@ const style = {
   },
 
   Title: {
-    "font-weight": 500,
-    color: "#555555",
+    "font-weight": 600,
+    color: "var(--sl-color-gray-800)",
     "max-width": "85%",
     "overflow-wrap": "break-word",
   },

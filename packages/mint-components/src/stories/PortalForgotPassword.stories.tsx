@@ -19,7 +19,7 @@ const defaultProps: PortalForgotPasswordViewProps = {
   },
   content: {
     secondaryButton: "Cancel",
-    messageSlot: "Test Message",
+    messageSlot: "Enter your email below to receive a password reset link.",
   },
 };
 
@@ -34,7 +34,7 @@ const errorProps: PortalForgotPasswordViewProps = {
   },
   content: {
     secondaryButton: "Cancel",
-    messageSlot: "Test Message",
+    messageSlot: "Enter your email below to receive a password reset link.",
   },
 };
 
@@ -49,7 +49,7 @@ const loadingProps: PortalForgotPasswordViewProps = {
   },
   content: {
     secondaryButton: "Cancel",
-    messageSlot: "Test Message",
+    messageSlot: "Enter your email below to receive a password reset link.",
   },
 };
 
@@ -64,7 +64,7 @@ const successProps: PortalForgotPasswordViewProps = {
   },
   content: {
     secondaryButton: "Cancel",
-    messageSlot: "Test Message",
+    messageSlot: "Enter your email below to receive a password reset link.",
   },
 };
 

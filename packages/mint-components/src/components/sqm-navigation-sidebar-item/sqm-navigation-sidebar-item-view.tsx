@@ -28,7 +28,7 @@ export function NavigationSidebarItemView(
       "border-radius": "8px",
       padding: "8px",
       "align-items": "center",
-      ...gap({ direction: "row" as const, size: "14px" }),
+      ...gap({ direction: "row" as const, size: "var(--sl-font-size-small)" }),
       "&:hover": {
         cursor: "pointer",
         background: states.active ? "#dddddd" : "#f7f7f7",

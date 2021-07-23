@@ -1,9 +1,8 @@
 import { h } from "@stencil/core";
 import {
   AuthButtonsContainer,
+  AuthColumn,
   AuthWrapper,
-  Column,
-  gap,
   HostBlock,
 } from "../../global/mixins";
 import jss from "jss";
@@ -15,13 +14,13 @@ export interface PortalRegisterViewProps {
     error: string;
     loading: boolean;
     confirmPassword?: boolean;
+    hideInputs?: boolean;
   };
   callbacks: {
     submit;
   };
   content: {
     formData?: any;
-    messageBanner?: any;
     secondaryButton?: any;
     emailLabel?: string;
     passwordLabel?: string;
@@ -32,10 +31,7 @@ export interface PortalRegisterViewProps {
 
 const style = {
   Wrapper: { ...AuthWrapper, "max-width": "600px" },
-  Column: {
-    ...Column,
-    ...gap({ direction: "column", size: "var(--sl-spacing-xx-large)" }),
-  },
+  Column: AuthColumn,
   HostBlock: HostBlock,
 
   ":host": {
@@ -77,24 +73,27 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
-        {content.messageBanner}
-        <sl-input
-          exportparts="label: input-label"
-          type="email"
-          name="/email"
-          label={content.emailLabel || "Email"}
-          disabled={states.loading}
-          required
-        ></sl-input>
-        <sl-input
-          exportparts="label: input-label"
-          type="password"
-          name="/password"
-          label={content.passwordLabel || "Password"}
-          disabled={states.loading}
-          required
-        ></sl-input>
-        {states.confirmPassword && (
+        {!states.hideInputs && (
+          <sl-input
+            exportparts="label: input-label"
+            type="email"
+            name="/email"
+            label={content.emailLabel || "Email"}
+            disabled={states.loading}
+            required
+          ></sl-input>
+        )}
+        {!states.hideInputs && (
+          <sl-input
+            exportparts="label: input-label"
+            type="password"
+            name="/password"
+            label={content.passwordLabel || "Password"}
+            disabled={states.loading}
+            required
+          ></sl-input>
+        )}
+        {!states.hideInputs && states.confirmPassword && (
           <sl-input
             exportparts="label: input-label"
             type="password"
