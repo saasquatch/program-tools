@@ -30,7 +30,7 @@ export function usePortalLogin({ nextPage }) {
       urlParams.delete("nextPage");
       navigation.push({
         pathname: nextPageOverride || nextPage,
-        search: "?" + urlParams.toString(),
+        search: urlParams.toString() && "?" + urlParams.toString(),
       });
     }
   }, [userIdent?.jwt]);
