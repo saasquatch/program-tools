@@ -9,39 +9,39 @@ export interface TextSpanView {
 export function TextSpanView(props: TextSpanView, children: VNode) {
   const style = {
     p: {
-      "font-size": "14px",
+      "font-size": "var(--sl-font-size-small)",
       "font-weight": "400",
-      color: "#555555",
+      color: "var(--sl-color-gray-800)",
       margin: "0",
     },
     subtext: {
-      "font-size": "12px",
+      "font-size": "var(--sl-font-size-x-small)",
       "font-weight": "400",
-      color: "#777777",
+      color: "var(--sl-color-gray-600)",
       margin: "0",
     },
     h1: {
-      "font-size": "36px",
+      "font-size": "var(--sl-font-size-xx-large)",
       "font-weight": "600",
-      color: "#555555",
+      color: "var(--sl-color-gray-800)",
       margin: "0",
     },
     h2: {
-      "font-size": "24px",
+      "font-size": "var(--sl-font-size-x-large)",
       "font-weight": "600",
-      color: "#555555",
+      color: "var(--sl-color-gray-800)",
       margin: "0",
     },
     h3: {
-      "font-size": "18px",
+      "font-size": "var(--sl-font-size-large)",
       "font-weight": "600",
-      color: "#555555",
+      color: "var(--sl-color-gray-800)",
       margin: "0",
     },
     h4: {
       "font-size": "13px",
       "font-weight": "600",
-      color: "#555555",
+      color: "var(--sl-color-gray-800)",
       margin: "0",
     },
   };

@@ -30,8 +30,8 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
       "text-align": alignment,
     },
     Description: {
-      "font-size": "var(--sl-font-size-x-small)",
-      "font-weight": "var(--sl-font-weight-semibold)",
+      "font-size": "var(--sl-font-size-small)",
+      "font-weight": "var(--sl-font-weight-normal)",
       color: "var(--sl-color-gray-600)",
       "text-transform": "uppercase",
       "text-align": alignment,
