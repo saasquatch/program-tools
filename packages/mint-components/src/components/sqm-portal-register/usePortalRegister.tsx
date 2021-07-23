@@ -1,5 +1,5 @@
 import jsonpointer from "jsonpointer";
-import { useEffect } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 import {
   navigation,
   useUserIdentity,
@@ -8,6 +8,7 @@ import {
 import { usePortalEmailVerification } from "../sqm-portal-email-verification/usePortalEmailVerification";
 
 export function usePortalRegister({ nextPage }) {
+  const [error, setError] = useState("");
   const [request, { loading, errors }] =
     useRegisterWithEmailAndPasswordMutation();
   const userIdent = useUserIdentity();
@@ -26,6 +27,11 @@ export function usePortalRegister({ nextPage }) {
       const value = control.value;
       jsonpointer.set(formData, key, value);
     });
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     const { email, password } = formData;
     delete formData.email;
     delete formData.password;
@@ -54,7 +60,7 @@ export function usePortalRegister({ nextPage }) {
       loading: loading || emailVerificationStates.loading,
       error: errors
         ? errors?.response?.errors?.[0]?.message
-        : emailVerificationStates.error,
+        : emailVerificationStates.error || error,
     },
     callbacks: {
       submit,
