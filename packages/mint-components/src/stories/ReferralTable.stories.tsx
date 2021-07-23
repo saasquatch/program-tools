@@ -2,6 +2,7 @@ import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { ReferralTableView } from "../components/sqm-referral-table/sqm-referral-table-view";
+import { PendingWithUnpend } from "./ReferralTableRewardsCell.stories";
 
 export default {
   title: "Referral Table",
@@ -38,24 +39,30 @@ const simpleUserTableProps = {
   },
 
   elements: {
-    columns: [<div>Name</div>, <div>Email</div>, <div>DOB</div>],
+    columns: [
+      <div>Name</div>,
+      <div>Email</div>,
+      <div>DOB</div>,
+      <div>Rewards</div>,
+    ],
     rows: [
       [
         <sqm-referral-table-user-cell name="Joe Smith"></sqm-referral-table-user-cell>,
         <sqm-referral-table-user-cell name="jsmith@gmail.com"></sqm-referral-table-user-cell>,
         <sqm-referral-table-user-cell name="07/15/1902"></sqm-referral-table-user-cell>,
+        <PendingWithUnpend />,
       ],
       [
         <sqm-referral-table-user-cell name="Bob Williams"></sqm-referral-table-user-cell>,
         <sqm-referral-table-user-cell name="bwill@gmail.com"></sqm-referral-table-user-cell>,
         <sqm-referral-table-user-cell name="09/05/1999"></sqm-referral-table-user-cell>,
-        ,
+        <PendingWithUnpend />,
       ],
       [
         <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
         <sqm-referral-table-user-cell name="sjoseph@gmail.com"></sqm-referral-table-user-cell>,
         <sqm-referral-table-user-cell name="12/21/1984"></sqm-referral-table-user-cell>,
-        ,
+        <PendingWithUnpend />,
       ],
     ],
   },

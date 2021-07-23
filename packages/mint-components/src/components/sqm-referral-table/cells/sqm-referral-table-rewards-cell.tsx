@@ -3,6 +3,7 @@ import jss from "jss";
 import preset from "jss-preset-default";
 // import { PresetText } from "../../../functional-components/PresetText";
 import { DateTime } from "luxon";
+import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 @Component({
   tag: "sqm-referral-table-rewards-cell",
   shadow: true,
@@ -10,18 +11,38 @@ import { DateTime } from "luxon";
 export class ReferralTableRewardsCell {
   @Prop() rewards: Reward[];
 
-  /* 
-    TODO LIST: 
-    - Add styling
-    - Ensure that expiring badge is the correct color, if not add functionality to get that
-    - Colors EXPIRED & CANCELLED should be danger, PENDING is warning, AVAILABLE is success
-    - EXPIRING in x days will be info
-    - Add dates 
-    - Should colors be dynamic for the expiring badge?
-  */
-
   render() {
-    const style = {};
+    const style = {
+      DetailsContainer: {
+        width: "100%",
+        display: "flex",
+        "align-items": "center",
+        "justify-content": "space-between",
+        "margin-right": "var(--sl-spacing-small)",
+        "flex-wrap": "wrap",
+      },
+
+      Details: {
+        "max-width": "300px",
+        "padding-right": "var(--sl-spacing-x-small)",
+        "&::part(header)": {
+          padding: "var(--sl-spacing-x-small)",
+        },
+        "&::part(content)": {
+          padding: "var(--sl-spacing-x-small) var(--sl-spacing-medium)",
+        },
+      },
+
+      BadgeContainer: {
+        "& > :not(:last-child)": {
+          "margin-right": "var(--sl-spacing-x-small)",
+        },
+      },
+
+      BoldText: {
+        "font-weight": "var(--sl-font-weight-semibold)",
+      },
+    };
 
     jss.setup(preset());
     const sheet = jss.createStyleSheet(style);
@@ -60,7 +81,7 @@ export class ReferralTableRewardsCell {
       return state[0].toUpperCase() + state.slice(1).toLowerCase();
     };
 
-    const getTimeDiff = (startTime: any, endTime: number): any => {
+    const getTimeDiff = (startTime: any, endTime: number): string => {
       // Current implementation only calculates the difference from current time
       const diff = DateTime.fromMillis(endTime).toRelativeCalendar();
       return diff;
@@ -75,41 +96,84 @@ export class ReferralTableRewardsCell {
             .replace("in", "")
             .trim()
         : null;
-      console.log(relativeTime);
+
       return (
-        <sl-details>
+        <sl-details class={sheet.classes.Details}>
           <style type="text/css">{styleString}</style>
-          <div slot="summary">
-            {reward.prettyValue}{" "}
+          <div slot="summary" class={sheet.classes.DetailsContainer}>
+            <TextSpanView type="p">
+              <span class={sheet.classes.BoldText}>{reward.prettyValue}</span>
+            </TextSpanView>
             {/* If state is pending and reward has expiry date, display the relative time inside badge. Otherwise only display the badge text */}
-            {state === "PENDING" && reward.dateExpires ? (
-              <sl-badge type={slBadgeType} pill>{`${badgeText} ${
-                relativeTime === "tomorrow" || relativeTime === "today"
-                  ? `until ${relativeTime}`
-                  : `for ${relativeTime}`
-              }`}</sl-badge>
-            ) : (
-              <sl-badge type={slBadgeType} pill>
-                {badgeText}
-              </sl-badge>
-            )}
-            {reward.dateExpires && state === "AVAILABLE" && (
-              <sl-badge type="info" pill>
-                {relativeTime === "tomorrow" || relativeTime === "today"
-                  ? `Expiring ${relativeTime}`
-                  : `Expiring in ${relativeTime}`}
-              </sl-badge>
-            )}
+            <div class={sheet.classes.BadgeContainer}>
+              {state === "PENDING" && reward.dateExpires ? (
+                <sl-badge type={slBadgeType} pill>{`${badgeText} ${
+                  relativeTime === "tomorrow" || relativeTime === "today"
+                    ? `until ${relativeTime}`
+                    : `for ${relativeTime}`
+                }`}</sl-badge>
+              ) : (
+                <sl-badge type={slBadgeType} pill>
+                  {badgeText}
+                </sl-badge>
+              )}
+              {reward.dateExpires && state === "AVAILABLE" && (
+                <sl-badge type="info" pill>
+                  {relativeTime === "tomorrow" || relativeTime === "today"
+                    ? `Expiring ${relativeTime}`
+                    : `Expiring in ${relativeTime}`}
+                </sl-badge>
+              )}
+            </div>
           </div>
           <div>
-            {/* Pending will check difference between current date and dateScheduledFor to get days amount*/}
-            <p>Date received: {reward.dateGiven}</p>
-            {reward.fuelTankCode && <p>Code: {reward.fuelTankCode}</p>}
-            {state === "PENDING" && <p>Code: {reward.dateGiven}</p>}{" "}
-            {/* Should this be a different date? */}
+            <div>
+              <TextSpanView type="p">
+                Reward received on{" "}
+                <span class={sheet.classes.BoldText}>
+                  {DateTime.fromMillis(reward.dateGiven).toLocaleString(
+                    DateTime.DATE_MED
+                  )}
+                </span>
+              </TextSpanView>
+            </div>
+            {state === "PENDING" && (
+              <div>
+                <TextSpanView type="p">
+                  Available On{" "}
+                  <span class={sheet.classes.BoldText}>
+                    {DateTime.fromMillis(
+                      reward.dateScheduledFor
+                    ).toLocaleString(DateTime.DATE_MED)}
+                  </span>
+                </TextSpanView>
+              </div>
+            )}{" "}
             {state === "AVAILABLE" && reward.dateExpires && (
-              <p>Date Expiring: {reward.dateExpires}</p>
+              <div>
+                <TextSpanView type="p">
+                  Reward expiring on{" "}
+                  <span class={sheet.classes.BoldText}>
+                    {DateTime.fromMillis(reward.dateExpires).toLocaleString(
+                      DateTime.DATE_MED
+                    )}
+                  </span>
+                </TextSpanView>
+              </div>
             )}
+            {reward.fuelTankCode && (
+              <div>
+                <TextSpanView type="p">
+                  Your code is{" "}
+                  <span class={sheet.classes.BoldText}>
+                    {reward.fuelTankCode}
+                  </span>
+                </TextSpanView>
+              </div>
+            )}
+            {/* <div>
+                <TextSpanView type="p">Customer note here</TextSpanView>
+              </div> */}
           </div>
         </sl-details>
       );
