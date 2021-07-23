@@ -2,16 +2,14 @@ import jsonpointer from "jsonpointer";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import {
   navigation,
-  useUserIdentity,
   useRegisterWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
 import { usePortalEmailVerification } from "../sqm-portal-email-verification/usePortalEmailVerification";
 
 export function usePortalRegister({ nextPage }) {
   const [error, setError] = useState("");
-  const [request, { loading, errors }] =
+  const [request, { loading, errors, data }] =
     useRegisterWithEmailAndPasswordMutation();
-  const userIdent = useUserIdentity();
   const {
     states: emailVerificationStates,
     callbacks: { submit: submitEmailVerificationRequest },
@@ -46,10 +44,10 @@ export function usePortalRegister({ nextPage }) {
   };
 
   useEffect(() => {
-    if (userIdent?.jwt) {
+    if (data?.registerManagedIdentityWithEmailAndPassword?.token) {
       submitEmailVerificationRequest();
     }
-  }, [userIdent?.jwt]);
+  }, [data?.registerManagedIdentityWithEmailAndPassword?.token]);
 
   useEffect(() => {
     if (emailVerificationStates.success) navigation.push(nextPage);
