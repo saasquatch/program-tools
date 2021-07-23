@@ -60,7 +60,7 @@ export class ReferralTableRewardsCell {
       return state[0].toUpperCase() + state.slice(1).toLowerCase();
     };
 
-    const getTimeDiff = (startTime: any, endTime: number): any => {
+    const getTimeDiff = (_startTime: any, endTime: number): any => {
       // Current implementation only calculates the difference from current time
       const diff = DateTime.fromMillis(endTime).toRelativeCalendar();
       return diff;
