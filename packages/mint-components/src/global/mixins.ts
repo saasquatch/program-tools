@@ -94,13 +94,13 @@ export const AuthWrapper = {
   ...Wrapper,
   "max-width": "500px",
   ...Column,
-  ...gap({ direction: "column", size: "var(--sl-spacing-xx-large)" }),
+  ...gap({ direction: "column", size: "var(--sl-spacing-x-large)" }),
 };
 
 export const AuthColumn = {
   ...Column,
   "& > *:not(style)": { display: "block" },
-  ...gap({ direction: "column", size: "var(--sl-spacing-x-large)" }),
+  ...gap({ direction: "column", size: "var(--sl-spacing-large)" }),
 };
 
 export const AuthButtonsContainer = {

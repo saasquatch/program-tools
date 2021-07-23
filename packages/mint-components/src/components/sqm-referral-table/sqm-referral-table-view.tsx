@@ -59,10 +59,6 @@ export function ReferralTableView(props: ReferralTableViewProps) {
   const { states, data, callbacks, elements } = props;
   const { columns, rows } = elements;
 
-  if (states.loading) {
-    return elements.loadingElement;
-  }
-
   return (
     <div>
       <style type="text/css">{styleString}</style>
