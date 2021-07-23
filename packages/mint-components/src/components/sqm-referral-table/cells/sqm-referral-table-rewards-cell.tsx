@@ -23,7 +23,7 @@ export class ReferralTableRewardsCell {
       },
 
       Details: {
-        "max-width": "300px",
+        "max-width": "500px",
         "padding-right": "var(--sl-spacing-x-small)",
         "&::part(header)": {
           padding: "var(--sl-spacing-x-small)",
@@ -81,9 +81,12 @@ export class ReferralTableRewardsCell {
       return state[0].toUpperCase() + state.slice(1).toLowerCase();
     };
 
-    const getTimeDiff = (startTime: any, endTime: number): string => {
+    const getTimeDiff = (endTime: number): string => {
       // Current implementation only calculates the difference from current time
-      const diff = DateTime.fromMillis(endTime).toRelativeCalendar();
+      const diff = DateTime.fromMillis(endTime)
+        .toRelativeCalendar()
+        .replace("in", "")
+        .trim();
       return diff;
     };
 
@@ -91,11 +94,6 @@ export class ReferralTableRewardsCell {
       const state = getState(reward.statuses);
       const slBadgeType = getSLBadgeType(state);
       const badgeText = toTitleCase(state);
-      let relativeTime = reward.dateExpires
-        ? getTimeDiff(reward.dateGiven, reward.dateExpires)
-            .replace("in", "")
-            .trim()
-        : null;
 
       return (
         <sl-details class={sheet.classes.Details}>
@@ -106,11 +104,12 @@ export class ReferralTableRewardsCell {
             </TextSpanView>
             {/* If state is pending and reward has expiry date, display the relative time inside badge. Otherwise only display the badge text */}
             <div class={sheet.classes.BadgeContainer}>
-              {state === "PENDING" && reward.dateExpires ? (
+              {state === "PENDING" && reward.dateScheduledFor ? (
                 <sl-badge type={slBadgeType} pill>{`${badgeText} ${
-                  relativeTime === "tomorrow" || relativeTime === "today"
-                    ? `until ${relativeTime}`
-                    : `for ${relativeTime}`
+                  getTimeDiff(reward.dateScheduledFor) === "tomorrow" ||
+                  getTimeDiff(reward.dateScheduledFor) === "today"
+                    ? `until ${getTimeDiff(reward.dateScheduledFor)}`
+                    : `for ${getTimeDiff(reward.dateScheduledFor)}`
                 }`}</sl-badge>
               ) : (
                 <sl-badge type={slBadgeType} pill>
@@ -119,9 +118,10 @@ export class ReferralTableRewardsCell {
               )}
               {reward.dateExpires && state === "AVAILABLE" && (
                 <sl-badge type="info" pill>
-                  {relativeTime === "tomorrow" || relativeTime === "today"
-                    ? `Expiring ${relativeTime}`
-                    : `Expiring in ${relativeTime}`}
+                  {getTimeDiff(reward.dateExpires) === "tomorrow" ||
+                  getTimeDiff(reward.dateExpires) === "today"
+                    ? `Expiring ${getTimeDiff(reward.dateExpires)}`
+                    : `Expiring in ${getTimeDiff(reward.dateExpires)}`}
                 </sl-badge>
               )}
             </div>
@@ -137,7 +137,7 @@ export class ReferralTableRewardsCell {
                 </span>
               </TextSpanView>
             </div>
-            {state === "PENDING" && (
+            {(state === "PENDING" && reward.dateScheduledFor) && (
               <div>
                 <TextSpanView type="p">
                   Available On{" "}
