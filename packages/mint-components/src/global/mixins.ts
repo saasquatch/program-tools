@@ -99,7 +99,7 @@ export const AuthWrapper = {
 
 export const AuthColumn = {
   ...Column,
-  "& > *:not(style)": { display: "block" },
+  "& > *:not(style, div)": { display: "block" },
   ...gap({ direction: "column", size: "var(--sl-spacing-large)" }),
 };
 
