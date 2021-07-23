@@ -50,7 +50,6 @@ export function useWidget(props: SqbWidget) {
     !props.requireAuth ||
     // Or auth required and logged in
     userIdent !== undefined;
-
   useEffect(() => {
     if (props.widgetType && canLoad) {
       fetch({
@@ -60,7 +59,7 @@ export function useWidget(props: SqbWidget) {
         locale: undefined,
       });
     }
-  }, [props.widgetType, canLoad]);
+  }, [props.widgetType, props.requireAuth, userIdent?.jwt]);
 
   const html = data?.renderWidget?.widgetConfig?.values?.htmlTemplate;
 
