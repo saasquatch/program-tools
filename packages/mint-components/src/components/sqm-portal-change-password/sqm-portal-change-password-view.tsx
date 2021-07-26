@@ -6,7 +6,7 @@ import { PortalSectionView } from "../sqm-titled-section/sqm-portal-section-view
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
 export interface PortalChangePasswordViewProps {
-  states: { open: boolean; error: string; loading: boolean };
+  states: { open: boolean; error: string; loading: boolean; success: boolean };
   callbacks: {
     setOpen: (open: boolean) => void;
     submit: (event: MouseEvent) => void;
@@ -40,6 +40,11 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
             <div part="erroralert-text">{states.error}</div>
           </sqm-form-message>
         )}
+        {states.success && (
+          <sqm-form-message type="success" exportparts="successalert-icon">
+            <div part="successalert-text">Your password has been updated.</div>
+          </sqm-form-message>
+        )}
         <PortalSectionView
           {...{
             labelMargin: "xxxx-large",
@@ -56,6 +61,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                     name="/password"
                     label="New password"
                     required
+                    togglePassword
                     disabled={states.loading}
                     type="password"
                   ></sl-input>
@@ -63,13 +69,19 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                     name="/confirmPassword"
                     label="Confirm new password"
                     required
+                    togglePassword
                     disabled={states.loading}
                     type="password"
                   ></sl-input>
                   <PortalContainerView
                     {...{ direction: "row", padding: "none", gap: "20px" }}
                   >
-                    <sl-button type="text">Cancel</sl-button>
+                    <sl-button
+                      type="text"
+                      onClick={() => callbacks.setOpen(false)}
+                    >
+                      Cancel
+                    </sl-button>
                     <sl-button type="default" submit loading={states.loading}>
                       Change Password
                     </sl-button>

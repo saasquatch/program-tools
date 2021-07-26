@@ -1,4 +1,4 @@
-import { useState } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { PortalChangePassword } from "./sqm-portal-change-password";
 import jsonpointer from "jsonpointer";
 import {
@@ -7,12 +7,15 @@ import {
 } from "@saasquatch/component-boilerplate";
 
 export function usePortalChangePassword(_props: PortalChangePassword) {
-  const [request, { loading, errors }] = useChangePasswordMutation();
+  const [request, { loading, errors, data }] = useChangePasswordMutation();
   const [open, setOpen] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
   const user = useUserIdentity();
 
   const submit = async (event: any) => {
+    setSuccess(false);
+
     const formData = event.detail?.formData;
     formData?.forEach((value, key) => {
       jsonpointer.set(formData, key, value);
@@ -34,10 +37,18 @@ export function usePortalChangePassword(_props: PortalChangePassword) {
 
     await request(variables);
   };
+
+  useEffect(() => {
+    if (data?.changeManagedIdentityPassword?.success) {
+      setSuccess(true);
+    }
+  }, [data?.changeManagedIdentityPassword?.success]);
+
   return {
     states: {
       open,
       loading,
+      success,
       error: errors?.response?.errors?.[0]?.message || error,
     },
     data: {},

@@ -6,7 +6,7 @@ export default {
 };
 
 const defaultProps = {
-  states: { open: false, loading: false, error: "" },
+  states: { open: false, loading: false, success: false, error: "" },
   callbacks: {
     setOpen: (o) => console.log(o),
     submit: (e) => console.log("Submit", e),
@@ -14,7 +14,7 @@ const defaultProps = {
 };
 
 const openProps = {
-  states: { open: true, loading: false, error: "" },
+  states: { open: true, loading: false, success: false, error: "" },
   callbacks: {
     setOpen: (o) => console.log(o),
     submit: (e) => console.log("Submit", e),
@@ -25,6 +25,7 @@ const errorProps = {
   states: {
     open: true,
     loading: false,
+    success: false,
     error: "Something went wrong. Please try again.",
   },
   callbacks: {
