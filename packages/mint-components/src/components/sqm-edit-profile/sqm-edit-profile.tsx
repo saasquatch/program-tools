@@ -121,7 +121,7 @@ function useEditProfileDemo(props: EditProfile): EditProfileViewProps {
         },
       },
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

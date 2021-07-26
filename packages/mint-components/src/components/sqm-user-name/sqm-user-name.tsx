@@ -40,7 +40,7 @@ function useUserNameDemo(props: UserName): UserNameViewProps {
       loadingText: "...",
       username: "John Smith",
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

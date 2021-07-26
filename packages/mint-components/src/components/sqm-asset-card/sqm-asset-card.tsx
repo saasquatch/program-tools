@@ -52,7 +52,7 @@ function useAssetCardDemo(props: AssetCard): AssetCardViewProps {
       imgUrl: "../../assets/saasquatch-logo.png",
       callbacks: {},
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

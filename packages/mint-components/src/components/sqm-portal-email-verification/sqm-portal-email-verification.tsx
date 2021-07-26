@@ -55,7 +55,7 @@ function usePortalEmailVerificationDemo(
         email: "test@example.com",
       },
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

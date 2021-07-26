@@ -63,7 +63,7 @@ function useSidebarItemDemo(
         onClick: (e: MouseEvent) => console.log(e),
       },
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

@@ -76,7 +76,7 @@ function usePortalProfileDemo(
         onChange: (e) => console.log(e),
       },
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

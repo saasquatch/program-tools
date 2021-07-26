@@ -15,3 +15,7 @@ export const FullStack = () => {
     ></sqm-user-name>
   );
 };
+
+export const FullStackDefault = () => {
+  return <sqm-user-name></sqm-user-name>;
+};

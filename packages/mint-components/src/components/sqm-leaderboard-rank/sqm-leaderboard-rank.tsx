@@ -74,7 +74,7 @@ function useLeaderboardRankDemo(
         rank,
       },
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

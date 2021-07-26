@@ -45,7 +45,7 @@ function usePortalChangePasswordDemo(props: PortalChangePassword) {
         submit: (e) => console.log("Submit", e),
       },
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

@@ -103,7 +103,7 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
         ),
       },
     },
-    props.demoProps,
+    props.demoProps|| {},
     { arrayMerge: (_, a) => a }
   );
 }
