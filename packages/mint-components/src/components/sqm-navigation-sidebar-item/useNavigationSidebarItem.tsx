@@ -17,7 +17,7 @@ export function useNavigationSidebarItem(
     },
     callbacks: {
       onClick: () => navigation.push(`${props.path}`),
-      onMiddleClick: () => middleClickLink(props.path),
+      onMiddleClick: (e: MouseEvent) => middleClickLink(e, props.path),
     },
   };
 }

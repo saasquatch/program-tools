@@ -25,8 +25,9 @@ export function getProps<T>(obj: T): T {
   return props;
 }
 
-export function middleClickLink(path: string) {
-  return Object.assign(document.createElement("a"), {
+export function middleClickLink(e: MouseEvent, path: string) {
+  e.preventDefault();
+  Object.assign(document.createElement("a"), {
     target: "_blank",
     href: path,
   }).click();

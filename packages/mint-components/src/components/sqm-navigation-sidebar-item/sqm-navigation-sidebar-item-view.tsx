@@ -13,7 +13,7 @@ export interface NavigationSidebarItemViewProps {
   };
   callbacks: {
     onClick: (e: MouseEvent) => void;
-    onMiddleClick: () => void;
+    onMiddleClick: (e: MouseEvent) => void;
   };
 }
 
@@ -50,7 +50,7 @@ export function NavigationSidebarItemView(
   return (
     <div
       onClick={callbacks.onClick}
-      onAuxClick={callbacks.onMiddleClick}
+      onMouseDown={(e) => (e.button === 1 ? callbacks.onMiddleClick(e) : true)}
       class={sheet.classes.ItemContainer}
     >
       <style type="text/css">{styleString}</style>
