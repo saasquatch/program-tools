@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property   | Attribute | Description | Type                                                                | Default     |
-| ---------- | --------- | ----------- | ------------------------------------------------------------------- | ----------- |
-| `demoData` | --        |             | `{ states?: { open: boolean; error: string; loading: boolean; }; }` | `undefined` |
+| Property   | Attribute | Description | Type                                                                                  | Default     |
+| ---------- | --------- | ----------- | ------------------------------------------------------------------------------------- | ----------- |
+| `demoData` | --        |             | `{ states?: { open: boolean; error: string; loading: boolean; success: boolean; }; }` | `undefined` |
 
 
 ## Dependencies

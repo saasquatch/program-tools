@@ -7,7 +7,6 @@ export interface StatContainerProps {
 }
 
 export function StatContainerView(props: StatContainerProps, children: VNode) {
-  console.log(children);
 
   const divideSpace = () => {
     const spaceValue = getComputedStyle(
