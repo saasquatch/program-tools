@@ -2,14 +2,12 @@ import jsonpointer from "jsonpointer";
 import { useEffect } from "@saasquatch/universal-hooks";
 import {
   navigation,
-  useUserIdentity,
   useAuthenticateWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
 
 export function usePortalLogin({ nextPage }) {
-  const [request, { loading, errors }] =
+  const [request, { loading, errors, data }] =
     useAuthenticateWithEmailAndPasswordMutation();
-  const userIdent = useUserIdentity();
 
   const urlParams = new URLSearchParams(window.location.search);
   const nextPageOverride = urlParams.get("nextPage");
@@ -26,14 +24,14 @@ export function usePortalLogin({ nextPage }) {
   };
 
   useEffect(() => {
-    if (userIdent?.jwt) {
+    if (data?.authenticateManagedIdentityWithEmailAndPassword?.token) {
       urlParams.delete("nextPage");
       navigation.push({
         pathname: nextPageOverride || nextPage,
         search: urlParams.toString() && "?" + urlParams.toString(),
       });
     }
-  }, [userIdent?.jwt]);
+  }, [data?.authenticateManagedIdentityWithEmailAndPassword?.token]);
 
   return {
     states: {

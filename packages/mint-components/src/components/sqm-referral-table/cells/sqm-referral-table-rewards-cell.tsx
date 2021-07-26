@@ -23,6 +23,7 @@ export class ReferralTableRewardsCell {
       },
 
       Details: {
+        "padding-bottom": "var(--sl-spacing-small)",
         "max-width": "500px",
         "padding-right": "var(--sl-spacing-x-small)",
         "&::part(header)": {
@@ -139,6 +140,30 @@ export class ReferralTableRewardsCell {
                 </TextSpanView>
               </div>
             )}
+            {state === "EXPIRED" && reward.dateExpires && (
+              <div>
+                <TextSpanView type="p">
+                  Reward expired on{" "}
+                  <span class={sheet.classes.BoldText}>
+                    {DateTime.fromMillis(reward.dateExpires).toLocaleString(
+                      DateTime.DATE_MED
+                    )}
+                  </span>
+                </TextSpanView>
+              </div>
+            )}
+            {state === "CANCELLED" && reward.dateCancelled && (
+              <div>
+                <TextSpanView type="p">
+                  Reward cancelled on{" "}
+                  <span class={sheet.classes.BoldText}>
+                    {DateTime.fromMillis(reward.dateCancelled).toLocaleString(
+                      DateTime.DATE_MED
+                    )}
+                  </span>
+                </TextSpanView>
+              </div>
+            )}
             {state === "PENDING" && reward.dateScheduledFor && (
               <div>
                 <TextSpanView type="p">
@@ -173,9 +198,6 @@ export class ReferralTableRewardsCell {
                 </TextSpanView>
               </div>
             )}
-            {/* <div>
-                <TextSpanView type="p">Customer note here</TextSpanView>
-              </div> */}
           </div>
         </sl-details>
       );
