@@ -15,6 +15,7 @@ export interface LeaderboardProps {
   interval: string;
   empty: VNode;
   loadingstate: VNode;
+  demoProps?: LeaderboardViewProps;
 }
 
 const GET_LEADERBOARD = gql`

@@ -27,4 +27,5 @@ export class PortalLogout {
     isDemo() ? useLogoutDemo(this) : usePortalLogout(this);
   }
 }
+
 function useLogoutDemo({}): void {}

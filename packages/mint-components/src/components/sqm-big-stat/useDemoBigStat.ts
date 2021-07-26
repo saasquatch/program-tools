@@ -1,3 +1,4 @@
+import deepmerge from "deepmerge";
 import { BigStat } from "./sqm-big-stat";
 import { BigStatHook } from "./useBigStat";
 
@@ -15,12 +16,16 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
     if (old === label) break;
   }
 
-  return {
-    props: {
-      statvalue: "12345",
-      flexReverse: false,
-      alignment: "center",
+  return deepmerge(
+    {
+      props: {
+        statvalue: "12345",
+        flexReverse: false,
+        alignment: "center" as const,
+      },
+      label: label ?? "Demo Label",
     },
-    label: label ?? "Demo Label",
-  };
+    props.demoData,
+    { arrayMerge: (_, a) => a }
+  );
 }

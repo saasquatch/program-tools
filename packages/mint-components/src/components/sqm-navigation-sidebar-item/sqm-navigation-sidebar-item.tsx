@@ -1,8 +1,13 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
-import { NavigationSidebarItemView, NavigationSidebarItemViewProps } from "./sqm-navigation-sidebar-item-view";
+import {
+  NavigationSidebarItemView,
+  NavigationSidebarItemViewProps,
+} from "./sqm-navigation-sidebar-item-view";
 import { useNavigationSidebarItem } from "./useNavigationSidebarItem";
 
 /**
@@ -13,7 +18,6 @@ import { useNavigationSidebarItem } from "./useNavigationSidebarItem";
   shadow: true,
 })
 export class NavigationSidebarItem {
-
   /**
    * @uiName Navigation path
    */
@@ -26,6 +30,9 @@ export class NavigationSidebarItem {
    * @uiName Label
    */
   @Prop() label: string;
+
+  /** @undocumented */
+  @Prop() demoData?: DemoData<NavigationSidebarItemViewProps>;
 
   constructor() {
     withHooks(this);
@@ -40,17 +47,23 @@ export class NavigationSidebarItem {
   }
 }
 
-function useSidebarItemDemo(_props: NavigationSidebarItem): NavigationSidebarItemViewProps {
-  return {
-    states: {
-      active: false,
+function useSidebarItemDemo(
+  props: NavigationSidebarItem
+): NavigationSidebarItemViewProps {
+  return deepmerge(
+    {
+      states: {
+        active: false,
+      },
+      data: {
+        label: "Dashboard",
+        icon: "house",
+      },
+      callbacks: {
+        onClick: (e: MouseEvent) => console.log(e),
+      },
     },
-    data: {
-      label: "Dashboard",
-      icon: "house",
-    },
-    callbacks: {
-      onClick: (e: MouseEvent) => console.log(e),
-    },
-  };
+    props.demoData,
+    { arrayMerge: (_, a) => a }
+  );
 }

@@ -1,6 +1,12 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
-import { ReferralTableView } from "./sqm-referral-table-view";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
+import {
+  ReferralTableView,
+  ReferralTableViewProps,
+} from "./sqm-referral-table-view";
 import { useReferralTable } from "./useReferralTable";
 
 /**
@@ -19,6 +25,9 @@ export class ReferralTable {
    */
   @Prop() programId: string;
 
+  /** @undocumented */
+  @Prop() demoData?: DemoData<ReferralTableViewProps>;
+
   constructor() {
     withHooks(this);
   }
@@ -28,11 +37,9 @@ export class ReferralTable {
     const empty = <slot name="empty" />;
     const loading = <slot name="loading" />;
 
-    const { states, data, callbacks, elements } = useReferralTable(
-      this,
-      empty,
-      loading
-    );
+    const { states, data, callbacks, elements } = isDemo()
+      ? useReferraltableDemo(this)
+      : useReferralTable(this, empty, loading);
 
     return (
       <ReferralTableView
@@ -43,4 +50,45 @@ export class ReferralTable {
       ></ReferralTableView>
     );
   }
+}
+
+function useReferraltableDemo(props: ReferralTable) {
+  return deepmerge(
+    {
+      states: {
+        hasPrev: false,
+        hasNext: false,
+        loading: false,
+      },
+      callbacks: {
+        prevPage: () => console.log("Prev"),
+        nextPage: () => console.log("Next"),
+      },
+      data: {
+        referralData: [],
+      },
+      elements: {
+        emptyElement: (
+          <div style={{ width: "100%" }}>
+            <sqm-text>
+              <h3 style={{ color: "#777777" }}>No Referrals Yet</h3>
+            </sqm-text>
+          </div>
+        ),
+        loadingElement: (
+          <div style={{ width: "100%" }}>
+            <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+            <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+            <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+            <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+            <sl-skeleton></sl-skeleton>
+          </div>
+        ),
+        columns: [<div>Name</div>, <div>Email</div>, <div>DOB</div>],
+        rows: [],
+      },
+    },
+    props.demoData,
+    { arrayMerge: (_, a) => a }
+  );
 }

@@ -1,6 +1,8 @@
 import { isDemo, navigation } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
 import { PortalLoginView, PortalLoginViewProps } from "./sqm-portal-login-view";
 import { usePortalLogin } from "./usePortalLogin";
 
@@ -29,6 +31,9 @@ export class PortalLogin {
 
   @Prop()
   pageLabel: string = "Sign in to your account";
+
+  /** @undocumented */
+  @Prop() demoData?: DemoData<PortalLoginViewProps>;
 
   constructor() {
     withHooks(this);
@@ -73,13 +78,17 @@ export class PortalLogin {
     );
   }
 }
-function useLoginDemo({ nextPage }): Partial<PortalLoginViewProps> {
-  return {
-    states: { error: "", loading: false },
-    callbacks: {
-      submit: async (_event) => {
-        nextPage;
+function useLoginDemo(props: PortalLogin): Partial<PortalLoginViewProps> {
+  return deepmerge(
+    {
+      states: { error: "", loading: false },
+      callbacks: {
+        submit: async (_event) => {
+          console.log("submit");
+        },
       },
     },
-  };
+    props.demoData,
+    { arrayMerge: (_, a) => a }
+  );
 }

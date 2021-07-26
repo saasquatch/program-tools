@@ -1,6 +1,8 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
 import { UserNameView, UserNameViewProps } from "./sqm-user-name-view";
 import { useUserName } from "./useUserName";
 
@@ -17,6 +19,9 @@ export class UserName {
   @Prop() fallback: string = "Anonymous User";
   @Prop() loadingText: string = "...";
 
+  /** @undocumented */
+  @Prop() demoData?: DemoData<UserNameViewProps>;
+
   constructor() {
     withHooks(this);
   }
@@ -29,10 +34,13 @@ export class UserName {
 }
 
 function useUserNameDemo(props: UserName): UserNameViewProps {
-  console.log(props);
-  return {
-    loading: false,
-    loadingText: "...",
-    username: "John Smith",
-  };
+  return deepmerge(
+    {
+      loading: false,
+      loadingText: "...",
+      username: "John Smith",
+    },
+    props.demoData,
+    { arrayMerge: (_, a) => a }
+  );
 }

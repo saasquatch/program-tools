@@ -1,6 +1,8 @@
 import { isDemo, navigation } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
 import {
   PortalForgotPasswordView,
   PortalForgotPasswordViewProps,
@@ -24,6 +26,9 @@ export class PortalForgotPassword {
   @Prop()
   submitLabel = "Request Password Reset";
 
+  /** @undocumented */
+  @Prop() demoData?: DemoData<PortalForgotPasswordViewProps>;
+
   constructor() {
     withHooks(this);
   }
@@ -32,7 +37,7 @@ export class PortalForgotPassword {
 
   render() {
     const { states, callbacks } = isDemo()
-      ? usePortalForgotPasswordDemo()
+      ? usePortalForgotPasswordDemo(this)
       : usePortalForgotPassword();
 
     const content = {
@@ -64,11 +69,17 @@ export class PortalForgotPassword {
     );
   }
 }
-function usePortalForgotPasswordDemo(): Partial<PortalForgotPasswordViewProps> {
-  return {
-    states: { error: "", loading: false, success: false },
-    callbacks: {
-      submit: async (_event) => {},
+function usePortalForgotPasswordDemo(
+  props: PortalForgotPassword
+): Partial<PortalForgotPasswordViewProps> {
+  return deepmerge(
+    {
+      states: { error: "", loading: false, success: false },
+      callbacks: {
+        submit: async (_event) => {},
+      },
     },
-  };
+    props.demoData,
+    { arrayMerge: (_, a) => a }
+  );
 }

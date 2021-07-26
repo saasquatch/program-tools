@@ -7,6 +7,8 @@ import {
 } from "./sqm-navigation-menu-view";
 import { useNavigationMenu } from "./useNavigationMenu";
 import { getProps } from "../../utils/utils";
+import { DemoData } from "../../global/demo";
+import deepmerge from "deepmerge";
 
 /**
  * @uiName Portal Frame
@@ -29,6 +31,9 @@ export class NavigationMenu {
    */
   @Prop() menuLabel: string;
 
+  /** @undocumented */
+  @Prop() demoData?: DemoData<NavigationMenuViewProps>;
+
   constructor() {
     withHooks(this);
   }
@@ -47,17 +52,21 @@ export class NavigationMenu {
 }
 
 function useNavigationMenuDemo(props: NavigationMenu): NavigationMenuViewProps {
-  return {
-    states: {
-      includeDropdown: true,
-      styles: {
-        ...props,
-        menuLabel: "Menu",
+  return deepmerge(
+    {
+      states: {
+        includeDropdown: true,
+        styles: {
+          ...props,
+          menuLabel: "Menu",
+        },
       },
+      callbacks: {
+        rerender: () => {},
+      },
+      ref: { current: undefined },
     },
-    callbacks: {
-      rerender: () => {},
-    },
-    ref: { current: undefined },
-  };
+    props.demoData,
+    { arrayMerge: (_, a) => a }
+  );
 }

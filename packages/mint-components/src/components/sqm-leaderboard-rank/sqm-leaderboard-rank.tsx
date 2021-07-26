@@ -7,6 +7,8 @@ import {
   LeaderboardRankViewProps,
 } from "./sqm-leaderboard-rank-view";
 import { LeaderboardRankProps, useLeaderboardRank } from "./useLeaderboardRank";
+import { DemoData } from "../../global/demo";
+import deepmerge from "deepmerge";
 
 /**
  * @uiName Leaderboard Rank
@@ -36,6 +38,9 @@ export class LeaderboardRank {
    */
   @Prop() interval: string;
 
+  /** @undocumented */
+  @Prop() demoData?: DemoData<LeaderboardRankViewProps>;
+
   constructor() {
     withHooks(this);
   }
@@ -50,7 +55,7 @@ export class LeaderboardRank {
 }
 
 function useLeaderboardRankDemo(
-  props: LeaderboardRankProps
+  props: LeaderboardRank
 ): LeaderboardRankViewProps {
   const intl = createIntl({
     locale: "en",
@@ -63,9 +68,13 @@ function useLeaderboardRankDemo(
         rank: 1,
       }
     ) || "1st";
-  return {
-    data: {
-      rank,
+  return deepmerge(
+    {
+      data: {
+        rank,
+      },
     },
-  };
+    props.demoData,
+    { arrayMerge: (_, a) => a }
+  );
 }

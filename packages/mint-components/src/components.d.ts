@@ -5,10 +5,35 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { DemoData } from "./global/demo";
+import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
+import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
+import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { FunctionalComponent } from "@stencil/core";
+import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
+import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
+import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
+import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
+import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { Spacing } from "./global/mixins";
+import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
+import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
+import { PortalFrameViewProps } from "./components/sqm-portal-frame/sqm-portal-frame-view";
+import { PortalLoginViewProps } from "./components/sqm-portal-login/sqm-portal-login-view";
+import { PortalProfileViewProps } from "./components/sqm-portal-profile/sqm-portal-profile-view";
+import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-portal-register-view";
+import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
+import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
+import { ReferralTableViewProps } from "./components/sqm-referral-table/sqm-referral-table-view";
+import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
+import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
+import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
     interface SqmAssetCard {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<AssetCardViewProps>;
         /**
           * @uiName Banner image
          */
@@ -23,6 +48,10 @@ export namespace Components {
           * @uiName Alignment - controls the alignment of the flexbox
          */
         "alignment"?: "left" | "right" | "center";
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<BigStatViewProps>;
         /**
           * @uiName Flex Reverse - controls the order of the stat value & description column
          */
@@ -50,6 +79,10 @@ export namespace Components {
           * @uiName Region field label
          */
         "currentregiontext": string;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<EditProfileViewProps>;
         /**
           * @uiName Heading
          */
@@ -93,6 +126,10 @@ export namespace Components {
     }
     interface SqmLeaderboard {
         /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<LeaderboardViewProps>;
+        /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
           * @uiOptions {"allowPastDates":true, "months": 1}
@@ -119,6 +156,10 @@ export namespace Components {
     }
     interface SqmLeaderboardRank {
         /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<LeaderboardRankViewProps>;
+        /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
           * @uiOptions {"allowPastDates":true, "months": 1}
@@ -139,6 +180,10 @@ export namespace Components {
     }
     interface SqmNavigationMenu {
         /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<NavigationMenuViewProps>;
+        /**
           * @uiName Include dropdown menu
          */
         "includeDropdown": boolean;
@@ -150,6 +195,10 @@ export namespace Components {
     interface SqmNavigationSidebar {
     }
     interface SqmNavigationSidebarItem {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<NavigationSidebarItemViewProps>;
         /**
           * @uiName Icon
          */
@@ -188,6 +237,10 @@ export namespace Components {
         "poweredBy": boolean;
     }
     interface SqmPortalChangePassword {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalChangePasswordViewProps>;
     }
     interface SqmPortalContainer {
         /**
@@ -208,14 +261,30 @@ export namespace Components {
         "padding": Spacing;
     }
     interface SqmPortalEmailVerification {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalEmailVerificationViewProps>;
     }
     interface SqmPortalForgotPassword {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalForgotPasswordViewProps>;
         "emailLabel": string;
         "submitLabel": string;
     }
     interface SqmPortalFrame {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalFrameViewProps>;
     }
     interface SqmPortalLogin {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalLoginViewProps>;
         "emailLabel": string;
         "nextPage": string;
         "pageLabel": string;
@@ -227,6 +296,10 @@ export namespace Components {
     }
     interface SqmPortalProfile {
         "countrytext": string;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalProfileViewProps>;
         "emailtext": string;
         "firstnametext": string;
         "lastnametext": string;
@@ -238,6 +311,10 @@ export namespace Components {
     }
     interface SqmPortalRegister {
         "confirmPassword": boolean;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalRegisterViewProps>;
         "emailLabel": string;
         "hideInputs": boolean;
         "nextPage": string;
@@ -247,12 +324,24 @@ export namespace Components {
     }
     interface SqmPortalResetPassword {
         "confirmPassword": boolean;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalResetPasswordViewProps>;
         "nextPage": string;
     }
     interface SqmPortalVerifyEmail {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalVerifyEmailViewProps>;
         "nextPage": string;
     }
     interface SqmReferralTable {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<ReferralTableViewProps>;
         /**
           * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs.
           * @uiName Program
@@ -320,6 +409,10 @@ export namespace Components {
     interface SqmRouter {
     }
     interface SqmShareButton {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<ShareButtonViewProps>;
         /**
           * @uiName Disabled
          */
@@ -397,6 +490,10 @@ export namespace Components {
     }
     interface SqmShareCode {
         /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<ShareLinkViewProps>;
+        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
          */
@@ -413,6 +510,10 @@ export namespace Components {
         "tooltiptext": string;
     }
     interface SqmShareLink {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<ShareLinkViewProps>;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -462,6 +563,10 @@ export namespace Components {
         "padding": Spacing;
     }
     interface SqmUserName {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<UserNameViewProps>;
         "fallback": string;
         "loadingText": string;
     }
@@ -816,6 +921,10 @@ declare global {
 declare namespace LocalJSX {
     interface SqmAssetCard {
         /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<AssetCardViewProps>;
+        /**
           * @uiName Banner image
          */
         "imgUrl"?: string;
@@ -829,6 +938,10 @@ declare namespace LocalJSX {
           * @uiName Alignment - controls the alignment of the flexbox
          */
         "alignment"?: "left" | "right" | "center";
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<BigStatViewProps>;
         /**
           * @uiName Flex Reverse - controls the order of the stat value & description column
          */
@@ -856,6 +969,10 @@ declare namespace LocalJSX {
           * @uiName Region field label
          */
         "currentregiontext"?: string;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<EditProfileViewProps>;
         /**
           * @uiName Heading
          */
@@ -899,6 +1016,10 @@ declare namespace LocalJSX {
     }
     interface SqmLeaderboard {
         /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<LeaderboardViewProps>;
+        /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
           * @uiOptions {"allowPastDates":true, "months": 1}
@@ -925,6 +1046,10 @@ declare namespace LocalJSX {
     }
     interface SqmLeaderboardRank {
         /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<LeaderboardRankViewProps>;
+        /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
           * @uiOptions {"allowPastDates":true, "months": 1}
@@ -945,6 +1070,10 @@ declare namespace LocalJSX {
     }
     interface SqmNavigationMenu {
         /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<NavigationMenuViewProps>;
+        /**
           * @uiName Include dropdown menu
          */
         "includeDropdown"?: boolean;
@@ -956,6 +1085,10 @@ declare namespace LocalJSX {
     interface SqmNavigationSidebar {
     }
     interface SqmNavigationSidebarItem {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<NavigationSidebarItemViewProps>;
         /**
           * @uiName Icon
          */
@@ -994,6 +1127,10 @@ declare namespace LocalJSX {
         "poweredBy"?: boolean;
     }
     interface SqmPortalChangePassword {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalChangePasswordViewProps>;
     }
     interface SqmPortalContainer {
         /**
@@ -1014,14 +1151,30 @@ declare namespace LocalJSX {
         "padding"?: Spacing;
     }
     interface SqmPortalEmailVerification {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalEmailVerificationViewProps>;
     }
     interface SqmPortalForgotPassword {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalForgotPasswordViewProps>;
         "emailLabel"?: string;
         "submitLabel"?: string;
     }
     interface SqmPortalFrame {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalFrameViewProps>;
     }
     interface SqmPortalLogin {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalLoginViewProps>;
         "emailLabel"?: string;
         "nextPage"?: string;
         "pageLabel"?: string;
@@ -1033,6 +1186,10 @@ declare namespace LocalJSX {
     }
     interface SqmPortalProfile {
         "countrytext"?: string;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalProfileViewProps>;
         "emailtext"?: string;
         "firstnametext"?: string;
         "lastnametext"?: string;
@@ -1044,6 +1201,10 @@ declare namespace LocalJSX {
     }
     interface SqmPortalRegister {
         "confirmPassword"?: boolean;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalRegisterViewProps>;
         "emailLabel"?: string;
         "hideInputs"?: boolean;
         "nextPage"?: string;
@@ -1053,12 +1214,24 @@ declare namespace LocalJSX {
     }
     interface SqmPortalResetPassword {
         "confirmPassword"?: boolean;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalResetPasswordViewProps>;
         "nextPage"?: string;
     }
     interface SqmPortalVerifyEmail {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<PortalVerifyEmailViewProps>;
         "nextPage"?: string;
     }
     interface SqmReferralTable {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<ReferralTableViewProps>;
         /**
           * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs.
           * @uiName Program
@@ -1116,6 +1289,10 @@ declare namespace LocalJSX {
     interface SqmRouter {
     }
     interface SqmShareButton {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<ShareButtonViewProps>;
         /**
           * @uiName Disabled
          */
@@ -1193,6 +1370,10 @@ declare namespace LocalJSX {
     }
     interface SqmShareCode {
         /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<ShareLinkViewProps>;
+        /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
          */
@@ -1209,6 +1390,10 @@ declare namespace LocalJSX {
         "tooltiptext"?: string;
     }
     interface SqmShareLink {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<ShareLinkViewProps>;
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
@@ -1258,6 +1443,10 @@ declare namespace LocalJSX {
         "padding"?: Spacing;
     }
     interface SqmUserName {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<UserNameViewProps>;
         "fallback"?: string;
         "loadingText"?: string;
     }

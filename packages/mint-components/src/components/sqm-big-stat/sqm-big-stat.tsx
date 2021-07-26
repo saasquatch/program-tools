@@ -1,9 +1,10 @@
 import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { BigStatView } from "./sqm-big-stat-view";
+import { BigStatView, BigStatViewProps } from "./sqm-big-stat-view";
 import { useBigStat } from "./useBigStat";
 import { useDemoBigStat } from "./useDemoBigStat";
 import { isDemo } from "@saasquatch/component-boilerplate";
+import { DemoData } from "../../global/demo";
 
 /**
  *
@@ -39,6 +40,9 @@ export class BigStat {
    * @uiName Alignment - controls the alignment of the flexbox
    */
   @Prop() alignment?: "left" | "right" | "center";
+
+  /** @undocumented */
+  @Prop() demoData?: DemoData<BigStatViewProps>;
 
   @State()
   ignored = true;

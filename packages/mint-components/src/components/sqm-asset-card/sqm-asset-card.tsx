@@ -1,8 +1,10 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h, State } from "@stencil/core";
+import { DemoData } from "../../global/demo";
 import { AssetCardView, AssetCardViewProps } from "./sqm-asset-card-view";
 import { useAssetCard } from "./useAssetCard";
+import deepmerge from "deepmerge";
 
 /**
  * @uiName Asset Card
@@ -23,6 +25,9 @@ export class AssetCard {
    * */
   @Prop() imgUrl: string;
 
+  /** @undocumented */
+  @Prop() demoData?: DemoData<AssetCardViewProps>;
+
   @State()
   ignored = true;
 
@@ -38,12 +43,16 @@ export class AssetCard {
   }
 }
 
-function useAssetCardDemo(_props: AssetCard): AssetCardViewProps {
-  return {
-    text: {
-      titleText: "Marketing Banner",
+function useAssetCardDemo(props: AssetCard): AssetCardViewProps {
+  return deepmerge(
+    {
+      text: {
+        titleText: "Marketing Banner",
+      },
+      imgUrl: "../../assets/saasquatch-logo.png",
+      callbacks: {},
     },
-    imgUrl: "../../assets/saasquatch-logo.png",
-    callbacks: {},
-  };
+    props.demoData,
+    { arrayMerge: (_, a) => a }
+  );
 }

@@ -5,7 +5,7 @@ import { PortalContainerView } from "../sqm-portal-container/sqm-portal-containe
 import { PortalSectionView } from "../sqm-titled-section/sqm-portal-section-view";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
-export interface PortalChangePasswordProps {
+export interface PortalChangePasswordViewProps {
   states: { open: boolean; error: string };
   callbacks: {
     setOpen: (open: boolean) => void;
@@ -13,7 +13,7 @@ export interface PortalChangePasswordProps {
   };
 }
 
-export function PortalChangePasswordView(props: PortalChangePasswordProps) {
+export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
   const { states, callbacks } = props;
   const style = {
     Error: {

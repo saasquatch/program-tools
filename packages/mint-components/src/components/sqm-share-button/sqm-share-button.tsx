@@ -4,6 +4,8 @@ import { isDemo } from "@saasquatch/component-boilerplate";
 import { ShareButtonView, ShareButtonViewProps } from "./sqm-share-button-view";
 import { useShareButton } from "./useShareButton";
 import { getProps } from "../../utils/utils";
+import { DemoData } from "../../global/demo";
+import deepmerge from "deepmerge";
 
 /**
  * @uiName Share Button
@@ -106,14 +108,19 @@ export class ShareButton {
    */
   @Prop() sharetext?: string;
 
+  /** @undocumented */
+  @Prop() demoData?: DemoData<ShareButtonViewProps>;
+
   constructor() {
     withHooks(this);
   }
   disconnectedCallback() {}
 
   render() {
-    const thisProps = getProps(this)
-    const props = isDemo() ? useDemoShareButton(thisProps) : useShareButton(thisProps);
+    const thisProps = getProps(this);
+    const props = isDemo()
+      ? useDemoShareButton(thisProps)
+      : useShareButton(thisProps);
     return (
       <ShareButtonView {...props}>
         <slot />
@@ -123,19 +130,23 @@ export class ShareButton {
 }
 
 function useDemoShareButton(props: ShareButton): ShareButtonViewProps {
-  return {
-    medium: props.medium,
-    loading: false,
-    disabled: props.disabled,
-    pill: props.pill,
-    type: props.type,
-    size: props.size,
-    hideicon: props.hideicon,
-    iconslot: props.iconslot,
-    icon: props.icon,
-    hide: false,
-    onClick: () => {
-      // TODO: PRovide visual feedback
+  return deepmerge(
+    {
+      medium: props.medium,
+      loading: false,
+      disabled: props.disabled,
+      pill: props.pill,
+      type: props.type,
+      size: props.size,
+      hideicon: props.hideicon,
+      iconslot: props.iconslot,
+      icon: props.icon,
+      hide: false,
+      onClick: () => {
+        // TODO: PRovide visual feedback
+      },
     },
-  };
+    props.demoData,
+    { arrayMerge: (_, a) => a }
+  );
 }

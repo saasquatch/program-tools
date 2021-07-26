@@ -7,6 +7,8 @@ import {
 import { PortalProfileProps, usePortalProfile } from "./usePortalProfile";
 import { getProps } from "../../utils/utils";
 import { isDemo } from "@saasquatch/component-boilerplate";
+import { DemoData } from "../../global/demo";
+import deepmerge from "deepmerge";
 
 /**
  * @uiName Portal Profile
@@ -23,6 +25,8 @@ export class PortalProfile {
   @Prop() lastnametext: string = "Last Name";
   @Prop() emailtext: string = "Email";
   @Prop() countrytext: string = "Country";
+  /** @undocumented */
+  @Prop() demoData?: DemoData<PortalProfileViewProps>;
 
   constructor() {
     withHooks(this);
@@ -37,36 +41,42 @@ export class PortalProfile {
   }
 }
 
-function usePortalProfileDemo(_props: PortalProfileProps): PortalProfileViewProps {
-  return {
-    states: {
-      loading: false,
-      submitDisabled: false,
-      user: {
-        id: "01",
-        accountId: "111100000",
-        firstName: "Joe",
-        lastName: "Smith",
-        email: "jsmith@gmail.com",
-        countryCode: "5000",
+function usePortalProfileDemo(
+  props: PortalProfile
+): PortalProfileViewProps {
+  return deepmerge(
+    {
+      states: {
+        loading: false,
+        submitDisabled: false,
+        user: {
+          id: "01",
+          accountId: "111100000",
+          firstName: "Joe",
+          lastName: "Smith",
+          email: "jsmith@gmail.com",
+          countryCode: "5000",
+        },
+        text: {
+          firstnametext: "First Name",
+          lastnametext: "Last Name",
+          emailtext: "Email",
+          countrytext: "Country",
+        },
+        formState: {
+          country: "Canada",
+          firstName: "Joe",
+          lastName: "Smith",
+          errors: null,
+          error: "",
+        },
       },
-      text: {
-        firstnametext: "First Name",
-        lastnametext: "Last Name",
-        emailtext: "Email",
-        countrytext: "Country",
-      },
-      formState: {
-        country: "Canada",
-        firstName: "Joe",
-        lastName: "Smith",
-        errors: null,
-        error: "",
+      callbacks: {
+        onSubmit: (e) => console.log(e),
+        onChange: (e) => console.log(e),
       },
     },
-    callbacks: {
-      onSubmit: (e) => console.log(e),
-      onChange: (e) => console.log(e),
-    },
-  };
+    props.demoData,
+    { arrayMerge: (_, a) => a }
+  );
 }

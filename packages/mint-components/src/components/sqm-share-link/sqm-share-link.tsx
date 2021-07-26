@@ -4,6 +4,8 @@ import { isDemo } from "@saasquatch/component-boilerplate";
 import { ShareLinkView, ShareLinkViewProps } from "./sqm-share-link-view";
 import { useShareLink } from "./useShareLink";
 import { getProps } from "../../utils/utils";
+import { DemoData } from "../../global/demo";
+import deepmerge from "deepmerge";
 
 const DEFAULT_TOOLTIP_LIFESPAN = 1000;
 
@@ -40,6 +42,9 @@ export class ShareLink {
   })
   tooltiplifespan: number = DEFAULT_TOOLTIP_LIFESPAN;
 
+  /** @undocumented */
+  @Prop() demoData?: DemoData<ShareLinkViewProps>;
+
   constructor() {
     withHooks(this);
   }
@@ -57,16 +62,20 @@ export class ShareLink {
 function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
   const [open, setOpen] = useState(false);
   const shareString = "https://www.example.com/sharelink/abc";
-  return {
-    shareString,
-    tooltiptext: props.tooltiptext,
-    open,
-    onClick: () => {
-      // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
-      // Only if called from a user-initiated event
-      navigator.clipboard.writeText(shareString);
-      setOpen(true);
-      setTimeout(() => setOpen(false), props.tooltiplifespan);
+  return deepmerge(
+    {
+      shareString,
+      tooltiptext: props.tooltiptext,
+      open,
+      onClick: () => {
+        // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
+        // Only if called from a user-initiated event
+        navigator.clipboard.writeText(shareString);
+        setOpen(true);
+        setTimeout(() => setOpen(false), props.tooltiplifespan);
+      },
     },
-  };
+    props.demoData,
+    { arrayMerge: (_, a) => a }
+  );
 }

@@ -1,6 +1,8 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, Prop, h, State } from "@stencil/core";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
 import { withShadowView } from "../../ShadowViewAddon";
 import { LeaderboardView, LeaderboardViewProps } from "./sqm-leaderboard-view";
 import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
@@ -39,6 +41,9 @@ export class Leaderboard {
    */
   @Prop() interval: string;
 
+  /** @undocumented */
+  @Prop() demoData?: DemoData<LeaderboardViewProps>;
+
   @State()
   ignored = true;
 
@@ -58,40 +63,47 @@ export class Leaderboard {
       leaderboardType: this.leaderboardType,
       interval: this.interval,
     };
+    const demoProps = { ...props, demoData: this.demoData };
     const viewprops = isDemo()
-      ? useLeaderboardDemo(props)
+      ? useLeaderboardDemo(demoProps)
       : useLeaderboard(props);
     return <LeaderboardView {...viewprops} />;
   }
 }
 
 function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
-  return {
-    states: {
-      loading: false,
-      hasLeaders: true,
-      styles: {
-        usersheading: props.usersheading ? props.usersheading : "TOP REFERRERS",
-        statsheading: props.statsheading ? props.statsheading : "NEW TITANS",
+  return deepmerge(
+    {
+      states: {
+        loading: false,
+        hasLeaders: true,
+        styles: {
+          usersheading: props.usersheading
+            ? props.usersheading
+            : "TOP REFERRERS",
+          statsheading: props.statsheading ? props.statsheading : "NEW TITANS",
+        },
+      },
+      data: {
+        rankType: "rowNumber",
+        leaderboard: [
+          { firstName: "Viktor", lastInitial: "V", value: 82, rank: "1" },
+          { firstName: "MF", lastInitial: "D", value: 73, rank: "2" },
+          { firstName: "Freddie", lastInitial: "G", value: 64, rank: "3" },
+          { firstName: "Benny", lastInitial: "B", value: 55, rank: "4" },
+          { firstName: "Mos", lastInitial: "D", value: 46, rank: "5" },
+        ],
+      },
+      elements: {
+        empty: props.empty ? props.empty : <div>Empty</div>,
+        loadingstate: props.loadingstate ? (
+          props.loadingstate
+        ) : (
+          <div>Loading</div>
+        ),
       },
     },
-    data: {
-      rankType: "rowNumber",
-      leaderboard: [
-        { firstName: "Viktor", lastInitial: "V", value: 82, rank: "1" },
-        { firstName: "MF", lastInitial: "D", value: 73, rank: "2" },
-        { firstName: "Freddie", lastInitial: "G", value: 64, rank: "3" },
-        { firstName: "Benny", lastInitial: "B", value: 55, rank: "4" },
-        { firstName: "Mos", lastInitial: "D", value: 46, rank: "5" },
-      ],
-    },
-    elements: {
-      empty: props.empty ? props.empty : <div>Empty</div>,
-      loadingstate: props.loadingstate ? (
-        props.loadingstate
-      ) : (
-        <div>Loading</div>
-      ),
-    },
-  };
+    props.demoProps,
+    { arrayMerge: (_, a) => a }
+  );
 }

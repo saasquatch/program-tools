@@ -4,6 +4,8 @@ import EditProfileView, { EditProfileViewProps } from "./sqm-edit-profile-view";
 import { EditProfileProps, useEditProfile } from "./useEditProfile";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { getProps } from "../../utils/utils";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
 
 /**
  * @uiName Edit Profile
@@ -50,6 +52,9 @@ export class EditProfile {
    */
   @Prop() showregion: boolean;
 
+  /** @undocumented */
+  @Prop() demoData?: DemoData<EditProfileViewProps>;
+
   constructor() {
     withHooks(this);
   }
@@ -63,55 +68,60 @@ export class EditProfile {
   }
 }
 
-function useEditProfileDemo(props: EditProfileProps): EditProfileViewProps {
-  console.log("DEMO DEMO DEMO");
-  return {
-    states: {
-      loading: false,
-      submitDisabled: false,
-      formState: {
-        currentRegion: "Canada",
-        firstName: "Bill",
-        lastName: "Bob",
-        errors: {},
-        error: "An error string",
+function useEditProfileDemo(props: EditProfile): EditProfileViewProps {
+  return deepmerge(
+    {
+      states: {
+        loading: false,
+        submitDisabled: false,
+        formState: {
+          currentRegion: "Canada",
+          firstName: "Bill",
+          lastName: "Bob",
+          errors: {},
+          error: "An error string",
+        },
+        user: {
+          firstName: "Bill",
+          lastName: "Bob",
+          email: "billbob@example.com",
+        },
+        showEdit: false,
+        text: {
+          editprofileheader: props.editprofileheader
+            ? props.editprofileheader
+            : "Edit Profile",
+          editprofiletext: props.editprofiletext
+            ? props.editprofiletext
+            : "Update your profile.",
+          firstnametext: props.firstnametext
+            ? props.firstnametext
+            : "First Name",
+          lastnametext: props.lastnametext ? props.lastnametext : "Last Name",
+          canceltext: props.canceltext ? props.canceltext : "Cancel",
+          updatetext: props.updatetext ? props.updatetext : "Update",
+          currentregiontext: props.currentregiontext
+            ? props.currentregiontext
+            : "Region",
+          showregion: true,
+        },
       },
-      user: {
-        firstName: "Bill",
-        lastName: "Bob",
-        email: "billbob@example.com",
-      },
-      showEdit: false,
-      text: {
-        editprofileheader: props.editprofileheader
-          ? props.editprofileheader
-          : "Edit Profile",
-        editprofiletext: props.editprofiletext
-          ? props.editprofiletext
-          : "Update your profile.",
-        firstnametext: props.firstnametext ? props.firstnametext : "First Name",
-        lastnametext: props.lastnametext ? props.lastnametext : "Last Name",
-        canceltext: props.canceltext ? props.canceltext : "Cancel",
-        updatetext: props.updatetext ? props.updatetext : "Update",
-        currentregiontext: props.currentregiontext
-          ? props.currentregiontext
-          : "Region",
-        showregion: true,
+      callbacks: {
+        onSubmit: (props) => {
+          console.log(props);
+        },
+        resetForm: () => {
+          console.log("reset");
+        },
+        onChange: () => {
+          console.log("change");
+        },
+        setShowEdit: (props) => {
+          console.log(props);
+        },
       },
     },
-    callbacks: {
-      onSubmit: (props) => {
-        console.log(props);
-      },
-      resetForm: () => {
-        console.log("reset");
-      },
-      onChange: () => {
-        console.log("change");
-      },
-      setShowEdit: (props) => {
-        console.log(props);
-      },
-    },
-  };
+    props.demoData,
+    { arrayMerge: (_, a) => a }
+  );
 }

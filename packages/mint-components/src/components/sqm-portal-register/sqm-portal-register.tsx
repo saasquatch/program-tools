@@ -1,6 +1,8 @@
 import { isDemo, navigation } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
 import {
   PortalRegisterView,
   PortalRegisterViewProps,
@@ -38,6 +40,9 @@ export class PortalRegister {
 
   @Prop()
   pageLabel: string = "Register";
+
+  /** @undocumented */
+  @Prop() demoData?: DemoData<PortalRegisterViewProps>;
 
   constructor() {
     withHooks(this);
@@ -80,15 +85,19 @@ export class PortalRegister {
     );
   }
 }
-function useRegisterDemo({
-  nextPage,
-}): Pick<PortalRegisterViewProps, "states" | "callbacks"> {
-  return {
-    states: { error: "", loading: false, confirmPassword: true },
-    callbacks: {
-      submit: async (_event) => {
-        nextPage;
+function useRegisterDemo(
+  props: PortalRegister
+): Pick<PortalRegisterViewProps, "states" | "callbacks"> {
+  return deepmerge(
+    {
+      states: { error: "", loading: false, confirmPassword: true },
+      callbacks: {
+        submit: async (_event) => {
+          console.log("submit");
+        },
       },
     },
-  };
+    props.demoData,
+    { arrayMerge: (_, a) => a }
+  );
 }
