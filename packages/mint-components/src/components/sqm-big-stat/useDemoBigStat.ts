@@ -16,16 +16,16 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
     if (old === label) break;
   }
 
-  return deepmerge(
-    {
-      props: {
+  return {
+    props: deepmerge(
+      {
         statvalue: "12345",
         flexReverse: false,
         alignment: "center" as const,
       },
-      label: label ?? "Demo Label",
-    },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
-  );
+      props.demoData || {},
+      { arrayMerge: (_, a) => a }
+    ),
+    label: label ?? "Demo Label",
+  };
 }
