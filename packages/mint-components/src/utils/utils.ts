@@ -1,5 +1,7 @@
 export function format(first: string, middle: string, last: string): string {
-  return (first || '') + (middle ? ` ${middle}` : '') + (last ? ` ${last}` : '');
+  return (
+    (first || "") + (middle ? ` ${middle}` : "") + (last ? ` ${last}` : "")
+  );
 }
 
 function readGetters(obj: Object) {
@@ -21,4 +23,11 @@ export function getProps<T>(obj: T): T {
     props[k] = obj[k];
   }
   return props;
+}
+
+export function middleClickLink(path: string) {
+  return Object.assign(document.createElement("a"), {
+    target: "_blank",
+    href: path,
+  }).click();
 }

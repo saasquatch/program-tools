@@ -61,6 +61,7 @@ function useSidebarItemDemo(
       },
       callbacks: {
         onClick: (e: MouseEvent) => console.log(e),
+        onMiddleClick: () => console.log("middle click"),
       },
     },
     props.demoData || {},

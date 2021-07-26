@@ -33,6 +33,7 @@ const item1Props = {
   },
   callbacks: {
     onClick: (e: MouseEvent) => console.log(e),
+    onMiddleClick: () => {}
   },
 };
 
@@ -46,6 +47,7 @@ const item2Props = {
   },
   callbacks: {
     onClick: (e: MouseEvent) => console.log(e),
+    onMiddleClick: () => {}
   },
 };
 
