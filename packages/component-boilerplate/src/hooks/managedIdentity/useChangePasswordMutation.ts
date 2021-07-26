@@ -19,7 +19,7 @@ interface ChangePasswordResult {
 }
 
 export function useChangePasswordMutation(): [
-  (e: { oobCode: string; password: string }) => unknown,
+  (e: { password: string }) => unknown,
   BaseQueryData<ChangePasswordResult>
 ] {
   const [request, { loading, data, errors }] =
