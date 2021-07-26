@@ -25,7 +25,7 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
       },
       label: label ?? "Demo Label",
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }
