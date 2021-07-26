@@ -16,6 +16,7 @@ export const InactiveItem = () => {
     },
     callbacks: {
       onClick: (e: MouseEvent) => console.log(e),
+      onMiddleClick: () => {}
     },
   };
   return <NavigationSidebarItemView {...props} />;
@@ -32,6 +33,7 @@ export const ActiveItem = () => {
     },
     callbacks: {
       onClick: (e: MouseEvent) => console.log(e),
+      onMiddleClick: () => {}
     },
   };
   return <NavigationSidebarItemView {...props} />;

@@ -31,6 +31,7 @@ export const DefaultNavigationSidebar = () => {
     },
     callbacks: {
       onClick: (e: MouseEvent) => console.log(e),
+      onMiddleClick: () => {}
     },
   };
   const item2Props = {
@@ -43,6 +44,7 @@ export const DefaultNavigationSidebar = () => {
     },
     callbacks: {
       onClick: (e: MouseEvent) => console.log(e),
+      onMiddleClick: () => {}
     },
   };
   return (

@@ -13,6 +13,7 @@ export interface NavigationSidebarItemViewProps {
   };
   callbacks: {
     onClick: (e: MouseEvent) => void;
+    onMiddleClick: (e: MouseEvent) => void;
   };
 }
 
@@ -47,7 +48,11 @@ export function NavigationSidebarItemView(
   const styleString = sheet.toString();
 
   return (
-    <div onClick={callbacks.onClick} class={sheet.classes.ItemContainer}>
+    <div
+      onClick={callbacks.onClick}
+      onMouseDown={(e) => (e.button === 1 ? callbacks.onMiddleClick(e) : true)}
+      class={sheet.classes.ItemContainer}
+    >
       <style type="text/css">{styleString}</style>
       <sl-icon class={sheet.classes.Icon} name={data.icon}></sl-icon>
       <p class={sheet.classes.Label}>{data.label}</p>
