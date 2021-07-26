@@ -75,7 +75,7 @@ function usePortalFrameDemo(
         rerender: () => {},
       },
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

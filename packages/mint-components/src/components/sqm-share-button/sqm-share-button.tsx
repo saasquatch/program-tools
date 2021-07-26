@@ -146,7 +146,7 @@ function useDemoShareButton(props: ShareButton): ShareButtonViewProps {
         // TODO: PRovide visual feedback
       },
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

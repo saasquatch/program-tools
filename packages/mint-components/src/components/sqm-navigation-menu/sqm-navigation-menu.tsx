@@ -66,7 +66,7 @@ function useNavigationMenuDemo(props: NavigationMenu): NavigationMenuViewProps {
       },
       ref: { current: undefined },
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

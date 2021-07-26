@@ -74,7 +74,7 @@ function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
         onChange: (e) => console.log(e),
       },
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

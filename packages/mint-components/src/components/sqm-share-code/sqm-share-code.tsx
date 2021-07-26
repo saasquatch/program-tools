@@ -78,7 +78,7 @@ function useDemoShareCode(props: ShareCode): ShareLinkViewProps {
         setTimeout(() => setOpen(false), props.tooltiplifespan);
       },
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

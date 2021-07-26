@@ -63,7 +63,7 @@ function usePortalResetPasswordDemo(
         gotoNextPage: () => {},
       },
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

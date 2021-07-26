@@ -97,7 +97,7 @@ function useRegisterDemo(
         },
       },
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

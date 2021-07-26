@@ -88,7 +88,7 @@ function useLoginDemo(props: PortalLogin): Partial<PortalLoginViewProps> {
         },
       },
     },
-    props.demoData,
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }
