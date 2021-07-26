@@ -294,7 +294,7 @@ export const EditProfile = () => {
         />
         <PortalChangePasswordView
           {...{
-            states: { open: true, error: "" },
+            states: { open: true, error: "", loading: false },
             callbacks: {
               setOpen: () => console.log("open"),
               submit: () => console.log("submit"),

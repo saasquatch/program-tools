@@ -29,7 +29,7 @@ export function usePortalRegister({ nextPage }) {
       setError("Passwords do not match.");
       return;
     }
-
+    setError("");
     const { email, password } = formData;
     delete formData.email;
     delete formData.password;
