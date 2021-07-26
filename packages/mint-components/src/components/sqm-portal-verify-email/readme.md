@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute   | Description | Type     | Default |
-| ---------- | ----------- | ----------- | -------- | ------- |
-| `nextPage` | `next-page` |             | `string` | `"/"`   |
+| Property   | Attribute   | Description | Type                                                                    | Default     |
+| ---------- | ----------- | ----------- | ----------------------------------------------------------------------- | ----------- |
+| `demoData` | --          |             | `{ states?: { error: string; loading: boolean; verified: boolean; }; }` | `undefined` |
+| `nextPage` | `next-page` |             | `string`                                                                | `"/"`       |
 
 
 ## Dependencies

@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `icon`   | `icon`    |             | `string` | `undefined` |
-| `label`  | `label`   |             | `string` | `undefined` |
-| `path`   | `path`    |             | `string` | `undefined` |
+| Property   | Attribute | Description | Type                                                                          | Default     |
+| ---------- | --------- | ----------- | ----------------------------------------------------------------------------- | ----------- |
+| `demoData` | --        |             | `{ states?: { active: boolean; }; data?: { label: string; icon: string; }; }` | `undefined` |
+| `icon`     | `icon`    |             | `string`                                                                      | `undefined` |
+| `label`    | `label`   |             | `string`                                                                      | `undefined` |
+| `path`     | `path`    |             | `string`                                                                      | `undefined` |
 
 
 ----------------------------------------------

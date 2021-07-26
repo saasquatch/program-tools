@@ -6,7 +6,7 @@ import {
   LeaderboardRankView,
   LeaderboardRankViewProps,
 } from "./sqm-leaderboard-rank-view";
-import { LeaderboardRankProps, useLeaderboardRank } from "./useLeaderboardRank";
+import { useLeaderboardRank } from "./useLeaderboardRank";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
 

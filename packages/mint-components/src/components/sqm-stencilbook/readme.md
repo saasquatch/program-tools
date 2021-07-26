@@ -23,6 +23,7 @@
 - [sqm-referral-table-cell](../sqm-referral-table/cells)
 - [sqm-referral-table-status-cell](../sqm-referral-table/cells)
 - [sqm-referral-table-rewards-cell](../sqm-referral-table/cells)
+- [sqm-user-name](../sqm-user-name)
 
 ### Graph
 ```mermaid
@@ -41,6 +42,7 @@ graph TD;
   sqm-stencilbook --> sqm-referral-table-cell
   sqm-stencilbook --> sqm-referral-table-status-cell
   sqm-stencilbook --> sqm-referral-table-rewards-cell
+  sqm-stencilbook --> sqm-user-name
   sqm-edit-profile --> sqm-form-message
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```

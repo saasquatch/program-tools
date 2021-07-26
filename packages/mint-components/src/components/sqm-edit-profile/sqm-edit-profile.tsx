@@ -1,7 +1,7 @@
 import { Component, h, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import EditProfileView, { EditProfileViewProps } from "./sqm-edit-profile-view";
-import { EditProfileProps, useEditProfile } from "./useEditProfile";
+import { useEditProfile } from "./useEditProfile";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { getProps } from "../../utils/utils";
 import deepmerge from "deepmerge";

@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property        | Attribute       | Description | Type     | Default        |
-| --------------- | --------------- | ----------- | -------- | -------------- |
-| `countrytext`   | `countrytext`   |             | `string` | `"Country"`    |
-| `emailtext`     | `emailtext`     |             | `string` | `"Email"`      |
-| `firstnametext` | `firstnametext` |             | `string` | `"First Name"` |
-| `lastnametext`  | `lastnametext`  |             | `string` | `"Last Name"`  |
+| Property        | Attribute       | Description | Type                                                                                                                                                                                                                                                                                                                                                                                | Default        |
+| --------------- | --------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| `countrytext`   | `countrytext`   |             | `string`                                                                                                                                                                                                                                                                                                                                                                            | `"Country"`    |
+| `demoData`      | --              |             | `{ states?: { loading: boolean; submitDisabled: boolean; formState: { country: string; firstName: string; lastName: string; errors: any; error: string; }; user: { id: string; accountId: string; firstName: string; lastName: string; email: string; countryCode: string; }; text: { firstnametext: string; lastnametext: string; emailtext: string; countrytext: string; }; }; }` | `undefined`    |
+| `emailtext`     | `emailtext`     |             | `string`                                                                                                                                                                                                                                                                                                                                                                            | `"Email"`      |
+| `firstnametext` | `firstnametext` |             | `string`                                                                                                                                                                                                                                                                                                                                                                            | `"First Name"` |
+| `lastnametext`  | `lastnametext`  |             | `string`                                                                                                                                                                                                                                                                                                                                                                            | `"Last Name"`  |
 
 
 ## Dependencies

@@ -9,6 +9,7 @@
 
 | Property          | Attribute          | Description | Type                                               | Default     |
 | ----------------- | ------------------ | ----------- | -------------------------------------------------- | ----------- |
+| `demoData`        | --                 |             | `{ data?: { rank: string; }; }`                    | `undefined` |
 | `interval`        | `interval`         |             | `string`                                           | `undefined` |
 | `leaderboardType` | `leaderboard-type` |             | `"topConvertedReferrers" \| "topStartedReferrers"` | `undefined` |
 | `rankText`        | `rank-text`        |             | `string`                                           | `undefined` |
