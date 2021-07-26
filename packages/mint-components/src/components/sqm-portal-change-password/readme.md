@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property   | Attribute | Description | Type                                                                | Default     |
+| ---------- | --------- | ----------- | ------------------------------------------------------------------- | ----------- |
+| `demoData` | --        |             | `{ states?: { open: boolean; error: string; loading: boolean; }; }` | `undefined` |
+
+
 ## Dependencies
 
 ### Depends on

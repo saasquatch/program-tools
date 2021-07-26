@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type     | Default     |
-| ----------- | ------------ | ----------- | -------- | ----------- |
-| `imgUrl`    | `img-url`    |             | `string` | `undefined` |
-| `titleText` | `title-text` |             | `string` | `undefined` |
+| Property    | Attribute    | Description | Type                                                  | Default     |
+| ----------- | ------------ | ----------- | ----------------------------------------------------- | ----------- |
+| `demoData`  | --           |             | `{ text?: { titleText: string; }; imgUrl?: string; }` | `undefined` |
+| `imgUrl`    | `img-url`    |             | `string`                                              | `undefined` |
+| `titleText` | `title-text` |             | `string`                                              | `undefined` |
 
 
 ----------------------------------------------

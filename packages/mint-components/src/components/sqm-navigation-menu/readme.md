@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property          | Attribute          | Description | Type      | Default     |
-| ----------------- | ------------------ | ----------- | --------- | ----------- |
-| `includeDropdown` | `include-dropdown` |             | `boolean` | `undefined` |
-| `menuLabel`       | `menu-label`       |             | `string`  | `undefined` |
+| Property          | Attribute          | Description | Type                                                                                                   | Default     |
+| ----------------- | ------------------ | ----------- | ------------------------------------------------------------------------------------------------------ | ----------- |
+| `demoData`        | --                 |             | `{ states?: { includeDropdown: boolean; styles: { menuLabel: string; }; }; ref?: { current: any; }; }` | `undefined` |
+| `includeDropdown` | `include-dropdown` |             | `boolean`                                                                                              | `undefined` |
+| `menuLabel`       | `menu-label`       |             | `string`                                                                                               | `undefined` |
 
 
 ## Dependencies

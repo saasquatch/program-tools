@@ -6,7 +6,7 @@ import { PortalSectionView } from "../sqm-titled-section/sqm-portal-section-view
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
 export interface PortalChangePasswordViewProps {
-  states: { open: boolean; error: string };
+  states: { open: boolean; error: string; loading: boolean };
   callbacks: {
     setOpen: (open: boolean) => void;
     submit: (event: MouseEvent) => void;
@@ -44,35 +44,33 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
           {...{
             labelMargin: "xxxx-large",
             padding: "none",
-            label: <TextSpanView {...{ type: "h2" }}>Change password</TextSpanView>,
+            label: (
+              <TextSpanView {...{ type: "h2" }}>Change password</TextSpanView>
+            ),
             content: (
               <PortalContainerView
                 {...{ direction: "column", padding: "none", gap: "32px" }}
               >
                 <sl-form onSl-submit={callbacks.submit}>
                   <sl-input
-                    name="/oldPassword"
-                    label="Old password"
-                    required
-                    type="password"
-                  ></sl-input>
-                  <sl-input
-                    name="/newPasswordOne"
+                    name="/password"
                     label="New password"
                     required
+                    disabled={states.loading}
                     type="password"
                   ></sl-input>
                   <sl-input
-                    name="/newPasswordTwo"
+                    name="/confirmPassword"
                     label="Confirm new password"
                     required
+                    disabled={states.loading}
                     type="password"
                   ></sl-input>
                   <PortalContainerView
                     {...{ direction: "row", padding: "none", gap: "20px" }}
                   >
                     <sl-button type="text">Cancel</sl-button>
-                    <sl-button type="default" submit>
+                    <sl-button type="default" submit loading={states.loading}>
                       Change Password
                     </sl-button>
                   </PortalContainerView>

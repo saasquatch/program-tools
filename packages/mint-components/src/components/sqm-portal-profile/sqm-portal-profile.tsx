@@ -4,7 +4,7 @@ import {
   PortalProfileView,
   PortalProfileViewProps,
 } from "./sqm-portal-profile-view";
-import { PortalProfileProps, usePortalProfile } from "./usePortalProfile";
+import { usePortalProfile } from "./usePortalProfile";
 import { getProps } from "../../utils/utils";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { DemoData } from "../../global/demo";
@@ -41,9 +41,7 @@ export class PortalProfile {
   }
 }
 
-function usePortalProfileDemo(
-  props: PortalProfile
-): PortalProfileViewProps {
+function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
   return deepmerge(
     {
       states: {

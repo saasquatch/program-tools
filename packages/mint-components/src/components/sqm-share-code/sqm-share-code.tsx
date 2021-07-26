@@ -7,7 +7,6 @@ import {
 } from "../sqm-share-link/sqm-share-link-view";
 import { getProps } from "../../utils/utils";
 import { useShareCode } from "./useShareCode";
-import { ShareLink } from "../sqm-share-link/sqm-share-link";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
 

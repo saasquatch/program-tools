@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property   | Attribute | Description | Type                                            | Default     |
+| ---------- | --------- | ----------- | ----------------------------------------------- | ----------- |
+| `demoData` | --        |             | `{ data?: { footer: VNode; header: VNode; }; }` | `undefined` |
+
+
 ## Dependencies
 
 ### Used by
