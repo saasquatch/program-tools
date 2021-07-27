@@ -17,7 +17,7 @@ const defaultProps: PortalRegisterViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
   },
-  content: {pageLabel:"Register"},
+  content: { pageLabel: "Register" },
 };
 
 const errorProps: PortalRegisterViewProps = {
@@ -29,7 +29,7 @@ const errorProps: PortalRegisterViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
   },
-  content: {pageLabel:"Register"},
+  content: { pageLabel: "Register" },
 };
 
 const loadingProps: PortalRegisterViewProps = {
@@ -41,7 +41,7 @@ const loadingProps: PortalRegisterViewProps = {
   callbacks: {
     submit: () => console.log("Submit!"),
   },
-  content: {pageLabel:"Register"},
+  content: { pageLabel: "Register" },
 };
 
 export const Default = () => <PortalRegisterView {...defaultProps} />;
@@ -49,3 +49,18 @@ export const Default = () => <PortalRegisterView {...defaultProps} />;
 export const RegisterWithError = () => <PortalRegisterView {...errorProps} />;
 
 export const RegisterLoading = () => <PortalRegisterView {...loadingProps} />;
+
+export const FieldsHidden = () => {
+  return (
+    <sqm-portal-register
+      demoData={{
+        states: {
+          error: "",
+          loading: true,
+          confirmPassword: true,
+          hideInputs: true,
+        },
+      }}
+    ></sqm-portal-register>
+  );
+};

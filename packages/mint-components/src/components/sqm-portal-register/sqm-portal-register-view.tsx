@@ -60,6 +60,9 @@ const styleString = sheet.toString();
 
 export function PortalRegisterView(props: PortalRegisterViewProps) {
   const { states, callbacks, content } = props;
+
+  console.log(props);
+
   return (
     <div class={sheet.classes.Wrapper}>
       <style type="text/css">
