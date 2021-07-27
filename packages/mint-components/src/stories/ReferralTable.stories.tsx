@@ -460,3 +460,114 @@ export const LongCellTextTable = () => {
 export const LongColumnTextTable = () => {
   return <ReferralTableView {...longColumnTextTableProps}></ReferralTableView>;
 };
+
+const demoLoadingElement = (
+  <div slot="loading" style={{ display: "contents" }}>
+    <sqm-table-row>
+      <sqm-table-cell colspan={5}>
+        <sl-skeleton></sl-skeleton>
+      </sqm-table-cell>
+    </sqm-table-row>
+    <sqm-table-row>
+      <sqm-table-cell colspan={5}>
+        <sl-skeleton></sl-skeleton>
+      </sqm-table-cell>
+    </sqm-table-row>
+    <sqm-table-row>
+      <sqm-table-cell colspan={5}>
+        <sl-skeleton></sl-skeleton>
+      </sqm-table-cell>
+    </sqm-table-row>
+    <sqm-table-row>
+      <sqm-table-cell colspan={5}>
+        <sl-skeleton></sl-skeleton>
+      </sqm-table-cell>
+    </sqm-table-row>
+    <sqm-table-row>
+      <sqm-table-cell colspan={5}>
+        <sl-skeleton></sl-skeleton>
+      </sqm-table-cell>
+    </sqm-table-row>
+  </div>
+);
+
+const demoEmptyElement = (
+  <div slot="empty" style={{ display: "contents" }}>
+    <sqm-table-row>
+      <sqm-table-cell colspan={5} style={{ textAlign: "center" }}>
+        No Referrals Yet
+      </sqm-table-cell>
+    </sqm-table-row>
+  </div>
+);
+
+// demo columns: user, rewards, status, date started, date converted (should be after started always)
+
+export const DemoTableEmpty = () => {
+  return (
+    <sqm-referral-table
+      demoData={{
+        states: {
+          hasPrev: false,
+          hasNext: false,
+          loading: false,
+        },
+        data: {
+          referralData: [],
+        },
+        elements: {
+          emptyElement: demoEmptyElement,
+          loadingElement: demoLoadingElement,
+          columns: [<div>Name</div>, <div>Email</div>, <div>DOB</div>],
+          rows: [],
+        },
+      }}
+    ></sqm-referral-table>
+  );
+};
+
+export const DemoTableLoading = () => {
+  return (
+    <sqm-referral-table
+      demoData={{
+        states: {
+          hasPrev: false,
+          hasNext: false,
+          loading: false,
+        },
+        data: {
+          referralData: [],
+        },
+        elements: {
+          emptyElement: demoEmptyElement,
+          loadingElement: demoLoadingElement,
+          columns: [<div>Name</div>, <div>Email</div>, <div>DOB</div>],
+          rows: [],
+        },
+      }}
+    ></sqm-referral-table>
+  );
+};
+
+export const DemoTableFull = () => {
+  return (
+    <sqm-referral-table
+      demoData={{
+        states: {
+          hasPrev: false,
+          hasNext: false,
+          loading: false,
+        },
+        data: {
+          referralData: [],
+        },
+        elements: {
+          emptyElement: demoEmptyElement,
+          loadingElement: demoLoadingElement,
+          columns: [<div>Name</div>, <div>Email</div>, <div>DOB</div>],
+          rows: [],
+        },
+      }}
+    ></sqm-referral-table>
+  );
+};
