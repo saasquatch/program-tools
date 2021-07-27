@@ -19,6 +19,7 @@
 - [sqm-edit-profile](../sqm-edit-profile)
 - [sqm-form-message](../sqm-form-message)
 - [sqm-hook-story-container](../sqm-hook-story-container)
+- [sqm-portal-register](../sqm-portal-register)
 - [sqm-referral-table-user-cell](../sqm-referral-table/cells)
 - [sqm-referral-table-date-cell](../sqm-referral-table/cells)
 - [sqm-referral-table-cell](../sqm-referral-table/cells)
@@ -39,6 +40,7 @@ graph TD;
   sqm-stencilbook --> sqm-edit-profile
   sqm-stencilbook --> sqm-form-message
   sqm-stencilbook --> sqm-hook-story-container
+  sqm-stencilbook --> sqm-portal-register
   sqm-stencilbook --> sqm-referral-table-user-cell
   sqm-stencilbook --> sqm-referral-table-date-cell
   sqm-stencilbook --> sqm-referral-table-cell
@@ -46,6 +48,7 @@ graph TD;
   sqm-stencilbook --> sqm-referral-table-rewards-cell
   sqm-stencilbook --> sqm-user-name
   sqm-edit-profile --> sqm-form-message
+  sqm-portal-register --> sqm-form-message
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
