@@ -337,6 +337,16 @@ export namespace Components {
         "demoData"?: DemoData<PortalVerifyEmailViewProps>;
         "nextPage": string;
     }
+    interface SqmProgramMenu {
+        /**
+          * @uiName Include dropdown menu
+         */
+        "includeDropdown": boolean;
+        /**
+          * @uiName Label on the header menu
+         */
+        "menuLabel": string;
+    }
     interface SqmReferralTable {
         /**
           * @undocumented
@@ -722,6 +732,12 @@ declare global {
         prototype: HTMLSqmPortalVerifyEmailElement;
         new (): HTMLSqmPortalVerifyEmailElement;
     };
+    interface HTMLSqmProgramMenuElement extends Components.SqmProgramMenu, HTMLStencilElement {
+    }
+    var HTMLSqmProgramMenuElement: {
+        prototype: HTMLSqmProgramMenuElement;
+        new (): HTMLSqmProgramMenuElement;
+    };
     interface HTMLSqmReferralTableElement extends Components.SqmReferralTable, HTMLStencilElement {
     }
     var HTMLSqmReferralTableElement: {
@@ -892,6 +908,7 @@ declare global {
         "sqm-portal-register": HTMLSqmPortalRegisterElement;
         "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
         "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
+        "sqm-program-menu": HTMLSqmProgramMenuElement;
         "sqm-referral-table": HTMLSqmReferralTableElement;
         "sqm-referral-table-cell": HTMLSqmReferralTableCellElement;
         "sqm-referral-table-column": HTMLSqmReferralTableColumnElement;
@@ -1227,6 +1244,16 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<PortalVerifyEmailViewProps>;
         "nextPage"?: string;
     }
+    interface SqmProgramMenu {
+        /**
+          * @uiName Include dropdown menu
+         */
+        "includeDropdown"?: boolean;
+        /**
+          * @uiName Label on the header menu
+         */
+        "menuLabel"?: string;
+    }
     interface SqmReferralTable {
         /**
           * @undocumented
@@ -1476,6 +1503,7 @@ declare namespace LocalJSX {
         "sqm-portal-register": SqmPortalRegister;
         "sqm-portal-reset-password": SqmPortalResetPassword;
         "sqm-portal-verify-email": SqmPortalVerifyEmail;
+        "sqm-program-menu": SqmProgramMenu;
         "sqm-referral-table": SqmReferralTable;
         "sqm-referral-table-cell": SqmReferralTableCell;
         "sqm-referral-table-column": SqmReferralTableColumn;
@@ -1531,6 +1559,7 @@ declare module "@stencil/core" {
             "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
             "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
+            "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;
             "sqm-referral-table-cell": LocalJSX.SqmReferralTableCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableCellElement>;
             "sqm-referral-table-column": LocalJSX.SqmReferralTableColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableColumnElement>;
