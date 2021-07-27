@@ -72,6 +72,13 @@ const DemoView = () => {
 export const Demo = createHookStory(DemoView);
 
 export const ReferralsCount = createHookStory(() => View("/referralsCount"));
+export const referralsConvertedCount = createHookStory(() => {
+  return View("/referralsCount/converted");
+});
+
+export const referralsStartedCount = createHookStory(() => {
+  return View("/referralsCount/started");
+});
 export const ReferralsMonth = createHookStory(() => View("/referralsMonth"));
 export const ReferralsWeek = createHookStory(() => View("/referralsWeek"));
 export const RewardsCount = createHookStory(() => View("/rewardsCount"));

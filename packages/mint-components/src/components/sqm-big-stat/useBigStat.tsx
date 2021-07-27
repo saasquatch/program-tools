@@ -38,23 +38,38 @@ const debugQuery = (
   return stat;
 };
 
-const referralsCountQuery = (programId: string) =>
-  debugQuery(
+const referralsCountQuery = (
+  programId: string,
+  locale: string,
+  status?: "started" | "converted"
+) => {
+  const convertedFilter =
+    status && status == "converted"
+      ? { dateConverted_exists: true }
+      : status && status == "started"
+      ? { dateConverted_exists: false }
+      : {};
+
+  const queryFilter = { programId_eq: programId, ...convertedFilter };
+
+  return debugQuery(
     gql`
-      query ($programId: ID!) {
+      query ($queryFilter: ReferralFilterInput) {
         viewer {
           ... on User {
-            referrals(filter: { programId_eq: $programId }) {
+            referrals(filter: $queryFilter) {
               totalCount
             }
           }
         }
       }
     `,
-    { programId },
+    { queryFilter },
 
     (res) => res.data?.viewer?.referrals?.totalCount?.toString()
   );
+};
+
 const programGoalsQuery = (
   programId: string,
   locale: string,
@@ -440,7 +455,7 @@ const queries: {
 // this should be exposed in documentation somehow
 export const StatPaths = [
   "/(programGoals)/:metricType/:goalId",
-  "/(referralsCount)",
+  "/(referralsCount)/:status?",
   "/(referralsMonth)",
   "/(referralsWeek)",
   "/(rewardsCount)",
