@@ -90,7 +90,7 @@ function useRegisterDemo(
 ): Pick<PortalRegisterViewProps, "states" | "callbacks"> {
   return deepmerge(
     {
-      states: { error: "", loading: false, confirmPassword: true },
+      states: { error: "", loading: false, confirmPassword: true, hideInputs: false },
       callbacks: {
         submit: async (_event) => {
           console.log("submit");
