@@ -4,16 +4,11 @@ import {
   navigation,
   useRegisterWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
-import { usePortalEmailVerification } from "../sqm-portal-email-verification/usePortalEmailVerification";
 
-export function usePortalRegister({ nextPage }) {
+export function usePortalRegister({ nextPage, confirmPassword }) {
   const [error, setError] = useState("");
   const [request, { loading, errors, data }] =
     useRegisterWithEmailAndPasswordMutation();
-  const {
-    states: emailVerificationStates,
-    callbacks: { submit: submitEmailVerificationRequest },
-  } = usePortalEmailVerification();
 
   const submit = async (event: any) => {
     let formControls = event.target.getFormControls();
@@ -25,7 +20,10 @@ export function usePortalRegister({ nextPage }) {
       const value = control.value;
       jsonpointer.set(formData, key, value);
     });
-    if (formData.password !== formData.confirmPassword) {
+    if (
+      (confirmPassword || formData.confirmPassword) &&
+      formData.password !== formData.confirmPassword
+    ) {
       setError("Passwords do not match.");
       return;
     }
@@ -45,20 +43,14 @@ export function usePortalRegister({ nextPage }) {
 
   useEffect(() => {
     if (data?.registerManagedIdentityWithEmailAndPassword?.token) {
-      submitEmailVerificationRequest();
+      navigation.push(nextPage);
     }
   }, [data?.registerManagedIdentityWithEmailAndPassword?.token]);
 
-  useEffect(() => {
-    if (emailVerificationStates.success) navigation.push(nextPage);
-  }, [emailVerificationStates.success]);
-
   return {
     states: {
-      loading: loading || emailVerificationStates.loading,
-      error: errors
-        ? errors?.response?.errors?.[0]?.message
-        : emailVerificationStates.error || error,
+      loading,
+      error: errors?.response?.errors?.[0]?.message || error,
     },
     callbacks: {
       submit,
