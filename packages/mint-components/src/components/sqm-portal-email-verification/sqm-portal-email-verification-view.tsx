@@ -20,7 +20,7 @@ export interface PortalEmailVerificationViewProps {
 
 const style = {
   Wrapper: AuthWrapper,
-  Column: { ...AuthColumn, },
+  Column: { ...AuthColumn },
 };
 
 const vanillaStyle = `
@@ -68,8 +68,11 @@ export function PortalEmailVerificationView(
         )}
 
         <TextSpanView type="p">
-          A verification email was sent to {email}. Please verify your email to
-          continue to the portal.
+          A verification email was sent to{" "}
+          <span style={{ fontWeight: "var(--sl-font-weight-semibold)" }}>
+            {email}
+          </span>
+          . Please verify your email to continue to the portal.
         </TextSpanView>
         <sl-button
           submit
