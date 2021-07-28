@@ -33,14 +33,16 @@ export function DividedLayoutView(
     },
   };
 
-  // const vanillaStyle = `
-  //   ${
-  //     props.direction === "column" &&
-  //     `:host{
-  //     width: 100%
-  //   }`
-  //   }
-  // `;
+  const vanillaStyle = `
+      :host{
+        width: 100%;
+        max-width: var(--sqm-portal-main-width);
+      }
+      sqm-divided-layout {
+        width: 100%;
+        max-width: var(--sqm-portal-main-width);
+      }
+  `;
 
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);
@@ -49,7 +51,7 @@ export function DividedLayoutView(
   return (
     <div class={sheet.classes.LayoutContainer}>
       <style type="text/css">
-        {/* {vanillaStyle} */}
+        {props.direction === "column" && vanillaStyle}
         {styleString}
       </style>
       {children}
