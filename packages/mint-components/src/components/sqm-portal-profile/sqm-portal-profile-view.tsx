@@ -100,7 +100,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
             direction: "row",
             padding: "none",
             gap: "32px",
-            minWidth: "300px",
+            minWidth: "50%",
           }}
         >
           <sl-input
