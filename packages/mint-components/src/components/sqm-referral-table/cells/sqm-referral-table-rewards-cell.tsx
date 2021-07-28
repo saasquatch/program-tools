@@ -121,7 +121,6 @@ export class ReferralTableRewardsCell {
               )}
               {reward.dateExpires && state === "AVAILABLE" && (
                 <sl-badge type="info" pill>
-                  {/* TODO: Add case for "next month" or "next year" */}
                   {getTimeDiff(reward.dateExpires) === "tomorrow" ||
                   getTimeDiff(reward.dateExpires) === "today" ||
                   getTimeDiff(reward.dateExpires) === "next month" ||

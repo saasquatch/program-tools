@@ -56,6 +56,11 @@ export function PortalProfileView(props: PortalProfileViewProps) {
         "margin-bottom": "32px",
       },
     },
+    NameInputStyle: {
+      "&:not(:last-child)": {
+        "margin-right": "var(--sl-spacing-medium)",
+      },
+    },
   };
 
   jss.setup(preset());
@@ -95,10 +100,11 @@ export function PortalProfileView(props: PortalProfileViewProps) {
             direction: "row",
             padding: "none",
             gap: "32px",
-            minWidth: "200px",
+            minWidth: "300px",
           }}
         >
           <sl-input
+            class={sheet.classes.NameInputStyle}
             value={states.user?.firstName}
             onInput={callbacks.onChange}
             label={text.firstnametext}
@@ -115,6 +121,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
             }
           ></sl-input>
           <sl-input
+            class={sheet.classes.NameInputStyle}
             exportparts="label: input-label"
             value={states.user?.lastName}
             onInput={callbacks.onChange}
