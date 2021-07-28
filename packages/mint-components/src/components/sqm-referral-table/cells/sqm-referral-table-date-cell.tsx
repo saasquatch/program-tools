@@ -19,9 +19,10 @@ export class ReferralTableDateCell {
 
   render() {
     // needs hook to use locale
-    const date = this.date
-      ? DateTime.fromMillis(this.date)?.toLocaleString(DateTime.DATE_MED)
-      : "-";
+    const date = !this.date
+      ? "-"
+      : DateTime.fromMillis(this.date)?.toLocaleString(DateTime.DATE_MED);
+
     return <TextSpanView type="p">{date}</TextSpanView>;
   }
 }

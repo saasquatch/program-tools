@@ -501,8 +501,6 @@ const demoEmptyElement = (
   </div>
 );
 
-// demo columns: user, rewards, status, date started, date converted (should be after started always)
-
 export const DemoTableEmpty = () => {
   return (
     <sqm-referral-table
@@ -637,7 +635,6 @@ const availableReward = {
 };
 
 export const DemoTableFull = () => {
-  // Should date converted be displayed as an empty cell if status is incomplete?
   return (
     <sqm-referral-table
       demoData={{
@@ -694,7 +691,7 @@ export const DemoTableFull = () => {
                 date={1626764400000}
               ></sqm-referral-table-date-cell>,
               <sqm-referral-table-date-cell
-                date={1627427794891}
+                date={null}
               ></sqm-referral-table-date-cell>,
             ],
             [
