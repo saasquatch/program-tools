@@ -16,6 +16,10 @@ export const TableUserCell = () => {
   );
 };
 
+export const EmptyCell = () => (
+  <sqm-sqm-referral-table-cell>-</sqm-sqm-referral-table-cell>
+);
+
 export const StatusCell = () => {
   return (
     <div>
