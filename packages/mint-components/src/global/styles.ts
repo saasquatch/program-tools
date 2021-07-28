@@ -370,6 +370,7 @@ const style = `
   --st-content-background: var(--sl-color-white);
   --st-portal-background: var(--sl-color-gray-50);
   --widget-background-color: var(--sl-color-white);
+  --sqm-portal-main-width: 900px;
 }
 body {
   font-family: var(--sl-font-sans);

@@ -9,6 +9,7 @@ export interface PortalProfileViewProps {
   states: {
     loading: boolean;
     submitDisabled: boolean;
+    showCountry: boolean;
     formState: {
       country: string;
       firstName: string;
@@ -139,7 +140,9 @@ export function PortalProfileView(props: PortalProfileViewProps) {
           ></sl-input>
         </PortalContainerView>
         <sl-input label="Email" value={states.user?.email} disabled></sl-input>
-        <sl-input label="Country" value={country} disabled></sl-input>
+        {states.showCountry && (
+          <sl-input label="Country" value={country} disabled></sl-input>
+        )}
         <sl-button
           type="primary"
           loading={states.loading}

@@ -590,30 +590,30 @@ const nullExpiresIn = {
   dateExpires: null,
 };
 
-const nullScheduledFor = {
-  dateScheduledFor: null,
-};
+// const nullScheduledFor = {
+//   dateScheduledFor: null,
+// };
 
-const nullFuelTank = {
-  fuelTankCode: null,
-};
+// const nullFuelTank = {
+//   fuelTankCode: null,
+// };
 
-// Reward Type Cases
-const discountReward = {
-  type: "PCT_DISCOUNT",
-};
+// // Reward Type Cases
+// const discountReward = {
+//   type: "PCT_DISCOUNT",
+// };
 
-const creditReward = {
-  type: "CREDIT",
-};
+// const creditReward = {
+//   type: "CREDIT",
+// };
 
-const fuelTankReward = {
-  type: "FUELTANK",
-};
+// const fuelTankReward = {
+//   type: "FUELTANK",
+// };
 
-const integrationReward = {
-  type: "INTEGRATION",
-};
+// const integrationReward = {
+//   type: "INTEGRATION",
+// };
 
 // Reward Status Cases
 const pendingReward = {
@@ -627,9 +627,9 @@ const expiredReward = {
   statuses: ["EXPIRED", "AVAILABLE"],
   dateExpires: 1626850800000,
 };
-const redeemedReward = {
-  statuses: ["AVAILABLE", "EXPIRED", "REDEEMED"],
-};
+// const redeemedReward = {
+//   statuses: ["AVAILABLE", "EXPIRED", "REDEEMED"],
+// };
 const availableReward = {
   statuses: ["AVAILABLE"],
 };

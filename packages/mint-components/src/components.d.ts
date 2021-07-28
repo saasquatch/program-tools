@@ -303,6 +303,7 @@ export namespace Components {
         "emailtext": string;
         "firstnametext": string;
         "lastnametext": string;
+        "showCountry": boolean;
     }
     interface SqmPortalProtectedRoute {
         "redirectTo": string;
@@ -352,6 +353,10 @@ export namespace Components {
           * @undocumented
          */
         "demoData"?: DemoData<ReferralTableViewProps>;
+        /**
+          * @uiName Number of referrals per page
+         */
+        "perPage": number;
         /**
           * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs.
           * @uiName Program
@@ -1210,6 +1215,7 @@ declare namespace LocalJSX {
         "emailtext"?: string;
         "firstnametext"?: string;
         "lastnametext"?: string;
+        "showCountry"?: boolean;
     }
     interface SqmPortalProtectedRoute {
         "redirectTo"?: string;
@@ -1259,6 +1265,10 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "demoData"?: DemoData<ReferralTableViewProps>;
+        /**
+          * @uiName Number of referrals per page
+         */
+        "perPage"?: number;
         /**
           * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs.
           * @uiName Program
