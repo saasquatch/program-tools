@@ -1,3 +1,4 @@
+import decode from "jwt-decode";
 import { useDomContext } from "@saasquatch/dom-context-hooks";
 import { ContextProvider } from "dom-context";
 import { getEnvironmentSDK } from "./environment";
@@ -53,6 +54,25 @@ function _getInitialValue(): UserIdentity | undefined {
         jwt: sdk.widgetIdent.token,
       };
     case "SquatchPortal":
+      // Portals can have the jwt provided as a URL parameter, so look for that first
+      const searchParams = new URLSearchParams(document.location.search);
+      if (searchParams.has("jwt")) {
+        const jwt = searchParams.get("jwt");
+        try {
+          const { user } = decode<DecodedSquatchJWT>(jwt);
+          const identity: UserIdentity = {
+            id: user.id,
+            accountId: user.accountId,
+            jwt,
+          };
+          return identity;
+        } catch (e) {
+          // Invalid JWT
+          return;
+        }
+      }
+
+      // Look for user identity in local storage
       const stored = localStorage.getItem(USER_LOCAL_STORAGE_KEY);
       if (!stored) return undefined;
       try {
@@ -85,7 +105,9 @@ export function setUserIdentity(identity?: UserIdentity) {
   _lazilyStartGlobally();
   const globalProvider = window.squatchUserIdentity;
   globalProvider.context = identity;
-  if (identity) {
+
+  // Portals store identity in local storage
+  if (identity && getEnvironmentSDK().type === "SquatchPortal") {
     localStorage.setItem(USER_LOCAL_STORAGE_KEY, JSON.stringify(identity));
   } else {
     localStorage.removeItem(USER_LOCAL_STORAGE_KEY);
