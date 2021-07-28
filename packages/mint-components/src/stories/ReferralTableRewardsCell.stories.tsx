@@ -4,22 +4,15 @@ export default {
   title: "Referral Table Rewards Cell",
 };
 
-/* 
-  TODO'S: 
-  - Add more rewards
-  - Empty and Loading states for tables
-  - Build rewards for every type of reward
-*/
-
 const baseReward: Reward = {
   id: "123",
   type: "CREDIT",
   value: 19,
   unit: "POINT",
   name: "test",
-  dateGiven: 1626989215831,
-  dateScheduledFor: 1627162015831,
-  dateExpires: 1627162015831,
+  dateGiven: 1627427794891,
+  dateScheduledFor: 1628146800000,
+  dateExpires: 1629010800000,
   dateCancelled: 134400,
   fuelTankCode: "ABC",
   fuelTankType: "Code",

@@ -108,7 +108,9 @@ export class ReferralTableRewardsCell {
               {state === "PENDING" && reward.dateScheduledFor ? (
                 <sl-badge type={slBadgeType} pill>{`${badgeText} ${
                   getTimeDiff(reward.dateScheduledFor) === "tomorrow" ||
-                  getTimeDiff(reward.dateScheduledFor) === "today"
+                  getTimeDiff(reward.dateScheduledFor) === "today" ||
+                  getTimeDiff(reward.dateExpires) === "next month" ||
+                  getTimeDiff(reward.dateExpires) === "next year"
                     ? `until ${getTimeDiff(reward.dateScheduledFor)}`
                     : `for ${getTimeDiff(reward.dateScheduledFor)}`
                 }`}</sl-badge>
@@ -119,8 +121,11 @@ export class ReferralTableRewardsCell {
               )}
               {reward.dateExpires && state === "AVAILABLE" && (
                 <sl-badge type="info" pill>
+                  {/* TODO: Add case for "next month" or "next year" */}
                   {getTimeDiff(reward.dateExpires) === "tomorrow" ||
-                  getTimeDiff(reward.dateExpires) === "today"
+                  getTimeDiff(reward.dateExpires) === "today" ||
+                  getTimeDiff(reward.dateExpires) === "next month" ||
+                  getTimeDiff(reward.dateExpires) === "next year"
                     ? `Expiring ${getTimeDiff(reward.dateExpires)}`
                     : `Expiring in ${getTimeDiff(reward.dateExpires)}`}
                 </sl-badge>

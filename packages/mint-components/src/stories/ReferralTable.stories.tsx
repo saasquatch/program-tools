@@ -533,7 +533,7 @@ export const DemoTableLoading = () => {
         states: {
           hasPrev: false,
           hasNext: false,
-          loading: false,
+          loading: true,
         },
         data: {
           referralData: [],
@@ -549,7 +549,95 @@ export const DemoTableLoading = () => {
   );
 };
 
+/*******************************************************
+                    FSR Stencilbook Tables
+********************************************************/
+// demo columns: user, rewards, status, date started, date converted (should be after started always)
+
+const baseReward: Reward = {
+  id: "123",
+  type: "CREDIT",
+  value: 19,
+  unit: "POINT",
+  name: "test",
+  dateGiven: 1627427794891,
+  dateScheduledFor: 1628146800000,
+  dateExpires: 1629010800000,
+  dateCancelled: 134400,
+  fuelTankCode: "ABC",
+  fuelTankType: "Code",
+  currency: "null",
+  prettyValue: "19 Points",
+  statuses: ["AVAILABLE"],
+  globalRewardKey: "Key",
+  rewardRedemptionTransactions: {
+    data: [
+      {
+        exchangedRewards: {
+          data: [
+            {
+              prettyValue: "19 Points",
+              type: "CREDIT",
+              fuelTankCode: "ABC",
+              globalRewardKey: "Key",
+            },
+          ],
+        },
+      },
+    ],
+  },
+};
+
+const nullExpiresIn = {
+  dateExpires: null,
+};
+
+const nullScheduledFor = {
+  dateScheduledFor: null,
+};
+
+const nullFuelTank = {
+  fuelTankCode: null,
+};
+
+// Reward Type Cases
+const discountReward = {
+  type: "PCT_DISCOUNT",
+};
+
+const creditReward = {
+  type: "CREDIT",
+};
+
+const fuelTankReward = {
+  type: "FUELTANK",
+};
+
+const integrationReward = {
+  type: "INTEGRATION",
+};
+
+// Reward Status Cases
+const pendingReward = {
+  statuses: ["AVAILABLE", "PENDING"],
+};
+const cancelledReward = {
+  statuses: ["PENDING", "CANCELLED"],
+  dateCancelled: 1626850800000,
+};
+const expiredReward = {
+  statuses: ["EXPIRED", "AVAILABLE"],
+  dateExpires: 1626850800000,
+};
+const redeemedReward = {
+  statuses: ["AVAILABLE", "EXPIRED", "REDEEMED"],
+};
+const availableReward = {
+  statuses: ["AVAILABLE"],
+};
+
 export const DemoTableFull = () => {
+  // Should date converted be displayed as an empty cell if status is incomplete?
   return (
     <sqm-referral-table
       demoData={{
@@ -564,8 +652,71 @@ export const DemoTableFull = () => {
         elements: {
           emptyElement: demoEmptyElement,
           loadingElement: demoLoadingElement,
-          columns: [<div>Name</div>, <div>Email</div>, <div>DOB</div>],
-          rows: [],
+          columns: [
+            <div>User</div>,
+            <div>Rewards</div>,
+            <div>Status</div>,
+            <div>Date Started</div>,
+            <div>Date Converted</div>,
+          ],
+          rows: [
+            [
+              <sqm-referral-table-user-cell name="Joe Smith"></sqm-referral-table-user-cell>,
+              <sqm-referral-table-rewards-cell
+                rewards={[
+                  { ...baseReward, ...availableReward },
+                  { ...baseReward, ...pendingReward },
+                  { ...baseReward, ...cancelledReward },
+                ]}
+              ></sqm-referral-table-rewards-cell>,
+
+              <sqm-referral-table-status-cell
+                statusText="Complete"
+                converted={true}
+              ></sqm-referral-table-status-cell>,
+              <sqm-referral-table-date-cell
+                date={1626764400000}
+              ></sqm-referral-table-date-cell>,
+              <sqm-referral-table-date-cell
+                date={1627427794891}
+              ></sqm-referral-table-date-cell>,
+            ],
+            [
+              <sqm-referral-table-user-cell name="Sarah Williams"></sqm-referral-table-user-cell>,
+              <sqm-referral-table-rewards-cell
+                rewards={[{ ...baseReward, ...expiredReward }]}
+              ></sqm-referral-table-rewards-cell>,
+              <sqm-referral-table-status-cell
+                statusText="Incomplete"
+                converted={false}
+              ></sqm-referral-table-status-cell>,
+              <sqm-referral-table-date-cell
+                date={1626764400000}
+              ></sqm-referral-table-date-cell>,
+              <sqm-referral-table-date-cell
+                date={1627427794891}
+              ></sqm-referral-table-date-cell>,
+            ],
+            [
+              <sqm-referral-table-user-cell name="Marvin Smith"></sqm-referral-table-user-cell>,
+              <sqm-referral-table-rewards-cell
+                rewards={[
+                  { ...baseReward, ...nullExpiresIn },
+                  { ...baseReward, ...pendingReward },
+                ]}
+              ></sqm-referral-table-rewards-cell>,
+              <sqm-referral-table-status-cell
+                statusText="Complete"
+                converted={true}
+              ></sqm-referral-table-status-cell>,
+              <sqm-referral-table-date-cell
+                date={1626764400000}
+              ></sqm-referral-table-date-cell>,
+              <sqm-referral-table-date-cell
+                date={1627427794891}
+              ></sqm-referral-table-date-cell>,
+            ],
+          ],
         },
       }}
     ></sqm-referral-table>
