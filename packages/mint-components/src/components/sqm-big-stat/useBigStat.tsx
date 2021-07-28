@@ -40,7 +40,8 @@ const debugQuery = (
 
 const referralsCountQuery = (
   programId: string,
-  locale: string,
+  // locale
+  _: string,
   status?: "started" | "converted"
 ) => {
   const convertedFilter =

@@ -1,6 +1,5 @@
 import { Component, h, Host, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import deepmerge from "deepmerge";
 import { useProgramMenu } from "./useProgramMenu";
 import { getProps } from "../../utils/utils";
 

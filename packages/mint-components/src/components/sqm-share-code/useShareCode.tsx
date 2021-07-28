@@ -3,6 +3,7 @@ import {
   useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
+import { useDomContext, useEffect } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import { gql } from "graphql-request";
 import { ShareLinkViewProps } from "../sqm-share-link/sqm-share-link-view";
@@ -24,11 +25,24 @@ const MessageLinkQuery = gql`
 `;
 
 export function useShareCode(props: ShareCodeProps): ShareLinkViewProps {
-  const { programId = useProgramId() } = props;
+  const programId = useDomContext("sq:program-id");
   const user = useUserIdentity();
 
-  const { data } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
+  console.log(
+    "useShareCode",
+    useDomContext("sq:program-id"),
+    useProgramId(),
+    props.programId
+  );
+  const { data, refetch } = useQuery(
+    MessageLinkQuery,
+    { programId },
+    !user?.jwt
+  );
 
+  useEffect(() => {
+    refetch();
+  }, [programId]);
   const shareString =
     data?.user?.referralCode ??
     // Shown during loading
