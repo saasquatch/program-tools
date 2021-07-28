@@ -25,6 +25,9 @@ export class ReferralTable {
    */
   @Prop() programId: string;
 
+  /** @uiName Number of referrals per page */
+  @Prop() perPage: number = 3;
+
   /** @undocumented */
   @Prop() demoData?: DemoData<ReferralTableViewProps>;
 

@@ -53,7 +53,7 @@ const item1Props = {
   },
   callbacks: {
     onClick: (e: MouseEvent) => console.log(e),
-    onMiddleClick: () => {}
+    onMiddleClick: () => {},
   },
 };
 
@@ -67,7 +67,7 @@ const item2Props = {
   },
   callbacks: {
     onClick: (e: MouseEvent) => console.log(e),
-    onMiddleClick: () => {}
+    onMiddleClick: () => {},
   },
 };
 
@@ -266,6 +266,7 @@ export const EditProfile = () => {
             states: {
               loading: false,
               submitDisabled: false,
+              showCountry: false,
               user: {
                 id: "01",
                 accountId: "111100000",

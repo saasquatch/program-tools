@@ -25,6 +25,7 @@ export class PortalProfile {
   @Prop() lastnametext: string = "Last Name";
   @Prop() emailtext: string = "Email";
   @Prop() countrytext: string = "Country";
+  @Prop() showCountry: boolean = true;
   /** @undocumented */
   @Prop() demoData?: DemoData<PortalProfileViewProps>;
 
@@ -47,6 +48,7 @@ function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
       states: {
         loading: false,
         submitDisabled: false,
+        showCountry: true,
         user: {
           id: "01",
           accountId: "111100000",

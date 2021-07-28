@@ -12,6 +12,7 @@ export interface PortalProfileProps {
   lastnametext: string;
   countrytext: string;
   emailtext: string;
+  showCountry: boolean;
 }
 
 const GET_USER = gql`
@@ -143,6 +144,7 @@ export function usePortalProfile(
     states: {
       loading: userDataResponse?.loading || upsertUserResponse.loading,
       submitDisabled: false,
+      showCountry: props.showCountry,
       formState,
       user: userData,
       text: {
