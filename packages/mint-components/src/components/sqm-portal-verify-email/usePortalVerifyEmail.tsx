@@ -10,7 +10,7 @@ export function usePortalVerifyEmail({ nextPage }) {
   const [disableContinue, setDisableContinue] = useState(true);
   const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
-
+  const [error, setError] = useState("");
   const urlParams = new URLSearchParams(window.location.search);
   const oobCode = urlParams.get("oobCode");
   const nextPageOverride = urlParams.get("nextPage");
@@ -57,10 +57,16 @@ export function usePortalVerifyEmail({ nextPage }) {
     }
   }, [userIdent.managedIdentity.emailVerified]);
 
+  useEffect(() => {
+    if (errors?.message) {
+      setError("Network request failed.");
+    }
+  }, [errors]);
+
   return {
     states: {
       loading: loading || disableContinue,
-      error: errors?.response?.errors?.[0]?.message,
+      error: errors?.response?.errors?.[0]?.message || error,
       verified,
     },
     callbacks: {

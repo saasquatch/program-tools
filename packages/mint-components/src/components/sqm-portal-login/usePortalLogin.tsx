@@ -1,5 +1,5 @@
 import jsonpointer from "jsonpointer";
-import { useEffect } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 import {
   navigation,
   useAuthenticateWithEmailAndPasswordMutation,
@@ -8,7 +8,7 @@ import {
 export function usePortalLogin({ nextPage }) {
   const [request, { loading, errors, data }] =
     useAuthenticateWithEmailAndPasswordMutation();
-
+  const [error, setError] = useState("");
   const urlParams = new URLSearchParams(window.location.search);
   const nextPageOverride = urlParams.get("nextPage");
 
@@ -33,10 +33,16 @@ export function usePortalLogin({ nextPage }) {
     }
   }, [data?.authenticateManagedIdentityWithEmailAndPassword?.token]);
 
+  useEffect(() => {
+    if (errors?.message) {
+      setError("Network request failed.");
+    }
+  }, [errors]);
+
   return {
     states: {
       loading,
-      error: errors?.response?.errors?.[0]?.message,
+      error: errors?.response?.errors?.[0]?.message || error,
     },
     callbacks: {
       submit,
