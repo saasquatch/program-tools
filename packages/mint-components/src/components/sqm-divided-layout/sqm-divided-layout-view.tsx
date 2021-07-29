@@ -1,4 +1,4 @@
-import { h, VNode } from "@stencil/core";
+import { h, Host, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 
@@ -20,9 +20,7 @@ export function DividedLayoutView(
 
   const style = {
     LayoutContainer: {
-      display: "flex",
-      "flex-direction": props.direction,
-      "background-color": "#fff",
+      display: "contents",
       // First style applies when shadow DOM is disabled, second applies when shadow DOM is enabled
       "& > :not(:last-child)": {
         ...getBorder(),
@@ -33,15 +31,24 @@ export function DividedLayoutView(
     },
   };
 
+  const hostStyle = `
+    display: flex;
+    flex: 1;
+    flex-direction: ${props.direction};
+    ${
+      props.direction === "column"
+        ? "width: 100%; max-width: var(--sqm-portal-main-width);"
+        : ""
+    }
+  `;
+
   const vanillaStyle = `
-      :host{
-        width: 100%;
-        max-width: var(--sqm-portal-main-width);
-      }
-      sqm-divided-layout {
-        width: 100%;
-        max-width: var(--sqm-portal-main-width);
-      }
+  :host{
+    ${hostStyle}
+  }
+  sqm-divided-layout {
+    ${hostStyle}
+  }
   `;
 
   jss.setup(preset());
@@ -51,7 +58,7 @@ export function DividedLayoutView(
   return (
     <div class={sheet.classes.LayoutContainer}>
       <style type="text/css">
-        {props.direction === "column" && vanillaStyle}
+        {vanillaStyle}
         {styleString}
       </style>
       {children}

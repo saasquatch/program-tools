@@ -112,7 +112,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             required
           ></sl-input>
         )}
-        <div class={sheet.classes.SlottedFields}>{content.formData}</div>
+        {content.formData}
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
             submit
