@@ -67,7 +67,9 @@ const styleString = sheet.toString();
 export function PortalRegisterView(props: PortalRegisterViewProps) {
   const { states, callbacks, content } = props;
 
-  console.log(props);
+  if (states.error) {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }
 
   return (
     <div class={sheet.classes.Wrapper}>
@@ -77,7 +79,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
       </style>
       <TextSpanView type="h3">{content.pageLabel}</TextSpanView>
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
-        {props.states.error && (
+        {states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
