@@ -11,7 +11,7 @@ export function usePortalEmailVerification() {
   const userIdent = useUserIdentity();
   const email = userIdent?.managedIdentity?.email;
   const [success, setSuccess] = useState(false);
-
+  const [error, setError] = useState("");
   const urlParams = new URLSearchParams(window.location.search);
   const nextPage = urlParams.get("nextPage");
 
@@ -30,10 +30,16 @@ export function usePortalEmailVerification() {
     }
   }, [data?.requestManagedIdentityVerificationEmail?.success]);
 
+  useEffect(() => {
+    if (errors?.message) {
+      setError("Network request failed.");
+    }
+  }, [errors]);
+
   return {
     states: {
       loading,
-      error: errors?.response?.errors?.[0]?.message,
+      error: errors?.response?.errors?.[0]?.message || error,
       success,
     },
     callbacks: {

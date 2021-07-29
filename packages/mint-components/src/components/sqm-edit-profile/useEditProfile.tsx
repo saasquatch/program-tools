@@ -67,24 +67,23 @@ const defaultFormState = {
 export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
   const userIdent = useUserIdentity();
   const [showEdit, setShowEdit] = useState(false);
-  const [userData, setUserData] =
-    useState<null | {
-      id: string;
-      accountId: string;
-      firstName: string;
-      lastName: string;
-      email: string;
-      countryCode: string;
-    }>(undefined);
+  const [error, setError] = useState("");
+  const [userData, setUserData] = useState<null | {
+    id: string;
+    accountId: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    countryCode: string;
+  }>(undefined);
 
-  const [formState, setFormState] =
-    useState<{
-      currentRegion: string;
-      firstName: string;
-      lastName: string;
-      errors: any;
-      error: string;
-    }>(defaultFormState);
+  const [formState, setFormState] = useState<{
+    currentRegion: string;
+    firstName: string;
+    lastName: string;
+    errors: any;
+    error: string;
+  }>(defaultFormState);
 
   const userDataResponse = useQuery(GET_USER, {}, !userIdent?.jwt);
 
@@ -96,7 +95,7 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
     if (upsertUserResponse?.errors) {
       setFormState((state) => ({
         ...state,
-        error: upsertUserResponse?.errors?.response.errors?.[0].message,
+        error: upsertUserResponse?.errors?.response?.errors?.[0].message,
       }));
     } else {
       setUserData((state) => ({
@@ -110,6 +109,12 @@ export function useEditProfile(props: EditProfileProps): EditProfileViewProps {
   useEffect(() => {
     setUserData((data) => ({ ...data, ...userDataResponse?.data?.viewer }));
   }, [userDataResponse?.data]);
+
+  useEffect(() => {
+    if (upsertUserResponse?.errors?.message) {
+      setFormState((state) => ({ ...state, error: "Network request failed." }));
+    }
+  }, [upsertUserResponse?.errors]);
 
   return {
     states: {
