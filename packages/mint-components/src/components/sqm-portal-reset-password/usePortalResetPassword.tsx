@@ -12,7 +12,7 @@ export function usePortalResetPassword({
   confirmPassword,
 }): PortalResetPasswordViewProps {
   const [reset, setReset] = useState(false);
-
+  const [error, setError] = useState("");
   const [verifyPasswordResetCode, verifyPasswordResetCodeState] =
     useVerifyPasswordResetCodeMutation();
 
@@ -31,6 +31,11 @@ export function usePortalResetPassword({
       jsonpointer.set(formData, key, value);
     });
     const variables = { oobCode, password: formData.password };
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
 
     await resetPassword(variables);
   };
@@ -63,12 +68,18 @@ export function usePortalResetPassword({
     verifyPasswordResetCode({ oobCode });
   }, [oobCode]);
 
+  useEffect(() => {
+    if (verifyPasswordResetCodeState?.errors?.message) {
+      setError("Network request failed.");
+    }
+  }, [verifyPasswordResetCodeState?.errors]);
+
   return {
     states: {
       loading: resetPasswordState.loading,
       reset,
       confirmPassword,
-      error: resetPasswordState.errors?.response?.errors?.[0]?.message,
+      error: resetPasswordState.errors?.response?.errors?.[0]?.message || error,
       oobCodeValidating: verifyPasswordResetCodeState.loading,
       oobCodeValid:
         verifyPasswordResetCodeState.data

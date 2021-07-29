@@ -4,6 +4,7 @@ import { useRequestPasswordResetEmailMutation } from "@saasquatch/component-boil
 
 export function usePortalForgotPassword() {
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
   const [request, { loading, data, errors }] =
     useRequestPasswordResetEmailMutation();
 
@@ -28,10 +29,16 @@ export function usePortalForgotPassword() {
     }
   }, [data?.requestManagedIdentityPasswordResetEmail?.success]);
 
+  useEffect(() => {
+    if (errors?.message) {
+      setError("Network request failed.");
+    }
+  }, [errors]);
+
   return {
     states: {
       loading,
-      error: errors?.response?.errors?.[0]?.message,
+      error: errors?.response?.errors?.[0]?.message || error,
       success,
     },
     callbacks: {
