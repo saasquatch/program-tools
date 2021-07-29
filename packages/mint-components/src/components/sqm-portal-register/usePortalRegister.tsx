@@ -52,7 +52,6 @@ export function usePortalRegister({ nextPage, confirmPassword }) {
   }, [data?.registerManagedIdentityWithEmailAndPassword?.token]);
 
   useEffect(() => {
-    //@ts-ignore
     if (errors?.message) {
       setError("Network request failed.");
     }
