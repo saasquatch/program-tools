@@ -69,6 +69,9 @@ export function usePortalVerifyEmail({ nextPage }) {
       error: errors?.response?.errors?.[0]?.message || error,
       verified,
     },
+    data: {
+      oobCode,
+    },
     callbacks: {
       failed,
       gotoNextPage,

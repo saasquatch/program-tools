@@ -14,6 +14,9 @@ const errorProps: PortalVerifyEmailViewProps = {
     loading: false,
     verified: false,
   },
+  data: {
+    oobCode: "abc123",
+  },
   callbacks: {
     gotoNextPage: () => console.log("next page"),
     failed: () => console.log("failed"),
@@ -25,6 +28,9 @@ const verifiedProps: PortalVerifyEmailViewProps = {
     error: "",
     loading: false,
     verified: true,
+  },
+  data: {
+    oobCode: "abc123",
   },
   callbacks: {
     gotoNextPage: () => console.log("next page"),
