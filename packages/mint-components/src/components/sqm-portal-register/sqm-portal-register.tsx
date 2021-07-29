@@ -88,27 +88,6 @@ export class PortalRegister {
 function useRegisterDemo(
   props: PortalRegister
 ): Pick<PortalRegisterViewProps, "states" | "callbacks"> {
-  console.log("demo props", props);
-  console.log(
-    "merge result",
-    deepmerge(
-      {
-        states: {
-          error: "",
-          loading: false,
-          confirmPassword: true,
-          hideInputs: false,
-        },
-        callbacks: {
-          submit: async (_event) => {
-            console.log("submit");
-          },
-        },
-      },
-      props.demoData || {},
-      { arrayMerge: (_, a) => a }
-    )
-  );
   return deepmerge(
     {
       states: {
