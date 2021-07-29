@@ -49,6 +49,7 @@ export type GraphQlRequestError<T> = {
     query: string;
     variables: { [key: string]: unknown };
   };
+  message?: string;
 };
 
 type Action<T> =
