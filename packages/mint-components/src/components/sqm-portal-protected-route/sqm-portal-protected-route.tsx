@@ -1,6 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, Prop, State } from "@stencil/core";
+import { h, Component, Prop, State, Host } from "@stencil/core";
 import { usePortalProtectedRoute } from "./usePortalProtectedRoute";
 
 /**
@@ -30,12 +30,18 @@ export class PortalProtectedRoute {
   disconnectedCallback() {}
 
   render() {
-    isDemo()
+    const hasUser = isDemo()
       ? usePortalProtectedRouteDemo(this)
       : usePortalProtectedRoute(this);
+
+    return (
+      <Host style={{ display: hasUser ? "contents" : "none" }}>
+        <slot />
+      </Host>
+    );
   }
 }
 
 function usePortalProtectedRouteDemo({}) {
-  return;
+  return true;
 }
