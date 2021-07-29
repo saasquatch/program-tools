@@ -8,7 +8,6 @@ import { NavigationSidebarView } from "../components/sqm-navigation-sidebar/sqm-
 import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PortalSectionView } from "../components/sqm-titled-section/sqm-portal-section-view";
 import { PortalContainerView } from "../components/sqm-portal-container/sqm-portal-container-view";
-import { DividedLayoutView } from "../components/sqm-divided-layout/sqm-divided-layout-view";
 import { StatContainerView } from "../components/sqm-stat-container/sqm-stat-container-view";
 import { PortalProfileView } from "../components/sqm-portal-profile/sqm-portal-profile-view";
 import { PortalChangePasswordView } from "../components/sqm-portal-change-password/sqm-portal-change-password-view";
@@ -140,10 +139,10 @@ export const Dashboard = () => {
   };
 
   return (
-    <DividedLayoutView {...{ direction: "row" }}>
+    <sqm-divided-layout direction="row">
       <style type="text/css">{styleString}</style>
       <Sidebar />
-      <DividedLayoutView {...{ direction: "column" }}>
+      <sqm-divided-layout direction="column">
         <PortalContainerView
           {...{ direction: "column", padding: "xxx-large", gap: "xxx-large" }}
         >
@@ -250,17 +249,17 @@ export const Dashboard = () => {
             }}
           ></PortalSectionView>
         </PortalContainerView>
-      </DividedLayoutView>
-    </DividedLayoutView>
+      </sqm-divided-layout>
+    </sqm-divided-layout>
   );
 };
 
 export const EditProfile = () => {
   return (
-    <DividedLayoutView {...{ direction: "row" }}>
+    <sqm-divided-layout direction="row">
       <style type="text/css">{styleString}</style>
       <Sidebar />
-      <DividedLayoutView {...{ direction: "column" }}>
+      <sqm-divided-layout direction="column">
         <PortalProfileView
           {...{
             states: {
@@ -304,17 +303,17 @@ export const EditProfile = () => {
             },
           }}
         />
-      </DividedLayoutView>
-    </DividedLayoutView>
+      </sqm-divided-layout>
+    </sqm-divided-layout>
   );
 };
 
 export const Commissions = () => {
   return (
-    <DividedLayoutView {...{ direction: "row" }}>
+    <sqm-divided-layout direction="row">
       <style type="text/css">{styleString}</style>
       <Sidebar />
-      <DividedLayoutView {...{ direction: "column" }}>
+      <sqm-divided-layout direction="column">
         <PortalContainerView
           {...{ direction: "column", padding: "xxx-large", gap: "xxx-large" }}
         >
@@ -349,17 +348,17 @@ export const Commissions = () => {
             <BigStatView {...{ statvalue: "$ 20" }}>Redeemed</BigStatView>
           </StatContainerView>
         </PortalContainerView>
-      </DividedLayoutView>
-    </DividedLayoutView>
+      </sqm-divided-layout>
+    </sqm-divided-layout>
   );
 };
 
 export const Activity = () => {
   return (
-    <DividedLayoutView {...{ direction: "row" }}>
+    <sqm-divided-layout direction="row">
       <style type="text/css">{styleString}</style>
       <Sidebar />
-      <DividedLayoutView {...{ direction: "column" }}>
+      <sqm-divided-layout direction="column">
         <PortalContainerView
           {...{ direction: "column", padding: "xxx-large", gap: "xxx-large" }}
         >
@@ -431,7 +430,7 @@ export const Activity = () => {
             ),
           }}
         ></PortalSectionView>
-      </DividedLayoutView>
-    </DividedLayoutView>
+      </sqm-divided-layout>
+    </sqm-divided-layout>
   );
 };

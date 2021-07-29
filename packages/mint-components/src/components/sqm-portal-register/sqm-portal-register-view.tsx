@@ -107,7 +107,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
           ></sl-input>
         )}
         {/* Must use inline styling to target slotted element here */}
-        <div>{content.formData}</div>
+        {content.formData}
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
             submit
