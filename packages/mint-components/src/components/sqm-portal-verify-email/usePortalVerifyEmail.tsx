@@ -1,11 +1,14 @@
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import {
   navigation,
+  useUserIdentity,
   useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
 
 export function usePortalVerifyEmail({ nextPage }) {
   const [verified, setVerified] = useState(false);
+  const [disableContinue, setDisableContinue] = useState(true);
+  const userIdent = useUserIdentity();
   const [request, { loading, data, errors }] = useVerifyEmailMutation();
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -38,9 +41,6 @@ export function usePortalVerifyEmail({ nextPage }) {
   useEffect(() => {
     if (data?.verifyManagedIdentityEmail?.success) {
       setVerified(true);
-      setTimeout(() => {
-        gotoNextPage();
-      }, 5000);
     }
   }, [data?.verifyManagedIdentityEmail?.success]);
 
@@ -48,9 +48,18 @@ export function usePortalVerifyEmail({ nextPage }) {
     submit();
   }, []);
 
+  useEffect(() => {
+    if (userIdent.managedIdentity.emailVerified) {
+      setDisableContinue(false);
+      setTimeout(() => {
+        gotoNextPage();
+      }, 3000);
+    }
+  }, [userIdent.managedIdentity.emailVerified]);
+
   return {
     states: {
-      loading,
+      loading: loading || disableContinue,
       error: errors?.response?.errors?.[0]?.message,
       verified,
     },
