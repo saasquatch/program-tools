@@ -17,7 +17,7 @@ export function usePortalEmailVerification() {
 
   const submit = async () => {
     if (!email) return;
-
+    setError("");
     const urlParams = nextPage ? { nextPage } : null;
     const variables = { email, urlParams };
 

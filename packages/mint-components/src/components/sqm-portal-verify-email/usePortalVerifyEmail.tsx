@@ -34,6 +34,7 @@ export function usePortalVerifyEmail({ nextPage }) {
 
   const submit = async () => {
     if (oobCode) {
+      setError("");
       await request({ oobCode });
     }
   };
