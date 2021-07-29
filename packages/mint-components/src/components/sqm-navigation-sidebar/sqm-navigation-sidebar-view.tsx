@@ -16,9 +16,10 @@ const style = {
   },
 };
 
-const hostStyle = `
+const vanillaStyle = `
   :host{    
-    width: 100%;
+    width: 30vw;
+    min-width: min-content;
     max-width: 320px;
   }
 `;
@@ -35,7 +36,7 @@ export function NavigationSidebarView(
   return (
     <div class={sheet.classes.ItemsContainer}>
       <style type="text/css">
-        {hostStyle}
+        {vanillaStyle}
         {styleString}
       </style>
       {children}

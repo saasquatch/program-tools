@@ -38,7 +38,11 @@ export function usePortalRegister({ nextPage, confirmPassword }) {
       password,
       formData,
     };
-    await request(variables);
+    try {
+      await request(variables);
+    } catch (error) {
+      setError("Network request failed.");
+    }
   };
 
   useEffect(() => {
@@ -46,6 +50,12 @@ export function usePortalRegister({ nextPage, confirmPassword }) {
       navigation.push(nextPage);
     }
   }, [data?.registerManagedIdentityWithEmailAndPassword?.token]);
+
+  useEffect(() => {
+    if (errors?.message) {
+      setError("Network request failed.");
+    }
+  }, [errors]);
 
   return {
     states: {

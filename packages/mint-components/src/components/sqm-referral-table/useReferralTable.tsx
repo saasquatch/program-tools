@@ -138,7 +138,7 @@ export function useReferralTable(
     GET_REFERRAL_DATA,
     (data) => data?.viewer?.referrals,
     {
-      limit: 5,
+      limit: props.perPage,
       offset: 0,
     },
     { filter }

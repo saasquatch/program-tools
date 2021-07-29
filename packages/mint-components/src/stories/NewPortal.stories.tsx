@@ -53,7 +53,7 @@ const item1Props = {
   },
   callbacks: {
     onClick: (e: MouseEvent) => console.log(e),
-    onMiddleClick: () => {}
+    onMiddleClick: () => {},
   },
 };
 
@@ -67,7 +67,7 @@ const item2Props = {
   },
   callbacks: {
     onClick: (e: MouseEvent) => console.log(e),
-    onMiddleClick: () => {}
+    onMiddleClick: () => {},
   },
 };
 
@@ -145,7 +145,7 @@ export const Dashboard = () => {
       <Sidebar />
       <DividedLayoutView {...{ direction: "column" }}>
         <PortalContainerView
-          {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
+          {...{ direction: "column", padding: "xxx-large", gap: "xxx-large" }}
         >
           <PortalSectionView
             {...{
@@ -173,7 +173,7 @@ export const Dashboard = () => {
           </StatContainerView>
         </PortalContainerView>
         <PortalContainerView
-          {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
+          {...{ direction: "column", padding: "xxx-large", gap: "xxx-large" }}
         >
           <PortalSectionView
             {...{
@@ -232,7 +232,7 @@ export const Dashboard = () => {
                   {...{
                     direction: "row",
                     padding: "large",
-                    gap: "48px",
+                    gap: "xxx-large",
                     minWidth: "150px",
                   }}
                 >
@@ -266,6 +266,7 @@ export const EditProfile = () => {
             states: {
               loading: false,
               submitDisabled: false,
+              showCountry: false,
               user: {
                 id: "01",
                 accountId: "111100000",
@@ -315,7 +316,7 @@ export const Commissions = () => {
       <Sidebar />
       <DividedLayoutView {...{ direction: "column" }}>
         <PortalContainerView
-          {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
+          {...{ direction: "column", padding: "xxx-large", gap: "xxx-large" }}
         >
           <PortalSectionView
             {...{
@@ -360,7 +361,7 @@ export const Activity = () => {
       <Sidebar />
       <DividedLayoutView {...{ direction: "column" }}>
         <PortalContainerView
-          {...{ direction: "column", padding: "xxx-large", gap: "48px" }}
+          {...{ direction: "column", padding: "xxx-large", gap: "xxx-large" }}
         >
           <PortalSectionView
             {...{
