@@ -44,6 +44,35 @@ const loadingProps: PortalRegisterViewProps = {
   content: { pageLabel: "Register" },
 };
 
+const slottedProps: PortalRegisterViewProps = {
+  states: {
+    error: "",
+    loading: false,
+    confirmPassword: true,
+  },
+  callbacks: {
+    submit: () => console.log("Submit!"),
+  },
+  content: {
+    pageLabel: "Register",
+    formData: (
+      <div>
+        <sl-input
+          style={{ marginBottom: "var(--sl-spacing-x-large)" }}
+          exportparts="label: input-label"
+          label="Slotted Input"
+          required
+        ></sl-input>
+        <sl-input
+          exportparts="label: input-label"
+          label="Slotted Input 2"
+          required
+        ></sl-input>
+      </div>
+    ),
+  },
+};
+
 export const Default = () => <PortalRegisterView {...defaultProps} />;
 
 export const RegisterWithError = () => <PortalRegisterView {...errorProps} />;
@@ -64,3 +93,5 @@ export const FieldsHidden = () => {
     ></sqm-portal-register>
   );
 };
+
+export const SlottedInputs = () => <PortalRegisterView {...slottedProps} />;

@@ -40,4 +40,6 @@ export function usePortalProtectedRoute({
       });
     }
   }, []);
+  
+  return !!userIdent;
 }

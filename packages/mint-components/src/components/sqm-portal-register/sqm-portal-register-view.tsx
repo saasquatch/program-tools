@@ -40,12 +40,6 @@ const style = {
   },
 
   ButtonsContainer: AuthButtonsContainer,
-
-  SlottedFields: {
-    "& > :slotted(*:not(last-child))": {
-      "margin-bottom": "var(--sl-spacing-x-large)",
-    },
-  },
 };
 
 const vanillaStyle = `
@@ -114,7 +108,8 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             required
           ></sl-input>
         )}
-        <div class={sheet.classes.SlottedFields}>{content.formData}</div>
+        {/* Must use inline styling to target slotted element here */}
+        {content.formData}
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
             submit
