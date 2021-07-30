@@ -7,6 +7,13 @@ import {
 import { useValidationState } from "./useValidationState";
 import { PortalRegister } from "./sqm-portal-register";
 
+// returns either error message if invalid or undefined if valid
+export type ValidationErrorFunction = (
+  control,
+  key: string,
+  value
+) => string | undefined;
+
 export function usePortalRegister(props: PortalRegister) {
   const { validationState, setValidationState } = useValidationState({});
   const [request, { loading, errors, data }] =
@@ -17,23 +24,39 @@ export function usePortalRegister(props: PortalRegister) {
     let formControls = event.target.getFormControls();
 
     let formData: Record<string, any> = {};
+    let validationErrors: Record<string, string> = {};
     formControls?.forEach((control) => {
       if (!control.name) return;
       const key = control.name;
       const value = control.value;
       jsonpointer.set(formData, key, value);
+      // required validation
+      if (control.required && !value) {
+        validationErrors = { ...validationErrors, [key]: "Cannot be empty" };
+      }
+      // custom validation
+      if (typeof control.validationError === "function") {
+        const validate = control.validationError as ValidationErrorFunction;
+        const validationError = validate(control, key, value);
+        validationErrors = validationError
+          ? { ...validationErrors, [key]: validationError }
+          : validationErrors;
+      }
     });
     if (
       (props.confirmPassword || formData.confirmPassword) &&
       formData.password !== formData.confirmPassword
     ) {
-      setValidationState({
-        error: "",
-        validationErrors: { confirmPassword: "Passwords do not match." },
-      });
+      validationErrors = {
+        ...validationErrors,
+        confirmPassword: "Passwords do not match.",
+      };
+    }
+    setValidationState({ error: "", validationErrors });
+    if (Object.keys(validationErrors).length) {
+      // early return for validation errors
       return;
     }
-    setValidationState({ error: "" });
     const { email, password } = formData;
     delete formData.email;
     delete formData.password;

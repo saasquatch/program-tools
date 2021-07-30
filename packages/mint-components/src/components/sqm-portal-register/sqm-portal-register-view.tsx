@@ -9,7 +9,7 @@ import {
 import jss from "jss";
 import preset from "jss-preset-default";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
-import { FormState, ValidationErrors } from "./useValidationState";
+import { FormState } from "./useValidationState";
 
 export interface PortalRegisterViewProps {
   states: {
