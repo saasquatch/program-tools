@@ -340,10 +340,6 @@ export namespace Components {
     }
     interface SqmProgramMenu {
         /**
-          * @uiName Include dropdown menu
-         */
-        "includeDropdown": boolean;
-        /**
           * @uiName Label on the header menu
          */
         "menuLabel": string;
@@ -1251,10 +1247,6 @@ declare namespace LocalJSX {
         "nextPage"?: string;
     }
     interface SqmProgramMenu {
-        /**
-          * @uiName Include dropdown menu
-         */
-        "includeDropdown"?: boolean;
         /**
           * @uiName Label on the header menu
          */
