@@ -19,7 +19,6 @@ export function usePortalRegister(props: PortalRegister) {
   const [request, { loading, errors, data }] =
     useRegisterWithEmailAndPasswordMutation();
 
-  console.log({ validationState });
   const submit = async (event: any) => {
     let formControls = event.target.getFormControls();
 
