@@ -9,16 +9,12 @@ import { getProps } from "../../utils/utils";
 @Component({
   tag: "sqm-program-menu",
   styleUrl: "sqm-program-menu.scss",
-  shadow: true,
+  shadow: false,
 })
 export class ProgramMenu {
   @State()
   ignored = true;
 
-  /**
-   * @uiName Include dropdown menu
-   */
-  @Prop() includeDropdown: boolean;
   /**
    * @uiName Label on the header menu
    */
@@ -35,7 +31,7 @@ export class ProgramMenu {
     //   ? useProgramMenuDemo(getProps(this))
     //   : useProgramMenu(getProps(this));
     return (
-      <Host>
+      <Host style={{ display: "contents" }}>
         <sl-select value={data.programId} ref={(r) => (ref.current = r)}>
           <slot />
         </sl-select>

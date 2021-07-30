@@ -29,6 +29,11 @@ const style = {
   Wrapper: AuthWrapper,
   Column: { ...AuthColumn },
   ButtonsContainer: AuthButtonsContainer,
+
+  SecondaryButton: {
+    cursor: "pointer",
+    width: "25%",
+  },
 };
 
 const vanillaStyle = `
@@ -86,7 +91,9 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
           >
             {content.submitLabel || "Reset Password"}
           </sl-button>
-          <div>{content.secondaryButton}</div>
+          <div class={sheet.classes.SecondaryButton}>
+            {content.secondaryButton}
+          </div>
         </div>
       </sl-form>
     </div>

@@ -28,15 +28,8 @@ export function useShareCode(props: ShareCodeProps): ShareLinkViewProps {
   const programId = useProgramId();
   const user = useUserIdentity();
 
-  const { data, refetch } = useQuery(
-    MessageLinkQuery,
-    { programId },
-    !user?.jwt
-  );
+  const { data } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
 
-  useEffect(() => {
-    refetch();
-  }, [programId]);
   const shareString =
     data?.user?.referralCode ??
     // Shown during loading

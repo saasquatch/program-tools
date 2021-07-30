@@ -7,10 +7,9 @@
 
 ## Properties
 
-| Property          | Attribute          | Description | Type      | Default     |
-| ----------------- | ------------------ | ----------- | --------- | ----------- |
-| `includeDropdown` | `include-dropdown` |             | `boolean` | `undefined` |
-| `menuLabel`       | `menu-label`       |             | `string`  | `undefined` |
+| Property    | Attribute    | Description | Type     | Default     |
+| ----------- | ------------ | ----------- | -------- | ----------- |
+| `menuLabel` | `menu-label` |             | `string` | `undefined` |
 
 
 ----------------------------------------------
