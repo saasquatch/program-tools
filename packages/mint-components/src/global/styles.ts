@@ -530,6 +530,8 @@ sl-input::part(label){
   color: var(--sl-color-gray-900);
 }
 
+// The following styles to be moved to ST
+
 // *::part(erroralert-icon), *::part(successalert-icon){
 //   align-items: flex-start;
 //   padding-top: var(--sl-spacing-large);
