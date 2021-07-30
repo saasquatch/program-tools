@@ -69,8 +69,6 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }
 
-  console.log("view", states, states.validationState);
-
   return (
     <div class={sheet.classes.Wrapper}>
       <style type="text/css">
@@ -78,7 +76,11 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
         {styleString}
       </style>
       <TextSpanView type="h3">{content.pageLabel}</TextSpanView>
-      <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
+      <sl-form
+        class={sheet.classes.Column}
+        onSl-submit={callbacks.submit}
+        novalidate
+      >
         {states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">
             <div part="erroralert-text">{props.states.error}</div>
@@ -92,6 +94,23 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             label={content.emailLabel || "Email"}
             disabled={states.loading}
             required
+            validationError={({ value }: { value: string }) => {
+              if (!value) {
+                return "Cannot be empty";
+              }
+              // this matches shoelace validation, but could be better
+              if (!value.includes("@")) {
+                return "Must be a valid email address";
+              }
+            }}
+            {...(states.validationState?.validationErrors?.email
+              ? {
+                  class: sheet.classes.ErrorStyle,
+                  helpText:
+                    states.validationState?.validationErrors?.email ||
+                    "Cannot be empty",
+                }
+              : [])}
           ></sl-input>
         )}
         {!states.hideInputs && (
@@ -102,6 +121,22 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             label={content.passwordLabel || "Password"}
             disabled={states.loading}
             required
+            validationError={({ value }) => {
+              if (!value) {
+                return "Cannot be empty";
+              }
+              if (value.length < 6) {
+                return "Password must be at least 6 characters";
+              }
+            }}
+            {...(states.validationState?.validationErrors?.password
+              ? {
+                  class: sheet.classes.ErrorStyle,
+                  helpText:
+                    states.validationState?.validationErrors?.password ||
+                    "Cannot be empty",
+                }
+              : [])}
           ></sl-input>
         )}
         {!states.hideInputs && states.confirmPassword && (

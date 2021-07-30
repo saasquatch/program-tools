@@ -73,7 +73,6 @@ export class PortalRegister {
       pageLabel: this.pageLabel,
     };
 
-    console.log({states})
     return (
       <PortalRegisterView
         states={states}

@@ -8,11 +8,11 @@ import { useValidationState } from "./useValidationState";
 import { PortalRegister } from "./sqm-portal-register";
 
 // returns either error message if invalid or undefined if valid
-export type ValidationErrorFunction = (
-  control,
-  key: string,
-  value
-) => string | undefined;
+export type ValidationErrorFunction = (input: {
+  control;
+  key: string;
+  value;
+}) => string | undefined;
 
 export function usePortalRegister(props: PortalRegister) {
   const { validationState, setValidationState } = useValidationState({});
@@ -32,15 +32,14 @@ export function usePortalRegister(props: PortalRegister) {
       jsonpointer.set(formData, key, value);
       // required validation
       if (control.required && !value) {
-        validationErrors = { ...validationErrors, [key]: "Cannot be empty" };
+        jsonpointer.set(validationErrors, key, "Cannot be empty");
       }
       // custom validation
       if (typeof control.validationError === "function") {
         const validate = control.validationError as ValidationErrorFunction;
-        const validationError = validate(control, key, value);
-        validationErrors = validationError
-          ? { ...validationErrors, [key]: validationError }
-          : validationErrors;
+        const validationError = validate({ control, key, value });
+        if (validationError)
+          jsonpointer.set(validationErrors, key, validationError);
       }
     });
     if (
