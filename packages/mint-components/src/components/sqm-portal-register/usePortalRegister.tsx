@@ -1,16 +1,18 @@
 import jsonpointer from "jsonpointer";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useEffect } from "@saasquatch/universal-hooks";
 import {
   navigation,
   useRegisterWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
+import { useValidationState } from "./useValidationState";
 import { PortalRegister } from "./sqm-portal-register";
 
 export function usePortalRegister(props: PortalRegister) {
-  const [error, setError] = useState("");
+  const { validationState, setValidationState } = useValidationState({});
   const [request, { loading, errors, data }] =
     useRegisterWithEmailAndPasswordMutation();
 
+  console.log({ validationState });
   const submit = async (event: any) => {
     let formControls = event.target.getFormControls();
 
@@ -25,10 +27,13 @@ export function usePortalRegister(props: PortalRegister) {
       (props.confirmPassword || formData.confirmPassword) &&
       formData.password !== formData.confirmPassword
     ) {
-      setError("Passwords do not match.");
+      setValidationState({
+        error: "",
+        validationErrors: { confirmPassword: "Passwords do not match." },
+      });
       return;
     }
-    setError("");
+    setValidationState({ error: "" });
     const { email, password } = formData;
     delete formData.email;
     delete formData.password;
@@ -42,7 +47,7 @@ export function usePortalRegister(props: PortalRegister) {
     try {
       await request(variables);
     } catch (error) {
-      setError("Network request failed.");
+      setValidationState({ error: "Network request failed." });
     }
   };
 
@@ -52,16 +57,17 @@ export function usePortalRegister(props: PortalRegister) {
     }
   }, [data?.registerManagedIdentityWithEmailAndPassword?.token]);
 
-  useEffect(() => {
-    if (errors?.message) {
-      setError("Network request failed.");
-    }
-  }, [errors]);
+  // useEffect(() => {
+  //   if (errors?.message) {
+  //     setValidationState({ error: "Network request failed." });
+  //   }
+  // }, [errors]);
 
   return {
     states: {
       loading,
-      error: errors?.response?.errors?.[0]?.message || error,
+      error: errors?.response?.errors?.[0]?.message || validationState?.error,
+      validationState,
       confirmPassword: props.confirmPassword,
       hideInputs: props.hideInputs,
     },
