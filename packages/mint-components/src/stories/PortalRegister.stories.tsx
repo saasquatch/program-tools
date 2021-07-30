@@ -13,6 +13,7 @@ const defaultProps: PortalRegisterViewProps = {
     error: "",
     loading: false,
     confirmPassword: true,
+    hideInputs: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -25,6 +26,7 @@ const errorProps: PortalRegisterViewProps = {
     error: "Something went wrong. Please try again.",
     loading: false,
     confirmPassword: true,
+    hideInputs: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -37,6 +39,7 @@ const loadingProps: PortalRegisterViewProps = {
     error: "",
     loading: true,
     confirmPassword: true,
+    hideInputs: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -49,6 +52,7 @@ const slottedProps: PortalRegisterViewProps = {
     error: "",
     loading: false,
     confirmPassword: true,
+    hideInputs: false,
   },
   callbacks: {
     submit: () => console.log("Submit!"),

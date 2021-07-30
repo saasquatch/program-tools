@@ -4,8 +4,9 @@ import {
   navigation,
   useRegisterWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
+import { PortalRegister } from "./sqm-portal-register";
 
-export function usePortalRegister({ nextPage, confirmPassword }) {
+export function usePortalRegister(props: PortalRegister) {
   const [error, setError] = useState("");
   const [request, { loading, errors, data }] =
     useRegisterWithEmailAndPasswordMutation();
@@ -21,7 +22,7 @@ export function usePortalRegister({ nextPage, confirmPassword }) {
       jsonpointer.set(formData, key, value);
     });
     if (
-      (confirmPassword || formData.confirmPassword) &&
+      (props.confirmPassword || formData.confirmPassword) &&
       formData.password !== formData.confirmPassword
     ) {
       setError("Passwords do not match.");
@@ -47,7 +48,7 @@ export function usePortalRegister({ nextPage, confirmPassword }) {
 
   useEffect(() => {
     if (data?.registerManagedIdentityWithEmailAndPassword?.token) {
-      navigation.push(nextPage);
+      navigation.push(props.nextPage);
     }
   }, [data?.registerManagedIdentityWithEmailAndPassword?.token]);
 
@@ -61,6 +62,8 @@ export function usePortalRegister({ nextPage, confirmPassword }) {
     states: {
       loading,
       error: errors?.response?.errors?.[0]?.message || error,
+      confirmPassword: props.confirmPassword,
+      hideInputs: props.hideInputs,
     },
     callbacks: {
       submit,

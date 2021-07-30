@@ -79,26 +79,113 @@
     <sqm-portal-reset-password></sqm-portal-reset-password> -->
     <!-- <sqm-stencilbook></sqm-stencilbook> -->
 
-    <sqm-portal-register confirm-password>
-      <div slot="formData">
-        <sl-input
-          exportparts="label: input-label"
-          name="/firstName"
-          type="text"
-          label="First Name"
-          required
-          style="margin-bottom: var(--sl-spacing-large)"
-        ></sl-input>
-        <sl-input
-          exportparts="label: input-label"
-          name="/lastName"
-          type="text"
-          label="Last Name"
-          required
-        ></sl-input>
-      </div>
-    </sqm-portal-register>
-
+    <sqm-divided-layout direction="row">
+      <sqm-navigation-sidebar>
+        <sqm-navigation-sidebar-item
+          path="/"
+          icon="house"
+          label="Dashboard"
+        ></sqm-navigation-sidebar-item>
+        <sqm-navigation-sidebar-item
+          path="/activity"
+          icon="bar-chart"
+          label="Activity"
+        ></sqm-navigation-sidebar-item>
+        <sqm-navigation-sidebar-item
+          path="/editProfile"
+          icon="person"
+          label="Edit Profile"
+        ></sqm-navigation-sidebar-item>
+        <sqm-navigation-sidebar-item
+          path="/logout"
+          icon="box-arrow-right"
+          label="Logout"
+        ></sqm-navigation-sidebar-item>
+      </sqm-navigation-sidebar>
+      <sqm-divided-layout direction="column"
+        ><sqm-portal-container
+          direction="column"
+          padding="xxx-large"
+          gap="xxx-large"
+          ><sqm-titled-section label-margin="xx-small"
+            ><sqm-text slot="label"> <p>Welcome back,</p> </sqm-text
+            ><sqm-text slot="content">
+              <h1>
+                <sqm-user-name fallback="Anonymous User"></sqm-user-name>
+              </h1> </sqm-text></sqm-titled-section
+          ><sqm-stat-container space="xxxx-large"
+            ><sqm-big-stat
+              flex-reverse="true"
+              alignment="left"
+              stat-type="/referralsCount"
+            ><sqm-text><p>Subscribers</p></sqm-text></sqm-big-stat
+            ><sqm-big-stat
+              flex-reverse="true"
+              alignment="left"
+              stat-type="/rewardBalance/CREDIT/COMMISSION/CAD"
+            ><sqm-text><p>Total Earned CAD</p></sqm-text></sqm-big-stat>
+    <sqm-big-stat
+              flex-reverse="true"
+              alignment="left"
+              stat-type="/rewardBalance/CREDIT/COMMISSION/USD"
+            ><sqm-text><p>Total Earned USD</p></sqm-text></sqm-big-stat>
+    <sqm-big-stat
+              flex-reverse="true"
+              alignment="left"
+              stat-type="/rewardsAvailable/CREDIT/COMMISSION/CAD"
+            ><sqm-text><p>Awaiting Payout CAD</p></sqm-text></sqm-big-stat>
+    <sqm-big-stat
+              flex-reverse="true"
+              alignment="left"
+              stat-type="/rewardsAvailable/CREDIT/COMMISSION/USD"
+            ><sqm-text><p>Awaiting Payout USD</p></sqm-text></sqm-big-stat>
+    
+    
+    </sqm-stat-container></sqm-portal-container
+        ><sqm-portal-container
+          direction="column"
+          padding="xxx-large"
+          gap="xxx-large"
+        >
+          <sqm-titled-section padding="none" label-margin="x-large"
+            ><sqm-text slot="label"> <h2>Partner and Profit</h2> </sqm-text
+            ><sqm-text slot="content">
+              <p>
+                Get rewarded for referring potential customers to LiveBarn. Earn commission for each successful lead you send our way 
+              </p>
+            </sqm-text></sqm-titled-section
+          >
+    <sqm-titled-section label-margin="small" padding="none"
+            ><sqm-text slot="label"> <h3>Share your referral link</h3> </sqm-text
+            ><sqm-share-link slot="content"></sqm-share-link></sqm-titled-section
+          ><sqm-titled-section label-margin="small" padding="none"
+            ><sqm-text slot="label"> <h3>Share your referral code</h3> </sqm-text
+            ><sqm-share-code slot="content"></sqm-share-link
+          ></sqm-titled-section>
+          <sqm-titled-section label-margin="small" padding="none"
+            ><sqm-text slot="label"> <h3>Share via social media</h3> </sqm-text
+            ><sqm-portal-container
+              slot="content"
+              direction="row"
+              padding="none"
+              gap="xxx-large"
+              min-width="160px"
+              ><sqm-share-button
+                icon="envelope"
+                medium="email"
+                size="medium"
+                pill="true"
+                >Email a friend</sqm-share-button
+              ><sqm-share-button medium="twitter" size="medium" pill="true"
+                >Tweet about us</sqm-share-button
+              ><sqm-share-button medium="facebook" size="medium" pill="true"
+                >Share on Facebook</sqm-share-button
+              ></sqm-portal-container
+            ></sqm-titled-section
+          ></sqm-portal-container
+        ></sqm-divided-layout
+    >
+    </sqm-divided-layout>
     <!-- <sqm-portal-login></sqm-portal-login> -->
 
     <!-- <sqm-portal-register></sqm-portal-register> -->

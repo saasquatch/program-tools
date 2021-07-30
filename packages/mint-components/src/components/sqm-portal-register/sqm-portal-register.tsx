@@ -74,11 +74,7 @@ export class PortalRegister {
     };
     return (
       <PortalRegisterView
-        states={{
-          hideInputs: this.hideInputs,
-          confirmPassword: this.confirmPassword,
-          ...states,
-        }}
+        states={states}
         callbacks={callbacks}
         content={content}
       ></PortalRegisterView>

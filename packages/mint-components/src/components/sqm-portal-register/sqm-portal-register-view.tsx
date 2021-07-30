@@ -13,8 +13,8 @@ export interface PortalRegisterViewProps {
   states: {
     error: string;
     loading: boolean;
-    confirmPassword?: boolean;
-    hideInputs?: boolean;
+    confirmPassword: boolean;
+    hideInputs: boolean;
   };
   callbacks: {
     submit;

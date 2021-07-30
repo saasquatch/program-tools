@@ -520,31 +520,33 @@ sl-input::part(label){
   background-color: var(--sl-color-gray-200);
   color: var(--sl-color-gray-700);
 }
-*::part(erroralert-icon), *::part(successalert-icon){
-  align-items: flex-start;
-  padding-top: var(--sl-spacing-large);
-}
 
-*::part(erroralert-text){
-  color: var(--sl-color-danger-500);
-}
+// *::part(erroralert-icon), *::part(successalert-icon){
+//   align-items: flex-start;
+//   padding-top: var(--sl-spacing-large);
+// }
 
-*::part(successalert-text) {
-  color: var(--sl-color-success-600);
-}
+// *::part(erroralert-text){
+//   color: var(--sl-color-danger-500);
+// }
 
-*::part(successalert-text),
-*::part(erroralert-text) {
-  font-size: var(--sl-font-size-medium);
-  font-weight: var(--sl-font-weight-semibold);
-  width: 100%;
-}
-*::part(successalert-subtext){
-  font-size: var(--sl-font-size-medium);
-  font-weight: var(--sl-font-weight-normal);
-  color: var(--sl-color-gray-800);
-  width: 100%;
-}
+// *::part(successalert-text) {
+//   color: var(--sl-color-success-600);
+// }
+
+// *::part(successalert-text),
+// *::part(erroralert-text) {
+//   font-size: var(--sl-font-size-medium);
+//   font-weight: var(--sl-font-weight-semibold);
+//   width: 100%;
+// }
+// *::part(successalert-subtext){
+//   font-size: var(--sl-font-size-medium);
+//   font-weight: var(--sl-font-weight-normal);
+//   color: var(--sl-color-gray-800);
+//   width: 100%;
+// }
+
 .FooterEmail{
   text-decoration: none;
   font-size: var(--sl-font-size-medium);
