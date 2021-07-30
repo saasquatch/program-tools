@@ -33,10 +33,16 @@ export class PortalVerifyEmail {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks } = isDemo()
+    const { states, data, callbacks } = isDemo()
       ? usePortalVerifyEmailDemo(this)
       : usePortalVerifyEmail(this);
-    return <PortalVerifyEmailView states={states} callbacks={callbacks} />;
+    return (
+      <PortalVerifyEmailView
+        states={states}
+        data={data}
+        callbacks={callbacks}
+      />
+    );
   }
 }
 function usePortalVerifyEmailDemo(
@@ -45,6 +51,9 @@ function usePortalVerifyEmailDemo(
   return deepmerge(
     {
       states: { error: "", loading: false, verified: false },
+      data: {
+        oobCode: "code",
+      },
       callbacks: {
         failed: () => {
           console.log("failed");

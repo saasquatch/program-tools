@@ -25,15 +25,9 @@ const MessageLinkQuery = gql`
 `;
 
 export function useShareCode(props: ShareCodeProps): ShareLinkViewProps {
-  const programId = useDomContext("sq:program-id");
+  const programId = useProgramId();
   const user = useUserIdentity();
 
-  console.log(
-    "useShareCode",
-    useDomContext("sq:program-id"),
-    useProgramId(),
-    props.programId
-  );
   const { data, refetch } = useQuery(
     MessageLinkQuery,
     { programId },

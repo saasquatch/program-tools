@@ -12,6 +12,7 @@ export function usePortalForgotPassword() {
   const nextPage = urlParams.get("nextPage");
 
   const submit = async (event: any) => {
+    setError("");
     let formData = event.detail.formData;
 
     formData?.forEach((value: any, key: string) => {

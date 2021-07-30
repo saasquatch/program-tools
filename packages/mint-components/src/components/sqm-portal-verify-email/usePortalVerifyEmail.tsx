@@ -34,6 +34,7 @@ export function usePortalVerifyEmail({ nextPage }) {
 
   const submit = async () => {
     if (oobCode) {
+      setError("");
       await request({ oobCode });
     }
   };
@@ -68,6 +69,9 @@ export function usePortalVerifyEmail({ nextPage }) {
       loading: loading || disableContinue,
       error: errors?.response?.errors?.[0]?.message || error,
       verified,
+    },
+    data: {
+      oobCode,
     },
     callbacks: {
       failed,

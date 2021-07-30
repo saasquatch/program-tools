@@ -16,10 +16,33 @@ export interface PortalChangePasswordViewProps {
 export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
   const { states, callbacks } = props;
   const style = {
+    Dialog: {
+      padding: "0",
+      "&::part(close-button)": {
+        "margin-top": "var(--sl-spacing-medium)",
+      },
+
+      "&::part(body)": {
+        padding:
+          "0 var(--sl-spacing-x-large) var(--sl-spacing-x-large) var(--sl-spacing-x-large)",
+      },
+    },
+
     Error: {
       "&::part(erroralert-base)": {
         "margin-bottom": "15px",
       },
+    },
+
+    InputContainer: {
+      "& > :not(:last-child)": {
+        "margin-bottom": "var(--sl-spacing-x-large)",
+      },
+    },
+
+    CancelButton: {
+      width: "25%",
+      margin: "var(--sl-spacing-large) auto",
     },
   };
 
@@ -30,8 +53,12 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
   return (
     <div>
       <style type="text/css">{styleString}</style>
-      <sl-dialog open={states.open} onSl-hide={() => callbacks.setOpen(false)}>
-        {states.error && (
+      <sl-dialog
+        class={sheet.classes.Dialog}
+        open={states.open}
+        onSl-hide={() => callbacks.setOpen(false)}
+      >
+        {/* {states.error && (
           <sqm-form-message
             class={sheet.classes.Error}
             type="error"
@@ -44,10 +71,10 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
           <sqm-form-message type="success" exportparts="successalert-icon">
             <div part="successalert-text">Your password has been updated.</div>
           </sqm-form-message>
-        )}
+        )} */}
         <PortalSectionView
           {...{
-            labelMargin: "xxxx-large",
+            labelMargin: "x-large",
             padding: "none",
             label: (
               <TextSpanView {...{ type: "h2" }}>Change password</TextSpanView>
@@ -56,27 +83,50 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
               <PortalContainerView
                 {...{ direction: "column", padding: "none", gap: "32px" }}
               >
+                {states.error && (
+                  <sqm-form-message
+                    class={sheet.classes.Error}
+                    type="error"
+                    exportparts="erroralert-icon"
+                  >
+                    <div part="erroralert-text">{states.error}</div>
+                  </sqm-form-message>
+                )}
+                {states.success && (
+                  <sqm-form-message
+                    type="success"
+                    exportparts="successalert-icon"
+                  >
+                    <div part="successalert-text">
+                      Your password has been updated.
+                    </div>
+                  </sqm-form-message>
+                )}
                 <sl-form onSl-submit={callbacks.submit}>
-                  <sl-input
-                    name="/password"
-                    label="New password"
-                    required
-                    togglePassword
-                    disabled={states.loading}
-                    type="password"
-                  ></sl-input>
-                  <sl-input
-                    name="/confirmPassword"
-                    label="Confirm new password"
-                    required
-                    togglePassword
-                    disabled={states.loading}
-                    type="password"
-                  ></sl-input>
+                  <div class={sheet.classes.InputContainer}>
+                    <sl-input
+                      name="/password"
+                      label="New password"
+                      required
+                      togglePassword
+                      disabled={states.loading}
+                      type="password"
+                    ></sl-input>
+                    <sl-input
+                      name="/confirmPassword"
+                      label="Confirm new password"
+                      required
+                      togglePassword
+                      disabled={states.loading}
+                      type="password"
+                    ></sl-input>
+                  </div>
+
                   <PortalContainerView
                     {...{ direction: "row", padding: "none", gap: "20px" }}
                   >
                     <sl-button
+                      class={sheet.classes.CancelButton}
                       type="text"
                       onClick={() => callbacks.setOpen(false)}
                     >

@@ -10,6 +10,9 @@ export interface PortalVerifyEmailViewProps {
     loading: boolean;
     verified: boolean;
   };
+  data: {
+    oobCode: string;
+  };
   callbacks: {
     gotoNextPage: () => void;
     failed: () => void;
@@ -40,7 +43,7 @@ const sheet = jss.createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
-  const { states, callbacks } = props;
+  const { states, data, callbacks } = props;
 
   if (states.verified) {
     return (
@@ -69,7 +72,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
     );
   }
 
-  if (states.error) {
+  if (states.error || !data.oobCode) {
     return (
       <div class={sheet.classes.Wrapper}>
         <style type="text/css">{styleString}</style>

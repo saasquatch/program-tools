@@ -46,6 +46,10 @@ const style = {
       "margin-bottom": "15px",
     },
   },
+
+  ContinueButton: {
+    width: "100%",
+  },
 };
 
 const vanillaStyle = `
@@ -82,6 +86,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
         </sqm-form-message>
         <div>
           <sl-button
+            class={sheet.classes.ContinueButton}
             onClick={callbacks.gotoNextPage}
             loading={states.loading}
             exportparts="base: primarybutton-base"
@@ -113,6 +118,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
         </sqm-form-message>
         <div>
           <sl-button
+            class={sheet.classes.ContinueButton}
             onClick={callbacks.failed}
             exportparts="base: primarybutton-base"
             type="primary"
@@ -165,6 +171,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
         )}
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
+            class={sheet.classes.ContinueButton}
             submit
             loading={states.loading}
             exportparts="base: primarybutton-base"
