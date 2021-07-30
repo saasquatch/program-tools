@@ -72,7 +72,27 @@
     <sqm-portal-forgot-password></sqm-portal-forgot-password>
     Reset Password
     <sqm-portal-reset-password></sqm-portal-reset-password> -->
-    <sqm-stencilbook></sqm-stencilbook>
+    <!-- <sqm-stencilbook></sqm-stencilbook> -->
+
+    <sqm-portal-register confirm-password>
+      <div slot="formData">
+        <sl-input
+          exportparts="label: input-label"
+          name="/firstName"
+          type="text"
+          label="First Name"
+          required
+          style="margin-bottom: var(--sl-spacing-large)"
+        ></sl-input>
+        <sl-input
+          exportparts="label: input-label"
+          name="/lastName"
+          type="text"
+          label="Last Name"
+          required
+        ></sl-input>
+      </div>
+    </sqm-portal-register>
 
     <!-- <sqm-portal-login></sqm-portal-login> -->
 

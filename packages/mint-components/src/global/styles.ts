@@ -510,6 +510,12 @@ sl-details::part(summary) {
   font-size: var(--sl-input-font-size-small);
   font-weight: var(--sl-font-weight-semibold);
 }
+
+sl-input::part(label){
+  font-size: var(--sl-input-label-font-size-small);
+  font-weight: var(--sl-font-weight-semibold);
+}
+
 *::part(menuitem-base):hover{
   background-color: var(--sl-color-gray-200);
   color: var(--sl-color-gray-700);
