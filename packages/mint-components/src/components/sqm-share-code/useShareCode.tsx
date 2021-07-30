@@ -25,24 +25,11 @@ const MessageLinkQuery = gql`
 `;
 
 export function useShareCode(props: ShareCodeProps): ShareLinkViewProps {
-  const programId = useDomContext("sq:program-id");
+  const programId = useProgramId();
   const user = useUserIdentity();
 
-  console.log(
-    "useShareCode",
-    useDomContext("sq:program-id"),
-    useProgramId(),
-    props.programId
-  );
-  const { data, refetch } = useQuery(
-    MessageLinkQuery,
-    { programId },
-    !user?.jwt
-  );
+  const { data } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
 
-  useEffect(() => {
-    refetch();
-  }, [programId]);
   const shareString =
     data?.user?.referralCode ??
     // Shown during loading
