@@ -521,6 +521,15 @@ sl-input::part(label){
   color: var(--sl-color-gray-700);
 }
 
+.poweredBy {
+  color: var(--sl-color-gray-400);
+  font-size: var(--sl-font-size-xx-small);
+}
+
+.poweredBy:hover {
+  color: var(--sl-color-gray-900);
+}
+
 // *::part(erroralert-icon), *::part(successalert-icon){
 //   align-items: flex-start;
 //   padding-top: var(--sl-spacing-large);
