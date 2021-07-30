@@ -3,11 +3,13 @@ import {
   AuthButtonsContainer,
   AuthColumn,
   AuthWrapper,
+  ErrorStyles,
   HostBlock,
 } from "../../global/mixins";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
+import { FormState, ValidationErrors } from "./useValidationState";
 
 export interface PortalRegisterViewProps {
   states: {
@@ -15,6 +17,7 @@ export interface PortalRegisterViewProps {
     loading: boolean;
     confirmPassword?: boolean;
     hideInputs?: boolean;
+    validationState?: FormState;
   };
   callbacks: {
     submit;
@@ -40,6 +43,7 @@ const style = {
   },
 
   ButtonsContainer: AuthButtonsContainer,
+  ErrorStyle: ErrorStyles,
 };
 
 const vanillaStyle = `
@@ -64,6 +68,8 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
   if (states.error) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }
+
+  console.log("view", states, states.validationState);
 
   return (
     <div class={sheet.classes.Wrapper}>
@@ -106,6 +112,14 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             label="Confirm Password"
             disabled={states.loading}
             required
+            {...(states.validationState?.validationErrors?.confirmPassword
+              ? {
+                  class: sheet.classes.ErrorStyle,
+                  helpText:
+                    states.validationState?.validationErrors?.confirmPassword ||
+                    "Cannot be empty",
+                }
+              : [])}
           ></sl-input>
         )}
         {/* Must use inline styling to target slotted element here */}

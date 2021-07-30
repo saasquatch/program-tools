@@ -1,15 +1,17 @@
 import jsonpointer from "jsonpointer";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useEffect } from "@saasquatch/universal-hooks";
 import {
   navigation,
   useRegisterWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
+import { useValidationState } from "./useValidationState";
 
 export function usePortalRegister({ nextPage, confirmPassword }) {
-  const [error, setError] = useState("");
+  const { validationState, setValidationState } = useValidationState({});
   const [request, { loading, errors, data }] =
     useRegisterWithEmailAndPasswordMutation();
 
+  console.log({ validationState });
   const submit = async (event: any) => {
     let formControls = event.target.getFormControls();
 
@@ -24,10 +26,13 @@ export function usePortalRegister({ nextPage, confirmPassword }) {
       (confirmPassword || formData.confirmPassword) &&
       formData.password !== formData.confirmPassword
     ) {
-      setError("Passwords do not match.");
+      setValidationState({
+        error: "",
+        validationErrors: { confirmPassword: "Passwords do not match." },
+      });
       return;
     }
-    setError("");
+    setValidationState({ error: "" });
     const { email, password } = formData;
     delete formData.email;
     delete formData.password;
@@ -41,7 +46,7 @@ export function usePortalRegister({ nextPage, confirmPassword }) {
     try {
       await request(variables);
     } catch (error) {
-      setError("Network request failed.");
+      setValidationState({ error: "Network request failed." });
     }
   };
 
@@ -51,16 +56,17 @@ export function usePortalRegister({ nextPage, confirmPassword }) {
     }
   }, [data?.registerManagedIdentityWithEmailAndPassword?.token]);
 
-  useEffect(() => {
-    if (errors?.message) {
-      setError("Network request failed.");
-    }
-  }, [errors]);
+  // useEffect(() => {
+  //   if (errors?.message) {
+  //     setValidationState({ error: "Network request failed." });
+  //   }
+  // }, [errors]);
 
   return {
     states: {
       loading,
-      error: errors?.response?.errors?.[0]?.message || error,
+      error: errors?.response?.errors?.[0]?.message || validationState?.error,
+      validationState,
     },
     callbacks: {
       submit,
