@@ -92,7 +92,7 @@ export function usePortalProfile(
     if (upsertUserResponse?.errors) {
       setFormState((state) => ({
         ...state,
-        error: upsertUserResponse?.errors?.response.errors?.[0].message,
+        error: upsertUserResponse?.errors?.response?.errors?.[0].message,
       }));
     } else {
       setUserData((state) => ({
