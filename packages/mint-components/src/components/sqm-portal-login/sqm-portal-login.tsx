@@ -30,6 +30,12 @@ export class PortalLogin {
   submitLabel = "Sign In";
 
   @Prop()
+  forgotPasswordLabel = "Forgot Password?";
+
+  @Prop()
+  registerLabel = "Register";
+
+  @Prop()
   pageLabel: string = "Sign in to your account";
 
   /** @undocumented */
@@ -49,7 +55,7 @@ export class PortalLogin {
       forgotPasswordButton: (
         <slot name="forgotPassword">
           <a onClick={() => navigation.push("/forgotPassword")}>
-            Forgot Password?
+            {this.forgotPasswordLabel}
           </a>
         </slot>
       ),
@@ -60,7 +66,7 @@ export class PortalLogin {
             disabled={states.loading}
             onClick={() => navigation.push("/register")}
           >
-            Register
+            {this.registerLabel}
           </sl-button>
         </slot>
       ),

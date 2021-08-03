@@ -286,9 +286,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalLoginViewProps>;
         "emailLabel": string;
+        "forgotPasswordLabel": string;
         "nextPage": string;
         "pageLabel": string;
         "passwordLabel": string;
+        "registerLabel": string;
         "submitLabel": string;
     }
     interface SqmPortalLogout {
@@ -318,6 +320,7 @@ export namespace Components {
         "demoData"?: DemoData<PortalRegisterViewProps>;
         "emailLabel": string;
         "hideInputs": boolean;
+        "loginLabel": string;
         "nextPage": string;
         "pageLabel": string;
         "passwordLabel": string;
@@ -1194,9 +1197,11 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalLoginViewProps>;
         "emailLabel"?: string;
+        "forgotPasswordLabel"?: string;
         "nextPage"?: string;
         "pageLabel"?: string;
         "passwordLabel"?: string;
+        "registerLabel"?: string;
         "submitLabel"?: string;
     }
     interface SqmPortalLogout {
@@ -1226,6 +1231,7 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<PortalRegisterViewProps>;
         "emailLabel"?: string;
         "hideInputs"?: boolean;
+        "loginLabel"?: string;
         "nextPage"?: string;
         "pageLabel"?: string;
         "passwordLabel"?: string;

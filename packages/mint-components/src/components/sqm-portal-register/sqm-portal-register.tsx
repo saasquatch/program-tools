@@ -33,6 +33,9 @@ export class PortalRegister {
   submitLabel = "Register";
 
   @Prop()
+  loginLabel = "Sign in";
+
+  @Prop()
   confirmPassword: boolean = false;
 
   @Prop()
@@ -63,7 +66,7 @@ export class PortalRegister {
             disabled={states.loading}
             onClick={() => navigation.push("/login")}
           >
-            Sign In
+            {this.loginLabel}
           </sl-button>
         </slot>
       ),
