@@ -17,6 +17,10 @@ const defaultProps: PortalRegisterViewProps = {
   },
   callbacks: {
     submit: () => console.log("Submit!"),
+    inputFunction: () => {},
+  },
+  refs: {
+    formRef: {},
   },
   content: { pageLabel: "Register" },
 };
@@ -30,6 +34,10 @@ const errorProps: PortalRegisterViewProps = {
   },
   callbacks: {
     submit: () => console.log("Submit!"),
+    inputFunction: () => {},
+  },
+  refs: {
+    formRef: {},
   },
   content: { pageLabel: "Register" },
 };
@@ -43,6 +51,10 @@ const loadingProps: PortalRegisterViewProps = {
   },
   callbacks: {
     submit: () => console.log("Submit!"),
+    inputFunction: () => {},
+  },
+  refs: {
+    formRef: {},
   },
   content: { pageLabel: "Register" },
 };
@@ -56,6 +68,10 @@ const slottedProps: PortalRegisterViewProps = {
   },
   callbacks: {
     submit: () => console.log("Submit!"),
+    inputFunction: () => {},
+  },
+  refs: {
+    formRef: {},
   },
   content: {
     pageLabel: "Register",

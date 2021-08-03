@@ -20,7 +20,8 @@ export interface PortalRegisterViewProps {
     validationState?: FormState;
   };
   callbacks: {
-    submit;
+    submit: Function;
+    inputFunction: Function;
   };
   content: {
     formData?: any;
@@ -29,6 +30,9 @@ export interface PortalRegisterViewProps {
     passwordLabel?: string;
     submitLabel?: string;
     pageLabel?: string;
+  };
+  refs: {
+    formRef: any;
   };
 }
 
@@ -63,7 +67,7 @@ const sheet = jss.createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function PortalRegisterView(props: PortalRegisterViewProps) {
-  const { states, callbacks, content } = props;
+  const { states, refs, callbacks, content } = props;
 
   if (states.error) {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -79,6 +83,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
       <sl-form
         class={sheet.classes.Column}
         onSl-submit={callbacks.submit}
+        ref={(el: HTMLFormElement) => (refs.formRef.current = el)}
         novalidate
       >
         {states.error && (
