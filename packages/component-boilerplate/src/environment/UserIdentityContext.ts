@@ -19,6 +19,7 @@ export type UserIdentity = {
 };
 
 export interface DecodedSquatchJWT {
+  exp?: number;
   user: {
     accountId: string;
     id: string;
@@ -43,6 +44,28 @@ function _lazilyStartGlobally() {
   }
 }
 
+function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
+  if (!jwt) return undefined;
+
+  try {
+    const { user, exp } = decode<DecodedSquatchJWT>(jwt);
+
+    // Check if the JWT has expired
+    if (exp && Date.now() >= exp * 1000) {
+      return undefined;
+    }
+
+    return {
+      id: user.id,
+      accountId: user.accountId,
+      jwt,
+    };
+  } catch (e) {
+    // Invalid JWT
+    return undefined;
+  }
+}
+
 function _getInitialValue(): UserIdentity | undefined {
   const sdk = getEnvironmentSDK();
   switch (sdk.type) {
@@ -57,19 +80,7 @@ function _getInitialValue(): UserIdentity | undefined {
       // Portals can have the jwt provided as a URL parameter, so look for that first
       const searchParams = new URLSearchParams(document.location.search);
       if (searchParams.has("jwt")) {
-        const jwt = searchParams.get("jwt");
-        try {
-          const { user } = decode<DecodedSquatchJWT>(jwt);
-          const identity: UserIdentity = {
-            id: user.id,
-            accountId: user.accountId,
-            jwt,
-          };
-          return identity;
-        } catch (e) {
-          // Invalid JWT
-          return;
-        }
+        return userIdentityFromJwt(searchParams.get("jwt"));
       }
 
       // Look for user identity in local storage
@@ -77,14 +88,14 @@ function _getInitialValue(): UserIdentity | undefined {
       if (!stored) return undefined;
       try {
         const potentialUserIdent = JSON.parse(stored) as UserIdentity;
-        if (
-          !potentialUserIdent.id ||
-          !potentialUserIdent.accountId ||
-          !potentialUserIdent.jwt
-        ) {
-          return undefined;
+        const identity = userIdentityFromJwt(potentialUserIdent.jwt);
+        if (identity) {
+          return {
+            ...potentialUserIdent, // for any stored managedIdentity fields
+            ...identity,
+          };
         }
-        return potentialUserIdent;
+        return undefined;
       } catch (e) {
         // Not valid JSON
         return undefined;
@@ -134,5 +145,15 @@ export function useToken(): string | undefined {
 export function useUserIdentity(): UserIdentity | undefined {
   _lazilyStartGlobally();
   const host = useHost();
-  return useDomContext(host, CONTEXT_NAME);
+  const identity = useDomContext(host, CONTEXT_NAME) as
+    | UserIdentity
+    | undefined;
+
+  const validIdentity = userIdentityFromJwt(identity?.jwt);
+  if (!validIdentity) {
+    // Likely that the JWT has expired
+    setUserIdentity(undefined);
+    return undefined;
+  }
+  return identity;
 }
