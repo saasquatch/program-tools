@@ -16,7 +16,6 @@ export {
   useProgramId,
   setProgramId,
   useAppDomain,
-  usePortalAuthUrl,
   isDemo,
   /*
    * Personalization environment

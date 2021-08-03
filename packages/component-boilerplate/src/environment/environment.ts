@@ -14,7 +14,7 @@ declare global {
 export type PortalEnv = Pick<
   WidgetIdent,
   "tenantAlias" | "appDomain" | "programId"
-> & { portalAuthUrl: string };
+>;
 
 /**
  * Program ID context helpers
@@ -220,15 +220,6 @@ export function useAppDomain(): string {
     case "None":
       return DEFAULT_DOMAIN;
   }
-}
-
-const DEFAULT_PORTAL_AUTH_URL = "https://portal-auth.referralsaasquatch.com"; //todo: finalize
-export function usePortalAuthUrl(): string {
-  const sdk = getEnvironmentSDK();
-  if (sdk.type === "SquatchPortal") {
-    return sdk.env?.portalAuthUrl || DEFAULT_PORTAL_AUTH_URL;
-  }
-  return DEFAULT_PORTAL_AUTH_URL;
 }
 
 export type UserId = {
