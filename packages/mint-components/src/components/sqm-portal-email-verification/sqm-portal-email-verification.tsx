@@ -20,6 +20,9 @@ export class PortalEmailVerification {
   @State()
   ignored = true;
 
+  @Prop() verifyMessage: string =
+    "A verification email was sent to {email}. Please verify your email to continue to the portal.";
+
   /** @undocumented */
   @Prop() demoData?: DemoData<PortalEmailVerificationViewProps>;
 
@@ -32,7 +35,7 @@ export class PortalEmailVerification {
   render() {
     const { states, callbacks, content } = isDemo()
       ? usePortalEmailVerificationDemo(this)
-      : usePortalEmailVerification();
+      : usePortalEmailVerification(this);
     return (
       <PortalEmailVerificationView
         states={states}
@@ -53,6 +56,8 @@ function usePortalEmailVerificationDemo(
       },
       content: {
         email: "test@example.com",
+        verifyMessage:
+          "A verification email was sent to {email}. Please verify your email to continue to the portal.",
       },
     },
     props.demoData || {},

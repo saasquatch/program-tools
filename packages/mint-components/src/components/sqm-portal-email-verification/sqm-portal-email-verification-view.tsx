@@ -3,6 +3,7 @@ import { AuthColumn, AuthWrapper } from "../../global/mixins";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
+import { intl } from "../../global/global";
 
 export interface PortalEmailVerificationViewProps {
   states: {
@@ -15,6 +16,7 @@ export interface PortalEmailVerificationViewProps {
   };
   content: {
     email: string;
+    verifyMessage: string;
   };
 }
 
@@ -44,7 +46,7 @@ export function PortalEmailVerificationView(
   const {
     states,
     callbacks,
-    content: { email },
+    content: { email, verifyMessage },
   } = props;
   return (
     <div class={sheet.classes.Wrapper}>
@@ -68,11 +70,19 @@ export function PortalEmailVerificationView(
         )}
 
         <TextSpanView type="p">
-          A verification email was sent to{" "}
-          <span style={{ fontWeight: "var(--sl-font-weight-semibold)" }}>
-            {email}
-          </span>
-          . Please verify your email to continue to the portal.
+          {intl.formatMessage(
+            {
+              id: "verifyMessage",
+              defaultMessage: verifyMessage,
+            },
+            {
+              email: (
+                <span style={{ fontWeight: "var(--sl-font-weight-semibold)" }}>
+                  {email}
+                </span>
+              ),
+            }
+          )}
         </TextSpanView>
         <sl-button
           submit

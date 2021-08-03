@@ -17,7 +17,11 @@ const defaultProps: PortalEmailVerificationViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
-  content: { email: "email@example.com" },
+  content: {
+    email: "email@example.com",
+    verifyMessage:
+      "A verification email was sent to {email}. Please verify your email to continue to the portal.",
+  },
 };
 
 const errorProps: PortalEmailVerificationViewProps = {
@@ -29,7 +33,11 @@ const errorProps: PortalEmailVerificationViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
-  content: { email: "email@example.com" },
+  content: {
+    email: "email@example.com",
+    verifyMessage:
+      "A verification email was sent to {email}. Please verify your email to continue to the portal.",
+  },
 };
 
 const loadingProps: PortalEmailVerificationViewProps = {
@@ -41,7 +49,11 @@ const loadingProps: PortalEmailVerificationViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
-  content: { email: "email@example.com" },
+  content: {
+    email: "email@example.com",
+    verifyMessage:
+      "A verification email was sent to {email}. Please verify your email to continue to the portal.",
+  },
 };
 
 const successProps: PortalEmailVerificationViewProps = {
@@ -53,7 +65,11 @@ const successProps: PortalEmailVerificationViewProps = {
   callbacks: {
     submit: async (e) => await e,
   },
-  content: { email: "email@example.com" },
+  content: {
+    email: "email@example.com",
+    verifyMessage:
+      "A verification email was sent to {email}. Please verify your email to continue to the portal.",
+  },
 };
 
 export const Default = () => <PortalEmailVerificationView {...defaultProps} />;

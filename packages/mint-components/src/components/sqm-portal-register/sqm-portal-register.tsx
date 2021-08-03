@@ -20,27 +20,51 @@ export class PortalRegister {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Page navigated to after registration
+   */
   @Prop()
   nextPage = "/";
 
+  /**
+   * @uiName Label for email field
+   */
   @Prop()
   emailLabel = "Email";
 
+  /**
+   * @uiName Label for password field
+   */
   @Prop()
   passwordLabel = "Password";
 
+  /**
+   * @uiName Label for submit button
+   */
   @Prop()
   submitLabel = "Register";
 
+  /**
+   * @uiName Label for login navigation button
+   */
   @Prop()
   loginLabel = "Sign in";
 
+  /**
+   * @uiName Show confirm password field
+   */
   @Prop()
   confirmPassword: boolean = false;
 
+  /**
+   * @uiName Hide default input fields to use custom fields
+   */
   @Prop()
   hideInputs: boolean = false;
 
+  /**
+   * @uiName Heading label
+   */
   @Prop()
   pageLabel: string = "Register";
 

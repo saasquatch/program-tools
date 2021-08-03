@@ -3,8 +3,9 @@ import {
   useUserIdentity,
   useRequestVerificationEmailMutation,
 } from "@saasquatch/component-boilerplate";
+import { PortalEmailVerification } from "./sqm-portal-email-verification";
 
-export function usePortalEmailVerification() {
+export function usePortalEmailVerification(props: PortalEmailVerification) {
   const [request, { loading, data, errors }] =
     useRequestVerificationEmailMutation();
 
@@ -47,6 +48,7 @@ export function usePortalEmailVerification() {
     },
     content: {
       email,
+      verifyMessage: props.verifyMessage,
     },
   };
 }
