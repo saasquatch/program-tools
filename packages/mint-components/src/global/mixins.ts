@@ -80,9 +80,9 @@ export const ErrorStyles = {
 export const Wrapper = {
   "box-sizing": "border-box",
   width: "100%",
-  "max-width": "var(--st-content-max-width)",
+  "max-width": "var(--sqm-content-max-width)",
   height: "auto",
-  "background-color": "var(--st-content-background)",
+  "background-color": "var(--sqm-content-background)",
   display: "flex",
   padding: "var(--sl-spacing-xxx-large)",
   border: "1px solid #eaeaea",
