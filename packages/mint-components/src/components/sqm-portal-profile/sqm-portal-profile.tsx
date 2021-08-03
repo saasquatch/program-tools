@@ -46,6 +46,7 @@ function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
   return deepmerge(
     {
       states: {
+        success: false,
         loading: false,
         submitDisabled: false,
         showCountry: true,

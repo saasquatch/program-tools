@@ -65,22 +65,27 @@ export function usePortalProfile(
   props: PortalProfileProps
 ): PortalProfileViewProps {
   const userIdent = useUserIdentity();
-  const [userData, setUserData] = useState<null | {
-    id: string;
-    accountId: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    countryCode: string;
-  }>(undefined);
 
-  const [formState, setFormState] = useState<{
-    country: string;
-    firstName: string;
-    lastName: string;
-    errors: any;
-    error: string;
-  }>(defaultFormState);
+  const [success, setSuccess] = useState(false);
+
+  const [userData, setUserData] =
+    useState<null | {
+      id: string;
+      accountId: string;
+      firstName: string;
+      lastName: string;
+      email: string;
+      countryCode: string;
+    }>(undefined);
+
+  const [formState, setFormState] =
+    useState<{
+      country: string;
+      firstName: string;
+      lastName: string;
+      errors: any;
+      error: string;
+    }>(defaultFormState);
 
   const userDataResponse = useQuery(GET_USER, {}, !userIdent?.jwt);
 
@@ -99,6 +104,7 @@ export function usePortalProfile(
         ...state,
         ...upsertUserResponse?.data?.upsertUser,
       }));
+      if (upsertUserResponse?.data) setSuccess(true);
     }
   }, [upsertUserResponse?.loading]);
 
@@ -122,6 +128,7 @@ export function usePortalProfile(
   }, [upsertUserResponse?.errors]);
 
   const onSubmit = () => {
+    setSuccess(false);
     if (formState.firstName && formState.lastName) {
       upsertUser({
         id: userIdent?.id,
@@ -151,6 +158,7 @@ export function usePortalProfile(
 
   return {
     states: {
+      success,
       loading: userDataResponse?.loading || upsertUserResponse.loading,
       submitDisabled: false,
       showCountry: props.showCountry,

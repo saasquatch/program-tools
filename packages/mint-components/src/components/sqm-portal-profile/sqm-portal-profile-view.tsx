@@ -7,6 +7,7 @@ import { intl } from "../../global/global";
 
 export interface PortalProfileViewProps {
   states: {
+    success: boolean;
     loading: boolean;
     submitDisabled: boolean;
     showCountry: boolean;
@@ -86,6 +87,14 @@ export function PortalProfileView(props: PortalProfileViewProps) {
       <TextSpanView {...{ type: "h1" }}>Edit your profile</TextSpanView>
       <TextSpanView {...{ type: "h2" }}>Personal Information</TextSpanView>
       <form class={sheet.classes.FormStyle} onSubmit={callbacks.onSubmit}>
+        {states.success && (
+          <sqm-form-message exportparts="success-icon">
+            <div part="successalert-text">
+              Your profile has been successfully updated.
+            </div>
+          </sqm-form-message>
+        )}
+
         {error && (
           <sqm-form-message
             class={sheet.classes.Error}
