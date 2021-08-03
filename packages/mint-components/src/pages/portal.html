@@ -1,38 +1,26 @@
 <sqb-program-section program-id="new-sales-rep-referral-program">
   <sqm-portal-frame>
-    <a slot="header" href="/"
-      ><sqm-text>
-        <img
-          style="height: 70px"
-          src="http://fsr-stencilbook.surge.sh/assets/landing/header.png"
-        /> </sqm-text
-    ></a>
-    <fsr-footer
-      slot="footer"
-      support-email="john@foodservicerewards.com"
-      terms-link="example.com"
-      faq-link="example.com"
-      padding="large"
-      show-powered-by="true"
-      powered-by-link="https://www.saasquatch.com/"
-    ></fsr-footer>
-    <sqm-graphql-client-provider
-      domain="https://managed-identity-staging.herokuapp.com"
-    >
+    <a slot="header" href="/"></a>
+    <sqm-text>
+      <img style="height: 70px" src="http://fsr-stencilbook.surge.sh/assets/landing/header.png" />
+    </sqm-text>
+    </a>
+    <fsr-footer slot="footer" support-email="john@foodservicerewards.com" terms-link="example.com"
+      faq-link="example.com" padding="large" show-powered-by="true" powered-by-link="https://www.saasquatch.com/">
+    </fsr-footer>
+    <sqm-graphql-client-provider domain="https://managed-identity-staging.herokuapp.com">
       <sqm-router>
         <template path="/register">
-          <sqm-portal-register
-            hide-inputs="true"
-            submit-label="Join Free"
-            page-label="Join Free"
-          >
+          <sqm-portal-register hide-inputs="true" submit-label="Join Free" page-label="Join Free">
             <fsr-register slot="formData"></fsr-register>
           </sqm-portal-register>
         </template>
 
         <template path="/emailVerification">
           <sqm-portal-protected-route redirect-to="/login">
-            <sqm-portal-email-verification></sqm-portal-email-verification>
+            <sqm-portal-email-verification
+              verify-message="A verification email was sent to {email}. Please verify your email to continue to start earning rewards.">
+            </sqm-portal-email-verification>
           </sqm-portal-protected-route>
         </template>
 
@@ -45,15 +33,11 @@
         </template>
 
         <template path="/forgotPassword">
-          <sqm-portal-forgot-password
-            email-label="Business Email"
-          ></sqm-portal-forgot-password>
+          <sqm-portal-forgot-password email-label="Business Email"></sqm-portal-forgot-password>
         </template>
 
         <template path="/resetPassword">
-          <sqm-portal-reset-password
-            confirm-password="true"
-          ></sqm-portal-reset-password>
+          <sqm-portal-reset-password confirm-password="true"></sqm-portal-reset-password>
         </template>
         <template path="/logout">
           <sqm-portal-logout next-page="/login"></sqm-portal-logout>
@@ -62,20 +46,16 @@
     </sqm-graphql-client-provider>
     <sqm-router>
       <template path="/">
-        <sqm-portal-protected-route
-          require-email-verification="true"
-          redirect-to="/login"
-          redirect-to-unverified="/emailVerification"
-          ><sqb-widget widget-type="w/dashboard"></sqb-widget
-        ></sqm-portal-protected-route>
+        <sqm-portal-protected-route require-email-verification="true" redirect-to="/login"
+          redirect-to-unverified="/emailVerification">
+          <sqb-widget widget-type="w/dashboard"></sqb-widget>
+        </sqm-portal-protected-route>
       </template>
       <template path="/activity">
-        <sqm-portal-protected-route
-          require-email-verification="true"
-          redirect-to="/login"
-          redirect-to-unverified="/emailVerification"
-          ><sqb-widget widget-type="w/activity"></sqb-widget
-        ></sqm-portal-protected-route>
+        <sqm-portal-protected-route require-email-verification="true" redirect-to="/login"
+          redirect-to-unverified="/emailVerification">
+          <sqb-widget widget-type="w/activity"></sqb-widget>
+        </sqm-portal-protected-route>
       </template>
     </sqm-router>
   </sqm-portal-frame>
