@@ -7,4 +7,5 @@ export {
   useUserIdentity,
   useToken,
   setUserIdentity,
+  useSessionData,
 } from "./UserIdentityContext";
