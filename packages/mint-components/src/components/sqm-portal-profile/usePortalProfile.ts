@@ -112,6 +112,15 @@ export function usePortalProfile(
     });
   }, [userDataResponse?.data]);
 
+  useEffect(() => {
+    if (upsertUserResponse?.errors?.message) {
+      setFormState({
+        ...userDataResponse.data?.viewer,
+        error: "Network request failed.",
+      });
+    }
+  }, [upsertUserResponse?.errors]);
+
   const onSubmit = () => {
     if (formState.firstName && formState.lastName) {
       upsertUser({
@@ -120,7 +129,7 @@ export function usePortalProfile(
         firstName: formState.firstName,
         lastName: formState.lastName,
       });
-      setFormState((s) => ({ ...s, errors: {} }));
+      setFormState((s) => ({ ...s, errors: {}, error: "" }));
       return;
     }
 
