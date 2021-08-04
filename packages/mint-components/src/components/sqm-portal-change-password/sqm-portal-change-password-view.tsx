@@ -34,6 +34,12 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
       },
     },
 
+    Success: {
+      "&::part(successalert-base)": {
+        "margin-bottom": "15px",
+      },
+    },
+
     InputContainer: {
       "& > :not(:last-child)": {
         "margin-bottom": "var(--sl-spacing-x-large)",
@@ -58,20 +64,6 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
         open={states.open}
         onSl-hide={() => callbacks.setOpen(false)}
       >
-        {/* {states.error && (
-          <sqm-form-message
-            class={sheet.classes.Error}
-            type="error"
-            exportparts="erroralert-icon"
-          >
-            <div part="erroralert-text">{states.error}</div>
-          </sqm-form-message>
-        )}
-        {states.success && (
-          <sqm-form-message type="success" exportparts="successalert-icon">
-            <div part="successalert-text">Your password has been updated.</div>
-          </sqm-form-message>
-        )} */}
         <PortalSectionView
           {...{
             labelMargin: "x-large",
@@ -94,6 +86,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                 )}
                 {states.success && (
                   <sqm-form-message
+                    class={sheet.classes.Success}
                     type="success"
                     exportparts="successalert-icon"
                   >
