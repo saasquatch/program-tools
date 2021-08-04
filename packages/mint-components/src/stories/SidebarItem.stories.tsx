@@ -13,10 +13,7 @@ export const InactiveItem = () => {
     data: {
       label: "Dashboard",
       icon: "house",
-    },
-    callbacks: {
-      onClick: (e: MouseEvent) => console.log(e),
-      onMiddleClick: () => {}
+      path: "/",
     },
   };
   return <NavigationSidebarItemView {...props} />;
@@ -30,10 +27,7 @@ export const ActiveItem = () => {
     data: {
       label: "Dashboard",
       icon: "house",
-    },
-    callbacks: {
-      onClick: (e: MouseEvent) => console.log(e),
-      onMiddleClick: () => {}
+      path: "/",
     },
   };
   return <NavigationSidebarItemView {...props} />;

@@ -2,6 +2,7 @@ import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { gap } from "../../global/mixins";
+import { navigation } from "@saasquatch/component-boilerplate";
 
 export interface NavigationSidebarItemViewProps {
   states: {
@@ -10,17 +11,14 @@ export interface NavigationSidebarItemViewProps {
   data: {
     label: string;
     icon: string;
-  };
-  callbacks: {
-    onClick: (e: MouseEvent) => void;
-    onMiddleClick: (e: MouseEvent) => void;
+    path: string;
   };
 }
 
 export function NavigationSidebarItemView(
   props: NavigationSidebarItemViewProps
 ) {
-  const { states, data, callbacks } = props;
+  const { states, data } = props;
 
   const style = {
     ItemContainer: {
@@ -28,6 +26,8 @@ export function NavigationSidebarItemView(
       "background-color": `${states.active ? "#eaeaea" : "#ffffff"}`,
       "border-radius": "8px",
       padding: "8px",
+      "text-decoration": "none",
+      color: "#454444",
       "align-items": "center",
       ...gap({ direction: "row" as const, size: "var(--sl-font-size-small)" }),
       "&:hover": {
@@ -48,14 +48,17 @@ export function NavigationSidebarItemView(
   const styleString = sheet.toString();
 
   return (
-    <div
-      onClick={callbacks.onClick}
-      onMouseDown={(e) => (e.button === 1 ? callbacks.onMiddleClick(e) : true)}
+    <a
+      href={data.path}
+      onClick={(e) => {
+        e.preventDefault();
+        navigation.push(data.path);
+      }}
       class={sheet.classes.ItemContainer}
     >
       <style type="text/css">{styleString}</style>
       <sl-icon class={sheet.classes.Icon} name={data.icon}></sl-icon>
       <p class={sheet.classes.Label}>{data.label}</p>
-    </div>
+    </a>
   );
 }
