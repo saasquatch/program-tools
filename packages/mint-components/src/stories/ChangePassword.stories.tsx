@@ -1,8 +1,12 @@
 import { h } from "@stencil/core";
 import { PortalChangePasswordView } from "../components/sqm-portal-change-password/sqm-portal-change-password-view";
+import scenario from "../components/sqm-portal-change-password/sqm-portal-change-password.feature";
 
 export default {
   title: "Change Password",
+  parameters: {
+    scenario,
+  },
 };
 
 const defaultProps = {
