@@ -365,6 +365,7 @@ const style = `
 :root {
   --sqm-header-background: var(--sl-color-white);
   --sqm-footer-background: var(--sl-color-white);
+
   --st-color-text-error: #e63717;
   --st-content-max-width: 700px;
   --st-content-background: var(--sl-color-white);
@@ -530,7 +531,7 @@ sl-input::part(label){
   color: var(--sl-color-gray-900);
 }
 
-// The following styles to be moved to ST
+// The following commented out styles should be moved to Service Titan
 
 // *::part(erroralert-icon), *::part(successalert-icon){
 //   align-items: flex-start;
