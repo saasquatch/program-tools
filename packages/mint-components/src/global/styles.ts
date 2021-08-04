@@ -365,6 +365,10 @@ const style = `
 :root {
   --sqm-header-background: var(--sl-color-white);
   --sqm-footer-background: var(--sl-color-white);
+
+  // --st-color-text-error, --st-content-max-width, --st-content-background, and --st-portal-background are no longer provided by mint-component
+  // These variables should be supplied by the Service Titan project
+
   --sqm-color-text-error: #e63717;
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
