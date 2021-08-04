@@ -8,7 +8,7 @@ export interface NavigationSidebarViewProps {}
 
 const style = {
   ItemsContainer: {
-    width: "100%",
+    "min-width": "290px",
     "max-width": "320px",
     "box-sizing": "border-box",
     padding: "20px 15px",
@@ -34,12 +34,14 @@ export function NavigationSidebarView(
   children: VNode
 ) {
   return (
-    <div class={sheet.classes.ItemsContainer}>
-      <style type="text/css">
-        {vanillaStyle}
-        {styleString}
-      </style>
-      {children}
+    <div>
+      <div class={sheet.classes.ItemsContainer}>
+        <style type="text/css">
+          {vanillaStyle}
+          {styleString}
+        </style>
+        {children}
+      </div>
     </div>
   );
 }

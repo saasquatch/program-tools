@@ -1,5 +1,4 @@
 import { h } from "@stencil/core";
-import { DividedLayoutView } from "../components/sqm-divided-layout/sqm-divided-layout-view";
 import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { NavigationSidebarView } from "../components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { PortalSectionView } from "../components/sqm-titled-section/sqm-portal-section-view";
@@ -33,7 +32,7 @@ const item1Props = {
   },
   callbacks: {
     onClick: (e: MouseEvent) => console.log(e),
-    onMiddleClick: () => {}
+    onMiddleClick: () => {},
   },
 };
 
@@ -47,7 +46,7 @@ const item2Props = {
   },
   callbacks: {
     onClick: (e: MouseEvent) => console.log(e),
-    onMiddleClick: () => {}
+    onMiddleClick: () => {},
   },
 };
 
@@ -62,7 +61,7 @@ const Sidebar = () => {
 
 export const Row = () => {
   return (
-    <DividedLayoutView {...{ direction: "row" }}>
+    <sqm-divided-layout direction="row">
       <Sidebar />
       <div style={{ padding: "48px" }}>
         <PortalSectionView
@@ -82,13 +81,13 @@ export const Row = () => {
           }}
         />
       </div>
-    </DividedLayoutView>
+    </sqm-divided-layout>
   );
 };
 
 export const Column = () => {
   return (
-    <DividedLayoutView {...{ direction: "column" }}>
+    <sqm-divided-layout direction="column">
       <Sidebar />
       <div style={{ padding: "48px" }}>
         <PortalSectionView
@@ -108,6 +107,6 @@ export const Column = () => {
           }}
         />
       </div>
-    </DividedLayoutView>
+    </sqm-divided-layout>
   );
 };

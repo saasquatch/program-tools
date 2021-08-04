@@ -1,7 +1,6 @@
 import { Component, h, Prop } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
-// import { PresetText } from "../../../functional-components/PresetText";
 import { DateTime } from "luxon";
 import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 @Component({
@@ -104,6 +103,7 @@ export class ReferralTableRewardsCell {
               <span class={sheet.classes.BoldText}>{reward.prettyValue}</span>
             </TextSpanView>
             {/* If state is pending and reward has expiry date, display the relative time inside badge. Otherwise only display the badge text */}
+            {/* Pending for W9 Tax reasons cases here */}
             <div class={sheet.classes.BadgeContainer}>
               {state === "PENDING" && reward.dateScheduledFor ? (
                 <sl-badge type={slBadgeType} pill>{`${badgeText} ${
@@ -180,6 +180,7 @@ export class ReferralTableRewardsCell {
                 </TextSpanView>
               </div>
             )}{" "}
+            {/* Pending for W9 Tax reasons cases here */}
             {state === "AVAILABLE" && reward.dateExpires && (
               <div>
                 <TextSpanView type="p">

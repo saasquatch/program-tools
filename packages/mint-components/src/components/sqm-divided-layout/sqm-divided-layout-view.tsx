@@ -21,6 +21,11 @@ export function DividedLayoutView(
   const style = {
     LayoutContainer: {
       display: "contents",
+      // "min-width": "320px",
+
+      // "& > ::slotted(*)": {
+      //   "min-width": "320px",
+      // },
       // First style applies when shadow DOM is disabled, second applies when shadow DOM is enabled
       "& > :not(:last-child)": {
         ...getBorder(),
