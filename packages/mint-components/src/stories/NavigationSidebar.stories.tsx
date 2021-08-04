@@ -28,10 +28,7 @@ export const DefaultNavigationSidebar = () => {
     data: {
       label: "Dashboard",
       icon: "house",
-    },
-    callbacks: {
-      onClick: (e: MouseEvent) => console.log(e),
-      onMiddleClick: () => {}
+      path: "/",
     },
   };
   const item2Props = {
@@ -41,10 +38,7 @@ export const DefaultNavigationSidebar = () => {
     data: {
       label: "Activity",
       icon: "bar-chart",
-    },
-    callbacks: {
-      onClick: (e: MouseEvent) => console.log(e),
-      onMiddleClick: () => {}
+      path: "/",
     },
   };
   return (

@@ -29,10 +29,7 @@ const item1Props = {
   data: {
     label: "Dashboard",
     icon: "house",
-  },
-  callbacks: {
-    onClick: (e: MouseEvent) => console.log(e),
-    onMiddleClick: () => {},
+    path: "/",
   },
 };
 
@@ -43,10 +40,7 @@ const item2Props = {
   data: {
     label: "Activity",
     icon: "bar-chart",
-  },
-  callbacks: {
-    onClick: (e: MouseEvent) => console.log(e),
-    onMiddleClick: () => {},
+    path: "/",
   },
 };
 

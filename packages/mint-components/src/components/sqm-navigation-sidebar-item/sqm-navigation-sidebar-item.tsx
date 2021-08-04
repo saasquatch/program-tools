@@ -59,12 +59,6 @@ function useSidebarItemDemo(
         label: "Dashboard",
         icon: "house",
       },
-      callbacks: {
-        onClick: (e: MouseEvent) => console.log(e),
-        onMiddleClick: () => {
-          console.log("middle click");
-        },
-      },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
