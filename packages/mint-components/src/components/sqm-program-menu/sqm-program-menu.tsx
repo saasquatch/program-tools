@@ -32,7 +32,11 @@ export class ProgramMenu {
     //   : useProgramMenu(getProps(this));
     return (
       <Host style={{ display: "contents" }}>
-        <sl-select value={data.programId} ref={(r) => (ref.current = r)}>
+        <sl-select
+          style={{ paddingBottom: "var(--sl-spacing-large)" }}
+          value={data.programId}
+          ref={(r) => (ref.current = r)}
+        >
           <slot />
         </sl-select>
       </Host>
