@@ -54,6 +54,7 @@ export class BigStat {
 
   render() {
     const { props, label } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
+
     return (
       <BigStatView {...props}>
         <slot>{label}</slot>

@@ -82,7 +82,6 @@ export const ForgotPasswordLoading = () => (
   <PortalForgotPasswordView {...loadingProps} />
 );
 
-// Currently does not show any success message to the user
 export const ForgotPasswordSuccess = () => (
   <PortalForgotPasswordView {...successProps} />
 );
