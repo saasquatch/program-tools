@@ -13,7 +13,10 @@ jobs:
     strategy:
       matrix:
         package:
+          - program-boilerplate
           - component-boilerplate
+          - stencil-grapes-plugin
+          - mint-components
 
     steps:
       - uses: actions/checkout@v2
