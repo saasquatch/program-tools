@@ -8,6 +8,7 @@ import path from "path";
 import { OutputTarget } from "@stencil/core/internal";
 import { grapesJsOutput } from "@saasquatch/stencil-grapes-plugin";
 import { ShoelaceComponents } from "./shoelace-definitions";
+import { string } from "rollup-plugin-string";
 const useDocx: OutputTarget = {
   type: "docs-custom",
   generator: createDocxGenerator({
@@ -50,7 +51,10 @@ export const config: Config = {
           useDocx,
           useGrapesjs,
         ],
-  plugins: [sass({ injectGlobalPaths: ["src/global/mixins.scss"] })],
+  plugins: [
+    sass({ injectGlobalPaths: ["src/global/mixins.scss"] }),
+    string({ include: "**/*.feature" }),
+  ],
   rollupPlugins: {
     before: [
       alias({

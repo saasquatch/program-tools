@@ -3,9 +3,13 @@ import {
   PortalResetPasswordView,
   PortalResetPasswordViewProps,
 } from "../components/sqm-portal-reset-password/sqm-portal-reset-password-view";
+import scenario from "../components/sqm-portal-reset-password/sqm-portal-reset-password.feature";
 
 export default {
   title: "Portal Reset Password",
+  parameters: {
+    scenario,
+  },
 };
 
 const defaultProps: PortalResetPasswordViewProps = {

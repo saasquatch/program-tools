@@ -3,9 +3,13 @@ import {
   PortalVerifyEmailView,
   PortalVerifyEmailViewProps,
 } from "../components/sqm-portal-verify-email/sqm-portal-verify-email-view";
+import scenario from "../components/sqm-portal-verify-email/sqm-portal-verify-email.feature";
 
 export default {
   title: "Portal Verify Email",
+  parameters: {
+    scenario,
+  },
 };
 
 const errorProps: PortalVerifyEmailViewProps = {

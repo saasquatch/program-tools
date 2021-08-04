@@ -1,11 +1,12 @@
 import jsonpointer from "jsonpointer";
-import { useEffect } from "@saasquatch/universal-hooks";
+import { useCallback, useEffect, useRef } from "@saasquatch/universal-hooks";
 import {
   navigation,
   useRegisterWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
 import { useValidationState } from "./useValidationState";
 import { PortalRegister } from "./sqm-portal-register";
+import { AsYouType } from "libphonenumber-js";
 
 // returns either error message if invalid or undefined if valid
 export type ValidationErrorFunction = (input: {
@@ -15,6 +16,7 @@ export type ValidationErrorFunction = (input: {
 }) => string | undefined;
 
 export function usePortalRegister(props: PortalRegister) {
+  const formRef = useRef<HTMLFormElement>(null);
   const { validationState, setValidationState } = useValidationState({});
   const [request, { loading, errors, data }] =
     useRegisterWithEmailAndPasswordMutation();
@@ -72,11 +74,27 @@ export function usePortalRegister(props: PortalRegister) {
     }
   };
 
+  const inputFunction = useCallback((e) => {
+    const name = e.target?.type?.toLowerCase();
+    if (name !== "tel") return;
+    const asYouType = new AsYouType("US");
+    e.target.value = asYouType.input(e.target.value);
+  }, []);
+
   useEffect(() => {
     if (data?.registerManagedIdentityWithEmailAndPassword?.token) {
       navigation.push(props.nextPage);
     }
   }, [data?.registerManagedIdentityWithEmailAndPassword?.token]);
+
+  useEffect(() => {
+    if (!formRef.current) return;
+    const form = formRef.current;
+    form.addEventListener("sl-input", inputFunction);
+    return () => {
+      form.removeEventListener("sl-input", inputFunction);
+    };
+  }, [formRef.current]);
 
   // useEffect(() => {
   //   if (errors?.message) {
@@ -94,6 +112,10 @@ export function usePortalRegister(props: PortalRegister) {
     },
     callbacks: {
       submit,
+      inputFunction,
+    },
+    refs: {
+      formRef,
     },
   };
 }

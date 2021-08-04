@@ -3,9 +3,13 @@ import {
   PortalForgotPasswordView,
   PortalForgotPasswordViewProps,
 } from "../components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
+import scenario from "../components/sqm-portal-forgot-password/sqm-portal-forgot-password.feature";
 
 export default {
   title: "Portal Forgot Password",
+  parameters: {
+    scenario,
+  },
 };
 
 const defaultProps: PortalForgotPasswordViewProps = {
@@ -78,7 +82,6 @@ export const ForgotPasswordLoading = () => (
   <PortalForgotPasswordView {...loadingProps} />
 );
 
-// Currently does not show any success message to the user
 export const ForgotPasswordSuccess = () => (
   <PortalForgotPasswordView {...successProps} />
 );

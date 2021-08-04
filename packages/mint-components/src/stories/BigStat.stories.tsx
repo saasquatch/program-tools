@@ -10,34 +10,58 @@ export const Default = () => {
   return <BigStatView {...props}>Big stat</BigStatView>;
 };
 
-export const FullStack = () => {
+export const LeftAlign = () => {
+  const props = {
+    statvalue: "500",
+    alignment: "left" as const,
+  };
+  return <BigStatView {...props}>Big stat</BigStatView>;
+};
+
+export const RightAlign = () => {
+  const props = {
+    statvalue: "500",
+    alignment: "right" as const,
+  };
+  return <BigStatView {...props}>Big stat</BigStatView>;
+};
+
+export const FlexReverse = () => {
+  const props = {
+    statvalue: "500",
+    flexReverse: true,
+  };
+  return <BigStatView {...props}>Big stat</BigStatView>;
+};
+
+export const FlexReverseRight = () => {
+  const props = {
+    statvalue: "500",
+    flexReverse: true,
+    alignment: "right" as const,
+  };
+  return <BigStatView {...props}>Big stat</BigStatView>;
+};
+
+export const FlexReverseLeft = () => {
+  const props = {
+    statvalue: "500",
+    flexReverse: true,
+    alignment: "left" as const,
+  };
+  return <BigStatView {...props}>Big stat</BigStatView>;
+};
+
+export const NoStatValue = () => {
   return (
     <sqm-big-stat
-      flex-reverse="true"
-      alignment="left"
       stat-type="/rewardsCount"
       demoData={{
-        statvalue: "123",
-        flexReverse: true,
-        alignment: "left",
+        alignment: "center",
       }}
     >
       <sqm-text>
-        <p>Rewards</p>
-      </sqm-text>
-    </sqm-big-stat>
-  );
-};
-
-export const FullStackDefaults = () => {
-  return (
-    <sqm-big-stat
-      flex-reverse="true"
-      alignment="left"
-      stat-type="/rewardsCount"
-    >
-      <sqm-text>
-        <p>Rewards</p>
+        <p>Big stat</p>
       </sqm-text>
     </sqm-big-stat>
   );

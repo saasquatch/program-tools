@@ -78,7 +78,7 @@ export class PortalRegister {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks } = isDemo()
+    const { states, callbacks, refs } = isDemo()
       ? useRegisterDemo(this)
       : usePortalRegister(this);
     const content = {
@@ -105,13 +105,14 @@ export class PortalRegister {
         states={states}
         callbacks={callbacks}
         content={content}
+        refs={refs}
       ></PortalRegisterView>
     );
   }
 }
 function useRegisterDemo(
   props: PortalRegister
-): Pick<PortalRegisterViewProps, "states" | "callbacks"> {
+): Pick<PortalRegisterViewProps, "states" | "callbacks" | "refs"> {
   return deepmerge(
     {
       states: {
@@ -124,6 +125,10 @@ function useRegisterDemo(
         submit: async (_event) => {
           console.log("submit");
         },
+        inputFunction: () => {},
+      },
+      refs: {
+        formRef: {},
       },
     },
     props.demoData || {},

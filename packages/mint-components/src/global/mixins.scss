@@ -30,7 +30,6 @@
   }
 }
 
-
 @mixin ErrorStyles {
   .ErrorStyles {
     &::part(base) {
@@ -66,10 +65,10 @@
   .Wrapper {
     box-sizing: border-box;
     width: 100%;
-    max-width: var(--st-content-max-width);
+    max-width: var(--sqm-content-max-width);
     height: auto;
     padding: var(--sl-spacing-large);
-    background-color: var(--st-content-background);
+    background-color: var(--sqm-content-background);
     display: flex;
   }
 }

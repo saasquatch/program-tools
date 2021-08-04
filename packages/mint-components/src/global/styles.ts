@@ -365,11 +365,10 @@ const style = `
 :root {
   --sqm-header-background: var(--sl-color-white);
   --sqm-footer-background: var(--sl-color-white);
-
-  --st-color-text-error: #e63717;
-  --st-content-max-width: 700px;
-  --st-content-background: var(--sl-color-white);
-  --st-portal-background: var(--sl-color-gray-50);
+  --sqm-color-text-error: #e63717;
+  --sqm-content-max-width: 700px;
+  --sqm-content-background: var(--sl-color-white);
+  --sqm-portal-background: var(--sl-color-gray-50);
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
 }
@@ -381,7 +380,7 @@ body {
   color: var(--sl-color-gray-800);
   line-height: var(--sl-line-height-normal);
   margin: 0;
-  background-color: var(--st-portal-background);
+  background-color: var(--sqm-portal-background);
 }
 a,
 a:visited {
@@ -421,9 +420,9 @@ h2, .Title {
   text-align: center;
 }
 stn-wrapper-column {
-  max-width: var(--st-content-max-width);
+  max-width: var(--sqm-content-max-width);
   margin: var(--sl-spacing-x-large) auto;
-  background-color: var(--st-content-background);
+  background-color: var(--sqm-content-background);
 }
 
 stn-wrapper-column > :not(:first-child), stn-wrapper-item > :not(:first-child) {
@@ -439,7 +438,7 @@ stn-wrapper-item, stn-wrapper-column{
 }
 stn-wrapper-item {
   padding: var(--sl-spacing-large);
-  background-color: var(--st-content-background);
+  background-color: var(--sqm-content-background);
 }
 
 stn-row {
