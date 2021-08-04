@@ -263,6 +263,7 @@ export const EditProfile = () => {
         <PortalProfileView
           {...{
             states: {
+              success: false,
               loading: false,
               submitDisabled: false,
               showCountry: false,

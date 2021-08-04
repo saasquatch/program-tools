@@ -1,4 +1,7 @@
-<sqm-divided-layout direction="row" style="border-top: 1px solid #eaeaea">
+<sqm-divided-layout
+  direction="row"
+  style="border-top: 1px solid #eaeaea; border-bottom: 1px solid #eaeaea"
+>
   <sqm-navigation-sidebar>
     <sqm-navigation-sidebar-item
       path="/"
@@ -17,7 +20,7 @@
     ></sqm-navigation-sidebar-item>
   </sqm-navigation-sidebar>
   <sqm-portal-container direction="column" padding="xxx-large" gap="xxx-large">
-    <sqm-text> <h2>Activity</h2></sqm-text>
+    <sqm-text> <h1>Activity</h1></sqm-text>
     <sqm-stat-container space="xxxx-large"
       ><sqm-big-stat
         flex-reverse="true"
@@ -29,21 +32,53 @@
         alignment="left"
         stat-type="/rewardsCount"
         ><sqm-text><p>Rewards</p></sqm-text></sqm-big-stat
-      ><fsr-points-stat stat-label="Points" flex-reverse="true" alignment="left"></fsr-points-stat
+      ><sqm-graphql-client-provider
+        domain="https://managed-identity-staging.herokuapp.com"
+        ><fsr-points-stat
+          flex-reverse
+          alignment="left"
+          stat-label="POINTS"
+        ></fsr-points-stat></sqm-graphql-client-provider
     ></sqm-stat-container>
-    <sqm-referral-table program-id="new-sales-rep-referral-program">
-      <sqm-referral-table-column
-        ><sqm-text><p slot="loading">Loading</p></sqm-text>
-        <sqm-text style="width: 100%"
-          ><p slot="empty" style="text-align: center">
-            No referrals yet
-          </p></sqm-text
-        ></sqm-referral-table-column
-      >
+    <sqm-referral-table program-id="new-sales-rep-referral-program" per-page="5">
+      <div slot="loading" style="display: contents">
+        <sqm-table-row>
+          <sqm-table-cell colspan="5"
+            ><sl-skeleton></sl-skeleton
+          ></sqm-table-cell>
+        </sqm-table-row>
+        <sqm-table-row>
+          <sqm-table-cell colspan="5"
+            ><sl-skeleton></sl-skeleton
+          ></sqm-table-cell>
+        </sqm-table-row>
+        <sqm-table-row>
+          <sqm-table-cell colspan="5"
+            ><sl-skeleton></sl-skeleton
+          ></sqm-table-cell>
+        </sqm-table-row>
+        <sqm-table-row>
+          <sqm-table-cell colspan="5"
+            ><sl-skeleton></sl-skeleton
+          ></sqm-table-cell>
+        </sqm-table-row>
+        <sqm-table-row>
+          <sqm-table-cell colspan="5"
+            ><sl-skeleton></sl-skeleton
+          ></sqm-table-cell>
+        </sqm-table-row>
+      </div>
+      <div slot="empty" style="display: contents">
+        <sqm-table-row>
+          <sqm-table-cell colspan="5" style="text-align: center"
+            >No Referrals Yet</sqm-table-cell
+          >
+        </sqm-table-row>
+      </div>
       <sqm-referral-table-user-column></sqm-referral-table-user-column>
       <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
       <sqm-referral-table-status-column
-        converted-status-text="Converted"
+        converted-status-text="Enrolled"
         in-progress-status-text="Invited"
       ></sqm-referral-table-status-column>
       <sqm-referral-table-date-column

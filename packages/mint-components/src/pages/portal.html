@@ -1,34 +1,31 @@
 <sqb-program-section program-id="new-sales-rep-referral-program">
   <sqm-portal-frame>
-    <sqm-text slot="header">
-      <img style="height: 70px;"
-        src="http://fsr-stencilbook.surge.sh/assets/landing/header.png"
-      />
+    <a slot="header" href="/"></a>
+    <sqm-text>
+      <img style="height: 70px" src="http://fsr-stencilbook.surge.sh/assets/landing/header.png" />
     </sqm-text>
-    <fsr-footer
-      slot="footer"
-      support-email="hello@foodservicerewards.com"
-      terms-link="example.com"
-      faq-link="example.com"
-      padding="large"
-    ></fsr-footer>
-    <sqm-graphql-client-provider
-      domain="https://portal-auth-service-staging.herokuapp.com"
-    >
+    </a>
+    <fsr-footer slot="footer" support-email="john@foodservicerewards.com" terms-link="example.com"
+      faq-link="example.com" padding="large" show-powered-by="true" powered-by-link="https://www.saasquatch.com/">
+    </fsr-footer>
+    <sqm-graphql-client-provider domain="https://managed-identity-staging.herokuapp.com">
       <sqm-router>
         <template path="/register">
-          <sqb-widget widget-type="w/register"></sqb-widget>
+          <sqm-portal-register hide-inputs="true" submit-label="Join Free" page-label="Join Free">
+            <fsr-register slot="formData"></fsr-register>
+          </sqm-portal-register>
         </template>
 
         <template path="/emailVerification">
-          <sqm-portal-protected-route
-            redirect-to="/login"
-          ></sqm-portal-protected-route>
-          <sqm-portal-email-verification></sqm-portal-email-verification>
+          <sqm-portal-protected-route redirect-to="/login">
+            <sqm-portal-email-verification
+              verify-message="A verification email was sent to {email}. Please verify your email to continue to start earning rewards.">
+            </sqm-portal-email-verification>
+          </sqm-portal-protected-route>
         </template>
 
         <template path="/login">
-          <sqb-widget widget-type="w/login"></sqb-widget>
+          <sqm-portal-login register-label="Join Free"></sqm-portal-login>
         </template>
 
         <template path="/verifyEmail">
@@ -36,15 +33,11 @@
         </template>
 
         <template path="/forgotPassword">
-          <sqm-portal-forgot-password
-            email-label="Business Email"
-          ></sqm-portal-forgot-password>
+          <sqm-portal-forgot-password email-label="Business Email"></sqm-portal-forgot-password>
         </template>
 
         <template path="/resetPassword">
-          <sqm-portal-reset-password
-            confirm-password="true"
-          ></sqm-portal-reset-password>
+          <sqm-portal-reset-password confirm-password="true"></sqm-portal-reset-password>
         </template>
         <template path="/logout">
           <sqm-portal-logout next-page="/login"></sqm-portal-logout>
@@ -53,215 +46,16 @@
     </sqm-graphql-client-provider>
     <sqm-router>
       <template path="/">
-        <sqm-portal-protected-route
-          require-email-verification="true"
-          redirect-to="/login"
-          redirect-to-unverified="/emailVerification"
-        ></sqm-portal-protected-route>
-
-        <sqm-divided-layout
-          direction="row"
-          style="border-top: 1px solid #eaeaea; border-bottom: 1px solid #eaeaea"
-        >
-          <sqm-navigation-sidebar>
-            <sqm-navigation-sidebar-item
-              path="/"
-              icon="house"
-              label="Dashboard"
-            ></sqm-navigation-sidebar-item>
-            <sqm-navigation-sidebar-item
-              path="/activity"
-              icon="bar-chart"
-              label="Activity"
-            ></sqm-navigation-sidebar-item>
-            <sqm-navigation-sidebar-item
-              path="/logout"
-              icon="box-arrow-right"
-              label="Logout"
-            ></sqm-navigation-sidebar-item>
-          </sqm-navigation-sidebar>
-          <sqm-divided-layout direction="column"
-            ><sqm-portal-container
-              direction="column"
-              padding="xxx-large"
-              gap="xxx-large"
-              ><sqm-titled-section label-margin="xx-small"
-                ><sqm-text slot="label"> <p>Welcome back,</p> </sqm-text
-                ><sqm-text slot="content">
-                  <h1>
-                    <sqm-user-name fallback="Anonymous User"></sqm-user-name>
-                  </h1> </sqm-text></sqm-titled-section
-              ><sqm-stat-container space="xxxx-large"
-                ><sqm-big-stat
-                  flex-reverse="true"
-                  alignment="left"
-                  stat-type="/referralsCount"
-                  ><sqm-text><p>Referrals</p></sqm-text></sqm-big-stat
-                ><sqm-big-stat
-                  flex-reverse="true"
-                  alignment="left"
-                  stat-type="/rewardsCount"
-                  ><sqm-text><p>Rewards</p></sqm-text></sqm-big-stat
-                ><sqm-graphql-client-provider
-                  domain="https://portal-auth-service-staging.herokuapp.com"
-                  ><fsr-points-stat
-                    flex-reverse
-                    alignment="left"
-                    stat-label="POINTS"
-                  ></fsr-points-stat></sqm-graphql-client-provider></sqm-stat-container></sqm-portal-container
-            ><sqm-portal-container
-              direction="column"
-              padding="xxx-large"
-              gap="xxx-large"
-            >
-              <sqm-titled-section padding="none" label-margin="x-large"
-                ><sqm-text slot="label"> <h2>Partner and Profit</h2> </sqm-text
-                ><sqm-text slot="content">
-                  <p>
-                    Get rewarded for referring chefs to Food Service Rewards.
-                    Earn points for every successful referral
-                  </p>
-                </sqm-text></sqm-titled-section
-              >
-              <fsr-reward-exchange></fsr-reward-exchange>
-              <sqm-titled-section label-margin="small" padding="none"
-                ><sqm-text slot="label">
-                  <h3>Share your referral link</h3> </sqm-text
-                ><sqm-share-link
-                  slot="content"
-                ></sqm-share-link></sqm-titled-section
-              ><sqm-titled-section label-margin="small" padding="none"
-                ><sqm-text slot="label">
-                  <h3>Share your referral code</h3> </sqm-text
-                ><sqm-share-code slot="content"></sqm-share-code
-              ></sqm-titled-section>
-              <sqm-titled-section label-margin="small" padding="none"
-                ><sqm-text slot="label">
-                  <h3>Share via social media</h3> </sqm-text
-                ><sqm-portal-container
-                  slot="content"
-                  direction="row"
-                  padding="none"
-                  gap="xxx-large"
-                  min-width="160px"
-                  ><sqm-share-button
-                    icon="envelope"
-                    medium="email"
-                    size="medium"
-                    pill="true"
-                    >Email a friend</sqm-share-button
-                  ><sqm-share-button medium="twitter" size="medium" pill="true"
-                    >Tweet about us</sqm-share-button
-                  ><sqm-share-button medium="facebook" size="medium" pill="true"
-                    >Share on Facebook</sqm-share-button
-                  ></sqm-portal-container
-                ></sqm-titled-section
-              ></sqm-portal-container
-            ></sqm-divided-layout
-          >
-        </sqm-divided-layout>
+        <sqm-portal-protected-route require-email-verification="true" redirect-to="/login"
+          redirect-to-unverified="/emailVerification">
+          <sqb-widget widget-type="w/dashboard"></sqb-widget>
+        </sqm-portal-protected-route>
       </template>
       <template path="/activity">
-        <sqm-portal-protected-route
-          require-email-verification="true"
-          redirect-to="/login"
-          redirect-to-unverified="/emailVerification"
-        ></sqm-portal-protected-route>
-
-        <sqm-divided-layout
-          direction="row"
-          style="border-top: 1px solid #eaeaea; border-bottom: 1px solid #eaeaea"
-        >
-          <sqm-navigation-sidebar>
-            <sqm-navigation-sidebar-item
-              path="/"
-              icon="house"
-              label="Dashboard"
-            ></sqm-navigation-sidebar-item>
-            <sqm-navigation-sidebar-item
-              path="/activity"
-              icon="bar-chart"
-              label="Activity"
-            ></sqm-navigation-sidebar-item>
-            <sqm-navigation-sidebar-item
-              path="/logout"
-              icon="box-arrow-right"
-              label="Logout"
-            ></sqm-navigation-sidebar-item>
-          </sqm-navigation-sidebar>
-          <sqm-portal-container
-            direction="column"
-            padding="xxx-large"
-            gap="xxx-large"
-          >
-            <sqm-text> <h1>Activity</h1></sqm-text>
-            <sqm-stat-container space="xxxx-large"
-              ><sqm-big-stat
-                flex-reverse="true"
-                alignment="left"
-                stat-type="/referralsCount"
-                ><sqm-text><p>Referrals</p></sqm-text></sqm-big-stat
-              ><sqm-big-stat
-                flex-reverse="true"
-                alignment="left"
-                stat-type="/rewardsCount"
-                ><sqm-text><p>Rewards</p></sqm-text></sqm-big-stat
-              ><sqm-graphql-client-provider
-                domain="https://portal-auth-service-staging.herokuapp.com"
-                ><fsr-points-stat
-                  flex-reverse
-                  alignment="left"
-                  stat-label="POINTS"
-                ></fsr-points-stat></sqm-graphql-client-provider
-            ></sqm-stat-container>
-            <sqm-referral-table program-id="new-sales-rep-referral-program">
-              <div slot="loading" style="display: contents">
-                <sqm-table-row>
-                  <sqm-table-cell colspan="5"
-                    ><sl-skeleton></sl-skeleton
-                  ></sqm-table-cell>
-                </sqm-table-row>
-                <sqm-table-row>
-                  <sqm-table-cell colspan="5"
-                    ><sl-skeleton></sl-skeleton
-                  ></sqm-table-cell>
-                </sqm-table-row>
-                <sqm-table-row>
-                  <sqm-table-cell colspan="5"
-                    ><sl-skeleton></sl-skeleton
-                  ></sqm-table-cell>
-                </sqm-table-row>
-                <sqm-table-row>
-                  <sqm-table-cell colspan="5"
-                    ><sl-skeleton></sl-skeleton
-                  ></sqm-table-cell>
-                </sqm-table-row>
-                <sqm-table-row>
-                  <sqm-table-cell colspan="5"
-                    ><sl-skeleton></sl-skeleton
-                  ></sqm-table-cell>
-                </sqm-table-row>
-              </div>
-              <div slot="empty" style="display: contents">
-                <sqm-table-row>
-                  <sqm-table-cell colspan="5" style="text-align: center"
-                    >No Referrals Yet</sqm-table-cell
-                  >
-                </sqm-table-row>
-              </div>
-              <sqm-referral-table-user-column></sqm-referral-table-user-column>
-              <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
-              <sqm-referral-table-status-column
-                converted-status-text="Converted"
-                in-progress-status-text="Invited"
-              ></sqm-referral-table-status-column>
-              <sqm-referral-table-date-column
-                column-title="Date Started"
-                date-shown="dateReferralStarted"
-              ></sqm-referral-table-date-column>
-              <sqm-referral-table-date-column></sqm-referral-table-date-column> </sqm-referral-table
-          ></sqm-portal-container>
-        </sqm-divided-layout>
+        <sqm-portal-protected-route require-email-verification="true" redirect-to="/login"
+          redirect-to-unverified="/emailVerification">
+          <sqb-widget widget-type="w/activity"></sqb-widget>
+        </sqm-portal-protected-route>
       </template>
     </sqm-router>
   </sqm-portal-frame>

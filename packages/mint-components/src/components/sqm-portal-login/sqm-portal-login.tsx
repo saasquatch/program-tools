@@ -17,18 +17,45 @@ export class PortalLogin {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Page navigated to after sign-in
+   */
   @Prop()
   nextPage = "/";
 
+  /**
+   * @uiName Label for email field
+   */
   @Prop()
   emailLabel = "Email";
 
+  /**
+   * @uiName Label for password field
+   */
   @Prop()
   passwordLabel = "Password";
 
+  /**
+   * @uiName Label for submit button
+   */
   @Prop()
   submitLabel = "Sign In";
 
+  /**
+   * @uiName Label for forgotten password button
+   */
+  @Prop()
+  forgotPasswordLabel = "Forgot Password?";
+
+  /**
+   * @uiName Label for register navigation button
+   */
+  @Prop()
+  registerLabel = "Register";
+
+  /**
+   * @uiName Heading label
+   */
   @Prop()
   pageLabel: string = "Sign in to your account";
 
@@ -49,7 +76,7 @@ export class PortalLogin {
       forgotPasswordButton: (
         <slot name="forgotPassword">
           <a onClick={() => navigation.push("/forgotPassword")}>
-            Forgot Password?
+            {this.forgotPasswordLabel}
           </a>
         </slot>
       ),
@@ -60,7 +87,7 @@ export class PortalLogin {
             disabled={states.loading}
             onClick={() => navigation.push("/register")}
           >
-            Register
+            {this.registerLabel}
           </sl-button>
         </slot>
       ),

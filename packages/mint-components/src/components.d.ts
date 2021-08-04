@@ -265,6 +265,7 @@ export namespace Components {
           * @undocumented
          */
         "demoData"?: DemoData<PortalEmailVerificationViewProps>;
+        "verifyMessage": string;
     }
     interface SqmPortalForgotPassword {
         /**
@@ -285,10 +286,33 @@ export namespace Components {
           * @undocumented
          */
         "demoData"?: DemoData<PortalLoginViewProps>;
+        /**
+          * @uiName Label for email field
+         */
         "emailLabel": string;
+        /**
+          * @uiName Label for forgotten password button
+         */
+        "forgotPasswordLabel": string;
+        /**
+          * @uiName Page navigated to after sign-in
+         */
         "nextPage": string;
+        /**
+          * @uiName Heading label
+         */
         "pageLabel": string;
+        /**
+          * @uiName Label for password field
+         */
         "passwordLabel": string;
+        /**
+          * @uiName Label for register navigation button
+         */
+        "registerLabel": string;
+        /**
+          * @uiName Label for submit button
+         */
         "submitLabel": string;
     }
     interface SqmPortalLogout {
@@ -311,16 +335,41 @@ export namespace Components {
         "requireEmailVerification": boolean;
     }
     interface SqmPortalRegister {
+        /**
+          * @uiName Show confirm password field
+         */
         "confirmPassword": boolean;
         /**
           * @undocumented
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
+        /**
+          * @uiName Label for email field
+         */
         "emailLabel": string;
+        /**
+          * @uiName Hide default input fields to use custom fields
+         */
         "hideInputs": boolean;
+        /**
+          * @uiName Label for login navigation button
+         */
+        "loginLabel": string;
+        /**
+          * @uiName Page navigated to after registration
+         */
         "nextPage": string;
+        /**
+          * @uiName Heading label
+         */
         "pageLabel": string;
+        /**
+          * @uiName Label for password field
+         */
         "passwordLabel": string;
+        /**
+          * @uiName Label for submit button
+         */
         "submitLabel": string;
     }
     interface SqmPortalResetPassword {
@@ -1173,6 +1222,7 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "demoData"?: DemoData<PortalEmailVerificationViewProps>;
+        "verifyMessage"?: string;
     }
     interface SqmPortalForgotPassword {
         /**
@@ -1193,10 +1243,33 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "demoData"?: DemoData<PortalLoginViewProps>;
+        /**
+          * @uiName Label for email field
+         */
         "emailLabel"?: string;
+        /**
+          * @uiName Label for forgotten password button
+         */
+        "forgotPasswordLabel"?: string;
+        /**
+          * @uiName Page navigated to after sign-in
+         */
         "nextPage"?: string;
+        /**
+          * @uiName Heading label
+         */
         "pageLabel"?: string;
+        /**
+          * @uiName Label for password field
+         */
         "passwordLabel"?: string;
+        /**
+          * @uiName Label for register navigation button
+         */
+        "registerLabel"?: string;
+        /**
+          * @uiName Label for submit button
+         */
         "submitLabel"?: string;
     }
     interface SqmPortalLogout {
@@ -1219,16 +1292,41 @@ declare namespace LocalJSX {
         "requireEmailVerification"?: boolean;
     }
     interface SqmPortalRegister {
+        /**
+          * @uiName Show confirm password field
+         */
         "confirmPassword"?: boolean;
         /**
           * @undocumented
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
+        /**
+          * @uiName Label for email field
+         */
         "emailLabel"?: string;
+        /**
+          * @uiName Hide default input fields to use custom fields
+         */
         "hideInputs"?: boolean;
+        /**
+          * @uiName Label for login navigation button
+         */
+        "loginLabel"?: string;
+        /**
+          * @uiName Page navigated to after registration
+         */
         "nextPage"?: string;
+        /**
+          * @uiName Heading label
+         */
         "pageLabel"?: string;
+        /**
+          * @uiName Label for password field
+         */
         "passwordLabel"?: string;
+        /**
+          * @uiName Label for submit button
+         */
         "submitLabel"?: string;
     }
     interface SqmPortalResetPassword {

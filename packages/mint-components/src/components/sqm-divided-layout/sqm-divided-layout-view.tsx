@@ -35,7 +35,7 @@ export function DividedLayoutView(
     display: flex;
     flex: 1;
     flex-direction: ${props.direction};
-    background-color: var(--st-portal-background);
+    background-color: var(--sqm-content-background);
     ${
       props.direction === "column"
         ? "width: 100%; max-width: var(--sqm-portal-main-width);"

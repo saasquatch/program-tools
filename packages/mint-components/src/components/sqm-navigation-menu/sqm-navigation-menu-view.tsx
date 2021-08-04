@@ -18,7 +18,7 @@ export function NavigationMenuView(props: NavigationMenuViewProps) {
   const { states } = props;
   const { styles } = states;
   return states.includeDropdown ? (
-    <sl-dropdown>
+    <sl-dropdown style="margin-bottom: var(--sl-spacing-large)">
       <sl-button
         slot="trigger"
         caret

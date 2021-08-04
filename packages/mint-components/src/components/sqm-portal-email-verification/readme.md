@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute | Description | Type                                                                                                 | Default     |
-| ---------- | --------- | ----------- | ---------------------------------------------------------------------------------------------------- | ----------- |
-| `demoData` | --        |             | `{ states?: { error: string; loading: boolean; success: boolean; }; content?: { email: string; }; }` | `undefined` |
+| Property        | Attribute        | Description | Type                                                                                                                        | Default                                                                                           |
+| --------------- | ---------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `demoData`      | --               |             | `{ states?: { error: string; loading: boolean; success: boolean; }; content?: { email: string; verifyMessage: string; }; }` | `undefined`                                                                                       |
+| `verifyMessage` | `verify-message` |             | `string`                                                                                                                    | `"A verification email was sent to {email}. Please verify your email to continue to the portal."` |
 
 
 ## Dependencies

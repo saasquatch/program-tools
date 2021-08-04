@@ -1,38 +1,62 @@
 import jsonpointer from "jsonpointer";
-import { useEffect } from "@saasquatch/universal-hooks";
+import { useCallback, useEffect, useRef } from "@saasquatch/universal-hooks";
 import {
   navigation,
   useRegisterWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
 import { useValidationState } from "./useValidationState";
+import { PortalRegister } from "./sqm-portal-register";
+import { AsYouType } from "libphonenumber-js";
 
-export function usePortalRegister({ nextPage, confirmPassword }) {
+// returns either error message if invalid or undefined if valid
+export type ValidationErrorFunction = (input: {
+  control;
+  key: string;
+  value;
+}) => string | undefined;
+
+export function usePortalRegister(props: PortalRegister) {
+  const formRef = useRef<HTMLFormElement>(null);
   const { validationState, setValidationState } = useValidationState({});
   const [request, { loading, errors, data }] =
     useRegisterWithEmailAndPasswordMutation();
 
-  console.log({ validationState });
   const submit = async (event: any) => {
     let formControls = event.target.getFormControls();
 
     let formData: Record<string, any> = {};
+    let validationErrors: Record<string, string> = {};
     formControls?.forEach((control) => {
       if (!control.name) return;
       const key = control.name;
       const value = control.value;
       jsonpointer.set(formData, key, value);
+      // required validation
+      if (control.required && !value) {
+        jsonpointer.set(validationErrors, key, "Cannot be empty");
+      }
+      // custom validation
+      if (typeof control.validationError === "function") {
+        const validate = control.validationError as ValidationErrorFunction;
+        const validationError = validate({ control, key, value });
+        if (validationError)
+          jsonpointer.set(validationErrors, key, validationError);
+      }
     });
     if (
-      (confirmPassword || formData.confirmPassword) &&
+      (props.confirmPassword || formData.confirmPassword) &&
       formData.password !== formData.confirmPassword
     ) {
-      setValidationState({
-        error: "",
-        validationErrors: { confirmPassword: "Passwords do not match." },
-      });
+      validationErrors = {
+        ...validationErrors,
+        confirmPassword: "Passwords do not match.",
+      };
+    }
+    setValidationState({ error: "", validationErrors });
+    if (Object.keys(validationErrors).length) {
+      // early return for validation errors
       return;
     }
-    setValidationState({ error: "" });
     const { email, password } = formData;
     delete formData.email;
     delete formData.password;
@@ -50,11 +74,27 @@ export function usePortalRegister({ nextPage, confirmPassword }) {
     }
   };
 
+  const inputFunction = useCallback((e) => {
+    const name = e.target?.type?.toLowerCase();
+    if (name !== "tel") return;
+    const asYouType = new AsYouType("US");
+    e.target.value = asYouType.input(e.target.value);
+  }, []);
+
   useEffect(() => {
     if (data?.registerManagedIdentityWithEmailAndPassword?.token) {
-      navigation.push(nextPage);
+      navigation.push(props.nextPage);
     }
   }, [data?.registerManagedIdentityWithEmailAndPassword?.token]);
+
+  useEffect(() => {
+    if (!formRef.current) return;
+    const form = formRef.current;
+    form.addEventListener("sl-input", inputFunction);
+    return () => {
+      form.removeEventListener("sl-input", inputFunction);
+    };
+  }, [formRef.current]);
 
   // useEffect(() => {
   //   if (errors?.message) {
@@ -67,9 +107,15 @@ export function usePortalRegister({ nextPage, confirmPassword }) {
       loading,
       error: errors?.response?.errors?.[0]?.message || validationState?.error,
       validationState,
+      confirmPassword: props.confirmPassword,
+      hideInputs: props.hideInputs,
     },
     callbacks: {
       submit,
+      inputFunction,
+    },
+    refs: {
+      formRef,
     },
   };
 }

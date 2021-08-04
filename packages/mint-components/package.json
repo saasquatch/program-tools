@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/mint-components",
-  "version": "1.1.0-55",
+  "version": "1.1.0-65",
   "description": "Mint Components - Built with Shoelace Components",
   "main": "dist/index.cjs.js",
   "es2015": "dist/esm/index.js",
@@ -54,7 +54,7 @@
     "workbox-build": "4.3.1"
   },
   "dependencies": {
-    "@saasquatch/component-boilerplate": "^1.2.0-15",
+    "@saasquatch/component-boilerplate": "^1.2.0-16",
     "@saasquatch/stencil-grapes-plugin": "^1.0.1",
     "@saasquatch/stencil-hooks": "^2.0.1-0",
     "@saasquatch/stencilbook": "^1.0.0",
@@ -70,6 +70,7 @@
     "jsonpointer": "^4.1.0",
     "jss-preset-default": "^10.7.1",
     "jwt-decode": "^3.1.2",
+    "libphonenumber-js": "^1.9.23",
     "luxon": "^2.0.1",
     "path-to-regexp": "^6.2.0",
     "picklesdoc": "^1.1.1",

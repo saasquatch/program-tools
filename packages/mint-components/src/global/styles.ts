@@ -365,10 +365,10 @@ const style = `
 :root {
   --sqm-header-background: var(--sl-color-white);
   --sqm-footer-background: var(--sl-color-white);
-  --st-color-text-error: #e63717;
-  --st-content-max-width: 700px;
-  --st-content-background: var(--sl-color-white);
-  --st-portal-background: var(--sl-color-gray-50);
+  --sqm-color-text-error: #e63717;
+  --sqm-content-max-width: 700px;
+  --sqm-content-background: var(--sl-color-white);
+  --sqm-portal-background: var(--sl-color-gray-50);
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
 }
@@ -380,7 +380,7 @@ body {
   color: var(--sl-color-gray-800);
   line-height: var(--sl-line-height-normal);
   margin: 0;
-  background-color: var(--st-portal-background);
+  background-color: var(--sqm-portal-background);
 }
 a,
 a:visited {
@@ -420,9 +420,9 @@ h2, .Title {
   text-align: center;
 }
 stn-wrapper-column {
-  max-width: var(--st-content-max-width);
+  max-width: var(--sqm-content-max-width);
   margin: var(--sl-spacing-x-large) auto;
-  background-color: var(--st-content-background);
+  background-color: var(--sqm-content-background);
 }
 
 stn-wrapper-column > :not(:first-child), stn-wrapper-item > :not(:first-child) {
@@ -438,7 +438,7 @@ stn-wrapper-item, stn-wrapper-column{
 }
 stn-wrapper-item {
   padding: var(--sl-spacing-large);
-  background-color: var(--st-content-background);
+  background-color: var(--sqm-content-background);
 }
 
 stn-row {
@@ -520,31 +520,44 @@ sl-input::part(label){
   background-color: var(--sl-color-gray-200);
   color: var(--sl-color-gray-700);
 }
-*::part(erroralert-icon), *::part(successalert-icon){
-  align-items: flex-start;
-  padding-top: var(--sl-spacing-large);
+
+.poweredBy {
+  color: var(--sl-color-gray-400);
+  font-size: var(--sl-font-size-xx-small);
 }
 
-*::part(erroralert-text){
-  color: var(--sl-color-danger-500);
+.poweredBy:hover {
+  color: var(--sl-color-gray-900);
 }
 
-*::part(successalert-text) {
-  color: var(--sl-color-success-600);
-}
+// The following styles to be moved to ST
 
-*::part(successalert-text),
-*::part(erroralert-text) {
-  font-size: var(--sl-font-size-medium);
-  font-weight: var(--sl-font-weight-semibold);
-  width: 100%;
-}
-*::part(successalert-subtext){
-  font-size: var(--sl-font-size-medium);
-  font-weight: var(--sl-font-weight-normal);
-  color: var(--sl-color-gray-800);
-  width: 100%;
-}
+// *::part(erroralert-icon), *::part(successalert-icon){
+//   align-items: flex-start;
+//   padding-top: var(--sl-spacing-large);
+// }
+
+// *::part(erroralert-text){
+//   color: var(--sl-color-danger-500);
+// }
+
+// *::part(successalert-text) {
+//   color: var(--sl-color-success-600);
+// }
+
+// *::part(successalert-text),
+// *::part(erroralert-text) {
+//   font-size: var(--sl-font-size-medium);
+//   font-weight: var(--sl-font-weight-semibold);
+//   width: 100%;
+// }
+// *::part(successalert-subtext){
+//   font-size: var(--sl-font-size-medium);
+//   font-weight: var(--sl-font-weight-normal);
+//   color: var(--sl-color-gray-800);
+//   width: 100%;
+// }
+
 .FooterEmail{
   text-decoration: none;
   font-size: var(--sl-font-size-medium);

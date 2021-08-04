@@ -20,24 +20,51 @@ export class PortalRegister {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Page navigated to after registration
+   */
   @Prop()
   nextPage = "/";
 
+  /**
+   * @uiName Label for email field
+   */
   @Prop()
   emailLabel = "Email";
 
+  /**
+   * @uiName Label for password field
+   */
   @Prop()
   passwordLabel = "Password";
 
+  /**
+   * @uiName Label for submit button
+   */
   @Prop()
   submitLabel = "Register";
 
+  /**
+   * @uiName Label for login navigation button
+   */
+  @Prop()
+  loginLabel = "Sign in";
+
+  /**
+   * @uiName Show confirm password field
+   */
   @Prop()
   confirmPassword: boolean = false;
 
+  /**
+   * @uiName Hide default input fields to use custom fields
+   */
   @Prop()
   hideInputs: boolean = false;
 
+  /**
+   * @uiName Heading label
+   */
   @Prop()
   pageLabel: string = "Register";
 
@@ -51,7 +78,7 @@ export class PortalRegister {
   disconnectedCallback() {}
 
   render() {
-    const { states, callbacks } = isDemo()
+    const { states, callbacks, refs } = isDemo()
       ? useRegisterDemo(this)
       : usePortalRegister(this);
     const content = {
@@ -63,7 +90,7 @@ export class PortalRegister {
             disabled={states.loading}
             onClick={() => navigation.push("/login")}
           >
-            Sign In
+            {this.loginLabel}
           </sl-button>
         </slot>
       ),
@@ -73,23 +100,19 @@ export class PortalRegister {
       pageLabel: this.pageLabel,
     };
 
-    console.log({states})
     return (
       <PortalRegisterView
-        states={{
-          hideInputs: this.hideInputs,
-          confirmPassword: this.confirmPassword,
-          ...states,
-        }}
+        states={states}
         callbacks={callbacks}
         content={content}
+        refs={refs}
       ></PortalRegisterView>
     );
   }
 }
 function useRegisterDemo(
   props: PortalRegister
-): Pick<PortalRegisterViewProps, "states" | "callbacks"> {
+): Pick<PortalRegisterViewProps, "states" | "callbacks" | "refs"> {
   return deepmerge(
     {
       states: {
@@ -102,6 +125,10 @@ function useRegisterDemo(
         submit: async (_event) => {
           console.log("submit");
         },
+        inputFunction: () => {},
+      },
+      refs: {
+        formRef: {},
       },
     },
     props.demoData || {},
