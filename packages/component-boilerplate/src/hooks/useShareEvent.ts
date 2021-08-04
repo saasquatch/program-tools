@@ -3,11 +3,11 @@ import {
   useEngagementMedium,
   useProgramId,
   useUserIdentity,
-} from "../environment/environment";
+} from "../environment";
 import { useMutation } from "./graphql/useMutation";
 
 const FIRE_EVENT = gql`
-  mutation($eventMeta: UserAnalyticsEvent!) {
+  mutation ($eventMeta: UserAnalyticsEvent!) {
     createUserAnalyticsEvent(eventMeta: $eventMeta)
   }
 `;

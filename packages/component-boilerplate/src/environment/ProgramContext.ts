@@ -1,6 +1,6 @@
 import { useDomContext } from "@saasquatch/dom-context-hooks";
 import { ContextProvider } from "dom-context";
-import { useHost } from "..";
+import { useHost } from "../hooks/useHost";
 import { WidgetIdent } from "./environment";
 
 const CONTEXT_NAME = "sq:program-id";

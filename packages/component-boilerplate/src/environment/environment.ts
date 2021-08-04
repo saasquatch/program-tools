@@ -1,18 +1,25 @@
-import { PortalEnv } from "./SquatchPortal";
+/**
+ * Environment provided by components hosted in a web component (`sqh-widget`)
+ */
+
+declare global {
+  interface Window {
+    SquatchPortal?: PortalEnv;
+  }
+}
+
+/**
+ * Portal env doesn't include User Id
+ */
+export type PortalEnv = Pick<
+  WidgetIdent,
+  "tenantAlias" | "appDomain" | "programId"
+>;
 
 /**
  * Program ID context helpers
  */
 export { useProgramId, setProgramId } from "./ProgramContext";
-
-/**
- * User identity context helpers
- */
-export {
-  useUserIdentity,
-  useToken,
-  setUserIdentity,
-} from "./UserIdentityContext";
 
 /**
  * Provided by the SaaSquatch GraphQL backend when a widget is rendered.
