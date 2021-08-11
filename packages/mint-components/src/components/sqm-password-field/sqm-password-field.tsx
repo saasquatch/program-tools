@@ -14,7 +14,6 @@ import { usePasswordField } from "./usePasswordField";
  */
 @Component({
   tag: "sqm-password-field",
-  shadow: true,
 })
 export class PortalPasswordField {
   @State()
@@ -22,6 +21,8 @@ export class PortalPasswordField {
 
   @Prop()
   fieldLabel: string = "Password";
+
+  @Prop() enableValidation: boolean = true;
 
   /** @undocumented */
   @Prop() demoData?: DemoData<PortalPasswordFieldViewProps>;
@@ -44,9 +45,11 @@ function usePasswordFieldDemo(
 ): PortalPasswordFieldViewProps {
   return deepmerge(
     {
-      states: {},
+      states: {
+        enableValidation: true,
+      },
       callbacks: {
-        validateNewPassword: () => {},
+        onInput: (_: InputEvent) => {},
       },
     },
     props.demoData || {},

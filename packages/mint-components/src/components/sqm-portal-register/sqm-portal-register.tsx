@@ -60,7 +60,7 @@ export class PortalRegister {
    * @uiName Use password field with live validation
    */
   @Prop()
-  customPasswordField: boolean = true;
+  enablePasswordValidation: boolean = true;
 
   /**
    * @uiName Hide default input fields to use custom fields

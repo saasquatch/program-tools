@@ -7,24 +7,30 @@
 
 ## Properties
 
-| Property          | Attribute          | Description | Type                                                                                                                                              | Default     |
-| ----------------- | ------------------ | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `confirmPassword` | `confirm-password` |             | `boolean`                                                                                                                                         | `false`     |
-| `demoData`        | --                 |             | `{ states?: { error: string; loading: boolean; reset: boolean; confirmPassword: boolean; oobCodeValidating: boolean; oobCodeValid: boolean; }; }` | `undefined` |
-| `nextPage`        | `next-page`        |             | `string`                                                                                                                                          | `"/"`       |
+| Property           | Attribute           | Description | Type                                                                                                                                                 | Default      |
+| ------------------ | ------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| `demoData`         | --                  |             | `{ states?: { enableValidation: boolean; dynamicValidation: VNode; validationErrors: Record<string, string>; content: { fieldLabel: string; }; }; }` | `undefined`  |
+| `enableValidation` | `enable-validation` |             | `boolean`                                                                                                                                            | `true`       |
+| `fieldLabel`       | `field-label`       |             | `string`                                                                                                                                             | `"Password"` |
 
 
 ## Dependencies
 
-### Depends on
+### Used by
 
-- [sqm-form-message](../sqm-form-message)
+ - [sqm-portal-change-password](../sqm-portal-change-password)
+ - [sqm-portal-register](../sqm-portal-register)
+ - [sqm-portal-reset-password](../sqm-portal-reset-password)
+ - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqm-portal-reset-password --> sqm-form-message
-  style sqm-portal-reset-password fill:#f9f,stroke:#333,stroke-width:4px
+  sqm-portal-change-password --> sqm-password-field
+  sqm-portal-register --> sqm-password-field
+  sqm-portal-reset-password --> sqm-password-field
+  sqm-stencilbook --> sqm-password-field
+  style sqm-password-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

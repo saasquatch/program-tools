@@ -18,7 +18,7 @@ export interface PortalRegisterViewProps {
     confirmPassword: boolean;
     hideInputs: boolean;
     validationState?: FormState;
-    customPasswordField?: boolean;
+    enablePasswordValidation?: boolean;
   };
   callbacks: {
     submit: Function;
@@ -26,6 +26,7 @@ export interface PortalRegisterViewProps {
   };
   content: {
     formData?: any;
+    passwordField?: any;
     secondaryButton?: any;
     emailLabel?: string;
     passwordLabel?: string;
@@ -119,33 +120,12 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
               : [])}
           ></sl-input>
         )}
-        {!states.hideInputs ||
-          (states.customPasswordField && (
-            <sl-input
-              exportparts="label: input-label"
-              type="password"
-              name="/password"
-              label={content.passwordLabel || "Password"}
-              disabled={states.loading}
-              required
-              validationError={({ value }) => {
-                if (!value) {
-                  return "Cannot be empty";
-                }
-                if (value.length < 6) {
-                  return "Password must be at least 6 characters";
-                }
-              }}
-              {...(states.validationState?.validationErrors?.password
-                ? {
-                    class: sheet.classes.ErrorStyle,
-                    helpText:
-                      states.validationState?.validationErrors?.password ||
-                      "Cannot be empty",
-                  }
-                : [])}
-            ></sl-input>
-          ))}
+        {!states.hideInputs && (
+          <sqm-password-field
+            enable-validation={states.enablePasswordValidation}
+          ></sqm-password-field>
+        )}
+        {content.passwordField}
         {!states.hideInputs && states.confirmPassword && (
           <sl-input
             exportparts="label: input-label"

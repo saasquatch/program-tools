@@ -149,16 +149,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
-        {!states.reset && (
-          <sl-input
-            exportparts="label: input-label"
-            type="password"
-            name="/password"
-            label="Password"
-            disabled={states.loading}
-            required
-          ></sl-input>
-        )}
+        {!states.reset && <sqm-password-field></sqm-password-field>}
         {!states.reset && states.confirmPassword && (
           <sl-input
             exportparts="label: input-label"

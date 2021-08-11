@@ -218,6 +218,7 @@ export namespace Components {
           * @undocumented
          */
         "demoData"?: DemoData<PortalPasswordFieldViewProps>;
+        "enableValidation": boolean;
         "fieldLabel": string;
     }
     interface SqmPopupContainer {
@@ -348,10 +349,6 @@ export namespace Components {
          */
         "confirmPassword": boolean;
         /**
-          * @uiName Use password field with live validation
-         */
-        "customPasswordField": boolean;
-        /**
           * @undocumented
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
@@ -359,6 +356,10 @@ export namespace Components {
           * @uiName Label for email field
          */
         "emailLabel": string;
+        /**
+          * @uiName Use password field with live validation
+         */
+        "enablePasswordValidation": boolean;
         /**
           * @uiName Hide default input fields to use custom fields
          */
@@ -1193,6 +1194,7 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "demoData"?: DemoData<PortalPasswordFieldViewProps>;
+        "enableValidation"?: boolean;
         "fieldLabel"?: string;
     }
     interface SqmPopupContainer {
@@ -1323,10 +1325,6 @@ declare namespace LocalJSX {
          */
         "confirmPassword"?: boolean;
         /**
-          * @uiName Use password field with live validation
-         */
-        "customPasswordField"?: boolean;
-        /**
           * @undocumented
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
@@ -1334,6 +1332,10 @@ declare namespace LocalJSX {
           * @uiName Label for email field
          */
         "emailLabel"?: string;
+        /**
+          * @uiName Use password field with live validation
+         */
+        "enablePasswordValidation"?: boolean;
         /**
           * @uiName Hide default input fields to use custom fields
          */

@@ -1,17 +1,19 @@
-import { h } from "@stencil/core";
-import { ErrorStyles } from "../../global/mixins";
+import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
+import { ErrorStyles } from "../../global/mixins";
 
 export interface PortalPasswordFieldViewProps {
   states: {
+    enableValidation: boolean;
+    dynamicValidation: VNode | string;
     validationErrors: Record<string, string>;
     content: {
       fieldLabel: string;
     };
   };
   callbacks: {
-    validateNewPassword: (password: string) => void;
+    onInput: (input: InputEvent) => void;
   };
 }
 
@@ -19,23 +21,6 @@ const style = {
   InputContainer: {
     "& > :not(:last-child)": {
       "margin-bottom": "20px",
-    },
-  },
-
-  FormNamesContainer: {
-    display: "flex",
-
-    "& > *": {
-      flex: "1 1 0%",
-    },
-
-    "& > :not(:last-child)": {
-      "margin-right": "var(--sl-spacing-large)",
-    },
-  },
-  FieldsContainer: {
-    "& > :not(:last-child)": {
-      "margin-bottom": "var(--sl-spacing-large)",
     },
   },
   ErrorStyle: ErrorStyles,
@@ -59,10 +44,8 @@ const styleString = sheet.toString();
 export function PortalResetPasswordView(props: PortalPasswordFieldViewProps) {
   const { states, callbacks } = props;
 
-  console.log(states);
-
   return (
-    <div>
+    <div class={sheet.classes.InputContainer}>
       <style type="text/css">
         {vanillaStyle}
         {styleString}
@@ -77,9 +60,6 @@ export function PortalResetPasswordView(props: PortalPasswordFieldViewProps) {
           if (!value) {
             return "Cannot be empty";
           }
-          if (value.length < 6) {
-            return "Password must be at least 6 characters";
-          }
         }}
         {...(states.validationErrors?.password
           ? {
@@ -87,7 +67,9 @@ export function PortalResetPasswordView(props: PortalPasswordFieldViewProps) {
               helpText: states.validationErrors?.password || "Cannot be empty",
             }
           : [])}
+        onInput={(input) => states.enableValidation && callbacks.onInput(input)}
       ></sl-input>
+      {states.dynamicValidation}
     </div>
   );
 }

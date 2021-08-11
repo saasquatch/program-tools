@@ -19,11 +19,13 @@
 ### Depends on
 
 - [sqm-form-message](../sqm-form-message)
+- [sqm-password-field](../sqm-password-field)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-portal-reset-password --> sqm-form-message
+  sqm-portal-reset-password --> sqm-password-field
   style sqm-portal-reset-password fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
