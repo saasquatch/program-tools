@@ -57,6 +57,12 @@ export class PortalRegister {
   confirmPassword: boolean = false;
 
   /**
+   * @uiName Use password field with live validation
+   */
+  @Prop()
+  customPasswordField: boolean = true;
+
+  /**
    * @uiName Hide default input fields to use custom fields
    */
   @Prop()
@@ -120,6 +126,7 @@ function useRegisterDemo(
         loading: false,
         confirmPassword: true,
         hideInputs: false,
+        customPasswordField: false,
       },
       callbacks: {
         submit: async (_event) => {
