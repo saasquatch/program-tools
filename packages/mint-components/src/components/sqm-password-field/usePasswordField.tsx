@@ -1,8 +1,5 @@
 import { useState } from "@saasquatch/universal-hooks";
-import {
-  FormState,
-  useValidationState,
-} from "../sqm-portal-register/useValidationState";
+import { FormState } from "../sqm-portal-register/useValidationState";
 import { PortalPasswordField } from "./sqm-password-field";
 import { PortalPasswordFieldViewProps } from "./sqm-password-field-view";
 import { validateNewPassword } from "./passwordValidation";
@@ -17,13 +14,11 @@ export function usePasswordField(
   const [dynamicValidation, setDynamicValidation] = useState<VNode | string>(
     ""
   );
-  function onInput(input) {
+  function onInput(input: Event) {
     const validation = validateNewPassword(
-      //@ts-ignore
-      input?.target?.value
+      (input.target as HTMLInputElement).value
     );
     setDynamicValidation(validation);
-    console.log({ validation, input });
   }
 
   return {
