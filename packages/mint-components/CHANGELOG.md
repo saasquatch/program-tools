@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2021-08-13
+
+- Password field with live validation
+  Newly available component:
+- <sqm-password-field>
+
+### Added
+
 ## [1.1.0] - 2021-08-04
 
 ### Added
@@ -73,5 +81,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - <sqm-stencilbook>
 
 [unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.1.0...HEAD
+[1.1.1]: https://github.com/saasquatch/program-tools/releases/tag/mint-components@1.1.1
 [1.1.0]: https://github.com/saasquatch/program-tools/releases/tag/mint-components@1.1.0
 [1.0.0-86]: https://github.com/saasquatch/program-tools/releases/tag/mint-components@1.0.0-86
