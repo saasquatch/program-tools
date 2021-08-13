@@ -150,7 +150,7 @@ export function useUserIdentity(): UserIdentity | undefined {
     | undefined;
 
   const validIdentity = userIdentityFromJwt(identity?.jwt);
-  if (!validIdentity) {
+  if (!validIdentity && identity?.jwt !== undefined) {
     // Likely that the JWT has expired
     setUserIdentity(undefined);
     return undefined;
