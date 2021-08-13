@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Password field component with live validation
   Newly available component:
-- \<sqm-password-field>
+  - \<sqm-password-field>
 
 ### Added
 
