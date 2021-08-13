@@ -68,7 +68,7 @@ const style = {
   ValidationList: {
     "list-style-type": "none",
     paddingRight: "var(--sl-spacing-large)",
-    margin:"var(--sl-spacing-small) 0 var(--sl-spacing-x-large)",
+    margin: "var(--sl-spacing-small) 0 var(--sl-spacing-x-large)",
     "& > :not(:last-child)": {
       "margin-bottom": "var(--sl-spacing-xx-small)",
     },
@@ -85,11 +85,9 @@ const sheet = jss.createStyleSheet(style);
 const styleString = sheet.toString();
 
 const getErrorMessage = (errorKeys: string[], password: string): string => {
-  console.log("keys", errorKeys, validationMessages);
-
   if (!errorKeys.length && password)
     return (
-      <div>
+      <div class={sheet.classes.ValidationItemValid}>
         <style type="text/css">{styleString}</style>
         <Valid /> <span>Password has met all requirements</span>
       </div>
@@ -102,11 +100,11 @@ const getErrorMessage = (errorKeys: string[], password: string): string => {
       <ul class={sheet.classes.ValidationList}>
         {Object.keys(validationMessages).map((errorKey) =>
           errorKeys.includes(errorKey) ? (
-            <li class={sheet.classes.ValidationItemValid}>
+            <li class={sheet.classes.ValidationItemInvalid}>
               <Invalid /> <span>{validationMessages[errorKey]}</span>
             </li>
           ) : (
-            <li class={sheet.classes.ValidationItemInvalid}>
+            <li class={sheet.classes.ValidationItemValid}>
               <Valid /> <span>{validationMessages[errorKey]}</span>
             </li>
           )
