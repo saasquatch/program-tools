@@ -53,6 +53,12 @@ const style = {
 };
 
 const vanillaStyle = `
+sqm-portal-register {
+  margin: 0 auto;
+  width: 100%;
+  display: block;
+}
+
 :host{
   margin: 0 auto;
   width: 100%;

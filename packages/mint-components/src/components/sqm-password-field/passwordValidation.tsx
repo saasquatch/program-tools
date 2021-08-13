@@ -1,5 +1,7 @@
 import { h, VNode } from "@stencil/core";
 import PasswordValidator from "password-validator";
+import jss from "jss";
+import preset from "jss-preset-default";
 const passwordSchema = new PasswordValidator()
   .is()
   .min(8) // Minimum length 8
@@ -53,28 +55,59 @@ const validationMessages = {
   has: "contain at least 1 number or symbol",
 };
 
+const baseItem = {
+  display: "flex",
+  alignItems: "center",
+  fontSize: "var(--sl-font-size-small)",
+  "& > :not(:last-child)": {
+    "margin-right": "var(--sl-spacing-x-small)",
+  },
+};
+
+const style = {
+  ValidationList: {
+    "list-style-type": "none",
+    paddingRight: "var(--sl-spacing-large)",
+    margin:"var(--sl-spacing-small) 0 var(--sl-spacing-x-large)",
+    "& > :not(:last-child)": {
+      "margin-bottom": "var(--sl-spacing-xx-small)",
+    },
+    "& *": {
+      "line-height": "var(--sl-line-height-dense)",
+    },
+  },
+  ValidationItemValid: { ...baseItem, color: "var(--sl-color-success-600)" },
+  ValidationItemInvalid: { ...baseItem },
+};
+
+jss.setup(preset());
+const sheet = jss.createStyleSheet(style);
+const styleString = sheet.toString();
+
 const getErrorMessage = (errorKeys: string[], password: string): string => {
   console.log("keys", errorKeys, validationMessages);
 
   if (!errorKeys.length && password)
     return (
       <div>
-        <Valid /> Password has met all requirements
+        <style type="text/css">{styleString}</style>
+        <Valid /> <span>Password has met all requirements</span>
       </div>
     );
 
   return (
     <div>
+      <style type="text/css">{styleString}</style>
       Password must meet the following requirements:
-      <ul style={{ listStyleType: "none" }}>
+      <ul class={sheet.classes.ValidationList}>
         {Object.keys(validationMessages).map((errorKey) =>
           errorKeys.includes(errorKey) ? (
-            <li>
-              <Invalid /> {validationMessages[errorKey]}
+            <li class={sheet.classes.ValidationItemValid}>
+              <Invalid /> <span>{validationMessages[errorKey]}</span>
             </li>
           ) : (
-            <li>
-              <Valid /> {validationMessages[errorKey]}
+            <li class={sheet.classes.ValidationItemInvalid}>
+              <Valid /> <span>{validationMessages[errorKey]}</span>
             </li>
           )
         )}
