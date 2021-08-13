@@ -65,6 +65,9 @@ const baseItem = {
 };
 
 const style = {
+  Base: {
+    fontSize: "var(--sl-font-size-small)",
+  },
   ValidationList: {
     "list-style-type": "none",
     paddingRight: "var(--sl-spacing-large)",
@@ -94,7 +97,7 @@ const getErrorMessage = (errorKeys: string[], password: string): string => {
     );
 
   return (
-    <div>
+    <div class={sheet.classes.Base}>
       <style type="text/css">{styleString}</style>
       Password must meet the following requirements:
       <ul class={sheet.classes.ValidationList}>
