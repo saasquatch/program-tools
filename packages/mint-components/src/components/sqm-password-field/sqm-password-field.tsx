@@ -47,6 +47,9 @@ function usePasswordFieldDemo(
     {
       states: {
         enableValidation: true,
+        content: {
+          fieldLabel: "Password",
+        },
       },
       callbacks: {
         onInput: (_: InputEvent) => {},
