@@ -1,8 +1,10 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop, State } from "@stencil/core";
+import { useState } from "@saasquatch/universal-hooks";
+import { Component, h, Prop, State, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
+import { validateNewPassword } from "./passwordValidation";
 import {
   PortalPasswordFieldViewProps,
   PortalResetPasswordView,
@@ -43,13 +45,27 @@ export class PortalPasswordField {
 function usePasswordFieldDemo(
   props: PortalPasswordField
 ): PortalPasswordFieldViewProps {
+  const [dynamicValidation, setDynamicValidation] = useState<VNode | string>(
+    ""
+  );
+  function onInput(input: Event) {
+    const validation = validateNewPassword(
+      (input.target as HTMLInputElement).value
+    );
+    setDynamicValidation(validation);
+  }
   return deepmerge(
     {
       states: {
         enableValidation: true,
+        dynamicValidation,
+        validationErrors: {},
+        content: {
+          fieldLabel: "Password",
+        },
       },
       callbacks: {
-        onInput: (_: InputEvent) => {},
+        onInput,
       },
     },
     props.demoData || {},
