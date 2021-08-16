@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property          | Attribute          | Description | Type                                                                                                                                              | Default     |
-| ----------------- | ------------------ | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `confirmPassword` | `confirm-password` |             | `boolean`                                                                                                                                         | `false`     |
-| `demoData`        | --                 |             | `{ states?: { error: string; loading: boolean; reset: boolean; confirmPassword: boolean; oobCodeValidating: boolean; oobCodeValid: boolean; }; }` | `undefined` |
-| `nextPage`        | `next-page`        |             | `string`                                                                                                                                          | `"/"`       |
+| Property          | Attribute          | Description | Type                                                                                                                                                                                             | Default     |
+| ----------------- | ------------------ | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| `confirmPassword` | `confirm-password` |             | `boolean`                                                                                                                                                                                        | `false`     |
+| `demoData`        | --                 |             | `{ states?: { error: string; loading: boolean; reset: boolean; confirmPassword: boolean; oobCodeValidating: boolean; oobCodeValid: boolean; passwordDemoData?: PasswordFieldViewDemoProps; }; }` | `undefined` |
+| `nextPage`        | `next-page`        |             | `string`                                                                                                                                                                                         | `"/"`       |
 
 
 ## Dependencies

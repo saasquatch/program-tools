@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property           | Attribute           | Description | Type                                                                                                                                                           | Default      |
-| ------------------ | ------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| `demoData`         | --                  |             | `{ states?: { enableValidation: boolean; dynamicValidation: string \| VNode; validationErrors: Record<string, string>; content: { fieldLabel: string; }; }; }` | `undefined`  |
-| `enableValidation` | `enable-validation` |             | `boolean`                                                                                                                                                      | `true`       |
-| `fieldLabel`       | `field-label`       |             | `string`                                                                                                                                                       | `"Password"` |
+| Property           | Attribute           | Description | Type                         | Default      |
+| ------------------ | ------------------- | ----------- | ---------------------------- | ------------ |
+| `demoData`         | --                  |             | `PasswordFieldViewDemoProps` | `undefined`  |
+| `enableValidation` | `enable-validation` |             | `boolean`                    | `true`       |
+| `fieldLabel`       | `field-label`       |             | `string`                     | `"Password"` |
 
 
 ## Dependencies
