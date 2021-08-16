@@ -3,13 +3,23 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { useState } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, State, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
-import { DemoData } from "../../global/demo";
 import { validateNewPassword } from "./passwordValidation";
 import {
   PortalPasswordFieldViewProps,
   PortalResetPasswordView,
 } from "./sqm-password-field-view";
 import { usePasswordField } from "./usePasswordField";
+
+export interface PasswordFieldViewDemoProps {
+  initValue: string;
+  states: {
+    enableValidation: boolean;
+    validationErrors: Record<string, string>;
+    content: {
+      fieldLabel: string;
+    };
+  };
+}
 
 /**
  * @uiName Portal Password Field
@@ -27,7 +37,7 @@ export class PortalPasswordField {
   @Prop() enableValidation: boolean = true;
 
   /** @undocumented */
-  @Prop() demoData?: DemoData<PortalPasswordFieldViewProps>;
+  @Prop() demoData?: PasswordFieldViewDemoProps;
 
   constructor() {
     withHooks(this);
@@ -42,24 +52,34 @@ export class PortalPasswordField {
     return <PortalResetPasswordView states={states} callbacks={callbacks} />;
   }
 }
+
 function usePasswordFieldDemo(
   props: PortalPasswordField
 ): PortalPasswordFieldViewProps {
   const [dynamicValidation, setDynamicValidation] = useState<VNode | string>(
     ""
   );
+  const [lastValidated, setLastValidated] = useState<string>("");
+
+  if (props.demoData && lastValidated != props?.demoData?.initValue) {
+    const validation = validateNewPassword(props?.demoData?.initValue || "");
+    setDynamicValidation(props?.demoData?.initValue === "" ? "" : validation);
+    setLastValidated(props?.demoData?.initValue);
+  }
+
   function onInput(input: Event) {
     const validation = validateNewPassword(
       (input.target as HTMLInputElement).value
     );
     setDynamicValidation(validation);
   }
+
   return deepmerge(
     {
       states: {
         enableValidation: true,
         dynamicValidation,
-        validationErrors: {},
+        validationErrors: props?.demoData?.states?.validationErrors || {},
         content: {
           fieldLabel: "Password",
         },
@@ -68,7 +88,7 @@ function usePasswordFieldDemo(
         onInput,
       },
     },
-    props.demoData || {},
+    props?.demoData?.states || {},
     { arrayMerge: (_, a) => a }
   );
 }

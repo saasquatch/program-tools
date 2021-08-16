@@ -14,7 +14,7 @@ import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboa
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
-import { PortalPasswordFieldViewProps } from "./components/sqm-password-field/sqm-password-field-view";
+import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { Spacing } from "./global/mixins";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
@@ -217,7 +217,7 @@ export namespace Components {
         /**
           * @undocumented
          */
-        "demoData"?: DemoData<PortalPasswordFieldViewProps>;
+        "demoData"?: PasswordFieldViewDemoProps;
         "enableValidation": boolean;
         "fieldLabel": string;
     }
@@ -1193,7 +1193,7 @@ declare namespace LocalJSX {
         /**
           * @undocumented
          */
-        "demoData"?: DemoData<PortalPasswordFieldViewProps>;
+        "demoData"?: PasswordFieldViewDemoProps;
         "enableValidation"?: boolean;
         "fieldLabel"?: string;
     }
