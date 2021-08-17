@@ -105,7 +105,7 @@ const programGoalsQuery = (
 const referralsMonthQuery = (programId: string) =>
   debugQuery(
     gql`
-      query ($programId: ID!) {
+      query ($programId: ID) {
         viewer {
           ... on User {
             referrals(
@@ -127,7 +127,7 @@ const referralsMonthQuery = (programId: string) =>
 const referralsWeekQuery = (programId: string) =>
   debugQuery(
     gql`
-      query ($programId: ID!) {
+      query ($programId: ID) {
         viewer {
           ... on User {
             referrals(
@@ -149,7 +149,7 @@ const referralsWeekQuery = (programId: string) =>
 const rewardsCountQuery = (programId: string) =>
   debugQuery(
     gql`
-      query ($programId: ID!) {
+      query ($programId: ID) {
         viewer {
           ... on User {
             rewards(filter: { programId_eq: $programId }) {
@@ -166,7 +166,7 @@ const rewardsCountQuery = (programId: string) =>
 const rewardsMonthQuery = (programId: string) =>
   debugQuery(
     gql`
-      query ($programId: ID!) {
+      query ($programId: ID) {
         viewer {
           ... on User {
             rewards(
@@ -188,7 +188,7 @@ const rewardsMonthQuery = (programId: string) =>
 const rewardsWeekQuery = (programId: string) =>
   debugQuery(
     gql`
-      query ($programId: ID!) {
+      query ($programId: ID) {
         viewer {
           ... on User {
             rewards(
@@ -218,7 +218,7 @@ const rewardsRedeemedQuery = (
   return debugQuery(
     gql`
       query (
-        $programId: ID!
+        $programId: ID
         $type: RewardType
         $unit: String!
         $locale: RSLocale
@@ -263,7 +263,7 @@ const rewardsAssignedQuery = (
   return debugQuery(
     gql`
       query (
-        $programId: ID!
+        $programId: ID
         $type: RewardType
         $unit: String!
         $locale: RSLocale
@@ -308,7 +308,7 @@ const rewardsAvailableQuery = (
   return debugQuery(
     gql`
       query (
-        $programId: ID!
+        $programId: ID
         $type: RewardType
         $unit: String!
         $locale: RSLocale
@@ -484,10 +484,18 @@ export function parsePath(type: string): string[] | undefined {
 export function useBigStat(props: BigStat): BigStatHook {
   const { statType, flexReverse, alignment } = props;
   const programId = useProgramId();
+
+  // fail fast
+  if (programId === "classic")
+    return {
+      props: { statvalue: "!!!", flexReverse, alignment },
+      label: "CLASSIC FILTER NOT SUPPORTED",
+    };
+
   const locale = useLocale();
   const userIdent = useUserIdentity();
-  debug({ programId, statType });
   const re = useMemo(() => StatPatterns.find((re) => re(statType)), [statType]);
+
   if (re === undefined) {
     return {
       props: { statvalue: "!!!", flexReverse, alignment },
