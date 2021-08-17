@@ -52,6 +52,11 @@ const emptyTableProps = {
     nextPage: () => console.log("Next"),
   },
   data: {
+    textOverrides: {
+      showLabels: true,
+      prevLabel: "Prev",
+      moreLabel: "View More",
+    },
     referralData: [],
   },
   elements: {
@@ -68,6 +73,11 @@ const simpleUserTableProps = {
     loading: false,
   },
   data: {
+    textOverrides: {
+      showLabels: true,
+      prevLabel: "Prev",
+      moreLabel: "View More",
+    },
     referralData: [],
   },
   callbacks: {
@@ -112,6 +122,11 @@ const longCellTextTableProps = {
     loading: false,
   },
   data: {
+    textOverrides: {
+      showLabels: true,
+      prevLabel: "Prev",
+      moreLabel: "View More",
+    },
     referralData: [],
   },
   callbacks: {
@@ -193,6 +208,11 @@ const longColumnTextTableProps = {
     loading: false,
   },
   data: {
+    textOverrides: {
+      showLabels: true,
+      prevLabel: "Prev",
+      moreLabel: "View More",
+    },
     referralData: [],
   },
   callbacks: {
@@ -274,6 +294,11 @@ const fullUserTableProps = {
     loading: false,
   },
   data: {
+    textOverrides: {
+      showLabels: true,
+      prevLabel: "Prev",
+      moreLabel: "View More",
+    },
     referralData: [],
   },
   callbacks: {
@@ -355,6 +380,11 @@ const loadingTableProps = {
     loading: true,
   },
   data: {
+    textOverrides: {
+      showLabels: true,
+      prevLabel: "Prev",
+      moreLabel: "View More",
+    },
     referralData: [],
   },
   callbacks: {
@@ -511,6 +541,11 @@ export const DemoTableEmpty = () => {
           loading: false,
         },
         data: {
+          textOverrides: {
+            showLabels: true,
+            prevLabel: "Prev",
+            moreLabel: "View More",
+          },
           referralData: [],
         },
         elements: {
@@ -534,6 +569,11 @@ export const DemoTableLoading = () => {
           loading: true,
         },
         data: {
+          textOverrides: {
+            showLabels: true,
+            prevLabel: "Prev",
+            moreLabel: "View More",
+          },
           referralData: [],
         },
         elements: {
@@ -644,6 +684,11 @@ export const DemoTableFull = () => {
           loading: false,
         },
         data: {
+          textOverrides: {
+            showLabels: true,
+            prevLabel: "Prev",
+            moreLabel: "View More",
+          },
           referralData: [],
         },
         elements: {

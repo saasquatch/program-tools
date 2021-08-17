@@ -11,6 +11,11 @@ export interface ReferralTableViewProps {
     hasNext: boolean;
   };
   data: {
+    textOverrides: {
+      showLabels: boolean;
+      prevLabel: string;
+      moreLabel: string;
+    };
     referralData?: Referral[];
   };
   callbacks: {
@@ -63,15 +68,17 @@ export function ReferralTableView(props: ReferralTableViewProps) {
     <div>
       <style type="text/css">{styleString}</style>
       <table class={sheet.classes.Table}>
-        <thead>
-          <tr>
-            {columns?.map((column) => (
-              <th class={sheet.classes.THead}>
-                <TextSpanView type="h3">{column}</TextSpanView>
-              </th>
-            ))}
-          </tr>
-        </thead>
+        {data.textOverrides.showLabels && (
+          <thead>
+            <tr>
+              {columns?.map((column) => (
+                <th class={sheet.classes.THead}>
+                  <TextSpanView type="h3">{column}</TextSpanView>
+                </th>
+              ))}
+            </tr>
+          </thead>
+        )}
         <tbody>
           {states.loading
             ? elements.loadingElement
@@ -88,7 +95,10 @@ export function ReferralTableView(props: ReferralTableViewProps) {
               ))}
         </tbody>
       </table>
-      <div class={sheet.classes.ButtonContainer}>
+      <div
+        class={sheet.classes.ButtonContainer}
+        part="sqm-referral-table-button-wrapper"
+      >
         <sl-button
           size="small"
           disabled={!states.hasPrev}
@@ -96,7 +106,7 @@ export function ReferralTableView(props: ReferralTableViewProps) {
           onClick={callbacks.prevPage}
           exportparts="base: defaultbutton-base"
         >
-          Prev
+          {data.textOverrides.prevLabel}
         </sl-button>
         <sl-button
           size="small"
@@ -105,7 +115,7 @@ export function ReferralTableView(props: ReferralTableViewProps) {
           onClick={callbacks.nextPage}
           exportparts="base: defaultbutton-base"
         >
-          Next
+          {data.textOverrides.moreLabel}
         </sl-button>
       </div>
     </div>

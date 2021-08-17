@@ -20,6 +20,7 @@ export class ReferralTable {
   /**
    * Filters to only show referrals in this program. Will default to filtering by the program context where
    * this table lives. If no program ID is set or provided by context, then shows all referrals from all programs.
+   * If program ID is "classic", shows classic-only referrals
    *
    * @uiName Program
    */
@@ -27,6 +28,15 @@ export class ReferralTable {
 
   /** @uiName Number of referrals per page */
   @Prop() perPage: number = 3;
+
+  /** @uiName Show column labels */
+  @Prop() showLabels?: boolean = true;
+
+  /** @uiName Previous button text  */
+  @Prop() prevLabel?: string = "Prev";
+
+  /** @uiName View More button text  */
+  @Prop() moreLabel?: string = "Next";
 
   /** @undocumented */
   @Prop() demoData?: DemoData<ReferralTableViewProps>;

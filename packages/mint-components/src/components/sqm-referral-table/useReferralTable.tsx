@@ -129,7 +129,11 @@ export function useReferralTable(
   // Default to context, overriden by props
   const programId = props.programId ?? programIdContext;
   // If no program ID, shows all programs
-  const filter = programId ? { programId_eq: programId } : {};
+  const filter = programId
+    ? programId === "classic"
+      ? { programId_exists: false }
+      : { programId_eq: programId }
+    : {};
   const {
     envelope: referralData,
     states,
@@ -202,6 +206,11 @@ export function useReferralTable(
       loading: states.loading || content.loading,
     },
     data: {
+      textOverrides: {
+        showLabels: props.showLabels,
+        prevLabel: props.prevLabel,
+        moreLabel: props.moreLabel,
+      },
       referralData: data,
     },
     elements: {

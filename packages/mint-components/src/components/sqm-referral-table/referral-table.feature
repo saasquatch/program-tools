@@ -9,3 +9,5 @@ Feature: Referral Table
     Scenario: Loading state is shown
 
     Scenario: Can change pages
+
+    Scenario: Classic program shows only classic referrals

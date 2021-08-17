@@ -399,14 +399,26 @@ export namespace Components {
          */
         "demoData"?: DemoData<ReferralTableViewProps>;
         /**
+          * @uiName View More button text
+         */
+        "moreLabel"?: string;
+        /**
           * @uiName Number of referrals per page
          */
         "perPage": number;
         /**
-          * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs.
+          * @uiName Previous button text
+         */
+        "prevLabel"?: string;
+        /**
+          * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs. If program ID is "classic", shows classic-only referrals
           * @uiName Program
          */
         "programId": string;
+        /**
+          * @uiName Show column labels
+         */
+        "showLabels"?: boolean;
     }
     interface SqmReferralTableCell {
         "innerTemplate": string;
@@ -1356,14 +1368,26 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<ReferralTableViewProps>;
         /**
+          * @uiName View More button text
+         */
+        "moreLabel"?: string;
+        /**
           * @uiName Number of referrals per page
          */
         "perPage"?: number;
         /**
-          * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs.
+          * @uiName Previous button text
+         */
+        "prevLabel"?: string;
+        /**
+          * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs. If program ID is "classic", shows classic-only referrals
           * @uiName Program
          */
         "programId"?: string;
+        /**
+          * @uiName Show column labels
+         */
+        "showLabels"?: boolean;
     }
     interface SqmReferralTableCell {
         "innerTemplate"?: string;
