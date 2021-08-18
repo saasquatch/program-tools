@@ -79,7 +79,11 @@ const style = {
       "line-height": "var(--sl-line-height-dense)",
     },
   },
-  ValidationItemValid: { ...baseItem, color: "var(--sl-color-success-600)" },
+  ValidationItemValid: {
+    ...baseItem,
+    color: "var(--sl-color-success-600)",
+    paddingBottom: "var(--sl-spacing-x-large)",
+  },
   ValidationItemInvalid: { ...baseItem },
 };
 
