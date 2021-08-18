@@ -36,6 +36,7 @@ export interface WidgetIdent {
 
   engagementMedium?: "POPUP" | "EMBED";
   programId?: string;
+  env?: string;
 }
 
 /**
@@ -170,7 +171,7 @@ export function getEnvironmentSDK(): EnvironmentSDK {
     };
   }
 
-  if (window["widgetIdent"]) {
+  if (window["widgetIdent"] && window["widgetIdent"]?.env !== "demo") {
     return {
       type: "SquatchJS2",
       //@ts-ignore
