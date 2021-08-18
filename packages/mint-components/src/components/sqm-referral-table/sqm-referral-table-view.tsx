@@ -85,7 +85,7 @@ export function ReferralTableView(props: ReferralTableViewProps) {
             : !elements?.rows?.length && !data.referralData?.length
             ? elements.emptyElement
             : rows?.map((row) => (
-                <tr class={sheet.classes.TRow}>
+                <tr class={sheet.classes.TRow} part="table-row">
                   {row.map((cell) => (
                     <td class={sheet.classes.TCell}>
                       <TextSpanView type="p">{cell}</TextSpanView>
