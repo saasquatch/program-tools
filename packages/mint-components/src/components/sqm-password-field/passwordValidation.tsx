@@ -82,7 +82,6 @@ const style = {
   ValidationItemValid: {
     ...baseItem,
     color: "var(--sl-color-success-600)",
-    paddingBottom: "var(--sl-spacing-x-large)",
   },
   ValidationItemInvalid: { ...baseItem },
 };
@@ -94,7 +93,10 @@ const styleString = sheet.toString();
 const getErrorMessage = (errorKeys: string[], password: string): string => {
   if (!errorKeys.length && password)
     return (
-      <div class={sheet.classes.ValidationItemValid}>
+      <div
+        class={sheet.classes.ValidationItemValid}
+        style={{ paddingBottom: "var(--sl-spacing-x-large)" }}
+      >
         <style type="text/css">{styleString}</style>
         <Valid /> <span>Password has met all requirements</span>
       </div>
