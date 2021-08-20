@@ -3,6 +3,7 @@ import { useDomContext } from "@saasquatch/dom-context-hooks";
 import { ContextProvider } from "dom-context";
 import { getEnvironmentSDK } from "./environment";
 import { useHost } from "../hooks/useHost";
+import { equal } from "@wry/equality";
 
 const CONTEXT_NAME = "sq:user-identity";
 const USER_LOCAL_STORAGE_KEY = CONTEXT_NAME;
@@ -115,7 +116,10 @@ function _getInitialValue(): UserIdentity | undefined {
 export function setUserIdentity(identity?: UserIdentity) {
   _lazilyStartGlobally();
   const globalProvider = window.squatchUserIdentity;
-  globalProvider.context = identity;
+
+  if (!equal(globalProvider.context, identity)) {
+    globalProvider.context = identity;
+  }
 
   // Portals store identity in local storage
   if (identity && getEnvironmentSDK().type === "SquatchPortal") {
@@ -150,7 +154,7 @@ export function useUserIdentity(): UserIdentity | undefined {
     | undefined;
 
   const validIdentity = userIdentityFromJwt(identity?.jwt);
-  if (!validIdentity && identity?.jwt !== undefined) {
+  if (!validIdentity) {
     // Likely that the JWT has expired
     setUserIdentity(undefined);
     return undefined;
