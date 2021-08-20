@@ -50,13 +50,18 @@ export function usePortalVerifyEmail({ nextPage }) {
   }, []);
 
   useEffect(() => {
-    if (userIdent.managedIdentity.emailVerified) {
+    if (userIdent?.managedIdentity?.emailVerified) {
       setDisableContinue(false);
       setTimeout(() => {
         gotoNextPage();
       }, 3000);
+    } else if (
+      !oobCode ||
+      data?.verifyManagedIdentityEmail?.success === false
+    ) {
+      setDisableContinue(false);
     }
-  }, [userIdent.managedIdentity.emailVerified]);
+  }, [userIdent?.managedIdentity?.emailVerified]);
 
   useEffect(() => {
     if (errors?.message) {

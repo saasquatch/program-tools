@@ -7,6 +7,7 @@ import {
 import jss from "jss";
 import preset from "jss-preset-default";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
+import { PasswordFieldViewDemoProps } from "../sqm-password-field/sqm-password-field";
 
 export interface PortalResetPasswordViewProps {
   states: {
@@ -16,6 +17,7 @@ export interface PortalResetPasswordViewProps {
     confirmPassword: boolean;
     oobCodeValidating: boolean;
     oobCodeValid: boolean;
+    passwordDemoData?: PasswordFieldViewDemoProps;
   };
   callbacks: {
     submit: (node: any) => void;
@@ -150,14 +152,9 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
           </sqm-form-message>
         )}
         {!states.reset && (
-          <sl-input
-            exportparts="label: input-label"
-            type="password"
-            name="/password"
-            label="Password"
-            disabled={states.loading}
-            required
-          ></sl-input>
+          <sqm-password-field
+            demoData={states.passwordDemoData}
+          ></sqm-password-field>
         )}
         {!states.reset && states.confirmPassword && (
           <sl-input
