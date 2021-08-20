@@ -1,4 +1,4 @@
-# sqm-portal-reset-password
+# sqm-password-field
 
 
 
