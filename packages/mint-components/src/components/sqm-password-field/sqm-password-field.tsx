@@ -31,9 +31,15 @@ export class PortalPasswordField {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Label for password field
+   */
   @Prop()
   fieldLabel: string = "Password";
 
+  /**
+   * @uiName Enable live password validation
+   */
   @Prop() enableValidation: boolean = true;
 
   /** @undocumented */

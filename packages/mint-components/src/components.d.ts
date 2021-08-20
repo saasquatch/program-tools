@@ -218,7 +218,13 @@ export namespace Components {
           * @undocumented
          */
         "demoData"?: PasswordFieldViewDemoProps;
+        /**
+          * @uiName Enable live password validation
+         */
         "enableValidation": boolean;
+        /**
+          * @uiName Label for password field
+         */
         "fieldLabel": string;
     }
     interface SqmPopupContainer {
@@ -1194,7 +1200,13 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "demoData"?: PasswordFieldViewDemoProps;
+        /**
+          * @uiName Enable live password validation
+         */
         "enableValidation"?: boolean;
+        /**
+          * @uiName Label for password field
+         */
         "fieldLabel"?: string;
     }
     interface SqmPopupContainer {
