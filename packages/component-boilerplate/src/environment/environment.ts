@@ -171,6 +171,7 @@ export function getEnvironmentSDK(): EnvironmentSDK {
     };
   }
 
+  // Vanilla components mutates `widgetIdent` for portal, causing boilerplate to render as SquatchJS2
   if (window["widgetIdent"] && window["widgetIdent"]?.env !== "demo") {
     return {
       type: "SquatchJS2",
