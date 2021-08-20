@@ -49,7 +49,7 @@ export function usePortalChangePassword(_props: PortalChangePassword) {
       open,
       loading,
       success,
-      error: errors?.response?.errors?.[0]?.message || error,
+      error: error || errors?.response?.errors?.[0]?.message,
     },
     data: {},
     callbacks: {
