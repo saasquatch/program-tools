@@ -1,0 +1,34 @@
+{
+  "name": "@saasquatch/create-integration",
+  "version": "1.0.0",
+  "description": "Create a SaaSquatch integration",
+  "main": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saasquatch/program-tools.git",
+    "directory": "packages/create-integration"
+  },
+  "author": "Johan Venter <johan@saasquatch.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saasquatch/program-tools/issues"
+  },
+  "homepage": "https://github.com/saasquatch/program-tools#readme",
+  "devDependencies": {
+    "@types/node": "^16.6.1",
+    "@types/validate-npm-package-name": "^3.0.3",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^8.1.0",
+    "validate-npm-package-name": "^3.0.0"
+  }
+}

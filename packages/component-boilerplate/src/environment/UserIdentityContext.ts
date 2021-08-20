@@ -21,10 +21,17 @@ export type UserIdentity = {
 
 export interface DecodedSquatchJWT {
   exp?: number;
-  user: {
+  user?: {
     accountId: string;
     id: string;
   };
+}
+
+// NOTE: Classic theme-engine JWT's do not have a typical payload,
+// they have a sub in the form base64(accountId):base64(userId)@tenantAlias:users
+export interface DecodedWidgetAPIJWT {
+  exp?: number;
+  sub?: string;
 }
 
 declare global {
@@ -45,11 +52,37 @@ function _lazilyStartGlobally() {
   }
 }
 
+function isDecodedSquatchJWT(decoded: any): decoded is DecodedSquatchJWT {
+  return decoded.user && decoded.user.id && decoded.user.accountId;
+}
+
+function isDecodedWidgetAPIJWT(decoded: any): decoded is DecodedWidgetAPIJWT {
+  return decoded.sub && /.*:.*@.*:users/.test(decoded.sub);
+}
+
 function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
   if (!jwt) return undefined;
 
   try {
-    const { user, exp } = decode<DecodedSquatchJWT>(jwt);
+    const decoded = decode<DecodedSquatchJWT | DecodedWidgetAPIJWT>(jwt);
+    const exp = decoded.exp;
+
+    let userId: string, accountId: string;
+
+    if (isDecodedWidgetAPIJWT(decoded)) {
+      // Pull the accountId and userId from the subject and Base64-decode them
+      // NOTE: This is to support classic theme engine widget token generation
+      const matches = decoded.sub.match(/(.*):(.*)@(.*):users/);
+      accountId = atob(matches[1]);
+      userId = atob(matches[2]);
+    } else if (isDecodedSquatchJWT(decoded)) {
+      accountId = decoded.user.accountId;
+      userId = decoded.user.id;
+    }
+
+    if (!userId || !accountId) {
+      return undefined;
+    }
 
     // Check if the JWT has expired
     if (exp && Date.now() >= exp * 1000) {
@@ -57,8 +90,8 @@ function userIdentityFromJwt(jwt?: string): UserIdentity | undefined {
     }
 
     return {
-      id: user.id,
-      accountId: user.accountId,
+      id: userId,
+      accountId: accountId,
       jwt,
     };
   } catch (e) {
