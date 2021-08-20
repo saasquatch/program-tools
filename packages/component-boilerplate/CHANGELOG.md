@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Fixed infinite loop caused by calling useToken while logged out
+- Changed environment detection to support `widgetIdent.env = "demo"` in vanilla components
 
 ## [1.2.0] - 2021-08-04
 
