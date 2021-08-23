@@ -42,8 +42,8 @@ jobs:
 
       - name: Deploy to bucket (pull request)
         if: ${{ github.event_name == 'pull_request' }}
-        run: gsutil -m rsync -d -r packages/${{ matrix.package }}/dist/ gs://stencilbook_static_saasquatch/${{ matrix.package }}/pr${{ github.event.number }}/
+        run: gsutil -m rsync -d -r packages/${{ matrix.package }}/www/ gs://stencilbook_static_saasquatch/${{ matrix.package }}/pr${{ github.event.number }}/
 
       - name: Deploy to bucket (push)
         if: ${{ github.event_name == 'push' }}
-        run: gsutil -m rsync -d -r packages/${{ matrix.package }}/dist/ gs://stencilbook_static_saasquatch/${{ matrix.package }}/production/
+        run: gsutil -m rsync -d -r packages/${{ matrix.package }}/www/ gs://stencilbook_static_saasquatch/${{ matrix.package }}/production/
