@@ -1,6 +1,7 @@
 import {
   usePaginatedQuery,
   useProgramId,
+  useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useReducer } from "@saasquatch/universal-hooks";
 import { h, VNode } from "@stencil/core";
@@ -14,7 +15,8 @@ const GET_REFERRAL_DATA = gql`
   query getReferrals(
     $limit: Int!
     $offset: Int!
-    $filter: ReferralFilterInput
+    $referralFilter: ReferralFilterInput
+    $rewardFilter: RewardFilterInput
   ) {
     viewer {
       ... on User {
@@ -25,7 +27,7 @@ const GET_REFERRAL_DATA = gql`
         ) {
           totalCount
         }
-        referrals(limit: $limit, offset: $offset, filter: $filter) {
+        referrals(limit: $limit, offset: $offset, filter: $referralFilter) {
           totalCount
           count
           data {
@@ -61,7 +63,7 @@ const GET_REFERRAL_DATA = gql`
               id
               name
             }
-            rewards {
+            rewards(filter: $rewardFilter) {
               id
               type
               value
@@ -128,15 +130,21 @@ export function useReferralTable(
   emptyElement: VNode,
   loadingElement: VNode
 ): ReferralTableViewProps {
+  const {id, accountId} = useUserIdentity();
   const programIdContext = useProgramId();
   // Default to context, overriden by props
   const programId = props.programId ?? programIdContext;
   // If no program ID, shows all programs
-  const filter = programId
+  const referralFilter = programId
     ? programId === "classic"
       ? { programId_exists: false }
       : { programId_eq: programId }
     : {};
+  
+  const rewardFilter = {
+    userId_eq: id,
+    accountId_eq: accountId
+  }
   const {
     envelope: referralData,
     states,
@@ -148,7 +156,7 @@ export function useReferralTable(
       limit: props.perPage,
       offset: 0,
     },
-    { filter }
+    { referralFilter, rewardFilter },
   );
   const tick = useRerenderListener();
   const [content, setContent] = useReducer<
