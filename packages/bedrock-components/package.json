@@ -29,8 +29,8 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@saasquatch/component-boilerplate": "^1.1.0",
-    "@saasquatch/stencil-hooks": "^2.0.0",
+    "@saasquatch/component-boilerplate": "^1.2.2",
+    "@saasquatch/stencil-hooks": "^2.0.2",
     "@saasquatch/universal-hooks": "^1.0.0",
     "@stencil/core": "^2.4.0",
     "jsonata": "^1.8.4"
