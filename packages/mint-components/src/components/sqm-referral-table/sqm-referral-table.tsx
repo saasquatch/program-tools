@@ -38,6 +38,9 @@ export class ReferralTable {
   /** @uiName View More button text  */
   @Prop() moreLabel?: string = "Next";
 
+  /** @uiName Show Referred by user in table  */
+  @Prop() showReferrer?: boolean = false;
+
   /** @undocumented */
   @Prop() demoData?: DemoData<ReferralTableViewProps>;
 

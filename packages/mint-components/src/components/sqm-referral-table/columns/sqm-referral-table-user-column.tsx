@@ -44,6 +44,23 @@ export class ReferralTableUserColumn implements ReferralTableColumn {
     return this.columnTitle;
   }
 
+  @Method()
+  async renderReferrerCell(data: Referrer) {
+    let name: string;
+
+    if (!data) {
+      name = this.deletedUser;
+    } else if (!data?.referrerUser?.firstName && !data.referrerUser?.lastName) {
+      name = this.anonymousUser;
+    } else {
+      name = `${data?.referrerUser?.firstName} ${data?.referrerUser?.lastName}`;
+    }
+
+    return (
+      <sqm-referral-table-user-cell name={name}></sqm-referral-table-user-cell>
+    );
+  }
+
   render() {
     useRequestRerender([
       this.deletedUser,

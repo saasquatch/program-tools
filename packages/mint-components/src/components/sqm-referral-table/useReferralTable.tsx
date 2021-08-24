@@ -1,6 +1,7 @@
 import {
   usePaginatedQuery,
   useProgramId,
+  useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useReducer } from "@saasquatch/universal-hooks";
@@ -10,6 +11,54 @@ import { useRerenderListener } from "./re-render";
 import { ReferralTable } from "./sqm-referral-table";
 import { ReferralTableViewProps } from "./sqm-referral-table-view";
 import { useChildElements } from "./useChildElements";
+
+const GET_REFERRER_DATA = gql`
+  query getReferrals($programId: ID, $rewardFilter: RewardFilterInput) {
+    viewer {
+      ... on User {
+        referredByReferral(programId: $programId) {
+          dateReferralStarted
+          dateConverted
+          referrerUser {
+            firstName
+            lastName
+          }
+          rewards(filter: $rewardFilter) {
+            id
+            type
+            value
+            unit
+            name
+            dateGiven
+            dateExpires
+            dateCancelled
+            dateRedeemed
+            dateScheduledFor
+            fuelTankCode
+            fuelTankType
+            currency
+            prettyValue
+            statuses
+            globalRewardKey
+            programRewardKey
+            rewardRedemptionTransactions {
+              data {
+                exchangedRewards {
+                  data {
+                    prettyValue
+                    type
+                    fuelTankCode
+                    globalRewardKey
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 const GET_REFERRAL_DATA = gql`
   query getReferrals(
@@ -127,7 +176,7 @@ export function useReferralTable(
   emptyElement: VNode,
   loadingElement: VNode
 ): ReferralTableViewProps {
-  const {id, accountId} = useUserIdentity();
+  const { id, accountId } = useUserIdentity();
   const programIdContext = useProgramId();
   // Default to context, overriden by props
   const programId = props.programId ?? programIdContext;
@@ -137,25 +186,12 @@ export function useReferralTable(
       ? { programId_exists: false }
       : { programId_eq: programId }
     : {};
-  
+
   const rewardFilter = {
     userId_eq: id,
-    accountId_eq: accountId
-  }
-  const {
-    envelope: referralData,
-    states,
-    callbacks,
-  } = usePaginatedQuery<Referral>(
-    GET_REFERRAL_DATA,
-    (data) => data?.viewer?.referrals,
-    {
-      limit: props.perPage,
-      offset: 0,
-    },
-    { referralFilter, rewardFilter },
-  );
-  const tick = useRerenderListener();
+    accountId_eq: accountId,
+  };
+
   const [content, setContent] = useReducer<
     ReferralTableViewProps["elements"],
     Partial<ReferralTableViewProps["elements"]>
@@ -168,8 +204,61 @@ export function useReferralTable(
       columns: [],
       rows: [],
       loading: false,
+      page: 0,
     }
   );
+
+  const {
+    data: referrerResponse,
+    loading: referrerLoading,
+    refetch,
+  } = useQuery(
+    GET_REFERRER_DATA,
+    {
+      programId: programId === "classic" ? null : programId,
+      rewardFilter,
+    },
+    !props.showReferrer
+  );
+
+  const referrerData = referrerResponse?.viewer?.referredByReferral;
+  const showReferrerRow =
+    props.showReferrer && !!referrerData?.dateReferralStarted;
+
+  const {
+    envelope: referralData,
+    states,
+    callbacks,
+  } = usePaginatedQuery<Referral>(
+    GET_REFERRAL_DATA,
+    (data) => data?.viewer?.referrals,
+    {
+      limit: props.perPage,
+      offset: 0,
+    },
+    {
+      referralFilter,
+      rewardFilter,
+    },
+    props.showReferrer && referrerLoading && !referrerResponse
+  );
+
+  useEffect(() => {
+    if (states.currentPage === 0) callbacks.setLimit(props.perPage - 1);
+  }, [showReferrerRow]);
+
+  useEffect(() => {
+    if (props.showReferrer) {
+      refetch();
+      callbacks.setLimit(props.perPage - 1);
+      callbacks.setCurrentPage(0);
+    } else {
+      callbacks.setLimit(props.perPage);
+      callbacks.setCurrentPage(0);
+    }
+  }, [props.showReferrer]);
+
+  const tick = useRerenderListener();
 
   const data = referralData?.data;
 
@@ -185,21 +274,34 @@ export function useReferralTable(
       tryMethod(c, () => c.renderLabel())
     );
 
+    // show the referral row before any other rows (renderReferrerCell is asynchronous)
+    let referrerRow;
+    if (props.showReferrer && states.currentPage === 0) {
+      const referrerPromise = columnComponents?.map(async (c: any) =>
+        tryMethod(c, () => c.renderReferrerCell(referrerData, c))
+      );
+      referrerRow = await Promise.all(referrerPromise);
+    }
+
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r) => {
-      const rowsPromise = columnComponents?.map(async (c: any) =>
+      const cellPromise = columnComponents?.map(async (c: any) =>
         tryMethod(c, () => c.renderCell(r, c))
       );
-      const rows = await Promise.all(rowsPromise);
-      return rows;
+      const cells = await Promise.all(cellPromise);
+      return cells;
     });
 
-    const rows = cellsPromise && (await Promise.all(cellsPromise));
+    const rows =
+      cellsPromise &&
+      [referrerRow, ...(await Promise.all(cellsPromise))].filter(
+        (value) => value
+      );
 
     setContent({ rows });
     const columns = columnsPromise && (await Promise.all(columnsPromise));
     // Set the content to render and finish loading components
-    setContent({ columns, loading: false });
+    setContent({ columns, loading: false, page: states.currentPage });
   }
 
   useEffect(() => {
@@ -228,8 +330,16 @@ export function useReferralTable(
       loadingElement,
     },
     callbacks: {
-      nextPage: () => callbacks.setCurrentPage(states.currentPage + 1),
-      prevPage: () => callbacks.setCurrentPage(states.currentPage - 1),
+      nextPage: () => {
+        if (states.currentPage === 0 && showReferrerRow)
+          callbacks.setLimit(props.perPage);
+        callbacks.setCurrentPage(states.currentPage + 1);
+      },
+      prevPage: () => {
+        if (states.currentPage === 1 && showReferrerRow)
+          callbacks.setLimit(props.perPage - 1);
+        callbacks.setCurrentPage(states.currentPage - 1);
+      },
     },
   };
 }

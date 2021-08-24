@@ -36,6 +36,16 @@ Type: `Promise<string>`
 
 
 
+### `renderReferrerCell(data: Referrer) => Promise<any>`
+
+
+
+#### Returns
+
+Type: `Promise<any>`
+
+
+
 
 ## Dependencies
 
