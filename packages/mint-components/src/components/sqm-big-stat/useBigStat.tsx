@@ -44,6 +44,10 @@ const referralsCountQuery = (
   _: string,
   status?: "started" | "converted"
 ) => {
+  const programFilter = programId === "classic"
+    ? { programId_exists: false }
+    : { programId_eq: programId }
+
   const convertedFilter =
     status && status == "converted"
       ? { dateConverted_exists: true }
@@ -51,7 +55,7 @@ const referralsCountQuery = (
       ? { dateConverted_exists: false }
       : {};
 
-  const queryFilter = { programId_eq: programId, ...convertedFilter };
+  const queryFilter = { ...programFilter, ...convertedFilter };
 
   return debugQuery(
     gql`
@@ -77,6 +81,9 @@ const programGoalsQuery = (
   metricType: string,
   goalId: string
 ) => {
+  // Confirm this behaviour
+  if (programId === "classic") return null
+
   return debugQuery(
     gql`
       query {
@@ -102,39 +109,19 @@ const programGoalsQuery = (
   );
 };
 
-const referralsMonthQuery = (programId: string) =>
-  debugQuery(
-    gql`
-      query ($programId: ID) {
-        viewer {
-          ... on User {
-            referrals(
-              filter: {
-                programId_eq: $programId
-                dateReferralStarted_timeframe: "this_month"
-              }
-            ) {
-              totalCount
-            }
-          }
-        }
-      }
-    `,
-    { programId },
-    (res) => res.data?.viewer?.referrals?.totalCount?.toString()
-  );
+const referralsMonthQuery = (programId: string) => {
+  const programFilter = programId === "classic"
+    ? {programId_exists: false}
+    : {programId_eq: programId}
 
-const referralsWeekQuery = (programId: string) =>
-  debugQuery(
+  const filter = {...programFilter, dateReferralStarted_timeframe: "this_month"}
+  return debugQuery(
     gql`
-      query ($programId: ID) {
+      query ($filter: ReferralFilterInput) {
         viewer {
           ... on User {
             referrals(
-              filter: {
-                programId_eq: $programId
-                dateReferralStarted_timeframe: "this_week"
-              }
+              filter: $filter
             ) {
               totalCount
             }
@@ -142,9 +129,35 @@ const referralsWeekQuery = (programId: string) =>
         }
       }
     `,
-    { programId },
+    { filter },
     (res) => res.data?.viewer?.referrals?.totalCount?.toString()
   );
+}
+
+const referralsWeekQuery = (programId: string) => {
+  const programFilter = programId === "classic"
+    ? {programId_exists: false}
+    : {programId_eq: programId}
+
+  const filter = {...programFilter, dateReferralStarted_timeframe: "this_month"}
+  return debugQuery(
+    gql`
+      query ($filter: ReferralFilterInput) {
+        viewer {
+          ... on User {
+            referrals(
+              filter: $filter
+            ) {
+              totalCount
+            }
+          }
+        }
+      }
+    `,
+    { filter },
+    (res) => res.data?.viewer?.referrals?.totalCount?.toString()
+  );
+}
 
 const rewardsCountQuery = (programId: string) =>
   debugQuery(
@@ -159,7 +172,7 @@ const rewardsCountQuery = (programId: string) =>
         }
       }
     `,
-    { programId },
+    { programId: programId === "classic" ? null : programId },
     (res) => res.data?.viewer?.rewards?.totalCount?.toString()
   );
 
@@ -181,11 +194,11 @@ const rewardsMonthQuery = (programId: string) =>
         }
       }
     `,
-    { programId },
+    { programId: programId === "classic" ? null : programId },
     (res) => res.data?.viewer?.rewards?.totalCount?.toString()
   );
 
-const rewardsWeekQuery = (programId: string) =>
+const rewardsWeekQuery = (programId: string) => 
   debugQuery(
     gql`
       query ($programId: ID) {
@@ -203,7 +216,7 @@ const rewardsWeekQuery = (programId: string) =>
         }
       }
     `,
-    { programId },
+    { programId: programId === "classic" ? null : programId },
     (res) => res.data?.viewer?.rewards?.totalCount?.toString()
   );
 
@@ -215,6 +228,7 @@ const rewardsRedeemedQuery = (
   unitType?: string
 ) => {
   const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
+
   return debugQuery(
     gql`
       query (
@@ -243,7 +257,7 @@ const rewardsRedeemedQuery = (
         }
       }
     `,
-    { programId, type, unit, locale },
+    { programId: programId === "classic" ? null : programId, type, unit, locale },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
@@ -288,7 +302,7 @@ const rewardsAssignedQuery = (
         }
       }
     `,
-    { programId, type, unit, locale },
+    { programId: programId === "classic" ? null : programId, type, unit, locale },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
@@ -304,6 +318,7 @@ const rewardsAvailableQuery = (
   baseUnit: string,
   unitType?: string
 ) => {
+  // Confirm desired behaviour
   const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
   return debugQuery(
     gql`
@@ -333,7 +348,7 @@ const rewardsAvailableQuery = (
         }
       }
     `,
-    { programId, type, unit, locale },
+    { programId: programId === "classic" ? null : programId, type, unit, locale },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
@@ -386,7 +401,8 @@ const rewardsBalanceQuery = (
       }
     `,
     {
-      programId: global === "false" ? programId : null,
+      // Confirm logic
+      programId: global === "false" && programId !== "classic" ? programId : null,
       type,
       unit,
       format: parseRewardValueFormat[format] ?? "UNIT_FORMATTED",
@@ -484,13 +500,6 @@ export function parsePath(type: string): string[] | undefined {
 export function useBigStat(props: BigStat): BigStatHook {
   const { statType, flexReverse, alignment } = props;
   const programId = useProgramId();
-
-  // fail fast
-  if (programId === "classic")
-    return {
-      props: { statvalue: "!!!", flexReverse, alignment },
-      label: "CLASSIC FILTER NOT SUPPORTED",
-    };
 
   const locale = useLocale();
   const userIdent = useUserIdentity();
