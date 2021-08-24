@@ -1,5 +1,4 @@
 import { useHost } from "@saasquatch/component-boilerplate";
-import { useEffect } from "@saasquatch/universal-hooks";
 import { ContextProvider } from "dom-context";
 import { useDomContextState } from "@saasquatch/dom-context-hooks";
 
