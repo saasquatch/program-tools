@@ -69,9 +69,6 @@ const GET_REFERRAL_DATA = gql`
               value
               unit
               name
-              user {
-                id
-              }
               dateGiven
               dateExpires
               dateCancelled
