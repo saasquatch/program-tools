@@ -65,7 +65,7 @@ export class ReferralTable {
   }
 }
 
-function useReferraltableDemo(props: ReferralTable) {
+function useReferraltableDemo(props: ReferralTable): ReferralTableViewProps {
   return deepmerge(
     {
       states: {
@@ -82,7 +82,7 @@ function useReferraltableDemo(props: ReferralTable) {
       },
       elements: {
         emptyElement: (
-          <div style={{ width: "100%" }}>
+          <div style={{ width: "100%", textAlign: "center" }}>
             <sqm-text>
               <h3 style={{ color: "#777777" }}>No Referrals Yet</h3>
             </sqm-text>

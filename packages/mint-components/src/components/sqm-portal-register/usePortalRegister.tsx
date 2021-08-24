@@ -96,12 +96,6 @@ export function usePortalRegister(props: PortalRegister) {
     };
   }, [formRef.current]);
 
-  // useEffect(() => {
-  //   if (errors?.message) {
-  //     setValidationState({ error: "Network request failed." });
-  //   }
-  // }, [errors]);
-
   return {
     states: {
       loading,
