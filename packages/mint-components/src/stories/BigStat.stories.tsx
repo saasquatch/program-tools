@@ -53,16 +53,15 @@ export const FlexReverseLeft = () => {
 };
 
 export const NoStatValue = () => {
-  return (
-    <sqm-big-stat
-      stat-type="/rewardsCount"
-      demoData={{
-        alignment: "center",
-      }}
-    >
-      <sqm-text>
-        <p>Big stat</p>
-      </sqm-text>
-    </sqm-big-stat>
-  );
+  const props = {
+    statvalue: "...",
+  };
+  return <BigStatView {...props}>Big stat</BigStatView>;
+};
+
+export const InvalidStatValue = () => {
+  const props = {
+    statvalue: "!!!",
+  };
+  return <BigStatView {...props}>Big stat</BigStatView>;
 };
