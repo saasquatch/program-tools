@@ -176,7 +176,7 @@ export function useReferralTable(
   emptyElement: VNode,
   loadingElement: VNode
 ): ReferralTableViewProps {
-  const { id, accountId } = useUserIdentity();
+  const user = useUserIdentity();
   const programIdContext = useProgramId();
   // Default to context, overriden by props
   const programId = props.programId ?? programIdContext;
@@ -188,8 +188,8 @@ export function useReferralTable(
     : {};
 
   const rewardFilter = {
-    userId_eq: id,
-    accountId_eq: accountId,
+    userId_eq: user?.id,
+    accountId_eq: user?.accountId,
   };
 
   const [content, setContent] = useReducer<
