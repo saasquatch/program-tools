@@ -450,6 +450,7 @@ export namespace Components {
         "columnTitle": string;
         "renderCell": (_: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        "renderReferrerCell": (_: Referral) => Promise<any>;
     }
     interface SqmReferralTableDateCell {
         "date": number;
