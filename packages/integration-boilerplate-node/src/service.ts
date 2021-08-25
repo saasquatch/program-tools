@@ -317,8 +317,14 @@ export class IntegrationService<
         this.config.staticFrontendPath
       );
       server.use(express.static(frontendPath));
-      server.get("/*", (_req, res) => {
-        res.sendFile(path.join(frontendPath, this.config.staticFrontendIndex));
+      server.get("/*", (_req, res, next) => {
+        res.sendFile(
+          path.join(frontendPath, this.config.staticFrontendIndex),
+          undefined,
+          (err) => {
+            if (err) next();
+          }
+        );
       });
     }
 
