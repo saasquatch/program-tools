@@ -47,8 +47,26 @@ export class ReferralTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = <slot name="empty" />;
-    const loading = <slot name="loading" />;
+    const empty = (
+      <slot name="empty">
+        <div style={{ width: "100%" }}>
+          <sqm-text>
+            <h3 style={{ color: "#777777" }}>No Referrals Yet</h3>
+          </sqm-text>
+        </div>
+      </slot>
+    );
+    const loading = (
+      <slot name="loading">
+        <div style={{ width: "100%" }}>
+          <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+          <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+          <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+          <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+          <sl-skeleton></sl-skeleton>
+        </div>
+      </slot>
+    );
 
     const { states, data, callbacks, elements } = isDemo()
       ? useReferraltableDemo(this)
