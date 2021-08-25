@@ -244,12 +244,12 @@ export function useReferralTable(
   );
 
   useEffect(() => {
-    if (states.currentPage === 0) callbacks.setLimit(props.perPage - 1);
+    if (states.currentPage === 0 && showReferrerRow)
+      callbacks.setLimit(props.perPage - 1);
   }, [showReferrerRow]);
 
   useEffect(() => {
-    if (props.showReferrer) {
-      refetch();
+    if (props.showReferrer && showReferrerRow) {
       callbacks.setLimit(props.perPage - 1);
       callbacks.setCurrentPage(0);
     } else {
