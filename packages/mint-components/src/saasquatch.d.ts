@@ -16,6 +16,16 @@ interface Referral {
   rewards: Reward[];
 }
 
+interface Referrer {
+  dateReferralStarted: number;
+  dateConverted: number;
+  referrerUser: {
+    firstName: string;
+    lastName: string;
+  };
+  rewards: Reward[];
+}
+
 interface Reward {
   id: string;
   type: string;

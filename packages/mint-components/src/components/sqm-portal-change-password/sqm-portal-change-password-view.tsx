@@ -97,14 +97,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                 )}
                 <sl-form onSl-submit={callbacks.submit}>
                   <div class={sheet.classes.InputContainer}>
-                    <sl-input
-                      name="/password"
-                      label="New password"
-                      required
-                      togglePassword
-                      disabled={states.loading}
-                      type="password"
-                    ></sl-input>
+                    <sqm-password-field></sqm-password-field>
                     <sl-input
                       name="/confirmPassword"
                       label="Confirm new password"

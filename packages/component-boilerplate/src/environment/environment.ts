@@ -36,6 +36,7 @@ export interface WidgetIdent {
 
   engagementMedium?: "POPUP" | "EMBED";
   programId?: string;
+  env?: string;
 }
 
 /**
@@ -170,7 +171,8 @@ export function getEnvironmentSDK(): EnvironmentSDK {
     };
   }
 
-  if (window["widgetIdent"]) {
+  // Vanilla components mutates `widgetIdent` for portal, causing boilerplate to render as SquatchJS2
+  if (window["widgetIdent"] && window["widgetIdent"]?.env !== "demo") {
     return {
       type: "SquatchJS2",
       //@ts-ignore

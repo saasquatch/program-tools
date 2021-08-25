@@ -14,6 +14,7 @@ import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboa
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
+import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
 import { Spacing } from "./global/mixins";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
@@ -212,6 +213,20 @@ export namespace Components {
          */
         "path": string;
     }
+    interface SqmPasswordField {
+        /**
+          * @undocumented
+         */
+        "demoData"?: PasswordFieldViewDemoProps;
+        /**
+          * @uiName Enable live password validation
+         */
+        "enableValidation": boolean;
+        /**
+          * @uiName Label for password field
+         */
+        "fieldLabel": string;
+    }
     interface SqmPopupContainer {
         /**
           * @uiName Display a close button on the popup
@@ -348,6 +363,10 @@ export namespace Components {
          */
         "emailLabel": string;
         /**
+          * @uiName Use password field with live validation
+         */
+        "enablePasswordValidation": boolean;
+        /**
           * @uiName Hide default input fields to use custom fields
          */
         "hideInputs": boolean;
@@ -419,6 +438,10 @@ export namespace Components {
           * @uiName Show column labels
          */
         "showLabels"?: boolean;
+        /**
+          * @uiName Show Referred by user in table
+         */
+        "showReferrer"?: boolean;
     }
     interface SqmReferralTableCell {
         "innerTemplate": string;
@@ -427,6 +450,7 @@ export namespace Components {
         "columnTitle": string;
         "renderCell": (_: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        "renderReferrerCell": (_: Referral) => Promise<any>;
     }
     interface SqmReferralTableDateCell {
         "date": number;
@@ -436,6 +460,7 @@ export namespace Components {
         "dateShown": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmReferralTableRewardsCell {
         "rewards": Reward[];
@@ -444,6 +469,7 @@ export namespace Components {
         "columnTitle": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmReferralTableStatusCell {
         "converted": boolean;
@@ -455,6 +481,7 @@ export namespace Components {
         "inProgressStatusText": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmReferralTableUserCell {
         "name": string;
@@ -471,6 +498,7 @@ export namespace Components {
         "deletedUser": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmRoute {
         /**
@@ -716,6 +744,12 @@ declare global {
         prototype: HTMLSqmNavigationSidebarItemElement;
         new (): HTMLSqmNavigationSidebarItemElement;
     };
+    interface HTMLSqmPasswordFieldElement extends Components.SqmPasswordField, HTMLStencilElement {
+    }
+    var HTMLSqmPasswordFieldElement: {
+        prototype: HTMLSqmPasswordFieldElement;
+        new (): HTMLSqmPasswordFieldElement;
+    };
     interface HTMLSqmPopupContainerElement extends Components.SqmPopupContainer, HTMLStencilElement {
     }
     var HTMLSqmPopupContainerElement: {
@@ -957,6 +991,7 @@ declare global {
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
+        "sqm-password-field": HTMLSqmPasswordFieldElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
         "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
         "sqm-portal-container": HTMLSqmPortalContainerElement;
@@ -1181,6 +1216,20 @@ declare namespace LocalJSX {
          */
         "path"?: string;
     }
+    interface SqmPasswordField {
+        /**
+          * @undocumented
+         */
+        "demoData"?: PasswordFieldViewDemoProps;
+        /**
+          * @uiName Enable live password validation
+         */
+        "enableValidation"?: boolean;
+        /**
+          * @uiName Label for password field
+         */
+        "fieldLabel"?: string;
+    }
     interface SqmPopupContainer {
         /**
           * @uiName Display a close button on the popup
@@ -1317,6 +1366,10 @@ declare namespace LocalJSX {
          */
         "emailLabel"?: string;
         /**
+          * @uiName Use password field with live validation
+         */
+        "enablePasswordValidation"?: boolean;
+        /**
           * @uiName Hide default input fields to use custom fields
          */
         "hideInputs"?: boolean;
@@ -1388,6 +1441,10 @@ declare namespace LocalJSX {
           * @uiName Show column labels
          */
         "showLabels"?: boolean;
+        /**
+          * @uiName Show Referred by user in table
+         */
+        "showReferrer"?: boolean;
     }
     interface SqmReferralTableCell {
         "innerTemplate"?: string;
@@ -1614,6 +1671,7 @@ declare namespace LocalJSX {
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
+        "sqm-password-field": SqmPasswordField;
         "sqm-popup-container": SqmPopupContainer;
         "sqm-portal-change-password": SqmPortalChangePassword;
         "sqm-portal-container": SqmPortalContainer;
@@ -1670,6 +1728,7 @@ declare module "@stencil/core" {
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
+            "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;

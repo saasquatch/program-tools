@@ -28,6 +28,7 @@ export interface ReferralTableViewProps {
     loading?: boolean;
     emptyElement?: VNode;
     loadingElement?: VNode;
+    page?:number;
   };
 }
 

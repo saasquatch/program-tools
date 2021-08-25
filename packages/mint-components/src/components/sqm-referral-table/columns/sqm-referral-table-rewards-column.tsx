@@ -7,7 +7,7 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
   tag: "sqm-referral-table-rewards-column",
   shadow: true,
 })
-export class ReferralTableRewardsColumn implements ReferralTableColumn{
+export class ReferralTableRewardsColumn implements ReferralTableColumn {
   @Prop() columnTitle: string = "Rewards";
 
   constructor() {
@@ -16,7 +16,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn{
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data:Referral) {
+  async renderCell(data: Referral) {
     // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
     return (
       <sqm-referral-table-rewards-cell
@@ -28,6 +28,16 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn{
   @Method()
   async renderLabel() {
     return this.columnTitle;
+  }
+
+  @Method()
+  async renderReferrerCell(data: Referrer) {
+    // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
+    return (
+      <sqm-referral-table-rewards-cell
+        rewards={data.rewards}
+      ></sqm-referral-table-rewards-cell>
+    );
   }
 
   render() {
