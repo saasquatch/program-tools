@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.2-7] - 2021-08-20
+
+- \<sqm-referral-table> can pull only classic referrals
+- \<sqm-referral-table> supports showing "Referred You" row
+- \<sqm-big-stat> will return appropriate stats or error for "classic" program id
+
 ## [1.1.1] - 2021-08-20
 
 - Password field component with live validation
