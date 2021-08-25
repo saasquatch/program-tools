@@ -276,7 +276,7 @@ export function useReferralTable(
 
     // show the referral row before any other rows (renderReferrerCell is asynchronous)
     let referrerRow;
-    if (props.showReferrer && states.currentPage === 0) {
+    if (showReferrerRow && states.currentPage === 0) {
       const referrerPromise = columnComponents?.map(async (c: any) =>
         tryMethod(c, () => c.renderReferrerCell(referrerData, c))
       );

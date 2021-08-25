@@ -28,7 +28,7 @@ export class ReferralTableUserColumn implements ReferralTableColumn {
     let name: string;
     if (!data) {
       name = this.deletedUser;
-    } else if (!data?.referredUser?.firstName && !data.referredUser?.lastName) {
+    } else if (!data?.referredUser?.firstName && !data?.referredUser?.lastName) {
       name = this.anonymousUser;
     } else {
       name = `${data?.referredUser?.firstName} ${data?.referredUser?.lastName}`;
@@ -50,7 +50,7 @@ export class ReferralTableUserColumn implements ReferralTableColumn {
 
     if (!data) {
       name = this.deletedUser;
-    } else if (!data?.referrerUser?.firstName && !data.referrerUser?.lastName) {
+    } else if (!data?.referrerUser?.firstName && !data?.referrerUser?.lastName) {
       name = this.anonymousUser;
     } else {
       name = `${data?.referrerUser?.firstName} ${data?.referrerUser?.lastName}`;
