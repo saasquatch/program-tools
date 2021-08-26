@@ -36,20 +36,6 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
     return this.columnTitle;
   }
 
-  @Method()
-  async renderReferrerCell(data: Referrer) {
-    // TODO: Make ICU and more complete
-    const statusText = data.dateConverted
-      ? this.convertedStatusText
-      : this.inProgressStatusText;
-    return (
-      <sqm-referral-table-status-cell
-        status-text={statusText}
-        converted={data.dateConverted ? true : false}
-      ></sqm-referral-table-status-cell>
-    );
-  }
-
   render() {
     useRequestRerender([this.columnTitle]);
     return <Host style={{ display: "none" }} />;

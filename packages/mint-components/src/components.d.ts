@@ -450,7 +450,6 @@ export namespace Components {
         "columnTitle": string;
         "renderCell": (_: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (_: Referral) => Promise<any>;
     }
     interface SqmReferralTableDateCell {
         "date": number;
@@ -460,7 +459,6 @@ export namespace Components {
         "dateShown": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmReferralTableRewardsCell {
         "rewards": Reward[];
@@ -469,7 +467,6 @@ export namespace Components {
         "columnTitle": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmReferralTableStatusCell {
         "converted": boolean;
@@ -481,7 +478,6 @@ export namespace Components {
         "inProgressStatusText": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmReferralTableUserCell {
         "name": string;
@@ -498,7 +494,6 @@ export namespace Components {
         "deletedUser": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
-        "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmRoute {
         /**
