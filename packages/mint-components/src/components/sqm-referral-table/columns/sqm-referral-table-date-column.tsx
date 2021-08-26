@@ -31,16 +31,6 @@ export class ReferralTableDateColumn implements ReferralTableColumn {
     return this.columnTitle;
   }
 
-  @Method()
-  async renderReferrerCell(data:Referrer) {
-    // TODO - Validate `dateShown` against a set of known values
-    return (
-      <sqm-referral-table-date-cell
-        date={data[this.dateShown]}
-      ></sqm-referral-table-date-cell>
-    );
-  }
-
   render() {
     useRequestRerender([this.dateShown, this.columnTitle]);
     return <Host style={{ display: "none" }} />;

@@ -30,16 +30,6 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
     return this.columnTitle;
   }
 
-  @Method()
-  async renderReferrerCell(data: Referrer) {
-    // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
-    return (
-      <sqm-referral-table-rewards-cell
-        rewards={data.rewards}
-      ></sqm-referral-table-rewards-cell>
-    );
-  }
-
   render() {
     useRequestRerender([this.columnTitle]);
     return <Host style={{ display: "none" }} />;

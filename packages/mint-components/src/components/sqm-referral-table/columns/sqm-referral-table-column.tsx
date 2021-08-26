@@ -30,16 +30,6 @@ export class ReferralTableGenericColumn implements ReferralTableColumn{
     return Promise.resolve(this.columnTitle);
   }
 
-  @Method()
-  async renderReferrerCell(_:Referral) {
-    // this is insecure, <script> tags can be added
-    return (
-      <sqm-referral-table-cell
-        inner-template={getElement(this).innerHTML}
-      ></sqm-referral-table-cell>
-    );
-  }
-
   render() {
     useRequestRerender([this.columnTitle]);
     return (

@@ -1,6 +1,5 @@
 import { useHost } from "@saasquatch/component-boilerplate";
-import { useState } from "@saasquatch/stencil-hooks";
-import { useEffect } from "@saasquatch/universal-hooks";
+import { useEffect, useState } from "@saasquatch/universal-hooks";
 
 export function useChildElements(): Element[] {
   const host = useHost();
