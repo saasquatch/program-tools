@@ -218,7 +218,7 @@ export function useReferralTable(
       programId: programId === "classic" ? null : programId,
       rewardFilter,
     },
-    !props.showReferrer
+    !props.showReferrer || !user?.jwt
   );
 
   const referrerData = referrerResponse?.viewer?.referredByReferral;
@@ -240,7 +240,7 @@ export function useReferralTable(
       referralFilter,
       rewardFilter,
     },
-    props.showReferrer && referrerLoading && !referrerResponse
+    (props.showReferrer && referrerLoading && !referrerResponse) || !user?.jwt
   );
 
   useEffect(() => {
