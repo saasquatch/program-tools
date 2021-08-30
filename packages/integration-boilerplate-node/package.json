@@ -1,0 +1,56 @@
+{
+  "name": "@saasquatch/integration-boilerplate-node",
+  "version": "1.0.0",
+  "description": "Node/Express boilerplate for building SaaSquatch integrations",
+  "engines": {
+    "node": "^14"
+  },
+  "files": [
+    "dist/"
+  ],
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Johan Venter <johan@saasquatch.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/compression": "^1.7.0",
+    "@types/express": "^4.17.12",
+    "@types/express-sslify": "^1.2.1",
+    "@types/http-proxy-middleware": "^1.0.0",
+    "@types/json-schema": "^7.0.7",
+    "@types/jsonwebtoken": "^8.5.1",
+    "@types/node-cache": "^4.2.5",
+    "@types/node-fetch": "^2.5.10",
+    "jest": "^27.0.4",
+    "jest-cucumber": "^3.0.1",
+    "msw": "^0.29.0",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "express-sslify": "^1.2.0",
+    "http-proxy-middleware": "^2.0.0",
+    "js-base64": "^3.6.1",
+    "json-schema": "^0.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^2.0.3",
+    "node-cache": "^5.1.2",
+    "node-fetch": "^2.6.1",
+    "noop-tag": "^1.0.2",
+    "ts-custom-error": "^3.2.0",
+    "typed-config": "^1.0.0",
+    "winston": "^3.3.3"
+  }
+}
