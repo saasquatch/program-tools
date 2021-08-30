@@ -99,6 +99,11 @@ function useReferraltableDemo(props: ReferralTable): ReferralTableViewProps {
         nextPage: () => console.log("Next"),
       },
       data: {
+        textOverrides: {
+          showLabels: props.showLabels,
+          prevLabel: props.prevLabel,
+          moreLabel: props.moreLabel,
+        },
         referralData: [],
       },
       elements: {
