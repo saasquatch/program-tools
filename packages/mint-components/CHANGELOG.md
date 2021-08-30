@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \<sqm-referral-table> can pull only classic referrals
 - \<sqm-referral-table> supports showing "Referred You" row
-- \<sqm-big-stat> will return appropriate stats or error for "classic" program id
+- \<sqm-big-stat> will return appropriate stats or error for "classic" program id. Height is inherited
 
 ## [1.1.1] - 2021-08-20
 
