@@ -44,9 +44,10 @@ const referralsCountQuery = (
   _: string,
   status?: "started" | "converted"
 ) => {
-  const programFilter = programId === "classic"
-    ? { programId_exists: false }
-    : { programId_eq: programId }
+  const programFilter =
+    programId === "classic"
+      ? { programId_exists: false }
+      : { programId_eq: programId };
 
   const convertedFilter =
     status && status == "converted"
@@ -82,7 +83,7 @@ const programGoalsQuery = (
   goalId: string
 ) => {
   // Confirm this behaviour
-  if (programId === "classic") return null
+  if (programId === "classic") return null;
 
   return debugQuery(
     gql`
@@ -110,19 +111,21 @@ const programGoalsQuery = (
 };
 
 const referralsMonthQuery = (programId: string) => {
-  const programFilter = programId === "classic"
-    ? {programId_exists: false}
-    : {programId_eq: programId}
+  const programFilter =
+    programId === "classic"
+      ? { programId_exists: false }
+      : { programId_eq: programId };
 
-  const filter = {...programFilter, dateReferralStarted_timeframe: "this_month"}
+  const filter = {
+    ...programFilter,
+    dateReferralStarted_timeframe: "this_month",
+  };
   return debugQuery(
     gql`
       query ($filter: ReferralFilterInput) {
         viewer {
           ... on User {
-            referrals(
-              filter: $filter
-            ) {
+            referrals(filter: $filter) {
               totalCount
             }
           }
@@ -132,22 +135,24 @@ const referralsMonthQuery = (programId: string) => {
     { filter },
     (res) => res.data?.viewer?.referrals?.totalCount?.toString()
   );
-}
+};
 
 const referralsWeekQuery = (programId: string) => {
-  const programFilter = programId === "classic"
-    ? {programId_exists: false}
-    : {programId_eq: programId}
+  const programFilter =
+    programId === "classic"
+      ? { programId_exists: false }
+      : { programId_eq: programId };
 
-  const filter = {...programFilter, dateReferralStarted_timeframe: "this_month"}
+  const filter = {
+    ...programFilter,
+    dateReferralStarted_timeframe: "this_month",
+  };
   return debugQuery(
     gql`
       query ($filter: ReferralFilterInput) {
         viewer {
           ... on User {
-            referrals(
-              filter: $filter
-            ) {
+            referrals(filter: $filter) {
               totalCount
             }
           }
@@ -157,10 +162,15 @@ const referralsWeekQuery = (programId: string) => {
     { filter },
     (res) => res.data?.viewer?.referrals?.totalCount?.toString()
   );
-}
+};
 
-const rewardsCountQuery = (programId: string) =>
-  debugQuery(
+const rewardsCountQuery = (
+  programId: string,
+  // locale
+  _: string,
+  global = ""
+) => {
+  return debugQuery(
     gql`
       query ($programId: ID) {
         viewer {
@@ -172,12 +182,105 @@ const rewardsCountQuery = (programId: string) =>
         }
       }
     `,
-    { programId: programId === "classic" ? null : programId },
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+    },
     (res) => res.data?.viewer?.rewards?.totalCount?.toString()
   );
+};
 
-const rewardsMonthQuery = (programId: string) =>
-  debugQuery(
+const rewardsCountFilteredQuery = (
+  programId: string,
+  // locale
+  _: string,
+  type?: string,
+  baseUnit?: string,
+  unitType?: string,
+  status?: string,
+  global = ""
+) => {
+  const statusFilter = getStatValue(status) ? { status } : null;
+
+  const unit = getStatValue(unitType)
+    ? `${baseUnit}/${unitType}`
+    : getStatValue(baseUnit);
+
+  return debugQuery(
+    gql`
+      query (
+        $programId: ID
+        $unit: String
+        $type: RewardType
+        $statusFilter: RewardStatusFilterInput
+      ) {
+        viewer {
+          ... on User {
+            rewards(
+              filter: {
+                programId_eq: $programId
+                type_eq: $type
+                unit_eq: $unit
+                statuses_eq: $statusFilter
+              }
+            ) {
+              totalCount
+            }
+          }
+        }
+      }
+    `,
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      unit,
+      type,
+      statusFilter,
+    },
+    (res) => res.data?.viewer?.rewards?.totalCount?.toString()
+  );
+};
+
+const integrationRewardsCountFilteredQuery = (
+  programId: string,
+  // locale
+  _: string,
+  status?: string,
+  global = ""
+) => {
+  const statusFilter = getStatValue(status) ? { status } : null;
+
+  return debugQuery(
+    gql`
+      query ($programId: ID, $statusFilter: RewardStatusFilterInput) {
+        viewer {
+          ... on User {
+            rewards(
+              filter: {
+                programId_eq: $programId
+                type_eq: INTEGRATION
+                statuses_eq: $statusFilter
+              }
+            ) {
+              totalCount
+            }
+          }
+        }
+      }
+    `,
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      statusFilter,
+    },
+    (res) => res.data?.viewer?.rewards?.totalCount?.toString()
+  );
+};
+
+const rewardsMonthQuery = (
+  programId: string,
+  // locale
+  _: string,
+  global = ""
+) => {
+  return debugQuery(
     gql`
       query ($programId: ID) {
         viewer {
@@ -194,12 +297,20 @@ const rewardsMonthQuery = (programId: string) =>
         }
       }
     `,
-    { programId: programId === "classic" ? null : programId },
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+    },
     (res) => res.data?.viewer?.rewards?.totalCount?.toString()
   );
+};
 
-const rewardsWeekQuery = (programId: string) => 
-  debugQuery(
+const rewardsWeekQuery = (
+  programId: string,
+  // locale
+  _: string,
+  global = ""
+) => {
+  return debugQuery(
     gql`
       query ($programId: ID) {
         viewer {
@@ -216,18 +327,24 @@ const rewardsWeekQuery = (programId: string) =>
         }
       }
     `,
-    { programId: programId === "classic" ? null : programId },
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+    },
     (res) => res.data?.viewer?.rewards?.totalCount?.toString()
   );
+};
 
 const rewardsRedeemedQuery = (
   programId: string,
   locale: string,
   type: string,
   baseUnit: string,
-  unitType?: string
+  unitType?: string,
+  global = ""
 ) => {
-  const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
+  const unit = getStatValue(unitType)
+    ? `${baseUnit}/${unitType}`
+    : getStatValue(baseUnit);
 
   return debugQuery(
     gql`
@@ -257,7 +374,12 @@ const rewardsRedeemedQuery = (
         }
       }
     `,
-    { programId: programId === "classic" ? null : programId, type, unit, locale },
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      type,
+      unit,
+      locale,
+    },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
@@ -271,9 +393,12 @@ const rewardsAssignedQuery = (
   locale: string,
   type: string,
   baseUnit: string,
-  unitType?: string
+  unitType?: string,
+  global = ""
 ) => {
-  const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
+  const unit = getStatValue(unitType)
+    ? `${baseUnit}/${unitType}`
+    : getStatValue(baseUnit);
   return debugQuery(
     gql`
       query (
@@ -302,7 +427,12 @@ const rewardsAssignedQuery = (
         }
       }
     `,
-    { programId: programId === "classic" ? null : programId, type, unit, locale },
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      type,
+      unit,
+      locale,
+    },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
@@ -316,10 +446,12 @@ const rewardsAvailableQuery = (
   locale: string,
   type: string,
   baseUnit: string,
-  unitType?: string
+  unitType?: string,
+  global = ""
 ) => {
-  // Confirm desired behaviour
-  const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
+  const unit = getStatValue(unitType)
+    ? `${baseUnit}/${unitType}`
+    : getStatValue(baseUnit);
   return debugQuery(
     gql`
       query (
@@ -348,7 +480,12 @@ const rewardsAvailableQuery = (
         }
       }
     `,
-    { programId: programId === "classic" ? null : programId, type, unit, locale },
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      type,
+      unit,
+      locale,
+    },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
@@ -368,9 +505,11 @@ const rewardsBalanceQuery = (
   baseUnit: string,
   unitType?: string,
   format = "prettyValue",
-  global = "false"
+  global = ""
 ) => {
-  const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
+  const unit = getStatValue(unitType)
+    ? `${baseUnit}/${unitType}`
+    : getStatValue(baseUnit);
   return debugQuery(
     gql`
       query (
@@ -401,8 +540,8 @@ const rewardsBalanceQuery = (
       }
     `,
     {
-      // Confirm logic
-      programId: global === "false" && programId !== "classic" ? programId : null,
+      programId: !global && programId !== "classic" ? programId : null,
+
       type,
       unit,
       format: parseRewardValueFormat[format] ?? "UNIT_FORMATTED",
@@ -451,6 +590,14 @@ const queries: {
     label: "Rewards - Count",
     query: rewardsCountQuery,
   },
+  rewardsCountFiltered: {
+    label: "Rewards - Count - Filtered",
+    query: rewardsCountFilteredQuery,
+  },
+  integrationRewardsCountFiltered: {
+    label: "Integration Rewards - Count - Filtered",
+    query: integrationRewardsCountFilteredQuery,
+  },
   rewardsMonth: {
     label: "Rewards - This Month",
     query: rewardsMonthQuery,
@@ -475,14 +622,15 @@ export const StatPaths = [
   "/(referralsCount)/:status?",
   "/(referralsMonth)",
   "/(referralsWeek)",
-  "/(rewardsCount)",
-  "/(rewardsMonth)",
-  "/(rewardsWeek)",
-  "/(rewardsAssigned)/:statType/:unit/:valueType?",
-  "/(rewardsRedeemed)/:statType/:unit/:valueType?",
-  "/(rewardsAvailable)/:statType/:unit/:valueType?",
-  "/(rewardBalance)/:statType/:unit/:valueType?/:format?/:global?",
-  "/(creditAndIntegrationBalance)/:statType/:unit/:valueType?",
+  "/(rewardsCount)/:global?",
+  "/(rewardsMonth)/:global?",
+  "/(rewardsWeek)/:global?",
+  "/(rewardsCountFiltered)/:statType?/:unit?/:unitType?/:status?/:global?",
+  "/(integrationRewardsCountFiltered)/:status?/:global?",
+  "/(rewardsAssigned)/:statType/:unit/:unitType?/:global?",
+  "/(rewardsRedeemed)/:statType/:unit/:unitType?/:global?",
+  "/(rewardsAvailable)/:statType/:unit/:unitType?/:global?",
+  "/(rewardBalance)/:statType/:unit/:unitType?/:format?/:global?",
 ];
 
 export const StatPatterns = StatPaths.map((pattern) =>
@@ -495,6 +643,14 @@ export function parsePath(type: string): string[] | undefined {
   const result = re(type) as MatchResult<object>;
 
   return Object.values(result.params);
+}
+
+function getStatValue(statValue: string) {
+  try {
+    return JSON.parse(statValue);
+  } catch {
+    return statValue;
+  }
 }
 
 export function useBigStat(props: BigStat): BigStatHook {

@@ -11,7 +11,7 @@ export default {
 };
 
 function setupGraphQL() {
-  const id = "bj123";
+  const id = "nynellie";
   const accountId = id;
   const programId = "ny-post-referrals";
 
@@ -23,7 +23,7 @@ function setupGraphQL() {
     appDomain: "https://staging.referralsaasquatch.com",
     token:
       // you have to change this if you change the id or accountId
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImJqMTIzIiwiaWQiOiJiajEyMyJ9fQ.rmJZebIyj-xThGi0WO6LSyE573vb1HkfLc8lFfqMmgs",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6Im55bmVsbGllIiwiaWQiOiJueW5lbGxpZSJ9fQ.3KV974VPLgk4tD8LQfJTi4IPkKCmnaB8w48HzVJYDuI",
     userId: id,
     accountId,
     programId,
@@ -31,7 +31,7 @@ function setupGraphQL() {
   return { id, accountId };
 }
 
-const View = (statType: string) => {
+const View = (statType: string, format: string) => {
   console.log(`View("${statType}") - CALLED`);
   setupGraphQL();
   const { props, label } = useBigStat({
@@ -40,7 +40,15 @@ const View = (statType: string) => {
     disconnectedCallback: () => {},
     ignored: true,
   });
-  return <BigStatView {...props}>{label}</BigStatView>;
+  return (
+    <div>
+      <b>Stat format:</b>
+      <pre>{format}</pre>
+      <br />
+      <b>Stat selected:</b> <pre style={{ color: "green" }}>{statType}</pre>
+      <BigStatView {...props}>{label}</BigStatView>
+    </div>
+  );
 };
 
 const DemoView = () => {
@@ -56,6 +64,7 @@ const DemoView = () => {
       <div>
         Stat type:{" "}
         <input
+          style={{ width: "300px" }}
           type="text"
           value={type}
           onInput={(e) => setType((e.target as HTMLInputElement).value)}
@@ -71,35 +80,98 @@ const DemoView = () => {
 
 export const Demo = createHookStory(DemoView);
 
-export const ReferralsCount = createHookStory(() => View("/referralsCount"));
+export const ReferralsCount = createHookStory(() =>
+  View("/referralsCount", "/(referralsCount)/:status?")
+);
 export const referralsConvertedCount = createHookStory(() => {
-  return View("/referralsCount/converted");
+  return View("/referralsCount/converted", "/(referralsCount)/:status?");
 });
 
 export const referralsStartedCount = createHookStory(() => {
-  return View("/referralsCount/started");
+  return View("/referralsCount/started", "/(referralsCount)/:status?");
 });
-export const ReferralsMonth = createHookStory(() => View("/referralsMonth"));
-export const ReferralsWeek = createHookStory(() => View("/referralsWeek"));
-export const RewardsCount = createHookStory(() => View("/rewardsCount"));
-export const RewardsMonth = createHookStory(() => View("/rewardsMonth"));
-export const RewardsWeek = createHookStory(() => View("/rewardsWeek"));
+export const ReferralsMonth = createHookStory(() =>
+  View("/referralsMonth", "/(referralsMonth)")
+);
+export const ReferralsWeek = createHookStory(() =>
+  View("/referralsWeek", "/(referralsWeek)")
+);
+export const RewardsCount = createHookStory(() =>
+  View("/rewardsCount", "/(rewardsCount)/:global?")
+);
+export const GlobalRewardsCount = createHookStory(() =>
+  View("/rewardsCount/global", "/(rewardsCount)/:global")
+);
+export const RewardsCountByUnit = createHookStory(() =>
+  View(
+    "/rewardsCountFiltered/CREDIT/COFFEE",
+    "/(rewardsCountFiltered)/:statType?/:unit?/:unitType?/:status?/:global?"
+  )
+);
+export const GlobalRewardsCountByUnit = createHookStory(() =>
+  View(
+    "/rewardsCountFiltered/CREDIT/COFFEE/null/null/global",
+    "/(rewardsCountFiltered)/:statType?/:unit?/:unitType?/:status?/:global?"
+  )
+);
+export const GlobalPendingRewardsCount = createHookStory(() =>
+  View(
+    "/rewardsCountFiltered/CREDIT/COFFEE/null/PENDING/global",
+    "/(rewardsCountFiltered)/:statType?/:unit?/:unitType?/:status?/:global?"
+  )
+);
+export const GlobalRewardsCountByIntegration = createHookStory(() =>
+  View(
+    "/integrationRewardsCountFiltered/AVAILABLE/global",
+    "/(integrationRewardsCountFiltered)/:status?/:global?"
+  )
+);
+export const GlobalRewardsCountByPendingIntegration = createHookStory(() =>
+  View(
+    "/integrationRewardsCountFiltered/PENDING/global",
+    "/(integrationRewardsCountFiltered)/:status?/:global?"
+  )
+);
+export const RewardsMonth = createHookStory(() =>
+  View("/rewardsMonth", "/(rewardsMonth)/:global?")
+);
+export const RewardsWeek = createHookStory(() =>
+  View("/rewardsWeek", "/(rewardsWeek)/:global?")
+);
 export const RewardsAssigned = createHookStory(() =>
-  View("/rewardsAssigned/CREDIT/COFFEE")
+  View(
+    "/rewardsAssigned/CREDIT/COFFEE",
+    "/(rewardsAssigned)/:statType/:unit/:unitType?/:global?"
+  )
 );
 export const RewardsRedeemed = createHookStory(() =>
-  View("/rewardsRedeemed/CREDIT/COFFEE")
+  View(
+    "/rewardsRedeemed/CREDIT/COFFEE",
+    "/(rewardsRedeemed)/:statType/:unit/:unitType?/:global?"
+  )
 );
 export const RewardsAvailable = createHookStory(() =>
-  View("/rewardsAvailable/CREDIT/COFFEE")
+  View(
+    "/rewardsAvailable/CREDIT/COFFEE",
+    "/(rewardsAvailable)/:statType/:unit/:unitType?/:global?"
+  )
 );
 export const RewardsAvailableWithSlash = createHookStory(() =>
-  View("/rewardsAvailable/CREDIT/CASH/USD")
+  View(
+    "/rewardsAvailable/CREDIT/CASH/USD",
+    "/(rewardsAvailable)/:statType/:unit/:unitType?/:global?"
+  )
 );
 export const RewardBalance = createHookStory(() =>
-  View("/rewardBalance/CREDIT/COFFEE/prettyValue")
+  View(
+    "/rewardBalance/CREDIT/COFFEE/null/prettyValue",
+    "/(rewardBalance)/:statType/:unit/:unitType?/:format?/:global?"
+  )
 );
 export const ProgramGoals = createHookStory(() => {
   const dummy = encodeURIComponent("Paid-Member-Goal/referrals");
-  return View("/programGoals/count/" + `${dummy}`);
+  return View(
+    `/programGoals/count/${dummy}`,
+    "/(programGoals)/:metricType/:goalId"
+  );
 });
