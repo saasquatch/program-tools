@@ -42,6 +42,7 @@ export const config: Config = {
             copy: [{ src: "global/styles.ts" }],
           },
           useDocx,
+          useGrapesjs,
         ]
       : [
           {

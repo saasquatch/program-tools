@@ -17,6 +17,7 @@ jobs:
           - component-boilerplate
           - stencil-grapes-plugin
           - mint-components
+          - integration-boilerplate-node
 
     steps:
       - uses: actions/checkout@v2
