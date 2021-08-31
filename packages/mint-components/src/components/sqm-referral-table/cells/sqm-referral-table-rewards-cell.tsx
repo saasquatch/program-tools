@@ -112,7 +112,9 @@ export class ReferralTableRewardsCell {
             {/* If state is pending and reward has expiry date, display the relative time inside badge. Otherwise only display the badge text */}
             {/* Pending for W9 Tax reasons cases here */}
             <div class={sheet.classes.BadgeContainer}>
-              {state === "PENDING" && reward.dateScheduledFor ? (
+              {state === "PENDING" &&
+              reward.dateScheduledFor &&
+              reward.dateExpires ? (
                 <sl-badge type={slBadgeType} pill>{`${badgeText} ${
                   getTimeDiff(reward.dateScheduledFor) === "tomorrow" ||
                   getTimeDiff(reward.dateScheduledFor) === "today" ||
