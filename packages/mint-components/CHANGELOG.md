@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.0] - 2021-08-20
+## [1.2.0] - 2021-08-31
 
 - \<sqm-referral-table> can pull only classic referrals
 - \<sqm-referral-table> supports showing "Referred You" row
