@@ -104,3 +104,29 @@ export const Column = () => {
     </sqm-divided-layout>
   );
 };
+
+export const ColumnCustomDivider = () => {
+  return (
+    <sqm-divided-layout direction="column" dividerStyle="1px solid red">
+      <Sidebar />
+      <div style={{ padding: "48px" }}>
+        <PortalSectionView
+          {...{
+            labelMargin: "xx-small",
+            padding: "none",
+            label: (
+              <sqm-text>
+                <p>Welcome back,</p>
+              </sqm-text>
+            ),
+            content: (
+              <sqm-text>
+                <h1>Joe Smith</h1>
+              </sqm-text>
+            ),
+          }}
+        />
+      </div>
+    </sqm-divided-layout>
+  );
+};

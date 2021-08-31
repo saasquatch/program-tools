@@ -49,6 +49,9 @@ export class ReferralTableRewardsCell {
       BoldText: {
         "font-weight": "var(--sl-font-weight-semibold)",
       },
+      StatusBadge:{
+        paddingLeft:"var(--sl-spacing-xxx-small)"
+      }
     };
 
     jss.setup(preset());
@@ -115,21 +118,21 @@ export class ReferralTableRewardsCell {
               {state === "PENDING" &&
               reward.dateScheduledFor &&
               reward.dateExpires ? (
-                <sl-badge type={slBadgeType} pill>{`${badgeText} ${
+                <sl-badge class={sheet.classes.StatusBadge} type={slBadgeType} pill>{`${badgeText} ${
                   getTimeDiff(reward.dateScheduledFor) === "tomorrow" ||
                   getTimeDiff(reward.dateScheduledFor) === "today" ||
-                  getTimeDiff(reward.dateExpires) === "next month" ||
-                  getTimeDiff(reward.dateExpires) === "next year"
+                  getTimeDiff(reward.dateScheduledFor) === "next month" ||
+                  getTimeDiff(reward.dateScheduledFor) === "next year"
                     ? `until ${getTimeDiff(reward.dateScheduledFor)}`
                     : `for ${getTimeDiff(reward.dateScheduledFor)}`
                 }`}</sl-badge>
               ) : (
-                <sl-badge type={slBadgeType} pill>
+                <sl-badge class={sheet.classes.StatusBadge} type={slBadgeType} pill>
                   {badgeText}
                 </sl-badge>
               )}
               {reward.dateExpires && state === "AVAILABLE" && (
-                <sl-badge type="info" pill>
+                <sl-badge class={sheet.classes.StatusBadge} type="info" pill>
                   {getTimeDiff(reward.dateExpires) === "tomorrow" ||
                   getTimeDiff(reward.dateExpires) === "today" ||
                   getTimeDiff(reward.dateExpires) === "next month" ||

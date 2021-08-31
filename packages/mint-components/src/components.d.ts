@@ -70,6 +70,11 @@ export namespace Components {
           * @uiName Direction
          */
         "direction": "row" | "column";
+        /**
+          * Uses CSS border style syntax
+          * @uiName Border style
+         */
+        "dividerStyle": string;
     }
     interface SqmEditProfile {
         /**
@@ -1076,6 +1081,11 @@ declare namespace LocalJSX {
           * @uiName Direction
          */
         "direction"?: "row" | "column";
+        /**
+          * Uses CSS border style syntax
+          * @uiName Border style
+         */
+        "dividerStyle"?: string;
     }
     interface SqmEditProfile {
         /**
