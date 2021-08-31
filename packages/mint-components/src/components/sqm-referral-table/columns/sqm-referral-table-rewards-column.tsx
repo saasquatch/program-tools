@@ -8,7 +8,15 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
   shadow: true,
 })
 export class ReferralTableRewardsColumn implements ReferralTableColumn {
+  /**
+   * @uiName Reward column title
+   */
   @Prop() columnTitle: string = "Rewards";
+
+  /**
+   * @uiName Hide dropdown details of reward
+   */
+  @Prop() hideDetails: boolean = false;
 
   constructor() {
     withHooks(this);
@@ -21,6 +29,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
     return (
       <sqm-referral-table-rewards-cell
         rewards={data.rewards}
+        hide-details={this.hideDetails}
       ></sqm-referral-table-rewards-cell>
     );
   }

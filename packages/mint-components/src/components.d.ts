@@ -461,10 +461,18 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableRewardsCell {
+        "hideDetails": boolean;
         "rewards": Reward[];
     }
     interface SqmReferralTableRewardsColumn {
+        /**
+          * @uiName Reward column title
+         */
         "columnTitle": string;
+        /**
+          * @uiName Hide dropdown details of reward
+         */
+        "hideDetails": boolean;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
@@ -1455,10 +1463,18 @@ declare namespace LocalJSX {
         "dateShown"?: string;
     }
     interface SqmReferralTableRewardsCell {
+        "hideDetails"?: boolean;
         "rewards"?: Reward[];
     }
     interface SqmReferralTableRewardsColumn {
+        /**
+          * @uiName Reward column title
+         */
         "columnTitle"?: string;
+        /**
+          * @uiName Hide dropdown details of reward
+         */
+        "hideDetails"?: boolean;
     }
     interface SqmReferralTableStatusCell {
         "converted"?: boolean;

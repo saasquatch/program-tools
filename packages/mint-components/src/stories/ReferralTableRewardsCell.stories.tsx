@@ -244,3 +244,12 @@ export const tenRewardsCell = () => {
     ></sqm-referral-table-rewards-cell>
   );
 };
+
+export const hideDetailsCell = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseReward, ...availableReward, ...nullExpiresIn }]}
+      hide-details={true}
+    ></sqm-referral-table-rewards-cell>
+  );
+};

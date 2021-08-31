@@ -9,7 +9,7 @@ import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 })
 export class ReferralTableRewardsCell {
   @Prop() rewards: Reward[];
-
+  @Prop() hideDetails: boolean;
   render() {
     const style = {
       DetailsContainer: {
@@ -27,9 +27,16 @@ export class ReferralTableRewardsCell {
         "padding-right": "var(--sl-spacing-x-small)",
         "&::part(header)": {
           padding: "var(--sl-spacing-x-small)",
+          cursor: `${this.hideDetails ? "default" : "pointer"}`,
         },
         "&::part(content)": {
           padding: "var(--sl-spacing-x-small) var(--sl-spacing-medium)",
+        },
+        "&::part(base)": {
+          opacity: "1",
+        },
+        "&::part(summary-icon)": {
+          display: `${this.hideDetails ? "none" : "flex"}`,
         },
       },
 
@@ -96,7 +103,7 @@ export class ReferralTableRewardsCell {
       const badgeText = toTitleCase(state);
 
       return (
-        <sl-details class={sheet.classes.Details}>
+        <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
           <style type="text/css">{styleString}</style>
           <div slot="summary" class={sheet.classes.DetailsContainer}>
             <TextSpanView type="p">
