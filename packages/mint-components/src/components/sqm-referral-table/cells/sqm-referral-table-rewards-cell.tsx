@@ -49,9 +49,9 @@ export class ReferralTableRewardsCell {
       BoldText: {
         "font-weight": "var(--sl-font-weight-semibold)",
       },
-      StatusBadge:{
-        paddingLeft:"var(--sl-spacing-xxx-small)"
-      }
+      StatusBadge: {
+        paddingLeft: "var(--sl-spacing-xxx-small)",
+      },
     };
 
     jss.setup(preset());
@@ -115,10 +115,12 @@ export class ReferralTableRewardsCell {
             {/* If state is pending and reward has expiry date, display the relative time inside badge. Otherwise only display the badge text */}
             {/* Pending for W9 Tax reasons cases here */}
             <div class={sheet.classes.BadgeContainer}>
-              {state === "PENDING" &&
-              reward.dateScheduledFor &&
-              reward.dateExpires ? (
-                <sl-badge class={sheet.classes.StatusBadge} type={slBadgeType} pill>{`${badgeText} ${
+              {state === "PENDING" && reward.dateScheduledFor ? (
+                <sl-badge
+                  class={sheet.classes.StatusBadge}
+                  type={slBadgeType}
+                  pill
+                >{`${badgeText} ${
                   getTimeDiff(reward.dateScheduledFor) === "tomorrow" ||
                   getTimeDiff(reward.dateScheduledFor) === "today" ||
                   getTimeDiff(reward.dateScheduledFor) === "next month" ||
@@ -127,20 +129,26 @@ export class ReferralTableRewardsCell {
                     : `for ${getTimeDiff(reward.dateScheduledFor)}`
                 }`}</sl-badge>
               ) : (
-                <sl-badge class={sheet.classes.StatusBadge} type={slBadgeType} pill>
+                <sl-badge
+                  class={sheet.classes.StatusBadge}
+                  type={slBadgeType}
+                  pill
+                >
                   {badgeText}
                 </sl-badge>
               )}
-              {reward.dateExpires && state === "AVAILABLE" && (
-                <sl-badge class={sheet.classes.StatusBadge} type="info" pill>
-                  {getTimeDiff(reward.dateExpires) === "tomorrow" ||
-                  getTimeDiff(reward.dateExpires) === "today" ||
-                  getTimeDiff(reward.dateExpires) === "next month" ||
-                  getTimeDiff(reward.dateExpires) === "next year"
-                    ? `Expiring ${getTimeDiff(reward.dateExpires)}`
-                    : `Expiring in ${getTimeDiff(reward.dateExpires)}`}
-                </sl-badge>
-              )}
+              {reward.dateExpires &&
+                state === "AVAILABLE" &&
+                reward.dateExpires && (
+                  <sl-badge class={sheet.classes.StatusBadge} type="info" pill>
+                    {getTimeDiff(reward.dateExpires) === "tomorrow" ||
+                    getTimeDiff(reward.dateExpires) === "today" ||
+                    getTimeDiff(reward.dateExpires) === "next month" ||
+                    getTimeDiff(reward.dateExpires) === "next year"
+                      ? `Expiring ${getTimeDiff(reward.dateExpires)}`
+                      : `Expiring in ${getTimeDiff(reward.dateExpires)}`}
+                  </sl-badge>
+                )}
             </div>
           </div>
           <div>

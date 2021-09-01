@@ -29,7 +29,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
     return (
       <sqm-referral-table-rewards-cell
         rewards={data.rewards}
-        hide-details={this.hideDetails}
+        hideDetails={this.hideDetails}
       ></sqm-referral-table-rewards-cell>
     );
   }
