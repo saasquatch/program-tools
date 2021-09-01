@@ -26,7 +26,7 @@ export class ReferralTableUserColumn implements ReferralTableColumn {
   @Method()
   async renderCell(data: Referral) {
     let name: string;
-    if (!data) {
+    if (!data?.referredUser) {
       name = this.deletedUser;
     } else if (!data?.referredUser?.firstName && !data?.referredUser?.lastName) {
       name = this.anonymousUser;
