@@ -11,7 +11,7 @@ const baseReward: Reward = {
   unit: "POINT",
   name: "test",
   dateGiven: 1627427794891,
-  dateScheduledFor: 1628146800000,
+  dateScheduledFor: 1631939903000,
   dateExpires: 1629010800000,
   dateCancelled: 134400,
   fuelTankCode: "ABC",
@@ -141,6 +141,15 @@ export const PendingNoUnpend = () => {
   );
 };
 
+export const PendingNoUnpendNoDetails = () => {
+  return (
+    <sqm-referral-table-rewards-cell
+      hideDetails={true}
+      rewards={[{ ...baseReward, ...pendingReward, ...nullScheduledFor }]}
+    ></sqm-referral-table-rewards-cell>
+  );
+};
+
 export const PendingWithUnpend = () => {
   return (
     <sqm-referral-table-rewards-cell
@@ -241,15 +250,6 @@ export const tenRewardsCell = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={tenRewards}
-    ></sqm-referral-table-rewards-cell>
-  );
-};
-
-export const hideDetailsCell = () => {
-  return (
-    <sqm-referral-table-rewards-cell
-      rewards={[{ ...baseReward, ...availableReward, ...nullExpiresIn }]}
-      hide-details={true}
     ></sqm-referral-table-rewards-cell>
   );
 };

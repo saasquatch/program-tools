@@ -4,6 +4,7 @@ import preset from "jss-preset-default";
 
 interface DividedLayoutViewProps {
   direction: "row" | "column";
+  dividerStyle: string;
 }
 
 export function DividedLayoutView(
@@ -12,9 +13,9 @@ export function DividedLayoutView(
 ) {
   const getBorder = () => {
     if (props.direction === "row") {
-      return { "border-right": "1px solid #EAEAEA" };
+      return { "border-right": props.dividerStyle || "1px solid #EAEAEA" };
     } else {
-      return { "border-bottom": "1px solid #EAEAEA" };
+      return { "border-bottom": props.dividerStyle || "1px solid #EAEAEA" };
     }
   };
 
