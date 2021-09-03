@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import { match, MatchResult } from "path-to-regexp";
+import { compile, match, MatchResult, pathToRegexp } from "path-to-regexp";
 import { useMemo } from "@saasquatch/universal-hooks";
 import {
   useQuery,
@@ -12,6 +12,7 @@ import debugFn from "debug";
 
 import { BigStat } from "./sqm-big-stat";
 import { BigStatViewProps } from "./sqm-big-stat-view";
+import { parse } from "graphql";
 
 const debug = debugFn("sq:useBigStat");
 const LOADING = "...";
@@ -194,16 +195,11 @@ const rewardsCountFilteredQuery = (
   // locale
   _: string,
   type?: string,
-  baseUnit?: string,
-  unitType?: string,
+  unit?: string,
   status?: string,
   global = ""
 ) => {
   const statusFilter = getStatValue(status) ? { status } : null;
-
-  const unit = getStatValue(unitType)
-    ? `${baseUnit}/${unitType}`
-    : getStatValue(baseUnit);
 
   return debugQuery(
     gql`
@@ -338,14 +334,9 @@ const rewardsRedeemedQuery = (
   programId: string,
   locale: string,
   type: string,
-  baseUnit: string,
-  unitType?: string,
+  unit: string,
   global = ""
 ) => {
-  const unit = getStatValue(unitType)
-    ? `${baseUnit}/${unitType}`
-    : getStatValue(baseUnit);
-
   return debugQuery(
     gql`
       query (
@@ -392,13 +383,9 @@ const rewardsAssignedQuery = (
   programId: string,
   locale: string,
   type: string,
-  baseUnit: string,
-  unitType?: string,
+  unit: string,
   global = ""
 ) => {
-  const unit = getStatValue(unitType)
-    ? `${baseUnit}/${unitType}`
-    : getStatValue(baseUnit);
   return debugQuery(
     gql`
       query (
@@ -445,13 +432,9 @@ const rewardsAvailableQuery = (
   programId: string,
   locale: string,
   type: string,
-  baseUnit: string,
-  unitType?: string,
+  unit: string,
   global = ""
 ) => {
-  const unit = getStatValue(unitType)
-    ? `${baseUnit}/${unitType}`
-    : getStatValue(baseUnit);
   return debugQuery(
     gql`
       query (
@@ -502,14 +485,10 @@ const rewardsBalanceQuery = (
   programId: string,
   locale: string,
   type: string,
-  baseUnit: string,
-  unitType?: string,
+  unit: string,
   format = "prettyValue",
   global = ""
 ) => {
-  const unit = getStatValue(unitType)
-    ? `${baseUnit}/${unitType}`
-    : getStatValue(baseUnit);
   return debugQuery(
     gql`
       query (
@@ -625,25 +604,17 @@ export const StatPaths = [
   "/(rewardsCount)/:global?",
   "/(rewardsMonth)/:global?",
   "/(rewardsWeek)/:global?",
-  "/(rewardsCountFiltered)/:statType?/:unit?/:unitType?/:status?/:global?",
-  "/(integrationRewardsCountFiltered)/:status?/:global?",
-  "/(rewardsAssigned)/:statType/:unit/:unitType?/:global?",
-  "/(rewardsRedeemed)/:statType/:unit/:unitType?/:global?",
-  "/(rewardsAvailable)/:statType/:unit/:unitType?/:global?",
-  "/(rewardBalance)/:statType/:unit/:unitType?/:format?/:global?",
+  "/(rewardsCountFiltered)/:statType?/:unit?/:status(!global)?/:global?",
+  "/(integrationRewardsCountFiltered)/:format(!global)?/:global?",
+  "/(rewardsAssigned)/:statType/:unit/:global?",
+  "/(rewardsRedeemed)/:statType/:unit/:global?",
+  "/(rewardsAvailable)/:statType/:unit/:global?",
+  "/(rewardBalance)/:statType/:unit/:format(!global)?/:global?",
 ];
 
 export const StatPatterns = StatPaths.map((pattern) =>
   match(pattern, { decode: decodeURIComponent })
 );
-
-export function parsePath(type: string): string[] | undefined {
-  const re = useMemo(() => StatPatterns.find((re) => re(type)), [type]);
-
-  const result = re(type) as MatchResult<object>;
-
-  return Object.values(result.params);
-}
 
 function getStatValue(statValue: string) {
   try {
@@ -669,8 +640,18 @@ export function useBigStat(props: BigStat): BigStatHook {
   }
 
   const result = re(statType) as MatchResult<object>;
+  let keys = [];
   const [queryName, ...queryArgs] = Object.values(result.params);
 
+  const regexp = pathToRegexp(statType, keys, {
+    strict: false,
+    sensitive: false,
+    end: true,
+  });
+  console.log("test", regexp, keys);
+  regexp.test(statType);
+  console.log("test", regexp, keys);
+  console.log("huh?", { result, queryArgs, params: result.params, statType });
   const label = queries[queryName].label;
 
   const stat =

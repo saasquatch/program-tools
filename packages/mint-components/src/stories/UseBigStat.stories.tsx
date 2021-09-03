@@ -105,31 +105,31 @@ export const GlobalRewardsCount = createHookStory(() =>
 export const RewardsCountByUnit = createHookStory(() =>
   View(
     "/rewardsCountFiltered/CREDIT/COFFEE",
-    "/(rewardsCountFiltered)/:statType?/:unit?/:unitType?/:status?/:global?"
+    "/(rewardsCountFiltered)/:statType?/:unit?/:status(!global)?/:global?"
   )
 );
 export const GlobalRewardsCountByUnit = createHookStory(() =>
   View(
-    "/rewardsCountFiltered/CREDIT/COFFEE/null/null/global",
-    "/(rewardsCountFiltered)/:statType?/:unit?/:unitType?/:status?/:global?"
+    "/rewardsCountFiltered/CREDIT/COFFEE/global",
+    "/(rewardsCountFiltered)/:statType?/:unit?/:status(!global)?/:global?"
   )
 );
 export const GlobalPendingRewardsCount = createHookStory(() =>
   View(
-    "/rewardsCountFiltered/CREDIT/COFFEE/null/PENDING/global",
-    "/(rewardsCountFiltered)/:statType?/:unit?/:unitType?/:status?/:global?"
+    "/rewardsCountFiltered/CREDIT/COFFEE/PENDING/global",
+    "/(rewardsCountFiltered)/:statType?/:unit?/:status(!global)?/:global?"
   )
 );
 export const GlobalRewardsCountByIntegration = createHookStory(() =>
   View(
     "/integrationRewardsCountFiltered/AVAILABLE/global",
-    "/(integrationRewardsCountFiltered)/:status?/:global?"
+    "/(integrationRewardsCountFiltered)/:format(!global)?/:global?"
   )
 );
 export const GlobalRewardsCountByPendingIntegration = createHookStory(() =>
   View(
     "/integrationRewardsCountFiltered/PENDING/global",
-    "/(integrationRewardsCountFiltered)/:status?/:global?"
+    "/(integrationRewardsCountFiltered)/:format(!global)?/:global?"
   )
 );
 export const RewardsMonth = createHookStory(() =>
@@ -141,33 +141,47 @@ export const RewardsWeek = createHookStory(() =>
 export const RewardsAssigned = createHookStory(() =>
   View(
     "/rewardsAssigned/CREDIT/COFFEE",
-    "/(rewardsAssigned)/:statType/:unit/:unitType?/:global?"
+    "/(rewardsAssigned)/:statType/:unit/:global?"
+  )
+);
+export const RewardsAssignedCashUSD = createHookStory(() =>
+  View(
+    "/rewardsAssigned/CREDIT/CASH%2FUSD",
+    "/(rewardsAssigned)/:statType/:unit/:global?"
   )
 );
 export const RewardsRedeemed = createHookStory(() =>
   View(
     "/rewardsRedeemed/CREDIT/COFFEE",
-    "/(rewardsRedeemed)/:statType/:unit/:unitType?/:global?"
+    "/(rewardsRedeemed)/:statType/:unit/:global?"
   )
 );
 export const RewardsAvailable = createHookStory(() =>
   View(
     "/rewardsAvailable/CREDIT/COFFEE",
-    "/(rewardsAvailable)/:statType/:unit/:unitType?/:global?"
+    "/(rewardsAvailable)/:statType/:unit/:global?"
   )
 );
 export const RewardsAvailableWithSlash = createHookStory(() =>
   View(
-    "/rewardsAvailable/CREDIT/CASH/USD",
-    "/(rewardsAvailable)/:statType/:unit/:unitType?/:global?"
+    "/rewardsAvailable/CREDIT/CASH%2FUSD",
+    "/(rewardsAvailable)/:statType/:unit/:global?"
   )
 );
 export const RewardBalance = createHookStory(() =>
   View(
-    "/rewardBalance/CREDIT/COFFEE/null/prettyValue",
-    "/(rewardBalance)/:statType/:unit/:unitType?/:format?/:global?"
+    "/rewardBalance/CREDIT/COFFEE/prettyValue",
+    "/(rewardBalance)/:statType/:unit/:format(!global)?/:global?"
   )
 );
+export const RewardBalanceCashUSD = createHookStory(() => {
+  const unit = encodeURIComponent("CASH/USD");
+  return View(
+    `/rewardBalance/CREDIT/${unit}/prettyValue`,
+    "/(rewardBalance)/:statType/:unit/:format(!global)?/:global?"
+  );
+});
+
 export const ProgramGoals = createHookStory(() => {
   const dummy = encodeURIComponent("Paid-Member-Goal/referrals");
   return View(
