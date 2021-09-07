@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import { compile, match, MatchResult, pathToRegexp } from "path-to-regexp";
+import { pathToRegexp } from "path-to-regexp";
 import { useMemo } from "@saasquatch/universal-hooks";
 import {
   useQuery,
@@ -9,10 +9,8 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { QueryData } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
 import debugFn from "debug";
-
 import { BigStat } from "./sqm-big-stat";
 import { BigStatViewProps } from "./sqm-big-stat-view";
-import { parse } from "graphql";
 
 const debug = debugFn("sq:useBigStat");
 const LOADING = "...";
@@ -597,23 +595,44 @@ const queries: {
 
 // this should be exposed in documentation somehow
 export const StatPaths = [
-  "/(programGoals)/:metricType/:goalId",
-  "/(referralsCount)/:status?",
-  "/(referralsMonth)",
-  "/(referralsWeek)",
-  "/(rewardsCount)/:global?",
-  "/(rewardsMonth)/:global?",
-  "/(rewardsWeek)/:global?",
-  "/(rewardsCountFiltered)/:statType?/:unit?/:status(!global)?/:global?",
-  "/(integrationRewardsCountFiltered)/:format(!global)?/:global?",
-  "/(rewardsAssigned)/:statType/:unit/:global?",
-  "/(rewardsRedeemed)/:statType/:unit/:global?",
-  "/(rewardsAvailable)/:statType/:unit/:global?",
-  "/(rewardBalance)/:statType/:unit/:format(!global)?/:global?",
+  { name: "programGoals", route: "/(programGoals)/:metricType/:goalId" },
+  { name: "referralsCount", route: "/(referralsCount)/:status?" },
+  { name: "referralsMonth", route: "/(referralsMonth)" },
+  { name: "referralsWeek", route: "/(referralsWeek)" },
+  { name: "rewardsCount", route: "/(rewardsCount)/:global?" },
+  { name: "rewardsMonth", route: "/(rewardsMonth)/:global?" },
+  { name: "rewardsWeek", route: "/(rewardsWeek)/:global?" },
+  {
+    name: "rewardsCountFiltered",
+    route:
+      "/(rewardsCountFiltered)/:statType?/:unit?/:status((?!global)[a-zA-Z0-9]+)?/:global?",
+  },
+  {
+    name: "integrationRewardsCountFiltered",
+    route:
+      "/(integrationRewardsCountFiltered)/:format((?!global)[a-zA-Z0-9]+)?/:global?",
+  },
+  {
+    name: "rewardsAssigned",
+    route: "/(rewardsAssigned)/:statType/:unit/:global?",
+  },
+  {
+    name: "rewardsRedeemed",
+    route: "/(rewardsRedeemed)/:statType/:unit/:global?",
+  },
+  {
+    name: "rewardsAvailable",
+    route: "/(rewardsAvailable)/:statType/:unit/:global?",
+  },
+  {
+    name: "rewardBalance",
+    route:
+      "/(rewardBalance)/:statType/:unit/:format((?!global)[a-zA-Z0-9]+)?/:global?",
+  },
 ];
 
 export const StatPatterns = StatPaths.map((pattern) =>
-  match(pattern, { decode: decodeURIComponent })
+  pathToRegexp(pattern.route)
 );
 
 function getStatValue(statValue: string) {
@@ -630,28 +649,38 @@ export function useBigStat(props: BigStat): BigStatHook {
 
   const locale = useLocale();
   const userIdent = useUserIdentity();
-  const re = useMemo(() => StatPatterns.find((re) => re(statType)), [statType]);
+  const re = useMemo(
+    () => StatPatterns.find((re) => re.exec(statType)),
+    [statType]
+  );
 
-  if (re === undefined) {
+  if (!re?.exec(statType)) {
     return {
       props: { statvalue: "!!!", flexReverse, alignment },
       label: "BAD PROP TYPE",
     };
   }
 
-  const result = re(statType) as MatchResult<object>;
-  let keys = [];
-  const [queryName, ...queryArgs] = Object.values(result.params);
+  const result = re.exec(statType);
+  const queryName = result[1];
 
-  const regexp = pathToRegexp(statType, keys, {
+  const statPath = StatPaths.find((pattern) => pattern.name === queryName);
+
+  // Get a list all possible keys
+  const keys = [];
+  const regex = pathToRegexp(statPath?.route, keys, {
     strict: false,
     sensitive: false,
     end: true,
   });
-  console.log("test", regexp, keys);
-  regexp.test(statType);
-  console.log("test", regexp, keys);
-  console.log("huh?", { result, queryArgs, params: result.params, statType });
+
+  const result2 = regex.exec(statType);
+
+  // Retrieve all key values in order including undefined
+  const queryArgs = keys.map((_, i) => decodeURIComponent(result2[i + 1]));
+  //  remove query name from list
+  queryArgs.shift();
+
   const label = queries[queryName].label;
 
   const stat =
