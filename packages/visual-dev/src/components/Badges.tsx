@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Icon } from "./Icons";
 
 interface BadgeProps {
-    children: any[] | string;
+    children?: any[] | string;
     padding?: string;
     icon?: string;
     variant: "default" | "success" | "active" | "critical" | "warning";
@@ -44,11 +44,10 @@ const BadgeStyled = styled.a<BadgeProps>`
   background: ${(props) => variantStyles[props.variant]["background"]};
   border: 1px solid ${(props) => variantStyles[props.variant]["border"]};
   color:${(props) => variantStyles[props.variant]["color"]};
-  font-weight: 700;
+  font-weight: 500;
   font-size: 14px;
   font-style: normal;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  font-weight: bold;
   line-height: 20px;
 `;
 
