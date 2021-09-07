@@ -137,18 +137,16 @@ export class ReferralTableRewardsCell {
                   {badgeText}
                 </sl-badge>
               )}
-              {reward.dateExpires &&
-                state === "AVAILABLE" &&
-                reward.dateExpires && (
-                  <sl-badge class={sheet.classes.StatusBadge} type="info" pill>
-                    {getTimeDiff(reward.dateExpires) === "tomorrow" ||
-                    getTimeDiff(reward.dateExpires) === "today" ||
-                    getTimeDiff(reward.dateExpires) === "next month" ||
-                    getTimeDiff(reward.dateExpires) === "next year"
-                      ? `Expiring ${getTimeDiff(reward.dateExpires)}`
-                      : `Expiring in ${getTimeDiff(reward.dateExpires)}`}
-                  </sl-badge>
-                )}
+              {reward.dateExpires && state === "AVAILABLE" && (
+                <sl-badge class={sheet.classes.StatusBadge} type="info" pill>
+                  {getTimeDiff(reward.dateExpires) === "tomorrow" ||
+                  getTimeDiff(reward.dateExpires) === "today" ||
+                  getTimeDiff(reward.dateExpires) === "next month" ||
+                  getTimeDiff(reward.dateExpires) === "next year"
+                    ? `Expiring ${getTimeDiff(reward.dateExpires)}`
+                    : `Expiring in ${getTimeDiff(reward.dateExpires)}`}
+                </sl-badge>
+              )}
             </div>
           </div>
           <div>
