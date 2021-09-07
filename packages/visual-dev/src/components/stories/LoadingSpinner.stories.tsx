@@ -3,7 +3,7 @@ import React from "react";
 import LoadingSpinner, {LoadingSpinnerLarge} from "../LoadingSpinner";
 
 
-storiesOf("Components / Loading Spinner", module).add("Normal", () => {
+storiesOf("Archived / Loading Spinner", module).add("Normal", () => {
   return (
     <div style={{ margin: "100px" }}>
       <LoadingSpinner />
@@ -11,7 +11,7 @@ storiesOf("Components / Loading Spinner", module).add("Normal", () => {
   );
 });
 
-storiesOf("Components / Loading Spinner", module).add("Normal with props", () => {
+storiesOf("Archived / Loading Spinner", module).add("Normal with props", () => {
   return (
     <div style={{ margin: "100px" }}>
       <LoadingSpinner left={"50px"} paddingRight={"10px"} right={"10px"} bottom={"5px"} />
@@ -19,7 +19,7 @@ storiesOf("Components / Loading Spinner", module).add("Normal with props", () =>
   );
 });
 
-storiesOf("Components / Loading Spinner", module).add("Large", () => {
+storiesOf("Archived / Loading Spinner", module).add("Large", () => {
   return (
     <div style={{ margin: "100px" }}>
       <LoadingSpinnerLarge />

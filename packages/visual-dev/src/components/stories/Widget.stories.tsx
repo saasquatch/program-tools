@@ -3,7 +3,7 @@ import React from "react";
 import { P, WidgetTitle } from "../Typography";
 import { WidgetContainer } from "../Layouts";
 
-storiesOf("Components / Widget", module).add("Widget Container", () => {
+storiesOf("Archived / Widget", module).add("Widget Container", () => {
   return (
     <div style={{ margin: "100px" }}>
       <WidgetContainer>

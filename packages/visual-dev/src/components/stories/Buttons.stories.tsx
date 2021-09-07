@@ -7,7 +7,7 @@ const fake = async () => {
   Promise.resolve(console.log('click'))
 }
 
-storiesOf("Components / Buttons", module).add("Text Button", () => {
+storiesOf("Archived / Buttons", module).add("Text Button", () => {
   return (
     <div style={{ margin: "100px" }}>
       <TextLink onClick={fake}>This is a text button</TextLink>
@@ -15,7 +15,7 @@ storiesOf("Components / Buttons", module).add("Text Button", () => {
   );
 });
 
-storiesOf("Components / Buttons", module).add("Text Button (Submit Type)", () => {
+storiesOf("Archived / Buttons", module).add("Text Button (Submit Type)", () => {
   return (
     <div style={{ margin: "100px" }}>
       <TextLink type={"submit"} onClick={fake}>This is a text button</TextLink>
@@ -23,7 +23,7 @@ storiesOf("Components / Buttons", module).add("Text Button (Submit Type)", () =>
   );
 });
 
-storiesOf("Components / Buttons", module).add("Text Button (Blue)", () => {
+storiesOf("Archived / Buttons", module).add("Text Button (Blue)", () => {
   return (
     <div style={{ margin: "100px" }}>
       <TextLink blue={true} onClick={fake}>This is a blue text button</TextLink>
@@ -31,7 +31,7 @@ storiesOf("Components / Buttons", module).add("Text Button (Blue)", () => {
   );
 });
 
-storiesOf("Components / Buttons", module).add("Primary button", () => {
+storiesOf("Archived / Buttons", module).add("Primary button", () => {
   return (
     <div style={{ margin: "100px" }}>
       <PrimaryButton onClick={fake}>Primary button</PrimaryButton>
@@ -39,7 +39,7 @@ storiesOf("Components / Buttons", module).add("Primary button", () => {
   );
 });
 
-storiesOf("Components / Buttons", module).add("Primary button new", () => {
+storiesOf("Archived / Buttons", module).add("Primary button new", () => {
   return (
     <div style={{ margin: "100px" }}>
       <PrimaryButtonNew loading={false} onClick={fake}>Primary button new</PrimaryButtonNew>
@@ -47,7 +47,7 @@ storiesOf("Components / Buttons", module).add("Primary button new", () => {
   );
 });
 
-storiesOf("Components / Buttons", module).add("Secondary button", () => {
+storiesOf("Archived / Buttons", module).add("Secondary button", () => {
   return (
     <div style={{ margin: "100px" }}>
       <SecondaryButton onClick={fake}>Secondary button</SecondaryButton>
@@ -55,7 +55,7 @@ storiesOf("Components / Buttons", module).add("Secondary button", () => {
   );
 });
 
-storiesOf("Components / Buttons", module).add("Sign in button", () => {
+storiesOf("Archived / Buttons", module).add("Sign in button", () => {
   return (
     <div style={{ margin: "100px" }}>
       <PlatformSignInButton onClick={fake}>Secondary button</PlatformSignInButton>
@@ -63,7 +63,7 @@ storiesOf("Components / Buttons", module).add("Sign in button", () => {
   );
 });
 
-storiesOf("Components / Buttons", module).add("Sign in button with color", () => {
+storiesOf("Archived / Buttons", module).add("Sign in button with color", () => {
   return (
     <div style={{ margin: "100px" }}>
       <PlatformSignInButton bgcolor={"#0C9CD9"} hoverBGColor={"#0088CC"} onClick={fake}>Secondary button</PlatformSignInButton>

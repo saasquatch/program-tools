@@ -333,7 +333,7 @@ const uiSchema = {
   },
 };
 
-storiesOf("Components / RJSF", module).add("Create Form", () => {
+storiesOf("Archived / RJSF", module).add("Create Form", () => {
   return (
     <div style={{ margin: "100px" }}>
       <RJSFContainer>
