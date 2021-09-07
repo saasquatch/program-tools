@@ -197,7 +197,7 @@ const rewardsCountFilteredQuery = (
   status?: string,
   global = ""
 ) => {
-  const statusFilter = getStatValue(status) ? { status } : null;
+  const statusFilter = status ? { status } : null;
 
   return debugQuery(
     gql`
@@ -240,7 +240,7 @@ const integrationRewardsCountFilteredQuery = (
   status?: string,
   global = ""
 ) => {
-  const statusFilter = getStatValue(status) ? { status } : null;
+  const statusFilter = status ? { status } : null;
 
   return debugQuery(
     gql`
@@ -605,12 +605,12 @@ export const StatPaths = [
   {
     name: "rewardsCountFiltered",
     route:
-      "/(rewardsCountFiltered)/:statType?/:unit?/:status((?!global)[a-zA-Z0-9]+)?/:global?",
+      "/(rewardsCountFiltered)/:statType?/:unit?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?",
   },
   {
     name: "integrationRewardsCountFiltered",
     route:
-      "/(integrationRewardsCountFiltered)/:format((?!global)[a-zA-Z0-9]+)?/:global?",
+      "/(integrationRewardsCountFiltered)/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?",
   },
   {
     name: "rewardsAssigned",
@@ -627,21 +627,13 @@ export const StatPaths = [
   {
     name: "rewardBalance",
     route:
-      "/(rewardBalance)/:statType/:unit/:format((?!global)[a-zA-Z0-9]+)?/:global?",
+      "/(rewardBalance)/:statType/:unit/:format([prettyValue|value]*)?/:global?",
   },
 ];
 
 export const StatPatterns = StatPaths.map((pattern) =>
   pathToRegexp(pattern.route)
 );
-
-function getStatValue(statValue: string) {
-  try {
-    return JSON.parse(statValue);
-  } catch {
-    return statValue;
-  }
-}
 
 export function useBigStat(props: BigStat): BigStatHook {
   const { statType, flexReverse, alignment } = props;
@@ -666,7 +658,7 @@ export function useBigStat(props: BigStat): BigStatHook {
 
   const statPath = StatPaths.find((pattern) => pattern.name === queryName);
 
-  // Get a list all possible keys
+  // Get a list all possible keys in path
   const keys = [];
   const regex = pathToRegexp(statPath?.route, keys, {
     strict: false,
@@ -674,10 +666,12 @@ export function useBigStat(props: BigStat): BigStatHook {
     end: true,
   });
 
-  const result2 = regex.exec(statType);
+  const allQueryArgs = regex.exec(statType) as RegExpExecArray;
 
   // Retrieve all key values in order including undefined
-  const queryArgs = keys.map((_, i) => decodeURIComponent(result2[i + 1]));
+  const queryArgs = keys.map((_, i) =>
+    allQueryArgs[i + 1] ? decodeURIComponent(allQueryArgs[i + 1]) : undefined
+  );
   //  remove query name from list
   queryArgs.shift();
 

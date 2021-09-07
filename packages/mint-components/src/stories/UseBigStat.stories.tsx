@@ -105,31 +105,31 @@ export const GlobalRewardsCount = createHookStory(() =>
 export const RewardsCountByUnit = createHookStory(() =>
   View(
     "/rewardsCountFiltered/CREDIT/COFFEE",
-    "/(rewardsCountFiltered)/:statType?/:unit?/:status((?!global)[a-zA-Z0-9]+)?/:global?"
+    "/(rewardsCountFiltered)/:statType?/:unit?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
   )
 );
 export const GlobalRewardsCountByUnit = createHookStory(() =>
   View(
     "/rewardsCountFiltered/CREDIT/COFFEE/global",
-    "/(rewardsCountFiltered)/:statType?/:unit?/:status((?!global)[a-zA-Z0-9]+)?/:global?"
+    "/(rewardsCountFiltered)/:statType?/:unit?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
   )
 );
 export const GlobalPendingRewardsCount = createHookStory(() =>
   View(
     "/rewardsCountFiltered/CREDIT/COFFEE/PENDING/global",
-    "/(rewardsCountFiltered)/:statType?/:unit?/:status((?!global)[a-zA-Z0-9]+)?/:global?"
+    "/(rewardsCountFiltered)/:statType?/:unit?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
   )
 );
 export const GlobalRewardsCountByIntegration = createHookStory(() =>
   View(
     "/integrationRewardsCountFiltered/AVAILABLE/global",
-    "/(integrationRewardsCountFiltered)/:format((?!global)[a-zA-Z0-9]+)?/:global?"
+    "/(integrationRewardsCountFiltered)/:format([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
   )
 );
 export const GlobalRewardsCountByPendingIntegration = createHookStory(() =>
   View(
     "/integrationRewardsCountFiltered/PENDING/global",
-    "/(integrationRewardsCountFiltered)/:format((?!global)[a-zA-Z0-9]+)?/:global?"
+    "/(integrationRewardsCountFiltered)/:format([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
   )
 );
 export const RewardsMonth = createHookStory(() =>
@@ -171,14 +171,14 @@ export const RewardsAvailableWithSlash = createHookStory(() =>
 export const RewardBalance = createHookStory(() =>
   View(
     "/rewardBalance/CREDIT/COFFEE/prettyValue",
-    "/(rewardBalance)/:statType/:unit/:format((?!global)[a-zA-Z0-9]+)?/:global?"
+    "/(rewardBalance)/:statType/:unit/:format([prettyValue|value]*)?/:global?"
   )
 );
 export const RewardBalanceCashUSD = createHookStory(() => {
   const unit = encodeURIComponent("CASH/USD");
   return View(
     `/rewardBalance/CREDIT/${unit}/prettyValue`,
-    "/(rewardBalance)/:statType/:unit/:format((?!global)[a-zA-Z0-9]+)?/:global?"
+    "/(rewardBalance)/:statType/:unit/:format([prettyValue|value]*)?/:global?"
   );
 });
 
