@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import {Select, CreatableSelect, SelectNarrow} from "../Select";
 
-storiesOf("Components / Select", module).add("Empty Selection", () => {
+storiesOf("Archived / Select", module).add("Empty Selection", () => {
   return (
     <div style={{ margin: "100px" }}>
         <Select
@@ -18,7 +18,7 @@ storiesOf("Components / Select", module).add("Empty Selection", () => {
   );
 });
 
-storiesOf("Components / Select", module).add("Enabled", () => {
+storiesOf("Archived / Select", module).add("Enabled", () => {
   return (
     <div style={{ margin: "100px" }}>
         <Select
@@ -34,7 +34,7 @@ storiesOf("Components / Select", module).add("Enabled", () => {
   );
 });
 
-storiesOf("Components / Select", module).add("Enabled (narrow)", () => {
+storiesOf("Archived / Select", module).add("Enabled (narrow)", () => {
   return (
     <div style={{ margin: "100px" }}>
         <SelectNarrow
@@ -50,7 +50,7 @@ storiesOf("Components / Select", module).add("Enabled (narrow)", () => {
   );
 });
 
-storiesOf("Components / Select", module).add("Enabled with value", () => {
+storiesOf("Archived / Select", module).add("Enabled with value", () => {
   return (
     <div style={{ margin: "100px" }}>
         <Select
@@ -67,7 +67,7 @@ storiesOf("Components / Select", module).add("Enabled with value", () => {
   );
 });
 
-storiesOf("Components / Select", module).add("Disabled", () => {
+storiesOf("Archived / Select", module).add("Disabled", () => {
   return (
     <div style={{ margin: "100px" }}>
         <Select
@@ -84,7 +84,7 @@ storiesOf("Components / Select", module).add("Disabled", () => {
   );
 });
 
-storiesOf("Components / Select", module).add("Createable", () => {
+storiesOf("Archived / Select", module).add("Createable", () => {
   return (
     <div style={{ margin: "100px" }}>
         <CreatableSelect
