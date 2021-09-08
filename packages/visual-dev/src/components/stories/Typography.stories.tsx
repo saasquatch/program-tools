@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import { AttributeHeading, ErrorBlock, H1, H2, H3, P, WidgetTitle } from "../Typography";
 
-storiesOf("Components / Typography", module).add("Header 1", () => {
+storiesOf("Archived / Typography", module).add("Header 1", () => {
   return (
     <div style={{ margin: "100px" }}>
       <H1>This is a H1</H1>
@@ -10,7 +10,7 @@ storiesOf("Components / Typography", module).add("Header 1", () => {
   );
 });
 
-storiesOf("Components / Typography", module).add("Header 2", () => {
+storiesOf("Archived / Typography", module).add("Header 2", () => {
   return (
     <div style={{ margin: "100px" }}>
       <H2>This is a H2</H2>
@@ -18,7 +18,7 @@ storiesOf("Components / Typography", module).add("Header 2", () => {
   );
 });
 
-storiesOf("Components / Typography", module).add("Header 3", () => {
+storiesOf("Archived / Typography", module).add("Header 3", () => {
   return (
     <div style={{ margin: "100px" }}>
       <H3>This is a H3</H3>
@@ -26,7 +26,7 @@ storiesOf("Components / Typography", module).add("Header 3", () => {
   );
 });
 
-storiesOf("Components / Typography", module).add("Paragraph", () => {
+storiesOf("Archived / Typography", module).add("Paragraph", () => {
   return (
     <div style={{ margin: "100px" }}>
       <P>This is a P</P>
@@ -34,7 +34,7 @@ storiesOf("Components / Typography", module).add("Paragraph", () => {
   );
 });
 
-storiesOf("Components / Typography", module).add("Paragraph no margin", () => {
+storiesOf("Archived / Typography", module).add("Paragraph no margin", () => {
   return (
     <div style={{ margin: "100px" }}>
       <P noMargin={true}>This is a P without margins</P>
@@ -42,7 +42,7 @@ storiesOf("Components / Typography", module).add("Paragraph no margin", () => {
   );
 });
 
-storiesOf("Components / Typography", module).add("Attribute heading", () => {
+storiesOf("Archived / Typography", module).add("Attribute heading", () => {
   return (
     <div style={{ margin: "100px" }}>
       <AttributeHeading >This is an attribute heading</AttributeHeading>
@@ -50,7 +50,7 @@ storiesOf("Components / Typography", module).add("Attribute heading", () => {
   );
 });
 
-storiesOf("Components / Typography", module).add("Widget title", () => {
+storiesOf("Archived / Typography", module).add("Widget title", () => {
   return (
     <div style={{ margin: "100px" }}>
       <WidgetTitle >This is an widget title</WidgetTitle>
@@ -58,7 +58,7 @@ storiesOf("Components / Typography", module).add("Widget title", () => {
   );
 });
 
-storiesOf("Components / Typography", module).add("Error", () => {
+storiesOf("Archived / Typography", module).add("Error", () => {
   return (
     <div style={{ margin: "100px" }}>
       <ErrorBlock>This is an error</ErrorBlock>

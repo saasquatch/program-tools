@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import { Icon } from "../Icons";
 
-storiesOf("Components / Icons", module).add("Default ", () => {
+storiesOf("Archived / Icons", module).add("Default ", () => {
     return (
       <div style={{ margin: "100px" }}>
         <Icon icon={"icon-sqh-trash"} />
@@ -11,7 +11,7 @@ storiesOf("Components / Icons", module).add("Default ", () => {
   });
 
 
-storiesOf("Components / Icons", module).add("Color Icon", () => {
+storiesOf("Archived / Icons", module).add("Color Icon", () => {
     return (
       <div style={{ margin: "100px" }}>
         <Icon color={"#65bd60"} icon={"icon-sqh-trash"} />
@@ -19,7 +19,7 @@ storiesOf("Components / Icons", module).add("Color Icon", () => {
     );
   });
 
-storiesOf("Components / Icons", module).add("Large Icon", () => {
+storiesOf("Archived / Icons", module).add("Large Icon", () => {
     return (
       <div style={{ margin: "100px" }}>
         <Icon fontSize={"32px"} icon={"icon-sqh-trash"} />
@@ -27,7 +27,7 @@ storiesOf("Components / Icons", module).add("Large Icon", () => {
     );
   });
 
-storiesOf("Components / Icons", module).add("Salesforce Icon", () => {
+storiesOf("Archived / Icons", module).add("Salesforce Icon", () => {
     return (
       <div style={{ margin: "100px" }}>
         <Icon color={"black"} fontSize={"32px"} icon={"icon-sqh-salesforce"} />
