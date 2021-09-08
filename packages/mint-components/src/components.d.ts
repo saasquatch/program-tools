@@ -452,6 +452,9 @@ export namespace Components {
         "innerTemplate": string;
     }
     interface SqmReferralTableColumn {
+        /**
+          * @uiName Column Title
+         */
         "columnTitle": string;
         "renderCell": (_: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
@@ -460,7 +463,13 @@ export namespace Components {
         "date": number;
     }
     interface SqmReferralTableDateColumn {
+        /**
+          * @uiName Date Column Title
+         */
         "columnTitle": string;
+        /**
+          * @uiName Date Displayed
+         */
         "dateShown": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
@@ -486,8 +495,17 @@ export namespace Components {
         "statusText": string;
     }
     interface SqmReferralTableStatusColumn {
+        /**
+          * @uiName Column Title
+         */
         "columnTitle": string;
+        /**
+          * @uiName Converted Status Text
+         */
         "convertedStatusText": string;
+        /**
+          * @uiName In Progress Status Text
+         */
         "inProgressStatusText": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
@@ -1463,13 +1481,22 @@ declare namespace LocalJSX {
         "innerTemplate"?: string;
     }
     interface SqmReferralTableColumn {
+        /**
+          * @uiName Column Title
+         */
         "columnTitle"?: string;
     }
     interface SqmReferralTableDateCell {
         "date"?: number;
     }
     interface SqmReferralTableDateColumn {
+        /**
+          * @uiName Date Column Title
+         */
         "columnTitle"?: string;
+        /**
+          * @uiName Date Displayed
+         */
         "dateShown"?: string;
     }
     interface SqmReferralTableRewardsCell {
@@ -1491,8 +1518,17 @@ declare namespace LocalJSX {
         "statusText"?: string;
     }
     interface SqmReferralTableStatusColumn {
+        /**
+          * @uiName Column Title
+         */
         "columnTitle"?: string;
+        /**
+          * @uiName Converted Status Text
+         */
         "convertedStatusText"?: string;
+        /**
+          * @uiName In Progress Status Text
+         */
         "inProgressStatusText"?: string;
     }
     interface SqmReferralTableUserCell {
