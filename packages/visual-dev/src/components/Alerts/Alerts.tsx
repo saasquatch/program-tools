@@ -1,54 +1,26 @@
-import React from 'react'
-import styled from 'styled-components';
+import * as React from 'react';
+import styled from 'styled-components'
 
-const AlertStyle = styled.div`
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
-	padding: 16px;
-	font-family: Helvatica Neue, Arial;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 14px;
-	line-height: 20px;
-	color: #575757;
-	box-sizing: border-box;
-	border: 1px solid;
-	border-radius: 5px;
-`;
+import * as Styles from './Styles'
 
-const AlertBackground = {
-	"critical": "#FAF2EE",
-	"warning": "#FCF8E3",
-	"success": "#E4FCE3",
-	"info": "#F9F9F9"
+interface AlertProps {
+	type?: "critical" | "warning" | "success" | "info"
+	title?: string
+	children: string
 }
 
-const AlertBorder = {
-	"critical": "#D14040",
-	"warning": "#F1C359",
-	"success": "#57AC59",
-	"info": "#E2E2E2"
-}
+const AlertDiv = styled.div<Required<AlertProps>>`
+	${Styles.base}
+	${props => Styles[props.type]}
+`
 
-interface Props {
-	type: string;
-	title: string;
-	text: string;
-}
-
-const Alert: React.FC<Props> = ({
-	type, 
+export const AlertComponent: React.FC<AlertProps> = ({
+	type,
 	title,
-	text
+	children
 }) => {
 	return (
-		<AlertStyle
-			style={{
-				backgroundColor: AlertBackground[type],
-				borderColor: AlertBorder[type]
-			}}
-		>
+		<AlertDiv type={type}>
 			{type === "critical" &&
 			<svg
 				style={{minHeight: "23px", minWidth: "23px"}}
@@ -120,11 +92,16 @@ const Alert: React.FC<Props> = ({
 			</svg>
 			}
 			<div style={{paddingLeft: 16}}>
-				<span style={{fontWeight: 'bold'}}>{title} </span>
-				<span> <br/>{text} </span>
+				{ title != null ? 
+				<div>
+					<span style={{fontWeight: 'bold'}}>{title} </span>
+					<span> <br/>{children} </span>
+				</div>
+				:
+				<span> {children} </span>
+				}
 			</div>
-		</AlertStyle>
-	);
+		</AlertDiv>
+	)
 }
 
-export default Alert;

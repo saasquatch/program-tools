@@ -1,51 +1,16 @@
 import React from "react";
-import { storiesOf } from "@storybook/react";
-import Alert from "../Alerts";
+import { AlertComponent } from "../Alerts";
 
-storiesOf("Components / Alerts", module).add("Critical ", () => {
-	return (
-		<div style={{ margin: "20px", width: "308px", height: "76px" }}>
-			<Alert
-				type="critical"
-				title="A critical alert"
-				text="An explanation of what the alert is."
-			/>
-		</div>
-	);
-});
 
-storiesOf("Components / Alerts", module).add("Warning ", () => {
-	return (
-		<div style={{ margin: "20px", width: "308px", height: "76px" }}>
-			<Alert
-				type="warning"
-				title="A warning alert"
-				text="An explanation of what the alert is."
-			/>
-		</div>
-	);
-});
+export default {
+  title: "Components / Alerts",
+  component: AlertComponent
+}
 
-storiesOf("Components / Alerts", module).add("Success ", () => {
-	return (
-		<div style={{ margin: "20px", width: "308px", height: "76px" }}>
-			<Alert
-				type="success"
-				title="A success alert"
-				text="An explanation of what the alert is."
-			/>
-		</div>
-	);
-});
+export const critical = () => <AlertComponent type='critical' title='A critical alert'>An explanation of what this alert is.</AlertComponent>
+export const warning = () => <AlertComponent type='warning' title='A warning alert'>An explanation of what this alert is.</AlertComponent>
+export const success = () => <AlertComponent type='success' title='A success alert'>An explanation of what this alert is.</AlertComponent>
+export const info = () => <AlertComponent type='info' title='An info alert'>An explanation of what this alert is in multiple lines.</AlertComponent>
 
-storiesOf("Components / Alerts", module).add("Info ", () => {
-	return (
-		<div style={{ margin: "20px", width: "308px", height: "76px" }}>
-			<Alert
-				type="info"
-				title="An info alert"
-				text="A long explanation of what the alert is and takes up multiple lines."
-			/>
-		</div>
-	);
-});
+export const noTitle = () => <AlertComponent type='critical'>No title test. An explanation of what this alert is in multiple multiple multiple multiple lines.</AlertComponent>
+export const noType = () => <AlertComponent>No type test. An explanation of what this alert is in multiple multiple multiple multiple lines.</AlertComponent>
