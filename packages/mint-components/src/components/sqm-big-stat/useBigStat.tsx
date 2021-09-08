@@ -500,7 +500,7 @@ const rewardsBalanceQuery = (
           value: 0
           unit: $unit
           locale: $locale
-          formatType: UNIT_FORMATTED
+          formatType: $format
         )
         viewer: viewer {
           ... on User {
