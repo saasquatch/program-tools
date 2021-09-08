@@ -7,6 +7,10 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
   tag: "sqm-referral-table-user-column",
   shadow: true,
 })
+
+/**
+ * @uiName Referral Table User Column
+ */
 export class ReferralTableUserColumn implements ReferralTableColumn {
   @Prop() columnTitle: string = "Customer";
   /**
@@ -28,7 +32,10 @@ export class ReferralTableUserColumn implements ReferralTableColumn {
     let name: string;
     if (!data?.referredUser) {
       name = this.deletedUser;
-    } else if (!data?.referredUser?.firstName && !data?.referredUser?.lastName) {
+    } else if (
+      !data?.referredUser?.firstName &&
+      !data?.referredUser?.lastName
+    ) {
       name = this.anonymousUser;
     } else {
       name = `${data?.referredUser?.firstName} ${data?.referredUser?.lastName}`;

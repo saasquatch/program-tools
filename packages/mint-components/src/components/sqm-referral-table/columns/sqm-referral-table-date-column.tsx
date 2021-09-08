@@ -7,8 +7,18 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
   tag: "sqm-referral-table-date-column",
   shadow: true,
 })
+
+/**
+ * @uiName Referral Table Date Column
+ */
 export class ReferralTableDateColumn implements ReferralTableColumn {
+  /**
+   * @uiName Date Column Title
+   */
   @Prop() columnTitle: string = "Date Converted";
+  /**
+   * @uiName Date Displayed
+   */
   @Prop() dateShown: string = "dateConverted";
 
   constructor() {
@@ -17,7 +27,7 @@ export class ReferralTableDateColumn implements ReferralTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data:Referral) {
+  async renderCell(data: Referral) {
     // TODO - Validate `dateShown` against a set of known values
     return (
       <sqm-referral-table-date-cell

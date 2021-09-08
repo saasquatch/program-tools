@@ -7,9 +7,24 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
   tag: "sqm-referral-table-status-column",
   shadow: true,
 })
+
+/**
+ * @uiName Referral Table Status Column
+ */
 export class ReferralTableStatusColumn implements ReferralTableColumn {
+  /**
+   * @uiName Column Title
+   */
   @Prop() columnTitle: string = "Status";
+
+  /**
+   * @uiName Converted Status Text
+   */
   @Prop() convertedStatusText: string = "Converted";
+
+  /**
+   * @uiName In Progress Status Text
+   */
   @Prop() inProgressStatusText: string = "In Progress";
 
   constructor() {

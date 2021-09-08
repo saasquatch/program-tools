@@ -7,16 +7,23 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
   tag: "sqm-referral-table-column",
   shadow: true,
 })
-export class ReferralTableGenericColumn implements ReferralTableColumn{
+
+/**
+ * @uiName Referral Table Generic Column
+ */
+export class ReferralTableGenericColumn implements ReferralTableColumn {
+  /**
+   * @uiName Column Title
+   */
   @Prop() columnTitle: string;
 
   constructor() {
     withHooks(this);
   }
   disconnectedCallback() {}
-  
+
   @Method()
-  async renderCell(_:Referral) {
+  async renderCell(_: Referral) {
     // this is insecure, <script> tags can be added
     return (
       <sqm-referral-table-cell

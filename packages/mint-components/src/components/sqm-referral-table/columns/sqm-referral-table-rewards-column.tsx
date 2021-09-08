@@ -7,6 +7,10 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
   tag: "sqm-referral-table-rewards-column",
   shadow: true,
 })
+
+/**
+ * @uiName Referral Table Rewards Column
+ */
 export class ReferralTableRewardsColumn implements ReferralTableColumn {
   /**
    * @uiName Reward column title
