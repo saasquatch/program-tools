@@ -23,10 +23,8 @@ export const Alert: React.FC<AlertProps> = ({
 		<AlertDiv type={type}>
 			{SVG[type]}
 			<div style={{paddingLeft: 16}}>
-				<div>
-					<div style={{fontWeight: 'bold'}}>{title} </div>
-					<div>{children}</div>
-				</div>
+				<div style={{fontWeight: 'bold'}}>{title} </div>
+				<div>{children}</div>
 			</div>
 		</AlertDiv>
 	)
