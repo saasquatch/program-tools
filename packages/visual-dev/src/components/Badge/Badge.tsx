@@ -20,7 +20,7 @@ export const Badge: React.FC<BadgeProps> = ({ status, children, icon }) => {
       {icon && (
         <Icon
           color="inherit"
-          icon={icon && icon === true ? Styles.defaultIcon : icon}
+          icon={icon === true ? Styles.defaultIcon : icon}
           margin="0px 4px"
         />
       )}
