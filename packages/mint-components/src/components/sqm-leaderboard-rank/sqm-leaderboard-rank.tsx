@@ -38,7 +38,7 @@ export class LeaderboardRank {
    */
   @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   /**
-   * @uiName Rank Text
+   * @uiName Unranked Text
    */
   @Prop() unrankedText: string;
   /**
