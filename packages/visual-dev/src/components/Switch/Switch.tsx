@@ -4,75 +4,38 @@ import styled from 'styled-components'
 import * as Styles from './Styles'
 
 interface SwitchProps {
-    color?: "green" | "red"
-    size?: "small" | "medium" | "large"
-    children: string
+    id: string
+    status?: "on" | "off"
+    color?: "success" | "critical"
 }
 
-const Button = styled.button<Required<SwitchProps>>`
+const SwitchDiv = styled.div`
+    ${Styles.wrapper}
+`;
+
+const SwitchLabel = styled.label`
     ${Styles.base}
-    ${props => Styles[props.color]}
-    ${props => Styles[props.size]}
-`
+`;
+
+const SwitchBox = styled.input<Required<{color:string}>>`
+    ${Styles.off}
+    &:checked + ${SwitchLabel} {
+        ${props => Styles[props.color]}
+        ${Styles.on}
+    }
+`;
 
 export const Switch: React.FC<SwitchProps> = ({
-    color = "green",
-    size = "medium",
-    children
+    id,
+    color = "success",
+    status = "off"
 }) => {
     return (
-    <   div>
-            <CheckBoxWrapper>
-                <CheckBox id="checkbox" type="checkbox" />
-                <CheckBoxLabel htmlFor="checkbox" />
-            </CheckBoxWrapper>
+        <div>
+            <SwitchDiv>
+                <SwitchBox color={color} id={id} type="checkbox" defaultChecked={status=="on" ? true : false}/>
+                <SwitchLabel htmlFor={id}/>
+            </SwitchDiv>
         </div>
     )
 }
-
-const CheckBoxWrapper = styled.div`
-  position: relative;
-`;
-const CheckBoxLabel = styled.label`
-    ${Styles.color}
-  position: absolute;
-  border: 8px solid #E2E2E2;
-  top: 0;
-  left: 0;
-  width: 82px;
-  height: 37px;
-  border-radius: 100px;
-  background: #ebebeb;
-  cursor: pointer;
-  &::after {
-    content: "";
-    display: block;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    margin: -5px;
-    background: #ffffff;
-    border: 8px solid #e2e2e2;
-    transition: 0.1s;
-  }
-`;
-const CheckBox = styled.input`
-  opacity: 0;
-  z-index: 1;
-
-  border-radius: 15px;
-  width: 42px;
-  height: 26px;
-  &:checked + ${CheckBoxLabel} {
-    background: #57ac59;
-    &::after {
-      content: "";
-      display: block;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      margin-left: 40px;
-      transition: 0.1s;
-    }
-  }
-`;

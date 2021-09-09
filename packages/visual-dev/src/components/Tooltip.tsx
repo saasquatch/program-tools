@@ -66,14 +66,13 @@ const TooltipStyle = styled.div`
 	}
 	
 	&.Tooltip-Tip.left::before {
-		right: calc(${arrow} * -1);
+		left: calc(${arrow} * -1);
 		top: 50%;
-		transform: translateX(1440%) translateY(-50%);
-		border-left-color: ${background};
+		transform: translateX(0) translateY(-50%);
+		border-right-color: ${background};
 	}
 
 	
-
 
 	&.Tooltip-Tip.top {
 		top: calc(${margin} * -1);
