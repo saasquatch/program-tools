@@ -49,6 +49,7 @@ export namespace Components {
         /**
           * @uiName Alignment - controls the alignment of the flexbox
           * @uiType string
+          * @uiEnum ["left", "right", "center"]
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -72,6 +73,7 @@ export namespace Components {
         /**
           * @uiName Direction
           * @uiType string
+          * @uiEnum ["row", "column"]
          */
         "direction": "row" | "column";
         /**
@@ -153,11 +155,13 @@ export namespace Components {
         /**
           * @uiName Leaderboard type
           * @uiType string
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
          */
         "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
         /**
           * @uiName Rank type
           * @uiType string
+          * @uiEnum ["rowNumber", "rank", "denseRank"]
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
         /**
@@ -184,12 +188,14 @@ export namespace Components {
         /**
           * @uiName Leaderboard type
           * @uiType string
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
          */
         "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
         "rankText": string;
         /**
           * @uiName Default rank
           * @uiType string
+          * @uiEnum ["rowNumber", "rank", "denseRank"]
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
         "unrankedText": string;
@@ -257,11 +263,13 @@ export namespace Components {
         /**
           * @uiName Specify padding on the popup contents when in embedded mode
           * @uiType string
+          * @uiEnum ["none", "small", "medium", "large"]
          */
         "embedPadding"?: "none" | "small" | "medium" | "large";
         /**
           * @uiName Specify padding on the popup contents when in popup mode
           * @uiType string
+          * @uiEnum ["none", "small", "medium", "large"]
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
@@ -280,11 +288,13 @@ export namespace Components {
         /**
           * @uiName Direction
           * @uiType string
+          * @uiEnum ["row", "column"]
          */
         "direction": "row" | "column";
         /**
           * @uiName Gap
           * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "gap": Spacing;
         /**
@@ -293,6 +303,8 @@ export namespace Components {
         "minWidth"?: string;
         /**
           * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "padding": Spacing;
     }
@@ -535,6 +547,7 @@ export namespace Components {
         "columnTitle": string;
         /**
           * @uiName Date Displayed
+          * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
          */
         "dateShown": string;
         "renderCell": (data: Referral) => Promise<any>;
@@ -729,6 +742,7 @@ export namespace Components {
         /**
           * @uiName Space between stats
           * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "space": Spacing;
     }
@@ -751,6 +765,7 @@ export namespace Components {
         /**
           * @uiName Text
           * @uiType string
+          * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
          */
         "type": "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
@@ -759,11 +774,13 @@ export namespace Components {
         /**
           * @uiName Label margin style
           * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "labelMargin": Spacing;
         /**
           * @uiName Section padding
           * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "padding": Spacing;
     }
@@ -1164,6 +1181,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Alignment - controls the alignment of the flexbox
           * @uiType string
+          * @uiEnum ["left", "right", "center"]
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -1187,6 +1205,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Direction
           * @uiType string
+          * @uiEnum ["row", "column"]
          */
         "direction"?: "row" | "column";
         /**
@@ -1268,11 +1287,13 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard type
           * @uiType string
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
          */
         "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
         /**
           * @uiName Rank type
           * @uiType string
+          * @uiEnum ["rowNumber", "rank", "denseRank"]
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
         /**
@@ -1299,12 +1320,14 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard type
           * @uiType string
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
          */
         "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
         "rankText"?: string;
         /**
           * @uiName Default rank
           * @uiType string
+          * @uiEnum ["rowNumber", "rank", "denseRank"]
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
         "unrankedText"?: string;
@@ -1372,11 +1395,13 @@ declare namespace LocalJSX {
         /**
           * @uiName Specify padding on the popup contents when in embedded mode
           * @uiType string
+          * @uiEnum ["none", "small", "medium", "large"]
          */
         "embedPadding"?: "none" | "small" | "medium" | "large";
         /**
           * @uiName Specify padding on the popup contents when in popup mode
           * @uiType string
+          * @uiEnum ["none", "small", "medium", "large"]
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
@@ -1395,11 +1420,13 @@ declare namespace LocalJSX {
         /**
           * @uiName Direction
           * @uiType string
+          * @uiEnum ["row", "column"]
          */
         "direction"?: "row" | "column";
         /**
           * @uiName Gap
           * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "gap"?: Spacing;
         /**
@@ -1408,6 +1435,8 @@ declare namespace LocalJSX {
         "minWidth"?: string;
         /**
           * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "padding"?: Spacing;
     }
@@ -1648,6 +1677,7 @@ declare namespace LocalJSX {
         "columnTitle"?: string;
         /**
           * @uiName Date Displayed
+          * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
          */
         "dateShown"?: string;
     }
@@ -1834,6 +1864,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Space between stats
           * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "space"?: Spacing;
     }
@@ -1856,6 +1887,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Text
           * @uiType string
+          * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
          */
         "type"?: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
@@ -1864,11 +1896,13 @@ declare namespace LocalJSX {
         /**
           * @uiName Label margin style
           * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "labelMargin"?: Spacing;
         /**
           * @uiName Section padding
           * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "padding"?: Spacing;
     }

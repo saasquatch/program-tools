@@ -22,13 +22,6 @@ export class BigStat {
    * @uiWidget StatTypeSelectWidget
    * @uiName Stat Type
    * @uiOptions {"version": 1.1}
-   * @uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit",
-   *  "/rewardBalance/CREDIT/CASH_CAD/prettyValue",
-   *  "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit",
-   *  "/rewardBalance/CREDIT/CASH_USD/prettyPendingCredit",
-   *  "/rewardBalance/CREDIT/CASH_USD/prettyValue",
-   *  "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit",
-   *  "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"]
    */
   @Prop() statType: string;
 
