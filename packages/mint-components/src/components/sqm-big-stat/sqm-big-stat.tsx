@@ -38,6 +38,7 @@ export class BigStat {
   @Prop() flexReverse?: boolean = false;
   /**
    * @uiName Alignment - controls the alignment of the flexbox
+   * @uiType string
    */
   @Prop() alignment?: "left" | "right" | "center";
 

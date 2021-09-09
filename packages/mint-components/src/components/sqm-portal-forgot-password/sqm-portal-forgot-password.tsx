@@ -24,13 +24,13 @@ export class PortalForgotPassword {
    * @uiName Email label
    */
   @Prop()
-  emailLabel = "Email";
+  emailLabel: string = "Email";
 
   /**
    * @uiName Password reset button text
    */
   @Prop()
-  submitLabel = "Request Password Reset";
+  submitLabel: string = "Request Password Reset";
 
   /**
    * @undocumented

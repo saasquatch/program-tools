@@ -15,7 +15,10 @@ export class StatContainer {
   @State()
   ignored = true;
 
-  /**@uiName Space between stats */
+  /**
+   * @uiName Space between stats
+   * @uiType string
+   */
   @Prop() space: Spacing = "xxx-large";
 
   constructor() {

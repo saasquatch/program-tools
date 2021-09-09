@@ -1,4 +1,4 @@
-import { Component, h, Host, Prop, State } from "@stencil/core";
+import { Component, h, Host, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useProgramMenu } from "./useProgramMenu";
 import { getProps } from "../../utils/utils";
@@ -15,11 +15,6 @@ export class ProgramMenu {
   @State()
   ignored = true;
 
-  /**
-   * @uiName Label on the header menu
-   */
-  @Prop() menuLabel: string;
-
   constructor() {
     withHooks(this);
   }
@@ -27,9 +22,6 @@ export class ProgramMenu {
 
   render() {
     const { data, ref } = useProgramMenu(getProps(this));
-    // const props = isDemo()
-    //   ? useProgramMenuDemo(getProps(this))
-    //   : useProgramMenu(getProps(this));
     return (
       <Host style={{ display: "contents" }}>
         <sl-select

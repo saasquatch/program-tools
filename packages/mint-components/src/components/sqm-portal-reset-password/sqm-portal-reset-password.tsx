@@ -24,7 +24,7 @@ export class PortalResetPassword {
    * @uiName Next page path
    */
   @Prop()
-  nextPage = "/";
+  nextPage: string = "/";
 
   /**
    * @uiName Show confirm password

@@ -14,9 +14,15 @@ import { PortalSectionView } from "./sqm-portal-section-view";
 export class TitledSection {
   @Prop() label: string;
 
-  /**@uiName Label margin style */
+  /**
+   * @uiName Label margin style
+   * @uiType string
+   */
   @Prop() labelMargin: Spacing = "small";
-  /** @uiName Section padding */
+  /**
+   * @uiName Section padding
+   * @uiType string
+   */
   @Prop() padding: Spacing = "none";
 
   constructor() {

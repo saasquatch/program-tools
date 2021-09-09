@@ -48,6 +48,7 @@ export namespace Components {
     interface SqmBigStat {
         /**
           * @uiName Alignment - controls the alignment of the flexbox
+          * @uiType string
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -70,6 +71,7 @@ export namespace Components {
     interface SqmDividedLayout {
         /**
           * @uiName Direction
+          * @uiType string
          */
         "direction": "row" | "column";
         /**
@@ -128,6 +130,9 @@ export namespace Components {
         "type": string;
     }
     interface SqmGraphqlClientProvider {
+        /**
+          * @uiName Domain
+         */
         "domain": string;
     }
     interface SqmHookStoryContainer {
@@ -274,10 +279,12 @@ export namespace Components {
     interface SqmPortalContainer {
         /**
           * @uiName Direction
+          * @uiType string
          */
         "direction": "row" | "column";
         /**
           * @uiName Gap
+          * @uiType string
          */
         "gap": Spacing;
         /**
@@ -358,6 +365,9 @@ export namespace Components {
         "submitLabel": string;
     }
     interface SqmPortalLogout {
+        /**
+          * @uiName Next Page path
+         */
         "nextPage": string;
     }
     interface SqmPortalProfile {
@@ -388,8 +398,17 @@ export namespace Components {
         "showCountry": boolean;
     }
     interface SqmPortalProtectedRoute {
+        /**
+          * @uiName Redirect Path
+         */
         "redirectTo": string;
+        /**
+          * @uiName Redirect unverified users path
+         */
         "redirectToUnverified": string;
+        /**
+          * @uiName Require Email Verification
+         */
         "requireEmailVerification": boolean;
     }
     interface SqmPortalRegister {
@@ -462,10 +481,6 @@ export namespace Components {
         "nextPage": string;
     }
     interface SqmProgramMenu {
-        /**
-          * @uiName Label on the header menu
-         */
-        "menuLabel": string;
     }
     interface SqmReferralTable {
         /**
@@ -713,6 +728,7 @@ export namespace Components {
     interface SqmStatContainer {
         /**
           * @uiName Space between stats
+          * @uiType string
          */
         "space": Spacing;
     }
@@ -728,17 +744,26 @@ export namespace Components {
     interface SqmText {
     }
     interface SqmTextSpan {
+        /**
+          * @uiName Text
+         */
         "text": string;
+        /**
+          * @uiName Text
+          * @uiType string
+         */
         "type": "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
     interface SqmTitledSection {
         "label": string;
         /**
           * @uiName Label margin style
+          * @uiType string
          */
         "labelMargin": Spacing;
         /**
           * @uiName Section padding
+          * @uiType string
          */
         "padding": Spacing;
     }
@@ -1138,6 +1163,7 @@ declare namespace LocalJSX {
     interface SqmBigStat {
         /**
           * @uiName Alignment - controls the alignment of the flexbox
+          * @uiType string
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -1160,6 +1186,7 @@ declare namespace LocalJSX {
     interface SqmDividedLayout {
         /**
           * @uiName Direction
+          * @uiType string
          */
         "direction"?: "row" | "column";
         /**
@@ -1218,6 +1245,9 @@ declare namespace LocalJSX {
         "type"?: string;
     }
     interface SqmGraphqlClientProvider {
+        /**
+          * @uiName Domain
+         */
         "domain"?: string;
     }
     interface SqmHookStoryContainer {
@@ -1364,10 +1394,12 @@ declare namespace LocalJSX {
     interface SqmPortalContainer {
         /**
           * @uiName Direction
+          * @uiType string
          */
         "direction"?: "row" | "column";
         /**
           * @uiName Gap
+          * @uiType string
          */
         "gap"?: Spacing;
         /**
@@ -1448,6 +1480,9 @@ declare namespace LocalJSX {
         "submitLabel"?: string;
     }
     interface SqmPortalLogout {
+        /**
+          * @uiName Next Page path
+         */
         "nextPage"?: string;
     }
     interface SqmPortalProfile {
@@ -1478,8 +1513,17 @@ declare namespace LocalJSX {
         "showCountry"?: boolean;
     }
     interface SqmPortalProtectedRoute {
+        /**
+          * @uiName Redirect Path
+         */
         "redirectTo"?: string;
+        /**
+          * @uiName Redirect unverified users path
+         */
         "redirectToUnverified"?: string;
+        /**
+          * @uiName Require Email Verification
+         */
         "requireEmailVerification"?: boolean;
     }
     interface SqmPortalRegister {
@@ -1552,10 +1596,6 @@ declare namespace LocalJSX {
         "nextPage"?: string;
     }
     interface SqmProgramMenu {
-        /**
-          * @uiName Label on the header menu
-         */
-        "menuLabel"?: string;
     }
     interface SqmReferralTable {
         /**
@@ -1793,6 +1833,7 @@ declare namespace LocalJSX {
     interface SqmStatContainer {
         /**
           * @uiName Space between stats
+          * @uiType string
          */
         "space"?: Spacing;
     }
@@ -1808,17 +1849,26 @@ declare namespace LocalJSX {
     interface SqmText {
     }
     interface SqmTextSpan {
+        /**
+          * @uiName Text
+         */
         "text"?: string;
+        /**
+          * @uiName Text
+          * @uiType string
+         */
         "type"?: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
     interface SqmTitledSection {
         "label"?: string;
         /**
           * @uiName Label margin style
+          * @uiType string
          */
         "labelMargin"?: Spacing;
         /**
           * @uiName Section padding
+          * @uiType string
          */
         "padding"?: Spacing;
     }

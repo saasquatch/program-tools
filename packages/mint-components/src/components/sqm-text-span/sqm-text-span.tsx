@@ -13,8 +13,15 @@ export class Text {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Text
+   */
   @Prop() text: string;
 
+  /**
+   * @uiName Text
+   * @uiType string
+   */
   @Prop() type: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
 
   constructor() {

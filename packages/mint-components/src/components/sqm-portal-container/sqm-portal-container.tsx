@@ -15,11 +15,17 @@ export class PortalContainer {
   @State()
   ignored = true;
 
-  /** @uiName Direction */
+  /**
+   * @uiName Direction
+   * @uiType string
+   */
   @Prop() direction: "row" | "column" = "column";
   /** @uiName Padding */
   @Prop() padding: Spacing;
-  /** @uiName Gap */
+  /**
+   * @uiName Gap
+   * @uiType string
+   */
   @Prop() gap: Spacing = "xxx-large";
   /** @uiName Gap */
   @Prop() minWidth?: string;
