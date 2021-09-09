@@ -10,7 +10,6 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
   tag: "sqm-referral-table-column",
   shadow: true,
 })
-
 export class ReferralTableGenericColumn implements ReferralTableColumn {
   /**
    * @uiName Column Title
