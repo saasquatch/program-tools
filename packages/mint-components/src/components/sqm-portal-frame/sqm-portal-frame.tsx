@@ -11,14 +11,16 @@ import { DemoData } from "../../global/demo";
  */
 @Component({
   tag: "sqm-portal-frame",
-  // styleUrl: "sqm-portal-frame.scss",
   shadow: true,
 })
 export class PortalFrame {
   @State()
   ignored = true;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<PortalFrameViewProps>;
 
   constructor() {

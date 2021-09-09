@@ -16,10 +16,20 @@ import { useUserName } from "./useUserName";
 export class UserName {
   @State() _ignored: boolean = true;
 
+  /**
+   * @uiName Fallback name for nameless users
+   */
   @Prop() fallback: string = "Anonymous User";
+
+  /**
+   * @uiName Loading text
+   */
   @Prop() loadingText: string = "...";
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<UserNameViewProps>;
 
   constructor() {

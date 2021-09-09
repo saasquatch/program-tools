@@ -41,7 +41,10 @@ export class BigStat {
    */
   @Prop() alignment?: "left" | "right" | "center";
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<BigStatViewProps>;
 
   @State()

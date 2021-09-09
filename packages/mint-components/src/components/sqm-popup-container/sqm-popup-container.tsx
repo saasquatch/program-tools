@@ -7,7 +7,6 @@ import { getProps } from "../../utils/utils";
 /**
  * @uiName Popup container for widgets
  */
-
 @Component({
   tag: "sqm-popup-container",
   styleUrl: "sqm-popup-container.scss",

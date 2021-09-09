@@ -20,7 +20,10 @@ export class PortalChangePassword {
   @State()
   ignored = true;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<PortalChangePasswordViewProps>;
 
   constructor() {

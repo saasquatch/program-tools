@@ -41,7 +41,10 @@ export class ReferralTable {
   /** @uiName Show Referred by user in table  */
   @Prop() showReferrer?: boolean = false;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<ReferralTableViewProps>;
 
   constructor() {

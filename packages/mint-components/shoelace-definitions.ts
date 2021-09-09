@@ -46,4 +46,9 @@ export const ShoelaceComponents: GrapesJSModel[] = [
       },
     ],
   },
+  {
+    tag: "sl-skeleton",
+    name: "Loading Skeleton",
+    traits: [],
+  },
 ];

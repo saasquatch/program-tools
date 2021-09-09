@@ -42,7 +42,10 @@ export class PortalPasswordField {
    */
   @Prop() enableValidation: boolean = true;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: PasswordFieldViewDemoProps;
 
   constructor() {

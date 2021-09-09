@@ -20,13 +20,22 @@ export class PortalForgotPassword {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Email label
+   */
   @Prop()
   emailLabel = "Email";
 
+  /**
+   * @uiName Password reset button text
+   */
   @Prop()
   submitLabel = "Request Password Reset";
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<PortalForgotPasswordViewProps>;
 
   constructor() {

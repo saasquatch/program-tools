@@ -108,7 +108,10 @@ export class ShareButton {
    */
   @Prop() sharetext?: string;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<ShareButtonViewProps>;
 
   constructor() {

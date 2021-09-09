@@ -40,8 +40,10 @@ export class Leaderboard {
    * @uiOptions {"allowPastDates":true, "months": 1}
    */
   @Prop() interval: string;
-
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<LeaderboardViewProps>;
 
   @State()
@@ -103,7 +105,7 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
         ),
       },
     },
-    props.demoProps|| {},
+    props.demoProps || {},
     { arrayMerge: (_, a) => a }
   );
 }

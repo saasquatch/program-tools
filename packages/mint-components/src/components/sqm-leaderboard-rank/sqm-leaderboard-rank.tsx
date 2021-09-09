@@ -38,7 +38,10 @@ export class LeaderboardRank {
    */
   @Prop() interval: string;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<LeaderboardRankViewProps>;
 
   constructor() {

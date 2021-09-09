@@ -3,14 +3,13 @@ import { Component, h, Host, Method, Prop } from "@stencil/core";
 import { useRequestRerender } from "../re-render";
 import { ReferralTableColumn } from "./ReferralTableColumn";
 
+/**
+ * @uiName Referral Table Status Column
+ */
 @Component({
   tag: "sqm-referral-table-status-column",
   shadow: true,
 })
-
-/**
- * @uiName Referral Table Status Column
- */
 export class ReferralTableStatusColumn implements ReferralTableColumn {
   /**
    * @uiName Column Title

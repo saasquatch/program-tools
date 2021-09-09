@@ -59,7 +59,10 @@ export class PortalLogin {
   @Prop()
   pageLabel: string = "Sign in to your account";
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<PortalLoginViewProps>;
 
   constructor() {

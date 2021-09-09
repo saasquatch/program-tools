@@ -25,7 +25,10 @@ export class AssetCard {
    * */
   @Prop() imgUrl: string;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<AssetCardViewProps>;
 
   @State()

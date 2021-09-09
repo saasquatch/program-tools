@@ -4,7 +4,7 @@ import { useProgramMenu } from "./useProgramMenu";
 import { getProps } from "../../utils/utils";
 
 /**
- * @uiName Portal Frame
+ * @uiName Portal Menu
  */
 @Component({
   tag: "sqm-program-menu",

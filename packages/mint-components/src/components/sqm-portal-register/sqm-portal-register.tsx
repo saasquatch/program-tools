@@ -74,7 +74,10 @@ export class PortalRegister {
   @Prop()
   pageLabel: string = "Register";
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<PortalRegisterViewProps>;
 
   constructor() {

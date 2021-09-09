@@ -42,7 +42,10 @@ export class ShareLink {
   })
   tooltiplifespan: number = DEFAULT_TOOLTIP_LIFESPAN;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<ShareLinkViewProps>;
 
   constructor() {
