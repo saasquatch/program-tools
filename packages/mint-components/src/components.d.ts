@@ -155,9 +155,13 @@ export namespace Components {
         /**
           * @uiName Leaderboard type
           * @uiType string
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "rewardCount", "rewardValueSum", "singleUnitRewardValueSum"]
          */
-        "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
+        "leaderboardType": | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "rewardCount"
+    | "rewardValueSum"
+    | "singleUnitRewardValueSum";
         /**
           * @uiName Rank type
           * @uiType string
@@ -168,6 +172,11 @@ export namespace Components {
           * @uiName Stats Column Heading
          */
         "statsheading": string;
+        /**
+          * Unit used with leaderboard type "singleUnitRewardValueSum"
+          * @uiName Unit of reward sum
+         */
+        "unit"?: string;
         /**
           * @uiName User Column Heading
          */
@@ -191,6 +200,9 @@ export namespace Components {
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
          */
         "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
+        /**
+          * @uiName Rank Text
+         */
         "rankText": string;
         /**
           * @uiName Default rank
@@ -198,6 +210,9 @@ export namespace Components {
           * @uiEnum ["rowNumber", "rank", "denseRank"]
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
+        /**
+          * @uiName Unranked Text
+         */
         "unrankedText": string;
     }
     interface SqmNavigationMenu {
@@ -597,6 +612,9 @@ export namespace Components {
           * @uiName Name displayed for anonymous users
          */
         "anonymousUser": string;
+        /**
+          * @uiName User Column Title
+         */
         "columnTitle": string;
         /**
           * @uiName Name displayed for deleted users
@@ -1287,9 +1305,13 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard type
           * @uiType string
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "rewardCount", "rewardValueSum", "singleUnitRewardValueSum"]
          */
-        "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
+        "leaderboardType"?: | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "rewardCount"
+    | "rewardValueSum"
+    | "singleUnitRewardValueSum";
         /**
           * @uiName Rank type
           * @uiType string
@@ -1300,6 +1322,11 @@ declare namespace LocalJSX {
           * @uiName Stats Column Heading
          */
         "statsheading"?: string;
+        /**
+          * Unit used with leaderboard type "singleUnitRewardValueSum"
+          * @uiName Unit of reward sum
+         */
+        "unit"?: string;
         /**
           * @uiName User Column Heading
          */
@@ -1323,6 +1350,9 @@ declare namespace LocalJSX {
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
          */
         "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
+        /**
+          * @uiName Rank Text
+         */
         "rankText"?: string;
         /**
           * @uiName Default rank
@@ -1330,6 +1360,9 @@ declare namespace LocalJSX {
           * @uiEnum ["rowNumber", "rank", "denseRank"]
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
+        /**
+          * @uiName Unranked Text
+         */
         "unrankedText"?: string;
     }
     interface SqmNavigationMenu {
@@ -1721,6 +1754,9 @@ declare namespace LocalJSX {
           * @uiName Name displayed for anonymous users
          */
         "anonymousUser"?: string;
+        /**
+          * @uiName User Column Title
+         */
         "columnTitle"?: string;
         /**
           * @uiName Name displayed for deleted users

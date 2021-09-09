@@ -11,8 +11,14 @@ export interface LeaderboardProps {
   usersheading: string;
   statsheading: string;
   rankType: "rowNumber" | "rank" | "denseRank";
-  leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
+  leaderboardType:
+    | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "rewardCount"
+    | "rewardValueSum"
+    | "singleUnitRewardValueSum";
   interval: string;
+  unit?: string;
   empty: VNode;
   loadingstate: VNode;
   demoProps?: LeaderboardViewProps;
@@ -36,38 +42,149 @@ const GET_LEADERBOARD = gql`
   }
 `;
 
+const REWARD_COUNT_LEADERBOARD = gql`
+  query {
+    userLeaderboards {
+      rewardCount {
+        dateModified
+        rows {
+          value
+          firstName
+          lastInitial
+          rank {
+            rank
+            denseRank
+            rowNumber
+          }
+        }
+      }
+    }
+  }
+`;
+
+const REWARD_VALUE_LEADERBOARD = gql`
+  query {
+    userLeaderboards {
+      rewardValueSum {
+        dateModified
+        rows {
+          value
+          firstName
+          lastInitial
+          rank {
+            rank
+            denseRank
+            rowNumber
+          }
+        }
+      }
+    }
+  }
+`;
+
+const REWARD_UNIT_VALUE_LEADERBOARD = gql`
+  query ($unit: String!) {
+    userLeaderboards {
+      singleUnitRewardValueSum(unit: $unit) {
+        dateModified
+        rows {
+          value
+          firstName
+          lastInitial
+          rank {
+            rank
+            denseRank
+            rowNumber
+          }
+        }
+      }
+    }
+  }
+`;
+
+const leaderboardQueries = {
+  topStartedReferrers: GET_LEADERBOARD,
+  topConvertedReferrers: GET_LEADERBOARD,
+  rewardCount: REWARD_COUNT_LEADERBOARD,
+  rewardValueSum: REWARD_VALUE_LEADERBOARD,
+  singleUnitRewardValueSum: REWARD_UNIT_VALUE_LEADERBOARD,
+};
+
+type LeaderboardRows = {
+  value: number;
+  firstName: string;
+  lastInitial: string;
+  rank: Rank;
+};
+
+export type Rank = {
+  rank: number;
+  denseRank: number;
+  rowNumber: number;
+};
+
+export type Leaderboard = {
+  value: number;
+  rank: number;
+  firstName: string;
+  lastInitial: string;
+};
+
 export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   const programId = useProgramId();
   const user = useUserIdentity();
-  const variables = {
-    type: props.leaderboardType,
-    filter: { programId_eq: programId },
-  };
+
+  const isReferralLeaderboard = [
+    "topStartedReferrers",
+    "topConvertedReferrers",
+  ].includes(props.leaderboardType);
+
+  const variables = isReferralLeaderboard
+    ? {
+        type: props.leaderboardType,
+        filter: { programId_eq: programId },
+      }
+    : props.leaderboardType === "singleUnitRewardValueSum"
+    ? {
+        unit: props.unit,
+      }
+    : {};
 
   if (props.interval) {
     variables.filter["interval"] = props.interval;
   }
+
+  const leaderboardQuery = leaderboardQueries[props.leaderboardType];
+
   const { data: leaderboardData, loading: loadingLeaderboard } = useQuery(
-    GET_LEADERBOARD,
+    leaderboardQuery,
     variables,
     !user?.jwt
   );
 
-  const flattenedLeaderBoard = leaderboardData?.userLeaderboard?.rows.flatMap(
-    (user) => ({
-      value: user.value,
-      firstName: user.firstName,
-      lastInitial: user.lastInitial,
-      rank: user.rank?.[props.rankType],
-    })
-  );
+  const leaderboardRows = isReferralLeaderboard
+    ? leaderboardData?.userLeaderboard?.rows
+    : leaderboardData?.userLeaderboards?.[props.leaderboardType]?.rows;
 
-  const sortedLeaderboard = flattenedLeaderBoard?.sort(function (
+  const flattenedLeaderboard = getFlattenedLeaderboard(leaderboardRows);
+
+  const sortedLeaderboard = flattenedLeaderboard?.sort(function (
     a: { rank: number },
     b: { rank: number }
   ) {
     return a.rank - b.rank;
   });
+
+  function getFlattenedLeaderboard(
+    leaderboardRows: LeaderboardRows[]
+  ): Leaderboard[] {
+    return leaderboardRows?.flatMap((user) => ({
+      value: user.value,
+      firstName: user.firstName || "Anonymous",
+      lastInitial: user.lastInitial,
+      rank: user.rank?.[props.rankType],
+    }));
+  }
 
   return {
     states: {

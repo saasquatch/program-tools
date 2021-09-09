@@ -13,7 +13,7 @@ export interface LeaderboardViewProps {
     rankType: string;
     leaderboard: {
       value: number;
-      rank: string;
+      rank: number;
       firstName: string;
       lastInitial: string;
     }[];
