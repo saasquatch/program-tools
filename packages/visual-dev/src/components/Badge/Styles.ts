@@ -1,66 +1,44 @@
-import { css } from 'styled-components'
+import { css } from "styled-components";
 
-export const statusColors = {
-    info: {
-      background: "#E2E2E2",
-      border: "#E2E2E2",
-      color: "#575757",
-    },
-    success: {
-      background: "#E4FCE3",
-      border: "#E4FCE3",
-      color: "#232323",
-    },
-    active: {
-      background: "#57AC59",
-      border: "#57AC59",
-      color: "#fff",
-    },
-    critical: {
-      background: "#FE6666",
-      border: "#FE6666",
-      color: "#fff",
-    },
-    warning: {
-      background: "#F1C359",
-      border: "#F1C359",
-      color: "#232323",
-    }
-  };
-  
+export const defaultIcon = "icon-sqh-gift";
+
 export const base = css`
-    border-radius: 50px;
-    padding: 4px 20px;
-    font-weight: 500;
-    font-size: 14px;
-    font-style: normal;
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
-    line-height: 20px;
-`
+  border-radius: 50px;
+  padding: 4px 20px;
+  font-weight: 500;
+  font-size: 14px;
+  font-style: normal;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  line-height: 20px;
+  width: max-content;
+`;
 
 export const info = css`
-    background-color: ${statusColors.info.background};
-    border-color: ${statusColors.info.border};
-    color: ${statusColors.info.color};
-`
+  background-color: #e2e2e2;
+  border-color: #e2e2e2;
+  color: #575757;
+`;
 
 export const success = css`
-    background-color: ${statusColors.success.background};
-    border-color: ${statusColors.success.border};
-    color: ${statusColors.success.color};
-`
+  background-color: #e4fce3;
+  border-color: #e4fce3;
+  color: #232323;
+`;
+
 export const active = css`
-    background-color: ${statusColors.active.background};
-    border-color: ${statusColors.active.border};
-    color: ${statusColors.active.color};
-`
+  background-color: #57ac59;
+  border-color: #57ac59;
+  color: #fff;
+`;
+
 export const critical = css`
-    background-color: ${statusColors.critical.background};
-    border-color: ${statusColors.critical.border};
-    color: ${statusColors.critical.color};
-`
+  background-color: #fe6666;
+  border-color: #fe6666;
+  color: #fff;
+`;
+
 export const warning = css`
-    background-color: ${statusColors.warning.background};
-    border-color: ${statusColors.warning.border};
-    color: ${statusColors.warning.color};
-`
+  background-color: #f1c359;
+  border-color: #f1c359;
+  color: #232323;
+`;
