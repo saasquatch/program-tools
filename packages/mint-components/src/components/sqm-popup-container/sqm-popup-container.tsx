@@ -19,13 +19,15 @@ export class PopupContainer {
   /** @uiName Text to be used as the close button */
   @Prop() closeButtonText: string;
   /**
-   *  @uiName Specify padding on the popup contents when in embedded mode
-   *  @uiType string
+   * @uiName Specify padding on the popup contents when in embedded mode
+   * @uiType string
+   * @uiEnum ["none", "small", "medium", "large"]
    */
   @Prop() embedPadding?: "none" | "small" | "medium" | "large";
   /**
    * @uiName  Specify padding on the popup contents when in popup mode
    * @uiType string
+   * @uiEnum ["none", "small", "medium", "large"]
    */
   @Prop() popupPadding?: "none" | "small" | "medium" | "large";
 

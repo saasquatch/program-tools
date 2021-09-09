@@ -21,6 +21,7 @@ export class Text {
   /**
    * @uiName Text
    * @uiType string
+   * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
    */
   @Prop() type: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
 

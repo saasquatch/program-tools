@@ -18,13 +18,19 @@ export class PortalContainer {
   /**
    * @uiName Direction
    * @uiType string
+   * @uiEnum ["row", "column"]
    */
   @Prop() direction: "row" | "column" = "column";
-  /** @uiName Padding */
+  /**
+   * @uiName Padding
+   * @uiType string
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   */
   @Prop() padding: Spacing;
   /**
    * @uiName Gap
    * @uiType string
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    */
   @Prop() gap: Spacing = "xxx-large";
   /** @uiName Gap */

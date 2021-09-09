@@ -17,12 +17,12 @@ import deepmerge from "deepmerge";
 export class AssetCard {
   /**
    * @uiName Banner title
-   * */
+   */
   @Prop() titleText: string;
 
   /**
    * @uiName Banner image
-   * */
+   */
   @Prop() imgUrl: string;
 
   /**

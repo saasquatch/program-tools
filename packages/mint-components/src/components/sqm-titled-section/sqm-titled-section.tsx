@@ -17,11 +17,13 @@ export class TitledSection {
   /**
    * @uiName Label margin style
    * @uiType string
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    */
   @Prop() labelMargin: Spacing = "small";
   /**
    * @uiName Section padding
    * @uiType string
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    */
   @Prop() padding: Spacing = "none";
 

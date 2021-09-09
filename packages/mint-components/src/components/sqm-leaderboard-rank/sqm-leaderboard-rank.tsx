@@ -22,12 +22,14 @@ export class LeaderboardRank {
   /**
    * @uiName Default rank
    * @uiType string
+   * @uiEnum ["rowNumber", "rank", "denseRank"]
    */
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
   @Prop() rankText: string;
   /**
    * @uiName Leaderboard type
    * @uiType string
+   * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
    */
   @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   @Prop() unrankedText: string;

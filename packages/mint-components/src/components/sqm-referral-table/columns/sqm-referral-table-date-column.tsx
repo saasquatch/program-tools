@@ -17,6 +17,14 @@ export class ReferralTableDateColumn implements ReferralTableColumn {
   @Prop() columnTitle: string = "Date Converted";
   /**
    * @uiName Date Displayed
+   * @uiEnum ["dateConverted",
+   * "dateReferralStarted",
+   * "dateFraudChecksCompleted",
+   * "dateModerated",
+   * "dateModified",
+   * "dateReferralEnded",
+   * "dateReferralPaid",
+   * "dateUserModified"]
    */
   @Prop() dateShown: string = "dateConverted";
 

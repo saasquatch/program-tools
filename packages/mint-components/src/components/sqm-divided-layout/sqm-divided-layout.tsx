@@ -16,7 +16,8 @@ import { getProps } from "../../utils/utils";
 export class DividedLayout {
   /**
    * @uiName Direction
-   *  @uiType string
+   * @uiType string
+   * @uiEnum ["row", "column"]
    */
   @Prop() direction: "row" | "column";
 

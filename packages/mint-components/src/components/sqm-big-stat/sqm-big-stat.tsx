@@ -16,19 +16,19 @@ import { DemoData } from "../../global/demo";
   shadow: true,
 })
 export class BigStat {
-  // uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit",
-  //  "/rewardBalance/CREDIT/CASH_CAD/prettyValue",
-  //  "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit",
-  //  "/rewardBalance/CREDIT/CASH_USD/prettyPendingCredit",
-  //  "/rewardBalance/CREDIT/CASH_USD/prettyValue",
-  //  "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit",
-  // "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"]
   /**
    * Select what type of stat to display. Manual paths are also supported.
    *
    * @uiWidget StatTypeSelectWidget
    * @uiName Stat Type
    * @uiOptions {"version": 1.1}
+   * @uiEnum ["/rewardBalance/CREDIT/CASH_CAD/prettyPendingCredit",
+   *  "/rewardBalance/CREDIT/CASH_CAD/prettyValue",
+   *  "/rewardBalance/CREDIT/CASH_CAD/prettyRedeemedCredit",
+   *  "/rewardBalance/CREDIT/CASH_USD/prettyPendingCredit",
+   *  "/rewardBalance/CREDIT/CASH_USD/prettyValue",
+   *  "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit",
+   *  "/rewardBalance/CREDIT/CASH_USD/prettyRedeemedCredit"]
    */
   @Prop() statType: string;
 
@@ -39,6 +39,7 @@ export class BigStat {
   /**
    * @uiName Alignment - controls the alignment of the flexbox
    * @uiType string
+   * @uiEnum ["left", "right", "center"]
    */
   @Prop() alignment?: "left" | "right" | "center";
 

@@ -27,11 +27,13 @@ export class Leaderboard {
   /**
    * @uiName Rank type
    * @uiType string
+   * @uiEnum ["rowNumber", "rank", "denseRank"]
    */
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
   /**
    * @uiName Leaderboard type
    * @uiType string
+   * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
    */
   @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   /**

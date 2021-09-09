@@ -18,6 +18,7 @@ export class StatContainer {
   /**
    * @uiName Space between stats
    * @uiType string
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    */
   @Prop() space: Spacing = "xxx-large";
 
