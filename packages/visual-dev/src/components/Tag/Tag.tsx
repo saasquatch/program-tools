@@ -22,21 +22,23 @@ const XIcon = (
   </svg>
 );
 
-export const TextSegmentStyled = styled.div`
+const TagStyled = styled.span`
   ${Styles.base}
+`;
+
+const TextSegmentStyled = styled.div`
   ${Styles.textSegment}
 `;
 
-export const IconSegmentStyled = styled.div`
-  ${Styles.base}
+const IconSegmentStyled = styled.div`
   ${Styles.iconSegment}
 `;
 
 export const Tag: React.FC<TagProps> = ({ children, onClick }) => {
   return (
-    <span>
+    <TagStyled>
       <IconSegmentStyled onClick={onClick}>{XIcon}</IconSegmentStyled>
       <TextSegmentStyled>{children}</TextSegmentStyled>
-    </span>
+    </TagStyled>
   );
 };

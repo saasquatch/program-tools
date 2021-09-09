@@ -3,18 +3,18 @@ import { css } from "styled-components";
 export const base = css`
   display: flex;
   flex-direction: row;
-  padding: 3px 7px;
-  height: 28px;
   background: #f9f9f9;
   box-sizing: border-box;
   align-items: center;
-  justify-content: center;
+  width: max-content;
+  border: 1px solid #e2e2e2;
+  border-radius: 2px;
 `;
 
 export const textSegment = css`
-  width: max-content;
-  border: 1px solid #e2e2e2;
-  border-radius: 0px 2px 2px 0px;
+  box-sizing: border-box;
+  border-left: 1px solid #e2e2e2;
+  padding: 3px 7px;
   font-weight: 400;
   font-size: 14px;
   font-style: normal;
@@ -24,9 +24,10 @@ export const textSegment = css`
 `;
 
 export const iconSegment = css`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  box-sizing: border-box;
   width: 28px;
-  border: 1px solid #e2e2e2;
-  border-right: 0;
-  border-radius: 2px 0px 0px 2px;
-  float: left;
+  padding: 3px 7px;
 `;
