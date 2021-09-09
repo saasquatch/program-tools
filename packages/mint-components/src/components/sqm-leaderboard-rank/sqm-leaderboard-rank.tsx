@@ -25,13 +25,21 @@ export class LeaderboardRank {
    * @uiEnum ["rowNumber", "rank", "denseRank"]
    */
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
-  @Prop() rankText: string;
+
+  /**
+   * @uiName Rank Text
+   */
+  @Prop() rankText: string =
+    "You are currently in {rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th} } place!";
   /**
    * @uiName Leaderboard type
    * @uiType string
    * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
    */
   @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
+  /**
+   * @uiName Rank Text
+   */
   @Prop() unrankedText: string;
   /**
    * @uiName Leaderboard time interval
