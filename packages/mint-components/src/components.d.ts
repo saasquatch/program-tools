@@ -169,6 +169,10 @@ export namespace Components {
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
         /**
+          * @uiName Rank Heading
+         */
+        "rankheading"?: string;
+        /**
           * @uiName Show the ranking numbers
          */
         "showRank": boolean;
@@ -1326,6 +1330,10 @@ declare namespace LocalJSX {
           * @uiEnum ["rowNumber", "rank", "denseRank"]
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
+        /**
+          * @uiName Rank Heading
+         */
+        "rankheading"?: string;
         /**
           * @uiName Show the ranking numbers
          */

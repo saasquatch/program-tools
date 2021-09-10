@@ -18,13 +18,16 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 export class Leaderboard {
   /**
    * @uiName User Column Heading
-   * */
+   */
   @Prop() usersheading: string;
   /**
    * @uiName Stats Column Heading
-   * */
+   */
   @Prop() statsheading: string;
-
+  /**
+   * @uiName Rank Heading
+   */
+  @Prop() rankheading?: string;
   /**
    * @uiName Show the ranking numbers
    */

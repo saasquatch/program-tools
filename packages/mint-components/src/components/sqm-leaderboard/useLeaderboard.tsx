@@ -10,6 +10,8 @@ import { LeaderboardViewProps } from "./sqm-leaderboard-view";
 export interface LeaderboardProps {
   usersheading: string;
   statsheading: string;
+  rankheading?: string;
+  showRank?: boolean;
   rankType: "rowNumber" | "rank" | "denseRank";
   leaderboardType:
     | "topStartedReferrers"
