@@ -42,26 +42,16 @@ export class Leaderboard {
   /**
    * @uiName Leaderboard type
    * @uiType string
-   * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "rewardCount", "rewardValueSum", "singleUnitRewardValueSum"]
+   * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
    */
-  @Prop() leaderboardType:
-    | "topStartedReferrers"
-    | "topConvertedReferrers"
-    | "rewardCount"
-    | "rewardValueSum"
-    | "singleUnitRewardValueSum";
+  @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
+
   /**
    * @uiName Leaderboard time interval
    * @uiWidget DateRange
    * @uiOptions {"allowPastDates":true, "months": 1}
    */
   @Prop() interval: string;
-
-  /**
-   * Unit used with leaderboard type "singleUnitRewardValueSum"
-   * @uiName Unit of reward sum
-   */
-  @Prop() unit?: string;
 
   /**
    * @undocumented

@@ -58,12 +58,6 @@ const View = (overrideProps?: LeaderboardProps & any) => {
           <b>Rank Type</b>
           <pre>{rankType}</pre>
         </div>
-        {overrideProps?.unit && (
-          <div style={{ padding: "10px" }}>
-            <b>Unit</b>
-            <pre>{overrideProps?.unit}</pre>
-          </div>
-        )}
       </sqm-divided-layout>
       <LeaderboardView
         states={states}
@@ -94,75 +88,6 @@ export const TopStartedReferrers = createHookStory(() => {
       leaderboardType: "topStartedReferrers",
       rankType: "denseRank",
       statsheading: "New Referrals",
-    }),
-  ];
-});
-
-export const RewardCount = createHookStory(() => {
-  return [
-    View({
-      leaderboardType: "rewardCount",
-      statsheading: "Number of Rewards",
-      empty: <span>No Rewards</span>,
-    }),
-    View({
-      leaderboardType: "rewardCount",
-      rankType: "rank",
-      statsheading: "Number of Rewards",
-      empty: <span>No Rewards</span>,
-    }),
-    View({
-      leaderboardType: "rewardCount",
-      rankType: "denseRank",
-      statsheading: "Number of Rewards",
-      empty: <span>No Rewards</span>,
-    }),
-  ];
-});
-
-export const RewardValueSum = createHookStory(() => {
-  return [
-    View({
-      leaderboardType: "rewardValueSum",
-      statsheading: "Value of Rewards",
-      empty: <span>No Rewards</span>,
-    }),
-    View({
-      leaderboardType: "rewardValueSum",
-      rankType: "rank",
-      statsheading: "Value of Rewards",
-      empty: <span>No Rewards</span>,
-    }),
-    View({
-      leaderboardType: "rewardValueSum",
-      rankType: "denseRank",
-      statsheading: "Value of Rewards",
-      empty: <span>No Rewards</span>,
-    }),
-  ];
-});
-
-export const RewardValueSumOfUnit = createHookStory(() => {
-  return [
-    View({
-      leaderboardType: "singleUnitRewardValueSum",
-      unit: "POINT",
-      statsheading: "Value of Rewards",
-      empty: <span>No Rewards</span>,
-    }),
-    View({
-      leaderboardType: "singleUnitRewardValueSum",
-      rankType: "rank",
-      unit: "POINT",
-      statsheading: "Value of Rewards",
-      empty: <span>No Rewards</span>,
-    }),
-    View({
-      leaderboardType: "singleUnitRewardValueSum",
-      rankType: "denseRank",
-      unit: "POINT",
-      statsheading: "Value of Rewards",
-      empty: <span>No Rewards</span>,
     }),
   ];
 });
