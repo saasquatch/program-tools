@@ -36,5 +36,6 @@ export const iconSegment = css`
   &:hover {
     background: #f4f4f4;
     fill: #232323;
+    cursor: pointer;
   }
 `;
