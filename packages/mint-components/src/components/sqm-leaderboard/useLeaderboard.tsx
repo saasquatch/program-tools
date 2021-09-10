@@ -175,6 +175,8 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     return a.rank - b.rank;
   });
 
+  console.log({ flattenedLeaderboard, sortedLeaderboard });
+
   function getFlattenedLeaderboard(
     leaderboardRows: LeaderboardRows[]
   ): Leaderboard[] {

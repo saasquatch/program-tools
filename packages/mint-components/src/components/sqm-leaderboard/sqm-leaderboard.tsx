@@ -24,6 +24,12 @@ export class Leaderboard {
    * @uiName Stats Column Heading
    * */
   @Prop() statsheading: string;
+
+  /**
+   * @uiName Show the ranking numbers
+   */
+  @Prop() showRank: boolean;
+
   /**
    * @uiName Rank type
    * @uiType string
@@ -103,11 +109,11 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
       data: {
         rankType: "rowNumber",
         leaderboard: [
-          { firstName: "Viktor", lastInitial: "V", value: 82, rank: "1" },
-          { firstName: "MF", lastInitial: "D", value: 73, rank: "2" },
-          { firstName: "Freddie", lastInitial: "G", value: 64, rank: "3" },
-          { firstName: "Benny", lastInitial: "B", value: 55, rank: "4" },
-          { firstName: "Mos", lastInitial: "D", value: 46, rank: "5" },
+          { firstName: "Viktor", lastInitial: "V", value: 82, rank: 1 },
+          { firstName: "MF", lastInitial: "D", value: 73, rank: 2 },
+          { firstName: "Freddie", lastInitial: "G", value: 64, rank: 3 },
+          { firstName: "Benny", lastInitial: "B", value: 55, rank: 4 },
+          { firstName: "Mos", lastInitial: "D", value: 46, rank: 5 },
         ],
       },
       elements: {

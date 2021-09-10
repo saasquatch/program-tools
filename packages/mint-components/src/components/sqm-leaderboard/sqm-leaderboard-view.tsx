@@ -7,6 +7,7 @@ export interface LeaderboardViewProps {
     styles: {
       usersheading: string;
       statsheading: string;
+      showRank?: boolean;
     };
   };
   data: {
@@ -36,12 +37,14 @@ export function LeaderboardView(props: LeaderboardViewProps) {
       {states.hasLeaders && (
         <table>
           <tr>
+            {styles.showRank && <th class="User">Rank</th>}
             <th class="User">{styles.usersheading}</th>
             <th class="Score">{styles.statsheading}</th>
           </tr>
           {data.leaderboard?.map((user) => {
             return (
               <tr class="SeparateContent">
+                {styles.showRank && <td class="User">{user.rank}</td>}
                 <td class="User">{`${user.firstName} ${user.lastInitial} `}</td>
                 <td class="Score">{user.value}</td>
               </tr>
