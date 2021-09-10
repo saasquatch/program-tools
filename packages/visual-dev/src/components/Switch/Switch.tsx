@@ -8,8 +8,8 @@ interface SwitchProps {
 	checked: boolean
 	onChange: () => void
 	color?: "success" | "critical"
-	position?: "left" | "right"
-	children?: React.ReactNode
+	textLeft?: string
+	textRight?: string
 }
 
 const SwitchBox = styled.div`
@@ -37,17 +37,19 @@ export const Switch: React.FC<SwitchProps> = ({
 	color = "success",
 	checked,
 	onChange,
-	position = "right",
-	children
+	textLeft = "",
+	textRight = ""
 }) => {
+	const spaceLeft = textLeft == "" ? "0px" : "10px"
+	const spaceRight = textRight == "" ? "0px" : "10px" 
 	return (
 		<SwitchLabel htmlFor={id}>
-			{ position == "left" && children }
-			<SwitchBox style={ position == "left" ? {marginLeft: "15px"} : {marginRight: "15px"} }> 
+			{ textLeft }
+			<SwitchBox style={{marginLeft: spaceLeft, paddingRight: spaceRight}}> 
 				<SwitchBackground color={color} id={id} type="checkbox" checked={checked} onChange={onChange}/>
 				<SwitchButton htmlFor={id}/>
 			</SwitchBox>
-			{ position == "right" && children }
+			{ textRight }
 		</SwitchLabel>
 	)
 }

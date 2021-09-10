@@ -42,7 +42,7 @@ export const TextLeft = () => {
 
 	const [enabled, setEnable] = useState(false)
 
-	return <Switch id="text_left" checked={enabled} onChange={() => setEnable(!enabled)} position="left"> Text label for switch: </Switch>
+	return <Switch id="text_left" checked={enabled} onChange={() => setEnable(!enabled)} textLeft="Default Referrer reward status to Approved: "></Switch>
 
 }
 
@@ -50,6 +50,14 @@ export const TextRight = () => {
 
 	const [enabled, setEnable] = useState(false)
 
-	return <Switch id="text_right" checked={enabled} onChange={() => setEnable(!enabled)} position="right"> Text label for switch: </Switch>
+	return <Switch id="text_right" checked={enabled} onChange={() => setEnable(!enabled)} textRight="Default Referrer reward status to Approved"></Switch>
+
+}
+
+export const TextBoth = () => {
+
+	const [enabled, setEnable] = useState(false)
+
+	return <Switch id="text_both" checked={enabled} onChange={() => setEnable(!enabled)} textLeft="Off" textRight="On"></Switch>
 
 }
