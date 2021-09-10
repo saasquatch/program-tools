@@ -59,3 +59,13 @@ export const Right = () => (
 		</Tooltip>
 	</StoryFrame>
 )
+
+export const EmptyAndNoDirection = () => (
+	<StoryFrame>
+		<Tooltip
+			text=""
+		>
+			<button> Hover </button>
+		</Tooltip>
+	</StoryFrame>
+)
