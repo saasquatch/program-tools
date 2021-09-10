@@ -23,6 +23,20 @@ export const base = css`
 	}
 `
 
+export const label = css`
+	display: flex;
+	align-items: center;
+	font-family: Helvatica Neue, Arial;
+	font-size: 14px;
+	line-height: 18px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+`
+
 export const success = css`
 	background: #57AC59;
 `

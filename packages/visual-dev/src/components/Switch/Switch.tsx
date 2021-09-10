@@ -5,21 +5,28 @@ import * as Styles from './Styles'
 
 interface SwitchProps {
 	id: string
-	status?: "on" | "off"
+	checked: boolean
+	onChange: () => void
 	color?: "success" | "critical"
+	position?: "left" | "right"
+	children?: React.ReactNode
 }
 
-const SwitchDiv = styled.div`
+const SwitchBox = styled.div`
 	${Styles.wrapper}
 `;
 
-const SwitchLabel = styled.label`
+const SwitchButton = styled.label`
 	${Styles.base}
 `;
 
-const SwitchBox = styled.input<Required<{color:string}>>`
+const SwitchLabel = styled.label`
+	${Styles.label}
+`;
+
+const SwitchBackground = styled.input<Required<{color:string}>>`
 	${Styles.off}
-	&:checked + ${SwitchLabel} {
+	&:checked + ${SwitchButton} {
 		${props => Styles[props.color]}
 		${Styles.on}
 	}
@@ -28,12 +35,19 @@ const SwitchBox = styled.input<Required<{color:string}>>`
 export const Switch: React.FC<SwitchProps> = ({
 	id,
 	color = "success",
-	status = "off"
+	checked,
+	onChange,
+	position = "right",
+	children
 }) => {
 	return (
-		<SwitchDiv>
-			<SwitchBox color={color} id={id} type="checkbox" defaultChecked={status=="on" ? true : false}/>
-			<SwitchLabel htmlFor={id}/>
-		</SwitchDiv>
+		<SwitchLabel htmlFor={id}>
+			{ position == "left" && children }
+			<SwitchBox style={ position == "left" ? {marginLeft: "15px"} : {marginRight: "15px"} }> 
+				<SwitchBackground color={color} id={id} type="checkbox" checked={checked} onChange={onChange}/>
+				<SwitchButton htmlFor={id}/>
+			</SwitchBox>
+			{ position == "right" && children }
+		</SwitchLabel>
 	)
 }
