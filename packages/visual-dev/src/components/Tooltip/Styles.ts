@@ -22,6 +22,7 @@ export const base = css`
 		left: 50%;
 		transform: translateX(-50%);
 		z-index: 100;
+		min-height: 20px;
 		white-space: nowrap;
 	}
 	&.tip::before {

@@ -63,6 +63,7 @@ export const Right = () => (
 export const EmptyAndNoDirection = () => (
 	<StoryFrame>
 		<Tooltip
+			direction="top"
 			text=""
 		>
 			<button> Hover </button>
