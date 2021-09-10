@@ -27,7 +27,14 @@ export const iconSegment = css`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   width: 28px;
   padding: 3px 7px;
+  height: 26px;
+  fill: #858585;
+  &:hover {
+    background: #f4f4f4;
+    fill: #232323;
+  }
 `;
