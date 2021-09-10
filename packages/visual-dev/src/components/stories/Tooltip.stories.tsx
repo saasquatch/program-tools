@@ -9,7 +9,7 @@ export default {
 }
 
 const StoryFrame = styled.div`
-	width: 800px;
+	width: 900px;
 	height: 200px;
 	display: flex;
 	align-items: center;
@@ -20,6 +20,17 @@ export const Top = () => (
 	<StoryFrame>
 		<Tooltip
 			direction="top"
+			text="A tooltip that explains something in detail"
+		>
+			<button> Hover </button>
+		</Tooltip>
+	</StoryFrame>
+)
+
+export const Right = () => (
+	<StoryFrame>
+		<Tooltip
+			direction="right"
 			text="A tooltip that explains something in detail"
 		>
 			<button> Hover </button>
@@ -49,24 +60,33 @@ export const Left = () => (
 	</StoryFrame>
 )
 
-export const Right = () => (
+
+export const Empty = () => (
 	<StoryFrame>
-		<Tooltip
-			direction="right"
-			text="A tooltip that explains something in detail"
-		>
+		<Tooltip>
 			<button> Hover </button>
 		</Tooltip>
 	</StoryFrame>
 )
 
-export const EmptyAndNoDirection = () => (
+export const Short = () => (
 	<StoryFrame>
 		<Tooltip
 			direction="top"
-			text=""
+			text="Tool"
 		>
-			<button> Hover </button>
+			<button> Tip </button>
+		</Tooltip>
+	</StoryFrame>
+)
+
+export const Long = () => (
+	<StoryFrame>
+		<Tooltip
+			direction="top"
+			text="A tooltip that explains something in a much longer detail"
+		>
+			<button> Hover longer text </button>
 		</Tooltip>
 	</StoryFrame>
 )

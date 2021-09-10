@@ -1,78 +1,86 @@
 import { css } from 'styled-components'
 
-const color = '#FFFFFF';
-const background = 'rgba(35, 35, 35, 0.9)'
-const margin = '55px';
-const arrow = '5px';
-
 export const base = css`
-	&.wrapper {
-		display: inline-block;
-		position: relative;
-	}
-	&.tip {
-		padding: 12px;
-		border-radius: 4px;
-		font-family: Helvatica Neue, Arial;
-		font-size: 14px;
-		line-height: 20px;
-		color: ${color};
-		background: ${background};
-		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
-		z-index: 100;
-		min-height: 20px;
-		white-space: nowrap;
-	}
-	&.tip::before {
+	display: inline-block;
+	position: relative;
+`
+
+export const tooltip = css`
+		
+	position: absolute;
+	padding: 12px;
+	border-radius: 4px;
+	width: max-content;
+	max-width: 144px;
+	min-height: 20px;
+	color: #FFFFFF;
+	background: rgba(35, 35, 35, 0.9);
+	font-family: Helvatica Neue, Arial;
+	font-size: 14px;
+	line-height: 20px;
+	
+	&::before {
 		content: " ";
 		border: solid transparent;
 		left: 50%;
 		height: 0;
 		width: 0;
 		position: absolute;
-		border-width: ${arrow};
-		margin-left: calc(${arrow}*-1);
+		border-width: 5px;
+		margin-left: calc(5px*-1);
 	}
-	&.tip.right {
+
+	&.right {
 		right: auto;
 		left: calc(100% + 10px);
 		top: 50%;
 		transform: translateX(0) translateY(-50%);
 	}
-	&.tip.right::before {
-		left: calc(${arrow} * -1);
+
+	&.right::before {
+		left: calc(5px * -1);
 		top: 50%;
 		transform: translateX(0) translateY(-50%);
-		border-right-color: ${background};
+		border-right-color: rgba(35, 35, 35, 0.9);
 	}
-	&.tip.left {
+
+	&.left {
 		left: auto;
 		right: calc(100% + 10px);
 		top: 50%;
 		transform: translateX(0) translateY(-50%);
 	}
-	&.tip.left::before {
+
+	&.left::before {
 		left: auto;
-		right: calc(${arrow} * -2);
+		right: calc(5px * -2);
 		top: 50%;
 		transform: translateX(0%) translateY(-50%);
-		border-left-color: ${background};
+		border-left-color: rgba(35, 35, 35, 0.9);
 	}
-	&.tip.top {
-		top: calc(${margin} * -1);
+
+	&.top {
+		bottom: calc(100% + 10px);
+		left: 50%;
+		transform: translateX(-50%);
 	}
-	&.tip.top::before {
+
+	&.top::before {
 		top: 100%;
-		border-top-color: ${background};
+		transform: translateX(5%);
+		border-top-color: rgba(35, 35, 35, 0.9);
 	}
-	&.tip.bottom {
-		bottom: calc(${margin} * -1);
+
+	&.bottom {
+		top: calc(100% + 10px);
+		left: 50%;
+		transform: translateX(-50%);
 	}
-	&.tip.bottom::before {
-		bottom: 50%;
-		bottom: calc(${margin} * 0.8);
-		border-bottom-color: ${background};
+	
+	&.bottom::before {
+		bottom: calc(100%);
+		left: 50%;
+		transform: translateX(5%);
+		border-bottom-color: rgba(35, 35, 35, 0.9);
 	}
 `

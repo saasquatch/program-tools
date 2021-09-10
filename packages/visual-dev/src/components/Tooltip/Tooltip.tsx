@@ -5,17 +5,21 @@ import { useState } from "react";
 import * as Styles from './Styles'
 
 interface TooltipProps {
-	text: string;
+	text?: string;
 	direction?: 'top' | 'left' | 'bottom' | 'right'
-	children: React.ReactNode
+	children?: React.ReactNode
 }
 
 const TooltipDiv = styled.div`
 	${Styles.base}
 `;
 
+const TooltipTip = styled.div`
+	${Styles.tooltip}
+`;
+
 export const Tooltip: React.FC<TooltipProps> = ({
-	text,
+	text = "",
 	direction = "top",
 	children
 }) => {
@@ -35,16 +39,15 @@ export const Tooltip: React.FC<TooltipProps> = ({
 
 	return (
 		<TooltipDiv
-			className="wrapper"
 			onMouseEnter={showTooltip}
 			onMouseLeave={hideTooltip}
 		>
 		{children}
 		{active && (
-			<TooltipDiv
-				className={`tip ${direction}`}>
+			<TooltipTip
+				className={direction}>
 				{text}
-			</TooltipDiv>
+			</TooltipTip>
 		)}
 		</TooltipDiv>
 	);
