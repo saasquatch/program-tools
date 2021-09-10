@@ -9,19 +9,6 @@ interface SwitchProps {
 	color?: "success" | "critical"
 }
 
-export const Switch: React.FC<SwitchProps> = ({
-	id,
-	color = "success",
-	status = "off"
-}) => {
-	return (
-		<SwitchDiv>
-			<SwitchBox color={color} id={id} type="checkbox" defaultChecked={status=="on" ? true : false}/>
-			<SwitchLabel htmlFor={id}/>
-		</SwitchDiv>
-	)
-}
-
 const SwitchDiv = styled.div`
 	${Styles.wrapper}
 `;
@@ -37,3 +24,16 @@ const SwitchBox = styled.input<Required<{color:string}>>`
 		${Styles.on}
 	}
 `;
+
+export const Switch: React.FC<SwitchProps> = ({
+	id,
+	color = "success",
+	status = "off"
+}) => {
+	return (
+		<SwitchDiv>
+			<SwitchBox color={color} id={id} type="checkbox" defaultChecked={status=="on" ? true : false}/>
+			<SwitchLabel htmlFor={id}/>
+		</SwitchDiv>
+	)
+}
