@@ -100,6 +100,10 @@ export class ShareButton {
    */
   @Prop() hideicon?: boolean = false;
   /**
+   * @uiName Hide the text
+   */
+  @Prop() hidetext?: boolean = false;
+  /**
    * @uiName Title used for native sharing (mobile only)
    */
   @Prop() sharetitle?: string;

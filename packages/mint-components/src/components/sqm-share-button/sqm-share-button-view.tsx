@@ -33,6 +33,7 @@ export interface ShareButtonViewProps {
 
   icon?: string;
   hideicon?: boolean;
+  hidetext?: boolean;
   iconslot?: "prefix" | "suffix";
   onClick?: () => void;
   hide?: boolean;
@@ -71,7 +72,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
             name={props.icon ? props.icon : props.medium}
           ></sl-icon>
         )}
-        {children}
+        {!props.hidetext && children}
       </sl-button>
     </div>
   );
