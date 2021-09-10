@@ -8,13 +8,6 @@ interface ExampleComponentProps {
 	children: string
 	size?: "small" | "medium" | "large"
 }
-
-const Button = styled.button<Required<ExampleComponentProps>>`
-	${Styles.base}
-	${props => Styles[props.status]}
-	${props => Styles[props.size]}
-`
-
 export const ExampleComponent: React.FC<ExampleComponentProps> = ({
 	size = "medium",
 	status,
@@ -22,3 +15,10 @@ export const ExampleComponent: React.FC<ExampleComponentProps> = ({
 }) => {
 	return <Button status={status} size={size}>{children}</Button>
 }
+
+
+const Button = styled.button<Required<ExampleComponentProps>>`
+	${Styles.base}
+	${props => Styles[props.status]}
+	${props => Styles[props.size]}
+`
