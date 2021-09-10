@@ -28,7 +28,7 @@ export const success = css`
 `
 
 export const critical = css`
-	background: #FE6666;
+	background: #D14040;
 `
 
 export const off = css`

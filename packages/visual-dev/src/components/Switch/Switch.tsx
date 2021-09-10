@@ -15,12 +15,10 @@ export const Switch: React.FC<SwitchProps> = ({
 	status = "off"
 }) => {
 	return (
-		<div>
-			<SwitchDiv>
-				<SwitchBox color={color} id={id} type="checkbox" defaultChecked={status=="on" ? true : false}/>
-				<SwitchLabel htmlFor={id}/>
-			</SwitchDiv>
-		</div>
+		<SwitchDiv>
+			<SwitchBox color={color} id={id} type="checkbox" defaultChecked={status=="on" ? true : false}/>
+			<SwitchLabel htmlFor={id}/>
+		</SwitchDiv>
 	)
 }
 
