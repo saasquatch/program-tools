@@ -34,6 +34,7 @@ function setupGraphQL() {
 const View = (overrideProps?: LeaderboardProps & any) => {
   const props: LeaderboardProps = {
     leaderboardType: "topConvertedReferrers",
+    showRank: true,
     rankType: "rowNumber",
     usersheading: "Top Referrers",
     statsheading: "Completed Referrals",
@@ -47,59 +48,46 @@ const View = (overrideProps?: LeaderboardProps & any) => {
   setupGraphQL();
   const { states, data, elements } = useLeaderboard(props);
   return (
-    <div>
-      <b>Leaderboard Type:</b>
-      <pre>{leaderboardType}</pre>
-      <br />
-      <b>Rank Type:</b>
-      <pre>{rankType}</pre>
-      {overrideProps?.unit && (
-        <span>
-          <b>Unit:</b>
-          <pre>{overrideProps?.unit}</pre>
-        </span>
-      )}
+    <div style={{ marginBottom: "20px" }}>
+      <sqm-divided-layout direction="row">
+        <div style={{ padding: "10px" }}>
+          <b>Leaderboard Type</b>
+          <pre>{leaderboardType}</pre>
+        </div>
+        <div style={{ padding: "10px" }}>
+          <b>Rank Type</b>
+          <pre>{rankType}</pre>
+        </div>
+      </sqm-divided-layout>
       <LeaderboardView
         states={states}
         data={data}
         elements={elements}
       ></LeaderboardView>
+      <hr />
     </div>
   );
 };
 
 export const TopConvertedReferrers = createHookStory(() => {
-  return View();
+  return [View(), View({ rankType: "rank" }), View({ rankType: "denseRank" })];
 });
 
 export const TopStartedReferrers = createHookStory(() => {
-  return View({
-    leaderboardType: "topStartedReferrers",
-    statsheading: "New Referrals",
-  });
-});
-
-export const RewardCount = createHookStory(() => {
-  return View({
-    leaderboardType: "rewardCount",
-    statsheading: "Number of Rewards",
-    empty: <span>No Rewards</span>,
-  });
-});
-
-export const RewardValueSum = createHookStory(() => {
-  return View({
-    leaderboardType: "rewardValueSum",
-    statsheading: "Value of Rewards",
-    empty: <span>No Rewards</span>,
-  });
-});
-
-export const RewardValueSumOfUnit = createHookStory(() => {
-  return View({
-    leaderboardType: "singleUnitRewardValueSum",
-    unit: "POINT",
-    statsheading: "Value of Rewards",
-    empty: <span>No Rewards</span>,
-  });
+  return [
+    View({
+      leaderboardType: "topStartedReferrers",
+      statsheading: "New Referrals",
+    }),
+    View({
+      leaderboardType: "topStartedReferrers",
+      rankType: "rank",
+      statsheading: "New Referrals",
+    }),
+    View({
+      leaderboardType: "topStartedReferrers",
+      rankType: "denseRank",
+      statsheading: "New Referrals",
+    }),
+  ];
 });

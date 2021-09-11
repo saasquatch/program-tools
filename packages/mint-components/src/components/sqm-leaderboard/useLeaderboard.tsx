@@ -10,15 +10,11 @@ import { LeaderboardViewProps } from "./sqm-leaderboard-view";
 export interface LeaderboardProps {
   usersheading: string;
   statsheading: string;
+  rankheading?: string;
+  showRank?: boolean;
   rankType: "rowNumber" | "rank" | "denseRank";
-  leaderboardType:
-    | "topStartedReferrers"
-    | "topConvertedReferrers"
-    | "rewardCount"
-    | "rewardValueSum"
-    | "singleUnitRewardValueSum";
+  leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   interval: string;
-  unit?: string;
   empty: VNode;
   loadingstate: VNode;
   demoProps?: LeaderboardViewProps;
@@ -41,74 +37,6 @@ const GET_LEADERBOARD = gql`
     }
   }
 `;
-
-const REWARD_COUNT_LEADERBOARD = gql`
-  query {
-    userLeaderboards {
-      rewardCount {
-        dateModified
-        rows {
-          value
-          firstName
-          lastInitial
-          rank {
-            rank
-            denseRank
-            rowNumber
-          }
-        }
-      }
-    }
-  }
-`;
-
-const REWARD_VALUE_LEADERBOARD = gql`
-  query {
-    userLeaderboards {
-      rewardValueSum {
-        dateModified
-        rows {
-          value
-          firstName
-          lastInitial
-          rank {
-            rank
-            denseRank
-            rowNumber
-          }
-        }
-      }
-    }
-  }
-`;
-
-const REWARD_UNIT_VALUE_LEADERBOARD = gql`
-  query ($unit: String!) {
-    userLeaderboards {
-      singleUnitRewardValueSum(unit: $unit) {
-        dateModified
-        rows {
-          value
-          firstName
-          lastInitial
-          rank {
-            rank
-            denseRank
-            rowNumber
-          }
-        }
-      }
-    }
-  }
-`;
-
-const leaderboardQueries = {
-  topStartedReferrers: GET_LEADERBOARD,
-  topConvertedReferrers: GET_LEADERBOARD,
-  rewardCount: REWARD_COUNT_LEADERBOARD,
-  rewardValueSum: REWARD_VALUE_LEADERBOARD,
-  singleUnitRewardValueSum: REWARD_UNIT_VALUE_LEADERBOARD,
-};
 
 type LeaderboardRows = {
   value: number;
@@ -134,37 +62,22 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   const programId = useProgramId();
   const user = useUserIdentity();
 
-  const isReferralLeaderboard = [
-    "topStartedReferrers",
-    "topConvertedReferrers",
-  ].includes(props.leaderboardType);
-
-  const variables = isReferralLeaderboard
-    ? {
-        type: props.leaderboardType,
-        filter: { programId_eq: programId },
-      }
-    : props.leaderboardType === "singleUnitRewardValueSum"
-    ? {
-        unit: props.unit,
-      }
-    : {};
+  const variables = {
+    type: props.leaderboardType,
+    filter: { programId_eq: programId },
+  };
 
   if (props.interval) {
     variables.filter["interval"] = props.interval;
   }
 
-  const leaderboardQuery = leaderboardQueries[props.leaderboardType];
-
   const { data: leaderboardData, loading: loadingLeaderboard } = useQuery(
-    leaderboardQuery,
+    GET_LEADERBOARD,
     variables,
     !user?.jwt
   );
 
-  const leaderboardRows = isReferralLeaderboard
-    ? leaderboardData?.userLeaderboard?.rows
-    : leaderboardData?.userLeaderboards?.[props.leaderboardType]?.rows;
+  const leaderboardRows = leaderboardData?.userLeaderboard?.rows;
 
   const flattenedLeaderboard = getFlattenedLeaderboard(leaderboardRows);
 

@@ -155,13 +155,9 @@ export namespace Components {
         /**
           * @uiName Leaderboard type
           * @uiType string
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "rewardCount", "rewardValueSum", "singleUnitRewardValueSum"]
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
          */
-        "leaderboardType": | "topStartedReferrers"
-    | "topConvertedReferrers"
-    | "rewardCount"
-    | "rewardValueSum"
-    | "singleUnitRewardValueSum";
+        "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
         /**
           * @uiName Rank type
           * @uiType string
@@ -169,14 +165,17 @@ export namespace Components {
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
         /**
+          * @uiName Rank Heading
+         */
+        "rankheading"?: string;
+        /**
+          * @uiName Show the ranking numbers
+         */
+        "showRank": boolean;
+        /**
           * @uiName Stats Column Heading
          */
         "statsheading": string;
-        /**
-          * Unit used with leaderboard type "singleUnitRewardValueSum"
-          * @uiName Unit of reward sum
-         */
-        "unit"?: string;
         /**
           * @uiName User Column Heading
          */
@@ -1309,13 +1308,9 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard type
           * @uiType string
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "rewardCount", "rewardValueSum", "singleUnitRewardValueSum"]
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
          */
-        "leaderboardType"?: | "topStartedReferrers"
-    | "topConvertedReferrers"
-    | "rewardCount"
-    | "rewardValueSum"
-    | "singleUnitRewardValueSum";
+        "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
         /**
           * @uiName Rank type
           * @uiType string
@@ -1323,14 +1318,17 @@ declare namespace LocalJSX {
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
         /**
+          * @uiName Rank Heading
+         */
+        "rankheading"?: string;
+        /**
+          * @uiName Show the ranking numbers
+         */
+        "showRank"?: boolean;
+        /**
           * @uiName Stats Column Heading
          */
         "statsheading"?: string;
-        /**
-          * Unit used with leaderboard type "singleUnitRewardValueSum"
-          * @uiName Unit of reward sum
-         */
-        "unit"?: string;
         /**
           * @uiName User Column Heading
          */
