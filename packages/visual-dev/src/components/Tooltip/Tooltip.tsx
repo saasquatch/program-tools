@@ -7,6 +7,7 @@ import * as Styles from './Styles'
 interface TooltipProps {
 	text?: string;
 	direction?: 'top' | 'left' | 'bottom' | 'right'
+	delay?: number
 	children?: React.ReactNode
 }
 
@@ -21,19 +22,20 @@ const TooltipTip = styled.div`
 export const Tooltip: React.FC<TooltipProps> = ({
 	text = "",
 	direction = "top",
+	delay = 0,
 	children
 }) => {
-	let delay: ReturnType<typeof setTimeout>;
+	let timeout: ReturnType<typeof setTimeout>;
 	const [active, setActive] = useState(false);
 
 	const showTooltip = () => {
-		delay = setTimeout(() => {
+		timeout = setTimeout(() => {
 			setActive(true);
-		}, 250);
+		}, delay);
 	}
 
 	const hideTooltip = () => {
-		clearInterval(delay);
+		clearInterval(timeout);
 		setActive(false);
 	}
 

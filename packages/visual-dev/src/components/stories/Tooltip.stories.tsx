@@ -90,3 +90,36 @@ export const Long = () => (
 		</Tooltip>
 	</StoryFrame>
 )
+
+export const Delay0 = () => (
+	<StoryFrame>
+		<Tooltip
+			text="A tooltip that explains something in detail"
+			delay={0}
+		>
+			<button> Hover </button>
+		</Tooltip>
+	</StoryFrame>
+)
+
+export const Delay250 = () => (
+	<StoryFrame>
+		<Tooltip
+			text="A tooltip that explains something in detail"
+			delay={250}
+		>
+			<button> Hover </button>
+		</Tooltip>
+	</StoryFrame>
+)
+
+export const Delay500 = () => (
+	<StoryFrame>
+		<Tooltip
+			text="A tooltip that explains something in detail"
+			delay={500}
+		>
+			<button> Hover </button>
+		</Tooltip>
+	</StoryFrame>
+)
