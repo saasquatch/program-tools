@@ -152,6 +152,7 @@ export function PenpalContextProvider<
   useEffect(() => {
     (async () => {
       penpalConnectionRef.current = connectToParent({
+        timeout: 5000,
         methods: {
           displayConfiguration(
             tenantScopedToken: string,
