@@ -31,7 +31,7 @@
     "typescript": "^4.3.2"
   },
   "dependencies": {
-    "penpal": "^4.1.1",
+    "penpal": "^6.1.0",
     "resize-observer-polyfill": "^1.5.1"
   },
   "peerDependencies": {

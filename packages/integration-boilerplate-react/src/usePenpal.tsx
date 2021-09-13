@@ -6,10 +6,7 @@ import React, {
   useMemo,
   useContext,
 } from "react";
-//Unfortunately there are no types for the current version of penpal, added in 5.2.0
-//Portal is using 4.1.1
-//@ts-ignore
-import Penpal from "penpal";
+import { connectToParent, Connection } from "penpal";
 import ResizeObserver from "resize-observer-polyfill";
 
 export enum ConfigMode {
@@ -26,9 +23,9 @@ interface PenpalParentMethods<IntegrationConfig, FormConfig> {
   navigateToNewPortalURL(url: string): Promise<void>;
 }
 
-interface PenpalConnection<IntegrationConfig, FormConfig> {
-  promise: Promise<PenpalParentMethods<IntegrationConfig, FormConfig>>;
-}
+type PenpalConnection<IntegrationConfig, FormConfig> = Connection<
+  PenpalParentMethods<IntegrationConfig, FormConfig>
+>;
 
 interface PenpalContextMethods<IntegrationConfig, FormConfig> {
   saveIntegrationConfig(config: Partial<IntegrationConfig>): Promise<void>;
@@ -79,8 +76,10 @@ export function PenpalContextProvider<
   FormConfig extends {} = {}
 >(props: PenpalContextProviderProps & { children: any }) {
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
-  const penpalConnectionRef =
-    useRef<PenpalConnection<IntegrationConfig, FormConfig> | null>(null);
+  const penpalConnectionRef = useRef<PenpalConnection<
+    IntegrationConfig,
+    FormConfig
+  > | null>(null);
   const [state, setState] = useState<
     PenpalContextState<IntegrationConfig, FormConfig>
   >({
@@ -152,7 +151,7 @@ export function PenpalContextProvider<
 
   useEffect(() => {
     try {
-      penpalConnectionRef.current = Penpal.connectToParent({
+      penpalConnectionRef.current = connectToParent({
         methods: {
           displayConfiguration(
             tenantScopedToken: string,
@@ -253,8 +252,9 @@ export function PenpalContextProvider<
 }
 
 function usePenpal<IntegrationConfig = {}, FormConfig = {}>() {
-  const penpal: PenpalContextValue<IntegrationConfig, FormConfig> =
-    useContext(PenpalContext);
+  const penpal: PenpalContextValue<IntegrationConfig, FormConfig> = useContext(
+    PenpalContext
+  );
   if (!penpal.connected) {
     throw new Error(
       "Not wrapped in PenpalContextProvider or no Penpal connection"
