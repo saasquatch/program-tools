@@ -31,13 +31,11 @@ export const StyledIcon = styled.i<{
 	
 `;
 
-
 export const StyledSVG = styled.div<{
 	color?: string;
 	padding?: string;
 	margin?: string;
 	fontSize?: string;
-	fontWeight?: string;
   }>`
 	  color: ${(props) => (props.color ? props.color : "#7c7c7c")} ;
 	  ${(props) => props.padding && `padding: ${props.padding};`}
@@ -55,7 +53,7 @@ export const Icon: React.FC<IconProps> = ({
 	color,
 	padding,
 	margin,
-	fontSize,
+	fontSize = "23px",
 	fontWeight
 }) => {
 	return (
@@ -65,8 +63,6 @@ export const Icon: React.FC<IconProps> = ({
 					padding={padding}
 					margin={margin}
 					color={color}
-					className={icon}
-					fontWeight={fontWeight}
 				>{custom[icon]}</StyledSVG>
 			:	
 				<StyledIcon

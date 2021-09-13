@@ -6,8 +6,11 @@ export default {
   component: Icon
 }
 
-export const Success = () => <Icon icon={"icon-sqh-trash"}>Success</Icon>
-export const Alert = () => <Icon fontSize={"23px"} icon={"sqh-alert"}>Success</Icon>
+// icomoon
+export const IcomoonExample = () => <Icon icon={"icon-sqh-trash"}>Success</Icon>
 
-export const Success2 = () => <Icon color={"#65bd60"} icon={"icon-sqh-trash"}>Success</Icon>
-
+// saasquatch
+export const Alert = () => <Icon icon={"sqh-alert"}/>
+export const Add = () => <Icon icon={"sqh-add"}/>
+export const Close = () => <Icon icon={"sqh-close"}/>
+export const ChevronDown = () => <Icon icon={"sqh-chevron-down"}/>
