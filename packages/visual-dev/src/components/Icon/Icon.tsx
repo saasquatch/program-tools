@@ -3,77 +3,69 @@ import styled from 'styled-components'
 
 import { custom } from './Styles.tsx'
 
+const default_size = {
+	"small": "12px",
+	"medium": "23px",
+	"large": "36px"
+}
+
 interface IconProps {
 	icon: string;
 	color?: string;
+	size?: "small" | "medium" | "large" | string;
 	padding?: string;
 	margin?: string;
-	fontSize?: string;
-	fontWeight?: string;
 }
 
 export const StyledIcon = styled.i<{
-  color?: string;
-  padding?: string;
-  margin?: string;
-  fontSize?: string;
-  fontWeight?: string;
+	color?: string;
+	size: "small" | "medium" | "large" | string;
+	padding?: string;
+	margin?: string;
 }>`
-    color: ${(props) => (props.color ? props.color : "#7c7c7c")} ;
-    ${(props) => props.padding && `padding: ${props.padding};`}
-    ${(props) => props.margin && `margin: ${props.margin};`}
-    ${(props) => props.fontSize && `font-size: ${props.fontSize};`}
-    ${(props) => props.fontWeight && `font-size: ${props.fontWeight};`}
-
-    &:before{
-      color: ${(props) => (props.color ? props.color : "#7c7c7c")} ;
-    }
-	
+	color: ${(props) => props.color};
+	font-size: ${(props) => default_size.hasOwnProperty(props.size) ? default_size[props.size] : props.size};
+	padding: ${(props) => props.padding};
+	margin: ${(props) => props.margin};
 `;
 
 export const StyledSVG = styled.div<{
-	color?: string;
-	padding?: string;
-	margin?: string;
-	fontSize?: string;
-  }>`
-	  color: ${(props) => (props.color ? props.color : "#7c7c7c")} ;
-	  ${(props) => props.padding && `padding: ${props.padding};`}
-	  ${(props) => props.margin && `margin: ${props.margin};`}
-	  ${(props) => props.fontSize && `width: ${props.fontSize};`}
-	  ${(props) => props.fontSize && `height: ${props.fontSize};`}
-  
-	  &:before{
-		color: ${(props) => (props.color ? props.color : "#7c7c7c")} ;
-	  }	  
-  `;
+	color: string;
+	size: "small" | "medium" | "large" | string;
+	padding: string;
+	margin: string;
+}>`
+	color: ${(props) => props.color};
+	width: ${(props) => default_size.hasOwnProperty(props.size) ? default_size[props.size] : props.size};
+	height: ${(props) => default_size.hasOwnProperty(props.size) ? default_size[props.size] : props.size};
+	padding: ${(props) => props.padding};
+	margin: ${(props) => props.margin};
+`;
 
 export const Icon: React.FC<IconProps> = ({
 	icon,
-	color,
-	padding,
-	margin,
-	fontSize = "23px",
-	fontWeight
+	color = "#7c7c7c",
+	size = "small",
+	padding = "0px",
+	margin = "0px",
 }) => {
 	return (
-			icon.startsWith('sqh') ?
-				<StyledSVG
-					fontSize={fontSize}
-					padding={padding}
-					margin={margin}
-					color={color}
-				>{custom[icon]}</StyledSVG>
-			:	
-				<StyledIcon
-					fontSize={fontSize}
-					padding={padding}
-					margin={margin}
-					color={color}
-					className={icon}
-					fontWeight={fontWeight}
-				></StyledIcon>
+		icon.startsWith('sqh') ?
+			<StyledSVG
+				size={size}
+				padding={padding}
+				margin={margin}
+				color={color}
+			>
+				{custom[icon]}
+			</StyledSVG>
+		:	
+			<StyledIcon
+				className={icon}
+				size={size}
+				padding={padding}
+				margin={margin}
+				color={color}
+			></StyledIcon>
 	)
 }
-
-
