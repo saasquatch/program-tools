@@ -1,0 +1,87 @@
+:root {
+  font-size: 16px;
+
+  /* ~~~ Colors ~~~ */
+
+  /* Surface */
+  --surface: #ffffff;
+  --surface-subdued: #f6f6f6;
+  --background: #f9f9f9;
+
+  /* On Surface */
+  --text: #575757;
+  --text-dark: #232323;
+  --text-subdued: #858585;
+  --border: #e2e2e2;
+
+  /* Top Nav Bar */
+  --nav-surface-primary: #003b45;
+  --nav-text-on-primary: #ffffff;
+  --nav-text-on-primary-subdued: #999999;
+  --nav-surface-secondary: #ffffff;
+  --nav-text-on-secondary: #003b45;
+  --nav-text-on-secondary-subdued: #7c7c7c;
+
+  /* Primary */
+  --action-primary: #f49c20;
+  --action-primary-hovered: #dc8f32;
+  --text-on-primary: #ffffff;
+  --action-primary-disabled: #e2e2e2;
+
+  /* Secondary */
+  --action-secondary: #ffffff;
+  --action-secondary-hovered: #a6b9bd;
+  --action-secondary-border: #a6b9bd;
+  --text-on-secondary: #575757;
+  --text-on-secondary-hovered: #ffffff;
+  --placeholder-text-on-secondary: #bdbdbd;
+
+  /* Success */
+  --surface-success: #57ac59;
+  --surface-success-hovered: #479449;
+  --surface-success-subdued: #e4fce3;
+  --border-success: #57ac59;
+
+  /* Warning */
+  --surface-warning: #f1c359;
+  --surface-warning-subdued: #fcf8e3;
+  --border-warning: #f1c359;
+
+  /* Critical */
+  --surface-critical: #fe6666;
+  --surface-critical-hovered: #cb0000;
+  --surface-critical-subdued: #faf2ee;
+  --border-critical: #d14040;
+  --on-surface-critical: #c71d06;
+
+  /* Interactive */
+  --text-interactive: #0088cc;
+  --focused: #458edf;
+  --icon-interactive: #0275fb;
+  --surface-hover: #eef6ff;
+
+  /* Typography */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --font-size-header-one: 26px;
+  --font-size-header-two: 22px;
+  --font-size-header-three: 18px;
+  --font-size-regular: 14px;
+  --font-size-button-small: 12px;
+  --font-size-button-medium: 14px;
+
+  /* Spacing */
+
+  --spacing-xxx-small: 0.125rem;
+  --spacing-xx-small: 0.25rem;
+  --spacing-x-small: 0.5rem;
+  --spacing-small: 0.75rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 1.25rem;
+  --spacing-x-large: 1.75rem;
+  --spacing-xx-large: 2.25rem;
+  --spacing-xxx-large: 3rem;
+  --spacing-xxxx-large: 4.5rem;
+}
