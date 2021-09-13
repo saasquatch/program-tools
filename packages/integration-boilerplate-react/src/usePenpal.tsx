@@ -150,7 +150,7 @@ export function PenpalContextProvider<
   }, [assertConnected, saveFormConfig, state]);
 
   useEffect(() => {
-    try {
+    (async () => {
       penpalConnectionRef.current = connectToParent({
         methods: {
           displayConfiguration(
@@ -196,20 +196,23 @@ export function PenpalContextProvider<
           },
         },
       });
-    } catch (e) {
-      // Failed to connect to Penpal, probably not in an iframe
-      setTriedToConnect(true);
-      return;
-    }
 
-    resizeObserverRef.current = new ResizeObserver((entries: Array<any>) => {
-      for (const entry of entries) {
-        const { height } = entry.contentRect;
-        resize(height);
+      try {
+        await penpalConnectionRef.current.promise;
+      } catch (e) {
+        setTriedToConnect(true);
+        return;
       }
-    });
 
-    resizeObserverRef.current.observe(document.body);
+      resizeObserverRef.current = new ResizeObserver((entries: Array<any>) => {
+        for (const entry of entries) {
+          const { height } = entry.contentRect;
+          resize(height);
+        }
+      });
+
+      resizeObserverRef.current.observe(document.body);
+    })();
 
     return () => {
       if (resizeObserverRef.current) {
