@@ -2,7 +2,7 @@ import React from "react";
 import { Badge } from "../Badge";
 
 export default {
-  title: "Examples / Badge",
+  title: "Components / Badge",
   component: Badge,
 };
 
