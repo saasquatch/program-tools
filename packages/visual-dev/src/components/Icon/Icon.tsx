@@ -45,7 +45,7 @@ export const StyledSVG = styled.div<{
 export const Icon: React.FC<IconProps> = ({
 	icon,
 	color = "#7c7c7c",
-	size = "small",
+	size = "medium",
 	padding = "0px",
 	margin = "0px",
 }) => {

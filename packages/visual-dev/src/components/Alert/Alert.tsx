@@ -1,5 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components'
+import '../../styles.css'
+import { Icon } from '../Icon';
 
 import * as Styles from './Styles'
 
@@ -21,13 +23,20 @@ export const Alert: React.FC<AlertProps> = ({
 }) => {
 	return (
 		<AlertDiv type={type}>
-			{SVG[type]}
+			{icons[type]}
 			<div style={{paddingLeft: 16}}>
 				<div style={{fontWeight: 'bold'}}>{title} </div>
 				<div>{children}</div>
 			</div>
 		</AlertDiv>
 	)
+}
+
+const icons = {
+	'critical': <Icon icon={"sqh-alert"} color='var(--sq-surface-critical)'/>,
+	'warning': <Icon icon={"sqh-alert"} color='var(--sq-surface-warning)'/>,
+	'success': <Icon icon={"sqh-checkmark-circle"} color='var(--sq-text-subdued)'/>,
+	'info': <Icon icon={"sqh-help"} color='var(--sq-text)'/>,
 }
 
 // TODO: Use Icon component for these SVGs when finished.
