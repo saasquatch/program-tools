@@ -1,40 +1,29 @@
 import * as React from 'react';
 import styled from 'styled-components'
 
-import { custom } from './Styles.tsx'
+import { default_size, icons } from './Styles.tsx'
 
-const default_size = {
-	"small": "12px",
-	"medium": "23px",
-	"large": "36px"
+type IconProps = OptionProps & StyleProps
+
+interface OptionProps {
+	icon: string
 }
 
-interface IconProps {
-	icon: string;
-	color?: string;
-	size?: "small" | "medium" | "large" | string;
-	padding?: string;
-	margin?: string;
+interface StyleProps {
+	color?: string
+	size?: "small" | "medium" | "large" | string
+	padding?: string
+	margin?: string
 }
 
-export const StyledIcon = styled.i<{
-	color?: string;
-	size: "small" | "medium" | "large" | string;
-	padding?: string;
-	margin?: string;
-}>`
+export const StyledIcon = styled.i<Required<StyleProps>>`
 	color: ${(props) => props.color};
 	font-size: ${(props) => default_size.hasOwnProperty(props.size) ? default_size[props.size] : props.size};
 	padding: ${(props) => props.padding};
 	margin: ${(props) => props.margin};
 `;
 
-export const StyledSVG = styled.div<{
-	color: string;
-	size: "small" | "medium" | "large" | string;
-	padding: string;
-	margin: string;
-}>`
+export const StyledSVG = styled.div<Required<StyleProps>>`
 	color: ${(props) => props.color};
 	width: ${(props) => default_size.hasOwnProperty(props.size) ? default_size[props.size] : props.size};
 	height: ${(props) => default_size.hasOwnProperty(props.size) ? default_size[props.size] : props.size};
@@ -57,7 +46,7 @@ export const Icon: React.FC<IconProps> = ({
 				margin={margin}
 				color={color}
 			>
-				{custom[icon]}
+				{icons[icon]}
 			</StyledSVG>
 		:	
 			<StyledIcon
