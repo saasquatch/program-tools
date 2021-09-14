@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components'
-
+// import * from './svg' // Webloader??
 import { default_size, icons } from './Styles.tsx'
 
 type IconProps = OptionProps & StyleProps
@@ -46,7 +46,8 @@ export const Icon: React.FC<IconProps> = ({
 				margin={margin}
 				color={color}
 			>
-				{icons[icon]}
+				{//<img src={require("./svg/sqh-add.tsx")}/>, // a way to add icon.svgs ?
+				}{icons[icon]}
 			</StyledSVG>
 		:	
 			<StyledIcon
