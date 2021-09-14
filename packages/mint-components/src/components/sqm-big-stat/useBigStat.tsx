@@ -533,7 +533,7 @@ const rewardsBalanceQuery = (
 };
 
 // functions are of the form (programId: string, ...args: string) => string
-const queries: {
+export const queries: {
   [key: string]: {
     label: string;
     query: (programId: string, ...args: string[]) => string;
