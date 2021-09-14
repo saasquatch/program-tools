@@ -6,4 +6,7 @@ export default {
   component: Avatar
 }
 
-export const avatar = () => <Avatar>An explanation of what this alert is.</Avatar>
+export const Default = () => <Avatar/>
+export const Initials = () => <Avatar firstName="Kutay" lastName="Cinar"/>
+export const FirstName = () => <Avatar firstName="Kutay"/>
+export const LastName = () => <Avatar lastName="Cinar"/>
