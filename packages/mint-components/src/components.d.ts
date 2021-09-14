@@ -191,6 +191,9 @@ export namespace Components {
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
          */
         "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
+        /**
+          * @uiName Rank Text
+         */
         "rankText": string;
         /**
           * @uiName Default rank
@@ -198,6 +201,9 @@ export namespace Components {
           * @uiEnum ["rowNumber", "rank", "denseRank"]
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
+        /**
+          * @uiName Unranked Text
+         */
         "unrankedText": string;
     }
     interface SqmNavigationMenu {
@@ -597,6 +603,9 @@ export namespace Components {
           * @uiName Name displayed for anonymous users
          */
         "anonymousUser": string;
+        /**
+          * @uiName User Column Title
+         */
         "columnTitle": string;
         /**
           * @uiName Name displayed for deleted users
@@ -1323,6 +1332,9 @@ declare namespace LocalJSX {
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
          */
         "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
+        /**
+          * @uiName Rank Text
+         */
         "rankText"?: string;
         /**
           * @uiName Default rank
@@ -1330,6 +1342,9 @@ declare namespace LocalJSX {
           * @uiEnum ["rowNumber", "rank", "denseRank"]
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
+        /**
+          * @uiName Unranked Text
+         */
         "unrankedText"?: string;
     }
     interface SqmNavigationMenu {
@@ -1721,6 +1736,9 @@ declare namespace LocalJSX {
           * @uiName Name displayed for anonymous users
          */
         "anonymousUser"?: string;
+        /**
+          * @uiName User Column Title
+         */
         "columnTitle"?: string;
         /**
           * @uiName Name displayed for deleted users
