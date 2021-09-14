@@ -22,7 +22,7 @@ export const icons = {
 		viewBox="0 0 20 20"
 		fill="currentColor"
 		>
-<path d="M17 11.5H11.5V17H8.5V11.5H3V8.5H8.5V3H11.5V8.5H17V11.5Z"/>
+	<path d="M17 11.5H11.5V17H8.5V11.5H3V8.5H8.5V3H11.5V8.5H17V11.5Z"/>
 	</svg>,
 
 	'sqh-chevron-down':
@@ -127,8 +127,7 @@ export const icons = {
 		fill="currentColor"
 		>
 		<path d="M11.5 1L11 8H15L8.5 19L9 11.5H5L11.5 1Z"/>
-		</svg>
-,
+		</svg>,
 
 	'sqh-arrow-dropdown':
 	<svg
