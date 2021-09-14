@@ -1,5 +1,5 @@
 :root {
-  font-size: 16px;
+  /* font-size: 16px; */
 
   /* ~~~ Colors ~~~ */
 
@@ -69,19 +69,20 @@
   --sq-font-size-header-two: 22px;
   --sq-font-size-header-three: 18px;
   --sq-font-size-regular: 14px;
+  --sq-font-size-small: 12px;
   --sq-font-size-button-small: 12px;
   --sq-font-size-button-medium: 14px;
 
   /* Spacing */
 
-  --sq-spacing-xxx-small: 0.125rem;
-  --sq-spacing-xx-small: 0.25rem;
-  --sq-spacing-x-small: 0.5rem;
-  --sq-spacing-small: 0.75rem;
-  --sq-spacing-medium: 1rem;
-  --sq-spacing-large: 1.25rem;
-  --sq-spacing-x-large: 1.75rem;
-  --sq-spacing-xx-large: 2.25rem;
-  --sq-spacing-xxx-large: 3rem;
-  --sq-spacing-xxxx-large: 4.5rem;
+  --sq-spacing-xxx-small: 2px;
+  --sq-spacing-xx-small: 4px;
+  --sq-spacing-x-small: 8px;
+  --sq-spacing-small: 12px;
+  --sq-spacing-medium: 16px;
+  --sq-spacing-large: 20px;
+  --sq-spacing-x-large: 24px;
+  --sq-spacing-xx-large: 32px;
+  --sq-spacing-xxx-large: 48px;
+  --sq-spacing-xxxx-large: 64px;
 }
