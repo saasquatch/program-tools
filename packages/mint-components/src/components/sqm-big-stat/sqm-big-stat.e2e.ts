@@ -440,7 +440,7 @@ describe("sqm-big-stat", () => {
 
   test("/integrationRewardsCountFiltered", async () => {
     const html = getHTML(
-      `<sqm-big-stat stat-type="/integrationRewardsCountFiltered/PENDING/global"></sqm-big-stat>`
+      `<sqm-big-stat stat-type="/integrationRewardsCountFiltered"></sqm-big-stat>`
     );
     const page = await newE2EPage();
 
@@ -458,7 +458,7 @@ describe("sqm-big-stat", () => {
 
   test("/integrationRewardsCountFiltered/global", async () => {
     const html = getHTML(
-      `<sqm-big-stat stat-type="/integrationRewardsCountFiltered/PENDING/global"></sqm-big-stat>`
+      `<sqm-big-stat stat-type="/integrationRewardsCountFiltered/global"></sqm-big-stat>`
     );
     const page = await newE2EPage();
 
