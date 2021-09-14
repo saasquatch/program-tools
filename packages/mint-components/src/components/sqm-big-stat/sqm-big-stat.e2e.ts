@@ -228,6 +228,57 @@ describe("sqm-big-stat", () => {
     hasStat(stat);
     page.close();
   });
+  test("/rewardsCountFiltered/PCT_DISCOUNT/global", async () => {
+    const html = getHTML(
+      `<sqm-big-stat stat-type="/rewardsCountFiltered/PCT_DISCOUNT/global"></sqm-big-stat>`
+    );
+    const page = await newE2EPage();
+
+    const { expectElement, hasStat } = statFunctions(page);
+
+    await page.setContent(html);
+    await page.waitForChanges();
+    await expectElement("sqm-big-stat");
+    const stat = await page.find(
+      `sqm-big-stat >>> div > div[part="stat-value"]`
+    );
+    hasStat(stat);
+    page.close();
+  });
+  test("/rewardsCountFiltered/PCT_DISCOUNT/PENDING", async () => {
+    const html = getHTML(
+      `<sqm-big-stat stat-type="/rewardsCountFiltered/PCT_DISCOUNT/PENDING"></sqm-big-stat>`
+    );
+    const page = await newE2EPage();
+
+    const { expectElement, hasStat } = statFunctions(page);
+
+    await page.setContent(html);
+    await page.waitForChanges();
+    await expectElement("sqm-big-stat");
+    const stat = await page.find(
+      `sqm-big-stat >>> div > div[part="stat-value"]`
+    );
+    hasStat(stat);
+    page.close();
+  });
+  test("/rewardsCountFiltered/PCT_DISCOUNT/PENDING/global", async () => {
+    const html = getHTML(
+      `<sqm-big-stat stat-type="/rewardsCountFiltered/PCT_DISCOUNT/PENDING/global"></sqm-big-stat>`
+    );
+    const page = await newE2EPage();
+
+    const { expectElement, hasStat } = statFunctions(page);
+
+    await page.setContent(html);
+    await page.waitForChanges();
+    await expectElement("sqm-big-stat");
+    const stat = await page.find(
+      `sqm-big-stat >>> div > div[part="stat-value"]`
+    );
+    hasStat(stat);
+    page.close();
+  });
   test("/rewardsCountFiltered/CREDIT", async () => {
     const html = getHTML(
       `<sqm-big-stat stat-type="/rewardsCountFiltered/CREDIT"></sqm-big-stat>`
@@ -300,6 +351,78 @@ describe("sqm-big-stat", () => {
   test("/rewardsCountFiltered/CREDIT/COFFEE/AVAILABLE/global", async () => {
     const html = getHTML(
       `<sqm-big-stat stat-type="/rewardsCountFiltered/CREDIT/COFFEE/AVAILABLE/global"></sqm-big-stat>`
+    );
+    const page = await newE2EPage();
+
+    const { expectElement, hasStat } = statFunctions(page);
+
+    await page.setContent(html);
+    await page.waitForChanges();
+    await expectElement("sqm-big-stat");
+    const stat = await page.find(
+      `sqm-big-stat >>> div > div[part="stat-value"]`
+    );
+    hasStat(stat);
+    page.close();
+  });
+
+  test("/rewardsCountFiltered/CREDIT/CASH%2FUSD", async () => {
+    const html = getHTML(
+      `<sqm-big-stat stat-type="/rewardsCountFiltered/CREDIT/CASH%2FUSD"></sqm-big-stat>`
+    );
+    const page = await newE2EPage();
+
+    const { expectElement, hasStat } = statFunctions(page);
+
+    await page.setContent(html);
+    await page.waitForChanges();
+    await expectElement("sqm-big-stat");
+    const stat = await page.find(
+      `sqm-big-stat >>> div > div[part="stat-value"]`
+    );
+    hasStat(stat);
+    page.close();
+  });
+
+  test("/rewardsCountFiltered/CREDIT/CASH%2FUSD/global", async () => {
+    const html = getHTML(
+      `<sqm-big-stat stat-type="/rewardsCountFiltered/CREDIT/CASH%2FUSD/global"></sqm-big-stat>`
+    );
+    const page = await newE2EPage();
+
+    const { expectElement, hasStat } = statFunctions(page);
+
+    await page.setContent(html);
+    await page.waitForChanges();
+    await expectElement("sqm-big-stat");
+    const stat = await page.find(
+      `sqm-big-stat >>> div > div[part="stat-value"]`
+    );
+    hasStat(stat);
+    page.close();
+  });
+
+  test("/rewardsCountFiltered/CREDIT/CASH%2FUSD/PENDING", async () => {
+    const html = getHTML(
+      `<sqm-big-stat stat-type="/rewardsCountFiltered/CREDIT/CASH%2FUSD/PENDING"></sqm-big-stat>`
+    );
+    const page = await newE2EPage();
+
+    const { expectElement, hasStat } = statFunctions(page);
+
+    await page.setContent(html);
+    await page.waitForChanges();
+    await expectElement("sqm-big-stat");
+    const stat = await page.find(
+      `sqm-big-stat >>> div > div[part="stat-value"]`
+    );
+    hasStat(stat);
+    page.close();
+  });
+
+  test("/rewardsCountFiltered/CREDIT/CASH%2FUSD/PENDING/global", async () => {
+    const html = getHTML(
+      `<sqm-big-stat stat-type="/rewardsCountFiltered/CREDIT/CASH%2FUSD/PENDING/global"></sqm-big-stat>`
     );
     const page = await newE2EPage();
 

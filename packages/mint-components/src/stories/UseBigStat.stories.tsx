@@ -102,22 +102,34 @@ export const RewardsCount = createHookStory(() =>
 export const GlobalRewardsCount = createHookStory(() =>
   View("/rewardsCount/global", "/(rewardsCount)/:global")
 );
+export const RewardsCountPctDiscountGlobal = createHookStory(() =>
+  View(
+    "/rewardsCountFiltered/PCT_DISCOUNT/global",
+    "/(rewardsCountFiltered)/:statType?/:unit(!global|!PENDING|!CANCELLED|!EXPIRED|!REDEEMED|!AVAILABLE*)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
+  )
+);
+export const RewardsCountPctDiscountPendingGlobal = createHookStory(() =>
+  View(
+    "/rewardsCountFiltered/PCT_DISCOUNT/PENDING/global",
+    "/(rewardsCountFiltered)/:statType?/:unit(!global|!PENDING|!CANCELLED|!EXPIRED|!REDEEMED|!AVAILABLE*)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
+  )
+);
 export const RewardsCountByUnit = createHookStory(() =>
   View(
     "/rewardsCountFiltered/CREDIT/COFFEE",
-    "/(rewardsCountFiltered)/:statType?/:unit?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
+    "/(rewardsCountFiltered)/:statType?/:unit(!global|!PENDING|!CANCELLED|!EXPIRED|!REDEEMED|!AVAILABLE*)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
   )
 );
 export const GlobalRewardsCountByUnit = createHookStory(() =>
   View(
     "/rewardsCountFiltered/CREDIT/COFFEE/global",
-    "/(rewardsCountFiltered)/:statType?/:unit?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
+    "/(rewardsCountFiltered)/:statType?/:unit(!global|!PENDING|!CANCELLED|!EXPIRED|!REDEEMED|!AVAILABLE*)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
   )
 );
 export const GlobalPendingRewardsCount = createHookStory(() =>
   View(
     "/rewardsCountFiltered/CREDIT/COFFEE/PENDING/global",
-    "/(rewardsCountFiltered)/:statType?/:unit?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
+    "/(rewardsCountFiltered)/:statType?/:unit(!global|!PENDING|!CANCELLED|!EXPIRED|!REDEEMED|!AVAILABLE*)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
   )
 );
 export const GlobalRewardsCountByIntegration = createHookStory(() =>
