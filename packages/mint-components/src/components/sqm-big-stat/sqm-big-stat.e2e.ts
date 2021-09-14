@@ -17,19 +17,20 @@ function statFunctions(page: Readonly<E2EPage>) {
   };
 }
 
+// <script>
+// window.widgetIdent = {
+//   tenantAlias: "test_a7yoz8854cf6x",
+//   appDomain: "https://staging.referralsaasquatch.com",
+//   token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6Im55bmVsbGllIiwiaWQiOiJueW5lbGxpZSJ9fQ.3KV974VPLgk4tD8LQfJTi4IPkKCmnaB8w48HzVJYDuI",
+//   userId: "nynellie",
+//   accountId: "nynellie",
+//   programId: "ny-post-referrals",
+// }
+// </script>
+
 function getHTML(stat) {
   return /*html*/ `
   <div>
-    <script>
-    window.widgetIdent = {
-      tenantAlias: "test_a7yoz8854cf6x",
-      appDomain: "https://staging.referralsaasquatch.com",
-      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6Im55bmVsbGllIiwiaWQiOiJueW5lbGxpZSJ9fQ.3KV974VPLgk4tD8LQfJTi4IPkKCmnaB8w48HzVJYDuI",
-      userId: "nynellie",
-      accountId: "nynellie",
-      programId: "ny-post-referrals",
-    }
-    </script>
     ${stat}
   </div>
   `;
