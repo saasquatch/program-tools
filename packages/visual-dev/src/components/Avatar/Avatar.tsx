@@ -22,7 +22,7 @@ const AvatarCircle = styled.div`
 `
 const AvatarText = styled.span`
 	position: relative;
-	top: 6.5px;
+	top: 6px;
 	font-family: Helvetica;
 	font-style: normal;
 	font-weight: normal;
@@ -31,17 +31,17 @@ const AvatarText = styled.span`
 `
 
 export const Avatar: React.FC<AvatarProps> = ({
-	firstName,
-	lastName
+	firstName = "",
+	lastName = ""
 }) => {
 	let initials
-	if (firstName && lastName) {
+	if (firstName || lastName) {
 		initials = firstName.charAt(0) + lastName.charAt(0)
 		console.log(initials)
 	}
 	return (
 		<AvatarStyle>
-			{!(firstName && lastName) ? SVG :
+			{!(firstName || lastName) ? SVG :
 			<AvatarCircle>
 				<AvatarText>{initials}</AvatarText>
 			</AvatarCircle>}	
