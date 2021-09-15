@@ -11,23 +11,11 @@ interface AvatarProps {
 const AvatarStyle = styled.div``
 
 const AvatarCircle = styled.div`
-	background-color: var(--sq-background);
-	border-radius: 50%;
-	width: 34px;
-	height: 34px;
-	text-align: center;
-	border: 1px solid #E2E2E2;
-	box-sizing: border-box;
-	border-radius: 50px;
+	${Styles.base}
 `
+
 const AvatarText = styled.span`
-	position: relative;
-	top: 6px;
-	font-family: Helvetica;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 14px;
-	line-height: 20px;
+	${Styles.circle}
 `
 
 export const Avatar: React.FC<AvatarProps> = ({
