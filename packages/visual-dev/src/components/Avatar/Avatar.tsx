@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components'
-import '../../styles.css'
 import * as Styles from './Styles'
 
 interface AvatarProps {
