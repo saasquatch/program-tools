@@ -25,7 +25,6 @@ export const Avatar: React.FC<AvatarProps> = ({
 	let initials
 	if (firstName || lastName) {
 		initials = firstName.charAt(0) + lastName.charAt(0)
-		console.log(initials)
 	}
 	return (
 		<AvatarStyle>
