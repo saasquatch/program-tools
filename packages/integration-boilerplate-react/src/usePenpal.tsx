@@ -7,6 +7,7 @@ import React, {
   useContext,
 } from "react";
 import { connectToParent, Connection } from "penpal";
+import decode from "jwt-decode";
 import ResizeObserver from "resize-observer-polyfill";
 
 export enum ConfigMode {
@@ -30,6 +31,7 @@ type PenpalConnection<IntegrationConfig, FormConfig> = Connection<
 interface PenpalContextMethods<IntegrationConfig, FormConfig> {
   saveIntegrationConfig(config: Partial<IntegrationConfig>): Promise<void>;
   saveFormConfig(config: Partial<FormConfig>): Promise<void>;
+  getParent(): Promise<PenpalParentMethods<IntegrationConfig, FormConfig>>;
   navigatePortal(url: string): Promise<void>;
   closeFormConfig(): Promise<void>;
   setShouldCancelDisableCallback: (fn: () => Promise<boolean>) => void;
@@ -43,6 +45,7 @@ interface PenpalContextConnectedState<IntegrationConfig, FormConfig> {
   connected: true;
   mode: ConfigMode;
   tenantScopedToken: string;
+  tenantAlias: string;
   integrationConfig: Partial<IntegrationConfig>;
   formConfig: Partial<FormConfig>;
 }
@@ -76,10 +79,8 @@ export function PenpalContextProvider<
   FormConfig extends {} = {}
 >(props: PenpalContextProviderProps & { children: any }) {
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
-  const penpalConnectionRef = useRef<PenpalConnection<
-    IntegrationConfig,
-    FormConfig
-  > | null>(null);
+  const penpalConnectionRef =
+    useRef<PenpalConnection<IntegrationConfig, FormConfig> | null>(null);
   const [state, setState] = useState<
     PenpalContextState<IntegrationConfig, FormConfig>
   >({
@@ -132,6 +133,12 @@ export function PenpalContextProvider<
     [assertConnected]
   );
 
+  const getParent = useCallback(async () => {
+    assertConnected();
+    const parent = await penpalConnectionRef.current!.promise;
+    return parent;
+  }, [assertConnected]);
+
   const navigatePortal = useCallback(
     async (url: string) => {
       assertConnected();
@@ -178,11 +185,15 @@ export function PenpalContextProvider<
             } else {
               mode = ConfigMode.IntegrationsPage;
             }
+            // add tenantAlias to state for easier use
+            const tenantAlias =
+              decode<{ sub: string }>(tenantScopedToken).sub.split("@")[0];
 
             setState({
               connected: true,
               mode,
               tenantScopedToken,
+              tenantAlias,
               integrationConfig,
               formConfig: formConfig || {},
             });
@@ -229,6 +240,7 @@ export function PenpalContextProvider<
       resize,
       saveIntegrationConfig,
       saveFormConfig,
+      getParent,
       navigatePortal,
       closeFormConfig,
       setShouldCancelDisableCallback,
@@ -238,6 +250,7 @@ export function PenpalContextProvider<
       resize,
       saveIntegrationConfig,
       saveFormConfig,
+      getParent,
       navigatePortal,
       closeFormConfig,
       setShouldCancelDisableCallback,
@@ -256,9 +269,8 @@ export function PenpalContextProvider<
 }
 
 function usePenpal<IntegrationConfig = {}, FormConfig = {}>() {
-  const penpal: PenpalContextValue<IntegrationConfig, FormConfig> = useContext(
-    PenpalContext
-  );
+  const penpal: PenpalContextValue<IntegrationConfig, FormConfig> =
+    useContext(PenpalContext);
   if (!penpal.connected) {
     throw new Error(
       "Not wrapped in PenpalContextProvider or no Penpal connection"
