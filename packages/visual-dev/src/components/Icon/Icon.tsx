@@ -1,64 +1,48 @@
 import * as React from 'react';
 import styled from 'styled-components'
-import * as SVGs from './SVGs.tsx'
+import * as SVGs from './SVGs'
 
 type IconProps = OptionProps & StyleProps
 
 interface OptionProps {
-	icon: string
+	icon: keyof typeof SVGs
 }
 
 interface StyleProps {
 	color?: string
 	size?: "small" | "medium" | "large" | string
-	padding?: string
-	margin?: string
+}
+
+export const default_size = {
+	"small": "12px",
+	"medium": "23px",
+	"large": "36px"
 }
 
 export const StyledIcon = styled.i<Required<StyleProps>>`
 	color: ${(props) => props.color};
-	font-size: ${(props) => SVGs.default_size.hasOwnProperty(props.size) ? SVGs.default_size[props.size] : props.size};
-	padding: ${(props) => props.padding};
-	margin: ${(props) => props.margin};
+	font-size: ${(props) => default_size.hasOwnProperty(props.size) ? default_size[props.size] : props.size};
 `;
 
 export const StyledSVG = styled.div<Required<StyleProps>>`
 	color: ${(props) => props.color};
-	width: ${(props) => SVGs.default_size.hasOwnProperty(props.size) ? SVGs.default_size[props.size] : props.size};
-	height: ${(props) => SVGs.default_size.hasOwnProperty(props.size) ? SVGs.default_size[props.size] : props.size};
-	padding: ${(props) => props.padding};
-	margin: ${(props) => props.margin};
+	width: ${(props) => default_size.hasOwnProperty(props.size) ? default_size[props.size] : props.size};
+	height: ${(props) => default_size.hasOwnProperty(props.size) ? default_size[props.size] : props.size};
 `;
 
-function getIcon(props:{icon: SVGs.IconKey})
-{
-	console.log(SVGs.icons[props.icon])
-}
+type Icons = keyof typeof SVGs
 
 export const Icon: React.FC<IconProps> = ({
 	icon,
 	color = "#7c7c7c",
-	size = "medium",
-	padding = "0px",
-	margin = "0px",
+	size = "medium"
 }) => {
 	return (
-		icon.startsWith('sqh') ?
 			<StyledSVG
 				size={size}
-				padding={padding}
-				margin={margin}
 				color={color}
 			>
-				{getIcon({icon: icon})}
+				{  Object.keys(SVGs).includes(icon) ? "does exist yay" : "does not exist"}
 			</StyledSVG>
-		:	
-			<StyledIcon
-				className={icon}
-				size={size}
-				padding={padding}
-				margin={margin}
-				color={color}
-			></StyledIcon>
 	)
 }

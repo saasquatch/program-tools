@@ -1,14 +1,6 @@
 import * as React from 'react';
 
-export const default_size = {
-	"small": "12px",
-	"medium": "23px",
-	"large": "36px"
-}
-
-export type IconKey = keyof typeof icons
-
-export const Close =
+export const close =
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		viewBox="0 0 20 20"

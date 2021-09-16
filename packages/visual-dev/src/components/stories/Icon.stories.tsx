@@ -6,8 +6,8 @@ export default {
   component: Icon
 }
 
-export const add = () => <Icon icon={"sqh-add"}/>
-export const SizeSmall = () => <Icon size="small" icon={"sqh-add"}/>
+export const add = () => <Icon icon={"close"}/>
+export const SizeSmall = () => <Icon size="small" icon={"close"}/>
 export const SizeMedium = () => <Icon size="medium" icon={"sqh-add"}/>
 export const SizeLarge = () => <Icon size="large" icon={"sqh-add"}/>
 export const SizeCustom = () => <Icon size="50px" icon={"sqh-add"}/>
