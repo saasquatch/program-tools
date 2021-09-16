@@ -1,4 +1,3 @@
-import { h } from "@stencil/core";
 import { E2EElement, E2EPage, newE2EPage } from "@stencil/core/testing";
 
 function statFunctions(page: Readonly<E2EPage>) {
@@ -45,7 +44,9 @@ const statTypes = [
   "/rewardsCount",
   "/rewardsCount/global",
   "/rewardsCountFiltered",
+  "/rewardsCountFiltered/global",
   "/rewardsCountFiltered/INTEGRATION",
+  "/rewardsCountFiltered/INTEGRATION/global",
   "/rewardsCountFiltered/PCT_DISCOUNT",
   "/rewardsCountFiltered/PCT_DISCOUNT/global",
   "/rewardsCountFiltered/PCT_DISCOUNT/PENDING",
@@ -53,6 +54,7 @@ const statTypes = [
   "/rewardsCountFiltered/PCT_DISCOUNT/CANCELLED",
   "/rewardsCountFiltered/PCT_DISCOUNT/PENDING/global",
   "/rewardsCountFiltered/CREDIT",
+  "/rewardsCountFiltered/CREDIT/global",
   "/rewardsCountFiltered/CREDIT/COFFEE",
   "/rewardsCountFiltered/CREDIT/COFFEE/global",
   "/rewardsCountFiltered/CREDIT/COFFEE/PENDING/global",
@@ -82,6 +84,7 @@ const statTypes = [
   "/rewardsAvailable/CREDIT/CASH%2FUSD",
   "/rewardsAvailable/CREDIT/CASH%2FUSD/global",
   "/rewardBalance/CREDIT/COFFEE",
+  "/rewardBalance/CREDIT/CASH/USD",
   "/rewardBalance/CREDIT/COFFEE/global",
   "/rewardBalance/CREDIT/COFFEE/prettyValue",
   "/rewardBalance/CREDIT/COFFEE/value",
@@ -168,6 +171,23 @@ describe("sqm-big-stat", () => {
   test("/programGoals/conversionCount returns !!!", async () => {
     const html = getHTML(
       `<sqm-big-stat stat-type="/programGoals/conversionCount"></sqm-big-stat>`
+    );
+    const page = await newE2EPage();
+
+    const { expectElement, hasInvalidStat } = statFunctions(page);
+
+    await page.setContent(html);
+    await page.waitForChanges();
+    await expectElement("sqm-big-stat");
+    const stat = await page.find(
+      `sqm-big-stat >>> div > div[part="stat-value"]`
+    );
+    hasInvalidStat(stat);
+    page.close();
+  });
+  test("/programGoals/count/My-Goal/referrals returns !!!", async () => {
+    const html = getHTML(
+      `<sqm-big-stat stat-type="/programGoals/count/My-Goal/referrals"></sqm-big-stat>`
     );
     const page = await newE2EPage();
 
