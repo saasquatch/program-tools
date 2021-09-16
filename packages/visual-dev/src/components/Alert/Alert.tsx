@@ -33,8 +33,8 @@ export const Alert: React.FC<AlertProps> = ({
 }
 
 const icons = {
-	'critical': <Icon icon={"sqh-alert"} color='var(--sq-surface-critical)'/>,
-	'warning': <Icon icon={"sqh-alert"} color='var(--sq-surface-warning)'/>,
-	'success': <Icon icon={"sqh-checkmark-circle"} color='var(--sq-text-subdued)'/>,
-	'info': <Icon icon={"sqh-help"} color='var(--sq-text)'/>,
+	'critical': <Icon icon={"alert"} color='var(--sq-surface-critical)'/>,
+	'warning': <Icon icon={"alert"} color='var(--sq-surface-warning)'/>,
+	'success': <Icon icon={"checkmark_circle"} color='var(--sq-text-subdued)'/>,
+	'info': <Icon icon={"help"} color='var(--sq-text)'/>,
 }
