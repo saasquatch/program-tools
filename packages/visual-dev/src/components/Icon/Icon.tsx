@@ -19,22 +19,15 @@ export const default_size = {
 	"large": "36px"
 }
 
-export const StyledIcon = styled.i<Required<StyleProps>>`
-	color: ${(props) => props.color};
-	font-size: ${(props) => default_size.hasOwnProperty(props.size) ? default_size[props.size] : props.size};
-`;
-
 export const StyledSVG = styled.div<Required<StyleProps>>`
 	color: ${(props) => props.color};
 	width: ${(props) => default_size.hasOwnProperty(props.size) ? default_size[props.size] : props.size};
 	height: ${(props) => default_size.hasOwnProperty(props.size) ? default_size[props.size] : props.size};
 `;
 
-type Icons = keyof typeof SVGs
-
 export const Icon: React.FC<IconProps> = ({
 	icon,
-	color = "#7c7c7c",
+	color = "var(--sq-text-subdued)",
 	size = "medium"
 }) => {
 	return (
@@ -42,7 +35,7 @@ export const Icon: React.FC<IconProps> = ({
 				size={size}
 				color={color}
 			>
-				{  Object.keys(SVGs).includes(icon) ? "does exist yay" : "does not exist"}
+				{ Object.keys(SVGs).includes(icon) ? SVGs[icon] : SVGs['placeholder'] }
 			</StyledSVG>
 	)
 }

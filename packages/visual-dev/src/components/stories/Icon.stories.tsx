@@ -6,31 +6,31 @@ export default {
   component: Icon
 }
 
-export const add = () => <Icon icon={"close"}/>
-export const SizeSmall = () => <Icon size="small" icon={"close"}/>
-export const SizeMedium = () => <Icon size="medium" icon={"sqh-add"}/>
-export const SizeLarge = () => <Icon size="large" icon={"sqh-add"}/>
-export const SizeCustom = () => <Icon size="50px" icon={"sqh-add"}/>
-export const close = () => <Icon icon={"sqh-close"}/>
-export const ChevronDown = () => <Icon icon={"sqh-chevron-down"}/>
-export const calendar = () => <Icon icon={"sqh-calendar"}/>
-export const block = () => <Icon icon={"sqh-block"}/>
-export const edit = () => <Icon icon={"sqh-edit"}/>
-export const checkmark = () => <Icon icon={"sqh-checkmark"}/>
-export const CheckmarkCircle = () => <Icon icon={"sqh-checkmark-circle"}/>
-export const actions = () => <Icon icon={"sqh-actions"}/>
-export const ChevronLeft = () => <Icon icon={"sqh-chevron-left"}/>
-export const ChevronRight = () => <Icon icon={"sqh-chevron-right"}/>
-export const mail = () => <Icon icon={"sqh-mail"}/>
-export const action = () => <Icon icon={"sqh-action"}/>
-export const arrowDropdown = () => <Icon icon={"sqh-arrow-dropdown"}/>
-export const help = () => <Icon icon={"sqh-help"}/>
-export const loading = () => <Icon color="#F49C20" icon={"sqh-loading"}/>
-export const gift = () => <Icon icon={"sqh-gift"}/>
-export const copy = () => <Icon color="#F49C20" icon={"sqh-copy"}/>
-export const alert = () => <Icon icon={"sqh-alert"}/>
-export const search = () => <Icon icon={"sqh-search"}/>
-export const filter = () => <Icon icon={"sqh-filter"}/>
-export const trash	 = () => <Icon icon={"sqh-trash"}/>
-export const info = () => <Icon icon={"sqh-info"}/>
-export const settings = () => <Icon icon={"sqh-settings"}/>
+export const add = () => <Icon icon={"add"}/>
+export const SizeSmall = () => <Icon size="small" icon={"add"}/>
+export const SizeMedium = () => <Icon size="medium" icon={"add"}/>
+export const SizeLarge = () => <Icon size="large" icon={"add"}/>
+export const SizeCustom = () => <Icon size="88px" icon={"add"}/>
+export const close = () => <Icon icon={"close"}/>
+export const ChevronDown = () => <Icon icon={"chevron_down"}/>
+export const calendar = () => <Icon icon={"calendar"}/>
+export const block = () => <Icon icon={"block"}/>
+export const edit = () => <Icon icon={"edit"}/>
+export const checkmark = () => <Icon icon={"checkmark"}/>
+export const CheckmarkCircle = () => <Icon icon={"checkmark_circle"}/>
+export const actions = () => <Icon icon={"actions"}/>
+export const ChevronLeft = () => <Icon icon={"chevron_left"}/>
+export const ChevronRight = () => <Icon icon={"chevron_right"}/>
+export const mail = () => <Icon icon={"mail"}/>
+export const action = () => <Icon icon={"action"}/>
+export const arrowDropdown = () => <Icon icon={"arrow_dropdown"}/>
+export const help = () => <Icon icon={"help"}/>
+export const loading = () => <Icon color="var(--sq-action-primary)" icon={"loading"}/>
+export const gift = () => <Icon icon={"gift"}/>
+export const copy = () => <Icon color="var(--sq-action-primary)" icon={"copy"}/>
+export const alert = () => <Icon icon={"alert"}/>
+export const search = () => <Icon icon={"search"}/>
+export const filter = () => <Icon icon={"filter"}/>
+export const trash	 = () => <Icon icon={"trash"}/>
+export const info = () => <Icon icon={"info"}/>
+export const settings = () => <Icon icon={"settings"}/>
