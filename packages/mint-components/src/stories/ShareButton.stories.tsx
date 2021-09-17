@@ -33,6 +33,11 @@ export const WithoutIcon = () => {
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
 
+export const WithoutText = () => {
+  const props = { medium: "facebook", hidetext: true } as const;
+  return <ShareButtonView {...props}>Share</ShareButtonView>;
+};
+
 export const TextStyleWithoutIcon = () => {
   const props = { medium: "facebook", type: "text", hideicon: true } as const;
   return <ShareButtonView {...props}>Share</ShareButtonView>;

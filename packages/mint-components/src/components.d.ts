@@ -637,6 +637,10 @@ export namespace Components {
          */
         "hideicon"?: boolean;
         /**
+          * @uiName Hide the text
+         */
+        "hidetext"?: boolean;
+        /**
           * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
          */
         "icon"?: string;
@@ -1767,6 +1771,10 @@ declare namespace LocalJSX {
           * @uiName Hide the icon
          */
         "hideicon"?: boolean;
+        /**
+          * @uiName Hide the text
+         */
+        "hidetext"?: boolean;
         /**
           * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
          */

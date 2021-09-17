@@ -100,6 +100,10 @@ export class ShareButton {
    */
   @Prop() hideicon?: boolean = false;
   /**
+   * @uiName Hide the text
+   */
+  @Prop() hidetext?: boolean = false;
+  /**
    * @uiName Title used for native sharing (mobile only)
    */
   @Prop() sharetitle?: string;
@@ -142,6 +146,7 @@ function useDemoShareButton(props: ShareButton): ShareButtonViewProps {
       type: props.type,
       size: props.size,
       hideicon: props.hideicon,
+      hidetext: props.hidetext,
       iconslot: props.iconslot,
       icon: props.icon,
       hide: false,
