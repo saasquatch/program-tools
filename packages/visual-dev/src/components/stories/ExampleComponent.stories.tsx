@@ -6,7 +6,9 @@ export default {
   component: ExampleComponent
 }
 
-export const Success = () => <ExampleComponent status="success">Success</ExampleComponent>
+//{background: "red"}
+
+export const Success = () => <ExampleComponent css="background: red;" onClick={()=>alert("works")} status="success">Success</ExampleComponent>
 export const error = () => <ExampleComponent status="error">Error</ExampleComponent>
 export const info = () => <ExampleComponent status="info">Info</ExampleComponent>
 
