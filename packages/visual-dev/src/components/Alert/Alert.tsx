@@ -1,40 +1,36 @@
-import * as React from 'react';
-import styled from 'styled-components'
-import '../../styles.css'
-import { Icon } from '../Icon';
+import * as React from "react"
+import styled from "styled-components"
+import "../../styles.css"
+import { Icon } from "../Icon"
 
-import * as Styles from './Styles'
+import * as Styles from "./Styles"
 
 interface AlertProps {
-	type: "critical" | "warning" | "success" | "info"
-	title: string
-	children: React.ReactNode
+  type: "critical" | "warning" | "success" | "info"
+  title: string
+  children: React.ReactNode
 }
 
-const AlertDiv = styled.div<Pick<AlertProps, 'type'>>`
-	${Styles.base}
-	${props => Styles[props.type]}
+const AlertDiv = styled.div<Pick<AlertProps, "type">>`
+  ${Styles.base}
+  ${(props) => Styles[props.type]}
 `
 
-export const Alert: React.FC<AlertProps> = ({
-	type,   
-	title,
-	children
-}) => {
-	return (
-		<AlertDiv type={type}>
-			{icons[type]}
-			<div style={{paddingLeft: 16}}>
-				<div style={{fontWeight: 'bold'}}>{title} </div>
-				<div>{children}</div>
-			</div>
-		</AlertDiv>
-	)
+export const Alert: React.FC<AlertProps> = ({ type, title, children }) => {
+  return (
+    <AlertDiv type={type}>
+      {icons[type]}
+      <div style={{ paddingLeft: 16 }}>
+        <div style={{ fontWeight: "bold" }}>{title} </div>
+        <div>{children}</div>
+      </div>
+    </AlertDiv>
+  )
 }
 
 const icons = {
-	'critical': <Icon icon={"alert"} color='var(--sq-surface-critical)'/>,
-	'warning': <Icon icon={"alert"} color='var(--sq-surface-warning)'/>,
-	'success': <Icon icon={"checkmark_circle"} color='var(--sq-text-subdued)'/>,
-	'info': <Icon icon={"help"} color='var(--sq-text)'/>,
+  critical: <Icon icon={"alert"} color='var(--sq-surface-critical)' />,
+  warning: <Icon icon={"alert"} color='var(--sq-surface-warning)' />,
+  success: <Icon icon={"checkmark_circle"} color='var(--sq-text-subdued)' />,
+  info: <Icon icon={"help"} color='var(--sq-text)' />,
 }
