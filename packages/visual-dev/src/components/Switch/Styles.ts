@@ -30,11 +30,6 @@ export const label = css`
 	font-size: 14px;
 	line-height: 18px;
 	color: #232323;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
 	user-select: none;
 `
 

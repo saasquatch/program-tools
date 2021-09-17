@@ -24,6 +24,24 @@ export const textSegment = css`
 `;
 
 export const iconSegment = css`
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 3px 7px;
+	width: 28px;
+	height: 26px;
+	fill: #858585;
+	&:hover {
+		background: #f4f4f4;
+		fill: #232323;
+		cursor: pointer;
+	}
+`;
+
+
+export const asd = css`
   display: flex;
   flex-direction: row;
   justify-content: center;

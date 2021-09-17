@@ -6,7 +6,7 @@ export const base = css`
 `
 
 export const tooltip = css`
-		
+	user-select: none;
 	position: absolute;
 	padding: 12px;
 	border-radius: 4px;
