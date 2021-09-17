@@ -2,11 +2,11 @@ import { css } from 'styled-components'
 
 export const base = css`
 	position: absolute;
-	border: 3px solid #E2E2E2;
 	top: 0;
 	left: 0;
 	width: 40px;
 	height: 20px;
+	border: 3px solid var(--sq-border);
 	border-radius: 100px;
 	background: #ebebeb;
 	cursor: pointer;
@@ -17,8 +17,8 @@ export const base = css`
 		width: 20px;
 		height: 20px;
 		margin: -3px;
-		background: #ffffff;
-		border: 3px solid #e2e2e2;
+		background: var(--sq-surface);
+		border: 3px solid var(--sq-border);
 		transition: 0.1s;
 	}
 `
@@ -29,16 +29,16 @@ export const label = css`
 	font-family: Helvatica Neue, Arial;
 	font-size: 14px;
 	line-height: 18px;
-	color: #232323;
+	color: var(--sq-text-dark);
 	user-select: none;
 `
 
 export const success = css`
-	background: #57AC59;
+	background: var(--sq-border-success);
 `
 
 export const critical = css`
-	background: #D14040;
+	background: var(--sq-border-critical);
 `
 
 export const off = css`
