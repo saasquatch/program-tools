@@ -52,6 +52,7 @@ export const Tooltip = React.forwardRef<React.ElementRef<'div'>, TooltipProps>((
     clearInterval(timeout)
     setActive(false)
   }
+
   return (
     <TooltipDiv {...rest} onMouseEnter={showTooltip} onMouseLeave={hideTooltip} ref={forwardedRef} css={css}>
       {children}
