@@ -8,10 +8,10 @@ type SwitchProps = OptionProps & StyleProps & React.ComponentProps<'div'>
 interface OptionProps {
   id: string
   checked: boolean
-  onSwitchChange: () => void
   color?: 'success' | 'critical'
   textLeft?: string
   textRight?: string
+  onSwitchChange?: () => void
   children: React.ReactNode
 }
 
