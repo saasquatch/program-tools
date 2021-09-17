@@ -13,7 +13,7 @@ export const tooltip = css`
 	width: max-content;
 	max-width: 144px;
 	min-height: 20px;
-	color: #FFFFFF;
+	color: var(--sq-surface);
 	background: rgba(35, 35, 35, 0.9);
 	font-family: Helvatica Neue, Arial;
 	font-size: 14px;
