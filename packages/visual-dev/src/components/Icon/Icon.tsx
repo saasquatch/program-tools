@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled, { CSSProp } from 'styled-components'
+import * as Styles from './Styles'
 import * as SVGs from './SVGs'
 
 type IconProps = OptionProps & StyleProps & React.ComponentProps<'div'>
@@ -21,8 +22,7 @@ const default_size = {
 }
 
 const StyledSVG = styled.div<Required<StyleProps>>`
-  vertical-align: text-top;
-  display: inline-flex;
+  ${Styles.base}
   color: ${(props) => props.color};
   width: ${(props) => (default_size.hasOwnProperty(props.size) ? default_size[props.size] : props.size)};
   height: ${(props) => (default_size.hasOwnProperty(props.size) ? default_size[props.size] : props.size)};
