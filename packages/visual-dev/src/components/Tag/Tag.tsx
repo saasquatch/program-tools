@@ -19,12 +19,12 @@ const TagStyled = styled.div<StyleProps>`
   ${(props) => props.css}
 `
 
-const TextSegmentStyled = styled.div`
-  ${Styles.textSegment}
-`
-
 const IconSegmentStyled = styled.div`
   ${Styles.iconSegment}
+`
+
+const TextSegmentStyled = styled.div`
+  ${Styles.textSegment}
 `
 
 export const Tag = React.forwardRef<React.ElementRef<'div'>, TagProps>((props, forwardedRef) => {
