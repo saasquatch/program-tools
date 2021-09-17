@@ -2,16 +2,16 @@ import * as React from "react"
 import styled, { CSSProp } from "styled-components"
 import * as Styles from "./Styles"
 
-type ExampleComponentProps = Props & React.ComponentProps<"button">
+type ExampleComponentProps = StyleProps & React.ComponentProps<"button">
 
-interface Props {
+interface StyleProps {
   status: "success" | "error" | "info"
   size?: "small" | "medium" | "large"
   css?: CSSProp
   children: React.ReactElement
 }
 
-const Button = styled.button<Required<Props>>`
+const Button = styled.button<Required<StyleProps>>`
   ${Styles.base}
   ${(props) => Styles[props.status]}
   ${(props) => Styles[props.size]}

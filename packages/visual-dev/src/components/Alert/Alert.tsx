@@ -1,32 +1,42 @@
 import * as React from "react"
-import styled from "styled-components"
+import styled, { CSSProp } from "styled-components"
 import "../../styles.css"
 import { Icon } from "../Icon"
 
 import * as Styles from "./Styles"
 
-interface AlertProps {
-  type: "critical" | "warning" | "success" | "info"
+type AlertProps = OptionProps & StyleProps & React.ComponentProps<"div">
+
+interface OptionProps {
   title: string
   children: React.ReactNode
 }
 
-const AlertDiv = styled.div<Pick<AlertProps, "type">>`
+interface StyleProps {
+  type: "critical" | "warning" | "success" | "info"
+  css?: CSSProp
+}
+
+const AlertDiv = styled.div<Required<StyleProps>>`
   ${Styles.base}
   ${(props) => Styles[props.type]}
 `
 
-export const Alert: React.FC<AlertProps> = ({ type, title, children }) => {
-  return (
-    <AlertDiv type={type}>
-      {icons[type]}
-      <div style={{ paddingLeft: 16 }}>
-        <div style={{ fontWeight: "bold" }}>{title} </div>
-        <div>{children}</div>
-      </div>
-    </AlertDiv>
-  )
-}
+export const Alert = React.forwardRef<React.ElementRef<"div">, AlertProps>(
+  (props, forwardedRef) => {
+    const { type, title, children, css = {}, ...rest } = props
+
+    return (
+      <AlertDiv {...rest} type={type} ref={forwardedRef} css={css}>
+        {icons[type]}
+        <div style={{ paddingLeft: 16 }}>
+          <div style={{ fontWeight: "bold" }}>{title} </div>
+          <div>{children}</div>
+        </div>
+      </AlertDiv>
+    )
+  }
+)
 
 const icons = {
   critical: <Icon icon={"alert"} color='var(--sq-surface-critical)' />,
