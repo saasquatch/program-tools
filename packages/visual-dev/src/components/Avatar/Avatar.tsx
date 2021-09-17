@@ -32,6 +32,7 @@ export const Avatar = React.forwardRef<React.ElementRef<'div'>, AvatarProps>((pr
   if (firstName || lastName) {
     initials = firstName.charAt(0) + lastName.charAt(0)
   }
+
   return (
     <AvatarStyle {...rest} ref={forwardedRef} css={css}>
       {!(firstName || lastName) ? (
