@@ -26,13 +26,13 @@ export const success = css`
 export const active = css`
   background-color: var(--sq-border-success);
   border-color: var(--sq-border-success);
-  color: #fff;
+  color: var(--sq-surface);
 `;
 
 export const critical = css`
   background-color: var(--sq-surface-critical);
   border-color: var(--sq-surface-critical);
-  color: #fff;
+  color: var(--sq-surface);
 `;
 
 export const warning = css`
