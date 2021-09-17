@@ -21,6 +21,13 @@ const AlertDiv = styled.div<Required<StyleProps>>`
   ${(props) => Styles[props.type]}
 `
 
+const icons = {
+  critical: <Icon icon={'alert'} color='var(--sq-surface-critical)' size='23px' />,
+  warning: <Icon icon={'alert'} color='var(--sq-surface-warning)' size='23px' />,
+  success: <Icon icon={'checkmark_circle'} color='var(--sq-text-subdued)' size='23px' />,
+  info: <Icon icon={'help'} color='var(--sq-text)' size='23px' />,
+}
+
 export const Alert = React.forwardRef<React.ElementRef<'div'>, AlertProps>((props, forwardedRef) => {
   const { type, title, children, css = {}, ...rest } = props
 
@@ -34,10 +41,3 @@ export const Alert = React.forwardRef<React.ElementRef<'div'>, AlertProps>((prop
     </AlertDiv>
   )
 })
-
-const icons = {
-  critical: <Icon icon={'alert'} color='var(--sq-surface-critical)' size='23px' />,
-  warning: <Icon icon={'alert'} color='var(--sq-surface-warning)' size='23px' />,
-  success: <Icon icon={'checkmark_circle'} color='var(--sq-text-subdued)' size='23px' />,
-  info: <Icon icon={'help'} color='var(--sq-text)' size='23px' />,
-}
