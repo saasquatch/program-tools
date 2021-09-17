@@ -3,24 +3,24 @@ import { css } from "styled-components";
 export const base = css`
   display: flex;
   flex-direction: row;
-  background: #f9f9f9;
+  background: var(--sq-background);
   box-sizing: border-box;
   align-items: center;
   width: max-content;
-  border: 1px solid #e2e2e2;
+  border: 1px solid var(--sq-border);
   border-radius: 2px;
 `;
 
 export const textSegment = css`
   box-sizing: border-box;
-  border-left: 1px solid #e2e2e2;
+  border-left: 1px solid var(--sq-border);
   padding: 3px 7px;
   font-weight: 400;
   font-size: 14px;
   font-style: normal;
   line-height: 20px;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  color: #232323;
+  color: var(--sq-text-dark);
 `;
 
 export const iconSegment = css`
@@ -32,10 +32,10 @@ export const iconSegment = css`
 	padding: 3px 7px;
 	width: 28px;
 	height: 26px;
-	fill: #858585;
+	fill: var(--sq-text-subdued);
 	&:hover {
 		background: #f4f4f4;
-		fill: #232323;
+		fill: var(--sq-text-dark);
 		cursor: pointer;
 	}
 `;
@@ -50,10 +50,10 @@ export const asd = css`
   width: 28px;
   padding: 3px 7px;
   height: 26px;
-  fill: #858585;
+  fill: var(--sq-text-subdued);
   &:hover {
     background: #f4f4f4;
-    fill: #232323;
+    fill: var(--sq-text-dark);
     cursor: pointer;
   }
 `;
