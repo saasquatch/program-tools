@@ -28,7 +28,7 @@ export class ReferralTableUserColumn implements ReferralTableColumn {
     let name: string;
     if (!data) {
       name = this.deletedUser;
-    } else if (!data?.referredUser?.firstName && !data.referredUser?.lastName) {
+    } else if (!data?.referredUser?.firstName && !data?.referredUser?.lastName) {
       name = this.anonymousUser;
     } else {
       name = `${data?.referredUser?.firstName} ${data?.referredUser?.lastName}`;

@@ -1,4 +1,4 @@
-import { h, VNode } from "@stencil/core";
+import { h, Host, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 
@@ -14,7 +14,7 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
   const style = {
     Container: {
       display: "flex",
-      height: "100%",
+      height: "inherit",
       "justify-content": "space-between",
       "flex-direction": `${flexReverse ? "column-reverse" : "column"}`,
       "align-items": `${
@@ -36,9 +36,6 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
       "text-transform": "uppercase",
       "text-align": alignment,
     },
-    Wrapper: {
-      height: "100%",
-    },
   };
 
   jss.setup(preset());
@@ -46,15 +43,13 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
   const styleString = sheet.toString();
 
   return (
-    <div part="stat-wrapper" class={sheet.classes.Wrapper}>
+    <div part="stat-wrapper" class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
-      <div class={sheet.classes.Container}>
-        <div part="stat-value" class={sheet.classes.Stat}>
-          {statvalue}
-        </div>
-        <div part="stat-description" class={sheet.classes.Description}>
-          {children}
-        </div>
+      <div part="stat-value" class={sheet.classes.Stat}>
+        {statvalue}
+      </div>
+      <div part="stat-description" class={sheet.classes.Description}>
+        {children}
       </div>
     </div>
   );

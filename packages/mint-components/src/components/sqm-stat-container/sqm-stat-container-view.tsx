@@ -7,7 +7,6 @@ export interface StatContainerProps {
 }
 
 export function StatContainerView(props: StatContainerProps, children: VNode) {
-
   const divideSpace = () => {
     const spaceValue = getComputedStyle(
       document.documentElement
@@ -32,6 +31,7 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
       "& > ::slotted(*)": {
         "border-right": "1px solid #EAEAEA",
         "padding-right": divideSpace(),
+        height: "100%",
       },
       "& > ::slotted(*:last-child)": {
         "border-right": "1px solid #ffffff",

@@ -20,6 +20,7 @@ export class ReferralTable {
   /**
    * Filters to only show referrals in this program. Will default to filtering by the program context where
    * this table lives. If no program ID is set or provided by context, then shows all referrals from all programs.
+   * If program ID is "classic", shows classic-only referrals
    *
    * @uiName Program
    */
@@ -27,6 +28,18 @@ export class ReferralTable {
 
   /** @uiName Number of referrals per page */
   @Prop() perPage: number = 3;
+
+  /** @uiName Show column labels */
+  @Prop() showLabels?: boolean = true;
+
+  /** @uiName Previous button text  */
+  @Prop() prevLabel?: string = "Prev";
+
+  /** @uiName View More button text  */
+  @Prop() moreLabel?: string = "Next";
+
+  /** @uiName Show Referred by user in table  */
+  @Prop() showReferrer?: boolean = false;
 
   /** @undocumented */
   @Prop() demoData?: DemoData<ReferralTableViewProps>;
@@ -37,8 +50,26 @@ export class ReferralTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = <slot name="empty" />;
-    const loading = <slot name="loading" />;
+    const empty = (
+      <slot name="empty">
+        <div style={{ width: "100%" }}>
+          <sqm-text>
+            <h3 style={{ color: "#777777" }}>No Referrals Yet</h3>
+          </sqm-text>
+        </div>
+      </slot>
+    );
+    const loading = (
+      <slot name="loading">
+        <div style={{ width: "100%" }}>
+          <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+          <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+          <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+          <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
+          <sl-skeleton></sl-skeleton>
+        </div>
+      </slot>
+    );
 
     const { states, data, callbacks, elements } = isDemo()
       ? useReferraltableDemo(this)
@@ -55,7 +86,7 @@ export class ReferralTable {
   }
 }
 
-function useReferraltableDemo(props: ReferralTable) {
+function useReferraltableDemo(props: ReferralTable): ReferralTableViewProps {
   return deepmerge(
     {
       states: {
@@ -68,11 +99,16 @@ function useReferraltableDemo(props: ReferralTable) {
         nextPage: () => console.log("Next"),
       },
       data: {
+        textOverrides: {
+          showLabels: props.showLabels,
+          prevLabel: props.prevLabel,
+          moreLabel: props.moreLabel,
+        },
         referralData: [],
       },
       elements: {
         emptyElement: (
-          <div style={{ width: "100%" }}>
+          <div style={{ width: "100%", textAlign: "center" }}>
             <sqm-text>
               <h3 style={{ color: "#777777" }}>No Referrals Yet</h3>
             </sqm-text>
