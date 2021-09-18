@@ -9,11 +9,9 @@
   ],
   "scripts": {
     "build": "tsc",
-    "lint": "standard",
-    "format": "prettier-standard --format",
     "test": "echo test",
-    "storybook": "start-storybook",
-    "prebuild": "npm run lint && npm run format"
+    "storybook": "cross-env NODE_ENV=storybook start-storybook -p 9001 -c .storybook",
+    "storybook:build": "cross-env NODE_ENV=storybook build-storybook -c .storybook -o .out"
   },
   "keywords": [],
   "author": "SaaSquatch Team",
@@ -41,13 +39,12 @@
     "@types/styled-components": "^5.1.9",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
     "jest": "^26.0.1",
     "prettier-standard": "^16.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-jsonschema-form": "^1.8.1",
-    "standard": "^14.3.3",
-    "standard-prettier": "^1.0.1",
     "styled-components": "^5.3.0",
     "ts-jest": "^25.5.1",
     "ts-loader": "^7.0.3",
@@ -63,20 +60,6 @@
     "testEnvironment": "jsdom",
     "testPathIgnorePatterns": [
       "dist/"
-    ]
-  },
-  "standard": {
-    "ignore": [
-      "node_modules/",
-      "dist/"
-    ],
-    "globals": [
-      "describe",
-      "it",
-      "test",
-      "expect",
-      "afterAll",
-      "jest"
     ]
   },
   "repository": {
