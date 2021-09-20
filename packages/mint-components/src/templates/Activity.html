@@ -1,0 +1,82 @@
+<sqm-portal-protected-route
+require-email-verification="true"
+redirect-to="/login"
+redirect-to-unverified="/emailVerification"
+></sqm-portal-protected-route>
+<sqm-divided-layout direction="row">
+
+<sqm-navigation-sidebar>
+  <sqm-navigation-sidebar-item
+    path="/"
+    icon="house"
+    label="Dashboard"
+  ></sqm-navigation-sidebar-item>
+  <sqm-navigation-sidebar-item
+    path="/activity"
+    icon="bar-chart"
+    label="Activity"
+  ></sqm-navigation-sidebar-item>
+  <sqm-navigation-sidebar-item
+    path="/editProfile"
+    icon="person"
+    label="Edit Profile"
+  ></sqm-navigation-sidebar-item>
+  <sqm-navigation-sidebar-item
+    path="/logout"
+    icon="box-arrow-right"
+    label="Logout"
+  ></sqm-navigation-sidebar-item>
+</sqm-navigation-sidebar>
+  <sqm-portal-container direction="column" padding="xxx-large" gap="xxx-large">
+    <sqm-text> <h2>Activity</h2></sqm-text>
+      <sqm-stat-container space="xxxx-large"
+      ><sqm-big-stat
+        flex-reverse="true"
+        alignment="left"
+        stat-type="/referralsCount"
+      ><sqm-text><p>Subscribers</p></sqm-text></sqm-big-stat
+      ><sqm-big-stat
+        flex-reverse="true"
+        alignment="left"
+        stat-type="/rewardBalance/CREDIT/CENTS"
+      ><sqm-text><p>Reward Balance</p></sqm-text></sqm-big-stat>
+</sqm-stat-container>
+    <sqm-referral-table>
+           <div slot="loading" style="display: contents;">
+      <sqm-table-row>
+        <sqm-table-cell colspan="5"
+          ><sl-skeleton></sl-skeleton
+        ></sqm-table-cell>
+      </sqm-table-row>
+      <sqm-table-row>
+        <sqm-table-cell colspan="5"
+          ><sl-skeleton></sl-skeleton
+        ></sqm-table-cell>
+      </sqm-table-row>
+      <sqm-table-row>
+        <sqm-table-cell colspan="5"
+          ><sl-skeleton></sl-skeleton
+        ></sqm-table-cell>
+      </sqm-table-row>
+      <sqm-table-row>
+        <sqm-table-cell colspan="5"
+          ><sl-skeleton></sl-skeleton
+        ></sqm-table-cell>
+      </sqm-table-row>
+      <sqm-table-row>
+        <sqm-table-cell colspan="5"
+          ><sl-skeleton></sl-skeleton
+        ></sqm-table-cell>
+      </sqm-table-row>
+    </div>
+      <sqm-referral-table-user-column></sqm-referral-table-user-column>
+      <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+        <sqm-referral-table-status-column></sqm-referral-table-status-column>
+        <sqm-referral-table-date-column
+          column-title="Referred"
+          date-shown="dateReferralStarted"
+        ></sqm-referral-table-date-column>
+      </sqm-referral-table></sqm-portal-container
+  ></sqm-divided-layout
+>
+</sqm-divided-layout>

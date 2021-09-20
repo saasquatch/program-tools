@@ -1,5 +1,6 @@
 import { navigation } from "@saasquatch/component-boilerplate";
 import { h } from "@stencil/core";
+import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
 
 export default {
   title: "Tests/Router",
@@ -70,7 +71,7 @@ const routes = `
     </sqm-route>
 `;
 
-export const TemplateNavigation = () => {
+export const TemplateNavigation = createHookStory(() => {
   return (
     <div>
       <button onClick={() => navigation.push("/")}>/</button>
@@ -86,9 +87,9 @@ export const TemplateNavigation = () => {
       <sqm-router innerHTML={templates}></sqm-router>
     </div>
   );
-};
+});
 
-export const RouteNavigation = () => {
+export const RouteNavigation = createHookStory(() => {
   return (
     <div>
       <button onClick={() => navigation.push("/")}>/</button>
@@ -104,9 +105,9 @@ export const RouteNavigation = () => {
       <sqm-router innerHTML={routes}></sqm-router>
     </div>
   );
-};
+});
 
-export const Styling = () => {
+export const Styling = createHookStory(() => {
   return (
     <div>
       <button onClick={() => navigation.push("/")}>/</button>
@@ -123,4 +124,4 @@ export const Styling = () => {
       </div>
     </div>
   );
-};
+});

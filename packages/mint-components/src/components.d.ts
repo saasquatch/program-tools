@@ -282,6 +282,17 @@ export namespace Components {
         "demoData"?: DemoData<PortalEmailVerificationViewProps>;
         "verifyMessage": string;
     }
+    interface SqmPortalFooter {
+        "faqLink": string;
+        "paddingBottom"?: string;
+        "paddingLeft"?: string;
+        "paddingRight"?: string;
+        "paddingTop"?: string;
+        "poweredByLink"?: string;
+        "showPoweredBy": boolean;
+        "supportEmail": string;
+        "termsLink": string;
+    }
     interface SqmPortalForgotPassword {
         /**
           * @undocumented
@@ -773,6 +784,12 @@ declare global {
         prototype: HTMLSqmPortalEmailVerificationElement;
         new (): HTMLSqmPortalEmailVerificationElement;
     };
+    interface HTMLSqmPortalFooterElement extends Components.SqmPortalFooter, HTMLStencilElement {
+    }
+    var HTMLSqmPortalFooterElement: {
+        prototype: HTMLSqmPortalFooterElement;
+        new (): HTMLSqmPortalFooterElement;
+    };
     interface HTMLSqmPortalForgotPasswordElement extends Components.SqmPortalForgotPassword, HTMLStencilElement {
     }
     var HTMLSqmPortalForgotPasswordElement: {
@@ -995,6 +1012,7 @@ declare global {
         "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
         "sqm-portal-container": HTMLSqmPortalContainerElement;
         "sqm-portal-email-verification": HTMLSqmPortalEmailVerificationElement;
+        "sqm-portal-footer": HTMLSqmPortalFooterElement;
         "sqm-portal-forgot-password": HTMLSqmPortalForgotPasswordElement;
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
         "sqm-portal-login": HTMLSqmPortalLoginElement;
@@ -1283,6 +1301,17 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalEmailVerificationViewProps>;
         "verifyMessage"?: string;
+    }
+    interface SqmPortalFooter {
+        "faqLink"?: string;
+        "paddingBottom"?: string;
+        "paddingLeft"?: string;
+        "paddingRight"?: string;
+        "paddingTop"?: string;
+        "poweredByLink"?: string;
+        "showPoweredBy"?: boolean;
+        "supportEmail"?: string;
+        "termsLink"?: string;
     }
     interface SqmPortalForgotPassword {
         /**
@@ -1679,6 +1708,7 @@ declare namespace LocalJSX {
         "sqm-portal-change-password": SqmPortalChangePassword;
         "sqm-portal-container": SqmPortalContainer;
         "sqm-portal-email-verification": SqmPortalEmailVerification;
+        "sqm-portal-footer": SqmPortalFooter;
         "sqm-portal-forgot-password": SqmPortalForgotPassword;
         "sqm-portal-frame": SqmPortalFrame;
         "sqm-portal-login": SqmPortalLogin;
@@ -1736,6 +1766,7 @@ declare module "@stencil/core" {
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;
             "sqm-portal-email-verification": LocalJSX.SqmPortalEmailVerification & JSXBase.HTMLAttributes<HTMLSqmPortalEmailVerificationElement>;
+            "sqm-portal-footer": LocalJSX.SqmPortalFooter & JSXBase.HTMLAttributes<HTMLSqmPortalFooterElement>;
             "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword & JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;

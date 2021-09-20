@@ -56,8 +56,8 @@ function useSidebarItemDemo(
         active: false,
       },
       data: {
-        label: "Dashboard",
-        icon: "house",
+        label: props.label || "Dashboard",
+        icon: props.icon || "house",
       },
     },
     props.demoData || {},

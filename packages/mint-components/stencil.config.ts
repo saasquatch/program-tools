@@ -85,6 +85,7 @@ export const config: Config = {
           },
         ],
       }),
+      string({ include: "src/templates/*.html" }),
     ],
   },
   extras: {
