@@ -9,8 +9,8 @@ type TooltipProps = OptionProps & StyleProps & React.ComponentProps<'div'>
 interface OptionProps {
   text?: string
   direction?: 'top' | 'left' | 'bottom' | 'right'
-  delay?: 'none' | 'short' | 'medium' | 'long' | number
-  children: React.ReactNode
+  showTooltip?: boolean
+  children?: React.ReactNode
 }
 
 interface StyleProps {
@@ -34,29 +34,12 @@ const TooltipTip = styled.div`
 `
 
 export const Tooltip = React.forwardRef<React.ElementRef<'div'>, TooltipProps>((props, forwardedRef) => {
-  const { text = '', direction = 'top', delay = 'short', children, css = {}, ...rest } = props
-
-  let timeout: ReturnType<typeof setTimeout>
-  const [active, setActive] = useState(false)
-
-  const showTooltip = () => {
-    timeout = setTimeout(
-      () => {
-        setActive(true)
-      },
-      props.delay ? default_delay[props.delay] : default_delay['medium']
-    )
-  }
-
-  const hideTooltip = () => {
-    clearInterval(timeout)
-    setActive(false)
-  }
+  const { text = '', direction = 'top', showTooltip = false, children, css = {}, ...rest } = props
 
   return (
-    <TooltipDiv {...rest} onMouseEnter={showTooltip} onMouseLeave={hideTooltip} ref={forwardedRef} css={css}>
+    <TooltipDiv {...rest} ref={forwardedRef} css={css}>
       {children}
-      {active && <TooltipTip className={direction}>{text}</TooltipTip>}
+      {showTooltip && <TooltipTip className={direction}>{text}</TooltipTip>}
     </TooltipDiv>
   )
 })
