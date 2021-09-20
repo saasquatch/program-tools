@@ -283,15 +283,54 @@ export namespace Components {
         "verifyMessage": string;
     }
     interface SqmPortalFooter {
+        /**
+          * @uiName FAQ Link
+         */
         "faqLink": string;
+        /**
+          * @uiName FAQ Text
+         */
+        "faqText": string;
+        /**
+          * @uiName Padding Bottom
+         */
         "paddingBottom"?: string;
+        /**
+          * @uiName Padding Left
+         */
         "paddingLeft"?: string;
+        /**
+          * @uiName Padding Right
+         */
         "paddingRight"?: string;
+        /**
+          * @uiName Padding Top
+         */
         "paddingTop"?: string;
+        /**
+          * @uiName Powered By Link
+         */
         "poweredByLink"?: string;
+        /**
+          * @uiName Show Powered By SaaSquatch
+         */
         "showPoweredBy": boolean;
+        /**
+          * @uiName Support Email
+         */
         "supportEmail": string;
+        /**
+          * @uiName Support Text
+         */
+        "supportText": string;
+        /**
+          * @uiName Terms and Conditions Link
+         */
         "termsLink": string;
+        /**
+          * @uiName Terms and Conditions Text
+         */
+        "termsText": string;
     }
     interface SqmPortalForgotPassword {
         /**
@@ -1303,15 +1342,54 @@ declare namespace LocalJSX {
         "verifyMessage"?: string;
     }
     interface SqmPortalFooter {
+        /**
+          * @uiName FAQ Link
+         */
         "faqLink"?: string;
+        /**
+          * @uiName FAQ Text
+         */
+        "faqText"?: string;
+        /**
+          * @uiName Padding Bottom
+         */
         "paddingBottom"?: string;
+        /**
+          * @uiName Padding Left
+         */
         "paddingLeft"?: string;
+        /**
+          * @uiName Padding Right
+         */
         "paddingRight"?: string;
+        /**
+          * @uiName Padding Top
+         */
         "paddingTop"?: string;
+        /**
+          * @uiName Powered By Link
+         */
         "poweredByLink"?: string;
+        /**
+          * @uiName Show Powered By SaaSquatch
+         */
         "showPoweredBy"?: boolean;
+        /**
+          * @uiName Support Email
+         */
         "supportEmail"?: string;
+        /**
+          * @uiName Support Text
+         */
+        "supportText"?: string;
+        /**
+          * @uiName Terms and Conditions Link
+         */
         "termsLink"?: string;
+        /**
+          * @uiName Terms and Conditions Text
+         */
+        "termsText"?: string;
     }
     interface SqmPortalForgotPassword {
         /**

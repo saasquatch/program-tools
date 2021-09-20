@@ -1,6 +1,7 @@
 import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
+import { intl } from "../../global/global";
 import { PortalFooter } from "./sqm-portal-footer";
 
 const vanillaStyle = `
@@ -59,20 +60,29 @@ export function FSRFooterView(props: PortalFooter) {
       <div class={sheet.classes.RowContainer}>
         {props.faqLink && (
           <a target="_blank" href={props.faqLink}>
-            FAQ
+            {props.faqText}
           </a>
         )}
         {props.termsLink && (
           <a target="_blank" href={props.termsLink}>
-            Terms and Conditions
+            {props.termsText}
           </a>
         )}
       </div>
       <p>
-        For program support, contact{" "}
-        <a target="_blank" href={`mailto:${props.supportEmail}`}>
-          {props.supportEmail}
-        </a>
+        {intl.formatMessage(
+          {
+            id: "supportFooter",
+            defaultMessage: props.supportText,
+          },
+          {
+            email: (
+              <a target="_blank" href={`mailto:${props.supportEmail}`}>
+                {props.supportEmail}
+              </a>
+            ),
+          }
+        )}
       </p>
       {props.showPoweredBy && (
         <a
@@ -86,3 +96,7 @@ export function FSRFooterView(props: PortalFooter) {
     </div>
   );
 }
+// For program support, contact{" "}
+// <a target="_blank" href={`mailto:${props.supportEmail}`}>
+//   {props.supportEmail}
+// </a>
