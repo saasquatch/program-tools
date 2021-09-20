@@ -19,10 +19,33 @@ export enum ConfigMode {
 
 interface PenpalParentMethods<IntegrationConfig, FormConfig> {
   resize(height: number): Promise<void>;
-  saveIntegration(config: Partial<IntegrationConfig>): Promise<void>;
+  saveIntegration(
+    config: Partial<IntegrationConfig>
+  ): Promise<{ upsertIntegration: { config: IntegrationConfig } }>;
+  patchIntegrationConfig(
+    patch: IntegrationConfigPatch
+  ): Promise<{ patchIntegrationConfig: { config: IntegrationConfig } }>;
   updateFormConfiguration(config: Partial<FormConfig>): Promise<void>;
   navigateToNewPortalURL(url: string): Promise<void>;
+  getFileStackConfig(): Promise<FileStackConfig>;
 }
+
+interface FileStackConfig {
+  tenantAlias: string;
+  fileStackAPIKey: string;
+  fileStackPolicy: string;
+  fileStackSignature: string;
+}
+
+interface DisplayConfiguration<IntegrationConfig, FormConfig> {
+  tenantScopedToken: string;
+  tenantAlias: string;
+  integrationConfig: IntegrationConfig;
+  formConfig?: FormConfig;
+  formType?: "submit_actions" | "initial_data_actions";
+}
+
+type IntegrationConfigPatch = Array<{ op: string; path: string; value: any }>;
 
 type PenpalConnection<IntegrationConfig, FormConfig> = Connection<
   PenpalParentMethods<IntegrationConfig, FormConfig>
@@ -30,8 +53,9 @@ type PenpalConnection<IntegrationConfig, FormConfig> = Connection<
 
 interface PenpalContextMethods<IntegrationConfig, FormConfig> {
   saveIntegrationConfig(config: Partial<IntegrationConfig>): Promise<void>;
+  patchIntegrationConfig(patch: IntegrationConfigPatch): Promise<void>;
   saveFormConfig(config: Partial<FormConfig>): Promise<void>;
-  getParent(): Promise<PenpalParentMethods<IntegrationConfig, FormConfig>>;
+  getFileStackConfig(): Promise<FileStackConfig>;
   navigatePortal(url: string): Promise<void>;
   closeFormConfig(): Promise<void>;
   setShouldCancelDisableCallback: (fn: () => Promise<boolean>) => void;
@@ -79,8 +103,10 @@ export function PenpalContextProvider<
   FormConfig extends {} = {}
 >(props: PenpalContextProviderProps & { children: any }) {
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
-  const penpalConnectionRef =
-    useRef<PenpalConnection<IntegrationConfig, FormConfig> | null>(null);
+  const penpalConnectionRef = useRef<PenpalConnection<
+    IntegrationConfig,
+    FormConfig
+  > | null>(null);
   const [state, setState] = useState<
     PenpalContextState<IntegrationConfig, FormConfig>
   >({
@@ -117,8 +143,24 @@ export function PenpalContextProvider<
     async (config: Partial<IntegrationConfig>) => {
       assertConnected();
       const parent = await penpalConnectionRef.current!.promise;
-      await parent.saveIntegration(config);
-      setState((state) => ({ ...state, integrationConfig: config }));
+      const data = await parent.saveIntegration(config);
+      setState((state) => ({
+        ...state,
+        integrationConfig: data.upsertIntegration.config,
+      }));
+    },
+    [assertConnected]
+  );
+
+  const patchIntegrationConfig = useCallback(
+    async (patch: IntegrationConfigPatch) => {
+      assertConnected();
+      const parent = await penpalConnectionRef.current!.promise;
+      const data = await parent.patchIntegrationConfig(patch);
+      setState((state) => ({
+        ...state,
+        integrationConfig: data.patchIntegrationConfig.config,
+      }));
     },
     [assertConnected]
   );
@@ -133,10 +175,10 @@ export function PenpalContextProvider<
     [assertConnected]
   );
 
-  const getParent = useCallback(async () => {
+  const getFileStackConfig = useCallback(async () => {
     assertConnected();
     const parent = await penpalConnectionRef.current!.promise;
-    return parent;
+    return parent.getFileStackConfig();
   }, [assertConnected]);
 
   const navigatePortal = useCallback(
@@ -161,12 +203,13 @@ export function PenpalContextProvider<
       penpalConnectionRef.current = connectToParent({
         timeout: 5000,
         methods: {
-          displayConfiguration(
-            tenantScopedToken: string,
-            integrationConfig: IntegrationConfig,
-            formConfig?: FormConfig,
-            formType?: "submit_actions" | "initial_data_actions"
-          ) {
+          displayConfiguration({
+            tenantScopedToken,
+            tenantAlias,
+            integrationConfig,
+            formConfig,
+            formType,
+          }: DisplayConfiguration<IntegrationConfig, FormConfig>) {
             let mode = ConfigMode.Unknown;
 
             if (formType) {
@@ -185,9 +228,6 @@ export function PenpalContextProvider<
             } else {
               mode = ConfigMode.IntegrationsPage;
             }
-            // add tenantAlias to state for easier use
-            const tenantAlias =
-              decode<{ sub: string }>(tenantScopedToken).sub.split("@")[0];
 
             setState({
               connected: true,
@@ -239,8 +279,9 @@ export function PenpalContextProvider<
       ...state,
       resize,
       saveIntegrationConfig,
+      patchIntegrationConfig,
       saveFormConfig,
-      getParent,
+      getFileStackConfig,
       navigatePortal,
       closeFormConfig,
       setShouldCancelDisableCallback,
@@ -249,8 +290,9 @@ export function PenpalContextProvider<
       state,
       resize,
       saveIntegrationConfig,
+      patchIntegrationConfig,
       saveFormConfig,
-      getParent,
+      getFileStackConfig,
       navigatePortal,
       closeFormConfig,
       setShouldCancelDisableCallback,
