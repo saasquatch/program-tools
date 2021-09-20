@@ -23,14 +23,13 @@ interface ButtonProps {
   narrow?: boolean
   disabled?: boolean
 }
+
 interface StyleProps {
   css?: CSSProp
 }
 
 const DropdownContainer = styled('div')`
-  position: relative;
-  width: 191px;
-  min-width: 191px;
+  ${Styles.base}
 `
 
 const DropdownButton = styled('div')<Required<ButtonProps>>`
@@ -48,63 +47,28 @@ const DropdownButton = styled('div')<Required<ButtonProps>>`
 `
 const DropdownContent = styled('div')<Pick<DropdownProps, 'pill'>>`
   ${Styles.content}
-  width: max-content;
-  min-width: inherit;
   border-radius: ${(props) => (props.pill ? '20px' : '4px')};
-  &:empty {
-    border: none;
-  }
 `
-const DropdownItemStyle = styled('div')`
-  padding: 15px;
-  cursor: pointer;
-  color: #575757;
-  font-family: Helvetica;
-  font-size: 14px;
-  border-radius: inherit;
 
-  &:hover {
-    background: #eef6ff;
-  }
+const DropdownItemStyle = styled('div')`
+  ${Styles.item}
 `
 
 const SublistContent = styled('div')`
-  border-radius: inherit;
+  ${Styles.subcontent}
 `
 
 const DropdownSubItemStyle = styled('div')`
-  text-indent: 15px;
-  border-radius: inherit;
+  ${Styles.subitem}
 `
 
 const DropdownSublistStyle = styled('div')`
-  padding: 15px;
-  border-radius: inherit;
-
-  user-select: none;
-  color: #575757;
-  font-family: Helvetica;
-  font-size: 14px;
-  font-weight: bold;
+  ${Styles.sublist}
 `
 
 const ArrowStyle = styled('span')`
-  position: relative;
-  bottom: 1px;
-  float: right;
+  ${Styles.arrow}
 `
-
-// const DropdownContainer = styled("div")`
-// 	background: red;
-// `
-
-// const DropdownButton = styled("button")`
-// `
-// const DropdownHeader = styled("div")``
-
-// const DropdownListContainer = styled("div")``
-// const DropdownList = styled("ul")``
-// const ListItem = styled("li")``
 
 export const Dropdown: React.FC<DropdownProps> = ({ text = '', showMenu = false, pill = false, center = false, narrow = false, disabled = false, icon, onClickDropdown, children }) => {
   return (
@@ -138,26 +102,6 @@ export const DropdownSublist: React.FC<DropdownSublistProps> = ({ name, children
     </SublistContent>
   )
 }
-
-// export const DropdownList: React.FC<DropdownProps> = ({
-// 	children
-// }) => {
-// 	return (
-// 		<ListItem>
-// 			{children}
-// 		</ListItem>
-// 	)
-// }
-
-// export const DropdownItem: React.FC<DropdownProps> = ({
-// 	children
-// }) => {
-// 	return (
-// 		<ListItem>
-// 			{children}
-// 		</ListItem>
-// 	)
-// }
 
 const arrow_up = (
   <svg width={10} height={6} fill='none' xmlns='http://www.w3.org/2000/svg'>
