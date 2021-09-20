@@ -1,6 +1,5 @@
 import React from 'react'
 import styled, { CSSProp } from 'styled-components'
-import { useState } from 'react'
 
 import * as Styles from './Styles'
 
@@ -15,13 +14,6 @@ interface OptionProps {
 
 interface StyleProps {
   css?: CSSProp
-}
-
-const default_delay = {
-  none: 0,
-  short: 100,
-  medium: 250,
-  long: 1000,
 }
 
 const TooltipDiv = styled.div<Required<StyleProps>>`
