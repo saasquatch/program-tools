@@ -18,41 +18,9 @@ const ViewFrame = styled.div`
   padding: 70px 0px 0px 100px;
 `
 
-// export const DelayNone = () => (
-//   <StoryFrame>
-//     <Tooltip text='A tooltip that explains something in detail' delay='none'>
-//       <button> Hover </button>
-//     </Tooltip>
-//   </StoryFrame>
-// )
-
-// export const DelayShort = () => (
-//   <StoryFrame>
-//     <Tooltip text='A tooltip that explains something in detail' delay='short'>
-//       <button> Hover </button>
-//     </Tooltip>
-//   </StoryFrame>
-// )
-
-// export const DelayMedium = () => (
-//   <StoryFrame>
-//     <Tooltip text='A tooltip that explains something in detail' delay='medium'>
-//       <button> Hover </button>
-//     </Tooltip>
-//   </StoryFrame>
-// )
-
-// export const DelayLong = () => (
-//   <StoryFrame>
-//     <Tooltip text='A tooltip that explains something in detail' delay='long'>
-//       <button> Hover </button>
-//     </Tooltip>
-//   </StoryFrame>
-// )
-
-export const Default = () => {
+export const Functional = () => {
   let timeout: ReturnType<typeof setTimeout>
-  const delay = 0
+  const delay = 150
   const [enabled, setEnable] = useState(false)
 
   const showTooltip = () => {

@@ -6,22 +6,12 @@ export default {
   component: Switch,
 }
 
-export const SuccessOff = () => {
+export const Functional = () => {
   const [enabled, setEnable] = useState(false)
-  return <Switch id='success_off' checked={enabled} onChange={() => setEnable(!enabled)} />
+  return <Switch id='switch' checked={enabled} onChange={() => setEnable(!enabled)} />
 }
 
-export const SuccessOn = () => {
-  const [enabled, setEnable] = useState(true)
-  return <Switch id='success_on' checked={enabled} onChange={() => setEnable(!enabled)} />
-}
-
-export const CriticalOff = () => {
-  const [enabled, setEnable] = useState(false)
-  return <Switch id='critical_off' color='critical' checked={enabled} onChange={() => setEnable(!enabled)} />
-}
-
-export const CriticalOn = () => {
-  const [enabled, setEnable] = useState(true)
-  return <Switch id='critical_on' color='critical' checked={enabled} onChange={() => setEnable(!enabled)} />
-}
+export const SuccessOff = () => <Switch checked={false} />
+export const SuccessOn = () => <Switch checked={true} />
+export const CriticalOff = () => <Switch color='critical' checked={false} />
+export const CriticalOn = () => <Switch color='critical' checked={true} />

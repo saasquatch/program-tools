@@ -9,7 +9,7 @@ export default {
 
 const exampleOnClick = () => alert('You clicked a dropdown item.')
 
-export const DefaultDropdown = () => {
+export const Functional = () => {
   const [enabled, setEnable] = useState(true)
   return (
     <div style={{ height: 280 }}>

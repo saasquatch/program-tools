@@ -8,7 +8,6 @@ type SwitchProps = OptionProps & StyleProps & React.ComponentProps<'div'>
 interface OptionProps {
   checked: boolean
   color?: 'success' | 'critical'
-  onSwitchChange?: () => void
 }
 
 interface StyleProps {
@@ -33,11 +32,11 @@ const SwitchBackground = styled.input<Required<{ color: string }>>`
 `
 
 export const Switch = React.forwardRef<React.ElementRef<'div'>, SwitchProps>((props, forwardedRef) => {
-  const { id, color = 'success', checked, onSwitchChange, css = {}, ...rest } = props
+  const { id, color = 'success', checked, css = {}, ...rest } = props
 
   return (
     <SwitchBox {...rest} ref={forwardedRef} css={css}>
-      <SwitchBackground color={color} id={id} type='checkbox' checked={checked} onChange={onSwitchChange} />
+      <SwitchBackground color={color} id={id} type='checkbox' checked={checked} />
       <SwitchButton htmlFor={id} />
     </SwitchBox>
   )
