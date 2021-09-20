@@ -1,17 +1,18 @@
 import * as React from 'react'
 import styled, { CSSProp } from 'styled-components'
-
+import { IconKey, Icon } from '../Icon'
 import * as Styles from './Styles'
 
 type DropdownProps = OptionProps & StyleProps & React.ComponentProps<'div'>
 
 interface OptionProps {
   text?: string
-  menu?: boolean
+  showMenu?: boolean
   pill?: boolean
   center?: boolean
   narrow?: boolean
   disabled?: boolean
+  icon?: IconKey
   onClickDropdown?: () => void
   children?: React.ReactNode
 }
@@ -29,6 +30,7 @@ interface StyleProps {
 const DropdownContainer = styled('div')`
   position: relative;
   width: 191px;
+  min-width: 191px;
 `
 
 const DropdownButton = styled('div')<Required<ButtonProps>>`
@@ -45,7 +47,10 @@ const DropdownButton = styled('div')<Required<ButtonProps>>`
   }
 `
 const DropdownContent = styled('div')<Pick<DropdownProps, 'pill'>>`
-  ${Styles.content} // border-radius: ${(props) => (props.pill == true ? '4px' : '20px')};
+  ${Styles.content}
+  width: max-content;
+  min-width: inherit;
+  border-radius: ${(props) => (props.pill ? '20px' : '4px')};
   &:empty {
     border: none;
   }
@@ -68,7 +73,7 @@ const SublistContent = styled('div')`
 `
 
 const DropdownSubItemStyle = styled('div')`
-  padding-left: 15px;
+  text-indent: 15px;
   border-radius: inherit;
 `
 
@@ -101,13 +106,14 @@ const ArrowStyle = styled('span')`
 // const DropdownList = styled("ul")``
 // const ListItem = styled("li")``
 
-export const Dropdown: React.FC<DropdownProps> = ({ text = '', menu = false, pill = false, center = false, narrow = false, disabled = false, onClickDropdown, children }) => {
+export const Dropdown: React.FC<DropdownProps> = ({ text = '', showMenu = false, pill = false, center = false, narrow = false, disabled = false, icon, onClickDropdown, children }) => {
   return (
     <DropdownContainer>
       <DropdownButton pill={pill} center={center} narrow={narrow} disabled={disabled} onClick={onClickDropdown}>
-        {text} <ArrowStyle>{menu ? arrow_up : arrow_down}</ArrowStyle>
+        {icon && <Icon color='inherit' size='16px' icon={icon} style={{ marginRight: '8px' }} />}
+        {text} <ArrowStyle>{showMenu ? arrow_up : arrow_down}</ArrowStyle>
       </DropdownButton>
-      {menu && <DropdownContent pill={pill}>{children}</DropdownContent>}
+      {showMenu && <DropdownContent pill={pill}>{children}</DropdownContent>}
     </DropdownContainer>
   )
 }

@@ -9,7 +9,6 @@ export const button = css`
 
 export const content = css`
 	position: absolute;
-	width: inherit;
 	z-index: 100;
 	top: 120%;
 	background: #FFFFFF;
