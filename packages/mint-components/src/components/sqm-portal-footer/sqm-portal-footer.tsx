@@ -10,7 +10,7 @@ import { FSRFooterView } from "./sqm-portal-footer-view";
   tag: "sqm-portal-footer",
   shadow: true,
 })
-export class SQMPortalFooter {
+export class PortalFooter {
   @State()
   ignored = true;
 

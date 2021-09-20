@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { SQMPortalFooter } from "./sqm-portal-footer";
+import { PortalFooter } from "./sqm-portal-footer";
 
 const vanillaStyle = `
   :host{
@@ -15,7 +15,7 @@ const vanillaStyle = `
   }
 `;
 
-export function FSRFooterView(props: SQMPortalFooter) {
+export function FSRFooterView(props: PortalFooter) {
   const style = {
     RowContainer: {
       display: "flex",
@@ -57,12 +57,16 @@ export function FSRFooterView(props: SQMPortalFooter) {
         {styleString}
       </style>
       <div class={sheet.classes.RowContainer}>
-        <a target="_blank" href={props.faqLink}>
-          FAQ
-        </a>
-        <a target="_blank" href={props.termsLink}>
-          Terms and Conditions
-        </a>
+        {props.faqLink && (
+          <a target="_blank" href={props.faqLink}>
+            FAQ
+          </a>
+        )}
+        {props.termsLink && (
+          <a target="_blank" href={props.termsLink}>
+            Terms and Conditions
+          </a>
+        )}
       </div>
       <p>
         For program support, contact{" "}
