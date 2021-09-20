@@ -7,7 +7,10 @@ import editProfileTemplate from "../templates/EditProfile.html";
 import activityTemplate from "../templates/Activity.html";
 import resetPasswordTemplate from "../templates/ResetPasswordEmail.html";
 import verifyEmailTemplate from "../templates/VerifyEmail.html";
-
+import loginTemplate from "../templates/Login.html";
+import registerTemplate from "../templates/Register.html";
+import forgotPasswordTemplate from "../templates/ForgotPassword.html";
+import { navigation } from "@saasquatch/component-boilerplate";
 export default {
   title: "Templates / Portal",
 };
@@ -47,8 +50,48 @@ function TemplateView(props) {
   ];
 }
 
-export const Portal = createHookStory(() => {
+export const DefaultPortal = createHookStory(() => {
   const { states, callbacks } = useTemplate(portalTemplate);
+  return (
+    <div>
+      <h2>Navigation</h2>
+      <button onClick={() => navigation.push("/")}>Dashboard</button>
+      <button onClick={() => navigation.push("/activity")}>Activity</button>
+      <button onClick={() => navigation.push("/editProfile")}>
+        Edit Profile
+      </button>
+      <button onClick={() => navigation.push("/login")}>Login</button>
+      <button onClick={() => navigation.push("/register")}>Register</button>
+      <button onClick={() => navigation.push("/emailVerification")}>
+        Email Verification
+      </button>
+      <button onClick={() => navigation.push("/verifyEmail")}>
+        Verify Email
+      </button>
+      <button onClick={() => navigation.push("/forgotPassword")}>
+        Forgot Password
+      </button>
+      <button onClick={() => navigation.push("/resetPassword")}>
+        Reset Password
+      </button>
+      <br />
+      <TemplateView states={states} callbacks={callbacks} />
+    </div>
+  );
+});
+
+export const Login = createHookStory(() => {
+  const { states, callbacks } = useTemplate(loginTemplate);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const ForgotPassword = createHookStory(() => {
+  const { states, callbacks } = useTemplate(forgotPasswordTemplate);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const Register = createHookStory(() => {
+  const { states, callbacks } = useTemplate(registerTemplate);
   return <TemplateView states={states} callbacks={callbacks} />;
 });
 

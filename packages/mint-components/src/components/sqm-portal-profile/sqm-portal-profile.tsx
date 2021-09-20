@@ -56,7 +56,7 @@ function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
           firstName: "Joe",
           lastName: "Smith",
           email: "jsmith@gmail.com",
-          countryCode: "5000",
+          countryCode: "CA",
         },
         text: {
           firstnametext: "First Name",

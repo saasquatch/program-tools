@@ -125,7 +125,7 @@ function useRegisterDemo(
         error: "",
         loading: false,
         confirmPassword: true,
-        hideInputs: false,
+        hideInputs: props.hideInputs || false,
         customPasswordField: false,
       },
       callbacks: {
