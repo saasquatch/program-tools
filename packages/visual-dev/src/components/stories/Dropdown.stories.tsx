@@ -54,13 +54,13 @@ export const MenuOptions = () => (
   </div>
 )
 
-export const SubMenuOptions = () => (
+export const MenuSuboptions = () => (
   <div style={{ height: 220 }}>
-    <Dropdown text='Subtitle Options' showMenu={true}>
+    <Dropdown text='Menu Suboptions' showMenu={true}>
       <DropdownSublist name='Dropdown Subtitle'>
-        <DropdownItem onClick={exampleOnClick}> Dropdown Suboption </DropdownItem>
-        <DropdownItem onClick={exampleOnClick}> Dropdown Suboption </DropdownItem>
-        <DropdownItem onClick={exampleOnClick}> Dropdown Suboption </DropdownItem>
+        <DropdownItem> Dropdown Suboption </DropdownItem>
+        <DropdownItem> Dropdown Suboption </DropdownItem>
+        <DropdownItem> Dropdown Suboption </DropdownItem>
       </DropdownSublist>
     </Dropdown>
   </div>

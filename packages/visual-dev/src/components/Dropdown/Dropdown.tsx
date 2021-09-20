@@ -24,12 +24,25 @@ interface ButtonProps {
   disabled?: boolean
 }
 
+interface DropdownItemProps {
+  onClick?: () => void
+  css?: CSSProp
+  children?: React.ReactNode
+}
+
+interface DropdownSublistProps {
+  name: string
+  css?: CSSProp
+  children: React.ReactNode
+}
+
 interface StyleProps {
   css?: CSSProp
 }
 
-const DropdownContainer = styled('div')`
+const DropdownContainer = styled('div')<Required<StyleProps>>`
   ${Styles.base}
+  ${(props) => props.css}
 `
 
 const DropdownButton = styled('div')<Required<ButtonProps>>`
@@ -50,12 +63,14 @@ const DropdownContent = styled('div')<Pick<DropdownProps, 'pill'>>`
   border-radius: ${(props) => (props.pill ? '20px' : '4px')};
 `
 
-const DropdownItemStyle = styled('div')`
+const DropdownItemStyle = styled('div')<Required<StyleProps>>`
   ${Styles.item}
+  ${(props) => props.css}
 `
 
-const SublistContent = styled('div')`
+const SublistContent = styled('div')<Required<StyleProps>>`
   ${Styles.subcontent}
+  ${(props) => props.css}
 `
 
 const DropdownSubItemStyle = styled('div')`
@@ -70,9 +85,11 @@ const ArrowStyle = styled('span')`
   ${Styles.arrow}
 `
 
-export const Dropdown: React.FC<DropdownProps> = ({ text = '', showMenu = false, pill = false, center = false, narrow = false, disabled = false, icon, onClickDropdown, children }) => {
+export const Dropdown = React.forwardRef<React.ElementRef<'div'>, DropdownProps>((props, forwardedRef) => {
+  const { text = '', showMenu = false, pill = false, center = false, narrow = false, disabled = false, icon, onClickDropdown, children, css = {}, ...rest } = props
+
   return (
-    <DropdownContainer>
+    <DropdownContainer {...rest} ref={forwardedRef} css={css}>
       <DropdownButton pill={pill} center={center} narrow={narrow} disabled={disabled} onClick={onClickDropdown}>
         {icon && <Icon color='inherit' size='16px' icon={icon} style={{ marginRight: '8px' }} />}
         {text} <ArrowStyle>{showMenu ? arrow_up : arrow_down}</ArrowStyle>
@@ -80,28 +97,28 @@ export const Dropdown: React.FC<DropdownProps> = ({ text = '', showMenu = false,
       {showMenu && <DropdownContent pill={pill}>{children}</DropdownContent>}
     </DropdownContainer>
   )
-}
-interface DropdownItemProps {
-  onClick?: () => void
-  children?: React.ReactNode
-}
+})
 
-export const DropdownItem: React.FC<DropdownItemProps> = ({ onClick, children }) => {
-  return <DropdownItemStyle onClick={onClick}>{children}</DropdownItemStyle>
-}
-interface DropdownSublistProps {
-  name: string
-  children: React.ReactNode
-}
+export const DropdownItem = React.forwardRef<React.ElementRef<'div'>, DropdownItemProps>((props, forwardedRef) => {
+  const { onClick, children, css = {}, ...rest } = props
 
-export const DropdownSublist: React.FC<DropdownSublistProps> = ({ name, children }) => {
   return (
-    <SublistContent>
+    <DropdownItemStyle onClick={onClick} {...rest} ref={forwardedRef} css={css}>
+      {children}
+    </DropdownItemStyle>
+  )
+})
+
+export const DropdownSublist = React.forwardRef<React.ElementRef<'div'>, DropdownSublistProps>((props, forwardedRef) => {
+  const { name, children, css = {}, ...rest } = props
+
+  return (
+    <SublistContent {...rest} ref={forwardedRef} css={css}>
       <DropdownSublistStyle>{name}</DropdownSublistStyle>
       <DropdownSubItemStyle>{children}</DropdownSubItemStyle>
     </SublistContent>
   )
-}
+})
 
 const arrow_up = (
   <svg width={10} height={6} fill='none' xmlns='http://www.w3.org/2000/svg'>
