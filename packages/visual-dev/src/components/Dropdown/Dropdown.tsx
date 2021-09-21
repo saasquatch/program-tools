@@ -47,15 +47,15 @@ const DropdownContainer = styled('div')<Required<StyleProps>>`
 
 const DropdownButton = styled('div')<Required<ButtonProps>>`
   ${Styles.button}
-  border-radius: ${(props) => (props.pill == true ? '100px' : '4px')};
-  text-align: ${(props) => (props.center == true ? 'center' : 'left')};
-  line-height: ${(props) => (props.narrow == true ? '10px' : '16px')};
-  color: ${(props) => (props.disabled == true ? '#A6B9BD' : '#575757')};
-  background: ${(props) => (props.disabled == true ? '#F6F6F6' : '#FFFFFF')};
+  border-radius: ${(props) => (props.pill ? '100px' : '4px')};
+  text-align: ${(props) => (props.center ? 'center' : 'left')};
+  line-height: ${(props) => (props.narrow ? '10px' : '16px')};
+  color: ${(props) => (props.disabled ? '#A6B9BD' : '#575757')};
+  background: ${(props) => (props.disabled ? '#F6F6F6' : '#FFFFFF')};
   user-select: none;
   &:hover {
-    ${(props) => (props.disabled == true ? '' : 'box-shadow: inset 0 0 0 1px #A6B9BD;')}
-    ${(props) => (props.disabled == true ? 'cursor: not-allowed;' : '')};
+    ${(props) => (props.disabled ? '' : 'box-shadow: inset 0 0 0 1px #A6B9BD;')}
+    ${(props) => (props.disabled ? 'cursor: not-allowed;' : '')};
   }
 `
 const DropdownContent = styled('div')<Pick<DropdownProps, 'pill'>>`

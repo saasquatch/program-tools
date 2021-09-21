@@ -33,6 +33,7 @@ export const Functional = () => {
     clearInterval(timeout)
     setEnable(false)
   }
+
   return (
     <StoryFrame>
       <Tooltip onMouseEnter={showTooltip} onMouseLeave={hideTooltip} showTooltip={enabled} direction='top' text='A tooltip that explains something in detail'>
@@ -65,63 +66,3 @@ export const Bottom = () => (
     <Tooltip showTooltip={true} direction='bottom' text='A tooltip that explains something in detail' />
   </div>
 )
-
-// export const Top = () => (
-//   <ViewFrame>
-//     <Tooltip showTooltip={true} direction='top' text='A tooltip that explains something in detail' />
-//   </ViewFrame>
-// )
-
-// export const Top = () => (
-//   <ViewFrame>
-//     <Tooltip showTooltip={true} direction='top' text='A tooltip that explains something in detail' />
-//   </ViewFrame>
-// )
-
-// export const Right = () => (
-//   <StoryFrame>
-//     <Tooltip direction='right' text='A tooltip that explains something in detail'>
-//       <button> Hover </button>
-//     </Tooltip>
-//   </StoryFrame>
-// )
-
-// export const Bottom = () => (
-//   <StoryFrame>
-//     <Tooltip direction='bottom' text='A tooltip that explains something in detail'>
-//       <button> Hover </button>
-//     </Tooltip>
-//   </StoryFrame>
-// )
-
-// export const Left = () => (
-//   <StoryFrame>
-//     <Tooltip direction='left' text='A tooltip that explains something in detail'>
-//       <button> Hover </button>
-//     </Tooltip>
-//   </StoryFrame>
-// )
-
-// export const Empty = () => (
-//   <StoryFrame>
-//     <Tooltip>
-//       <button> Hover </button>
-//     </Tooltip>
-//   </StoryFrame>
-// )
-
-// export const ShortText = () => (
-//   <StoryFrame>
-//     <Tooltip direction='top' text='A tip'>
-//       <button> Hover </button>
-//     </Tooltip>
-//   </StoryFrame>
-// )
-
-// export const LongText = () => (
-//   <StoryFrame>
-//     <Tooltip direction='top' text='A tooltip that explains something in a much longer detail'>
-//       <button> Hover </button>
-//     </Tooltip>
-//   </StoryFrame>
-// )
