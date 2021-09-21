@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2021-09-20
+
+### Fixed
+
+- Prevent conditional container from querying for a user before a JWT is set
+- Update component-boilerplate version to fix infinite loop bug
+
 ## [1.1.0] - 2021-07-21
 
 ### Added
