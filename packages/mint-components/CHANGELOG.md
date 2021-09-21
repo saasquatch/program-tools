@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.1] - 2021-08-31
+## [1.2.1] - 2021-09-21
 
 ### Fixed
 
@@ -21,11 +21,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Filtered Credit and Integration reward count stats now available in \<sqm-big-stat>
   - formats:
   ```
-  /(rewardsCountFiltered)/:statType?/:unit?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?
+  /(rewardsCountFiltered)/:statType([INTEGRATION|PCT_DISCOUNT|CREDIT]*)?/:unit((?!global)(?!PENDING)(?!CANCELLED)(?!EXPIRED)(?!REDEEMED)(?!AVAILABLE)[a-zA-Z0-9%]+)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?
   /(integrationRewardsCountFiltered)/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?
   ```
-- <sqm-share-button> loading states and hide text prop
-- <sqm-divided-layout> border customizable
+- \<sqm-share-button> loading states and hide text prop
+- \<sqm-divided-layout> border customizable
+- \<sqm-leaderboard> hook stories created
+- \<sqm-big-stat> e2e tests created
 
 ## [1.2.0] - 2021-09-17
 
