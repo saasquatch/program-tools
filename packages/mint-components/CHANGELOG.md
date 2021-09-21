@@ -29,6 +29,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \<sqm-leaderboard> hook stories created
 - \<sqm-big-stat> e2e tests created
 
+### Removed
+
+- menuLabel prop removed from \<sqm-program-menu>
+
 ## [1.2.0] - 2021-09-17
 
 - \<sqm-referral-table> can pull only classic referrals
