@@ -1,6 +1,7 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Method, Prop } from "@stencil/core";
 import { useRequestRerender } from "../re-render";
+import { ReferralDates } from "../useReferralTable";
 import { ReferralTableColumn } from "./ReferralTableColumn";
 
 /**
@@ -17,6 +18,7 @@ export class ReferralTableDateColumn implements ReferralTableColumn {
   @Prop() columnTitle: string = "Date Converted";
   /**
    * @uiName Date Displayed
+   * @uiType string
    * @uiEnum ["dateConverted",
    * "dateReferralStarted",
    * "dateFraudChecksCompleted",
@@ -26,7 +28,7 @@ export class ReferralTableDateColumn implements ReferralTableColumn {
    * "dateReferralPaid",
    * "dateUserModified"]
    */
-  @Prop() dateShown: string = "dateConverted";
+  @Prop() dateShown: ReferralDates = "dateConverted";
 
   constructor() {
     withHooks(this);

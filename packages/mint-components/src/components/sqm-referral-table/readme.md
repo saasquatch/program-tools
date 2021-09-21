@@ -1,4 +1,4 @@
-# sqm-table-row
+# sqm-referral-table
 
 
 

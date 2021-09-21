@@ -564,15 +564,15 @@ export const queries: {
     query: referralsWeekQuery,
   },
   rewardsCount: {
-    label: "Rewards - Count",
+    label: "Rewards",
     query: rewardsCountQuery,
   },
   rewardsCountFiltered: {
-    label: "Rewards - Count - Filtered",
+    label: "Rewards",
     query: rewardsCountFilteredQuery,
   },
   integrationRewardsCountFiltered: {
-    label: "Integration Rewards - Count - Filtered",
+    label: "Rewards",
     query: integrationRewardsCountFilteredQuery,
   },
   rewardsMonth: {
