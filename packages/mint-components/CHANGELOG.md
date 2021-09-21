@@ -27,7 +27,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - \<sqm-share-button> loading states and hide text prop
 - \<sqm-divided-layout> border customizable
 - \<sqm-leaderboard> allows rank to be shown
-- \<sqm-big-stat> e2e tests created
 
 ## [1.2.0] - 2021-09-17
 
