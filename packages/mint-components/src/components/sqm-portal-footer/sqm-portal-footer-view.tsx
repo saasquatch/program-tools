@@ -102,7 +102,3 @@ export function FSRFooterView(props: PortalFooter) {
     </div>
   );
 }
-// For program support, contact{" "}
-// <a target="_blank" href={`mailto:${props.supportEmail}`}>
-//   {props.supportEmail}
-// </a>
