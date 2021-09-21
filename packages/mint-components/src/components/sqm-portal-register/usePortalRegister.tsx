@@ -96,10 +96,15 @@ export function usePortalRegister(props: PortalRegister) {
     };
   }, [formRef.current]);
 
+  const errorMessage =
+    errors?.response?.["error"] || errors?.message
+      ? "Network request failed"
+      : errors?.response?.errors?.[0]?.message || validationState?.error;
+
   return {
     states: {
       loading,
-      error: errors?.response?.errors?.[0]?.message || validationState?.error,
+      error: errorMessage,
       validationState,
       confirmPassword: props.confirmPassword,
       hideInputs: props.hideInputs,

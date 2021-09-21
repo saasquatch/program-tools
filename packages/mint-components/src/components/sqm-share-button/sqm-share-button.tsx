@@ -151,7 +151,7 @@ function useDemoShareButton(props: ShareButton): ShareButtonViewProps {
       icon: props.icon,
       hide: false,
       onClick: () => {
-        // TODO: PRovide visual feedback
+        // TODO: Provide visual feedback
       },
     },
     props.demoData || {},
