@@ -1,4 +1,4 @@
-import { useQuery } from '@saasquatch/component-boilerplate';
+import { useQuery, useUserIdentity } from '@saasquatch/component-boilerplate';
 import { gql } from 'graphql-request';
 import { useMemo } from '@saasquatch/universal-hooks';
 import jsonata from 'jsonata';
@@ -21,7 +21,8 @@ export type UseConditionalSection = {
   shouldDisplay: boolean;
 };
 export function useConditionalSection({ expression = 'false' }: ConditionalSegmentProps) {
-  const { loading, data } = useQuery(UserQuery, {});
+  const user = useUserIdentity();
+  const { loading, data } = useQuery(UserQuery, {}, !user?.jwt);
 
   const expr = useMemo(() => {
     // Defaults to false
@@ -34,6 +35,6 @@ export function useConditionalSection({ expression = 'false' }: ConditionalSegme
   } catch (e) {}
 
   return {
-    shouldDisplay: !loading && result,
+    shouldDisplay: user?.jwt && !loading && result,
   };
 }
