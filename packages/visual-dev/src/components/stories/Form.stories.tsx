@@ -1,27 +1,22 @@
 import React, { useState } from 'react'
-import { Input, Checkbox } from '../Form'
+import { TextBox, Checkbox } from '../Form'
 
 export default {
   title: 'Components / Form',
-  component: Input,
+  component: TextBox,
 }
 
-export const Default = () => {
-  const [value, setValue] = useState('Input Value')
-  return <Input value={value} onChange={(e) => setValue(e.target.value)} />
-}
-
-export const Placeholder = () => {
+export const FunctionalInput = () => {
   const [value, setValue] = useState('')
-  return <Input placeholder='Placeholder Text' value={value} onChange={(e) => setValue(e.target.value)} />
+  return <TextBox value={value} onChange={(e) => setValue(e.target.value)} />
 }
 
-export const Disabled = () => {
-  const [value, setValue] = useState('')
-  return <Input placeholder='Disabled' value={value} onChange={(e) => setValue(e.target.value)} disabled />
-}
+export const InputText = () => <TextBox value='Input Text' />
+export const InputDisabled = () => <TextBox value='Input Text' disabled />
+export const Placeholder = () => <TextBox placeholder='Placeholder Text' />
+export const PlaceholderDisabled = () => <TextBox placeholder='Placeholder Text' disabled />
 
-export const checkbox = () => {
-  const [value, setValue] = useState('')
-  return <Checkbox value={value} onChange={(e) => setValue(e.target.value)} />
+export const FunctionalCheckbox = () => {
+  const [value, setValue] = useState(false)
+  return <Checkbox checked={value} onChange={(e) => setValue(!value)} />
 }

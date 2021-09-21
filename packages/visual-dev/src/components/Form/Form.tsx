@@ -10,24 +10,50 @@ interface OptionProps {
 }
 const ShadowDom = styled(root.div)``
 
-const InputStyle = styled.input`
-  ${Styles.input}
+const TextBoxStyle = styled.input`
+  width: 300px;
+  height: 30px;
+
+  font: 400 14px Helvetica;
+  text-indent: 6px;
+
+  color: #575757;
+  background: #ffffff;
+
+  border: 2px solid #e2e2e2;
+  border-radius: 4px;
+
+  &::placeholder {
+    color: #bdbdbd;
+  }
+
+  &:focus {
+    border-color: #448ee1;
+  }
+
+  &:disabled {
+    user-select: none;
+    cursor: not-allowed;
+    pointer-events: none;
+    color: #bdbdbd;
+    background-color: #ebebeb;
+  }
 `
 
 const CheckboxStyle = styled.input``
 
-export const Input = React.forwardRef<React.ElementRef<'input'>, InputProps>((props, forwardedRef) => {
-  const { ...rest } = props //children, css = {},
+export const TextBox = React.forwardRef<React.ElementRef<'input'>, InputProps>((props, forwardedRef) => {
+  const { ...rest } = props
 
   return (
     <ShadowDom>
-      <InputStyle {...rest} type='text' ref={forwardedRef} />
+      <TextBoxStyle {...rest} type='text' ref={forwardedRef} />
     </ShadowDom>
   )
 })
 
 export const Checkbox = React.forwardRef<React.ElementRef<'input'>, InputProps>((props, forwardedRef) => {
-  const { ...rest } = props //children, css = {},
+  const { ...rest } = props
 
   return (
     <ShadowDom>
