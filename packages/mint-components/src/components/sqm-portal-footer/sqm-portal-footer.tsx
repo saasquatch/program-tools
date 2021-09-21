@@ -8,6 +8,7 @@ import { FSRFooterView } from "./sqm-portal-footer-view";
  */
 @Component({
   tag: "sqm-portal-footer",
+  assetsDirs:["../../assets"],
   shadow: true,
 })
 export class PortalFooter {

@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { getAssetPath, h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { intl } from "../../global/global";
@@ -45,6 +45,9 @@ export function FSRFooterView(props: PortalFooter) {
         color: "var(--sl-color-gray-900)",
       },
     },
+    PoweredByImage: {
+      width: "190px",
+    },
   };
 
   jss.setup(preset());
@@ -90,7 +93,10 @@ export function FSRFooterView(props: PortalFooter) {
           target="_blank"
           href={props.poweredByLink}
         >
-          Powered By Saasquatch
+          <img
+            class={sheet.classes.PoweredByImage}
+            src={getAssetPath("../../assets/PoweredBySaaSquatch.png")}
+          />
         </a>
       )}
     </div>
