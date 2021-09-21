@@ -7,7 +7,6 @@ import React, {
   useContext,
 } from "react";
 import { connectToParent, Connection } from "penpal";
-import decode from "jwt-decode";
 import ResizeObserver from "resize-observer-polyfill";
 
 export enum ConfigMode {
