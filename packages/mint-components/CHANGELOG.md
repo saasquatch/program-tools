@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - demoData no longer breaking GrapesJS editability on all components
 - \<sqm-big-stat> properly supports units with/without slashes
 - \<sqm-big-stat> rewardBalance stat now uses format if included for the fallback value
-- \<sqm-referral-table> bugs fixed
+- \<sqm-referral-table> dateScheduledFor bug fixed, deleted user bug fixed
 
 ### Added
 
