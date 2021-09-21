@@ -26,6 +26,7 @@ import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-po
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
 import { ReferralTableViewProps } from "./components/sqm-referral-table/sqm-referral-table-view";
+import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
@@ -561,9 +562,10 @@ export namespace Components {
         "columnTitle": string;
         /**
           * @uiName Date Displayed
+          * @uiType string
           * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
          */
-        "dateShown": string;
+        "dateShown": ReferralDates;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
@@ -1712,9 +1714,10 @@ declare namespace LocalJSX {
         "columnTitle"?: string;
         /**
           * @uiName Date Displayed
+          * @uiType string
           * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
          */
-        "dateShown"?: string;
+        "dateShown"?: ReferralDates;
     }
     interface SqmReferralTableRewardsCell {
         "hideDetails"?: boolean;

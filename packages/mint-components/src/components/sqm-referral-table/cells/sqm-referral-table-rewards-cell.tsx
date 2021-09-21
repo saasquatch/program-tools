@@ -2,6 +2,7 @@ import { Component, h, Prop } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { DateTime } from "luxon";
+import { intl } from "../../../global/global";
 import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 @Component({
   tag: "sqm-referral-table-rewards-cell",
@@ -93,11 +94,7 @@ export class ReferralTableRewardsCell {
 
     const getTimeDiff = (endTime: number): string => {
       // Current implementation only calculates the difference from current time
-      const diff = DateTime.fromMillis(endTime)
-        .toRelativeCalendar()
-        .replace("in", "")
-        .trim();
-      return diff;
+      return DateTime.fromMillis(endTime).toRelative().replace("in", "").trim();
     };
 
     return this.rewards.map((reward) => {
@@ -120,14 +117,9 @@ export class ReferralTableRewardsCell {
                   class={sheet.classes.StatusBadge}
                   type={slBadgeType}
                   pill
-                >{`${badgeText} ${
-                  getTimeDiff(reward.dateScheduledFor) === "tomorrow" ||
-                  getTimeDiff(reward.dateScheduledFor) === "today" ||
-                  getTimeDiff(reward.dateScheduledFor) === "next month" ||
-                  getTimeDiff(reward.dateScheduledFor) === "next year"
-                    ? `until ${getTimeDiff(reward.dateScheduledFor)}`
-                    : `for ${getTimeDiff(reward.dateScheduledFor)}`
-                }`}</sl-badge>
+                >{`${badgeText} for ${getTimeDiff(
+                  reward.dateScheduledFor
+                )}`}</sl-badge>
               ) : (
                 <sl-badge
                   class={sheet.classes.StatusBadge}
@@ -139,12 +131,7 @@ export class ReferralTableRewardsCell {
               )}
               {reward.dateExpires && state === "AVAILABLE" && (
                 <sl-badge class={sheet.classes.StatusBadge} type="info" pill>
-                  {getTimeDiff(reward.dateExpires) === "tomorrow" ||
-                  getTimeDiff(reward.dateExpires) === "today" ||
-                  getTimeDiff(reward.dateExpires) === "next month" ||
-                  getTimeDiff(reward.dateExpires) === "next year"
-                    ? `Expiring ${getTimeDiff(reward.dateExpires)}`
-                    : `Expiring in ${getTimeDiff(reward.dateExpires)}`}
+                  {`Expiring in ${getTimeDiff(reward.dateScheduledFor)}`}
                 </sl-badge>
               )}
             </div>
