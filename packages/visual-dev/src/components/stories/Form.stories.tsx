@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Input } from '../Form'
+import { Input, Checkbox } from '../Form'
 
 export default {
   title: 'Components / Form',
@@ -21,7 +21,7 @@ export const Disabled = () => {
   return <Input placeholder='Disabled' value={value} onChange={(e) => setValue(e.target.value)} disabled />
 }
 
-// // export const checkbox = () => {
-//   const [value, setValue] = useState('')
-//   return <Checkbox value={value} onChange={(e) => setValue(e.target.value)} />
-// }
+export const checkbox = () => {
+  const [value, setValue] = useState('')
+  return <Checkbox value={value} onChange={(e) => setValue(e.target.value)} />
+}
