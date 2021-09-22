@@ -6,11 +6,14 @@ import multiProgramTemplate from "../templates/MultiProgramPortal.html";
 import dashboardTemplate from "../templates/Dashboard.html";
 import editProfileTemplate from "../templates/EditProfile.html";
 import activityTemplate from "../templates/Activity.html";
-import resetPasswordTemplate from "../templates/ResetPasswordEmail.html";
+import resetPasswordEmailTemplate from "../templates/ResetPasswordEmail.html";
 import verifyEmailTemplate from "../templates/VerifyEmail.html";
 import loginTemplate from "../templates/Login.html";
 import registerTemplate from "../templates/Register.html";
 import forgotPasswordTemplate from "../templates/ForgotPassword.html";
+import resetPasswordTemplate from "../templates/ResetPassword.html";
+import emailVerifiedTemplate from "../templates/EmailVerified.html";
+import emailVerificationTemplate from "../templates/EmailVerification.html";
 import { navigation } from "@saasquatch/component-boilerplate";
 export default {
   title: "Templates / Portal",
@@ -134,8 +137,23 @@ export const EditProfile = createHookStory(() => {
   return <TemplateView states={states} callbacks={callbacks} />;
 });
 
-export const ResetPasswordEmail = createHookStory(() => {
+export const ResetPassword = createHookStory(() => {
   const { states, callbacks } = useTemplate(resetPasswordTemplate);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const EmailVerification = createHookStory(() => {
+  const { states, callbacks } = useTemplate(emailVerificationTemplate);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const EmailVerified = createHookStory(() => {
+  const { states, callbacks } = useTemplate(emailVerifiedTemplate);
+  return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const ResetPasswordEmail = createHookStory(() => {
+  const { states, callbacks } = useTemplate(resetPasswordEmailTemplate);
   return <TemplateView states={states} callbacks={callbacks} />;
 });
 
