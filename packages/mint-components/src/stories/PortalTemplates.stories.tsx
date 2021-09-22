@@ -2,6 +2,7 @@ import { useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
 import portalTemplate from "../templates/Portal.html";
+import multiProgramTemplate from "../templates/MultiProgramPortal.html";
 import dashboardTemplate from "../templates/Dashboard.html";
 import editProfileTemplate from "../templates/EditProfile.html";
 import activityTemplate from "../templates/Activity.html";
@@ -50,10 +51,23 @@ function TemplateView(props) {
   ];
 }
 
-export const DefaultPortal = createHookStory(() => {
-  const { states, callbacks } = useTemplate(portalTemplate);
+function DefaultTemplateView(props) {
+  const { states, callbacks } = props;
   return (
     <div>
+      <textarea
+        style={{ width: "100%", height: "300px" }}
+        onChange={(e: Event) =>
+          callbacks.setEditedTemplate((e.target as HTMLInputElement).value)
+        }
+      >
+        {states.editedTemplate}
+      </textarea>
+      <button
+        onClick={() => callbacks.setPreviewTemplate(states.editedTemplate)}
+      >
+        Update Preview
+      </button>
       <h2>Navigation</h2>
       <button onClick={() => navigation.push("/")}>Dashboard</button>
       <button onClick={() => navigation.push("/activity")}>Activity</button>
@@ -75,9 +89,19 @@ export const DefaultPortal = createHookStory(() => {
         Reset Password
       </button>
       <br />
-      <TemplateView states={states} callbacks={callbacks} />
+      <div innerHTML={states.previewTemplate}></div>
     </div>
   );
+}
+
+export const DefaultPortal = createHookStory(() => {
+  const { states, callbacks } = useTemplate(portalTemplate);
+  return <DefaultTemplateView states={states} callbacks={callbacks} />;
+});
+
+export const MultiProgramPortal = createHookStory(() => {
+  const { states, callbacks } = useTemplate(multiProgramTemplate);
+  return <DefaultTemplateView states={states} callbacks={callbacks} />;
 });
 
 export const Login = createHookStory(() => {
