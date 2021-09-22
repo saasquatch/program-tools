@@ -47,7 +47,7 @@ export const Functional = () => {
       <Tooltip onMouseEnter={showTooltip} onMouseLeave={hideTooltip} showTooltip={enabled} direction={direction} text='A tooltip that explains something in detail'>
         <Button variant='primary'> Hover </Button>
       </Tooltip>
-      <div style={{ position: 'absolute', left: '5%', bottom: '30px' }}>
+      <div style={{ position: 'absolute', left: '90%', bottom: '50%' }}>
         <label>Delay:</label>
         <input type='number' value={delay} onChange={(e) => setDelay(Number(e.target.value))} min='0' max='5000' />
       </div>

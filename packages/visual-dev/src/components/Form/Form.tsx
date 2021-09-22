@@ -28,6 +28,7 @@ const TextBoxStyle = styled.input`
   }
 
   &:focus {
+    outline: none;
     border-color: #448ee1;
   }
 
