@@ -17,12 +17,23 @@ export const Placeholder = () => <TextBox placeholder='Placeholder Text' />
 export const PlaceholderDisabled = () => <TextBox placeholder='Placeholder Text' disabled />
 
 export const RadioUnchecked = () => {
-  return <Radio />
+  const options = {
+    primary: 'Radio',
+  }
+  return <Radio options={options} />
 }
 
 export const RadioChecked = () => {
   const options = {
-    text: 'Radio button',
+    primary: 'Checked',
   }
-  return <Radio id='radio_2' checked options={options} />
+  return <Radio options={options} checked />
+}
+
+export const RadioText = () => {
+  const options = {
+    primary: 'Primary action',
+    secondary: 'Addtional text describing conequences of this option',
+  }
+  return <Radio options={options} checked />
 }
