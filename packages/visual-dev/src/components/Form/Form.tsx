@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import root from 'react-shadow/styled-components'
 import * as Styles from './Styles'
+import { optionsList } from 'react-jsonschema-form/lib/utils'
 
 type InputProps = OptionProps & React.ComponentProps<'input'>
 
@@ -43,6 +44,10 @@ const TextBoxStyle = styled.input`
 
 const CheckboxStyle = styled.input``
 
+const CheckboxLabel = styled.label`
+  font-family: Helvetica;
+`
+
 export const TextBox = React.forwardRef<React.ElementRef<'input'>, InputProps>((props, forwardedRef) => {
   const { ...rest } = props
 
@@ -53,12 +58,13 @@ export const TextBox = React.forwardRef<React.ElementRef<'input'>, InputProps>((
   )
 })
 
-export const Checkbox = React.forwardRef<React.ElementRef<'input'>, InputProps>((props, forwardedRef) => {
-  const { ...rest } = props
+export const Radio = React.forwardRef<React.ElementRef<'input'>, InputProps>((props, forwardedRef) => {
+  const { options, id, ...rest } = props
 
   return (
     <ShadowDom>
-      <CheckboxStyle {...rest} type='checkbox' ref={forwardedRef} />
+      <CheckboxStyle {...rest} type='radio' ref={forwardedRef} />
+      {options ? <CheckboxLabel>{options.text}</CheckboxLabel> : void 0}
     </ShadowDom>
   )
 })

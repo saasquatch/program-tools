@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TextBox, Checkbox } from '../Form'
+import { TextBox, Radio } from '../Form'
 
 export default {
   title: 'Components / Form',
@@ -16,7 +16,13 @@ export const InputDisabled = () => <TextBox value='Input Text' disabled />
 export const Placeholder = () => <TextBox placeholder='Placeholder Text' />
 export const PlaceholderDisabled = () => <TextBox placeholder='Placeholder Text' disabled />
 
-export const FunctionalCheckbox = () => {
-  const [value, setValue] = useState(false)
-  return <Checkbox checked={value} onChange={(e) => setValue(!value)} />
+export const RadioUnchecked = () => {
+  return <Radio />
+}
+
+export const RadioChecked = () => {
+  const options = {
+    text: 'Radio button',
+  }
+  return <Radio id='radio_2' checked options={options} />
 }
