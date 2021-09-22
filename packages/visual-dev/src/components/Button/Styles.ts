@@ -18,12 +18,15 @@ export const primary = css`
 	}
 `
 export const primary_small = css`
-	padding: 2.5px 7px;
+	font-size: 12px;
+	padding: 2.5px 10.5px;
 `
 export const primary_medium = css`
+	font-size: 14px;
 	padding: 5px 14px;
 `
 export const primary_large = css`
+	font-size: 18px;
 	padding: 7.5px 21px;
 `
 
