@@ -1,6 +1,7 @@
 import { css } from 'styled-components'
 
 export const base = css`
+	cursor: pointer;
 	padding: 5px 14px;
 	font: 700 14px Helvetica;
 	line-height: 16px;
@@ -16,6 +17,15 @@ export const primary = css`
 		background: #DC8F32;
 	}
 `
+export const primary_small = css`
+	padding: 2.5px 7px;
+`
+export const primary_medium = css`
+	padding: 5px 14px;
+`
+export const primary_large = css`
+	padding: 10px 28px;
+`
 
 export const secondary = css`
 	border: 1px solid #A6B9BD;
@@ -25,6 +35,69 @@ export const secondary = css`
 		color: #ffffff;
 		background: #A6B9BD;
 	}
+`
+export const secondary_small = css`
+	padding: 2.5px 7px;
+`
+export const secondary_medium = css`
+	padding: 5px 14px;
+`
+export const secondary_large = css`
+	padding: 10px 28px;
+`
+
+export const text = css`
+
+	border-radius: 0px;
+	margin: 0px 14px;
+	padding: 5px 0px;
+	border: none;
+	background: none;
+	border-bottom: 2px solid transparent;
+
+	color: #575757;
+	&:hover{
+		border-bottom: 2px solid #575757;
+	}
+`
+
+export const text_small = css`
+	font-size: 12px;
+`
+export const text_medium = css`
+	font-size: 14px;
+`
+export const text_large = css`
+	font-size: 18px;
+`
+
+export const circle = css`
+	border: 1px solid #A6B9BD;		
+	background: #ffffff;
+	color: #575757;
+	padding: 0px;
+	width:	40px;
+	height: 40px;
+	border-radius: 100%;
+	&:hover{
+		color: #ffffff;
+		background: #A6B9BD;
+	}
+`
+
+export const circle_small = css`
+	width:	36px;
+	height: 36px;
+`
+
+export const circle_medium = css`
+	width:	44px;
+	height: 44px;
+`
+
+export const circle_large = css`
+	width:	60px;
+	height: 60px;
 `
 
 export const pill = css`
@@ -69,16 +142,4 @@ export const success = css`
 	&:hover{
 		background: #479449;
 	}
-`
-
-// SIZE variants
-export const small = css`
-  padding: 0 4px;
-  font-size: 12px;
-`
-export const medium = css`
-  padding: 2px 8px;
-`
-export const large = css`
-  padding: 4px 16px;
 `
