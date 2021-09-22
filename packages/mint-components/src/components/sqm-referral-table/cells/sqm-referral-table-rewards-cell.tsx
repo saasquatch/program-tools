@@ -176,7 +176,7 @@ export class ReferralTableRewardsCell {
             {state === "PENDING" && reward.dateScheduledFor && (
               <div>
                 <TextSpanView type="p">
-                  Available On{" "}
+                  Available on{" "}
                   <span class={sheet.classes.BoldText}>
                     {DateTime.fromMillis(
                       reward.dateScheduledFor
