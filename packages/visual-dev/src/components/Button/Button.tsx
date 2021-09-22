@@ -32,15 +32,15 @@ const ButtonStyle = styled.button<Required<StyleProps>>`
   ${Styles.base}
   ${(props) => Styles[props.variant]}
   ${(props) => props.pill && Styles.pill}
-  ${(props) => props.loading && Styles['loading_' + props.variant]}
-  ${(props) => props.disable && Styles['disable_' + props.variant]}
+  ${(props) => props.loading && Styles[props.variant + '_loading']}
+  ${(props) => props.disable && Styles[props.variant + '_disable']}
   ${(props) => props.size && Styles[props.variant + '_' + props.size]}
   ${(props) => props.danger && Styles.danger}
   ${(props) => props.success && Styles.success}
 `
 
 export const Button = React.forwardRef<React.ElementRef<'button'>, ButtonProps>((props, forwardedRef) => {
-  const { variant, pill = false, loading = false, danger = false, success = false, disable = false, icon, size = 'medium', /* icon, pill = false, loading = false, complete = false, danger = false,*/ children, css = {}, ...rest } = props
+  const { variant, pill = false, loading = false, danger = false, success = false, disable = false, icon, size = 'medium', children, css = {}, ...rest } = props
 
   return (
     <ButtonStyle {...rest} variant={variant} pill={pill} loading={loading} danger={danger} success={success} disable={disable} size={size} ref={forwardedRef} css={css}>

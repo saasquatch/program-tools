@@ -24,7 +24,7 @@ export const primary_medium = css`
 	padding: 5px 14px;
 `
 export const primary_large = css`
-	padding: 10px 28px;
+	padding: 7.5px 21px;
 `
 
 export const secondary = css`
@@ -43,11 +43,10 @@ export const secondary_medium = css`
 	padding: 5px 14px;
 `
 export const secondary_large = css`
-	padding: 10px 28px;
+	padding: 7.5px 21px;
 `
 
 export const text = css`
-
 	border-radius: 0px;
 	margin: 0px 14px;
 	padding: 5px 0px;
@@ -104,31 +103,38 @@ export const pill = css`
 	padding: 5px 16px;
 	border-radius: 100px;
 `
-export const disable_primary = css`
+export const primary_disable = css`
 	user-select: none;
 	cursor: not-allowed;
-	pointer-events: none;
 	background-color: #ebebeb;
+	&:hover{
+		background-color: #ebebeb;
+	}
 `
 
-export const loading_primary = css`
+export const primary_loading = css`
 	background-color: #ebebeb;
 	user-select: none;
 	pointer-events: none;
 `
 
-export const loading_secondary = css`
+export const secondary_loading = css`
 	color: #EBEBEB;
 	border-color: #EBEBEB;
 	user-select: none;
 	pointer-events: none;
 `
 
-export const disable_secondary = css`
+export const secondary_disable = css`
 	color: #EBEBEB;
 	border-color: #EBEBEB;
 	user-select: none;
-	pointer-events: none;
+	cursor: not-allowed;
+	&:hover{
+		color: #EBEBEB;
+		border-color: #EBEBEB;
+		background-color: #ffffff;
+	}
 `
 
 export const danger = css`
