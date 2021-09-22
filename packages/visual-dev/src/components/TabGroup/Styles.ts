@@ -15,26 +15,25 @@ border-bottom: 2px solid transparent;
   color: inherit;
 }
 `
-
-export const primary_bg = css`
-background: #003B45;
-`
-export const secondary_bg = css`
-background: #ffffff;
-`
-export const primary_text = css`
-color: #ffffff;
-`
-export const secondary_text = css`
-color: #003B45;
-`
-export const primary_grey = css`
-color: #999999;
-`
-export const secondary_grey = css`
-color: #7C7C7C;
-`
 export const selected = css`
 color: inherit;
 border-color: inherit;
+`
+export const primary_bg = css`
+background: var(--sq-nav-surface-primary);
+`
+export const secondary_bg = css`
+background: var(--sq-nav-surface-secondary);
+`
+export const primary_text = css`
+color: var(--sq-nav-text-on-primary);
+`
+export const secondary_text = css`
+color: var(--sq-nav-text-on-secondary);
+`
+export const primary_grey = css`
+color: var(--sq-nav-text-on-primary-subdued);
+`
+export const secondary_grey = css`
+color: var(--sq-nav-text-on-secondary-subdued);
 `
