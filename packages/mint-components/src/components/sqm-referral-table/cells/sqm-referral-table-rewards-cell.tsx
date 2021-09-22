@@ -131,7 +131,7 @@ export class ReferralTableRewardsCell {
               )}
               {reward.dateExpires && state === "AVAILABLE" && (
                 <sl-badge class={sheet.classes.StatusBadge} type="info" pill>
-                  {`Expiring in ${getTimeDiff(reward.dateScheduledFor)}`}
+                  {`Expiring in ${getTimeDiff(reward.dateExpires)}`}
                 </sl-badge>
               )}
             </div>
