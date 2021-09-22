@@ -10,18 +10,23 @@ export default {
 
 const StoryFrame = styled.div`
   width: 900px;
-  height: 200px;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
 `
-const ViewFrame = styled.div`
-  padding: 70px 0px 0px 100px;
+const ButtonFrame = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 30px;
+  width: 30%;
 `
 
 export const Functional = () => {
   let timeout: ReturnType<typeof setTimeout>
-  const delay = 150
+  const [delay, setDelay] = useState(150)
   const [enabled, setEnable] = useState(false)
 
   const showTooltip = () => {
@@ -35,11 +40,31 @@ export const Functional = () => {
     setEnable(false)
   }
 
+  const [direction, setDirection] = useState('top')
+
   return (
     <StoryFrame>
-      <Tooltip onMouseEnter={showTooltip} onMouseLeave={hideTooltip} showTooltip={enabled} direction='top' text='A tooltip that explains something in detail'>
+      <Tooltip onMouseEnter={showTooltip} onMouseLeave={hideTooltip} showTooltip={enabled} direction={direction} text='A tooltip that explains something in detail'>
         <Button variant='primary'> Hover </Button>
       </Tooltip>
+      <div style={{ position: 'absolute', left: '5%', bottom: '30px' }}>
+        <label>Delay:</label>
+        <input type='number' value={delay} onChange={(e) => setDelay(Number(e.target.value))} min='0' max='5000' />
+      </div>
+      <ButtonFrame>
+        <Button variant='secondary' onClick={() => setDirection('top')}>
+          Top
+        </Button>
+        <Button variant='secondary' onClick={() => setDirection('left')}>
+          Left
+        </Button>
+        <Button variant='secondary' onClick={() => setDirection('bottom')}>
+          Bottom
+        </Button>
+        <Button variant='secondary' onClick={() => setDirection('right')}>
+          Right
+        </Button>
+      </ButtonFrame>
     </StoryFrame>
   )
 }
@@ -56,14 +81,14 @@ export const Left = () => (
   </div>
 )
 
-export const Right = () => (
-  <div style={{ padding: '25px 0px 40px 8px' }}>
-    <Tooltip showTooltip={true} direction='right' text='A tooltip that explains something in detail' />
-  </div>
-)
-
 export const Bottom = () => (
   <div style={{ padding: '0px 0px 100px 100px' }}>
     <Tooltip showTooltip={true} direction='bottom' text='A tooltip that explains something in detail' />
+  </div>
+)
+
+export const Right = () => (
+  <div style={{ padding: '25px 0px 40px 8px' }}>
+    <Tooltip showTooltip={true} direction='right' text='A tooltip that explains something in detail' />
   </div>
 )
