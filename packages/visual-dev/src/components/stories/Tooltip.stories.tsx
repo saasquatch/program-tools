@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Tooltip } from '../Tooltip'
+import { Button } from '../Button'
 import styled from 'styled-components'
 
 export default {
@@ -37,7 +38,7 @@ export const Functional = () => {
   return (
     <StoryFrame>
       <Tooltip onMouseEnter={showTooltip} onMouseLeave={hideTooltip} showTooltip={enabled} direction='top' text='A tooltip that explains something in detail'>
-        <button> Hover </button>
+        <Button variant='primary'> Hover </Button>
       </Tooltip>
     </StoryFrame>
   )
