@@ -2,18 +2,11 @@ import * as React from 'react'
 import styled, { CSSProp } from 'styled-components'
 import * as Styles from './Styles'
 
-type TabProps = OptionProps & StyleProps & React.ComponentProps<'div'>
-
-type TabGroupProps = StyleProps & React.ComponentProps<'div'> & ITabGroupContext
-
-interface ITabGroupContext {
-  color?: string
-  selected: number
-  onTabClicked: (label: number) => void
-}
+type TabGroupProps = OptionProps & StyleProps & React.ComponentProps<'div'>
+type TabProps = OptionProps & StyleProps & React.ComponentProps<'div'> & { selected: boolean }
 
 interface OptionProps {
-  label: number
+  variant?: 'primary' | 'secondary'
   children?: React.ReactNode
 }
 
@@ -21,7 +14,7 @@ interface StyleProps {
   css?: CSSProp
 }
 
-const TabGroupStyle = styled('div')<Required<StyleProps> & { color?: string }>`
+const TabGroupStyle = styled('div')<Required<StyleProps>>`
   ${Styles.tabgroup}
   display: flex;
   background: transparent;
@@ -62,16 +55,12 @@ export const TabGroup = React.forwardRef<React.ElementRef<'div'>, TabGroupProps>
   )
 }) as CompoundedComponent
 
-const Tab = React.forwardRef<React.ElementRef<'div'>, TabProps>((props, forwardedRef) => {
-  const { children, label, css = {}, ...rest } = props
-
-  const { selected, onTabClicked } = React.useContext(TabGroupContext)
+export const Tab = React.forwardRef<React.ElementRef<'div'>, TabProps>((props, forwardedRef) => {
+  const { selected, children, css = {}, ...rest } = props
 
   return (
-    <TabStyle selected={selected == label} onClick={() => onTabClicked(label)} {...rest} ref={forwardedRef} css={css}>
+    <TabStyle selected={selected} {...rest} ref={forwardedRef} css={css}>
       {children}
     </TabStyle>
   )
 })
-
-TabGroup.Tab = Tab
