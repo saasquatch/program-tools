@@ -12,13 +12,13 @@ interface OptionProps {
 }
 
 interface StyleProps {
-  type: 'critical' | 'warning' | 'success' | 'info'
+  variant: 'critical' | 'warning' | 'success' | 'info'
   css?: CSSProp
 }
 
 const AlertDiv = styled.div<Required<StyleProps>>`
   ${Styles.base}
-  ${(props) => Styles[props.type]}
+  ${(props) => Styles[props.variant]}
 `
 
 const icons = {
@@ -29,11 +29,11 @@ const icons = {
 }
 
 export const Alert = React.forwardRef<React.ElementRef<'div'>, AlertProps>((props, forwardedRef) => {
-  const { type, title, children, css = {}, ...rest } = props
+  const { variant, title, children, css = {}, ...rest } = props
 
   return (
-    <AlertDiv {...rest} type={type} ref={forwardedRef} css={css}>
-      {icons[type]}
+    <AlertDiv {...rest} variant={variant} ref={forwardedRef} css={css}>
+      {icons[variant]}
       <div style={{ paddingLeft: 16 }}>
         <div style={{ fontWeight: 'bold' }}>{title} </div>
         <div>{children}</div>
