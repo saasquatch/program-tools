@@ -1,20 +1,29 @@
-import React, { useState } from 'react'
-import { TabGroup } from '../Tab'
+import React from 'react'
+import { Tab, TabGroup } from '../TabGroup'
 
 export default {
   title: 'Components / Tab',
   component: TabGroup,
 }
 
-// Number labels are only for an example. There is def a better way
-// This is more a POC for one way to do tab groups
-export const Default = () => {
-  const [select, onSelected] = useState(1)
+export const Primary = () => {
   return (
-    <TabGroup selected={select} onTabClicked={(id) => onSelected(id)}>
-      <TabGroup.Tab label={1}>Selected</TabGroup.Tab>
-      <TabGroup.Tab label={2}>Unselected</TabGroup.Tab>
-      <TabGroup.Tab label={3}>Unselected</TabGroup.Tab>
+    <TabGroup>
+      <Tab selected={true}>Selected</Tab>
+      <Tab>Unselected</Tab>
+      <Tab>Unselected</Tab>
+    </TabGroup>
+  )
+}
+
+export const Secondary = () => {
+  return (
+    <TabGroup color='secondary'>
+      <Tab color='secondary' selected={true}>
+        Selected
+      </Tab>
+      <Tab color='secondary'>Unselected</Tab>
+      <Tab color='secondary'>Unselected</Tab>
     </TabGroup>
   )
 }

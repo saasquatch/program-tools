@@ -18,13 +18,16 @@ export const primary = css`
 	}
 `
 export const primary_small = css`
-	padding: 2.5px 7px;
+	font-size: 12px;
+	padding: 2.5px 10.5px;
 `
 export const primary_medium = css`
+	font-size: 14px;
 	padding: 5px 14px;
 `
 export const primary_large = css`
-	padding: 10px 28px;
+	font-size: 16px;
+	padding: 7.5px 21px;
 `
 
 export const secondary = css`
@@ -37,13 +40,16 @@ export const secondary = css`
 	}
 `
 export const secondary_small = css`
-	padding: 2.5px 7px;
+	font-size: 12px;
+	padding: 2.5px 10.5px;
 `
 export const secondary_medium = css`
+	font-size: 14px;
 	padding: 5px 14px;
 `
 export const secondary_large = css`
-	padding: 10px 28px;
+	font-size: 16px;
+	padding: 7.5px 21px;
 `
 
 export const text = css`
