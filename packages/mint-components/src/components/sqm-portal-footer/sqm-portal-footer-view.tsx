@@ -2,7 +2,6 @@ import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { intl } from "../../global/global";
-import { PortalFooter } from "./sqm-portal-footer";
 import { PoweredByImg } from "./PoweredByImg";
 
 const vanillaStyle = `
@@ -16,8 +15,21 @@ const vanillaStyle = `
     text-decoration: none;
   }
 `;
-
-export function FSRFooterView(props: PortalFooter) {
+type PortalFooterViewProps = {
+  faqLink?: string;
+  faqText?: String;
+  paddingTop?: string;
+  paddingRight?: string;
+  paddingBottom?: string;
+  paddingLeft?: string;
+  termsLink?: string;
+  termsText?: string;
+  supportText?: string;
+  supportEmail?: string;
+  showPoweredBy?: boolean;
+  poweredByLink?: string;
+};
+export function PortalFooterView(props: PortalFooterViewProps) {
   const style = {
     RowContainer: {
       display: "flex",
@@ -52,6 +64,7 @@ export function FSRFooterView(props: PortalFooter) {
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
+  console.log(props.showPoweredBy);
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">

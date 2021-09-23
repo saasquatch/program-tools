@@ -286,31 +286,31 @@ export namespace Components {
         /**
           * @uiName FAQ Link
          */
-        "faqLink": string;
+        "faqLink"?: string;
         /**
           * @uiName FAQ Text
          */
-        "faqText": string;
+        "faqText"?: string;
         /**
           * @uiName Padding Bottom
          */
-        "paddingBottom"?: string;
+        "paddingBottom": string;
         /**
           * @uiName Padding Left
          */
-        "paddingLeft"?: string;
+        "paddingLeft": string;
         /**
           * @uiName Padding Right
          */
-        "paddingRight"?: string;
+        "paddingRight": string;
         /**
           * @uiName Padding Top
          */
-        "paddingTop"?: string;
+        "paddingTop": string;
         /**
           * @uiName Powered By Link
          */
-        "poweredByLink"?: string;
+        "poweredByLink": string;
         /**
           * @uiName Show Powered By SaaSquatch
          */
@@ -326,11 +326,11 @@ export namespace Components {
         /**
           * @uiName Terms and Conditions Link
          */
-        "termsLink": string;
+        "termsLink"?: string;
         /**
           * @uiName Terms and Conditions Text
          */
-        "termsText": string;
+        "termsText"?: string;
     }
     interface SqmPortalForgotPassword {
         /**

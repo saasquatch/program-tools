@@ -1,51 +1,57 @@
 import { h } from "@stencil/core";
-import {
-  PortalVerifyEmailView,
-  PortalVerifyEmailViewProps,
-} from "../components/sqm-portal-verify-email/sqm-portal-verify-email-view";
-import scenario from "../components/sqm-portal-verify-email/sqm-portal-verify-email.feature";
+import { PortalFooterView } from "../components/sqm-portal-footer/sqm-portal-footer-view";
 
 export default {
-  title: "Portal Verify Email",
-  parameters: {
-    scenario,
-  },
+  title: "Portal Footer",
+  parameters: {},
 };
 
-const errorProps: PortalVerifyEmailViewProps = {
-  states: {
-    error: "Something went wrong. Please try again.",
-    loading: false,
-    verified: false,
-  },
-  data: {
-    oobCode: "abc123",
-  },
-  callbacks: {
-    gotoNextPage: () => console.log("next page"),
-    failed: () => console.log("failed"),
-  },
+const defaultProps = {
+  supportEmail: "support@example.com",
+  supportText: "For program support, contact {email}",
+  showPoweredBy: true,
+  poweredByLink: "https://saasquatch.com",
+  paddingTop: "large",
+  paddingRight: "large",
+  paddingBottom: "large",
+  paddingLeft: "large",
 };
 
-const verifiedProps: PortalVerifyEmailViewProps = {
-  states: {
-    error: "",
-    loading: false,
-    verified: true,
-  },
-  data: {
-    oobCode: "abc123",
-  },
-  callbacks: {
-    gotoNextPage: () => console.log("next page"),
-    failed: () => console.log("failed"),
-  },
-};
+export const DefaultFooter = () => <PortalFooterView {...defaultProps} />;
 
-export const EmailVerificationWithError = () => (
-  <PortalVerifyEmailView {...errorProps} />
+export const FooterWithTerms = () => (
+  <PortalFooterView
+    {...defaultProps}
+    termsLink="https://example.com"
+    termsText="Terms and Conditions"
+  />
 );
 
-export const EmailVerificationSuccess = () => (
-  <PortalVerifyEmailView {...verifiedProps} />
+export const FooterWithFAQ = () => (
+  <PortalFooterView
+    {...defaultProps}
+    faqLink="https://example.com"
+    faqText="FAQ"
+  />
+);
+
+export const FooterWithTermsAndFAQ = () => (
+  <PortalFooterView
+    {...defaultProps}
+    termsLink="https://example.com"
+    termsText="Terms and Conditions"
+    faqLink="https://example.com"
+    faqText="FAQ"
+  />
+);
+
+export const FooterNoPoweredBy = () => (
+  <PortalFooterView
+    {...defaultProps}
+    termsLink="https://example.com"
+    termsText="Terms and Conditions"
+    faqLink="https://example.com"
+    faqText="FAQ"
+    showPoweredBy={false}
+  />
 );

@@ -36,6 +36,7 @@ import * as PasswordField from "../../stories/PasswordField.stories";
 import * as PortalTemplates from "../../stories/PortalTemplates.stories";
 import * as ProgramMenu from "../../stories/ProgramMenu.stories";
 import * as PoweredByImg from "../../stories/PoweredByImg.stories";
+import * as PortalFooter from "../../stories/PortalFooter.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -76,6 +77,7 @@ const stories = [
   PortalTemplates,
   ProgramMenu,
   PoweredByImg,
+  PortalFooter,
 ];
 
 /**
