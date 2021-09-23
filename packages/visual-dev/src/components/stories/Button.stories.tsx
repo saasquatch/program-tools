@@ -63,35 +63,35 @@ export const success = () => (
 
 export const icon = () => <Button variant='primary' icon='settings'></Button>
 
-export const primaryPill = () => (
-  <Button variant='primary' pill>
+export const primaryNoPill = () => (
+  <Button variant='primary' pill={false}>
     Primary
   </Button>
 )
 
-export const loadingPill = () => (
-  <Button variant='primary' loading pill>
+export const loadingNoPill = () => (
+  <Button variant='primary' loading pill={false}>
     Loading
   </Button>
 )
-export const disabledPill = () => (
-  <Button variant='primary' disable pill>
+export const disabledNoPill = () => (
+  <Button variant='primary' disable pill={false}>
     Disabled
   </Button>
 )
 
-export const dangerPill = () => (
-  <Button variant='primary' danger pill>
+export const dangerNoPill = () => (
+  <Button variant='primary' danger pill={false}>
     Danger
   </Button>
 )
-export const successPill = () => (
-  <Button variant='primary' success pill>
+export const successNoPill = () => (
+  <Button variant='primary' success pill={false}>
     Success
   </Button>
 )
 
-export const iconPill = () => <Button variant='primary' icon='settings' pill></Button>
+export const iconNoPill = () => <Button variant='primary' icon='settings' pill={false}></Button>
 
 export const secondary = () => <Button variant='secondary'>Secondary</Button>
 
@@ -123,20 +123,20 @@ export const secondaryDisabled = () => (
   </Button>
 )
 
-export const secondaryPill = () => (
-  <Button variant='secondary' pill>
+export const secondaryNoPill = () => (
+  <Button variant='secondary' pill={false}>
     Secondary
   </Button>
 )
 
-export const secondaryLoadingPill = () => (
-  <Button variant='secondary' loading pill>
+export const secondaryLoadingNoPill = () => (
+  <Button variant='secondary' loading pill={false}>
     Loading
   </Button>
 )
 
-export const secondaryDisabledPill = () => (
-  <Button variant='secondary' disable pill>
+export const secondaryDisabledNoPill = () => (
+  <Button variant='secondary' disable pill={false}>
     Disabled
   </Button>
 )

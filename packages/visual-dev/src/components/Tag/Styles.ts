@@ -39,21 +39,3 @@ export const iconSegment = css`
 		cursor: pointer;
 	}
 `;
-
-
-export const asd = css`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  width: 28px;
-  padding: 3px 7px;
-  height: 26px;
-  fill: var(--sq-text-subdued);
-  &:hover {
-    background: #f4f4f4;
-    fill: var(--sq-text-dark);
-    cursor: pointer;
-  }
-`;
