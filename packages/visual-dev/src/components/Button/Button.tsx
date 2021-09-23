@@ -40,7 +40,7 @@ const ButtonStyle = styled.button<Required<StyleProps>>`
 `
 
 export const Button = React.forwardRef<React.ElementRef<'button'>, ButtonProps>((props, forwardedRef) => {
-  const { variant, pill = true, loading = false, danger = false, success = false, disable = false, icon, size = 'medium', /* icon, pill = false, loading = false, complete = false, danger = false,*/ children, css = {}, ...rest } = props
+  const { variant, pill = true, loading = false, danger = false, success = false, disable = false, icon, size = 'medium', children, css = {}, ...rest } = props
 
   return (
     <ButtonStyle {...rest} variant={variant} pill={pill} loading={loading} danger={danger} success={success} disable={disable} size={size} ref={forwardedRef} css={css}>
