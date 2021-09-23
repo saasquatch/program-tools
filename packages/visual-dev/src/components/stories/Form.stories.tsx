@@ -12,7 +12,7 @@ export const FunctionalInput = () => {
 }
 
 export const InputText = () => <TextBox value='Input Text' onChange={() => void 0} />
-export const InputDisabled = () => <TextBox value='Input Text' disabled onChange={() => void 0} />
+export const InputDisabled = () => <TextBox value='Input Text' disabled />
 export const Placeholder = () => <TextBox placeholder='Placeholder Text' />
 export const PlaceholderDisabled = () => <TextBox placeholder='Placeholder Text' disabled />
 

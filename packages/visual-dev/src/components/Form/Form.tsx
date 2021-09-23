@@ -10,6 +10,10 @@ type InputProps = OptionProps & React.ComponentProps<'input'>
 interface OptionProps {
   options?: any
 }
+// options: any
+// value boolean/string
+// onChange: () => void
+
 const ShadowDom = styled(root.div)``
 
 const InputBox = styled.input`
@@ -59,24 +63,22 @@ export const R1 = React.forwardRef<React.ElementRef<'input'>, InputProps>((props
 
   return (
     <ShadowDom>
-      {/* <RadioDiv> */}
       <R1Label htmlFor={id}>
         <R1Input type='radio' id={id} {...rest} ref={forwardedRef} />
         <R1Button />
         {options.primary ? options.primary : ''}
       </R1Label>
-      {/* <RadioDiv/> */}
     </ShadowDom>
   )
 })
 
 export const R2 = React.forwardRef<React.ElementRef<'input'>, InputProps>((props, forwardedRef) => {
-  const { options, id, ...rest } = props
+  const { options, ...rest } = props
 
   return (
     <ShadowDom>
-      <R2Label htmlFor={id} isChecked={rest.checked ? true : false}>
-        <R2Input type='radio' id={id} {...rest} ref={forwardedRef} />
+      <R2Label htmlFor={rest.id} isChecked={rest.checked ? true : false}>
+        <R2Input type='radio' id={rest.id} {...rest} ref={forwardedRef} />
         <R2Button />
         <R2Text>
           {options.primary ? <div> {options.primary} </div> : ''}

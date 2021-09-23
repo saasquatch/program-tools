@@ -17,6 +17,7 @@
   "author": "SaaSquatch Team",
   "license": "MIT",
   "dependencies": {
+    "downshift": "^6.1.7",
     "jsonata": "^1.8.4",
     "jsonata-ui-core": "^1.7.12",
     "jsonata-visual-editor": "^0.4.0",

@@ -1,6 +1,5 @@
 import { css } from 'styled-components'
 
-
 export const InputBoxStyle = css`
 width: 300px;
 height: 30px;
