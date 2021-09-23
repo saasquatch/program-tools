@@ -109,13 +109,16 @@ It consists of the following properties:
   configuration of a form.
 - `tenantScopedToken`: A tenant-scoped JWT can be passed to your integration backend via `fetch` or equivalent for
   authenticating requests from your frontend to the integration backend.
+- `tenantAlias`: The tenant alias of the current tenant
 - `integrationConfig`: The configuration of the integration currently stored on the tenant
 - `formConfig`: The integration-specific configuration for a form
 
 You can call the following methods to interact with the portal:
 
 - `saveIntegrationConfig(newConfig)`: Asks the portal to save new integration configuration for the tenant
+- `patchIntegrationConfig(newConfig)`: Asks the portal to patch the integration configuration for the tenant
 - `saveFormConfig(newConfig)`: Asks the portal to save new integration-specific config for the form
 - `navigatePortal(url)`: Ask the portal to navigate to a portal-relative URL
 - `closeFormConfig()`: Ask the portal to close the form config modal (useful for Dismiss/Discard buttons in form config
   frontends)
+- `getFileStackConfig()`: Ask the portal to return the FileStack configuration
