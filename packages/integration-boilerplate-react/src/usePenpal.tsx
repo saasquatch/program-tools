@@ -6,10 +6,7 @@ import React, {
   useMemo,
   useContext,
 } from "react";
-//Unfortunately there are no types for the current version of penpal, added in 5.2.0
-//Portal is using 4.1.1
-//@ts-ignore
-import Penpal from "penpal";
+import { connectToParent, Connection } from "penpal";
 import ResizeObserver from "resize-observer-polyfill";
 
 export enum ConfigMode {
@@ -21,18 +18,43 @@ export enum ConfigMode {
 
 interface PenpalParentMethods<IntegrationConfig, FormConfig> {
   resize(height: number): Promise<void>;
-  saveIntegration(config: Partial<IntegrationConfig>): Promise<void>;
+  saveIntegration(
+    config: Partial<IntegrationConfig>
+  ): Promise<{ upsertIntegration: { config: IntegrationConfig } }>;
+  patchIntegrationConfig(
+    patch: IntegrationConfigPatch
+  ): Promise<{ patchIntegrationConfig: { config: IntegrationConfig } }>;
   updateFormConfiguration(config: Partial<FormConfig>): Promise<void>;
   navigateToNewPortalURL(url: string): Promise<void>;
+  getFileStackConfig(): Promise<FileStackConfig>;
 }
 
-interface PenpalConnection<IntegrationConfig, FormConfig> {
-  promise: Promise<PenpalParentMethods<IntegrationConfig, FormConfig>>;
+interface FileStackConfig {
+  tenantAlias: string;
+  fileStackAPIKey: string;
+  fileStackPolicy: string;
+  fileStackSignature: string;
 }
+
+interface DisplayConfiguration<IntegrationConfig, FormConfig> {
+  tenantScopedToken: string;
+  tenantAlias: string;
+  integrationConfig: IntegrationConfig;
+  formConfig?: FormConfig;
+  formType?: "submit_actions" | "initial_data_actions";
+}
+
+type IntegrationConfigPatch = Array<{ op: string; path: string; value: any }>;
+
+type PenpalConnection<IntegrationConfig, FormConfig> = Connection<
+  PenpalParentMethods<IntegrationConfig, FormConfig>
+>;
 
 interface PenpalContextMethods<IntegrationConfig, FormConfig> {
   saveIntegrationConfig(config: Partial<IntegrationConfig>): Promise<void>;
+  patchIntegrationConfig(patch: IntegrationConfigPatch): Promise<void>;
   saveFormConfig(config: Partial<FormConfig>): Promise<void>;
+  getFileStackConfig(): Promise<FileStackConfig>;
   navigatePortal(url: string): Promise<void>;
   closeFormConfig(): Promise<void>;
   setShouldCancelDisableCallback: (fn: () => Promise<boolean>) => void;
@@ -46,6 +68,7 @@ interface PenpalContextConnectedState<IntegrationConfig, FormConfig> {
   connected: true;
   mode: ConfigMode;
   tenantScopedToken: string;
+  tenantAlias: string;
   integrationConfig: Partial<IntegrationConfig>;
   formConfig: Partial<FormConfig>;
 }
@@ -79,8 +102,10 @@ export function PenpalContextProvider<
   FormConfig extends {} = {}
 >(props: PenpalContextProviderProps & { children: any }) {
   const resizeObserverRef = useRef<ResizeObserver | null>(null);
-  const penpalConnectionRef =
-    useRef<PenpalConnection<IntegrationConfig, FormConfig> | null>(null);
+  const penpalConnectionRef = useRef<PenpalConnection<
+    IntegrationConfig,
+    FormConfig
+  > | null>(null);
   const [state, setState] = useState<
     PenpalContextState<IntegrationConfig, FormConfig>
   >({
@@ -117,8 +142,24 @@ export function PenpalContextProvider<
     async (config: Partial<IntegrationConfig>) => {
       assertConnected();
       const parent = await penpalConnectionRef.current!.promise;
-      await parent.saveIntegration(config);
-      setState((state) => ({ ...state, integrationConfig: config }));
+      const data = await parent.saveIntegration(config);
+      setState((state) => ({
+        ...state,
+        integrationConfig: data.upsertIntegration.config,
+      }));
+    },
+    [assertConnected]
+  );
+
+  const patchIntegrationConfig = useCallback(
+    async (patch: IntegrationConfigPatch) => {
+      assertConnected();
+      const parent = await penpalConnectionRef.current!.promise;
+      const data = await parent.patchIntegrationConfig(patch);
+      setState((state) => ({
+        ...state,
+        integrationConfig: data.patchIntegrationConfig.config,
+      }));
     },
     [assertConnected]
   );
@@ -132,6 +173,12 @@ export function PenpalContextProvider<
     },
     [assertConnected]
   );
+
+  const getFileStackConfig = useCallback(async () => {
+    assertConnected();
+    const parent = await penpalConnectionRef.current!.promise;
+    return parent.getFileStackConfig();
+  }, [assertConnected]);
 
   const navigatePortal = useCallback(
     async (url: string) => {
@@ -151,15 +198,17 @@ export function PenpalContextProvider<
   }, [assertConnected, saveFormConfig, state]);
 
   useEffect(() => {
-    try {
-      penpalConnectionRef.current = Penpal.connectToParent({
+    (async () => {
+      penpalConnectionRef.current = connectToParent({
+        timeout: 5000,
         methods: {
-          displayConfiguration(
-            tenantScopedToken: string,
-            integrationConfig: IntegrationConfig,
-            formConfig?: FormConfig,
-            formType?: "submit_actions" | "initial_data_actions"
-          ) {
+          displayConfiguration({
+            tenantScopedToken,
+            tenantAlias,
+            integrationConfig,
+            formConfig,
+            formType,
+          }: DisplayConfiguration<IntegrationConfig, FormConfig>) {
             let mode = ConfigMode.Unknown;
 
             if (formType) {
@@ -183,6 +232,7 @@ export function PenpalContextProvider<
               connected: true,
               mode,
               tenantScopedToken,
+              tenantAlias,
               integrationConfig,
               formConfig: formConfig || {},
             });
@@ -197,20 +247,23 @@ export function PenpalContextProvider<
           },
         },
       });
-    } catch (e) {
-      // Failed to connect to Penpal, probably not in an iframe
-      setTriedToConnect(true);
-      return;
-    }
 
-    resizeObserverRef.current = new ResizeObserver((entries: Array<any>) => {
-      for (const entry of entries) {
-        const { height } = entry.contentRect;
-        resize(height);
+      try {
+        await penpalConnectionRef.current.promise;
+      } catch (e) {
+        setTriedToConnect(true);
+        return;
       }
-    });
 
-    resizeObserverRef.current.observe(document.body);
+      resizeObserverRef.current = new ResizeObserver((entries: Array<any>) => {
+        for (const entry of entries) {
+          const { height } = entry.contentRect;
+          resize(height);
+        }
+      });
+
+      resizeObserverRef.current.observe(document.body);
+    })();
 
     return () => {
       if (resizeObserverRef.current) {
@@ -225,7 +278,9 @@ export function PenpalContextProvider<
       ...state,
       resize,
       saveIntegrationConfig,
+      patchIntegrationConfig,
       saveFormConfig,
+      getFileStackConfig,
       navigatePortal,
       closeFormConfig,
       setShouldCancelDisableCallback,
@@ -234,7 +289,9 @@ export function PenpalContextProvider<
       state,
       resize,
       saveIntegrationConfig,
+      patchIntegrationConfig,
       saveFormConfig,
+      getFileStackConfig,
       navigatePortal,
       closeFormConfig,
       setShouldCancelDisableCallback,
