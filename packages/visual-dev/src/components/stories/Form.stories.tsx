@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TextBox, Radio } from '../Form'
+import { TextBox, R1, R2, Checkbox } from '../Form'
 
 export default {
   title: 'Components / Form',
@@ -16,24 +16,48 @@ export const InputDisabled = () => <TextBox value='Input Text' disabled />
 export const Placeholder = () => <TextBox placeholder='Placeholder Text' />
 export const PlaceholderDisabled = () => <TextBox placeholder='Placeholder Text' disabled />
 
-export const RadioUnchecked = () => {
+export const radio = () => {
   const options = {
     primary: 'Radio',
   }
-  return <Radio options={options} />
+  return <R1 options={options} />
 }
 
-export const RadioChecked = () => {
+export const radioChecked = () => {
   const options = {
     primary: 'Checked',
   }
-  return <Radio options={options} checked />
+  return <R1 options={options} checked />
 }
 
-export const RadioText = () => {
+export const RadioDescription = () => {
   const options = {
     primary: 'Primary action',
     secondary: 'Addtional text describing conequences of this option',
   }
-  return <Radio options={options} checked />
+  const [value, setValue] = useState(false)
+  return <R2 options={options} checked={value} onClick={() => setValue(true)} />
+}
+
+export const RadioDescriptionChecked = () => {
+  const options = {
+    primary: 'Primary action',
+    secondary: 'Addtional text describing conequences of this option',
+  }
+  const [value, setValue] = useState(true)
+  return <R2 options={options} checked={value} onClick={() => setValue(true)} />
+}
+
+export const checkbox = () => {
+  const options = {
+    primary: 'Checkbox',
+  }
+  return <Checkbox options={options} />
+}
+
+export const checkboxChecked = () => {
+  const options = {
+    primary: 'Checked',
+  }
+  return <Checkbox options={options} checked />
 }

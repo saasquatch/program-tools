@@ -12,11 +12,13 @@ export const ButtonDiv = styled.div`
 export const CheckMark = styled.svg`
   overflow: unset;
   display: inline-block;
-  height: auto;
   position: relative;
   top: 2px;
   left: 2px;
   width: 14px;
+  height: 14px;
+  margin: -1px;
+  margin-left: 2px;
   margin-right: 2px;
 
   .path {
@@ -124,7 +126,7 @@ export const ButtonSpinnerStyle = styled(RingDefault)`
   position: relative;
   bottom: 12px;
   margin-left: 5px;
-  margin-right: 15px;
+  margin-right: 13px;
   div {
     width: 15px;
     height: 15px;

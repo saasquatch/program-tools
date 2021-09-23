@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '../Button'
 
 export default {
@@ -6,7 +6,24 @@ export default {
   component: Button,
 }
 
-export const primary = () => <Button variant='primary'>Primary</Button>
+export const primary = () => {
+  const [count, setCount] = useState(0)
+
+  const states = {
+    0: false,
+    1: false,
+    2: false,
+  }
+
+  states[count] = true
+
+  return (
+    <Button variant='primary' loading={states[1]} success={states[2]} onClick={() => setCount((count + 1) % 3)}>
+      Primary
+    </Button>
+  )
+}
+
 export const primarySmall = () => (
   <Button variant='primary' size='small'>
     Primary

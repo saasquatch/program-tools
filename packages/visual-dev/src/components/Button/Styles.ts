@@ -119,8 +119,9 @@ export const disable_primary = css`
 
 export const loading_primary = css`
 	background-color: #ebebeb;
-	user-select: none;
-	pointer-events: none;
+	&:hover{
+		background: #ebebeb;
+	}
 `
 
 export const loading_secondary = css`
