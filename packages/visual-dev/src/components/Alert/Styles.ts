@@ -17,21 +17,21 @@ export const base = css`
 `
 
 export const critical = css`
-	background-color: #FAF2EE;
-	border-color: #D14040;
+	background-color: var(--sq-surface-critical-subdued);
+	border-color: var(--sq-border-critical);
 `
 
 export const warning = css`
-	background-color: #FCF8E3;
-	border-color: #F1C359;
+	background-color: var(--sq-surface-warning-subdued);
+	border-color: var(--sq-border-warning);
 `
 
 export const success = css`
-	background-color: #E4FCE3;
-	border-color: #57AC59;
+	background-color: var(--sq-surface-success-subdued);
+	border-color: var(--sq-border-success);
 `
 
 export const info = css`
-	background-color: #F9F9F9;
-	border-color: #E2E2E2;
+	background-color: var(--sq-background);
+	border-color: var(--sq-border);
 `
