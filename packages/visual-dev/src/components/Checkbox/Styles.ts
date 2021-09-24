@@ -38,10 +38,6 @@ export const CheckboxTickStyle = css`
 export const CheckboxInputStyle = css`
   display: none;
 
-  //   &:checked + div {
-  //     box-shadow: 0 0 0 2px #575757;
-  //   }
-
   &:checked + div > div {
     transform: scale(1);
   }
