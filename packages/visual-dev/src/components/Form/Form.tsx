@@ -14,6 +14,8 @@ interface OptionProps {
 // value boolean/string
 // onChange: () => void
 
+//rawErrors
+
 const ShadowDom = styled(root.div)``
 
 const InputBox = styled.input`
