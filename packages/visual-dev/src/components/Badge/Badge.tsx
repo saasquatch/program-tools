@@ -1,30 +1,32 @@
-import * as React from "react";
-import styled from "styled-components";
-import { Icon } from "../Icons";
-import * as Styles from "./Styles";
+import * as React from 'react'
+import styled, { CSSProp } from 'styled-components'
+import * as Styles from './Styles'
+import { IconKey, Icon } from '../Icon'
 
-interface BadgeProps {
-  status: "info" | "success" | "active" | "critical" | "warning";
-  children?: any[] | string;
-  icon?: boolean | string;
+type BadgeProps = OptionProps & StyleProps & React.ComponentProps<'div'>
+
+interface OptionProps {
+  icon?: IconKey
 }
 
-const BadgeStyled = styled.div<BadgeProps>`
+interface StyleProps {
+  status: 'info' | 'success' | 'active' | 'critical' | 'warning'
+  css?: CSSProp
+}
+
+const BadgeStyled = styled.div<StyleProps>`
   ${Styles.base}
   ${(props) => Styles[props.status]}
-`;
+  ${(props) => props.css}
+`
 
-export const Badge: React.FC<BadgeProps> = ({ status, children, icon }) => {
+export const Badge = React.forwardRef<React.ElementRef<'div'>, BadgeProps>((props, forwardedRef) => {
+  const { status, icon, children, css = {}, ...rest } = props
+
   return (
-    <BadgeStyled status={status}>
-      {icon && (
-        <Icon
-          color="inherit"
-          icon={icon === true ? Styles.defaultIcon : icon}
-          margin="0px 4px"
-        />
-      )}
+    <BadgeStyled {...rest} status={status} ref={forwardedRef} css={css}>
+      {icon && <Icon color='inherit' size='14px' icon={icon} style={{ margin: '0px 4px' }} />}
       {children}
     </BadgeStyled>
-  );
-};
+  )
+})
