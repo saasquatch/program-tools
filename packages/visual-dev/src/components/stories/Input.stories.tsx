@@ -1,24 +1,22 @@
-import { storiesOf } from "@storybook/react";
-import React from "react";
-import { GenericInput, StyledSelect } from "../Inputs";
+import React, { useState } from 'react'
+import { Input } from '../Input'
 
-storiesOf("Archived / Input", module).add("Text Input", () => {
-    return (
-      <div style={{ margin: "100px" }}>
-        <GenericInput minWidth={"200px"} maxWidth={"400px"} type="text" />
-      </div>
-    );
-  });
+export default {
+  title: 'Components / Input',
+  component: Input,
+}
 
-storiesOf("Archived / Input", module).add("Select Input", () => {
-    return (
-      <div style={{ margin: "100px" }}>
-        <StyledSelect minWidth={"200px"} maxWidth={"400px"}>
-            <option>opt1</option>
-            <option>opt2</option>
-            <option>opt3</option>
-            <option>really-long-opt4</option>
-        </StyledSelect>
-      </div>
-    );
-  });
+export const FunctionalInput = () => {
+  const [value, setValue] = useState('')
+  return <Input value={value} onChange={(e) => setValue(e.target.value)} options={undefined} disabled={undefined} rawErrors={undefined} />
+}
+
+export const InputText = () => <Input value='Input Text' />
+export const InputDisabled = () => <Input value='Input Text' />
+export const Placeholder = () => <Input placeholder='Placeholder Text' />
+export const PlaceholderDisabled = () => <Input placeholder='Placeholder Text' />
+export const InvalidField = () => <Input value='Invalid Field' />
+
+export const InputEdit = () => <Input value='' icon='edit' />
+export const InputSearch = () => <Input value='' icon='search' position='left' />
+export const InputClose = () => <Input value='' icon='close' />

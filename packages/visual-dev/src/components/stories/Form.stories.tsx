@@ -1,63 +1,66 @@
-import React, { useState } from 'react'
-import { TextBox, R1, R2, Checkbox } from '../Form'
+import { JSONSchema6 } from 'json-schema'
+import React from 'react'
+import Form from 'react-jsonschema-form'
+import { Input } from '../Input'
+import { Button } from '../Button'
+import { Checkbox } from '../Checkbox'
 
 export default {
   title: 'Components / Form',
-  component: TextBox,
+  component: Form,
 }
 
-export const FunctionalInput = () => {
-  const [value, setValue] = useState('')
-  return <TextBox value={value} onChange={(e) => setValue(e.target.value)} />
-}
+const log = (type) => console.log.bind(console, type)
 
-export const InputText = () => <TextBox value='Input Text' onChange={() => void 0} />
-export const InputDisabled = () => <TextBox value='Input Text' disabled />
-export const Placeholder = () => <TextBox placeholder='Placeholder Text' />
-export const PlaceholderDisabled = () => <TextBox placeholder='Placeholder Text' disabled />
-
-export const radio = () => {
-  const options = {
-    primary: 'Radio',
+export const ExampleForm = () => {
+  const uiSchema = {
+    'ui:widget': (props) => {
+      return <Input value={props.value} required={props.required} onChange={(event) => props.onChange(event.target.value)} />
+    },
   }
-  return <R1 options={options} />
+
+  const schema: JSONSchema6 = {
+    type: 'string',
+  }
+  return (
+    <div style={{ margin: '100px' }}>
+      <Form schema={schema} uiSchema={uiSchema} onChange={log('changed')} onSubmit={log('submitted')} onError={log('errors')}>
+        <Button variant='primary' style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  )
 }
 
-export const radioChecked = () => {
-  const options = {
-    primary: 'Checked',
+export const CheckForm = () => {
+  const schema: JSONSchema6 = {
+    type: 'boolean',
+    default: false,
   }
-  return <R1 options={options} checked onChange={() => void 0} />
-}
 
-export const RadioDescription = () => {
-  const options = {
-    primary: 'Primary action',
-    secondary: 'Addtional text describing conequences of this option',
+  const uiSchema = {
+    'ui:widget': 'checkbox',
   }
-  const [value, setValue] = useState(false)
-  return <R2 options={options} checked={value} onClick={() => setValue(true)} onChange={() => void 0} />
-}
 
-export const RadioDescriptionChecked = () => {
-  const options = {
-    primary: 'Primary action',
-    secondary: 'Addtional text describing conequences of this option',
+  const CustomCheckbox = function (props) {
+    const options = {
+      text: 'JSON Schema Checkmark',
+    }
+    return <Checkbox id='custom' onClick={() => props.onChange(!props.value)} options={options}></Checkbox>
   }
-  const [value, setValue] = useState(true)
-  return <R2 options={options} checked={value} onClick={() => setValue(true)} onChange={() => void 0} />
-}
 
-export const checkbox = () => {
-  const options = {
-    primary: 'Checkbox',
+  const widgets = {
+    CheckboxWidget: CustomCheckbox,
   }
-  return <Checkbox options={options} />
-}
 
-export const checkboxChecked = () => {
-  const options = {
-    primary: 'Checked',
-  }
-  return <Checkbox options={options} checked onChange={() => void 0} />
+  return (
+    <div style={{ margin: '100px' }}>
+      <Form schema={schema} uiSchema={uiSchema} widgets={widgets} onChange={log('changed')} onSubmit={log('submitted')} onError={log('errors')}>
+        <Button variant='primary' style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  )
 }

@@ -1,0 +1,46 @@
+import * as React from 'react'
+import root from 'react-shadow/styled-components'
+import styled from 'styled-components'
+import * as Styles from './Styles'
+import { IconKey, Icon } from '../Icon'
+
+type InputProps = OptionProps & React.ComponentProps<'input'>
+
+interface OptionProps {
+  value?: any
+  onChange?: any
+  options?: any
+  disabled?: any
+  rawErrors?: any
+  icon?: IconKey
+  position?: 'left' | 'right'
+}
+
+const ShadowDom = styled(root.div)``
+
+const InputBox = styled.input<{ isInvalid: boolean }>`
+  position: relative;
+  ${Styles.InputBoxStyle}
+  ${(props) => (props.isInvalid ? Styles.invalid : '')}
+`
+
+const IconStyle = styled.div<{ position: string }>`
+  position: absolute;
+  top: 47px;
+  ${(props) => (props.position == 'left' ? 'left: 45px;' : 'left: 305px;')}
+`
+
+export const Input = React.forwardRef<React.ElementRef<'input'>, InputProps>((props, forwardedRef) => {
+  const { icon, position = 'right', rawErrors, ...rest } = props
+
+  return (
+    <ShadowDom>
+      <InputBox {...rest} type='text' ref={forwardedRef} isInvalid={rawErrors} />
+      {icon && (
+        <IconStyle position={position}>
+          <Icon icon={icon} size={'22px'} />
+        </IconStyle>
+      )}
+    </ShadowDom>
+  )
+})
