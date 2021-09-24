@@ -6,7 +6,7 @@ export const base = css`
 	width: 34px;
 	height: 34px;
 	text-align: center;
-	border: 1px solid #E2E2E2;
+	border: 1px solid var(--sq-border);
 	box-sizing: border-box;
 	border-radius: 50px;
 `
