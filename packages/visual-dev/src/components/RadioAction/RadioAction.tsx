@@ -6,9 +6,9 @@ import * as Styles from './Styles'
 type InputProps = OptionProps & React.ComponentProps<'input'>
 
 interface OptionProps {
-  value: any
-  onChange: any
-  options: any
+  value?: any
+  onChange?: any
+  options?: any
 }
 
 const ShadowDom = styled(root.div)``

@@ -1,6 +1,8 @@
 import { css } from 'styled-components'
 
 export const InputBoxStyle = css`
+  position: relative;
+
   width: 300px;
   height: 30px;
 
@@ -33,6 +35,11 @@ export const InputBoxStyle = css`
     margin-right: 10px;
     padding: 10px 1px 10px 1px;
   }
+`
+
+export const IconStyle = css`
+  position: absolute;
+  top: 47px;
 `
 
 export const invalid = css`

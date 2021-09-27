@@ -24,5 +24,5 @@ export const InputSearchDisabled = () => <Input value='' icon='search' position=
 export const InputClose = () => <Input value='' icon='close' />
 export const InputCloseDisabled = () => <Input value='' icon='close' disabled />
 
-export const InputNumber = () => <Input type='number' />
+export const InputNumber = () => <Input value='' type='number' />
 export const InputNumberDisabled = () => <Input type='number' disabled />
