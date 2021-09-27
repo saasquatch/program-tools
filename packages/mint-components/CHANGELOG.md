@@ -16,21 +16,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.2.0] - 2021-09-17
 
-- \<sqm-referral-table> can pull only classic referrals
-- \<sqm-referral-table> supports showing "Referred You" row
-- \<sqm-referral-table> supports additional props to override text values
-- \<sqm-referral-table> has default loading and empty slots
-- \<sqm-referral-table> pagination button labels are customizable
-- \<sqm-share-button> text slot (default slot) is hideable
-- \<sqm-big-stat> will return appropriate stats or error for "classic" program id. Height is inherited
+### Changed
+
+- Changed components:
+  - \<sqm-referral-table> can pull only classic referrals
+  - \<sqm-referral-table> supports showing "Referred You" row
+  - \<sqm-referral-table> supports additional props to override text values
+  - \<sqm-referral-table> has default loading and empty slots
+  - \<sqm-referral-table> pagination button labels are customizable
+  - \<sqm-share-button> text slot (default slot) is hideable
+  - \<sqm-big-stat> will return appropriate stats or error for "classic" program id. Height is inherited
 
 ## [1.1.1] - 2021-08-20
+
+### Added
 
 - Password field component with live validation
 - Newly available component:
   - \<sqm-password-field>
-
-### Added
 
 ## [1.1.0] - 2021-08-04
 
