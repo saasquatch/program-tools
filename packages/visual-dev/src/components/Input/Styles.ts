@@ -24,10 +24,14 @@ export const InputBoxStyle = css`
 
   &:disabled {
     user-select: none;
-    cursor: not-allowed;
-    pointer-events: none;
     color: #bdbdbd;
     background-color: #ebebeb;
+  }
+
+  &::-webkit-inner-spin-button {
+    opacity: 1;
+    margin-right: 10px;
+    padding: 10px 1px 10px 1px;
   }
 `
 

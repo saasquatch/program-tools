@@ -22,6 +22,7 @@ export const RadioLabelStyle = css`
   border: 2px solid #ebebeb;
   border-radius: 4px;
 `
+
 export const RadioInputStyle = css`
   display: none;
 
@@ -33,6 +34,7 @@ export const RadioInputStyle = css`
     transform: scale(1);
   }
 `
+
 export const RadioButtonStyle = css`
   margin-top: 2.5px;
   width: 14px;
@@ -55,4 +57,25 @@ export const RadioButtonStyle = css`
     transition: transform 0.15s;
   }
 `
-export const RadioTextStyle = css``
+
+export const RadioTextStyle = css`
+  flex-direction: column;
+  padding: 20px;
+`
+
+export const RightSegmentStyle = css`
+  width: auto;
+  width: 371px;
+  height: 100%;
+  float: right;
+  border-left: 2px solid #ebebeb;
+`
+
+export const LeftSegmentStyle = css`
+  float: left;
+  width: 117px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`

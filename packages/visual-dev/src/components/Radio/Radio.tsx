@@ -29,7 +29,7 @@ export const Radio = React.forwardRef<React.ElementRef<'input'>, RadioProps>((pr
   return (
     <ShadowDom>
       <RadioLabel htmlFor={rest.id}>
-        <RadioInput type='radio' checked={value} {...rest} ref={forwardedRef} />
+        <RadioInput type='radio' checked={value} onChange={onChange} {...rest} ref={forwardedRef} />
         <RadioButton />
         {options.text ? options.text : ''}
       </RadioLabel>

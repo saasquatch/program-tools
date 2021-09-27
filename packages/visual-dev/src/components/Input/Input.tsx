@@ -11,6 +11,7 @@ interface OptionProps {
   onChange?: any
   options?: any
   disabled?: any
+  type?: any
   rawErrors?: any
   icon?: IconKey
   position?: 'left' | 'right'
@@ -31,11 +32,11 @@ const IconStyle = styled.div<{ position: string }>`
 `
 
 export const Input = React.forwardRef<React.ElementRef<'input'>, InputProps>((props, forwardedRef) => {
-  const { icon, position = 'right', rawErrors, ...rest } = props
+  const { icon, position = 'right', type = 'text', rawErrors, ...rest } = props
 
   return (
     <ShadowDom>
-      <InputBox {...rest} type='text' ref={forwardedRef} isInvalid={rawErrors} />
+      <InputBox {...rest} type={type} ref={forwardedRef} isInvalid={rawErrors} />
       {icon && (
         <IconStyle position={position}>
           <Icon icon={icon} size={'22px'} />
