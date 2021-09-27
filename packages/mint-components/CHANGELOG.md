@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2021-09-27
+
+### Changed
+
+- Changed component:
+  - \<sqm-portal-change-password> Swapped location of cancel and change password buttons, added padding between fields
+
 ## [1.2.0] - 2021-09-17
 
 - \<sqm-referral-table> can pull only classic referrals
