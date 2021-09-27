@@ -15,6 +15,7 @@ export const RadioLabelStyle = css`
   font-size: 14px;
   line-height: 20px;
 `
+
 export const RadioInputStyle = css`
   display: none;
 
@@ -26,6 +27,7 @@ export const RadioInputStyle = css`
     transform: scale(1);
   }
 `
+
 export const RadioButtonStyle = css`
   margin-top: 2.5px;
   width: 14px;

@@ -27,12 +27,16 @@ export const Radio = React.forwardRef<React.ElementRef<'input'>, RadioProps>((pr
   const { value, onChange, options, ...rest } = props
 
   return (
-    <ShadowDom>
-      <RadioLabel htmlFor={rest.id}>
-        <RadioInput type='radio' checked={value} onChange={onChange} {...rest} ref={forwardedRef} />
-        <RadioButton />
-        {options.text ? options.text : ''}
-      </RadioLabel>
-    </ShadowDom>
+    <RadioLabel htmlFor={rest.id}>
+      <RadioInput type='radio' checked={value} onChange={onChange} {...rest} ref={forwardedRef} />
+      <RadioButton />
+      {options.text ? options.text : ''}
+    </RadioLabel>
   )
+})
+
+export const RadioGroup = React.forwardRef<React.ElementRef<'div'>, RadioProps>((props) => {
+  const { children } = props
+
+  return <ShadowDom>{children}</ShadowDom>
 })

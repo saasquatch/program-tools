@@ -23,27 +23,16 @@ const RadioInput = styled.input`
   ${Styles.RadioInputStyle}
 `
 
-const CardStyle = styled.div`
-  width: auto;
-  width: 371px;
-  height: 100%;
-  float: right;
-  border-left: 2px solid #ebebeb;
+const RightSegment = styled.div`
+  ${Styles.RightSegmentStyle}
 `
 
 const RadioText = styled.div`
   ${Styles.RadioTextStyle}
-  flex-direction: column;
-  padding: 20px;
 `
 
-const IconStyle = styled.div<{ isChecked: boolean }>`
-  float: left;
-  width: 117px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const LeftSegment = styled.div<{ isChecked: boolean }>`
+  ${Styles.LeftSegmentStyle}
   ${(props) => (props.isChecked ? 'color: #DC8F32;' : '')}
 `
 
@@ -57,15 +46,15 @@ export const RadioCard = React.forwardRef<React.ElementRef<'input'>, InputProps>
     <ShadowDom>
       <RadioLabel htmlFor={rest.id} isChecked={value}>
         <RadioInput type='radio' checked={value} {...rest} ref={forwardedRef} />
-        <IconStyle isChecked={value}>
+        <LeftSegment isChecked={value}>
           <Icon icon={icon} size='40px' color={icon_color} />
-        </IconStyle>
-        <CardStyle>
+        </LeftSegment>
+        <RightSegment>
           <RadioText>
             {options.title ? <div style={{ fontWeight: 'bold' }}> {options.title} </div> : ''}
             {options.text ? <div style={{ color: '#858585', marginTop: 4 }}> {options.text} </div> : ''}
           </RadioText>
-        </CardStyle>
+        </RightSegment>
       </RadioLabel>
     </ShadowDom>
   )

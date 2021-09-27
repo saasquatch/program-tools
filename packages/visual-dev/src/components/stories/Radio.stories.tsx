@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Radio } from '../Radio'
-import { Text } from '../Text'
+import { RadioGroup, Radio } from '../Radio'
 import root from 'react-shadow/styled-components'
 import styled from 'styled-components'
 
@@ -13,11 +12,11 @@ const ShadowDom = styled(root.div)``
 
 export const Functional = () => {
   return (
-    <div>
+    <RadioGroup>
       <Radio options={{ text: 'Option 1' }} name='group1' />
       <Radio options={{ text: 'Option 2' }} name='group1' />
       <Radio options={{ text: 'Option 3' }} name='group1' />
-    </div>
+    </RadioGroup>
   )
 }
 
