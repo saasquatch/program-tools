@@ -291,7 +291,22 @@ export const EditProfile = () => {
         />
         <PortalChangePasswordView
           {...{
-            states: { open: true, error: "", loading: false, success: false },
+            states: {
+              open: true,
+              error: "",
+              loading: false,
+              success: false,
+              content: {
+                modalChangePasswordHeader: "Change Password",
+                cancelText: "Cancel",
+                changePasswordButtonText: "Change Password",
+                passwordFieldLabel: "Password",
+                confirmPasswordFieldLabel: "Confirm new password",
+                successMessage: "Your password has been updated.",
+                portalChangePasswordHeader: "Password",
+                portalChangePasswordButtonText: "Change your password...",
+              },
+            },
             callbacks: {
               setOpen: () => console.log("open"),
               submit: () => console.log("submit"),

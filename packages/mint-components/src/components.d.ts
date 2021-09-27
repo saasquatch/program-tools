@@ -253,9 +253,41 @@ export namespace Components {
     }
     interface SqmPortalChangePassword {
         /**
+          * @uiName Text for cancel password change text button within the modal
+         */
+        "cancelText": string;
+        /**
+          * @uiName Text for change password button within the modal
+         */
+        "changePasswordButtonText": string;
+        /**
+          * @uiName Label for password confirmation field
+         */
+        "confirmPasswordFieldLabel": string;
+        /**
           * @undocumented
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
+        /**
+          * @uiName Header for the change password modal
+         */
+        "modalChangePasswordHeader": string;
+        /**
+          * @uiName Label for password field
+         */
+        "passwordFieldLabel": string;
+        /**
+          * @uiName Text for the change password button within the portal
+         */
+        "portalChangePasswordButtonText": string;
+        /**
+          * @uiName Header for the change password section within the portal
+         */
+        "portalChangePasswordHeader": string;
+        /**
+          * @uiName Message displayed upon successful password change
+         */
+        "successMessage": string;
     }
     interface SqmPortalContainer {
         /**
@@ -1255,9 +1287,41 @@ declare namespace LocalJSX {
     }
     interface SqmPortalChangePassword {
         /**
+          * @uiName Text for cancel password change text button within the modal
+         */
+        "cancelText"?: string;
+        /**
+          * @uiName Text for change password button within the modal
+         */
+        "changePasswordButtonText"?: string;
+        /**
+          * @uiName Label for password confirmation field
+         */
+        "confirmPasswordFieldLabel"?: string;
+        /**
           * @undocumented
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
+        /**
+          * @uiName Header for the change password modal
+         */
+        "modalChangePasswordHeader"?: string;
+        /**
+          * @uiName Label for password field
+         */
+        "passwordFieldLabel"?: string;
+        /**
+          * @uiName Text for the change password button within the portal
+         */
+        "portalChangePasswordButtonText"?: string;
+        /**
+          * @uiName Header for the change password section within the portal
+         */
+        "portalChangePasswordHeader"?: string;
+        /**
+          * @uiName Message displayed upon successful password change
+         */
+        "successMessage"?: string;
     }
     interface SqmPortalContainer {
         /**
