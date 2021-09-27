@@ -453,10 +453,32 @@ export namespace Components {
     interface SqmPortalResetPassword {
         "confirmPassword": boolean;
         /**
+          * @uiName Confirm password field label
+         */
+        "confirmPasswordFieldLabel": string;
+        /**
+          * Displayed after a successful password reset
+          * @uiName Continue button text
+         */
+        "continueButtonText": string;
+        /**
           * @undocumented
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         "nextPage": string;
+        /**
+          * Displayed after a successful password reset
+          * @uiName Password reset header text
+         */
+        "passwordResetHeader": string;
+        /**
+          * @uiName Password reset button text
+         */
+        "resetPasswordButtonText": string;
+        /**
+          * @uiName Password reset header text
+         */
+        "resetPasswordHeader": string;
     }
     interface SqmPortalVerifyEmail {
         /**
@@ -1514,10 +1536,32 @@ declare namespace LocalJSX {
     interface SqmPortalResetPassword {
         "confirmPassword"?: boolean;
         /**
+          * @uiName Confirm password field label
+         */
+        "confirmPasswordFieldLabel"?: string;
+        /**
+          * Displayed after a successful password reset
+          * @uiName Continue button text
+         */
+        "continueButtonText"?: string;
+        /**
           * @undocumented
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         "nextPage"?: string;
+        /**
+          * Displayed after a successful password reset
+          * @uiName Password reset header text
+         */
+        "passwordResetHeader"?: string;
+        /**
+          * @uiName Password reset button text
+         */
+        "resetPasswordButtonText"?: string;
+        /**
+          * @uiName Password reset header text
+         */
+        "resetPasswordHeader"?: string;
     }
     interface SqmPortalVerifyEmail {
         /**

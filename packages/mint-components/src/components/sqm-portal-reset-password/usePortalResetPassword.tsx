@@ -6,11 +6,11 @@ import {
   useResetPasswordMutation,
 } from "@saasquatch/component-boilerplate";
 import { PortalResetPasswordViewProps } from "./sqm-portal-reset-password-view";
+import { PortalResetPassword } from "./sqm-portal-reset-password";
 
-export function usePortalResetPassword({
-  nextPage,
-  confirmPassword,
-}): PortalResetPasswordViewProps {
+export function usePortalResetPassword(
+  props: PortalResetPassword
+): PortalResetPasswordViewProps {
   const [reset, setReset] = useState(false);
   const [error, setError] = useState("");
   const [verifyPasswordResetCode, verifyPasswordResetCodeState] =
@@ -44,7 +44,7 @@ export function usePortalResetPassword({
   const gotoNextPage = () => {
     urlParams.delete("nextPage");
     navigation.push({
-      pathname: nextPageOverride || nextPage,
+      pathname: nextPageOverride || props.nextPage,
       search: urlParams.toString() && "?" + urlParams.toString(),
     });
   };
@@ -79,12 +79,19 @@ export function usePortalResetPassword({
     states: {
       loading: resetPasswordState.loading,
       reset,
-      confirmPassword,
+      confirmPassword: props.confirmPassword,
       error: resetPasswordState.errors?.response?.errors?.[0]?.message || error,
       oobCodeValidating: verifyPasswordResetCodeState.loading,
       oobCodeValid:
         verifyPasswordResetCodeState.data
           ?.verifyManagedIdentityPasswordResetCode.success,
+      content: {
+        passwordResetHeader: props.passwordResetHeader,
+        resetPasswordHeader: props.resetPasswordHeader,
+        continueButtonText: props.continueButtonText,
+        resetPasswordButtonText: props.resetPasswordButtonText,
+        confirmPasswordFieldLabel: props.confirmPasswordFieldLabel,
+      },
     },
     callbacks: { submit, failed, gotoNextPage },
   };
