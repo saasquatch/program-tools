@@ -31,6 +31,9 @@ export interface PortalProfileViewProps {
       lastnametext: string;
       emailtext: string;
       countrytext: string;
+      editProfileHeader: string;
+      editProfileSubHeader: string;
+      submitChangeButtonText: string;
     };
   };
   callbacks: {
@@ -84,8 +87,10 @@ export function PortalProfileView(props: PortalProfileViewProps) {
       }}
     >
       <style type="text/css">{styleString}</style>
-      <TextSpanView {...{ type: "h1" }}>Edit your profile</TextSpanView>
-      <TextSpanView {...{ type: "h2" }}>Personal Information</TextSpanView>
+      <TextSpanView {...{ type: "h1" }}>{text.editProfileHeader}</TextSpanView>
+      <TextSpanView {...{ type: "h2" }}>
+        {text.editProfileSubHeader}
+      </TextSpanView>
       <form class={sheet.classes.FormStyle} onSubmit={callbacks.onSubmit}>
         {states.success && (
           <sqm-form-message exportparts="success-icon">
@@ -148,9 +153,17 @@ export function PortalProfileView(props: PortalProfileViewProps) {
             }
           ></sl-input>
         </PortalContainerView>
-        <sl-input label="Email" value={states.user?.email} disabled></sl-input>
+        <sl-input
+          label={text.emailtext}
+          value={states.user?.email}
+          disabled
+        ></sl-input>
         {states.showCountry && (
-          <sl-input label="Country" value={country} disabled></sl-input>
+          <sl-input
+            label={text.countrytext}
+            value={country}
+            disabled
+          ></sl-input>
         )}
         <sl-button
           type="primary"
@@ -161,7 +174,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
           }}
           submit
         >
-          Submit Changes
+          {text.submitChangeButtonText}
         </sl-button>
       </form>
     </PortalContainerView>

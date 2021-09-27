@@ -253,15 +253,15 @@ export namespace Components {
     }
     interface SqmPortalChangePassword {
         /**
-          * @uiName Text for cancel password change text button within the modal
+          * @uiName Modal cancel password change button text
          */
         "cancelText": string;
         /**
-          * @uiName Text for change password button within the modal
+          * @uiName Modal change password button text
          */
         "changePasswordButtonText": string;
         /**
-          * @uiName Label for password confirmation field
+          * @uiName Password confirmation input field label
          */
         "confirmPasswordFieldLabel": string;
         /**
@@ -269,23 +269,23 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
         /**
-          * @uiName Header for the change password modal
+          * @uiName Change password modal header
          */
         "modalChangePasswordHeader": string;
         /**
-          * @uiName Label for password field
+          * @uiName Password input field label
          */
         "passwordFieldLabel": string;
         /**
-          * @uiName Text for the change password button within the portal
+          * @uiName Portal change password button text
          */
         "portalChangePasswordButtonText": string;
         /**
-          * @uiName Header for the change password section within the portal
+          * @uiName Portal change password section header
          */
         "portalChangePasswordHeader": string;
         /**
-          * @uiName Message displayed upon successful password change
+          * @uiName Successful password change message
          */
         "successMessage": string;
     }
@@ -366,15 +366,42 @@ export namespace Components {
         "nextPage": string;
     }
     interface SqmPortalProfile {
+        /**
+          * @uiName Country input field label
+         */
         "countrytext": string;
         /**
           * @undocumented
          */
         "demoData"?: DemoData<PortalProfileViewProps>;
+        /**
+          * @uiName Edit profile header
+         */
+        "editProfileHeader": string;
+        /**
+          * @uiName Edit profile sub header
+         */
+        "editProfileSubHeader": string;
+        /**
+          * @uiName Email input field label
+         */
         "emailtext": string;
+        /**
+          * @uiName First name input field label
+         */
         "firstnametext": string;
+        /**
+          * @uiName Last name input field label
+         */
         "lastnametext": string;
+        /**
+          * @uiName Show or hide country field
+         */
         "showCountry": boolean;
+        /**
+          * @uiName Text for the submit changes button
+         */
+        "submitChangeButtonText": string;
     }
     interface SqmPortalProtectedRoute {
         "redirectTo": string;
@@ -1287,15 +1314,15 @@ declare namespace LocalJSX {
     }
     interface SqmPortalChangePassword {
         /**
-          * @uiName Text for cancel password change text button within the modal
+          * @uiName Modal cancel password change button text
          */
         "cancelText"?: string;
         /**
-          * @uiName Text for change password button within the modal
+          * @uiName Modal change password button text
          */
         "changePasswordButtonText"?: string;
         /**
-          * @uiName Label for password confirmation field
+          * @uiName Password confirmation input field label
          */
         "confirmPasswordFieldLabel"?: string;
         /**
@@ -1303,23 +1330,23 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
         /**
-          * @uiName Header for the change password modal
+          * @uiName Change password modal header
          */
         "modalChangePasswordHeader"?: string;
         /**
-          * @uiName Label for password field
+          * @uiName Password input field label
          */
         "passwordFieldLabel"?: string;
         /**
-          * @uiName Text for the change password button within the portal
+          * @uiName Portal change password button text
          */
         "portalChangePasswordButtonText"?: string;
         /**
-          * @uiName Header for the change password section within the portal
+          * @uiName Portal change password section header
          */
         "portalChangePasswordHeader"?: string;
         /**
-          * @uiName Message displayed upon successful password change
+          * @uiName Successful password change message
          */
         "successMessage"?: string;
     }
@@ -1400,15 +1427,42 @@ declare namespace LocalJSX {
         "nextPage"?: string;
     }
     interface SqmPortalProfile {
+        /**
+          * @uiName Country input field label
+         */
         "countrytext"?: string;
         /**
           * @undocumented
          */
         "demoData"?: DemoData<PortalProfileViewProps>;
+        /**
+          * @uiName Edit profile header
+         */
+        "editProfileHeader"?: string;
+        /**
+          * @uiName Edit profile sub header
+         */
+        "editProfileSubHeader"?: string;
+        /**
+          * @uiName Email input field label
+         */
         "emailtext"?: string;
+        /**
+          * @uiName First name input field label
+         */
         "firstnametext"?: string;
+        /**
+          * @uiName Last name input field label
+         */
         "lastnametext"?: string;
+        /**
+          * @uiName Show or hide country field
+         */
         "showCountry"?: boolean;
+        /**
+          * @uiName Text for the submit changes button
+         */
+        "submitChangeButtonText"?: string;
     }
     interface SqmPortalProtectedRoute {
         "redirectTo"?: string;

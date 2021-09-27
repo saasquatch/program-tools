@@ -21,43 +21,43 @@ export class PortalChangePassword {
   ignored = true;
 
   /**
-   * @uiName Header for the change password modal
+   * @uiName Change password modal header
    */
   @Prop() modalChangePasswordHeader: string = "Change Password";
 
   /**
-   * @uiName Text for cancel password change text button within the modal
+   * @uiName Modal cancel password change button text
    */
   @Prop() cancelText: string = "Cancel";
 
   /**
-   * @uiName Text for change password button within the modal
+   * @uiName Modal change password button text
    */
   @Prop() changePasswordButtonText: string = "Change Password";
 
   /**
-   * @uiName Label for password field
+   * @uiName Password input field label
    */
   @Prop() passwordFieldLabel: string = "Password";
 
   /**
-   * @uiName Label for password confirmation field
+   * @uiName Password confirmation input field label
    */
   @Prop()
   confirmPasswordFieldLabel: string = "Confirm new password";
 
   /**
-   * @uiName Message displayed upon successful password change
+   * @uiName Successful password change message
    */
   @Prop() successMessage: string = "Your password has been updated.";
 
   /**
-   * @uiName Header for the change password section within the portal
+   * @uiName Portal change password section header
    */
   @Prop() portalChangePasswordHeader: string = "Password";
 
   /**
-   * @uiName Text for the change password button within the portal
+   * @uiName Portal change password button text
    */
   @Prop() portalChangePasswordButtonText: string = "Change your password...";
 

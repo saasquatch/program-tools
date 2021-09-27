@@ -274,6 +274,9 @@ export const EditProfile = () => {
                 lastnametext: "Last Name",
                 emailtext: "Email",
                 countrytext: "Country",
+                editProfileHeader: "Edit your profile",
+                editProfileSubHeader: "Personal Information",
+                submitChangeButtonText: "Submit Changes",
               },
               formState: {
                 country: "Canada",
