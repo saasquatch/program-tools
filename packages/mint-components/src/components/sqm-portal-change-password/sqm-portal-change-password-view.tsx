@@ -50,6 +50,13 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
       width: "25%",
       margin: "var(--sl-spacing-large) auto",
     },
+    PasswordField: {
+      marginBottom: "var(--sl-spacing-large) !important",
+      display: "block",
+    },
+    ChangePasswordButton: {
+      paddingTop: "var(--sl-spacing-x-large)",
+    },
   };
 
   jss.setup(preset());
@@ -97,7 +104,9 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                 )}
                 <sl-form onSl-submit={callbacks.submit}>
                   <div class={sheet.classes.InputContainer}>
-                    <sqm-password-field></sqm-password-field>
+                    <sqm-password-field
+                      class={sheet.classes.PasswordField}
+                    ></sqm-password-field>
                     <sl-input
                       name="/confirmPassword"
                       label="Confirm new password"
@@ -112,14 +121,19 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                     {...{ direction: "row", padding: "none", gap: "20px" }}
                   >
                     <sl-button
+                      class={sheet.classes.ChangePasswordButton}
+                      type="default"
+                      submit
+                      loading={states.loading}
+                    >
+                      Change Password
+                    </sl-button>
+                    <sl-button
                       class={sheet.classes.CancelButton}
                       type="text"
                       onClick={() => callbacks.setOpen(false)}
                     >
                       Cancel
-                    </sl-button>
-                    <sl-button type="default" submit loading={states.loading}>
-                      Change Password
                     </sl-button>
                   </PortalContainerView>
                 </sl-form>
