@@ -51,6 +51,11 @@ export class PortalRegister {
   loginLabel = "Sign in";
 
   /**
+   * @uiName Label for confirm password field
+   */
+  @Prop() confirmPasswordLabel: string = "Confirm Password";
+
+  /**
    * @uiName Show confirm password field
    */
   @Prop()
@@ -104,6 +109,7 @@ export class PortalRegister {
       passwordLabel: this.passwordLabel,
       submitLabel: this.submitLabel,
       pageLabel: this.pageLabel,
+      confirmPasswordLabel: this.confirmPasswordLabel,
     };
 
     return (

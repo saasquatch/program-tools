@@ -80,6 +80,7 @@ function usePasswordFieldDemo(
     setDynamicValidation(validation);
   }
 
+  console.log(props.demoData);
   return deepmerge(
     {
       states: {

@@ -414,6 +414,10 @@ export namespace Components {
          */
         "confirmPassword": boolean;
         /**
+          * @uiName Label for confirm password field
+         */
+        "confirmPasswordLabel": string;
+        /**
           * @undocumented
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
@@ -1496,6 +1500,10 @@ declare namespace LocalJSX {
           * @uiName Show confirm password field
          */
         "confirmPassword"?: boolean;
+        /**
+          * @uiName Label for confirm password field
+         */
+        "confirmPasswordLabel"?: string;
         /**
           * @undocumented
          */

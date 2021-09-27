@@ -32,6 +32,7 @@ export interface PortalRegisterViewProps {
     passwordLabel?: string;
     submitLabel?: string;
     pageLabel?: string;
+    confirmPasswordLabel: string;
   };
   refs: {
     formRef: any;
@@ -128,6 +129,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
         )}
         {!states.hideInputs && (
           <sqm-password-field
+            fieldLabel={content.passwordLabel}
             enable-validation={states.enablePasswordValidation}
           ></sqm-password-field>
         )}
@@ -137,7 +139,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             exportparts="label: input-label"
             type="password"
             name="/confirmPassword"
-            label="Confirm Password"
+            label={content.confirmPasswordLabel}
             disabled={states.loading}
             required
             {...(states.validationState?.validationErrors?.confirmPassword

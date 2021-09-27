@@ -22,7 +22,7 @@ const defaultProps: PortalRegisterViewProps = {
   refs: {
     formRef: {},
   },
-  content: { pageLabel: "Register" },
+  content: { pageLabel: "Register", confirmPasswordLabel: "Confirm Password" },
 };
 
 const errorProps: PortalRegisterViewProps = {
@@ -39,7 +39,10 @@ const errorProps: PortalRegisterViewProps = {
   refs: {
     formRef: {},
   },
-  content: { pageLabel: "Register" },
+  content: {
+    pageLabel: "Register",
+    confirmPasswordLabel: "Confirm Password",
+  },
 };
 
 const loadingProps: PortalRegisterViewProps = {
@@ -56,7 +59,7 @@ const loadingProps: PortalRegisterViewProps = {
   refs: {
     formRef: {},
   },
-  content: { pageLabel: "Register" },
+  content: { pageLabel: "Register", confirmPasswordLabel: "Confirm Password" },
 };
 
 const slottedProps: PortalRegisterViewProps = {
@@ -75,6 +78,7 @@ const slottedProps: PortalRegisterViewProps = {
   },
   content: {
     pageLabel: "Register",
+    confirmPasswordLabel: "Confirm Password",
     formData: (
       <div>
         <sl-input
