@@ -37,10 +37,12 @@ export const Checkbox = React.forwardRef<React.ElementRef<'input'>, InputProps>(
   return (
     <ShadowDom>
       <CheckboxLabel htmlFor={rest.id} isDisabled={disabled}>
-        <CheckboxInput checked={value} type='checkbox' isDisabled={disabled} {...rest} ref={forwardedRef} />
-        <CheckboxBox isDisabled={disabled}>
-          <Icon icon='checkmark' css={CheckboxTick} />
-        </CheckboxBox>
+        {/* <CheckboxInput checked={value} type='checkbox' isDisabled={disabled} {...rest} ref={forwardedRef} />
+        <CheckboxBox isDisabled={disabled}> */}
+        <Icon icon='checkmark' css={CheckboxTick} />
+        <input type='checkbox' {...rest} ref={forwardedRef} />
+        {/* </CheckboxBox> */}
+        "CHECK BOX"
         {options ? options.text : ''}
       </CheckboxLabel>
     </ShadowDom>

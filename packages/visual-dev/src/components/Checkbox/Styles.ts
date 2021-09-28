@@ -49,7 +49,7 @@ export const CheckboxStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 10px;
+  margin-right: 18px;
   flex-shrink: 0;
   border-radius: 2px;
 

@@ -35,23 +35,28 @@ export const ExampleForm = () => {
 
 export const CheckForm = () => {
   const schema: JSONSchema6 = {
-    type: 'boolean',
-    default: false,
+    type: 'object',
+    properties: {
+      multipleChoicesList: {
+        type: 'object',
+        title: 'A multiple choices list',
+        items: {
+          type: 'string',
+          enum: ['foo', 'bar', 'fuzz', 'qux'],
+        },
+        uniqueItems: true,
+      },
+    },
   }
 
   const uiSchema = {
-    'ui:widget': 'checkbox',
-  }
-
-  const CustomCheckbox = function (props) {
-    const options = {
-      text: 'JSON Schema Checkmark',
-    }
-    return <Checkbox id='custom' onClick={() => props.onChange(!props.value)} options={options}></Checkbox>
+    multipleChoicesList: {
+      'ui:widget': 'checkboxes',
+    },
   }
 
   const widgets = {
-    CheckboxWidget: CustomCheckbox,
+    myCustomWidget: Checkbox,
   }
 
   return (
