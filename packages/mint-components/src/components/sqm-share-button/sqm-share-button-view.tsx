@@ -1,4 +1,4 @@
-import { h, VNode } from "@stencil/core";
+import { h, Host, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { HostBlock } from "../../global/mixins";
@@ -52,7 +52,7 @@ const styleString = sheet.toString();
 
 export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   return props.hide ? (
-    <div style={{ display: "none" }}></div>
+    <Host style={{ display: "none" }}></Host>
   ) : (
     <div>
       <style type="text/css">{styleString}</style>

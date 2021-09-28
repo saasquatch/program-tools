@@ -3,20 +3,26 @@ import { Component, getElement, h, Host, Method, Prop } from "@stencil/core";
 import { useRequestRerender } from "../re-render";
 import { ReferralTableColumn } from "./ReferralTableColumn";
 
+/**
+ * @uiName Referral Table Generic Column
+ */
 @Component({
   tag: "sqm-referral-table-column",
   shadow: true,
 })
-export class ReferralTableGenericColumn implements ReferralTableColumn{
+export class ReferralTableGenericColumn implements ReferralTableColumn {
+  /**
+   * @uiName Column Title
+   */
   @Prop() columnTitle: string;
 
   constructor() {
     withHooks(this);
   }
   disconnectedCallback() {}
-  
+
   @Method()
-  async renderCell(_:Referral) {
+  async renderCell(_: Referral) {
     // this is insecure, <script> tags can be added
     return (
       <sqm-referral-table-cell

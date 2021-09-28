@@ -1,4 +1,5 @@
 import { h } from "@stencil/core";
+import { DateTime } from "luxon";
 
 export default {
   title: "Referral Table Rewards Cell",
@@ -11,8 +12,8 @@ const baseReward: Reward = {
   unit: "POINT",
   name: "test",
   dateGiven: 1627427794891,
-  dateScheduledFor: 1628146800000,
-  dateExpires: 1629010800000,
+  dateScheduledFor: getDays(),
+  dateExpires: getMonths(),
   dateCancelled: 134400,
   fuelTankCode: "ABC",
   fuelTankType: "Code",
@@ -133,6 +134,30 @@ const tenRewards = [
   { ...baseReward, ...creditReward },
 ];
 
+function getSeconds() {
+  return DateTime.now().toMillis() + 10000;
+}
+
+function getMinutes() {
+  return DateTime.now().toMillis() + 400000;
+}
+
+function getHours() {
+  return DateTime.now().toMillis() + 9000000;
+}
+
+function getDays() {
+  return DateTime.now().toMillis() + 600000000;
+}
+
+function getMonths() {
+  return DateTime.now().toMillis() + 10000000000;
+}
+
+function getYears() {
+  return DateTime.now().toMillis() + 200000000000;
+}
+
 export const PendingNoUnpend = () => {
   return (
     <sqm-referral-table-rewards-cell
@@ -141,12 +166,48 @@ export const PendingNoUnpend = () => {
   );
 };
 
-export const PendingWithUnpend = () => {
+export const PendingNoUnpendNoDetails = () => {
   return (
     <sqm-referral-table-rewards-cell
-      rewards={[{ ...baseReward, ...pendingReward }]}
+      hideDetails={true}
+      rewards={[{ ...baseReward, ...pendingReward, ...nullScheduledFor }]}
     ></sqm-referral-table-rewards-cell>
   );
+};
+
+export const PendingWithUnpend = () => {
+  return [
+    <sqm-referral-table-rewards-cell
+      rewards={[
+        { ...baseReward, ...pendingReward, dateScheduledFor: getSeconds() },
+      ]}
+    ></sqm-referral-table-rewards-cell>,
+    <sqm-referral-table-rewards-cell
+      rewards={[
+        { ...baseReward, ...pendingReward, dateScheduledFor: getMinutes() },
+      ]}
+    ></sqm-referral-table-rewards-cell>,
+    <sqm-referral-table-rewards-cell
+      rewards={[
+        { ...baseReward, ...pendingReward, dateScheduledFor: getHours() },
+      ]}
+    ></sqm-referral-table-rewards-cell>,
+    <sqm-referral-table-rewards-cell
+      rewards={[
+        { ...baseReward, ...pendingReward, dateScheduledFor: getDays() },
+      ]}
+    ></sqm-referral-table-rewards-cell>,
+    <sqm-referral-table-rewards-cell
+      rewards={[
+        { ...baseReward, ...pendingReward, dateScheduledFor: getMonths() },
+      ]}
+    ></sqm-referral-table-rewards-cell>,
+    <sqm-referral-table-rewards-cell
+      rewards={[
+        { ...baseReward, ...pendingReward, dateScheduledFor: getYears() },
+      ]}
+    ></sqm-referral-table-rewards-cell>,
+  ];
 };
 
 export const AvailableNoExpiry = () => {
@@ -158,11 +219,32 @@ export const AvailableNoExpiry = () => {
 };
 
 export const AvailableWithExpiry = () => {
-  return (
+  return [
     <sqm-referral-table-rewards-cell
-      rewards={[{ ...baseReward, ...availableReward }]}
-    ></sqm-referral-table-rewards-cell>
-  );
+      rewards={[
+        { ...baseReward, ...availableReward, dateExpires: getSeconds() },
+      ]}
+    ></sqm-referral-table-rewards-cell>,
+    <sqm-referral-table-rewards-cell
+      rewards={[
+        { ...baseReward, ...availableReward, dateExpires: getMinutes() },
+      ]}
+    ></sqm-referral-table-rewards-cell>,
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseReward, ...availableReward, dateExpires: getHours() }]}
+    ></sqm-referral-table-rewards-cell>,
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseReward, ...availableReward, dateExpires: getDays() }]}
+    ></sqm-referral-table-rewards-cell>,
+    <sqm-referral-table-rewards-cell
+      rewards={[
+        { ...baseReward, ...availableReward, dateExpires: getMonths() },
+      ]}
+    ></sqm-referral-table-rewards-cell>,
+    <sqm-referral-table-rewards-cell
+      rewards={[{ ...baseReward, ...availableReward, dateExpires: getYears() }]}
+    ></sqm-referral-table-rewards-cell>,
+  ];
 };
 
 export const Redeemed = () => {

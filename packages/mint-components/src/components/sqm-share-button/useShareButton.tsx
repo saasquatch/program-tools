@@ -122,5 +122,5 @@ export function useShareButton(props: ShareButtonProps): ShareButtonViewProps {
     }
   }
 
-  return { ...props, onClick, hide };
+  return { ...props, loading: res.loading, onClick, hide };
 }

@@ -14,8 +14,11 @@ export class PortalLogout {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Next Page path
+   */
   @Prop()
-  nextPage = "/";
+  nextPage: string = "/";
 
   constructor() {
     withHooks(this);

@@ -1,5 +1,5 @@
 import { gql } from "graphql-request";
-import { match, MatchResult } from "path-to-regexp";
+import { pathToRegexp } from "path-to-regexp";
 import { useMemo } from "@saasquatch/universal-hooks";
 import {
   useQuery,
@@ -9,7 +9,6 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { QueryData } from "@saasquatch/component-boilerplate/dist/hooks/graphql/useBaseQuery";
 import debugFn from "debug";
-
 import { BigStat } from "./sqm-big-stat";
 import { BigStatViewProps } from "./sqm-big-stat-view";
 
@@ -44,9 +43,10 @@ const referralsCountQuery = (
   _: string,
   status?: "started" | "converted"
 ) => {
-  const programFilter = programId === "classic"
-    ? { programId_exists: false }
-    : { programId_eq: programId }
+  const programFilter =
+    programId === "classic"
+      ? { programId_exists: false }
+      : { programId_eq: programId };
 
   const convertedFilter =
     status && status == "converted"
@@ -82,7 +82,7 @@ const programGoalsQuery = (
   goalId: string
 ) => {
   // Confirm this behaviour
-  if (programId === "classic") return null
+  if (programId === "classic") return null;
 
   return debugQuery(
     gql`
@@ -110,19 +110,21 @@ const programGoalsQuery = (
 };
 
 const referralsMonthQuery = (programId: string) => {
-  const programFilter = programId === "classic"
-    ? {programId_exists: false}
-    : {programId_eq: programId}
+  const programFilter =
+    programId === "classic"
+      ? { programId_exists: false }
+      : { programId_eq: programId };
 
-  const filter = {...programFilter, dateReferralStarted_timeframe: "this_month"}
+  const filter = {
+    ...programFilter,
+    dateReferralStarted_timeframe: "this_month",
+  };
   return debugQuery(
     gql`
       query ($filter: ReferralFilterInput) {
         viewer {
           ... on User {
-            referrals(
-              filter: $filter
-            ) {
+            referrals(filter: $filter) {
               totalCount
             }
           }
@@ -132,22 +134,24 @@ const referralsMonthQuery = (programId: string) => {
     { filter },
     (res) => res.data?.viewer?.referrals?.totalCount?.toString()
   );
-}
+};
 
 const referralsWeekQuery = (programId: string) => {
-  const programFilter = programId === "classic"
-    ? {programId_exists: false}
-    : {programId_eq: programId}
+  const programFilter =
+    programId === "classic"
+      ? { programId_exists: false }
+      : { programId_eq: programId };
 
-  const filter = {...programFilter, dateReferralStarted_timeframe: "this_month"}
+  const filter = {
+    ...programFilter,
+    dateReferralStarted_timeframe: "this_month",
+  };
   return debugQuery(
     gql`
       query ($filter: ReferralFilterInput) {
         viewer {
           ... on User {
-            referrals(
-              filter: $filter
-            ) {
+            referrals(filter: $filter) {
               totalCount
             }
           }
@@ -157,10 +161,15 @@ const referralsWeekQuery = (programId: string) => {
     { filter },
     (res) => res.data?.viewer?.referrals?.totalCount?.toString()
   );
-}
+};
 
-const rewardsCountQuery = (programId: string) =>
-  debugQuery(
+const rewardsCountQuery = (
+  programId: string,
+  // locale
+  _: string,
+  global = ""
+) => {
+  return debugQuery(
     gql`
       query ($programId: ID) {
         viewer {
@@ -172,12 +181,100 @@ const rewardsCountQuery = (programId: string) =>
         }
       }
     `,
-    { programId: programId === "classic" ? null : programId },
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+    },
     (res) => res.data?.viewer?.rewards?.totalCount?.toString()
   );
+};
 
-const rewardsMonthQuery = (programId: string) =>
-  debugQuery(
+const rewardsCountFilteredQuery = (
+  programId: string,
+  // locale
+  _: string,
+  type?: string,
+  unit?: string,
+  status?: string,
+  global = ""
+) => {
+  const statusFilter = status ? { status } : null;
+
+  return debugQuery(
+    gql`
+      query (
+        $programId: ID
+        $unit: String
+        $type: RewardType
+        $statusFilter: RewardStatusFilterInput
+      ) {
+        viewer {
+          ... on User {
+            rewards(
+              filter: {
+                programId_eq: $programId
+                type_eq: $type
+                unit_eq: $unit
+                statuses_eq: $statusFilter
+              }
+            ) {
+              totalCount
+            }
+          }
+        }
+      }
+    `,
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      unit,
+      type,
+      statusFilter,
+    },
+    (res) => res.data?.viewer?.rewards?.totalCount?.toString()
+  );
+};
+
+const integrationRewardsCountFilteredQuery = (
+  programId: string,
+  // locale
+  _: string,
+  status?: string,
+  global = ""
+) => {
+  const statusFilter = status ? { status } : null;
+
+  return debugQuery(
+    gql`
+      query ($programId: ID, $statusFilter: RewardStatusFilterInput) {
+        viewer {
+          ... on User {
+            rewards(
+              filter: {
+                programId_eq: $programId
+                type_eq: INTEGRATION
+                statuses_eq: $statusFilter
+              }
+            ) {
+              totalCount
+            }
+          }
+        }
+      }
+    `,
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      statusFilter,
+    },
+    (res) => res.data?.viewer?.rewards?.totalCount?.toString()
+  );
+};
+
+const rewardsMonthQuery = (
+  programId: string,
+  // locale
+  _: string,
+  global = ""
+) => {
+  return debugQuery(
     gql`
       query ($programId: ID) {
         viewer {
@@ -194,12 +291,20 @@ const rewardsMonthQuery = (programId: string) =>
         }
       }
     `,
-    { programId: programId === "classic" ? null : programId },
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+    },
     (res) => res.data?.viewer?.rewards?.totalCount?.toString()
   );
+};
 
-const rewardsWeekQuery = (programId: string) => 
-  debugQuery(
+const rewardsWeekQuery = (
+  programId: string,
+  // locale
+  _: string,
+  global = ""
+) => {
+  return debugQuery(
     gql`
       query ($programId: ID) {
         viewer {
@@ -216,19 +321,20 @@ const rewardsWeekQuery = (programId: string) =>
         }
       }
     `,
-    { programId: programId === "classic" ? null : programId },
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+    },
     (res) => res.data?.viewer?.rewards?.totalCount?.toString()
   );
+};
 
 const rewardsRedeemedQuery = (
   programId: string,
   locale: string,
   type: string,
-  baseUnit: string,
-  unitType?: string
+  unit: string,
+  global = ""
 ) => {
-  const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
-
   return debugQuery(
     gql`
       query (
@@ -257,7 +363,12 @@ const rewardsRedeemedQuery = (
         }
       }
     `,
-    { programId: programId === "classic" ? null : programId, type, unit, locale },
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      type,
+      unit,
+      locale,
+    },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
@@ -270,10 +381,9 @@ const rewardsAssignedQuery = (
   programId: string,
   locale: string,
   type: string,
-  baseUnit: string,
-  unitType?: string
+  unit: string,
+  global = ""
 ) => {
-  const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
   return debugQuery(
     gql`
       query (
@@ -302,7 +412,12 @@ const rewardsAssignedQuery = (
         }
       }
     `,
-    { programId: programId === "classic" ? null : programId, type, unit, locale },
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      type,
+      unit,
+      locale,
+    },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
@@ -315,11 +430,9 @@ const rewardsAvailableQuery = (
   programId: string,
   locale: string,
   type: string,
-  baseUnit: string,
-  unitType?: string
+  unit: string,
+  global = ""
 ) => {
-  // Confirm desired behaviour
-  const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
   return debugQuery(
     gql`
       query (
@@ -348,7 +461,12 @@ const rewardsAvailableQuery = (
         }
       }
     `,
-    { programId: programId === "classic" ? null : programId, type, unit, locale },
+    {
+      programId: !global && programId !== "classic" ? programId : null,
+      type,
+      unit,
+      locale,
+    },
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
@@ -365,12 +483,10 @@ const rewardsBalanceQuery = (
   programId: string,
   locale: string,
   type: string,
-  baseUnit: string,
-  unitType?: string,
+  unit: string,
   format = "prettyValue",
-  global = "false"
+  global = ""
 ) => {
-  const unit = unitType ? `${baseUnit}/${unitType}` : baseUnit;
   return debugQuery(
     gql`
       query (
@@ -384,7 +500,7 @@ const rewardsBalanceQuery = (
           value: 0
           unit: $unit
           locale: $locale
-          formatType: UNIT_FORMATTED
+          formatType: $format
         )
         viewer: viewer {
           ... on User {
@@ -401,8 +517,8 @@ const rewardsBalanceQuery = (
       }
     `,
     {
-      // Confirm logic
-      programId: global === "false" && programId !== "classic" ? programId : null,
+      programId: !global && programId !== "classic" ? programId : null,
+
       type,
       unit,
       format: parseRewardValueFormat[format] ?? "UNIT_FORMATTED",
@@ -417,7 +533,7 @@ const rewardsBalanceQuery = (
 };
 
 // functions are of the form (programId: string, ...args: string) => string
-const queries: {
+export const queries: {
   [key: string]: {
     label: string;
     query: (programId: string, ...args: string[]) => string;
@@ -448,8 +564,16 @@ const queries: {
     query: referralsWeekQuery,
   },
   rewardsCount: {
-    label: "Rewards - Count",
+    label: "Rewards",
     query: rewardsCountQuery,
+  },
+  rewardsCountFiltered: {
+    label: "Rewards",
+    query: rewardsCountFilteredQuery,
+  },
+  integrationRewardsCountFiltered: {
+    label: "Rewards",
+    query: integrationRewardsCountFilteredQuery,
   },
   rewardsMonth: {
     label: "Rewards - This Month",
@@ -471,31 +595,45 @@ const queries: {
 
 // this should be exposed in documentation somehow
 export const StatPaths = [
-  "/(programGoals)/:metricType/:goalId",
-  "/(referralsCount)/:status?",
-  "/(referralsMonth)",
-  "/(referralsWeek)",
-  "/(rewardsCount)",
-  "/(rewardsMonth)",
-  "/(rewardsWeek)",
-  "/(rewardsAssigned)/:statType/:unit/:valueType?",
-  "/(rewardsRedeemed)/:statType/:unit/:valueType?",
-  "/(rewardsAvailable)/:statType/:unit/:valueType?",
-  "/(rewardBalance)/:statType/:unit/:valueType?/:format?/:global?",
-  "/(creditAndIntegrationBalance)/:statType/:unit/:valueType?",
+  { name: "programGoals", route: "/(programGoals)/:metricType/:goalId" },
+  { name: "referralsCount", route: "/(referralsCount)/:status?" },
+  { name: "referralsMonth", route: "/(referralsMonth)" },
+  { name: "referralsWeek", route: "/(referralsWeek)" },
+  { name: "rewardsCount", route: "/(rewardsCount)/:global?" },
+  { name: "rewardsMonth", route: "/(rewardsMonth)/:global?" },
+  { name: "rewardsWeek", route: "/(rewardsWeek)/:global?" },
+  {
+    name: "rewardsCountFiltered",
+    route:
+      "/(rewardsCountFiltered)/:statType([INTEGRATION|PCT_DISCOUNT|CREDIT]*)?/:unit((?!global)(?!PENDING)(?!CANCELLED)(?!EXPIRED)(?!REDEEMED)(?!AVAILABLE)[a-zA-Z0-9%]+)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?",
+  },
+  {
+    name: "integrationRewardsCountFiltered",
+    route:
+      "/(integrationRewardsCountFiltered)/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?",
+  },
+  {
+    name: "rewardsAssigned",
+    route: "/(rewardsAssigned)/:statType/:unit/:global?",
+  },
+  {
+    name: "rewardsRedeemed",
+    route: "/(rewardsRedeemed)/:statType/:unit/:global?",
+  },
+  {
+    name: "rewardsAvailable",
+    route: "/(rewardsAvailable)/:statType/:unit/:global?",
+  },
+  {
+    name: "rewardBalance",
+    route:
+      "/(rewardBalance)/:statType/:unit/:format([prettyValue|value]*)?/:global?",
+  },
 ];
 
 export const StatPatterns = StatPaths.map((pattern) =>
-  match(pattern, { decode: decodeURIComponent })
+  pathToRegexp(pattern.route)
 );
-
-export function parsePath(type: string): string[] | undefined {
-  const re = useMemo(() => StatPatterns.find((re) => re(type)), [type]);
-
-  const result = re(type) as MatchResult<object>;
-
-  return Object.values(result.params);
-}
 
 export function useBigStat(props: BigStat): BigStatHook {
   const { statType, flexReverse, alignment } = props;
@@ -503,17 +641,39 @@ export function useBigStat(props: BigStat): BigStatHook {
 
   const locale = useLocale();
   const userIdent = useUserIdentity();
-  const re = useMemo(() => StatPatterns.find((re) => re(statType)), [statType]);
+  const re = useMemo(
+    () => StatPatterns.find((re) => re.exec(statType)),
+    [statType]
+  );
 
-  if (re === undefined) {
+  if (!re?.exec(statType)) {
     return {
       props: { statvalue: "!!!", flexReverse, alignment },
       label: "BAD PROP TYPE",
     };
   }
 
-  const result = re(statType) as MatchResult<object>;
-  const [queryName, ...queryArgs] = Object.values(result.params);
+  const result = re.exec(statType);
+  const queryName = result[1];
+
+  const statPath = StatPaths.find((pattern) => pattern.name === queryName);
+
+  // Get a list all possible keys in path
+  const keys = [];
+  const regex = pathToRegexp(statPath?.route, keys, {
+    strict: false,
+    sensitive: false,
+    end: true,
+  });
+
+  const allQueryArgs = regex.exec(statType) as RegExpExecArray;
+
+  // Retrieve all key values in order including undefined
+  const queryArgs = keys.map((_, i) =>
+    allQueryArgs[i + 1] ? decodeURIComponent(allQueryArgs[i + 1]) : undefined
+  );
+  //  remove query name from list
+  queryArgs.shift();
 
   const label = queries[queryName].label;
 
