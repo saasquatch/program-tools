@@ -20,6 +20,19 @@ export class PortalEmailVerification {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Email verification header text
+   */
+  @Prop() emailVerificationHeader: string = "Verify your email";
+
+  /**
+   * @uiName Re-send email button text
+   */
+  @Prop() resendEmailButtonText: string = "Re-send Email";
+
+  /**
+   * @uiName Email verification body text
+   */
   @Prop() verifyMessage: string =
     "A verification email was sent to {email}. Please verify your email to continue to the portal.";
 
@@ -58,6 +71,8 @@ function usePortalEmailVerificationDemo(
         email: "test@example.com",
         verifyMessage:
           "A verification email was sent to {email}. Please verify your email to continue to the portal.",
+        emailVerificationHeader: "Verify your email",
+        resendEmailButtonText: "Re-send Email",
       },
     },
     props.demoData || {},

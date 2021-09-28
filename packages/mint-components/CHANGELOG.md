@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-portal-profile-view> Changed hardcoded text into customizable props
   - \<sqm-portal-reset-password> Changed hardcoded text into customizable props
   - \<sqm-portal-register> Changed hardcoded text into customizable props
+  - \<sqm-portal-email-verification> Changed hardcoded text into customizable props
 
 ## [1.2.0] - 2021-09-17
 

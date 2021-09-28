@@ -312,6 +312,17 @@ export namespace Components {
           * @undocumented
          */
         "demoData"?: DemoData<PortalEmailVerificationViewProps>;
+        /**
+          * @uiName Email verification header text
+         */
+        "emailVerificationHeader": string;
+        /**
+          * @uiName Re-send email button text
+         */
+        "resendEmailButtonText": string;
+        /**
+          * @uiName Email verification body text
+         */
         "verifyMessage": string;
     }
     interface SqmPortalForgotPassword {
@@ -1399,6 +1410,17 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "demoData"?: DemoData<PortalEmailVerificationViewProps>;
+        /**
+          * @uiName Email verification header text
+         */
+        "emailVerificationHeader"?: string;
+        /**
+          * @uiName Re-send email button text
+         */
+        "resendEmailButtonText"?: string;
+        /**
+          * @uiName Email verification body text
+         */
         "verifyMessage"?: string;
     }
     interface SqmPortalForgotPassword {
