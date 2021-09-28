@@ -21,37 +21,37 @@ export class PortalLogin {
    * @uiName Page navigated to after sign-in
    */
   @Prop()
-  nextPage = "/";
+  nextPage: string = "/";
 
   /**
    * @uiName Label for email field
    */
   @Prop()
-  emailLabel = "Email";
+  emailLabel: string = "Email";
 
   /**
    * @uiName Label for password field
    */
   @Prop()
-  passwordLabel = "Password";
+  passwordLabel: string = "Password";
 
   /**
    * @uiName Label for submit button
    */
   @Prop()
-  submitLabel = "Sign In";
+  submitLabel: string = "Sign In";
 
   /**
    * @uiName Label for forgotten password button
    */
   @Prop()
-  forgotPasswordLabel = "Forgot Password?";
+  forgotPasswordLabel: string = "Forgot Password?";
 
   /**
    * @uiName Label for register navigation button
    */
   @Prop()
-  registerLabel = "Register";
+  registerLabel: string = "Register";
 
   /**
    * @uiName Heading label
@@ -59,7 +59,10 @@ export class PortalLogin {
   @Prop()
   pageLabel: string = "Sign in to your account";
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<PortalLoginViewProps>;
 
   constructor() {

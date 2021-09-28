@@ -21,12 +21,30 @@ export class PortalProfile {
   @State()
   ignored = true;
 
+  /**
+   * @uiName First Name label
+   */
   @Prop() firstnametext: string = "First Name";
+  /**
+   * @uiName Last Name label
+   */
   @Prop() lastnametext: string = "Last Name";
+  /**
+   * @uiName Email label
+   */
   @Prop() emailtext: string = "Email";
+  /**
+   * @uiName Country label
+   */
   @Prop() countrytext: string = "Country";
+  /**
+   * @uiName Show country field
+   */
   @Prop() showCountry: boolean = true;
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<PortalProfileViewProps>;
 
   constructor() {

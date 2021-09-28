@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2021-09-22
+
+### Changed
+
+- Upgraded penpal version from 4.1.1 to 6.1.0 to be compatible with the portal
+
+### Added
+
+- getFileStackConfig method
+- patchIntegrationConfig method
+- tenantAlias property
+
 ## [1.0.0] - 2021-08-13
 
 ### Added

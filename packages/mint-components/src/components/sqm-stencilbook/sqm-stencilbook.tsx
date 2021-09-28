@@ -14,6 +14,7 @@ import * as UseShareLink from "../../stories/UseShareLink.stories";
 import * as UseShareButton from "../../stories/UseShareButton.stories";
 import * as UseBigStat from "../../stories/UseBigStat.stories";
 import * as UseEditProfile from "../../stories/UseEditProfile.stories";
+import * as UseLeaderboard from "../../stories/UseLeaderboard.stories";
 import * as FormMessage from "../../stories/FormMessage.stories";
 import * as NewPortal from "../../stories/NewPortal.stories";
 import * as SidebarItem from "../../stories/SidebarItem.stories";
@@ -52,6 +53,7 @@ const stories = [
   UseShareButton,
   UseBigStat,
   UseEditProfile,
+  UseLeaderboard,
   Router,
   PortalFrame,
   EditProfile,

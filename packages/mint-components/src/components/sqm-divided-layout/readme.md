@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property    | Attribute   | Description | Type                | Default     |
-| ----------- | ----------- | ----------- | ------------------- | ----------- |
-| `direction` | `direction` |             | `"column" \| "row"` | `undefined` |
+| Property       | Attribute       | Description                  | Type                | Default               |
+| -------------- | --------------- | ---------------------------- | ------------------- | --------------------- |
+| `direction`    | `direction`     |                              | `"column" \| "row"` | `undefined`           |
+| `dividerStyle` | `divider-style` | Uses CSS border style syntax | `string`            | `"1px solid #EAEAEA"` |
 
 
 ## Dependencies

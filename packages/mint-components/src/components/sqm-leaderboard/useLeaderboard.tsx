@@ -10,6 +10,8 @@ import { LeaderboardViewProps } from "./sqm-leaderboard-view";
 export interface LeaderboardProps {
   usersheading: string;
   statsheading: string;
+  rankheading?: string;
+  showRank?: boolean;
   rankType: "rowNumber" | "rank" | "denseRank";
   leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   interval: string;
@@ -36,9 +38,30 @@ const GET_LEADERBOARD = gql`
   }
 `;
 
+type LeaderboardRows = {
+  value: number;
+  firstName: string;
+  lastInitial: string;
+  rank: Rank;
+};
+
+export type Rank = {
+  rank: number;
+  denseRank: number;
+  rowNumber: number;
+};
+
+export type Leaderboard = {
+  value: number;
+  rank: number;
+  firstName: string;
+  lastInitial: string;
+};
+
 export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   const programId = useProgramId();
   const user = useUserIdentity();
+
   const variables = {
     type: props.leaderboardType,
     filter: { programId_eq: programId },
@@ -47,27 +70,34 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   if (props.interval) {
     variables.filter["interval"] = props.interval;
   }
+
   const { data: leaderboardData, loading: loadingLeaderboard } = useQuery(
     GET_LEADERBOARD,
     variables,
     !user?.jwt
   );
 
-  const flattenedLeaderBoard = leaderboardData?.userLeaderboard?.rows.flatMap(
-    (user) => ({
-      value: user.value,
-      firstName: user.firstName,
-      lastInitial: user.lastInitial,
-      rank: user.rank?.[props.rankType],
-    })
-  );
+  const leaderboardRows = leaderboardData?.userLeaderboard?.rows;
 
-  const sortedLeaderboard = flattenedLeaderBoard?.sort(function (
+  const flattenedLeaderboard = getFlattenedLeaderboard(leaderboardRows);
+
+  const sortedLeaderboard = flattenedLeaderboard?.sort(function (
     a: { rank: number },
     b: { rank: number }
   ) {
     return a.rank - b.rank;
   });
+
+  function getFlattenedLeaderboard(
+    leaderboardRows: LeaderboardRows[]
+  ): Leaderboard[] {
+    return leaderboardRows?.flatMap((user) => ({
+      value: user.value,
+      firstName: user.firstName || "Anonymous",
+      lastInitial: user.lastInitial,
+      rank: user.rank?.[props.rankType],
+    }));
+  }
 
   return {
     states: {

@@ -28,7 +28,7 @@ export interface ReferralTableViewProps {
     loading?: boolean;
     emptyElement?: VNode;
     loadingElement?: VNode;
-    page?:number;
+    page?: number;
   };
 }
 
@@ -85,8 +85,18 @@ export function ReferralTableView(props: ReferralTableViewProps) {
             ? elements.loadingElement
             : !elements?.rows?.length && !data.referralData?.length
             ? elements.emptyElement
-            : rows?.map((row) => (
-                <tr class={sheet.classes.TRow} part="table-row">
+            : rows?.map((row, i) => (
+                <tr
+                  class={sheet.classes.TRow}
+                  style={{
+                    borderTop: `${
+                      !data.textOverrides.showLabels && i === 0
+                        ? "none"
+                        : ""
+                    }`,
+                  }}
+                  part="table-row"
+                >
                   {row.map((cell) => (
                     <td class={sheet.classes.TCell}>
                       <TextSpanView type="p">{cell}</TextSpanView>

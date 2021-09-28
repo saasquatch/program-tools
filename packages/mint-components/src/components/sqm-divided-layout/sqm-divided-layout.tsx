@@ -6,7 +6,7 @@ import { getProps } from "../../utils/utils";
 /**
  * Shows it's children as either a row or a column, with a division in between them.
  * Spacing is left up to the child
- * 
+ *
  * @uiName Divided Layout
  */
 @Component({
@@ -14,9 +14,18 @@ import { getProps } from "../../utils/utils";
   shadow: true,
 })
 export class DividedLayout {
- 
-  /** @uiName Direction */
+  /**
+   * @uiName Direction
+   * @uiType string
+   * @uiEnum ["row", "column"]
+   */
   @Prop() direction: "row" | "column";
+
+  /**
+   * Uses CSS border style syntax
+   * @uiName Border style
+   */
+  @Prop() dividerStyle: string = "1px solid #EAEAEA";
 
   constructor() {
     withHooks(this);

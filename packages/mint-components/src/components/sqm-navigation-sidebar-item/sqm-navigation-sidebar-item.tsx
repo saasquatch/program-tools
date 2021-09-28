@@ -31,7 +31,10 @@ export class NavigationSidebarItem {
    */
   @Prop() label: string;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<NavigationSidebarItemViewProps>;
 
   constructor() {

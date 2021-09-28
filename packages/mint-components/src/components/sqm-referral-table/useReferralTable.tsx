@@ -171,6 +171,16 @@ const GET_REFERRAL_DATA = gql`
   }
 `;
 
+export type ReferralDates =
+  | "dateConverted"
+  | "dateReferralStarted"
+  | "dateFraudChecksCompleted"
+  | "dateModerated"
+  | "dateModified"
+  | "dateReferralEnded"
+  | "dateReferralPaid"
+  | "dateUserModified";
+
 export function useReferralTable(
   props: ReferralTable,
   emptyElement: VNode,

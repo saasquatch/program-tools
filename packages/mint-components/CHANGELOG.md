@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2021-09-21
+
+### Fixed
+
+- demoData no longer breaking GrapesJS editability on all components
+- \<sqm-big-stat> properly supports units with/without slashes
+- \<sqm-big-stat> rewardBalance stat now uses format if included for the fallback value
+- \<sqm-referral-table> dateScheduledFor bug fixed, deleted user bug fixed
+
+### Added
+
+- Filtered Credit and Integration reward count stats now available in \<sqm-big-stat>
+  - formats:
+  ```
+  /(rewardsCountFiltered)/:statType([INTEGRATION|PCT_DISCOUNT|CREDIT]*)?/:unit((?!global)(?!PENDING)(?!CANCELLED)(?!EXPIRED)(?!REDEEMED)(?!AVAILABLE)[a-zA-Z0-9%]+)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?
+  /(integrationRewardsCountFiltered)/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?
+  ```
+- \<sqm-share-button> loading states and hide text prop
+- \<sqm-divided-layout> border customizable
+- \<sqm-leaderboard> allows rank to be shown
+
+### Removed
+
+- menuLabel prop removed from \<sqm-program-menu>
+
 ## [1.2.0] - 2021-09-17
 
 - \<sqm-referral-table> can pull only classic referrals
