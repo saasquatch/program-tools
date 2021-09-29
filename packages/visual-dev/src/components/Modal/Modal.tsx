@@ -43,8 +43,6 @@ const ModalDiv = styled.div<Required<StyleProps>>`
   min-width: 558px;
   max-height: 798px;
   box-shadow: 0 0 0 1px #e2e2e2;
-  //   border: 1px solid #e2e2e2;
-  // box-sizing: border-box;
   border-radius: 8px;
   white-space: pre-wrap;
 
@@ -55,17 +53,14 @@ const ModalDiv = styled.div<Required<StyleProps>>`
     width: 6px;
   }
 
-  /* Track */
   ::-webkit-scrollbar-track {
   }
 
-  /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #e2e2e2;
     border-radius: 50px;
   }
 
-  /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
   }
 `
@@ -77,16 +72,13 @@ const ModalHeader = styled.div`
   box-sizing: border-box;
   border-radius: 8px 8px 0 0;
 
-  /* H1 Bold (26) */
   font-family: Helvetica;
   font-style: normal;
   font-weight: bold;
   font-size: 26px;
   line-height: 28px;
 
-  /* Top Nav Bar/Top Nav Bar Primary/Nav Text On Primary */
   color: #ffffff;
-
   background: #003b45;
 `
 
@@ -101,32 +93,12 @@ export const Modal = React.forwardRef<React.ElementRef<'div'>, ModalProps>((prop
               {title}
               <Icon icon='close' color='#fff' size='24px' css='vertical-align: bottom; float: right; cursor: pointer; margin-left: 50px;' onClick={onClose} />
             </ModalHeader>
-            {/* <ModalBanner banner={banner}>
-              {banner ? program_icon : ''}
-              {banner ? banner.text : ''}
-            </ModalBanner> */}
             {children}
           </ModalDiv>
         </ModalBackdrop>
       )}
     </div>
   )
-})
-
-const HeadingDiv = styled.div<Required<StyleProps>>`
-  ${(props) => props.css}
-  //   display: block;
-  height: 20px;
-  width: 100%;
-  background: red;
-  //   margin-top: -10px;
-  //   margin-bottom: 10px;
-`
-
-export const ModalHeading = React.forwardRef<React.ElementRef<'div'>, ModalContentProps>((props, forwardedRef) => {
-  const { children, css = {}, ...rest } = props
-
-  return <HeadingDiv {...rest} ref={forwardedRef} css={css} />
 })
 
 type ModalActionProps = ActionOptions & StyleProps & React.ComponentProps<'div'>
@@ -138,8 +110,6 @@ interface ActionOptions {
 
 const ModalActionDiv = styled.div<Required<StyleProps>>`
   ${(props) => props.css}
-  //   display: block;
-  //   padding: 10px 20px 10px 20px;
   margin-top: 10px;
   margin-bottom: 10px;
   box-sizing: border-box;
@@ -190,7 +160,6 @@ export const ModalContent = React.forwardRef<React.ElementRef<'div'>, ModalConte
 
 const ModalContentTextDiv = styled.div<Required<StyleProps>>`
   ${(props) => props.css}
-  //   margin: 20px;
   max-width: fit-content;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -214,30 +183,20 @@ export const ModalContentText = React.forwardRef<React.ElementRef<'div'>, ModalC
 
 const CodeDiv = styled.div<Required<StyleProps>>`
   ${(props) => props.css}
-  //   display: block;
-  /* Surface/Background */
-
-  background: #F9F9F9;
-  /* On Surface/Border */
-
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  color: #575757;
+  background: #f9f9f9;
   border: 1px solid #e2e2e2;
   box-sizing: border-box;
   border-radius: 4px;
 
-  padding: 20px;
   font-family: monospace;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
-  /* or 143% */
-
-  display: flex;
-  align-items: center;
-
-  /* On Surface/Text */
-
-  color: #575757;
 `
 export const ModalContentCode = React.forwardRef<React.ElementRef<'div'>, ModalContentProps>((props, forwardedRef) => {
   const { children, css = {}, ...rest } = props
@@ -251,7 +210,6 @@ export const ModalContentCode = React.forwardRef<React.ElementRef<'div'>, ModalC
 
 const DividerDiv = styled.div<Required<StyleProps>>`
   ${(props) => props.css}
-  //   display: block;
   height: 1px;
   width: 100%;
   background: #e2e2e2;
@@ -277,8 +235,6 @@ const ModalBannerDiv = styled.div<Required<StyleProps>>`
   color: #fff;
   text-indent: 20px;
   user-select: none;
-
-  /* H3 Bold (18) */
 
   font-family: Helvetica;
   font-style: normal;
@@ -311,16 +267,11 @@ const ModalBackDiv = styled.div<Required<StyleProps>>`
   text-indent: 15px;
   user-select: none;
 
-  /* H3 Regular (18) */
-
   font-family: Helvetica;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 20px;
-  /* identical to box height, or 111% */
-
-  /* On Surface/Text Subdued */
 
   color: #858585;
   background: #fff;
