@@ -39,7 +39,7 @@ export const InputBoxStyle = css`
 
 export const IconStyle = css`
   position: absolute;
-  top: 47px;
+  bottom: 40%;
 `
 
 export const invalid = css`

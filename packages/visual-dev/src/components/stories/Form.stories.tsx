@@ -3,6 +3,7 @@ import React from 'react'
 import Form from 'react-jsonschema-form'
 import { Button } from '../Button'
 import { Checkbox } from '../Checkbox'
+import { Radio } from '../Radio'
 import { Input } from '../Input'
 
 export default {
@@ -48,18 +49,38 @@ export const CheckForm = () => {
   console.log('im the story')
 
   const Checkbox2 = (props) => {
-    console.log('inline widget')
+    console.log(props.options)
     return <div>test</div>
   }
 
   const uiSchema = {
     Done: {
-      'ui:widget': 'Checkbox2',
+      'ui:widget': 'Radio',
+      'ui:options': {
+        cardFormat: true,
+        radioOptions: [
+          {
+            key: 'create',
+            label: 'Create',
+            name: 'action',
+          },
+          {
+            key: 'update',
+            label: 'Update',
+            name: 'action',
+          },
+          {
+            key: 'edit',
+            label: 'Edit',
+            name: 'action',
+          },
+        ],
+      },
     },
   }
 
   const widgets = {
-    Checkbox2: Checkbox,
+    Radio: Radio,
   }
 
   return (

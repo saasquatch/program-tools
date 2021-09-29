@@ -11,6 +11,7 @@ interface OptionProps {
   onChange?: any
   options?: any
   disabled?: any
+  id?: string
 }
 
 const ShadowDom = styled(root.div)``
@@ -32,23 +33,23 @@ const CheckboxBox = styled.div<{ isDisabled?: any }>`
 `
 
 // export const Checkbox = React.forwardRef<React.ElementRef<'input'>, InputProps>((props, forwardedRef) => {
-export const Checkbox: React.FC<any> = (props: any) => {
-  // const { value, onChange, options, disabled, ...rest } = props
+export const Checkbox: React.FC<any> = (props: InputProps) => {
+  const { id, value, onChange, options, disabled, name } = props
+
+  // const { value, onChange, options, disabled } = props
 
   console.log(props)
+  console.log(props.options)
 
   return (
-    // <ShadowDom>
-    //   <CheckboxLabel htmlFor={rest.id} isDisabled={disabled}>
-    //     {/* <CheckboxInput checked={value} type='checkbox' isDisabled={disabled} {...rest} ref={forwardedRef} />
-    //     <CheckboxBox isDisabled={disabled}> */}
-    //     {/* <Icon icon='checkmark' css={CheckboxTick} /> */}
-    //     <input type='checkbox' {...rest} ref={forwardedRef} />
-    //     {/* </CheckboxBox> */}
-    //     "CHECK BOX"
-    //     {/* {options ? options.text : ''} */}
-    //   </CheckboxLabel>
-    // </ShadowDom>
-    <div>tedwst</div>
+    <ShadowDom>
+      <CheckboxLabel htmlFor={id} isDisabled={disabled}>
+        <CheckboxInput checked={value} type='checkbox' isDisabled={disabled} id={id} />
+        <CheckboxBox isDisabled={disabled}>
+          <Icon icon='checkmark' css={CheckboxTick} />
+        </CheckboxBox>
+        {options ? options.text : ''}
+      </CheckboxLabel>
+    </ShadowDom>
   )
 }

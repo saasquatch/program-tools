@@ -9,6 +9,7 @@ interface OptionProps {
   value?: any
   onChange?: any
   options?: any
+  id?: string
 }
 
 const ShadowDom = styled(root.div)``
@@ -23,17 +24,25 @@ const RadioButton = styled.div`
   ${Styles.RadioButtonStyle}
 `
 
-export const Radio = React.forwardRef<React.ElementRef<'input'>, RadioProps>((props, forwardedRef) => {
-  const { value, onChange, options, ...rest } = props
+// export const Radio = React.forwardRef<React.ElementRef<'input'>, RadioProps>((props, forwardedRef) => {
+export const Radio: React.FC<any> = (props: RadioProps) => {
+  const { value, onChange, options } = props
 
   return (
-    <RadioLabel htmlFor={rest.id}>
-      <RadioInput type='radio' checked={value} onChange={onChange} {...rest} ref={forwardedRef} />
-      <RadioButton />
-      {options.text ? options.text : ''}
-    </RadioLabel>
+    <ShadowDom>
+      {options.radioOptions.map((option: any) => {
+        const { key, label, name } = option
+        return (
+          <RadioLabel htmlFor={key}>
+            <RadioInput type='radio' value={value} onClick={props.onChange} id={key} onChange={onChange} name={name} />
+            <RadioButton />
+            {label}
+          </RadioLabel>
+        )
+      })}
+    </ShadowDom>
   )
-})
+}
 
 export const RadioGroup = React.forwardRef<React.ElementRef<'div'>, RadioProps>((props) => {
   const { children } = props
