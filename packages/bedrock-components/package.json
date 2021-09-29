@@ -31,8 +31,10 @@
   "dependencies": {
     "@saasquatch/component-boilerplate": "^1.2.2",
     "@saasquatch/stencil-hooks": "^2.0.2",
+    "@saasquatch/stencilbook": "^1.0.0",
     "@saasquatch/universal-hooks": "^1.0.0",
-    "@stencil/core": "^2.4.0",
+    "@stencil/core": "^2.8.1",
+    "highlight.js": "^11.2.0",
     "jsonata": "^1.8.4"
   },
   "devDependencies": {

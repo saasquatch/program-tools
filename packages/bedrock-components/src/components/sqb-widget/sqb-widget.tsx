@@ -1,4 +1,4 @@
-import { h, Component, Prop, Host } from '@stencil/core';
+import { h, Component, Prop, Host, State } from '@stencil/core';
 import { withHooks } from '@saasquatch/stencil-hooks';
 import { useWidget } from './useWidget';
 
@@ -30,6 +30,9 @@ export class SqbWidget {
   constructor() {
     withHooks(this);
   }
+
+  @State()
+  ignored = true;
 
   disconnectedCallback() {}
 

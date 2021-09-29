@@ -4,57 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
     <title>Bedrock Components</title>
-
-    <script type="text/javascript">
-      // window.widgetIdent = {
-      //   programId: 'referral-program-a',
-      //   userId: 'abc123',
-      //   accountId: 'abc123',
-      //   token:
-      //     'eyJraWQiOiI1MGQ3Y2Q5ZC1iNTNhLTQ5MzAtYjFmNi03NDkwZTcwZjZmNmEiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FwcC5yZWZlcnJhbHNhYXNxdWF0Y2guY29tLyIsImlhdCI6MTYxODg3MzQ5OSwiZXhwIjoxNjE4OTU5ODk5LCJzdWIiOiJZV0pqTVRJejpZV0pqTVRJekB0ZXN0X2F0enFkMzdodm92ZGY6dXNlcnMifQ.MsokKHFyoQlY_cCcEfZeiloJeNWLJwKAUy_YpQXZWczqT4DlXKYOFvBgJae8DnMo_3wFS0ynbSgvggDKpV8Xr6ND2NhAOqZnzTvHPNReg0-lhjw_5GnbWPXIT72MJBrHnnUAdNnQRTK-Nh9uVZ4E3qdeQDmY0pTyUqmSIj_-OJhaG6wvaYzPGVLtHCQ1-5xpf4dzwMcKwXBrVv2NfNSI0OqB4tbwDaqZa__EkROzijyAfGFQ_L2vNh4nC-7EurHdkqVSEFH7SgTN_u7XMFhqtNY8yehtxO1RSCF2Ss0N8BKrzNV8n1VDV64CK-lezYJp6Fiw3d0TjxqBrKjAt2zLUA',
-      //   tenantAlias: 'test_atzqd37hvovdf',
-      //   engagementMedium: 'POPUP',
-      //   appDomain: 'https://app.referralsaasquatch.com',
-      // };
-      window.widgetIdent = {
-        tenantAlias: 'test_a8b41jotf8a1v',
-        appDomain: 'https://staging.referralsaasquatch.com',
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6ImVuZ2xpc2hlZHdhcmQiLCJpZCI6ImVuZ2xpc2hlZHdhcmQifX0.EMWxwv_pkNFUV2Mmqd-FEctDD7a63ut1mhwXvwkj5V0',
-        userId: 'englishedward',
-        accountId: 'englishedward',
-        programId: 'a',
-      };
-    </script>
+    <script src="https://fast.ssqt.io/npm/@samsquatch/vanilla-components@latest/dist/widget-components.js"></script>
+    <script src="https://fast.ssqt.io/npm/@saasquatch/mint-components/dist/mint-components/mint-components.js"></script>
     <script type="module" src="/build/bedrock-components.esm.js"></script>
     <script nomodule src="/build/bedrock-components.js"></script>
-
-    <script type="module" src="https://fast.ssqt.io/npm/@saasquatch/mint-components/dist/mint-components/mint-components.esm.js"></script>
-    <script nomodule src="https://fast.ssqt.io/npm/@saasquatch/mint-components/dist/mint-components/mint-components.js"></script>
   </head>
   <body>
-    <h1>Bedrock Components</h1>
-    <h2>Manual tests:</h2>
-    <h2>sqb-conditional-section</h2>
-    <p>The following 3 components should load</p>
-    <sqb-conditional-section condition="1=1"><b>sqb-conditional-section 1</b></sqb-conditional-section>
-    <sqb-conditional-section condition="true"><b>sqb-conditional-section 2</b></sqb-conditional-section>
-    <sqb-conditional-section condition="user.segments"><b>sqb-conditional-section 3</b></sqb-conditional-section>
-    <p>The following 4 components should not load</p>
-    <sqb-conditional-section><b>sqb-conditional-section 1</b></sqb-conditional-section>
-    <sqb-conditional-section condition="1!=1"><b>sqb-conditional-section 2</b></sqb-conditional-section>
-    <sqb-conditional-section condition="false"><b>sqb-conditional-section 3</b></sqb-conditional-section>
-    <sqb-conditional-section condition="in va lid ~content!"><b>sqb-conditional-section 4</b></sqb-conditional-section>
-    <p>There should be a working share button</p>
-
-    <h2>sqb-program-section</h2>
-    <sqb-program-section program-id="referral-program-a">
-      <div>
-        <b>sqb-program-section</b>
-        <ul>
-          <li><sqm-share-button medium="FACEBOOK">Facebook</sqm-share-button></li>
-        </ul>
-      </div>
-    </sqb-program-section>
-    <sqb-widget widget-type="p/a/w/referrerWidget"></sqb-widget>
+    <script>
+      window.widgetIdent = {
+        tenantAlias: 'test_agvu4yg8zrkxt',
+        appDomain: 'https://app.referralsaasquatch.com',
+        userId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
+        accountId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
+        token:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEiLCJpZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEifX0.lGUEN_cmRrSdw-y2fEz-BQ2R5COoN8tQTiKJGEMfCcI',
+        programId: 'Vacay-referral',
+        engagementMedium: 'EMBED',
+      };
+    </script>
+    <sqb-stencilbook></sqb-stencilbook>
   </body>
 </html>

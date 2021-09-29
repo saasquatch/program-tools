@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { FunctionalComponent } from "@stencil/core";
 export namespace Components {
     interface SqbConditionalSection {
         /**
@@ -13,12 +14,19 @@ export namespace Components {
          */
         "condition": string;
     }
+    interface SqbHookStoryContainer {
+        "hookStory": FunctionalComponent;
+    }
     interface SqbProgramSection {
         /**
           * The program that everything in this section should use
           * @uiName Program
          */
         "programId": string;
+    }
+    interface SqbProgramSwitch {
+    }
+    interface SqbStencilbook {
     }
     interface SqbWidget {
         /**
@@ -40,11 +48,29 @@ declare global {
         prototype: HTMLSqbConditionalSectionElement;
         new (): HTMLSqbConditionalSectionElement;
     };
+    interface HTMLSqbHookStoryContainerElement extends Components.SqbHookStoryContainer, HTMLStencilElement {
+    }
+    var HTMLSqbHookStoryContainerElement: {
+        prototype: HTMLSqbHookStoryContainerElement;
+        new (): HTMLSqbHookStoryContainerElement;
+    };
     interface HTMLSqbProgramSectionElement extends Components.SqbProgramSection, HTMLStencilElement {
     }
     var HTMLSqbProgramSectionElement: {
         prototype: HTMLSqbProgramSectionElement;
         new (): HTMLSqbProgramSectionElement;
+    };
+    interface HTMLSqbProgramSwitchElement extends Components.SqbProgramSwitch, HTMLStencilElement {
+    }
+    var HTMLSqbProgramSwitchElement: {
+        prototype: HTMLSqbProgramSwitchElement;
+        new (): HTMLSqbProgramSwitchElement;
+    };
+    interface HTMLSqbStencilbookElement extends Components.SqbStencilbook, HTMLStencilElement {
+    }
+    var HTMLSqbStencilbookElement: {
+        prototype: HTMLSqbStencilbookElement;
+        new (): HTMLSqbStencilbookElement;
     };
     interface HTMLSqbWidgetElement extends Components.SqbWidget, HTMLStencilElement {
     }
@@ -54,7 +80,10 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "sqb-conditional-section": HTMLSqbConditionalSectionElement;
+        "sqb-hook-story-container": HTMLSqbHookStoryContainerElement;
         "sqb-program-section": HTMLSqbProgramSectionElement;
+        "sqb-program-switch": HTMLSqbProgramSwitchElement;
+        "sqb-stencilbook": HTMLSqbStencilbookElement;
         "sqb-widget": HTMLSqbWidgetElement;
     }
 }
@@ -66,12 +95,19 @@ declare namespace LocalJSX {
          */
         "condition"?: string;
     }
+    interface SqbHookStoryContainer {
+        "hookStory"?: FunctionalComponent;
+    }
     interface SqbProgramSection {
         /**
           * The program that everything in this section should use
           * @uiName Program
          */
         "programId"?: string;
+    }
+    interface SqbProgramSwitch {
+    }
+    interface SqbStencilbook {
     }
     interface SqbWidget {
         /**
@@ -87,7 +123,10 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "sqb-conditional-section": SqbConditionalSection;
+        "sqb-hook-story-container": SqbHookStoryContainer;
         "sqb-program-section": SqbProgramSection;
+        "sqb-program-switch": SqbProgramSwitch;
+        "sqb-stencilbook": SqbStencilbook;
         "sqb-widget": SqbWidget;
     }
 }
@@ -96,7 +135,10 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "sqb-conditional-section": LocalJSX.SqbConditionalSection & JSXBase.HTMLAttributes<HTMLSqbConditionalSectionElement>;
+            "sqb-hook-story-container": LocalJSX.SqbHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqbHookStoryContainerElement>;
             "sqb-program-section": LocalJSX.SqbProgramSection & JSXBase.HTMLAttributes<HTMLSqbProgramSectionElement>;
+            "sqb-program-switch": LocalJSX.SqbProgramSwitch & JSXBase.HTMLAttributes<HTMLSqbProgramSwitchElement>;
+            "sqb-stencilbook": LocalJSX.SqbStencilbook & JSXBase.HTMLAttributes<HTMLSqbStencilbookElement>;
             "sqb-widget": LocalJSX.SqbWidget & JSXBase.HTMLAttributes<HTMLSqbWidgetElement>;
         }
     }
