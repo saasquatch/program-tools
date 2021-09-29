@@ -1,9 +1,9 @@
 import { JSONSchema6 } from 'json-schema'
 import React from 'react'
-import { Input } from '../Input'
+import Form from 'react-jsonschema-form'
 import { Button } from '../Button'
 import { Checkbox } from '../Checkbox'
-import Form, { FormProps } from 'react-jsonschema-form'
+import { Input } from '../Input'
 
 export default {
   title: 'Components / Form',
@@ -33,30 +33,33 @@ export const ExampleForm = () => {
   )
 }
 
+// Checkboxes
 export const CheckForm = () => {
   const schema: JSONSchema6 = {
     type: 'object',
     properties: {
-      multipleChoicesList: {
-        type: 'object',
-        title: 'A multiple choices list',
-        items: {
-          type: 'string',
-          enum: ['foo', 'bar', 'fuzz', 'qux'],
-        },
-        uniqueItems: true,
+      Done: {
+        type: 'boolean',
+        title: 'Done',
       },
     },
   }
 
+  console.log('im the story')
+
+  const Checkbox2 = (props) => {
+    console.log('inline widget')
+    return <div>test</div>
+  }
+
   const uiSchema = {
-    multipleChoicesList: {
-      'ui:widget': 'checkboxes',
+    Done: {
+      'ui:widget': 'Checkbox2',
     },
   }
 
   const widgets = {
-    myCustomWidget: Checkbox,
+    Checkbox2: Checkbox,
   }
 
   return (

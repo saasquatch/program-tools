@@ -49,6 +49,7 @@ const ModalDiv = styled.div<Required<StyleProps>>`
 const ModalHeader = styled.div`
   padding: 20px;
   margin-bottom: 10px;
+  user-select: none;
 
   box-sizing: border-box;
   border-radius: 8px 8px 0 0;
