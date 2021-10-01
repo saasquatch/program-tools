@@ -1,11 +1,67 @@
 import React from 'react'
 import { Icon } from '../Icon'
-import { Action, DataTable, Divider, Popover } from '../DataTable'
+import { Skeleton, Content, Action, DataTable, Divider, Popover } from '../DataTable'
+import { Avatar } from '../Avatar'
 
 export default {
   title: 'Components / DataTable',
   component: DataTable,
 }
+
+export const skeleton = () => <Skeleton />
+export const content = () => <Content> Some content </Content>
+export const contentSkeleton = () => (
+  <Content>
+    <Skeleton size='90px' />
+  </Content>
+)
+export const contentSkeletonCircle = () => (
+  <Content>
+    <Skeleton circle={true} /> <Skeleton size='90px' />
+  </Content>
+)
+
+export const contentSkeletonAvatarA = () => (
+  <Content>
+    <Skeleton circle={true} size='34px' />
+    <Skeleton size='120px' css='align-self: flex-start;' />
+    <Skeleton size='90px' css='align-self: flex-end; margin-left: -128px;' />
+  </Content>
+)
+
+export const contentSkeletonAvatarB = () => (
+  <Content>
+    <Avatar firstName='New' lastName='Guy' />
+    <span style={{ alignSelf: 'flex-start', marginLeft: 8 }}> new guy </span>
+    <span style={{ alignSelf: 'flex-end', marginLeft: -52, marginTop: 18, color: '#858585' }}> sam123@test.ca </span>
+  </Content>
+)
+
+export const contentSkeletonAvatar = () => (
+  <Content>
+    <Skeleton circle={true} size='34px' />
+    <Skeleton size='120px' css='align-self: flex-start;' />
+    <Skeleton size='90px' css='align-self: flex-end; margin-left: -128px;' />
+  </Content>
+)
+
+export const contentStatus = () => (
+  <Content>
+    <Skeleton circle={true} size='8px' /> Status
+  </Content>
+)
+
+export const contentEnabled = () => (
+  <Content>
+    <Skeleton circle={true} size='8px' color='#57AC59' /> Enabled
+  </Content>
+)
+
+export const contentDisabled = () => (
+  <Content>
+    <Skeleton circle={true} size='8px' color='#FE6666' /> Disabled
+  </Content>
+)
 
 export const PopoverOneAction = () => (
   <Popover>

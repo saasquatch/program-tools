@@ -25,15 +25,18 @@ const PopoverDiv = styled.div<Required<StyleProps> & { notification: boolean }>`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: inline-flex;
+  align-items: center;
   `
       : `
   min-width: 252px;
   max-width: 368px;
   padding: 16px 36px;
   word-wrap: break-word;
+  display: inline-block;
+  align-items: center;
   `}
 
-  display: inline-block;
   background: #ffffff;
   border: 1px solid #e2e2e2;
   box-sizing: border-box;
@@ -43,14 +46,6 @@ const PopoverDiv = styled.div<Required<StyleProps> & { notification: boolean }>`
     margin-top: 10px;
   }
   ${(props) => props.css}
-`
-
-const IconDiv = styled.div`
-  float: left;
-  justify-content: center;
-`
-const TextDiv = styled.div`
-  float: right;
 `
 
 export const Popover = React.forwardRef<React.ElementRef<'div'>, PopoverProps>((props, forwardedRef) => {
