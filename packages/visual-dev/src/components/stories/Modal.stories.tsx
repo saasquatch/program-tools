@@ -240,13 +240,12 @@ export const WithMultipleSectionsAndActions = () => {
       <Modal title='Signup Program' open={active} onClose={handleChange}>
         <ModalContent>
           <ModalContentText>
-            <h2 style={{ marginTop: 25, marginBottom: 8 }}>Change Email Address</h2>
+            <h2 style={{ marginTop: 0, marginBottom: 8 }}>Change Email Address</h2>
             <span style={{ color: '#989898' }}> (Current address: shirley.lam@referralsaasquatch.com) </span>
             <br />
             <br />
             Enter New Email
             <Input value='' style={{ margin: '10px 0 10px 0' }} />
-            <br />
             Enter Password
             <Input value='' style={{ margin: '10px 0 10px 0' }} />
           </ModalContentText>
@@ -264,7 +263,6 @@ export const WithMultipleSectionsAndActions = () => {
             <br />
             Current Password
             <Input value='' style={{ margin: '10px 0 10px 0' }} />
-            <br />
             New Password
             <Input value='' style={{ margin: '10px 0 10px 0' }} />
             Re-enter New Password
@@ -325,21 +323,21 @@ export const WithFormElements = () => {
 
 export const WithCodeBlock = () => {
   const code = `Insert c{
-	"id": "61425f36976a1d00171c46c7",
-	"type": "CREDIT",
-	"value": 1,
-	"prettyValue": "1 MONTH",
-	"prettyRedeemedCredit": "0 MONTH",
-	"prettyAssignedCredit": "1 MONTH",
-	"prettyAvailableValue": "1 MONTH",
-	"usTaxableValue": 0,
-	"unit": "MONTH",
+"id": "61425f36976a1d00171c46c7",
+"type": "CREDIT",
+"value": 1,
+"prettyValue": "1 MONTH",
+"prettyRedeemedCredit": "0 MONTH",
+"prettyAssignedCredit": "1 MONTH",
+"prettyAvailableValue": "1 MONTH",
+"usTaxableValue": 0,
+"unit": "MONTH",
+"currency": null,
+"rewardUnit": {
+	"key": "MONTH",
+	"name": "Month",
 	"currency": null,
-	"rewardUnit": {
-		"key": "MONTH",
-		"name": "Month",
-		"currency": null,
-	"__typename": "RewardUnit"
+"__typename": "RewardUnit"
 },
 "name": "Signup Reward",`
 

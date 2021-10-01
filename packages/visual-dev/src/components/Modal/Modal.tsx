@@ -4,7 +4,6 @@ import { Icon } from '../Icon'
 import { Button } from '../Button'
 
 import * as Styles from './Styles'
-import { secondary } from '../Button/Styles'
 
 type ModalProps = OptionProps & StyleProps & React.ComponentProps<'div'>
 
@@ -23,63 +22,16 @@ interface StyleProps {
 }
 
 const ModalBackdrop = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  z-index: 1;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.05);
+  ${Styles.ModalBackdropStyle}
 `
 
 const ModalDiv = styled.div<Required<StyleProps>>`
+  ${Styles.ModalDivStyle}
   ${(props) => props.css}
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  min-width: 558px;
-  max-height: 798px;
-  box-shadow: 0 0 0 1px #e2e2e2;
-  border-radius: 8px;
-  white-space: pre-wrap;
-
-  overflow: hidden;
-  overflow-y: overlay;
-
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #e2e2e2;
-    border-radius: 50px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-  }
 `
 
 const ModalHeader = styled.div`
-  padding: 20px;
-  user-select: none;
-
-  box-sizing: border-box;
-  border-radius: 8px 8px 0 0;
-
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 26px;
-  line-height: 28px;
-
-  color: #ffffff;
-  background: #003b45;
+  ${Styles.ModalHeaderStyle}
 `
 
 export const Modal = React.forwardRef<React.ElementRef<'div'>, ModalProps>((props, forwardedRef) => {
@@ -109,14 +61,8 @@ interface ActionOptions {
 }
 
 const ModalActionDiv = styled.div<Required<StyleProps>>`
+  ${Styles.ModalActionDivStyle}
   ${(props) => props.css}
-  margin-top: 10px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
-  border-radius: 0 0 8px 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `
 
 export const ModalContentAction = React.forwardRef<React.ElementRef<'div'>, ModalActionProps>((props, forwardedRef) => {
@@ -145,8 +91,8 @@ interface ContentOptions {
 }
 
 const ModalContentDiv = styled.div<Required<StyleProps>>`
+  ${Styles.ModalContentDivStyle}
   ${(props) => props.css}
-  margin: 20px;
 `
 export const ModalContent = React.forwardRef<React.ElementRef<'div'>, ModalContentProps>((props, forwardedRef) => {
   const { children, css = {}, ...rest } = props
@@ -159,16 +105,8 @@ export const ModalContent = React.forwardRef<React.ElementRef<'div'>, ModalConte
 })
 
 const ModalContentTextDiv = styled.div<Required<StyleProps>>`
+  ${Styles.ModalContentTextDivStyle}
   ${(props) => props.css}
-  max-width: fit-content;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  color: #575757;
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
 `
 
 export const ModalContentText = React.forwardRef<React.ElementRef<'div'>, ModalContentProps>((props, forwardedRef) => {
@@ -182,21 +120,8 @@ export const ModalContentText = React.forwardRef<React.ElementRef<'div'>, ModalC
 })
 
 const CodeDiv = styled.div<Required<StyleProps>>`
+  ${Styles.CodeDivStyle}
   ${(props) => props.css}
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  color: #575757;
-  background: #f9f9f9;
-  border: 1px solid #e2e2e2;
-  box-sizing: border-box;
-  border-radius: 4px;
-
-  font-family: monospace;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
 `
 export const ModalContentCode = React.forwardRef<React.ElementRef<'div'>, ModalContentProps>((props, forwardedRef) => {
   const { children, css = {}, ...rest } = props
@@ -209,12 +134,8 @@ export const ModalContentCode = React.forwardRef<React.ElementRef<'div'>, ModalC
 })
 
 const DividerDiv = styled.div<Required<StyleProps>>`
+  ${Styles.DividerDivStyle}
   ${(props) => props.css}
-  height: 1px;
-  width: 100%;
-  background: #e2e2e2;
-  margin: 20px 0 20px -20px;
-  padding-right: 40px;
 `
 export const ModalContentDivider = React.forwardRef<React.ElementRef<'div'>, ModalContentProps>((props, forwardedRef) => {
   const { children, css = {}, ...rest } = props
@@ -223,24 +144,7 @@ export const ModalContentDivider = React.forwardRef<React.ElementRef<'div'>, Mod
 })
 
 const ModalBannerDiv = styled.div<Required<StyleProps>>`
-  height: 36px;
-  background: #12c8d7;
-  display: flex;
-  align-items: center;
-
-  padding: 20px;
-  margin: -20px;
-  margin-bottom: 20px;
-
-  color: #fff;
-  text-indent: 20px;
-  user-select: none;
-
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 20px;
+  ${Styles.ModalBannerDivStyle}
 `
 
 export const ModalContentBanner = React.forwardRef<React.ElementRef<'div'>, ModalContentProps & { banner: any }>((props, forwardedRef) => {
@@ -255,27 +159,7 @@ export const ModalContentBanner = React.forwardRef<React.ElementRef<'div'>, Moda
 })
 
 const ModalBackDiv = styled.div<Required<StyleProps>>`
-  height: 20px;
-  background: #12c8d7;
-  display: flex;
-  align-items: center;
-
-  padding: 20px;
-  margin: -20px;
-  margin-bottom: 20px;
-
-  text-indent: 15px;
-  user-select: none;
-
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 20px;
-
-  color: #858585;
-  background: #fff;
-  border-bottom: 1px solid #e2e2e2;
+  ${Styles.ModalBackDivStyle}
 `
 
 export const ModalContentTopAction = React.forwardRef<React.ElementRef<'div'>, ModalContentProps & { action: any }>((props, forwardedRef) => {
