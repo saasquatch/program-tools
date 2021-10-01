@@ -17,7 +17,7 @@ interface StyleProps {
 
 const default_size = {
   small: '12px',
-  medium: '23px',
+  medium: '20px',
   large: '36px',
 }
 
