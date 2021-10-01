@@ -16,7 +16,7 @@
 
 ### Used by
 
- - [sqb-stencilbook](../sqm-stencilbook)
+ - [sqb-stencilbook](../sqb-stencilbook)
 
 ### Graph
 ```mermaid
