@@ -26,13 +26,15 @@ import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-po
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
 import { ReferralTableViewProps } from "./components/sqm-referral-table/sqm-referral-table-view";
+import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
     interface SqmAssetCard {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<AssetCardViewProps>;
         /**
@@ -47,10 +49,13 @@ export namespace Components {
     interface SqmBigStat {
         /**
           * @uiName Alignment - controls the alignment of the flexbox
+          * @uiType string
+          * @uiEnum ["left", "right", "center"]
          */
         "alignment"?: "left" | "right" | "center";
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<BigStatViewProps>;
         /**
@@ -68,8 +73,15 @@ export namespace Components {
     interface SqmDividedLayout {
         /**
           * @uiName Direction
+          * @uiType string
+          * @uiEnum ["row", "column"]
          */
         "direction": "row" | "column";
+        /**
+          * Uses CSS border style syntax
+          * @uiName Border style
+         */
+        "dividerStyle": string;
     }
     interface SqmEditProfile {
         /**
@@ -81,7 +93,8 @@ export namespace Components {
          */
         "currentregiontext": string;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<EditProfileViewProps>;
         /**
@@ -120,6 +133,9 @@ export namespace Components {
         "type": string;
     }
     interface SqmGraphqlClientProvider {
+        /**
+          * @uiName Domain
+         */
         "domain": string;
     }
     interface SqmHookStoryContainer {
@@ -127,7 +143,8 @@ export namespace Components {
     }
     interface SqmLeaderboard {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
@@ -139,13 +156,23 @@ export namespace Components {
         /**
           * @uiName Leaderboard type
           * @uiType string
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
          */
         "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
         /**
           * @uiName Rank type
           * @uiType string
+          * @uiEnum ["rowNumber", "rank", "denseRank"]
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
+        /**
+          * @uiName Rank Heading
+         */
+        "rankheading"?: string;
+        /**
+          * @uiName Show the ranking numbers
+         */
+        "showRank": boolean;
         /**
           * @uiName Stats Column Heading
          */
@@ -157,7 +184,8 @@ export namespace Components {
     }
     interface SqmLeaderboardRank {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<LeaderboardRankViewProps>;
         /**
@@ -169,19 +197,28 @@ export namespace Components {
         /**
           * @uiName Leaderboard type
           * @uiType string
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
          */
         "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
+        /**
+          * @uiName Rank Text
+         */
         "rankText": string;
         /**
           * @uiName Default rank
           * @uiType string
+          * @uiEnum ["rowNumber", "rank", "denseRank"]
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
+        /**
+          * @uiName Unranked Text
+         */
         "unrankedText": string;
     }
     interface SqmNavigationMenu {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<NavigationMenuViewProps>;
         /**
@@ -197,7 +234,8 @@ export namespace Components {
     }
     interface SqmNavigationSidebarItem {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<NavigationSidebarItemViewProps>;
         /**
@@ -215,7 +253,8 @@ export namespace Components {
     }
     interface SqmPasswordField {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: PasswordFieldViewDemoProps;
         /**
@@ -239,11 +278,13 @@ export namespace Components {
         /**
           * @uiName Specify padding on the popup contents when in embedded mode
           * @uiType string
+          * @uiEnum ["none", "small", "medium", "large"]
          */
         "embedPadding"?: "none" | "small" | "medium" | "large";
         /**
           * @uiName Specify padding on the popup contents when in popup mode
           * @uiType string
+          * @uiEnum ["none", "small", "medium", "large"]
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
@@ -265,7 +306,8 @@ export namespace Components {
          */
         "confirmPasswordFieldLabel": string;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
         /**
@@ -292,10 +334,14 @@ export namespace Components {
     interface SqmPortalContainer {
         /**
           * @uiName Direction
+          * @uiType string
+          * @uiEnum ["row", "column"]
          */
         "direction": "row" | "column";
         /**
           * @uiName Gap
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "gap": Spacing;
         /**
@@ -304,12 +350,15 @@ export namespace Components {
         "minWidth"?: string;
         /**
           * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "padding": Spacing;
     }
     interface SqmPortalEmailVerification {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalEmailVerificationViewProps>;
         /**
@@ -327,21 +376,30 @@ export namespace Components {
     }
     interface SqmPortalForgotPassword {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalForgotPasswordViewProps>;
+        /**
+          * @uiName Email label
+         */
         "emailLabel": string;
+        /**
+          * @uiName Password reset button text
+         */
         "submitLabel": string;
     }
     interface SqmPortalFrame {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalFrameViewProps>;
     }
     interface SqmPortalLogin {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalLoginViewProps>;
         /**
@@ -374,6 +432,9 @@ export namespace Components {
         "submitLabel": string;
     }
     interface SqmPortalLogout {
+        /**
+          * @uiName Next Page path
+         */
         "nextPage": string;
     }
     interface SqmPortalProfile {
@@ -382,7 +443,8 @@ export namespace Components {
          */
         "countrytext": string;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalProfileViewProps>;
         /**
@@ -415,8 +477,17 @@ export namespace Components {
         "submitChangeButtonText": string;
     }
     interface SqmPortalProtectedRoute {
+        /**
+          * @uiName Redirect Path
+         */
         "redirectTo": string;
+        /**
+          * @uiName Redirect unverified users path
+         */
         "redirectToUnverified": string;
+        /**
+          * @uiName Require Email Verification
+         */
         "requireEmailVerification": boolean;
     }
     interface SqmPortalRegister {
@@ -429,7 +500,8 @@ export namespace Components {
          */
         "confirmPasswordLabel": string;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
         /**
@@ -466,6 +538,9 @@ export namespace Components {
         "submitLabel": string;
     }
     interface SqmPortalResetPassword {
+        /**
+          * @uiName Show confirm password
+         */
         "confirmPassword": boolean;
         /**
           * @uiName Confirm password field label
@@ -477,9 +552,13 @@ export namespace Components {
          */
         "continueButtonText": string;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
+        /**
+          * @uiName Next page path
+         */
         "nextPage": string;
         /**
           * Displayed after a successful password reset
@@ -497,20 +576,21 @@ export namespace Components {
     }
     interface SqmPortalVerifyEmail {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalVerifyEmailViewProps>;
+        /**
+          * @uiName Next page path
+         */
         "nextPage": string;
     }
     interface SqmProgramMenu {
-        /**
-          * @uiName Label on the header menu
-         */
-        "menuLabel": string;
     }
     interface SqmReferralTable {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<ReferralTableViewProps>;
         /**
@@ -543,6 +623,9 @@ export namespace Components {
         "innerTemplate": string;
     }
     interface SqmReferralTableColumn {
+        /**
+          * @uiName Column Title
+         */
         "columnTitle": string;
         "renderCell": (_: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
@@ -551,16 +634,32 @@ export namespace Components {
         "date": number;
     }
     interface SqmReferralTableDateColumn {
+        /**
+          * @uiName Date Column Title
+         */
         "columnTitle": string;
-        "dateShown": string;
+        /**
+          * @uiName Date Displayed
+          * @uiType string
+          * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
+         */
+        "dateShown": ReferralDates;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableRewardsCell {
+        "hideDetails": boolean;
         "rewards": Reward[];
     }
     interface SqmReferralTableRewardsColumn {
+        /**
+          * @uiName Reward column title
+         */
         "columnTitle": string;
+        /**
+          * @uiName Hide dropdown details of reward
+         */
+        "hideDetails": boolean;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
@@ -569,8 +668,17 @@ export namespace Components {
         "statusText": string;
     }
     interface SqmReferralTableStatusColumn {
+        /**
+          * @uiName Column Title
+         */
         "columnTitle": string;
+        /**
+          * @uiName Converted Status Text
+         */
         "convertedStatusText": string;
+        /**
+          * @uiName In Progress Status Text
+         */
         "inProgressStatusText": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
@@ -583,6 +691,9 @@ export namespace Components {
           * @uiName Name displayed for anonymous users
          */
         "anonymousUser": string;
+        /**
+          * @uiName User Column Title
+         */
         "columnTitle": string;
         /**
           * @uiName Name displayed for deleted users
@@ -601,7 +712,8 @@ export namespace Components {
     }
     interface SqmShareButton {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<ShareButtonViewProps>;
         /**
@@ -685,7 +797,8 @@ export namespace Components {
     }
     interface SqmShareCode {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<ShareLinkViewProps>;
         /**
@@ -706,7 +819,8 @@ export namespace Components {
     }
     interface SqmShareLink {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<ShareLinkViewProps>;
         /**
@@ -728,6 +842,8 @@ export namespace Components {
     interface SqmStatContainer {
         /**
           * @uiName Space between stats
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "space": Spacing;
     }
@@ -743,26 +859,45 @@ export namespace Components {
     interface SqmText {
     }
     interface SqmTextSpan {
+        /**
+          * @uiName Text
+         */
         "text": string;
+        /**
+          * @uiName Text
+          * @uiType string
+          * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
+         */
         "type": "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
     interface SqmTitledSection {
         "label": string;
         /**
           * @uiName Label margin style
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "labelMargin": Spacing;
         /**
           * @uiName Section padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "padding": Spacing;
     }
     interface SqmUserName {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<UserNameViewProps>;
+        /**
+          * @uiName Fallback name for nameless users
+         */
         "fallback": string;
+        /**
+          * @uiName Loading text
+         */
         "loadingText": string;
     }
 }
@@ -1130,7 +1265,8 @@ declare global {
 declare namespace LocalJSX {
     interface SqmAssetCard {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<AssetCardViewProps>;
         /**
@@ -1145,10 +1281,13 @@ declare namespace LocalJSX {
     interface SqmBigStat {
         /**
           * @uiName Alignment - controls the alignment of the flexbox
+          * @uiType string
+          * @uiEnum ["left", "right", "center"]
          */
         "alignment"?: "left" | "right" | "center";
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<BigStatViewProps>;
         /**
@@ -1166,8 +1305,15 @@ declare namespace LocalJSX {
     interface SqmDividedLayout {
         /**
           * @uiName Direction
+          * @uiType string
+          * @uiEnum ["row", "column"]
          */
         "direction"?: "row" | "column";
+        /**
+          * Uses CSS border style syntax
+          * @uiName Border style
+         */
+        "dividerStyle"?: string;
     }
     interface SqmEditProfile {
         /**
@@ -1179,7 +1325,8 @@ declare namespace LocalJSX {
          */
         "currentregiontext"?: string;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<EditProfileViewProps>;
         /**
@@ -1218,6 +1365,9 @@ declare namespace LocalJSX {
         "type"?: string;
     }
     interface SqmGraphqlClientProvider {
+        /**
+          * @uiName Domain
+         */
         "domain"?: string;
     }
     interface SqmHookStoryContainer {
@@ -1225,7 +1375,8 @@ declare namespace LocalJSX {
     }
     interface SqmLeaderboard {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
@@ -1237,13 +1388,23 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard type
           * @uiType string
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
          */
         "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
         /**
           * @uiName Rank type
           * @uiType string
+          * @uiEnum ["rowNumber", "rank", "denseRank"]
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
+        /**
+          * @uiName Rank Heading
+         */
+        "rankheading"?: string;
+        /**
+          * @uiName Show the ranking numbers
+         */
+        "showRank"?: boolean;
         /**
           * @uiName Stats Column Heading
          */
@@ -1255,7 +1416,8 @@ declare namespace LocalJSX {
     }
     interface SqmLeaderboardRank {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<LeaderboardRankViewProps>;
         /**
@@ -1267,19 +1429,28 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard type
           * @uiType string
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
          */
         "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
+        /**
+          * @uiName Rank Text
+         */
         "rankText"?: string;
         /**
           * @uiName Default rank
           * @uiType string
+          * @uiEnum ["rowNumber", "rank", "denseRank"]
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
+        /**
+          * @uiName Unranked Text
+         */
         "unrankedText"?: string;
     }
     interface SqmNavigationMenu {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<NavigationMenuViewProps>;
         /**
@@ -1295,7 +1466,8 @@ declare namespace LocalJSX {
     }
     interface SqmNavigationSidebarItem {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<NavigationSidebarItemViewProps>;
         /**
@@ -1313,7 +1485,8 @@ declare namespace LocalJSX {
     }
     interface SqmPasswordField {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: PasswordFieldViewDemoProps;
         /**
@@ -1337,11 +1510,13 @@ declare namespace LocalJSX {
         /**
           * @uiName Specify padding on the popup contents when in embedded mode
           * @uiType string
+          * @uiEnum ["none", "small", "medium", "large"]
          */
         "embedPadding"?: "none" | "small" | "medium" | "large";
         /**
           * @uiName Specify padding on the popup contents when in popup mode
           * @uiType string
+          * @uiEnum ["none", "small", "medium", "large"]
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
@@ -1363,7 +1538,8 @@ declare namespace LocalJSX {
          */
         "confirmPasswordFieldLabel"?: string;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
         /**
@@ -1390,10 +1566,14 @@ declare namespace LocalJSX {
     interface SqmPortalContainer {
         /**
           * @uiName Direction
+          * @uiType string
+          * @uiEnum ["row", "column"]
          */
         "direction"?: "row" | "column";
         /**
           * @uiName Gap
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "gap"?: Spacing;
         /**
@@ -1402,12 +1582,15 @@ declare namespace LocalJSX {
         "minWidth"?: string;
         /**
           * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "padding"?: Spacing;
     }
     interface SqmPortalEmailVerification {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalEmailVerificationViewProps>;
         /**
@@ -1425,21 +1608,30 @@ declare namespace LocalJSX {
     }
     interface SqmPortalForgotPassword {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalForgotPasswordViewProps>;
+        /**
+          * @uiName Email label
+         */
         "emailLabel"?: string;
+        /**
+          * @uiName Password reset button text
+         */
         "submitLabel"?: string;
     }
     interface SqmPortalFrame {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalFrameViewProps>;
     }
     interface SqmPortalLogin {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalLoginViewProps>;
         /**
@@ -1472,6 +1664,9 @@ declare namespace LocalJSX {
         "submitLabel"?: string;
     }
     interface SqmPortalLogout {
+        /**
+          * @uiName Next Page path
+         */
         "nextPage"?: string;
     }
     interface SqmPortalProfile {
@@ -1480,7 +1675,8 @@ declare namespace LocalJSX {
          */
         "countrytext"?: string;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalProfileViewProps>;
         /**
@@ -1513,8 +1709,17 @@ declare namespace LocalJSX {
         "submitChangeButtonText"?: string;
     }
     interface SqmPortalProtectedRoute {
+        /**
+          * @uiName Redirect Path
+         */
         "redirectTo"?: string;
+        /**
+          * @uiName Redirect unverified users path
+         */
         "redirectToUnverified"?: string;
+        /**
+          * @uiName Require Email Verification
+         */
         "requireEmailVerification"?: boolean;
     }
     interface SqmPortalRegister {
@@ -1527,7 +1732,8 @@ declare namespace LocalJSX {
          */
         "confirmPasswordLabel"?: string;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalRegisterViewProps>;
         /**
@@ -1564,6 +1770,9 @@ declare namespace LocalJSX {
         "submitLabel"?: string;
     }
     interface SqmPortalResetPassword {
+        /**
+          * @uiName Show confirm password
+         */
         "confirmPassword"?: boolean;
         /**
           * @uiName Confirm password field label
@@ -1575,9 +1784,13 @@ declare namespace LocalJSX {
          */
         "continueButtonText"?: string;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
+        /**
+          * @uiName Next page path
+         */
         "nextPage"?: string;
         /**
           * Displayed after a successful password reset
@@ -1595,20 +1808,21 @@ declare namespace LocalJSX {
     }
     interface SqmPortalVerifyEmail {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<PortalVerifyEmailViewProps>;
+        /**
+          * @uiName Next page path
+         */
         "nextPage"?: string;
     }
     interface SqmProgramMenu {
-        /**
-          * @uiName Label on the header menu
-         */
-        "menuLabel"?: string;
     }
     interface SqmReferralTable {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<ReferralTableViewProps>;
         /**
@@ -1641,28 +1855,56 @@ declare namespace LocalJSX {
         "innerTemplate"?: string;
     }
     interface SqmReferralTableColumn {
+        /**
+          * @uiName Column Title
+         */
         "columnTitle"?: string;
     }
     interface SqmReferralTableDateCell {
         "date"?: number;
     }
     interface SqmReferralTableDateColumn {
+        /**
+          * @uiName Date Column Title
+         */
         "columnTitle"?: string;
-        "dateShown"?: string;
+        /**
+          * @uiName Date Displayed
+          * @uiType string
+          * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
+         */
+        "dateShown"?: ReferralDates;
     }
     interface SqmReferralTableRewardsCell {
+        "hideDetails"?: boolean;
         "rewards"?: Reward[];
     }
     interface SqmReferralTableRewardsColumn {
+        /**
+          * @uiName Reward column title
+         */
         "columnTitle"?: string;
+        /**
+          * @uiName Hide dropdown details of reward
+         */
+        "hideDetails"?: boolean;
     }
     interface SqmReferralTableStatusCell {
         "converted"?: boolean;
         "statusText"?: string;
     }
     interface SqmReferralTableStatusColumn {
+        /**
+          * @uiName Column Title
+         */
         "columnTitle"?: string;
+        /**
+          * @uiName Converted Status Text
+         */
         "convertedStatusText"?: string;
+        /**
+          * @uiName In Progress Status Text
+         */
         "inProgressStatusText"?: string;
     }
     interface SqmReferralTableUserCell {
@@ -1673,6 +1915,9 @@ declare namespace LocalJSX {
           * @uiName Name displayed for anonymous users
          */
         "anonymousUser"?: string;
+        /**
+          * @uiName User Column Title
+         */
         "columnTitle"?: string;
         /**
           * @uiName Name displayed for deleted users
@@ -1689,7 +1934,8 @@ declare namespace LocalJSX {
     }
     interface SqmShareButton {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<ShareButtonViewProps>;
         /**
@@ -1773,7 +2019,8 @@ declare namespace LocalJSX {
     }
     interface SqmShareCode {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<ShareLinkViewProps>;
         /**
@@ -1794,7 +2041,8 @@ declare namespace LocalJSX {
     }
     interface SqmShareLink {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<ShareLinkViewProps>;
         /**
@@ -1816,6 +2064,8 @@ declare namespace LocalJSX {
     interface SqmStatContainer {
         /**
           * @uiName Space between stats
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "space"?: Spacing;
     }
@@ -1831,26 +2081,45 @@ declare namespace LocalJSX {
     interface SqmText {
     }
     interface SqmTextSpan {
+        /**
+          * @uiName Text
+         */
         "text"?: string;
+        /**
+          * @uiName Text
+          * @uiType string
+          * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
+         */
         "type"?: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
     interface SqmTitledSection {
         "label"?: string;
         /**
           * @uiName Label margin style
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "labelMargin"?: Spacing;
         /**
           * @uiName Section padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "padding"?: Spacing;
     }
     interface SqmUserName {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<UserNameViewProps>;
+        /**
+          * @uiName Fallback name for nameless users
+         */
         "fallback"?: string;
+        /**
+          * @uiName Loading text
+         */
         "loadingText"?: string;
     }
     interface IntrinsicElements {
