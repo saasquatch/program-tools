@@ -30,7 +30,7 @@ export function useProgramSwitch() {
     });
 
     //@ts-ignore - can't access template attributes directly
-    const templateProgramId = template?.attributes?.["program-id"]?.nodeValue;
+    const templateProgramId = template?.attributes?.['program-id']?.nodeValue;
 
     debug({
       template,
@@ -38,11 +38,13 @@ export function useProgramSwitch() {
       templateProgramId,
       programId,
     });
+
+    console.log('HEY', template);
     // if no routes found, and the old route doesn't match the new route
     if (!template) {
       // No matching page, display nothing
       debug('No matching programId Template found for ', programId, ', so render nothing');
-      container.innerHTML = '';
+      // container.innerHTML = '';
       container.dataset.programId = programId;
       return;
     }
@@ -55,8 +57,8 @@ export function useProgramSwitch() {
       // Same page, do not re-render
       // Reduces dom mutations, speeds up page speed
     } else if (template) {
-      console.log(template.innerHTML);
-      container.innerHTML = template.innerHTML;
+      // use outerHTML if template's innerHTML is unset (only happens in Stencilbook)
+      container.innerHTML = template.innerHTML || template.firstElementChild.outerHTML;
       container.dataset.programId = templateProgramId;
     }
   }, [slot, container, programId]);

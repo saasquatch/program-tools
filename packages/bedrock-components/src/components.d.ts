@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { FunctionalComponent } from "@stencil/core";
+import { DemoData } from "./global/demo";
 export namespace Components {
     interface SqbConditionalSection {
         /**
@@ -29,6 +30,11 @@ export namespace Components {
     interface SqbStencilbook {
     }
     interface SqbWidget {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<WidgetProps>;
         /**
           * When enabled then this widget is hidden until a user is logged in. Defaults to false.
           * @uiName Auth Required
@@ -110,6 +116,11 @@ declare namespace LocalJSX {
     interface SqbStencilbook {
     }
     interface SqbWidget {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<WidgetProps>;
         /**
           * When enabled then this widget is hidden until a user is logged in. Defaults to false.
           * @uiName Auth Required

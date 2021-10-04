@@ -3,14 +3,13 @@ import { useStencilbook } from '@saasquatch/stencilbook';
 import { withHooks } from '@saasquatch/stencil-hooks';
 
 import * as MyComponent from '../../stories/MyComponent.stories';
-// import * as ProgramSwitch from '../../stories/ProgramSwitch.stories';
+import * as ProgramSwitch from '../../stories/ProgramSwitch.stories';
+import * as PortalFrame from '../../stories/PortalFrame.stories';
+import * as Widget from '../../stories/Widget.stories';
 import { HookStoryAddon } from './HookStoryAddon';
 
 // Import and add all stories to this array
-const stories = [
-  MyComponent, 
-  // ProgramSwitch
-];
+const stories = [MyComponent, PortalFrame, ProgramSwitch, Widget];
 
 /**
  * For internal documentation
