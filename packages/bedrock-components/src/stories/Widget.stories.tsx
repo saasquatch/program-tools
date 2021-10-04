@@ -27,9 +27,14 @@ export const Default = createHookStory(() => {
 });
 
 export const DemoWidget = () => {
+  //@ts-ignore
+  window.widgetIdent = {
+    env: 'demo',
+  };
   return (
     <sqb-widget
       widget-type="demo"
+      //@ts-ignore
       demoData={{
         data: {
           html: `<sqm-portal-protected-route

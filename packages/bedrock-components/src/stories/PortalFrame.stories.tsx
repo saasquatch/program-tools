@@ -40,35 +40,35 @@ export default {
   title: "Portal Frame",
 };
 
-const defaultProps = {
-  data: {
-    footer: <span>example@example.com</span>,
-    header: (
-      <div slot="header" style={{ display: "flex", flexDirection: "column" }}>
-        <span
-          style={{
-            fontSize: "var(--sl-font-size-large)",
-            fontWeight: "bold",
-          }}
-        >
-          Portal Header
-        </span>
-        <span style={{ fontSize: "var(--sl-font-size-small)" }}>
-          A description for the portal
-        </span>
-      </div>
-    ),
-  },
-  callbacks: {
-    rerender: () => {},
-  },
-  ref: { current: undefined },
-};
+// const defaultProps = {
+//   data: {
+//     footer: <span>example@example.com</span>,
+//     header: (
+//       <div slot="header" style={{ display: "flex", flexDirection: "column" }}>
+//         <span
+//           style={{
+//             fontSize: "var(--sl-font-size-large)",
+//             fontWeight: "bold",
+//           }}
+//         >
+//           Portal Header
+//         </span>
+//         <span style={{ fontSize: "var(--sl-font-size-small)" }}>
+//           A description for the portal
+//         </span>
+//       </div>
+//     ),
+//   },
+//   callbacks: {
+//     rerender: () => {},
+//   },
+//   ref: { current: undefined },
+// };
 
 export const FrameWithMenu = () => {
-  const props = {
-    ...defaultProps,
-  };
+  // const props = {
+  //   ...defaultProps,
+  // };
   return (
     <div>
       <sqm-navigation-menu menu-label="Menu">
@@ -88,9 +88,9 @@ export const FrameWithMenu = () => {
 };
 
 export const FrameWithoutMenu = () => {
-  const props = {
-    ...defaultProps,
-  };
+  // const props = {
+  //   ...defaultProps,
+  // };
   return <div />;
 };
 
