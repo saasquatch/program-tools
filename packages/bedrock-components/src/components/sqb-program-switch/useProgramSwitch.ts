@@ -42,7 +42,7 @@ export function useProgramSwitch() {
     if (!template) {
       // No matching page, display nothing
       debug('No matching programId Template found for ', programId, ', so render nothing');
-      // container.innerHTML = '';
+      container.innerHTML = '';
       container.dataset.programId = programId;
       return;
     }

@@ -47,7 +47,7 @@ export class SqbWidget {
 
   render() {
     const { data } = isDemo() ? useWidgetDemo(this) : useWidget(this);
-    return <Host style={{ display: 'contents' }} innerHTML={data.html || ''} />;
+    return <Host style={{ display: 'contents' }} innerHTML={data.html} />;
   }
 }
 
@@ -58,13 +58,5 @@ type WidgetProps = {
 };
 
 function useWidgetDemo(props: SqbWidget) {
-  return deepmerge(
-    {
-      data: {
-        html: '',
-      },
-    },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a },
-  );
+  return deepmerge({ data: {} }, props.demoData || {}, { arrayMerge: (_, a) => a });
 }

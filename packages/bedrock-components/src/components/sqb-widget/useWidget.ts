@@ -61,7 +61,7 @@ export function useWidget(props: SqbWidget) {
     }
   }, [props.widgetType, props.requireAuth, userIdent?.jwt]);
 
-  const html = data?.renderWidget?.widgetConfig?.values?.htmlTemplate;
+  const html = data?.renderWidget?.widgetConfig?.values?.htmlTemplate || '';
 
   return {
     states: {
