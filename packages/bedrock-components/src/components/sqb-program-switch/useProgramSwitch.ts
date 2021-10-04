@@ -48,15 +48,16 @@ export function useProgramSwitch() {
     }
 
     debug('Program selection updated to ', programId, template);
+    // use outerHTML if template's innerHTML is unset (only happens in Stencilbook)
+    const newContent = template.innerHTML || template.firstElementChild.outerHTML;
 
-    // if programId is an exact match
-    if (templateProgramId === container.dataset.programId) {
+    // if template contents are an exact match
+    if (newContent === container.innerHTML) {
       debug("don't rerender");
       // Same page, do not re-render
       // Reduces dom mutations, speeds up page speed
     } else if (template) {
-      // use outerHTML if template's innerHTML is unset (only happens in Stencilbook)
-      container.innerHTML = template.innerHTML || template.firstElementChild.outerHTML;
+      container.innerHTML = newContent;
       container.dataset.programId = templateProgramId;
     }
   }, [slot, container, programId]);
