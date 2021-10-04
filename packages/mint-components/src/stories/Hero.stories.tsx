@@ -25,11 +25,29 @@ export const LoginOneColumn = () => {
   );
 };
 
+export const LoginOneColumnWithColor = () => {
+  const props = {
+    states: {
+      columns: 1 as const,
+      background:
+        "LightSlateGrey",
+    },
+    content: {},
+  };
+  return (
+    <div style={{ height: "800px" }}>
+      <HeroView {...props}>
+        <sqm-portal-login></sqm-portal-login>
+      </HeroView>
+    </div>
+  );
+};
+
 export const LoginOneColumnWithImage = () => {
   const props = {
     states: {
       columns: 1 as const,
-      backgroundImage:
+      background:
         "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
     },
     content: {},

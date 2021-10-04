@@ -124,9 +124,9 @@ export namespace Components {
     }
     interface SqmHero {
         /**
-          * @uiName Hero image
+          * @uiName Background image or color
          */
-        "backgroundImage"?: string;
+        "background"?: string;
         /**
           * @uiName Number of columns in the layout
          */
@@ -1143,9 +1143,9 @@ declare namespace LocalJSX {
     }
     interface SqmHero {
         /**
-          * @uiName Hero image
+          * @uiName Background image or color
          */
-        "backgroundImage"?: string;
+        "background"?: string;
         /**
           * @uiName Number of columns in the layout
          */

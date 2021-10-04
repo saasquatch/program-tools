@@ -17,8 +17,8 @@ export class Hero {
   /** @uiName Number of columns in the layout */
   @Prop() columns: 1 | 2;
 
-  /** @uiName Hero image */
-  @Prop() backgroundImage?: string;
+  /** @uiName Background image or color*/
+  @Prop() background?: string;
 
   constructor() {
     withHooks(this);

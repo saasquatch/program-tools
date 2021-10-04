@@ -5,7 +5,7 @@ import preset from "jss-preset-default";
 export interface HeroProps {
   states: {
     columns: 1 | 2;
-    backgroundImage?: string;
+    background?: string;
   };
   content: {
     leftColumn?: VNode;
@@ -16,7 +16,21 @@ export interface HeroProps {
 export function HeroView(props: HeroProps, children: VNode) {
   const { states, content } = props;
 
-  console.log(states.backgroundImage);
+  const isValidColor = (teststr: string) => {
+    return CSS.supports(`(color: ${teststr})`);
+  };
+
+  const parseBackground = (provided_bg: string) => {
+    if (provided_bg) {
+      if (isValidColor(provided_bg)) {
+        return provided_bg;
+      } else {
+        return `url(${provided_bg})`;
+      }
+    } else {
+      return "";
+    }
+  };
 
   const column = {
     display: "flex",
@@ -36,13 +50,11 @@ export function HeroView(props: HeroProps, children: VNode) {
     },
     Container: {
       width: "100%",
-      minHeight: "100%",
-      backgroundImage: `${
-        states.backgroundImage ? `url(${states.backgroundImage})` : ""
-      }`,
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
+      ...column,
+      alignItems: "unset",
+      background: `no-repeat center/cover ${parseBackground(
+        states.background
+      )}`,
     },
   };
 
