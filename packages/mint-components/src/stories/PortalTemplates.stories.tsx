@@ -2,7 +2,9 @@ import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
 import portalTemplate from "../templates/Portal.html";
+import portalTemplateWithDashboard from "../templates/PortalWithDashboard.html";
 import multiProgramTemplate from "../templates/MultiProgramPortal.html";
+import multiProgramTemplateWithDashboard from "../templates/MultiProgramPortalWithDashboard.html";
 import dashboardTemplate from "../templates/Dashboard.html";
 import editProfileTemplate from "../templates/EditProfile.html";
 import activityTemplate from "../templates/Activity.html";
@@ -14,7 +16,18 @@ import forgotPasswordTemplate from "../templates/ForgotPassword.html";
 import resetPasswordTemplate from "../templates/ResetPassword.html";
 import emailVerifiedTemplate from "../templates/EmailVerified.html";
 import emailVerificationTemplate from "../templates/EmailVerification.html";
+import marked from "marked";
+
+import LoginReadme from "../components/sqm-portal-login/readme.md";
+import ForgotPasswordReadme from "../components/sqm-portal-forgot-password/readme.md";
+import RegisterReadme from "../components/sqm-portal-register/readme.md";
+import EditProfileReadme from "../components/sqm-portal-profile/readme.md";
+import ResetPasswordReadme from "../components/sqm-portal-reset-password/readme.md";
+import EmailVerificationReadme from "../components/sqm-portal-email-verification/readme.md";
+import EmailVerifiedReadme from "../components/sqm-portal-verify-email/readme.md";
+
 import { navigation } from "@saasquatch/component-boilerplate";
+
 export default {
   title: "Templates / Portal",
 };
@@ -37,7 +50,8 @@ function useTemplate(templateString: string) {
 }
 
 function TemplateView(props) {
-  const { states, callbacks } = props;
+  const { states, callbacks, readme } = props;
+
   return [
     <textarea
       style={{ width: "100%", height: "300px" }}
@@ -50,8 +64,34 @@ function TemplateView(props) {
     <button onClick={() => callbacks.setPreviewTemplate(states.editedTemplate)}>
       Update Preview
     </button>,
+    readme ? (
+      <details>
+        <summary>show me the money</summary>
+        <div innerHTML={marked(readme)}></div>
+      </details>
+    ) : (
+      ""
+    ),
     <div innerHTML={states.previewTemplate}></div>,
   ];
+}
+
+function Buttons({ callbacks, states, template }) {
+  return (
+    <div>
+      <button
+        onClick={() => callbacks.setPreviewTemplate(states.editedTemplate)}
+      >
+        Update Preview
+      </button>
+      <button
+        style={{ marginLeft: "10px" }}
+        onClick={() => callbacks.setPreviewTemplate(template)}
+      >
+        Preview Dashboard
+      </button>
+    </div>
+  );
 }
 
 function DefaultTemplateView(props) {
@@ -66,31 +106,39 @@ function DefaultTemplateView(props) {
       >
         {states.editedTemplate}
       </textarea>
-      <button
-        onClick={() => callbacks.setPreviewTemplate(states.editedTemplate)}
-      >
-        Update Preview
-      </button>
+      <Buttons
+        states={states}
+        callbacks={callbacks}
+        template={props.template}
+      />
       <h2>Navigation</h2>
-      <button onClick={() => navigation.push("/")}>Dashboard</button>
-      <button onClick={() => navigation.push("/activity")}>Activity</button>
-      <button onClick={() => navigation.push("/editProfile")}>
-        Edit Profile
-      </button>
-      <button onClick={() => navigation.push("/login")}>Login</button>
-      <button onClick={() => navigation.push("/register")}>Register</button>
-      <button onClick={() => navigation.push("/emailVerification")}>
-        Email Verification
-      </button>
-      <button onClick={() => navigation.push("/verifyEmail")}>
-        Verify Email
-      </button>
-      <button onClick={() => navigation.push("/forgotPassword")}>
-        Forgot Password
-      </button>
-      <button onClick={() => navigation.push("/resetPassword")}>
-        Reset Password
-      </button>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(9, 80px)",
+          gridGap: "10px",
+        }}
+      >
+        <button onClick={() => navigation.push("/")}>Dashboard</button>
+        <button onClick={() => navigation.push("/activity")}>Activity</button>
+        <button onClick={() => navigation.push("/editProfile")}>
+          Edit Profile
+        </button>
+        <button onClick={() => navigation.push("/login")}>Login</button>
+        <button onClick={() => navigation.push("/register")}>Register</button>
+        <button onClick={() => navigation.push("/emailVerification")}>
+          Email Verification
+        </button>
+        <button onClick={() => navigation.push("/verifyEmail")}>
+          Verify Email
+        </button>
+        <button onClick={() => navigation.push("/forgotPassword")}>
+          Forgot Password
+        </button>
+        <button onClick={() => navigation.push("/resetPassword")}>
+          Reset Password
+        </button>
+      </div>
       <br />
       <div innerHTML={states.previewTemplate}></div>
     </div>
@@ -99,27 +147,53 @@ function DefaultTemplateView(props) {
 
 export const DefaultPortal = createHookStory(() => {
   const { states, callbacks } = useTemplate(portalTemplate);
-  return <DefaultTemplateView states={states} callbacks={callbacks} />;
+  return (
+    <DefaultTemplateView
+      states={states}
+      callbacks={callbacks}
+      template={portalTemplateWithDashboard}
+    />
+  );
 });
 
 export const MultiProgramPortal = createHookStory(() => {
   const { states, callbacks } = useTemplate(multiProgramTemplate);
-  return <DefaultTemplateView states={states} callbacks={callbacks} />;
+  return (
+    <DefaultTemplateView
+      states={states}
+      callbacks={callbacks}
+      template={multiProgramTemplateWithDashboard}
+    />
+  );
 });
 
 export const Login = createHookStory(() => {
   const { states, callbacks } = useTemplate(loginTemplate);
-  return <TemplateView states={states} callbacks={callbacks} />;
+  return (
+    <TemplateView states={states} callbacks={callbacks} readme={LoginReadme} />
+  );
 });
 
 export const ForgotPassword = createHookStory(() => {
   const { states, callbacks } = useTemplate(forgotPasswordTemplate);
-  return <TemplateView states={states} callbacks={callbacks} />;
+  return (
+    <TemplateView
+      states={states}
+      callbacks={callbacks}
+      readme={ForgotPasswordReadme}
+    />
+  );
 });
 
 export const Register = createHookStory(() => {
   const { states, callbacks } = useTemplate(registerTemplate);
-  return <TemplateView states={states} callbacks={callbacks} />;
+  return (
+    <TemplateView
+      states={states}
+      callbacks={callbacks}
+      readme={RegisterReadme}
+    />
+  );
 });
 
 export const Dashboard = createHookStory(() => {
@@ -134,99 +208,48 @@ export const Activity = createHookStory(() => {
 
 export const EditProfile = createHookStory(() => {
   const { states, callbacks } = useTemplate(editProfileTemplate);
-  return <TemplateView states={states} callbacks={callbacks} />;
+  return (
+    <TemplateView
+      states={states}
+      callbacks={callbacks}
+      readme={EditProfileReadme}
+    />
+  );
 });
 
 export const ResetPassword = createHookStory(() => {
   const { states, callbacks } = useTemplate(resetPasswordTemplate);
-  return <TemplateView states={states} callbacks={callbacks} />;
+  return (
+    <TemplateView
+      states={states}
+      callbacks={callbacks}
+      readme={ResetPasswordReadme}
+    />
+  );
 });
 
 export const EmailVerification = createHookStory(() => {
   const { states, callbacks } = useTemplate(emailVerificationTemplate);
-  return <TemplateView states={states} callbacks={callbacks} />;
+  return (
+    <TemplateView
+      states={states}
+      callbacks={callbacks}
+      readme={EmailVerificationReadme}
+    />
+  );
 });
 
 export const EmailVerified = createHookStory(() => {
   const { states, callbacks } = useTemplate(emailVerifiedTemplate);
-  return <TemplateView states={states} callbacks={callbacks} />;
-});
-
-// export const ProgramSwitchDemo = createHookStory(() => {
-//   return (
-//     <div>
-//       <sqb-program-section program-id="Vacay-referral">
-//         <sqm-program-menu>
-//           <sl-menu-item value="Vacay-referral">Vacay-referral</sl-menu-item>
-//           <sl-menu-item value="vacay-affiliates">vacay-affiliates</sl-menu-item>
-//         </sqm-program-menu>
-//         <sqb-program-switch>
-//           <template program-id="Vacay-referral">
-//             <sqb-widget
-//               widget-type="p/Vacay-referral/w/referrerWidget"
-//               demoData={{
-//                 data: {
-//                   html: dashboardTemplate,
-//                 },
-//               }}
-//             ></sqb-widget>
-//           </template>
-//           <template program-id="vacay-affiliates">
-//             <sqb-widget
-//               widget-type="p/Vacay-referral/w/referrerWidget"
-//               demoData={{
-//                 data: {
-//                   html: dashboardTemplate,
-//                 },
-//               }}
-//             ></sqb-widget>
-//           </template>
-//         </sqb-program-switch>
-//       </sqb-program-section>
-//     </div>
-//   );
-// });
-
-function useGraphQL() {
-  window.widgetIdent = {
-    tenantAlias: "test_agvu4yg8zrkxt",
-    appDomain: "https://app.referralsaasquatch.com",
-    userId: "rfcdhX2WTcgyJUB061TxE1xwXvj1",
-    accountId: "rfcdhX2WTcgyJUB061TxE1xwXvj1",
-    token:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEiLCJpZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEifX0.lGUEN_cmRrSdw-y2fEz-BQ2R5COoN8tQTiKJGEMfCcI",
-    programId: "Vacay-referral",
-    engagementMedium: "EMBED",
-  };
-}
-
-export const ProgramSwitch = createHookStory(() => {
-  useGraphQL();
-
-  useEffect(() => {
-    return () =>
-      //@ts-ignore
-      (window.widgetIdent = { env: "demo" });
-  }, []);
   return (
-    <div>
-      <sqb-program-section program-id="Vacay-referral">
-        <sqm-program-menu>
-          <sl-menu-item value="Vacay-referral">Vacay-referral</sl-menu-item>
-          <sl-menu-item value="vacay-affiliates">vacay-affiliates</sl-menu-item>
-        </sqm-program-menu>
-        <sqb-program-switch>
-          <template program-id="Vacay-referral">
-            <sqb-widget widget-type="p/Vacay-referral/w/referrerWidget"></sqb-widget>
-          </template>
-          <template program-id="vacay-affiliates">
-            <sqb-widget widget-type="p/vacay-affiliates/w/referrerWidget"></sqb-widget>
-          </template>
-        </sqb-program-switch>
-      </sqb-program-section>
-    </div>
+    <TemplateView
+      states={states}
+      callbacks={callbacks}
+      readme={EmailVerifiedReadme}
+    />
   );
 });
+
 export const Widget = createHookStory(() => {
   return (
     <sqb-widget

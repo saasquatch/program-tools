@@ -7,7 +7,7 @@
       />
     </sqm-text>
   </a>
-  <sqb-program-section program-id="referral-program-1">
+  <sqb-program-section program-id="referral-program">
     <sqm-graphql-client-provider
       domain="https://managed-identity.saasquatch.com"
     >
@@ -78,14 +78,6 @@
       <template path="/:path([\/activity|\/editProfile]*)?">
         <sqm-divided-layout direction="row">
           <sqm-navigation-sidebar>
-            <sqm-program-menu>
-              <sl-menu-item value="referral-program-1"
-                >Referral Program 1</sl-menu-item
-              >
-              <sl-menu-item value="referral-program-2"
-                >Referral Program 2</sl-menu-item
-              >
-            </sqm-program-menu>
             <sqm-navigation-sidebar-item
               path="/"
               icon="house"
@@ -110,18 +102,117 @@
           <sqm-divided-layout direction="column">
             <sqm-router>
               <template path="/">
-                <sqb-program-switch>
-                  <template program-id="referral-program-1">
-                    <sqb-widget
-                      widget-type="p/referral-program-1/w/referrerWidget"
-                    ></sqb-widget>
-                  </template>
-                  <template program-id="referral-program-2">
-                    <sqb-widget
-                      widget-type="p/referral-program-2/w/referrerWidget"
-                    ></sqb-widget>
-                  </template>
-                </sqb-program-switch>
+                <sqm-portal-protected-route
+                  require-email-verification="true"
+                  redirect-to="/login"
+                  redirect-to-unverified="/emailVerification"
+                ></sqm-portal-protected-route
+                ><sqm-portal-container
+                  direction="column"
+                  padding="xxx-large"
+                  gap="xxx-large"
+                  ><sqm-titled-section label-margin="xx-small"
+                    ><sqm-text slot="label"> <p>Welcome back,</p> </sqm-text
+                    ><sqm-text slot="content">
+                      <h1>
+                        <sqm-user-name
+                          fallback="Anonymous User"
+                        ></sqm-user-name>
+                      </h1> </sqm-text
+                  ></sqm-titled-section>
+                  <sqm-stat-container space="xxxx-large"
+                    ><sqm-big-stat
+                      flex-reverse="true"
+                      alignment="left"
+                      stat-type="/referralsCount"
+                      ><sqm-text><p>Referrals</p></sqm-text></sqm-big-stat
+                    ><sqm-big-stat
+                      style="white-space: nowrap"
+                      flex-reverse="true"
+                      alignment="left"
+                      stat-type="/rewardBalance/CREDIT/CENTS"
+                      ><sqm-text><p>Reward Balance</p></sqm-text></sqm-big-stat
+                    >
+                  </sqm-stat-container> </sqm-portal-container
+                ><sqm-portal-container
+                  direction="column"
+                  padding="xxx-large"
+                  gap="xxx-large"
+                >
+                  <sqm-titled-section padding="none" label-margin="x-large"
+                    ><sqm-text slot="label">
+                      <h2>Partner and Profit</h2> </sqm-text
+                    ><sqm-text slot="content">
+                      <p>
+                        Get rewarded for referring potential customers to
+                        SaaSquatch. Earn commission for each successful lead you
+                        send our way
+                      </p>
+                    </sqm-text></sqm-titled-section
+                  >
+                  <sqm-titled-section label-margin="small" padding="none"
+                    ><sqm-text slot="label">
+                      <h3>Share your referral link</h3> </sqm-text
+                    ><sqm-share-link slot="content"></sqm-share-link
+                  ></sqm-titled-section>
+                  <sqm-titled-section label-margin="small" padding="none">
+                    <sqm-text slot="label">
+                      <h3>Share your referral code</h3> </sqm-text
+                    ><sqm-share-code slot="content"></sqm-share-code>
+                  </sqm-titled-section>
+                  <sqm-titled-section label-margin="small" padding="none"
+                    ><sqm-text slot="label">
+                      <h3>Share via social media</h3> </sqm-text
+                    ><sqm-portal-container
+                      slot="content"
+                      direction="row"
+                      padding="none"
+                      gap="xxx-large"
+                      min-width="160px"
+                      ><sqm-share-button
+                        icon="envelope"
+                        medium="email"
+                        size="medium"
+                        pill="true"
+                        >Email a friend</sqm-share-button
+                      ><sqm-share-button
+                        medium="twitter"
+                        size="medium"
+                        pill="true"
+                        >Tweet about us</sqm-share-button
+                      ><sqm-share-button
+                        medium="facebook"
+                        size="medium"
+                        pill="true"
+                        >Share on Facebook</sqm-share-button
+                      ></sqm-portal-container
+                    ></sqm-titled-section
+                  ></sqm-portal-container
+                >
+              </template>
+              <template path="/editProfile">
+                <sqm-portal-protected-route
+                  require-email-verification="true"
+                  redirect-to="/login"
+                  redirect-to-unverified="/emailVerification"
+                ></sqm-portal-protected-route>
+                <sqm-portal-container
+                  direction="column"
+                  padding="xxx-large"
+                  gap="xxx-large"
+                >
+                  <sqm-portal-profile></sqm-portal-profile> </sqm-portal-container
+                ><sqm-portal-container
+                  direction="column"
+                  padding="xxx-large"
+                  gap="xxx-large"
+                >
+                  <sqm-graphql-client-provider
+                    domain="https://managed-identity.saasquatch.com"
+                  >
+                    <sqm-portal-change-password></sqm-portal-change-password>
+                  </sqm-graphql-client-provider>
+                </sqm-portal-container>
               </template>
 
               <template path="/activity">
