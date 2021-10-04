@@ -13,7 +13,6 @@ export function useProgramSwitch() {
   const [slot, setSlot] = useState<HTMLElement>(undefined);
   const [container, setContainer] = useState<HTMLDivElement>(undefined);
 
-  console.log({ programId });
   useEffect(() => {
     if (!container || !slot) {
       debug('DOM not ready for program rendering on:', programId);
@@ -39,7 +38,6 @@ export function useProgramSwitch() {
       programId,
     });
 
-    console.log('HEY', template);
     // if no routes found, and the old route doesn't match the new route
     if (!template) {
       // No matching page, display nothing
