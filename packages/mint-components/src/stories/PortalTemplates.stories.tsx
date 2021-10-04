@@ -165,12 +165,48 @@ function useGraphQL() {
   };
 }
 
+export const ProgramSwitchDemo = createHookStory(() => {
+  return (
+    <div>
+      <sqb-program-section program-id="Vacay-referral">
+        <sqm-program-menu>
+          <sl-menu-item value="Vacay-referral">Vacay-referral</sl-menu-item>
+          <sl-menu-item value="vacay-affiliates">vacay-affiliates</sl-menu-item>
+        </sqm-program-menu>
+        <sqb-program-switch>
+          <template program-id="Vacay-referral">
+            <sqb-widget
+              widget-type="p/Vacay-referral/w/referrerWidget"
+              demoData={{
+                data: {
+                  html: dashboardTemplate,
+                },
+              }}
+            ></sqb-widget>
+          </template>
+          <template program-id="vacay-affiliates">
+            <sqb-widget
+              widget-type="p/Vacay-referral/w/referrerWidget"
+              demoData={{
+                data: {
+                  html: dashboardTemplate,
+                },
+              }}
+            ></sqb-widget>
+          </template>
+        </sqb-program-switch>
+      </sqb-program-section>
+    </div>
+  );
+});
+
 export const ProgramSwitch = createHookStory(() => {
   useGraphQL();
 
   useEffect(() => {
-    //@ts-ignore
-    () => (window.widgetIdent = { env: "demo" });
+    return () =>
+      //@ts-ignore
+      (window.widgetIdent = { env: "demo" });
   }, []);
 
   return (
@@ -182,14 +218,27 @@ export const ProgramSwitch = createHookStory(() => {
         </sqm-program-menu>
         <sqb-program-switch>
           <template program-id="Vacay-referral">
-            <sqb-widget widget-type="p/Vacay-referral/w/referrerWidget"></sqb-widget>
+            <div innerHTML={dashboardTemplate}></div>
           </template>
           <template program-id="vacay-affiliates">
-            <sqb-widget widget-type="p/vacay-affiliates/w/referrerWidget"></sqb-widget>
+            <div innerHTML={dashboardTemplate}></div>
           </template>
         </sqb-program-switch>
       </sqb-program-section>
     </div>
+  );
+});
+
+export const Widget = createHookStory(() => {
+  return (
+    <sqb-widget
+      widget-type="p/Vacay-referral/w/referrerWidget"
+      demoData={{
+        data: {
+          html: dashboardTemplate,
+        },
+      }}
+    ></sqb-widget>
   );
 });
 

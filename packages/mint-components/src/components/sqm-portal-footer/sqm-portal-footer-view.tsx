@@ -64,7 +64,6 @@ export function PortalFooterView(props: PortalFooterViewProps) {
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
-  console.log(props.showPoweredBy);
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">
