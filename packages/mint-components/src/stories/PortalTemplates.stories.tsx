@@ -152,6 +152,41 @@ export const EmailVerified = createHookStory(() => {
   return <TemplateView states={states} callbacks={callbacks} />;
 });
 
+// export const ProgramSwitchDemo = createHookStory(() => {
+//   return (
+//     <div>
+//       <sqb-program-section program-id="Vacay-referral">
+//         <sqm-program-menu>
+//           <sl-menu-item value="Vacay-referral">Vacay-referral</sl-menu-item>
+//           <sl-menu-item value="vacay-affiliates">vacay-affiliates</sl-menu-item>
+//         </sqm-program-menu>
+//         <sqb-program-switch>
+//           <template program-id="Vacay-referral">
+//             <sqb-widget
+//               widget-type="p/Vacay-referral/w/referrerWidget"
+//               demoData={{
+//                 data: {
+//                   html: dashboardTemplate,
+//                 },
+//               }}
+//             ></sqb-widget>
+//           </template>
+//           <template program-id="vacay-affiliates">
+//             <sqb-widget
+//               widget-type="p/Vacay-referral/w/referrerWidget"
+//               demoData={{
+//                 data: {
+//                   html: dashboardTemplate,
+//                 },
+//               }}
+//             ></sqb-widget>
+//           </template>
+//         </sqb-program-switch>
+//       </sqb-program-section>
+//     </div>
+//   );
+// });
+
 function useGraphQL() {
   window.widgetIdent = {
     tenantAlias: "test_agvu4yg8zrkxt",
@@ -165,41 +200,6 @@ function useGraphQL() {
   };
 }
 
-export const ProgramSwitchDemo = createHookStory(() => {
-  return (
-    <div>
-      <sqb-program-section program-id="Vacay-referral">
-        <sqm-program-menu>
-          <sl-menu-item value="Vacay-referral">Vacay-referral</sl-menu-item>
-          <sl-menu-item value="vacay-affiliates">vacay-affiliates</sl-menu-item>
-        </sqm-program-menu>
-        <sqb-program-switch>
-          <template program-id="Vacay-referral">
-            <sqb-widget
-              widget-type="p/Vacay-referral/w/referrerWidget"
-              demoData={{
-                data: {
-                  html: dashboardTemplate,
-                },
-              }}
-            ></sqb-widget>
-          </template>
-          <template program-id="vacay-affiliates">
-            <sqb-widget
-              widget-type="p/Vacay-referral/w/referrerWidget"
-              demoData={{
-                data: {
-                  html: dashboardTemplate,
-                },
-              }}
-            ></sqb-widget>
-          </template>
-        </sqb-program-switch>
-      </sqb-program-section>
-    </div>
-  );
-});
-
 export const ProgramSwitch = createHookStory(() => {
   useGraphQL();
 
@@ -208,7 +208,6 @@ export const ProgramSwitch = createHookStory(() => {
       //@ts-ignore
       (window.widgetIdent = { env: "demo" });
   }, []);
-
   return (
     <div>
       <sqb-program-section program-id="Vacay-referral">
@@ -218,17 +217,16 @@ export const ProgramSwitch = createHookStory(() => {
         </sqm-program-menu>
         <sqb-program-switch>
           <template program-id="Vacay-referral">
-            <div innerHTML={dashboardTemplate}></div>
+            <sqb-widget widget-type="p/Vacay-referral/w/referrerWidget"></sqb-widget>
           </template>
           <template program-id="vacay-affiliates">
-            <div innerHTML={dashboardTemplate}></div>
+            <sqb-widget widget-type="p/vacay-affiliates/w/referrerWidget"></sqb-widget>
           </template>
         </sqb-program-switch>
       </sqb-program-section>
     </div>
   );
 });
-
 export const Widget = createHookStory(() => {
   return (
     <sqb-widget
