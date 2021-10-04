@@ -24,31 +24,31 @@ export class PortalRegister {
    * @uiName Page navigated to after registration
    */
   @Prop()
-  nextPage = "/";
+  nextPage: string = "/";
 
   /**
    * @uiName Label for email field
    */
   @Prop()
-  emailLabel = "Email";
+  emailLabel: string = "Email";
 
   /**
    * @uiName Label for password field
    */
   @Prop()
-  passwordLabel = "Password";
+  passwordLabel: string = "Password";
 
   /**
    * @uiName Label for submit button
    */
   @Prop()
-  submitLabel = "Register";
+  submitLabel: string = "Register";
 
   /**
    * @uiName Label for login navigation button
    */
   @Prop()
-  loginLabel = "Sign in";
+  loginLabel: string = "Sign in";
 
   /**
    * @uiName Label for confirm password field
@@ -79,7 +79,10 @@ export class PortalRegister {
   @Prop()
   pageLabel: string = "Register";
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<PortalRegisterViewProps>;
 
   constructor() {

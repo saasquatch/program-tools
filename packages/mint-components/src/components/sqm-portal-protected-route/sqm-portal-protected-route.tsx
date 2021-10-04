@@ -14,14 +14,23 @@ export class PortalProtectedRoute {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Redirect Path
+   */
   @Prop()
-  redirectTo = "/";
+  redirectTo: string = "/";
 
+  /**
+   * @uiName Require Email Verification
+   */
   @Prop()
-  requireEmailVerification = false;
+  requireEmailVerification: boolean = false;
 
+  /**
+   * @uiName Redirect unverified users path
+   */
   @Prop()
-  redirectToUnverified = "/emailVerification";
+  redirectToUnverified: string = "/emailVerification";
 
   constructor() {
     withHooks(this);

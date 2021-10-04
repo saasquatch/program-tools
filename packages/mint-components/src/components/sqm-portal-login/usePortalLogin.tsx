@@ -35,15 +35,17 @@ export function usePortalLogin({ nextPage }) {
   }, [data?.authenticateManagedIdentityWithEmailAndPassword?.token]);
 
   useEffect(() => {
-    if (errors?.message) {
+    if (errors?.message || errors?.response?.["error"]) {
       setError("Network request failed.");
     }
   }, [errors]);
 
+  const errorMessage = errors?.response?.errors?.[0]?.message || error;
+
   return {
     states: {
       loading,
-      error: errors?.response?.errors?.[0]?.message || error,
+      error: errorMessage,
     },
     callbacks: {
       submit,

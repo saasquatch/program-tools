@@ -4,7 +4,7 @@ import { Component, Host, Prop, State, h } from "@stencil/core";
 import { useGraphQLClientProvider } from "./useGraphQLProvider";
 
 /**
- * @uiName Portal Protected Route
+ * @uiName GraphQL Client Provider
  */
 @Component({
   tag: "sqm-graphql-client-provider",
@@ -14,6 +14,9 @@ export class GraphQLClientProvider {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Domain
+   */
   @Prop()
   domain: string;
 

@@ -11,7 +11,7 @@ import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
 
 /**
- * @uiName Portal Frame
+ * @uiName Navigation Menu
  */
 @Component({
   tag: "sqm-navigation-menu",
@@ -31,7 +31,10 @@ export class NavigationMenu {
    */
   @Prop() menuLabel: string;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<NavigationMenuViewProps>;
 
   constructor() {

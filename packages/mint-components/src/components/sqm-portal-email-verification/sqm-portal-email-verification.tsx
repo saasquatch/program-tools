@@ -36,7 +36,10 @@ export class PortalEmailVerification {
   @Prop() verifyMessage: string =
     "A verification email was sent to {email}. Please verify your email to continue to the portal.";
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<PortalEmailVerificationViewProps>;
 
   constructor() {

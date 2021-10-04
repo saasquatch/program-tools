@@ -1,4 +1,4 @@
-# sqm-leaderboard
+# sqm-referral-table
 
 
 

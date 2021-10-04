@@ -3,12 +3,23 @@ import { Component, h, Host, Method, Prop } from "@stencil/core";
 import { useRequestRerender } from "../re-render";
 import { ReferralTableColumn } from "./ReferralTableColumn";
 
+/**
+ * @uiName Referral Table Rewards Column
+ */
 @Component({
   tag: "sqm-referral-table-rewards-column",
   shadow: true,
 })
 export class ReferralTableRewardsColumn implements ReferralTableColumn {
+  /**
+   * @uiName Reward column title
+   */
   @Prop() columnTitle: string = "Rewards";
+
+  /**
+   * @uiName Hide dropdown details of reward
+   */
+  @Prop() hideDetails: boolean = false;
 
   constructor() {
     withHooks(this);
@@ -21,6 +32,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
     return (
       <sqm-referral-table-rewards-cell
         rewards={data.rewards}
+        hideDetails={this.hideDetails}
       ></sqm-referral-table-rewards-cell>
     );
   }

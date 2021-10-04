@@ -3,11 +3,17 @@ import { Component, h, Host, Method, Prop } from "@stencil/core";
 import { useRequestRerender } from "../re-render";
 import { ReferralTableColumn } from "./ReferralTableColumn";
 
+/**
+ * @uiName Referral Table User Column
+ */
 @Component({
   tag: "sqm-referral-table-user-column",
   shadow: true,
 })
 export class ReferralTableUserColumn implements ReferralTableColumn {
+  /**
+   * @uiName User Column Title
+   */
   @Prop() columnTitle: string = "Customer";
   /**
    * @uiName Name displayed for anonymous users
@@ -26,9 +32,12 @@ export class ReferralTableUserColumn implements ReferralTableColumn {
   @Method()
   async renderCell(data: Referral) {
     let name: string;
-    if (!data) {
+    if (!data?.referredUser) {
       name = this.deletedUser;
-    } else if (!data?.referredUser?.firstName && !data?.referredUser?.lastName) {
+    } else if (
+      !data?.referredUser?.firstName &&
+      !data?.referredUser?.lastName
+    ) {
       name = this.anonymousUser;
     } else {
       name = `${data?.referredUser?.firstName} ${data?.referredUser?.lastName}`;

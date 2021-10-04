@@ -61,7 +61,10 @@ export class PortalChangePassword {
    */
   @Prop() portalChangePasswordButtonText: string = "Change your password...";
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<PortalChangePasswordViewProps>;
 
   constructor() {

@@ -20,10 +20,16 @@ export class PortalVerifyEmail {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Next page path
+   */
   @Prop()
-  nextPage = "/";
+  nextPage: string = "/";
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<PortalVerifyEmailViewProps>;
 
   constructor() {

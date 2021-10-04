@@ -20,9 +20,15 @@ export class PortalResetPassword {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Next page path
+   */
   @Prop()
-  nextPage = "/";
+  nextPage: string = "/";
 
+  /**
+   * @uiName Show confirm password
+   */
   @Prop()
   confirmPassword: boolean = false;
 
@@ -55,7 +61,10 @@ export class PortalResetPassword {
    */
   @Prop() confirmPasswordFieldLabel: string = "Confirm Password";
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<PortalResetPasswordViewProps>;
 
   constructor() {

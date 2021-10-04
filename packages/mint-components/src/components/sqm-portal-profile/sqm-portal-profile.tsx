@@ -61,7 +61,10 @@ export class PortalProfile {
    */
   @Prop() showCountry: boolean = true;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<PortalProfileViewProps>;
 
   constructor() {

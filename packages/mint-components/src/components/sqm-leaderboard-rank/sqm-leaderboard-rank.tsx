@@ -22,14 +22,24 @@ export class LeaderboardRank {
   /**
    * @uiName Default rank
    * @uiType string
+   * @uiEnum ["rowNumber", "rank", "denseRank"]
    */
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
-  @Prop() rankText: string;
+
+  /**
+   * @uiName Rank Text
+   */
+  @Prop() rankText: string =
+    "You are currently in {rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th} } place!";
   /**
    * @uiName Leaderboard type
    * @uiType string
+   * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
    */
   @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
+  /**
+   * @uiName Unranked Text
+   */
   @Prop() unrankedText: string;
   /**
    * @uiName Leaderboard time interval
@@ -38,7 +48,10 @@ export class LeaderboardRank {
    */
   @Prop() interval: string;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<LeaderboardRankViewProps>;
 
   constructor() {

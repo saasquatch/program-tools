@@ -112,7 +112,10 @@ export class ShareButton {
    */
   @Prop() sharetext?: string;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<ShareButtonViewProps>;
 
   constructor() {
@@ -143,11 +146,12 @@ function useDemoShareButton(props: ShareButton): ShareButtonViewProps {
       type: props.type,
       size: props.size,
       hideicon: props.hideicon,
+      hidetext: props.hidetext,
       iconslot: props.iconslot,
       icon: props.icon,
       hide: false,
       onClick: () => {
-        // TODO: PRovide visual feedback
+        // TODO: Provide visual feedback
       },
     },
     props.demoData || {},

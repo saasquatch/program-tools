@@ -52,7 +52,10 @@ export class EditProfile {
    */
   @Prop() showregion: boolean;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<EditProfileViewProps>;
 
   constructor() {
