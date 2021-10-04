@@ -33,16 +33,16 @@ export function HeroView(props: HeroProps, children: VNode) {
     },
     SingleColumnContainer: {
       ...column,
+    },
+    Container: {
+      width: "100%",
+      minHeight: "100%",
       backgroundImage: `${
         states.backgroundImage ? `url(${states.backgroundImage})` : ""
       }`,
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
-    },
-    Container: {
-      width: "100%",
-      minHeight: "100%",
     },
   };
 

@@ -49,7 +49,7 @@ export const TwoColumnLogin = () => {
       columns: 2 as const,
     },
     content: {
-      leftColumn: (
+      rightColumn: (
         <div style={{ width: "85%" }}>
           <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
           <p>
@@ -62,7 +62,7 @@ export const TwoColumnLogin = () => {
           </p>
         </div>
       ),
-      rightColumn: (
+      leftColumn: (
         <sqm-portal-login style={{ width: "85%" }}></sqm-portal-login>
       ),
     },
