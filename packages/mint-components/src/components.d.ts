@@ -144,6 +144,10 @@ export namespace Components {
          */
         "background"?: string;
         /**
+          * @uiName Number of columns in the layout
+         */
+        "columns": 1 | 2;
+        /**
           * @uiName Wrap direction
          */
         "wrapDirection": "wrap" | "wrap-reverse";
@@ -1449,6 +1453,10 @@ declare namespace LocalJSX {
           * @uiName Background image or color
          */
         "background"?: string;
+        /**
+          * @uiName Number of columns in the layout
+         */
+        "columns"?: 1 | 2;
         /**
           * @uiName Wrap direction
          */

@@ -4,13 +4,13 @@ import preset from "jss-preset-default";
 
 export interface HeroProps {
   states: {
+    columns: 1 | 2;
     background?: string;
     wrapDirection: "wrap" | "wrap-reverse";
   };
   content: {
     leftColumn?: VNode;
     rightColumn?: VNode;
-    middleColumn?: VNode;
   };
 }
 
@@ -80,23 +80,19 @@ export function HeroView(props: HeroProps, children: VNode[]) {
   }
 `;
 
-  console.log(children, props.content.leftColumn.$name$);
-  const hasColumns = props.content.leftColumn.$name$;
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">
         {vanillaStyle}
         {styleString}
       </style>
-      {hasColumns ? (
+      {states.columns == 2 ? (
         <div class={sheet.classes.TwoColumnContainer}>
           <div class={sheet.classes.ColumnWrapper}>{content.leftColumn}</div>
           <div class={sheet.classes.ColumnWrapper}>{content.rightColumn}</div>
         </div>
       ) : (
-        <div class={sheet.classes.SingleColumnContainer}>
-          {content.middleColumn}
-        </div>
+        <div class={sheet.classes.SingleColumnContainer}>{children}</div>
       )}
     </div>
   );

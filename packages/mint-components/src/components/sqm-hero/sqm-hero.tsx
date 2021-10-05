@@ -13,6 +13,9 @@ import { getProps } from "../../utils/utils";
   shadow: true,
 })
 export class Hero {
+  /** @uiName Number of columns in the layout */
+  @Prop() columns: 1 | 2 = 1;
+
   /** @uiName Background image or color */
   @Prop() background?: string;
 
@@ -30,10 +33,13 @@ export class Hero {
       content: {
         leftColumn: <slot name="left-column" />,
         rightColumn: <slot name="right-column" />,
-        middleColumn: <slot />,
       },
     };
 
-    return <HeroView {...props}></HeroView>;
+    return (
+      <HeroView {...props}>
+        <slot />
+      </HeroView>
+    );
   }
 }
