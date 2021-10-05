@@ -82,10 +82,12 @@
   --sq-line-height-button-medium: 16px;
   --sq-line-height-caption: 16px;
 
-
+  /* Icon Sizes */
+  --sq-icon-small: 12px;
+  --sq-icon-medium: 20px;
+  --sq-icon-large: 36px;
 
   /* Spacing */
-
   --sq-spacing-xxx-small: 2px;
   --sq-spacing-xx-small: 4px;
   --sq-spacing-x-small: 8px;
