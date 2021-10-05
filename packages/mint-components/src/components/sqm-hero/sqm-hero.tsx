@@ -3,11 +3,10 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { HeroView } from "./sqm-hero-view";
 import { getProps } from "../../utils/utils";
 
-
 /**
  * The hero container
  *
- * @uiName Hero
+ * @uiName Hero Layout
  */
 @Component({
   tag: "sqm-hero",
@@ -33,6 +32,10 @@ export class Hero {
         rightColumn: <slot name="right-column" />,
       },
     };
-    return <HeroView {...props}><slot></slot></HeroView>;
+    return (
+      <HeroView {...props}>
+        <slot></slot>
+      </HeroView>
+    );
   }
 }
