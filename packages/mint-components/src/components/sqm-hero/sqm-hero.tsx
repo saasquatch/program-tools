@@ -16,8 +16,11 @@ export class Hero {
   /** @uiName Number of columns in the layout */
   @Prop() columns: 1 | 2;
 
-  /** @uiName Background image or color*/
+  /** @uiName Background image or color */
   @Prop() background?: string;
+
+  /** @uiName Wrap direction */
+  @Prop() wrapDirection: "wrap" | "wrap-reverse" = "wrap";
 
   constructor() {
     withHooks(this);

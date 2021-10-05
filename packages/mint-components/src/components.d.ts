@@ -131,6 +131,10 @@ export namespace Components {
           * @uiName Number of columns in the layout
          */
         "columns": 1 | 2;
+        /**
+          * @uiName Wrap direction
+         */
+        "wrapDirection": "wrap" | "wrap-reverse";
     }
     interface SqmHookStoryContainer {
         "hookStory": FunctionalComponent;
@@ -1150,6 +1154,10 @@ declare namespace LocalJSX {
           * @uiName Number of columns in the layout
          */
         "columns"?: 1 | 2;
+        /**
+          * @uiName Wrap direction
+         */
+        "wrapDirection"?: "wrap" | "wrap-reverse";
     }
     interface SqmHookStoryContainer {
         "hookStory"?: FunctionalComponent;

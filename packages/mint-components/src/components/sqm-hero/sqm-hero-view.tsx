@@ -6,6 +6,7 @@ export interface HeroProps {
   states: {
     columns: 1 | 2;
     background?: string;
+    wrapDirection: "wrap" | "wrap-reverse";
   };
   content: {
     leftColumn?: VNode;
@@ -41,7 +42,11 @@ export function HeroView(props: HeroProps, children: VNode) {
   };
 
   const style = {
-    TwoColumnContainer: { display: "flex", "& > div": { width: "50%" } },
+    TwoColumnContainer: {
+      display: "flex",
+      flexWrap: states.wrapDirection,
+      "& > div": { flex: "1", minWidth: "300px" },
+    },
     ColumnWrapper: {
       ...column,
     },
