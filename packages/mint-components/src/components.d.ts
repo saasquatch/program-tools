@@ -138,6 +138,20 @@ export namespace Components {
          */
         "domain": string;
     }
+    interface SqmHero {
+        /**
+          * @uiName Background image or color
+         */
+        "background"?: string;
+        /**
+          * @uiName Number of columns in the layout
+         */
+        "columns": 1 | 2;
+        /**
+          * @uiName Wrap direction
+         */
+        "wrapDirection": "wrap" | "wrap-reverse";
+    }
     interface SqmHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
@@ -910,6 +924,12 @@ declare global {
         prototype: HTMLSqmGraphqlClientProviderElement;
         new (): HTMLSqmGraphqlClientProviderElement;
     };
+    interface HTMLSqmHeroElement extends Components.SqmHero, HTMLStencilElement {
+    }
+    var HTMLSqmHeroElement: {
+        prototype: HTMLSqmHeroElement;
+        new (): HTMLSqmHeroElement;
+    };
     interface HTMLSqmHookStoryContainerElement extends Components.SqmHookStoryContainer, HTMLStencilElement {
     }
     var HTMLSqmHookStoryContainerElement: {
@@ -1193,6 +1213,7 @@ declare global {
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
+        "sqm-hero": HTMLSqmHeroElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
@@ -1348,6 +1369,20 @@ declare namespace LocalJSX {
           * @uiName Domain
          */
         "domain"?: string;
+    }
+    interface SqmHero {
+        /**
+          * @uiName Background image or color
+         */
+        "background"?: string;
+        /**
+          * @uiName Number of columns in the layout
+         */
+        "columns"?: 1 | 2;
+        /**
+          * @uiName Wrap direction
+         */
+        "wrapDirection"?: "wrap" | "wrap-reverse";
     }
     interface SqmHookStoryContainer {
         "hookStory"?: FunctionalComponent;
@@ -2080,6 +2115,7 @@ declare namespace LocalJSX {
         "sqm-edit-profile": SqmEditProfile;
         "sqm-form-message": SqmFormMessage;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
+        "sqm-hero": SqmHero;
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
@@ -2138,6 +2174,7 @@ declare module "@stencil/core" {
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
+            "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
