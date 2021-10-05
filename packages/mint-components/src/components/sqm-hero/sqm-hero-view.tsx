@@ -1,4 +1,4 @@
-import { h, Host, VNode } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 
@@ -85,13 +85,14 @@ export function HeroView(props: HeroProps, children: VNode[]) {
         {vanillaStyle}
         {styleString}
       </style>
-      {children?.length === 1 ? (
-        <div class={sheet.classes.SingleColumnContainer}>{children}</div>
-      ) : (
+      {/* Children array is empty if slots are used */}
+      {!children.length ? (
         <div class={sheet.classes.TwoColumnContainer}>
           <div class={sheet.classes.ColumnWrapper}>{content.leftColumn}</div>
           <div class={sheet.classes.ColumnWrapper}>{content.rightColumn}</div>
         </div>
+      ) : (
+        <div class={sheet.classes.SingleColumnContainer}>{children}</div>
       )}
     </div>
   );
