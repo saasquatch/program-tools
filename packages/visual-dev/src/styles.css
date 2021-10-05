@@ -83,9 +83,9 @@
   --sq-line-height-caption: 16px;
 
   /* Icon Sizes */
-  --sq-icon-small: 12px;
-  --sq-icon-medium: 20px;
-  --sq-icon-large: 36px;
+  --sq-icon-size-small: 12px;
+  --sq-icon-size-medium: 20px;
+  --sq-icon-size-large: 36px;
 
   /* Spacing */
   --sq-spacing-xxx-small: 2px;
