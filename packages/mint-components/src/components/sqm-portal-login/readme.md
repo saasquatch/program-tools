@@ -1,4 +1,4 @@
-# stn-login
+# sqm-portal-login
 
 
 

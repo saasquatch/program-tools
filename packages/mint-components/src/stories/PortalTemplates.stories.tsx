@@ -66,7 +66,7 @@ function TemplateView(props) {
     </button>,
     readme ? (
       <details>
-        <summary>show me the money</summary>
+        <summary>Props readme</summary>
         <div innerHTML={marked(readme)}></div>
       </details>
     ) : (
