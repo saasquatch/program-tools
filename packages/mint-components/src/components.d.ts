@@ -308,10 +308,42 @@ export namespace Components {
     }
     interface SqmPortalChangePassword {
         /**
+          * @uiName Modal cancel password change button text
+         */
+        "cancelText": string;
+        /**
+          * @uiName Modal change password button text
+         */
+        "changePasswordButtonText": string;
+        /**
+          * @uiName Password confirmation input field label
+         */
+        "confirmPasswordFieldLabel": string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
+        /**
+          * @uiName Change password modal header
+         */
+        "modalChangePasswordHeader": string;
+        /**
+          * @uiName Password input field label
+         */
+        "passwordFieldLabel": string;
+        /**
+          * @uiName Portal change password button text
+         */
+        "portalChangePasswordButtonText": string;
+        /**
+          * @uiName Portal change password section header
+         */
+        "portalChangePasswordHeader": string;
+        /**
+          * @uiName Successful password change message
+         */
+        "successMessage": string;
     }
     interface SqmPortalContainer {
         /**
@@ -344,7 +376,15 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalEmailVerificationViewProps>;
         /**
-          * @uiName Verification message
+          * @uiName Email verification header text
+         */
+        "emailVerificationHeader": string;
+        /**
+          * @uiName Re-send email button text
+         */
+        "resendEmailButtonText": string;
+        /**
+          * @uiName Email verification body text
          */
         "verifyMessage": string;
     }
@@ -463,7 +503,7 @@ export namespace Components {
     }
     interface SqmPortalProfile {
         /**
-          * @uiName Country label
+          * @uiName Country input field label
          */
         "countrytext": string;
         /**
@@ -472,21 +512,33 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalProfileViewProps>;
         /**
-          * @uiName Email label
+          * @uiName Edit profile header
+         */
+        "editProfileHeader": string;
+        /**
+          * @uiName Edit profile sub header
+         */
+        "editProfileSubHeader": string;
+        /**
+          * @uiName Email input field label
          */
         "emailtext": string;
         /**
-          * @uiName First Name label
+          * @uiName First name input field label
          */
         "firstnametext": string;
         /**
-          * @uiName Last Name label
+          * @uiName Last name input field label
          */
         "lastnametext": string;
         /**
-          * @uiName Show country field
+          * @uiName Show or hide country field
          */
         "showCountry": boolean;
+        /**
+          * @uiName Text for the submit changes button
+         */
+        "submitChangeButtonText": string;
     }
     interface SqmPortalProtectedRoute {
         /**
@@ -507,6 +559,10 @@ export namespace Components {
           * @uiName Show confirm password field
          */
         "confirmPassword": boolean;
+        /**
+          * @uiName Label for confirm password field
+         */
+        "confirmPasswordLabel": string;
         /**
           * @undocumented 
           * @uiType object
@@ -551,6 +607,15 @@ export namespace Components {
          */
         "confirmPassword": boolean;
         /**
+          * @uiName Confirm password field label
+         */
+        "confirmPasswordFieldLabel": string;
+        /**
+          * Displayed after a successful password reset
+          * @uiName Continue button text
+         */
+        "continueButtonText": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -559,6 +624,19 @@ export namespace Components {
           * @uiName Next page path
          */
         "nextPage": string;
+        /**
+          * Displayed after a successful password reset
+          * @uiName Password reset header text
+         */
+        "passwordResetHeader": string;
+        /**
+          * @uiName Password reset button text
+         */
+        "resetPasswordButtonText": string;
+        /**
+          * @uiName Password reset header text
+         */
+        "resetPasswordHeader": string;
     }
     interface SqmPortalVerifyEmail {
         /**
@@ -1540,10 +1618,42 @@ declare namespace LocalJSX {
     }
     interface SqmPortalChangePassword {
         /**
+          * @uiName Modal cancel password change button text
+         */
+        "cancelText"?: string;
+        /**
+          * @uiName Modal change password button text
+         */
+        "changePasswordButtonText"?: string;
+        /**
+          * @uiName Password confirmation input field label
+         */
+        "confirmPasswordFieldLabel"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<PortalChangePasswordViewProps>;
+        /**
+          * @uiName Change password modal header
+         */
+        "modalChangePasswordHeader"?: string;
+        /**
+          * @uiName Password input field label
+         */
+        "passwordFieldLabel"?: string;
+        /**
+          * @uiName Portal change password button text
+         */
+        "portalChangePasswordButtonText"?: string;
+        /**
+          * @uiName Portal change password section header
+         */
+        "portalChangePasswordHeader"?: string;
+        /**
+          * @uiName Successful password change message
+         */
+        "successMessage"?: string;
     }
     interface SqmPortalContainer {
         /**
@@ -1576,7 +1686,15 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalEmailVerificationViewProps>;
         /**
-          * @uiName Verification message
+          * @uiName Email verification header text
+         */
+        "emailVerificationHeader"?: string;
+        /**
+          * @uiName Re-send email button text
+         */
+        "resendEmailButtonText"?: string;
+        /**
+          * @uiName Email verification body text
          */
         "verifyMessage"?: string;
     }
@@ -1695,7 +1813,7 @@ declare namespace LocalJSX {
     }
     interface SqmPortalProfile {
         /**
-          * @uiName Country label
+          * @uiName Country input field label
          */
         "countrytext"?: string;
         /**
@@ -1704,21 +1822,33 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalProfileViewProps>;
         /**
-          * @uiName Email label
+          * @uiName Edit profile header
+         */
+        "editProfileHeader"?: string;
+        /**
+          * @uiName Edit profile sub header
+         */
+        "editProfileSubHeader"?: string;
+        /**
+          * @uiName Email input field label
          */
         "emailtext"?: string;
         /**
-          * @uiName First Name label
+          * @uiName First name input field label
          */
         "firstnametext"?: string;
         /**
-          * @uiName Last Name label
+          * @uiName Last name input field label
          */
         "lastnametext"?: string;
         /**
-          * @uiName Show country field
+          * @uiName Show or hide country field
          */
         "showCountry"?: boolean;
+        /**
+          * @uiName Text for the submit changes button
+         */
+        "submitChangeButtonText"?: string;
     }
     interface SqmPortalProtectedRoute {
         /**
@@ -1739,6 +1869,10 @@ declare namespace LocalJSX {
           * @uiName Show confirm password field
          */
         "confirmPassword"?: boolean;
+        /**
+          * @uiName Label for confirm password field
+         */
+        "confirmPasswordLabel"?: string;
         /**
           * @undocumented 
           * @uiType object
@@ -1783,6 +1917,15 @@ declare namespace LocalJSX {
          */
         "confirmPassword"?: boolean;
         /**
+          * @uiName Confirm password field label
+         */
+        "confirmPasswordFieldLabel"?: string;
+        /**
+          * Displayed after a successful password reset
+          * @uiName Continue button text
+         */
+        "continueButtonText"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -1791,6 +1934,19 @@ declare namespace LocalJSX {
           * @uiName Next page path
          */
         "nextPage"?: string;
+        /**
+          * Displayed after a successful password reset
+          * @uiName Password reset header text
+         */
+        "passwordResetHeader"?: string;
+        /**
+          * @uiName Password reset button text
+         */
+        "resetPasswordButtonText"?: string;
+        /**
+          * @uiName Password reset header text
+         */
+        "resetPasswordHeader"?: string;
     }
     interface SqmPortalVerifyEmail {
         /**

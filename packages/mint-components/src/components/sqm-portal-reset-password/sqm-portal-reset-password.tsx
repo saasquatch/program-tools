@@ -33,6 +33,35 @@ export class PortalResetPassword {
   confirmPassword: boolean = false;
 
   /**
+   * @uiName Password reset header text
+   */
+  @Prop() resetPasswordHeader: string = "Reset your password";
+
+  /**
+   * Displayed after a successful password reset
+   *
+   * @uiName Password reset header text
+   */
+  @Prop() passwordResetHeader: string = "Password reset";
+
+  /**
+   * @uiName Password reset button text
+   */
+  @Prop() resetPasswordButtonText: string = "Reset Password";
+
+  /**
+   * Displayed after a successful password reset
+   *
+   * @uiName Continue button text
+   */
+  @Prop() continueButtonText: string = "Continue";
+
+  /**
+   * @uiName Confirm password field label
+   */
+  @Prop() confirmPasswordFieldLabel: string = "Confirm Password";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -63,6 +92,13 @@ function usePortalResetPasswordDemo(
         confirmPassword: true,
         oobCodeValidating: false,
         oobCodeValid: true,
+        content: {
+          passwordResetHeader: "Password reset",
+          resetPasswordHeader: "Reset your password",
+          continueButtonText: "Continue",
+          resetPasswordButtonText: "Reset Password",
+          confirmPasswordFieldLabel: "Confirm Password",
+        },
       },
       callbacks: {
         submit: async (_event: any) => {

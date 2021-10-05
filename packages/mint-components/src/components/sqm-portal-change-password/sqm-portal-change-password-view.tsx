@@ -6,7 +6,22 @@ import { PortalSectionView } from "../sqm-titled-section/sqm-portal-section-view
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
 export interface PortalChangePasswordViewProps {
-  states: { open: boolean; error: string; loading: boolean; success: boolean };
+  states: {
+    open: boolean;
+    error: string;
+    loading: boolean;
+    success: boolean;
+    content: {
+      modalChangePasswordHeader: string;
+      cancelText: string;
+      changePasswordButtonText: string;
+      passwordFieldLabel: string;
+      confirmPasswordFieldLabel: string;
+      successMessage: string;
+      portalChangePasswordHeader: string;
+      portalChangePasswordButtonText: string;
+    };
+  };
   callbacks: {
     setOpen: (open: boolean) => void;
     submit: (event: MouseEvent) => void;
@@ -50,6 +65,13 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
       width: "25%",
       margin: "var(--sl-spacing-large) auto",
     },
+    PasswordField: {
+      marginBottom: "var(--sl-spacing-large) !important",
+      display: "block",
+    },
+    ChangePasswordButton: {
+      paddingTop: "var(--sl-spacing-x-large)",
+    },
   };
 
   jss.setup(preset());
@@ -69,7 +91,9 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
             labelMargin: "x-large",
             padding: "none",
             label: (
-              <TextSpanView {...{ type: "h2" }}>Change password</TextSpanView>
+              <TextSpanView {...{ type: "h2" }}>
+                {states.content.modalChangePasswordHeader}
+              </TextSpanView>
             ),
             content: (
               <PortalContainerView
@@ -91,16 +115,19 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                     exportparts="successalert-icon"
                   >
                     <div part="successalert-text">
-                      Your password has been updated.
+                      {states.content.successMessage}
                     </div>
                   </sqm-form-message>
                 )}
                 <sl-form onSl-submit={callbacks.submit}>
                   <div class={sheet.classes.InputContainer}>
-                    <sqm-password-field></sqm-password-field>
+                    <sqm-password-field
+                      class={sheet.classes.PasswordField}
+                      fieldLabel={states.content.passwordFieldLabel}
+                    ></sqm-password-field>
                     <sl-input
                       name="/confirmPassword"
-                      label="Confirm new password"
+                      label={states.content.confirmPasswordFieldLabel}
                       required
                       togglePassword
                       disabled={states.loading}
@@ -112,14 +139,19 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                     {...{ direction: "row", padding: "none", gap: "20px" }}
                   >
                     <sl-button
+                      class={sheet.classes.ChangePasswordButton}
+                      type="default"
+                      submit
+                      loading={states.loading}
+                    >
+                      {states.content.changePasswordButtonText}
+                    </sl-button>
+                    <sl-button
                       class={sheet.classes.CancelButton}
                       type="text"
                       onClick={() => callbacks.setOpen(false)}
                     >
-                      Cancel
-                    </sl-button>
-                    <sl-button type="default" submit loading={states.loading}>
-                      Change Password
+                      {states.content.cancelText}
                     </sl-button>
                   </PortalContainerView>
                 </sl-form>
@@ -132,10 +164,14 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
         {...{
           labelMargin: "x-large",
           padding: "xxx-large",
-          label: <TextSpanView {...{ type: "h2" }}>Password</TextSpanView>,
+          label: (
+            <TextSpanView {...{ type: "h2" }}>
+              {states.content.portalChangePasswordHeader}
+            </TextSpanView>
+          ),
           content: (
             <sl-button onClick={() => callbacks.setOpen(true)}>
-              Change your password...
+              {states.content.portalChangePasswordButtonText}
             </sl-button>
           ),
         }}

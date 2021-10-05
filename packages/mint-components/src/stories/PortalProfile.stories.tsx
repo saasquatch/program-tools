@@ -35,6 +35,9 @@ const defaultProps: PortalProfileViewProps = {
       lastnametext: "Last Name",
       emailtext: "Email",
       countrytext: "Country",
+      editProfileHeader: "Edit your profile",
+      editProfileSubHeader: "Personal Information",
+      submitChangeButtonText: "Submit Changes",
     },
     formState: {
       country: "Canada",
@@ -69,6 +72,9 @@ const noCountry: PortalProfileViewProps = {
       lastnametext: "Last Name",
       emailtext: "Email",
       countrytext: "Country",
+      editProfileHeader: "Edit your profile",
+      editProfileSubHeader: "Personal Information",
+      submitChangeButtonText: "Submit Changes",
     },
     formState: {
       country: "Canada",
@@ -103,6 +109,9 @@ const loadingProps: PortalProfileViewProps = {
       lastnametext: "Last Name",
       emailtext: "Email",
       countrytext: "Country",
+      editProfileHeader: "Edit your profile",
+      editProfileSubHeader: "Personal Information",
+      submitChangeButtonText: "Submit Changes",
     },
     formState: {
       country: "Canada",
@@ -137,6 +146,9 @@ const disabledProps: PortalProfileViewProps = {
       lastnametext: "Last Name",
       emailtext: "Email",
       countrytext: "Country",
+      editProfileHeader: "Edit your profile",
+      editProfileSubHeader: "Personal Information",
+      submitChangeButtonText: "Submit Changes",
     },
     formState: {
       country: "Canada",
@@ -171,6 +183,9 @@ const errorProps: PortalProfileViewProps = {
       lastnametext: "Last Name",
       emailtext: "Email",
       countrytext: "Country",
+      editProfileHeader: "Edit your profile",
+      editProfileSubHeader: "Personal Information",
+      submitChangeButtonText: "Submit Changes",
     },
     formState: {
       country: "Canada",
@@ -205,6 +220,9 @@ const successProps: PortalProfileViewProps = {
       lastnametext: "Last Name",
       emailtext: "Email",
       countrytext: "Country",
+      editProfileHeader: "Edit your profile",
+      editProfileSubHeader: "Personal Information",
+      submitChangeButtonText: "Submit Changes",
     },
     formState: {
       country: "Canada",
