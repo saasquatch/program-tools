@@ -100,6 +100,8 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             <div part="erroralert-text">{props.states.error}</div>
           </sqm-form-message>
         )}
+        {/* Must use inline styling to target slotted element here */}
+        {content.formData}
         {!states.hideInputs && (
           <sl-input
             exportparts="label: input-label"
@@ -152,8 +154,6 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
               : [])}
           ></sl-input>
         )}
-        {/* Must use inline styling to target slotted element here */}
-        {content.formData}
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
             submit

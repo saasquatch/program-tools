@@ -10,6 +10,7 @@ export interface HeroProps {
   content: {
     leftColumn?: VNode;
     rightColumn?: VNode;
+    middleColumn?: VNode;
   };
 }
 
@@ -79,20 +80,23 @@ export function HeroView(props: HeroProps, children: VNode[]) {
   }
 `;
 
+  console.log(children, props.content.leftColumn.$name$);
+  const hasColumns = props.content.leftColumn.$name$;
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">
         {vanillaStyle}
         {styleString}
       </style>
-      {/* Children array is empty if slots are used */}
-      {!children.length ? (
+      {hasColumns ? (
         <div class={sheet.classes.TwoColumnContainer}>
           <div class={sheet.classes.ColumnWrapper}>{content.leftColumn}</div>
           <div class={sheet.classes.ColumnWrapper}>{content.rightColumn}</div>
         </div>
       ) : (
-        <div class={sheet.classes.SingleColumnContainer}>{children}</div>
+        <div class={sheet.classes.SingleColumnContainer}>
+          {content.middleColumn}
+        </div>
       )}
     </div>
   );

@@ -30,13 +30,10 @@ export class Hero {
       content: {
         leftColumn: <slot name="left-column" />,
         rightColumn: <slot name="right-column" />,
+        middleColumn: <slot />,
       },
     };
 
-    return (
-      <HeroView {...props}>
-        <slot></slot>
-      </HeroView>
-    );
+    return <HeroView {...props}></HeroView>;
   }
 }
