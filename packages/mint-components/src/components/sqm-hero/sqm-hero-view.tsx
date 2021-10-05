@@ -4,7 +4,6 @@ import preset from "jss-preset-default";
 
 export interface HeroProps {
   states: {
-    columns: 1 | 2;
     background?: string;
     wrapDirection: "wrap" | "wrap-reverse";
   };
@@ -14,7 +13,7 @@ export interface HeroProps {
   };
 }
 
-export function HeroView(props: HeroProps, children: VNode) {
+export function HeroView(props: HeroProps, children: VNode[]) {
   const { states, content } = props;
 
   const isValidColor = (teststr: string) => {
@@ -86,7 +85,7 @@ export function HeroView(props: HeroProps, children: VNode) {
         {vanillaStyle}
         {styleString}
       </style>
-      {states.columns == 1 ? (
+      {children?.length === 1 ? (
         <div class={sheet.classes.SingleColumnContainer}>{children}</div>
       ) : (
         <div class={sheet.classes.TwoColumnContainer}>

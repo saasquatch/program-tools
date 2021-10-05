@@ -11,7 +11,6 @@ export default {
 export const LoginOneColumn = () => {
   const props = {
     states: {
-      columns: 1 as const,
       wrapDirection: "wrap" as const,
     },
     content: {},
@@ -29,7 +28,6 @@ export const LoginOneColumn = () => {
 export const LoginOneColumnWithColor = () => {
   const props = {
     states: {
-      columns: 1 as const,
       wrapDirection: "wrap" as const,
       background: "LightSlateGrey",
     },
@@ -47,7 +45,6 @@ export const LoginOneColumnWithColor = () => {
 export const LoginOneColumnWithImage = () => {
   const props = {
     states: {
-      columns: 1 as const,
       wrapDirection: "wrap" as const,
       background:
         "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
@@ -66,7 +63,6 @@ export const LoginOneColumnWithImage = () => {
 export const TwoColumnLogin = () => {
   const props = {
     states: {
-      columns: 2 as const,
       wrapDirection: "wrap" as const,
     },
     content: {
@@ -98,7 +94,6 @@ export const TwoColumnLogin = () => {
 export const TwoColumnLoginReverseWrap = () => {
   const props = {
     states: {
-      columns: 2 as const,
       wrapDirection: "wrap-reverse" as const,
     },
     content: {
@@ -130,7 +125,6 @@ export const TwoColumnLoginReverseWrap = () => {
 export const TwoColumnLoginWithImage = () => {
   const props = {
     states: {
-      columns: 2 as const,
       wrapDirection: "wrap" as const,
     },
     content: {
