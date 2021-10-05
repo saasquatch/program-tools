@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled, { CSSProp } from 'styled-components'
-import * as Styles from './Styles'
 import { Icon } from '../Icon'
+import * as Styles from './Styles'
 
 type AvatarProps = OptionProps & StyleProps & React.ComponentProps<'div'>
 
@@ -19,11 +19,11 @@ const AvatarStyle = styled.div<Required<StyleProps>>`
 `
 
 const AvatarCircle = styled.div`
-  ${Styles.base}
+  ${Styles.AvatarCircleStyle}
 `
 
 const AvatarText = styled.span`
-  ${Styles.circle}
+  ${Styles.AvatarTextStyle}
 `
 
 export const Avatar = React.forwardRef<React.ElementRef<'div'>, AvatarProps>((props, forwardedRef) => {
@@ -36,7 +36,7 @@ export const Avatar = React.forwardRef<React.ElementRef<'div'>, AvatarProps>((pr
   return (
     <AvatarStyle {...rest} ref={forwardedRef} css={css}>
       {!(firstName || lastName) ? (
-        <Icon icon='avatar' size='34px' />
+        <Icon icon='avatar' size='large' />
       ) : (
         <AvatarCircle>
           <AvatarText>{initials}</AvatarText>
