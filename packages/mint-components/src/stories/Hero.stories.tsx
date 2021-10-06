@@ -14,14 +14,16 @@ export const LoginOneColumn = () => {
       columns: 1 as const,
       wrapDirection: "wrap" as const,
     },
-    content: {},
+    content: {
+      primaryColumn: [
+          <h1 style={{ textAlign: "center" }}>Get Referring!</h1>,
+          <sqm-portal-login></sqm-portal-login>
+      ]
+    },
   };
   return (
     <div style={{ height: "800px" }}>
-      <HeroView {...props}>
-        <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
-        <sqm-portal-login></sqm-portal-login>
-      </HeroView>
+      <HeroView {...props}></HeroView>
     </div>
   );
 };
@@ -33,13 +35,13 @@ export const LoginOneColumnWithColor = () => {
       wrapDirection: "wrap" as const,
       background: "LightSlateGrey",
     },
-    content: {},
+    content: {
+      primaryColumn: <sqm-portal-login></sqm-portal-login>,
+    },
   };
   return (
     <div style={{ height: "800px" }}>
-      <HeroView {...props}>
-        <sqm-portal-login></sqm-portal-login>
-      </HeroView>
+      <HeroView {...props}></HeroView>
     </div>
   );
 };
@@ -52,13 +54,11 @@ export const LoginOneColumnWithImage = () => {
       background:
         "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
     },
-    content: {},
+    content: { primaryColumn: <sqm-portal-login></sqm-portal-login> },
   };
   return (
     <div style={{ height: "800px" }}>
-      <HeroView {...props}>
-        <sqm-portal-login></sqm-portal-login>
-      </HeroView>
+      <HeroView {...props}></HeroView>
     </div>
   );
 };
@@ -70,7 +70,10 @@ export const TwoColumnLogin = () => {
       wrapDirection: "wrap" as const,
     },
     content: {
-      rightColumn: (
+      primaryColumn: (
+        <sqm-portal-login style={{ width: "85%" }}></sqm-portal-login>
+      ),
+      secondaryColumn: (
         <div style={{ width: "85%" }}>
           <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
           <p>
@@ -82,9 +85,6 @@ export const TwoColumnLogin = () => {
             pariatur.
           </p>
         </div>
-      ),
-      leftColumn: (
-        <sqm-portal-login style={{ width: "85%" }}></sqm-portal-login>
       ),
     },
   };
@@ -102,7 +102,10 @@ export const TwoColumnLoginReverseWrap = () => {
       wrapDirection: "wrap-reverse" as const,
     },
     content: {
-      rightColumn: (
+      primaryColumn: (
+        <sqm-portal-login style={{ width: "85%" }}></sqm-portal-login>
+      ),
+      secondaryColumn: (
         <div style={{ width: "85%" }}>
           <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
           <p>
@@ -114,9 +117,6 @@ export const TwoColumnLoginReverseWrap = () => {
             pariatur.
           </p>
         </div>
-      ),
-      leftColumn: (
-        <sqm-portal-login style={{ width: "85%" }}></sqm-portal-login>
       ),
     },
   };
@@ -134,13 +134,13 @@ export const TwoColumnLoginWithImage = () => {
       wrapDirection: "wrap" as const,
     },
     content: {
-      leftColumn: (
+      primaryColumn: (
         <div style={{ width: "85%" }}>
           <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
           <sqm-portal-login></sqm-portal-login>
         </div>
       ),
-      rightColumn: (
+      secondaryColumn: (
         <img src="https://images.unsplash.com/photo-1629004021495-83fe9b730acb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=735&q=80"></img>
       ),
     },

@@ -8,74 +8,74 @@
     </sqm-text>
   </a>
   <sqb-program-section program-id="referral-program">
-    <sqm-graphql-client-provider
-      domain="https://managed-identity.saasquatch.com"
-    >
-      <sqm-router>
-        <template path="/register">
-          <sqm-hero
-            background="https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80"
-          >
-            <sqm-portal-register>
-              <sl-input
-                slot="formData"
-                exportparts="label: input-label"
-                type="text"
-                style="margin-bottom: 5px"
-                name="/firstName"
-                label="First Name"
-                required
-              ></sl-input>
-              <sl-input
-                slot="formData"
-                exportparts="label: input-label"
-                type="text"
-                style="margin-bottom: 5px"
-                name="/lastName"
-                label="Last Name"
-                required
-              ></sl-input>
-            </sqm-portal-register>
-          </sqm-hero>
-        </template>
-
-        <template path="/emailVerification">
-          <sqm-portal-protected-route
-            redirect-to="/login"
-          ></sqm-portal-protected-route>
-          <sqm-portal-email-verification></sqm-portal-email-verification>
-        </template>
-
-        <template path="/login">
-          <sqm-hero
-            background="https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80"
-          >
-            <sqm-portal-login></sqm-portal-login>
-          </sqm-hero>
-        </template>
-
-        <template path="/verifyEmail">
-          <sqm-portal-verify-email></sqm-portal-verify-email>
-        </template>
-
-        <template path="/forgotPassword">
-          <sqm-portal-forgot-password
-            email-label="Business Email"
-          ></sqm-portal-forgot-password>
-        </template>
-
-        <template path="/resetPassword">
-          <sqm-portal-reset-password
-            confirm-password="true"
-          ></sqm-portal-reset-password>
-        </template>
-        <template path="/logout">
-          <sqm-portal-logout next-page="/login"></sqm-portal-logout>
-        </template>
-      </sqm-router>
-    </sqm-graphql-client-provider>
     <sqm-router>
-      <template path="/:path([\/activity|\/editProfile]*)?">
+      <template path="/:path(\bregister\b|\bemailVerification\b|\blogin\b|\bverifyEmail\b|\bforgotPassword\b|\bresetPassword\b|\blogout\b)">
+        <sqm-graphql-client-provider
+          domain="https://managed-identity.saasquatch.com"
+        >
+          <sqm-hero
+            background="https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80"
+          >
+            <sqm-router>
+              <template path="/register">
+                <sqm-portal-register>
+                  <sl-input
+                    slot="formData"
+                    exportparts="label: input-label"
+                    type="text"
+                    style="margin-bottom: 5px"
+                    name="/firstName"
+                    label="First Name"
+                    required
+                  ></sl-input>
+                  <sl-input
+                    slot="formData"
+                    exportparts="label: input-label"
+                    type="text"
+                    style="margin-bottom: 5px"
+                    name="/lastName"
+                    label="Last Name"
+                    required
+                  ></sl-input>
+                </sqm-portal-register>
+              </template>
+
+              <template path="/emailVerification">
+                <sqm-portal-protected-route
+                  redirect-to="/login"
+                ></sqm-portal-protected-route>
+                <sqm-portal-email-verification></sqm-portal-email-verification>
+              </template>
+
+              <template path="/login">
+                <sqm-portal-login></sqm-portal-login>
+              </template>
+
+              <template path="/verifyEmail">
+                <sqm-portal-verify-email></sqm-portal-verify-email>
+              </template>
+
+              <template path="/forgotPassword">
+                <sqm-portal-forgot-password
+                  email-label="Business Email"
+                ></sqm-portal-forgot-password>
+              </template>
+
+              <template path="/resetPassword">
+                <sqm-portal-reset-password
+                  confirm-password="true"
+                ></sqm-portal-reset-password>
+              </template>
+              <template path="/logout">
+                <sqm-portal-logout next-page="/login"></sqm-portal-logout>
+              </template>
+            </sqm-router>
+          </sqm-hero>
+        </sqm-graphql-client-provider>
+      </template>
+    </sqm-router>
+    <sqm-router>
+      <template path="/:path(\bactivity\b|\beditProfile\b)?">
         <sqm-divided-layout direction="row">
           <sqm-navigation-sidebar>
             <sqm-navigation-sidebar-item

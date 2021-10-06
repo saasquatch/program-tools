@@ -31,15 +31,11 @@ export class Hero {
     const props = {
       states: { ...getProps(this) },
       content: {
-        leftColumn: <slot name="left-column" />,
-        rightColumn: <slot name="right-column" />,
+        primaryColumn: <slot />,
+        secondaryColumn: <slot name="secondary-column" />,
       },
     };
 
-    return (
-      <HeroView {...props}>
-        <slot />
-      </HeroView>
-    );
+    return <HeroView {...props}></HeroView>;
   }
 }

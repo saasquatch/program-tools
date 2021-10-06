@@ -9,12 +9,12 @@ export interface HeroProps {
     wrapDirection: "wrap" | "wrap-reverse";
   };
   content: {
-    leftColumn?: VNode;
-    rightColumn?: VNode;
+    primaryColumn?: VNode | VNode[];
+    secondaryColumn?: VNode;
   };
 }
 
-export function HeroView(props: HeroProps, children: VNode[]) {
+export function HeroView(props: HeroProps) {
   const { states, content } = props;
 
   const isValidColor = (teststr: string) => {
@@ -88,11 +88,15 @@ export function HeroView(props: HeroProps, children: VNode[]) {
       </style>
       {states.columns == 2 ? (
         <div class={sheet.classes.TwoColumnContainer}>
-          <div class={sheet.classes.ColumnWrapper}>{content.leftColumn}</div>
-          <div class={sheet.classes.ColumnWrapper}>{content.rightColumn}</div>
+          <div class={sheet.classes.ColumnWrapper}>{content.primaryColumn}</div>
+          <div class={sheet.classes.ColumnWrapper}>
+            {content.secondaryColumn}
+          </div>
         </div>
       ) : (
-        <div class={sheet.classes.SingleColumnContainer}>{children}</div>
+        <div class={sheet.classes.SingleColumnContainer}>
+          {content.primaryColumn}
+        </div>
       )}
     </div>
   );
