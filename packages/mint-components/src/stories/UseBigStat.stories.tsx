@@ -138,6 +138,12 @@ export const GlobalPendingRewardsCount = createHookStory(() =>
     "/(rewardsCountFiltered)/:statType([INTEGRATION|PCT_DISCOUNT|CREDIT]*)?/:unit((?!global)(?!PENDING)(?!CANCELLED)(?!EXPIRED)(?!REDEEMED)(?!AVAILABLE)[a-zA-Z0-9%]+)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
   )
 );
+export const RewardsAvailableCount = createHookStory(() =>
+  View(
+    "/rewardsCountFiltered/AVAILABLE",
+    "/(rewardsCountFiltered)/:statType([INTEGRATION|PCT_DISCOUNT|CREDIT]*)?/:unit((?!global)(?!PENDING)(?!CANCELLED)(?!EXPIRED)(?!REDEEMED)(?!AVAILABLE)[a-zA-Z0-9%]+)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
+  )
+);
 export const GlobalRewardsCountByIntegration = createHookStory(() =>
   View(
     "/integrationRewardsCountFiltered/AVAILABLE/global",

@@ -110,6 +110,11 @@
           <sqm-divided-layout direction="column">
             <sqm-router>
               <template path="/">
+                <sqm-portal-protected-route
+                  require-email-verification="true"
+                  redirect-to="/login"
+                  redirect-to-unverified="/emailVerification"
+                ></sqm-portal-protected-route>
                 <sqb-program-switch>
                   <template program-id="referral-program-1">
                     <sqb-widget
@@ -142,7 +147,14 @@
                       alignment="left"
                       stat-type="/referralsCount"
                       ><sqm-text><p>Referrals</p></sqm-text></sqm-big-stat
-                    ><sqm-big-stat
+                    >
+                    <sqm-big-stat
+                      flex-reverse="true"
+                      alignment="left"
+                      stat-type="/rewardsCountFiltered/AVAILABLE"
+                      ><sqm-text><p>Rewards Earned</p></sqm-text></sqm-big-stat
+                    >
+                    <sqm-big-stat
                       flex-reverse="true"
                       alignment="left"
                       stat-type="/rewardBalance/CREDIT/CENTS"
