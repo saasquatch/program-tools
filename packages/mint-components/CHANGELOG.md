@@ -18,6 +18,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-portal-reset-password> Changed hardcoded text into customizable props
   - \<sqm-portal-register> Changed hardcoded text into customizable props
   - \<sqm-portal-email-verification> Changed hardcoded text into customizable props
+  - \<sqm-portal-register> formData slot adds custom inputs to the top of form instead of the bottom
+
+### Added
+
+- Default affiliate portal templates now provided in [Stencilbook](https://mint-components.stencilbook.saasquat.ch)
+- New components added for default affiliate portals
+  - \<sqm-portal-footer> Footer for providing FAQ, T&S, and support email
+  - \<sqm-hero> one or two column landing page with an optional background
 
 ## [1.2.1] - 2021-09-21
 
