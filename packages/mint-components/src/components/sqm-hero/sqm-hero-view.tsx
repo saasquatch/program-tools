@@ -55,6 +55,7 @@ export function HeroView(props: HeroProps) {
     },
     Container: {
       width: "100%",
+      flex: 1,
       ...column,
       alignItems: "unset",
       background: `no-repeat center/cover ${parseBackground(
@@ -70,9 +71,11 @@ export function HeroView(props: HeroProps) {
   const vanillaStyle = `
   :host{    
     height: 100%;
+    display: contents;
   }
   sqm-hero{    
     height: 100%;
+    display: contents;
   }
   img{
       max-width: 100%;
