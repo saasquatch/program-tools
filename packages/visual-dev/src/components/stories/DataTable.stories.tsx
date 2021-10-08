@@ -1,15 +1,172 @@
 import React from 'react'
 import { Icon } from '../Icon'
-import { Skeleton, Content, Action, DataTable, Divider, Popover } from '../DataTable'
+import { Skeleton, Content, Action, DataTable, Divider, Popover, Row, Pagination } from '../DataTable'
 import { Avatar } from '../Avatar'
+import { Text } from '../Text'
 
 export default {
   title: 'Components / DataTable',
   component: DataTable,
 }
 
+export const FormSubmissionTable = () => {
+  const content_a = [{ text: 'Form' }, { text: 'User' }, { text: 'Date Submitted' }, { text: 'Status' }, { text: '', width: '50px', flex: 0.01 }]
+
+  const text_a = (
+    <Content>
+      <div>
+        <strong> A form name </strong> <br />
+        form-key
+      </div>
+    </Content>
+  )
+
+  const text_b = (
+    <Content>
+      <div>
+        <Avatar firstName='New' lastName='Guy' />
+      </div>
+      <div style={{ marginLeft: 10 }}>
+        <span style={{ color: '#0088CC' }}>new guy</span> <br />
+        sam123@test.ca
+      </div>
+    </Content>
+  )
+
+  const text_c = <Content>11 months ago</Content>
+
+  const text_d = (
+    <Content>
+      <Skeleton circle={true} size='8px' color='#57AC59' /> Success
+    </Content>
+  )
+
+  const text_e = (
+    <Content>
+      <Skeleton circle={true} size='8px' color='#FE6666' /> Failed
+    </Content>
+  )
+
+  const content_b = [{ text: text_a }, { text: text_b }, { text: text_c }, { text: text_d }, { text: <Icon icon='actions' />, width: '50px', flex: 0.01, center: true }]
+  const content_c = [{ text: text_a }, { text: text_b }, { text: text_c }, { text: text_e }, { text: <Icon icon='actions' />, width: '50px', flex: 0.01, center: true }]
+
+  return (
+    <DataTable width='958px'>
+      <Row variant='header' content={content_a} />
+      <Row content={content_b} />
+      <Row content={content_c} />
+      <Row content={content_c} />
+      <Row content={content_c} />
+      <Row content={content_c} />
+      <Pagination></Pagination>
+    </DataTable>
+  )
+}
+
+export const pagination = () => <Pagination />
+
+export const header = () => {
+  const content = [{ text: 'Heading A' }, { text: 'Heading B' }, { text: 'Heading C' }, { text: 'Heading D' }]
+
+  return <Row variant='header' content={content} />
+}
+
+export const row = () => {
+  const text = 'Some content'
+  const content = [{ text: text }, { text: text }, { text: text }, { text: text }]
+
+  return <Row content={content} />
+}
+
+export const rowSkeleton = () => {
+  const text = <Skeleton size='91px' />
+  const content = [{ text: text }, { text: text }, { text: text }, { text: text }]
+
+  return <Row content={content} />
+}
+
+export const headerActions = () => {
+  const content = [
+    { text: 'Heading A', flex: '10' },
+    { text: 'Heading B', flex: '10' },
+    { text: 'Heading C', flex: '10' },
+    { text: 'Heading D', flex: '10' },
+    { text: 'Actions', center: true },
+  ]
+
+  return <Row variant='header' content={content} />
+}
+
+export const rowActions = () => {
+  const text_a = (
+    <div>
+      <strong> A title for this content </strong> <br />
+      Some content
+    </div>
+  )
+  const text_b = <Text>Some content</Text>
+
+  const content = [
+    { text: text_a, flex: '10' },
+    { text: text_b, flex: '10' },
+    { text: text_b, flex: '10' },
+    { text: text_b, flex: '10' },
+    { text: <Icon icon='actions' />, center: true },
+  ]
+
+  return <Row content={content} />
+}
+
+export const rowActionsSkeleton = () => {
+  const text_a = (
+    <div>
+      <Skeleton size='135px' /> <br />
+      <Skeleton size='84px' />
+    </div>
+  )
+  const text_b = <Skeleton size='91px' />
+
+  const content = [
+    { text: text_a, flex: '10' },
+    { text: text_b, flex: '10' },
+    { text: text_b, flex: '10' },
+    { text: text_b, flex: '10' },
+    { text: <Icon icon='actions' />, center: true },
+  ]
+
+  return <Row content={content} />
+}
+
+export const header_arrow = () => {
+  const content = [{ text: '', flex: 0.1 }, { text: 'Heading A' }, { text: 'Heading B' }, { text: 'Heading C' }, { text: 'Heading D' }]
+
+  return <Row variant='header' content={content} />
+}
+
+export const row_arrow = () => {
+  const text_a = (
+    <div>
+      <strong> A title for this content </strong> <br />
+      Some content
+    </div>
+  )
+  const text_b = <Text>Some content</Text>
+
+  const content = [{ text: <Icon icon='arrow_dropdown' size='40px' css='margin: -50px; margin-top: 0px;' />, flex: 0.1, center: true }, { text: text_a }, { text: text_b }, { text: text_b }, { text: text_b }]
+
+  return <Row content={content} />
+}
+
 export const skeleton = () => <Skeleton />
 export const content = () => <Content> Some content </Content>
+export const contentWithTitle = () => (
+  <Content>
+    <div>
+      <strong> A title for this content </strong> <br />
+      Some content
+    </div>
+  </Content>
+)
 export const contentSkeleton = () => (
   <Content>
     <Skeleton size='90px' />
@@ -23,25 +180,39 @@ export const contentSkeletonCircle = () => (
 
 export const contentSkeletonAvatarA = () => (
   <Content>
-    <Skeleton circle={true} size='34px' />
-    <Skeleton size='120px' css='align-self: flex-start;' />
-    <Skeleton size='90px' css='align-self: flex-end; margin-left: -128px;' />
+    <div>
+      <Skeleton circle={true} size='34px' />
+    </div>
+    <div>
+      <Skeleton size='120px' />
+      <br />
+      <Skeleton size='120px' />
+    </div>
   </Content>
 )
 
 export const contentSkeletonAvatarB = () => (
   <Content>
-    <Avatar firstName='New' lastName='Guy' />
-    <span style={{ alignSelf: 'flex-start', marginLeft: 8 }}> new guy </span>
-    <span style={{ alignSelf: 'flex-end', marginLeft: -52, marginTop: 18, color: '#858585' }}> sam123@test.ca </span>
+    <div>
+      <Skeleton circle={true} size='34px' />
+    </div>
+    <div>
+      <Skeleton size='120px' />
+      <br />
+      <Skeleton size='90px' />
+    </div>
   </Content>
 )
 
-export const contentSkeletonAvatar = () => (
+export const contentAvatar = () => (
   <Content>
-    <Skeleton circle={true} size='34px' />
-    <Skeleton size='120px' css='align-self: flex-start;' />
-    <Skeleton size='90px' css='align-self: flex-end; margin-left: -128px;' />
+    <div>
+      <Avatar firstName='New' lastName='Guy' />
+    </div>
+    <div style={{ marginLeft: 10 }}>
+      new guy <br />
+      sam123@test.ca
+    </div>
   </Content>
 )
 
@@ -60,6 +231,24 @@ export const contentEnabled = () => (
 export const contentDisabled = () => (
   <Content>
     <Skeleton circle={true} size='8px' color='#FE6666' /> Disabled
+  </Content>
+)
+
+export const contentIconA = () => (
+  <Content>
+    <Icon icon='action' style={{ marginRight: 10 }} /> Some content
+  </Content>
+)
+
+export const contentIconB = () => (
+  <Content>
+    <div>
+      <Icon icon='mail' style={{ marginRight: 10 }} />
+    </div>
+    <div>
+      <strong> A title for this content </strong> <br />
+      Some content
+    </div>
   </Content>
 )
 

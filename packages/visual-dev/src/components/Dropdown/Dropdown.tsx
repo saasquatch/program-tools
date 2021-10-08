@@ -121,7 +121,7 @@ export const DropdownSublist = React.forwardRef<React.ElementRef<'div'>, Dropdow
 })
 
 const arrow_up = (
-  <svg width={10} height={6} fill='none' xmlns='http://www.w3.org/2000/svg'>
+  <svg width={10} height={7} fill='none' xmlns='http://www.w3.org/2000/svg'>
     <path fillRule='evenodd' clipRule='evenodd' d='M.146 4.517L1.25 5.4 5 2.4l3.75 3 1.104-.883L5 .634.146 4.517z' fill='#858585' />
   </svg>
 )

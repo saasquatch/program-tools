@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled, { CSSProp } from 'styled-components'
 import { Icon } from '../Icon'
-
 import * as Styles from './Styles'
 
 type AlertProps = OptionProps & StyleProps & React.ComponentProps<'div'>
@@ -17,7 +16,7 @@ interface StyleProps {
 }
 
 const AlertDiv = styled.div<Required<StyleProps>>`
-  ${Styles.base}
+  ${Styles.AlertDivStyle}
   ${(props) => Styles[props.type]}
 `
 
@@ -34,8 +33,8 @@ export const Alert = React.forwardRef<React.ElementRef<'div'>, AlertProps>((prop
   return (
     <AlertDiv {...rest} type={variant} ref={forwardedRef} css={css}>
       {icons[variant]}
-      <div style={{ paddingLeft: 16 }}>
-        <div style={{ fontWeight: 'bold' }}>{title} </div>
+      <div>
+        <strong>{title}</strong>
         <div>{children}</div>
       </div>
     </AlertDiv>
