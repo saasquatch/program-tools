@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { CSSProp } from 'styled-components'
-import { Text, TextProps } from '../Text'
+import { Text } from '../Text'
 import * as Styles from './Styles'
 
 const DEFAULT_TAG = 'h1'
