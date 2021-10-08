@@ -25,7 +25,7 @@ export const Badge = React.forwardRef<React.ElementRef<'div'>, BadgeProps>((prop
 
   return (
     <BadgeStyled {...rest} status={status} ref={forwardedRef} css={css}>
-      {icon && <Icon color='inherit' size='14px' icon={icon} style={{ margin: '0px 4px' }} />}
+      {icon && <Icon icon={icon} color='inherit' size='var(--sq-icon-size-badge)' style={{ marginRight: 5 }} />}
       {children}
     </BadgeStyled>
   )

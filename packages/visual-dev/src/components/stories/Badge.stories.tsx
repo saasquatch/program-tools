@@ -43,3 +43,9 @@ export const defaultLongBadgeWithIcon = () => (
   </Badge>
 )
 export const iconOnly = () => <Badge status='info' icon='trash' />
+
+export const badgeCSS = () => (
+  <Badge status='info' css='color: yellow; background: blue;'>
+    CSS Badge
+  </Badge>
+)
