@@ -19,24 +19,7 @@
             <sqm-router>
               <template path="/register">
                 <sqm-portal-register>
-                  <sl-input
-                    slot="formData"
-                    exportparts="label: input-label"
-                    type="text"
-                    style="margin-bottom: 5px"
-                    name="/firstName"
-                    label="First Name"
-                    required
-                  ></sl-input>
-                  <sl-input
-                    slot="formData"
-                    exportparts="label: input-label"
-                    type="text"
-                    style="margin-bottom: 5px"
-                    name="/lastName"
-                    label="Last Name"
-                    required
-                  ></sl-input>
+                  <sqm-name-fields slot="formData"></sqm-name-fields>
                 </sqm-portal-register>
               </template>
 
