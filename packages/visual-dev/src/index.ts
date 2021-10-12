@@ -56,8 +56,7 @@ import { Switch } from "./components/Switch";
 import { Tag } from "./components/Tag";
 import { Text } from "./components/Text";
 import { Tooltip } from "./components/Tooltip";
-// import styles from "./style.css"
-
+import { GlobalStyle } from "./components/GlobalStyle";
 
 export {
   Alert,
@@ -69,7 +68,6 @@ export {
   Tag,
   Text,
   Tooltip,
-  // styles,
   MyComponent,
   H1,
   H2,
@@ -106,4 +104,5 @@ export {
   DefaultTemplate,
   DefaultObjectTemplate,
   JSONataUtils,
+  GlobalStyle,
 };
