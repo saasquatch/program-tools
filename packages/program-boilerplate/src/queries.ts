@@ -21,11 +21,13 @@ export const rewardEmailQuery = `
       referrerUser{
         firstName
         lastName
+        email
         customFields
       }
       referredUser{
         firstName
         lastName
+        email
         customFields
       }
     }
@@ -75,11 +77,13 @@ export const nonRewardEmailQueryForReferralPrograms = `query ($userId:String!, $
     referrerUser{
       firstName
       lastName
+      email
       customFields
     }
     referredUser{
       firstName
       lastName
+      email
       customFields
     }
   }
