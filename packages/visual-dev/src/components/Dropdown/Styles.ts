@@ -1,64 +1,70 @@
 import { css } from 'styled-components'
 
 export const base = css`
-	position: relative;
-	width: 191px;
-	min-width: 191px;
+  position: relative;
+  min-width: 191px;
+  display: inline-block;
 `
 export const subcontent = css`
-	border-radius: inherit;
+  border-radius: inherit;
 `
 
 export const subitem = css`
-	text-indent: 15px;
-	border-radius: inherit;
+  text-indent: 15px;
+  border-radius: inherit;
 `
 
 export const sublist = css`
-	padding: 15px;
-	border-radius: inherit;
-	user-select: none;
-	color: #575757;
-	font-family: Helvetica;
-	font-size: 14px;
-	font-weight: bold;
+  padding: 15px;
+  border-radius: inherit;
+  user-select: none;
+  color: var(--sq-text);
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: var(--sq-font-weight-regular);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
 `
 
 export const arrow = css`
-	position: relative;
-	bottom: 1px;
-	float: right;
+  margin-left: auto;
 `
 
 export const button = css`
-	padding: 7px 12px;
-	font-family: Helvetica;
-	font-size: 14px;
-	border: 1px solid #A6B9BD;
+  display: flex;
+  user-select: none;
+  padding: 7px 12px;
+  border: 1px solid var(--sq-action-secondary-border);
+  color: var(--sq-text);
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: var(--sq-font-weight-regular);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
 `
 
 export const content = css`
-	position: absolute;
-	width: max-content;
-	min-width: inherit;
-	z-index: 100;
-	top: 120%;
-	background: #FFFFFF;
-	border: 1px solid #A6B9BD;
-	box-sizing: border-box;
-	&:empty {
-	  border: none;
-	}
+  position: relative;
+  width: max-content;
+  min-width: inherit;
+  z-index: 100;
+  margin-top: 10px;
+  background: #ffffff;
+  border: 1px solid var(--sq-action-secondary-border);
+  box-sizing: border-box;
+  &:empty {
+    border: none;
+  }
 `
 
 export const item = css`
-	padding: 15px;
-	cursor: pointer;
-	color: #575757;
-	font-family: Helvetica;
-	font-size: 14px;
-	border-radius: inherit;
-	&:hover {
-	  background: #eef6ff;
-	}
+  padding: 15px;
+  cursor: pointer;
+  color: var(--sq-text);
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: var(--sq-font-weight-regular);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
+  border-radius: inherit;
+  &:hover {
+    background: var(--sq-surface-hover);
+  }
 `
