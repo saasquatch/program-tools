@@ -67,7 +67,7 @@ export const MenuOptions = () => (
 )
 
 export const MenuSuboptions = () => (
-  <div style={{ height: 220 }}>
+  <div style={{ height: 240 }}>
     <Dropdown text='Menu Suboptions' showMenu={true}>
       <DropdownSublist name='Dropdown Subtitle'>
         <DropdownItem> Dropdown Suboption </DropdownItem>
