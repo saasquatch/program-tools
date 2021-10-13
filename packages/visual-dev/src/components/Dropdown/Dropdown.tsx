@@ -51,11 +51,10 @@ const DropdownButton = styled('div')<Required<ButtonProps>>`
   text-align: ${(props) => (props.center ? 'center' : 'left')};
   line-height: ${(props) => (props.narrow ? '10px' : '16px')};
   color: ${(props) => (props.disabled ? '#A6B9BD' : '#575757')};
-  background: ${(props) => (props.disabled ? '#F6F6F6' : '#FFFFFF')};
-  user-select: none;
+  background: ${(props) => (props.disabled ? 'var(--sq-surface-subdued)' : 'var(--sq-surface)')};
   &:hover {
-    ${(props) => (props.disabled ? '' : 'box-shadow: inset 0 0 0 1px #A6B9BD;')}
-    ${(props) => (props.disabled ? 'cursor: not-allowed;' : '')};
+    ${(props) => !props.disabled && 'box-shadow: inset 0 0 0 1px var(--sq-action-secondary-hovered);'}
+    ${(props) => props.disabled && 'cursor: not-allowed;'};
   }
 `
 const DropdownContent = styled('div')<Pick<DropdownProps, 'pill'>>`
@@ -120,8 +119,9 @@ export const DropdownSublist = React.forwardRef<React.ElementRef<'div'>, Dropdow
   )
 })
 
+// TO-DO: When available in Icon component, use from there
 const arrow_up = (
-  <svg width={10} height={6} fill='none' xmlns='http://www.w3.org/2000/svg'>
+  <svg width={10} height={7} fill='none' xmlns='http://www.w3.org/2000/svg'>
     <path fillRule='evenodd' clipRule='evenodd' d='M.146 4.517L1.25 5.4 5 2.4l3.75 3 1.104-.883L5 .634.146 4.517z' fill='#858585' />
   </svg>
 )
