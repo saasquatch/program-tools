@@ -50,7 +50,7 @@ const DropdownButton = styled('div')<Required<ButtonProps>>`
   border-radius: ${(props) => (props.pill ? '100px' : '4px')};
   text-align: ${(props) => (props.center ? 'center' : 'left')};
   line-height: ${(props) => (props.narrow ? '10px' : '16px')};
-  color: ${(props) => (props.disabled ? '#A6B9BD' : '#575757')};
+  color: ${(props) => (props.disabled ? 'var(--sq-action-secondary-border)' : 'var(--sq-text-on-secondary)')};
   background: ${(props) => (props.disabled ? 'var(--sq-surface-subdued)' : 'var(--sq-surface)')};
   &:hover {
     ${(props) => !props.disabled && 'box-shadow: inset 0 0 0 1px var(--sq-action-secondary-hovered);'}
