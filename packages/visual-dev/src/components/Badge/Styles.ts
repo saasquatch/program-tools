@@ -1,14 +1,20 @@
 import { css } from 'styled-components'
 
 export const base = css`
-  border-radius: 50px;
   padding: 4px 20px;
   color: var(--sq-text);
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: var(--sq-font-weight-regular);
+  font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
   width: max-content;
+`
+
+export const pill_false = css`
+  border-radius: 4px;
+`
+export const pill_true = css`
+  border-radius: 50px;
 `
 
 export const info = css`
@@ -18,13 +24,7 @@ export const info = css`
 `
 
 export const success = css`
-  background-color: var(--sq-surface-success-subdued);
-  border-color: var(--sq-surface-success-subdued);
-  color: var(--sq-text-dark);
-`
-
-export const active = css`
-  background-color: var(--sq-border-success);
+  background-color: var(--sq-surface-success);
   border-color: var(--sq-border-success);
   color: var(--sq-surface);
 `

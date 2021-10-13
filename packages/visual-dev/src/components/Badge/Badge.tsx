@@ -10,23 +10,26 @@ interface OptionProps {
 }
 
 interface StyleProps {
-  status: 'info' | 'success' | 'active' | 'critical' | 'warning'
+  status: 'info' | 'success' | 'critical' | 'warning'
+  pill?: boolean
   css?: CSSProp
 }
 
 const BadgeStyled = styled.div<StyleProps>`
   ${Styles.base}
   ${(props) => Styles[props.status]}
+  padding: ${(props) => (props.pill ? '4px 20px' : '4px 12px')};
+  border-radius: ${(props) => (props.pill ? '50px' : '4px')};
   ${(props) => props.css}
 `
 
 export const Badge = React.forwardRef<React.ElementRef<'div'>, BadgeProps>((props, forwardedRef) => {
-  const { status, icon, children, css = {}, ...rest } = props
+  const { status, pill = false, icon, children, css = {}, ...rest } = props
 
   return (
-    <BadgeStyled {...rest} status={status} ref={forwardedRef} css={css}>
-      {icon && <Icon icon={icon} color='inherit' size='var(--sq-icon-size-badge)' style={{ marginRight: 5 }} />}
-      {children}
+    <BadgeStyled {...rest} status={status} pill={pill} ref={forwardedRef} css={css}>
+      {icon && <Icon icon={icon} color='inherit' size='var(--sq-icon-size-badge)' style={{ margin: -2 }} />}
+      {children && <span style={{ marginLeft: 5 }}>{children}</span>}
     </BadgeStyled>
   )
 })
