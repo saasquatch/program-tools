@@ -1,55 +1,43 @@
-import * as React from 'react';
-import styled from 'styled-components'
+import * as React from 'react'
+import styled, { CSSProp } from 'styled-components'
 
 import * as Styles from './Styles'
 
-interface SwitchProps {
-	id: string
-	checked: boolean
-	onChange: () => void
-	color?: "success" | "critical"
-	textLeft?: string
-	textRight?: string
+type SwitchProps = OptionProps & StyleProps & React.ComponentProps<'div'>
+
+interface OptionProps {
+  checked?: boolean
+  color?: 'success' | 'critical'
 }
 
-const SwitchBox = styled.div`
-	${Styles.wrapper}
-`;
+interface StyleProps {
+  css?: CSSProp
+}
+
+const SwitchBox = styled.div<Required<StyleProps>>`
+  ${Styles.wrapper}
+  ${(props) => props.css}
+`
 
 const SwitchButton = styled.label`
-	${Styles.base}
-`;
+  ${Styles.base}
+`
 
-const SwitchLabel = styled.label`
-	${Styles.label}
-`;
+const SwitchBackground = styled.input<Required<{ color: string }>>`
+  ${Styles.off}
+  &:checked + ${SwitchButton} {
+    ${(props) => Styles[props.color]}
+    ${Styles.on}
+  }
+`
 
-const SwitchBackground = styled.input<Required<{color:string}>>`
-	${Styles.off}
-	&:checked + ${SwitchButton} {
-		${props => Styles[props.color]}
-		${Styles.on}
-	}
-`;
+export const Switch = React.forwardRef<React.ElementRef<'div'>, SwitchProps>((props, forwardedRef) => {
+  const { id, color = 'success', checked = false, css = {}, ...rest } = props
 
-export const Switch: React.FC<SwitchProps> = ({
-	id,
-	color = "success",
-	checked,
-	onChange,
-	textLeft = "",
-	textRight = ""
-}) => {
-	const spaceLeft = textLeft == "" ? "0px" : "10px"
-	const spaceRight = textRight == "" ? "0px" : "10px" 
-	return (
-		<SwitchLabel htmlFor={id}>
-			{ textLeft }
-			<SwitchBox style={{marginLeft: spaceLeft, paddingRight: spaceRight}}> 
-				<SwitchBackground color={color} id={id} type="checkbox" checked={checked} onChange={onChange}/>
-				<SwitchButton htmlFor={id}/>
-			</SwitchBox>
-			{ textRight }
-		</SwitchLabel>
-	)
-}
+  return (
+    <SwitchBox {...rest} ref={forwardedRef} css={css}>
+      <SwitchBackground color={color} id={id} type='checkbox' checked={checked} />
+      <SwitchButton htmlFor={id} />
+    </SwitchBox>
+  )
+})
