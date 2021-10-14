@@ -2,7 +2,6 @@ import { css } from 'styled-components'
 
 export const base = css`
   position: relative;
-  //   width: 191px;
   min-width: 191px;
   display: inline-block;
 `
@@ -19,10 +18,11 @@ export const sublist = css`
   padding: 15px;
   border-radius: inherit;
   user-select: none;
-  color: #575757;
-  font-family: Helvetica;
-  font-size: 14px;
-  font-weight: bold;
+  color: var(--sq-text);
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: var(--sq-font-weight-regular);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
 `
 
 export const arrow = css`
@@ -31,10 +31,14 @@ export const arrow = css`
 
 export const button = css`
   display: flex;
+  user-select: none;
   padding: 7px 12px;
-  font-family: Helvetica;
-  font-size: 14px;
-  border: 1px solid #a6b9bd;
+  border: 1px solid var(--sq-action-secondary-border);
+  color: var(--sq-text);
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: var(--sq-font-weight-regular);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
 `
 
 export const content = css`
@@ -44,7 +48,7 @@ export const content = css`
   z-index: 100;
   margin-top: 10px;
   background: #ffffff;
-  border: 1px solid #a6b9bd;
+  border: 1px solid var(--sq-action-secondary-border);
   box-sizing: border-box;
   &:empty {
     border: none;
@@ -54,11 +58,13 @@ export const content = css`
 export const item = css`
   padding: 15px;
   cursor: pointer;
-  color: #575757;
-  font-family: Helvetica;
-  font-size: 14px;
+  color: var(--sq-text);
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: var(--sq-font-weight-regular);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
   border-radius: inherit;
   &:hover {
-    background: #eef6ff;
+    background: var(--sq-surface-hover);
   }
 `

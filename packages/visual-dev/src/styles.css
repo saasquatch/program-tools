@@ -86,7 +86,12 @@
   --sq-icon-size-small: 12px;
   --sq-icon-size-medium: 20px;
   --sq-icon-size-large: 36px;
-  --sq-icon-size-badge: 14px;
+  --sq-icon-size-badge: 18px;
+
+  /* Avatar Sizes */
+  --sq-icon-size-avatar: 36px;
+  --sq-icon-size-avatar-large: 50px;
+  --sq-font-size-avatar: 24px;
 
   /* Spacing */
   --sq-spacing-xxx-small: 2px;
