@@ -25,6 +25,7 @@ import { PortalProfileViewProps } from "./components/sqm-portal-profile/sqm-port
 import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-portal-register-view";
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
+import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
 import { ReferralTableViewProps } from "./components/sqm-referral-table/sqm-referral-table-view";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
@@ -651,6 +652,17 @@ export namespace Components {
     }
     interface SqmProgramMenu {
     }
+    interface SqmReferralIframe {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<ReferralIframeViewProps>;
+        /**
+          * @uiName URL of iframe to display
+         */
+        "iframeSrc": string;
+    }
     interface SqmReferralTable {
         /**
           * @undocumented 
@@ -1140,6 +1152,12 @@ declare global {
         prototype: HTMLSqmProgramMenuElement;
         new (): HTMLSqmProgramMenuElement;
     };
+    interface HTMLSqmReferralIframeElement extends Components.SqmReferralIframe, HTMLStencilElement {
+    }
+    var HTMLSqmReferralIframeElement: {
+        prototype: HTMLSqmReferralIframeElement;
+        new (): HTMLSqmReferralIframeElement;
+    };
     interface HTMLSqmReferralTableElement extends Components.SqmReferralTable, HTMLStencilElement {
     }
     var HTMLSqmReferralTableElement: {
@@ -1314,6 +1332,7 @@ declare global {
         "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
         "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
         "sqm-program-menu": HTMLSqmProgramMenuElement;
+        "sqm-referral-iframe": HTMLSqmReferralIframeElement;
         "sqm-referral-table": HTMLSqmReferralTableElement;
         "sqm-referral-table-cell": HTMLSqmReferralTableCellElement;
         "sqm-referral-table-column": HTMLSqmReferralTableColumnElement;
@@ -1961,6 +1980,17 @@ declare namespace LocalJSX {
     }
     interface SqmProgramMenu {
     }
+    interface SqmReferralIframe {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<ReferralIframeViewProps>;
+        /**
+          * @uiName URL of iframe to display
+         */
+        "iframeSrc"?: string;
+    }
     interface SqmReferralTable {
         /**
           * @undocumented 
@@ -2294,6 +2324,7 @@ declare namespace LocalJSX {
         "sqm-portal-reset-password": SqmPortalResetPassword;
         "sqm-portal-verify-email": SqmPortalVerifyEmail;
         "sqm-program-menu": SqmProgramMenu;
+        "sqm-referral-iframe": SqmReferralIframe;
         "sqm-referral-table": SqmReferralTable;
         "sqm-referral-table-cell": SqmReferralTableCell;
         "sqm-referral-table-column": SqmReferralTableColumn;
@@ -2353,6 +2384,7 @@ declare module "@stencil/core" {
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
             "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
+            "sqm-referral-iframe": LocalJSX.SqmReferralIframe & JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;
             "sqm-referral-table-cell": LocalJSX.SqmReferralTableCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableCellElement>;
             "sqm-referral-table-column": LocalJSX.SqmReferralTableColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableColumnElement>;
