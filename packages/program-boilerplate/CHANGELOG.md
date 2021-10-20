@@ -18,5 +18,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-[unreleased]: https://github.com/olivierlacan/keep-a-changelog/compare/%40saasquatch/program-boilerplate%403.5.9...HEAD
-[3.5.9]: https://github.com/olivierlacan/keep-a-changelog/releases/tag/%40saasquatch/program-boilerplate%403.5.9
+[unreleased]: https://github.com/saasquatch/program-tools/compare/%40saasquatch/program-boilerplate%403.5.9...HEAD
+[3.5.9]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch/program-boilerplate%403.5.9
