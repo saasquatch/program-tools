@@ -15,7 +15,7 @@ const ShadowDom = styled(root.div)``
 
 const RadioLabel = styled.label<{ isChecked: boolean }>`
   ${Styles.RadioLabelStyle}
-  ${(props) => (props.isChecked ? 'background: #F9F9F9;' : '')}
+  ${(props) => (props.isChecked ? 'background: var(--sq-background);' : '')}
 `
 const RadioInput = styled.input`
   ${Styles.RadioInputStyle}
@@ -31,15 +31,19 @@ export const RadioAction = React.forwardRef<React.ElementRef<'input'>, InputProp
   const { value, onChange, options, ...rest } = props
 
   return (
-    <ShadowDom>
-      <RadioLabel htmlFor={rest.id} isChecked={value}>
-        <RadioInput type='radio' checked={value} {...rest} ref={forwardedRef} />
-        <RadioButton />
-        <RadioText>
-          {options.title ? <div> {options.title} </div> : ''}
-          {options.text ? <div style={{ color: '#858585', marginTop: 4 }}> {options.text} </div> : ''}
-        </RadioText>
-      </RadioLabel>
-    </ShadowDom>
+    <RadioLabel htmlFor={rest.id} isChecked={value}>
+      <RadioInput type='radio' checked={value} {...rest} ref={forwardedRef} />
+      <RadioButton />
+      <RadioText>
+        {options.title ? <div> {options.title} </div> : ''}
+        {options.text ? <div style={{ color: 'var(--sq-text-subdued)', marginTop: 4 }}> {options.text} </div> : ''}
+      </RadioText>
+    </RadioLabel>
   )
+})
+
+export const RadioActionGroup = React.forwardRef<React.ElementRef<'div'>, InputProps>((props) => {
+  const { children } = props
+
+  return <ShadowDom>{children}</ShadowDom>
 })
