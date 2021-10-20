@@ -1,4 +1,5 @@
 import { navigation } from "@saasquatch/component-boilerplate";
+import { useState } from "@saasquatch/stencil-hooks";
 import { h } from "@stencil/core";
 import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
 
@@ -124,4 +125,51 @@ export const Styling = createHookStory(() => {
       </div>
     </div>
   );
+});
+
+function useTemplate(templateString: string) {
+  const [editedTemplate, setEditedTemplate] = useState(templateString);
+  const [previewTemplate, setPreviewTemplate] = useState(templateString);
+  function setPath(e: Event) {
+    //@ts-ignore
+    navigation.push(e.target.value);
+  }
+  return {
+    states: { previewTemplate, editedTemplate },
+    callbacks: { setEditedTemplate, setPreviewTemplate, setPath },
+  };
+}
+
+const defaultRouter = `
+<sqm-router>
+  <template path="/">
+  <div>hello world</div>
+  </template>
+</sqm-router>
+`;
+
+function TemplateView(props) {
+  const { states, callbacks } = props;
+  return [
+    <textarea
+      style={{ width: "100%", height: "300px" }}
+      onChange={(e: Event) =>
+        callbacks.setEditedTemplate((e.target as HTMLInputElement).value)
+      }
+    >
+      {states.editedTemplate}
+    </textarea>,
+    <button onClick={() => callbacks.setPreviewTemplate(states.editedTemplate)}>
+      Update Preview
+    </button>,
+    <label>
+      Current path:<input onInput={callbacks.setPath} value="/"></input>
+    </label>,
+    <div innerHTML={states.previewTemplate}></div>,
+  ];
+}
+
+export const RouterPlayground = createHookStory(() => {
+  const { states, callbacks } = useTemplate(defaultRouter);
+  return <TemplateView states={states} callbacks={callbacks} />;
 });

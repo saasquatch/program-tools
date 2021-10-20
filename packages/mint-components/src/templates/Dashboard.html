@@ -1,9 +1,4 @@
-<sqm-portal-protected-route
-  require-email-verification="true"
-  redirect-to="/login"
-  redirect-to-unverified="/emailVerification"
-></sqm-portal-protected-route
-><sqm-portal-container direction="column" padding="xxx-large" gap="xxx-large"
+<sqm-portal-container direction="column" padding="xxx-large" gap="xxx-large"
   ><sqm-titled-section label-margin="xx-small"
     ><sqm-text slot="label"> <p>Welcome back,</p> </sqm-text
     ><sqm-text slot="content">
@@ -17,7 +12,14 @@
       alignment="left"
       stat-type="/referralsCount"
       ><sqm-text><p>Referrals</p></sqm-text></sqm-big-stat
-    ><sqm-big-stat
+    >
+    <sqm-big-stat
+      flex-reverse="true"
+      alignment="left"
+      stat-type="/rewardsCountFiltered/AVAILABLE"
+      ><sqm-text><p>Rewards Earned</p></sqm-text></sqm-big-stat
+    >
+    <sqm-big-stat
       style="white-space: nowrap"
       flex-reverse="true"
       alignment="left"
