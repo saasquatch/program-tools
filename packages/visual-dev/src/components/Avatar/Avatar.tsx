@@ -37,7 +37,6 @@ export const Avatar = React.forwardRef<React.ElementRef<'div'>, AvatarProps>((pr
   }
   const colors = ['#023B44', '#0FA177', '#00C75F', '#0092AD', '#44BFD5', '#F5A624']
   const random = initials.charCodeAt(0) % 6
-  console.log(random)
 
   return (
     <AvatarStyle {...rest} ref={forwardedRef} css={css}>

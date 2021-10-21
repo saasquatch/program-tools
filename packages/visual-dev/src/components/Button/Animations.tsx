@@ -1,5 +1,4 @@
 // Legacy Animations
-// Proceed with caution
 
 import React from 'react'
 import styled, { keyframes } from 'styled-components'

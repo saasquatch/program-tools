@@ -50,9 +50,9 @@ export const disabled = () => (
   </Button>
 )
 
-export const danger = () => (
-  <Button variant='primary' danger>
-    Danger
+export const critical = () => (
+  <Button variant='primary' critical>
+    Critical
   </Button>
 )
 export const success = () => (
@@ -61,7 +61,7 @@ export const success = () => (
   </Button>
 )
 
-export const icon = () => <Button variant='primary' icon='settings'></Button>
+export const primaryIcon = () => <Button variant='primary' icon='settings'></Button>
 
 export const primaryNoPill = () => (
   <Button variant='primary' pill={false}>
@@ -80,9 +80,9 @@ export const disabledNoPill = () => (
   </Button>
 )
 
-export const dangerNoPill = () => (
-  <Button variant='primary' danger pill={false}>
-    Danger
+export const criticalNoPill = () => (
+  <Button variant='primary' critical pill={false}>
+    Critical
   </Button>
 )
 export const successNoPill = () => (
@@ -91,7 +91,7 @@ export const successNoPill = () => (
   </Button>
 )
 
-export const iconNoPill = () => <Button variant='primary' icon='settings' pill={false}></Button>
+export const primaryIconNoPill = () => <Button variant='primary' icon='settings' pill={false}></Button>
 
 export const secondary = () => <Button variant='secondary'>Secondary</Button>
 
@@ -123,6 +123,8 @@ export const secondaryDisabled = () => (
   </Button>
 )
 
+export const secondaryIcon = () => <Button variant='secondary' icon='settings'></Button>
+
 export const secondaryNoPill = () => (
   <Button variant='secondary' pill={false}>
     Secondary
@@ -140,6 +142,8 @@ export const secondaryDisabledNoPill = () => (
     Disabled
   </Button>
 )
+
+export const secondaryIconNoPill = () => <Button variant='secondary' icon='settings' pill={false}></Button>
 
 export const circleIconSmall = () => <Button variant='circle' icon='add' size='small' />
 export const circleIconMedium = () => <Button variant='circle' icon='add' size='medium' />

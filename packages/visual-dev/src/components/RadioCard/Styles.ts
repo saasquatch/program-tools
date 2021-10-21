@@ -1,33 +1,28 @@
 import { css } from 'styled-components'
 
 export const RadioLabelStyle = css`
-  display: block;
-  width: 488px;
-  height: 138px;
-
-  user-select: none;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  cursor: pointer;
-  margin-right: 10px;
-
-  color: #575757;
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
-
-  border: 2px solid #ebebeb;
+  width: 488px;
+  height: 138px;
+  border: 2px solid var(--sq-border);
   border-radius: 4px;
+  align-items: flex-start;
+  margin: 10px;
+  user-select: none;
+  cursor: pointer;
+  color: var(--sq-text);
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: var(--sq-font-weight-regular);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
 `
 
 export const RadioInputStyle = css`
   display: none;
 
   &:checked + div {
-    border-color: #f49c20;
+    border-color: var(--sq-action-primary);
   }
 
   &:checked + div::after {
@@ -39,7 +34,7 @@ export const RadioButtonStyle = css`
   margin-top: 2.5px;
   width: 14px;
   height: 14px;
-  border: 1.5px solid #575757;
+  border: 1.5px solid var(--sq-text);
   border-radius: 50%;
   margin-right: 20px;
   box-sizing: border-box;
@@ -51,7 +46,7 @@ export const RadioButtonStyle = css`
     width: 8px;
     height: 8px;
     display: block;
-    background: #f49c20;
+    background: var(--sq-action-primary);
     border-radius: 100%;
     transform: scale(0);
     transition: transform 0.15s;

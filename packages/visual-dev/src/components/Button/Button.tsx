@@ -17,15 +17,21 @@ interface StyleProps {
   loading?: boolean
   disable?: boolean
   success?: boolean
-  danger?: boolean
+  critical?: boolean
   size?: 'small' | 'medium' | 'large'
   css?: CSSProp
 }
 
 const default_sizes = {
   small: '14px',
-  medium: '16px',
-  large: '20px',
+  medium: '20px',
+  large: '36px',
+}
+
+const text_sizes = {
+  small: '16px',
+  medium: '17px',
+  large: '22px',
 }
 
 const ButtonStyle = styled.button<Required<StyleProps>>`
@@ -35,16 +41,16 @@ const ButtonStyle = styled.button<Required<StyleProps>>`
   ${(props) => props.loading && Styles['loading_' + props.variant]}
   ${(props) => props.disable && Styles['disable_' + props.variant]}
   ${(props) => props.size && Styles[props.variant + '_' + props.size]}
-  ${(props) => props.danger && Styles.danger}
+  ${(props) => props.critical && Styles.critical}
   ${(props) => props.success && Styles.success}
 `
 
 export const Button = React.forwardRef<React.ElementRef<'button'>, ButtonProps>((props, forwardedRef) => {
-  const { variant, pill = true, loading = false, danger = false, success = false, disable = false, icon, size = 'medium', children, css = {}, ...rest } = props
+  const { variant, pill = true, loading = false, critical = false, success = false, disable = false, icon, size = 'medium', children, css = {}, ...rest } = props
 
   return (
-    <ButtonStyle {...rest} variant={variant} pill={pill} loading={loading} danger={danger} success={success} disable={disable} size={size} ref={forwardedRef} css={css}>
-      {icon && <Icon icon={icon} style={{ color: 'inherit' }} size={variant == 'text' ? default_sizes[size] : '16px'} />} {children} {loading && ButtonSpinner} {success && successAnimation}
+    <ButtonStyle {...rest} variant={variant} pill={pill} loading={loading} critical={critical} success={success} disable={disable} size={size} ref={forwardedRef} css={css}>
+      {icon && <Icon icon={icon} style={{ color: 'inherit' }} size={variant == 'text' ? text_sizes[size] : default_sizes[size]} />} {children} {loading && ButtonSpinner} {success && successAnimation}
     </ButtonStyle>
   )
 })

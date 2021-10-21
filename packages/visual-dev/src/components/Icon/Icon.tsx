@@ -32,7 +32,7 @@ const StyledSVG = styled.div<Required<StyleProps>>`
 export type IconKey = keyof typeof SVGs
 
 export const Icon = React.forwardRef<React.ElementRef<'div'>, IconProps>((props, forwardedRef) => {
-  const { icon, color = 'var(--sq-text-subdued)', size = 'medium', css = {}, ...rest } = props
+  const { icon, color = 'inherit', size = 'medium', css = {}, ...rest } = props
 
   return (
     <StyledSVG {...rest} size={size} color={color} ref={forwardedRef} css={css}>

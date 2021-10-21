@@ -28,8 +28,8 @@ export const Badge = React.forwardRef<React.ElementRef<'div'>, BadgeProps>((prop
 
   return (
     <BadgeStyled {...rest} status={status} pill={pill} ref={forwardedRef} css={css}>
-      {icon && <Icon icon={icon} color='inherit' size='var(--sq-icon-size-badge)' style={{ margin: -2 }} />}
-      {children && <span style={{ marginLeft: 5 }}>{children}</span>}
+      {icon && <Icon icon={icon} color='inherit' size='var(--sq-icon-size-badge)' style={{ margin: -2 }} css='+ span { margin-left: 5px; }' />}
+      {children && <span>{children}</span>}
     </BadgeStyled>
   )
 })
