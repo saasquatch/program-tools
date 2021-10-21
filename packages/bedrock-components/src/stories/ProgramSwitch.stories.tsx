@@ -26,7 +26,7 @@ export const ProgramSwitch = createHookStory(() => {
     return () => (window.widgetIdent = { env: 'demo' });
   }, []);
   return (
-    <div>
+    <div> 
       <sqb-program-section program-id="Vacay-referral">
         <sqm-program-menu>
           <sl-menu-item value="Vacay-referral">Vacay-referral</sl-menu-item>
