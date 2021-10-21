@@ -28,7 +28,7 @@ export class SQBStencilbook {
   render() {
     const { class: Style, children } = useStencilbook(stories, {
       h,
-      title: 'My Theme',
+      title: 'Bedrock Components',
       addons: [HookStoryAddon],
     });
     return <Host class={Style}>{children}</Host>;
