@@ -39,7 +39,6 @@ export function ReferralIframeView(props: ReferralIframeViewProps) {
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
-  console.log(content);
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
