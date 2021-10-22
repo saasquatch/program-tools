@@ -31,7 +31,7 @@ export class SQBStencilbook {
       addons: [HookStoryAddon],
     });
     return (
-      <Host class={Style} onClick={() => {}}>
+      <Host class={Style} onClick={{}}>
         {children}
       </Host>
     );
