@@ -58,7 +58,7 @@
       </template>
     </sqm-router>
     <sqm-router>
-      <template path="/:path(\bactivity\b|\beditProfile\b)?">
+      <template path="/:path(\bactivity\b|\beditProfile\b|\brefer\b)?">
         <sqm-divided-layout direction="row">
           <sqm-navigation-sidebar>
             <sqm-navigation-sidebar-item
@@ -124,7 +124,7 @@
                 </sqm-portal-container>
               </template>
               <template path="/refer">
-                <sqm-referral-iframe></sqm-referral-iframe>
+                <sqm-referral-iframe  iframe-src="https://example.com"></sqm-referral-iframe>
               </template>
               <template path="/activity">
                 <sqm-portal-protected-route

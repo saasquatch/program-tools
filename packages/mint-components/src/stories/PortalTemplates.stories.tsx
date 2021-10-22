@@ -124,6 +124,7 @@ function DefaultTemplateView(props) {
         }}
       >
         <button onClick={() => navigation.push("/")}>Dashboard</button>
+        {props.leadSubmit && <button onClick={() => navigation.push("/refer")}>Submit a Referral</button>}
         <button onClick={() => navigation.push("/activity")}>Activity</button>
         <button onClick={() => navigation.push("/editProfile")}>
           Edit Profile
@@ -178,6 +179,7 @@ export const LeadSubmitPortal = createHookStory(() => {
       states={states}
       callbacks={callbacks}
       template={portalLeadSubmitTemplateWithDashboard}
+      leadSubmit={true}
     />
   );
 });
