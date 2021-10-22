@@ -8,6 +8,7 @@ import {
 import { isDemo } from "@saasquatch/component-boilerplate";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
+import { getProps } from "../../utils/utils";
 
 /**
  * @uiName Referral IFrame
@@ -38,8 +39,8 @@ export class SqmReferralIframe {
 
   render() {
     const { data } = isDemo()
-      ? useReferralIframeDemo(this)
-      : useReferralIframe(this);
+      ? useReferralIframeDemo(getProps(this))
+      : useReferralIframe(getProps(this));
     return (
       <Host style={{ display: "contents" }}>
         <ReferralIframeView data={data}></ReferralIframeView>

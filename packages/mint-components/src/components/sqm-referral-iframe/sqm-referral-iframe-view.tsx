@@ -35,6 +35,7 @@ const styleString = sheet.toString();
 
 export function ReferralIframeView(props: ReferralIframeViewProps) {
   const { data } = props;
+  console.log(data)
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>

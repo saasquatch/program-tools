@@ -1,11 +1,14 @@
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
 import portalTemplate from "../templates/Portal.html";
+import portalLeadSubmitTemplate from "../templates/PortalLeadSubmit.html";
+import portalLeadSubmitTemplateWithDashboard from "../templates/PortalLeadSubmitWithDashboard.html";
 import portalTemplateWithDashboard from "../templates/PortalWithDashboard.html";
 import multiProgramTemplate from "../templates/MultiProgramPortal.html";
 import multiProgramTemplateWithDashboard from "../templates/MultiProgramPortalWithDashboard.html";
 import dashboardTemplate from "../templates/Dashboard.html";
+import leadSubmitTemplate from "../templates/LeadSubmit.html";
 import editProfileTemplate from "../templates/EditProfile.html";
 import activityTemplate from "../templates/Activity.html";
 import resetPasswordEmailTemplate from "../templates/ResetPasswordEmail.html";
@@ -19,6 +22,7 @@ import emailVerificationTemplate from "../templates/EmailVerification.html";
 import marked from "marked";
 
 import LoginReadme from "../components/sqm-portal-login/readme.md";
+import ReferralIframeReadme from "../components/sqm-referral-iframe/readme.md";
 import ForgotPasswordReadme from "../components/sqm-portal-forgot-password/readme.md";
 import RegisterReadme from "../components/sqm-portal-register/readme.md";
 import EditProfileReadme from "../components/sqm-portal-profile/readme.md";
@@ -167,6 +171,17 @@ export const MultiProgramPortal = createHookStory(() => {
   );
 });
 
+export const LeadSubmitPortal = createHookStory(() => {
+  const { states, callbacks } = useTemplate(portalLeadSubmitTemplate);
+  return (
+    <DefaultTemplateView
+      states={states}
+      callbacks={callbacks}
+      template={portalLeadSubmitTemplateWithDashboard}
+    />
+  );
+});
+
 export const Login = createHookStory(() => {
   const { states, callbacks } = useTemplate(loginTemplate);
   return (
@@ -199,6 +214,17 @@ export const Register = createHookStory(() => {
 export const Dashboard = createHookStory(() => {
   const { states, callbacks } = useTemplate(dashboardTemplate);
   return <TemplateView states={states} callbacks={callbacks} />;
+});
+
+export const LeadSubmitIframe = createHookStory(() => {
+  const { states, callbacks } = useTemplate(leadSubmitTemplate);
+  return (
+    <TemplateView
+      states={states}
+      callbacks={callbacks}
+      readme={ReferralIframeReadme}
+    />
+  );
 });
 
 export const Activity = createHookStory(() => {
