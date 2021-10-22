@@ -106,6 +106,6 @@ export class StencilStorybook {
       title: "Mint Components",
       addons: [CucumberAddon, ShadowViewAddon, HookStoryAddon],
     });
-    return <Host class={Style}>{children}</Host>;
+    return <Host class={Style} onClick={{}}>{children}</Host>;
   }
 }

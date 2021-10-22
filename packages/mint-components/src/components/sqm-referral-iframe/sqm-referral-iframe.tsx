@@ -24,7 +24,14 @@ export class SqmReferralIframe {
    * @uiName URL of iframe to display
    */
   @Prop() iframeSrc: string = "https://example.com";
-
+  /**
+   * @uiName Height of the iframe container
+   */
+  @Prop() iframeHeight: string = "100%";
+  /**
+   * @uiName Width of the iframe container
+   */
+  @Prop() iframeWidth: string = "100%";
   /**
    * @undocumented
    * @uiType object
@@ -38,12 +45,12 @@ export class SqmReferralIframe {
   disconnectedCallback() {}
 
   render() {
-    const { data } = isDemo()
+    const { states, data } = isDemo()
       ? useReferralIframeDemo(getProps(this))
       : useReferralIframe(getProps(this));
     return (
       <Host style={{ display: "contents" }}>
-        <ReferralIframeView data={data}></ReferralIframeView>
+        <ReferralIframeView data={data} states={states}></ReferralIframeView>
       </Host>
     );
   }
@@ -52,8 +59,8 @@ export class SqmReferralIframe {
 function useReferralIframeDemo(props: SqmReferralIframe) {
   return deepmerge(
     {
+      states: { content: props },
       data: {
-        content: props,
         shareCode: "SHARECODE123",
       },
     },

@@ -101,7 +101,7 @@ function Buttons({ callbacks, states, template }) {
 function DefaultTemplateView(props) {
   const { states, callbacks } = props;
   return (
-    <div>
+    <div style={{ height: "50vh" }}>
       <textarea
         style={{ width: "100%", height: "300px" }}
         onChange={(e: Event) =>
@@ -124,7 +124,11 @@ function DefaultTemplateView(props) {
         }}
       >
         <button onClick={() => navigation.push("/")}>Dashboard</button>
-        {props.leadSubmit && <button onClick={() => navigation.push("/refer")}>Submit a Referral</button>}
+        {props.leadSubmit && (
+          <button onClick={() => navigation.push("/refer")}>
+            Submit a Referral
+          </button>
+        )}
         <button onClick={() => navigation.push("/activity")}>Activity</button>
         <button onClick={() => navigation.push("/editProfile")}>
           Edit Profile

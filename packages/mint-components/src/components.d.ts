@@ -666,9 +666,17 @@ export namespace Components {
          */
         "demoData"?: DemoData<ReferralIframeViewProps>;
         /**
+          * @uiName Height of the iframe container
+         */
+        "iframeHeight": string;
+        /**
           * @uiName URL of iframe to display
          */
         "iframeSrc": string;
+        /**
+          * @uiName Width of the iframe container
+         */
+        "iframeWidth": string;
     }
     interface SqmReferralTable {
         /**
@@ -2007,9 +2015,17 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<ReferralIframeViewProps>;
         /**
+          * @uiName Height of the iframe container
+         */
+        "iframeHeight"?: string;
+        /**
           * @uiName URL of iframe to display
          */
         "iframeSrc"?: string;
+        /**
+          * @uiName Width of the iframe container
+         */
+        "iframeWidth"?: string;
     }
     interface SqmReferralTable {
         /**

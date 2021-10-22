@@ -30,8 +30,10 @@ export function useReferralIframe(
   );
 
   return {
-    data: {
+    states: {
       content: props,
+    },
+    data: {
       shareCode: data?.viewer?.referralCode,
     },
   };
