@@ -1,24 +1,25 @@
 // Legacy Animations
 
-import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import React from "react"
+import styled, { keyframes } from "styled-components"
 
 export const ButtonDiv = styled.div`
   text-align: center;
   padding: 6px 0;
 `
 
-export const CheckMark = styled.svg`
+export const CheckMark = styled.svg<{ size: string }>`
   overflow: unset;
   display: inline-block;
   position: relative;
-  top: 2px;
-  left: 2px;
-  width: 14px;
-  height: 14px;
-  margin: -1px;
-  margin-left: 2px;
-  margin-right: 2px;
+  //   top: 1px;
+  //   left: 2px;
+  width: ${(props) => props.size};
+  height: ${(props) => props.size};
+  margin: -2px;
+  margin-left: 1px;
+  margin-right: 1px;
+  //   margin-right: 0px;
 
   .path {
     stroke-dasharray: 1000;
@@ -121,31 +122,40 @@ export const RingDefault = styled.div`
   }
 `
 
-export const ButtonSpinnerStyle = styled(RingDefault)`
+export const ButtonSpinnerStyle = styled(RingDefault)<{ size: string }>`
   position: relative;
-  bottom: 12px;
-  margin-left: 5px;
-  margin-right: 13px;
+
+  top: 2px;
+
+  ${(props) => (props.size == "12px" ? "margin-right: 13px;" : "")}
+  ${(props) => (props.size == "13px" ? "margin-right: 14px;" : "")}
+  ${(props) => (props.size == "18px" ? "margin-right: 18px;" : "")}
+
   div {
-    width: 15px;
-    height: 15px;
+    width: ${(props) => props.size};
+    height: ${(props) => props.size};
+    bottom: 50%;
     border: 2px solid #f5a623;
     border-color: #f5a623 transparent transparent transparent;
   }
 `
 
-export const ButtonSpinner = (
-  <ButtonSpinnerStyle>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-  </ButtonSpinnerStyle>
-)
+export const ButtonSpinner = (size: string) => {
+  return (
+    <ButtonSpinnerStyle size={size}>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </ButtonSpinnerStyle>
+  )
+}
 
-export const successAnimation = (
-  <CheckMark version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 130.2 130.2'>
-    <circle className='path circle' fill='none' stroke='#FFF' stroke-width='14' stroke-miterlimit='10' cx='65.1' cy='65.1' r='62.1' />
-    <polyline className='path check' fill='none' stroke='#FFF' stroke-width='14' stroke-linecap='round' stroke-miterlimit='10' points='100.2,40.2 51.5,88.8 29.8,67.5 ' />
-  </CheckMark>
-)
+export const successAnimation = (size: string) => {
+  return (
+    <CheckMark version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2" size={size}>
+      <circle className="path circle" fill="none" stroke="#FFF" stroke-width="14" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1" />
+      <polyline className="path check" fill="none" stroke="#FFF" stroke-width="14" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 " />
+    </CheckMark>
+  )
+}

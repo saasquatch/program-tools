@@ -1,14 +1,16 @@
-import * as React from 'react'
-import styled, { CSSProp } from 'styled-components'
-import { IconKey, Icon } from '../Icon'
-import { ButtonSpinner, successAnimation } from './Animations'
-import * as Styles from './Styles'
-import { css } from 'styled-components'
+import * as React from "react"
+import styled, { CSSProp } from "styled-components"
+import { IconKey, Icon } from "../Icon"
+import { ButtonSpinner, successAnimation } from "./Animations"
+import * as Styles from "./Styles"
+import { css } from "styled-components"
 
-type ButtonProps = OptionProps & StyleProps & React.ComponentProps<'button'>
+type ButtonProps = OptionProps & StyleProps & React.ComponentProps<"button">
 
 interface OptionProps {
   icon?: IconKey
+  left?: boolean
+  right?: boolean
   children?: React.ReactElement | string
 }
 
@@ -16,16 +18,33 @@ interface StyleProps {
   nopill?: boolean
   loading?: boolean
   critical?: boolean
-  disable?: boolean
   success?: boolean
-  size?: 'small' | 'medium' | 'large'
+  size?: "small" | "medium" | "large"
   css?: CSSProp
 }
 
-const size_table = {
-  small: '18px',
-  medium: '20px',
-  large: '24px',
+const icon_size = {
+  small: "14px",
+  medium: "16px",
+  large: "22px",
+}
+
+const checkmark_anim = {
+  small: "12px",
+  medium: "13px",
+  large: "18px",
+}
+
+const loading_anim = {
+  small: "12px",
+  medium: "13px",
+  large: "18px",
+}
+
+const anim_padding = {
+  small: 2,
+  medium: 3,
+  large: 4,
 }
 
 // BASE BUTTON STYLING
@@ -44,11 +63,19 @@ const base = css`
   background: var(--sq-action-primary);
   color: var(--sq-surface);
 
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: var(--sq-font-weight-bold);
 
   &:hover {
     background: var(--sq-action-primary-hovered);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: var(--sq-surface-button-disabled);
+    &:hover {
+      background: var(--sq-surface-button-disabled);
+    }
   }
 `
 
@@ -86,23 +113,44 @@ const success = css`
     background: var(--sq-surface-success-hovered);
   }
 `
+const loading = css`
+  background: var(--sq-surface-button-disabled);
+  &:hover {
+    background: var(--sq-surface-button-disabled);
+  }
+`
 
 const Button = styled.button<Required<StyleProps>>`
   ${base}
-  ${(props) => props.size == 'small' && small}
-  ${(props) => props.size == 'medium' && medium}
-  ${(props) => props.size == 'large' && large}
+  ${(props) => props.size == "small" && small}
+  ${(props) => props.size == "medium" && medium}
+  ${(props) => props.size == "large" && large}
   ${(props) => props.critical && critical}
   ${(props) => props.success && success}
+  ${(props) => props.loading && loading}
 `
-export const PrimaryButton = React.forwardRef<React.ElementRef<'button'>, ButtonProps>((props, forwardedRef) => {
-  const { nopill = true, loading = false, critical = false, success = false, disable = false, icon, size = 'medium', children, css = {}, ...rest } = props
+export const PrimaryButton = React.forwardRef<React.ElementRef<"button">, ButtonProps>((props, forwardedRef) => {
+  let { nopill = true, loading = false, critical = false, success = false, icon, left = true, right = false, size = "medium", children, css = {}, ...rest } = props
+
+  if (right) left = false
 
   return (
-    <Button {...rest} nopill={nopill} loading={loading} critical={critical} success={success} disable={disable} size={size} ref={forwardedRef} css={css}>
-      {icon && <Icon icon={icon} size={size_table[size]} css='margin: -2px; vertical-align: none;' />}
-      {children}
-      {loading && ButtonSpinner} {success && successAnimation}
+    <Button {...rest} nopill={nopill} loading={loading} critical={critical} success={success} size={size} ref={forwardedRef} css={css}>
+      {left && icon && <Icon icon={icon} size={icon_size[size]} css="vertical-align: none;" />}
+      <span> {children} </span>
+      {right && icon && <Icon icon={icon} size={icon_size[size]} css="vertical-align: none;" />}
+      {loading && (
+        <>
+          {children && <span style={{ padding: anim_padding[size] }}></span>}
+          {ButtonSpinner(loading_anim[size])}
+        </>
+      )}
+      {success && (
+        <>
+          {children && <span style={{ padding: anim_padding[size] }}></span>}
+          {successAnimation(checkmark_anim[size])}
+        </>
+      )}
     </Button>
   )
 })

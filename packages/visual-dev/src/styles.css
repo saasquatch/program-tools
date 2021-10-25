@@ -70,19 +70,22 @@
   --sq-font-size-header-three: 18px;
   --sq-font-size-regular: 14px;
   --sq-font-size-small: 12px;
-  --sq-font-size-button-small: 12px;
-  --sq-font-size-button-medium: 14px;
-  --sq-font-size-button-large: 18px;
   --sq-font-size-caption: 16px;
 
   --sq-line-height-header-one: 28px;
   --sq-line-height-header-two: 28px;
   --sq-line-height-header-three: 20px;
   --sq-line-height-regular: 20px;
+  --sq-line-height-caption: 16px;
+
+  /* Button */
+  --sq-surface-button-disabled: #e5e5e5;
+  --sq-font-size-button-small: 12px;
+  --sq-font-size-button-medium: 14px;
+  --sq-font-size-button-large: 18px;
   --sq-line-height-button-small: 16px;
   --sq-line-height-button-medium: 16px;
   --sq-line-height-button-large: 18px;
-  --sq-line-height-caption: 16px;
 
   /* Icon Sizes */
   --sq-icon-size-small: 12px;
