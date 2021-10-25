@@ -6,6 +6,12 @@ export const icon_size = {
   large: "22px",
 }
 
+export const icon_only_size = {
+  small: "14px",
+  medium: "22px",
+  large: "36px",
+}
+
 export const checkmark_anim = {
   small: "12px",
   medium: "13px",
@@ -35,25 +41,6 @@ export const base = css`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: var(--sq-font-weight-bold);
 `
-
-// BUTTON VARIANTS
-export const primary = css`
-  color: var(--sq-surface);
-  background: var(--sq-action-primary);
-
-  &:hover {
-    background: var(--sq-action-primary-hovered);
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    background: var(--sq-surface-button-disabled);
-    &:hover {
-      background: var(--sq-surface-button-disabled);
-    }
-  }
-`
-
 // PILL VARIANTS
 
 export const pill = css`
@@ -80,172 +67,179 @@ export const large = css`
   line-height: var(--sq-line-height-button-large);
 `
 
-// STATUS VARIANTS
+// BUTTON PRIMARY VARIANTS
 
-export const critical = css`
+export const primary = css`
+  color: var(--sq-surface);
+  background: var(--sq-action-primary);
+
+  &:hover {
+    background: var(--sq-action-primary-hovered);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: var(--sq-surface-button-disabled);
+    &:hover {
+      background: var(--sq-surface-button-disabled);
+    }
+  }
+`
+export const primary_critical = css`
   background: var(--sq-surface-critical);
   &:hover {
     background: var(--sq-surface-critical-hovered);
   }
 `
-export const success = css`
+export const primary_success = css`
   background: var(--sq-surface-success);
   &:hover {
     background: var(--sq-surface-success-hovered);
   }
 `
-export const loading = css`
+export const primary_loading = css`
+  cursor: wait;
   background: var(--sq-surface-button-disabled);
   &:hover {
     background: var(--sq-surface-button-disabled);
   }
 `
 
-// export const base = css`
-//   cursor: pointer;
-//   font: 700 14px Helvetica;
-//   line-height: 16px;
-//   box-sizing: border-box;
-//   border-radius: 4px;
-// `
+// BUTTON SECONDARY VARIANTS
 
-// export const primary = css`
-//   border: 1px solid transparent;
-//   background: #f49c20;
-//   color: #ffffff;
-//   &:hover {
-//     background: #dc8f32;
-//   }
-// `
-// export const primary_small = css`
-//   font-size: 12px;
-//   padding: 2.5px 10.5px;
-// `
-// export const primary_medium = css`
-//   font-size: 14px;
-//   padding: 5px 16px;
-// `
-// export const primary_large = css`
-//   font-size: 16px;
-//   padding: 7.5px 21px;
-// `
+export const secondary = css`
+  border: 1px solid var(--sq-action-secondary-border);
 
-// export const secondary = css`
-//   border: 1px solid #a6b9bd;
-//   background: #ffffff;
-//   color: #575757;
-//   &:hover {
-//     color: #ffffff;
-//     background: #a6b9bd;
-//   }
-// `
-// export const secondary_small = css`
-//   font-size: 12px;
-//   padding: 2.5px 10.5px;
-// `
-// export const secondary_medium = css`
-//   font-size: 14px;
-//   padding: 5px 16px;
-// `
-// export const secondary_large = css`
-//   font-size: 16px;
-//   padding: 7.5px 21px;
-// `
+  color: var(--sq-text-on-secondary);
+  background: var(--sq-action-secondary);
 
-// export const text = css`
-//   border-radius: 0px;
-//   margin: 0px 14px;
-//   padding: 5px 0px;
-//   border: none;
-//   background: none;
-//   border-bottom: 2px solid transparent;
+  &:hover {
+    color: var(--sq-text-on-secondary-hovered);
+    background: var(--sq-action-secondary-hovered);
+  }
 
-//   color: #575757;
-//   &:hover {
-//     border-bottom: 2px solid #575757;
-//   }
-// `
+  &:disabled {
+    cursor: not-allowed;
+    color: var(--sq-action-primary-disabled);
+    border-color: var(--sq-action-primary-disabled);
+    &:hover {
+      color: var(--sq-action-primary-disabled);
+      background: var(--sq-action-secondary);
+    }
+  }
+`
+export const secondary_critical = css`
+  color: var(--sq-surface-critical-hovered);
+  border-color: var(--sq-surface-critical-hovered);
+  &:hover {
+    color: var(--sq-text-on-secondary-hovered);
+    background: var(--sq-surface-critical-hovered);
+  }
+`
+export const secondary_success = css`
+  color: var(--sq-surface-success-hovered);
+  border-color: var(--sq-surface-success-hovered);
+  &:hover {
+    color: var(--sq-text-on-secondary-hovered);
+    background: var(--sq-surface-success-hovered);
+  }
+`
+export const secondary_loading = css`
+  cursor: wait;
+  color: var(--sq-action-primary-disabled);
+  border-color: var(--sq-surface-button-disabled);
+  &:hover {
+    color: var(--sq-action-primary-disabled);
+    background: var(--sq-action-secondary);
+  }
+`
 
-// export const text_small = css`
-//   font-size: 12px;
-// `
-// export const text_medium = css`
-//   font-size: 14px;
-// `
-// export const text_large = css`
-//   font-size: 18px;
-// `
+// BUTTON TEXT VARIANTS
 
-// export const circle = css`
-//   border: 1px solid #a6b9bd;
-//   background: #ffffff;
-//   color: #575757;
-//   padding: 0px;
-//   width: 40px;
-//   height: 40px;
-//   border-radius: 100%;
-//   &:hover {
-//     color: #ffffff;
-//     background: #a6b9bd;
-//   }
-// `
+export const text = css`
+  border: none;
+  color: var(--sq-text);
+  background: none;
 
-// export const circle_small = css`
-//   width: 36px;
-//   height: 36px;
-// `
+  &:hover {
+    text-decoration: underline;
+  }
 
-// export const circle_medium = css`
-//   width: 44px;
-//   height: 44px;
-// `
+  &:disabled {
+    cursor: not-allowed;
+    color: var(--sq-action-primary-disabled);
+    border-color: var(--sq-action-primary-disabled);
+    &:hover {
+      text-decoration: none;
+    }
+  }
+`
+export const text_critical = css`
+  color: var(--sq-surface-critical-hovered);
+`
+export const text_success = css`
+  color: var(--sq-surface-success-hovered);
+`
+export const text_small = css`
+  font-size: var(--sq-font-size-button-small);
+  line-height: var(--sq-line-height-button-small);
+`
+export const text_medium = css`
+  font-size: var(--sq-font-size-button-medium);
+  line-height: var(--sq-line-height-button-medium);
+`
+export const text_large = css`
+  font-size: var(--sq-font-size-button-large);
+  line-height: var(--sq-line-height-button-large);
+`
 
-// export const circle_large = css`
-//   width: 60px;
-//   height: 60px;
-// `
+// BUTTON ICON VARIANTS
 
-// export const pill = css`
-//   padding: 5px 16px;
-//   border-radius: 100px;
-// `
-// export const disable_primary = css`
-//   user-select: none;
-//   cursor: not-allowed;
-//   pointer-events: none;
-//   background-color: #ebebeb;
-// `
+export const icon = css`
+  cursor: pointer;
 
-// export const loading_primary = css`
-//   background-color: #ebebeb;
-//   &:hover {
-//     background: #ebebeb;
-//   }
-// `
+  border: none;
+  border-radius: 4px;
+  border: 1px solid var(--sq-action-secondary-border);
 
-// export const loading_secondary = css`
-//   color: #ebebeb;
-//   border-color: #ebebeb;
-//   user-select: none;
-//   pointer-events: none;
-// `
+  color: var(--sq-text-on-secondary);
+  background: var(--sq-action-secondary);
 
-// export const disable_secondary = css`
-//   color: #ebebeb;
-//   border-color: #ebebeb;
-//   user-select: none;
-//   pointer-events: none;
-// `
+  &:hover {
+    color: var(--sq-text-on-secondary-hovered);
+    background: var(--sq-action-secondary-hovered);
+  }
 
-// export const critical = css`
-//   background-color: #fe6666;
-//   &:hover {
-//     background: #cb0000;
-//   }
-// `
-// export const success = css`
-//   background-color: #57ac59;
-//   &:hover {
-//     background: #479449;
-//   }
-// `
+  &:disabled {
+    cursor: not-allowed;
+    color: var(--sq-action-primary-disabled);
+    border-color: var(--sq-action-primary-disabled);
+    &:hover {
+      color: var(--sq-action-primary-disabled);
+      background: var(--sq-action-secondary);
+    }
+  }
+`
+export const icon_small = css`
+  width: 36px;
+  height: 36px;
+`
+export const icon_medium = css`
+  width: 44px;
+  height: 44px;
+`
+export const icon_large = css`
+  width: 76px;
+  height: 76px;
+`
+
+export const circle = css`
+  border-radius: 100px;
+`
+export const borderless = css`
+  border: none;
+  &:hover {
+    color: var(--sq-action-secondary-border);
+    background: var(--sq-action-secondary);
+  }
+`

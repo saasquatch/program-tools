@@ -1,7 +1,7 @@
 import * as React from "react"
 import styled, { CSSProp } from "styled-components"
 import { IconKey, Icon } from "../Icon"
-import { ButtonSpinner, successAnimation } from "./Animations"
+import { loadingAnimation, successAnimation } from "./Animations"
 import * as Styles from "./Styles"
 
 type ButtonProps = OptionProps & StyleProps & React.ComponentProps<"button">
@@ -29,9 +29,9 @@ const Button = styled.button<Required<StyleProps>>`
   ${(props) => props.size == "small" && Styles.small}
   ${(props) => props.size == "medium" && Styles.medium}
   ${(props) => props.size == "large" && Styles.large}
-  ${(props) => props.critical && Styles.critical}
-  ${(props) => props.success && Styles.success}
-  ${(props) => props.loading && Styles.loading}
+  ${(props) => props.critical && Styles.primary_critical}
+  ${(props) => props.success && Styles.primary_success}
+  ${(props) => props.loading && Styles.primary_loading}
 `
 export const PrimaryButton = React.forwardRef<React.ElementRef<"button">, ButtonProps>((props, forwardedRef) => {
   let { pill = false, loading = false, critical = false, success = false, icon, left = true, right = false, size = "medium", children, css = {}, ...rest } = props
@@ -45,7 +45,7 @@ export const PrimaryButton = React.forwardRef<React.ElementRef<"button">, Button
       {loading && (
         <>
           {children && <span style={{ padding: Styles.anim_padding[size] }}></span>}
-          {ButtonSpinner(Styles.loading_anim[size], "var(--sq-action-primary)")}
+          {loadingAnimation(Styles.loading_anim[size], "var(--sq-action-primary)")}
         </>
       )}
       {success && (

@@ -73,16 +73,6 @@ export const primaryCriticalLarge = () => (
   </PrimaryButton>
 )
 
-// Success and Loading icon only
-
-export const primarySuccessIconSmall = () => <PrimaryButton size="small" success />
-export const primarySuccessconMedium = () => <PrimaryButton size="medium" success />
-export const primarySuccessIconLarge = () => <PrimaryButton size="large" success />
-
-export const primaryLoadingIconSmall = () => <PrimaryButton size="small" loading />
-export const primaryLoadingIconMedium = () => <PrimaryButton size="medium" loading />
-export const primaryLoadingIconLarge = () => <PrimaryButton size="large" loading />
-
 // Success and Loading with text
 
 export const primarySuccessSmall = () => (
@@ -115,6 +105,16 @@ export const primaryLoadingLarge = () => (
     Loading
   </PrimaryButton>
 )
+
+// Success and Loading icon only
+
+export const primarySuccessIconSmall = () => <PrimaryButton size="small" success />
+export const primarySuccessIconMedium = () => <PrimaryButton size="medium" success />
+export const primarySuccessIconLarge = () => <PrimaryButton size="large" success />
+
+export const primaryLoadingIconSmall = () => <PrimaryButton size="small" loading />
+export const primaryLoadingIconMedium = () => <PrimaryButton size="medium" loading />
+export const primaryLoadingIconLarge = () => <PrimaryButton size="large" loading />
 
 // Icon Text
 export const primaryIconSmallLeft = () => (
@@ -213,16 +213,6 @@ export const primaryPillCriticalLarge = () => (
   </PrimaryButton>
 )
 
-// Success and Loading icon only
-
-export const primaryPillSuccessIconSmall = () => <PrimaryButton pill size="small" success />
-export const primaryPillSuccessconMedium = () => <PrimaryButton pill size="medium" success />
-export const primaryPillSuccessIconLarge = () => <PrimaryButton pill size="large" success />
-
-export const primaryPillLoadingIconSmall = () => <PrimaryButton pill size="small" loading />
-export const primaryPillLoadingIconMedium = () => <PrimaryButton pill size="medium" loading />
-export const primaryPillLoadingIconLarge = () => <PrimaryButton pill size="large" loading />
-
 // Success and Loading with text
 
 export const primaryPillSuccessSmall = () => (
@@ -255,6 +245,16 @@ export const primaryPillLoadingLarge = () => (
     Loading
   </PrimaryButton>
 )
+
+// Success and Loading icon only
+
+export const primaryPillSuccessIconSmall = () => <PrimaryButton pill size="small" success />
+export const primaryPillSuccessIconMedium = () => <PrimaryButton pill size="medium" success />
+export const primaryPillSuccessIconLarge = () => <PrimaryButton pill size="large" success />
+
+export const primaryPillLoadingIconSmall = () => <PrimaryButton pill size="small" loading />
+export const primaryPillLoadingIconMedium = () => <PrimaryButton pill size="medium" loading />
+export const primaryPillLoadingIconLarge = () => <PrimaryButton pill size="large" loading />
 
 // Icon Text
 export const primaryPillIconSmallLeft = () => (

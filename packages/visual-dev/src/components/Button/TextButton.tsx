@@ -1,7 +1,6 @@
 import * as React from "react"
 import styled, { CSSProp } from "styled-components"
-import { IconKey, Icon } from "../Icon"
-import { loadingAnimation } from "./Animations"
+import { Icon, IconKey } from "../Icon"
 import * as Styles from "./Styles"
 
 type ButtonProps = OptionProps & StyleProps & React.ComponentProps<"button">
@@ -24,16 +23,15 @@ interface StyleProps {
 
 const Button = styled.button<Required<StyleProps>>`
   ${Styles.base}
-  ${Styles.secondary}
+  ${Styles.text}
   ${(props) => props.pill && Styles.pill}
-  ${(props) => props.size == "small" && Styles.small}
-  ${(props) => props.size == "medium" && Styles.medium}
-  ${(props) => props.size == "large" && Styles.large}
-  ${(props) => props.critical && Styles.secondary_critical}
-  ${(props) => props.success && Styles.secondary_success}
-  ${(props) => props.loading && Styles.secondary_loading}
+  ${(props) => props.size == "small" && Styles.text_small}
+  ${(props) => props.size == "medium" && Styles.text_medium}
+  ${(props) => props.size == "large" && Styles.text_large}
+  ${(props) => props.critical && Styles.text_critical}
+  ${(props) => props.success && Styles.text_success}
 `
-export const SecondaryButton = React.forwardRef<React.ElementRef<"button">, ButtonProps>((props, forwardedRef) => {
+export const TextButton = React.forwardRef<React.ElementRef<"button">, ButtonProps>((props, forwardedRef) => {
   let { pill = false, loading = false, critical = false, success = false, icon, left = true, right = false, size = "medium", children, css = {}, ...rest } = props
   if (right) left = false
 
@@ -42,12 +40,6 @@ export const SecondaryButton = React.forwardRef<React.ElementRef<"button">, Butt
       {left && icon && <Icon icon={icon} size={Styles.icon_size[size]} />}
       <span> {children} </span>
       {right && icon && <Icon icon={icon} size={Styles.icon_size[size]} />}
-      {loading && (
-        <>
-          {children && <span style={{ padding: Styles.anim_padding[size] }}></span>}
-          {loadingAnimation(Styles.loading_anim[size], "var(--sq-action-secondary-border)")}
-        </>
-      )}
     </Button>
   )
 })

@@ -140,7 +140,7 @@ export const ButtonSpinnerStyle = styled(RingDefault)<{ size: string; color: str
   }
 `
 
-export const ButtonSpinner = (size: string, color: string) => {
+export const loadingAnimation = (size: string, color: string) => {
   return (
     <ButtonSpinnerStyle size={size} color={color}>
       <div></div>
