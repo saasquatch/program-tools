@@ -17,8 +17,8 @@ export const CheckMark = styled.svg<{ size: string }>`
   width: ${(props) => props.size};
   height: ${(props) => props.size};
   margin: -2px;
-  margin-left: 1px;
-  margin-right: 1px;
+  margin-left: 0.5px;
+  margin-right: 0.5px;
   //   margin-right: 0px;
 
   .path {
@@ -122,7 +122,7 @@ export const RingDefault = styled.div`
   }
 `
 
-export const ButtonSpinnerStyle = styled(RingDefault)<{ size: string }>`
+export const ButtonSpinnerStyle = styled(RingDefault)<{ size: string; color: string }>`
   position: relative;
 
   top: 2px;
@@ -135,14 +135,14 @@ export const ButtonSpinnerStyle = styled(RingDefault)<{ size: string }>`
     width: ${(props) => props.size};
     height: ${(props) => props.size};
     bottom: 50%;
-    border: 2px solid #f5a623;
-    border-color: #f5a623 transparent transparent transparent;
+    border: 2px solid ${(props) => props.color};
+    border-color: ${(props) => props.color} transparent transparent transparent;
   }
 `
 
-export const ButtonSpinner = (size: string) => {
+export const ButtonSpinner = (size: string, color: string) => {
   return (
-    <ButtonSpinnerStyle size={size}>
+    <ButtonSpinnerStyle size={size} color={color}>
       <div></div>
       <div></div>
       <div></div>
