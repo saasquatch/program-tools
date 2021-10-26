@@ -30,6 +30,7 @@ const Button = styled.button<Required<StyleProps>>`
   ${(props) => props.size == "large" && Styles.text_large}
   ${(props) => props.critical && Styles.text_critical}
   ${(props) => props.success && Styles.text_success}
+  ${(props) => props.css}
 `
 export const TextButton = React.forwardRef<React.ElementRef<"button">, ButtonProps>((props, forwardedRef) => {
   let { pill = false, loading = false, critical = false, success = false, icon, left = true, right = false, size = "medium", children, css = {}, ...rest } = props

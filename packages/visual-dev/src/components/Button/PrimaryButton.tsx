@@ -32,6 +32,7 @@ const Button = styled.button<Required<StyleProps>>`
   ${(props) => props.critical && Styles.primary_critical}
   ${(props) => props.success && Styles.primary_success}
   ${(props) => props.loading && Styles.primary_loading}
+  ${(props) => props.css}
 `
 export const PrimaryButton = React.forwardRef<React.ElementRef<"button">, ButtonProps>((props, forwardedRef) => {
   let { pill = false, loading = false, critical = false, success = false, icon, left = true, right = false, size = "medium", children, css = {}, ...rest } = props

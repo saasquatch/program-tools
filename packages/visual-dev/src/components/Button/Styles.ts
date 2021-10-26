@@ -1,12 +1,14 @@
 import { css } from "styled-components"
 
 export const icon_size = {
+  mini: "5px",
   small: "14px",
   medium: "16px",
   large: "22px",
 }
 
 export const icon_only_size = {
+  mini: "18px",
   small: "14px",
   medium: "22px",
   large: "36px",
@@ -70,6 +72,7 @@ export const large = css`
 // BUTTON PRIMARY VARIANTS
 
 export const primary = css`
+  border-color: transparent;
   color: var(--sq-surface);
   background: var(--sq-action-primary);
 
@@ -219,6 +222,10 @@ export const icon = css`
       background: var(--sq-action-secondary);
     }
   }
+`
+export const icon_mini = css`
+  width: 20px;
+  height: 20px;
 `
 export const icon_small = css`
   width: 36px;
