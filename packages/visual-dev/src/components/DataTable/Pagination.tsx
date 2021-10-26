@@ -1,14 +1,16 @@
-import * as React from 'react'
-import styled, { CSSProp } from 'styled-components'
-import * as Styles from './Styles'
-import { IconKey, Icon } from '../Icon'
-import { Dropdown } from '../Dropdown'
-import { Button } from '../Button'
+import * as React from "react"
+import styled, { CSSProp } from "styled-components"
+import * as Styles from "./Styles"
+import { IconKey, Icon } from "../Icon"
+import { Dropdown } from "../Dropdown"
 
-type PopoverProps = OptionProps & StyleProps & React.ComponentProps<'div'>
+type PopoverProps = OptionProps & StyleProps & React.ComponentProps<"div">
 
 interface OptionProps {
   children?: any
+  selected?: number
+  pages?: array
+  total?: number
 }
 
 interface StyleProps {
@@ -41,21 +43,22 @@ const TextDiv = styled.div<{ selected?: boolean }>`
   font-style: normal;
   font-size: 14px;
   line-height: 20px;
-  ${(props) => (props.selected ? 'font-weight: bold;' : 'font-weight: normal;')}
+  ${(props) => (props.selected ? "font-weight: bold;" : "font-weight: normal;")}
 `
 
-export const Pagination = React.forwardRef<React.ElementRef<'div'>, PopoverProps>((props, forwardedRef) => {
-  const { children, css = {}, ...rest } = props
+export const Pagination = React.forwardRef<React.ElementRef<"div">, PopoverProps>((props, forwardedRef) => {
+  const { children, selected = 1, pages = [1], total = 0, css = {}, ...rest } = props
 
   return (
     <PaginationDiv {...rest} ref={forwardedRef} css={css}>
-      1-10 of 17
-      <div style={{ marginLeft: 'auto' }}>
-        <Icon size='24px' icon='chevron_left' css='margin: -3px;' />
-        <TextDiv selected={true}>1</TextDiv>
-        <TextDiv>2</TextDiv>
-        <Icon size='24px' icon='chevron_right' css='margin: -3px; margin-right: 24px;' />
-        <Dropdown pill center text='10 per page' css='min-width: 165px; width: 165px; display: inline-block' />
+      1-10 of {total}
+      <div style={{ marginLeft: "auto" }}>
+        <Icon size="24px" icon="chevron_left" css="margin: -3px;" />
+        {pages.map((x: any) => (
+          <TextDiv selected={selected === x}>{x}</TextDiv>
+        ))}
+        <Icon size="24px" icon="chevron_right" css="margin: -3px; margin-right: 24px;" />
+        <Dropdown pill center text="10 per page" css="min-width: 165px; width: 165px; display: inline-block" />
       </div>
     </PaginationDiv>
   )

@@ -58,7 +58,7 @@ export const FormSubmissionTable = () => {
       <Row content={content_c} />
       <Row content={content_c} />
       <Row content={content_c} />
-      <Pagination></Pagination>
+      <Pagination total={17} pages={[1, 2]} />
     </DataTable>
   )
 }
@@ -70,7 +70,7 @@ export const FormSubmissionTableEmpty = () => {
     <DataTable width="958px" empty>
       <Row variant="header" content={content_a} />
       <Row empty />
-      <Pagination></Pagination>
+      <Pagination />
     </DataTable>
   )
 }
@@ -81,11 +81,12 @@ export const FormSubmissionTableFilter = () => {
     <DataTable width="958px" empty>
       <Row variant="header" content={content_a} />
       <Row filter />
-      <Pagination></Pagination>
+      <Pagination />
     </DataTable>
   )
 }
-export const pagination = () => <Pagination />
+
+export const pagination = () => <Pagination selected={2} pages={[1, 2, 3]} />
 
 export const header = () => {
   const content = [{ text: "Heading A" }, { text: "Heading B" }, { text: "Heading C" }, { text: "Heading D" }]
