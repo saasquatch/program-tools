@@ -1,47 +1,46 @@
-import * as React from 'react'
-import styled, { CSSProp } from 'styled-components'
-import * as Styles from './Styles'
-import { Icon } from '../Icon'
+import * as React from "react"
+import styled, { CSSProp } from "styled-components"
+import * as Styles from "./Styles"
+import { Icon } from "../Icon"
 
-type AvatarProps = OptionProps & StyleProps & React.ComponentProps<'div'>
+type AvatarProps = OptionProps & StyleProps & React.ComponentProps<"div">
 
-interface OptionProps {
-  firstName?: string
-  lastName?: string
-}
+interface OptionProps {}
 
 interface StyleProps {
   css?: CSSProp
 }
 
-const AvatarStyle = styled.div<Required<StyleProps>>`
+const CardStyle = styled.div<Required<StyleProps>>`
+  ${Styles.base}
   ${(props) => props.css}
 `
+const CardTitle = styled.div`
+  padding: 16px;
+`
+const CardTitleText = styled.span`
+  font-family: Helvetica;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+  /* identical to box height, or 111% */
 
-const AvatarCircle = styled.div`
-  ${Styles.base}
+  /* On Surface/Text */
+
+  color: #575757;
 `
 
-const AvatarText = styled.span`
-  ${Styles.circle}
-`
-
-export const Card = React.forwardRef<React.ElementRef<'div'>, AvatarProps>((props, forwardedRef) => {
-  const { firstName = '', lastName = '', css = {}, ...rest } = props
-  let initials
-  if (firstName || lastName) {
-    initials = firstName.charAt(0) + lastName.charAt(0)
-  }
+export const Card = React.forwardRef<React.ElementRef<"div">, AvatarProps>((props, forwardedRef) => {
+  const { css = {}, ...rest } = props
 
   return (
-    <AvatarStyle {...rest} ref={forwardedRef} css={css}>
-      {!(firstName || lastName) ? (
-        <Icon icon='avatar' size='34px' />
-      ) : (
-        <AvatarCircle>
-          <AvatarText>{initials}</AvatarText>
-        </AvatarCircle>
-      )}
-    </AvatarStyle>
+    <CardStyle {...rest} ref={forwardedRef} css={css}>
+      <CardTitle>
+        {/* <Icon icon="calendar" size="large" css="" color="grey" /> */}
+        <CardTitleText>TITLE</CardTitleText>
+      </CardTitle>
+      asd
+    </CardStyle>
   )
 })
