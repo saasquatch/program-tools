@@ -26,11 +26,11 @@ export class NameFields {
   disconnectedCallback() {}
 
   render() {
-    const { states } = isDemo() ? useRegisterDemo(this) : useNameFields();
+    const { states } = isDemo() ? useNameFieldsDemo(this) : useNameFields();
     return <NameFieldsView states={states}></NameFieldsView>;
   }
 }
-function useRegisterDemo(props: NameFields): Partial<NameFieldsViewProps> {
+function useNameFieldsDemo(props: NameFields): Partial<NameFieldsViewProps> {
   return deepmerge(
     {
       states: {
