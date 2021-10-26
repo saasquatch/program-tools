@@ -7,10 +7,12 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type                                                                  | Default                 |
-| ----------- | ------------ | ----------- | --------------------------------------------------------------------- | ----------------------- |
-| `demoData`  | --           |             | `{ data?: { content: { iframeSrc: string; }; shareCode: string; }; }` | `undefined`             |
-| `iframeSrc` | `iframe-src` |             | `string`                                                              | `"https://example.com"` |
+| Property       | Attribute       | Description | Type                                                                                                                           | Default                 |
+| -------------- | --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------------------- |
+| `demoData`     | --              |             | `{ states?: { content: { iframeSrc: string; iframeHeight: string; iframeWidth: string; }; }; data?: { shareCode: string; }; }` | `undefined`             |
+| `iframeHeight` | `iframe-height` |             | `string`                                                                                                                       | `"100%"`                |
+| `iframeSrc`    | `iframe-src`    |             | `string`                                                                                                                       | `"https://example.com"` |
+| `iframeWidth`  | `iframe-width`  |             | `string`                                                                                                                       | `"100%"`                |
 
 
 ----------------------------------------------
