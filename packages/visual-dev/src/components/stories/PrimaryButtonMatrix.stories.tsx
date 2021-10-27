@@ -3,13 +3,12 @@ import { withMatrix } from "storybook-addon-matrix"
 
 addDecorator(withMatrix)
 
-// Your.stories.tsx
 import * as React from "react"
 import { PrimaryButton, SecondaryButton } from "../Button"
 
 export default {
   title: "Components / Button / PrimaryButtonMatrix",
-  component: PrimaryButton, // Must be present
+  component: PrimaryButton,
   parameters: {
     matrix: {
       // Parameter name is matrix
