@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import { RadioCard, RadioCardGroup } from '../RadioCard'
+import React, { useState } from "react"
+import { RadioCard, RadioCardGroup } from "../RadioCard"
 
 export default {
-  title: 'Components / RadioCard',
+  title: "Components / RadioCard",
   component: RadioCard,
 }
 
 export const Functional = () => {
   const options = {
-    title: 'A title for this option',
-    text: 'This is a default radio group button. Toggle it by clicking.',
+    title: "A title for this option",
+    text: "This is a default radio group button. Toggle it by clicking.",
   }
   const [value, setValue] = useState(0)
   return (
@@ -21,10 +21,10 @@ export const Functional = () => {
   )
 }
 
-export const radioAction = () => {
+export const radioCard = () => {
   const options = {
-    title: 'A title for this option',
-    text: 'This is a default radio group button. It is unselected.',
+    title: "A title for this option",
+    text: "This is a default radio group button. It is unselected.",
   }
   return (
     <RadioCardGroup>
@@ -33,14 +33,26 @@ export const radioAction = () => {
   )
 }
 
-export const radioActionChecked = () => {
+export const radioCardChecked = () => {
   const options = {
-    title: 'A title for this option',
-    text: 'This is a selected radio group button.',
+    title: "A title for this option",
+    text: "This is a selected radio group button.",
   }
   return (
     <RadioCardGroup>
       <RadioCard options={options} value={true} onChange={void 0} />
+    </RadioCardGroup>
+  )
+}
+
+export const radioCardIcon = () => {
+  const options = {
+    title: "A title for this option",
+    text: "This is a selected radio group button.",
+  }
+  return (
+    <RadioCardGroup>
+      <RadioCard options={options} value={false} onChange={void 0} icon="alert" />
     </RadioCardGroup>
   )
 }
