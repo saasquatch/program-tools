@@ -1,21 +1,27 @@
-import { css } from 'styled-components'
+import { css } from "styled-components"
 
 export const RadioLabelStyle = css`
   display: flex;
   flex-direction: row;
-  width: 488px;
+  //   width: 85%;
   height: 138px;
   border: 2px solid var(--sq-border);
   border-radius: 4px;
   align-items: flex-start;
-  margin: 10px;
+  //   margin: 10px;
   user-select: none;
   cursor: pointer;
   color: var(--sq-text);
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
+`
+
+export const RadioGrid = css`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 `
 
 export const RadioInputStyle = css`
@@ -42,7 +48,7 @@ export const RadioButtonStyle = css`
   flex-shrink: 0;
 
   &::after {
-    content: '';
+    content: "";
     width: 8px;
     height: 8px;
     display: block;
@@ -60,7 +66,7 @@ export const RadioTextStyle = css`
 
 export const RightSegmentStyle = css`
   width: auto;
-  width: 371px;
+  //   width: 371px;
   height: 100%;
   float: right;
   border-left: 2px solid #ebebeb;

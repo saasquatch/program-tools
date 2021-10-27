@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from "styled-components"
 
 export const RadioLabelStyle = css`
   display: flex;
@@ -9,7 +9,7 @@ export const RadioLabelStyle = css`
   user-select: none;
   cursor: pointer;
   color: var(--sq-text);
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
@@ -37,7 +37,7 @@ export const RadioButtonStyle = css`
   flex-shrink: 0;
 
   &::after {
-    content: '';
+    content: "";
     width: 8px;
     height: 8px;
     display: block;
