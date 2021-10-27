@@ -1,43 +1,39 @@
-import { css } from 'styled-components'
+import { css } from "styled-components"
 
 export const ModalBackdropStyle = css`
   position: absolute;
   display: flex;
   flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.05);
   z-index: 1;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.05);
 `
 
 export const ModalDivStyle = css`
   position: relative;
-  background-color: #fefefe;
+  white-space: pre-wrap;
+  min-width: 558px;
+  background-color: var(--sq-surface);
+  box-shadow: 0 0 0 1px var(--sq-border);
+  border-radius: 8px;
   margin: auto;
   padding: 0;
-  min-width: 558px;
-  box-shadow: 0 0 0 1px #e2e2e2;
-  border-radius: 8px;
-  white-space: pre-wrap;
 `
 
 export const ModalHeaderStyle = css`
-  padding: 20px;
   user-select: none;
-
+  padding: 20px;
+  background: var(--sq-nav-surface-primary);
   box-sizing: border-box;
   border-radius: 8px 8px 0 0;
-
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 26px;
-  line-height: 28px;
-
-  color: #ffffff;
-  background: #003b45;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: var(--sq-font-weight-bold);
+  font-size: var(--sq-font-size-header-one);
+  line-height: var(--sq-line-height-header-one);
+  color: var(--sq-surface);
 `
 
 export const ModalActionDivStyle = css`
@@ -62,7 +58,7 @@ export const ModalContentDivStyle = css`
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #e2e2e2;
+    background: var(--sq-border);
     border-radius: 50px;
   }
 
@@ -75,80 +71,69 @@ export const ModalContentTextDivStyle = css`
   max-width: fit-content;
   margin-top: 10px;
   margin-bottom: 10px;
-  color: #575757;
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
+  color: var(--sq-text);
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: var(--sq-font-size-regular);
+  font-weight: var(--sq-font-weight-regular);
+  line-height: var(--sq-line-height-regular);
 `
 
 export const CodeDivStyle = css`
   display: flex;
   align-items: center;
   padding: 20px;
-  color: #575757;
-  background: #f9f9f9;
-  border: 1px solid #e2e2e2;
+  color: var(--sq-text);
+  background: var(--sq-background);
+  border: 1px solid var(--sq-border);
   box-sizing: border-box;
   border-radius: 4px;
-
   font-family: monospace;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: var(--sq-font-size-regular);
+  font-weight: var(--sq-font-weight-regular);
+  line-height: var(--sq-line-height-regular);
 `
 
 export const DividerDivStyle = css`
   height: 1px;
   width: 100%;
-  background: #e2e2e2;
+  background: var(--sq-border);
   margin: 20px 0 20px -20px;
   padding-right: 40px;
 `
 
 export const ModalBannerDivStyle = css`
-  height: 36px;
-  background: #12c8d7;
+  user-select: none;
   display: flex;
-  align-items: center;
-
+  height: 36px;
   padding: 20px;
   margin: -20px;
   margin-bottom: 20px;
-
-  color: #fff;
+  align-items: center;
   text-indent: 20px;
-  user-select: none;
-
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 20px;
+  background: var(--sq--surface-modal-banner);
+  color: var(--sq-surface);
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: var(--sq-font-weight-bold);
+  font-size: var(--sq-font-size-header-three);
+  line-height: var(--sq-line-height-regular);
 `
 
 export const ModalBackDivStyle = css`
-  height: 20px;
-  background: #12c8d7;
-  display: flex;
-  align-items: center;
-
-  padding: 20px;
-  margin: -20px;
-  margin-bottom: 20px;
-
-  text-indent: 15px;
   user-select: none;
-
+  display: flex;
+  height: 20px;
+  align-items: center;
+  background: var(--sq--surface-modal-banner);
+  text-indent: 15px;
   font-family: Helvetica;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 20px;
-
-  color: #858585;
-  background: #fff;
-  border-bottom: 1px solid #e2e2e2;
+  color: var(--sq-text-subdued);
+  background: var(--sq-surface);
+  border-bottom: 1px solid var(--sq-border);
+  padding: 20px;
+  margin: -20px;
+  margin-bottom: 20px;
 `
