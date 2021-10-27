@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from "styled-components"
 
 export const InputBoxStyle = css`
   position: relative;
@@ -38,8 +38,9 @@ export const InputBoxStyle = css`
 `
 
 export const IconStyle = css`
-  position: absolute;
-  bottom: 40%;
+  position: relative;
+  width: 22px;
+  bottom: 28px;
 `
 
 export const invalid = css`

@@ -21,14 +21,15 @@ interface OptionProps {
 
 const ShadowDom = styled(root.div)``
 
-const InputBox = styled.input<{ isInvalid: boolean }>`
+const InputBox = styled.input<{ isInvalid: boolean; position: string }>`
   ${Styles.InputBoxStyle}
   ${(props) => (props.isInvalid ? Styles.invalid : "")}
+  ${(props) => (props.position == "left" ? "text-indent: 40px;" : "")}
 `
 
 const IconDiv = styled.div<{ position: string }>`
   ${Styles.IconStyle}
-  ${(props) => (props.position == "left" ? "left: 45px;" : "left: 305px;")}
+  ${(props) => (props.position == "left" ? "left: 13px;" : "left: 277px;")}
 `
 
 export const Input = React.forwardRef<React.ElementRef<"input">, InputProps>((props, forwardedRef) => {
@@ -36,10 +37,10 @@ export const Input = React.forwardRef<React.ElementRef<"input">, InputProps>((pr
 
   return (
     <ShadowDom>
-      <InputBox {...rest} type={type} ref={forwardedRef} isInvalid={rawErrors} />
+      <InputBox {...rest} type={type} position={position} ref={forwardedRef} isInvalid={rawErrors} />
       {icon && (
         <IconDiv position={position}>
-          <Icon icon={icon} size={"22px"} />
+          <Icon icon={icon} size={"22px"} color="var(--sq-text-subdued)" />
         </IconDiv>
       )}
       {buttons && (

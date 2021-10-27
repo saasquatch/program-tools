@@ -16,44 +16,23 @@ interface StyleProps {
 }
 
 const CardStyle = styled.div<Required<StyleProps>>`
-  ${Styles.base}
-  color: #575757;
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
-  padding: 8px;
+  ${Styles.card}
   ${(props) => props.css}
 `
 const CardHeader = styled.div`
-	display: flex;
-	  height: 40px;	vertical-align: middle
-
-  flex-direction: column;
-  align-items: center;
-  padding: 8px;
+  ${Styles.cardHeader}
 `
-
 const CardHeaderIcon = styled.div`
-  float: left;
-  margin-right: 16px;
+  ${Styles.cardHeaderIcon}
 `
 const CardHeaderText = styled.div`
-  font-size: 18px;
-  line-height: 20px;
-  font-weight: bold;
-  float: left;
+  ${Styles.cardHeaderText}
 `
 const CardText = styled.div`
-  height: 94px;
-  font-size: 14px;
-  padding: 8px;
+  ${Styles.cardText}
 `
-
 const CardFooter = styled.div`
-  position: relative;
-  bottom: 0px;
+  ${Styles.cardFooter}
 `
 
 export const Card = React.forwardRef<React.ElementRef<"div">, CardProps>((props, forwardedRef) => {
@@ -63,7 +42,7 @@ export const Card = React.forwardRef<React.ElementRef<"div">, CardProps>((props,
     <CardStyle {...rest} ref={forwardedRef} css={css}>
       <CardHeader>
         <CardHeaderIcon>
-          <Icon icon="calendar" size="large" css="" color="grey" />
+          <Icon icon="calendar" size="large" css="" color="var(--sq-text-subdued)" />
         </CardHeaderIcon>
         <CardHeaderText>{title}</CardHeaderText>
       </CardHeader>
