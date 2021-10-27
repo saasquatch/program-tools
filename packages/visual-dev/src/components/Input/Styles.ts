@@ -2,7 +2,6 @@ import { css } from "styled-components"
 
 export const InputBoxStyle = css`
   position: relative;
-
   width: 300px;
   height: 30px;
 
