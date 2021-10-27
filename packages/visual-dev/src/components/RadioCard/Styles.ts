@@ -18,7 +18,7 @@ export const RadioLabelStyle = css`
   line-height: var(--sq-line-height-regular);
 `
 
-export const RadioGrid = css`
+export const RadioGridStyle = css`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;

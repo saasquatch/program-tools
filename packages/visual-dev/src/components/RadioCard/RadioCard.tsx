@@ -37,8 +37,8 @@ const LeftSegment = styled.div<{ isChecked: boolean }>`
   ${(props) => (props.isChecked ? "color: var(--sq-action-primary-hovered);" : "")}
 `
 
-const Grid = styled.div`
-  ${Styles.RadioGrid}
+const RadioGrid = styled.div`
+  ${Styles.RadioGridStyle}
 `
 
 export const RadioCard = React.forwardRef<React.ElementRef<"input">, InputProps>((props, forwardedRef) => {
@@ -70,7 +70,7 @@ export const RadioCardGroup = React.forwardRef<React.ElementRef<"div">, InputPro
 
   return (
     <ShadowDom>
-      <Grid>{children}</Grid>
+      <RadioGrid>{children}</RadioGrid>
     </ShadowDom>
   )
 })
