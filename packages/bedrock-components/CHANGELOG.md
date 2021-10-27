@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.2] - 2021-10-27
+
+### Added
+
+- \<sqb-program-switch> - Loads different content based on the programId from useProgramId
+
 ## [1.1.1] - 2021-09-20
 
 ### Fixed
@@ -19,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Component for loading existing program or global widgets
-  - <sqb-widget>
+  - \<sqb-widget>
 
 ## [1.0.1] - 2021-04-22
 
@@ -33,10 +39,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release, components use stencil 2+. These are style-less and used for functional purposes only.
 - Available components:
-  - <sqb-conditional-section>
-  - <sqb-program-section>
+  - \<sqb-conditional-section>
+  - \<sqb-program-section>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components@1.1.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components@1.1.2...HEAD
+[1.1.2]: https://github.com/saasquatch/program-tools/releases/tag/bedrock-components@1.1.2
+[1.1.1]: https://github.com/saasquatch/program-tools/releases/tag/bedrock-components@1.1.1
 [1.1.0]: https://github.com/saasquatch/program-tools/releases/tag/bedrock-components@1.1.0
 [1.0.1]: https://github.com/saasquatch/program-tools/releases/tag/bedrock-components@1.0.1
 [1.0.0]: https://github.com/saasquatch/program-tools/releases/tag/bedrock-components@1.0.0
