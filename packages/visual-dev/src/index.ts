@@ -47,8 +47,27 @@ import {
 } from "./components/FormTemplates";
 import { Icon } from "./components/Icons";
 import JSONataUtils from "./components/JSONata/JSONataUtils";
+import { Alert } from "./components/Alert";
+import { Avatar } from "./components/Avatar";
+import { Badge } from "./components/Badge";
+import { Heading } from "./components/Heading";
+import { Paragraph } from "./components/Paragraph";
+import { Switch } from "./components/Switch";
+import { Tag } from "./components/Tag";
+import { Text } from "./components/Text";
+import { Tooltip } from "./components/Tooltip";
+import { GlobalStyle } from "./components/GlobalStyle";
 
 export {
+  Alert,
+  Avatar,
+  Badge,
+  Heading,
+  Paragraph,
+  Switch,
+  Tag,
+  Text,
+  Tooltip,
   MyComponent,
   H1,
   H2,
@@ -85,4 +104,5 @@ export {
   DefaultTemplate,
   DefaultObjectTemplate,
   JSONataUtils,
+  GlobalStyle,
 };
