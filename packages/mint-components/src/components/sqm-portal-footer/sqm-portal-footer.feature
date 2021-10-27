@@ -1,7 +1,8 @@
 Feature: Portal Footer
 
     Background: A user is viewing the portal
-        Given a user is viewing the portal
+        Given a hosted portal
+        And a user is viewing the portal
         And the portal has a footer
 
     Scenario Outline: FAQ and T&C links/text are configurable and open in a new page when clicked
