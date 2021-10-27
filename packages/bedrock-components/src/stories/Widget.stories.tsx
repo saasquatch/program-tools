@@ -1,7 +1,11 @@
 import { h } from '@stencil/core';
 import { createHookStory } from '../components/sqb-stencilbook/HookStoryAddon';
+import scenario from '../components/sqb-widget/sqb-widget.feature';
 export default {
   title: 'Widget',
+  parameters: {
+    scenario,
+  },
 };
 
 function useGraphQL() {

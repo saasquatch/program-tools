@@ -1,8 +1,13 @@
 import { useEffect } from '@saasquatch/universal-hooks';
 import { h } from '@stencil/core';
 import { createHookStory } from '../components/sqb-stencilbook/HookStoryAddon';
+import scenario from '../components/sqb-program-switch/sqb-program-switch.feature';
+
 export default {
   title: 'Program Switch',
+  parameters: {
+    scenario,
+  },
 };
 
 function useGraphQL() {
@@ -26,7 +31,7 @@ export const ProgramSwitch = createHookStory(() => {
     return () => (window.widgetIdent = { env: 'demo' });
   }, []);
   return (
-    <div> 
+    <div>
       <sqb-program-section program-id="Vacay-referral">
         <sqm-program-menu>
           <sl-menu-item value="Vacay-referral">Vacay-referral</sl-menu-item>

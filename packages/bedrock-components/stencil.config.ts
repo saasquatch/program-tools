@@ -2,6 +2,7 @@ import { Config } from '@stencil/core';
 import alias from '@rollup/plugin-alias';
 import { grapesJsOutput } from '@saasquatch/stencil-grapes-plugin';
 import { OutputTarget } from '@stencil/core/internal';
+import { string } from "rollup-plugin-string";
 import path from 'path';
 
 const useGrapesjs: OutputTarget = grapesJsOutput({});
@@ -25,6 +26,9 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
     useGrapesjs,
+  ],
+  plugins: [
+    string({ include: "**/*.feature" }),
   ],
   rollupPlugins: {
     before: [
