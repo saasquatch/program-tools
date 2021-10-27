@@ -74,6 +74,8 @@ export const large = css`
 export const primary = css`
   color: var(--sq-surface);
   background: var(--sq-action-primary);
+  box-shadow: none;
+  border: none;
 
   &:hover {
     background: var(--sq-action-primary-hovered);
@@ -81,9 +83,9 @@ export const primary = css`
 
   &:disabled {
     cursor: not-allowed;
-    background: var(--sq-surface-button-disabled);
+    background: var(--sq-action-primary-disabled);
     &:hover {
-      background: var(--sq-surface-button-disabled);
+      background: var(--sq-action-primary-disabled);
     }
   }
 `
@@ -101,9 +103,9 @@ export const primary_success = css`
 `
 export const primary_loading = css`
   cursor: wait;
-  background: var(--sq-surface-button-disabled);
+  background: var(--sq-action-primary-disabled);
   &:hover {
-    background: var(--sq-surface-button-disabled);
+    background: var(--sq-action-primary-disabled);
   }
 `
 
@@ -149,7 +151,7 @@ export const secondary_success = css`
 export const secondary_loading = css`
   cursor: wait;
   color: var(--sq-action-primary-disabled);
-  box-shadow: 0 0 0 1px var(--sq-surface-button-disabled);
+  box-shadow: 0 0 0 1px var(--sq-action-primary-disabled);
   &:hover {
     color: var(--sq-action-primary-disabled);
     background: var(--sq-action-secondary);

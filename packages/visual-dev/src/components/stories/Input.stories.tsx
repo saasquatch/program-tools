@@ -15,7 +15,7 @@ export const InputText = () => <Input value="Input Text" />
 export const InputDisabled = () => <Input value="Input Text" disabled />
 export const Placeholder = () => <Input placeholder="Placeholder Text" />
 export const PlaceholderDisabled = () => <Input placeholder="Placeholder Text" disabled />
-export const InvalidField = () => <Input value="Invalid Field" />
+export const InvalidField = () => <Input value="Invalid Field" rawErrors={"error"} />
 
 export const InputEdit = () => <Input value="" icon="edit" disabled />
 export const InputEditDisabled = () => <Input value="" icon="edit" />

@@ -79,7 +79,6 @@
   --sq-line-height-caption: 16px;
 
   /* Button */
-  --sq-surface-button-disabled: #e5e5e5;
   --sq-font-size-button-small: 12px;
   --sq-font-size-button-medium: 14px;
   --sq-font-size-button-large: 18px;
@@ -98,7 +97,12 @@
   --sq-icon-size-avatar-large: 50px;
   --sq-font-size-avatar: 24px;
 
-  --sq--surface-modal-banner: #12c8d7;
+  /* Modal */
+  --sq-surface-modal-banner: #12c8d7;
+
+  /* Modal */
+  --sq-surface-input-disabled: #ebebeb;
+  --sq-text-input-disabled: #bdbdbd;
 
   /* Spacing */
   --sq-spacing-xxx-small: 2px;
