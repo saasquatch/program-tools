@@ -37,6 +37,10 @@ const LeftSegment = styled.div<{ isChecked: boolean }>`
   ${(props) => (props.isChecked ? "color: var(--sq-action-primary-hovered);" : "")}
 `
 
+const Grid = styled.div`
+  ${Styles.RadioGrid}
+`
+
 export const RadioCard = React.forwardRef<React.ElementRef<"input">, InputProps>((props, forwardedRef) => {
   const { value, onChange, options, icon = "calendar", ...rest } = props
 
@@ -44,23 +48,29 @@ export const RadioCard = React.forwardRef<React.ElementRef<"input">, InputProps>
   value ? (icon_color = "var(--sq-action-primary-hovered)") : ""
 
   return (
-    <RadioLabel htmlFor={rest.id} isChecked={value}>
-      <RadioInput type="radio" checked={value} {...rest} ref={forwardedRef} />
-      <LeftSegment isChecked={value}>
-        <Icon icon={icon} size="40px" color={icon_color} />
-      </LeftSegment>
-      <RightSegment>
-        <RadioText>
-          {options.title ? <div style={{ fontWeight: "bold", marginBottom: 4 }}> {options.title} </div> : ""}
-          {options.text ? <div style={{ color: "var(--sq-text-subdued)" }}> {options.text} </div> : ""}
-        </RadioText>
-      </RightSegment>
-    </RadioLabel>
+    <div>
+      <RadioLabel htmlFor={rest.id} isChecked={value}>
+        <RadioInput type="radio" checked={value} {...rest} ref={forwardedRef} />
+        <LeftSegment isChecked={value}>
+          <Icon icon={icon} size="40px" color={icon_color} />
+        </LeftSegment>
+        <RightSegment>
+          <RadioText>
+            {options.title ? <div style={{ fontWeight: "bold", marginBottom: 4 }}> {options.title} </div> : ""}
+            {options.text ? <div style={{ color: "var(--sq-text-subdued)" }}> {options.text} </div> : ""}
+          </RadioText>
+        </RightSegment>
+      </RadioLabel>
+    </div>
   )
 })
 
 export const RadioCardGroup = React.forwardRef<React.ElementRef<"div">, InputProps>((props) => {
   const { children } = props
 
-  return <ShadowDom>{children}</ShadowDom>
+  return (
+    <ShadowDom>
+      <Grid>{children}</Grid>
+    </ShadowDom>
+  )
 })
