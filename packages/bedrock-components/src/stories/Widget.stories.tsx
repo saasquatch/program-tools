@@ -21,7 +21,7 @@ function useGraphQL() {
   };
 }
 
-export const Default = createHookStory(() => {
+export const Widget = createHookStory(() => {
   useGraphQL();
   return (
     <div>

@@ -50,7 +50,7 @@ export const ProgramSwitch = createHookStory(() => {
   );
 });
 
-export const ProgramSwitchDemo = createHookStory(() => {
+export const DemoProgramSwitch = createHookStory(() => {
   return (
     <div>
       <sqb-program-section program-id="Vacay-referral">
