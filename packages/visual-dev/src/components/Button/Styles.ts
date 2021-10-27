@@ -72,7 +72,7 @@ export const large = css`
 // BUTTON PRIMARY VARIANTS
 
 export const primary = css`
-  border-color: transparent;
+  border: 1px solid var(--sq-action-primary	);
   color: var(--sq-surface);
   background: var(--sq-action-primary);
 

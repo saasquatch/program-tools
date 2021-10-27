@@ -27,4 +27,4 @@ export const InputCloseDisabled = () => <Input value="" icon="close" disabled />
 export const InputNumber = () => <Input value="" type="number" />
 export const InputNumberDisabled = () => <Input type="number" disabled />
 
-export const InputButtons = () => <Input value="Input Text" buttons />
+export const InputButtons = () => <Input value="Edit Input Text" buttons />
