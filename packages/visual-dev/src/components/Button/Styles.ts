@@ -72,7 +72,6 @@ export const large = css`
 // BUTTON PRIMARY VARIANTS
 
 export const primary = css`
-  border: 1px solid var(--sq-action-primary	);
   color: var(--sq-surface);
   background: var(--sq-action-primary);
 
@@ -111,7 +110,7 @@ export const primary_loading = css`
 // BUTTON SECONDARY VARIANTS
 
 export const secondary = css`
-  border: 1px solid var(--sq-action-secondary-border);
+  box-shadow: 0 0 0 1px var(--sq-action-secondary-border);
 
   color: var(--sq-text-on-secondary);
   background: var(--sq-action-secondary);
@@ -124,7 +123,7 @@ export const secondary = css`
   &:disabled {
     cursor: not-allowed;
     color: var(--sq-action-primary-disabled);
-    border-color: var(--sq-action-primary-disabled);
+    box-shadow: 0 0 0 1px var(--sq-action-primary-disabled);
     &:hover {
       color: var(--sq-action-primary-disabled);
       background: var(--sq-action-secondary);
@@ -133,7 +132,7 @@ export const secondary = css`
 `
 export const secondary_critical = css`
   color: var(--sq-surface-critical-hovered);
-  border-color: var(--sq-surface-critical-hovered);
+  box-shadow: 0 0 0 1px var(--sq-surface-critical-hovered);
   &:hover {
     color: var(--sq-text-on-secondary-hovered);
     background: var(--sq-surface-critical-hovered);
@@ -141,7 +140,7 @@ export const secondary_critical = css`
 `
 export const secondary_success = css`
   color: var(--sq-surface-success-hovered);
-  border-color: var(--sq-surface-success-hovered);
+  box-shadow: 0 0 0 1px var(--sq-surface-success-hovered);
   &:hover {
     color: var(--sq-text-on-secondary-hovered);
     background: var(--sq-surface-success-hovered);
@@ -150,7 +149,7 @@ export const secondary_success = css`
 export const secondary_loading = css`
   cursor: wait;
   color: var(--sq-action-primary-disabled);
-  border-color: var(--sq-surface-button-disabled);
+  box-shadow: 0 0 0 1px var(--sq-surface-button-disabled);
   &:hover {
     color: var(--sq-action-primary-disabled);
     background: var(--sq-action-secondary);
