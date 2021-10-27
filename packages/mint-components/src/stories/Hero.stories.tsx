@@ -1,10 +1,11 @@
 import { h } from "@stencil/core";
 import { HeroView } from "../components/sqm-hero/sqm-hero-view";
+import scenario from "../components/sqm-hero/sqm-hero.feature";
 
 export default {
   title: "Hero Layout",
   parameters: {
-    //   scenario,
+    scenario,
   },
 };
 
@@ -16,9 +17,9 @@ export const LoginOneColumn = () => {
     },
     content: {
       primaryColumn: [
-          <h1 style={{ textAlign: "center" }}>Get Referring!</h1>,
-          <sqm-portal-login></sqm-portal-login>
-      ]
+        <h1 style={{ textAlign: "center" }}>Get Referring!</h1>,
+        <sqm-portal-login></sqm-portal-login>,
+      ],
     },
   };
   return (
