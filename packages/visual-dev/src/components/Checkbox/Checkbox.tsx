@@ -33,13 +33,7 @@ const CheckboxBox = styled.div<{ isDisabled?: any }>`
 `
 
 export const Checkbox = React.forwardRef<React.ElementRef<"input">, InputProps>((props, forwardedRef) => {
-  // export const Checkbox: React.FC<any> = (props: InputProps) => {
   const { id, value, onChange, options, disabled, name, ...rest } = props
-
-  // const { value, onChange, options, disabled } = props
-
-  console.log(props)
-  console.log(props.options)
 
   return (
     <ShadowDom>
