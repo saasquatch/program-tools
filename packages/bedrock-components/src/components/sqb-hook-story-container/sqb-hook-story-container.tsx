@@ -1,6 +1,9 @@
 import { h, Component, State, Prop, FunctionalComponent } from '@stencil/core';
 import { withHooks } from '@saasquatch/stencil-hooks';
 
+/**
+*  @undocumented
+*/
 @Component({
   tag: 'sqb-hook-story-container',
 })

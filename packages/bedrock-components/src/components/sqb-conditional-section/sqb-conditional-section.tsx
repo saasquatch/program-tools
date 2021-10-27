@@ -26,8 +26,6 @@ export class SqbConditionalSection {
   @Prop()
   condition: string;
 
-  @State()
-  ignored = true;
   constructor() {
     withHooks(this);
   }
