@@ -40,7 +40,7 @@ Feature: Portal Footer
             | doesn't have | N/A                    | doesn't have | N/A                                | support@example.com    | For program support, contact support@example.com  |
 
     Scenario Outline: Powered by SaaSquatch is shown by default
-        Given the footer <mayHaveProp> with <value>
+        Given the footer <mayHaveProp> "show-powered-by" with <value>
         Then the powered by SaaSquatch image <mayBeShown>
         Examples:
             | mayHaveProp       | value | mayBeShown  |
