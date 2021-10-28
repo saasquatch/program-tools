@@ -8,6 +8,7 @@ type TabGroupProps = OptionProps &
 
 interface OptionProps {
   children?: React.ReactNode;
+  selected?: boolean;
 }
 
 interface StyleProps {
