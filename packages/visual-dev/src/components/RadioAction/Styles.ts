@@ -1,4 +1,4 @@
-import { css } from "styled-components"
+import { css } from "styled-components";
 
 export const RadioLabelStyle = css`
   display: flex;
@@ -13,7 +13,7 @@ export const RadioLabelStyle = css`
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
-`
+`;
 export const RadioInputStyle = css`
   display: none;
 
@@ -24,7 +24,7 @@ export const RadioInputStyle = css`
   &:checked + div::after {
     transform: scale(1);
   }
-`
+`;
 export const RadioButtonStyle = css`
   margin-top: 2.5px;
   width: 14px;
@@ -46,7 +46,7 @@ export const RadioButtonStyle = css`
     transform: scale(0);
     transition: transform 0.15s;
   }
-`
+`;
 export const RadioTextStyle = css`
   flex-direction: column;
-`
+`;

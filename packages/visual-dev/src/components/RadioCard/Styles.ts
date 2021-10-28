@@ -1,4 +1,4 @@
-import { css } from "styled-components"
+import { css } from "styled-components";
 
 export const RadioLabelStyle = css`
   display: flex;
@@ -16,13 +16,13 @@ export const RadioLabelStyle = css`
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
-`
+`;
 
 export const RadioGridStyle = css`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-`
+`;
 
 export const RadioInputStyle = css`
   display: none;
@@ -34,7 +34,7 @@ export const RadioInputStyle = css`
   &:checked + div::after {
     transform: scale(1);
   }
-`
+`;
 
 export const RadioButtonStyle = css`
   margin-top: 2.5px;
@@ -57,12 +57,12 @@ export const RadioButtonStyle = css`
     transform: scale(0);
     transition: transform 0.15s;
   }
-`
+`;
 
 export const RadioTextStyle = css`
   flex-direction: column;
   padding: 20px;
-`
+`;
 
 export const RightSegmentStyle = css`
   width: auto;
@@ -70,7 +70,7 @@ export const RightSegmentStyle = css`
   height: 100%;
   float: right;
   border-left: 2px solid #ebebeb;
-`
+`;
 
 export const LeftSegmentStyle = css`
   float: left;
@@ -79,4 +79,4 @@ export const LeftSegmentStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
