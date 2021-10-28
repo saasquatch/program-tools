@@ -9,7 +9,9 @@
   </a>
   <sqb-program-section program-id="referral-program">
     <sqm-router>
-      <template path="/:path(\bregister\b|\bemailVerification\b|\blogin\b|\bverifyEmail\b|\bforgotPassword\b|\bresetPassword\b|\blogout\b)">
+      <template
+        path="/:path(\bregister\b|\bemailVerification\b|\blogin\b|\bverifyEmail\b|\bforgotPassword\b|\bresetPassword\b|\blogout\b)"
+      >
         <sqm-graphql-client-provider
           domain="https://managed-identity.saasquatch.com"
         >
@@ -67,10 +69,10 @@
               label="Dashboard"
             ></sqm-navigation-sidebar-item>
             <sqm-navigation-sidebar-item
-            path="/refer"
-            icon="inbox"
-            label="Submit A Lead"
-          ></sqm-navigation-sidebar-item>
+              path="/refer"
+              icon="inbox"
+              label="Submit A Lead"
+            ></sqm-navigation-sidebar-item>
             <sqm-navigation-sidebar-item
               path="/activity"
               icon="bar-chart"
@@ -124,7 +126,9 @@
                 </sqm-portal-container>
               </template>
               <template path="/refer">
-                <sqm-referral-iframe  iframe-src="https://example.com"></sqm-referral-iframe>
+                <sqm-referral-iframe
+                  iframe-src="https://example.com"
+                ></sqm-referral-iframe>
               </template>
               <template path="/activity">
                 <sqm-portal-protected-route
@@ -205,6 +209,9 @@
     slot="footer"
     support-email="support@example.com"
     terms-link="https://example.com"
+    faq-link="https://example.com"
+    terms-text="Terms And Conditions"
+    faq-text="FAQ"
     show-powered-by="true"
   ></sqm-portal-footer>
 </sqm-portal-frame>

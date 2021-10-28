@@ -9,7 +9,9 @@
   </a>
   <sqb-program-section program-id="referral-program">
     <sqm-router>
-      <template path="/:path(\bregister\b|\bemailVerification\b|\blogin\b|\bverifyEmail\b|\bforgotPassword\b|\bresetPassword\b|\blogout\b)">
+      <template
+        path="/:path(\bregister\b|\bemailVerification\b|\blogin\b|\bverifyEmail\b|\bforgotPassword\b|\bresetPassword\b|\blogout\b)"
+      >
         <sqm-graphql-client-provider
           domain="https://managed-identity.saasquatch.com"
         >
@@ -198,6 +200,9 @@
     slot="footer"
     support-email="support@example.com"
     terms-link="https://example.com"
+    faq-link="https://example.com"
+    terms-text="Terms And Conditions"
+    faq-text="FAQ"
     show-powered-by="true"
   ></sqm-portal-footer>
 </sqm-portal-frame>
