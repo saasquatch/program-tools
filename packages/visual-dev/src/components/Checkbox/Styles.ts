@@ -1,30 +1,28 @@
-import { css } from 'styled-components'
+import { css } from "styled-components"
 
 export const disabled_color = css`
   user-select: none;
   cursor: not-allowed;
   pointer-events: none;
-  color: #858585;
+  color: var(--sq-text-subdued);
 `
 export const disabled_bg = css`
   user-select: none;
   cursor: not-allowed;
   pointer-events: none;
-  background: #ebebeb;
-  box-shadow: 0 0 0 1px #e2e2e2;
+  background: var(--sq-surface-input-disabled);
+  box-shadow: 0 0 0 1px var(--sq-border);
 `
 export const CheckboxLabelStyle = css`
   user-select: none;
   display: inline-flex;
   align-items: center;
   cursor: pointer;
-
-  color: #575757;
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
+  color: var(--sq-text);
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: var(--sq-font-size-regular);
+  font-weight: var(--sq-font-weight-regular);
+  line-height: var(--sq-line-height-regular);
 `
 
 export const CheckboxTickStyle = css`
@@ -43,29 +41,29 @@ export const CheckboxInputStyle = css`
   }
 `
 export const CheckboxStyle = css`
+  display: flex;
   width: 16px;
   height: 16px;
-  box-shadow: 0 0 0 1px #575757;
-  display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 10px;
+  box-shadow: 0 0 0 1px var(--sq-text);
+  margin-right: 18px;
   flex-shrink: 0;
   border-radius: 2px;
 
   &:hover {
-    box-shadow: 0 0 0 2px #575757;
+    box-shadow: 0 0 0 2px var(--sq-text);
   }
 `
 
 export const checked_border = css`
   &:checked + div {
-    box-shadow: 0 0 0 2px #575757;
+    box-shadow: 0 0 0 2px var(--sq-text);
   }
 `
 
 export const checked_disabled = css`
   &:checked + div {
-    box-shadow: 0 0 0 2px #858585;
+    box-shadow: 0 0 0 2px var(--sq-text-subdued);
   }
 `

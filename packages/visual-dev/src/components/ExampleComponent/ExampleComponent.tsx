@@ -1,14 +1,14 @@
-import * as React from "react"
-import styled, { CSSProp } from "styled-components"
-import * as Styles from "./Styles"
+import * as React from 'react'
+import styled, { CSSProp } from 'styled-components'
+import * as Styles from './Styles'
 
-type ExampleComponentProps = StyleProps & React.ComponentProps<"button">
+type ExampleComponentProps = StyleProps & React.ComponentProps<'button'>
 
 interface StyleProps {
-  status: "success" | "error" | "info"
-  size?: "small" | "medium" | "large"
+  status: 'success' | 'error' | 'info'
+  size?: 'small' | 'medium' | 'large'
   css?: CSSProp
-  children: React.ReactElement
+  children: React.ReactElement | string
 }
 
 const Button = styled.button<Required<StyleProps>>`
@@ -18,11 +18,8 @@ const Button = styled.button<Required<StyleProps>>`
   ${(props) => props.css}
 `
 
-export const ExampleComponent = React.forwardRef<
-  React.ElementRef<"button">,
-  ExampleComponentProps
->((props, forwardedRef) => {
-  const { size = "medium", status, children, css = {}, ...rest } = props
+export const ExampleComponent = React.forwardRef<React.ElementRef<'button'>, ExampleComponentProps>((props, forwardedRef) => {
+  const { size = 'medium', status, children, css = {}, ...rest } = props
 
   return (
     <Button {...rest} status={status} size={size} ref={forwardedRef} css={css}>

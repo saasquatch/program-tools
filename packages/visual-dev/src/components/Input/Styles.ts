@@ -1,33 +1,33 @@
-import { css } from 'styled-components'
+import { css } from "styled-components"
 
 export const InputBoxStyle = css`
   position: relative;
-
   width: 300px;
   height: 30px;
-
-  font: 400 14px Helvetica;
   text-indent: 6px;
+  color: var(--sq-text);
+  background: var(--sq-surface);
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: var(--sq-font-size-regular);
+  font-weight: var(--sq-font-weight-regular);
+  line-height: var(--sq-line-height-regular);
 
-  color: #575757;
-  background: #ffffff;
-
-  border: 2px solid #e2e2e2;
+  border: 2px solid var(--sq-border);
   border-radius: 4px;
 
   &::placeholder {
-    color: #bdbdbd;
+    color: var(--sq-text-input-disabled);
   }
 
   &:focus {
     outline: none;
-    border-color: #448ee1;
+    border-color: var(--sq-focused);
   }
 
   &:disabled {
     user-select: none;
-    color: #bdbdbd;
-    background-color: #ebebeb;
+    color: var(--sq-text-input-disabled);
+    background-color: var(--sq-surface-input-disabled);
   }
 
   &::-webkit-inner-spin-button {
@@ -38,19 +38,18 @@ export const InputBoxStyle = css`
 `
 
 export const IconStyle = css`
-  position: absolute;
-  top: 47px;
+  position: relative;
+  width: 22px;
+  bottom: 28px;
 `
 
 export const invalid = css`
-  color: #575757;
-  background: #faf2ee;
-
-  border: 2px solid #d14040;
+  background: var(--sq-surface-critical-subdued);
+  border: 2px solid var(--sq-border-critical);
   border-radius: 4px;
 
   &:focus {
     outline: none;
-    border-color: #d14040;
+    border-color: var(--sq-border-critical);
   }
 `

@@ -3,8 +3,7 @@ import styled, { CSSProp } from "styled-components"
 import { PrimaryButton, SecondaryButton } from "../Button"
 import * as Styles from "./Styles"
 
-
-type ModalActionProps = ActionOptions & StyleProps & React.ComponentProps<"div">
+type ModalActionProps = ActionOptions & StyleProps & Omit<React.ComponentProps<"div">, "translate">
 
 interface ActionOptions {
   primaryAction?: any
@@ -39,7 +38,7 @@ export const ModalContentAction = React.forwardRef<React.ElementRef<"div">, Moda
   )
 })
 
-type ModalContentProps = ContentOptions & StyleProps & React.ComponentProps<"div">
+type ModalContentProps = ContentOptions & StyleProps & Omit<React.ComponentProps<"div">, "translate">
 
 interface ContentOptions {
   children?: React.ReactNode

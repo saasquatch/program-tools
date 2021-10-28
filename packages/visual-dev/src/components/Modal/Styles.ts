@@ -110,7 +110,7 @@ export const ModalBannerDivStyle = css`
   margin-bottom: 20px;
   align-items: center;
   text-indent: 20px;
-  background: var(--sq--surface-modal-banner);
+  background: var(--sq-surface-modal-banner);
   color: var(--sq-surface);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: var(--sq-font-weight-bold);
@@ -123,7 +123,7 @@ export const ModalBackDivStyle = css`
   display: flex;
   height: 20px;
   align-items: center;
-  background: var(--sq--surface-modal-banner);
+  background: var(--sq-surface-modal-banner);
   text-indent: 15px;
   font-family: Helvetica;
   font-style: normal;

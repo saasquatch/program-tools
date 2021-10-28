@@ -70,22 +70,39 @@
   --sq-font-size-header-three: 18px;
   --sq-font-size-regular: 14px;
   --sq-font-size-small: 12px;
-  --sq-font-size-button-small: 12px;
-  --sq-font-size-button-medium: 14px;
   --sq-font-size-caption: 16px;
 
   --sq-line-height-header-one: 28px;
   --sq-line-height-header-two: 28px;
   --sq-line-height-header-three: 20px;
   --sq-line-height-regular: 20px;
+  --sq-line-height-caption: 16px;
+
+  /* Button */
+  --sq-font-size-button-small: 12px;
+  --sq-font-size-button-medium: 14px;
+  --sq-font-size-button-large: 18px;
   --sq-line-height-button-small: 16px;
   --sq-line-height-button-medium: 16px;
-  --sq-line-height-caption: 16px;
+  --sq-line-height-button-large: 18px;
 
   /* Icon Sizes */
   --sq-icon-size-small: 12px;
   --sq-icon-size-medium: 20px;
   --sq-icon-size-large: 36px;
+  --sq-icon-size-badge: 18px;
+
+  /* Avatar Sizes */
+  --sq-icon-size-avatar: 36px;
+  --sq-icon-size-avatar-large: 50px;
+  --sq-font-size-avatar: 24px;
+
+  /* Modal */
+  --sq-surface-modal-banner: #12c8d7;
+
+  /* Input */
+  --sq-surface-input-disabled: #ebebeb;
+  --sq-text-input-disabled: #bdbdbd;
 
   /* Spacing */
   --sq-spacing-xxx-small: 2px;

@@ -1,16 +1,17 @@
-import * as React from 'react'
-import root from 'react-shadow/styled-components'
-import styled, { css } from 'styled-components'
-import { Icon } from '../Icon'
-import * as Styles from './Styles'
+import * as React from "react"
+import root from "react-shadow/styled-components"
+import styled, { css } from "styled-components"
+import { Icon } from "../Icon"
+import * as Styles from "./Styles"
 
-type InputProps = OptionProps & React.ComponentProps<'input'>
+type InputProps = OptionProps & React.ComponentProps<"input">
 
 interface OptionProps {
   value?: any
   onChange?: any
   options?: any
   disabled?: any
+  id?: string
 }
 
 const ShadowDom = styled(root.div)``
@@ -31,17 +32,17 @@ const CheckboxBox = styled.div<{ isDisabled?: any }>`
   ${(props) => props.isDisabled && Styles.disabled_bg}
 `
 
-export const Checkbox = React.forwardRef<React.ElementRef<'input'>, InputProps>((props, forwardedRef) => {
-  const { value, onChange, options, disabled, ...rest } = props
+export const Checkbox = React.forwardRef<React.ElementRef<"input">, InputProps>((props, forwardedRef) => {
+  const { id, value, onChange, options, disabled, name, ...rest } = props
 
   return (
     <ShadowDom>
-      <CheckboxLabel htmlFor={rest.id} isDisabled={disabled}>
-        <CheckboxInput checked={value} type='checkbox' isDisabled={disabled} {...rest} ref={forwardedRef} />
+      <CheckboxLabel htmlFor={id} isDisabled={disabled}>
+        <CheckboxInput checked={value} type="checkbox" isDisabled={disabled} id={id} {...rest} ref={forwardedRef} />
         <CheckboxBox isDisabled={disabled}>
-          <Icon icon='checkmark' css={CheckboxTick} />
+          <Icon icon="checkmark" css={CheckboxTick} />
         </CheckboxBox>
-        {options ? options.text : ''}
+        {options ? options.text : ""}
       </CheckboxLabel>
     </ShadowDom>
   )
