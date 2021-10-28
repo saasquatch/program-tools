@@ -1,16 +1,18 @@
-import * as React from "react"
-import styled, { CSSProp } from "styled-components"
-import * as Styles from "./Styles"
-import { IconKey, Icon } from "../Icon"
+import * as React from "react";
+import styled, { CSSProp } from "styled-components";
+import * as Styles from "./Styles";
+import { IconKey, Icon } from "../Icon";
 
-type PopoverProps = OptionProps & StyleProps & Omit<React.ComponentProps<"div">, "translate">
+type PopoverProps = OptionProps &
+  StyleProps &
+  Omit<React.ComponentProps<"div">, "translate">;
 
 interface OptionProps {
-  children?: any
+  children?: any;
 }
 
 interface StyleProps {
-  css?: CSSProp
+  css?: CSSProp;
 }
 
 const ContentDiv = styled.div<Required<StyleProps>>`
@@ -32,36 +34,58 @@ const ContentDiv = styled.div<Required<StyleProps>>`
   /* On Surface/Text Dark */
 
   color: #232323;
-`
+`;
 
-export const Content = React.forwardRef<React.ElementRef<"div">, PopoverProps>((props, forwardedRef) => {
-  const { children, css = {}, ...rest } = props
+export const Content = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
+  (props, forwardedRef) => {
+    const { children, css = {}, ...rest } = props;
 
-  return (
-    <ContentDiv {...rest} ref={forwardedRef} css={css}>
-      {children}
-    </ContentDiv>
-  )
-})
+    return (
+      <ContentDiv {...rest} ref={forwardedRef} css={css}>
+        {children}
+      </ContentDiv>
+    );
+  }
+);
 
-const SkeletonDiv = styled.div<Required<StyleProps> & { size?: string; circle: boolean; color?: string }>`
+const SkeletonDiv = styled.div<
+  Required<StyleProps> & { size?: string; circle: boolean; color?: string }
+>`
   float: left;
   margin-right: 8px;
   background: ${(props) => (props.color ? props.color : "#e2e2e2")};
   border-radius: 50px;
 
-  height: ${(props) => (props.circle ? (props.size ? props.size : "15px") : "15px")};
-  width: ${(props) => (props.circle ? (props.size ? props.size : "15px") : props.size ? props.size : "100%")};
+  height: ${(props) =>
+    props.circle ? (props.size ? props.size : "15px") : "15px"};
+  width: ${(props) =>
+    props.circle
+      ? props.size
+        ? props.size
+        : "15px"
+      : props.size
+      ? props.size
+      : "100%"};
 
   ${(props) => props.css};
-`
+`;
 
-export const Skeleton = React.forwardRef<React.ElementRef<"div">, PopoverProps & { size?: string; circle?: boolean }>((props, forwardedRef) => {
-  const { circle = false, size, color, children, css = {}, ...rest } = props
+export const Skeleton = React.forwardRef<
+  React.ElementRef<"div">,
+  PopoverProps & { size?: string; circle?: boolean }
+>((props, forwardedRef) => {
+  const { circle = false, size, color, children, css = {}, ...rest } = props;
 
   return (
-    <SkeletonDiv circle={circle} size={size} color={color} {...rest} ref={forwardedRef} css={css}>
+    <SkeletonDiv
+      circle={circle}
+      size={size}
+      color={color}
+      {...rest}
+      ref={forwardedRef}
+      css={css}
+    >
       {children}
     </SkeletonDiv>
-  )
-})
+  );
+});

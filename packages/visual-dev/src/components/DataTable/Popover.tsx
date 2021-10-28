@@ -1,18 +1,20 @@
-import * as React from "react"
-import styled, { CSSProp } from "styled-components"
-import * as Styles from "./Styles"
-import { IconKey, Icon } from "../Icon"
+import * as React from "react";
+import styled, { CSSProp } from "styled-components";
+import * as Styles from "./Styles";
+import { IconKey, Icon } from "../Icon";
 
-type PopoverProps = OptionProps & StyleProps & Omit<React.ComponentProps<"div">, "translate">
+type PopoverProps = OptionProps &
+  StyleProps &
+  Omit<React.ComponentProps<"div">, "translate">;
 
 interface OptionProps {
-  notification?: boolean
-  icon?: IconKey
-  children?: any
+  notification?: boolean;
+  icon?: IconKey;
+  children?: any;
 }
 
 interface StyleProps {
-  css?: CSSProp
+  css?: CSSProp;
 }
 
 const PopoverDiv = styled.div<Required<StyleProps> & { notification: boolean }>`
@@ -46,24 +48,35 @@ const PopoverDiv = styled.div<Required<StyleProps> & { notification: boolean }>`
     margin-top: 10px;
   }
   ${(props) => props.css}
-`
+`;
 
-export const Popover = React.forwardRef<React.ElementRef<"div">, PopoverProps>((props, forwardedRef) => {
-  const { icon, notification = false, children, css = {}, ...rest } = props
+export const Popover = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
+  (props, forwardedRef) => {
+    const { icon, notification = false, children, css = {}, ...rest } = props;
 
-  return (
-    <PopoverDiv notification={notification} {...rest} ref={forwardedRef} css={css}>
-      {icon ? (
-        <span style={{ height: "100%" }}>
-          <Icon size="20px" css="float: left; margin-right: 5px; " icon={icon} />
-        </span>
-      ) : (
-        ""
-      )}
-      {children}
-    </PopoverDiv>
-  )
-})
+    return (
+      <PopoverDiv
+        notification={notification}
+        {...rest}
+        ref={forwardedRef}
+        css={css}
+      >
+        {icon ? (
+          <span style={{ height: "100%" }}>
+            <Icon
+              size="20px"
+              css="float: left; margin-right: 5px; "
+              icon={icon}
+            />
+          </span>
+        ) : (
+          ""
+        )}
+        {children}
+      </PopoverDiv>
+    );
+  }
+);
 
 const ActionDiv = styled.div<Required<StyleProps>>`
   white-space: inherit;
@@ -76,27 +89,31 @@ const ActionDiv = styled.div<Required<StyleProps>>`
   line-height: 20px;
   color: #575757;
   ${(props) => props.css}
-`
+`;
 
-export const Action = React.forwardRef<React.ElementRef<"div">, PopoverProps>((props, forwardedRef) => {
-  const { children, css = {}, ...rest } = props
+export const Action = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
+  (props, forwardedRef) => {
+    const { children, css = {}, ...rest } = props;
 
-  return (
-    <ActionDiv className="action" {...rest} ref={forwardedRef} css={css}>
-      {children}
-    </ActionDiv>
-  )
-})
+    return (
+      <ActionDiv className="action" {...rest} ref={forwardedRef} css={css}>
+        {children}
+      </ActionDiv>
+    );
+  }
+);
 
 const DividerDiv = styled.div<Required<StyleProps>>`
   height: 1px;
   margin: 16px -36px;
   background: #e2e2e2;
   ${(props) => props.css}
-`
+`;
 
-export const Divider = React.forwardRef<React.ElementRef<"div">, PopoverProps>((props, forwardedRef) => {
-  const { children, css = {}, ...rest } = props
+export const Divider = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
+  (props, forwardedRef) => {
+    const { children, css = {}, ...rest } = props;
 
-  return <DividerDiv {...rest} ref={forwardedRef} css={css} />
-})
+    return <DividerDiv {...rest} ref={forwardedRef} css={css} />;
+  }
+);

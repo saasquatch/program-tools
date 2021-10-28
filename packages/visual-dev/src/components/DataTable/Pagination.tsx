@@ -1,20 +1,22 @@
-import * as React from "react"
-import styled, { CSSProp } from "styled-components"
-import * as Styles from "./Styles"
-import { IconKey, Icon } from "../Icon"
-import { Dropdown } from "../Dropdown"
+import * as React from "react";
+import styled, { CSSProp } from "styled-components";
+import * as Styles from "./Styles";
+import { IconKey, Icon } from "../Icon";
+import { Dropdown } from "../Dropdown";
 
-type PopoverProps = OptionProps & StyleProps & Omit<React.ComponentProps<"div">, "translate">
+type PopoverProps = OptionProps &
+  StyleProps &
+  Omit<React.ComponentProps<"div">, "translate">;
 
 interface OptionProps {
-  children?: any
-  selected?: number
-  pages?: any
-  total?: number
+  children?: any;
+  selected?: number;
+  pages?: any;
+  total?: number;
 }
 
 interface StyleProps {
-  css?: CSSProp
+  css?: CSSProp;
 }
 
 const PaginationDiv = styled.div<Required<StyleProps>>`
@@ -32,7 +34,7 @@ const PaginationDiv = styled.div<Required<StyleProps>>`
   line-height: 20px;
 
   ${(props) => props.css}
-`
+`;
 
 const TextDiv = styled.div<{ selected?: boolean }>`
   padding: 6px;
@@ -44,10 +46,20 @@ const TextDiv = styled.div<{ selected?: boolean }>`
   font-size: 14px;
   line-height: 20px;
   ${(props) => (props.selected ? "font-weight: bold;" : "font-weight: normal;")}
-`
+`;
 
-export const Pagination = React.forwardRef<React.ElementRef<"div">, PopoverProps>((props, forwardedRef) => {
-  const { children, selected = 1, pages = [1], total = 0, css = {}, ...rest } = props
+export const Pagination = React.forwardRef<
+  React.ElementRef<"div">,
+  PopoverProps
+>((props, forwardedRef) => {
+  const {
+    children,
+    selected = 1,
+    pages = [1],
+    total = 0,
+    css = {},
+    ...rest
+  } = props;
 
   return (
     <PaginationDiv {...rest} ref={forwardedRef} css={css}>
@@ -57,9 +69,18 @@ export const Pagination = React.forwardRef<React.ElementRef<"div">, PopoverProps
         {pages.map((x: any) => (
           <TextDiv selected={selected === x}>{x}</TextDiv>
         ))}
-        <Icon size="24px" icon="chevron_right" css="margin: -3px; margin-right: 24px;" />
-        <Dropdown pill center text="10 per page" css="min-width: 165px; width: 165px; display: inline-block" />
+        <Icon
+          size="24px"
+          icon="chevron_right"
+          css="margin: -3px; margin-right: 24px;"
+        />
+        <Dropdown
+          pill
+          center
+          text="10 per page"
+          css="min-width: 165px; width: 165px; display: inline-block"
+        />
       </div>
     </PaginationDiv>
-  )
-})
+  );
+});
