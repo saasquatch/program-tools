@@ -1,4 +1,4 @@
-import { useLazyQuery, useUserIdentity } from '@saasquatch/component-boilerplate';
+import { useLazyQuery, useMutation, useProgramId, useUserIdentity } from '@saasquatch/component-boilerplate';
 import { useEffect } from '@saasquatch/universal-hooks';
 import { gql } from 'graphql-request';
 import { SqbWidget } from './sqb-widget';
@@ -41,9 +41,18 @@ const GET_WIDGET = gql`
   }
 `;
 
+const WIDGET_LOAD_EVENT = gql`
+  mutation loadEvent($eventMeta: UserAnalyticsEvent!) {
+    createUserAnalyticsEvent(eventMeta: $eventMeta)
+  }
+`;
+
 export function useWidget(props: SqbWidget) {
   const userIdent = useUserIdentity();
+  const programId = useProgramId();
+
   const [fetch, { data }] = useLazyQuery<GetWidget>(GET_WIDGET);
+  const [sendLoadEvent] = useMutation(WIDGET_LOAD_EVENT);
 
   const canLoad =
     // No auth required
@@ -60,6 +69,21 @@ export function useWidget(props: SqbWidget) {
       });
     }
   }, [props.widgetType, props.requireAuth, userIdent?.jwt]);
+
+  useEffect(() => {
+    if (props.trackLoads)
+      sendLoadEvent({
+        eventMeta: {
+          programId,
+          id: userIdent.id,
+          accountId: userIdent.accountId,
+          type: 'USER_REFERRAL_PROGRAM_LOADED_EVENT',
+          meta: {
+            engagementMedium: props.engagementMedium,
+          },
+        },
+      });
+  }, []);
 
   const html = data?.renderWidget?.widgetConfig?.values?.htmlTemplate || '';
 

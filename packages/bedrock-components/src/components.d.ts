@@ -36,10 +36,20 @@ export namespace Components {
          */
         "demoData"?: DemoData<WidgetProps>;
         /**
+          * Engagement medium of widget being loaded
+          * @uiName Engagement Medium
+         */
+        "engagementMedium": string;
+        /**
           * When enabled then this widget is hidden until a user is logged in. Defaults to false.
           * @uiName Auth Required
          */
         "requireAuth": boolean;
+        /**
+          * When enabled then a load event will be recorded in analytics.
+          * @uiName Track Widget Loads
+         */
+        "trackLoads": boolean;
         /**
           * The type of widget to load. Can be a program's widget, a global widget, or a classic widget. If this prop is missing, then nothing is shown.
           * @uiName Widget Type
@@ -122,10 +132,20 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<WidgetProps>;
         /**
+          * Engagement medium of widget being loaded
+          * @uiName Engagement Medium
+         */
+        "engagementMedium"?: string;
+        /**
           * When enabled then this widget is hidden until a user is logged in. Defaults to false.
           * @uiName Auth Required
          */
         "requireAuth"?: boolean;
+        /**
+          * When enabled then a load event will be recorded in analytics.
+          * @uiName Track Widget Loads
+         */
+        "trackLoads"?: boolean;
         /**
           * The type of widget to load. Can be a program's widget, a global widget, or a classic widget. If this prop is missing, then nothing is shown.
           * @uiName Widget Type

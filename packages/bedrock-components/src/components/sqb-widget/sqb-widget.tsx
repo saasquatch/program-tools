@@ -31,6 +31,20 @@ export class SqbWidget {
   @Prop() requireAuth: boolean = false;
 
   /**
+   * When enabled then a load event will be recorded in analytics.
+   *
+   * @uiName Track Widget Loads
+   */
+  @Prop() trackLoads: boolean = false;
+
+  /**
+   * Engagement medium of widget being loaded
+   *
+   * @uiName Engagement Medium
+   */
+  @Prop() engagementMedium: string = 'EMBED';
+
+  /**
    * @undocumented
    * @uiType object
    */

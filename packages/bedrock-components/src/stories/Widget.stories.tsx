@@ -30,6 +30,16 @@ export const Widget = createHookStory(() => {
   );
 });
 
+export const WidgetWithAnalytics = createHookStory(() => {
+  useGraphQL();
+  return (
+    <div>
+      <sqb-widget widget-type="p/Vacay-referral/w/referrerWidget" track-loads="true"></sqb-widget>
+    </div>
+  );
+});
+
+
 export const DemoWidget = () => {
   //@ts-ignore
   window.widgetIdent = {
