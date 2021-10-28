@@ -91,6 +91,7 @@ export function usePortalResetPassword(
         continueButtonText: props.continueButtonText,
         resetPasswordButtonText: props.resetPasswordButtonText,
         confirmPasswordFieldLabel: props.confirmPasswordFieldLabel,
+        passwordFieldLabel: props.passwordFieldLabel,
       },
     },
     callbacks: { submit, failed, gotoNextPage },

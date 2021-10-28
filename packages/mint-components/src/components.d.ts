@@ -633,6 +633,10 @@ export namespace Components {
          */
         "nextPage": string;
         /**
+          * @uiName Password field label
+         */
+        "passwordFieldLabel": string;
+        /**
           * Displayed after a successful password reset
           * @uiName Password reset header text
          */
@@ -1981,6 +1985,10 @@ declare namespace LocalJSX {
           * @uiName Next page path
          */
         "nextPage"?: string;
+        /**
+          * @uiName Password field label
+         */
+        "passwordFieldLabel"?: string;
         /**
           * Displayed after a successful password reset
           * @uiName Password reset header text

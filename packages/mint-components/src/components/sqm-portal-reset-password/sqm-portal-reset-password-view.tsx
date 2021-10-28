@@ -24,6 +24,7 @@ export interface PortalResetPasswordViewProps {
       continueButtonText: string;
       resetPasswordButtonText: string;
       confirmPasswordFieldLabel: string;
+      passwordFieldLabel: string;
     };
   };
   callbacks: {
@@ -164,6 +165,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
         )}
         {!states.reset && (
           <sqm-password-field
+            fieldLabel={states.content.passwordFieldLabel}
             demoData={states.passwordDemoData}
           ></sqm-password-field>
         )}

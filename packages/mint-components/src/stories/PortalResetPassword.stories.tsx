@@ -26,6 +26,7 @@ const defaultProps: PortalResetPasswordViewProps = {
       continueButtonText: "Continue",
       resetPasswordButtonText: "Reset Password",
       confirmPasswordFieldLabel: "Confirm Password",
+      passwordFieldLabel: "Password",
     },
   },
   callbacks: {
@@ -49,6 +50,7 @@ const defaultPropsNoConfirm: PortalResetPasswordViewProps = {
       continueButtonText: "Continue",
       resetPasswordButtonText: "Reset Password",
       confirmPasswordFieldLabel: "Confirm Password",
+      passwordFieldLabel: "Password",
     },
   },
   callbacks: {
@@ -72,6 +74,7 @@ const errorProps: PortalResetPasswordViewProps = {
       continueButtonText: "Continue",
       resetPasswordButtonText: "Reset Password",
       confirmPasswordFieldLabel: "Confirm Password",
+      passwordFieldLabel: "Password",
     },
   },
   callbacks: {
@@ -95,6 +98,7 @@ const loadingProps: PortalResetPasswordViewProps = {
       continueButtonText: "Continue",
       resetPasswordButtonText: "Reset Password",
       confirmPasswordFieldLabel: "Confirm Password",
+      passwordFieldLabel: "Password",
     },
   },
   callbacks: {
@@ -118,6 +122,7 @@ const successProps: PortalResetPasswordViewProps = {
       continueButtonText: "Continue",
       resetPasswordButtonText: "Reset Password",
       confirmPasswordFieldLabel: "Confirm Password",
+      passwordFieldLabel: "Password",
     },
   },
   callbacks: {
@@ -141,6 +146,7 @@ const validatingCodeProps: PortalResetPasswordViewProps = {
       continueButtonText: "Continue",
       resetPasswordButtonText: "Reset Password",
       confirmPasswordFieldLabel: "Confirm Password",
+      passwordFieldLabel: "Password",
     },
   },
   callbacks: {

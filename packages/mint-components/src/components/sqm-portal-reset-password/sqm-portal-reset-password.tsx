@@ -62,6 +62,10 @@ export class PortalResetPassword {
   @Prop() confirmPasswordFieldLabel: string = "Confirm Password";
 
   /**
+   * @uiName Password field label
+   */
+  @Prop() passwordFieldLabel: string = "Password";
+  /**
    * @undocumented
    * @uiType object
    */
@@ -98,6 +102,7 @@ function usePortalResetPasswordDemo(
           continueButtonText: "Continue",
           resetPasswordButtonText: "Reset Password",
           confirmPasswordFieldLabel: "Confirm Password",
+          passwordFieldLabel: "Password",
         },
       },
       callbacks: {
