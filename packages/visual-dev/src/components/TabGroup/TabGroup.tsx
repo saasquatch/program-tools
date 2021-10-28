@@ -2,7 +2,7 @@ import * as React from "react"
 import styled, { CSSProp } from "styled-components"
 import * as Styles from "./Styles"
 
-type TabGroupProps = OptionProps & StyleProps & React.ComponentProps<"div"> & Omit<React.ComponentProps<"div">, "translate">
+type TabGroupProps = OptionProps & StyleProps & Omit<React.ComponentProps<"div">, "translate">
 
 interface OptionProps {
   children?: React.ReactNode
@@ -37,7 +37,7 @@ export const TabGroup = React.forwardRef<React.ElementRef<"div">, TabGroupProps>
   )
 })
 
-type TabProps = OptionProps & StyleProps & React.ComponentProps<"div"> & { selected?: boolean } & Omit<React.ComponentProps<"div">, "translate">
+type TabProps = OptionProps & StyleProps & Omit<React.ComponentProps<"div">, "translate">
 
 export const Tab = React.forwardRef<React.ElementRef<"div">, TabProps>((props, forwardedRef) => {
   const { color = "primary", selected = false, children, css = {}, ...rest } = props

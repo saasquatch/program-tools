@@ -6,7 +6,7 @@ import { Icon } from "../Icon"
 import { Input } from "../Input"
 import * as Styles from "./Styles"
 
-type CardProps = OptionProps & StyleProps & React.ComponentProps<"div"> & Omit<React.ComponentProps<"div">, "translate">
+type CardProps = OptionProps & StyleProps & Omit<React.ComponentProps<"div">, "translate">
 
 interface OptionProps {
   title?: string

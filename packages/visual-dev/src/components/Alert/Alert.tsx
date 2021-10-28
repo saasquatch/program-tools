@@ -3,7 +3,7 @@ import styled, { CSSProp } from "styled-components"
 import { Icon } from "../Icon"
 import * as Styles from "./Styles"
 
-type AlertProps = OptionProps & StyleProps & React.ComponentProps<"div"> & Omit<React.ComponentProps<"div">, "translate">
+type AlertProps = OptionProps & StyleProps & Omit<React.ComponentProps<"div">, "translate">
 
 interface OptionProps {
   title: string

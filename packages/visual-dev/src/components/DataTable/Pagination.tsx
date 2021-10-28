@@ -4,7 +4,7 @@ import * as Styles from "./Styles"
 import { IconKey, Icon } from "../Icon"
 import { Dropdown } from "../Dropdown"
 
-type PopoverProps = OptionProps & StyleProps & React.ComponentProps<"div"> & Omit<React.ComponentProps<"div">, "translate">
+type PopoverProps = OptionProps & StyleProps & Omit<React.ComponentProps<"div">, "translate">
 
 interface OptionProps {
   children?: any

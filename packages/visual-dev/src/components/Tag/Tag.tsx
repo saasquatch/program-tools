@@ -3,7 +3,7 @@ import styled, { CSSProp } from "styled-components"
 import * as Styles from "./Styles"
 import { Icon } from "../Icon"
 
-type TagProps = OptionProps & StyleProps & React.ComponentProps<"div"> & Omit<React.ComponentProps<"div">, "translate">
+type TagProps = OptionProps & StyleProps & Omit<React.ComponentProps<"div">, "translate">
 
 interface OptionProps {
   onClickClose?: () => void

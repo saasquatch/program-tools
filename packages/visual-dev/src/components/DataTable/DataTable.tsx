@@ -5,7 +5,7 @@ import { Icon } from "../Icon"
 import { Dropdown } from "../Dropdown"
 import { Pagination, Row } from "."
 
-type DataTableProps = OptionProps & StyleProps & React.ComponentProps<"div"> & Omit<React.ComponentProps<"div">, "translate">
+type DataTableProps = OptionProps & StyleProps & Omit<React.ComponentProps<"div">, "translate">
 
 interface OptionProps {
   children?: any

@@ -3,7 +3,7 @@ import styled, { CSSProp } from "styled-components"
 import * as Styles from "./Styles"
 import { IconKey, Icon } from "../Icon"
 
-type BadgeProps = OptionProps & StyleProps & React.ComponentProps<"div"> & Omit<React.ComponentProps<"div">, "translate">
+type BadgeProps = OptionProps & StyleProps & Omit<React.ComponentProps<"div">, "translate">
 
 interface OptionProps {
   icon?: IconKey

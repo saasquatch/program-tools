@@ -2,7 +2,7 @@ import * as React from "react"
 import styled, { CSSProp } from "styled-components"
 import * as Styles from "./Styles"
 
-type CardProps = OptionProps & StyleProps & React.ComponentProps<"div"> & Omit<React.ComponentProps<"div">, "translate">
+type CardProps = OptionProps & StyleProps & Omit<React.ComponentProps<"div">, "translate">
 
 interface OptionProps {
   title: string
