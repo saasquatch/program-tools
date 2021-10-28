@@ -1,12 +1,12 @@
 // Legacy Animations
 
-import React from "react"
-import styled, { keyframes } from "styled-components"
+import React from "react";
+import styled, { keyframes } from "styled-components";
 
 export const ButtonDiv = styled.div`
   text-align: center;
   padding: 6px 0;
-`
+`;
 
 export const CheckMark = styled.svg<{ size: string }>`
   overflow: unset;
@@ -87,7 +87,7 @@ export const CheckMark = styled.svg<{ size: string }>`
       stroke-dashoffset: 900;
     }
   }
-`
+`;
 
 const rotate = keyframes`
    from {      
@@ -96,7 +96,7 @@ const rotate = keyframes`
     to {      
       transform: rotate(360deg);    
     }
-`
+`;
 
 export const RingDefault = styled.div`
   display: inline-block;
@@ -120,9 +120,12 @@ export const RingDefault = styled.div`
   div:nth-child(3) {
     animation-delay: -0.15s;
   }
-`
+`;
 
-export const ButtonSpinnerStyle = styled(RingDefault)<{ size: string; color: string }>`
+export const ButtonSpinnerStyle = styled(RingDefault)<{
+  size: string;
+  color: string;
+}>`
   position: relative;
 
   top: 2px;
@@ -138,7 +141,7 @@ export const ButtonSpinnerStyle = styled(RingDefault)<{ size: string; color: str
     border: 2px solid ${(props) => props.color};
     border-color: ${(props) => props.color} transparent transparent transparent;
   }
-`
+`;
 
 export const loadingAnimation = (size: string, color: string) => {
   return (
@@ -148,14 +151,36 @@ export const loadingAnimation = (size: string, color: string) => {
       <div></div>
       <div></div>
     </ButtonSpinnerStyle>
-  )
-}
+  );
+};
 
 export const successAnimation = (size: string) => {
   return (
-    <CheckMark version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2" size={size}>
-      <circle className="path circle" fill="none" stroke="#FFF" stroke-width="14" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1" />
-      <polyline className="path check" fill="none" stroke="#FFF" stroke-width="14" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 " />
+    <CheckMark
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 130.2 130.2"
+      size={size}
+    >
+      <circle
+        className="path circle"
+        fill="none"
+        stroke="#FFF"
+        stroke-width="14"
+        stroke-miterlimit="10"
+        cx="65.1"
+        cy="65.1"
+        r="62.1"
+      />
+      <polyline
+        className="path check"
+        fill="none"
+        stroke="#FFF"
+        stroke-width="14"
+        stroke-linecap="round"
+        stroke-miterlimit="10"
+        points="100.2,40.2 51.5,88.8 29.8,67.5 "
+      />
     </CheckMark>
-  )
-}
+  );
+};

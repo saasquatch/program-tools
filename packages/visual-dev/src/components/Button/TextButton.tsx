@@ -1,24 +1,24 @@
-import * as React from "react"
-import styled, { CSSProp } from "styled-components"
-import { Icon, IconKey } from "../Icon"
-import * as Styles from "./Styles"
+import * as React from "react";
+import styled, { CSSProp } from "styled-components";
+import { Icon, IconKey } from "../Icon";
+import * as Styles from "./Styles";
 
-type ButtonProps = OptionProps & StyleProps & React.ComponentProps<"button">
+type ButtonProps = OptionProps & StyleProps & React.ComponentProps<"button">;
 
 interface OptionProps {
-  icon?: IconKey
-  left?: boolean
-  right?: boolean
-  children?: React.ReactElement | string
+  icon?: IconKey;
+  left?: boolean;
+  right?: boolean;
+  children?: React.ReactElement | string;
 }
 
 interface StyleProps {
-  pill?: boolean
-  loading?: boolean
-  critical?: boolean
-  success?: boolean
-  size?: "small" | "medium" | "large"
-  css?: CSSProp
+  pill?: boolean;
+  loading?: boolean;
+  critical?: boolean;
+  success?: boolean;
+  size?: "small" | "medium" | "large";
+  css?: CSSProp;
 }
 
 const Button = styled.button<Required<StyleProps>>`
@@ -31,16 +31,40 @@ const Button = styled.button<Required<StyleProps>>`
   ${(props) => props.critical && Styles.text_critical}
   ${(props) => props.success && Styles.text_success}
   ${(props) => props.css}
-`
-export const TextButton = React.forwardRef<React.ElementRef<"button">, ButtonProps>((props, forwardedRef) => {
-  let { pill = false, loading = false, critical = false, success = false, icon, left = true, right = false, size = "medium", children, css = {}, ...rest } = props
-  if (right) left = false
+`;
+export const TextButton = React.forwardRef<
+  React.ElementRef<"button">,
+  ButtonProps
+>((props, forwardedRef) => {
+  let {
+    pill = false,
+    loading = false,
+    critical = false,
+    success = false,
+    icon,
+    left = true,
+    right = false,
+    size = "medium",
+    children,
+    css = {},
+    ...rest
+  } = props;
+  if (right) left = false;
 
   return (
-    <Button {...rest} pill={pill} loading={loading} critical={critical} success={success} size={size} ref={forwardedRef} css={css}>
+    <Button
+      {...rest}
+      pill={pill}
+      loading={loading}
+      critical={critical}
+      success={success}
+      size={size}
+      ref={forwardedRef}
+      css={css}
+    >
       {left && icon && <Icon icon={icon} size={Styles.icon_size[size]} />}
       <span> {children} </span>
       {right && icon && <Icon icon={icon} size={Styles.icon_size[size]} />}
     </Button>
-  )
-})
+  );
+});
