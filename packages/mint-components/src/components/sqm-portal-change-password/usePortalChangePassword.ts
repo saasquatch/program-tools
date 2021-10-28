@@ -58,7 +58,7 @@ export function usePortalChangePassword(props: PortalChangePassword) {
         confirmPasswordFieldLabel: props.confirmPasswordFieldLabel,
         successMessage: props.successMessage,
         portalChangePasswordHeader: props.portalChangePasswordHeader,
-        portalChangePasswordButtonText: props.changePasswordButtonText,
+        portalChangePasswordButtonText: props.portalChangePasswordButtonText,
       },
     },
     data: {},
