@@ -1,4 +1,4 @@
-import { css } from "styled-components"
+import { css } from "styled-components";
 
 export const InputBoxStyle = css`
   position: relative;
@@ -35,13 +35,13 @@ export const InputBoxStyle = css`
     margin-right: 10px;
     padding: 10px 1px 10px 1px;
   }
-`
+`;
 
 export const IconStyle = css`
   position: relative;
   width: 22px;
   bottom: 28px;
-`
+`;
 
 export const invalid = css`
   background: var(--sq-surface-critical-subdued);
@@ -52,4 +52,4 @@ export const invalid = css`
     outline: none;
     border-color: var(--sq-border-critical);
   }
-`
+`;
