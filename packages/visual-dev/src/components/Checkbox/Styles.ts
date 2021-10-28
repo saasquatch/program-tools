@@ -1,18 +1,18 @@
-import { css } from "styled-components"
+import { css } from "styled-components";
 
 export const disabled_color = css`
   user-select: none;
   cursor: not-allowed;
   pointer-events: none;
   color: var(--sq-text-subdued);
-`
+`;
 export const disabled_bg = css`
   user-select: none;
   cursor: not-allowed;
   pointer-events: none;
   background: var(--sq-surface-input-disabled);
   box-shadow: 0 0 0 1px var(--sq-border);
-`
+`;
 export const CheckboxLabelStyle = css`
   user-select: none;
   display: inline-flex;
@@ -23,7 +23,7 @@ export const CheckboxLabelStyle = css`
   font-size: var(--sq-font-size-regular);
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
-`
+`;
 
 export const CheckboxTickStyle = css`
   position: absolute;
@@ -32,14 +32,14 @@ export const CheckboxTickStyle = css`
   height: 20px;
   transform: scale(0);
   transition: transform 0.15s;
-`
+`;
 export const CheckboxInputStyle = css`
   display: none;
 
   &:checked + div > div {
     transform: scale(1);
   }
-`
+`;
 export const CheckboxStyle = css`
   display: flex;
   width: 16px;
@@ -54,16 +54,16 @@ export const CheckboxStyle = css`
   &:hover {
     box-shadow: 0 0 0 2px var(--sq-text);
   }
-`
+`;
 
 export const checked_border = css`
   &:checked + div {
     box-shadow: 0 0 0 2px var(--sq-text);
   }
-`
+`;
 
 export const checked_disabled = css`
   &:checked + div {
     box-shadow: 0 0 0 2px var(--sq-text-subdued);
   }
-`
+`;
