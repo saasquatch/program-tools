@@ -1,9 +1,9 @@
-import * as React from 'react'
-import styled, { CSSProp } from 'styled-components'
-import * as Styles from './Styles'
-import * as SVGs from './SVGs'
+import * as React from "react"
+import styled, { CSSProp } from "styled-components"
+import * as Styles from "./Styles"
+import * as SVGs from "./SVGs"
 
-type IconProps = OptionProps & StyleProps & React.ComponentProps<'div'>
+type IconProps = OptionProps & StyleProps & React.ComponentProps<"div"> & Omit<React.ComponentProps<"div">, "translate">
 
 interface OptionProps {
   icon: IconKey
@@ -11,14 +11,14 @@ interface OptionProps {
 
 interface StyleProps {
   color?: string
-  size?: 'small' | 'medium' | 'large' | string
+  size?: "small" | "medium" | "large" | string
   css?: CSSProp
 }
 
 const default_size = {
-  small: '12px',
-  medium: '20px',
-  large: '36px',
+  small: "12px",
+  medium: "20px",
+  large: "36px",
 }
 
 const StyledSVG = styled.div<Required<StyleProps>>`
@@ -31,12 +31,12 @@ const StyledSVG = styled.div<Required<StyleProps>>`
 
 export type IconKey = keyof typeof SVGs
 
-export const Icon = React.forwardRef<React.ElementRef<'div'>, IconProps>((props, forwardedRef) => {
-  const { icon, color = 'inherit', size = 'medium', css = {}, ...rest } = props
+export const Icon = React.forwardRef<React.ElementRef<"div">, IconProps>((props, forwardedRef) => {
+  const { icon, color = "inherit", size = "medium", css = {}, ...rest } = props
 
   return (
     <StyledSVG {...rest} size={size} color={color} ref={forwardedRef} css={css}>
-      {Object.keys(SVGs).includes(icon) ? SVGs[icon] : SVGs['placeholder']}
+      {Object.keys(SVGs).includes(icon) ? SVGs[icon] : SVGs["placeholder"]}
     </StyledSVG>
   )
 })

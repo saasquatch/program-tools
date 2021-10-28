@@ -3,7 +3,7 @@ import styled, { CSSProp } from "styled-components"
 import { IconKey, Icon } from "../Icon"
 import * as Styles from "./Styles"
 
-type DropdownProps = OptionProps & StyleProps & React.ComponentProps<"div">
+type DropdownProps = OptionProps & StyleProps & React.ComponentProps<"div"> & Omit<React.ComponentProps<"div">, "translate">
 
 interface OptionProps {
   text?: string

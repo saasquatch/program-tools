@@ -4,12 +4,12 @@ import * as Styles from "./Styles"
 import { IconKey, Icon } from "../Icon"
 import { Dropdown } from "../Dropdown"
 
-type PopoverProps = OptionProps & StyleProps & React.ComponentProps<"div">
+type PopoverProps = OptionProps & StyleProps & React.ComponentProps<"div"> & Omit<React.ComponentProps<"div">, "translate">
 
 interface OptionProps {
   children?: any
   selected?: number
-  pages?: array
+  pages?: any
   total?: number
 }
 

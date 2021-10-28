@@ -4,7 +4,7 @@ import * as Styles from "./Styles"
 import { Icon } from "../Icon"
 import { PrimaryButton, SecondaryButton } from "../Button"
 
-type CardProps = OptionProps & StyleProps & React.ComponentProps<"div">
+type CardProps = OptionProps & StyleProps & React.ComponentProps<"div"> & Omit<React.ComponentProps<"div">, "translate">
 
 interface OptionProps {
   title: string

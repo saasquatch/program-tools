@@ -3,7 +3,7 @@ import styled, { CSSProp } from "styled-components"
 import { Icon } from "../Icon"
 import * as Styles from "./Styles"
 
-type ModalProps = OptionProps & StyleProps & React.ComponentProps<"div">
+type ModalProps = OptionProps & StyleProps & React.ComponentProps<"div"> & Omit<React.ComponentProps<"div">, "translate">
 
 interface OptionProps {
   title: string

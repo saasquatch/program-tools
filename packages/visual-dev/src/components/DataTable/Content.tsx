@@ -1,9 +1,9 @@
-import * as React from 'react'
-import styled, { CSSProp } from 'styled-components'
-import * as Styles from './Styles'
-import { IconKey, Icon } from '../Icon'
+import * as React from "react"
+import styled, { CSSProp } from "styled-components"
+import * as Styles from "./Styles"
+import { IconKey, Icon } from "../Icon"
 
-type PopoverProps = OptionProps & StyleProps & React.ComponentProps<'div'>
+type PopoverProps = OptionProps & StyleProps & React.ComponentProps<"div"> & Omit<React.ComponentProps<"div">, "translate">
 
 interface OptionProps {
   children?: any
@@ -34,7 +34,7 @@ const ContentDiv = styled.div<Required<StyleProps>>`
   color: #232323;
 `
 
-export const Content = React.forwardRef<React.ElementRef<'div'>, PopoverProps>((props, forwardedRef) => {
+export const Content = React.forwardRef<React.ElementRef<"div">, PopoverProps>((props, forwardedRef) => {
   const { children, css = {}, ...rest } = props
 
   return (
@@ -47,16 +47,16 @@ export const Content = React.forwardRef<React.ElementRef<'div'>, PopoverProps>((
 const SkeletonDiv = styled.div<Required<StyleProps> & { size?: string; circle: boolean; color?: string }>`
   float: left;
   margin-right: 8px;
-  background: ${(props) => (props.color ? props.color : '#e2e2e2')};
+  background: ${(props) => (props.color ? props.color : "#e2e2e2")};
   border-radius: 50px;
 
-  height: ${(props) => (props.circle ? (props.size ? props.size : '15px') : '15px')};
-  width: ${(props) => (props.circle ? (props.size ? props.size : '15px') : props.size ? props.size : '100%')};
+  height: ${(props) => (props.circle ? (props.size ? props.size : "15px") : "15px")};
+  width: ${(props) => (props.circle ? (props.size ? props.size : "15px") : props.size ? props.size : "100%")};
 
   ${(props) => props.css};
 `
 
-export const Skeleton = React.forwardRef<React.ElementRef<'div'>, PopoverProps & { size?: string; circle?: boolean }>((props, forwardedRef) => {
+export const Skeleton = React.forwardRef<React.ElementRef<"div">, PopoverProps & { size?: string; circle?: boolean }>((props, forwardedRef) => {
   const { circle = false, size, color, children, css = {}, ...rest } = props
 
   return (
