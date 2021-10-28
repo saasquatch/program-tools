@@ -38,7 +38,7 @@ export class PortalChangePassword {
   /**
    * @uiName Password input field label
    */
-  @Prop() passwordFieldLabel: string = "Password";
+  @Prop() passwordFieldLabel: string = "New Password";
 
   /**
    * @uiName Password confirmation input field label
@@ -90,7 +90,7 @@ function usePortalChangePasswordDemo(props: PortalChangePassword) {
           modalChangePasswordHeader: "Change Password",
           cancelText: "Cancel",
           changePasswordButtonText: "Change Password",
-          passwordFieldLabel: "Password",
+          passwordFieldLabel: "New Password",
           confirmPasswordFieldLabel: "Confirm new password",
           successMessage: "Your password has been updated.",
           portalChangePasswordHeader: "Password",
