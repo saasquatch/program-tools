@@ -24,18 +24,18 @@ export const textSegment = css`
 `;
 
 export const iconSegment = css`
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	box-sizing: border-box;
-	padding: 3px 7px;
-	width: 28px;
-	height: 26px;
-	fill: var(--sq-text-subdued);
-	&:hover {
-		background: #f4f4f4;
-		fill: var(--sq-text-dark);
-		cursor: pointer;
-	}
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 3px 7px;
+  width: 28px;
+  height: 26px;
+  fill: var(--sq-text-subdued);
+  &:hover {
+    background: #f4f4f4;
+    fill: var(--sq-text-dark);
+    cursor: pointer;
+  }
 `;
