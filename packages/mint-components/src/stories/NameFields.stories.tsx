@@ -13,7 +13,13 @@ export default {
 };
 
 const props: NameFieldsViewProps = {
-  states: { validationErrors: undefined },
+  states: {
+    validationErrors: undefined,
+    content: {
+      firstNameLabel: "First Name",
+      lastNameLabel: "Last Name",
+    },
+  },
 };
 
 const errorProps: NameFieldsViewProps = {
@@ -21,6 +27,10 @@ const errorProps: NameFieldsViewProps = {
     validationErrors: {
       firstName: "Cannot be empty",
       lastName: "Cannot be empty",
+    },
+    content: {
+      firstNameLabel: "First Name",
+      lastNameLabel: "Last Name",
     },
   },
 };

@@ -16,6 +16,16 @@ export class NameFields {
   @State()
   ignored = true;
 
+  /**
+   * @uiName First name field label
+   */
+  @Prop() firstNameLabel: string = "First Name";
+
+  /**
+   * @uiName Last name field label
+   */
+  @Prop() lastNameLabel: string = "Last Name";
+
   /** @undocumented */
   @Prop() demoData?: DemoData<NameFieldsViewProps>;
 
@@ -26,7 +36,7 @@ export class NameFields {
   disconnectedCallback() {}
 
   render() {
-    const { states } = isDemo() ? useNameFieldsDemo(this) : useNameFields();
+    const { states } = isDemo() ? useNameFieldsDemo(this) : useNameFields(this);
     return <NameFieldsView states={states}></NameFieldsView>;
   }
 }
@@ -35,6 +45,10 @@ function useNameFieldsDemo(props: NameFields): Partial<NameFieldsViewProps> {
     {
       states: {
         validationErrors: [],
+        content: {
+          firstNameLabel: "First Name",
+          lastNameLabel: "Last Name",
+        },
       },
     },
     props.demoData || {},

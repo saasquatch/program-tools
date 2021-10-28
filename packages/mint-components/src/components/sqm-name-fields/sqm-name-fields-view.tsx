@@ -7,6 +7,10 @@ import { ErrorStyles } from "../../global/mixins";
 export interface NameFieldsViewProps {
   states: {
     validationErrors?: Record<string, string>;
+    content: {
+      firstNameLabel: string;
+      lastNameLabel: string;
+    };
   };
 }
 
@@ -54,7 +58,7 @@ export function NameFieldsView(props: NameFieldsViewProps) {
         exportparts="label: input-label"
         name="/firstName"
         type="text"
-        label="First Name"
+        label={states.content.firstNameLabel}
         required
         {...(validationErrors?.firstName
           ? {
@@ -67,7 +71,7 @@ export function NameFieldsView(props: NameFieldsViewProps) {
         exportparts="label: input-label"
         name="/lastName"
         type="text"
-        label="Last Name"
+        label={states.content.lastNameLabel}
         required
         {...(validationErrors?.lastName
           ? {

@@ -236,6 +236,14 @@ export namespace Components {
           * @undocumented
          */
         "demoData"?: DemoData<NameFieldsViewProps>;
+        /**
+          * @uiName First name field label
+         */
+        "firstNameLabel": string;
+        /**
+          * @uiName Last name field label
+         */
+        "lastNameLabel": string;
     }
     interface SqmNavigationMenu {
         /**
@@ -1589,6 +1597,14 @@ declare namespace LocalJSX {
           * @undocumented
          */
         "demoData"?: DemoData<NameFieldsViewProps>;
+        /**
+          * @uiName First name field label
+         */
+        "firstNameLabel"?: string;
+        /**
+          * @uiName Last name field label
+         */
+        "lastNameLabel"?: string;
     }
     interface SqmNavigationMenu {
         /**
