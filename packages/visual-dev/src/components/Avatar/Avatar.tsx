@@ -10,7 +10,7 @@ type AvatarProps = OptionProps &
 interface OptionProps {
   firstName?: string;
   lastName?: string;
-  full?: boolean;
+  large?: boolean;
 }
 
 interface StyleProps {
@@ -21,23 +21,23 @@ const AvatarStyle = styled.div<Required<StyleProps>>`
   ${(props) => props.css}
 `;
 
-const AvatarCircle = styled.div<{ full: boolean; color: string }>`
+const AvatarCircle = styled.div<{ large: boolean; color: string }>`
   ${(props) =>
-    props.full ? Styles.AvatarCircleStyleLarge : Styles.AvatarCircleStyle};
-  ${(props) => (props.full ? "background-color: " + props.color : "")};
+    props.large ? Styles.AvatarCircleStyleLarge : Styles.AvatarCircleStyle};
+  ${(props) => (props.large ? "background-color: " + props.color : "")};
 `;
 
-const AvatarText = styled.span<{ full: boolean; color: string }>`
+const AvatarText = styled.span<{ large: boolean; color: string }>`
   ${(props) =>
-    props.full ? Styles.AvatarTextStyleLarge : Styles.AvatarTextStyle};
-  ${(props) => (props.full ? "" : "color: " + props.color)};
+    props.large ? Styles.AvatarTextStyleLarge : Styles.AvatarTextStyle};
+  ${(props) => (props.large ? "" : "color: " + props.color)};
 `;
 
 export const Avatar = React.forwardRef<React.ElementRef<"div">, AvatarProps>(
   (props, forwardedRef) => {
     const {
       firstName = "",
-      full = false,
+      large = false,
       lastName = "",
       css = {},
       ...rest
@@ -62,14 +62,14 @@ export const Avatar = React.forwardRef<React.ElementRef<"div">, AvatarProps>(
           <Icon
             icon="avatar"
             size={
-              full
+              large
                 ? "var(--sq-icon-size-avatar-large)"
                 : "var(--sq-icon-size-avatar)"
             }
           />
         ) : (
-          <AvatarCircle full={full} color={colors[random]}>
-            <AvatarText full={full} color={colors[random]}>
+          <AvatarCircle large={large} color={colors[random]}>
+            <AvatarText large={large} color={colors[random]}>
               {initials}
             </AvatarText>
           </AvatarCircle>
