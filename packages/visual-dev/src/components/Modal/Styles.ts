@@ -1,4 +1,4 @@
-import { css } from "styled-components"
+import { css } from "styled-components";
 
 export const ModalBackdropStyle = css`
   position: absolute;
@@ -10,7 +10,7 @@ export const ModalBackdropStyle = css`
   right: 0;
   bottom: 0;
   left: 0;
-`
+`;
 
 export const ModalDivStyle = css`
   position: relative;
@@ -21,7 +21,7 @@ export const ModalDivStyle = css`
   border-radius: 8px;
   margin: auto;
   padding: 0;
-`
+`;
 
 export const ModalHeaderStyle = css`
   user-select: none;
@@ -34,7 +34,7 @@ export const ModalHeaderStyle = css`
   font-size: var(--sq-font-size-header-one);
   line-height: var(--sq-line-height-header-one);
   color: var(--sq-surface);
-`
+`;
 
 export const ModalActionDivStyle = css`
   margin-top: 10px;
@@ -43,7 +43,7 @@ export const ModalActionDivStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 export const ModalContentDivStyle = css`
   max-height: 650px;
@@ -65,7 +65,7 @@ export const ModalContentDivStyle = css`
   ::-webkit-scrollbar-thumb:hover {
   }
   padding: 20px;
-`
+`;
 
 export const ModalContentTextDivStyle = css`
   max-width: fit-content;
@@ -76,7 +76,7 @@ export const ModalContentTextDivStyle = css`
   font-size: var(--sq-font-size-regular);
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
-`
+`;
 
 export const CodeDivStyle = css`
   display: flex;
@@ -91,7 +91,7 @@ export const CodeDivStyle = css`
   font-size: var(--sq-font-size-regular);
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
-`
+`;
 
 export const DividerDivStyle = css`
   height: 1px;
@@ -99,7 +99,7 @@ export const DividerDivStyle = css`
   background: var(--sq-border);
   margin: 20px 0 20px -20px;
   padding-right: 40px;
-`
+`;
 
 export const ModalBannerDivStyle = css`
   user-select: none;
@@ -116,7 +116,7 @@ export const ModalBannerDivStyle = css`
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-header-three);
   line-height: var(--sq-line-height-regular);
-`
+`;
 
 export const ModalBackDivStyle = css`
   user-select: none;
@@ -136,4 +136,4 @@ export const ModalBackDivStyle = css`
   padding: 20px;
   margin: -20px;
   margin-bottom: 20px;
-`
+`;
