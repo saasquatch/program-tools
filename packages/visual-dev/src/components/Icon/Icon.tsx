@@ -3,7 +3,7 @@ import styled, { CSSProp } from 'styled-components'
 import * as Styles from './Styles'
 import * as SVGs from './SVGs'
 
-type IconProps = OptionProps & StyleProps & React.ComponentProps<'div'>
+type IconProps = OptionProps & StyleProps & Omit<React.ComponentProps<'div'>, "translate">
 
 interface OptionProps {
   icon: IconKey

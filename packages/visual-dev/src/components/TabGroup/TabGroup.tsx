@@ -2,8 +2,8 @@ import * as React from 'react'
 import styled, { CSSProp } from 'styled-components'
 import * as Styles from './Styles'
 
-type TabGroupProps = OptionProps & StyleProps & React.ComponentProps<'div'>
-type TabProps = OptionProps & StyleProps & React.ComponentProps<'div'> & { selected?: boolean }
+type TabGroupProps = OptionProps & StyleProps & Omit<React.ComponentProps<'div'>, "translate">
+type TabProps = OptionProps & StyleProps & Omit<React.ComponentProps<'div'>, "translate"> & { selected?: boolean }
 
 interface OptionProps {
   children?: React.ReactNode

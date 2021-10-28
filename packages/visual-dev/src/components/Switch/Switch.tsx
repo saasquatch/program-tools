@@ -3,7 +3,7 @@ import styled, { CSSProp } from 'styled-components'
 
 import * as Styles from './Styles'
 
-type SwitchProps = OptionProps & StyleProps & React.ComponentProps<'div'>
+type SwitchProps = OptionProps & StyleProps & Omit<React.ComponentProps<'div'>, "translate">
 
 interface OptionProps {
   checked?: boolean

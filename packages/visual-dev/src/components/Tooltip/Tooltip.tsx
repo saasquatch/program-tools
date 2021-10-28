@@ -3,7 +3,7 @@ import styled, { CSSProp } from 'styled-components'
 
 import * as Styles from './Styles'
 
-type TooltipProps = OptionProps & StyleProps & React.ComponentProps<'div'>
+type TooltipProps = OptionProps & StyleProps & Omit<React.ComponentProps<'div'>, "translate">
 
 interface OptionProps {
   text?: string

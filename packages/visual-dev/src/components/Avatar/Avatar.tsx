@@ -3,7 +3,7 @@ import styled, { CSSProp } from 'styled-components'
 import { Icon } from '../Icon'
 import * as Styles from './Styles'
 
-type AvatarProps = OptionProps & StyleProps & React.ComponentProps<'div'>
+type AvatarProps = OptionProps & StyleProps & Omit<React.ComponentProps<'div'>, "translate">
 
 interface OptionProps {
   firstName?: string
