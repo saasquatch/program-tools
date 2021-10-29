@@ -12,10 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Changed components:
-  - \<sqm-portal-change-password> Swapped location of cancel and change password buttons, added padding between fields
-  - \<sqm-portal-change-password> Changed hardcoded text into customizable props
+  - \<sqm-portal-change-password> 
+      - Swapped location of cancel and change password buttons
+      - Added padding between fields
+      - Changed hardcoded text into customizable props
+      - Changed password field input default label to "New Password"
   - \<sqm-portal-profile> Changed hardcoded text into customizable props
-  - \<sqm-portal-reset-password> Changed hardcoded text into customizable props
+  - \<sqm-portal-reset-password> 
+      - Changed hardcoded text into customizable props
+      - Changed password field input default label to "New Password"
   - \<sqm-portal-register> Changed hardcoded text into customizable props
   - \<sqm-portal-email-verification> Changed hardcoded text into customizable props
   - \<sqm-portal-register> formData slot adds custom inputs to the top of form instead of the bottom
@@ -23,6 +28,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Default affiliate portal templates now provided in [Stencilbook](https://mint-components.stencilbook.saasquat.ch)
+    - Default Portal
+    - Multi Program Portal
+    - Lead Submit Portal
 - New components added for default affiliate portals
   - \<sqm-portal-footer> Footer for providing FAQ, T&S, and support email
   - \<sqm-hero> One or two column landing page with an optional background
