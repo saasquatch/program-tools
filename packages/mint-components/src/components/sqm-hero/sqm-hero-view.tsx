@@ -78,6 +78,7 @@ export function HeroView(props: HeroProps, children: VNode) {
       max-width: 100%;
       height: auto;
   }
+  
 `;
 
   return (
