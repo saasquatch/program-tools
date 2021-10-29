@@ -81,6 +81,7 @@ export function HeroView(props: HeroProps) {
       max-width: 100%;
       height: auto;
   }
+  
 `;
 
   return (
