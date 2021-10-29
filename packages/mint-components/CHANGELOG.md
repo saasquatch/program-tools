@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed components:
   - \<sqm-portal-change-password> Swapped location of cancel and change password buttons, added padding between fields
   - \<sqm-portal-change-password> Changed hardcoded text into customizable props
-  - \<sqm-portal-profile-view> Changed hardcoded text into customizable props
+  - \<sqm-portal-profile> Changed hardcoded text into customizable props
   - \<sqm-portal-reset-password> Changed hardcoded text into customizable props
   - \<sqm-portal-register> Changed hardcoded text into customizable props
   - \<sqm-portal-email-verification> Changed hardcoded text into customizable props
@@ -25,7 +25,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Default affiliate portal templates now provided in [Stencilbook](https://mint-components.stencilbook.saasquat.ch)
 - New components added for default affiliate portals
   - \<sqm-portal-footer> Footer for providing FAQ, T&S, and support email
-  - \<sqm-hero> one or two column landing page with an optional background
+  - \<sqm-hero> One or two column landing page with an optional background
+  - \<sqm-name-fields> First and last name inputs for registration which supports validation errors
+  - \<sqm-referral-iframe> Renders an iFrame and passes users referral code as a UTM param named rsCode
 
 ## [1.2.1] - 2021-09-21
 
