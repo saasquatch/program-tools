@@ -127,6 +127,11 @@
                 </sqm-portal-container>
               </template>
               <template path="/refer">
+                <sqm-portal-protected-route
+                  require-email-verification="true"
+                  redirect-to="/login"
+                  redirect-to-unverified="/emailVerification"
+                ></sqm-portal-protected-route>
                 <sqm-referral-iframe
                   iframe-src="https://example.com"
                 ></sqm-referral-iframe>
