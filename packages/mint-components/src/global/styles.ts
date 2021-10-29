@@ -435,6 +435,7 @@ sqm-share-button{
 sqm-hero img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
 sl-details::part(base){
