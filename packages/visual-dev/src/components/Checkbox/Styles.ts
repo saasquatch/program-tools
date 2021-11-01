@@ -30,8 +30,8 @@ export const CheckboxTickStyle = css`
   color: inherit;
   width: 20px;
   height: 20px;
+  transition: transform 0.1s;
   transform: scale(0);
-  transition: transform 0.15s;
 `;
 export const CheckboxInputStyle = css`
   display: none;
