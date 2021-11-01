@@ -7,18 +7,19 @@ Feature: Referral Iframe
 
   Background: A user is logged in
     Given there is a logged in user
-    And the "iframe-src" is "https://example.com"
 
   @motivating
   Scenario: Referral code is passed to the iframe as a query parameter
-    Given the user has navigated to "/refer"
+    Given the "iframe-src" is "https://example.com"
+    And the user has navigated to "/refer"
     And the user's referral code is "BOBBYREFER"
     When the iframe content is loaded
     Then the iframe url will be "https://example.com?rsCode=BOBBYREFER"
 
   @ui
   Scenario Outline: The height and width of the iFrame can be controlled via props
-    Given the iframe content is 1000x1000
+    Given the "iframe-src" is "https://example.com"
+    And the iframe content is 1000x1000
     And the "iframe-height" is set to <heightValue>
     And the "iframe-width" is set to <widthValue>
     Then the content of the iframe will be displayed with scrollbars
@@ -33,8 +34,7 @@ Feature: Referral Iframe
       | 50%         | 50%        |
 
   @minutae
-  Scenario: Example.com is displayed when no iFrame source is provided
+  Scenario: The iFrame will fail fast if a iFrame source isn't provided
     Given no "iframe-src" is provided
-    When a user views the iFrame
-    Then "https://example.com" is displayed
-    And the users referral code is added as UTM parameter
+    When a user views the referral iFrame component
+    Then an alert with an error message is displayed in place of the iFrame
