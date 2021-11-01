@@ -44,7 +44,7 @@ export class PortalChangePassword {
    * @uiName Password confirmation input field label
    */
   @Prop()
-  confirmPasswordFieldLabel: string = "Confirm new password";
+  confirmPasswordFieldLabel: string = "Confirm New Password";
 
   /**
    * @uiName Successful password change message
