@@ -140,7 +140,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                   >
                     <sl-button
                       class={sheet.classes.ChangePasswordButton}
-                      type="default"
+                      type="primary"
                       submit
                       loading={states.loading}
                     >

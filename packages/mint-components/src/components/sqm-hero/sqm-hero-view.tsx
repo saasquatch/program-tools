@@ -84,6 +84,7 @@ export function HeroView(props: HeroProps) {
   
 `;
 
+  // NOTE: Spacing on the columns is controlled on the slots itself. For example using inline styling
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">
