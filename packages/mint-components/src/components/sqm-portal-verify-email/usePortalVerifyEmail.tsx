@@ -5,7 +5,7 @@ import {
   useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
 
-export function usePortalVerifyEmail({ nextPage }) {
+export function usePortalVerifyEmail({ nextPage, loginPath }) {
   const [verified, setVerified] = useState(false);
   const [disableContinue, setDisableContinue] = useState(true);
   const userIdent = useUserIdentity();
@@ -60,6 +60,11 @@ export function usePortalVerifyEmail({ nextPage }) {
       data?.verifyManagedIdentityEmail?.success === false
     ) {
       setDisableContinue(false);
+    } else if (!userIdent) {
+      setDisableContinue(false);
+      setTimeout(() => {
+        navigation.push(loginPath);
+      }, 3000);
     }
   }, [userIdent?.managedIdentity?.emailVerified]);
 
