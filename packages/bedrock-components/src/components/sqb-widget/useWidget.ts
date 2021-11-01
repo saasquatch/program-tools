@@ -13,6 +13,8 @@ type API = {
   close: () => void;
 };
 
+export type EngagementMedium = 'NOCONTENT' | 'EMBED' | 'HOSTED' | 'MOBILE' | 'POPUP' | 'DEMO_EMBED' | 'DEMO' | 'EMPTY' | 'EMAIL' | 'UNKNOWN';
+
 type GetWidget = {
   renderWidget: {
     widgetConfig: {
