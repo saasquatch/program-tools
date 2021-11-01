@@ -75,17 +75,3 @@ export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
     </div>
   );
 }
-
-// export function PortalFrameView(props: PortalFrameViewProps, children: VNode) {
-//   const { data } = props;
-//   return (
-//     <div class="Frame">
-//       <div class="HeaderWrapper">
-//         {data.header}
-//         <slot name="sqm-navigation-menu" />
-//       </div>
-//       {children}
-//       <div class="FooterWrapper">{data.footer}</div>
-//     </div>
-//   );
-// }

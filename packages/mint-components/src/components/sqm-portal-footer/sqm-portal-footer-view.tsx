@@ -51,6 +51,11 @@ export function PortalFooterView(props: PortalFooterViewProps) {
         color: "var(--sl-color-gray-900)",
       },
     },
+
+    SupportText: {
+      textAlign: "center",
+    },
+
     PoweredByLink: {
       color: "var(--sl-color-gray-400)",
       "font-size": "var(--sl-font-size-xx-small)",
@@ -82,7 +87,7 @@ export function PortalFooterView(props: PortalFooterViewProps) {
           </a>
         )}
       </div>
-      <p>
+      <p class={sheet.classes.SupportText}>
         {intl.formatMessage(
           {
             id: "supportFooter",
