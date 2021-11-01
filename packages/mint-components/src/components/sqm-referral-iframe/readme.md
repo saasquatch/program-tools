@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property       | Attribute       | Description | Type                                                                                                                           | Default                 |
-| -------------- | --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------------------- |
-| `demoData`     | --              |             | `{ states?: { content: { iframeSrc: string; iframeHeight: string; iframeWidth: string; }; }; data?: { shareCode: string; }; }` | `undefined`             |
-| `iframeHeight` | `iframe-height` |             | `string`                                                                                                                       | `"100%"`                |
-| `iframeSrc`    | `iframe-src`    |             | `string`                                                                                                                       | `"https://example.com"` |
-| `iframeWidth`  | `iframe-width`  |             | `string`                                                                                                                       | `"100%"`                |
+| Property       | Attribute       | Description | Type                                                                                                                           | Default     |
+| -------------- | --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| `demoData`     | --              |             | `{ states?: { content: { iframeSrc: string; iframeHeight: string; iframeWidth: string; }; }; data?: { shareCode: string; }; }` | `undefined` |
+| `iframeHeight` | `iframe-height` |             | `string`                                                                                                                       | `"100%"`    |
+| `iframeSrc`    | `iframe-src`    |             | `string`                                                                                                                       | `undefined` |
+| `iframeWidth`  | `iframe-width`  |             | `string`                                                                                                                       | `"100%"`    |
 
 
 ----------------------------------------------

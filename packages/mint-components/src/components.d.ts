@@ -665,10 +665,6 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalVerifyEmailViewProps>;
         /**
-          * @uiName Login path
-         */
-        "loginPath": string;
-        /**
           * @uiName Next page path
          */
         "nextPage": string;
@@ -2029,10 +2025,6 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<PortalVerifyEmailViewProps>;
-        /**
-          * @uiName Login path
-         */
-        "loginPath"?: string;
         /**
           * @uiName Next page path
          */

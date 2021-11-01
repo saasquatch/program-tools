@@ -23,7 +23,7 @@ export class SqmReferralIframe {
   /**
    * @uiName URL of iframe to display
    */
-  @Prop() iframeSrc: string = "https://example.com";
+  @Prop() iframeSrc: string;
   /**
    * @uiName Height of the iframe container
    */
@@ -59,7 +59,12 @@ export class SqmReferralIframe {
 function useReferralIframeDemo(props: SqmReferralIframe) {
   return deepmerge(
     {
-      states: { content: props },
+      states: {
+        content: {
+          iframeSrc: "https://example.com",
+          ...props,
+        },
+      },
       data: {
         shareCode: "SHARECODE123",
       },

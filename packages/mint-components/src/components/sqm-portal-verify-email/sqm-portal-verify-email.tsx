@@ -27,12 +27,6 @@ export class PortalVerifyEmail {
   nextPage: string = "/";
 
   /**
-   * @uiName Login path
-   */
-  @Prop()
-  loginPath: string = "/login";
-
-  /**
    * @undocumented
    * @uiType object
    */
