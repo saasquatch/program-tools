@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - \<sqb-program-switch> - Loads different content based on the programId from useProgramId
 
+### Changed
+
+- \<sqb-widget> Added functionality to track widget loads, off by default and enabled by prop
+
 ## [1.1.1] - 2021-09-20
 
 ### Fixed
