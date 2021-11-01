@@ -12,7 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Changed components:
+  - \<sqm-share-button>
+      - Exported "icon" part so it can be customizable in the future
   - \<sqm-portal-change-password> 
+      - Changed sl-button in modal to be of type "primary" instead of "default"
       - Swapped location of cancel and change password buttons
       - Added padding between fields
       - Changed hardcoded text into customizable props
