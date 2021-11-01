@@ -7,7 +7,7 @@ Feature: Referral Iframe
 
   Background:
     Given there is a logged in user
-    And the iframeSrc is "https://example.com"
+    And the "iframe-src" is "https://example.com"
 
   @motivating
   Scenario: Referral code is passed to the iframe as a query parameter
@@ -19,9 +19,9 @@ Feature: Referral Iframe
   @ui
   Scenario: Height and width can be controlled via props
     Given the iframe content is 1000x1000
-    And the iframeHeight is set to "500px"
-    And the iframeWidth is set to "500px"
+    And the "iframe-height" is set to "500px"
+    And the "iframe-width" is set to "500px"
     Then the content of the iframe  will be displayed with scrollbars
-    When the iframeHeight is set to "1000px"
-    And the iframeWidth is set to "1000px"
+    When the "iframe-height" is set to "1000px"
+    And the "iframe-width" is set to "1000px"
     Then the full content of the iframe will be displayed on the page

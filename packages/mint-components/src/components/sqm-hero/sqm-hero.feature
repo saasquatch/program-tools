@@ -6,7 +6,7 @@ Feature: Hero Unit
         And a user is viewing the login page
 
     Scenario: The hero unit defaults to a single column layout
-        Given a hero unit does not have a "column" prop
+        Given a hero unit does not have a "columns" prop
         But the following html is wrapped by the hero unit
             """
             <sqm-portal-login></sqm-portal-login>
@@ -26,7 +26,7 @@ Feature: Hero Unit
         And within it will be the login component
 
     Scenario Outline: The hero unit supports single or dual column layouts
-        Given a hero unit with prop "column" having <columnValue>
+        Given a hero unit with prop "columns" having <columnValue>
         And it wraps <html>
         Then the hero unit displays <columnValue> columns
         Examples:
@@ -70,7 +70,7 @@ Feature: Hero Unit
             <h1 style="text-align:center">Column 2!</h1>
             </div>
             """
-        And prop "wrapDirection" has <value>
+        And prop "wrap-direction" has <value>
         When the window width is less than 600px
         Then the two columns will stack
         And <column> will be on top

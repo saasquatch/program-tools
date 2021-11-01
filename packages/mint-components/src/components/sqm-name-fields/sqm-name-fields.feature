@@ -10,12 +10,13 @@ Feature: Name Fields
 
   @motivating
   Scenario: Both first name and last name are required
-    Given email and password fields have valid data
-    And first name and last name fields are empty
+    Given the email field has valid input
+    And the password field has valid input
+    And first name field is empty
+    And last name field is empty
     When register is clicked
     Then the name fields will be highlighted in red
     And the error messages will say "Cannot be empty"
-
 
   @motivating
   Scenario: First and last name are upserted with the SaaSquatch user

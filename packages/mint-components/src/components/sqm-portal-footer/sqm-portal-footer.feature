@@ -6,10 +6,10 @@ Feature: Portal Footer
         And the portal has a footer
 
     Scenario Outline: FAQ and T&C links/text are configurable and open in a new page when clicked
-        Given the footer has prop "termsLink" with value "https://example.com/terms"
-        And prop "termsText" with value "Terms and Conditions"
-        And prop "faqLink" with value "https://example.com/FAQ"
-        And prop "faqText" with value "Visit FAQ"
+        Given the footer has prop "terms-link" with value "https://example.com/terms"
+        And prop "terms-text" with value "Terms and Conditions"
+        And prop "faq-link" with value "https://example.com/FAQ"
+        And prop "faq-text" with value "Visit FAQ"
         When a user clicks on the "Visit FAQ" link
         Then they will be redirected to "https://example.com/FAQ" in a new page
         When they go back to the portal
@@ -21,11 +21,11 @@ Feature: Portal Footer
         But it <mayHave> <textProp> with <value>
         Then the <link> will not be shown in the footer
         Examples:
-            | linkProp  | mayHave      | textProp  | value                | link     |
-            | termsLink | has          | termsText | Terms and Conditions | T&C Link |
-            | faqLink   | has          | faqText   | Visit FAQ            | FAQ Link |
-            | termsLink | doesn't have |           |                      | T&C Link |
-            | faqLink   | doesn't have |           |                      | FAQ Link |
+            | linkProp   | mayHave      | textProp  | value                | link     |
+            | terms-link | has          | termsText | Terms and Conditions | T&C Link |
+            | faq-link   | has          | faqText   | Visit FAQ            | FAQ Link |
+            | terms-link | doesn't have |           |                      | T&C Link |
+            | faq-link   | doesn't have |           |                      | FAQ Link |
 
     Scenario Outline: The support email and text is configurable but has a default
         Given the footer <mayHave> <emailPropWithValue>
