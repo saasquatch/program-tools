@@ -37,17 +37,47 @@ export function HeroView(props: HeroProps) {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
     minHeight: "100%",
+  };
+
+  const sidePadding = "5%";
+  const sidePadding2x = "10%";
+
+  const getVertivalPadding = () => {
+    if (window.matchMedia("@media screen and (max-width: 767px)").matches) {
+      return 20;
+    } else if (
+      window.matchMedia("@media screen and (max-width: 1023px)").matches
+    ) {
+      return 60;
+    } else {
+      return 80;
+    }
   };
 
   const style = {
     TwoColumnContainer: {
       display: "flex",
-      flexWrap: states.wrapDirection,
-      "& > div": { flex: "1", minWidth: "300px" },
+      "@media screen and (max-width: 1023px)": {
+        flexDirection:
+          states.wrapDirection == "wrap-reverse" ? "column-reverse" : "column",
+        justfiyContent: "center",
+      },
     },
     ColumnWrapper: {
+      paddingTop: `${getVertivalPadding()}px`,
+      paddingBottom: `${getVertivalPadding()}px`,
+      paddingLeft: sidePadding,
+      paddingRight: sidePadding,
+      "@media screen and (min-width: 1023px)": { flex: "1 1 0" },
+      "@media screen and (max-width: 1023px)": {
+        "&:first-of-type": {
+          paddingBottom: `${getVertivalPadding() / 2}px`,
+        },
+        "&:last-of-type": {
+          paddingTop: `${getVertivalPadding() / 2}px`,
+        },
+      },
       ...column,
     },
     SingleColumnContainer: {
@@ -55,6 +85,8 @@ export function HeroView(props: HeroProps) {
     },
     Container: {
       width: "100%",
+      maxWidth: "1280px",
+      margin: "0 auto",
       flex: 1,
       ...column,
       alignItems: "unset",
