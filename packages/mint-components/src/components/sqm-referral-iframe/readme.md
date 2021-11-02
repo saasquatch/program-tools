@@ -15,6 +15,19 @@
 | `iframeWidth`  | `iframe-width`  |             | `string`                                                                                                                       | `"100%"`    |
 
 
+## Dependencies
+
+### Used by
+
+ - [sqm-stencilbook](../sqm-stencilbook)
+
+### Graph
+```mermaid
+graph TD;
+  sqm-stencilbook --> sqm-referral-iframe
+  style sqm-referral-iframe fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

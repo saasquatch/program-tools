@@ -683,6 +683,7 @@ export namespace Components {
         "iframeHeight": string;
         /**
           * @uiName URL of iframe to display
+          * @uiRequired
          */
         "iframeSrc": string;
         /**
@@ -2044,6 +2045,7 @@ declare namespace LocalJSX {
         "iframeHeight"?: string;
         /**
           * @uiName URL of iframe to display
+          * @uiRequired
          */
         "iframeSrc"?: string;
         /**

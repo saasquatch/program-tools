@@ -1,14 +1,15 @@
-import { Component, h, Host, Prop, State } from "@stencil/core";
+import { Component, h, Host, Prop, State, Watch } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useReferralIframe } from "./useReferralIframe";
 import {
   ReferralIframeView,
   ReferralIframeViewProps,
 } from "./sqm-referral-iframe-view";
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { isDemo, useHost } from "@saasquatch/component-boilerplate";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
-import { getProps } from "../../utils/utils";
+import { getMissingProps, getProps } from "../../utils/utils";
+import { RequiredPropsError } from "../../utils/RequiredPropsError";
 
 /**
  * @uiName Referral IFrame
@@ -22,6 +23,7 @@ export class SqmReferralIframe {
 
   /**
    * @uiName URL of iframe to display
+   * @uiRequired
    */
   @Prop() iframeSrc: string;
   /**
@@ -45,9 +47,21 @@ export class SqmReferralIframe {
   disconnectedCallback() {}
 
   render() {
+    const missingProps = getMissingProps([
+      {
+        attribute: "iframe-src",
+        value: this.iframeSrc,
+      },
+    ]);
+
+    if (missingProps) {
+      return <RequiredPropsError missingProps={missingProps} />;
+    }
+
     const { states, data } = isDemo()
       ? useReferralIframeDemo(getProps(this))
       : useReferralIframe(getProps(this));
+
     return (
       <Host style={{ display: "contents" }}>
         <ReferralIframeView data={data} states={states}></ReferralIframeView>

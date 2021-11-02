@@ -25,19 +25,6 @@ const props: ReferralIframeViewProps = {
   },
 };
 
-const errorProps: ReferralIframeViewProps = {
-  data: {
-    shareCode: "BOBBYREFER",
-  },
-  states: {
-    content: {
-      iframeSrc: undefined,
-      iframeHeight: "100%",
-      iframeWidth: "100%",
-    },
-  },
-};
-
 export const ReferralIframe = () => {
   return (
     <div style={{ width: "1000px", height: "1000px" }}>
@@ -49,7 +36,7 @@ export const ReferralIframe = () => {
 export const ReferralIframeError = () => {
   return (
     <div style={{ width: "1000px", height: "1000px" }}>
-      <ReferralIframeView {...errorProps} />
+      <sqm-referral-iframe></sqm-referral-iframe>
     </div>
   );
 };

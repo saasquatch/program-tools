@@ -39,17 +39,6 @@ export function ReferralIframeView(props: ReferralIframeViewProps) {
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
-  if (!content.iframeSrc) {
-    return (
-      <sl-alert type="danger" open>
-        <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-        <strong>
-          You must include an iframe-src attribute to render this component
-        </strong>
-      </sl-alert>
-    );
-  }
-
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
