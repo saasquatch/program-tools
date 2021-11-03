@@ -379,7 +379,7 @@ export namespace Components {
          */
         "gap": Spacing;
         /**
-          * @uiName Gap
+          * @uiName minWidth
          */
         "minWidth"?: string;
         /**
@@ -687,6 +687,7 @@ export namespace Components {
         "iframeHeight": string;
         /**
           * @uiName URL of iframe to display
+          * @uiRequired
          */
         "iframeSrc": string;
         /**
@@ -1744,7 +1745,7 @@ declare namespace LocalJSX {
          */
         "gap"?: Spacing;
         /**
-          * @uiName Gap
+          * @uiName minWidth
          */
         "minWidth"?: string;
         /**
@@ -2052,6 +2053,7 @@ declare namespace LocalJSX {
         "iframeHeight"?: string;
         /**
           * @uiName URL of iframe to display
+          * @uiRequired
          */
         "iframeSrc"?: string;
         /**
