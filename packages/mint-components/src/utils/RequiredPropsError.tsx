@@ -12,8 +12,16 @@ export type RequiredPropsErrorProps = {
 };
 
 const style = {
-  iconStyle: {
-    "&::part(icon)": { marginTop: "-110px" },
+  DivStyle: {
+    display: "block",
+    position: "absolute",
+    top: "18px",
+  },
+  IconStyle: {
+    "&::part(icon)": {},
+  },
+  Details: {
+    marginLeft: "30px",
   },
 };
 
@@ -25,25 +33,26 @@ export function RequiredPropsError({ missingProps }: RequiredPropsErrorProps) {
   if (!missingProps) return false;
   const host = useHost();
   return (
-    <sl-alert type="danger" open class={sheet.classes.iconStyle}>
+    <sl-alert type="danger" open class={sheet.classes.IconStyle}>
       <style type="text/css">{styleString}</style>
-      <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-      <strong>
-        Error occured while loading {`<${host.tagName.toLowerCase()}>`}
-      </strong>
-      <p>Values for the following attributes are missing:</p>
-      <ul>
-        {missingProps.map((prop) => (
-          <li>
-            <strong>{prop.attribute}</strong>
-          </li>
-        ))}
-      </ul>
-      Contact{" "}
-      <a target="_blank" href="mailto:support@saasquatch.com">
-        support@saasquatch.com
-      </a>{" "}
-      for assistance.
+      <div slot="icon" class={sheet.classes.DivStyle}>
+        <sl-icon name="exclamation-octagon"></sl-icon>
+      </div>
+      <details class={sheet.classes.Details}>
+        <summary>
+          <strong>
+            Error occured while loading {`<${host.tagName.toLowerCase()}>`}
+          </strong>
+        </summary>
+        <p>Values for the following attributes are missing:</p>
+        <ul>
+          {missingProps.map((prop) => (
+            <li>
+              <strong>{prop.attribute}</strong>
+            </li>
+          ))}
+        </ul>
+      </details>
     </sl-alert>
   );
 }
