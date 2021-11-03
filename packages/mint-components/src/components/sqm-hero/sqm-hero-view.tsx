@@ -1,7 +1,7 @@
 import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { isMobile } from "../../utilities";
+import { isMobile, isValidColor } from "../../utilities";
 
 export interface HeroProps {
   states: {
@@ -18,10 +18,6 @@ export interface HeroProps {
 
 export function HeroView(props: HeroProps) {
   const { states, content } = props;
-
-  const isValidColor = (teststr: string) => {
-    return CSS.supports(`(color: ${teststr})`);
-  };
 
   const parseBackground = (provided_bg: string) => {
     if (provided_bg) {
