@@ -375,7 +375,7 @@ export namespace Components {
          */
         "gap": Spacing;
         /**
-          * @uiName Gap
+          * @uiName minWidth
          */
         "minWidth"?: string;
         /**
@@ -1737,7 +1737,7 @@ declare namespace LocalJSX {
          */
         "gap"?: Spacing;
         /**
-          * @uiName Gap
+          * @uiName minWidth
          */
         "minWidth"?: string;
         /**
