@@ -34,7 +34,19 @@ Feature: Referral Iframe
       | 50%         | 50%        |
 
   @minutae
-  Scenario: The iFrame will fail fast if a iFrame source isn't provided
-    Given no "iframe-src" is provided
+  Scenario Outline: The iFrame will fail fast if a iFrame source isn't provided
+    Given "iframe-src" <mayBeAnAttribute>
+    And it <mayHaveValue>
     When a user views the referral iFrame component
     Then an alert with an error message is displayed in place of the iFrame
+    And it has a details section
+    When "More details" is clicked
+    Then the following information will be displayed
+      | component being used |
+      | missing attribute(s) |
+
+    Examples:
+      | mayBeAnAttribute    | mayHaveValue |
+      | is not an attribute | N/A          |
+      | is an attribute     | ""           |
+      | is an attribute     |              |
