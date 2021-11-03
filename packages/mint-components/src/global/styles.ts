@@ -375,6 +375,7 @@ const style = `
   --sqm-portal-background: var(--sl-color-gray-50);
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
+  --sqm-max-width: 1280px;
 }
 body {
   font-family: var(--sl-font-sans);
@@ -434,9 +435,7 @@ sqm-share-button{
 
 sqm-hero img {
   max-width: 100%;
-  height: 100%;
   display: block;
-  object-fit: cover;
 }
 
 sl-details::part(base){

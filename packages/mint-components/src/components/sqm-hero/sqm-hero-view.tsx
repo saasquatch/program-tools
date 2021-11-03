@@ -1,11 +1,13 @@
 import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
+import { isMobile } from "../../utilities";
 
 export interface HeroProps {
   states: {
     columns: 1 | 2;
     background?: string;
+    secondaryBackground?: string;
     wrapDirection: "wrap" | "wrap-reverse";
   };
   content: {
@@ -40,15 +42,11 @@ export function HeroView(props: HeroProps) {
     minHeight: "100%",
   };
 
-  const sidePadding = "5%";
-  const sidePadding2x = "10%";
 
   const getVertivalPadding = () => {
-    if (window.matchMedia("@media screen and (max-width: 767px)").matches) {
+    if (isMobile(767)) {
       return 20;
-    } else if (
-      window.matchMedia("@media screen and (max-width: 1023px)").matches
-    ) {
+    } else if (isMobile(1023)) {
       return 60;
     } else {
       return 80;
@@ -67,8 +65,18 @@ export function HeroView(props: HeroProps) {
     ColumnWrapper: {
       paddingTop: `${getVertivalPadding()}px`,
       paddingBottom: `${getVertivalPadding()}px`,
-      paddingLeft: sidePadding,
-      paddingRight: sidePadding,
+      paddingLeft: "5%",
+      paddingRight: "5%",
+      "&:first-of-type": {
+        background: `no-repeat center/cover ${parseBackground(
+          states.background
+        )}`,
+      },
+      "&:last-of-type": {
+        background: `no-repeat center/cover ${parseBackground(
+          states.secondaryBackground
+        )}`,
+      },
       "@media screen and (min-width: 1023px)": { flex: "1 1 0" },
       "@media screen and (max-width: 1023px)": {
         "&:first-of-type": {
@@ -81,18 +89,18 @@ export function HeroView(props: HeroProps) {
       ...column,
     },
     SingleColumnContainer: {
+      background: `no-repeat center/cover ${parseBackground(
+        states.background
+      )}`,
       ...column,
     },
     Container: {
       width: "100%",
-      maxWidth: "1280px",
+      maxWidth: "var(--sqm-max-width)",
       margin: "0 auto",
       flex: 1,
       ...column,
       alignItems: "unset",
-      background: `no-repeat center/cover ${parseBackground(
-        states.background
-      )}`,
     },
   };
 

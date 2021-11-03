@@ -19,6 +19,9 @@ export class Hero {
   /** @uiName Background image or color */
   @Prop() background?: string;
 
+  /** @uiName Secondary background image or color (for use in right column)*/
+  @Prop() secondaryBackground?: string;
+
   /** @uiName Wrap direction */
   @Prop() wrapDirection: "wrap" | "wrap-reverse" = "wrap";
 

@@ -69,6 +69,9 @@ export const TwoColumnLogin = () => {
     states: {
       columns: 2 as const,
       wrapDirection: "wrap" as const,
+      background:
+        "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
+      secondaryBackground: "LightSlateGrey",
     },
     content: {
       primaryColumn: (
@@ -101,6 +104,9 @@ export const TwoColumnLoginReverseWrap = () => {
     states: {
       columns: 2 as const,
       wrapDirection: "wrap-reverse" as const,
+      background: "LightSlateGrey",
+      secondaryBackground:
+        "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
     },
     content: {
       primaryColumn: (
