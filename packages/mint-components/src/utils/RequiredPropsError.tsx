@@ -27,6 +27,9 @@ const style = {
   Heading: {
     display: "inline-block",
   },
+  Alert: {
+    margin: "30px",
+  },
 };
 
 jss.setup(preset());
@@ -38,7 +41,7 @@ export function RequiredPropsError({ missingProps }: RequiredPropsErrorProps) {
   const host = useHost();
   const [detailsOpen, setDetailsOpen] = useState(false);
   return (
-    <sl-alert type="danger" open>
+    <sl-alert type="danger" open class={sheet.classes.Alert}>
       <style type="text/css">{styleString}</style>
       <div slot="icon" class={sheet.classes.IconStyle}>
         <sl-icon name="exclamation-octagon"></sl-icon>
