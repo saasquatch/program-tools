@@ -42,14 +42,15 @@ export function HeroView(props: HeroProps) {
     minHeight: "100%",
   };
 
-
-  const getVertivalPadding = () => {
+  const getVertivalPadding = (half?: boolean) => {
     if (isMobile(767)) {
-      return 20;
+      return half ? "var(--sl-spacing-small)" : "var(--sl-spacing-large)";
     } else if (isMobile(1023)) {
-      return 60;
+      return half ? "var(--sl-spacing-x-large)" : "var(--sl-spacing-xxx-large)";
     } else {
-      return 80;
+      return half
+        ? "var(--sl-spacing-xx-large)"
+        : "var(--sl-spacing-xxxx-large)";
     }
   };
 
@@ -63,8 +64,8 @@ export function HeroView(props: HeroProps) {
       },
     },
     ColumnWrapper: {
-      paddingTop: `${getVertivalPadding()}px`,
-      paddingBottom: `${getVertivalPadding()}px`,
+      paddingTop: getVertivalPadding(),
+      paddingBottom: getVertivalPadding(),
       paddingLeft: "5%",
       paddingRight: "5%",
       "&:first-of-type": {
@@ -80,10 +81,10 @@ export function HeroView(props: HeroProps) {
       "@media screen and (min-width: 1023px)": { flex: "1 1 0" },
       "@media screen and (max-width: 1023px)": {
         "&:first-of-type": {
-          paddingBottom: `${getVertivalPadding() / 2}px`,
+          paddingBottom: getVertivalPadding(true),
         },
         "&:last-of-type": {
-          paddingTop: `${getVertivalPadding() / 2}px`,
+          paddingTop: getVertivalPadding(true),
         },
       },
       ...column,
