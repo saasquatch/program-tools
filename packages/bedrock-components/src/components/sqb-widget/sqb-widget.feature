@@ -53,3 +53,12 @@ Feature: Widget
         When the widget is rendered
         And the load event is sent to SSQT
         Then its engagementMedium will be "EMBED"
+
+    @minutia
+    Scenario: Widget load events are not sent if there is no authenticated user
+        Given a sqb-widget with "widget-type" "w/global-widget"
+        And it tracks loads
+        And there is no authenticated user
+        When the widget is rendered
+        Then no load event will be sent
+        And the widget will still be rendered

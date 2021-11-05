@@ -23,6 +23,16 @@ function useGraphQL() {
   };
 }
 
+function useNoAuthGraphQL() {
+  //@ts-ignore
+  window.widgetIdent = {
+    tenantAlias: 'test_agvu4yg8zrkxt',
+    appDomain: 'https://app.referralsaasquatch.com',
+    programId: 'Vacay-referral',
+    engagementMedium: 'EMBED',
+  };
+}
+
 export const ProgramSwitch = createHookStory(() => {
   useGraphQL();
 
@@ -35,14 +45,44 @@ export const ProgramSwitch = createHookStory(() => {
       <sqb-program-section program-id="Vacay-referral">
         <sqm-program-menu>
           <sl-menu-item value="Vacay-referral">Vacay-referral</sl-menu-item>
-          <sl-menu-item value="vacay-affiliates">vacay-affiliates</sl-menu-item>
+          <sl-menu-item value="Vacay-Partners">Vacay-Partners</sl-menu-item>
         </sqm-program-menu>
         <sqb-program-switch>
           <template program-id="Vacay-referral">
-            <sqb-widget widget-type="p/Vacay-referral/w/referrerWidget"></sqb-widget>
+            <sqb-widget widget-type="p/Vacay-referral/w/referrerWidget" track-loads="true"></sqb-widget>
+          </template>
+          <template program-id="Vacay-Partners">
+            <sqb-widget widget-type="p/Vacay-Partners/w/partnerWidget"></sqb-widget>
+          </template>
+        </sqb-program-switch>
+      </sqb-program-section>
+    </div>
+  );
+});
+
+export const ProgramSwitchNoAuth = createHookStory(() => {
+  useNoAuthGraphQL();
+  useEffect(() => {
+    //@ts-ignore
+    return () => (window.widgetIdent = { env: 'demo' });
+  }, []);
+  return (
+    <div>
+      <sqb-program-section program-id="Vacay-referral">
+        <sqm-program-menu>
+          <sl-menu-item value="Vacay-referral">Vacay-referral</sl-menu-item>
+          <sl-menu-item value="Vacay-Partners">Vacay-Partners</sl-menu-item>
+          <sl-menu-item value="vacay-affiliates">No Auth</sl-menu-item>
+        </sqm-program-menu>
+        <sqb-program-switch>
+          <template program-id="Vacay-referral">
+            <sqb-widget widget-type="p/Vacay-referral/w/referrerWidget" track-loads="true" require-auth="true"></sqb-widget>
+          </template>
+          <template program-id="Vacay-Partners">
+            <sqb-widget widget-type="p/Vacay-Partners/w/partnerWidget" require-auth="true"></sqb-widget>
           </template>
           <template program-id="vacay-affiliates">
-            <sqb-widget widget-type="p/vacay-affiliates/w/referrerWidget"></sqb-widget>
+            <sqb-widget widget-type="w/no-auth" track-loads="true" require-auth="false"></sqb-widget>
           </template>
         </sqb-program-switch>
       </sqb-program-section>
@@ -56,7 +96,7 @@ export const DemoProgramSwitch = createHookStory(() => {
       <sqb-program-section program-id="Vacay-referral">
         <sqm-program-menu>
           <sl-menu-item value="Vacay-referral">Vacay-referral</sl-menu-item>
-          <sl-menu-item value="vacay-affiliates">vacay-affiliates</sl-menu-item>
+          <sl-menu-item value="Vacay-Partners">Vacay-Partners</sl-menu-item>
         </sqm-program-menu>
         <sqb-program-switch>
           <template program-id="Vacay-referral">
@@ -138,7 +178,7 @@ export const DemoProgramSwitch = createHookStory(() => {
               }}
             ></sqb-widget>
           </template>
-          <template program-id="vacay-affiliates">
+          <template program-id="Vacay-Partners">
             <sqb-widget
               widget-type="demo"
               //@ts-ignore
