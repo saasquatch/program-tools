@@ -254,7 +254,7 @@ export const TwoColumnLoginReverseWrap = () => {
   );
 };
 
-export const TwoColumnLoginWithImage = () => {
+export const TwoColumnLoginWithImgElement = () => {
   const props = {
     states: {
       columns: 2 as const,
@@ -269,7 +269,16 @@ export const TwoColumnLoginWithImage = () => {
         </div>
       ),
       secondaryColumn: (
-        <img src="https://images.unsplash.com/photo-1629004021495-83fe9b730acb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=735&q=80"></img>
+        <div>
+          <img src="https://images.unsplash.com/photo-1487528278747-ba99ed528ebc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
+          <p>
+            Pellentesque mauris urna, lacinia non turpis sed, pulvinar congue
+            ligula. Sed mattis condimentum eros nec vulputate. Cras consectetur
+            eget libero at viverra. Aliquam suscipit feugiat ante sit amet
+            sagittis. Fusce pulvinar interdum odio ut dapibus. Nulla aliquet
+            ultricies augue nec dignissim. Morbi vulputate hendrerit sem.
+          </p>
+        </div>
       ),
     },
   };
