@@ -17,13 +17,6 @@ export interface HeroProps {
   };
 }
 
-const column = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  minHeight: "100%",
-};
-
 const paddingList = [
   "var(--sl-spacing-xxx-small)",
   "var(--sl-spacing-xx-small)",
@@ -130,23 +123,23 @@ export function HeroView(props: HeroProps) {
               : getVertivalPadding(states.paddingSize, true),
         },
       },
-      ...column,
-      display: 'block',
-      
+      minHeight: "100%",
+      display: "block",
     },
     SingleColumnContainer: {
       background: `no-repeat center/cover ${parseBackground(
         states.background
       )}`,
-      ...column,
+      minHeight: "100%",
     },
     Container: {
       width: "100%",
       maxWidth: "var(--sqm-max-width)",
       margin: "0 auto",
       flex: 1,
-      ...column,
-      alignItems: "unset",
+      display: "flex",
+      flexDirection: "column",
+      minHeight: "100%",
     },
   };
 
