@@ -81,7 +81,7 @@ export function HeroView(props: HeroProps) {
         justfiyContent: "center",
       },
     },
-    ColumnWrapper: {
+    ColumnPadding: {
       paddingTop:
         states.paddingSize == "none"
           ? "0px"
@@ -98,6 +98,8 @@ export function HeroView(props: HeroProps) {
         states.paddingSize == "none"
           ? "0px"
           : getHorizontalPadding(states.paddingSize),
+    },
+    ColumnWrapper: {
       "&:first-of-type": {
         background: `no-repeat center/cover ${parseBackground(
           states.background
@@ -172,13 +174,21 @@ export function HeroView(props: HeroProps) {
       </style>
       {states.columns == 2 ? (
         <div class={sheet.classes.TwoColumnContainer}>
-          <div class={sheet.classes.ColumnWrapper}>{content.primaryColumn}</div>
-          <div class={sheet.classes.ColumnWrapper}>
+          <div
+            class={`${sheet.classes.ColumnWrapper} ${sheet.classes.ColumnPadding}`}
+          >
+            {content.primaryColumn}
+          </div>
+          <div
+            class={`${sheet.classes.ColumnWrapper} ${sheet.classes.ColumnPadding}`}
+          >
             {content.secondaryColumn}
           </div>
         </div>
       ) : (
-        <div class={sheet.classes.SingleColumnContainer}>
+        <div
+          class={`${sheet.classes.SingleColumnContainer} ${sheet.classes.ColumnPadding}`}
+        >
           {content.primaryColumn}
         </div>
       )}
