@@ -17,13 +17,6 @@ export interface HeroProps {
   };
 }
 
-const column = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  minHeight: "100%",
-};
-
 const paddingList = [
   "var(--sl-spacing-xxx-small)",
   "var(--sl-spacing-xx-small)",
@@ -88,7 +81,7 @@ export function HeroView(props: HeroProps) {
         justfiyContent: "center",
       },
     },
-    ColumnWrapper: {
+    ColumnPadding: {
       paddingTop:
         states.paddingSize == "none"
           ? "0px"
@@ -105,6 +98,8 @@ export function HeroView(props: HeroProps) {
         states.paddingSize == "none"
           ? "0px"
           : getHorizontalPadding(states.paddingSize),
+    },
+    ColumnWrapper: {
       "&:first-of-type": {
         background: `no-repeat center/cover ${parseBackground(
           states.background
@@ -130,23 +125,23 @@ export function HeroView(props: HeroProps) {
               : getVertivalPadding(states.paddingSize, true),
         },
       },
-      ...column,
-      display: 'block',
-      
+      minHeight: "100%",
+      display: "block",
     },
     SingleColumnContainer: {
       background: `no-repeat center/cover ${parseBackground(
         states.background
       )}`,
-      ...column,
+      minHeight: "100%",
     },
     Container: {
       width: "100%",
       maxWidth: "var(--sqm-max-width)",
       margin: "0 auto",
       flex: 1,
-      ...column,
-      alignItems: "unset",
+      display: "flex",
+      flexDirection: "column",
+      minHeight: "100%",
     },
   };
 
@@ -179,13 +174,21 @@ export function HeroView(props: HeroProps) {
       </style>
       {states.columns == 2 ? (
         <div class={sheet.classes.TwoColumnContainer}>
-          <div class={sheet.classes.ColumnWrapper}>{content.primaryColumn}</div>
-          <div class={sheet.classes.ColumnWrapper}>
+          <div
+            class={`${sheet.classes.ColumnWrapper} ${sheet.classes.ColumnPadding}`}
+          >
+            {content.primaryColumn}
+          </div>
+          <div
+            class={`${sheet.classes.ColumnWrapper} ${sheet.classes.ColumnPadding}`}
+          >
             {content.secondaryColumn}
           </div>
         </div>
       ) : (
-        <div class={sheet.classes.SingleColumnContainer}>
+        <div
+          class={`${sheet.classes.SingleColumnContainer} ${sheet.classes.ColumnPadding}`}
+        >
           {content.primaryColumn}
         </div>
       )}
