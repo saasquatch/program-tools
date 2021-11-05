@@ -27,6 +27,7 @@ import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-pass
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
 import { ReferralTableViewProps } from "./components/sqm-referral-table/sqm-referral-table-view";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
+import { GenericTableViewProps } from "./tables/GenericTableView";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
@@ -624,6 +625,38 @@ export namespace Components {
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
+    interface SqmRewardsTable {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<GenericTableViewProps>;
+        /**
+          * @uiName View More button text
+         */
+        "moreLabel"?: string;
+        /**
+          * @uiName Number of rewards per page
+         */
+        "perPage": number;
+        /**
+          * @uiName Previous button text
+         */
+        "prevLabel"?: string;
+        /**
+          * Filters to only show rewards in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all rewards from all programs.
+          * @uiName Program
+         */
+        "programId": string;
+        /**
+          * @uiName Show column labels
+         */
+        "showLabels"?: boolean;
+        /**
+          * @uiName Show Referred by user in table
+         */
+        "showReferrer"?: boolean;
+    }
     interface SqmRoute {
         /**
           * @uiName Navigation path name
@@ -1052,6 +1085,12 @@ declare global {
         prototype: HTMLSqmReferralTableUserColumnElement;
         new (): HTMLSqmReferralTableUserColumnElement;
     };
+    interface HTMLSqmRewardsTableElement extends Components.SqmRewardsTable, HTMLStencilElement {
+    }
+    var HTMLSqmRewardsTableElement: {
+        prototype: HTMLSqmRewardsTableElement;
+        new (): HTMLSqmRewardsTableElement;
+    };
     interface HTMLSqmRouteElement extends Components.SqmRoute, HTMLStencilElement {
     }
     var HTMLSqmRouteElement: {
@@ -1169,6 +1208,7 @@ declare global {
         "sqm-referral-table-status-column": HTMLSqmReferralTableStatusColumnElement;
         "sqm-referral-table-user-cell": HTMLSqmReferralTableUserCellElement;
         "sqm-referral-table-user-column": HTMLSqmReferralTableUserColumnElement;
+        "sqm-rewards-table": HTMLSqmRewardsTableElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
@@ -1768,6 +1808,38 @@ declare namespace LocalJSX {
          */
         "deletedUser"?: string;
     }
+    interface SqmRewardsTable {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<GenericTableViewProps>;
+        /**
+          * @uiName View More button text
+         */
+        "moreLabel"?: string;
+        /**
+          * @uiName Number of rewards per page
+         */
+        "perPage"?: number;
+        /**
+          * @uiName Previous button text
+         */
+        "prevLabel"?: string;
+        /**
+          * Filters to only show rewards in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all rewards from all programs.
+          * @uiName Program
+         */
+        "programId"?: string;
+        /**
+          * @uiName Show column labels
+         */
+        "showLabels"?: boolean;
+        /**
+          * @uiName Show Referred by user in table
+         */
+        "showReferrer"?: boolean;
+    }
     interface SqmRoute {
         /**
           * @uiName Navigation path name
@@ -2005,6 +2077,7 @@ declare namespace LocalJSX {
         "sqm-referral-table-status-column": SqmReferralTableStatusColumn;
         "sqm-referral-table-user-cell": SqmReferralTableUserCell;
         "sqm-referral-table-user-column": SqmReferralTableUserColumn;
+        "sqm-rewards-table": SqmRewardsTable;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
         "sqm-share-button": SqmShareButton;
@@ -2062,6 +2135,7 @@ declare module "@stencil/core" {
             "sqm-referral-table-status-column": LocalJSX.SqmReferralTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusColumnElement>;
             "sqm-referral-table-user-cell": LocalJSX.SqmReferralTableUserCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserCellElement>;
             "sqm-referral-table-user-column": LocalJSX.SqmReferralTableUserColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserColumnElement>;
+            "sqm-rewards-table": LocalJSX.SqmRewardsTable & JSXBase.HTMLAttributes<HTMLSqmRewardsTableElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;

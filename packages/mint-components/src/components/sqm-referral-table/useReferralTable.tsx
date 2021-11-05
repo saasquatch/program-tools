@@ -7,10 +7,10 @@ import {
 import { useEffect, useReducer } from "@saasquatch/universal-hooks";
 import { h, VNode } from "@stencil/core";
 import gql from "graphql-tag";
-import { useRerenderListener } from "./re-render";
+import { useRerenderListener } from "../../tables/re-render";
 import { ReferralTable } from "./sqm-referral-table";
 import { ReferralTableViewProps } from "./sqm-referral-table-view";
-import { useChildElements } from "./useChildElements";
+import { useChildElements } from "../../tables/useChildElements";
 
 const GET_REFERRER_DATA = gql`
   query getReferrals($programId: ID, $rewardFilter: RewardFilterInput) {
