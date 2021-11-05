@@ -119,6 +119,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
         >
           <sl-input
             class={sheet.classes.NameInputStyle}
+            exportparts="label: input-label"
             value={states.user?.firstName}
             onInput={callbacks.onChange}
             label={text.firstnametext}
@@ -156,12 +157,14 @@ export function PortalProfileView(props: PortalProfileViewProps) {
         <sl-input
           label={text.emailtext}
           value={states.user?.email}
+          exportparts="label: input-label"
           disabled
         ></sl-input>
         {states.showCountry && (
           <sl-input
             label={text.countrytext}
             value={country}
+            exportparts="label: input-label"
             disabled
           ></sl-input>
         )}
