@@ -32,6 +32,7 @@
 - [sqm-user-name](../sqm-user-name)
 - [sqm-program-menu](../sqm-program-menu)
 - [sqm-portal-login](../sqm-portal-login)
+- [sqm-portal-change-password](../sqm-portal-change-password)
 - [sqm-referral-iframe](../sqm-referral-iframe)
 
 ### Graph
@@ -60,12 +61,17 @@ graph TD;
   sqm-stencilbook --> sqm-user-name
   sqm-stencilbook --> sqm-program-menu
   sqm-stencilbook --> sqm-portal-login
+  sqm-stencilbook --> sqm-portal-change-password
   sqm-stencilbook --> sqm-referral-iframe
   sqm-edit-profile --> sqm-form-message
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field
+  sqm-referral-table --> sqm-table-row
+  sqm-referral-table --> sqm-table-cell
   sqm-referral-table --> sqm-text
   sqm-portal-login --> sqm-form-message
+  sqm-portal-change-password --> sqm-form-message
+  sqm-portal-change-password --> sqm-password-field
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

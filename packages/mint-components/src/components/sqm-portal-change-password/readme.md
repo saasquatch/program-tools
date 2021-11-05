@@ -22,6 +22,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [sqm-stencilbook](../sqm-stencilbook)
+
 ### Depends on
 
 - [sqm-form-message](../sqm-form-message)
@@ -32,6 +36,7 @@
 graph TD;
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-change-password --> sqm-password-field
+  sqm-stencilbook --> sqm-portal-change-password
   style sqm-portal-change-password fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
