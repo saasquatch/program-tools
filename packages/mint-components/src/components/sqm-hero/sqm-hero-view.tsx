@@ -8,7 +8,7 @@ export interface HeroProps {
     columns: 1 | 2;
     background?: string;
     secondaryBackground?: string;
-    paddingSize: "small" | "medium" | "large";
+    paddingSize: "none" | "small" | "medium" | "large";
     wrapDirection: "wrap" | "wrap-reverse";
   };
   content: {
@@ -89,10 +89,22 @@ export function HeroView(props: HeroProps) {
       },
     },
     ColumnWrapper: {
-      paddingTop: getVertivalPadding(states.paddingSize),
-      paddingBottom: getVertivalPadding(states.paddingSize),
-      paddingLeft: getHorizontalPadding(states.paddingSize),
-      paddingRight: getHorizontalPadding(states.paddingSize),
+      paddingTop:
+        states.paddingSize == "none"
+          ? "0px"
+          : getVertivalPadding(states.paddingSize),
+      paddingBottom:
+        states.paddingSize == "none"
+          ? "0px"
+          : getVertivalPadding(states.paddingSize),
+      paddingLeft:
+        states.paddingSize == "none"
+          ? "0px"
+          : getHorizontalPadding(states.paddingSize),
+      paddingRight:
+        states.paddingSize == "none"
+          ? "0px"
+          : getHorizontalPadding(states.paddingSize),
       "&:first-of-type": {
         background: `no-repeat center/cover ${parseBackground(
           states.background
@@ -106,10 +118,16 @@ export function HeroView(props: HeroProps) {
       "@media screen and (min-width: 1023px)": { flex: "1 1 0" },
       "@media screen and (max-width: 1023px)": {
         "&:first-of-type": {
-          paddingBottom: getVertivalPadding(states.paddingSize, true),
+          paddingBottom:
+            states.paddingSize == "none"
+              ? "0px"
+              : getVertivalPadding(states.paddingSize, true),
         },
         "&:last-of-type": {
-          paddingTop: getVertivalPadding(states.paddingSize, true),
+          paddingTop:
+            states.paddingSize == "none"
+              ? "0px"
+              : getVertivalPadding(states.paddingSize, true),
         },
       },
       ...column,

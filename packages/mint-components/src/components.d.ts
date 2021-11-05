@@ -150,9 +150,9 @@ export namespace Components {
          */
         "columns": 1 | 2;
         /**
-          * @uiName Secondary background image or color (for use in right column)
+          * @uiName Padding size
          */
-        "paddingSize": "small" | "medium" | "large";
+        "paddingSize": "none" | "small" | "medium" | "large";
         /**
           * @uiName Secondary background image or color (for use in right column)
          */
@@ -1520,9 +1520,9 @@ declare namespace LocalJSX {
          */
         "columns"?: 1 | 2;
         /**
-          * @uiName Secondary background image or color (for use in right column)
+          * @uiName Padding size
          */
-        "paddingSize"?: "small" | "medium" | "large";
+        "paddingSize"?: "none" | "small" | "medium" | "large";
         /**
           * @uiName Secondary background image or color (for use in right column)
          */

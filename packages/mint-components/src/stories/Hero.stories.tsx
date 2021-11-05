@@ -180,6 +180,43 @@ export const TwoColumnLoginSmallPadding = () => {
   );
 };
 
+export const TwoColumnLoginNoPadding = () => {
+  const props = {
+    states: {
+      columns: 2 as const,
+      wrapDirection: "wrap" as const,
+      paddingSize: "none" as const,
+
+      background:
+        "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
+      secondaryBackground: "LightSlateGrey",
+    },
+    content: {
+      primaryColumn: (
+        <sqm-portal-login style={{ width: "85%" }}></sqm-portal-login>
+      ),
+      secondaryColumn: (
+        <div style={{ width: "85%" }}>
+          <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+          </p>
+        </div>
+      ),
+    },
+  };
+  return (
+    <div style={{ height: "800px" }}>
+      <HeroView {...props}></HeroView>
+    </div>
+  );
+};
+
 export const TwoColumnLoginReverseWrap = () => {
   const props = {
     states: {

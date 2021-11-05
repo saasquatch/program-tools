@@ -19,8 +19,8 @@ export class Hero {
   /** @uiName Background image or color */
   @Prop() background?: string;
 
-  /** @uiName Secondary background image or color (for use in right column)*/
-  @Prop() paddingSize: "small" | "medium" | "large" = "large";
+  /** @uiName Padding size */
+  @Prop() paddingSize: "none" | "small" | "medium" | "large" = "large";
 
   /** @uiName Secondary background image or color (for use in right column)*/
   @Prop() secondaryBackground?: string;
