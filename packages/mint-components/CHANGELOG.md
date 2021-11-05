@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.3.0] - 2021-10-01
+## [1.3.0] - 2021-11-05
 
 ### Changed
 
@@ -20,7 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       - Added padding between fields
       - Changed hardcoded text into customizable props
       - Changed password field input default label to "New Password"
-  - \<sqm-portal-profile> Changed hardcoded text into customizable props
+  - \<sqm-portal-profile> 
+      - Changed hardcoded text into customizable props
+      - Added padding text below header
   - \<sqm-portal-reset-password> 
       - Changed hardcoded text into customizable props
       - Changed password field input default label to "New Password"
