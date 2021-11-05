@@ -14,6 +14,7 @@ export const LoginOneColumn = () => {
     states: {
       columns: 1 as const,
       wrapDirection: "wrap" as const,
+      paddingSize: "large" as const,
     },
     content: {
       primaryColumn: [
@@ -34,6 +35,8 @@ export const LoginOneColumnWithColor = () => {
     states: {
       columns: 1 as const,
       wrapDirection: "wrap" as const,
+      paddingSize: "large" as const,
+
       background: "LightSlateGrey",
     },
     content: {
@@ -52,6 +55,8 @@ export const LoginOneColumnWithImage = () => {
     states: {
       columns: 1 as const,
       wrapDirection: "wrap" as const,
+      paddingSize: "large" as const,
+
       background:
         "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
     },
@@ -64,11 +69,87 @@ export const LoginOneColumnWithImage = () => {
   );
 };
 
-export const TwoColumnLogin = () => {
+export const TwoColumnLoginLargePadding = () => {
   const props = {
     states: {
       columns: 2 as const,
       wrapDirection: "wrap" as const,
+      paddingSize: "large" as const,
+
+      background:
+        "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
+      secondaryBackground: "LightSlateGrey",
+    },
+    content: {
+      primaryColumn: (
+        <sqm-portal-login style={{ width: "85%" }}></sqm-portal-login>
+      ),
+      secondaryColumn: (
+        <div style={{ width: "85%" }}>
+          <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+          </p>
+        </div>
+      ),
+    },
+  };
+  return (
+    <div style={{ height: "800px" }}>
+      <HeroView {...props}></HeroView>
+    </div>
+  );
+};
+
+export const TwoColumnLoginMediumPadding = () => {
+  const props = {
+    states: {
+      columns: 2 as const,
+      wrapDirection: "wrap" as const,
+      paddingSize: "medium" as const,
+
+      background:
+        "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
+      secondaryBackground: "LightSlateGrey",
+    },
+    content: {
+      primaryColumn: (
+        <sqm-portal-login style={{ width: "85%" }}></sqm-portal-login>
+      ),
+      secondaryColumn: (
+        <div style={{ width: "85%" }}>
+          <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+          </p>
+        </div>
+      ),
+    },
+  };
+  return (
+    <div style={{ height: "800px" }}>
+      <HeroView {...props}></HeroView>
+    </div>
+  );
+};
+
+export const TwoColumnLoginSmallPadding = () => {
+  const props = {
+    states: {
+      columns: 2 as const,
+      wrapDirection: "wrap" as const,
+      paddingSize: "small" as const,
+
       background:
         "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
       secondaryBackground: "LightSlateGrey",
@@ -105,6 +186,8 @@ export const TwoColumnLoginReverseWrap = () => {
       columns: 2 as const,
       wrapDirection: "wrap-reverse" as const,
       background: "LightSlateGrey",
+      paddingSize: "large" as const,
+
       secondaryBackground:
         "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
     },
@@ -139,6 +222,7 @@ export const TwoColumnLoginWithImage = () => {
     states: {
       columns: 2 as const,
       wrapDirection: "wrap" as const,
+      paddingSize: "large" as const,
     },
     content: {
       primaryColumn: (

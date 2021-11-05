@@ -8,6 +8,7 @@ export interface HeroProps {
     columns: 1 | 2;
     background?: string;
     secondaryBackground?: string;
+    paddingSize: "small" | "medium" | "large";
     wrapDirection: "wrap" | "wrap-reverse";
   };
   content: {
@@ -16,37 +17,65 @@ export interface HeroProps {
   };
 }
 
+const column = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  minHeight: "100%",
+};
+
+const paddingList = [
+  "var(--sl-spacing-xxx-small)",
+  "var(--sl-spacing-xx-small)",
+  "var(--sl-spacing-x-small)",
+  "var(--sl-spacing-small)",
+  "var(--sl-spacing-medium)",
+  "var(--sl-spacing-large)",
+  "var(--sl-spacing-x-large)",
+  "var(--sl-spacing-xx-large)",
+  "var(--sl-spacing-xxx-large)",
+  "var(--sl-spacing-xxxx-large)",
+];
+
+const parseBackground = (provided_bg: string) => {
+  if (provided_bg) {
+    if (isValidColor(provided_bg)) {
+      return provided_bg;
+    } else {
+      return `url(${provided_bg})`;
+    }
+  } else {
+    return "";
+  }
+};
+
 export function HeroView(props: HeroProps) {
   const { states, content } = props;
 
-  const parseBackground = (provided_bg: string) => {
-    if (provided_bg) {
-      if (isValidColor(provided_bg)) {
-        return provided_bg;
-      } else {
-        return `url(${provided_bg})`;
-      }
-    } else {
-      return "";
-    }
-  };
+  const getVertivalPadding = (size: string, half?: boolean) => {
+    const sizes = {
+      small: 7,
+      medium: 8,
+      large: 9,
+    };
 
-  const column = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    minHeight: "100%",
-  };
+    var index: number = sizes[size];
 
-  const getVertivalPadding = (half?: boolean) => {
     if (isMobile(767)) {
-      return half ? "var(--sl-spacing-small)" : "var(--sl-spacing-large)";
+      index = index - 2;
     } else if (isMobile(1023)) {
-      return half ? "var(--sl-spacing-x-large)" : "var(--sl-spacing-xxx-large)";
+      index = index - 1;
+    }
+    return half ? paddingList[index - 2] : paddingList[index];
+  };
+
+  const getHorizontalPadding = (size: string) => {
+    if (size == "small") {
+      return "1%";
+    } else if (size == "medium") {
+      return "3%";
     } else {
-      return half
-        ? "var(--sl-spacing-xx-large)"
-        : "var(--sl-spacing-xxxx-large)";
+      return "5%";
     }
   };
 
@@ -60,10 +89,10 @@ export function HeroView(props: HeroProps) {
       },
     },
     ColumnWrapper: {
-      paddingTop: getVertivalPadding(),
-      paddingBottom: getVertivalPadding(),
-      paddingLeft: "5%",
-      paddingRight: "5%",
+      paddingTop: getVertivalPadding(states.paddingSize),
+      paddingBottom: getVertivalPadding(states.paddingSize),
+      paddingLeft: getHorizontalPadding(states.paddingSize),
+      paddingRight: getHorizontalPadding(states.paddingSize),
       "&:first-of-type": {
         background: `no-repeat center/cover ${parseBackground(
           states.background
@@ -77,10 +106,10 @@ export function HeroView(props: HeroProps) {
       "@media screen and (min-width: 1023px)": { flex: "1 1 0" },
       "@media screen and (max-width: 1023px)": {
         "&:first-of-type": {
-          paddingBottom: getVertivalPadding(true),
+          paddingBottom: getVertivalPadding(states.paddingSize, true),
         },
         "&:last-of-type": {
-          paddingTop: getVertivalPadding(true),
+          paddingTop: getVertivalPadding(states.paddingSize, true),
         },
       },
       ...column,

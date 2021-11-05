@@ -20,6 +20,9 @@ export class Hero {
   @Prop() background?: string;
 
   /** @uiName Secondary background image or color (for use in right column)*/
+  @Prop() paddingSize: "small" | "medium" | "large" = "large";
+
+  /** @uiName Secondary background image or color (for use in right column)*/
   @Prop() secondaryBackground?: string;
 
   /** @uiName Wrap direction */
