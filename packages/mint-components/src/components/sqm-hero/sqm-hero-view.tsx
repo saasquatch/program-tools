@@ -111,14 +111,12 @@ export function HeroView(props: HeroProps) {
         )}`,
       },
       "@media screen and (min-width: 1023px)": { flex: "1 1 0" },
-      minHeight: "100%",
       display: "block",
     },
     SingleColumnContainer: {
       background: `no-repeat center/cover ${parseBackground(
         states.background
       )}`,
-      minHeight: "100%",
       flex: "1 1 0",
     },
     Container: {
