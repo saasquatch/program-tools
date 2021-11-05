@@ -111,20 +111,6 @@ export function HeroView(props: HeroProps) {
         )}`,
       },
       "@media screen and (min-width: 1023px)": { flex: "1 1 0" },
-      "@media screen and (max-width: 1023px)": {
-        "&:first-of-type": {
-          paddingBottom:
-            states.paddingSize == "none"
-              ? "0px"
-              : getVertivalPadding(states.paddingSize, true),
-        },
-        "&:last-of-type": {
-          paddingTop:
-            states.paddingSize == "none"
-              ? "0px"
-              : getVertivalPadding(states.paddingSize, true),
-        },
-      },
       minHeight: "100%",
       display: "block",
     },
