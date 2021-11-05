@@ -47,23 +47,9 @@ Feature: Widget
             | doesn't have track-loads |       | doesn't occur | N/A     |
 
     @motivating
-    Scenario Outline: The engagement medium of load events can be configured but defaults to `EMBED`
+    Scenario Outline: The engagement medium of load events defaults to `EMBED`
         Given a sqb-widget with "widget-type" "p/referral-a/w/referrerWidget"
         And it tracks loads
-        And it <mayHaveEngagementMedium> prop with <value>
         When the widget is rendered
         And the load event is sent to SSQT
-        Then it will have <engagementMedium>
-        Examples:
-            | mayHaveEngagementMedium       | value      | engagementMedium |
-            | has engagementMedium          | NOCONTENT  | NOCONTENT        |
-            | has engagementMedium          | EMBED      | EMBED            |
-            | has engagementMedium          | HOSTED     | HOSTED           |
-            | has engagementMedium          | MOBILE     | MOBILE           |
-            | has engagementMedium          | POPUP      | POPUP            |
-            | has engagementMedium          | DEMO_EMBED | DEMO_EMBED       |
-            | has engagementMedium          | DEMO       | DEMO             |
-            | has engagementMedium          | EMPTY      | EMPTY            |
-            | has engagementMedium          | EMAIL      | EMAIL            |
-            | has engagementMedium          | UNKNOWN    | UNKNOWN          |
-            | doesn't have engagementMedium |            | EMBED            |
+        Then its engagementMedium will be "EMBED"

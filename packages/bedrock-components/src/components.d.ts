@@ -36,11 +36,6 @@ export namespace Components {
          */
         "demoData"?: DemoData<WidgetProps>;
         /**
-          * Engagement medium of widget being loaded
-          * @uiName Engagement Medium
-         */
-        "engagementMedium": string;
-        /**
           * When enabled then this widget is hidden until a user is logged in. Defaults to false.
           * @uiName Auth Required
          */
@@ -131,11 +126,6 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<WidgetProps>;
-        /**
-          * Engagement medium of widget being loaded
-          * @uiName Engagement Medium
-         */
-        "engagementMedium"?: string;
         /**
           * When enabled then this widget is hidden until a user is logged in. Defaults to false.
           * @uiName Auth Required

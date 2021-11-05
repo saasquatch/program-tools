@@ -1,6 +1,6 @@
 import { h, Component, Prop, Host, State } from '@stencil/core';
 import { withHooks } from '@saasquatch/stencil-hooks';
-import { EngagementMedium, useWidget } from './useWidget';
+import { useWidget } from './useWidget';
 import { isDemo } from '@saasquatch/component-boilerplate';
 import { DemoData } from '../../global/demo';
 import deepmerge from 'deepmerge';
@@ -36,15 +36,6 @@ export class SqbWidget {
    * @uiName Track Widget Loads
    */
   @Prop() trackLoads: boolean = false;
-
-  /**
-   * Engagement medium of widget being loaded
-   *
-   * @uiName Engagement Medium
-   * @uiType string
-   * @uiEnum ["NOCONTENT", "EMBED", "HOSTED", "MOBILE", "POPUP", "DEMO_EMBED", "DEMO", "EMPTY", "EMAIL", "UNKNOWN"]
-   */
-  @Prop() engagementMedium: EngagementMedium = 'EMBED';
 
   /**
    * @undocumented

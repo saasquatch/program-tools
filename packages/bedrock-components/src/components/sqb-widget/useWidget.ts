@@ -13,8 +13,6 @@ type API = {
   close: () => void;
 };
 
-export type EngagementMedium = 'NOCONTENT' | 'EMBED' | 'HOSTED' | 'MOBILE' | 'POPUP' | 'DEMO_EMBED' | 'DEMO' | 'EMPTY' | 'EMAIL' | 'UNKNOWN';
-
 type GetWidget = {
   renderWidget: {
     widgetConfig: {
@@ -81,7 +79,7 @@ export function useWidget(props: SqbWidget) {
           accountId: userIdent.accountId,
           type: 'USER_REFERRAL_PROGRAM_LOADED_EVENT',
           meta: {
-            engagementMedium: props.engagementMedium,
+            engagementMedium: "EMBED",
           },
         },
       });
