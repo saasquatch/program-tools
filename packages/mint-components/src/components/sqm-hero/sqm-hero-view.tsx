@@ -119,6 +119,7 @@ export function HeroView(props: HeroProps) {
         states.background
       )}`,
       minHeight: "100%",
+      flex: "1 1 0",
     },
     Container: {
       width: "100%",
