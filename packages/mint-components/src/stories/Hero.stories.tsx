@@ -81,11 +81,9 @@ export const TwoColumnLoginLargePadding = () => {
       secondaryBackground: "LightSlateGrey",
     },
     content: {
-      primaryColumn: (
-        <sqm-portal-login style={{ width: "85%" }}></sqm-portal-login>
-      ),
+      primaryColumn: <sqm-portal-login></sqm-portal-login>,
       secondaryColumn: (
-        <div style={{ width: "85%" }}>
+        <div>
           <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -118,11 +116,9 @@ export const TwoColumnLoginMediumPadding = () => {
       secondaryBackground: "LightSlateGrey",
     },
     content: {
-      primaryColumn: (
-        <sqm-portal-login style={{ width: "85%" }}></sqm-portal-login>
-      ),
+      primaryColumn: <sqm-portal-login></sqm-portal-login>,
       secondaryColumn: (
-        <div style={{ width: "85%" }}>
+        <div>
           <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -155,11 +151,9 @@ export const TwoColumnLoginSmallPadding = () => {
       secondaryBackground: "LightSlateGrey",
     },
     content: {
-      primaryColumn: (
-        <sqm-portal-login style={{ width: "85%" }}></sqm-portal-login>
-      ),
+      primaryColumn: <sqm-portal-login></sqm-portal-login>,
       secondaryColumn: (
-        <div style={{ width: "85%" }}>
+        <div>
           <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -192,11 +186,9 @@ export const TwoColumnLoginNoPadding = () => {
       secondaryBackground: "LightSlateGrey",
     },
     content: {
-      primaryColumn: (
-        <sqm-portal-login style={{ width: "85%" }}></sqm-portal-login>
-      ),
+      primaryColumn: <sqm-portal-login></sqm-portal-login>,
       secondaryColumn: (
-        <div style={{ width: "85%" }}>
+        <div>
           <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -229,11 +221,9 @@ export const TwoColumnLoginReverseWrap = () => {
         "https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80",
     },
     content: {
-      primaryColumn: (
-        <sqm-portal-login style={{ width: "85%" }}></sqm-portal-login>
-      ),
+      primaryColumn: <sqm-portal-change-password></sqm-portal-change-password>,
       secondaryColumn: (
-        <div style={{ width: "85%" }}>
+        <div>
           <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -263,7 +253,7 @@ export const TwoColumnLoginWithImage = () => {
     },
     content: {
       primaryColumn: (
-        <div style={{ width: "85%" }}>
+        <div>
           <h1 style={{ textAlign: "center" }}>Get Referring!</h1>
           <sqm-portal-login></sqm-portal-login>
         </div>

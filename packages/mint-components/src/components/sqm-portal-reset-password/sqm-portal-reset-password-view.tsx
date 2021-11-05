@@ -64,8 +64,6 @@ const style = {
 
 const vanillaStyle = `
 :host {
-  margin: 0 auto;
-  width: 100%;
   display: block;
 }
 :host([hidden]): {

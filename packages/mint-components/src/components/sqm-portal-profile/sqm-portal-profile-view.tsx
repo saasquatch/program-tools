@@ -82,7 +82,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
       {...{
         direction: "row",
         padding: "xxx-large",
-        gap: "48px",
+        gap: "xxx-large",
         minWidth: "600px",
       }}
     >

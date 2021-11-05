@@ -131,6 +131,8 @@ export function HeroView(props: HeroProps) {
         },
       },
       ...column,
+      display: 'block',
+      
     },
     SingleColumnContainer: {
       background: `no-repeat center/cover ${parseBackground(
