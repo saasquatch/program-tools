@@ -36,11 +36,11 @@
     "@stencil/core": "^2.8.1",
     "deepmerge": "^4.2.2",
     "highlight.js": "^11.2.0",
-    "jsonata": "^1.8.4",
-    "rollup-plugin-string": "^3.0.0"
+    "jsonata": "^1.8.4"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.2",
-    "@saasquatch/stencil-grapes-plugin": "^1.0.0"
+    "@saasquatch/stencil-grapes-plugin": "^1.0.0",
+    "rollup-plugin-string": "^3.0.0"
   }
 }
