@@ -61,7 +61,13 @@
     </sqm-router>
     <sqm-router>
       <template path="/:path(\bactivity\b|\beditProfile\b)?">
-        <sqm-divided-layout direction="row">
+        <sqm-divided-layout
+          direction="row"
+          style="
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
+          "
+        >
           <sqm-navigation-sidebar>
             <sqm-navigation-sidebar-item
               path="/"
@@ -180,15 +186,9 @@
                   redirect-to="/login"
                   redirect-to-unverified="/emailVerification"
                 ></sqm-portal-protected-route>
-                <sqm-portal-container
-                  direction="column"
-                  gap="xxx-large"
-                >
+                <sqm-portal-container direction="column" gap="xxx-large">
                   <sqm-portal-profile></sqm-portal-profile> </sqm-portal-container
-                ><sqm-portal-container
-                  direction="column"
-                  gap="xxx-large"
-                >
+                ><sqm-portal-container direction="column" gap="xxx-large">
                   <sqm-graphql-client-provider
                     domain="https://managed-identity.saasquatch.com"
                   >
@@ -208,7 +208,7 @@
                   padding="xxx-large"
                   gap="xxx-large"
                 >
-                  <sqm-text> <h2>Activity</h2></sqm-text>
+                  <sqm-text> <h1>Activity</h1></sqm-text>
                   <sqm-stat-container space="xxxx-large"
                     ><sqm-big-stat
                       flex-reverse="true"
@@ -230,33 +230,6 @@
                     >
                   </sqm-stat-container>
                   <sqm-referral-table>
-                    <div slot="loading" style="display: contents">
-                      <sqm-table-row>
-                        <sqm-table-cell colspan="5"
-                          ><sl-skeleton></sl-skeleton
-                        ></sqm-table-cell>
-                      </sqm-table-row>
-                      <sqm-table-row>
-                        <sqm-table-cell colspan="5"
-                          ><sl-skeleton></sl-skeleton
-                        ></sqm-table-cell>
-                      </sqm-table-row>
-                      <sqm-table-row>
-                        <sqm-table-cell colspan="5"
-                          ><sl-skeleton></sl-skeleton
-                        ></sqm-table-cell>
-                      </sqm-table-row>
-                      <sqm-table-row>
-                        <sqm-table-cell colspan="5"
-                          ><sl-skeleton></sl-skeleton
-                        ></sqm-table-cell>
-                      </sqm-table-row>
-                      <sqm-table-row>
-                        <sqm-table-cell colspan="5"
-                          ><sl-skeleton></sl-skeleton
-                        ></sqm-table-cell>
-                      </sqm-table-row>
-                    </div>
                     <sqm-referral-table-user-column></sqm-referral-table-user-column>
                     <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
                     <sqm-referral-table-status-column></sqm-referral-table-status-column>

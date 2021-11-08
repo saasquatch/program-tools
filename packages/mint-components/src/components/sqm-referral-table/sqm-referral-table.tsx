@@ -53,26 +53,8 @@ export class ReferralTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = (
-      <slot name="empty">
-        <div style={{ width: "100%" }}>
-          <sqm-text>
-            <h3 style={{ color: "#777777" }}>No Referrals Yet</h3>
-          </sqm-text>
-        </div>
-      </slot>
-    );
-    const loading = (
-      <slot name="loading">
-        <div style={{ width: "100%" }}>
-          <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
-          <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
-          <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
-          <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
-          <sl-skeleton></sl-skeleton>
-        </div>
-      </slot>
-    );
+    const empty = <EmptySlot />;
+    const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()
       ? useReferraltableDemo(this)
@@ -87,6 +69,25 @@ export class ReferralTable {
       ></ReferralTableView>
     );
   }
+}
+function LoadingSlot() {
+  return (
+    <slot name="loading">
+      <LoadingRow />
+      <LoadingRow />
+      <LoadingRow />
+      <LoadingRow />
+    </slot>
+  );
+}
+function LoadingRow() {
+  return (
+    <sqm-table-row>
+      <sqm-table-cell colspan={5}>
+        <sl-skeleton></sl-skeleton>
+      </sqm-table-cell>
+    </sqm-table-row>
+  );
 }
 
 function useReferraltableDemo(props: ReferralTable): ReferralTableViewProps {
@@ -110,27 +111,26 @@ function useReferraltableDemo(props: ReferralTable): ReferralTableViewProps {
         referralData: [],
       },
       elements: {
-        emptyElement: (
-          <div style={{ width: "100%", textAlign: "center" }}>
-            <sqm-text>
-              <h3 style={{ color: "#777777" }}>No Referrals Yet</h3>
-            </sqm-text>
-          </div>
-        ),
-        loadingElement: (
-          <div style={{ width: "100%" }}>
-            <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
-            <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
-            <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
-            <sl-skeleton style={{ marginBottom: "28px" }}></sl-skeleton>
-            <sl-skeleton></sl-skeleton>
-          </div>
-        ),
-        columns: [<div>Name</div>, <div>Email</div>, <div>DOB</div>],
+        emptyElement: <EmptySlot />,
+        loadingElement: <LoadingSlot />,
+        // FIXME: Even in demo mode, this should use real column names!
+        columns: [<div>Example</div>, <div>Example</div>, <div>Example</div>],
         rows: [],
       },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
+  );
+}
+
+function EmptySlot() {
+  return (
+    <slot name="empty">
+      <div style={{ width: "100%" }}>
+        <sqm-text>
+          <h3 style={{ color: "#777777" }}>No Referrals Yet</h3>
+        </sqm-text>
+      </div>
+    </slot>
   );
 }

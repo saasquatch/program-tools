@@ -122,10 +122,12 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                 <sl-form onSl-submit={callbacks.submit}>
                   <div class={sheet.classes.InputContainer}>
                     <sqm-password-field
+                      exportparts="input-label: input-label"
                       class={sheet.classes.PasswordField}
                       fieldLabel={states.content.passwordFieldLabel}
                     ></sqm-password-field>
                     <sl-input
+                      exportparts="label: input-label"
                       name="/confirmPassword"
                       label={states.content.confirmPasswordFieldLabel}
                       required
