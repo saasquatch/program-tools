@@ -63,7 +63,7 @@ export function usePortalVerifyEmail({ nextPage }) {
     } else if (!userIdent) {
       setDisableContinue(false);
       setTimeout(() => {
-        navigation.push(nextPageOverride || nextPage);
+        gotoNextPage();
       }, 3000);
     }
   }, [userIdent?.managedIdentity?.emailVerified]);
