@@ -1,6 +1,9 @@
-import { h, Component, Prop, Host } from '@stencil/core';
+import { h, Component, Prop, Host, State } from '@stencil/core';
 import { withHooks } from '@saasquatch/stencil-hooks';
 import { useWidget } from './useWidget';
+import { isDemo } from '@saasquatch/component-boilerplate';
+import { DemoData } from '../../global/demo';
+import deepmerge from 'deepmerge';
 
 /**
  * Shows a widget as a component inside of a widget. Useful for breaking down multi-page widgets into
@@ -27,14 +30,40 @@ export class SqbWidget {
    */
   @Prop() requireAuth: boolean = false;
 
+  /**
+   * When enabled then a load event will be recorded in analytics.
+   *
+   * @uiName Track Widget Loads
+   */
+  @Prop() trackLoads: boolean = false;
+
+  /**
+   * @undocumented
+   * @uiType object
+   */
+  @Prop() demoData?: DemoData<WidgetProps>;
+
   constructor() {
     withHooks(this);
   }
 
+  @State()
+  ignored = true;
+
   disconnectedCallback() {}
 
   render() {
-    const { data } = useWidget(this);
-    return <Host style={{ display: 'contents' }} innerHTML={data.html || ''} />;
+    const { data } = isDemo() ? useWidgetDemo(this) : useWidget(this);
+    return <Host style={{ display: 'contents' }} innerHTML={data.html} />;
   }
+}
+
+type WidgetProps = {
+  data: {
+    html: string;
+  };
+};
+
+function useWidgetDemo(props: SqbWidget) {
+  return deepmerge({ data: {} }, props.demoData || {}, { arrayMerge: (_, a) => a });
 }
