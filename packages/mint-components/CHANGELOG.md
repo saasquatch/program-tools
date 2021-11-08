@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Default Portal
     - Multi Program Portal
     - Lead Submit Portal
+    - Portal Dashboard (program widget)
 - New components added for default affiliate portals
   - \<sqm-portal-footer> Footer for providing FAQ, T&S, and support email
   - \<sqm-hero> One or two column landing page with an optional background
