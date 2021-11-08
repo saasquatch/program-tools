@@ -29,7 +29,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-portal-register> 
       - Changed hardcoded text into customizable props
       - Changed formData slot to add custom inputs to the top of form instead of the bottom
-  - \<sqm-portal-email-verification> Changed hardcoded text into customizable props
+      - Fixed bug causing the correct error validation message from being shown 
+  - \<sqm-portal-email-verification>
+      - Changed hardcoded text into customizable props
+  - \<sqm-portal-verify-email>
+      - Fixed bug causing users to get stuck if no userIdent existed when verifying their email
 
 ### Added
 
