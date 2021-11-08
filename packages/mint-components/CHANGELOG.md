@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.3.0] - 2021-11-05
+## [1.3.0] - 2021-11-08
 
 ### Changed
 
@@ -26,9 +26,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-portal-reset-password> 
       - Changed hardcoded text into customizable props
       - Changed password field input default label to "New Password"
-  - \<sqm-portal-register> Changed hardcoded text into customizable props
+  - \<sqm-portal-register> 
+      - Changed hardcoded text into customizable props
+      - Changed formData slot to add custom inputs to the top of form instead of the bottom
   - \<sqm-portal-email-verification> Changed hardcoded text into customizable props
-  - \<sqm-portal-register> formData slot adds custom inputs to the top of form instead of the bottom
 
 ### Added
 
