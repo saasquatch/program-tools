@@ -22,25 +22,45 @@ export class PortalProfile {
   ignored = true;
 
   /**
-   * @uiName First Name label
+   * @uiName First name input field label
    */
   @Prop() firstnametext: string = "First Name";
+
   /**
-   * @uiName Last Name label
+   * @uiName Last name input field label
    */
   @Prop() lastnametext: string = "Last Name";
+
   /**
-   * @uiName Email label
+   * @uiName Email input field label
    */
   @Prop() emailtext: string = "Email";
+
   /**
-   * @uiName Country label
+   * @uiName Country input field label
    */
   @Prop() countrytext: string = "Country";
+
   /**
-   * @uiName Show country field
+   * @uiName Edit profile header
+   */
+  @Prop() editProfileHeader: string = "Edit your profile";
+
+  /**
+   * @uiName Edit profile sub header
+   */
+  @Prop() editProfileSubHeader: string = "Personal Information";
+
+  /**
+   * @uiName Text for the submit changes button
+   */
+  @Prop() submitChangeButtonText: string = "Submit Changes";
+
+  /**
+   * @uiName Show or hide country field
    */
   @Prop() showCountry: boolean = true;
+
   /**
    * @undocumented
    * @uiType object
@@ -74,13 +94,16 @@ function usePortalProfileDemo(props: PortalProfile): PortalProfileViewProps {
           firstName: "Joe",
           lastName: "Smith",
           email: "jsmith@gmail.com",
-          countryCode: "5000",
+          countryCode: "CA",
         },
         text: {
           firstnametext: "First Name",
           lastnametext: "Last Name",
           emailtext: "Email",
           countrytext: "Country",
+          editProfileHeader: "Edit your profile",
+          editProfileSubHeader: "Personal Information",
+          submitChangeButtonText: "Submit Changes",
         },
         formState: {
           country: "Canada",

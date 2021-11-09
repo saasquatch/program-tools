@@ -34,6 +34,13 @@ import * as ReferralTableCell from "../../stories/ReferralTableCell.stories";
 import * as ReferralTableRewardsCell from "../../stories/ReferralTableRewardsCell.stories";
 import * as UserName from "../../stories/UserName.stories";
 import * as PasswordField from "../../stories/PasswordField.stories";
+import * as PortalTemplates from "../../stories/PortalTemplates.stories";
+import * as ProgramMenu from "../../stories/ProgramMenu.stories";
+import * as PoweredByImg from "../../stories/PoweredByImg.stories";
+import * as PortalFooter from "../../stories/PortalFooter.stories";
+import * as Hero from "../../stories/Hero.stories";
+import * as ReferralIframe from "../../stories/ReferralIframe.stories";
+import * as NameFields from "../../stories/NameFields.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -72,6 +79,13 @@ const stories = [
   ReferralTableRewardsCell,
   UserName,
   PasswordField,
+  PortalTemplates,
+  ProgramMenu,
+  PoweredByImg,
+  PortalFooter,
+  Hero,
+  ReferralIframe,
+  NameFields,
 ];
 
 /**
@@ -96,6 +110,10 @@ export class StencilStorybook {
       title: "Mint Components",
       addons: [CucumberAddon, ShadowViewAddon, HookStoryAddon],
     });
-    return <Host class={Style}>{children}</Host>;
+    return (
+      <Host class={Style} onClick={{}}>
+        {children}
+      </Host>
+    );
   }
 }

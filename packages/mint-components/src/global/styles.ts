@@ -375,6 +375,7 @@ const style = `
   --sqm-portal-background: var(--sl-color-gray-50);
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
+  --sqm-max-width: 1280px;
 }
 body {
   font-family: var(--sl-font-sans);
@@ -423,35 +424,6 @@ h2, .Title {
   margin-top: var(--sl-spacing-small);
   text-align: center;
 }
-stn-wrapper-column {
-  max-width: var(--sqm-content-max-width);
-  margin: var(--sl-spacing-x-large) auto;
-  background-color: var(--sqm-content-background);
-}
-
-stn-wrapper-column > :not(:first-child), stn-wrapper-item > :not(:first-child) {
-  margin-top: var(--sl-spacing-medium);
-}
-
-stn-wrapper-item, stn-wrapper-column{
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  width: 100%;
-  height: auto;
-}
-stn-wrapper-item {
-  padding: var(--sl-spacing-large);
-  background-color: var(--sqm-content-background);
-}
-
-stn-row {
-  display: flex;
-}
-
-stn-row[gap="medium"] > :not(:first-child) {
-  margin-left: var(--sl-spacing-medium);
-}
 
 sl-button::part(base){
   width: 100%;
@@ -461,12 +433,9 @@ sqm-share-button{
   flex: 1;
 }
 
-stn-row[space="even"] > * {
-  flex: 1 1 0;
-}
-
-stn-row[topmargin="x-large"] {
-  margin-top: var(--sl-spacing-x-large);
+sqm-hero img {
+  max-width: 100%;
+  display: block;
 }
 
 sl-details::part(base){
@@ -535,6 +504,44 @@ sl-input::part(label){
 }
 
 // The following commented out styles should be moved to Service Titan
+
+// stn-row[topmargin="x-large"] {
+//   margin-top: var(--sl-spacing-x-large);
+// }
+
+// stn-wrapper-column {
+//   max-width: var(--sqm-content-max-width);
+//   margin: var(--sl-spacing-x-large) auto;
+//   background-color: var(--sqm-content-background);
+// }
+
+// stn-wrapper-column > :not(:first-child), stn-wrapper-item > :not(:first-child) {
+//   margin-top: var(--sl-spacing-medium);
+// }
+
+// stn-wrapper-item, stn-wrapper-column{
+//   display: flex;
+//   flex-direction: column;
+//   box-sizing: border-box;
+//   width: 100%;
+//   height: auto;
+// }
+// stn-wrapper-item {
+//   padding: var(--sl-spacing-large);
+//   background-color: var(--sqm-content-background);
+// }
+
+// stn-row {
+//   display: flex;
+// }
+
+// stn-row[gap="medium"] > :not(:first-child) {
+//   margin-left: var(--sl-spacing-medium);
+// }
+
+// stn-row[space="even"] > * {
+//   flex: 1 1 0;
+// }
 
 // *::part(erroralert-icon), *::part(successalert-icon){
 //   align-items: flex-start;

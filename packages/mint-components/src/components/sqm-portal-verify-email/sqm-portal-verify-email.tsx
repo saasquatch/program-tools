@@ -56,7 +56,7 @@ function usePortalVerifyEmailDemo(
 ): PortalVerifyEmailViewProps {
   return deepmerge(
     {
-      states: { error: "", loading: false, verified: false },
+      states: { error: "", loading: false, verified: true },
       data: {
         oobCode: "code",
       },

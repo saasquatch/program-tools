@@ -96,11 +96,15 @@ export function usePortalRegister(props: PortalRegister) {
     };
   }, [formRef.current]);
 
-  const errorMessage =
-    errors?.response?.["error"] || errors?.message
-      ? "Network request failed"
-      : errors?.response?.errors?.[0]?.message || validationState?.error;
-
+  let errorMessage = "";
+  if (errors?.response?.["error"]) {
+    errorMessage = "Network request failed";
+  } else if (errors?.message && !errors?.response?.errors.length) {
+    errorMessage = "Network request failed";
+  } else {
+    errorMessage =
+      errors?.response?.errors?.[0]?.message || validationState?.error;
+  }
   return {
     states: {
       loading,

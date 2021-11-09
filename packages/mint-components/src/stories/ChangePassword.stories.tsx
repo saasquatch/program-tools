@@ -10,7 +10,22 @@ export default {
 };
 
 const defaultProps = {
-  states: { open: false, loading: false, success: false, error: "" },
+  states: {
+    open: false,
+    loading: false,
+    success: false,
+    error: "",
+    content: {
+      modalChangePasswordHeader: "Change Password",
+      cancelText: "Cancel",
+      changePasswordButtonText: "Change Password",
+      passwordFieldLabel: "New Password",
+      confirmPasswordFieldLabel: "Confirm new password",
+      successMessage: "Your password has been updated.",
+      portalChangePasswordHeader: "Password",
+      portalChangePasswordButtonText: "Change your password...",
+    },
+  },
   callbacks: {
     setOpen: (o) => console.log(o),
     submit: (e) => console.log("Submit", e),
@@ -18,7 +33,22 @@ const defaultProps = {
 };
 
 const openProps = {
-  states: { open: true, loading: false, success: false, error: "" },
+  states: {
+    open: true,
+    loading: false,
+    success: false,
+    error: "",
+    content: {
+      modalChangePasswordHeader: "Change Password",
+      cancelText: "Cancel",
+      changePasswordButtonText: "Change Password",
+      passwordFieldLabel: "New Password",
+      confirmPasswordFieldLabel: "Confirm new password",
+      successMessage: "Your password has been updated.",
+      portalChangePasswordHeader: "Password",
+      portalChangePasswordButtonText: "Change your password...",
+    },
+  },
   callbacks: {
     setOpen: (o) => console.log(o),
     submit: (e) => console.log("Submit", e),
@@ -31,6 +61,16 @@ const errorProps = {
     loading: false,
     success: false,
     error: "Network error. Please try again.",
+    content: {
+      modalChangePasswordHeader: "Change Password",
+      cancelText: "Cancel",
+      changePasswordButtonText: "Change Password",
+      passwordFieldLabel: "New Password",
+      confirmPasswordFieldLabel: "Confirm new password",
+      successMessage: "Your password has been updated.",
+      portalChangePasswordHeader: "Password",
+      portalChangePasswordButtonText: "Change your password...",
+    },
   },
   callbacks: {
     setOpen: (o) => console.log(o),
@@ -44,6 +84,16 @@ const passwordErrorProps = {
     loading: false,
     success: false,
     error: "Passwords do not match.",
+    content: {
+      modalChangePasswordHeader: "Change Password",
+      cancelText: "Cancel",
+      changePasswordButtonText: "Change Password",
+      passwordFieldLabel: "New Password",
+      confirmPasswordFieldLabel: "Confirm new password",
+      successMessage: "Your password has been updated.",
+      portalChangePasswordHeader: "Password",
+      portalChangePasswordButtonText: "Change your password...",
+    },
   },
   callbacks: {
     setOpen: (o) => console.log(o),
@@ -57,6 +107,16 @@ const loadingProps = {
     loading: true,
     success: false,
     error: "",
+    content: {
+      modalChangePasswordHeader: "Change Password",
+      cancelText: "Cancel",
+      changePasswordButtonText: "Change Password",
+      passwordFieldLabel: "New Password",
+      confirmPasswordFieldLabel: "Confirm new password",
+      successMessage: "Your password has been updated.",
+      portalChangePasswordHeader: "Password",
+      portalChangePasswordButtonText: "Change your password...",
+    },
   },
   callbacks: {
     setOpen: (o) => console.log(o),
@@ -70,6 +130,16 @@ const successProps = {
     loading: false,
     success: true,
     error: "",
+    content: {
+      modalChangePasswordHeader: "Change Password",
+      cancelText: "Cancel",
+      changePasswordButtonText: "Change Password",
+      passwordFieldLabel: "New Password",
+      confirmPasswordFieldLabel: "Confirm new password",
+      successMessage: "Your password has been updated.",
+      portalChangePasswordHeader: "Password",
+      portalChangePasswordButtonText: "Change your password...",
+    },
   },
   callbacks: {
     setOpen: (o) => console.log(o),

@@ -1,0 +1,192 @@
+<sqm-portal-frame>
+  <a slot="header" href="/">
+    <sqm-text style="height: 60px">
+      <img
+        style="height: 60px"
+        src="https://res.cloudinary.com/saasquatch/image/upload/v1634255445/squatch-assets/Copy_of_saasquatch-logo-tree-large-horizontal.png"
+      />
+    </sqm-text>
+  </a>
+  <sqb-program-section program-id="referral-program">
+    <sqm-router>
+      <template
+        path="/:path(\bregister\b|\bemailVerification\b|\blogin\b|\bverifyEmail\b|\bforgotPassword\b|\bresetPassword\b|\blogout\b)"
+      >
+        <sqm-graphql-client-provider
+          domain="https://managed-identity.saasquatch.com"
+        >
+          <sqm-hero
+            background="https://images.unsplash.com/photo-1599676821464-3555954838dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1939&q=80"
+          >
+            <sqm-router>
+              <template path="/register">
+                <sqm-portal-register>
+                  <sqm-name-fields slot="formData"></sqm-name-fields>
+                </sqm-portal-register>
+              </template>
+
+              <template path="/emailVerification">
+                <sqm-portal-protected-route
+                  redirect-to="/login"
+                ></sqm-portal-protected-route>
+                <sqm-portal-email-verification></sqm-portal-email-verification>
+              </template>
+
+              <template path="/login">
+                <sqm-portal-login></sqm-portal-login>
+              </template>
+
+              <template path="/verifyEmail">
+                <sqm-portal-verify-email></sqm-portal-verify-email>
+              </template>
+
+              <template path="/forgotPassword">
+                <sqm-portal-forgot-password
+                  email-label="Business Email"
+                ></sqm-portal-forgot-password>
+              </template>
+
+              <template path="/resetPassword">
+                <sqm-portal-reset-password
+                  confirm-password="true"
+                ></sqm-portal-reset-password>
+              </template>
+              <template path="/logout">
+                <sqm-portal-logout next-page="/login"></sqm-portal-logout>
+              </template>
+            </sqm-router>
+          </sqm-hero>
+        </sqm-graphql-client-provider>
+      </template>
+    </sqm-router>
+    <sqm-router>
+      <template path="/:path(\bactivity\b|\beditProfile\b|\brefer\b)?">
+        <sqm-divided-layout
+          direction="row"
+          style="
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
+          "
+        >
+          <sqm-navigation-sidebar>
+            <sqm-navigation-sidebar-item
+              path="/"
+              icon="house"
+              label="Dashboard"
+            ></sqm-navigation-sidebar-item>
+            <sqm-navigation-sidebar-item
+              path="/refer"
+              icon="inbox"
+              label="Submit A Lead"
+            ></sqm-navigation-sidebar-item>
+            <sqm-navigation-sidebar-item
+              path="/activity"
+              icon="bar-chart"
+              label="Activity"
+            ></sqm-navigation-sidebar-item>
+            <sqm-navigation-sidebar-item
+              path="/editProfile"
+              icon="person"
+              label="Edit Profile"
+            ></sqm-navigation-sidebar-item>
+            <sqm-navigation-sidebar-item
+              path="/logout"
+              icon="box-arrow-right"
+              label="Logout"
+            ></sqm-navigation-sidebar-item>
+          </sqm-navigation-sidebar>
+          <sqm-divided-layout direction="column">
+            <sqm-router>
+              <template path="/">
+                <sqm-portal-protected-route
+                  require-email-verification="true"
+                  redirect-to="/login"
+                  redirect-to-unverified="/emailVerification"
+                ></sqm-portal-protected-route>
+                <sqb-widget
+                  widget-type="p/referral-program/w/referrerWidget"
+                  track-loads="true"
+                ></sqb-widget>
+              </template>
+              <template path="/editProfile">
+                <sqm-portal-protected-route
+                  require-email-verification="true"
+                  redirect-to="/login"
+                  redirect-to-unverified="/emailVerification"
+                ></sqm-portal-protected-route>
+                <sqm-portal-container direction="column" gap="xxx-large">
+                  <sqm-portal-profile></sqm-portal-profile> </sqm-portal-container
+                ><sqm-portal-container direction="column" gap="xxx-large">
+                  <sqm-graphql-client-provider
+                    domain="https://managed-identity.saasquatch.com"
+                  >
+                    <sqm-portal-change-password></sqm-portal-change-password>
+                  </sqm-graphql-client-provider>
+                </sqm-portal-container>
+              </template>
+              <template path="/refer">
+                <sqm-portal-protected-route
+                  require-email-verification="true"
+                  redirect-to="/login"
+                  redirect-to-unverified="/emailVerification"
+                ></sqm-portal-protected-route>
+                <sqm-referral-iframe></sqm-referral-iframe>
+              </template>
+              <template path="/activity">
+                <sqm-portal-protected-route
+                  require-email-verification="true"
+                  redirect-to="/login"
+                  redirect-to-unverified="/emailVerification"
+                ></sqm-portal-protected-route>
+                <sqm-portal-container
+                  direction="column"
+                  padding="xxx-large"
+                  gap="xxx-large"
+                >
+                  <sqm-text> <h1>Activity</h1></sqm-text>
+                  <sqm-stat-container space="xxxx-large"
+                    ><sqm-big-stat
+                      flex-reverse="true"
+                      alignment="left"
+                      stat-type="/referralsCount"
+                      ><sqm-text><p>Referrals</p></sqm-text></sqm-big-stat
+                    >
+                    <sqm-big-stat
+                      flex-reverse="true"
+                      alignment="left"
+                      stat-type="/rewardsCountFiltered/AVAILABLE"
+                      ><sqm-text><p>Rewards Earned</p></sqm-text></sqm-big-stat
+                    >
+                    <sqm-big-stat
+                      flex-reverse="true"
+                      alignment="left"
+                      stat-type="/rewardBalance/CREDIT/CENTS"
+                      ><sqm-text><p>Reward Balance</p></sqm-text></sqm-big-stat
+                    >
+                  </sqm-stat-container>
+                  <sqm-referral-table>
+                    <sqm-referral-table-user-column></sqm-referral-table-user-column>
+                    <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+                    <sqm-referral-table-status-column></sqm-referral-table-status-column>
+                    <sqm-referral-table-date-column
+                      column-title="Referred"
+                      date-shown="dateReferralStarted"
+                    ></sqm-referral-table-date-column> </sqm-referral-table
+                ></sqm-portal-container>
+              </template>
+            </sqm-router>
+          </sqm-divided-layout>
+        </sqm-divided-layout>
+      </template>
+    </sqm-router>
+  </sqb-program-section>
+  <sqm-portal-footer
+    slot="footer"
+    support-email="support@example.com"
+    terms-link="https://example.com"
+    faq-link="https://example.com"
+    terms-text="Terms And Conditions"
+    faq-text="FAQ"
+    show-powered-by="true"
+  ></sqm-portal-footer>
+</sqm-portal-frame>

@@ -6,7 +6,7 @@ import {
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 
-export function usePortalChangePassword(_props: PortalChangePassword) {
+export function usePortalChangePassword(props: PortalChangePassword) {
   const [request, { loading, errors, data }] = useChangePasswordMutation();
   const [open, setOpen] = useState(false);
   const [error, setError] = useState("");
@@ -50,6 +50,16 @@ export function usePortalChangePassword(_props: PortalChangePassword) {
       loading,
       success,
       error: error || errors?.response?.errors?.[0]?.message,
+      content: {
+        modalChangePasswordHeader: props.modalChangePasswordHeader,
+        cancelText: props.cancelText,
+        changePasswordButtonText: props.changePasswordButtonText,
+        passwordFieldLabel: props.passwordFieldLabel,
+        confirmPasswordFieldLabel: props.confirmPasswordFieldLabel,
+        successMessage: props.successMessage,
+        portalChangePasswordHeader: props.portalChangePasswordHeader,
+        portalChangePasswordButtonText: props.portalChangePasswordButtonText,
+      },
     },
     data: {},
     callbacks: {

@@ -60,6 +60,11 @@ export function usePortalVerifyEmail({ nextPage }) {
       data?.verifyManagedIdentityEmail?.success === false
     ) {
       setDisableContinue(false);
+    } else if (!userIdent) {
+      setDisableContinue(false);
+      setTimeout(() => {
+        gotoNextPage();
+      }, 3000);
     }
   }, [userIdent?.managedIdentity?.emailVerified]);
 

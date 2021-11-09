@@ -17,6 +17,8 @@ export interface PortalEmailVerificationViewProps {
   content: {
     email: string;
     verifyMessage: string;
+    emailVerificationHeader: string;
+    resendEmailButtonText: string;
   };
 }
 
@@ -27,8 +29,6 @@ const style = {
 
 const vanillaStyle = `
 :host {
-  margin: 0 auto;
-  width: 100%;
   display: block;
 }
 :host([hidden]): {
@@ -46,7 +46,7 @@ export function PortalEmailVerificationView(
   const {
     states,
     callbacks,
-    content: { email, verifyMessage },
+    content: { email, verifyMessage, emailVerificationHeader, resendEmailButtonText },
   } = props;
   return (
     <div class={sheet.classes.Wrapper}>
@@ -54,7 +54,9 @@ export function PortalEmailVerificationView(
         {vanillaStyle}
         {styleString}
       </style>
-      <TextSpanView type="h3">Verify your email</TextSpanView>
+      <TextSpanView type="h3">
+        {emailVerificationHeader}
+      </TextSpanView>
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
         {props.states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">
@@ -90,7 +92,7 @@ export function PortalEmailVerificationView(
           exportparts="base: primarybutton-base"
           type="primary"
         >
-          Re-send Email
+          {resendEmailButtonText}
         </sl-button>
       </sl-form>
     </div>

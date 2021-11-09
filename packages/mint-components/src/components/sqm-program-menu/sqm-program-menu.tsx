@@ -8,7 +8,6 @@ import { getProps } from "../../utils/utils";
  */
 @Component({
   tag: "sqm-program-menu",
-  styleUrl: "sqm-program-menu.scss",
   shadow: false,
 })
 export class ProgramMenu {
