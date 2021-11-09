@@ -15,7 +15,7 @@ interface OptionProps {
 }
 
 interface StyleProps {
-  buttontype?: "primary" | "secondary";
+  buttonType?: "primary" | "secondary";
   pill?: boolean;
   loading?: boolean;
   critical?: boolean;
@@ -27,7 +27,7 @@ interface StyleProps {
 const StyledButton = styled.button<Required<StyleProps>>`
   ${Styles.base}
   ${(props) =>
-    props.buttontype == "primary" ? Styles.primary : Styles.secondary}
+    props.buttonType == "primary" ? Styles.primary : Styles.secondary}
   ${(props) => props.pill && Styles.pill}
   ${(props) => props.size == "small" && Styles.small}
   ${(props) => props.size == "medium" && Styles.medium}
@@ -41,7 +41,7 @@ const StyledButton = styled.button<Required<StyleProps>>`
 export const Button = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
   (props, forwardedRef) => {
     const {
-      buttontype = "primary",
+      buttonType: buttontype = "primary",
       pill = false,
       loading = false,
       critical = false,
@@ -57,7 +57,7 @@ export const Button = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
     return (
       <StyledButton
         {...rest}
-        buttontype={buttontype}
+        buttonType={buttontype}
         pill={pill}
         loading={loading}
         critical={critical}
