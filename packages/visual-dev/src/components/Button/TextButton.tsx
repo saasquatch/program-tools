@@ -3,12 +3,13 @@ import styled, { CSSProp } from "styled-components";
 import { Icon, IconKey } from "../Icon";
 import * as Styles from "./Styles";
 
-type ButtonProps = OptionProps & StyleProps & React.ComponentProps<"button">;
+type ButtonProps = OptionProps &
+  StyleProps &
+  Omit<React.ComponentProps<"button">, "translate">;
 
 interface OptionProps {
   icon?: IconKey;
-  left?: boolean;
-  right?: boolean;
+  iconLocation?: "left" | "right";
   children?: React.ReactElement | string;
 }
 
@@ -32,24 +33,23 @@ const Button = styled.button<Required<StyleProps>>`
   ${(props) => props.success && Styles.text_success}
   ${(props) => props.css}
 `;
+
 export const TextButton = React.forwardRef<
   React.ElementRef<"button">,
   ButtonProps
 >((props, forwardedRef) => {
-  let {
+  const {
     pill = false,
     loading = false,
     critical = false,
     success = false,
     icon,
-    left = true,
-    right = false,
+    iconLocation = "left",
     size = "medium",
     children,
     css = {},
     ...rest
   } = props;
-  if (right) left = false;
 
   return (
     <Button
@@ -62,9 +62,13 @@ export const TextButton = React.forwardRef<
       ref={forwardedRef}
       css={css}
     >
-      {left && icon && <Icon icon={icon} size={Styles.icon_size[size]} />}
+      {iconLocation == "left" && icon && (
+        <Icon icon={icon} size={Styles.icon_size[size]} />
+      )}
       <span> {children} </span>
-      {right && icon && <Icon icon={icon} size={Styles.icon_size[size]} />}
+      {iconLocation == "right" && icon && (
+        <Icon icon={icon} size={Styles.icon_size[size]} />
+      )}
     </Button>
   );
 });

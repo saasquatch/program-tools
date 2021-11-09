@@ -3,7 +3,7 @@ import styled, { CSSProp } from "styled-components";
 import { Icon, IconKey } from "../Icon";
 import * as Styles from "./Styles";
 
-type ButtonProps = OptionProps & StyleProps & React.ComponentProps<"button">;
+type ButtonProps = OptionProps & StyleProps & Omit<React.ComponentProps<"button">, "translate">;
 
 interface OptionProps {
   icon: IconKey;
