@@ -26,15 +26,14 @@ interface StyleProps {
 
 const StyledButton = styled.button<Required<StyleProps>>`
   ${Styles.base}
-  ${(props) =>
-    props.buttonType == "primary" ? Styles.primary : Styles.secondary}
+  ${(props) => props.buttonType == "primary" ? Styles.primary : Styles.secondary}
   ${(props) => props.pill && Styles.pill}
   ${(props) => props.size == "small" && Styles.small}
   ${(props) => props.size == "medium" && Styles.medium}
   ${(props) => props.size == "large" && Styles.large}
-  ${(props) => props.critical && Styles.secondary_critical}
-  ${(props) => props.success && Styles.secondary_success}
-  ${(props) => props.loading && Styles.secondary_loading}
+  ${(props) => props.critical && Styles[props.buttonType + "_critical"]}
+  ${(props) => props.success && Styles[props.buttonType + "_success"]}
+  ${(props) => props.loading && Styles[props.buttonType + "_loading"]}
   ${(props) => props.css}
 `;
 
