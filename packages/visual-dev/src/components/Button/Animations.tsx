@@ -165,7 +165,7 @@ export const successAnimation = (size: string) => {
       <circle
         className="path circle"
         fill="none"
-        stroke="#FFF"
+        stroke="currentColor"
         stroke-width="14"
         stroke-miterlimit="10"
         cx="65.1"
@@ -175,7 +175,7 @@ export const successAnimation = (size: string) => {
       <polyline
         className="path check"
         fill="none"
-        stroke="#FFF"
+        stroke="currentColor"
         stroke-width="14"
         stroke-linecap="round"
         stroke-miterlimit="10"
