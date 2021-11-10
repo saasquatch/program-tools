@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Button } from "../Button"
 
 export default {
-  title: "Components / Button / Button",
+  title: "Components / Button / PrimaryButton",
   component: Button,
 }
 

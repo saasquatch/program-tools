@@ -1,9 +1,9 @@
 import React, { useState } from "react"
-import { SecondaryButton } from "../Button"
+import { Button } from "../Button"
 
 export default {
   title: "Components / Button / SecondaryButton",
-  component: SecondaryButton,
+  component: Button,
 }
 
 export const Functional = () => {
@@ -18,133 +18,133 @@ export const Functional = () => {
   states[count] = true
 
   return (
-    <SecondaryButton loading={states[1]} success={states[2]} onClick={() => setCount((count + 1) % 3)}>
+    <Button buttonType="secondary" loading={states[1]} success={states[2]} onClick={() => setCount((count + 1) % 3)}>
       Secondary
-    </SecondaryButton>
+    </Button>
   )
 }
 
 // Secondary
 
-export const secondarySmall = () => <SecondaryButton size="small">Secondary</SecondaryButton>
-export const secondaryMedium = () => <SecondaryButton size="medium">Secondary</SecondaryButton>
-export const secondaryLarge = () => <SecondaryButton size="large">Secondary</SecondaryButton>
+export const secondarySmall = () => <Button buttonType="secondary" size="small">Secondary</Button>
+export const secondaryMedium = () => <Button buttonType="secondary" size="medium">Secondary</Button>
+export const secondaryLarge = () => <Button buttonType="secondary" size="large">Secondary</Button>
 
 export const secondaryDisabledSmall = () => (
-  <SecondaryButton disabled size="small">
+  <Button buttonType="secondary" disabled size="small">
     Disabled
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryDisabledMedium = () => (
-  <SecondaryButton disabled size="medium">
+  <Button buttonType="secondary" disabled size="medium">
     Disabled
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryDisabledLarge = () => (
-  <SecondaryButton disabled size="large">
+  <Button buttonType="secondary" disabled size="large">
     Disabled
-  </SecondaryButton>
+  </Button>
 )
 
 // Icon
-export const secondaryIconSmall = () => <SecondaryButton size="small" icon="checkmark" />
-export const secondaryIconMedium = () => <SecondaryButton size="medium" icon="checkmark" />
-export const secondaryIconLarge = () => <SecondaryButton size="large" icon="checkmark" />
+export const secondaryIconSmall = () => <Button buttonType="secondary" size="small" icon="checkmark" />
+export const secondaryIconMedium = () => <Button buttonType="secondary" size="medium" icon="checkmark" />
+export const secondaryIconLarge = () => <Button buttonType="secondary" size="large" icon="checkmark" />
 
-export const secondaryIconDisabledSmall = () => <SecondaryButton disabled size="small" icon="checkmark" />
-export const secondaryIconDisabledMedium = () => <SecondaryButton disabled size="medium" icon="checkmark" />
-export const secondaryIconDisabledLarge = () => <SecondaryButton disabled size="large" icon="checkmark" />
+export const secondaryIconDisabledSmall = () => <Button buttonType="secondary" disabled size="small" icon="checkmark" />
+export const secondaryIconDisabledMedium = () => <Button buttonType="secondary" disabled size="medium" icon="checkmark" />
+export const secondaryIconDisabledLarge = () => <Button buttonType="secondary" disabled size="large" icon="checkmark" />
 
 // Critical
 
 export const secondaryCriticalSmall = () => (
-  <SecondaryButton size="small" critical>
+  <Button buttonType="secondary" size="small" critical>
     Critical
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryCriticalMedium = () => (
-  <SecondaryButton size="medium" critical>
+  <Button buttonType="secondary" size="medium" critical>
     Critical
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryCriticalLarge = () => (
-  <SecondaryButton size="large" critical>
+  <Button buttonType="secondary" size="large" critical>
     Critical
-  </SecondaryButton>
+  </Button>
 )
 
 // Success
 
 export const secondarySuccessSmall = () => (
-  <SecondaryButton size="small" success>
+  <Button buttonType="secondary" size="small" success>
     Success
-  </SecondaryButton>
+  </Button>
 )
 export const secondarySuccessMedium = () => (
-  <SecondaryButton size="medium" success>
+  <Button buttonType="secondary" size="medium" success>
     Success
-  </SecondaryButton>
+  </Button>
 )
 export const secondarySuccessLarge = () => (
-  <SecondaryButton size="large" success>
+  <Button buttonType="secondary" size="large" success>
     Success
-  </SecondaryButton>
+  </Button>
 )
 
 // Loading icon only
 
-export const secondaryLoadingIconSmall = () => <SecondaryButton size="small" loading />
-export const secondaryLoadingIconMedium = () => <SecondaryButton size="medium" loading />
-export const secondaryLoadingIconLarge = () => <SecondaryButton size="large" loading />
+export const secondaryLoadingIconSmall = () => <Button buttonType="secondary" size="small" loading />
+export const secondaryLoadingIconMedium = () => <Button buttonType="secondary" size="medium" loading />
+export const secondaryLoadingIconLarge = () => <Button buttonType="secondary" size="large" loading />
 
 // Loading with text
 
 export const secondaryLoadingSmall = () => (
-  <SecondaryButton size="small" loading>
+  <Button buttonType="secondary" size="small" loading>
     Loading
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryLoadingMedium = () => (
-  <SecondaryButton size="medium" loading>
+  <Button buttonType="secondary" size="medium" loading>
     Loading
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryLoadingLarge = () => (
-  <SecondaryButton size="large" loading>
+  <Button buttonType="secondary" size="large" loading>
     Loading
-  </SecondaryButton>
+  </Button>
 )
 
 // Icon Text
 export const secondaryIconSmallLeft = () => (
-  <SecondaryButton size="small" icon="add" left>
+  <Button buttonType="secondary" size="small" icon="add" left>
     Icon Text
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryIconMediumLeft = () => (
-  <SecondaryButton size="medium" icon="add" left>
+  <Button buttonType="secondary" size="medium" icon="add" left>
     Icon Text
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryIconLargeLeft = () => (
-  <SecondaryButton size="large" icon="add" left>
+  <Button buttonType="secondary" size="large" icon="add" left>
     Icon Text
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryIconSmallRight = () => (
-  <SecondaryButton size="small" icon="add" right>
+  <Button buttonType="secondary" size="small" icon="add" right>
     Icon Text
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryIconMediumRight = () => (
-  <SecondaryButton size="medium" icon="add" right>
+  <Button buttonType="secondary" size="medium" icon="add" right>
     Icon Text
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryIconLargeRight = () => (
-  <SecondaryButton size="large" icon="add" right>
+  <Button buttonType="secondary" size="large" icon="add" right>
     Icon Text
-  </SecondaryButton>
+  </Button>
 )
 
 //
@@ -154,116 +154,116 @@ export const secondaryIconLargeRight = () => (
 // Secondary
 
 export const secondaryPillSmall = () => (
-  <SecondaryButton pill size="small">
+  <Button buttonType="secondary" pill size="small">
     Secondary
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryPillMedium = () => (
-  <SecondaryButton pill size="medium">
+  <Button buttonType="secondary" pill size="medium">
     Secondary
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryPillLarge = () => (
-  <SecondaryButton pill size="large">
+  <Button buttonType="secondary" pill size="large">
     Secondary
-  </SecondaryButton>
+  </Button>
 )
 
 export const secondaryPillDisabledSmall = () => (
-  <SecondaryButton pill disabled size="small">
+  <Button buttonType="secondary" pill disabled size="small">
     Disabled
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryPillDisabledMedium = () => (
-  <SecondaryButton pill disabled size="medium">
+  <Button buttonType="secondary" pill disabled size="medium">
     Disabled
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryPillDisabledLarge = () => (
-  <SecondaryButton pill disabled size="large">
+  <Button buttonType="secondary" pill disabled size="large">
     Disabled
-  </SecondaryButton>
+  </Button>
 )
 
 // Icon
-export const secondaryPillIconSmall = () => <SecondaryButton pill size="small" icon="checkmark" />
-export const secondaryPillIconMedium = () => <SecondaryButton pill size="medium" icon="checkmark" />
-export const secondaryPillIconLarge = () => <SecondaryButton pill size="large" icon="checkmark" />
+export const secondaryPillIconSmall = () => <Button buttonType="secondary" pill size="small" icon="checkmark" />
+export const secondaryPillIconMedium = () => <Button buttonType="secondary" pill size="medium" icon="checkmark" />
+export const secondaryPillIconLarge = () => <Button buttonType="secondary" pill size="large" icon="checkmark" />
 
-export const secondaryPillIconDisabledSmall = () => <SecondaryButton pill disabled size="small" icon="checkmark" />
-export const secondaryPillIconDisabledMedium = () => <SecondaryButton pill disabled size="medium" icon="checkmark" />
-export const secondaryPillIconDisabledLarge = () => <SecondaryButton pill disabled size="large" icon="checkmark" />
+export const secondaryPillIconDisabledSmall = () => <Button buttonType="secondary" pill disabled size="small" icon="checkmark" />
+export const secondaryPillIconDisabledMedium = () => <Button buttonType="secondary" pill disabled size="medium" icon="checkmark" />
+export const secondaryPillIconDisabledLarge = () => <Button buttonType="secondary" pill disabled size="large" icon="checkmark" />
 
 // Critical
 
 export const secondaryPillCriticalSmall = () => (
-  <SecondaryButton pill size="small" critical>
+  <Button buttonType="secondary" pill size="small" critical>
     Critical
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryPillCriticalMedium = () => (
-  <SecondaryButton pill size="medium" critical>
+  <Button buttonType="secondary" pill size="medium" critical>
     Critical
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryPillCriticalLarge = () => (
-  <SecondaryButton pill size="large" critical>
+  <Button buttonType="secondary" pill size="large" critical>
     Critical
-  </SecondaryButton>
+  </Button>
 )
 
 // Loading icon only
 
-export const secondaryPillLoadingIconSmall = () => <SecondaryButton pill size="small" loading />
-export const secondaryPillLoadingIconMedium = () => <SecondaryButton pill size="medium" loading />
-export const secondaryPillLoadingIconLarge = () => <SecondaryButton pill size="large" loading />
+export const secondaryPillLoadingIconSmall = () => <Button buttonType="secondary" pill size="small" loading />
+export const secondaryPillLoadingIconMedium = () => <Button buttonType="secondary" pill size="medium" loading />
+export const secondaryPillLoadingIconLarge = () => <Button buttonType="secondary" pill size="large" loading />
 
 // Loading with text
 
 export const secondaryPillLoadingSmall = () => (
-  <SecondaryButton pill size="small" loading>
+  <Button buttonType="secondary" pill size="small" loading>
     Loading
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryPillLoadingMedium = () => (
-  <SecondaryButton pill size="medium" loading>
+  <Button buttonType="secondary" pill size="medium" loading>
     Loading
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryPillLoadingLarge = () => (
-  <SecondaryButton pill size="large" loading>
+  <Button buttonType="secondary" pill size="large" loading>
     Loading
-  </SecondaryButton>
+  </Button>
 )
 
 // Icon Text
 export const secondaryPillIconSmallLeft = () => (
-  <SecondaryButton pill size="small" icon="add" left>
+  <Button buttonType="secondary" pill size="small" icon="add" left>
     Icon Text
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryPillIconMediumLeft = () => (
-  <SecondaryButton pill size="medium" icon="add" left>
+  <Button buttonType="secondary" pill size="medium" icon="add" left>
     Icon Text
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryPillIconLargeLeft = () => (
-  <SecondaryButton pill size="large" icon="add" left>
+  <Button buttonType="secondary" pill size="large" icon="add" left>
     Icon Text
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryPillIconSmallRight = () => (
-  <SecondaryButton pill size="small" icon="add" right>
+  <Button buttonType="secondary" pill size="small" icon="add" right>
     Icon Text
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryPillIconMediumRight = () => (
-  <SecondaryButton pill size="medium" icon="add" right>
+  <Button buttonType="secondary" pill size="medium" icon="add" right>
     Icon Text
-  </SecondaryButton>
+  </Button>
 )
 export const secondaryPillIconLargeRight = () => (
-  <SecondaryButton pill size="large" icon="add" right>
+  <Button buttonType="secondary" pill size="large" icon="add" right>
     Icon Text
-  </SecondaryButton>
+  </Button>
 )

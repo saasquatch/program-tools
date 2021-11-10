@@ -4,14 +4,15 @@ import { withMatrix } from "storybook-addon-matrix";
 addDecorator(withMatrix);
 
 import * as React from "react";
-import { PrimaryButton, SecondaryButton } from "../Button";
+import { Button } from "../Button";
 
 export default {
-  title: "Components / Button / PrimaryButtonMatrix",
-  component: PrimaryButton,
+  title: "Components / Button / ButtonMatrix",
+  component: Button,
   parameters: {
     matrix: {
       pattern: {
+        buttontype: ["primary", "secondary"],
         size: ["small", "medium", "large"],
         pill: [true, false],
       },
@@ -21,32 +22,32 @@ export default {
   },
 };
 
-export const primary = () => <PrimaryButton>Primary</PrimaryButton>;
+export const primary = () => <Button>Primary</Button>;
 export const primaryDisabled = () => (
-  <PrimaryButton disabled>Primary</PrimaryButton>
+  <Button disabled>Primary</Button>
 );
-export const primaryIcon = () => <PrimaryButton icon="checkmark" />;
+export const primaryIcon = () => <Button icon="checkmark" />;
 export const primaryIconDisabled = () => (
-  <PrimaryButton disabled icon="checkmark" />
+  <Button disabled icon="checkmark" />
 );
 export const primaryCritical = () => (
-  <PrimaryButton critical>Critical</PrimaryButton>
+  <Button critical>Critical</Button>
 );
 export const primaryLoading = () => (
-  <PrimaryButton loading>Loading</PrimaryButton>
+  <Button loading>Loading</Button>
 );
 export const primarySuccess = () => (
-  <PrimaryButton success>Success</PrimaryButton>
+  <Button success>Success</Button>
 );
-export const primaryLoadingIcon = () => <PrimaryButton loading />;
-export const primarySuccessIcon = () => <PrimaryButton success />;
+export const primaryLoadingIcon = () => <Button loading />;
+export const primarySuccessIcon = () => <Button success />;
 
-// export const primaryPill = () => <PrimaryButton pill >Primary</PrimaryButton>
-// export const primaryPillDisabled = () => <PrimaryButton pill disabled>Primary</PrimaryButton>
-// export const primaryPillIcon = () => <PrimaryButton pill icon="checkmark" />
-// export const primaryPillIconDisabled = () => <PrimaryButton pill disabled icon="checkmark" />
-// export const primaryPillCritical = () => <PrimaryButton pill critical>Critical</PrimaryButton>
-// export const primaryPillLoading = () => <PrimaryButton pill loading>Loading</PrimaryButton>
-// export const primaryPillSuccess = () => <PrimaryButton pill success>Success</PrimaryButton>
-// export const primaryPillLoadingIcon = () => <PrimaryButton pill loading />
-// export const primaryPillSuccessIcon = () => <PrimaryButton pill success />
+// export const primaryPill = () => <Button pill >Primary</Button>
+// export const primaryPillDisabled = () => <Button pill disabled>Primary</Button>
+// export const primaryPillIcon = () => <Button pill icon="checkmark" />
+// export const primaryPillIconDisabled = () => <Button pill disabled icon="checkmark" />
+// export const primaryPillCritical = () => <Button pill critical>Critical</Button>
+// export const primaryPillLoading = () => <Button pill loading>Loading</Button>
+// export const primaryPillSuccess = () => <Button pill success>Success</Button>
+// export const primaryPillLoadingIcon = () => <Button pill loading />
+// export const primaryPillSuccessIcon = () => <Button pill success />
