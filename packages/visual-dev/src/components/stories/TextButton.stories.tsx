@@ -1,190 +1,219 @@
-import React, { useState } from "react"
-import { TextButton } from "../Button"
+import React, { useState } from "react";
+import { Button } from "../Button";
 
 export default {
   title: "Components / Button / TextButton",
-  component: TextButton,
-}
+  component: Button,
+};
 
 export const Functional = () => {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   const states = {
     0: false,
     1: false,
     2: false,
-  }
+  };
 
-  states[count] = true
+  states[count] = true;
 
   return (
-    <TextButton critical={states[1]} success={states[2]} onClick={() => setCount((count + 1) % 3)}>
+    <Button
+      buttonType="text"
+      critical={states[1]}
+      success={states[2]}
+      onClick={() => setCount((count + 1) % 3)}
+    >
       Text Button
-    </TextButton>
-  )
-}
+    </Button>
+  );
+};
 
 // Text Button
 
-export const textSmall = () => <TextButton size="small">Text Button</TextButton>
-export const textMedium = () => <TextButton size="medium">Text Button</TextButton>
-export const textLarge = () => <TextButton size="large">Text Button</TextButton>
+export const textSmall = () => (
+  <Button buttonType="text" size="small">
+    Text Button
+  </Button>
+);
+export const textMedium = () => (
+  <Button buttonType="text" size="medium">
+    Text Button
+  </Button>
+);
+export const textLarge = () => (
+  <Button buttonType="text" size="large">
+    Text Button
+  </Button>
+);
 
 export const textDisabledSmall = () => (
-  <TextButton disabled size="small">
+  <Button buttonType="text" disabled size="small">
     Disabled
-  </TextButton>
-)
+  </Button>
+);
 export const textDisabledMedium = () => (
-  <TextButton disabled size="medium">
+  <Button buttonType="text" disabled size="medium">
     Disabled
-  </TextButton>
-)
+  </Button>
+);
 export const textDisabledLarge = () => (
-  <TextButton disabled size="large">
+  <Button buttonType="text" disabled size="large">
     Disabled
-  </TextButton>
-)
+  </Button>
+);
 
 // Critical
 
 export const textCriticalSmall = () => (
-  <TextButton size="small" critical>
+  <Button buttonType="text" size="small" critical>
     Critical
-  </TextButton>
-)
+  </Button>
+);
 export const textCriticalMedium = () => (
-  <TextButton size="medium" critical>
+  <Button buttonType="text" size="medium" critical>
     Critical
-  </TextButton>
-)
+  </Button>
+);
 export const textCriticalLarge = () => (
-  <TextButton size="large" critical>
+  <Button buttonType="text" size="large" critical>
     Critical
-  </TextButton>
-)
+  </Button>
+);
 
 // Success
 
 export const textSuccessSmall = () => (
-  <TextButton size="small" success>
+  <Button buttonType="text" size="small" success>
     Success
-  </TextButton>
-)
+  </Button>
+);
 export const textSuccessMedium = () => (
-  <TextButton size="medium" success>
+  <Button buttonType="text" size="medium" success>
     Success
-  </TextButton>
-)
+  </Button>
+);
 export const textSuccessLarge = () => (
-  <TextButton size="large" success>
+  <Button buttonType="text" size="large" success>
     Success
-  </TextButton>
-)
+  </Button>
+);
 
 // Icon Text Button
 
 export const textIconSmall = () => (
-  <TextButton size="small" icon="block">
+  <Button buttonType="text" size="small" icon="block">
     Icon Text Button
-  </TextButton>
-)
+  </Button>
+);
 export const textIconMedium = () => (
-  <TextButton size="medium" icon="block">
+  <Button buttonType="text" size="medium" icon="block">
     Icon Text Button
-  </TextButton>
-)
+  </Button>
+);
 export const textIconLarge = () => (
-  <TextButton size="large" icon="block">
+  <Button buttonType="text" size="large" icon="block">
     Icon Text Button
-  </TextButton>
-)
+  </Button>
+);
 
 export const textIconSmallCritical = () => (
-  <TextButton size="small" icon="block" critical>
+  <Button buttonType="text" size="small" icon="block" critical>
     Critical Text Button
-  </TextButton>
-)
+  </Button>
+);
 export const textIconMediumCritical = () => (
-  <TextButton size="medium" icon="block" critical>
+  <Button buttonType="text" size="medium" icon="block" critical>
     Critical Text Button
-  </TextButton>
-)
+  </Button>
+);
 export const textIconLargeCritical = () => (
-  <TextButton size="large" icon="block" critical>
+  <Button buttonType="text" size="large" icon="block" critical>
     Critical Text Button
-  </TextButton>
-)
+  </Button>
+);
 
 export const textIconSmallSuccess = () => (
-  <TextButton size="small" icon="block" success>
+  <Button buttonType="text" size="small" icon="block" success>
     Success Text Button
-  </TextButton>
-)
+  </Button>
+);
 export const textIconMediumSuccess = () => (
-  <TextButton size="medium" icon="block" success>
+  <Button buttonType="text" size="medium" icon="block" success>
     Success Text Button
-  </TextButton>
-)
+  </Button>
+);
 export const textIconLargeSuccess = () => (
-  <TextButton size="large" icon="block" success>
+  <Button buttonType="text" size="large" icon="block" success>
     Success Text Button
-  </TextButton>
-)
+  </Button>
+);
 
 export const textIconDisabledSmall = () => (
-  <TextButton size="small" icon="block" disabled>
+  <Button buttonType="text" size="small" icon="block" disabled>
     Icon Text
-  </TextButton>
-)
+  </Button>
+);
 export const textIconDisabledMedium = () => (
-  <TextButton size="medium" icon="block" disabled>
+  <Button buttonType="text" size="medium" icon="block" disabled>
     Icon Text
-  </TextButton>
-)
+  </Button>
+);
 export const textIconDisabledLarge = () => (
-  <TextButton size="large" icon="block" disabled>
+  <Button buttonType="text" size="large" icon="block" disabled>
     Icon Text
-  </TextButton>
-)
+  </Button>
+);
 
 // Icon Only
-export const textIconOnlySmall = () => <TextButton size="small" icon="checkmark" />
-export const textIconOnlyMedium = () => <TextButton size="medium" icon="checkmark" />
-export const textIconOnlyLarge = () => <TextButton size="large" icon="checkmark" />
+export const textIconOnlySmall = () => (
+  <Button buttonType="text" size="small" icon="checkmark" />
+);
+export const textIconOnlyMedium = () => (
+  <Button buttonType="text" size="medium" icon="checkmark" />
+);
+export const textIconOnlyLarge = () => (
+  <Button buttonType="text" size="large" icon="checkmark" />
+);
 
-export const textIconOnlyDisabledSmall = () => <TextButton disabled size="small" icon="checkmark" />
-export const textIconOnlyDisabledMedium = () => <TextButton disabled size="medium" icon="checkmark" />
-export const textIconOnlyDisabledLarge = () => <TextButton disabled size="large" icon="checkmark" />
+export const textIconOnlyDisabledSmall = () => (
+  <Button buttonType="text" disabled size="small" icon="checkmark" />
+);
+export const textIconOnlyDisabledMedium = () => (
+  <Button buttonType="text" disabled size="medium" icon="checkmark" />
+);
+export const textIconOnlyDisabledLarge = () => (
+  <Button buttonType="text" disabled size="large" icon="checkmark" />
+);
 
 // Icon Text
 export const textIconSmallLeft = () => (
-  <TextButton size="small" icon="block" left>
+  <Button buttonType="text" size="small" icon="block" iconLocation="left">
     Icon Text
-  </TextButton>
-)
+  </Button>
+);
 export const textIconMediumLeft = () => (
-  <TextButton size="medium" icon="block" left>
+  <Button buttonType="text" size="medium" icon="block" iconLocation="left">
     Icon Text
-  </TextButton>
-)
+  </Button>
+);
 export const textIconLargeLeft = () => (
-  <TextButton size="large" icon="block" left>
+  <Button buttonType="text" size="large" icon="block" iconLocation="left">
     Icon Text
-  </TextButton>
-)
+  </Button>
+);
 export const textIconSmallRight = () => (
-  <TextButton size="small" icon="block" right>
+  <Button buttonType="text" size="small" icon="block" iconLocation="right">
     Icon Text
-  </TextButton>
-)
+  </Button>
+);
 export const textIconMediumRight = () => (
-  <TextButton size="medium" icon="block" right>
+  <Button buttonType="text" size="medium" icon="block" iconLocation="right">
     Icon Text
-  </TextButton>
-)
+  </Button>
+);
 export const textIconLargeRight = () => (
-  <TextButton size="large" icon="block" right>
+  <Button buttonType="text" size="large" icon="block" iconLocation="right">
     Icon Text
-  </TextButton>
-)
+  </Button>
+);

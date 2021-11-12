@@ -1,152 +1,193 @@
-import React, { useState } from "react"
-import { PrimaryButton } from "../Button"
+import React, { useState } from "react";
+import { Button } from "../Button";
 
 export default {
-  title: "Components / Button / PrimaryButton",
-  component: PrimaryButton,
-}
+  title: "Components / Button / Primary Button",
+  component: Button,
+};
 
 export const Functional = () => {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   const states = {
     0: false,
     1: false,
     2: false,
-  }
+  };
 
-  states[count] = true
+  states[count] = true;
 
   return (
-    <PrimaryButton loading={states[1]} success={states[2]} onClick={() => setCount((count + 1) % 3)}>
+    <Button
+      buttonType="primary"
+      loading={states[1]}
+      success={states[2]}
+      onClick={() => setCount((count + 1) % 3)}
+    >
       Primary
-    </PrimaryButton>
-  )
-}
+    </Button>
+  );
+};
 
 // Primary
 
-export const primarySmall = () => <PrimaryButton size="small">Primary</PrimaryButton>
-export const primaryMedium = () => <PrimaryButton size="medium">Primary</PrimaryButton>
-export const primaryLarge = () => <PrimaryButton size="large">Primary</PrimaryButton>
+export const primarySmall = () => (
+  <Button buttonType="primary" size="small">
+    Primary
+  </Button>
+);
+export const primaryMedium = () => (
+  <Button buttonType="primary" size="medium">
+    Primary
+  </Button>
+);
+export const primaryLarge = () => (
+  <Button buttonType="primary" size="large">
+    Primary
+  </Button>
+);
 
 export const primaryDisabledSmall = () => (
-  <PrimaryButton disabled size="small">
+  <Button buttonType="primary" disabled size="small">
     Disabled
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryDisabledMedium = () => (
-  <PrimaryButton disabled size="medium">
+  <Button buttonType="primary" disabled size="medium">
     Disabled
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryDisabledLarge = () => (
-  <PrimaryButton disabled size="large">
+  <Button buttonType="primary" disabled size="large">
     Disabled
-  </PrimaryButton>
-)
+  </Button>
+);
 
 // Icon
-export const primaryIconSmall = () => <PrimaryButton size="small" icon="checkmark" />
-export const primaryIconMedium = () => <PrimaryButton size="medium" icon="checkmark" />
-export const primaryIconLarge = () => <PrimaryButton size="large" icon="checkmark" />
+export const primaryIconSmall = () => (
+  <Button buttonType="primary" size="small" icon="checkmark" />
+);
+export const primaryIconMedium = () => (
+  <Button buttonType="primary" size="medium" icon="checkmark" />
+);
+export const primaryIconLarge = () => (
+  <Button buttonType="primary" size="large" icon="checkmark" />
+);
 
-export const primaryIconDisabledSmall = () => <PrimaryButton disabled size="small" icon="checkmark" />
-export const primaryIconDisabledMedium = () => <PrimaryButton disabled size="medium" icon="checkmark" />
-export const primaryIconDisabledLarge = () => <PrimaryButton disabled size="large" icon="checkmark" />
+export const primaryIconDisabledSmall = () => (
+  <Button buttonType="primary" disabled size="small" icon="checkmark" />
+);
+export const primaryIconDisabledMedium = () => (
+  <Button buttonType="primary" disabled size="medium" icon="checkmark" />
+);
+export const primaryIconDisabledLarge = () => (
+  <Button buttonType="primary" disabled size="large" icon="checkmark" />
+);
 
 // Critical
 
 export const primaryCriticalSmall = () => (
-  <PrimaryButton size="small" critical>
+  <Button buttonType="primary" size="small" critical>
     Critical
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryCriticalMedium = () => (
-  <PrimaryButton size="medium" critical>
+  <Button buttonType="primary" size="medium" critical>
     Critical
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryCriticalLarge = () => (
-  <PrimaryButton size="large" critical>
+  <Button buttonType="primary" size="large" critical>
     Critical
-  </PrimaryButton>
-)
+  </Button>
+);
 
 // Success and Loading with text
 
 export const primarySuccessSmall = () => (
-  <PrimaryButton size="small" success>
+  <Button buttonType="primary" size="small" success>
     Success
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primarySuccessMedium = () => (
-  <PrimaryButton size="medium" success>
+  <Button buttonType="primary" size="medium" success>
     Success
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primarySuccessLarge = () => (
-  <PrimaryButton size="large" success>
+  <Button buttonType="primary" size="large" success>
     Success
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryLoadingSmall = () => (
-  <PrimaryButton size="small" loading>
+  <Button buttonType="primary" size="small" loading>
     Loading
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryLoadingMedium = () => (
-  <PrimaryButton size="medium" loading>
+  <Button buttonType="primary" size="medium" loading>
     Loading
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryLoadingLarge = () => (
-  <PrimaryButton size="large" loading>
+  <Button buttonType="primary" size="large" loading>
     Loading
-  </PrimaryButton>
-)
+  </Button>
+);
 
 // Success and Loading icon only
 
-export const primarySuccessIconSmall = () => <PrimaryButton size="small" success />
-export const primarySuccessIconMedium = () => <PrimaryButton size="medium" success />
-export const primarySuccessIconLarge = () => <PrimaryButton size="large" success />
+export const primarySuccessIconSmall = () => (
+  <Button buttonType="primary" size="small" success />
+);
+export const primarySuccessIconMedium = () => (
+  <Button buttonType="primary" size="medium" success />
+);
+export const primarySuccessIconLarge = () => (
+  <Button buttonType="primary" size="large" success />
+);
 
-export const primaryLoadingIconSmall = () => <PrimaryButton size="small" loading />
-export const primaryLoadingIconMedium = () => <PrimaryButton size="medium" loading />
-export const primaryLoadingIconLarge = () => <PrimaryButton size="large" loading />
+export const primaryLoadingIconSmall = () => (
+  <Button buttonType="primary" size="small" loading />
+);
+export const primaryLoadingIconMedium = () => (
+  <Button buttonType="primary" size="medium" loading />
+);
+export const primaryLoadingIconLarge = () => (
+  <Button buttonType="primary" size="large" loading />
+);
 
 // Icon Text
 export const primaryIconSmallLeft = () => (
-  <PrimaryButton size="small" icon="add" left>
+  <Button buttonType="primary" size="small" icon="add" iconLocation="left">
     Icon Text
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryIconMediumLeft = () => (
-  <PrimaryButton size="medium" icon="add" left>
+  <Button buttonType="primary" size="medium" icon="add" iconLocation="left">
     Icon Text
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryIconLargeLeft = () => (
-  <PrimaryButton size="large" icon="add" left>
+  <Button buttonType="primary" size="large" icon="add" iconLocation="left">
     Icon Text
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryIconSmallRight = () => (
-  <PrimaryButton size="small" icon="add" right>
+  <Button buttonType="primary" size="small" icon="add" iconLocation="right">
     Icon Text
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryIconMediumRight = () => (
-  <PrimaryButton size="medium" icon="add" right>
+  <Button buttonType="primary" size="medium" icon="add" iconLocation="right">
     Icon Text
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryIconLargeRight = () => (
-  <PrimaryButton size="large" icon="add" right>
+  <Button buttonType="primary" size="large" icon="add" iconLocation="right">
     Icon Text
-  </PrimaryButton>
-)
+  </Button>
+);
 
 //
 //			PILL
@@ -155,135 +196,159 @@ export const primaryIconLargeRight = () => (
 // Primary
 
 export const primaryPillSmall = () => (
-  <PrimaryButton pill size="small">
+  <Button buttonType="primary" pill size="small">
     Primary
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillMedium = () => (
-  <PrimaryButton pill size="medium">
+  <Button buttonType="primary" pill size="medium">
     Primary
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillLarge = () => (
-  <PrimaryButton pill size="large">
+  <Button buttonType="primary" pill size="large">
     Primary
-  </PrimaryButton>
-)
+  </Button>
+);
 
 export const primaryPillDisabledSmall = () => (
-  <PrimaryButton pill disabled size="small">
+  <Button buttonType="primary" pill disabled size="small">
     Disabled
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillDisabledMedium = () => (
-  <PrimaryButton pill disabled size="medium">
+  <Button buttonType="primary" pill disabled size="medium">
     Disabled
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillDisabledLarge = () => (
-  <PrimaryButton pill disabled size="large">
+  <Button buttonType="primary" pill disabled size="large">
     Disabled
-  </PrimaryButton>
-)
+  </Button>
+);
 
 // Icon
-export const primaryPillIconSmall = () => <PrimaryButton pill size="small" icon="checkmark" />
-export const primaryPillIconMedium = () => <PrimaryButton pill size="medium" icon="checkmark" />
-export const primaryPillIconLarge = () => <PrimaryButton pill size="large" icon="checkmark" />
+export const primaryPillIconSmall = () => (
+  <Button buttonType="primary" pill size="small" icon="checkmark" />
+);
+export const primaryPillIconMedium = () => (
+  <Button buttonType="primary" pill size="medium" icon="checkmark" />
+);
+export const primaryPillIconLarge = () => (
+  <Button buttonType="primary" pill size="large" icon="checkmark" />
+);
 
-export const primaryPillIconDisabledSmall = () => <PrimaryButton pill disabled size="small" icon="checkmark" />
-export const primaryPillIconDisabledMedium = () => <PrimaryButton pill disabled size="medium" icon="checkmark" />
-export const primaryPillIconDisabledLarge = () => <PrimaryButton pill disabled size="large" icon="checkmark" />
+export const primaryPillIconDisabledSmall = () => (
+  <Button buttonType="primary" pill disabled size="small" icon="checkmark" />
+);
+export const primaryPillIconDisabledMedium = () => (
+  <Button buttonType="primary" pill disabled size="medium" icon="checkmark" />
+);
+export const primaryPillIconDisabledLarge = () => (
+  <Button buttonType="primary" pill disabled size="large" icon="checkmark" />
+);
 
 // Critical
 
 export const primaryPillCriticalSmall = () => (
-  <PrimaryButton pill size="small" critical>
+  <Button buttonType="primary" pill size="small" critical>
     Critical
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillCriticalMedium = () => (
-  <PrimaryButton pill size="medium" critical>
+  <Button buttonType="primary" pill size="medium" critical>
     Critical
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillCriticalLarge = () => (
-  <PrimaryButton pill size="large" critical>
+  <Button buttonType="primary" pill size="large" critical>
     Critical
-  </PrimaryButton>
-)
+  </Button>
+);
 
 // Success and Loading with text
 
 export const primaryPillSuccessSmall = () => (
-  <PrimaryButton pill size="small" success>
+  <Button buttonType="primary" pill size="small" success>
     Success
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillSuccessMedium = () => (
-  <PrimaryButton pill size="medium" success>
+  <Button buttonType="primary" pill size="medium" success>
     Success
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillSuccessLarge = () => (
-  <PrimaryButton pill size="large" success>
+  <Button buttonType="primary" pill size="large" success>
     Success
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillLoadingSmall = () => (
-  <PrimaryButton pill size="small" loading>
+  <Button buttonType="primary" pill size="small" loading>
     Loading
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillLoadingMedium = () => (
-  <PrimaryButton pill size="medium" loading>
+  <Button buttonType="primary" pill size="medium" loading>
     Loading
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillLoadingLarge = () => (
-  <PrimaryButton pill size="large" loading>
+  <Button buttonType="primary" pill size="large" loading>
     Loading
-  </PrimaryButton>
-)
+  </Button>
+);
 
 // Success and Loading icon only
 
-export const primaryPillSuccessIconSmall = () => <PrimaryButton pill size="small" success />
-export const primaryPillSuccessIconMedium = () => <PrimaryButton pill size="medium" success />
-export const primaryPillSuccessIconLarge = () => <PrimaryButton pill size="large" success />
+export const primaryPillSuccessIconSmall = () => (
+  <Button buttonType="primary" pill size="small" success />
+);
+export const primaryPillSuccessIconMedium = () => (
+  <Button buttonType="primary" pill size="medium" success />
+);
+export const primaryPillSuccessIconLarge = () => (
+  <Button buttonType="primary" pill size="large" success />
+);
 
-export const primaryPillLoadingIconSmall = () => <PrimaryButton pill size="small" loading />
-export const primaryPillLoadingIconMedium = () => <PrimaryButton pill size="medium" loading />
-export const primaryPillLoadingIconLarge = () => <PrimaryButton pill size="large" loading />
+export const primaryPillLoadingIconSmall = () => (
+  <Button buttonType="primary" pill size="small" loading />
+);
+export const primaryPillLoadingIconMedium = () => (
+  <Button buttonType="primary" pill size="medium" loading />
+);
+export const primaryPillLoadingIconLarge = () => (
+  <Button buttonType="primary" pill size="large" loading />
+);
 
 // Icon Text
 export const primaryPillIconSmallLeft = () => (
-  <PrimaryButton pill size="small" icon="add" left>
+  <Button buttonType="primary" pill size="small" icon="add"iconLocation="left" >
     Icon Text
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillIconMediumLeft = () => (
-  <PrimaryButton pill size="medium" icon="add" left>
+  <Button buttonType="primary" pill size="medium" icon="add"iconLocation="left">
     Icon Text
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillIconLargeLeft = () => (
-  <PrimaryButton pill size="large" icon="add" left>
+  <Button buttonType="primary" pill size="large" icon="add"iconLocation="left">
     Icon Text
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillIconSmallRight = () => (
-  <PrimaryButton pill size="small" icon="add" right>
+  <Button buttonType="primary" pill size="small" icon="add" iconLocation="right">
     Icon Text
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillIconMediumRight = () => (
-  <PrimaryButton pill size="medium" icon="add" right>
+  <Button buttonType="primary" pill size="medium" icon="add" iconLocation="right">
     Icon Text
-  </PrimaryButton>
-)
+  </Button>
+);
 export const primaryPillIconLargeRight = () => (
-  <PrimaryButton pill size="large" icon="add" right>
+  <Button buttonType="primary" pill size="large" icon="add" iconLocation="right">
     Icon Text
-  </PrimaryButton>
-)
+  </Button>
+);

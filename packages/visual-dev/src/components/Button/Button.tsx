@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import { IconKey, Icon } from "../Icon";
-import { loadingAnimation } from "./Animations";
+import { loadingAnimation, successAnimation } from "./Animations";
 import * as Styles from "./Styles";
 
 type ButtonProps = OptionProps &
@@ -15,7 +15,7 @@ interface OptionProps {
 }
 
 interface StyleProps {
-  buttonType?: "primary" | "secondary";
+  buttonType?: "primary" | "secondary" | "text";
   pill?: boolean;
   loading?: boolean;
   critical?: boolean;
@@ -26,15 +26,17 @@ interface StyleProps {
 
 const StyledButton = styled.button<Required<StyleProps>>`
   ${Styles.base}
-  ${(props) =>
-    props.buttonType == "primary" ? Styles.primary : Styles.secondary}
+  ${(props) => Styles[props.buttonType]}
   ${(props) => props.pill && Styles.pill}
   ${(props) => props.size == "small" && Styles.small}
   ${(props) => props.size == "medium" && Styles.medium}
   ${(props) => props.size == "large" && Styles.large}
-  ${(props) => props.critical && Styles.secondary_critical}
-  ${(props) => props.success && Styles.secondary_success}
-  ${(props) => props.loading && Styles.secondary_loading}
+  ${(props) => props.critical && Styles[`${props.buttonType}_critical`]}
+  ${(props) => props.success && Styles[`${props.buttonType}_success`]}
+  ${(props) =>
+    props.loading &&
+    props.buttonType != "text" &&
+    Styles[`${props.buttonType}_loading`]}
   ${(props) => props.css}
 `;
 
@@ -73,15 +75,25 @@ export const Button = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
         {iconLocation == "right" && icon && (
           <Icon icon={icon} size={Styles.icon_size[size]} />
         )}
-        {loading && (
+        {loading && props.buttonType != "text" && (
           <>
             {children && (
               <span style={{ padding: Styles.anim_padding[size] }}></span>
             )}
             {loadingAnimation(
               Styles.loading_anim[size],
-              "var(--sq-action-secondary-border)"
+              buttontype == "primary"
+                ? "var(--sq-action-primary)"
+                : "var(--sq-action-secondary-border)"
             )}
+          </>
+        )}
+        {buttontype == "primary" && success && (
+          <>
+            {children && (
+              <span style={{ padding: Styles.anim_padding[size] }}></span>
+            )}
+            {successAnimation(Styles.checkmark_anim[size])}
           </>
         )}
       </StyledButton>
