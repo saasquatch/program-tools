@@ -14,6 +14,7 @@ export default {
       pattern: {
         size: ["small", "medium", "large"],
         pill: [true, false],
+        buttonType: ["primary", "secondary"],
       },
       // backgroundColor: "rgba(0,0,0,0.7)", // Optional: If you want to change backgournd color
       // showOriginal: true, // Optional: If you want to show original component set to true
