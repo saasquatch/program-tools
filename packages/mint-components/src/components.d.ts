@@ -811,6 +811,8 @@ export namespace Components {
     interface SqmTableRow {
         "border": string;
     }
+    interface SqmTaskCard {
+    }
     interface SqmText {
     }
     interface SqmTextSpan {
@@ -1145,6 +1147,12 @@ declare global {
         prototype: HTMLSqmTableRowElement;
         new (): HTMLSqmTableRowElement;
     };
+    interface HTMLSqmTaskCardElement extends Components.SqmTaskCard, HTMLStencilElement {
+    }
+    var HTMLSqmTaskCardElement: {
+        prototype: HTMLSqmTaskCardElement;
+        new (): HTMLSqmTaskCardElement;
+    };
     interface HTMLSqmTextElement extends Components.SqmText, HTMLStencilElement {
     }
     var HTMLSqmTextElement: {
@@ -1218,6 +1226,7 @@ declare global {
         "sqm-stencilbook": HTMLSqmStencilbookElement;
         "sqm-table-cell": HTMLSqmTableCellElement;
         "sqm-table-row": HTMLSqmTableRowElement;
+        "sqm-task-card": HTMLSqmTaskCardElement;
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
@@ -1994,6 +2003,8 @@ declare namespace LocalJSX {
     interface SqmTableRow {
         "border"?: string;
     }
+    interface SqmTaskCard {
+    }
     interface SqmText {
     }
     interface SqmTextSpan {
@@ -2087,6 +2098,7 @@ declare namespace LocalJSX {
         "sqm-stencilbook": SqmStencilbook;
         "sqm-table-cell": SqmTableCell;
         "sqm-table-row": SqmTableRow;
+        "sqm-task-card": SqmTaskCard;
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
         "sqm-titled-section": SqmTitledSection;
@@ -2145,6 +2157,7 @@ declare module "@stencil/core" {
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
             "sqm-table-cell": LocalJSX.SqmTableCell & JSXBase.HTMLAttributes<HTMLSqmTableCellElement>;
             "sqm-table-row": LocalJSX.SqmTableRow & JSXBase.HTMLAttributes<HTMLSqmTableRowElement>;
+            "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;

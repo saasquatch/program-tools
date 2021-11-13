@@ -34,6 +34,7 @@ import * as ReferralTableCell from "../../stories/ReferralTableCell.stories";
 import * as ReferralTableRewardsCell from "../../stories/ReferralTableRewardsCell.stories";
 import * as UserName from "../../stories/UserName.stories";
 import * as PasswordField from "../../stories/PasswordField.stories";
+import * as TaskCard from "../sqm-task-card/TaskCard.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -72,6 +73,7 @@ const stories = [
   ReferralTableRewardsCell,
   UserName,
   PasswordField,
+  TaskCard
 ];
 
 /**
