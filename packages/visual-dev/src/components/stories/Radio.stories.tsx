@@ -12,11 +12,11 @@ const ShadowDom = styled(root.div)``
 
 export const Functional = () => {
   return (
-    <RadioGroup>
+    <div>
       <Radio options={{ text: 'Option 1' }} name='group1' />
       <Radio options={{ text: 'Option 2' }} name='group1' />
       <Radio options={{ text: 'Option 3' }} name='group1' />
-    </RadioGroup>
+    </div>
   )
 }
 
