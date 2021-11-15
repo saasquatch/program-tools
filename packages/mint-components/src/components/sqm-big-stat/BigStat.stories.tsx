@@ -1,8 +1,8 @@
 import { h } from "@stencil/core";
-import { BigStatView } from "../components/sqm-big-stat/sqm-big-stat-view";
+import { BigStatView } from "./sqm-big-stat-view";
 
 export default {
-  title: "Big Stat",
+  title: "Components/Big Stat",
 };
 
 export const Default = () => {

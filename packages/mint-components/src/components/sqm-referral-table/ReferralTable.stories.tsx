@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { ReferralTableView } from "../components/sqm-referral-table/sqm-referral-table-view";
+import { ReferralTableView } from "./sqm-referral-table-view";
 import {
   AvailableNoExpiry,
   Cancelled,
@@ -9,7 +9,7 @@ import {
 } from "./ReferralTableRewardsCell.stories";
 
 export default {
-  title: "Referral Table",
+  title: "Components/Referral Table",
 };
 
 const loadingElement = (

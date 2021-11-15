@@ -1,10 +1,10 @@
 import { h } from "@stencil/core";
-import { BigStatView } from "../components/sqm-big-stat/sqm-big-stat-view";
-import { useDemoBigStat } from "../components/sqm-big-stat/useDemoBigStat";
-import { useBigStat } from "../components/sqm-big-stat/useBigStat";
+import { BigStatView } from "./sqm-big-stat-view";
+import { useDemoBigStat } from "./useDemoBigStat";
+import { useBigStat } from "./useBigStat";
 import { useState } from "@saasquatch/stencil-hooks";
 
-import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
+import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 
 export default {
   title: "Hooks / useBigStat",

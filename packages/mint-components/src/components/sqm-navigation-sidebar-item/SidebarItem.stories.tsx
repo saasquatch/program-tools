@@ -1,8 +1,8 @@
 import { h } from "@stencil/core";
-import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
+import { NavigationSidebarItemView } from "./sqm-navigation-sidebar-item-view";
 
 export default {
-  title: "Sidebar Item",
+  title: "Components/Sidebar Item",
 };
 
 export const InactiveItem = () => {

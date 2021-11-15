@@ -1,8 +1,8 @@
 import { h } from "@stencil/core";
-import { LeaderboardRankView } from "../components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
+import { LeaderboardRankView } from "./sqm-leaderboard-rank-view";
 
 export default {
-  title: "Leaderboard Rank",
+  title: "Components/Leaderboard Rank",
 };
 
 export const First = () => {

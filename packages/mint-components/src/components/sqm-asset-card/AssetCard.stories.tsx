@@ -1,8 +1,8 @@
 import { h } from "@stencil/core";
-import { AssetCardView } from "../components/sqm-asset-card/sqm-asset-card-view";
+import { AssetCardView } from "./sqm-asset-card-view";
 
 export default {
-  title: "Asset Card",
+  title: "Components/Asset Card",
 };
 
 export const Default = () => {

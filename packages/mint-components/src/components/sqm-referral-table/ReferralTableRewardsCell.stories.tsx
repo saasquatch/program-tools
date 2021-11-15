@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import { DateTime } from "luxon";
 
 export default {
-  title: "Referral Table Rewards Cell",
+  title: "Components/Referral Table Rewards Cell",
 };
 
 const baseReward: Reward = {

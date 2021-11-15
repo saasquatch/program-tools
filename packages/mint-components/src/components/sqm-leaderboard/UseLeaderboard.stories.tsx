@@ -1,10 +1,10 @@
 import { h } from "@stencil/core";
-import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
+import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 import {
   LeaderboardProps,
   useLeaderboard,
-} from "../components/sqm-leaderboard/useLeaderboard";
-import { LeaderboardView } from "../components/sqm-leaderboard/sqm-leaderboard-view";
+} from "./useLeaderboard";
+import { LeaderboardView } from "./sqm-leaderboard-view";
 
 export default {
   title: "Hooks / useLeaderboard",

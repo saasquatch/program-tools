@@ -1,8 +1,8 @@
 import { h } from "@stencil/core";
-import { LeaderboardView } from "../components/sqm-leaderboard/sqm-leaderboard-view";
+import { LeaderboardView } from "./sqm-leaderboard-view";
 
 export default {
-  title: "Leaderboard",
+  title: "Components/Leaderboard",
   parameters: {
     tagname: "sqm-leaderboard",
   },

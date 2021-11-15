@@ -2,11 +2,11 @@ import { h } from "@stencil/core";
 import {
   PortalResetPasswordView,
   PortalResetPasswordViewProps,
-} from "../components/sqm-portal-reset-password/sqm-portal-reset-password-view";
-import scenario from "../components/sqm-portal-reset-password/sqm-portal-reset-password.feature";
+} from "./sqm-portal-reset-password-view";
+import scenario from "./sqm-portal-reset-password.feature";
 
 export default {
-  title: "Portal Reset Password",
+  title: "Components/Portal Reset Password",
   parameters: {
     scenario,
   },

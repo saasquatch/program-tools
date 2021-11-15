@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
-import { useShareButton } from "../components/sqm-share-button/useShareButton";
+import { useShareButton } from "./useShareButton";
 
-import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
+import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 
 export default {
   title: "Hooks / useShareButton",

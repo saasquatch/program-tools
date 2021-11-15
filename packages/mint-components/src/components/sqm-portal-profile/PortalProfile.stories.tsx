@@ -4,10 +4,10 @@ import preset from "jss-preset-default";
 import {
   PortalProfileView,
   PortalProfileViewProps,
-} from "../components/sqm-portal-profile/sqm-portal-profile-view";
+} from "./sqm-portal-profile-view";
 
 export default {
-  title: "Portal Profile",
+  title: "Components/Portal Profile",
 };
 
 // const style = {};

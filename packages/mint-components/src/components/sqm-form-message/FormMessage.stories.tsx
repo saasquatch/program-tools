@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 
 export default {
-  title: "Form Message",
+  title: "Components/Form Message",
 };
 
 export const SuccessAlert = () => {

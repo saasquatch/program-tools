@@ -2,10 +2,10 @@ import { h } from "@stencil/core";
 import {
   PortalLoginView,
   PortalLoginViewProps,
-} from "../components/sqm-portal-login/sqm-portal-login-view";
+} from "./sqm-portal-login-view";
 
 export default {
-  title: "Portal Login",
+  title: "Components/Portal Login",
 };
 
 const defaultProps: PortalLoginViewProps = {

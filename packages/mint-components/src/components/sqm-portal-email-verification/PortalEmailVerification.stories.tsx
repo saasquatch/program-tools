@@ -2,11 +2,11 @@ import { h } from "@stencil/core";
 import {
   PortalEmailVerificationView,
   PortalEmailVerificationViewProps,
-} from "../components/sqm-portal-email-verification/sqm-portal-email-verification-view";
-import scenario from "../components/sqm-portal-email-verification/sqm-portal-email-verification.feature";
+} from "./sqm-portal-email-verification-view";
+import scenario from "./sqm-portal-email-verification.feature";
 
 export default {
-  title: "Portal Email Verification",
+  title: "Components/Portal Email Verification",
   parameters: {
     scenario,
   },

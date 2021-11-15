@@ -1,9 +1,9 @@
 import { h } from "@stencil/core";
-import { PortalChangePasswordView } from "../components/sqm-portal-change-password/sqm-portal-change-password-view";
-import scenario from "../components/sqm-portal-change-password/sqm-portal-change-password.feature";
+import { PortalChangePasswordView } from "./sqm-portal-change-password-view";
+import scenario from "./sqm-portal-change-password.feature";
 
 export default {
-  title: "Change Password",
+  title: "Components/Change Password",
   parameters: {
     scenario,
   },

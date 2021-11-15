@@ -1,9 +1,9 @@
 import { h } from "@stencil/core";
-import { NavigationSidebarView } from "../components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
-import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
+import { NavigationSidebarView } from "./sqm-navigation-sidebar-view";
+import { NavigationSidebarItemView } from "../sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 
 export default {
-  title: "Navigation Sidebar",
+  title: "Components/Navigation Sidebar",
 };
 
 export const DefaultNavigationSidebar = () => {

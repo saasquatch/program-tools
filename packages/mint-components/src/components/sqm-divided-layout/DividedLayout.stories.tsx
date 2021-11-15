@@ -1,10 +1,10 @@
 import { h } from "@stencil/core";
-import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
-import { NavigationSidebarView } from "../components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
-import { PortalSectionView } from "../components/sqm-titled-section/sqm-portal-section-view";
+import { NavigationSidebarItemView } from "../sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
+import { NavigationSidebarView } from "../sqm-navigation-sidebar/sqm-navigation-sidebar-view";
+import { PortalSectionView } from "../sqm-titled-section/sqm-portal-section-view";
 
 export default {
-  title: "Divided Layout",
+  title: "Components/Divided Layout",
 };
 
 const barProps = {

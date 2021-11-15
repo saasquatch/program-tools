@@ -1,8 +1,8 @@
 import { h } from "@stencil/core";
-import { ShareLinkView } from "../components/sqm-share-link/sqm-share-link-view";
-import { useShareLink } from "../components/sqm-share-link/useShareLink";
+import { ShareLinkView } from "./sqm-share-link-view";
+import { useShareLink } from "./useShareLink";
 
-import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
+import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 
 export default {
   title: "Hooks / useShareLink",

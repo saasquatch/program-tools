@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
+import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 
 function setupGraphQL() {
   const id = "worried-camera@uexwltgh.mailosaur.net";

@@ -1,8 +1,8 @@
 import { h } from "@stencil/core";
-import { ShareLinkView } from "../components/sqm-share-link/sqm-share-link-view";
+import { ShareLinkView } from "./sqm-share-link-view";
 
 export default {
-  title: "Share Link",
+  title: "Components/Share Link",
 };
 
 export const Default = () => {

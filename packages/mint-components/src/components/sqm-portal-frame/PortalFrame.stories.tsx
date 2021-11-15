@@ -1,6 +1,6 @@
 import { navigation, useCurrentPage } from "@saasquatch/component-boilerplate";
 import { h } from "@stencil/core";
-import { PortalFrameView } from "../components/sqm-portal-frame/sqm-portal-frame-view";
+import { PortalFrameView } from "./sqm-portal-frame-view";
 
 function setupGraphQL() {
   const id = "worried-camera@uexwltgh.mailosaur.net";
@@ -37,7 +37,7 @@ function setupLoggedOut() {
 }
 
 export default {
-  title: "Portal Frame",
+  title: "Components/Portal Frame",
 };
 
 const defaultProps = {

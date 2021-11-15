@@ -1,10 +1,10 @@
 import { h } from "@stencil/core";
 
 export default {
-  title: "User Name",
+  title: "Tests/User Name",
 };
 
-export const FullStack = () => {
+export const DemoData = () => {
   return (
     <sqm-user-name
       demoData={{
@@ -16,6 +16,6 @@ export const FullStack = () => {
   );
 };
 
-export const FullStackDefault = () => {
+export const Username = () => {
   return <sqm-user-name></sqm-user-name>;
 };

@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 
 export default {
-  title: "Referral Table Cell",
+  title: "Components/Referral Table Cell",
 };
 
 export const TableCell = () => {
