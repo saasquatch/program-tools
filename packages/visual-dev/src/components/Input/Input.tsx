@@ -20,7 +20,9 @@ interface OptionProps {
   css?: CSSProp;
 }
 
-const ShadowDom = styled(root.div)``;
+const ShadowDom = styled(root.div)`
+  display: contents;
+`;
 
 const InputBox = styled.input<{
   isInvalid: boolean;
