@@ -1,25 +1,31 @@
-import { options } from "marked";
 import React from "react";
 import { Radio } from "./Radio";
-
-interface RJSFRadioWidgetProps {
-  id: string;
-  onChange: any;
-  rawErrors: any;
-  option: {
-    enumOptions: Array<enumOption>;
-  };
-}
+import { WidgetProps } from "@rjsf/core";
 
 interface enumOption {
   label: string;
   value: any;
 }
 
-export const RSJFRadioWidget = (props: any) => {
+function isEnumOption(option: any): option is enumOption{
+  return typeof option === 'object' && option !== null && option.hasOwnProperty("label") && option.hasOwnProperty("value")
+}
+
+function isEnumArray(options: any): options is any[]{
+  return Array.isArray(options)
+}
+
+export const RSJFRadioWidget = (props: WidgetProps) => {
+  const valueOptions = props?.options?.enumOptions
+  if(!isEnumArray(valueOptions)){
+    return <></>
+  }
   return (
     <div>
-      {props.options.enumOptions.map((option: enumOption) => {
+      {valueOptions?.map((option: unknown) => {
+        if(!isEnumOption(option)){
+          return <></>
+        }
         return (
           <Radio
             options={{ text: option.label }}

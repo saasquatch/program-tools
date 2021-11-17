@@ -1,2 +1,2 @@
 export * from "./Radio";
-export * from "./RJSF-Radio"
+export * from "./rjsf-Radio"

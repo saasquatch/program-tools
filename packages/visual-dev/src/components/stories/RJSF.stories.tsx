@@ -3,13 +3,13 @@ import React from "react";
 import { RJSFContainer } from "../Layouts";
 import { Link } from "../Links";
 import { P } from "../Typography";
-import Form from "react-jsonschema-form";
-import { JSONSchema6 } from "json-schema";
+import Form from "@rjsf/core";
 import { ActionsArrayTemplate, DefaultTemplate } from "../FormTemplates";
 import JSONataEditor from "../MapFieldsJsonata";
 import RadioCards from "../RadioCards";
+import { JSONSchema7 } from "json-schema";
 
-const submitActionsSchema: JSONSchema6 = {
+const submitActionsSchema: JSONSchema7 = {
   $id: "http://json-schema.org/draft-06/schema#",
   $schema: "http://json-schema.org/draft-06/schema#",
   type: "object",
