@@ -15,42 +15,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-big-stat>
     - Added program ID prop to optionally be used instead of the default program context
 
-
 ## [1.3.0] - 2021-11-08
 
 ### Changed
 
 - Changed components:
   - \<sqm-share-button>
-      - Exported "icon" part so it can be customizable in the future
-  - \<sqm-portal-change-password> 
-      - Changed sl-button in modal to be of type "primary" instead of "default"
-      - Swapped location of cancel and change password buttons
-      - Added padding between fields
-      - Changed hardcoded text into customizable props
-      - Changed password field input default label to "New Password"
-  - \<sqm-portal-profile> 
-      - Changed hardcoded text into customizable props
-      - Added padding text below header
-  - \<sqm-portal-reset-password> 
-      - Changed hardcoded text into customizable props
-      - Changed password field input default label to "New Password"
-  - \<sqm-portal-register> 
-      - Changed hardcoded text into customizable props
-      - Changed formData slot to add custom inputs to the top of form instead of the bottom
-      - Fixed bug causing the correct error validation message from being shown 
+    - Exported "icon" part so it can be customizable in the future
+  - \<sqm-portal-change-password>
+    - Changed sl-button in modal to be of type "primary" instead of "default"
+    - Swapped location of cancel and change password buttons
+    - Added padding between fields
+    - Changed hardcoded text into customizable props
+    - Changed password field input default label to "New Password"
+  - \<sqm-portal-profile>
+    - Changed hardcoded text into customizable props
+    - Added padding text below header
+  - \<sqm-portal-reset-password>
+    - Changed hardcoded text into customizable props
+    - Changed password field input default label to "New Password"
+  - \<sqm-portal-register>
+    - Changed hardcoded text into customizable props
+    - Changed formData slot to add custom inputs to the top of form instead of the bottom
+    - Fixed bug causing the correct error validation message from being shown
   - \<sqm-portal-email-verification>
-      - Changed hardcoded text into customizable props
+    - Changed hardcoded text into customizable props
   - \<sqm-portal-verify-email>
-      - Fixed bug causing users to get stuck if no userIdent existed when verifying their email
+    - Fixed bug causing users to get stuck if no userIdent existed when verifying their email
 
 ### Added
 
 - Default affiliate portal templates now provided in [Stencilbook](https://mint-components.stencilbook.saasquat.ch)
-    - Default Portal
-    - Multi Program Portal
-    - Lead Submit Portal
-    - Portal Dashboard (program widget)
+  - Default Portal
+  - Multi Program Portal
+  - Lead Submit Portal
+  - Portal Dashboard (program widget)
 - New components added for default affiliate portals
   - \<sqm-portal-footer> Footer for providing FAQ, T&S, and support email
   - \<sqm-hero> One or two column landing page with an optional background
