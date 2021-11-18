@@ -38,7 +38,7 @@ export function RJSFLockableInput(props: WidgetProps) {
         <IconButton
           icon="edit"
           size="mini"
-          css="position: relative; left: -47px;"
+          css="position: relative; left: -30px;"
           primary
           icon_css="margin: -10px; top: 8px;"
           onClick={() => {
@@ -61,7 +61,7 @@ export function RJSFClearableInput(props: WidgetProps) {
         <IconButton
           icon="close"
           size="mini"
-          css="position: relative; left: -47px;"
+          css="position: relative; left: -30px;"
           primary
           icon_css="margin: -10px; top: 8px;"
           onClick={() => {
@@ -87,7 +87,7 @@ export function RJSFCancellableInput(props: WidgetProps) {
           <IconButton
             icon="edit"
             size="mini"
-            css="position: relative; left: -47px;"
+            css="position: relative; left: -30px;"
             primary
             icon_css="margin: -10px; top: 8px;"
             onClick={() => {
