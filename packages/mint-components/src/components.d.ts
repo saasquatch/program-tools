@@ -65,6 +65,11 @@ export namespace Components {
          */
         "flexReverse"?: boolean;
         /**
+          * The ID of the program that is used to scope stats. Defaults to the program ID in context where this widget is loaded.
+          * @uiName Program ID
+         */
+        "programId"?: string;
+        /**
           * Select what type of stat to display. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
@@ -1434,6 +1439,11 @@ declare namespace LocalJSX {
           * @uiName Flex Reverse - controls the order of the stat value & description column
          */
         "flexReverse"?: boolean;
+        /**
+          * The ID of the program that is used to scope stats. Defaults to the program ID in context where this widget is loaded.
+          * @uiName Program ID
+         */
+        "programId"?: string;
         /**
           * Select what type of stat to display. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget
