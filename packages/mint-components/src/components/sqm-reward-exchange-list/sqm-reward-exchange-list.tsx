@@ -1,10 +1,10 @@
 import { Component, h, Host, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { useReferralIframe } from "./useReferralIframe";
+import { useRewardExchangeList } from "./useRewardExchangeList";
 import {
-  ReferralIframeView,
-  ReferralIframeViewProps,
-} from "./sqm-referral-iframe-view";
+  RewardExchangeViewProps,
+  RewardExchangeView,
+} from "./sqm-reward-exchange-list-view";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
@@ -12,33 +12,25 @@ import { getMissingProps, getProps } from "../../utils/utils";
 import { RequiredPropsError } from "../../utils/RequiredPropsError";
 
 /**
- * @uiName Referral IFrame
+ * @uiName Reward Exchange List
  */
 @Component({
-  tag: "sqm-referral-iframe",
+  tag: "sqm-reward-exchange-list",
 })
-export class SqmReferralIframe {
+export class SqmRewardExchangeList {
   @State()
   ignored = true;
 
   /**
-   * @uiName URL of iframe to display
+   * @uiName Type of List
    * @uiRequired
    */
-  @Prop() iframeSrc: string;
-  /**
-   * @uiName Height of the iframe container
-   */
-  @Prop() iframeHeight: string = "100%";
-  /**
-   * @uiName Width of the iframe container
-   */
-  @Prop() iframeWidth: string = "100%";
+  @Prop() listType: string;
   /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<ReferralIframeViewProps>;
+  @Prop() demoData?: DemoData<RewardExchangeViewProps>;
 
   constructor() {
     withHooks(this);
@@ -49,8 +41,8 @@ export class SqmReferralIframe {
   render() {
     const missingProps = getMissingProps([
       {
-        attribute: "iframe-src",
-        value: this.iframeSrc,
+        attribute: "listType",
+        value: this.listType,
       },
     ]);
 
@@ -58,29 +50,36 @@ export class SqmReferralIframe {
       return <RequiredPropsError missingProps={missingProps} />;
     }
 
-    const { states, data } = isDemo()
-      ? useReferralIframeDemo(getProps(this))
-      : useReferralIframe(getProps(this));
+    const { states, data, callbacks } = isDemo()
+      ? useRewardExchangeListDemo(getProps(this))
+      : useRewardExchangeList(getProps(this));
 
     return (
       <Host style={{ display: "contents" }}>
-        <ReferralIframeView data={data} states={states}></ReferralIframeView>
+        <RewardExchangeView
+          states={states}
+          data={data}
+          callbacks={callbacks}
+        ></RewardExchangeView>
       </Host>
     );
   }
 }
 
-function useReferralIframeDemo(props: SqmReferralIframe) {
+function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
   return deepmerge(
     {
       states: {
         content: {
-          iframeSrc: "https://example.com",
+          listType: "https://example.com",
           ...props,
         },
       },
       data: {
         shareCode: "SHARECODE123",
+      },
+      callbacks: {
+        exchange: () => {},
       },
     },
     props.demoData || {},

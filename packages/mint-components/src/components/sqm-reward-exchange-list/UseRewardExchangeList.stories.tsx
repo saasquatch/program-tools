@@ -5,7 +5,8 @@ import {
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { gql } from "graphql-request";
-import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
+import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
+import { useRewardExchangeList } from "./useRewardExchangeList";
 
 const EXCHANGE = gql`
   mutation exchange($exchangeRewardInput: ExchangeRewardInput!) {
@@ -114,6 +115,34 @@ const DefaultView = (props) => {
     </div>
   );
 };
+
+export const RewardList = createHookStory(() => {
+  setupGraphQL();
+  const props = {
+    listType: "",
+    render: () => {},
+    disconnectedCallback: () => {},
+    ignored: true,
+  };
+  const { states, data, callbacks } = useRewardExchangeList(props);
+
+  return (
+    <div>
+      {data.exchangeList?.map((item) => (
+        <button
+          onClick={() =>
+            callbacks.exchange({
+              key: "",
+            })
+          }
+          disabled={!item.available}
+        >
+          {item.name} - {item.description}
+        </button>
+      ))}
+    </div>
+  );
+});
 
 export const FixedGlobalReward = createHookStory(() => {
   const { states, data, callbacks } = useExchangeButton();

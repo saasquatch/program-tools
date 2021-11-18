@@ -29,6 +29,7 @@ import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email
 import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
 import { ReferralTableViewProps } from "./components/sqm-referral-table/sqm-referral-table-view";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
+import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
@@ -814,6 +815,18 @@ export namespace Components {
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
+    interface SqmRewardExchangeList {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<RewardExchangeViewProps>;
+        /**
+          * @uiName Type of List
+          * @uiRequired
+         */
+        "listType": string;
+    }
     interface SqmRoute {
         /**
           * @uiName Navigation path name
@@ -1266,6 +1279,12 @@ declare global {
         prototype: HTMLSqmReferralTableUserColumnElement;
         new (): HTMLSqmReferralTableUserColumnElement;
     };
+    interface HTMLSqmRewardExchangeListElement extends Components.SqmRewardExchangeList, HTMLStencilElement {
+    }
+    var HTMLSqmRewardExchangeListElement: {
+        prototype: HTMLSqmRewardExchangeListElement;
+        new (): HTMLSqmRewardExchangeListElement;
+    };
     interface HTMLSqmRouteElement extends Components.SqmRoute, HTMLStencilElement {
     }
     var HTMLSqmRouteElement: {
@@ -1387,6 +1406,7 @@ declare global {
         "sqm-referral-table-status-column": HTMLSqmReferralTableStatusColumnElement;
         "sqm-referral-table-user-cell": HTMLSqmReferralTableUserCellElement;
         "sqm-referral-table-user-column": HTMLSqmReferralTableUserColumnElement;
+        "sqm-reward-exchange-list": HTMLSqmRewardExchangeListElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
@@ -2174,6 +2194,18 @@ declare namespace LocalJSX {
          */
         "deletedUser"?: string;
     }
+    interface SqmRewardExchangeList {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<RewardExchangeViewProps>;
+        /**
+          * @uiName Type of List
+          * @uiRequired
+         */
+        "listType"?: string;
+    }
     interface SqmRoute {
         /**
           * @uiName Navigation path name
@@ -2415,6 +2447,7 @@ declare namespace LocalJSX {
         "sqm-referral-table-status-column": SqmReferralTableStatusColumn;
         "sqm-referral-table-user-cell": SqmReferralTableUserCell;
         "sqm-referral-table-user-column": SqmReferralTableUserColumn;
+        "sqm-reward-exchange-list": SqmRewardExchangeList;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
         "sqm-share-button": SqmShareButton;
@@ -2476,6 +2509,7 @@ declare module "@stencil/core" {
             "sqm-referral-table-status-column": LocalJSX.SqmReferralTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusColumnElement>;
             "sqm-referral-table-user-cell": LocalJSX.SqmReferralTableUserCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserCellElement>;
             "sqm-referral-table-user-column": LocalJSX.SqmReferralTableUserColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserColumnElement>;
+            "sqm-reward-exchange-list": LocalJSX.SqmRewardExchangeList & JSXBase.HTMLAttributes<HTMLSqmRewardExchangeListElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
