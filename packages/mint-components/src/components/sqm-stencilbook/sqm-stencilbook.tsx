@@ -12,6 +12,7 @@ import * as PortalFrame from "../../stories/PortalFrame.stories";
 import * as EditProfile from "../../stories/EditProfileForm.stories";
 import * as UseShareLink from "../../stories/UseShareLink.stories";
 import * as UseShareButton from "../../stories/UseShareButton.stories";
+import * as UseRewardExchange from "../../stories/UseRewardExchange.stories";
 import * as UseBigStat from "../../stories/UseBigStat.stories";
 import * as UseEditProfile from "../../stories/UseEditProfile.stories";
 import * as UseLeaderboard from "../../stories/UseLeaderboard.stories";
@@ -86,6 +87,8 @@ const stories = [
   Hero,
   ReferralIframe,
   NameFields,
+  UseRewardExchange
+  
 ];
 
 /**
