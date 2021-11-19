@@ -124,24 +124,7 @@ export const RewardList = createHookStory(() => {
     disconnectedCallback: () => {},
     ignored: true,
   };
-  const { states, data, callbacks } = useRewardExchangeList(props);
-
-  return (
-    <div>
-      {data.exchangeList?.map((item) => (
-        <button
-          onClick={() =>
-            callbacks.exchange({
-              key: "",
-            })
-          }
-          disabled={!item.available}
-        >
-          {item.name} - {item.description}
-        </button>
-      ))}
-    </div>
-  );
+  return <sqm-reward-exchange-list list-type="something"></sqm-reward-exchange-list>
 });
 
 export const FixedGlobalReward = createHookStory(() => {

@@ -7,7 +7,8 @@ import {
 import { gql } from "graphql-request";
 import { SqmRewardExchangeList } from "./sqm-reward-exchange-list";
 import { RewardExchangeViewProps } from "./sqm-reward-exchange-list-view";
-
+import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
+import { SlDrawer } from "@shoelace-style/shoelace";
 const GET_EXCHANGE_LIST = gql`
   query getExchangeList {
     viewer {
@@ -42,6 +43,8 @@ const EXCHANGE = gql`
 export function useRewardExchangeList(
   props: SqmRewardExchangeList
 ): RewardExchangeViewProps {
+  const drawerRef = useRef<SlDrawer>();
+  const [selectedItem, setSelectedItem] = useState(undefined);
   const programId = useProgramId();
   const user = useUserIdentity();
 
@@ -49,15 +52,42 @@ export function useRewardExchangeList(
 
   const { data } = useQuery(GET_EXCHANGE_LIST, !user?.jwt);
 
+  function setDrawer(item) {
+    console.log({ item });
+    drawerRef.current.label = item.description;
+    setSelectedItem(item);
+    drawerRef.current?.show();
+  }
+
+  function exchangeReward() {
+    const exchangeVariables = {
+      accountId: user?.accountId,
+      userId: user.id,
+      redeemCreditInput: {
+        amount: selectedItem.name,
+        unit: "POINT",
+      },
+      globalRewardKey: "gc1",
+    };
+
+    console.log(exchangeVariables);
+    // exchange({ exchangeRewardInput: exchangeVariables });
+  }
+
   return {
     states: {
       content: props,
+      selectedItem,
     },
     data: {
       exchangeList: data?.viewer?.visibleRewardExchanges?.data,
     },
     callbacks: {
-      exchange,
+      exchangeReward,
+      setDrawer,
+    },
+    refs: {
+      drawerRef,
     },
   };
 }
