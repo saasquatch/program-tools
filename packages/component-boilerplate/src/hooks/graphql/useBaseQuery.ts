@@ -85,12 +85,11 @@ export function useBaseQuery<T = any>(
   initialState: BaseQueryData<T>
 ): [BaseQueryData<T>, (variables: unknown) => unknown] {
   const client: GraphQLClient = useGraphQLClient();
-  const isMountedRef = useIsMountedRef();
+  // const isMountedRef = useIsMountedRef();
   const [state, dispatch] = useReducer<BaseQueryData<T>, Action<T>>(
     reducer,
     initialState
   );
-
   const update = useCallback(
     async function (variables: unknown) {
       if (!client) {
@@ -105,7 +104,7 @@ export function useBaseQuery<T = any>(
       try {
         dispatch({ type: "loading" });
         const res = await client.request<T>(query, variables);
-        if (!isMountedRef.current) return;
+        // if (!isMountedRef.current) return;
         dispatch({ type: "data", payload: res });
       } catch (error) {
         dispatch({ type: "errors", payload: error });
@@ -118,13 +117,13 @@ export function useBaseQuery<T = any>(
 }
 
 // async cleanup -- https://www.debuggr.io/react-update-unmounted-component/
-function useIsMountedRef() {
-  const isMountedRef = useRef(null);
-  useEffect(() => {
-    isMountedRef.current = true;
-    return () => {
-      isMountedRef.current = false;
-    };
-  });
-  return isMountedRef;
-}
+// function useIsMountedRef() {
+//   const isMountedRef = useRef(true);
+//   useEffect(() => {
+//     isMountedRef.current = true;
+//     return () => {
+//       isMountedRef.current = false;
+//     };
+//   });
+//   return isMountedRef;
+// }
