@@ -1,4 +1,6 @@
 import { FunctionalComponent, h } from "@stencil/core";
+import jss from "jss";
+import preset from "jss-preset-default";
 import { MatrixStory } from "./Matrix";
 import {
   ProgressBar as ProgressBarView,
@@ -49,19 +51,19 @@ export const NotRepeatable = () => {
     >
       <div>
         <h4>One Action</h4>
-        <TaskCardView {...oneAction} />
+        <TaskCardView {...oneAction} /> <h5 />
         <TaskCardView {...oneAction} complete />
       </div>
       <div>
         <h4>A Couple Actions</h4>
-        <TaskCardView {...coupleActions} />
+        <TaskCardView {...coupleActions} /> <h5 />
         <TaskCardView {...coupleActions} progress={5} />
         <h5>Progress {">"} Goal</h5>
         <TaskCardView {...coupleActions} progress={9} />
       </div>
       <div>
         <h4>Many Actions</h4>
-        <TaskCardView {...manyActions} />
+        <TaskCardView {...manyActions} /> <h5 />
         <TaskCardView {...manyActions} progress={500} />
       </div>
     </div>
@@ -109,23 +111,23 @@ export const Repeatable = () => {
     >
       <div>
         <h4>One Action</h4>
-        <TaskCardView {...oneAction} />
+        <TaskCardView {...oneAction} /> <h5 />
         <TaskCardView {...oneAction} repeatable={1} complete />
       </div>
       <div>
         <h4>A Couple Actions</h4>
-        <TaskCardView {...coupleActions} progress={1} />
-        <TaskCardView {...coupleActions} progress={5} />
-        <TaskCardView {...coupleActions} progress={7} />
-        <TaskCardView {...coupleActions} progress={10} />
+        <TaskCardView {...coupleActions} progress={1} /> <h5 />
+        <TaskCardView {...coupleActions} progress={5} /> <h5 />
+        <TaskCardView {...coupleActions} progress={7} /> <h5 />
+        <TaskCardView {...coupleActions} progress={10} /> <h5 />
         <TaskCardView {...coupleActions} progress={12} />
       </div>
       <div>
         <h4>Many Actions</h4>
-        <TaskCardView {...manyActions} progress={100} />
-        <TaskCardView {...manyActions} progress={500} />
-        <TaskCardView {...manyActions} progress={650} />
-        <TaskCardView {...manyActions} progress={1000} />
+        <TaskCardView {...manyActions} progress={100} /> <h5 />
+        <TaskCardView {...manyActions} progress={500} /> <h5 />
+        <TaskCardView {...manyActions} progress={650} /> <h5 />
+        <TaskCardView {...manyActions} progress={1000} /> <h5 />
         <TaskCardView {...manyActions} progress={1200} />
       </div>
     </div>
@@ -176,23 +178,23 @@ export const RepeatableWithExpiry = () => {
     >
       <div>
         <h4>One Action</h4>
-        <TaskCardView {...oneAction} />
+        <TaskCardView {...oneAction} /> <h5 />
         <TaskCardView {...oneAction} repeatable={1} complete />
       </div>
       <div>
         <h4>A Couple Actions</h4>
-        <TaskCardView {...coupleActions} progress={1} />
-        <TaskCardView {...coupleActions} progress={5} />
-        <TaskCardView {...coupleActions} progress={7} />
-        <TaskCardView {...coupleActions} progress={10} />
+        <TaskCardView {...coupleActions} progress={1} /> <h5 />
+        <TaskCardView {...coupleActions} progress={5} /> <h5 />
+        <TaskCardView {...coupleActions} progress={7} /> <h5 />
+        <TaskCardView {...coupleActions} progress={10} /> <h5 />
         <TaskCardView {...coupleActions} progress={12} />
       </div>
       <div>
         <h4>Many Actions</h4>
-        <TaskCardView {...manyActions} progress={100} />
-        <TaskCardView {...manyActions} progress={500} />
-        <TaskCardView {...manyActions} progress={650} />
-        <TaskCardView {...manyActions} progress={1000} />
+        <TaskCardView {...manyActions} progress={100} /> <h5 />
+        <TaskCardView {...manyActions} progress={500} /> <h5 />
+        <TaskCardView {...manyActions} progress={650} /> <h5 />
+        <TaskCardView {...manyActions} progress={1000} /> <h5 />
         <TaskCardView {...manyActions} progress={1200} />
       </div>
     </div>
