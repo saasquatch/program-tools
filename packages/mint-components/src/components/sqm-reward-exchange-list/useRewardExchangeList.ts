@@ -8,7 +8,7 @@ import { gql } from "graphql-request";
 import { SqmRewardExchangeList } from "./sqm-reward-exchange-list";
 import { RewardExchangeViewProps } from "./sqm-reward-exchange-list-view";
 import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
-import { SlDrawer } from "@shoelace-style/shoelace";
+import { SlDrawer, SlInput } from "@shoelace-style/shoelace";
 const GET_EXCHANGE_LIST = gql`
   query getExchangeList {
     viewer {
@@ -44,6 +44,7 @@ export function useRewardExchangeList(
   props: SqmRewardExchangeList
 ): RewardExchangeViewProps {
   const drawerRef = useRef<SlDrawer>();
+  const inputRef = useRef<SlInput>();
   const [selectedItem, setSelectedItem] = useState(undefined);
   const programId = useProgramId();
   const user = useUserIdentity();
@@ -60,19 +61,78 @@ export function useRewardExchangeList(
   }
 
   function exchangeReward() {
-    const exchangeVariables = {
+    if (!selectedItem) return;
+
+    let exchangeVariables: { [key: string]: any } = {
       accountId: user?.accountId,
       userId: user.id,
-      redeemCreditInput: {
-        amount: selectedItem.name,
-        unit: "POINT",
-      },
-      globalRewardKey: "gc1",
     };
 
+    switch (selectedItem.type) {
+      case "FIXED_GLOBAL_REWARD":
+        exchangeVariables = {
+          ...exchangeVariables,
+          redeemCreditInput: {
+            amount: selectedItem.value,
+            unit: selectedItem.unit,
+          },
+          globalRewardKey: selectedItem.globalRewardKey,
+        };
+        break;
+      case "VARIABLE_GLOBAL_REWARD":
+        exchangeVariables = {
+          ...exchangeVariables,
+          redeemCreditInput: {
+            amount: inputRef?.current?.value,
+            unit: selectedItem.unit,
+          },
+          globalRewardKey: selectedItem.globalRewardKey,
+          rewardInput: {
+            valueInCents: Math.ceil(selectedItem.value * selectedItem.rate),
+          },
+        };
+        break;
+      case "VARIABLE_CREDIT_REWARD":
+        exchangeVariables = {
+          ...exchangeVariables,
+          redeemCreditInput: {
+            amount: inputRef?.current?.value,
+            unit: selectedItem.unit,
+          },
+          rewardInput: {
+            type: "CREDIT",
+            unit: selectedItem.rewardUnit,
+            assignedCredit: Math.ceil(selectedItem.value * selectedItem.rate),
+          },
+        };
+        break;
+      default:
+        exchangeVariables = {
+          ...exchangeVariables,
+          redeemCreditInput: {
+            amount: selectedItem.value,
+            unit: selectedItem.unit,
+          },
+          globalRewardKey: "gc1",
+        };
+    }
+
     console.log(exchangeVariables);
-    // exchange({ exchangeRewardInput: exchangeVariables });
+    exchange({ exchangeRewardInput: exchangeVariables });
   }
+
+  useEffect(() => {
+    if (!drawerRef?.current || !inputRef.current) return;
+    const drawer = drawerRef.current;
+    // Clear input value when drawer is closed
+    drawer.addEventListener("sl-hide", () => (inputRef.current.value = ""));
+    return () => {
+      drawer.removeEventListener(
+        "sl-hide",
+        () => (inputRef.current.value = "")
+      );
+    };
+  }, [drawerRef.current, inputRef.current]);
 
   return {
     states: {
@@ -88,6 +148,7 @@ export function useRewardExchangeList(
     },
     refs: {
       drawerRef,
+      inputRef,
     },
   };
 }

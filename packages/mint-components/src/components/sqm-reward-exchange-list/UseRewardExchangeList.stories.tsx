@@ -116,7 +116,7 @@ const DefaultView = (props) => {
   );
 };
 
-export const RewardList = createHookStory(() => {
+export const RewardListFixed = createHookStory(() => {
   setupGraphQL();
   const props = {
     listType: "",
@@ -124,7 +124,35 @@ export const RewardList = createHookStory(() => {
     disconnectedCallback: () => {},
     ignored: true,
   };
-  return <sqm-reward-exchange-list list-type="something"></sqm-reward-exchange-list>
+  return (
+    <sqm-reward-exchange-list list-type="something"></sqm-reward-exchange-list>
+  );
+});
+
+export const RewardListGlobalVariable = createHookStory(() => {
+  setupGraphQL();
+  const props = {
+    listType: "",
+    render: () => {},
+    disconnectedCallback: () => {},
+    ignored: true,
+  };
+  return (
+    <sqm-reward-exchange-list list-type="something"></sqm-reward-exchange-list>
+  );
+});
+
+export const RewardListGlobalCredit = createHookStory(() => {
+  setupGraphQL();
+  const props = {
+    listType: "",
+    render: () => {},
+    disconnectedCallback: () => {},
+    ignored: true,
+  };
+  return (
+    <sqm-reward-exchange-list list-type="something"></sqm-reward-exchange-list>
+  );
 });
 
 export const FixedGlobalReward = createHookStory(() => {

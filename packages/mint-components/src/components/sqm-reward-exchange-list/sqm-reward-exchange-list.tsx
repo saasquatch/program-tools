@@ -81,7 +81,8 @@ function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
       },
       callbacks: {
         exchangeReward: () => {},
-        setDrawer: (item: any) => {},
+        setDrawer: (_: any) => {},
+        setInputAmount: (_: any) => "",
       },
       refs: {
         drawerRef: {},

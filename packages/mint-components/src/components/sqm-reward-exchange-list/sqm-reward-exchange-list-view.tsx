@@ -18,6 +18,7 @@ export type RewardExchangeViewProps = {
   };
   refs: {
     drawerRef: any;
+    inputRef: any;
   };
 };
 
@@ -44,9 +45,17 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         margin: "0 auto",
         right: "0",
       },
+      "&::part(panel)": {
+        height: "30rem",
+      },
     },
     Image: {
       width: "300px",
+    },
+    InputBox: {
+      display: "flex",
+      width: "50%",
+      alignItems: "end",
     },
   };
   // JSS config
@@ -73,19 +82,32 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                   />
                 )}
               </div>
-              {states.selectedItem?.minValue && (
-                <sl-input label="hey"></sl-input>
-              )}
               <p>{states.selectedItem?.description}</p>
-              <sl-button
-                onClick={callbacks.exchangeReward}
-                disabled={!states.selectedItem?.available}
-              >
-                {states.selectedItem?.name}
-              </sl-button>
+              <div class={sheet.classes.InputBox}>
+                {states.selectedItem?.type !== "FIXED_GLOBAL_REWARD" && (
+                  <sl-input
+                    label="Input amount"
+                    type="number"
+                    inputmode="numeric"
+                    min={states.selectedItem?.sourceMinValue || 0}
+                    max={states.selectedItem?.sourceMaxValue || ""}
+                    step={states.selectedItem?.step || ""}
+                    ref={(ref) => (refs.inputRef.current = ref)}
+                  ></sl-input>
+                )}
+                <sl-button
+                  onClick={callbacks.exchangeReward}
+                  disabled={!states.selectedItem?.available}
+                >
+                  Redeem {states.selectedItem?.name}
+                </sl-button>
+              </div>
             </sl-drawer>
             <sl-card class={sheet.classes.Base}>
-              <sl-button onClick={() => callbacks.setDrawer(item)}>
+              <sl-button
+                onClick={() => callbacks.setDrawer(item)}
+                disabled={!item.available}
+              >
                 {item.name}
               </sl-button>
             </sl-card>
