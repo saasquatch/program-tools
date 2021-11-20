@@ -1,6 +1,4 @@
 import { FunctionalComponent, h } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
 import { MatrixStory } from "./Matrix";
 import {
   ProgressBar as ProgressBarView,
