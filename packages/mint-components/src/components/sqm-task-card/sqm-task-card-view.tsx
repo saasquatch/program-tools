@@ -130,15 +130,14 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
+  const showComplete =
+    complete || (progress && goal <= progress && repeatable == false);
+
   return (
     <div class={sheet.classes.TaskCard}>
       <style type="text/css">{styleString}</style>
       <div class={sheet.classes.Header}>
-        {(complete ||
-          (progress &&
-            goal <= progress &&
-            !repeatable &&
-            typeof repeatable != "number")) && (
+        {showComplete && (
           <span class="complete">
             {checkmark_circle}
             {/* <sl-icon name="check-circle"></sl-icon> */}
@@ -175,21 +174,9 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
           class="action"
           size="small"
           onClick={onClick}
-          disabled={
-            complete ||
-            (progress &&
-              goal <= progress &&
-              !repeatable &&
-              typeof repeatable != "number")
-          }
+          disabled={showComplete}
         >
-          {complete ||
-          (progress &&
-            goal <= progress &&
-            !repeatable &&
-            typeof repeatable != "number")
-            ? "Complete"
-            : buttonText}
+          {showComplete ? "Complete" : buttonText}
         </sl-button>
       </div>
     </div>
@@ -304,6 +291,9 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         lineHeight: "45px",
         userSelect: "none",
       },
+      "& .progress-bar.repeatable": {
+        marginRight: "0",
+      },
       "& .filled:after": {
         content: '""',
         display: "flex",
@@ -409,7 +399,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
   return (
     <div class={sheet.classes.ProgressBar}>
       <style type="text/css">{styleString}</style>
-      <div class="progress-bar">{items}</div>
+      <div class={repeatable ? "progress-bar repeatable" : "progress-bar"}>{items}</div>
     </div>
   );
 
@@ -524,24 +514,26 @@ export function ProgressBar(props: ProgressBarProps): VNode {
           if (i == goal) {
             items.push(<div class={"filled"}></div>);
             items.push(
-              <div class={"end"}>{unit + (i + goal * (repetitions -1))}</div>
+              <div class={"end"}>{unit + (i + goal * (repetitions - 1))}</div>
             );
           } else {
             items.push(<div class={"filled"}></div>);
             items.push(
-              <div class={"progress"}>{unit + (i + goal * (repetitions -1))}</div>
+              <div class={"progress"}>
+                {unit + (i + goal * (repetitions - 1))}
+              </div>
             );
           }
         } else if (i > position) {
           if (i == goal) {
             items.push(<div class={"remain"}></div>);
-            items.push(<div class="end">{goal * (repetitions -1)}</div>);
+            items.push(<div class="end">{goal * (repetitions - 1)}</div>);
           } else if (i == goal * 2) {
             items.push(<div class={"remain"}></div>);
           } else {
             items.push(<div class={"remain"}></div>);
             items.push(
-              <div class={"empty"}>{unit + (i + goal * (repetitions -1))}</div>
+              <div class={"empty"}>{unit + (i + goal * (repetitions - 1))}</div>
             );
           }
         } else if (i == goal) {
@@ -550,7 +542,9 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         } else {
           items.push(<div class={"filled"}></div>);
           items.push(
-            <div class={"progress"}>{unit + (i + goal * (repetitions -1))}</div>
+            <div class={"progress"}>
+              {unit + (i + goal * (repetitions - 1))}
+            </div>
           );
         }
       }
