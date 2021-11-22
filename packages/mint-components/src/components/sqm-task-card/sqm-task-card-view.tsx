@@ -524,24 +524,24 @@ export function ProgressBar(props: ProgressBarProps): VNode {
           if (i == goal) {
             items.push(<div class={"filled"}></div>);
             items.push(
-              <div class={"end"}>{unit + (i + goal * repetitions)}</div>
+              <div class={"end"}>{unit + (i + goal * (repetitions -1))}</div>
             );
           } else {
             items.push(<div class={"filled"}></div>);
             items.push(
-              <div class={"progress"}>{unit + (i + goal * repetitions)}</div>
+              <div class={"progress"}>{unit + (i + goal * (repetitions -1))}</div>
             );
           }
         } else if (i > position) {
           if (i == goal) {
             items.push(<div class={"remain"}></div>);
-            items.push(<div class="end">{goal * repetitions}</div>);
+            items.push(<div class="end">{goal * (repetitions -1)}</div>);
           } else if (i == goal * 2) {
             items.push(<div class={"remain"}></div>);
           } else {
             items.push(<div class={"remain"}></div>);
             items.push(
-              <div class={"empty"}>{unit + (i + goal * repetitions)}</div>
+              <div class={"empty"}>{unit + (i + goal * (repetitions -1))}</div>
             );
           }
         } else if (i == goal) {
@@ -550,7 +550,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         } else {
           items.push(<div class={"filled"}></div>);
           items.push(
-            <div class={"progress"}>{unit + (i + goal * repetitions)}</div>
+            <div class={"progress"}>{unit + (i + goal * (repetitions -1))}</div>
           );
         }
       }
