@@ -203,14 +203,24 @@ export const ProgressBar = () => {
   const props = {
     goal: 4,
     progress: 2,
-    repeatable: false,
     steps: 1,
+  };
+  const props2 = {
+    goal: 10,
+    progress: 2,
+    steps: 1,
+	repeatable: true
   };
   return (
     <div>
       <MatrixStory
-        matrix={{ progress: [1, 2, 5, 4, 3], steps: [0, 1, 2] }}
+        matrix={{ progress: [1, 2, 4], steps: [0, 1] }}
         props={props}
+        Component={ProgressBarView}
+      />
+      <MatrixStory
+        matrix={{ progress: [2, 5, 7, 12], steps: [0, 1] }}
+        props={props2}
         Component={ProgressBarView}
       />
     </div>

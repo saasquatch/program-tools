@@ -2,6 +2,7 @@ import { h, Host, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { HostBlock } from "../../global/mixins";
+// import {checkmark_circle, arrow_left_right} from './SVGs'
 
 export type TaskCardViewProps = {
   points?: number;
@@ -194,6 +195,10 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
     </div>
   );
 }
+
+export type DetailsProps = {
+  description: string;
+};
 
 function Details(props: DetailsProps): VNode {
   const style = {
@@ -483,6 +488,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
 
   function addStepsRepeatable() {
     let repetitions = Math.floor(progress / goal);
+    // no or single repetition
     if (repetitions < 2) {
       let step_math = steps / goal;
       for (let i = 1; i < goal * 2; i += steps) {
@@ -548,6 +554,3 @@ export function ProgressBar(props: ProgressBarProps): VNode {
   }
 }
 
-export type DetailsProps = {
-  description: string;
-};
