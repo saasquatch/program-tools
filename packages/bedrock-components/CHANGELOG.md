@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2021-11-22
+
+### Fixed
+
+- Version of component-boilerplate updated to prevent rare race condition with graphQL queries
+
 ## [1.2.0] - 2021-11-05
 
 ### Added
