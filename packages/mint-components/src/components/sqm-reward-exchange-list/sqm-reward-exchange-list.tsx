@@ -92,8 +92,7 @@ function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
         exchangeReward: () => {},
         openDrawer: () => {},
         setExchangeState: (_: ExchangeState) => {},
-        previousStage: (_: Stages) => {},
-        nextStage: (_: Stages) => {},
+        setStage: (_: Stages) => {},
       },
       refs: {
         drawerRef: {},

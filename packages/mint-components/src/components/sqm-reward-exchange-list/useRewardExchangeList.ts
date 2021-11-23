@@ -239,17 +239,7 @@ export function useRewardExchangeList(
     };
   }, [drawerRef.current]);
 
-  function nextStage(stage?: Stages) {
-    if (stage === "chooseAmount") {
-      drawerRef.current.label = selectedItem?.description;
-    }
-    setExchangeState({ redeemStage: stage });
-  }
-
-  function previousStage(stage?: Stages) {
-    if (stage === "chooseReward") {
-      drawerRef.current.label = "";
-    }
+  function setStage(stage?: Stages) {
     setExchangeState({ redeemStage: stage });
   }
 
@@ -268,8 +258,7 @@ export function useRewardExchangeList(
       exchangeReward,
       openDrawer,
       setExchangeState,
-      previousStage,
-      nextStage,
+      setStage
     },
     refs: {
       drawerRef,
