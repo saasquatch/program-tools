@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { ExchangeItem, ExchangeStep } from "./useRewardExchangeList";
+import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
 
 export type RewardExchangeViewProps = {
   states: {
@@ -9,6 +9,7 @@ export type RewardExchangeViewProps = {
     selectedStep: ExchangeStep;
     redeemStage: string;
     amount: number;
+    success: boolean;
   };
   data: {
     exchangeList: any;
@@ -16,7 +17,8 @@ export type RewardExchangeViewProps = {
   callbacks: {
     exchangeReward: (e: unknown) => unknown;
     openDrawer: () => void;
-    nextStage: () => void;
+    previousStage: (stage?: Stages) => void;
+    nextStage: (stage?: Stages) => void;
     setExchangeState: Function;
   };
   refs: {
@@ -86,7 +88,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       return (
         <sl-input
           style={{ width: "auto" }}
-          label="Input amount"
+          label="Input amount to exchange"
           type="number"
           inputmode="numeric"
           min={item?.sourceMinValue || 0}
@@ -101,7 +103,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     return (
       <sl-select
         style={{ width: "auto" }}
-        label="Input amount"
+        label="Select amount to receive"
         class={sheet.classes.Select}
         value={states.selectedStep}
         onSl-select={(e) =>
@@ -114,6 +116,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         {item?.steps?.map((step) => (
           <sl-menu-item value={step}>
             {step.prettyDestinationValue}
+            <span slot="suffix" style={{ fontSize: "75%" }}>
+              {step.prettySourceValue}
+            </span>
           </sl-menu-item>
         ))}
       </sl-select>
@@ -121,6 +126,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   }
 
   function chooseReward() {
+    const nextStage =
+      selectedItem?.ruleType === "FIXED_VARIABLE_REWARD"
+        ? "confirmation"
+        : "chooseAmount";
     return (
       <div>
         {data.exchangeList?.map((item: ExchangeItem) => (
@@ -145,7 +154,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         ))}
         <div>
           <sl-button
-            onClick={callbacks.nextStage}
+            onClick={() => callbacks.nextStage(nextStage)}
             style={{ display: "block" }}
             class={sheet.classes.Button}
             disabled={!states.selectedItem}
@@ -177,7 +186,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         <div class={sheet.classes.InputBox}>{input}</div>
         <div>
           <sl-button
-            onClick={callbacks.nextStage}
+            onClick={() => callbacks.nextStage("confirmation")}
             disabled={input && !states.amount}
             style={{ display: "block" }}
             class={sheet.classes.Button}
@@ -185,7 +194,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             Continue
           </sl-button>
           <a
-            onClick={() => refs.drawerRef.current?.hide()}
+            onClick={() => callbacks.previousStage("chooseReward")}
             style={{ display: "block" }}
             class={sheet.classes.Button}
           >
@@ -209,6 +218,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         return `Redeem ${amount} ${selectedItem?.sourceUnit} for ${reward}`;
       }
     };
+    const previousStage =
+      selectedItem?.ruleType === "FIXED_VARIABLE_REWARD"
+        ? "chooseReward"
+        : "chooseAmount";
     return (
       <div>
         <h2>Confirm your redemption:</h2>
@@ -218,10 +231,23 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             onClick={callbacks.exchangeReward}
             style={{ display: "block" }}
             class={sheet.classes.Button}
+            disabled={states.success}
           >
             Redeem
           </sl-button>
+          <a
+            onClick={() => callbacks.previousStage(previousStage)}
+            style={{ display: "block" }}
+            class={sheet.classes.Button}
+          >
+            Cancel
+          </a>
         </div>
+        {states.success && (
+          <div>
+            <p style={{ color: "forestgreen" }}>Reward exchanged!</p>
+          </div>
+        )}
       </div>
     );
   }

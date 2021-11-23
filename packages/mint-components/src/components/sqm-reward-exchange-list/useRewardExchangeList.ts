@@ -53,6 +53,7 @@ export type ExchangeStep = {
   prettySourceValue: string;
 };
 
+export type Stages = "" | "chooseReward" | "chooseAmount" | "confirmation";
 const GET_EXCHANGE_LIST = gql`
   query getExchangeList {
     viewer {
@@ -108,6 +109,7 @@ export type ExchangeState = {
   selectedStep: ExchangeStep;
   redeemStage: string;
   amount: number;
+  success: boolean;
 };
 
 export function useRewardExchangeList(
@@ -128,21 +130,24 @@ export function useRewardExchangeList(
       selectedStep: undefined,
       redeemStage: "",
       amount: 0,
+      success: false,
     }
   );
 
-  const { selectedItem, selectedStep, redeemStage, amount } = exchangeState;
+  const { selectedItem, selectedStep, redeemStage, amount, success } =
+    exchangeState;
 
-  // const [selectedItem, setSelectedItem] = useState<ExchangeItem>(undefined);
-  // const [selectedStep, setSelectedStep] = useState<ExchangeStep>(undefined);
-  // const [redeemStage, setRedeemStage] = useState("");
-  // const [amount, setAmount] = useState(0);
-  const programId = useProgramId();
   const user = useUserIdentity();
 
   const [exchange, { data: exchangeResponse, errors }] = useMutation(EXCHANGE);
 
   const { data } = useQuery(GET_EXCHANGE_LIST, !user?.jwt);
+
+  useEffect(() => {
+    if (exchangeResponse?.exchangeReward?.reward?.id) {
+      setExchangeState({ success: true });
+    }
+  }, [exchangeResponse]);
 
   function openDrawer() {
     setExchangeState({ redeemStage: "chooseReward" });
@@ -213,12 +218,14 @@ export function useRewardExchangeList(
   const resetState = useCallback((e) => {
     // selects also trigger an sl-hide event :(
     //@ts-ignore - componentId is not private here
-    if (!e?.target?.componentId !== drawerRef.current?.componentId) return;
+    if (e?.target?.componentId !== drawerRef.current?.componentId) return;
 
+    console.log("go!");
     setExchangeState({
       amount: 0,
       selectedStep: undefined,
       selectedItem: undefined,
+      success: false,
     });
   }, []);
 
@@ -232,17 +239,18 @@ export function useRewardExchangeList(
     };
   }, [drawerRef.current]);
 
-  function nextStage() {
-    if (selectedItem?.ruleType === "FIXED_GLOBAL_REWARD") {
-      setExchangeState({ redeemStage: "confirmation" });
-    } else {
-      if (redeemStage === "chooseReward") {
-        drawerRef.current.label = selectedItem?.description;
-        setExchangeState({ redeemStage: "chooseAmount" });
-      } else {
-        setExchangeState({ redeemStage: "confirmation" });
-      }
+  function nextStage(stage?: Stages) {
+    if (stage === "chooseAmount") {
+      drawerRef.current.label = selectedItem?.description;
     }
+    setExchangeState({ redeemStage: stage });
+  }
+
+  function previousStage(stage?: Stages) {
+    if (stage === "chooseReward") {
+      drawerRef.current.label = "";
+    }
+    setExchangeState({ redeemStage: stage });
   }
 
   return {
@@ -251,6 +259,7 @@ export function useRewardExchangeList(
       redeemStage,
       amount,
       selectedStep,
+      success,
     },
     data: {
       exchangeList: data?.viewer?.visibleRewardExchanges?.data,
@@ -259,6 +268,7 @@ export function useRewardExchangeList(
       exchangeReward,
       openDrawer,
       setExchangeState,
+      previousStage,
       nextStage,
     },
     refs: {
