@@ -9,6 +9,37 @@ import { SqmRewardExchangeList } from "./sqm-reward-exchange-list";
 import { RewardExchangeViewProps } from "./sqm-reward-exchange-list-view";
 import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
 import { SlDrawer, SlInput } from "@shoelace-style/shoelace";
+
+export type ExchangeItem = {
+  key: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  available: boolean;
+  unavailableReason: string;
+  unavailableReasonCode: string;
+  ruleType: string;
+  sourceUnit: string;
+  sourceValue: number;
+  prettySourceValue: string;
+  sourceMinValue: number;
+  prettySourceMinValue: string;
+  sourceMaxValue: number;
+  prettySourceMaxValue: string;
+  destinationMinValue: number;
+  prettyDestinationMinValue: string;
+  destinationMaxValue: number;
+  prettyDestinationMaxValue: string;
+  globalRewardKey: string;
+  destinationUnit: string;
+  steps?: {
+    sourceValue: number;
+    prettySourceValue: string;
+    destinationValue: number;
+    prettyDestinationValue: string;
+  }[];
+};
+
 const GET_EXCHANGE_LIST = gql`
   query getExchangeList {
     viewer {
@@ -22,6 +53,26 @@ const GET_EXCHANGE_LIST = gql`
             available
             unavailableReason
             unavailableReasonCode
+            ruleType
+            sourceUnit
+            sourceValue
+            prettySourceValue
+            sourceMinValue
+            prettySourceMinValue
+            sourceMaxValue
+            prettySourceMaxValue
+            destinationMinValue
+            prettyDestinationMinValue
+            destinationMaxValue
+            prettyDestinationMaxValue
+            globalRewardKey
+            destinationUnit
+            steps {
+              sourceValue
+              prettySourceValue
+              destinationValue
+              prettyDestinationValue
+            }
           }
           totalCount
         }
@@ -45,7 +96,8 @@ export function useRewardExchangeList(
 ): RewardExchangeViewProps {
   const drawerRef = useRef<SlDrawer>();
   const inputRef = useRef<SlInput>();
-  const [selectedItem, setSelectedItem] = useState(undefined);
+  const [selectedItem, setSelectedItem] = useState<ExchangeItem>(undefined);
+  const [redeemStage, setRedeemStage] = useState("");
   const programId = useProgramId();
   const user = useUserIdentity();
 
@@ -53,10 +105,8 @@ export function useRewardExchangeList(
 
   const { data } = useQuery(GET_EXCHANGE_LIST, !user?.jwt);
 
-  function setDrawer(item) {
-    console.log({ item });
-    drawerRef.current.label = item.description;
-    setSelectedItem(item);
+  function openDrawer() {
+    setRedeemStage("chooseReward");
     drawerRef.current?.show();
   }
 
@@ -68,13 +118,13 @@ export function useRewardExchangeList(
       userId: user.id,
     };
 
-    switch (selectedItem.type) {
+    switch (selectedItem.ruleType) {
       case "FIXED_GLOBAL_REWARD":
         exchangeVariables = {
           ...exchangeVariables,
           redeemCreditInput: {
-            amount: selectedItem.value,
-            unit: selectedItem.unit,
+            amount: selectedItem.sourceValue,
+            unit: selectedItem.sourceUnit,
           },
           globalRewardKey: selectedItem.globalRewardKey,
         };
@@ -84,11 +134,11 @@ export function useRewardExchangeList(
           ...exchangeVariables,
           redeemCreditInput: {
             amount: inputRef?.current?.value,
-            unit: selectedItem.unit,
+            unit: selectedItem.sourceUnit,
           },
           globalRewardKey: selectedItem.globalRewardKey,
           rewardInput: {
-            valueInCents: Math.ceil(selectedItem.value * selectedItem.rate),
+            // valueInCents: selectedItem.destination
           },
         };
         break;
@@ -97,12 +147,12 @@ export function useRewardExchangeList(
           ...exchangeVariables,
           redeemCreditInput: {
             amount: inputRef?.current?.value,
-            unit: selectedItem.unit,
+            unit: selectedItem.sourceUnit,
           },
           rewardInput: {
             type: "CREDIT",
-            unit: selectedItem.rewardUnit,
-            assignedCredit: Math.ceil(selectedItem.value * selectedItem.rate),
+            unit: selectedItem.destinationUnit,
+            assignedCredit: inputRef?.current?.value,
           },
         };
         break;
@@ -110,10 +160,10 @@ export function useRewardExchangeList(
         exchangeVariables = {
           ...exchangeVariables,
           redeemCreditInput: {
-            amount: selectedItem.value,
-            unit: selectedItem.unit,
+            amount: selectedItem.sourceValue,
+            unit: selectedItem.sourceUnit,
           },
-          globalRewardKey: "gc1",
+          globalRewardKey: selectedItem.globalRewardKey,
         };
     }
 
@@ -121,30 +171,51 @@ export function useRewardExchangeList(
     exchange({ exchangeRewardInput: exchangeVariables });
   }
 
+  function selectReward(item: ExchangeItem) {
+    setSelectedItem(item);
+  }
+
   useEffect(() => {
     if (!drawerRef?.current || !inputRef.current) return;
     const drawer = drawerRef.current;
     // Clear input value when drawer is closed
-    drawer.addEventListener("sl-hide", () => (inputRef.current.value = ""));
+    drawer.addEventListener("sl-hide", () => (inputRef.current = undefined));
     return () => {
       drawer.removeEventListener(
         "sl-hide",
-        () => (inputRef.current.value = "")
+        () => (inputRef.current = undefined)
       );
     };
   }, [drawerRef.current, inputRef.current]);
+
+  function nextStage() {
+    if (selectedItem?.ruleType === "FIXED_GLOBAL_REWARD") {
+      setRedeemStage("confirmation");
+    } else {
+      if (redeemStage === "chooseReward") {
+        drawerRef.current.label = selectedItem?.description;
+        setRedeemStage("chooseAmount");
+      } else {
+        setRedeemStage("confirmation");
+      }
+    }
+  }
 
   return {
     states: {
       content: props,
       selectedItem,
+      redeemStage,
     },
     data: {
       exchangeList: data?.viewer?.visibleRewardExchanges?.data,
     },
     callbacks: {
       exchangeReward,
-      setDrawer,
+      openDrawer,
+      setRedeemStage,
+      nextStage,
+      setSelectedItem,
     },
     refs: {
       drawerRef,

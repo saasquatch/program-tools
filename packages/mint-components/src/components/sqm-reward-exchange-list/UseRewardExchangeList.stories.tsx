@@ -116,33 +116,7 @@ const DefaultView = (props) => {
   );
 };
 
-export const RewardListFixed = createHookStory(() => {
-  setupGraphQL();
-  const props = {
-    listType: "",
-    render: () => {},
-    disconnectedCallback: () => {},
-    ignored: true,
-  };
-  return (
-    <sqm-reward-exchange-list list-type="something"></sqm-reward-exchange-list>
-  );
-});
-
-export const RewardListGlobalVariable = createHookStory(() => {
-  setupGraphQL();
-  const props = {
-    listType: "",
-    render: () => {},
-    disconnectedCallback: () => {},
-    ignored: true,
-  };
-  return (
-    <sqm-reward-exchange-list list-type="something"></sqm-reward-exchange-list>
-  );
-});
-
-export const RewardListGlobalCredit = createHookStory(() => {
+export const RewardList = createHookStory(() => {
   setupGraphQL();
   const props = {
     listType: "",
