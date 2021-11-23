@@ -1,6 +1,10 @@
 import { Component, h, Host, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { ExchangeItem, useRewardExchangeList } from "./useRewardExchangeList";
+import {
+  ExchangeItem,
+  ExchangeState,
+  useRewardExchangeList,
+} from "./useRewardExchangeList";
 import {
   RewardExchangeViewProps,
   RewardExchangeView,
@@ -76,6 +80,8 @@ function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
           ...props,
         },
         redeemStage: "",
+        amount: 0,
+        selectedStep: undefined,
       },
       data: {
         shareCode: "SHARECODE123",
@@ -83,9 +89,7 @@ function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
       callbacks: {
         exchangeReward: () => {},
         openDrawer: () => {},
-        setSelectedItem:() => {},
-        setInputAmount: (_: any) => "",
-        setRedeemStage: (_: any) => {},
+        setExchangeState: (_: ExchangeState) => {},
         nextStage: () => {},
       },
       refs: {

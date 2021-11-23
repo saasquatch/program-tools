@@ -1,15 +1,14 @@
 import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { ExchangeItem } from "./useRewardExchangeList";
+import { ExchangeItem, ExchangeStep } from "./useRewardExchangeList";
 
 export type RewardExchangeViewProps = {
   states: {
-    content: {
-      listType;
-    };
     selectedItem: ExchangeItem;
+    selectedStep: ExchangeStep;
     redeemStage: string;
+    amount: number;
   };
   data: {
     exchangeList: any;
@@ -18,68 +17,69 @@ export type RewardExchangeViewProps = {
     exchangeReward: (e: unknown) => unknown;
     openDrawer: () => void;
     nextStage: () => void;
-    setRedeemStage: Function;
-    setSelectedItem: Function;
+    setExchangeState: Function;
   };
   refs: {
     drawerRef: any;
-    inputRef: any;
   };
 };
 
-const style = {
-  Container: {
-    position: "relative",
-  },
-  Base: {
-    "&::part(base)": {
-      width: "300px",
-      height: "82px",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-    },
-  },
-  Drawer: {
-    "&::part(base)": {
-      minWidth: "400px",
-      width: "50%",
-      margin: "0 auto",
-      right: "0",
-    },
-    "&::part(panel)": {
-      height: "50rem",
-    },
-  },
-  Image: {
-    width: "300px",
-  },
-  InputBox: {
-    display: "flex",
-    width: "100%",
-    alignItems: "end",
-  },
-  Select: {
-    "&::part(base)": {
-      flex: "0.75",
-    },
-  },
-  Button: {
-    display: "block",
-    textAlign: "center",
-  },
-};
-// JSS config
-jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
-const styleString = sheet.toString();
-
 export function RewardExchangeView(props: RewardExchangeViewProps) {
+  const style = {
+    Container: {
+      position: "relative",
+    },
+    Base: {
+      display: "block",
+      "&::part(base)": {
+        width: "100%",
+        height: "82px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+      },
+    },
+    Drawer: {
+      "&::part(base)": {
+        minWidth: "400px",
+        width: "50%",
+        margin: "0 auto",
+        right: "0",
+      },
+      "&::part(panel)": {
+        height: "50rem",
+      },
+    },
+    Image: {
+      width: "300px",
+    },
+    InputBox: {
+      width: "100%",
+      marginBottom: "20px",
+    },
+    Select: {
+      "&::part(base)": {
+        flex: "0.75",
+      },
+    },
+    Button: {
+      margin: "10px 0",
+      display: "block",
+      textAlign: "center",
+      cursor: "pointer",
+    },
+  };
+  // JSS config
+  jss.setup(preset());
+  const sheet = jss.createStyleSheet(style);
+  const styleString = sheet.toString();
+
   const { states, data, callbacks, refs } = props;
 
-  const { selectedItem } = states;
+  const { selectedItem, selectedStep } = states;
 
-  const getInput = (item: ExchangeItem) => {
+  function getInput() {
+    const item = states.selectedItem;
     if (!item || item?.ruleType === "FIXED_GLOBAL_REWARD") return <span></span>;
 
     if (!item?.steps?.length) {
@@ -92,7 +92,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           min={item?.sourceMinValue || 0}
           max={item?.sourceMaxValue || ""}
           class={sheet.classes.Select}
-          ref={(ref) => (refs.inputRef.current = ref)}
+          onInput={(e) =>
+            callbacks.setExchangeState({ amount: e.target?.value })
+          }
         ></sl-input>
       );
     }
@@ -101,25 +103,39 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         style={{ width: "auto" }}
         label="Input amount"
         class={sheet.classes.Select}
-        ref={(ref) => (refs.inputRef.current = ref)}
+        value={states.selectedStep}
+        onSl-select={(e) =>
+          callbacks.setExchangeState({
+            amount: e.detail?.item?.value?.sourceValue,
+            selectedStep: e.detail?.item?.value,
+          })
+        }
       >
         {item?.steps?.map((step) => (
-          <sl-menu-item value={step.sourceValue}>
+          <sl-menu-item value={step}>
             {step.prettyDestinationValue}
           </sl-menu-item>
         ))}
       </sl-select>
     );
-  };
+  }
 
   function chooseReward() {
     return (
       <div>
-        {data.exchangeList?.map((item) => (
-          <div>
+        {data.exchangeList?.map((item: ExchangeItem) => (
+          <div
+            style={{
+              border:
+                item.key === selectedItem?.key ? "2px solid skyblue" : "none",
+              marginBottom: "10px 0",
+            }}
+          >
             <sl-card class={sheet.classes.Base}>
               <sl-button
-                onClick={() => callbacks.setSelectedItem(item)}
+                onClick={() =>
+                  callbacks.setExchangeState({ selectedItem: item })
+                }
                 disabled={!item.available}
               >
                 {item.description}
@@ -132,6 +148,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             onClick={callbacks.nextStage}
             style={{ display: "block" }}
             class={sheet.classes.Button}
+            disabled={!states.selectedItem}
           >
             Continue
           </sl-button>
@@ -148,9 +165,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   }
 
   function chooseAmount() {
-    const input = getInput(selectedItem);
-
-    console.log("THINGS", input, refs?.inputRef?.current?.value);
+    const input = getInput();
     return (
       <div>
         <div>
@@ -158,12 +173,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             <img class={sheet.classes.Image} src={selectedItem?.imageUrl} />
           )}
         </div>
-        <p>{selectedItem?.description}</p>
+        {/* <p>{selectedItem?.description}</p> */}
         <div class={sheet.classes.InputBox}>{input}</div>
         <div>
           <sl-button
             onClick={callbacks.nextStage}
-            // disabled={input && !refs.inputRef?.current?.value}
+            disabled={input && !states.amount}
             style={{ display: "block" }}
             class={sheet.classes.Button}
           >
@@ -185,9 +200,13 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     console.log("confirmation:", { selectedItem });
     const redemptionAmount = () => {
       if (selectedItem?.ruleType === "FIXED_GLOBAL_REWARD") {
-        return "blah";
+        return `Redeem ${selectedItem?.sourceValue} ${selectedItem?.sourceUnit} for ${selectedItem?.globalRewardKey}`;
       } else {
-        return "the other thing";
+        const amount = states.amount;
+        const reward =
+          selectedStep?.prettyDestinationValue ??
+          `${amount} ${selectedItem?.destinationUnit}`;
+        return `Redeem ${amount} ${selectedItem?.sourceUnit} for ${reward}`;
       }
     };
     return (
@@ -214,8 +233,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   };
 
   const currentStage = stages[states.redeemStage];
-
-  console.log(currentStage, stages);
 
   return (
     <div class={sheet.classes.Container}>

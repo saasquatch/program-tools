@@ -7,8 +7,14 @@ import {
 import { gql } from "graphql-request";
 import { SqmRewardExchangeList } from "./sqm-reward-exchange-list";
 import { RewardExchangeViewProps } from "./sqm-reward-exchange-list-view";
-import { useEffect, useRef, useState } from "@saasquatch/universal-hooks";
-import { SlDrawer, SlInput } from "@shoelace-style/shoelace";
+import {
+  useCallback,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "@saasquatch/universal-hooks";
+import { SlDrawer } from "@shoelace-style/shoelace";
 
 export type ExchangeItem = {
   key: string;
@@ -38,6 +44,13 @@ export type ExchangeItem = {
     destinationValue: number;
     prettyDestinationValue: string;
   }[];
+};
+
+export type ExchangeStep = {
+  destinationValue: number;
+  sourceValue: number;
+  prettyDestinationValue: string;
+  prettySourceValue: string;
 };
 
 const GET_EXCHANGE_LIST = gql`
@@ -90,14 +103,40 @@ const EXCHANGE = gql`
     }
   }
 `;
+export type ExchangeState = {
+  selectedItem: ExchangeItem;
+  selectedStep: ExchangeStep;
+  redeemStage: string;
+  amount: number;
+};
 
 export function useRewardExchangeList(
-  props: SqmRewardExchangeList
+  _: SqmRewardExchangeList
 ): RewardExchangeViewProps {
   const drawerRef = useRef<SlDrawer>();
-  const inputRef = useRef<SlInput>();
-  const [selectedItem, setSelectedItem] = useState<ExchangeItem>(undefined);
-  const [redeemStage, setRedeemStage] = useState("");
+
+  const [exchangeState, setExchangeState] = useReducer<
+    ExchangeState,
+    Partial<ExchangeState>
+  >(
+    (state, next) => ({
+      ...state,
+      ...next,
+    }),
+    {
+      selectedItem: undefined,
+      selectedStep: undefined,
+      redeemStage: "",
+      amount: 0,
+    }
+  );
+
+  const { selectedItem, selectedStep, redeemStage, amount } = exchangeState;
+
+  // const [selectedItem, setSelectedItem] = useState<ExchangeItem>(undefined);
+  // const [selectedStep, setSelectedStep] = useState<ExchangeStep>(undefined);
+  // const [redeemStage, setRedeemStage] = useState("");
+  // const [amount, setAmount] = useState(0);
   const programId = useProgramId();
   const user = useUserIdentity();
 
@@ -106,7 +145,7 @@ export function useRewardExchangeList(
   const { data } = useQuery(GET_EXCHANGE_LIST, !user?.jwt);
 
   function openDrawer() {
-    setRedeemStage("chooseReward");
+    setExchangeState({ redeemStage: "chooseReward" });
     drawerRef.current?.show();
   }
 
@@ -133,12 +172,12 @@ export function useRewardExchangeList(
         exchangeVariables = {
           ...exchangeVariables,
           redeemCreditInput: {
-            amount: inputRef?.current?.value,
+            amount: amount,
             unit: selectedItem.sourceUnit,
           },
           globalRewardKey: selectedItem.globalRewardKey,
           rewardInput: {
-            // valueInCents: selectedItem.destination
+            valueInCents: amount || selectedStep.destinationValue,
           },
         };
         break;
@@ -146,13 +185,13 @@ export function useRewardExchangeList(
         exchangeVariables = {
           ...exchangeVariables,
           redeemCreditInput: {
-            amount: inputRef?.current?.value,
+            amount: amount,
             unit: selectedItem.sourceUnit,
           },
           rewardInput: {
             type: "CREDIT",
             unit: selectedItem.destinationUnit,
-            assignedCredit: inputRef?.current?.value,
+            assignedCredit: amount || selectedStep.destinationValue,
           },
         };
         break;
@@ -171,41 +210,47 @@ export function useRewardExchangeList(
     exchange({ exchangeRewardInput: exchangeVariables });
   }
 
-  function selectReward(item: ExchangeItem) {
-    setSelectedItem(item);
-  }
+  const resetState = useCallback((e) => {
+    // selects also trigger an sl-hide event :(
+    //@ts-ignore - componentId is not private here
+    if (!e?.target?.componentId !== drawerRef.current?.componentId) return;
+
+    setExchangeState({
+      amount: 0,
+      selectedStep: undefined,
+      selectedItem: undefined,
+    });
+  }, []);
 
   useEffect(() => {
-    if (!drawerRef?.current || !inputRef.current) return;
+    if (!drawerRef?.current) return;
     const drawer = drawerRef.current;
     // Clear input value when drawer is closed
-    drawer.addEventListener("sl-hide", () => (inputRef.current = undefined));
+    drawer.addEventListener("sl-hide", resetState);
     return () => {
-      drawer.removeEventListener(
-        "sl-hide",
-        () => (inputRef.current = undefined)
-      );
+      drawer.removeEventListener("sl-hide", resetState);
     };
-  }, [drawerRef.current, inputRef.current]);
+  }, [drawerRef.current]);
 
   function nextStage() {
     if (selectedItem?.ruleType === "FIXED_GLOBAL_REWARD") {
-      setRedeemStage("confirmation");
+      setExchangeState({ redeemStage: "confirmation" });
     } else {
       if (redeemStage === "chooseReward") {
         drawerRef.current.label = selectedItem?.description;
-        setRedeemStage("chooseAmount");
+        setExchangeState({ redeemStage: "chooseAmount" });
       } else {
-        setRedeemStage("confirmation");
+        setExchangeState({ redeemStage: "confirmation" });
       }
     }
   }
 
   return {
     states: {
-      content: props,
       selectedItem,
       redeemStage,
+      amount,
+      selectedStep,
     },
     data: {
       exchangeList: data?.viewer?.visibleRewardExchanges?.data,
@@ -213,13 +258,11 @@ export function useRewardExchangeList(
     callbacks: {
       exchangeReward,
       openDrawer,
-      setRedeemStage,
+      setExchangeState,
       nextStage,
-      setSelectedItem,
     },
     refs: {
       drawerRef,
-      inputRef,
     },
   };
 }
