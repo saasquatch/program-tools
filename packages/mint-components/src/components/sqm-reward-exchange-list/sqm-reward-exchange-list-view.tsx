@@ -36,12 +36,19 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   const style = {
     Container: {
       position: "relative",
+      display: "flex",
+    },
+    CardContainer: {
+      "&:hover": {
+        boxShadow: "0 3px 10px #87ceeb6e",
+      },
     },
     Base: {
       display: "block",
+      cursor: "pointer",
       "&::part(base)": {
         width: "100%",
-        height: "82px",
+        height: "200px",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
@@ -58,8 +65,13 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         height: "50rem",
       },
     },
-    Image: {
-      width: "300px",
+    FullImage: {
+      objectFit: "contain",
+      maxWidth: "100%",
+    },
+    PreviewImage: {
+      objectFit: "contain",
+      maxWidth: "100%",
     },
     InputBox: {
       width: "100%",
@@ -136,28 +148,40 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   function chooseReward() {
     const nextStage =
-      selectedItem?.ruleType === "FIXED_VARIABLE_REWARD"
+      selectedItem?.ruleType === "FIXED_GLOBAL_REWARD"
         ? "confirmation"
         : "chooseAmount";
+
+    console.log({ nextStage, ruleType: selectedItem?.ruleType });
     return (
-      <div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          alignItems: "center",
+          columnGap: "2px",
+          rowGap: "2px",
+        }}
+      >
         {data.exchangeList?.map((item: ExchangeItem) => (
           <div
+            class={sheet.classes.CardContainer}
             style={{
-              border:
-                item.key === selectedItem?.key ? "2px solid skyblue" : "none",
+              boxShadow:
+                item.key === selectedItem?.key ? "0 3px 10px #87ceeb6" : "none",
               marginBottom: "10px 0",
+              flex: "1",
+              minWidth: "45%",
             }}
           >
-            <sl-card class={sheet.classes.Base}>
-              <sl-button
-                onClick={() =>
-                  callbacks.setExchangeState({ selectedItem: item })
-                }
-                disabled={!item.available}
-              >
-                {item.description}
-              </sl-button>
+            <sl-card
+              class={sheet.classes.Base}
+              onClick={() => callbacks.setExchangeState({ selectedItem: item })}
+              disabled={!item.available}
+            >
+              <img class={sheet.classes.PreviewImage} src={item?.imageUrl} />
+              <div>{item.description}</div>
             </sl-card>
           </div>
         ))}
@@ -186,9 +210,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     const input = getInput();
     return (
       <div>
-        <div>
+        <div style={{ width: "100%" }}>
           {selectedItem?.imageUrl && (
-            <img class={sheet.classes.Image} src={selectedItem?.imageUrl} />
+            <img class={sheet.classes.FullImage} src={selectedItem?.imageUrl} />
           )}
         </div>
         {/* <p>{selectedItem?.description}</p> */}
@@ -214,6 +238,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     );
   }
 
+  console.log({ selectedItem, selectedStep });
   function confirmation() {
     console.log("confirmation:", { selectedItem });
     const redemptionAmount = () => {
@@ -228,7 +253,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       }
     };
     const previousStage =
-      selectedItem?.ruleType === "FIXED_VARIABLE_REWARD"
+      selectedItem?.ruleType === "FIXED_GLOBAL_REWARD"
         ? "chooseReward"
         : "chooseAmount";
     return (

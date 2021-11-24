@@ -182,7 +182,7 @@ export function useRewardExchangeList(
           },
           globalRewardKey: selectedItem.globalRewardKey,
           rewardInput: {
-            valueInCents: amount || selectedStep.destinationValue,
+            valueInCents: selectedStep.destinationValue || amount,
           },
         };
         break;
