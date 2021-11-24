@@ -53,11 +53,6 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
         background: "var(--sl-color-primary-50)",
         borderColor: "var(--sl-color-primary-700)",
       },
-      // "@media only screen and (min-width: 2000px)": {
-      //   "& .main": {
-      //     width: "738px",
-      //   },
-      // },
     },
     Header: {
       display: "flex",
@@ -222,15 +217,6 @@ function Details(props: DetailsProps): VNode {
         maxHeight: "0px",
         transition: "max-height var(--sl-transition-fast) ease-out",
       },
-      // "@media only screen and (min-width: 2000px)": {
-      //   "& .details": {
-      //     display: "none",
-      //   },
-      //   "& .summary": {
-      //     height: "auto",
-      //     maxHeight: "none",
-      //   },
-      // },
     },
   };
   jss.setup(preset());
@@ -272,6 +258,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
 
   const items = [];
   var columns = "";
+  var repetitions = Math.floor(progress / goal)
 
   if (repeatable) {
     if (steps) {
@@ -303,8 +290,8 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         lineHeight: "45px",
         userSelect: "none",
       },
-      "& .progress-bar.repeatable": {
-        //marginRight: "0",
+      "& .progress-bar.repeatable-steps": {
+        marginLeft: "var(--sl-spacing-x-small)",
       },
       "& .filled:after": {
         content: '""',
@@ -330,10 +317,6 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         position: "relative",
         left: "47%",
         top: "-85%",
-      },
-      "& .progress.lhs": {
-        position: "relative",
-        left: "4px",
       },
       "& .progress.bg:after": {
         width: "0",
@@ -377,8 +360,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
       },
       "& .end.start": {
         transform: "scale(80%)",
-        top: "-21px",
-        left: "5px",
+        top: "-20px",
       },
       "& .end": {
         textAlign: "center",
@@ -389,41 +371,8 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         filter: goal <= progress ? "" : "grayscale(100%)",
         zIndex: "1",
       },
-      // for SVG backdrop white
-      // "&  .end:before": {
-      //   content: '"■"',
-      //   width: "0",
-      //   height: "0",
-      //   fontSize: "50px",
-      //   textAlign: "center",
-      //   display: "flex",
-      //   backgroundColor: "black",
-      //   borderRadius: "50%",
-      //   position: "relative",
-      //   color: "white",
-      //   left: "42.5%",
-      //   top: "-45%",
-      //   zIndex: "1",
-      // },
-      // "& .end:after": {
-      //   //content: '"🎁"',
-      //   //content: goal <= progress ? gift : gift_outline,
-      //   content: '""',
-      //   filter: goal <= progress ? "" : "grayscale(100%)",
-      //   fontSize: "16px",
-      //   width: "0",
-      //   height: "0",
-      //   display: "block",
-      //   backgroundColor: "black",
-      //   borderRadius: "50%",
-      //   position: "relative",
-      //   left: "46%",
-      //   top: "-113%",
-      //   zIndex: "1",
-      // },
     },
   };
-
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
@@ -431,7 +380,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
   return (
     <div class={sheet.classes.ProgressBar}>
       <style type="text/css">{styleString}</style>
-      <div class={repeatable ? "progress-bar repeatable" : "progress-bar"}>
+      <div class={repetitions > 1 ? "progress-bar repeatable-steps" : "progress-bar"}>
         {items}
       </div>
     </div>
@@ -440,7 +389,11 @@ export function ProgressBar(props: ProgressBarProps): VNode {
   function addLinear() {
     columns = progress / goal + "fr 0fr " + (1 - progress / goal) + "fr 0fr";
     items.push(<div class={"filled"}></div>);
-    items.push(<div class={progress == goal ? "progress bg" : "progress"}>{unit + progress}</div>);
+    items.push(
+      <div class={progress == goal ? "progress bg" : "progress"}>
+        {unit + progress}
+      </div>
+    );
     items.push(<div class={"remain"}></div>);
     items.push(<div class={"end"}>{gift1}</div>);
   }
@@ -476,7 +429,6 @@ export function ProgressBar(props: ProgressBarProps): VNode {
   }
 
   function addLinearRepeatable() {
-    let repetitions = Math.floor(progress / goal);
     let position = progress % goal;
     let remainder = (position / goal) * 0.5;
     // 0 repetition
@@ -517,7 +469,6 @@ export function ProgressBar(props: ProgressBarProps): VNode {
   }
 
   function addStepsRepeatable() {
-    let repetitions = Math.floor(progress / goal);
     // no or single repetition
     if (repetitions < 2) {
       let step_math = steps / goal;
@@ -559,7 +510,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
       let step_math = steps / goal;
       columns += "0fr 0fr ";
       items.push(
-        <div class={"progress lhs bg"}>{unit + goal * (repetitions - 1)}</div>
+        <div class={"progress bg"}>{unit + goal * (repetitions - 1)}</div>
       );
       items.push(<div class={"end start"}>{gift1}</div>);
       for (let i = 1; i < goal * 2 + 1; i += steps) {
