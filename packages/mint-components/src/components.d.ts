@@ -812,6 +812,38 @@ export namespace Components {
         "border": string;
     }
     interface SqmTaskCard {
+        /**
+          * @uiName Button Text
+         */
+        "buttonText": string;
+        /**
+          * @uiName Show as Complete
+         */
+        "complete": boolean;
+        /**
+          * @uiName Description Text
+         */
+        "description": string;
+        /**
+          * @uiName Expire Date
+         */
+        "expire"?: string;
+        /**
+          * @uiName Button On Click Action
+         */
+        "onClick": () => void;
+        /**
+          * @uiName Number of Points Earned
+         */
+        "points": number;
+        /**
+          * @uiName Show Repeatable or Repeat Count
+         */
+        "repeatable": boolean | number;
+        /**
+          * @uiName Title Text
+         */
+        "title": string;
     }
     interface SqmText {
     }
@@ -2004,6 +2036,38 @@ declare namespace LocalJSX {
         "border"?: string;
     }
     interface SqmTaskCard {
+        /**
+          * @uiName Button Text
+         */
+        "buttonText"?: string;
+        /**
+          * @uiName Show as Complete
+         */
+        "complete"?: boolean;
+        /**
+          * @uiName Description Text
+         */
+        "description"?: string;
+        /**
+          * @uiName Expire Date
+         */
+        "expire"?: string;
+        /**
+          * @uiName Button On Click Action
+         */
+        "onClick"?: () => void;
+        /**
+          * @uiName Number of Points Earned
+         */
+        "points"?: number;
+        /**
+          * @uiName Show Repeatable or Repeat Count
+         */
+        "repeatable"?: boolean | number;
+        /**
+          * @uiName Title Text
+         */
+        "title"?: string;
     }
     interface SqmText {
     }

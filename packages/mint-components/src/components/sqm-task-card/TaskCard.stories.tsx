@@ -9,6 +9,13 @@ export default {
   title: "Components/Task Card",
 };
 
+const resizable = {
+  width: "347px",
+  resize: "horizontal",
+  height: "fit-content",
+  overflow: "hidden",
+};
+
 export const NotRepeatable = () => {
   const oneAction = {
     points: 20,
@@ -41,28 +48,23 @@ export const NotRepeatable = () => {
     onClick: () => {},
   };
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, 374px)",
-      }}
-    >
-      <div>
+    <div style={{ display: "inline-flex", gap: "32px" }}>
+      <div style={resizable}>
         <h4>One Action</h4>
         <TaskCardView {...oneAction} /> <h5 />
-        <TaskCardView {...oneAction} complete />
+        <TaskCardView {...oneAction} complete /> <h5 />
       </div>
-      <div>
+      <div style={resizable}>
         <h4>A Couple Actions</h4>
         <TaskCardView {...coupleActions} /> <h5 />
         <TaskCardView {...coupleActions} progress={5} />
         <h5>Progress {">"} Goal</h5>
-        <TaskCardView {...coupleActions} progress={9} />
+        <TaskCardView {...coupleActions} progress={9} /> <h5 />
       </div>
-      <div>
+      <div style={resizable}>
         <h4>Many Actions</h4>
         <TaskCardView {...manyActions} /> <h5 />
-        <TaskCardView {...manyActions} progress={500} />
+        <TaskCardView {...manyActions} progress={500} /> <h5 />
       </div>
     </div>
   );
@@ -101,32 +103,27 @@ export const Repeatable = () => {
     onClick: () => {},
   };
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, 374px)",
-      }}
-    >
-      <div>
+    <div style={{ display: "inline-flex", gap: "32px" }}>
+      <div style={resizable}>
         <h4>One Action</h4>
         <TaskCardView {...oneAction} /> <h5 />
-        <TaskCardView {...oneAction} repeatable={1} complete />
+        <TaskCardView {...oneAction} repeatable={1} complete /> <h5 />
       </div>
-      <div>
+      <div style={resizable}>
         <h4>A Couple Actions</h4>
         <TaskCardView {...coupleActions} progress={1} /> <h5 />
         <TaskCardView {...coupleActions} progress={5} /> <h5 />
         <TaskCardView {...coupleActions} progress={7} /> <h5 />
         <TaskCardView {...coupleActions} progress={10} /> <h5 />
-        <TaskCardView {...coupleActions} progress={12} />
+        <TaskCardView {...coupleActions} progress={12} /> <h5 />
       </div>
-      <div>
+      <div style={resizable}>
         <h4>Many Actions</h4>
         <TaskCardView {...manyActions} progress={100} /> <h5 />
         <TaskCardView {...manyActions} progress={500} /> <h5 />
         <TaskCardView {...manyActions} progress={650} /> <h5 />
         <TaskCardView {...manyActions} progress={1000} /> <h5 />
-        <TaskCardView {...manyActions} progress={1200} />
+        <TaskCardView {...manyActions} progress={1200} /> <h5 />
       </div>
     </div>
   );
@@ -168,32 +165,27 @@ export const RepeatableWithExpiry = () => {
     onClick: () => {},
   };
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, 374px)",
-      }}
-    >
-      <div>
+    <div style={{ display: "inline-flex", gap: "32px" }}>
+      <div style={resizable}>
         <h4>One Action</h4>
         <TaskCardView {...oneAction} /> <h5 />
-        <TaskCardView {...oneAction} repeatable={1} complete />
+        <TaskCardView {...oneAction} repeatable={1} complete /> <h5 />
       </div>
-      <div>
+      <div style={resizable}>
         <h4>A Couple Actions</h4>
         <TaskCardView {...coupleActions} progress={1} /> <h5 />
         <TaskCardView {...coupleActions} progress={5} /> <h5 />
         <TaskCardView {...coupleActions} progress={7} /> <h5 />
         <TaskCardView {...coupleActions} progress={10} /> <h5 />
-        <TaskCardView {...coupleActions} progress={12} />
+        <TaskCardView {...coupleActions} progress={12} /> <h5 />
       </div>
-      <div>
+      <div style={resizable}>
         <h4>Many Actions</h4>
         <TaskCardView {...manyActions} progress={100} /> <h5 />
         <TaskCardView {...manyActions} progress={500} /> <h5 />
         <TaskCardView {...manyActions} progress={650} /> <h5 />
         <TaskCardView {...manyActions} progress={1000} /> <h5 />
-        <TaskCardView {...manyActions} progress={1200} />
+        <TaskCardView {...manyActions} progress={1200} /> <h5 />
       </div>
     </div>
   );
@@ -209,7 +201,7 @@ export const ProgressBar = () => {
     goal: 10,
     progress: 2,
     steps: 1,
-	repeatable: true
+    repeatable: true,
   };
   return (
     <div>
