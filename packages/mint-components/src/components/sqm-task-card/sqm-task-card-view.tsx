@@ -160,7 +160,6 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
                   {points}
                   {" SaaSquatch Points"}
                 </span>
-                )
               </div>
             )}
             {expire && (
