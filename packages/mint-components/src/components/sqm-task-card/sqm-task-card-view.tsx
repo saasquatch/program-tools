@@ -441,7 +441,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
   function addLinear() {
     columns = progress / goal + "fr 0fr " + (1 - progress / goal) + "fr 0fr";
     items.push(<div class={"filled"}></div>);
-    items.push(<div class={goal <= progress ? "progress bg" : "progress"}>{unit + progress}</div>);
+    items.push(<div class={progress == goal ? "progress bg" : "progress"}>{unit + progress}</div>);
     items.push(<div class={"remain"}></div>);
     items.push(<div class={"end"}>{gift1}</div>);
   }
