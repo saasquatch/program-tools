@@ -7,7 +7,7 @@ import { UserNameView, UserNameViewProps } from "./sqm-user-name-view";
 import { useUserName } from "./useUserName";
 
 /**
- * @uiName Navigation Link
+ * @uiName User Name
  */
 @Component({
   tag: "sqm-user-name",
