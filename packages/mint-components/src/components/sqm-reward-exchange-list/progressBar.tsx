@@ -9,7 +9,6 @@ function Dot({
   completed: boolean;
   incomplete?: boolean;
 }) {
-  console.log({ active });
   return (
     <div
       style={{
@@ -45,29 +44,6 @@ function Dot({
     </div>
   );
 }
-
-// function ProgressOne({ active, completed, incomplete }) {
-//   return (
-//     <div
-//       style={{
-//         content: "''",
-//         flex: "1 1 0",
-//         height: "4px",
-//         borderRadius: "4px",
-//         background: incomplete ? "#E5E5E5" : "#9E9E9E",
-//         position: "relative",
-//         bottom: "0",
-//         left: "0",
-//         display: "flex",
-//         justifyContent: "center",
-//         columnGap: "50px",
-//         marginRight: "-2px",
-//       }}
-//     >
-//       <Dot active={active} completed={completed} incomplete={incomplete} />
-//     </div>
-//   );
-// }
 
 function Progress({ active, completed, incomplete }) {
   return [
@@ -106,28 +82,6 @@ function Progress({ active, completed, incomplete }) {
     ></div>,
   ];
 }
-
-// function ProgressThree({ active, completed, incomplete }) {
-//   return (
-//     <div
-//       style={{
-//         content: "''",
-//         flex: "1 1 0",
-//         height: "4px",
-//         borderRadius: "4px",
-//         background: incomplete ? "#E5E5E5" : "#9E9E9E",
-//         position: "relative",
-//         bottom: "0",
-//         left: "0",
-//         display: "flex",
-//         justifyContent: "center",
-//         columnGap: "50px",
-//       }}
-//     >
-//       <Dot active={active} completed={completed} incomplete={incomplete} />
-//     </div>
-//   );
-// }
 
 export function ProgressBar({ stage }: { stage: number }) {
   console.log({ stage });
