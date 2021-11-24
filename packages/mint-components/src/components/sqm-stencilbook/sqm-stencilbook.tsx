@@ -16,6 +16,7 @@ import * as UseBigStat from "../sqm-big-stat/UseBigStat.stories";
 import * as UseEditProfile from "../sqm-edit-profile/UseEditProfile.stories";
 import * as UseLeaderboard from "../sqm-leaderboard/UseLeaderboard.stories";
 import * as FormMessage from "../sqm-form-message/FormMessage.stories";
+import * as UseRewardExchangeList from "../sqm-reward-exchange-list/UseRewardExchangeList.stories";
 import * as NewPortal from "../../stories/NewPortal.stories";
 import * as SidebarItem from "../sqm-navigation-sidebar-item/SidebarItem.stories";
 import * as NavigationSidebar from "../sqm-navigation-sidebar/NavigationSidebar.stories";
@@ -88,6 +89,7 @@ const stories = [
   Hero,
   ReferralIframe,
   NameFields,
+  UseRewardExchangeList,
 ];
 
 /**
