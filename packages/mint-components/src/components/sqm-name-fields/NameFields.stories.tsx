@@ -3,7 +3,7 @@ import {
   NameFieldsView,
   NameFieldsViewProps,
 } from "./sqm-name-fields-view";
-import scenario from "../components/sqm-name-fields/sqm-name-fields.feature";
+import scenario from "../sqm-name-fields/sqm-name-fields.feature";
 
 export default {
   title: "Name Fields",

@@ -3,7 +3,7 @@ import {
   ReferralIframeView,
   ReferralIframeViewProps,
 } from "./sqm-referral-iframe-view";
-import scenario from "../components/sqm-referral-iframe/sqm-referral-iframe.feature";
+import scenario from "../sqm-referral-iframe/sqm-referral-iframe.feature";
 
 export default {
   title: "Referral Iframe",

@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
 import { HeroView } from "./sqm-hero-view";
-import scenario from "../components/sqm-hero/sqm-hero.feature";
+import scenario from "../sqm-hero/sqm-hero.feature";
 
 export default {
   title: "Hero Layout",

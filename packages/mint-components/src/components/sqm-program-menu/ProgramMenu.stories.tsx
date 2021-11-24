@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
-import dashboardTemplate from "../templates/Dashboard.html";
+import dashboardTemplate from "../../templates/Dashboard.html";
 
 export default {
   title: "Program Menu",

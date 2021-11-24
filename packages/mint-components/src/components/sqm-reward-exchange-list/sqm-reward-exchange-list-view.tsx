@@ -270,9 +270,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   const currentStage = stages[states.redeemStage];
 
   function stageMap() {
+    const currentStage = Object.keys(stageList).indexOf(states.redeemStage);
     return (
       <div style={{ fontSize: "80%" }}>
-        <ProgressBar stage={states.redeemStage} />
+        <ProgressBar stage={currentStage} />
         <div
           style={{
             marginTop: "5px",
