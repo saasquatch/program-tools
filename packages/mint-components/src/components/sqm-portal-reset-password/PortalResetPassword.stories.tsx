@@ -20,6 +20,14 @@ const defaultProps: PortalResetPasswordViewProps = {
     confirmPassword: true,
     oobCodeValidating: false,
     oobCodeValid: true,
+    content: {
+      passwordResetHeader: "Password reset",
+      resetPasswordHeader: "Reset your password",
+      continueButtonText: "Continue",
+      resetPasswordButtonText: "Reset Password",
+      confirmPasswordFieldLabel: "Confirm Password",
+      passwordFieldLabel: "New Password",
+    },
   },
   callbacks: {
     submit: async (e) => await e,
@@ -36,6 +44,14 @@ const defaultPropsNoConfirm: PortalResetPasswordViewProps = {
     confirmPassword: false,
     oobCodeValidating: false,
     oobCodeValid: true,
+    content: {
+      passwordResetHeader: "Password reset",
+      resetPasswordHeader: "Reset your password",
+      continueButtonText: "Continue",
+      resetPasswordButtonText: "Reset Password",
+      confirmPasswordFieldLabel: "Confirm Password",
+      passwordFieldLabel: "New Password",
+    },
   },
   callbacks: {
     submit: async (e) => await e,
@@ -52,6 +68,14 @@ const errorProps: PortalResetPasswordViewProps = {
     confirmPassword: true,
     oobCodeValidating: false,
     oobCodeValid: true,
+    content: {
+      passwordResetHeader: "Password reset",
+      resetPasswordHeader: "Reset your password",
+      continueButtonText: "Continue",
+      resetPasswordButtonText: "Reset Password",
+      confirmPasswordFieldLabel: "Confirm Password",
+      passwordFieldLabel: "New Password",
+    },
   },
   callbacks: {
     submit: async (e) => await e,
@@ -68,6 +92,14 @@ const loadingProps: PortalResetPasswordViewProps = {
     confirmPassword: true,
     oobCodeValidating: false,
     oobCodeValid: true,
+    content: {
+      passwordResetHeader: "Password reset",
+      resetPasswordHeader: "Reset your password",
+      continueButtonText: "Continue",
+      resetPasswordButtonText: "Reset Password",
+      confirmPasswordFieldLabel: "Confirm Password",
+      passwordFieldLabel: "New Password",
+    },
   },
   callbacks: {
     submit: async (e) => await e,
@@ -84,6 +116,14 @@ const successProps: PortalResetPasswordViewProps = {
     confirmPassword: true,
     oobCodeValidating: false,
     oobCodeValid: true,
+    content: {
+      passwordResetHeader: "Password reset",
+      resetPasswordHeader: "Reset your password",
+      continueButtonText: "Continue",
+      resetPasswordButtonText: "Reset Password",
+      confirmPasswordFieldLabel: "Confirm Password",
+      passwordFieldLabel: "New Password",
+    },
   },
   callbacks: {
     submit: async (e) => await e,
@@ -100,6 +140,14 @@ const validatingCodeProps: PortalResetPasswordViewProps = {
     confirmPassword: true,
     oobCodeValidating: false,
     oobCodeValid: false,
+    content: {
+      passwordResetHeader: "Password reset",
+      resetPasswordHeader: "Reset your password",
+      continueButtonText: "Continue",
+      resetPasswordButtonText: "Reset Password",
+      confirmPasswordFieldLabel: "Confirm Password",
+      passwordFieldLabel: "New Password",
+    },
   },
   callbacks: {
     submit: async (e) => await e,

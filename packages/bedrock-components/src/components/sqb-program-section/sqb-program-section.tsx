@@ -1,5 +1,5 @@
 import { withHooks } from '@saasquatch/stencil-hooks';
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, State } from '@stencil/core';
 import { useProgramProvider } from './PROGRAM_CONTEXT';
 
 /**
@@ -12,6 +12,8 @@ import { useProgramProvider } from './PROGRAM_CONTEXT';
   shadow: true,
 })
 export class SqbProgramSection {
+  @State()
+  ignored = true;
   /**
    * The program that everything in this section should use
    *

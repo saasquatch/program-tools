@@ -1,0 +1,36 @@
+<sqm-portal-protected-route
+  require-email-verification="true"
+  redirect-to="/login"
+  redirect-to-unverified="/emailVerification"
+></sqm-portal-protected-route>
+<sqm-portal-container direction="column" padding="xxx-large" gap="xxx-large">
+  <sqm-text> <h1>Activity</h1></sqm-text>
+  <sqm-stat-container space="xxxx-large"
+    ><sqm-big-stat
+      flex-reverse="true"
+      alignment="left"
+      stat-type="/referralsCount"
+      ><sqm-text><p>Referrals</p></sqm-text></sqm-big-stat
+    >
+    <sqm-big-stat
+      flex-reverse="true"
+      alignment="left"
+      stat-type="/rewardsCountFiltered/AVAILABLE"
+      ><sqm-text><p>Rewards Earned</p></sqm-text></sqm-big-stat
+    >
+    <sqm-big-stat
+      flex-reverse="true"
+      alignment="left"
+      stat-type="/rewardBalance/CREDIT/CENTS"
+      ><sqm-text><p>Reward Balance</p></sqm-text></sqm-big-stat
+    >
+  </sqm-stat-container>
+  <sqm-referral-table>
+    <sqm-referral-table-user-column></sqm-referral-table-user-column>
+    <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+    <sqm-referral-table-status-column></sqm-referral-table-status-column>
+    <sqm-referral-table-date-column
+      column-title="Referred"
+      date-shown="dateReferralStarted"
+    ></sqm-referral-table-date-column> </sqm-referral-table
+></sqm-portal-container>

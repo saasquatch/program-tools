@@ -23,7 +23,7 @@ export function NavigationSidebarItemView(
   const style = {
     ItemContainer: {
       display: "flex",
-      "background-color": `${states.active ? "#eaeaea" : "#ffffff"}`,
+      "background-color": `${states.active ? "var(--sl-color-gray-200)" : "var(--sl-color-white)"}`,
       "border-radius": "8px",
       padding: "8px",
       "text-decoration": "none",
@@ -32,7 +32,7 @@ export function NavigationSidebarItemView(
       ...gap({ direction: "row" as const, size: "var(--sl-font-size-small)" }),
       "&:hover": {
         cursor: "pointer",
-        background: states.active ? "#dddddd" : "#f7f7f7",
+        background: states.active ? "var(--sl-color-gray-300)" : "var(--sl-color-gray-50)",
       },
     },
     Label: {

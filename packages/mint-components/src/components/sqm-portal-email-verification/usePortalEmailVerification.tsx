@@ -49,6 +49,8 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
     content: {
       email,
       verifyMessage: props.verifyMessage,
+      emailVerificationHeader: props.emailVerificationHeader,
+      resendEmailButtonText: props.resendEmailButtonText,
     },
   };
 }

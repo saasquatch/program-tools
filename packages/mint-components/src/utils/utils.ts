@@ -1,3 +1,5 @@
+import { RequiredPropsErrorProps } from "./RequiredPropsError";
+
 export function format(first: string, middle: string, last: string): string {
   return (
     (first || "") + (middle ? ` ${middle}` : "") + (last ? ` ${last}` : "")
@@ -31,4 +33,14 @@ export function middleClickLink(e: MouseEvent, path: string) {
     target: "_blank",
     href: path,
   }).click();
+}
+
+type RequiredProps = {
+  attribute: string;
+  value: string | boolean | number;
+}[];
+
+export function getMissingProps(props: RequiredProps) {
+  const missingProps = props.filter((prop) => !prop.value);
+  return missingProps.length ? missingProps : false;
 }

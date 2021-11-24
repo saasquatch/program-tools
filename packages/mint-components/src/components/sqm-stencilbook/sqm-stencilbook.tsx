@@ -35,6 +35,13 @@ import * as ReferralTableRewardsCell from "../sqm-referral-table/ReferralTableRe
 import * as UserName from "../sqm-user-name/UserName.stories";
 import * as PasswordField from "../sqm-password-field/PasswordField.stories";
 import * as TaskCard from "../sqm-task-card/TaskCard.stories";
+import * as PortalTemplates from "../../stories/PortalTemplates.stories";
+import * as ProgramMenu from "../../stories/ProgramMenu.stories";
+import * as PoweredByImg from "../../stories/PoweredByImg.stories";
+import * as PortalFooter from "../../stories/PortalFooter.stories";
+import * as Hero from "../../stories/Hero.stories";
+import * as ReferralIframe from "../../stories/ReferralIframe.stories";
+import * as NameFields from "../../stories/NameFields.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -73,7 +80,14 @@ const stories = [
   ReferralTableRewardsCell,
   UserName,
   PasswordField,
-  TaskCard
+  TaskCard,
+  PortalTemplates,
+  ProgramMenu,
+  PoweredByImg,
+  PortalFooter,
+  Hero,
+  ReferralIframe,
+  NameFields,
 ];
 
 /**
@@ -98,6 +112,10 @@ export class StencilStorybook {
       title: "Mint Components",
       addons: [CucumberAddon, ShadowViewAddon, HookStoryAddon],
     });
-    return <Host class={Style}>{children}</Host>;
+    return (
+      <Host class={Style} onClick={{}}>
+        {children}
+      </Host>
+    );
   }
 }

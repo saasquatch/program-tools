@@ -12,6 +12,9 @@ export interface PortalProfileProps {
   lastnametext: string;
   countrytext: string;
   emailtext: string;
+  editProfileHeader: string;
+  editProfileSubHeader: string;
+  submitChangeButtonText: string;
   showCountry: boolean;
 }
 
@@ -68,24 +71,22 @@ export function usePortalProfile(
 
   const [success, setSuccess] = useState(false);
 
-  const [userData, setUserData] =
-    useState<null | {
-      id: string;
-      accountId: string;
-      firstName: string;
-      lastName: string;
-      email: string;
-      countryCode: string;
-    }>(undefined);
+  const [userData, setUserData] = useState<null | {
+    id: string;
+    accountId: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    countryCode: string;
+  }>(undefined);
 
-  const [formState, setFormState] =
-    useState<{
-      country: string;
-      firstName: string;
-      lastName: string;
-      errors: any;
-      error: string;
-    }>(defaultFormState);
+  const [formState, setFormState] = useState<{
+    country: string;
+    firstName: string;
+    lastName: string;
+    errors: any;
+    error: string;
+  }>(defaultFormState);
 
   const userDataResponse = useQuery(GET_USER, {}, !userIdent?.jwt);
 
@@ -169,6 +170,9 @@ export function usePortalProfile(
         lastnametext: props.lastnametext,
         countrytext: props.countrytext,
         emailtext: props.emailtext,
+        editProfileHeader: props.editProfileHeader,
+        editProfileSubHeader: props.editProfileSubHeader,
+        submitChangeButtonText: props.submitChangeButtonText,
       },
     },
     callbacks: {

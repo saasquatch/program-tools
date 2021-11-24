@@ -18,6 +18,7 @@ jobs:
       matrix:
         package:
           - mint-components
+          - bedrock-components
 
     steps:
       - name: Checkout

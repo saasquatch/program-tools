@@ -1,3 +1,5 @@
+import { setUserIdentity } from "@saasquatch/component-boilerplate";
+import { useEffect } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { useShareButton } from "./useShareButton";
 
@@ -8,27 +10,31 @@ export default {
 };
 
 function setupGraphQL() {
-  const id = "worried-camera@uexwltgh.mailosaur.net";
+  const id = "testestest";
   const accountId = id;
-  const programId = "a-referral-program";
+  const programId = "sam-partner-test-2";
 
   //@ts-ignore
   window.widgetIdent = {
-    tenantAlias: "test_as36zjtpfy7oo",
+    tenantAlias: "test_a8b41jotf8a1v",
     appDomain: "https://staging.referralsaasquatch.com",
-    token:
-      // you have to change this if you change the id or accountId
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6IndvcnJpZWQtY2FtZXJhQHVleHdsdGdoLm1haWxvc2F1ci5uZXQiLCJpZCI6IndvcnJpZWQtY2FtZXJhQHVleHdsdGdoLm1haWxvc2F1ci5uZXQifX0.-WGV4_bzGCFp-OTIO-h-yp0MlgtkdufT_GgI4T691OY",
-    userId: id,
-    accountId,
     programId,
   };
-  return { id, accountId };
+  useEffect(() => {
+    setUserIdentity({
+      accountId,
+      id,
+      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InRlc3Rlc3Rlc3QiLCJpZCI6InRlc3Rlc3Rlc3QifX0.qYnU5hNeIj9C_G3NogfG7btgCPGZC7JRXY0MG6a63zs",
+    });
+    return () => {
+      window.widgetIdent = undefined;
+      setUserIdentity(undefined);
+    };
+  }, []);
 }
-
 export const BareBonesView = createHookStory(() => {
   setupGraphQL();
-  const programId = "a-referral-program";
+  const programId = "sam-partner-test-2";
   const res = [
     useShareButton({ programId, medium: "facebook" }),
     useShareButton({ programId, medium: "twitter" }),
@@ -49,7 +55,7 @@ export const BareBonesView = createHookStory(() => {
 
 export const RegularView = createHookStory(() => {
   setupGraphQL();
-  const programId = "a-referral-program";
+  const programId = "sam-partner-test-2";
   const mediums: Array<ReturnType<typeof useShareButton>["medium"]> = [
     "facebook",
     "twitter",

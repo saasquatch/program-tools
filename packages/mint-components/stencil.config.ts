@@ -55,6 +55,7 @@ export const config: Config = {
   plugins: [
     sass({ injectGlobalPaths: ["src/global/mixins.scss"] }),
     string({ include: "**/*.feature" }),
+    string({ include: "**/*.md" }),
   ],
   rollupPlugins: {
     before: [
@@ -85,6 +86,7 @@ export const config: Config = {
           },
         ],
       }),
+      string({ include: "src/templates/*.html" }),
     ],
   },
   extras: {
