@@ -51,7 +51,7 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
       },
       "& .main.complete": {
         background: "var(--sl-color-primary-50)",
-        borderColor: "var(--sl-color-primary-300)",
+        borderColor: "var(--sl-color-primary-700)",
       },
       // "@media only screen and (min-width: 2000px)": {
       //   "& .main": {
@@ -64,7 +64,7 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
       "& .icon": {
         alignSelf: "center",
         lineHeight: "0",
-        color: "var(--sl-color-primary-300)",
+        color: "var(--sl-color-primary-700)",
         fontSize: "var(--sl-font-size-large)",
         marginRight: "var(--sl-spacing-x-small)",
       },
@@ -109,8 +109,8 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
       },
       "& sl-button.action::part(base) ": {
         color: "var(--sl-color-white)",
-        background: "var(--sl-color-primary-300)",
-        border: "1px solid var(--sl-color-primary-300)",
+        background: "var(--sl-color-primary-500)",
+        border: "1px solid var(--sl-color-primary-500)",
         borderRadius: "var(--sl-border-radius-medium)",
       },
     },
@@ -140,33 +140,37 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
         <ProgressBar {...props} />
         <Details description={description} />
         <div class={sheet.classes.Footer}>
-          {(repeatable || typeof repeatable == "number") && (
-            <span class="completed">
-              <span class="icon">
-                {arrow_left_right}
-                {/* <sl-icon name="arrow-left-right"></sl-icon> */}
-              </span>
-              <span>
-                {"Completed "}
-                {typeof repeatable == "number"
-                  ? repeatable
-                  : Math.floor(progress / goal)}
-                {" times"}
-              </span>
-              <br />
-              <span>
-                {"Earned "}
-                {points}
-                {" SaaSquatch Points"}
-              </span>
-              {expire && (
-                <span>
-                  <br /> <br />
-                  Ends Nov 30, 2021
+          <span class="completed">
+            {(repeatable || typeof repeatable == "number") && (
+              <div>
+                <span class="icon">
+                  {arrow_left_right}
+                  {/* <sl-icon name="arrow-left-right"></sl-icon> */}
                 </span>
-              )}
-            </span>
-          )}
+                <span>
+                  {"Completed "}
+                  {typeof repeatable == "number"
+                    ? repeatable
+                    : Math.floor(progress / goal)}
+                  {" times"}
+                </span>
+                <br />
+                <span>
+                  {"Earned "}
+                  {points}
+                  {" SaaSquatch Points"}
+                </span>
+                )
+              </div>
+            )}
+            {expire && (
+              <span>
+                <br />
+                {"Ends "} {expire}
+              </span>
+            )}
+          </span>
+
           <sl-button
             class="action"
             size="small"
@@ -202,7 +206,7 @@ function Details(props: DetailsProps): VNode {
         color: "var(--sl-color-gray-700)",
         fontSize: "var(--sl-font-size-large)",
         "& :hover": {
-          color: "var(--sl-color-primary-300)",
+          color: "var(--sl-color-primary-700)",
         },
         transformOrigin: "50% 37%",
         transition: "transform var(--sl-transition-medium) ease",
@@ -309,7 +313,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         width: "100%",
         height: "4px",
         borderRadius: "4px",
-        backgroundColor: "var(--sl-color-primary-300)",
+        backgroundColor: "var(--sl-color-primary-500)",
       },
       "& .progress": {
         display: "block",
@@ -322,7 +326,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         width: "12px",
         height: "12px",
         display: "flex",
-        backgroundColor: "var(--sl-color-primary-300)",
+        backgroundColor: "var(--sl-color-primary-500)",
         borderRadius: "50%",
         position: "relative",
         left: "47%",
@@ -459,7 +463,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
     if (goal <= progress) {
       columns += "0fr ";
       items.push(<div class={"filled"}></div>);
-      items.push(<div class={"progress"}>{unit + goal}</div>);
+      items.push(<div class={"progress bg"}>{unit + goal}</div>);
       items.push(<div class="end">{gift1}</div>);
     }
 
@@ -542,7 +546,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         } else if (i == goal) {
           columns += "0fr ";
           items.push(<div class={"filled"}></div>);
-          items.push(<div class={"progress"}>{unit + i}</div>);
+          items.push(<div class={"progress bg"}>{unit + i}</div>);
           items.push(<div class="end">{gift3}</div>);
         } else {
           items.push(<div class={"filled"}></div>);
@@ -555,12 +559,10 @@ export function ProgressBar(props: ProgressBarProps): VNode {
       let position = (progress % goal) + goal;
       let step_math = steps / goal;
       columns += "0fr 0fr ";
-      items.push(<div class={"end start"}>{gift1}</div>);
       items.push(
-        <div class={"progress lhs bg"}>
-          {unit + (goal * (repetitions - 1))}
-        </div>
+        <div class={"progress lhs bg"}>{unit + goal * (repetitions - 1)}</div>
       );
+      items.push(<div class={"end start"}>{gift1}</div>);
       for (let i = 1; i < goal * 2 + 1; i += steps) {
         columns += step_math + "fr 0fr ";
         if (i <= goal) {
