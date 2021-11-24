@@ -18,6 +18,14 @@ export interface PortalResetPasswordViewProps {
     oobCodeValidating: boolean;
     oobCodeValid: boolean;
     passwordDemoData?: PasswordFieldViewDemoProps;
+    content: {
+      passwordResetHeader: string;
+      resetPasswordHeader: string;
+      continueButtonText: string;
+      resetPasswordButtonText: string;
+      confirmPasswordFieldLabel: string;
+      passwordFieldLabel: string;
+    };
   };
   callbacks: {
     submit: (node: any) => void;
@@ -56,8 +64,6 @@ const style = {
 
 const vanillaStyle = `
 :host {
-  margin: 0 auto;
-  width: 100%;
   display: block;
 }
 :host([hidden]): {
@@ -76,7 +82,9 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
     return (
       <div class={`${sheet.classes.Wrapper} ${sheet.classes.Column}`}>
         <style type="text/css">{styleString}</style>
-        <TextSpanView type="h3">Reset your password</TextSpanView>
+        <TextSpanView type="h3">
+          {states.content.resetPasswordHeader}
+        </TextSpanView>
         <sqm-form-message
           class={sheet.classes.CodeSuccess}
           exportparts="success-icon"
@@ -94,7 +102,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
             exportparts="base: primarybutton-base"
             type="primary"
           >
-            Continue
+            {states.content.continueButtonText}
           </sl-button>
         </div>
       </div>
@@ -125,7 +133,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
             exportparts="base: primarybutton-base"
             type="primary"
           >
-            Continue
+            {states.content.continueButtonText}
           </sl-button>
         </div>
       </div>
@@ -139,7 +147,9 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
         {styleString}
       </style>
       <TextSpanView type="h2">
-        {states.reset ? "Password Reset" : "Reset your password"}
+        {states.reset
+          ? states.content.passwordResetHeader
+          : states.content.resetPasswordHeader}
       </TextSpanView>
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
         {props.states.error && (
@@ -153,6 +163,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
         )}
         {!states.reset && (
           <sqm-password-field
+            fieldLabel={states.content.passwordFieldLabel}
             demoData={states.passwordDemoData}
           ></sqm-password-field>
         )}
@@ -161,7 +172,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
             exportparts="label: input-label"
             type="password"
             name="/confirmPassword"
-            label="Confirm Password"
+            label={states.content.confirmPasswordFieldLabel}
             disabled={states.loading}
             required
           ></sl-input>
@@ -174,7 +185,9 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
             exportparts="base: primarybutton-base"
             type="primary"
           >
-            {states.reset ? "Continue" : "Reset Password"}
+            {states.reset
+              ? states.content.continueButtonText
+              : states.content.resetPasswordButtonText}
           </sl-button>
         </div>
       </sl-form>

@@ -25,6 +25,8 @@ const defaultProps: PortalEmailVerificationViewProps = {
     email: "email@example.com",
     verifyMessage:
       "A verification email was sent to {email}. Please verify your email to continue to the portal.",
+    emailVerificationHeader: "Verify your email",
+    resendEmailButtonText: "Re-send Email",
   },
 };
 
@@ -41,6 +43,8 @@ const errorProps: PortalEmailVerificationViewProps = {
     email: "email@example.com",
     verifyMessage:
       "A verification email was sent to {email}. Please verify your email to continue to the portal.",
+    emailVerificationHeader: "Verify your email",
+    resendEmailButtonText: "Re-send Email",
   },
 };
 
@@ -57,6 +61,8 @@ const loadingProps: PortalEmailVerificationViewProps = {
     email: "email@example.com",
     verifyMessage:
       "A verification email was sent to {email}. Please verify your email to continue to the portal.",
+    emailVerificationHeader: "Verify your email",
+    resendEmailButtonText: "Re-send Email",
   },
 };
 
@@ -73,6 +79,8 @@ const successProps: PortalEmailVerificationViewProps = {
     email: "email@example.com",
     verifyMessage:
       "A verification email was sent to {email}. Please verify your email to continue to the portal.",
+    emailVerificationHeader: "Verify your email",
+    resendEmailButtonText: "Re-send Email",
   },
 };
 

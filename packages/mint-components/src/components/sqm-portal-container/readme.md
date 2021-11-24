@@ -1,4 +1,4 @@
-# sqm-sidebar-item
+# sqm-portal-container
 
 
 

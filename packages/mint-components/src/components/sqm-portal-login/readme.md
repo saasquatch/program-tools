@@ -1,4 +1,4 @@
-# stn-login
+# sqm-portal-login
 
 
 
@@ -21,6 +21,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [sqm-stencilbook](../sqm-stencilbook)
+
 ### Depends on
 
 - [sqm-form-message](../sqm-form-message)
@@ -29,6 +33,7 @@
 ```mermaid
 graph TD;
   sqm-portal-login --> sqm-form-message
+  sqm-stencilbook --> sqm-portal-login
   style sqm-portal-login fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -1,4 +1,4 @@
-# sqm-sidebar-item
+# sqm-portal-change-password
 
 
 
@@ -7,12 +7,24 @@
 
 ## Properties
 
-| Property   | Attribute | Description | Type                                                                                  | Default     |
-| ---------- | --------- | ----------- | ------------------------------------------------------------------------------------- | ----------- |
-| `demoData` | --        |             | `{ states?: { open: boolean; error: string; loading: boolean; success: boolean; }; }` | `undefined` |
+| Property                         | Attribute                            | Description | Type                                                                                                                                                                                                                                                                                                                                                            | Default                             |
+| -------------------------------- | ------------------------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| `cancelText`                     | `cancel-text`                        |             | `string`                                                                                                                                                                                                                                                                                                                                                        | `"Cancel"`                          |
+| `changePasswordButtonText`       | `change-password-button-text`        |             | `string`                                                                                                                                                                                                                                                                                                                                                        | `"Change Password"`                 |
+| `confirmPasswordFieldLabel`      | `confirm-password-field-label`       |             | `string`                                                                                                                                                                                                                                                                                                                                                        | `"Confirm New Password"`            |
+| `demoData`                       | --                                   |             | `{ states?: { open: boolean; error: string; loading: boolean; success: boolean; content: { modalChangePasswordHeader: string; cancelText: string; changePasswordButtonText: string; passwordFieldLabel: string; confirmPasswordFieldLabel: string; successMessage: string; portalChangePasswordHeader: string; portalChangePasswordButtonText: string; }; }; }` | `undefined`                         |
+| `modalChangePasswordHeader`      | `modal-change-password-header`       |             | `string`                                                                                                                                                                                                                                                                                                                                                        | `"Change Password"`                 |
+| `passwordFieldLabel`             | `password-field-label`               |             | `string`                                                                                                                                                                                                                                                                                                                                                        | `"New Password"`                    |
+| `portalChangePasswordButtonText` | `portal-change-password-button-text` |             | `string`                                                                                                                                                                                                                                                                                                                                                        | `"Change your password..."`         |
+| `portalChangePasswordHeader`     | `portal-change-password-header`      |             | `string`                                                                                                                                                                                                                                                                                                                                                        | `"Password"`                        |
+| `successMessage`                 | `success-message`                    |             | `string`                                                                                                                                                                                                                                                                                                                                                        | `"Your password has been updated."` |
 
 
 ## Dependencies
+
+### Used by
+
+ - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Depends on
 
@@ -24,6 +36,7 @@
 graph TD;
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-change-password --> sqm-password-field
+  sqm-stencilbook --> sqm-portal-change-password
   style sqm-portal-change-password fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

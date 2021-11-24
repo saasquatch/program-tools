@@ -7,10 +7,12 @@
 
 ## Properties
 
-| Property        | Attribute        | Description | Type                                                                                                                        | Default                                                                                           |
-| --------------- | ---------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `demoData`      | --               |             | `{ states?: { error: string; loading: boolean; success: boolean; }; content?: { email: string; verifyMessage: string; }; }` | `undefined`                                                                                       |
-| `verifyMessage` | `verify-message` |             | `string`                                                                                                                    | `"A verification email was sent to {email}. Please verify your email to continue to the portal."` |
+| Property                  | Attribute                   | Description | Type                                                                                                                                                                                        | Default                                                                                           |
+| ------------------------- | --------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `demoData`                | --                          |             | `{ states?: { error: string; loading: boolean; success: boolean; }; content?: { email: string; verifyMessage: string; emailVerificationHeader: string; resendEmailButtonText: string; }; }` | `undefined`                                                                                       |
+| `emailVerificationHeader` | `email-verification-header` |             | `string`                                                                                                                                                                                    | `"Verify your email"`                                                                             |
+| `resendEmailButtonText`   | `resend-email-button-text`  |             | `string`                                                                                                                                                                                    | `"Re-send Email"`                                                                                 |
+| `verifyMessage`           | `verify-message`            |             | `string`                                                                                                                                                                                    | `"A verification email was sent to {email}. Please verify your email to continue to the portal."` |
 
 
 ## Dependencies

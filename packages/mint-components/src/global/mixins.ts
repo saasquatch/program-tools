@@ -90,7 +90,7 @@ export const Wrapper = {
 };
 
 export const AuthWrapper = {
-  margin: "var(--sl-spacing-xxxx-large) auto",
+  margin: "auto",
   ...Wrapper,
   "max-width": "500px",
   ...Column,

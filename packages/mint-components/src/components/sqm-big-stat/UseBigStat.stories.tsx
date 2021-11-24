@@ -3,8 +3,9 @@ import { BigStatView } from "./sqm-big-stat-view";
 import { useDemoBigStat } from "./useDemoBigStat";
 import { useBigStat } from "./useBigStat";
 import { useState } from "@saasquatch/stencil-hooks";
-
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
+import { useEffect } from "@saasquatch/universal-hooks";
+import { setUserIdentity } from "@saasquatch/component-boilerplate";
 
 export default {
   title: "Hooks / useBigStat",
@@ -16,19 +17,23 @@ function setupGraphQL() {
   const programId = "ny-post-referrals";
 
   //@ts-ignore
-  window.SquatchAndroid = true;
-  //@ts-ignore
   window.widgetIdent = {
     tenantAlias: "test_a7yoz8854cf6x",
     appDomain: "https://staging.referralsaasquatch.com",
-    token:
-      // you have to change this if you change the id or accountId
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6Im55bmVsbGllIiwiaWQiOiJueW5lbGxpZSJ9fQ.3KV974VPLgk4tD8LQfJTi4IPkKCmnaB8w48HzVJYDuI",
-    userId: id,
-    accountId,
     programId,
   };
-  return { id, accountId };
+
+  useEffect(() => {
+    setUserIdentity({
+      accountId,
+      id,
+      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6Im55bmVsbGllIiwiaWQiOiJueW5lbGxpZSJ9fQ.3KV974VPLgk4tD8LQfJTi4IPkKCmnaB8w48HzVJYDuI",
+    });
+    return () => {
+      window.widgetIdent = undefined;
+      setUserIdentity(undefined);
+    };
+  }, []);
 }
 
 const View = (statType: string, format: string) => {
@@ -135,6 +140,12 @@ export const GlobalRewardsCountByUnit = createHookStory(() =>
 export const GlobalPendingRewardsCount = createHookStory(() =>
   View(
     "/rewardsCountFiltered/CREDIT/COFFEE/PENDING/global",
+    "/(rewardsCountFiltered)/:statType([INTEGRATION|PCT_DISCOUNT|CREDIT]*)?/:unit((?!global)(?!PENDING)(?!CANCELLED)(?!EXPIRED)(?!REDEEMED)(?!AVAILABLE)[a-zA-Z0-9%]+)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
+  )
+);
+export const RewardsAvailableCount = createHookStory(() =>
+  View(
+    "/rewardsCountFiltered/AVAILABLE",
     "/(rewardsCountFiltered)/:statType([INTEGRATION|PCT_DISCOUNT|CREDIT]*)?/:unit((?!global)(?!PENDING)(?!CANCELLED)(?!EXPIRED)(?!REDEEMED)(?!AVAILABLE)[a-zA-Z0-9%]+)?/:status([PENDING|CANCELLED|EXPIRED|REDEEMED|AVAILABLE]*)?/:global?"
   )
 );

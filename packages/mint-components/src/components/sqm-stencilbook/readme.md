@@ -12,11 +12,11 @@
 - [sqm-share-button](../sqm-share-button)
 - [sqm-share-link](../sqm-share-link)
 - [sqm-router](../sqm-router)
+- [sqm-hook-story-container](../sqm-hook-story-container)
 - [sqm-navigation-menu](../sqm-navigation-menu)
 - [sqm-portal-frame](../sqm-portal-frame)
 - [sqm-edit-profile](../sqm-edit-profile)
 - [sqm-form-message](../sqm-form-message)
-- [sqm-hook-story-container](../sqm-hook-story-container)
 - [sqm-divided-layout](../sqm-divided-layout)
 - [sqm-text](../sqm-text)
 - [sqm-password-field](../sqm-password-field)
@@ -30,6 +30,10 @@
 - [sqm-referral-table](../sqm-referral-table)
 - [sqm-referral-table-rewards-cell](../sqm-referral-table/cells)
 - [sqm-user-name](../sqm-user-name)
+- [sqm-program-menu](../sqm-program-menu)
+- [sqm-portal-login](../sqm-portal-login)
+- [sqm-portal-change-password](../sqm-portal-change-password)
+- [sqm-referral-iframe](../sqm-referral-iframe)
 
 ### Graph
 ```mermaid
@@ -37,11 +41,11 @@ graph TD;
   sqm-stencilbook --> sqm-share-button
   sqm-stencilbook --> sqm-share-link
   sqm-stencilbook --> sqm-router
+  sqm-stencilbook --> sqm-hook-story-container
   sqm-stencilbook --> sqm-navigation-menu
   sqm-stencilbook --> sqm-portal-frame
   sqm-stencilbook --> sqm-edit-profile
   sqm-stencilbook --> sqm-form-message
-  sqm-stencilbook --> sqm-hook-story-container
   sqm-stencilbook --> sqm-divided-layout
   sqm-stencilbook --> sqm-text
   sqm-stencilbook --> sqm-password-field
@@ -55,10 +59,19 @@ graph TD;
   sqm-stencilbook --> sqm-referral-table
   sqm-stencilbook --> sqm-referral-table-rewards-cell
   sqm-stencilbook --> sqm-user-name
+  sqm-stencilbook --> sqm-program-menu
+  sqm-stencilbook --> sqm-portal-login
+  sqm-stencilbook --> sqm-portal-change-password
+  sqm-stencilbook --> sqm-referral-iframe
   sqm-edit-profile --> sqm-form-message
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field
+  sqm-referral-table --> sqm-table-row
+  sqm-referral-table --> sqm-table-cell
   sqm-referral-table --> sqm-text
+  sqm-portal-login --> sqm-form-message
+  sqm-portal-change-password --> sqm-form-message
+  sqm-portal-change-password --> sqm-password-field
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

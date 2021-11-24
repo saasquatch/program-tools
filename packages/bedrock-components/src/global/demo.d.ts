@@ -1,0 +1,1 @@
+export type DemoData<T extends {}> = Partial<Omit<T, "callbacks">>;

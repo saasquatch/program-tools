@@ -21,6 +21,47 @@ export class PortalChangePassword {
   ignored = true;
 
   /**
+   * @uiName Change password modal header
+   */
+  @Prop() modalChangePasswordHeader: string = "Change Password";
+
+  /**
+   * @uiName Modal cancel password change button text
+   */
+  @Prop() cancelText: string = "Cancel";
+
+  /**
+   * @uiName Modal change password button text
+   */
+  @Prop() changePasswordButtonText: string = "Change Password";
+
+  /**
+   * @uiName Password input field label
+   */
+  @Prop() passwordFieldLabel: string = "New Password";
+
+  /**
+   * @uiName Password confirmation input field label
+   */
+  @Prop()
+  confirmPasswordFieldLabel: string = "Confirm New Password";
+
+  /**
+   * @uiName Successful password change message
+   */
+  @Prop() successMessage: string = "Your password has been updated.";
+
+  /**
+   * @uiName Portal change password section header
+   */
+  @Prop() portalChangePasswordHeader: string = "Password";
+
+  /**
+   * @uiName Portal change password button text
+   */
+  @Prop() portalChangePasswordButtonText: string = "Change your password...";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -42,7 +83,20 @@ export class PortalChangePassword {
 function usePortalChangePasswordDemo(props: PortalChangePassword) {
   return deepmerge(
     {
-      states: { open: true, error: "" },
+      states: {
+        open: true,
+        error: "",
+        content: {
+          modalChangePasswordHeader: "Change Password",
+          cancelText: "Cancel",
+          changePasswordButtonText: "Change Password",
+          passwordFieldLabel: "New Password",
+          confirmPasswordFieldLabel: "Confirm new password",
+          successMessage: "Your password has been updated.",
+          portalChangePasswordHeader: "Password",
+          portalChangePasswordButtonText: "Change your password...",
+        },
+      },
       callbacks: {
         setOpen: (o) => console.log(o),
         submit: (e) => console.log("Submit", e),

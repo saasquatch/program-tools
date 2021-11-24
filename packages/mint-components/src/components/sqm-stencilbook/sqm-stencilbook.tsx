@@ -16,6 +16,7 @@ import * as UseBigStat from "../sqm-big-stat/UseBigStat.stories";
 import * as UseEditProfile from "../sqm-edit-profile/UseEditProfile.stories";
 import * as UseLeaderboard from "../sqm-leaderboard/UseLeaderboard.stories";
 import * as FormMessage from "../sqm-form-message/FormMessage.stories";
+import * as UseRewardExchangeList from "../sqm-reward-exchange-list/UseRewardExchangeList.stories";
 import * as NewPortal from "../../stories/NewPortal.stories";
 import * as SidebarItem from "../sqm-navigation-sidebar-item/SidebarItem.stories";
 import * as NavigationSidebar from "../sqm-navigation-sidebar/NavigationSidebar.stories";
@@ -35,6 +36,13 @@ import * as ReferralTableRewardsCell from "../sqm-referral-table/ReferralTableRe
 import * as UserName from "../sqm-user-name/UserName.stories";
 import * as PasswordField from "../sqm-password-field/PasswordField.stories";
 import * as TaskCard from "../sqm-task-card/TaskCard.stories";
+import * as PortalTemplates from "../../stories/PortalTemplates.stories";
+import * as ProgramMenu from "../sqm-program-menu/ProgramMenu.stories";
+import * as PoweredByImg from "../../stories/PoweredByImg.stories";
+import * as PortalFooter from "../sqm-portal-footer/PortalFooter.stories";
+import * as Hero from "../sqm-hero/Hero.stories";
+import * as ReferralIframe from "../sqm-referral-iframe/ReferralIframe.stories";
+import * as NameFields from "../sqm-name-fields/NameFields.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -73,7 +81,15 @@ const stories = [
   ReferralTableRewardsCell,
   UserName,
   PasswordField,
-  TaskCard
+  TaskCard,
+  PortalTemplates,
+  ProgramMenu,
+  PoweredByImg,
+  PortalFooter,
+  Hero,
+  ReferralIframe,
+  NameFields,
+  UseRewardExchangeList,
 ];
 
 /**
@@ -98,6 +114,10 @@ export class StencilStorybook {
       title: "Mint Components",
       addons: [CucumberAddon, ShadowViewAddon, HookStoryAddon],
     });
-    return <Host class={Style}>{children}</Host>;
+    return (
+      <Host class={Style} onClick={{}}>
+        {children}
+      </Host>
+    );
   }
 }

@@ -5,6 +5,8 @@ import {
   useLeaderboard,
 } from "./useLeaderboard";
 import { LeaderboardView } from "./sqm-leaderboard-view";
+import { useEffect } from "@saasquatch/universal-hooks";
+import { setUserIdentity } from "@saasquatch/component-boilerplate";
 
 export default {
   title: "Hooks / useLeaderboard",
@@ -16,19 +18,22 @@ function setupGraphQL() {
   const programId = "sam-partner-test-2";
 
   //@ts-ignore
-  window.SquatchAndroid = true;
-  //@ts-ignore
   window.widgetIdent = {
     tenantAlias: "test_a8b41jotf8a1v",
     appDomain: "https://staging.referralsaasquatch.com",
-    token:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InRlc3Rlc3Rlc3QiLCJpZCI6InRlc3Rlc3Rlc3QifX0.qYnU5hNeIj9C_G3NogfG7btgCPGZC7JRXY0MG6a63zs",
-    userId: id,
-    accountId,
     programId,
   };
-
-  return { id, accountId };
+  useEffect(() => {
+    setUserIdentity({
+      accountId,
+      id,
+      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InRlc3Rlc3Rlc3QiLCJpZCI6InRlc3Rlc3Rlc3QifX0.qYnU5hNeIj9C_G3NogfG7btgCPGZC7JRXY0MG6a63zs",
+    });
+    return () => {
+      window.widgetIdent = undefined;
+      setUserIdentity(undefined);
+    };
+  }, []);
 }
 
 const View = (overrideProps?: LeaderboardProps & any) => {
