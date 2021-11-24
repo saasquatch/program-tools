@@ -3,8 +3,7 @@ import { BigStatView } from "./sqm-big-stat-view";
 import { useDemoBigStat } from "./useDemoBigStat";
 import { useBigStat } from "./useBigStat";
 import { useState } from "@saasquatch/stencil-hooks";
-
-import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
+import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { setUserIdentity } from "@saasquatch/component-boilerplate";
 

@@ -3,8 +3,8 @@ import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 import {
   LeaderboardProps,
   useLeaderboard,
-} from "../components/sqm-leaderboard/useLeaderboard";
-import { LeaderboardView } from "../components/sqm-leaderboard/sqm-leaderboard-view";
+} from "./useLeaderboard";
+import { LeaderboardView } from "./sqm-leaderboard-view";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { setUserIdentity } from "@saasquatch/component-boilerplate";
 

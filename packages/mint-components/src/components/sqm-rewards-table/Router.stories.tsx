@@ -1,7 +1,7 @@
 import { navigation } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/stencil-hooks";
 import { h } from "@stencil/core";
-import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
+import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 
 export default {
   title: "Tests/Router",

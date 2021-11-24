@@ -12,6 +12,7 @@ import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-pro
 import { FunctionalComponent } from "@stencil/core";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
+import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-fields-view";
 import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-navigation-menu-view";
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
@@ -25,8 +26,10 @@ import { PortalProfileViewProps } from "./components/sqm-portal-profile/sqm-port
 import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-portal-register-view";
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
+import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
 import { ReferralTableViewProps } from "./components/sqm-referral-table/sqm-referral-table-view";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
+import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { GenericTableViewProps } from "./tables/GenericTableView";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
@@ -139,6 +142,28 @@ export namespace Components {
          */
         "domain": string;
     }
+    interface SqmHero {
+        /**
+          * @uiName Background image or color
+         */
+        "background"?: string;
+        /**
+          * @uiName Number of columns in the layout
+         */
+        "columns": 1 | 2;
+        /**
+          * @uiName Padding size
+         */
+        "paddingSize": "none" | "small" | "medium" | "large";
+        /**
+          * @uiName Secondary background image or color (for use in right column)
+         */
+        "secondaryBackground"?: string;
+        /**
+          * @uiName Wrap direction
+         */
+        "wrapDirection": "wrap" | "wrap-reverse";
+    }
     interface SqmHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
@@ -215,6 +240,20 @@ export namespace Components {
           * @uiName Unranked Text
          */
         "unrankedText": string;
+    }
+    interface SqmNameFields {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<NameFieldsViewProps>;
+        /**
+          * @uiName First name field label
+         */
+        "firstNameLabel": string;
+        /**
+          * @uiName Last name field label
+         */
+        "lastNameLabel": string;
     }
     interface SqmNavigationMenu {
         /**
@@ -374,6 +413,56 @@ export namespace Components {
           * @uiName Email verification body text
          */
         "verifyMessage": string;
+    }
+    interface SqmPortalFooter {
+        /**
+          * @uiName FAQ Link
+         */
+        "faqLink"?: string;
+        /**
+          * @uiName FAQ Text
+         */
+        "faqText"?: string;
+        /**
+          * @uiName Padding Bottom
+         */
+        "paddingBottom": string;
+        /**
+          * @uiName Padding Left
+         */
+        "paddingLeft": string;
+        /**
+          * @uiName Padding Right
+         */
+        "paddingRight": string;
+        /**
+          * @uiName Padding Top
+         */
+        "paddingTop": string;
+        /**
+          * @uiName Powered By Link
+         */
+        "poweredByLink": string;
+        /**
+          * @uiName Show Powered By SaaSquatch
+         */
+        "showPoweredBy": boolean;
+        /**
+          * @uiName Support Email
+         */
+        "supportEmail": string;
+        /**
+          * @uiName Support Text
+         */
+        "supportText": string;
+        /**
+          * @uiName Terms and Conditions Link
+         */
+        "termsLink"?: string;
+        /**
+          * @uiName Terms and Conditions Text
+         */
+        "termsText"?: string;
     }
     interface SqmPortalForgotPassword {
         /**
@@ -592,6 +681,26 @@ export namespace Components {
     }
     interface SqmProgramMenu {
     }
+    interface SqmReferralIframe {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<ReferralIframeViewProps>;
+        /**
+          * @uiName Height of the iframe container
+         */
+        "iframeHeight": string;
+        /**
+          * @uiName URL of iframe to display
+          * @uiRequired
+         */
+        "iframeSrc": string;
+        /**
+          * @uiName Width of the iframe container
+         */
+        "iframeWidth": string;
+    }
     interface SqmReferralTable {
         /**
           * @undocumented 
@@ -706,6 +815,18 @@ export namespace Components {
         "deletedUser": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
+    }
+    interface SqmRewardExchangeList {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<RewardExchangeViewProps>;
+        /**
+          * @uiName Type of List
+          * @uiRequired
+         */
+        "listType": string;
     }
     interface SqmRewardsTable {
         /**
@@ -1009,6 +1130,12 @@ declare global {
         prototype: HTMLSqmGraphqlClientProviderElement;
         new (): HTMLSqmGraphqlClientProviderElement;
     };
+    interface HTMLSqmHeroElement extends Components.SqmHero, HTMLStencilElement {
+    }
+    var HTMLSqmHeroElement: {
+        prototype: HTMLSqmHeroElement;
+        new (): HTMLSqmHeroElement;
+    };
     interface HTMLSqmHookStoryContainerElement extends Components.SqmHookStoryContainer, HTMLStencilElement {
     }
     var HTMLSqmHookStoryContainerElement: {
@@ -1026,6 +1153,12 @@ declare global {
     var HTMLSqmLeaderboardRankElement: {
         prototype: HTMLSqmLeaderboardRankElement;
         new (): HTMLSqmLeaderboardRankElement;
+    };
+    interface HTMLSqmNameFieldsElement extends Components.SqmNameFields, HTMLStencilElement {
+    }
+    var HTMLSqmNameFieldsElement: {
+        prototype: HTMLSqmNameFieldsElement;
+        new (): HTMLSqmNameFieldsElement;
     };
     interface HTMLSqmNavigationMenuElement extends Components.SqmNavigationMenu, HTMLStencilElement {
     }
@@ -1074,6 +1207,12 @@ declare global {
     var HTMLSqmPortalEmailVerificationElement: {
         prototype: HTMLSqmPortalEmailVerificationElement;
         new (): HTMLSqmPortalEmailVerificationElement;
+    };
+    interface HTMLSqmPortalFooterElement extends Components.SqmPortalFooter, HTMLStencilElement {
+    }
+    var HTMLSqmPortalFooterElement: {
+        prototype: HTMLSqmPortalFooterElement;
+        new (): HTMLSqmPortalFooterElement;
     };
     interface HTMLSqmPortalForgotPasswordElement extends Components.SqmPortalForgotPassword, HTMLStencilElement {
     }
@@ -1134,6 +1273,12 @@ declare global {
     var HTMLSqmProgramMenuElement: {
         prototype: HTMLSqmProgramMenuElement;
         new (): HTMLSqmProgramMenuElement;
+    };
+    interface HTMLSqmReferralIframeElement extends Components.SqmReferralIframe, HTMLStencilElement {
+    }
+    var HTMLSqmReferralIframeElement: {
+        prototype: HTMLSqmReferralIframeElement;
+        new (): HTMLSqmReferralIframeElement;
     };
     interface HTMLSqmReferralTableElement extends Components.SqmReferralTable, HTMLStencilElement {
     }
@@ -1200,6 +1345,12 @@ declare global {
     var HTMLSqmReferralTableUserColumnElement: {
         prototype: HTMLSqmReferralTableUserColumnElement;
         new (): HTMLSqmReferralTableUserColumnElement;
+    };
+    interface HTMLSqmRewardExchangeListElement extends Components.SqmRewardExchangeList, HTMLStencilElement {
+    }
+    var HTMLSqmRewardExchangeListElement: {
+        prototype: HTMLSqmRewardExchangeListElement;
+        new (): HTMLSqmRewardExchangeListElement;
     };
     interface HTMLSqmRewardsTableElement extends Components.SqmRewardsTable, HTMLStencilElement {
     }
@@ -1298,9 +1449,11 @@ declare global {
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
+        "sqm-hero": HTMLSqmHeroElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
+        "sqm-name-fields": HTMLSqmNameFieldsElement;
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
@@ -1309,6 +1462,7 @@ declare global {
         "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
         "sqm-portal-container": HTMLSqmPortalContainerElement;
         "sqm-portal-email-verification": HTMLSqmPortalEmailVerificationElement;
+        "sqm-portal-footer": HTMLSqmPortalFooterElement;
         "sqm-portal-forgot-password": HTMLSqmPortalForgotPasswordElement;
         "sqm-portal-frame": HTMLSqmPortalFrameElement;
         "sqm-portal-login": HTMLSqmPortalLoginElement;
@@ -1319,6 +1473,7 @@ declare global {
         "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
         "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
         "sqm-program-menu": HTMLSqmProgramMenuElement;
+        "sqm-referral-iframe": HTMLSqmReferralIframeElement;
         "sqm-referral-table": HTMLSqmReferralTableElement;
         "sqm-referral-table-cell": HTMLSqmReferralTableCellElement;
         "sqm-referral-table-column": HTMLSqmReferralTableColumnElement;
@@ -1330,6 +1485,7 @@ declare global {
         "sqm-referral-table-status-column": HTMLSqmReferralTableStatusColumnElement;
         "sqm-referral-table-user-cell": HTMLSqmReferralTableUserCellElement;
         "sqm-referral-table-user-column": HTMLSqmReferralTableUserColumnElement;
+        "sqm-reward-exchange-list": HTMLSqmRewardExchangeListElement;
         "sqm-rewards-table": HTMLSqmRewardsTableElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
@@ -1455,6 +1611,28 @@ declare namespace LocalJSX {
          */
         "domain"?: string;
     }
+    interface SqmHero {
+        /**
+          * @uiName Background image or color
+         */
+        "background"?: string;
+        /**
+          * @uiName Number of columns in the layout
+         */
+        "columns"?: 1 | 2;
+        /**
+          * @uiName Padding size
+         */
+        "paddingSize"?: "none" | "small" | "medium" | "large";
+        /**
+          * @uiName Secondary background image or color (for use in right column)
+         */
+        "secondaryBackground"?: string;
+        /**
+          * @uiName Wrap direction
+         */
+        "wrapDirection"?: "wrap" | "wrap-reverse";
+    }
     interface SqmHookStoryContainer {
         "hookStory"?: FunctionalComponent;
     }
@@ -1531,6 +1709,20 @@ declare namespace LocalJSX {
           * @uiName Unranked Text
          */
         "unrankedText"?: string;
+    }
+    interface SqmNameFields {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<NameFieldsViewProps>;
+        /**
+          * @uiName First name field label
+         */
+        "firstNameLabel"?: string;
+        /**
+          * @uiName Last name field label
+         */
+        "lastNameLabel"?: string;
     }
     interface SqmNavigationMenu {
         /**
@@ -1690,6 +1882,56 @@ declare namespace LocalJSX {
           * @uiName Email verification body text
          */
         "verifyMessage"?: string;
+    }
+    interface SqmPortalFooter {
+        /**
+          * @uiName FAQ Link
+         */
+        "faqLink"?: string;
+        /**
+          * @uiName FAQ Text
+         */
+        "faqText"?: string;
+        /**
+          * @uiName Padding Bottom
+         */
+        "paddingBottom"?: string;
+        /**
+          * @uiName Padding Left
+         */
+        "paddingLeft"?: string;
+        /**
+          * @uiName Padding Right
+         */
+        "paddingRight"?: string;
+        /**
+          * @uiName Padding Top
+         */
+        "paddingTop"?: string;
+        /**
+          * @uiName Powered By Link
+         */
+        "poweredByLink"?: string;
+        /**
+          * @uiName Show Powered By SaaSquatch
+         */
+        "showPoweredBy"?: boolean;
+        /**
+          * @uiName Support Email
+         */
+        "supportEmail"?: string;
+        /**
+          * @uiName Support Text
+         */
+        "supportText"?: string;
+        /**
+          * @uiName Terms and Conditions Link
+         */
+        "termsLink"?: string;
+        /**
+          * @uiName Terms and Conditions Text
+         */
+        "termsText"?: string;
     }
     interface SqmPortalForgotPassword {
         /**
@@ -1908,6 +2150,26 @@ declare namespace LocalJSX {
     }
     interface SqmProgramMenu {
     }
+    interface SqmReferralIframe {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<ReferralIframeViewProps>;
+        /**
+          * @uiName Height of the iframe container
+         */
+        "iframeHeight"?: string;
+        /**
+          * @uiName URL of iframe to display
+          * @uiRequired
+         */
+        "iframeSrc"?: string;
+        /**
+          * @uiName Width of the iframe container
+         */
+        "iframeWidth"?: string;
+    }
     interface SqmReferralTable {
         /**
           * @undocumented 
@@ -2012,6 +2274,18 @@ declare namespace LocalJSX {
           * @uiName Name displayed for deleted users
          */
         "deletedUser"?: string;
+    }
+    interface SqmRewardExchangeList {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<RewardExchangeViewProps>;
+        /**
+          * @uiName Type of List
+          * @uiRequired
+         */
+        "listType"?: string;
     }
     interface SqmRewardsTable {
         /**
@@ -2284,9 +2558,11 @@ declare namespace LocalJSX {
         "sqm-edit-profile": SqmEditProfile;
         "sqm-form-message": SqmFormMessage;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
+        "sqm-hero": SqmHero;
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
+        "sqm-name-fields": SqmNameFields;
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
@@ -2295,6 +2571,7 @@ declare namespace LocalJSX {
         "sqm-portal-change-password": SqmPortalChangePassword;
         "sqm-portal-container": SqmPortalContainer;
         "sqm-portal-email-verification": SqmPortalEmailVerification;
+        "sqm-portal-footer": SqmPortalFooter;
         "sqm-portal-forgot-password": SqmPortalForgotPassword;
         "sqm-portal-frame": SqmPortalFrame;
         "sqm-portal-login": SqmPortalLogin;
@@ -2305,6 +2582,7 @@ declare namespace LocalJSX {
         "sqm-portal-reset-password": SqmPortalResetPassword;
         "sqm-portal-verify-email": SqmPortalVerifyEmail;
         "sqm-program-menu": SqmProgramMenu;
+        "sqm-referral-iframe": SqmReferralIframe;
         "sqm-referral-table": SqmReferralTable;
         "sqm-referral-table-cell": SqmReferralTableCell;
         "sqm-referral-table-column": SqmReferralTableColumn;
@@ -2316,6 +2594,7 @@ declare namespace LocalJSX {
         "sqm-referral-table-status-column": SqmReferralTableStatusColumn;
         "sqm-referral-table-user-cell": SqmReferralTableUserCell;
         "sqm-referral-table-user-column": SqmReferralTableUserColumn;
+        "sqm-reward-exchange-list": SqmRewardExchangeList;
         "sqm-rewards-table": SqmRewardsTable;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
@@ -2343,9 +2622,11 @@ declare module "@stencil/core" {
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
+            "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
+            "sqm-name-fields": LocalJSX.SqmNameFields & JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
@@ -2354,6 +2635,7 @@ declare module "@stencil/core" {
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;
             "sqm-portal-container": LocalJSX.SqmPortalContainer & JSXBase.HTMLAttributes<HTMLSqmPortalContainerElement>;
             "sqm-portal-email-verification": LocalJSX.SqmPortalEmailVerification & JSXBase.HTMLAttributes<HTMLSqmPortalEmailVerificationElement>;
+            "sqm-portal-footer": LocalJSX.SqmPortalFooter & JSXBase.HTMLAttributes<HTMLSqmPortalFooterElement>;
             "sqm-portal-forgot-password": LocalJSX.SqmPortalForgotPassword & JSXBase.HTMLAttributes<HTMLSqmPortalForgotPasswordElement>;
             "sqm-portal-frame": LocalJSX.SqmPortalFrame & JSXBase.HTMLAttributes<HTMLSqmPortalFrameElement>;
             "sqm-portal-login": LocalJSX.SqmPortalLogin & JSXBase.HTMLAttributes<HTMLSqmPortalLoginElement>;
@@ -2364,6 +2646,7 @@ declare module "@stencil/core" {
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
             "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
+            "sqm-referral-iframe": LocalJSX.SqmReferralIframe & JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;
             "sqm-referral-table-cell": LocalJSX.SqmReferralTableCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableCellElement>;
             "sqm-referral-table-column": LocalJSX.SqmReferralTableColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableColumnElement>;
@@ -2375,6 +2658,7 @@ declare module "@stencil/core" {
             "sqm-referral-table-status-column": LocalJSX.SqmReferralTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusColumnElement>;
             "sqm-referral-table-user-cell": LocalJSX.SqmReferralTableUserCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserCellElement>;
             "sqm-referral-table-user-column": LocalJSX.SqmReferralTableUserColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserColumnElement>;
+            "sqm-reward-exchange-list": LocalJSX.SqmRewardExchangeList & JSXBase.HTMLAttributes<HTMLSqmRewardExchangeListElement>;
             "sqm-rewards-table": LocalJSX.SqmRewardsTable & JSXBase.HTMLAttributes<HTMLSqmRewardsTableElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;

@@ -1,6 +1,7 @@
 import { h } from "@stencil/core";
 
 function Dot({ active }: { active?: boolean }) {
+  console.log({ active });
   return (
     <div
       style={{
@@ -22,6 +23,7 @@ function Dot({ active }: { active?: boolean }) {
 }
 
 export function ProgressBar({ stage }) {
+  console.log({ stage });
   return (
     <div
       style={{
