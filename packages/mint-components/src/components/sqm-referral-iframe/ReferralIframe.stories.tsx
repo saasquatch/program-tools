@@ -2,7 +2,7 @@ import { h } from "@stencil/core";
 import {
   ReferralIframeView,
   ReferralIframeViewProps,
-} from "../components/sqm-referral-iframe/sqm-referral-iframe-view";
+} from "./sqm-referral-iframe-view";
 import scenario from "../components/sqm-referral-iframe/sqm-referral-iframe.feature";
 
 export default {

@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { PortalFooterView } from "../components/sqm-portal-footer/sqm-portal-footer-view";
+import { PortalFooterView } from "./sqm-portal-footer-view";
 import scenario from "../components/sqm-portal-footer/sqm-portal-footer.feature";
 
 export default {

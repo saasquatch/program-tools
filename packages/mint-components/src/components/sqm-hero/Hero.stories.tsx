@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { HeroView } from "../components/sqm-hero/sqm-hero-view";
+import { HeroView } from "./sqm-hero-view";
 import scenario from "../components/sqm-hero/sqm-hero.feature";
 
 export default {

@@ -36,12 +36,12 @@ import * as UserName from "../sqm-user-name/UserName.stories";
 import * as PasswordField from "../sqm-password-field/PasswordField.stories";
 import * as TaskCard from "../sqm-task-card/TaskCard.stories";
 import * as PortalTemplates from "../../stories/PortalTemplates.stories";
-import * as ProgramMenu from "../../stories/ProgramMenu.stories";
+import * as ProgramMenu from "../sqm-program-menu/ProgramMenu.stories";
 import * as PoweredByImg from "../../stories/PoweredByImg.stories";
-import * as PortalFooter from "../../stories/PortalFooter.stories";
-import * as Hero from "../../stories/Hero.stories";
-import * as ReferralIframe from "../../stories/ReferralIframe.stories";
-import * as NameFields from "../../stories/NameFields.stories";
+import * as PortalFooter from "../sqm-portal-footer/PortalFooter.stories";
+import * as Hero from "../sqm-hero/Hero.stories";
+import * as ReferralIframe from "../sqm-referral-iframe/ReferralIframe.stories";
+import * as NameFields from "../sqm-name-fields/NameFields.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
