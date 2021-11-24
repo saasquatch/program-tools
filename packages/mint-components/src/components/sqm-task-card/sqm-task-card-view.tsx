@@ -294,13 +294,14 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         marginTop: "var(--sl-spacing-large)",
         marginRight: "var(--sl-spacing-medium)",
         marginBottom: "var(--sl-spacing-large)",
+        fontSize: "var(--sl-font-size-x-small)",
         display: "grid",
         gridTemplateColumns: columns,
         lineHeight: "45px",
         userSelect: "none",
       },
       "& .progress-bar.repeatable": {
-        marginRight: "0",
+        //marginRight: "0",
       },
       "& .filled:after": {
         content: '""',
@@ -326,6 +327,15 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         position: "relative",
         left: "47%",
         top: "-85%",
+      },
+      "& .progress.lhs": {
+        position: "relative",
+        left: "4px",
+      },
+      "& .progress.bg:after": {
+        width: "0",
+        height: "0",
+        border: "none",
       },
       "& .empty": {
         display: "block",
@@ -365,6 +375,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
       "& .end.start": {
         transform: "scale(80%)",
         top: "-21px",
+        left: "5px",
       },
       "& .end": {
         textAlign: "center",
@@ -543,8 +554,13 @@ export function ProgressBar(props: ProgressBarProps): VNode {
     else {
       let position = (progress % goal) + goal;
       let step_math = steps / goal;
-      columns += "0fr ";
+      columns += "0fr 0fr ";
       items.push(<div class={"end start"}>{gift1}</div>);
+      items.push(
+        <div class={"progress lhs bg"}>
+          {unit + (goal * (repetitions - 1))}
+        </div>
+      );
       for (let i = 1; i < goal * 2 + 1; i += steps) {
         columns += step_math + "fr 0fr ";
         if (i <= goal) {
@@ -552,7 +568,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
             columns += "0fr ";
             items.push(<div class={"filled"}></div>);
             items.push(
-              <div class={"progress"}>
+              <div class={"progress bg"}>
                 {unit + (i + goal * (repetitions - 1))}
               </div>
             );
@@ -570,7 +586,9 @@ export function ProgressBar(props: ProgressBarProps): VNode {
             columns += "0fr 0fr";
             items.push(<div class={"remain"}></div>);
             items.push(
-              <div class={"empty bg"}>{unit + (i + goal * (repetitions - 1))}</div>
+              <div class={"empty bg"}>
+                {unit + (i + goal * (repetitions - 1))}
+              </div>
             );
             items.push(<div class={"end bw"}>{gift3}</div>);
           } else {
