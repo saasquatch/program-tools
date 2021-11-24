@@ -513,10 +513,17 @@ export function ProgressBar(props: ProgressBarProps): VNode {
           if (i == goal) {
             columns += "0fr ";
             items.push(<div class={"remain"}></div>);
-            items.push(<div class={"progress"}>{unit + goal}</div>);
-            items.push(<div class="end">{gift1}</div>);
+            items.push(<div class={"empty bg"}>{unit + goal}</div>);
+            items.push(<div class="end bw">{gift1}</div>);
           } else if (i == goal * 2) {
+            columns += "0fr 0fr";
             items.push(<div class={"remain"}></div>);
+            items.push(
+              <div class={"empty bg"}>
+                {unit + (i + goal * (repetitions - 1))}
+              </div>
+            );
+            items.push(<div class={"end bw"}>{gift2}</div>);
           } else {
             items.push(<div class={"remain"}></div>);
             items.push(<div class={"empty"}>{unit + i}</div>);
@@ -525,7 +532,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
           columns += "0fr ";
           items.push(<div class={"filled"}></div>);
           items.push(<div class={"progress"}>{unit + i}</div>);
-          items.push(<div class="end">{gift2}</div>);
+          items.push(<div class="end">{gift3}</div>);
         } else {
           items.push(<div class={"filled"}></div>);
           items.push(<div class={"progress"}>{unit + i}</div>);
@@ -563,7 +570,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
             columns += "0fr 0fr";
             items.push(<div class={"remain"}></div>);
             items.push(
-              <div class={"empty"}>{unit + (i + goal * (repetitions - 1))}</div>
+              <div class={"empty bg"}>{unit + (i + goal * (repetitions - 1))}</div>
             );
             items.push(<div class={"end bw"}>{gift3}</div>);
           } else {
