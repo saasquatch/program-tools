@@ -292,7 +292,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
       "& .progress-bar": {
         height: "20px",
         marginTop: "var(--sl-spacing-large)",
-        marginRight: "var(--sl-spacing-medium)",
+        marginRight: "var(--sl-spacing-x-small)",
         marginBottom: "var(--sl-spacing-large)",
         fontSize: "var(--sl-font-size-x-small)",
         display: "grid",
