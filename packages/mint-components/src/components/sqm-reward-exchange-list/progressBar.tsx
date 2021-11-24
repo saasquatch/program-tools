@@ -27,7 +27,7 @@ function Dot({
           borderRadius: "50%",
           width: "12px",
           height: "12px",
-          margin: completed ? "-2px auto 0px" : "-6px auto 0px",
+          margin: completed ? "-4px auto 0px" : "-6px auto 0px",
         }}
       ></div>
     </div>
