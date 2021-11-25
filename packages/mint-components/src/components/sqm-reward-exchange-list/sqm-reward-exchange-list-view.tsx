@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { getAssetPath, h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { ProgressBar } from "./progressBar";
@@ -40,18 +40,22 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     },
     CardContainer: {
       "&:hover": {
-        boxShadow: "0 3px 10px #87ceeb6e",
+        boxShadow: "0 3px 10px #87ceeb6e!important",
       },
     },
     Base: {
       display: "block",
       cursor: "pointer",
+      textAlign: "center",
       "&::part(base)": {
         width: "100%",
-        height: "200px",
+        height: "170px",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+      },
+      "&::part(body)": {
+        padding: "10px 0",
       },
     },
     Drawer: {
@@ -62,16 +66,18 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         right: "0",
       },
       "&::part(panel)": {
-        height: "50rem",
+        height: "85vh",
       },
     },
     FullImage: {
       objectFit: "contain",
       maxWidth: "100%",
+      height: "100px",
     },
     PreviewImage: {
       objectFit: "contain",
       maxWidth: "100%",
+      height: "75px",
     },
     InputBox: {
       width: "100%",
@@ -80,6 +86,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     Select: {
       "&::part(base)": {
         flex: "0.75",
+      },
+      "&::part(menu)": {
+        maxHeight: "40vh",
       },
     },
     Buttons: {
@@ -105,22 +114,22 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     const item = states.selectedItem;
     if (!item || item?.ruleType === "FIXED_GLOBAL_REWARD") return <span></span>;
 
-    if (!item?.steps?.length) {
-      return (
-        <sl-input
-          style={{ width: "auto" }}
-          label="Input amount to exchange"
-          type="number"
-          inputmode="numeric"
-          min={item?.sourceMinValue || 0}
-          max={item?.sourceMaxValue || ""}
-          class={sheet.classes.Select}
-          onInput={(e) =>
-            callbacks.setExchangeState({ amount: e.target?.value })
-          }
-        ></sl-input>
-      );
-    }
+    // if (!item?.steps?.length) {
+    //   return (
+    //     <sl-input
+    //       style={{ width: "auto" }}
+    //       label="Input amount to exchange"
+    //       type="number"
+    //       inputmode="numeric"
+    //       min={item?.sourceMinValue || 0}
+    //       max={item?.sourceMaxValue || ""}
+    //       class={sheet.classes.Select}
+    //       onInput={(e) =>
+    //         callbacks.setExchangeState({ amount: e.target?.value })
+    //       }
+    //     ></sl-input>
+    //   );
+    // }
     return (
       <sl-select
         style={{ width: "auto" }}
@@ -160,31 +169,42 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           justifyContent: "center",
           flexWrap: "wrap",
           alignItems: "center",
-          columnGap: "2px",
-          rowGap: "2px",
+          columnGap: "12px",
+          rowGap: "12px",
         }}
       >
-        {data.exchangeList?.map((item: ExchangeItem) => (
-          <div
-            class={sheet.classes.CardContainer}
-            style={{
-              boxShadow:
-                item.key === selectedItem?.key ? "0 3px 10px #87ceeb6" : "none",
-              marginBottom: "10px 0",
-              flex: "1",
-              minWidth: "45%",
-            }}
-          >
-            <sl-card
-              class={sheet.classes.Base}
-              onClick={() => callbacks.setExchangeState({ selectedItem: item })}
-              disabled={!item.available}
+        {data.exchangeList?.map((item: ExchangeItem) => {
+          const style = {
+            boxShadow:
+              item.key === selectedItem?.key ? "0 1px 8px #87ceeb" : "none",
+            marginBottom: "10px 0",
+            flex: "1",
+            minWidth: "45%",
+          };
+          return (
+            <div
+              key={item.key}
+              class={sheet.classes.CardContainer}
+              style={style}
             >
-              <img class={sheet.classes.PreviewImage} src={item?.imageUrl} />
-              <div>{item.description}</div>
-            </sl-card>
-          </div>
-        ))}
+              <sl-card
+                class={sheet.classes.Base}
+                onClick={() =>
+                  callbacks.setExchangeState({ selectedItem: item })
+                }
+                disabled={!item.available}
+              >
+                <img
+                  class={sheet.classes.PreviewImage}
+                  src={
+                    item?.imageUrl || getAssetPath("./assets/Reward-icon.png")
+                  }
+                />
+                <p>{item.description}</p>
+              </sl-card>
+            </div>
+          );
+        })}
         <div class={sheet.classes.Buttons}>
           <sl-button
             onClick={() => callbacks.setStage(nextStage)}
@@ -210,7 +230,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     const input = getInput();
     return (
       <div>
-        <div style={{ width: "100%" }}>
+        <div style={{ width: "50%", margin: "0 auto" }}>
           {selectedItem?.imageUrl && (
             <img class={sheet.classes.FullImage} src={selectedItem?.imageUrl} />
           )}
@@ -332,6 +352,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           ref={(ref) => (refs.drawerRef.current = ref)}
           placement="right"
           class={sheet.classes.Drawer}
+          open={Object.keys(stageList).indexOf(states.redeemStage) >= 0}
         >
           {!states.success && (
             <div slot="label" style={{ fontSize: "80%" }}>
@@ -347,7 +368,4 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       </div>
     </div>
   );
-}
-{
-  /* stageMap[states.redeemStage] */
 }

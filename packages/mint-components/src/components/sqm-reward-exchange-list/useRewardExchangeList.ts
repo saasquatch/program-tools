@@ -58,7 +58,7 @@ const GET_EXCHANGE_LIST = gql`
   query getExchangeList {
     viewer {
       ... on User {
-        visibleRewardExchanges(limit: 20, offset: 0) {
+        visibleRewardExchangeItems(limit: 20, offset: 0) {
           data {
             key
             name
@@ -252,7 +252,7 @@ export function useRewardExchangeList(
       success,
     },
     data: {
-      exchangeList: data?.viewer?.visibleRewardExchanges?.data,
+      exchangeList: data?.viewer?.visibleRewardExchangeItems?.data,
     },
     callbacks: {
       exchangeReward,
