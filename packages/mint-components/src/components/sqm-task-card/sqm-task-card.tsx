@@ -1,5 +1,6 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
+import { getProps } from "../../utils/utils";
 
 import { TaskCardView } from "./sqm-task-card-view";
 
@@ -68,26 +69,6 @@ export class TaskCard {
   disconnectedCallback() {}
 
   render() {
-
-    // const content = {
-    //   formData: <slot name="formData"></slot>,
-    //   secondaryButton: (
-    //     <slot name="secondaryButton">
-    //       <sl-button
-    //         type="text"
-    //         disabled={states.loading}
-    //         onClick={() => navigation.push("/login")}
-    //       >
-    //         {this.loginLabel}
-    //       </sl-button>
-    //     </slot>
-    //   ),
-    //   emailLabel: this.emailLabel,
-    //   passwordLabel: this.passwordLabel,
-    //   submitLabel: this.submitLabel,
-    //   pageLabel: this.pageLabel,
-    // };
-
-    //return <TaskCardView points={this.points}></TaskCardView>;
+    return <TaskCardView {...getProps(this)}></TaskCardView>;
   }
 }
