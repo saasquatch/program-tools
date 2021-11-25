@@ -21,6 +21,7 @@ import { RequiredPropsError } from "../../utils/RequiredPropsError";
  */
 @Component({
   tag: "sqm-reward-exchange-list",
+  assetsDirs: ["assets"],
 })
 export class SqmRewardExchangeList {
   @State()
@@ -83,7 +84,7 @@ function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
         redeemStage: "",
         amount: 0,
         selectedStep: undefined,
-        success:false
+        exchangeError:false,
       },
       data: {
         shareCode: "SHARECODE123",

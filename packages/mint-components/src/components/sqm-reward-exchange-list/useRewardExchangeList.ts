@@ -12,7 +12,6 @@ import {
   useEffect,
   useReducer,
   useRef,
-  useState,
 } from "@saasquatch/universal-hooks";
 import { SlDrawer } from "@shoelace-style/shoelace";
 
@@ -58,7 +57,7 @@ const GET_EXCHANGE_LIST = gql`
   query getExchangeList {
     viewer {
       ... on User {
-        visibleRewardExchanges(limit: 20, offset: 0) {
+        visibleRewardExchangeItems(limit: 20, offset: 0) {
           data {
             key
             name
@@ -100,6 +99,7 @@ const EXCHANGE = gql`
     exchangeReward(exchangeRewardInput: $exchangeRewardInput) {
       reward {
         id
+        fuelTankCode
       }
     }
   }
@@ -109,7 +109,7 @@ export type ExchangeState = {
   selectedStep: ExchangeStep;
   redeemStage: string;
   amount: number;
-  success: boolean;
+  exchangeError: boolean;
 };
 
 export function useRewardExchangeList(
@@ -130,12 +130,11 @@ export function useRewardExchangeList(
       selectedStep: undefined,
       redeemStage: "",
       amount: 0,
-      success: false,
+      exchangeError: false,
     }
   );
 
-  const { selectedItem, selectedStep, redeemStage, amount, success } =
-    exchangeState;
+  const { selectedItem, selectedStep, redeemStage, amount, exchangeError} = exchangeState;
 
   const user = useUserIdentity();
 
@@ -145,9 +144,13 @@ export function useRewardExchangeList(
 
   useEffect(() => {
     if (exchangeResponse?.exchangeReward?.reward?.id) {
-      setExchangeState({ success: true });
+      setExchangeState({ redeemStage: "success" });
     }
-  }, [exchangeResponse]);
+    if (!!errors) {
+      console.log("YEA")
+      setExchangeState({ exchangeError: true });
+    }
+  }, [exchangeResponse, errors]);
 
   function openDrawer() {
     setExchangeState({ redeemStage: "chooseReward" });
@@ -182,7 +185,7 @@ export function useRewardExchangeList(
           },
           globalRewardKey: selectedItem.globalRewardKey,
           rewardInput: {
-            valueInCents: selectedStep.destinationValue || amount,
+            valueInCents: selectedStep.destinationValue,
           },
         };
         break;
@@ -196,7 +199,7 @@ export function useRewardExchangeList(
           rewardInput: {
             type: "CREDIT",
             unit: selectedItem.destinationUnit,
-            assignedCredit: amount || selectedStep.destinationValue,
+            assignedCredit: selectedStep.destinationValue,
           },
         };
         break;
@@ -219,13 +222,11 @@ export function useRewardExchangeList(
     // selects also trigger an sl-hide event :(
     //@ts-ignore - componentId is not private here
     if (e?.target?.componentId !== drawerRef.current?.componentId) return;
-
-    console.log("go!");
     setExchangeState({
       amount: 0,
       selectedStep: undefined,
       selectedItem: undefined,
-      success: false,
+      exchangeError: false,
     });
   }, []);
 
@@ -243,22 +244,25 @@ export function useRewardExchangeList(
     setExchangeState({ redeemStage: stage });
   }
 
+  console.log(exchangeResponse, exchangeResponse?.data, errors);
   return {
     states: {
       selectedItem,
       redeemStage,
       amount,
       selectedStep,
-      success,
+      exchangeError,
     },
     data: {
-      exchangeList: data?.viewer?.visibleRewardExchanges?.data,
+      exchangeList: data?.viewer?.visibleRewardExchangeItems?.data,
+      //@ts-ignore
+      fuelTankCode: exchangeResponse?.exchangeReward?.reward?.fuelTankCode,
     },
     callbacks: {
       exchangeReward,
       openDrawer,
       setExchangeState,
-      setStage
+      setStage,
     },
     refs: {
       drawerRef,
