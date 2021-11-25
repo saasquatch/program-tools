@@ -18,7 +18,7 @@ export type TaskCardViewProps = {
 // @ts-expect-error -- unused
 export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
   const {
-    points = "0",
+    points = 0,
     title,
     description,
     complete = false,
@@ -42,7 +42,7 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
       "& .main": {
         position: "relative",
         boxSizing: "border-box",
-        minWidth: "256px", // 347 in figma
+        minWidth: "347px",
         background: "var(--sl-color-white)",
         border: "1px solid var(--sl-color-gray-300)",
         borderRadius: "var(--sl-border-radius-medium)",
@@ -93,7 +93,7 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
         fontSize: "var(--sl-font-size-xx-small)",
         marginRight: "var(--sl-spacing-xx-small)",
       },
-      "& .completed": {
+      "& .text": {
         marginTop: "auto",
         fontSize: "var(--sl-font-size-x-small)",
         color: "var(--sl-color-gray-600)",
@@ -110,12 +110,13 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
       },
     },
   };
-
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
   const showComplete = complete || (progress && goal <= progress);
+  const repetitions =
+    typeof repeatable == "number" ? repeatable : Math.floor(progress / goal);
 
   return (
     <div class={sheet.classes.TaskCard}>
@@ -135,7 +136,7 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
         <ProgressBar {...props} />
         <Details description={description} />
         <div class={sheet.classes.Footer}>
-          <span class="completed">
+          <span class="text">
             {(repeatable || typeof repeatable == "number") && (
               <div>
                 <span class="icon">
@@ -144,15 +145,13 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
                 </span>
                 <span>
                   {"Completed "}
-                  {typeof repeatable == "number"
-                    ? repeatable
-                    : Math.floor(progress / goal)}
+                  {repetitions}
                   {" times"}
                 </span>
                 <br />
                 <span>
                   {"Earned "}
-                  {points}
+                  {points * repetitions}
                   {" SaaSquatch Points"}
                 </span>
               </div>
@@ -258,7 +257,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
 
   const items = [];
   var columns = "";
-  var repetitions = Math.floor(progress / goal)
+  var repetitions = Math.floor(progress / goal);
 
   if (repeatable) {
     if (steps) {
@@ -380,7 +379,11 @@ export function ProgressBar(props: ProgressBarProps): VNode {
   return (
     <div class={sheet.classes.ProgressBar}>
       <style type="text/css">{styleString}</style>
-      <div class={repetitions > 1 ? "progress-bar repeatable-steps" : "progress-bar"}>
+      <div
+        class={
+          repetitions > 1 ? "progress-bar repeatable-steps" : "progress-bar"
+        }
+      >
         {items}
       </div>
     </div>
@@ -431,11 +434,16 @@ export function ProgressBar(props: ProgressBarProps): VNode {
   function addLinearRepeatable() {
     let position = progress % goal;
     let remainder = (position / goal) * 0.5;
+    let repetitions = Math.floor(progress / goal);
     // 0 repetition
     if (repetitions == 0) {
       columns = remainder + "fr 0fr " + (0.5 - remainder) + "fr 0fr 0.5fr 0fr";
       items.push(<div class={"filled"}></div>);
-      items.push(<div class={"progress"}>{unit + progress}</div>);
+      items.push(
+        <div class={progress == goal ? "progress bg" : "progress"}>
+          {unit + progress}
+        </div>
+      );
       items.push(<div class={"remain"}></div>);
       items.push(<div class="end">{gift1}</div>);
       items.push(<div class={"remain"}></div>);
@@ -443,13 +451,17 @@ export function ProgressBar(props: ProgressBarProps): VNode {
     }
 
     // single repetition
-    else if (repetitions % 2 == 1) {
+    else if (repetitions == 1) {
       columns =
         "0.5fr 0fr " + remainder + "fr 0fr " + (0.5 - remainder) + "fr 0fr";
       items.push(<div class={"filled"}></div>);
       items.push(<div class="end">{gift1}</div>);
       items.push(<div class={"filled"}></div>);
-      items.push(<div class={"progress"}>{unit + progress}</div>);
+      items.push(
+        <div class={progress == goal ? "progress bg" : "progress"}>
+          {unit + progress}
+        </div>
+      );
       items.push(<div class={"remain"}></div>);
       items.push(<div class="end bw">{gift2}</div>);
     }
@@ -462,13 +474,18 @@ export function ProgressBar(props: ProgressBarProps): VNode {
       items.push(<div class={"filled"}></div>);
       items.push(<div class="end">{gift2}</div>);
       items.push(<div class={"filled"}></div>);
-      items.push(<div class={"progress"}>{unit + progress}</div>);
+      items.push(
+        <div class={progress == goal * repetitions ? "progress bg" : "progress"}>
+          {unit + progress}
+        </div>
+      );
       items.push(<div class={"remain"}></div>);
       items.push(<div class="end bw">{gift3}</div>);
     }
   }
 
   function addStepsRepeatable() {
+    let repetitions = Math.floor(progress / goal);
     // no or single repetition
     if (repetitions < 2) {
       let step_math = steps / goal;

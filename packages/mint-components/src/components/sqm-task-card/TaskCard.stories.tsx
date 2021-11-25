@@ -11,6 +11,7 @@ export default {
 
 const resizable = {
   width: "347px",
+  minWidth: "347px",
   resize: "horizontal",
   height: "fit-content",
   overflow: "hidden",
@@ -250,26 +251,18 @@ export const RepeatableWithExpiry = () => {
 
 export const ProgressBar = () => {
   const props = {
-    goal: 4,
-    progress: 2,
-    steps: 1,
-  };
-  const props2 = {
-    goal: 10,
-    progress: 2,
-    steps: 1,
-    repeatable: true,
+    goal: 5,
   };
   return (
     <div>
       <MatrixStory
-        matrix={{ progress: [1, 2, 4], steps: [0, 1] }}
+        matrix={{ progress: [1, 2, 5], steps: [0, 1], repeatable: [false] }}
         props={props}
         Component={ProgressBarView}
       />
       <MatrixStory
-        matrix={{ progress: [2, 5, 7, 12], steps: [0, 1] }}
-        props={props2}
+        matrix={{ progress: [2, 5, 7, 12], steps: [0, 1], repeatable: [true] }}
+        props={props}
         Component={ProgressBarView}
       />
     </div>
