@@ -11,6 +11,7 @@ export default {
 
 const resizable = {
   width: "347px",
+  minWidth: "347px",
   resize: "horizontal",
   height: "fit-content",
   overflow: "hidden",
@@ -44,6 +45,63 @@ export const NotRepeatable = () => {
     unit: "$",
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
+    buttonText: "Visit our Store",
+    onClick: () => {},
+  };
+  return (
+    <div style={{ display: "inline-flex", gap: "32px" }}>
+      <div style={resizable}>
+        <h4>One Action</h4>
+        <TaskCardView {...oneAction} /> <h5 />
+        <TaskCardView {...oneAction} complete /> <h5 />
+      </div>
+      <div style={resizable}>
+        <h4>A Couple Actions</h4>
+        <TaskCardView {...coupleActions} /> <h5 />
+        <TaskCardView {...coupleActions} progress={5} />
+        <h5>Progress {">"} Goal</h5>
+        <TaskCardView {...coupleActions} progress={9} /> <h5 />
+      </div>
+      <div style={resizable}>
+        <h4>Many Actions</h4>
+        <TaskCardView {...manyActions} /> <h5 />
+        <TaskCardView {...manyActions} progress={500} /> <h5 />
+      </div>
+    </div>
+  );
+};
+
+export const NotRepeatableWithExpiry = () => {
+  const oneAction = {
+    points: 20,
+    title: "Complete a survey",
+    description:
+      "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
+    expire: "Nov 30, 2021",
+    buttonText: "Take survey",
+    onClick: () => {},
+  };
+  const coupleActions = {
+    points: 40,
+    title: "Comment on 5 articles",
+    progress: 1,
+    goal: 5,
+    steps: 1,
+    description:
+      "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
+    expire: "Nov 30, 2021",
+    buttonText: "Start reading",
+    onClick: () => {},
+  };
+  const manyActions = {
+    points: 150,
+    title: "Spend $500 at our Store",
+    progress: 230,
+    goal: 500,
+    unit: "$",
+    description:
+      "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
+    expire: "Nov 30, 2021",
     buttonText: "Visit our Store",
     onClick: () => {},
   };
@@ -133,7 +191,7 @@ export const RepeatableWithExpiry = () => {
   const oneAction = {
     points: 20,
     title: "Complete a survey",
-    expire: "Ends Nov 30, 2021",
+    expire: "Nov 30, 2021",
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     repeatable: 0,
@@ -143,7 +201,7 @@ export const RepeatableWithExpiry = () => {
   const coupleActions = {
     points: 40,
     title: "Comment on 5 articles",
-    expire: "Ends Nov 30, 2021",
+    expire: "Nov 30, 2021",
     goal: 5,
     steps: 1,
     repeatable: true,
@@ -155,7 +213,7 @@ export const RepeatableWithExpiry = () => {
   const manyActions = {
     points: 150,
     title: "Spend $500 at our Store",
-    expire: "Ends Nov 30, 2021",
+    expire: "Nov 30, 2021",
     goal: 500,
     repeatable: true,
     unit: "$",
@@ -193,26 +251,18 @@ export const RepeatableWithExpiry = () => {
 
 export const ProgressBar = () => {
   const props = {
-    goal: 4,
-    progress: 2,
-    steps: 1,
-  };
-  const props2 = {
-    goal: 10,
-    progress: 2,
-    steps: 1,
-    repeatable: true,
+    goal: 5,
   };
   return (
     <div>
       <MatrixStory
-        matrix={{ progress: [1, 2, 4], steps: [0, 1] }}
+        matrix={{ progress: [1, 2, 5], steps: [0, 1], repeatable: [false] }}
         props={props}
         Component={ProgressBarView}
       />
       <MatrixStory
-        matrix={{ progress: [2, 5, 7, 12], steps: [0, 1] }}
-        props={props2}
+        matrix={{ progress: [2, 5, 7, 12], steps: [0, 1], repeatable: [true] }}
+        props={props}
         Component={ProgressBarView}
       />
     </div>
