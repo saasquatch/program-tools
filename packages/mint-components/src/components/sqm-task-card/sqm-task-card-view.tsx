@@ -6,26 +6,26 @@ import * as SVGs from "./SVGs";
 
 export type TaskCardViewProps = {
   points?: number;
-  title: string;
+  cardTitle: string;
   description: string;
   complete?: boolean;
   repeatable?: boolean | number;
   expire?: string;
   buttonText: string;
-  onClick: () => void;
+  buttonOnClick: () => void;
 } & ProgressBarProps;
 
 // @ts-expect-error -- unused
 export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
   const {
     points = 0,
-    title,
+    cardTitle,
     description,
     complete = false,
     repeatable = false,
     expire,
     buttonText,
-    onClick,
+    buttonOnClick,
     progress,
     goal,
   } = props;
@@ -132,7 +132,7 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
           <span class="value">{points}</span>
           <span class="text">SAASQUATCH POINTS</span>
         </div>
-        <div class={sheet.classes.Title}>{title}</div>
+        <div class={sheet.classes.Title}>{cardTitle}</div>
         <ProgressBar {...props} />
         <Details description={description} />
         <div class={sheet.classes.Footer}>
@@ -167,7 +167,7 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
           <sl-button
             class="action"
             size="small"
-            onClick={onClick}
+            onClick={buttonOnClick}
             disabled={showComplete}
           >
             {showComplete ? "Complete" : buttonText}

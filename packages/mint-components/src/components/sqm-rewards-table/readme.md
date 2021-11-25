@@ -7,22 +7,28 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default               |
-| -------- | --------- | ----------- | -------- | --------------------- |
-| `border` | `border`  |             | `string` | `"1px solid #EAEAEA"` |
+| Property       | Attribute       | Description                                                                                                                                                                                                      | Type                                                                                                                                                                                                                                                                                                                                           | Default     |
+| -------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `demoData`     | --              |                                                                                                                                                                                                                  | `{ states?: { hasPrev: boolean; hasNext: boolean; show: "loading" \| "empty" \| "rows"; namespace: string; }; data?: { textOverrides: { showLabels: boolean; prevLabel: string; moreLabel: string; }; }; elements?: { columns: VNode[]; rows: VNode[][]; loading?: boolean; emptyElement?: VNode; loadingElement?: VNode; page?: number; }; }` | `undefined` |
+| `moreLabel`    | `more-label`    |                                                                                                                                                                                                                  | `string`                                                                                                                                                                                                                                                                                                                                       | `"Next"`    |
+| `perPage`      | `per-page`      |                                                                                                                                                                                                                  | `number`                                                                                                                                                                                                                                                                                                                                       | `3`         |
+| `prevLabel`    | `prev-label`    |                                                                                                                                                                                                                  | `string`                                                                                                                                                                                                                                                                                                                                       | `"Prev"`    |
+| `programId`    | `program-id`    | Filters to only show rewards in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all rewards from all programs. | `string`                                                                                                                                                                                                                                                                                                                                       | `undefined` |
+| `showLabels`   | `show-labels`   |                                                                                                                                                                                                                  | `boolean`                                                                                                                                                                                                                                                                                                                                      | `true`      |
+| `showReferrer` | `show-referrer` |                                                                                                                                                                                                                  | `boolean`                                                                                                                                                                                                                                                                                                                                      | `false`     |
 
 
 ## Dependencies
 
-### Used by
+### Depends on
 
- - [sqm-stencilbook](../sqm-stencilbook)
+- [sqm-text](../sqm-text)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqm-stencilbook --> sqm-table-row
-  style sqm-table-row fill:#f9f,stroke:#333,stroke-width:4px
+  sqm-rewards-table --> sqm-text
+  style sqm-rewards-table fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

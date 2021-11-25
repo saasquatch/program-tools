@@ -25,7 +25,7 @@ export class TaskCard {
    * @uiName Title Text
    */
   @Prop()
-  title: string;
+  cardTitle: string;
 
   /**
    * @uiName Description Text
@@ -61,7 +61,7 @@ export class TaskCard {
    * @uiName Button On Click Action
    */
   @Prop()
-  onClick: () => void;
+  buttonOnClick: () => void;
 
   constructor() {
     withHooks(this);

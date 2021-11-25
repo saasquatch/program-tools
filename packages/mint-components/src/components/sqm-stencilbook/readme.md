@@ -18,11 +18,12 @@
 - [sqm-edit-profile](../sqm-edit-profile)
 - [sqm-form-message](../sqm-form-message)
 - [sqm-divided-layout](../sqm-divided-layout)
+- [sqm-reward-exchange-list](../sqm-reward-exchange-list)
 - [sqm-text](../sqm-text)
 - [sqm-password-field](../sqm-password-field)
 - [sqm-portal-register](../sqm-portal-register)
-- [sqm-table-row](../sqm-referral-table)
-- [sqm-table-cell](../sqm-referral-table)
+- [sqm-table-row](../../tables)
+- [sqm-table-cell](../../tables)
 - [sqm-referral-table-user-cell](../sqm-referral-table/cells)
 - [sqm-referral-table-date-cell](../sqm-referral-table/cells)
 - [sqm-referral-table-cell](../sqm-referral-table/cells)
@@ -47,6 +48,7 @@ graph TD;
   sqm-stencilbook --> sqm-edit-profile
   sqm-stencilbook --> sqm-form-message
   sqm-stencilbook --> sqm-divided-layout
+  sqm-stencilbook --> sqm-reward-exchange-list
   sqm-stencilbook --> sqm-text
   sqm-stencilbook --> sqm-password-field
   sqm-stencilbook --> sqm-portal-register

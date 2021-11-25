@@ -7,12 +7,10 @@
 
 ## Properties
 
-| Property       | Attribute       | Description | Type                                                                                                                           | Default     |
-| -------------- | --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| `demoData`     | --              |             | `{ states?: { content: { iframeSrc: string; iframeHeight: string; iframeWidth: string; }; }; data?: { shareCode: string; }; }` | `undefined` |
-| `iframeHeight` | `iframe-height` |             | `string`                                                                                                                       | `"100%"`    |
-| `iframeSrc`    | `iframe-src`    |             | `string`                                                                                                                       | `undefined` |
-| `iframeWidth`  | `iframe-width`  |             | `string`                                                                                                                       | `"100%"`    |
+| Property   | Attribute   | Description | Type                                                                                                                                                                                                 | Default     |
+| ---------- | ----------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `demoData` | --          |             | `{ states?: { selectedItem: ExchangeItem; selectedStep: ExchangeStep; redeemStage: string; amount: number; exchangeError?: boolean; }; data?: { exchangeList: any; }; refs?: { drawerRef: any; }; }` | `undefined` |
+| `listType` | `list-type` |             | `string`                                                                                                                                                                                             | `undefined` |
 
 
 ## Dependencies
@@ -24,8 +22,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  sqm-stencilbook --> sqm-referral-iframe
-  style sqm-referral-iframe fill:#f9f,stroke:#333,stroke-width:4px
+  sqm-stencilbook --> sqm-reward-exchange-list
+  style sqm-reward-exchange-list fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
