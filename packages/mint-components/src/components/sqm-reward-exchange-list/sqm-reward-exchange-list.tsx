@@ -28,10 +28,10 @@ export class SqmRewardExchangeList {
   ignored = true;
 
   /**
-   * @uiName Type of List
-   * @uiRequired
+   * @uiName Exchange button text
    */
-  @Prop() listType: string;
+  @Prop() buttonText: string = "Exchange Rewards";
+
   /**
    * @undocumented
    * @uiType object
@@ -45,16 +45,16 @@ export class SqmRewardExchangeList {
   disconnectedCallback() {}
 
   render() {
-    const missingProps = getMissingProps([
-      {
-        attribute: "listType",
-        value: this.listType,
-      },
-    ]);
+    // const missingProps = getMissingProps([
+    //   {
+    //     attribute: "listType",
+    //     value: this.listType,
+    //   },
+    // ]);
 
-    if (missingProps) {
-      return <RequiredPropsError missingProps={missingProps} />;
-    }
+    // if (missingProps) {
+    //   return <RequiredPropsError missingProps={missingProps} />;
+    // }
 
     const { states, data, callbacks, refs } = isDemo()
       ? useRewardExchangeListDemo(getProps(this))
@@ -78,13 +78,12 @@ function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
     {
       states: {
         content: {
-          listType: "https://example.com",
-          ...props,
+          text:props,
         },
         redeemStage: "",
         amount: 0,
         selectedStep: undefined,
-        exchangeError:false,
+        exchangeError: false,
       },
       data: {
         shareCode: "SHARECODE123",

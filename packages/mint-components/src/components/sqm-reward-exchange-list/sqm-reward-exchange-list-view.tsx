@@ -11,6 +11,9 @@ export type RewardExchangeViewProps = {
     redeemStage: string;
     amount: number;
     exchangeError?: boolean;
+    content: {
+      text: any;
+    };
   };
   data: {
     exchangeList: any;
@@ -396,7 +399,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           <Label />
           {stageMap()}
           {currentStage && currentStage()}
-          {states.exchangeError && "Something went wrong. Please contact support or try again."}
+          {states.exchangeError &&
+            "Something went wrong. Please contact support or try again."}
         </sl-drawer>
         <sl-button onClick={() => callbacks.openDrawer()}>
           Redeem Rewards

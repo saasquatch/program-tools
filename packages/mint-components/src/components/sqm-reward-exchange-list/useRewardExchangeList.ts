@@ -14,6 +14,7 @@ import {
   useRef,
 } from "@saasquatch/universal-hooks";
 import { SlDrawer } from "@shoelace-style/shoelace";
+import PortalProfileStories from "../sqm-portal-profile/PortalProfile.stories";
 
 export type ExchangeItem = {
   key: string;
@@ -113,7 +114,7 @@ export type ExchangeState = {
 };
 
 export function useRewardExchangeList(
-  _: SqmRewardExchangeList
+  props: SqmRewardExchangeList
 ): RewardExchangeViewProps {
   const drawerRef = useRef<SlDrawer>();
 
@@ -247,6 +248,9 @@ export function useRewardExchangeList(
   console.log(exchangeResponse, exchangeResponse?.data, errors);
   return {
     states: {
+      content:{
+        text:props
+      },
       selectedItem,
       redeemStage,
       amount,

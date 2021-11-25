@@ -818,15 +818,14 @@ export namespace Components {
     }
     interface SqmRewardExchangeList {
         /**
+          * @uiName Exchange button text
+         */
+        "buttonText": string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<RewardExchangeViewProps>;
-        /**
-          * @uiName Type of List
-          * @uiRequired
-         */
-        "listType": string;
     }
     interface SqmRewardsTable {
         /**
@@ -2277,15 +2276,14 @@ declare namespace LocalJSX {
     }
     interface SqmRewardExchangeList {
         /**
+          * @uiName Exchange button text
+         */
+        "buttonText"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<RewardExchangeViewProps>;
-        /**
-          * @uiName Type of List
-          * @uiRequired
-         */
-        "listType"?: string;
     }
     interface SqmRewardsTable {
         /**
