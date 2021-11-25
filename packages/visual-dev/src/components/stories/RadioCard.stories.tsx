@@ -9,13 +9,13 @@ export default {
 export const Functional = () => {
   const options = {
     title: "A title for this option",
-    text: "This is a default radio group button. Toggle it by clicking.",
+    text: "This is a default radio group button. Toggle it by clicking. This is a test with very long text.",
   }
   const [value, setValue] = useState(0)
   return (
     <RadioCardGroup>
       <RadioCard options={options} value={value == 1} onChange={void 0} onClick={() => setValue(1)} />
-      <RadioCard options={options} value={value == 2} onChange={void 0} onClick={() => setValue(2)} />
+      <RadioCard options={{title: "Test", text:"Test string."}} value={value == 2} onChange={void 0} onClick={() => setValue(2)} />
       <RadioCard options={options} value={value == 3} onChange={void 0} onClick={() => setValue(3)} />
     </RadioCardGroup>
   )
