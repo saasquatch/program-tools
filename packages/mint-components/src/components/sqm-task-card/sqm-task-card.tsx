@@ -46,12 +46,6 @@ export class TaskCard {
   showProgressBar: boolean = false;
 
   /**
-   * @uiName Progress Bar Progress
-   */
-  @Prop()
-  progress: number = 0;
-
-  /**
    * @uiName Progress Bar Goal
    */
   @Prop()
@@ -99,6 +93,7 @@ export class TaskCard {
   disconnectedCallback() {}
 
   render() {
+    //const progress = useTaskCard(); progress={progress}
     return <TaskCardView {...getProps(this)}></TaskCardView>;
   }
 }

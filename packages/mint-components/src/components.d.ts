@@ -1047,10 +1047,6 @@ export namespace Components {
          */
         "points": number;
         /**
-          * @uiName Progress Bar Progress
-         */
-        "progress": number;
-        /**
           * @uiName Set Repeatable
          */
         "repeatable": boolean;
@@ -2524,10 +2520,6 @@ declare namespace LocalJSX {
           * @uiName Reward Points
          */
         "points"?: number;
-        /**
-          * @uiName Progress Bar Progress
-         */
-        "progress"?: number;
         /**
           * @uiName Set Repeatable
          */
