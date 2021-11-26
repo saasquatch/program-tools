@@ -60,6 +60,7 @@ Scenario Outline: Progress Bar Linear
         Component={ProgressBarView}
       />
     </div>
+    
   );
 };
 
