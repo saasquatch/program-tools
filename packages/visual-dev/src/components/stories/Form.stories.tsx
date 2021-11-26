@@ -31,7 +31,7 @@ export const ExampleForm = () => {
     type: "string",
   };
   return (
-    <div style={{ margin: "100px" }}>
+    <div style={{ margin: "100px", resize: "horizontal", overflow: "hidden" }}>
       <Form
         schema={schema}
         uiSchema={uiSchema}
@@ -58,7 +58,7 @@ export const ExampleNumericalForm = () => {
     type: "string",
   };
   return (
-    <div style={{ margin: "100px" }}>
+    <div style={{ margin: "100px", resize: "horizontal", overflow: "hidden" }}>
       <Form
         schema={schema}
         uiSchema={uiSchema}
@@ -85,7 +85,7 @@ export const ExampleLockableForm = () => {
     type: "string",
   };
   return (
-    <div style={{ margin: "100px" }}>
+    <div style={{ margin: "100px", resize: "horizontal", overflow: "hidden" }}>
       <Form
         schema={schema}
         uiSchema={uiSchema}
@@ -112,7 +112,7 @@ export const ExampleClearableForm = () => {
     type: "string",
   };
   return (
-    <div style={{ margin: "100px" }}>
+    <div style={{ margin: "100px", resize: "horizontal", overflow: "hidden" }}>
       <Form
         schema={schema}
         uiSchema={uiSchema}
@@ -139,7 +139,7 @@ export const ExampleCancellableForm = () => {
     type: "string",
   };
   return (
-    <div style={{ margin: "100px" }}>
+    <div style={{ margin: "100px", resize: "horizontal", overflow: "hidden" }}>
       <Form
         schema={schema}
         uiSchema={uiSchema}
@@ -276,7 +276,7 @@ export const RadioCardForm = () => {
           },
           {
             key: 1,
-            icon: "icon-sqh-referred_friend",
+            icon: "alert",
             title: "Referred Friend",
             description: "Only retract rewards from the Referred Friend",
           },
