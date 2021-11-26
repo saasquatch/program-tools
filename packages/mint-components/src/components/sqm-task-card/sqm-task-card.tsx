@@ -16,7 +16,7 @@ export class TaskCard {
   ignored = true;
 
   /**
-   * @uiName Number of Points Earned
+   * @uiName Reward Points
    */
   @Prop()
   points: number = 0;
@@ -25,31 +25,61 @@ export class TaskCard {
    * @uiName Title Text
    */
   @Prop()
-  cardTitle: string;
+  cardTitle: string = "Title Text";
 
   /**
    * @uiName Description Text
    */
   @Prop()
-  description: string;
+  description: string = "Description Text";
 
   /**
-   * @uiName Show as Complete
+   * @uiName Set Repeatable
    */
   @Prop()
-  complete: boolean = false;
+  repeatable: boolean = false;
 
   /**
-   * @uiName Show Repeatable or Repeat Count
+   * @uiName Show Progress Bar
    */
   @Prop()
-  repeatable: boolean | number;
+  showProgressBar: boolean = false;
+
+  /**
+   * @uiName Progress Bar Progress
+   */
+  @Prop()
+  progress: number = 0;
+
+  /**
+   * @uiName Progress Bar Goal
+   */
+  @Prop()
+  goal: number = 1;
+
+  /**
+   * @uiName Progress Bar Steps
+   */
+  @Prop()
+  steps: number;
+
+  /**
+   * @uiName Progress Bar Unit
+   */
+  @Prop()
+  unit?: string;
+
+  /**
+   * @uiName Show Expiry
+   */
+  @Prop()
+  expire: boolean = false;
 
   /**
    * @uiName Expire Date
    */
   @Prop()
-  expire?: string;
+  dateExpire?: string;
 
   /**
    * @uiName Button Text
@@ -58,10 +88,10 @@ export class TaskCard {
   buttonText: string;
 
   /**
-   * @uiName Button On Click Action
+   * @uiName Button Link
    */
   @Prop()
-  buttonOnClick: () => void;
+  buttonLink: string;
 
   constructor() {
     withHooks(this);
