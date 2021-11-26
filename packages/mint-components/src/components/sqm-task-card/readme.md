@@ -17,7 +17,6 @@
 | `expire`          | `expire`            |             | `boolean` | `false`              |
 | `goal`            | `goal`              |             | `number`  | `1`                  |
 | `points`          | `points`            |             | `number`  | `0`                  |
-| `progress`        | `progress`          |             | `number`  | `0`                  |
 | `repeatable`      | `repeatable`        |             | `boolean` | `false`              |
 | `showProgressBar` | `show-progress-bar` |             | `boolean` | `false`              |
 | `steps`           | `steps`             |             | `number`  | `undefined`          |

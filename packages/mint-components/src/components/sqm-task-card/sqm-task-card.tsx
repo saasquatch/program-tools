@@ -60,14 +60,14 @@ export class TaskCard {
    * @uiType boolean
    * @uiName Progress Bar Type
    * @uiEnum [true, false]
-   * @uiEnumNames ["steps" "linear"]
+   * @uiEnumNames ["steps", "linear"]
    */
   @Prop()
   steps: boolean;
 
   /**
    * Currency Unit for Linear Progress Bar
-   * 
+   *
    * @uiName Progress Bar Unit
    */
   @Prop()

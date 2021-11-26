@@ -1058,7 +1058,7 @@ export namespace Components {
           * @uiType boolean
           * @uiName Progress Bar Type
           * @uiEnum [true, false]
-          * @uiEnumNames ["steps" "linear"]
+          * @uiEnumNames ["steps", "linear"]
          */
         "steps": boolean;
         /**
@@ -2536,7 +2536,7 @@ declare namespace LocalJSX {
           * @uiType boolean
           * @uiName Progress Bar Type
           * @uiEnum [true, false]
-          * @uiEnumNames ["steps" "linear"]
+          * @uiEnumNames ["steps", "linear"]
          */
         "steps"?: boolean;
         /**
