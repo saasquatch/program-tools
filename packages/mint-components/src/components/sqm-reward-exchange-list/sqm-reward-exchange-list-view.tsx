@@ -140,9 +140,14 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         {item.steps?.map((step) => (
           <sl-menu-item value={step} disabled={!step.available}>
             {step.prettyDestinationValue}
-            <span slot="suffix" style={{ fontSize: "75%" }}>
+            <div slot="suffix" style={{ fontSize: "75%", float: "right" }}>
               {step.prettySourceValue}
-            </span>
+            </div>
+            {step.unavailableReasonCode && (
+              <p style={{ fontSize: "70%", color: "#F2994A" }}>
+                {step.unavailableReasonCode}
+              </p>
+            )}
           </sl-menu-item>
         ))}
       </sl-select>
@@ -173,20 +178,25 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               item.key === selectedItem?.key ? "0 1px 8px #87ceeb" : "none",
             marginBottom: "10px 0",
             flex: "1",
-            minWidth: "45%",
+            minWidth: "100%",
+            color: !item.available && "#eee",
+            "&:hover": {
+              boxShadow: !item.available && "none",
+            },
           };
           return (
             <div
               key={item.key}
               class={sheet.classes.CardContainer}
+              //@ts-ignore
               style={style}
             >
               <sl-card
                 class={sheet.classes.Base}
                 onClick={() =>
+                  item.available &&
                   callbacks.setExchangeState({ selectedItem: item })
                 }
-                disabled={!item.available}
               >
                 <img
                   class={sheet.classes.PreviewImage}
@@ -194,7 +204,18 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     item?.imageUrl || getAssetPath("./assets/Reward-icon.png")
                   }
                 />
-                <p>{item.description}</p>
+                <p style={{ marginBottom: "0" }}>{item.description}</p>
+                {item.unavailableReasonCode && (
+                  <p
+                    style={{
+                      fontSize: "70%",
+                      color: "#F2994A",
+                      marginTop: "0",
+                    }}
+                  >
+                    {item.unavailableReasonCode}
+                  </p>
+                )}
               </sl-card>
             </div>
           );

@@ -84,6 +84,7 @@ const GET_EXCHANGE_LIST = gql`
               destinationValue
               prettyDestinationValue
               available
+              unavailableReasonCode
             }
           }
           totalCount
