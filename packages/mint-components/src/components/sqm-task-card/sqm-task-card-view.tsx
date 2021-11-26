@@ -89,11 +89,7 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
     },
     Footer: {
       display: "flex",
-      "& span": {
-        verticalAlign: "text-bottom",
-      },
       "& .icon": {
-        verticalAlign: "bottom",
         fontSize: "var(--sl-font-size-xx-small)",
         marginRight: "var(--sl-spacing-xx-small)",
       },
@@ -365,14 +361,16 @@ export function ProgressBar(props: ProgressBarProps): VNode {
       },
       "& .end.start": {
         transform: "scale(80%)",
-        top: "-35%",
+        top: "-20px",
       },
       "& .end": {
         textAlign: "center",
         marginLeft: "-100px",
         marginRight: "-100px",
         position: "relative",
-        top: "-30%",
+        display: "list-item",
+        listStyleType: "none",
+        top: "-18px",
         filter: goal <= progress ? "" : "grayscale(100%)",
         zIndex: "1",
       },
