@@ -4,6 +4,7 @@ import preset from "jss-preset-default";
 import { HostBlock } from "../../global/mixins";
 import * as SVGs from "./SVGs";
 
+
 export type TaskCardViewProps = {
   points?: number; // set by the widget editor
   cardTitle?: string;
@@ -75,6 +76,7 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
       },
       "& .text": {
         alignSelf: "end",
+        textTransform: "uppercase",
         color: "var(--sl-color-gray-600)",
         fontSize: "var(--sl-font-size-x-small)",
         lineHeight: "var(--sl-font-size-medium)",
@@ -133,7 +135,7 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
             </span>
           )}
           <span class="value">{points}</span>
-          <span class="text">SAASQUATCH POINTS</span>
+          <span class="text">{"saasquatch points"}</span>
         </div>
         <div class={sheet.classes.Title}>{cardTitle}</div>
         {showProgressBar && <ProgressBar {...props} />}
@@ -363,14 +365,14 @@ export function ProgressBar(props: ProgressBarProps): VNode {
       },
       "& .end.start": {
         transform: "scale(80%)",
-        top: "-20px",
+        top: "-35%",
       },
       "& .end": {
         textAlign: "center",
         marginLeft: "-100px",
         marginRight: "-100px",
         position: "relative",
-        top: "-18px",
+        top: "-30%",
         filter: goal <= progress ? "" : "grayscale(100%)",
         zIndex: "1",
       },
