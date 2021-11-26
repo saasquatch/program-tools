@@ -24,6 +24,7 @@ function Dot({
         justifyContent: "center",
         columnGap: "50px",
         marginRight: "-2px",
+        boxSizing: "content-box",
       }}
     >
       <div
@@ -39,31 +40,15 @@ function Dot({
           height: completed ? "12px" : "8px",
           margin: "-4px auto 0px",
           zIndex: "1",
+          boxSizing: "content-box",
         }}
       ></div>
     </div>
   );
 }
 
-function Progress({ active, completed, incomplete }) {
-  return [
-    <div
-      style={{
-        content: "''",
-        flex: "0.5 0.5 0",
-        height: "4px",
-        borderRadius: "4px",
-        background: incomplete ? "#E5E5E5" : "#9E9E9E",
-        position: "relative",
-        bottom: "0",
-        left: "0",
-        display: "flex",
-        justifyContent: "center",
-        columnGap: "50px",
-        marginRight: "-2px",
-      }}
-    ></div>,
-    <Dot active={active} completed={completed} incomplete={incomplete} />,
+function ProgressLine({ incomplete = false, active = false }) {
+  return (
     <div
       style={{
         content: "''",
@@ -78,31 +63,36 @@ function Progress({ active, completed, incomplete }) {
         justifyContent: "center",
         columnGap: "50px",
         marginRight: "-2px",
+        boxSizing: "content-box",
       }}
-    ></div>,
+    ></div>
+  );
+}
+
+function Progress({ active, completed, incomplete }) {
+  return [
+    <ProgressLine incomplete={incomplete} />,
+    <Dot active={active} completed={completed} incomplete={incomplete} />,
+    <ProgressLine incomplete={incomplete} active={active} />,
   ];
 }
 
-export function ProgressBar({ stage }: { stage: number }) {
-  console.log({ stage });
-
+export function ProgressBar({
+  stageCount,
+  currentStage,
+}: {
+  stageCount: number;
+  currentStage: number;
+}) {
   return (
     <div style={{ display: "flex", columnGap: "-2px" }}>
-      <Progress
-        active={stage === 0}
-        completed={stage > 0}
-        incomplete={stage < 0}
-      />
-      <Progress
-        active={stage === 1}
-        completed={stage > 1}
-        incomplete={stage < 1}
-      />
-      <Progress
-        active={stage === 2}
-        completed={stage > 2}
-        incomplete={stage < 2}
-      />
+      {Array.from(Array(stageCount).keys()).map((stage) => (
+        <Progress
+          active={currentStage === stage}
+          completed={currentStage > stage}
+          incomplete={currentStage < stage}
+        />
+      ))}
     </div>
   );
 }
