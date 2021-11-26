@@ -1015,9 +1015,9 @@ export namespace Components {
     }
     interface SqmTaskCard {
         /**
-          * @uiName Button On Click Action
+          * @uiName Button Link
          */
-        "buttonOnClick": () => void;
+        "buttonLink": string;
         /**
           * @uiName Button Text
          */
@@ -1027,25 +1027,45 @@ export namespace Components {
          */
         "cardTitle": string;
         /**
-          * @uiName Show as Complete
+          * @uiName Expire Date
          */
-        "complete": boolean;
+        "dateExpire"?: string;
         /**
           * @uiName Description Text
          */
         "description": string;
         /**
-          * @uiName Expire Date
+          * @uiName Show Expiry
          */
-        "expire"?: string;
+        "expire": boolean;
         /**
-          * @uiName Number of Points Earned
+          * @uiName Progress Bar Goal
+         */
+        "goal": number;
+        /**
+          * @uiName Reward Points
          */
         "points": number;
         /**
-          * @uiName Show Repeatable or Repeat Count
+          * @uiName Progress Bar Progress
          */
-        "repeatable": boolean | number;
+        "progress": number;
+        /**
+          * @uiName Set Repeatable
+         */
+        "repeatable": boolean;
+        /**
+          * @uiName Show Progress Bar
+         */
+        "showProgressBar": boolean;
+        /**
+          * @uiName Progress Bar Steps
+         */
+        "steps": number;
+        /**
+          * @uiName Progress Bar Unit
+         */
+        "unit"?: string;
     }
     interface SqmText {
     }
@@ -2473,9 +2493,9 @@ declare namespace LocalJSX {
     }
     interface SqmTaskCard {
         /**
-          * @uiName Button On Click Action
+          * @uiName Button Link
          */
-        "buttonOnClick"?: () => void;
+        "buttonLink"?: string;
         /**
           * @uiName Button Text
          */
@@ -2485,25 +2505,45 @@ declare namespace LocalJSX {
          */
         "cardTitle"?: string;
         /**
-          * @uiName Show as Complete
+          * @uiName Expire Date
          */
-        "complete"?: boolean;
+        "dateExpire"?: string;
         /**
           * @uiName Description Text
          */
         "description"?: string;
         /**
-          * @uiName Expire Date
+          * @uiName Show Expiry
          */
-        "expire"?: string;
+        "expire"?: boolean;
         /**
-          * @uiName Number of Points Earned
+          * @uiName Progress Bar Goal
+         */
+        "goal"?: number;
+        /**
+          * @uiName Reward Points
          */
         "points"?: number;
         /**
-          * @uiName Show Repeatable or Repeat Count
+          * @uiName Progress Bar Progress
          */
-        "repeatable"?: boolean | number;
+        "progress"?: number;
+        /**
+          * @uiName Set Repeatable
+         */
+        "repeatable"?: boolean;
+        /**
+          * @uiName Show Progress Bar
+         */
+        "showProgressBar"?: boolean;
+        /**
+          * @uiName Progress Bar Steps
+         */
+        "steps"?: number;
+        /**
+          * @uiName Progress Bar Unit
+         */
+        "unit"?: string;
     }
     interface SqmText {
     }

@@ -5,29 +5,31 @@ import { HostBlock } from "../../global/mixins";
 import * as SVGs from "./SVGs";
 
 export type TaskCardViewProps = {
-  points?: number;
-  cardTitle: string;
-  description: string;
-  complete?: boolean;
-  repeatable?: boolean | number;
-  expire?: string;
-  buttonText: string;
-  buttonOnClick: () => void;
+  points?: number; // set by the widget editor
+  cardTitle?: string;
+  description?: string;
+  showProgressBar?: boolean;
+  repeatable?: boolean;
+  expire?: boolean;
+  dateExpire?: string;
+  buttonText?: string;
+  buttonLink?: string;
 } & ProgressBarProps;
 
 // @ts-expect-error -- unused
 export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
   const {
     points = 0,
-    cardTitle,
-    description,
-    complete = false,
+    cardTitle = "Title Text",
+    description = "Description Text",
+    showProgressBar = false,
+    progress = 0,
+    goal = 1,
     repeatable = false,
-    expire,
-    buttonText,
-    buttonOnClick,
-    progress,
-    goal,
+    expire = false,
+    dateExpire = "",
+    buttonText = "Button Text",
+    buttonLink = "www.example.com",
   } = props;
 
   const checkmark_circle = SVGs.checkmark_circle();
@@ -114,9 +116,10 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
-  const showComplete = complete || (progress && goal <= progress);
-  const repetitions =
-    typeof repeatable == "number" ? repeatable : Math.floor(progress / goal);
+  // if showProgressBar is false: progress >= goal
+  // if true
+  const showComplete = progress >= goal;
+  const repetitions = showProgressBar ? Math.floor(progress / goal) : progress;
 
   return (
     <div class={sheet.classes.TaskCard}>
@@ -133,11 +136,11 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
           <span class="text">SAASQUATCH POINTS</span>
         </div>
         <div class={sheet.classes.Title}>{cardTitle}</div>
-        <ProgressBar {...props} />
+        {showProgressBar && <ProgressBar {...props} />}
         <Details description={description} />
         <div class={sheet.classes.Footer}>
           <span class="text">
-            {(repeatable || typeof repeatable == "number") && (
+            {repeatable && (
               <div>
                 <span class="icon">
                   {arrow_left_right}
@@ -159,7 +162,7 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
             {expire && (
               <span>
                 <br />
-                {"Ends "} {expire}
+                {"Ends "} {dateExpire}
               </span>
             )}
           </span>
@@ -167,7 +170,7 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
           <sl-button
             class="action"
             size="small"
-            onClick={buttonOnClick}
+            onClick={() => alert(buttonLink)}
             disabled={showComplete}
           >
             {showComplete ? "Complete" : buttonText}
@@ -238,11 +241,12 @@ function Details(props: DetailsProps): VNode {
 }
 
 export type ProgressBarProps = {
+  showProgressBar?: boolean;
   goal?: number;
   progress?: number;
   steps?: number;
   unit?: string;
-  repeatable?: boolean | number;
+  repeatable?: boolean;
 };
 
 export function ProgressBar(props: ProgressBarProps): VNode {
@@ -253,7 +257,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
   const gift3 = SVGs.gift();
 
   // if progress and goal are not provided, there cannot be a progress bar
-  if (!(progress && goal)) return;
+  // if (!showProgressBar) return;
 
   const items = [];
   var columns = "";
@@ -390,7 +394,11 @@ export function ProgressBar(props: ProgressBarProps): VNode {
   );
 
   function addLinear() {
-    columns = progress / goal + "fr 0fr " + (1 - progress / goal) + "fr 0fr";
+    columns =
+      Math.min(Math.max(progress / goal, 0), 1) +
+      "fr 0fr " +
+      Math.min(Math.max(1 - progress / goal, 0), 1) +
+      "fr 0fr";
     items.push(<div class={"filled"}></div>);
     items.push(
       <div class={progress == goal ? "progress bg" : "progress"}>
@@ -475,7 +483,9 @@ export function ProgressBar(props: ProgressBarProps): VNode {
       items.push(<div class="end">{gift2}</div>);
       items.push(<div class={"filled"}></div>);
       items.push(
-        <div class={progress == goal * repetitions ? "progress bg" : "progress"}>
+        <div
+          class={progress == goal * repetitions ? "progress bg" : "progress"}
+        >
           {unit + progress}
         </div>
       );
@@ -501,9 +511,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
             columns += "0fr 0fr";
             items.push(<div class={"remain"}></div>);
             items.push(
-              <div class={"empty bg"}>
-                {unit + (i + goal * (repetitions - 1))}
-              </div>
+              <div class={"empty bg"}>{unit + (goal * 2)}</div>
             );
             items.push(<div class={"end bw"}>{gift2}</div>);
           } else {
