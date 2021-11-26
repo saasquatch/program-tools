@@ -21,9 +21,9 @@ export const Functional = () => {
         onClick={() => setValue(1)}
       />
       <RadioCard
-        title={"A title for this option"}
+        title={"Test Title"}
         description={
-          "This is a default radio group button. Toggle it by clicking."
+          "Test description."
         }
         value={value}
         optionValue={2}

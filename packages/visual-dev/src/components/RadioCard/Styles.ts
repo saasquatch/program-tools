@@ -4,10 +4,10 @@ export const RadioLabelStyle = css`
   display: flex;
   flex-direction: row;
   //   width: 85%;
-  height: 138px;
+  min-height: 138px;
   border: 2px solid var(--sq-border);
   border-radius: 4px;
-  align-items: flex-start;
+  align-items: center;
   //   margin: 10px;
   user-select: none;
   cursor: pointer;
@@ -66,15 +66,14 @@ export const RadioTextStyle = css`
 
 export const RightSegmentStyle = css`
   width: auto;
-  //   width: 371px;
-  height: 100%;
+  align-self: stretch;
   float: right;
   border-left: 2px solid #ebebeb;
 `;
 
 export const LeftSegmentStyle = css`
   float: left;
-  width: 117px;
+  min-width: 117px;
   height: 100%;
   display: flex;
   justify-content: center;
