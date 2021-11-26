@@ -2,7 +2,7 @@ import { getAssetPath, h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { ProgressBar } from "./progressBar";
-import { LeftArrow } from "./SVGs";
+import { LeftArrow, ExchangeArrows } from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
 
 export type RewardExchangeViewProps = {
@@ -254,18 +254,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   console.log({ selectedItem, selectedStep });
   function confirmation() {
-    console.log("confirmation:", { selectedItem });
-    const redemptionAmount = () => {
-      if (selectedItem?.ruleType === "FIXED_GLOBAL_REWARD") {
-        return `Redeem ${selectedItem?.sourceValue} ${selectedItem?.sourceUnit} for ${selectedItem?.globalRewardKey}`;
-      } else {
-        const amount = states.amount;
-        const reward =
-          selectedStep?.prettyDestinationValue ??
-          `${amount} ${selectedItem?.destinationUnit}`;
-        return `Redeem ${amount} ${selectedItem?.sourceUnit} for ${reward}`;
-      }
-    };
     const previousStage =
       selectedItem?.ruleType === "FIXED_GLOBAL_REWARD"
         ? "chooseReward"
@@ -273,9 +261,20 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
     return (
       <div>
-        <h2>Confirm your redemption:</h2>
-        {redemptionAmount()}
-
+        <h2>Confirm and redeem</h2>
+        <div style={{ textAlign: "center" }}>
+          <p>
+            <b>{selectedStep?.sourceValue}</b>
+          </p>
+          <p>
+            <b>{selectedStep?.prettySourceValue}</b>
+          </p>
+          <p>
+            <ExchangeArrows />
+          </p>
+          <p>{selectedStep?.destinationValue}</p>
+          <p>{selectedStep?.prettyDestinationValue}</p>
+        </div>
         <div class={sheet.classes.Buttons}>
           <sl-button
             onClick={callbacks.exchangeReward}

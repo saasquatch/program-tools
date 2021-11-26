@@ -47,26 +47,8 @@ function Dot({
   );
 }
 
-function Progress({ active, completed, incomplete }) {
-  return [
-    <div
-      style={{
-        content: "''",
-        flex: "0.5 0.5 0",
-        height: "4px",
-        borderRadius: "4px",
-        background: incomplete ? "#E5E5E5" : "#9E9E9E",
-        position: "relative",
-        bottom: "0",
-        left: "0",
-        display: "flex",
-        justifyContent: "center",
-        columnGap: "50px",
-        marginRight: "-2px",
-        boxSizing: "content-box",
-      }}
-    ></div>,
-    <Dot active={active} completed={completed} incomplete={incomplete} />,
+function ProgressLine({ incomplete = false, active = false }) {
+  return (
     <div
       style={{
         content: "''",
@@ -83,7 +65,15 @@ function Progress({ active, completed, incomplete }) {
         marginRight: "-2px",
         boxSizing: "content-box",
       }}
-    ></div>,
+    ></div>
+  );
+}
+
+function Progress({ active, completed, incomplete }) {
+  return [
+    <ProgressLine incomplete={incomplete} />,
+    <Dot active={active} completed={completed} incomplete={incomplete} />,
+    <ProgressLine incomplete={incomplete} active={active} />,
   ];
 }
 
