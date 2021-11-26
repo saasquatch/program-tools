@@ -7,16 +7,21 @@
 
 ## Properties
 
-| Property        | Attribute     | Description | Type                | Default     |
-| --------------- | ------------- | ----------- | ------------------- | ----------- |
-| `buttonOnClick` | --            |             | `() => void`        | `undefined` |
-| `buttonText`    | `button-text` |             | `string`            | `undefined` |
-| `cardTitle`     | `card-title`  |             | `string`            | `undefined` |
-| `complete`      | `complete`    |             | `boolean`           | `false`     |
-| `description`   | `description` |             | `string`            | `undefined` |
-| `expire`        | `expire`      |             | `string`            | `undefined` |
-| `points`        | `points`      |             | `number`            | `0`         |
-| `repeatable`    | `repeatable`  |             | `boolean \| number` | `undefined` |
+| Property          | Attribute           | Description | Type      | Default              |
+| ----------------- | ------------------- | ----------- | --------- | -------------------- |
+| `buttonLink`      | `button-link`       |             | `string`  | `undefined`          |
+| `buttonText`      | `button-text`       |             | `string`  | `undefined`          |
+| `cardTitle`       | `card-title`        |             | `string`  | `"Title Text"`       |
+| `dateExpire`      | `date-expire`       |             | `string`  | `undefined`          |
+| `description`     | `description`       |             | `string`  | `"Description Text"` |
+| `expire`          | `expire`            |             | `boolean` | `false`              |
+| `goal`            | `goal`              |             | `number`  | `1`                  |
+| `points`          | `points`            |             | `number`  | `0`                  |
+| `progress`        | `progress`          |             | `number`  | `0`                  |
+| `repeatable`      | `repeatable`        |             | `boolean` | `false`              |
+| `showProgressBar` | `show-progress-bar` |             | `boolean` | `false`              |
+| `steps`           | `steps`             |             | `number`  | `undefined`          |
+| `unit`            | `unit`              |             | `string`  | `undefined`          |
 
 
 ----------------------------------------------
