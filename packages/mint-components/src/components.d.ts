@@ -1035,7 +1035,7 @@ export namespace Components {
          */
         "description": string;
         /**
-          * @uiName Show Expiry
+          * @uiName Show Expiry delete
          */
         "expire": boolean;
         /**
@@ -1055,10 +1055,14 @@ export namespace Components {
          */
         "showProgressBar": boolean;
         /**
-          * @uiName Progress Bar Steps
+          * @uiType boolean
+          * @uiName Progress Bar Type
+          * @uiEnum [true, false]
+          * @uiEnumNames ["steps" "linear"]
          */
-        "steps": number;
+        "steps": boolean;
         /**
+          * Currency Unit for Linear Progress Bar
           * @uiName Progress Bar Unit
          */
         "unit"?: string;
@@ -2509,7 +2513,7 @@ declare namespace LocalJSX {
          */
         "description"?: string;
         /**
-          * @uiName Show Expiry
+          * @uiName Show Expiry delete
          */
         "expire"?: boolean;
         /**
@@ -2529,10 +2533,14 @@ declare namespace LocalJSX {
          */
         "showProgressBar"?: boolean;
         /**
-          * @uiName Progress Bar Steps
+          * @uiType boolean
+          * @uiName Progress Bar Type
+          * @uiEnum [true, false]
+          * @uiEnumNames ["steps" "linear"]
          */
-        "steps"?: number;
+        "steps"?: boolean;
         /**
+          * Currency Unit for Linear Progress Bar
           * @uiName Progress Bar Unit
          */
         "unit"?: string;

@@ -18,16 +18,49 @@ const resizable = {
 };
 
 export const Default = () => {
-  const oneAction = {
-    points: 20,
-    cardTitle: "Complete a survey",
-    description:
-      "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
-    buttonText: "Take survey",
-    buttonOnClick: () => {},
-  };
-  // @ts-ignore
   return <TaskCardView />;
+};
+
+export const StorySpecs = () => {
+  const props = {
+    progress: 0,
+    goal: 500,
+    unit: "$",
+  };
+
+  const mono_style = {
+    whiteSpace: "pre-wrap",
+    fontFamily: "monospace",
+  };
+
+  return (
+    <div>
+      <div style={mono_style}>
+        {`
+Scenario Outline: Progress Bar Linear
+
+  Given <progress> and <goal>
+  And showProgressBar is true
+  Then I have <progressBar>
+  And the gift icon is <grayscale>
+
+  Examples:
+    | progress | goal | progressBar | grayscale |
+    |     -100 |  500 | ●――――――――🎁 | yes       |
+    |        0 |  500 | ●――――――――🎁 | yes       |
+    |      250 |  500 | ――――●――――🎁 | yes       |
+    |      500 |  500 | ―――――――――🎁 | no        |
+    |     1000 |  500 | ―――――――――🎁 | no        |
+
+`}
+      </div>
+      <MatrixStory
+        matrix={{ progress: [-100, 0, 250, 500, 1000] }}
+        props={props}
+        Component={ProgressBarView}
+      />
+    </div>
+  );
 };
 
 export const NotRepeatable = () => {
@@ -44,7 +77,7 @@ export const NotRepeatable = () => {
     cardTitle: "Comment on 5 articles",
     showProgressBar: true,
     goal: 5,
-    steps: 1,
+    steps: true,
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Start reading",
@@ -102,7 +135,7 @@ export const NotRepeatableWithExpiry = () => {
     cardTitle: "Comment on 5 articles",
     showProgressBar: true,
     goal: 5,
-    steps: 1,
+    steps: true,
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Start reading",
@@ -164,7 +197,7 @@ export const Repeatable = () => {
     showProgressBar: true,
     repeatable: true,
     goal: 5,
-    steps: 1,
+    steps: true,
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Start reading",
@@ -214,75 +247,75 @@ export const Repeatable = () => {
 };
 
 export const RepeatableWithExpiry = () => {
-	const oneAction = {
-	  points: 20,
-	  cardTitle: "Complete a survey",
-	  description:
-		"Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
-	  buttonText: "Take survey",
-	  goal: 1,
-	  repeatable: true,
-	  expire: true,
-	  dateExpire: "Nov 1, 2021",
-	};
-	const coupleActions = {
-	  points: 40,
-	  cardTitle: "Comment on 5 articles",
-	  showProgressBar: true,
-	  repeatable: true,
-	  goal: 5,
-	  steps: 1,
-	  description:
-		"Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
-	  buttonText: "Start reading",
-	  expire: true,
-	  dateExpire: "Nov 1, 2021",
-	};
-	const manyActions = {
-	  points: 150,
-	  cardTitle: "Spend $500 at our Store",
-	  showProgressBar: true,
-	  repeatable: true,
-	  goal: 500,
-	  unit: "$",
-	  description:
-		"Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
-	  buttonText: "Visit our Store",
-	  expire: true,
-	  dateExpire: "Nov 1, 2021",
-	};
-	return (
-	  <div style={{ display: "inline-flex", gap: "32px" }}>
-		<div style={resizable}>
-		  <h4>One Action</h4>
-		  <TaskCardView {...oneAction} progress={0} /> <h5 />
-		  <TaskCardView {...oneAction} progress={1} /> <h5 />
-		</div>
-		<div style={resizable}>
-		  <h4>A Couple Actions</h4>
-		  <TaskCardView {...coupleActions} progress={1} /> <h5 />
-		  <TaskCardView {...coupleActions} progress={5} /> <h5 />
-		  <TaskCardView {...coupleActions} progress={7} /> <h5 />
-		  <TaskCardView {...coupleActions} progress={10} /> <h5 />
-		  <TaskCardView {...coupleActions} progress={12} /> <h5 />
-		  <TaskCardView {...coupleActions} progress={15} /> <h5 />
-		  <TaskCardView {...coupleActions} progress={17} /> <h5 />
-		  <TaskCardView {...coupleActions} progress={22} /> <h5 />
-		</div>
-		<div style={resizable}>
-		  <h4>Many Actions</h4>
-		  <TaskCardView {...manyActions} progress={100} /> <h5 />
-		  <TaskCardView {...manyActions} progress={500} /> <h5 />
-		  <TaskCardView {...manyActions} progress={650} /> <h5 />
-		  <TaskCardView {...manyActions} progress={1000} /> <h5 />
-		  <TaskCardView {...manyActions} progress={1200} /> <h5 />
-		  <TaskCardView {...manyActions} progress={1500} /> <h5 />
-		  <TaskCardView {...manyActions} progress={1700} /> <h5 />
-		  <TaskCardView {...manyActions} progress={2200} /> <h5 />
-		</div>
-	  </div>
-	);
+  const oneAction = {
+    points: 20,
+    cardTitle: "Complete a survey",
+    description:
+      "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
+    buttonText: "Take survey",
+    goal: 1,
+    repeatable: true,
+    expire: true,
+    dateExpire: "Nov 1, 2021",
   };
+  const coupleActions = {
+    points: 40,
+    cardTitle: "Comment on 5 articles",
+    showProgressBar: true,
+    repeatable: true,
+    goal: 5,
+    steps: true,
+    description:
+      "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
+    buttonText: "Start reading",
+    expire: true,
+    dateExpire: "Nov 1, 2021",
+  };
+  const manyActions = {
+    points: 150,
+    cardTitle: "Spend $500 at our Store",
+    showProgressBar: true,
+    repeatable: true,
+    goal: 500,
+    unit: "$",
+    description:
+      "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
+    buttonText: "Visit our Store",
+    expire: true,
+    dateExpire: "Nov 1, 2021",
+  };
+  return (
+    <div style={{ display: "inline-flex", gap: "32px" }}>
+      <div style={resizable}>
+        <h4>One Action</h4>
+        <TaskCardView {...oneAction} progress={0} /> <h5 />
+        <TaskCardView {...oneAction} progress={1} /> <h5 />
+      </div>
+      <div style={resizable}>
+        <h4>A Couple Actions</h4>
+        <TaskCardView {...coupleActions} progress={1} /> <h5 />
+        <TaskCardView {...coupleActions} progress={5} /> <h5 />
+        <TaskCardView {...coupleActions} progress={7} /> <h5 />
+        <TaskCardView {...coupleActions} progress={10} /> <h5 />
+        <TaskCardView {...coupleActions} progress={12} /> <h5 />
+        <TaskCardView {...coupleActions} progress={15} /> <h5 />
+        <TaskCardView {...coupleActions} progress={17} /> <h5 />
+        <TaskCardView {...coupleActions} progress={22} /> <h5 />
+      </div>
+      <div style={resizable}>
+        <h4>Many Actions</h4>
+        <TaskCardView {...manyActions} progress={100} /> <h5 />
+        <TaskCardView {...manyActions} progress={500} /> <h5 />
+        <TaskCardView {...manyActions} progress={650} /> <h5 />
+        <TaskCardView {...manyActions} progress={1000} /> <h5 />
+        <TaskCardView {...manyActions} progress={1200} /> <h5 />
+        <TaskCardView {...manyActions} progress={1500} /> <h5 />
+        <TaskCardView {...manyActions} progress={1700} /> <h5 />
+        <TaskCardView {...manyActions} progress={2200} /> <h5 />
+      </div>
+    </div>
+  );
+};
 // export const Repeatable = () => {
 //   const oneAction = {
 //     points: 20,

@@ -4,7 +4,6 @@ import preset from "jss-preset-default";
 import { HostBlock } from "../../global/mixins";
 import * as SVGs from "./SVGs";
 
-
 export type TaskCardViewProps = {
   points?: number; // set by the widget editor
   cardTitle?: string;
@@ -242,7 +241,7 @@ export type ProgressBarProps = {
   showProgressBar?: boolean;
   goal?: number;
   progress?: number;
-  steps?: number;
+  steps?: boolean;
   unit?: string;
   repeatable?: boolean;
 };
@@ -281,10 +280,10 @@ export function ProgressBar(props: ProgressBarProps): VNode {
     HostBlock: HostBlock,
     ProgressBar: {
       "& .progress-bar": {
-        height: "20px",
-        marginTop: "var(--sl-spacing-large)",
+        height: "15px",
+        marginTop: "var(--sl-spacing-xx-large)",
+        marginBottom: "var(--sl-spacing-xx-large)",
         marginRight: "var(--sl-spacing-x-small)",
-        marginBottom: "var(--sl-spacing-large)",
         fontSize: "var(--sl-font-size-x-small)",
         display: "grid",
         gridTemplateColumns: columns,
@@ -324,6 +323,13 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         height: "0",
         border: "none",
       },
+      "& .progress.top": {
+        position: "relative",
+        top: "-40px",
+      },
+      "& .progress.top:after": {
+        top: "-16%",
+      },
       "& .empty": {
         display: "block",
         textAlign: "center",
@@ -356,14 +362,14 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         borderRadius: "4px",
         backgroundColor: "#E0E0E0",
       },
-      "& .end.bw": {
+      "& .gift.bw": {
         filter: "grayscale(100%)",
       },
-      "& .end.start": {
+      "& .gift.start": {
         transform: "scale(80%)",
         top: "-20px",
       },
-      "& .end": {
+      "& .gift": {
         textAlign: "center",
         marginLeft: "-100px",
         marginRight: "-100px",
@@ -393,59 +399,67 @@ export function ProgressBar(props: ProgressBarProps): VNode {
     </div>
   );
 
+  function clamp(x, min, max) {
+    return Math.min(Math.max(x, min), max);
+  }
+
   function addLinear() {
+    const ratio = progress / goal;
     columns =
-      Math.min(Math.max(progress / goal, 0), 1) +
-      "fr 0fr " +
-      Math.min(Math.max(1 - progress / goal, 0), 1) +
-      "fr 0fr";
+      clamp(ratio, 0, 1) + "fr 0fr " + clamp(1 - ratio, 0, 1) + "fr 0fr 0fr";
     items.push(<div class={"filled"}></div>);
     items.push(
-      <div class={progress == goal ? "progress bg" : "progress"}>
-        {unit + progress}
+      <div
+        class={
+          clamp(progress, 0, goal) == goal ? "progress top bg" : "progress top"
+        }
+      >
+        {clamp(progress, 0, goal) == goal
+          ? ""
+          : unit + clamp(progress, 0, goal)}
       </div>
     );
     items.push(<div class={"remain"}></div>);
-    items.push(<div class={"end"}>{gift1}</div>);
+    items.push(<div class={"progress bg"}>{goal}</div>);
+    items.push(<div class={"gift"}>{gift1}</div>);
   }
 
   function addSteps() {
-    let step_math = steps / goal;
-    for (let i = 1; i < goal; i += steps) {
-      columns += step_math + "fr 0fr ";
+    let ratio = 1 / goal;
+    for (let i = 1; i < goal; i ++) {
+      columns += ratio + "fr 0fr ";
       if (i > progress) {
         items.push(<div class={"remain"}></div>);
-        items.push(<div class={"empty"}>{unit + i}</div>);
+        items.push(<div class={"empty"}>{i}</div>);
       } else {
         items.push(<div class={"filled"}></div>);
-        items.push(<div class={"progress"}>{unit + i}</div>);
+        items.push(<div class={"progress"}>{i}</div>);
       }
     }
-    columns += step_math + "fr 0fr ";
+    columns += ratio + "fr 0fr ";
     // reward success
     if (goal <= progress) {
       columns += "0fr ";
       items.push(<div class={"filled"}></div>);
-      items.push(<div class={"progress bg"}>{unit + goal}</div>);
-      items.push(<div class="end">{gift1}</div>);
+      items.push(<div class={"progress bg"}>{goal}</div>);
+      items.push(<div class="gift">{gift1}</div>);
     }
 
     // reward fail
     else {
       columns += "0fr ";
       items.push(<div class={"remain"}></div>);
-      items.push(<div class={"empty bg"}>{unit + goal}</div>);
-      items.push(<div class="end">{gift1}</div>);
+      items.push(<div class={"empty bg"}>{goal}</div>);
+      items.push(<div class="gift">{gift1}</div>);
     }
   }
 
   function addLinearRepeatable() {
-    let position = progress % goal;
-    let remainder = (position / goal) * 0.5;
     let repetitions = Math.floor(progress / goal);
+    let ratio = ((progress % goal) / goal) * 0.5;
     // 0 repetition
     if (repetitions == 0) {
-      columns = remainder + "fr 0fr " + (0.5 - remainder) + "fr 0fr 0.5fr 0fr";
+      columns = ratio + "fr 0fr " + (0.5 - ratio) + "fr 0fr 0.5fr 0fr";
       items.push(<div class={"filled"}></div>);
       items.push(
         <div class={progress == goal ? "progress bg" : "progress"}>
@@ -453,17 +467,16 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         </div>
       );
       items.push(<div class={"remain"}></div>);
-      items.push(<div class="end">{gift1}</div>);
+      items.push(<div class="gift">{gift1}</div>);
       items.push(<div class={"remain"}></div>);
-      items.push(<div class="end bw">{gift2}</div>);
+      items.push(<div class="gift bw">{gift2}</div>);
     }
 
     // single repetition
     else if (repetitions == 1) {
-      columns =
-        "0.5fr 0fr " + remainder + "fr 0fr " + (0.5 - remainder) + "fr 0fr";
+      columns = "0.5fr 0fr " + ratio + "fr 0fr " + (0.5 - ratio) + "fr 0fr";
       items.push(<div class={"filled"}></div>);
-      items.push(<div class="end">{gift1}</div>);
+      items.push(<div class="gift">{gift1}</div>);
       items.push(<div class={"filled"}></div>);
       items.push(
         <div class={progress == goal ? "progress bg" : "progress"}>
@@ -471,16 +484,15 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         </div>
       );
       items.push(<div class={"remain"}></div>);
-      items.push(<div class="end bw">{gift2}</div>);
+      items.push(<div class="gift bw">{gift2}</div>);
     }
 
     // multiple repetitions
     else {
-      columns =
-        "0fr 0.5fr 0fr " + remainder + "fr 0fr " + (0.5 - remainder) + "fr 0fr";
-      items.push(<div class="end start">{gift1}</div>);
+      columns = "0fr 0.5fr 0fr " + ratio + "fr 0fr " + (0.5 - ratio) + "fr 0fr";
+      items.push(<div class="gift start">{gift1}</div>);
       items.push(<div class={"filled"}></div>);
-      items.push(<div class="end">{gift2}</div>);
+      items.push(<div class="gift">{gift2}</div>);
       items.push(<div class={"filled"}></div>);
       items.push(
         <div
@@ -490,7 +502,7 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         </div>
       );
       items.push(<div class={"remain"}></div>);
-      items.push(<div class="end bw">{gift3}</div>);
+      items.push(<div class="gift bw">{gift3}</div>);
     }
   }
 
@@ -498,22 +510,20 @@ export function ProgressBar(props: ProgressBarProps): VNode {
     let repetitions = Math.floor(progress / goal);
     // no or single repetition
     if (repetitions < 2) {
-      let step_math = steps / goal;
-      for (let i = 1; i < goal * 2 + 1; i += steps) {
-        columns += step_math + "fr 0fr ";
+      let ratio = 1 / goal;
+      for (let i = 1; i < goal * 2 + 1; i ++) {
+        columns += ratio + "fr 0fr ";
         if (i > progress) {
           if (i == goal) {
             columns += "0fr ";
             items.push(<div class={"remain"}></div>);
-            items.push(<div class={"empty bg"}>{unit + goal}</div>);
-            items.push(<div class="end bw">{gift1}</div>);
+            items.push(<div class={"empty bg"}>{goal}</div>);
+            items.push(<div class="gift bw">{gift1}</div>);
           } else if (i == goal * 2) {
             columns += "0fr 0fr";
             items.push(<div class={"remain"}></div>);
-            items.push(
-              <div class={"empty bg"}>{unit + (goal * 2)}</div>
-            );
-            items.push(<div class={"end bw"}>{gift2}</div>);
+            items.push(<div class={"empty bg"}>{goal * 2}</div>);
+            items.push(<div class={"gift bw"}>{gift2}</div>);
           } else {
             items.push(<div class={"remain"}></div>);
             items.push(<div class={"empty"}>{unit + i}</div>);
@@ -521,40 +531,40 @@ export function ProgressBar(props: ProgressBarProps): VNode {
         } else if (i == goal) {
           columns += "0fr ";
           items.push(<div class={"filled"}></div>);
-          items.push(<div class={"progress bg"}>{unit + i}</div>);
-          items.push(<div class="end">{gift3}</div>);
+          items.push(<div class={"progress bg"}>{i}</div>);
+          items.push(<div class="gift">{gift3}</div>);
         } else {
           items.push(<div class={"filled"}></div>);
-          items.push(<div class={"progress"}>{unit + i}</div>);
+          items.push(<div class={"progress"}>{i}</div>);
         }
       }
     }
     // case repetition many
     else {
       let position = (progress % goal) + goal;
-      let step_math = steps / goal;
+      let ratio = 1 / goal;
       columns += "0fr 0fr ";
       items.push(
-        <div class={"progress bg"}>{unit + goal * (repetitions - 1)}</div>
+        <div class={"progress bg"}>{goal * (repetitions - 1)}</div>
       );
-      items.push(<div class={"end start"}>{gift1}</div>);
-      for (let i = 1; i < goal * 2 + 1; i += steps) {
-        columns += step_math + "fr 0fr ";
+      items.push(<div class={"gift start"}>{gift1}</div>);
+      for (let i = 1; i < goal * 2 + 1; i ++) {
+        columns += ratio + "fr 0fr ";
         if (i <= goal) {
           if (i == goal) {
             columns += "0fr ";
             items.push(<div class={"filled"}></div>);
             items.push(
               <div class={"progress bg"}>
-                {unit + (i + goal * (repetitions - 1))}
+                {(i + goal * (repetitions - 1))}
               </div>
             );
-            items.push(<div class={"end"}>{gift2}</div>);
+            items.push(<div class={"gift"}>{gift2}</div>);
           } else {
             items.push(<div class={"filled"}></div>);
             items.push(
               <div class={"progress"}>
-                {unit + (i + goal * (repetitions - 1))}
+                {(i + goal * (repetitions - 1))}
               </div>
             );
           }
@@ -564,21 +574,21 @@ export function ProgressBar(props: ProgressBarProps): VNode {
             items.push(<div class={"remain"}></div>);
             items.push(
               <div class={"empty bg"}>
-                {unit + (i + goal * (repetitions - 1))}
+                {(i + goal * (repetitions - 1))}
               </div>
             );
-            items.push(<div class={"end bw"}>{gift3}</div>);
+            items.push(<div class={"gift bw"}>{gift3}</div>);
           } else {
             items.push(<div class={"remain"}></div>);
             items.push(
-              <div class={"empty"}>{unit + (i + goal * (repetitions - 1))}</div>
+              <div class={"empty"}>{(i + goal * (repetitions - 1))}</div>
             );
           }
         } else {
           items.push(<div class={"filled"}></div>);
           items.push(
             <div class={"progress"}>
-              {unit + (i + goal * (repetitions - 1))}
+              {(i + goal * (repetitions - 1))}
             </div>
           );
         }

@@ -46,25 +46,35 @@ export class TaskCard {
   showProgressBar: boolean = false;
 
   /**
+   * @uiName Progress Source
+   */
+  progressSource: string = "";
+
+  /**
    * @uiName Progress Bar Goal
    */
   @Prop()
   goal: number = 1;
 
   /**
-   * @uiName Progress Bar Steps
+   * @uiType boolean
+   * @uiName Progress Bar Type
+   * @uiEnum [true, false]
+   * @uiEnumNames ["steps" "linear"]
    */
   @Prop()
-  steps: number;
+  steps: boolean;
 
   /**
+   * Currency Unit for Linear Progress Bar
+   * 
    * @uiName Progress Bar Unit
    */
   @Prop()
   unit?: string;
 
   /**
-   * @uiName Show Expiry
+   * @uiName Show Expiry delete
    */
   @Prop()
   expire: boolean = false;
