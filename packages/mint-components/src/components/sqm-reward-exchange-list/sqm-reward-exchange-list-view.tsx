@@ -2,6 +2,7 @@ import { getAssetPath, h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { ProgressBar } from "./progressBar";
+import { LeftArrow } from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
 
 export type RewardExchangeViewProps = {
@@ -98,6 +99,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     },
     Buttons: {
       bottom: "0",
+      width: "100%",
     },
     Button: {
       margin: "10px 0",
@@ -118,6 +120,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   function getInput() {
     const item = states.selectedItem;
     if (!item || item?.ruleType === "FIXED_GLOBAL_REWARD") return <span></span>;
+
+    if (!item.steps?.length) {
+      return <p>Not enough {item.sourceUnit} to redeem for this reward.</p>;
+    }
     return (
       <sl-select
         style={{ width: "auto" }}
@@ -131,8 +137,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           })
         }
       >
-        {item?.steps?.map((step) => (
-          <sl-menu-item value={step}>
+        {item.steps?.map((step) => (
+          <sl-menu-item value={step} disabled={!step.available}>
             {step.prettyDestinationValue}
             <span slot="suffix" style={{ fontSize: "75%" }}>
               {step.prettySourceValue}
@@ -223,7 +229,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             <img class={sheet.classes.FullImage} src={selectedItem?.imageUrl} />
           )}
         </div>
-        {/* <p>{selectedItem?.description}</p> */}
+        <p>{selectedItem?.description}</p>
         <div class={sheet.classes.InputBox}>{input}</div>
         <div class={sheet.classes.Buttons}>
           <sl-button
@@ -356,23 +362,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     } else if (states.redeemStage === "chooseAmount") {
       previousStage = "chooseReward";
     }
-    const LeftArrow = () => (
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 16 16"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        style={{ marginBottom: "-2px", marginRight: "5px" }}
-      >
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M7.34655 1.90573C7.75405 2.31323 7.75405 2.97392 7.34655 3.38143L3.56266 7.16531H14.9565C15.5328 7.16531 16 7.6325 16 8.20879C16 8.78509 15.5328 9.25227 14.9565 9.25227H3.56266L7.69437 13.384C8.10188 13.7915 8.10188 14.4522 7.69437 14.8597C7.28687 15.2672 6.62617 15.2672 6.21867 14.8597L0.305628 8.94664C-0.101876 8.53914 -0.101876 7.87845 0.305628 7.47094L5.87084 1.90573C6.27835 1.49822 6.93904 1.49822 7.34655 1.90573Z"
-          fill="#858585"
-        />
-      </svg>
-    );
 
     return (
       <div slot="label">

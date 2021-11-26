@@ -24,6 +24,7 @@ function Dot({
         justifyContent: "center",
         columnGap: "50px",
         marginRight: "-2px",
+        boxSizing: "content-box",
       }}
     >
       <div
@@ -61,6 +62,7 @@ function Progress({ active, completed, incomplete }) {
         justifyContent: "center",
         columnGap: "50px",
         marginRight: "-2px",
+        boxSizing: "content-box",
       }}
     ></div>,
     <Dot active={active} completed={completed} incomplete={incomplete} />,
@@ -78,6 +80,7 @@ function Progress({ active, completed, incomplete }) {
         justifyContent: "center",
         columnGap: "50px",
         marginRight: "-2px",
+        boxSizing: "content-box",
       }}
     ></div>,
   ];

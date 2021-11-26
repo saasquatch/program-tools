@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute   | Description | Type                                                                                                                                                                                                 | Default     |
-| ---------- | ----------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `demoData` | --          |             | `{ states?: { selectedItem: ExchangeItem; selectedStep: ExchangeStep; redeemStage: string; amount: number; exchangeError?: boolean; }; data?: { exchangeList: any; }; refs?: { drawerRef: any; }; }` | `undefined` |
-| `listType` | `list-type` |             | `string`                                                                                                                                                                                             | `undefined` |
+| Property     | Attribute     | Description | Type                                                                                                                                                                                                                          | Default              |
+| ------------ | ------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| `buttonText` | `button-text` |             | `string`                                                                                                                                                                                                                      | `"Exchange Rewards"` |
+| `demoData`   | --            |             | `{ states?: { selectedItem: ExchangeItem; selectedStep: ExchangeStep; redeemStage: string; amount: number; exchangeError?: boolean; content: { text: any; }; }; data?: { exchangeList: any; }; refs?: { drawerRef: any; }; }` | `undefined`          |
 
 
 ## Dependencies

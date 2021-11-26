@@ -38,12 +38,7 @@ export type ExchangeItem = {
   prettyDestinationMaxValue: string;
   globalRewardKey: string;
   destinationUnit: string;
-  steps?: {
-    sourceValue: number;
-    prettySourceValue: string;
-    destinationValue: number;
-    prettyDestinationValue: string;
-  }[];
+  steps?: ExchangeStep[];
 };
 
 export type ExchangeStep = {
@@ -51,6 +46,8 @@ export type ExchangeStep = {
   sourceValue: number;
   prettyDestinationValue: string;
   prettySourceValue: string;
+  available: boolean;
+  unavailableReasonCode: string;
 };
 
 export type Stages = "" | "chooseReward" | "chooseAmount" | "confirmation";
@@ -86,6 +83,7 @@ const GET_EXCHANGE_LIST = gql`
               prettySourceValue
               destinationValue
               prettyDestinationValue
+              available
             }
           }
           totalCount
@@ -135,7 +133,8 @@ export function useRewardExchangeList(
     }
   );
 
-  const { selectedItem, selectedStep, redeemStage, amount, exchangeError} = exchangeState;
+  const { selectedItem, selectedStep, redeemStage, amount, exchangeError } =
+    exchangeState;
 
   const user = useUserIdentity();
 
@@ -148,7 +147,7 @@ export function useRewardExchangeList(
       setExchangeState({ redeemStage: "success" });
     }
     if (!!errors) {
-      console.log("YEA")
+      console.log("YEA");
       setExchangeState({ exchangeError: true });
     }
   }, [exchangeResponse, errors]);
@@ -214,8 +213,6 @@ export function useRewardExchangeList(
           globalRewardKey: selectedItem.globalRewardKey,
         };
     }
-
-    console.log(exchangeVariables);
     exchange({ exchangeRewardInput: exchangeVariables });
   }
 
@@ -244,12 +241,10 @@ export function useRewardExchangeList(
   function setStage(stage?: Stages) {
     setExchangeState({ redeemStage: stage });
   }
-
-  console.log(exchangeResponse, exchangeResponse?.data, errors);
   return {
     states: {
-      content:{
-        text:props
+      content: {
+        text: props,
       },
       selectedItem,
       redeemStage,
