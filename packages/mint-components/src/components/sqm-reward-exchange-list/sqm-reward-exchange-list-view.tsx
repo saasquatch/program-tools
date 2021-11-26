@@ -327,7 +327,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     const stageNumber = stageList.indexOf(states.redeemStage);
     return (
       <div style={{ fontSize: "80%" }}>
-        <ProgressBar stage={stageNumber} />
+        <ProgressBar stageCount={3} currentStage={stageNumber} />
         <div
           style={{
             marginTop: "5px",
@@ -350,7 +350,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     );
   }
 
-  const Label = () => {
+  const BackButton = () => {
     if (states.redeemStage === "success") return "";
     let previousStage: Stages = "";
 
@@ -385,7 +385,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           class={sheet.classes.Drawer}
           open={stageList.indexOf(states.redeemStage) >= 0}
         >
-          <Label />
+          <BackButton />
           {stageMap()}
           {currentStage && currentStage()}
           {states.exchangeError &&
