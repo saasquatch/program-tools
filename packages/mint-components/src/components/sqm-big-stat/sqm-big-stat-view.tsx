@@ -1,8 +1,9 @@
-import { h, Host, VNode } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 
 export interface BigStatViewProps {
+  value: number;
   statvalue: string;
   flexReverse?: boolean;
   alignment?: "left" | "right" | "center";

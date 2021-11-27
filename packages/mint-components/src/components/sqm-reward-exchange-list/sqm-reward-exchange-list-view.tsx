@@ -12,6 +12,7 @@ export type RewardExchangeViewProps = {
     redeemStage: string;
     amount: number;
     exchangeError?: boolean;
+    loading: boolean;
     content: {
       text: any;
     };
@@ -50,7 +51,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
     },
     Base: {
-      display: "block",
+      display: "flex",
       cursor: "pointer",
       textAlign: "center",
       "&::part(base)": {
@@ -62,6 +63,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
       "&::part(body)": {
         padding: "10px 0",
+        display: "flex",
       },
     },
     Drawer: {
@@ -73,6 +75,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
       "&::part(panel)": {
         height: "85vh",
+        width: "100%",
       },
     },
     FullImage: {
@@ -83,6 +86,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     PreviewImage: {
       objectFit: "contain",
       maxWidth: "100%",
+      flex: 0.33,
       height: "75px",
     },
     InputBox: {
@@ -285,16 +289,33 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         <h2>Confirm and redeem</h2>
         <div style={{ textAlign: "center" }}>
           <p>
-            <b>{selectedStep?.sourceValue}</b>
-          </p>
-          <p>
             <b>{selectedStep?.prettySourceValue}</b>
           </p>
           <p>
             <ExchangeArrows />
           </p>
-          <p>{selectedStep?.destinationValue}</p>
-          <p>{selectedStep?.prettyDestinationValue}</p>
+          <div
+            class={sheet.classes.CardContainer}
+            style={{
+              boxShadow: "none",
+              marginBottom: "10px 0",
+              flex: "1",
+              minWidth: "100%",
+            }}
+          >
+            <sl-card class={sheet.classes.Base}>
+              <img
+                class={sheet.classes.PreviewImage}
+                src={
+                  selectedItem?.imageUrl ||
+                  getAssetPath("./assets/Reward-icon.png")
+                }
+              />
+              <p style={{ marginBottom: "0" }}>
+                {selectedStep?.prettyDestinationValue}
+              </p>
+            </sl-card>
+          </div>
         </div>
         <div class={sheet.classes.Buttons}>
           <sl-button
@@ -346,8 +367,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   function stageMap() {
     const stageNumber = stageList.indexOf(states.redeemStage);
     return (
-      <div style={{ fontSize: "80%" }}>
-        <ProgressBar stageCount={3} currentStage={stageNumber} />
+      <div style={{ fontSize: "80%", marginBottom: "10px" }}>
         <div
           style={{
             marginTop: "5px",
@@ -355,7 +375,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             justifyContent: "center",
             textAlign: "center",
             whiteSpace: "nowrap",
-            marginBottom: "10px",
+            marginBottom: "6px",
           }}
         >
           {Object.keys(stageProgressList).map((stage) => {
@@ -366,6 +386,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             return <i style={{ flex: "1 1 0" }}>{stageProgressList[stage]}</i>;
           })}
         </div>
+        <ProgressBar stageCount={3} currentStage={stageNumber} />
       </div>
     );
   }
@@ -411,7 +432,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           {states.exchangeError &&
             "Something went wrong. Please contact support or try again."}
         </sl-drawer>
-        <sl-button onClick={() => callbacks.openDrawer()}>
+        <sl-button
+          loading={states.loading}
+          onClick={() => callbacks.openDrawer()}
+        >
           Redeem Rewards
         </sl-button>
       </div>

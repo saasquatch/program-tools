@@ -13,6 +13,7 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
   if (!re?.exec(statType)) {
     return {
       props: {
+        value: 0,
         statvalue: "!!!",
         flexReverse: false,
         alignment: "center" as const,

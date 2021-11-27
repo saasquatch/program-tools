@@ -6,12 +6,13 @@ export default {
 };
 
 export const Default = () => {
-  const props = { statvalue: "9.900,00" };
+  const props = { value:990000, statvalue: "9.900,00" };
   return <BigStatView {...props}>Big stat</BigStatView>;
 };
 
 export const LeftAlign = () => {
   const props = {
+    value:500,
     statvalue: "500",
     alignment: "left" as const,
   };
@@ -20,6 +21,7 @@ export const LeftAlign = () => {
 
 export const RightAlign = () => {
   const props = {
+    value:500,
     statvalue: "500",
     alignment: "right" as const,
   };
@@ -28,6 +30,7 @@ export const RightAlign = () => {
 
 export const FlexReverse = () => {
   const props = {
+    value:500,
     statvalue: "500",
     flexReverse: true,
   };
@@ -36,6 +39,7 @@ export const FlexReverse = () => {
 
 export const FlexReverseRight = () => {
   const props = {
+    value:500,
     statvalue: "500",
     flexReverse: true,
     alignment: "right" as const,
@@ -45,6 +49,7 @@ export const FlexReverseRight = () => {
 
 export const FlexReverseLeft = () => {
   const props = {
+    value:500,
     statvalue: "500",
     flexReverse: true,
     alignment: "left" as const,
@@ -54,6 +59,7 @@ export const FlexReverseLeft = () => {
 
 export const NoStatValue = () => {
   const props = {
+    value:0,
     statvalue: "...",
   };
   return <BigStatView {...props}>Big stat</BigStatView>;
@@ -61,6 +67,7 @@ export const NoStatValue = () => {
 
 export const InvalidStatValue = () => {
   const props = {
+    value:0,
     statvalue: "!!!",
   };
   return <BigStatView {...props}>Big stat</BigStatView>;

@@ -1055,6 +1055,10 @@ export namespace Components {
          */
         "showProgressBar": boolean;
         /**
+          * @undocumented
+         */
+        "statType": string;
+        /**
           * @uiType boolean
           * @uiName Progress Bar Type
           * @uiEnum [true, false]
@@ -2532,6 +2536,10 @@ declare namespace LocalJSX {
           * @uiName Show Progress Bar
          */
         "showProgressBar"?: boolean;
+        /**
+          * @undocumented
+         */
+        "statType"?: string;
         /**
           * @uiType boolean
           * @uiName Progress Bar Type

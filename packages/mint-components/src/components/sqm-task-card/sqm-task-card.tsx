@@ -1,7 +1,7 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import { getProps } from "../../utils/utils";
-
+import { useBigStat } from "../sqm-big-stat/useBigStat";
 import { TaskCardView } from "./sqm-task-card-view";
 
 /**
@@ -97,12 +97,21 @@ export class TaskCard {
   @Prop()
   buttonLink: string;
 
+  /**
+   * @undocumented
+   */
+  @Prop()
+  statType: string = "/programGoals/count/Paid-Member-Goal/referrals";
+
   constructor() {
     withHooks(this);
   }
   disconnectedCallback() {}
 
   render() {
+    const { props } = useBigStat(this);
+    const { value } = props;
+    console.log({ value });
     //const progress = useTaskCard(); progress={progress}
     return <TaskCardView {...getProps(this)}></TaskCardView>;
   }

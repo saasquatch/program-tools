@@ -157,10 +157,16 @@ export const Dashboard = () => {
             }}
           ></PortalSectionView>
           <StatContainerView {...{ space: "64px" }}>
-            <BigStatView {...{ statvalue: "2,345" }}>Clicks</BigStatView>
-            <BigStatView {...{ statvalue: "58" }}>Referrals</BigStatView>
-            <BigStatView {...{ statvalue: "$10,540" }}>Earned</BigStatView>
-            <BigStatView {...{ statvalue: "$2,305" }}>
+            <BigStatView {...{ statvalue: "2,345", value: 234500 }}>
+              Clicks
+            </BigStatView>
+            <BigStatView {...{ statvalue: "58", value: 58 }}>
+              Referrals
+            </BigStatView>
+            <BigStatView {...{ statvalue: "$10,540", value: 1054000 }}>
+              Earned
+            </BigStatView>
+            <BigStatView {...{ statvalue: "$2,305", value: 230500 }}>
               Awaiting Payout
             </BigStatView>
           </StatContainerView>
@@ -353,12 +359,18 @@ export const Commissions = () => {
             }}
           ></PortalSectionView>
           <StatContainerView {...{ space: "64px" }}>
-            <BigStatView {...{ statvalue: "$ 1,000" }}>
+            <BigStatView {...{ statvalue: "$ 1,000", value: 100000 }}>
               Total Earned
             </BigStatView>
-            <BigStatView {...{ statvalue: "$ 800" }}>Available</BigStatView>
-            <BigStatView {...{ statvalue: "$ 180" }}>Pending</BigStatView>
-            <BigStatView {...{ statvalue: "$ 20" }}>Redeemed</BigStatView>
+            <BigStatView {...{ statvalue: "$ 800", value: 80000 }}>
+              Available
+            </BigStatView>
+            <BigStatView {...{ statvalue: "$ 180", value: 18000 }}>
+              Pending
+            </BigStatView>
+            <BigStatView {...{ statvalue: "$ 20", value: 2000 }}>
+              Redeemed
+            </BigStatView>
           </StatContainerView>
         </PortalContainerView>
       </sqm-divided-layout>
@@ -408,12 +420,16 @@ export const Activity = () => {
               ),
               content: (
                 <StatContainerView {...{ space: "64px" }}>
-                  <BigStatView {...{ statvalue: "1,000" }}>
+                  <BigStatView {...{ statvalue: "1,000", value: 100000 }}>
                     Total Referrals
                   </BigStatView>
-                  <BigStatView {...{ statvalue: "800" }}>Converted</BigStatView>
-                  <BigStatView {...{ statvalue: "180" }}>Pending</BigStatView>
-                  <BigStatView {...{ statvalue: "20" }}>
+                  <BigStatView {...{ statvalue: "800", value: 800 }}>
+                    Converted
+                  </BigStatView>
+                  <BigStatView {...{ statvalue: "180", value: 180 }}>
+                    Pending
+                  </BigStatView>
+                  <BigStatView {...{ statvalue: "20", value: 20 }}>
                     Disqualified
                   </BigStatView>
                 </StatContainerView>
@@ -432,11 +448,13 @@ export const Activity = () => {
             ),
             content: (
               <StatContainerView {...{ space: "64px" }}>
-                <BigStatView {...{ statvalue: "1,000" }}>Clicks</BigStatView>
-                <BigStatView {...{ statvalue: "800" }}>
+                <BigStatView {...{ statvalue: "1,000", value: 1000 }}>
+                  Clicks
+                </BigStatView>
+                <BigStatView {...{ statvalue: "800", value: 800 }}>
                   From share link
                 </BigStatView>
-                <BigStatView {...{ statvalue: "180" }}>
+                <BigStatView {...{ statvalue: "180", value: 180 }}>
                   From share mediums
                 </BigStatView>
               </StatContainerView>

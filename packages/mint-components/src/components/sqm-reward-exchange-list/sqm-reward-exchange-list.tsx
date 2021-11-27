@@ -84,6 +84,7 @@ function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
         amount: 0,
         selectedStep: undefined,
         exchangeError: false,
+        loading:false,
       },
       data: {
         shareCode: "SHARECODE123",

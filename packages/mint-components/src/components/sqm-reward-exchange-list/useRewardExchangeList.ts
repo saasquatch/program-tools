@@ -141,7 +141,7 @@ export function useRewardExchangeList(
 
   const [exchange, { data: exchangeResponse, errors }] = useMutation(EXCHANGE);
 
-  const { data } = useQuery(GET_EXCHANGE_LIST, !user?.jwt);
+  const { data, loading } = useQuery(GET_EXCHANGE_LIST, !user?.jwt);
 
   useEffect(() => {
     if (exchangeResponse?.exchangeReward?.reward?.id) {
@@ -252,6 +252,7 @@ export function useRewardExchangeList(
       amount,
       selectedStep,
       exchangeError,
+      loading,
     },
     data: {
       exchangeList: data?.viewer?.visibleRewardExchangeItems?.data,
