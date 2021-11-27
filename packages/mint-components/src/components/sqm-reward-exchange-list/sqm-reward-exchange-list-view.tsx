@@ -56,14 +56,15 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       textAlign: "center",
       "&::part(base)": {
         width: "100%",
-        height: "170px",
+        maxWidth: "800px",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
       },
       "&::part(body)": {
-        padding: "10px 0",
+        padding: 0,
         display: "flex",
+        width: "100%",
       },
     },
     Drawer: {
@@ -85,9 +86,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     },
     PreviewImage: {
       objectFit: "contain",
-      maxWidth: "100%",
+      width: "115px",
+      height: "115px",
       flex: 0.33,
-      height: "75px",
     },
     InputBox: {
       width: "100%",
@@ -146,12 +147,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             {step.prettyDestinationValue}
             <div slot="suffix" style={{ fontSize: "75%", float: "right" }}>
               {step.prettySourceValue}
+              {step.unavailableReasonCode && (
+                <p style={{ fontSize: "70%", color: "#F2994A" }}>
+                  {step.unavailableReasonCode}
+                </p>
+              )}
             </div>
-            {step.unavailableReasonCode && (
-              <p style={{ fontSize: "70%", color: "#F2994A" }}>
-                {step.unavailableReasonCode}
-              </p>
-            )}
           </sl-menu-item>
         ))}
       </sl-select>
@@ -208,18 +209,20 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     item?.imageUrl || getAssetPath("./assets/Reward-icon.png")
                   }
                 />
-                <p style={{ marginBottom: "0" }}>{item.description}</p>
-                {item.unavailableReasonCode && (
-                  <p
-                    style={{
-                      fontSize: "70%",
-                      color: "#F2994A",
-                      marginTop: "0",
-                    }}
-                  >
-                    {item.unavailableReasonCode}
-                  </p>
-                )}
+                <p style={{ marginBottom: "0", flex: "1" }}>
+                  {item.description}
+                  {item.unavailableReasonCode && (
+                    <p
+                      style={{
+                        fontSize: "70%",
+                        color: "#F2994A",
+                        marginTop: "0",
+                      }}
+                    >
+                      {item.unavailableReasonCode}
+                    </p>
+                  )}
+                </p>
               </sl-card>
             </div>
           );
@@ -298,7 +301,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             class={sheet.classes.CardContainer}
             style={{
               boxShadow: "none",
-              marginBottom: "10px 0",
+              marginBottom: "10px",
               flex: "1",
               minWidth: "100%",
             }}
@@ -311,7 +314,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                   getAssetPath("./assets/Reward-icon.png")
                 }
               />
-              <p style={{ marginBottom: "0" }}>
+              <p style={{ marginBottom: "0", flex: "1" }}>
                 {selectedStep?.prettyDestinationValue}
               </p>
             </sl-card>
@@ -367,7 +370,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   function stageMap() {
     const stageNumber = stageList.indexOf(states.redeemStage);
     return (
-      <div style={{ fontSize: "80%", marginBottom: "10px" }}>
+      <div style={{ fontSize: "80%", marginBottom: "20px" }}>
         <div
           style={{
             marginTop: "5px",
