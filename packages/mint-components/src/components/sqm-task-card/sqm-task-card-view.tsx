@@ -3,12 +3,16 @@ import jss from "jss";
 import preset from "jss-preset-default";
 import { HostBlock } from "../../global/mixins";
 import * as SVGs from "./SVGs";
+import {
+  ProgressBarProps,
+  ProgressBarView,
+} from "./progress-bar/progress-bar-view";
 
 export type TaskCardViewProps = {
-  points?: number; // set by the widget editor
+  points?: number;
   cardTitle?: string;
   description?: string;
-  showProgressBar?: boolean;
+  progressBar?: boolean;
   repeatable?: boolean;
   expire?: boolean;
   dateExpire?: string;
@@ -16,13 +20,12 @@ export type TaskCardViewProps = {
   buttonLink?: string;
 } & ProgressBarProps;
 
-// @ts-expect-error -- unused
-export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
+export function TaskCardView(props: TaskCardViewProps): VNode {
   const {
     points = 0,
     cardTitle = "Title Text",
     description = "Description Text",
-    showProgressBar = false,
+    progressBar = false,
     progress = 0,
     goal = 1,
     repeatable = false,
@@ -109,56 +112,47 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
       },
     },
   };
+
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
-  // if showProgressBar is false: progress >= goal
-  // if true
   const showComplete = progress >= goal;
-  const repetitions = showProgressBar ? Math.floor(progress / goal) : progress;
+  const repetitions = progressBar ? Math.floor(progress / goal) : progress;
 
   return (
     <div class={sheet.classes.TaskCard}>
       <div class={showComplete ? "main complete" : "main"}>
         <style type="text/css">{styleString}</style>
         <div class={sheet.classes.Header}>
-          {showComplete && (
-            <span class="icon">
-              {checkmark_circle}
-              {/* <sl-icon name="check-circle"></sl-icon> */}
-            </span>
-          )}
+          {showComplete && <span class="icon">{checkmark_circle}</span>}
           <span class="value">{points}</span>
           <span class="text">{"saasquatch points"}</span>
         </div>
         <div class={sheet.classes.Title}>{cardTitle}</div>
-        {showProgressBar && <ProgressBar {...props} />}
+        {progressBar && <ProgressBarView {...props} />}
         <Details description={description} />
         <div class={sheet.classes.Footer}>
           <span class="text">
             {repeatable && (
               <div>
-                <span class="icon">
-                  {arrow_left_right}
-                  {/* <sl-icon name="arrow-left-right"></sl-icon> */}
-                </span>
+                <span class="icon">{arrow_left_right}</span>
                 <span>
                   {"Completed "}
                   {repetitions}
                   {" times"}
                 </span>
-                <br />
+                {/* <br />
                 <span>
                   {"Earned "}
                   {points * repetitions}
                   {" SaaSquatch Points"}
-                </span>
+                </span> 
+                <br />*/}
               </div>
             )}
             {expire && (
               <span>
-                <br />
                 {"Ends "} {dateExpire}
               </span>
             )}
@@ -178,13 +172,8 @@ export function TaskCardView(props: TaskCardViewProps, children: VNode): VNode {
   );
 }
 
-export type DetailsProps = {
-  description: string;
-};
-
-function Details(props: DetailsProps): VNode {
+function Details(props: { description: string }): VNode {
   const style = {
-    HostBlock: HostBlock,
     Description: {
       "& input[type=checkbox]": {
         display: "none",
@@ -218,11 +207,13 @@ function Details(props: DetailsProps): VNode {
       },
     },
   };
+
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
   const rid = Math.random().toString(36).slice(2);
+
   return (
     <div>
       <style type="text/css">{styleString}</style>
@@ -235,364 +226,4 @@ function Details(props: DetailsProps): VNode {
       </span>
     </div>
   );
-}
-
-export type ProgressBarProps = {
-  showProgressBar?: boolean;
-  goal?: number;
-  progress?: number;
-  steps?: boolean;
-  unit?: string;
-  repeatable?: boolean;
-};
-
-export function ProgressBar(props: ProgressBarProps): VNode {
-  const { goal, progress, steps, unit = "", repeatable } = props;
-
-  const gift1 = SVGs.gift();
-  const gift2 = SVGs.gift();
-  const gift3 = SVGs.gift();
-
-  // if progress and goal are not provided, there cannot be a progress bar
-  // if (!showProgressBar) return;
-
-  const items = [];
-  var columns = "";
-  var repetitions = Math.floor(progress / goal);
-
-  if (repeatable) {
-    if (steps) {
-      addStepsRepeatable();
-    } else {
-      addLinearRepeatable();
-    }
-  }
-  // non repetable
-  else {
-    if (steps) {
-      addSteps();
-    } else {
-      addLinear();
-    }
-  }
-
-  const style = {
-    HostBlock: HostBlock,
-    ProgressBar: {
-      "& .progress-bar": {
-        height: "15px",
-        marginTop: "var(--sl-spacing-xx-large)",
-        marginBottom: "var(--sl-spacing-xx-large)",
-        marginRight: "var(--sl-spacing-x-small)",
-        fontSize: "var(--sl-font-size-x-small)",
-        display: "grid",
-        gridTemplateColumns: columns,
-        lineHeight: "45px",
-        userSelect: "none",
-      },
-      "& .progress-bar.repeatable-steps": {
-        marginLeft: "var(--sl-spacing-x-small)",
-      },
-      "& .filled:after": {
-        content: '""',
-        display: "flex",
-        width: "100%",
-        height: "4px",
-        borderRadius: "4px",
-        backgroundColor: "var(--sl-color-primary-500)",
-      },
-      "& .progress": {
-        display: "block",
-        textAlign: "center",
-        marginLeft: "-100px",
-        marginRight: "-100px",
-      },
-      "& .progress::after": {
-        content: '""',
-        width: "12px",
-        height: "12px",
-        display: "flex",
-        backgroundColor: "var(--sl-color-primary-500)",
-        borderRadius: "50%",
-        position: "relative",
-        left: "47%",
-        top: "-85%",
-      },
-      "& .progress.bg:after": {
-        width: "0",
-        height: "0",
-        border: "none",
-      },
-      "& .progress.top": {
-        position: "relative",
-        top: "-40px",
-      },
-      "& .progress.top:after": {
-        top: "-16%",
-      },
-      "& .empty": {
-        display: "block",
-        textAlign: "center",
-        marginLeft: "-100px",
-        marginRight: "-100px",
-      },
-      "& .empty::after": {
-        content: '""',
-        width: "12px",
-        height: "12px",
-        border: "2px solid #E0E0E0",
-        margin: "-2px",
-        display: "flex",
-        backgroundColor: "white",
-        borderRadius: "50%",
-        position: "relative",
-        left: "47%",
-        top: "-85%",
-      },
-      "& .empty.bg:after": {
-        width: "0",
-        height: "0",
-        border: "none",
-      },
-      "& .remain:after": {
-        content: '""',
-        display: "flex",
-        width: "100%",
-        height: "4px",
-        borderRadius: "4px",
-        backgroundColor: "#E0E0E0",
-      },
-      "& .gift.bw": {
-        filter: "grayscale(100%)",
-      },
-      "& .gift.start": {
-        transform: "scale(80%)",
-        top: "-20px",
-      },
-      "& .gift": {
-        textAlign: "center",
-        marginLeft: "-100px",
-        marginRight: "-100px",
-        position: "relative",
-        display: "list-item",
-        listStyleType: "none",
-        top: "-18px",
-        filter: goal <= progress ? "" : "grayscale(100%)",
-        zIndex: "1",
-      },
-    },
-  };
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
-  const styleString = sheet.toString();
-
-  return (
-    <div class={sheet.classes.ProgressBar}>
-      <style type="text/css">{styleString}</style>
-      <div
-        class={
-          repetitions > 1 ? "progress-bar repeatable-steps" : "progress-bar"
-        }
-      >
-        {items}
-      </div>
-    </div>
-  );
-
-  function clamp(x, min, max) {
-    return Math.min(Math.max(x, min), max);
-  }
-
-  function addLinear() {
-    const ratio = progress / goal;
-    columns =
-      clamp(ratio, 0, 1) + "fr 0fr " + clamp(1 - ratio, 0, 1) + "fr 0fr 0fr";
-    items.push(<div class={"filled"}></div>);
-    items.push(
-      <div
-        class={
-          clamp(progress, 0, goal) == goal ? "progress top bg" : "progress top"
-        }
-      >
-        {clamp(progress, 0, goal) == goal
-          ? ""
-          : unit + clamp(progress, 0, goal)}
-      </div>
-    );
-    items.push(<div class={"remain"}></div>);
-    items.push(<div class={"progress bg"}>{goal}</div>);
-    items.push(<div class={"gift"}>{gift1}</div>);
-  }
-
-  function addSteps() {
-    let ratio = 1 / goal;
-    for (let i = 1; i < goal; i ++) {
-      columns += ratio + "fr 0fr ";
-      if (i > progress) {
-        items.push(<div class={"remain"}></div>);
-        items.push(<div class={"empty"}>{i}</div>);
-      } else {
-        items.push(<div class={"filled"}></div>);
-        items.push(<div class={"progress"}>{i}</div>);
-      }
-    }
-    columns += ratio + "fr 0fr ";
-    // reward success
-    if (goal <= progress) {
-      columns += "0fr ";
-      items.push(<div class={"filled"}></div>);
-      items.push(<div class={"progress bg"}>{goal}</div>);
-      items.push(<div class="gift">{gift1}</div>);
-    }
-
-    // reward fail
-    else {
-      columns += "0fr ";
-      items.push(<div class={"remain"}></div>);
-      items.push(<div class={"empty bg"}>{goal}</div>);
-      items.push(<div class="gift">{gift1}</div>);
-    }
-  }
-
-  function addLinearRepeatable() {
-    let repetitions = Math.floor(progress / goal);
-    let ratio = ((progress % goal) / goal) * 0.5;
-    // 0 repetition
-    if (repetitions == 0) {
-      columns = ratio + "fr 0fr " + (0.5 - ratio) + "fr 0fr 0.5fr 0fr";
-      items.push(<div class={"filled"}></div>);
-      items.push(
-        <div class={progress == goal ? "progress bg" : "progress"}>
-          {unit + progress}
-        </div>
-      );
-      items.push(<div class={"remain"}></div>);
-      items.push(<div class="gift">{gift1}</div>);
-      items.push(<div class={"remain"}></div>);
-      items.push(<div class="gift bw">{gift2}</div>);
-    }
-
-    // single repetition
-    else if (repetitions == 1) {
-      columns = "0.5fr 0fr " + ratio + "fr 0fr " + (0.5 - ratio) + "fr 0fr";
-      items.push(<div class={"filled"}></div>);
-      items.push(<div class="gift">{gift1}</div>);
-      items.push(<div class={"filled"}></div>);
-      items.push(
-        <div class={progress == goal ? "progress bg" : "progress"}>
-          {unit + progress}
-        </div>
-      );
-      items.push(<div class={"remain"}></div>);
-      items.push(<div class="gift bw">{gift2}</div>);
-    }
-
-    // multiple repetitions
-    else {
-      columns = "0fr 0.5fr 0fr " + ratio + "fr 0fr " + (0.5 - ratio) + "fr 0fr";
-      items.push(<div class="gift start">{gift1}</div>);
-      items.push(<div class={"filled"}></div>);
-      items.push(<div class="gift">{gift2}</div>);
-      items.push(<div class={"filled"}></div>);
-      items.push(
-        <div
-          class={progress == goal * repetitions ? "progress bg" : "progress"}
-        >
-          {unit + progress}
-        </div>
-      );
-      items.push(<div class={"remain"}></div>);
-      items.push(<div class="gift bw">{gift3}</div>);
-    }
-  }
-
-  function addStepsRepeatable() {
-    let repetitions = Math.floor(progress / goal);
-    // no or single repetition
-    if (repetitions < 2) {
-      let ratio = 1 / goal;
-      for (let i = 1; i < goal * 2 + 1; i ++) {
-        columns += ratio + "fr 0fr ";
-        if (i > progress) {
-          if (i == goal) {
-            columns += "0fr ";
-            items.push(<div class={"remain"}></div>);
-            items.push(<div class={"empty bg"}>{goal}</div>);
-            items.push(<div class="gift bw">{gift1}</div>);
-          } else if (i == goal * 2) {
-            columns += "0fr 0fr";
-            items.push(<div class={"remain"}></div>);
-            items.push(<div class={"empty bg"}>{goal * 2}</div>);
-            items.push(<div class={"gift bw"}>{gift2}</div>);
-          } else {
-            items.push(<div class={"remain"}></div>);
-            items.push(<div class={"empty"}>{unit + i}</div>);
-          }
-        } else if (i == goal) {
-          columns += "0fr ";
-          items.push(<div class={"filled"}></div>);
-          items.push(<div class={"progress bg"}>{i}</div>);
-          items.push(<div class="gift">{gift3}</div>);
-        } else {
-          items.push(<div class={"filled"}></div>);
-          items.push(<div class={"progress"}>{i}</div>);
-        }
-      }
-    }
-    // case repetition many
-    else {
-      let position = (progress % goal) + goal;
-      let ratio = 1 / goal;
-      columns += "0fr 0fr ";
-      items.push(
-        <div class={"progress bg"}>{goal * (repetitions - 1)}</div>
-      );
-      items.push(<div class={"gift start"}>{gift1}</div>);
-      for (let i = 1; i < goal * 2 + 1; i ++) {
-        columns += ratio + "fr 0fr ";
-        if (i <= goal) {
-          if (i == goal) {
-            columns += "0fr ";
-            items.push(<div class={"filled"}></div>);
-            items.push(
-              <div class={"progress bg"}>
-                {(i + goal * (repetitions - 1))}
-              </div>
-            );
-            items.push(<div class={"gift"}>{gift2}</div>);
-          } else {
-            items.push(<div class={"filled"}></div>);
-            items.push(
-              <div class={"progress"}>
-                {(i + goal * (repetitions - 1))}
-              </div>
-            );
-          }
-        } else if (i > position) {
-          if (i == goal * 2) {
-            columns += "0fr 0fr";
-            items.push(<div class={"remain"}></div>);
-            items.push(
-              <div class={"empty bg"}>
-                {(i + goal * (repetitions - 1))}
-              </div>
-            );
-            items.push(<div class={"gift bw"}>{gift3}</div>);
-          } else {
-            items.push(<div class={"remain"}></div>);
-            items.push(
-              <div class={"empty"}>{(i + goal * (repetitions - 1))}</div>
-            );
-          }
-        } else {
-          items.push(<div class={"filled"}></div>);
-          items.push(
-            <div class={"progress"}>
-              {(i + goal * (repetitions - 1))}
-            </div>
-          );
-        }
-      }
-    }
-  }
 }

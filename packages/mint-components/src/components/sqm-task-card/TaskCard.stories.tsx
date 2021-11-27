@@ -1,12 +1,10 @@
 import { FunctionalComponent, h } from "@stencil/core";
 import { MatrixStory } from "./Matrix";
-import {
-  ProgressBar as ProgressBarView,
-  TaskCardView,
-} from "./sqm-task-card-view";
+import { TaskCardView } from "./sqm-task-card-view";
+import { ProgressBarView } from "./progress-bar/progress-bar-view";
 
 export default {
-  title: "Components/Task Card",
+  title: "Components/Task Card/",
 };
 
 const resizable = {
@@ -40,17 +38,16 @@ export const StorySpecs = () => {
 Scenario Outline: Progress Bar Linear
 
   Given <progress> and <goal>
-  And showProgressBar is true
   Then I have <progressBar>
-  And the gift icon is <grayscale>
+  And the gift icon has <color>
 
   Examples:
-    | progress | goal | progressBar | grayscale |
-    |     -100 |  500 | ●――――――――🎁 | yes       |
-    |        0 |  500 | ●――――――――🎁 | yes       |
-    |      250 |  500 | ――――●――――🎁 | yes       |
-    |      500 |  500 | ―――――――――🎁 | no        |
-    |     1000 |  500 | ―――――――――🎁 | no        |
+    | progress | goal | progressBar | color |
+    |     -100 |  500 | ●――――――――🎁 | no    |
+    |        0 |  500 | ●――――――――🎁 | no    |
+    |      250 |  500 | ――――●――――🎁 | no    |
+    |      500 |  500 | ―――――――――🎁 | yes   |
+    |     1000 |  500   | ―――――――――🎁 | yes   |
 
 `}
       </div>
@@ -60,7 +57,6 @@ Scenario Outline: Progress Bar Linear
         Component={ProgressBarView}
       />
     </div>
-    
   );
 };
 
@@ -76,7 +72,7 @@ export const NotRepeatable = () => {
   const coupleActions = {
     points: 40,
     cardTitle: "Comment on 5 articles",
-    showProgressBar: true,
+    progressBar: true,
     goal: 5,
     steps: true,
     description:
@@ -86,7 +82,7 @@ export const NotRepeatable = () => {
   const manyActions = {
     points: 150,
     cardTitle: "Spend $500 at our Store",
-    showProgressBar: true,
+    progressBar: true,
     goal: 500,
     unit: "$",
     description:
@@ -134,7 +130,7 @@ export const NotRepeatableWithExpiry = () => {
   const coupleActions = {
     points: 40,
     cardTitle: "Comment on 5 articles",
-    showProgressBar: true,
+    progressBar: true,
     goal: 5,
     steps: true,
     description:
@@ -146,7 +142,7 @@ export const NotRepeatableWithExpiry = () => {
   const manyActions = {
     points: 150,
     cardTitle: "Spend $500 at our Store",
-    showProgressBar: true,
+    progressBar: true,
     goal: 500,
     unit: "$",
     description:
@@ -195,7 +191,7 @@ export const Repeatable = () => {
   const coupleActions = {
     points: 40,
     cardTitle: "Comment on 5 articles",
-    showProgressBar: true,
+    progressBar: true,
     repeatable: true,
     goal: 5,
     steps: true,
@@ -206,7 +202,7 @@ export const Repeatable = () => {
   const manyActions = {
     points: 150,
     cardTitle: "Spend $500 at our Store",
-    showProgressBar: true,
+    progressBar: true,
     repeatable: true,
     goal: 500,
     unit: "$",
@@ -262,7 +258,7 @@ export const RepeatableWithExpiry = () => {
   const coupleActions = {
     points: 40,
     cardTitle: "Comment on 5 articles",
-    showProgressBar: true,
+    progressBar: true,
     repeatable: true,
     goal: 5,
     steps: true,
@@ -275,7 +271,7 @@ export const RepeatableWithExpiry = () => {
   const manyActions = {
     points: 150,
     cardTitle: "Spend $500 at our Store",
-    showProgressBar: true,
+    progressBar: true,
     repeatable: true,
     goal: 500,
     unit: "$",

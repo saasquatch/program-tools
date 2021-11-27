@@ -36,6 +36,7 @@ import * as ReferralTableRewardsCell from "../sqm-referral-table/ReferralTableRe
 import * as UserName from "../sqm-user-name/UserName.stories";
 import * as PasswordField from "../sqm-password-field/PasswordField.stories";
 import * as TaskCard from "../sqm-task-card/TaskCard.stories";
+import * as TaskCardProgressBar from "../sqm-task-card/progress-bar/progress-bar.stories";
 import * as PortalTemplates from "../../stories/PortalTemplates.stories";
 import * as ProgramMenu from "../sqm-program-menu/ProgramMenu.stories";
 import * as PoweredByImg from "../../stories/PoweredByImg.stories";
@@ -82,6 +83,7 @@ const stories = [
   UserName,
   PasswordField,
   TaskCard,
+  TaskCardProgressBar,
   PortalTemplates,
   ProgramMenu,
   PoweredByImg,
