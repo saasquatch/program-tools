@@ -1,4 +1,4 @@
-import { h, Host, VNode } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { HostBlock } from "../../global/mixins";
@@ -12,7 +12,7 @@ export type TaskCardViewProps = {
   points?: number;
   cardTitle?: string;
   description?: string;
-  progressBar?: boolean;
+  showProgressBar?: boolean;
   repeatable?: boolean;
   expire?: boolean;
   dateExpire?: string;
@@ -25,7 +25,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     points = 0,
     cardTitle = "Title Text",
     description = "Description Text",
-    progressBar = false,
+    showProgressBar = false,
     progress = 0,
     goal = 1,
     repeatable = false,
@@ -34,6 +34,8 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     buttonText = "Button Text",
     buttonLink = "www.example.com",
   } = props;
+
+  console.log({ props });
 
   const checkmark_circle = SVGs.checkmark_circle();
   const arrow_left_right = SVGs.arrow_left_right();
@@ -118,8 +120,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const styleString = sheet.toString();
 
   const showComplete = progress >= goal;
-  const repetitions = progressBar ? Math.floor(progress / goal) : progress;
+  const repetitions = showProgressBar ? Math.floor(progress / goal) : progress;
 
+  console.log({ showProgressBar });
   return (
     <div class={sheet.classes.TaskCard}>
       <div class={showComplete ? "main complete" : "main"}>
@@ -130,7 +133,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           <span class="text">{"saasquatch points"}</span>
         </div>
         <div class={sheet.classes.Title}>{cardTitle}</div>
-        {progressBar && <ProgressBarView {...props} />}
+        {showProgressBar && <ProgressBarView {...props} />}
         <Details description={description} />
         <div class={sheet.classes.Footer}>
           <span class="text">
