@@ -101,7 +101,11 @@ export class TaskCard {
   buttonLink: string;
 
   /**
-   * @undocumented
+   * Select what type of stat to display for the goal. Manual paths are also supported.
+   *
+   * @uiWidget StatTypeSelectWidget
+   * @uiName Stat Type
+   * @uiOptions {"version": 1.1}
    */
   @Prop()
   statType: string = "/programGoals/count/Referral-Started%2Freferrals";
@@ -113,9 +117,15 @@ export class TaskCard {
 
   render() {
     const { props } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
-    const { value } = props;
+    const { value, statvalue } = props;
     console.log(props, isDemo());
 
-    return <TaskCardView {...getProps(this)} progress={value}></TaskCardView>;
+    return (
+      <TaskCardView
+        {...getProps(this)}
+        progress={value}
+        loading={value === undefined}
+      ></TaskCardView>
+    );
   }
 }

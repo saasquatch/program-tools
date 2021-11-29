@@ -1059,7 +1059,10 @@ export namespace Components {
          */
         "showProgressBar": boolean;
         /**
-          * @undocumented
+          * Select what type of stat to display for the goal. Manual paths are also supported.
+          * @uiWidget StatTypeSelectWidget
+          * @uiName Stat Type
+          * @uiOptions {"version": 1.1}
          */
         "statType": string;
         /**
@@ -2541,7 +2544,10 @@ declare namespace LocalJSX {
          */
         "showProgressBar"?: boolean;
         /**
-          * @undocumented
+          * Select what type of stat to display for the goal. Manual paths are also supported.
+          * @uiWidget StatTypeSelectWidget
+          * @uiName Stat Type
+          * @uiOptions {"version": 1.1}
          */
         "statType"?: string;
         /**
