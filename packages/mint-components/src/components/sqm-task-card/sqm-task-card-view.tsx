@@ -162,9 +162,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             class="action"
             size="small"
             onClick={() => alert(buttonLink)}
-            disabled={showComplete}
+            disabled={showComplete && repeatable == false}
           >
-            {showComplete ? "Task completed" : buttonText}
+            {showComplete && repeatable == false ? "Task completed" : buttonText}
           </sl-button>
         </div>
       </div>
