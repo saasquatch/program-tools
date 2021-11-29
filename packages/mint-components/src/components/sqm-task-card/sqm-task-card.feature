@@ -4,7 +4,7 @@ Feature: Task Card
 
 	Scenario Outline: Task Card View
 
-		Given <points>, <title>, <description>, <buttonText> <buttonLink>,
+		Given <points>, <title>, <description>,  <progress>, <goal>, <buttonText>, <buttonLink>,
 		Then <points> is shown on the top left corner of the header area
 		And <title> is shown in the body area left aligned and in bold text
 		And <buttonText> is shown on the bottom right corner of the footer area
@@ -12,12 +12,22 @@ Feature: Task Card
 		Then <description> becomes visible
 
 		Examples:
-			| progress | goal | progressBar           | unit | color |
-			| -100     | 500  | ●――――――――――――――――――🎁 | $    | no    |
-			| 0        | 500  | ●――――――――――――――――――🎁 | $    | no    |
-			| 250      | 500  | ―――――――――●―――――――――🎁 | $    | no    |
-			| 500      | 500  | ―――――――――――――――――――🎁 | $    | yes   |
-			| 1000     | 500  | ―――――――――――――――――――🎁 | $    | yes   |
+			| points | title             | description           | progress | goal | buttonText  | buttonLink      |
+			| 20     | Complete a survey | Description of action | 0        | 1    | Take Survey | www.example.com |
+
+	Scenario Outline: Task Card Single Action
+
+		Given <points>, <title>, <description>,  <progress>, <goal>, <buttonText>, <buttonLink>,
+		Then <points> is shown on the top left corner of the header area
+		And <title> is shown in the body area left aligned and in bold text
+		And <buttonText> is shown on the bottom right corner of the footer area
+		When the user clicks on details icon
+		Then <description> becomes visible
+
+		Examples:
+			| points | title             | description           | progress | goal | buttonText  | buttonLink      |
+			| 20     | Complete a survey | Description of action | 0        | 1    | Take Survey | www.example.com |
+
 
 	Scenario Outline: Single Action
 
@@ -28,14 +38,6 @@ Feature: Task Card
 		And <buttonText> is shown on the bottom right corner of the footer area
 		When the user clicks on details icon
 		Then <description> becomes visible
-
-		Examples:
-			| progress | goal | progressBar           | unit | color |
-			| -100     | 500  | ●――――――――――――――――――🎁 | $    | no    |
-			| 0        | 500  | ●――――――――――――――――――🎁 | $    | no    |
-			| 250      | 500  | ―――――――――●―――――――――🎁 | $    | no    |
-			| 500      | 500  | ―――――――――――――――――――🎁 | $    | yes   |
-			| 1000     | 500  | ―――――――――――――――――――🎁 | $    | yes   |
 
 
 	Scenario Outline: Single Action Repeatable

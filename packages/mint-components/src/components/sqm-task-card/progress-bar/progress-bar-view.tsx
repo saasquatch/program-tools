@@ -227,49 +227,57 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
     let ratio = ((progress % goal) / goal) * 0.5;
     // 0 repetition
     if (repetitions == 0) {
-      columns = ratio + "fr 0fr " + (0.5 - ratio) + "fr 0fr 0.5fr 0fr";
+      columns = ratio + "fr 0fr " + (0.5 - ratio) + "fr 0fr 0fr 0.5fr 0fr 0fr";
       items.push(<div class={"filled"}></div>);
       items.push(
-        <div class={progress == goal ? "progress bg" : "progress"}>
+        <div class={progress == goal ? "progress top bg" : "progress top"}>
           {unit + progress}
         </div>
       );
       items.push(<div class={"remain"}></div>);
+      items.push(<div class={"progress bg"}>{unit + goal}</div>);
       items.push(<div class="gift">{gift1}</div>);
       items.push(<div class={"remain"}></div>);
+      items.push(<div class={"progress bg"}>{unit + goal * 2}</div>);
       items.push(<div class="gift bw">{gift2}</div>);
     }
 
     // single repetition
     else if (repetitions == 1) {
-      columns = "0.5fr 0fr " + ratio + "fr 0fr " + (0.5 - ratio) + "fr 0fr";
+      columns =
+        "0.5fr 0fr 0fr " + ratio + "fr 0fr " + (0.5 - ratio) + "fr 0fr 0fr";
       items.push(<div class={"filled"}></div>);
+      items.push(<div class={"progress bg"}>{unit + goal}</div>);
       items.push(<div class="gift">{gift1}</div>);
       items.push(<div class={"filled"}></div>);
       items.push(
-        <div class={progress == goal ? "progress bg" : "progress"}>
-          {unit + progress}
+        <div class={progress == goal ? "progress top bg" : "progress top"}>
+          {progress == goal ? "" : unit + progress}
         </div>
       );
       items.push(<div class={"remain"}></div>);
+      items.push(<div class={"progress bg"}>{unit + goal * 2}</div>);
       items.push(<div class="gift bw">{gift2}</div>);
     }
 
     // multiple repetitions
     else {
-      columns = "0fr 0.5fr 0fr " + ratio + "fr 0fr " + (0.5 - ratio) + "fr 0fr";
+      columns = "0fr 0fr 0.5fr 0fr 0fr " + ratio + "fr 0fr " + (0.5 - ratio) + "fr 0fr 0fr";
+      items.push(<div class={"progress bg"}>{unit + goal * ( repetitions - 1) }</div>);
       items.push(<div class="gift start">{gift1}</div>);
       items.push(<div class={"filled"}></div>);
+      items.push(<div class={"progress bg"}>{unit + goal * repetitions}</div>);
       items.push(<div class="gift">{gift2}</div>);
       items.push(<div class={"filled"}></div>);
       items.push(
         <div
-          class={progress == goal * repetitions ? "progress bg" : "progress"}
+          class={progress == goal * repetitions ? "progress top bg" : "progress top"}
         >
-          {unit + progress}
+          {progress == goal * repetitions ? "" : unit + progress}
         </div>
       );
       items.push(<div class={"remain"}></div>);
+      items.push(<div class={"progress bg"}>{unit + goal * ( repetitions + 1)}</div>);
       items.push(<div class="gift bw">{gift3}</div>);
     }
   }
