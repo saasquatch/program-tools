@@ -18,7 +18,7 @@ export const ProgressBar = () => {
   const props = {
     progress: 0,
     goal: 500,
-    unit: "$",
+    progressBarUnit: "$",
   };
   return (
     <div>
@@ -36,7 +36,7 @@ export const ProgressBarSteps = () => {
     progress: 0,
     steps: true,
     goal: 5,
-    unit: "$",
+    progressBarUnit: "$",
   };
   return (
     <div>
@@ -53,7 +53,7 @@ export const ProgressBarRepeatable = () => {
   const props = {
     progress: 0,
     goal: 500,
-    unit: "$",
+    progressBarUnit: "$",
     repeatable: true,
   };
   return (
@@ -72,7 +72,7 @@ export const ProgressBarStepsRepeatable = () => {
     progress: 0,
     steps: true,
     goal: 5,
-    unit: "$",
+    progressBarUnit: "$",
     repeatable: true,
   };
   return (

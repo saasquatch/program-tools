@@ -24,7 +24,7 @@ export class TaskCard {
   points: number = 0;
 
   /**
-   * @uiName Reward Amount
+   * @uiName Reward Unit
    */
   @Prop()
   rewardUnit: string = "Point";
@@ -71,10 +71,10 @@ export class TaskCard {
   steps: boolean = false;
 
   /**
-   * @uiName Reward Unit
+   * @uiName Progress Bar Unit
    */
   @Prop()
-  unit?: string;
+  progressBarUnit?: string;
 
   /**
    * @uiName Show Goal Expiry
@@ -92,13 +92,13 @@ export class TaskCard {
    * @uiName CTA Button Text
    */
   @Prop()
-  buttonText: string;
+  buttonText: string = "Example";
 
   /**
    * @uiName CTA Button Link
    */
   @Prop()
-  buttonLink: string;
+  buttonLink: string = "https://example.com/";
 
   /**
    * @undocumented
