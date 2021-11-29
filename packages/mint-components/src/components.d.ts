@@ -1039,10 +1039,6 @@ export namespace Components {
          */
         "goal": number;
         /**
-          * @uiName Reward Amount
-         */
-        "points": number;
-        /**
           * @uiName Progress Bar Unit
          */
         "progressBarUnit"?: string;
@@ -1051,13 +1047,17 @@ export namespace Components {
          */
         "repeatable": boolean;
         /**
+          * @uiName Reward Amount
+         */
+        "rewardAmount": number;
+        /**
           * @uiName Reward Unit
          */
         "rewardUnit": string;
         /**
           * @uiName Show Goal Expiry
          */
-        "showExpire": boolean;
+        "showExpiry": boolean;
         /**
           * @uiName Show Progress Bar
          */
@@ -2524,10 +2524,6 @@ declare namespace LocalJSX {
          */
         "goal"?: number;
         /**
-          * @uiName Reward Amount
-         */
-        "points"?: number;
-        /**
           * @uiName Progress Bar Unit
          */
         "progressBarUnit"?: string;
@@ -2536,13 +2532,17 @@ declare namespace LocalJSX {
          */
         "repeatable"?: boolean;
         /**
+          * @uiName Reward Amount
+         */
+        "rewardAmount"?: number;
+        /**
           * @uiName Reward Unit
          */
         "rewardUnit"?: string;
         /**
           * @uiName Show Goal Expiry
          */
-        "showExpire"?: boolean;
+        "showExpiry"?: boolean;
         /**
           * @uiName Show Progress Bar
          */

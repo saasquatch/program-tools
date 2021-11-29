@@ -9,12 +9,12 @@ import {
 } from "./progress-bar/progress-bar-view";
 
 export type TaskCardViewProps = {
-  points: number;
+  rewardAmount: number;
   cardTitle: string;
   description: string;
   showProgressBar: boolean;
   repeatable: boolean;
-  showExpire: boolean;
+  showExpiry: boolean;
   dateExpires?: string;
   rewardUnit: string;
   buttonText: string;
@@ -24,7 +24,7 @@ export type TaskCardViewProps = {
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
   const {
-    points,
+    rewardAmount,
     cardTitle,
     description,
     showProgressBar,
@@ -32,7 +32,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     goal,
     rewardUnit,
     repeatable,
-    showExpire,
+    showExpiry,
     dateExpires,
     buttonText,
     buttonLink,
@@ -133,7 +133,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         <style type="text/css">{styleString}</style>
         <div class={sheet.classes.Header}>
           {showComplete && <span class="icon">{checkmark_circle}</span>}
-          <span class="value">{points}</span>
+          <span class="value">{rewardAmount}</span>
           <span class="text">{rewardUnit}</span>
         </div>
         <div class={sheet.classes.Title}>{cardTitle}</div>
@@ -153,16 +153,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                   {repetitions}
                   {" times"}
                 </span>
-                {/* <br />
-                <span>
-                  {"Earned "}
-                  {points * repetitions}
-                  {" SaaSquatch Points"}
-                </span> 
-                <br />*/}
               </div>
             )}
-            {showExpire && (
+            {showExpiry && (
               <span>
                 {"Ends "} {dateExpires}
               </span>
