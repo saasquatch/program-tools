@@ -92,7 +92,7 @@ export class TaskCard {
    * @uiName CTA Button Text
    */
   @Prop()
-  buttonText: string = "Example";
+  buttonText: string = "Complete Action";
 
   /**
    * @uiName CTA Button Link
