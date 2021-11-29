@@ -1,4 +1,4 @@
-import { h, Host, VNode } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import * as SVGs from "./SVGs";
@@ -37,7 +37,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
       addLinearRepeatable();
     }
   }
-  // non repetable
+  // non repeatable
   else {
     if (steps) {
       addSteps();

@@ -30,6 +30,7 @@ export const NotRepeatable = () => {
     goal: 1,
     buttonLink: "https://example.com/",
     showProgressBar: false,
+    loading:false,
   };
   const coupleActions = {
     rewardAmount: 40,
@@ -44,6 +45,7 @@ export const NotRepeatable = () => {
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Start reading",
     buttonLink: "https://example.com/",
+    loading:false,
   };
   const manyActions = {
     rewardAmount: 150,
@@ -58,6 +60,7 @@ export const NotRepeatable = () => {
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Visit our Store",
     buttonLink: "https://example.com/",
+    loading:false,
   };
 
   return (
@@ -97,6 +100,7 @@ export const NotRepeatableWithExpiry = () => {
     dateExpires: "Nov 1, 2021",
     buttonLink: "https://example.com/",
     showProgressBar: false,
+    loading:false,
   };
   const coupleActions = {
     rewardAmount: 40,
@@ -112,6 +116,7 @@ export const NotRepeatableWithExpiry = () => {
     repeatable: false,
     dateExpires: "Nov 1, 2021",
     buttonLink: "https://example.com/",
+    loading:false,
   };
   const manyActions = {
     rewardAmount: 150,
@@ -127,6 +132,7 @@ export const NotRepeatableWithExpiry = () => {
     showExpiry: true,
     dateExpires: "Nov 1, 2021",
     buttonLink: "https://example.com/",
+    loading:false,
   };
   return (
     <div style={{ display: "inline-flex", gap: "32px" }}>
@@ -164,6 +170,7 @@ export const Repeatable = () => {
     repeatable: true,
     buttonLink: "https://example.com/",
     showProgressBar: false,
+    loading:false,
   };
   const coupleActions = {
     rewardAmount: 40,
@@ -178,6 +185,7 @@ export const Repeatable = () => {
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Start reading",
     buttonLink: "https://example.com/",
+    loading:false,
   };
   const manyActions = {
     rewardAmount: 150,
@@ -192,6 +200,7 @@ export const Repeatable = () => {
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Visit our Store",
     buttonLink: "https://example.com/",
+    loading:false,
   };
   return (
     <div style={{ display: "inline-flex", gap: "32px" }}>
@@ -232,6 +241,7 @@ export const RepeatableWithExpiry = () => {
     dateExpires: "Nov 1, 2021",
     buttonLink: "https://example.com/",
     showProgressBar: false,
+    loading:false,
   };
   const coupleActions = {
     rewardAmount: 40,
@@ -247,6 +257,7 @@ export const RepeatableWithExpiry = () => {
     showExpiry: true,
     dateExpires: "Nov 1, 2021",
     buttonLink: "https://example.com/",
+    loading:false,
   };
   const manyActions = {
     rewardAmount: 150,
@@ -262,6 +273,7 @@ export const RepeatableWithExpiry = () => {
     showExpiry: true,
     dateExpires: "Nov 1, 2021",
     buttonLink: "https://example.com/",
+    loading:false,
   };
   return (
     <div style={{ display: "inline-flex", gap: "32px" }}>

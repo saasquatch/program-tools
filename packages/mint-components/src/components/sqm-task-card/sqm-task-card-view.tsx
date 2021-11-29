@@ -19,6 +19,7 @@ export type TaskCardViewProps = {
   rewardUnit: string;
   buttonText: string;
   buttonLink: string;
+  loading: boolean;
 } & ProgressBarProps;
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
@@ -35,6 +36,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     dateExpires,
     buttonText,
     buttonLink,
+    loading,
   } = props;
 
   console.log({ props });
@@ -124,7 +126,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const showComplete = progress >= goal;
   const repetitions = showProgressBar ? Math.floor(progress / goal) : progress;
 
-  console.log({ showProgressBar });
+  console.log({ showProgressBar, loading });
   return (
     <div class={sheet.classes.TaskCard}>
       <div class={showComplete ? "main complete" : "main"}>
@@ -135,7 +137,11 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           <span class="text">{rewardUnit}</span>
         </div>
         <div class={sheet.classes.Title}>{cardTitle}</div>
-        {showProgressBar && <ProgressBarView {...props} />}
+        {showProgressBar && loading ? (
+          <sl-skeleton style={{ width: "98%", margin: "0 auto" }} />
+        ) : (
+          showProgressBar && <ProgressBarView {...props} />
+        )}
         <Details description={description} />
         <div class={sheet.classes.Footer}>
           <span class="text">
