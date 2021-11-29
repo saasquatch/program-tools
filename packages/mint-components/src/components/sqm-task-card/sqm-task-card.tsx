@@ -57,17 +57,12 @@ export class TaskCard {
   goal: number = 1;
 
   /**
-   * @uiType boolean
-   * @uiName Progress Bar Type
-   * @uiEnum [true, false]
-   * @uiEnumNames ["steps", "linear"]
+   * @uiName Progress Bar with Steps?
    */
   @Prop()
-  steps: boolean;
+  steps: boolean = false;
 
   /**
-   * Currency Unit for Linear Progress Bar
-   *
    * @uiName Progress Bar Unit
    */
   @Prop()
@@ -80,7 +75,7 @@ export class TaskCard {
   expire: boolean = false;
 
   /**
-   * @uiName Expire Date
+   * @uiName New Expire Date
    */
   @Prop()
   dateExpire?: string;
@@ -112,7 +107,7 @@ export class TaskCard {
     const { props } = useBigStat(this);
     const { value } = props;
     console.log({ value });
-    //const progress = useTaskCard(); progress={progress}
-    return <TaskCardView {...getProps(this)}></TaskCardView>;
+
+    return <TaskCardView {...getProps(this)}></TaskCardView>; // progress={progress} progress needs to be set via hook
   }
 }

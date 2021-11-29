@@ -1027,7 +1027,7 @@ export namespace Components {
          */
         "cardTitle": string;
         /**
-          * @uiName Expire Date
+          * @uiName New Expire Date
          */
         "dateExpire"?: string;
         /**
@@ -1059,14 +1059,10 @@ export namespace Components {
          */
         "statType": string;
         /**
-          * @uiType boolean
-          * @uiName Progress Bar Type
-          * @uiEnum [true, false]
-          * @uiEnumNames ["steps", "linear"]
+          * @uiName Progress Bar with Steps?
          */
         "steps": boolean;
         /**
-          * Currency Unit for Linear Progress Bar
           * @uiName Progress Bar Unit
          */
         "unit"?: string;
@@ -2509,7 +2505,7 @@ declare namespace LocalJSX {
          */
         "cardTitle"?: string;
         /**
-          * @uiName Expire Date
+          * @uiName New Expire Date
          */
         "dateExpire"?: string;
         /**
@@ -2541,14 +2537,10 @@ declare namespace LocalJSX {
          */
         "statType"?: string;
         /**
-          * @uiType boolean
-          * @uiName Progress Bar Type
-          * @uiEnum [true, false]
-          * @uiEnumNames ["steps", "linear"]
+          * @uiName Progress Bar with Steps?
          */
         "steps"?: boolean;
         /**
-          * Currency Unit for Linear Progress Bar
           * @uiName Progress Bar Unit
          */
         "unit"?: string;
