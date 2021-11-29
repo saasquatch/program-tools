@@ -1,7 +1,9 @@
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import { getProps } from "../../utils/utils";
 import { useBigStat } from "../sqm-big-stat/useBigStat";
+import { useDemoBigStat } from "../sqm-big-stat/useDemoBigStat";
 import { TaskCardView } from "./sqm-task-card-view";
 
 /**
@@ -109,10 +111,10 @@ export class TaskCard {
   disconnectedCallback() {}
 
   render() {
-    const { props } = useBigStat(this);
+    const { props } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
     const { value } = props;
     console.log({ value });
-    //const progress = useTaskCard(); progress={progress}
-    return <TaskCardView {...getProps(this)}></TaskCardView>;
+
+    return <TaskCardView {...getProps(this)} progress={value}></TaskCardView>;
   }
 }
