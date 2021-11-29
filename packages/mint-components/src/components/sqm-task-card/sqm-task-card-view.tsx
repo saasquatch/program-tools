@@ -14,25 +14,27 @@ export type TaskCardViewProps = {
   description?: string;
   showProgressBar?: boolean;
   repeatable?: boolean;
-  expire?: boolean;
-  dateExpire?: string;
+  showExpire?: boolean;
+  dateExpires?: string;
+  rewardUnit: string;
   buttonText?: string;
   buttonLink?: string;
 } & ProgressBarProps;
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
   const {
-    points = 0,
-    cardTitle = "Title Text",
-    description = "Description Text",
-    showProgressBar = false,
+    points,
+    cardTitle,
+    description,
+    showProgressBar,
     progress = 0,
-    goal = 1,
-    repeatable = false,
-    expire = false,
-    dateExpire = "",
-    buttonText = "Button Text",
-    buttonLink = "www.example.com",
+    goal,
+    rewardUnit,
+    repeatable,
+    showExpire,
+    dateExpires,
+    buttonText,
+    buttonLink,
   } = props;
 
   console.log({ props });
@@ -130,7 +132,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         <div class={sheet.classes.Header}>
           {showComplete && <span class="icon">{checkmark_circle}</span>}
           <span class="value">{points}</span>
-          <span class="text">{"saasquatch points"}</span>
+          <span class="text">{rewardUnit}</span>
         </div>
         <div class={sheet.classes.Title}>{cardTitle}</div>
         {showProgressBar && <ProgressBarView {...props} />}
@@ -154,9 +156,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                 <br />*/}
               </div>
             )}
-            {expire && (
+            {showExpire && (
               <span>
-                {"Ends "} {dateExpire}
+                {"Ends "} {dateExpires}
               </span>
             )}
           </span>
@@ -167,7 +169,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             onClick={() => alert(buttonLink)}
             disabled={showComplete && repeatable == false}
           >
-            {showComplete && repeatable == false ? "Task completed" : buttonText}
+            {showComplete && repeatable == false
+              ? "Task completed"
+              : buttonText}
           </sl-button>
         </div>
       </div>

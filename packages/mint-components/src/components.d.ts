@@ -1015,11 +1015,11 @@ export namespace Components {
     }
     interface SqmTaskCard {
         /**
-          * @uiName Button Link
+          * @uiName CTA Button Link
          */
         "buttonLink": string;
         /**
-          * @uiName Button Text
+          * @uiName CTA Button Text
          */
         "buttonText": string;
         /**
@@ -1027,29 +1027,33 @@ export namespace Components {
          */
         "cardTitle": string;
         /**
-          * @uiName New Expire Date
+          * @uiName Date Goal Expires
          */
-        "dateExpire"?: string;
+        "dateExpires"?: string;
         /**
           * @uiName Description Text
          */
         "description": string;
         /**
-          * @uiName Show Expiry delete
-         */
-        "expire": boolean;
-        /**
-          * @uiName Progress Bar Goal
+          * @uiName Goal Completion Number
          */
         "goal": number;
         /**
-          * @uiName Reward Points
+          * @uiName Reward Amount
          */
         "points": number;
         /**
-          * @uiName Set Repeatable
+          * @uiName Goal Repeatable
          */
         "repeatable": boolean;
+        /**
+          * @uiName Reward Amount
+         */
+        "rewardUnit": string;
+        /**
+          * @uiName Show Goal Expiry
+         */
+        "showExpire": boolean;
         /**
           * @uiName Show Progress Bar
          */
@@ -1059,11 +1063,11 @@ export namespace Components {
          */
         "statType": string;
         /**
-          * @uiName Progress Bar with Steps?
+          * @uiName Progress Bar Steps
          */
         "steps": boolean;
         /**
-          * @uiName Progress Bar Unit
+          * @uiName Reward Unit
          */
         "unit"?: string;
     }
@@ -2493,11 +2497,11 @@ declare namespace LocalJSX {
     }
     interface SqmTaskCard {
         /**
-          * @uiName Button Link
+          * @uiName CTA Button Link
          */
         "buttonLink"?: string;
         /**
-          * @uiName Button Text
+          * @uiName CTA Button Text
          */
         "buttonText"?: string;
         /**
@@ -2505,29 +2509,33 @@ declare namespace LocalJSX {
          */
         "cardTitle"?: string;
         /**
-          * @uiName New Expire Date
+          * @uiName Date Goal Expires
          */
-        "dateExpire"?: string;
+        "dateExpires"?: string;
         /**
           * @uiName Description Text
          */
         "description"?: string;
         /**
-          * @uiName Show Expiry delete
-         */
-        "expire"?: boolean;
-        /**
-          * @uiName Progress Bar Goal
+          * @uiName Goal Completion Number
          */
         "goal"?: number;
         /**
-          * @uiName Reward Points
+          * @uiName Reward Amount
          */
         "points"?: number;
         /**
-          * @uiName Set Repeatable
+          * @uiName Goal Repeatable
          */
         "repeatable"?: boolean;
+        /**
+          * @uiName Reward Amount
+         */
+        "rewardUnit"?: string;
+        /**
+          * @uiName Show Goal Expiry
+         */
+        "showExpire"?: boolean;
         /**
           * @uiName Show Progress Bar
          */
@@ -2537,11 +2545,11 @@ declare namespace LocalJSX {
          */
         "statType"?: string;
         /**
-          * @uiName Progress Bar with Steps?
+          * @uiName Progress Bar Steps
          */
         "steps"?: boolean;
         /**
-          * @uiName Progress Bar Unit
+          * @uiName Reward Unit
          */
         "unit"?: string;
     }
