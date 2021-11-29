@@ -20,6 +20,8 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
     repeatable = false,
   } = props;
 
+  console.log("progress bar props", props);
+
   const gift1 = SVGs.gift();
   const gift2 = SVGs.gift();
   const gift3 = SVGs.gift();
@@ -262,8 +264,15 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
 
     // multiple repetitions
     else {
-      columns = "0fr 0fr 0.5fr 0fr 0fr " + ratio + "fr 0fr " + (0.5 - ratio) + "fr 0fr 0fr";
-      items.push(<div class={"progress bg"}>{unit + goal * ( repetitions - 1) }</div>);
+      columns =
+        "0fr 0fr 0.5fr 0fr 0fr " +
+        ratio +
+        "fr 0fr " +
+        (0.5 - ratio) +
+        "fr 0fr 0fr";
+      items.push(
+        <div class={"progress bg"}>{unit + goal * (repetitions - 1)}</div>
+      );
       items.push(<div class="gift start">{gift1}</div>);
       items.push(<div class={"filled"}></div>);
       items.push(<div class={"progress bg"}>{unit + goal * repetitions}</div>);
@@ -271,13 +280,17 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
       items.push(<div class={"filled"}></div>);
       items.push(
         <div
-          class={progress == goal * repetitions ? "progress top bg" : "progress top"}
+          class={
+            progress == goal * repetitions ? "progress top bg" : "progress top"
+          }
         >
           {progress == goal * repetitions ? "" : unit + progress}
         </div>
       );
       items.push(<div class={"remain"}></div>);
-      items.push(<div class={"progress bg"}>{unit + goal * ( repetitions + 1)}</div>);
+      items.push(
+        <div class={"progress bg"}>{unit + goal * (repetitions + 1)}</div>
+      );
       items.push(<div class="gift bw">{gift3}</div>);
     }
   }

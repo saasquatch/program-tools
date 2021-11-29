@@ -104,7 +104,7 @@ export class TaskCard {
    * @undocumented
    */
   @Prop()
-  statType: string = "/programGoals/count/Paid-Member-Goal/referrals";
+  statType: string = "/programGoals/count/Referral-Started%2Freferrals";
 
   constructor() {
     withHooks(this);
@@ -114,7 +114,7 @@ export class TaskCard {
   render() {
     const { props } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
     const { value } = props;
-    console.log({ value });
+    console.log(props, isDemo());
 
     return <TaskCardView {...getProps(this)} progress={value}></TaskCardView>;
   }
