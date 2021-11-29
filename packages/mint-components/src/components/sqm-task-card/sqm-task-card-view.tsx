@@ -9,17 +9,17 @@ import {
 } from "./progress-bar/progress-bar-view";
 
 export type TaskCardViewProps = {
-  points?: number;
-  cardTitle?: string;
-  description?: string;
-  showProgressBar?: boolean;
-  repeatable?: boolean;
-  showExpire?: boolean;
+  points: number;
+  cardTitle: string;
+  description: string;
+  showProgressBar: boolean;
+  repeatable: boolean;
+  showExpire: boolean;
   dateExpires?: string;
   rewardUnit: string;
-  buttonText?: string;
-  buttonLink?: string;
-  loading?: boolean;
+  buttonText: string;
+  buttonLink: string;
+  loading: boolean;
 } & ProgressBarProps;
 
 export function TaskCardView(props: TaskCardViewProps): VNode {

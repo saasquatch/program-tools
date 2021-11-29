@@ -1043,11 +1043,15 @@ export namespace Components {
          */
         "points": number;
         /**
+          * @uiName Progress Bar Unit
+         */
+        "progressBarUnit"?: string;
+        /**
           * @uiName Goal Repeatable
          */
         "repeatable": boolean;
         /**
-          * @uiName Reward Amount
+          * @uiName Reward Unit
          */
         "rewardUnit": string;
         /**
@@ -1069,10 +1073,6 @@ export namespace Components {
           * @uiName Progress Bar Steps
          */
         "steps": boolean;
-        /**
-          * @uiName Reward Unit
-         */
-        "unit"?: string;
     }
     interface SqmText {
     }
@@ -2528,11 +2528,15 @@ declare namespace LocalJSX {
          */
         "points"?: number;
         /**
+          * @uiName Progress Bar Unit
+         */
+        "progressBarUnit"?: string;
+        /**
           * @uiName Goal Repeatable
          */
         "repeatable"?: boolean;
         /**
-          * @uiName Reward Amount
+          * @uiName Reward Unit
          */
         "rewardUnit"?: string;
         /**
@@ -2554,10 +2558,6 @@ declare namespace LocalJSX {
           * @uiName Progress Bar Steps
          */
         "steps"?: boolean;
-        /**
-          * @uiName Reward Unit
-         */
-        "unit"?: string;
     }
     interface SqmText {
     }
