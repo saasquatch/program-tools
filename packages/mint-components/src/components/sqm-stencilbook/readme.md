@@ -19,6 +19,7 @@
 - [sqm-form-message](../sqm-form-message)
 - [sqm-divided-layout](../sqm-divided-layout)
 - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
+- [sqm-task-card](../sqm-task-card)
 - [sqm-text](../sqm-text)
 - [sqm-password-field](../sqm-password-field)
 - [sqm-portal-register](../sqm-portal-register)
@@ -49,6 +50,7 @@ graph TD;
   sqm-stencilbook --> sqm-form-message
   sqm-stencilbook --> sqm-divided-layout
   sqm-stencilbook --> sqm-reward-exchange-list
+  sqm-stencilbook --> sqm-task-card
   sqm-stencilbook --> sqm-text
   sqm-stencilbook --> sqm-password-field
   sqm-stencilbook --> sqm-portal-register

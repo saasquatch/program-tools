@@ -108,8 +108,38 @@ const programGoalsQuery = (
         (goal: Goal) => goal.goalId === goalId && goal.programId === programId
       );
       return {
-        value: goal?.[0]?.[metricType],
+        value: goal?.[0]?.[metricType] || 0,
         statvalue: goal?.[0]?.[metricType]?.toString() || 0,
+      };
+    }
+  );
+};
+
+const customFieldsQuery = (
+  programId: string,
+  locale: string,
+  fieldName: string,
+  goalId: string
+) => {
+  // Confirm this behaviour
+  if (programId === "classic") return null;
+
+  return debugQuery(
+    gql`
+      query {
+        viewer {
+          ... on User {
+            customFields
+          }
+        }
+      }
+    `,
+    { programId, fieldName, goalId, locale },
+    (res) => {
+      const customField = res.data?.viewer?.customFields?.[fieldName];
+      return {
+        value: customField || 0,
+        statvalue: customField?.toString() || "0",
       };
     }
   );
@@ -139,7 +169,7 @@ const referralsMonthQuery = (programId: string) => {
     `,
     { filter },
     (res) => ({
-      value: res.data?.viewer?.referrals?.totalCount,
+      value: res.data?.viewer?.referrals?.totalCount || 0,
       statvalue: res.data?.viewer?.referrals?.totalCount?.toString(),
     })
   );
@@ -169,7 +199,7 @@ const referralsWeekQuery = (programId: string) => {
     `,
     { filter },
     (res) => ({
-      value: res.data?.viewer?.referrals?.totalCount,
+      value: res.data?.viewer?.referrals?.totalCount || 0,
       statvalue: res.data?.viewer?.referrals?.totalCount?.toString(),
     })
   );
@@ -197,7 +227,7 @@ const rewardsCountQuery = (
       programId: !global && programId !== "classic" ? programId : null,
     },
     (res) => ({
-      value: res.data?.viewer?.rewards?.totalCount,
+      value: res.data?.viewer?.rewards?.totalCount || 0,
       statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
     })
   );
@@ -245,7 +275,7 @@ const rewardsCountFilteredQuery = (
       statusFilter,
     },
     (res) => ({
-      value: res.data?.viewer?.rewards?.totalCount,
+      value: res.data?.viewer?.rewards?.totalCount || 0,
       statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
     })
   );
@@ -283,7 +313,7 @@ const integrationRewardsCountFilteredQuery = (
       statusFilter,
     },
     (res) => ({
-      value: res.data?.viewer?.rewards?.totalCount,
+      value: res.data?.viewer?.rewards?.totalCount || 0,
       statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
     })
   );
@@ -316,7 +346,7 @@ const rewardsMonthQuery = (
       programId: !global && programId !== "classic" ? programId : null,
     },
     (res) => ({
-      value: res.data?.viewer?.rewards?.totalCount,
+      value: res.data?.viewer?.rewards?.totalCount || 0,
       statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
     })
   );
@@ -349,7 +379,7 @@ const rewardsWeekQuery = (
       programId: !global && programId !== "classic" ? programId : null,
     },
     (res) => ({
-      value: res.data?.viewer?.rewards?.totalCount,
+      value: res.data?.viewer?.rewards?.totalCount || 0,
       statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
     })
   );
@@ -633,11 +663,16 @@ export const queries: {
     label: "Program Goals",
     query: programGoalsQuery,
   },
+  customFields: {
+    label: "Custom Fields",
+    query: customFieldsQuery,
+  },
 };
 
 // this should be exposed in documentation somehow
 export const StatPaths = [
   { name: "programGoals", route: "/(programGoals)/:metricType/:goalId" },
+  { name: "customFields", route: "/(customFields)/:customField" },
   { name: "referralsCount", route: "/(referralsCount)/:status?" },
   { name: "referralsMonth", route: "/(referralsMonth)" },
   { name: "referralsWeek", route: "/(referralsWeek)" },
