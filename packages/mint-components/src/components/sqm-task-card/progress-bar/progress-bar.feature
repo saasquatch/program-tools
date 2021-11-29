@@ -56,5 +56,16 @@ Feature: Task Card Progress Bar
 			| 1000     | 500  | 🎁―――――――🎁―――――――🎁 | $    | gift  | gift  | gift  | yes    | yes    | no     | 500    | 1000   | 1500   |
 			| 1250     | 500  | 🎁―――――――🎁―――●―――🎁 | $    | gift  | gift  | gift  | yes    | yes    | no     | 500    | 1000   | 1500   |
 
-# | 1250     | 500  | 🎁―――――――🎁―――●―――🎁 | gift  | gift  | gift  | yes    | yes    | no     | goal * (⌊ progress / goal ⌋ - 1) | goal * ⌊ progress / goal ⌋ | goal * (⌊ progress / goal ⌋ +1) |
+	# 																							    math logic inside text ?
+	# | 1250     | 500  | 🎁―――――――🎁―――●―――🎁 | gift  | gift  | gift  | yes    | yes    | no     | goal * (⌊ progress / goal ⌋ - 1) | goal * ⌊ progress / goal ⌋ | goal * (⌊ progress / goal ⌋ +1) |
 
+
+	Scenario Outline: Progress Bar Steps Repeatable
+
+		Given <progress> and <goal>
+		And steps is enabled
+		Then I have <progressBar>
+		And <progressBar> has incrementing steps
+
+		Examples:
+			| progress | goal | progressBar |

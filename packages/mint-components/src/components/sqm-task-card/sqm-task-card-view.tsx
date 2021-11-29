@@ -167,7 +167,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             onClick={() => alert(buttonLink)}
             disabled={showComplete}
           >
-            {showComplete ? "Complete" : buttonText}
+            {showComplete ? "Task completed" : buttonText}
           </sl-button>
         </div>
       </div>
