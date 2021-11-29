@@ -27,7 +27,7 @@ export type RewardExchangeViewProps = {
     setExchangeState: Function;
   };
   refs: {
-    drawerRef: any;
+    // drawerRef: any;
   };
 };
 
@@ -266,7 +266,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           Continue
         </sl-button>
         <a
-          onClick={() => refs.drawerRef.current?.hide()}
+        //   onClick={() => refs.drawerRef.current?.hide()}
           style={{ display: "block" }}
           class={sheet.classes.Button}
         >
@@ -379,9 +379,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         <p style={{ color: "forestgreen" }}>Reward Redeemed</p>
         {/* @ts-ignore */}
         {data?.fuelTankCode && <pre>{data?.fuelTankCode}</pre>}
-        <sl-button onClick={() => refs.drawerRef?.current?.hide()}>
+        {/* <sl-button onClick={() => refs.drawerRef?.current?.hide()}>
           Done
-        </sl-button>
+        </sl-button> */}
       </div>
     );
   }
@@ -456,7 +456,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         {states.exchangeError &&
           "Something went wrong. Please contact support or try again."}
         {/* </sl-drawer> */}
-        {callbacks.openDrawer()}
         {/* <sl-button
           loading={states.loading}
           onClick={() => callbacks.openDrawer()}

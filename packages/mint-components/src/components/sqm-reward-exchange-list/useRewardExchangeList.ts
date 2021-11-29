@@ -128,7 +128,7 @@ export function useRewardExchangeList(
     {
       selectedItem: undefined,
       selectedStep: undefined,
-      redeemStage: "",
+      redeemStage: "chooseReward",
       amount: 0,
       exchangeError: false,
     }
