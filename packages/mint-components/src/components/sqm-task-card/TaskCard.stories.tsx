@@ -37,7 +37,7 @@ export const NotRepeatable = () => {
   const coupleActions = {
     points: 40,
     cardTitle: "Comment on 5 articles",
-    progressBar: true,
+    showProgressBar: true,
     goal: 5,
     steps: true,
     description:
@@ -47,7 +47,7 @@ export const NotRepeatable = () => {
   const manyActions = {
     points: 150,
     cardTitle: "Spend $500 at our Store",
-    progressBar: true,
+    showProgressBar: true,
     goal: 500,
     unit: "$",
     description:
@@ -92,7 +92,7 @@ export const NotRepeatableWithExpiry = () => {
   const coupleActions = {
     points: 40,
     cardTitle: "Comment on 5 articles",
-    progressBar: true,
+    showProgressBar: true,
     goal: 5,
     steps: true,
     description:
@@ -104,7 +104,7 @@ export const NotRepeatableWithExpiry = () => {
   const manyActions = {
     points: 150,
     cardTitle: "Spend $500 at our Store",
-    progressBar: true,
+    showProgressBar: true,
     goal: 500,
     unit: "$",
     description:
@@ -149,7 +149,7 @@ export const Repeatable = () => {
   const coupleActions = {
     points: 40,
     cardTitle: "Comment on 5 articles",
-    progressBar: true,
+    showProgressBar: true,
     repeatable: true,
     goal: 5,
     steps: true,
@@ -160,7 +160,7 @@ export const Repeatable = () => {
   const manyActions = {
     points: 150,
     cardTitle: "Spend $500 at our Store",
-    progressBar: true,
+    showProgressBar: true,
     repeatable: true,
     goal: 500,
     unit: "$",
@@ -208,7 +208,7 @@ export const RepeatableWithExpiry = () => {
   const coupleActions = {
     points: 40,
     cardTitle: "Comment on 5 articles",
-    progressBar: true,
+    showProgressBar: true,
     repeatable: true,
     goal: 5,
     steps: true,
@@ -221,7 +221,7 @@ export const RepeatableWithExpiry = () => {
   const manyActions = {
     points: 150,
     cardTitle: "Spend $500 at our Store",
-    progressBar: true,
+    showProgressBar: true,
     repeatable: true,
     goal: 500,
     unit: "$",
