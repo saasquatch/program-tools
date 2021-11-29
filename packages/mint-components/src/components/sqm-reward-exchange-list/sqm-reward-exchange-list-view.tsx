@@ -114,6 +114,25 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       textAlign: "center",
       cursor: "pointer",
     },
+    ProgressBar: {
+      fontSize: "80%",
+      marginBottom: "20px",
+      "& .text-area": {
+        marginTop: "5px",
+        display: "flex",
+        justifyContent: "center",
+        textAlign: "center",
+        whiteSpace: "nowrap",
+        marginBottom: "6px",
+
+        "& .text": {
+          flex: "1 1 0",
+        },
+        "& .text.subdued": {
+          color: "#BDBDBD",
+        },
+      },
+    },
   };
   // JSS config
   jss.setup(preset());
@@ -167,7 +186,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         ? "confirmation"
         : "chooseAmount";
 
-    console.log({ nextStage, ruleType: selectedItem?.ruleType });
+    // console.log({ nextStage, ruleType: selectedItem?.ruleType });
     return [
       <div
         style={{
@@ -205,14 +224,15 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                   callbacks.setExchangeState({ selectedItem: item })
                 }
               >
-                {item?.imageUrl && (
+                {
+                  // item?.imageUrl &&
                   <img
                     class={sheet.classes.PreviewImage}
                     src={
                       item?.imageUrl || getAssetPath("./assets/Reward-icon.png")
                     }
                   />
-                )}
+                }
                 <p style={{ margin: "0", flex: "1", fontSize: "90%" }}>
                   <b>{item.description}</b>
                   <p style={{ margin: "0" }}>{amount}</p>
@@ -224,7 +244,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                         marginTop: "0",
                       }}
                     >
-                      {item.unavailableReasonCode}
+                      {item.unavailableReasonCode ===
+                      "INSUFFICIENT_REDEEMABLE_CREDIT"
+                        ? "Not enough points"
+                        : item.unavailableReasonCode}
                     </p>
                   )}
                 </p>
@@ -285,7 +308,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     );
   }
 
-  console.log({ selectedItem, selectedStep });
+//   console.log({ selectedItem, selectedStep });
   function confirmation() {
     const previousStage =
       selectedItem?.ruleType === "FIXED_GLOBAL_REWARD"
@@ -375,23 +398,16 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   function stageMap() {
     const stageNumber = stageList.indexOf(states.redeemStage);
     return (
-      <div style={{ fontSize: "80%", marginBottom: "20px" }}>
-        <div
-          style={{
-            marginTop: "5px",
-            display: "flex",
-            justifyContent: "center",
-            textAlign: "center",
-            whiteSpace: "nowrap",
-            marginBottom: "6px",
-          }}
-        >
+      <div class={sheet.classes.ProgressBar}>
+        <div class="text-area">
           {Object.keys(stageProgressList).map((stage) => {
-            if (stage === states.redeemStage)
+            if (stage === states.redeemStage) {
+              return <span class="text">{stageProgressList[stage]}</span>;
+            } else {
               return (
-                <b style={{ flex: "1 1 0" }}> {stageProgressList[stage]}</b>
+                <span class="text subdued">{stageProgressList[stage]}</span>
               );
-            return <i style={{ flex: "1 1 0" }}>{stageProgressList[stage]}</i>;
+            }
           })}
         </div>
         <ProgressBar stageCount={3} currentStage={stageNumber} />
@@ -427,25 +443,26 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
-      <div>
-        <sl-drawer
+      <div style={{ width: "700px" }}>
+        {/* <sl-drawer
           ref={(ref) => (refs.drawerRef.current = ref)}
           placement="right"
           class={sheet.classes.Drawer}
           open={stageList.indexOf(states.redeemStage) >= 0}
-        >
-          <BackButton />
-          {stageMap()}
-          {currentStage && currentStage()}
-          {states.exchangeError &&
-            "Something went wrong. Please contact support or try again."}
-        </sl-drawer>
-        <sl-button
+        > */}
+        <BackButton />
+        {stageMap()}
+        {currentStage && currentStage()}
+        {states.exchangeError &&
+          "Something went wrong. Please contact support or try again."}
+        {/* </sl-drawer> */}
+        {callbacks.openDrawer()}
+        {/* <sl-button
           loading={states.loading}
           onClick={() => callbacks.openDrawer()}
         >
           Redeem Rewards
-        </sl-button>
+        </sl-button> */}
       </div>
     </div>
   );
