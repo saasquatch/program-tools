@@ -27,7 +27,7 @@ export class TaskCard {
    * @uiName Reward Unit
    */
   @Prop()
-  rewardUnit: string = "Point";
+  rewardUnit: string = "Points";
 
   /**
    * @uiName Title Text
