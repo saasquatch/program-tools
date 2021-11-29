@@ -1,4 +1,5 @@
 import { h } from "@stencil/core";
+import { CheckMark } from "./SVGs";
 
 function Dot({
   active,
@@ -36,13 +37,15 @@ function Dot({
             ? "2px solid #E5E5E5"
             : "none",
           borderRadius: "50%",
-          width: completed ? "12px" : "8px",
-          height: completed ? "12px" : "8px",
-          margin: "-4px auto 0px",
+          width: completed ? "14px" : "10px",
+          height: completed ? "14px" : "10px",
+          margin: "-5px auto 0px",
           zIndex: "1",
           boxSizing: "content-box",
         }}
-      ></div>
+      >
+        {completed && <CheckMark />}
+      </div>
     </div>
   );
 }

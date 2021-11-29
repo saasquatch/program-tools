@@ -54,12 +54,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       display: "flex",
       cursor: "pointer",
       textAlign: "center",
+      height: "120px",
       "&::part(base)": {
         width: "100%",
-        maxWidth: "800px",
+        maxWidth: "350px",
         display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
+        margin: "0 auto",
       },
       "&::part(body)": {
         padding: 0,
@@ -70,6 +70,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     Drawer: {
       "&::part(base)": {
         minWidth: "400px",
+        maxWidth: "700px",
         width: "50%",
         margin: "0 auto",
         right: "0",
@@ -86,8 +87,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     },
     PreviewImage: {
       objectFit: "contain",
-      width: "115px",
-      height: "115px",
+      width: "120px",
+      height: "120px",
       flex: 0.33,
     },
     InputBox: {
@@ -103,8 +104,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
     },
     Buttons: {
-      bottom: "0",
+      marginLeft: "auto",
       width: "100%",
+      maxWidth: "300px",
     },
     Button: {
       margin: "10px 0",
@@ -166,15 +168,13 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         : "chooseAmount";
 
     console.log({ nextStage, ruleType: selectedItem?.ruleType });
-    return (
+    return [
       <div
         style={{
-          display: "flex",
+          display: "grid",
           justifyContent: "center",
-          flexWrap: "wrap",
-          alignItems: "center",
-          columnGap: "12px",
-          rowGap: "12px",
+          gap: "20px",
+          gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
         }}
       >
         {data.exchangeList?.map((item: ExchangeItem) => {
@@ -185,15 +185,17 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             flex: "1",
             minWidth: "100%",
             color: !item.available && "#eee",
-            "&:hover": {
-              boxShadow: !item.available && "none",
-            },
           };
+
+          const amount =
+            item.ruleType === "FIXED_GLOBAL_REWARD"
+              ? item.prettySourceValue
+              : `${item.sourceMinValue} to ${item.sourceMaxValue} ${item.sourceUnit}`;
+
           return (
             <div
               key={item.key}
-              class={sheet.classes.CardContainer}
-              //@ts-ignore
+              class={item.available ? sheet.classes.CardContainer : ""}
               style={style}
             >
               <sl-card
@@ -203,14 +205,17 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                   callbacks.setExchangeState({ selectedItem: item })
                 }
               >
-                <img
-                  class={sheet.classes.PreviewImage}
-                  src={
-                    item?.imageUrl || getAssetPath("./assets/Reward-icon.png")
-                  }
-                />
-                <p style={{ marginBottom: "0", flex: "1" }}>
-                  {item.description}
+                {item?.imageUrl && (
+                  <img
+                    class={sheet.classes.PreviewImage}
+                    src={
+                      item?.imageUrl || getAssetPath("./assets/Reward-icon.png")
+                    }
+                  />
+                )}
+                <p style={{ margin: "0", flex: "1", fontSize: "90%" }}>
+                  <b>{item.description}</b>
+                  <p style={{ margin: "0" }}>{amount}</p>
                   {item.unavailableReasonCode && (
                     <p
                       style={{
@@ -227,25 +232,25 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             </div>
           );
         })}
-        <div class={sheet.classes.Buttons}>
-          <sl-button
-            onClick={() => callbacks.setStage(nextStage)}
-            style={{ display: "block" }}
-            class={sheet.classes.Button}
-            disabled={!states.selectedItem}
-          >
-            Continue
-          </sl-button>
-          <a
-            onClick={() => refs.drawerRef.current?.hide()}
-            style={{ display: "block" }}
-            class={sheet.classes.Button}
-          >
-            Cancel
-          </a>
-        </div>
-      </div>
-    );
+      </div>,
+      <div class={sheet.classes.Buttons}>
+        <sl-button
+          onClick={() => callbacks.setStage(nextStage)}
+          style={{ display: "block" }}
+          class={sheet.classes.Button}
+          disabled={!states.selectedItem}
+        >
+          Continue
+        </sl-button>
+        <a
+          onClick={() => refs.drawerRef.current?.hide()}
+          style={{ display: "block" }}
+          class={sheet.classes.Button}
+        >
+          Cancel
+        </a>
+      </div>,
+    ];
   }
 
   function chooseAmount() {
