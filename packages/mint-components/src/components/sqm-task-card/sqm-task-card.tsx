@@ -21,7 +21,7 @@ export class TaskCard {
    * @uiName Reward Amount
    */
   @Prop()
-  points: number = 0;
+  rewardAmount: number = 0;
 
   /**
    * @uiName Reward Unit
@@ -80,7 +80,7 @@ export class TaskCard {
    * @uiName Show Goal Expiry
    */
   @Prop()
-  showExpire: boolean = false;
+  showExpiry: boolean = false;
 
   /**
    * @uiName Date Goal Expires

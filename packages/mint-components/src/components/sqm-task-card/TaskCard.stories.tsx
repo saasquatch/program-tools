@@ -19,8 +19,8 @@ const resizable = {
 
 export const NotRepeatable = () => {
   const oneAction = {
-    points: 20,
-    showExpire: false,
+    rewardAmount: 20,
+    showExpiry: false,
     rewardUnit: "Points",
     cardTitle: "Complete a survey",
     repeatable: false,
@@ -32,11 +32,11 @@ export const NotRepeatable = () => {
     showProgressBar: false,
   };
   const coupleActions = {
-    points: 40,
+    rewardAmount: 40,
     rewardUnit: "Points",
     cardTitle: "Comment on 5 articles",
     showProgressBar: true,
-    showExpire: false,
+    showExpiry: false,
     goal: 5,
     repeatable: false,
     steps: true,
@@ -46,11 +46,11 @@ export const NotRepeatable = () => {
     buttonLink: "https://example.com/",
   };
   const manyActions = {
-    points: 150,
+    rewardAmount: 150,
     rewardUnit: "Points",
     cardTitle: "Spend $500 at our Store",
     showProgressBar: true,
-    showExpire: false,
+    showExpiry: false,
     goal: 500,
     repeatable: false,
     unit: "$",
@@ -85,21 +85,21 @@ export const NotRepeatable = () => {
 
 export const NotRepeatableWithExpiry = () => {
   const oneAction = {
-    points: 20,
+    rewardAmount: 20,
     rewardUnit: "Points",
     cardTitle: "Complete a survey",
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Take survey",
     goal: 1,
-    showExpire: true,
+    showExpiry: true,
     repeatable: false,
     dateExpires: "Nov 1, 2021",
     buttonLink: "https://example.com/",
     showProgressBar: false,
   };
   const coupleActions = {
-    points: 40,
+    rewardAmount: 40,
     rewardUnit: "Points",
     cardTitle: "Comment on 5 articles",
     showProgressBar: true,
@@ -108,13 +108,13 @@ export const NotRepeatableWithExpiry = () => {
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Start reading",
-    showExpire: true,
+    showExpiry: true,
     repeatable: false,
     dateExpires: "Nov 1, 2021",
     buttonLink: "https://example.com/",
   };
   const manyActions = {
-    points: 150,
+    rewardAmount: 150,
     rewardUnit: "Points",
     repeatable: false,
     cardTitle: "Spend $500 at our Store",
@@ -124,7 +124,7 @@ export const NotRepeatableWithExpiry = () => {
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Visit our Store",
-    showExpire: true,
+    showExpiry: true,
     dateExpires: "Nov 1, 2021",
     buttonLink: "https://example.com/",
   };
@@ -153,9 +153,9 @@ export const NotRepeatableWithExpiry = () => {
 
 export const Repeatable = () => {
   const oneAction = {
-    points: 20,
+    rewardAmount: 20,
     rewardUnit: "Points",
-    showExpire: false,
+    showExpiry: false,
     cardTitle: "Complete a survey",
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
@@ -166,9 +166,9 @@ export const Repeatable = () => {
     showProgressBar: false,
   };
   const coupleActions = {
-    points: 40,
+    rewardAmount: 40,
     rewardUnit: "Points",
-    showExpire: false,
+    showExpiry: false,
     cardTitle: "Comment on 5 articles",
     showProgressBar: true,
     repeatable: true,
@@ -180,9 +180,9 @@ export const Repeatable = () => {
     buttonLink: "https://example.com/",
   };
   const manyActions = {
-    points: 150,
+    rewardAmount: 150,
     rewardUnit: "Points",
-    showExpire: false,
+    showExpiry: false,
     cardTitle: "Spend $500 at our Store",
     showProgressBar: true,
     repeatable: true,
@@ -220,7 +220,7 @@ export const Repeatable = () => {
 
 export const RepeatableWithExpiry = () => {
   const oneAction = {
-    points: 20,
+    rewardAmount: 20,
     rewardUnit: "Points",
     cardTitle: "Complete a survey",
     description:
@@ -228,13 +228,13 @@ export const RepeatableWithExpiry = () => {
     buttonText: "Take survey",
     goal: 1,
     repeatable: true,
-    showExpire: true,
+    showExpiry: true,
     dateExpires: "Nov 1, 2021",
     buttonLink: "https://example.com/",
     showProgressBar: false,
   };
   const coupleActions = {
-    points: 40,
+    rewardAmount: 40,
     rewardUnit: "Points",
     cardTitle: "Comment on 5 articles",
     showProgressBar: true,
@@ -244,12 +244,12 @@ export const RepeatableWithExpiry = () => {
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Start reading",
-    showExpire: true,
+    showExpiry: true,
     dateExpires: "Nov 1, 2021",
     buttonLink: "https://example.com/",
   };
   const manyActions = {
-    points: 150,
+    rewardAmount: 150,
     rewardUnit: "Points",
     cardTitle: "Spend $500 at our Store",
     showProgressBar: true,
@@ -259,7 +259,7 @@ export const RepeatableWithExpiry = () => {
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Visit our Store",
-    showExpire: true,
+    showExpiry: true,
     dateExpires: "Nov 1, 2021",
     buttonLink: "https://example.com/",
   };
