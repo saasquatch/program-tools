@@ -137,12 +137,12 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           <span class="text">{rewardUnit}</span>
         </div>
         <div class={sheet.classes.Title}>{cardTitle}</div>
+        <Details description={description} />
         {showProgressBar && loading ? (
           <sl-skeleton style={{ width: "98%", margin: "0 auto" }} />
         ) : (
           showProgressBar && <ProgressBarView {...props} />
         )}
-        <Details description={description} />
         <div class={sheet.classes.Footer}>
           <span class="text">
             {repeatable && (
