@@ -45,6 +45,7 @@ import * as PortalFooter from "../sqm-portal-footer/PortalFooter.stories";
 import * as Hero from "../sqm-hero/Hero.stories";
 import * as ReferralIframe from "../sqm-referral-iframe/ReferralIframe.stories";
 import * as NameFields from "../sqm-name-fields/NameFields.stories";
+import * as RewardExchangeList from "../sqm-reward-exchange-list/RewardExchangeList.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -92,6 +93,7 @@ const stories = [
   Hero,
   ReferralIframe,
   NameFields,
+  RewardExchangeList,
   UseRewardExchangeList,
   UseTaskCard,
 ];

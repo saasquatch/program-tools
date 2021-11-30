@@ -266,7 +266,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           Continue
         </sl-button>
         <a
-        //   onClick={() => refs.drawerRef.current?.hide()}
+          //   onClick={() => refs.drawerRef.current?.hide()}
           style={{ display: "block" }}
           class={sheet.classes.Button}
         >
@@ -308,7 +308,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     );
   }
 
-//   console.log({ selectedItem, selectedStep });
+  //   console.log({ selectedItem, selectedStep });
   function confirmation() {
     const previousStage =
       selectedItem?.ruleType === "FIXED_GLOBAL_REWARD"
@@ -440,6 +440,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     );
   };
 
+  console.log(props);
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
