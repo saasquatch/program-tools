@@ -94,6 +94,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     Title: {
       color: "var(--sl-color-black)",
       fontSize: "var(--sl-font-size-small)",
+	  fontWeight: "var(--sl-font-weight-semibold)",
     },
     Footer: {
       display: "flex",
