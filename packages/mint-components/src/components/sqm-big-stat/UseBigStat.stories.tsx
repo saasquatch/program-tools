@@ -218,3 +218,7 @@ export const ProgramGoals = createHookStory(() => {
     "/(programGoals)/:metricType/:goalId"
   );
 });
+
+export const CustomField = createHookStory(() => {
+  return View(`/customFields/thingCount`, "/(customFields)/:customField");
+});

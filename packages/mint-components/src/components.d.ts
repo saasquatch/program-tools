@@ -1015,11 +1015,11 @@ export namespace Components {
     }
     interface SqmTaskCard {
         /**
-          * @uiName Button Link
+          * @uiName CTA Button Link
          */
         "buttonLink": string;
         /**
-          * @uiName Button Text
+          * @uiName CTA Button Text
          */
         "buttonText": string;
         /**
@@ -1027,45 +1027,52 @@ export namespace Components {
          */
         "cardTitle": string;
         /**
-          * @uiName New Expire Date
+          * @uiName Date Goal Expires
          */
-        "dateExpire"?: string;
+        "dateExpires"?: string;
         /**
           * @uiName Description Text
          */
         "description": string;
         /**
-          * @uiName Show Expiry delete
-         */
-        "expire": boolean;
-        /**
-          * @uiName Progress Bar Goal
+          * @uiName Goal Completion Number
          */
         "goal": number;
         /**
-          * @uiName Reward Points
+          * @uiName Progress Bar Unit
          */
-        "points": number;
+        "progressBarUnit"?: string;
         /**
-          * @uiName Set Repeatable
+          * @uiName Goal Repeatable
          */
         "repeatable": boolean;
+        /**
+          * @uiName Reward Amount
+         */
+        "rewardAmount": number;
+        /**
+          * @uiName Reward Unit
+         */
+        "rewardUnit": string;
+        /**
+          * @uiName Show Goal Expiry
+         */
+        "showExpiry": boolean;
         /**
           * @uiName Show Progress Bar
          */
         "showProgressBar": boolean;
         /**
-          * @undocumented
+          * Select what type of stat to display for the goal. Manual paths are also supported.
+          * @uiWidget StatTypeSelectWidget
+          * @uiName Stat Type
+          * @uiOptions {"version": 1.1}
          */
         "statType": string;
         /**
-          * @uiName Progress Bar with Steps?
+          * @uiName Progress Bar Steps
          */
         "steps": boolean;
-        /**
-          * @uiName Progress Bar Unit
-         */
-        "unit"?: string;
     }
     interface SqmText {
     }
@@ -2493,11 +2500,11 @@ declare namespace LocalJSX {
     }
     interface SqmTaskCard {
         /**
-          * @uiName Button Link
+          * @uiName CTA Button Link
          */
         "buttonLink"?: string;
         /**
-          * @uiName Button Text
+          * @uiName CTA Button Text
          */
         "buttonText"?: string;
         /**
@@ -2505,45 +2512,52 @@ declare namespace LocalJSX {
          */
         "cardTitle"?: string;
         /**
-          * @uiName New Expire Date
+          * @uiName Date Goal Expires
          */
-        "dateExpire"?: string;
+        "dateExpires"?: string;
         /**
           * @uiName Description Text
          */
         "description"?: string;
         /**
-          * @uiName Show Expiry delete
-         */
-        "expire"?: boolean;
-        /**
-          * @uiName Progress Bar Goal
+          * @uiName Goal Completion Number
          */
         "goal"?: number;
         /**
-          * @uiName Reward Points
+          * @uiName Progress Bar Unit
          */
-        "points"?: number;
+        "progressBarUnit"?: string;
         /**
-          * @uiName Set Repeatable
+          * @uiName Goal Repeatable
          */
         "repeatable"?: boolean;
+        /**
+          * @uiName Reward Amount
+         */
+        "rewardAmount"?: number;
+        /**
+          * @uiName Reward Unit
+         */
+        "rewardUnit"?: string;
+        /**
+          * @uiName Show Goal Expiry
+         */
+        "showExpiry"?: boolean;
         /**
           * @uiName Show Progress Bar
          */
         "showProgressBar"?: boolean;
         /**
-          * @undocumented
+          * Select what type of stat to display for the goal. Manual paths are also supported.
+          * @uiWidget StatTypeSelectWidget
+          * @uiName Stat Type
+          * @uiOptions {"version": 1.1}
          */
         "statType"?: string;
         /**
-          * @uiName Progress Bar with Steps?
+          * @uiName Progress Bar Steps
          */
         "steps"?: boolean;
-        /**
-          * @uiName Progress Bar Unit
-         */
-        "unit"?: string;
     }
     interface SqmText {
     }

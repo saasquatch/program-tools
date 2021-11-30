@@ -18,10 +18,16 @@ export class TaskCard {
   ignored = true;
 
   /**
-   * @uiName Reward Points
+   * @uiName Reward Amount
    */
   @Prop()
-  points: number = 0;
+  rewardAmount: number = 0;
+
+  /**
+   * @uiName Reward Unit
+   */
+  @Prop()
+  rewardUnit: string = "Points";
 
   /**
    * @uiName Title Text
@@ -36,7 +42,7 @@ export class TaskCard {
   description: string = "Description Text";
 
   /**
-   * @uiName Set Repeatable
+   * @uiName Goal Repeatable
    */
   @Prop()
   repeatable: boolean = false;
@@ -48,18 +54,18 @@ export class TaskCard {
   showProgressBar: boolean = false;
 
   /**
-   * @uiName Progress Source
+   * @uiName Goal Progress Source
    */
   progressSource: string = "";
 
   /**
-   * @uiName Progress Bar Goal
+   * @uiName Goal Completion Number
    */
   @Prop()
   goal: number = 1;
 
   /**
-   * @uiName Progress Bar with Steps?
+   * @uiName Progress Bar Steps
    */
   @Prop()
   steps: boolean = false;
@@ -68,34 +74,38 @@ export class TaskCard {
    * @uiName Progress Bar Unit
    */
   @Prop()
-  unit?: string;
+  progressBarUnit?: string;
 
   /**
-   * @uiName Show Expiry delete
+   * @uiName Show Goal Expiry
    */
   @Prop()
-  expire: boolean = false;
+  showExpiry: boolean = false;
 
   /**
-   * @uiName New Expire Date
+   * @uiName Date Goal Expires
    */
   @Prop()
-  dateExpire?: string;
+  dateExpires?: string;
 
   /**
-   * @uiName Button Text
+   * @uiName CTA Button Text
    */
   @Prop()
-  buttonText: string;
+  buttonText: string = "Complete Action";
 
   /**
-   * @uiName Button Link
+   * @uiName CTA Button Link
    */
   @Prop()
-  buttonLink: string;
+  buttonLink: string = "https://example.com/";
 
   /**
-   * @undocumented
+   * Select what type of stat to display for the goal. Manual paths are also supported.
+   *
+   * @uiWidget StatTypeSelectWidget
+   * @uiName Stat Type
+   * @uiOptions {"version": 1.1}
    */
   @Prop()
   statType: string = "/programGoals/count/Referral-Started%2Freferrals";
@@ -107,9 +117,15 @@ export class TaskCard {
 
   render() {
     const { props } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
-    const { value } = props;
+    const { value, statvalue } = props;
     console.log(props, isDemo());
 
-    return <TaskCardView {...getProps(this)} progress={value}></TaskCardView>;
+    return (
+      <TaskCardView
+        {...getProps(this)}
+        progress={value}
+        loading={value === undefined}
+      ></TaskCardView>
+    );
   }
 }

@@ -9,30 +9,34 @@ import {
 } from "./progress-bar/progress-bar-view";
 
 export type TaskCardViewProps = {
-  points?: number;
-  cardTitle?: string;
-  description?: string;
-  showProgressBar?: boolean;
-  repeatable?: boolean;
-  expire?: boolean;
-  dateExpire?: string;
-  buttonText?: string;
-  buttonLink?: string;
+  rewardAmount: number;
+  cardTitle: string;
+  description: string;
+  showProgressBar: boolean;
+  repeatable: boolean;
+  showExpiry: boolean;
+  dateExpires?: string;
+  rewardUnit: string;
+  buttonText: string;
+  buttonLink: string;
+  loading: boolean;
 } & ProgressBarProps;
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
   const {
-    points = 0,
-    cardTitle = "Title Text",
-    description = "Description Text",
-    showProgressBar = false,
+    rewardAmount,
+    cardTitle,
+    description,
+    showProgressBar,
     progress = 0,
-    goal = 1,
-    repeatable = false,
-    expire = false,
-    dateExpire = "",
-    buttonText = "Button Text",
-    buttonLink = "www.example.com",
+    goal,
+    rewardUnit,
+    repeatable,
+    showExpiry,
+    dateExpires,
+    buttonText,
+    buttonLink,
+    loading,
   } = props;
 
   console.log({ props });
@@ -122,18 +126,22 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const showComplete = progress >= goal;
   const repetitions = showProgressBar ? Math.floor(progress / goal) : progress;
 
-  console.log({ showProgressBar });
+  console.log({ showProgressBar, loading });
   return (
     <div class={sheet.classes.TaskCard}>
       <div class={showComplete ? "main complete" : "main"}>
         <style type="text/css">{styleString}</style>
         <div class={sheet.classes.Header}>
           {showComplete && <span class="icon">{checkmark_circle}</span>}
-          <span class="value">{points}</span>
-          <span class="text">{"saasquatch points"}</span>
+          <span class="value">{rewardAmount}</span>
+          <span class="text">{rewardUnit}</span>
         </div>
         <div class={sheet.classes.Title}>{cardTitle}</div>
-        {showProgressBar && <ProgressBarView {...props} />}
+        {showProgressBar && loading ? (
+          <sl-skeleton style={{ width: "98%", margin: "0 auto" }} />
+        ) : (
+          showProgressBar && <ProgressBarView {...props} />
+        )}
         <Details description={description} />
         <div class={sheet.classes.Footer}>
           <span class="text">
@@ -145,18 +153,11 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                   {repetitions}
                   {" times"}
                 </span>
-                {/* <br />
-                <span>
-                  {"Earned "}
-                  {points * repetitions}
-                  {" SaaSquatch Points"}
-                </span> 
-                <br />*/}
               </div>
             )}
-            {expire && (
+            {showExpiry && (
               <span>
-                {"Ends "} {dateExpire}
+                {"Ends "} {dateExpires}
               </span>
             )}
           </span>
@@ -167,7 +168,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             onClick={() => alert(buttonLink)}
             disabled={showComplete && repeatable == false}
           >
-            {showComplete && repeatable == false ? "Task completed" : buttonText}
+            {showComplete && repeatable == false
+              ? "Task completed"
+              : buttonText}
           </sl-button>
         </div>
       </div>
