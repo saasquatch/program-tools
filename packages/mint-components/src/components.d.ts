@@ -31,6 +31,7 @@ import { ReferralTableViewProps } from "./components/sqm-referral-table/sqm-refe
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { GenericTableViewProps } from "./tables/GenericTableView";
+import { Reward } from "./components/sqm-rewards-table/useRewardsTable";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
@@ -859,6 +860,18 @@ export namespace Components {
          */
         "showReferrer"?: boolean;
     }
+    interface SqmRewardsTableColumn {
+        /**
+          * @uiName Reward column title
+         */
+        "columnTitle": string;
+        /**
+          * @uiName Hide dropdown details of reward
+         */
+        "hideDetails": boolean;
+        "renderCell": (data: Reward[]) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+    }
     interface SqmRoute {
         /**
           * @uiName Navigation path name
@@ -1384,6 +1397,12 @@ declare global {
         prototype: HTMLSqmRewardsTableElement;
         new (): HTMLSqmRewardsTableElement;
     };
+    interface HTMLSqmRewardsTableColumnElement extends Components.SqmRewardsTableColumn, HTMLStencilElement {
+    }
+    var HTMLSqmRewardsTableColumnElement: {
+        prototype: HTMLSqmRewardsTableColumnElement;
+        new (): HTMLSqmRewardsTableColumnElement;
+    };
     interface HTMLSqmRouteElement extends Components.SqmRoute, HTMLStencilElement {
     }
     var HTMLSqmRouteElement: {
@@ -1513,6 +1532,7 @@ declare global {
         "sqm-referral-table-user-column": HTMLSqmReferralTableUserColumnElement;
         "sqm-reward-exchange-list": HTMLSqmRewardExchangeListElement;
         "sqm-rewards-table": HTMLSqmRewardsTableElement;
+        "sqm-rewards-table-column": HTMLSqmRewardsTableColumnElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
@@ -2344,6 +2364,16 @@ declare namespace LocalJSX {
          */
         "showReferrer"?: boolean;
     }
+    interface SqmRewardsTableColumn {
+        /**
+          * @uiName Reward column title
+         */
+        "columnTitle"?: string;
+        /**
+          * @uiName Hide dropdown details of reward
+         */
+        "hideDetails"?: boolean;
+    }
     interface SqmRoute {
         /**
           * @uiName Navigation path name
@@ -2648,6 +2678,7 @@ declare namespace LocalJSX {
         "sqm-referral-table-user-column": SqmReferralTableUserColumn;
         "sqm-reward-exchange-list": SqmRewardExchangeList;
         "sqm-rewards-table": SqmRewardsTable;
+        "sqm-rewards-table-column": SqmRewardsTableColumn;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
         "sqm-share-button": SqmShareButton;
@@ -2712,6 +2743,7 @@ declare module "@stencil/core" {
             "sqm-referral-table-user-column": LocalJSX.SqmReferralTableUserColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserColumnElement>;
             "sqm-reward-exchange-list": LocalJSX.SqmRewardExchangeList & JSXBase.HTMLAttributes<HTMLSqmRewardExchangeListElement>;
             "sqm-rewards-table": LocalJSX.SqmRewardsTable & JSXBase.HTMLAttributes<HTMLSqmRewardsTableElement>;
+            "sqm-rewards-table-column": LocalJSX.SqmRewardsTableColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableColumnElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
