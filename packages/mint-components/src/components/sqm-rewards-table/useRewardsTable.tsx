@@ -1,7 +1,6 @@
 import {
   usePaginatedQuery,
   useProgramId,
-  useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useReducer } from "@saasquatch/universal-hooks";
@@ -14,17 +13,50 @@ import { useChildElements } from "../../tables/useChildElements";
 
 export const CSS_NAMESPACE = "sqm-rewards-table";
 
+export interface Reward {
+  id: string;
+  type: string;
+  value: number;
+  unit: string;
+  name: string;
+  dateGiven: number;
+  dateScheduledFor: number;
+  dateExpires: number;
+  dateCancelled: number;
+  fuelTankCode: string;
+  fuelTankType: string;
+  currency: string;
+  prettyValue: string;
+  statuses: string[];
+  globalRewardKey?: string;
+  rewardRedemptionTransactions: {
+    data: [
+      {
+        exchangedRewards: {
+          data: [
+            {
+              prettyValue: string;
+              type: string;
+              fuelTankCode: string;
+              globalRewardKey?: string;
+            }
+          ];
+        };
+      }
+    ];
+  };
+}
+
 const GET_REWARDS = gql`
   query getRewards(
     $limit: Int!
     $offset: Int!
-    $referralFilter: ReferralFilterInput
     $rewardFilter: RewardFilterInput
   ) {
     viewer {
       ... on User {
         id
-        rewards(limit: $limit, offset: $offset, filter: $referralFilter) {
+        rewards(limit: $limit, offset: $offset, filter: $rewardFilter) {
           totalCount
           count
           data {
@@ -73,16 +105,16 @@ export function useRewardsTable(
   const programIdContext = useProgramId();
   // Default to context, overriden by props
   const programId = props.programId ?? programIdContext;
-  // If no program ID, shows all programs
-  const referralFilter = programId
-    ? programId === "classic"
-      ? { programId_exists: false }
-      : { programId_eq: programId }
-    : {};
 
   const rewardFilter = {
     userId_eq: user?.id,
     accountId_eq: user?.accountId,
+    // If no program ID, shows all programs
+    ...(programId
+      ? programId === "classic"
+        ? { programId_exists: false }
+        : { programId_eq: programId }
+      : {}),
   };
 
   const [content, setContent] = useReducer<
@@ -107,13 +139,12 @@ export function useRewardsTable(
     callbacks,
   } = usePaginatedQuery<Reward>(
     GET_REWARDS,
-    (data) => data?.viewer?.referrals,
+    (data) => data?.viewer?.rewards,
     {
       limit: props.perPage,
       offset: 0,
     },
     {
-      referralFilter,
       rewardFilter,
     },
     !user?.jwt
@@ -137,7 +168,7 @@ export function useRewardsTable(
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r: Reward) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, c))
+        tryMethod(c, () => c.renderCell([r], c))
       );
       const cells = await Promise.all(cellPromise);
       return cells;
@@ -158,6 +189,8 @@ export function useRewardsTable(
   }, [rewardsData, components, tick]);
 
   const isEmpty = !content?.rows?.length && !data?.length;
+
+  console.log(states.loading, content.loading, rewardsData);
   const show =
     // 1 - Loading if loading
     states.loading || content.loading
@@ -173,7 +206,7 @@ export function useRewardsTable(
       hasNext: states.currentPage < states.pageCount - 1,
       hasPrev: states.currentPage > 0,
       show,
-      namespace: CSS_NAMESPACE
+      namespace: CSS_NAMESPACE,
     },
     data: {
       textOverrides: {

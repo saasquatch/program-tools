@@ -25,11 +25,11 @@ Feature: Rewards Table
         And the pagination button to go to the previous page is disabled on the first page of rewards
         Examples:
             | number of rewards | page limit | number of pages |
-            | 0                   | 3          | 1               |
-            | 1                   | 3          | 1               |
-            | 3                   | 3          | 1               |
-            | 5                   | 3          | 2               |
-            | 42                  | 3          | 14              |
+            | 0                 | 3          | 1               |
+            | 1                 | 3          | 1               |
+            | 3                 | 3          | 1               |
+            | 5                 | 3          | 2               |
+            | 42                | 3          | 14              |
 
     Scenario: The use who referred the current user can be shown in the table
         Given the table is configured with <showReferrer> set to true

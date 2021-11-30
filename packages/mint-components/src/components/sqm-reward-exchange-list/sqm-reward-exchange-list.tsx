@@ -80,7 +80,7 @@ function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
         content: {
           text:props,
         },
-        redeemStage: "",
+        redeemStage: "chooseReward",
         amount: 0,
         selectedStep: undefined,
         exchangeError: false,

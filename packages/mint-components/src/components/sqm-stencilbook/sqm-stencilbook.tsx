@@ -6,7 +6,7 @@ import * as ShareButton from "../sqm-share-button/ShareButton.stories";
 import * as ShareLink from "../sqm-share-link/ShareLink.stories";
 import * as BigStat from "../sqm-big-stat/BigStat.stories";
 import * as Leaderboard from "../sqm-leaderboard/Leaderboard.stories";
-import * as Router from "../sqm-rewards-table/Router.stories";
+import * as Router from "../sqm-router/Router.stories";
 import * as LeaderboardRank from "../sqm-leaderboard-rank/LeaderboardRank.stories";
 import * as PortalFrame from "../sqm-portal-frame/PortalFrame.stories";
 import * as EditProfile from "../sqm-edit-profile/EditProfileForm.stories";
@@ -17,6 +17,7 @@ import * as UseEditProfile from "../sqm-edit-profile/UseEditProfile.stories";
 import * as UseLeaderboard from "../sqm-leaderboard/UseLeaderboard.stories";
 import * as FormMessage from "../sqm-form-message/FormMessage.stories";
 import * as UseRewardExchangeList from "../sqm-reward-exchange-list/UseRewardExchangeList.stories";
+import * as UseRewardsTable from "../sqm-rewards-table/UseRewardsTable.stories";
 import * as UseTaskCard from "../sqm-task-card/UseTaskCard.stories";
 import * as NewPortal from "../../stories/NewPortal.stories";
 import * as SidebarItem from "../sqm-navigation-sidebar-item/SidebarItem.stories";
@@ -45,6 +46,7 @@ import * as PortalFooter from "../sqm-portal-footer/PortalFooter.stories";
 import * as Hero from "../sqm-hero/Hero.stories";
 import * as ReferralIframe from "../sqm-referral-iframe/ReferralIframe.stories";
 import * as NameFields from "../sqm-name-fields/NameFields.stories";
+import * as RewardExchangeList from "../sqm-reward-exchange-list/RewardExchangeList.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -92,8 +94,10 @@ const stories = [
   Hero,
   ReferralIframe,
   NameFields,
+  RewardExchangeList,
   UseRewardExchangeList,
   UseTaskCard,
+  UseRewardsTable
 ];
 
 /**
