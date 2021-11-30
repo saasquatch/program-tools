@@ -165,7 +165,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           <sl-button
             class="action"
             size="small"
-            onClick={() => alert(buttonLink)}
+            onClick={() => window.open(buttonLink)}
             disabled={showComplete && repeatable == false}
           >
             {showComplete && repeatable == false
