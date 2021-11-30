@@ -181,10 +181,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   }
 
   function chooseReward() {
-    const nextStage =
-      selectedItem?.ruleType === "FIXED_GLOBAL_REWARD"
-        ? "confirmation"
-        : "chooseAmount";
+    const nextStage = "chooseAmount";
 
     // console.log({ nextStage, ruleType: selectedItem?.ruleType });
     return [
@@ -193,7 +190,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           display: "grid",
           justifyContent: "center",
           gap: "20px",
-          gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
         }}
       >
         {data.exchangeList?.map((item: ExchangeItem) => {
@@ -209,7 +206,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           const amount =
             item.ruleType === "FIXED_GLOBAL_REWARD"
               ? item.prettySourceValue
-              : `${item.sourceMinValue} to ${item.sourceMaxValue} ${item.sourceUnit}`;
+              : `${item.sourceMinValue} to ${item.prettySourceMaxValue}`;
 
           return (
             <div
@@ -233,7 +230,15 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     }
                   />
                 }
-                <p style={{ margin: "0", flex: "1", fontSize: "90%" }}>
+                <p
+                  style={{
+                    textAlign: "left",
+                    margin: "0",
+                    flex: "1",
+                    fontSize: "90%",
+					padding: "8px"
+                  }}
+                >
                   <b>{item.description}</b>
                   <p style={{ margin: "0" }}>{amount}</p>
                   {item.unavailableReasonCode && (
@@ -310,10 +315,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   //   console.log({ selectedItem, selectedStep });
   function confirmation() {
-    const previousStage =
-      selectedItem?.ruleType === "FIXED_GLOBAL_REWARD"
-        ? "chooseReward"
-        : "chooseAmount";
+    const previousStage = "chooseAmount";
 
     return (
       <div>
@@ -420,10 +422,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     let previousStage: Stages = "";
 
     if (states.redeemStage === "confirmation") {
-      previousStage =
-        selectedItem?.ruleType === "FIXED_GLOBAL_REWARD"
-          ? "chooseReward"
-          : "chooseAmount";
+      previousStage = "chooseAmount";
     } else if (states.redeemStage === "chooseAmount") {
       previousStage = "chooseReward";
     }
@@ -444,7 +443,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
-      <div style={{ width: "700px" }}>
+      <div style={{ width: "1920px" }}>
         {/* <sl-drawer
           ref={(ref) => (refs.drawerRef.current = ref)}
           placement="right"
