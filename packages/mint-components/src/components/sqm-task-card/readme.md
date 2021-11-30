@@ -15,11 +15,11 @@
 | `dateExpires`     | `date-expires`      |                                                                                    | `string`  | `undefined`                                          |
 | `description`     | `description`       |                                                                                    | `string`  | `"Description Text"`                                 |
 | `goal`            | `goal`              |                                                                                    | `number`  | `1`                                                  |
-| `points`          | `points`            |                                                                                    | `number`  | `0`                                                  |
 | `progressBarUnit` | `progress-bar-unit` |                                                                                    | `string`  | `undefined`                                          |
 | `repeatable`      | `repeatable`        |                                                                                    | `boolean` | `false`                                              |
+| `rewardAmount`    | `reward-amount`     |                                                                                    | `number`  | `0`                                                  |
 | `rewardUnit`      | `reward-unit`       |                                                                                    | `string`  | `"Points"`                                           |
-| `showExpire`      | `show-expire`       |                                                                                    | `boolean` | `false`                                              |
+| `showExpiry`      | `show-expiry`       |                                                                                    | `boolean` | `false`                                              |
 | `showProgressBar` | `show-progress-bar` |                                                                                    | `boolean` | `false`                                              |
 | `statType`        | `stat-type`         | Select what type of stat to display for the goal. Manual paths are also supported. | `string`  | `"/programGoals/count/Referral-Started%2Freferrals"` |
 | `steps`           | `steps`             |                                                                                    | `boolean` | `false`                                              |
