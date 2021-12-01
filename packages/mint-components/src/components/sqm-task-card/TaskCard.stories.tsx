@@ -55,7 +55,7 @@ export const NotRepeatable = () => {
     showExpiry: false,
     goal: 500,
     repeatable: false,
-    unit: "$",
+    progressBarUnit: "$",
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Visit our Store",
@@ -125,7 +125,7 @@ export const NotRepeatableWithExpiry = () => {
     cardTitle: "Spend $500 at our Store",
     showProgressBar: true,
     goal: 500,
-    unit: "$",
+    progressBarUnit: "$",
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Visit our Store",
@@ -195,7 +195,7 @@ export const Repeatable = () => {
     showProgressBar: true,
     repeatable: true,
     goal: 500,
-    unit: "$",
+    progressBarUnit: "$",
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Visit our Store",
@@ -266,7 +266,7 @@ export const RepeatableWithExpiry = () => {
     showProgressBar: true,
     repeatable: true,
     goal: 500,
-    unit: "$",
+    progressBarUnit: "$",
     description:
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     buttonText: "Visit our Store",

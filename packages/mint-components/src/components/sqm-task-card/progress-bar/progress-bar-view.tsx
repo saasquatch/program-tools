@@ -50,7 +50,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
     ProgressBar: {
       "& .progress-bar": {
         height: "15px",
-        marginTop: steps ? "var(--sl-spacing-x-large)" : "var(--sl-spacing-xx-large)",
+        marginTop: steps ? "var(--sl-spacing-x-medium)" : "var(--sl-spacing-large)",
         marginBottom: "var(--sl-spacing-xx-large)",
         marginRight: "var(--sl-spacing-x-small)",
         fontSize: "var(--sl-font-size-x-small)",

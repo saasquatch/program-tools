@@ -61,8 +61,8 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         lineHeight: "var(--sl-line-height-dense)",
       },
       "& .main.complete": {
-        background: "var(--sl-color-primary-50)",
-        borderColor: "var(--sl-color-primary-700)",
+        background: "var(--sl-color-success-50)",
+        borderColor: "var(--sl-color-success-700)",
       },
     },
     Header: {
@@ -70,7 +70,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       "& .icon": {
         alignSelf: "center",
         lineHeight: "0",
-        color: "var(--sl-color-primary-700)",
+        color: "var(--sl-color-success-700)",
         fontSize: "var(--sl-font-size-large)",
         marginRight: "var(--sl-spacing-x-small)",
       },
@@ -94,7 +94,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     Title: {
       color: "var(--sl-color-black)",
       fontSize: "var(--sl-font-size-small)",
-	  fontWeight: "var(--sl-font-weight-semibold)",
+      fontWeight: "var(--sl-font-weight-semibold)",
     },
     Footer: {
       display: "flex",
@@ -104,8 +104,12 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       },
       "& .text": {
         marginTop: "auto",
+		verticalAlign: "text-bottom",
         fontSize: "var(--sl-font-size-x-small)",
         color: "var(--sl-color-gray-600)",
+      },
+      "& .success": {
+        color: "var(--sl-color-success-600)!important",
       },
       "& .action": {
         marginTop: "auto",
@@ -117,6 +121,10 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         border: "1px solid var(--sl-color-primary-500)",
         borderRadius: "var(--sl-border-radius-medium)",
       },
+      "& sl-button.action.completed::part(base) ": {
+        border: "1px solid var(--sl-color-gray-300)!important",
+        background: "var(--sl-color-gray-300)!important",
+      },
     },
   };
 
@@ -126,6 +134,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
 
   const showComplete = progress >= goal;
   const repetitions = showProgressBar ? Math.floor(progress / goal) : progress;
+  const completeTask = showComplete && repeatable === false;
 
   console.log({ showProgressBar, loading });
   return (
@@ -148,8 +157,10 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           <span class="text">
             {repeatable && (
               <div>
-                <span class="icon">{arrow_left_right}</span>
-                <span>
+                <span class={repetitions > 0 ? "icon success" : "icon"}>
+                  {arrow_left_right}
+                </span>
+                <span class={repetitions > 0 ? "success" : ""}>
                   {"Completed "}
                   {repetitions}
                   {" times"}
@@ -164,14 +175,12 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           </span>
 
           <sl-button
-            class="action"
+            class={completeTask ? "action completed" : "action"}
             size="small"
             onClick={() => window.open(buttonLink)}
-            disabled={showComplete && repeatable == false}
+            disabled={completeTask}
           >
-            {showComplete && repeatable == false
-              ? "Task completed"
-              : buttonText}
+            {buttonText}
           </sl-button>
         </div>
       </div>
