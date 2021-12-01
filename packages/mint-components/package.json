@@ -70,7 +70,7 @@
     "graphql-request": "^3.4.0",
     "graphql-tag": "^2.11.0",
     "highlight.js": "^10.6.0",
-    "jsonpointer": "^4.1.0",
+    "jsonpointer": "^5.0.0",
     "jss-preset-default": "^10.7.1",
     "jwt-decode": "^3.1.2",
     "libphonenumber-js": "^1.9.23",
