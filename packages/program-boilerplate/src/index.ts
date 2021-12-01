@@ -60,12 +60,11 @@ export {
  * @return {Object} The express server
  */
 export function webtask(program: Program = {}): express.Application {
-  const bodyParser = require("body-parser");
   const compression = require("compression");
 
   const app = express();
 
-  app.use(bodyParser.json());
+  app.use(express.json({ limit: process.env.MAX_PAYLOAD_SIZE || "1mb" }));
   app.use(compression());
 
   // Enforce HTTPS. The server does not redirect http -> https
