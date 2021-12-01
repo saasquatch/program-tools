@@ -110,6 +110,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       },
       "& .success": {
         color: "var(--sl-color-success-600)!important",
+        fontWeight: "var(--sl-font-weight-semibold)",	
       },
       "& .action": {
         marginTop: "auto",
@@ -134,7 +135,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
 
   const showComplete = progress >= goal;
   const repetitions = showProgressBar ? Math.floor(progress / goal) : progress;
-  const completeTask = showComplete && repeatable === false;
+  const taskComplete = showComplete && repeatable === false;
 
   console.log({ showProgressBar, loading });
   return (
@@ -151,7 +152,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         {showProgressBar && loading ? (
           <sl-skeleton style={{ width: "98%", margin: "0 auto" }} />
         ) : (
-          showProgressBar && <ProgressBarView {...props} />
+          showProgressBar && <ProgressBarView {...props} complete={taskComplete} />
         )}
         <div class={sheet.classes.Footer}>
           <span class="text">
@@ -175,10 +176,10 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           </span>
 
           <sl-button
-            class={completeTask ? "action completed" : "action"}
+            class={taskComplete ? "action completed" : "action"}
             size="small"
             onClick={() => window.open(buttonLink)}
-            disabled={completeTask}
+            disabled={taskComplete}
           >
             {buttonText}
           </sl-button>

@@ -43,7 +43,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   const style = {
     Container: {
       position: "relative",
-      display: "flex",
     },
     CardContainer: {
       "&:hover": {
@@ -443,7 +442,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
-      <div style={{ width: "1920px" }}>
+      <div>
         {/* <sl-drawer
           ref={(ref) => (refs.drawerRef.current = ref)}
           placement="right"
