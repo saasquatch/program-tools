@@ -223,11 +223,9 @@ export function useRewardsTable(
     },
     callbacks: {
       nextPage: () => {
-        if (states.currentPage === 0) callbacks.setLimit(props.perPage);
         callbacks.setCurrentPage(states.currentPage + 1);
       },
       prevPage: () => {
-        if (states.currentPage === 1) callbacks.setLimit(props.perPage - 1);
         callbacks.setCurrentPage(states.currentPage - 1);
       },
     },
