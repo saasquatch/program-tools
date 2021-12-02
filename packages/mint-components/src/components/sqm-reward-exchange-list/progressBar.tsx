@@ -32,19 +32,23 @@ function Dot({
         style={{
           backgroundColor: completed ? "#9E9E9E" : "#FFF",
           border: active
-            ? "2px solid #9E9E9E"
+            ? "3px solid #9E9E9E"
             : incomplete
-            ? "2px solid #E5E5E5"
-            : "none",
+            ? "3px solid #E5E5E5"
+            : "3px solid #9E9E9E",
           borderRadius: "50%",
-          width: completed ? "14px" : "10px",
-          height: completed ? "14px" : "10px",
-          margin: "-5px auto 0px",
+          width: "10px",
+          height: "10px",
+          margin: "-6px auto 0px",
           zIndex: "1",
           boxSizing: "content-box",
         }}
       >
-        {completed && <CheckMark />}
+        {completed && (
+          <div style={{ top: "-6px", position: "relative" }}>
+            <CheckMark />
+          </div>
+        )}
       </div>
     </div>
   );

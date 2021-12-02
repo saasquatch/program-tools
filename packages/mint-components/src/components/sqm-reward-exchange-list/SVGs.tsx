@@ -38,7 +38,6 @@ export const ExchangeArrows = () => (
 
 export const CheckMark = () => (
   <svg
-    style={{ top: "-4px", position: "relative", left: "2px" }}
     xmlns="http://www.w3.org/2000/svg"
     width="10"
     height="7"

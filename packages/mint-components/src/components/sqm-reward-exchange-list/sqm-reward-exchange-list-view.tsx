@@ -2,7 +2,7 @@ import { getAssetPath, h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { ProgressBar } from "./progressBar";
-import { LeftArrow, ExchangeArrows } from "./SVGs";
+import { LeftArrow, ExchangeArrows, CheckMark } from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
 
 export type RewardExchangeViewProps = {
@@ -42,11 +42,12 @@ const stageProgressList = {
 export function RewardExchangeView(props: RewardExchangeViewProps) {
   const style = {
     Container: {
+      padding: "var(--sl-spacing-medium)",
       position: "relative",
     },
     CardContainer: {
-      "&:hover": {
-        boxShadow: "0 3px 10px #87ceeb6e!important",
+      "&:active": {
+        //boxShadow: "0 3px 10px #87ceeb6e!important",
       },
     },
     Base: {
@@ -55,8 +56,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       textAlign: "center",
       height: "120px",
       "&::part(base)": {
+        boxShadow: "none",
         width: "100%",
-        maxWidth: "350px",
+        // maxWidth: "350px",
         display: "flex",
         margin: "0 auto",
       },
@@ -132,6 +134,33 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         },
       },
     },
+    KutayCard: {
+      "&::part(base)": {
+        boxShadow: "none",
+      },
+    },
+    KutayButton: {
+      display: "flex",
+      flexWrap: "wrap",
+      margin: "var(--sl-spacing-medium) 0",
+      "& .cancel": {
+        width: "150px",
+        marginLeft: "auto",
+        marginRight: "var(--sl-spacing-medium)",
+        "&::part(base)": {
+          fontWeight: "var(--sl-font-weight-normal)",
+          color: "var(--sl-color-neutral-1000)",
+        },
+      },
+      "& .continue": {
+        width: "150px",
+        "&::part(base)": {
+          background: "var(--sl-color-neutral-500)",
+          fontWeight: "var(--sl-font-weight-normal)",
+          color: "var(--sl-color-neutral-0)",
+        },
+      },
+    },
   };
   // JSS config
   jss.setup(preset());
@@ -195,8 +224,11 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         {data.exchangeList?.map((item: ExchangeItem) => {
           const style = {
             boxShadow:
-              item.key === selectedItem?.key ? "0 1px 8px #87ceeb" : "none",
+              item.key === selectedItem?.key
+                ? "0 0 0 2px var(--sl-color-primary-500)"
+                : "none",
             marginBottom: "10px 0",
+            borderRadius: "var(--sl-border-radius-medium)",
             flex: "1",
             minWidth: "100%",
             color: !item.available && "#eee",
@@ -220,6 +252,23 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                   callbacks.setExchangeState({ selectedItem: item })
                 }
               >
+                {item.key === selectedItem?.key && (
+                  <div
+                    style={{
+                      width: "18px",
+                      height: "18px",
+                      borderRadius: "50%",
+                      background: "var(--sl-color-primary-500)",
+                      position: "relative",
+                      margin: "-9px",
+                      left: "350px",
+                    }}
+                  >
+                    <div style={{ position: "relative", top: "-6px" }}>
+                      <CheckMark />
+                    </div>
+                  </div>
+                )}
                 {
                   // item?.imageUrl &&
                   <img
@@ -235,7 +284,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     margin: "0",
                     flex: "1",
                     fontSize: "90%",
-					padding: "8px"
+                    padding: "8px",
                   }}
                 >
                   <b>{item.description}</b>
@@ -260,23 +309,40 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           );
         })}
       </div>,
-      <div class={sheet.classes.Buttons}>
+      <div class={sheet.classes.KutayButton}>
+        {/* <sl-button
+          class="cancel"
+          size="large"
+          type="text"
+        >
+          Cancel
+        </sl-button> */}
         <sl-button
+          class="continue"
+          size="large"
           onClick={() => callbacks.setStage(nextStage)}
-          style={{ display: "block" }}
-          class={sheet.classes.Button}
           disabled={!states.selectedItem}
         >
           Continue
         </sl-button>
-        <a
-          //   onClick={() => refs.drawerRef.current?.hide()}
-          style={{ display: "block" }}
-          class={sheet.classes.Button}
-        >
-          Cancel
-        </a>
       </div>,
+      //   <div class={sheet.classes.Buttons}>
+      //     <sl-button
+      //       onClick={() => callbacks.setStage(nextStage)}
+      //       style={{ display: "block" }}
+      //       class={sheet.classes.Button}
+      //       disabled={!states.selectedItem}
+      //     >
+      //       Continue
+      //     </sl-button>
+      //     <a
+      //       //   onClick={() => refs.drawerRef.current?.hide()}
+      //       style={{ display: "block" }}
+      //       class={sheet.classes.Button}
+      //     >
+      //       Cancel
+      //     </a>
+      //   </div>,
     ];
   }
 
@@ -291,10 +357,34 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         </div>
         <p>{selectedItem?.description}</p>
         <div class={sheet.classes.InputBox}>{input}</div>
-        <div class={sheet.classes.Buttons}>
+        <div class={sheet.classes.KutayButton}>
+          <sl-button
+            class="cancel"
+            size="large"
+            type="text"
+            onClick={() => callbacks.setStage("chooseReward")}
+          >
+            Cancel
+          </sl-button>
+          <sl-button
+            class="continue"
+            size="large"
+            onClick={() => callbacks.setStage("confirmation")}
+            disabled={
+              states.selectedItem.ruleType !== "FIXED_GLOBAL_REWARD" ||
+              (input && !states.amount)
+            }
+          >
+            Continue to confirmation
+          </sl-button>
+        </div>
+        {/* <div class={sheet.classes.Buttons}>
           <sl-button
             onClick={() => callbacks.setStage("confirmation")}
-            disabled={input && !states.amount}
+            disabled={
+              states.selectedItem.ruleType !== "FIXED_GLOBAL_REWARD" ||
+              (input && !states.amount)
+            }
             style={{ display: "block" }}
             class={sheet.classes.Button}
           >
@@ -307,7 +397,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           >
             Back
           </a>
-        </div>
+        </div> */}
       </div>
     );
   }
@@ -449,7 +539,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           class={sheet.classes.Drawer}
           open={stageList.indexOf(states.redeemStage) >= 0}
         > */}
-        <BackButton />
+        {/* <BackButton /> */}
         {stageMap()}
         {currentStage && currentStage()}
         {states.exchangeError &&

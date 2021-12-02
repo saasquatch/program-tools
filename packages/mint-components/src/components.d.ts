@@ -1041,6 +1041,8 @@ export namespace Components {
         "cardTitle": string;
         /**
           * @uiName Date Goal Expires
+          * @uiWidget DateRange
+          * @uiOptions {"allowPastDates":true, "months": 1}
          */
         "dateExpires"?: string;
         /**
@@ -2543,6 +2545,8 @@ declare namespace LocalJSX {
         "cardTitle"?: string;
         /**
           * @uiName Date Goal Expires
+          * @uiWidget DateRange
+          * @uiOptions {"allowPastDates":true, "months": 1}
          */
         "dateExpires"?: string;
         /**
