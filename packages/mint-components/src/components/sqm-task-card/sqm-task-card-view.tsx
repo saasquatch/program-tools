@@ -37,6 +37,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     buttonText,
     buttonLink,
     loading,
+    steps,
   } = props;
 
   console.log({ props });
@@ -55,7 +56,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         boxSizing: "border-box",
         minWidth: "347px",
         background: "var(--sl-color-white)",
-        border: "1px solid var(--sl-color-gray-300)",
+        border: "1px solid var(--sl-color-neutral-300)",
         borderRadius: "var(--sl-border-radius-medium)",
         fontSize: "var(--sl-font-size-small)",
         lineHeight: "var(--sl-line-height-dense)",
@@ -85,7 +86,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       "& .text": {
         alignSelf: "end",
         textTransform: "uppercase",
-        color: "var(--sl-color-gray-600)",
+        color: "var(--sl-color-neutral-600)",
         fontSize: "var(--sl-font-size-x-small)",
         lineHeight: "var(--sl-font-size-medium)",
         marginRight: "var(--sl-spacing-xx-small)",
@@ -104,27 +105,25 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       },
       "& .text": {
         marginTop: "auto",
-		verticalAlign: "text-bottom",
+        verticalAlign: "text-bottom",
         fontSize: "var(--sl-font-size-x-small)",
-        color: "var(--sl-color-gray-600)",
+        color: "var(--sl-color-neutral-600)",
       },
       "& .success": {
         color: "var(--sl-color-success-600)!important",
-        fontWeight: "var(--sl-font-weight-semibold)",	
+        fontWeight: "var(--sl-font-weight-semibold)",
       },
       "& .action": {
         marginTop: "auto",
         marginLeft: "auto",
-      },
-      "& sl-button.action::part(base) ": {
-        color: "var(--sl-color-white)",
-        background: "var(--sl-color-primary-500)",
-        border: "1px solid var(--sl-color-primary-500)",
-        borderRadius: "var(--sl-border-radius-medium)",
-      },
-      "& sl-button.action.completed::part(base) ": {
-        border: "1px solid var(--sl-color-gray-300)!important",
-        background: "var(--sl-color-gray-300)!important",
+        "&::part(base)": {
+          color: "var(--sl-color-white)",
+          borderRadius: "var(--sl-border-radius-medium)",
+        },
+        "&.completed::part(base)": {
+          border: "1px solid var(--sl-color-neutral-300)",
+          background: "var(--sl-color-neutral-300)",
+        },
       },
     },
   };
@@ -148,11 +147,13 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           <span class="text">{rewardUnit}</span>
         </div>
         <div class={sheet.classes.Title}>{cardTitle}</div>
-        <Details description={description} />
+        <Details {...props} />
         {showProgressBar && loading ? (
           <sl-skeleton style={{ width: "98%", margin: "0 auto" }} />
         ) : (
-          showProgressBar && <ProgressBarView {...props} complete={taskComplete} />
+          showProgressBar && (
+            <ProgressBarView {...props} complete={taskComplete} />
+          )
         )}
         <div class={sheet.classes.Footer}>
           <span class="text">
@@ -162,21 +163,16 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                   {arrow_left_right}
                 </span>
                 <span class={repetitions > 0 ? "success" : ""}>
-                  {"Completed "}
-                  {repetitions}
-                  {" times"}
+                  {`Completed ${repetitions} times`}
                 </span>
               </div>
             )}
-            {showExpiry && (
-              <span>
-                {"Ends "} {dateExpires}
-              </span>
-            )}
+            {showExpiry && <span>{`Ends ${dateExpires}`}</span>}
           </span>
 
           <sl-button
             class={taskComplete ? "action completed" : "action"}
+            type="primary"
             size="small"
             onClick={() => window.open(buttonLink)}
             disabled={taskComplete}
@@ -189,7 +185,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   );
 }
 
-function Details(props: { description: string }): VNode {
+function Details(props): VNode {
   const style = {
     Description: {
       "& input[type=checkbox]": {
@@ -202,7 +198,7 @@ function Details(props: { description: string }): VNode {
         position: "absolute",
         top: "var(--sl-spacing-medium)",
         right: "var(--sl-spacing-medium)",
-        color: "var(--sl-color-gray-700)",
+        color: "var(--sl-color-neutral-700)",
         fontSize: "var(--sl-font-size-large)",
         "& :hover": {
           color: "var(--sl-color-primary-700)",
@@ -211,16 +207,22 @@ function Details(props: { description: string }): VNode {
         transition: "transform var(--sl-transition-medium) ease",
       },
       "& input:checked ~ .summary": {
-        transition: "max-height var(--sl-transition-medium) ease",
+        transition: "all var(--sl-transition-medium) ease",
         maxHeight: "300px",
+        marginBottom: props.steps
+          ? "var(--sl-spacing-large)"
+          : props.showProgressBar
+          ? "var(--sl-spacing-xx-large)"
+          : "var(--sl-spacing-large)",
       },
       "& .summary": {
         display: "block",
         overflow: "hidden",
-        color: "var(--sl-color-gray-700)",
-        fontSize: "var(--sl-font-size-x-small)",
+        color: "var(--sl-color-neutral-700)",
+        fontSize: "var(--sl-font-size-small)",
         maxHeight: "0px",
-        transition: "max-height var(--sl-transition-fast) ease-out",
+        transition: "all var(--sl-transition-fast) ease-out",
+        marginBottom: "var(--sl-spacing-medium)",
       },
     },
   };
