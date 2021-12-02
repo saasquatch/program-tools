@@ -473,6 +473,10 @@ export namespace Components {
          */
         "emailLabel": string;
         /**
+          * @uiName Routing path to login page
+         */
+        "loginPath": string;
+        /**
           * @uiName Password reset button text
          */
         "submitLabel": string;
@@ -499,6 +503,10 @@ export namespace Components {
          */
         "forgotPasswordLabel": string;
         /**
+          * @uiName Routing path to forgot password page
+         */
+        "forgotPasswordPath": string;
+        /**
           * @uiName Page navigated to after sign-in
          */
         "nextPage": string;
@@ -514,6 +522,10 @@ export namespace Components {
           * @uiName Label for register navigation button
          */
         "registerLabel": string;
+        /**
+          * @uiName Routing path to register page
+         */
+        "registerPath": string;
         /**
           * @uiName Label for submit button
          */
@@ -608,6 +620,10 @@ export namespace Components {
           * @uiName Label for login navigation button
          */
         "loginLabel": string;
+        /**
+          * @uiName Routing path to login page
+         */
+        "loginPath": string;
         /**
           * @uiName Page navigated to after registration
          */
@@ -1843,6 +1859,10 @@ declare namespace LocalJSX {
          */
         "emailLabel"?: string;
         /**
+          * @uiName Routing path to login page
+         */
+        "loginPath"?: string;
+        /**
           * @uiName Password reset button text
          */
         "submitLabel"?: string;
@@ -1869,6 +1889,10 @@ declare namespace LocalJSX {
          */
         "forgotPasswordLabel"?: string;
         /**
+          * @uiName Routing path to forgot password page
+         */
+        "forgotPasswordPath"?: string;
+        /**
           * @uiName Page navigated to after sign-in
          */
         "nextPage"?: string;
@@ -1884,6 +1908,10 @@ declare namespace LocalJSX {
           * @uiName Label for register navigation button
          */
         "registerLabel"?: string;
+        /**
+          * @uiName Routing path to register page
+         */
+        "registerPath"?: string;
         /**
           * @uiName Label for submit button
          */
@@ -1978,6 +2006,10 @@ declare namespace LocalJSX {
           * @uiName Label for login navigation button
          */
         "loginLabel"?: string;
+        /**
+          * @uiName Routing path to login page
+         */
+        "loginPath"?: string;
         /**
           * @uiName Page navigated to after registration
          */

@@ -33,6 +33,11 @@ export class PortalForgotPassword {
   submitLabel: string = "Request Password Reset";
 
   /**
+   * @uiName Routing path to login page
+   */
+  @Prop() loginPath: string = "/login";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -47,7 +52,7 @@ export class PortalForgotPassword {
   render() {
     const { states, callbacks } = isDemo()
       ? usePortalForgotPasswordDemo(this)
-      : usePortalForgotPassword();
+      : usePortalForgotPassword(this);
 
     const content = {
       secondaryButton: (
@@ -55,7 +60,7 @@ export class PortalForgotPassword {
           <sl-button
             type="text"
             disabled={states.loading}
-            onClick={() => navigation.push("/login")}
+            onClick={() => navigation.push(states.loginPath)}
           >
             Sign In
           </sl-button>

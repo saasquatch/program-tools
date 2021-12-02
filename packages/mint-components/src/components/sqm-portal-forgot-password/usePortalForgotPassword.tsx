@@ -2,7 +2,7 @@ import jsonpointer from "jsonpointer";
 import { useEffect, useState } from "@saasquatch/universal-hooks";
 import { useRequestPasswordResetEmailMutation } from "@saasquatch/component-boilerplate";
 
-export function usePortalForgotPassword() {
+export function usePortalForgotPassword(props) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [request, { loading, data, errors }] =
@@ -41,6 +41,7 @@ export function usePortalForgotPassword() {
       loading,
       error: errors?.response?.errors?.[0]?.message || error,
       success,
+      loginPath:props.loginPath
     },
     callbacks: {
       submit,
