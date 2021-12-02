@@ -144,7 +144,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       flexWrap: "wrap",
       margin: "var(--sl-spacing-medium) 0",
       "& .cancel": {
-        width: "150px",
+        width: "20%",
         marginLeft: "auto",
         marginRight: "var(--sl-spacing-medium)",
         "&::part(base)": {
@@ -153,7 +153,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         },
       },
       "& .continue": {
-        width: "150px",
+        width: "20%",
         "&::part(base)": {
           background: "var(--sl-color-neutral-500)",
           fontWeight: "var(--sl-font-weight-normal)",

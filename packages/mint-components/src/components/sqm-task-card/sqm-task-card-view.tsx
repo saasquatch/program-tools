@@ -23,23 +23,6 @@ export type TaskCardViewProps = {
 } & ProgressBarProps;
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
-  const {
-    rewardAmount,
-    cardTitle,
-    description,
-    showProgressBar,
-    progress = 0,
-    goal,
-    rewardUnit,
-    repeatable,
-    showExpiry,
-    dateExpires,
-    buttonText,
-    buttonLink,
-    loading,
-    steps,
-  } = props;
-
   console.log({ props });
 
   const checkmark_circle = SVGs.checkmark_circle();
@@ -132,53 +115,75 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
-  const showComplete = progress >= goal;
-  const repetitions = showProgressBar ? Math.floor(progress / goal) : progress;
-  const taskComplete = showComplete && repeatable === false;
+  const showComplete = props.progress >= props.goal;
+  const repetitions = props.showProgressBar
+    ? Math.floor(props.progress / props.goal)
+    : props.progress;
+  const taskComplete = showComplete && props.repeatable === false;
 
-  console.log({ showProgressBar, loading });
   return (
     <div class={sheet.classes.TaskCard}>
       <div class={taskComplete ? "main complete" : "main"}>
         <style type="text/css">{styleString}</style>
         <div class={sheet.classes.Header}>
-          {showComplete && <span class="icon">{checkmark_circle}</span>}
-          <span class="value">{rewardAmount}</span>
-          <span class="text">{rewardUnit}</span>
+          {props.loading ? (
+            <sl-skeleton style={{ width: "22%", margin: "0" }} />
+          ) : (
+            <div>
+              {showComplete && <span class="icon">{checkmark_circle}</span>}
+              <span class="value">{props.rewardAmount}</span>
+              <span class="text">{props.rewardUnit}</span>
+            </div>
+          )}
         </div>
-        <div class={sheet.classes.Title}>{cardTitle}</div>
-        <Details {...props} />
-        {showProgressBar && loading ? (
-          <sl-skeleton style={{ width: "98%", margin: "0 auto" }} />
+
+        {props.loading ? (
+          <sl-skeleton style={{ width: "42%", margin: "0 16px" }} />
         ) : (
-          showProgressBar && (
+          <div class={sheet.classes.Title}>{props.cardTitle}</div>
+        )}
+        {props.loading ? (
+          <sl-skeleton style={{ width: "51%", margin: "12px 16px" }} />
+        ) : (
+          <Details {...props} />
+        )}
+        {props.showProgressBar && props.loading ? (
+          <sl-skeleton style={{ width: "92%", margin: "0 auto" }} />
+        ) : (
+          props.showProgressBar && (
             <ProgressBarView {...props} complete={taskComplete} />
           )
         )}
         <div class={sheet.classes.Footer}>
-          <span class="text">
-            {repeatable && (
-              <div>
-                <span class={repetitions > 0 ? "icon success" : "icon"}>
-                  {arrow_left_right}
-                </span>
-                <span class={repetitions > 0 ? "success" : ""}>
-                  {`Completed ${repetitions} times`}
-                </span>
-              </div>
-            )}
-            {showExpiry && <span>{`Ends ${dateExpires}`}</span>}
-          </span>
+          {props.loading ? (
+            <sl-skeleton style={{ width: "25%", marginLeft: "auto" }} />
+          ) : (
+            <div style={{ display: "contents" }}>
+              <span class="text">
+                {props.repeatable && (
+                  <div>
+                    <span class={repetitions > 0 ? "icon success" : "icon"}>
+                      {arrow_left_right}
+                    </span>
+                    <span class={repetitions > 0 ? "success" : ""}>
+                      {`Completed ${repetitions} times`}
+                    </span>
+                  </div>
+                )}
+                {props.showExpiry && <span>{`Ends ${props.dateExpires}`}</span>}
+              </span>
 
-          <sl-button
-            class={taskComplete ? "action completed" : "action"}
-            type="primary"
-            size="small"
-            onClick={() => window.open(buttonLink)}
-            disabled={taskComplete}
-          >
-            {buttonText}
-          </sl-button>
+              <sl-button
+                class={taskComplete ? "action completed" : "action"}
+                type="primary"
+                size="small"
+                onClick={() => window.open(props.buttonLink)}
+                disabled={taskComplete}
+              >
+                {props.buttonText}
+              </sl-button>
+            </div>
+          )}
         </div>
       </div>
     </div>
