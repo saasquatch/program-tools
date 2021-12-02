@@ -1,6 +1,6 @@
 import React from "react"
 import { Icon } from "../Icon"
-import { Skeleton, Content, Action, DataTable, Divider, Popover, Row, Pagination } from "../DataTable"
+import { Skeleton, Content, Action, DataTable, Divider, Popover, Row, Pagination } from "."
 import { Avatar } from "../Avatar"
 import { Text } from "../Text"
 

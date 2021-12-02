@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react"
 import { SecondaryButton } from "../Button"
-import { Modal, ModalContent, ModalContentDivider, ModalContentAction, ModalContentText, ModalContentBanner, ModalContentTopAction, ModalContentCode } from "../Modal"
+import { Modal, ModalContent, ModalContentDivider, ModalContentAction, ModalContentText, ModalContentBanner, ModalContentTopAction, ModalContentCode } from "."
 import { Dropdown } from "../Dropdown"
 import { Input } from "../Input"
 import { RadioAction } from "../RadioAction"

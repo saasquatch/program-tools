@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IconButton } from "../Button";
-import { Input } from "../Input";
+import { Input } from ".";
 
 export default {
   title: "Components / Input",

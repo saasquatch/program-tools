@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Tooltip } from "../Tooltip"
+import { Tooltip } from "."
 import { PrimaryButton, SecondaryButton } from "../Button"
 import styled from "styled-components"
 import { Input } from "../Input"

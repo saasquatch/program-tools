@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RadioCard, RadioCardGroup } from "../RadioCard";
+import { RadioCard, RadioCardGroup } from ".";
 
 export default {
   title: "Components / RadioCard",

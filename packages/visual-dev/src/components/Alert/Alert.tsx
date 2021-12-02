@@ -3,16 +3,16 @@ import styled, { CSSProp } from "styled-components";
 import { Icon } from "../Icon";
 import * as Styles from "./Styles";
 
-type AlertProps = OptionProps &
+export type AlertProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   title: string;
   children: React.ReactNode;
 }
 
-interface StyleProps {
+export interface StyleProps {
   type: "critical" | "warning" | "success" | "info";
   css?: CSSProp;
 }

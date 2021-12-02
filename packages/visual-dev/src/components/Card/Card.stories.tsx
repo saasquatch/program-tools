@@ -1,6 +1,6 @@
 import React from "react"
 import { PrimaryButton, SecondaryButton } from "../Button"
-import { Card, CardEdit, CardLong } from "../Card"
+import { Card, CardEdit, CardLong } from "."
 
 export default {
   title: "Components / Card",

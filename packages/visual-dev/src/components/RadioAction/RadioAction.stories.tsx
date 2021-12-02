@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { RadioAction, RadioActionGroup } from '../RadioAction'
+import { RadioAction, RadioActionGroup } from '.'
 
 export default {
   title: 'Components / RadioAction',

@@ -1,7 +1,7 @@
 import React from 'react'
 import root from 'react-shadow/styled-components'
 import styled from 'styled-components'
-import { Radio, RadioGroup } from '../Radio'
+import { Radio, RadioGroup } from '.'
 
 export default {
   title: 'Components / Radio',

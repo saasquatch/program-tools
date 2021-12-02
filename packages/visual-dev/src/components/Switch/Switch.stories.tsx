@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Switch } from '../Switch'
+import { Switch } from '.'
 
 export default {
   title: 'Components / Switch',
