@@ -7,28 +7,51 @@
 
 ## Properties
 
-| Property       | Attribute       | Description                                                                                                                                                                                                      | Type                                                                                                                                                                                                                                                                                                                                           | Default     |
-| -------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `demoData`     | --              |                                                                                                                                                                                                                  | `{ states?: { hasPrev: boolean; hasNext: boolean; show: "loading" \| "empty" \| "rows"; namespace: string; }; data?: { textOverrides: { showLabels: boolean; prevLabel: string; moreLabel: string; }; }; elements?: { columns: VNode[]; rows: VNode[][]; loading?: boolean; emptyElement?: VNode; loadingElement?: VNode; page?: number; }; }` | `undefined` |
-| `moreLabel`    | `more-label`    |                                                                                                                                                                                                                  | `string`                                                                                                                                                                                                                                                                                                                                       | `"Next"`    |
-| `perPage`      | `per-page`      |                                                                                                                                                                                                                  | `number`                                                                                                                                                                                                                                                                                                                                       | `3`         |
-| `prevLabel`    | `prev-label`    |                                                                                                                                                                                                                  | `string`                                                                                                                                                                                                                                                                                                                                       | `"Prev"`    |
-| `programId`    | `program-id`    | Filters to only show rewards in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all rewards from all programs. | `string`                                                                                                                                                                                                                                                                                                                                       | `undefined` |
-| `showLabels`   | `show-labels`   |                                                                                                                                                                                                                  | `boolean`                                                                                                                                                                                                                                                                                                                                      | `true`      |
-| `showReferrer` | `show-referrer` |                                                                                                                                                                                                                  | `boolean`                                                                                                                                                                                                                                                                                                                                      | `false`     |
+| Property      | Attribute      | Description | Type      | Default     |
+| ------------- | -------------- | ----------- | --------- | ----------- |
+| `columnTitle` | `column-title` |             | `string`  | `"Rewards"` |
+| `hideDetails` | `hide-details` |             | `boolean` | `false`     |
+
+
+## Methods
+
+### `renderCell(data: Reward[]) => Promise<any>`
+
+
+
+#### Returns
+
+Type: `Promise<any>`
+
+
+
+### `renderLabel() => Promise<string>`
+
+
+
+#### Returns
+
+Type: `Promise<string>`
+
+
 
 
 ## Dependencies
 
+### Used by
+
+ - [sqm-stencilbook](../sqm-stencilbook)
+
 ### Depends on
 
-- [sqm-text](../sqm-text)
+- [sqm-referral-table-rewards-cell](../sqm-referral-table/cells)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqm-rewards-table --> sqm-text
-  style sqm-rewards-table fill:#f9f,stroke:#333,stroke-width:4px
+  sqm-rewards-table-column --> sqm-referral-table-rewards-cell
+  sqm-stencilbook --> sqm-rewards-table-column
+  style sqm-rewards-table-column fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

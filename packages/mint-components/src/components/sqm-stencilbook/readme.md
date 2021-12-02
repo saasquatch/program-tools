@@ -19,6 +19,8 @@
 - [sqm-form-message](../sqm-form-message)
 - [sqm-divided-layout](../sqm-divided-layout)
 - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
+- [sqm-rewards-table](../sqm-rewards-table)
+- [sqm-rewards-table-column](../sqm-rewards-table)
 - [sqm-task-card](../sqm-task-card)
 - [sqm-text](../sqm-text)
 - [sqm-password-field](../sqm-password-field)
@@ -50,6 +52,8 @@ graph TD;
   sqm-stencilbook --> sqm-form-message
   sqm-stencilbook --> sqm-divided-layout
   sqm-stencilbook --> sqm-reward-exchange-list
+  sqm-stencilbook --> sqm-rewards-table
+  sqm-stencilbook --> sqm-rewards-table-column
   sqm-stencilbook --> sqm-task-card
   sqm-stencilbook --> sqm-text
   sqm-stencilbook --> sqm-password-field
@@ -68,6 +72,8 @@ graph TD;
   sqm-stencilbook --> sqm-portal-change-password
   sqm-stencilbook --> sqm-referral-iframe
   sqm-edit-profile --> sqm-form-message
+  sqm-rewards-table --> sqm-text
+  sqm-rewards-table-column --> sqm-referral-table-rewards-cell
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field
   sqm-referral-table --> sqm-table-row
