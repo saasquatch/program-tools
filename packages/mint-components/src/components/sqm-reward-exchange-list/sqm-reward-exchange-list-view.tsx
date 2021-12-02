@@ -310,13 +310,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         })}
       </div>,
       <div class={sheet.classes.KutayButton}>
-        {/* <sl-button
-          class="cancel"
-          size="large"
-          type="text"
-        >
+        <sl-button class="cancel" size="large" type="text">
           Cancel
-        </sl-button> */}
+        </sl-button>
         <sl-button
           class="continue"
           size="large"
@@ -370,10 +366,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             class="continue"
             size="large"
             onClick={() => callbacks.setStage("confirmation")}
-            disabled={
-              states.selectedItem.ruleType !== "FIXED_GLOBAL_REWARD" ||
-              (input && !states.amount)
-            }
+            disabled={input && !states.amount}
           >
             Continue to confirmation
           </sl-button>
