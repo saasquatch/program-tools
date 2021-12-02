@@ -140,7 +140,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   console.log({ showProgressBar, loading });
   return (
     <div class={sheet.classes.TaskCard}>
-      <div class={showComplete ? "main complete" : "main"}>
+      <div class={taskComplete ? "main complete" : "main"}>
         <style type="text/css">{styleString}</style>
         <div class={sheet.classes.Header}>
           {showComplete && <span class="icon">{checkmark_circle}</span>}
