@@ -8,7 +8,7 @@ import { TaskCardView } from "./sqm-task-card-view";
 
 /**
  * @uiName Task Card
- * @uiOrder ["rewardAmount", "reward-unit", "card-title", "description", "*", "showExpiry", "dateExpires" ]
+ * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "*", "show-expiry", "date-expires" ]
  */
 @Component({
   tag: "sqm-task-card",
@@ -81,7 +81,7 @@ export class TaskCard {
    * @uiName Show Goal Expiry
    */
   @Prop()
-  showExpiry: boolean = false;
+  showExpiry: boolean = false;	
 
   /**
    * @uiName Date Goal Expires
