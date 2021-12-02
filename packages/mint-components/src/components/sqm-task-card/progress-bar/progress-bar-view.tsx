@@ -332,7 +332,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
             items.push(<div class={"gift bw"}>{gift2}</div>);
           } else {
             items.push(<div class={"remain"}></div>);
-            items.push(<div class={"empty"}>{progressBarUnit + i}</div>);
+            items.push(<div class={"empty"}>{i}</div>);
           }
         } else if (i == goal) {
           columns += "0fr ";
