@@ -128,73 +128,51 @@ export const Repeatable = () => {
   );
 };
 
-export const DateExpire = () => {
-  const oneAction = {
-    rewardAmount: 20,
-    rewardUnit: "Points",
-    cardTitle: "Complete a survey",
-    description:
-      "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
-    buttonText: "Take survey",
-    progress: 0,
-    goal: 1,
-    repeatable: true,
+export const DateExpires = () => {
+  const expire = {
     showExpiry: true,
-    dateExpires: "Nov 1, 2021",
-    buttonLink: "https://example.com/",
-    showProgressBar: false,
-    loading: false,
+    dateExpires: "2021-12-08T08:00:00.000Z/2021-12-17T08:00:00.000Z",
   };
-  const coupleActions = {
-    rewardAmount: 40,
-    rewardUnit: "Points",
-    cardTitle: "Comment on 5 articles",
-    showProgressBar: true,
-    repeatable: true,
-    progress: 1,
-    goal: 5,
-    steps: true,
-    description:
-      "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
-    buttonText: "Start reading",
-    showExpiry: true,
-    dateExpires: "Nov 1, 2021",
-    buttonLink: "https://example.com/",
-    loading: false,
-  };
-  const manyActions = {
-    rewardAmount: 150,
-    rewardUnit: "Points",
-    cardTitle: "Spend $500 at our Store",
-    showProgressBar: true,
-    repeatable: true,
-    progress: 100,
-    goal: 500,
-    progressBarUnit: "$",
-    description:
-      "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
-    buttonText: "Visit our Store",
-    showExpiry: true,
-    dateExpires: "Nov 1, 2021",
-    buttonLink: "https://example.com/",
-    loading: false,
-  };
+  const expireRepeat = { ...expire, repeatable: true };
   return (
     <div style={storyFrame}>
       <div style={resizable}>
         <h4>One Action</h4>
-        <TaskCardView {...oneAction} repeatable={false} /> <h5 />
-        <TaskCardView {...oneAction} /> <h5 />
+        <TaskCardView {...oneAction} {...expire} /> <h5 />
+        <TaskCardView {...oneAction} {...expireRepeat} /> <h5 />
       </div>
       <div style={resizable}>
         <h4>A Couple Actions</h4>
-        <TaskCardView {...coupleActions} /> <h5 />
-        <TaskCardView {...coupleActions} /> <h5 />
+        <TaskCardView {...coupleActions} {...expire} /> <h5 />
+        <TaskCardView {...coupleActions} {...expireRepeat} /> <h5 />
       </div>
       <div style={resizable}>
         <h4>Many Actions</h4>
-        <TaskCardView {...manyActions} repeatable={false} /> <h5 />
-        <TaskCardView {...manyActions} /> <h5 />
+        <TaskCardView {...manyActions} {...expire} /> <h5 />
+        <TaskCardView {...manyActions} {...expireRepeat} /> <h5 />
+      </div>
+    </div>
+  );
+};
+
+export const Loading = () => {
+  const loading = { loading: true };
+  return (
+    <div style={storyFrame}>
+      <div style={resizable}>
+        <h4>One Action</h4>
+        <TaskCardView {...oneAction} {...loading} /> <h5 />
+        <TaskCardView {...oneAction} {...loading} /> <h5 />
+      </div>
+      <div style={resizable}>
+        <h4>A Couple Actions</h4>
+        <TaskCardView {...coupleActions} {...loading} /> <h5 />
+        <TaskCardView {...coupleActions} {...loading} /> <h5 />
+      </div>
+      <div style={resizable}>
+        <h4>Many Actions</h4>
+        <TaskCardView {...manyActions} {...loading} /> <h5 />
+        <TaskCardView {...manyActions} {...loading} /> <h5 />
       </div>
     </div>
   );

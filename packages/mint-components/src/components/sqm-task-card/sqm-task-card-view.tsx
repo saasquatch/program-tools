@@ -7,6 +7,7 @@ import {
   ProgressBarProps,
   ProgressBarView,
 } from "./progress-bar/progress-bar-view";
+import { DateTime } from "luxon";
 
 export type TaskCardViewProps = {
   rewardAmount: number;
@@ -120,6 +121,11 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     ? Math.floor(props.progress / props.goal)
     : props.progress;
   const taskComplete = showComplete && props.repeatable === false;
+  const dateExpire =
+    props.showExpiry &&
+    DateTime.fromISO(props.dateExpires.split("/").pop()).toLocaleString(
+      DateTime.DATE_FULL
+    );
 
   return (
     <div class={sheet.classes.TaskCard}>
@@ -166,11 +172,11 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                       {arrow_left_right}
                     </span>
                     <span class={repetitions > 0 ? "success" : ""}>
-                      {`Completed ${repetitions} times`}
+                      {"Completed " + repetitions + " times"}
                     </span>
                   </div>
                 )}
-                {props.showExpiry && <span>{`Ends ${props.dateExpires}`}</span>}
+                {props.showExpiry && <span>{"Ends " + dateExpire}</span>}
               </span>
 
               <sl-button
