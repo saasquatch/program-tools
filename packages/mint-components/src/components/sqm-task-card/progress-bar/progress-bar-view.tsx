@@ -9,6 +9,7 @@ export type ProgressBarProps = {
   progressBarUnit?: string;
   steps?: boolean;
   repeatable?: boolean;
+  complete?: boolean
 };
 
 export function ProgressBarView(props: ProgressBarProps): VNode {
@@ -18,6 +19,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
     steps = false,
     progressBarUnit = "",
     repeatable = false,
+	complete = false,
   } = props;
 
   console.log("progress bar props", props);
@@ -50,7 +52,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
     ProgressBar: {
       "& .progress-bar": {
         height: "15px",
-        marginTop: steps ? "var(--sl-spacing-x-large)" : "var(--sl-spacing-xx-large)",
+        marginTop: steps ? "var(--sl-spacing-x-medium)" : "var(--sl-spacing-large)",
         marginBottom: "var(--sl-spacing-xx-large)",
         marginRight: "var(--sl-spacing-x-small)",
         fontSize: "var(--sl-font-size-x-small)",
@@ -68,7 +70,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
         width: "100%",
         height: "4px",
         borderRadius: "4px",
-        backgroundColor: "var(--sl-color-primary-500)",
+        backgroundColor: complete ? "var(--sl-color-success-500)" : "var(--sl-color-primary-500)",
       },
       "& .progress": {
         display: "block",
@@ -81,7 +83,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
         width: "12px",
         height: "12px",
         display: "flex",
-        backgroundColor: "var(--sl-color-primary-500)",
+        backgroundColor: complete ? "var(--sl-color-success-500)" : "var(--sl-color-primary-500)",
         borderRadius: "50%",
         position: "relative",
         left: "47%",
