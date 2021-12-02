@@ -88,7 +88,7 @@ export class TaskCard {
    * @uiWidget DateRange
    * @uiOptions {"allowPastDates":true, "months": 1}
    */
-  @Prop() dateExpires?: string;
+  @Prop() dateExpires: string = "/";
 
   /**
    * @uiName CTA Button Text

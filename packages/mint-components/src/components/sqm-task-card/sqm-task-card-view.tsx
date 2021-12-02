@@ -16,7 +16,7 @@ export type TaskCardViewProps = {
   showProgressBar: boolean;
   repeatable: boolean;
   showExpiry: boolean;
-  dateExpires?: string;
+  dateExpires: string;
   rewardUnit: string;
   buttonText: string;
   buttonLink: string;
@@ -39,15 +39,27 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         position: "relative",
         boxSizing: "border-box",
         minWidth: "347px",
-        background: "var(--sl-color-white)",
+        background: "var(--sl-color-neutral-0)",
         border: "1px solid var(--sl-color-neutral-300)",
         borderRadius: "var(--sl-border-radius-medium)",
         fontSize: "var(--sl-font-size-small)",
         lineHeight: "var(--sl-line-height-dense)",
+        color: "var(--sl-color-neutral-600)",
       },
       "& .main.complete": {
         background: "var(--sl-color-success-50)",
         borderColor: "var(--sl-color-success-700)",
+      },
+      "& .main.expired": {
+        color: "var(--sl-color-neutral-400)",
+        background: "var(--sl-color-neutral-100)",
+      },
+      "& .title": {
+        fontSize: "var(--sl-font-size-small)",
+        fontWeight: "var(--sl-font-weight-semibold)",
+      },
+      "& .black": {
+        color: "var(--sl-color-neutral-1000)",
       },
     },
     Header: {
@@ -61,7 +73,6 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       },
       "& .value": {
         alignSelf: "center",
-        color: "var(--sl-color-black)",
         fontSize: "var(--sl-font-size-x-large)",
         fontWeight: "var(--sl-font-weight-semibold)",
         lineHeight: "100%",
@@ -70,16 +81,21 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       "& .text": {
         alignSelf: "end",
         textTransform: "uppercase",
-        color: "var(--sl-color-neutral-600)",
         fontSize: "var(--sl-font-size-x-small)",
         lineHeight: "var(--sl-font-size-medium)",
         marginRight: "var(--sl-spacing-xx-small)",
       },
-    },
-    Title: {
-      color: "var(--sl-color-black)",
-      fontSize: "var(--sl-font-size-small)",
-      fontWeight: "var(--sl-font-weight-semibold)",
+      "& .end": {
+        color: "var(--sl-color-warning-600)",
+        fontWeight: "var(--sl-font-weight-semibold)",
+        marginBottom: "var(--sl-spacing-xx-small)",
+      },
+      "& .black": {
+        color: "var(--sl-color-neutral-1000)",
+      },
+      "& .neutral": {
+        color: "var(--sl-color-neutral-400)",
+      },
     },
     Footer: {
       display: "flex",
@@ -91,23 +107,25 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         marginTop: "auto",
         verticalAlign: "text-bottom",
         fontSize: "var(--sl-font-size-x-small)",
-        color: "var(--sl-color-neutral-600)",
       },
       "& .success": {
-        color: "var(--sl-color-success-600)!important",
+        color: "var(--sl-color-success-600)",
         fontWeight: "var(--sl-font-weight-semibold)",
       },
       "& .action": {
         marginTop: "auto",
         marginLeft: "auto",
         "&::part(base)": {
-          color: "var(--sl-color-white)",
+          color: "var(--sl-color-neutral-0)",
           borderRadius: "var(--sl-border-radius-medium)",
         },
-        "&.completed::part(base)": {
-          border: "1px solid var(--sl-color-neutral-300)",
-          background: "var(--sl-color-neutral-300)",
+        "&.disabled::part(base)": {
+          border: "1px solid var(--sl-color-neutral-400)",
+          background: "var(--sl-color-neutral-400)",
         },
+      },
+      "& .neutral": {
+        color: "var(--sl-color-neutral-400)",
       },
     },
   };
@@ -122,22 +140,36 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     : props.progress;
   const taskComplete = showComplete && props.repeatable === false;
   const dateExpire =
-    props.showExpiry &&
-    DateTime.fromISO(props.dateExpires.split("/").pop()).toLocaleString(
-      DateTime.DATE_FULL
-    );
+    props.showExpiry && DateTime.fromISO(props.dateExpires.split("/").pop());
+  const taskExpired = props.showExpiry && DateTime.now() > dateExpire;
+  const dateExpireText = dateExpire.toLocaleString(DateTime.DATE_FULL);
+
+  console.log(taskExpired);
 
   return (
     <div class={sheet.classes.TaskCard}>
-      <div class={taskComplete ? "main complete" : "main"}>
+      <div
+        class={
+          taskExpired ? "main expired" : taskComplete ? "main complete" : "main"
+        }
+      >
         <style type="text/css">{styleString}</style>
         <div class={sheet.classes.Header}>
           {props.loading ? (
             <sl-skeleton style={{ width: "22%", margin: "0" }} />
           ) : (
             <div>
-              {showComplete && <span class="icon">{checkmark_circle}</span>}
-              <span class="value">{props.rewardAmount}</span>
+              {taskExpired && (
+                <div class="end"> {"Ended " + dateExpireText} </div>
+              )}
+              {showComplete && (
+                <span class={taskExpired ? "icon neutral" : "icon"}>
+                  {checkmark_circle}
+                </span>
+              )}
+              <span class={taskExpired ? "value" : "value black"}>
+                {props.rewardAmount}
+              </span>
               <span class="text">{props.rewardUnit}</span>
             </div>
           )}
@@ -146,18 +178,24 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         {props.loading ? (
           <sl-skeleton style={{ width: "42%", margin: "0 16px" }} />
         ) : (
-          <div class={sheet.classes.Title}>{props.cardTitle}</div>
+          <div class={taskExpired ? "title" : "title black"}>
+            {props.cardTitle}
+          </div>
         )}
         {props.loading ? (
-          <sl-skeleton style={{ width: "51%", margin: "12px 16px" }} />
+          <sl-skeleton style={{ width: "91%", margin: "12px 16px" }} />
         ) : (
           <Details {...props} />
         )}
         {props.showProgressBar && props.loading ? (
-          <sl-skeleton style={{ width: "92%", margin: "0 auto" }} />
+          <sl-skeleton style={{ width: "91%", margin: "0 auto" }} />
         ) : (
           props.showProgressBar && (
-            <ProgressBarView {...props} complete={taskComplete} />
+            <ProgressBarView
+              {...props}
+              complete={taskComplete}
+              expired={taskExpired}
+            />
           )
         )}
         <div class={sheet.classes.Footer}>
@@ -168,23 +206,43 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               <span class="text">
                 {props.repeatable && (
                   <div>
-                    <span class={repetitions > 0 ? "icon success" : "icon"}>
+                    <span
+                      class={
+                        repetitions > 0
+                          ? taskExpired
+                            ? "icon neutral"
+                            : "icon success"
+                          : "icon"
+                      }
+                    >
                       {arrow_left_right}
                     </span>
-                    <span class={repetitions > 0 ? "success" : ""}>
+                    <span
+                      class={
+                        repetitions > 0
+                          ? taskExpired
+                            ? "neutral"
+                            : "success"
+                          : ""
+                      }
+                    >
                       {"Completed " + repetitions + " times"}
                     </span>
                   </div>
                 )}
-                {props.showExpiry && <span>{"Ends " + dateExpire}</span>}
+                {props.showExpiry && !taskExpired && (
+                  <span>{"Ends " + dateExpireText}</span>
+                )}
               </span>
 
               <sl-button
-                class={taskComplete ? "action completed" : "action"}
+                class={
+                  taskComplete || taskExpired ? "action disabled" : "action"
+                }
                 type="primary"
                 size="small"
                 onClick={() => window.open(props.buttonLink)}
-                disabled={taskComplete}
+                disabled={taskComplete || taskExpired}
               >
                 {props.buttonText}
               </sl-button>
@@ -229,7 +287,6 @@ function Details(props): VNode {
       "& .summary": {
         display: "block",
         overflow: "hidden",
-        color: "var(--sl-color-neutral-700)",
         fontSize: "var(--sl-font-size-small)",
         maxHeight: "0px",
         transition: "all var(--sl-transition-fast) ease-out",

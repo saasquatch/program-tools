@@ -1044,7 +1044,7 @@ export namespace Components {
           * @uiWidget DateRange
           * @uiOptions {"allowPastDates":true, "months": 1}
          */
-        "dateExpires"?: string;
+        "dateExpires": string;
         /**
           * @uiName Description Text
          */

@@ -1,6 +1,11 @@
 import { h } from "@stencil/core";
+import { MatrixStory } from "./Matrix";
 import { TaskCardView } from "./sqm-task-card-view";
-import scenario from "./sqm-task-card.feature";
+import { ProgressBarView } from "./progress-bar/progress-bar-view";
+import scenarioTaskCard from "./sqm-task-card.feature";
+import scenarioProgressBar from "./progress-bar/progress-bar.feature";
+
+const scenario = scenarioTaskCard + scenarioProgressBar;
 
 export default {
   title: "Components/Task Card/",
@@ -35,6 +40,7 @@ const oneAction = {
   buttonText: "Take survey",
   buttonLink: "https://example.com/",
   showExpiry: false,
+  dateExpires: null,
   loading: false,
 };
 
@@ -52,6 +58,7 @@ const coupleActions = {
   buttonText: "Take survey",
   buttonLink: "https://example.com/",
   showExpiry: false,
+  dateExpires: null,
   loading: false,
 };
 
@@ -69,10 +76,11 @@ const manyActions = {
   buttonText: "Take survey",
   buttonLink: "https://example.com/",
   showExpiry: false,
+  dateExpires: null,
   loading: false,
 };
 
-export const NotRepeatable = () => {
+export const TaskCardNotRepeatable = () => {
   return (
     <div style={storyFrame}>
       <div style={resizable}>
@@ -94,7 +102,7 @@ export const NotRepeatable = () => {
   );
 };
 
-export const Repeatable = () => {
+export const TaskCardRepeatable = () => {
   return (
     <div style={storyFrame}>
       <div style={resizable}>
@@ -128,10 +136,10 @@ export const Repeatable = () => {
   );
 };
 
-export const DateExpires = () => {
+export const TaskCardDateExpires = () => {
   const expire = {
     showExpiry: true,
-    dateExpires: "2021-12-08T08:00:00.000Z/2021-12-17T08:00:00.000Z",
+    dateExpires: "2021-12-01T08:00:00.000Z/2077-12-01T08:00:00.000Z",
   };
   const expireRepeat = { ...expire, repeatable: true };
   return (
@@ -155,7 +163,7 @@ export const DateExpires = () => {
   );
 };
 
-export const Loading = () => {
+export const TaskCardLoading = () => {
   const loading = { loading: true };
   return (
     <div style={storyFrame}>
@@ -174,6 +182,114 @@ export const Loading = () => {
         <TaskCardView {...manyActions} {...loading} /> <h5 />
         <TaskCardView {...manyActions} {...loading} /> <h5 />
       </div>
+    </div>
+  );
+};
+
+export const TaskCardExpired = () => {
+  const expire = {
+    showExpiry: true,
+    dateExpires: "2021-12-01T08:00:00.000Z/2021-12-01T08:00:00.000Z",
+  };
+  const expireRepeat = { ...expire, repeatable: true };
+  return (
+    <div style={storyFrame}>
+      <div style={resizable}>
+        <h4>One Action</h4>
+        <TaskCardView {...oneAction} progress={0} {...expire} /> <h5 />
+        <TaskCardView {...oneAction} progress={1} {...expire} /> <h5 />
+        <TaskCardView {...oneAction} progress={0} {...expireRepeat} /> <h5 />
+        <TaskCardView {...oneAction} progress={1} {...expireRepeat} /> <h5 />
+      </div>
+      <div style={resizable}>
+        <h4>A Couple Actions</h4>
+        <TaskCardView {...coupleActions} progress={1} {...expire} /> <h5 />
+        <TaskCardView {...coupleActions} progress={5} {...expire} /> <h5 />
+        <TaskCardView {...coupleActions} progress={1} {...expireRepeat} />
+        <h5 />
+        <TaskCardView {...coupleActions} progress={5} {...expireRepeat} />
+        <h5 />
+      </div>
+      <div style={resizable}>
+        <h4>Many Actions</h4>
+        <TaskCardView {...manyActions} progress={100} {...expire} /> <h5 />
+        <TaskCardView {...manyActions} progress={500} {...expire} /> <h5 />
+        <TaskCardView {...manyActions} progress={100} {...expireRepeat} />
+        <h5 />
+        <TaskCardView {...manyActions} progress={500} {...expireRepeat} />
+        <h5 />
+      </div>
+    </div>
+  );
+};
+export const ProgressBar = () => {
+  const props = {
+    progress: 0,
+    goal: 500,
+    progressBarUnit: "$",
+  };
+  return (
+    <div>
+      <MatrixStory
+        matrix={{ progress: [-100, 0, 100, 500, 1000] }}
+        props={props}
+        Component={ProgressBarView}
+      />
+    </div>
+  );
+};
+
+export const ProgressBarSteps = () => {
+  const props = {
+    progress: 0,
+    steps: true,
+    goal: 5,
+    progressBarUnit: "$",
+  };
+  return (
+    <div>
+      <MatrixStory
+        matrix={{ progress: [-1, 0, 1, 5, 7] }}
+        props={props}
+        Component={ProgressBarView}
+      />
+    </div>
+  );
+};
+
+export const ProgressBarRepeatable = () => {
+  const props = {
+    progress: 0,
+    goal: 500,
+    progressBarUnit: "$",
+    repeatable: true,
+  };
+  return (
+    <div>
+      <MatrixStory
+        matrix={{ progress: [100, 500, 650, 1200] }}
+        props={props}
+        Component={ProgressBarView}
+      />
+    </div>
+  );
+};
+
+export const ProgressBarStepsRepeatable = () => {
+  const props = {
+    progress: 0,
+    steps: true,
+    goal: 5,
+    progressBarUnit: "$",
+    repeatable: true,
+  };
+  return (
+    <div>
+      <MatrixStory
+        matrix={{ progress: [1, 5, 7, 12] }}
+        props={props}
+        Component={ProgressBarView}
+      />
     </div>
   );
 };
