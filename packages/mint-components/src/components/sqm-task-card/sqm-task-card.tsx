@@ -119,9 +119,9 @@ export class TaskCard {
 
     return (
       <TaskCardView
-        {...getProps(this)}
         progress={value}
-        loading={value === undefined}
+        loading={!isDemo() && value === undefined}
+        {...getProps(this)}
       ></TaskCardView>
     );
   }
