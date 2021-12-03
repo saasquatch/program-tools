@@ -13,7 +13,7 @@ const baseResponse = (data) => ({
   },
   callbacks: {
     exchangeReward: null,
-    openDrawer: null,
+    resetState: null,
     setStage: null,
     setExchangeState: null,
     refs: null,
@@ -217,7 +217,7 @@ export const test2 = {
   },
   callbacks: {
     exchangeReward: null,
-    openDrawer: null,
+    resetState: null,
     setStage: null,
     setExchangeState: null,
     refs: {

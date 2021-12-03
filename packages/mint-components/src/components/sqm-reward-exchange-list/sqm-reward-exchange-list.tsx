@@ -33,6 +33,12 @@ export class SqmRewardExchangeList {
   @Prop() buttonText: string = "Exchange Rewards";
 
   /**
+   * @uiName Exchange button text
+   */
+  @Prop() notAvailableError: string =
+    "{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {Not enough points} other {Not available} }";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -56,7 +62,7 @@ export class SqmRewardExchangeList {
     //   return <RequiredPropsError missingProps={missingProps} />;
     // }
 
-    const { states, data, callbacks, refs } = isDemo()
+    const { states, data, callbacks } = isDemo()
       ? useRewardExchangeListDemo(getProps(this))
       : useRewardExchangeList(getProps(this));
 
@@ -66,7 +72,6 @@ export class SqmRewardExchangeList {
           states={states}
           data={data}
           callbacks={callbacks}
-          refs={refs}
         ></RewardExchangeView>
       </Host>
     );
@@ -78,25 +83,22 @@ function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
     {
       states: {
         content: {
-          text:props,
+          text: props,
         },
         redeemStage: "chooseReward",
         amount: 0,
         selectedStep: undefined,
         exchangeError: false,
-        loading:false,
+        loading: false,
       },
       data: {
         shareCode: "SHARECODE123",
       },
       callbacks: {
         exchangeReward: () => {},
-        openDrawer: () => {},
         setExchangeState: (_: ExchangeState) => {},
         setStage: (_: Stages) => {},
-      },
-      refs: {
-        drawerRef: {},
+        resetState: () => {},
       },
     },
     props.demoData || {},

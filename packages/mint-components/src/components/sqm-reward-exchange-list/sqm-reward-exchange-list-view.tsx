@@ -1,6 +1,7 @@
 import { getAssetPath, h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
+import { intl } from "../../global/global";
 import { ProgressBar } from "./progressBar";
 import { LeftArrow, ExchangeArrows, CheckMark } from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
@@ -19,15 +20,13 @@ export type RewardExchangeViewProps = {
   };
   data: {
     exchangeList: any;
+    fuelTankCode?: string;
   };
   callbacks: {
     exchangeReward: (e: unknown) => unknown;
-    openDrawer: () => void;
     setStage: (stage?: Stages) => void;
+    resetState: (refresh?: boolean) => void;
     setExchangeState: Function;
-  };
-  refs: {
-    // drawerRef: any;
   };
 };
 
@@ -167,7 +166,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
-  const { states, data, callbacks, refs } = props;
+  const { states, data, callbacks } = props;
 
   const { selectedItem, selectedStep } = states;
 
@@ -198,7 +197,13 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               {step.prettySourceValue}
               {step.unavailableReasonCode && (
                 <p style={{ fontSize: "70%", color: "#F2994A" }}>
-                  {step.unavailableReasonCode}
+                  {intl.formatMessage(
+                    {
+                      id: "unavailableCode",
+                      defaultMessage: states.content.text.notAvailableError,
+                    },
+                    { unavailableReasonCode: step.unavailableReasonCode }
+                  )}
                 </p>
               )}
             </div>
@@ -209,9 +214,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   }
 
   function chooseReward() {
-    const nextStage = "chooseAmount";
-
-    // console.log({ nextStage, ruleType: selectedItem?.ruleType });
     return [
       <div
         style={{
@@ -297,10 +299,13 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                         marginTop: "0",
                       }}
                     >
-                      {item.unavailableReasonCode ===
-                      "INSUFFICIENT_REDEEMABLE_CREDIT"
-                        ? "Not enough points"
-                        : item.unavailableReasonCode}
+                      {intl.formatMessage(
+                        {
+                          id: "unavailableCode",
+                          defaultMessage: states.content.text.notAvailableError,
+                        },
+                        { unavailableReasonCode: item.unavailableReasonCode }
+                      )}
                     </p>
                   )}
                 </p>
@@ -316,29 +321,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         <sl-button
           class="continue"
           size="large"
-          onClick={() => callbacks.setStage(nextStage)}
+          onClick={() => callbacks.setStage("chooseAmount")}
           disabled={!states.selectedItem}
         >
           Continue
         </sl-button>
       </div>,
-      //   <div class={sheet.classes.Buttons}>
-      //     <sl-button
-      //       onClick={() => callbacks.setStage(nextStage)}
-      //       style={{ display: "block" }}
-      //       class={sheet.classes.Button}
-      //       disabled={!states.selectedItem}
-      //     >
-      //       Continue
-      //     </sl-button>
-      //     <a
-      //       //   onClick={() => refs.drawerRef.current?.hide()}
-      //       style={{ display: "block" }}
-      //       class={sheet.classes.Button}
-      //     >
-      //       Cancel
-      //     </a>
-      //   </div>,
     ];
   }
 
@@ -358,7 +346,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             class="cancel"
             size="large"
             type="text"
-            onClick={() => callbacks.setStage("chooseReward")}
+            onClick={() => callbacks.resetState()}
           >
             Cancel
           </sl-button>
@@ -371,34 +359,11 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             Continue to confirmation
           </sl-button>
         </div>
-        {/* <div class={sheet.classes.Buttons}>
-          <sl-button
-            onClick={() => callbacks.setStage("confirmation")}
-            disabled={
-              states.selectedItem.ruleType !== "FIXED_GLOBAL_REWARD" ||
-              (input && !states.amount)
-            }
-            style={{ display: "block" }}
-            class={sheet.classes.Button}
-          >
-            Continue
-          </sl-button>
-          <a
-            onClick={() => callbacks.setStage("chooseReward")}
-            style={{ display: "block" }}
-            class={sheet.classes.Button}
-          >
-            Back
-          </a>
-        </div> */}
       </div>
     );
   }
 
-  //   console.log({ selectedItem, selectedStep });
   function confirmation() {
-    const previousStage = "chooseAmount";
-
     return (
       <div>
         <h2>Confirm and redeem</h2>
@@ -441,7 +406,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             Redeem
           </sl-button>
           <a
-            onClick={() => callbacks.setStage(previousStage)}
+            onClick={() => callbacks.setStage("chooseAmount")}
             style={{ display: "block" }}
             class={sheet.classes.Button}
           >
@@ -461,11 +426,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         />
 
         <p style={{ color: "forestgreen" }}>Reward Redeemed</p>
-        {/* @ts-ignore */}
         {data?.fuelTankCode && <pre>{data?.fuelTankCode}</pre>}
-        {/* <sl-button onClick={() => refs.drawerRef?.current?.hide()}>
-          Done
-        </sl-button> */}
+        <sl-button onClick={() => callbacks.resetState(true)}>Done</sl-button>
       </div>
     );
   }
@@ -499,51 +461,36 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     );
   }
 
-  const BackButton = () => {
-    if (states.redeemStage === "success") return "";
-    let previousStage: Stages = "";
+  // const BackButton = () => {
+  //   if (states.redeemStage === "success") return "";
+  //   let previousStage: Stages = "";
 
-    if (states.redeemStage === "confirmation") {
-      previousStage = "chooseAmount";
-    } else if (states.redeemStage === "chooseAmount") {
-      previousStage = "chooseReward";
-    }
+  //   if (states.redeemStage === "confirmation") {
+  //     previousStage = "chooseAmount";
+  //   } else if (states.redeemStage === "chooseAmount") {
+  //     previousStage = "chooseReward";
+  //   }
 
-    return (
-      <div slot="label">
-        <a
-          style={{ cursor: "pointer", fontSize: "80%", color: "#858585" }}
-          onClick={() => callbacks.setStage(previousStage)}
-        >
-          <LeftArrow /> Back
-        </a>
-      </div>
-    );
-  };
+  //   return (
+  //     <div slot="label">
+  //       <a
+  //         style={{ cursor: "pointer", fontSize: "80%", color: "#858585" }}
+  //         onClick={() => callbacks.setStage(previousStage)}
+  //       >
+  //         <LeftArrow /> Back
+  //       </a>
+  //     </div>
+  //   );
+  // };
 
-  console.log(props);
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
       <div>
-        {/* <sl-drawer
-          ref={(ref) => (refs.drawerRef.current = ref)}
-          placement="right"
-          class={sheet.classes.Drawer}
-          open={stageList.indexOf(states.redeemStage) >= 0}
-        > */}
-        {/* <BackButton /> */}
         {stageMap()}
         {currentStage && currentStage()}
         {states.exchangeError &&
           "Something went wrong. Please contact support or try again."}
-        {/* </sl-drawer> */}
-        {/* <sl-button
-          loading={states.loading}
-          onClick={() => callbacks.openDrawer()}
-        >
-          Redeem Rewards
-        </sl-button> */}
       </div>
     </div>
   );
