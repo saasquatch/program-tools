@@ -47,7 +47,7 @@ export function usePortalLogin(props) {
       loading,
       error: errorMessage,
       registerPath:props.registerPath,
-      forgotPasswordPath:props.registerPath
+      forgotPasswordPath:props.forgotPasswordPath
     },
     callbacks: {
       submit,
