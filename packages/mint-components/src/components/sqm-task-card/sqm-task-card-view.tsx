@@ -52,7 +52,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       },
       "& .main.expired": {
         color: "var(--sl-color-neutral-400)",
-        background: "var(--sl-color-neutral-100)",
+        background: "var(--sl-color-neutral-50)",
       },
       "& .title": {
         fontSize: "var(--sl-font-size-small)",
@@ -86,7 +86,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         marginRight: "var(--sl-spacing-xx-small)",
       },
       "& .end": {
-        color: "var(--sl-color-warning-600)",
+        color: "var(--sl-color-warning-500)",
         fontWeight: "var(--sl-font-weight-semibold)",
         marginBottom: "var(--sl-spacing-xx-small)",
       },
@@ -147,7 +147,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
 
   const taskComplete = showComplete && props.repeatable === false;
   const taskUnavailable =
-    props.showExpiry && dateEnd < dateToday && dateToday < dateStart;
+    props.showExpiry && (dateEnd < dateToday || dateToday < dateStart);
 
   return (
     <div class={sheet.classes.TaskCard}>
@@ -171,8 +171,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               {taskUnavailable && (
                 <div class="end">
                   {"Available " +
-                    dateStart.toLocaleString(DateTime.DATE_FULL) +
-                    dateEnd.toLocaleString(DateTime.DATE_FULL)}
+                    dateStart.toLocaleString(DateTime.DATE_MED).split(",")[0] +
+                    " - " +
+                    dateEnd.toLocaleString(DateTime.DATE_MED).split(",")[0]}
                 </div>
               )}
               {showComplete && (

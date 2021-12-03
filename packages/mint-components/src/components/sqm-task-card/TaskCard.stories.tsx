@@ -189,7 +189,7 @@ export const TaskCardLoading = () => {
 export const TaskCardUnavailable = () => {
   const expire = {
     showExpiry: true,
-    rewardDuration: "2021-12-01T08:00:00.000Z/2021-12-01T08:00:00.000Z",
+    rewardDuration: "2021-11-30T08:00:00.000Z/2021-12-01T08:00:00.000Z",
   };
   const expireRepeat = { ...expire, repeatable: true };
   return (
