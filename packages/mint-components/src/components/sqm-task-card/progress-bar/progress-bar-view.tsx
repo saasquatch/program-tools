@@ -74,7 +74,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
         width: "100%",
         height: "4px",
         borderRadius: "4px",
-        backgroundColor: "var(--sl-color-primary-200)",
+        backgroundColor: "var(--sl-color-primary-300)",
       },
       "& .progress": {
         display: "block",
@@ -87,7 +87,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
         width: "12px",
         height: "12px",
         display: "flex",
-        backgroundColor: "var(--sl-color-primary-200)",
+        backgroundColor: "var(--sl-color-primary-300)",
         borderRadius: "50%",
         position: "relative",
         left: "47%",
