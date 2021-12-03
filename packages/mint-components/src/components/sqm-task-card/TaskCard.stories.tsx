@@ -40,7 +40,7 @@ const oneAction = {
   buttonText: "Take survey",
   buttonLink: "https://example.com/",
   showExpiry: false,
-  dateExpires: null,
+  rewardDuration: null,
   loading: false,
 };
 
@@ -58,7 +58,7 @@ const coupleActions = {
   buttonText: "Take survey",
   buttonLink: "https://example.com/",
   showExpiry: false,
-  dateExpires: null,
+  rewardDuration: null,
   loading: false,
 };
 
@@ -76,7 +76,7 @@ const manyActions = {
   buttonText: "Take survey",
   buttonLink: "https://example.com/",
   showExpiry: false,
-  dateExpires: null,
+  rewardDuration: null,
   loading: false,
 };
 
@@ -136,10 +136,10 @@ export const TaskCardRepeatable = () => {
   );
 };
 
-export const TaskCardDateExpires = () => {
+export const TaskCardEndDate = () => {
   const expire = {
     showExpiry: true,
-    dateExpires: "2021-12-01T08:00:00.000Z/2077-12-01T08:00:00.000Z",
+    rewardDuration: "2021-12-01T08:00:00.000Z/2077-12-01T08:00:00.000Z",
   };
   const expireRepeat = { ...expire, repeatable: true };
   return (
@@ -186,10 +186,10 @@ export const TaskCardLoading = () => {
   );
 };
 
-export const TaskCardExpired = () => {
+export const TaskCardUnavailable = () => {
   const expire = {
     showExpiry: true,
-    dateExpires: "2021-12-01T08:00:00.000Z/2021-12-01T08:00:00.000Z",
+    rewardDuration: "2021-12-01T08:00:00.000Z/2021-12-01T08:00:00.000Z",
   };
   const expireRepeat = { ...expire, repeatable: true };
   return (

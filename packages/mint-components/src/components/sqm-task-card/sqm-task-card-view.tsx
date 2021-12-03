@@ -138,19 +138,26 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const repetitions = props.showProgressBar
     ? Math.floor(props.progress / props.goal)
     : props.progress;
-  const taskComplete = showComplete && props.repeatable === false;
-  const dateExpire =
-    props.showExpiry && DateTime.fromISO(props.rewardDuration.split("/").pop());
-  const dateExpireText = dateExpire.toLocaleString(DateTime.DATE_FULL);
-  const taskExpired = props.showExpiry && DateTime.now() > dateExpire;
 
-  console.log(taskExpired);
+  const dateStart =
+    props.showExpiry && DateTime.fromISO(props.rewardDuration.split("/")[0]);
+  const dateEnd =
+    props.showExpiry && DateTime.fromISO(props.rewardDuration.split("/")[1]);
+  const dateToday = DateTime.now();
+
+  const taskComplete = showComplete && props.repeatable === false;
+  const taskUnavailable =
+    props.showExpiry && dateEnd < dateToday && dateToday < dateStart;
 
   return (
     <div class={sheet.classes.TaskCard}>
       <div
         class={
-          taskExpired ? "main expired" : taskComplete ? "main complete" : "main"
+          taskUnavailable
+            ? "main expired"
+            : taskComplete
+            ? "main complete"
+            : "main"
         }
       >
         <style type="text/css">{styleString}</style>
@@ -161,15 +168,19 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             />
           ) : (
             <div>
-              {taskExpired && (
-                <div class="end"> {"Ended " + dateExpireText} </div>
+              {taskUnavailable && (
+                <div class="end">
+                  {"Available " +
+                    dateStart.toLocaleString(DateTime.DATE_FULL) +
+                    dateEnd.toLocaleString(DateTime.DATE_FULL)}
+                </div>
               )}
               {showComplete && (
-                <span class={taskExpired ? "icon neutral" : "icon"}>
+                <span class={taskUnavailable ? "icon neutral" : "icon"}>
                   {checkmark_circle}
                 </span>
               )}
-              <span class={taskExpired ? "value" : "value black"}>
+              <span class={taskUnavailable ? "value" : "value black"}>
                 {props.rewardAmount}
               </span>
               <span class="text">{props.rewardUnit}</span>
@@ -182,7 +193,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             style={{ width: "42%", margin: "0 16px", height: "12px" }}
           />
         ) : (
-          <div class={taskExpired ? "title" : "title black"}>
+          <div class={taskUnavailable ? "title" : "title black"}>
             {props.cardTitle}
           </div>
         )}
@@ -198,7 +209,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             <ProgressBarView
               {...props}
               complete={taskComplete}
-              expired={taskExpired}
+              expired={taskUnavailable}
             />
           )
         )}
@@ -215,7 +226,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                     <span
                       class={
                         repetitions > 0
-                          ? taskExpired
+                          ? taskUnavailable
                             ? "icon neutral"
                             : "icon success"
                           : "icon"
@@ -226,7 +237,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                     <span
                       class={
                         repetitions > 0
-                          ? taskExpired
+                          ? taskUnavailable
                             ? "neutral"
                             : "success"
                           : ""
@@ -236,19 +247,21 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                     </span>
                   </div>
                 )}
-                {props.showExpiry && !taskExpired && (
-                  <span>{"Ends " + dateExpireText}</span>
+                {props.showExpiry && !taskUnavailable && (
+                  <span>
+                    {"Ends " + dateEnd.toLocaleString(DateTime.DATE_FULL)}
+                  </span>
                 )}
               </span>
 
               <sl-button
                 class={
-                  taskComplete || taskExpired ? "action disabled" : "action"
+                  taskComplete || taskUnavailable ? "action disabled" : "action"
                 }
                 type="primary"
                 size="small"
                 onClick={() => window.open(props.buttonLink)}
-                disabled={taskComplete || taskExpired}
+                disabled={taskComplete || taskUnavailable}
               >
                 {props.buttonText}
               </sl-button>
