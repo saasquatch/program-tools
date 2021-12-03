@@ -29,7 +29,7 @@ const resizable = {
 
 const oneAction = {
   rewardAmount: 20,
-  rewardUnit: "Points",
+  rewardUnit: "SaaSquatch Points",
   cardTitle: "Complete a survey",
   description:
     "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
@@ -46,7 +46,7 @@ const oneAction = {
 
 const coupleActions = {
   rewardAmount: 40,
-  rewardUnit: "Points",
+  rewardUnit: "SaaSquatch Points",
   cardTitle: "Comment on 5 articles",
   description:
     "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
@@ -64,7 +64,7 @@ const coupleActions = {
 
 const manyActions = {
   rewardAmount: 150,
-  rewardUnit: "Points",
+  rewardUnit: "SaaSquatch Points",
   cardTitle: "Spend $500 at our Store",
   description:
     "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
