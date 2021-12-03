@@ -2,6 +2,7 @@ import { getAssetPath, h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { intl } from "../../global/global";
+import { HostBlock } from "../../global/mixins";
 import { ProgressBar } from "./progressBar";
 import { LeftArrow, ExchangeArrows, CheckMark } from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
@@ -42,6 +43,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   console.log(props);
 
   const style = {
+    HostBlock: HostBlock,
     Container: {
       padding: "var(--sl-spacing-medium)",
       position: "relative",
@@ -67,6 +69,27 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         padding: 0,
         display: "flex",
         width: "100%",
+      },
+      "& .title": {
+        textAlign: "left",
+        fontSize: "var(--sl-font-size-x-small)",
+        fontWeight: "var(--sl-font-weight-semibold)",
+        lineHeight: "var(--sl-font-size-medium)",
+      },
+      "& .description": {},
+      "& .error": {},
+      "& .selected-outline": {
+        width: "18px",
+        height: "18px",
+        borderRadius: "50%",
+        background: "var(--sl-color-primary-500)",
+        position: "relative",
+        margin: "-9px",
+        left: "100%",
+      },
+      "& .selected-checkmark": {
+        position: "relative",
+        top: "-6px",
       },
     },
     Drawer: {
@@ -267,18 +290,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 }
               >
                 {item.key === selectedItem?.key && (
-                  <div
-                    style={{
-                      width: "18px",
-                      height: "18px",
-                      borderRadius: "50%",
-                      background: "var(--sl-color-primary-500)",
-                      position: "relative",
-                      margin: "-9px",
-                      left: "100%",
-                    }}
-                  >
-                    <div style={{ position: "relative", top: "-6px" }}>
+                  <div class="selected-outline">
+                    <div class="selected-checkmark">
                       <CheckMark />
                     </div>
                   </div>
@@ -292,6 +305,27 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     }
                   />
                 }
+                <div>
+                  <div>{item.description}</div>
+                  <div>{amount}</div>
+                  {item.unavailableReasonCode && (
+                    <div>
+                      {intl.formatMessage(
+                        {
+                          id: "unavailableCode",
+                          defaultMessage:
+                            states.content?.text?.notAvailableError,
+                        },
+                        {
+                          unavailableReason:
+                            item.unavailableReason ||
+                            item.unavailableReasonCode,
+                        }
+                      )}
+                    </div>
+                  )}
+                </div>
+                {/* 
                 <p
                   style={{
                     textAlign: "left",
@@ -325,7 +359,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                       )}
                     </p>
                   )}
-                </p>
+                </p> */}
               </sl-card>
             </div>
           );
