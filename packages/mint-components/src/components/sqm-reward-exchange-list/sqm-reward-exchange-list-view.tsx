@@ -39,6 +39,8 @@ const stageProgressList = {
 };
 
 export function RewardExchangeView(props: RewardExchangeViewProps) {
+  console.log(props);
+
   const style = {
     Container: {
       padding: "var(--sl-spacing-medium)",

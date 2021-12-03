@@ -1044,12 +1044,6 @@ export namespace Components {
          */
         "cardTitle": string;
         /**
-          * @uiName Date Goal Expires
-          * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
-         */
-        "dateExpires": string;
-        /**
           * @uiName Description Text
          */
         "description": string;
@@ -1070,6 +1064,12 @@ export namespace Components {
          */
         "rewardAmount": number;
         /**
+          * @uiName Reward Duration
+          * @uiWidget DateRange
+          * @uiOptions {"allowPastDates":true, "months": 1}
+         */
+        "rewardDuration": string;
+        /**
           * @uiName Reward Unit
          */
         "rewardUnit": string;
@@ -1084,7 +1084,7 @@ export namespace Components {
         /**
           * Select what type of stat to display for the goal. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget
-          * @uiName Stat Type
+          * @uiName Goal Progress Source
           * @uiOptions {"version": 1.1}
          */
         "statType": string;
@@ -2552,12 +2552,6 @@ declare namespace LocalJSX {
          */
         "cardTitle"?: string;
         /**
-          * @uiName Date Goal Expires
-          * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
-         */
-        "dateExpires"?: string;
-        /**
           * @uiName Description Text
          */
         "description"?: string;
@@ -2578,6 +2572,12 @@ declare namespace LocalJSX {
          */
         "rewardAmount"?: number;
         /**
+          * @uiName Reward Duration
+          * @uiWidget DateRange
+          * @uiOptions {"allowPastDates":true, "months": 1}
+         */
+        "rewardDuration"?: string;
+        /**
           * @uiName Reward Unit
          */
         "rewardUnit"?: string;
@@ -2592,7 +2592,7 @@ declare namespace LocalJSX {
         /**
           * Select what type of stat to display for the goal. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget
-          * @uiName Stat Type
+          * @uiName Goal Progress Source
           * @uiOptions {"version": 1.1}
          */
         "statType"?: string;
