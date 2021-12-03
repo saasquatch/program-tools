@@ -55,11 +55,6 @@ export class TaskCard {
   showProgressBar: boolean = false;
 
   /**
-   * @uiName Goal Progress Source
-   */
-  progressSource: string = "";
-
-  /**
    * @uiName Goal Completion Number
    */
   @Prop()
@@ -84,11 +79,11 @@ export class TaskCard {
   showExpiry: boolean = false;
 
   /**
-   * @uiName Date Goal Expires
+   * @uiName Reward Duration
    * @uiWidget DateRange
    * @uiOptions {"allowPastDates":true, "months": 1}
    */
-  @Prop() dateExpires: string = "/";
+  @Prop() rewardDuration: string = "/";
 
   /**
    * @uiName CTA Button Text
@@ -106,7 +101,7 @@ export class TaskCard {
    * Select what type of stat to display for the goal. Manual paths are also supported.
    *
    * @uiWidget StatTypeSelectWidget
-   * @uiName Stat Type
+   * @uiName Goal Progress Source
    * @uiOptions {"version": 1.1}
    */
   @Prop()

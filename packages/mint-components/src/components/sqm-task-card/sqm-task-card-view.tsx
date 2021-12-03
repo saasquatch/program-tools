@@ -16,7 +16,7 @@ export type TaskCardViewProps = {
   showProgressBar: boolean;
   repeatable: boolean;
   showExpiry: boolean;
-  dateExpires: string;
+  rewardDuration: string;
   rewardUnit: string;
   buttonText: string;
   buttonLink: string;
@@ -140,7 +140,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     : props.progress;
   const taskComplete = showComplete && props.repeatable === false;
   const dateExpire =
-    props.showExpiry && DateTime.fromISO(props.dateExpires.split("/").pop());
+    props.showExpiry && DateTime.fromISO(props.rewardDuration.split("/").pop());
   const dateExpireText = dateExpire.toLocaleString(DateTime.DATE_FULL);
   const taskExpired = props.showExpiry && DateTime.now() > dateExpire;
 
