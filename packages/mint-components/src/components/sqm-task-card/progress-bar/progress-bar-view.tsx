@@ -20,7 +20,6 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
     steps = false,
     progressBarUnit = "",
     repeatable = false,
-    complete = false,
     expired = false,
   } = props;
 
@@ -75,9 +74,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
         width: "100%",
         height: "4px",
         borderRadius: "4px",
-        backgroundColor: complete
-          ? "var(--sl-color-success-500)"
-          : "var(--sl-color-primary-500)",
+        backgroundColor: "var(--sl-color-primary-300)",
       },
       "& .progress": {
         display: "block",
@@ -90,9 +87,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
         width: "12px",
         height: "12px",
         display: "flex",
-        backgroundColor: complete
-          ? "var(--sl-color-success-500)"
-          : "var(--sl-color-primary-500)",
+        backgroundColor: "var(--sl-color-primary-300)",
         borderRadius: "50%",
         position: "relative",
         left: "47%",
