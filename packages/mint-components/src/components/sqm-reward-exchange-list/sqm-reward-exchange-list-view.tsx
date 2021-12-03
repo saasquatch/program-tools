@@ -200,7 +200,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                   {intl.formatMessage(
                     {
                       id: "unavailableCode",
-                      defaultMessage: states.content.text.notAvailableError,
+                      defaultMessage: states.content?.text?.notAvailableError,
                     },
                     { unavailableReasonCode: step.unavailableReasonCode }
                   )}
@@ -302,7 +302,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                       {intl.formatMessage(
                         {
                           id: "unavailableCode",
-                          defaultMessage: states.content.text.notAvailableError,
+                          defaultMessage: states.content?.text?.notAvailableError,
                         },
                         { unavailableReasonCode: item.unavailableReasonCode }
                       )}
