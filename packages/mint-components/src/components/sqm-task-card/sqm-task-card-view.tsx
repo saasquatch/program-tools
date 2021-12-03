@@ -141,8 +141,8 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const taskComplete = showComplete && props.repeatable === false;
   const dateExpire =
     props.showExpiry && DateTime.fromISO(props.dateExpires.split("/").pop());
-  const taskExpired = props.showExpiry && DateTime.now() > dateExpire;
   const dateExpireText = dateExpire.toLocaleString(DateTime.DATE_FULL);
+  const taskExpired = props.showExpiry && DateTime.now() > dateExpire;
 
   console.log(taskExpired);
 

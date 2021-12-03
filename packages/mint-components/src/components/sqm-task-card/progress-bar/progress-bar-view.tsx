@@ -201,7 +201,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
       </div>
     );
     items.push(<div class={"remain"}></div>);
-    items.push(<div class={"progress bg"}>{goal}</div>);
+    items.push(<div class={"progress bg"}>{progressBarUnit + goal}</div>);
     items.push(<div class={"gift"}>{gift1}</div>);
   }
 
