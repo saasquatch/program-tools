@@ -263,7 +263,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                       background: "var(--sl-color-primary-500)",
                       position: "relative",
                       margin: "-9px",
-                      left: "350px",
+                      left: "100%",
                     }}
                   >
                     <div style={{ position: "relative", top: "-6px" }}>
