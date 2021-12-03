@@ -140,7 +140,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     },
     KutayButton: {
       display: "flex",
-      flexWrap: "wrap",
+      flexWrap: "wrap-reverse",
       margin: "var(--sl-spacing-medium) 0",
       "& .cancel": {
         width: "20%",
@@ -150,6 +150,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           fontWeight: "var(--sl-font-weight-normal)",
           color: "var(--sl-color-neutral-1000)",
         },
+        "@media (max-width: 1024px)": {
+          width: "100%",
+          marginRight: "0",
+        },
       },
       "& .continue": {
         width: "20%",
@@ -157,6 +161,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           background: "var(--sl-color-neutral-500)",
           fontWeight: "var(--sl-font-weight-normal)",
           color: "var(--sl-color-neutral-0)",
+        },
+        "@media (max-width: 1024px)": {
+          width: "100%",
         },
       },
     },
@@ -202,7 +209,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                       id: "unavailableCode",
                       defaultMessage: states.content?.text?.notAvailableError,
                     },
-                    { unavailableReason: step.unavailableReason || step.unavailableReasonCode }
+                    {
+                      unavailableReason:
+                        step.unavailableReason || step.unavailableReasonCode,
+                    }
                   )}
                 </p>
               )}
@@ -302,9 +312,14 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                       {intl.formatMessage(
                         {
                           id: "unavailableCode",
-                          defaultMessage: states.content?.text?.notAvailableError,
+                          defaultMessage:
+                            states.content?.text?.notAvailableError,
                         },
-                        { unavailableReason: item.unavailableReason || item.unavailableReasonCode }
+                        {
+                          unavailableReason:
+                            item.unavailableReason ||
+                            item.unavailableReasonCode,
+                        }
                       )}
                     </p>
                   )}
