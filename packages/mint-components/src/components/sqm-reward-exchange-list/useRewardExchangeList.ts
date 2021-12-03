@@ -13,8 +13,6 @@ import {
   useReducer,
   useRef,
 } from "@saasquatch/universal-hooks";
-import { SlDrawer } from "@shoelace-style/shoelace";
-import PortalProfileStories from "../sqm-portal-profile/PortalProfile.stories";
 
 export type ExchangeItem = {
   key: string;
@@ -115,8 +113,6 @@ export type ExchangeState = {
 export function useRewardExchangeList(
   props: SqmRewardExchangeList
 ): RewardExchangeViewProps {
-  const drawerRef = useRef<SlDrawer>();
-
   const [exchangeState, setExchangeState] = useReducer<
     ExchangeState,
     Partial<ExchangeState>
@@ -141,22 +137,16 @@ export function useRewardExchangeList(
 
   const [exchange, { data: exchangeResponse, errors }] = useMutation(EXCHANGE);
 
-  const { data, loading } = useQuery(GET_EXCHANGE_LIST, !user?.jwt);
+  const { data, loading, refetch } = useQuery(GET_EXCHANGE_LIST, !user?.jwt);
 
   useEffect(() => {
     if (exchangeResponse?.exchangeReward?.reward?.id) {
       setExchangeState({ redeemStage: "success" });
     }
     if (!!errors) {
-      console.log("YEA");
       setExchangeState({ exchangeError: true });
     }
   }, [exchangeResponse, errors]);
-
-  function openDrawer() {
-    setExchangeState({ redeemStage: "chooseReward" });
-    drawerRef.current?.show();
-  }
 
   function exchangeReward() {
     if (!selectedItem) return;
@@ -217,28 +207,16 @@ export function useRewardExchangeList(
     exchange({ exchangeRewardInput: exchangeVariables });
   }
 
-  const resetState = useCallback((e) => {
-    // selects also trigger an sl-hide event :(
-    //@ts-ignore - componentId is not private here
-    if (e?.target?.componentId !== drawerRef.current?.componentId) return;
+  const resetState = (refresh: boolean) => {
+    refresh && refetch();
     setExchangeState({
       amount: 0,
       selectedStep: undefined,
       selectedItem: undefined,
       exchangeError: false,
+      redeemStage: "chooseReward",
     });
-  }, []);
-
-  useEffect(() => {
-    if (!drawerRef?.current) return;
-    const drawer = drawerRef.current;
-    // Clear input value when drawer is closed
-    drawer.addEventListener("sl-hide", resetState);
-    return () => {
-      drawer.removeEventListener("sl-hide", resetState);
-    };
-  }, [drawerRef.current]);
-
+  };
   function setStage(stage?: Stages) {
     setExchangeState({ redeemStage: stage });
   }
@@ -256,17 +234,13 @@ export function useRewardExchangeList(
     },
     data: {
       exchangeList: data?.viewer?.visibleRewardExchangeItems?.data,
-      //@ts-ignore
       fuelTankCode: exchangeResponse?.exchangeReward?.reward?.fuelTankCode,
     },
     callbacks: {
       exchangeReward,
-      openDrawer,
       setExchangeState,
       setStage,
-    },
-    refs: {
-      drawerRef,
+      resetState,
     },
   };
 }

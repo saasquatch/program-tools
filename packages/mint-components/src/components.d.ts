@@ -827,6 +827,10 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<RewardExchangeViewProps>;
+        /**
+          * @uiName Exchange button text
+         */
+        "notAvailableError": string;
     }
     interface SqmRewardsTable {
         /**
@@ -2333,6 +2337,10 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<RewardExchangeViewProps>;
+        /**
+          * @uiName Exchange button text
+         */
+        "notAvailableError"?: string;
     }
     interface SqmRewardsTable {
         /**
