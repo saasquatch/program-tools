@@ -36,7 +36,7 @@ export class SqmRewardExchangeList {
    * @uiName Exchange button text
    */
   @Prop() notAvailableError: string =
-    "{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {Not enough points} other {Not available} }";
+    "{unavailableReason, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {Not enough points} other {Not available} }";
 
   /**
    * @undocumented

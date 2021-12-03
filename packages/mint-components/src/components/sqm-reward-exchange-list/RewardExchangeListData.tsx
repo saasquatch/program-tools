@@ -175,6 +175,7 @@ export const test2 = {
           prettyDestinationValue: "1 Salmon Coin",
           available: true,
           unavailableReasonCode: null,
+          unavailableReason: ""
         },
         {
           sourceValue: 2,
@@ -183,6 +184,7 @@ export const test2 = {
           prettyDestinationValue: "2 Salmons",
           available: true,
           unavailableReasonCode: null,
+          unavailableReason: ""
         },
         {
           sourceValue: 3,
@@ -191,6 +193,7 @@ export const test2 = {
           prettyDestinationValue: "3 Salmons",
           available: true,
           unavailableReasonCode: null,
+          unavailableReason: ""
         },
         {
           sourceValue: 4,
@@ -199,6 +202,7 @@ export const test2 = {
           prettyDestinationValue: "4 Salmons",
           available: true,
           unavailableReasonCode: null,
+          unavailableReason: ""
         },
         {
           sourceValue: 5,
@@ -207,6 +211,7 @@ export const test2 = {
           prettyDestinationValue: "5 Salmons",
           available: true,
           unavailableReasonCode: null,
+          unavailableReason: ""
         },
       ],
     },

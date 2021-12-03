@@ -46,6 +46,7 @@ export type ExchangeStep = {
   prettySourceValue: string;
   available: boolean;
   unavailableReasonCode: string;
+  unavailableReason:string;
 };
 
 export type Stages = "" | "chooseReward" | "chooseAmount" | "confirmation";
