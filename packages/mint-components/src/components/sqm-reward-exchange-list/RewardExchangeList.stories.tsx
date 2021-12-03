@@ -14,10 +14,18 @@ const resizable = {
   overflow: "hidden",
 };
 
-export const Default = () => {
+export const rewardExchange = () => {
   return (
     <div style={resizable}>
-      <RewardExchangeView {...Data.test}></RewardExchangeView>
+      <RewardExchangeView {...Data.rewardExchange}></RewardExchangeView>
+    </div>
+  );
+};
+
+export const rewardExchangeSelected = () => {
+  return (
+    <div style={resizable}>
+      <RewardExchangeView {...Data.rewardExchangeSelected}></RewardExchangeView>
     </div>
   );
 };

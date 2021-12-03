@@ -1,4 +1,4 @@
-const baseResponse = (data) => ({
+const baseResponse = (data, selected = null) => ({
   states: {
     content: {
       text: {
@@ -10,7 +10,7 @@ const baseResponse = (data) => ({
     amount: 0,
     exchangeError: false,
     loading: false,
-    selectedItem: null,
+    selectedItem: selected,
     selectedStep: null,
   },
   data: {
@@ -61,6 +61,10 @@ const usTax = {
   unavailableReasonCode: "US_TAX",
 };
 
+const selected = {
+  key: "r1",
+};
+
 const imageUrl = (props) => ({
   imageUrl: props,
 });
@@ -81,60 +85,73 @@ const variableValue = (min, max, text) => ({
   prettySourceMaxValue: max + " " + text,
 });
 
-export const test = {
-  ...baseResponse([
-    {
-      ...baseReward,
-      ...description("Free swag with a promo code"),
-      ...imageUrl("https://i.imgur.com/Ds7M19I.png"),
-      ...fixedValue("40 SaaSquatch Points"),
-    },
-    {
-      ...baseReward,
-      ...description("Visa® Prepaid Card USD"),
-      ...imageUrl("https://i.imgur.com/4s3q2zz.png"),
-      ...variableValue(20, 80, "SaaSquatch Points"),
-    },
-    {
-      ...baseReward,
-      ...description("A very exclusive gift box"),
-      ...imageUrl("https://i.imgur.com/XuiJi4l.png"),
-      ...fixedValue("30 SaaSquatch Points"),
-    },
-    {
-      ...baseReward,
-      ...description("$50 Store credit"),
-      ...imageUrl("https://i.imgur.com/WkCMVSE.png"),
-      ...fixedValue("100 SaaSquatch Points"),
-    },
-    {
-      ...baseReward,
-      ...description("Variable amount of store credit"),
-      ...imageUrl("https://i.imgur.com/Jn2fE0s.png"),
-      ...variableValue(20, 100, "SaaSquatch Points"),
-    },
-    {
-      ...baseReward,
-      ...notEnoughPoints,
-      ...description("A very rare cactus"),
-      ...imageUrl("https://i.imgur.com/CvCdpXc.png"),
-      ...fixedValue("2000 SaaSquatch Points"),
-    },
-    {
-      ...baseReward,
-      ...usTax,
-      ...description("$1000 Store credit"),
-      ...imageUrl("https://i.imgur.com/I9FCh9Z.png"),
-      ...fixedValue("2000 SaaSquatch Points"),
-    },
-    {
-      ...baseReward,
-      ...notEnoughPoints,
-      ...description("A holiday gift box"),
-      ...imageUrl("https://i.imgur.com/HBJS1WH.png"),
-      ...fixedValue("100 SaaSquatch Points"),
-    },
-  ]),
+const data = [
+  {
+    ...baseReward,
+    ...description("Free swag with a promo code"),
+    ...imageUrl("https://i.imgur.com/Ds7M19I.png"),
+    ...fixedValue("40 SaaSquatch Points"),
+  },
+  {
+    ...baseReward,
+    ...selected,
+    ...description("Visa® Prepaid Card USD"),
+    ...imageUrl("https://i.imgur.com/4s3q2zz.png"),
+    ...variableValue(20, 80, "SaaSquatch Points"),
+  },
+  {
+    ...baseReward,
+    ...description("A very exclusive gift box"),
+    ...imageUrl("https://i.imgur.com/XuiJi4l.png"),
+    ...fixedValue("30 SaaSquatch Points"),
+  },
+  {
+    ...baseReward,
+    ...description("$50 Store credit"),
+    ...imageUrl("https://i.imgur.com/WkCMVSE.png"),
+    ...fixedValue("100 SaaSquatch Points"),
+  },
+  {
+    ...baseReward,
+    ...description("Variable amount of store credit"),
+    ...imageUrl("https://i.imgur.com/Jn2fE0s.png"),
+    ...variableValue(20, 100, "SaaSquatch Points"),
+  },
+  {
+    ...baseReward,
+    ...notEnoughPoints,
+    ...description("A very rare cactus"),
+    ...imageUrl("https://i.imgur.com/CvCdpXc.png"),
+    ...fixedValue("2000 SaaSquatch Points"),
+  },
+  {
+    ...baseReward,
+    ...usTax,
+    ...description("$1000 Store credit"),
+    ...imageUrl("https://i.imgur.com/I9FCh9Z.png"),
+    ...fixedValue("2000 SaaSquatch Points"),
+  },
+  {
+    ...baseReward,
+    ...notEnoughPoints,
+    ...description("A holiday gift box"),
+    ...imageUrl("https://i.imgur.com/HBJS1WH.png"),
+    ...fixedValue("100 SaaSquatch Points"),
+  },
+];
+
+export const rewardExchange = {
+  ...baseResponse(data),
+};
+
+export const rewardExchangeSelected = {
+  ...baseResponse(data, {
+    ...baseReward,
+    ...selected,
+    ...description("Visa® Prepaid Card USD"),
+    ...imageUrl("https://i.imgur.com/4s3q2zz.png"),
+    ...variableValue(20, 80, "SaaSquatch Points"),
+  }),
 };
 
 export const test2 = {
