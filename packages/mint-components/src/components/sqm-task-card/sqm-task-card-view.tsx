@@ -156,7 +156,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         <style type="text/css">{styleString}</style>
         <div class={sheet.classes.Header}>
           {props.loading ? (
-            <sl-skeleton style={{ width: "22%", margin: "0" }} />
+            <sl-skeleton
+              style={{ width: "22%", margin: "0", height: "12px" }}
+            />
           ) : (
             <div>
               {taskExpired && (
@@ -176,19 +178,21 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         </div>
 
         {props.loading ? (
-          <sl-skeleton style={{ width: "42%", margin: "0 16px" }} />
+          <sl-skeleton
+            style={{ width: "42%", margin: "0 16px", height: "12px" }}
+          />
         ) : (
           <div class={taskExpired ? "title" : "title black"}>
             {props.cardTitle}
           </div>
         )}
         {props.loading ? (
-          <sl-skeleton style={{ margin: "12px 16px" }} />
+          <sl-skeleton style={{ margin: "12px 16px", height: "12px" }} />
         ) : (
           <Details {...props} />
         )}
         {props.showProgressBar && props.loading ? (
-          <sl-skeleton style={{ margin: "0 16px" }} />
+          <sl-skeleton style={{ margin: "0 16px", height: "12px" }} />
         ) : (
           props.showProgressBar && (
             <ProgressBarView
@@ -200,7 +204,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         )}
         <div class={sheet.classes.Footer}>
           {props.loading ? (
-            <sl-skeleton style={{ width: "25%", marginLeft: "auto" }} />
+            <sl-skeleton
+              style={{ width: "25%", marginLeft: "auto", height: "12px" }}
+            />
           ) : (
             <div style={{ display: "contents" }}>
               <span class="text">
