@@ -183,12 +183,12 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           </div>
         )}
         {props.loading ? (
-          <sl-skeleton style={{ width: "91%", margin: "12px 16px" }} />
+          <sl-skeleton style={{ margin: "12px 16px" }} />
         ) : (
           <Details {...props} />
         )}
         {props.showProgressBar && props.loading ? (
-          <sl-skeleton style={{ width: "91%", margin: "0 auto" }} />
+          <sl-skeleton style={{ margin: "0 16px" }} />
         ) : (
           props.showProgressBar && (
             <ProgressBarView
