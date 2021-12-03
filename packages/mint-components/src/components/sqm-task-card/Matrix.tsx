@@ -4,8 +4,8 @@ export type Matrix = Record<string, Array<unknown>>;
 
 /**
  * Displays a cartesian product of the input props
- * 
- * @returns 
+ *
+ * @returns
  */
 export function MatrixStory({
   matrix,
@@ -40,8 +40,9 @@ export function MatrixStory({
     return (
       <div>
         <PropsTable values={example} />
-        <hr />
+        <hr /> <br />
         <Component {...example} />
+        <br />
       </div>
     );
   });
@@ -65,7 +66,7 @@ function PropsTable({ values }: { values: Record<string, any> }) {
 
 /**
  * Source: https://stackoverflow.com/questions/15298912/javascript-generating-combinations-from-n-arrays-with-m-elements
- * 
+ *
  * TODO: Could replace with a fork of https://www.npmjs.com/package/cartesian
  *
  * @param args - an array of arrays
