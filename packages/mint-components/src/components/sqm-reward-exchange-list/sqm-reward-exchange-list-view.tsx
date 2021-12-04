@@ -177,7 +177,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       flexWrap: "wrap-reverse",
       margin: "var(--sl-spacing-medium) 0",
       "& .cancel": {
-        width: "20%",
         marginLeft: "auto",
         marginRight: "var(--sl-spacing-medium)",
         "&::part(base)": {
@@ -190,9 +189,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         },
       },
       "& .continue": {
-        width: "20%",
         "&::part(base)": {
-          background: "var(--sl-color-neutral-500)",
+          background: "var(--sl-color-primary-500)",
+          borderColor: "var(--sl-color-primary-500)",
           fontWeight: "var(--sl-font-weight-normal)",
           color: "var(--sl-color-neutral-0)",
         },
@@ -399,12 +398,19 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         : input && !states.amount;
     return (
       <div>
-        <div style={{ width: "50%", margin: "0 auto" }}>
-          <p>{selectedItem?.description}</p>
-          {selectedItem?.imageUrl && (
-            <img class={sheet.classes.FullImage} src={selectedItem?.imageUrl} />
-          )}
+        <div>
+          {
+            //selectedItem?.imageUrl &&
+            <img
+              class={sheet.classes.FullImage}
+              src={
+                selectedItem?.imageUrl ||
+                getAssetPath("./assets/Reward-icon.png")
+              }
+            />
+          }
         </div>
+        <b>{selectedItem?.description}</b>
         <div class={sheet.classes.InputBox}>{input}</div>
         <div class={sheet.classes.KutayButton}>
           <sl-button
@@ -434,7 +440,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         <h2>Confirm and redeem</h2>
         <div style={{ textAlign: "center" }}>
           <p>
-            <b>{selectedStep?.prettySourceValue || selectedItem?.prettySourceValue  }</b>
+            <b>
+              {selectedStep?.prettySourceValue ||
+                selectedItem?.prettySourceValue}
+            </b>
           </p>
           <p>
             <ExchangeArrows />
