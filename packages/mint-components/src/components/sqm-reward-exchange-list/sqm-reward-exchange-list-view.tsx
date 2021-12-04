@@ -70,14 +70,21 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         display: "flex",
         width: "100%",
       },
-      "& .title": {
+      "& .text-area": {
         textAlign: "left",
-        fontSize: "var(--sl-font-size-x-small)",
-        fontWeight: "var(--sl-font-weight-semibold)",
-        lineHeight: "var(--sl-font-size-medium)",
+        padding: "8px",
       },
-      "& .description": {},
-      "& .error": {},
+      "& .title": {
+        fontSize: "var(--sl-font-size-medium)",
+        fontWeight: "var(--sl-font-weight-semibold)",
+      },
+      "& .amount": {
+        fontSize: "var(--sl-font-size-small)",
+      },
+      "& .error": {
+        fontSize: "var(--sl-font-size-small)",
+        color: "var(--sl-color-warning-500)",
+      },
       "& .selected-outline": {
         width: "18px",
         height: "18px",
@@ -108,7 +115,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     FullImage: {
       objectFit: "contain",
       maxWidth: "100%",
-      height: "100px",
+      height: "150px",
+      display: "flex",
+      margin: "0 auto",
     },
     PreviewImage: {
       objectFit: "contain",
@@ -204,7 +213,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   function getInput() {
     const item = states.selectedItem;
-    if (!item || item?.ruleType === "FIXED_GLOBAL_REWARD") return <span></span>;
+    if (!item || item?.ruleType === "FIXED_GLOBAL_REWARD")
+      return <span>{item?.prettySourceValue}</span>;
 
     if (!item.steps?.length) {
       return <p>Not enough {item.sourceUnit} to redeem for this reward.</p>;
@@ -305,11 +315,11 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     }
                   />
                 }
-                <div>
-                  <div>{item.description}</div>
-                  <div>{amount}</div>
+                <div class="text-area">
+                  <div class="title">{item.description}</div>
+                  <div class="amount">{amount}</div>
                   {item.unavailableReasonCode && (
-                    <div>
+                    <div class="error">
                       {intl.formatMessage(
                         {
                           id: "unavailableCode",
@@ -383,14 +393,18 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   function chooseAmount() {
     const input = getInput();
+    const isDisabled =
+      states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD"
+        ? false
+        : input && !states.amount;
     return (
       <div>
         <div style={{ width: "50%", margin: "0 auto" }}>
+          <p>{selectedItem?.description}</p>
           {selectedItem?.imageUrl && (
             <img class={sheet.classes.FullImage} src={selectedItem?.imageUrl} />
           )}
         </div>
-        <p>{selectedItem?.description}</p>
         <div class={sheet.classes.InputBox}>{input}</div>
         <div class={sheet.classes.KutayButton}>
           <sl-button
@@ -405,7 +419,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             class="continue"
             size="large"
             onClick={() => callbacks.setStage("confirmation")}
-            disabled={input && !states.amount}
+            disabled={isDisabled}
           >
             Continue to confirmation
           </sl-button>
@@ -420,7 +434,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         <h2>Confirm and redeem</h2>
         <div style={{ textAlign: "center" }}>
           <p>
-            <b>{selectedStep?.prettySourceValue}</b>
+            <b>{selectedStep?.prettySourceValue || selectedItem?.prettySourceValue  }</b>
           </p>
           <p>
             <ExchangeArrows />

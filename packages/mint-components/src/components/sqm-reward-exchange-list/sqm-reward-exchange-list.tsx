@@ -22,6 +22,7 @@ import { RequiredPropsError } from "../../utils/RequiredPropsError";
 @Component({
   tag: "sqm-reward-exchange-list",
   assetsDirs: ["assets"],
+  shadow: true
 })
 export class SqmRewardExchangeList {
   @State()
