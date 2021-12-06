@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property   | Attribute   | Description | Type                                                                                                 | Default     |
-| ---------- | ----------- | ----------- | ---------------------------------------------------------------------------------------------------- | ----------- |
-| `demoData` | --          |             | `{ states?: { error: string; loading: boolean; verified: boolean; }; data?: { oobCode: string; }; }` | `undefined` |
-| `nextPage` | `next-page` |             | `string`                                                                                             | `"/"`       |
+| Property     | Attribute     | Description | Type                                                                                                 | Default     |
+| ------------ | ------------- | ----------- | ---------------------------------------------------------------------------------------------------- | ----------- |
+| `demoData`   | --            |             | `{ states?: { error: string; loading: boolean; verified: boolean; }; data?: { oobCode: string; }; }` | `undefined` |
+| `failedPage` | `failed-page` |             | `string`                                                                                             | `"/"`       |
+| `nextPage`   | `next-page`   |             | `string`                                                                                             | `"/"`       |
 
 
 ## Dependencies

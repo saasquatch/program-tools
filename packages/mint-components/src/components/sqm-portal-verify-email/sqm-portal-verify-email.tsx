@@ -27,6 +27,12 @@ export class PortalVerifyEmail {
   nextPage: string = "/";
 
   /**
+   * @uiName Failed page path
+   */
+   @Prop()
+   failedPage: string = "/";
+
+  /**
    * @undocumented
    * @uiType object
    */

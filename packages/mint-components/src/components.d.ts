@@ -661,6 +661,10 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
+          * @uiName Failed page path
+         */
+        "failedPage": string;
+        /**
           * @uiName Next page path
          */
         "nextPage": string;
@@ -688,6 +692,10 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<PortalVerifyEmailViewProps>;
+        /**
+          * @uiName Failed page path
+         */
+        "failedPage": string;
         /**
           * @uiName Next page path
          */
@@ -2047,6 +2055,10 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
+          * @uiName Failed page path
+         */
+        "failedPage"?: string;
+        /**
           * @uiName Next page path
          */
         "nextPage"?: string;
@@ -2074,6 +2086,10 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<PortalVerifyEmailViewProps>;
+        /**
+          * @uiName Failed page path
+         */
+        "failedPage"?: string;
         /**
           * @uiName Next page path
          */
