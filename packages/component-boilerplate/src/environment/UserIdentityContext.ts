@@ -157,7 +157,7 @@ export function setUserIdentity(identity?: UserIdentity) {
   // Portals store identity in local storage
   if (identity && getEnvironmentSDK().type === "SquatchPortal") {
     localStorage.setItem(USER_LOCAL_STORAGE_KEY, JSON.stringify(identity));
-  } else {
+  } else if(!identity) {
     localStorage.removeItem(USER_LOCAL_STORAGE_KEY);
   }
 }
@@ -187,7 +187,7 @@ export function useUserIdentity(): UserIdentity | undefined {
     | undefined;
 
   const validIdentity = userIdentityFromJwt(identity?.jwt);
-  if (!validIdentity) {
+  if (identity && !validIdentity) {
     // Likely that the JWT has expired
     setUserIdentity(undefined);
     return undefined;
