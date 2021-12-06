@@ -62,10 +62,12 @@ export function usePortalRegister(props: PortalRegister) {
     delete formData.password;
     delete formData.confirmPassword;
     formData = { ...formData };
+    const urlParams = { nextPage: props.nextPage };
     const variables = {
       email,
       password,
       formData,
+      urlParams,
     };
     try {
       await request(variables);
