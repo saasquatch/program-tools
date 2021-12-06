@@ -20,6 +20,7 @@ export type TaskCardViewProps = {
   rewardUnit: string;
   buttonText: string;
   buttonLink: string;
+  openNewTab: boolean;
   loading: boolean;
 } & ProgressBarProps;
 
@@ -261,7 +262,11 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                 }
                 type="primary"
                 size="small"
-                onClick={() => window.open(props.buttonLink)}
+                onClick={() =>
+                  props.openNewTab
+                    ? window.open(props.buttonLink)
+                    : window.open(props.buttonLink, "_self")
+                }
                 disabled={taskComplete || taskUnavailable}
               >
                 {props.buttonText}

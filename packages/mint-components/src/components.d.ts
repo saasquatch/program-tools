@@ -1052,6 +1052,10 @@ export namespace Components {
          */
         "goal": number;
         /**
+          * @uiName CTA Button Link Open in New Tab
+         */
+        "openNewTab": boolean;
+        /**
           * @uiName Progress Bar Unit
          */
         "progressBarUnit"?: string;
@@ -2559,6 +2563,10 @@ declare namespace LocalJSX {
           * @uiName Goal Completion Number
          */
         "goal"?: number;
+        /**
+          * @uiName CTA Button Link Open in New Tab
+         */
+        "openNewTab"?: boolean;
         /**
           * @uiName Progress Bar Unit
          */

@@ -8,7 +8,7 @@ import { TaskCardView } from "./sqm-task-card-view";
 
 /**
  * @uiName Task Card
- * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "date-expires", "button-text", "button-link"]
+ * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "date-expires", "button-text", "button-link", "open-new-tab"]
  */
 @Component({
   tag: "sqm-task-card",
@@ -96,6 +96,12 @@ export class TaskCard {
    */
   @Prop()
   buttonLink: string = "https://example.com/";
+
+  /**
+   * @uiName CTA Button Link Open in New Tab
+   */
+  @Prop()
+  openNewTab: boolean = false;
 
   /**
    * Select what type of stat to display for the goal. Manual paths are also supported.
