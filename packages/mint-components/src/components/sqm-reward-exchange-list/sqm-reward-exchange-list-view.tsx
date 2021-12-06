@@ -558,14 +558,22 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   //   );
   // };
 
+  function errorMessage() {
+    return (
+      <sl-alert type="danger" open>
+        <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+        An error occured trying to redeem this reward. Please try again.
+      </sl-alert>
+    );
+  }
+
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
       <div>
         {stageMap()}
+        {states.exchangeError && errorMessage()}
         {currentStage && currentStage()}
-        {states.exchangeError &&
-          "Something went wrong. Please contact support or try again."}
       </div>
     </div>
   );
