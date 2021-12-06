@@ -88,6 +88,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       "& .selected-outline": {
         width: "18px",
         height: "18px",
+        minWidth: "18px",
         borderRadius: "50%",
         background: "var(--sl-color-primary-500)",
         position: "relative",

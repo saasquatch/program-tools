@@ -12,12 +12,12 @@
 | `buttonLink`      | `button-link`       |                                                                                    | `string`  | `"https://example.com/"`                             |
 | `buttonText`      | `button-text`       |                                                                                    | `string`  | `"Complete Action"`                                  |
 | `cardTitle`       | `card-title`        |                                                                                    | `string`  | `"Title Text"`                                       |
-| `dateExpires`     | `date-expires`      |                                                                                    | `string`  | `"/"`                                                |
 | `description`     | `description`       |                                                                                    | `string`  | `"Description Text"`                                 |
 | `goal`            | `goal`              |                                                                                    | `number`  | `1`                                                  |
 | `progressBarUnit` | `progress-bar-unit` |                                                                                    | `string`  | `undefined`                                          |
 | `repeatable`      | `repeatable`        |                                                                                    | `boolean` | `false`                                              |
 | `rewardAmount`    | `reward-amount`     |                                                                                    | `number`  | `0`                                                  |
+| `rewardDuration`  | `reward-duration`   |                                                                                    | `string`  | `"/"`                                                |
 | `rewardUnit`      | `reward-unit`       |                                                                                    | `string`  | `"Points"`                                           |
 | `showExpiry`      | `show-expiry`       |                                                                                    | `boolean` | `false`                                              |
 | `showProgressBar` | `show-progress-bar` |                                                                                    | `boolean` | `false`                                              |

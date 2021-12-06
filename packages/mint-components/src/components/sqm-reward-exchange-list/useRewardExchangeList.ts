@@ -142,7 +142,7 @@ export function useRewardExchangeList(
 
   useEffect(() => {
     if (exchangeResponse?.exchangeReward?.reward?.id) {
-      setExchangeState({ redeemStage: "success" });
+      setExchangeState({ redeemStage: "success", exchangeError: false });
     }
     if (!!errors) {
       setExchangeState({ exchangeError: true });
