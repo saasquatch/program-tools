@@ -199,6 +199,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           width: "100%",
         },
       },
+      "& .continue.right": {
+        marginLeft: "auto",
+      },
     },
   };
   // JSS config
@@ -375,11 +378,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         })}
       </div>,
       <div class={sheet.classes.KutayButton}>
-        <sl-button class="cancel" size="large" type="text">
-          Cancel
-        </sl-button>
         <sl-button
-          class="continue"
+          class="continue right"
           size="large"
           onClick={() => callbacks.setStage("chooseAmount")}
           disabled={!states.selectedItem}
