@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Tooltip } from "."
-import { PrimaryButton, SecondaryButton } from "../Button"
+import { Button } from "../Button"
 import styled from "styled-components"
 import { Input } from "../Input"
 
@@ -46,17 +46,17 @@ export const Functional = () => {
   return (
     <StoryFrame>
       <Tooltip onMouseEnter={showTooltip} onMouseLeave={hideTooltip} showTooltip={enabled} direction={direction} text="A tooltip that explains something in detail">
-        <PrimaryButton> Hover </PrimaryButton>
+        <Button buttonType="primary"> Hover </Button>
       </Tooltip>
       <div style={{ position: "absolute", left: "90%", bottom: "50%" }}>
         <span style={{ fontFamily: "Helvetica" }}>Delay:</span>
         <Input value={delay} type="number" onChange={(e) => setDelay(Number(e.target.value))} min="0" max="5000" css="width: 75px;" />
       </div>
       <ButtonFrame>
-        <SecondaryButton onClick={() => setDirection("top")}>Top</SecondaryButton>
-        <SecondaryButton onClick={() => setDirection("left")}>Left</SecondaryButton>
-        <SecondaryButton onClick={() => setDirection("bottom")}>Bottom</SecondaryButton>
-        <SecondaryButton onClick={() => setDirection("right")}>Right</SecondaryButton>
+        <Button buttonType="secondary" onClick={() => setDirection("top")}>Top</Button>
+        <Button buttonType="secondary" onClick={() => setDirection("left")}>Left</Button>
+        <Button buttonType="secondary" onClick={() => setDirection("bottom")}>Bottom</Button>
+        <Button buttonType="secondary" onClick={() => setDirection("right")}>Right</Button>
       </ButtonFrame>
     </StoryFrame>
   )

@@ -7,14 +7,14 @@ type TooltipProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   text?: string;
   direction?: "top" | "left" | "bottom" | "right";
   showTooltip?: boolean;
   children?: React.ReactNode;
 }
 
-interface StyleProps {
+export interface StyleProps {
   css?: CSSProp;
 }
 

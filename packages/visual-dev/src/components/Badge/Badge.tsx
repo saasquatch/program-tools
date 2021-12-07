@@ -7,11 +7,11 @@ type BadgeProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   icon?: IconKey;
 }
 
-interface StyleProps {
+export interface StyleProps {
   status: "info" | "success" | "critical" | "warning";
   pill?: boolean;
   css?: CSSProp;

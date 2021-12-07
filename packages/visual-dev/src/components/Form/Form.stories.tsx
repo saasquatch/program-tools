@@ -1,7 +1,6 @@
 import { JSONSchema7 } from "json-schema";
 import React from "react";
 import { Button } from "../Button";
-import { Checkbox } from "../Checkbox";
 import { RSJFRadioWidget } from "../Radio";
 import { RJSFRadioCardWidget } from "../RadioCard";
 import {
@@ -174,46 +173,6 @@ export const ExampleCancellableForm = () => {
 //     return <div>test</div>
 //   }
 
-//   const uiSchema = {
-//     Done: {
-//       'ui:widget': 'Radio',
-//       'ui:options': {
-//         cardFormat: true,
-//         radioOptions: [
-//           {
-//             key: 'create',
-//             label: 'Create',
-//             name: 'action',
-//           },
-//           {
-//             key: 'update',
-//             label: 'Update',
-//             name: 'action',
-//           },
-//           {
-//             key: 'edit',
-//             label: 'Edit',
-//             name: 'action',
-//           },
-//         ],
-//       },
-//     },
-//   }
-
-//   const widgets = {
-//     Radio: Radio,
-//   }
-
-//   return (
-//     <div style={{ margin: '100px' }}>
-//       <Form schema={schema} uiSchema={uiSchema} widgets={widgets} onChange={log('changed')} onSubmit={log('submitted')} onError={log('errors')}>
-//         <Button buttonType='primary' style={{ marginTop: 15 }}>
-//           Submit
-//         </Button>
-//       </Form>
-//     </div>
-//   )
-// }
 
 export const RadioForm = () => {
   const schema: JSONSchema7 = {

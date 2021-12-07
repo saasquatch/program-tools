@@ -7,13 +7,13 @@ type AvatarProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   firstName?: string;
   lastName?: string;
   large?: boolean;
 }
 
-interface StyleProps {
+export interface StyleProps {
   css?: CSSProp;
 }
 

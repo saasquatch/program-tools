@@ -7,12 +7,12 @@ type TagProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   onClickClose?: () => void;
   children: React.ReactNode;
 }
 
-interface StyleProps {
+export interface StyleProps {
   css?: CSSProp;
 }
 

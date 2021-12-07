@@ -7,7 +7,7 @@ type DropdownProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   text?: string;
   showMenu?: boolean;
   pill?: boolean;
@@ -38,7 +38,7 @@ interface DropdownSublistProps {
   children: React.ReactNode;
 }
 
-interface StyleProps {
+export interface StyleProps {
   css?: CSSProp;
 }
 

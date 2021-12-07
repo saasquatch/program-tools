@@ -6,7 +6,7 @@ import * as Styles from "./Styles";
 
 type InputProps = OptionProps & React.ComponentProps<"input">;
 
-interface OptionProps {
+export interface OptionProps {
   value?: any;
   onChange?: any;
   options?: any;

@@ -6,12 +6,12 @@ type TabGroupProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   children?: React.ReactNode;
   selected?: boolean;
 }
 
-interface StyleProps {
+export interface StyleProps {
   color?: "primary" | "secondary";
   css?: CSSProp;
 }

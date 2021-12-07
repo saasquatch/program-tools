@@ -9,13 +9,13 @@ type DataTableProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   children?: any;
   empty?: boolean;
   search?: boolean;
 }
 
-interface StyleProps {
+export interface StyleProps {
   width?: string;
   css?: CSSProp;
 }

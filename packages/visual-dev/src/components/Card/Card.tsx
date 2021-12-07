@@ -2,18 +2,18 @@ import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { Icon } from "../Icon";
-import { PrimaryButton, SecondaryButton } from "../Button";
+import { Button } from "../Button"
 
 type CardProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   title: string;
   children: any;
 }
 
-interface StyleProps {
+export interface StyleProps {
   css?: CSSProp;
 }
 
@@ -56,16 +56,17 @@ export const Card = React.forwardRef<React.ElementRef<"div">, CardProps>(
         </CardHeader>
         <CardText> {children}</CardText>
         <CardFooter>
-          <SecondaryButton
+          <Button
+            buttonType="secondary"
             size="small"
             pill
             css="width: 124px; margin-right: 8px;"
           >
             Learn More
-          </SecondaryButton>
-          <PrimaryButton size="small" pill css="width: 124px;">
+          </Button>
+          <Button buttonType="primary" size="small" pill css="width: 124px;">
             Create
-          </PrimaryButton>
+          </Button>
         </CardFooter>
       </CardStyle>
     );
