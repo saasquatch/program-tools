@@ -3,7 +3,7 @@
 
 Feature: Conditional Section
 
-  Conditional Section adds JSONata conditional logic that can display or hide children components based on user segments or custom fields
+  Conditional Section adds JSONata conditional logic that can display or hide children components based on user segments, custom fields or email
 
   @motivating
   Scenario: Content is hidden or shown depending on user segments
