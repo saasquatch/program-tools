@@ -4,7 +4,9 @@ Feature: Task Card Progress Bar
 
 	Scenario Outline: Progress Bar
 
-		Given <progress> and <goal>
+		Given a Task Card component
+		And progress is <progress>
+		And goal is <goal>
 		Then I have <progressBar>
 		And <progressBar> shows <progress> with <unit> above
 		And gift icon has <color>
@@ -20,7 +22,9 @@ Feature: Task Card Progress Bar
 
 	Scenario Outline: Progress Bar Steps
 
-		Given <progress> and <goal>
+		Given a Task Card component
+		And progress is <progress>
+		And goal is <goal>
 		And steps is enabled
 		Then I have <progressBar>
 		And <progressBar> has incrementing steps from 1 to <goal>
@@ -38,34 +42,32 @@ Feature: Task Card Progress Bar
 
 	Scenario Outline: Progress Bar Repeatable
 
-		Given <progress> and <goal>
+		Given a Task Card component
+		And progress is <progress>
+		And goal is <goal>
+		And it is repeatable
 		Then I have <progressBar>
 		And <progressBar> shows <progress> with <unit> above
-		And <icon1> has <color1>
-		And <icon2> has <color2>
-		And <icon3> has <color3>
-		And <icon1> shows <text1> below
-		And <icon2> shows <text2> below
-		And <icon3> shows <text3> below
+		And <icon1> is <color1> with <text1> displayed below
+		And <icon2> is <color2> with <text2> displayed below
+		And <icon3> is <color3> with <text3> displayed below
 
 		Examples:
-			| progress | goal | progressBar          | unit | icon1 | icon2 | icon3 | color1 | color2 | color3 | text 1 | text 2 | text 3 |
-			| 250      | 500  | ――――●――――🎁―――――――🎁 | $    | NA    | gift  | gift  | NA     | no     | no     | NA     | 500    | 1000   |
-			| 500      | 500  | ―――――――――🎁―――――――🎁 | $    | NA    | gift  | gift  | NA     | yes    | no     | NA     | 500    | 1000   |
-			| 750      | 500  | ―――――――――🎁―――●―――🎁 | $    | NA    | gift  | gift  | NA     | yes    | no     | NA     | 500    | 1000   |
-			| 1000     | 500  | 🎁―――――――🎁―――――――🎁 | $    | gift  | gift  | gift  | yes    | yes    | no     | 500    | 1000   | 1500   |
-			| 1250     | 500  | 🎁―――――――🎁―――●―――🎁 | $    | gift  | gift  | gift  | yes    | yes    | no     | 500    | 1000   | 1500   |
-
-	# 																							    math logic inside text ?
-	# | 1250     | 500  | 🎁―――――――🎁―――●―――🎁 | gift  | gift  | gift  | yes    | yes    | no     | goal * (⌊ progress / goal ⌋ - 1) | goal * ⌊ progress / goal ⌋ | goal * (⌊ progress / goal ⌋ +1) |
-
+			| progress | goal | progressBar          | unit | icon1 | color1   | text1 | icon2 | color2    | text 2 | icon3 | color3    | text 1 | text 3 |
+			| 250      | 500  | ――――●――――🎁―――――――🎁 | $    | NA    | NA       | NA    | gift  | greyscale | 500    | gift  | greyscale | NA     | 1000   |
+			| 500      | 500  | ―――――――――🎁―――――――🎁 | $    | NA    | NA       | NA    | gift  | colorful  | 500    | gift  | greyscale | NA     | 1000   |
+			| 750      | 500  | ―――――――――🎁―――●―――🎁 | $    | NA    | NA       | NA    | gift  | colorful  | 500    | gift  | greyscale | NA     | 1000   |
+			| 1000     | 500  | 🎁―――――――🎁―――――――🎁 | $    | gift  | colorful | 500   | gift  | colorful  | 1000   | gift  | greyscale | 500    | 1500   |
+			| 1250     | 500  | 🎁―――――――🎁―――●―――🎁 | $    | gift  | colorful | 500   | gift  | colorful  | 1000   | gift  | greyscale | 500    | 1500   |
 
 	Scenario Outline: Progress Bar Steps Repeatable
 
-		Given <progress> and <goal>
+		Given a Task Card component
+		And progress is <progress>
+		And goal is <goal>
 		And steps is enabled
+		And it is repeatable
 		Then I have <progressBar>
-		And <progressBar> has incrementing steps
 
 		Examples:
 			| progress | goal | progressBar |
