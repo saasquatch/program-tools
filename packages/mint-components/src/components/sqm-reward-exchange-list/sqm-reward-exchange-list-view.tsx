@@ -472,7 +472,26 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             </sl-card>
           </div>
         </div>
-        <div class={sheet.classes.Buttons}>
+
+        <div class={sheet.classes.KutayButton}>
+          <sl-button
+            class="cancel"
+            type="text"
+            size="large"
+            onClick={() => callbacks.setStage("chooseAmount")}
+          >
+            Back
+          </sl-button>
+          <sl-button
+            class="continue"
+            size="large"
+            onClick={callbacks.exchangeReward}
+          >
+            Redeem
+          </sl-button>
+        </div>
+
+        {/* <div class={sheet.classes.Buttons}>
           <sl-button
             onClick={callbacks.exchangeReward}
             style={{ display: "block" }}
@@ -487,7 +506,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           >
             Back
           </a>
-        </div>
+        </div> */}
       </div>
     );
   }
@@ -502,7 +521,15 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
         <p style={{ color: "forestgreen" }}>Reward Redeemed</p>
         {data?.fuelTankCode && <pre>{data?.fuelTankCode}</pre>}
-        <sl-button onClick={() => callbacks.resetState(true)}>Done</sl-button>
+
+        <sl-button
+          class="continue"
+		  type="primary"
+          size="large"
+          onClick={() => callbacks.resetState(true)}
+        >
+          Done
+        </sl-button>
       </div>
     );
   }
