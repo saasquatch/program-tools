@@ -14,14 +14,14 @@ const RegisterWithEmailAndPasswordMutation = gql`
     $email: String!
     $password: String!
     $formData: RSJsonNode
-    $urlParams: RSJsonNode
+    $redirectPath: String
   ) {
     registerManagedIdentityWithEmailAndPassword(
       registerManagedIdentityWithEmailAndPasswordInput: {
         email: $email
         password: $password
         formData: $formData
-        urlParams: $urlParams
+        redirectPath: $redirectPath
       }
     ) {
       token
