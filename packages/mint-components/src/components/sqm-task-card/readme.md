@@ -14,6 +14,7 @@
 | `cardTitle`       | `card-title`        |                                                                                    | `string`  | `"Title Text"`                                       |
 | `description`     | `description`       |                                                                                    | `string`  | `"Description Text"`                                 |
 | `goal`            | `goal`              |                                                                                    | `number`  | `1`                                                  |
+| `openNewTab`      | `open-new-tab`      |                                                                                    | `boolean` | `false`                                              |
 | `progressBarUnit` | `progress-bar-unit` |                                                                                    | `string`  | `undefined`                                          |
 | `repeatable`      | `repeatable`        |                                                                                    | `boolean` | `false`                                              |
 | `rewardAmount`    | `reward-amount`     |                                                                                    | `number`  | `0`                                                  |
