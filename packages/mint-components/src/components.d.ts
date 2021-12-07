@@ -404,6 +404,10 @@ export namespace Components {
          */
         "emailVerificationHeader": string;
         /**
+          * @uiName Base path of verify email link
+         */
+        "redirectPath": string;
+        /**
           * @uiName Re-send email button text
          */
         "resendEmailButtonText": string;
@@ -476,6 +480,10 @@ export namespace Components {
           * @uiName Routing path to login page
          */
         "loginPath": string;
+        /**
+          * @uiName Base path of reset password email link
+         */
+        "redirectPath": string;
         /**
           * @uiName Password reset button text
          */
@@ -636,6 +644,10 @@ export namespace Components {
           * @uiName Label for password field
          */
         "passwordLabel": string;
+        /**
+          * @uiName Base path of verify email link
+         */
+        "redirectPath": string;
         /**
           * @uiName Label for submit button
          */
@@ -1798,6 +1810,10 @@ declare namespace LocalJSX {
          */
         "emailVerificationHeader"?: string;
         /**
+          * @uiName Base path of verify email link
+         */
+        "redirectPath"?: string;
+        /**
           * @uiName Re-send email button text
          */
         "resendEmailButtonText"?: string;
@@ -1870,6 +1886,10 @@ declare namespace LocalJSX {
           * @uiName Routing path to login page
          */
         "loginPath"?: string;
+        /**
+          * @uiName Base path of reset password email link
+         */
+        "redirectPath"?: string;
         /**
           * @uiName Password reset button text
          */
@@ -2030,6 +2050,10 @@ declare namespace LocalJSX {
           * @uiName Label for password field
          */
         "passwordLabel"?: string;
+        /**
+          * @uiName Base path of verify email link
+         */
+        "redirectPath"?: string;
         /**
           * @uiName Label for submit button
          */

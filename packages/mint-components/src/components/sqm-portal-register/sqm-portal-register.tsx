@@ -27,6 +27,12 @@ export class PortalRegister {
   nextPage: string = "/";
 
   /**
+   * @uiName Base path of verify email link
+   */
+  @Prop()
+  redirectPath: string = "/verifyEmail";
+
+  /**
    * @uiName Label for email field
    */
   @Prop()

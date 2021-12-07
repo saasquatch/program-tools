@@ -62,12 +62,12 @@ export function usePortalRegister(props: PortalRegister) {
     delete formData.password;
     delete formData.confirmPassword;
     formData = { ...formData };
-    const urlParams = { nextPage: props.nextPage };
+    const redirectPath = props.redirectPath;
     const variables = {
       email,
       password,
       formData,
-      urlParams,
+      redirectPath,
     };
     try {
       await request(variables);
@@ -114,7 +114,7 @@ export function usePortalRegister(props: PortalRegister) {
       validationState,
       confirmPassword: props.confirmPassword,
       hideInputs: props.hideInputs,
-      loginPath: props.loginPath
+      loginPath: props.loginPath,
     },
     callbacks: {
       submit,

@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type                                                                                                                                                                                        | Default                    |
-| ------------- | -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| `demoData`    | --             |             | `{ states?: { error: string; loading: boolean; success: boolean; loginPath: string; }; content?: { secondaryButton: any; messageSlot: any; emailLabel?: string; submitLabel?: string; }; }` | `undefined`                |
-| `emailLabel`  | `email-label`  |             | `string`                                                                                                                                                                                    | `"Email"`                  |
-| `loginPath`   | `login-path`   |             | `string`                                                                                                                                                                                    | `"/login"`                 |
-| `submitLabel` | `submit-label` |             | `string`                                                                                                                                                                                    | `"Request Password Reset"` |
+| Property       | Attribute       | Description | Type                                                                                                                                                                                        | Default                    |
+| -------------- | --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| `demoData`     | --              |             | `{ states?: { error: string; loading: boolean; success: boolean; loginPath: string; }; content?: { secondaryButton: any; messageSlot: any; emailLabel?: string; submitLabel?: string; }; }` | `undefined`                |
+| `emailLabel`   | `email-label`   |             | `string`                                                                                                                                                                                    | `"Email"`                  |
+| `loginPath`    | `login-path`    |             | `string`                                                                                                                                                                                    | `"/login"`                 |
+| `redirectPath` | `redirect-path` |             | `string`                                                                                                                                                                                    | `"/resetPassword"`         |
+| `submitLabel`  | `submit-label`  |             | `string`                                                                                                                                                                                    | `"Request Password Reset"` |
 
 
 ## Dependencies
