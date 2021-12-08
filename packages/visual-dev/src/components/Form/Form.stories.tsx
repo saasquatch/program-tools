@@ -20,7 +20,7 @@ export default {
 
 const log = (type) => console.log.bind(console, type);
 
-export const ExampleForm = () => {
+export const SimpleForm = () => {
   const uiSchema = {
     "ui:widget": (props) => {
       return <RJSFInput {...props} />;
@@ -47,7 +47,7 @@ export const ExampleForm = () => {
   );
 };
 
-export const ExampleNumericalForm = () => {
+export const NumericalForm = () => {
   const uiSchema = {
     "ui:widget": (props) => {
       return <RJSFNumericalInput {...props} />;
@@ -74,7 +74,7 @@ export const ExampleNumericalForm = () => {
   );
 };
 
-export const ExampleLockableForm = () => {
+export const LockableForm = () => {
   const uiSchema = {
     "ui:widget": (props) => {
       return <RJSFLockableInput {...props} />;
@@ -101,7 +101,7 @@ export const ExampleLockableForm = () => {
   );
 };
 
-export const ExampleClearableForm = () => {
+export const ClearableForm = () => {
   const uiSchema = {
     "ui:widget": (props) => {
       return <RJSFClearableInput {...props} />;
@@ -155,23 +155,20 @@ export const ExampleCancellableForm = () => {
   );
 };
 
-export const CheckForm = () => {
+export const CheckboxForm = () => {
   const schema: JSONSchema7 = {
-    type: 'object',
+    type: "object",
     properties: {
       Done: {
-        type: 'boolean',
-        title: 'Done',
+        type: "boolean",
+        title: "Done",
       },
     },
-  }
+  };
 
   const uiSchema = {
     Done: {
       "ui:widget": RJSFCheckbox,
-      "ui:options":{
-        text: "Done"
-      }
     },
   };
 
@@ -190,9 +187,7 @@ export const CheckForm = () => {
       </Form>
     </div>
   );
-}
-
-
+};
 
 export const RadioForm = () => {
   const schema: JSONSchema7 = {
@@ -202,6 +197,42 @@ export const RadioForm = () => {
         type: "number",
         title: "Number enum",
         enum: [1, 2, 3],
+      },
+    },
+  };
+
+  const uiSchema = {
+    numberEnumRadio: {
+      "ui:widget": RSJFRadioWidget,
+    },
+  };
+
+  return (
+    <div style={{ margin: "100px" }}>
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        onChange={log("changed")}
+        onSubmit={log("submitted")}
+        onError={log("errors")}
+      >
+        <Button buttonType="primary" style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
+export const RadioFormWithLabels = () => {
+  const schema: JSONSchema7 = {
+    type: "object",
+    properties: {
+      numberEnumRadio: {
+        type: "number",
+        title: "Number enum",
+        enum: [1, 2, 3],
+        enumNames: ["Option A", "Option B", "Option C"]
       },
     },
   };

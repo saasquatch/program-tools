@@ -8,7 +8,7 @@ export function RJSFCheckbox(props: WidgetProps) {
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}
       disabled={props.disabled}
-      options={{text: props.options.text}}
+      options={{text: props.label}}
     />
   );
 }

@@ -26,6 +26,7 @@ export const RSJFRadioWidget = (props: WidgetProps) => {
         if(!isEnumOption(option)){
           return <></>
         }
+        console.log(option)
         return (
           <Radio
             options={{ text: option.label }}
