@@ -120,8 +120,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       cursor: "pointer",
     },
     ProgressBar: {
-      minWidth: "350px",
-      width: "50%",
+      maxWidth: "350px",
+      width: "100%",
       margin: "auto",
       marginBottom: "var(--sl-spacing-xxx-large)",
       "& .text-area": {
@@ -268,7 +268,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
       "& .description": {
         color: "var(--sl-color-neutral-400)",
-        width: "350px",
+        width: "100%",
+        maxWidth: "350px",
         margin: "0 auto",
         lineHeight: "var(--sl-line-height-dense)",
         marginBottom: "var(--sl-spacing-xxx-large)",

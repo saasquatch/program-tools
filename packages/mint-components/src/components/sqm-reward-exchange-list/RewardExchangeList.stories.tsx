@@ -6,14 +6,6 @@ export default {
   title: "Components/Reward Exchange List",
 };
 
-const resizable = {
-  width: "683px",
-  minWidth: "260px",
-  resize: "horizontal",
-  height: "fit-content",
-  overflow: "hidden",
-};
-
 export const ChooseReward = () => {
   return <RewardExchangeView {...Data.rewardExchange}></RewardExchangeView>;
 };
@@ -42,10 +34,10 @@ export const ConfirmVariable = () => {
   return <RewardExchangeView {...Data.confirmVariable}></RewardExchangeView>;
 };
 
-export const Success = () => {
-  return <RewardExchangeView {...Data.success}></RewardExchangeView>;
+export const Error = () => {
+  return <RewardExchangeView {...Data.error}></RewardExchangeView>;
 };
 
-export const Error = () => {
-	return <RewardExchangeView {...Data.error}></RewardExchangeView>;
+export const Success = () => {
+  return <RewardExchangeView {...Data.success}></RewardExchangeView>;
 };
