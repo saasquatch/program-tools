@@ -41,3 +41,7 @@ export const Error = () => {
 export const Success = () => {
   return <RewardExchangeView {...Data.success}></RewardExchangeView>;
 };
+
+export const Loading = () => {
+  return <RewardExchangeView {...Data.loading}></RewardExchangeView>;
+};

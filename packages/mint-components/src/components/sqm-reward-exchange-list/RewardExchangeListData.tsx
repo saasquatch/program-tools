@@ -3,7 +3,8 @@ const baseResponse = (
   stage = "chooseReward",
   selectedItem = null,
   selectedStep = null,
-  error = false
+  error = false,
+  loading = false
 ) => ({
   states: {
     content: {
@@ -15,7 +16,7 @@ const baseResponse = (
     redeemStage: stage,
     amount: 0,
     exchangeError: error,
-    loading: false,
+    loading: loading,
     selectedItem: selectedItem,
     selectedStep: selectedStep,
   },
@@ -261,4 +262,8 @@ export const success = {
     ...imageUrl("https://i.imgur.com/93BvEgH.png"),
     ...fixedValue("30 SaaSquatch Points"),
   }),
+};
+
+export const loading = {
+  ...baseResponse(null, "chooseReward", null, null, false, true),
 };

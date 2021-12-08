@@ -428,7 +428,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                       }
                       src={
                         item?.imageUrl ||
-                        getAssetPath("./assets/Reward-icon.png")
+                        getAssetPath("./assets/placeholder.png")
                       }
                     />
                   </div>
@@ -491,7 +491,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               class={sheet.classes.FullImage}
               src={
                 selectedItem?.imageUrl ||
-                getAssetPath("./assets/Reward-icon.png")
+                getAssetPath("./assets/placeholder.png")
               }
             />
           }
@@ -570,7 +570,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                   class="image"
                   src={
                     selectedItem?.imageUrl ||
-                    getAssetPath("./assets/Reward-icon.png")
+                    getAssetPath("./assets/placeholder.png")
                   }
                 />
               </div>
@@ -596,7 +596,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 class={sheet.classes.PreviewImage}
                 src={
                   selectedItem?.imageUrl ||
-                  getAssetPath("./assets/Reward-icon.png")
+                  getAssetPath("./assets/placeholder.png")
                 }
               />
               <p style={{ marginBottom: "0", flex: "1" }}>
@@ -694,27 +694,48 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     );
   }
 
-  // const BackButton = () => {
-  //   if (states.redeemStage === "success") return "";
-  //   let previousStage: Stages = "";
+  function loading() {
+    return (
+      <div
+        style={{
+          display: "flex",
+          height: "400px",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div style={{ transform: "scale(5)" }}>
+          <sl-spinner></sl-spinner>
+        </div>
 
-  //   if (states.redeemStage === "confirmation") {
-  //     previousStage = "chooseAmount";
-  //   } else if (states.redeemStage === "chooseAmount") {
-  //     previousStage = "chooseReward";
-  //   }
-
-  //   return (
-  //     <div slot="label">
-  //       <a
-  //         style={{ cursor: "pointer", fontSize: "80%", color: "#858585" }}
-  //         onClick={() => callbacks.setStage(previousStage)}
-  //       >
-  //         <LeftArrow /> Back
-  //       </a>
-  //     </div>
-  //   );
-  // };
+        {/* <sl-skeleton
+          style={{ width: "30%", margin: "var(--sl-spacing-large) auto" }}
+        />
+        <sl-skeleton
+          style={{ width: "100%", margin: "var(--sl-spacing-large) 0" }}
+        />
+        <sl-skeleton
+          style={{ width: "100%", margin: "var(--sl-spacing-large) 0" }}
+        />
+        <sl-skeleton
+          style={{ width: "100%", margin: "var(--sl-spacing-large) 0" }}
+        />
+        <sl-skeleton
+          style={{ width: "100%", margin: "var(--sl-spacing-large) 0" }}
+        />
+        <sl-skeleton
+          style={{ width: "100%", margin: "var(--sl-spacing-large) 0" }}
+        />
+        <sl-skeleton
+          style={{
+            width: "20%",
+            margin: "var(--sl-spacing-large) 0",
+            marginLeft: "auto",
+          }}
+        /> */}
+      </div>
+    );
+  }
 
   function errorMessage() {
     return (
@@ -730,6 +751,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       <style type="text/css">{styleString}</style>
       <div>
         {stageMap()}
+        {states.loading && loading()}
         {states.exchangeError && errorMessage()}
         {currentStage && currentStage()}
       </div>
