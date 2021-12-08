@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "../Button";
 import { RSJFRadioWidget } from "../Radio";
 import { RJSFRadioCardWidget } from "../RadioCard";
+import { RJSFCheckbox } from "../Checkbox";
 import {
   RJSFCancellableInput,
   RJSFClearableInput,
@@ -154,24 +155,43 @@ export const ExampleCancellableForm = () => {
   );
 };
 
-// // Checkboxes
-// export const CheckForm = () => {
-//   const schema: JSONSchema7 = {
-//     type: 'object',
-//     properties: {
-//       Done: {
-//         type: 'boolean',
-//         title: 'Done',
-//       },
-//     },
-//   }
+export const CheckForm = () => {
+  const schema: JSONSchema7 = {
+    type: 'object',
+    properties: {
+      Done: {
+        type: 'boolean',
+        title: 'Done',
+      },
+    },
+  }
 
-//   console.log('im the story')
+  const uiSchema = {
+    Done: {
+      "ui:widget": RJSFCheckbox,
+      "ui:options":{
+        text: "Done"
+      }
+    },
+  };
 
-//   const Checkbox2 = (props) => {
-//     console.log(props.options)
-//     return <div>test</div>
-//   }
+  return (
+    <div style={{ margin: "100px" }}>
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        onChange={log("changed")}
+        onSubmit={log("submitted")}
+        onError={log("errors")}
+      >
+        <Button buttonType="primary" style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+}
+
 
 
 export const RadioForm = () => {
