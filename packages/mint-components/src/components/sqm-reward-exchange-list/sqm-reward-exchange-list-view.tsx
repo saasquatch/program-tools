@@ -415,6 +415,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                   style={{
                     display: "flex",
                     width: "100%",
+                    borderRadius: "3px",
                     background: item.unavailableReasonCode
                       ? "rgba(0, 0, 0, 0.05)"
                       : "rgba(0, 0, 0, 0)",
