@@ -238,13 +238,13 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       margin: "var(--sl-spacing-medium) 0",
       "& .title": {
         //fontSize: "var(--sl-font-size-large)",
-        fontSize: "18px",
+        fontSize: "113%",
         fontWeight: "var(--sl-font-weight-semibold)",
         color: "var(--sl-color-neutral-1000)",
       },
       "& .points": {
         //fontSize: "var(--sl-font-size-large)",
-        fontSize: "18px",
+        fontSize: "113%",
         fontWeight: "var(--sl-font-weight-semibold)",
         color: "var(--sl-color-sky-500)",
       },
@@ -271,7 +271,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         width: "350px",
         margin: "0 auto",
         lineHeight: "var(--sl-line-height-dense)",
-        marginBottom: "var(--sl-spacing-large)",
+        marginBottom: "var(--sl-spacing-xxx-large)",
         marginTop: "var(--sl-spacing-xx-small)",
       },
     },
@@ -517,7 +517,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     return (
       <div>
         <h2 style={{ margin: "20px 0" }}>Confirm and redeem</h2>
-        <div style={{ textAlign: "center" }}>
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "var(--sl-spacing-xxx-large)",
+          }}
+        >
           <p>
             <span style={{ fontSize: "18px" }}>
               {selectedStep?.prettySourceValue ||
