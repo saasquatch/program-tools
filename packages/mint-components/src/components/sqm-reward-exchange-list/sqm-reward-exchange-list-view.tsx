@@ -166,7 +166,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       "& .selected-checkmark": {
         position: "relative",
         left: "12%",
-        top: "-30%",
+        top: "-29%",
         transform: "scale(0.8)",
       },
     },
