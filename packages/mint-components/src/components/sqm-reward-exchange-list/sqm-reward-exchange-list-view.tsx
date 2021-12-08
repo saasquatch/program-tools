@@ -120,9 +120,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       cursor: "pointer",
     },
     ProgressBar: {
+      minWidth: "350px",
       width: "50%",
       margin: "auto",
-      marginBottom: "32px",
+      marginBottom: "var(--sl-spacing-xxx-large)",
       "& .text-area": {
         marginTop: "5px",
         display: "flex",
@@ -164,8 +165,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
       "& .selected-checkmark": {
         position: "relative",
-        left: "4px",
-        top: "-6px",
+        left: "12%",
+        top: "-30%",
+        transform: "scale(0.8)",
       },
     },
 
@@ -251,6 +253,26 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         fontWeight: "var(--sl-font-weight-normal)",
         color: "var(--sl-color-neutral-500)",
         margin: "var(--sl-spacing-medium) 0",
+        lineHeight: "var(--sl-line-height-dense)",
+        marginBottom: "var(--sl-spacing-xx-large)",
+        marginTop: "var(--sl-spacing-xx-small)",
+      },
+    },
+
+    Success: {
+      textAlign: "center",
+      "& .title": {
+        fontSize: "var(--sl-font-size-medium)",
+        fontWeight: "var(--sl-font-weight-bold)",
+        color: "var(--sl-color-neutral-1000)",
+      },
+      "& .description": {
+        color: "var(--sl-color-neutral-400)",
+        width: "350px",
+        margin: "0 auto",
+        lineHeight: "var(--sl-line-height-dense)",
+        marginBottom: "var(--sl-spacing-large)",
+        marginTop: "var(--sl-spacing-xx-small)",
       },
     },
 
@@ -283,6 +305,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
       "& .continue.right": {
         marginLeft: "auto",
+      },
+      "& .continue.center": {
+        margin: "0 auto",
       },
     },
   };
@@ -491,7 +516,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   function confirmation() {
     return (
       <div>
-        <h2>Confirm and redeem</h2>
+        <h2 style={{ margin: "20px 0" }}>Confirm and redeem</h2>
         <div style={{ textAlign: "center" }}>
           <p>
             <span style={{ fontSize: "18px" }}>
@@ -512,7 +537,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             }}
           >
             <sl-card
-              style={{ width: "max-content", margin: "auto" }}
+              style={{ width: "auto", maxWidth: "350px", margin: "auto" }}
               class={sheet.classes.KutayCard}
             >
               <div class={sheet.classes.Square}>
@@ -596,32 +621,21 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   function success() {
     return (
-      <div style={{ textAlign: "center" }}>
+      <div class={sheet.classes.Success}>
         <Gift />
-        <p>
-          <b>Reward Redeemed</b>
-        </p>
-        <p
-          style={{
-            width: "500px",
-            margin: "0 auto",
-            marginBottom: "32px",
-            color: "darkgrey",
-          }}
-        >
-          {selectedItem?.description}
-        </p>
-
-        {data?.fuelTankCode && <pre>{data?.fuelTankCode}</pre>}
-
-        <sl-button
-          class="continue"
-          type="primary"
-          size="large"
-          onClick={() => callbacks.resetState(true)}
-        >
-          Done
-        </sl-button>
+        <div class="title">Reward Redeemed</div>
+        <div class="description">{selectedItem?.description}</div>
+        {/* {data?.fuelTankCode && <pre>{data?.fuelTankCode}</pre>} */}
+        <div class={sheet.classes.KutayButton}>
+          <sl-button
+            class="continue center"
+            type="primary"
+            size="large"
+            onClick={() => callbacks.resetState(true)}
+          >
+            Done
+          </sl-button>
+        </div>
       </div>
     );
   }

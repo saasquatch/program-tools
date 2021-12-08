@@ -45,3 +45,7 @@ export const ConfirmVariable = () => {
 export const Success = () => {
   return <RewardExchangeView {...Data.success}></RewardExchangeView>;
 };
+
+export const Error = () => {
+	return <RewardExchangeView {...Data.error}></RewardExchangeView>;
+};

@@ -51,7 +51,7 @@ function Dot({
         }}
       >
         {completed ? (
-          <div style={{ top: "-3px", left: "5px", position: "relative" }}>
+          <div style={{ top: "-10.5%", left: "23.5%", position: "relative" }}>
             <CheckMark />
           </div>
         ) : (
@@ -59,9 +59,9 @@ function Dot({
             style={{
               color: active
                 ? "var(--sl-color-success-500)"
-                : "var(--sl-color-neutral-200)",
-              top: "-3px",
-              left: "6.5px",
+                : "var(--sl-color-neutral-50)",
+              top: "-9%",
+              left: "28%",
               position: "relative",
             }}
           >

@@ -2,7 +2,8 @@ const baseResponse = (
   data,
   stage = "chooseReward",
   selectedItem = null,
-  selectedStep = null
+  selectedStep = null,
+  error = false
 ) => ({
   states: {
     content: {
@@ -13,7 +14,7 @@ const baseResponse = (
     },
     redeemStage: stage,
     amount: 0,
-    exchangeError: false,
+    exchangeError: error,
     loading: false,
     selectedItem: selectedItem,
     selectedStep: selectedStep,
@@ -235,6 +236,21 @@ export const confirmVariable = {
       ...variableValue(20, 80, "SaaSquatch Points"),
     },
     baseStep(20, "$", 40, "SaaSquatch Points")
+  ),
+};
+
+export const error = {
+  ...baseResponse(
+    data,
+    "confirmation",
+    {
+      ...baseReward,
+      ...name("Visa® Prepaid Card USD"),
+      ...imageUrl("https://i.imgur.com/veHErQX.png"),
+      ...variableValue(20, 80, "SaaSquatch Points"),
+    },
+    baseStep(20, "$", 40, "SaaSquatch Points"),
+    true
   ),
 };
 
