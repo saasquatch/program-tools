@@ -143,7 +143,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     },
     KutayCard: {
       display: "flex",
-      cursor: "pointer",
+      userSelect: "none",
       height: "120px",
       "&::part(base)": {
         boxShadow: "none",
@@ -181,20 +181,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         objectFit: "contain",
         borderRadius: "inherit",
       },
-      "& .white": {
-        width: "inherit",
-        height: "inherit",
-        background: "rgba(0, 0, 0, 0)",
-        borderRadius: "inherit",
-      },
-      "& .image.dark": {
-        filter: "brightness(0.7)",
-      },
-      "& .black": {
-        width: "inherit",
-        height: "inherit",
-        background: "rgba(0, 0, 0, 0.3)",
-        borderRadius: "inherit",
+      "& .image.subdued": {
+        filter: "brightness(0.95)",
+        opacity: "0.5",
       },
     },
 
@@ -254,16 +243,18 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         color: "var(--sl-color-neutral-500)",
         margin: "var(--sl-spacing-medium) 0",
         lineHeight: "var(--sl-line-height-dense)",
-        marginBottom: "var(--sl-spacing-xx-large)",
         marginTop: "var(--sl-spacing-xx-small)",
+      },
+      "& .space": {
+        marginBottom: "var(--sl-spacing-xxx-large)",
       },
     },
 
     Success: {
       textAlign: "center",
       "& .title": {
-        fontSize: "var(--sl-font-size-medium)",
-        fontWeight: "var(--sl-font-weight-bold)",
+        fontSize: "var(--sl-font-size-large)",
+        fontWeight: "var(--sl-font-weight-semibold)",
         color: "var(--sl-color-neutral-1000)",
       },
       "& .description": {
@@ -403,6 +394,11 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             >
               <sl-card
                 class={sheet.classes.KutayCard}
+                style={{
+                  cursor: item.unavailableReasonCode
+                    ? "not-allowed"
+                    : "pointer",
+                }}
                 onClick={() =>
                   item.available &&
                   callbacks.setExchangeState({ selectedItem: item })
@@ -415,11 +411,19 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     </div>
                   </div>
                 )}
-                <div class={sheet.classes.Square}>
-                  <div class={item.unavailableReasonCode ? "black" : "white"}>
+                <div
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    background: item.unavailableReasonCode
+                      ? "rgba(0, 0, 0, 0.05)"
+                      : "rgba(0, 0, 0, 0)",
+                  }}
+                >
+                  <div class={sheet.classes.Square}>
                     <img
                       class={
-                        item.unavailableReasonCode ? "image dark" : "image"
+                        item.unavailableReasonCode ? "image subdued" : "image"
                       }
                       src={
                         item?.imageUrl ||
@@ -427,27 +431,32 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                       }
                     />
                   </div>
-                </div>
 
-                <div class={sheet.classes.TextArea}>
-                  <div class="title">{item.name}</div>
-                  <div class="amount">{amount}</div>
-                  {item.unavailableReasonCode && (
-                    <div class="error">
-                      {intl.formatMessage(
-                        {
-                          id: "unavailableCode",
-                          defaultMessage:
-                            states.content?.text?.notAvailableError,
-                        },
-                        {
-                          unavailableReason:
-                            item.unavailableReason ||
-                            item.unavailableReasonCode,
-                        }
-                      )}
-                    </div>
-                  )}
+                  <div
+                    class={sheet.classes.TextArea}
+                    style={{
+                      opacity: item.unavailableReasonCode ? "0.75" : "1",
+                    }}
+                  >
+                    <div class="title">{item.name}</div>
+                    <div class="amount">{amount}</div>
+                    {item.unavailableReasonCode && (
+                      <div class="error">
+                        {intl.formatMessage(
+                          {
+                            id: "unavailableCode",
+                            defaultMessage:
+                              states.content?.text?.notAvailableError,
+                          },
+                          {
+                            unavailableReason:
+                              item.unavailableReason ||
+                              item.unavailableReasonCode,
+                          }
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </sl-card>
             </div>
@@ -488,8 +497,17 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         </div>
         <div class={sheet.classes.ChooseAmount}>
           <div class="title">{selectedItem?.name}</div>
-          <div class="points">{input}</div>
-          <div class="description">{selectedItem?.description}</div>
+          {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
+            <div class="points">{input}</div>
+          ) : (
+            <div class="description">{selectedItem?.description}</div>
+          )}
+          {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
+            <div class="description">{selectedItem?.description}</div>
+          ) : (
+            <div class="points">{input}</div>
+          )}
+          <div class="space" />
         </div>
 
         <div class={sheet.classes.KutayButton}>
