@@ -47,9 +47,9 @@ Feature: Forgot Password
     And they click the link in the email
     Then they are redirected to <redirectPath>
     Examples:
-      | mayHave      | value          | redirectPath   |
-      | doesn't have | N/A            | /verifyEmail   |
-      | has          | /verifyMyEmail | /verifyMyEmail |
+      | mayHave      | value            | redirectPath     |
+      | doesn't have | N/A              | /resetPassword   |
+      | has          | /resetMyPassword | /resetMyPassword |
 
   @minutae
   Scenario Outline: Navigation back to the login page can be customized but defaults to "/login"
