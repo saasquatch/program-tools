@@ -165,7 +165,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         <div class={sheet.classes.Header}>
           {props.loading ? (
             <sl-skeleton
-              style={{ width: "22%", margin: "0", height: "12px" }}
+              style={{ width: "22%", margin: "0"}}
             />
           ) : (
             <div>
@@ -192,7 +192,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
 
         {props.loading ? (
           <sl-skeleton
-            style={{ width: "42%", margin: "0 16px", height: "12px" }}
+            style={{ width: "42%", margin: "0 var(--sl-spacing-medium)"}}
           />
         ) : (
           <div class={taskUnavailable ? "title" : "title black"}>
@@ -200,12 +200,12 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           </div>
         )}
         {props.loading ? (
-          <sl-skeleton style={{ margin: "12px 16px", height: "12px" }} />
+          <sl-skeleton style={{ margin: "var(--sl-spacing-medium)"}} />
         ) : (
           <Details {...props} />
         )}
         {props.showProgressBar && props.loading ? (
-          <sl-skeleton style={{ margin: "0 16px", height: "12px" }} />
+          <sl-skeleton style={{ margin: "0 var(--sl-spacing-medium)"}} />
         ) : (
           props.showProgressBar && (
             <ProgressBarView
@@ -218,7 +218,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         <div class={sheet.classes.Footer}>
           {props.loading ? (
             <sl-skeleton
-              style={{ width: "25%", marginLeft: "auto", height: "12px" }}
+              style={{ width: "25%", marginLeft: "auto"}}
             />
           ) : (
             <div style={{ display: "contents" }}>
