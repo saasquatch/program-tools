@@ -4,6 +4,8 @@ import { ContextProvider } from "dom-context";
 import { getEnvironmentSDK } from "./environment";
 import { useHost } from "../hooks/useHost";
 import { equal } from "@wry/equality";
+import debugFn from "debug";
+export const debug = debugFn("sq:user-identity");
 
 const CONTEXT_NAME = "sq:user-identity";
 const USER_LOCAL_STORAGE_KEY = CONTEXT_NAME;
@@ -157,7 +159,8 @@ export function setUserIdentity(identity?: UserIdentity) {
   // Portals store identity in local storage
   if (identity && getEnvironmentSDK().type === "SquatchPortal") {
     localStorage.setItem(USER_LOCAL_STORAGE_KEY, JSON.stringify(identity));
-  } else if(!identity) {
+  } else if (!identity) {
+    debug("Deleting user from localStorage");
     localStorage.removeItem(USER_LOCAL_STORAGE_KEY);
   }
 }
