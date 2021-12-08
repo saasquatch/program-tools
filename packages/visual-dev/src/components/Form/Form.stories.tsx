@@ -169,6 +169,9 @@ export const CheckboxForm = () => {
   const uiSchema = {
     Done: {
       "ui:widget": RJSFCheckbox,
+      "ui:options": {
+        label: false,
+      },
     },
   };
 
@@ -204,6 +207,9 @@ export const RadioForm = () => {
   const uiSchema = {
     numberEnumRadio: {
       "ui:widget": RSJFRadioWidget,
+      "ui:options": {
+        label: false,
+      },
     },
   };
 
@@ -232,7 +238,7 @@ export const RadioFormWithLabels = () => {
         type: "number",
         title: "Number enum",
         enum: [1, 2, 3],
-        enumNames: ["Option A", "Option B", "Option C"]
+        enumNames: ["Option A", "Option B", "Option C"],
       },
     },
   };
@@ -240,6 +246,9 @@ export const RadioFormWithLabels = () => {
   const uiSchema = {
     numberEnumRadio: {
       "ui:widget": RSJFRadioWidget,
+      "ui:options": {
+        label: false,
+      },
     },
   };
 
@@ -276,6 +285,7 @@ export const RadioCardForm = () => {
     numberEnumRadio: {
       "ui:widget": RJSFRadioCardWidget,
       "ui:options": {
+        label: false,
         ruleOptions: [
           {
             key: 0,
