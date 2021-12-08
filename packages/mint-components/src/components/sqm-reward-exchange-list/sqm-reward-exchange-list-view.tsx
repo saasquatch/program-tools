@@ -436,7 +436,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                   <div
                     class={sheet.classes.TextArea}
                     style={{
-                      opacity: item.unavailableReasonCode ? "0.75" : "1",
+                      opacity: item.unavailableReasonCode ? "0.5" : "1",
                     }}
                   >
                     <div class="title">{item.name}</div>
