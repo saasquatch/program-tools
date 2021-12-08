@@ -265,7 +265,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                 onClick={() =>
                   props.openNewTab
                     ? window.open(props.buttonLink)
-                    : window.open(props.buttonLink, "_self")
+                    : window.open(props.buttonLink, "_parent")
                 }
                 disabled={taskComplete || taskUnavailable}
               >

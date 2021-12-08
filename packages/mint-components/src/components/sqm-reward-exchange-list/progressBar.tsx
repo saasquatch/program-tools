@@ -5,10 +5,12 @@ function Dot({
   active,
   completed,
   incomplete,
+  stage,
 }: {
   active?: boolean;
   completed: boolean;
   incomplete?: boolean;
+  stage?: number;
 }) {
   return (
     <div
@@ -30,23 +32,40 @@ function Dot({
     >
       <div
         style={{
-          backgroundColor: completed ? "#9E9E9E" : "#FFF",
-          border: active
-            ? "3px solid #9E9E9E"
+          backgroundColor: completed
+            ? "var(--sl-color-success-500)"
             : incomplete
-            ? "3px solid #E5E5E5"
-            : "3px solid #9E9E9E",
+            ? "var(--sl-color-neutral-200)"
+            : "var(--sl-color-neutral-0)",
+          border: active
+            ? "1px solid var(--sl-color-success-500)"
+            : incomplete
+            ? "1px solid var(--sl-color-neutral-200)"
+            : "1px solid var(--sl-color-success-500)",
           borderRadius: "50%",
-          width: "10px",
-          height: "10px",
-          margin: "-6px auto 0px",
+          width: "23px",
+          height: "23px",
+          margin: "-11px",
           zIndex: "1",
           boxSizing: "content-box",
         }}
       >
-        {completed && (
-          <div style={{ top: "-6px", position: "relative" }}>
+        {completed ? (
+          <div style={{ top: "-3px", left: "5px", position: "relative" }}>
             <CheckMark />
+          </div>
+        ) : (
+          <div
+            style={{
+              color: active
+                ? "var(--sl-color-success-500)"
+                : "var(--sl-color-neutral-200)",
+              top: "-3px",
+              left: "6.5px",
+              position: "relative",
+            }}
+          >
+            {stage + 1}
           </div>
         )}
       </div>
@@ -54,7 +73,11 @@ function Dot({
   );
 }
 
-function ProgressLine({ incomplete = false, active = false }) {
+function ProgressLine({
+  incomplete = false,
+  active = false,
+  invisible = false,
+}) {
   return (
     <div
       style={{
@@ -62,7 +85,8 @@ function ProgressLine({ incomplete = false, active = false }) {
         flex: "0.5 0.5 0",
         height: "4px",
         borderRadius: "4px",
-        background: incomplete || active ? "#E5E5E5" : "#9E9E9E",
+        background:
+          incomplete || active ? "#E5E5E5" : "var(--sl-color-success-500)",
         position: "relative",
         bottom: "0",
         left: "0",
@@ -71,16 +95,36 @@ function ProgressLine({ incomplete = false, active = false }) {
         columnGap: "50px",
         marginRight: "-2px",
         boxSizing: "content-box",
+        opacity: invisible ? "0" : "1",
       }}
     ></div>
   );
 }
 
-function Progress({ active, completed, incomplete }) {
+function Progress({ active, completed, incomplete, stage }) {
+  //   if (stage === 2) {
+  //     return [
+  //       <Dot
+  //         active={active}
+  //         completed={completed}
+  //         incomplete={incomplete}
+  //         stage={stage}
+  //       />,
+  //     ];
+  //   }
   return [
-    <ProgressLine incomplete={incomplete} />,
-    <Dot active={active} completed={completed} incomplete={incomplete} />,
-    <ProgressLine incomplete={incomplete} active={active} />,
+    <ProgressLine incomplete={incomplete} invisible={stage === 0} />,
+    <Dot
+      active={active}
+      completed={completed}
+      incomplete={incomplete}
+      stage={stage}
+    />,
+    <ProgressLine
+      incomplete={incomplete}
+      active={active}
+      invisible={stage === 2}
+    />,
   ];
 }
 
@@ -98,6 +142,7 @@ export function ProgressBar({
           active={currentStage === stage}
           completed={currentStage > stage}
           incomplete={currentStage < stage}
+          stage={stage}
         />
       ))}
     </div>

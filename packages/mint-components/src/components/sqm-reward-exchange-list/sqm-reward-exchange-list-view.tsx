@@ -4,7 +4,7 @@ import preset from "jss-preset-default";
 import { intl } from "../../global/global";
 import { HostBlock } from "../../global/mixins";
 import { ProgressBar } from "./progressBar";
-import { LeftArrow, ExchangeArrows, CheckMark } from "./SVGs";
+import { LeftArrow, ExchangeArrows, CheckMark, Gift } from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
 
 export type RewardExchangeViewProps = {
@@ -61,7 +61,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       "&::part(base)": {
         boxShadow: "none",
         width: "100%",
-        // maxWidth: "350px",
         display: "flex",
         margin: "0 auto",
       },
@@ -69,35 +68,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         padding: 0,
         display: "flex",
         width: "100%",
-      },
-      "& .text-area": {
-        textAlign: "left",
-        padding: "8px",
-      },
-      "& .title": {
-        fontSize: "var(--sl-font-size-medium)",
-        fontWeight: "var(--sl-font-weight-semibold)",
-      },
-      "& .amount": {
-        fontSize: "var(--sl-font-size-small)",
-      },
-      "& .error": {
-        fontSize: "var(--sl-font-size-small)",
-        color: "var(--sl-color-warning-500)",
-      },
-      "& .selected-outline": {
-        width: "18px",
-        height: "18px",
-        minWidth: "18px",
-        borderRadius: "50%",
-        background: "var(--sl-color-primary-500)",
-        position: "relative",
-        margin: "-9px",
-        left: "100%",
-      },
-      "& .selected-checkmark": {
-        position: "relative",
-        top: "-6px",
       },
     },
     Drawer: {
@@ -116,14 +86,14 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     FullImage: {
       objectFit: "contain",
       maxWidth: "100%",
-      height: "150px",
+      height: "250px",
       display: "flex",
       margin: "0 auto",
     },
     PreviewImage: {
       objectFit: "contain",
       width: "120px",
-      height: "120px",
+      height: "118px",
       flex: 0.33,
     },
     InputBox: {
@@ -150,8 +120,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       cursor: "pointer",
     },
     ProgressBar: {
-      fontSize: "80%",
-      marginBottom: "20px",
+      width: "50%",
+      margin: "auto",
+      marginBottom: "32px",
       "& .text-area": {
         marginTop: "5px",
         display: "flex",
@@ -161,18 +132,128 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         marginBottom: "6px",
 
         "& .text": {
+          marginBottom: "var(--sl-spacing-x-small)",
           flex: "1 1 0",
         },
         "& .text.subdued": {
-          color: "#BDBDBD",
+          color: "var(--sl-color-neutral-200)",
         },
       },
     },
     KutayCard: {
+      display: "flex",
+      cursor: "pointer",
+      height: "120px",
       "&::part(base)": {
         boxShadow: "none",
+        width: "100%",
+      },
+      "&::part(body)": {
+        display: "flex",
+        padding: 0,
+      },
+      "& .selected-outline": {
+        width: "18px",
+        height: "18px",
+        minWidth: "18px",
+        borderRadius: "50%",
+        background: "var(--sl-color-primary-500)",
+        position: "relative",
+        margin: "-9px",
+        left: "100%",
+      },
+      "& .selected-checkmark": {
+        position: "relative",
+        left: "4px",
+        top: "-6px",
       },
     },
+
+    Square: {
+      width: "120px",
+      height: "118px",
+      borderRadius: "3px 0 0 3px",
+      "& .image": {
+        width: "100%",
+        height: "100%",
+        objectFit: "contain",
+        borderRadius: "inherit",
+      },
+      "& .white": {
+        width: "inherit",
+        height: "inherit",
+        background: "rgba(0, 0, 0, 0)",
+        borderRadius: "inherit",
+      },
+      "& .image.dark": {
+        filter: "brightness(0.7)",
+      },
+      "& .black": {
+        width: "inherit",
+        height: "inherit",
+        background: "rgba(0, 0, 0, 0.3)",
+        borderRadius: "inherit",
+      },
+    },
+
+    Image: {
+      "& .image": {
+        objectFit: "contain",
+        width: "120px",
+        height: "118px",
+        flex: 0.33,
+      },
+      "& .image.black": {
+        filter: "brightness(20%)",
+      },
+    },
+
+    TextArea: {
+      textAlign: "left",
+      padding: "12px",
+      "& .title": {
+        fontSize: "16px",
+        lineHeight: "20px",
+        fontWeight: "600",
+        color: "var(--sl-color-neutral-1000)",
+      },
+      "& .amount": {
+        fontSize: "14px",
+        lineHeight: "18px",
+        marginTop: "8px",
+        color: "var(--sl-color-neutral-500)",
+      },
+      "& .error": {
+        fontSize: "14px",
+        lineHeight: "18px",
+        marginTop: "8px",
+        fontWeight: "600",
+        color: "var(--sl-color-warning-500)",
+      },
+    },
+
+    ChooseAmount: {
+      margin: "var(--sl-spacing-medium) 0",
+      "& .title": {
+        //fontSize: "var(--sl-font-size-large)",
+        fontSize: "18px",
+        fontWeight: "var(--sl-font-weight-semibold)",
+        color: "var(--sl-color-neutral-1000)",
+      },
+      "& .points": {
+        //fontSize: "var(--sl-font-size-large)",
+        fontSize: "18px",
+        fontWeight: "var(--sl-font-weight-semibold)",
+        color: "var(--sl-color-sky-500)",
+      },
+      "& .description": {
+        fontSize: "var(--sl-font-size-medium)",
+        fontWeight: "var(--sl-font-weight-normal)",
+        color: "var(--sl-color-neutral-500)",
+        margin: "var(--sl-spacing-medium) 0",
+      },
+    },
+
     KutayButton: {
       display: "flex",
       flexWrap: "wrap-reverse",
@@ -248,8 +329,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                       defaultMessage: states.content?.text?.notAvailableError,
                     },
                     {
-                      unavailableReason:
-                        step.unavailableReason || step.unavailableReasonCode,
+                      unavailableReason: step.unavailableReasonCode,
                     }
                   )}
                 </p>
@@ -296,7 +376,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               style={style}
             >
               <sl-card
-                class={sheet.classes.Base}
+                class={sheet.classes.KutayCard}
                 onClick={() =>
                   item.available &&
                   callbacks.setExchangeState({ selectedItem: item })
@@ -309,17 +389,22 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     </div>
                   </div>
                 )}
-                {
-                  // item?.imageUrl &&
-                  <img
-                    class={sheet.classes.PreviewImage}
-                    src={
-                      item?.imageUrl || getAssetPath("./assets/Reward-icon.png")
-                    }
-                  />
-                }
-                <div class="text-area">
-                  <div class="title">{item.description}</div>
+                <div class={sheet.classes.Square}>
+                  <div class={item.unavailableReasonCode ? "black" : "white"}>
+                    <img
+                      class={
+                        item.unavailableReasonCode ? "image dark" : "image"
+                      }
+                      src={
+                        item?.imageUrl ||
+                        getAssetPath("./assets/Reward-icon.png")
+                      }
+                    />
+                  </div>
+                </div>
+
+                <div class={sheet.classes.TextArea}>
+                  <div class="title">{item.name}</div>
                   <div class="amount">{amount}</div>
                   {item.unavailableReasonCode && (
                     <div class="error">
@@ -338,41 +423,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     </div>
                   )}
                 </div>
-                {/* 
-                <p
-                  style={{
-                    textAlign: "left",
-                    margin: "0",
-                    flex: "1",
-                    fontSize: "90%",
-                    padding: "8px",
-                  }}
-                >
-                  <b>{item.description}</b>
-                  <p style={{ margin: "0" }}>{amount}</p>
-                  {item.unavailableReasonCode && (
-                    <p
-                      style={{
-                        fontSize: "70%",
-                        color: "#F2994A",
-                        marginTop: "0",
-                      }}
-                    >
-                      {intl.formatMessage(
-                        {
-                          id: "unavailableCode",
-                          defaultMessage:
-                            states.content?.text?.notAvailableError,
-                        },
-                        {
-                          unavailableReason:
-                            item.unavailableReason ||
-                            item.unavailableReasonCode,
-                        }
-                      )}
-                    </p>
-                  )}
-                </p> */}
               </sl-card>
             </div>
           );
@@ -401,7 +451,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       <div>
         <div>
           {
-            //selectedItem?.imageUrl &&
             <img
               class={sheet.classes.FullImage}
               src={
@@ -411,8 +460,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             />
           }
         </div>
-        <b>{selectedItem?.description}</b>
-        <div class={sheet.classes.InputBox}>{input}</div>
+        <div class={sheet.classes.ChooseAmount}>
+          <div class="title">{selectedItem?.name}</div>
+          <div class="points">{input}</div>
+          <div class="description">{selectedItem?.description}</div>
+        </div>
+
         <div class={sheet.classes.KutayButton}>
           <sl-button
             class="cancel"
@@ -441,10 +494,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         <h2>Confirm and redeem</h2>
         <div style={{ textAlign: "center" }}>
           <p>
-            <b>
+            <span style={{ fontSize: "18px" }}>
               {selectedStep?.prettySourceValue ||
                 selectedItem?.prettySourceValue}
-            </b>
+            </span>
           </p>
           <p>
             <ExchangeArrows />
@@ -458,6 +511,36 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               minWidth: "100%",
             }}
           >
+            <sl-card
+              style={{ width: "max-content", margin: "auto" }}
+              class={sheet.classes.KutayCard}
+            >
+              <div class={sheet.classes.Square}>
+                <img
+                  class="image"
+                  src={
+                    selectedItem?.imageUrl ||
+                    getAssetPath("./assets/Reward-icon.png")
+                  }
+                />
+              </div>
+
+              <div
+                class={sheet.classes.TextArea}
+                style={{
+                  lineHeight: "18px",
+                  alignSelf: "center",
+                }}
+              >
+                {selectedStep?.prettyDestinationValue
+                  ? selectedStep?.prettyDestinationValue +
+                    " " +
+                    selectedItem?.name
+                  : selectedItem?.name}
+              </div>
+            </sl-card>
+
+            {/* 			  
             <sl-card class={sheet.classes.Base}>
               <img
                 class={sheet.classes.PreviewImage}
@@ -469,7 +552,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               <p style={{ marginBottom: "0", flex: "1" }}>
                 {selectedStep?.prettyDestinationValue}
               </p>
-            </sl-card>
+            </sl-card> */}
           </div>
         </div>
 
@@ -514,17 +597,26 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   function success() {
     return (
       <div style={{ textAlign: "center" }}>
-        <img
-          class={sheet.classes.FullImage}
-          src={getAssetPath("./assets/Reward-icon.png")}
-        />
+        <Gift />
+        <p>
+          <b>Reward Redeemed</b>
+        </p>
+        <p
+          style={{
+            width: "500px",
+            margin: "0 auto",
+            marginBottom: "32px",
+            color: "darkgrey",
+          }}
+        >
+          {selectedItem?.description}
+        </p>
 
-        <p style={{ color: "forestgreen" }}>Reward Redeemed</p>
         {data?.fuelTankCode && <pre>{data?.fuelTankCode}</pre>}
 
         <sl-button
           class="continue"
-		  type="primary"
+          type="primary"
           size="large"
           onClick={() => callbacks.resetState(true)}
         >
@@ -549,7 +641,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       <div class={sheet.classes.ProgressBar}>
         <div class="text-area">
           {Object.keys(stageProgressList).map((stage) => {
-            if (stage === states.redeemStage) {
+            if (stageList.indexOf(stage) <= stageNumber) {
               return <span class="text">{stageProgressList[stage]}</span>;
             } else {
               return (

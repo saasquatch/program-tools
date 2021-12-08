@@ -14,26 +14,34 @@ const resizable = {
   overflow: "hidden",
 };
 
-export const rewardExchange = () => {
+export const ChooseReward = () => {
+  return <RewardExchangeView {...Data.rewardExchange}></RewardExchangeView>;
+};
+
+export const ChooseRewardSelected = () => {
   return (
-    <div style={resizable}>
-      <RewardExchangeView {...Data.rewardExchange}></RewardExchangeView>
-    </div>
+    <RewardExchangeView {...Data.rewardExchangeSelected}></RewardExchangeView>
   );
 };
 
-export const rewardExchangeSelected = () => {
+export const ChooseAmount = () => {
+  return <RewardExchangeView {...Data.chooseAmountFixed}></RewardExchangeView>;
+};
+
+export const ChooseAmountVariable = () => {
   return (
-    <div style={resizable}>
-      <RewardExchangeView {...Data.rewardExchangeSelected}></RewardExchangeView>
-    </div>
+    <RewardExchangeView {...Data.chooseAmountVariable}></RewardExchangeView>
   );
 };
 
-export const Default2 = () => {
-  return (
-    <div style={{ ...resizable, height: "700px" }}>
-      <RewardExchangeView {...Data.test2}></RewardExchangeView>
-    </div>
-  );
+export const Confirm = () => {
+  return <RewardExchangeView {...Data.confirmFixed}></RewardExchangeView>;
+};
+
+export const ConfirmVariable = () => {
+  return <RewardExchangeView {...Data.confirmVariable}></RewardExchangeView>;
+};
+
+export const Success = () => {
+  return <RewardExchangeView {...Data.success}></RewardExchangeView>;
 };
