@@ -36,7 +36,7 @@ Feature: Verify Email
     @motivating
     Scenario Outline: Users cannot verify their email with an invalid or missing oob code
         Given a user has a <oobCode> as a url query parameter
-        And the component <mayHave> "failed-path" with <value>
+        And the component <mayHave> "failed-page" with <value>
         Then they see an error message saying that their verification code is invalid/expired
         When they click "Continue"
         Then they are redirected to <redirectPath>

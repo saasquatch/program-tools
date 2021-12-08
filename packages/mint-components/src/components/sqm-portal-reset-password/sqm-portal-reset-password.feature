@@ -17,7 +17,7 @@ Feature: Reset Password
     @motivating
     Scenario Outline: Users cannot reset their password with an invalid or missing oob code
         Given a user has a <oobCode> as a url query parameter
-        And the component <mayHave> "failed-path" with <value>
+        And the component <mayHave> "failed-page" with <value>
         Then they see an error message saying that their password reset code is invalid/expired
         When they click "Continue"
         Then they are redirected to <redirectPath>
