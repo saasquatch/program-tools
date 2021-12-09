@@ -157,3 +157,24 @@ Feature: Big Stat
       | /referralsCount           | { programId_eq: programId }                              |
       | /referralsCount/converted | { programId_eq: programId, dateConverted_exists: true }  |
       | /referralsCount/started   | { programId_eq: programId, dateConverted_exists: false } |
+
+  Scenario: By default program context is used to source the programId used for queries
+    Given a valid "statType"
+    And its not a global stat
+    And the stat is loaded in an environment for "program-a"
+    And the "program-id" prop is not used
+    When the stat is queried
+    Then the query is filtered by "{ programId_eq: 'program-a' }"
+    And only results from "program-a" are returned
+
+  Scenario Outline: ProgramId can be specified to overwrite the program context default
+    Given a valid "statType"
+    And its not a global stat
+    And the "program-id" prop has <value>
+    When the stat is queried
+    Then the query has a <filter>
+    And only results from <value> are returned
+    Examples:
+      | value     | filter                        |
+      | program-b | { programId_eq: "program-b" } |
+      | program-c | { programId_eq: "program-c" } |
