@@ -124,6 +124,7 @@ export class StencilStorybook {
     });
 
     const [selectedTheme, setSelected] = useState("Default");
+    const [checkerboard, setCheckerboard] = useState(true);
     const themes = Object.keys(Themes);
     const theme = Themes[selectedTheme];
     return (
@@ -148,6 +149,19 @@ export class StencilStorybook {
             <div></div>
           </div>
           <ColorScale />
+          <br />
+          <input
+            type="checkbox"
+            id="checkerboard"
+            onClick={() => setCheckerboard(!checkerboard)}
+            onChange={() =>
+              document.documentElement.style.setProperty(
+                "--checker-color-1",
+                checkerboard ? "#ebebeb" : "#ffffff00"
+              )
+            }
+          ></input>
+          <label htmlFor="checkerboard">Checkerboard?</label>
         </div>
         <style>{theme}</style>
         <style>{ResizerStylesheet}</style>
@@ -176,9 +190,11 @@ function ColorToken({ type = "primary" }: { type?: string }) {
         background: `var(--sl-color-${type}-500)`,
         width: "1em",
         marginRight: "2px",
-        padding: "0 4px"
+        padding: "0 4px",
       }}
       title={type}
-    >{type.charAt(0)}</span>
+    >
+      {type.charAt(0)}
+    </span>
   );
 }

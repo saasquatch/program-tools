@@ -56,9 +56,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       "& .title": {
         fontSize: "var(--sl-font-size-small)",
         fontWeight: "var(--sl-font-weight-semibold)",
-      },
-      "& .black": {
-        color: "var(--sl-color-neutral-1000)",
+        color: "var(--sl-color-neutral-950)",
       },
       "& .container": {
         margin: "var(--sl-spacing-medium)",
@@ -69,6 +67,12 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       "& .container > div": {
         margin: "var(--sl-spacing-medium) 0",
       },
+    },
+    Expired: {
+      margin: "var(--sl-spacing-medium)",
+      marginBottom: "calc(var(--sl-spacing-x-small)*-1)",
+      color: "var(--sl-color-warning-500)",
+      fontWeight: "var(--sl-font-weight-semibold)",
     },
     Header: {
       display: "flex",
@@ -83,6 +87,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         alignSelf: "center",
         fontSize: "var(--sl-font-size-x-large)",
         fontWeight: "var(--sl-font-weight-semibold)",
+        color: "var(--sl-color-neutral-950)",
         lineHeight: "100%",
         marginRight: "var(--sl-spacing-xx-small)",
       },
@@ -90,6 +95,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         alignSelf: "end",
         textTransform: "uppercase",
         fontSize: "var(--sl-font-size-x-small)",
+        color: "var(--sl-color-neutral-950)",
         lineHeight: "var(--sl-font-size-medium)",
         marginRight: "var(--sl-spacing-xx-small)",
       },
@@ -97,9 +103,6 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         color: "var(--sl-color-warning-500)",
         fontWeight: "var(--sl-font-weight-semibold)",
         marginBottom: "var(--sl-spacing-xx-small)",
-      },
-      "& .black": {
-        color: "var(--sl-color-neutral-1000)",
       },
       "& .neutral": {
         color: "var(--sl-color-neutral-400)",
@@ -110,6 +113,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       "& .icon": {
         fontSize: "var(--sl-font-size-xx-small)",
         marginRight: "var(--sl-spacing-xx-small)",
+        verticalAlign: "bottom",
       },
       "& .text": {
         marginTop: "auto",
@@ -117,7 +121,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         fontSize: "var(--sl-font-size-x-small)",
       },
       "& .success": {
-        color: "var(--sl-color-success-600)",
+        color: "var(--sl-color-primary-500)",
         fontWeight: "var(--sl-font-weight-semibold)",
       },
       "& .action": {
@@ -130,6 +134,10 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         "&.disabled::part(base)": {
           border: "1px solid var(--sl-color-primary-400)",
           background: "var(--sl-color-primary-400)",
+        },
+        "&.neutral::part(base)": {
+          border: "1px solid var(--sl-color-neutral-400)",
+          background: "var(--sl-color-neutral-400)",
         },
       },
       "& .neutral": {
@@ -154,8 +162,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const dateToday = DateTime.now();
 
   const taskComplete = showComplete && props.repeatable === false;
-  const taskUnavailable =
-    props.showExpiry && (dateEnd < dateToday || dateToday < dateStart);
+  const taskEnded = props.showExpiry && dateEnd < dateToday;
+  const taskNotStarted = props.showExpiry && dateToday < dateStart;
+  const taskUnavailable = taskEnded || taskNotStarted;
 
   return (
     <div class={sheet.classes.TaskCard}>
@@ -169,28 +178,29 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         }
       >
         <style type="text/css">{styleString}</style>
-        <div class={taskComplete ? "container subdued" : "container"}>
+        {taskUnavailable && (
+          <div class={sheet.classes.Expired}>
+            {taskEnded
+              ? "Ended " + dateEnd.toLocaleString(DateTime.DATE_MED)
+              : "Starts " + dateStart.toLocaleString(DateTime.DATE_MED)}
+          </div>
+        )}
+        <div
+          class={
+            taskComplete || taskUnavailable ? "container subdued" : "container"
+          }
+        >
           <div class={sheet.classes.Header}>
             {props.loading ? (
               <sl-skeleton style={{ width: "22%", margin: "0" }} />
             ) : (
               <div>
-                {taskUnavailable && (
-                  <div class="end">
-                    {"Available " +
-                      dateStart
-                        .toLocaleString(DateTime.DATE_MED)
-                        .split(",")[0] +
-                      " - " +
-                      dateEnd.toLocaleString(DateTime.DATE_MED).split(",")[0]}
-                  </div>
-                )}
                 {showComplete && (
                   <span class={taskUnavailable ? "icon neutral" : "icon"}>
                     {taskComplete ? checkmark_filled : checkmark_circle}
                   </span>
                 )}
-                <span class={taskUnavailable ? "value" : "value black"}>
+                <span class={taskUnavailable ? "value black" : "value black"}>
                   {props.rewardAmount}
                 </span>
                 <span class="text">{props.rewardUnit}</span>
@@ -203,7 +213,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               style={{ width: "42%", margin: "var(--sl-spacing-medium) 0" }}
             />
           ) : (
-            <div class={taskUnavailable ? "title" : "title black"}>
+            <div class={taskUnavailable ? "title black" : "title black"}>
               {props.cardTitle}
             </div>
           )}
@@ -264,8 +274,10 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
 
                 <sl-button
                   class={
-                    taskComplete || taskUnavailable
+                    taskComplete
                       ? "action disabled"
+                      : taskUnavailable
+                      ? "action neutral"
                       : "action"
                   }
                   type="primary"
@@ -313,10 +325,10 @@ function Details(props): VNode {
         transition: "all var(--sl-transition-medium) ease",
         maxHeight: "300px",
         marginBottom: props.steps
-          ? "var(--sl-spacing-large)"
+          ? "var(--sl-spacing-x-large)"
           : props.showProgressBar
           ? "var(--sl-spacing-xx-large)"
-          : "var(--sl-spacing-large)",
+          : "var(--sl-spacing-x-large)",
       },
       "& .summary": {
         display: "block",
