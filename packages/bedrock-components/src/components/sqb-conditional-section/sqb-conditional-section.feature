@@ -6,7 +6,7 @@ Feature: Conditional Section
   Conditional Section adds JSONata conditional logic that can display or hide children components based on user segments, custom fields or email
 
   @motivating
-  Scenario: Content is hidden or shown depending on user segments
+  Scenario: Content can be hidden or shown depending on user segments
     Given the component's condition prop is set to "'vip' in user.segments"
     And the component contains the text "Hello"
     And the user has no segments
@@ -16,7 +16,7 @@ Feature: Conditional Section
     Then "Hello" is shown
 
   @motivating
-  Scenario: Content is hidden or shown depending on user's custom fields
+  Scenario: Content can be hidden or shown depending on user's custom fields
     Given the component's condition prop is set to "user.customFields.foo = true"
     And the component contains the text "Hello"
     And the user's custom field "foo" is false
@@ -26,7 +26,7 @@ Feature: Conditional Section
     Then "Hello" is shown
 
   @motivating
-  Scenario: Content is hidden or shown depending on user's email
+  Scenario: Content can be hidden or shown depending on user's email
     Given the component's condition prop is set to "$not('example.com' in $substringAfter(user.email, '@'))"
     And the component contains the text "Hello"
     And the user's email is "bobtesterson@example.com"
@@ -36,7 +36,7 @@ Feature: Conditional Section
     Then "Hello" is shown
 
   @minutae
-  Scenario: JSONata condition is type sensitive
+  Scenario: JSONata conditions are type sensitive
     Given the component's condition prop is set to "user.customFields.foo = true"
     And the component contains the text "Hello"
     And the user's custom field "foo" is "true"
