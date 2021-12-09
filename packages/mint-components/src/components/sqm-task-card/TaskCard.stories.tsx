@@ -1,9 +1,11 @@
 import { h } from "@stencil/core";
-import { MatrixStory } from "./Matrix";
+import { MatrixStory } from "../sqm-stencilbook/Matrix";
 import { TaskCardView } from "./sqm-task-card-view";
 import { ProgressBarView } from "./progress-bar/progress-bar-view";
 import scenarioTaskCard from "./sqm-task-card.feature";
 import scenarioProgressBar from "./progress-bar/progress-bar.feature";
+
+import { Resizer } from "../sqm-stencilbook/Resizer";
 
 const scenario = scenarioTaskCard + scenarioProgressBar;
 
@@ -81,6 +83,44 @@ const manyActions = {
   showExpiry: false,
   rewardDuration: null,
   loading: false,
+};
+
+export const TaskCard = () => {
+  const expire = {
+    showExpiry: true,
+    rewardDuration: "2021-11-30T08:00:00.000Z/2021-12-01T08:00:00.000Z",
+  };
+  const expireRepeat = { ...expire, repeatable: true };
+  return (
+    <div style={storyFrame}>
+      <Resizer>
+        <h4>Not Repeatable</h4>
+        <TaskCardView {...oneAction} progress={0} /> <h5 />
+        <TaskCardView {...coupleActions} progress={1} /> <h5 />
+        <TaskCardView {...manyActions} progress={230} />
+      </Resizer>
+      <Resizer>
+        <h4>Repeatable</h4>
+        <TaskCardView {...oneAction} progress={2} repeatable={true} /> <h5 />
+        <TaskCardView {...coupleActions} progress={7} repeatable={true} />
+        <h5 />
+        <TaskCardView {...manyActions} progress={650} repeatable={true} />
+      </Resizer>
+      <Resizer>
+        <h4>Complete</h4>
+        <TaskCardView {...oneAction} progress={1} /> <h5 />
+        <TaskCardView {...coupleActions} progress={5} /> <h5 />
+        <TaskCardView {...manyActions} progress={500} />
+      </Resizer>
+      <Resizer>
+        <h4>Unavailable</h4>
+        <TaskCardView {...oneAction} progress={0} {...expireRepeat} /> <h5 />
+        <TaskCardView {...coupleActions} progress={3} {...expireRepeat} />
+        <h5 />
+        <TaskCardView {...manyActions} progress={250} {...expireRepeat} />
+      </Resizer>
+    </div>
+  );
 };
 
 export const TaskCardNotRepeatable = () => {

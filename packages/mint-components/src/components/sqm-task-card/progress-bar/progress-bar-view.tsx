@@ -52,12 +52,12 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
   const style = {
     ProgressBar: {
       "& .progress-bar": {
-        height: "15px",
+        height: "0",
         marginTop: steps
           ? "var(--sl-spacing-medium)"
           : "var(--sl-spacing-large)",
         filter: expired ? "grayscale(1)" : "",
-        marginBottom: "var(--sl-spacing-xx-large)",
+        marginBottom: "var(--sl-spacing-xxx-large)",
         marginRight: "var(--sl-spacing-x-small)",
         fontSize: "var(--sl-font-size-x-small)",
         display: "grid",

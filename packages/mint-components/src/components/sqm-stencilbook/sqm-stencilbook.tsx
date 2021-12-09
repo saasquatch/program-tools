@@ -51,6 +51,7 @@ import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
 import { ShadowViewAddon } from "../../ShadowViewAddon";
+import { ResizerStylesheet } from "./Resizer";
 
 const stories = [
   ShareButton,
@@ -96,7 +97,7 @@ const stories = [
   RewardExchangeList,
   UseRewardExchangeList,
   UseTaskCard,
-  UseRewardsTable
+  UseRewardsTable,
 ];
 
 /**
@@ -114,7 +115,7 @@ export class StencilStorybook {
   constructor() {
     withHooks(this);
   }
-  disconnectedCallback() { }
+  disconnectedCallback() {}
   render() {
     const { class: Style, children } = useStencilbook(stories, {
       h,
@@ -123,20 +124,77 @@ export class StencilStorybook {
     });
 
     const [selectedTheme, setSelected] = useState("Default");
+    const [checkerboard, setCheckerboard] = useState(true);
     const themes = Object.keys(Themes);
-    const theme = Themes[selectedTheme]
+    const theme = Themes[selectedTheme];
     return (
       <Host class={Style} onClick={{}}>
-        <div style={{ position: "absolute", top: "0", right: "0", zIndex: "999999" }}>
+        <div
+          style={{
+            position: "absolute",
+            top: "0",
+            right: "0",
+            zIndex: "999999",
+          }}
+        >
           Branding:
-          <select onChange={(e) => setSelected((e.target as HTMLSelectElement).value)}>
-            {themes.map(t => <option selected={t===selectedTheme}>{t}</option>)}
+          <select
+            onChange={(e) => setSelected((e.target as HTMLSelectElement).value)}
+          >
+            {themes.map((t) => (
+              <option selected={t === selectedTheme}>{t}</option>
+            ))}
           </select>
+          <div>
+            <div></div>
+          </div>
+          <ColorScale />
+          <br />
+          <input
+            type="checkbox"
+            id="checkerboard"
+            onClick={() => setCheckerboard(!checkerboard)}
+            onChange={() =>
+              document.documentElement.style.setProperty(
+                "--checker-color-1",
+                checkerboard ? "#ebebeb" : "#ffffff00"
+              )
+            }
+          ></input>
+          <label htmlFor="checkerboard">Checkerboard?</label>
         </div>
         <style>{theme}</style>
-        {children}
+        <style>{ResizerStylesheet}</style>
 
+        {children}
       </Host>
     );
   }
+}
+
+function ColorScale() {
+  return (
+    <span>
+      <ColorToken />
+      <ColorToken type="success" />
+      <ColorToken type="warning" />
+      <ColorToken type="danger" />
+      <ColorToken type="neutral" />
+    </span>
+  );
+}
+function ColorToken({ type = "primary" }: { type?: string }) {
+  return (
+    <span
+      style={{
+        background: `var(--sl-color-${type}-500)`,
+        width: "1em",
+        marginRight: "2px",
+        padding: "0 4px",
+      }}
+      title={type}
+    >
+      {type.charAt(0)}
+    </span>
+  );
 }
