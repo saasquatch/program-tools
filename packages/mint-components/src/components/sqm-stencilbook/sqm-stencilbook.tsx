@@ -1,6 +1,6 @@
 import { h, Component, Host, State } from "@stencil/core";
 import { useStencilbook } from "@saasquatch/stencilbook";
-import { withHooks } from "@saasquatch/stencil-hooks";
+import { useState, withHooks } from "@saasquatch/stencil-hooks";
 
 import * as ShareButton from "../sqm-share-button/ShareButton.stories";
 import * as ShareLink from "../sqm-share-link/ShareLink.stories";
@@ -47,6 +47,7 @@ import * as ReferralIframe from "../sqm-referral-iframe/ReferralIframe.stories";
 import * as NameFields from "../sqm-name-fields/NameFields.stories";
 import * as RewardExchangeList from "../sqm-reward-exchange-list/RewardExchangeList.stories";
 
+import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
 import { ShadowViewAddon } from "../../ShadowViewAddon";
@@ -113,16 +114,28 @@ export class StencilStorybook {
   constructor() {
     withHooks(this);
   }
-  disconnectedCallback() {}
+  disconnectedCallback() { }
   render() {
     const { class: Style, children } = useStencilbook(stories, {
       h,
       title: "Mint Components",
       addons: [CucumberAddon, ShadowViewAddon, HookStoryAddon],
     });
+
+    const [selectedTheme, setSelected] = useState("Default");
+    const themes = Object.keys(Themes);
+    const theme = Themes[selectedTheme]
     return (
       <Host class={Style} onClick={{}}>
+        <div style={{ position: "absolute", top: "0", right: "0", zIndex: "999999" }}>
+          Branding:
+          <select onChange={(e) => setSelected((e.target as HTMLSelectElement).value)}>
+            {themes.map(t => <option selected={t===selectedTheme}>{t}</option>)}
+          </select>
+        </div>
+        <style>{theme}</style>
         {children}
+
       </Host>
     );
   }
