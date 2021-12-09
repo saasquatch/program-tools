@@ -60,12 +60,12 @@ export class PortalLogin {
   pageLabel: string = "Sign in to your account";
 
   /**
-   * @uiName Routing path to register page
+   * @uiName Register button redirection path
    */
   @Prop() registerPath: string = "/register";
 
   /**
-   * @uiName Routing path to forgot password page
+   * @uiName Forgot password button redirect path
    */
   @Prop() forgotPasswordPath: string = "/forgotPassword";
 

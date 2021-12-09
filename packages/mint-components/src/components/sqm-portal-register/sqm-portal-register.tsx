@@ -27,7 +27,9 @@ export class PortalRegister {
   nextPage: string = "/";
 
   /**
-   * @uiName Base path of verify email link
+   * The page that users are redirected to from the verification email.
+   *
+   * @uiName Email redirection base path
    */
   @Prop()
   redirectPath: string = "/verifyEmail";
@@ -86,7 +88,7 @@ export class PortalRegister {
   pageLabel: string = "Register";
 
   /**
-   * @uiName Routing path to login page
+   * @uiName Sign in button redirection path
    */
   @Prop() loginPath: string = "/login";
 

@@ -21,7 +21,9 @@ export class PortalForgotPassword {
   ignored = true;
 
   /**
-   * @uiName Base path of reset password email link
+   * The page that users are redirected to from the password reset email.
+   *
+   * @uiName Email redirection base path
    */
   @Prop()
   redirectPath: string = "/resetPassword";
