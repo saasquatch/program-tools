@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.4.0] - 2021-12-08
 
+- Updated version of component-boilerplate to prevent rare case of user context being deleted during register
+- Updated version of component-boilerplate to support new registration, password reset, and verify requests
 - Changed components:
   - \<sqm-portal-email-verification>
     - Added prop to customize what page a user is redirected to from their verify email, defaults to /verifyEmail
