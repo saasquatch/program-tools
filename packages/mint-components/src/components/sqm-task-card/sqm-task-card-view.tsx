@@ -33,23 +33,20 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const style = {
     HostBlock: HostBlock,
     TaskCard: {
-      "& .main > div": {
-        margin: "var(--sl-spacing-medium)",
-      },
       "& .main": {
         position: "relative",
         boxSizing: "border-box",
         minWidth: "347px",
         background: "var(--sl-color-neutral-0)",
-        border: "1px solid var(--sl-color-neutral-300)",
+        border: "1px solid var(--sl-color-neutral-200)",
         borderRadius: "var(--sl-border-radius-medium)",
         fontSize: "var(--sl-font-size-small)",
         lineHeight: "var(--sl-line-height-dense)",
         color: "var(--sl-color-neutral-600)",
       },
       "& .main.complete": {
-        background: "var(--sl-color-success-50)",
-        borderColor: "var(--sl-color-success-700)",
+        background: "var(--sl-color-primary-50)",
+        borderColor: "var(--sl-color-primary-500)",
       },
       "& .main.expired": {
         color: "var(--sl-color-neutral-400)",
@@ -61,6 +58,12 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       },
       "& .black": {
         color: "var(--sl-color-neutral-1000)",
+      },
+      "& .container": {
+        margin: "var(--sl-spacing-medium)",
+      },
+      "& .container > div": {
+        margin: "var(--sl-spacing-medium) 0",
       },
     },
     Header: {
@@ -162,117 +165,119 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         }
       >
         <style type="text/css">{styleString}</style>
-        <div class={sheet.classes.Header}>
-          {props.loading ? (
-            <sl-skeleton
-              style={{ width: "22%", margin: "0"}}
-            />
-          ) : (
-            <div>
-              {taskUnavailable && (
-                <div class="end">
-                  {"Available " +
-                    dateStart.toLocaleString(DateTime.DATE_MED).split(",")[0] +
-                    " - " +
-                    dateEnd.toLocaleString(DateTime.DATE_MED).split(",")[0]}
-                </div>
-              )}
-              {showComplete && (
-                <span class={taskUnavailable ? "icon neutral" : "icon"}>
-                  {checkmark_circle}
-                </span>
-              )}
-              <span class={taskUnavailable ? "value" : "value black"}>
-                {props.rewardAmount}
-              </span>
-              <span class="text">{props.rewardUnit}</span>
-            </div>
-          )}
-        </div>
-
-        {props.loading ? (
-          <sl-skeleton
-            style={{ width: "42%", margin: "0 var(--sl-spacing-medium)"}}
-          />
-        ) : (
-          <div class={taskUnavailable ? "title" : "title black"}>
-            {props.cardTitle}
-          </div>
-        )}
-        {props.loading ? (
-          <sl-skeleton style={{ margin: "var(--sl-spacing-medium)"}} />
-        ) : (
-          <Details {...props} />
-        )}
-        {props.showProgressBar && props.loading ? (
-          <sl-skeleton style={{ margin: "0 var(--sl-spacing-medium)"}} />
-        ) : (
-          props.showProgressBar && (
-            <ProgressBarView
-              {...props}
-              complete={taskComplete}
-              expired={taskUnavailable}
-            />
-          )
-        )}
-        <div class={sheet.classes.Footer}>
-          {props.loading ? (
-            <sl-skeleton
-              style={{ width: "25%", marginLeft: "auto"}}
-            />
-          ) : (
-            <div style={{ display: "contents" }}>
-              <span class="text">
-                {props.repeatable && (
-                  <div>
-                    <span
-                      class={
-                        repetitions > 0
-                          ? taskUnavailable
-                            ? "icon neutral"
-                            : "icon success"
-                          : "icon"
-                      }
-                    >
-                      {arrow_left_right}
-                    </span>
-                    <span
-                      class={
-                        repetitions > 0
-                          ? taskUnavailable
-                            ? "neutral"
-                            : "success"
-                          : ""
-                      }
-                    >
-                      {"Completed " + repetitions + " times"}
-                    </span>
+        <div class="container" style={{ opacity: "1" }}>
+          <div class={sheet.classes.Header}>
+            {props.loading ? (
+              <sl-skeleton style={{ width: "22%", margin: "0" }} />
+            ) : (
+              <div>
+                {taskUnavailable && (
+                  <div class="end">
+                    {"Available " +
+                      dateStart
+                        .toLocaleString(DateTime.DATE_MED)
+                        .split(",")[0] +
+                      " - " +
+                      dateEnd.toLocaleString(DateTime.DATE_MED).split(",")[0]}
                   </div>
                 )}
-                {props.showExpiry && !taskUnavailable && (
-                  <span>
-                    {"Ends " + dateEnd.toLocaleString(DateTime.DATE_FULL)}
+                {showComplete && (
+                  <span class={taskUnavailable ? "icon neutral" : "icon"}>
+                    {checkmark_circle}
                   </span>
                 )}
-              </span>
+                <span class={taskUnavailable ? "value" : "value black"}>
+                  {props.rewardAmount}
+                </span>
+                <span class="text">{props.rewardUnit}</span>
+              </div>
+            )}
+          </div>
 
-              <sl-button
-                class={
-                  taskComplete || taskUnavailable ? "action disabled" : "action"
-                }
-                type="primary"
-                size="small"
-                onClick={() =>
-                  props.openNewTab
-                    ? window.open(props.buttonLink)
-                    : window.open(props.buttonLink, "_parent")
-                }
-                disabled={taskComplete || taskUnavailable}
-              >
-                {props.buttonText}
-              </sl-button>
+          {props.loading ? (
+            <sl-skeleton
+              style={{ width: "42%", margin: "0 var(--sl-spacing-medium)" }}
+            />
+          ) : (
+            <div class={taskUnavailable ? "title" : "title black"}>
+              {props.cardTitle}
             </div>
           )}
+          {props.loading ? (
+            <sl-skeleton style={{ margin: "var(--sl-spacing-medium)" }} />
+          ) : (
+            <Details {...props} />
+          )}
+          {props.showProgressBar && props.loading ? (
+            <sl-skeleton style={{ margin: "0 var(--sl-spacing-medium)" }} />
+          ) : (
+            props.showProgressBar && (
+              <ProgressBarView
+                {...props}
+                complete={taskComplete}
+                expired={taskUnavailable}
+              />
+            )
+          )}
+          <div class={sheet.classes.Footer}>
+            {props.loading ? (
+              <sl-skeleton style={{ width: "25%", marginLeft: "auto" }} />
+            ) : (
+              <div style={{ display: "contents" }}>
+                <span class="text">
+                  {props.repeatable && (
+                    <div>
+                      <span
+                        class={
+                          repetitions > 0
+                            ? taskUnavailable
+                              ? "icon neutral"
+                              : "icon success"
+                            : "icon"
+                        }
+                      >
+                        {arrow_left_right}
+                      </span>
+                      <span
+                        class={
+                          repetitions > 0
+                            ? taskUnavailable
+                              ? "neutral"
+                              : "success"
+                            : ""
+                        }
+                      >
+                        {"Completed " + repetitions + " times"}
+                      </span>
+                    </div>
+                  )}
+                  {props.showExpiry && !taskUnavailable && (
+                    <span>
+                      {"Ends " + dateEnd.toLocaleString(DateTime.DATE_FULL)}
+                    </span>
+                  )}
+                </span>
+
+                <sl-button
+                  class={
+                    taskComplete || taskUnavailable
+                      ? "action disabled"
+                      : "action"
+                  }
+                  type="primary"
+                  size="small"
+                  onClick={() =>
+                    props.openNewTab
+                      ? window.open(props.buttonLink)
+                      : window.open(props.buttonLink, "_parent")
+                  }
+                  disabled={taskComplete || taskUnavailable}
+                >
+                  {props.buttonText}
+                </sl-button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

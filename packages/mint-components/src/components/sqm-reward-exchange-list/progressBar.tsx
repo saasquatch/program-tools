@@ -48,8 +48,9 @@ function Dot({
               color: active
                 ? "var(--sl-color-success-500)"
                 : "var(--sl-color-neutral-50)",
-              top: "-9%",
-              left: "28%",
+              width: "23px",
+              lineHeight: "24px",
+              textAlign: "center",
               position: "relative",
             }}
           >
