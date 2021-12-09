@@ -28,6 +28,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   console.log({ props });
 
   const checkmark_circle = SVGs.checkmark_circle();
+  const checkmark_filled = SVGs.checkmark_filled();
   const arrow_left_right = SVGs.arrow_left_right();
 
   const style = {
@@ -39,7 +40,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         minWidth: "347px",
         background: "var(--sl-color-neutral-0)",
         border: "1px solid var(--sl-color-neutral-200)",
-        borderRadius: "var(--sl-border-radius-medium)",
+        borderRadius: "var(--sl-border-radius-large)",
         fontSize: "var(--sl-font-size-small)",
         lineHeight: "var(--sl-line-height-dense)",
         color: "var(--sl-color-neutral-600)",
@@ -62,6 +63,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       "& .container": {
         margin: "var(--sl-spacing-medium)",
       },
+      "& .container.subdued": {
+        opacity: "0.66",
+      },
       "& .container > div": {
         margin: "var(--sl-spacing-medium) 0",
       },
@@ -71,7 +75,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       "& .icon": {
         alignSelf: "center",
         lineHeight: "0",
-        color: "var(--sl-color-success-700)",
+        color: "var(--sl-color-primary-400)",
         fontSize: "var(--sl-font-size-large)",
         marginRight: "var(--sl-spacing-x-small)",
       },
@@ -124,8 +128,8 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           borderRadius: "var(--sl-border-radius-medium)",
         },
         "&.disabled::part(base)": {
-          border: "1px solid var(--sl-color-neutral-400)",
-          background: "var(--sl-color-neutral-400)",
+          border: "1px solid var(--sl-color-primary-400)",
+          background: "var(--sl-color-primary-400)",
         },
       },
       "& .neutral": {
@@ -165,7 +169,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         }
       >
         <style type="text/css">{styleString}</style>
-        <div class="container" style={{ opacity: "1" }}>
+        <div class={taskComplete ? "container subdued" : "container"}>
           <div class={sheet.classes.Header}>
             {props.loading ? (
               <sl-skeleton style={{ width: "22%", margin: "0" }} />
@@ -183,7 +187,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                 )}
                 {showComplete && (
                   <span class={taskUnavailable ? "icon neutral" : "icon"}>
-                    {checkmark_circle}
+                    {taskComplete ? checkmark_filled : checkmark_circle}
                   </span>
                 )}
                 <span class={taskUnavailable ? "value" : "value black"}>
@@ -196,7 +200,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
 
           {props.loading ? (
             <sl-skeleton
-              style={{ width: "42%", margin: "0 var(--sl-spacing-medium)" }}
+              style={{ width: "42%", margin: "var(--sl-spacing-medium) 0" }}
             />
           ) : (
             <div class={taskUnavailable ? "title" : "title black"}>
@@ -204,12 +208,12 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             </div>
           )}
           {props.loading ? (
-            <sl-skeleton style={{ margin: "var(--sl-spacing-medium)" }} />
+            <sl-skeleton style={{ margin: "var(--sl-spacing-medium) 0" }} />
           ) : (
             <Details {...props} />
           )}
           {props.showProgressBar && props.loading ? (
-            <sl-skeleton style={{ margin: "0 var(--sl-spacing-medium)" }} />
+            <sl-skeleton style={{ margin: "var(--sl-spacing-medium) 0" }} />
           ) : (
             props.showProgressBar && (
               <ProgressBarView
