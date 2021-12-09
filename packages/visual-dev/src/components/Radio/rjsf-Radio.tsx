@@ -32,6 +32,7 @@ export const RSJFRadioWidget = (props: WidgetProps) => {
             options={{ text: option.label }}
             name={props.id}
             value={props.value == option.value}
+            disabled={props.disabled}
             onChange={() => props.onChange(option.value)}
           />
         );

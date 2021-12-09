@@ -47,11 +47,67 @@ export const SimpleForm = () => {
   );
 };
 
+export const SimpleFormDisabled = () => {
+  const uiSchema = {
+    "ui:widget": (props) => {
+      return <RJSFInput {...props} />;
+    },
+    "ui:disabled": true,
+  };
+
+  const schema: JSONSchema7 = {
+    type: "string",
+  };
+  return (
+    <div style={{ margin: "100px", resize: "horizontal", overflow: "hidden" }}>
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        onChange={log("changed")}
+        onSubmit={log("submitted")}
+        onError={log("errors")}
+      >
+        <Button buttonType="primary" style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
 export const NumericalForm = () => {
   const uiSchema = {
     "ui:widget": (props) => {
       return <RJSFNumericalInput {...props} />;
     },
+  };
+
+  const schema: JSONSchema7 = {
+    type: "string",
+  };
+  return (
+    <div style={{ margin: "100px", resize: "horizontal", overflow: "hidden" }}>
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        onChange={log("changed")}
+        onSubmit={log("submitted")}
+        onError={log("errors")}
+      >
+        <Button buttonType="primary" style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
+export const NumericalFormDisabled = () => {
+  const uiSchema = {
+    "ui:widget": (props) => {
+      return <RJSFNumericalInput {...props} />;
+    },
+    "ui:disabled": true,
   };
 
   const schema: JSONSchema7 = {
@@ -106,6 +162,34 @@ export const ClearableForm = () => {
     "ui:widget": (props) => {
       return <RJSFClearableInput {...props} />;
     },
+  };
+
+  const schema: JSONSchema7 = {
+    type: "string",
+  };
+  return (
+    <div style={{ margin: "100px", resize: "horizontal", overflow: "hidden" }}>
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        onChange={log("changed")}
+        onSubmit={log("submitted")}
+        onError={log("errors")}
+      >
+        <Button buttonType="primary" style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
+export const ClearableFormDisabled = () => {
+  const uiSchema = {
+    "ui:widget": (props) => {
+      return <RJSFClearableInput {...props} />;
+    },
+    "ui:disabled": true
   };
 
   const schema: JSONSchema7 = {
@@ -192,6 +276,44 @@ export const CheckboxForm = () => {
   );
 };
 
+export const CheckboxFormDisabled = () => {
+  const schema: JSONSchema7 = {
+    type: "object",
+    properties: {
+      Done: {
+        type: "boolean",
+        title: "Done",
+      },
+    },
+  };
+
+  const uiSchema = {
+    Done: {
+      "ui:widget": RJSFCheckbox,
+      "ui:options": {
+        label: false,
+      },
+      "ui:disabled": true
+    },
+  };
+
+  return (
+    <div style={{ margin: "100px" }}>
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        onChange={log("changed")}
+        onSubmit={log("submitted")}
+        onError={log("errors")}
+      >
+        <Button buttonType="primary" style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
 export const RadioForm = () => {
   const schema: JSONSchema7 = {
     type: "object",
@@ -210,6 +332,45 @@ export const RadioForm = () => {
       "ui:options": {
         label: false,
       },
+    },
+  };
+
+  return (
+    <div style={{ margin: "100px" }}>
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        onChange={log("changed")}
+        onSubmit={log("submitted")}
+        onError={log("errors")}
+      >
+        <Button buttonType="primary" style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
+export const RadioFormDisabled = () => {
+  const schema: JSONSchema7 = {
+    type: "object",
+    properties: {
+      numberEnumRadio: {
+        type: "number",
+        title: "Number enum",
+        enum: [1, 2, 3],
+      },
+    },
+  };
+
+  const uiSchema = {
+    numberEnumRadio: {
+      "ui:widget": RSJFRadioWidget,
+      "ui:options": {
+        label: false,
+      },
+      "ui:disabled": true
     },
   };
 

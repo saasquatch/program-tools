@@ -58,9 +58,10 @@ export function RJSFClearableInput(props: WidgetProps) {
       errors={props.rawErrors}
       buttons={
         <IconButton
+          disabled={props.disabled}
           icon="close"
           size="mini"
-          css="position: relative; left: -30px; border: none; :hover{background: none; color: var(--sq-text-subdued)}"
+          css={`position: relative; left: -30px; border: none; background: none !important; :hover{ color: var(--sq-text-subdued)}`}
           icon_css="margin: -10px; top: 8px; height: 20px; width: 20px"
           onClick={() => {
             props.onChange("");
