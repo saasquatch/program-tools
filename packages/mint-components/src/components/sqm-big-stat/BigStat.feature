@@ -158,7 +158,7 @@ Feature: Big Stat
       | /referralsCount/converted | { programId_eq: programId, dateConverted_exists: true }  |
       | /referralsCount/started   | { programId_eq: programId, dateConverted_exists: false } |
 
-  Scenario: By default program context is used to source the programId used for queries
+  Scenario: Program context is used by default to source the programId used for queries
     Given a valid "statType"
     And its not a global stat
     And the stat is loaded in an environment for "program-a"
