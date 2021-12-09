@@ -11,7 +11,8 @@ export const ResizerStylesheet = `
 .resizer{
     resize: horizontal;
     border: 2px dashed gray;
-    padding: 10px;
+	margin: -2px;
+    padding: 12px;
     height: fit-content;
     overflow: hidden;
 }
