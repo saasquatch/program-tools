@@ -11,18 +11,18 @@ import {
   RJSFLockableInput,
   RJSFNumericalInput,
 } from "../Input";
-import Form from "@rjsf/core";
+import Form, { UiSchema, WidgetProps } from "@rjsf/core";
 
 export default {
   title: "Components / Form",
   component: Form,
 };
 
-const log = (type) => console.log.bind(console, type);
+const log = (type: any) => console.log.bind(console, type);
 
 export const SimpleForm = () => {
   const uiSchema = {
-    "ui:widget": (props) => {
+    "ui:widget": (props: WidgetProps) => {
       return <RJSFInput {...props} />;
     },
   };
@@ -49,7 +49,7 @@ export const SimpleForm = () => {
 
 export const SimpleFormDisabled = () => {
   const uiSchema = {
-    "ui:widget": (props) => {
+    "ui:widget": (props: WidgetProps) => {
       return <RJSFInput {...props} />;
     },
     "ui:disabled": true,
@@ -77,7 +77,7 @@ export const SimpleFormDisabled = () => {
 
 export const NumericalForm = () => {
   const uiSchema = {
-    "ui:widget": (props) => {
+    "ui:widget": (props: WidgetProps) => {
       return <RJSFNumericalInput {...props} />;
     },
   };
@@ -104,7 +104,7 @@ export const NumericalForm = () => {
 
 export const NumericalFormDisabled = () => {
   const uiSchema = {
-    "ui:widget": (props) => {
+    "ui:widget": (props : WidgetProps) => {
       return <RJSFNumericalInput {...props} />;
     },
     "ui:disabled": true,
@@ -132,7 +132,7 @@ export const NumericalFormDisabled = () => {
 
 export const LockableForm = () => {
   const uiSchema = {
-    "ui:widget": (props) => {
+    "ui:widget": (props: WidgetProps) => {
       return <RJSFLockableInput {...props} />;
     },
   };
@@ -159,7 +159,7 @@ export const LockableForm = () => {
 
 export const ClearableForm = () => {
   const uiSchema = {
-    "ui:widget": (props) => {
+    "ui:widget": (props: WidgetProps) => {
       return <RJSFClearableInput {...props} />;
     },
   };
@@ -186,10 +186,10 @@ export const ClearableForm = () => {
 
 export const ClearableFormDisabled = () => {
   const uiSchema = {
-    "ui:widget": (props) => {
+    "ui:widget": (props: WidgetProps) => {
       return <RJSFClearableInput {...props} />;
     },
-    "ui:disabled": true
+    "ui:disabled": true,
   };
 
   const schema: JSONSchema7 = {
@@ -214,7 +214,7 @@ export const ClearableFormDisabled = () => {
 
 export const ExampleCancellableForm = () => {
   const uiSchema = {
-    "ui:widget": (props) => {
+    "ui:widget": (props: WidgetProps) => {
       return <RJSFCancellableInput {...props} />;
     },
   };
@@ -293,7 +293,7 @@ export const CheckboxFormDisabled = () => {
       "ui:options": {
         label: false,
       },
-      "ui:disabled": true
+      "ui:disabled": true,
     },
   };
 
@@ -370,7 +370,7 @@ export const RadioFormDisabled = () => {
       "ui:options": {
         label: false,
       },
-      "ui:disabled": true
+      "ui:disabled": true,
     },
   };
 
