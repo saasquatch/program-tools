@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Added prop to customize what path users are redirected to when oobcode validation fails, defaults to /
   - \<sqm-big-stat>
     - Added program ID prop to optionally be used instead of the default program context
+
 ## [1.3.0] - 2021-11-08
 
 ### Changed
