@@ -1,47 +1,23 @@
 import { h } from "@stencil/core";
-import { RewardExchangeView } from "./sqm-reward-exchange-list-view";
+import { RewardExchangeView, RewardExchangeViewProps } from "./sqm-reward-exchange-list-view";
 import * as Data from "./RewardExchangeListData";
+import { Resizer } from "../sqm-stencilbook/Resizer";
 
 export default {
   title: "Components/Reward Exchange List",
 };
 
-export const ChooseReward = () => {
-  return <RewardExchangeView {...Data.rewardExchange}></RewardExchangeView>;
+
+const StoryBase = (props: RewardExchangeViewProps) => ()=> {
+  return <Resizer><RewardExchangeView {...props}></RewardExchangeView></Resizer>;
 };
 
-export const ChooseRewardSelected = () => {
-  return (
-    <RewardExchangeView {...Data.rewardExchangeSelected}></RewardExchangeView>
-  );
-};
-
-export const ChooseAmount = () => {
-  return <RewardExchangeView {...Data.chooseAmountFixed}></RewardExchangeView>;
-};
-
-export const ChooseAmountVariable = () => {
-  return (
-    <RewardExchangeView {...Data.chooseAmountVariable}></RewardExchangeView>
-  );
-};
-
-export const Confirm = () => {
-  return <RewardExchangeView {...Data.confirmFixed}></RewardExchangeView>;
-};
-
-export const ConfirmVariable = () => {
-  return <RewardExchangeView {...Data.confirmVariable}></RewardExchangeView>;
-};
-
-export const Error = () => {
-  return <RewardExchangeView {...Data.error}></RewardExchangeView>;
-};
-
-export const Success = () => {
-  return <RewardExchangeView {...Data.success}></RewardExchangeView>;
-};
-
-export const Loading = () => {
-  return <RewardExchangeView {...Data.loading}></RewardExchangeView>;
-};
+export const ChooseReward = StoryBase(Data.rewardExchange);
+export const ChooseRewardSelected = StoryBase(Data.rewardExchangeSelected);
+export const ChooseAmount = StoryBase(Data.chooseAmountFixed);
+export const ChooseAmountVariable = StoryBase(Data.chooseAmountVariable);
+export const Confirm = StoryBase(Data.confirmFixed);
+export const ConfirmVariable = StoryBase(Data.confirmVariable);
+export const Error = StoryBase(Data.error);
+export const Success = StoryBase(Data.success);
+export const Loading = StoryBase(Data.loading);

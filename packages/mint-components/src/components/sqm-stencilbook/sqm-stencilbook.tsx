@@ -51,6 +51,7 @@ import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
 import { ShadowViewAddon } from "../../ShadowViewAddon";
+import { ResizerStylesheet } from "./Resizer";
 
 const stories = [
   ShareButton,
@@ -149,6 +150,7 @@ export class StencilStorybook {
           <ColorScale />
         </div>
         <style>{theme}</style>
+        <style>{ResizerStylesheet}</style>
 
         {children}
       </Host>
