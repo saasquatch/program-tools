@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { MatrixStory } from "./Matrix";
+import { MatrixStory } from "../sqm-stencilbook/Matrix";
 import { TaskCardView } from "./sqm-task-card-view";
 import { ProgressBarView } from "./progress-bar/progress-bar-view";
 import scenarioTaskCard from "./sqm-task-card.feature";
