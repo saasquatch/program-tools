@@ -101,7 +101,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - useShareEvent
       useForm
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/component-boilerplate@1.2.3...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/component-boilerplate@1.3.0...HEAD
 [1.2.3]: https://github.com/saasquatch/program-tools/compare/component-boilerplate@1.2.2...component-boilerplate@1.2.3
 [1.2.2]: https://github.com/saasquatch/program-tools/compare/component-boilerplate@1.2.1...component-boilerplate@1.2.2
 [1.2.1]: https://github.com/saasquatch/program-tools/compare/component-boilerplate@1.2.0...component-boilerplate@1.2.1
