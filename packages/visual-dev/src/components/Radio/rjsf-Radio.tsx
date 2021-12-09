@@ -15,7 +15,7 @@ function isEnumArray(options: any): options is any[]{
   return Array.isArray(options)
 }
 
-export const RSJFRadioWidget = (props: WidgetProps) => {
+export const RJSFRadio = (props: WidgetProps) => {
   const valueOptions = props?.options?.enumOptions
   if(!isEnumArray(valueOptions)){
     return <></>

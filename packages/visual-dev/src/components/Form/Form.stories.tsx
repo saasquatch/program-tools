@@ -1,7 +1,7 @@
 import { JSONSchema7 } from "json-schema";
 import React from "react";
 import { Button } from "../Button";
-import { RSJFRadioWidget } from "../Radio";
+import { RJSFRadio } from "../Radio";
 import { RJSFRadioCardWidget } from "../RadioCard";
 import { RJSFCheckbox } from "../Checkbox";
 import {
@@ -11,7 +11,7 @@ import {
   RJSFLockableInput,
   RJSFNumericalInput,
 } from "../Input";
-import Form, { UiSchema, WidgetProps } from "@rjsf/core";
+import Form, { WidgetProps } from "@rjsf/core";
 
 export default {
   title: "Components / Form",
@@ -328,7 +328,7 @@ export const RadioForm = () => {
 
   const uiSchema = {
     numberEnumRadio: {
-      "ui:widget": RSJFRadioWidget,
+      "ui:widget": RJSFRadio,
       "ui:options": {
         label: false,
       },
@@ -366,7 +366,7 @@ export const RadioFormDisabled = () => {
 
   const uiSchema = {
     numberEnumRadio: {
-      "ui:widget": RSJFRadioWidget,
+      "ui:widget": RJSFRadio,
       "ui:options": {
         label: false,
       },
@@ -406,7 +406,7 @@ export const RadioFormWithLabels = () => {
 
   const uiSchema = {
     numberEnumRadio: {
-      "ui:widget": RSJFRadioWidget,
+      "ui:widget": RJSFRadio,
       "ui:options": {
         label: false,
       },
