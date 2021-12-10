@@ -41,7 +41,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         minWidth: "347px",
         background: "var(--sl-color-neutral-0)",
         border: "1px solid var(--sl-color-neutral-200)",
-        borderRadius: "var(--sl-border-radius-large)",
+        borderRadius: "var(--sl-border-radius-medium)",
         fontSize: "var(--sl-font-size-small)",
         lineHeight: "var(--sl-line-height-dense)",
         color: "var(--sl-color-neutral-600)",
@@ -72,7 +72,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     Expired: {
       margin: "var(--sl-spacing-medium)",
       marginBottom: "calc(var(--sl-spacing-x-small)*-1)",
-      color: "var(--sl-color-warning-500)",
+      color: "var(--sl-color-warning-600)",
       fontWeight: "var(--sl-font-weight-semibold)",
     },
     Header: {
