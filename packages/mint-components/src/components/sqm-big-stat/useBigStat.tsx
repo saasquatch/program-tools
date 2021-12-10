@@ -636,8 +636,12 @@ export const StatPatterns = StatPaths.map((pattern) =>
 );
 
 export function useBigStat(props: BigStat): BigStatHook {
-  const { statType, flexReverse, alignment } = props;
-  const programId = useProgramId();
+  const {
+    statType,
+    flexReverse,
+    alignment,
+    programId = useProgramId(),
+  } = props;
 
   const locale = useLocale();
   const userIdent = useUserIdentity();

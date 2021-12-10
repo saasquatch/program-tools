@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                                                           | Type                                                                                        | Default     |
-| ------------- | -------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------- |
-| `alignment`   | `alignment`    |                                                                       | `"center" \| "left" \| "right"`                                                             | `undefined` |
-| `demoData`    | --             |                                                                       | `{ statvalue?: string; flexReverse?: boolean; alignment?: "left" \| "right" \| "center"; }` | `undefined` |
-| `flexReverse` | `flex-reverse` |                                                                       | `boolean`                                                                                   | `false`     |
-| `statType`    | `stat-type`    | Select what type of stat to display. Manual paths are also supported. | `string`                                                                                    | `undefined` |
+| Property      | Attribute      | Description                                                                                                 | Type                                                                                        | Default     |
+| ------------- | -------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------- |
+| `alignment`   | `alignment`    |                                                                                                             | `"center" \| "left" \| "right"`                                                             | `undefined` |
+| `demoData`    | --             |                                                                                                             | `{ statvalue?: string; flexReverse?: boolean; alignment?: "left" \| "right" \| "center"; }` | `undefined` |
+| `flexReverse` | `flex-reverse` |                                                                                                             | `boolean`                                                                                   | `false`     |
+| `programId`   | `program-id`   | The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified. | `string`                                                                                    | `undefined` |
+| `statType`    | `stat-type`    | Select what type of stat to display. Manual paths are also supported.                                       | `string`                                                                                    | `undefined` |
 
 
 ## Slots

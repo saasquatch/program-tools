@@ -51,7 +51,7 @@ export function usePortalResetPassword(
 
   const failed = () => {
     navigation.push({
-      pathname: "/",
+      pathname: props.failedPage,
       search: urlParams.toString() && "?" + urlParams.toString(),
     });
   };
