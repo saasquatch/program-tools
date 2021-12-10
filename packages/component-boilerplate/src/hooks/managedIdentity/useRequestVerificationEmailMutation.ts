@@ -4,11 +4,16 @@ import { BaseQueryData } from "../graphql/useBaseQuery";
 import { useMutation } from "../graphql/useMutation";
 
 const RequestVerificationEmailMutation = gql`
-  mutation RequestVerificationEmail($email: String!, $urlParams: RSJsonNode) {
+  mutation RequestVerificationEmail(
+    $email: String!
+    $urlParams: RSJsonNode
+    $redirectPath: String
+  ) {
     requestManagedIdentityVerificationEmail(
       requestManagedIdentityVerificationEmailInput: {
         email: $email
         urlParams: $urlParams
+        redirectPath: $redirectPath
       }
     ) {
       success
