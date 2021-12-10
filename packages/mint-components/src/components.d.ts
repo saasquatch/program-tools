@@ -1048,6 +1048,10 @@ export namespace Components {
          */
         "description": string;
         /**
+          * @uiName Repeat Amount (0 for no limit)
+         */
+        "finite": number;
+        /**
           * @uiName Goal Completion Number
          */
         "goal": number;
@@ -2559,6 +2563,10 @@ declare namespace LocalJSX {
           * @uiName Description Text
          */
         "description"?: string;
+        /**
+          * @uiName Repeat Amount (0 for no limit)
+         */
+        "finite"?: number;
         /**
           * @uiName Goal Completion Number
          */

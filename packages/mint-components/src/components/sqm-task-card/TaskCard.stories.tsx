@@ -188,8 +188,9 @@ export const TaskCardRepeatableFinite = () => {
     <div style={storyFrame}>
       <div style={resizable}>
         <h4>One Action</h4>
-        {/* <TaskCardView {...oneAction} progress={0} repeatable={true} finite={2} /> <h5 />
-        <TaskCardView {...oneAction} progress={1} repeatable={true} finite={2} /> <h5 /> */}
+        <TaskCardView {...oneAction} progress={0} repeatable={true} finite={2} /> <h5 />
+        <TaskCardView {...oneAction} progress={1} repeatable={true} finite={2} /> <h5 />
+        <TaskCardView {...oneAction} progress={2} repeatable={true} finite={2} /> <h5 />
       </div>
       <div style={resizable}>
         <h4>A Couple Actions</h4>
