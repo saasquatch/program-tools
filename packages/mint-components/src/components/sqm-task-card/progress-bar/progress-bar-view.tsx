@@ -369,7 +369,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
         }
       }
     }
-
+	//
     // finite repetition hit
     else if (finite && repetitions >= finite) {
       let ratio = 1 / goal;
