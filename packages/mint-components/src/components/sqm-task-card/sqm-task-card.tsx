@@ -127,8 +127,7 @@ export class TaskCard {
   render() {
     const { props } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
     const { value, statvalue } = props;
-    console.log(props, isDemo());
-
+    
     return (
       <TaskCardView
         progress={value}

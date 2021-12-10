@@ -40,8 +40,6 @@ const stageProgressList = {
 };
 
 export function RewardExchangeView(props: RewardExchangeViewProps) {
-  console.log(props);
-
   const style = {
     HostBlock: HostBlock,
     Container: {
@@ -587,8 +585,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               >
                 {selectedStep?.prettyDestinationValue
                   ? selectedStep?.prettyDestinationValue +
-                    " " +
-                    selectedItem?.name || ""
+                      " " +
+                      selectedItem?.name || ""
                   : selectedItem?.name || ""}
               </div>
             </sl-card>

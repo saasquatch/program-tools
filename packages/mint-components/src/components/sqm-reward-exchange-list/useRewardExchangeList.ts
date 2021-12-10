@@ -158,7 +158,6 @@ export function useRewardExchangeList(
       userId: user.id,
     };
 
-    console.log({selectedItem, selectedStep})
     switch (selectedItem.ruleType) {
       case "FIXED_GLOBAL_REWARD":
         exchangeVariables = {
