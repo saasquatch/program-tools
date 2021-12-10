@@ -15,6 +15,7 @@ export type TaskCardViewProps = {
   description: string;
   showProgressBar: boolean;
   repeatable: boolean;
+  finite: number;
   showExpiry: boolean;
   rewardDuration: string;
   rewardUnit: string;
@@ -25,7 +26,7 @@ export type TaskCardViewProps = {
 } & ProgressBarProps;
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
-  console.log({ props });
+  //   console.log({ props });
 
   const checkmark_circle = SVGs.checkmark_circle();
   const checkmark_filled = SVGs.checkmark_filled();
@@ -161,9 +162,11 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     props.showExpiry && DateTime.fromISO(props.rewardDuration.split("/")[1]);
   const dateToday = DateTime.now();
 
-  const taskComplete = showComplete && props.repeatable === false;
-  const taskEnded = props.showExpiry && dateEnd < dateToday;
-  const taskNotStarted = props.showExpiry && dateToday < dateStart;
+  const taskComplete =
+    (showComplete && props.repeatable === false) ||
+    (props.finite && props.progress >= props.finite * props.goal);
+  const taskEnded = props.showExpiry && dateEnd <= dateToday;
+  const taskNotStarted = props.showExpiry && dateToday <= dateStart;
   const taskUnavailable = taskEnded || taskNotStarted;
 
   return (
@@ -261,7 +264,12 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                             : ""
                         }
                       >
-                        {"Completed " + repetitions + " times"}
+                        {"Completed " +
+                          (props.finite
+                            ? Math.min(repetitions, props.finite)
+                            : repetitions) +
+                          (props.finite ? "/" + props.finite : "") +
+                          " times"}
                       </span>
                     </div>
                   )}
@@ -274,10 +282,10 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
 
                 <sl-button
                   class={
-                    taskComplete
-                      ? "action disabled"
-                      : taskUnavailable
+                    taskUnavailable
                       ? "action neutral"
+                      : taskComplete
+                      ? "action disabled"
                       : "action"
                   }
                   type="primary"

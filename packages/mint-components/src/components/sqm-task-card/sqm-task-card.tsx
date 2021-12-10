@@ -123,12 +123,12 @@ export class TaskCard {
     const { value, statvalue } = props;
     console.log(props, isDemo());
 
-    return (
-      <TaskCardView
-        progress={value}
-        loading={!isDemo() && value === undefined}
-        {...getProps(this)}
-      ></TaskCardView>
-    );
+    // return (
+    //   <TaskCardView
+    //     progress={value}
+    //     loading={!isDemo() && value === undefined}
+    //     {...getProps(this)}
+    //   ></TaskCardView>
+    // );
   }
 }

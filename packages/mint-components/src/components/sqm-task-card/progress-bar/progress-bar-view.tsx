@@ -11,6 +11,7 @@ export type ProgressBarProps = {
   repeatable?: boolean;
   complete?: boolean;
   expired?: boolean;
+  finite?: number;
 };
 
 export function ProgressBarView(props: ProgressBarProps): VNode {
@@ -21,9 +22,10 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
     progressBarUnit = "",
     repeatable = false,
     expired = false,
+    finite = 0,
   } = props;
 
-  console.log("progress bar props", props);
+  //   console.log("progress bar props", props);
 
   const gift1 = SVGs.gift();
   const gift2 = SVGs.gift();
@@ -31,7 +33,6 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
 
   var items = [];
   var columns = "";
-  var repetitions = Math.floor(progress / goal);
 
   if (repeatable) {
     if (steps) {
@@ -167,7 +168,10 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
       <style type="text/css">{styleString}</style>
       <div
         class={
-          repetitions > 1 ? "progress-bar repeatable-steps" : "progress-bar"
+          (!Boolean(finite) && progress >= 2 * goal) ||
+          (Boolean(finite) && progress > 2 * goal)
+            ? "progress-bar repeatable-steps"
+            : "progress-bar"
         }
       >
         {items}
@@ -266,6 +270,31 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
       items.push(<div class={"remain"}></div>);
       items.push(<div class={"progress bg"}>{progressBarUnit + goal * 2}</div>);
       items.push(<div class="gift bw">{gift2}</div>);
+    }
+
+    // finite repetition hit
+    else if (finite && repetitions >= finite) {
+      if (repetitions > 2) {
+        items.push(
+          <div class={"progress bg"}>
+            {progressBarUnit + goal * (finite - 2)}
+          </div>
+        );
+        items.push(<div class="gift start">{gift1}</div>);
+        columns = "0fr 0fr 0.5fr 0fr 0fr 0.5fr 0fr 0fr";
+      } else {
+        columns = "0.5fr 0fr 0fr 0.5fr 0fr 0fr";
+      }
+      items.push(<div class={"filled"}></div>);
+      items.push(
+        <div class={"progress bg"}>{progressBarUnit + goal * (finite - 1)}</div>
+      );
+      items.push(<div class="gift">{gift2}</div>);
+      items.push(<div class={"filled"}></div>);
+      items.push(
+        <div class={"progress bg"}>{progressBarUnit + goal * finite}</div>
+      );
+      items.push(<div class="gift">{gift3}</div>);
     }
 
     // multiple repetitions

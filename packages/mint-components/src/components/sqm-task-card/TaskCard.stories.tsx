@@ -4,6 +4,7 @@ import { TaskCardView } from "./sqm-task-card-view";
 import { ProgressBarView } from "./progress-bar/progress-bar-view";
 import scenarioTaskCard from "./sqm-task-card.feature";
 import scenarioProgressBar from "./progress-bar/progress-bar.feature";
+import { DateTime } from "luxon";
 
 import { Resizer } from "../sqm-stencilbook/Resizer";
 
@@ -45,6 +46,7 @@ const oneAction = {
   showExpiry: false,
   rewardDuration: null,
   loading: false,
+  finite: 0,
 };
 
 const coupleActions = {
@@ -64,6 +66,7 @@ const coupleActions = {
   showExpiry: false,
   rewardDuration: null,
   loading: false,
+  finite: 0,
 };
 
 const manyActions = {
@@ -83,6 +86,7 @@ const manyActions = {
   showExpiry: false,
   rewardDuration: null,
   loading: false,
+  finite: 0,
 };
 
 export const TaskCard = () => {
@@ -179,10 +183,59 @@ export const TaskCardRepeatable = () => {
   );
 };
 
+export const TaskCardRepeatableFinite = () => {
+  return (
+    <div style={storyFrame}>
+      <div style={resizable}>
+        <h4>One Action</h4>
+        {/* <TaskCardView {...oneAction} progress={0} repeatable={true} finite={2} /> <h5 />
+        <TaskCardView {...oneAction} progress={1} repeatable={true} finite={2} /> <h5 /> */}
+      </div>
+      <div style={resizable}>
+        <h4>A Couple Actions</h4>
+        {/* <TaskCardView {...coupleActions} progress={1} repeatable={true} finite={2}/>
+        <h5 />
+        <TaskCardView {...coupleActions} progress={5} repeatable={true} finite={2}/>
+        <h5 />
+        <TaskCardView {...coupleActions} progress={7} repeatable={true} finite={2}/>
+        <h5 />
+        <TaskCardView {...coupleActions} progress={10} repeatable={true} finite={2}/> */}
+        <h5 />
+      </div>
+      <div style={resizable}>
+        <h4>Many Actions</h4>
+        <TaskCardView {...manyActions} progress={100} repeatable={true} finite={2}/>
+        <h5 />
+        <TaskCardView {...manyActions} progress={500} repeatable={true} finite={2}/>
+        <h5 />
+        <TaskCardView {...manyActions} progress={650} repeatable={true} finite={2}/>
+        <h5 />
+        <TaskCardView {...manyActions} progress={950} repeatable={true} finite={2}/>
+        <h5 />
+        <TaskCardView {...manyActions} progress={1000} repeatable={true} finite={2}/>
+        <h5 />
+        <TaskCardView {...manyActions} progress={1300} repeatable={true} finite={3}/>
+        <h5 />
+        <TaskCardView {...manyActions} progress={1500} repeatable={true} finite={3}/>
+        <h5 />
+        <TaskCardView {...manyActions} progress={2500} repeatable={true} finite={3}/>
+        <h5 />
+        <TaskCardView {...manyActions} progress={2500} repeatable={true} finite={4}/>
+        <h5 />
+        <TaskCardView {...manyActions} progress={2500} repeatable={true} finite={5}/>
+        <h5 />
+      </div>
+    </div>
+  );
+};
+
 export const TaskCardEndDate = () => {
   const expire = {
     showExpiry: true,
-    rewardDuration: "2021-12-01T08:00:00.000Z/2077-12-01T08:00:00.000Z",
+    rewardDuration:
+      DateTime.now().minus({ days: 1 }).toISO() +
+      "/" +
+      DateTime.now().plus({ days: 1 }).toISO(),
   };
   const expireRepeat = { ...expire, repeatable: true };
   return (
@@ -229,10 +282,13 @@ export const TaskCardLoading = () => {
   );
 };
 
-export const TaskCardUnavailable = () => {
+export const TaskCardNotStarted = () => {
   const expire = {
     showExpiry: true,
-    rewardDuration: "2021-11-30T08:00:00.000Z/2021-12-01T08:00:00.000Z",
+    rewardDuration:
+      DateTime.now().plus({ days: 1 }).toISO() +
+      "/" +
+      DateTime.now().plus({ days: 2 }).toISO(),
   };
   const expireRepeat = { ...expire, repeatable: true };
   return (
@@ -265,6 +321,47 @@ export const TaskCardUnavailable = () => {
     </div>
   );
 };
+
+export const TaskCardEnded = () => {
+  const expire = {
+    showExpiry: true,
+    rewardDuration:
+      DateTime.now().minus({ days: 2 }).toISO() +
+      "/" +
+      DateTime.now().minus({ days: 1 }).toISO(),
+  };
+  const expireRepeat = { ...expire, repeatable: true };
+  return (
+    <div style={storyFrame}>
+      <div style={resizable}>
+        <h4>One Action</h4>
+        <TaskCardView {...oneAction} progress={0} {...expire} /> <h5 />
+        <TaskCardView {...oneAction} progress={1} {...expire} /> <h5 />
+        <TaskCardView {...oneAction} progress={0} {...expireRepeat} /> <h5 />
+        <TaskCardView {...oneAction} progress={1} {...expireRepeat} /> <h5 />
+      </div>
+      <div style={resizable}>
+        <h4>A Couple Actions</h4>
+        <TaskCardView {...coupleActions} progress={1} {...expire} /> <h5 />
+        <TaskCardView {...coupleActions} progress={5} {...expire} /> <h5 />
+        <TaskCardView {...coupleActions} progress={1} {...expireRepeat} />
+        <h5 />
+        <TaskCardView {...coupleActions} progress={5} {...expireRepeat} />
+        <h5 />
+      </div>
+      <div style={resizable}>
+        <h4>Many Actions</h4>
+        <TaskCardView {...manyActions} progress={100} {...expire} /> <h5 />
+        <TaskCardView {...manyActions} progress={500} {...expire} /> <h5 />
+        <TaskCardView {...manyActions} progress={100} {...expireRepeat} />
+        <h5 />
+        <TaskCardView {...manyActions} progress={500} {...expireRepeat} />
+        <h5 />
+      </div>
+    </div>
+  );
+};
+
 export const ProgressBar = () => {
   const props = {
     progress: 0,
