@@ -188,42 +188,102 @@ export const TaskCardRepeatableFinite = () => {
     <div style={storyFrame}>
       <div style={resizable}>
         <h4>One Action</h4>
-        <TaskCardView {...oneAction} progress={0} repeatable={true} finite={2} /> <h5 />
-        <TaskCardView {...oneAction} progress={1} repeatable={true} finite={2} /> <h5 />
-        <TaskCardView {...oneAction} progress={2} repeatable={true} finite={2} /> <h5 />
+        <TaskCardView
+          {...oneAction}
+          progress={0}
+          repeatable={true}
+          finite={2}
+        />
+        <h5 />
+        <TaskCardView
+          {...oneAction}
+          progress={1}
+          repeatable={true}
+          finite={2}
+        />
+        <h5 />
+        <TaskCardView
+          {...oneAction}
+          progress={2}
+          repeatable={true}
+          finite={2}
+        />
+        <h5 />
       </div>
       <div style={resizable}>
         <h4>A Couple Actions</h4>
-        {/* <TaskCardView {...coupleActions} progress={1} repeatable={true} finite={2}/>
+        <TaskCardView
+          {...coupleActions}
+          progress={2}
+          repeatable={true}
+          finite={2}
+        />
         <h5 />
-        <TaskCardView {...coupleActions} progress={5} repeatable={true} finite={2}/>
+        <TaskCardView
+          {...coupleActions}
+          progress={5}
+          repeatable={true}
+          finite={2}
+        />
         <h5 />
-        <TaskCardView {...coupleActions} progress={7} repeatable={true} finite={2}/>
+        <TaskCardView
+          {...coupleActions}
+          progress={10}
+          repeatable={true}
+          finite={2}
+        />
         <h5 />
-        <TaskCardView {...coupleActions} progress={10} repeatable={true} finite={2}/> */}
+        <TaskCardView
+          {...coupleActions}
+          progress={12}
+          repeatable={true}
+          finite={3}
+        />
+        <h5 />
+        <TaskCardView
+          {...coupleActions}
+          progress={15}
+          repeatable={true}
+          finite={3}
+        />
         <h5 />
       </div>
       <div style={resizable}>
         <h4>Many Actions</h4>
-        <TaskCardView {...manyActions} progress={100} repeatable={true} finite={2}/>
+        <TaskCardView
+          {...manyActions}
+          progress={200}
+          repeatable={true}
+          finite={2}
+        />
         <h5 />
-        <TaskCardView {...manyActions} progress={500} repeatable={true} finite={2}/>
+        <TaskCardView
+          {...manyActions}
+          progress={500}
+          repeatable={true}
+          finite={2}
+        />
         <h5 />
-        <TaskCardView {...manyActions} progress={650} repeatable={true} finite={2}/>
+        <TaskCardView
+          {...manyActions}
+          progress={1000}
+          repeatable={true}
+          finite={2}
+        />
         <h5 />
-        <TaskCardView {...manyActions} progress={950} repeatable={true} finite={2}/>
+        <TaskCardView
+          {...manyActions}
+          progress={1200}
+          repeatable={true}
+          finite={3}
+        />
         <h5 />
-        <TaskCardView {...manyActions} progress={1000} repeatable={true} finite={2}/>
-        <h5 />
-        <TaskCardView {...manyActions} progress={1300} repeatable={true} finite={3}/>
-        <h5 />
-        <TaskCardView {...manyActions} progress={1500} repeatable={true} finite={3}/>
-        <h5 />
-        <TaskCardView {...manyActions} progress={2500} repeatable={true} finite={3}/>
-        <h5 />
-        <TaskCardView {...manyActions} progress={2500} repeatable={true} finite={4}/>
-        <h5 />
-        <TaskCardView {...manyActions} progress={2500} repeatable={true} finite={5}/>
+        <TaskCardView
+          {...manyActions}
+          progress={1500}
+          repeatable={true}
+          finite={3}
+        />
         <h5 />
       </div>
     </div>

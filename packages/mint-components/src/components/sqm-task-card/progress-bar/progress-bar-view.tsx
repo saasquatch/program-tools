@@ -369,6 +369,41 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
         }
       }
     }
+
+    // finite repetition hit
+    else if (finite && repetitions >= finite) {
+      let ratio = 1 / goal;
+      if (repetitions > 2) {
+        columns += "0fr 0fr ";
+        items.push(<div class={"progress bg"}>{goal * (finite - 2)}</div>);
+        items.push(<div class={"gift start"}>{gift1}</div>);
+      }
+      for (let i = 1; i < goal * 2 + 1; i++) {
+        columns += ratio + "fr 0fr ";
+        if (i > progress) {
+          if (i == goal) {
+            columns += "0fr ";
+            items.push(<div class={"remain"}></div>);
+            items.push(<div class={"progress bg"}>{goal * (finite - 1)}</div>);
+            items.push(<div class="gift bw">{gift1}</div>);
+          }
+        } else if (i == goal) {
+          columns += "0fr ";
+          items.push(<div class={"filled"}></div>);
+          items.push(<div class={"progress bg"}>{goal * (finite - 1)}</div>);
+          items.push(<div class="gift">{gift2}</div>);
+        } else if (i == goal * 2) {
+          columns += "0fr 0fr";
+          items.push(<div class={"filled"}></div>);
+          items.push(<div class={"progress bg"}>{goal * finite}</div>);
+          items.push(<div class={"gift"}>{gift3}</div>);
+        } else {
+          items.push(<div class={"filled"}></div>);
+          items.push(<div class={"progress"}>{i + goal * (finite - 2)}</div>);
+        }
+      }
+    }
+
     // case repetition many
     else {
       let position = (progress % goal) + goal;
