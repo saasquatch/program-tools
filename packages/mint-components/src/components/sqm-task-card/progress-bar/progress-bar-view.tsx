@@ -52,6 +52,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
 
   const style = {
     ProgressBar: {
+      marginTop: steps ? "calc(-1*var(--sl-spacing-x-small))" : "",
       "& .progress-bar": {
         height: "0",
         marginTop: steps
@@ -369,7 +370,7 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
         }
       }
     }
-	
+
     // finite repetition hit
     else if (finite && repetitions >= finite) {
       let ratio = 1 / goal;
