@@ -384,8 +384,11 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           const amount =
             item.ruleType === "FIXED_GLOBAL_REWARD"
               ? item.prettySourceValue
+              : item.ruleType === "STEPPED_FIXED_GLOBAL_REWARD"
+              ? `${item.steps[0]?.sourceValue} to ${
+                  item.steps.slice(-1).pop().prettySourceValue
+                }`
               : `${item.sourceMinValue} to ${item.prettySourceMaxValue}`;
-
           return (
             <div
               key={item.key}
@@ -497,7 +500,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           }
         </div>
         <div class={sheet.classes.ChooseAmount}>
-          <div class="title">{selectedItem?.name}</div>
+          <div class="title">{selectedItem?.name || ""}</div>
           {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
             <div class="points">{input}</div>
           ) : (
@@ -585,8 +588,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 {selectedStep?.prettyDestinationValue
                   ? selectedStep?.prettyDestinationValue +
                     " " +
-                    selectedItem?.name
-                  : selectedItem?.name}
+                    selectedItem?.name || ""
+                  : selectedItem?.name || ""}
               </div>
             </sl-card>
 
