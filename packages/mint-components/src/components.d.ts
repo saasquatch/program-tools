@@ -65,7 +65,7 @@ export namespace Components {
          */
         "flexReverse"?: boolean;
         /**
-          * The ID of the program that is used to scope stats. Defaults to the program ID in context where this widget is loaded.
+          * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
           * @uiName Program ID
          */
         "programId"?: string;
@@ -409,7 +409,8 @@ export namespace Components {
          */
         "emailVerificationHeader": string;
         /**
-          * @uiName Base path of verify email link
+          * The page that users are redirected to from the verification email.
+          * @uiName Email redirection base path
          */
         "redirectPath": string;
         /**
@@ -486,7 +487,8 @@ export namespace Components {
          */
         "loginPath": string;
         /**
-          * @uiName Base path of reset password email link
+          * The page that users are redirected to from the password reset email.
+          * @uiName Email redirection base path
          */
         "redirectPath": string;
         /**
@@ -516,7 +518,7 @@ export namespace Components {
          */
         "forgotPasswordLabel": string;
         /**
-          * @uiName Routing path to forgot password page
+          * @uiName Forgot password button redirect path
          */
         "forgotPasswordPath": string;
         /**
@@ -536,7 +538,7 @@ export namespace Components {
          */
         "registerLabel": string;
         /**
-          * @uiName Routing path to register page
+          * @uiName Register button redirection path
          */
         "registerPath": string;
         /**
@@ -634,7 +636,7 @@ export namespace Components {
          */
         "loginLabel": string;
         /**
-          * @uiName Routing path to login page
+          * @uiName Sign in button redirection path
          */
         "loginPath": string;
         /**
@@ -650,7 +652,8 @@ export namespace Components {
          */
         "passwordLabel": string;
         /**
-          * @uiName Base path of verify email link
+          * The page that users are redirected to from the verification email.
+          * @uiName Email redirection base path
          */
         "redirectPath": string;
         /**
@@ -678,10 +681,12 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
-          * @uiName Failed page path
+          * The page that users are redirected to if the reset fails due to outdated password reset attempt.
+          * @uiName Failed page redirection path
          */
         "failedPage": string;
         /**
+          * The page that users are redirected to when the password reset succeeds.
           * @uiName Next page path
          */
         "nextPage": string;
@@ -710,10 +715,12 @@ export namespace Components {
          */
         "demoData"?: DemoData<PortalVerifyEmailViewProps>;
         /**
-          * @uiName Failed page path
+          * The page that users are redirected to if verification fails due to outdated verification attempt.
+          * @uiName Failed page redirection path
          */
         "failedPage": string;
         /**
+          * The page that users are redirected to when the verification succeeds.
           * @uiName Next page path
          */
         "nextPage": string;
@@ -1476,7 +1483,7 @@ declare namespace LocalJSX {
          */
         "flexReverse"?: boolean;
         /**
-          * The ID of the program that is used to scope stats. Defaults to the program ID in context where this widget is loaded.
+          * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
           * @uiName Program ID
          */
         "programId"?: string;
@@ -1820,7 +1827,8 @@ declare namespace LocalJSX {
          */
         "emailVerificationHeader"?: string;
         /**
-          * @uiName Base path of verify email link
+          * The page that users are redirected to from the verification email.
+          * @uiName Email redirection base path
          */
         "redirectPath"?: string;
         /**
@@ -1897,7 +1905,8 @@ declare namespace LocalJSX {
          */
         "loginPath"?: string;
         /**
-          * @uiName Base path of reset password email link
+          * The page that users are redirected to from the password reset email.
+          * @uiName Email redirection base path
          */
         "redirectPath"?: string;
         /**
@@ -1927,7 +1936,7 @@ declare namespace LocalJSX {
          */
         "forgotPasswordLabel"?: string;
         /**
-          * @uiName Routing path to forgot password page
+          * @uiName Forgot password button redirect path
          */
         "forgotPasswordPath"?: string;
         /**
@@ -1947,7 +1956,7 @@ declare namespace LocalJSX {
          */
         "registerLabel"?: string;
         /**
-          * @uiName Routing path to register page
+          * @uiName Register button redirection path
          */
         "registerPath"?: string;
         /**
@@ -2045,7 +2054,7 @@ declare namespace LocalJSX {
          */
         "loginLabel"?: string;
         /**
-          * @uiName Routing path to login page
+          * @uiName Sign in button redirection path
          */
         "loginPath"?: string;
         /**
@@ -2061,7 +2070,8 @@ declare namespace LocalJSX {
          */
         "passwordLabel"?: string;
         /**
-          * @uiName Base path of verify email link
+          * The page that users are redirected to from the verification email.
+          * @uiName Email redirection base path
          */
         "redirectPath"?: string;
         /**
@@ -2089,10 +2099,12 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalResetPasswordViewProps>;
         /**
-          * @uiName Failed page path
+          * The page that users are redirected to if the reset fails due to outdated password reset attempt.
+          * @uiName Failed page redirection path
          */
         "failedPage"?: string;
         /**
+          * The page that users are redirected to when the password reset succeeds.
           * @uiName Next page path
          */
         "nextPage"?: string;
@@ -2121,10 +2133,12 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<PortalVerifyEmailViewProps>;
         /**
-          * @uiName Failed page path
+          * The page that users are redirected to if verification fails due to outdated verification attempt.
+          * @uiName Failed page redirection path
          */
         "failedPage"?: string;
         /**
+          * The page that users are redirected to when the verification succeeds.
           * @uiName Next page path
          */
         "nextPage"?: string;
