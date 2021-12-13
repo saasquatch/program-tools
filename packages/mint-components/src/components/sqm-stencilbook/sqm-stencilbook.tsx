@@ -102,7 +102,7 @@ const stories = [
   UseTaskCard,
   UseRewardsTable,
   ProgramExplainer,
-  ProgramExplainerStep
+  ProgramExplainerStep,
   BrandStories
 ];
 
