@@ -1,7 +1,6 @@
 import { Component, h, Host, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import {
-  ExchangeItem,
   ExchangeState,
   Stages,
   useRewardExchangeList,
@@ -13,8 +12,7 @@ import {
 import { isDemo } from "@saasquatch/component-boilerplate";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
-import { getMissingProps, getProps } from "../../utils/utils";
-import { RequiredPropsError } from "../../utils/RequiredPropsError";
+import { getProps } from "../../utils/utils";
 
 /**
  * @uiName Reward Exchange List
@@ -22,7 +20,7 @@ import { RequiredPropsError } from "../../utils/RequiredPropsError";
 @Component({
   tag: "sqm-reward-exchange-list",
   assetsDirs: ["assets"],
-  shadow: true
+  shadow: true,
 })
 export class SqmRewardExchangeList {
   @State()
@@ -37,7 +35,7 @@ export class SqmRewardExchangeList {
    * @uiName Exchange button text
    */
   @Prop() notAvailableError: string =
-    "{unavailableReason, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {Not enough points} other {Not available} }";
+    "{unavailableReason, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} other {Not available} }";
 
   /**
    * @undocumented
