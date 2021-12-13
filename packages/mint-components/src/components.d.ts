@@ -75,6 +75,13 @@ export namespace Components {
          */
         "statType": string;
     }
+    interface SqmBrand {
+        /**
+          * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
+          * @uiName Brand Color
+         */
+        "brandColor": string;
+    }
     interface SqmDividedLayout {
         /**
           * @uiName Direction
@@ -1159,6 +1166,12 @@ declare global {
         prototype: HTMLSqmBigStatElement;
         new (): HTMLSqmBigStatElement;
     };
+    interface HTMLSqmBrandElement extends Components.SqmBrand, HTMLStencilElement {
+    }
+    var HTMLSqmBrandElement: {
+        prototype: HTMLSqmBrandElement;
+        new (): HTMLSqmBrandElement;
+    };
     interface HTMLSqmDividedLayoutElement extends Components.SqmDividedLayout, HTMLStencilElement {
     }
     var HTMLSqmDividedLayoutElement: {
@@ -1504,6 +1517,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "sqm-asset-card": HTMLSqmAssetCardElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
+        "sqm-brand": HTMLSqmBrandElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
@@ -1602,6 +1616,13 @@ declare namespace LocalJSX {
           * @uiOptions {"version": 1.1}
          */
         "statType"?: string;
+    }
+    interface SqmBrand {
+        /**
+          * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
+          * @uiName Brand Color
+         */
+        "brandColor"?: string;
     }
     interface SqmDividedLayout {
         /**
@@ -2664,6 +2685,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "sqm-asset-card": SqmAssetCard;
         "sqm-big-stat": SqmBigStat;
+        "sqm-brand": SqmBrand;
         "sqm-divided-layout": SqmDividedLayout;
         "sqm-edit-profile": SqmEditProfile;
         "sqm-form-message": SqmFormMessage;
@@ -2729,6 +2751,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "sqm-asset-card": LocalJSX.SqmAssetCard & JSXBase.HTMLAttributes<HTMLSqmAssetCardElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
+            "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
