@@ -18,7 +18,7 @@
 | `openNewTab`      | `open-new-tab`      |                                                                                    | `boolean` | `false`                                              |
 | `progressBarUnit` | `progress-bar-unit` |                                                                                    | `string`  | `undefined`                                          |
 | `repeatable`      | `repeatable`        |                                                                                    | `boolean` | `false`                                              |
-| `rewardAmount`    | `reward-amount`     |                                                                                    | `number`  | `0`                                                  |
+| `rewardAmount`    | `reward-amount`     |                                                                                    | `string`  | `"0"`                                                |
 | `rewardDuration`  | `reward-duration`   |                                                                                    | `string`  | `"/"`                                                |
 | `rewardUnit`      | `reward-unit`       |                                                                                    | `string`  | `"Points"`                                           |
 | `showExpiry`      | `show-expiry`       |                                                                                    | `boolean` | `false`                                              |
