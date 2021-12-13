@@ -40,8 +40,6 @@ const stageProgressList = {
 };
 
 export function RewardExchangeView(props: RewardExchangeViewProps) {
-  console.log(props);
-
   const style = {
     HostBlock: HostBlock,
     Container: {
@@ -101,12 +99,15 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       marginBottom: "20px",
     },
     Select: {
-      "&::part(base)": {
-        flex: "0.75",
+      "&::part(label)": {
+        color: "var(--sl-color-primary-500)",
       },
-      "&::part(menu)": {
-        maxHeight: "40vh",
-      },
+      //   "&::part(base)": {
+      //     flex: "0.75",
+      //   },
+      //   "&::part(menu)": {
+      //     maxHeight: "40vh",
+      //   },
     },
     Buttons: {
       marginLeft: "auto",
@@ -268,6 +269,13 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
     },
 
+    Grid: {
+      display: "grid",
+      justifyContent: "center",
+      gap: "20px",
+      gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+    },
+
     KutayButton: {
       display: "flex",
       flexWrap: "wrap-reverse",
@@ -360,31 +368,21 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   function chooseReward() {
     return [
-      <div
-        style={{
-          display: "grid",
-          justifyContent: "center",
-          gap: "20px",
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-        }}
-      >
+      <div class={sheet.classes.Grid}>
         {data.exchangeList?.map((item: ExchangeItem) => {
           const style = {
             boxShadow:
               item.key === selectedItem?.key
                 ? "0 0 0 2px var(--sl-color-primary-500)"
                 : "none",
-            marginBottom: "10px 0",
-            borderRadius: "var(--sl-border-radius-medium)",
-            flex: "1",
-            minWidth: "100%",
-            color: !item.available && "#eee",
           };
 
           const amount =
             item.ruleType === "FIXED_GLOBAL_REWARD"
               ? item.prettySourceValue
-              : `${item.sourceMinValue} to ${item.prettySourceMaxValue}`;
+              : item.prettySourceMinValue && item.prettySourceMaxValue
+              ? `${item.prettySourceMinValue} to ${item.prettySourceMaxValue}`
+              : "";
 
           return (
             <div
@@ -497,7 +495,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           }
         </div>
         <div class={sheet.classes.ChooseAmount}>
-          <div class="title">{selectedItem?.name}</div>
+          <div class="title">{selectedItem?.name || ""}</div>
           {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
             <div class="points">{input}</div>
           ) : (
@@ -584,9 +582,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               >
                 {selectedStep?.prettyDestinationValue
                   ? selectedStep?.prettyDestinationValue +
-                    " " +
-                    selectedItem?.name
-                  : selectedItem?.name}
+                      " " +
+                      selectedItem?.name || ""
+                  : selectedItem?.name || ""}
               </div>
             </sl-card>
 

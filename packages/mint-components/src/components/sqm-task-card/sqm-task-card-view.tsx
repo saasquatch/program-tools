@@ -10,7 +10,7 @@ import {
 import { DateTime } from "luxon";
 
 export type TaskCardViewProps = {
-  rewardAmount: number;
+  rewardAmount: string;
   cardTitle: string;
   description: string;
   showProgressBar: boolean;
@@ -41,7 +41,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         minWidth: "347px",
         background: "var(--sl-color-neutral-0)",
         border: "1px solid var(--sl-color-neutral-200)",
-        borderRadius: "var(--sl-border-radius-large)",
+        borderRadius: "var(--sl-border-radius-medium)",
         fontSize: "var(--sl-font-size-small)",
         lineHeight: "var(--sl-line-height-dense)",
         color: "var(--sl-color-neutral-600)",
@@ -55,7 +55,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         background: "var(--sl-color-neutral-50)",
       },
       "& .title": {
-        fontSize: "var(--sl-font-size-small)",
+        fontSize: "var(--sl-font-size-medium)",
         fontWeight: "var(--sl-font-weight-semibold)",
         color: "var(--sl-color-neutral-950)",
       },
@@ -72,12 +72,14 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     Expired: {
       margin: "var(--sl-spacing-medium)",
       marginBottom: "calc(var(--sl-spacing-x-small)*-1)",
-      color: "var(--sl-color-warning-500)",
+      color: "var(--sl-color-warning-600)",
       fontWeight: "var(--sl-font-weight-semibold)",
     },
     Header: {
       display: "flex",
       "& .icon": {
+        position: "relative",
+        top: "5%",
         alignSelf: "center",
         lineHeight: "0",
         color: "var(--sl-color-primary-400)",
@@ -114,7 +116,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       "& .icon": {
         fontSize: "var(--sl-font-size-xx-small)",
         marginRight: "var(--sl-spacing-xx-small)",
-        verticalAlign: "bottom",
+        verticalAlign: "middle",
       },
       "& .text": {
         marginTop: "auto",
@@ -203,7 +205,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                     {taskComplete ? checkmark_filled : checkmark_circle}
                   </span>
                 )}
-                <span class={taskUnavailable ? "value black" : "value black"}>
+                <span class={"value"}>
                   {props.rewardAmount}
                 </span>
                 <span class="text">{props.rewardUnit}</span>
@@ -216,7 +218,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               style={{ width: "42%", margin: "var(--sl-spacing-medium) 0" }}
             />
           ) : (
-            <div class={taskUnavailable ? "title black" : "title black"}>
+            <div class={"title"}>
               {props.cardTitle}
             </div>
           )}

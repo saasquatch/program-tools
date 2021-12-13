@@ -22,7 +22,7 @@ export class TaskCard {
    * @uiName Reward Amount
    */
   @Prop()
-  rewardAmount: number = 0;
+  rewardAmount: string = "0";
 
   /**
    * @uiName Reward Unit
@@ -127,8 +127,7 @@ export class TaskCard {
   render() {
     const { props } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
     const { value, statvalue } = props;
-    console.log(props, isDemo());
-
+    
     return (
       <TaskCardView
         progress={value}
