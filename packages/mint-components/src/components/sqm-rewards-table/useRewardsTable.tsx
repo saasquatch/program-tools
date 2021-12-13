@@ -190,7 +190,6 @@ export function useRewardsTable(
 
   const isEmpty = !content?.rows?.length && !data?.length;
 
-  console.log(states.loading, content.loading, rewardsData);
   const show =
     // 1 - Loading if loading
     states.loading || content.loading

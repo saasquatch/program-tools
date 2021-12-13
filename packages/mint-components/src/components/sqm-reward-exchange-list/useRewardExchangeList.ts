@@ -46,6 +46,7 @@ export type ExchangeStep = {
   prettySourceValue: string;
   available: boolean;
   unavailableReasonCode: string;
+  globalRewardKey: string;
 };
 
 export type Stages = "" | "chooseReward" | "chooseAmount" | "confirmation";
@@ -82,6 +83,7 @@ const GET_EXCHANGE_LIST = gql`
               destinationValue
               prettyDestinationValue
               available
+              globalRewardKey
               unavailableReasonCode
             }
           }
@@ -165,6 +167,16 @@ export function useRewardExchangeList(
             unit: selectedItem.sourceUnit,
           },
           globalRewardKey: selectedItem.globalRewardKey,
+        };
+        break;
+      case "STEPPED_FIXED_GLOBAL_REWARD":
+        exchangeVariables = {
+          ...exchangeVariables,
+          redeemCreditInput: {
+            amount: selectedStep.sourceValue,
+            unit: selectedItem.sourceUnit,
+          },
+          globalRewardKey: selectedStep.globalRewardKey,
         };
         break;
       case "VARIABLE_GLOBAL_REWARD":

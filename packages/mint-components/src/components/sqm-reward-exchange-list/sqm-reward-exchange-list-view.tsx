@@ -40,8 +40,6 @@ const stageProgressList = {
 };
 
 export function RewardExchangeView(props: RewardExchangeViewProps) {
-  console.log(props);
-
   const style = {
     HostBlock: HostBlock,
     Container: {
@@ -497,7 +495,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           }
         </div>
         <div class={sheet.classes.ChooseAmount}>
-          <div class="title">{selectedItem?.name}</div>
+          <div class="title">{selectedItem?.name || ""}</div>
           {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
             <div class="points">{input}</div>
           ) : (
@@ -584,9 +582,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               >
                 {selectedStep?.prettyDestinationValue
                   ? selectedStep?.prettyDestinationValue +
-                    " " +
-                    selectedItem?.name
-                  : selectedItem?.name}
+                      " " +
+                      selectedItem?.name || ""
+                  : selectedItem?.name || ""}
               </div>
             </sl-card>
 
