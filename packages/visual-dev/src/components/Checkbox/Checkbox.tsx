@@ -49,7 +49,7 @@ export const Checkbox = React.forwardRef<React.ElementRef<"input">, InputProps>(
             ref={forwardedRef}
           />
           <CheckboxBox isDisabled={disabled}>
-            <Icon icon="checkmark" css={CheckboxTick} />
+            <Icon icon="checkmark" customCSS={CheckboxTick} />
           </CheckboxBox>
           {options ? options.text : ""}
         </CheckboxLabel>

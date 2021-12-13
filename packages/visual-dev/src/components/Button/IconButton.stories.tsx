@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { IconButton } from "."
 
 export default {
@@ -7,7 +7,6 @@ export default {
 }
 
 export const Functional = () => {
-  const [count, setCount] = useState(0)
 
   const states = {
     0: false,
@@ -15,7 +14,7 @@ export const Functional = () => {
     2: false,
   }
 
-  states[count] = true
+  states[0] = true
 
   return <IconButton icon="add" circle />
 }

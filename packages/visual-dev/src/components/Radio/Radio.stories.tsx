@@ -1,6 +1,4 @@
 import React from 'react'
-import root from 'react-shadow/styled-components'
-import styled from 'styled-components'
 import { Radio } from '.'
 
 export default {

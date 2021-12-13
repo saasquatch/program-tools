@@ -39,12 +39,12 @@ interface DropdownSublistProps {
 }
 
 export interface StyleProps {
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const DropdownContainer = styled("div")<Required<StyleProps>>`
   ${Styles.base}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 const DropdownButton = styled("div")<Required<ButtonProps>>`
@@ -72,12 +72,12 @@ const DropdownContent = styled("div")<Pick<DropdownProps, "pill">>`
 
 const DropdownItemStyle = styled("div")<Required<StyleProps>>`
   ${Styles.item}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 const SublistContent = styled("div")<Required<StyleProps>>`
   ${Styles.subcontent}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 const DropdownSubItemStyle = styled("div")`
@@ -106,12 +106,12 @@ export const Dropdown = React.forwardRef<
     icon,
     onClickDropdown,
     children,
-    css = {},
+    customCSS: css = {},
     ...rest
   } = props;
 
   return (
-    <DropdownContainer {...rest} ref={forwardedRef} css={css}>
+    <DropdownContainer {...rest} ref={forwardedRef} customCSS={css}>
       <DropdownButton
         pill={pill}
         center={center}
@@ -141,7 +141,7 @@ export const DropdownItem = React.forwardRef<
   const { onClick, children, css = {}, ...rest } = props;
 
   return (
-    <DropdownItemStyle onClick={onClick} {...rest} ref={forwardedRef} css={css}>
+    <DropdownItemStyle onClick={onClick} {...rest} ref={forwardedRef} customCSS={css}>
       {children}
     </DropdownItemStyle>
   );
@@ -154,7 +154,7 @@ export const DropdownSublist = React.forwardRef<
   const { name, children, css = {}, ...rest } = props;
 
   return (
-    <SublistContent {...rest} ref={forwardedRef} css={css}>
+    <SublistContent {...rest} ref={forwardedRef} customCSS={css}>
       <DropdownSublistStyle>{name}</DropdownSublistStyle>
       <DropdownSubItemStyle>{children}</DropdownSubItemStyle>
     </SublistContent>

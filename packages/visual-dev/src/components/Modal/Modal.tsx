@@ -58,7 +58,7 @@ export const Modal = React.forwardRef<React.ElementRef<"div">, ModalProps>(
                   icon="close"
                   color="#fff"
                   size="24px"
-                  css="vertical-align: bottom; float: right; cursor: pointer; margin-left: 50px;"
+                  customCSS="vertical-align: bottom; float: right; cursor: pointer; margin-left: 50px;"
                   onClick={onClose}
                 />
               </ModalHeader>

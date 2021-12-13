@@ -1,9 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  FieldTemplateProps,
-  ObjectFieldTemplateProps,
-} from "react-jsonschema-form";
 
 import {
   ColumnContainer,
@@ -14,6 +10,7 @@ import {
 import { H3, P } from "./Typography";
 import { TextLink as TextButton } from "./TextButton";
 import { Icon } from "./Icons";
+import { FieldTemplateProps, ObjectFieldTemplateProps } from "@rjsf/core";
 
 const RequiredSpan = styled(H3)`
   color: #b5b5b5;

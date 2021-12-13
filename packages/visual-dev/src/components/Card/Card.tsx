@@ -48,7 +48,7 @@ export const Card = React.forwardRef<React.ElementRef<"div">, CardProps>(
             <Icon
               icon="calendar"
               size="large"
-              css=""
+              customCSS=""
               color="var(--sq-text-subdued)"
             />
           </CardHeaderIcon>

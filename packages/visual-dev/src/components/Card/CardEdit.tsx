@@ -1,7 +1,8 @@
 import * as React from "react";
+import { useState } from "react";
 import styled, { CSSProp } from "styled-components";
 import { Badge } from "../Badge";
-import { SecondaryButton } from "../Button";
+import { Button, IconButton } from "../Button";
 import { Icon } from "../Icon";
 import { Input } from "../Input";
 import * as Styles from "./Styles";
@@ -44,7 +45,8 @@ const TextDesc = styled.div`
 export const CardEdit = React.forwardRef<React.ElementRef<"div">, CardProps>(
   (props, forwardedRef) => {
     const { title, edit = false, children, css = {}, ...rest } = props;
-
+    // const [oldValue, setOldValue] = useState("");
+    const [locked, setLocked] = useState(false);
     return (
       <CardStyle {...rest} ref={forwardedRef} css={css}>
         <CardHeader>
@@ -52,13 +54,52 @@ export const CardEdit = React.forwardRef<React.ElementRef<"div">, CardProps>(
             <Icon
               icon="calendar"
               size="large"
-              css=""
+              customCSS=""
               color="var(--sq-text-subdued)"
             />
           </CardHeaderIcon>
           {edit && (
             <>
-              <Input placeholder="Edit Program Name" buttons />
+              <Input
+                placeholder="Edit Program Name"
+                disabled={locked}
+                buttons={
+                  locked == true ? (
+                    <IconButton
+                      icon="edit"
+                      size="mini"
+                      css="position: relative; left: -30px;"
+                      primary
+                      icon_css="margin: -10px; top: 9px;"
+                      onClick={() => {
+                        setLocked(false);
+                      }}
+                    />
+                  ) : (
+                    <>
+                      <IconButton
+                        icon="checkmark"
+                        size="mini"
+                        css="position: relative; left: -50px;"
+                        primary
+                        icon_css="margin: -10px; top: 9px;"
+                        onClick={() => {
+                          setLocked(true);
+                        }}
+                      />
+                      <IconButton
+                        icon="close"
+                        size="mini"
+                        css="position: relative; left: -47px;"
+                        icon_css="margin: -10px; top: 8px;  color: #858585"
+                        onClick={() => {
+                          setLocked(true);
+                        }}
+                      />
+                    </>
+                  )
+                }
+              />
             </>
           )}
           {!edit && (
@@ -69,7 +110,7 @@ export const CardEdit = React.forwardRef<React.ElementRef<"div">, CardProps>(
                   <Icon
                     size="25px"
                     icon="edit"
-                    css="margin: -5px; margin-left: 0; :hover{color: #0275FB	;}"
+                    customCSS="margin: -5px; margin-left: 0; :hover{color: #0275FB	;}"
                   />
                   <Badge
                     status="success"
@@ -82,9 +123,13 @@ export const CardEdit = React.forwardRef<React.ElementRef<"div">, CardProps>(
               </CardHeaderText>
             </>
           )}
-          <SecondaryButton pill css="margin-left: auto; float: right;">
+          <Button
+            buttonType="secondary"
+            pill
+            css="margin-left: auto; float: right;"
+          >
             Edit
-          </SecondaryButton>
+          </Button>
         </CardHeader>
       </CardStyle>
     );

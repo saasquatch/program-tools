@@ -55,7 +55,7 @@ export const IconButton = React.forwardRef<
       ref={forwardedRef}
       css={css}
     >
-      <Icon icon={icon} size={Styles.icon_only_size[size]} css={icon_css} />
+      <Icon icon={icon} size={Styles.icon_only_size[size]} customCSS={icon_css} />
     </Button>
   );
 });

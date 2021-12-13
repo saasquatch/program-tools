@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import * as Styles from "./Styles";
 import { IconKey, Icon } from "../Icon";
 
 type PopoverProps = OptionProps &
@@ -65,7 +64,7 @@ export const Popover = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
           <span style={{ height: "100%" }}>
             <Icon
               size="20px"
-              css="float: left; margin-right: 5px; "
+              customCSS="float: left; margin-right: 5px; "
               icon={icon}
             />
           </span>

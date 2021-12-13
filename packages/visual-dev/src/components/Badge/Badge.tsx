@@ -43,7 +43,7 @@ export const Badge = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
             color="inherit"
             size="var(--sq-icon-size-badge)"
             style={{ margin: -2 }}
-            css="+ span { margin-left: 5px; }"
+            customCSS="+ span { margin-left: 5px; }"
           />
         )}
         {children && <span>{children}</span>}

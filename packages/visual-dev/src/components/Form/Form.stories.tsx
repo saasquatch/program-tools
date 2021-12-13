@@ -104,7 +104,7 @@ export const NumericalForm = () => {
 
 export const NumericalFormDisabled = () => {
   const uiSchema = {
-    "ui:widget": (props : WidgetProps) => {
+    "ui:widget": (props: WidgetProps) => {
       return <RJSFNumericalInput {...props} />;
     },
     "ui:disabled": true,
@@ -399,6 +399,7 @@ export const RadioFormWithLabels = () => {
         type: "number",
         title: "Number enum",
         enum: [1, 2, 3],
+        // @ts-ignore
         enumNames: ["Option A", "Option B", "Option C"],
       },
     },

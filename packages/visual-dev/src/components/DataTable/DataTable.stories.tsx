@@ -175,7 +175,7 @@ export const row_arrow = () => {
   )
   const text_b = <Text>Some content</Text>
 
-  const content = [{ text: <Icon icon="arrow_dropdown" size="40px" css="margin: -50px; margin-top: 0px;" />, flex: 0.1, center: true }, { text: text_a }, { text: text_b }, { text: text_b }, { text: text_b }]
+  const content = [{ text: <Icon icon="arrow_dropdown" size="40px" customCSS="margin: -50px; margin-top: 0px;" />, flex: 0.1, center: true }, { text: text_a }, { text: text_b }, { text: text_b }, { text: text_b }]
 
   return <Row content={content} />
 }
@@ -386,7 +386,7 @@ export const PopoverIconProp = () => (
 export const PopoverTextIcon = () => (
   <Popover notification>
     <Action>
-      Some text to be copied <Icon icon="copy" size="30px" css="color: #F49C20; margin: -5px;" />
+      Some text to be copied <Icon icon="copy" size="30px" customCSS="color: #F49C20; margin: -5px;" />
     </Action>
   </Popover>
 )

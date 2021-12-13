@@ -6,13 +6,13 @@ import * as Styles from './Styles'
 const DEFAULT_TAG = 'h1'
 
 type HeadingSizeVariants = {size?: keyof typeof Styles.sizeVariants}
-export type HeadingProps = HeadingSizeVariants & { as?: any, css?: CSSProp }
+export type HeadingProps = HeadingSizeVariants & { as?: any, customCSS?: CSSProp }
 
 type StyledHeadingProps = Required<HeadingProps>
 const StyledHeading = styled(Text)<StyledHeadingProps>`
   ${Styles.base}
   ${props => Styles.sizeVariants[props.size]}
-  ${props => props.css}
+  ${props => props.customCSS}
 `
 
 export const Heading: React.FC<React.PropsWithChildren<HeadingProps>> = (props) => {

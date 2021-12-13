@@ -79,10 +79,6 @@ export const radioCardChecked = () => {
 };
 
 export const radioCardIcon = () => {
-  const options = {
-    title: "A title for this option",
-    text: "This is a selected radio group button.",
-  };
   return (
     <RadioCardGroup>
       <RadioCard
@@ -101,9 +97,6 @@ export const radioCardIcon = () => {
 };
 
 export const radioCardNoTitle = () => {
-  const options = {
-    text: "This is a selected radio group button.",
-  };
   return (
     <RadioCardGroup>
       <RadioCard
@@ -121,9 +114,6 @@ export const radioCardNoTitle = () => {
 };
 
 export const radioCardNoText = () => {
-  const options = {
-    title: "A title for this option",
-  };
   return (
     <RadioCardGroup>
       <RadioCard
