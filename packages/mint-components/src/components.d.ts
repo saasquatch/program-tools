@@ -26,6 +26,7 @@ import { PortalProfileViewProps } from "./components/sqm-portal-profile/sqm-port
 import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-portal-register-view";
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
+import { ProgramExplainerStepViewProps } from "./components/sqm-program-explainer-step/sqm-program-explainer-step-view";
 import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
 import { ReferralTableViewProps } from "./components/sqm-referral-table/sqm-referral-table-view";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
@@ -680,6 +681,27 @@ export namespace Components {
          */
         "nextPage": string;
     }
+    interface SqmProgramExplainer {
+    }
+    interface SqmProgramExplainerStep {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<ProgramExplainerStepViewProps>;
+        /**
+          * @uiName Icon
+         */
+        "icon": string;
+        /**
+          * @uiName Label
+         */
+        "label": string;
+        /**
+          * @uiName Navigation path
+         */
+        "path": string;
+    }
     interface SqmProgramMenu {
     }
     interface SqmReferralIframe {
@@ -1321,6 +1343,18 @@ declare global {
         prototype: HTMLSqmPortalVerifyEmailElement;
         new (): HTMLSqmPortalVerifyEmailElement;
     };
+    interface HTMLSqmProgramExplainerElement extends Components.SqmProgramExplainer, HTMLStencilElement {
+    }
+    var HTMLSqmProgramExplainerElement: {
+        prototype: HTMLSqmProgramExplainerElement;
+        new (): HTMLSqmProgramExplainerElement;
+    };
+    interface HTMLSqmProgramExplainerStepElement extends Components.SqmProgramExplainerStep, HTMLStencilElement {
+    }
+    var HTMLSqmProgramExplainerStepElement: {
+        prototype: HTMLSqmProgramExplainerStepElement;
+        new (): HTMLSqmProgramExplainerStepElement;
+    };
     interface HTMLSqmProgramMenuElement extends Components.SqmProgramMenu, HTMLStencilElement {
     }
     var HTMLSqmProgramMenuElement: {
@@ -1531,6 +1565,8 @@ declare global {
         "sqm-portal-register": HTMLSqmPortalRegisterElement;
         "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
         "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
+        "sqm-program-explainer": HTMLSqmProgramExplainerElement;
+        "sqm-program-explainer-step": HTMLSqmProgramExplainerStepElement;
         "sqm-program-menu": HTMLSqmProgramMenuElement;
         "sqm-referral-iframe": HTMLSqmReferralIframeElement;
         "sqm-referral-table": HTMLSqmReferralTableElement;
@@ -2208,6 +2244,27 @@ declare namespace LocalJSX {
          */
         "nextPage"?: string;
     }
+    interface SqmProgramExplainer {
+    }
+    interface SqmProgramExplainerStep {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<ProgramExplainerStepViewProps>;
+        /**
+          * @uiName Icon
+         */
+        "icon"?: string;
+        /**
+          * @uiName Label
+         */
+        "label"?: string;
+        /**
+          * @uiName Navigation path
+         */
+        "path"?: string;
+    }
     interface SqmProgramMenu {
     }
     interface SqmReferralIframe {
@@ -2691,6 +2748,8 @@ declare namespace LocalJSX {
         "sqm-portal-register": SqmPortalRegister;
         "sqm-portal-reset-password": SqmPortalResetPassword;
         "sqm-portal-verify-email": SqmPortalVerifyEmail;
+        "sqm-program-explainer": SqmProgramExplainer;
+        "sqm-program-explainer-step": SqmProgramExplainerStep;
         "sqm-program-menu": SqmProgramMenu;
         "sqm-referral-iframe": SqmReferralIframe;
         "sqm-referral-table": SqmReferralTable;
@@ -2756,6 +2815,8 @@ declare module "@stencil/core" {
             "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
             "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
+            "sqm-program-explainer": LocalJSX.SqmProgramExplainer & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;
+            "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
             "sqm-referral-iframe": LocalJSX.SqmReferralIframe & JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;
