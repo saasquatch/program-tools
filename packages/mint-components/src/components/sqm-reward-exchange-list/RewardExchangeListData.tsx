@@ -4,7 +4,8 @@ const baseResponse = (
   selectedItem = null,
   selectedStep = null,
   error = false,
-  loading = false
+  loading = false,
+  fueltank = null
 ) => ({
   states: {
     content: {
@@ -22,6 +23,7 @@ const baseResponse = (
   },
   data: {
     exchangeList: data,
+    fuelTankCode: fueltank,
   },
   callbacks: {
     exchangeReward: null,
@@ -89,12 +91,12 @@ const fixedValue = (props) => ({
   prettySourceValue: props,
 });
 
-const variableValue = (min, max, text) => ({
+const variableValue = (min, max, unit) => ({
   ruleType: "VARIABLE_CREDIT_REWARD",
   sourceMinValue: min,
-  prettySourceMinValue: min + " " + text,
+  prettySourceMinValue: min + " " + unit,
   sourceMaxValue: max,
-  prettySourceMaxValue: max + " " + text,
+  prettySourceMaxValue: max + " " + unit,
 });
 
 const data = [
@@ -109,7 +111,7 @@ const data = [
     ...selected,
     ...name("Visa® Prepaid Card USD"),
     ...imageUrl("https://i.imgur.com/veHErQX.png"),
-    ...variableValue(20, 80, "SaaSquatch Points"),
+    ...variableValue(20, 80, "Points"),
   },
   {
     ...baseReward,
@@ -127,7 +129,7 @@ const data = [
     ...baseReward,
     ...name("Variable amount of store credit"),
     ...imageUrl("https://i.imgur.com/Jn2fE0s.png"),
-    ...variableValue(20, 100, "SaaSquatch Points"),
+    ...variableValue(20, 100, "Points"),
   },
   {
     ...baseReward,
@@ -139,9 +141,11 @@ const data = [
   {
     ...baseReward,
     ...usTax,
-    ...name("$1000 Store credit"),
+    ...name(
+      "$1000 Store credit with a really super long name in the front page"
+    ),
     ...imageUrl("https://i.imgur.com/y9HSls1.png"),
-    ...fixedValue("2000 SaaSquatch Points"),
+    ...fixedValue("2000 SaaSquatch Long Points"),
   },
   {
     ...baseReward,
@@ -162,7 +166,7 @@ export const rewardExchangeSelected = {
     ...selected,
     ...name("Visa® Prepaid Card USD"),
     ...imageUrl("https://i.imgur.com/veHErQX.png"),
-    ...variableValue(20, 80, "SaaSquatch Points"),
+    ...variableValue(20, 80, "Points"),
   }),
 };
 
@@ -197,13 +201,13 @@ export const chooseAmountVariable = {
     ...baseReward,
     ...name("Visa® Prepaid Card USD"),
     ...imageUrl("https://i.imgur.com/veHErQX.png"),
-    ...variableValue(20, 80, "SaaSquatch Points"),
+    ...variableValue(20, 80, "Points"),
     steps: [
-      baseStep(20, "$", 40, "SaaSquatch Points"),
-      baseStep(30, "$", 60, "SaaSquatch Points"),
-      baseStep(40, "$", 80, "SaaSquatch Points"),
-      baseStep(50, "$", 100, "SaaSquatch Points"),
-      baseStep(60, "$", 120, "SaaSquatch Points"),
+      baseStep(20, "$", 40, "Points"),
+      baseStep(30, "$", 60, "Points"),
+      baseStep(40, "$", 80, "Points"),
+      baseStep(50, "$", 100, "Points"),
+      baseStep(60, "$", 120, "Points"),
     ],
   }),
 };
@@ -234,9 +238,9 @@ export const confirmVariable = {
       ...baseReward,
       ...name("Visa® Prepaid Card USD"),
       ...imageUrl("https://i.imgur.com/veHErQX.png"),
-      ...variableValue(20, 80, "SaaSquatch Points"),
+      ...variableValue(20, 80, "Points"),
     },
-    baseStep(20, "$", 40, "SaaSquatch Points")
+    baseStep(20, "$", 40, "Points")
   ),
 };
 
@@ -248,9 +252,9 @@ export const error = {
       ...baseReward,
       ...name("Visa® Prepaid Card USD"),
       ...imageUrl("https://i.imgur.com/veHErQX.png"),
-      ...variableValue(20, 80, "SaaSquatch Points"),
+      ...variableValue(20, 80, "Points"),
     },
-    baseStep(20, "$", 40, "SaaSquatch Points"),
+    baseStep(20, "$", 40, "Points"),
     true
   ),
 };
@@ -262,6 +266,29 @@ export const success = {
     ...imageUrl("https://i.imgur.com/93BvEgH.png"),
     ...fixedValue("30 SaaSquatch Points"),
   }),
+};
+
+export const success2 = {
+  ...baseResponse(
+    data,
+    "success",
+    {
+      ...baseReward,
+      ...name("Visa® Prepaid Card USD"),
+      ...imageUrl("https://i.imgur.com/93BvEgH.png"),
+      ...variableValue(20, 80, "Points"),
+    },
+    baseStep(20, "$", 40, "Points")
+  ),
+};
+
+export const success3 = {
+  ...baseResponse(data, "success", {
+    ...baseReward,
+    ...name("A very exclusive gift box"),
+    ...imageUrl("https://i.imgur.com/93BvEgH.png"),
+    ...fixedValue("30 SaaSquatch Points"),
+  }, undefined, undefined, undefined, "xxxx-xxxx-xxxx"),
 };
 
 export const loading = {
