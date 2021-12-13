@@ -1099,7 +1099,7 @@ export namespace Components {
         /**
           * @uiName Reward Amount
          */
-        "rewardAmount": number;
+        "rewardAmount": string;
         /**
           * @uiName Reward Duration
           * @uiWidget DateRange
@@ -2664,7 +2664,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Reward Amount
          */
-        "rewardAmount"?: number;
+        "rewardAmount"?: string;
         /**
           * @uiName Reward Duration
           * @uiWidget DateRange

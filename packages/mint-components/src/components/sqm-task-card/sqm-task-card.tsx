@@ -22,7 +22,7 @@ export class TaskCard {
    * @uiName Reward Amount
    */
   @Prop()
-  rewardAmount: number = 0;
+  rewardAmount: string = "0";
 
   /**
    * @uiName Reward Unit
