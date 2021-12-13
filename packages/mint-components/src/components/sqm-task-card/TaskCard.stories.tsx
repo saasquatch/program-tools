@@ -494,3 +494,23 @@ export const ProgressBarStepsRepeatable = () => {
     </div>
   );
 };
+
+export const ProgressBarStepsRepeatableFinite = () => {
+  const props = {
+    progress: 0,
+    steps: true,
+    goal: 5,
+    progressBarUnit: "$",
+    repeatable: true,
+    finite: 2,
+  };
+  return (
+    <div>
+      <MatrixStory
+        matrix={{ progress: [1, 5, 7, 10, 12] }}
+        props={props}
+        Component={ProgressBarView}
+      />
+    </div>
+  );
+};
