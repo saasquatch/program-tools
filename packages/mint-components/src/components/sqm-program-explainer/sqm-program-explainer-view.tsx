@@ -16,14 +16,6 @@ const style = {
   },
 };
 
-const vanillaStyle = `
-  :host{    
-    width: 30vw;
-    min-width: min-content;
-    max-width: 320px;
-  }
-`;
-
 jss.setup(preset());
 const sheet = jss.createStyleSheet(style);
 const styleString = sheet.toString();
@@ -35,11 +27,8 @@ export function ProgramExplainerView(
 ) {
   return (
     <div>
-      <div class={sheet.classes.ItemsContainer}>
-        <style type="text/css">
-          {vanillaStyle}
-          {styleString}
-        </style>
+      <div>
+        <style type="text/css">{styleString}</style>
         {children}
       </div>
     </div>

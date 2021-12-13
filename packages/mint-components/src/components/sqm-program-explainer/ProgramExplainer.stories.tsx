@@ -29,11 +29,25 @@ export const DefaultProgramExplainerView = () => {
 	title: "hello",
 	description: "world"
   };
+
+  const props1 = {
+    title: "Invite your friends to Klip",
+    description: "Earn up to $1200 in rewards for each referral",
+	color: "white",
+	background: "#5B3EDA"
+  };
+  const props2 = {
+    title: "Invite your friends to Klip",
+    description: "Earn up to $1200 in rewards for each referral",
+	color: "black",
+	background: "yellow"
+  };
+
+
   return (
-	  "asd"
-    // <ProgramExplainerView {...barProps}>
-    //   <ProgramExplainerStepView {...item1Props} />
-    //   <ProgramExplainerStepView {...item2Props} />
-    // </ProgramExplainerView>
+    <ProgramExplainerView {...barProps}>
+      <ProgramExplainerStepView {...props1} />
+      <ProgramExplainerStepView {...props2} />
+    </ProgramExplainerView>
   );
 };

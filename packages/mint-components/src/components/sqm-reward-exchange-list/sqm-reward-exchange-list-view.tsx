@@ -383,12 +383,14 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 : "none",
           };
 
-          const amount =
+		const amount =
             item.ruleType === "FIXED_GLOBAL_REWARD"
               ? item.prettySourceValue
-              : item.prettySourceMinValue && item.prettySourceMaxValue
-              ? `${item.prettySourceMinValue} to ${item.prettySourceMaxValue}`
-              : "";
+              : item.ruleType === "STEPPED_FIXED_GLOBAL_REWARD"
+              ? `${item.steps[0]?.sourceValue} to ${
+                  item.steps.slice(-1).pop().prettySourceValue
+                }`
+              : `${item.sourceMinValue} to ${item.prettySourceMaxValue}`;
 
           return (
             <div
