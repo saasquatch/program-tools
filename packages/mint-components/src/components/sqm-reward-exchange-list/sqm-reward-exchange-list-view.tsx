@@ -142,6 +142,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         },
       },
     },
+    CardLayout: {
+      display: "flex",
+      width: "100%",
+      borderRadius: "3px",
+      background: "rgba(0, 0, 0, 0)",
+    },
     KutayCard: {
       display: "flex",
       userSelect: "none",
@@ -379,12 +385,14 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 : "none",
           };
 
-          const amount =
+		const amount =
             item.ruleType === "FIXED_GLOBAL_REWARD"
               ? item.prettySourceValue
-              : item.prettySourceMinValue && item.prettySourceMaxValue
-              ? `${item.prettySourceMinValue} to ${item.prettySourceMaxValue}`
-              : "";
+              : item.ruleType === "STEPPED_FIXED_GLOBAL_REWARD"
+              ? `${item.steps[0]?.sourceValue} to ${
+                  item.steps.slice(-1).pop().prettySourceValue
+                }`
+              : `${item.sourceMinValue} to ${item.prettySourceMaxValue}`;
 
           return (
             <div
@@ -699,43 +707,33 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   function loading() {
     return (
-      <div
-        style={{
-          display: "flex",
-          height: "400px",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <div style={{ transform: "scale(5)" }}>
-          <sl-spinner></sl-spinner>
-        </div>
+      <div class={sheet.classes.Grid}>
+        {[...Array(8)].map(() => {
+          return (
+            <div class={sheet.classes.CardContainer}>
+              <sl-card class={sheet.classes.KutayCard}>
+                <div class={sheet.classes.CardLayout}>
+                  <div>
+                    <sl-skeleton
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        margin: "9px",
+                        "--border-radius": "4px",
+                      }}
+                    ></sl-skeleton>
+                  </div>
 
-        {/* <sl-skeleton
-          style={{ width: "30%", margin: "var(--sl-spacing-large) auto" }}
-        />
-        <sl-skeleton
-          style={{ width: "100%", margin: "var(--sl-spacing-large) 0" }}
-        />
-        <sl-skeleton
-          style={{ width: "100%", margin: "var(--sl-spacing-large) 0" }}
-        />
-        <sl-skeleton
-          style={{ width: "100%", margin: "var(--sl-spacing-large) 0" }}
-        />
-        <sl-skeleton
-          style={{ width: "100%", margin: "var(--sl-spacing-large) 0" }}
-        />
-        <sl-skeleton
-          style={{ width: "100%", margin: "var(--sl-spacing-large) 0" }}
-        />
-        <sl-skeleton
-          style={{
-            width: "20%",
-            margin: "var(--sl-spacing-large) 0",
-            marginLeft: "auto",
-          }}
-        /> */}
+                  <div style={{ margin: "12px", width: "100%" }}>
+                    <sl-skeleton style={{ marginBottom: "12px" }}></sl-skeleton>
+                    <sl-skeleton style={{ marginBottom: "12px" }}></sl-skeleton>
+                    <sl-skeleton style={{ width: "45%" }}></sl-skeleton>
+                  </div>
+                </div>
+              </sl-card>
+            </div>
+          );
+        })}
       </div>
     );
   }
