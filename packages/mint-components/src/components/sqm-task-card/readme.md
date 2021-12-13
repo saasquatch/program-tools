@@ -13,6 +13,7 @@
 | `buttonText`      | `button-text`       |                                                                                    | `string`  | `"Complete Action"`                                  |
 | `cardTitle`       | `card-title`        |                                                                                    | `string`  | `"Title Text"`                                       |
 | `description`     | `description`       |                                                                                    | `string`  | `"Description Text"`                                 |
+| `finite`          | `finite`            |                                                                                    | `number`  | `0`                                                  |
 | `goal`            | `goal`              |                                                                                    | `number`  | `1`                                                  |
 | `openNewTab`      | `open-new-tab`      |                                                                                    | `boolean` | `false`                                              |
 | `progressBarUnit` | `progress-bar-unit` |                                                                                    | `string`  | `undefined`                                          |
