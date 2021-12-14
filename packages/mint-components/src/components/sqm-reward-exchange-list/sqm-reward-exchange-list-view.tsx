@@ -6,9 +6,7 @@ import { HostBlock } from "../../global/mixins";
 import { ProgressBar } from "./progressBar";
 import { ShareLinkView } from "../sqm-share-link/sqm-share-link-view";
 import {
-  LeftArrow,
   ExchangeArrows,
-  CheckMark,
   Gift,
   CheckmarkFilled,
 } from "./SVGs";
@@ -21,7 +19,9 @@ export type RewardExchangeViewProps = {
     redeemStage: string;
     amount: number;
     exchangeError?: boolean;
+    queryError?: boolean;
     loading: boolean;
+    open: boolean;
     content: {
       text: any;
     };
@@ -35,18 +35,22 @@ export type RewardExchangeViewProps = {
     setStage: (stage?: Stages) => void;
     resetState: (refresh?: boolean) => void;
     setExchangeState: Function;
+    copyFuelTankCode: () => void;
   };
 };
 
 const stageList = ["chooseReward", "chooseAmount", "confirmation", "success"];
 
-const stageProgressList = {
-  chooseReward: "Choose reward",
-  chooseAmount: "Amount",
-  confirmation: "Confirm",
-};
-
 export function RewardExchangeView(props: RewardExchangeViewProps) {
+  const { states, data, callbacks } = props;
+  const { selectedItem, selectedStep } = states;
+
+  const stageProgressList = {
+    chooseReward: states.content.text.chooseRewardTitle,
+    chooseAmount: states.content.text.chooseAmountTitle,
+    confirmation: states.content.text.confirmationTitle,
+  };
+
   const style = {
     HostBlock: HostBlock,
     Container: {
@@ -326,16 +330,25 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
-  const { states, data, callbacks } = props;
-  const { selectedItem, selectedStep } = states;
-
   function getInput() {
     const item = states.selectedItem;
     if (!item || item?.ruleType === "FIXED_GLOBAL_REWARD")
       return <span>{item?.prettySourceValue}</span>;
 
     if (!item.steps?.length) {
-      return <p>Not enough {item.sourceUnit} to redeem for this reward.</p>;
+      return (
+        <p>
+          {intl.formatMessage(
+            {
+              id: "notEnoughError",
+              defaultMessage: states.content.text.notEnoughError,
+            },
+            {
+              sourceUnit: item.sourceUnit,
+            }
+          )}
+        </p>
+      );
     }
     return (
       <sl-select
@@ -394,7 +407,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               ? item.prettySourceValue
               : item.ruleType === "STEPPED_FIXED_GLOBAL_REWARD"
               ? `${item.steps[0]?.sourceValue} to ${
-                  item.steps.slice(-1).pop().prettySourceValue
+                  item.steps.slice(-1).pop()?.prettySourceValue
                 }`
               : `${item.prettySourceMinValue} to ${item.prettySourceMaxValue}`;
 
@@ -505,9 +518,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           class="continue right"
           size="large"
           onClick={() => callbacks.setStage("chooseAmount")}
+          loading={states.loading}
           disabled={!states.selectedItem}
         >
-          Continue
+          {states.content.text.continueText}
         </sl-button>
       </div>,
     ];
@@ -554,7 +568,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             type="text"
             onClick={() => callbacks.resetState()}
           >
-            Cancel
+            {states.content.text.cancelText}
           </sl-button>
           <sl-button
             class="continue"
@@ -562,7 +576,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             onClick={() => callbacks.setStage("confirmation")}
             disabled={isDisabled}
           >
-            Continue to confirmation
+            {states.content.text.continueToConfirmationText}
           </sl-button>
         </div>
       </div>
@@ -572,7 +586,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   function confirmation() {
     return (
       <div>
-        <h2 style={{ margin: "20px 0" }}>Confirm and redeem</h2>
+        <h2 style={{ margin: "20px 0" }}>{states.content.text.redeemTitle}</h2>
         <div
           style={{
             textAlign: "center",
@@ -635,14 +649,15 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             size="large"
             onClick={() => callbacks.setStage("chooseAmount")}
           >
-            Back
+            {states.content.text.backText}
           </sl-button>
           <sl-button
             class="continue"
             size="large"
+            loading={states.loading}
             onClick={callbacks.exchangeReward}
           >
-            Redeem
+            {states.content.text.redeemText}
           </sl-button>
         </div>
       </div>
@@ -653,16 +668,22 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     return (
       <div class={sheet.classes.Success}>
         <Gift />
-        <div class="title">Reward Redeemed</div>
+        <div class="title">{states.content.text.rewardRedeemedText}</div>
         <div class="description">
-          {"Congratulations on your new "}
-          <b>
-            {selectedStep?.prettyDestinationValue
-              ? selectedStep?.prettyDestinationValue +
-                  " " +
-                  selectedItem?.name || ""
-              : selectedItem?.name || ""}
-          </b>
+          {intl.formatMessage(
+            {
+              id: "successMessage",
+              defaultMessage: states.content.text.redemptionSuccessText,
+            },
+            {
+              sourceValue:
+                states.selectedItem.prettySourceValue ??
+                states.selectedStep?.prettySourceValue,
+              destinationValue:
+                states.selectedStep?.prettyDestinationValue ||
+                states.selectedItem.globalRewardKey,
+            }
+          )}
         </div>
         {data?.fuelTankCode && (
           <div
@@ -672,10 +693,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             }}
           >
             <ShareLinkView
-              shareString={data?.fuelTankCode}
-              open={false}
-              tooltiptext=""
-              onClick={() => navigator.clipboard.writeText(data?.fuelTankCode)}
+              shareString={data.fuelTankCode}
+              tooltiptext="Copied"
+              open={states.open}
+              onClick={callbacks.copyFuelTankCode}
             ></ShareLinkView>
           </div>
         )}
@@ -686,7 +707,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             size="large"
             onClick={() => callbacks.resetState(true)}
           >
-            Done
+            {states.content.text.doneText}
           </sl-button>
         </div>
       </div>
@@ -759,7 +780,16 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     return (
       <sl-alert type="danger" open>
         <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-        An error occured trying to redeem this reward. Please try again.
+        {states.content.text.redemptionError}
+      </sl-alert>
+    );
+  }
+
+  function queryErrorMessage() {
+    return (
+      <sl-alert type="danger" open>
+        <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
+        {states.content.text.queryError}
       </sl-alert>
     );
   }
@@ -769,8 +799,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       <style type="text/css">{styleString}</style>
       <div>
         {stageMap()}
-        {states.loading && loading()}
+        {states.redeemStage === "chooseReward" && states.loading && loading()}
         {states.exchangeError && errorMessage()}
+        {states.queryError && queryErrorMessage()}
         {currentStage && currentStage()}
       </div>
     </div>

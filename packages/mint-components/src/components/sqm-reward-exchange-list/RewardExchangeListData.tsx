@@ -20,6 +20,7 @@ const baseResponse = (
     loading: loading,
     selectedItem: selectedItem,
     selectedStep: selectedStep,
+    open: false,
   },
   data: {
     exchangeList: data,
@@ -30,6 +31,7 @@ const baseResponse = (
     resetState: null,
     setStage: null,
     setExchangeState: null,
+    copyFuelTankCode: null,
     refs: null,
   },
   refs: null,
