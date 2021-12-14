@@ -43,6 +43,8 @@ export function ProgramExplainerView(
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
+  console.log(props)
+
   return (
     <div>
       <style type="text/css">{styleString}</style>

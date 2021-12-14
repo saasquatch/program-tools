@@ -81,6 +81,11 @@ export namespace Components {
           * @uiName Brand Color
          */
         "brandColor": string;
+        /**
+          * The brand font that you want to use
+          * @uiName Brand Font
+         */
+        "brandFont": string;
     }
     interface SqmDividedLayout {
         /**
@@ -718,12 +723,17 @@ export namespace Components {
         "background": string;
         /**
           * @uiName Color
+          * @uiWidget color
          */
         "color": string;
         /**
           * @uiName Description
          */
         "description": string;
+        /**
+          * @uiName Icon
+         */
+        "icon": string;
         /**
           * @uiName Title
          */
@@ -1732,6 +1742,11 @@ declare namespace LocalJSX {
           * @uiName Brand Color
          */
         "brandColor"?: string;
+        /**
+          * The brand font that you want to use
+          * @uiName Brand Font
+         */
+        "brandFont"?: string;
     }
     interface SqmDividedLayout {
         /**
@@ -2369,12 +2384,17 @@ declare namespace LocalJSX {
         "background"?: string;
         /**
           * @uiName Color
+          * @uiWidget color
          */
         "color"?: string;
         /**
           * @uiName Description
          */
         "description"?: string;
+        /**
+          * @uiName Icon
+         */
+        "icon"?: string;
         /**
           * @uiName Title
          */

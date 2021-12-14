@@ -23,6 +23,7 @@ export class ProgramExplainerStep {
 
   /**
    * @uiName Color
+   * @uiWidget color
    */
   @Prop() color: string;
 
@@ -30,6 +31,11 @@ export class ProgramExplainerStep {
    * @uiName Background
    */
   @Prop() background: string;
+
+  /**
+   * @uiName Icon
+   */
+  @Prop() icon: string;
 
   constructor() {
     withHooks(this);
