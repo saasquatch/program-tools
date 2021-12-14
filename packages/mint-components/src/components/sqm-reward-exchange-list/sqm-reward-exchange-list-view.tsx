@@ -6,14 +6,11 @@ import { HostBlock } from "../../global/mixins";
 import { ProgressBar } from "./progressBar";
 import { ShareLinkView } from "../sqm-share-link/sqm-share-link-view";
 import {
-  LeftArrow,
   ExchangeArrows,
-  CheckMark,
   Gift,
   CheckmarkFilled,
 } from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
-import { setProgramId } from "@saasquatch/component-boilerplate";
 
 export type RewardExchangeViewProps = {
   states: {
@@ -668,7 +665,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   }
 
   function success() {
-    console.log({ step: states.selectedStep, item: states.selectedItem });
     return (
       <div class={sheet.classes.Success}>
         <Gift />
@@ -797,8 +793,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       </sl-alert>
     );
   }
-
-  console.log(states.queryError);
 
   return (
     <div class={sheet.classes.Container}>

@@ -272,8 +272,6 @@ export function useRewardExchangeList(
     setTimeout(() => setOpen(false), 1000);
   }
 
-console.log(queryError)
-
   return {
     states: {
       content: {
