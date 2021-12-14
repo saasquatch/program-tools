@@ -12,6 +12,9 @@ export interface ProgramExplainerStepViewProps {
 
 export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
   const style = {
+    "&:host": {
+      color: "red!important",
+    },
     Container: {
       display: "flex",
       flexDirection: "column",

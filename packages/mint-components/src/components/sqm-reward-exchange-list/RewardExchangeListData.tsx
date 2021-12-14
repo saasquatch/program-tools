@@ -10,6 +10,18 @@ const baseResponse = (
   states: {
     content: {
       text: {
+        continueText: "Continue",
+        cancelText: "Cancel",
+        continueToConfirmationText: "Continue to confirmation",
+        backText: "Back",
+        redeemText: "Redeem",
+        doneText: "Done",
+		chooseRewardTitle: "Choose reward",
+		chooseAmountTitle: "Amount",
+		confirmationTitle: "Confirm",
+		redeemTitle: "Confirm and redeem",
+		rewardRedeemedText: "Reward redeemed",
+		queryError: "An error occured trying to redeem this reward. Please try again.",
         notAvailableError:
           "{unavailableReason, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {Not enough points} other {Not available} }",
       },
@@ -285,12 +297,20 @@ export const success2 = {
 };
 
 export const success3 = {
-  ...baseResponse(data, "success", {
-    ...baseReward,
-    ...name("A very exclusive gift box"),
-    ...imageUrl("https://i.imgur.com/93BvEgH.png"),
-    ...fixedValue("30 SaaSquatch Points"),
-  }, undefined, undefined, undefined, "4ah2-hh46-gk7r"),
+  ...baseResponse(
+    data,
+    "success",
+    {
+      ...baseReward,
+      ...name("A very exclusive gift box"),
+      ...imageUrl("https://i.imgur.com/93BvEgH.png"),
+      ...fixedValue("30 SaaSquatch Points"),
+    },
+    undefined,
+    undefined,
+    undefined,
+    "4ah2-hh46-gk7r"
+  ),
 };
 
 export const loading = {

@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
 import { ProgramExplainerView } from "./sqm-program-explainer-view";
-import { ProgramExplainerStepView } from "../sqm-program-explainer-step/sqm-program-explainer-step-view";
+import { ProgramExplainerStep } from "../sqm-program-explainer-step/sqm-program-explainer-step";
 
 export default {
   title: "Components/Program Explainer",
@@ -38,29 +38,29 @@ const steps3 = {
   icon: "people-fill",
 };
 
-export const OneStep = () => {
-  return (
-    <ProgramExplainerView {...props}>
-      <ProgramExplainerStepView {...steps1} />
-    </ProgramExplainerView>
-  );
-};
+// export const OneStep = () => {
+//   return (
+//     <ProgramExplainerView {...props}>
+// 	<ProgramExplainerStep {...steps1} />
+//     </ProgramExplainerView>
+//   );
+// };
 
-export const TwoSteps = () => {
-  return (
-    <ProgramExplainerView {...props}>
-      <ProgramExplainerStepView {...steps1} />
-      <ProgramExplainerStepView {...steps2} />
-    </ProgramExplainerView>
-  );
-};
+// export const TwoSteps = () => {
+//   return (
+//     <ProgramExplainerView {...props}>
+// 	<ProgramExplainerStep {...steps1} />
+// 	<ProgramExplainerStep {...steps2} />
+//     </ProgramExplainerView>
+//   );
+// };
 
 export const ThreeSteps = () => {
   return (
     <ProgramExplainerView {...props}>
-      <ProgramExplainerStepView {...steps1} />
-      <ProgramExplainerStepView {...steps2} />
-      <ProgramExplainerStepView {...steps3} />
+      <sqm-program-explainer-step {...steps1} />
+      <sqm-program-explainer-step {...steps2} />
+      <sqm-program-explainer-step {...steps3} />
     </ProgramExplainerView>
   );
 };

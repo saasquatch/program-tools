@@ -17,6 +17,7 @@ export function ProgramExplainerView(
   const style = {
     Container: {
       display: "flex",
+      flexDirection: "row",
       "@media (max-width: 1024px)": {
         flexDirection: "column",
       },
@@ -43,7 +44,7 @@ export function ProgramExplainerView(
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
-  console.log(props)
+  console.log(props);
 
   return (
     <div>
