@@ -1,13 +1,10 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, State } from "@stencil/core";
-import {
-  ProgramExplainerView
-} from "./sqm-program-explainer-view";
+import { Component, h, Prop, State } from "@stencil/core";
+import { getProps } from "../../utils/utils";
+import { ProgramExplainerView } from "./sqm-program-explainer-view";
 
 /**
- * A holder for navigation menu items
- * 
- * @uiName Navigation Sidebar
+ * @uiName Program Explainer
  */
 @Component({
   tag: "sqm-program-explainer",
@@ -17,6 +14,31 @@ export class ProgramExplainer {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Header
+   */
+  @Prop() header: string;
+
+  /**
+   * @uiName Title
+   */
+  @Prop() title: string;
+
+  /**
+   * @uiName Description
+   */
+  @Prop() description: string;
+
+  /**
+   * @uiName Color
+   */
+  @Prop() color: string;
+
+  /**
+   * @uiName Background
+   */
+  @Prop() background: string;
+
   constructor() {
     withHooks(this);
   }
@@ -24,7 +46,7 @@ export class ProgramExplainer {
 
   render() {
     return (
-      <ProgramExplainerView>
+      <ProgramExplainerView {...getProps(this)}>
         <slot />
       </ProgramExplainerView>
     );
