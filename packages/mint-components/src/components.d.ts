@@ -848,18 +848,71 @@ export namespace Components {
     }
     interface SqmRewardExchangeList {
         /**
+          * @uiName Back Button Text
+         */
+        "backText": string;
+        /**
           * @uiName Exchange button text
          */
         "buttonText": string;
+        /**
+          * @uiName Cancel Button Text
+         */
+        "cancelText": string;
+        /**
+          * @uiName Choose Amount Progress Title
+         */
+        "chooseAmountTitle": string;
+        /**
+          * @uiName Choose Reward Progress Title
+         */
+        "chooseRewardTitle": string;
+        /**
+          * @uiName Confirmation Progress Title
+         */
+        "confirmationTitle": string;
+        /**
+          * @uiName Continue Button Text
+         */
+        "continueText": string;
+        /**
+          * @uiName Continue to Confirmation Button Text
+         */
+        "continueToConfirmationText": string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<RewardExchangeViewProps>;
         /**
+          * @uiName Done Text
+         */
+        "doneText": string;
+        /**
           * @uiName Exchange button text
          */
         "notAvailableError": string;
+        /**
+          * @uiName Not Enough Available Error Message
+         */
+        "notEnoughError": string;
+        /**
+          * @uiName Reward List Error Message
+         */
+        "queryError": string;
+        /**
+          * @uiName Redeem Button Text
+         */
+        "redeemText": string;
+        /**
+          * @uiName Confirmation Title Text
+         */
+        "redeemTitle": string;
+        /**
+          * @uiName Redemption Error Message
+         */
+        "redemptionError": string;
+        "redemptionSuccessText": string;
     }
     interface SqmRewardsTable {
         /**
@@ -2415,18 +2468,71 @@ declare namespace LocalJSX {
     }
     interface SqmRewardExchangeList {
         /**
+          * @uiName Back Button Text
+         */
+        "backText"?: string;
+        /**
           * @uiName Exchange button text
          */
         "buttonText"?: string;
+        /**
+          * @uiName Cancel Button Text
+         */
+        "cancelText"?: string;
+        /**
+          * @uiName Choose Amount Progress Title
+         */
+        "chooseAmountTitle"?: string;
+        /**
+          * @uiName Choose Reward Progress Title
+         */
+        "chooseRewardTitle"?: string;
+        /**
+          * @uiName Confirmation Progress Title
+         */
+        "confirmationTitle"?: string;
+        /**
+          * @uiName Continue Button Text
+         */
+        "continueText"?: string;
+        /**
+          * @uiName Continue to Confirmation Button Text
+         */
+        "continueToConfirmationText"?: string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<RewardExchangeViewProps>;
         /**
+          * @uiName Done Text
+         */
+        "doneText"?: string;
+        /**
           * @uiName Exchange button text
          */
         "notAvailableError"?: string;
+        /**
+          * @uiName Not Enough Available Error Message
+         */
+        "notEnoughError"?: string;
+        /**
+          * @uiName Reward List Error Message
+         */
+        "queryError"?: string;
+        /**
+          * @uiName Redeem Button Text
+         */
+        "redeemText"?: string;
+        /**
+          * @uiName Confirmation Title Text
+         */
+        "redeemTitle"?: string;
+        /**
+          * @uiName Redemption Error Message
+         */
+        "redemptionError"?: string;
+        "redemptionSuccessText"?: string;
     }
     interface SqmRewardsTable {
         /**

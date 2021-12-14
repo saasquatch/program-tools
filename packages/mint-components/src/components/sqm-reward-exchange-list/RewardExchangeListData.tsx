@@ -20,6 +20,7 @@ const baseResponse = (
     loading: loading,
     selectedItem: selectedItem,
     selectedStep: selectedStep,
+    open: false,
   },
   data: {
     exchangeList: data,
@@ -30,6 +31,7 @@ const baseResponse = (
     resetState: null,
     setStage: null,
     setExchangeState: null,
+    copyFuelTankCode: null,
     refs: null,
   },
   refs: null,
@@ -283,12 +285,20 @@ export const success2 = {
 };
 
 export const success3 = {
-  ...baseResponse(data, "success", {
-    ...baseReward,
-    ...name("A very exclusive gift box"),
-    ...imageUrl("https://i.imgur.com/93BvEgH.png"),
-    ...fixedValue("30 SaaSquatch Points"),
-  }, undefined, undefined, undefined, "xxxx-xxxx-xxxx"),
+  ...baseResponse(
+    data,
+    "success",
+    {
+      ...baseReward,
+      ...name("A very exclusive gift box"),
+      ...imageUrl("https://i.imgur.com/93BvEgH.png"),
+      ...fixedValue("30 SaaSquatch Points"),
+    },
+    undefined,
+    undefined,
+    undefined,
+    "xxxx-xxxx-xxxx"
+  ),
 };
 
 export const loading = {

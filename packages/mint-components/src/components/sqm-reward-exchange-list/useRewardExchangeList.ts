@@ -12,6 +12,7 @@ import {
   useEffect,
   useReducer,
   useRef,
+  useState,
 } from "@saasquatch/universal-hooks";
 
 export type ExchangeItem = {
@@ -47,9 +48,28 @@ export type ExchangeStep = {
   available: boolean;
   unavailableReasonCode: string;
   globalRewardKey: string;
+  rewardInput: ExchangeInput;
+};
+
+export type ExchangeInput = {
+  accountId: string;
+  userId: string;
+  redeemCreditInput?: {
+    amount: number;
+    unit: string;
+  };
+  rewardInput?: {
+    type: string;
+    unit: string;
+    assignedCredit?: number;
+    valueInCents?: number;
+  };
+  globalRewardKey?: string;
 };
 
 export type Stages = "" | "chooseReward" | "chooseAmount" | "confirmation";
+
+// TODO: add rewardInput once it works
 const GET_EXCHANGE_LIST = gql`
   query getExchangeList {
     viewer {
@@ -131,15 +151,24 @@ export function useRewardExchangeList(
       exchangeError: false,
     }
   );
+  const [open, setOpen] = useState(false);
 
   const { selectedItem, selectedStep, redeemStage, amount, exchangeError } =
     exchangeState;
 
   const user = useUserIdentity();
 
-  const [exchange, { data: exchangeResponse, errors }] = useMutation(EXCHANGE);
+  const [
+    exchange,
+    { data: exchangeResponse, loading: exchangeLoading, errors },
+  ] = useMutation(EXCHANGE);
 
-  const { data, loading, refetch } = useQuery(GET_EXCHANGE_LIST, !user?.jwt);
+  const {
+    data,
+    loading,
+    refetch,
+    errors: queryError,
+  } = useQuery(GET_EXCHANGE_LIST, !user?.jwt);
 
   useEffect(() => {
     if (exchangeResponse?.exchangeReward?.reward?.id) {
@@ -232,6 +261,19 @@ export function useRewardExchangeList(
   function setStage(stage?: Stages) {
     setExchangeState({ redeemStage: stage });
   }
+
+  function copyFuelTankCode() {
+    // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
+    // Only if called from a user-initiated event
+    navigator.clipboard.writeText(
+      exchangeResponse?.exchangeReward?.reward?.fuelTankCode
+    );
+    setOpen(true);
+    setTimeout(() => setOpen(false), 1000);
+  }
+
+console.log(queryError)
+
   return {
     states: {
       content: {
@@ -242,7 +284,9 @@ export function useRewardExchangeList(
       amount,
       selectedStep,
       exchangeError,
-      loading,
+      queryError: !!queryError,
+      loading: loading || exchangeLoading,
+      open,
     },
     data: {
       exchangeList: data?.viewer?.visibleRewardExchangeItems?.data,
@@ -253,6 +297,7 @@ export function useRewardExchangeList(
       setExchangeState,
       setStage,
       resetState,
+      copyFuelTankCode,
     },
   };
 }
