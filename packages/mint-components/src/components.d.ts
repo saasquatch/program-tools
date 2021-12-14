@@ -690,10 +690,12 @@ export namespace Components {
     interface SqmProgramExplainer {
         /**
           * @uiName Background
+          * @uiWidget color
          */
         "background": string;
         /**
           * @uiName Color
+          * @uiWidget color
          */
         "color": string;
         /**
@@ -2339,10 +2341,12 @@ declare namespace LocalJSX {
     interface SqmProgramExplainer {
         /**
           * @uiName Background
+          * @uiWidget color
          */
         "background"?: string;
         /**
           * @uiName Color
+          * @uiWidget color
          */
         "color"?: string;
         /**
