@@ -285,20 +285,12 @@ export const success2 = {
 };
 
 export const success3 = {
-  ...baseResponse(
-    data,
-    "success",
-    {
-      ...baseReward,
-      ...name("A very exclusive gift box"),
-      ...imageUrl("https://i.imgur.com/93BvEgH.png"),
-      ...fixedValue("30 SaaSquatch Points"),
-    },
-    undefined,
-    undefined,
-    undefined,
-    "xxxx-xxxx-xxxx"
-  ),
+  ...baseResponse(data, "success", {
+    ...baseReward,
+    ...name("A very exclusive gift box"),
+    ...imageUrl("https://i.imgur.com/93BvEgH.png"),
+    ...fixedValue("30 SaaSquatch Points"),
+  }, undefined, undefined, undefined, "4ah2-hh46-gk7r"),
 };
 
 export const loading = {
