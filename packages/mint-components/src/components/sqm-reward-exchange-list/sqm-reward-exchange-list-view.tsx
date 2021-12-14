@@ -4,7 +4,14 @@ import preset from "jss-preset-default";
 import { intl } from "../../global/global";
 import { HostBlock } from "../../global/mixins";
 import { ProgressBar } from "./progressBar";
-import { LeftArrow, ExchangeArrows, CheckMark, Gift } from "./SVGs";
+import {ShareLinkView} from "../sqm-share-link/sqm-share-link-view"
+import {
+  LeftArrow,
+  ExchangeArrows,
+  CheckMark,
+  Gift,
+  CheckmarkFilled,
+} from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
 
 export type RewardExchangeViewProps = {
@@ -109,17 +116,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       //     maxHeight: "40vh",
       //   },
     },
-    Buttons: {
-      marginLeft: "auto",
-      width: "100%",
-      maxWidth: "300px",
-    },
-    Button: {
-      margin: "10px 0",
-      display: "block",
-      textAlign: "center",
-      cursor: "pointer",
-    },
     ProgressBar: {
       maxWidth: "350px",
       width: "100%",
@@ -148,7 +144,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       borderRadius: "3px",
       background: "rgba(0, 0, 0, 0)",
     },
-    KutayCard: {
+    Card: {
       display: "flex",
       userSelect: "none",
       height: "120px",
@@ -160,21 +156,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         display: "flex",
         padding: 0,
       },
-      "& .selected-outline": {
-        width: "18px",
-        height: "18px",
-        minWidth: "18px",
-        borderRadius: "50%",
-        background: "var(--sl-color-primary-500)",
+      "& .selected": {
         position: "relative",
-        margin: "-9px",
+        top: "-2%",
         left: "100%",
-      },
-      "& .selected-checkmark": {
-        position: "relative",
-        left: "12%",
-        top: "-29%",
-        transform: "scale(0.8)",
+        color: "var(--sl-color-primary-500)",
+        margin: "-9px",
       },
     },
 
@@ -195,14 +182,18 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     },
 
     Image: {
+      padding: "8px",
+      minWidth: "96px",
+      maxWidth: "96px",
       "& .image": {
+        width: "100%",
+        height: "100%",
         objectFit: "contain",
-        width: "120px",
-        height: "118px",
-        flex: 0.33,
+        borderRadius: "4px",
       },
-      "& .image.black": {
-        filter: "brightness(20%)",
+      "& .image.subdued": {
+        filter: "brightness(0.95)",
+        opacity: "0.5",
       },
     },
 
@@ -214,12 +205,20 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         lineHeight: "20px",
         fontWeight: "600",
         color: "var(--sl-color-neutral-1000)",
+        display: "-webkit-box",
+        "-webkit-line-clamp": "1",
+        "-webkit-box-orient": "vertical",
+        overflow: "hidden",
       },
       "& .amount": {
         fontSize: "14px",
         lineHeight: "18px",
         marginTop: "8px",
         color: "var(--sl-color-neutral-500)",
+        display: "-webkit-box",
+        "-webkit-line-clamp": "1",
+        "-webkit-box-orient": "vertical",
+        overflow: "hidden",
       },
       "& .error": {
         fontSize: "14px",
@@ -227,6 +226,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         marginTop: "8px",
         fontWeight: "600",
         color: "var(--sl-color-warning-500)",
+        display: "-webkit-box",
+        "-webkit-line-clamp": "1",
+        "-webkit-box-orient": "vertical",
+        overflow: "hidden",
       },
     },
 
@@ -242,7 +245,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         //fontSize: "var(--sl-font-size-large)",
         fontSize: "113%",
         fontWeight: "var(--sl-font-weight-semibold)",
-        color: "var(--sl-color-sky-500)",
+        color: "var(--sl-color-primary-500)",
       },
       "& .description": {
         fontSize: "var(--sl-font-size-medium)",
@@ -282,7 +285,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
     },
 
-    KutayButton: {
+    Button: {
       display: "flex",
       flexWrap: "wrap-reverse",
       margin: "var(--sl-spacing-medium) 0",
@@ -317,13 +320,13 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
     },
   };
+
   // JSS config
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
   const { states, data, callbacks } = props;
-
   const { selectedItem, selectedStep } = states;
 
   function getInput() {
@@ -383,6 +386,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               item.key === selectedItem?.key
                 ? "0 0 0 2px var(--sl-color-primary-500)"
                 : "none",
+            borderRadius: "4px",
           };
 
           const amount =
@@ -392,7 +396,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               ? `${item.steps[0]?.sourceValue} to ${
                   item.steps.slice(-1).pop().prettySourceValue
                 }`
-              : `${item.sourceMinValue} to ${item.prettySourceMaxValue}`;
+              : `${item.prettySourceMinValue} to ${item.prettySourceMaxValue}`;
 
           return (
             <div
@@ -401,7 +405,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               style={style}
             >
               <sl-card
-                class={sheet.classes.KutayCard}
+                class={sheet.classes.Card}
                 style={{
                   cursor: item.unavailableReasonCode
                     ? "not-allowed"
@@ -413,23 +417,39 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 }
               >
                 {item.key === selectedItem?.key && (
-                  <div class="selected-outline">
-                    <div class="selected-checkmark">
-                      <CheckMark />
-                    </div>
+                  <div class="selected">
+                    <CheckmarkFilled />
                   </div>
                 )}
                 <div
                   style={{
                     display: "flex",
                     width: "100%",
+                    height: "120px",
                     borderRadius: "3px",
                     background: item.unavailableReasonCode
                       ? "rgba(0, 0, 0, 0.05)"
                       : "rgba(0, 0, 0, 0)",
                   }}
                 >
-                  <div class={sheet.classes.Square}>
+                  {/* <div class={sheet.classes.Square}>
+                    <img
+                      class={
+                        item.unavailableReasonCode ? "image subdued" : "image"
+                      }
+                      src={
+                        item?.imageUrl ||
+                        getAssetPath("./assets/placeholder.png")
+                      }
+                    />
+                  </div> */}
+
+                  <div
+                    class={sheet.classes.Image}
+                    style={{
+                      opacity: item.unavailableReasonCode ? "0.5" : "1",
+                    }}
+                  >
                     <img
                       class={
                         item.unavailableReasonCode ? "image subdued" : "image"
@@ -440,15 +460,32 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                       }
                     />
                   </div>
-
                   <div
                     class={sheet.classes.TextArea}
                     style={{
                       opacity: item.unavailableReasonCode ? "0.5" : "1",
                     }}
                   >
-                    <div class="title">{item.name ?? ""}</div>
-                    <div class="amount">{amount}</div>
+                    <div
+                      class="title"
+                      style={{
+                        "-webkit-line-clamp": item.unavailableReasonCode
+                          ? "1"
+                          : "2",
+                      }}
+                    >
+                      {item.name ?? ""}
+                    </div>
+                    <div
+                      class="amount"
+                      style={{
+                        "-webkit-line-clamp": item.unavailableReasonCode
+                          ? "1"
+                          : "2",
+                      }}
+                    >
+                      {amount}
+                    </div>
                     {item.unavailableReasonCode && (
                       <div class="error">
                         {intl.formatMessage(
@@ -475,7 +512,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           );
         })}
       </div>,
-      <div class={sheet.classes.KutayButton}>
+      <div class={sheet.classes.Button}>
         <sl-button
           class="continue right"
           size="large"
@@ -522,7 +559,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           <div class="space" />
         </div>
 
-        <div class={sheet.classes.KutayButton}>
+        <div class={sheet.classes.Button}>
           <sl-button
             class="cancel"
             size="large"
@@ -574,7 +611,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           >
             <sl-card
               style={{ width: "auto", maxWidth: "350px", margin: "auto" }}
-              class={sheet.classes.KutayCard}
+              class={sheet.classes.Card}
             >
               <div class={sheet.classes.Square}>
                 <img
@@ -617,7 +654,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           </div>
         </div>
 
-        <div class={sheet.classes.KutayButton}>
+        <div class={sheet.classes.Button}>
           <sl-button
             class="cancel"
             type="text"
@@ -660,9 +697,19 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       <div class={sheet.classes.Success}>
         <Gift />
         <div class="title">Reward Redeemed</div>
-        <div class="description">{selectedItem?.description}</div>
-        {/* {data?.fuelTankCode && <pre>{data?.fuelTankCode}</pre>} */}
-        <div class={sheet.classes.KutayButton}>
+        <div class="description">
+          {"Congratulations on your new "}
+          <b>
+            {selectedStep?.prettyDestinationValue
+              ? selectedStep?.prettyDestinationValue +
+                  " " +
+                  selectedItem?.name || ""
+              : selectedItem?.name || ""}
+          </b>
+        </div>
+        {data?.fuelTankCode && <pre>{data?.fuelTankCode}</pre>}
+		<ShareLinkView shareString="asdasdas" open={false} tooltiptext=""  ></ShareLinkView>
+        <div class={sheet.classes.Button}>
           <sl-button
             class="continue center"
             type="primary"
@@ -711,7 +758,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         {[...Array(8)].map(() => {
           return (
             <div class={sheet.classes.CardContainer}>
-              <sl-card class={sheet.classes.KutayCard}>
+              <sl-card class={sheet.classes.Card}>
                 <div class={sheet.classes.CardLayout}>
                   <div>
                     <sl-skeleton
@@ -724,7 +771,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     ></sl-skeleton>
                   </div>
 
-                  <div style={{ margin: "12px", width: "100%" }}>
+                  <div style={{ margin: "12px 12px 0 0", width: "100%" }}>
                     <sl-skeleton style={{ marginBottom: "12px" }}></sl-skeleton>
                     <sl-skeleton style={{ marginBottom: "12px" }}></sl-skeleton>
                     <sl-skeleton style={{ width: "45%" }}></sl-skeleton>
