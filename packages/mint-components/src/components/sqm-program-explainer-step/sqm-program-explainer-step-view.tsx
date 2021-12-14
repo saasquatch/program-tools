@@ -3,7 +3,7 @@ import jss from "jss";
 import preset from "jss-preset-default";
 
 export interface ProgramExplainerStepViewProps {
-  title: string;
+  cardTitle: string;
   description: string;
   color: string;
   background: string;
@@ -80,7 +80,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
         </div>
       </div>
       <div class={sheet.classes.Text}>
-        <div class={sheet.classes.Title}>{props.title}</div>
+        <div class={sheet.classes.Title}>{props.cardTitle}</div>
         <div class={sheet.classes.Description}>{props.description}</div>
       </div>
     </div>

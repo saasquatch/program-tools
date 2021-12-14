@@ -10,10 +10,10 @@
 | Property      | Attribute     | Description | Type     | Default     |
 | ------------- | ------------- | ----------- | -------- | ----------- |
 | `background`  | `background`  |             | `string` | `undefined` |
+| `cardTitle`   | `card-title`  |             | `string` | `undefined` |
 | `color`       | `color`       |             | `string` | `undefined` |
 | `description` | `description` |             | `string` | `undefined` |
 | `header`      | `header`      |             | `string` | `undefined` |
-| `title`       | `title`       |             | `string` | `undefined` |
 
 
 ----------------------------------------------
