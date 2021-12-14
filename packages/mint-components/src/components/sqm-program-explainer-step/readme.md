@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property   | Attribute | Description | Type                                                                             | Default     |
-| ---------- | --------- | ----------- | -------------------------------------------------------------------------------- | ----------- |
-| `demoData` | --        |             | `{ title?: string; description?: string; color?: string; background?: string; }` | `undefined` |
-| `icon`     | `icon`    |             | `string`                                                                         | `undefined` |
-| `label`    | `label`   |             | `string`                                                                         | `undefined` |
-| `path`     | `path`    |             | `string`                                                                         | `undefined` |
+| Property      | Attribute     | Description | Type     | Default     |
+| ------------- | ------------- | ----------- | -------- | ----------- |
+| `background`  | `background`  |             | `string` | `undefined` |
+| `cardTitle`   | `card-title`  |             | `string` | `undefined` |
+| `color`       | `color`       |             | `string` | `undefined` |
+| `description` | `description` |             | `string` | `undefined` |
+| `icon`        | `icon`        |             | `string` | `undefined` |
 
 
 ----------------------------------------------

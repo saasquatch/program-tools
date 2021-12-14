@@ -5,7 +5,7 @@ import preset from "jss-preset-default";
 
 export interface ProgramExplainerViewProps {
   header: string;
-  title: string;
+  cardTitle: string;
   description: string;
   color: string;
   background: string;
@@ -53,7 +53,7 @@ export function ProgramExplainerView(
       </div>
       <div class={sheet.classes.Container}>{children}</div>
       <div class={sheet.classes.Card}>
-        <div class={sheet.classes.Title}>{props.title}</div>
+        <div class={sheet.classes.Title}>{props.cardTitle}</div>
         <div class={sheet.classes.Description}>{props.description}</div>
       </div>
     </div>

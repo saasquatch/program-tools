@@ -22,7 +22,7 @@ export class ProgramExplainer {
   /**
    * @uiName Title
    */
-  @Prop() title: string;
+  @Prop() cardTitle: string;
 
   /**
    * @uiName Description

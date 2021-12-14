@@ -14,7 +14,7 @@ export class ProgramExplainerStep {
   /**
    * @uiName Title
    */
-  @Prop() title: string;
+  @Prop() cardTitle: string;
 
   /**
    * @uiName Description
