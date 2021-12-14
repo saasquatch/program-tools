@@ -23,6 +23,7 @@ export class ProgramExplainerStep {
 
   /**
    * @uiName Color
+   * @uiWidget color
    */
   @Prop() color: string;
 

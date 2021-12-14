@@ -1,8 +1,6 @@
 import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { gap } from "../../global/mixins";
-import { Resizer } from "../sqm-stencilbook/Resizer";
 
 export interface ProgramExplainerStepViewProps {
   title: string;
@@ -57,6 +55,8 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
+  
+  console.log(props)
 
   return (
     <div class={sheet.classes.Container}>
