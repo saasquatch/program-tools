@@ -32,6 +32,11 @@ export class ProgramExplainerStep {
    */
   @Prop() background: string;
 
+  /**
+   * @uiName Icon
+   */
+  @Prop() icon: string;
+
   constructor() {
     withHooks(this);
   }

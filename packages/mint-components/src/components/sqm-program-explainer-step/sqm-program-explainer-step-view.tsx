@@ -7,6 +7,7 @@ export interface ProgramExplainerStepViewProps {
   description: string;
   color: string;
   background: string;
+  icon: string;
 }
 
 export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
@@ -55,8 +56,8 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
-  
-  console.log(props)
+
+  console.log(props);
 
   return (
     <div class={sheet.classes.Container}>
@@ -67,9 +68,16 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
             width: "64px",
             height: "64px",
             borderRadius: "100%",
-            background: "white",
+            background: "#F4F5F7",
+            color: "var(--sl-color-primary-400)",
+            textAlign: "center",
+            lineHeight: "72px",
           }}
-        ></div>
+        >
+          <div style={{ fontSize: "26px" }}>
+            <sl-icon name={props.icon}></sl-icon>
+          </div>
+        </div>
       </div>
       <div class={sheet.classes.Text}>
         <div class={sheet.classes.Title}>{props.title}</div>

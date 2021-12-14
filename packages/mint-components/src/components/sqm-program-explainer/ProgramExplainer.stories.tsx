@@ -20,12 +20,14 @@ const steps1 = {
   description: "Earn up to $1200 in rewards for each referral",
   color: "white",
   background: "#5B3EDA",
+  icon: "person-plus-fill",
 };
 const steps2 = {
   title: "If your friend signs up for a Klip Business plan",
   description: "Get a $50 VISA giftcard when they pay for their first month",
   color: "black",
   background: "#F3CC66",
+  icon: "server",
 };
 const steps3 = {
   title: "If your friend signs up for a Klip Enterprise plan",
@@ -33,6 +35,7 @@ const steps3 = {
     "Get up to $1200 in rewards - a $200 VISA giftcard when our sales team qualifies them as a good fit for Klip, and a $1000 VISA giftcard when they become a paying customer",
   color: "black",
   background: "#D3CCF5",
+  icon: "people-fill",
 };
 
 export const OneStep = () => {

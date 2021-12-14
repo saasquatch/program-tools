@@ -9,8 +9,9 @@ export const Example1 = () => {
   const props = {
     title: "Invite your friends to Klip",
     description: "Earn up to $1200 in rewards for each referral",
-	color: "white",
-	background: "#5B3EDA"
+    color: "white",
+    background: "#5B3EDA",
+    icon: "person-plus-fill",
   };
   return <ProgramExplainerStepView {...props} />;
 };

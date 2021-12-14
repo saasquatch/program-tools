@@ -726,6 +726,10 @@ export namespace Components {
          */
         "description": string;
         /**
+          * @uiName Icon
+         */
+        "icon": string;
+        /**
           * @uiName Title
          */
         "title": string;
@@ -2377,6 +2381,10 @@ declare namespace LocalJSX {
           * @uiName Description
          */
         "description"?: string;
+        /**
+          * @uiName Icon
+         */
+        "icon"?: string;
         /**
           * @uiName Title
          */
