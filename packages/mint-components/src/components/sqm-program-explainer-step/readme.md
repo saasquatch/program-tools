@@ -12,6 +12,7 @@
 | `background`  | `background`  |             | `string` | `undefined` |
 | `color`       | `color`       |             | `string` | `undefined` |
 | `description` | `description` |             | `string` | `undefined` |
+| `icon`        | `icon`        |             | `string` | `undefined` |
 | `title`       | `title`       |             | `string` | `undefined` |
 
 
