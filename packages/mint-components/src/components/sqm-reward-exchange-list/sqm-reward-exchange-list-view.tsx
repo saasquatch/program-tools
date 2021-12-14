@@ -4,7 +4,7 @@ import preset from "jss-preset-default";
 import { intl } from "../../global/global";
 import { HostBlock } from "../../global/mixins";
 import { ProgressBar } from "./progressBar";
-import {ShareLinkView} from "../sqm-share-link/sqm-share-link-view"
+import { ShareLinkView } from "../sqm-share-link/sqm-share-link-view";
 import {
   LeftArrow,
   ExchangeArrows,
@@ -432,18 +432,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                       : "rgba(0, 0, 0, 0)",
                   }}
                 >
-                  {/* <div class={sheet.classes.Square}>
-                    <img
-                      class={
-                        item.unavailableReasonCode ? "image subdued" : "image"
-                      }
-                      src={
-                        item?.imageUrl ||
-                        getAssetPath("./assets/placeholder.png")
-                      }
-                    />
-                  </div> */}
-
                   <div
                     class={sheet.classes.Image}
                     style={{
@@ -637,20 +625,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                   : selectedItem?.name ?? ""}
               </div>
             </sl-card>
-
-            {/* 			  
-            <sl-card class={sheet.classes.Base}>
-              <img
-                class={sheet.classes.PreviewImage}
-                src={
-                  selectedItem?.imageUrl ||
-                  getAssetPath("./assets/placeholder.png")
-                }
-              />
-              <p style={{ marginBottom: "0", flex: "1" }}>
-                {selectedStep?.prettyDestinationValue}
-              </p>
-            </sl-card> */}
           </div>
         </div>
 
@@ -671,23 +645,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             Redeem
           </sl-button>
         </div>
-
-        {/* <div class={sheet.classes.Buttons}>
-          <sl-button
-            onClick={callbacks.exchangeReward}
-            style={{ display: "block" }}
-            class={sheet.classes.Button}
-          >
-            Redeem
-          </sl-button>
-          <a
-            onClick={() => callbacks.setStage("chooseAmount")}
-            style={{ display: "block" }}
-            class={sheet.classes.Button}
-          >
-            Back
-          </a>
-        </div> */}
       </div>
     );
   }
@@ -707,8 +664,21 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               : selectedItem?.name || ""}
           </b>
         </div>
-        {data?.fuelTankCode && <pre>{data?.fuelTankCode}</pre>}
-		<ShareLinkView shareString="asdasdas" open={false} tooltiptext=""  ></ShareLinkView>
+        {data?.fuelTankCode && (
+          <div
+            style={{
+              width: "40%",
+              margin: "-30px auto var(--sl-spacing-xxx-large) auto",
+            }}
+          >
+            <ShareLinkView
+              shareString={data?.fuelTankCode}
+              open={false}
+              tooltiptext=""
+              onClick={() => navigator.clipboard.writeText(data?.fuelTankCode)}
+            ></ShareLinkView>
+          </div>
+        )}
         <div class={sheet.classes.Button}>
           <sl-button
             class="continue center"
