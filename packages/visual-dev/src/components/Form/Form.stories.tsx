@@ -10,6 +10,7 @@ import {
   RJSFInput,
   RJSFLockableInput,
   RJSFNumericalInput,
+  RJSFPasswordInput,
 } from "../Input";
 import Form, { WidgetProps } from "@rjsf/core";
 
@@ -24,6 +25,33 @@ export const SimpleForm = () => {
   const uiSchema = {
     "ui:widget": (props: WidgetProps) => {
       return <RJSFInput {...props} />;
+    },
+  };
+
+  const schema: JSONSchema7 = {
+    type: "string",
+  };
+  return (
+    <div style={{ margin: "100px", resize: "horizontal", overflow: "hidden" }}>
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        onChange={log("changed")}
+        onSubmit={log("submitted")}
+        onError={log("errors")}
+      >
+        <Button buttonType="primary" style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
+export const PasswordForm = () => {
+  const uiSchema = {
+    "ui:widget": (props: WidgetProps) => {
+      return <RJSFPasswordInput {...props} />;
     },
   };
 

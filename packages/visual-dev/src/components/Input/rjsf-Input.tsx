@@ -26,6 +26,30 @@ export function RJSFNumericalInput(props: WidgetProps) {
   );
 }
 
+export function RJSFPasswordInput(props: WidgetProps) {
+  const [type, setType] = useState("password");
+  return (
+    <Input
+      type={type}
+      value={props.value}
+      onChange={(e: any) => props.onChange(e.target.value)}
+      errors={props.rawErrors}
+      disabled={props.disabled}
+      buttons={
+        <IconButton
+          icon="visibility"
+          size="mini"
+          css="position: relative; left: -30px; border: none; :hover{background: none; color: var(--sq-text-subdued)}"
+          icon_css="margin: -10px; top: 6px; height: 20px; width: 20px"
+          onClick={() => {
+            setType(type == "text" ? "password" : "text");
+          }}
+        />
+      }
+    />
+  );
+}
+
 export function RJSFLockableInput(props: WidgetProps) {
   const [locked, setLocked] = useState(props.disabled);
   return (

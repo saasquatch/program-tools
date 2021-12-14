@@ -37,3 +37,4 @@ export const info = () => <Icon icon={'info'} />
 export const settings = () => <Icon icon={'settings'} />
 export const avatar = () => <Icon icon={'avatar'} />
 export const leftwardArrow = () => <Icon icon={'leftward_arrow'} />
+export const visibility = () => <Icon icon={'visibility'} />
