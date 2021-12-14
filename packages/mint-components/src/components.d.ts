@@ -692,6 +692,53 @@ export namespace Components {
          */
         "nextPage": string;
     }
+    interface SqmProgramExplainer {
+        /**
+          * @uiName Background
+          * @uiWidget color
+         */
+        "background": string;
+        /**
+          * @uiName Color
+          * @uiWidget color
+         */
+        "color": string;
+        /**
+          * @uiName Description
+         */
+        "description": string;
+        /**
+          * @uiName Header
+         */
+        "header": string;
+        /**
+          * @uiName Title
+         */
+        "title": string;
+    }
+    interface SqmProgramExplainerStep {
+        /**
+          * @uiName Background
+         */
+        "background": string;
+        /**
+          * @uiName Color
+          * @uiWidget color
+         */
+        "color": string;
+        /**
+          * @uiName Description
+         */
+        "description": string;
+        /**
+          * @uiName Icon
+         */
+        "icon": string;
+        /**
+          * @uiName Title
+         */
+        "title": string;
+    }
     interface SqmProgramMenu {
     }
     interface SqmReferralIframe {
@@ -831,18 +878,71 @@ export namespace Components {
     }
     interface SqmRewardExchangeList {
         /**
+          * @uiName Back Button Text
+         */
+        "backText": string;
+        /**
           * @uiName Exchange button text
          */
         "buttonText": string;
+        /**
+          * @uiName Cancel Button Text
+         */
+        "cancelText": string;
+        /**
+          * @uiName Choose Amount Progress Title
+         */
+        "chooseAmountTitle": string;
+        /**
+          * @uiName Choose Reward Progress Title
+         */
+        "chooseRewardTitle": string;
+        /**
+          * @uiName Confirmation Progress Title
+         */
+        "confirmationTitle": string;
+        /**
+          * @uiName Continue Button Text
+         */
+        "continueText": string;
+        /**
+          * @uiName Continue to Confirmation Button Text
+         */
+        "continueToConfirmationText": string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<RewardExchangeViewProps>;
         /**
+          * @uiName Done Text
+         */
+        "doneText": string;
+        /**
           * @uiName Exchange button text
          */
         "notAvailableError": string;
+        /**
+          * @uiName Not Enough Available Error Message
+         */
+        "notEnoughError": string;
+        /**
+          * @uiName Reward List Error Message
+         */
+        "queryError": string;
+        /**
+          * @uiName Redeem Button Text
+         */
+        "redeemText": string;
+        /**
+          * @uiName Confirmation Title Text
+         */
+        "redeemTitle": string;
+        /**
+          * @uiName Redemption Error Message
+         */
+        "redemptionError": string;
+        "redemptionSuccessText": string;
     }
     interface SqmRewardsTable {
         /**
@@ -1082,7 +1182,7 @@ export namespace Components {
         /**
           * @uiName Reward Amount
          */
-        "rewardAmount": number;
+        "rewardAmount": string;
         /**
           * @uiName Reward Duration
           * @uiWidget DateRange
@@ -1339,6 +1439,18 @@ declare global {
         prototype: HTMLSqmPortalVerifyEmailElement;
         new (): HTMLSqmPortalVerifyEmailElement;
     };
+    interface HTMLSqmProgramExplainerElement extends Components.SqmProgramExplainer, HTMLStencilElement {
+    }
+    var HTMLSqmProgramExplainerElement: {
+        prototype: HTMLSqmProgramExplainerElement;
+        new (): HTMLSqmProgramExplainerElement;
+    };
+    interface HTMLSqmProgramExplainerStepElement extends Components.SqmProgramExplainerStep, HTMLStencilElement {
+    }
+    var HTMLSqmProgramExplainerStepElement: {
+        prototype: HTMLSqmProgramExplainerStepElement;
+        new (): HTMLSqmProgramExplainerStepElement;
+    };
     interface HTMLSqmProgramMenuElement extends Components.SqmProgramMenu, HTMLStencilElement {
     }
     var HTMLSqmProgramMenuElement: {
@@ -1550,6 +1662,8 @@ declare global {
         "sqm-portal-register": HTMLSqmPortalRegisterElement;
         "sqm-portal-reset-password": HTMLSqmPortalResetPasswordElement;
         "sqm-portal-verify-email": HTMLSqmPortalVerifyEmailElement;
+        "sqm-program-explainer": HTMLSqmProgramExplainerElement;
+        "sqm-program-explainer-step": HTMLSqmProgramExplainerStepElement;
         "sqm-program-menu": HTMLSqmProgramMenuElement;
         "sqm-referral-iframe": HTMLSqmReferralIframeElement;
         "sqm-referral-table": HTMLSqmReferralTableElement;
@@ -2239,6 +2353,53 @@ declare namespace LocalJSX {
          */
         "nextPage"?: string;
     }
+    interface SqmProgramExplainer {
+        /**
+          * @uiName Background
+          * @uiWidget color
+         */
+        "background"?: string;
+        /**
+          * @uiName Color
+          * @uiWidget color
+         */
+        "color"?: string;
+        /**
+          * @uiName Description
+         */
+        "description"?: string;
+        /**
+          * @uiName Header
+         */
+        "header"?: string;
+        /**
+          * @uiName Title
+         */
+        "title"?: string;
+    }
+    interface SqmProgramExplainerStep {
+        /**
+          * @uiName Background
+         */
+        "background"?: string;
+        /**
+          * @uiName Color
+          * @uiWidget color
+         */
+        "color"?: string;
+        /**
+          * @uiName Description
+         */
+        "description"?: string;
+        /**
+          * @uiName Icon
+         */
+        "icon"?: string;
+        /**
+          * @uiName Title
+         */
+        "title"?: string;
+    }
     interface SqmProgramMenu {
     }
     interface SqmReferralIframe {
@@ -2368,18 +2529,71 @@ declare namespace LocalJSX {
     }
     interface SqmRewardExchangeList {
         /**
+          * @uiName Back Button Text
+         */
+        "backText"?: string;
+        /**
           * @uiName Exchange button text
          */
         "buttonText"?: string;
+        /**
+          * @uiName Cancel Button Text
+         */
+        "cancelText"?: string;
+        /**
+          * @uiName Choose Amount Progress Title
+         */
+        "chooseAmountTitle"?: string;
+        /**
+          * @uiName Choose Reward Progress Title
+         */
+        "chooseRewardTitle"?: string;
+        /**
+          * @uiName Confirmation Progress Title
+         */
+        "confirmationTitle"?: string;
+        /**
+          * @uiName Continue Button Text
+         */
+        "continueText"?: string;
+        /**
+          * @uiName Continue to Confirmation Button Text
+         */
+        "continueToConfirmationText"?: string;
         /**
           * @undocumented 
           * @uiType object
          */
         "demoData"?: DemoData<RewardExchangeViewProps>;
         /**
+          * @uiName Done Text
+         */
+        "doneText"?: string;
+        /**
           * @uiName Exchange button text
          */
         "notAvailableError"?: string;
+        /**
+          * @uiName Not Enough Available Error Message
+         */
+        "notEnoughError"?: string;
+        /**
+          * @uiName Reward List Error Message
+         */
+        "queryError"?: string;
+        /**
+          * @uiName Redeem Button Text
+         */
+        "redeemText"?: string;
+        /**
+          * @uiName Confirmation Title Text
+         */
+        "redeemTitle"?: string;
+        /**
+          * @uiName Redemption Error Message
+         */
+        "redemptionError"?: string;
+        "redemptionSuccessText"?: string;
     }
     interface SqmRewardsTable {
         /**
@@ -2617,7 +2831,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Reward Amount
          */
-        "rewardAmount"?: number;
+        "rewardAmount"?: string;
         /**
           * @uiName Reward Duration
           * @uiWidget DateRange
@@ -2723,6 +2937,8 @@ declare namespace LocalJSX {
         "sqm-portal-register": SqmPortalRegister;
         "sqm-portal-reset-password": SqmPortalResetPassword;
         "sqm-portal-verify-email": SqmPortalVerifyEmail;
+        "sqm-program-explainer": SqmProgramExplainer;
+        "sqm-program-explainer-step": SqmProgramExplainerStep;
         "sqm-program-menu": SqmProgramMenu;
         "sqm-referral-iframe": SqmReferralIframe;
         "sqm-referral-table": SqmReferralTable;
@@ -2789,6 +3005,8 @@ declare module "@stencil/core" {
             "sqm-portal-register": LocalJSX.SqmPortalRegister & JSXBase.HTMLAttributes<HTMLSqmPortalRegisterElement>;
             "sqm-portal-reset-password": LocalJSX.SqmPortalResetPassword & JSXBase.HTMLAttributes<HTMLSqmPortalResetPasswordElement>;
             "sqm-portal-verify-email": LocalJSX.SqmPortalVerifyEmail & JSXBase.HTMLAttributes<HTMLSqmPortalVerifyEmailElement>;
+            "sqm-program-explainer": LocalJSX.SqmProgramExplainer & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;
+            "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
             "sqm-referral-iframe": LocalJSX.SqmReferralIframe & JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;

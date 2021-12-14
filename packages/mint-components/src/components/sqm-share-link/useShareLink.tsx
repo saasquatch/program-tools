@@ -1,4 +1,6 @@
 import {
+  useEngagementMedium,
+  useMutation,
   useProgramId,
   useQuery,
   useUserIdentity,
@@ -23,11 +25,19 @@ const MessageLinkQuery = gql`
   }
 `;
 
+const WIDGET_ENGAGEMENT_EVENT = gql`
+  mutation loadEvent($eventMeta: UserAnalyticsEvent!) {
+    createUserAnalyticsEvent(eventMeta: $eventMeta)
+  }
+`;
+
 export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
   const { programId = useProgramId() } = props;
   const user = useUserIdentity();
+  const engagementMedium = useEngagementMedium();
 
   const { data } = useQuery(MessageLinkQuery, { programId }, !user?.jwt);
+  const [sendLoadEvent] = useMutation(WIDGET_ENGAGEMENT_EVENT);
 
   const shareString =
     data?.user?.shareLink ??
@@ -42,6 +52,18 @@ export function useShareLink(props: ShareLinkProps): ShareLinkViewProps {
     navigator.clipboard.writeText(shareString);
     setOpen(true);
     setTimeout(() => setOpen(false), props.tooltiplifespan);
+    sendLoadEvent({
+      eventMeta: {
+        programId,
+        id: user?.id,
+        accountId: user?.accountId,
+        type: "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT",
+        meta: {
+          engagementMedium,
+          shareMedium: "DIRECT",
+        },
+      },
+    });
   }
 
   return { ...props, onClick, open, shareString };

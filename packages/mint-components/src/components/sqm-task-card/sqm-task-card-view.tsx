@@ -10,7 +10,7 @@ import {
 import { DateTime } from "luxon";
 
 export type TaskCardViewProps = {
-  rewardAmount: number;
+  rewardAmount: string;
   cardTitle: string;
   description: string;
   showProgressBar: boolean;
