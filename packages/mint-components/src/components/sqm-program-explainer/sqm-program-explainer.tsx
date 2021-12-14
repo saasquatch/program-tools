@@ -31,11 +31,13 @@ export class ProgramExplainer {
 
   /**
    * @uiName Color
+   * @uiWidget color
    */
   @Prop() color: string;
 
   /**
    * @uiName Background
+   * @uiWidget color
    */
   @Prop() background: string;
 

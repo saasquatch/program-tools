@@ -1,16 +1,10 @@
-import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
-import deepmerge from "deepmerge";
-import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
-import {
-  ProgramExplainerStepView,
-  ProgramExplainerStepViewProps,
-} from "./sqm-program-explainer-step-view";
+import { ProgramExplainerStepView } from "./sqm-program-explainer-step-view";
 
 /**
- * @uiName Navigation Link
+ * @uiName Program Explainer Step
  */
 @Component({
   tag: "sqm-program-explainer-step",
@@ -18,23 +12,24 @@ import {
 })
 export class ProgramExplainerStep {
   /**
-   * @uiName Navigation path
+   * @uiName Title
    */
-  @Prop() path: string;
-  /**
-   * @uiName Icon
-   */
-  @Prop() icon: string;
-  /**
-   * @uiName Label
-   */
-  @Prop() label: string;
+  @Prop() title: string;
 
   /**
-   * @undocumented
-   * @uiType object
+   * @uiName Description
    */
-  @Prop() demoData?: DemoData<ProgramExplainerStepViewProps>;
+  @Prop() description: string;
+
+  /**
+   * @uiName Color
+   */
+  @Prop() color: string;
+
+  /**
+   * @uiName Background
+   */
+  @Prop() background: string;
 
   constructor() {
     withHooks(this);
@@ -42,25 +37,6 @@ export class ProgramExplainerStep {
   disconnectedCallback() {}
 
   render() {
-    const props = useSidebarDemo(getProps(this));
-    return <ProgramExplainerStepView {...props} />;
+    return <ProgramExplainerStepView {...getProps(this)} />;
   }
-}
-
-function useSidebarDemo(
-  props: ProgramExplainerStep
-): ProgramExplainerStepViewProps {
-  return deepmerge(
-    {
-      states: {
-        active: false,
-      },
-      data: {
-        label: props.label || "Dashboard",
-        icon: props.icon || "house",
-      },
-    },
-    props.demoData || {},
-    { arrayMerge: (_, a) => a }
-  );
 }
