@@ -385,7 +385,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 : "none",
           };
 
-		const amount =
+          const amount =
             item.ruleType === "FIXED_GLOBAL_REWARD"
               ? item.prettySourceValue
               : item.ruleType === "STEPPED_FIXED_GLOBAL_REWARD"
@@ -447,7 +447,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                       opacity: item.unavailableReasonCode ? "0.5" : "1",
                     }}
                   >
-                    <div class="title">{item.name}</div>
+                    <div class="title">{item.name ?? ""}</div>
                     <div class="amount">{amount}</div>
                     {item.unavailableReasonCode && (
                       <div class="error">
@@ -508,7 +508,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           }
         </div>
         <div class={sheet.classes.ChooseAmount}>
-          <div class="title">{selectedItem?.name || ""}</div>
+          <div class="title">{selectedItem?.name ?? ""}</div>
           {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
             <div class="points">{input}</div>
           ) : (
@@ -596,8 +596,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 {selectedStep?.prettyDestinationValue
                   ? selectedStep?.prettyDestinationValue +
                       " " +
-                      selectedItem?.name || ""
-                  : selectedItem?.name || ""}
+                      selectedItem?.name ?? ""
+                  : selectedItem?.name ?? ""}
               </div>
             </sl-card>
 
