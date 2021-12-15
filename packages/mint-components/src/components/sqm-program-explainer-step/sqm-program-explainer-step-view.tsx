@@ -78,10 +78,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
 
   return (
     <div class={sheet.classes.Container}>
-      <style type="text/css">
-        {vanillaStyle}
-        {styleString}
-      </style>
+      <style type="text/css">{styleString}</style>
       <div>
         <div class={sheet.classes.Icon}>
           <sl-icon name={props.icon}></sl-icon>

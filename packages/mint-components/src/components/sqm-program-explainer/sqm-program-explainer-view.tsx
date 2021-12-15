@@ -49,9 +49,23 @@ export function ProgramExplainerView(
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
 
+  const vanillaStyle = `
+  ::slotted(*){
+    display: flex;
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+    ::slotted(*){
+      display: block;
+    }
+  }`;
+  
   return (
     <div>
-      <style type="text/css">{styleString}</style>
+      <style type="text/css">
+        {styleString}
+        {vanillaStyle}
+      </style>
       <div class={sheet.classes.Header}>
         <div class={sheet.classes.Title}>{props.header}</div>
       </div>

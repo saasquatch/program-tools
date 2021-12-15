@@ -3,18 +3,18 @@ import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 
-export interface CardFeedViewProps {
-}
-export function CardFeedView(
-  props: CardFeedViewProps,
-  children: VNode
-) {
+export interface CardFeedViewProps {}
+export function CardFeedView(props: CardFeedViewProps, children: VNode) {
   const style = {
     Container: {
-      display: "flex",
-      flexDirection: "row",
-      "@media (max-width: 768px)": {
-        flexDirection: "column",
+      width: "90%",
+      margin: "50px auto",
+      maxWidth: "800px",
+      columnGap: "60px",
+      columnWidth: "330px",
+      "& > div": {
+        display: "inline-block",
+        marginBottom: "50px",
       },
     },
   };
@@ -25,10 +25,20 @@ export function CardFeedView(
 
   console.log(props);
 
+  const vanillaStyle = `
+  ::slotted(*){
+    display: inline-block;
+	margin-bottom: "50px",
+  }
+  `;
+
   return (
-    <div>
-      hello world
-	  {children}
+    <div class={sheet.classes.Container}>
+      <style type="text/css">
+        {styleString}
+        {vanillaStyle}
+      </style>
+      {children}
     </div>
   );
 }
