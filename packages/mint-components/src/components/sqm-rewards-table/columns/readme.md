@@ -7,16 +7,15 @@
 
 ## Properties
 
-| Property        | Attribute        | Description | Type     | Default            |
-| --------------- | ---------------- | ----------- | -------- | ------------------ |
-| `anonymousUser` | `anonymous-user` |             | `string` | `"Anonymous User"` |
-| `columnTitle`   | `column-title`   |             | `string` | `"Customer"`       |
-| `deletedUser`   | `deleted-user`   |             | `string` | `"Deleted User"`   |
+| Property      | Attribute      | Description | Type     | Default                                                                                                                    |
+| ------------- | -------------- | ----------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `columnTitle` | `column-title` |             | `string` | `"Status"`                                                                                                                 |
+| `statusText`  | `status-text`  |             | `string` | `"{status, select, AVAILABLE {Available} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"` |
 
 
 ## Methods
 
-### `renderCell(data: Referral) => Promise<any>`
+### `renderCell(data: Reward) => Promise<any>`
 
 
 
@@ -39,15 +38,20 @@ Type: `Promise<string>`
 
 ## Dependencies
 
+### Used by
+
+ - [sqm-stencilbook](../../sqm-stencilbook)
+
 ### Depends on
 
-- [sqm-referral-table-user-cell](../cells)
+- [sqm-rewards-table-status-cell](../cells)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqm-referral-table-user-column --> sqm-referral-table-user-cell
-  style sqm-referral-table-user-column fill:#f9f,stroke:#333,stroke-width:4px
+  sqm-rewards-table-status-column --> sqm-rewards-table-status-cell
+  sqm-stencilbook --> sqm-rewards-table-status-column
+  style sqm-rewards-table-status-column fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

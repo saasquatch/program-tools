@@ -1,12 +1,27 @@
 import { h } from "@stencil/core";
 
+
+
 export function LoadingSlot() {
   return (
     <slot name="loading">
-      <LoadingSkeleton />
+      <LoadingRow />
+      <LoadingRow />
+      <LoadingRow />
+      <LoadingRow />
     </slot>
   );
 }
+export function LoadingRow() {
+  return (
+    <sqm-table-row>
+      <sqm-table-cell colspan={5}>
+        <sl-skeleton></sl-skeleton>
+      </sqm-table-cell>
+    </sqm-table-row>
+  );
+}
+
 export function LoadingSkeleton() {
   return (
     <div style={{ width: "100%" }}>

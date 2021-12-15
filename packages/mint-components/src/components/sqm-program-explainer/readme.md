@@ -7,13 +7,15 @@
 
 ## Properties
 
-| Property      | Attribute     | Description | Type     | Default     |
-| ------------- | ------------- | ----------- | -------- | ----------- |
-| `background`  | `background`  |             | `string` | `undefined` |
-| `cardTitle`   | `card-title`  |             | `string` | `undefined` |
-| `color`       | `color`       |             | `string` | `undefined` |
-| `description` | `description` |             | `string` | `undefined` |
-| `header`      | `header`      |             | `string` | `undefined` |
+| Property           | Attribute           | Description | Type     | Default     |
+| ------------------ | ------------------- | ----------- | -------- | ----------- |
+| `cardBackground`   | `card-background`   |             | `string` | `undefined` |
+| `cardColor`        | `card-color`        |             | `string` | `undefined` |
+| `cardDescription`  | `card-description`  |             | `string` | `undefined` |
+| `cardTitle`        | `card-title`        |             | `string` | `undefined` |
+| `header`           | `header`            |             | `string` | `undefined` |
+| `headerBackground` | `header-background` |             | `string` | `undefined` |
+| `headerColor`      | `header-color`      |             | `string` | `undefined` |
 
 
 ----------------------------------------------
