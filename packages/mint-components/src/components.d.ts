@@ -81,6 +81,11 @@ export namespace Components {
           * @uiName Brand Color
          */
         "brandColor": string;
+        /**
+          * The brand font that you want to use
+          * @uiName Brand Font
+         */
+        "brandFont": string;
     }
     interface SqmDividedLayout {
         /**
@@ -694,6 +699,10 @@ export namespace Components {
          */
         "background": string;
         /**
+          * @uiName Title
+         */
+        "cardTitle": string;
+        /**
           * @uiName Color
           * @uiWidget color
          */
@@ -706,16 +715,16 @@ export namespace Components {
           * @uiName Header
          */
         "header": string;
-        /**
-          * @uiName Title
-         */
-        "title": string;
     }
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background
          */
         "background": string;
+        /**
+          * @uiName Title
+         */
+        "cardTitle": string;
         /**
           * @uiName Color
           * @uiWidget color
@@ -729,10 +738,6 @@ export namespace Components {
           * @uiName Icon
          */
         "icon": string;
-        /**
-          * @uiName Title
-         */
-        "title": string;
     }
     interface SqmProgramMenu {
     }
@@ -1737,6 +1742,11 @@ declare namespace LocalJSX {
           * @uiName Brand Color
          */
         "brandColor"?: string;
+        /**
+          * The brand font that you want to use
+          * @uiName Brand Font
+         */
+        "brandFont"?: string;
     }
     interface SqmDividedLayout {
         /**
@@ -2350,6 +2360,10 @@ declare namespace LocalJSX {
          */
         "background"?: string;
         /**
+          * @uiName Title
+         */
+        "cardTitle"?: string;
+        /**
           * @uiName Color
           * @uiWidget color
          */
@@ -2362,16 +2376,16 @@ declare namespace LocalJSX {
           * @uiName Header
          */
         "header"?: string;
-        /**
-          * @uiName Title
-         */
-        "title"?: string;
     }
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background
          */
         "background"?: string;
+        /**
+          * @uiName Title
+         */
+        "cardTitle"?: string;
         /**
           * @uiName Color
           * @uiWidget color
@@ -2385,10 +2399,6 @@ declare namespace LocalJSX {
           * @uiName Icon
          */
         "icon"?: string;
-        /**
-          * @uiName Title
-         */
-        "title"?: string;
     }
     interface SqmProgramMenu {
     }

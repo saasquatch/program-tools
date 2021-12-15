@@ -7,7 +7,7 @@ export default {
 
 export const Example1 = () => {
   const props = {
-    title: "Invite your friends to Klip",
+    cardTitle: "Invite your friends to Klip",
     description: "Earn up to $1200 in rewards for each referral",
     color: "white",
     background: "#5B3EDA",

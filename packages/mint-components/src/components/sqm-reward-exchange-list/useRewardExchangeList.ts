@@ -105,6 +105,7 @@ const GET_EXCHANGE_LIST = gql`
               available
               globalRewardKey
               unavailableReasonCode
+              rewardInput
             }
           }
           totalCount
@@ -168,7 +169,7 @@ export function useRewardExchangeList(
     loading,
     refetch,
     errors: queryError,
-  } = useQuery(GET_EXCHANGE_LIST, !user?.jwt);
+  } = useQuery(GET_EXCHANGE_LIST, {}, !user?.jwt);
 
   useEffect(() => {
     if (exchangeResponse?.exchangeReward?.reward?.id) {
@@ -216,9 +217,7 @@ export function useRewardExchangeList(
             unit: selectedItem.sourceUnit,
           },
           globalRewardKey: selectedItem.globalRewardKey,
-          rewardInput: {
-            valueInCents: selectedStep.destinationValue,
-          },
+          rewardInput:selectedStep.rewardInput,
         };
         break;
       case "VARIABLE_CREDIT_REWARD":
@@ -238,11 +237,7 @@ export function useRewardExchangeList(
       default:
         exchangeVariables = {
           ...exchangeVariables,
-          redeemCreditInput: {
-            amount: selectedItem.sourceValue,
-            unit: selectedItem.sourceUnit,
-          },
-          globalRewardKey: selectedItem.globalRewardKey,
+          ...selectedStep.rewardInput,
         };
     }
     exchange({ exchangeRewardInput: exchangeVariables });

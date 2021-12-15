@@ -8,7 +8,7 @@ export default {
 
 const props = {
   header: "Klip Rewards",
-  title: "Earn rewards with our loyalty program",
+  cardTitle: "Earn rewards with our loyalty program",
   description:
     "Earn points by completing tasks like uploading your first video or sharing videos with friends. Use your points to redeem rewards like one free month of Klip Enterprise or two plane tickets to anywhere in North America.",
   color: "black",
@@ -16,21 +16,21 @@ const props = {
 };
 
 const steps1 = {
-  title: "Invite your friends to Klip",
+  cardTitle: "Invite your friends to Klip",
   description: "Earn up to $1200 in rewards for each referral",
   color: "white",
   background: "#5B3EDA",
   icon: "person-plus-fill",
 };
 const steps2 = {
-  title: "If your friend signs up for a Klip Business plan",
+  cardTitle: "If your friend signs up for a Klip Business plan",
   description: "Get a $50 VISA giftcard when they pay for their first month",
   color: "black",
   background: "#F3CC66",
   icon: "server",
 };
 const steps3 = {
-  title: "If your friend signs up for a Klip Enterprise plan",
+  cardTitle: "If your friend signs up for a Klip Enterprise plan",
   description:
     "Get up to $1200 in rewards - a $200 VISA giftcard when our sales team qualifies them as a good fit for Klip, and a $1000 VISA giftcard when they become a paying customer",
   color: "black",
