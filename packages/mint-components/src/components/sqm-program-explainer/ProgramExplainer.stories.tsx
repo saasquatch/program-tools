@@ -8,11 +8,13 @@ export default {
 
 const props = {
   header: "Klip Rewards",
+  headerColor: "black",
+  headerBackground: "#F3F0EC",
   cardTitle: "Earn rewards with our loyalty program",
-  description:
+  cardDescription:
     "Earn points by completing tasks like uploading your first video or sharing videos with friends. Use your points to redeem rewards like one free month of Klip Enterprise or two plane tickets to anywhere in North America.",
-  color: "black",
-  background: "#F3F0EC",
+  cardColor: "black",
+  cardBackground: "var(--sl-color-primary-100)",
 };
 
 const steps1 = {

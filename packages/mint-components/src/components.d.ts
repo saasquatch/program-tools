@@ -693,27 +693,37 @@ export namespace Components {
     }
     interface SqmProgramExplainer {
         /**
-          * @uiName Background
+          * @uiName Card Background Color
           * @uiWidget color
          */
-        "background": string;
+        "cardBackground": string;
         /**
-          * @uiName Title
+          * @uiName Card Text Color
+          * @uiWidget color
+         */
+        "cardColor": string;
+        /**
+          * @uiName Card Description
+         */
+        "cardDescription": string;
+        /**
+          * @uiName Card Title
          */
         "cardTitle": string;
         /**
-          * @uiName Color
-          * @uiWidget color
-         */
-        "color": string;
-        /**
-          * @uiName Description
-         */
-        "description": string;
-        /**
-          * @uiName Header
+          * @uiName Header Text
          */
         "header": string;
+        /**
+          * @uiName Header Background Color
+          * @uiWidget color
+         */
+        "headerBackground": string;
+        /**
+          * @uiName Header Text Color
+          * @uiWidget color
+         */
+        "headerColor": string;
     }
     interface SqmProgramExplainerStep {
         /**
@@ -2459,27 +2469,37 @@ declare namespace LocalJSX {
     }
     interface SqmProgramExplainer {
         /**
-          * @uiName Background
+          * @uiName Card Background Color
           * @uiWidget color
          */
-        "background"?: string;
+        "cardBackground"?: string;
         /**
-          * @uiName Title
+          * @uiName Card Text Color
+          * @uiWidget color
+         */
+        "cardColor"?: string;
+        /**
+          * @uiName Card Description
+         */
+        "cardDescription"?: string;
+        /**
+          * @uiName Card Title
          */
         "cardTitle"?: string;
         /**
-          * @uiName Color
-          * @uiWidget color
-         */
-        "color"?: string;
-        /**
-          * @uiName Description
-         */
-        "description"?: string;
-        /**
-          * @uiName Header
+          * @uiName Header Text
          */
         "header"?: string;
+        /**
+          * @uiName Header Background Color
+          * @uiWidget color
+         */
+        "headerBackground"?: string;
+        /**
+          * @uiName Header Text Color
+          * @uiWidget color
+         */
+        "headerColor"?: string;
     }
     interface SqmProgramExplainerStep {
         /**

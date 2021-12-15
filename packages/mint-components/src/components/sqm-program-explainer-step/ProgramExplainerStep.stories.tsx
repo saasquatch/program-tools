@@ -15,11 +15,3 @@ export const Example1 = () => {
   };
   return <ProgramExplainerStepView {...props} />;
 };
-
-// export const ActiveItem = () => {
-//   const props = {
-//     title: "hello",
-//     description: "world",
-//   };
-//   return <ProgramExplainerStepView {...props} />;
-// };
