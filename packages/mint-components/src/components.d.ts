@@ -88,37 +88,15 @@ export namespace Components {
     }
     interface SqmCardFeed {
         /**
-          * @uiName Card Background Color
-          * @uiWidget color
+          * @uiName Horizontal Gap
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
-        "cardBackground": string;
+        "gap": string;
         /**
-          * @uiName Card Text Color
-          * @uiWidget color
+          * @uiName Card Width
          */
-        "cardColor": string;
-        /**
-          * @uiName Card Description
-         */
-        "cardDescription": string;
-        /**
-          * @uiName Card Title
-         */
-        "cardTitle": string;
-        /**
-          * @uiName Header Text
-         */
-        "header": string;
-        /**
-          * @uiName Header Background Color
-          * @uiWidget color
-         */
-        "headerBackground": string;
-        /**
-          * @uiName Header Text Color
-          * @uiWidget color
-         */
-        "headerColor": string;
+        "width": number;
     }
     interface SqmDividedLayout {
         /**
@@ -1905,37 +1883,15 @@ declare namespace LocalJSX {
     }
     interface SqmCardFeed {
         /**
-          * @uiName Card Background Color
-          * @uiWidget color
+          * @uiName Horizontal Gap
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
-        "cardBackground"?: string;
+        "gap"?: string;
         /**
-          * @uiName Card Text Color
-          * @uiWidget color
+          * @uiName Card Width
          */
-        "cardColor"?: string;
-        /**
-          * @uiName Card Description
-         */
-        "cardDescription"?: string;
-        /**
-          * @uiName Card Title
-         */
-        "cardTitle"?: string;
-        /**
-          * @uiName Header Text
-         */
-        "header"?: string;
-        /**
-          * @uiName Header Background Color
-          * @uiWidget color
-         */
-        "headerBackground"?: string;
-        /**
-          * @uiName Header Text Color
-          * @uiWidget color
-         */
-        "headerColor"?: string;
+        "width"?: number;
     }
     interface SqmDividedLayout {
         /**

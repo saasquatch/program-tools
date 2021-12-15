@@ -6,7 +6,11 @@ export default {
   title: "Components/Card Feed",
 };
 
-const props = {};
+const props = {
+	width: 347,
+	gap: "xx-large",
+
+};
 
 const taskCardProps = {
   rewardAmount: "20",
