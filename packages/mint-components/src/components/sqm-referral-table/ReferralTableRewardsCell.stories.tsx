@@ -15,6 +15,7 @@ const baseReward: Reward = {
   dateScheduledFor: getDays(),
   dateExpires: getMonths(),
   dateCancelled: 134400,
+  dateRedeemed:0,
   fuelTankCode: "ABC",
   fuelTankType: "Code",
   currency: "null",
