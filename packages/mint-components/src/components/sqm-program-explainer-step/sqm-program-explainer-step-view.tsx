@@ -16,20 +16,20 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       display: "flex",
       flexDirection: "column",
       width: "100%",
-      height: "444px",
+      minHeight: "444px",
       color: props.color,
       background: props.background,
       padding: "24px",
 
-      "@media (max-width: 1024px)": {
+      "@media (max-width: 768px)": {
         flexDirection: "row",
         width: "auto",
-        height: "auto",
+        minHeight: "auto",
       },
     },
     Logo: {},
     Text: {
-      "@media (max-width: 1024px)": {
+      "@media (max-width: 768px)": {
         marginLeft: "24px",
       },
     },
@@ -39,7 +39,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       textTransform: "uppercase",
       lineHeight: "24px",
       marginTop: "24px",
-      "@media (max-width: 1024px)": {
+      "@media (max-width: 768px)": {
         margin: "0",
       },
     },
@@ -47,7 +47,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       fontSize: "16px",
       lineHeight: "28px",
       marginTop: "12px",
-      "@media (max-width: 1024px)": {
+      "@media (max-width: 768px)": {
         marginTop: "8px",
       },
     },
@@ -59,9 +59,23 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
 
   console.log(props);
 
+  const vanillaStyle = `
+  :host{
+  display: flex;
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+    :host{
+      display: block;
+    }
+  }`;
+  
   return (
     <div class={sheet.classes.Container}>
-      <style type="text/css">{styleString}</style>
+      <style type="text/css">
+        {vanillaStyle}
+        {styleString}
+      </style>
       <div class={sheet.classes.Logo}>
         <div
           style={{
