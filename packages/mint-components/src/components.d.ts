@@ -699,6 +699,10 @@ export namespace Components {
          */
         "background": string;
         /**
+          * @uiName Title
+         */
+        "cardTitle": string;
+        /**
           * @uiName Color
           * @uiWidget color
          */
@@ -711,16 +715,16 @@ export namespace Components {
           * @uiName Header
          */
         "header": string;
-        /**
-          * @uiName Title
-         */
-        "title": string;
     }
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background
          */
         "background": string;
+        /**
+          * @uiName Title
+         */
+        "cardTitle": string;
         /**
           * @uiName Color
           * @uiWidget color
@@ -734,10 +738,6 @@ export namespace Components {
           * @uiName Icon
          */
         "icon": string;
-        /**
-          * @uiName Title
-         */
-        "title": string;
     }
     interface SqmProgramMenu {
     }
@@ -2360,6 +2360,10 @@ declare namespace LocalJSX {
          */
         "background"?: string;
         /**
+          * @uiName Title
+         */
+        "cardTitle"?: string;
+        /**
           * @uiName Color
           * @uiWidget color
          */
@@ -2372,16 +2376,16 @@ declare namespace LocalJSX {
           * @uiName Header
          */
         "header"?: string;
-        /**
-          * @uiName Title
-         */
-        "title"?: string;
     }
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background
          */
         "background"?: string;
+        /**
+          * @uiName Title
+         */
+        "cardTitle"?: string;
         /**
           * @uiName Color
           * @uiWidget color
@@ -2395,10 +2399,6 @@ declare namespace LocalJSX {
           * @uiName Icon
          */
         "icon"?: string;
-        /**
-          * @uiName Title
-         */
-        "title"?: string;
     }
     interface SqmProgramMenu {
     }

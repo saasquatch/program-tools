@@ -9,7 +9,8 @@
 
 | Property     | Attribute     | Description                                                                                                                                           | Type     | Default     |
 | ------------ | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `brandColor` | `brand-color` | Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries. | `string` | `"#0000FF"` |
+| `brandColor` | `brand-color` | Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries. | `string` | `undefined` |
+| `brandFont`  | `brand-font`  | The brand font that you want to use                                                                                                                   | `string` | `undefined` |
 
 
 ## Slots
