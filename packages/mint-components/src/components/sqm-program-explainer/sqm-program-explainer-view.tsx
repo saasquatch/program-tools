@@ -37,6 +37,7 @@ export function ProgramExplainerView(
     Title: {
       fontSize: "var(--sl-font-size-x-large)",
       fontWeight: "var(--sl-font-weight-bold)",
+      lineHeight: "var(--sl-line-height-dense)",
     },
     Description: {
       fontSize: "var(--sl-font-size-medium)",

@@ -33,10 +33,10 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       },
     },
     Title: {
+      textTransform: "uppercase",
       fontSize: "var(--sl-font-size-medium)",
       fontWeight: "var(--sl-font-weight-bold)",
-      textTransform: "uppercase",
-      lineHeight: "var(--sl-spacing-large)",
+      lineHeight: "var(--sl-line-height-dense)",
       marginTop: "var(--sl-spacing-large)",
       "@media (max-width: 768px)": {
         margin: "0",
