@@ -7,7 +7,7 @@ import {
   GenericTableView,
   GenericTableViewProps,
 } from "../../tables/GenericTableView";
-import { EmptySlot, LoadingSlot, EmptySkeleton, LoadingSkeleton } from "../../tables/TableSlots";
+import { EmptySlot, LoadingSlot, EmptySkeleton, LoadingSkeleton} from "../../tables/TableSlots";
 import { useRewardsTable, CSS_NAMESPACE } from "./useRewardsTable";
 
 /**

@@ -5,11 +5,7 @@ import { intl } from "../../global/global";
 import { HostBlock } from "../../global/mixins";
 import { ProgressBar } from "./progressBar";
 import { ShareLinkView } from "../sqm-share-link/sqm-share-link-view";
-import {
-  ExchangeArrows,
-  Gift,
-  CheckmarkFilled,
-} from "./SVGs";
+import { ExchangeArrows, Gift, CheckmarkFilled } from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
 
 export type RewardExchangeViewProps = {
@@ -586,6 +582,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   }
 
   function confirmation() {
+    console.log(selectedItem?.name);
     return (
       <div>
         <h2 style={{ margin: "20px 0" }}>{states.content.text.redeemTitle}</h2>
@@ -635,10 +632,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 }}
               >
                 {selectedStep?.prettyDestinationValue
-                  ? selectedStep?.prettyDestinationValue +
-                      " " +
-                      selectedItem?.name ?? ""
-                  : selectedItem?.name ?? ""}
+                  ? `${selectedStep?.prettyDestinationValue} ${
+                      selectedItem?.name || ""
+                    }`
+                  : selectedItem?.name || ""}
               </div>
             </sl-card>
           </div>
