@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
 import { ProgramExplainerView } from "./sqm-program-explainer-view";
-import { ProgramExplainerStep } from "../sqm-program-explainer-step/sqm-program-explainer-step";
+import { ProgramExplainerStepView } from "../sqm-program-explainer-step/sqm-program-explainer-step-view";
 
 export default {
   title: "Components/Program Explainer",
@@ -8,11 +8,13 @@ export default {
 
 const props = {
   header: "Klip Rewards",
+  headerColor: "black",
+  headerBackground: "#F3F0EC",
   cardTitle: "Earn rewards with our loyalty program",
-  description:
+  cardDescription:
     "Earn points by completing tasks like uploading your first video or sharing videos with friends. Use your points to redeem rewards like one free month of Klip Enterprise or two plane tickets to anywhere in North America.",
-  color: "black",
-  background: "#F3F0EC",
+  cardColor: "black",
+  cardBackground: "var(--sl-color-primary-100)",
 };
 
 const steps1 = {
@@ -38,29 +40,29 @@ const steps3 = {
   icon: "people-fill",
 };
 
-// export const OneStep = () => {
-//   return (
-//     <ProgramExplainerView {...props}>
-// 	<ProgramExplainerStep {...steps1} />
-//     </ProgramExplainerView>
-//   );
-// };
+export const OneStep = () => {
+  return (
+    <ProgramExplainerView {...props}>
+      <ProgramExplainerStepView {...steps1} />
+    </ProgramExplainerView>
+  );
+};
 
-// export const TwoSteps = () => {
-//   return (
-//     <ProgramExplainerView {...props}>
-// 	<ProgramExplainerStep {...steps1} />
-// 	<ProgramExplainerStep {...steps2} />
-//     </ProgramExplainerView>
-//   );
-// };
+export const TwoSteps = () => {
+  return (
+    <ProgramExplainerView {...props}>
+      <ProgramExplainerStepView {...steps1} />
+      <ProgramExplainerStepView {...steps2} />
+    </ProgramExplainerView>
+  );
+};
 
 export const ThreeSteps = () => {
   return (
     <ProgramExplainerView {...props}>
-      <sqm-program-explainer-step {...steps1} />
-      <sqm-program-explainer-step {...steps2} />
-      <sqm-program-explainer-step {...steps3} />
+      <ProgramExplainerStepView {...steps1} />
+      <ProgramExplainerStepView {...steps2} />
+      <ProgramExplainerStepView {...steps3} />
     </ProgramExplainerView>
   );
 };

@@ -15,31 +15,43 @@ export class ProgramExplainer {
   ignored = true;
 
   /**
-   * @uiName Header
+   * @uiName Header Text
    */
   @Prop() header: string;
 
   /**
-   * @uiName Title
+   * @uiName Header Text Color
+   * @uiWidget color
+   */
+  @Prop() headerColor: string;
+
+  /**
+   * @uiName Header Background Color
+   * @uiWidget color
+   */
+  @Prop() headerBackground: string;
+
+  /**
+   * @uiName Card Title
    */
   @Prop() cardTitle: string;
 
   /**
-   * @uiName Description
+   * @uiName Card Description
    */
-  @Prop() description: string;
+  @Prop() cardDescription: string;
 
   /**
-   * @uiName Color
+   * @uiName Card Text Color
    * @uiWidget color
    */
-  @Prop() color: string;
+  @Prop() cardColor: string;
 
   /**
-   * @uiName Background
+   * @uiName Card Background Color
    * @uiWidget color
    */
-  @Prop() background: string;
+  @Prop() cardBackground: string;
 
   constructor() {
     withHooks(this);

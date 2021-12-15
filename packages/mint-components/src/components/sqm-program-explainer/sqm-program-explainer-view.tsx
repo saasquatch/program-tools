@@ -5,10 +5,12 @@ import preset from "jss-preset-default";
 
 export interface ProgramExplainerViewProps {
   header: string;
+  headerColor: string;
+  headerBackground: string;
   cardTitle: string;
-  description: string;
-  color: string;
-  background: string;
+  cardDescription: string;
+  cardColor: string;
+  cardBackground: string;
 }
 export function ProgramExplainerView(
   props: ProgramExplainerViewProps,
@@ -22,10 +24,15 @@ export function ProgramExplainerView(
         flexDirection: "column",
       },
     },
+    Header: {
+      padding: "24px",
+      color: props.headerColor,
+      background: props.headerBackground,
+    },
     Card: {
       padding: "24px",
-      color: props.color,
-      background: props.background,
+      color: props.cardColor,
+      background: props.cardBackground,
     },
     Title: {
       fontSize: "28px",
@@ -49,13 +56,13 @@ export function ProgramExplainerView(
   return (
     <div>
       <style type="text/css">{styleString}</style>
-      <div class={sheet.classes.Card}>
+      <div class={sheet.classes.Header}>
         <div class={sheet.classes.Title}>{props.header}</div>
       </div>
       <div class={sheet.classes.Container}>{children}</div>
       <div class={sheet.classes.Card}>
         <div class={sheet.classes.Title}>{props.cardTitle}</div>
-        <div class={sheet.classes.Description}>{props.description}</div>
+        <div class={sheet.classes.Description}>{props.cardDescription}</div>
       </div>
     </div>
   );

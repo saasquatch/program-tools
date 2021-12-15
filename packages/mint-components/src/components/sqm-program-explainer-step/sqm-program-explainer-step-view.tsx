@@ -16,7 +16,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       display: "flex",
       flexDirection: "column",
       width: "100%",
-      height: "444px",
+      minHeight: "444px",
       color: props.color,
       background: props.background,
       padding: "24px",
@@ -24,7 +24,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       "@media (max-width: 768px)": {
         flexDirection: "row",
         width: "auto",
-        height: "auto",
+        minHeight: "auto",
       },
     },
     Logo: {},
