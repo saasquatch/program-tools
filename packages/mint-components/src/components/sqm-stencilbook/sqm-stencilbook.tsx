@@ -48,7 +48,8 @@ import * as NameFields from "../sqm-name-fields/NameFields.stories";
 import * as RewardExchangeList from "../sqm-reward-exchange-list/RewardExchangeList.stories";
 import * as ProgramExplainer from "../sqm-program-explainer/ProgramExplainer.stories";
 import * as ProgramExplainerStep from "../sqm-program-explainer-step/ProgramExplainerStep.stories";
-import * as BrandStories from "../sqm-brand/SqmBrand.stories"
+import * as BrandStories from "../sqm-brand/SqmBrand.stories";
+import * as CardFeed from "../sqm-card-feed/CardFeed.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -103,7 +104,8 @@ const stories = [
   UseRewardsTable,
   ProgramExplainer,
   ProgramExplainerStep,
-  BrandStories
+  BrandStories,
+  CardFeed,
 ];
 
 /**

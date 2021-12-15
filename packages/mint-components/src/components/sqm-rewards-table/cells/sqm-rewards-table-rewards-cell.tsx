@@ -138,13 +138,11 @@ export class RewardTableRewardsCell {
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
-        <div slot="summary" class={sheet.classes.DetailsContainer}>
-          <TextSpanView type="p">
-            <span class={sheet.classes.BoldText}>
-              <RewardValue reward={this.reward} />
-            </span>
-          </TextSpanView>
-        </div>
+        <TextSpanView type="p">
+          <span class={sheet.classes.BoldText}>
+            <RewardValue reward={this.reward} />
+          </span>
+        </TextSpanView>
       </div>
     );
   }

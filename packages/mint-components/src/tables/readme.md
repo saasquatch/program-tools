@@ -17,12 +17,14 @@
 ### Used by
 
  - [sqm-referral-table](../components/sqm-referral-table)
+ - [sqm-rewards-table](../components/sqm-rewards-table)
  - [sqm-stencilbook](../components/sqm-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-referral-table --> sqm-table-row
+  sqm-rewards-table --> sqm-table-row
   sqm-stencilbook --> sqm-table-row
   style sqm-table-row fill:#f9f,stroke:#333,stroke-width:4px
 ```

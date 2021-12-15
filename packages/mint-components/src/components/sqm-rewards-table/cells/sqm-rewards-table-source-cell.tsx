@@ -47,7 +47,7 @@ export class RewardTableSourceCell {
           style={{
             display: "inline-block",
             verticalAlign: "top",
-            maxWidth: "120px",
+            maxWidth: "100%",
             whiteSpace: "nowrap",
             overflow: "hidden",
             textOverflow: "ellipsis",

@@ -202,7 +202,7 @@ export function useRewardsTable(
       hasNext: states.currentPage < states.pageCount - 1,
       hasPrev: states.currentPage > 0,
       show,
-      namespace: CSS_NAMESPACE,
+      namespace: CSS_NAMESPACE
     },
     data: {
       textOverrides: {

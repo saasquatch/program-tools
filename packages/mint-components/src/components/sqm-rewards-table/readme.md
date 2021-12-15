@@ -26,11 +26,15 @@
 
 ### Depends on
 
+- [sqm-table-row](../../tables)
+- [sqm-table-cell](../../tables)
 - [sqm-text](../sqm-text)
 
 ### Graph
 ```mermaid
 graph TD;
+  sqm-rewards-table --> sqm-table-row
+  sqm-rewards-table --> sqm-table-cell
   sqm-rewards-table --> sqm-text
   sqm-stencilbook --> sqm-rewards-table
   style sqm-rewards-table fill:#f9f,stroke:#333,stroke-width:4px
