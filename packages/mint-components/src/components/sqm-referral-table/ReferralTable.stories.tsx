@@ -62,6 +62,7 @@ const baseReward: Reward = {
   dateScheduledFor: 1628146800000,
   dateExpires: 1629010800000,
   dateCancelled: 134400,
+  dateRedeemed:0,
   fuelTankCode: "ABC",
   fuelTankType: "Code",
   currency: "null",
