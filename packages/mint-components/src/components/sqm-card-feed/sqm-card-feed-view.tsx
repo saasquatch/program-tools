@@ -31,7 +31,7 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
     display: inline-block;
 	margin-bottom: var(--sl-spacing-` +
     props.gap +
-    `),
+    `);
   }
   `;
 
