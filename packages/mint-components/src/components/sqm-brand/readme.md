@@ -15,9 +15,9 @@
 
 ## Slots
 
-| Slot                                 | Description |
-| ------------------------------------ | ----------- |
-| `"the description of the component"` |             |
+| Slot                                                                               | Description |
+| ---------------------------------------------------------------------------------- | ----------- |
+| `"Controls the brand color and font of Mint Components wrapped by the container."` |             |
 
 
 ## Dependencies
