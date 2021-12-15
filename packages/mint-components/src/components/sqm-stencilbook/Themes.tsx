@@ -46,7 +46,6 @@ export const NYTimes = `
 export const Klip = `
 :root{
     ${autoColorScaleCss("#4225C4")};
-    --sl-font-sans: Inter, sans;
 }
 
 `;

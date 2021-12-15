@@ -3,10 +3,10 @@ import { ColorError, guard, hsla, parseToHsla } from "color2k";
 const colorScale = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
 const lScale = [
   0.95, //weight 50
-  0.82, //weight 100
-  0.73, //weight 200
-  0.64, //weight 300
-  0.55, //weight 400
+  0.86, //weight 100
+  0.76, //weight 200
+  0.66, //weight 300
+  0.56, //weight 400
   0.46, //weight 500
   0.39, //weight 600
   0.32, //weight 700
