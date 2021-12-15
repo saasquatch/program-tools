@@ -13,6 +13,14 @@ interface Referral {
       Saasquatch_Referral_Status__c: string;
     };
   };
+  referrerUser: {
+    firstName: string;
+    lastName: string;
+    imageUrl: string;
+    customFields?: {
+      Saasquatch_Referral_Status__c: string;
+    };
+  };
   rewards: Reward[];
 }
 
@@ -36,12 +44,38 @@ interface Reward {
   dateScheduledFor: number;
   dateExpires: number;
   dateCancelled: number;
+  dateRedeemed: number;
   fuelTankCode: string;
   fuelTankType: string;
   currency: string;
   prettyValue: string;
+  prettyValueNumber?: string;
+  prettyAvailableNumber?: string;
+  prettyRedeemedNumber?: string;
+  prettyRedeemedCredit?: string;
+  prettyAssignedCredit?: string;
+  prettyAvailableValue?: string;
   statuses: string[];
   globalRewardKey?: string;
+  rewardSource?:
+    | "FRIEND_SIGNUP"
+    | "REFERRED"
+    | "MANUAL"
+    | "ACTIVATION"
+    | "ACQUISITION"
+    | "RETENTION"
+    | "REACTIVATION"
+    | "AUTOMATED";
+  exchangedRewardRedemptionTransaction?: {
+    id: string;
+    creditRedeemed: number;
+    prettyRedeemedCredit: string;
+    unit: string;
+    dateRedeemed: number;
+    redeemedRewards: Reward[];
+    exchangedRewards: Reward[];
+  };
+  referral?: Referral;
   rewardRedemptionTransactions: {
     data: [
       {

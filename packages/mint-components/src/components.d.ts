@@ -31,7 +31,6 @@ import { ReferralTableViewProps } from "./components/sqm-referral-table/sqm-refe
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { GenericTableViewProps } from "./tables/GenericTableView";
-import { Reward } from "./components/sqm-rewards-table/useRewardsTable";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
@@ -976,7 +975,24 @@ export namespace Components {
          */
         "showReferrer"?: boolean;
     }
-    interface SqmRewardsTableColumn {
+    interface SqmRewardsTableDateCell {
+        "date": number;
+    }
+    interface SqmRewardsTableDateColumn {
+        /**
+          * @uiName Date Column Title
+         */
+        "columnTitle": string;
+        /**
+          * @uiName Date Displayed
+          * @uiType string
+          * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
+         */
+        "dateShown": string;
+        "renderCell": (data: Reward) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+    }
+    interface SqmRewardsTableRewardColumn {
         /**
           * @uiName Reward column title
          */
@@ -987,6 +1003,45 @@ export namespace Components {
         "hideDetails": boolean;
         "renderCell": (data: Reward[]) => Promise<any>;
         "renderLabel": () => Promise<string>;
+    }
+    interface SqmRewardsTableRewardsCell {
+        "hideDetails": boolean;
+        "reward": Reward;
+    }
+    interface SqmRewardsTableSourceCell {
+        "reward": Reward;
+    }
+    interface SqmRewardsTableSourceColumn {
+        /**
+          * @uiName Name displayed for anonymous users
+         */
+        "anonymousUser": string;
+        /**
+          * @uiName User Column Title
+         */
+        "columnTitle": string;
+        /**
+          * @uiName Name displayed for deleted users
+         */
+        "deletedUser": string;
+        "renderCell": (data: Reward) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+    }
+    interface SqmRewardsTableStatusCell {
+        "reward": Reward;
+        "statusText": string;
+    }
+    interface SqmRewardsTableStatusColumn {
+        /**
+          * @uiName Column Title
+         */
+        "columnTitle": string;
+        "renderCell": (data: Reward) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+        /**
+          * @uiName Expired Status Text
+         */
+        "statusText": string;
     }
     interface SqmRoute {
         /**
@@ -1541,11 +1596,53 @@ declare global {
         prototype: HTMLSqmRewardsTableElement;
         new (): HTMLSqmRewardsTableElement;
     };
-    interface HTMLSqmRewardsTableColumnElement extends Components.SqmRewardsTableColumn, HTMLStencilElement {
+    interface HTMLSqmRewardsTableDateCellElement extends Components.SqmRewardsTableDateCell, HTMLStencilElement {
     }
-    var HTMLSqmRewardsTableColumnElement: {
-        prototype: HTMLSqmRewardsTableColumnElement;
-        new (): HTMLSqmRewardsTableColumnElement;
+    var HTMLSqmRewardsTableDateCellElement: {
+        prototype: HTMLSqmRewardsTableDateCellElement;
+        new (): HTMLSqmRewardsTableDateCellElement;
+    };
+    interface HTMLSqmRewardsTableDateColumnElement extends Components.SqmRewardsTableDateColumn, HTMLStencilElement {
+    }
+    var HTMLSqmRewardsTableDateColumnElement: {
+        prototype: HTMLSqmRewardsTableDateColumnElement;
+        new (): HTMLSqmRewardsTableDateColumnElement;
+    };
+    interface HTMLSqmRewardsTableRewardColumnElement extends Components.SqmRewardsTableRewardColumn, HTMLStencilElement {
+    }
+    var HTMLSqmRewardsTableRewardColumnElement: {
+        prototype: HTMLSqmRewardsTableRewardColumnElement;
+        new (): HTMLSqmRewardsTableRewardColumnElement;
+    };
+    interface HTMLSqmRewardsTableRewardsCellElement extends Components.SqmRewardsTableRewardsCell, HTMLStencilElement {
+    }
+    var HTMLSqmRewardsTableRewardsCellElement: {
+        prototype: HTMLSqmRewardsTableRewardsCellElement;
+        new (): HTMLSqmRewardsTableRewardsCellElement;
+    };
+    interface HTMLSqmRewardsTableSourceCellElement extends Components.SqmRewardsTableSourceCell, HTMLStencilElement {
+    }
+    var HTMLSqmRewardsTableSourceCellElement: {
+        prototype: HTMLSqmRewardsTableSourceCellElement;
+        new (): HTMLSqmRewardsTableSourceCellElement;
+    };
+    interface HTMLSqmRewardsTableSourceColumnElement extends Components.SqmRewardsTableSourceColumn, HTMLStencilElement {
+    }
+    var HTMLSqmRewardsTableSourceColumnElement: {
+        prototype: HTMLSqmRewardsTableSourceColumnElement;
+        new (): HTMLSqmRewardsTableSourceColumnElement;
+    };
+    interface HTMLSqmRewardsTableStatusCellElement extends Components.SqmRewardsTableStatusCell, HTMLStencilElement {
+    }
+    var HTMLSqmRewardsTableStatusCellElement: {
+        prototype: HTMLSqmRewardsTableStatusCellElement;
+        new (): HTMLSqmRewardsTableStatusCellElement;
+    };
+    interface HTMLSqmRewardsTableStatusColumnElement extends Components.SqmRewardsTableStatusColumn, HTMLStencilElement {
+    }
+    var HTMLSqmRewardsTableStatusColumnElement: {
+        prototype: HTMLSqmRewardsTableStatusColumnElement;
+        new (): HTMLSqmRewardsTableStatusColumnElement;
     };
     interface HTMLSqmRouteElement extends Components.SqmRoute, HTMLStencilElement {
     }
@@ -1679,7 +1776,14 @@ declare global {
         "sqm-referral-table-user-column": HTMLSqmReferralTableUserColumnElement;
         "sqm-reward-exchange-list": HTMLSqmRewardExchangeListElement;
         "sqm-rewards-table": HTMLSqmRewardsTableElement;
-        "sqm-rewards-table-column": HTMLSqmRewardsTableColumnElement;
+        "sqm-rewards-table-date-cell": HTMLSqmRewardsTableDateCellElement;
+        "sqm-rewards-table-date-column": HTMLSqmRewardsTableDateColumnElement;
+        "sqm-rewards-table-reward-column": HTMLSqmRewardsTableRewardColumnElement;
+        "sqm-rewards-table-rewards-cell": HTMLSqmRewardsTableRewardsCellElement;
+        "sqm-rewards-table-source-cell": HTMLSqmRewardsTableSourceCellElement;
+        "sqm-rewards-table-source-column": HTMLSqmRewardsTableSourceColumnElement;
+        "sqm-rewards-table-status-cell": HTMLSqmRewardsTableStatusCellElement;
+        "sqm-rewards-table-status-column": HTMLSqmRewardsTableStatusColumnElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
@@ -2627,7 +2731,22 @@ declare namespace LocalJSX {
          */
         "showReferrer"?: boolean;
     }
-    interface SqmRewardsTableColumn {
+    interface SqmRewardsTableDateCell {
+        "date"?: number;
+    }
+    interface SqmRewardsTableDateColumn {
+        /**
+          * @uiName Date Column Title
+         */
+        "columnTitle"?: string;
+        /**
+          * @uiName Date Displayed
+          * @uiType string
+          * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
+         */
+        "dateShown"?: string;
+    }
+    interface SqmRewardsTableRewardColumn {
         /**
           * @uiName Reward column title
          */
@@ -2636,6 +2755,41 @@ declare namespace LocalJSX {
           * @uiName Hide dropdown details of reward
          */
         "hideDetails"?: boolean;
+    }
+    interface SqmRewardsTableRewardsCell {
+        "hideDetails"?: boolean;
+        "reward"?: Reward;
+    }
+    interface SqmRewardsTableSourceCell {
+        "reward"?: Reward;
+    }
+    interface SqmRewardsTableSourceColumn {
+        /**
+          * @uiName Name displayed for anonymous users
+         */
+        "anonymousUser"?: string;
+        /**
+          * @uiName User Column Title
+         */
+        "columnTitle"?: string;
+        /**
+          * @uiName Name displayed for deleted users
+         */
+        "deletedUser"?: string;
+    }
+    interface SqmRewardsTableStatusCell {
+        "reward"?: Reward;
+        "statusText"?: string;
+    }
+    interface SqmRewardsTableStatusColumn {
+        /**
+          * @uiName Column Title
+         */
+        "columnTitle"?: string;
+        /**
+          * @uiName Expired Status Text
+         */
+        "statusText"?: string;
     }
     interface SqmRoute {
         /**
@@ -2954,7 +3108,14 @@ declare namespace LocalJSX {
         "sqm-referral-table-user-column": SqmReferralTableUserColumn;
         "sqm-reward-exchange-list": SqmRewardExchangeList;
         "sqm-rewards-table": SqmRewardsTable;
-        "sqm-rewards-table-column": SqmRewardsTableColumn;
+        "sqm-rewards-table-date-cell": SqmRewardsTableDateCell;
+        "sqm-rewards-table-date-column": SqmRewardsTableDateColumn;
+        "sqm-rewards-table-reward-column": SqmRewardsTableRewardColumn;
+        "sqm-rewards-table-rewards-cell": SqmRewardsTableRewardsCell;
+        "sqm-rewards-table-source-cell": SqmRewardsTableSourceCell;
+        "sqm-rewards-table-source-column": SqmRewardsTableSourceColumn;
+        "sqm-rewards-table-status-cell": SqmRewardsTableStatusCell;
+        "sqm-rewards-table-status-column": SqmRewardsTableStatusColumn;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
         "sqm-share-button": SqmShareButton;
@@ -3022,7 +3183,14 @@ declare module "@stencil/core" {
             "sqm-referral-table-user-column": LocalJSX.SqmReferralTableUserColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserColumnElement>;
             "sqm-reward-exchange-list": LocalJSX.SqmRewardExchangeList & JSXBase.HTMLAttributes<HTMLSqmRewardExchangeListElement>;
             "sqm-rewards-table": LocalJSX.SqmRewardsTable & JSXBase.HTMLAttributes<HTMLSqmRewardsTableElement>;
-            "sqm-rewards-table-column": LocalJSX.SqmRewardsTableColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableColumnElement>;
+            "sqm-rewards-table-date-cell": LocalJSX.SqmRewardsTableDateCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateCellElement>;
+            "sqm-rewards-table-date-column": LocalJSX.SqmRewardsTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateColumnElement>;
+            "sqm-rewards-table-reward-column": LocalJSX.SqmRewardsTableRewardColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableRewardColumnElement>;
+            "sqm-rewards-table-rewards-cell": LocalJSX.SqmRewardsTableRewardsCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableRewardsCellElement>;
+            "sqm-rewards-table-source-cell": LocalJSX.SqmRewardsTableSourceCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableSourceCellElement>;
+            "sqm-rewards-table-source-column": LocalJSX.SqmRewardsTableSourceColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableSourceColumnElement>;
+            "sqm-rewards-table-status-cell": LocalJSX.SqmRewardsTableStatusCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableStatusCellElement>;
+            "sqm-rewards-table-status-column": LocalJSX.SqmRewardsTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableStatusColumnElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;

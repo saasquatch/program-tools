@@ -13,40 +13,6 @@ import { useChildElements } from "../../tables/useChildElements";
 
 export const CSS_NAMESPACE = "sqm-rewards-table";
 
-export interface Reward {
-  id: string;
-  type: string;
-  value: number;
-  unit: string;
-  name: string;
-  dateGiven: number;
-  dateScheduledFor: number;
-  dateExpires: number;
-  dateCancelled: number;
-  fuelTankCode: string;
-  fuelTankType: string;
-  currency: string;
-  prettyValue: string;
-  statuses: string[];
-  globalRewardKey?: string;
-  rewardRedemptionTransactions: {
-    data: [
-      {
-        exchangedRewards: {
-          data: [
-            {
-              prettyValue: string;
-              type: string;
-              fuelTankCode: string;
-              globalRewardKey?: string;
-            }
-          ];
-        };
-      }
-    ];
-  };
-}
-
 const GET_REWARDS = gql`
   query getRewards(
     $limit: Int!
@@ -74,9 +40,40 @@ const GET_REWARDS = gql`
             fuelTankType
             currency
             prettyValue
+            prettyValueNumber: prettyValue(formatType: NUMBER_FORMATTED)
+            prettyAvailableNumber: prettyAvailableValue(
+              formatType: NUMBER_FORMATTED
+            )
+            prettyRedeemedNumber: prettyRedeemedCredit(
+              formatType: NUMBER_FORMATTED
+            )
             statuses
             globalRewardKey
             programRewardKey
+            rewardSource
+            prettyRedeemedCredit
+            prettyAssignedCredit
+            prettyAvailableValue
+            exchangedRewardRedemptionTransaction {
+              id
+              creditRedeemed
+              prettyRedeemedCredit
+              unit
+              dateRedeemed
+            }
+            referral {
+              id
+              referrerUser {
+                id
+                firstName
+                lastName
+              }
+              referredUser {
+                id
+                firstName
+                lastName
+              }
+            }
             rewardRedemptionTransactions {
               data {
                 exchangedRewards {
@@ -251,13 +248,7 @@ async function tryMethod(
   } catch (e) {
     // renderLabel did not return a promise, so this method probably doesn't exist
     // therefore, we IGNORE the label
-
-    if (callback.name === "renderReferrerCell") {
-      console.error("column does not have a renderReferrerCell method.");
-    } else {
-      console.error("label promise failed", e);
-    }
-
+    console.error("label promise failed", e);
     return <span />;
   }
   try {
