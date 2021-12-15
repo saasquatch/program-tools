@@ -12,9 +12,6 @@ export interface ProgramExplainerStepViewProps {
 
 export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
   const style = {
-    "& :host": {
-      background: "red!important",
-    },
     Container: {
       display: "flex",
       flexDirection: "column",
@@ -24,7 +21,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       background: props.background,
       padding: "24px",
 
-      "@media (max-width: 1024px)": {
+      "@media (max-width: 768px)": {
         flexDirection: "row",
         width: "auto",
         height: "auto",
@@ -32,7 +29,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
     },
     Logo: {},
     Text: {
-      "@media (max-width: 1024px)": {
+      "@media (max-width: 768px)": {
         marginLeft: "24px",
       },
     },
@@ -42,7 +39,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       textTransform: "uppercase",
       lineHeight: "24px",
       marginTop: "24px",
-      "@media (max-width: 1024px)": {
+      "@media (max-width: 768px)": {
         margin: "0",
       },
     },
@@ -50,7 +47,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       fontSize: "16px",
       lineHeight: "28px",
       marginTop: "12px",
-      "@media (max-width: 1024px)": {
+      "@media (max-width: 768px)": {
         marginTop: "8px",
       },
     },
@@ -61,14 +58,18 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
   const styleString = sheet.toString();
 
   console.log(props);
+
   const vanillaStyle = `
-  :host{    
-	display: flex;
-	width: 100%;
+  :host{
+  display: flex;
+    width: 100%;
   }
+  @media (max-width: 768px) {
+    :host{
+      display: block;
+    }
+  }`;
   
-  
-  `;
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">

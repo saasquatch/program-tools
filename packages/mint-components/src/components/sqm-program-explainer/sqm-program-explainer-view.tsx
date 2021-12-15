@@ -18,7 +18,7 @@ export function ProgramExplainerView(
     Container: {
       display: "flex",
       flexDirection: "row",
-      "@media (max-width: 1024px)": {
+      "@media (max-width: 768px)": {
         flexDirection: "column",
       },
     },
