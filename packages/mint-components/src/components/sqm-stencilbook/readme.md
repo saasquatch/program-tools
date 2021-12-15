@@ -80,6 +80,8 @@ graph TD;
   sqm-stencilbook --> sqm-referral-iframe
   sqm-stencilbook --> sqm-brand
   sqm-edit-profile --> sqm-form-message
+  sqm-rewards-table --> sqm-table-row
+  sqm-rewards-table --> sqm-table-cell
   sqm-rewards-table --> sqm-text
   sqm-rewards-table-reward-column --> sqm-rewards-table-rewards-cell
   sqm-rewards-table-source-column --> sqm-rewards-table-source-cell
