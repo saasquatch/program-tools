@@ -25,33 +25,28 @@ export function ProgramExplainerView(
       },
     },
     Header: {
-      padding: "24px",
+      padding: "var(--sl-spacing-large)",
       color: props.headerColor,
       background: props.headerBackground,
     },
     Card: {
-      padding: "24px",
+      padding: "var(--sl-spacing-large)",
       color: props.cardColor,
       background: props.cardBackground,
     },
     Title: {
-      fontSize: "28px",
-      lineHeight: "36px",
-      fontWeight: "700",
+      fontSize: "var(--sl-font-size-x-large)",
+      fontWeight: "var(--sl-font-weight-bold)",
     },
     Description: {
-      fontSize: "16px",
-      lineHeight: "28px",
-      fontWeight: "400",
-      marginTop: "8px",
+      fontSize: "var(--sl-font-size-medium)",
+      marginTop: "var(--sl-spacing-x-small)",
     },
   };
 
   jss.setup(preset());
   const sheet = jss.createStyleSheet(style);
   const styleString = sheet.toString();
-
-  console.log(props);
 
   return (
     <div>

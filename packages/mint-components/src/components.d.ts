@@ -86,6 +86,40 @@ export namespace Components {
          */
         "brandFont": string;
     }
+    interface SqmCardFeed {
+        /**
+          * @uiName Card Background Color
+          * @uiWidget color
+         */
+        "cardBackground": string;
+        /**
+          * @uiName Card Text Color
+          * @uiWidget color
+         */
+        "cardColor": string;
+        /**
+          * @uiName Card Description
+         */
+        "cardDescription": string;
+        /**
+          * @uiName Card Title
+         */
+        "cardTitle": string;
+        /**
+          * @uiName Header Text
+         */
+        "header": string;
+        /**
+          * @uiName Header Background Color
+          * @uiWidget color
+         */
+        "headerBackground": string;
+        /**
+          * @uiName Header Text Color
+          * @uiWidget color
+         */
+        "headerColor": string;
+    }
     interface SqmDividedLayout {
         /**
           * @uiName Direction
@@ -1342,6 +1376,12 @@ declare global {
         prototype: HTMLSqmBrandElement;
         new (): HTMLSqmBrandElement;
     };
+    interface HTMLSqmCardFeedElement extends Components.SqmCardFeed, HTMLStencilElement {
+    }
+    var HTMLSqmCardFeedElement: {
+        prototype: HTMLSqmCardFeedElement;
+        new (): HTMLSqmCardFeedElement;
+    };
     interface HTMLSqmDividedLayoutElement extends Components.SqmDividedLayout, HTMLStencilElement {
     }
     var HTMLSqmDividedLayoutElement: {
@@ -1742,6 +1782,7 @@ declare global {
         "sqm-asset-card": HTMLSqmAssetCardElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
+        "sqm-card-feed": HTMLSqmCardFeedElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
@@ -1861,6 +1902,40 @@ declare namespace LocalJSX {
           * @uiName Brand Font
          */
         "brandFont"?: string;
+    }
+    interface SqmCardFeed {
+        /**
+          * @uiName Card Background Color
+          * @uiWidget color
+         */
+        "cardBackground"?: string;
+        /**
+          * @uiName Card Text Color
+          * @uiWidget color
+         */
+        "cardColor"?: string;
+        /**
+          * @uiName Card Description
+         */
+        "cardDescription"?: string;
+        /**
+          * @uiName Card Title
+         */
+        "cardTitle"?: string;
+        /**
+          * @uiName Header Text
+         */
+        "header"?: string;
+        /**
+          * @uiName Header Background Color
+          * @uiWidget color
+         */
+        "headerBackground"?: string;
+        /**
+          * @uiName Header Text Color
+          * @uiWidget color
+         */
+        "headerColor"?: string;
     }
     interface SqmDividedLayout {
         /**
@@ -3084,6 +3159,7 @@ declare namespace LocalJSX {
         "sqm-asset-card": SqmAssetCard;
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
+        "sqm-card-feed": SqmCardFeed;
         "sqm-divided-layout": SqmDividedLayout;
         "sqm-edit-profile": SqmEditProfile;
         "sqm-form-message": SqmFormMessage;
@@ -3159,6 +3235,7 @@ declare module "@stencil/core" {
             "sqm-asset-card": LocalJSX.SqmAssetCard & JSXBase.HTMLAttributes<HTMLSqmAssetCardElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
+            "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
