@@ -12,8 +12,8 @@ export interface ProgramExplainerStepViewProps {
 
 export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
   const style = {
-    "&:host": {
-      color: "red!important",
+    "& :host": {
+      background: "red!important",
     },
     Container: {
       display: "flex",
@@ -61,10 +61,20 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
   const styleString = sheet.toString();
 
   console.log(props);
-
+  const vanillaStyle = `
+  :host{    
+	display: flex;
+	width: 100%;
+  }
+  
+  
+  `;
   return (
     <div class={sheet.classes.Container}>
-      <style type="text/css">{styleString}</style>
+      <style type="text/css">
+        {vanillaStyle}
+        {styleString}
+      </style>
       <div class={sheet.classes.Logo}>
         <div
           style={{
