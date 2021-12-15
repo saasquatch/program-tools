@@ -377,6 +377,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     },
                     {
                       unavailableReason: step.unavailableReasonCode,
+                      sourceUnit: item.sourceUnit,
                       sourceValue:
                         step.prettySourceValue || item.prettySourceMinValue,
                     }
@@ -499,6 +500,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                             unavailableReason:
                               item.unavailableReason ||
                               item.unavailableReasonCode,
+                            sourceUnit: item.sourceUnit,
                             sourceValue:
                               item.prettySourceValue ||
                               item.prettySourceMinValue,
