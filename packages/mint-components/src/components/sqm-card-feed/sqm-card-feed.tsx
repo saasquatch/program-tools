@@ -21,14 +21,7 @@ export class CardFeed {
   width: number = 347;
 
   /**
-   * @uiName Horizontal Gap
-   * @uiType string
-   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-   */
-  @Prop() gaps: string = "xx-large";
-
-  /**
-   * @uiName Pixel Gap
+   * @uiName Column Gap
    * @uiType number
    */
   @Prop() gap: number = 24;

@@ -23,20 +23,15 @@ export type TaskCardViewProps = {
   buttonLink: string;
   openNewTab: boolean;
   loading: boolean;
+  marginBottom?: number;
 } & ProgressBarProps;
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
-
   const checkmark_circle = SVGs.checkmark_circle();
   const checkmark_filled = SVGs.checkmark_filled();
   const arrow_left_right = SVGs.arrow_left_right();
 
   const style = {
-    // HostBlock: {
-    //   ":host": {
-    //     display: "inline-block",
-    //   },
-    // },
     TaskCard: {
       display: "inline-block",
       width: "100%",
@@ -176,8 +171,19 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const taskNotStarted = props.showExpiry && dateToday <= dateStart;
   const taskUnavailable = taskEnded || taskNotStarted;
 
+  const vanillaStyle = `
+	:host{
+		display: block;
+		margin-bottom: 24px;
+	}
+  `;
+
   return (
     <div class={sheet.classes.TaskCard}>
+      <style type="text/css">
+        {styleString}
+        {vanillaStyle}
+      </style>
       <div
         class={
           taskUnavailable
@@ -187,7 +193,6 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             : "main"
         }
       >
-        <style type="text/css">{styleString}</style>
         {taskUnavailable && (
           <div class={sheet.classes.Expired}>
             {taskEnded
