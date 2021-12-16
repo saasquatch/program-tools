@@ -12,10 +12,6 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
     Container: {
       columnGap: "var(--sl-spacing-" + props.gap + ")",
       columnWidth: props.width + "px",
-      "& > div": {
-        display: "inline-block",
-        marginBottom: "var(--sl-spacing-" + props.gap + ")",
-      },
     },
   };
 
@@ -27,12 +23,9 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
 
   const vanillaStyle =
     `
-  ::slotted(*){
-    display: inline-block;
-	margin-bottom: var(--sl-spacing-` +
-    props.gap +
-    `);
-  }
+	:host {
+		display: block;
+	}
   `;
 
   return (
@@ -41,7 +34,15 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
         {styleString}
         {vanillaStyle}
       </style>
-      {children}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--sl-spacing-" + props.gap + ")",
+        }}
+      >
+        {children}
+      </div>
     </div>
   );
 }
