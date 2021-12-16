@@ -32,8 +32,14 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const arrow_left_right = SVGs.arrow_left_right();
 
   const style = {
-    HostBlock: HostBlock,
+    // HostBlock: {
+    //   ":host": {
+    //     display: "inline-block",
+    //   },
+    // },
     TaskCard: {
+      display: "inline-block",
+      width: "100%",
       "& .main": {
         position: "relative",
         boxSizing: "border-box",
@@ -204,9 +210,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                     {taskComplete ? checkmark_filled : checkmark_circle}
                   </span>
                 )}
-                <span class={"value"}>
-                  {props.rewardAmount}
-                </span>
+                <span class={"value"}>{props.rewardAmount}</span>
                 <span class="text">{props.rewardUnit}</span>
               </div>
             )}
@@ -217,9 +221,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               style={{ width: "42%", margin: "var(--sl-spacing-medium) 0" }}
             />
           ) : (
-            <div class={"title"}>
-              {props.cardTitle}
-            </div>
+            <div class={"title"}>{props.cardTitle}</div>
           )}
           {props.loading ? (
             <sl-skeleton style={{ margin: "var(--sl-spacing-medium) 0" }} />
