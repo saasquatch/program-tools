@@ -40,12 +40,12 @@ export class SqmRewardExchangeList {
   /**
    * @uiName Choose Reward Progress Title
    */
-  @Prop() chooseRewardTitle: string = "Choose reward";
+  @Prop() chooseRewardTitle: string = "Rewards";
 
   /**
    * @uiName Choose Amount Progress Title
    */
-  @Prop() chooseAmountTitle: string = "Amount";
+  @Prop() chooseAmountTitle: string = "Select";
 
   /**
    * @uiName Confirmation Progress Title

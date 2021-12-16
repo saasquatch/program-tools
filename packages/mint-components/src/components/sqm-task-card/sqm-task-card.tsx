@@ -92,6 +92,14 @@ export class TaskCard {
   @Prop() rewardDuration: string = "/";
 
   /**
+   * Displays the amount of times that a user has completed a repeatable task.
+   *
+   * @uiName Completed Count Text
+   */
+  @Prop() completedText: string = 
+  "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}";
+
+  /**
    * @uiName CTA Button Text
    */
   @Prop()
@@ -127,7 +135,7 @@ export class TaskCard {
   render() {
     const { props } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
     const { value, loading } = props;
-    
+
     return (
       <TaskCardView
         progress={value}

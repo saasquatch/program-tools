@@ -8,6 +8,7 @@ import {
   ProgressBarView,
 } from "./progress-bar/progress-bar-view";
 import { DateTime } from "luxon";
+import { intl } from "../../global/global";
 
 export type TaskCardViewProps = {
   rewardAmount: string;
@@ -16,6 +17,7 @@ export type TaskCardViewProps = {
   showProgressBar: boolean;
   repeatable: boolean;
   finite: number;
+  completedText: string;
   showExpiry: boolean;
   rewardDuration: string;
   rewardUnit: string;
@@ -26,7 +28,6 @@ export type TaskCardViewProps = {
 } & ProgressBarProps;
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
-
   const checkmark_circle = SVGs.checkmark_circle();
   const checkmark_filled = SVGs.checkmark_filled();
   const arrow_left_right = SVGs.arrow_left_right();
@@ -267,12 +268,18 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                             : ""
                         }
                       >
-                        {"Completed " +
-                          (props.finite
-                            ? Math.min(repetitions, props.finite)
-                            : repetitions) +
-                          (props.finite ? "/" + props.finite : "") +
-                          " times"}
+                        {intl.formatMessage(
+                          {
+                            id: "completedMessage",
+                            defaultMessage: props.completedText,
+                          },
+                          {
+                            finite: props.finite,
+                            count: props.finite
+                              ? Math.min(repetitions, props.finite)
+                              : repetitions,
+                          }
+                        )}
                       </span>
                     </div>
                   )}

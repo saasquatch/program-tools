@@ -1233,6 +1233,11 @@ export namespace Components {
          */
         "cardTitle": string;
         /**
+          * Displays the amount of times that a user has completed a repeatable task.
+          * @uiName Completed Count Text
+         */
+        "completedText": string;
+        /**
           * @uiName Description Text
          */
         "description": string;
@@ -3009,6 +3014,11 @@ declare namespace LocalJSX {
           * @uiName Title Text
          */
         "cardTitle"?: string;
+        /**
+          * Displays the amount of times that a user has completed a repeatable task.
+          * @uiName Completed Count Text
+         */
+        "completedText"?: string;
         /**
           * @uiName Description Text
          */

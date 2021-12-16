@@ -21,8 +21,8 @@
 - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
 - [sqm-rewards-table](../sqm-rewards-table)
 - [sqm-rewards-table-reward-column](../sqm-rewards-table/columns)
-- [sqm-rewards-table-source-column](../sqm-rewards-table/columns)
 - [sqm-rewards-table-status-column](../sqm-rewards-table/columns)
+- [sqm-rewards-table-source-column](../sqm-rewards-table/columns)
 - [sqm-rewards-table-date-column](../sqm-rewards-table/columns)
 - [sqm-task-card](../sqm-task-card)
 - [sqm-text](../sqm-text)
@@ -42,6 +42,7 @@
 - [sqm-portal-change-password](../sqm-portal-change-password)
 - [sqm-referral-iframe](../sqm-referral-iframe)
 - [sqm-brand](../sqm-brand)
+- [sqm-portal-container](../sqm-portal-container)
 
 ### Graph
 ```mermaid
@@ -58,8 +59,8 @@ graph TD;
   sqm-stencilbook --> sqm-reward-exchange-list
   sqm-stencilbook --> sqm-rewards-table
   sqm-stencilbook --> sqm-rewards-table-reward-column
-  sqm-stencilbook --> sqm-rewards-table-source-column
   sqm-stencilbook --> sqm-rewards-table-status-column
+  sqm-stencilbook --> sqm-rewards-table-source-column
   sqm-stencilbook --> sqm-rewards-table-date-column
   sqm-stencilbook --> sqm-task-card
   sqm-stencilbook --> sqm-text
@@ -79,13 +80,14 @@ graph TD;
   sqm-stencilbook --> sqm-portal-change-password
   sqm-stencilbook --> sqm-referral-iframe
   sqm-stencilbook --> sqm-brand
+  sqm-stencilbook --> sqm-portal-container
   sqm-edit-profile --> sqm-form-message
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
   sqm-rewards-table --> sqm-text
   sqm-rewards-table-reward-column --> sqm-rewards-table-rewards-cell
-  sqm-rewards-table-source-column --> sqm-rewards-table-source-cell
   sqm-rewards-table-status-column --> sqm-rewards-table-status-cell
+  sqm-rewards-table-source-column --> sqm-rewards-table-source-cell
   sqm-rewards-table-date-column --> sqm-rewards-table-date-cell
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field

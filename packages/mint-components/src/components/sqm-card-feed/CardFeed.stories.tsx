@@ -20,6 +20,8 @@ const taskCardProps = {
   repeatable: false,
   showProgressBar: false,
   progress: 0,
+  completedText:
+    "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
   goal: 1,
   buttonText: "Take survey",
   buttonLink: "https://example.com/",
@@ -38,6 +40,8 @@ const coupleActions = {
     "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
   repeatable: false,
   showProgressBar: true,
+  completedText:
+    "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
   steps: true,
   progress: 1,
   goal: 5,
@@ -59,6 +63,8 @@ const manyActions = {
   repeatable: false,
   showProgressBar: true,
   progress: 100,
+  completedText:
+    "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
   goal: 500,
   progressBarUnit: "$",
   buttonText: "Take survey",

@@ -45,6 +45,8 @@ const oneAction = {
   openNewTab: false,
   showExpiry: false,
   rewardDuration: null,
+  completedText:
+    "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
   loading: false,
   finite: 0,
 };
@@ -64,6 +66,8 @@ const coupleActions = {
   buttonLink: "https://example.com/",
   openNewTab: false,
   showExpiry: false,
+  completedText:
+    "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
   rewardDuration: null,
   loading: false,
   finite: 0,
@@ -76,6 +80,8 @@ const manyActions = {
   description:
     "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
   repeatable: false,
+  completedText:
+    "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
   showProgressBar: true,
   progress: 100,
   goal: 500,
