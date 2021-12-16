@@ -70,7 +70,7 @@ export class RewardTableStatusCell {
         <sl-badge type={badgeType} pill>
           {statusText}
         </sl-badge>
-        <p style={{fontSize:"90%"}}>{date}</p>
+        <p style={{fontSize:"90%", marginTop:"0"}}>{date}</p>
       </div>
     );
   }
