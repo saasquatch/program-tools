@@ -25,7 +25,13 @@ export class CardFeed {
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    */
-  @Prop() gap: string = "xx-large";
+  @Prop() gaps: string = "xx-large";
+
+  /**
+   * @uiName Pixel Gap
+   * @uiType number
+   */
+  @Prop() gap: number = 24;
 
   constructor() {
     withHooks(this);
