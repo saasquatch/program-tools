@@ -4,7 +4,7 @@ import { getProps } from "../../utils/utils";
 import { CardFeedView } from "./sqm-card-feed-view";
 
 /**
- * @uiName Program Explainer
+ * @uiName Card Feed
  */
 @Component({
   tag: "sqm-card-feed",
