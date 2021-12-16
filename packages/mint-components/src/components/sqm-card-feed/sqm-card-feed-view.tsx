@@ -3,18 +3,18 @@ import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 
-export interface CardFeedViewProps {}
+export interface CardFeedViewProps {
+  width: number;
+  gap: string;
+}
 export function CardFeedView(props: CardFeedViewProps, children: VNode) {
   const style = {
     Container: {
-      width: "90%",
-      margin: "50px auto",
-      maxWidth: "800px",
-      columnGap: "60px",
-      columnWidth: "330px",
+      columnGap: "var(--sl-spacing-" + props.gap + ")",
+      columnWidth: props.width + "px",
       "& > div": {
         display: "inline-block",
-        marginBottom: "50px",
+        marginBottom: "var(--sl-spacing-" + props.gap + ")",
       },
     },
   };
@@ -25,10 +25,13 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
 
   console.log(props);
 
-  const vanillaStyle = `
+  const vanillaStyle =
+    `
   ::slotted(*){
     display: inline-block;
-	margin-bottom: "50px",
+	margin-bottom: var(--sl-spacing-` +
+    props.gap +
+    `);
   }
   `;
 

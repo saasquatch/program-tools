@@ -680,6 +680,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 states.selectedStep?.prettySourceValue,
               destinationValue:
                 states.selectedStep?.prettyDestinationValue ||
+                states.selectedItem?.name ||
                 states.selectedItem.globalRewardKey,
             }
           )}

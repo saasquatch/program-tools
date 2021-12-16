@@ -15,43 +15,17 @@ export class CardFeed {
   ignored = true;
 
   /**
-   * @uiName Header Text
+   * @uiName Card Width
    */
-  @Prop() header: string;
+  @Prop()
+  width: number = 347;
 
   /**
-   * @uiName Header Text Color
-   * @uiWidget color
+   * @uiName Horizontal Gap
+   * @uiType string
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    */
-  @Prop() headerColor: string;
-
-  /**
-   * @uiName Header Background Color
-   * @uiWidget color
-   */
-  @Prop() headerBackground: string;
-
-  /**
-   * @uiName Card Title
-   */
-  @Prop() cardTitle: string;
-
-  /**
-   * @uiName Card Description
-   */
-  @Prop() cardDescription: string;
-
-  /**
-   * @uiName Card Text Color
-   * @uiWidget color
-   */
-  @Prop() cardColor: string;
-
-  /**
-   * @uiName Card Background Color
-   * @uiWidget color
-   */
-  @Prop() cardBackground: string;
+  @Prop() gap: string = "xx-large";
 
   constructor() {
     withHooks(this);
@@ -59,10 +33,10 @@ export class CardFeed {
   disconnectedCallback() {}
 
   render() {
-    // return (
-    //   <CardFeedView {...getProps(this)}>
-    //     <slot />
-    //   </CardFeedView>
-    // );
+    return (
+      <CardFeedView {...getProps(this)}>
+        <slot />
+      </CardFeedView>
+    );
   }
 }

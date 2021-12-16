@@ -2,17 +2,17 @@ import { ColorError, guard, hsla, parseToHsla } from "color2k";
 
 const colorScale = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
 const lScale = [
-  0.95,
-  0.84,
-  0.73,
-  0.62,
-  0.49,
-  0.35,
-  0.23,
-  0.15,
-  0.1,
-  0.05,
-  0.02
+  0.95, //weight 50
+  0.86, //weight 100
+  0.76, //weight 200
+  0.66, //weight 300
+  0.56, //weight 400
+  0.46, //weight 500
+  0.39, //weight 600
+  0.32, //weight 700
+  0.25, //weight 800
+  0.18, //weight 900
+  0.15, //weight 950
 ];
 
 // https://github.com/ricokahler/color2k/blob/main/src/parseToRgba.ts
@@ -41,7 +41,6 @@ function generateScale(color: string, name = "primary"): string[] {
     });
 }
 
-
 /**
  * Generated a Shoelace color scale css string from a base color
  *
@@ -50,5 +49,5 @@ function generateScale(color: string, name = "primary"): string[] {
  * @returns
  */
 export function autoColorScaleCss(color: string, name = "primary"): string {
-  return generateScale(color,name).join("\n")
+  return generateScale(color, name).join("\n");
 }
