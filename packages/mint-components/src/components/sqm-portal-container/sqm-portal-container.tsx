@@ -33,6 +33,7 @@ export class PortalContainer {
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    */
   @Prop() gap: Spacing = "xxx-large";
+
   /** @uiName Minimum width */
   @Prop() minWidth?: string;
 
