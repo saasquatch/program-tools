@@ -12,6 +12,10 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
     Container: {
       columnGap: "var(--sl-spacing-" + props.gap + ")",
       columnWidth: props.width + "px",
+      "& > div": {
+        display: "inline-block!important",
+        marginBottom: "var(--sl-spacing-" + props.gap + ")",
+      },
     },
   };
 
@@ -23,26 +27,21 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
 
   const vanillaStyle =
     `
-	:host {
-		display: block;
+	::slotted(*){
+		display: block!important;
+		margin-bottom: var(--sl-spacing-` +
+    props.gap +
+    `);
 	}
   `;
 
   return (
-    <div class={sheet.classes.Container}>
+    <div>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "var(--sl-spacing-" + props.gap + ")",
-        }}
-      >
-        {children}
-      </div>
+      <div class={sheet.classes.Container}>{children}</div>
     </div>
   );
 }
