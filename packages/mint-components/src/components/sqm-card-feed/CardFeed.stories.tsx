@@ -8,7 +8,7 @@ export default {
 
 const props = {
   width: 347,
-  gap: "xx-large",
+  gap: 24,
 };
 
 const taskCardProps = {

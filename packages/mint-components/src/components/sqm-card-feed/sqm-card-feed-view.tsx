@@ -1,21 +1,21 @@
 import { h, VNode } from "@stencil/core";
-
+import "@appnest/masonry-layout";
 import jss from "jss";
 import preset from "jss-preset-default";
 
 export interface CardFeedViewProps {
   width: number;
-  gap: string;
+  gap: number;
 }
 export function CardFeedView(props: CardFeedViewProps, children: VNode) {
   const style = {
     Container: {
-      columnGap: "var(--sl-spacing-" + props.gap + ")",
-      columnWidth: props.width + "px",
-      "& > div": {
-        display: "inline-block!important",
-        marginBottom: "var(--sl-spacing-" + props.gap + ")",
-      },
+      //   columnGap: "var(--sl-spacing-" + props.gap + ")",
+      //   columnWidth: props.width + "px",
+      //   "& > div": {
+      //     display: "inline-block!important",
+      //     marginBottom: "var(--sl-spacing-" + props.gap + ")",
+      //   },
     },
   };
 
@@ -39,9 +39,12 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
     <div>
       <style type="text/css">
         {styleString}
-        {vanillaStyle}
+        {/* {vanillaStyle} */}
       </style>
-      <div class={sheet.classes.Container}>{children}</div>
+      <masonry-layout gap={props.gap}>
+        {children}
+      </masonry-layout>
+      {/* <div class={sheet.classes.Container}>{children}</div> */}
     </div>
   );
 }
