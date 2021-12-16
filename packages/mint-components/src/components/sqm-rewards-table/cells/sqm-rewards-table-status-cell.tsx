@@ -1,4 +1,5 @@
 import { Component, h, Prop } from "@stencil/core";
+import { DateTime } from "luxon";
 import { intl } from "../../../global/global";
 
 @Component({
@@ -52,10 +53,25 @@ export class RewardTableStatusCell {
         ? "warning"
         : "error";
 
+    const dateShown =
+      this.reward.dateCancelled ||
+      this.reward.dateExpires ||
+      this.reward.dateRedeemed ||
+      "";
+
+    const date =
+      dateShown &&
+      `${this.reward.dateExpires && "Expires on "}${DateTime.fromMillis(
+        dateShown
+      )?.toLocaleString(DateTime.DATE_MED)}`;
+
     return (
-      <sl-badge type={badgeType} pill>
-        {statusText}
-      </sl-badge>
+      <div style={{ display: "contents" }}>
+        <sl-badge type={badgeType} pill>
+          {statusText}
+        </sl-badge>
+        <p style={{fontSize:"90%", marginTop:"0"}}>{date}</p>
+      </div>
     );
   }
 }
