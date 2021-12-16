@@ -49,8 +49,8 @@ export const RewardsTableWithProgram = createHookStory(() => {
   return (
     <sqm-rewards-table>
       <sqm-rewards-table-reward-column></sqm-rewards-table-reward-column>
-      <sqm-rewards-table-source-column></sqm-rewards-table-source-column>
       <sqm-rewards-table-status-column></sqm-rewards-table-status-column>
+      <sqm-rewards-table-source-column></sqm-rewards-table-source-column>
       <sqm-rewards-table-date-column></sqm-rewards-table-date-column>
     </sqm-rewards-table>
   );
@@ -68,8 +68,8 @@ export const RewardsTableNoProgram = createHookStory(() => {
   return (
     <sqm-rewards-table>
       <sqm-rewards-table-reward-column></sqm-rewards-table-reward-column>
-      <sqm-rewards-table-source-column></sqm-rewards-table-source-column>
       <sqm-rewards-table-status-column></sqm-rewards-table-status-column>
+      <sqm-rewards-table-source-column></sqm-rewards-table-source-column>
       <sqm-rewards-table-date-column></sqm-rewards-table-date-column>
     </sqm-rewards-table>
   );

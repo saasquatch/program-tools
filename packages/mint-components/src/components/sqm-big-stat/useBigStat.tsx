@@ -34,7 +34,7 @@ const debugQuery = (
     console.error("issue getting stat:", res);
   }
   const stat = getStat(res);
-  return stat;
+  return { ...stat, loading: res.loading };
 };
 
 const referralsCountQuery = (
@@ -608,7 +608,7 @@ export const queries: {
     query: (
       programId: string,
       ...args: string[]
-    ) => { value: number; statvalue: string };
+    ) => { value: number; statvalue: string; loading: boolean };
   };
 } = {
   rewardsAssigned: {
@@ -725,7 +725,7 @@ export function useBigStat(props: BigStat): BigStatHook {
 
   if (!re?.exec(statType)) {
     return {
-      props: { value: 0, statvalue: "!!!", flexReverse, alignment },
+      props: { value: 0, statvalue: "!!!", flexReverse, alignment, loading:false },
       label: "BAD PROP TYPE",
     };
   }
@@ -761,6 +761,7 @@ export function useBigStat(props: BigStat): BigStatHook {
     props: {
       value: stat?.value,
       statvalue: stat?.statvalue ?? LOADING,
+      loading: stat.loading,
       flexReverse,
       alignment,
     },

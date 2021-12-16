@@ -7,9 +7,8 @@ export default {
 };
 
 const props = {
-	width: 347,
-	gap: "xx-large",
-
+  width: 347,
+  gap: "xx-large",
 };
 
 const taskCardProps = {
@@ -52,35 +51,47 @@ const coupleActions = {
 };
 
 const manyActions = {
-	rewardAmount: "150",
-	rewardUnit: "SaaSquatch Points",
-	cardTitle: "Spend $500 at our Store",
-	description:
-	  "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
-	repeatable: false,
-	showProgressBar: true,
-	progress: 100,
-	goal: 500,
-	progressBarUnit: "$",
-	buttonText: "Take survey",
-	buttonLink: "https://example.com/",
-	openNewTab: false,
-	showExpiry: false,
-	rewardDuration: null,
-	loading: false,
-	finite: 0,
-  };
-  
+  rewardAmount: "150",
+  rewardUnit: "SaaSquatch Points",
+  cardTitle: "Spend $500 at our Store",
+  description:
+    "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
+  repeatable: false,
+  showProgressBar: true,
+  progress: 100,
+  goal: 500,
+  progressBarUnit: "$",
+  buttonText: "Take survey",
+  buttonLink: "https://example.com/",
+  openNewTab: false,
+  showExpiry: false,
+  rewardDuration: null,
+  loading: false,
+  finite: 0,
+};
+
 export const TaskCardGrid = () => {
   return (
     <CardFeedView {...props}>
       <TaskCardView {...taskCardProps}></TaskCardView>
+      <div>
+        <TaskCardView {...coupleActions}></TaskCardView>
+      </div>
+      <div>
+        <div>
+          <TaskCardView {...taskCardProps}></TaskCardView>
+        </div>
+      </div>
       <TaskCardView {...coupleActions}></TaskCardView>
-      <TaskCardView {...taskCardProps}></TaskCardView>
       <TaskCardView {...coupleActions}></TaskCardView>
-      <TaskCardView {...coupleActions}></TaskCardView>
-      <TaskCardView {...taskCardProps}></TaskCardView>
-      <TaskCardView {...coupleActions}></TaskCardView>
+      <div>
+        <TaskCardView {...coupleActions}></TaskCardView>
+      </div>
+      <div>
+        <div>
+          <TaskCardView {...taskCardProps}></TaskCardView>
+        </div>
+      </div>
       <TaskCardView {...manyActions}></TaskCardView>
     </CardFeedView>
   );

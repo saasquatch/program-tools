@@ -26,19 +26,24 @@ export type TaskCardViewProps = {
 } & ProgressBarProps;
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
-  //   console.log({ props });
 
   const checkmark_circle = SVGs.checkmark_circle();
   const checkmark_filled = SVGs.checkmark_filled();
   const arrow_left_right = SVGs.arrow_left_right();
 
   const style = {
-    HostBlock: HostBlock,
+    // HostBlock: {
+    //   ":host": {
+    //     display: "inline-block",
+    //   },
+    // },
     TaskCard: {
+      display: "inline-block",
+      width: "100%",
       "& .main": {
         position: "relative",
         boxSizing: "border-box",
-        minWidth: "347px",
+        // minWidth: "347px",
         background: "var(--sl-color-neutral-0)",
         border: "1px solid var(--sl-color-neutral-200)",
         borderRadius: "var(--sl-border-radius-medium)",
@@ -205,9 +210,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                     {taskComplete ? checkmark_filled : checkmark_circle}
                   </span>
                 )}
-                <span class={"value"}>
-                  {props.rewardAmount}
-                </span>
+                <span class={"value"}>{props.rewardAmount}</span>
                 <span class="text">{props.rewardUnit}</span>
               </div>
             )}
@@ -218,9 +221,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               style={{ width: "42%", margin: "var(--sl-spacing-medium) 0" }}
             />
           ) : (
-            <div class={"title"}>
-              {props.cardTitle}
-            </div>
+            <div class={"title"}>{props.cardTitle}</div>
           )}
           {props.loading ? (
             <sl-skeleton style={{ margin: "var(--sl-spacing-medium) 0" }} />

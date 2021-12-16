@@ -1,7 +1,7 @@
 import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
-import { Spacing } from "../../global/mixins";
+import { HostBlock, Spacing } from "../../global/mixins";
 
 interface PortalContainerViewProps {
   direction: "row" | "column";
@@ -20,7 +20,7 @@ export function PortalContainerView(
       "grid-template-columns":
         props.direction === "row"
           ? `repeat(auto-fill, minmax(${props.minWidth}, auto))`
-          : "",
+          : "100%",
 
       "grid-gap": `var(--sl-spacing-${props.gap})`,
       padding:
@@ -31,6 +31,7 @@ export function PortalContainerView(
   const vanillaStyle = `
   :host{
     width: 100%;
+    display: "block";
   }`;
 
   jss.setup(preset());
