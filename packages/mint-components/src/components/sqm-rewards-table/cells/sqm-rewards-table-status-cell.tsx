@@ -61,6 +61,7 @@ export class RewardTableStatusCell {
 
     const date =
       dateShown &&
+      // TODO: this text needs to be a prop for translations
       `${this.reward.dateExpires ? "Expires on " : ""}${DateTime.fromMillis(
         dateShown
       )?.toLocaleString(DateTime.DATE_MED)}`;
