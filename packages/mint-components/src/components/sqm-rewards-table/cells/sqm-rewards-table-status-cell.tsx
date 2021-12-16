@@ -61,14 +61,16 @@ export class RewardTableStatusCell {
 
     const date =
       dateShown &&
-      DateTime.fromMillis(dateShown)?.toLocaleString(DateTime.DATE_MED);
+      `${this.reward.dateExpires && "Expires on "}${DateTime.fromMillis(
+        dateShown
+      )?.toLocaleString(DateTime.DATE_MED)}`;
 
     return (
       <div style={{ display: "contents" }}>
         <sl-badge type={badgeType} pill>
           {statusText}
         </sl-badge>
-        <p>{date}</p>
+        <p style={{fontSize:"90%"}}>{date}</p>
       </div>
     );
   }
