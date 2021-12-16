@@ -43,7 +43,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       "& .main": {
         position: "relative",
         boxSizing: "border-box",
-        minWidth: "347px",
+        // minWidth: "347px",
         background: "var(--sl-color-neutral-0)",
         border: "1px solid var(--sl-color-neutral-200)",
         borderRadius: "var(--sl-border-radius-medium)",
