@@ -26,7 +26,6 @@ export type TaskCardViewProps = {
 } & ProgressBarProps;
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
-  //   console.log({ props });
 
   const checkmark_circle = SVGs.checkmark_circle();
   const checkmark_filled = SVGs.checkmark_filled();

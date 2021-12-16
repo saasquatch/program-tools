@@ -5,6 +5,7 @@ import preset from "jss-preset-default";
 export interface BigStatViewProps {
   value: number;
   statvalue: string;
+  loading:boolean;
   flexReverse?: boolean;
   alignment?: "left" | "right" | "center";
 }

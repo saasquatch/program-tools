@@ -126,12 +126,12 @@ export class TaskCard {
 
   render() {
     const { props } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
-    const { value, statvalue } = props;
+    const { value, loading } = props;
     
     return (
       <TaskCardView
         progress={value}
-        loading={!isDemo() && value === undefined}
+        loading={loading}
         {...getProps(this)}
       ></TaskCardView>
     );
