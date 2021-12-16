@@ -61,7 +61,7 @@ export class RewardTableStatusCell {
 
     const date =
       dateShown &&
-      `${this.reward.dateExpires && "Expires on "}${DateTime.fromMillis(
+      `${this.reward.dateExpires ? "Expires on " : ""}${DateTime.fromMillis(
         dateShown
       )?.toLocaleString(DateTime.DATE_MED)}`;
 
