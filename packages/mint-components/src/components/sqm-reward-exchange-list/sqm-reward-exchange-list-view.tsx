@@ -308,7 +308,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     return (
       <sl-select
         style={{ width: "auto" }}
-        label="Select amount to receive"
+        label={states?.content?.text.selectText}
         class={sheet.classes.Select}
         value={states.selectedStep}
         onSl-select={(e) =>
@@ -358,20 +358,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             borderRadius: "4px",
           };
 
-          const amount =
-            item.ruleType === "FIXED_GLOBAL_REWARD"
-              ? item.prettySourceValue
-              : item.ruleType === "STEPPED_FIXED_GLOBAL_REWARD"
-              ? `${item.steps[0]?.sourceValue} to ${
-                  item.steps.slice(-1).pop()?.prettySourceValue
-                }`
-              : `${item.prettySourceMinValue} to ${item.prettySourceMaxValue}`;
-
           return (
-            <div
-              key={item.key}
-              style={style}
-            >
+            <div key={item.key} style={style}>
               <sl-card
                 class={sheet.classes.Card}
                 style={{
@@ -440,7 +428,19 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                           : "2",
                       }}
                     >
-                      {amount}
+                      {intl.formatMessage(
+                        {
+                          id: "sourceAmountMessage",
+                          defaultMessage:
+                            states.content?.text?.sourceAmountMessage,
+                        },
+                        {
+                          ruleType: item.ruleType,
+                          sourceValue: item.prettySourceValue,
+                          sourceMinValue: item.prettySourceMinValue,
+                          sourceMaxValue: item.prettySourceMaxValue,
+                        }
+                      )}
                     </div>
                     {item.unavailableReasonCode && (
                       <div class="error">
@@ -651,7 +651,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           >
             <ShareLinkView
               shareString={data.fuelTankCode}
-              tooltiptext="Copied"
+              tooltiptext={states?.content?.text.toopTipText}
               open={states.open}
               onClick={callbacks.copyFuelTankCode}
             ></ShareLinkView>

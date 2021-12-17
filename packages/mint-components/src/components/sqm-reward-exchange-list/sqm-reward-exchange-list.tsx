@@ -82,13 +82,34 @@ export class SqmRewardExchangeList {
    */
   @Prop() redeemTitle: string = "Confirm and redeem";
 
+  /**
+   * @uiName Redemption Message
+   */
   @Prop() redemptionSuccessText: string =
     "Successfully redeemed {sourceValue} for {destinationValue}";
+
+  /**
+   * @uiName Reward Exchange Amount Text
+   */
+  @Prop() sourceAmountMessage: string =
+    "{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}";
+
+  /**
+   * Shown when a user copies a fuel tank code
+   * 
+   * @uiName Tool Tip Text
+   */
+  @Prop() tooltiptext: string = "Copied";
 
   /**
    * @uiName Done Text
    */
   @Prop() doneText: string = "Done";
+
+  /**
+   * @uiName Select Amount Text
+   */
+  @Prop() selectText: string = "Select amount to receive";
 
   /**
    * @uiName Reward List Error Message

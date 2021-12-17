@@ -962,7 +962,23 @@ export namespace Components {
           * @uiName Redemption Error Message
          */
         "redemptionError": string;
+        /**
+          * @uiName Redemption Message
+         */
         "redemptionSuccessText": string;
+        /**
+          * @uiName Select Amount Text
+         */
+        "selectText": string;
+        /**
+          * @uiName Reward Exchange Amount Text
+         */
+        "sourceAmountMessage": string;
+        /**
+          * Shown when a user copies a fuel tank code
+          * @uiName Tool Tip Text
+         */
+        "tooltiptext": string;
     }
     interface SqmRewardsTable {
         /**
@@ -2765,7 +2781,23 @@ declare namespace LocalJSX {
           * @uiName Redemption Error Message
          */
         "redemptionError"?: string;
+        /**
+          * @uiName Redemption Message
+         */
         "redemptionSuccessText"?: string;
+        /**
+          * @uiName Select Amount Text
+         */
+        "selectText"?: string;
+        /**
+          * @uiName Reward Exchange Amount Text
+         */
+        "sourceAmountMessage"?: string;
+        /**
+          * Shown when a user copies a fuel tank code
+          * @uiName Tool Tip Text
+         */
+        "tooltiptext"?: string;
     }
     interface SqmRewardsTable {
         /**
