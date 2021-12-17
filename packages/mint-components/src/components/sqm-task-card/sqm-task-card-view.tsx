@@ -25,6 +25,7 @@ export type TaskCardViewProps = {
   buttonLink: string;
   openNewTab: boolean;
   loading: boolean;
+  marginBottom?: number;
 } & ProgressBarProps;
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
@@ -33,11 +34,6 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const arrow_left_right = SVGs.arrow_left_right();
 
   const style = {
-    // HostBlock: {
-    //   ":host": {
-    //     display: "inline-block",
-    //   },
-    // },
     TaskCard: {
       display: "inline-block",
       width: "100%",
@@ -75,11 +71,35 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         margin: "var(--sl-spacing-medium) 0",
       },
     },
-    Expired: {
-      margin: "var(--sl-spacing-medium)",
-      marginBottom: "calc(var(--sl-spacing-x-small)*-1)",
-      color: "var(--sl-color-warning-600)",
+    NotStarted: {
+      padding: "var(--sl-spacing-medium)",
+      color: "var(--sl-color-primary-600)",
+      border: "1px solid var(--sl-color-neutral-200)",
+      borderRadius:
+        "var(--sl-border-radius-medium) var(--sl-border-radius-medium) 0 0",
+      borderBottom: "none",
+      background: "var(--sl-color-primary-50)",
       fontWeight: "var(--sl-font-weight-semibold)",
+      "& .icon": {
+        verticalAlign: "middle",
+        marginRight: "var(--sl-spacing-small)",
+        color: "var(--sl-color-primary-500)",
+      },
+    },
+    Ended: {
+      padding: "var(--sl-spacing-medium)",
+      color: "var(--sl-color-warning-600)",
+      border: "1px solid var(--sl-color-neutral-200)",
+      borderRadius:
+        "var(--sl-border-radius-medium) var(--sl-border-radius-medium) 0 0",
+      borderBottom: "none",
+      background: "var(--sl-color-warning-50)",
+      fontWeight: "var(--sl-font-weight-semibold)",
+      "& .icon": {
+        verticalAlign: "middle",
+        marginRight: "var(--sl-spacing-small)",
+        color: "var(--sl-color-warning-500)",
+      },
     },
     Header: {
       display: "flex",
@@ -177,9 +197,41 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const taskNotStarted = props.showExpiry && dateToday <= dateStart;
   const taskUnavailable = taskEnded || taskNotStarted;
 
+  const vanillaStyle = `
+	:host{
+		display: block;
+		margin-bottom: 24px;
+	}
+  `;
+
   return (
     <div class={sheet.classes.TaskCard}>
+      <style type="text/css">
+        {styleString}
+        {vanillaStyle}
+      </style>
+      {taskNotStarted && (
+        <div class={sheet.classes.NotStarted}>
+          <span class="icon">
+            <sl-icon name="info-circle-fill"></sl-icon>
+          </span>
+          {"Starts " + dateStart.toLocaleString(DateTime.DATE_MED)}
+        </div>
+      )}
+      {taskEnded && (
+        <div class={sheet.classes.Ended}>
+          <span class="icon">
+            <sl-icon name="exclamation-triangle-fill"></sl-icon>
+          </span>
+          {"Ended " + dateEnd.toLocaleString(DateTime.DATE_MED)}
+        </div>
+      )}
       <div
+        style={{
+          borderRadius:
+            taskUnavailable &&
+            "0 0 var(--sl-border-radius-medium) var(--sl-border-radius-medium)",
+        }}
         class={
           taskUnavailable
             ? "main expired"
@@ -188,14 +240,6 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             : "main"
         }
       >
-        <style type="text/css">{styleString}</style>
-        {taskUnavailable && (
-          <div class={sheet.classes.Expired}>
-            {taskEnded
-              ? "Ended " + dateEnd.toLocaleString(DateTime.DATE_MED)
-              : "Starts " + dateStart.toLocaleString(DateTime.DATE_MED)}
-          </div>
-        )}
         <div
           class={
             taskComplete || taskUnavailable ? "container subdued" : "container"

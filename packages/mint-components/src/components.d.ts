@@ -88,16 +88,10 @@ export namespace Components {
     }
     interface SqmCardFeed {
         /**
-          * @uiName Pixel Gap
+          * @uiName Column Gap
           * @uiType number
          */
         "gap": number;
-        /**
-          * @uiName Horizontal Gap
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-         */
-        "gaps": string;
         /**
           * @uiName Card Width
          */
@@ -1893,16 +1887,10 @@ declare namespace LocalJSX {
     }
     interface SqmCardFeed {
         /**
-          * @uiName Pixel Gap
+          * @uiName Column Gap
           * @uiType number
          */
         "gap"?: number;
-        /**
-          * @uiName Horizontal Gap
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-         */
-        "gaps"?: string;
         /**
           * @uiName Card Width
          */
