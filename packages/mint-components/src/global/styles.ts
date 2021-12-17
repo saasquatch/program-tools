@@ -504,11 +504,11 @@ html {
   --sl-line-height-dense: 1.4;
   --sl-line-height-normal: 1.8;
   --sl-line-height-loose: 2.2;
-  --sl-focus-ring-color-primary: #0ea5e954;
-  --sl-focus-ring-color-success: #22c55e54;
-  --sl-focus-ring-color-info: #6b728054;
-  --sl-focus-ring-color-warning: #f59e0b54;
-  --sl-focus-ring-color-danger: #ef444454;
+  --sl-focus-ring-color-primary: var(--sl-color-primary-100);
+  --sl-focus-ring-color-success: var(--sl-color-success-100);
+  --sl-focus-ring-color-info: var(--sl-color-info-100);
+  --sl-focus-ring-color-warning: var(--sl-color-warning-100);
+  --sl-focus-ring-color-danger: #var(--sl-color-danger-100);;
   --sl-focus-ring-width: 3px;
   --sl-button-font-size-small: var(--sl-font-size-x-small);
   --sl-button-font-size-medium: var(--sl-font-size-small);
