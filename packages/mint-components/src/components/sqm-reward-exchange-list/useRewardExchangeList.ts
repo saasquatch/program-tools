@@ -69,7 +69,6 @@ export type ExchangeInput = {
 
 export type Stages = "" | "chooseReward" | "chooseAmount" | "confirmation";
 
-// TODO: add rewardInput once it works
 const GET_EXCHANGE_LIST = gql`
   query getExchangeList {
     viewer {
@@ -258,8 +257,6 @@ export function useRewardExchangeList(
   }
 
   function copyFuelTankCode() {
-    // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
-    // Only if called from a user-initiated event
     navigator.clipboard.writeText(
       exchangeResponse?.exchangeReward?.reward?.fuelTankCode
     );
