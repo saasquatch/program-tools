@@ -414,6 +414,10 @@ export namespace Components {
          */
         "gap": Spacing;
         /**
+          * @uiName Maximum width
+         */
+        "maxWidth"?: string;
+        /**
           * @uiName Minimum width
          */
         "minWidth"?: string;
@@ -1080,6 +1084,14 @@ export namespace Components {
     }
     interface SqmShareButton {
         /**
+          * @uiName Button background color
+         */
+        "backgroundcolor"?: string;
+        /**
+          * @uiName Configure border radius with pixel amount
+         */
+        "borderradius"?: number;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -1150,6 +1162,10 @@ export namespace Components {
           * @uiEnumNames ["Small", "Medium", "Large"]
          */
         "size"?: "small" | "medium" | "large";
+        /**
+          * @uiName Button text color
+         */
+        "textcolor"?: string;
         /**
           * @uiType string
           * @uiName Button Style
@@ -2214,6 +2230,10 @@ declare namespace LocalJSX {
          */
         "gap"?: Spacing;
         /**
+          * @uiName Maximum width
+         */
+        "maxWidth"?: string;
+        /**
           * @uiName Minimum width
          */
         "minWidth"?: string;
@@ -2862,6 +2882,14 @@ declare namespace LocalJSX {
     }
     interface SqmShareButton {
         /**
+          * @uiName Button background color
+         */
+        "backgroundcolor"?: string;
+        /**
+          * @uiName Configure border radius with pixel amount
+         */
+        "borderradius"?: number;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -2932,6 +2960,10 @@ declare namespace LocalJSX {
           * @uiEnumNames ["Small", "Medium", "Large"]
          */
         "size"?: "small" | "medium" | "large";
+        /**
+          * @uiName Button text color
+         */
+        "textcolor"?: string;
         /**
           * @uiType string
           * @uiName Button Style
