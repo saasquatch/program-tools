@@ -82,6 +82,9 @@ export class SqmRewardExchangeList {
    */
   @Prop() redeemTitle: string = "Confirm and redeem";
 
+  /**
+   * @uiName Redemption Success Message
+   */
   @Prop() redemptionSuccessText: string =
     "Successfully redeemed {sourceValue} for {destinationValue}";
 
@@ -106,6 +109,16 @@ export class SqmRewardExchangeList {
    */
   @Prop() notEnoughError: string =
     "Not enough {sourceUnit} to redeem for this reward";
+
+  /**
+   * @uiName Select Amount Text
+   */
+  @Prop() selectAmount: string = "Select amount to receive";
+
+  /**
+   * @uiName Number of Skeleton Cards
+   */
+  @Prop() skeletonCardNum: number = 8;
 
   /**
    * @undocumented

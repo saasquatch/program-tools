@@ -295,7 +295,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     return (
       <sl-select
         style={{ width: "auto" }}
-        label="Select amount to receive"
+        label={states.content.text.selectAmount}
         class={sheet.classes.Select}
         value={states.selectedStep}
         onSl-select={(e) =>
@@ -731,7 +731,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   function loading() {
     return (
       <div class={sheet.classes.Grid}>
-        {[...Array(8)].map(() => {
+        {[...Array(states.content.text.skeletonCardNum)].map(() => {
           return (
             <div>
               <sl-card class={sheet.classes.Card}>
