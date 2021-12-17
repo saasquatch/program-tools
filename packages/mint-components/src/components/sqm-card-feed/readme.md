@@ -9,7 +9,8 @@
 
 | Property | Attribute | Description | Type     | Default      |
 | -------- | --------- | ----------- | -------- | ------------ |
-| `gap`    | `gap`     |             | `string` | `"xx-large"` |
+| `gap`    | `gap`     |             | `number` | `24`         |
+| `gaps`   | `gaps`    |             | `string` | `"xx-large"` |
 | `width`  | `width`   |             | `number` | `347`        |
 
 
