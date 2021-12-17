@@ -29,6 +29,7 @@ const baseResponse = (
         redemptionError:
           "An error occured trying to redeem this reward. Please try again",
         notEnoughError: "Not enough {sourceUnit} to redeem for this reward",
+        selectAmount: "Select amount to receive",
       },
     },
     redeemStage: stage,

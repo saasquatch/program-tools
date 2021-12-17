@@ -295,7 +295,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     return (
       <sl-select
         style={{ width: "auto" }}
-        label="Select amount to receive"
+        label= {states.content.text.selectAmount}
         class={sheet.classes.Select}
         value={states.selectedStep}
         onSl-select={(e) =>

@@ -1015,6 +1015,10 @@ export namespace Components {
          */
         "redemptionError": string;
         "redemptionSuccessText": string;
+        /**
+          * @uiName Select Amount Text
+         */
+        "selectAmount": string;
     }
     interface SqmRewardsTable {
         /**
@@ -2863,6 +2867,10 @@ declare namespace LocalJSX {
          */
         "redemptionError"?: string;
         "redemptionSuccessText"?: string;
+        /**
+          * @uiName Select Amount Text
+         */
+        "selectAmount"?: string;
     }
     interface SqmRewardsTable {
         /**

@@ -108,6 +108,11 @@ export class SqmRewardExchangeList {
     "Not enough {sourceUnit} to redeem for this reward";
 
   /**
+   * @uiName Select Amount Text
+   */
+  @Prop() selectAmount: string = "Select amount to receive";
+
+  /**
    * @undocumented
    * @uiType object
    */
