@@ -7,11 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default      |
-| -------- | --------- | ----------- | -------- | ------------ |
-| `gap`    | `gap`     |             | `number` | `24`         |
-| `gaps`   | `gaps`    |             | `string` | `"xx-large"` |
-| `width`  | `width`   |             | `number` | `347`        |
+| Property | Attribute | Description | Type     | Default |
+| -------- | --------- | ----------- | -------- | ------- |
+| `gap`    | `gap`     |             | `number` | `24`    |
+| `width`  | `width`   |             | `number` | `347`   |
 
 
 ----------------------------------------------
