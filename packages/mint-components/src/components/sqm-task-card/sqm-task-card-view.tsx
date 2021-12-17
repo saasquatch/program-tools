@@ -373,6 +373,7 @@ function Details(props): VNode {
         },
         transformOrigin: "50% 37%",
         transition: "transform var(--sl-transition-medium) ease",
+        cursor: "pointer",
       },
       "& input:checked ~ .summary": {
         transition: "all var(--sl-transition-medium) ease",
