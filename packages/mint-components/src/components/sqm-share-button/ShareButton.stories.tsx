@@ -43,6 +43,29 @@ export const TextStyleWithoutIcon = () => {
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
 
+export const WithCustomColors = () => {
+  const props = {
+    medium: "facebook",
+    type: "text",
+    backgroundcolor: "#3b5998",
+    textcolor: "#fff",
+    iconslot: "prefix",
+  } as const;
+  return <ShareButtonView {...props}>Facebook</ShareButtonView>;
+};
+
+export const WithCustomBorderRadius = () => {
+  const props = {
+    medium: "facebook",
+    type: "text",
+    backgroundcolor: "#3b5998",
+    textcolor: "#fff",
+    borderradius: 8,
+    iconslot: "prefix",
+  } as const;
+  return <ShareButtonView {...props}>Facebook</ShareButtonView>;
+};
+
 export const FullStackIcon = () => {
   return (
     <div>

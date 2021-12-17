@@ -354,9 +354,11 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             item.ruleType === "FIXED_GLOBAL_REWARD"
               ? item.prettySourceValue
               : item.ruleType === "STEPPED_FIXED_GLOBAL_REWARD"
-              ? `${item.steps[0]?.sourceValue} to ${
-                  item.steps.slice(-1).pop()?.prettySourceValue
-                }`
+              ? item.steps?.length
+                ? `${item.steps[0]?.sourceValue} to ${
+                    item.steps.slice(-1).pop()?.prettySourceValue
+                  }`
+                : ""
               : `${item.prettySourceMinValue} to ${item.prettySourceMaxValue}`;
 
           return (

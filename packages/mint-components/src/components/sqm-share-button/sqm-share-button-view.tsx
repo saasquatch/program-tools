@@ -37,25 +37,37 @@ export interface ShareButtonViewProps {
   iconslot?: "prefix" | "suffix";
   onClick?: () => void;
   hide?: boolean;
+  borderradius?: number;
+  backgroundcolor?: string;
+  textcolor?: string;
 }
 
-const style = {
-  HostBlock: HostBlock,
-  buttonStyle: {
-    display: "block",
-  },
-};
-
-jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
-const styleString = sheet.toString();
-
 export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
+  const vanillaStyle = `
+    *::part(base) {
+      background: ${props.backgroundcolor ? props.backgroundcolor : ""};
+      color: ${props.textcolor ? props.textcolor : ""};
+      border-radius: ${props.borderradius ? props.borderradius + "px" : ""};
+    }
+  `;
+
+  const style = {
+    HostBlock: HostBlock,
+    buttonStyle: {
+      display: "block",
+    },
+  };
+
+  jss.setup(preset());
+  const sheet = jss.createStyleSheet(style);
+  const styleString = sheet.toString();
+
   return props.hide ? (
     <Host style={{ display: "none" }}></Host>
   ) : (
     <div>
       <style type="text/css">{styleString}</style>
+      <style type="text/css">{vanillaStyle}</style>
       <sl-button
         class={sheet.classes.buttonStyle}
         loading={props.loading}

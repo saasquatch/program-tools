@@ -21,6 +21,14 @@ export class PortalEmailVerification {
   ignored = true;
 
   /**
+   * The page that users are redirected to from the verification email.
+   *
+   * @uiName Email redirection base path
+   */
+  @Prop()
+  redirectPath: string = "/verifyEmail";
+
+  /**
    * @uiName Email verification header text
    */
   @Prop() emailVerificationHeader: string = "Verify your email";

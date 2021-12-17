@@ -5,7 +5,7 @@ import {
   useAuthenticateWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
 
-export function usePortalLogin({ nextPage }) {
+export function usePortalLogin(props) {
   const [request, { loading, errors, data }] =
     useAuthenticateWithEmailAndPasswordMutation();
   const [error, setError] = useState("");
@@ -28,7 +28,7 @@ export function usePortalLogin({ nextPage }) {
     if (data?.authenticateManagedIdentityWithEmailAndPassword?.token) {
       urlParams.delete("nextPage");
       navigation.push({
-        pathname: nextPageOverride || nextPage,
+        pathname: nextPageOverride || props.nextPage,
         search: urlParams.toString() && "?" + urlParams.toString(),
       });
     }
@@ -46,6 +46,8 @@ export function usePortalLogin({ nextPage }) {
     states: {
       loading,
       error: errorMessage,
+      registerPath:props.registerPath,
+      forgotPasswordPath:props.forgotPasswordPath
     },
     callbacks: {
       submit,

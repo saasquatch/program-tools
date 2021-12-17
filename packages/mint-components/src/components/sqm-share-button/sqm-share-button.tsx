@@ -57,6 +57,18 @@ export class ShareButton {
   //
 
   /**
+   * @uiName Configure border radius with pixel amount
+   */
+  @Prop() borderradius?: number;
+  /**
+   * @uiName Button background color
+   */
+  @Prop() backgroundcolor?: string;
+  /**
+   * @uiName Button text color
+   */
+  @Prop() textcolor?: string;
+  /**
    * @uiName Display as pill
    */
   @Prop() pill?: boolean;
@@ -139,16 +151,8 @@ export class ShareButton {
 function useDemoShareButton(props: ShareButton): ShareButtonViewProps {
   return deepmerge(
     {
-      medium: props.medium,
+      ...props,
       loading: false,
-      disabled: props.disabled,
-      pill: props.pill,
-      type: props.type,
-      size: props.size,
-      hideicon: props.hideicon,
-      hidetext: props.hidetext,
-      iconslot: props.iconslot,
-      icon: props.icon,
       hide: false,
       onClick: () => {
         // TODO: Provide visual feedback
