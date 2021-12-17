@@ -10,20 +10,25 @@ const baseResponse = (
   states: {
     content: {
       text: {
-        continueText: "Continue",
-        cancelText: "Cancel",
-        continueToConfirmationText: "Continue to confirmation",
-        backText: "Back",
-        redeemText: "Redeem",
-        doneText: "Done",
-		chooseRewardTitle: "Choose reward",
-		chooseAmountTitle: "Amount",
-		confirmationTitle: "Confirm",
-		redeemTitle: "Confirm and redeem",
-		rewardRedeemedText: "Reward redeemed",
-		queryError: "An error occured trying to redeem this reward. Please try again.",
+        buttonText: "Exchange Rewards",
         notAvailableError:
           "{unavailableReason, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {Not enough points} other {Not available} }",
+        chooseRewardTitle: "Choose reward",
+        chooseAmountTitle: "Amount",
+        confirmationTitle: "Confirm",
+        cancelText: "Cancel",
+        backText: "Back",
+        continueText: "Continue",
+        continueToConfirmationText: "Continue to confirmation",
+        redeemText: "Redeem",
+        redeemTitle: "Confirm and redeem",
+        redemptionSuccessText:
+          "Successfully redeemed {sourceValue} for {destinationValue}",
+        doneText: "Done",
+        queryError: "Unable to load reward exchange list",
+        redemptionError:
+          "An error occured trying to redeem this reward. Please try again",
+        notEnoughError: "Not enough {sourceUnit} to redeem for this reward",
       },
     },
     redeemStage: stage,
