@@ -7,6 +7,7 @@ const UserQuery = gql`
   {
     user: viewer {
       ... on User {
+        email
         customFields
         segments
       }

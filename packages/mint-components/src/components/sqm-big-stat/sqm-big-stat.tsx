@@ -37,6 +37,13 @@ export class BigStat {
   @Prop() alignment?: "left" | "right" | "center";
 
   /**
+   * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
+   *
+   * @uiName Program ID
+   */
+  @Prop() programId?: string;
+
+  /**
    * @undocumented
    * @uiType object
    */

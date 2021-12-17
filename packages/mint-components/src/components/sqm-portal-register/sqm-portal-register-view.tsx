@@ -19,6 +19,7 @@ export interface PortalRegisterViewProps {
     hideInputs: boolean;
     validationState?: FormState;
     enablePasswordValidation?: boolean;
+    loginPath: string;
   };
   callbacks: {
     submit: Function;

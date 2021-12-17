@@ -17,6 +17,7 @@ const defaultProps: PortalForgotPasswordViewProps = {
     error: "",
     loading: false,
     success: false,
+    loginPath: "/login",
   },
   callbacks: {
     submit: async (e) => await e,
@@ -32,6 +33,7 @@ const errorProps: PortalForgotPasswordViewProps = {
     error: "Something went wrong. Please try again.",
     loading: false,
     success: false,
+    loginPath: "/login",
   },
   callbacks: {
     submit: async (e) => await e,
@@ -47,6 +49,7 @@ const loadingProps: PortalForgotPasswordViewProps = {
     error: "",
     loading: true,
     success: false,
+    loginPath: "/login",
   },
   callbacks: {
     submit: async (e) => await e,
@@ -62,6 +65,7 @@ const successProps: PortalForgotPasswordViewProps = {
     error: "",
     loading: false,
     success: true,
+    loginPath: "/login",
   },
   callbacks: {
     submit: async (e) => await e,
