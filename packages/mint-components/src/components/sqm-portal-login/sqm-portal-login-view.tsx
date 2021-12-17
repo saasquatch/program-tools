@@ -12,6 +12,8 @@ export interface PortalLoginViewProps {
   states: {
     error: string;
     loading: boolean;
+    forgotPasswordPath: string,
+    registerPath: string,
   };
   callbacks: {
     submit: (event: any) => Promise<void>;

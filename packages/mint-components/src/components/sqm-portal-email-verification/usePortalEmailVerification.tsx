@@ -20,7 +20,8 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
     if (!email) return;
     setError("");
     const urlParams = nextPage ? { nextPage } : null;
-    const variables = { email, urlParams };
+    const redirectPath = props.redirectPath;
+    const variables = { email, urlParams, redirectPath };
 
     await request(variables);
   };

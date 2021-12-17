@@ -4,11 +4,16 @@ import { BaseQueryData } from "../graphql/useBaseQuery";
 import { useMutation } from "../graphql/useMutation";
 
 const RequestPasswordResetEmailMutation = gql`
-  mutation RequestPasswordResetEmail($email: String!, $urlParams: RSJsonNode) {
+  mutation RequestPasswordResetEmail(
+    $email: String!
+    $urlParams: RSJsonNode
+    $redirectPath: String
+  ) {
     requestManagedIdentityPasswordResetEmail(
       requestManagedIdentityPasswordResetEmailInput: {
         email: $email
         urlParams: $urlParams
+        redirectPath: $redirectPath
       }
     ) {
       success

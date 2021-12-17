@@ -27,6 +27,14 @@ export class PortalRegister {
   nextPage: string = "/";
 
   /**
+   * The page that users are redirected to from the verification email.
+   *
+   * @uiName Email redirection base path
+   */
+  @Prop()
+  redirectPath: string = "/verifyEmail";
+
+  /**
    * @uiName Label for email field
    */
   @Prop()
@@ -80,6 +88,11 @@ export class PortalRegister {
   pageLabel: string = "Register";
 
   /**
+   * @uiName Sign in button redirection path
+   */
+  @Prop() loginPath: string = "/login";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -102,7 +115,7 @@ export class PortalRegister {
           <sl-button
             type="text"
             disabled={states.loading}
-            onClick={() => navigation.push("/login")}
+            onClick={() => navigation.push(states.loginPath)}
           >
             {this.loginLabel}
           </sl-button>
@@ -136,6 +149,7 @@ function useRegisterDemo(
         confirmPassword: true,
         hideInputs: props.hideInputs || false,
         customPasswordField: false,
+        loginPath: "/login",
       },
       callbacks: {
         submit: async (_event) => {
