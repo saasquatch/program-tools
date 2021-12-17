@@ -151,11 +151,8 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
         marginLeft: "-100px",
         marginRight: "-100px",
         position: "relative",
-        display: "list-item",
-        listStyleType: "none",
         top: "-18px",
         filter: goal <= progress ? "" : "grayscale(100%)",
-        zIndex: "1",
       },
     },
   };

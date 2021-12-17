@@ -53,41 +53,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       padding: "var(--sl-spacing-medium)",
       position: "relative",
     },
-    CardContainer: {
-      "&:active": {
-        //boxShadow: "0 3px 10px #87ceeb6e!important",
-      },
-    },
-    Base: {
-      display: "flex",
-      cursor: "pointer",
-      textAlign: "center",
-      height: "120px",
-      "&::part(base)": {
-        boxShadow: "none",
-        width: "100%",
-        display: "flex",
-        margin: "0 auto",
-      },
-      "&::part(body)": {
-        padding: 0,
-        display: "flex",
-        width: "100%",
-      },
-    },
-    Drawer: {
-      "&::part(base)": {
-        minWidth: "400px",
-        maxWidth: "700px",
-        width: "50%",
-        margin: "0 auto",
-        right: "0",
-      },
-      "&::part(panel)": {
-        height: "85vh",
-        width: "100%",
-      },
-    },
     FullImage: {
       objectFit: "contain",
       maxWidth: "100%",
@@ -109,12 +74,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       "&::part(label)": {
         color: "var(--sl-color-primary-500)",
       },
-      //   "&::part(base)": {
-      //     flex: "0.75",
-      //   },
-      //   "&::part(menu)": {
-      //     maxHeight: "40vh",
-      //   },
     },
     ProgressBar: {
       maxWidth: "350px",
@@ -296,7 +255,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           fontWeight: "var(--sl-font-weight-normal)",
           color: "var(--sl-color-neutral-1000)",
         },
-        "@media (max-width: 1024px)": {
+        "@media (max-width: 499px)": {
           width: "100%",
           marginRight: "0",
         },
@@ -308,7 +267,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           fontWeight: "var(--sl-font-weight-normal)",
           color: "var(--sl-color-neutral-0)",
         },
-        "@media (max-width: 1024px)": {
+        "@media (max-width: 499px)": {
           width: "100%",
         },
       },
@@ -411,7 +370,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           return (
             <div
               key={item.key}
-              class={item.available ? sheet.classes.CardContainer : ""}
               style={style}
             >
               <sl-card
@@ -602,7 +560,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             <ExchangeArrows />
           </p>
           <div
-            class={sheet.classes.CardContainer}
             style={{
               boxShadow: "none",
               marginBottom: "10px",
@@ -748,7 +705,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       <div class={sheet.classes.Grid}>
         {[...Array(8)].map(() => {
           return (
-            <div class={sheet.classes.CardContainer}>
+            <div>
               <sl-card class={sheet.classes.Card}>
                 <div class={sheet.classes.CardLayout}>
                   <div>

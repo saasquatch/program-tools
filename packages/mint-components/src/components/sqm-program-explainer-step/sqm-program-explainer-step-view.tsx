@@ -21,14 +21,14 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       padding: "var(--sl-spacing-large)",
       paddingBottom: "var(--sl-spacing-xxx-large)",
 
-      "@media (max-width: 768px)": {
+      "@media (max-width: 499px)": {
         flexDirection: "row",
         width: "auto",
         paddingBottom: "var(--sl-spacing-large)",
       },
     },
     Text: {
-      "@media (max-width: 768px)": {
+      "@media (max-width: 499px)": {
         marginLeft: "var(--sl-spacing-large)",
       },
     },
@@ -38,14 +38,14 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       fontWeight: "var(--sl-font-weight-bold)",
       lineHeight: "var(--sl-line-height-dense)",
       marginTop: "var(--sl-spacing-large)",
-      "@media (max-width: 768px)": {
+      "@media (max-width: 499px)": {
         margin: "0",
       },
     },
     Description: {
       fontSize: "var(--sl-font-size-medium)",
       marginTop: "var(--sl-spacing-small)",
-      "@media (max-width: 768px)": {
+      "@media (max-width: 499px)": {
         marginTop: "var(--sl-spacing-x-small)",
       },
     },
@@ -70,7 +70,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
     display: flex;
     width: 100%;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 499px) {
     :host{
       display: block;
     }
