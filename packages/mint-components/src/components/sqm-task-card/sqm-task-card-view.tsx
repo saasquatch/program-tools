@@ -19,7 +19,10 @@ export type TaskCardViewProps = {
   finite: number;
   completedText: string;
   showExpiry: boolean;
+  expiryMessage: string;
   rewardDuration: string;
+  startsOnMessage: string;
+  endedMessage: string;
   rewardUnit: string;
   buttonText: string;
   buttonLink: string;
@@ -214,7 +217,16 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           <span class="icon">
             <sl-icon name="info-circle-fill"></sl-icon>
           </span>
-          {"Starts " + dateStart.toLocaleString(DateTime.DATE_MED)}
+
+          {intl.formatMessage(
+            {
+              id: "startsOnMessage",
+              defaultMessage: props.startsOnMessage,
+            },
+            {
+              startDate: dateStart.toLocaleString(DateTime.DATE_MED),
+            }
+          )}
         </div>
       )}
       {!props.loading && taskEnded && (
@@ -222,7 +234,15 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           <span class="icon">
             <sl-icon name="exclamation-triangle-fill"></sl-icon>
           </span>
-          {"Ended " + dateEnd.toLocaleString(DateTime.DATE_MED)}
+          {intl.formatMessage(
+            {
+              id: "endedMessage",
+              defaultMessage: props.endedMessage,
+            },
+            {
+              endDate: dateEnd.toLocaleString(DateTime.DATE_MED),
+            }
+          )}
         </div>
       )}
       <div
@@ -328,7 +348,15 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                   )}
                   {props.showExpiry && !taskUnavailable && (
                     <span>
-                      {"Ends " + dateEnd.toLocaleString(DateTime.DATE_FULL)}
+                      {intl.formatMessage(
+                        {
+                          id: "expiryMessage",
+                          defaultMessage: props.expiryMessage,
+                        },
+                        {
+                          endDate: dateEnd.toLocaleString(DateTime.DATE_FULL),
+                        }
+                      )}
                     </span>
                   )}
                 </span>

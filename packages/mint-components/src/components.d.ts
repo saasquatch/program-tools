@@ -1241,6 +1241,15 @@ export namespace Components {
          */
         "description": string;
         /**
+          * Shown to users after the end of the task duration.
+          * @uiName Ended Date Message
+         */
+        "endedMessage": string;
+        /**
+          * @uiName Expiry Date Message
+         */
+        "expiryMessage": string;
+        /**
           * @uiName Repeat Amount (0 for no limit)
          */
         "finite": number;
@@ -1282,6 +1291,11 @@ export namespace Components {
           * @uiName Show Progress Bar
          */
         "showProgressBar": boolean;
+        /**
+          * Shown to users before the start of the task duration.
+          * @uiName Start Date Message
+         */
+        "startsOnMessage": string;
         /**
           * Select what type of stat to display for the goal. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget
@@ -3022,6 +3036,15 @@ declare namespace LocalJSX {
          */
         "description"?: string;
         /**
+          * Shown to users after the end of the task duration.
+          * @uiName Ended Date Message
+         */
+        "endedMessage"?: string;
+        /**
+          * @uiName Expiry Date Message
+         */
+        "expiryMessage"?: string;
+        /**
           * @uiName Repeat Amount (0 for no limit)
          */
         "finite"?: number;
@@ -3063,6 +3086,11 @@ declare namespace LocalJSX {
           * @uiName Show Progress Bar
          */
         "showProgressBar"?: boolean;
+        /**
+          * Shown to users before the start of the task duration.
+          * @uiName Start Date Message
+         */
+        "startsOnMessage"?: string;
         /**
           * Select what type of stat to display for the goal. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget

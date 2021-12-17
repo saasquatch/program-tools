@@ -48,6 +48,9 @@ const oneAction = {
   completedText:
     "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
   loading: false,
+  expiryMessage: "Ends {endDate}",
+  startsOnMessage: "Starts {startDate}",
+  endedMessage: "Ended {endDate}",
   finite: 0,
 };
 
@@ -70,6 +73,9 @@ const coupleActions = {
     "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
   rewardDuration: null,
   loading: false,
+  expiryMessage: "Ends {endDate}",
+  startsOnMessage: "Starts {startDate}",
+  endedMessage: "Ended {endDate}",
   finite: 0,
 };
 
@@ -92,6 +98,9 @@ const manyActions = {
   showExpiry: false,
   rewardDuration: null,
   loading: false,
+  expiryMessage: "Ends {endDate}",
+  startsOnMessage: "Starts {startDate}",
+  endedMessage: "Ended {endDate}",
   finite: 0,
 };
 

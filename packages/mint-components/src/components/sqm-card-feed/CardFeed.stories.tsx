@@ -29,6 +29,9 @@ const taskCardProps = {
   showExpiry: false,
   rewardDuration: null,
   loading: false,
+  expiryMessage: "Ends {endDate}",
+  startsOnMessage: "Starts {startDate}",
+  endedMessage: "Ended {endDate}",
   finite: 0,
 };
 
@@ -51,6 +54,9 @@ const coupleActions = {
   showExpiry: false,
   rewardDuration: null,
   loading: false,
+  expiryMessage: "Ends {endDate}",
+  startsOnMessage: "Starts {startDate}",
+  endedMessage: "Ended {endDate}",
   finite: 0,
 };
 
@@ -73,6 +79,9 @@ const manyActions = {
   showExpiry: false,
   rewardDuration: null,
   loading: false,
+  expiryMessage: "Ends {endDate}",
+  startsOnMessage: "Starts {startDate}",
+  endedMessage: "Ended {endDate}",
   finite: 0,
 };
 

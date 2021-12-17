@@ -85,6 +85,11 @@ export class TaskCard {
   showExpiry: boolean = false;
 
   /**
+   * @uiName Expiry Date Message
+   */
+  @Prop() expiryMessage: string = "Ends {endDate}";
+
+  /**
    * @uiName Reward Duration
    * @uiWidget DateRange
    * @uiOptions {"allowPastDates":true, "months": 1}
@@ -92,12 +97,26 @@ export class TaskCard {
   @Prop() rewardDuration: string = "/";
 
   /**
+   * Shown to users before the start of the task duration.
+   * 
+   * @uiName Start Date Message
+   */
+  @Prop() startsOnMessage: string = "Starts {startDate}";
+
+  /**
+   * Shown to users after the end of the task duration.
+   * 
+   * @uiName Ended Date Message
+   */
+  @Prop() endedMessage: string = "Ended {endDate}";
+
+  /**
    * Displays the amount of times that a user has completed a repeatable task.
    *
    * @uiName Completed Count Text
    */
-  @Prop() completedText: string = 
-  "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}";
+  @Prop() completedText: string =
+    "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}";
 
   /**
    * @uiName CTA Button Text
