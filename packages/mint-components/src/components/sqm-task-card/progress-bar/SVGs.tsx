@@ -1,6 +1,6 @@
 import { h } from "@stencil/core";
 
-export const gift = () => {
+export const Gift = () => {
   return (
     <svg
       width="16"
