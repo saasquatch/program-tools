@@ -113,8 +113,11 @@ function useReferraltableDemo(props: ReferralTable): ReferralTableViewProps {
       elements: {
         emptyElement: <EmptySlot />,
         loadingElement: <LoadingSlot />,
-        // FIXME: Even in demo mode, this should use real column names!
-        columns: [<div>Example</div>, <div>Example</div>, <div>Example</div>],
+        columns: [
+          <div>User</div>,
+          <div>Referral Status</div>,
+          <div>Rewards</div>,
+        ],
         rows: [],
       },
     },
