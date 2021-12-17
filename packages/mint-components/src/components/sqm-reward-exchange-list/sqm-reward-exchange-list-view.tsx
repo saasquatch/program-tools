@@ -255,7 +255,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           fontWeight: "var(--sl-font-weight-normal)",
           color: "var(--sl-color-neutral-1000)",
         },
-        "@media (max-width: 768px)": {
+        "@media (max-width: 499px)": {
           width: "100%",
           marginRight: "0",
         },
@@ -267,7 +267,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           fontWeight: "var(--sl-font-weight-normal)",
           color: "var(--sl-color-neutral-0)",
         },
-        "@media (max-width: 768px)": {
+        "@media (max-width: 499px)": {
           width: "100%",
         },
       },

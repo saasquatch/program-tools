@@ -20,7 +20,7 @@ export function ProgramExplainerView(
     Container: {
       display: "flex",
       flexDirection: "row",
-      "@media (max-width: 768px)": {
+      "@media (max-width: 499px)": {
         flexDirection: "column",
       },
     },
@@ -54,7 +54,7 @@ export function ProgramExplainerView(
     display: flex;
     width: 100%;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 499px) {
     ::slotted(*){
       display: block;
     }
