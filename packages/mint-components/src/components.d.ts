@@ -1014,11 +1014,18 @@ export namespace Components {
           * @uiName Redemption Error Message
          */
         "redemptionError": string;
+        /**
+          * @uiName Redemption Success Message
+         */
         "redemptionSuccessText": string;
         /**
           * @uiName Select Amount Text
          */
         "selectAmount": string;
+        /**
+          * @uiName Number of Skeleton Cards
+         */
+        "skeletonCardNum": number;
     }
     interface SqmRewardsTable {
         /**
@@ -2866,11 +2873,18 @@ declare namespace LocalJSX {
           * @uiName Redemption Error Message
          */
         "redemptionError"?: string;
+        /**
+          * @uiName Redemption Success Message
+         */
         "redemptionSuccessText"?: string;
         /**
           * @uiName Select Amount Text
          */
         "selectAmount"?: string;
+        /**
+          * @uiName Number of Skeleton Cards
+         */
+        "skeletonCardNum"?: number;
     }
     interface SqmRewardsTable {
         /**
