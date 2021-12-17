@@ -25,7 +25,6 @@ export type TaskCardViewProps = {
   buttonLink: string;
   openNewTab: boolean;
   loading: boolean;
-  marginBottom?: number;
 } & ProgressBarProps;
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
@@ -210,7 +209,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         {styleString}
         {vanillaStyle}
       </style>
-      {taskNotStarted && (
+      {!props.loading && taskNotStarted && (
         <div class={sheet.classes.NotStarted}>
           <span class="icon">
             <sl-icon name="info-circle-fill"></sl-icon>
@@ -218,7 +217,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           {"Starts " + dateStart.toLocaleString(DateTime.DATE_MED)}
         </div>
       )}
-      {taskEnded && (
+      {!props.loading && taskEnded && (
         <div class={sheet.classes.Ended}>
           <span class="icon">
             <sl-icon name="exclamation-triangle-fill"></sl-icon>
@@ -382,6 +381,7 @@ function Details(props): VNode {
         },
         transformOrigin: "50% 37%",
         transition: "transform var(--sl-transition-medium) ease",
+        cursor: "pointer",
       },
       "& input:checked ~ .summary": {
         transition: "all var(--sl-transition-medium) ease",
