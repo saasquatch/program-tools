@@ -60,16 +60,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       display: "flex",
       margin: "0 auto",
     },
-    PreviewImage: {
-      objectFit: "contain",
-      width: "120px",
-      height: "118px",
-      flex: 0.33,
-    },
-    InputBox: {
-      width: "100%",
-      marginBottom: "20px",
-    },
     Select: {
       "&::part(label)": {
         color: "var(--sl-color-primary-500)",
@@ -123,25 +113,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         margin: "-9px",
       },
     },
-
-    Square: {
-      width: "120px",
-      height: "118px",
-      borderRadius: "3px 0 0 3px",
-      "& .image": {
-        width: "100%",
-        height: "100%",
-        objectFit: "contain",
-        borderRadius: "inherit",
-      },
-      "& .image.subdued": {
-        filter: "brightness(0.95)",
-        opacity: "0.5",
-      },
-    },
-
     Image: {
-      padding: "8px",
+      padding: "var(--sl-spacing-small)",
       minWidth: "96px",
       maxWidth: "96px",
       "& .image": {
@@ -155,13 +128,24 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         opacity: "0.5",
       },
     },
-
+    Square: {
+      width: "120px",
+      height: "118px",
+      borderRadius: "3px 0 0 3px",
+      "& .image": {
+        width: "100%",
+        height: "100%",
+        objectFit: "contain",
+        borderRadius: "inherit",
+      },
+    },
     TextArea: {
       textAlign: "left",
-      padding: "12px",
+      padding: "var(--sl-spacing-small)",
+      paddingLeft: "0",
       "& .title": {
-        fontSize: "16px",
-        lineHeight: "20px",
+        fontSize: "var(--sl-font-size-medium)",
+        lineHeight: "var(--sl-line-height-dense)",
         fontWeight: "600",
         color: "var(--sl-color-neutral-1000)",
         display: "-webkit-box",
@@ -170,9 +154,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         overflow: "hidden",
       },
       "& .amount": {
-        fontSize: "14px",
-        lineHeight: "18px",
-        marginTop: "8px",
+        fontSize: "var(--sl-font-size-small)",
+        lineHeight: "var(--sl-line-height-dense)",
+        marginTop: "var(--sl-spacing-x-small)",
         color: "var(--sl-color-neutral-500)",
         display: "-webkit-box",
         "-webkit-line-clamp": "1",
@@ -180,29 +164,32 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         overflow: "hidden",
       },
       "& .error": {
-        fontSize: "14px",
-        lineHeight: "18px",
-        marginTop: "8px",
+        fontSize: "var(--sl-font-size-small)",
+        lineHeight: "var(--sl-line-height-dense)",
+        marginTop: "var(--sl-spacing-x-small)",
         fontWeight: "600",
         color: "var(--sl-color-warning-500)",
         display: "-webkit-box",
         "-webkit-line-clamp": "1",
         "-webkit-box-orient": "vertical",
         overflow: "hidden",
+        "& .icon": {
+          position: "relative",
+          top: "0.1em",
+          marginRight: "var(--sl-spacing-xx-small)",
+        },
       },
     },
 
     ChooseAmount: {
       margin: "var(--sl-spacing-medium) 0",
       "& .title": {
-        //fontSize: "var(--sl-font-size-large)",
-        fontSize: "113%",
+        fontSize: "var(--sl-font-size-large)",
         fontWeight: "var(--sl-font-weight-semibold)",
         color: "var(--sl-color-neutral-1000)",
       },
       "& .points": {
-        //fontSize: "var(--sl-font-size-large)",
-        fontSize: "113%",
+        fontSize: "var(--sl-font-size-large)",
         fontWeight: "var(--sl-font-weight-semibold)",
         color: "var(--sl-color-primary-500)",
       },
@@ -324,7 +311,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             <div slot="suffix" style={{ fontSize: "75%", float: "right" }}>
               {step.prettySourceValue}
               {step.unavailableReasonCode && (
-                <p style={{ fontSize: "70%", color: "#F2994A" }}>
+                <p
+                  style={{
+                    fontSize: "70%",
+                    color: "var(--sl-color-warning-500)",
+                  }}
+                >
                   {intl.formatMessage(
                     {
                       id: "unavailableCode",
@@ -368,10 +360,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               : `${item.prettySourceMinValue} to ${item.prettySourceMaxValue}`;
 
           return (
-            <div
-              key={item.key}
-              style={style}
-            >
+            <div key={item.key} style={style}>
               <sl-card
                 class={sheet.classes.Card}
                 style={{
@@ -444,6 +433,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     </div>
                     {item.unavailableReasonCode && (
                       <div class="error">
+                        <sl-icon
+                          class="icon"
+                          name="exclamation-triangle-fill"
+                        ></sl-icon>
                         {intl.formatMessage(
                           {
                             id: "unavailableCode",
@@ -543,7 +536,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     console.log(selectedItem?.name);
     return (
       <div>
-        <h2 style={{ margin: "20px 0" }}>{states.content.text.redeemTitle}</h2>
+        <h2 style={{ margin: "var(--sl-spacing-large) 0" }}>
+          {states.content.text.redeemTitle}
+        </h2>
         <div
           style={{
             textAlign: "center",
@@ -551,7 +546,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           }}
         >
           <p>
-            <span style={{ fontSize: "18px" }}>
+            <span style={{ fontSize: "var(--sl-font-size-large)" }}>
               {selectedStep?.prettySourceValue ||
                 selectedItem?.prettySourceValue}
             </span>
@@ -567,7 +562,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               minWidth: "100%",
             }}
           >
-            <sl-card
+            {/* <sl-card
               style={{ width: "auto", maxWidth: "350px", margin: "auto" }}
               class={sheet.classes.Card}
             >
@@ -584,15 +579,43 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               <div
                 class={sheet.classes.TextArea}
                 style={{
-                  lineHeight: "18px",
+                  lineHeight: "var(--sl-line-height-dense)",
                   alignSelf: "center",
                 }}
               >
-                {selectedStep?.prettyDestinationValue
-                  ? `${selectedStep?.prettyDestinationValue} ${
-                      selectedItem?.name || ""
-                    }`
-                  : selectedItem?.name || ""}
+                <div>{selectedItem?.name}</div>
+                <div>{selectedStep?.destinationValue}</div>
+              </div>
+            </sl-card> */}
+            <sl-card
+              class={sheet.classes.Card}
+              style={{
+                width: "33%",
+                margin: "auto",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  height: "120px",
+                  borderRadius: "3px",
+                  background: "rgba(0, 0, 0, 0)",
+                }}
+              >
+                <div class={sheet.classes.Image}>
+                  <img
+                    class="image"
+                    src={
+                      selectedItem?.imageUrl ||
+                      getAssetPath("./assets/placeholder.png")
+                    }
+                  />
+                </div>
+                <div class={sheet.classes.TextArea}>
+                  <div class="title">{selectedItem?.name}</div>
+                  <div class="amount">{selectedStep?.destinationValue}</div>
+                </div>
               </div>
             </sl-card>
           </div>
@@ -647,8 +670,11 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             style={{
               width: "40%",
               margin: "-30px auto var(--sl-spacing-xxx-large) auto",
+              textAlign: "left",
+              color: "var(--sl-color-neutral-700)",
             }}
           >
+            Promo code
             <ShareLinkView
               shareString={data.fuelTankCode}
               tooltiptext="Copied"
@@ -719,9 +745,19 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     ></sl-skeleton>
                   </div>
 
-                  <div style={{ margin: "12px 12px 0 0", width: "100%" }}>
-                    <sl-skeleton style={{ marginBottom: "12px" }}></sl-skeleton>
-                    <sl-skeleton style={{ marginBottom: "12px" }}></sl-skeleton>
+                  <div
+                    style={{
+                      margin:
+                        "var(--sl-spacing-small) var(--sl-spacing-small) 0 0",
+                      width: "100%",
+                    }}
+                  >
+                    <sl-skeleton
+                      style={{ marginBottom: "var(--sl-spacing-small)" }}
+                    ></sl-skeleton>
+                    <sl-skeleton
+                      style={{ marginBottom: "var(--sl-spacing-small)" }}
+                    ></sl-skeleton>
                     <sl-skeleton style={{ width: "45%" }}></sl-skeleton>
                   </div>
                 </div>
