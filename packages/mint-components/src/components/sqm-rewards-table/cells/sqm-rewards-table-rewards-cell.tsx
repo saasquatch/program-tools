@@ -29,7 +29,7 @@ export class RewardTableRewardsCell {
         "padding-right": "var(--sl-spacing-x-small)",
         "&::part(header)": {
           padding: "var(--sl-spacing-x-small)",
-          cursor: `${this.hideDetails ? "default" : "pointer"}`,
+          cursor: "default",
         },
         "&::part(content)": {
           padding: "var(--sl-spacing-x-small) var(--sl-spacing-medium)",
@@ -38,7 +38,7 @@ export class RewardTableRewardsCell {
           opacity: "1",
         },
         "&::part(summary-icon)": {
-          display: `${this.hideDetails ? "none" : "flex"}`,
+          display: "flex",
         },
       },
 
@@ -99,11 +99,14 @@ export class RewardTableRewardsCell {
               height: "100%",
             },
           },
-          Ellipsis: {
-            position: "relative",
-            margin: "-8px",
-            bottom: "1px",
-            left: "8px",
+          Container: {
+            display: "inline-block",
+            verticalAlign: "top",
+            maxWidth: "100%",
+            maxHeight: "60px",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           },
         };
         jss.setup(preset());
@@ -112,23 +115,11 @@ export class RewardTableRewardsCell {
         return (
           <div>
             <style type="text/css">{styleString}</style>
-            <div
-              style={{
-                display: "inline-block",
-                verticalAlign: "top",
-                maxWidth: "100%",
-                // maxHeight: "35px",
-                maxHeight: "60px",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
+            <div class={sheet.classes.Container}>
               <span style={{ color: "#232323" }}>{pimpedPrettyValue}</span>{" "}
               <br /> <div class={sheet.classes.Progress} />
               {progressBarSubtext}
             </div>
-            {/* <div class={sheet.classes.Ellipsis}>...</div> */}
           </div>
         );
       }

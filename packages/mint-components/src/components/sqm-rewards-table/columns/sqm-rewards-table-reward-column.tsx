@@ -1,7 +1,7 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Method, Prop } from "@stencil/core";
 import { useRequestRerender } from "../../../tables/re-render";
-import { ReferralTableColumn } from "../../sqm-referral-table/columns/ReferralTableColumn";
+import { RewardTableColumn } from "./RewardTableColumn";
 /**
  * @uiName Rewards Table Reward Column
  */
@@ -9,7 +9,7 @@ import { ReferralTableColumn } from "../../sqm-referral-table/columns/ReferralTa
   tag: "sqm-rewards-table-reward-column",
   shadow: true,
 })
-export class RewardsTableColumn implements ReferralTableColumn {
+export class RewardsTableColumn implements RewardTableColumn {
   /**
    * @uiName Reward column title
    */
@@ -26,9 +26,7 @@ export class RewardsTableColumn implements ReferralTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  //@ts-ignore
   async renderCell(data: Reward[]) {
-    // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
     return (
       <sqm-rewards-table-rewards-cell
         reward={data?.[0]}

@@ -16,6 +16,7 @@ export class RewardTableDateColumn implements RewardTableColumn {
    * @uiName Date Column Title
    */
   @Prop() columnTitle: string = "Date received";
+
   /**
    * @uiName Date Displayed
    * @uiType string
@@ -25,7 +26,6 @@ export class RewardTableDateColumn implements RewardTableColumn {
    * "dateRedeemed",
    * "dateScheduledFor"]
    */
-
   @Prop() dateShown: string = "dateGiven";
 
   constructor() {
@@ -34,9 +34,9 @@ export class RewardTableDateColumn implements RewardTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Reward) {
+  async renderCell(data: Reward[]) {
     const reward = data?.[0];
-    // TODO - Validate `dateShown` against a set of known values
+    // TODO: dateShown validation?
     return (
       <sqm-rewards-table-date-cell
         date={reward[this.dateShown]}
