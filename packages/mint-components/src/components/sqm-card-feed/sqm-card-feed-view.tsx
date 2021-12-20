@@ -7,13 +7,13 @@ export interface CardFeedViewProps {
   width: number;
   gap: number;
 }
+
 export function CardFeedView(props: CardFeedViewProps, children: VNode) {
   const style = {
     Container: {
       columnGap: props.gap + "px",
       columnWidth: props.width + "px",
       "& > div": {
-        //   display: "inline-block!important",
         marginBottom: "24px",
       },
     },
@@ -26,21 +26,17 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
   console.log(props);
 
   const vanillaStyle = `
-	::slotted(*){
-		// display: block!important;
-		margin-bottom: ${props.gap}px;
-	}
+    :host{
+      display: block;   
+    }
   `;
 
   return (
     <div>
       <style type="text/css">
         {styleString}
-        {/* {vanillaStyle} */}
+        {vanillaStyle}
       </style>
-      {/* <masonry-layout gap={props.gap}>
-        {children}
-      </masonry-layout> */}
       <div class={sheet.classes.Container}>{children}</div>
     </div>
   );

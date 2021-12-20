@@ -1019,6 +1019,10 @@ export namespace Components {
          */
         "redemptionSuccessText": string;
         /**
+          * @uiName Reward Title Text
+         */
+        "rewardTitle": string;
+        /**
           * @uiName Select Amount Text
          */
         "selectText": string;
@@ -1063,10 +1067,6 @@ export namespace Components {
           * @uiName Show column labels
          */
         "showLabels"?: boolean;
-        /**
-          * @uiName Show Referred by user in table
-         */
-        "showReferrer"?: boolean;
     }
     interface SqmRewardsTableDateCell {
         "date": number;
@@ -2906,6 +2906,10 @@ declare namespace LocalJSX {
          */
         "redemptionSuccessText"?: string;
         /**
+          * @uiName Reward Title Text
+         */
+        "rewardTitle"?: string;
+        /**
           * @uiName Select Amount Text
          */
         "selectText"?: string;
@@ -2950,10 +2954,6 @@ declare namespace LocalJSX {
           * @uiName Show column labels
          */
         "showLabels"?: boolean;
-        /**
-          * @uiName Show Referred by user in table
-         */
-        "showReferrer"?: boolean;
     }
     interface SqmRewardsTableDateCell {
         "date"?: number;
