@@ -22,8 +22,7 @@ const baseResponse = (
         continueToConfirmationText: "Continue to confirmation",
         redeemText: "Redeem",
         redeemTitle: "Confirm and redeem",
-        redemptionSuccessText:
-          "Successfully redeemed {sourceValue} for {destinationValue}",
+        redemptionSuccessText: "Redeemed {sourceValue} for {destinationValue}",
         doneText: "Done",
         toolTipText: "Copied!",
         selectText: "Select amount to receive",
@@ -32,6 +31,7 @@ const baseResponse = (
         rewardRedeemedText: "Reward redeemed",
         redemptionError:
           "An error occured trying to redeem this reward. Please try again",
+        skeletonCardNum: 8,
       },
     },
     redeemStage: stage,

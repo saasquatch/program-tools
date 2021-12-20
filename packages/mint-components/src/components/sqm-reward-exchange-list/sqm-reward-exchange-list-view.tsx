@@ -168,7 +168,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         lineHeight: "var(--sl-line-height-dense)",
         marginTop: "var(--sl-spacing-x-small)",
         fontWeight: "600",
-        color: "var(--sl-color-warning-500)",
+        color: "var(--sl-color-warning-600)",
         display: "-webkit-box",
         "-webkit-line-clamp": "1",
         "-webkit-box-orient": "vertical",

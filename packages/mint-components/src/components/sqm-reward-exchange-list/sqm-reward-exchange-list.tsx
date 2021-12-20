@@ -86,7 +86,7 @@ export class SqmRewardExchangeList {
    * @uiName Redemption Success Message
    */
   @Prop() redemptionSuccessText: string =
-    "Successfully redeemed {sourceValue} for {destinationValue}";
+    "Redeemed {sourceValue} for {destinationValue}";
 
   /**
    * @uiName Reward Exchange Amount Text
