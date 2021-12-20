@@ -13,9 +13,10 @@ const baseResponse = (
         buttonText: "Exchange Rewards",
         notAvailableError:
           "{unavailableReason, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {Not enough points} other {Not available} }",
-        chooseRewardTitle: "Choose reward",
-        chooseAmountTitle: "Amount",
+        chooseRewardTitle: "Rewards",
+        chooseAmountTitle: "Select",
         confirmationTitle: "Confirm",
+        rewardTitle: "Choose a reward",
         cancelText: "Cancel",
         backText: "Back",
         continueText: "Continue",
@@ -246,9 +247,9 @@ export const chooseAmountFixed = {
 export const confirmFixed = {
   ...baseResponse(data, "confirmation", {
     ...baseReward,
-    ...name("A very exclusive gift box"),
-    ...imageUrl("https://i.imgur.com/93BvEgH.png"),
-    ...fixedValue("30 SaaSquatch Points"),
+    ...name("Free swag with a promo code"),
+    ...imageUrl("https://i.imgur.com/n7vC4BR.png"),
+    ...fixedValue("40 SaaSquatch Points"),
   }),
 };
 
@@ -282,15 +283,23 @@ export const error = {
 };
 
 export const success = {
-  ...baseResponse(data, "success", {
-    ...baseReward,
-    ...name("A very exclusive gift box"),
-    ...imageUrl("https://i.imgur.com/93BvEgH.png"),
-    ...fixedValue("30 SaaSquatch Points"),
-  }),
+  ...baseResponse(
+    data,
+    "success",
+    {
+      ...baseReward,
+	  ...name("Free swag with a promo code"),
+	  ...imageUrl("https://i.imgur.com/n7vC4BR.png"),
+	  ...fixedValue("40 SaaSquatch Points"),
+    },
+    undefined,
+    undefined,
+    undefined,
+    "4ah2-hh46-gk7r"
+  ),
 };
 
-export const success2 = {
+export const successVariable = {
   ...baseResponse(
     data,
     "success",
@@ -301,23 +310,6 @@ export const success2 = {
       ...variableValue(20, 80, "Points"),
     },
     baseStep(20, "$", 40, "Points")
-  ),
-};
-
-export const success3 = {
-  ...baseResponse(
-    data,
-    "success",
-    {
-      ...baseReward,
-      ...name("A very exclusive gift box"),
-      ...imageUrl("https://i.imgur.com/93BvEgH.png"),
-      ...fixedValue("30 SaaSquatch Points"),
-    },
-    undefined,
-    undefined,
-    undefined,
-    "4ah2-hh46-gk7r"
   ),
 };
 

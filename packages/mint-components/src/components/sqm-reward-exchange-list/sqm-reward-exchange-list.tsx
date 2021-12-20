@@ -53,6 +53,11 @@ export class SqmRewardExchangeList {
   @Prop() confirmationTitle: string = "Confirm";
 
   /**
+   * @uiName Reward Title Text
+   */
+  @Prop() rewardTitle: string = "Choose a reward";
+
+  /**
    * @uiName Cancel Button Text
    */
   @Prop() cancelText: string = "Cancel";
@@ -96,7 +101,7 @@ export class SqmRewardExchangeList {
 
   /**
    * Shown when a user copies a fuel tank code
-   * 
+   *
    * @uiName Tool Tip Text
    */
   @Prop() tooltiptext: string = "Copied";
@@ -127,7 +132,7 @@ export class SqmRewardExchangeList {
    */
   @Prop() notEnoughError: string =
     "Not enough {sourceUnit} to redeem for this reward";
-    
+
   /**
    * @uiName Number of Skeleton Cards
    */

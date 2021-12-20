@@ -340,141 +340,148 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   function chooseReward() {
     return [
-      <div class={sheet.classes.Grid}>
-        {data.exchangeList?.map((item: ExchangeItem) => {
-          const style = {
-            boxShadow:
-              item.key === selectedItem?.key
-                ? "0 0 0 2px var(--sl-color-primary-500)"
-                : "none",
-            borderRadius: "4px",
-          };
+      <div>
+        {!states.loading && (
+          <h2 style={{ margin: "var(--sl-spacing-large) 0" }}>
+            {states.content.text.rewardTitle}
+          </h2>
+        )}
+        <div class={sheet.classes.Grid}>
+          {data.exchangeList?.map((item: ExchangeItem) => {
+            const style = {
+              boxShadow:
+                item.key === selectedItem?.key
+                  ? "0 0 0 2px var(--sl-color-primary-500)"
+                  : "none",
+              borderRadius: "4px",
+            };
 
-          return (
-            <div key={item.key} style={style}>
-              <sl-card
-                class={sheet.classes.Card}
-                style={{
-                  cursor: item.unavailableReasonCode
-                    ? "not-allowed"
-                    : "pointer",
-                }}
-                onClick={() =>
-                  item.available &&
-                  callbacks.setExchangeState({ selectedItem: item })
-                }
-              >
-                {item.key === selectedItem?.key && (
-                  <div class="selected">
-                    <CheckmarkFilled />
-                  </div>
-                )}
-                <div
+            return (
+              <div key={item.key} style={style}>
+                <sl-card
+                  class={sheet.classes.Card}
                   style={{
-                    display: "flex",
-                    width: "100%",
-                    height: "120px",
-                    borderRadius: "3px",
-                    background: item.unavailableReasonCode
-                      ? "rgba(0, 0, 0, 0.05)"
-                      : "rgba(0, 0, 0, 0)",
+                    cursor: item.unavailableReasonCode
+                      ? "not-allowed"
+                      : "pointer",
                   }}
+                  onClick={() =>
+                    item.available &&
+                    callbacks.setExchangeState({ selectedItem: item })
+                  }
                 >
-                  <div
-                    class={sheet.classes.Image}
-                    style={{
-                      opacity: item.unavailableReasonCode ? "0.5" : "1",
-                    }}
-                  >
-                    <img
-                      class={
-                        item.unavailableReasonCode ? "image subdued" : "image"
-                      }
-                      src={
-                        item?.imageUrl ||
-                        getAssetPath("./assets/placeholder.png")
-                      }
-                    />
-                  </div>
-                  <div
-                    class={sheet.classes.TextArea}
-                    style={{
-                      opacity: item.unavailableReasonCode ? "0.5" : "1",
-                    }}
-                  >
-                    <div
-                      class="title"
-                      style={{
-                        "-webkit-line-clamp": item.unavailableReasonCode
-                          ? "1"
-                          : "2",
-                      }}
-                    >
-                      {item.name ?? ""}
+                  {item.key === selectedItem?.key && (
+                    <div class="selected">
+                      <CheckmarkFilled />
                     </div>
+                  )}
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "100%",
+                      height: "120px",
+                      borderRadius: "3px",
+                      background: item.unavailableReasonCode
+                        ? "rgba(0, 0, 0, 0.05)"
+                        : "rgba(0, 0, 0, 0)",
+                    }}
+                  >
                     <div
-                      class="amount"
+                      class={sheet.classes.Image}
                       style={{
-                        "-webkit-line-clamp": item.unavailableReasonCode
-                          ? "1"
-                          : "2",
+                        opacity: item.unavailableReasonCode ? "0.5" : "1",
                       }}
                     >
-                      {intl.formatMessage(
-                        {
-                          id: "sourceAmountMessage",
-                          defaultMessage:
-                            states.content?.text?.sourceAmountMessage,
-                        },
-                        {
-                          ruleType: item.ruleType,
-                          sourceValue: item.prettySourceValue,
-                          sourceMinValue: item.prettySourceMinValue,
-                          sourceMaxValue: item.prettySourceMaxValue,
+                      <img
+                        class={
+                          item.unavailableReasonCode ? "image subdued" : "image"
                         }
-                      )}
+                        src={
+                          item?.imageUrl ||
+                          getAssetPath("./assets/placeholder.png")
+                        }
+                      />
                     </div>
-                    {item.unavailableReasonCode && (
-                      <div class="error">
-                        <sl-icon
-                          class="icon"
-                          name="exclamation-triangle-fill"
-                        ></sl-icon>
+                    <div
+                      class={sheet.classes.TextArea}
+                      style={{
+                        opacity: item.unavailableReasonCode ? "0.5" : "1",
+                      }}
+                    >
+                      <div
+                        class="title"
+                        style={{
+                          "-webkit-line-clamp": item.unavailableReasonCode
+                            ? "1"
+                            : "2",
+                        }}
+                      >
+                        {item.name ?? ""}
+                      </div>
+                      <div
+                        class="amount"
+                        style={{
+                          "-webkit-line-clamp": item.unavailableReasonCode
+                            ? "1"
+                            : "2",
+                        }}
+                      >
                         {intl.formatMessage(
                           {
-                            id: "unavailableCode",
+                            id: "sourceAmountMessage",
                             defaultMessage:
-                              states.content?.text?.notAvailableError,
+                              states.content?.text?.sourceAmountMessage,
                           },
                           {
-                            unavailableReason:
-                              item.unavailableReason ||
-                              item.unavailableReasonCode,
-                            sourceUnit: item.sourceUnit,
-                            sourceValue:
-                              item.prettySourceValue ||
-                              item.prettySourceMinValue,
+                            ruleType: item.ruleType,
+                            sourceValue: item.prettySourceValue,
+                            sourceMinValue: item.prettySourceMinValue,
+                            sourceMaxValue: item.prettySourceMaxValue,
                           }
                         )}
                       </div>
-                    )}
+                      {item.unavailableReasonCode && (
+                        <div class="error">
+                          <sl-icon
+                            class="icon"
+                            name="exclamation-triangle-fill"
+                          ></sl-icon>
+                          {intl.formatMessage(
+                            {
+                              id: "unavailableCode",
+                              defaultMessage:
+                                states.content?.text?.notAvailableError,
+                            },
+                            {
+                              unavailableReason:
+                                item.unavailableReason ||
+                                item.unavailableReasonCode,
+                              sourceUnit: item.sourceUnit,
+                              sourceValue:
+                                item.prettySourceValue ||
+                                item.prettySourceMinValue,
+                            }
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </sl-card>
-            </div>
-          );
-        })}
-      </div>,
-      <div class={sheet.classes.Button}>
-        <sl-button
-          class="continue right"
-          size="large"
-          onClick={() => callbacks.setStage("chooseAmount")}
-          loading={states.loading}
-          disabled={!states.selectedItem}
-        >
-          {states.content.text.continueText}
-        </sl-button>
+                </sl-card>
+              </div>
+            );
+          })}
+        </div>
+        <div class={sheet.classes.Button}>
+          <sl-button
+            class="continue right"
+            size="large"
+            onClick={() => callbacks.setStage("chooseAmount")}
+            loading={states.loading}
+            disabled={!states.selectedItem}
+          >
+            {states.content.text.continueText}
+          </sl-button>
+        </div>
       </div>,
     ];
   }
@@ -565,34 +572,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               minWidth: "100%",
             }}
           >
-            {/* <sl-card
-              style={{ width: "auto", maxWidth: "350px", margin: "auto" }}
-              class={sheet.classes.Card}
-            >
-              <div class={sheet.classes.Square}>
-                <img
-                  class="image"
-                  src={
-                    selectedItem?.imageUrl ||
-                    getAssetPath("./assets/placeholder.png")
-                  }
-                />
-              </div>
-
-              <div
-                class={sheet.classes.TextArea}
-                style={{
-                  lineHeight: "var(--sl-line-height-dense)",
-                  alignSelf: "center",
-                }}
-              >
-                <div>{selectedItem?.name}</div>
-                <div>{selectedStep?.destinationValue}</div>
-              </div>
-            </sl-card> */}
             <sl-card
               class={sheet.classes.Card}
               style={{
+                minWidth: "350px",
                 width: "33%",
                 margin: "auto",
               }}
@@ -615,9 +598,14 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     }
                   />
                 </div>
-                <div class={sheet.classes.TextArea}>
+                <div
+                  class={sheet.classes.TextArea}
+                  style={{ alignSelf: "center" }}
+                >
                   <div class="title">{selectedItem?.name}</div>
-                  <div class="amount">{selectedStep?.destinationValue}</div>
+                  <div class="amount">
+                    {selectedStep?.prettyDestinationValue}
+                  </div>
                 </div>
               </div>
             </sl-card>
