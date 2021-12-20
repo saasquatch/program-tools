@@ -29,7 +29,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Reward) {
+  async renderCell(data: Reward[]) {
     const rewardData = data?.[0];
     return (
       <sqm-rewards-table-status-cell

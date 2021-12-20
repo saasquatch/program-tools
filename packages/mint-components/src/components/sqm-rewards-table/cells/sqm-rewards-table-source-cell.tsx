@@ -29,11 +29,9 @@ export class RewardTableSourceCell {
         <div>
           Reward Exchange
           <br />
-          {/* <Data> */}
           {reward.exchangedRewardRedemptionTransaction?.prettyRedeemedCredit}
           {" → "}
           {reward.prettyValue}
-          {/* </Data> */}
         </div>
       );
 

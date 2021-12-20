@@ -30,7 +30,7 @@ export class RewardTableUserColumn implements RewardTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Reward) {
+  async renderCell(data: Reward[]) {
 
     return (
       <sqm-rewards-table-source-cell reward={data?.[0]}></sqm-rewards-table-source-cell>

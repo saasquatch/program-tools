@@ -1082,7 +1082,7 @@ export namespace Components {
           * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
          */
         "dateShown": string;
-        "renderCell": (data: Reward) => Promise<any>;
+        "renderCell": (data: Reward[]) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableRewardColumn {
@@ -1117,7 +1117,7 @@ export namespace Components {
           * @uiName Name displayed for deleted users
          */
         "deletedUser": string;
-        "renderCell": (data: Reward) => Promise<any>;
+        "renderCell": (data: Reward[]) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableStatusCell {
@@ -1129,7 +1129,7 @@ export namespace Components {
           * @uiName Column Title
          */
         "columnTitle": string;
-        "renderCell": (data: Reward) => Promise<any>;
+        "renderCell": (data: Reward[]) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Expired Status Text
