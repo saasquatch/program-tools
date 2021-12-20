@@ -18,7 +18,6 @@
   "license": "MIT",
   "dependencies": {
     "@types/json-schema": "^7.0.9",
-    "downshift": "^6.1.7",
     "jsonata": "^1.8.4",
     "jsonata-ui-core": "^1.7.12",
     "jsonata-visual-editor": "^0.4.0",
@@ -47,6 +46,7 @@
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
+    "downshift": "^6.1.7",
     "jest": "^26.0.1",
     "prettier-standard": "^16.3.0",
     "react": "^16.13.1",
@@ -57,9 +57,15 @@
     "typescript": "^3.9.9"
   },
   "peerDependencies": {
+    "downshift": ">=6.1.7",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
     "styled-components": ">=5.3.0"
+  },
+  "peerDependenciesMeta": {
+    "downshift": {
+      "optional": true
+    }
   },
   "jest": {
     "preset": "ts-jest",
