@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2021-12-07
+
+### Changed
+
+- Updated version of component-boilerplate to prevent rare case of user context being deleted during register
+- Changed components:
+  - \<sqb-conditional-section>
+    - Added the ability to use the user's email in JSONata conditions
+
+## [1.2.1] - 2021-11-22
+
+### Fixed
+
+- Version of component-boilerplate updated to prevent rare race condition with graphQL queries
+
 ## [1.2.0] - 2021-11-05
 
 ### Added
@@ -46,7 +61,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqb-conditional-section>
   - \<sqb-program-section>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.2.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.3.0...HEAD
+[1.3.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.0
+[1.2.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.2.1
 [1.2.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.2.0
 [1.1.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.1.1
 [1.1.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.1.0

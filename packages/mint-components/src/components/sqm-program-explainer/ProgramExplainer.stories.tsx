@@ -19,7 +19,7 @@ const props = {
 
 const steps1 = {
   cardTitle: "Invite your friends to Klip",
-  description: "Earn up to $1200 in rewards for each referral",
+  description: "Send your referral link to a friend or share it through email, Twitter, or Facebook",
   color: "white",
   background: "#5B3EDA",
   icon: "person-plus-fill",

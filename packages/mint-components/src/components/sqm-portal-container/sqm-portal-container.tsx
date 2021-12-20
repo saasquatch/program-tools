@@ -14,7 +14,6 @@ import { Spacing } from "../../global/mixins";
 export class PortalContainer {
   @State()
   ignored = true;
-
   /**
    * @uiName Direction
    * @uiType string
@@ -36,6 +35,11 @@ export class PortalContainer {
 
   /** @uiName Minimum width */
   @Prop() minWidth?: string;
+
+  /**
+   * @uiName Maximum width
+   */
+  @Prop() maxWidth?: string = "100%";
 
   constructor() {
     withHooks(this);

@@ -10,29 +10,28 @@ const baseResponse = (
   states: {
     content: {
       text: {
-        continueText: "Continue",
+        buttonText: "Exchange Rewards",
+        notAvailableError:
+          "{unavailableReason, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {Not enough points} other {Not available} }",
+        chooseRewardTitle: "Choose reward",
+        chooseAmountTitle: "Amount",
+        confirmationTitle: "Confirm",
         cancelText: "Cancel",
-        continueToConfirmationText: "Continue to confirmation",
         backText: "Back",
+        continueText: "Continue",
+        continueToConfirmationText: "Continue to confirmation",
         redeemText: "Redeem",
+        redeemTitle: "Confirm and redeem",
+        redemptionSuccessText:
+          "Successfully redeemed {sourceValue} for {destinationValue}",
         doneText: "Done",
         toolTipText: "Copied!",
         selectText: "Select amount to receive",
         sourceAmountMessage:
           "{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}",
-        chooseRewardTitle: "Choose reward",
-        chooseAmountTitle: "Amount",
-        confirmationTitle: "Confirm",
-        redeemTitle: "Confirm and redeem",
         rewardRedeemedText: "Reward redeemed",
         redemptionError:
           "An error occured trying to redeem this reward. Please try again",
-        redemptionSuccessText:
-          "Successfully redeemed {sourceValue} for {destinationValue}",
-        queryError:
-          "An error occured trying to redeem this reward. Please try again.",
-        notAvailableError:
-          "{unavailableReason, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {Not enough points} other {Not available} }",
       },
     },
     redeemStage: stage,

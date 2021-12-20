@@ -5,7 +5,7 @@ import {
   useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
 
-export function usePortalVerifyEmail({ nextPage }) {
+export function usePortalVerifyEmail({ nextPage, failedPage }) {
   const [verified, setVerified] = useState(false);
   const [disableContinue, setDisableContinue] = useState(true);
   const userIdent = useUserIdentity();
@@ -19,7 +19,7 @@ export function usePortalVerifyEmail({ nextPage }) {
 
   const failed = () => {
     return navigation.push({
-      pathname: "/",
+      pathname: failedPage,
       search: urlParams.toString() && "?" + urlParams.toString(),
     });
   };

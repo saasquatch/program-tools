@@ -8,6 +8,7 @@ interface PortalContainerViewProps {
   padding: Spacing;
   gap: string;
   minWidth?: string;
+  maxWidth?: string;
 }
 
 export function PortalContainerView(
@@ -25,13 +26,14 @@ export function PortalContainerView(
       "grid-gap": `var(--sl-spacing-${props.gap})`,
       padding:
         props.padding === "none" ? "0" : `var(--sl-spacing-${props.padding})`,
+      maxWidth: props.maxWidth ? props.maxWidth : "",
     },
   };
 
   const vanillaStyle = `
   :host{
     width: 100%;
-    display: "block";
+    display: block;
   }`;
 
   jss.setup(preset());

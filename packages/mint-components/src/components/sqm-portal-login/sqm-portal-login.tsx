@@ -60,6 +60,16 @@ export class PortalLogin {
   pageLabel: string = "Sign in to your account";
 
   /**
+   * @uiName Register button redirection path
+   */
+  @Prop() registerPath: string = "/register";
+
+  /**
+   * @uiName Forgot password button redirect path
+   */
+  @Prop() forgotPasswordPath: string = "/forgotPassword";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -78,7 +88,7 @@ export class PortalLogin {
     const content = {
       forgotPasswordButton: (
         <slot name="forgotPassword">
-          <a onClick={() => navigation.push("/forgotPassword")}>
+          <a onClick={() => navigation.push(states.forgotPasswordPath)}>
             {this.forgotPasswordLabel}
           </a>
         </slot>
@@ -88,7 +98,7 @@ export class PortalLogin {
           <sl-button
             type="text"
             disabled={states.loading}
-            onClick={() => navigation.push("/register")}
+            onClick={() => navigation.push(states.registerPath)}
           >
             {this.registerLabel}
           </sl-button>
@@ -111,7 +121,12 @@ export class PortalLogin {
 function useLoginDemo(props: PortalLogin): Partial<PortalLoginViewProps> {
   return deepmerge(
     {
-      states: { error: "", loading: false },
+      states: {
+        error: "",
+        loading: false,
+        forgotPasswordPath: "/forgotPassword",
+        registerPath: "/register",
+      },
       callbacks: {
         submit: async (_event) => {
           console.log("submit");

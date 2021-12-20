@@ -55,7 +55,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         borderColor: "var(--sl-color-primary-500)",
       },
       "& .main.expired": {
-        color: "var(--sl-color-neutral-400)",
+        color: "var(--sl-color-neutral-600)",
         background: "var(--sl-color-neutral-50)",
       },
       "& .title": {
@@ -67,7 +67,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         margin: "var(--sl-spacing-medium)",
       },
       "& .container.subdued": {
-        opacity: "0.66",
+        opacity: "0.45",
       },
       "& .container > div": {
         margin: "var(--sl-spacing-medium) 0",
@@ -82,8 +82,10 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       borderBottom: "none",
       background: "var(--sl-color-primary-50)",
       fontWeight: "var(--sl-font-weight-semibold)",
+      lineHeight: "var(--sl-line-height-dense)",
       "& .icon": {
-        verticalAlign: "middle",
+        position: "relative",
+        top: "0.1em",
         marginRight: "var(--sl-spacing-small)",
         color: "var(--sl-color-primary-500)",
       },
@@ -97,8 +99,10 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       borderBottom: "none",
       background: "var(--sl-color-warning-50)",
       fontWeight: "var(--sl-font-weight-semibold)",
+      lineHeight: "var(--sl-line-height-dense)",
       "& .icon": {
-        verticalAlign: "middle",
+        position: "relative",
+        top: "0.1em",
         marginRight: "var(--sl-spacing-small)",
         color: "var(--sl-color-warning-500)",
       },
@@ -172,7 +176,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         },
       },
       "& .neutral": {
-        color: "var(--sl-color-neutral-400)",
+        color: "var(--sl-color-neutral-600)",
       },
     },
   };
