@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react"
-import { SecondaryButton } from "../Button"
-import { Modal, ModalContent, ModalContentDivider, ModalContentAction, ModalContentText, ModalContentBanner, ModalContentTopAction, ModalContentCode } from "../Modal"
+import { Button } from "../Button"
+import { Modal, ModalContent, ModalContentDivider, ModalContentAction, ModalContentText, ModalContentBanner, ModalContentTopAction, ModalContentCode } from "."
 import { Dropdown } from "../Dropdown"
 import { Input } from "../Input"
 import { RadioAction } from "../RadioAction"
@@ -17,7 +17,7 @@ export const WithPrimaryAction = () => {
   const handleChange = useCallback(() => setActive(!active), [active])
   return (
     <div style={{ height: 300 }}>
-      <SecondaryButton onClick={handleChange}>Open Modal</SecondaryButton>
+      <Button buttonType="secondary" onClick={handleChange}>Open Modal</Button>
       <Modal title="Salesforce Submit Actions" open={active} onClose={handleChange}>
         <ModalContent>
           <ModalContentText>
@@ -44,7 +44,7 @@ export const WithPrimaryAndSecondaryAction = () => {
 
   return (
     <div style={{ height: 700 }}>
-      <SecondaryButton onClick={handleChange}>Open Modal</SecondaryButton>
+      <Button buttonType="secondary" onClick={handleChange}>Open Modal</Button>
       <Modal title="Add Referral Code" open={active} onClose={handleChange}>
         <ModalContent>
           <ModalContentText>
@@ -104,7 +104,7 @@ export const WithCriticalAction = () => {
   const handleChange = useCallback(() => setActive(!active), [active])
   return (
     <div style={{ height: 300 }}>
-      <SecondaryButton onClick={handleChange}>Open Modal</SecondaryButton>
+      <Button buttonType="secondary" onClick={handleChange}>Open Modal</Button>
       <Modal title="Salesforce Submit Actions" open={active} onClose={handleChange}>
         <ModalContent>
           <ModalContentText>
@@ -141,7 +141,7 @@ export const WithBanner = () => {
   )
   return (
     <div style={{ height: 750 }}>
-      <SecondaryButton onClick={handleChange}>Open Modal</SecondaryButton>
+      <Button buttonType="secondary" onClick={handleChange}>Open Modal</Button>
       <Modal title="Signup Program" open={active} onClose={handleChange}>
         <ModalContent>
           <ModalContentBanner banner={{ text: "A section heading", icon: program_icon }} />
@@ -188,7 +188,7 @@ export const WithHeaderAction = () => {
   const handleChange = useCallback(() => setActive(!active), [active])
   return (
     <div style={{ height: 550 }}>
-      <SecondaryButton onClick={handleChange}>Open Modal</SecondaryButton>
+      <Button buttonType="secondary" onClick={handleChange}>Open Modal</Button>
       <Modal title="Referral Program With Objectives Program" open={active} onClose={handleChange}>
         <ModalContent>
           <ModalContentTopAction action={{ text: "Back to Learn More", icon: <Icon size="20px" icon="leftward_arrow" /> }} />
@@ -224,7 +224,7 @@ export const WithMultipleSectionsAndActions = () => {
   const handleChange = useCallback(() => setActive(!active), [active])
   return (
     <div style={{ height: 900 }}>
-      <SecondaryButton onClick={handleChange}>Open Modal</SecondaryButton>
+      <Button buttonType="secondary" onClick={handleChange}>Open Modal</Button>
       <Modal title="Signup Program" open={active} onClose={handleChange}>
         <ModalContent>
           <ModalContentText>
@@ -273,7 +273,7 @@ export const WithFormElements = () => {
   const handleChange = useCallback(() => setActive(!active), [active])
   return (
     <div style={{ height: 700 }}>
-      <SecondaryButton onClick={handleChange}>Open Modal</SecondaryButton>
+      <Button buttonType="secondary" onClick={handleChange}>Open Modal</Button>
       <Modal title="Add User" open={active} onClose={handleChange}>
         <ModalContent>
           <ModalContentText>
@@ -331,7 +331,7 @@ export const WithCodeBlock = () => {
   const handleChange = useCallback(() => setActive(!active), [active])
   return (
     <div style={{ height: 700 }}>
-      <SecondaryButton onClick={handleChange}>Open Modal</SecondaryButton>
+      <Button buttonType="secondary" onClick={handleChange}>Open Modal</Button>
       <Modal title="Reward Details" open={active} onClose={handleChange}>
         <ModalContent>
           <ModalContentCode>{code}</ModalContentCode>
@@ -403,7 +403,7 @@ export const WithCodeBlockOverflow = () => {
   const handleChange = useCallback(() => setActive(!active), [active])
   return (
     <div style={{ height: 900 }}>
-      <SecondaryButton onClick={handleChange}>Open Modal</SecondaryButton>
+      <Button buttonType="secondary" onClick={handleChange}>Open Modal</Button>
       <Modal title="Reward Details" open={active} onClose={handleChange}>
         <ModalContent>
           <ModalContentCode>{code}</ModalContentCode>

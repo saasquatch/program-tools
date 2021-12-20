@@ -8,13 +8,13 @@ type ButtonProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"button">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   icon?: IconKey;
   iconLocation?: "left" | "right";
   children?: React.ReactElement | string;
 }
 
-interface StyleProps {
+export interface StyleProps {
   buttonType?: "primary" | "secondary" | "text";
   pill?: boolean;
   loading?: boolean;

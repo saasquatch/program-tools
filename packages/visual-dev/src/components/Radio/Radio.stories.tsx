@@ -1,14 +1,10 @@
 import React from 'react'
-import root from 'react-shadow/styled-components'
-import styled from 'styled-components'
-import { Radio, RadioGroup } from '../Radio'
+import { Radio } from '.'
 
 export default {
   title: 'Components / Radio',
   component: Radio,
 }
-
-const ShadowDom = styled(root.div)``
 
 export const Functional = () => {
   return (

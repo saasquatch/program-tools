@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import { PrimaryButton, SecondaryButton } from "../Button";
+import { Button } from "../Button";
 import * as Styles from "./Styles";
 
 type ModalActionProps = ActionOptions &
@@ -30,22 +30,24 @@ export const ModalContentAction = React.forwardRef<
   return (
     <ModalActionDiv {...rest} ref={forwardedRef} css={css}>
       {secondaryAction && (
-        <SecondaryButton
+        <Button
+          buttonType="secondary"
           pill
           onClick={secondaryAction.onAction}
           style={{ marginRight: 25 }}
         >
           {secondaryAction.text}
-        </SecondaryButton>
+        </Button>
       )}
       {primaryAction && (
-        <PrimaryButton
+        <Button
+          buttonType="primary"
           pill
           onClick={primaryAction.onAction}
           critical={primaryAction.danger}
         >
           {primaryAction.text}
-        </PrimaryButton>
+        </Button>
       )}
     </ModalActionDiv>
   );

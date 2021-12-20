@@ -1,7 +1,5 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import * as Styles from "./Styles";
-import { IconKey, Icon } from "../Icon";
 
 type PopoverProps = OptionProps &
   StyleProps &

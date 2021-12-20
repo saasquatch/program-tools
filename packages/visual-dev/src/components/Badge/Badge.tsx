@@ -7,11 +7,11 @@ type BadgeProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   icon?: IconKey;
 }
 
-interface StyleProps {
+export interface StyleProps {
   status: "info" | "success" | "critical" | "warning";
   pill?: boolean;
   css?: CSSProp;
@@ -43,7 +43,7 @@ export const Badge = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
             color="inherit"
             size="var(--sq-icon-size-badge)"
             style={{ margin: -2 }}
-            css="+ span { margin-left: 5px; }"
+            customCSS="+ span { margin-left: 5px; }"
           />
         )}
         {children && <span>{children}</span>}

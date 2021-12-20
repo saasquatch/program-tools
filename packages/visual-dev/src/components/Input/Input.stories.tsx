@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IconButton } from "../Button";
-import { Input } from "../Input";
+import { Input } from ".";
 
 export default {
   title: "Components / Input",
@@ -12,7 +12,7 @@ export const FunctionalInput = () => {
   return (
     <Input
       value={value}
-      onChange={(e) => setValue(e.target.value)}
+      onChange={(e: { target: { value: string } }) => setValue(e.target.value)}
       disabled={undefined}
       errors={undefined}
     />

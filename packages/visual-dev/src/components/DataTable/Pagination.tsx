@@ -1,7 +1,6 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import * as Styles from "./Styles";
-import { IconKey, Icon } from "../Icon";
+import { Icon } from "../Icon";
 import { Dropdown } from "../Dropdown";
 
 type PopoverProps = OptionProps &
@@ -65,20 +64,20 @@ export const Pagination = React.forwardRef<
     <PaginationDiv {...rest} ref={forwardedRef} css={css}>
       1-10 of {total}
       <div style={{ marginLeft: "auto" }}>
-        <Icon size="24px" icon="chevron_left" css="margin: -3px;" />
+        <Icon size="24px" icon="chevron_left" customCSS="margin: -3px;" />
         {pages.map((x: any) => (
           <TextDiv selected={selected === x}>{x}</TextDiv>
         ))}
         <Icon
           size="24px"
           icon="chevron_right"
-          css="margin: -3px; margin-right: 24px;"
+          customCSS="margin: -3px; margin-right: 24px;"
         />
         <Dropdown
           pill
           center
           text="10 per page"
-          css="min-width: 165px; width: 165px; display: inline-block"
+          customCSS="min-width: 165px; width: 165px; display: inline-block"
         />
       </div>
     </PaginationDiv>

@@ -7,12 +7,12 @@ type SwitchProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   checked?: boolean;
   color?: "success" | "critical";
 }
 
-interface StyleProps {
+export interface StyleProps {
   css?: CSSProp;
 }
 

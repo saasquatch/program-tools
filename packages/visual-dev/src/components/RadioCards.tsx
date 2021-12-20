@@ -60,7 +60,7 @@ const RadioCards: React.FC<DetailedRadiosWidgetProps> = (props: DetailedRadiosWi
         const cardProps = cardFormat ? { checked } : {}
         return (
           <Card key={props.id + '_' + key} {...cardProps}>
-            <DetailedRadio checked={checked} onClick={props.onChange} id={props.id + '_' + key} value={key} name={props.id} {...options} />
+            <DetailedRadio checked={checked} onChange={props.onChange} id={props.id + '_' + key} value={key} name={props.id} {...options} />
             {key === 'setAsPrimary' && checked && primaryInfo && <InfoWrapper>{primaryInfo.map((info: React.ReactNode) => info)}</InfoWrapper>}
           </Card>
         )

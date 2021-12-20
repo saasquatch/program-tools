@@ -5,12 +5,12 @@ import * as Styles from "./Styles";
 
 type ButtonProps = OptionProps & StyleProps & Omit<React.ComponentProps<"button">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   icon: IconKey;
   icon_css?: CSSProp;
 }
 
-interface StyleProps {
+export interface StyleProps {
   circle?: boolean;
   primary?: boolean;
   borderless?: boolean;
@@ -55,7 +55,7 @@ export const IconButton = React.forwardRef<
       ref={forwardedRef}
       css={css}
     >
-      <Icon icon={icon} size={Styles.icon_only_size[size]} css={icon_css} />
+      <Icon icon={icon} size={Styles.icon_only_size[size]} customCSS={icon_css} />
     </Button>
   );
 });

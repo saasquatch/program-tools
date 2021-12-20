@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Dropdown, DropdownItem, DropdownSublist } from '../Dropdown'
+import { Dropdown, DropdownItem, DropdownSublist } from '.'
 
 export default {
   title: 'Components / Dropdown',

@@ -6,7 +6,7 @@ import * as Styles from "./Styles";
 
 type InputProps = OptionProps & React.ComponentProps<"input">;
 
-interface OptionProps {
+export interface OptionProps {
   value?: any;
   onChange?: any;
   options?: any;
@@ -49,7 +49,7 @@ export const Checkbox = React.forwardRef<React.ElementRef<"input">, InputProps>(
             ref={forwardedRef}
           />
           <CheckboxBox isDisabled={disabled}>
-            <Icon icon="checkmark" css={CheckboxTick} />
+            <Icon icon="checkmark" customCSS={CheckboxTick} />
           </CheckboxBox>
           {options ? options.text : ""}
         </CheckboxLabel>

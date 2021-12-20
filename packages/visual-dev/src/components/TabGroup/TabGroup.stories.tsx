@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Tab, TabGroup } from '../TabGroup'
+import { Tab, TabGroup } from '.'
 
 export default {
   title: 'Components / Tab',

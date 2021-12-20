@@ -6,7 +6,7 @@ import { IconKey, Icon } from "../Icon";
 
 type InputProps = OptionProps & React.ComponentProps<"input">;
 
-interface OptionProps {
+export interface OptionProps {
   value?: any;
   onChange?: any;
   disabled?: any;

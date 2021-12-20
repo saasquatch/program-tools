@@ -1,21 +1,18 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import * as Styles from "./Styles";
-import { Icon } from "../Icon";
 import { Dropdown } from "../Dropdown";
-import { Pagination, Row } from ".";
 
 type DataTableProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   children?: any;
   empty?: boolean;
   search?: boolean;
 }
 
-interface StyleProps {
+export interface StyleProps {
   width?: string;
   css?: CSSProp;
 }
@@ -51,9 +48,9 @@ export const DataTable = React.forwardRef<
   return (
     <>
       <Menus>
-        <Dropdown text="All Forms" css="min-width: 112px;" />
-        <Dropdown text="Any Status" css="min-width: 116px;" />
-        <Dropdown text="30 Days" icon="calendar" css="min-width: 142px;" />
+        <Dropdown text="All Forms" customCSS="min-width: 112px;" />
+        <Dropdown text="Any Status" customCSS="min-width: 116px;" />
+        <Dropdown text="30 Days" icon="calendar" customCSS="min-width: 142px;" />
       </Menus>
       <DataTableDiv width={width} {...rest} ref={forwardedRef} css={css}>
         {children}

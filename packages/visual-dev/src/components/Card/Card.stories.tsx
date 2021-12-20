@@ -1,6 +1,6 @@
 import React from "react"
-import { PrimaryButton, SecondaryButton } from "../Button"
-import { Card, CardEdit, CardLong } from "../Card"
+import { Card, CardEdit, CardLong } from "."
+import { Button } from "../Button"
 
 export default {
   title: "Components / Card",
@@ -26,9 +26,9 @@ export const cardLongA = () => {
   const footer = (
     <>
       <span> No Codes Available</span>
-      <PrimaryButton size="medium" pill css="float: right;">
+      <Button buttonType="primary" size="medium" pill css="float: right;">
         Upload Codes
-      </PrimaryButton>
+      </Button>
     </>
   )
   return (
@@ -43,12 +43,12 @@ export const cardLongB = () => {
   const footer = (
     <>
       <span style={{ color: "#57AC59" }}> 123 Codes Available </span>
-      <SecondaryButton size="medium" pill css="float: right;">
+      <Button buttonType="secondary" size="medium" pill css="float: right;">
         Upload Codes
-      </SecondaryButton>
-      <SecondaryButton size="medium" pill css="margin-right: 8px; float: right;">
+      </Button>
+      <Button buttonType="secondary" size="medium" pill css="margin-right: 8px; float: right;">
         Manage
-      </SecondaryButton>
+      </Button>
     </>
   )
   return (

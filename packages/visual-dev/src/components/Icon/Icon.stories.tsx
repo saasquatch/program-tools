@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon } from '../Icon'
+import { Icon } from '.'
 
 export default {
   title: 'Components / Icon',
@@ -11,7 +11,7 @@ export const SizeSmall = () => <Icon size='small' icon={'add'} />
 export const SizeMedium = () => <Icon size='medium' icon={'add'} />
 export const SizeLarge = () => <Icon size='large' icon={'add'} />
 export const SizeCustom = () => <Icon size='88px' icon={'add'} />
-export const CSSCustom = () => <Icon css='color: red; width: 50px; height: 50px; margin-left: 50px;' icon={'add'} />
+export const CSSCustom = () => <Icon customCSS='color: red; width: 50px; height: 50px; margin-left: 50px;' icon={'add'} />
 export const close = () => <Icon icon={'close'} />
 export const ChevronDown = () => <Icon icon={'chevron_down'} />
 export const calendar = () => <Icon icon={'calendar'} />
@@ -37,3 +37,4 @@ export const info = () => <Icon icon={'info'} />
 export const settings = () => <Icon icon={'settings'} />
 export const avatar = () => <Icon icon={'avatar'} />
 export const leftwardArrow = () => <Icon icon={'leftward_arrow'} />
+export const visibility = () => <Icon icon={'visibility'} />
