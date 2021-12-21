@@ -600,7 +600,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 </div>
                 <div
                   class={sheet.classes.TextArea}
-                  style={{ alignSelf: "center" }}
+                //   style={{ alignSelf: "center" }}
                 >
                   <div class="title">{selectedItem?.name}</div>
                   <div class="amount">
