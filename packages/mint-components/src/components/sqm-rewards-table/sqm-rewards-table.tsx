@@ -4,11 +4,13 @@ import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import {
-  GenericTableView,
-  GenericTableViewProps,
-} from "../../tables/GenericTableView";
-import { EmptySlot, LoadingSlot, EmptySkeleton, LoadingSkeleton} from "../../tables/TableSlots";
-import { useRewardsTable, CSS_NAMESPACE } from "./useRewardsTable";
+	EmptySkeleton, EmptySlot, LoadingSkeleton, LoadingSlot
+} from "../../tables/TableSlots";
+import {
+	RewardsTableView,
+	RewardsTableViewProps
+} from "./sqm-rewards-table-view";
+import { CSS_NAMESPACE, useRewardsTable } from "./useRewardsTable";
 
 /**
  * @uiName Rewards Table
@@ -42,7 +44,7 @@ export class RewardsTable {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<GenericTableViewProps>;
+  @Prop() demoData?: DemoData<RewardsTableViewProps>;
 
   constructor() {
     withHooks(this);
@@ -58,17 +60,17 @@ export class RewardsTable {
       : useRewardsTable(this, empty, loading);
 
     return (
-      <GenericTableView
+      <RewardsTableView
         states={states}
         data={data}
         callbacks={callbacks}
         elements={elements}
-      ></GenericTableView>
+      ></RewardsTableView>
     );
   }
 }
 
-function useRewardsTableDemo(props: RewardsTable): GenericTableViewProps {
+function useRewardsTableDemo(props: RewardsTable): RewardsTableViewProps {
   return deepmerge(
     {
       states: {
@@ -101,5 +103,3 @@ function useRewardsTableDemo(props: RewardsTable): GenericTableViewProps {
     { arrayMerge: (_, a) => a }
   );
 }
-
-

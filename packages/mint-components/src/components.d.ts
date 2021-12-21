@@ -30,7 +30,7 @@ import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-re
 import { ReferralTableViewProps } from "./components/sqm-referral-table/sqm-referral-table-view";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
-import { GenericTableViewProps } from "./tables/GenericTableView";
+import { RewardsTableViewProps } from "./components/sqm-rewards-table/sqm-rewards-table-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
@@ -1045,7 +1045,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<GenericTableViewProps>;
+        "demoData"?: DemoData<RewardsTableViewProps>;
         /**
           * @uiName View More button text
          */
@@ -2932,7 +2932,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<GenericTableViewProps>;
+        "demoData"?: DemoData<RewardsTableViewProps>;
         /**
           * @uiName View More button text
          */
