@@ -15,7 +15,7 @@
 
 ## Methods
 
-### `renderCell(data: Reward) => Promise<any>`
+### `renderCell(data: Reward[]) => Promise<any>`
 
 
 
