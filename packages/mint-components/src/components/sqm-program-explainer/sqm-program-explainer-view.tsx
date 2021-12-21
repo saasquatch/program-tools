@@ -59,7 +59,7 @@ export function ProgramExplainerView(
       display: block;
     }
   }`;
-  
+
   return (
     <div>
       <style type="text/css">

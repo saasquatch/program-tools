@@ -8,7 +8,7 @@ import { h, VNode } from "@stencil/core";
 import gql from "graphql-tag";
 import { useRerenderListener } from "../../tables/re-render";
 import { RewardsTable } from "./sqm-rewards-table";
-import { GenericTableViewProps } from "../../tables/GenericTableView";
+import { RewardsTableViewProps } from "./sqm-rewards-table-view";
 import { useChildElements } from "../../tables/useChildElements";
 
 export const CSS_NAMESPACE = "sqm-rewards-table";
@@ -97,7 +97,7 @@ export function useRewardsTable(
   props: RewardsTable,
   emptyElement: VNode,
   loadingElement: VNode
-): GenericTableViewProps {
+): RewardsTableViewProps {
   const user = useUserIdentity();
   const programIdContext = useProgramId();
   // Default to context, overriden by props
@@ -115,8 +115,8 @@ export function useRewardsTable(
   };
 
   const [content, setContent] = useReducer<
-    GenericTableViewProps["elements"],
-    Partial<GenericTableViewProps["elements"]>
+  RewardsTableViewProps["elements"],
+    Partial<RewardsTableViewProps["elements"]>
   >(
     (state, next) => ({
       ...state,
@@ -202,7 +202,7 @@ export function useRewardsTable(
       hasNext: states.currentPage < states.pageCount - 1,
       hasPrev: states.currentPage > 0,
       show,
-      namespace: CSS_NAMESPACE
+      namespace: CSS_NAMESPACE,
     },
     data: {
       textOverrides: {
@@ -210,6 +210,9 @@ export function useRewardsTable(
         prevLabel: props.prevLabel,
         moreLabel: props.moreLabel,
       },
+      hiddenColumns: props.hiddenColumns,
+      phoneBreakpoint: props.smBreakpoint,
+      tabletBreakpoint: props.mdBreakpoint,
     },
     elements: {
       columns: content.columns,

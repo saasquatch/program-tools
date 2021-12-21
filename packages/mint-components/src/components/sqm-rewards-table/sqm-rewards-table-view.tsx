@@ -17,6 +17,9 @@ export interface RewardsTableViewProps {
       prevLabel: string;
       moreLabel: string;
     };
+    hiddenColumns: string;
+    tabletBreakpoint: number;
+    phoneBreakpoint: number;
   };
   callbacks: {
     prevPage: () => void;
@@ -32,81 +35,116 @@ export interface RewardsTableViewProps {
   };
 }
 
-const style = {
-  THead: {
-    padding: "var(--sl-spacing-small)",
-    paddingLeft: "0",
-    textAlign: "left",
-
-    "@media (max-width: 699px)": {
-      display: "none",
-    },
-  },
-  TCell: {
-    padding: "var(--sl-spacing-small)",
-    paddingLeft: "0",
-
-    "@media (max-width: 699px)": {
-      display: "block",
-      padding: "0",
-      marginBottom: "var(--sl-spacing-medium)",
-
-      "&:first-child": {
-        textAlign: "left",
-      },
-      "&:before": {
-        content: "attr(data-label)",
-        float: "left",
-        width: "40%",
-        marginBottom: "1px",
-      },
-      "&:first-child::before": {
-        content: "none",
-      },
-      "&:last-child": {
-        marginBottom: "0",
-      },
-    },
-  },
-  TRow: {
-    "border-top": "1px solid #EAEAEA",
-
-    "@media (max-width: 699px)": {
-      display: "block",
-      background: "#FFFFFF",
-      border: "1px solid #E0E0E0",
-      boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-      borderRadius: "4px",
-      padding: "var(--sl-spacing-medium)",
-      color: "var(--sl-color-neutral-500)",
-      fontSize: "var(--sl-font-size-small)",
-      marginBottom: "var(--sl-spacing-large)",
-    },
-  },
-  Table: {
-    "border-collapse": "collapse",
-    width: "100%",
-
-    "@media (max-width: 699px)": {},
-  },
-  ButtonContainer: {
-    display: "flex",
-    "justify-content": "flex-end",
-    "margin-top": "var(--sl-spacing-small)",
-    ...gap({ direction: "row", size: "var(--sl-spacing-small)" }),
-  },
-};
-
-jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
-const styleString = sheet.toString();
-
 export function RewardsTableView(props: RewardsTableViewProps) {
   const { states, data, callbacks, elements } = props;
   const { columns, rows } = elements;
   const { show } = states;
 
+  const hiddenCols = data.hiddenColumns.split(",").map(Number);
+
   console.log(props);
+
+  const mobile = `@media (max-width: ${data.tabletBreakpoint}px)`;
+  const tablet =
+    "@media (min-width: " +
+    data.phoneBreakpoint +
+    "px) and (max-width: " +
+    data.tabletBreakpoint +
+    "px)";
+
+  const style = {
+    THead: {
+      padding: "var(--sl-spacing-small)",
+      paddingLeft: "0",
+      textAlign: "left",
+
+      [mobile]: {
+        display: "none",
+      },
+    },
+    TCell: {
+      padding: "var(--sl-spacing-small)",
+      paddingLeft: "0",
+
+      [mobile]: {
+        display: "block",
+        padding: "0",
+        marginBottom: "var(--sl-spacing-medium)",
+
+        "&:first-child": {
+          textAlign: "left",
+        },
+        "&:before": {
+          content: "attr(data-label)",
+          float: "left",
+          width: "40%",
+          marginBottom: "1px",
+        },
+        "&:last-child": {
+          marginBottom: "0",
+        },
+      },
+    },
+    TCellHidden: {
+      padding: "var(--sl-spacing-small)",
+      paddingLeft: "0",
+
+      [mobile]: {
+        display: "block",
+        padding: "0",
+        marginBottom: "var(--sl-spacing-medium)",
+
+        "&:first-child": {
+          textAlign: "left",
+        },
+        "&:before": {
+          content: "",
+          float: "left",
+          width: "40%",
+          marginBottom: "1px",
+        },
+        "&:last-child": {
+          marginBottom: "0",
+        },
+      },
+    },
+    TRow: {
+      "border-top": "1px solid #EAEAEA",
+
+      [mobile]: {
+        display: "block",
+        background: "#FFFFFF",
+        border: "1px solid #E0E0E0",
+        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+        borderRadius: "4px",
+        padding: "var(--sl-spacing-medium)",
+        color: "var(--sl-color-neutral-500)",
+        fontSize: "var(--sl-font-size-small)",
+        marginBottom: "var(--sl-spacing-large)",
+      },
+    },
+    TBody: {
+      [tablet]: {
+        display: "grid",
+        gridTemplateColumns: "0.5fr 0.5fr",
+        gap: "25px",
+      },
+    },
+    Table: {
+      "border-collapse": "collapse",
+      width: "100%",
+    },
+    ButtonContainer: {
+      display: "flex",
+      "justify-content": "flex-end",
+      "margin-top": "var(--sl-spacing-small)",
+      ...gap({ direction: "row", size: "var(--sl-spacing-small)" }),
+    },
+  };
+
+  jss.setup(preset());
+  const sheet = jss.createStyleSheet(style);
+  const styleString = sheet.toString();
 
   return (
     <div>
@@ -116,14 +154,12 @@ export function RewardsTableView(props: RewardsTableViewProps) {
           <thead>
             <tr>
               {columns?.map((column) => (
-                <th class={sheet.classes.THead}>
-                  <TextSpanView type="h3">{column}</TextSpanView>
-                </th>
+                <th class={sheet.classes.THead}>{column}</th>
               ))}
             </tr>
           </thead>
         )}
-        <tbody>
+        <tbody class={sheet.classes.TBody}>
           {show === "loading" && elements.loadingElement}
           {show === "empty" && elements.emptyElement}
           {show === "rows" &&
@@ -138,8 +174,15 @@ export function RewardsTableView(props: RewardsTableViewProps) {
                 part="table-row"
               >
                 {row.map((cell, j) => (
-                  <td class={sheet.classes.TCell} data-label={columns[j] + ":"}>
-                    <TextSpanView type="p">{cell}</TextSpanView>
+                  <td
+                    class={
+                      hiddenCols.includes(j)
+                        ? sheet.classes.TCellHidden
+                        : sheet.classes.TCell
+                    }
+                    data-label={columns[j] + ":"}
+                  >
+                    {cell}
                   </td>
                 ))}
               </tr>
