@@ -62,7 +62,7 @@ export class RewardTableRewardsCell {
     const sheet = jss.createStyleSheet(style);
     const styleString = sheet.toString();
 
-    function RewardValue({ reward }: { reward: Reward }) {
+    const RewardValue = ({ reward }: { reward: Reward }) => {
       const pimpedPrettyValue =
         reward.unit === "CENTS"
           ? reward.prettyValue.replace(/USD/gi, "$")
@@ -146,7 +146,7 @@ export class RewardTableRewardsCell {
         );
       }
       return <span style={{ color: "#232323" }}>{pimpedPrettyValue}</span>;
-    }
+    };
 
     return (
       <div style={{ display: "contents" }}>

@@ -15,7 +15,7 @@ export class RewardTableSourceCell {
   @Prop() rewardSourceText: string;
 
   render() {
-    function RewardSource({ reward }: { reward: Reward }) {
+    const RewardSource = ({ reward }: { reward: Reward }) => {
       return (
         <span>
           {intl.formatMessage(
@@ -29,10 +29,10 @@ export class RewardTableSourceCell {
           )}
         </span>
       );
-    }
+    };
 
     const SOURCE_COLUMN_LENGTH = 21;
-    function RewardExchangeBadge({ reward }: { reward: Reward }) {
+    const RewardExchangeBadge = ({ reward }: { reward: Reward }) => {
       const rewardExchange = (
         <div>
           {this.rewardExchangeText}
@@ -59,10 +59,10 @@ export class RewardTableSourceCell {
           {rewardExchange}
         </div>
       );
-    }
+    };
 
     // TODO: user type
-    function getFullName(user: any) {
+    const getFullName = (user: any) => {
       if (!user) return this.deletedUserText;
       if (!user.firstName && !user.lastName) return this.anonymousUserText;
 
@@ -70,7 +70,7 @@ export class RewardTableSourceCell {
       if (!user.lastName) return `${user.firstName}`;
 
       return `${user.firstName} ${user.lastName}`;
-    }
+    };
 
     const source = () =>
       this.reward.rewardSource === "FRIEND_SIGNUP" ||

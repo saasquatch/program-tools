@@ -40,7 +40,6 @@ export class RewardTableUserColumn implements RewardTableColumn {
     "{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}";
 
   /**
-   *
    * @uiName Reward Source Text
    */
   @Prop() rewardSourceText: string =

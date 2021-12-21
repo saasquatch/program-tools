@@ -21,7 +21,6 @@ export class RewardsTableColumn implements RewardTableColumn {
   @Prop() redeemedText: string = "{redeemedAmount} redeemed";
 
   /**
-   *
    * @uiName Available Amount Text
    */
   @Prop() availableText: string = "{availableAmount} available";
