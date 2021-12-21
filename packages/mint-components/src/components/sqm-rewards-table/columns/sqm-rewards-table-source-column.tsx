@@ -37,14 +37,14 @@ export class RewardTableUserColumn implements RewardTableColumn {
    * @uiName Referral Text
    */
   @Prop() referralText: string =
-    "{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by}}";
+    "{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}";
 
   /**
    *
    * @uiName Reward Source Text
    */
   @Prop() rewardSourceText: string =
-    "{rewardSource, select, MANUAL {Manual} AUTOMATED {Automated}}";
+    "{rewardSource, select, MANUAL {Manual} AUTOMATED {Automated} other {}}";
 
   constructor() {
     withHooks(this);
