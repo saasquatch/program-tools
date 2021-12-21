@@ -84,17 +84,15 @@ export class RewardTableRewardsCell {
 
         const style = {
           Progress: {
-            background: "#e0e0e0",
-            borderRadius: "4px",
             height: "3px",
-            width: "80px",
-            marginTop: "6px",
-            marginBottom: "6px",
+            width: "100px",
+            margin: "var(--sl-spacing-xx-small) 0",
+			background: "var(--sl-color-neutral-200)",
             "&:after": {
               content: '""',
               display: "block",
-              background: "#222222",
-              borderRadius: "4px",
+			  background: "var(--sl-color-neutral-1000)",
+              borderRadius: "100px",
               width: `${progress}%`,
               height: "100%",
             },
@@ -108,6 +106,15 @@ export class RewardTableRewardsCell {
             overflow: "hidden",
             textOverflow: "ellipsis",
           },
+
+          RewardAmount: {
+            fontSize: "var(--sl-font-size-medium)",
+            fontWeight: "var(--sl-font-weight-semibold)",
+          },
+          RewardRemain: {
+            fontSize: "var(--sl-font-size-small)",
+            color: "var(--sl-color-neutral-500)",
+          },
         };
         jss.setup(preset());
         const sheet = jss.createStyleSheet(style);
@@ -116,23 +123,25 @@ export class RewardTableRewardsCell {
           <div>
             <style type="text/css">{styleString}</style>
             <div class={sheet.classes.Container}>
-              <span style={{ color: "#232323" }}>{pimpedPrettyValue}</span>{" "}
+              <span class={sheet.classes.RewardAmount}>
+                {pimpedPrettyValue + " "}
+              </span>
               <br /> <div class={sheet.classes.Progress} />
-              {progressBarSubtext}
+              <span class={sheet.classes.RewardRemain}>
+                {progressBarSubtext}
+              </span>
             </div>
           </div>
         );
       }
-      return <span style={{ color: "#232323" }}>{pimpedPrettyValue}</span>;
+      return <span>{pimpedPrettyValue}</span>;
     }
 
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
         <TextSpanView type="p">
-          <span class={sheet.classes.BoldText}>
-            <RewardValue reward={this.reward} />
-          </span>
+          <RewardValue reward={this.reward} />
         </TextSpanView>
       </div>
     );

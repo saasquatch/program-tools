@@ -44,10 +44,10 @@ export class RewardsTable {
   @Prop() hiddenColumns?: string = "0";
   
   /** @uiName Hide Columns (Mobile View)  */
-  @Prop() smBreakpoint?: number = 499;
+  @Prop() smBreakpoint?: number = 599;
 
   /** @uiName Hide Columns (Mobile View)  */
-  @Prop() mdBreakpoint?: number = 999;
+  @Prop() mdBreakpoint?: number = 899;
 
   /**
    * @undocumented

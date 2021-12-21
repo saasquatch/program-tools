@@ -18,8 +18,8 @@ export interface RewardsTableViewProps {
       moreLabel: string;
     };
     hiddenColumns: string;
-    tabletBreakpoint: number;
-    phoneBreakpoint: number;
+    mdBreakpoint: number;
+    smBreakpoint: number;
   };
   callbacks: {
     prevPage: () => void;
@@ -44,95 +44,75 @@ export function RewardsTableView(props: RewardsTableViewProps) {
 
   console.log(props);
 
-  const mobile = `@media (max-width: ${data.tabletBreakpoint}px)`;
+  const mobile = "@media (max-width: " + data.mdBreakpoint + "px)";
   const tablet =
     "@media (min-width: " +
-    data.phoneBreakpoint +
+    data.smBreakpoint +
     "px) and (max-width: " +
-    data.tabletBreakpoint +
+    data.mdBreakpoint +
     "px)";
 
   const style = {
-    THead: {
-      padding: "var(--sl-spacing-small)",
-      paddingLeft: "0",
-      textAlign: "left",
-
-      [mobile]: {
-        display: "none",
-      },
-    },
-    TCell: {
-      padding: "var(--sl-spacing-small)",
-      paddingLeft: "0",
-
-      [mobile]: {
-        display: "block",
-        padding: "0",
-        marginBottom: "var(--sl-spacing-medium)",
-
-        "&:first-child": {
-          textAlign: "left",
-        },
-        "&:before": {
-          content: "attr(data-label)",
-          float: "left",
-          width: "40%",
-          marginBottom: "1px",
-        },
-        "&:last-child": {
-          marginBottom: "0",
-        },
-      },
-    },
-    TCellHidden: {
-      padding: "var(--sl-spacing-small)",
-      paddingLeft: "0",
-
-      [mobile]: {
-        display: "block",
-        padding: "0",
-        marginBottom: "var(--sl-spacing-medium)",
-
-        "&:first-child": {
-          textAlign: "left",
-        },
-        "&:before": {
-          content: "",
-          float: "left",
-          width: "40%",
-          marginBottom: "1px",
-        },
-        "&:last-child": {
-          marginBottom: "0",
-        },
-      },
-    },
-    TRow: {
-      "border-top": "1px solid #EAEAEA",
-
-      [mobile]: {
-        display: "block",
-        background: "#FFFFFF",
-        border: "1px solid #E0E0E0",
-        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-        borderRadius: "4px",
-        padding: "var(--sl-spacing-medium)",
-        color: "var(--sl-color-neutral-500)",
-        fontSize: "var(--sl-font-size-small)",
-        marginBottom: "var(--sl-spacing-large)",
-      },
-    },
-    TBody: {
-      [tablet]: {
-        display: "grid",
-        gridTemplateColumns: "0.5fr 0.5fr",
-        gap: "25px",
-      },
-    },
     Table: {
-      "border-collapse": "collapse",
+      borderCollapse: "collapse",
       width: "100%",
+      "& thead": {
+        padding: "var(--sl-spacing-small)",
+        paddingLeft: "0",
+        textAlign: "left",
+        fontWeight: "var(--sl-font-weight-normal)",
+      },
+      "& tr": {
+      },
+      "& td": {
+        borderTop: "1px solid var(--sl-color-neutral-200)",
+        padding: "var(--sl-spacing-small)",
+        paddingLeft: "0",
+      },
+      [mobile]: {
+        "& thead": {
+          display: "none",
+        },
+        "& tr": {
+          display: "block",
+          background: "#FFFFFF",
+          border: "1px solid var(--sl-color-neutral-200)",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+          borderRadius: "var(--sl-border-radius-medium)",
+          padding: "var(--sl-spacing-medium)",
+          color: "var(--sl-color-neutral-500)",
+          fontSize: "var(--sl-font-size-small)",
+          marginBottom: "var(--sl-spacing-large)",
+        },
+        "& td": {
+          display: "block",
+		  borderTop: "none",
+          padding: "0",
+          marginBottom: "var(--sl-spacing-medium)",
+          ".hidden::before": {
+            content: "",
+          },
+          "&:first-child": {
+            textAlign: "left",
+          },
+          "&:before": {
+            content: "attr(data-label)",
+            float: "left",
+            width: "40%",
+            marginBottom: "5px",
+          },
+          "&:last-child": {
+            marginBottom: "0",
+          },
+        },
+      },
+      [tablet]: {
+        "& tbody": {
+          display: "grid",
+          gridTemplateColumns: "0.5fr 0.5fr",
+          gap: "25px",
+        },
+      },
     },
     ButtonContainer: {
       display: "flex",
@@ -154,18 +134,17 @@ export function RewardsTableView(props: RewardsTableViewProps) {
           <thead>
             <tr>
               {columns?.map((column) => (
-                <th class={sheet.classes.THead}>{column}</th>
+                <th>{column}</th>
               ))}
             </tr>
           </thead>
         )}
-        <tbody class={sheet.classes.TBody}>
+        <tbody>
           {show === "loading" && elements.loadingElement}
           {show === "empty" && elements.emptyElement}
           {show === "rows" &&
             rows?.map((row, i) => (
               <tr
-                class={sheet.classes.TRow}
                 style={{
                   borderTop: `${
                     !data.textOverrides.showLabels && i === 0 ? "none" : ""
@@ -175,11 +154,7 @@ export function RewardsTableView(props: RewardsTableViewProps) {
               >
                 {row.map((cell, j) => (
                   <td
-                    class={
-                      hiddenCols.includes(j)
-                        ? sheet.classes.TCellHidden
-                        : sheet.classes.TCell
-                    }
+                    class={hiddenCols.includes(j) ? "hidden" : ""}
                     data-label={columns[j] + ":"}
                   >
                     {cell}
