@@ -76,17 +76,29 @@ export class RewardTableSourceCell {
       this.reward.rewardSource === "FRIEND_SIGNUP" ||
       this.reward.rewardSource === "REFERRED" ? (
         <div>
-          {intl.formatMessage(
-            {
-              id: "referralText",
-              defaultMessage: this.referralText,
-            },
-            {
-              rewardSource: this.reward.rewardSource,
-            }
-          )}
-          <br />
-          <b>{getFullName(this.reward.referral.referredUser)}</b>
+          <div
+            style={{
+              fontSize: "var(--sl-font-size-small)",
+              color: "var(--sl-color-neutral-500)",
+            }}
+          >
+            {intl.formatMessage(
+              {
+                id: "referralText",
+                defaultMessage: this.referralText,
+              },
+              {
+                rewardSource: this.reward.rewardSource,
+              }
+            )}
+          </div>
+          <div
+            style={{
+              fontSize: "var(--sl-font-size-medium)",
+            }}
+          >
+            {getFullName(this.reward.referral.referredUser)}
+          </div>
         </div>
       ) : this.reward.exchangedRewardRedemptionTransaction ? (
         <RewardExchangeBadge reward={this.reward} />

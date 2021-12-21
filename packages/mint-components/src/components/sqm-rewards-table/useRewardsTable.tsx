@@ -211,8 +211,8 @@ export function useRewardsTable(
         moreLabel: props.moreLabel,
       },
       hiddenColumns: props.hiddenColumns,
-      phoneBreakpoint: props.smBreakpoint,
-      tabletBreakpoint: props.mdBreakpoint,
+      smBreakpoint: props.smBreakpoint,
+      mdBreakpoint: props.mdBreakpoint,
     },
     elements: {
       columns: content.columns,

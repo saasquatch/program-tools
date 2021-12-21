@@ -1,6 +1,8 @@
 import { Component, h, Prop } from "@stencil/core";
 import { DateTime } from "luxon";
 import { intl } from "../../../global/global";
+import jss from "jss";
+import preset from "jss-preset-default";
 
 @Component({
   tag: "sqm-rewards-table-status-cell",
@@ -37,6 +39,25 @@ export class RewardTableStatusCell {
   }
 
   render() {
+    const style = {
+      Badge: {
+        "&::part(base)": {
+          fontSize: "var(--sl-font-size-small)",
+          padding: "4px 8px",
+        },
+      },
+
+      Date: {
+        fontSize: "var(--sl-font-size-small)",
+        margin: "0",
+        color: "var(--sl-color-neutral-500)",
+      },
+    };
+
+    jss.setup(preset());
+    const sheet = jss.createStyleSheet(style);
+    const styleString = sheet.toString();
+
     const rewardStatus = this.rewardStatus(this.reward);
     const statusText = intl.formatMessage(
       { id: "statusMessage", defaultMessage: this.statusText },
@@ -68,10 +89,11 @@ export class RewardTableStatusCell {
 
     return (
       <div style={{ display: "contents" }}>
-        <sl-badge type={badgeType} pill>
+        <style type="text/css">{styleString}</style>
+        <sl-badge type={badgeType} pill class={sheet.classes.Badge}>
           {statusText}
         </sl-badge>
-        <p style={{fontSize:"90%", marginTop:"0"}}>{date}</p>
+        <p class={sheet.classes.Date}>{date}</p>
       </div>
     );
   }
