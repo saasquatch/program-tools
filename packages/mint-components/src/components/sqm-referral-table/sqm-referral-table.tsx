@@ -131,7 +131,9 @@ function EmptySlot() {
     <slot name="empty">
       <div style={{ width: "100%" }}>
         <sqm-text>
-          <h3 style={{ color: "#777777" }}>No Referrals Yet</h3>
+          <h3 style={{ color: "#777777", textAlign: "center" }}>
+            No Referrals Yet
+          </h3>
         </sqm-text>
       </div>
     </slot>
