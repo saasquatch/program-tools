@@ -1047,6 +1047,14 @@ export namespace Components {
          */
         "demoData"?: DemoData<RewardsTableViewProps>;
         /**
+          * @uiName Hide Columns (Mobile View)
+         */
+        "hiddenColumns"?: string;
+        /**
+          * @uiName Hide Columns (Mobile View)
+         */
+        "mdBreakpoint"?: number;
+        /**
           * @uiName View More button text
          */
         "moreLabel"?: string;
@@ -1067,6 +1075,10 @@ export namespace Components {
           * @uiName Show column labels
          */
         "showLabels"?: boolean;
+        /**
+          * @uiName Hide Columns (Mobile View)
+         */
+        "smBreakpoint"?: number;
     }
     interface SqmRewardsTableDateCell {
         "date": number;
@@ -2962,6 +2974,14 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<RewardsTableViewProps>;
         /**
+          * @uiName Hide Columns (Mobile View)
+         */
+        "hiddenColumns"?: string;
+        /**
+          * @uiName Hide Columns (Mobile View)
+         */
+        "mdBreakpoint"?: number;
+        /**
           * @uiName View More button text
          */
         "moreLabel"?: string;
@@ -2982,6 +3002,10 @@ declare namespace LocalJSX {
           * @uiName Show column labels
          */
         "showLabels"?: boolean;
+        /**
+          * @uiName Hide Columns (Mobile View)
+         */
+        "smBreakpoint"?: number;
     }
     interface SqmRewardsTableDateCell {
         "date"?: number;

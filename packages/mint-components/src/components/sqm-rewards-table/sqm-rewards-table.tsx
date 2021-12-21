@@ -40,6 +40,15 @@ export class RewardsTable {
   /** @uiName View More button text  */
   @Prop() moreLabel?: string = "Next";
 
+  /** @uiName Hide Columns (Mobile View)  */
+  @Prop() hiddenColumns?: string = "0";
+  
+  /** @uiName Hide Columns (Mobile View)  */
+  @Prop() smBreakpoint?: number = 499;
+
+  /** @uiName Hide Columns (Mobile View)  */
+  @Prop() mdBreakpoint?: number = 999;
+
   /**
    * @undocumented
    * @uiType object
