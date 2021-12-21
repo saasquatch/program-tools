@@ -1,4 +1,5 @@
 import { Component, h, Prop } from "@stencil/core";
+import { intl } from "../../../global/global";
 import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 
 @Component({
@@ -7,27 +8,34 @@ import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 })
 export class RewardTableSourceCell {
   @Prop() reward: Reward;
+  @Prop() deletedUserText: string;
+  @Prop() anonymousUserText: string;
+  @Prop() rewardExchangeText: string;
+  @Prop() referralText: string;
+  @Prop() rewardSourceText: string;
 
   render() {
-    function capitalize(str: string) {
-      if (typeof str !== "string") {
-        console.error(`Cannot capitalize parameter of type ${typeof str}`);
-        return null;
-      }
-      return str.toLowerCase().replace(/\b\w/g, (l) => l.toUpperCase());
-    }
-
     function RewardSource({ reward }: { reward: Reward }) {
-      const rewardSource =
-        capitalize(reward.rewardSource?.replace("_", " ") || "") ?? "-";
-      return <span>{rewardSource}</span>;
+      return (
+        <span>
+          {intl.formatMessage(
+            {
+              id: "rewardSourceText",
+              defaultMessage: this.rewardSourceText,
+            },
+            {
+              rewardSource: reward.rewardSource,
+            }
+          )}
+        </span>
+      );
     }
 
     const SOURCE_COLUMN_LENGTH = 21;
     function RewardExchangeBadge({ reward }: { reward: Reward }) {
       const rewardExchange = (
         <div>
-          Reward Exchange
+          {this.rewardExchangeText}
           <br />
           {reward.exchangedRewardRedemptionTransaction?.prettyRedeemedCredit}
           {" → "}
@@ -55,8 +63,8 @@ export class RewardTableSourceCell {
 
     // TODO: user type
     function getFullName(user: any) {
-      if (!user) return "Deleted User";
-      if (!user.firstName && !user.lastName) return "Anonymous User";
+      if (!user) return this.deletedUserText;
+      if (!user.firstName && !user.lastName) return this.anonymousUserText;
 
       if (!user.firstName) return `${user.lastName}`;
       if (!user.lastName) return `${user.firstName}`;
@@ -68,8 +76,15 @@ export class RewardTableSourceCell {
       this.reward.rewardSource === "FRIEND_SIGNUP" ||
       this.reward.rewardSource === "REFERRED" ? (
         <div>
-          {this.reward.rewardSource === "FRIEND_SIGNUP" && "Referral to"}
-          {this.reward.rewardSource === "REFERRED" && "Referred by"}
+          {intl.formatMessage(
+            {
+              id: "referralText",
+              defaultMessage: this.referralText,
+            },
+            {
+              rewardSource: this.reward.rewardSource,
+            }
+          )}
           <br />
           <b>{getFullName(this.reward.referral.referredUser)}</b>
         </div>

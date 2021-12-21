@@ -9,6 +9,7 @@
 
 | Property     | Attribute     | Description | Type     | Default     |
 | ------------ | ------------- | ----------- | -------- | ----------- |
+| `expiryText` | `expiry-text` |             | `string` | `undefined` |
 | `reward`     | --            |             | `Reward` | `undefined` |
 | `statusText` | `status-text` |             | `string` | `undefined` |
 

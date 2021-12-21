@@ -1,6 +1,7 @@
 import { Component, h, Prop } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
+import { intl } from "../../../global/global";
 import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 @Component({
   tag: "sqm-rewards-table-rewards-cell",
@@ -8,7 +9,8 @@ import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 })
 export class RewardTableRewardsCell {
   @Prop() reward: Reward;
-  @Prop() hideDetails: boolean;
+  @Prop() redeemedText: string;
+  @Prop() availableText: string;
 
   // TODO: value function from portalv2
 
@@ -77,9 +79,29 @@ export class RewardTableRewardsCell {
         const progressBarSubtext =
           reward.statuses.includes("EXPIRED") ||
           reward.statuses.includes("CANCELLED") ? (
-            <div>{reward.prettyRedeemedCredit} redeemed</div>
+            <div>
+              {intl.formatMessage(
+                {
+                  id: "redeemedText",
+                  defaultMessage: this.redeemedText,
+                },
+                {
+                  redeemedAmount: reward.prettyRedeemedCredit,
+                }
+              )}
+            </div>
           ) : (
-            <div>{reward.prettyAvailableValue} available</div>
+            <div>
+              {intl.formatMessage(
+                {
+                  id: "availableText",
+                  defaultMessage: this.availableText,
+                },
+                {
+                  availableAmount: reward.prettyAvailableValue,
+                }
+              )}
+            </div>
           );
 
         const style = {

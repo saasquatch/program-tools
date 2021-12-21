@@ -15,14 +15,36 @@ export class RewardTableUserColumn implements RewardTableColumn {
    * @uiName User Column Title
    */
   @Prop() columnTitle: string = "Source";
+
   /**
    * @uiName Name displayed for anonymous users
    */
   @Prop() anonymousUser: string = "Anonymous User";
+
   /**
    * @uiName Name displayed for deleted users
    */
   @Prop() deletedUser: string = "Deleted User";
+
+  /**
+   * @uiName Reward Exchange label
+   */
+  @Prop() rewardExchangeText: string = "Reward Exchange";
+
+  /**
+   * Shown when a reward has been created by a referral
+   *
+   * @uiName Referral Text
+   */
+  @Prop() referralText: string =
+    "{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by}}";
+
+  /**
+   *
+   * @uiName Reward Source Text
+   */
+  @Prop() rewardSourceText: string =
+    "{rewardSource, select, MANUAL {Manual} AUTOMATED {Automated}}";
 
   constructor() {
     withHooks(this);
@@ -31,9 +53,15 @@ export class RewardTableUserColumn implements RewardTableColumn {
 
   @Method()
   async renderCell(data: Reward[]) {
-
     return (
-      <sqm-rewards-table-source-cell reward={data?.[0]}></sqm-rewards-table-source-cell>
+      <sqm-rewards-table-source-cell
+        reward={data?.[0]}
+        anonymousUserText={this.anonymousUser}
+        deletedUserText={this.deletedUser}
+        rewardExchangeText={this.rewardExchangeText}
+        referralText={this.referralText}
+        rewardSourceText={this.rewardSourceText}
+      ></sqm-rewards-table-source-cell>
     );
   }
 

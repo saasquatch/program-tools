@@ -9,6 +9,7 @@ import { intl } from "../../../global/global";
 export class RewardTableStatusCell {
   @Prop() statusText: string;
   @Prop() reward: Reward;
+  @Prop() expiryText: string;
 
   rewardStatus(reward: Reward) {
     if (reward.dateCancelled) return "CANCELLED";
@@ -61,8 +62,7 @@ export class RewardTableStatusCell {
 
     const date =
       dateShown &&
-      // TODO: this text needs to be a prop for translations
-      `${this.reward.dateExpires ? "Expires on " : ""}${DateTime.fromMillis(
+      `${this.reward.dateExpires ? this.expiryText : ""}${DateTime.fromMillis(
         dateShown
       )?.toLocaleString(DateTime.DATE_MED)}`;
 
