@@ -45,7 +45,7 @@ export class RewardTableSourceCell {
           style={{
             display: "inline-block",
             verticalAlign: "top",
-            maxWidth: "155px",
+            // maxWidth: "155px",
           }}
         >
           {rewardExchange}
