@@ -41,6 +41,7 @@ export class RewardTableStatusCell {
     const style = {
       Badge: {
         "&::part(base)": {
+          fontSize: "var(--sl-font-size-small)",
           padding: "4px 8px",
         },
       },
