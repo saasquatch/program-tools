@@ -46,6 +46,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         background: "var(--sl-color-neutral-0)",
         border: "1px solid var(--sl-color-neutral-200)",
         borderRadius: "var(--sl-border-radius-medium)",
+        boxShadow: "1px 2px 4px rgba(211, 211, 211, 0.2)",
         fontSize: "var(--sl-font-size-small)",
         lineHeight: "var(--sl-line-height-dense)",
         color: "var(--sl-color-neutral-600)",
@@ -206,7 +207,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const vanillaStyle = `
 	:host{
 		display: block;
-		margin-bottom: 24px;
+		margin-bottom: var(--sl-spacing-large);
 	}
   `;
 
