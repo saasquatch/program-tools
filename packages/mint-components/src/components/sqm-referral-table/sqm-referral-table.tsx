@@ -45,7 +45,7 @@ export class ReferralTable {
   @Prop() hiddenColumns?: string = "0";
 
   /** @uiName Hide Columns (Mobile View)  */
-  @Prop() smBreakpoint?: number = 599;
+  @Prop() smBreakpoint?: number = 634;
 
   /** @uiName Hide Columns (Mobile View)  */
   @Prop() mdBreakpoint?: number = 899;
