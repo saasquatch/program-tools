@@ -840,6 +840,10 @@ export namespace Components {
          */
         "demoData"?: DemoData<ReferralTableViewProps>;
         /**
+          * @uiName Empty State Text
+         */
+        "emptyStateText": string;
+        /**
           * @uiName View More button text
          */
         "moreLabel"?: string;
@@ -1046,6 +1050,10 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<RewardsTableViewProps>;
+        /**
+          * @uiName Empty State Text
+         */
+        "emptyStateText": string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
@@ -2777,6 +2785,10 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<ReferralTableViewProps>;
         /**
+          * @uiName Empty State Text
+         */
+        "emptyStateText"?: string;
+        /**
           * @uiName View More button text
          */
         "moreLabel"?: string;
@@ -2973,6 +2985,10 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<RewardsTableViewProps>;
+        /**
+          * @uiName Empty State Text
+         */
+        "emptyStateText"?: string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
