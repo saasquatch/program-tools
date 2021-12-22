@@ -43,6 +43,10 @@
 - [sqm-referral-iframe](../sqm-referral-iframe)
 - [sqm-brand](../sqm-brand)
 - [sqm-portal-container](../sqm-portal-container)
+- [sqm-rewards-table-rewards-cell](../sqm-rewards-table/cells)
+- [sqm-rewards-table-source-cell](../sqm-rewards-table/cells)
+- [sqm-rewards-table-status-cell](../sqm-rewards-table/cells)
+- [sqm-rewards-table-date-cell](../sqm-rewards-table/cells)
 
 ### Graph
 ```mermaid
@@ -81,6 +85,10 @@ graph TD;
   sqm-stencilbook --> sqm-referral-iframe
   sqm-stencilbook --> sqm-brand
   sqm-stencilbook --> sqm-portal-container
+  sqm-stencilbook --> sqm-rewards-table-rewards-cell
+  sqm-stencilbook --> sqm-rewards-table-source-cell
+  sqm-stencilbook --> sqm-rewards-table-status-cell
+  sqm-stencilbook --> sqm-rewards-table-date-cell
   sqm-edit-profile --> sqm-form-message
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
