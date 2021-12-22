@@ -105,3 +105,32 @@ export const Five = () => {
   };
   return <LeaderboardView {...props} />;
 };
+
+export const FiveWithRank = () => {
+  const props = {
+    states: {
+      loading: false,
+      hasLeaders: true,
+      styles: {
+		rankheading: "Rank",
+		usersheading: "User",
+		statsheading: "Referrals",
+        showRank: true,
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: [
+        { firstName: "Viktor", lastInitial: "V", value: 82, rank: 1 },
+        { firstName: "MF", lastInitial: "D", value: 73, rank: 2 },
+        { firstName: "Freddie", lastInitial: "G", value: 64, rank: 3 },
+        { firstName: "Benny", lastInitial: "B", value: 55, rank: 4 },
+        { firstName: "Mos", lastInitial: "D", value: 46, rank: 5 },
+      ],
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};

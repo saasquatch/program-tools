@@ -13,7 +13,7 @@ export class RewardsTableColumn implements RewardTableColumn {
   /**
    * @uiName Reward column title
    */
-  @Prop() columnTitle: string = "Rewards";
+  @Prop() columnTitle: string = "Reward";
 
   /**
    * @uiName Hide dropdown details of reward

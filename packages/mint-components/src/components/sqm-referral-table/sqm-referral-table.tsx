@@ -4,9 +4,9 @@ import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import {
-  ReferralTableView,
-  ReferralTableViewProps,
-} from "./sqm-referral-table-view";
+  GenericTableView,
+  GenericTableViewProps,
+} from "../../tables/GenericTableView";
 import { useReferralTable } from "./useReferralTable";
 
 /**
@@ -40,12 +40,22 @@ export class ReferralTable {
 
   /** @uiName Show Referred by user in table  */
   @Prop() showReferrer?: boolean = false;
+  
+  /** @uiName Hide Columns (Mobile View)  */
+  @Prop() hiddenColumns?: string = "0";
+
+  /** @uiName Hide Columns (Mobile View)  */
+  @Prop() smBreakpoint?: number = 599;
+
+  /** @uiName Hide Columns (Mobile View)  */
+  @Prop() mdBreakpoint?: number = 899;
+
 
   /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<ReferralTableViewProps>;
+  @Prop() demoData?: DemoData<GenericTableViewProps>;
 
   constructor() {
     withHooks(this);
@@ -61,12 +71,12 @@ export class ReferralTable {
       : useReferralTable(this, empty, loading);
 
     return (
-      <ReferralTableView
+      <GenericTableView
         states={states}
         data={data}
         callbacks={callbacks}
         elements={elements}
-      ></ReferralTableView>
+      ></GenericTableView>
     );
   }
 }
@@ -90,7 +100,7 @@ function LoadingRow() {
   );
 }
 
-function useReferraltableDemo(props: ReferralTable): ReferralTableViewProps {
+function useReferraltableDemo(props: ReferralTable): GenericTableViewProps {
   return deepmerge(
     {
       states: {

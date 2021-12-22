@@ -27,10 +27,9 @@ import { PortalRegisterViewProps } from "./components/sqm-portal-register/sqm-po
 import { PortalResetPasswordViewProps } from "./components/sqm-portal-reset-password/sqm-portal-reset-password-view";
 import { PortalVerifyEmailViewProps } from "./components/sqm-portal-verify-email/sqm-portal-verify-email-view";
 import { ReferralIframeViewProps } from "./components/sqm-referral-iframe/sqm-referral-iframe-view";
-import { ReferralTableViewProps } from "./components/sqm-referral-table/sqm-referral-table-view";
+import { GenericTableViewProps } from "./tables/GenericTableView";
 import { ReferralDates } from "./components/sqm-referral-table/useReferralTable";
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
-import { RewardsTableViewProps } from "./components/sqm-rewards-table/sqm-rewards-table-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
@@ -838,7 +837,15 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<ReferralTableViewProps>;
+        "demoData"?: DemoData<GenericTableViewProps>;
+        /**
+          * @uiName Hide Columns (Mobile View)
+         */
+        "hiddenColumns"?: string;
+        /**
+          * @uiName Hide Columns (Mobile View)
+         */
+        "mdBreakpoint"?: number;
         /**
           * @uiName View More button text
          */
@@ -864,6 +871,10 @@ export namespace Components {
           * @uiName Show Referred by user in table
          */
         "showReferrer"?: boolean;
+        /**
+          * @uiName Hide Columns (Mobile View)
+         */
+        "smBreakpoint"?: number;
     }
     interface SqmReferralTableCell {
         "innerTemplate": string;
@@ -999,6 +1010,10 @@ export namespace Components {
          */
         "notEnoughError": string;
         /**
+          * @uiName Promo Code Text
+         */
+        "promoCode": string;
+        /**
           * @uiName Reward List Error Message
          */
         "queryError": string;
@@ -1045,7 +1060,7 @@ export namespace Components {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<RewardsTableViewProps>;
+        "demoData"?: DemoData<GenericTableViewProps>;
         /**
           * @uiName Hide Columns (Mobile View)
          */
@@ -2747,7 +2762,15 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<ReferralTableViewProps>;
+        "demoData"?: DemoData<GenericTableViewProps>;
+        /**
+          * @uiName Hide Columns (Mobile View)
+         */
+        "hiddenColumns"?: string;
+        /**
+          * @uiName Hide Columns (Mobile View)
+         */
+        "mdBreakpoint"?: number;
         /**
           * @uiName View More button text
          */
@@ -2773,6 +2796,10 @@ declare namespace LocalJSX {
           * @uiName Show Referred by user in table
          */
         "showReferrer"?: boolean;
+        /**
+          * @uiName Hide Columns (Mobile View)
+         */
+        "smBreakpoint"?: number;
     }
     interface SqmReferralTableCell {
         "innerTemplate"?: string;
@@ -2898,6 +2925,10 @@ declare namespace LocalJSX {
          */
         "notEnoughError"?: string;
         /**
+          * @uiName Promo Code Text
+         */
+        "promoCode"?: string;
+        /**
           * @uiName Reward List Error Message
          */
         "queryError"?: string;
@@ -2944,7 +2975,7 @@ declare namespace LocalJSX {
           * @undocumented 
           * @uiType object
          */
-        "demoData"?: DemoData<RewardsTableViewProps>;
+        "demoData"?: DemoData<GenericTableViewProps>;
         /**
           * @uiName Hide Columns (Mobile View)
          */

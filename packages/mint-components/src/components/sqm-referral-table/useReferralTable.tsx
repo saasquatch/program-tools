@@ -9,8 +9,10 @@ import { h, VNode } from "@stencil/core";
 import gql from "graphql-tag";
 import { useRerenderListener } from "../../tables/re-render";
 import { ReferralTable } from "./sqm-referral-table";
-import { ReferralTableViewProps } from "./sqm-referral-table-view";
+import { GenericTableViewProps } from "../../tables/GenericTableView";
 import { useChildElements } from "../../tables/useChildElements";
+
+export const CSS_NAMESPACE = "sqm-referral-table";
 
 const GET_REFERRER_DATA = gql`
   query getReferrals($programId: ID, $rewardFilter: RewardFilterInput) {
@@ -185,7 +187,7 @@ export function useReferralTable(
   props: ReferralTable,
   emptyElement: VNode,
   loadingElement: VNode
-): ReferralTableViewProps {
+): GenericTableViewProps {
   const user = useUserIdentity();
   const programIdContext = useProgramId();
   // Default to context, overriden by props
@@ -203,8 +205,8 @@ export function useReferralTable(
   };
 
   const [content, setContent] = useReducer<
-    ReferralTableViewProps["elements"],
-    Partial<ReferralTableViewProps["elements"]>
+    GenericTableViewProps["elements"],
+    Partial<GenericTableViewProps["elements"]>
   >(
     (state, next) => ({
       ...state,
@@ -321,11 +323,25 @@ export function useReferralTable(
     referralData && getComponentData(components);
   }, [referralData, components, tick]);
 
+  
+  const isEmpty = !content?.rows?.length && !data?.length;
+
+  const show =
+    // 1 - Loading if loading
+    states.loading || content.loading
+      ? "loading"
+      : // 2 - Empty if empty
+      isEmpty
+      ? "empty"
+      : // 3 - Then show rows
+        "rows";
+
   return {
     states: {
       hasNext: states.currentPage < states.pageCount - 1,
       hasPrev: states.currentPage > 0,
-      loading: states.loading || content.loading,
+      show,
+      namespace: CSS_NAMESPACE,
     },
     data: {
       textOverrides: {
@@ -333,7 +349,10 @@ export function useReferralTable(
         prevLabel: props.prevLabel,
         moreLabel: props.moreLabel,
       },
-      referralData: data,
+    //   referralData: data,
+      hiddenColumns: props.hiddenColumns,
+      smBreakpoint: props.smBreakpoint,
+      mdBreakpoint: props.mdBreakpoint,
     },
     elements: {
       columns: content.columns,

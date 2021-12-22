@@ -1,5 +1,5 @@
 import { h } from "@stencil/core";
-import { ReferralTableView } from "./sqm-referral-table-view";
+import { GenericTableView } from "../../tables/GenericTableView";
 import {
   AvailableNoExpiry,
   Cancelled,
@@ -110,7 +110,8 @@ const simpleUserTableProps = {
   states: {
     hasPrev: false,
     hasNext: true,
-    loading: false,
+    show: "loading" as const,
+	namespace: "sqm-referral-table"
   },
   data: {
     textOverrides: {
@@ -118,7 +119,9 @@ const simpleUserTableProps = {
       prevLabel: "Prev",
       moreLabel: "View More",
     },
-    referralData: [],
+	hiddenColumns: "",
+	mdBreakpoint: 899,
+	smBreakpoint: 599
   },
   callbacks: {
     prevPage: () => console.log("Prev"),
@@ -169,7 +172,8 @@ const customButtonProps = {
   states: {
     hasPrev: true,
     hasNext: true,
-    loading: false,
+    show: "row" as const,
+	namespace: "sqm-referral-table"
   },
   data: {
     textOverrides: {
@@ -184,7 +188,8 @@ const longCellTextTableProps = {
   states: {
     hasPrev: false,
     hasNext: true,
-    loading: false,
+    show: "loading",
+	namespace: "sqm-referral-table"
   },
   data: {
     textOverrides: {
@@ -192,7 +197,9 @@ const longCellTextTableProps = {
       prevLabel: "Prev",
       moreLabel: "View More",
     },
-    referralData: [],
+	hiddenColumns: "",
+	mdBreakpoint: 899,
+	smBreakpoint: 599
   },
   callbacks: {
     prevPage: () => console.log("Prev"),
@@ -270,7 +277,8 @@ const longColumnTextTableProps = {
   states: {
     hasPrev: false,
     hasNext: true,
-    loading: false,
+    show: "loading",
+	namespace: "sqm-referral-table"
   },
   data: {
     textOverrides: {
@@ -278,7 +286,9 @@ const longColumnTextTableProps = {
       prevLabel: "Prev",
       moreLabel: "View More",
     },
-    referralData: [],
+	hiddenColumns: "",
+	mdBreakpoint: 899,
+	smBreakpoint: 599
   },
   callbacks: {
     prevPage: () => console.log("Prev"),
@@ -356,7 +366,8 @@ const fullUserTableProps = {
   states: {
     hasPrev: false,
     hasNext: true,
-    loading: false,
+    show: "loading",
+	namespace: "sqm-referral-table"
   },
   data: {
     textOverrides: {
@@ -364,7 +375,9 @@ const fullUserTableProps = {
       prevLabel: "Prev",
       moreLabel: "View More",
     },
-    referralData: [],
+	hiddenColumns: "",
+	mdBreakpoint: 899,
+	smBreakpoint: 599
   },
   callbacks: {
     prevPage: () => console.log("Prev"),
@@ -439,36 +452,36 @@ const fullUserTableProps = {
 };
 
 export const SimpleUserTable = () => {
-  return <ReferralTableView {...simpleUserTableProps}></ReferralTableView>;
+  return <GenericTableView {...simpleUserTableProps}></GenericTableView>;
 };
 
-export const HiddenLabelsTable = () => {
-  return (
-    <ReferralTableView
-      {...{ ...simpleUserTableProps, ...hideLabelProps }}
-    ></ReferralTableView>
-  );
-};
+// export const HiddenLabelsTable = () => {
+//   return (
+//     <GenericTableView
+//       {...{ ...simpleUserTableProps, ...hideLabelProps }}
+//     ></GenericTableView>
+//   );
+// };
 
-export const CustomButtonTextTable = () => {
-  return (
-    <ReferralTableView
-      {...{ ...simpleUserTableProps, ...customButtonProps }}
-    ></ReferralTableView>
-  );
-};
+// export const CustomButtonTextTable = () => {
+//   return (
+//     <GenericTableView
+//       {...{ ...simpleUserTableProps, ...customButtonProps }}
+//     ></GenericTableView>
+//   );
+// };
 
-export const FullUserTable = () => {
-  return <ReferralTableView {...fullUserTableProps}></ReferralTableView>;
-};
+// export const FullUserTable = () => {
+//   return <GenericTableView {...fullUserTableProps}></GenericTableView>;
+// };
 
-export const LongCellTextTable = () => {
-  return <ReferralTableView {...longCellTextTableProps}></ReferralTableView>;
-};
+// export const LongCellTextTable = () => {
+//   return <GenericTableView {...longCellTextTableProps}></GenericTableView>;
+// };
 
-export const LongColumnTextTable = () => {
-  return <ReferralTableView {...longColumnTextTableProps}></ReferralTableView>;
-};
+// export const LongColumnTextTable = () => {
+//   return <GenericTableView {...longColumnTextTableProps}></GenericTableView>;
+// };
 
 export const EmptyTable = () => {
   return (
@@ -477,7 +490,8 @@ export const EmptyTable = () => {
         states: {
           hasPrev: false,
           hasNext: false,
-          loading: false,
+		  show: "empty",
+		  namespace: "sqm-referral-table"
         },
         data: {
           textOverrides: {
@@ -485,7 +499,9 @@ export const EmptyTable = () => {
             prevLabel: "Prev",
             moreLabel: "View More",
           },
-          referralData: [],
+		  hiddenColumns: "",
+		  mdBreakpoint: 899,
+		  smBreakpoint: 599
         },
         elements: {
           emptyElement: emptyElement,
@@ -505,7 +521,8 @@ export const LoadingTable = () => {
         states: {
           hasPrev: false,
           hasNext: false,
-          loading: true,
+		  show: "loading",
+		  namespace: "sqm-referral-table"
         },
         data: {
           textOverrides: {
@@ -513,7 +530,9 @@ export const LoadingTable = () => {
             prevLabel: "Prev",
             moreLabel: "View More",
           },
-          referralData: [],
+		  hiddenColumns: "",
+		  mdBreakpoint: 899,
+		  smBreakpoint: 599
         },
         elements: {
           emptyElement: emptyElement,
@@ -533,7 +552,8 @@ export const FullRewardsTable = () => {
         states: {
           hasPrev: false,
           hasNext: false,
-          loading: false,
+		  show: "loading",
+		  namespace: "sqm-referral-table"
         },
         data: {
           textOverrides: {
@@ -541,7 +561,9 @@ export const FullRewardsTable = () => {
             prevLabel: "Prev",
             moreLabel: "View More",
           },
-          referralData: [],
+		  hiddenColumns: "",
+		  mdBreakpoint: 899,
+		  smBreakpoint: 599
         },
         elements: {
           emptyElement: emptyElement,

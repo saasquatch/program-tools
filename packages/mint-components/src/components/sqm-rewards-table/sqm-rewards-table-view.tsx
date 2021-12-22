@@ -42,8 +42,6 @@ export function RewardsTableView(props: RewardsTableViewProps) {
 
   const hiddenCols = data.hiddenColumns.split(",").map(Number);
 
-  console.log(props);
-
   const mobile = "@media (max-width: " + data.mdBreakpoint + "px)";
   const tablet =
     "@media (min-width: " +
