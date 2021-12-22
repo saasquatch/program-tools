@@ -4,11 +4,14 @@ import { Component, h, Prop } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import {
-	EmptySkeleton, EmptySlot, LoadingSkeleton, LoadingSlot
+  EmptySkeleton,
+  EmptySlot,
+  LoadingSkeleton,
+  LoadingSlot,
 } from "../../tables/TableSlots";
 import {
-	RewardsTableView,
-	RewardsTableViewProps
+  RewardsTableView,
+  RewardsTableViewProps,
 } from "./sqm-rewards-table-view";
 import { CSS_NAMESPACE, useRewardsTable } from "./useRewardsTable";
 
@@ -42,12 +45,15 @@ export class RewardsTable {
 
   /** @uiName Hide Columns (Mobile View)  */
   @Prop() hiddenColumns?: string = "0";
-  
+
   /** @uiName Hide Columns (Mobile View)  */
   @Prop() smBreakpoint?: number = 599;
 
   /** @uiName Hide Columns (Mobile View)  */
   @Prop() mdBreakpoint?: number = 899;
+
+  /** @uiName Empty State Text  */
+  @Prop() emptyStateText: string = "No Rewards Yet";
 
   /**
    * @undocumented
@@ -61,7 +67,7 @@ export class RewardsTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = <EmptySlot label="No Rewards Yet" />;
+    const empty = <EmptySlot label={this.emptyStateText} />;
     const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()

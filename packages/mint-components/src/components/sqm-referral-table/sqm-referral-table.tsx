@@ -41,6 +41,9 @@ export class ReferralTable {
   /** @uiName Show Referred by user in table  */
   @Prop() showReferrer?: boolean = false;
 
+  /** @uiName Empty State Text  */
+  @Prop() emptyStateText: string = "No Referrals Yet";
+
   /**
    * @undocumented
    * @uiType object
@@ -53,7 +56,7 @@ export class ReferralTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = <EmptySlot />;
+    const empty = <EmptySlot emptyStateText={this.emptyStateText} />;
     const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()
@@ -111,7 +114,7 @@ function useReferraltableDemo(props: ReferralTable): ReferralTableViewProps {
         referralData: [],
       },
       elements: {
-        emptyElement: <EmptySlot />,
+        emptyElement: <EmptySlot emptyStateText={"No Referrals Yet"} />,
         loadingElement: <LoadingSlot />,
         columns: [
           <div>User</div>,
@@ -126,13 +129,13 @@ function useReferraltableDemo(props: ReferralTable): ReferralTableViewProps {
   );
 }
 
-function EmptySlot() {
+function EmptySlot({ emptyStateText }: { emptyStateText: string }) {
   return (
     <slot name="empty">
       <div style={{ width: "100%" }}>
         <sqm-text>
           <h3 style={{ color: "#777777", textAlign: "center" }}>
-            No Referrals Yet
+            {emptyStateText}
           </h3>
         </sqm-text>
       </div>
