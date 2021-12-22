@@ -56,9 +56,8 @@ export function RewardsTableView(props: RewardsTableViewProps) {
     Table: {
       borderCollapse: "collapse",
       width: "100%",
-      "& thead": {
-        padding: "var(--sl-spacing-small)",
-        paddingLeft: "0",
+      "& th": {
+        paddingBottom: "var(--sl-spacing-small)",
         textAlign: "left",
         fontWeight: "var(--sl-font-weight-normal)",
       },
@@ -85,7 +84,7 @@ export function RewardsTableView(props: RewardsTableViewProps) {
         },
         "& td": {
           display: "grid",
-          gridTemplateColumns: "0.4fr 0.5fr",
+          gridTemplateColumns: "0.5fr 0.5fr",
           borderTop: "none",
           padding: "0",
           marginBottom: "var(--sl-spacing-medium)",
