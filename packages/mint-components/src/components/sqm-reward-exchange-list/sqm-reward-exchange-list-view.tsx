@@ -665,7 +665,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               color: "var(--sl-color-neutral-700)",
             }}
           >
-            Promo code
+            {states.content.text.promoCode}
             <ShareLinkView
               shareString={data.fuelTankCode}
               tooltiptext={states?.content?.text.toopTipText}
