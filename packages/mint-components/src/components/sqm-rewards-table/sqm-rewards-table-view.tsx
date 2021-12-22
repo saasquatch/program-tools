@@ -62,8 +62,7 @@ export function RewardsTableView(props: RewardsTableViewProps) {
         textAlign: "left",
         fontWeight: "var(--sl-font-weight-normal)",
       },
-      "& tr": {
-      },
+      "& tr": {},
       "& td": {
         borderTop: "1px solid var(--sl-color-neutral-200)",
         padding: "var(--sl-spacing-small)",
@@ -85,24 +84,25 @@ export function RewardsTableView(props: RewardsTableViewProps) {
           marginBottom: "var(--sl-spacing-large)",
         },
         "& td": {
-          display: "block",
-		  borderTop: "none",
+          display: "grid",
+          gridTemplateColumns: "0.4fr 0.5fr",
+          borderTop: "none",
           padding: "0",
           marginBottom: "var(--sl-spacing-medium)",
-          ".hidden::before": {
-            content: "",
-          },
+
           "&:first-child": {
             textAlign: "left",
           },
           "&:before": {
             content: "attr(data-label)",
-            float: "left",
-            width: "40%",
-            marginBottom: "5px",
           },
+
           "&:last-child": {
             marginBottom: "0",
+          },
+
+          "&.hidden:before": {
+            content: "none",
           },
         },
       },

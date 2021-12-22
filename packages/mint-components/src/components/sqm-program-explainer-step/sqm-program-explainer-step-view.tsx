@@ -19,7 +19,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       color: props.color,
       background: props.background,
       padding: "var(--sl-spacing-large)",
-      paddingBottom: "var(--sl-spacing-xxx-large)",
+      //   paddingBottom: "var(--sl-spacing-xxx-large)",
 
       "@media (max-width: 499px)": {
         flexDirection: "row",

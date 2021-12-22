@@ -60,7 +60,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
       },
       "& .title": {
         fontSize: "var(--sl-font-size-medium)",
-        fontWeight: "var(--sl-font-weight-semibold)",
+        // fontWeight: "var(--sl-font-weight-semibold)",
         color: "var(--sl-color-neutral-950)",
       },
       "& .container": {

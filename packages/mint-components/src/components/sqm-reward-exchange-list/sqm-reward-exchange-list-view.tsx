@@ -219,7 +219,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         maxWidth: "350px",
         margin: "0 auto",
         lineHeight: "var(--sl-line-height-dense)",
-        marginBottom: "var(--sl-spacing-xxx-large)",
+        marginBottom: "var(--sl-spacing-xx-large)",
         marginTop: "var(--sl-spacing-xx-small)",
       },
     },
@@ -600,7 +600,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 </div>
                 <div
                   class={sheet.classes.TextArea}
-                //   style={{ alignSelf: "center" }}
+                  style={{ alignSelf: "center" }}
                 >
                   <div class="title">{selectedItem?.name}</div>
                   <div class="amount">
