@@ -1,39 +1,30 @@
 import { css } from "styled-components";
 
-export const InputBoxStyle = css`
-  position: relative;
-  width: 300px;
-  height: 30px;
-  text-indent: 6px;
+export const Item = css`
+  padding: 15px;
+  cursor: pointer;
   color: var(--sq-text);
-  background: var(--sq-surface);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  font-size: var(--sq-font-size-regular);
   font-weight: var(--sq-font-weight-regular);
+  font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
-
-  border: 2px solid var(--sq-border);
-  border-radius: 4px;
-
-  &::placeholder {
-    color: var(--sq-text-input-disabled);
+  border-radius: inherit;
+  &:hover {
+    background: var(--sq-surface-hover);
   }
+`;
 
-  &:focus {
-    outline: none;
-    border-color: var(--sq-focused);
-  }
-
-  &:disabled {
-    user-select: none;
-    color: var(--sq-text-input-disabled);
-    background-color: var(--sq-surface-input-disabled);
-  }
-
-  &::-webkit-inner-spin-button {
-    opacity: 1;
-    margin-right: 10px;
-    padding: 10px 1px 10px 1px;
+export const ItemContainer = css`
+  position: relative;
+  width: max-content;
+  min-width: inherit;
+  z-index: 100;
+  margin-top: 10px;
+  background: #ffffff;
+  border: 1px solid var(--sq-action-secondary-border);
+  box-sizing: border-box;
+  &:empty {
+    border: none;
   }
 `;
 
@@ -41,15 +32,4 @@ export const IconStyle = css`
   position: relative;
   width: 22px;
   bottom: 28px;
-`;
-
-export const invalid = css`
-  background: var(--sq-surface-critical-subdued);
-  border: 2px solid var(--sq-border-critical);
-  border-radius: 4px;
-
-  &:focus {
-    outline: none;
-    border-color: var(--sq-border-critical);
-  }
 `;

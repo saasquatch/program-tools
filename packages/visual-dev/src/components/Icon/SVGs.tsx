@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export const placeholder = () => (
+export const placeholder = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -10,7 +10,7 @@ export const placeholder = () => (
   </svg>
 );
 
-export const close = () => (
+export const close = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -20,7 +20,7 @@ export const close = () => (
   </svg>
 );
 
-export const add = () => (
+export const add = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -30,7 +30,7 @@ export const add = () => (
   </svg>
 );
 
-export const chevron_down = () => (
+export const chevron_down = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -44,7 +44,7 @@ export const chevron_down = () => (
   </svg>
 );
 
-export const calendar = () => (
+export const calendar = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -55,7 +55,7 @@ export const calendar = () => (
   </svg>
 );
 
-export const block = () => (
+export const block = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -69,7 +69,7 @@ export const block = () => (
   </svg>
 );
 
-export const edit = () => (
+export const edit = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -90,7 +90,7 @@ export const edit = () => (
   </svg>
 );
 
-export const checkmark = () => (
+export const checkmark = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -104,7 +104,7 @@ export const checkmark = () => (
   </svg>
 );
 
-export const checkmark_circle = () => (
+export const checkmark_circle = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -123,7 +123,7 @@ export const checkmark_circle = () => (
   </svg>
 );
 
-export const actions = () => (
+export const actions = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -137,7 +137,7 @@ export const actions = () => (
   </svg>
 );
 
-export const chevron_left = () => (
+export const chevron_left = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -151,7 +151,7 @@ export const chevron_left = () => (
   </svg>
 );
 
-export const chevron_right = () => (
+export const chevron_right = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -165,7 +165,7 @@ export const chevron_right = () => (
   </svg>
 );
 
-export const mail = () => (
+export const mail = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -179,7 +179,7 @@ export const mail = () => (
   </svg>
 );
 
-export const action = () => (
+export const action = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -189,7 +189,7 @@ export const action = () => (
   </svg>
 );
 
-export const arrow_dropdown = () => (
+export const arrow_dropdown = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -199,7 +199,7 @@ export const arrow_dropdown = () => (
   </svg>
 );
 
-export const arrow_up = () => (
+export const arrow_up = (
   <svg width={10} height={7} fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"
@@ -210,7 +210,7 @@ export const arrow_up = () => (
   </svg>
 );
 
-export const arrow_down = () => (
+export const arrow_down = (
   <svg width={10} height={6} fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"
@@ -221,7 +221,7 @@ export const arrow_down = () => (
   </svg>
 );
 
-export const help = () => (
+export const help = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -231,7 +231,7 @@ export const help = () => (
   </svg>
 );
 
-export const loading = () => (
+export const loading = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -241,7 +241,7 @@ export const loading = () => (
   </svg>
 );
 
-export const gift = () => (
+export const gift = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -255,7 +255,7 @@ export const gift = () => (
   </svg>
 );
 
-export const copy = () => (
+export const copy = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -356,7 +356,7 @@ export const copy = () => (
   </svg>
 );
 
-export const alert = () => (
+export const alert = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -366,7 +366,7 @@ export const alert = () => (
   </svg>
 );
 
-export const search = () => (
+export const search = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -380,7 +380,7 @@ export const search = () => (
   </svg>
 );
 
-export const filter = () => (
+export const filter = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -394,7 +394,7 @@ export const filter = () => (
   </svg>
 );
 
-export const trash = () => (
+export const trash = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -408,7 +408,7 @@ export const trash = () => (
   </svg>
 );
 
-export const info = () => (
+export const info = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -422,7 +422,7 @@ export const info = () => (
   </svg>
 );
 
-export const settings = () => (
+export const settings = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -436,7 +436,7 @@ export const settings = () => (
   </svg>
 );
 
-export const leftward_arrow = () => (
+export const leftward_arrow = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
@@ -450,7 +450,7 @@ export const leftward_arrow = () => (
   </svg>
 );
 
-export const avatar = () => (
+export const avatar = (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" fill="none">
     <mask
       id="prefix__a"
@@ -489,7 +489,7 @@ export const avatar = () => (
   </svg>
 );
 
-export const visibility = () => (
+export const visibility = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24px"
