@@ -66,6 +66,7 @@
     "@stencil/helmet": "^0.3.2",
     "@types/luxon": "^2.0.4",
     "babel-polyfill": "^6.26.0",
+    "canvas-confetti": "^1.4.0",
     "color2k": "^1.2.4",
     "deepmerge": "^4.2.2",
     "graphql": "^15.5.0",

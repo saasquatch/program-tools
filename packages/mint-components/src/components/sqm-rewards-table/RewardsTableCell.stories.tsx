@@ -7,7 +7,7 @@ export default {
 const rewardsData: Reward = {
   id: "61c100117a82a376d8804166",
   type: "CREDIT",
-  value: 5,
+  value: 19,
   unit: "TESTUNIT",
   name: null,
   dateGiven: 1640038417468,
@@ -18,40 +18,78 @@ const rewardsData: Reward = {
   fuelTankCode: null,
   fuelTankType: null,
   currency: null,
-  prettyValue: "5 Salmons",
-  prettyValueNumber: "5",
-  prettyAvailableNumber: "5",
+  prettyValue: "19 Points",
+  prettyValueNumber: "19",
+  prettyAvailableNumber: "19",
   prettyRedeemedNumber: "0",
   statuses: ["AVAILABLE"],
   globalRewardKey: null,
   rewardSource: "MANUAL",
-  prettyRedeemedCredit: "0 Salmons",
-  prettyAssignedCredit: "5 Salmons",
-  prettyAvailableValue: "5 Salmons",
-  exchangedRewardRedemptionTransaction: {
-    id: "61c100117a82a376d8804156",
-    creditRedeemed: 5,
-    prettyRedeemedCredit: "5 Points",
-    unit: "POINT",
-    dateRedeemed: 1640038417173,
-    redeemedRewards: null,
-    exchangedRewards: null,
-  },
+  prettyRedeemedCredit: "0 Points",
+  prettyAssignedCredit: "19 Points",
+  prettyAvailableValue: "19 Points",
+  exchangedRewardRedemptionTransaction: null,
   referral: null,
   rewardRedemptionTransactions: {
     data: null,
   },
 };
 
-export const RewardsCell = () => {
+const partial = {
+  prettyAvailableValue: "10 Points",
+  prettyRedeemedCredit: "9 Points",
+  prettyRedeemedNumber: "9",
+  dateRedeemed: 1640038417468,
+};
+
+const empty = {
+  prettyAvailableValue: "0 Points",
+  prettyRedeemedCredit: "19 Points",
+  prettyRedeemedNumber: "19",
+  dateRedeemed: 1640038417468,
+};
+
+const exchange = {
+  exchangedRewardRedemptionTransaction: {
+    id: "61c100117a82a376d88041196",
+    creditRedeemed: 1,
+    prettyRedeemedCredit: "1 Money",
+    unit: "TESTUNIT",
+    dateRedeemed: 1640038417173,
+    redeemedRewards: null,
+    exchangedRewards: null,
+  },
+};
+
+const referral = {
+	
+}
+
+export const RewardsCellFull = () => {
   return (
     <sqm-rewards-table-rewards-cell
-      reward={rewardsData}
+      reward={{ ...rewardsData }}
     ></sqm-rewards-table-rewards-cell>
   );
 };
 
-export const SourceCell = () => {
+export const RewardsCellPartial = () => {
+  return (
+    <sqm-rewards-table-rewards-cell
+      reward={{ ...rewardsData, ...partial }}
+    ></sqm-rewards-table-rewards-cell>
+  );
+};
+
+export const RewardsCellEmpty = () => {
+  return (
+    <sqm-rewards-table-rewards-cell
+      reward={{ ...rewardsData, ...empty }}
+    ></sqm-rewards-table-rewards-cell>
+  );
+};
+
+export const SourceCellText = () => {
   return (
     <sqm-rewards-table-source-cell
       reward={rewardsData}
@@ -59,6 +97,27 @@ export const SourceCell = () => {
   );
 };
 
+export const SourceCellExchange = () => {
+  return (
+    <sqm-rewards-table-source-cell
+      reward={{ ...rewardsData, ...exchange }}
+    ></sqm-rewards-table-source-cell>
+  );
+};
+export const SourceCellReferral = () => {
+  return (
+    <sqm-rewards-table-source-cell
+      reward={{ ...rewardsData, ...exchange }}
+    ></sqm-rewards-table-source-cell>
+  );
+};
+export const SourceCellReferred = () => {
+  return (
+    <sqm-rewards-table-source-cell
+      reward={{ ...rewardsData, ...exchange }}
+    ></sqm-rewards-table-source-cell>
+  );
+};
 export const StatusCell = () => {
   return (
     <sqm-rewards-table-status-cell

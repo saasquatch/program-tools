@@ -39,6 +39,8 @@ export function GenericTableView(props: GenericTableViewProps) {
   const { columns, rows } = elements;
   const { show } = states;
 
+  console.log(props);
+
   const hiddenCols = data.hiddenColumns.split(",").map(Number);
 
   const mobile = "@media (max-width: " + data.mdBreakpoint + "px)";
@@ -110,7 +112,7 @@ export function GenericTableView(props: GenericTableViewProps) {
         },
       },
     },
-ButtonContainer: {
+    ButtonContainer: {
       display: "flex",
       "justify-content": "flex-end",
       "margin-top": "var(--sl-spacing-small)",
