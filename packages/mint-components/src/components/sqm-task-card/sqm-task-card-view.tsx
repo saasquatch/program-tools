@@ -9,6 +9,7 @@ import {
 } from "./progress-bar/progress-bar-view";
 import { DateTime } from "luxon";
 import { intl } from "../../global/global";
+import { Details } from "./DetailsView";
 
 export type TaskCardViewProps = {
   rewardAmount: string;
@@ -30,160 +31,162 @@ export type TaskCardViewProps = {
   loading: boolean;
 } & ProgressBarProps;
 
+
+const style = {
+  TaskCard: {
+    display: "inline-block",
+    width: "100%",
+    "& .main": {
+      position: "relative",
+      boxSizing: "border-box",
+      background: "var(--sl-color-neutral-0)",
+      border: "1px solid var(--sl-color-neutral-200)",
+      borderRadius: "var(--sl-border-radius-medium)",
+      boxShadow: "1px 2px 4px rgba(211, 211, 211, 0.2)",
+      fontSize: "var(--sl-font-size-small)",
+      lineHeight: "var(--sl-line-height-dense)",
+      color: "var(--sl-color-neutral-600)",
+    },
+    "& .main.complete": {
+      background: "var(--sl-color-primary-50)",
+      borderColor: "var(--sl-color-primary-500)",
+    },
+    "& .main.expired": {
+      color: "var(--sl-color-neutral-600)",
+      background: "var(--sl-color-neutral-50)",
+    },
+    "& .title": {
+      fontSize: "var(--sl-font-size-medium)",
+      // fontWeight: "var(--sl-font-weight-semibold)",
+      color: "var(--sl-color-neutral-950)",
+    },
+    "& .container": {
+      margin: "var(--sl-spacing-medium)",
+    },
+    "& .container.subdued": {
+      opacity: "0.45",
+    },
+    "& .container > div": {
+      margin: "var(--sl-spacing-medium) 0",
+    },
+  },
+  NotStarted: {
+    padding: "var(--sl-spacing-medium)",
+    color: "var(--sl-color-primary-600)",
+    border: "1px solid var(--sl-color-neutral-200)",
+    borderRadius:
+      "var(--sl-border-radius-medium) var(--sl-border-radius-medium) 0 0",
+    borderBottom: "none",
+    background: "var(--sl-color-primary-50)",
+    fontWeight: "var(--sl-font-weight-semibold)",
+    lineHeight: "var(--sl-line-height-dense)",
+    "& .icon": {
+      position: "relative",
+      top: "0.1em",
+      marginRight: "var(--sl-spacing-small)",
+      color: "var(--sl-color-primary-500)",
+    },
+  },
+  Ended: {
+    padding: "var(--sl-spacing-medium)",
+    color: "var(--sl-color-warning-600)",
+    border: "1px solid var(--sl-color-neutral-200)",
+    borderRadius:
+      "var(--sl-border-radius-medium) var(--sl-border-radius-medium) 0 0",
+    borderBottom: "none",
+    background: "var(--sl-color-warning-50)",
+    fontWeight: "var(--sl-font-weight-semibold)",
+    lineHeight: "var(--sl-line-height-dense)",
+    "& .icon": {
+      position: "relative",
+      top: "0.1em",
+      marginRight: "var(--sl-spacing-small)",
+      color: "var(--sl-color-warning-500)",
+    },
+  },
+  Header: {
+    display: "flex",
+    "& .icon": {
+      position: "relative",
+      top: "5%",
+      alignSelf: "center",
+      lineHeight: "0",
+      color: "var(--sl-color-primary-400)",
+      fontSize: "var(--sl-font-size-large)",
+      marginRight: "var(--sl-spacing-x-small)",
+    },
+    "& .value": {
+      alignSelf: "center",
+      fontSize: "var(--sl-font-size-x-large)",
+      fontWeight: "var(--sl-font-weight-semibold)",
+      color: "var(--sl-color-neutral-950)",
+      lineHeight: "100%",
+      marginRight: "var(--sl-spacing-xx-small)",
+    },
+    "& .text": {
+      alignSelf: "end",
+      textTransform: "uppercase",
+      fontSize: "var(--sl-font-size-x-small)",
+      color: "var(--sl-color-neutral-950)",
+      lineHeight: "var(--sl-font-size-medium)",
+      marginRight: "var(--sl-spacing-xx-small)",
+    },
+    "& .end": {
+      color: "var(--sl-color-warning-500)",
+      fontWeight: "var(--sl-font-weight-semibold)",
+      marginBottom: "var(--sl-spacing-xx-small)",
+    },
+    "& .neutral": {
+      color: "var(--sl-color-neutral-400)",
+    },
+  },
+  Footer: {
+    display: "flex",
+    "& .icon": {
+      fontSize: "var(--sl-font-size-xx-small)",
+      marginRight: "var(--sl-spacing-xx-small)",
+      verticalAlign: "middle",
+    },
+    "& .text": {
+      marginTop: "auto",
+      verticalAlign: "text-bottom",
+      fontSize: "var(--sl-font-size-x-small)",
+    },
+    "& .success": {
+      color: "var(--sl-color-primary-500)",
+      fontWeight: "var(--sl-font-weight-semibold)",
+    },
+    "& .action": {
+      marginTop: "auto",
+      marginLeft: "auto",
+      "&::part(base)": {
+        color: "var(--sl-color-neutral-0)",
+        borderRadius: "var(--sl-border-radius-medium)",
+      },
+      "&.disabled::part(base)": {
+        border: "1px solid var(--sl-color-primary-400)",
+        background: "var(--sl-color-primary-400)",
+      },
+      "&.neutral::part(base)": {
+        border: "1px solid var(--sl-color-neutral-400)",
+        background: "var(--sl-color-neutral-400)",
+      },
+    },
+    "& .neutral": {
+      color: "var(--sl-color-neutral-600)",
+    },
+  },
+};
+
+jss.setup(preset());
+const sheet = jss.createStyleSheet(style);
+const styleString = sheet.toString();
+
+
 export function TaskCardView(props: TaskCardViewProps): VNode {
   const checkmark_circle = SVGs.checkmark_circle();
   const checkmark_filled = SVGs.checkmark_filled();
   const arrow_left_right = SVGs.arrow_left_right();
-
-  const style = {
-    TaskCard: {
-      display: "inline-block",
-      width: "100%",
-      "& .main": {
-        position: "relative",
-        boxSizing: "border-box",
-        background: "var(--sl-color-neutral-0)",
-        border: "1px solid var(--sl-color-neutral-200)",
-        borderRadius: "var(--sl-border-radius-medium)",
-        boxShadow: "1px 2px 4px rgba(211, 211, 211, 0.2)",
-        fontSize: "var(--sl-font-size-small)",
-        lineHeight: "var(--sl-line-height-dense)",
-        color: "var(--sl-color-neutral-600)",
-      },
-      "& .main.complete": {
-        background: "var(--sl-color-primary-50)",
-        borderColor: "var(--sl-color-primary-500)",
-      },
-      "& .main.expired": {
-        color: "var(--sl-color-neutral-600)",
-        background: "var(--sl-color-neutral-50)",
-      },
-      "& .title": {
-        fontSize: "var(--sl-font-size-medium)",
-        // fontWeight: "var(--sl-font-weight-semibold)",
-        color: "var(--sl-color-neutral-950)",
-      },
-      "& .container": {
-        margin: "var(--sl-spacing-medium)",
-      },
-      "& .container.subdued": {
-        opacity: "0.45",
-      },
-      "& .container > div": {
-        margin: "var(--sl-spacing-medium) 0",
-      },
-    },
-    NotStarted: {
-      padding: "var(--sl-spacing-medium)",
-      color: "var(--sl-color-primary-600)",
-      border: "1px solid var(--sl-color-neutral-200)",
-      borderRadius:
-        "var(--sl-border-radius-medium) var(--sl-border-radius-medium) 0 0",
-      borderBottom: "none",
-      background: "var(--sl-color-primary-50)",
-      fontWeight: "var(--sl-font-weight-semibold)",
-      lineHeight: "var(--sl-line-height-dense)",
-      "& .icon": {
-        position: "relative",
-        top: "0.1em",
-        marginRight: "var(--sl-spacing-small)",
-        color: "var(--sl-color-primary-500)",
-      },
-    },
-    Ended: {
-      padding: "var(--sl-spacing-medium)",
-      color: "var(--sl-color-warning-600)",
-      border: "1px solid var(--sl-color-neutral-200)",
-      borderRadius:
-        "var(--sl-border-radius-medium) var(--sl-border-radius-medium) 0 0",
-      borderBottom: "none",
-      background: "var(--sl-color-warning-50)",
-      fontWeight: "var(--sl-font-weight-semibold)",
-      lineHeight: "var(--sl-line-height-dense)",
-      "& .icon": {
-        position: "relative",
-        top: "0.1em",
-        marginRight: "var(--sl-spacing-small)",
-        color: "var(--sl-color-warning-500)",
-      },
-    },
-    Header: {
-      display: "flex",
-      "& .icon": {
-        position: "relative",
-        top: "5%",
-        alignSelf: "center",
-        lineHeight: "0",
-        color: "var(--sl-color-primary-400)",
-        fontSize: "var(--sl-font-size-large)",
-        marginRight: "var(--sl-spacing-x-small)",
-      },
-      "& .value": {
-        alignSelf: "center",
-        fontSize: "var(--sl-font-size-x-large)",
-        fontWeight: "var(--sl-font-weight-semibold)",
-        color: "var(--sl-color-neutral-950)",
-        lineHeight: "100%",
-        marginRight: "var(--sl-spacing-xx-small)",
-      },
-      "& .text": {
-        alignSelf: "end",
-        textTransform: "uppercase",
-        fontSize: "var(--sl-font-size-x-small)",
-        color: "var(--sl-color-neutral-950)",
-        lineHeight: "var(--sl-font-size-medium)",
-        marginRight: "var(--sl-spacing-xx-small)",
-      },
-      "& .end": {
-        color: "var(--sl-color-warning-500)",
-        fontWeight: "var(--sl-font-weight-semibold)",
-        marginBottom: "var(--sl-spacing-xx-small)",
-      },
-      "& .neutral": {
-        color: "var(--sl-color-neutral-400)",
-      },
-    },
-    Footer: {
-      display: "flex",
-      "& .icon": {
-        fontSize: "var(--sl-font-size-xx-small)",
-        marginRight: "var(--sl-spacing-xx-small)",
-        verticalAlign: "middle",
-      },
-      "& .text": {
-        marginTop: "auto",
-        verticalAlign: "text-bottom",
-        fontSize: "var(--sl-font-size-x-small)",
-      },
-      "& .success": {
-        color: "var(--sl-color-primary-500)",
-        fontWeight: "var(--sl-font-weight-semibold)",
-      },
-      "& .action": {
-        marginTop: "auto",
-        marginLeft: "auto",
-        "&::part(base)": {
-          color: "var(--sl-color-neutral-0)",
-          borderRadius: "var(--sl-border-radius-medium)",
-        },
-        "&.disabled::part(base)": {
-          border: "1px solid var(--sl-color-primary-400)",
-          background: "var(--sl-color-primary-400)",
-        },
-        "&.neutral::part(base)": {
-          border: "1px solid var(--sl-color-neutral-400)",
-          background: "var(--sl-color-neutral-400)",
-        },
-      },
-      "& .neutral": {
-        color: "var(--sl-color-neutral-600)",
-      },
-    },
-  };
-
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
-  const styleString = sheet.toString();
 
   const showComplete = props.progress >= props.goal;
   const repetitions = props.showProgressBar
@@ -389,68 +392,6 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function Details(props): VNode {
-  const style = {
-    Description: {
-      "& input[type=checkbox]": {
-        display: "none",
-      },
-      "& input:checked ~ .details": {
-        transform: "rotate(-180deg)",
-      },
-      "& .details": {
-        position: "absolute",
-        top: "var(--sl-spacing-medium)",
-        right: "var(--sl-spacing-medium)",
-        color: "var(--sl-color-neutral-700)",
-        fontSize: "var(--sl-font-size-large)",
-        "& :hover": {
-          color: "var(--sl-color-primary-700)",
-        },
-        transformOrigin: "50% 37%",
-        transition: "transform var(--sl-transition-medium) ease",
-        cursor: "pointer",
-      },
-      "& input:checked ~ .summary": {
-        transition: "all var(--sl-transition-medium) ease",
-        maxHeight: "300px",
-        marginBottom: props.steps
-          ? "var(--sl-spacing-x-large)"
-          : props.showProgressBar
-          ? "var(--sl-spacing-xx-large)"
-          : "var(--sl-spacing-x-large)",
-      },
-      "& .summary": {
-        display: "block",
-        overflow: "hidden",
-        fontSize: "var(--sl-font-size-small)",
-        maxHeight: "0px",
-        transition: "all var(--sl-transition-fast) ease-out",
-        marginBottom: "var(--sl-spacing-medium)",
-      },
-    },
-  };
-
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
-  const styleString = sheet.toString();
-
-  const rid = Math.random().toString(36).slice(2);
-
-  return (
-    <div>
-      <style type="text/css">{styleString}</style>
-      <span class={sheet.classes.Description}>
-        <input type="checkbox" id={"details-" + rid} />
-        <label class="details" htmlFor={"details-" + rid}>
-          <sl-icon name="chevron-down"></sl-icon>
-        </label>
-        <span class="summary">{props.description}</span>
-      </span>
     </div>
   );
 }
