@@ -1,7 +1,7 @@
 import { useHost } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
-import { createStyleSheet } from "../../styling/JSS";
+import { createStyleSheet } from "../styling/JSS";
 export type RequiredPropsErrorProps = {
   missingProps:
     | {
