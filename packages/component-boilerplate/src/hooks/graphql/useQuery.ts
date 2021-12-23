@@ -48,7 +48,7 @@ export function useQuery<T = any>(
     !skip && update(variables);
   }, [query, variables, update, tick, skip]);
 
-  useRefreshListener({ skip, update, variables, query });
+  useRefreshListener({ skip, update, variables });
 
   return deepFreeze({
     ...state,
