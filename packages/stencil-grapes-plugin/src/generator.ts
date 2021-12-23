@@ -58,11 +58,17 @@ export function grapesJsOutput({
     ${templateSrc}
     `;
 
-    let result = ts.transpileModule(source, {
-      compilerOptions: { module: ts.ModuleKind.System },
-    });
-
-    await writeFile(outDir, outFile, result.outputText);
+    try {
+      let result = ts.transpileModule(source, {
+        compilerOptions: { module: ts.ModuleKind.System },
+      });
+      await writeFile(outDir, outFile, result.outputText);
+    } catch (e) {
+      throw new Error(
+        "Unable to stringify and write GrapesJS output javascript file. Reason: " +
+          e
+      );
+    }
   }
   return {
     type: "docs-custom",
@@ -71,47 +77,60 @@ export function grapesJsOutput({
 }
 
 async function writeFile(outDir: string, file: string, content: string) {
-  if (!fsSync.existsSync(outDir)) {
-    await fs.mkdir(outDir);
+  try {
+    if (!fsSync.existsSync(outDir)) {
+      await fs.mkdir(outDir);
+    }
+    await fs.writeFile(path.resolve(outDir, file), content, {
+      encoding: "utf-8",
+    });
+  } catch (e) {
+    throw new Error(
+      `Unable to write GrapesJS meta file named "${file}" to directory ${outDir}. Reason: ` +
+        e
+    );
   }
-  await fs.writeFile(path.resolve(outDir, file), content, {
-    encoding: "utf-8",
-  });
 }
 
 function convertToGrapesJSMeta(docs: JsonDocs): GrapesJSModel[] {
   return docs.components.filter(isUndocumented).map((comp) => {
-    const props = comp.props.filter(isUndocumented);
-    const uiSchema = props.reduce(
-      (prev, prop) => {
-        return {
-          ...prev,
-          [prop.attr ?? prop.name]: {
-            "ui:widget": tagValue(prop.docsTags, "uiWidget"),
-            "ui:name": uiName(prop),
-            "ui:help": prop.docs,
-            "ui:options": jsonTagValue(prop, "uiOptions"),
-          },
-        };
-      },
-      {
-        "ui:order": jsonTagValue(comp, "uiOrder"),
-      }
-    );
-    return {
-      tag: comp.tag,
-      name: uiName(comp) ?? comp.tag,
-      uiSchema,
-      traits: props.filter(isUndocumented).map((p) => {
-        return {
-          name: p.attr ?? p.name,
-          type: uiType(p) ?? p.type,
-          title: uiName(p) ?? p.attr ?? p.name,
-          enum: jsonTagValue(p, "uiEnum"),
-          enumNames: jsonTagValue(p, "uiEnumNames"),
-        };
-      }),
-    };
+    try {
+      const props = comp.props.filter(isUndocumented);
+      const uiSchema = props.reduce(
+        (prev, prop) => {
+          return {
+            ...prev,
+            [prop.attr ?? prop.name]: {
+              "ui:widget": tagValue(prop.docsTags, "uiWidget"),
+              "ui:name": uiName(prop),
+              "ui:help": prop.docs,
+              "ui:options": jsonTagValue(prop, "uiOptions"),
+            },
+          };
+        },
+        {
+          "ui:order": jsonTagValue(comp, "uiOrder"),
+        }
+      );
+      return {
+        tag: comp.tag,
+        name: uiName(comp) ?? comp.tag,
+        uiSchema,
+        traits: props.filter(isUndocumented).map((p) => {
+          return {
+            name: p.attr ?? p.name,
+            type: uiType(p) ?? p.type,
+            title: uiName(p) ?? p.attr ?? p.name,
+            enum: jsonTagValue(p, "uiEnum"),
+            enumNames: jsonTagValue(p, "uiEnumNames"),
+          };
+        }),
+      };
+    } catch (e) {
+      throw new Error(
+        `Unable to generate GrapesJS meta for ${comp.tag}. Reason: ` + e
+      );
+    }
   });
 }
 
@@ -120,7 +139,11 @@ function tagValue(tags: JsonDocsTag[], name: string): string | undefined {
 }
 function jsonTagValue(tags: HasDocsTags, name: string) {
   const value = tagValue(tags.docsTags, name);
-  return value && JSON.parse(value);
+  try {
+    return value && JSON.parse(value);
+  } catch (e) {
+    throw new Error(`Unable to parse JSON for ${name} tag. Reason: ` + e);
+  }
 }
 function hasTag(tagName: string) {
   return (d: HasDocsTags) =>
