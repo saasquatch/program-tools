@@ -1,6 +1,5 @@
 import { h, VNode } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../../styling/JSS";
 import { Gift } from "./SVGs";
 
 export type ProgressBarProps = {
@@ -13,6 +12,123 @@ export type ProgressBarProps = {
   expired?: boolean;
   finite?: number;
 };
+
+const style = {
+  ProgressBar: {
+    "& .progress-bar": {
+      height: "0",
+      marginTop: "var(--sl-spacing-large)",
+      marginBottom: "var(--sl-spacing-xxx-large)",
+      marginRight: "var(--sl-spacing-x-small)",
+      fontSize: "var(--sl-font-size-x-small)",
+      display: "grid",
+      gridTemplateColumns: "attr(data-columns)",
+      lineHeight: "45px",
+      userSelect: "none",
+    },
+    "&[data-steps]": {
+      marginTop: "calc(-1*var(--sl-spacing-x-small))",
+    },
+    "&[data-steps]  .progress-bar": {
+      marginTop: "var(--sl-spacing-medium)",
+    },
+    "&[data-expired]  .progress-bar": {
+      filter: "grayscale(1)",
+    },
+    "& .progress-bar.repeatable-steps": {
+      marginLeft: "var(--sl-spacing-x-small)",
+    },
+    "& .filled:after": {
+      content: '""',
+      display: "flex",
+      width: "100%",
+      height: "4px",
+      borderRadius: "4px",
+      backgroundColor: "var(--sl-color-primary-300)",
+    },
+    "& .progress": {
+      display: "block",
+      textAlign: "center",
+      marginLeft: "-100px",
+      marginRight: "-100px",
+    },
+    "& .progress::after": {
+      content: '""',
+      width: "12px",
+      height: "12px",
+      display: "flex",
+      backgroundColor: "var(--sl-color-primary-300)",
+      borderRadius: "50%",
+      position: "relative",
+      left: "47%",
+      top: "-85%",
+    },
+    "& .progress.bg:after": {
+      width: "0",
+      height: "0",
+      border: "none",
+    },
+    "& .progress.top": {
+      position: "relative",
+      top: "-40px",
+    },
+    "& .progress.top:after": {
+      top: "-16%",
+    },
+    "& .empty": {
+      display: "block",
+      textAlign: "center",
+      marginLeft: "-100px",
+      marginRight: "-100px",
+    },
+    "& .empty::after": {
+      content: '""',
+      width: "12px",
+      height: "12px",
+      border: "2px solid #E0E0E0",
+      margin: "-2px",
+      display: "flex",
+      backgroundColor: "white",
+      borderRadius: "50%",
+      position: "relative",
+      left: "47%",
+      top: "-85%",
+    },
+    "& .empty.bg:after": {
+      width: "0",
+      height: "0",
+      border: "none",
+    },
+    "& .remain:after": {
+      content: '""',
+      display: "flex",
+      width: "100%",
+      height: "4px",
+      borderRadius: "4px",
+      backgroundColor: "#E0E0E0",
+    },
+    "& .gift.bw": {
+      filter: "grayscale(100%)",
+    },
+    "& .gift.start": {
+      transform: "scale(80%)",
+      top: "-20px",
+    },
+    "& .gift": {
+      textAlign: "center",
+      marginLeft: "-100px",
+      marginRight: "-100px",
+      position: "relative",
+      top: "-18px",
+    },
+    "&[data-done] .gift": {
+      filter: "grayscale(100%)",
+    },
+  },
+};
+
+const sheet = createStyleSheet(style);
+const styleString = sheet.toString();
 
 export function ProgressBarView(props: ProgressBarProps): VNode {
   const {
@@ -44,119 +160,14 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
     }
   }
 
-  const style = {
-    ProgressBar: {
-      marginTop: steps ? "calc(-1*var(--sl-spacing-x-small))" : "",
-      "& .progress-bar": {
-        height: "0",
-        marginTop: steps
-          ? "var(--sl-spacing-medium)"
-          : "var(--sl-spacing-large)",
-        filter: expired ? "grayscale(1)" : "",
-        marginBottom: "var(--sl-spacing-xxx-large)",
-        marginRight: "var(--sl-spacing-x-small)",
-        fontSize: "var(--sl-font-size-x-small)",
-        display: "grid",
-        gridTemplateColumns: columns,
-        lineHeight: "45px",
-        userSelect: "none",
-      },
-      "& .progress-bar.repeatable-steps": {
-        marginLeft: "var(--sl-spacing-x-small)",
-      },
-      "& .filled:after": {
-        content: '""',
-        display: "flex",
-        width: "100%",
-        height: "4px",
-        borderRadius: "4px",
-        backgroundColor: "var(--sl-color-primary-300)",
-      },
-      "& .progress": {
-        display: "block",
-        textAlign: "center",
-        marginLeft: "-100px",
-        marginRight: "-100px",
-      },
-      "& .progress::after": {
-        content: '""',
-        width: "12px",
-        height: "12px",
-        display: "flex",
-        backgroundColor: "var(--sl-color-primary-300)",
-        borderRadius: "50%",
-        position: "relative",
-        left: "47%",
-        top: "-85%",
-      },
-      "& .progress.bg:after": {
-        width: "0",
-        height: "0",
-        border: "none",
-      },
-      "& .progress.top": {
-        position: "relative",
-        top: "-40px",
-      },
-      "& .progress.top:after": {
-        top: "-16%",
-      },
-      "& .empty": {
-        display: "block",
-        textAlign: "center",
-        marginLeft: "-100px",
-        marginRight: "-100px",
-      },
-      "& .empty::after": {
-        content: '""',
-        width: "12px",
-        height: "12px",
-        border: "2px solid #E0E0E0",
-        margin: "-2px",
-        display: "flex",
-        backgroundColor: "white",
-        borderRadius: "50%",
-        position: "relative",
-        left: "47%",
-        top: "-85%",
-      },
-      "& .empty.bg:after": {
-        width: "0",
-        height: "0",
-        border: "none",
-      },
-      "& .remain:after": {
-        content: '""',
-        display: "flex",
-        width: "100%",
-        height: "4px",
-        borderRadius: "4px",
-        backgroundColor: "#E0E0E0",
-      },
-      "& .gift.bw": {
-        filter: "grayscale(100%)",
-      },
-      "& .gift.start": {
-        transform: "scale(80%)",
-        top: "-20px",
-      },
-      "& .gift": {
-        textAlign: "center",
-        marginLeft: "-100px",
-        marginRight: "-100px",
-        position: "relative",
-        top: "-18px",
-        filter: goal <= progress ? "" : "grayscale(100%)",
-      },
-    },
-  };
-
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
-  const styleString = sheet.toString();
-
   return (
-    <div class={sheet.classes.ProgressBar}>
+    <div
+      class={sheet.classes.ProgressBar}
+      data-columns={columns}
+      data-expired={expired}
+      data-steps={steps}
+      data-done={goal <= progress}
+    >
       <style type="text/css">{styleString}</style>
       <div
         class={

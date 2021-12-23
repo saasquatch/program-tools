@@ -1,7 +1,6 @@
 import { h, VNode } from "@stencil/core";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../styling/JSS";
 import { gap } from "../../global/mixins";
 
 export interface ReferralTableViewProps {
@@ -57,8 +56,7 @@ const style = {
   },
 };
 
-jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
+const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function ReferralTableView(props: ReferralTableViewProps) {
@@ -90,9 +88,7 @@ export function ReferralTableView(props: ReferralTableViewProps) {
                   class={sheet.classes.TRow}
                   style={{
                     borderTop: `${
-                      !data.textOverrides.showLabels && i === 0
-                        ? "none"
-                        : ""
+                      !data.textOverrides.showLabels && i === 0 ? "none" : ""
                     }`,
                   }}
                   part="table-row"

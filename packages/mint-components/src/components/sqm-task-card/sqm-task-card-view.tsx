@@ -1,14 +1,33 @@
 import { h, VNode } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
-import { HostBlock } from "../../global/mixins";
-import * as SVGs from "./SVGs";
+import { DateTime } from "luxon";
+import { intl } from "../../global/global";
+import { createStyleSheet } from "../../styling/JSS";
+import { Details } from "./DetailsView";
 import {
   ProgressBarProps,
   ProgressBarView,
 } from "./progress-bar/progress-bar-view";
-import { DateTime } from "luxon";
-import { intl } from "../../global/global";
+import * as SVGs from "./SVGs";
+
+export type TaskCardViewProps = {
+  rewardAmount: string;
+  cardTitle: string;
+  description: string;
+  showProgressBar: boolean;
+  repeatable: boolean;
+  finite: number;
+  completedText: string;
+  showExpiry: boolean;
+  expiryMessage: string;
+  rewardDuration: string;
+  startsOnMessage: string;
+  endedMessage: string;
+  rewardUnit: string;
+  buttonText: string;
+  buttonLink: string;
+  openNewTab: boolean;
+  loading: boolean;
+} & ProgressBarProps;
 
 const style = {
   TaskCard: {
@@ -35,6 +54,7 @@ const style = {
     },
     "& .title": {
       fontSize: "var(--sl-font-size-medium)",
+      // fontWeight: "var(--sl-font-weight-semibold)",
       color: "var(--sl-color-neutral-950)",
     },
     "& .container": {
@@ -155,29 +175,8 @@ const style = {
   },
 };
 
-jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
+const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
-
-export type TaskCardViewProps = {
-  rewardAmount: string;
-  cardTitle: string;
-  description: string;
-  showProgressBar: boolean;
-  repeatable: boolean;
-  finite: number;
-  completedText: string;
-  showExpiry: boolean;
-  expiryMessage: string;
-  rewardDuration: string;
-  startsOnMessage: string;
-  endedMessage: string;
-  rewardUnit: string;
-  buttonText: string;
-  buttonLink: string;
-  openNewTab: boolean;
-  loading: boolean;
-} & ProgressBarProps;
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
   const checkmark_circle = SVGs.checkmark_circle();
@@ -388,68 +387,6 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function Details(props): VNode {
-  const style = {
-    Description: {
-      "& input[type=checkbox]": {
-        display: "none",
-      },
-      "& input:checked ~ .details": {
-        transform: "rotate(-180deg)",
-      },
-      "& .details": {
-        position: "absolute",
-        top: "var(--sl-spacing-medium)",
-        right: "var(--sl-spacing-medium)",
-        color: "var(--sl-color-neutral-700)",
-        fontSize: "var(--sl-font-size-large)",
-        "& :hover": {
-          color: "var(--sl-color-primary-700)",
-        },
-        transformOrigin: "50% 37%",
-        transition: "transform var(--sl-transition-medium) ease",
-        cursor: "pointer",
-      },
-      "& input:checked ~ .summary": {
-        transition: "all var(--sl-transition-medium) ease",
-        maxHeight: "300px",
-        marginBottom: props.steps
-          ? "var(--sl-spacing-x-large)"
-          : props.showProgressBar
-          ? "var(--sl-spacing-xx-large)"
-          : "var(--sl-spacing-x-large)",
-      },
-      "& .summary": {
-        display: "block",
-        overflow: "hidden",
-        fontSize: "var(--sl-font-size-small)",
-        maxHeight: "0px",
-        transition: "all var(--sl-transition-fast) ease-out",
-        marginBottom: "var(--sl-spacing-medium)",
-      },
-    },
-  };
-
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
-  const styleString = sheet.toString();
-
-  const rid = Math.random().toString(36).slice(2);
-
-  return (
-    <div>
-      <style type="text/css">{styleString}</style>
-      <span class={sheet.classes.Description}>
-        <input type="checkbox" id={"details-" + rid} />
-        <label class="details" htmlFor={"details-" + rid}>
-          <sl-icon name="chevron-down"></sl-icon>
-        </label>
-        <span class="summary">{props.description}</span>
-      </span>
     </div>
   );
 }

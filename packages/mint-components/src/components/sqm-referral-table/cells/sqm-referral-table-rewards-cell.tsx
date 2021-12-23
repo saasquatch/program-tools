@@ -1,9 +1,8 @@
 import { Component, h, Prop } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
 import { DateTime } from "luxon";
-import { intl } from "../../../global/global";
 import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
+import { createStyleSheet } from "../../../styling/JSS";
+
 @Component({
   tag: "sqm-referral-table-rewards-cell",
   shadow: true,
@@ -55,8 +54,7 @@ export class ReferralTableRewardsCell {
       },
     };
 
-    jss.setup(preset());
-    const sheet = jss.createStyleSheet(style);
+    const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
 
     const getState = (states: Array<string>): string => {

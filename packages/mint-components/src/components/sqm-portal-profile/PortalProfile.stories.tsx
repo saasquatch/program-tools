@@ -1,20 +1,12 @@
 import { h } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
 import {
   PortalProfileView,
-  PortalProfileViewProps,
+  PortalProfileViewProps
 } from "./sqm-portal-profile-view";
 
 export default {
   title: "Components/Portal Profile",
 };
-
-// const style = {};
-
-jss.setup(preset());
-// const sheet = jss.createStyleSheet(style);
-// const styleString = sheet.toString();
 
 const defaultProps: PortalProfileViewProps = {
   states: {

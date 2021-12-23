@@ -2,8 +2,7 @@ import { h } from "@stencil/core";
 import { BigStatView } from "../components/sqm-big-stat/sqm-big-stat-view";
 import { ShareButtonView } from "../components/sqm-share-button/sqm-share-button-view";
 import { ShareLinkView } from "../components/sqm-share-link/sqm-share-link-view";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../styling/JSS";
 import { NavigationSidebarView } from "../components/sqm-navigation-sidebar/sqm-navigation-sidebar-view";
 import { NavigationSidebarItemView } from "../components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PortalSectionView } from "../components/sqm-titled-section/sqm-portal-section-view";
@@ -23,8 +22,7 @@ const style = {
   },
 };
 
-jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
+const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 const barProps = {
