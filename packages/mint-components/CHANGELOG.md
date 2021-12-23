@@ -7,7 +7,98 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2022-01-10
+
+### Added
+
+- Added Components:
+
+  - \<sqm-brand>
+    - Takes in a brand colour, creates a colour palette from it and sets --sl-primary colour's accordingly to child components
+    - Takes in a brand font and applies it to child components
+  - \<sqm-card-feed>
+    - Applies a masonry style grid to child components (created for sqm-task-card)
+    - Child width and gap between children can be configured
+  - \<sqm-program-explainer>
+    - Designed to wrap \<sqm-program-explainer-step>
+    - Adds header and footer sections
+    - Text (titles and descriptions) and colours (background and text) are configurable
+  - \<sqm-program-explainer-step>
+    - Card to explain part of a customers program
+    - Icon, background colour, text colour, title and description text are configurable
+  - \<sqm-reward-exchange-list>
+    - Allows users to exchange rewards configured by Tenant level reward exchange rules
+    - Includes props for complete text editability
+    - Has a 4 step process, select exchange rule, select reward, confirm exchange, exchanged
+  - \<sqm-rewards-table>
+    - Displays a table of users rewards with help from column and cell components
+    - Program Id prop specifies from which programs to show rewards for, defaults to program context but shows rewards globally if no program is provided through prop or context
+    - Column titles are shown by default but can be hidden via prop
+    - 3 rewards are shown per page by default but can be changed via prop
+    - Mobile responsive functionality
+    - Includes props for mobile and table breakpoints, which trigger mobile friendly views
+    - Includes prop to hide column titles in mobile view
+    - \<sqm-rewards-table-date-column>
+      - Displays reward dates in a column using the \<sqm-rewards-table-date-cell>
+      - Includes prop to configure what date to show (date given, expires, cancelled, redeemed, scheduled for)
+      - Includes prop to configure column title text
+    - \<sqm-rewards-table-date-cell>
+      - Displays reward date
+    - \<sqm-rewards-table-reward-column>
+      - Displays rewards in a column using the \<sqm-rewards-table-rewards-cell>
+      - Includes prop to configure column title and other text
+    - \<sqm-rewards-table-rewards-cell>
+      - Displays the amount and type of a reward
+      - Displays how much of the reward is available/redeemed
+    - \<sqm-rewards-table-source-column>
+      - Displays reward sources in a column using the \<sqm-rewards-table-source-cell>
+      - Includes props to configure text elements used in the source cell
+      - Includes prop to configure column title
+    - \<sqm-rewards-table-source-cell>
+      - Displays the source of a reward (Program/Automated, Manual, Referral, Reward Exchange)
+    - \<sqm-rewards-status-column>
+      - Displays reward statuses in a column using the \<sqm-rewards-table-status-cell>
+      - Includes props to configure reward status text
+      - Includes prop to configure column title
+    - \<sqm-rewards-table-status-cell>
+      - Displays the status of a reward along with status information (expiry or pending date, etc)
+  - \<sqm-task-card>
+    - Displays Tasks which correspond to program goals for users to complete
+    - Users progress comes from custom field or program goal, configured by prop
+    - Includes prop to disable cards outside of an activities duration, default is no duration (always available)
+    - Includes props for text configuration like card title, description, CTA button text
+    - Includes CTA button to redirect users to where they need to complete the task (new tab or existing tab), route is configurable via prop
+    - Progress bar is hidden or shown by prop, hidden by default
+    - Includes text showing how many times a user has completed a task if repeatable, text is configurable
+
+### Changed
+
+- Changed Components:
+  - \<sqm-big-stat>
+    - Added hook functionality to query customfields
+    - Hooks now returns value (number) and statValue (string)
+    - Added loading state into the hook
+  - \<sqm-leaderboard> CHANGES IN PROGRESS - UPDATE ME
+  - \<sqm-portal-container>
+    - Added max width prop, defaults to 100%
+  - \<sqm-referral-table>
+    - Added empty state text prop
+    - Added mobile responsive functionality
+    - Added props for mobile and table breakpoints, which trigger mobile friendly views
+    - Added prop to hide column titles in mobile view
+  - \<sqm-share-button>
+    - Added prop to override button colour
+    - Added prop to override button text colour
+    - Added prop to override border radius
+    - Added default button colours for all share mediums --TO DO--
+  - \<sqm-share-code>
+    - Sends a "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT" analytic with "DIRECT" share medium event on copy code click
+  - \<sqm-share-link>
+    - Sends a "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT" analytic with "DIRECT" share medium event on copy link click
+
 ## [1.4.0] - 2021-12-09
+
+### Changed
 
 - Updated version of component-boilerplate to prevent rare case of user context being deleted during register
 - Updated version of component-boilerplate to support new registration, password reset, and verify requests
@@ -183,6 +274,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-stencilbook>
 
 [unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.4.0...HEAD
+[1.5.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.0
 [1.4.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.4.0
 [1.3.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.3.0
 [1.2.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.2.0
