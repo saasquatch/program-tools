@@ -25,6 +25,6 @@ export const ChooseAmountVariable = StoryBase(Data.chooseAmountVariable);
 export const Confirm = StoryBase(Data.confirmFixed);
 export const ConfirmVariable = StoryBase(Data.confirmVariable);
 export const Error = StoryBase(Data.error);
-export const Success = StoryBase(Data.success);
+export const SuccessPromo = StoryBase(Data.success);
 export const SuccessVariable = StoryBase(Data.successVariable);
 export const Loading = StoryBase(Data.loading);

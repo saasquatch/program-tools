@@ -32,6 +32,7 @@ const baseResponse = (
         rewardRedeemedText: "Reward redeemed",
         redemptionError:
           "An error occured trying to redeem this reward. Please try again",
+        promoCode: "Promo code",
         skeletonCardNum: 8,
       },
     },
@@ -288,9 +289,9 @@ export const success = {
     "success",
     {
       ...baseReward,
-	  ...name("Free swag with a promo code"),
-	  ...imageUrl("https://i.imgur.com/n7vC4BR.png"),
-	  ...fixedValue("40 SaaSquatch Points"),
+      ...name("Free swag with a promo code"),
+      ...imageUrl("https://i.imgur.com/n7vC4BR.png"),
+      ...fixedValue("40 SaaSquatch Points"),
     },
     undefined,
     undefined,

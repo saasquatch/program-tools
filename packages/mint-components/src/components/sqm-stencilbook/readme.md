@@ -47,6 +47,10 @@
 - [sqm-rewards-table-source-cell](../sqm-rewards-table/cells)
 - [sqm-rewards-table-status-cell](../sqm-rewards-table/cells)
 - [sqm-rewards-table-date-cell](../sqm-rewards-table/cells)
+- [sqm-referral-table-user-column](../sqm-referral-table/columns)
+- [sqm-referral-table-status-column](../sqm-referral-table/columns)
+- [sqm-referral-table-date-column](../sqm-referral-table/columns)
+- [sqm-referral-table-rewards-column](../sqm-referral-table/columns)
 
 ### Graph
 ```mermaid
@@ -89,6 +93,10 @@ graph TD;
   sqm-stencilbook --> sqm-rewards-table-source-cell
   sqm-stencilbook --> sqm-rewards-table-status-cell
   sqm-stencilbook --> sqm-rewards-table-date-cell
+  sqm-stencilbook --> sqm-referral-table-user-column
+  sqm-stencilbook --> sqm-referral-table-status-column
+  sqm-stencilbook --> sqm-referral-table-date-column
+  sqm-stencilbook --> sqm-referral-table-rewards-column
   sqm-edit-profile --> sqm-form-message
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
@@ -105,6 +113,10 @@ graph TD;
   sqm-portal-login --> sqm-form-message
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-change-password --> sqm-password-field
+  sqm-referral-table-user-column --> sqm-referral-table-user-cell
+  sqm-referral-table-status-column --> sqm-referral-table-status-cell
+  sqm-referral-table-date-column --> sqm-referral-table-date-cell
+  sqm-referral-table-rewards-column --> sqm-referral-table-rewards-cell
   style sqm-stencilbook fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

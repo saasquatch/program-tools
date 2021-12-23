@@ -219,7 +219,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         maxWidth: "350px",
         margin: "0 auto",
         lineHeight: "var(--sl-line-height-dense)",
-        marginBottom: "var(--sl-spacing-xxx-large)",
+        marginBottom: "var(--sl-spacing-xx-large)",
         marginTop: "var(--sl-spacing-xx-small)",
       },
     },
@@ -665,7 +665,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               color: "var(--sl-color-neutral-700)",
             }}
           >
-            Promo code
+            {states.content.text.promoCode}
             <ShareLinkView
               shareString={data.fuelTankCode}
               tooltiptext={states?.content?.text.toopTipText}

@@ -134,6 +134,11 @@ export class SqmRewardExchangeList {
     "Not enough {sourceUnit} to redeem for this reward";
 
   /**
+   * @uiName Promo Code Text
+   */
+  @Prop() promoCode: string = "Promo Code";
+
+  /**
    * @uiName Number of Skeleton Cards
    */
   @Prop() skeletonCardNum: number = 8;

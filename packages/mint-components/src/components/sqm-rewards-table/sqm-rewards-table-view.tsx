@@ -42,8 +42,6 @@ export function RewardsTableView(props: RewardsTableViewProps) {
 
   const hiddenCols = data.hiddenColumns.split(",").map(Number);
 
-  console.log(props);
-
   const mobile = "@media (max-width: " + data.mdBreakpoint + "px)";
   const tablet =
     "@media (min-width: " +
@@ -56,14 +54,12 @@ export function RewardsTableView(props: RewardsTableViewProps) {
     Table: {
       borderCollapse: "collapse",
       width: "100%",
-      "& thead": {
-        padding: "var(--sl-spacing-small)",
-        paddingLeft: "0",
+      "& th": {
+        paddingBottom: "var(--sl-spacing-small)",
         textAlign: "left",
         fontWeight: "var(--sl-font-weight-normal)",
       },
-      "& tr": {
-      },
+      "& tr": {},
       "& td": {
         borderTop: "1px solid var(--sl-color-neutral-200)",
         padding: "var(--sl-spacing-small)",
@@ -85,24 +81,25 @@ export function RewardsTableView(props: RewardsTableViewProps) {
           marginBottom: "var(--sl-spacing-large)",
         },
         "& td": {
-          display: "block",
-		  borderTop: "none",
+          display: "grid",
+          gridTemplateColumns: "0.5fr 0.5fr",
+          borderTop: "none",
           padding: "0",
           marginBottom: "var(--sl-spacing-medium)",
-          ".hidden::before": {
-            content: "",
-          },
+
           "&:first-child": {
             textAlign: "left",
           },
           "&:before": {
             content: "attr(data-label)",
-            float: "left",
-            width: "40%",
-            marginBottom: "5px",
           },
+
           "&:last-child": {
             marginBottom: "0",
+          },
+
+          "&.hidden:before": {
+            content: "none",
           },
         },
       },

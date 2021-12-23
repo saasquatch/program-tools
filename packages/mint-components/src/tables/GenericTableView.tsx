@@ -1,5 +1,4 @@
 import { h, VNode } from "@stencil/core";
-import { TextSpanView } from "../components/sqm-text-span/sqm-text-span-view";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { gap } from "../global/mixins";
@@ -9,7 +8,6 @@ export interface GenericTableViewProps {
     hasPrev: boolean;
     hasNext: boolean;
     show: "loading" | "empty" | "rows";
-    // Used for namespacing CSS parts, e.g. "sqm-referral-table"
     namespace: string;
   };
   data: {
@@ -18,6 +16,9 @@ export interface GenericTableViewProps {
       prevLabel: string;
       moreLabel: string;
     };
+    hiddenColumns: string;
+    mdBreakpoint: number;
+    smBreakpoint: number;
   };
   callbacks: {
     prevPage: () => void;
@@ -33,39 +34,93 @@ export interface GenericTableViewProps {
   };
 }
 
-const style = {
-  THead: {
-    padding:
-      "var(--sl-spacing-small) var(--sl-spacing-medium) var(--sl-spacing-small) 0",
-    "text-align": "left",
-  },
-  TCell: {
-    padding:
-      "var(--sl-spacing-small) var(--sl-spacing-medium) var(--sl-spacing-small) 0",
-  },
-  TRow: {
-    "border-top": "1px solid #EAEAEA",
-  },
-  Table: {
-    "border-collapse": "collapse",
-    width: "100%",
-  },
-  ButtonContainer: {
-    display: "flex",
-    "justify-content": "flex-end",
-    "margin-top": "var(--sl-spacing-small)",
-    ...gap({ direction: "row", size: "var(--sl-spacing-small)" }),
-  },
-};
-
-jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
-const styleString = sheet.toString();
-
 export function GenericTableView(props: GenericTableViewProps) {
   const { states, data, callbacks, elements } = props;
   const { columns, rows } = elements;
   const { show } = states;
+
+  const hiddenCols = data.hiddenColumns.split(",").map(Number);
+
+  const mobile = "@media (max-width: " + data.mdBreakpoint + "px)";
+  const tablet =
+    "@media (min-width: " +
+    data.smBreakpoint +
+    "px) and (max-width: " +
+    data.mdBreakpoint +
+    "px)";
+
+  const style = {
+    Table: {
+      borderCollapse: "collapse",
+      width: "100%",
+      "& th": {
+        paddingBottom: "var(--sl-spacing-small)",
+        textAlign: "left",
+        fontWeight: "var(--sl-font-weight-normal)",
+      },
+      "& tr": {},
+      "& td": {
+        borderTop: "1px solid var(--sl-color-neutral-200)",
+        padding: "var(--sl-spacing-small)",
+        paddingLeft: "0",
+      },
+      [mobile]: {
+        "& thead": {
+          display: "none",
+        },
+        "& tr": {
+          display: "block",
+          background: "#FFFFFF",
+          border: "1px solid var(--sl-color-neutral-200)",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+          borderRadius: "var(--sl-border-radius-medium)",
+          padding: "var(--sl-spacing-medium)",
+          color: "var(--sl-color-neutral-500)",
+          fontSize: "var(--sl-font-size-small)",
+          marginBottom: "var(--sl-spacing-large)",
+        },
+        "& td": {
+          display: "grid",
+          gridTemplateColumns: "0.5fr 0.5fr",
+          borderTop: "none",
+          padding: "0",
+          marginBottom: "var(--sl-spacing-medium)",
+
+          "&:first-child": {
+            textAlign: "left",
+          },
+          "&:before": {
+            content: "attr(data-label)",
+          },
+
+          "&:last-child": {
+            marginBottom: "0",
+          },
+
+          "&.hidden:before": {
+            content: "none",
+          },
+        },
+      },
+      [tablet]: {
+        "& tbody": {
+          display: "grid",
+          gridTemplateColumns: "0.5fr 0.5fr",
+          gap: "25px",
+        },
+      },
+    },
+ButtonContainer: {
+      display: "flex",
+      "justify-content": "flex-end",
+      "margin-top": "var(--sl-spacing-small)",
+      ...gap({ direction: "row", size: "var(--sl-spacing-small)" }),
+    },
+  };
+
+  jss.setup(preset());
+  const sheet = jss.createStyleSheet(style);
+  const styleString = sheet.toString();
 
   return (
     <div>
@@ -75,9 +130,7 @@ export function GenericTableView(props: GenericTableViewProps) {
           <thead>
             <tr>
               {columns?.map((column) => (
-                <th class={sheet.classes.THead}>
-                  <TextSpanView type="h3">{column}</TextSpanView>
-                </th>
+                <th>{column}</th>
               ))}
             </tr>
           </thead>
@@ -88,7 +141,6 @@ export function GenericTableView(props: GenericTableViewProps) {
           {show === "rows" &&
             rows?.map((row, i) => (
               <tr
-                class={sheet.classes.TRow}
                 style={{
                   borderTop: `${
                     !data.textOverrides.showLabels && i === 0 ? "none" : ""
@@ -96,9 +148,12 @@ export function GenericTableView(props: GenericTableViewProps) {
                 }}
                 part="table-row"
               >
-                {row.map((cell) => (
-                  <td class={sheet.classes.TCell}>
-                    <TextSpanView type="p">{cell}</TextSpanView>
+                {row.map((cell, j) => (
+                  <td
+                    class={hiddenCols.includes(j) ? "hidden" : ""}
+                    data-label={columns[j] + ":"}
+                  >
+                    {cell}
                   </td>
                 ))}
               </tr>

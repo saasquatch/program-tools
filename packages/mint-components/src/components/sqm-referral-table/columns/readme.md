@@ -39,6 +39,10 @@ Type: `Promise<string>`
 
 ## Dependencies
 
+### Used by
+
+ - [sqm-stencilbook](../../sqm-stencilbook)
+
 ### Depends on
 
 - [sqm-referral-table-user-cell](../cells)
@@ -47,6 +51,7 @@ Type: `Promise<string>`
 ```mermaid
 graph TD;
   sqm-referral-table-user-column --> sqm-referral-table-user-cell
+  sqm-stencilbook --> sqm-referral-table-user-column
   style sqm-referral-table-user-column fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

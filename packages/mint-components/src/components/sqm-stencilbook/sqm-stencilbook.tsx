@@ -52,6 +52,7 @@ import * as BrandStories from "../sqm-brand/SqmBrand.stories";
 import * as CardFeed from "../sqm-card-feed/CardFeed.stories";
 import * as PortalContainer from "../sqm-portal-container/PortalContainer.stories";
 import * as RewardsTableCell from "../sqm-rewards-table/RewardsTableCell.stories";
+import * as UseReferralTable from "../sqm-referral-table/UseReferralTable.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -110,6 +111,7 @@ const stories = [
   CardFeed,
   PortalContainer,
   RewardsTableCell,
+  UseReferralTable,
 ];
 
 /**
