@@ -1,6 +1,5 @@
 import { h, VNode } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../../styling/JSS";
 import { Gift } from "./SVGs";
 
 export type ProgressBarProps = {
@@ -128,8 +127,7 @@ const style = {
   },
 };
 
-jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
+const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function ProgressBarView(props: ProgressBarProps): VNode {

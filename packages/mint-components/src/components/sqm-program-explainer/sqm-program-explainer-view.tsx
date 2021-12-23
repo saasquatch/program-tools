@@ -1,7 +1,6 @@
 import { h, VNode } from "@stencil/core";
 
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../styling/JSS";
 
 export interface ProgramExplainerViewProps {
   header: string;
@@ -45,8 +44,7 @@ export function ProgramExplainerView(
     },
   };
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   const vanillaStyle = `

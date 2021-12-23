@@ -1,6 +1,5 @@
 import { h, Host, VNode } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../styling/JSS";
 import { HostBlock } from "../../global/mixins";
 
 export interface ShareButtonViewProps {
@@ -58,8 +57,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
     },
   };
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   return props.hide ? (

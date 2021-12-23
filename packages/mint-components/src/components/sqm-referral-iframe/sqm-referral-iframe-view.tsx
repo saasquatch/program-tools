@@ -1,6 +1,5 @@
 import { h } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../styling/JSS";
 
 export type ReferralIframeViewProps = {
   states: {
@@ -35,8 +34,8 @@ export function ReferralIframeView(props: ReferralIframeViewProps) {
     },
   };
   // JSS config
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   return (

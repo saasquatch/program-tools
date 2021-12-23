@@ -1,6 +1,5 @@
-import { h, Host, VNode } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { h, VNode } from "@stencil/core";
+import { createStyleSheet } from "../../styling/JSS";
 
 interface DividedLayoutViewProps {
   direction: "row" | "column";
@@ -58,8 +57,8 @@ export function DividedLayoutView(
   }
   `;
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   return (

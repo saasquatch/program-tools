@@ -1,7 +1,6 @@
 import { h, VNode } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
 import { gap } from "../global/mixins";
+import { createStyleSheet } from "../styling/JSS";
 
 export interface GenericTableViewProps {
   states: {
@@ -120,8 +119,7 @@ export function GenericTableView(props: GenericTableViewProps) {
     },
   };
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   return (

@@ -1,7 +1,6 @@
 import { h, VNode } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
-import { HostBlock, Spacing } from "../../global/mixins";
+import { Spacing } from "../../global/mixins";
+import { createStyleSheet } from "../../styling/JSS";
 
 interface PortalContainerViewProps {
   direction: "row" | "column";
@@ -36,8 +35,7 @@ export function PortalContainerView(
     display: block;
   }`;
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   return (

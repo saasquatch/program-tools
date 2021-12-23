@@ -1,14 +1,12 @@
 import { getAssetPath, h } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import confetti from "canvas-confetti";
 import { intl } from "../../global/global";
 import { HostBlock } from "../../global/mixins";
-import { ProgressBar } from "./progressBar";
+import { createStyleSheet } from "../../styling/JSS";
 import { ShareLinkView } from "../sqm-share-link/sqm-share-link-view";
-import { ExchangeArrows, Gift, CheckmarkFilled } from "./SVGs";
+import { ProgressBar } from "./progressBar";
+import { CheckmarkFilled, ExchangeArrows, Gift } from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
-import confetti from "canvas-confetti";
-import { success } from "./RewardExchangeListData";
 
 export type RewardExchangeViewProps = {
   states: {
@@ -270,8 +268,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   };
 
   // JSS config
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   function getInput() {
@@ -814,8 +811,8 @@ function createConfetti() {
 
   console.log(canvas);
 
-//   canvas.confetti({
-//     spread: 70,
-//     origin: { y: 1.2 },
-//   });
+  //   canvas.confetti({
+  //     spread: 70,
+  //     origin: { y: 1.2 },
+  //   });
 }

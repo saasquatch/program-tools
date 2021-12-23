@@ -1,15 +1,13 @@
 import { h, VNode } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
-import { HostBlock } from "../../global/mixins";
-import * as SVGs from "./SVGs";
+import { DateTime } from "luxon";
+import { intl } from "../../global/global";
+import { createStyleSheet } from "../../styling/JSS";
+import { Details } from "./DetailsView";
 import {
   ProgressBarProps,
   ProgressBarView,
 } from "./progress-bar/progress-bar-view";
-import { DateTime } from "luxon";
-import { intl } from "../../global/global";
-import { Details } from "./DetailsView";
+import * as SVGs from "./SVGs";
 
 export type TaskCardViewProps = {
   rewardAmount: string;
@@ -30,7 +28,6 @@ export type TaskCardViewProps = {
   openNewTab: boolean;
   loading: boolean;
 } & ProgressBarProps;
-
 
 const style = {
   TaskCard: {
@@ -178,10 +175,8 @@ const style = {
   },
 };
 
-jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
+const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
-
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
   const checkmark_circle = SVGs.checkmark_circle();

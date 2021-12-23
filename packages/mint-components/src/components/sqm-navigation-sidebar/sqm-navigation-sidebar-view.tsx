@@ -1,7 +1,6 @@
 import { h, VNode } from "@stencil/core";
 
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../styling/JSS";
 import { gap } from "../../global/mixins";
 
 export interface NavigationSidebarViewProps {}
@@ -24,8 +23,7 @@ const vanillaStyle = `
   }
 `;
 
-jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
+const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function NavigationSidebarView(
