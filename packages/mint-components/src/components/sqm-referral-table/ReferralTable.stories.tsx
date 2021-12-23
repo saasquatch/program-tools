@@ -62,7 +62,7 @@ const baseReward: Reward = {
   dateScheduledFor: 1628146800000,
   dateExpires: 1629010800000,
   dateCancelled: 134400,
-  dateRedeemed:0,
+  dateRedeemed: 0,
   fuelTankCode: "ABC",
   fuelTankType: "Code",
   currency: "null",
@@ -110,8 +110,8 @@ const simpleUserTableProps = {
   states: {
     hasPrev: false,
     hasNext: true,
-    show: "loading" as const,
-	namespace: "sqm-referral-table"
+    show: "rows" as const,
+    namespace: "sqm-referral-table",
   },
   data: {
     textOverrides: {
@@ -119,9 +119,9 @@ const simpleUserTableProps = {
       prevLabel: "Prev",
       moreLabel: "View More",
     },
-	hiddenColumns: "",
-	mdBreakpoint: 899,
-	smBreakpoint: 599
+    hiddenColumns: "",
+    mdBreakpoint: 899,
+    smBreakpoint: 599,
   },
   callbacks: {
     prevPage: () => console.log("Prev"),
@@ -165,6 +165,9 @@ const hideLabelProps = {
       prevLabel: "Prev",
       moreLabel: "View More",
     },
+    hiddenColumns: "",
+    mdBreakpoint: 899,
+    smBreakpoint: 599,
   },
 };
 
@@ -172,8 +175,8 @@ const customButtonProps = {
   states: {
     hasPrev: true,
     hasNext: true,
-    show: "row" as const,
-	namespace: "sqm-referral-table"
+    show: "rows" as const,
+    namespace: "sqm-referral-table",
   },
   data: {
     textOverrides: {
@@ -181,6 +184,9 @@ const customButtonProps = {
       prevLabel: "CUSTOM PREVIOUS TEXT",
       moreLabel: "CUSTOM NEXT TEXT",
     },
+    hiddenColumns: "",
+    mdBreakpoint: 899,
+    smBreakpoint: 599,
   },
 };
 
@@ -188,8 +194,8 @@ const longCellTextTableProps = {
   states: {
     hasPrev: false,
     hasNext: true,
-    show: "loading",
-	namespace: "sqm-referral-table"
+    show: "rows" as const,
+    namespace: "sqm-referral-table",
   },
   data: {
     textOverrides: {
@@ -197,9 +203,9 @@ const longCellTextTableProps = {
       prevLabel: "Prev",
       moreLabel: "View More",
     },
-	hiddenColumns: "",
-	mdBreakpoint: 899,
-	smBreakpoint: 599
+    hiddenColumns: "",
+    mdBreakpoint: 899,
+    smBreakpoint: 599,
   },
   callbacks: {
     prevPage: () => console.log("Prev"),
@@ -277,8 +283,8 @@ const longColumnTextTableProps = {
   states: {
     hasPrev: false,
     hasNext: true,
-    show: "loading",
-	namespace: "sqm-referral-table"
+    show: "rows" as const,
+    namespace: "sqm-referral-table",
   },
   data: {
     textOverrides: {
@@ -286,9 +292,9 @@ const longColumnTextTableProps = {
       prevLabel: "Prev",
       moreLabel: "View More",
     },
-	hiddenColumns: "",
-	mdBreakpoint: 899,
-	smBreakpoint: 599
+    hiddenColumns: "",
+    mdBreakpoint: 899,
+    smBreakpoint: 599,
   },
   callbacks: {
     prevPage: () => console.log("Prev"),
@@ -366,8 +372,8 @@ const fullUserTableProps = {
   states: {
     hasPrev: false,
     hasNext: true,
-    show: "loading",
-	namespace: "sqm-referral-table"
+    show: "rows" as const,
+    namespace: "sqm-referral-table",
   },
   data: {
     textOverrides: {
@@ -375,9 +381,9 @@ const fullUserTableProps = {
       prevLabel: "Prev",
       moreLabel: "View More",
     },
-	hiddenColumns: "",
-	mdBreakpoint: 899,
-	smBreakpoint: 599
+    hiddenColumns: "",
+    mdBreakpoint: 899,
+    smBreakpoint: 599,
   },
   callbacks: {
     prevPage: () => console.log("Prev"),
@@ -455,33 +461,33 @@ export const SimpleUserTable = () => {
   return <GenericTableView {...simpleUserTableProps}></GenericTableView>;
 };
 
-// export const HiddenLabelsTable = () => {
-//   return (
-//     <GenericTableView
-//       {...{ ...simpleUserTableProps, ...hideLabelProps }}
-//     ></GenericTableView>
-//   );
-// };
+export const HiddenLabelsTable = () => {
+  return (
+    <GenericTableView
+      {...{ ...simpleUserTableProps, ...hideLabelProps }}
+    ></GenericTableView>
+  );
+};
 
-// export const CustomButtonTextTable = () => {
-//   return (
-//     <GenericTableView
-//       {...{ ...simpleUserTableProps, ...customButtonProps }}
-//     ></GenericTableView>
-//   );
-// };
+export const CustomButtonTextTable = () => {
+  return (
+    <GenericTableView
+      {...{ ...simpleUserTableProps, ...customButtonProps }}
+    ></GenericTableView>
+  );
+};
 
-// export const FullUserTable = () => {
-//   return <GenericTableView {...fullUserTableProps}></GenericTableView>;
-// };
+export const FullUserTable = () => {
+  return <GenericTableView {...fullUserTableProps}></GenericTableView>;
+};
 
-// export const LongCellTextTable = () => {
-//   return <GenericTableView {...longCellTextTableProps}></GenericTableView>;
-// };
+export const LongCellTextTable = () => {
+  return <GenericTableView {...longCellTextTableProps}></GenericTableView>;
+};
 
-// export const LongColumnTextTable = () => {
-//   return <GenericTableView {...longColumnTextTableProps}></GenericTableView>;
-// };
+export const LongColumnTextTable = () => {
+  return <GenericTableView {...longColumnTextTableProps}></GenericTableView>;
+};
 
 export const EmptyTable = () => {
   return (
@@ -490,8 +496,8 @@ export const EmptyTable = () => {
         states: {
           hasPrev: false,
           hasNext: false,
-		  show: "empty",
-		  namespace: "sqm-referral-table"
+          show: "empty" as const,
+          namespace: "sqm-referral-table",
         },
         data: {
           textOverrides: {
@@ -499,9 +505,9 @@ export const EmptyTable = () => {
             prevLabel: "Prev",
             moreLabel: "View More",
           },
-		  hiddenColumns: "",
-		  mdBreakpoint: 899,
-		  smBreakpoint: 599
+          hiddenColumns: "",
+          mdBreakpoint: 899,
+          smBreakpoint: 599,
         },
         elements: {
           emptyElement: emptyElement,
@@ -521,8 +527,8 @@ export const LoadingTable = () => {
         states: {
           hasPrev: false,
           hasNext: false,
-		  show: "loading",
-		  namespace: "sqm-referral-table"
+          show: "loading",
+          namespace: "sqm-referral-table",
         },
         data: {
           textOverrides: {
@@ -530,9 +536,9 @@ export const LoadingTable = () => {
             prevLabel: "Prev",
             moreLabel: "View More",
           },
-		  hiddenColumns: "",
-		  mdBreakpoint: 899,
-		  smBreakpoint: 599
+          hiddenColumns: "",
+          mdBreakpoint: 899,
+          smBreakpoint: 599,
         },
         elements: {
           emptyElement: emptyElement,
@@ -552,8 +558,8 @@ export const FullRewardsTable = () => {
         states: {
           hasPrev: false,
           hasNext: false,
-		  show: "loading",
-		  namespace: "sqm-referral-table"
+          show: "rows" as const,
+          namespace: "sqm-referral-table",
         },
         data: {
           textOverrides: {
@@ -561,9 +567,9 @@ export const FullRewardsTable = () => {
             prevLabel: "Prev",
             moreLabel: "View More",
           },
-		  hiddenColumns: "",
-		  mdBreakpoint: 899,
-		  smBreakpoint: 599
+          hiddenColumns: "",
+          mdBreakpoint: 899,
+          smBreakpoint: 599,
         },
         elements: {
           emptyElement: emptyElement,

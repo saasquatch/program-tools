@@ -7,6 +7,8 @@ import { ProgressBar } from "./progressBar";
 import { ShareLinkView } from "../sqm-share-link/sqm-share-link-view";
 import { ExchangeArrows, Gift, CheckmarkFilled } from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
+import confetti from "canvas-confetti";
+import { success } from "./RewardExchangeListData";
 
 export type RewardExchangeViewProps = {
   states: {
@@ -638,6 +640,18 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     return (
       <div class={sheet.classes.Success}>
         <Gift />
+        <canvas
+          id="my-canvas"
+          style={{
+            position: "absolute",
+            width: "500px",
+            height: "500px",
+            left: "27%",
+            top: "5%",
+            zIndex: "1",
+          }}
+        ></canvas>
+
         <div class="title">{states.content.text.rewardRedeemedText}</div>
         <div class="description">
           {intl.formatMessage(
@@ -787,7 +801,21 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         {states.exchangeError && errorMessage()}
         {states.queryError && queryErrorMessage()}
         {currentStage && currentStage()}
+        {states.redeemStage === "success" && confetti() ? "" : ""}
       </div>
     </div>
   );
+}
+function createConfetti() {
+  var canvas = document.getElementById("my-canvas");
+
+  canvas["confetti"] =
+    canvas["confetti"] || confetti.create(canvas, { resize: true });
+
+  console.log(canvas);
+
+//   canvas.confetti({
+//     spread: 70,
+//     origin: { y: 1.2 },
+//   });
 }
