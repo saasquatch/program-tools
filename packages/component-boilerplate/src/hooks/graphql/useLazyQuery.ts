@@ -29,7 +29,6 @@ export function useLazyQuery<T = any>(
     skip,
     update,
     variables: variablesRef.current,
-    query,
   });
 
   return [

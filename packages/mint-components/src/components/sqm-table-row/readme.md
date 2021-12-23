@@ -16,9 +16,9 @@
 
 ### Used by
 
- - [sqm-referral-table](../components/sqm-referral-table)
- - [sqm-rewards-table](../components/sqm-rewards-table)
- - [sqm-stencilbook](../components/sqm-stencilbook)
+ - [sqm-referral-table](../sqm-referral-table)
+ - [sqm-rewards-table](../sqm-rewards-table)
+ - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph
 ```mermaid

@@ -28,12 +28,10 @@ export function useRefreshListener({
   skip = false,
   update,
   variables,
-  query,
 }: {
   skip?: boolean;
-  update: (variables: unknown, skipLoading?:boolean) => unknown;
+  update: (variables: unknown, skipLoading?: boolean) => unknown;
   variables: unknown;
-  query: GqlType;
 }) {
   useDeepCompareEffect(() => {
     const listener = (e: CustomEvent) => {
@@ -41,5 +39,5 @@ export function useRefreshListener({
     };
     document.addEventListener(REFRESH_EVENT_NAME, listener);
     return () => document.removeEventListener(REFRESH_EVENT_NAME, listener);
-  }, [query, variables, update, skip]);
+  }, [variables, update, skip]);
 }
