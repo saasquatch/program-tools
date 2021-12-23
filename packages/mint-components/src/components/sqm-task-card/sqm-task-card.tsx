@@ -8,7 +8,7 @@ import { TaskCardView } from "./sqm-task-card-view";
 
 /**
  * @uiName Task Card
- * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "*""]
+ * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "*"]
  */
 @Component({
   tag: "sqm-task-card",
@@ -49,7 +49,9 @@ export class TaskCard {
   repeatable: boolean = false;
 
   /**
-   * @uiName Repeat Amount (0 for no limit)
+   * The number of times a reward can be earned.  Use zero for no limit (the default).
+   * 
+   * @uiName Repeat Amount
    */
   @Prop()
   finite: number = 0;
@@ -98,14 +100,14 @@ export class TaskCard {
 
   /**
    * Shown to users before the start of the task duration.
-   * 
+   *
    * @uiName Start Date Message
    */
   @Prop() startsOnMessage: string = "Starts {startDate}";
 
   /**
    * Shown to users after the end of the task duration.
-   * 
+   *
    * @uiName Ended Date Message
    */
   @Prop() endedMessage: string = "Ended {endDate}";
