@@ -1,6 +1,5 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Method, Prop } from "@stencil/core";
-import { intl } from "../../../global/global";
 import { useRequestRerender } from "../../../tables/re-render";
 import { RewardTableColumn } from "./RewardTableColumn";
 
@@ -21,7 +20,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
    * @uiName Reward Status Text
    */
   @Prop() statusText: string =
-    "{status, select, AVAILABLE {Available} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
+    "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
 
   /**
    * @uiName Expired Status Text
