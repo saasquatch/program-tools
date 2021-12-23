@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import { IconKey, Icon } from "../Icon";
+import { arrow_down, arrow_up } from "../Icon/SVGs";
 import * as Styles from "./Styles";
 
 type DropdownProps = OptionProps &
@@ -160,26 +161,3 @@ export const DropdownSublist = React.forwardRef<
     </SublistContent>
   );
 });
-
-// TO-DO: When available in Icon component, use from there
-const arrow_up = (
-  <svg width={10} height={7} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M.146 4.517L1.25 5.4 5 2.4l3.75 3 1.104-.883L5 .634.146 4.517z"
-      fill="#858585"
-    />
-  </svg>
-);
-
-const arrow_down = (
-  <svg width={10} height={6} fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M.146 1.483L1.25.6 5 3.6l3.75-3 1.104.883L5 5.366.146 1.483z"
-      fill="#858585"
-    />
-  </svg>
-);
