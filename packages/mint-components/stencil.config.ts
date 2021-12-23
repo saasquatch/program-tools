@@ -28,7 +28,7 @@ export const config: Config = {
   namespace: "mint-components",
   globalScript: "src/global/global.ts",
   globalStyle: "src/global/global.css",
-  buildEs5: true,
+  buildEs5: process.env.NODE_ENV !== "dev",
   outputTargets:
     //@ts-ignore
     process.env.NODE_ENV === "dev"
