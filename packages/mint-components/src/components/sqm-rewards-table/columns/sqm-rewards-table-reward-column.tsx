@@ -16,9 +16,14 @@ export class RewardsTableColumn implements RewardTableColumn {
   @Prop() columnTitle: string = "Reward";
 
   /**
-   * @uiName Hide dropdown details of reward
+   * @uiName Redeemed Amount Text
    */
-  @Prop() hideDetails: boolean = false;
+  @Prop() redeemedText: string = "{redeemedAmount} redeemed";
+
+  /**
+   * @uiName Available Amount Text
+   */
+  @Prop() availableText: string = "{availableAmount} available";
 
   constructor() {
     withHooks(this);
@@ -30,7 +35,8 @@ export class RewardsTableColumn implements RewardTableColumn {
     return (
       <sqm-rewards-table-rewards-cell
         reward={data?.[0]}
-        hideDetails={this.hideDetails}
+        redeemedText={this.redeemedText}
+        availableText={this.availableText}
       ></sqm-rewards-table-rewards-cell>
     );
   }

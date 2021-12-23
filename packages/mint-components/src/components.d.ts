@@ -839,6 +839,10 @@ export namespace Components {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Text
+         */
+        "emptyStateText": string;
+        /**
           * @uiName Hide Columns (Mobile View)
          */
         "hiddenColumns"?: string;
@@ -1068,6 +1072,10 @@ export namespace Components {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Text
+         */
+        "emptyStateText": string;
+        /**
           * @uiName Hide Columns (Mobile View)
          */
         "hiddenColumns"?: string;
@@ -1120,22 +1128,32 @@ export namespace Components {
     }
     interface SqmRewardsTableRewardColumn {
         /**
+          * @uiName Available Amount Text
+         */
+        "availableText": string;
+        /**
           * @uiName Reward column title
          */
         "columnTitle": string;
         /**
-          * @uiName Hide dropdown details of reward
+          * @uiName Redeemed Amount Text
          */
-        "hideDetails": boolean;
+        "redeemedText": string;
         "renderCell": (data: Reward[]) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableRewardsCell {
-        "hideDetails": boolean;
+        "availableText": string;
+        "redeemedText": string;
         "reward": Reward;
     }
     interface SqmRewardsTableSourceCell {
+        "anonymousUserText": string;
+        "deletedUserText": string;
+        "referralText": string;
         "reward": Reward;
+        "rewardExchangeText": string;
+        "rewardSourceText": string;
     }
     interface SqmRewardsTableSourceColumn {
         /**
@@ -1150,10 +1168,24 @@ export namespace Components {
           * @uiName Name displayed for deleted users
          */
         "deletedUser": string;
+        /**
+          * Shown when a reward has been created by a referral
+          * @uiName Referral Text
+         */
+        "referralText": string;
         "renderCell": (data: Reward[]) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        /**
+          * @uiName Reward Exchange label
+         */
+        "rewardExchangeText": string;
+        /**
+          * @uiName Reward Source Text
+         */
+        "rewardSourceText": string;
     }
     interface SqmRewardsTableStatusCell {
+        "expiryText": string;
         "reward": Reward;
         "statusText": string;
     }
@@ -1162,10 +1194,14 @@ export namespace Components {
           * @uiName Column Title
          */
         "columnTitle": string;
+        /**
+          * @uiName Expired Status Text
+         */
+        "expiryText": string;
         "renderCell": (data: Reward[]) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
-          * @uiName Expired Status Text
+          * @uiName Reward Status Text
          */
         "statusText": string;
     }
@@ -2777,6 +2813,10 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Text
+         */
+        "emptyStateText"?: string;
+        /**
           * @uiName Hide Columns (Mobile View)
          */
         "hiddenColumns"?: string;
@@ -2996,6 +3036,10 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Text
+         */
+        "emptyStateText"?: string;
+        /**
           * @uiName Hide Columns (Mobile View)
          */
         "hiddenColumns"?: string;
@@ -3046,20 +3090,30 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableRewardColumn {
         /**
+          * @uiName Available Amount Text
+         */
+        "availableText"?: string;
+        /**
           * @uiName Reward column title
          */
         "columnTitle"?: string;
         /**
-          * @uiName Hide dropdown details of reward
+          * @uiName Redeemed Amount Text
          */
-        "hideDetails"?: boolean;
+        "redeemedText"?: string;
     }
     interface SqmRewardsTableRewardsCell {
-        "hideDetails"?: boolean;
+        "availableText"?: string;
+        "redeemedText"?: string;
         "reward"?: Reward;
     }
     interface SqmRewardsTableSourceCell {
+        "anonymousUserText"?: string;
+        "deletedUserText"?: string;
+        "referralText"?: string;
         "reward"?: Reward;
+        "rewardExchangeText"?: string;
+        "rewardSourceText"?: string;
     }
     interface SqmRewardsTableSourceColumn {
         /**
@@ -3074,8 +3128,22 @@ declare namespace LocalJSX {
           * @uiName Name displayed for deleted users
          */
         "deletedUser"?: string;
+        /**
+          * Shown when a reward has been created by a referral
+          * @uiName Referral Text
+         */
+        "referralText"?: string;
+        /**
+          * @uiName Reward Exchange label
+         */
+        "rewardExchangeText"?: string;
+        /**
+          * @uiName Reward Source Text
+         */
+        "rewardSourceText"?: string;
     }
     interface SqmRewardsTableStatusCell {
+        "expiryText"?: string;
         "reward"?: Reward;
         "statusText"?: string;
     }
@@ -3086,6 +3154,10 @@ declare namespace LocalJSX {
         "columnTitle"?: string;
         /**
           * @uiName Expired Status Text
+         */
+        "expiryText"?: string;
+        /**
+          * @uiName Reward Status Text
          */
         "statusText"?: string;
     }

@@ -71,6 +71,9 @@ export class BrandComponent {
             font-family:  "${font}", arial;
 
             ${css}
+            --sl-focus-ring-color-primary: var(--sl-color-primary-100);
+            --sl-input-border-color-focus: var(--sl-color-primary-500);
+            --sl-color-primary-hue: var(--sl-color-primary-500);
           }`}</style>
         <slot />
       </Host>

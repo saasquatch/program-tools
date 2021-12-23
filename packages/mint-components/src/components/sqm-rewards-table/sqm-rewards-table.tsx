@@ -52,6 +52,9 @@ export class RewardsTable {
   /** @uiName Hide Columns (Mobile View)  */
   @Prop() mdBreakpoint?: number = 899;
 
+  /** @uiName Empty State Text  */
+  @Prop() emptyStateText: string = "No Rewards Yet";
+
   /**
    * @undocumented
    * @uiType object
@@ -64,7 +67,7 @@ export class RewardsTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = <EmptySlot label="No Rewards Yet" />;
+    const empty = <EmptySlot label={this.emptyStateText} />;
     const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()

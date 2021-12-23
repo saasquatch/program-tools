@@ -18,10 +18,15 @@ export class RewardTableStatusColumn implements RewardTableColumn {
   @Prop() columnTitle: string = "Status";
 
   /**
-   * @uiName Expired Status Text
+   * @uiName Reward Status Text
    */
   @Prop() statusText: string =
     "{status, select, AVAILABLE {Available} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
+
+  /**
+   * @uiName Expired Status Text
+   */
+  @Prop() expiryText: string = "Expires on ";
 
   constructor() {
     withHooks(this);
@@ -35,6 +40,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
       <sqm-rewards-table-status-cell
         statusText={this.statusText}
         reward={rewardData}
+        expiryText={this.expiryText}
       ></sqm-rewards-table-status-cell>
     );
   }
