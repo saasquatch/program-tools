@@ -117,6 +117,12 @@ export function GenericTableView(props: GenericTableViewProps) {
       "margin-top": "var(--sl-spacing-small)",
       ...gap({ direction: "row", size: "var(--sl-spacing-small)" }),
     },
+
+    ButtonDisabled: {
+      "&::part(base)": {
+        opacity: "0.25",
+      },
+    },
   };
 
   const sheet = createStyleSheet(style);
@@ -170,6 +176,7 @@ export function GenericTableView(props: GenericTableViewProps) {
           loading={show === "loading"}
           onClick={callbacks.prevPage}
           exportparts="base: defaultbutton-base"
+          class={!states.hasPrev ? sheet.classes.ButtonDisabled : ""}
         >
           {data.textOverrides.prevLabel}
         </sl-button>
@@ -179,6 +186,7 @@ export function GenericTableView(props: GenericTableViewProps) {
           disabled={!states.hasNext}
           onClick={callbacks.nextPage}
           exportparts="base: defaultbutton-base"
+          class={!states.hasNext ? sheet.classes.ButtonDisabled : ""}
         >
           {data.textOverrides.moreLabel}
         </sl-button>
