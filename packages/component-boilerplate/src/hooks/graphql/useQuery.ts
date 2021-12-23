@@ -1,11 +1,12 @@
 import { useDeepMemo } from "../useDeepMemo";
+import { useTick } from "../useTick";
+import { useRefreshListener } from "./Refresh";
 import {
   BaseQueryData,
   GqlType,
   QueryData,
   useBaseQuery,
 } from "./useBaseQuery";
-import { useTick } from "../useTick";
 
 // from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze
 function deepFreeze(object) {
@@ -46,6 +47,9 @@ export function useQuery<T = any>(
   useDeepMemo(() => {
     !skip && update(variables);
   }, [query, variables, update, tick, skip]);
+
+  useRefreshListener({ skip, update, variables, query });
+
   return deepFreeze({
     ...state,
     // can override props when refetching for new pagination, offset, etc

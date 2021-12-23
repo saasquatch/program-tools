@@ -10,6 +10,7 @@
 | Property      | Attribute      | Description | Type     | Default                                                                                                                    |
 | ------------- | -------------- | ----------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
 | `columnTitle` | `column-title` |             | `string` | `"Status"`                                                                                                                 |
+| `expiryText`  | `expiry-text`  |             | `string` | `"Expires on "`                                                                                                            |
 | `statusText`  | `status-text`  |             | `string` | `"{status, select, AVAILABLE {Available} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"` |
 
 

@@ -51,6 +51,9 @@ export class ReferralTable {
   @Prop() mdBreakpoint?: number = 899;
 
 
+  /** @uiName Empty State Text  */
+  @Prop() emptyStateText: string = "No Referrals Yet";
+
   /**
    * @undocumented
    * @uiType object
@@ -63,7 +66,7 @@ export class ReferralTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = <EmptySlot />;
+    const empty = <EmptySlot emptyStateText={this.emptyStateText} />;
     const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()
@@ -121,7 +124,7 @@ function useReferraltableDemo(props: ReferralTable): GenericTableViewProps {
         referralData: [],
       },
       elements: {
-        emptyElement: <EmptySlot />,
+        emptyElement: <EmptySlot emptyStateText={"No Referrals Yet"} />,
         loadingElement: <LoadingSlot />,
         columns: [
           <div>User</div>,
@@ -136,12 +139,14 @@ function useReferraltableDemo(props: ReferralTable): GenericTableViewProps {
   );
 }
 
-function EmptySlot() {
+function EmptySlot({ emptyStateText }: { emptyStateText: string }) {
   return (
     <slot name="empty">
       <div style={{ width: "100%" }}>
         <sqm-text>
-          <h3 style={{ color: "#777777" }}>No Referrals Yet</h3>
+          <h3 style={{ color: "#777777", textAlign: "center" }}>
+            {emptyStateText}
+          </h3>
         </sqm-text>
       </div>
     </slot>

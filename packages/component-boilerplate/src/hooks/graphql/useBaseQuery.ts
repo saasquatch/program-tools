@@ -83,14 +83,14 @@ function reducer<T>(
 export function useBaseQuery<T = any>(
   query: GqlType,
   initialState: BaseQueryData<T>
-): [BaseQueryData<T>, (variables: unknown) => unknown] {
+): [BaseQueryData<T>, (variables: unknown, skipLoading?:boolean) => unknown] {
   const client: GraphQLClient = useGraphQLClient();
   const [state, dispatch] = useReducer<BaseQueryData<T>, Action<T>>(
     reducer,
     initialState
   );
   const update = useCallback(
-    async function (variables: unknown) {
+    async function (variables: unknown, skipLoading = false) {
       if (!client) {
         // Hook will return an error state when no client exists (used to be a loading state)
         dispatch({
@@ -101,7 +101,8 @@ export function useBaseQuery<T = any>(
         return;
       }
       try {
-        dispatch({ type: "loading" });
+        // Skips showing a "loading" state before the data appears
+        if(!skipLoading) dispatch({ type: "loading" });
         const res = await client.request<T>(query, variables);
         dispatch({ type: "data", payload: res });
       } catch (error) {
