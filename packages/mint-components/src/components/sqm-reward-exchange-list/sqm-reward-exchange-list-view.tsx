@@ -640,18 +640,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     return (
       <div class={sheet.classes.Success}>
         <Gift />
-        <canvas
-          id="my-canvas"
-          style={{
-            position: "absolute",
-            width: "500px",
-            height: "500px",
-            left: "27%",
-            top: "5%",
-            zIndex: "1",
-          }}
-        ></canvas>
-
         <div class="title">{states.content.text.rewardRedeemedText}</div>
         <div class="description">
           {intl.formatMessage(
@@ -805,17 +793,4 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       </div>
     </div>
   );
-}
-function createConfetti() {
-  var canvas = document.getElementById("my-canvas");
-
-  canvas["confetti"] =
-    canvas["confetti"] || confetti.create(canvas, { resize: true });
-
-  console.log(canvas);
-
-//   canvas.confetti({
-//     spread: 70,
-//     origin: { y: 1.2 },
-//   });
 }

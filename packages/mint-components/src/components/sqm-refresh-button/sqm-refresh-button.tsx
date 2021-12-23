@@ -1,6 +1,6 @@
 import {
   isDemo,
-  useRefreshDispatcher,
+//   useRefreshDispatcher,
 } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
@@ -48,12 +48,12 @@ function useDemoRefereshButton({
 }
 
 function useRefreshButton({ icon }: RefreshButton): RefreshButtonViewProps {
-  const { refresh } = useRefreshDispatcher();
+//   const { refresh } = useRefreshDispatcher();
 
   return {
     disabled: false,
     hide: false,
-    onClick: refresh,
+    // onClick: refresh,
     icon,
   };
 }
