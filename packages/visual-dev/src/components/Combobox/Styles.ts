@@ -19,35 +19,25 @@ export const ItemContainer = css`
   min-width: inherit;
   z-index: 100;
   box-sizing: border-box;
-  list-style-type:none;
-  width: 300px;
+  list-style-type: none;
+  width: 308px;
   padding: 0;
   background: var(--sq-surface);
-  border: 2px solid var(--sq-border);
+  border: 2px solid var(--sq-focused);
   border-radius: 0 0 4px 4px;
   border-top: none;
-  top: 28px;
+  top: 32px;
 
   &:empty {
     border: none;
   }
 `;
 
-export const SelectInputStyle = css`
-  cursor:pointer;
+export const ButtonContainer = css`
+  margin-left: -36px;
+`;
+
+export const Container = css`
   display: flex;
-  justify-content: space-between;
-  align-items: center
-  position: relative;
-  width: 300px;
-  height: 30px;
-  text-indent: 6px;
-  color: var(--sq-text);
-  background: var(--sq-surface);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
-  font-size: var(--sq-font-size-regular);
-  font-weight: var(--sq-font-weight-regular);
-  line-height: var(--sq-line-height-regular);
-  border: 2px solid var(--sq-border);
-  border-radius: 4px;
+  align-items: center;
 `;
