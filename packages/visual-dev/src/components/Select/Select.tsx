@@ -50,7 +50,7 @@ const SelectInner = <ItemType,>(
 
   return (
     <ShadowDom>
-      <Input {...rest} type={"text"} ref={ref} errors={rawErrors} css={css} />
+      <Input {...rest} onClick={functional.getToggleButtonProps()} type={"text"} ref={ref} errors={rawErrors} css={css} />
       {functional.isOpen ? (
         <IconDiv position={"right"}>
           <Icon
