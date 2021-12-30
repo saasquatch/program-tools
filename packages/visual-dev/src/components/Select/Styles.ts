@@ -26,7 +26,7 @@ export const ItemContainer = css`
   border: 2px solid var(--sq-border);
   border-radius: 0 0 4px 4px;
   border-top: none;
-  top: 28px;
+  top: 32px;
 
   &:empty {
     border: none;
@@ -38,6 +38,7 @@ export const IconStyle = css`
   width: 12px;
   text-indent: 0px;
   padding: 5px 16px 0px;
+  margin: auto 0;
 `;
 
 export const SelectInputStyle = css`
@@ -47,7 +48,7 @@ export const SelectInputStyle = css`
   align-items: center
   position: relative;
   width: 300px;
-  height: 30px;
+  height: 36px;
   text-indent: 6px;
   color: var(--sq-text);
   background: var(--sq-surface);
@@ -61,4 +62,5 @@ export const SelectInputStyle = css`
 
 export const SelectedValue = css`
   padding-top: var(--sq-spacing-xxx-small);
+  margin: auto 0;
 `

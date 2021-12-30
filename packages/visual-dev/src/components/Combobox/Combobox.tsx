@@ -1,10 +1,9 @@
 import * as React from "react";
-import root from "react-shadow/styled-components";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
-import { Icon } from "../Icon";
 import type { UseComboboxReturnValue } from "downshift";
 import { Input } from "../Input";
+import { IconButton } from "../Button";
 
 type ComboboxProps<ItemType> = OptionProps<ItemType> &
   React.ComponentProps<"input">;
@@ -17,15 +16,6 @@ export interface OptionProps<ItemType> {
   items: Array<any>;
   css?: CSSProp;
 }
-
-const ShadowDom = styled(root.div)`
-  display: contents;
-`;
-
-const IconDiv = styled.div<{ position: string }>`
-  ${Styles.IconStyle}
-  ${(props) => (props.position == "left" ? "left: 13px;" : "left: 277px;")}
-`;
 
 const ItemContainer = styled("ul")`
   ${Styles.ItemContainer}
@@ -46,30 +36,45 @@ const ComboboxInner = <ItemType,>(
   props: ComboboxProps<ItemType>,
   ref: React.Ref<HTMLInputElement>
 ) => {
-  const { css = {}, errors: rawErrors, functional, items, ...rest } = props;
+  const { css = {}, errors = false, functional, items, ...rest } = props;
+
+  console.log(functional.selectedItem);
 
   return (
-    <ShadowDom>
-      <Input {...rest} onClick={functional.getToggleButtonProps()} type={"text"} ref={ref} errors={rawErrors} css={css} />
+    <div {...functional.getComboboxProps()}>
+      <Input
+        {...rest}
+        onClick={functional.getToggleButtonProps()}
+        type={"text"}
+        ref={ref}
+        errors={errors}
+        css={css}
+      />
       {functional.isOpen ? (
-        <IconDiv position={"right"}>
-          <Icon
-            icon={"arrow_up"}
-            size={"22px"}
-            color="var(--sq-text-subdued)"
-          />
-        </IconDiv>
+        <IconButton
+          icon={"chevron_up"}
+          borderless={true}
+          css={{ height: "12px", width: "12px" }}
+          icon_css={{ height: "12px", width: "12px" }}
+          color={
+            errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
+          }
+          {...functional.getToggleButtonProps()}
+        />
       ) : (
-        <IconDiv position={"right"}>
-          <Icon
-            icon={"arrow_down"}
-            size={"22px"}
-            color="var(--sq-text-subdued)"
-          />
-        </IconDiv>
+        <IconButton
+          icon={"chevron_down"}
+          borderless={true}
+          css={{ height: "12px", width: "12px" }}
+          icon_css={{ height: "12px", width: "12px" }}
+          color={
+            errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
+          }
+          {...functional.getToggleButtonProps()}
+        />
       )}
       {functional.isOpen && (
-        <ItemContainer {...functional.getMenuProps()}>
+        <ItemContainer errors={errors} {...functional.getMenuProps()}>
           {items.map((item, index) => (
             <Item
               key={`${item}${index}`}
@@ -80,7 +85,7 @@ const ComboboxInner = <ItemType,>(
           ))}
         </ItemContainer>
       )}
-    </ShadowDom>
+    </div>
   );
 };
 
