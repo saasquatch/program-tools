@@ -43,7 +43,7 @@ export const IconStyle = css`
 export const SelectInputStyle = css`
   cursor:pointer;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center
   position: relative;
   width: 300px;
@@ -58,3 +58,7 @@ export const SelectInputStyle = css`
   border: 2px solid var(--sq-border);
   border-radius: 4px;
 `;
+
+export const SelectedValue = css`
+  padding-top: var(--sq-spacing-xxx-small);
+`

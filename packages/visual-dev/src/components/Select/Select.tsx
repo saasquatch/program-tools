@@ -1,9 +1,8 @@
 import * as React from "react";
-import root from "react-shadow/styled-components";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { Icon } from "../Icon";
-import type { UseSelectReturnValue } from "downshift";
+import { UseSelectReturnValue } from "downshift";
 
 type SelectProps<ItemType> = OptionProps<ItemType> &
   React.ComponentProps<"button">;
@@ -16,26 +15,32 @@ export interface OptionProps<ItemType> {
   css?: CSSProp;
 }
 
-const ShadowDom = styled(root.div)`
-  display: contents;
-`;
-
-const SelectInput = styled.button<{ disabled: boolean | undefined; errors: any }>`
+const SelectInput = styled.button<{
+  disabled: boolean | undefined;
+  errors: any;
+}>`
   ${Styles.SelectInputStyle}
   ${(props) => props.disabled && "background: var(--sq-surface-input-disabled)"}
   ${(props) =>
     props.errors &&
-    "border-color: var(--sq-border-critical); background: var(--sq-surface-critical-subdued)"}
+    "border-color: var(--sq-border-critical); background: var(--sq-surface-critical-subdued);"}
 `;
 
-const SelectValue = styled.span``
+const SelectedValue = styled.span`
+  ${Styles.SelectedValue}
+`;
 
 const IconDiv = styled.div`
   ${Styles.IconStyle}
 `;
 
-const ItemContainer = styled("ul")`
+const ItemContainer = styled.ul<{
+  errors: any;
+}>`
   ${Styles.ItemContainer}
+  ${(props) =>
+    props.errors &&
+    "border-color: var(--sq-border-critical); background-color: var(--sq-surface-critical-subdued);"}
 `;
 
 const Item = styled("li")`
@@ -56,29 +61,31 @@ const SelectInner = <ItemType,>(
   const {
     css = {},
     disabled = false,
-    errors: rawErrors,
+    errors = false,
     functional,
     items,
     ...rest
   } = props;
 
   return (
-    <ShadowDom>
+    <div>
       <SelectInput
         {...rest}
         disabled={disabled}
         ref={ref}
-        errors={rawErrors}
+        errors={errors}
         css={css}
         {...functional.getToggleButtonProps()}
       >
-        <SelectValue>{"" || functional.selectedItem}</SelectValue>
+        <SelectedValue>{"" || functional.selectedItem}</SelectedValue>
         {functional.isOpen ? (
           <IconDiv>
             <Icon
               icon={"chevron_up"}
               size={"small"}
-              color="var(--sq-text-subdued)"
+              color={
+                errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
+              }
             />
           </IconDiv>
         ) : (
@@ -86,25 +93,30 @@ const SelectInner = <ItemType,>(
             <Icon
               icon={"chevron_down"}
               size={"small"}
-              color="var(--sq-text-subdued)"
+              color={
+                errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
+              }
             />
           </IconDiv>
         )}
       </SelectInput>
-
-      {functional.isOpen && (
-        <ItemContainer {...functional.getMenuProps()}>
-          {items.map((item, index) => (
+      <ItemContainer errors={errors} {...functional.getMenuProps()}>
+        {functional.isOpen &&
+          items.map((item, index) => (
             <Item
               key={`${item}${index}`}
+              style={
+                functional.highlightedIndex === index
+                  ? { backgroundColor: "var(--sq-surface-hover)" }
+                  : {}
+              }
               {...functional.getItemProps({ item, index })}
             >
               {item}
             </Item>
           ))}
-        </ItemContainer>
-      )}
-    </ShadowDom>
+      </ItemContainer>
+    </div>
   );
 };
 

@@ -59,6 +59,17 @@ export const chevron_up = (
   </svg>
 );
 
+export const arrow_down = (
+  <svg width={10} height={6} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M.146 1.483L1.25.6 5 3.6l3.75-3 1.104.883L5 5.366.146 1.483z"
+      fill="#858585"
+    />
+  </svg>
+);
+
 export const calendar = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
