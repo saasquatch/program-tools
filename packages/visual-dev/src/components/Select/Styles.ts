@@ -1,12 +1,12 @@
 import { css } from "styled-components";
 
 export const Item = css`
-  padding: 15px;
+  padding: var(--sq-spacing-x-small);
   cursor: pointer;
   color: var(--sq-text);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
+  font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
   border-radius: inherit;
   &:hover {
@@ -15,21 +15,46 @@ export const Item = css`
 `;
 
 export const ItemContainer = css`
-  position: relative;
-  width: max-content;
+  position: absolute;
   min-width: inherit;
   z-index: 100;
-  margin-top: 10px;
-  background: #ffffff;
-  border: 1px solid var(--sq-action-secondary-border);
   box-sizing: border-box;
+  list-style-type:none;
+  width: 300px;
+  padding: 0;
+  background: var(--sq-surface);
+  border: 2px solid var(--sq-border);
+  border-radius: 0 0 4px 4px;
+  border-top: none;
+  top: 28px;
+
   &:empty {
     border: none;
   }
 `;
 
 export const IconStyle = css`
+  height: auto;
+  width: 12px;
+  text-indent: 0px;
+  padding: 5px 16px 0px;
+`;
+
+export const SelectInputStyle = css`
+  cursor:pointer;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center
   position: relative;
-  width: 22px;
-  bottom: 28px;
+  width: 300px;
+  height: 30px;
+  text-indent: 6px;
+  color: var(--sq-text);
+  background: var(--sq-surface);
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: var(--sq-font-size-regular);
+  font-weight: var(--sq-font-weight-regular);
+  line-height: var(--sq-line-height-regular);
+  border: 2px solid var(--sq-border);
+  border-radius: 4px;
 `;

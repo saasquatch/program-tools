@@ -14,6 +14,7 @@ export const SizeCustom = () => <Icon size='88px' icon={'add'} />
 export const CSSCustom = () => <Icon customCSS='color: red; width: 50px; height: 50px; margin-left: 50px;' icon={'add'} />
 export const close = () => <Icon icon={'close'} />
 export const ChevronDown = () => <Icon icon={'chevron_down'} />
+export const ChevronUp = () => <Icon icon={'chevron_up'} />
 export const calendar = () => <Icon icon={'calendar'} />
 export const block = () => <Icon icon={'block'} />
 export const edit = () => <Icon icon={'edit'} />
@@ -25,8 +26,6 @@ export const ChevronRight = () => <Icon icon={'chevron_right'} />
 export const mail = () => <Icon icon={'mail'} />
 export const action = () => <Icon icon={'action'} />
 export const arrowDropdown = () => <Icon icon={'arrow_dropdown'} />
-export const arrowUp = () => <Icon icon={'arrow_up'} />
-export const arrowDown = () => <Icon icon={'arrow_down'} />
 export const help = () => <Icon icon={'help'} />
 export const loading = () => <Icon color='var(--sq-action-primary)' icon={'loading'} />
 export const gift = () => <Icon icon={'gift'} />

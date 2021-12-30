@@ -7,7 +7,7 @@ export type IconProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
-interface OptionProps {
+export interface OptionProps {
   icon: IconKey;
 }
 
