@@ -18,9 +18,11 @@ export interface OptionProps<ItemType> {
 const SelectInput = styled.button<{
   disabled: boolean | undefined;
   errors: any;
+  isOpen: boolean;
 }>`
   ${Styles.SelectInputStyle}
   ${(props) => props.disabled && "background: var(--sq-surface-input-disabled)"}
+  ${(props) => props.isOpen && "border-color: var(--sq-focused);"}
   ${(props) =>
     props.errors &&
     "border-color: var(--sq-border-critical); background: var(--sq-surface-critical-subdued);"}
@@ -71,6 +73,7 @@ const SelectInner = <ItemType,>(
     <div>
       <SelectInput
         {...rest}
+        isOpen={functional.isOpen}
         disabled={disabled}
         ref={ref}
         errors={errors}

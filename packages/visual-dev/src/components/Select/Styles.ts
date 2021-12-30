@@ -23,7 +23,7 @@ export const ItemContainer = css`
   width: 300px;
   padding: 0;
   background: var(--sq-surface);
-  border: 2px solid var(--sq-border);
+  border: 2px solid var(--sq-focused);
   border-radius: 0 0 4px 4px;
   border-top: none;
   top: 32px;
@@ -58,6 +58,10 @@ export const SelectInputStyle = css`
   line-height: var(--sq-line-height-regular);
   border: 2px solid var(--sq-border);
   border-radius: 4px;
+
+  &:focus{
+    border-color: var(--sq-focused);
+  }
 `;
 
 export const SelectedValue = css`

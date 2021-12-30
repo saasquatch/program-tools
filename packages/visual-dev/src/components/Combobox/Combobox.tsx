@@ -25,6 +25,14 @@ const Item = styled("li")`
   ${Styles.Item}
 `;
 
+const ButtonContainer = styled.div`
+  ${Styles.ButtonContainer}
+`;
+
+const ComboboxContainer = styled.div`
+  ${Styles.Container}
+`;
+
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {
   function forwardRef<T, P = {}>(
@@ -41,7 +49,7 @@ const ComboboxInner = <ItemType,>(
   console.log(functional.selectedItem);
 
   return (
-    <div {...functional.getComboboxProps()}>
+    <ComboboxContainer {...functional.getComboboxProps()}>
       <Input
         {...rest}
         onClick={functional.getToggleButtonProps()}
@@ -49,30 +57,33 @@ const ComboboxInner = <ItemType,>(
         ref={ref}
         errors={errors}
         css={css}
+        {...functional.getInputProps()}
       />
-      {functional.isOpen ? (
-        <IconButton
-          icon={"chevron_up"}
-          borderless={true}
-          css={{ height: "12px", width: "12px" }}
-          icon_css={{ height: "12px", width: "12px" }}
-          color={
-            errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
-          }
-          {...functional.getToggleButtonProps()}
-        />
-      ) : (
-        <IconButton
-          icon={"chevron_down"}
-          borderless={true}
-          css={{ height: "12px", width: "12px" }}
-          icon_css={{ height: "12px", width: "12px" }}
-          color={
-            errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
-          }
-          {...functional.getToggleButtonProps()}
-        />
-      )}
+      <ButtonContainer>
+        {functional.isOpen ? (
+          <IconButton
+            icon={"chevron_up"}
+            borderless={true}
+            css={{ height: "12px", width: "12px" }}
+            icon_css={{ height: "12px", width: "12px" }}
+            color={
+              errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
+            }
+            {...functional.getToggleButtonProps()}
+          />
+        ) : (
+          <IconButton
+            icon={"chevron_down"}
+            borderless={true}
+            css={{ height: "12px", width: "12px" }}
+            icon_css={{ height: "12px", width: "12px" }}
+            color={
+              errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
+            }
+            {...functional.getToggleButtonProps()}
+          />
+        )}
+      </ButtonContainer>
       {functional.isOpen && (
         <ItemContainer errors={errors} {...functional.getMenuProps()}>
           {items.map((item, index) => (
@@ -85,7 +96,7 @@ const ComboboxInner = <ItemType,>(
           ))}
         </ItemContainer>
       )}
-    </div>
+    </ComboboxContainer>
   );
 };
 
