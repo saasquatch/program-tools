@@ -7,7 +7,7 @@ export default {
   component: Combobox,
 };
 
-export const Functional = () => {
+export const Basic = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const [inputItems, setInputItems] = useState(items);
   const functional = useCombobox({
@@ -21,6 +21,23 @@ export const Functional = () => {
     },
   });
   const props = { items: inputItems, functional };
+  return <Combobox {...props}></Combobox>;
+};
+
+export const Clearable = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const [inputItems, setInputItems] = useState(items);
+  const functional = useCombobox({
+    items: inputItems,
+    onInputValueChange: ({ inputValue }) => {
+      setInputItems(
+        items.filter((item) =>
+          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
+        )
+      );
+    },
+  });
+  const props = { items: inputItems, functional, clearable: true };
   return <Combobox {...props}></Combobox>;
 };
 

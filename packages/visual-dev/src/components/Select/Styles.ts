@@ -33,12 +33,16 @@ export const ItemContainer = css`
   }
 `;
 
-export const IconStyle = css`
-  height: auto;
-  width: 12px;
+export const ButtonDiv = css`
+  display: flex;
+  align-items: center;
   text-indent: 0px;
   padding: 2px 10px 0px;
   margin: auto 0;
+
+  & > :not(:last-child) {
+    margin-right: var(--sq-spacing-x-small)
+  }
 `;
 
 export const SelectInputStyle = css`

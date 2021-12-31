@@ -34,7 +34,18 @@ export const ItemContainer = css`
 `;
 
 export const ButtonContainer = css`
-  margin-left: -36px;
+  position: absolute;
+  right: 100%;
+  display: flex;
+  align-items: center;
+  text-indent: 0px;
+  padding-right: var(--sq-spacing-small);
+  right: 6px;
+  top: 13px;
+
+  & > :not(:last-child) {
+    margin-right: var(--sq-spacing-x-small);
+  }
 `;
 
 export const ItemDescription = css`

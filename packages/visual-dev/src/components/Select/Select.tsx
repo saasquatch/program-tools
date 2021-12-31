@@ -3,6 +3,7 @@ import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { Icon } from "../Icon";
 import { UseSelectReturnValue } from "downshift";
+import { IconButton } from "../Button";
 
 type SelectProps<ItemType> = OptionProps<ItemType> &
   React.ComponentProps<"button">;
@@ -14,6 +15,7 @@ export interface OptionProps<ItemType> {
   errors?: any;
   items: Array<any>;
   css?: CSSProp;
+  clearable?: boolean;
 }
 
 const SelectInput = styled.button<{
@@ -39,8 +41,8 @@ const SelectedValue = styled.span`
   ${Styles.SelectedValue}
 `;
 
-const IconDiv = styled.div`
-  ${Styles.IconStyle}
+const ButtonDiv = styled.div`
+  ${Styles.ButtonDiv}
 `;
 
 const ItemContainer = styled.ul<{
@@ -75,6 +77,7 @@ const SelectInner = <ItemType,>(
     css = {},
     disabled = false,
     errors = false,
+    clearable = false,
     functional,
     items,
     itemToString = (item: ItemType) => {
@@ -97,8 +100,27 @@ const SelectInner = <ItemType,>(
         <SelectedValue>
           {functional.selectedItem ? itemToString(functional.selectedItem) : ""}
         </SelectedValue>
-        {functional.isOpen ? (
-          <IconDiv>
+        <ButtonDiv>
+          <IconButton
+            disabled={disabled}
+            icon={"close"}
+            borderless={true}
+            css={{
+              visibility: `${clearable ? "visible" : "hidden"}`,
+              height: "12px",
+              width: "12px",
+              padding: "0",
+            }}
+            icon_css={{ height: "12px", width: "12px" }}
+            color={
+              errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
+            }
+            onClick={(e: React.MouseEvent<HTMLElement>) => {
+              e.stopPropagation();
+              functional.selectItem((null as unknown) as ItemType);
+            }}
+          />
+          {functional.isOpen ? (
             <Icon
               icon={"chevron_up"}
               size={"small"}
@@ -108,9 +130,7 @@ const SelectInner = <ItemType,>(
                   : "var(--sq-text-on-secondary)"
               }
             />
-          </IconDiv>
-        ) : (
-          <IconDiv>
+          ) : (
             <Icon
               icon={"chevron_down"}
               size={"small"}
@@ -120,8 +140,8 @@ const SelectInner = <ItemType,>(
                   : "var(--sq-text-on-secondary)"
               }
             />
-          </IconDiv>
-        )}
+          )}
+        </ButtonDiv>
       </SelectInput>
       <ItemContainer errors={errors} {...functional.getMenuProps()}>
         {functional.isOpen &&

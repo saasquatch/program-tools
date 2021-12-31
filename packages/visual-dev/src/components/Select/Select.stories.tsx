@@ -7,10 +7,17 @@ export default {
   component: Select,
 };
 
-export const Functional = () => {
+export const Basic = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const functional = useSelect({ items });
   const props = { items, functional };
+  return <Select {...props}></Select>;
+};
+
+export const Clearable = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const functional = useSelect({ items });
+  const props = { items, functional, clearable: true };
   return <Select {...props}></Select>;
 };
 

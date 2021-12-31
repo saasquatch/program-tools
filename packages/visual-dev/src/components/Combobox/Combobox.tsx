@@ -15,6 +15,7 @@ export interface OptionProps<ItemType> {
   errors?: any;
   items: Array<any>;
   css?: CSSProp;
+  clearable?: boolean;
 }
 
 const ItemContainer = styled("ul")`
@@ -48,6 +49,7 @@ const ComboboxInner = <ItemType,>(
     css = {},
     disabled = false,
     errors = false,
+    clearable = false,
     functional,
     items,
     itemToString = (item: ItemType) => {
@@ -60,7 +62,7 @@ const ComboboxInner = <ItemType,>(
     <div>
       <div
         {...functional.getComboboxProps()}
-        style={{ display: "flex", alignItems: "center" }}
+        style={{ width: "fit-content", position: "relative" }}
       >
         <Input
           {...rest}
@@ -72,12 +74,31 @@ const ComboboxInner = <ItemType,>(
           {...functional.getInputProps()}
         />
         <ButtonContainer>
+          <IconButton
+            disabled={disabled}
+            icon={"close"}
+            borderless={true}
+            css={{
+              visibility: `${clearable ? "visible" : "hidden"}`,
+              height: "12px",
+              width: "12px",
+              padding: "0",
+            }}
+            icon_css={{ height: "12px", width: "12px" }}
+            color={
+              errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
+            }
+            onClick={(e: React.MouseEvent<HTMLElement>) => {
+              e.stopPropagation();
+              functional.selectItem((null as unknown) as ItemType);
+            }}
+          />
           {functional.isOpen ? (
             <IconButton
               disabled={disabled}
               icon={"chevron_up"}
               borderless={true}
-              css={{ height: "12px", width: "12px", padding: "none" }}
+              css={{ height: "12px", width: "12px", padding: "0" }}
               icon_css={{ height: "12px", width: "12px" }}
               color={
                 errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
@@ -89,7 +110,7 @@ const ComboboxInner = <ItemType,>(
               disabled={disabled}
               icon={"chevron_down"}
               borderless={true}
-              css={{ height: "12px", width: "12px", padding: "none" }}
+              css={{ height: "12px", width: "12px", padding: "0" }}
               icon_css={{ height: "12px", width: "12px" }}
               color={
                 errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
