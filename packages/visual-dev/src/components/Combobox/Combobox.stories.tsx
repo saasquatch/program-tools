@@ -24,6 +24,23 @@ export const Functional = () => {
   return <Combobox {...props}></Combobox>;
 };
 
+export const Detailed = () => {
+  interface Islands {
+    text: string;
+    description: string;
+  }
+  const items = [
+    { text: "Salt Spring", description: "The big one" },
+    { text: "Gabriola", description: "Way up north" },
+    { text: "Mayne", description: "With a y" },
+    { text: "Pender", description: "There's actually two" },
+  ];
+  const itemToString = (item: Islands) => (item ? item.text : "");
+  const functional = useCombobox({ items, itemToString });
+  const props = { items, functional, itemToString };
+  return <Combobox {...props}></Combobox>;
+};
+
 export const Disabled = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const [inputItems, setInputItems] = useState(items);

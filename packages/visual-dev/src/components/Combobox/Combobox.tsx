@@ -10,9 +10,9 @@ type ComboboxProps<ItemType> = OptionProps<ItemType> &
 
 export interface OptionProps<ItemType> {
   functional: UseComboboxReturnValue<ItemType>;
+  itemToString?: (item: ItemType) => string;
   disabled?: boolean;
   errors?: any;
-  value?: any;
   items: Array<any>;
   css?: CSSProp;
 }
@@ -29,6 +29,10 @@ const ButtonContainer = styled.div`
   ${Styles.ButtonContainer}
 `;
 
+const ItemDescription = styled("span")`
+  ${Styles.ItemDescription}
+`;
+
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {
   function forwardRef<T, P = {}>(
@@ -40,7 +44,17 @@ const ComboboxInner = <ItemType,>(
   props: ComboboxProps<ItemType>,
   ref: React.Ref<HTMLInputElement>
 ) => {
-  const { css = {}, disabled = false, errors = false, functional, items, ...rest } = props;
+  const {
+    css = {},
+    disabled = false,
+    errors = false,
+    functional,
+    items,
+    itemToString = (item: ItemType) => {
+      return item;
+    },
+    ...rest
+  } = props;
 
   console.log(functional.selectedItem);
 
@@ -96,10 +110,16 @@ const ComboboxInner = <ItemType,>(
                   ? { backgroundColor: "var(--sq-surface-hover)" }
                   : {}
               }
-              key={`${item}${index}`}
+              key={`${itemToString(item)}-${index}`}
               {...functional.getItemProps({ item, index })}
             >
-              {item}
+              <span>{itemToString(item)}</span>
+              {item.description && (
+                <>
+                  <br />
+                  <ItemDescription>{item.description}</ItemDescription>
+                </>
+              )}
             </Item>
           ))}
       </ItemContainer>

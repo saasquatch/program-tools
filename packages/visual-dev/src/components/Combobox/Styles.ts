@@ -36,3 +36,8 @@ export const ItemContainer = css`
 export const ButtonContainer = css`
   margin-left: -36px;
 `;
+
+export const ItemDescription = css`
+  color: var(--sq-text-subdued);
+  font-size: var(--sq-font-size-small);
+`;

@@ -129,7 +129,7 @@ const SelectInner = <ItemType,>(
         {functional.isOpen &&
           items.map((item, index) => (
             <Item
-              key={`${item.text || item}${index}`}
+              key={`${itemToString(item)}-${index}`}
               style={
                 functional.highlightedIndex === index
                   ? { backgroundColor: "var(--sq-surface-hover)" }
@@ -137,7 +137,7 @@ const SelectInner = <ItemType,>(
               }
               {...functional.getItemProps({ item, index })}
             >
-              <span>{item.text || item}</span>
+              <span>{itemToString(item)}</span>
               {item.description && (
                 <>
                   <br />
