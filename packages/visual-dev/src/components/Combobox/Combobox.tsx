@@ -4,6 +4,7 @@ import * as Styles from "./Styles";
 import type { UseComboboxReturnValue } from "downshift";
 import { Input } from "../Input";
 import { IconButton } from "../Button";
+import root from "react-shadow/styled-components";
 
 type ComboboxProps<ItemType> = OptionProps<ItemType> &
   React.ComponentProps<"input">;
@@ -33,6 +34,8 @@ const ButtonContainer = styled.div`
 const ItemDescription = styled("span")`
   ${Styles.ItemDescription}
 `;
+
+// const ShadowDom = styled(root.div)`display: contents`;
 
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {

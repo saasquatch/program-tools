@@ -4,6 +4,7 @@ import * as Styles from "./Styles";
 import { Icon } from "../Icon";
 import { UseSelectReturnValue } from "downshift";
 import { IconButton } from "../Button";
+import root from "react-shadow/styled-components";
 
 type SelectProps<ItemType> = OptionProps<ItemType> &
   React.ComponentProps<"button">;
@@ -65,6 +66,10 @@ const ItemDescription = styled("span")`
   ${Styles.ItemDescription}
 `;
 
+// const ShadowDom = styled(root.div)`
+//   display: contents;
+// `;
+
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {
   function forwardRef<T, P = {}>(
@@ -89,10 +94,8 @@ const SelectInner = <ItemType,>(
     ...rest
   } = props;
 
-  console.log(disabled);
-
   return (
-    <div style={{position:"relative"}}>
+    <div style={{ position: "relative" }}>
       <SelectInput
         {...rest}
         isOpen={functional.isOpen}

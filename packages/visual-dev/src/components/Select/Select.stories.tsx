@@ -11,6 +11,7 @@ export const Basic = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const functional = useSelect({ items });
   const props = { items, functional };
+  // Move this inside and indirect with props??
   return (
     <div style={{ resize: "both", overflow: "auto", margin: "100px" }}>
       <Select {...props}></Select>
