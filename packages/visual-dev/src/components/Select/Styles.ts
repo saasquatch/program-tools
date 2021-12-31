@@ -20,7 +20,7 @@ export const ItemContainer = css`
   z-index: 100;
   box-sizing: border-box;
   list-style-type:none;
-  width: 300px;
+  width: 308px;
   padding: 0;
   background: var(--sq-surface);
   border: 2px solid var(--sq-focused);
@@ -37,7 +37,7 @@ export const IconStyle = css`
   height: auto;
   width: 12px;
   text-indent: 0px;
-  padding: 5px 16px 0px;
+  padding: 2px 10px 0px;
   margin: auto 0;
 `;
 
@@ -47,7 +47,7 @@ export const SelectInputStyle = css`
   justify-content: space-between;
   align-items: center
   position: relative;
-  width: 300px;
+  width: 308px;
   height: 36px;
   text-indent: 6px;
   color: var(--sq-text);
@@ -58,10 +58,11 @@ export const SelectInputStyle = css`
   line-height: var(--sq-line-height-regular);
   border: 2px solid var(--sq-border);
   border-radius: 4px;
-
+  
   &:focus{
     border-color: var(--sq-focused);
   }
+
 `;
 
 export const SelectedValue = css`

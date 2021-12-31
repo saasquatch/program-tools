@@ -24,6 +24,12 @@ const SelectInput = styled.button<{
   ${(props) => props.disabled && "background: var(--sq-surface-input-disabled)"}
   ${(props) => props.isOpen && "border-color: var(--sq-focused);"}
   ${(props) =>
+    !props.isOpen &&
+    `&:hover{
+    border-color: var(--sq-action-secondary-border);
+  }`}
+
+  ${(props) =>
     props.errors &&
     "border-color: var(--sq-border-critical); background: var(--sq-surface-critical-subdued);"}
 `;
@@ -87,7 +93,9 @@ const SelectInner = <ItemType,>(
               icon={"chevron_up"}
               size={"small"}
               color={
-                errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
+                errors
+                  ? "var(--sq-border-critical)"
+                  : "var(--sq-text-on-secondary)"
               }
             />
           </IconDiv>
@@ -97,7 +105,9 @@ const SelectInner = <ItemType,>(
               icon={"chevron_down"}
               size={"small"}
               color={
-                errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
+                errors
+                  ? "var(--sq-border-critical)"
+                  : "var(--sq-text-on-secondary)"
               }
             />
           </IconDiv>
