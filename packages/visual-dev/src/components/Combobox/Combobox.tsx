@@ -29,10 +29,6 @@ const ButtonContainer = styled.div`
   ${Styles.ButtonContainer}
 `;
 
-const ComboboxContainer = styled.div`
-  ${Styles.Container}
-`;
-
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {
   function forwardRef<T, P = {}>(
@@ -44,59 +40,70 @@ const ComboboxInner = <ItemType,>(
   props: ComboboxProps<ItemType>,
   ref: React.Ref<HTMLInputElement>
 ) => {
-  const { css = {}, errors = false, functional, items, ...rest } = props;
+  const { css = {}, disabled = false, errors = false, functional, items, ...rest } = props;
 
   console.log(functional.selectedItem);
 
   return (
-    <ComboboxContainer {...functional.getComboboxProps()}>
-      <Input
-        {...rest}
-        onClick={functional.getToggleButtonProps()}
-        type={"text"}
-        ref={ref}
-        errors={errors}
-        css={css}
-        {...functional.getInputProps()}
-      />
-      <ButtonContainer>
-        {functional.isOpen ? (
-          <IconButton
-            icon={"chevron_up"}
-            borderless={true}
-            css={{ height: "12px", width: "12px" }}
-            icon_css={{ height: "12px", width: "12px" }}
-            color={
-              errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
-            }
-            {...functional.getToggleButtonProps()}
-          />
-        ) : (
-          <IconButton
-            icon={"chevron_down"}
-            borderless={true}
-            css={{ height: "12px", width: "12px" }}
-            icon_css={{ height: "12px", width: "12px" }}
-            color={
-              errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
-            }
-            {...functional.getToggleButtonProps()}
-          />
-        )}
-      </ButtonContainer>
-      {functional.isOpen && (
-        <ItemContainer errors={errors} {...functional.getMenuProps()}>
-          {items.map((item, index) => (
+    <div>
+      <div
+        {...functional.getComboboxProps()}
+        style={{ display: "flex", alignItems: "center" }}
+      >
+        <Input
+          {...rest}
+          type={"text"}
+          ref={ref}
+          errors={errors}
+          css={css}
+          disabled={disabled}
+          {...functional.getInputProps()}
+        />
+        <ButtonContainer>
+          {functional.isOpen ? (
+            <IconButton
+              disabled={disabled}
+              icon={"chevron_up"}
+              borderless={true}
+              css={{ height: "12px", width: "12px", padding: "none" }}
+              icon_css={{ height: "12px", width: "12px" }}
+              color={
+                errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
+              }
+              {...functional.getToggleButtonProps()}
+            />
+          ) : (
+            <IconButton
+              disabled={disabled}
+              icon={"chevron_down"}
+              borderless={true}
+              css={{ height: "12px", width: "12px", padding: "none" }}
+              icon_css={{ height: "12px", width: "12px" }}
+              color={
+                errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
+              }
+              {...functional.getToggleButtonProps()}
+            />
+          )}
+        </ButtonContainer>
+      </div>
+      <ItemContainer {...functional.getMenuProps()}>
+        {functional.isOpen &&
+          items.map((item, index) => (
             <Item
+              style={
+                functional.highlightedIndex === index
+                  ? { backgroundColor: "var(--sq-surface-hover)" }
+                  : {}
+              }
               key={`${item}${index}`}
               {...functional.getItemProps({ item, index })}
             >
               {item}
             </Item>
           ))}
-        </ItemContainer>
-      )}
-    </ComboboxContainer>
+      </ItemContainer>
+    </div>
   );
 };
 

@@ -36,8 +36,3 @@ export const ItemContainer = css`
 export const ButtonContainer = css`
   margin-left: -36px;
 `;
-
-export const Container = css`
-  display: flex;
-  align-items: center;
-`;
