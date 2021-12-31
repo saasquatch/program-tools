@@ -9,6 +9,7 @@ type SelectProps<ItemType> = OptionProps<ItemType> &
 
 export interface OptionProps<ItemType> {
   functional: UseSelectReturnValue<ItemType>;
+  itemToString?: (item: ItemType) => string;
   disabled?: boolean;
   errors?: any;
   items: Array<any>;
@@ -55,6 +56,10 @@ const Item = styled("li")`
   ${Styles.Item}
 `;
 
+const ItemDescription = styled("span")`
+  ${Styles.ItemDescription}
+`;
+
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {
   function forwardRef<T, P = {}>(
@@ -72,8 +77,13 @@ const SelectInner = <ItemType,>(
     errors = false,
     functional,
     items,
+    itemToString = (item: ItemType) => {
+      return item;
+    },
     ...rest
   } = props;
+
+  console.log(functional.selectedItem);
 
   return (
     <div>
@@ -86,7 +96,9 @@ const SelectInner = <ItemType,>(
         css={css}
         {...functional.getToggleButtonProps()}
       >
-        <SelectedValue>{"" || functional.selectedItem}</SelectedValue>
+        <SelectedValue>
+          {functional.selectedItem ? itemToString(functional.selectedItem) : ""}
+        </SelectedValue>
         {functional.isOpen ? (
           <IconDiv>
             <Icon
@@ -117,7 +129,7 @@ const SelectInner = <ItemType,>(
         {functional.isOpen &&
           items.map((item, index) => (
             <Item
-              key={`${item}${index}`}
+              key={`${item.text || item}${index}`}
               style={
                 functional.highlightedIndex === index
                   ? { backgroundColor: "var(--sq-surface-hover)" }
@@ -125,7 +137,13 @@ const SelectInner = <ItemType,>(
               }
               {...functional.getItemProps({ item, index })}
             >
-              {item}
+              <span>{item.text || item}</span>
+              {item.description && (
+                <>
+                  <br />
+                  <ItemDescription>{item.description}</ItemDescription>
+                </>
+              )}
             </Item>
           ))}
       </ItemContainer>

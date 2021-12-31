@@ -51,8 +51,8 @@ export const chevron_up = (
     fill="currentColor"
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M0 13.7263L2.2737 16L10 8.2737L17.7263 16L20 13.7263L10 3.7263L0 13.7263Z"
       fill="#858585"
     />

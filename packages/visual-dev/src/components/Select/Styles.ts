@@ -19,7 +19,7 @@ export const ItemContainer = css`
   min-width: inherit;
   z-index: 100;
   box-sizing: border-box;
-  list-style-type:none;
+  list-style-type: none;
   width: 308px;
   padding: 0;
   background: var(--sq-surface);
@@ -68,4 +68,9 @@ export const SelectInputStyle = css`
 export const SelectedValue = css`
   padding-top: var(--sq-spacing-xxx-small);
   margin: auto 0;
-`
+`;
+
+export const ItemDescription = css`
+  color: var(--sq-text-subdued);
+  font-size: var(--sq-font-size-small);
+`;
