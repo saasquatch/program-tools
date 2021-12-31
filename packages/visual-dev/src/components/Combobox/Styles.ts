@@ -16,11 +16,11 @@ export const Item = css`
 
 export const ItemContainer = css`
   position: absolute;
-  min-width: inherit;
   z-index: 100;
   box-sizing: border-box;
   list-style-type: none;
-  width: 308px;
+  width: 100%;
+  max-width: 308px;
   padding: 0;
   background: var(--sq-surface);
   border: 2px solid var(--sq-focused);

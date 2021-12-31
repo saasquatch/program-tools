@@ -92,7 +92,7 @@ const SelectInner = <ItemType,>(
   console.log(disabled);
 
   return (
-    <div>
+    <div style={{position:"relative"}}>
       <SelectInput
         {...rest}
         isOpen={functional.isOpen}

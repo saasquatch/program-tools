@@ -16,17 +16,18 @@ export const Item = css`
 
 export const ItemContainer = css`
   position: absolute;
-  min-width: inherit;
   z-index: 100;
   box-sizing: border-box;
   list-style-type: none;
-  width: 308px;
+  width: 100%;
+  max-width: 308px;
   padding: 0;
   background: var(--sq-surface);
   border: 2px solid var(--sq-focused);
   border-radius: 0 0 4px 4px;
   border-top: none;
   top: 32px;
+  margin: 0;
 
   &:empty {
     border: none;
@@ -41,17 +42,17 @@ export const ButtonDiv = css`
   margin: auto 0;
 
   & > :not(:last-child) {
-    margin-right: var(--sq-spacing-x-small)
+    margin-right: var(--sq-spacing-x-small);
   }
 `;
 
 export const SelectInputStyle = css`
-  cursor:pointer;
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  width: 308px;
+  width: 100%;
+  max-width: 308px;
   height: 36px;
   text-indent: 6px;
   color: var(--sq-text);
@@ -62,11 +63,10 @@ export const SelectInputStyle = css`
   line-height: var(--sq-line-height-regular);
   border: 2px solid var(--sq-border);
   border-radius: 4px;
-  
-  &:focus{
+
+  &:focus {
     border-color: var(--sq-focused);
   }
-
 `;
 
 export const SelectedValue = css`

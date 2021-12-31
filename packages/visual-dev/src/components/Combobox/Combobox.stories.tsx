@@ -21,7 +21,11 @@ export const Basic = () => {
     },
   });
   const props = { items: inputItems, functional };
-  return <Combobox {...props}></Combobox>;
+  return (
+    <div style={{ resize: "both", overflow: "auto", margin: "100px" }}>
+      <Combobox {...props}></Combobox>
+    </div>
+  );
 };
 
 export const Clearable = () => {

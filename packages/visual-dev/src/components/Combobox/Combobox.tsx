@@ -59,11 +59,8 @@ const ComboboxInner = <ItemType,>(
   } = props;
 
   return (
-    <div>
-      <div
-        {...functional.getComboboxProps()}
-        style={{ width: "fit-content", position: "relative" }}
-      >
+    <div style={{ width: "fit-content", position: "relative" }}>
+      <div {...functional.getComboboxProps()} style={{ width: "inherit" }}>
         <Input
           {...rest}
           type={"text"}
