@@ -49,7 +49,7 @@ export const SelectInputStyle = css`
   cursor:pointer;
   display: flex;
   justify-content: space-between;
-  align-items: center
+  align-items: center;
   position: relative;
   width: 308px;
   height: 36px;

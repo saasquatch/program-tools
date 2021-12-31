@@ -24,10 +24,13 @@ const SelectInput = styled.button<{
   isOpen: boolean;
 }>`
   ${Styles.SelectInputStyle}
-  ${(props) => props.disabled && "background: var(--sq-surface-input-disabled)"}
+  ${(props) =>
+    props.disabled &&
+    "background: var(--sq-surface-input-disabled); cursor: default;"}
   ${(props) => props.isOpen && "border-color: var(--sq-focused);"}
   ${(props) =>
     !props.isOpen &&
+    !props.disabled &&
     `&:hover{
     border-color: var(--sq-action-secondary-border);
   }`}
@@ -85,6 +88,8 @@ const SelectInner = <ItemType,>(
     },
     ...rest
   } = props;
+
+  console.log(disabled);
 
   return (
     <div>
