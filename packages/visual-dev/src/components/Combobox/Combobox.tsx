@@ -56,8 +56,6 @@ const ComboboxInner = <ItemType,>(
     ...rest
   } = props;
 
-  console.log(functional.selectedItem);
-
   return (
     <div>
       <div

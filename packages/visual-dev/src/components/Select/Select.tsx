@@ -83,8 +83,6 @@ const SelectInner = <ItemType,>(
     ...rest
   } = props;
 
-  console.log(functional.selectedItem);
-
   return (
     <div>
       <SelectInput
