@@ -72,6 +72,7 @@ export const SelectInputStyle = css`
 export const SelectedValue = css`
   padding-top: var(--sq-spacing-xxx-small);
   margin: auto 0;
+  text-indent: 0px;
 `;
 
 export const ItemDescription = css`

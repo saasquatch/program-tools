@@ -59,7 +59,7 @@ export const Functional = () => {
         <Input
           value={delay}
           type="number"
-          onChange={(e: { target: { value: "string" } }) =>
+          onChange={(e: { target: { value: string } }) =>
             setDelay(Number(e.target.value))
           }
           min="0"

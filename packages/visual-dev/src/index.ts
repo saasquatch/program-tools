@@ -17,12 +17,6 @@ import {
 } from "./components/Layouts";
 import { TextLink as TextButton } from "./components/TextButton";
 import { Link } from "./components/Links";
-import {
-  Select,
-  CreatableSelect,
-  SelectNarrow,
-  CreatableSelectNarrow,
-} from "./components/Select";
 import LoadingSpinner, {
   LoadingSpinnerLarge,
 } from "./components/LoadingSpinner";
@@ -105,10 +99,6 @@ export {
   SecondaryButton,
   PlatformSignInButton,
   Link,
-  Select,
-  CreatableSelect,
-  SelectNarrow,
-  CreatableSelectNarrow,
   LoadingSpinner,
   LoadingSpinnerLarge,
   RadioCards,

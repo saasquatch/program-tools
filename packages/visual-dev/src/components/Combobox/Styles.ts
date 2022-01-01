@@ -26,7 +26,7 @@ export const ItemContainer = css`
   border: 2px solid var(--sq-focused);
   border-radius: 0 0 4px 4px;
   border-top: none;
-  top: 32px;
+  top: 17px;
 
   &:empty {
     border: none;

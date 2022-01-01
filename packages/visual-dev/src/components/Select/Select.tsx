@@ -4,7 +4,7 @@ import * as Styles from "./Styles";
 import { Icon } from "../Icon";
 import { UseSelectReturnValue } from "downshift";
 import { IconButton } from "../Button";
-import root from "react-shadow/styled-components";
+// import root from "react-shadow/styled-components";
 
 type SelectProps<ItemType> = OptionProps<ItemType> &
   React.ComponentProps<"button">;
@@ -94,6 +94,8 @@ const SelectInner = <ItemType,>(
     ...rest
   } = props;
 
+  const showClear = clearable ? "visible" : "hidden"
+
   return (
     <div style={{ position: "relative" }}>
       <SelectInput
@@ -114,7 +116,7 @@ const SelectInner = <ItemType,>(
             icon={"close"}
             borderless={true}
             css={{
-              visibility: `${clearable ? "visible" : "hidden"}`,
+              visibility: showClear,
               height: "12px",
               width: "12px",
               padding: "0",

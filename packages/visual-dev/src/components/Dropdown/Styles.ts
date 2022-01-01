@@ -27,6 +27,10 @@ export const sublist = css`
 
 export const arrow = css`
   margin-left: auto;
+  svg {
+    width: 12px;
+    height: auto;
+  }
 `;
 
 export const button = css`

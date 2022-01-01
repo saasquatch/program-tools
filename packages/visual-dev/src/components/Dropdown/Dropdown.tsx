@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import { IconKey, Icon } from "../Icon";
-import { arrow_down, arrow_up } from "../Icon/SVGs";
+import { chevron_down, chevron_up } from "../Icon/SVGs";
 import * as Styles from "./Styles";
 
 type DropdownProps = OptionProps &
@@ -128,7 +128,7 @@ export const Dropdown = React.forwardRef<
             style={{ margin: -3, top: 2.5, marginRight: "8px" }}
           />
         )}
-        {text} <ArrowStyle>{showMenu ? arrow_up : arrow_down}</ArrowStyle>
+        {text} <ArrowStyle>{showMenu ? chevron_up : chevron_down}</ArrowStyle>
       </DropdownButton>
       {showMenu && <DropdownContent pill={pill}>{children}</DropdownContent>}
     </DropdownContainer>

@@ -4,7 +4,7 @@ import * as Styles from "./Styles";
 import type { UseComboboxReturnValue } from "downshift";
 import { Input } from "../Input";
 import { IconButton } from "../Button";
-import root from "react-shadow/styled-components";
+// import root from "react-shadow/styled-components";
 
 type ComboboxProps<ItemType> = OptionProps<ItemType> &
   React.ComponentProps<"input">;
@@ -61,6 +61,8 @@ const ComboboxInner = <ItemType,>(
     ...rest
   } = props;
 
+  const showClear = clearable ? "visible" : "hidden";
+
   return (
     <div style={{ width: "fit-content", position: "relative" }}>
       <div {...functional.getComboboxProps()} style={{ width: "inherit" }}>
@@ -79,7 +81,7 @@ const ComboboxInner = <ItemType,>(
             icon={"close"}
             borderless={true}
             css={{
-              visibility: `${clearable ? "visible" : "hidden"}`,
+              visibility: showClear,
               height: "12px",
               width: "12px",
               padding: "0",

@@ -4,7 +4,7 @@ import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { IconKey, Icon } from "../Icon";
 
-type InputProps = OptionProps & React.ComponentProps<"input">;
+type InputProps = OptionProps & Omit<React.ComponentProps<"input">, "value">;
 
 export interface OptionProps {
   value?: any;

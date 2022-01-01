@@ -3,7 +3,7 @@ import root from "react-shadow/styled-components";
 import styled from "styled-components";
 import * as Styles from "./Styles";
 
-type RadioProps = OptionProps & React.ComponentProps<"input">;
+type RadioProps = OptionProps & Omit<React.ComponentProps<"input">, "value">;
 
 export interface OptionProps {
   value?: any;
