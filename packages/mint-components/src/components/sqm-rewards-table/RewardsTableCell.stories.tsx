@@ -35,6 +35,15 @@ const rewardsData: Reward = {
   },
 };
 
+export const RewardsCellFull = () => {
+  return (
+    <sqm-rewards-table-rewards-cell
+      reward={{ ...rewardsData }}
+      availableText="19 Points available"
+    ></sqm-rewards-table-rewards-cell>
+  );
+};
+
 const partial = {
   prettyAvailableValue: "10 Points",
   prettyRedeemedCredit: "9 Points",
@@ -42,11 +51,38 @@ const partial = {
   dateRedeemed: 1640038417468,
 };
 
+export const RewardsCellPartial = () => {
+  return (
+    <sqm-rewards-table-rewards-cell
+      reward={{ ...rewardsData, ...partial }}
+      availableText="10 Points available"
+    ></sqm-rewards-table-rewards-cell>
+  );
+};
+
 const empty = {
   prettyAvailableValue: "0 Points",
   prettyRedeemedCredit: "19 Points",
   prettyRedeemedNumber: "19",
   dateRedeemed: 1640038417468,
+};
+
+export const RewardsCellEmpty = () => {
+  return (
+    <sqm-rewards-table-rewards-cell
+      reward={{ ...rewardsData, ...empty }}
+      availableText="0 Points available"
+    ></sqm-rewards-table-rewards-cell>
+  );
+};
+
+export const SourceCellText = () => {
+  return (
+    <sqm-rewards-table-source-cell
+      reward={rewardsData}
+      rewardSourceText="Manual"
+    ></sqm-rewards-table-source-cell>
+  );
 };
 
 const exchange = {
@@ -61,64 +97,98 @@ const exchange = {
   },
 };
 
-const referral = {
-	
-}
-
-export const RewardsCellFull = () => {
-  return (
-    <sqm-rewards-table-rewards-cell
-      reward={{ ...rewardsData }}
-    ></sqm-rewards-table-rewards-cell>
-  );
-};
-
-export const RewardsCellPartial = () => {
-  return (
-    <sqm-rewards-table-rewards-cell
-      reward={{ ...rewardsData, ...partial }}
-    ></sqm-rewards-table-rewards-cell>
-  );
-};
-
-export const RewardsCellEmpty = () => {
-  return (
-    <sqm-rewards-table-rewards-cell
-      reward={{ ...rewardsData, ...empty }}
-    ></sqm-rewards-table-rewards-cell>
-  );
-};
-
-export const SourceCellText = () => {
-  return (
-    <sqm-rewards-table-source-cell
-      reward={rewardsData}
-    ></sqm-rewards-table-source-cell>
-  );
-};
-
 export const SourceCellExchange = () => {
   return (
     <sqm-rewards-table-source-cell
       reward={{ ...rewardsData, ...exchange }}
+      rewardExchangeText="Reward Exchange"
     ></sqm-rewards-table-source-cell>
   );
 };
+
+const johnDoe = {
+  firstName: "John",
+  lastName: "Doe",
+  imageUrl: null,
+};
+
+const anon = {
+  firstName: "",
+  lastName: "",
+  imageUrl: null,
+};
+
+const referral = (user = null) => {
+  return {
+    rewardSource: "FRIEND_SIGNUP" as const,
+    referral: {
+      id: "123",
+      dateConverted: 1640038417173,
+      dateReferralStarted: 1640038417173,
+      dateReferralPaid: 1640038417173,
+      dateReferralEnded: null,
+      moderationStatus: null,
+      rewards: null,
+      referrerUser: user,
+      referredUser: user,
+    },
+  };
+};
+
+const referred = (user = null) => {
+  return {
+    rewardSource: "REFERRED" as const,
+    referral: {
+      id: "123",
+      dateConverted: 1640038417173,
+      dateReferralStarted: 1640038417173,
+      dateReferralPaid: 1640038417173,
+      dateReferralEnded: null,
+      moderationStatus: null,
+      rewards: null,
+      referrerUser: user,
+      referredUser: user,
+    },
+  };
+};
+
 export const SourceCellReferral = () => {
   return (
     <sqm-rewards-table-source-cell
-      reward={{ ...rewardsData, ...exchange }}
+      reward={{ ...rewardsData, ...referral(johnDoe) }}
+      referralText="Referral to"
     ></sqm-rewards-table-source-cell>
   );
 };
 export const SourceCellReferred = () => {
   return (
     <sqm-rewards-table-source-cell
-      reward={{ ...rewardsData, ...exchange }}
+      reward={{ ...rewardsData, ...referred(johnDoe) }}
+      referralText="Referred by"
     ></sqm-rewards-table-source-cell>
   );
 };
-export const StatusCell = () => {
+
+export const SourceCellAnonymousUser = () => {
+  return (
+    <sqm-rewards-table-source-cell
+      reward={{ ...rewardsData, ...referral(anon) }}
+      referralText="Referral to"
+      anonymousUserText="Anonymous User"
+    ></sqm-rewards-table-source-cell>
+  );
+};
+export const SourceCellDeletedUser = () => {
+  return (
+    <sqm-rewards-table-source-cell
+      reward={{ ...rewardsData, ...referral(null) }}
+      referralText="Referral to"
+      deletedUserText="Deleted User"
+    ></sqm-rewards-table-source-cell>
+  );
+};
+
+export const StatusCellAvailable = () => {
   return (
     <sqm-rewards-table-status-cell
       statusText="Available"
@@ -126,6 +196,76 @@ export const StatusCell = () => {
     ></sqm-rewards-table-status-cell>
   );
 };
+
+const expire = {
+  dateExpires: 1640038417468,
+};
+
+export const StatusCellAvailableExpiry = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Available"
+      reward={{ ...rewardsData, ...expire }}
+      expiryText="Expires"
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+const redeemed = {
+  statuses: ["REDEEMED"],
+  dateRedeemed: 1640038417468,
+};
+
+export const StatusCellRedeemed = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Redeemed"
+      reward={{ ...rewardsData, ...redeemed }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+const cancelled = {
+	statuses: ["CANCELLED"],
+	dateCancelled: 1640038417468,
+  };
+
+export const StatusCellCancelled = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Cancelled"
+      reward={{ ...rewardsData, ...cancelled }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+const expired = {
+	statuses: ["EXPIRED"],
+	dateExpires: 1640038417468,
+  };
+
+export const StatusCellExpired = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Expired"
+      reward={{ ...rewardsData, ...expired }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+const pending = {
+	statuses: ["PENDING"],
+  };
+
+export const StatusCellPending = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Pending"
+      reward={{ ...rewardsData, ...pending }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
 
 export const DateCell = () => {
   return (

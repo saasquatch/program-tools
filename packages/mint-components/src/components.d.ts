@@ -1403,7 +1403,8 @@ export namespace Components {
          */
         "expiryMessage": string;
         /**
-          * @uiName Repeat Amount (0 for no limit)
+          * The number of times a reward can be earned.  Use zero for no limit (the default).
+          * @uiName Repeat Amount
          */
         "finite": number;
         /**
@@ -3359,7 +3360,8 @@ declare namespace LocalJSX {
          */
         "expiryMessage"?: string;
         /**
-          * @uiName Repeat Amount (0 for no limit)
+          * The number of times a reward can be earned.  Use zero for no limit (the default).
+          * @uiName Repeat Amount
          */
         "finite"?: number;
         /**

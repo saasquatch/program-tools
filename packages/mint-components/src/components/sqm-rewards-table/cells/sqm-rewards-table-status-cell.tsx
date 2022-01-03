@@ -71,7 +71,7 @@ export class RewardTableStatusCell {
         ? "primary"
         : rewardStatus === "PENDING"
         ? "warning"
-        : "error";
+        : "danger";
 
     const dateShown =
       this.reward.dateCancelled ||
@@ -81,9 +81,11 @@ export class RewardTableStatusCell {
 
     const date =
       dateShown &&
-      `${this.reward.dateExpires ? this.expiryText : ""}${DateTime.fromMillis(
-        dateShown
-      )?.toLocaleString(DateTime.DATE_MED)}`;
+      `${
+        rewardStatus === "AVAILABLE" && this.reward.dateExpires
+          ? this.expiryText + " "
+          : ""
+      }${DateTime.fromMillis(dateShown)?.toLocaleString(DateTime.DATE_MED)}`;
 
     return (
       <div style={{ display: "contents" }}>
