@@ -510,18 +510,20 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           }
         </div>
         <div class={sheet.classes.ChooseAmount}>
-          <div class="title">{selectedItem?.name ?? ""}</div>
-          {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
-            <div class="points">{input}</div>
-          ) : (
-            <div class="description">{selectedItem?.description}</div>
-          )}
-          {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
-            <div class="description">{selectedItem?.description}</div>
-          ) : (
-            <div class="points">{input}</div>
-          )}
-          <div class="space" />
+          <div style={{ maxWidth: "600px", margin: "auto" }}>
+            <div class="title">{selectedItem?.name ?? ""}</div>
+            {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
+              <div class="points">{input}</div>
+            ) : (
+              <div class="description">{selectedItem?.description}</div>
+            )}
+            {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
+              <div class="description">{selectedItem?.description}</div>
+            ) : (
+              <div class="points">{input}</div>
+            )}
+            <div class="space" />
+          </div>
         </div>
 
         <div class={sheet.classes.Button}>
