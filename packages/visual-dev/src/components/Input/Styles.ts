@@ -4,7 +4,8 @@ export const InputBoxStyle = css`
   position: relative;
   width: 100%;
   max-width: 300px;
-  height: 30px;
+  box-sizing: border-box;
+  height: 36px;
   text-indent: 6px;
   color: var(--sq-text);
   background: var(--sq-surface);

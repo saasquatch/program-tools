@@ -20,7 +20,7 @@ export const ItemContainer = css`
   box-sizing: border-box;
   list-style-type: none;
   width: 100%;
-  max-width: 308px;
+  max-width: 300px;
   padding: 0;
   background: var(--sq-surface);
   border: 2px solid var(--sq-focused);
@@ -52,7 +52,7 @@ export const SelectInputStyle = css`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 308px;
+  max-width: 300px;
   height: 36px;
   text-indent: 6px;
   color: var(--sq-text);

@@ -20,7 +20,7 @@ export const ItemContainer = css`
   box-sizing: border-box;
   list-style-type: none;
   width: 100%;
-  max-width: 308px;
+  max-width: 300px;
   padding: 0;
   background: var(--sq-surface);
   border: 2px solid var(--sq-focused);

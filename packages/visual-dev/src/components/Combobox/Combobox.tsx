@@ -64,8 +64,8 @@ const ComboboxInner = <ItemType,>(
   const showClear = clearable ? "visible" : "hidden";
 
   return (
-    <div style={{ width: "fit-content", position: "relative" }}>
-      <div {...functional.getComboboxProps()} style={{ width: "inherit" }}>
+    <div style={{ maxWidth: "300px", width: "100%", position: "relative" }}>
+      <div {...functional.getComboboxProps()}>
         <Input
           {...rest}
           type={"text"}
