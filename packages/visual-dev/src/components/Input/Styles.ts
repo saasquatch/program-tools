@@ -2,7 +2,8 @@ import { css } from "styled-components";
 
 export const InputBoxStyle = css`
   position: relative;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   height: 30px;
   text-indent: 6px;
   color: var(--sq-text);
