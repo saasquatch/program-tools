@@ -180,7 +180,7 @@ export function useRewardExchangeList(
     }
   }, [exchangeResponse, errors]);
 
-  const {refresh} = useRefreshDispatcher();
+  const { refresh } = useRefreshDispatcher();
 
   async function exchangeReward() {
     if (!selectedItem) return;
@@ -219,7 +219,7 @@ export function useRewardExchangeList(
             unit: selectedItem.sourceUnit,
           },
           globalRewardKey: selectedItem.globalRewardKey,
-          rewardInput:selectedStep.rewardInput,
+          rewardInput: selectedStep.rewardInput,
         };
         break;
       case "VARIABLE_CREDIT_REWARD":

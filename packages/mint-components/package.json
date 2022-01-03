@@ -38,6 +38,7 @@
     "@stencil/router": "^1.0.1",
     "@stencil/sass": "^1.3.2",
     "@stencil/utils": "latest",
+    "@types/canvas-confetti": "^1.4.2",
     "@types/jest": "^26.0.21",
     "@types/puppeteer": "^5.4.2",
     "@types/resize-observer-browser": "^0.1.5",
