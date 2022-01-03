@@ -23,7 +23,6 @@ import LoadingSpinner, {
 import RadioCards from "./components/RadioCards";
 import {
   GenericInput,
-  StyledSelect,
   PencilButton,
   EditPencil,
 } from "./components/Inputs";
@@ -62,6 +61,8 @@ import {
   RJSFLockableInput,
   RJSFNumericalInput,
 } from "./components/Input";
+import {Select} from "./components/Select"
+import {Combobox} from "./components/Combobox"
 
 export {
   Button,
@@ -103,7 +104,6 @@ export {
   LoadingSpinnerLarge,
   RadioCards,
   GenericInput,
-  StyledSelect,
   PencilButton,
   EditPencil,
   JSONataEditor,
@@ -118,4 +118,6 @@ export {
   DefaultObjectTemplate,
   JSONataUtils,
   GlobalStyle,
+  Select,
+  Combobox,
 };

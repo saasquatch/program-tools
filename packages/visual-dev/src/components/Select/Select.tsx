@@ -94,7 +94,7 @@ const SelectInner = <ItemType,>(
     ...rest
   } = props;
 
-  const showClear = clearable ? "visible" : "hidden"
+  const showClear = clearable ? "visible" : "hidden";
 
   return (
     <div style={{ position: "relative" }}>
