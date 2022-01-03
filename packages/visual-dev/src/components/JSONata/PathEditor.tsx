@@ -7,7 +7,7 @@ import { SchemaProvider } from "jsonata-visual-editor/dist/Types";
 import { Path as PathSuggestion } from "jsonata-visual-editor/dist/schema/PathSuggester";
 // import { GreenFlag } from "../../uiLibrary/Notification";
 import ArrowRenderer from "../ArrowRenderer";
-import { CreatableSelectNarrow } from "../Select";
+import { CreatableSelectNarrow } from "../Select-old";
 
 // TODO
 const GreenFlag = styled.div``;

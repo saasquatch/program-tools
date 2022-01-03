@@ -62,6 +62,7 @@ const ComboboxInner = <ItemType,>(
   } = props;
 
   const showClear = clearable ? "visible" : "hidden";
+  console.log(functional.isOpen);
 
   return (
     <div style={{ maxWidth: "300px", width: "100%", position: "relative" }}>

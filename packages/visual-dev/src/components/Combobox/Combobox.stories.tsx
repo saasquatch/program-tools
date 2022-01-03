@@ -22,7 +22,14 @@ export const Basic = () => {
   });
   const props = { items: inputItems, functional };
   return (
-    <div style={{ resize: "both", overflow: "auto", margin: "100px" }}>
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
       <Combobox {...props}></Combobox>
     </div>
   );
