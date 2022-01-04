@@ -1,5 +1,4 @@
 import { getAssetPath, h } from "@stencil/core";
-import confetti from "canvas-confetti";
 import { intl } from "../../global/global";
 import { HostBlock } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
@@ -33,13 +32,13 @@ export type RewardExchangeViewProps = {
     setExchangeState: Function;
     copyFuelTankCode: () => void;
   };
-  ref?: { current: any };
+  refs?: { canvasRef: any };
 };
 
 const stageList = ["chooseReward", "chooseAmount", "confirmation", "success"];
 
 export function RewardExchangeView(props: RewardExchangeViewProps) {
-  const { states, data, callbacks } = props;
+  const { states, data, callbacks, refs } = props;
   const { selectedItem, selectedStep } = states;
 
   const stageProgressList = {
@@ -642,6 +641,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   }
 
   function success() {
+    console.log("success")
     return (
       <div class={sheet.classes.Success}>
         <Gift />
@@ -790,10 +790,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     return (
       <canvas
         ref={(canvas: HTMLCanvasElement & { confetti }) => {
-          if (!canvas) return;
-          canvas.confetti =
-            canvas.confetti || confetti.create(canvas, { resize: true });
-          canvas.confetti();
+          if(!refs?.canvasRef) return;
+          refs.canvasRef.current = canvas
         }}
         id="my-canvas"
         style={{
@@ -801,7 +799,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           position: "absolute",
           width: "500px",
           height: "500px",
-          left: "27%",
+          left: "0%",
           top: "5%",
           zIndex: "1",
         }}
