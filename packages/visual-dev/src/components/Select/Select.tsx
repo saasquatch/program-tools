@@ -22,6 +22,12 @@ export interface OptionProps<ItemType> {
 
 type ItemTypeBase = { description?: string } | string | number | boolean;
 
+type ComplexItemType = { description?: string };
+
+function isComplexItem(item: any): item is ComplexItemType {
+  return typeof item === "object" && item !== null;
+}
+
 const SelectInput = styled.button<{
   disabled: boolean | undefined;
   errors: any;
@@ -95,19 +101,21 @@ const SelectInner = <ItemType extends ItemTypeBase>(
       return item;
     },
     itemToNode = (item: ItemType) => {
-      return (
-        <>
-          <span>{itemToString(item)}</span>
-          {typeof item == "object" &&
-            "description" in item &&
-            item.description && (
+      if (isComplexItem(item)) {
+        return (
+          <>
+            <span>{itemToString(item)}</span>
+            {item.description && (
               <>
                 <br />
                 <ItemDescription>{item.description}</ItemDescription>
               </>
             )}
-        </>
-      );
+          </>
+        );
+      } else {
+        return <span>{itemToString(item)}</span>;
+      }
     },
     ...rest
   } = props;

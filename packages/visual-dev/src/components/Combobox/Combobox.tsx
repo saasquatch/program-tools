@@ -22,6 +22,12 @@ export interface OptionProps<ItemType> {
 
 type ItemTypeBase = { description?: string } | string | number | boolean;
 
+type ComplexItemType = { description?: string };
+
+function isComplexItem(item: any): item is ComplexItemType {
+  return typeof item === "object" && item !== null;
+}
+
 const ItemContainer = styled("ul")`
   ${Styles.ItemContainer}
 `;
@@ -47,7 +53,7 @@ declare module "react" {
   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
 }
 
-const ComboboxInner = <ItemType extends ItemTypeBase>(
+const ComboboxInner = <ItemType extends ItemTypeBase,>(
   props: ComboboxProps<ItemType>,
   ref: React.Ref<HTMLInputElement>
 ) => {
@@ -62,19 +68,21 @@ const ComboboxInner = <ItemType extends ItemTypeBase>(
       return item;
     },
     itemToNode = (item: ItemType) => {
-      return (
-        <>
-          <span>{itemToString(item)}</span>
-          {typeof item == "object" &&
-            "description" in item &&
-            item.description && (
+      if (isComplexItem(item)) {
+        return (
+          <>
+            <span>{itemToString(item)}</span>
+            {item.description && (
               <>
                 <br />
                 <ItemDescription>{item.description}</ItemDescription>
               </>
             )}
-        </>
-      );
+          </>
+        );
+      } else {
+        return <span>{itemToString(item)}</span>;
+      }
     },
     ...rest
   } = props;
