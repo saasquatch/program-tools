@@ -12,12 +12,15 @@ type ComboboxProps<ItemType> = OptionProps<ItemType> &
 export interface OptionProps<ItemType> {
   functional: UseComboboxReturnValue<ItemType>;
   itemToString?: (item: ItemType) => string;
+  itemToNode?: (item: ItemType) => React.ReactNode;
   disabled?: boolean;
   errors?: any;
   items: Array<any>;
   css?: CSSProp;
   clearable?: boolean;
 }
+
+type ItemTypeBase = { description?: string } | string | number | boolean;
 
 const ItemContainer = styled("ul")`
   ${Styles.ItemContainer}
@@ -44,7 +47,7 @@ declare module "react" {
   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
 }
 
-const ComboboxInner = <ItemType,>(
+const ComboboxInner = <ItemType extends ItemTypeBase>(
   props: ComboboxProps<ItemType>,
   ref: React.Ref<HTMLInputElement>
 ) => {
@@ -57,6 +60,21 @@ const ComboboxInner = <ItemType,>(
     items,
     itemToString = (item: ItemType) => {
       return item;
+    },
+    itemToNode = (item: ItemType) => {
+      return (
+        <>
+          <span>{itemToString(item)}</span>
+          {typeof item == "object" &&
+            "description" in item &&
+            item.description && (
+              <>
+                <br />
+                <ItemDescription>{item.description}</ItemDescription>
+              </>
+            )}
+        </>
+      );
     },
     ...rest
   } = props;
@@ -134,13 +152,7 @@ const ComboboxInner = <ItemType,>(
               key={`${itemToString(item)}-${index}`}
               {...functional.getItemProps({ item, index })}
             >
-              <span>{itemToString(item)}</span>
-              {item.description && (
-                <>
-                  <br />
-                  <ItemDescription>{item.description}</ItemDescription>
-                </>
-              )}
+              {itemToNode(item)}
             </Item>
           ))}
       </ItemContainer>

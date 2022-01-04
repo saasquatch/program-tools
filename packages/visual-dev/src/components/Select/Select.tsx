@@ -12,12 +12,15 @@ type SelectProps<ItemType> = OptionProps<ItemType> &
 export interface OptionProps<ItemType> {
   functional: UseSelectReturnValue<ItemType>;
   itemToString?: (item: ItemType) => string;
+  itemToNode?: (item: ItemType) => React.ReactNode;
   disabled?: boolean;
   errors?: any;
   items: Array<any>;
   css?: CSSProp;
   clearable?: boolean;
 }
+
+type ItemTypeBase = { description?: string } | string | number | boolean;
 
 const SelectInput = styled.button<{
   disabled: boolean | undefined;
@@ -77,7 +80,7 @@ declare module "react" {
   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
 }
 
-const SelectInner = <ItemType,>(
+const SelectInner = <ItemType extends ItemTypeBase>(
   props: SelectProps<ItemType>,
   ref: React.Ref<HTMLInputElement>
 ) => {
@@ -90,6 +93,21 @@ const SelectInner = <ItemType,>(
     items,
     itemToString = (item: ItemType) => {
       return item;
+    },
+    itemToNode = (item: ItemType) => {
+      return (
+        <>
+          <span>{itemToString(item)}</span>
+          {typeof item == "object" &&
+            "description" in item &&
+            item.description && (
+              <>
+                <br />
+                <ItemDescription>{item.description}</ItemDescription>
+              </>
+            )}
+        </>
+      );
     },
     ...rest
   } = props;
@@ -155,7 +173,7 @@ const SelectInner = <ItemType,>(
       </SelectInput>
       <ItemContainer errors={errors} {...functional.getMenuProps()}>
         {functional.isOpen &&
-          items.map((item, index) => (
+          items.map((item: ItemType, index) => (
             <Item
               key={`${itemToString(item)}-${index}`}
               style={
@@ -165,13 +183,7 @@ const SelectInner = <ItemType,>(
               }
               {...functional.getItemProps({ item, index })}
             >
-              <span>{itemToString(item)}</span>
-              {item.description && (
-                <>
-                  <br />
-                  <ItemDescription>{item.description}</ItemDescription>
-                </>
-              )}
+              {itemToNode(item)}
             </Item>
           ))}
       </ItemContainer>
