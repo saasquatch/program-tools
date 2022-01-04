@@ -643,7 +643,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   }
 
   function success() {
-    console.log("success")
+    console.log("success");
     return (
       <div class={sheet.classes.Success}>
         <Gift />
@@ -792,8 +792,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     return (
       <canvas
         ref={(canvas: HTMLCanvasElement & { confetti }) => {
-          if(!refs?.canvasRef) return;
-          refs.canvasRef.current = canvas
+          if (!refs?.canvasRef) return;
+          refs.canvasRef.current = canvas;
         }}
         id="my-canvas"
         style={{
@@ -801,9 +801,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           position: "absolute",
           width: "500px",
           height: "500px",
-          left: "0%",
           top: "5%",
           zIndex: "1",
+          left: "25%",
         }}
       ></canvas>
     );
