@@ -32,6 +32,7 @@ import { ReferralDates } from "./components/sqm-referral-table/useReferralTable"
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
+import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
     interface SqmAssetCard {
@@ -1390,6 +1391,11 @@ export namespace Components {
          */
         "completedText": string;
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<TaskCardViewProps | BigStatViewProps>;
+        /**
           * @uiName Description Text
          */
         "description": string;
@@ -1398,6 +1404,10 @@ export namespace Components {
           * @uiName Ended Date Message
          */
         "endedMessage": string;
+        /**
+          * @uiName Event key of task card button
+         */
+        "eventKey"?: string;
         /**
           * @uiName Expiry Date Message
          */
@@ -3347,6 +3357,11 @@ declare namespace LocalJSX {
          */
         "completedText"?: string;
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<TaskCardViewProps | BigStatViewProps>;
+        /**
           * @uiName Description Text
          */
         "description"?: string;
@@ -3355,6 +3370,10 @@ declare namespace LocalJSX {
           * @uiName Ended Date Message
          */
         "endedMessage"?: string;
+        /**
+          * @uiName Event key of task card button
+         */
+        "eventKey"?: string;
         /**
           * @uiName Expiry Date Message
          */

@@ -10,24 +10,34 @@ import {
 import * as SVGs from "./SVGs";
 
 export type TaskCardViewProps = {
-  rewardAmount: string;
-  cardTitle: string;
-  description: string;
-  showProgressBar: boolean;
-  repeatable: boolean;
-  finite: number;
-  completedText: string;
-  showExpiry: boolean;
-  expiryMessage: string;
-  rewardDuration: string;
-  startsOnMessage: string;
-  endedMessage: string;
-  rewardUnit: string;
-  buttonText: string;
-  buttonLink: string;
-  openNewTab: boolean;
-  loading: boolean;
-} & ProgressBarProps;
+  content: {
+    rewardAmount: string;
+    cardTitle: string;
+    description: string;
+    showProgressBar: boolean;
+    repeatable: boolean;
+    finite: number;
+    goal: number;
+    completedText: string;
+    showExpiry: boolean;
+    expiryMessage: string;
+    rewardDuration: string;
+    startsOnMessage: string;
+    endedMessage: string;
+    rewardUnit: string;
+    buttonText: string;
+    buttonLink: string;
+    openNewTab: boolean;
+    eventKey?: string;
+  };
+  states: {
+    loading: boolean;
+    progress: number;
+  };
+  callbacks?: {
+    sendEvent: (event: string) => void;
+  };
+};
 
 const style = {
   TaskCard: {
@@ -179,26 +189,30 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
+  console.log({ props });
+  const { callbacks, states, content } = props;
   const checkmark_circle = SVGs.checkmark_circle();
   const checkmark_filled = SVGs.checkmark_filled();
   const arrow_left_right = SVGs.arrow_left_right();
 
-  const showComplete = props.progress >= props.goal;
-  const repetitions = props.showProgressBar
-    ? Math.floor(props.progress / props.goal)
-    : props.progress;
+  const showComplete = states.progress >= content.goal;
+  const repetitions = content.showProgressBar
+    ? Math.floor(states.progress / content.goal)
+    : states.progress;
 
   const dateStart =
-    props.showExpiry && DateTime.fromISO(props.rewardDuration.split("/")[0]);
+    content.showExpiry &&
+    DateTime.fromISO(content.rewardDuration.split("/")[0]);
   const dateEnd =
-    props.showExpiry && DateTime.fromISO(props.rewardDuration.split("/")[1]);
+    content.showExpiry &&
+    DateTime.fromISO(content.rewardDuration.split("/")[1]);
   const dateToday = DateTime.now();
 
   const taskComplete =
-    (showComplete && props.repeatable === false) ||
-    (props.finite && props.progress >= props.finite * props.goal);
-  const taskEnded = props.showExpiry && dateEnd <= dateToday;
-  const taskNotStarted = props.showExpiry && dateToday <= dateStart;
+    (showComplete && content.repeatable === false) ||
+    (content.finite && states.progress >= content.finite * content.goal);
+  const taskEnded = content.showExpiry && dateEnd <= dateToday;
+  const taskNotStarted = content.showExpiry && dateToday <= dateStart;
   const taskUnavailable = taskEnded || taskNotStarted;
 
   const vanillaStyle = `
@@ -214,7 +228,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         {styleString}
         {vanillaStyle}
       </style>
-      {!props.loading && taskNotStarted && (
+      {!states.loading && taskNotStarted && (
         <div class={sheet.classes.NotStarted}>
           <span class="icon">
             <sl-icon name="info-circle-fill"></sl-icon>
@@ -223,7 +237,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           {intl.formatMessage(
             {
               id: "startsOnMessage",
-              defaultMessage: props.startsOnMessage,
+              defaultMessage: content.startsOnMessage,
             },
             {
               startDate: dateStart.toLocaleString(DateTime.DATE_MED),
@@ -231,7 +245,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           )}
         </div>
       )}
-      {!props.loading && taskEnded && (
+      {!states.loading && taskEnded && (
         <div class={sheet.classes.Ended}>
           <span class="icon">
             <sl-icon name="exclamation-triangle-fill"></sl-icon>
@@ -239,7 +253,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           {intl.formatMessage(
             {
               id: "endedMessage",
-              defaultMessage: props.endedMessage,
+              defaultMessage: content.endedMessage,
             },
             {
               endDate: dateEnd.toLocaleString(DateTime.DATE_MED),
@@ -267,7 +281,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           }
         >
           <div class={sheet.classes.Header}>
-            {props.loading ? (
+            {states.loading ? (
               <sl-skeleton style={{ width: "22%", margin: "0" }} />
             ) : (
               <div>
@@ -276,42 +290,43 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                     {taskComplete ? checkmark_filled : checkmark_circle}
                   </span>
                 )}
-                <span class={"value"}>{props.rewardAmount}</span>
-                <span class="text">{props.rewardUnit}</span>
+                <span class={"value"}>{content.rewardAmount}</span>
+                <span class="text">{content.rewardUnit}</span>
               </div>
             )}
           </div>
 
-          {props.loading ? (
+          {states.loading ? (
             <sl-skeleton
               style={{ width: "42%", margin: "var(--sl-spacing-medium) 0" }}
             />
           ) : (
-            <div class={"title"}>{props.cardTitle}</div>
+            <div class={"title"}>{content.cardTitle}</div>
           )}
-          {props.loading ? (
+          {states.loading ? (
             <sl-skeleton style={{ margin: "var(--sl-spacing-medium) 0" }} />
           ) : (
             <Details {...props} />
           )}
-          {props.showProgressBar && props.loading ? (
+          {content.showProgressBar && states.loading ? (
             <sl-skeleton style={{ margin: "var(--sl-spacing-medium) 0" }} />
           ) : (
-            props.showProgressBar && (
+            content.showProgressBar && (
               <ProgressBarView
-                {...props}
+                {...props.content}
+                {...props.states}
                 complete={taskComplete}
                 expired={taskUnavailable}
               />
             )
           )}
           <div class={sheet.classes.Footer}>
-            {props.loading ? (
+            {states.loading ? (
               <sl-skeleton style={{ width: "25%", marginLeft: "auto" }} />
             ) : (
               <div style={{ display: "contents" }}>
                 <span class="text">
-                  {props.repeatable && (
+                  {content.repeatable && (
                     <div>
                       <span
                         class={
@@ -336,24 +351,24 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                         {intl.formatMessage(
                           {
                             id: "completedMessage",
-                            defaultMessage: props.completedText,
+                            defaultMessage: content.completedText,
                           },
                           {
-                            finite: props.finite,
-                            count: props.finite
-                              ? Math.min(repetitions, props.finite)
+                            finite: content.finite,
+                            count: content.finite
+                              ? Math.min(repetitions, content.finite)
                               : repetitions,
                           }
                         )}
                       </span>
                     </div>
                   )}
-                  {props.showExpiry && !taskUnavailable && (
+                  {content.showExpiry && !taskUnavailable && (
                     <span>
                       {intl.formatMessage(
                         {
                           id: "expiryMessage",
-                          defaultMessage: props.expiryMessage,
+                          defaultMessage: content.expiryMessage,
                         },
                         {
                           endDate: dateEnd.toLocaleString(DateTime.DATE_FULL),
@@ -374,13 +389,15 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                   type="primary"
                   size="small"
                   onClick={() =>
-                    props.openNewTab
-                      ? window.open(props.buttonLink)
-                      : window.open(props.buttonLink, "_parent")
+                    props.content.eventKey
+                      ? callbacks.sendEvent(props.content.eventKey)
+                      : content.openNewTab
+                      ? window.open(content.buttonLink)
+                      : window.open(content.buttonLink, "_parent")
                   }
                   disabled={taskComplete || taskUnavailable}
                 >
-                  {props.buttonText}
+                  {content.buttonText}
                 </sl-button>
               </div>
             )}

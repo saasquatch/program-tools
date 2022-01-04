@@ -65,6 +65,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       "&::part(label)": {
         color: "var(--sl-color-primary-500)",
       },
+      "&::part(menu)": {
+        maxHeight: "50vh",
+      },
     },
     ProgressBar: {
       maxWidth: "350px",
