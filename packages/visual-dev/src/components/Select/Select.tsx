@@ -42,7 +42,11 @@ const SelectInput = styled.button<{
     !props.isOpen &&
     !props.disabled &&
     `&:hover{
-    border-color: var(--sq-action-secondary-border);
+    border-color: ${
+      props.errors
+        ? "var(--sq-surface-critical-hovered)"
+        : "var(--sq-action-secondary-border)"
+    } ;
   }`}
 
   ${(props) =>
