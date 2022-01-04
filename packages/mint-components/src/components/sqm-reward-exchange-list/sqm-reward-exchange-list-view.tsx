@@ -311,12 +311,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         {item.steps?.map((step) => (
           <sl-menu-item value={step} disabled={!step.available}>
             {step.prettyDestinationValue}
-            <div slot="suffix" style={{ fontSize: "75%", float: "right" }}>
+            <div slot="suffix" style={{ fontSize: "16px", float: "right" }}>
               {step.prettySourceValue}
               {step.unavailableReasonCode && (
                 <p
                   style={{
-                    fontSize: "70%",
+                    fontSize: "75%",
                     color: "var(--sl-color-warning-500)",
                   }}
                 >
