@@ -1,14 +1,18 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
+import deepmerge from "deepmerge";
+import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
+import { BigStatViewProps } from "../sqm-big-stat/sqm-big-stat-view";
 import { useBigStat } from "../sqm-big-stat/useBigStat";
 import { useDemoBigStat } from "../sqm-big-stat/useDemoBigStat";
-import { TaskCardView } from "./sqm-task-card-view";
+import { TaskCardView, TaskCardViewProps } from "./sqm-task-card-view";
+import { useTaskCard } from "./useTaskCard";
 
 /**
  * @uiName Task Card
- * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "*"]
+ * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", *"]
  */
 @Component({
   tag: "sqm-task-card",
@@ -50,7 +54,7 @@ export class TaskCard {
 
   /**
    * The number of times a reward can be earned.  Use zero for no limit (the default).
-   * 
+   *
    * @uiName Repeat Amount
    */
   @Prop()
@@ -148,6 +152,17 @@ export class TaskCard {
   @Prop()
   statType: string = "/programGoals/count/Referral-Started%2Freferrals";
 
+  /**
+   * @uiName Event key of task card button
+   */
+  @Prop() eventKey?: string;
+
+  /**
+   * @undocumented
+   * @uiType object
+   */
+  @Prop() demoData?: DemoData<TaskCardViewProps | BigStatViewProps>;
+
   constructor() {
     withHooks(this);
   }
@@ -157,12 +172,22 @@ export class TaskCard {
     const { props } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
     const { value, loading } = props;
 
+    const { callbacks } = isDemo() ? useTaskCardDemo(this) : useTaskCard();
+
     return (
       <TaskCardView
-        progress={value}
-        loading={loading}
-        {...getProps(this)}
+        callbacks={callbacks}
+        states={{ loading, progress: value }}
+        content={{ ...getProps(this) }}
       ></TaskCardView>
     );
   }
+}
+
+function useTaskCardDemo(props: TaskCard) {
+  return deepmerge(
+    { callbacks: { sendEvent: (event: string) => console.log(event) } },
+    props.demoData || {},
+    { arrayMerge: (_, a) => a }
+  );
 }

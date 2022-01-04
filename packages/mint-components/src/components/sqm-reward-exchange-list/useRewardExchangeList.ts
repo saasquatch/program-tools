@@ -15,6 +15,7 @@ import {
   useRef,
   useState,
 } from "@saasquatch/universal-hooks";
+import confetti from "canvas-confetti";
 
 export type ExchangeItem = {
   key: string;
@@ -180,6 +181,16 @@ export function useRewardExchangeList(
     }
   }, [exchangeResponse, errors]);
 
+  const canvasRef = useRef<HTMLCanvasElement>();
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    console.log("confetti!")
+    const canvas: HTMLCanvasElement & { confetti? } = canvasRef.current;
+    canvas.confetti =
+      canvas.confetti || confetti.create(canvas, { resize: true, });
+    canvas.confetti();
+  }, [canvasRef.current]);
+
   const { refresh } = useRefreshDispatcher();
 
   async function exchangeReward() {
@@ -292,6 +303,9 @@ export function useRewardExchangeList(
       setStage,
       resetState,
       copyFuelTankCode,
+    },
+    refs: {
+      canvasRef,
     },
   };
 }
