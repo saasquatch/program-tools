@@ -11,7 +11,7 @@ interface enumOption {
   value: any;
 }
 
-function isEnumOption(option: any): option is enumOption {
+export function isEnumOption(option: any): option is enumOption {
   return (
     typeof option === "object" &&
     option !== null &&
@@ -20,7 +20,7 @@ function isEnumOption(option: any): option is enumOption {
   );
 }
 
-function isCardOption(option: any): option is enumOption {
+export function isCardOption(option: any): option is enumOption {
   return (
     typeof option === "object" &&
     option !== null &&
@@ -31,7 +31,7 @@ function isCardOption(option: any): option is enumOption {
   );
 }
 
-function isEnumArray(options: any): options is any[] {
+export function isEnumArray(options: any): options is any[] {
   return Array.isArray(options);
 }
 

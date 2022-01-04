@@ -65,36 +65,32 @@ export const RadioCard = React.forwardRef<
   const icon_color = selected ? "var(--sq-action-primary-hovered)" : "";
 
   return (
-    <div>
-      <RadioLabel htmlFor={rest.id} isChecked={selected}>
-        <RadioInput
-          type="radio"
-          checked={selected}
-          readOnly
-          {...rest}
-          ref={forwardedRef}
-        />
-        <LeftSegment isChecked={selected}>
-          <Icon icon={icon} size="40px" color={icon_color} />
-        </LeftSegment>
-        <RightSegment>
-          <RadioText>
-            {title ? (
-              <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
-            ) : (
-              ""
-            )}
-            {description ? (
-              <div style={{ color: "var(--sq-text-subdued)" }}>
-                {description}
-              </div>
-            ) : (
-              ""
-            )}
-          </RadioText>
-        </RightSegment>
-      </RadioLabel>
-    </div>
+    <RadioLabel htmlFor={rest.id} isChecked={selected}>
+      <RadioInput
+        type="radio"
+        checked={selected}
+        readOnly
+        {...rest}
+        ref={forwardedRef}
+      />
+      <LeftSegment isChecked={selected}>
+        <Icon icon={icon} size="40px" color={icon_color} />
+      </LeftSegment>
+      <RightSegment>
+        <RadioText>
+          {title ? (
+            <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
+          ) : (
+            ""
+          )}
+          {description ? (
+            <div style={{ color: "var(--sq-text-subdued)" }}>{description}</div>
+          ) : (
+            ""
+          )}
+        </RadioText>
+      </RightSegment>
+    </RadioLabel>
   );
 });
 

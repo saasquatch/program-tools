@@ -3,12 +3,16 @@ import root from "react-shadow/styled-components";
 import styled from "styled-components";
 import * as Styles from "./Styles";
 
+type GroupProps = React.ComponentProps<"input">;
+
 type InputProps = OptionProps & Omit<React.ComponentProps<"input">, "value">;
 
 export interface OptionProps {
   value?: any;
+  optionValue?: any;
   onChange?: any;
-  options?: any;
+  title: string;
+  description?: string | React.ReactNode;
 }
 
 const ShadowDom = styled(root.div)``;
@@ -31,18 +35,30 @@ export const RadioAction = React.forwardRef<
   React.ElementRef<"input">,
   InputProps
 >((props, forwardedRef) => {
-  const { value, onChange, options, ...rest } = props;
+  const { value, optionValue, onChange, title, description, ...rest } = props;
+
+  const selected = value === optionValue;
+
+  if (selected) {
+    console.log("selected ", optionValue);
+  }
 
   return (
-    <RadioLabel htmlFor={rest.id} isChecked={value}>
-      <RadioInput type="radio" checked={value} {...rest} ref={forwardedRef} />
+    <RadioLabel htmlFor={rest.id} isChecked={selected}>
+      <RadioInput
+        type="radio"
+        checked={selected}
+        readOnly
+        {...rest}
+        ref={forwardedRef}
+      />
       <RadioButton />
       <RadioText>
-        {options.title ? <div> {options.title} </div> : ""}
-        {options.text ? (
+        {title ? <div> {title} </div> : ""}
+        {description ? (
           <div style={{ color: "var(--sq-text-subdued)", marginTop: 4 }}>
             {" "}
-            {options.text}{" "}
+            {description}{" "}
           </div>
         ) : (
           ""
@@ -54,7 +70,7 @@ export const RadioAction = React.forwardRef<
 
 export const RadioActionGroup = React.forwardRef<
   React.ElementRef<"div">,
-  InputProps
+  GroupProps
 >((props) => {
   const { children } = props;
 

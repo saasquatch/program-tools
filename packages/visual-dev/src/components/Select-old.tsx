@@ -68,7 +68,7 @@ export const CreatableSelect = (props: SelectComponentsProps) => (
   </StyleWrapper>
 );
 
-export const Select = (props: SelectComponentsProps) => (
+export const SelectOLD = (props: SelectComponentsProps) => (
   <StyleWrapper>
     <DefaultSelect arrowRenderer={ArrowRenderer} {...props} />
   </StyleWrapper>

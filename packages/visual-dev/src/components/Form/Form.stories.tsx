@@ -13,6 +13,7 @@ import {
   RJSFPasswordInput,
 } from "../Input";
 import Form, { WidgetProps } from "@rjsf/core";
+import { RJSFRadioActionWidget } from "../RadioAction/rjsf-RadioAction";
 
 export default {
   title: "Components / Form",
@@ -438,6 +439,62 @@ export const RadioFormWithLabels = () => {
       "ui:widget": RJSFRadio,
       "ui:options": {
         label: false,
+      },
+    },
+  };
+
+  return (
+    <div style={{ margin: "100px" }}>
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        onChange={log("changed")}
+        onSubmit={log("submitted")}
+        onError={log("errors")}
+      >
+        <Button buttonType="primary" style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
+export const RadioActionForm = () => {
+  const schema: JSONSchema7 = {
+    type: "object",
+    properties: {
+      numberEnumRadio: {
+        type: "number",
+        title: "Number enum",
+        enum: [1, 2, 3],
+      },
+    },
+  };
+
+  const uiSchema = {
+    numberEnumRadio: {
+      "ui:widget": RJSFRadioActionWidget,
+      "ui:options": {
+        label: false,
+        ruleOptions: [
+          {
+            key: 0,
+            title: "Promoter and Referred Friend",
+            description:
+              "Retract rewards from both the promoter and the referred friend",
+          },
+          {
+            key: 1,
+            title: "Referred Friend",
+            description: "Only retract rewards from the Referred Friend",
+          },
+          {
+            key: 2,
+            title: "Promoter",
+            description: "Only retract rewards from the Promoter",
+          },
+        ],
       },
     },
   };
