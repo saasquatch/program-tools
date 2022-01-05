@@ -20,6 +20,7 @@ export const FunctionalInput = () => {
 };
 
 export const InputText = () => <Input value="Input Text" />;
+
 export const InputDisabled = () => <Input value="Input Text" disabled />;
 
 export const Placeholder = () => <Input placeholder="Placeholder Text" />;

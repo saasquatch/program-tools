@@ -6,11 +6,11 @@ interface TypographyProps {
 
 export const H1 = styled.h1<TypographyProps>`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  color: ${(props) => props.color || `#575757`};
+  color: ${(props) => props.color || `var(--sq-text)`};
   font-size: 21px;
   line-height: 21px;
-  margin-bottom: 13px;
-  font-weight: 600;
+  margin-bottom: var(--sq-spacing-small);
+  font-weight: (--sq-font-weight-semibold);
 `;
 
 type MarginBottom = "8px";
@@ -21,15 +21,15 @@ interface H2Props {
 
 export const H2 = styled.h2<H2Props>`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  color: ${(props) => props.color || `#575757`};
+  color: ${(props) => props.color || `var(--sq-text)`};
   font-size: 16px;
   line-height: 16px;
   margin-bottom: ${(props) => props.marginBottom || `16px`};
-  font-weight: 600;
+  font-weight: (--sq-font-weight-semibold);
 `;
 
 export const BoldH2 = styled(H2)`
-  font-weight: 700;
+  font-weight: var(--sq-font-weight-bold);
 `;
 
 type Display = "inline";
@@ -42,30 +42,30 @@ interface H3Props {
 export const H3 = styled.h3<H3Props>`
   display: ${(props) => props.display || `inherit`};
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  color: ${(props) => props.color || `#575757`};
+  color: ${(props) => props.color || `var(--sq-text)`};
   line-height: 13px;
-  font-weight: 600;
+  font-weight: (--sq-font-weight-semibold);
   font-size: 13px;
-  margin-bottom: ${(props) => props.noMargin ? '0' : `8px`};
+  margin-bottom: ${(props) => props.noMargin ? '0' : `var(--sq-spacing-x-small)`};
   ${(props) => props.noMargin && 'margin: 0'};
 `;
 
 export const P = styled.p<{ bold?: boolean, noMargin?: boolean }>`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 13px;
-  color: ${(props) => props.color || `#575757`};
-  ${({ bold }) => bold && `font-weight: bold;`};
-  ${({ noMargin }) => noMargin && `margin: 0px;`};
+  color: ${(props) => props.color || `var(--sq-text)`};
+  ${({ bold }) => bold && `font-weight: (--sq-font-weight-bold);`};
+  ${({ noMargin }) => noMargin && `margin: 0;`};
 `;
 
 export const NumberedStep = styled.div`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  color: #575757;
-  border: 1px solid #dddddd;
+  color: var(--sq-text);
+  border: 1px solid var(--sq-border);
   border-radius: 50%;
   text-align: center;
   display: inline-block;
-  margin-right: 10px;
+  margin-right: var(--sq-spacing-small);
   width: 18px;
   height: 18px;
   line-height: 17px;
@@ -73,9 +73,9 @@ export const NumberedStep = styled.div`
 
 export const AttributeHeading = styled.h3`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  color: #808080;
-  font-weight: normal
-  font-size: 12px;
+  color: var(--sq-text-subdued);
+  font-weight: var(--sq-font-weight-regular)
+  font-size: var(--sq-font-size-small);
   line-height: 14px;
   margin: 0px;
   padding: 0px;
@@ -83,15 +83,15 @@ export const AttributeHeading = styled.h3`
 
 export const WidgetTitle = styled.h2`
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  color: #575757;
-  font-weight: bold;
-  font-size: 14px;
+  color: var(--sq-text);
+  font-weight: (--sq-font-weight-bold);
+  font-size: var(--sq-font-size-regular);
   line-height: 16px;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 `
 
 export const ErrorBlock = styled(P)<{margin?: string}>`
-  color: #f92929;
-  margin: ${(props) => props.margin || `0px`};
+  color: var(--sq-on-surface-critical);
+  margin: ${(props) => props.margin || `0`};
 `
