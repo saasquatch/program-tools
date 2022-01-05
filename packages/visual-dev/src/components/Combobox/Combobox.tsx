@@ -1,10 +1,9 @@
-import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
-import type { UseComboboxReturnValue } from "downshift";
+import { UseComboboxReturnValue } from "downshift";
 import { Input } from "../Input";
 import { IconButton } from "../Button";
-// import root from "react-shadow/styled-components";
+import React from "react";
 
 type ComboboxProps<ItemType> = OptionProps<ItemType> &
   React.ComponentProps<"input">;
@@ -44,8 +43,6 @@ const ItemDescription = styled("span")`
   ${Styles.ItemDescription}
 `;
 
-// const ShadowDom = styled(root.div)`display: contents`;
-
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {
   function forwardRef<T, P = {}>(
@@ -53,7 +50,7 @@ declare module "react" {
   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
 }
 
-const ComboboxInner = <ItemType extends ItemTypeBase,>(
+const ComboboxInner = <ItemType extends ItemTypeBase>(
   props: ComboboxProps<ItemType>,
   ref: React.Ref<HTMLInputElement>
 ) => {
@@ -90,8 +87,11 @@ const ComboboxInner = <ItemType extends ItemTypeBase,>(
   const showClear = clearable ? "visible" : "hidden";
 
   return (
-    <div style={{ maxWidth: "300px", width: "100%", position: "relative" }}>
-      <div {...functional.getComboboxProps()}>
+    <div>
+      <div
+        style={{ maxWidth: "300px", width: "100%", position: "relative" }}
+        {...functional.getComboboxProps()}
+      >
         <Input
           {...rest}
           type={"text"}

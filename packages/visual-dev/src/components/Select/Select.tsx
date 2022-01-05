@@ -79,9 +79,6 @@ const ItemDescription = styled("span")`
   ${Styles.ItemDescription}
 `;
 
-// const ShadowDom = styled(root.div)`
-//   display: contents;
-// `;
 
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {

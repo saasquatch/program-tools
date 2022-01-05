@@ -1,10 +1,6 @@
 import { useSelect } from "downshift";
-// import React, { useCallback, useEffect, useRef, useState } from "react";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { Select } from "./Select";
-import root from "react-shadow/styled-components";
-// import styled from "styled-components";
-import { createProxyEnvironment } from "../../utils";
 
 export default {
   title: "Components / Select",
@@ -25,50 +21,6 @@ export const Basic = () => {
       }}
     >
       <Select {...props}></Select>
-    </div>
-  );
-};
-
-// const ShadowDom = styled(root.div)`
-//   display: contents;
-// `;
-
-const WorkingShadowInner = (environment: any) => {
-  const [envReady, setEnvReady] = useState(undefined);
-
-  useEffect(() => {
-    setEnvReady(environment);
-  }, [environment]);
-
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const functional = !envReady ? useSelect({ items, environment: envReady }) : useSelect({ items });
-  if (!envReady) {
-    return <></>;
-  }
-  console.log(environment.addEventListener);
-  const props = { items, functional };
-  return <Select {...props}></Select>;
-};
-
-export const WorkingShadow = () => {
-  const [environment, setEnvironment] = useState({});
-  const shadowRef = useCallback((node) => {
-    if (node !== null) {
-      setEnvironment(createProxyEnvironment(node));
-    }
-  }, []);
-  return (
-    <div
-      style={{
-        resize: "both",
-        height: "400px",
-        overflow: "auto",
-        margin: "100px",
-      }}
-    >
-      <root.section ref={shadowRef}>
-        <WorkingShadowInner environment={environment} />
-      </root.section>
     </div>
   );
 };
