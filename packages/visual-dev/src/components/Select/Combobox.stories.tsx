@@ -1,10 +1,10 @@
 import { useCombobox } from "downshift";
 import React, { useState } from "react";
-import { Combobox } from "./Combobox";
+import { Select } from "./Select";
 
 export default {
   title: "Components / Combobox",
-  component: Combobox,
+  component: Select,
 };
 
 export const Basic = () => {
@@ -30,7 +30,7 @@ export const Basic = () => {
         margin: "100px",
       }}
     >
-      <Combobox {...props}></Combobox>
+      <Select {...props}></Select>
     </div>
   );
 };
@@ -49,7 +49,7 @@ export const Clearable = () => {
     },
   });
   const props = { items: inputItems, functional, clearable: true };
-  return <Combobox {...props}></Combobox>;
+  return <Select {...props}></Select>;
 };
 
 export const Detailed = () => {
@@ -66,7 +66,7 @@ export const Detailed = () => {
   const itemToString = (item: Islands) => (item ? item.text : "");
   const functional = useCombobox({ items, itemToString });
   const props = { items, functional, itemToString };
-  return <Combobox {...props}></Combobox>;
+  return <Select {...props}></Select>;
 };
 
 export const Disabled = () => {
@@ -83,7 +83,7 @@ export const Disabled = () => {
     },
   });
   const props = { items: inputItems, functional, disabled: true };
-  return <Combobox {...props}></Combobox>;
+  return <Select {...props}></Select>;
 };
 
 export const Error = () => {
@@ -100,5 +100,26 @@ export const Error = () => {
     },
   });
   const props = { items: inputItems, functional, errors: { field1: "error" } };
-  return <Combobox {...props}></Combobox>;
+  return <Select {...props}></Select>;
+};
+
+export const CustomCSS = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const [inputItems, setInputItems] = useState(items);
+  const functional = useCombobox({
+    items: inputItems,
+    onInputValueChange: ({ inputValue }) => {
+      setInputItems(
+        items.filter((item) =>
+          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
+        )
+      );
+    },
+  });
+  const props = {
+    css: "color: blue",
+    items: inputItems,
+    functional,
+  };
+  return <Select {...props}></Select>;
 };

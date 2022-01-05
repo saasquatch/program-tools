@@ -21,11 +21,7 @@ import LoadingSpinner, {
   LoadingSpinnerLarge,
 } from "./components/LoadingSpinner";
 import RadioCards from "./components/RadioCards";
-import {
-  GenericInput,
-  PencilButton,
-  EditPencil,
-} from "./components/Inputs";
+import { GenericInput, PencilButton, EditPencil } from "./components/Inputs";
 import JSONataEditor from "./components/MapFieldsJsonata";
 import {
   PlatformSignInButton,
@@ -61,8 +57,7 @@ import {
   RJSFLockableInput,
   RJSFNumericalInput,
 } from "./components/Input";
-// import {Select} from "./components/Select"
-import {Combobox} from "./components/Combobox"
+import { Select } from "./components/Select";
 
 export {
   Button,
@@ -118,6 +113,5 @@ export {
   DefaultObjectTemplate,
   JSONataUtils,
   GlobalStyle,
-  // Select,
-  Combobox,
+  Select,
 };
