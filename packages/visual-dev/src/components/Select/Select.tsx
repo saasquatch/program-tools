@@ -79,6 +79,9 @@ const ItemDescription = styled("span")`
   ${Styles.ItemDescription}
 `;
 
+const Container = styled("div")`
+  ${Styles.Container}
+`;
 
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {
@@ -124,7 +127,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
   const showClear = clearable ? "visible" : "hidden";
 
   return (
-    <div style={{ position: "relative" }}>
+    <Container>
       <SelectInput
         {...rest}
         isOpen={functional.isOpen}
@@ -196,7 +199,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
             </Item>
           ))}
       </ItemContainer>
-    </div>
+    </Container>
   );
 };
 

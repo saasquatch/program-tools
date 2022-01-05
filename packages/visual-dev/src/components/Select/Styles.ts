@@ -79,3 +79,10 @@ export const ItemDescription = css`
   color: var(--sq-text-subdued);
   font-size: var(--sq-font-size-small);
 `;
+
+export const Container = css`
+  display: inline-block;
+  max-width: 300px;
+  width: 100%;
+  position: relative;
+`;

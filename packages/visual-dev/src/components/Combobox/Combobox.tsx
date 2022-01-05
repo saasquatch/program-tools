@@ -4,6 +4,7 @@ import { UseComboboxReturnValue } from "downshift";
 import { Input } from "../Input";
 import { IconButton } from "../Button";
 import React from "react";
+import { css } from "styled-components";
 
 type ComboboxProps<ItemType> = OptionProps<ItemType> &
   React.ComponentProps<"input">;
@@ -42,6 +43,17 @@ const ButtonContainer = styled.div`
 const ItemDescription = styled("span")`
   ${Styles.ItemDescription}
 `;
+
+const Container = styled("div")`
+  ${Styles.Container}
+`;
+
+const borderStyle = (existing: CSSProp, isOpen: boolean) => {
+  return css`
+    ${existing}
+    ${isOpen && "border: 2px solid var(--sq-focused);"}
+  `;
+};
 
 // Redeclare forwardRef for use with generic prop types.
 declare module "react" {
@@ -85,19 +97,17 @@ const ComboboxInner = <ItemType extends ItemTypeBase>(
   } = props;
 
   const showClear = clearable ? "visible" : "hidden";
+  const arrowColor = errors ? "var(--sq-border-critical)" : "";
 
   return (
-    <div>
-      <div
-        style={{ maxWidth: "300px", width: "100%", position: "relative" }}
-        {...functional.getComboboxProps()}
-      >
+    <Container>
+      <div {...functional.getComboboxProps()}>
         <Input
           {...rest}
           type={"text"}
           ref={ref}
           errors={errors}
-          css={css}
+          css={borderStyle(css, functional.isOpen)}
           disabled={disabled}
           {...functional.getInputProps()}
         />
@@ -111,6 +121,7 @@ const ComboboxInner = <ItemType extends ItemTypeBase>(
               height: "12px",
               width: "12px",
               padding: "0",
+              background: "transparent",
             }}
             icon_css={{ height: "12px", width: "12px" }}
             color={
@@ -126,8 +137,13 @@ const ComboboxInner = <ItemType extends ItemTypeBase>(
               disabled={disabled}
               icon={"chevron_up"}
               borderless={true}
-              css={{ height: "12px", width: "12px", padding: "0" }}
-              icon_css={{ height: "12px", width: "12px" }}
+              css={{
+                height: "12px",
+                width: "12px",
+                padding: "0",
+                background: "transparent",
+              }}
+              icon_css={{ height: "12px", width: "12px", color: arrowColor }}
               color={
                 errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
               }
@@ -138,8 +154,13 @@ const ComboboxInner = <ItemType extends ItemTypeBase>(
               disabled={disabled}
               icon={"chevron_down"}
               borderless={true}
-              css={{ height: "12px", width: "12px", padding: "0" }}
-              icon_css={{ height: "12px", width: "12px" }}
+              css={{
+                height: "12px",
+                width: "12px",
+                padding: "0",
+                background: "transparent",
+              }}
+              icon_css={{ height: "12px", width: "12px", color: arrowColor }}
               color={
                 errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
               }
@@ -164,7 +185,7 @@ const ComboboxInner = <ItemType extends ItemTypeBase>(
             </Item>
           ))}
       </ItemContainer>
-    </div>
+    </Container>
   );
 };
 
