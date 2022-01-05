@@ -59,3 +59,44 @@ export const Container = css`
   width: 100%;
   position: relative;
 `;
+
+export const SelectInputStyle = css`
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  height: 36px;
+  text-indent: 6px;
+  color: var(--sq-text);
+  background: var(--sq-surface);
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: var(--sq-font-size-regular);
+  font-weight: var(--sq-font-weight-regular);
+  line-height: var(--sq-line-height-regular);
+  border: 2px solid var(--sq-border);
+  border-radius: 4px;
+
+  &:focus {
+    border-color: var(--sq-focused);
+  }
+`;
+
+export const SelectedValue = css`
+  padding-top: var(--sq-spacing-xxx-small);
+  margin: auto 0;
+  text-indent: 0px;
+`;
+
+export const ButtonDiv = css`
+  display: flex;
+  align-items: center;
+  text-indent: 0px;
+  padding: 2px 10px 0px;
+  margin: auto 0;
+
+  & > :not(:last-child) {
+    margin-right: var(--sq-spacing-x-small);
+  }
+`;

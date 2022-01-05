@@ -61,7 +61,7 @@ import {
   RJSFLockableInput,
   RJSFNumericalInput,
 } from "./components/Input";
-import {Select} from "./components/Select"
+// import {Select} from "./components/Select"
 import {Combobox} from "./components/Combobox"
 
 export {
@@ -118,6 +118,6 @@ export {
   DefaultObjectTemplate,
   JSONataUtils,
   GlobalStyle,
-  Select,
+  // Select,
   Combobox,
 };

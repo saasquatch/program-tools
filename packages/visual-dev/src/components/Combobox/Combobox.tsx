@@ -1,16 +1,17 @@
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
-import { UseComboboxReturnValue } from "downshift";
+import { UseComboboxReturnValue, UseSelectReturnValue } from "downshift";
 import { Input } from "../Input";
 import { IconButton } from "../Button";
 import React from "react";
 import { css } from "styled-components";
+import { Icon } from "../Icon";
 
 type ComboboxProps<ItemType> = OptionProps<ItemType> &
   React.ComponentProps<"input">;
 
 export interface OptionProps<ItemType> {
-  functional: UseComboboxReturnValue<ItemType>;
+  functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
   itemToString?: (item: ItemType) => string;
   itemToNode?: (item: ItemType) => React.ReactNode;
   disabled?: boolean;
@@ -46,6 +47,40 @@ const ItemDescription = styled("span")`
 
 const Container = styled("div")`
   ${Styles.Container}
+`;
+
+const SelectInput = styled.button<{
+  disabled: boolean | undefined;
+  errors: any;
+  isOpen: boolean;
+}>`
+  ${Styles.SelectInputStyle}
+  ${(props) =>
+    props.disabled &&
+    "background: var(--sq-surface-input-disabled); cursor: default;"}
+  ${(props) => props.isOpen && "border-color: var(--sq-focused);"}
+  ${(props) =>
+    !props.isOpen &&
+    !props.disabled &&
+    `&:hover{
+    border-color: ${
+      props.errors
+        ? "var(--sq-surface-critical-hovered)"
+        : "var(--sq-action-secondary-border)"
+    } ;
+  }`}
+
+  ${(props) =>
+    props.errors &&
+    "border-color: var(--sq-border-critical); background: var(--sq-surface-critical-subdued);"}
+`;
+
+const SelectedValue = styled.span`
+  ${Styles.SelectedValue}
+`;
+
+const ButtonDiv = styled.div`
+  ${Styles.ButtonDiv}
 `;
 
 const borderStyle = (existing: CSSProp, isOpen: boolean) => {
@@ -99,76 +134,153 @@ const ComboboxInner = <ItemType extends ItemTypeBase>(
   const showClear = clearable ? "visible" : "hidden";
   const arrowColor = errors ? "var(--sq-border-critical)" : "";
 
-  return (
-    <Container>
-      <div {...functional.getComboboxProps()}>
-        <Input
+
+  function isCombobox(hook: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>): hook is UseComboboxReturnValue<ItemType> {
+    return (hook as UseComboboxReturnValue<ItemType>).getComboboxProps !== undefined;
+  }
+
+  const Collapsed = () => {
+    if (!isCombobox(functional)) {
+      return (
+        <SelectInput
           {...rest}
-          type={"text"}
+          isOpen={functional.isOpen}
+          disabled={disabled}
           ref={ref}
           errors={errors}
-          css={borderStyle(css, functional.isOpen)}
-          disabled={disabled}
-          {...functional.getInputProps()}
-        />
-        <ButtonContainer>
-          <IconButton
+          css={css}
+          {...functional.getToggleButtonProps()}
+        >
+          <SelectedValue>
+            {functional.selectedItem
+              ? itemToString(functional.selectedItem)
+              : ""}
+          </SelectedValue>
+          <ButtonDiv>
+            <IconButton
+              disabled={disabled}
+              icon={"close"}
+              borderless={true}
+              css={{
+                visibility: showClear,
+                height: "12px",
+                width: "12px",
+                padding: "0",
+              }}
+              icon_css={{ height: "12px", width: "12px" }}
+              color={
+                errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
+              }
+              onClick={(e: React.MouseEvent<HTMLElement>) => {
+                e.stopPropagation();
+                functional.selectItem((null as unknown) as ItemType);
+              }}
+            />
+            {functional.isOpen ? (
+              <Icon
+                icon={"chevron_up"}
+                size={"small"}
+                color={
+                  errors
+                    ? "var(--sq-border-critical)"
+                    : "var(--sq-text-on-secondary)"
+                }
+              />
+            ) : (
+              <Icon
+                icon={"chevron_down"}
+                size={"small"}
+                color={
+                  errors
+                    ? "var(--sq-border-critical)"
+                    : "var(--sq-text-on-secondary)"
+                }
+              />
+            )}
+          </ButtonDiv>
+        </SelectInput>
+      );
+    } else {
+      return (
+        <div {...functional.getComboboxProps()}>
+          <Input
+            {...rest}
+            type={"text"}
+            ref={ref}
+            errors={errors}
+            css={borderStyle(css, functional.isOpen)}
             disabled={disabled}
-            icon={"close"}
-            borderless={true}
-            css={{
-              visibility: showClear,
-              height: "12px",
-              width: "12px",
-              padding: "0",
-              background: "transparent",
-            }}
-            icon_css={{ height: "12px", width: "12px" }}
-            color={
-              errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
-            }
-            onClick={(e: React.MouseEvent<HTMLElement>) => {
-              e.stopPropagation();
-              functional.selectItem((null as unknown) as ItemType);
-            }}
+            {...functional.getInputProps()}
           />
-          {functional.isOpen ? (
+          <ButtonContainer>
             <IconButton
               disabled={disabled}
-              icon={"chevron_up"}
+              icon={"close"}
               borderless={true}
               css={{
+                visibility: showClear,
                 height: "12px",
                 width: "12px",
                 padding: "0",
                 background: "transparent",
               }}
-              icon_css={{ height: "12px", width: "12px", color: arrowColor }}
+              icon_css={{ height: "12px", width: "12px" }}
               color={
                 errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
               }
-              {...functional.getToggleButtonProps()}
-            />
-          ) : (
-            <IconButton
-              disabled={disabled}
-              icon={"chevron_down"}
-              borderless={true}
-              css={{
-                height: "12px",
-                width: "12px",
-                padding: "0",
-                background: "transparent",
+              onClick={(e: React.MouseEvent<HTMLElement>) => {
+                e.stopPropagation();
+                functional.selectItem((null as unknown) as ItemType);
               }}
-              icon_css={{ height: "12px", width: "12px", color: arrowColor }}
-              color={
-                errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
-              }
-              {...functional.getToggleButtonProps()}
             />
-          )}
-        </ButtonContainer>
-      </div>
+            {functional.isOpen ? (
+              <IconButton
+                disabled={disabled}
+                icon={"chevron_up"}
+                borderless={true}
+                css={{
+                  height: "12px",
+                  width: "12px",
+                  padding: "0",
+                  background: "transparent",
+                }}
+                icon_css={{ height: "12px", width: "12px", color: arrowColor }}
+                color={
+                  errors
+                    ? "var(--sq-border-critical)"
+                    : "var(--sq-text-subdued)"
+                }
+                {...functional.getToggleButtonProps()}
+              />
+            ) : (
+              <IconButton
+                disabled={disabled}
+                icon={"chevron_down"}
+                borderless={true}
+                css={{
+                  height: "12px",
+                  width: "12px",
+                  padding: "0",
+                  background: "transparent",
+                }}
+                icon_css={{ height: "12px", width: "12px", color: arrowColor }}
+                color={
+                  errors
+                    ? "var(--sq-border-critical)"
+                    : "var(--sq-text-subdued)"
+                }
+                {...functional.getToggleButtonProps()}
+              />
+            )}
+          </ButtonContainer>
+        </div>
+      );
+    }
+  };
+
+  return (
+    <Container>
+      <Collapsed />
       <ItemContainer {...functional.getMenuProps()}>
         {functional.isOpen &&
           items.map((item, index) => (
