@@ -29,8 +29,13 @@ function isComplexItem(item: any): item is ComplexItemType {
   return typeof item === "object" && item !== null;
 }
 
-const ItemContainer = styled("ul")`
+const ItemContainer = styled.ul<{
+  errors: any;
+}>`
   ${Styles.ItemContainer}
+  ${(props) =>
+    props.errors &&
+    "border-color: var(--sq-border-critical); background-color: var(--sq-surface-critical-subdued);"}
 `;
 
 const Item = styled("li")`
@@ -134,14 +139,17 @@ const ComboboxInner = <ItemType extends ItemTypeBase>(
   const showClear = clearable ? "visible" : "hidden";
   const arrowColor = errors ? "var(--sq-border-critical)" : "";
 
-
-  function isCombobox(hook: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>): hook is UseComboboxReturnValue<ItemType> {
-    return (hook as UseComboboxReturnValue<ItemType>).getComboboxProps !== undefined;
+  function isCombobox(
+    hook: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>
+  ): hook is UseComboboxReturnValue<ItemType> {
+    return (
+      (hook as UseComboboxReturnValue<ItemType>).getComboboxProps !== undefined
+    );
   }
 
-  const Collapsed = () => {
-    if (!isCombobox(functional)) {
-      return (
+  return (
+    <Container>
+      {!isCombobox(functional) ? (
         <SelectInput
           {...rest}
           isOpen={functional.isOpen}
@@ -199,9 +207,7 @@ const ComboboxInner = <ItemType extends ItemTypeBase>(
             )}
           </ButtonDiv>
         </SelectInput>
-      );
-    } else {
-      return (
+      ) : (
         <div {...functional.getComboboxProps()}>
           <Input
             {...rest}
@@ -274,14 +280,8 @@ const ComboboxInner = <ItemType extends ItemTypeBase>(
             )}
           </ButtonContainer>
         </div>
-      );
-    }
-  };
-
-  return (
-    <Container>
-      <Collapsed />
-      <ItemContainer {...functional.getMenuProps()}>
+      )}
+      <ItemContainer errors={errors} {...functional.getMenuProps()}>
         {functional.isOpen &&
           items.map((item, index) => (
             <Item
