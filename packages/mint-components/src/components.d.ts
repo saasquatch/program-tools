@@ -271,9 +271,49 @@ export namespace Components {
     }
     interface SqmMedia {
         /**
-          * @uiName Title
+          * @uiName buttonLink
          */
-        "imgUrl": string;
+        "buttonLink"?: string;
+        /**
+          * @uiName buttonNewTab
+         */
+        "buttonNewTab"?: boolean;
+        /**
+          * @uiName buttonText
+         */
+        "buttonText"?: string;
+        /**
+          * @uiName description
+         */
+        "description"?: string;
+        /**
+          * @uiName header
+         */
+        "header"?: string;
+        /**
+          * @uiName height
+         */
+        "height"?: string;
+        /**
+          * @uiName imageDescription
+         */
+        "imageDescription"?: string;
+        /**
+          * @uiName imageHeader
+         */
+        "imageHeader"?: string;
+        /**
+          * @uiName imgUrl
+         */
+        "imgUrl"?: string;
+        /**
+          * @uiName objectFit
+         */
+        "objectFit"?: string;
+        /**
+          * @uiName width
+         */
+        "width"?: string;
     }
     interface SqmNameFields {
         /**
@@ -2268,9 +2308,49 @@ declare namespace LocalJSX {
     }
     interface SqmMedia {
         /**
-          * @uiName Title
+          * @uiName buttonLink
+         */
+        "buttonLink"?: string;
+        /**
+          * @uiName buttonNewTab
+         */
+        "buttonNewTab"?: boolean;
+        /**
+          * @uiName buttonText
+         */
+        "buttonText"?: string;
+        /**
+          * @uiName description
+         */
+        "description"?: string;
+        /**
+          * @uiName header
+         */
+        "header"?: string;
+        /**
+          * @uiName height
+         */
+        "height"?: string;
+        /**
+          * @uiName imageDescription
+         */
+        "imageDescription"?: string;
+        /**
+          * @uiName imageHeader
+         */
+        "imageHeader"?: string;
+        /**
+          * @uiName imgUrl
          */
         "imgUrl"?: string;
+        /**
+          * @uiName objectFit
+         */
+        "objectFit"?: string;
+        /**
+          * @uiName width
+         */
+        "width"?: string;
     }
     interface SqmNameFields {
         /**
