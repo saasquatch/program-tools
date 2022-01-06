@@ -607,14 +607,14 @@ a:visited {
 a:hover {
   color: var(--sl-color-primary-600);
 }
-.terms-link,
-.terms-link:visited {
-  color: var(--sl-color-gray-500);
-  text-decoration: none;
-}
-.terms-link:hover {
-  color: var(--sl-color-gray-600);
-}
+// .terms-link,
+// .terms-link:visited {
+//   color: var(--sl-color-gray-500);
+//   text-decoration: none;
+// }
+// .terms-link:hover {
+//   color: var(--sl-color-gray-600);
+// }
 h2, .Title {
   font-size: var(--sl-font-size-large);
   font-weight: var(--sl-font-weight-semibold);
