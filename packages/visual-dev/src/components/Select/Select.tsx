@@ -86,7 +86,7 @@ const Container = styled("div")`
   ${Styles.Container}
 `;
 
-const SelectInput = styled.button<{
+const SelectInput = styled.div<{
   disabled: boolean | undefined;
   errors: any;
   isOpen: boolean;
@@ -192,6 +192,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
           ref={ref}
           errors={errors}
           css={css}
+          role="button"
           {...functional.getToggleButtonProps()}
         >
           <SelectedValue subdued={functional.selectedItem ? false : true}>
