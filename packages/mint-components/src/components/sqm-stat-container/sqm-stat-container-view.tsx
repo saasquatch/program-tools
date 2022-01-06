@@ -34,8 +34,26 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
         height: "100%",
       },
       "& > ::slotted(*:last-child)": {
-        "border-right": "1px solid #ffffff",
+        "border-right": "none",
       },
+      // TODO: Try Make this happen without media queries
+      // "@media screen and (max-width: 499px)": {
+      //   gridTemplateColumns: "1fr",
+
+      //   "& > *": {
+      //     borderRight: "none",
+      //     paddingRight: "none",
+      //   },
+
+      //   "& > :last-child": {
+      //     borderRight: "none",
+      //     paddingRight: "none",
+      //   },
+      //   "& > ::slotted(*)": {
+      //     borderRight: "none",
+      //     paddingRight: "none",
+      //   },
+      // },
     },
     StatFrame: {
       display: "flex",
