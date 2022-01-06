@@ -12,9 +12,59 @@ import { MediaView } from "./sqm-media-view";
 })
 export class Media {
   /**
-   * @uiName Title
+   * @uiName imgUrl
    */
-  @Prop() imgUrl: string;
+  @Prop() imgUrl?: string;
+
+  /**
+   * @uiName width
+   */
+  @Prop() width?: string;
+
+  /**
+   * @uiName height
+   */
+  @Prop() height?: string;
+
+  /**
+   * @uiName objectFit
+   */
+  @Prop() objectFit?: string;
+
+  /**
+   * @uiName header
+   */
+  @Prop() header?: string;
+
+  /**
+   * @uiName description
+   */
+  @Prop() description?: string;
+
+  /**
+   * @uiName imageHeader
+   */
+  @Prop() imageHeader?: string;
+
+  /**
+   * @uiName imageDescription
+   */
+  @Prop() imageDescription?: string;
+
+  /**
+   * @uiName buttonText
+   */
+  @Prop() buttonText?: string;
+
+  /**
+   * @uiName buttonLink
+   */
+  @Prop() buttonLink?: string;
+
+  /**
+   * @uiName buttonNewTab
+   */
+  @Prop() buttonNewTab?: boolean;
 
   constructor() {
     withHooks(this);

@@ -13,7 +13,6 @@ export interface MediaViewProps {
   buttonText?: string;
   buttonLink?: string;
   buttonNewTab?: boolean;
-  variant?: "title" | "description";
 }
 
 export function MediaView(props: MediaViewProps, children: VNode) {
@@ -128,7 +127,16 @@ export function MediaView(props: MediaViewProps, children: VNode) {
           )}
           {showButton && (
             <div class={sheet.classes.Button}>
-              <sl-button type="primary">{props.buttonText}</sl-button>
+              <sl-button
+                type="primary"
+                onClick={() =>
+                  props.buttonNewTab
+                    ? window.open(props.buttonLink)
+                    : window.open(props.buttonLink, "_parent")
+                }
+              >
+                {props.buttonText}
+              </sl-button>
             </div>
           )}
         </div>

@@ -43,6 +43,7 @@ export const style = {
 
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
+
 export function Details(props): VNode {
   const rid = Math.random().toString(36).slice(2);
 
@@ -55,7 +56,7 @@ export function Details(props): VNode {
           <sl-icon name="chevron-down"></sl-icon>
         </label>
         <span class="summary" progress-bar={props.progressBar}>
-          {props.description}
+          {props.content.description}
         </span>
       </span>
     </div>
