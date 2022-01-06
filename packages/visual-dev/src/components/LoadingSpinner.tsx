@@ -10,6 +10,7 @@ interface RingProps {
   right?: string;
   left?: string;
   paddingRight?: string;
+  color?: string;
 }
 
 const rotate = keyframes`
@@ -21,7 +22,7 @@ const rotate = keyframes`
     }
 `;
 
-export const RingDefault = styled.div`
+const RingDefault = styled.div`
   display: inline-block;
 
   div {
@@ -45,35 +46,32 @@ export const RingDefault = styled.div`
   }
 `;
 
-
 // SMALL LOADING SPINNER FOR INSIDE OF BUTTONS while loading
 const RingSmall = styled(RingDefault)<RingProps>`
   position: relative;
-  bottom: ${props =>
-    props.bottom || `14px`};
-  right: ${props =>
-    props.right || `2px`};
-  left: ${props =>
-    props.left || `unset`};
-  padding-right: ${props =>
-      props.paddingRight || `unset`}
-    div {
+  bottom: ${(props) => props.bottom || `14px`};
+  right: ${(props) => props.right || `2px`};
+  left: ${(props) => props.left || `unset`};
+  padding-right: ${(props) => props.paddingRight || `unset`};
+  div {
     width: 14px;
     height: 14px;
     margin: 3px;
-    border: 2px solid #f5a623;
-    border-color: #f5a623 transparent transparent transparent;
+    border: 2px solid ${(props) => props.color || `#f5a623`};
+    border-color: ${(props) => props.color || `#f5a623`} transparent transparent
+      transparent;
   }
 `;
 
-const LoadingSpinner = ({ ...props } : RingProps) => {
-  const { bottom, right, left, paddingRight } = props;
+export const LoadingSpinner = ({ ...props }: RingProps) => {
+  const { bottom, right, left, paddingRight, color } = props;
   return (
     <RingSmall
       bottom={bottom}
       right={right}
       left={left}
       paddingRight={paddingRight}
+      color={color}
     >
       <div></div>
       <div></div>
@@ -83,24 +81,29 @@ const LoadingSpinner = ({ ...props } : RingProps) => {
   );
 };
 
-export default LoadingSpinner;
-
 // LARGE SPINNER FOR METRICS CARD
-export const RingLarge = styled(RingDefault)`
+const RingLarge = styled(RingDefault)<RingProps>`
   margin: 55px calc(50% - 25px);
   opacity: 0.5;
+
+  bottom: ${(props) => props.bottom || `14px`};
+  right: ${(props) => props.right || `2px`};
+  left: ${(props) => props.left || `unset`};
+  padding-right: ${(props) => props.paddingRight || `unset`};
 
   div {
     width: 55px;
     height: 55px;
-    border: 6px solid #f5a623;
-    border-color: #f5a623 transparent transparent transparent;
+    border: 6px solid ${(props) => props.color || `#f5a623`};
+    border-color: ${(props) => props.color || `#f5a623`} transparent transparent
+      transparent;
   }
 `;
 
-export const LoadingSpinnerLarge = () => {
+export const LoadingSpinnerLarge = ({ ...props }: RingProps) => {
+  const { color } = props;
   return (
-    <RingLarge>
+    <RingLarge color={color}>
       <div></div>
       <div></div>
       <div></div>
@@ -110,7 +113,7 @@ export const LoadingSpinnerLarge = () => {
 };
 
 // TODO: center this spinner based on the height of the parent container... you know, with magic.
-export const TableSpinnerStyle = styled(RingDefault)`
+const TableSpinnerStyle = styled(RingDefault)<RingProps>`
   position: absolute;
   top: 0;
   left: 0;
@@ -141,7 +144,7 @@ export const TableSpinner = () => {
   );
 };
 
-export const TableInitialSpinnerStyle = styled(RingDefault)`
+const TableInitialSpinnerStyle = styled(RingDefault)`
   height: 160px;
   background: transparent;
   position: absolute;

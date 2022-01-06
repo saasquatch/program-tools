@@ -5,6 +5,7 @@ import { Input } from "../Input";
 import { IconButton } from "../Button";
 import React from "react";
 import { Icon } from "../Icon";
+import { LoadingSpinner } from "../LoadingSpinner";
 
 type SelectProps<ItemType> = OptionProps<ItemType> &
   React.ComponentProps<"input">;
@@ -18,6 +19,7 @@ export interface OptionProps<ItemType> {
   items: Array<any>;
   css?: CSSProp;
   clearable?: boolean;
+  loading?: boolean;
 }
 
 type ItemTypeBase = { description?: string } | string | number | boolean;
@@ -106,6 +108,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
     disabled = false,
     errors = false,
     clearable = false,
+    loading = false,
     functional,
     items,
     itemToString = (item: ItemType) => {
@@ -132,7 +135,9 @@ const SelectInner = <ItemType extends ItemTypeBase>(
   } = props;
 
   const showClear = clearable ? "visible" : "hidden";
-  const arrowColor = errors ? "var(--sq-border-critical)" : "";
+  const arrowColor = errors
+    ? "var(--sq-border-critical)"
+    : "var(--sq-text-on-secondary)";
 
   function isCombobox(
     hook: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>
@@ -148,7 +153,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
         <SelectInput
           {...rest}
           isOpen={functional.isOpen}
-          disabled={disabled}
+          disabled={disabled || loading}
           ref={ref}
           errors={errors}
           css={css}
@@ -179,7 +184,9 @@ const SelectInner = <ItemType extends ItemTypeBase>(
                 functional.selectItem((null as unknown) as ItemType);
               }}
             />
-            {functional.isOpen ? (
+            {loading ? (
+              <LoadingSpinner color={arrowColor} right="16px" bottom="11px" />
+            ) : functional.isOpen ? (
               <Icon
                 icon={"chevron_up"}
                 size={"small"}
@@ -213,7 +220,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               ${css};
               ${functional.isOpen && "border: 2px solid var(--sq-focused)"};
             `}
-            disabled={disabled}
+            disabled={disabled || loading}
             {...functional.getInputProps()}
           />
           <ButtonContainer>
@@ -237,7 +244,9 @@ const SelectInner = <ItemType extends ItemTypeBase>(
                 functional.selectItem((null as unknown) as ItemType);
               }}
             />
-            {functional.isOpen ? (
+            {loading ? (
+              <LoadingSpinner color={arrowColor} right="16px" bottom="11px" />
+            ) : functional.isOpen ? (
               <IconButton
                 disabled={disabled}
                 icon={"chevron_up"}

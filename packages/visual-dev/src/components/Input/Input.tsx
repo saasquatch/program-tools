@@ -1,16 +1,16 @@
-import * as React from "react";
 import root from "react-shadow/styled-components";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { IconKey, Icon } from "../Icon";
+import React from "react";
 
 type InputProps = OptionProps & Omit<React.ComponentProps<"input">, "value">;
 
 export interface OptionProps {
   value?: any;
   onChange?: any;
-  disabled?: any;
-  type?: any;
+  disabled?: boolean;
+  type?: string;
   errors?: any;
   icon?: IconKey;
   buttons?: React.ReactElement;

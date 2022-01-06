@@ -10,7 +10,7 @@ export interface OptionProps {
   value?: any;
   onChange?: any;
   options?: any;
-  disabled?: any;
+  disabled?: boolean;
   id?: string;
 }
 
