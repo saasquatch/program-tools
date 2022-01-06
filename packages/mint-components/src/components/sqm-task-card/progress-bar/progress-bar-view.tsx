@@ -120,9 +120,6 @@ const style = {
       position: "relative",
       top: "-18px",
     },
-    "&[data-done] .gift": {
-      filter: "grayscale(100%)",
-    },
   },
 };
 
@@ -218,7 +215,7 @@ function addSteps({ progress, goal }: ProgressBarProps): Aggregate {
     columns.push("0fr");
     items.push(<div class={"remain"}></div>);
     items.push(<div class={"empty bg"}>{goal}</div>);
-    items.push(<div class="gift">{<Gift />}</div>);
+    items.push(<div class="gift bw">{<Gift />}</div>);
   }
   return {
     items,
@@ -248,7 +245,11 @@ function addLinearRepeatable({
     );
     items.push(<div class={"remain"}></div>);
     items.push(<div class={"progress bg"}>{progressBarUnit + goal}</div>);
-    items.push(<div class="gift">{<Gift />}</div>);
+    items.push(
+      <div class={progress == goal ? "gift" : "gift bw"}>
+        <Gift />
+      </div>
+    );
     items.push(<div class={"remain"}></div>);
     items.push(<div class={"progress bg"}>{progressBarUnit + goal * 2}</div>);
     items.push(<div class="gift bw">{<Gift />}</div>);
@@ -488,7 +489,11 @@ function addLinear({
   );
   items.push(<div class={"remain"}></div>);
   items.push(<div class={"progress bg"}>{progressBarUnit + goal}</div>);
-  items.push(<div class={"gift"}>{<Gift />}</div>);
+  items.push(
+    <div class={clamp(progress, 0, goal) == goal ? "gift" : "gift bw"}>
+      <Gift />
+    </div>
+  );
   return { items, columns };
 }
 
