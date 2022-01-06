@@ -28,7 +28,7 @@ export const Basic = () => {
 export const WithPlaceholder = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const functional = useSelect({ items });
-  const props = {placeholder: "Enter a value!", items, functional };
+  const props = {placeholder: "Enter a value! Long text placeholder with ellipses", items, functional };
   return (
       <Select {...props}></Select>
   );

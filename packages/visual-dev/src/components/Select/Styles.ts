@@ -86,6 +86,9 @@ export const SelectedValue = css`
   padding-top: var(--sq-spacing-xxx-small);
   margin: auto 0;
   text-indent: 0px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `;
 
 export const ButtonDiv = css`
