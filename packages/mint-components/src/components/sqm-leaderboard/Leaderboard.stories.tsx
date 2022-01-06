@@ -1,4 +1,5 @@
 import { h } from "@stencil/core";
+import { EmptySkeleton, LoadingSkeleton } from "../../tables/TableSlots";
 import { LeaderboardView } from "./sqm-leaderboard-view";
 
 export default {
@@ -14,8 +15,8 @@ const defaultStyles = {
 };
 
 const defaultElements = {
-  empty: <div>Empty</div>,
-  loadingstate: <div>Loading</div>,
+  empty: <EmptySkeleton label="No Users Yet" />,
+  loadingstate: <LoadingSkeleton />,
 };
 
 export const Empty = () => {
@@ -119,71 +120,6 @@ export const FiveWithRank = () => {
       },
     },
     data: {
-      rankType: "rowNumber",
-      leaderboard: [
-        { firstName: "Viktor", lastInitial: "V", value: 82, rank: 1 },
-        { firstName: "MF", lastInitial: "D", value: 73, rank: 2 },
-        { firstName: "Freddie", lastInitial: "G", value: 64, rank: 3 },
-        { firstName: "Benny", lastInitial: "B", value: 55, rank: 4 },
-        { firstName: "Mos", lastInitial: "D", value: 46, rank: 5 },
-      ],
-    },
-    elements: {
-      ...defaultElements,
-    },
-  };
-  return <LeaderboardView {...props} />;
-};
-
-export const WithTitle = () => {
-  const props = {
-    states: {
-      loading: false,
-      hasLeaders: true,
-      styles: {
-        rankheading: "Rank",
-        usersheading: "User",
-        statsheading: "Referrals",
-        showRank: true,
-      },
-    },
-    data: {
-      headerTitle: "Leaderboard",
-      headerDescription:
-        "Be one of the top 3 referrers at the end of the year and receive Klip free for 1 year!",
-      rankType: "rowNumber",
-      leaderboard: [
-        { firstName: "Viktor", lastInitial: "V", value: 82, rank: 1 },
-        { firstName: "MF", lastInitial: "D", value: 73, rank: 2 },
-        { firstName: "Freddie", lastInitial: "G", value: 64, rank: 3 },
-        { firstName: "Benny", lastInitial: "B", value: 55, rank: 4 },
-        { firstName: "Mos", lastInitial: "D", value: 46, rank: 5 },
-      ],
-    },
-    elements: {
-      ...defaultElements,
-    },
-  };
-  return <LeaderboardView {...props} />;
-};
-
-export const WithImage = () => {
-  const props = {
-    states: {
-      loading: false,
-      hasLeaders: true,
-      styles: {
-        rankheading: "Rank",
-        usersheading: "User",
-        statsheading: "Referrals",
-        showRank: true,
-      },
-    },
-    data: {
-      headerTitle: "Leaderboard",
-      headerDescription:
-        "Be one of the top 3 referrers at the end of the year and receive Klip free for 1 year!",
-      imageUrl: "https://i.imgur.com/rWYyJWz.jpg",
       rankType: "rowNumber",
       leaderboard: [
         { firstName: "Viktor", lastInitial: "V", value: 82, rank: 1 },

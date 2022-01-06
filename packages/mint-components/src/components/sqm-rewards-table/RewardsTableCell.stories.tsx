@@ -76,6 +76,15 @@ export const RewardsCellEmpty = () => {
   );
 };
 
+export const RewardsCellNonRedeemable = () => {
+  return (
+    <sqm-rewards-table-rewards-cell
+      reward={{ ...rewardsData, ...{ type: "FUELTANK" } }}
+      availableText="19 Points available"
+    ></sqm-rewards-table-rewards-cell>
+  );
+};
+
 export const SourceCellText = () => {
   return (
     <sqm-rewards-table-source-cell
@@ -226,9 +235,9 @@ export const StatusCellRedeemed = () => {
 };
 
 const cancelled = {
-	statuses: ["CANCELLED"],
-	dateCancelled: 1640038417468,
-  };
+  statuses: ["CANCELLED"],
+  dateCancelled: 1640038417468,
+};
 
 export const StatusCellCancelled = () => {
   return (
@@ -240,9 +249,9 @@ export const StatusCellCancelled = () => {
 };
 
 const expired = {
-	statuses: ["EXPIRED"],
-	dateExpires: 1640038417468,
-  };
+  statuses: ["EXPIRED"],
+  dateExpires: 1640038417468,
+};
 
 export const StatusCellExpired = () => {
   return (
@@ -254,8 +263,8 @@ export const StatusCellExpired = () => {
 };
 
 const pending = {
-	statuses: ["PENDING"],
-  };
+  statuses: ["PENDING"],
+};
 
 export const StatusCellPending = () => {
   return (
@@ -265,7 +274,6 @@ export const StatusCellPending = () => {
     ></sqm-rewards-table-status-cell>
   );
 };
-
 
 export const DateCell = () => {
   return (
