@@ -19,6 +19,23 @@
 | `usersheading`    | `usersheading`     |             | `string`                                                                                                                                                                                                                                                                                                                                                                                                     | `undefined` |
 
 
+## Dependencies
+
+### Depends on
+
+- [sqm-table-row](../sqm-table-row)
+- [sqm-table-cell](../sqm-table-cell)
+- [sqm-text](../sqm-text)
+
+### Graph
+```mermaid
+graph TD;
+  sqm-leaderboard --> sqm-table-row
+  sqm-leaderboard --> sqm-table-cell
+  sqm-leaderboard --> sqm-text
+  style sqm-leaderboard fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

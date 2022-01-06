@@ -11,6 +11,9 @@
 
 - [sqm-share-button](../sqm-share-button)
 - [sqm-share-link](../sqm-share-link)
+- [sqm-table-row](../sqm-table-row)
+- [sqm-table-cell](../sqm-table-cell)
+- [sqm-text](../sqm-text)
 - [sqm-router](../sqm-router)
 - [sqm-hook-story-container](../sqm-hook-story-container)
 - [sqm-navigation-menu](../sqm-navigation-menu)
@@ -25,11 +28,8 @@
 - [sqm-rewards-table-source-column](../sqm-rewards-table/columns)
 - [sqm-rewards-table-date-column](../sqm-rewards-table/columns)
 - [sqm-task-card](../sqm-task-card)
-- [sqm-text](../sqm-text)
 - [sqm-password-field](../sqm-password-field)
 - [sqm-portal-register](../sqm-portal-register)
-- [sqm-table-row](../sqm-table-row)
-- [sqm-table-cell](../sqm-table-cell)
 - [sqm-referral-table-user-cell](../sqm-referral-table/cells)
 - [sqm-referral-table-date-cell](../sqm-referral-table/cells)
 - [sqm-referral-table-cell](../sqm-referral-table/cells)
@@ -57,6 +57,9 @@
 graph TD;
   sqm-stencilbook --> sqm-share-button
   sqm-stencilbook --> sqm-share-link
+  sqm-stencilbook --> sqm-table-row
+  sqm-stencilbook --> sqm-table-cell
+  sqm-stencilbook --> sqm-text
   sqm-stencilbook --> sqm-router
   sqm-stencilbook --> sqm-hook-story-container
   sqm-stencilbook --> sqm-navigation-menu
@@ -71,11 +74,8 @@ graph TD;
   sqm-stencilbook --> sqm-rewards-table-source-column
   sqm-stencilbook --> sqm-rewards-table-date-column
   sqm-stencilbook --> sqm-task-card
-  sqm-stencilbook --> sqm-text
   sqm-stencilbook --> sqm-password-field
   sqm-stencilbook --> sqm-portal-register
-  sqm-stencilbook --> sqm-table-row
-  sqm-stencilbook --> sqm-table-cell
   sqm-stencilbook --> sqm-referral-table-user-cell
   sqm-stencilbook --> sqm-referral-table-date-cell
   sqm-stencilbook --> sqm-referral-table-cell
