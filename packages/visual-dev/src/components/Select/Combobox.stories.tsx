@@ -35,6 +35,27 @@ export const Basic = () => {
   );
 };
 
+export const WithPlaceholder = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const [inputItems, setInputItems] = useState(items);
+  const functional = useCombobox({
+    items: inputItems,
+    onInputValueChange: ({ inputValue }) => {
+      setInputItems(
+        items.filter((item) =>
+          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
+        )
+      );
+    },
+  });
+  const props = {
+    placeholder: "Enter a value!",
+    items: inputItems,
+    functional,
+  };
+  return <Select {...props}></Select>;
+};
+
 export const Loading = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const [inputItems, setInputItems] = useState(items);
@@ -48,7 +69,7 @@ export const Loading = () => {
       );
     },
   });
-  const props = {loading: true, items: inputItems, functional };
+  const props = { loading: true, items: inputItems, functional };
   return (
     <div
       style={{

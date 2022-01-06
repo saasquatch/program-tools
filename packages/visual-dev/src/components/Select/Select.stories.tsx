@@ -25,6 +25,15 @@ export const Basic = () => {
   );
 };
 
+export const WithPlaceholder = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const functional = useSelect({ items });
+  const props = {placeholder: "Enter a value!", items, functional };
+  return (
+      <Select {...props}></Select>
+  );
+};
+
 export const Loading = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const hooks = useSelect({ items });

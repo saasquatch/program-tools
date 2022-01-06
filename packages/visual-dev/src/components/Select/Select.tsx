@@ -47,6 +47,10 @@ export interface OptionProps<ItemType> {
    * Set the input state to loading
    */
   loading?: boolean;
+  /**
+   * Placeholder for unset input
+   */
+  placeholer?: string;
 }
 
 type ItemTypeBase = { description?: string } | string | number | boolean;
@@ -111,8 +115,11 @@ const SelectInput = styled.button<{
   ${(props) => props.css}
 `;
 
-const SelectedValue = styled.span`
+const SelectedValue = styled.span<{
+  subdued: boolean;
+}>`
   ${Styles.SelectedValue}
+  ${(props) => props.subdued && "color: var(--sq-text-subdued)"}
 `;
 
 const ButtonDiv = styled.div`
@@ -136,6 +143,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
     errors = false,
     clearable = false,
     loading = false,
+    placeholder = "",
     functional,
     items,
     itemToString = (item: ItemType) => {
@@ -186,10 +194,10 @@ const SelectInner = <ItemType extends ItemTypeBase>(
           css={css}
           {...functional.getToggleButtonProps()}
         >
-          <SelectedValue>
+          <SelectedValue subdued={functional.selectedItem ? false : true}>
             {functional.selectedItem
               ? itemToString(functional.selectedItem)
-              : ""}
+              : placeholder}
           </SelectedValue>
           <ButtonDiv>
             <IconButton
@@ -240,6 +248,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
         <div {...functional.getComboboxProps()}>
           <Input
             {...rest}
+            placeholder={placeholder}
             type={"text"}
             ref={ref}
             errors={errors}

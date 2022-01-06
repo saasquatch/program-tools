@@ -17,7 +17,8 @@ import {
 } from "./components/Layouts";
 import { TextLink as TextButton } from "./components/TextButton";
 import { Link } from "./components/Links";
-import LoadingSpinner, {
+import {
+  LoadingSpinner,
   LoadingSpinnerLarge,
 } from "./components/LoadingSpinner";
 import RadioCards from "./components/RadioCards";
