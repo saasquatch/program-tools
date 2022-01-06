@@ -34,6 +34,27 @@ export const InvalidField = () => (
 
 export const PasswordInput = () => <Input type="password" value="Input Text" />;
 
+export const PasswordInputWithToggle = () => {
+  const [visible, setVisible] = useState(false);
+  return (
+    <Input
+      type={visible ? "text" : "password"}
+      buttons={
+        <IconButton
+          icon="visibility"
+          size="mini"
+          css=":hover{background: none; color: var(--sq-text-subdued)}"
+          icon_css="margin: -10px; top: 8px; height: 20px; width: 20px"
+          borderless={true}
+          onClick={() => {
+            setVisible(!visible);
+          }}
+        />
+      }
+    />
+  );
+};
+
 export const InputEdit = () => <Input value="" icon="edit" />;
 export const InputEditDisabled = () => <Input value="" icon="edit" disabled />;
 export const InputSearch = () => (
@@ -58,15 +79,14 @@ export const InputButtons = () => (
         <IconButton
           icon="checkmark"
           size="mini"
-          css="position: relative; left: -50px;"
           primary
           icon_css="margin: -10px; top: 8px;"
+          css={"margin-right: 4px;"}
         />
         <IconButton
           icon="close"
           size="mini"
-          css="position: relative; left: -47px;"
-          icon_css="margin: -10px; top: 8px;  color: #858585"
+          icon_css="margin: -10px; top: 8px; color: #858585;"
         />
       </>
     }

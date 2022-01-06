@@ -66,7 +66,6 @@ export const SelectInputStyle = css`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 300px;
   height: 36px;
   text-indent: 6px;
   color: var(--sq-text);

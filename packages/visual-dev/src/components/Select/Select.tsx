@@ -11,14 +11,41 @@ type SelectProps<ItemType> = OptionProps<ItemType> &
   React.ComponentProps<"input">;
 
 export interface OptionProps<ItemType> {
+  /**
+   * Downshift hook
+   */
   functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
+  /**
+   * Function to transform items to string
+   */
   itemToString?: (item: ItemType) => string;
+  /**
+   * Function to transform items into view code for dropdown menu
+   */
   itemToNode?: (item: ItemType) => React.ReactNode;
+  /**
+   * Disable input
+   */
   disabled?: boolean;
+  /**
+   * Error in input
+   */
   errors?: any;
+  /**
+   * Items to select from
+   */
   items: Array<any>;
+  /**
+   * Custom CSS for input element
+   */
   css?: CSSProp;
+  /**
+   * Allow the input to be cleared
+   */
   clearable?: boolean;
+  /**
+   * Set the input state to loading
+   */
   loading?: boolean;
 }
 

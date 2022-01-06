@@ -39,10 +39,10 @@ export const InputBoxStyle = css`
   }
 `;
 
-export const IconStyle = css`
-  position: relative;
-  width: 22px;
-  bottom: 28px;
+export const ExtrasDiv = css`
+  position: absolute;
+  bottom: 7px;
+  display: inline-flex;
 `;
 
 export const invalid = css`
@@ -54,4 +54,12 @@ export const invalid = css`
     outline: none;
     border-color: var(--sq-border-critical);
   }
+`;
+
+export const Container = css`
+  display: inline-block;
+  max-width: 300px;
+  width: 100%;
+  position: relative;
+  height: 36px;
 `;

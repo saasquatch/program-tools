@@ -33,9 +33,13 @@ const InputBox = styled.input<{
   ${(props) => props.css}
 `;
 
-const IconDiv = styled.div<{ position: string }>`
-  ${Styles.IconStyle}
-  ${(props) => (props.position == "left" ? "left: 13px;" : "left: 277px;")}
+const ExtrasDiv = styled.div<{ position: string }>`
+  ${Styles.ExtrasDiv}
+  ${(props) => (props.position == "left" ? "left: 12px;" : "right: 12px;")}
+`;
+
+const Container = styled.div`
+  ${Styles.Container}
 `;
 
 export const Input = React.forwardRef<React.ElementRef<"input">, InputProps>(
@@ -52,20 +56,22 @@ export const Input = React.forwardRef<React.ElementRef<"input">, InputProps>(
 
     return (
       <ShadowDom>
-        <InputBox
-          {...rest}
-          type={type}
-          position={position}
-          ref={forwardedRef}
-          isInvalid={rawErrors}
-          css={css}
-        />
-        {icon && (
-          <IconDiv position={position}>
-            <Icon icon={icon} size={"22px"} color="var(--sq-text-subdued)" />
-          </IconDiv>
-        )}
-        {buttons}
+        <Container>
+          <InputBox
+            {...rest}
+            type={type}
+            position={position}
+            ref={forwardedRef}
+            isInvalid={rawErrors}
+            css={css}
+          />
+          {icon && (
+            <ExtrasDiv position={position}>
+              <Icon icon={icon} size={"22px"} color="var(--sq-text-subdued)" />
+            </ExtrasDiv>
+          )}
+          <ExtrasDiv style={{bottom:"9px"}} position={position}>{buttons}</ExtrasDiv>
+        </Container>
       </ShadowDom>
     );
   }

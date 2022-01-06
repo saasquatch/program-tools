@@ -27,8 +27,8 @@ export const Basic = () => {
 
 export const Loading = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
-  const functional = useSelect({ items });
-  const props = { loading: true, items, functional };
+  const hooks = useSelect({ items });
+  const props = { loading: true, items, functional: hooks };
   return (
     <div
       style={{
