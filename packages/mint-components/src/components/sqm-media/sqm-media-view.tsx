@@ -13,7 +13,6 @@ export interface MediaViewProps {
   buttonText?: string;
   buttonLink?: string;
   buttonNewTab?: boolean;
-  variant?: "title" | "description";
 }
 
 export function MediaView(props: MediaViewProps, children: VNode) {
