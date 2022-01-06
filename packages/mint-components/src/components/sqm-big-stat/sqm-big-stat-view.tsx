@@ -1,6 +1,5 @@
 import { h, VNode } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../styling/JSS";
 
 export interface BigStatViewProps {
   value: number;
@@ -40,8 +39,7 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
     },
   };
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   return (

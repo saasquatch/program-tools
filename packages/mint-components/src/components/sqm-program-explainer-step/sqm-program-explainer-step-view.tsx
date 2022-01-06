@@ -1,6 +1,5 @@
 import { h } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../styling/JSS";
 
 export interface ProgramExplainerStepViewProps {
   cardTitle: string;
@@ -61,8 +60,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
     },
   };
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   const vanillaStyle = `

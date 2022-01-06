@@ -1,7 +1,6 @@
 import { h, VNode } from "@stencil/core";
 import PasswordValidator from "password-validator";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../styling/JSS";
 const passwordSchema = new PasswordValidator()
   .is()
   .min(8) // Minimum length 8
@@ -86,8 +85,7 @@ const style = {
   ValidationItemInvalid: { ...baseItem },
 };
 
-jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
+const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 const getErrorMessage = (errorKeys: string[], password: string): string => {

@@ -51,6 +51,7 @@ export const TaskCard = createHookStory(() => {
       goal={5}
       steps={true}
       show-progress-bar={true}
+      event-key="testEvent"
     ></sqm-task-card>
   );
 });

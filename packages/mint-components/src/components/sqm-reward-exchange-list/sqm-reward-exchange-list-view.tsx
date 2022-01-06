@@ -1,11 +1,10 @@
 import { getAssetPath, h } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
 import { intl } from "../../global/global";
 import { HostBlock } from "../../global/mixins";
-import { ProgressBar } from "./progressBar";
+import { createStyleSheet } from "../../styling/JSS";
 import { ShareLinkView } from "../sqm-share-link/sqm-share-link-view";
-import { ExchangeArrows, Gift, CheckmarkFilled } from "./SVGs";
+import { ProgressBar } from "./progressBar";
+import { CheckmarkFilled, ExchangeArrows, Gift } from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
 
 export type RewardExchangeViewProps = {
@@ -33,12 +32,13 @@ export type RewardExchangeViewProps = {
     setExchangeState: Function;
     copyFuelTankCode: () => void;
   };
+  refs?: { canvasRef: any };
 };
 
 const stageList = ["chooseReward", "chooseAmount", "confirmation", "success"];
 
 export function RewardExchangeView(props: RewardExchangeViewProps) {
-  const { states, data, callbacks } = props;
+  const { states, data, callbacks, refs } = props;
   const { selectedItem, selectedStep } = states;
 
   const stageProgressList = {
@@ -63,6 +63,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     Select: {
       "&::part(label)": {
         color: "var(--sl-color-primary-500)",
+      },
+      "&::part(menu)": {
+        maxHeight: "50vh",
       },
     },
     ProgressBar: {
@@ -268,8 +271,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   };
 
   // JSS config
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   function getInput() {
@@ -308,12 +310,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         {item.steps?.map((step) => (
           <sl-menu-item value={step} disabled={!step.available}>
             {step.prettyDestinationValue}
-            <div slot="suffix" style={{ fontSize: "75%", float: "right" }}>
+            <div slot="suffix" style={{ fontSize: "16px", float: "right" }}>
               {step.prettySourceValue}
               {step.unavailableReasonCode && (
                 <p
                   style={{
-                    fontSize: "70%",
+                    fontSize: "75%",
                     color: "var(--sl-color-warning-500)",
                   }}
                 >
@@ -341,136 +343,140 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   function chooseReward() {
     return [
       <div>
-        {!states.loading && (
-          <h2 style={{ margin: "var(--sl-spacing-large) 0" }}>
-            {states.content.text.rewardTitle}
-          </h2>
-        )}
-        <div class={sheet.classes.Grid}>
-          {data.exchangeList?.map((item: ExchangeItem) => {
-            const style = {
-              boxShadow:
-                item.key === selectedItem?.key
-                  ? "0 0 0 2px var(--sl-color-primary-500)"
-                  : "none",
-              borderRadius: "4px",
-            };
+        <h2 style={{ margin: "var(--sl-spacing-large) 0" }}>
+          {states.content.text.rewardTitle}
+        </h2>
+        {states.loading ? (
+          loading()
+        ) : (
+          <div class={sheet.classes.Grid}>
+            {data.exchangeList?.map((item: ExchangeItem) => {
+              const style = {
+                boxShadow:
+                  item.key === selectedItem?.key
+                    ? "0 0 0 2px var(--sl-color-primary-500)"
+                    : "none",
+                borderRadius: "4px",
+              };
 
-            return (
-              <div key={item.key} style={style}>
-                <sl-card
-                  class={sheet.classes.Card}
-                  style={{
-                    cursor: item.unavailableReasonCode
-                      ? "not-allowed"
-                      : "pointer",
-                  }}
-                  onClick={() =>
-                    item.available &&
-                    callbacks.setExchangeState({ selectedItem: item })
-                  }
-                >
-                  {item.key === selectedItem?.key && (
-                    <div class="selected">
-                      <CheckmarkFilled />
-                    </div>
-                  )}
-                  <div
+              return (
+                <div key={item.key} style={style}>
+                  <sl-card
+                    class={sheet.classes.Card}
                     style={{
-                      display: "flex",
-                      width: "100%",
-                      height: "120px",
-                      borderRadius: "3px",
-                      background: item.unavailableReasonCode
-                        ? "rgba(0, 0, 0, 0.05)"
-                        : "rgba(0, 0, 0, 0)",
+                      cursor: item.unavailableReasonCode
+                        ? "not-allowed"
+                        : "pointer",
                     }}
+                    onClick={() =>
+                      item.available &&
+                      callbacks.setExchangeState({ selectedItem: item })
+                    }
                   >
-                    <div
-                      class={sheet.classes.Image}
-                      style={{
-                        opacity: item.unavailableReasonCode ? "0.5" : "1",
-                      }}
-                    >
-                      <img
-                        class={
-                          item.unavailableReasonCode ? "image subdued" : "image"
-                        }
-                        src={
-                          item?.imageUrl ||
-                          getAssetPath("./assets/placeholder.png")
-                        }
-                      />
-                    </div>
-                    <div
-                      class={sheet.classes.TextArea}
-                      style={{
-                        opacity: item.unavailableReasonCode ? "0.5" : "1",
-                      }}
-                    >
-                      <div
-                        class="title"
-                        style={{
-                          "-webkit-line-clamp": item.unavailableReasonCode
-                            ? "1"
-                            : "2",
-                        }}
-                      >
-                        {item.name ?? ""}
+                    {item.key === selectedItem?.key && (
+                      <div class="selected">
+                        <CheckmarkFilled />
                       </div>
+                    )}
+                    <div
+                      style={{
+                        display: "flex",
+                        width: "100%",
+                        height: "120px",
+                        borderRadius: "3px",
+                        background: item.unavailableReasonCode
+                          ? "rgba(0, 0, 0, 0.05)"
+                          : "rgba(0, 0, 0, 0)",
+                      }}
+                    >
                       <div
-                        class="amount"
+                        class={sheet.classes.Image}
                         style={{
-                          "-webkit-line-clamp": item.unavailableReasonCode
-                            ? "1"
-                            : "2",
+                          opacity: item.unavailableReasonCode ? "0.5" : "1",
                         }}
                       >
-                        {intl.formatMessage(
-                          {
-                            id: "sourceAmountMessage",
-                            defaultMessage:
-                              states.content?.text?.sourceAmountMessage,
-                          },
-                          {
-                            ruleType: item.ruleType,
-                            sourceValue: item.prettySourceValue,
-                            sourceMinValue: item.prettySourceMinValue,
-                            sourceMaxValue: item.prettySourceMaxValue,
+                        <img
+                          class={
+                            item.unavailableReasonCode
+                              ? "image subdued"
+                              : "image"
                           }
-                        )}
+                          src={
+                            item?.imageUrl ||
+                            getAssetPath("./assets/placeholder.png")
+                          }
+                        />
                       </div>
-                      {item.unavailableReasonCode && (
-                        <div class="error">
-                          <sl-icon
-                            class="icon"
-                            name="exclamation-triangle-fill"
-                          ></sl-icon>
+                      <div
+                        class={sheet.classes.TextArea}
+                        style={{
+                          opacity: item.unavailableReasonCode ? "0.5" : "1",
+                        }}
+                      >
+                        <div
+                          class="title"
+                          style={{
+                            "-webkit-line-clamp": item.unavailableReasonCode
+                              ? "1"
+                              : "2",
+                          }}
+                        >
+                          {item.name ?? ""}
+                        </div>
+                        <div
+                          class="amount"
+                          style={{
+                            "-webkit-line-clamp": item.unavailableReasonCode
+                              ? "1"
+                              : "2",
+                          }}
+                        >
                           {intl.formatMessage(
                             {
-                              id: "unavailableCode",
+                              id: "sourceAmountMessage",
                               defaultMessage:
-                                states.content?.text?.notAvailableError,
+                                states.content?.text?.sourceAmountMessage,
                             },
                             {
-                              unavailableReason:
-                                item.unavailableReason ||
-                                item.unavailableReasonCode,
-                              sourceUnit: item.sourceUnit,
-                              sourceValue:
-                                item.prettySourceValue ||
-                                item.prettySourceMinValue,
+                              ruleType: item.ruleType,
+                              sourceValue: item.prettySourceValue,
+                              sourceMinValue: item.prettySourceMinValue,
+                              sourceMaxValue: item.prettySourceMaxValue,
                             }
                           )}
                         </div>
-                      )}
+                        {item.unavailableReasonCode && (
+                          <div class="error">
+                            <sl-icon
+                              class="icon"
+                              name="exclamation-triangle-fill"
+                            ></sl-icon>
+                            {intl.formatMessage(
+                              {
+                                id: "unavailableCode",
+                                defaultMessage:
+                                  states.content?.text?.notAvailableError,
+                              },
+                              {
+                                unavailableReason:
+                                  item.unavailableReason ||
+                                  item.unavailableReasonCode,
+                                sourceUnit: item.sourceUnit,
+                                sourceValue:
+                                  item.prettySourceValue ||
+                                  item.prettySourceMinValue,
+                              }
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </sl-card>
-              </div>
-            );
-          })}
-        </div>
+                  </sl-card>
+                </div>
+              );
+            })}
+          </div>
+        )}
         <div class={sheet.classes.Button}>
           <sl-button
             class="continue right"
@@ -506,18 +512,20 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           }
         </div>
         <div class={sheet.classes.ChooseAmount}>
-          <div class="title">{selectedItem?.name ?? ""}</div>
-          {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
-            <div class="points">{input}</div>
-          ) : (
-            <div class="description">{selectedItem?.description}</div>
-          )}
-          {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
-            <div class="description">{selectedItem?.description}</div>
-          ) : (
-            <div class="points">{input}</div>
-          )}
-          <div class="space" />
+          <div style={{ maxWidth: "600px", margin: "auto" }}>
+            <div class="title">{selectedItem?.name ?? ""}</div>
+            {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
+              <div class="points">{input}</div>
+            ) : (
+              <div class="description">{selectedItem?.description}</div>
+            )}
+            {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
+              <div class="description">{selectedItem?.description}</div>
+            ) : (
+              <div class="points">{input}</div>
+            )}
+            <div class="space" />
+          </div>
         </div>
 
         <div class={sheet.classes.Button}>
@@ -635,9 +643,11 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   }
 
   function success() {
+    console.log("success");
     return (
       <div class={sheet.classes.Success}>
         <Gift />
+        <Confetti />
         <div class="title">{states.content.text.rewardRedeemedText}</div>
         <div class="description">
           {intl.formatMessage(
@@ -778,15 +788,36 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     );
   }
 
+  function Confetti() {
+    return (
+      <canvas
+        ref={(canvas: HTMLCanvasElement & { confetti }) => {
+          if (!refs?.canvasRef) return;
+          refs.canvasRef.current = canvas;
+        }}
+        id="my-canvas"
+        style={{
+          pointerEvents: "none",
+          position: "absolute",
+          width: "500px",
+          height: "500px",
+          top: "5%",
+          zIndex: "1",
+          left: "25%",
+        }}
+      ></canvas>
+    );
+  }
+
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
       <div>
         {stageMap()}
-        {states.redeemStage === "chooseReward" && states.loading && loading()}
         {states.exchangeError && errorMessage()}
         {states.queryError && queryErrorMessage()}
         {currentStage && currentStage()}
+        {states.redeemStage === "success"}
       </div>
     </div>
   );

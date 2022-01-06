@@ -3,6 +3,7 @@ import {
   useUserIdentity,
   useQuery,
   useMutation,
+  useRefreshDispatcher,
 } from "@saasquatch/component-boilerplate";
 import { gql } from "graphql-request";
 import { SqmRewardExchangeList } from "./sqm-reward-exchange-list";
@@ -14,6 +15,7 @@ import {
   useRef,
   useState,
 } from "@saasquatch/universal-hooks";
+import confetti from "canvas-confetti";
 
 export type ExchangeItem = {
   key: string;
@@ -179,7 +181,19 @@ export function useRewardExchangeList(
     }
   }, [exchangeResponse, errors]);
 
-  function exchangeReward() {
+  const canvasRef = useRef<HTMLCanvasElement>();
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    console.log("confetti!")
+    const canvas: HTMLCanvasElement & { confetti? } = canvasRef.current;
+    canvas.confetti =
+      canvas.confetti || confetti.create(canvas, { resize: true, });
+    canvas.confetti();
+  }, [canvasRef.current]);
+
+  const { refresh } = useRefreshDispatcher();
+
+  async function exchangeReward() {
     if (!selectedItem) return;
 
     let exchangeVariables: { [key: string]: any } = {
@@ -216,7 +230,7 @@ export function useRewardExchangeList(
             unit: selectedItem.sourceUnit,
           },
           globalRewardKey: selectedItem.globalRewardKey,
-          rewardInput:selectedStep.rewardInput,
+          rewardInput: selectedStep.rewardInput,
         };
         break;
       case "VARIABLE_CREDIT_REWARD":
@@ -239,7 +253,8 @@ export function useRewardExchangeList(
           ...selectedStep.rewardInput,
         };
     }
-    exchange({ exchangeRewardInput: exchangeVariables });
+    await exchange({ exchangeRewardInput: exchangeVariables });
+    refresh();
   }
 
   const resetState = (refresh: boolean) => {
@@ -288,6 +303,9 @@ export function useRewardExchangeList(
       setStage,
       resetState,
       copyFuelTankCode,
+    },
+    refs: {
+      canvasRef,
     },
   };
 }

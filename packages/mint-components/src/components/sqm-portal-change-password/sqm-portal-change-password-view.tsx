@@ -1,6 +1,5 @@
 import { h } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../styling/JSS";
 import { PortalContainerView } from "../sqm-portal-container/sqm-portal-container-view";
 import { PortalSectionView } from "../sqm-titled-section/sqm-portal-section-view";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
@@ -74,8 +73,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
     },
   };
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   return (

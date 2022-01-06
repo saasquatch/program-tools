@@ -1,6 +1,5 @@
 import { h, VNode } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../styling/JSS";
 
 export interface TextSpanView {
   type: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
@@ -46,8 +45,7 @@ export function TextSpanView(props: TextSpanView, children: VNode) {
     },
   };
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   const vanillaStyle = `

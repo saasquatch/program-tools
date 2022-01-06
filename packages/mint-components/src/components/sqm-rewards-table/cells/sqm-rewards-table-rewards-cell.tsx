@@ -1,7 +1,6 @@
 import { Component, h, Prop } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
 import { intl } from "../../../global/global";
+import { createStyleSheet } from "../../../styling/JSS";
 import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 @Component({
   tag: "sqm-rewards-table-rewards-cell",
@@ -58,8 +57,7 @@ export class RewardTableRewardsCell {
       },
     };
 
-    jss.setup(preset());
-    const sheet = jss.createStyleSheet(style);
+    const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
 
     const RewardValue = ({ reward }: { reward: Reward }) => {
@@ -109,11 +107,11 @@ export class RewardTableRewardsCell {
             height: "3px",
             width: "100px",
             margin: "var(--sl-spacing-xx-small) 0",
-			background: "var(--sl-color-neutral-200)",
+            background: "var(--sl-color-neutral-200)",
             "&:after": {
               content: '""',
               display: "block",
-			  background: "var(--sl-color-neutral-1000)",
+              background: "var(--sl-color-neutral-1000)",
               borderRadius: "100px",
               width: `${progress}%`,
               height: "100%",
@@ -138,8 +136,7 @@ export class RewardTableRewardsCell {
             color: "var(--sl-color-neutral-500)",
           },
         };
-        jss.setup(preset());
-        const sheet = jss.createStyleSheet(style);
+        const sheet = createStyleSheet(style);
         const styleString = sheet.toString();
         return (
           <div>
@@ -157,7 +154,7 @@ export class RewardTableRewardsCell {
         );
       }
       return <span>{pimpedPrettyValue}</span>;
-    }
+    };
 
     return (
       <div style={{ display: "contents" }}>

@@ -1,8 +1,7 @@
 import { Component, h, Prop } from "@stencil/core";
 import { DateTime } from "luxon";
 import { intl } from "../../../global/global";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../../styling/JSS";
 
 @Component({
   tag: "sqm-rewards-table-status-cell",
@@ -54,8 +53,7 @@ export class RewardTableStatusCell {
       },
     };
 
-    jss.setup(preset());
-    const sheet = jss.createStyleSheet(style);
+    const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
 
     const rewardStatus = this.rewardStatus(this.reward);
@@ -73,7 +71,7 @@ export class RewardTableStatusCell {
         ? "primary"
         : rewardStatus === "PENDING"
         ? "warning"
-        : "error";
+        : "danger";
 
     const dateShown =
       this.reward.dateCancelled ||
@@ -83,9 +81,11 @@ export class RewardTableStatusCell {
 
     const date =
       dateShown &&
-      `${this.reward.dateExpires ? this.expiryText : ""}${DateTime.fromMillis(
-        dateShown
-      )?.toLocaleString(DateTime.DATE_MED)}`;
+      `${
+        rewardStatus === "AVAILABLE" && this.reward.dateExpires
+          ? this.expiryText + " "
+          : ""
+      }${DateTime.fromMillis(dateShown)?.toLocaleString(DateTime.DATE_MED)}`;
 
     return (
       <div style={{ display: "contents" }}>

@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Takes in a brand font and applies it to child components
   - \<sqm-card-feed>
     - Applies a masonry style grid to child components (created for sqm-task-card)
-    - Child width and gap between children can be configured
+    - Child width and gap between children is configurable
   - \<sqm-program-explainer>
     - Designed to wrap \<sqm-program-explainer-step>
     - Adds header and footer sections
@@ -34,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Displays a table of users rewards with help from column and cell components
     - Program Id prop specifies from which programs to show rewards for, defaults to program context but shows rewards globally if no program is provided through prop or context
     - Column titles are shown by default but can be hidden via prop
-    - 3 rewards are shown per page by default but can be changed via prop
+    - 3 rewards are shown per page by default but is customizable via prop
     - Mobile responsive functionality
     - Includes props for mobile and table breakpoints, which trigger mobile friendly views
     - Includes prop to hide column titles in mobile view

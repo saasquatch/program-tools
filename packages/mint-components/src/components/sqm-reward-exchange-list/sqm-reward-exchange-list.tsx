@@ -167,7 +167,7 @@ export class SqmRewardExchangeList {
     //   return <RequiredPropsError missingProps={missingProps} />;
     // }
 
-    const { states, data, callbacks } = isDemo()
+    const { states, data, callbacks, refs } = isDemo()
       ? useRewardExchangeListDemo(getProps(this))
       : useRewardExchangeList(getProps(this));
 
@@ -177,6 +177,7 @@ export class SqmRewardExchangeList {
           states={states}
           data={data}
           callbacks={callbacks}
+          refs={refs}
         ></RewardExchangeView>
       </Host>
     );
@@ -207,6 +208,9 @@ function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
         resetState: () => {},
         copyFuelTankCode: () => {},
       },
+      refs:{
+        canvasRef: {}
+      }
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }

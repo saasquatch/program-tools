@@ -12,6 +12,9 @@ export interface LeaderboardViewProps {
     };
   };
   data: {
+    imageUrl?: string;
+    headerTitle?: string;
+    headerDescription?: string;
     rankType: string;
     leaderboard: {
       value: number;
@@ -34,6 +37,11 @@ export function LeaderboardView(props: LeaderboardViewProps) {
   }
   return (
     <div>
+      {data.headerTitle && <div class="header-title">{data.headerTitle}</div>}
+      {data.headerDescription && (
+        <div class="header-description">{data.headerDescription}</div>
+      )}
+      {data.imageUrl && <img class="cover-image" src={data.imageUrl} />}
       {!states.hasLeaders && elements.empty}
       {states.hasLeaders && (
         <table>
