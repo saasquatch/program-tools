@@ -35,7 +35,7 @@ export class SqmRewardExchangeList {
    * @uiName Exchange button text
    */
   @Prop() notAvailableError: string =
-    "{unavailableReason, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} other {Not available} }";
+    "{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {unavailableReasonCode} }";
 
   /**
    * @uiName Choose Reward Progress Title

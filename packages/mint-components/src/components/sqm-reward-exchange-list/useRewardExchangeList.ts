@@ -23,7 +23,6 @@ export type ExchangeItem = {
   description: string;
   imageUrl: string;
   available: boolean;
-  unavailableReason: string;
   unavailableReasonCode: string;
   ruleType: string;
   sourceUnit: string;
@@ -82,7 +81,6 @@ const GET_EXCHANGE_LIST = gql`
             description
             imageUrl
             available
-            unavailableReason
             unavailableReasonCode
             ruleType
             sourceUnit
