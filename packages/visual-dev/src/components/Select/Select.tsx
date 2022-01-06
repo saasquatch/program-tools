@@ -169,7 +169,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
     ...rest
   } = props;
 
-  const showClear = clearable ? "visible" : "hidden";
+  const showClear = clearable ? "inline-flex" : "none";
   const arrowColor = errors
     ? "var(--sq-border-critical)"
     : "var(--sq-text-on-secondary)";
@@ -207,7 +207,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               borderless={true}
               size="mini"
               css={{
-                visibility: showClear,
+                display: showClear,
                 height: "12px",
                 width: "12px",
               }}
@@ -267,7 +267,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               borderless={true}
               size="mini"
               css={{
-                visibility: showClear,
+                display: showClear,
               }}
               icon_css={{ color: arrowColor, height: "12px", width: "12px" }}
               color={
