@@ -32,6 +32,7 @@ import { ReferralDates } from "./components/sqm-referral-table/useReferralTable"
 import { RewardExchangeViewProps } from "./components/sqm-reward-exchange-list/sqm-reward-exchange-list-view";
 import { ShareButtonViewProps } from "./components/sqm-share-button/sqm-share-button-view";
 import { ShareLinkViewProps } from "./components/sqm-share-link/sqm-share-link-view";
+import { TaskCardViewProps } from "./components/sqm-task-card/sqm-task-card-view";
 import { UserNameViewProps } from "./components/sqm-user-name/sqm-user-name-view";
 export namespace Components {
     interface SqmAssetCard {
@@ -267,6 +268,52 @@ export namespace Components {
           * @uiName Unranked Text
          */
         "unrankedText": string;
+    }
+    interface SqmMedia {
+        /**
+          * @uiName buttonLink
+         */
+        "buttonLink"?: string;
+        /**
+          * @uiName buttonNewTab
+         */
+        "buttonNewTab"?: boolean;
+        /**
+          * @uiName buttonText
+         */
+        "buttonText"?: string;
+        /**
+          * @uiName description
+         */
+        "description"?: string;
+        /**
+          * @uiName header
+         */
+        "header"?: string;
+        /**
+          * @uiName height
+         */
+        "height"?: string;
+        /**
+          * @uiName imageDescription
+         */
+        "imageDescription"?: string;
+        /**
+          * @uiName imageHeader
+         */
+        "imageHeader"?: string;
+        /**
+          * @uiName imgUrl
+         */
+        "imgUrl"?: string;
+        /**
+          * @uiName objectFit
+         */
+        "objectFit"?: string;
+        /**
+          * @uiName width
+         */
+        "width"?: string;
     }
     interface SqmNameFields {
         /**
@@ -963,6 +1010,12 @@ export namespace Components {
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
+    interface SqmRefreshButton {
+        /**
+          * @uiName Icon to show in the slot
+         */
+        "icon"?: string;
+    }
     interface SqmRewardExchangeList {
         /**
           * @uiName Back Button Text
@@ -1384,6 +1437,11 @@ export namespace Components {
          */
         "completedText": string;
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<TaskCardViewProps | BigStatViewProps>;
+        /**
           * @uiName Description Text
          */
         "description": string;
@@ -1393,11 +1451,16 @@ export namespace Components {
          */
         "endedMessage": string;
         /**
+          * @uiName Event key of task card button
+         */
+        "eventKey"?: string;
+        /**
           * @uiName Expiry Date Message
          */
         "expiryMessage": string;
         /**
-          * @uiName Repeat Amount (0 for no limit)
+          * The number of times a reward can be earned.  Use zero for no limit (the default).
+          * @uiName Repeat Amount
          */
         "finite": number;
         /**
@@ -1572,6 +1635,12 @@ declare global {
     var HTMLSqmLeaderboardRankElement: {
         prototype: HTMLSqmLeaderboardRankElement;
         new (): HTMLSqmLeaderboardRankElement;
+    };
+    interface HTMLSqmMediaElement extends Components.SqmMedia, HTMLStencilElement {
+    }
+    var HTMLSqmMediaElement: {
+        prototype: HTMLSqmMediaElement;
+        new (): HTMLSqmMediaElement;
     };
     interface HTMLSqmNameFieldsElement extends Components.SqmNameFields, HTMLStencilElement {
     }
@@ -1777,6 +1846,12 @@ declare global {
         prototype: HTMLSqmReferralTableUserColumnElement;
         new (): HTMLSqmReferralTableUserColumnElement;
     };
+    interface HTMLSqmRefreshButtonElement extends Components.SqmRefreshButton, HTMLStencilElement {
+    }
+    var HTMLSqmRefreshButtonElement: {
+        prototype: HTMLSqmRefreshButtonElement;
+        new (): HTMLSqmRefreshButtonElement;
+    };
     interface HTMLSqmRewardExchangeListElement extends Components.SqmRewardExchangeList, HTMLStencilElement {
     }
     var HTMLSqmRewardExchangeListElement: {
@@ -1934,6 +2009,7 @@ declare global {
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
+        "sqm-media": HTMLSqmMediaElement;
         "sqm-name-fields": HTMLSqmNameFieldsElement;
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
@@ -1968,6 +2044,7 @@ declare global {
         "sqm-referral-table-status-column": HTMLSqmReferralTableStatusColumnElement;
         "sqm-referral-table-user-cell": HTMLSqmReferralTableUserCellElement;
         "sqm-referral-table-user-column": HTMLSqmReferralTableUserColumnElement;
+        "sqm-refresh-button": HTMLSqmRefreshButtonElement;
         "sqm-reward-exchange-list": HTMLSqmRewardExchangeListElement;
         "sqm-rewards-table": HTMLSqmRewardsTableElement;
         "sqm-rewards-table-date-cell": HTMLSqmRewardsTableDateCellElement;
@@ -2228,6 +2305,52 @@ declare namespace LocalJSX {
           * @uiName Unranked Text
          */
         "unrankedText"?: string;
+    }
+    interface SqmMedia {
+        /**
+          * @uiName buttonLink
+         */
+        "buttonLink"?: string;
+        /**
+          * @uiName buttonNewTab
+         */
+        "buttonNewTab"?: boolean;
+        /**
+          * @uiName buttonText
+         */
+        "buttonText"?: string;
+        /**
+          * @uiName description
+         */
+        "description"?: string;
+        /**
+          * @uiName header
+         */
+        "header"?: string;
+        /**
+          * @uiName height
+         */
+        "height"?: string;
+        /**
+          * @uiName imageDescription
+         */
+        "imageDescription"?: string;
+        /**
+          * @uiName imageHeader
+         */
+        "imageHeader"?: string;
+        /**
+          * @uiName imgUrl
+         */
+        "imgUrl"?: string;
+        /**
+          * @uiName objectFit
+         */
+        "objectFit"?: string;
+        /**
+          * @uiName width
+         */
+        "width"?: string;
     }
     interface SqmNameFields {
         /**
@@ -2914,6 +3037,12 @@ declare namespace LocalJSX {
          */
         "deletedUser"?: string;
     }
+    interface SqmRefreshButton {
+        /**
+          * @uiName Icon to show in the slot
+         */
+        "icon"?: string;
+    }
     interface SqmRewardExchangeList {
         /**
           * @uiName Back Button Text
@@ -3327,6 +3456,11 @@ declare namespace LocalJSX {
          */
         "completedText"?: string;
         /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<TaskCardViewProps | BigStatViewProps>;
+        /**
           * @uiName Description Text
          */
         "description"?: string;
@@ -3336,11 +3470,16 @@ declare namespace LocalJSX {
          */
         "endedMessage"?: string;
         /**
+          * @uiName Event key of task card button
+         */
+        "eventKey"?: string;
+        /**
           * @uiName Expiry Date Message
          */
         "expiryMessage"?: string;
         /**
-          * @uiName Repeat Amount (0 for no limit)
+          * The number of times a reward can be earned.  Use zero for no limit (the default).
+          * @uiName Repeat Amount
          */
         "finite"?: number;
         /**
@@ -3455,6 +3594,7 @@ declare namespace LocalJSX {
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
+        "sqm-media": SqmMedia;
         "sqm-name-fields": SqmNameFields;
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-navigation-sidebar": SqmNavigationSidebar;
@@ -3489,6 +3629,7 @@ declare namespace LocalJSX {
         "sqm-referral-table-status-column": SqmReferralTableStatusColumn;
         "sqm-referral-table-user-cell": SqmReferralTableUserCell;
         "sqm-referral-table-user-column": SqmReferralTableUserColumn;
+        "sqm-refresh-button": SqmRefreshButton;
         "sqm-reward-exchange-list": SqmRewardExchangeList;
         "sqm-rewards-table": SqmRewardsTable;
         "sqm-rewards-table-date-cell": SqmRewardsTableDateCell;
@@ -3531,6 +3672,7 @@ declare module "@stencil/core" {
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
+            "sqm-media": LocalJSX.SqmMedia & JSXBase.HTMLAttributes<HTMLSqmMediaElement>;
             "sqm-name-fields": LocalJSX.SqmNameFields & JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
@@ -3565,6 +3707,7 @@ declare module "@stencil/core" {
             "sqm-referral-table-status-column": LocalJSX.SqmReferralTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusColumnElement>;
             "sqm-referral-table-user-cell": LocalJSX.SqmReferralTableUserCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserCellElement>;
             "sqm-referral-table-user-column": LocalJSX.SqmReferralTableUserColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserColumnElement>;
+            "sqm-refresh-button": LocalJSX.SqmRefreshButton & JSXBase.HTMLAttributes<HTMLSqmRefreshButtonElement>;
             "sqm-reward-exchange-list": LocalJSX.SqmRewardExchangeList & JSXBase.HTMLAttributes<HTMLSqmRewardExchangeListElement>;
             "sqm-rewards-table": LocalJSX.SqmRewardsTable & JSXBase.HTMLAttributes<HTMLSqmRewardsTableElement>;
             "sqm-rewards-table-date-cell": LocalJSX.SqmRewardsTableDateCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateCellElement>;

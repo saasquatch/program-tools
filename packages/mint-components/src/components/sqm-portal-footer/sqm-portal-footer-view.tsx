@@ -1,6 +1,5 @@
 import { h } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../styling/JSS";
 import { intl } from "../../global/global";
 import { PoweredByImg } from "./PoweredByImg";
 
@@ -65,8 +64,7 @@ export function PortalFooterView(props: PortalFooterViewProps) {
     },
   };
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   return (

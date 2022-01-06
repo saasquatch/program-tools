@@ -12,77 +12,85 @@ const props = {
 };
 
 const taskCardProps = {
-  rewardAmount: "20",
-  rewardUnit: "SaaSquatch Points",
-  cardTitle: "Complete a survey",
-  description:
-    "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
-  repeatable: false,
-  showProgressBar: false,
-  progress: 0,
-  completedText:
-    "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
-  goal: 1,
-  buttonText: "Take survey",
-  buttonLink: "https://example.com/",
-  openNewTab: false,
-  showExpiry: false,
-  rewardDuration: null,
-  loading: false,
-  expiryMessage: "Ends {endDate}",
-  startsOnMessage: "Starts {startDate}",
-  endedMessage: "Ended {endDate}",
-  finite: 0,
+  content: {
+    rewardAmount: "20",
+    rewardUnit: "SaaSquatch Points",
+    cardTitle: "Complete a survey",
+    description:
+      "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
+    repeatable: false,
+    showProgressBar: false,
+
+    completedText:
+      "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
+
+    buttonText: "Take survey",
+    buttonLink: "https://example.com/",
+    openNewTab: false,
+    showExpiry: false,
+    rewardDuration: null,
+    expiryMessage: "Ends {endDate}",
+    startsOnMessage: "Starts {startDate}",
+    endedMessage: "Ended {endDate}",
+    finite: 0,
+    goal: 1,
+  },
+  states: { progress: 0, loading: false },
 };
 
 const coupleActions = {
-  rewardAmount: "40",
-  rewardUnit: "SaaSquatch Points",
-  cardTitle: "Comment on 5 articles",
-  description:
-    "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
-  repeatable: false,
-  showProgressBar: true,
-  completedText:
-    "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
-  steps: true,
-  progress: 1,
-  goal: 5,
-  buttonText: "Take survey",
-  buttonLink: "https://example.com/",
-  openNewTab: false,
-  showExpiry: false,
-  rewardDuration: null,
-  loading: false,
-  expiryMessage: "Ends {endDate}",
-  startsOnMessage: "Starts {startDate}",
-  endedMessage: "Ended {endDate}",
-  finite: 0,
+  content: {
+    rewardAmount: "40",
+    rewardUnit: "SaaSquatch Points",
+    cardTitle: "Comment on 5 articles",
+    description:
+      "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
+    repeatable: false,
+    showProgressBar: true,
+    completedText:
+      "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
+    steps: true,
+    buttonText: "Take survey",
+    buttonLink: "https://example.com/",
+    openNewTab: false,
+    showExpiry: false,
+    rewardDuration: null,
+    expiryMessage: "Ends {endDate}",
+    startsOnMessage: "Starts {startDate}",
+    endedMessage: "Ended {endDate}",
+    finite: 0,
+    goal: 5,
+  },
+  states: { progress: 1, loading: false },
 };
 
 const manyActions = {
-  rewardAmount: "150",
-  rewardUnit: "SaaSquatch Points",
-  cardTitle: "Spend $500 at our Store",
-  description:
-    "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
-  repeatable: false,
-  showProgressBar: true,
-  progress: 100,
-  completedText:
-    "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
-  goal: 500,
-  progressBarUnit: "$",
-  buttonText: "Take survey",
-  buttonLink: "https://example.com/",
-  openNewTab: false,
-  showExpiry: false,
-  rewardDuration: null,
-  loading: false,
-  expiryMessage: "Ends {endDate}",
-  startsOnMessage: "Starts {startDate}",
-  endedMessage: "Ended {endDate}",
-  finite: 0,
+  content: {
+    rewardAmount: "150",
+    rewardUnit: "SaaSquatch Points",
+    cardTitle: "Spend $500 at our Store",
+    description:
+      "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
+    repeatable: false,
+    showProgressBar: true,
+    completedText:
+      "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
+    progressBarUnit: "$",
+    buttonText: "Take survey",
+    buttonLink: "https://example.com/",
+    openNewTab: false,
+    showExpiry: false,
+    rewardDuration: null,
+    expiryMessage: "Ends {endDate}",
+    startsOnMessage: "Starts {startDate}",
+    endedMessage: "Ended {endDate}",
+    finite: 0,
+    goal: 500,
+  },
+  states: {
+    progress: 100,
+    loading: false,
+  },
 };
 
 export const TaskCardGrid = () => {

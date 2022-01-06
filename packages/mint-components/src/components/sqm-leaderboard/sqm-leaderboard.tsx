@@ -4,6 +4,7 @@ import { Component, Prop, h, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { withShadowView } from "../../ShadowViewAddon";
+import { EmptySkeleton, LoadingSkeleton, LoadingSlot } from "../../tables/TableSlots";
 import { LeaderboardView, LeaderboardViewProps } from "./sqm-leaderboard-view";
 import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 
@@ -69,9 +70,11 @@ export class Leaderboard {
   disconnectedCallback() {}
 
   render() {
+    const loading = <LoadingSlot />;
+	const empty = <EmptySkeleton label="No Users Yet" />
     const props = {
-      empty: <slot name="empty" />,
-      loadingstate: <slot name="loading" />,
+      empty: empty,
+      loadingstate: loading,
       usersheading: this.usersheading,
       statsheading: this.statsheading,
       rankType: this.rankType,
@@ -110,11 +113,15 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
         ],
       },
       elements: {
-        empty: props.empty ? props.empty : <div>Empty</div>,
+        empty: props.empty ? (
+          props.empty
+        ) : (
+          <EmptySkeleton label="No Users Yet" />
+        ),
         loadingstate: props.loadingstate ? (
           props.loadingstate
         ) : (
-          <div>Loading</div>
+          <LoadingSkeleton />
         ),
       },
     },

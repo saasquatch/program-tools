@@ -30,8 +30,8 @@
 
 ### Depends on
 
-- [sqm-table-row](../../tables)
-- [sqm-table-cell](../../tables)
+- [sqm-table-row](../sqm-table-row)
+- [sqm-table-cell](../sqm-table-cell)
 - [sqm-text](../sqm-text)
 
 ### Graph

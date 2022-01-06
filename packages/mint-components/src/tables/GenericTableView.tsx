@@ -1,7 +1,6 @@
 import { h, VNode } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
 import { gap } from "../global/mixins";
+import { createStyleSheet } from "../styling/JSS";
 
 export interface GenericTableViewProps {
   states: {
@@ -38,6 +37,8 @@ export function GenericTableView(props: GenericTableViewProps) {
   const { states, data, callbacks, elements } = props;
   const { columns, rows } = elements;
   const { show } = states;
+
+  console.log(props);
 
   const hiddenCols = data.hiddenColumns.split(",").map(Number);
 
@@ -110,16 +111,21 @@ export function GenericTableView(props: GenericTableViewProps) {
         },
       },
     },
-ButtonContainer: {
+    ButtonContainer: {
       display: "flex",
       "justify-content": "flex-end",
       "margin-top": "var(--sl-spacing-small)",
       ...gap({ direction: "row", size: "var(--sl-spacing-small)" }),
     },
+
+    ButtonDisabled: {
+      "&::part(base)": {
+        opacity: "0.25",
+      },
+    },
   };
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   return (
@@ -170,6 +176,7 @@ ButtonContainer: {
           loading={show === "loading"}
           onClick={callbacks.prevPage}
           exportparts="base: defaultbutton-base"
+          class={!states.hasPrev ? sheet.classes.ButtonDisabled : ""}
         >
           {data.textOverrides.prevLabel}
         </sl-button>
@@ -179,6 +186,7 @@ ButtonContainer: {
           disabled={!states.hasNext}
           onClick={callbacks.nextPage}
           exportparts="base: defaultbutton-base"
+          class={!states.hasNext ? sheet.classes.ButtonDisabled : ""}
         >
           {data.textOverrides.moreLabel}
         </sl-button>

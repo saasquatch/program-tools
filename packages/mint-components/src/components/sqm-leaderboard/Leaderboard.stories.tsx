@@ -1,4 +1,5 @@
 import { h } from "@stencil/core";
+import { EmptySkeleton, LoadingSkeleton } from "../../tables/TableSlots";
 import { LeaderboardView } from "./sqm-leaderboard-view";
 
 export default {
@@ -14,8 +15,8 @@ const defaultStyles = {
 };
 
 const defaultElements = {
-  empty: <div>Empty</div>,
-  loadingstate: <div>Loading</div>,
+  empty: <EmptySkeleton label="No Users Yet" />,
+  loadingstate: <LoadingSkeleton />,
 };
 
 export const Empty = () => {
@@ -112,9 +113,9 @@ export const FiveWithRank = () => {
       loading: false,
       hasLeaders: true,
       styles: {
-		rankheading: "Rank",
-		usersheading: "User",
-		statsheading: "Referrals",
+        rankheading: "Rank",
+        usersheading: "User",
+        statsheading: "Referrals",
         showRank: true,
       },
     },

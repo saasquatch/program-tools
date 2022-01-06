@@ -5,12 +5,14 @@ import {
 } from "./sqm-reward-exchange-list-view";
 import * as Data from "./RewardExchangeListData";
 import { Resizer } from "../sqm-stencilbook/Resizer";
+import { useRef } from "@saasquatch/universal-hooks";
 
 export default {
   title: "Components/Reward Exchange List",
 };
 
 const StoryBase = (props: RewardExchangeViewProps) => () => {
+
   return (
     <Resizer>
       <RewardExchangeView {...props}></RewardExchangeView>
