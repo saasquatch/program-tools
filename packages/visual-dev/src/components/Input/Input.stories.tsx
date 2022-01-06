@@ -43,8 +43,6 @@ export const PasswordInputWithToggle = () => {
         <IconButton
           icon="visibility"
           size="mini"
-          css=":hover{background: none; color: var(--sq-text-subdued)}"
-          icon_css="margin: -10px; top: 8px; height: 20px; width: 20px"
           borderless={true}
           onClick={() => {
             setVisible(!visible);
@@ -80,13 +78,12 @@ export const InputButtons = () => (
           icon="checkmark"
           size="mini"
           primary
-          icon_css="margin: -10px; top: 8px;"
           css={"margin-right: 4px;"}
         />
         <IconButton
           icon="close"
           size="mini"
-          icon_css="margin: -10px; top: 8px; color: #858585;"
+          icon_css="color: #858585;"
         />
       </>
     }

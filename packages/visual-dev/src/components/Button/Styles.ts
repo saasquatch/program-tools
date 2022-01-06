@@ -202,6 +202,8 @@ export const text_large = css`
 export const icon = css`
   cursor: pointer;
 
+  padding: 0;
+
   border: none;
   border-radius: 4px;
   border: 1px solid var(--sq-action-secondary-border);
@@ -246,8 +248,12 @@ export const circle = css`
 `;
 export const borderless = css`
   border: none;
+  background: transparent;
   &:hover {
     color: var(--sq-action-secondary-border);
     background: var(--sq-action-secondary);
+  }
+  &:disabled:hover{
+    background: transparent;
   }
 `;

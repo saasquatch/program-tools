@@ -196,11 +196,11 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               disabled={disabled}
               icon={"close"}
               borderless={true}
+              size="mini"
               css={{
                 visibility: showClear,
                 height: "12px",
                 width: "12px",
-                padding: "0",
               }}
               icon_css={{ height: "12px", width: "12px" }}
               color={
@@ -255,14 +255,11 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               disabled={disabled}
               icon={"close"}
               borderless={true}
+              size="mini"
               css={{
                 visibility: showClear,
-                height: "12px",
-                width: "12px",
-                padding: "0",
-                background: "transparent",
               }}
-              icon_css={{ height: "12px", width: "12px" }}
+              icon_css={{ color: arrowColor, height: "12px", width: "12px" }}
               color={
                 errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
               }
@@ -278,13 +275,8 @@ const SelectInner = <ItemType extends ItemTypeBase>(
                 disabled={disabled}
                 icon={"chevron_up"}
                 borderless={true}
-                css={{
-                  height: "12px",
-                  width: "12px",
-                  padding: "0",
-                  background: "transparent",
-                }}
-                icon_css={{ height: "12px", width: "12px", color: arrowColor }}
+                size="mini"
+                icon_css={{ color: arrowColor, height: "12px", width: "12px" }}
                 color={
                   errors
                     ? "var(--sq-border-critical)"
@@ -297,13 +289,8 @@ const SelectInner = <ItemType extends ItemTypeBase>(
                 disabled={disabled}
                 icon={"chevron_down"}
                 borderless={true}
-                css={{
-                  height: "12px",
-                  width: "12px",
-                  padding: "0",
-                  background: "transparent",
-                }}
-                icon_css={{ height: "12px", width: "12px", color: arrowColor }}
+                size="mini"
+                icon_css={{ color: arrowColor, height: "12px", width: "12px" }}
                 color={
                   errors
                     ? "var(--sq-border-critical)"

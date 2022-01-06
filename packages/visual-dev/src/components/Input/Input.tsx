@@ -70,7 +70,7 @@ export const Input = React.forwardRef<React.ElementRef<"input">, InputProps>(
               <Icon icon={icon} size={"22px"} color="var(--sq-text-subdued)" />
             </ExtrasDiv>
           )}
-          <ExtrasDiv style={{bottom:"9px"}} position={position}>{buttons}</ExtrasDiv>
+          <ExtrasDiv position={position}>{buttons}</ExtrasDiv>
         </Container>
       </ShadowDom>
     );

@@ -40,8 +40,8 @@ export const ButtonContainer = css`
   align-items: center;
   text-indent: 0px;
   padding-right: var(--sq-spacing-small);
-  right: 6px;
-  top: 13px;
+  right: 4px;
+  top: 10px;
 
   & > :not(:last-child) {
     margin-right: var(--sq-spacing-x-small);

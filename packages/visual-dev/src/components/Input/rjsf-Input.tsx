@@ -39,8 +39,8 @@ export function RJSFPasswordInput(props: WidgetProps) {
         <IconButton
           icon="visibility"
           size="mini"
-          css="position: relative; left: -30px; border: none; :hover{background: none; color: var(--sq-text-subdued)}"
-          icon_css="margin: -10px; top: 6px; height: 20px; width: 20px"
+          icon_css="height: 20px; width: 20px"
+          borderless={true}
           onClick={() => {
             setType(type == "text" ? "password" : "text");
           }}
@@ -62,8 +62,7 @@ export function RJSFLockableInput(props: WidgetProps) {
         <IconButton
           icon="edit"
           size="mini"
-          css=":hover{background: none; color: var(--sq-text-subdued)}"
-          icon_css="margin: -10px; top: 8px; height: 20px; width: 20px"
+          icon_css="height: 20px; width: 20px"
           borderless={true}
           onClick={() => {
             setLocked(!locked);
@@ -86,8 +85,7 @@ export function RJSFClearableInput(props: WidgetProps) {
           disabled={props.disabled}
           icon="close"
           size="mini"
-          css=":hover{background: none; color: var(--sq-text-subdued)}"
-          icon_css="margin: -10px; top: 8px; height: 20px; width: 20px"
+          icon_css="height: 20px; width: 20px"
           borderless={true}
           onClick={() => {
             props.onChange("");
@@ -112,9 +110,7 @@ export function RJSFCancellableInput(props: WidgetProps) {
           <IconButton
             icon="edit"
             size="mini"
-            css="position: relative; left: -30px;"
             primary
-            icon_css="margin: -10px; top: 9px;"
             onClick={() => {
               setLocked(false);
             }}
@@ -124,7 +120,6 @@ export function RJSFCancellableInput(props: WidgetProps) {
             <IconButton
               icon="checkmark"
               size="mini"
-              icon_css="margin: -10px; top: 8px;"
               css={"margin-right: 4px;"}
               primary
               onClick={() => {
@@ -135,7 +130,7 @@ export function RJSFCancellableInput(props: WidgetProps) {
             <IconButton
               icon="close"
               size="mini"
-              icon_css="margin: -10px; top: 8px; color: #858585;"
+              icon_css="color: #858585;"
               onClick={() => {
                 props.onChange(oldValue);
                 setLocked(true);
