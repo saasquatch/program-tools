@@ -4,7 +4,11 @@ import { Component, Prop, h, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { withShadowView } from "../../ShadowViewAddon";
-import { EmptySkeleton, LoadingSkeleton, LoadingSlot } from "../../tables/TableSlots";
+import {
+  EmptySkeleton,
+  LoadingSkeleton,
+  LoadingSlot,
+} from "../../tables/TableSlots";
 import { LeaderboardView, LeaderboardViewProps } from "./sqm-leaderboard-view";
 import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 
@@ -33,6 +37,11 @@ export class Leaderboard {
    * @uiName Show the ranking numbers
    */
   @Prop() showRank: boolean;
+
+  /**
+   * @uiName Show viewing user's rank
+   */
+  @Prop() showUser: boolean = true;
 
   /**
    * @uiName Rank type
@@ -71,7 +80,7 @@ export class Leaderboard {
 
   render() {
     const loading = <LoadingSlot />;
-	const empty = <EmptySkeleton label="No Users Yet" />
+    const empty = <EmptySkeleton label="No Users Yet" />;
     const props = {
       empty: empty,
       loadingstate: loading,
@@ -80,6 +89,7 @@ export class Leaderboard {
       rankType: this.rankType,
       leaderboardType: this.leaderboardType,
       interval: this.interval,
+      showUser: this.showUser,
     };
     const demoProps = { ...props, demoData: this.demoData };
     const viewprops = isDemo()

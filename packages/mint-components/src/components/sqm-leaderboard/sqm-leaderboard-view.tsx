@@ -12,15 +12,15 @@ export interface LeaderboardViewProps {
     };
   };
   data: {
-    imageUrl?: string;
-    headerTitle?: string;
-    headerDescription?: string;
+    showUser?: boolean;
+    userRank?: any;
     rankType: string;
     leaderboard: {
       value: number;
       rank: number;
       firstName: string;
       lastInitial: string;
+      rowNumber: number;
     }[];
   };
   elements: {
@@ -32,16 +32,13 @@ export interface LeaderboardViewProps {
 export function LeaderboardView(props: LeaderboardViewProps) {
   const { states, data, elements } = props;
   const { styles } = states;
+  console.log(props);
+  let flag = false;
   if (states.loading) {
     return elements.loadingstate;
   }
   return (
     <div>
-      {data.headerTitle && <div class="header-title">{data.headerTitle}</div>}
-      {data.headerDescription && (
-        <div class="header-description">{data.headerDescription}</div>
-      )}
-      {data.imageUrl && <img class="cover-image" src={data.imageUrl} />}
       {!states.hasLeaders && elements.empty}
       {states.hasLeaders && (
         <table>
@@ -51,14 +48,41 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             <th class="Score">{styles.statsheading}</th>
           </tr>
           {data.leaderboard?.map((user) => {
+            if (user.rowNumber === data.userRank?.leaderboardRank?.rowNumber)
+              flag = true;
             return (
-              <tr class="SeparateContent">
+              <tr
+                class={
+                  user.rowNumber === data.userRank?.leaderboardRank?.rowNumber
+                    ? "special"
+                    : ""
+                }
+              >
                 {styles.showRank && <td class="Rank">{user.rank}</td>}
                 <td class="User">{`${user.firstName} ${user.lastInitial} `}</td>
                 <td class="Score">{user.value}</td>
               </tr>
             );
           })}
+          {!flag && data.showUser && (
+            <tr>
+              <td colSpan={100} class="dotdotdot">
+                <sl-icon
+                  name="three-dots"
+                  style={{ verticalAlign: "middle" }}
+                ></sl-icon>
+              </td>
+            </tr>
+          )}
+          {!flag && data.showUser && (
+            <tr class="special">
+              {styles.showRank && (
+                <td class="Rank">{data.userRank?.leaderboardRank?.rank}</td>
+              )}
+              <td class="User">{`${data.userRank?.firstName} ${data.userRank?.lastInitial} `}</td>
+              <td class="Score">{data.userRank?.leaderboardRank?.value}</td>
+            </tr>
+          )}
         </table>
       )}
     </div>
