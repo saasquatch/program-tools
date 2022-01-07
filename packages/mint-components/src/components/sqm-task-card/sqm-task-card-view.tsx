@@ -16,6 +16,7 @@ export type TaskCardViewProps = {
     description: string;
     showProgressBar: boolean;
     repeatable: boolean;
+    steps: boolean;
     finite: number;
     goal: number;
     completedText: string;
@@ -301,12 +302,25 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               style={{ width: "42%", margin: "var(--sl-spacing-medium) 0" }}
             />
           ) : (
-            <div class={"title"}>{content.cardTitle}</div>
+            <div
+              class={"title"}
+              style={{
+                marginBottom: !content.description
+                  ? content.steps
+                    ? "var(--sl-spacing-x-large)"
+                    : content.showProgressBar
+                    ? "var(--sl-spacing-xx-large)"
+                    : ""
+                  : "",
+              }}
+            >
+              {content.cardTitle}
+            </div>
           )}
           {states.loading ? (
             <sl-skeleton style={{ margin: "var(--sl-spacing-medium) 0" }} />
           ) : (
-            <Details {...props} />
+            content.description && <Details {...props} />
           )}
           {content.showProgressBar && states.loading ? (
             <sl-skeleton style={{ margin: "var(--sl-spacing-medium) 0" }} />

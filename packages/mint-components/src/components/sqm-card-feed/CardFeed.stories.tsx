@@ -20,7 +20,7 @@ const taskCardProps = {
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     repeatable: false,
     showProgressBar: false,
-
+    steps: false,
     completedText:
       "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
 
@@ -73,6 +73,7 @@ const manyActions = {
       "Description of action and reward. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget quisque commodo leo.",
     repeatable: false,
     showProgressBar: true,
+    steps: false,
     completedText:
       "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
     progressBarUnit: "$",
