@@ -159,8 +159,10 @@ p{
 }
 `;
 
-export const GlobalStyle = (
+export const GlobalStyle = () => {
+  return(
   <>
     <CSSVariables /> <TextRules />
   </>
 );
+}
