@@ -98,10 +98,10 @@ export const ButtonDiv = css`
   display: flex;
   align-items: center;
   text-indent: 0px;
-  padding: 2px 10px 0px;
+  padding: 2px 4px 0px;
   margin: auto 0;
 
   & > :not(:last-child) {
-    margin-right: var(--sq-spacing-x-small);
+    margin-right: var(--sq-spacing-xx-small);
   }
 `;

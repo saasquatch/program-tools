@@ -8,10 +8,10 @@ export const icon_size = {
 };
 
 export const icon_only_size = {
-  mini: "18px",
-  small: "14px",
-  medium: "22px",
-  large: "36px",
+  small: "var(--sq-icon-size-small)",
+  medium: "var(--sq-icon-size-medium)",
+  large: "var(--sq-icon-size-large)",
+  mini: "var(--sq-icon-size-badge)",
 };
 
 export const checkmark_anim = {

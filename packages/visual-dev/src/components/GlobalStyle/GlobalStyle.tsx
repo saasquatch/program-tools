@@ -1,6 +1,7 @@
+import React from "react";
 import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyle = createGlobalStyle`
+export const CSSVariables = createGlobalStyle`
 :root {
   /* font-size: 16px; */
 
@@ -64,6 +65,9 @@ export const GlobalStyle = createGlobalStyle`
   --sq-surface-hover: #eef6ff;
 
   /* Typography */
+  --sq-font-family-sans: "Helvetica Neue", Helvetica, sans-serif;
+
+
   --sq-font-weight-regular: 400;
   --sq-font-weight-semibold: 600;
   --sq-font-weight-bold: 700;
@@ -120,3 +124,45 @@ export const GlobalStyle = createGlobalStyle`
   --sq-spacing-xxxx-large: 64px;
 }
 `;
+
+export const TextRules = createGlobalStyle`
+h1{
+  font-size: var(--sq-font-size-header-one);
+  line-height: var(--sq-line-height-header-one);
+  font-weight: var(--sq-font-weight-bold);
+  font-family: var(--sq-font-family-sans);
+  color: var(--sq-text);
+}
+
+h2{
+  font-size: var(--sq-font-size-header-two);
+  line-height: var(--sq-line-height-header-two);
+  font-weight: var(--sq-font-weight-bold);
+  font-family: var(--sq-font-family-sans);
+  color: var(--sq-text);
+}
+
+h3{
+  font-size: var(--sq-font-size-header-three);
+  line-height: var(--sq-line-height-header-three);
+  font-weight: var(--sq-font-weight-bold);
+  font-family: var(--sq-font-family-sans);
+  color: var(--sq-text);
+}
+
+p{
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
+  font-weight: var(--sq-font-weight-bold);
+  font-family: var(--sq-font-family-sans);
+  color: var(--sq-text);
+}
+`;
+
+const GlobalStyle = (
+  <>
+    <CSSVariables /> <TextRules />
+  </>
+);
+
+export default GlobalStyle;

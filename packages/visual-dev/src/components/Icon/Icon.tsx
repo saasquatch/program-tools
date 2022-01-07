@@ -18,9 +18,10 @@ export interface StyleProps {
 }
 
 const default_size = {
-  small: "12px",
-  medium: "20px",
-  large: "36px",
+  small: "var(--sq-icon-size-small)",
+  medium: "var(--sq-icon-size-medium)",
+  large: "var(--sq-icon-size-large)",
+  badge: "var(--sq-icon-size-badge)",
 };
 
 const StyledSVG = styled.div<Required<StyleProps>>`

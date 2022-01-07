@@ -208,10 +208,13 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               size="mini"
               css={{
                 display: showClear,
+              }}
+              icon_css={{
+                color: arrowColor,
+                margin: "auto",
                 height: "12px",
                 width: "12px",
               }}
-              icon_css={{ height: "12px", width: "12px" }}
               color={
                 errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
               }
@@ -221,11 +224,12 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               }}
             />
             {loading ? (
-              <LoadingSpinner color={arrowColor} right="16px" bottom="11px" />
+              <LoadingSpinner color={arrowColor} right="14px" bottom="12px" />
             ) : functional.isOpen ? (
               <Icon
                 icon={"chevron_up"}
                 size={"small"}
+                customCSS={"padding: 8px"}
                 color={
                   errors
                     ? "var(--sq-border-critical)"
@@ -236,6 +240,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               <Icon
                 icon={"chevron_down"}
                 size={"small"}
+                customCSS={"padding: 8px"}
                 color={
                   errors
                     ? "var(--sq-border-critical)"
@@ -269,7 +274,12 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               css={{
                 display: showClear,
               }}
-              icon_css={{ color: arrowColor, height: "12px", width: "12px" }}
+              icon_css={{
+                margin: "auto",
+                color: arrowColor,
+                height: "12px",
+                width: "12px",
+              }}
               color={
                 errors ? "var(--sq-border-critical)" : "var(--sq-text-subdued)"
               }
@@ -279,7 +289,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               }}
             />
             {loading ? (
-              <LoadingSpinner color={arrowColor} right="16px" bottom="11px" />
+              <LoadingSpinner color={arrowColor} right="16px" bottom="3px" />
             ) : functional.isOpen ? (
               <IconButton
                 disabled={disabled}
