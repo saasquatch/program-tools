@@ -46,7 +46,7 @@ import { Switch } from "./components/Switch";
 import { Tag } from "./components/Tag";
 import { Text } from "./components/Text";
 import { Tooltip } from "./components/Tooltip";
-import { GlobalStyle } from "./components/GlobalStyle";
+import { GlobalStyle, CSSVariables, TextRules } from "./components/GlobalStyle";
 import { Button, IconButton } from "./components/Button";
 import { Checkbox, RJSFCheckbox } from "./components/Checkbox";
 import { Radio, RJSFRadio } from "./components/Radio";
@@ -114,5 +114,7 @@ export {
   DefaultObjectTemplate,
   JSONataUtils,
   GlobalStyle,
+  CSSVariables,
+  TextRules,
   Select,
 };
