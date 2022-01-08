@@ -5,7 +5,7 @@ import { IconKey, Icon } from "../Icon";
 
 type BadgeProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 export interface OptionProps {
   icon?: IconKey;
@@ -14,7 +14,7 @@ export interface OptionProps {
 export interface StyleProps {
   status: "info" | "success" | "critical" | "warning";
   pill?: boolean;
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const BadgeStyled = styled.div<StyleProps>`
@@ -22,12 +22,12 @@ const BadgeStyled = styled.div<StyleProps>`
   ${(props) => Styles[props.status]}
   padding: ${(props) => (props.pill ? "4px 20px" : "4px 12px")};
   border-radius: ${(props) => (props.pill ? "50px" : "4px")};
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 export const Badge = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
   (props, forwardedRef) => {
-    const { status, pill = false, icon, children, css = {}, ...rest } = props;
+    const { status, pill = false, icon, children, customCSS = {}, ...rest } = props;
 
     return (
       <BadgeStyled
@@ -35,7 +35,7 @@ export const Badge = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
         status={status}
         pill={pill}
         ref={forwardedRef}
-        css={css}
+        customCSS={customCSS}
       >
         {icon && (
           <Icon

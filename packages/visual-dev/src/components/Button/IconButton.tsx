@@ -3,7 +3,7 @@ import styled, { CSSProp } from "styled-components";
 import { Icon, IconKey } from "../Icon";
 import * as Styles from "./Styles";
 
-type ButtonProps = OptionProps & StyleProps & Omit<React.ComponentProps<"button">, "translate">;
+type ButtonProps = OptionProps & StyleProps & Omit<React.ComponentProps<"button">, "translate"|"css">;
 
 export interface OptionProps {
   icon: IconKey;
@@ -15,7 +15,7 @@ export interface StyleProps {
   primary?: boolean;
   borderless?: boolean;
   size?: "mini" | "small" | "medium" | "large";
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const Button = styled.button<Required<StyleProps>>`
@@ -27,7 +27,7 @@ const Button = styled.button<Required<StyleProps>>`
   ${(props) => props.size == "small" && Styles.icon_small}
   ${(props) => props.size == "medium" && Styles.icon_medium}
   ${(props) => props.size == "large" && Styles.icon_large}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 export const IconButton = React.forwardRef<
   React.ElementRef<"button">,
@@ -41,7 +41,7 @@ export const IconButton = React.forwardRef<
     size = "medium",
     children,
     icon_css = {},
-    css = {},
+    customCSS = {},
     ...rest
   } = props;
 
@@ -53,7 +53,7 @@ export const IconButton = React.forwardRef<
       borderless={borderless}
       size={size}
       ref={forwardedRef}
-      css={css}
+      customCSS={customCSS}
     >
       <Icon icon={icon} size={Styles.icon_only_size[size]} customCSS={icon_css} />
     </Button>

@@ -4,7 +4,7 @@ import { Dropdown } from "../Dropdown";
 
 type DataTableProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 export interface OptionProps {
   children?: any;
@@ -14,7 +14,7 @@ export interface OptionProps {
 
 export interface StyleProps {
   width?: string;
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const DataTableDiv = styled.div<Required<StyleProps>>`
@@ -22,7 +22,7 @@ const DataTableDiv = styled.div<Required<StyleProps>>`
   div + div {
     margin-top: -2px;
   }
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 const Menus = styled.div`
@@ -41,7 +41,7 @@ export const DataTable = React.forwardRef<
     empty = false,
     search = false,
     children,
-    css = {},
+    customCSS = {},
     ...rest
   } = props;
 
@@ -52,7 +52,7 @@ export const DataTable = React.forwardRef<
         <Dropdown text="Any Status" customCSS="min-width: 116px;" />
         <Dropdown text="30 Days" icon="calendar" customCSS="min-width: 142px;" />
       </Menus>
-      <DataTableDiv width={width} {...rest} ref={forwardedRef} css={css}>
+      <DataTableDiv width={width} {...rest} ref={forwardedRef} customCSS={customCSS}>
         {children}
       </DataTableDiv>
     </>

@@ -5,7 +5,7 @@ import { Dropdown } from "../Dropdown";
 
 type PopoverProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 interface OptionProps {
   children?: any;
@@ -15,7 +15,7 @@ interface OptionProps {
 }
 
 interface StyleProps {
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const PaginationDiv = styled.div<Required<StyleProps>>`
@@ -32,7 +32,7 @@ const PaginationDiv = styled.div<Required<StyleProps>>`
   font-size: 14px;
   line-height: 20px;
 
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 const TextDiv = styled.div<{ selected?: boolean }>`
@@ -56,12 +56,12 @@ export const Pagination = React.forwardRef<
     selected = 1,
     pages = [1],
     total = 0,
-    css = {},
+    customCSS = {},
     ...rest
   } = props;
 
   return (
-    <PaginationDiv {...rest} ref={forwardedRef} css={css}>
+    <PaginationDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
       1-10 of {total}
       <div style={{ marginLeft: "auto" }}>
         <Icon size="24px" icon="chevron_left" customCSS="margin: -3px;" />

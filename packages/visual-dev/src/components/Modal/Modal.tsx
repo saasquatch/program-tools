@@ -5,7 +5,7 @@ import * as Styles from "./Styles";
 
 type ModalProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 export interface OptionProps {
   title: string;
@@ -18,7 +18,7 @@ export interface OptionProps {
 }
 
 export interface StyleProps {
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const ModalBackdrop = styled.div`
@@ -27,7 +27,7 @@ const ModalBackdrop = styled.div`
 
 const ModalDiv = styled.div<Required<StyleProps>>`
   ${Styles.ModalDivStyle}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 const ModalHeader = styled.div`
@@ -44,14 +44,14 @@ export const Modal = React.forwardRef<React.ElementRef<"div">, ModalProps>(
       primaryAction,
       secondaryAction,
       children,
-      css = {},
+      customCSS = {},
       ...rest
     } = props;
     return (
       <div>
         {open && (
           <ModalBackdrop>
-            <ModalDiv {...rest} ref={forwardedRef} css={css}>
+            <ModalDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
               <ModalHeader>
                 {title}
                 <Icon

@@ -4,7 +4,7 @@ import { IconKey, Icon } from "../Icon";
 
 type PopoverProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 interface OptionProps {
   notification?: boolean;
@@ -13,7 +13,7 @@ interface OptionProps {
 }
 
 interface StyleProps {
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const PopoverDiv = styled.div<Required<StyleProps> & { notification: boolean }>`
@@ -46,19 +46,19 @@ const PopoverDiv = styled.div<Required<StyleProps> & { notification: boolean }>`
   div + div.action {
     margin-top: 10px;
   }
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 export const Popover = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
   (props, forwardedRef) => {
-    const { icon, notification = false, children, css = {}, ...rest } = props;
+    const { icon, notification = false, children, customCSS = {}, ...rest } = props;
 
     return (
       <PopoverDiv
         notification={notification}
         {...rest}
         ref={forwardedRef}
-        css={css}
+        customCSS={customCSS}
       >
         {icon ? (
           <span style={{ height: "100%" }}>
@@ -87,15 +87,15 @@ const ActionDiv = styled.div<Required<StyleProps>>`
   font-size: 14px;
   line-height: 20px;
   color: #575757;
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 export const Action = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
   (props, forwardedRef) => {
-    const { children, css = {}, ...rest } = props;
+    const { children, customCSS = {}, ...rest } = props;
 
     return (
-      <ActionDiv className="action" {...rest} ref={forwardedRef} css={css}>
+      <ActionDiv className="action" {...rest} ref={forwardedRef} customCSS={customCSS}>
         {children}
       </ActionDiv>
     );
@@ -106,13 +106,13 @@ const DividerDiv = styled.div<Required<StyleProps>>`
   height: 1px;
   margin: 16px -36px;
   background: #e2e2e2;
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 export const Divider = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
   (props, forwardedRef) => {
-    const { children, css = {}, ...rest } = props;
+    const { children, customCSS = {}, ...rest } = props;
 
-    return <DividerDiv {...rest} ref={forwardedRef} css={css} />;
+    return <DividerDiv {...rest} ref={forwardedRef} customCSS={customCSS} />;
   }
 );

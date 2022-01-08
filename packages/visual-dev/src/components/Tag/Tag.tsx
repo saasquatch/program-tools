@@ -5,7 +5,7 @@ import { Icon } from "../Icon";
 
 type TagProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 export interface OptionProps {
   onClickClose?: () => void;
@@ -13,12 +13,12 @@ export interface OptionProps {
 }
 
 export interface StyleProps {
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const TagStyled = styled.div<StyleProps>`
   ${Styles.base}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 const IconSegmentStyled = styled.div`
@@ -31,10 +31,10 @@ const TextSegmentStyled = styled.div`
 
 export const Tag = React.forwardRef<React.ElementRef<"div">, TagProps>(
   (props, forwardedRef) => {
-    const { onClickClose, children, css = {}, ...rest } = props;
+    const { onClickClose, children, customCSS = {}, ...rest } = props;
 
     return (
-      <TagStyled {...rest} ref={forwardedRef} css={css}>
+      <TagStyled {...rest} ref={forwardedRef} customCSS={customCSS}>
         <IconSegmentStyled onClick={onClickClose}>
           {<Icon size="10px" icon="close" />}
         </IconSegmentStyled>

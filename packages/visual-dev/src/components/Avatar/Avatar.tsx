@@ -5,7 +5,7 @@ import * as Styles from "./Styles";
 
 type AvatarProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 export interface OptionProps {
   firstName?: string;
@@ -14,11 +14,11 @@ export interface OptionProps {
 }
 
 export interface StyleProps {
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const AvatarStyle = styled.div<Required<StyleProps>>`
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 const AvatarCircle = styled.div<{ large: boolean; color: string }>`
@@ -39,7 +39,7 @@ export const Avatar = React.forwardRef<React.ElementRef<"div">, AvatarProps>(
       firstName = "",
       large = false,
       lastName = "",
-      css = {},
+      customCSS = {},
       ...rest
     } = props;
     let initials = "";
@@ -57,7 +57,7 @@ export const Avatar = React.forwardRef<React.ElementRef<"div">, AvatarProps>(
     const random = initials.charCodeAt(0) % 6;
 
     return (
-      <AvatarStyle {...rest} ref={forwardedRef} css={css}>
+      <AvatarStyle {...rest} ref={forwardedRef} customCSS={customCSS}>
         {!(firstName || lastName) ? (
           <Icon
             icon="avatar"

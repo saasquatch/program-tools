@@ -4,7 +4,7 @@ import * as Styles from "./Styles";
 
 type TabGroupProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 export interface OptionProps {
   children?: React.ReactNode;
@@ -13,31 +13,31 @@ export interface OptionProps {
 
 export interface StyleProps {
   color?: "primary" | "secondary";
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const TabGroupStyle = styled("div")<Required<StyleProps>>`
   ${Styles.tabgroup}
   ${(props) => Styles[props.color + "_bg"]};
   ${(props) => Styles[props.color + "_text"]};
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 const TabStyle = styled("div")<Required<StyleProps & { selected: boolean }>>`
   ${Styles.tab}
   ${(props) => Styles[props.color + "_grey"]};
   ${(props) => props.selected && Styles.selected}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 export const TabGroup = React.forwardRef<
   React.ElementRef<"div">,
   TabGroupProps
 >((props, forwardedRef) => {
-  const { color = "primary", children, css = {}, ...rest } = props;
+  const { color = "primary", children, customCSS = {}, ...rest } = props;
 
   return (
-    <TabGroupStyle color={color} {...rest} ref={forwardedRef} css={css}>
+    <TabGroupStyle color={color} {...rest} ref={forwardedRef} customCSS={customCSS}>
       {children}
     </TabGroupStyle>
   );
@@ -53,7 +53,7 @@ export const Tab = React.forwardRef<React.ElementRef<"div">, TabProps>(
       color = "primary",
       selected = false,
       children,
-      css = {},
+      customCSS = {},
       ...rest
     } = props;
 
@@ -63,7 +63,7 @@ export const Tab = React.forwardRef<React.ElementRef<"div">, TabProps>(
         selected={selected}
         {...rest}
         ref={forwardedRef}
-        css={css}
+        customCSS={customCSS}
       >
         {children}
       </TabStyle>

@@ -9,7 +9,7 @@ import * as Styles from "./Styles";
 
 type CardProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 interface OptionProps {
   title?: string;
@@ -18,12 +18,12 @@ interface OptionProps {
 }
 
 interface StyleProps {
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const CardStyle = styled.div<Required<StyleProps>>`
   ${Styles.cardEdit}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 const CardHeader = styled.div`
   ${Styles.cardEditHeader}
@@ -44,11 +44,11 @@ const TextDesc = styled.div`
 
 export const CardEdit = React.forwardRef<React.ElementRef<"div">, CardProps>(
   (props, forwardedRef) => {
-    const { title, edit = false, children, css = {}, ...rest } = props;
+    const { title, edit = false, children, customCSS = {}, ...rest } = props;
     // const [oldValue, setOldValue] = useState("");
     const [locked, setLocked] = useState(false);
     return (
-      <CardStyle {...rest} ref={forwardedRef} css={css}>
+      <CardStyle {...rest} ref={forwardedRef} customCSS={customCSS}>
         <CardHeader>
           <CardHeaderIcon>
             <Icon
@@ -68,7 +68,7 @@ export const CardEdit = React.forwardRef<React.ElementRef<"div">, CardProps>(
                     <IconButton
                       icon="edit"
                       size="mini"
-                      css="position: relative; left: -30px;"
+                      customCSS="position: relative; left: -30px;"
                       primary
                       icon_css="margin: -10px; top: 9px;"
                       onClick={() => {
@@ -80,7 +80,7 @@ export const CardEdit = React.forwardRef<React.ElementRef<"div">, CardProps>(
                       <IconButton
                         icon="checkmark"
                         size="mini"
-                        css="position: relative; left: -50px;"
+                        customCSS="position: relative; left: -50px;"
                         primary
                         icon_css="margin: -10px; top: 9px;"
                         onClick={() => {
@@ -90,7 +90,7 @@ export const CardEdit = React.forwardRef<React.ElementRef<"div">, CardProps>(
                       <IconButton
                         icon="close"
                         size="mini"
-                        css="position: relative; left: -47px;"
+                        customCSS="position: relative; left: -47px;"
                         icon_css="margin: -10px; top: 8px;  color: #858585"
                         onClick={() => {
                           setLocked(true);
@@ -114,7 +114,7 @@ export const CardEdit = React.forwardRef<React.ElementRef<"div">, CardProps>(
                   />
                   <Badge
                     status="success"
-                    css="display: inline; margin-left: 16px; font-size: 12px; padding: 1px 15px; "
+                    customCSS="display: inline; margin-left: 16px; font-size: 12px; padding: 1px 15px; "
                   >
                     Live
                   </Badge>
@@ -126,7 +126,7 @@ export const CardEdit = React.forwardRef<React.ElementRef<"div">, CardProps>(
           <Button
             buttonType="secondary"
             pill
-            css="margin-left: auto; float: right;"
+            customCSS="margin-left: auto; float: right;"
           >
             Edit
           </Button>

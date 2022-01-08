@@ -5,7 +5,7 @@ import * as Styles from "./Styles";
 
 export type AlertProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 export interface OptionProps {
   title: string;
@@ -14,7 +14,7 @@ export interface OptionProps {
 
 export interface StyleProps {
   type: "critical" | "warning" | "success" | "info";
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const AlertDiv = styled.div<Required<StyleProps>>`
@@ -41,10 +41,10 @@ const icons = {
 
 export const Alert = React.forwardRef<React.ElementRef<"div">, AlertProps>(
   (props, forwardedRef) => {
-    const { type: variant, title, children, css = {}, ...rest } = props;
+    const { type: variant, title, children, customCSS = {}, ...rest } = props;
 
     return (
-      <AlertDiv {...rest} type={variant} ref={forwardedRef} css={css}>
+      <AlertDiv {...rest} type={variant} ref={forwardedRef} customCSS={customCSS}>
         {icons[variant]}
         <div>
           <strong>{title}</strong>

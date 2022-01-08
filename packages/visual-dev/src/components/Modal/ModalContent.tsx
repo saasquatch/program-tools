@@ -5,7 +5,7 @@ import * as Styles from "./Styles";
 
 type ModalActionProps = ActionOptions &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 interface ActionOptions {
   primaryAction?: any;
@@ -13,22 +13,22 @@ interface ActionOptions {
 }
 
 interface StyleProps {
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const ModalActionDiv = styled.div<Required<StyleProps>>`
   ${Styles.ModalActionDivStyle}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 export const ModalContentAction = React.forwardRef<
   React.ElementRef<"div">,
   ModalActionProps
 >((props, forwardedRef) => {
-  const { primaryAction, secondaryAction, children, css = {}, ...rest } = props;
+  const { primaryAction, secondaryAction, children, customCSS = {}, ...rest } = props;
 
   return (
-    <ModalActionDiv {...rest} ref={forwardedRef} css={css}>
+    <ModalActionDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
       {secondaryAction && (
         <Button
           buttonType="secondary"
@@ -63,16 +63,16 @@ interface ContentOptions {
 
 const ModalContentDiv = styled.div<Required<StyleProps>>`
   ${Styles.ModalContentDivStyle}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 export const ModalContent = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps
 >((props, forwardedRef) => {
-  const { children, css = {}, ...rest } = props;
+  const { children, customCSS = {}, ...rest } = props;
 
   return (
-    <ModalContentDiv {...rest} ref={forwardedRef} css={css}>
+    <ModalContentDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
       {children}
     </ModalContentDiv>
   );
@@ -80,17 +80,17 @@ export const ModalContent = React.forwardRef<
 
 const ModalContentTextDiv = styled.div<Required<StyleProps>>`
   ${Styles.ModalContentTextDivStyle}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 export const ModalContentText = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps
 >((props, forwardedRef) => {
-  const { children, css = {}, ...rest } = props;
+  const { children, customCSS = {}, ...rest } = props;
 
   return (
-    <ModalContentTextDiv {...rest} ref={forwardedRef} css={css}>
+    <ModalContentTextDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
       {children}
     </ModalContentTextDiv>
   );
@@ -98,16 +98,16 @@ export const ModalContentText = React.forwardRef<
 
 const CodeDiv = styled.div<Required<StyleProps>>`
   ${Styles.CodeDivStyle}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 export const ModalContentCode = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps
 >((props, forwardedRef) => {
-  const { children, css = {}, ...rest } = props;
+  const { children, customCSS = {}, ...rest } = props;
 
   return (
-    <CodeDiv {...rest} ref={forwardedRef} css={css}>
+    <CodeDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
       {children}
     </CodeDiv>
   );
@@ -115,15 +115,15 @@ export const ModalContentCode = React.forwardRef<
 
 const DividerDiv = styled.div<Required<StyleProps>>`
   ${Styles.DividerDivStyle}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 export const ModalContentDivider = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps
 >((props, forwardedRef) => {
-  const { children, css = {}, ...rest } = props;
+  const { children, customCSS = {}, ...rest } = props;
 
-  return <DividerDiv {...rest} ref={forwardedRef} css={css} />;
+  return <DividerDiv {...rest} ref={forwardedRef} customCSS={customCSS} />;
 });
 
 const ModalBannerDiv = styled.div<Required<StyleProps>>`
@@ -134,10 +134,10 @@ export const ModalContentBanner = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps & { banner: any }
 >((props, forwardedRef) => {
-  const { banner, children, css = {}, ...rest } = props;
+  const { banner, children, customCSS = {}, ...rest } = props;
 
   return (
-    <ModalBannerDiv {...rest} ref={forwardedRef} css={css}>
+    <ModalBannerDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
       {banner ? banner.icon : ""}
       {banner ? banner.text : ""}
     </ModalBannerDiv>
@@ -152,10 +152,10 @@ export const ModalContentTopAction = React.forwardRef<
   React.ElementRef<"div">,
   ModalContentProps & { action: any }
 >((props, forwardedRef) => {
-  const { action, children, css = {}, ...rest } = props;
+  const { action, children, customCSS = {}, ...rest } = props;
 
   return (
-    <ModalBackDiv onClick={action} {...rest} ref={forwardedRef} css={css}>
+    <ModalBackDiv onClick={action} {...rest} ref={forwardedRef} customCSS={customCSS}>
       {action ? action.icon : ""}
       {action ? action.text : ""}
     </ModalBackDiv>

@@ -6,7 +6,7 @@ import * as Styles from "./Styles";
 
 type ButtonProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"button">, "translate">;
+  Omit<React.ComponentProps<"button">, "translate"|"css">;
 
 export interface OptionProps {
   icon?: IconKey;
@@ -21,7 +21,7 @@ export interface StyleProps {
   critical?: boolean;
   success?: boolean;
   size?: "small" | "medium" | "large";
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const StyledButton = styled.button<Required<StyleProps>>`
@@ -37,7 +37,7 @@ const StyledButton = styled.button<Required<StyleProps>>`
     props.loading &&
     props.buttonType != "text" &&
     Styles[`${props.buttonType}_loading`]}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 export const Button = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
@@ -52,7 +52,7 @@ export const Button = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
       iconLocation = "left",
       size = "medium",
       children,
-      css = {},
+      customCSS = {},
       ...rest
     } = props;
 
@@ -66,7 +66,7 @@ export const Button = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
         success={success}
         size={size}
         ref={forwardedRef}
-        css={css}
+        customCSS={customCSS}
       >
         {iconLocation == "left" && icon && (
           <Icon icon={icon} size={Styles.icon_size[size]} />

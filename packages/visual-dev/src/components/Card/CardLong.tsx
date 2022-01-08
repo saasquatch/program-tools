@@ -4,7 +4,7 @@ import * as Styles from "./Styles";
 
 type CardProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 interface OptionProps {
   title: string;
@@ -13,12 +13,12 @@ interface OptionProps {
 }
 
 interface StyleProps {
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const CardStyle = styled.div<Required<StyleProps>>`
   ${Styles.cardLong}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 const CardHeader = styled.div`
   ${Styles.cardLongHeader}
@@ -32,10 +32,10 @@ const CardFooter = styled.div`
 
 export const CardLong = React.forwardRef<React.ElementRef<"div">, CardProps>(
   (props, forwardedRef) => {
-    const { title, footer, children, css = {}, ...rest } = props;
+    const { title, footer, children, customCSS = {}, ...rest } = props;
 
     return (
-      <CardStyle {...rest} ref={forwardedRef} css={css}>
+      <CardStyle {...rest} ref={forwardedRef} customCSS={customCSS}>
         <CardHeader>{title}</CardHeader>
         <CardText>{children}</CardText>
         <CardFooter>{footer}</CardFooter>

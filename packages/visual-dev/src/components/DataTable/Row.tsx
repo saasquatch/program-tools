@@ -3,7 +3,7 @@ import styled, { CSSProp } from "styled-components";
 
 type PopoverProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"customCSS">;
 
 interface OptionProps {
   content?: any;
@@ -14,7 +14,7 @@ interface OptionProps {
 
 interface StyleProps {
   variant?: "row" | "header" | "banner" | "extra";
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const RowDiv = styled.div<Required<StyleProps>>`
@@ -70,7 +70,7 @@ const RowDiv = styled.div<Required<StyleProps>>`
 
   `}
 
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 const ContentDiv = styled.div<{ flex: string; center: boolean; width: string }>`
@@ -92,12 +92,12 @@ export const Row = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
       filter = false,
       variant = "row",
       children,
-      css = {},
+      customCSS = {},
       ...rest
     } = props;
 
     return (
-      <RowDiv variant={variant} {...rest} ref={forwardedRef} css={css}>
+      <RowDiv variant={variant} {...rest} ref={forwardedRef} customCSS={customCSS}>
         {empty && (
           <DataDiv>
             {dataSVG}

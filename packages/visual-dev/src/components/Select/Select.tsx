@@ -8,7 +8,7 @@ import { Icon } from "../Icon";
 import { LoadingSpinner } from "../LoadingSpinner";
 
 type SelectProps<ItemType> = OptionProps<ItemType> &
-  React.ComponentProps<"input">;
+  Omit<React.ComponentProps<"input">, "css">;
 
 export interface OptionProps<ItemType> {
   /**
@@ -38,7 +38,7 @@ export interface OptionProps<ItemType> {
   /**
    * Custom CSS for input element
    */
-  css?: CSSProp;
+  customCSS?: CSSProp;
   /**
    * Allow the input to be cleared
    */
@@ -90,7 +90,7 @@ const SelectInput = styled.div<{
   disabled: boolean | undefined;
   errors: any;
   isOpen: boolean;
-  css: CSSProp;
+  customCSS: CSSProp;
 }>`
   ${Styles.SelectInputStyle}
   ${(props) =>
@@ -112,7 +112,7 @@ const SelectInput = styled.div<{
     props.errors &&
     "border-color: var(--sq-border-critical); background: var(--sq-surface-critical-subdued);"}
 
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 const SelectedValue = styled.span<{
@@ -138,7 +138,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
   ref: React.Ref<HTMLInputElement>
 ) => {
   const {
-    css = {},
+    customCSS = {},
     disabled = false,
     errors = false,
     clearable = false,
@@ -191,7 +191,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
           disabled={disabled || loading}
           ref={ref}
           errors={errors}
-          css={css}
+          customCSS={customCSS}
           role="button"
           {...functional.getToggleButtonProps()}
         >
@@ -206,7 +206,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               icon={"close"}
               borderless={true}
               size="mini"
-              css={{
+              customCSS={{
                 display: showClear,
               }}
               icon_css={{
@@ -258,8 +258,8 @@ const SelectInner = <ItemType extends ItemTypeBase>(
             type={"text"}
             ref={ref}
             errors={errors}
-            css={`
-              ${css};
+            customCSS={`
+              ${customCSS};
               ${functional.isOpen && "border: 2px solid var(--sq-focused)"};
             `}
             disabled={disabled || loading}
@@ -271,7 +271,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               icon={"close"}
               borderless={true}
               size="mini"
-              css={{
+              customCSS={{
                 display: showClear,
               }}
               icon_css={{

@@ -6,7 +6,7 @@ import * as Styles from "./Styles";
 
 type DropdownProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 export interface OptionProps {
   text?: string;
@@ -29,13 +29,13 @@ interface ButtonProps {
 
 interface DropdownItemProps {
   onClick?: () => void;
-  css?: CSSProp;
+  customCSS?: CSSProp;
   children?: React.ReactNode;
 }
 
 interface DropdownSublistProps {
   name: string;
-  css?: CSSProp;
+  customCSS?: CSSProp;
   children: React.ReactNode;
 }
 
@@ -107,12 +107,12 @@ export const Dropdown = React.forwardRef<
     icon,
     onClickDropdown,
     children,
-    customCSS: css = {},
+    customCSS: customCSS = {},
     ...rest
   } = props;
 
   return (
-    <DropdownContainer {...rest} ref={forwardedRef} customCSS={css}>
+    <DropdownContainer {...rest} ref={forwardedRef} customCSS={customCSS}>
       <DropdownButton
         pill={pill}
         center={center}
@@ -139,10 +139,10 @@ export const DropdownItem = React.forwardRef<
   React.ElementRef<"div">,
   DropdownItemProps
 >((props, forwardedRef) => {
-  const { onClick, children, css = {}, ...rest } = props;
+  const { onClick, children, customCSS = {}, ...rest } = props;
 
   return (
-    <DropdownItemStyle onClick={onClick} {...rest} ref={forwardedRef} customCSS={css}>
+    <DropdownItemStyle onClick={onClick} {...rest} ref={forwardedRef} customCSS={customCSS}>
       {children}
     </DropdownItemStyle>
   );
@@ -152,10 +152,10 @@ export const DropdownSublist = React.forwardRef<
   React.ElementRef<"div">,
   DropdownSublistProps
 >((props, forwardedRef) => {
-  const { name, children, css = {}, ...rest } = props;
+  const { name, children, customCSS = {}, ...rest } = props;
 
   return (
-    <SublistContent {...rest} ref={forwardedRef} customCSS={css}>
+    <SublistContent {...rest} ref={forwardedRef} customCSS={customCSS}>
       <DropdownSublistStyle>{name}</DropdownSublistStyle>
       <DropdownSubItemStyle>{children}</DropdownSubItemStyle>
     </SublistContent>

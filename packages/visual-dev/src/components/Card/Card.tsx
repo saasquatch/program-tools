@@ -6,7 +6,7 @@ import { Button } from "../Button"
 
 type CardProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 export interface OptionProps {
   title: string;
@@ -14,12 +14,12 @@ export interface OptionProps {
 }
 
 export interface StyleProps {
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const CardStyle = styled.div<Required<StyleProps>>`
   ${Styles.card}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 const CardHeader = styled.div`
   ${Styles.cardHeader}
@@ -39,10 +39,10 @@ const CardFooter = styled.div`
 
 export const Card = React.forwardRef<React.ElementRef<"div">, CardProps>(
   (props, forwardedRef) => {
-    const { title, children, css = {}, ...rest } = props;
+    const { title, children, customCSS = {}, ...rest } = props;
 
     return (
-      <CardStyle {...rest} ref={forwardedRef} css={css}>
+      <CardStyle {...rest} ref={forwardedRef} customCSS={customCSS}>
         <CardHeader>
           <CardHeaderIcon>
             <Icon
@@ -60,11 +60,11 @@ export const Card = React.forwardRef<React.ElementRef<"div">, CardProps>(
             buttonType="secondary"
             size="small"
             pill
-            css="width: 124px; margin-right: 8px;"
+            customCSS="width: 124px; margin-right: 8px;"
           >
             Learn More
           </Button>
-          <Button buttonType="primary" size="small" pill css="width: 124px;">
+          <Button buttonType="primary" size="small" pill customCSS="width: 124px;">
             Create
           </Button>
         </CardFooter>

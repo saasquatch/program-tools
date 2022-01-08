@@ -4,7 +4,7 @@ import * as Styles from "./Styles";
 import { IconKey, Icon } from "../Icon";
 import React from "react";
 
-type InputProps = OptionProps & Omit<React.ComponentProps<"input">, "value">;
+type InputProps = OptionProps & Omit<React.ComponentProps<"input">, "value"|"css">;
 
 export interface OptionProps {
   value?: any;
@@ -15,7 +15,7 @@ export interface OptionProps {
   icon?: IconKey;
   buttons?: React.ReactElement;
   position?: "left" | "right";
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const ShadowDom = styled(root.div)`
@@ -25,12 +25,12 @@ const ShadowDom = styled(root.div)`
 const InputBox = styled.input<{
   isInvalid: boolean;
   position: string;
-  css: CSSProp;
+  customCSS: CSSProp;
 }>`
   ${Styles.InputBoxStyle}
   ${(props) => (props.isInvalid ? Styles.invalid : "")}
   ${(props) => (props.position == "left" ? "text-indent: 40px;" : "")}
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 `;
 
 const ExtrasDiv = styled.div<{ position: string }>`
@@ -50,7 +50,7 @@ export const Input = React.forwardRef<React.ElementRef<"input">, InputProps>(
       type = "text",
       buttons = false,
       errors: rawErrors,
-      css = {},
+      customCSS = {},
       ...rest
     } = props;
 
@@ -63,7 +63,7 @@ export const Input = React.forwardRef<React.ElementRef<"input">, InputProps>(
             position={position}
             ref={forwardedRef}
             isInvalid={rawErrors}
-            css={css}
+            customCSS={customCSS}
           />
           {icon && (
             <ExtrasDiv position={position}>

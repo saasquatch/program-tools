@@ -3,18 +3,18 @@ import styled, { CSSProp } from "styled-components";
 
 type PopoverProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate"|"css">;
 
 interface OptionProps {
   children?: any;
 }
 
 interface StyleProps {
-  css?: CSSProp;
+  customCSS?: CSSProp;
 }
 
 const ContentDiv = styled.div<Required<StyleProps>>`
-  ${(props) => props.css}
+  ${(props) => props.customCSS}
 
   display: flex;
   flex-wrap: wrap;
@@ -36,10 +36,10 @@ const ContentDiv = styled.div<Required<StyleProps>>`
 
 export const Content = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
   (props, forwardedRef) => {
-    const { children, css = {}, ...rest } = props;
+    const { children, customCSS = {}, ...rest } = props;
 
     return (
-      <ContentDiv {...rest} ref={forwardedRef} css={css}>
+      <ContentDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
         {children}
       </ContentDiv>
     );
@@ -65,14 +65,14 @@ const SkeletonDiv = styled.div<
       ? props.size
       : "100%"};
 
-  ${(props) => props.css};
+  ${(props) => props.customCSS};
 `;
 
 export const Skeleton = React.forwardRef<
   React.ElementRef<"div">,
   PopoverProps & { size?: string; circle?: boolean }
 >((props, forwardedRef) => {
-  const { circle = false, size, color, children, css = {}, ...rest } = props;
+  const { circle = false, size, color, children, customCSS = {}, ...rest } = props;
 
   return (
     <SkeletonDiv
@@ -81,7 +81,7 @@ export const Skeleton = React.forwardRef<
       color={color}
       {...rest}
       ref={forwardedRef}
-      css={css}
+      customCSS={customCSS}
     >
       {children}
     </SkeletonDiv>
