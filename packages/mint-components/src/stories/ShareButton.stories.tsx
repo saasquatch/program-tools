@@ -6,7 +6,7 @@ export default {
 };
 
 export const WithIcon = () => {
-  const props = { medium: "facebook", iconslot: "suffix" } as const;
+  const props = { medium: "whatsapp", iconslot: "suffix" } as const;
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
 
