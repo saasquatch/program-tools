@@ -44,7 +44,7 @@ export class TaskCard {
    * @uiName Description Text
    */
   @Prop()
-  description: string = "Description Text";
+  description: string = "";
 
   /**
    * @uiName Goal Repeatable

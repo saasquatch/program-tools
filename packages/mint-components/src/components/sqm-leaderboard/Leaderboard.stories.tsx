@@ -71,7 +71,13 @@ export const One = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: [
-        { firstName: "Viktor", lastInitial: "V", value: 82, rank: 1 },
+        {
+          firstName: "Viktor",
+          lastInitial: "V",
+          value: 82,
+          rank: 1,
+          rowNumber: 1,
+        },
       ],
     },
     elements: {
@@ -93,11 +99,35 @@ export const Five = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: [
-        { firstName: "Viktor", lastInitial: "V", value: 82, rank: 1 },
-        { firstName: "MF", lastInitial: "D", value: 73, rank: 2 },
-        { firstName: "Freddie", lastInitial: "G", value: 64, rank: 3 },
-        { firstName: "Benny", lastInitial: "B", value: 55, rank: 4 },
-        { firstName: "Mos", lastInitial: "D", value: 46, rank: 5 },
+        {
+          firstName: "Viktor",
+          lastInitial: "V",
+          value: 82,
+          rank: 1,
+          rowNumber: 1,
+        },
+        { firstName: "MF", lastInitial: "D", value: 73, rank: 2, rowNumber: 2 },
+        {
+          firstName: "Freddie",
+          lastInitial: "G",
+          value: 64,
+          rank: 3,
+          rowNumber: 3,
+        },
+        {
+          firstName: "Benny",
+          lastInitial: "B",
+          value: 55,
+          rank: 4,
+          rowNumber: 4,
+        },
+        {
+          firstName: "Mos",
+          lastInitial: "D",
+          value: 46,
+          rank: 5,
+          rowNumber: 5,
+        },
       ],
     },
     elements: {
@@ -122,12 +152,164 @@ export const FiveWithRank = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: [
-        { firstName: "Viktor", lastInitial: "V", value: 82, rank: 1 },
-        { firstName: "MF", lastInitial: "D", value: 73, rank: 2 },
-        { firstName: "Freddie", lastInitial: "G", value: 64, rank: 3 },
-        { firstName: "Benny", lastInitial: "B", value: 55, rank: 4 },
-        { firstName: "Mos", lastInitial: "D", value: 46, rank: 5 },
+        {
+          firstName: "Viktor",
+          lastInitial: "V",
+          value: 82,
+          rank: 1,
+          rowNumber: 1,
+        },
+        { firstName: "MF", lastInitial: "D", value: 73, rank: 2, rowNumber: 2 },
+        {
+          firstName: "Freddie",
+          lastInitial: "G",
+          value: 64,
+          rank: 3,
+          rowNumber: 3,
+        },
+        {
+          firstName: "Benny",
+          lastInitial: "B",
+          value: 55,
+          rank: 4,
+          rowNumber: 4,
+        },
+        {
+          firstName: "Mos",
+          lastInitial: "D",
+          value: 46,
+          rank: 5,
+          rowNumber: 5,
+        },
       ],
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};
+
+export const FiveWithUser1 = () => {
+  const props = {
+    states: {
+      loading: false,
+      hasLeaders: true,
+      styles: {
+        rankheading: "Rank",
+        usersheading: "User",
+        statsheading: "Referrals",
+        showRank: true,
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: [
+        {
+          firstName: "Viktor",
+          lastInitial: "V",
+          value: 82,
+          rank: 1,
+          rowNumber: 1,
+        },
+        { firstName: "MF", lastInitial: "D", value: 73, rank: 2, rowNumber: 2 },
+        {
+          firstName: "Freddie",
+          lastInitial: "G",
+          value: 64,
+          rank: 3,
+          rowNumber: 3,
+        },
+        {
+          firstName: "Benny",
+          lastInitial: "B",
+          value: 55,
+          rank: 4,
+          rowNumber: 4,
+        },
+        {
+          firstName: "Mos",
+          lastInitial: "D",
+          value: 46,
+          rank: 5,
+          rowNumber: 5,
+        },
+      ],
+      showUser: true,
+      userRank: {
+        firstName: "Viktor",
+        lastInitial: "V",
+        leaderboardRank: {
+          value: 82,
+          rowNumber: 1,
+          rank: 1,
+          denseRank: 1,
+        },
+      },
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};
+
+export const FiveWithUser6 = () => {
+  const props = {
+    states: {
+      loading: false,
+      hasLeaders: true,
+      styles: {
+        rankheading: "Rank",
+        usersheading: "User",
+        statsheading: "Referrals",
+        showRank: true,
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: [
+        {
+          firstName: "Viktor",
+          lastInitial: "V",
+          value: 82,
+          rank: 1,
+          rowNumber: 1,
+        },
+        { firstName: "MF", lastInitial: "D", value: 73, rank: 2, rowNumber: 2 },
+        {
+          firstName: "Freddie",
+          lastInitial: "G",
+          value: 64,
+          rank: 3,
+          rowNumber: 3,
+        },
+        {
+          firstName: "Benny",
+          lastInitial: "B",
+          value: 55,
+          rank: 4,
+          rowNumber: 4,
+        },
+        {
+          firstName: "Mos",
+          lastInitial: "D",
+          value: 46,
+          rank: 5,
+          rowNumber: 5,
+        },
+      ],
+      showUser: true,
+      userRank: {
+        firstName: "Kutay",
+        lastInitial: "C",
+        leaderboardRank: {
+          value: 7,
+          rowNumber: 6,
+          rank: 6,
+          denseRank: 6,
+        },
+      },
     },
     elements: {
       ...defaultElements,

@@ -228,6 +228,10 @@ export namespace Components {
          */
         "showRank": boolean;
         /**
+          * @uiName Show viewing user's rank
+         */
+        "showUser": boolean;
+        /**
           * @uiName Stats Column Heading
          */
         "statsheading": string;
@@ -2264,6 +2268,10 @@ declare namespace LocalJSX {
           * @uiName Show the ranking numbers
          */
         "showRank"?: boolean;
+        /**
+          * @uiName Show viewing user's rank
+         */
+        "showUser"?: boolean;
         /**
           * @uiName Stats Column Heading
          */

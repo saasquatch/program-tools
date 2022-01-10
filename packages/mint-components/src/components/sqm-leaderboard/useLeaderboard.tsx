@@ -12,6 +12,7 @@ export interface LeaderboardProps {
   statsheading: string;
   rankheading?: string;
   showRank?: boolean;
+  showUser?: boolean;
   rankType: "rowNumber" | "rank" | "denseRank";
   leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   interval: string;
@@ -38,11 +39,29 @@ const GET_LEADERBOARD = gql`
   }
 `;
 
+const GET_RANK = gql`
+  query ($type: String!, $filter: UserLeaderboardFilterInput) {
+    viewer {
+      ... on User {
+        firstName
+        lastInitial
+        leaderboardRank(type: $type, filter: $filter) {
+          value
+          rowNumber
+          rank
+          denseRank
+        }
+      }
+    }
+  }
+`;
+
 type LeaderboardRows = {
   value: number;
   firstName: string;
   lastInitial: string;
   rank: Rank;
+  row: number;
 };
 
 export type Rank = {
@@ -56,6 +75,7 @@ export type Leaderboard = {
   rank: number;
   firstName: string;
   lastInitial: string;
+  rowNumber: number;
 };
 
 export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
@@ -77,6 +97,8 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     !user?.jwt
   );
 
+  const { data: rankData } = useQuery(GET_RANK, variables, !user?.jwt);
+
   const leaderboardRows = leaderboardData?.userLeaderboard?.rows;
 
   const flattenedLeaderboard = getFlattenedLeaderboard(leaderboardRows);
@@ -96,6 +118,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
       firstName: user.firstName || "Anonymous",
       lastInitial: user.lastInitial,
       rank: user.rank?.[props.rankType],
+      rowNumber: user.rank?.rowNumber,
     }));
   }
 
@@ -108,6 +131,8 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     data: {
       leaderboard: sortedLeaderboard,
       rankType: props.rankType,
+      userRank: rankData?.viewer,
+      showUser: props.showUser,
     },
     elements: {
       empty: props.empty,
