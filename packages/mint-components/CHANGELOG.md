@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.1] - 2021-01-10
+
+### Fixed
+
+- Fixed broken WhatsApp icon by updating the version of bootstrap icons from 1.2.0 to 1.7.2
+
 ## [1.4.0] - 2021-12-09
 
 - Updated version of component-boilerplate to prevent rare case of user context being deleted during register
