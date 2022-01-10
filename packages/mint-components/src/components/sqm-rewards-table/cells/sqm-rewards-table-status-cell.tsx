@@ -48,8 +48,8 @@ export class RewardTableStatusCell {
 
       Date: {
         fontSize: "var(--sl-font-size-small)",
-        margin: "0",
         color: "var(--sl-color-neutral-500)",
+        margin: "0",
       },
     };
 

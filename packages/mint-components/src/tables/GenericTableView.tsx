@@ -53,11 +53,12 @@ export function GenericTableView(props: GenericTableViewProps) {
   const style = {
     Table: {
       borderCollapse: "collapse",
+	  tableLayout: "fixed",
       width: "100%",
       "& th": {
         paddingBottom: "var(--sl-spacing-small)",
         textAlign: "left",
-        fontWeight: "var(--sl-font-weight-normal)",
+        fontWeight: "var(--sl-font-weight-semibold)",
       },
       "& tr": {},
       "& td": {

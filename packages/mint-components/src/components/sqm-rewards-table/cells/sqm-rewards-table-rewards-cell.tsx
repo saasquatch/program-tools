@@ -129,7 +129,6 @@ export class RewardTableRewardsCell {
 
           RewardAmount: {
             fontSize: "var(--sl-font-size-medium)",
-            fontWeight: "var(--sl-font-weight-semibold)",
           },
           RewardRemain: {
             fontSize: "var(--sl-font-size-small)",
@@ -153,15 +152,13 @@ export class RewardTableRewardsCell {
           </div>
         );
       }
-      return <span>{pimpedPrettyValue}</span>;
+      return <div>{pimpedPrettyValue}</div>;
     };
 
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
-        <TextSpanView type="p">
-          <RewardValue reward={this.reward} />
-        </TextSpanView>
+        <RewardValue reward={this.reward} />
       </div>
     );
   }
