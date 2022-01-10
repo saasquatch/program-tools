@@ -87,6 +87,14 @@ export const AllMediums = () => {
       <sqm-share-button medium="fbmessenger" icon="messenger" iconslot="prefix">
         <span>Messenger</span>
       </sqm-share-button>
+      <br />
+      <sqm-share-button medium="sms" icon="chat" iconslot="prefix">
+        <span>SMS</span>
+      </sqm-share-button>
+      <br />
+      <sqm-share-button medium="linemessenger" icon="line" iconslot="prefix">
+        <span>Line Messenger</span>
+      </sqm-share-button>
     </div>
   );
 };
