@@ -79,8 +79,8 @@ export function LeaderboardView(props: LeaderboardViewProps) {
               {styles.showRank && (
                 <td class="Rank">{data.userRank?.leaderboardRank?.rank}</td>
               )}
-              <td class="User">{`${data.userRank?.firstName} ${data.userRank?.lastInitial} `}</td>
-              <td class="Score">{data.userRank?.leaderboardRank?.value}</td>
+              <td class="User">{`${data.userRank?.firstName || "-"} ${data.userRank?.lastInitial || "-"} `}</td>
+              <td class="Score">{data.userRank?.leaderboardRank?.value || "0"}</td>
             </tr>
           )}
         </table>

@@ -234,6 +234,33 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
     },
 
+    Confirmation: {
+      "& .wrapper": {
+        display: "flex",
+      },
+      "& .padding": {
+        padding: "var(--sl-spacing-medium) 0",
+      },
+      "& .field": {
+        width: "40%",
+        textTransform: "uppercase",
+        fontSize: "var(--sl-font-size-medium)",
+        fontWeight: "var(--sl-font-weight-normal)",
+        color: "var(--sl-color-neutral-400)",
+        textAlign: "right",
+        paddingRight: "var(--sl-spacing-xxx-large)",
+      },
+      "& .value": {},
+
+      "& .top-border": {
+        borderTop: "1px solid var(--sl-color-neutral-200)",
+      },
+
+      "& .image": {
+        width: "200px",
+      },
+    },
+
     Button: {
       display: "flex",
       flexWrap: "wrap-reverse",
@@ -551,13 +578,49 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   }
 
   function confirmation() {
-    console.log(selectedItem?.name);
+    console.log(selectedItem);
+    console.log(selectedStep);
+
+    const cost =
+      selectedStep?.prettySourceValue || selectedItem.prettySourceValue;
+
+    const amount = selectedStep?.prettyDestinationValue;
     return (
       <div>
         <h2 style={{ margin: "var(--sl-spacing-large) 0" }}>
           {states.content.text.redeemTitle}
         </h2>
-        <div
+
+        <div class={sheet.classes.Confirmation}>
+          <div class="wrapper">
+            <div class="field">Reward</div>
+            <div class="value">{selectedItem.name}</div>
+          </div>
+          <div class="wrapper">
+            <div class="field"></div>
+            <div class="value">
+              <img
+                class="image"
+                src={
+                  selectedItem?.imageUrl ||
+                  getAssetPath("./assets/placeholder.png")
+                }
+              />
+            </div>
+          </div>
+          {amount && (
+            <div class="wrapper top-border padding">
+              <div class="field">Reward Amount</div>
+              <div class="value">{amount}</div>
+            </div>
+          )}
+          <div class="wrapper top-border padding">
+            <div class="field">Cost to Redeem</div>
+            <div class="value">{cost}</div>
+          </div>
+        </div>
+
+        {/* <div
           style={{
             textAlign: "center",
             marginBottom: "var(--sl-spacing-xxx-large)",
@@ -618,7 +681,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               </div>
             </sl-card>
           </div>
-        </div>
+        </div> */}
 
         <div class={sheet.classes.Button}>
           <sl-button
@@ -813,6 +876,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
       <div>
+        {console.log(props)}
         {stageMap()}
         {states.exchangeError && errorMessage()}
         {states.queryError && queryErrorMessage()}
