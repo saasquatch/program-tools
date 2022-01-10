@@ -18,7 +18,7 @@ export const Description = css`
   color: var(--sq-text-subdued);
   display: contents;
   & > p {
-    margin: var(--sq-spacing-xx-small) 0 0 !important;
+    margin: var(--sq-spacing-xx-small) 0 0;
   }
 `;
 

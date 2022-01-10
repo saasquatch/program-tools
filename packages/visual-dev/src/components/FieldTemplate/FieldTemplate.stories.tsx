@@ -4,6 +4,7 @@ import { Button } from "../Button";
 import { RJSFInput } from "../Input";
 import Form, { WidgetProps } from "@rjsf/core";
 import { FieldTemplate } from "./FieldTemplate";
+import { ObjectFieldTemplate } from "../ObjectFieldTemplate";
 
 export default {
   title: "RJSF / Field Template",
@@ -108,6 +109,7 @@ export const Required = () => {
         onSubmit={log("submitted")}
         onError={log("errors")}
         FieldTemplate={FieldTemplate}
+        ObjectFieldTemplate={ObjectFieldTemplate}
       >
         <Button buttonType="primary" style={{ marginTop: 15 }}>
           Submit
