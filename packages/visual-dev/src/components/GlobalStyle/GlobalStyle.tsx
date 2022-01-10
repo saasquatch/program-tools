@@ -67,7 +67,6 @@ export const CSSVariables = createGlobalStyle`
   /* Typography */
   --sq-font-family-sans: "Helvetica Neue", Helvetica, sans-serif;
 
-
   --sq-font-weight-regular: 400;
   --sq-font-weight-semibold: 600;
   --sq-font-weight-bold: 700;
