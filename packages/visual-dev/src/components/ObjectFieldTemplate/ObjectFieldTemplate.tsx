@@ -31,7 +31,10 @@ export const ObjectFieldTemplate = (props: ObjectFieldTemplateProps) => {
         <Description>{props.description}</Description>
       </FrontMatterContainer>
       {props.properties.map((element) => (
-        <FieldContainer className="property-wrapper">
+        <FieldContainer
+          className="property-wrapper"
+          key={props.idSchema[element.name].$id}
+        >
           {element.content}
         </FieldContainer>
       ))}

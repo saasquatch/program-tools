@@ -39,10 +39,9 @@ export const FieldTemplate = (props: FieldTemplateProps) => {
     children,
     schema,
   } = props;
-  console.log(props);
   const isCollection = schema.type === "object" || schema.type === "array";
   return (
-    <Container className={classNames}>
+    <Container className={classNames} id={id}>
       {!isCollection && (
         <Label htmlFor={id}>
           {label}
