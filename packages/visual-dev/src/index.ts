@@ -59,6 +59,8 @@ import {
   RJSFNumericalInput,
 } from "./components/Input";
 import { Select } from "./components/Select";
+import { FieldTemplate } from "./components/FieldTemplate";
+import { ObjectFieldTemplate } from "./components/ObjectFieldTemplate";
 
 export {
   Button,
@@ -117,4 +119,6 @@ export {
   CSSVariables,
   TextRules,
   Select,
+  FieldTemplate,
+  ObjectFieldTemplate,
 };
