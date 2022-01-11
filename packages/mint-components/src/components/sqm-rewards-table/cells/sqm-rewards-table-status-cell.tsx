@@ -45,6 +45,13 @@ export class RewardTableStatusCell {
           padding: "4px 8px",
         },
       },
+      RedeemBadge: {
+        "&::part(base)": {
+          fontSize: "var(--sl-font-size-small)",
+          padding: "4px 8px",
+          background: "var(--sl-color-sky-600)",
+        },
+      },
 
       Date: {
         fontSize: "var(--sl-font-size-small)",
@@ -90,7 +97,15 @@ export class RewardTableStatusCell {
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
-        <sl-badge type={badgeType} pill class={sheet.classes.Badge}>
+        <sl-badge
+          type={badgeType}
+          pill
+          class={
+            rewardStatus === "REDEEMED"
+              ? sheet.classes.RedeemBadge
+              : sheet.classes.Badge
+          }
+        >
           {statusText}
         </sl-badge>
         <p class={sheet.classes.Date}>{date}</p>
