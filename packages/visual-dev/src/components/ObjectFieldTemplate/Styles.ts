@@ -17,6 +17,7 @@ export const FrontMatterContainer = css`
 export const Title = css`
   color: var(--sq-text);
   font-weight: var(--sq-font-weight-semibold);
+  font-size: var(--sq-font-size-caption);
 `;
 
 export const Description = css`
