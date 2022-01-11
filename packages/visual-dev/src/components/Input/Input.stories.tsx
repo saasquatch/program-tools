@@ -21,6 +21,8 @@ export const FunctionalInput = () => {
 
 export const InputText = () => <Input value="Input Text" />;
 
+export const FullWidth = () => <Input value="Input Text" limitWidth={false} />;
+
 export const InputDisabled = () => <Input value="Input Text" disabled />;
 
 export const Placeholder = () => <Input placeholder="Placeholder Text" />;
@@ -80,11 +82,7 @@ export const InputButtons = () => (
           primary
           css={"margin-right: 4px;"}
         />
-        <IconButton
-          icon="close"
-          size="mini"
-          icon_css="color: #858585;"
-        />
+        <IconButton icon="close" size="mini" icon_css="color: #858585;" />
       </>
     }
   />
