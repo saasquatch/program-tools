@@ -4,7 +4,8 @@ import * as Styles from "./Styles";
 import { IconKey, Icon } from "../Icon";
 import React from "react";
 
-type InputProps = OptionProps & Omit<React.ComponentProps<"input">, "value"|"css">;
+type InputProps = OptionProps &
+  Omit<React.ComponentProps<"input">, "value" | "css">;
 
 export interface OptionProps {
   value?: any;
@@ -16,6 +17,7 @@ export interface OptionProps {
   buttons?: React.ReactElement;
   position?: "left" | "right";
   customCSS?: CSSProp;
+  limitWidth?: boolean;
 }
 
 const ShadowDom = styled(root.div)`
@@ -38,8 +40,9 @@ const ExtrasDiv = styled.div<{ position: string }>`
   ${(props) => (props.position == "left" ? "left: 12px;" : "right: 12px;")}
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ limitWidth: boolean }>`
   ${Styles.Container}
+  ${(props) => props.limitWidth && "max-width: 300px;"}
 `;
 
 export const Input = React.forwardRef<React.ElementRef<"input">, InputProps>(
@@ -51,12 +54,13 @@ export const Input = React.forwardRef<React.ElementRef<"input">, InputProps>(
       buttons = false,
       errors: rawErrors,
       customCSS = {},
+      limitWidth = true,
       ...rest
     } = props;
 
     return (
       <ShadowDom>
-        <Container>
+        <Container limitWidth={limitWidth}>
           <InputBox
             {...rest}
             type={type}

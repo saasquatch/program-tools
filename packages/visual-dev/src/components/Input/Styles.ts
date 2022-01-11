@@ -3,7 +3,6 @@ import { css } from "styled-components";
 export const InputBoxStyle = css`
   position: relative;
   width: 100%;
-  max-width: 300px;
   box-sizing: border-box;
   height: 36px;
   text-indent: 6px;
@@ -58,7 +57,6 @@ export const invalid = css`
 
 export const Container = css`
   display: inline-block;
-  max-width: 300px;
   width: 100%;
   position: relative;
   height: 36px;

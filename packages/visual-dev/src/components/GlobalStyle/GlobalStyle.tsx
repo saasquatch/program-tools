@@ -152,7 +152,7 @@ h3{
 p{
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
-  font-weight: var(--sq-font-weight-bold);
+  font-weight: var(--sq-font-weight-regular);
   font-family: var(--sq-font-family-sans);
   color: var(--sq-text);
 }
