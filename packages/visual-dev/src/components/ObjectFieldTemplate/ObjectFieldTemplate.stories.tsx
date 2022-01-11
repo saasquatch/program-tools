@@ -45,7 +45,6 @@ export const Default = () => {
         type: "string",
       },
     },
-    required: ["field1"],
   };
 
   return (

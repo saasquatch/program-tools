@@ -37,17 +37,26 @@ export const FieldTemplate = (props: FieldTemplateProps) => {
     description,
     errors,
     children,
+    schema,
   } = props;
+  console.log(props);
+  const isCollection = schema.type === "object" || schema.type === "array";
   return (
     <Container className={classNames}>
-      <Label htmlFor={id}>
-        {label}
-        {required ? <RequiredLabel> (required)</RequiredLabel> : null}
-      </Label>
+      {!isCollection && (
+        <Label htmlFor={id}>
+          {label}
+          {required ? <RequiredLabel> (required)</RequiredLabel> : null}
+        </Label>
+      )}
       {children}
-      <Description>{description}</Description>
-      <Errors>{errors}</Errors>
-      <HelpText>{help}</HelpText>
+      {!isCollection && (
+        <>
+          <Description>{description}</Description>
+          <Errors>{errors}</Errors>
+          <HelpText>{help}</HelpText>
+        </>
+      )}
     </Container>
   );
 };
