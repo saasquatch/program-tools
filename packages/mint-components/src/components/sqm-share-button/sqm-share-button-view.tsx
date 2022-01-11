@@ -53,7 +53,10 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   const style = {
     HostBlock: HostBlock,
     buttonStyle: {
-      display: "block",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      lineHeight: "0",
     },
   };
 
