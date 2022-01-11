@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import {
   AuthButtonsContainer,
   AuthColumn,
@@ -26,9 +26,10 @@ export interface PortalRegisterViewProps {
     inputFunction: Function;
   };
   content: {
-    formData?: any;
-    passwordField?: any;
-    secondaryButton?: any;
+    formData?: VNode;
+    terms?: VNode;
+    passwordField?: VNode;
+    secondaryButton?: VNode;
     emailLabel?: string;
     passwordLabel?: string;
     submitLabel?: string;
@@ -153,6 +154,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
               : [])}
           ></sl-input>
         )}
+        {content.terms}
         <div class={sheet.classes.ButtonsContainer}>
           <sl-button
             submit
