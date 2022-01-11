@@ -57,6 +57,7 @@ import {
   RJSFInput,
   RJSFLockableInput,
   RJSFNumericalInput,
+  RJSFPasswordInput,
 } from "./components/Input";
 import { Select } from "./components/Select";
 import { FieldTemplate } from "./components/FieldTemplate";
@@ -75,6 +76,7 @@ export {
   RJSFInput,
   RJSFLockableInput,
   RJSFNumericalInput,
+  RJSFPasswordInput,
   Alert,
   Avatar,
   Badge,
