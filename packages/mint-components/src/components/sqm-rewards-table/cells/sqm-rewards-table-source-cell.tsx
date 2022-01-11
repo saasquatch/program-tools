@@ -35,7 +35,14 @@ export class RewardTableSourceCell {
     const RewardExchangeBadge = ({ reward }: { reward: Reward }) => {
       const rewardExchange = (
         <div>
-          {this.rewardExchangeText}
+          <span
+            style={{
+              fontSize: "var(--sl-font-size-small)",
+              color: "var(--sl-color-neutral-500)",
+            }}
+          >
+            {this.rewardExchangeText}
+          </span>
           <br />
           {reward.exchangedRewardRedemptionTransaction?.prettyRedeemedCredit}
           {" → "}
@@ -72,7 +79,7 @@ export class RewardTableSourceCell {
       return `${user.firstName} ${user.lastName}`;
     };
 
-    const source = () =>
+    const Source = () =>
       this.reward.rewardSource === "FRIEND_SIGNUP" ||
       this.reward.rewardSource === "REFERRED" ? (
         <div>
@@ -92,13 +99,7 @@ export class RewardTableSourceCell {
               }
             )}
           </div>
-          <div
-            style={{
-              fontSize: "var(--sl-font-size-medium)",
-            }}
-          >
-            {getFullName(this.reward.referral.referredUser)}
-          </div>
+          <div>{getFullName(this.reward.referral.referredUser)}</div>
         </div>
       ) : this.reward.exchangedRewardRedemptionTransaction ? (
         <RewardExchangeBadge reward={this.reward} />
@@ -106,6 +107,6 @@ export class RewardTableSourceCell {
         <RewardSource reward={this.reward} />
       );
 
-    return <TextSpanView type="p">{source()}</TextSpanView>;
+    return <Source />;
   }
 }

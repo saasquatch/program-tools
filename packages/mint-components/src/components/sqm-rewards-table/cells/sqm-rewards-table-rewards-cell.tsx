@@ -61,12 +61,16 @@ export class RewardTableRewardsCell {
     const styleString = sheet.toString();
 
     const RewardValue = ({ reward }: { reward: Reward }) => {
+      console.log(reward);
       const pimpedPrettyValue =
         reward.unit === "CENTS"
           ? reward.prettyValue.replace(/USD/gi, "$")
           : reward.prettyValue ?? "-";
 
-      if (reward.type === "CREDIT") {
+      const singleReward =
+        reward.prettyValueNumber === "1" && reward.prettyRedeemedNumber === "1";
+
+      if (reward.type === "CREDIT" && !singleReward) {
         const progress = Math.round(
           ((parseFloat(reward.prettyValueNumber) -
             parseFloat(reward.prettyRedeemedNumber)) /
@@ -105,13 +109,13 @@ export class RewardTableRewardsCell {
         const style = {
           Progress: {
             height: "3px",
-            width: "100px",
+            width: "150px",
             margin: "var(--sl-spacing-xx-small) 0",
             background: "var(--sl-color-neutral-200)",
             "&:after": {
               content: '""',
               display: "block",
-              background: "var(--sl-color-neutral-1000)",
+              background: "var(--sl-color-primary-300)",
               borderRadius: "100px",
               width: `${progress}%`,
               height: "100%",
@@ -126,42 +130,32 @@ export class RewardTableRewardsCell {
             overflow: "hidden",
             textOverflow: "ellipsis",
           },
-
-          RewardAmount: {
-            fontSize: "var(--sl-font-size-medium)",
-            fontWeight: "var(--sl-font-weight-semibold)",
-          },
-          RewardRemain: {
+          Subtext: {
             fontSize: "var(--sl-font-size-small)",
             color: "var(--sl-color-neutral-500)",
           },
         };
         const sheet = createStyleSheet(style);
         const styleString = sheet.toString();
+
         return (
           <div>
             <style type="text/css">{styleString}</style>
             <div class={sheet.classes.Container}>
-              <span class={sheet.classes.RewardAmount}>
-                {pimpedPrettyValue + " "}
-              </span>
+              <span>{pimpedPrettyValue + " "}</span>
               <br /> <div class={sheet.classes.Progress} />
-              <span class={sheet.classes.RewardRemain}>
-                {progressBarSubtext}
-              </span>
+              <span class={sheet.classes.Subtext}>{progressBarSubtext}</span>
             </div>
           </div>
         );
       }
-      return <span>{pimpedPrettyValue}</span>;
+      return <div>{pimpedPrettyValue}</div>;
     };
 
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
-        <TextSpanView type="p">
-          <RewardValue reward={this.reward} />
-        </TextSpanView>
+        <RewardValue reward={this.reward} />
       </div>
     );
   }

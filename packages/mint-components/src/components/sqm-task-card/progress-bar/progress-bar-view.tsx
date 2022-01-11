@@ -140,6 +140,9 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
   let aggregate: Aggregate = buildProgressBar(repeatable, steps, props);
   const { columns, items } = aggregate;
 
+  //@ts-ignore
+  console.log("PROGRESS BAR PROPS " + props?.content?.cardTitle);
+  console.log({ props });
   return (
     <div
       class={sheet.classes.ProgressBar}
@@ -155,7 +158,10 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
             ? "progress-bar repeatable-steps"
             : "progress-bar"
         }
-        style={{ gridTemplateColumns: columns }}
+        style={{
+          gridTemplateColumns: columns,
+          marginLeft: progress === 0 ? "var(--sl-spacing-x-small)" : "",
+        }}
       >
         {items}
       </div>

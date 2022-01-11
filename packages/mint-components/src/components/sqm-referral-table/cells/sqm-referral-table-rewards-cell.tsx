@@ -52,6 +52,12 @@ export class ReferralTableRewardsCell {
       StatusBadge: {
         paddingLeft: "var(--sl-spacing-xxx-small)",
       },
+      RedeemBadge: {
+        paddingLeft: "var(--sl-spacing-xxx-small)",
+        "&::part(base)": {
+          background: "var(--sl-color-sky-600)",
+        },
+      },
     };
 
     const sheet = createStyleSheet(style);
@@ -112,7 +118,11 @@ export class ReferralTableRewardsCell {
             <div class={sheet.classes.BadgeContainer}>
               {state === "PENDING" && reward.dateScheduledFor ? (
                 <sl-badge
-                  class={sheet.classes.StatusBadge}
+                  class={
+                    slBadgeType === "primary"
+                      ? sheet.classes.RedeemBadge
+                      : sheet.classes.StatusBadge
+                  }
                   type={slBadgeType}
                   pill
                 >{`${badgeText} for ${getTimeDiff(
@@ -120,7 +130,11 @@ export class ReferralTableRewardsCell {
                 )}`}</sl-badge>
               ) : (
                 <sl-badge
-                  class={sheet.classes.StatusBadge}
+                  class={
+                    slBadgeType === "primary"
+                      ? sheet.classes.RedeemBadge
+                      : sheet.classes.StatusBadge
+                  }
                   type={slBadgeType}
                   pill
                 >
@@ -128,7 +142,15 @@ export class ReferralTableRewardsCell {
                 </sl-badge>
               )}
               {reward.dateExpires && state === "AVAILABLE" && (
-                <sl-badge class={sheet.classes.StatusBadge} type="info" pill>
+                <sl-badge
+                  class={
+                    slBadgeType === "primary"
+                      ? sheet.classes.RedeemBadge
+                      : sheet.classes.StatusBadge
+                  }
+                  type="info"
+                  pill
+                >
                   {`Expiring in ${getTimeDiff(reward.dateExpires)}`}
                 </sl-badge>
               )}
@@ -198,12 +220,10 @@ export class ReferralTableRewardsCell {
             )}
             {reward.fuelTankCode && (
               <div>
-                <TextSpanView type="p">
-                  Your code is{" "}
-                  <span class={sheet.classes.BoldText}>
-                    {reward.fuelTankCode}
-                  </span>
-                </TextSpanView>
+                Your code is{" "}
+                <span class={sheet.classes.BoldText}>
+                  {reward.fuelTankCode}
+                </span>
               </div>
             )}
           </div>

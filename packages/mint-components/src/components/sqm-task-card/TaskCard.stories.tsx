@@ -264,7 +264,7 @@ export const TaskCardRepeatable = () => {
         <h4>A Couple Actions</h4>
         <TaskCardView
           content={{ ...coupleActions.content, repeatable: true }}
-          states={{ ...coupleActions.states, progress: 1 }}
+          states={{ ...coupleActions.states, progress: 0 }}
         />
         <h5 />
         <TaskCardView
@@ -287,7 +287,7 @@ export const TaskCardRepeatable = () => {
         <h4>Many Actions</h4>
         <TaskCardView
           content={{ ...manyActions.content, repeatable: true }}
-          states={{ ...manyActions.states, progress: 100 }}
+          states={{ ...manyActions.states, progress: 0 }}
         />
         <h5 />
         <TaskCardView
@@ -645,7 +645,7 @@ export const ProgressBar = () => {
   return (
     <div>
       <MatrixStory
-        matrix={{ progress: [-100, 0, 100, 500, 1000] }}
+        matrix={{ progress: [0, 100, 500, 650, 1200] }}
         props={props}
         Component={ProgressBarView}
       />
@@ -663,7 +663,7 @@ export const ProgressBarSteps = () => {
   return (
     <div>
       <MatrixStory
-        matrix={{ progress: [-1, 0, 1, 5, 7] }}
+        matrix={{ progress: [0, 1, 5, 7] }}
         props={props}
         Component={ProgressBarView}
       />
@@ -681,7 +681,7 @@ export const ProgressBarRepeatable = () => {
   return (
     <div>
       <MatrixStory
-        matrix={{ progress: [100, 500, 650, 1200] }}
+        matrix={{ progress: [0, 100, 500, 650, 1200] }}
         props={props}
         Component={ProgressBarView}
       />
@@ -700,7 +700,7 @@ export const ProgressBarStepsRepeatable = () => {
   return (
     <div>
       <MatrixStory
-        matrix={{ progress: [1, 5, 7, 12] }}
+        matrix={{ progress: [0, 1, 5, 7, 12] }}
         props={props}
         Component={ProgressBarView}
       />
@@ -720,7 +720,7 @@ export const ProgressBarStepsRepeatableFinite = () => {
   return (
     <div>
       <MatrixStory
-        matrix={{ progress: [1, 5, 7, 10, 12] }}
+        matrix={{ progress: [0, 1, 5, 7, 10, 12] }}
         props={props}
         Component={ProgressBarView}
       />
