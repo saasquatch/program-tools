@@ -190,7 +190,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
-  console.log("TASK CARD PROPS "+props.content.cardTitle);
+  console.log("TASK CARD PROPS "+props?.content?.cardTitle);
   console.log({ props });
   const { callbacks, states, content } = props;
   const checkmark_circle = SVGs.checkmark_circle();

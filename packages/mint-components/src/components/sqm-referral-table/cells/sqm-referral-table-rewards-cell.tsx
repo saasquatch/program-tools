@@ -198,12 +198,10 @@ export class ReferralTableRewardsCell {
             )}
             {reward.fuelTankCode && (
               <div>
-                <TextSpanView type="p">
-                  Your code is{" "}
-                  <span class={sheet.classes.BoldText}>
-                    {reward.fuelTankCode}
-                  </span>
-                </TextSpanView>
+                Your code is{" "}
+                <span class={sheet.classes.BoldText}>
+                  {reward.fuelTankCode}
+                </span>
               </div>
             )}
           </div>

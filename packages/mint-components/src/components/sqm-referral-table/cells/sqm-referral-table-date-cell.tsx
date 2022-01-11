@@ -23,6 +23,6 @@ export class ReferralTableDateCell {
       ? "-"
       : DateTime.fromMillis(this.date)?.toLocaleString(DateTime.DATE_MED);
 
-    return <TextSpanView type="p">{date}</TextSpanView>;
+    return date;
   }
 }
