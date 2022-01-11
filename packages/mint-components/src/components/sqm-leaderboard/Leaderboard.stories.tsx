@@ -190,7 +190,7 @@ export const FiveWithRank = () => {
   return <LeaderboardView {...props} />;
 };
 
-export const FiveWithUser1 = () => {
+export const UserInList = () => {
   const props = {
     states: {
       loading: false,
@@ -239,12 +239,9 @@ export const FiveWithUser1 = () => {
       userRank: {
         firstName: "Viktor",
         lastInitial: "V",
-        leaderboardRank: {
-          value: 82,
-          rowNumber: 1,
-          rank: 1,
-          denseRank: 1,
-        },
+        value: 82,
+        rowNumber: 1,
+        rank: 1,
       },
     },
     elements: {
@@ -254,7 +251,7 @@ export const FiveWithUser1 = () => {
   return <LeaderboardView {...props} />;
 };
 
-export const FiveWithUser6 = () => {
+export const UserOutside = () => {
   const props = {
     states: {
       loading: false,
@@ -303,12 +300,9 @@ export const FiveWithUser6 = () => {
       userRank: {
         firstName: "Kutay",
         lastInitial: "C",
-        leaderboardRank: {
-          value: 7,
-          rowNumber: 6,
-          rank: 6,
-          denseRank: 6,
-        },
+        value: 7,
+        rowNumber: 6,
+        rank: 9,
       },
     },
     elements: {

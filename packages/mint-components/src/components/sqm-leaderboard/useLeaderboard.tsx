@@ -47,9 +47,9 @@ const GET_RANK = gql`
         lastInitial
         leaderboardRank(type: $type, filter: $filter) {
           value
-          rowNumber
           rank
           denseRank
+          rowNumber
         }
       }
     }
@@ -61,7 +61,7 @@ type LeaderboardRows = {
   firstName: string;
   lastInitial: string;
   rank: Rank;
-  row: number;
+  rowNumber: number;
 };
 
 export type Rank = {
@@ -122,6 +122,16 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     }));
   }
 
+  console.log(rankData);
+
+  const viewingUser: Leaderboard = {
+    value: rankData?.viewer?.leaderboardRank?.value,
+    firstName: rankData?.viewer?.firstName,
+    lastInitial: rankData?.viewer?.lastInitial,
+    rank: rankData?.viewer?.leaderboardRank?.[props.rankType],
+    rowNumber: rankData?.viewer?.leaderboardRank?.rowNumber,
+  };
+
   return {
     states: {
       loading: loadingLeaderboard,
@@ -131,7 +141,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     data: {
       leaderboard: sortedLeaderboard,
       rankType: props.rankType,
-      userRank: rankData?.viewer,
+      userRank: viewingUser,
       showUser: props.showUser,
     },
     elements: {

@@ -12,8 +12,6 @@ export interface LeaderboardViewProps {
     };
   };
   data: {
-    showUser?: boolean;
-    userRank?: any;
     rankType: string;
     leaderboard: {
       value: number;
@@ -22,6 +20,14 @@ export interface LeaderboardViewProps {
       lastInitial: string;
       rowNumber: number;
     }[];
+    showUser?: boolean;
+    userRank?: {
+      value: number;
+      rank: number;
+      firstName: string;
+      lastInitial: string;
+      rowNumber: number;
+    };
   };
   elements: {
     empty: VNode;
@@ -48,13 +54,13 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             <th class="Score">{styles.statsheading}</th>
           </tr>
           {data.leaderboard?.map((user) => {
-            if (user.rowNumber === data.userRank?.leaderboardRank?.rowNumber)
+            if (user.rowNumber === data.userRank?.rowNumber)
               flag = true;
             return (
               <tr
                 class={
-                  user.rowNumber === data.userRank?.leaderboardRank?.rowNumber
-                    ? "special"
+                  user.rowNumber === data.userRank?.rowNumber
+                    ? "highlight"
                     : ""
                 }
               >
@@ -66,7 +72,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
           })}
           {!flag && data.showUser && (
             <tr>
-              <td colSpan={100} class="dotdotdot">
+              <td colSpan={100} class="ellipses">
                 <sl-icon
                   name="three-dots"
                   style={{ verticalAlign: "middle" }}
@@ -75,12 +81,16 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             </tr>
           )}
           {!flag && data.showUser && (
-            <tr class="special">
+            <tr class="highlight">
               {styles.showRank && (
-                <td class="Rank">{data.userRank?.leaderboardRank?.rank}</td>
+                <td class="Rank">{data.userRank?.rank}</td>
               )}
-              <td class="User">{`${data.userRank?.firstName || "-"} ${data.userRank?.lastInitial || "-"} `}</td>
-              <td class="Score">{data.userRank?.leaderboardRank?.value || "0"}</td>
+              <td class="User">{`${data.userRank?.firstName || "-"} ${
+                data.userRank?.lastInitial || "-"
+              } `}</td>
+              <td class="Score">
+                {data.userRank?.value || "0"}
+              </td>
             </tr>
           )}
         </table>

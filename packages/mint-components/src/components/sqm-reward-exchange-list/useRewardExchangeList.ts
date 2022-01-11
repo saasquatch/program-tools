@@ -82,7 +82,6 @@ const GET_EXCHANGE_LIST = gql`
             description
             imageUrl
             available
-            unavailableReason
             unavailableReasonCode
             ruleType
             sourceUnit
