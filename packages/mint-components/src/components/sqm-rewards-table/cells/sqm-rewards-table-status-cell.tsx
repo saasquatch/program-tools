@@ -49,7 +49,7 @@ export class RewardTableStatusCell {
         "&::part(base)": {
           fontSize: "var(--sl-font-size-small)",
           padding: "4px 8px",
-          background: "var(--sl-color-sky-600)",
+          background: "var(--sl-color-blue-600)",
         },
       },
 

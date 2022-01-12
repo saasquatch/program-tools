@@ -66,8 +66,8 @@ export function GenericTableView(props: GenericTableViewProps) {
         borderTop: "1px solid var(--sl-color-neutral-200)",
         padding: "var(--sl-spacing-small)",
         paddingLeft: "0",
-		overflow: "hidden",
-		textOverflow: "ellipsis"
+        overflow: "hidden",
+        textOverflow: "ellipsis",
       },
       [mobile]: {
         "& thead": {
@@ -95,6 +95,7 @@ export function GenericTableView(props: GenericTableViewProps) {
           },
           "&:before": {
             content: "attr(data-label)",
+            whiteSpace: "nowrap",
           },
 
           "&:last-child": {
