@@ -15,7 +15,7 @@ const HelpText = styled.div`
   ${Styles.HelpText}
 `;
 
-const Errors = styled.div`
+const Errors = styled.ul`
   ${Styles.Errors}
 `;
 
@@ -27,6 +27,10 @@ const Container = styled.div`
   ${Styles.Container}
 `;
 
+const ErrorItem = styled.li`
+  ${Styles.ErrorItem}
+`;
+
 export const FieldTemplate = (props: FieldTemplateProps) => {
   const {
     id,
@@ -35,25 +39,32 @@ export const FieldTemplate = (props: FieldTemplateProps) => {
     help,
     required,
     description,
-    errors,
     children,
     schema,
+    rawErrors,
   } = props;
   const isCollection = schema.type === "object" || schema.type === "array";
   return (
     <Container className={classNames} id={id}>
       {!isCollection && (
-        <Label htmlFor={id}>
+        <Label htmlFor={id} id={`${id}-title`}>
           {label}
           {required ? <RequiredLabel> (required)</RequiredLabel> : null}
         </Label>
       )}
       {children}
+
       {!isCollection && (
         <>
-          <Description>{description}</Description>
-          <Errors>{errors}</Errors>
-          <HelpText>{help}</HelpText>
+          <Description id={`${id}-description`}>{description}</Description>
+          {rawErrors.length > 0 && (
+            <Errors id={`${id}-errors`}>
+              {rawErrors.map((error: string) => {
+                return <ErrorItem key={error}>{error}</ErrorItem>;
+              })}
+            </Errors>
+          )}
+          <HelpText id={`${id}-help`}>{help}</HelpText>
         </>
       )}
     </Container>

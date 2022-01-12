@@ -28,17 +28,28 @@ const RequiredLabel = styled.span`
 `;
 
 export const ObjectFieldTemplate = (props: ObjectFieldTemplateProps) => {
-  const { idSchema, title, description, properties, required } = props;
+  const {
+    idSchema,
+    title,
+    description,
+    properties,
+    required,
+    uiSchema,
+  } = props;
   return (
     <Container>
       <FrontMatterContainer>
-        <Title id={`${idSchema.$id}-title`}>
-          {title}
-          {required ? <RequiredLabel> (required)</RequiredLabel> : null}
-        </Title>
-        <Description id={`${idSchema.$id}-description`}>
-          {description}
-        </Description>
+        {(uiSchema["ui:title"] || title) && (
+          <Title id={`${idSchema.$id}-title`}>
+            {title}
+            {required ? <RequiredLabel> (required)</RequiredLabel> : null}
+          </Title>
+        )}
+        {description && (
+          <Description id={`${idSchema.$id}-description`}>
+            {description}
+          </Description>
+        )}
       </FrontMatterContainer>
       {properties.map((element: any, index: number) => (
         <FieldContainer className="property-wrapper" key={index}>

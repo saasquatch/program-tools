@@ -36,8 +36,11 @@ export const HelpText = css`
 
 export const Errors = css`
   color: var(--sq-on-surface-critical);
-  display: contents;
+  margin: var(--sq-spacing-small) 0;
+  padding-left: var(--sq-spacing-medium);
   & > * {
     margin: var(--sq-spacing-small) 0 0 !important;
   }
 `;
+
+export const ErrorItem = css``;
