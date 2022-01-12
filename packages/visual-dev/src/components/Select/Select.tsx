@@ -333,7 +333,11 @@ const SelectInner = <ItemType extends ItemTypeBase>(
           </ButtonContainer>
         </div>
       )}
-      <ItemContainer limitWidth={limitWidth} errors={errors} {...functional.getMenuProps()}>
+      <ItemContainer
+        limitWidth={limitWidth}
+        errors={errors}
+        {...functional.getMenuProps()}
+      >
         {functional.isOpen &&
           items.map((item, index) => (
             <Item
