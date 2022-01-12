@@ -24,7 +24,7 @@ export class ReferralTableRewardsCell {
       Details: {
         "padding-bottom": "var(--sl-spacing-small)",
         "max-width": "500px",
-        "padding-right": "var(--sl-spacing-x-small)",
+        // "padding-right": "var(--sl-spacing-x-small)",
         "&::part(header)": {
           padding: "var(--sl-spacing-x-small)",
           cursor: `${this.hideDetails ? "default" : "pointer"}`,
@@ -55,7 +55,7 @@ export class ReferralTableRewardsCell {
       RedeemBadge: {
         paddingLeft: "var(--sl-spacing-xxx-small)",
         "&::part(base)": {
-          background: "var(--sl-color-sky-600)",
+          background: "var(--sl-color-blue-600)",
         },
       },
     };

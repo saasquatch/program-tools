@@ -160,7 +160,8 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
         }
         style={{
           gridTemplateColumns: columns,
-          marginLeft: progress === 0 ? "var(--sl-spacing-x-small)" : "",
+          marginLeft:
+            progress === 0 && !steps ? "var(--sl-spacing-x-small)" : "",
         }}
       >
         {items}

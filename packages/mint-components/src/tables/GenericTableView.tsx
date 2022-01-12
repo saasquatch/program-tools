@@ -66,8 +66,8 @@ export function GenericTableView(props: GenericTableViewProps) {
         borderTop: "1px solid var(--sl-color-neutral-200)",
         padding: "var(--sl-spacing-small)",
         paddingLeft: "0",
-		overflow: "hidden",
-		textOverflow: "ellipsis"
+        overflow: "hidden",
+        textOverflow: "ellipsis",
       },
       [mobile]: {
         "& thead": {
@@ -80,7 +80,6 @@ export function GenericTableView(props: GenericTableViewProps) {
           boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
           borderRadius: "var(--sl-border-radius-medium)",
           padding: "var(--sl-spacing-medium)",
-          color: "var(--sl-color-neutral-500)",
           fontSize: "var(--sl-font-size-small)",
           marginBottom: "var(--sl-spacing-large)",
         },
@@ -96,6 +95,7 @@ export function GenericTableView(props: GenericTableViewProps) {
           },
           "&:before": {
             content: "attr(data-label)",
+            whiteSpace: "nowrap",
           },
 
           "&:last-child": {

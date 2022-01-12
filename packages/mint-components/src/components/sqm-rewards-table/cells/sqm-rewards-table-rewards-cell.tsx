@@ -130,6 +130,10 @@ export class RewardTableRewardsCell {
             overflow: "hidden",
             textOverflow: "ellipsis",
           },
+          Text: {
+            fontSize: "var(--sl-font-size-medium)",
+            color: "var(--sl-color-gray-800)",
+          },
           Subtext: {
             fontSize: "var(--sl-font-size-small)",
             color: "var(--sl-color-neutral-500)",

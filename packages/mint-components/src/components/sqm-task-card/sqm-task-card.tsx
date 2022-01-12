@@ -82,7 +82,7 @@ export class TaskCard {
    * @uiName Progress Bar Unit
    */
   @Prop()
-  progressBarUnit?: string;
+  progressBarUnit: string = "";
 
   /**
    * @uiName Show Goal Expiry

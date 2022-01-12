@@ -1,5 +1,4 @@
 import { h, VNode } from "@stencil/core";
-import "@appnest/masonry-layout";
 import { createStyleSheet } from "../../styling/JSS";
 
 
