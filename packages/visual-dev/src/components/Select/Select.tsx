@@ -51,6 +51,10 @@ export interface OptionProps<ItemType> {
    * Placeholder for unset input
    */
   placeholer?: string;
+  /**
+   * Limit the width of the input
+   */
+  limitWidth?: boolean;
 }
 
 type ItemTypeBase = { description?: string } | string | number | boolean;
@@ -63,11 +67,13 @@ function isComplexItem(item: any): item is ComplexItemType {
 
 const ItemContainer = styled.ul<{
   errors: any;
+  limitWidth: boolean;
 }>`
   ${Styles.ItemContainer}
   ${(props) =>
     props.errors &&
     "border-color: var(--sq-border-critical); background-color: var(--sq-surface-critical-subdued);"}
+  ${(props) => props.limitWidth && "max-width: 300px;"}
 `;
 
 const Item = styled("li")`
@@ -82,8 +88,11 @@ const ItemDescription = styled("span")`
   ${Styles.ItemDescription}
 `;
 
-const Container = styled("div")`
+const Container = styled("div")<{
+  limitWidth: boolean;
+}>`
   ${Styles.Container}
+  ${(props) => props.limitWidth && "max-width: 300px;"}
 `;
 
 const SelectInput = styled.div<{
@@ -144,6 +153,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
     clearable = false,
     loading = false,
     placeholder = "",
+    limitWidth = true,
     functional,
     items,
     itemToString = (item: ItemType) => {
@@ -183,7 +193,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
   }
 
   return (
-    <Container>
+    <Container limitWidth={limitWidth}>
       {!isCombobox(functional) ? (
         <SelectInput
           {...rest}
@@ -258,6 +268,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
             type={"text"}
             ref={ref}
             errors={errors}
+            limitWidth={limitWidth}
             customCSS={`
               ${customCSS};
               ${functional.isOpen && "border: 2px solid var(--sq-focused)"};
@@ -322,7 +333,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
           </ButtonContainer>
         </div>
       )}
-      <ItemContainer errors={errors} {...functional.getMenuProps()}>
+      <ItemContainer limitWidth={limitWidth} errors={errors} {...functional.getMenuProps()}>
         {functional.isOpen &&
           items.map((item, index) => (
             <Item
