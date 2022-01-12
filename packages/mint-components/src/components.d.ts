@@ -1478,7 +1478,7 @@ export namespace Components {
         /**
           * @uiName Progress Bar Unit
          */
-        "progressBarUnit"?: string;
+        "progressBarUnit": string;
         /**
           * @uiName Goal Repeatable
          */
