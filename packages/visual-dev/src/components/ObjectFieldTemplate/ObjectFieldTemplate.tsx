@@ -23,18 +23,25 @@ export const FrontMatterContainer = styled.div`
   ${Styles.FrontMatterContainer}
 `;
 
+const RequiredLabel = styled.span`
+  ${Styles.RequiredLabel}
+`;
+
 export const ObjectFieldTemplate = (props: ObjectFieldTemplateProps) => {
+  const { idSchema, title, description, properties, required } = props;
   return (
     <Container>
       <FrontMatterContainer>
-        <Title>{props.title}</Title>
-        <Description>{props.description}</Description>
+        <Title id={`${idSchema.$id}-title`}>
+          {title}
+          {required ? <RequiredLabel> (required)</RequiredLabel> : null}
+        </Title>
+        <Description id={`${idSchema.$id}-description`}>
+          {description}
+        </Description>
       </FrontMatterContainer>
-      {props.properties.map((element) => (
-        <FieldContainer
-          className="property-wrapper"
-          key={props.idSchema[element.name].$id}
-        >
+      {properties.map((element: any, index: number) => (
+        <FieldContainer className="property-wrapper" key={index}>
           {element.content}
         </FieldContainer>
       ))}

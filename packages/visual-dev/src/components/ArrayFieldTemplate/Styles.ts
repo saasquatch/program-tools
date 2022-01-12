@@ -24,7 +24,3 @@ export const Description = css`
   color: var(--sq-text-subdued);
   margin: var(--sq-spacing-small) 0 0;
 `;
-
-export const RequiredLabel = css`
-  color: var(--sq-placeholder-text-on-secondary);
-`;
