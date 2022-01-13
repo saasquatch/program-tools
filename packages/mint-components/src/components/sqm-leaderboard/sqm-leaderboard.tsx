@@ -90,6 +90,7 @@ export class Leaderboard {
       leaderboardType: this.leaderboardType,
       interval: this.interval,
       showUser: this.showUser,
+      showRank: this.showRank,
     };
     const demoProps = { ...props, demoData: this.demoData };
     const viewprops = isDemo()
