@@ -39,7 +39,7 @@ This package provides a simple management layer for a CDN cookie, which can be s
 
 ## How to use
 
-Once configured, you can change add the `cdn` parameter to any URL in your frontend application to switch CDNs on the fly:
+Once configured, you can add the `cdn` parameter to any URL in your frontend application to switch CDNs on the fly:
 
 ```
 &cdn=https://some-other-cdn.com
@@ -122,7 +122,7 @@ If you would rather append something to the `<head>` instead of the `<body>` you
 {
     tag: "link",
     appendTo: "head",
-    attrs: { rel: "stylesheet", href: "%cdn/styl.css" }
+    attrs: { rel: "stylesheet", href: "%cdn%/style.css" }
 }
 ```
 
