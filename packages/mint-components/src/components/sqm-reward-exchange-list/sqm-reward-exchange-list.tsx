@@ -144,6 +144,27 @@ export class SqmRewardExchangeList {
   @Prop() skeletonCardNum: number = 8;
 
   /**
+   * Shown in the confirmation state.
+   *
+   * @uiName Reward Row Title
+   */
+  @Prop() rewardNameTitle: string = "Reward";
+
+  /**
+   * Shown in the confirmation state.
+   *
+   * @uiName Reward Amount Row Title
+   */
+  @Prop() rewardAmountTitle: string = "Reward Amount";
+
+  /**
+   * Shown in the confirmation state.
+   *
+   * @uiName Cost Row Title
+   */
+  @Prop() costTitle: string = "Cost to Redeem";
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -208,9 +229,9 @@ function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
         resetState: () => {},
         copyFuelTankCode: () => {},
       },
-      refs:{
-        canvasRef: {}
-      }
+      refs: {
+        canvasRef: {},
+      },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
