@@ -15,8 +15,8 @@ const defaultStyles = {
 };
 
 const defaultElements = {
-  empty: <EmptySkeleton label="No Users Yet" />,
-  loadingstate: <LoadingSkeleton />,
+  empty: null,
+  loadingstate: null,
 };
 
 export const Empty = () => {

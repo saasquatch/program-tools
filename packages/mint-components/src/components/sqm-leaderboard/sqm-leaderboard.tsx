@@ -79,8 +79,8 @@ export class Leaderboard {
   disconnectedCallback() {}
 
   render() {
-    const loading = <LoadingSlot />;
-    const empty = <EmptySkeleton label="No Users Yet" />;
+    const loading = null;
+    const empty = null;
     const props = {
       empty: empty,
       loadingstate: loading,
