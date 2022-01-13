@@ -102,7 +102,7 @@ Feature: Portal Register
             | has          | /verifyMyEmail | /verifyMyEmail |
 
     @ui
-    Scenario Outline: Terms and conditions link can be included above the register button
+    Scenario Outline: Slotted content can be included above the register button
         Given a user viewing the register component
         And the registration component contains the following html
             """
