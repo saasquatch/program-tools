@@ -8,7 +8,6 @@ export const Container = css`
 `;
 
 export const Errors = css`
-  color: var(--sq-on-surface-critical);
   margin: var(--sq-spacing-small) 0;
   padding-left: var(--sq-spacing-medium);
   & > * {

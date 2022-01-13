@@ -57,14 +57,14 @@ export const FieldTemplate = (props: FieldTemplateProps) => {
       {!isCollection && (
         <>
           <Description id={`${id}-description`}>{description}</Description>
-          {rawErrors.length > 0 && (
+          <HelpText id={`${id}-help`}>{help}</HelpText>
+          {rawErrors?.length > 0 && (
             <Errors id={`${id}-errors`}>
               {rawErrors.map((error: string) => {
                 return <ErrorItem key={error}>{error}</ErrorItem>;
               })}
             </Errors>
           )}
-          <HelpText id={`${id}-help`}>{help}</HelpText>
         </>
       )}
     </Container>

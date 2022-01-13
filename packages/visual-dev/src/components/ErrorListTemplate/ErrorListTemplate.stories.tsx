@@ -23,6 +23,7 @@ export const WithErrors = () => {
       "ui:widget": (props: WidgetProps) => {
         return <RJSFInput {...props} />;
       },
+      "ui:help": "This is help text",
     },
   };
 
