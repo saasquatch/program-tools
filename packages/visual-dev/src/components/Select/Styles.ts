@@ -76,7 +76,7 @@ export const SelectInputStyle = css`
   line-height: var(--sq-line-height-regular);
   border: 2px solid var(--sq-border);
   border-radius: 4px;
-  padding: 1px 6px;
+  padding: 1px 8px;
 
   &:focus {
     border-color: var(--sq-focused);
