@@ -28,7 +28,7 @@ const test = {
       [
         {
           $flags$: 0,
-          $tag$: "sqm-rewards-table-rewards-cell",
+          $tag$: "sqm-rewards-table-reward-cell",
           $text$: null,
           $elm$: {
             "s-p": [],
@@ -267,7 +267,7 @@ const test = {
       [
         {
           $flags$: 0,
-          $tag$: "sqm-rewards-table-rewards-cell",
+          $tag$: "sqm-rewards-table-reward-cell",
           $text$: null,
           $elm$: {
             "s-p": [],
@@ -506,7 +506,7 @@ const test = {
       [
         {
           $flags$: 0,
-          $tag$: "sqm-rewards-table-rewards-cell",
+          $tag$: "sqm-rewards-table-reward-cell",
           $text$: null,
           $elm$: {
             "s-p": [],

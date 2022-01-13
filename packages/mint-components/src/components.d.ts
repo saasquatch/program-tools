@@ -1177,6 +1177,11 @@ export namespace Components {
         "renderCell": (data: Reward[]) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
+    interface SqmRewardsTableRewardCell {
+        "availableText": string;
+        "redeemedText": string;
+        "reward": Reward;
+    }
     interface SqmRewardsTableRewardColumn {
         /**
           * @uiName Available Amount Text
@@ -1192,11 +1197,6 @@ export namespace Components {
         "redeemedText": string;
         "renderCell": (data: Reward[]) => Promise<any>;
         "renderLabel": () => Promise<string>;
-    }
-    interface SqmRewardsTableRewardsCell {
-        "availableText": string;
-        "redeemedText": string;
-        "reward": Reward;
     }
     interface SqmRewardsTableSourceCell {
         "anonymousUserText": string;
@@ -1880,17 +1880,17 @@ declare global {
         prototype: HTMLSqmRewardsTableDateColumnElement;
         new (): HTMLSqmRewardsTableDateColumnElement;
     };
+    interface HTMLSqmRewardsTableRewardCellElement extends Components.SqmRewardsTableRewardCell, HTMLStencilElement {
+    }
+    var HTMLSqmRewardsTableRewardCellElement: {
+        prototype: HTMLSqmRewardsTableRewardCellElement;
+        new (): HTMLSqmRewardsTableRewardCellElement;
+    };
     interface HTMLSqmRewardsTableRewardColumnElement extends Components.SqmRewardsTableRewardColumn, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableRewardColumnElement: {
         prototype: HTMLSqmRewardsTableRewardColumnElement;
         new (): HTMLSqmRewardsTableRewardColumnElement;
-    };
-    interface HTMLSqmRewardsTableRewardsCellElement extends Components.SqmRewardsTableRewardsCell, HTMLStencilElement {
-    }
-    var HTMLSqmRewardsTableRewardsCellElement: {
-        prototype: HTMLSqmRewardsTableRewardsCellElement;
-        new (): HTMLSqmRewardsTableRewardsCellElement;
     };
     interface HTMLSqmRewardsTableSourceCellElement extends Components.SqmRewardsTableSourceCell, HTMLStencilElement {
     }
@@ -2053,8 +2053,8 @@ declare global {
         "sqm-rewards-table": HTMLSqmRewardsTableElement;
         "sqm-rewards-table-date-cell": HTMLSqmRewardsTableDateCellElement;
         "sqm-rewards-table-date-column": HTMLSqmRewardsTableDateColumnElement;
+        "sqm-rewards-table-reward-cell": HTMLSqmRewardsTableRewardCellElement;
         "sqm-rewards-table-reward-column": HTMLSqmRewardsTableRewardColumnElement;
-        "sqm-rewards-table-rewards-cell": HTMLSqmRewardsTableRewardsCellElement;
         "sqm-rewards-table-source-cell": HTMLSqmRewardsTableSourceCellElement;
         "sqm-rewards-table-source-column": HTMLSqmRewardsTableSourceColumnElement;
         "sqm-rewards-table-status-cell": HTMLSqmRewardsTableStatusCellElement;
@@ -3206,6 +3206,11 @@ declare namespace LocalJSX {
          */
         "dateShown"?: string;
     }
+    interface SqmRewardsTableRewardCell {
+        "availableText"?: string;
+        "redeemedText"?: string;
+        "reward"?: Reward;
+    }
     interface SqmRewardsTableRewardColumn {
         /**
           * @uiName Available Amount Text
@@ -3219,11 +3224,6 @@ declare namespace LocalJSX {
           * @uiName Redeemed Amount Text
          */
         "redeemedText"?: string;
-    }
-    interface SqmRewardsTableRewardsCell {
-        "availableText"?: string;
-        "redeemedText"?: string;
-        "reward"?: Reward;
     }
     interface SqmRewardsTableSourceCell {
         "anonymousUserText"?: string;
@@ -3642,8 +3642,8 @@ declare namespace LocalJSX {
         "sqm-rewards-table": SqmRewardsTable;
         "sqm-rewards-table-date-cell": SqmRewardsTableDateCell;
         "sqm-rewards-table-date-column": SqmRewardsTableDateColumn;
+        "sqm-rewards-table-reward-cell": SqmRewardsTableRewardCell;
         "sqm-rewards-table-reward-column": SqmRewardsTableRewardColumn;
-        "sqm-rewards-table-rewards-cell": SqmRewardsTableRewardsCell;
         "sqm-rewards-table-source-cell": SqmRewardsTableSourceCell;
         "sqm-rewards-table-source-column": SqmRewardsTableSourceColumn;
         "sqm-rewards-table-status-cell": SqmRewardsTableStatusCell;
@@ -3720,8 +3720,8 @@ declare module "@stencil/core" {
             "sqm-rewards-table": LocalJSX.SqmRewardsTable & JSXBase.HTMLAttributes<HTMLSqmRewardsTableElement>;
             "sqm-rewards-table-date-cell": LocalJSX.SqmRewardsTableDateCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateCellElement>;
             "sqm-rewards-table-date-column": LocalJSX.SqmRewardsTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateColumnElement>;
+            "sqm-rewards-table-reward-cell": LocalJSX.SqmRewardsTableRewardCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableRewardCellElement>;
             "sqm-rewards-table-reward-column": LocalJSX.SqmRewardsTableRewardColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableRewardColumnElement>;
-            "sqm-rewards-table-rewards-cell": LocalJSX.SqmRewardsTableRewardsCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableRewardsCellElement>;
             "sqm-rewards-table-source-cell": LocalJSX.SqmRewardsTableSourceCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableSourceCellElement>;
             "sqm-rewards-table-source-column": LocalJSX.SqmRewardsTableSourceColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableSourceColumnElement>;
             "sqm-rewards-table-status-cell": LocalJSX.SqmRewardsTableStatusCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableStatusCellElement>;

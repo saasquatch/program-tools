@@ -33,11 +33,11 @@ export class RewardsTableColumn implements RewardTableColumn {
   @Method()
   async renderCell(data: Reward[]) {
     return (
-      <sqm-rewards-table-rewards-cell
+      <sqm-rewards-table-reward-cell
         reward={data?.[0]}
         redeemedText={this.redeemedText}
         availableText={this.availableText}
-      ></sqm-rewards-table-rewards-cell>
+      ></sqm-rewards-table-reward-cell>
     );
   }
 

@@ -29,6 +29,36 @@ export const config: Config = {
   globalScript: "src/global/global.ts",
   globalStyle: "src/global/global.css",
   buildEs5: process.env.NODE_ENV !== "dev",
+  bundles: [
+    {
+      components: [
+        "sqm-referral-table",
+        "sqm-referral-table-column",
+        "sqm-referral-table-date-column",
+        "sqm-referral-table-rewards-column",
+        "sqm-referral-table-status-column",
+        "sqm-referral-table-user-column",
+        "sqm-referral-table-cell",
+        "sqm-referral-table-date-cell",
+        "sqm-referral-table-rewards-cell",
+        "sqm-referral-table-status-cell",
+        "sqm-referral-table-user-cell",
+      ],
+    },
+    {
+      components: [
+        "sqm-rewards-table",
+        "sqm-rewards-table-date-column",
+        "sqm-rewards-table-reward-column",
+        "sqm-rewards-table-source-column",
+        "sqm-rewards-table-status-column",
+        "sqm-rewards-table-date-cell",
+        "sqm-rewards-table-reward-cell",
+        "sqm-rewards-table-source-cell",
+        "sqm-rewards-table-status-cell",
+      ],
+    },
+  ],
   outputTargets:
     //@ts-ignore
     process.env.NODE_ENV === "dev"
