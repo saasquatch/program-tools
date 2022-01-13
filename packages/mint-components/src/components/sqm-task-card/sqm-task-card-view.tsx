@@ -33,10 +33,12 @@ export type TaskCardViewProps = {
   };
   states: {
     loading: boolean;
+    loadingEvent: boolean;
     progress: number;
   };
   callbacks?: {
     sendEvent: (event: string) => void;
+    onClick: () => void;
   };
 };
 
@@ -190,7 +192,7 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
-  console.log("TASK CARD PROPS "+props?.content?.cardTitle);
+  console.log("TASK CARD PROPS " + props?.content?.cardTitle);
   console.log({ props });
   const { callbacks, states, content } = props;
   const checkmark_circle = SVGs.checkmark_circle();
@@ -209,6 +211,8 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     content.showExpiry &&
     DateTime.fromISO(content.rewardDuration.split("/")[1]);
   const dateToday = DateTime.now();
+
+  console.log("states.loadingEvent", states.loadingEvent)
 
   const taskComplete =
     (showComplete && content.repeatable === false) ||
@@ -403,13 +407,8 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                   }
                   type="primary"
                   size="small"
-                  onClick={() =>
-                    props.content.eventKey
-                      ? callbacks.sendEvent(props.content.eventKey)
-                      : content.openNewTab
-                      ? window.open(content.buttonLink)
-                      : window.open(content.buttonLink, "_parent")
-                  }
+                  onClick={callbacks.onClick}
+                  loading={states.loadingEvent}
                   disabled={taskComplete || taskUnavailable}
                 >
                   {content.buttonText}

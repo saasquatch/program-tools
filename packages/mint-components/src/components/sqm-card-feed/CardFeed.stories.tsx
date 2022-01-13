@@ -35,7 +35,7 @@ const taskCardProps = {
     finite: 0,
     goal: 1,
   },
-  states: { progress: 0, loading: false },
+  states: { progress: 0, loading: false, loadingEvent: false },
 };
 
 const coupleActions = {
@@ -61,7 +61,7 @@ const coupleActions = {
     finite: 0,
     goal: 5,
   },
-  states: { progress: 1, loading: false },
+  states: { progress: 1, loading: false, loadingEvent: false },
 };
 
 const manyActions = {
@@ -91,6 +91,7 @@ const manyActions = {
   states: {
     progress: 100,
     loading: false,
+    loadingEvent: false,
   },
 };
 
