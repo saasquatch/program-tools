@@ -172,12 +172,14 @@ export class TaskCard {
     const { props } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
     const { value, loading } = props;
 
-    const { callbacks } = isDemo() ? useTaskCardDemo(this) : useTaskCard();
+    const { states, callbacks } = isDemo()
+      ? useTaskCardDemo(this)
+      : useTaskCard(this);
 
     return (
       <TaskCardView
         callbacks={callbacks}
-        states={{ loading, progress: value }}
+        states={{ loading, loadingEvent: states.loadingEvent, progress: value }}
         content={{ ...getProps(this) }}
       ></TaskCardView>
     );
@@ -186,7 +188,13 @@ export class TaskCard {
 
 function useTaskCardDemo(props: TaskCard) {
   return deepmerge(
-    { callbacks: { sendEvent: (event: string) => console.log(event) } },
+    {
+      states: { loadingEvent: false },
+      callbacks: {
+        sendEvent: (event: string) => console.log(event),
+        onClick: () => console.log("clicked"),
+      },
+    },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
   );

@@ -56,6 +56,7 @@ const oneAction = {
   states: {
     progress: 0,
     loading: false,
+    loadingEvent: false,
   },
 };
 
@@ -85,6 +86,7 @@ const coupleActions = {
   states: {
     progress: 1,
     loading: false,
+    loadingEvent: false,
   },
 };
 
@@ -112,7 +114,7 @@ const manyActions = {
     finite: 0,
     goal: 500,
   },
-  states: { progress: 100, loading: false },
+  states: { progress: 100, loading: false, loadingEvent: false },
 };
 
 export const TaskCard = () => {

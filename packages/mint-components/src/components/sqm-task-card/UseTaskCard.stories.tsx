@@ -4,7 +4,7 @@ import { h } from "@stencil/core";
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 
 const JWT =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtK2tsaXBAc2Fhc3F1YXQuY2giLCJhY2NvdW50SWQiOiJzYW0ra2xpcEBzYWFzcXVhdC5jaCJ9fQ.FMNZ6oajyr6SiCcRqKKdyPqvNTvWROQ60MKAyfvWGfc";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InNhbStrbGlwQHNhYXNxdWF0LmNoIiwiaWQiOiJzYW0ra2xpcEBzYWFzcXVhdC5jaCIsImVtYWlsIjoic2FtK2tsaXBAc2Fhc3F1YXQuY2giLCJsb2NhbGUiOiJlbiJ9fQ.a2nYYrSJ81FHXlCU-Sqp_-wquQizinHBhzwzULDzimg";
 
 export default {
   title: "Hooks / useTaskCard",
@@ -52,6 +52,7 @@ export const TaskCard = createHookStory(() => {
       steps={true}
       show-progress-bar={true}
       event-key="testEvent"
+      open-new-tab={true}
     ></sqm-task-card>
   );
 });
