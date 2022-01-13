@@ -212,8 +212,6 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     DateTime.fromISO(content.rewardDuration.split("/")[1]);
   const dateToday = DateTime.now();
 
-  console.log("states.loadingEvent", states.loadingEvent)
-
   const taskComplete =
     (showComplete && content.repeatable === false) ||
     (content.finite && states.progress >= content.finite * content.goal);
