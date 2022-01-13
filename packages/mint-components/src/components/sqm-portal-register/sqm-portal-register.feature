@@ -115,5 +115,5 @@ Feature: Portal Register
             </p>
             </sqm-portal-register>
             """
-        Then the terms and conditions are shown above the register button
+        Then the terms and conditions slotted content is shown above the register button
         And the link will open in a new tab
