@@ -1054,6 +1054,11 @@ export namespace Components {
          */
         "continueToConfirmationText": string;
         /**
+          * Shown in the confirmation state.
+          * @uiName Cost Row Title
+         */
+        "costTitle": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -1094,6 +1099,16 @@ export namespace Components {
           * @uiName Redemption Success Message
          */
         "redemptionSuccessText": string;
+        /**
+          * Shown in the confirmation state.
+          * @uiName Reward Amount Row Title
+         */
+        "rewardAmountTitle": string;
+        /**
+          * Shown in the confirmation state.
+          * @uiName Reward Row Title
+         */
+        "rewardNameTitle": string;
         /**
           * @uiName Reward Title Text
          */
@@ -3085,6 +3100,11 @@ declare namespace LocalJSX {
          */
         "continueToConfirmationText"?: string;
         /**
+          * Shown in the confirmation state.
+          * @uiName Cost Row Title
+         */
+        "costTitle"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -3125,6 +3145,16 @@ declare namespace LocalJSX {
           * @uiName Redemption Success Message
          */
         "redemptionSuccessText"?: string;
+        /**
+          * Shown in the confirmation state.
+          * @uiName Reward Amount Row Title
+         */
+        "rewardAmountTitle"?: string;
+        /**
+          * Shown in the confirmation state.
+          * @uiName Reward Row Title
+         */
+        "rewardNameTitle"?: string;
         /**
           * @uiName Reward Title Text
          */

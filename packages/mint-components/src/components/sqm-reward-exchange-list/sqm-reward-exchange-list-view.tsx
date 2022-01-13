@@ -352,7 +352,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                       defaultMessage: states.content?.text?.notAvailableError,
                     },
                     {
-                      unavailableReason: step.unavailableReasonCode,
+                      unavailableReasonCode: step.unavailableReasonCode,
                       sourceUnit: item.sourceUnit,
                       sourceValue:
                         step.prettySourceValue || item.prettySourceMinValue,
@@ -485,9 +485,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                                   states.content?.text?.notAvailableError,
                               },
                               {
-                                unavailableReason:
-                                  item.unavailableReason ||
-                                  item.unavailableReasonCode,
+                                unavailableReasonCode: item.unavailableReasonCode,
                                 sourceUnit: item.sourceUnit,
                                 sourceValue:
                                   item.prettySourceValue ||
@@ -593,7 +591,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
         <div class={sheet.classes.Confirmation}>
           <div class="wrapper">
-            <div class="field">Reward</div>
+            <div class="field">{states.content.text.rewardNameTitle}</div>
             <div class="value">{selectedItem.name}</div>
           </div>
           <div class="wrapper">
@@ -610,12 +608,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           </div>
           {amount && (
             <div class="wrapper top-border padding">
-              <div class="field">Reward Amount</div>
+              <div class="field">{states.content.text.rewardAmountTitle}</div>
               <div class="value">{amount}</div>
             </div>
           )}
           <div class="wrapper top-border padding">
-            <div class="field">Cost to Redeem</div>
+            <div class="field">{states.content.text.costTitle}</div>
             <div class="value">{cost}</div>
           </div>
         </div>

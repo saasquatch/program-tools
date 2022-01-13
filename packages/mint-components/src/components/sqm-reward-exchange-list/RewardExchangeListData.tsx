@@ -12,7 +12,7 @@ const baseResponse = (
       text: {
         buttonText: "Exchange Rewards",
         notAvailableError:
-          "{unavailableReason, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {Not enough points} other {Not available} }",
+          "{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {unavailableReasonCode} }",
         chooseRewardTitle: "Rewards",
         chooseAmountTitle: "Select",
         confirmationTitle: "Confirm",
@@ -66,7 +66,6 @@ const baseReward = {
     "Description of reward. Lorem ipsum dolor sit amet, consectetur adipiscing. Id nec semper sapien dignissim rhoncus nunc.",
   imageUrl: "",
   available: true,
-  unavailableReason: null,
   unavailableReasonCode: null,
   ruleType: "FIXED_GLOBAL_REWARD",
   sourceUnit: "POINT",
@@ -204,7 +203,6 @@ const stepsData = (start, end, inc) => {
       prettyDestinationValue: "$" + i,
       available: true,
       unavailableReasonCode: null,
-      unavailableReason: "",
     });
   }
   return steps;
@@ -217,7 +215,6 @@ const baseStep = (dst, dstUnit, src, srcUnit, available = true) => ({
   prettySourceValue: src + " " + srcUnit,
   available: available,
   unavailableReasonCode: null,
-  unavailableReason: "",
 });
 
 export const chooseAmountVariable = {
