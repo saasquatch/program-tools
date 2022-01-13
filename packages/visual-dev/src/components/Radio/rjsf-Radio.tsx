@@ -31,6 +31,7 @@ export const RJSFRadio = (props: WidgetProps) => {
           <Radio
             options={{ text: option.label }}
             name={props.id}
+            required={props.required}
             value={props.value == option.value}
             disabled={props.disabled}
             onChange={() => props.onChange(option.value)}

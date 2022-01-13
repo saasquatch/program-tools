@@ -5,7 +5,7 @@ export const Container = css`
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-button-medium);
   font-family: var(--sq-font-family-sans);
-  margin: var(--sq-spacing-xx-large) 0;
+  margin: 0 0 var(--sq-spacing-xx-large);
 `;
 
 export const Errors = css`

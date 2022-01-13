@@ -52,6 +52,7 @@ export function RJSFRadioCardWidget(props: WidgetProps) {
         }
         return (
           <RadioCard
+            required={props.required}
             id={props.id + option.key.toString()}
             name={props.id + option.key.toString()}
             key={option.key}
