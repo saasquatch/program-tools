@@ -62,6 +62,7 @@ import {
 import { Select } from "./components/Select";
 import { FieldTemplate } from "./components/FieldTemplate";
 import { ObjectFieldTemplate } from "./components/ObjectFieldTemplate";
+import { ArrayFieldTemplate } from "./components/ArrayFieldTemplate";
 
 export {
   Button,
@@ -123,4 +124,5 @@ export {
   Select,
   FieldTemplate,
   ObjectFieldTemplate,
+  ArrayFieldTemplate,
 };
