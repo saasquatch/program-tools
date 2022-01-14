@@ -32,8 +32,8 @@
     "prepare": "tsdx build --format cjs,esm,umd",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "prerelease": "np --no-cleanup --any-branch --tag=next prerelease",
-    "release": "np --any-branch --tag=latest"
+    "publish-prerelease": "np --no-cleanup --any-branch --tag=next prerelease",
+    "publish-release": "np --any-branch --tag=latest"
   },
   "peerDependencies": {},
   "husky": {
