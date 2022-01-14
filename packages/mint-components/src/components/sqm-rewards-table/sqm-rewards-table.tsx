@@ -59,7 +59,8 @@ export class RewardsTable {
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<GenericTableViewProps>;
+  @Prop()
+  demoData?: DemoData<GenericTableViewProps>;
 
   constructor() {
     withHooks(this);

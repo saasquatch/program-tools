@@ -1,8 +1,11 @@
 import {
   useMutation,
   useUserIdentity,
+  useRefreshDispatcher,
 } from "@saasquatch/component-boilerplate";
+import { useEffect } from "@saasquatch/stencil-hooks";
 import { gql } from "graphql-request";
+import { TaskCard } from "./sqm-task-card";
 
 const SEND_EVENT = gql`
   mutation taskCardEvent($userEventInput: UserEventInput!) {
@@ -12,22 +15,42 @@ const SEND_EVENT = gql`
   }
 `;
 
-export function useTaskCard() {
+export function useTaskCard(props: TaskCard) {
   const user = useUserIdentity();
 
-  const [sendUserEvent] = useMutation(SEND_EVENT);
+  const [sendUserEvent, { data, loading: loadingEvent }] =
+    useMutation(SEND_EVENT);
+
+  const { refresh } = useRefreshDispatcher();
+  useEffect(() => {
+    if (data) {
+      refresh();
+      openLink();
+    }
+  }, [data]);
+
+  function openLink() {
+    props.openNewTab
+      ? window.open(props.buttonLink)
+      : window.open(props.buttonLink, "_parent");
+  }
 
   function sendEvent(eventKey: string) {
     sendUserEvent({
       userEventInput: {
-        userId: user.id,
-        accountId: user.accountId,
+        userId: user?.id,
+        accountId: user?.accountId,
         events: [{ key: eventKey, fields: {} }],
       },
     });
   }
 
+  function onClick() {
+    props.eventKey ? sendEvent(props.eventKey) : openLink();
+  }
+
   return {
-    callbacks: { sendEvent },
+    states: { loadingEvent },
+    callbacks: { sendEvent, onClick },
   };
 }

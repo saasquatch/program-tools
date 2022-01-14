@@ -16,6 +16,7 @@
 
 ### Used by
 
+ - [sqm-leaderboard](../sqm-leaderboard)
  - [sqm-referral-table](../sqm-referral-table)
  - [sqm-rewards-table](../sqm-rewards-table)
  - [sqm-stencilbook](../sqm-stencilbook)
@@ -23,6 +24,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  sqm-leaderboard --> sqm-table-row
   sqm-referral-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-row
   sqm-stencilbook --> sqm-table-row

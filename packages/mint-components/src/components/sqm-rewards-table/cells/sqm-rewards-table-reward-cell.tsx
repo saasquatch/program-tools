@@ -1,9 +1,9 @@
 import { Component, h, Prop } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
-import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
+
 @Component({
-  tag: "sqm-rewards-table-rewards-cell",
+  tag: "sqm-rewards-table-reward-cell",
   shadow: true,
 })
 export class RewardTableRewardsCell {

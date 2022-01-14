@@ -765,7 +765,7 @@ export function useBigStat(props: BigStat): BigStatHook {
     props: {
       value: stat?.value,
       statvalue: stat?.statvalue ?? LOADING,
-      loading: stat.loading,
+      loading: stat?.loading,
       flexReverse,
       alignment,
     },

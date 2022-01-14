@@ -273,12 +273,13 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         textAlign: "right",
         paddingRight: "var(--sl-spacing-xxx-large)",
       },
-      "& .value": {},
-
+      "& .value": {
+        fontSize: "var(--sl-font-size-large)",
+        fontWeight: "var(--sl-font-weight-semibold)",
+      },
       "& .top-border": {
         borderTop: "1px solid var(--sl-color-neutral-200)",
       },
-
       "& .image": {
         width: "200px",
       },
@@ -509,8 +510,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                                   states.content?.text?.notAvailableError,
                               },
                               {
-                                unavailableReason:
-                                  item.unavailableReason ||
+                                unavailableReasonCode:
                                   item.unavailableReasonCode,
                                 sourceUnit: item.sourceUnit,
                                 sourceValue:
@@ -615,12 +615,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
         <div class={sheet.classes.Confirmation}>
           <div class="wrapper">
-            <div class="field">Reward</div>
-            <div class="value">{selectedItem.name}</div>
+            <div class="field">{states.content.text.rewardNameTitle}</div>
+            <div>{selectedItem.name}</div>
           </div>
           <div class="wrapper">
             <div class="field"></div>
-            <div class="value">
+            <div>
               <img
                 class="image"
                 src={
@@ -632,78 +632,15 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           </div>
           {amount && (
             <div class="wrapper top-border padding">
-              <div class="field">Reward Amount</div>
-              <div class="value">{amount}</div>
+              <div class="field">{states.content.text.rewardAmountTitle}</div>
+              <div>{amount}</div>
             </div>
           )}
           <div class="wrapper top-border padding">
-            <div class="field">Cost to Redeem</div>
+            <div class="field">{states.content.text.costTitle}</div>
             <div class="value">{cost}</div>
           </div>
         </div>
-
-        {/* <div
-          style={{
-            textAlign: "center",
-            marginBottom: "var(--sl-spacing-xxx-large)",
-          }}
-        >
-          <p>
-            <span style={{ fontSize: "var(--sl-font-size-large)" }}>
-              {selectedStep?.prettySourceValue ||
-                selectedItem?.prettySourceValue}
-            </span>
-          </p>
-          <p>
-            <ExchangeArrows />
-          </p>
-          <div
-            style={{
-              boxShadow: "none",
-              marginBottom: "10px",
-              flex: "1",
-              minWidth: "100%",
-            }}
-          >
-            <sl-card
-              class={sheet.classes.Card}
-              style={{
-                minWidth: "350px",
-                width: "33%",
-                margin: "auto",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  width: "100%",
-                  height: "120px",
-                  borderRadius: "3px",
-                  background: "rgba(0, 0, 0, 0)",
-                }}
-              >
-                <div class={sheet.classes.Image}>
-                  <img
-                    class="image"
-                    src={
-                      selectedItem?.imageUrl ||
-                      getAssetPath("./assets/placeholder.png")
-                    }
-                  />
-                </div>
-                <div
-                  class={sheet.classes.TextArea}
-                  style={{ alignSelf: "center" }}
-                >
-                  <div class="title">{selectedItem?.name}</div>
-                  <div class="amount">
-                    {selectedStep?.prettyDestinationValue}
-                  </div>
-                </div>
-              </div>
-            </sl-card>
-          </div>
-        </div> */}
 
         <div class={sheet.classes.Button}>
           <sl-button

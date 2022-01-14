@@ -37,10 +37,10 @@ const rewardsData: Reward = {
 
 export const RewardsCellCreditFull = () => {
   return (
-    <sqm-rewards-table-rewards-cell
+    <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData }}
       availableText="19 Points remaining"
-    ></sqm-rewards-table-rewards-cell>
+    ></sqm-rewards-table-reward-cell>
   );
 };
 
@@ -53,10 +53,10 @@ const partial = {
 
 export const RewardsCellCreditPartial = () => {
   return (
-    <sqm-rewards-table-rewards-cell
+    <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, ...partial }}
       availableText="10 Points remaining"
-    ></sqm-rewards-table-rewards-cell>
+    ></sqm-rewards-table-reward-cell>
   );
 };
 
@@ -69,10 +69,10 @@ const empty = {
 
 export const RewardsCellCreditEmpty = () => {
   return (
-    <sqm-rewards-table-rewards-cell
+    <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, ...empty }}
       availableText="0 Points remaining"
-    ></sqm-rewards-table-rewards-cell>
+    ></sqm-rewards-table-reward-cell>
   );
 };
 
@@ -88,17 +88,17 @@ const singleRedeemed = {
 
 export const RewardsCellSingleRedeemed = () => {
   return (
-    <sqm-rewards-table-rewards-cell
+    <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, ...singleRedeemed }}
-    ></sqm-rewards-table-rewards-cell>
+    ></sqm-rewards-table-reward-cell>
   );
 };
 
 export const RewardsCellNonCredit = () => {
   return (
-    <sqm-rewards-table-rewards-cell
+    <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, type: "FUELTANK", prettyValue: "SaaSquatch Giftcard" }}
-    ></sqm-rewards-table-rewards-cell>
+    ></sqm-rewards-table-reward-cell>
   );
 };
 

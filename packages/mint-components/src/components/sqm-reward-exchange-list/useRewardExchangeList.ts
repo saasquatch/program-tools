@@ -1,5 +1,4 @@
 import {
-  useProgramId,
   useUserIdentity,
   useQuery,
   useMutation,
@@ -23,7 +22,6 @@ export type ExchangeItem = {
   description: string;
   imageUrl: string;
   available: boolean;
-  unavailableReason: string;
   unavailableReasonCode: string;
   ruleType: string;
   sourceUnit: string;

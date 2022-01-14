@@ -12,7 +12,7 @@ import { useTaskCard } from "./useTaskCard";
 
 /**
  * @uiName Task Card
- * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", *"]
+ * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", "*"]
  */
 @Component({
   tag: "sqm-task-card",
@@ -110,6 +110,15 @@ export class TaskCard {
   @Prop() startsOnMessage: string = "Starts {startDate}";
 
   /**
+   * Timeframe that the task card will be shown
+   *
+   * @uiName Display Duration
+   * @uiWidget DateRange
+   * @uiOptions {"allowPastDates":true, "months": 1}
+   */
+  @Prop() displayDuration: string;
+
+  /**
    * Shown to users after the end of the task duration.
    *
    * @uiName Ended Date Message
@@ -158,6 +167,11 @@ export class TaskCard {
   @Prop() eventKey?: string;
 
   /**
+   * @uiName Program ID override
+   */
+  @Prop() programId: string;
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -169,15 +183,19 @@ export class TaskCard {
   disconnectedCallback() {}
 
   render() {
-    const { props } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
+    const { props } = isDemo()
+      ? useDemoBigStat(this)
+      : useBigStat({ ...getProps(this), programId: this.programId });
     const { value, loading } = props;
 
-    const { callbacks } = isDemo() ? useTaskCardDemo(this) : useTaskCard();
+    const { states, callbacks } = isDemo()
+      ? useTaskCardDemo(this)
+      : useTaskCard(this);
 
     return (
       <TaskCardView
         callbacks={callbacks}
-        states={{ loading, progress: value }}
+        states={{ loading, loadingEvent: states.loadingEvent, progress: value }}
         content={{ ...getProps(this) }}
       ></TaskCardView>
     );
@@ -186,7 +204,13 @@ export class TaskCard {
 
 function useTaskCardDemo(props: TaskCard) {
   return deepmerge(
-    { callbacks: { sendEvent: (event: string) => console.log(event) } },
+    {
+      states: { loadingEvent: false },
+      callbacks: {
+        sendEvent: (event: string) => console.log(event),
+        onClick: () => console.log("clicked"),
+      },
+    },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
   );

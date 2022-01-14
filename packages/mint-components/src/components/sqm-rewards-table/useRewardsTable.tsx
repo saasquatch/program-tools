@@ -47,6 +47,7 @@ const GET_REWARDS = gql`
             prettyRedeemedNumber: prettyRedeemedCredit(
               formatType: NUMBER_FORMATTED
             )
+            programId
             statuses
             globalRewardKey
             programRewardKey
