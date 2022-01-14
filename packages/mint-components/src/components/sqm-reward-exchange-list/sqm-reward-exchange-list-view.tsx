@@ -186,6 +186,29 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
     ChooseAmount: {
       margin: "var(--sl-spacing-medium) 0",
+      "& .wrapper": {
+        display: "flex",
+        gap: "var(--sl-spacing-xx-large)",
+        "@media (max-width: 599px)": {
+          flexDirection: "column",
+        },
+      },
+      "& .image": {
+        width: "60%",
+        objectFit: "contain",
+        maxWidth: "100%",
+        height: "250px",
+        display: "flex",
+        "@media (max-width: 599px)": {
+          width: "auto",
+        },
+      },
+      "& .text": {
+        width: "40%",
+        "@media (max-width: 599px)": {
+          width: "auto",
+        },
+      },
       "& .title": {
         fontSize: "var(--sl-font-size-large)",
         fontWeight: "var(--sl-font-weight-semibold)",
@@ -337,29 +360,30 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         {item.steps?.map((step) => (
           <sl-menu-item value={step} disabled={!step.available}>
             {step.prettyDestinationValue}
-            <div slot="suffix" style={{ fontSize: "16px", float: "right" }}>
+            {step.unavailableReasonCode && (
+              <p
+                style={{
+                  fontSize: "var(--sl-font-size-small)",
+                  color: "var(--sl-color-warning-500)",
+                  margin: "0",
+                }}
+              >
+                {intl.formatMessage(
+                  {
+                    id: "unavailableCode",
+                    defaultMessage: states.content?.text?.notAvailableError,
+                  },
+                  {
+                    unavailableReason: step.unavailableReasonCode,
+                    sourceUnit: item.sourceUnit,
+                    sourceValue:
+                      step.prettySourceValue || item.prettySourceMinValue,
+                  }
+                )}
+              </p>
+            )}
+            <div slot="suffix" style={{ marginBottom: "auto", float: "right" }}>
               {step.prettySourceValue}
-              {step.unavailableReasonCode && (
-                <p
-                  style={{
-                    fontSize: "75%",
-                    color: "var(--sl-color-warning-500)",
-                  }}
-                >
-                  {intl.formatMessage(
-                    {
-                      id: "unavailableCode",
-                      defaultMessage: states.content?.text?.notAvailableError,
-                    },
-                    {
-                      unavailableReason: step.unavailableReasonCode,
-                      sourceUnit: item.sourceUnit,
-                      sourceValue:
-                        step.prettySourceValue || item.prettySourceMinValue,
-                    }
-                  )}
-                </p>
-              )}
             </div>
           </sl-menu-item>
         ))}
@@ -527,31 +551,29 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         : input && !states.amount;
     return (
       <div>
-        <div>
-          {
+        <div class={sheet.classes.ChooseAmount}>
+          <div class="wrapper">
             <img
-              class={sheet.classes.FullImage}
+              class="image"
               src={
                 selectedItem?.imageUrl ||
                 getAssetPath("./assets/placeholder.png")
               }
             />
-          }
-        </div>
-        <div class={sheet.classes.ChooseAmount}>
-          <div style={{ maxWidth: "600px", margin: "auto" }}>
-            <div class="title">{selectedItem?.name ?? ""}</div>
-            {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
-              <div class="points">{input}</div>
-            ) : (
-              <div class="description">{selectedItem?.description}</div>
-            )}
-            {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
-              <div class="description">{selectedItem?.description}</div>
-            ) : (
-              <div class="points">{input}</div>
-            )}
-            <div class="space" />
+            <div class="text">
+              <div class="title">{selectedItem?.name ?? ""}</div>
+              {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
+                <div class="points">{input}</div>
+              ) : (
+                <div class="description">{selectedItem?.description}</div>
+              )}
+              {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
+                <div class="description">{selectedItem?.description}</div>
+              ) : (
+                <div class="points">{input}</div>
+              )}
+              <div class="space" />
+            </div>
           </div>
         </div>
 
