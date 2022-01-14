@@ -110,6 +110,15 @@ export class TaskCard {
   @Prop() startsOnMessage: string = "Starts {startDate}";
 
   /**
+   * Timeframe that the task card will be shown
+   *
+   * @uiName Display Duration
+   * @uiWidget DateRange
+   * @uiOptions {"allowPastDates":true, "months": 1}
+   */
+  @Prop() displayDuration: string;
+
+  /**
    * Shown to users after the end of the task duration.
    *
    * @uiName Ended Date Message
@@ -158,6 +167,11 @@ export class TaskCard {
   @Prop() eventKey?: string;
 
   /**
+   * @uiName Program ID override
+   */
+  @Prop() programId: string;
+
+  /**
    * @undocumented
    * @uiType object
    */
@@ -169,7 +183,9 @@ export class TaskCard {
   disconnectedCallback() {}
 
   render() {
-    const { props } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
+    const { props } = isDemo()
+      ? useDemoBigStat(this)
+      : useBigStat({ ...getProps(this), programId: this.programId });
     const { value, loading } = props;
 
     const { states, callbacks } = isDemo()

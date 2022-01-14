@@ -1465,6 +1465,13 @@ export namespace Components {
          */
         "description": string;
         /**
+          * Timeframe that the task card will be shown
+          * @uiName Display Duration
+          * @uiWidget DateRange
+          * @uiOptions {"allowPastDates":true, "months": 1}
+         */
+        "displayDuration": string;
+        /**
           * Shown to users after the end of the task duration.
           * @uiName Ended Date Message
          */
@@ -1490,6 +1497,10 @@ export namespace Components {
           * @uiName CTA Button Link Open in New Tab
          */
         "openNewTab": boolean;
+        /**
+          * @uiName Program ID override
+         */
+        "programId": string;
         /**
           * @uiName Progress Bar Unit
          */
@@ -3503,6 +3514,13 @@ declare namespace LocalJSX {
          */
         "description"?: string;
         /**
+          * Timeframe that the task card will be shown
+          * @uiName Display Duration
+          * @uiWidget DateRange
+          * @uiOptions {"allowPastDates":true, "months": 1}
+         */
+        "displayDuration"?: string;
+        /**
           * Shown to users after the end of the task duration.
           * @uiName Ended Date Message
          */
@@ -3528,6 +3546,10 @@ declare namespace LocalJSX {
           * @uiName CTA Button Link Open in New Tab
          */
         "openNewTab"?: boolean;
+        /**
+          * @uiName Program ID override
+         */
+        "programId"?: string;
         /**
           * @uiName Progress Bar Unit
          */

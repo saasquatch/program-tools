@@ -23,6 +23,7 @@ export type TaskCardViewProps = {
     showExpiry: boolean;
     expiryMessage: string;
     rewardDuration: string;
+    displayDuration?: string;
     startsOnMessage: string;
     endedMessage: string;
     rewardUnit: string;
@@ -195,14 +196,6 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   console.log("TASK CARD PROPS " + props?.content?.cardTitle);
   console.log({ props });
   const { callbacks, states, content } = props;
-  const checkmark_circle = SVGs.checkmark_circle();
-  const checkmark_filled = SVGs.checkmark_filled();
-  const arrow_left_right = SVGs.arrow_left_right();
-
-  const showComplete = states.progress >= content.goal;
-  const repetitions = content.showProgressBar
-    ? Math.floor(states.progress / content.goal)
-    : states.progress;
 
   const dateStart =
     content.showExpiry &&
@@ -211,6 +204,26 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     content.showExpiry &&
     DateTime.fromISO(content.rewardDuration.split("/")[1]);
   const dateToday = DateTime.now();
+
+  if (content.displayDuration) {
+    const start = content.displayDuration.split("/")?.[0];
+    const end = content.displayDuration.split("/")?.[1];
+    const displayDateStart = start ? DateTime.fromISO(start) : dateToday;
+    const displayDateEnd = end ? DateTime.fromISO(end) : dateToday;
+
+    console.log({ displayDateStart, dateToday, displayDateEnd });
+    if (dateToday < displayDateStart || dateToday > displayDateEnd)
+      return <span></span>;
+  }
+
+  const checkmark_circle = SVGs.checkmark_circle();
+  const checkmark_filled = SVGs.checkmark_filled();
+  const arrow_left_right = SVGs.arrow_left_right();
+
+  const showComplete = states.progress >= content.goal;
+  const repetitions = content.showProgressBar
+    ? Math.floor(states.progress / content.goal)
+    : states.progress;
 
   const taskComplete =
     (showComplete && content.repeatable === false) ||
