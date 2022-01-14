@@ -48,6 +48,10 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
       color: ${props.textcolor ? props.textcolor : ""};
       border-radius: ${props.borderradius ? props.borderradius + "px" : ""};
     }
+    *::part(label) {
+      position: relative;
+	  top: 1px;
+    }
   `;
 
   const style = {
