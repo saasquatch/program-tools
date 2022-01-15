@@ -189,23 +189,23 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       "& .wrapper": {
         display: "flex",
         gap: "var(--sl-spacing-xx-large)",
-        "@media (max-width: 599px)": {
+        "@media (max-width: 799px)": {
           flexDirection: "column",
         },
       },
       "& .image": {
-        width: "60%",
+        width: "47%",
         objectFit: "contain",
         maxWidth: "100%",
         height: "250px",
         display: "flex",
-        "@media (max-width: 599px)": {
+        "@media (max-width: 799px)": {
           width: "auto",
         },
       },
       "& .text": {
-        width: "40%",
-        "@media (max-width: 599px)": {
+        width: "53%",
+        "@media (max-width: 799px)": {
           width: "auto",
         },
       },
