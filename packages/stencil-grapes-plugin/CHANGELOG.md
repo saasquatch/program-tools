@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2021-12-23
+
+### Added
+
+- Throws helpful errors for invalid JSON
+
 ## [1.0.1] - 2021-06-23
 
 ### Added
@@ -26,7 +32,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - @uiEnum
     - @uiEnumNames
     - @uiType
-
-[unreleased]: https://github.com/saasquatch/freshest-themes/compare/servicetitan-components@1.0.1...HEAD
-[1.0.1]: https://github.com/saasquatch/freshest-themes/releases/tag/servicetitan-components@1.0.1
-[1.0.0]: https://github.com/saasquatch/freshest-themes/releases/tag/servicetitan-components@1.0.0

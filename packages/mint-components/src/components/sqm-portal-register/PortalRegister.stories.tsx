@@ -14,7 +14,7 @@ const defaultProps: PortalRegisterViewProps = {
     loading: false,
     confirmPassword: true,
     hideInputs: false,
-    loginPath:"/login"
+    loginPath: "/login",
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -32,7 +32,7 @@ const errorProps: PortalRegisterViewProps = {
     loading: false,
     confirmPassword: true,
     hideInputs: false,
-    loginPath:"/login"
+    loginPath: "/login",
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -53,7 +53,7 @@ const loadingProps: PortalRegisterViewProps = {
     loading: true,
     confirmPassword: true,
     hideInputs: false,
-    loginPath:"/login"
+    loginPath: "/login",
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -71,7 +71,7 @@ const slottedProps: PortalRegisterViewProps = {
     loading: false,
     confirmPassword: true,
     hideInputs: false,
-    loginPath:"/login"
+    loginPath: "/login",
   },
   callbacks: {
     submit: () => console.log("Submit!"),
@@ -116,7 +116,7 @@ export const FieldsHidden = () => {
           loading: true,
           confirmPassword: true,
           hideInputs: true,
-          loginPath:"/login"
+          loginPath: "/login",
         },
       }}
     ></sqm-portal-register>
@@ -124,3 +124,20 @@ export const FieldsHidden = () => {
 };
 
 export const SlottedInputs = () => <PortalRegisterView {...slottedProps} />;
+
+export const TermsAndConditions = () => (
+  <PortalRegisterView
+    {...defaultProps}
+    content={{
+      ...defaultProps.content,
+      terms: (
+        <p>
+          By signing up you agree to the{" "}
+          <a href="https://example.com" target="_blank">
+            Terms and Conditions
+          </a>
+        </p>
+      ),
+    }}
+  />
+);
