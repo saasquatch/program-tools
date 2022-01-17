@@ -43,6 +43,15 @@ export const FullWidth = () => {
   );
 };
 
+export const LongItemName = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender", "Some really super long name that runs off the input"];
+  const functional = useSelect({ items });
+  const props = {items, functional };
+  return (
+      <Select {...props}></Select>
+  );
+};
+
 export const WithPlaceholder = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const functional = useSelect({ items });

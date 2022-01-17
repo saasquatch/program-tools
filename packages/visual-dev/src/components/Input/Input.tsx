@@ -7,6 +7,8 @@ import React from "react";
 type InputProps = OptionProps &
   Omit<React.ComponentProps<"input">, "value" | "css">;
 
+type InputWidthType = boolean | string;
+
 export interface OptionProps {
   value?: any;
   onChange?: any;
@@ -17,7 +19,7 @@ export interface OptionProps {
   buttons?: React.ReactElement;
   position?: "left" | "right";
   customCSS?: CSSProp;
-  limitWidth?: boolean;
+  limitWidth?: InputWidthType;
 }
 
 const ShadowDom = styled(root.div)`
@@ -27,10 +29,12 @@ const ShadowDom = styled(root.div)`
 const InputBox = styled.input<{
   isInvalid: boolean;
   position: string;
+  hasIcon: boolean;
   customCSS: CSSProp;
 }>`
   ${Styles.InputBoxStyle}
   ${(props) => (props.isInvalid ? Styles.invalid : "")}
+  ${(props) => props.hasIcon && "padding-right: var(--sq-spacing-xxx-large)"}
   ${(props) => (props.position == "left" ? "text-indent: 40px;" : "")}
   ${(props) => props.customCSS}
 `;
@@ -40,9 +44,14 @@ const ExtrasDiv = styled.div<{ position: string }>`
   ${(props) => (props.position == "left" ? "left: 12px;" : "right: 12px;")}
 `;
 
-const Container = styled.div<{ limitWidth: boolean }>`
+const Container = styled.div<{ limitWidth: InputWidthType }>`
   ${Styles.Container}
-  ${(props) => props.limitWidth && "max-width: 300px;"}
+  ${(props) =>
+    props.limitWidth
+      ? typeof props.limitWidth === "string"
+        ? `max-width: ${props.limitWidth};`
+        : "max-width: 300px;"
+      : "max-width: 100%;"}
 `;
 
 export const Input = React.forwardRef<React.ElementRef<"input">, InputProps>(
@@ -55,6 +64,7 @@ export const Input = React.forwardRef<React.ElementRef<"input">, InputProps>(
       errors: rawErrors,
       customCSS = {},
       limitWidth = true,
+      required = false,
       ...rest
     } = props;
 
@@ -68,6 +78,8 @@ export const Input = React.forwardRef<React.ElementRef<"input">, InputProps>(
             ref={forwardedRef}
             isInvalid={rawErrors}
             customCSS={customCSS}
+            hasIcon={icon || buttons ? true : false}
+            required={required}
           />
           {icon && (
             <ExtrasDiv position={position}>

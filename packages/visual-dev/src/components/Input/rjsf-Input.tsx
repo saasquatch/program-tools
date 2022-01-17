@@ -9,7 +9,7 @@ export function RJSFInput(props: WidgetProps) {
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}
       disabled={props.disabled}
-      errors={props.rawErrors}
+      errors={props.rawErrors && !!props.rawErrors.length}
       required={props.required}
     />
   );
@@ -22,7 +22,7 @@ export function RJSFNumericalInput(props: WidgetProps) {
       type="number"
       onChange={(e: any) => props.onChange(e.target.value)}
       disabled={props.disabled}
-      errors={props.rawErrors}
+      errors={props.rawErrors && !!props.rawErrors.length}
       required={props.required}
     />
   );
@@ -35,7 +35,7 @@ export function RJSFPasswordInput(props: WidgetProps) {
       type={type}
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}
-      errors={props.rawErrors}
+      errors={props.rawErrors && !!props.rawErrors.length}
       disabled={props.disabled}
       required={props.required}
       buttons={
@@ -60,7 +60,7 @@ export function RJSFLockableInput(props: WidgetProps) {
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}
       disabled={locked}
-      errors={props.rawErrors}
+      errors={props.rawErrors && !!props.rawErrors.length}
       required={props.required}
       buttons={
         <IconButton
@@ -83,7 +83,7 @@ export function RJSFClearableInput(props: WidgetProps) {
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}
       disabled={props.disabled}
-      errors={props.rawErrors}
+      errors={props.rawErrors && !!props.rawErrors.length}
       required={props.required}
       buttons={
         <IconButton
@@ -109,7 +109,7 @@ export function RJSFCancellableInput(props: WidgetProps) {
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}
       disabled={locked}
-      errors={props.rawErrors}
+      errors={props.rawErrors && !!props.rawErrors.length}
       required={props.required}
       buttons={
         locked == true ? (

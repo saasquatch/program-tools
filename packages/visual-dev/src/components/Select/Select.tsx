@@ -54,8 +54,10 @@ export interface OptionProps<ItemType> {
   /**
    * Limit the width of the input
    */
-  limitWidth?: boolean;
+  limitWidth?: InputWidthType;
 }
+
+type InputWidthType = boolean | string;
 
 type ItemTypeBase = { description?: string } | string | number | boolean;
 
@@ -67,13 +69,18 @@ function isComplexItem(item: any): item is ComplexItemType {
 
 const ItemContainer = styled.ul<{
   errors: any;
-  limitWidth: boolean;
+  limitWidth: InputWidthType;
 }>`
   ${Styles.ItemContainer}
   ${(props) =>
     props.errors &&
     "border-color: var(--sq-border-critical); background-color: var(--sq-surface-critical-subdued);"}
-  ${(props) => props.limitWidth && "max-width: 300px;"}
+  ${(props) =>
+    props.limitWidth
+      ? typeof props.limitWidth === "string"
+        ? `max-width: ${props.limitWidth};`
+        : "max-width: 300px;"
+      : "max-width: 100%;"}
 `;
 
 const Item = styled("li")`
@@ -89,10 +96,15 @@ const ItemDescription = styled("span")`
 `;
 
 const Container = styled("div")<{
-  limitWidth: boolean;
+  limitWidth: InputWidthType;
 }>`
   ${Styles.Container}
-  ${(props) => props.limitWidth && "max-width: 300px;"}
+  ${(props) =>
+    props.limitWidth
+      ? typeof props.limitWidth === "string"
+        ? `max-width: ${props.limitWidth};`
+        : "max-width: 300px;"
+      : "max-width: 100%;"}
 `;
 
 const SelectInput = styled.div<{
@@ -105,7 +117,8 @@ const SelectInput = styled.div<{
   ${(props) =>
     props.disabled &&
     "background: var(--sq-surface-input-disabled); cursor: default;"}
-  ${(props) => props.isOpen && "border-color: var(--sq-focused);"}
+  ${(props) =>
+    props.isOpen && !props.disabled && "border-color: var(--sq-focused);"}
   ${(props) =>
     !props.isOpen &&
     !props.disabled &&
@@ -115,6 +128,12 @@ const SelectInput = styled.div<{
         ? "var(--sq-surface-critical-hovered)"
         : "var(--sq-action-secondary-border)"
     } ;
+  }`}
+
+  ${(props) =>
+    !props.disabled &&
+    `&:focus {
+    border-color: var(--sq-focused);
   }`}
 
   ${(props) =>
@@ -147,7 +166,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
   ref: React.Ref<HTMLInputElement>
 ) => {
   const {
-    customCSS = {},
+    customCSS = ``,
     disabled = false,
     errors = false,
     clearable = false,
@@ -192,6 +211,8 @@ const SelectInner = <ItemType extends ItemTypeBase>(
     );
   }
 
+  const isOpen = disabled || loading ? false : functional.isOpen;
+
   return (
     <Container limitWidth={limitWidth}>
       {!isCombobox(functional) ? (
@@ -235,7 +256,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
             />
             {loading ? (
               <LoadingSpinner color={arrowColor} right="14px" bottom="12px" />
-            ) : functional.isOpen ? (
+            ) : isOpen ? (
               <Icon
                 icon={"chevron_up"}
                 size={"small"}
@@ -271,7 +292,8 @@ const SelectInner = <ItemType extends ItemTypeBase>(
             limitWidth={limitWidth}
             customCSS={`
               ${customCSS};
-              ${functional.isOpen && "border: 2px solid var(--sq-focused)"};
+              ${isOpen && "border: 2px solid var(--sq-focused)"};
+              ${clearable ? "padding-right: var(--sq-spacing-xxxx-large)" : "padding-right: var(--sq-spacing-xxx-large)"};
             `}
             disabled={disabled || loading}
             {...functional.getInputProps()}
@@ -301,7 +323,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
             />
             {loading ? (
               <LoadingSpinner color={arrowColor} right="16px" bottom="3px" />
-            ) : functional.isOpen ? (
+            ) : isOpen ? (
               <IconButton
                 disabled={disabled}
                 icon={"chevron_up"}
@@ -338,7 +360,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
         errors={errors}
         {...functional.getMenuProps()}
       >
-        {functional.isOpen &&
+        {isOpen &&
           items.map((item, index) => (
             <Item
               style={
