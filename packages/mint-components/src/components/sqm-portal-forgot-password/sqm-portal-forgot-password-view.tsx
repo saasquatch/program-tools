@@ -13,6 +13,7 @@ export interface PortalForgotPasswordViewProps {
     error: string;
     loading: boolean;
     success: boolean;
+    loginPath:string;
   };
   callbacks: {
     submit: (event: any) => Promise<void>;

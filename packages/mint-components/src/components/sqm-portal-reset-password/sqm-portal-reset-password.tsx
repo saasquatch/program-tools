@@ -21,10 +21,20 @@ export class PortalResetPassword {
   ignored = true;
 
   /**
+   * The page that users are redirected to when the password reset succeeds.
+   *
    * @uiName Next page path
    */
   @Prop()
   nextPage: string = "/";
+
+  /**
+   * The page that users are redirected to if the reset fails due to outdated password reset attempt.
+   *
+   * @uiName Failed page redirection path
+   */
+  @Prop()
+  failedPage: string = "/";
 
   /**
    * @uiName Show confirm password

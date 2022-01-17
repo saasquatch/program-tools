@@ -21,6 +21,14 @@ export class PortalForgotPassword {
   ignored = true;
 
   /**
+   * The page that users are redirected to from the password reset email.
+   *
+   * @uiName Email redirection base path
+   */
+  @Prop()
+  redirectPath: string = "/resetPassword";
+
+  /**
    * @uiName Email label
    */
   @Prop()
@@ -31,6 +39,11 @@ export class PortalForgotPassword {
    */
   @Prop()
   submitLabel: string = "Request Password Reset";
+
+  /**
+   * @uiName Routing path to login page
+   */
+  @Prop() loginPath: string = "/login";
 
   /**
    * @undocumented
@@ -47,7 +60,7 @@ export class PortalForgotPassword {
   render() {
     const { states, callbacks } = isDemo()
       ? usePortalForgotPasswordDemo(this)
-      : usePortalForgotPassword();
+      : usePortalForgotPassword(this);
 
     const content = {
       secondaryButton: (
@@ -55,7 +68,7 @@ export class PortalForgotPassword {
           <sl-button
             type="text"
             disabled={states.loading}
-            onClick={() => navigation.push("/login")}
+            onClick={() => navigation.push(states.loginPath)}
           >
             Sign In
           </sl-button>

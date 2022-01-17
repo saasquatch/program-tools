@@ -7,41 +7,80 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [1.4.2] - 2022-01-14
+
+### Changed
+
+- Added ability to include slotted content on \<sqm-portal-register> using `slot="terms"`
+  - Slotted content is displayed above the registration button
+
+## [1.4.1] - 2021-01-17
+
+### Fixed
+
+- Fixed broken WhatsApp icon by updating the version of bootstrap icons from 1.2.0 to 1.7.2
+
+## [1.4.0] - 2021-12-09
+
+### Changed
+
+- Updated version of component-boilerplate to prevent rare case of user context being deleted during register
+- Updated version of component-boilerplate to support new registration, password reset, and verify requests
+- Changed components:
+  - \<sqm-portal-email-verification>
+    - Added prop to customize what page a user is redirected to from their verify email, defaults to /verifyEmail
+  - \<sqm-portal-forgot-password>
+    - Added prop to customize what page a user is redirected to from their password reset email, defaults to /resetPassword
+    - Added prop to customize the login button redirection path, defaults to /login
+  - \<sqm-portal-login>
+    - Added prop to customize the register button redirection path, defaults to /register
+    - Added prop to customize the forgot password text link redirection path, defaults to /forgotPassword
+  - \<sqm-portal-register>
+    - Added prop to customize the login button redirection path, defaults to /login
+    - Added prop to customize what page a user is redirect to from their initial verify email, defaults to /verifyEmail
+  - \<sqm-portal-reset-password>
+    - Added prop to customize what path users are redirected to when oobcode validation fails, defaults to /
+  - \<sqm-portal-verify-email>
+    - Added prop to customize what path users are redirected to when oobcode validation fails, defaults to /
+  - \<sqm-big-stat>
+    - Added program ID prop to optionally be used instead of the default program context
+
 ## [1.3.0] - 2021-11-08
 
 ### Changed
 
 - Changed components:
   - \<sqm-share-button>
-      - Exported "icon" part so it can be customizable in the future
-  - \<sqm-portal-change-password> 
-      - Changed sl-button in modal to be of type "primary" instead of "default"
-      - Swapped location of cancel and change password buttons
-      - Added padding between fields
-      - Changed hardcoded text into customizable props
-      - Changed password field input default label to "New Password"
-  - \<sqm-portal-profile> 
-      - Changed hardcoded text into customizable props
-      - Added padding text below header
-  - \<sqm-portal-reset-password> 
-      - Changed hardcoded text into customizable props
-      - Changed password field input default label to "New Password"
-  - \<sqm-portal-register> 
-      - Changed hardcoded text into customizable props
-      - Changed formData slot to add custom inputs to the top of form instead of the bottom
-      - Fixed bug causing the correct error validation message from being shown 
+    - Exported "icon" part so it can be customizable in the future
+  - \<sqm-portal-change-password>
+    - Changed sl-button in modal to be of type "primary" instead of "default"
+    - Swapped location of cancel and change password buttons
+    - Added padding between fields
+    - Changed hardcoded text into customizable props
+    - Changed password field input default label to "New Password"
+  - \<sqm-portal-profile>
+    - Changed hardcoded text into customizable props
+    - Added padding text below header
+  - \<sqm-portal-reset-password>
+    - Changed hardcoded text into customizable props
+    - Changed password field input default label to "New Password"
+  - \<sqm-portal-register>
+    - Changed hardcoded text into customizable props
+    - Changed formData slot to add custom inputs to the top of form instead of the bottom
+    - Fixed bug causing the correct error validation message from being shown
   - \<sqm-portal-email-verification>
-      - Changed hardcoded text into customizable props
+    - Changed hardcoded text into customizable props
   - \<sqm-portal-verify-email>
-      - Fixed bug causing users to get stuck if no userIdent existed when verifying their email
+    - Fixed bug causing users to get stuck if no userIdent existed when verifying their email
 
 ### Added
 
 - Default affiliate portal templates now provided in [Stencilbook](https://mint-components.stencilbook.saasquat.ch)
-    - Default Portal
-    - Multi Program Portal
-    - Lead Submit Portal
-    - Portal Dashboard (program widget)
+  - Default Portal
+  - Multi Program Portal
+  - Lead Submit Portal
+  - Portal Dashboard (program widget)
 - New components added for default affiliate portals
   - \<sqm-portal-footer> Footer for providing FAQ, T&S, and support email
   - \<sqm-hero> One or two column landing page with an optional background
@@ -159,7 +198,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.3.0...HEAD
+
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.4.2...HEAD
+[1.4.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.4.2
+[1.4.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.4.1
+[1.4.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.4.0
 [1.3.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.3.0
 [1.2.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.2.0
 [1.1.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.1.1

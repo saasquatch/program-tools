@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property   | Attribute   | Description | Type                                                                                                 | Default     |
-| ---------- | ----------- | ----------- | ---------------------------------------------------------------------------------------------------- | ----------- |
-| `demoData` | --          |             | `{ states?: { error: string; loading: boolean; verified: boolean; }; data?: { oobCode: string; }; }` | `undefined` |
-| `nextPage` | `next-page` |             | `string`                                                                                             | `"/"`       |
+| Property     | Attribute     | Description                                                                                       | Type                                                                                                 | Default     |
+| ------------ | ------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ----------- |
+| `demoData`   | --            |                                                                                                   | `{ states?: { error: string; loading: boolean; verified: boolean; }; data?: { oobCode: string; }; }` | `undefined` |
+| `failedPage` | `failed-page` | The page that users are redirected to if verification fails due to outdated verification attempt. | `string`                                                                                             | `"/"`       |
+| `nextPage`   | `next-page`   | The page that users are redirected to when the verification succeeds.                             | `string`                                                                                             | `"/"`       |
 
 
 ## Dependencies

@@ -1,7 +1,6 @@
-@author:
+@author:derek
 @owner:ian
 Feature: Reset Password
-
 
     Background: A user in on the password reset page
         Given a user who has been redirected to the password reset page
@@ -12,19 +11,22 @@ Feature: Reset Password
         When they enter their password twice
         And they click "Update"
         Then their password is updated
-        And a banner with a success message will be displayed
+        And a banner with a success message is displayed
         And they can log in with their new password
 
     @motivating
     Scenario Outline: Users cannot reset their password with an invalid or missing oob code
         Given a user has a <oobCode> as a url query parameter
-        Then they will see an error message saying that their password reset code is invalid or expired
+        And the component <mayHave> "failed-page" with <value>
+        Then they see an error message saying that their password reset code is invalid/expired
         When they click "Continue"
-        Then they will be redirected to "/"
+        Then they are redirected to <redirectPath>
         Examples:
-            | oobCode               |
-            | invalid oob code      |
-            | non existant oob code |
+            | oobCode               | mayHave      | value  | redirectPath |
+            | invalid oob code      | doesn't have | N/A    | /            |
+            | non existant oob code | doesn't have | N/A    | /            |
+            | invalid oob code      | has          | /login | /login       |
+            | non existant oob code | has          | /login | /login       |
 
     @motivating
     Scenario: Users must enter the same password twice to successfully reset their password
@@ -34,7 +36,7 @@ Feature: Reset Password
         And they click "Update"
         Then their password is not be reset
         And an error banner stating the input passwords must match appears
-        And their password will not be reset
+        And their password is not be reset
         When they enter the same password twice
         And they click "Update"
         Then a banner appears with a success message
