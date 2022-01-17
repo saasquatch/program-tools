@@ -100,3 +100,20 @@ Feature: Portal Register
             | mayHave      | value          | redirectPath   |
             | doesn't have | N/A            | /verifyEmail   |
             | has          | /verifyMyEmail | /verifyMyEmail |
+
+    @ui
+    Scenario Outline: Slotted content can be included above the register button
+        Given a user viewing the register component
+        And the registration component contains the following html
+            """
+            <sqm-portal-register>
+            <p slot="terms">
+            By signing up you agree to the
+            <a href="https://example.com" target="_blank">
+            Terms and Conditions
+            </a>
+            </p>
+            </sqm-portal-register>
+            """
+        Then the terms and conditions slotted content is shown above the register button
+        And the link opens in a new tab
