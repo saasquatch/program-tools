@@ -47,7 +47,7 @@
     "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
     "jest-config": "^26.6.3",
-    "marked": "^3.0.4",
+    "marked": "^4.0.10",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-string": "^3.0.0",
