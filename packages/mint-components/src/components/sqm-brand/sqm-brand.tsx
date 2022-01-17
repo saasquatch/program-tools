@@ -35,7 +35,7 @@ export class BrandComponent {
   disconnectedCallback() {}
 
   render() {
-    const brandColor = this.brandColor ?? "inherit";
+    const brandColor = this.brandColor ?? "#FFF";
     const css = autoColorScaleCss(brandColor);
     const sanitizedFont = (this.brandFont ?? "").trim() || undefined;
 
@@ -51,7 +51,7 @@ export class BrandComponent {
       return () => document.head.removeChild(sheet);
     }, [sanitizedFont]);
 
-    const font = sanitizedFont ?? "inherit";
+    const font = sanitizedFont ?? "";
 
     return (
       <Host>
