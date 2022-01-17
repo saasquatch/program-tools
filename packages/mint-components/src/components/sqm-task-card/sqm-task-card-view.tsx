@@ -82,7 +82,7 @@ const style = {
     },
   },
   NotStarted: {
-	fontSize: "var(--sl-font-size-small)",
+    fontSize: "var(--sl-font-size-small)",
     padding: "var(--sl-spacing-medium)",
     color: "var(--sl-color-primary-600)",
     border: "1px solid var(--sl-color-neutral-200)",
@@ -100,7 +100,7 @@ const style = {
     },
   },
   Ended: {
-	fontSize: "var(--sl-font-size-small)",
+    fontSize: "var(--sl-font-size-small)",
     padding: "var(--sl-spacing-medium)",
     color: "var(--sl-color-warning-600)",
     border: "1px solid var(--sl-color-neutral-200)",
@@ -189,11 +189,11 @@ const style = {
     "& .neutral": {
       color: "var(--sl-color-neutral-400)",
     },
-	"& .datetime": {
-		display: "block",
-		marginTop: "var(--sl-spacing-xx-small)",
-		color: "var(--sl-color-neutral-400)",
-	}
+    "& .datetime": {
+      display: "block",
+      marginTop: "var(--sl-spacing-xx-small)",
+      color: "var(--sl-color-neutral-400)",
+    },
   },
 };
 
@@ -268,8 +268,8 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               startDate:
                 dateStart.toFormat("MMM d, yyyy") +
                 " at " +
-                dateStart.toFormat("t ").toLowerCase() +
-                dateStart.toFormat("ZZZZ"),
+                dateStart.toFormat("t ").toLowerCase(),
+              // dateStart.toFormat("ZZZZ"),
             }
           )}
         </div>
@@ -288,8 +288,8 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               endDate:
                 dateEnd.toFormat("MMM d, yyyy") +
                 " at " +
-                dateEnd.toFormat("t ").toLowerCase() +
-                dateEnd.toFormat("ZZZZ"),
+                dateEnd.toFormat("t ").toLowerCase(),
+              // dateEnd.toFormat("ZZZZ"),
             }
           )}
         </div>
@@ -420,8 +420,8 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                           endDate:
                             dateEnd.toFormat("MMM d, yyyy") +
                             " at " +
-                            dateEnd.toFormat("t ").toLowerCase() +
-                            dateEnd.toFormat("ZZZZ"),
+                            dateEnd.toFormat("t ").toLowerCase(),
+                          // dateEnd.toFormat("ZZZZ"),
                         }
                       )}
                     </span>
