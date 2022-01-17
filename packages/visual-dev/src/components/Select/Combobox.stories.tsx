@@ -63,6 +63,34 @@ export const FullWidth = () => {
   );
 };
 
+export const CustomWidth = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const [inputItems, setInputItems] = useState(items);
+  const functional = useCombobox({
+    items: inputItems,
+    onInputValueChange: ({ inputValue }) => {
+      setInputItems(
+        items.filter((item) =>
+          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
+        )
+      );
+    },
+  });
+  const props = {limitWidth:"600px", items: inputItems, functional };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <Select {...props}></Select>
+    </div>
+  );
+};
+
 export const WithPlaceholder = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const [inputItems, setInputItems] = useState(items);

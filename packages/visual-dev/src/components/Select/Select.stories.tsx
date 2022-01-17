@@ -28,7 +28,25 @@ export const Basic = () => {
 export const FullWidth = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const functional = useSelect({ items });
-  const props = {limitWidth:false, items, functional };
+  const props = { limitWidth: false, items, functional };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <Select {...props}></Select>
+    </div>
+  );
+};
+
+export const CustomWidth = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const functional = useSelect({ items });
+  const props = { limitWidth: "600px", items, functional };
   return (
     <div
       style={{
@@ -44,21 +62,27 @@ export const FullWidth = () => {
 };
 
 export const LongItemName = () => {
-  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender", "Some really super long name that runs off the input"];
+  const items = [
+    "Salt Spring",
+    "Gabriola",
+    "Mayne",
+    "Pender",
+    "Some really super long name that runs off the input",
+  ];
   const functional = useSelect({ items });
-  const props = {items, functional };
-  return (
-      <Select {...props}></Select>
-  );
+  const props = { items, functional };
+  return <Select {...props}></Select>;
 };
 
 export const WithPlaceholder = () => {
   const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
   const functional = useSelect({ items });
-  const props = {placeholder: "Enter a value! Long text placeholder with ellipses", items, functional };
-  return (
-      <Select {...props}></Select>
-  );
+  const props = {
+    placeholder: "Enter a value! Long text placeholder with ellipses",
+    items,
+    functional,
+  };
+  return <Select {...props}></Select>;
 };
 
 export const Loading = () => {
