@@ -457,6 +457,12 @@ export const TaskCardEndDate = () => {
           content={{ ...oneAction.content, ...expireRepeat }}
         />
         <h5 />
+        <TaskCardView
+          {...oneAction}
+          content={{ ...oneAction.content, ...expireRepeat }}
+          states={{ ...oneAction.states, progress: 1 }}
+        />
+        <h5 />
       </div>
       <div style={resizable}>
         <h4>A Couple Actions</h4>
@@ -470,6 +476,12 @@ export const TaskCardEndDate = () => {
           content={{ ...coupleActions.content, ...expireRepeat }}
         />
         <h5 />
+        <TaskCardView
+          {...oneAction}
+          content={{ ...coupleActions.content, ...expireRepeat }}
+          states={{ ...coupleActions.states, progress: 5 }}
+        />
+        <h5 />
       </div>
       <div style={resizable}>
         <h4>Many Actions</h4>
@@ -481,6 +493,12 @@ export const TaskCardEndDate = () => {
         <TaskCardView
           {...oneAction}
           content={{ ...manyActions.content, ...expireRepeat }}
+        />
+        <h5 />
+        <TaskCardView
+          {...oneAction}
+          content={{ ...manyActions.content, ...expireRepeat }}
+          states={{ ...manyActions.states, progress: 1000 }}
         />
         <h5 />
       </div>

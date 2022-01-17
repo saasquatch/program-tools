@@ -82,6 +82,7 @@ const style = {
     },
   },
   NotStarted: {
+	fontSize: "var(--sl-font-size-small)",
     padding: "var(--sl-spacing-medium)",
     color: "var(--sl-color-primary-600)",
     border: "1px solid var(--sl-color-neutral-200)",
@@ -99,6 +100,7 @@ const style = {
     },
   },
   Ended: {
+	fontSize: "var(--sl-font-size-small)",
     padding: "var(--sl-spacing-medium)",
     color: "var(--sl-color-warning-600)",
     border: "1px solid var(--sl-color-neutral-200)",
@@ -162,6 +164,7 @@ const style = {
       marginTop: "auto",
       verticalAlign: "text-bottom",
       fontSize: "var(--sl-font-size-x-small)",
+      color: "var(--sl-color-neutral-400)",
     },
     "& .success": {
       color: "var(--sl-color-primary-500)",
@@ -184,8 +187,13 @@ const style = {
       },
     },
     "& .neutral": {
-      color: "var(--sl-color-neutral-600)",
+      color: "var(--sl-color-neutral-400)",
     },
+	"& .datetime": {
+		display: "block",
+		marginTop: "var(--sl-spacing-xx-small)",
+		color: "var(--sl-color-neutral-400)",
+	}
   },
 };
 
@@ -257,7 +265,11 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               defaultMessage: content.startsOnMessage,
             },
             {
-              startDate: dateStart.toLocaleString(DateTime.DATE_MED),
+              startDate:
+                dateStart.toFormat("MMM d, yyyy") +
+                " at " +
+                dateStart.toFormat("t ").toLowerCase() +
+                dateStart.toFormat("ZZZZ"),
             }
           )}
         </div>
@@ -273,7 +285,11 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               defaultMessage: content.endedMessage,
             },
             {
-              endDate: dateEnd.toLocaleString(DateTime.DATE_MED),
+              endDate:
+                dateEnd.toFormat("MMM d, yyyy") +
+                " at " +
+                dateEnd.toFormat("t ").toLowerCase() +
+                dateEnd.toFormat("ZZZZ"),
             }
           )}
         </div>
@@ -394,14 +410,18 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                     </div>
                   )}
                   {content.showExpiry && !taskUnavailable && (
-                    <span>
+                    <span class="datetime">
                       {intl.formatMessage(
                         {
                           id: "expiryMessage",
                           defaultMessage: content.expiryMessage,
                         },
                         {
-                          endDate: dateEnd.toLocaleString(DateTime.DATE_FULL),
+                          endDate:
+                            dateEnd.toFormat("MMM d, yyyy") +
+                            " at " +
+                            dateEnd.toFormat("t ").toLowerCase() +
+                            dateEnd.toFormat("ZZZZ"),
                         }
                       )}
                     </span>
