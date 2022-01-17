@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [1.4.2] - 2022-01-14
+
+### Changed
+
+- Added ability to include slotted content on \<sqm-portal-register> using `slot="terms"`
+  - Slotted content is displayed above the registration button
+
 ## [1.4.1] - 2021-01-17
 
 ### Fixed
@@ -14,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed broken WhatsApp icon by updating the version of bootstrap icons from 1.2.0 to 1.7.2
 
 ## [1.4.0] - 2021-12-09
+
+### Changed
 
 - Updated version of component-boilerplate to prevent rare case of user context being deleted during register
 - Updated version of component-boilerplate to support new registration, password reset, and verify requests
@@ -188,7 +198,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.4.1...HEAD
+
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.4.2...HEAD
+[1.4.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.4.2
 [1.4.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.4.1
 [1.4.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.4.0
 [1.3.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.3.0

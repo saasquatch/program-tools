@@ -121,6 +121,7 @@ export class PortalRegister {
           </sl-button>
         </slot>
       ),
+      terms: <slot name="terms"></slot>,
       emailLabel: this.emailLabel,
       passwordLabel: this.passwordLabel,
       submitLabel: this.submitLabel,
