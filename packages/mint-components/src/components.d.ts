@@ -863,6 +863,17 @@ export namespace Components {
     }
     interface SqmProgramMenu {
     }
+    interface SqmReferralCard {
+        /**
+          * @uiName Column Gap
+          * @uiType number
+         */
+        "gap": number;
+        /**
+          * @uiName Card Width
+         */
+        "width": number;
+    }
     interface SqmReferralIframe {
         /**
           * @undocumented 
@@ -1804,6 +1815,12 @@ declare global {
         prototype: HTMLSqmProgramMenuElement;
         new (): HTMLSqmProgramMenuElement;
     };
+    interface HTMLSqmReferralCardElement extends Components.SqmReferralCard, HTMLStencilElement {
+    }
+    var HTMLSqmReferralCardElement: {
+        prototype: HTMLSqmReferralCardElement;
+        new (): HTMLSqmReferralCardElement;
+    };
     interface HTMLSqmReferralIframeElement extends Components.SqmReferralIframe, HTMLStencilElement {
     }
     var HTMLSqmReferralIframeElement: {
@@ -2062,6 +2079,7 @@ declare global {
         "sqm-program-explainer": HTMLSqmProgramExplainerElement;
         "sqm-program-explainer-step": HTMLSqmProgramExplainerStepElement;
         "sqm-program-menu": HTMLSqmProgramMenuElement;
+        "sqm-referral-card": HTMLSqmReferralCardElement;
         "sqm-referral-iframe": HTMLSqmReferralIframeElement;
         "sqm-referral-table": HTMLSqmReferralTableElement;
         "sqm-referral-table-cell": HTMLSqmReferralTableCellElement;
@@ -2930,6 +2948,17 @@ declare namespace LocalJSX {
     }
     interface SqmProgramMenu {
     }
+    interface SqmReferralCard {
+        /**
+          * @uiName Column Gap
+          * @uiType number
+         */
+        "gap"?: number;
+        /**
+          * @uiName Card Width
+         */
+        "width"?: number;
+    }
     interface SqmReferralIframe {
         /**
           * @undocumented 
@@ -3677,6 +3706,7 @@ declare namespace LocalJSX {
         "sqm-program-explainer": SqmProgramExplainer;
         "sqm-program-explainer-step": SqmProgramExplainerStep;
         "sqm-program-menu": SqmProgramMenu;
+        "sqm-referral-card": SqmReferralCard;
         "sqm-referral-iframe": SqmReferralIframe;
         "sqm-referral-table": SqmReferralTable;
         "sqm-referral-table-cell": SqmReferralTableCell;
@@ -3755,6 +3785,7 @@ declare module "@stencil/core" {
             "sqm-program-explainer": LocalJSX.SqmProgramExplainer & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;
             "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
+            "sqm-referral-card": LocalJSX.SqmReferralCard & JSXBase.HTMLAttributes<HTMLSqmReferralCardElement>;
             "sqm-referral-iframe": LocalJSX.SqmReferralIframe & JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;
             "sqm-referral-table-cell": LocalJSX.SqmReferralTableCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableCellElement>;
