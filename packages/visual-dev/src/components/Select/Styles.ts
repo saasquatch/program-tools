@@ -21,11 +21,12 @@ export const ItemContainer = css`
   list-style-type: none;
   width: 100%;
   padding: 0;
+  margin: 0;
   background: var(--sq-surface);
   border: 2px solid var(--sq-focused);
   border-radius: 0 0 4px 4px;
   border-top: none;
-  top: 17px;
+  top: 33px;
   outline: none;
 
   &:empty {
@@ -43,7 +44,6 @@ export const ButtonContainer = css`
   right: 4px;
   top: 10px;
   background: var(--sq-surface);
-
   & > :not(:last-child) {
     margin-right: var(--sq-spacing-x-small);
   }
