@@ -1573,6 +1573,20 @@ export namespace Components {
          */
         "type": "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
+    interface SqmTimelineReward {
+        /**
+          * @uiName Description
+         */
+        "desc": string;
+        /**
+          * @uiName Reward Amount
+         */
+        "reward": string;
+        /**
+          * @uiName Reward Unit
+         */
+        "unit": string;
+    }
     interface SqmTitledSection {
         "label": string;
         /**
@@ -2031,6 +2045,12 @@ declare global {
         prototype: HTMLSqmTextSpanElement;
         new (): HTMLSqmTextSpanElement;
     };
+    interface HTMLSqmTimelineRewardElement extends Components.SqmTimelineReward, HTMLStencilElement {
+    }
+    var HTMLSqmTimelineRewardElement: {
+        prototype: HTMLSqmTimelineRewardElement;
+        new (): HTMLSqmTimelineRewardElement;
+    };
     interface HTMLSqmTitledSectionElement extends Components.SqmTitledSection, HTMLStencilElement {
     }
     var HTMLSqmTitledSectionElement: {
@@ -2115,6 +2135,7 @@ declare global {
         "sqm-task-card": HTMLSqmTaskCardElement;
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
+        "sqm-timeline-reward": HTMLSqmTimelineRewardElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqm-user-name": HTMLSqmUserNameElement;
     }
@@ -3640,6 +3661,20 @@ declare namespace LocalJSX {
          */
         "type"?: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
+    interface SqmTimelineReward {
+        /**
+          * @uiName Description
+         */
+        "desc"?: string;
+        /**
+          * @uiName Reward Amount
+         */
+        "reward"?: string;
+        /**
+          * @uiName Reward Unit
+         */
+        "unit"?: string;
+    }
     interface SqmTitledSection {
         "label"?: string;
         /**
@@ -3742,6 +3777,7 @@ declare namespace LocalJSX {
         "sqm-task-card": SqmTaskCard;
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
+        "sqm-timeline-reward": SqmTimelineReward;
         "sqm-titled-section": SqmTitledSection;
         "sqm-user-name": SqmUserName;
     }
@@ -3821,6 +3857,7 @@ declare module "@stencil/core" {
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
+            "sqm-timeline-reward": LocalJSX.SqmTimelineReward & JSXBase.HTMLAttributes<HTMLSqmTimelineRewardElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
         }

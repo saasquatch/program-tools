@@ -1,13 +1,12 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
-export interface ReferralCardViewProps {
-  width: number;
-  gap: number;
+export interface RewardTimelineViewProps {
+	gift?: boolean
 }
 
-export function ReferralCardView(
-  props: ReferralCardViewProps,
+export function RewardTimelineView(
+  props: RewardTimelineViewProps,
   children: VNode
 ) {
   const style = {
@@ -31,7 +30,7 @@ export function ReferralCardView(
         {styleString}
         {vanillaStyle}
       </style>
-      <div class={sheet.classes.Container}>{children}</div>
+      75 Points
     </div>
   );
 }
