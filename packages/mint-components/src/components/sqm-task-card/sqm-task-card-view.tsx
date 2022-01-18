@@ -266,9 +266,22 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               defaultMessage: content.startsOnMessage,
             },
             {
-              startDate: dateStart
-                .setLocale(content.locale)
-                .toLocaleString(DateTime.DATETIME_MED),
+              startDate: content.locale.includes("en")
+                ? dateStart
+                    .toLocaleString(DateTime.DATETIME_MED)
+                    .split(",")
+                    .slice(0, 2)
+                    .join(",") +
+                  " at " +
+                  dateStart
+                    .toLocaleString(DateTime.DATETIME_MED)
+                    .split(",")
+                    .slice(2)
+                    .join(",")
+                    .toLowerCase()
+                : dateStart
+                    .setLocale(content.locale)
+                    .toLocaleString(DateTime.DATETIME_MED),
             }
           )}
         </div>
@@ -284,9 +297,22 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               defaultMessage: content.endedMessage,
             },
             {
-              endDate: dateEnd
-                .setLocale(content.locale)
-                .toLocaleString(DateTime.DATETIME_MED),
+              endDate: content.locale.includes("en")
+                ? dateEnd
+                    .toLocaleString(DateTime.DATETIME_MED)
+                    .split(",")
+                    .slice(0, 2)
+                    .join(",") +
+                  " at " +
+                  dateEnd
+                    .toLocaleString(DateTime.DATETIME_MED)
+                    .split(",")
+                    .slice(2)
+                    .join(",")
+                    .toLowerCase()
+                : dateEnd
+                    .setLocale(content.locale)
+                    .toLocaleString(DateTime.DATETIME_MED),
             }
           )}
         </div>
@@ -414,9 +440,22 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                           defaultMessage: content.expiryMessage,
                         },
                         {
-                          endDate: dateEnd
-                            .setLocale(content.locale)
-                            .toLocaleString(DateTime.DATETIME_MED),
+                          endDate: content.locale.includes("en")
+                            ? dateEnd
+                                .toLocaleString(DateTime.DATETIME_MED)
+                                .split(",")
+                                .slice(0, 2)
+                                .join(",") +
+                              " at " +
+                              dateEnd
+                                .toLocaleString(DateTime.DATETIME_MED)
+                                .split(",")
+                                .slice(2)
+                                .join(",")
+                                .toLowerCase()
+                            : dateEnd
+                                .setLocale(content.locale)
+                                .toLocaleString(DateTime.DATETIME_MED),
                         }
                       )}
                     </span>
