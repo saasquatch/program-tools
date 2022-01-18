@@ -172,6 +172,11 @@ export class TaskCard {
   @Prop() programId: string;
 
   /**
+   * @uiName Locale
+   */
+  @Prop() locale: string = "en";
+
+  /**
    * @undocumented
    * @uiType object
    */

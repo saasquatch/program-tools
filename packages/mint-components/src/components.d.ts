@@ -1505,6 +1505,10 @@ export namespace Components {
          */
         "goal": number;
         /**
+          * @uiName Locale
+         */
+        "locale": string;
+        /**
           * @uiName CTA Button Link Open in New Tab
          */
         "openNewTab": boolean;
@@ -3600,6 +3604,10 @@ declare namespace LocalJSX {
           * @uiName Goal Completion Number
          */
         "goal"?: number;
+        /**
+          * @uiName Locale
+         */
+        "locale"?: string;
         /**
           * @uiName CTA Button Link Open in New Tab
          */

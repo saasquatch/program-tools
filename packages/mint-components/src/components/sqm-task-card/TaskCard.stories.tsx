@@ -56,6 +56,7 @@ const oneAction = {
     endedMessage: "Ended {endDate}",
     finite: 0,
     goal: 1,
+	locale: "en"
   },
   states: {
     progress: 0,
@@ -90,6 +91,7 @@ const coupleActions = {
     endedMessage: "Ended {endDate}",
     finite: 0,
     goal: 5,
+	locale: "en"
   },
   states: {
     progress: 1,
@@ -125,6 +127,7 @@ const manyActions = {
     endedMessage: "Ended {endDate}",
     finite: 0,
     goal: 500,
+	locale: "en"
   },
   states: { progress: 100, loading: false, loadingEvent: false },
 };

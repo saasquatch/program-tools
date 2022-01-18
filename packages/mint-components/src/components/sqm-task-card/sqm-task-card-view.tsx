@@ -31,6 +31,7 @@ export type TaskCardViewProps = {
     buttonLink: string;
     openNewTab: boolean;
     eventKey?: string;
+    locale: string;
   };
   states: {
     loading: boolean;
@@ -265,11 +266,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               defaultMessage: content.startsOnMessage,
             },
             {
-              startDate:
-                dateStart.toFormat("MMM d, yyyy") +
-                " at " +
-                dateStart.toFormat("t ").toLowerCase(),
-              // dateStart.toFormat("ZZZZ"),
+              startDate: dateStart
+                .setLocale(content.locale)
+                .toLocaleString(DateTime.DATETIME_MED),
             }
           )}
         </div>
@@ -285,11 +284,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               defaultMessage: content.endedMessage,
             },
             {
-              endDate:
-                dateEnd.toFormat("MMM d, yyyy") +
-                " at " +
-                dateEnd.toFormat("t ").toLowerCase(),
-              // dateEnd.toFormat("ZZZZ"),
+              endDate: dateEnd
+                .setLocale(content.locale)
+                .toLocaleString(DateTime.DATETIME_MED),
             }
           )}
         </div>
@@ -417,11 +414,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                           defaultMessage: content.expiryMessage,
                         },
                         {
-                          endDate:
-                            dateEnd.toFormat("MMM d, yyyy") +
-                            " at " +
-                            dateEnd.toFormat("t ").toLowerCase(),
-                          // dateEnd.toFormat("ZZZZ"),
+                          endDate: dateEnd
+                            .setLocale(content.locale)
+                            .toLocaleString(DateTime.DATETIME_MED),
                         }
                       )}
                     </span>
