@@ -14,35 +14,16 @@ export default {
 const log = (type: any) => console.log.bind(console, type);
 
 export const Default = () => {
-  const uiSchema = {
-    field1: {
-      "ui:title": "First Field",
-      "ui:description":
-        "Field descriptions appear below their respective fields now. Descriptions can get quite long",
-      "ui:widget": (props: WidgetProps) => {
-        return <RJSFInput {...props} />;
-      },
-    },
-    field2: {
-      "ui:title": "Second Field",
-      "ui:description":
-        "Field descriptions appear below their respective fields now. Descriptions can get quite long",
-      "ui:widget": (props: WidgetProps) => {
-        return <RJSFInput {...props} />;
-      },
-    },
-  };
-
   const schema: JSONSchema7 = {
-    type: "array",
-    title: "Array Field Title",
-    description: "This is an array field description",
+    type: "object",
     properties: {
-      field1: {
-        type: "string",
-      },
-      field2: {
-        type: "string",
+      listOfStrings: {
+        type: "array",
+        title: "A list of strings",
+        items: {
+          type: "string",
+          default: "test array field",
+        },
       },
     },
   };
@@ -51,7 +32,7 @@ export const Default = () => {
     <div style={{ margin: "100px", resize: "horizontal", overflow: "hidden" }}>
       <Form
         schema={schema}
-        uiSchema={uiSchema}
+        // uiSchema={uiSchema}
         onChange={log("changed")}
         onSubmit={log("submitted")}
         onError={log("errors")}
