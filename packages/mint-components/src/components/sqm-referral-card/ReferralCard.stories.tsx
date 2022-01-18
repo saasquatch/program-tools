@@ -38,7 +38,7 @@ export const Timeline1Reward = () => {
   );
 };
 
-export const Timeline2Rewards = createHookStory(() => {
+export const Timeline2Rewards = () => {
   return (
     <div>
       <sqm-timeline gift={true}>
@@ -60,7 +60,6 @@ export const Timeline2Rewards = createHookStory(() => {
           unit="points"
           desc="Your friends signs up for a free trial"
         />
-        <sqm-timeline-reward line />
         <sqm-timeline-reward
           reward="$50"
           unit="visa giftcard"
@@ -83,7 +82,7 @@ export const Timeline2Rewards = createHookStory(() => {
       />
     </div>
   );
-});
+};
 
 export const Timeline3Rewards = () => {
   return (
