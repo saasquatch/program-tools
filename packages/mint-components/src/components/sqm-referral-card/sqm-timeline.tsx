@@ -1,9 +1,11 @@
+import { useHost } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop, State, VNode } from "@stencil/core";
+import { Component, getElement, h, Prop, State, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { useChildElements } from "../../tables/useChildElements";
 import { getProps } from "../../utils/utils";
 import { ReferralCardView } from "./sqm-referral-card-view";
+import { TimelineReward } from "./sqm-timeline-reward";
 import { Gift, Dot, Line } from "./SVGs";
 
 /**
@@ -28,17 +30,11 @@ export class Timeline {
   disconnectedCallback() {}
 
   render() {
-    return (
-      <TimelineView gift={true}>
-        <slot />
-      </TimelineView>
-    );
+    //@ts-ignore
+    const rewards: TimelineReward[] = useChildElements();
+
+    rewards.forEach((reward) => (reward.gift = this.gift));
+
+    return <slot />;
   }
-}
-
-function TimelineView(props, children: VNode) {
-  console.log("Here are my children");
-  console.log(useChildElements());
-
-  return <div>{useChildElements()[0]}</div>;
 }

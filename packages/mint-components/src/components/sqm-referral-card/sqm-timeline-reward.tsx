@@ -1,6 +1,7 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
+import { useRequestRerender } from "../../tables/re-render";
 import { getProps } from "../../utils/utils";
 import { ReferralCardView } from "./sqm-referral-card-view";
 import { Gift, Dot, Line } from "./SVGs";
@@ -56,8 +57,8 @@ export class TimelineReward {
         },
         "& .icon": {
           position: "relative",
-		  top: "4px",
-		  zIndex: "1",
+          top: "4px",
+          zIndex: "1",
           color: "var(--sl-color-primary-300)",
           marginRight: "var(--sl-spacing-large)",
         },
@@ -92,6 +93,8 @@ export class TimelineReward {
 		display: block;   
 	}
 	`;
+
+    useRequestRerender([this.reward]);
 
     return (
       <div class={sheet.classes.TimelineReward}>

@@ -1,6 +1,7 @@
 import { h } from "@stencil/core";
 import { ReferralCardView } from "./sqm-referral-card-view";
 import { RewardTimelineView } from "./reward-timeline-view";
+import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 
 export default {
   title: "Components/Referral Card",
@@ -37,10 +38,23 @@ export const Timeline1Reward = () => {
   );
 };
 
-export const Timeline2Rewards = () => {
+export const Timeline2Rewards = createHookStory(() => {
   return (
     <div>
-      <sqm-timeline>
+      <sqm-timeline gift={true}>
+        <sqm-timeline-reward
+          reward="75"
+          unit="points"
+          desc="Your friends signs up for a free trial"
+        />
+        <sqm-timeline-reward line />
+        <sqm-timeline-reward
+          reward="$50"
+          unit="visa giftcard"
+          desc="Your friends signs up for Klip Personal"
+        />
+      </sqm-timeline>
+      <sqm-timeline gift={false}>
         <sqm-timeline-reward
           reward="75"
           unit="points"
@@ -69,7 +83,7 @@ export const Timeline2Rewards = () => {
       />
     </div>
   );
-};
+});
 
 export const Timeline3Rewards = () => {
   return (
