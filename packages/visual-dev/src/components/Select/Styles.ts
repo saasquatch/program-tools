@@ -9,7 +9,6 @@ export const Item = css`
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);
   border-radius: inherit;
-  box-sizing: content-box;
   &:hover {
     background: var(--sq-surface-hover);
   }

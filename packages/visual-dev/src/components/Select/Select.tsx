@@ -260,7 +260,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               <Icon
                 icon={"chevron_up"}
                 size={"small"}
-                customCSS={"padding: 8px"}
+                customCSS={"padding: 8px; box-sizing: content-box;"}
                 color={
                   errors
                     ? "var(--sq-border-critical)"
@@ -271,7 +271,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               <Icon
                 icon={"chevron_down"}
                 size={"small"}
-                customCSS={"padding: 8px"}
+                customCSS={"padding: 8px; box-sizing: content-box;"}
                 color={
                   errors
                     ? "var(--sq-border-critical)"
@@ -293,7 +293,11 @@ const SelectInner = <ItemType extends ItemTypeBase>(
             customCSS={`
               ${customCSS};
               ${isOpen && "border: 2px solid var(--sq-focused)"};
-              ${clearable ? "padding-right: var(--sq-spacing-xxxx-large)" : "padding-right: var(--sq-spacing-xxx-large)"};
+              ${
+                clearable
+                  ? "padding-right: var(--sq-spacing-xxxx-large)"
+                  : "padding-right: var(--sq-spacing-xxx-large)"
+              };
             `}
             disabled={disabled || loading}
             {...functional.getInputProps()}
