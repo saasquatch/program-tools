@@ -27,6 +27,7 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
     :host{
       display: block;   
     }
+
   `;
 
   return (

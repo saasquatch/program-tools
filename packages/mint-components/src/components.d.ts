@@ -1577,6 +1577,12 @@ export namespace Components {
          */
         "type": "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
+    interface SqmTimeline {
+        /**
+          * @uiName Gift Icon
+         */
+        "gift": boolean;
+    }
     interface SqmTimelineReward {
         /**
           * @uiName Description
@@ -2057,6 +2063,12 @@ declare global {
         prototype: HTMLSqmTextSpanElement;
         new (): HTMLSqmTextSpanElement;
     };
+    interface HTMLSqmTimelineElement extends Components.SqmTimeline, HTMLStencilElement {
+    }
+    var HTMLSqmTimelineElement: {
+        prototype: HTMLSqmTimelineElement;
+        new (): HTMLSqmTimelineElement;
+    };
     interface HTMLSqmTimelineRewardElement extends Components.SqmTimelineReward, HTMLStencilElement {
     }
     var HTMLSqmTimelineRewardElement: {
@@ -2147,6 +2159,7 @@ declare global {
         "sqm-task-card": HTMLSqmTaskCardElement;
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
+        "sqm-timeline": HTMLSqmTimelineElement;
         "sqm-timeline-reward": HTMLSqmTimelineRewardElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqm-user-name": HTMLSqmUserNameElement;
@@ -3677,6 +3690,12 @@ declare namespace LocalJSX {
          */
         "type"?: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
+    interface SqmTimeline {
+        /**
+          * @uiName Gift Icon
+         */
+        "gift"?: boolean;
+    }
     interface SqmTimelineReward {
         /**
           * @uiName Description
@@ -3801,6 +3820,7 @@ declare namespace LocalJSX {
         "sqm-task-card": SqmTaskCard;
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
+        "sqm-timeline": SqmTimeline;
         "sqm-timeline-reward": SqmTimelineReward;
         "sqm-titled-section": SqmTitledSection;
         "sqm-user-name": SqmUserName;
@@ -3881,6 +3901,7 @@ declare module "@stencil/core" {
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
+            "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
             "sqm-timeline-reward": LocalJSX.SqmTimelineReward & JSXBase.HTMLAttributes<HTMLSqmTimelineRewardElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;

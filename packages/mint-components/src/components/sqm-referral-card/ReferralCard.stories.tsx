@@ -10,7 +10,7 @@ export const Example = () => {
   return <div>Hello World</div>;
 };
 
-export const TimelineReward1 = () => {
+export const Timeline1Reward = () => {
   return (
     <div>
       <sqm-timeline-reward
@@ -19,30 +19,40 @@ export const TimelineReward1 = () => {
         desc="Your friends signs up for a free trial"
       />
       <br /> <hr /> <br />
-      <sqm-timeline-reward
-        gift={false}
-        reward="75"
-        unit="points"
-        desc="Your friends signs up for a free trial"
-      />
+      <sqm-timeline>
+        <sqm-timeline-reward
+          gift={false}
+          reward="75"
+          unit="points"
+          desc="Your friends signs up for a free trial"
+        />
+        <sqm-timeline-reward
+          gift={false}
+          reward="75"
+          unit="points"
+          desc="Your friends signs up for a free trial"
+        />
+      </sqm-timeline>
     </div>
   );
 };
 
-export const TimelineReward2 = () => {
+export const Timeline2Rewards = () => {
   return (
     <div>
-      <sqm-timeline-reward
-        reward="75"
-        unit="points"
-        desc="Your friends signs up for a free trial"
-      />
-      <sqm-timeline-reward line />
-      <sqm-timeline-reward
-        reward="$50"
-        unit="visa giftcard"
-        desc="Your friends signs up for Klip Personal"
-      />
+      <sqm-timeline>
+        <sqm-timeline-reward
+          reward="75"
+          unit="points"
+          desc="Your friends signs up for a free trial"
+        />
+        <sqm-timeline-reward line />
+        <sqm-timeline-reward
+          reward="$50"
+          unit="visa giftcard"
+          desc="Your friends signs up for Klip Personal"
+        />
+      </sqm-timeline>
       <br /> <hr /> <br />
       <sqm-timeline-reward
         gift={false}
@@ -61,7 +71,7 @@ export const TimelineReward2 = () => {
   );
 };
 
-export const TimelineReward3 = () => {
+export const Timeline3Rewards = () => {
   return (
     <div>
       <sqm-timeline-reward
@@ -106,7 +116,7 @@ export const TimelineReward3 = () => {
   );
 };
 
-export const TimelineReward4 = () => {
+export const Timeline4Rewards = () => {
   return (
     <div>
       <sqm-timeline-reward
