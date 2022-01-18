@@ -33,16 +33,16 @@ export const Gift = () => (
 
 export const Dot = () => (
   <svg
-    width="16"
-    height="20"
-    viewBox="0 0 16 20"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <circle
-      cx="8"
+      cx="12"
       cy="12"
-      r="7"
+      r="9"
       fill="currentColor"
       stroke="currentColor"
       stroke-width="2"
@@ -53,14 +53,14 @@ export const Dot = () => (
 export const Line = () => (
   <svg
     width="4"
-    height="60"
-    viewBox="0 0 4 60"
+    height="90"
+    viewBox="0 0 4 90"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <line
       x1="2"
-      y1="58"
+      y1="82"
       x2="2"
       y2="2"
       stroke="currentColor"

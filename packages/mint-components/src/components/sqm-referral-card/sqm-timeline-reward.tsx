@@ -55,7 +55,9 @@ export class TimelineReward {
           display: "flex",
         },
         "& .icon": {
-          width: "20px",
+          position: "relative",
+		  top: "4px",
+		  zIndex: "1",
           color: "var(--sl-color-primary-300)",
           marginRight: "var(--sl-spacing-large)",
         },
@@ -73,11 +75,10 @@ export class TimelineReward {
         },
 
         "& .line": {
-          width: "5px",
-          height: "24px",
+          height: "50px",
           position: "relative",
           left: "10px",
-          top: "-36px",
+          top: "-32px",
           color: "var(--sl-color-primary-300)",
         },
       },
