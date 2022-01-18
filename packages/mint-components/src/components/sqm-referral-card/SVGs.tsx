@@ -30,3 +30,42 @@ export const Gift = () => (
     />
   </svg>
 );
+
+export const Dot = () => (
+  <svg
+    width="16"
+    height="20"
+    viewBox="0 0 16 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle
+      cx="8"
+      cy="12"
+      r="7"
+      fill="currentColor"
+      stroke="currentColor"
+      stroke-width="2"
+    />
+  </svg>
+);
+
+export const Line = () => (
+  <svg
+    width="4"
+    height="60"
+    viewBox="0 0 4 60"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <line
+      x1="2"
+      y1="58"
+      x2="2"
+      y2="2"
+      stroke="currentColor"
+      stroke-width="4"
+      stroke-linecap="round"
+    />
+  </svg>
+);

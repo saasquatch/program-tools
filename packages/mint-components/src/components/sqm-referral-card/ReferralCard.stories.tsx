@@ -12,10 +12,51 @@ export const Example = () => {
 
 export const TimelineReward1 = () => {
   return (
-    <sqm-timeline-reward
-      reward="75"
-      unit="points"
-      desc="Sign up for a free trial"
-    ></sqm-timeline-reward>
+    <div>
+      <sqm-timeline-reward
+        reward="75"
+        unit="points"
+        desc="Sign up for a free trial"
+      />
+      <br /> <hr /> <br />
+      <sqm-timeline-reward
+        gift={false}
+        reward="75"
+        unit="points"
+        desc="Sign up for a free trial"
+      />
+    </div>
+  );
+};
+
+export const TimelineReward2 = () => {
+  return (
+    <div>
+      <sqm-timeline-reward
+        reward="75"
+        unit="points"
+        desc="Sign up for a free trial"
+      />
+      <sqm-timeline-reward line={true} />
+      <sqm-timeline-reward
+        reward="75"
+        unit="points"
+        desc="Sign up for a free trial"
+      />
+      <br /> <hr /> <br />
+      <sqm-timeline-reward
+        gift={false}
+        reward="75"
+        unit="points"
+        desc="Sign up for a free trial"
+      />
+      <sqm-timeline-reward line={true} />
+      <sqm-timeline-reward
+        gift={false}
+        reward="75"
+        unit="points"
+        desc="Sign up for a free trial"
+      />
+    </div>
   );
 };

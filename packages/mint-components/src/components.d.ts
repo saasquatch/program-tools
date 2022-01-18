@@ -1579,6 +1579,14 @@ export namespace Components {
          */
         "desc": string;
         /**
+          * @uiName Gift Icon
+         */
+        "gift": boolean;
+        /**
+          * @uiName Line
+         */
+        "line": boolean;
+        /**
           * @uiName Reward Amount
          */
         "reward": string;
@@ -3666,6 +3674,14 @@ declare namespace LocalJSX {
           * @uiName Description
          */
         "desc"?: string;
+        /**
+          * @uiName Gift Icon
+         */
+        "gift"?: boolean;
+        /**
+          * @uiName Line
+         */
+        "line"?: boolean;
         /**
           * @uiName Reward Amount
          */

@@ -3,7 +3,7 @@ import { Component, h, Prop, State } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { getProps } from "../../utils/utils";
 import { ReferralCardView } from "./sqm-referral-card-view";
-import { Gift } from "./Gift";
+import { Gift, Dot, Line } from "./SVGs";
 
 /**
  * @uiName Timeline Reward
@@ -31,6 +31,16 @@ export class TimelineReward {
    */
   @Prop() desc: string;
 
+  /**
+   * @uiName Gift Icon
+   */
+  @Prop() gift: boolean = true;
+
+  /**
+   * @uiName Line
+   */
+  @Prop() line: boolean = false;
+
   constructor() {
     withHooks(this);
   }
@@ -45,6 +55,8 @@ export class TimelineReward {
           display: "flex",
         },
         "& .icon": {
+          width: "20px",
+          color: "var(--sl-color-primary-300)",
           marginRight: "var(--sl-spacing-large)",
         },
         "& .reward": {
@@ -58,6 +70,15 @@ export class TimelineReward {
         },
         "& .description": {
           fontSize: "var(--sl-font-size-large)",
+        },
+
+        "& .line": {
+          width: "5px",
+          height: "24px",
+          position: "relative",
+          left: "10px",
+          top: "-36px",
+          color: "var(--sl-color-primary-300)",
         },
       },
     };
@@ -77,20 +98,32 @@ export class TimelineReward {
           {styleString}
           {vanillaStyle}
         </style>
-
-        <div class="step">
-          <div class="icon">
-            <Gift />
-          </div>
-          <div>
-            <div>
-              <span class="reward">{this.reward}</span>
-              <span class="unit">{this.unit}</span>
-            </div>
-            <div class="description">{this.desc}</div>
-          </div>
-        </div>
+        {console.log(this)}
+        {this.line ? line() : step({ ...getProps(this) })}
       </div>
     );
+
+    function line() {
+      return (
+        <div class="line">
+          <Line />
+        </div>
+      );
+    }
+
+    function step(props) {
+      return (
+        <div class="step">
+          <div class="icon">{props.gift ? <Gift /> : <Dot />}</div>
+          <div>
+            <div>
+              <span class="reward">{props.reward}</span>
+              <span class="unit">{props.unit}</span>
+            </div>
+            <div class="description">{props.desc}</div>
+          </div>
+        </div>
+      );
+    }
   }
 }
