@@ -1609,13 +1609,9 @@ export namespace Components {
          */
         "desc": string;
         /**
-          * @uiName Gift Icon
+          * @undocumented Gift Icon
          */
         "gift": boolean;
-        /**
-          * @uiName Line
-         */
-        "line": boolean;
         /**
           * @uiName Reward Amount
          */
@@ -3742,13 +3738,9 @@ declare namespace LocalJSX {
          */
         "desc"?: string;
         /**
-          * @uiName Gift Icon
+          * @undocumented Gift Icon
          */
         "gift"?: boolean;
-        /**
-          * @uiName Line
-         */
-        "line"?: boolean;
         /**
           * @uiName Reward Amount
          */

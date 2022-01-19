@@ -1,7 +1,4 @@
 import { h } from "@stencil/core";
-import { ReferralCardView } from "./sqm-referral-card-view";
-import { RewardTimelineView } from "./reward-timeline-view";
-import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 
 export default {
   title: "Components/Referral Card",
@@ -11,24 +8,19 @@ export const Example = () => {
   return <div>Hello World</div>;
 };
 
-export const Timeline1Reward = () => {
+export const TimelineWith1Reward = () => {
   return (
     <div>
-      <sqm-timeline-reward
-        reward="75"
-        unit="points"
-        desc="Your friends signs up for a free trial"
-      />
-      <br /> <hr /> <br />
-      <sqm-timeline>
+      <sqm-timeline gift={true}>
         <sqm-timeline-reward
-          gift={false}
           reward="75"
           unit="points"
           desc="Your friends signs up for a free trial"
         />
+      </sqm-timeline>
+      <br /> <hr /> <br />
+      <sqm-timeline gift={false}>
         <sqm-timeline-reward
-          gift={false}
           reward="75"
           unit="points"
           desc="Your friends signs up for a free trial"
@@ -38,7 +30,7 @@ export const Timeline1Reward = () => {
   );
 };
 
-export const Timeline2Rewards = () => {
+export const TimelineWith2Rewards = () => {
   return (
     <div>
       <sqm-timeline gift={true}>
@@ -47,13 +39,13 @@ export const Timeline2Rewards = () => {
           unit="points"
           desc="Your friends signs up for a free trial"
         />
-        <sqm-timeline-reward line />
         <sqm-timeline-reward
           reward="$50"
           unit="visa giftcard"
           desc="Your friends signs up for Klip Personal"
         />
       </sqm-timeline>
+      <br /> <hr /> <br />
       <sqm-timeline gift={false}>
         <sqm-timeline-reward
           reward="75"
@@ -66,123 +58,106 @@ export const Timeline2Rewards = () => {
           desc="Your friends signs up for Klip Personal"
         />
       </sqm-timeline>
-      <br /> <hr /> <br />
-      <sqm-timeline-reward
-        gift={false}
-        reward="75"
-        unit="points"
-        desc="Your friends signs up for a free trial"
-      />
-      <sqm-timeline-reward line />
-      <sqm-timeline-reward
-        gift={false}
-        reward="$50"
-        unit="visa giftcard"
-        desc="Your friends signs up for Klip Personal"
-      />
     </div>
   );
 };
 
-export const Timeline3Rewards = () => {
+export const TimelineWith3Rewards = () => {
   return (
     <div>
-      <sqm-timeline-reward
-        reward="75"
-        unit="points"
-        desc="Your friends signs up for a free trial"
-      />
-      <sqm-timeline-reward line />
-      <sqm-timeline-reward
-        reward="$50"
-        unit="visa giftcard"
-        desc="Your friends signs up for Klip Personal"
-      />
-      <sqm-timeline-reward line />
-      <sqm-timeline-reward
-        reward="$200"
-        unit="visa giftcard"
-        desc="Your friend qualifies as a good fit for Klip Team"
-      />
+      <sqm-timeline gift={true}>
+        <sqm-timeline-reward
+          reward="75"
+          unit="points"
+          desc="Your friends signs up for a free trial"
+        />
+        <sqm-timeline-reward
+          reward="$50"
+          unit="visa giftcard"
+          desc="Your friends signs up for Klip Personal"
+        />
+        <sqm-timeline-reward
+          reward="$200"
+          unit="visa giftcard"
+          desc="Your friend qualifies as a good fit for Klip Team"
+        />
+      </sqm-timeline>
       <br /> <hr /> <br />
-      <sqm-timeline-reward
-        gift={false}
-        reward="75"
-        unit="points"
-        desc="Your friends signs up for a free trial"
-      />
-      <sqm-timeline-reward line />
-      <sqm-timeline-reward
-        gift={false}
-        reward="$50"
-        unit="visa giftcard"
-        desc="Your friends signs up for Klip Personal"
-      />
-      <sqm-timeline-reward line />
-      <sqm-timeline-reward
-        gift={false}
-        reward="$200"
-        unit="visa giftcard"
-        desc="Your friend qualifies as a good fit for Klip Team"
-      />
+      <sqm-timeline gift={false}>
+        <sqm-timeline-reward
+          gift={false}
+          reward="75"
+          unit="points"
+          desc="Your friends signs up for a free trial"
+        />
+        <sqm-timeline-reward
+          gift={false}
+          reward="$50"
+          unit="visa giftcard"
+          desc="Your friends signs up for Klip Personal"
+        />
+        <sqm-timeline-reward
+          gift={false}
+          reward="$200"
+          unit="visa giftcard"
+          desc="Your friend qualifies as a good fit for Klip Team"
+        />
+      </sqm-timeline>
     </div>
   );
 };
 
-export const Timeline4Rewards = () => {
+export const TimelineWith4Rewards = () => {
   return (
     <div>
-      <sqm-timeline-reward
-        reward="75"
-        unit="points"
-        desc="Your friends signs up for a free trial"
-      />
-      <sqm-timeline-reward line />
-      <sqm-timeline-reward
-        reward="$50"
-        unit="visa giftcard"
-        desc="Your friends signs up for Klip Personal"
-      />
-      <sqm-timeline-reward line />
-      <sqm-timeline-reward
-        reward="$200"
-        unit="visa giftcard"
-        desc="Your friend qualifies as a good fit for Klip Team"
-      />
-      <sqm-timeline-reward line />
-      <sqm-timeline-reward
-        reward="$1000"
-        unit="visa giftcard"
-        desc="Your friend purchases Klip Team"
-      />
+      <sqm-timeline gift={true}>
+        <sqm-timeline-reward
+          reward="75"
+          unit="points"
+          desc="Your friends signs up for a free trial"
+        />
+        <sqm-timeline-reward
+          reward="$50"
+          unit="visa giftcard"
+          desc="Your friends signs up for Klip Personal"
+        />
+        <sqm-timeline-reward
+          reward="$200"
+          unit="visa giftcard"
+          desc="Your friend qualifies as a good fit for Klip Team"
+        />
+        <sqm-timeline-reward
+          reward="$1000"
+          unit="visa giftcard"
+          desc="Your friend purchases Klip Team"
+        />
+      </sqm-timeline>
       <br /> <hr /> <br />
-      <sqm-timeline-reward
-        gift={false}
-        reward="75"
-        unit="points"
-        desc="Your friends signs up for a free trial"
-      />
-      <sqm-timeline-reward line />
-      <sqm-timeline-reward
-        gift={false}
-        reward="$50"
-        unit="visa giftcard"
-        desc="Your friends signs up for Klip Personal"
-      />
-      <sqm-timeline-reward line />
-      <sqm-timeline-reward
-        gift={false}
-        reward="$200"
-        unit="visa giftcard"
-        desc="Your friend qualifies as a good fit for Klip Team"
-      />
-      <sqm-timeline-reward line />
-      <sqm-timeline-reward
-        gift={false}
-        reward="$1000"
-        unit="visa giftcard"
-        desc="Your friend purchases Klip Team"
-      />
+      <sqm-timeline gift={false}>
+        <sqm-timeline-reward
+          gift={false}
+          reward="75"
+          unit="points"
+          desc="Your friends signs up for a free trial"
+        />
+        <sqm-timeline-reward
+          gift={false}
+          reward="$50"
+          unit="visa giftcard"
+          desc="Your friends signs up for Klip Personal"
+        />
+        <sqm-timeline-reward
+          gift={false}
+          reward="$200"
+          unit="visa giftcard"
+          desc="Your friend qualifies as a good fit for Klip Team"
+        />
+        <sqm-timeline-reward
+          reward="$1000"
+          unit="visa giftcard"
+          desc="Your friend purchases Klip Team"
+        />
+      </sqm-timeline>
     </div>
   );
 };

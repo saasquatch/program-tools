@@ -2,9 +2,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { useRequestRerender } from "../../tables/re-render";
-import { getProps } from "../../utils/utils";
-import { ReferralCardView } from "./sqm-referral-card-view";
-import { Gift, Dot, Line } from "./SVGs";
+import { Dot, Gift } from "./SVGs";
 
 /**
  * @uiName Timeline Reward
@@ -33,14 +31,9 @@ export class TimelineReward {
   @Prop() desc: string;
 
   /**
-   * @uiName Gift Icon
+   * @undocumented Gift Icon
    */
   @Prop() gift: boolean = true;
-
-  /**
-   * @uiName Line
-   */
-  @Prop() line: boolean = false;
 
   constructor() {
     withHooks(this);
@@ -102,32 +95,17 @@ export class TimelineReward {
           {styleString}
           {vanillaStyle}
         </style>
-        {console.log(this)}
-        {this.line ? line() : step({ ...getProps(this) })}
-      </div>
-    );
-
-    function line() {
-      return (
-        <div class="line">
-          <Line />
-        </div>
-      );
-    }
-
-    function step(props) {
-      return (
         <div class="step">
-          <div class="icon">{props.gift ? <Gift /> : <Dot />}</div>
+          <div class="icon">{this.gift ? <Gift /> : <Dot />}</div>
           <div>
             <div>
-              <span class="reward">{props.reward}</span>
-              <span class="unit">{props.unit}</span>
+              <span class="reward">{this.reward}</span>
+              <span class="unit">{this.unit}</span>
             </div>
-            <div class="description">{props.desc}</div>
+            <div class="description">{this.desc}</div>
           </div>
         </div>
-      );
-    }
+      </div>
+    );
   }
 }

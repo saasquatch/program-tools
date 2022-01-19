@@ -1,12 +1,7 @@
-import { useHost } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, getElement, h, Prop, State, VNode } from "@stencil/core";
-import { createStyleSheet } from "../../styling/JSS";
+import { Component, h, Prop, State } from "@stencil/core";
 import { useChildElements } from "../../tables/useChildElements";
-import { getProps } from "../../utils/utils";
-import { ReferralCardView } from "./sqm-referral-card-view";
 import { TimelineReward } from "./sqm-timeline-reward";
-import { Gift, Dot, Line } from "./SVGs";
 
 /**
  * @uiName Timeline
@@ -35,6 +30,30 @@ export class Timeline {
 
     rewards.forEach((reward) => (reward.gift = this.gift));
 
-    return <slot />;
+    const vanillaStyle = `
+		:host{
+			display: block;   
+		}
+		::slotted(*:not(:first-child))::before {
+			display: block;
+			position: relative;
+			content: "";
+			background: var(--sl-color-primary-300);
+			height: 90px;
+			width: 4px;
+			top: 12px;
+			left: 10px;
+			margin-top: -44px;
+			margin-bottom: 8px;
+			border-radius: 4px;
+		}
+	`;
+
+    return (
+      <div>
+        <style type="text/css">{vanillaStyle}</style>
+        <slot />
+      </div>
+    );
   }
 }
