@@ -375,7 +375,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                     defaultMessage: states.content?.text?.notAvailableError,
                   },
                   {
-                    unavailableReason: step.unavailableReasonCode,
+                    unavailableReasonCode: step.unavailableReasonCode,
                     sourceUnit: item.sourceUnit,
                     sourceValue:
                       step.prettySourceValue || item.prettySourceMinValue,
