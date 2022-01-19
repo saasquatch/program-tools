@@ -22,6 +22,11 @@ export type PortalEnv = Pick<
 export { useProgramId, setProgramId } from "./ProgramContext";
 
 /**
+ * Locale context helpers
+ */
+export { useLocale, setLocale } from "./LocaleContext";
+
+/**
  * Provided by the SaaSquatch GraphQL backend when a widget is rendered.
  *
  * Source: https://github.com/saasquatch/saasquatch/blob/805e51284f818f8656b6458bcee6181f378819d3/packages/saasquatch-core/app/saasquatch/controllers/api/widget/WidgetApi.java
@@ -33,7 +38,7 @@ export interface WidgetIdent {
   token: string;
   userId: string;
   accountId: string;
-
+  locale?: string;
   engagementMedium?: "POPUP" | "EMBED";
   programId?: string;
   env?: string;
@@ -245,16 +250,16 @@ export function useEngagementMedium(): EngagementMedium {
   }
 }
 
-export function useLocale(): string {
-  // TODO: Widgets might provide this and portals might override this
-  return getCleanLocale();
-}
+// export function useLocale(): string {
+//   // TODO: Widgets might provide this and portals might override this
+//   return getCleanLocale();
+// }
 
-function getCleanLocale() {
-  const locale = navigator.language;
-  const splitLocale = locale?.split("-");
-  if (!splitLocale || splitLocale.length === 1) return locale;
-  const language = splitLocale[0];
-  const country = splitLocale[1];
-  return `${language}_${country.toUpperCase()}`;
-}
+// function getCleanLocale() {
+//   const locale = navigator.language;
+//   const splitLocale = locale?.split("-");
+//   if (!splitLocale || splitLocale.length === 1) return locale;
+//   const language = splitLocale[0];
+//   const country = splitLocale[1];
+//   return `${language}_${country.toUpperCase()}`;
+// }
