@@ -46,7 +46,25 @@ const emptyElement = (
   <div slot="empty" style={{ display: "contents" }}>
     <sqm-table-row>
       <sqm-table-cell colspan={5} style={{ textAlign: "center" }}>
-        No Referrals Yet
+        <div style={{ padding: "var(--sl-spacing-xxx-large)" }}>
+          <img
+            src="https://i.imgur.com/nbz2xq3.png"
+            style={{ width: "100px" }}
+          />
+          <div>
+            <b>View your referral details</b>
+          </div>
+          <div
+            style={{
+              marginTop: "var(--sl-spacing-xx-small)",
+              fontSize: "var(--sl-font-size-small)",
+              color: "var(--sl-color-neutral-500)",
+            }}
+          >
+            Track the status of your referrals and rewards earned by referring
+            friends
+          </div>
+        </div>
       </sqm-table-cell>
     </sqm-table-row>
   </div>

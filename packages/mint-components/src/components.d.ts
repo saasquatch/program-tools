@@ -202,6 +202,10 @@ export namespace Components {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
+          * @uiName Empty State Text
+         */
+        "emptyStateText": string;
+        /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
           * @uiOptions {"allowPastDates":true, "months": 1}
@@ -901,9 +905,17 @@ export namespace Components {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Image Link
+         */
+        "emptyStateImgUrl": string;
+        /**
           * @uiName Empty State Text
          */
         "emptyStateText": string;
+        /**
+          * @uiName Empty State Title
+         */
+        "emptyStateTitle": string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
@@ -1149,9 +1161,17 @@ export namespace Components {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Image Link
+         */
+        "emptyStateImgUrl": string;
+        /**
           * @uiName Empty State Text
          */
         "emptyStateText": string;
+        /**
+          * @uiName Empty State Title
+         */
+        "emptyStateTitle": string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
@@ -2333,6 +2353,10 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
+          * @uiName Empty State Text
+         */
+        "emptyStateText"?: string;
+        /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
           * @uiOptions {"allowPastDates":true, "months": 1}
@@ -3032,9 +3056,17 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Image Link
+         */
+        "emptyStateImgUrl"?: string;
+        /**
           * @uiName Empty State Text
          */
         "emptyStateText"?: string;
+        /**
+          * @uiName Empty State Title
+         */
+        "emptyStateTitle"?: string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
@@ -3270,9 +3302,17 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Image Link
+         */
+        "emptyStateImgUrl"?: string;
+        /**
           * @uiName Empty State Text
          */
         "emptyStateText"?: string;
+        /**
+          * @uiName Empty State Title
+         */
+        "emptyStateTitle"?: string;
         /**
           * @uiName Hide Columns (Mobile View)
          */

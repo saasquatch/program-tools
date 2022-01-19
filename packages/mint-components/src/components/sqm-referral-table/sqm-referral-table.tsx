@@ -40,7 +40,7 @@ export class ReferralTable {
 
   /** @uiName Show Referred by user in table  */
   @Prop() showReferrer?: boolean = false;
-  
+
   /** @uiName Hide Columns (Mobile View)  */
   @Prop() hiddenColumns?: string = "0";
 
@@ -50,9 +50,15 @@ export class ReferralTable {
   /** @uiName Hide Columns (Mobile View)  */
   @Prop() mdBreakpoint?: number = 899;
 
+  /** @uiName Empty State Image Link  */
+  @Prop() emptyStateImgUrl: string = "https://i.imgur.com/nbz2xq3.png";
+
+  /** @uiName Empty State Title  */
+  @Prop() emptyStateTitle: string = "View your referral details";
 
   /** @uiName Empty State Text  */
-  @Prop() emptyStateText: string = "No Referrals Yet";
+  @Prop() emptyStateText: string =
+    "Track the status of your referrals and rewards earned by referring friends";
 
   /**
    * @undocumented
@@ -66,7 +72,13 @@ export class ReferralTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = <EmptySlot emptyStateText={this.emptyStateText} />;
+    const empty = (
+      <EmptySlot
+        emptyStateImgUrl={this.emptyStateImgUrl}
+        emptyStateTitle={this.emptyStateTitle}
+        emptyStateText={this.emptyStateText}
+      />
+    );
     const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()
@@ -83,6 +95,7 @@ export class ReferralTable {
     );
   }
 }
+
 function LoadingSlot() {
   return (
     <slot name="loading">
@@ -124,7 +137,14 @@ function useReferraltableDemo(props: ReferralTable): GenericTableViewProps {
         referralData: [],
       },
       elements: {
-        emptyElement: <EmptySlot emptyStateText={"No Referrals Yet"} />,
+        emptyElement: (
+          <EmptySlot
+            emptyStateImgUrl="https://i.imgur.com/nbz2xq3.png"
+            emptyStateTitle="View your referral details"
+            emptyStateText="Track the status of your referrals and rewards earned by referring
+		friends"
+          />
+        ),
         loadingElement: <LoadingSlot />,
         columns: [
           <div>User</div>,
@@ -139,16 +159,36 @@ function useReferraltableDemo(props: ReferralTable): GenericTableViewProps {
   );
 }
 
-function EmptySlot({ emptyStateText }: { emptyStateText: string }) {
+function EmptySlot({
+  emptyStateImgUrl,
+  emptyStateTitle,
+  emptyStateText,
+}: {
+  emptyStateImgUrl: string;
+  emptyStateTitle: string;
+  emptyStateText: string;
+}) {
   return (
-    <slot name="empty">
-      <div style={{ width: "100%" }}>
-        <sqm-text>
-          <h3 style={{ color: "#777777", textAlign: "center" }}>
-            {emptyStateText}
-          </h3>
-        </sqm-text>
-      </div>
-    </slot>
+    <div slot="empty" style={{ display: "contents" }}>
+      <sqm-table-row>
+        <sqm-table-cell colspan={5} style={{ textAlign: "center" }}>
+          <div style={{ padding: "var(--sl-spacing-xxx-large)" }}>
+            <img src={emptyStateImgUrl} style={{ width: "100px" }} />
+            <div>
+              <b>{emptyStateTitle}</b>
+            </div>
+            <div
+              style={{
+                marginTop: "var(--sl-spacing-xx-small)",
+                fontSize: "var(--sl-font-size-small)",
+                color: "var(--sl-color-neutral-500)",
+              }}
+            >
+              {emptyStateText}
+            </div>
+          </div>
+        </sqm-table-cell>
+      </sqm-table-row>
+    </div>
   );
 }
