@@ -51,7 +51,7 @@ export class ReferralTable {
   @Prop() mdBreakpoint?: number = 899;
 
   /** @uiName Empty State Image Link  */
-  @Prop() emptyStateImgUrl: string = "https://i.imgur.com/nbz2xq3.png";
+  @Prop() emptyStateImgUrl: string = "https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_3_1.png";
 
   /** @uiName Empty State Title  */
   @Prop() emptyStateTitle: string = "View your referral details";
@@ -139,7 +139,7 @@ function useReferraltableDemo(props: ReferralTable): GenericTableViewProps {
       elements: {
         emptyElement: (
           <EmptySlot
-            emptyStateImgUrl="https://i.imgur.com/nbz2xq3.png"
+            emptyStateImgUrl="https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_3_1.png"
             emptyStateTitle="View your referral details"
             emptyStateText="Track the status of your referrals and rewards earned by referring
 		friends"

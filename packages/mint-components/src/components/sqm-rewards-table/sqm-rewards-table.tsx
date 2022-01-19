@@ -47,7 +47,7 @@ export class RewardsTable {
   @Prop() mdBreakpoint?: number = 899;
 
   /** @uiName Empty State Image Link  */
-  @Prop() emptyStateImgUrl: string = "https://i.imgur.com/nbz2xq3.png";
+  @Prop() emptyStateImgUrl: string = "https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_4_1.png";
 
   /** @uiName Empty State Title  */
   @Prop() emptyStateTitle: string = "View your rewards";
@@ -137,7 +137,7 @@ function useRewardsTableDemo(props: RewardsTable): GenericTableViewProps {
       elements: {
         emptyElement: (
           <EmptySlot
-            emptyStateImgUrl="https://i.imgur.com/nbz2xq3.png"
+            emptyStateImgUrl="https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_4_1.png"
             emptyStateTitle="View your rewards"
             emptyStateText="See all the rewards you have earned from referring friends and completing tasks"
           />
