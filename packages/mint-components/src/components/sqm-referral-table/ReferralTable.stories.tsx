@@ -48,7 +48,7 @@ const emptyElement = (
       <sqm-table-cell colspan={5} style={{ textAlign: "center" }}>
         <div style={{ padding: "var(--sl-spacing-xxx-large)" }}>
           <img
-            src="https://i.imgur.com/nbz2xq3.png"
+            src="https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_3_1.png"
             style={{ width: "100px" }}
           />
           <div>
