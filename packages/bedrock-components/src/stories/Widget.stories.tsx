@@ -1,3 +1,4 @@
+import { setUserIdentity } from '@saasquatch/component-boilerplate';
 import { h } from '@stencil/core';
 import { createHookStory } from '../components/sqb-stencilbook/HookStoryAddon';
 import scenario from '../components/sqb-widget/sqb-widget.feature';
@@ -8,21 +9,47 @@ export default {
   },
 };
 
-function useGraphQL() {
+function useGraphQL(user) {
   window.widgetIdent = {
     tenantAlias: 'test_agvu4yg8zrkxt',
     appDomain: 'https://app.referralsaasquatch.com',
+    programId: 'Vacay-referral',
+    engagementMedium: 'EMBED',
+    ...user,
+    // locale: 'ru_CA',
+  };
+}
+
+// function useGraphQL(user, env?) {
+//   //@ts-ignore
+//   window.widgetIdent = {
+//     tenantAlias: 'test_agvu4yg8zrkxt',
+//     appDomain: 'https://app.referralsaasquatch.com',
+//     programId: 'Vacay-referral',
+//     engagementMedium: 'EMBED',
+//     ...env,
+//     // locale: 'ru_CA',
+//   };
+
+//   useEffect(() => {
+//     setUserIdentity({
+//       ...user,
+//     });
+//     return () => {
+//       window.widgetIdent = undefined;
+//       setUserIdentity(undefined);
+//     };
+//   }, []);
+// }
+
+export const Widget = createHookStory(() => {
+  const user = {
     userId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
     accountId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
     token:
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEiLCJpZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEifX0.lGUEN_cmRrSdw-y2fEz-BQ2R5COoN8tQTiKJGEMfCcI',
-    programId: 'Vacay-referral',
-    engagementMedium: 'EMBED',
   };
-}
-
-export const Widget = createHookStory(() => {
-  useGraphQL();
+  useGraphQL(user);
   return (
     <div>
       <sqb-widget widget-type="p/Vacay-referral/w/referrerWidget"></sqb-widget>
@@ -31,7 +58,13 @@ export const Widget = createHookStory(() => {
 });
 
 export const WidgetWithAnalytics = createHookStory(() => {
-  useGraphQL();
+  const user = {
+    userId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
+    accountId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
+    token:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEiLCJpZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEifX0.lGUEN_cmRrSdw-y2fEz-BQ2R5COoN8tQTiKJGEMfCcI',
+  };
+  useGraphQL(user);
   return (
     <div>
       <sqb-widget widget-type="p/Vacay-referral/w/referrerWidget" track-loads="true"></sqb-widget>
@@ -39,6 +72,90 @@ export const WidgetWithAnalytics = createHookStory(() => {
   );
 });
 
+export const WidgetWithLocaleEn = createHookStory(() => {
+  const user = {
+    userId: 'samenglish',
+    accountId: 'samenglish',
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtZW5nbGlzaCIsImFjY291bnRJZCI6InNhbWVuZ2xpc2gifX0.sqnbhq5piBZkTpWi5cwadqF11lVbghrn1fiIXJ6iUU0',
+    tenantAlias: 'test_a74miwdpofztj',
+    programId: 'klip-referral-program',
+    appDomain: 'https://staging.referralsaasquatch.com',
+  };
+  useGraphQL(user);
+
+  return (
+    <div>
+      <button
+        onClick={() =>
+          setUserIdentity({
+            id: 'samenglish',
+            accountId: 'samenglish',
+            jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtZW5nbGlzaCIsImFjY291bnRJZCI6InNhbWVuZ2xpc2gifX0.sqnbhq5piBZkTpWi5cwadqF11lVbghrn1fiIXJ6iUU0',
+          })
+        }
+      >
+        en
+      </button>
+      <button
+        onClick={() =>
+          setUserIdentity({
+            id: 'samfrench',
+            accountId: 'samfrench',
+            jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtZnJlbmNoIiwiYWNjb3VudElkIjoic2FtZnJlbmNoIn19.-25oxP2cH5iOaR6UZCr9GDmEfg-Sqo8dlVIGUYTuHYM',
+          })
+        }
+      >
+        fr
+      </button>
+      <button
+        onClick={() =>
+          setUserIdentity({
+            id: 'samturkey',
+            accountId: 'samturkey',
+            jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtdHVya2V5IiwiYWNjb3VudElkIjoic2FtdHVya2V5In19.3Ayf3k1Mg5pntjRgEdPE-PqARBX5uNTc1mnX3wlbHaw',
+          })
+        }
+      >
+        tr
+      </button>
+      <sqb-widget widget-type="p/klip-referral-program/w/referrerWidget" track-loads="true"></sqb-widget>
+    </div>
+  );
+});
+
+export const WidgetWithLocaleTr = createHookStory(() => {
+  const user = {
+    userId: 'samturkey',
+    accountId: 'samturkey',
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtdHVya2V5IiwiYWNjb3VudElkIjoic2FtdHVya2V5In19.3Ayf3k1Mg5pntjRgEdPE-PqARBX5uNTc1mnX3wlbHaw',
+    tenantAlias: 'test_a74miwdpofztj',
+    programId: 'klip-referral-program',
+    appDomain: 'https://staging.referralsaasquatch.com',
+  };
+  useGraphQL(user);
+  return (
+    <div>
+      <sqb-widget widget-type="p/klip-referral-program/w/referrerWidget" track-loads="true"></sqb-widget>
+    </div>
+  );
+});
+
+export const WidgetWithLocaleFr = createHookStory(() => {
+  const user = {
+    userId: 'samfrench',
+    accountId: 'samfrench',
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtZnJlbmNoIiwiYWNjb3VudElkIjoic2FtZnJlbmNoIn19.-25oxP2cH5iOaR6UZCr9GDmEfg-Sqo8dlVIGUYTuHYM',
+    tenantAlias: 'test_a74miwdpofztj',
+    programId: 'klip-referral-program',
+    appDomain: 'https://staging.referralsaasquatch.com',
+  };
+  useGraphQL(user);
+  return (
+    <div>
+      <sqb-widget widget-type="p/klip-referral-program/w/referrerWidget" track-loads="true"></sqb-widget>
+    </div>
+  );
+});
 
 export const DemoWidget = () => {
   //@ts-ignore

@@ -1,4 +1,4 @@
-import { useLazyQuery, useMutation, useProgramId, useUserIdentity } from '@saasquatch/component-boilerplate';
+import { useLazyQuery, useLocale, useMutation, useProgramId, useUserIdentity } from '@saasquatch/component-boilerplate';
 import { useEffect, useRef } from '@saasquatch/universal-hooks';
 import { gql } from 'graphql-request';
 import { SqbWidget } from './sqb-widget';
@@ -51,6 +51,8 @@ export function useWidget(props: SqbWidget) {
   const userIdent = useUserIdentity();
   const programId = useProgramId();
 
+  const locale = useLocale();
+  console.log(locale);
   const [fetch, { data }] = useLazyQuery<GetWidget>(GET_WIDGET);
   const [sendLoadEvent] = useMutation(WIDGET_LOAD_EVENT);
 
@@ -77,15 +79,16 @@ export function useWidget(props: SqbWidget) {
     // Or auth required and logged in
     userIdent !== undefined;
   useEffect(() => {
+    console.log("locale updated", locale);
     if (props.widgetType && canLoad) {
       fetch({
         widgetType: props.widgetType,
         // TODO: This should use `useLocale` from component boilerplate, but that implementation is incomplete
         // because it doesn't pull the user's locale from GraphQL
-        locale: undefined,
+        locale,
       });
     }
-  }, [props.widgetType, props.requireAuth, userIdent?.jwt]);
+  }, [props.widgetType, props.requireAuth, userIdent?.jwt, locale]);
 
   const html = data?.renderWidget?.widgetConfig?.values?.htmlTemplate || '';
 

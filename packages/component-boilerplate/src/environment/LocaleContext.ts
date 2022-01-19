@@ -1,5 +1,7 @@
 import { useDomContext } from "@saasquatch/dom-context-hooks";
 import { ContextProvider } from "dom-context";
+import { gql } from "graphql-request";
+import { useQuery, useUserIdentity } from "..";
 import { useHost } from "../hooks/useHost";
 import { WidgetIdent } from "./environment";
 
@@ -12,15 +14,33 @@ declare global {
   }
 }
 
+const GET_LOCALE = gql`
+  query {
+    viewer {
+      ... on User {
+        locale
+      }
+    }
+  }
+`;
+
 function _lazilyStartGlobally() {
   const globalProvider = window.squatchLocale;
+  const user = useUserIdentity();
+
+  const { data } = useQuery(GET_LOCALE, {}, !user);
+  const locale = data?.viewer?.locale;
+
+  console.log({ user, data });
   if (!globalProvider) {
     // Lazily creates a global provider
     window.squatchLocale = new ContextProvider<string>({
       element: document.documentElement,
-      initialState: window.widgetIdent?.locale || undefined,
+      initialState: locale || window.widgetIdent?.locale || undefined,
       contextName: CONTEXT_NAME,
     }).start();
+  } else if (locale !== globalProvider.context) {
+    globalProvider.context = locale;
   }
 }
 
@@ -36,7 +56,6 @@ export function useLocale(): string | undefined {
  * @param locale the new locale used by the user
  */
 export function setLocale(locale: string) {
-  _lazilyStartGlobally();
   const globalProvider = window.squatchLocale;
   globalProvider.context = locale;
 }

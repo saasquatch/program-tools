@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": "stencil build --docs",
-    "start": "stencil build --dev --watch --serve",
+    "start": "stencil build --prod --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate"
@@ -42,5 +42,8 @@
     "@rollup/plugin-alias": "^3.1.2",
     "@saasquatch/stencil-grapes-plugin": "^1.0.0",
     "rollup-plugin-string": "^3.0.0"
+  },
+  "resolutions": {
+    "graphql": "15.5.0"
   }
 }
