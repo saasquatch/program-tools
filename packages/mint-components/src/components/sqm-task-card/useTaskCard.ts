@@ -1,6 +1,7 @@
 import {
   useMutation,
   useUserIdentity,
+  useRefreshDispatcher,
 } from "@saasquatch/component-boilerplate";
 import { useEffect } from "@saasquatch/stencil-hooks";
 import { gql } from "graphql-request";
@@ -16,12 +17,17 @@ const SEND_EVENT = gql`
 
 export function useTaskCard(props: TaskCard) {
   const user = useUserIdentity();
+
   const [sendUserEvent, { data, loading: loadingEvent }] =
     useMutation(SEND_EVENT);
 
+  const { refresh } = useRefreshDispatcher();
   useEffect(() => {
-    if (data) openLink();
-  }, [onClick]);
+    if (data) {
+      refresh();
+      openLink();
+    }
+  }, [data]);
 
   function openLink() {
     props.openNewTab

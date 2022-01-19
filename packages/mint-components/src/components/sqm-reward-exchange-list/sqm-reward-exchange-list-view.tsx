@@ -186,6 +186,29 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
     ChooseAmount: {
       margin: "var(--sl-spacing-medium) 0",
+      "& .wrapper": {
+        display: "flex",
+        gap: "var(--sl-spacing-xx-large)",
+        "@media (max-width: 799px)": {
+          flexDirection: "column",
+        },
+      },
+      "& .image": {
+        width: "47%",
+        objectFit: "contain",
+        maxWidth: "100%",
+        height: "250px",
+        display: "flex",
+        "@media (max-width: 799px)": {
+          width: "auto",
+        },
+      },
+      "& .text": {
+        width: "53%",
+        "@media (max-width: 799px)": {
+          width: "auto",
+        },
+      },
       "& .title": {
         fontSize: "var(--sl-font-size-large)",
         fontWeight: "var(--sl-font-weight-semibold)",
@@ -250,12 +273,13 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         textAlign: "right",
         paddingRight: "var(--sl-spacing-xxx-large)",
       },
-      "& .value": {},
-
+      "& .value": {
+        fontSize: "var(--sl-font-size-large)",
+        fontWeight: "var(--sl-font-weight-semibold)",
+      },
       "& .top-border": {
         borderTop: "1px solid var(--sl-color-neutral-200)",
       },
-
       "& .image": {
         width: "200px",
       },
@@ -337,29 +361,30 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         {item.steps?.map((step) => (
           <sl-menu-item value={step} disabled={!step.available}>
             {step.prettyDestinationValue}
-            <div slot="suffix" style={{ fontSize: "16px", float: "right" }}>
+            {step.unavailableReasonCode && (
+              <p
+                style={{
+                  fontSize: "var(--sl-font-size-small)",
+                  color: "var(--sl-color-warning-500)",
+                  margin: "0",
+                }}
+              >
+                {intl.formatMessage(
+                  {
+                    id: "unavailableCode",
+                    defaultMessage: states.content?.text?.notAvailableError,
+                  },
+                  {
+                    unavailableReason: step.unavailableReasonCode,
+                    sourceUnit: item.sourceUnit,
+                    sourceValue:
+                      step.prettySourceValue || item.prettySourceMinValue,
+                  }
+                )}
+              </p>
+            )}
+            <div slot="suffix" style={{ marginBottom: "auto", float: "right" }}>
               {step.prettySourceValue}
-              {step.unavailableReasonCode && (
-                <p
-                  style={{
-                    fontSize: "75%",
-                    color: "var(--sl-color-warning-500)",
-                  }}
-                >
-                  {intl.formatMessage(
-                    {
-                      id: "unavailableCode",
-                      defaultMessage: states.content?.text?.notAvailableError,
-                    },
-                    {
-                      unavailableReasonCode: step.unavailableReasonCode,
-                      sourceUnit: item.sourceUnit,
-                      sourceValue:
-                        step.prettySourceValue || item.prettySourceMinValue,
-                    }
-                  )}
-                </p>
-              )}
             </div>
           </sl-menu-item>
         ))}
@@ -485,7 +510,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                                   states.content?.text?.notAvailableError,
                               },
                               {
-                                unavailableReasonCode: item.unavailableReasonCode,
+                                unavailableReasonCode:
+                                  item.unavailableReasonCode,
                                 sourceUnit: item.sourceUnit,
                                 sourceValue:
                                   item.prettySourceValue ||
@@ -525,31 +551,29 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         : input && !states.amount;
     return (
       <div>
-        <div>
-          {
+        <div class={sheet.classes.ChooseAmount}>
+          <div class="wrapper">
             <img
-              class={sheet.classes.FullImage}
+              class="image"
               src={
                 selectedItem?.imageUrl ||
                 getAssetPath("./assets/placeholder.png")
               }
             />
-          }
-        </div>
-        <div class={sheet.classes.ChooseAmount}>
-          <div style={{ maxWidth: "600px", margin: "auto" }}>
-            <div class="title">{selectedItem?.name ?? ""}</div>
-            {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
-              <div class="points">{input}</div>
-            ) : (
-              <div class="description">{selectedItem?.description}</div>
-            )}
-            {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
-              <div class="description">{selectedItem?.description}</div>
-            ) : (
-              <div class="points">{input}</div>
-            )}
-            <div class="space" />
+            <div class="text">
+              <div class="title">{selectedItem?.name ?? ""}</div>
+              {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
+                <div class="points">{input}</div>
+              ) : (
+                <div class="description">{selectedItem?.description}</div>
+              )}
+              {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
+                <div class="description">{selectedItem?.description}</div>
+              ) : (
+                <div class="points">{input}</div>
+              )}
+              <div class="space" />
+            </div>
           </div>
         </div>
 
@@ -592,11 +616,11 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         <div class={sheet.classes.Confirmation}>
           <div class="wrapper">
             <div class="field">{states.content.text.rewardNameTitle}</div>
-            <div class="value">{selectedItem.name}</div>
+            <div>{selectedItem.name}</div>
           </div>
           <div class="wrapper">
             <div class="field"></div>
-            <div class="value">
+            <div>
               <img
                 class="image"
                 src={
@@ -609,7 +633,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           {amount && (
             <div class="wrapper top-border padding">
               <div class="field">{states.content.text.rewardAmountTitle}</div>
-              <div class="value">{amount}</div>
+              <div>{amount}</div>
             </div>
           )}
           <div class="wrapper top-border padding">
@@ -617,69 +641,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             <div class="value">{cost}</div>
           </div>
         </div>
-
-        {/* <div
-          style={{
-            textAlign: "center",
-            marginBottom: "var(--sl-spacing-xxx-large)",
-          }}
-        >
-          <p>
-            <span style={{ fontSize: "var(--sl-font-size-large)" }}>
-              {selectedStep?.prettySourceValue ||
-                selectedItem?.prettySourceValue}
-            </span>
-          </p>
-          <p>
-            <ExchangeArrows />
-          </p>
-          <div
-            style={{
-              boxShadow: "none",
-              marginBottom: "10px",
-              flex: "1",
-              minWidth: "100%",
-            }}
-          >
-            <sl-card
-              class={sheet.classes.Card}
-              style={{
-                minWidth: "350px",
-                width: "33%",
-                margin: "auto",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  width: "100%",
-                  height: "120px",
-                  borderRadius: "3px",
-                  background: "rgba(0, 0, 0, 0)",
-                }}
-              >
-                <div class={sheet.classes.Image}>
-                  <img
-                    class="image"
-                    src={
-                      selectedItem?.imageUrl ||
-                      getAssetPath("./assets/placeholder.png")
-                    }
-                  />
-                </div>
-                <div
-                  class={sheet.classes.TextArea}
-                  style={{ alignSelf: "center" }}
-                >
-                  <div class="title">{selectedItem?.name}</div>
-                  <div class="amount">
-                    {selectedStep?.prettyDestinationValue}
-                  </div>
-                </div>
-              </div>
-            </sl-card>
-          </div>
-        </div> */}
 
         <div class={sheet.classes.Button}>
           <sl-button

@@ -48,6 +48,8 @@ export class ReferralTableRewardsCell {
       },
 
       BadgeContainer: {
+        float: "right",
+        marginRight: "var(--sl-spacing-medium)",
         "& > :not(:last-child)": {
           "margin-right": "var(--sl-spacing-x-small)",
         },
@@ -63,6 +65,51 @@ export class ReferralTableRewardsCell {
         paddingLeft: "var(--sl-spacing-xxx-small)",
         "&::part(base)": {
           background: "var(--sl-color-blue-600)",
+        },
+      },
+
+      Description: {
+        maxWidth: "500px",
+        padding: "var(--sl-spacing-x-small)",
+        border: "1px solid var(--sl-color-neutral-200)",
+        borderRadius: "var(--sl-border-radius-medium)",
+        boxSizing: "border-box",
+        marginBottom: "var(--sl-spacing-small)",
+
+        "& input[type=checkbox]": {
+          display: "none",
+        },
+        "& input:checked ~ .details": {
+          transform: "rotate(-180deg)",
+        },
+        "& .details": {
+          float: "right",
+          top: "var(--sl-spacing-medium)",
+          right: "var(--sl-spacing-medium)",
+          color: "var(--sl-color-neutral-700)",
+          fontSize: "var(--sl-font-size-large)",
+          "& :hover": {
+            color: "var(--sl-color-primary-700)",
+          },
+          transformOrigin: "50% 37%",
+          transition: "transform var(--sl-transition-medium) ease",
+          cursor: "pointer",
+        },
+        "& input:checked ~ .summary": {
+          transition: "all var(--sl-transition-slow) ease",
+          maxHeight: "200px",
+        },
+
+        "& .content": {
+          padding: "var(--sl-spacing-small)",
+        },
+
+        "& .summary": {
+          display: "block",
+          overflow: "hidden",
+          fontSize: "var(--sl-font-size-small)",
+          maxHeight: "0px",
+          transition: "all var(--sl-transition-fast) ease",
         },
       },
     };
@@ -123,16 +170,23 @@ export class ReferralTableRewardsCell {
         }
       );
 
+      const rid = Math.random().toString(36).slice(2);
+
       return (
-        <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
+        <div>
           <style type="text/css">{styleString}</style>
-          <div slot="summary" class={sheet.classes.DetailsContainer}>
+
+          <div class={sheet.classes.Description}>
+            <input type="checkbox" id={"details-" + rid} />
+            <label class="details" htmlFor={"details-" + rid}>
+              <sl-icon name="chevron-down"></sl-icon>
+            </label>
             <TextSpanView type="p">
               <span class={sheet.classes.BoldText}>{reward.prettyValue}</span>
             </TextSpanView>
             {/* If state is pending and reward has expiry date, display the relative time inside badge. Otherwise only display the badge text */}
             {/* Pending for W9 Tax reasons cases here */}
-            <div class={sheet.classes.BadgeContainer}>
+            <span class={sheet.classes.BadgeContainer}>
               {state === "PENDING" && reward.dateScheduledFor ? (
                 <sl-badge
                   class={
@@ -181,80 +235,82 @@ export class ReferralTableRewardsCell {
                   {` ${getTimeDiff(reward.dateExpires)}`}
                 </sl-badge>
               )}
+            </span>
+            <div class="summary">
+              <div class="content">
+                {reward.dateGiven && (
+                  <div>
+                    <TextSpanView type="p">
+                      {this.rewardReceivedText}{" "}
+                      <span class={sheet.classes.BoldText}>
+                        {DateTime.fromMillis(reward.dateGiven).toLocaleString(
+                          DateTime.DATE_MED
+                        )}
+                      </span>
+                    </TextSpanView>
+                  </div>
+                )}
+                {state === "EXPIRED" && reward.dateExpires && (
+                  <div>
+                    <TextSpanView type="p">
+                      {statusText}{" "}
+                      <span class={sheet.classes.BoldText}>
+                        {DateTime.fromMillis(reward.dateExpires).toLocaleString(
+                          DateTime.DATE_MED
+                        )}
+                      </span>
+                    </TextSpanView>
+                  </div>
+                )}
+                {state === "CANCELLED" && reward.dateCancelled && (
+                  <div>
+                    <TextSpanView type="p">
+                      {statusText}{" "}
+                      <span class={sheet.classes.BoldText}>
+                        {DateTime.fromMillis(
+                          reward.dateCancelled
+                        ).toLocaleString(DateTime.DATE_MED)}
+                      </span>
+                    </TextSpanView>
+                  </div>
+                )}
+                {state === "PENDING" && reward.dateScheduledFor && (
+                  <div>
+                    <TextSpanView type="p">
+                    {statusText}{" "}
+                      <span class={sheet.classes.BoldText}>
+                        {DateTime.fromMillis(
+                          reward.dateScheduledFor
+                        ).toLocaleString(DateTime.DATE_MED)}
+                      </span>
+                    </TextSpanView>
+                  </div>
+                )}{" "}
+                {/* Pending for W9 Tax reasons cases here */}
+                {state === "AVAILABLE" && reward.dateExpires && (
+                  <div>
+                    <TextSpanView type="p">
+                    {statusText}{" "}
+                      <span class={sheet.classes.BoldText}>
+                        {DateTime.fromMillis(reward.dateExpires).toLocaleString(
+                          DateTime.DATE_MED
+                        )}
+                      </span>
+                    </TextSpanView>
+                  </div>
+                )}
+                {reward.fuelTankCode && (
+                  <div>
+                    {this.fuelTankText}{" "}
+                    <span class={sheet.classes.BoldText}>
+                      {reward.fuelTankCode}
+                    </span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-          <div>
-            {reward.dateGiven && (
-              <div>
-                <TextSpanView type="p">
-                  {this.rewardReceivedText}{" "}
-                  <span class={sheet.classes.BoldText}>
-                    {DateTime.fromMillis(reward.dateGiven).toLocaleString(
-                      DateTime.DATE_MED
-                    )}
-                  </span>
-                </TextSpanView>
-              </div>
-            )}
-            {state === "EXPIRED" && reward.dateExpires && (
-              <div>
-                <TextSpanView type="p">
-                  {statusText}{" "}
-                  <span class={sheet.classes.BoldText}>
-                    {DateTime.fromMillis(reward.dateExpires).toLocaleString(
-                      DateTime.DATE_MED
-                    )}
-                  </span>
-                </TextSpanView>
-              </div>
-            )}
-            {state === "CANCELLED" && reward.dateCancelled && (
-              <div>
-                <TextSpanView type="p">
-                  {statusText}{" "}
-                  <span class={sheet.classes.BoldText}>
-                    {DateTime.fromMillis(reward.dateCancelled).toLocaleString(
-                      DateTime.DATE_MED
-                    )}
-                  </span>
-                </TextSpanView>
-              </div>
-            )}
-            {state === "PENDING" && reward.dateScheduledFor && (
-              <div>
-                <TextSpanView type="p">
-                  {statusText}{" "}
-                  <span class={sheet.classes.BoldText}>
-                    {DateTime.fromMillis(
-                      reward.dateScheduledFor
-                    ).toLocaleString(DateTime.DATE_MED)}
-                  </span>
-                </TextSpanView>
-              </div>
-            )}{" "}
-            {/* Pending for W9 Tax reasons cases here */}
-            {state === "AVAILABLE" && reward.dateExpires && (
-              <div>
-                <TextSpanView type="p">
-                  {statusText}{" "}
-                  <span class={sheet.classes.BoldText}>
-                    {DateTime.fromMillis(reward.dateExpires).toLocaleString(
-                      DateTime.DATE_MED
-                    )}
-                  </span>
-                </TextSpanView>
-              </div>
-            )}
-            {reward.fuelTankCode && (
-              <div>
-                {this.fuelTankText}{" "}
-                <span class={sheet.classes.BoldText}>
-                  {reward.fuelTankCode}
-                </span>
-              </div>
-            )}
-          </div>
-        </sl-details>
+        </div>
       );
     });
   }

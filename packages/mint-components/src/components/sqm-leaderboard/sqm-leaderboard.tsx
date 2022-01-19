@@ -44,6 +44,11 @@ export class Leaderboard {
   @Prop() showUser: boolean = true;
 
   /**
+   * @uiName Empty State Text
+   */
+  @Prop() emptyStateText: string = "No Users Yet";
+
+  /**
    * @uiName Rank type
    * @uiType string
    * @uiEnum ["rowNumber", "rank", "denseRank"]
@@ -79,8 +84,8 @@ export class Leaderboard {
   disconnectedCallback() {}
 
   render() {
-    const loading = <LoadingSlot />;
-    const empty = <EmptySkeleton label="No Users Yet" />;
+    const loading = <LoadingSkeleton />;
+    const empty = <EmptySkeleton label={this.emptyStateText} />;
     const props = {
       empty: empty,
       loadingstate: loading,

@@ -7,12 +7,6 @@ import {
   GenericTableView,
   GenericTableViewProps,
 } from "../../tables/GenericTableView";
-import {
-  EmptySkeleton,
-  EmptySlot,
-  LoadingSkeleton,
-  LoadingSlot,
-} from "../../tables/TableSlots";
 import { CSS_NAMESPACE, useRewardsTable } from "./useRewardsTable";
 
 /**
@@ -52,14 +46,22 @@ export class RewardsTable {
   /** @uiName Hide Columns (Mobile View)  */
   @Prop() mdBreakpoint?: number = 899;
 
+  /** @uiName Empty State Image Link  */
+  @Prop() emptyStateImgUrl: string = "https://i.imgur.com/nbz2xq3.png";
+
+  /** @uiName Empty State Title  */
+  @Prop() emptyStateTitle: string = "View your rewards";
+
   /** @uiName Empty State Text  */
-  @Prop() emptyStateText: string = "No Rewards Yet";
+  @Prop() emptyStateText: string =
+    "See all the rewards you have earned from referring friends and completing tasks";
 
   /**
    * @undocumented
    * @uiType object
    */
-  @Prop() demoData?: DemoData<GenericTableViewProps>;
+  @Prop()
+  demoData?: DemoData<GenericTableViewProps>;
 
   constructor() {
     withHooks(this);
@@ -67,7 +69,13 @@ export class RewardsTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = <EmptySlot label={this.emptyStateText} />;
+    const empty = (
+      <EmptySlot
+        emptyStateImgUrl={this.emptyStateImgUrl}
+        emptyStateTitle={this.emptyStateTitle}
+        emptyStateText={this.emptyStateText}
+      />
+    );
     const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()
@@ -83,6 +91,26 @@ export class RewardsTable {
       ></GenericTableView>
     );
   }
+}
+
+function LoadingSlot() {
+  return (
+    <slot name="loading">
+      <LoadingRow />
+      <LoadingRow />
+      <LoadingRow />
+      <LoadingRow />
+    </slot>
+  );
+}
+function LoadingRow() {
+  return (
+    <sqm-table-row>
+      <sqm-table-cell colspan={5}>
+        <sl-skeleton></sl-skeleton>
+      </sqm-table-cell>
+    </sqm-table-row>
+  );
 }
 
 function useRewardsTableDemo(props: RewardsTable): GenericTableViewProps {
@@ -107,8 +135,14 @@ function useRewardsTableDemo(props: RewardsTable): GenericTableViewProps {
         referralData: [],
       },
       elements: {
-        emptyElement: <EmptySkeleton label="No Rewards Yet" />,
-        loadingElement: <LoadingSkeleton />,
+        emptyElement: (
+          <EmptySlot
+            emptyStateImgUrl="https://i.imgur.com/nbz2xq3.png"
+            emptyStateTitle="View your rewards"
+            emptyStateText="See all the rewards you have earned from referring friends and completing tasks"
+          />
+        ),
+        loadingElement: <LoadingSlot />,
         // TODO: This should be smarter
         columns: [<div>Name</div>, <div>Email</div>, <div>DOB</div>],
         rows: [],
@@ -116,5 +150,39 @@ function useRewardsTableDemo(props: RewardsTable): GenericTableViewProps {
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
+  );
+}
+
+function EmptySlot({
+  emptyStateImgUrl,
+  emptyStateTitle,
+  emptyStateText,
+}: {
+  emptyStateImgUrl: string;
+  emptyStateTitle: string;
+  emptyStateText: string;
+}) {
+  return (
+    <div slot="empty" style={{ display: "contents" }}>
+      <sqm-table-row>
+        <sqm-table-cell colspan={5} style={{ textAlign: "center" }}>
+          <div style={{ padding: "var(--sl-spacing-xxx-large)" }}>
+            <img src={emptyStateImgUrl} style={{ width: "100px" }} />
+            <div>
+              <b>{emptyStateTitle}</b>
+            </div>
+            <div
+              style={{
+                marginTop: "var(--sl-spacing-xx-small)",
+                fontSize: "var(--sl-font-size-small)",
+                color: "var(--sl-color-neutral-500)",
+              }}
+            >
+              {emptyStateText}
+            </div>
+          </div>
+        </sqm-table-cell>
+      </sqm-table-row>
+    </div>
   );
 }

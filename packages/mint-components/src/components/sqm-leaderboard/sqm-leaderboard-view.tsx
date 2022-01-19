@@ -69,12 +69,11 @@ function loading() {
 export function LeaderboardView(props: LeaderboardViewProps) {
   const { states, data, elements } = props;
   const { styles } = states;
-  console.log(props);
+
+  if (states.loading) return elements.loadingstate ?? loading();
+  if (!states.hasLeaders) return elements.empty ?? empty(styles);
+
   let userSeenFlag = false;
-
-  if (states.loading) return loading();
-
-  if (!states.hasLeaders) return empty(styles);
 
   return (
     <div>
@@ -110,7 +109,9 @@ export function LeaderboardView(props: LeaderboardViewProps) {
         )}
         {!userSeenFlag && data.showUser && (
           <tr class="highlight">
-            {styles.showRank && <td class="Rank">{data.userRank?.rank}</td>}
+            {styles.showRank && (
+              <td class="Rank">{data.userRank?.rank || "-"}</td>
+            )}
             <td class="User">{`${data.userRank?.firstName || "-"} ${
               data.userRank?.lastInitial || "-"
             } `}</td>

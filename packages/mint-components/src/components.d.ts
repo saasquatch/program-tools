@@ -202,6 +202,10 @@ export namespace Components {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
+          * @uiName Empty State Text
+         */
+        "emptyStateText": string;
+        /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
           * @uiOptions {"allowPastDates":true, "months": 1}
@@ -863,6 +867,17 @@ export namespace Components {
     }
     interface SqmProgramMenu {
     }
+    interface SqmReferralCard {
+        /**
+          * @uiName Column Gap
+          * @uiType number
+         */
+        "gap": number;
+        /**
+          * @uiName Card Width
+         */
+        "width": number;
+    }
     interface SqmReferralIframe {
         /**
           * @undocumented 
@@ -890,9 +905,17 @@ export namespace Components {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Image Link
+         */
+        "emptyStateImgUrl": string;
+        /**
           * @uiName Empty State Text
          */
         "emptyStateText": string;
+        /**
+          * @uiName Empty State Title
+         */
+        "emptyStateTitle": string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
@@ -1168,9 +1191,17 @@ export namespace Components {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Image Link
+         */
+        "emptyStateImgUrl": string;
+        /**
           * @uiName Empty State Text
          */
         "emptyStateText": string;
+        /**
+          * @uiName Empty State Title
+         */
+        "emptyStateTitle": string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
@@ -1495,6 +1526,13 @@ export namespace Components {
          */
         "description": string;
         /**
+          * Timeframe that the task card will be shown
+          * @uiName Display Duration
+          * @uiWidget DateRange
+          * @uiOptions {"allowPastDates":true, "months": 1}
+         */
+        "displayDuration": string;
+        /**
           * Shown to users after the end of the task duration.
           * @uiName Ended Date Message
          */
@@ -1517,9 +1555,17 @@ export namespace Components {
          */
         "goal": number;
         /**
+          * @uiName Locale
+         */
+        "locale": string;
+        /**
           * @uiName CTA Button Link Open in New Tab
          */
         "openNewTab": boolean;
+        /**
+          * @uiName Program ID override
+         */
+        "programId": string;
         /**
           * @uiName Progress Bar Unit
          */
@@ -1580,6 +1626,30 @@ export namespace Components {
           * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
          */
         "type": "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
+    }
+    interface SqmTimeline {
+        /**
+          * @uiName Gift Icon
+         */
+        "gift": boolean;
+    }
+    interface SqmTimelineReward {
+        /**
+          * @uiName Description
+         */
+        "desc": string;
+        /**
+          * @undocumented Gift Icon
+         */
+        "gift": boolean;
+        /**
+          * @uiName Reward Amount
+         */
+        "reward": string;
+        /**
+          * @uiName Reward Unit
+         */
+        "unit": string;
     }
     interface SqmTitledSection {
         "label": string;
@@ -1823,6 +1893,12 @@ declare global {
         prototype: HTMLSqmProgramMenuElement;
         new (): HTMLSqmProgramMenuElement;
     };
+    interface HTMLSqmReferralCardElement extends Components.SqmReferralCard, HTMLStencilElement {
+    }
+    var HTMLSqmReferralCardElement: {
+        prototype: HTMLSqmReferralCardElement;
+        new (): HTMLSqmReferralCardElement;
+    };
     interface HTMLSqmReferralIframeElement extends Components.SqmReferralIframe, HTMLStencilElement {
     }
     var HTMLSqmReferralIframeElement: {
@@ -2033,6 +2109,18 @@ declare global {
         prototype: HTMLSqmTextSpanElement;
         new (): HTMLSqmTextSpanElement;
     };
+    interface HTMLSqmTimelineElement extends Components.SqmTimeline, HTMLStencilElement {
+    }
+    var HTMLSqmTimelineElement: {
+        prototype: HTMLSqmTimelineElement;
+        new (): HTMLSqmTimelineElement;
+    };
+    interface HTMLSqmTimelineRewardElement extends Components.SqmTimelineReward, HTMLStencilElement {
+    }
+    var HTMLSqmTimelineRewardElement: {
+        prototype: HTMLSqmTimelineRewardElement;
+        new (): HTMLSqmTimelineRewardElement;
+    };
     interface HTMLSqmTitledSectionElement extends Components.SqmTitledSection, HTMLStencilElement {
     }
     var HTMLSqmTitledSectionElement: {
@@ -2081,6 +2169,7 @@ declare global {
         "sqm-program-explainer": HTMLSqmProgramExplainerElement;
         "sqm-program-explainer-step": HTMLSqmProgramExplainerStepElement;
         "sqm-program-menu": HTMLSqmProgramMenuElement;
+        "sqm-referral-card": HTMLSqmReferralCardElement;
         "sqm-referral-iframe": HTMLSqmReferralIframeElement;
         "sqm-referral-table": HTMLSqmReferralTableElement;
         "sqm-referral-table-cell": HTMLSqmReferralTableCellElement;
@@ -2116,6 +2205,8 @@ declare global {
         "sqm-task-card": HTMLSqmTaskCardElement;
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
+        "sqm-timeline": HTMLSqmTimelineElement;
+        "sqm-timeline-reward": HTMLSqmTimelineRewardElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqm-user-name": HTMLSqmUserNameElement;
     }
@@ -2287,6 +2378,10 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
+        /**
+          * @uiName Empty State Text
+         */
+        "emptyStateText"?: string;
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
@@ -2949,6 +3044,17 @@ declare namespace LocalJSX {
     }
     interface SqmProgramMenu {
     }
+    interface SqmReferralCard {
+        /**
+          * @uiName Column Gap
+          * @uiType number
+         */
+        "gap"?: number;
+        /**
+          * @uiName Card Width
+         */
+        "width"?: number;
+    }
     interface SqmReferralIframe {
         /**
           * @undocumented 
@@ -2976,9 +3082,17 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Image Link
+         */
+        "emptyStateImgUrl"?: string;
+        /**
           * @uiName Empty State Text
          */
         "emptyStateText"?: string;
+        /**
+          * @uiName Empty State Title
+         */
+        "emptyStateTitle"?: string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
@@ -3244,9 +3358,17 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Image Link
+         */
+        "emptyStateImgUrl"?: string;
+        /**
           * @uiName Empty State Text
          */
         "emptyStateText"?: string;
+        /**
+          * @uiName Empty State Title
+         */
+        "emptyStateTitle"?: string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
@@ -3563,6 +3685,13 @@ declare namespace LocalJSX {
          */
         "description"?: string;
         /**
+          * Timeframe that the task card will be shown
+          * @uiName Display Duration
+          * @uiWidget DateRange
+          * @uiOptions {"allowPastDates":true, "months": 1}
+         */
+        "displayDuration"?: string;
+        /**
           * Shown to users after the end of the task duration.
           * @uiName Ended Date Message
          */
@@ -3585,9 +3714,17 @@ declare namespace LocalJSX {
          */
         "goal"?: number;
         /**
+          * @uiName Locale
+         */
+        "locale"?: string;
+        /**
           * @uiName CTA Button Link Open in New Tab
          */
         "openNewTab"?: boolean;
+        /**
+          * @uiName Program ID override
+         */
+        "programId"?: string;
         /**
           * @uiName Progress Bar Unit
          */
@@ -3648,6 +3785,30 @@ declare namespace LocalJSX {
           * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
          */
         "type"?: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
+    }
+    interface SqmTimeline {
+        /**
+          * @uiName Gift Icon
+         */
+        "gift"?: boolean;
+    }
+    interface SqmTimelineReward {
+        /**
+          * @uiName Description
+         */
+        "desc"?: string;
+        /**
+          * @undocumented Gift Icon
+         */
+        "gift"?: boolean;
+        /**
+          * @uiName Reward Amount
+         */
+        "reward"?: string;
+        /**
+          * @uiName Reward Unit
+         */
+        "unit"?: string;
     }
     interface SqmTitledSection {
         "label"?: string;
@@ -3715,6 +3876,7 @@ declare namespace LocalJSX {
         "sqm-program-explainer": SqmProgramExplainer;
         "sqm-program-explainer-step": SqmProgramExplainerStep;
         "sqm-program-menu": SqmProgramMenu;
+        "sqm-referral-card": SqmReferralCard;
         "sqm-referral-iframe": SqmReferralIframe;
         "sqm-referral-table": SqmReferralTable;
         "sqm-referral-table-cell": SqmReferralTableCell;
@@ -3750,6 +3912,8 @@ declare namespace LocalJSX {
         "sqm-task-card": SqmTaskCard;
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
+        "sqm-timeline": SqmTimeline;
+        "sqm-timeline-reward": SqmTimelineReward;
         "sqm-titled-section": SqmTitledSection;
         "sqm-user-name": SqmUserName;
     }
@@ -3793,6 +3957,7 @@ declare module "@stencil/core" {
             "sqm-program-explainer": LocalJSX.SqmProgramExplainer & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerElement>;
             "sqm-program-explainer-step": LocalJSX.SqmProgramExplainerStep & JSXBase.HTMLAttributes<HTMLSqmProgramExplainerStepElement>;
             "sqm-program-menu": LocalJSX.SqmProgramMenu & JSXBase.HTMLAttributes<HTMLSqmProgramMenuElement>;
+            "sqm-referral-card": LocalJSX.SqmReferralCard & JSXBase.HTMLAttributes<HTMLSqmReferralCardElement>;
             "sqm-referral-iframe": LocalJSX.SqmReferralIframe & JSXBase.HTMLAttributes<HTMLSqmReferralIframeElement>;
             "sqm-referral-table": LocalJSX.SqmReferralTable & JSXBase.HTMLAttributes<HTMLSqmReferralTableElement>;
             "sqm-referral-table-cell": LocalJSX.SqmReferralTableCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableCellElement>;
@@ -3828,6 +3993,8 @@ declare module "@stencil/core" {
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
+            "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
+            "sqm-timeline-reward": LocalJSX.SqmTimelineReward & JSXBase.HTMLAttributes<HTMLSqmTimelineRewardElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
         }

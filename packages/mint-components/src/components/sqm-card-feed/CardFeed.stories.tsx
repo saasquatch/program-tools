@@ -34,6 +34,7 @@ const taskCardProps = {
     endedMessage: "Ended {endDate}",
     finite: 0,
     goal: 1,
+	locale: "en"
   },
   states: { progress: 0, loading: false, loadingEvent: false },
 };
@@ -60,6 +61,7 @@ const coupleActions = {
     endedMessage: "Ended {endDate}",
     finite: 0,
     goal: 5,
+	locale: "en"
   },
   states: { progress: 1, loading: false, loadingEvent: false },
 };
@@ -87,6 +89,7 @@ const manyActions = {
     endedMessage: "Ended {endDate}",
     finite: 0,
     goal: 500,
+	locale: "en"
   },
   states: {
     progress: 100,

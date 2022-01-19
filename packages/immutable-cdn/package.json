@@ -1,0 +1,58 @@
+{
+  "name": "@saasquatch/immutable-cdn",
+  "author": "Johan Venter <johan@saasquatch.com>",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "Immutable web app CDN cookie management",
+  "repository": "https://github.com/saasquatch/program-tools",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "module": "dist/immutable-cdn.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/immutable-cdn.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/immutable-cdn.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build --format cjs,esm,umd",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build --format cjs,esm,umd",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "publish-prerelease": "np --no-cleanup --any-branch --tag=next prerelease",
+    "publish-release": "np --any-branch --tag=latest"
+  },
+  "peerDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {},
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^7.0.5",
+    "husky": "^7.0.4",
+    "np": "^7.6.0",
+    "size-limit": "^7.0.5",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.4"
+  },
+  "np": {
+    "yarn": false,
+    "releaseDraft": false
+  }
+}

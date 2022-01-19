@@ -37,6 +37,33 @@ function setupGraphQL() {
   return { id, accountId };
 }
 
+function setupGraphQLKlip() {
+  const id = "sam+klip@saasquat.ch";
+  const accountId = id;
+  // const programId = "klip-referral-program";
+  const JWT =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InNhbStrbGlwQHNhYXNxdWF0LmNoIiwiaWQiOiJzYW0ra2xpcEBzYWFzcXVhdC5jaCIsImVtYWlsIjoic2FtK2tsaXBAc2Fhc3F1YXQuY2giLCJsb2NhbGUiOiJlbiJ9fQ.a2nYYrSJ81FHXlCU-Sqp_-wquQizinHBhzwzULDzimg";
+
+  //@ts-ignore
+  window.widgetIdent = {
+    tenantAlias: "test_a74miwdpofztj",
+    appDomain: "https://staging.referralsaasquatch.com",
+    // programId,
+  };
+  useEffect(() => {
+    setUserIdentity({
+      accountId,
+      id,
+      jwt: JWT,
+    });
+    return () => {
+      window.widgetIdent = undefined;
+      setUserIdentity(undefined);
+    };
+  }, []);
+
+  return { id, accountId };
+}
 export const RewardsTableWithProgram = createHookStory(() => {
   setupGraphQL();
   setProgramId("sam-partner-test-2");
@@ -70,6 +97,25 @@ export const RewardsTableNoProgram = createHookStory(() => {
       <sqm-rewards-table-reward-column></sqm-rewards-table-reward-column>
       <sqm-rewards-table-status-column></sqm-rewards-table-status-column>
       <sqm-rewards-table-source-column></sqm-rewards-table-source-column>
+      <sqm-rewards-table-date-column></sqm-rewards-table-date-column>
+    </sqm-rewards-table>
+  );
+});
+
+export const RewardsTablePoints = createHookStory(() => {
+  setupGraphQLKlip();
+  setProgramId(undefined);
+  const props = {
+    listType: "",
+    render: () => {},
+    disconnectedCallback: () => {},
+    ignored: true,
+  };
+  return (
+    <sqm-rewards-table per-page="4">
+      <sqm-rewards-table-reward-column></sqm-rewards-table-reward-column>
+      <sqm-rewards-table-status-column></sqm-rewards-table-status-column>
+      <sqm-rewards-table-source-column reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programId, select, klip-loyalty {Klip Loyalty} other {Program} }} other {}}"></sqm-rewards-table-source-column>
       <sqm-rewards-table-date-column></sqm-rewards-table-date-column>
     </sqm-rewards-table>
   );

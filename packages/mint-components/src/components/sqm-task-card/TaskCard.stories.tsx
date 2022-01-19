@@ -31,6 +31,10 @@ const resizable = {
 };
 
 const oneAction = {
+  callbacks: {
+    sendEvent: () => void 0,
+    onClick: () => void 0,
+  },
   content: {
     rewardAmount: "20",
     rewardUnit: "SaaSquatch Points",
@@ -52,6 +56,7 @@ const oneAction = {
     endedMessage: "Ended {endDate}",
     finite: 0,
     goal: 1,
+	locale: "en"
   },
   states: {
     progress: 0,
@@ -61,6 +66,10 @@ const oneAction = {
 };
 
 const coupleActions = {
+  callbacks: {
+    sendEvent: () => void 0,
+    onClick: () => void 0,
+  },
   content: {
     rewardAmount: "40",
     rewardUnit: "SaaSquatch Points",
@@ -82,6 +91,7 @@ const coupleActions = {
     endedMessage: "Ended {endDate}",
     finite: 0,
     goal: 5,
+	locale: "en"
   },
   states: {
     progress: 1,
@@ -91,6 +101,10 @@ const coupleActions = {
 };
 
 const manyActions = {
+  callbacks: {
+    sendEvent: () => void 0,
+    onClick: () => void 0,
+  },
   content: {
     rewardAmount: "150",
     rewardUnit: "SaaSquatch Points",
@@ -113,6 +127,7 @@ const manyActions = {
     endedMessage: "Ended {endDate}",
     finite: 0,
     goal: 500,
+	locale: "en"
   },
   states: { progress: 100, loading: false, loadingEvent: false },
 };
@@ -128,16 +143,19 @@ export const TaskCard = () => {
       <Resizer>
         <h4>Not Repeatable</h4>
         <TaskCardView
+          {...oneAction}
           content={{ ...oneAction.content, description: "" }}
           states={{ ...oneAction.states, progress: 0 }}
         />
         <h5 />
         <TaskCardView
+          {...coupleActions}
           content={{ ...coupleActions.content, description: "" }}
           states={{ ...coupleActions.states, progress: 0 }}
         />
         <h5 />
         <TaskCardView
+          {...manyActions}
           content={{ ...manyActions.content, description: "" }}
           states={{ ...manyActions.states, progress: 230 }}
         />
@@ -145,16 +163,19 @@ export const TaskCard = () => {
       <Resizer>
         <h4>Repeatable</h4>
         <TaskCardView
+          {...oneAction}
           content={{ ...oneAction.content, repeatable: true }}
           states={{ ...oneAction.states, progress: 2 }}
         />
         <h5 />
         <TaskCardView
+          {...coupleActions}
           content={{ ...coupleActions.content, repeatable: true }}
           states={{ ...coupleActions.states, progress: 7 }}
         />
         <h5 />
         <TaskCardView
+          {...manyActions}
           content={{ ...manyActions.content, repeatable: true }}
           states={{ ...manyActions.states, progress: 650 }}
         />
@@ -252,11 +273,13 @@ export const TaskCardRepeatable = () => {
       <div style={resizable}>
         <h4>One Action</h4>
         <TaskCardView
+          {...oneAction}
           content={{ ...oneAction.content, repeatable: true }}
           states={{ ...oneAction.states, progress: 0 }}
         />
         <h5 />
         <TaskCardView
+          {...oneAction}
           content={{ ...oneAction.content, repeatable: true }}
           states={{ ...oneAction.states, progress: 1 }}
         />
@@ -265,21 +288,25 @@ export const TaskCardRepeatable = () => {
       <div style={resizable}>
         <h4>A Couple Actions</h4>
         <TaskCardView
+          {...coupleActions}
           content={{ ...coupleActions.content, repeatable: true }}
           states={{ ...coupleActions.states, progress: 0 }}
         />
         <h5 />
         <TaskCardView
+          {...coupleActions}
           content={{ ...coupleActions.content, repeatable: true }}
           states={{ ...coupleActions.states, progress: 5 }}
         />
         <h5 />
         <TaskCardView
+          {...coupleActions}
           content={{ ...coupleActions.content, repeatable: true }}
           states={{ ...coupleActions.states, progress: 7 }}
         />
         <h5 />
         <TaskCardView
+          {...coupleActions}
           content={{ ...coupleActions.content, repeatable: true }}
           states={{ ...coupleActions.states, progress: 10 }}
         />
@@ -288,21 +315,25 @@ export const TaskCardRepeatable = () => {
       <div style={resizable}>
         <h4>Many Actions</h4>
         <TaskCardView
+          {...manyActions}
           content={{ ...manyActions.content, repeatable: true }}
           states={{ ...manyActions.states, progress: 0 }}
         />
         <h5 />
         <TaskCardView
+          {...manyActions}
           content={{ ...manyActions.content, repeatable: true }}
           states={{ ...manyActions.states, progress: 500 }}
         />
         <h5 />
         <TaskCardView
+          {...manyActions}
           content={{ ...manyActions.content, repeatable: true }}
           states={{ ...manyActions.states, progress: 650 }}
         />
         <h5 />
         <TaskCardView
+          {...manyActions}
           content={{ ...manyActions.content, repeatable: true }}
           states={{ ...manyActions.states, progress: 1000 }}
         />
@@ -318,16 +349,19 @@ export const TaskCardRepeatableFinite = () => {
       <div style={resizable}>
         <h4>One Action</h4>
         <TaskCardView
+          {...oneAction}
           content={{ ...oneAction.content, repeatable: true, finite: 2 }}
           states={{ ...oneAction.states, progress: 0 }}
         />
         <h5 />
         <TaskCardView
+          {...oneAction}
           content={{ ...oneAction.content, repeatable: true, finite: 2 }}
           states={{ ...oneAction.states, progress: 1 }}
         />
         <h5 />
         <TaskCardView
+          {...oneAction}
           content={{ ...oneAction.content, repeatable: true, finite: 2 }}
           states={{ ...oneAction.states, progress: 2 }}
         />
@@ -336,26 +370,31 @@ export const TaskCardRepeatableFinite = () => {
       <div style={resizable}>
         <h4>A Couple Actions</h4>
         <TaskCardView
+          {...coupleActions}
           content={{ ...coupleActions.content, repeatable: true, finite: 2 }}
           states={{ ...coupleActions.states, progress: 2 }}
         />
         <h5 />
         <TaskCardView
+          {...coupleActions}
           content={{ ...coupleActions.content, repeatable: true, finite: 2 }}
           states={{ ...coupleActions.states, progress: 5 }}
         />
         <h5 />
         <TaskCardView
+          {...coupleActions}
           content={{ ...coupleActions.content, repeatable: true, finite: 2 }}
           states={{ ...coupleActions.states, progress: 10 }}
         />
         <h5 />
         <TaskCardView
+          {...coupleActions}
           content={{ ...coupleActions.content, repeatable: true, finite: 3 }}
           states={{ ...coupleActions.states, progress: 12 }}
         />
         <h5 />
         <TaskCardView
+          {...coupleActions}
           content={{ ...coupleActions.content, repeatable: true, finite: 3 }}
           states={{ ...coupleActions.states, progress: 15 }}
         />
@@ -364,26 +403,31 @@ export const TaskCardRepeatableFinite = () => {
       <div style={resizable}>
         <h4>Many Actions</h4>
         <TaskCardView
+          {...manyActions}
           content={{ ...manyActions.content, repeatable: true, finite: 2 }}
           states={{ ...manyActions.states, progress: 200 }}
         />
         <h5 />
         <TaskCardView
+          {...manyActions}
           content={{ ...manyActions.content, repeatable: true, finite: 3 }}
           states={{ ...manyActions.states, progress: 500 }}
         />
         <h5 />
         <TaskCardView
+          {...manyActions}
           content={{ ...manyActions.content, repeatable: true, finite: 2 }}
           states={{ ...manyActions.states, progress: 1000 }}
         />
         <h5 />
         <TaskCardView
+          {...manyActions}
           content={{ ...manyActions.content, repeatable: true, finite: 3 }}
           states={{ ...manyActions.states, progress: 1200 }}
         />
         <h5 />
         <TaskCardView
+          {...manyActions}
           content={{ ...manyActions.content, repeatable: true, finite: 3 }}
           states={{ ...manyActions.states, progress: 1500 }}
         />
@@ -406,25 +450,69 @@ export const TaskCardEndDate = () => {
     <div style={storyFrame}>
       <div style={resizable}>
         <h4>One Action</h4>
-        <TaskCardView {...oneAction} {...expire} /> <h5 />
-        <TaskCardView {...oneAction} {...expireRepeat} /> <h5 />
+        <TaskCardView
+          {...oneAction}
+          content={{ ...oneAction.content, ...expire }}
+        />
+        <h5 />
+        <TaskCardView
+          {...oneAction}
+          content={{ ...oneAction.content, ...expireRepeat }}
+        />
+        <h5 />
+        <TaskCardView
+          {...oneAction}
+          content={{ ...oneAction.content, ...expireRepeat }}
+          states={{ ...oneAction.states, progress: 1 }}
+        />
+        <h5 />
       </div>
       <div style={resizable}>
         <h4>A Couple Actions</h4>
-        <TaskCardView {...coupleActions} {...expire} /> <h5 />
-        <TaskCardView {...coupleActions} {...expireRepeat} /> <h5 />
+        <TaskCardView
+          {...oneAction}
+          content={{ ...coupleActions.content, ...expire }}
+        />
+        <h5 />
+        <TaskCardView
+          {...oneAction}
+          content={{ ...coupleActions.content, ...expireRepeat }}
+        />
+        <h5 />
+        <TaskCardView
+          {...oneAction}
+          content={{ ...coupleActions.content, ...expireRepeat }}
+          states={{ ...coupleActions.states, progress: 5 }}
+        />
+        <h5 />
       </div>
       <div style={resizable}>
         <h4>Many Actions</h4>
-        <TaskCardView {...manyActions} {...expire} /> <h5 />
-        <TaskCardView {...manyActions} {...expireRepeat} /> <h5 />
+        <TaskCardView
+          {...oneAction}
+          content={{ ...manyActions.content, ...expire }}
+        />
+        <h5 />
+        <TaskCardView
+          {...oneAction}
+          content={{ ...manyActions.content, ...expireRepeat }}
+        />
+        <h5 />
+        <TaskCardView
+          {...oneAction}
+          content={{ ...manyActions.content, ...expireRepeat }}
+          states={{ ...manyActions.states, progress: 1000 }}
+        />
+        <h5 />
       </div>
     </div>
   );
 };
 
 export const TaskCardLoading = () => {
-  const loading = { loading: true };
+  const loading = {
+    states: { loading: true, progress: 0, loadingEvent: false },
+  };
   return (
     <div style={storyFrame}>
       <div style={resizable}>
@@ -462,25 +550,25 @@ export const TaskCardNotStarted = () => {
         <TaskCardView
           {...oneAction}
           states={{ ...oneAction.states, progress: 0 }}
-          {...expire}
+          content={{ ...oneAction.content, ...expire }}
         />
         <h5 />
         <TaskCardView
           {...oneAction}
           states={{ ...oneAction.states, progress: 1 }}
-          {...expire}
+          content={{ ...oneAction.content, ...expire }}
         />
         <h5 />
         <TaskCardView
           {...oneAction}
           states={{ ...oneAction.states, progress: 0 }}
-          {...expireRepeat}
+          content={{ ...oneAction.content, ...expireRepeat }}
         />
         <h5 />
         <TaskCardView
           {...oneAction}
           states={{ ...oneAction.states, progress: 1 }}
-          {...expireRepeat}
+          content={{ ...oneAction.content, ...expireRepeat }}
         />
         <h5 />
       </div>
@@ -489,25 +577,25 @@ export const TaskCardNotStarted = () => {
         <TaskCardView
           {...coupleActions}
           states={{ ...coupleActions.states, progress: 1 }}
-          {...expire}
+          content={{ ...coupleActions.content, ...expire }}
         />
         <h5 />
         <TaskCardView
           {...coupleActions}
           states={{ ...coupleActions.states, progress: 1 }}
-          {...expire}
+          content={{ ...coupleActions.content, ...expire }}
         />
         <h5 />
         <TaskCardView
           {...coupleActions}
           states={{ ...coupleActions.states, progress: 1 }}
-          {...expireRepeat}
+          content={{ ...coupleActions.content, ...expireRepeat }}
         />
         <h5 />
         <TaskCardView
           {...coupleActions}
           states={{ ...coupleActions.states, progress: 1 }}
-          {...expireRepeat}
+          content={{ ...coupleActions.content, ...expireRepeat }}
         />
         <h5 />
       </div>
@@ -516,25 +604,25 @@ export const TaskCardNotStarted = () => {
         <TaskCardView
           {...manyActions}
           states={{ ...manyActions.states, progress: 100 }}
-          {...expire}
+          content={{ ...manyActions.content, ...expire }}
         />
         <h5 />
         <TaskCardView
           {...manyActions}
           states={{ ...manyActions.states, progress: 500 }}
-          {...expire}
+          content={{ ...manyActions.content, ...expire }}
         />
         <h5 />
         <TaskCardView
           {...manyActions}
           states={{ ...manyActions.states, progress: 100 }}
-          {...expireRepeat}
+          content={{ ...manyActions.content, ...expireRepeat }}
         />
         <h5 />
         <TaskCardView
           {...manyActions}
           states={{ ...manyActions.states, progress: 500 }}
-          {...expireRepeat}
+          content={{ ...manyActions.content, ...expireRepeat }}
         />
         <h5 />
       </div>
@@ -558,25 +646,25 @@ export const TaskCardEnded = () => {
         <TaskCardView
           {...oneAction}
           states={{ ...oneAction.states, progress: 0 }}
-          {...expire}
+          content={{ ...oneAction.content, ...expire }}
         />
         <h5 />
         <TaskCardView
           {...oneAction}
           states={{ ...oneAction.states, progress: 1 }}
-          {...expire}
+          content={{ ...oneAction.content, ...expire }}
         />
         <h5 />
         <TaskCardView
           {...oneAction}
           states={{ ...oneAction.states, progress: 0 }}
-          {...expireRepeat}
+          content={{ ...oneAction.content, ...expireRepeat }}
         />
         <h5 />
         <TaskCardView
           {...oneAction}
           states={{ ...oneAction.states, progress: 1 }}
-          {...expireRepeat}
+          content={{ ...oneAction.content, ...expireRepeat }}
         />
         <h5 />
       </div>
@@ -585,25 +673,25 @@ export const TaskCardEnded = () => {
         <TaskCardView
           {...coupleActions}
           states={{ ...coupleActions.states, progress: 1 }}
-          {...expire}
-        />
-        <h5 />
-        <TaskCardView
-          {...coupleActions}
-          states={{ ...coupleActions.states, progress: 5 }}
-          {...expire}
+          content={{ ...coupleActions.content, ...expire }}
         />
         <h5 />
         <TaskCardView
           {...coupleActions}
           states={{ ...coupleActions.states, progress: 1 }}
-          {...expireRepeat}
+          content={{ ...coupleActions.content, ...expire }}
         />
         <h5 />
         <TaskCardView
           {...coupleActions}
-          states={{ ...coupleActions.states, progress: 5 }}
-          {...expireRepeat}
+          states={{ ...coupleActions.states, progress: 1 }}
+          content={{ ...coupleActions.content, ...expireRepeat }}
+        />
+        <h5 />
+        <TaskCardView
+          {...coupleActions}
+          states={{ ...coupleActions.states, progress: 1 }}
+          content={{ ...coupleActions.content, ...expireRepeat }}
         />
         <h5 />
       </div>
@@ -612,25 +700,25 @@ export const TaskCardEnded = () => {
         <TaskCardView
           {...manyActions}
           states={{ ...manyActions.states, progress: 100 }}
-          {...expire}
+          content={{ ...manyActions.content, ...expire }}
         />
         <h5 />
         <TaskCardView
           {...manyActions}
           states={{ ...manyActions.states, progress: 500 }}
-          {...expire}
+          content={{ ...manyActions.content, ...expire }}
         />
         <h5 />
         <TaskCardView
           {...manyActions}
           states={{ ...manyActions.states, progress: 100 }}
-          {...expireRepeat}
+          content={{ ...manyActions.content, ...expireRepeat }}
         />
         <h5 />
         <TaskCardView
           {...manyActions}
           states={{ ...manyActions.states, progress: 500 }}
-          {...expireRepeat}
+          content={{ ...manyActions.content, ...expireRepeat }}
         />
         <h5 />
       </div>

@@ -24,7 +24,7 @@ function niceParseToHsla(color: string): [number, number, number, number] {
     const [h, s, l, a] = Array.from(hslaMatch).slice(1).map(parseFloat);
     if (guard(0, 100, s) !== s) throw new ColorError(color);
     if (guard(0, 100, l) !== l) throw new ColorError(color);
-    return [h, s, l, a || 1] as [number, number, number, number];
+    return [h, s/100, l, a || 1] as [number, number, number, number];
   }
 
   // Warning -- converts to RGB first, so is lossy

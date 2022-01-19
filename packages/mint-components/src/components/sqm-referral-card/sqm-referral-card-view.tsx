@@ -1,21 +1,17 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
-
-export interface CardFeedViewProps {
+export interface ReferralCardViewProps {
   width: number;
   gap: number;
 }
 
-export function CardFeedView(props: CardFeedViewProps, children: VNode) {
+export function ReferralCardView(
+  props: ReferralCardViewProps,
+  children: VNode
+) {
   const style = {
-    Container: {
-      columnGap: props.gap + "px",
-      columnWidth: props.width + "px",
-      "& > div": {
-        marginBottom: "24px",
-      },
-    },
+    Container: {},
   };
 
   const sheet = createStyleSheet(style);
@@ -27,7 +23,6 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
     :host{
       display: block;   
     }
-
   `;
 
   return (

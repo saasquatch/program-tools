@@ -23,6 +23,7 @@ export type TaskCardViewProps = {
     showExpiry: boolean;
     expiryMessage: string;
     rewardDuration: string;
+    displayDuration?: string;
     startsOnMessage: string;
     endedMessage: string;
     rewardUnit: string;
@@ -30,6 +31,7 @@ export type TaskCardViewProps = {
     buttonLink: string;
     openNewTab: boolean;
     eventKey?: string;
+    locale: string;
   };
   states: {
     loading: boolean;
@@ -81,6 +83,7 @@ const style = {
     },
   },
   NotStarted: {
+    fontSize: "var(--sl-font-size-small)",
     padding: "var(--sl-spacing-medium)",
     color: "var(--sl-color-primary-600)",
     border: "1px solid var(--sl-color-neutral-200)",
@@ -98,6 +101,7 @@ const style = {
     },
   },
   Ended: {
+    fontSize: "var(--sl-font-size-small)",
     padding: "var(--sl-spacing-medium)",
     color: "var(--sl-color-warning-600)",
     border: "1px solid var(--sl-color-neutral-200)",
@@ -161,6 +165,7 @@ const style = {
       marginTop: "auto",
       verticalAlign: "text-bottom",
       fontSize: "var(--sl-font-size-x-small)",
+      color: "var(--sl-color-neutral-400)",
     },
     "& .success": {
       color: "var(--sl-color-primary-500)",
@@ -183,7 +188,12 @@ const style = {
       },
     },
     "& .neutral": {
-      color: "var(--sl-color-neutral-600)",
+      color: "var(--sl-color-neutral-400)",
+    },
+    "& .datetime": {
+      display: "block",
+      marginTop: "var(--sl-spacing-xx-small)",
+      color: "var(--sl-color-neutral-400)",
     },
   },
 };
@@ -195,14 +205,6 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   console.log("TASK CARD PROPS " + props?.content?.cardTitle);
   console.log({ props });
   const { callbacks, states, content } = props;
-  const checkmark_circle = SVGs.checkmark_circle();
-  const checkmark_filled = SVGs.checkmark_filled();
-  const arrow_left_right = SVGs.arrow_left_right();
-
-  const showComplete = states.progress >= content.goal;
-  const repetitions = content.showProgressBar
-    ? Math.floor(states.progress / content.goal)
-    : states.progress;
 
   const dateStart =
     content.showExpiry &&
@@ -211,6 +213,26 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     content.showExpiry &&
     DateTime.fromISO(content.rewardDuration.split("/")[1]);
   const dateToday = DateTime.now();
+
+  if (content.displayDuration) {
+    const start = content.displayDuration.split("/")?.[0];
+    const end = content.displayDuration.split("/")?.[1];
+    const displayDateStart = start ? DateTime.fromISO(start) : dateToday;
+    const displayDateEnd = end ? DateTime.fromISO(end) : dateToday;
+
+    console.log({ displayDateStart, dateToday, displayDateEnd });
+    if (dateToday < displayDateStart || dateToday > displayDateEnd)
+      return <span></span>;
+  }
+
+  const checkmark_circle = SVGs.checkmark_circle();
+  const checkmark_filled = SVGs.checkmark_filled();
+  const arrow_left_right = SVGs.arrow_left_right();
+
+  const showComplete = states.progress >= content.goal;
+  const repetitions = content.showProgressBar
+    ? Math.floor(states.progress / content.goal)
+    : states.progress;
 
   const taskComplete =
     (showComplete && content.repeatable === false) ||
@@ -244,7 +266,22 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               defaultMessage: content.startsOnMessage,
             },
             {
-              startDate: dateStart.toLocaleString(DateTime.DATE_MED),
+              startDate: content.locale.includes("en")
+                ? dateStart
+                    .toLocaleString(DateTime.DATETIME_MED)
+                    .split(",")
+                    .slice(0, 2)
+                    .join(",") +
+                  " at " +
+                  dateStart
+                    .toLocaleString(DateTime.DATETIME_MED)
+                    .split(",")
+                    .slice(2)
+                    .join(",")
+                    .toLowerCase()
+                : dateStart
+                    .setLocale(content.locale)
+                    .toLocaleString(DateTime.DATETIME_MED),
             }
           )}
         </div>
@@ -260,7 +297,22 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               defaultMessage: content.endedMessage,
             },
             {
-              endDate: dateEnd.toLocaleString(DateTime.DATE_MED),
+              endDate: content.locale.includes("en")
+                ? dateEnd
+                    .toLocaleString(DateTime.DATETIME_MED)
+                    .split(",")
+                    .slice(0, 2)
+                    .join(",") +
+                  " at " +
+                  dateEnd
+                    .toLocaleString(DateTime.DATETIME_MED)
+                    .split(",")
+                    .slice(2)
+                    .join(",")
+                    .toLowerCase()
+                : dateEnd
+                    .setLocale(content.locale)
+                    .toLocaleString(DateTime.DATETIME_MED),
             }
           )}
         </div>
@@ -381,14 +433,29 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                     </div>
                   )}
                   {content.showExpiry && !taskUnavailable && (
-                    <span>
+                    <span class="datetime">
                       {intl.formatMessage(
                         {
                           id: "expiryMessage",
                           defaultMessage: content.expiryMessage,
                         },
                         {
-                          endDate: dateEnd.toLocaleString(DateTime.DATE_FULL),
+                          endDate: content.locale.includes("en")
+                            ? dateEnd
+                                .toLocaleString(DateTime.DATETIME_MED)
+                                .split(",")
+                                .slice(0, 2)
+                                .join(",") +
+                              " at " +
+                              dateEnd
+                                .toLocaleString(DateTime.DATETIME_MED)
+                                .split(",")
+                                .slice(2)
+                                .join(",")
+                                .toLowerCase()
+                            : dateEnd
+                                .setLocale(content.locale)
+                                .toLocaleString(DateTime.DATETIME_MED),
                         }
                       )}
                     </span>
