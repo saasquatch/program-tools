@@ -50,7 +50,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
     }
     *::part(label) {
       position: relative;
-	  top: 1px;
+	  top: 5%;
     }
   `;
 
