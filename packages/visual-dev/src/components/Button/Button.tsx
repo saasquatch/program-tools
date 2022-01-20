@@ -6,7 +6,7 @@ import * as Styles from "./Styles";
 
 type ButtonProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"button">, "translate"|"css">;
+  Omit<React.ComponentProps<"button">, "translate" | "css" | "loading">;
 
 export interface OptionProps {
   icon?: IconKey;
@@ -24,7 +24,9 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const StyledButton = styled.button<Required<StyleProps>>`
+const StyledButton = styled.button<
+  Required<Omit<StyleProps, "loading">> & { isLoading: boolean }
+>`
   ${Styles.base}
   ${(props) => Styles[props.buttonType]}
   ${(props) => props.pill && Styles.pill}
@@ -34,7 +36,7 @@ const StyledButton = styled.button<Required<StyleProps>>`
   ${(props) => props.critical && Styles[`${props.buttonType}_critical`]}
   ${(props) => props.success && Styles[`${props.buttonType}_success`]}
   ${(props) =>
-    props.loading &&
+    props.isLoading &&
     props.buttonType != "text" &&
     Styles[`${props.buttonType}_loading`]}
   ${(props) => props.customCSS}
@@ -61,7 +63,7 @@ export const Button = React.forwardRef<React.ElementRef<"button">, ButtonProps>(
         {...rest}
         buttonType={buttontype}
         pill={pill}
-        loading={loading}
+        isLoading={loading}
         critical={critical}
         success={success}
         size={size}
