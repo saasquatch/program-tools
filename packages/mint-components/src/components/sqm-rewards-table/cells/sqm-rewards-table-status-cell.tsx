@@ -2,6 +2,7 @@ import { Component, h, Prop } from "@stencil/core";
 import { DateTime } from "luxon";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
+import { luxonLocale } from "../../../utils/utils";
 
 @Component({
   tag: "sqm-rewards-table-status-cell",
@@ -95,7 +96,7 @@ export class RewardTableStatusCell {
           ? this.expiryText + " "
           : ""
       }${DateTime.fromMillis(dateShown)
-        ?.setLocale(this.locale)
+        ?.setLocale(luxonLocale(luxonLocale(this.locale)))
         .toLocaleString(DateTime.DATE_MED)}`;
 
     return (

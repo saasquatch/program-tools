@@ -172,11 +172,6 @@ export class TaskCard {
   @Prop() programId: string;
 
   /**
-   * @uiName Locale
-   */
-  @Prop() locale: string = "en";
-
-  /**
    * @undocumented
    * @uiType object
    */
@@ -200,7 +195,12 @@ export class TaskCard {
     return (
       <TaskCardView
         callbacks={callbacks}
-        states={{ loading, loadingEvent: states.loadingEvent, progress: value }}
+        states={{
+          loading,
+          loadingEvent: states.loadingEvent,
+          progress: value,
+          locale: states.locale,
+        }}
         content={{ ...getProps(this) }}
       ></TaskCardView>
     );
@@ -210,7 +210,7 @@ export class TaskCard {
 function useTaskCardDemo(props: TaskCard) {
   return deepmerge(
     {
-      states: { loadingEvent: false },
+      states: { loadingEvent: false, locale: "en" },
       callbacks: {
         sendEvent: (event: string) => console.log(event),
         onClick: () => console.log("clicked"),

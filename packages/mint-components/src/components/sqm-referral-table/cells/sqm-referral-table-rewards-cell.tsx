@@ -3,6 +3,7 @@ import { DateTime } from "luxon";
 import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 import { createStyleSheet } from "../../../styling/JSS";
 import { intl } from "../../../global/global";
+import { luxonLocale } from "../../../utils/utils";
 
 @Component({
   tag: "sqm-referral-table-rewards-cell",
@@ -151,7 +152,7 @@ export class ReferralTableRewardsCell {
     const getTimeDiff = (endTime: number): string => {
       // Current implementation only calculates the difference from current time
       return DateTime.fromMillis(endTime)
-        .setLocale(this.locale)
+        .setLocale(luxonLocale(this.locale))
         .toRelative()
         .replace("in", "")
         .trim();
@@ -249,9 +250,9 @@ export class ReferralTableRewardsCell {
                     <TextSpanView type="p">
                       {this.rewardReceivedText}{" "}
                       <span class={sheet.classes.BoldText}>
-                        {DateTime.fromMillis(reward.dateGiven).setLocale(this.locale).toLocaleString(
-                          DateTime.DATE_MED
-                        )}
+                        {DateTime.fromMillis(reward.dateGiven)
+                          .setLocale(luxonLocale(this.locale))
+                          .toLocaleString(DateTime.DATE_MED)}
                       </span>
                     </TextSpanView>
                   </div>
@@ -261,9 +262,9 @@ export class ReferralTableRewardsCell {
                     <TextSpanView type="p">
                       {statusText}{" "}
                       <span class={sheet.classes.BoldText}>
-                        {DateTime.fromMillis(reward.dateExpires).setLocale(this.locale).toLocaleString(
-                          DateTime.DATE_MED
-                        )}
+                        {DateTime.fromMillis(reward.dateExpires)
+                          .setLocale(luxonLocale(this.locale))
+                          .toLocaleString(DateTime.DATE_MED)}
                       </span>
                     </TextSpanView>
                   </div>
@@ -273,9 +274,9 @@ export class ReferralTableRewardsCell {
                     <TextSpanView type="p">
                       {statusText}{" "}
                       <span class={sheet.classes.BoldText}>
-                        {DateTime.fromMillis(
-                          reward.dateCancelled
-                        ).setLocale(this.locale).toLocaleString(DateTime.DATE_MED)}
+                        {DateTime.fromMillis(reward.dateCancelled)
+                          .setLocale(luxonLocale(this.locale))
+                          .toLocaleString(DateTime.DATE_MED)}
                       </span>
                     </TextSpanView>
                   </div>
@@ -285,9 +286,9 @@ export class ReferralTableRewardsCell {
                     <TextSpanView type="p">
                       {statusText}{" "}
                       <span class={sheet.classes.BoldText}>
-                        {DateTime.fromMillis(
-                          reward.dateScheduledFor
-                        ).setLocale(this.locale).toLocaleString(DateTime.DATE_MED)}
+                        {DateTime.fromMillis(reward.dateScheduledFor)
+                          .setLocale(luxonLocale(this.locale))
+                          .toLocaleString(DateTime.DATE_MED)}
                       </span>
                     </TextSpanView>
                   </div>
@@ -298,9 +299,9 @@ export class ReferralTableRewardsCell {
                     <TextSpanView type="p">
                       {statusText}{" "}
                       <span class={sheet.classes.BoldText}>
-                        {DateTime.fromMillis(reward.dateExpires).setLocale(this.locale).toLocaleString(
-                          DateTime.DATE_MED
-                        )}
+                        {DateTime.fromMillis(reward.dateExpires)
+                          .setLocale(luxonLocale(this.locale))
+                          .toLocaleString(DateTime.DATE_MED)}
                       </span>
                     </TextSpanView>
                   </div>

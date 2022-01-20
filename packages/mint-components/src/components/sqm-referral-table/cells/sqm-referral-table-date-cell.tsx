@@ -1,6 +1,7 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import { DateTime } from "luxon";
+import { luxonLocale } from "../../../utils/utils";
 import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 
 @Component({
@@ -19,11 +20,10 @@ export class ReferralTableDateCell {
   disconnectedCallback() {}
 
   render() {
-    // needs hook to use locale
     const date = !this.date
       ? "-"
       : DateTime.fromMillis(this.date)
-          ?.setLocale(this.locale)
+          ?.setLocale(luxonLocale(this.locale))
           .toLocaleString(DateTime.DATE_MED);
 
     return date;

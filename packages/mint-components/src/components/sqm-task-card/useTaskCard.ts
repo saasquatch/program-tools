@@ -2,6 +2,7 @@ import {
   useMutation,
   useUserIdentity,
   useRefreshDispatcher,
+  useLocale,
 } from "@saasquatch/component-boilerplate";
 import { useEffect } from "@saasquatch/stencil-hooks";
 import { gql } from "graphql-request";
@@ -17,7 +18,7 @@ const SEND_EVENT = gql`
 
 export function useTaskCard(props: TaskCard) {
   const user = useUserIdentity();
-
+  const locale = useLocale();
   const [sendUserEvent, { data, loading: loadingEvent }] =
     useMutation(SEND_EVENT);
 
@@ -50,7 +51,7 @@ export function useTaskCard(props: TaskCard) {
   }
 
   return {
-    states: { loadingEvent },
+    states: { loadingEvent, locale },
     callbacks: { sendEvent, onClick },
   };
 }
