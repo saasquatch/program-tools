@@ -62,6 +62,11 @@ export class Leaderboard {
   @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
 
   /**
+   * @uiName Title displayed for users without names
+   */
+  @Prop() anonymousUser: string = "Anonymous";
+
+  /**
    * @uiName Leaderboard time interval
    * @uiWidget DateRange
    * @uiOptions {"allowPastDates":true, "months": 1}
@@ -93,6 +98,8 @@ export class Leaderboard {
       statsheading: this.statsheading,
       rankType: this.rankType,
       leaderboardType: this.leaderboardType,
+      anonymousUser: this.anonymousUser,
+      emptyStateText: this.emptyStateText,
       interval: this.interval,
       showUser: this.showUser,
       showRank: this.showRank,

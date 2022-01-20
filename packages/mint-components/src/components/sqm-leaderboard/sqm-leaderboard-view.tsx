@@ -44,7 +44,7 @@ function empty(styles) {
         <th class="Score">{styles.statsheading}</th>
       </tr>
       <tr>
-        <td colSpan={100}>No Users</td>
+        <td colSpan={100}>{styles.emptyStateText}</td>
       </tr>
     </table>
   );
