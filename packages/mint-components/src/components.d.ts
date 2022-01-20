@@ -332,7 +332,7 @@ export namespace Components {
          */
         "minHeight": string;
         /**
-          * @uiName Image Link
+          * @uiName Overlay Color
          */
         "overlayColor": string;
         /**
@@ -2518,7 +2518,7 @@ declare namespace LocalJSX {
          */
         "minHeight"?: string;
         /**
-          * @uiName Image Link
+          * @uiName Overlay Color
          */
         "overlayColor"?: string;
         /**
