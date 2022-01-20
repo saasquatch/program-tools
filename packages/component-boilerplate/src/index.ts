@@ -1,7 +1,7 @@
 /**
  * Identity and environment
  */
-export {
+ export {
   /*
    * Identity
    */
@@ -22,6 +22,7 @@ export {
    */
   useEngagementMedium,
   useLocale,
+  setLocale,
 } from "./environment";
 export { useAuthenticateWithEmailAndPasswordMutation } from "./hooks/managedIdentity/useAuthenticateWithEmailAndPasswordMutation";
 export { useRegisterWithEmailAndPasswordMutation } from "./hooks/managedIdentity/useRegisterWithEmailAndPasswordMutation";
