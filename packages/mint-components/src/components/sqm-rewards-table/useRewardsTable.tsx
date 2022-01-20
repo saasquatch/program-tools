@@ -1,4 +1,5 @@
 import {
+  useLocale,
   usePaginatedQuery,
   useProgramId,
   useUserIdentity,
@@ -18,6 +19,7 @@ const GET_REWARDS = gql`
     $limit: Int!
     $offset: Int!
     $rewardFilter: RewardFilterInput
+    $locale: RSLocale
   ) {
     viewer {
       ... on User {
@@ -39,26 +41,31 @@ const GET_REWARDS = gql`
             fuelTankCode
             fuelTankType
             currency
-            prettyValue
-            prettyValueNumber: prettyValue(formatType: NUMBER_FORMATTED)
+            prettyValue(locale: $locale)
+            prettyValueNumber: prettyValue(
+              formatType: NUMBER_FORMATTED
+              locale: $locale
+            )
             prettyAvailableNumber: prettyAvailableValue(
               formatType: NUMBER_FORMATTED
+              locale: $locale
             )
             prettyRedeemedNumber: prettyRedeemedCredit(
               formatType: NUMBER_FORMATTED
+              locale: $locale
             )
             programId
             statuses
             globalRewardKey
             programRewardKey
             rewardSource
-            prettyRedeemedCredit
-            prettyAssignedCredit
-            prettyAvailableValue
+            prettyRedeemedCredit(locale: $locale)
+            prettyAssignedCredit(locale: $locale)
+            prettyAvailableValue(locale: $locale)
             exchangedRewardRedemptionTransaction {
               id
               creditRedeemed
-              prettyRedeemedCredit
+              prettyRedeemedCredit(locale: $locale)
               unit
               dateRedeemed
             }
@@ -79,7 +86,7 @@ const GET_REWARDS = gql`
               data {
                 exchangedRewards {
                   data {
-                    prettyValue
+                    prettyValue(locale: $locale)
                     type
                     fuelTankCode
                     globalRewardKey
@@ -101,6 +108,7 @@ export function useRewardsTable(
 ): RewardsTableViewProps {
   const user = useUserIdentity();
   const programIdContext = useProgramId();
+  const locale = useLocale();
   // Default to context, overriden by props
   const programId = props.programId ?? programIdContext;
 
@@ -116,7 +124,7 @@ export function useRewardsTable(
   };
 
   const [content, setContent] = useReducer<
-  RewardsTableViewProps["elements"],
+    RewardsTableViewProps["elements"],
     Partial<RewardsTableViewProps["elements"]>
   >(
     (state, next) => ({
@@ -144,6 +152,7 @@ export function useRewardsTable(
     },
     {
       rewardFilter,
+      locale,
     },
     !user?.jwt
   );
