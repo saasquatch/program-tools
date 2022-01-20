@@ -54,10 +54,14 @@ export interface OptionProps<ItemType> {
   /**
    * Limit the width of the input
    */
-  limitWidth?: InputWidthType;
+  limitWidth?: SizeType;
+  /**
+   * Limit the width of the input
+   */
+  limitHeight?: SizeType;
 }
 
-type InputWidthType = boolean | string;
+type SizeType = boolean | string;
 
 type ItemTypeBase = { description?: string } | string | number | boolean;
 
@@ -69,7 +73,8 @@ function isComplexItem(item: any): item is ComplexItemType {
 
 const ItemContainer = styled.ul<{
   errors: any;
-  limitWidth: InputWidthType;
+  limitWidth: SizeType;
+  limitHeight: SizeType;
 }>`
   ${Styles.ItemContainer}
   ${(props) =>
@@ -81,6 +86,12 @@ const ItemContainer = styled.ul<{
         ? `max-width: ${props.limitWidth};`
         : "max-width: 300px;"
       : "max-width: 100%;"}
+  ${(props) =>
+    props.limitHeight
+      ? typeof props.limitHeight === "string"
+        ? `max-height: ${props.limitHeight};`
+        : "max-height: 200px;"
+      : "max-height: auto;"}
 `;
 
 const Item = styled("li")`
@@ -96,7 +107,7 @@ const ItemDescription = styled("span")`
 `;
 
 const Container = styled("div")<{
-  limitWidth: InputWidthType;
+  limitWidth: SizeType;
 }>`
   ${Styles.Container}
   ${(props) =>
@@ -173,6 +184,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
     loading = false,
     placeholder = "",
     limitWidth = true,
+    limitHeight = false,
     functional,
     items,
     itemToString = (item: ItemType) => {
@@ -361,6 +373,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
       )}
       <ItemContainer
         limitWidth={limitWidth}
+        limitHeight={limitHeight}
         errors={errors}
         {...functional.getMenuProps()}
       >

@@ -61,6 +61,50 @@ export const CustomWidth = () => {
   );
 };
 
+export const LimitHeight = () => {
+  const items = [
+    "Salt Spring",
+    "Galiano",
+    "Saturna",
+    "Sidney",
+    "Gabriola",
+    "Mayne",
+    "Pender",
+  ];
+  const functional = useSelect({ items });
+  const props = { limitHeight: true, items, functional };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <Select {...props}></Select>
+    </div>
+  );
+};
+
+export const CustomHeight = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const functional = useSelect({ items });
+  const props = { limitHeight: "100px", items, functional };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <Select {...props}></Select>
+    </div>
+  );
+};
+
 export const LongItemName = () => {
   const items = [
     "Salt Spring",

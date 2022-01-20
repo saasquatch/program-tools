@@ -48,7 +48,7 @@ export const FullWidth = () => {
       );
     },
   });
-  const props = {limitWidth:false, items: inputItems, functional };
+  const props = { limitWidth: false, items: inputItems, functional };
   return (
     <div
       style={{
@@ -76,7 +76,71 @@ export const CustomWidth = () => {
       );
     },
   });
-  const props = {limitWidth:"600px", items: inputItems, functional };
+  const props = { limitWidth: "600px", items: inputItems, functional };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <Select {...props}></Select>
+    </div>
+  );
+};
+
+export const LimitHeight = () => {
+  const items = [
+    "Salt Spring",
+    "Galiano",
+    "Saturna",
+    "Sidney",
+    "Gabriola",
+    "Mayne",
+    "Pender",
+  ];
+  const [inputItems, setInputItems] = useState(items);
+  const functional = useCombobox({
+    items: inputItems,
+    onInputValueChange: ({ inputValue }) => {
+      setInputItems(
+        items.filter((item) =>
+          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
+        )
+      );
+    },
+  });
+  const props = { limitHeight: true, items: inputItems, functional };
+  return (
+    <div
+      style={{
+        resize: "both",
+        height: "400px",
+        overflow: "auto",
+        margin: "100px",
+      }}
+    >
+      <Select {...props}></Select>
+    </div>
+  );
+};
+
+export const CustomHeight = () => {
+  const items = ["Salt Spring", "Gabriola", "Mayne", "Pender"];
+  const [inputItems, setInputItems] = useState(items);
+  const functional = useCombobox({
+    items: inputItems,
+    onInputValueChange: ({ inputValue }) => {
+      setInputItems(
+        items.filter((item) =>
+          item.toLowerCase().startsWith(inputValue?.toLowerCase() || "")
+        )
+      );
+    },
+  });
+  const props = { limitHeight: "100px", items: inputItems, functional };
   return (
     <div
       style={{

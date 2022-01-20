@@ -28,6 +28,7 @@ export const ItemContainer = css`
   border-top: none;
   top: 33px;
   outline: none;
+  overflow-y: auto;
 
   &:empty {
     border: none;
