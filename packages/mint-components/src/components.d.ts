@@ -1260,7 +1260,7 @@ export namespace Components {
           * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
          */
         "dateShown": string;
-        "renderCell": (data: Reward[]) => Promise<any>;
+        "renderCell": (data: Reward[], locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableRewardCell {

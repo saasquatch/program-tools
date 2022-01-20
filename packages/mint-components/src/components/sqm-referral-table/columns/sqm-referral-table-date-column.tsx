@@ -38,6 +38,8 @@ export class ReferralTableDateColumn implements ReferralTableColumn {
   @Method()
   async renderCell(data: Referral, locale: string) {
     // TODO - Validate `dateShown` against a set of known values
+
+    console.log("date column - referral", {locale})
     return (
       <sqm-referral-table-date-cell
         date={data[this.dateShown]}

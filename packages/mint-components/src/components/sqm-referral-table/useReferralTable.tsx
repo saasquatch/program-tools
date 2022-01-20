@@ -260,6 +260,7 @@ export function useReferralTable(
     {
       referralFilter,
       rewardFilter,
+      locale,
     },
     (props.showReferrer && referrerLoading && !referrerResponse) || !user?.jwt
   );

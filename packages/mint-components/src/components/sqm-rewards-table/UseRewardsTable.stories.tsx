@@ -37,12 +37,9 @@ function setupGraphQL() {
   return { id, accountId };
 }
 
-function setupGraphQLKlip() {
-  const id = "sam+klip@saasquat.ch";
+function setupGraphQLKlip({ token, id }) {
   const accountId = id;
   // const programId = "klip-referral-program";
-  const JWT =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InNhbStrbGlwQHNhYXNxdWF0LmNoIiwiaWQiOiJzYW0ra2xpcEBzYWFzcXVhdC5jaCIsImVtYWlsIjoic2FtK2tsaXBAc2Fhc3F1YXQuY2giLCJsb2NhbGUiOiJlbiJ9fQ.a2nYYrSJ81FHXlCU-Sqp_-wquQizinHBhzwzULDzimg";
 
   //@ts-ignore
   window.widgetIdent = {
@@ -54,7 +51,7 @@ function setupGraphQLKlip() {
     setUserIdentity({
       accountId,
       id,
-      jwt: JWT,
+      jwt: token,
     });
     return () => {
       window.widgetIdent = undefined;
@@ -102,8 +99,12 @@ export const RewardsTableNoProgram = createHookStory(() => {
   );
 });
 
-export const RewardsTablePoints = createHookStory(() => {
-  setupGraphQLKlip();
+export const RewardsTableEn = createHookStory(() => {
+  setupGraphQLKlip({
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InNhbWVuZ2xpc2giLCJpZCI6InNhbWVuZ2xpc2gifX0._6OTVF3gcipu_ibgthUNr5UHwC-2E_lhCENI5HpYvcw",
+    id: "samenglish",
+  });
   setProgramId(undefined);
   const props = {
     listType: "",
@@ -115,8 +116,94 @@ export const RewardsTablePoints = createHookStory(() => {
     <sqm-rewards-table per-page="4">
       <sqm-rewards-table-reward-column></sqm-rewards-table-reward-column>
       <sqm-rewards-table-status-column></sqm-rewards-table-status-column>
-      <sqm-rewards-table-source-column reward-source-text="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programId, select, klip-loyalty {Klip Loyalty} other {Program} }} other {}}"></sqm-rewards-table-source-column>
+      <sqm-rewards-table-source-column></sqm-rewards-table-source-column>
       <sqm-rewards-table-date-column></sqm-rewards-table-date-column>
+    </sqm-rewards-table>
+  );
+});
+
+export const RewardsTableTr = createHookStory(() => {
+  setupGraphQLKlip({
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InNhbXR1cmtleSIsImlkIjoic2FtdHVya2V5In19.usSMe0RWg8W5FtwcvJayvAlxTw6vMxjTyWXaP8jI8_U",
+    id: "samturkey",
+  });
+  setProgramId(undefined);
+  const props = {
+    listType: "",
+    render: () => {},
+    disconnectedCallback: () => {},
+    ignored: true,
+  };
+  return (
+    <sqm-rewards-table
+      per-page="4"
+      more-label="Daha"
+      prev-label="Öncesi"
+      empty-state-text="Henüz Referans Yok"
+    >
+      <sqm-rewards-table-reward-column
+        column-title="Ödüller"
+        redeemed-text="{redeemedAmount} kullanıldı"
+        available-text="{availableAmount} mevcut"
+      ></sqm-rewards-table-reward-column>
+      <sqm-rewards-table-source-column
+        column-title="Kullanıcılar"
+        anonymous-user="Anonim Kullanıcı"
+        deleted-user="Silinmiş Kullanıcı"
+        reward-exchange-text="Ödülleri Kulannın"
+        referral-text="{rewardSource, select, FRIEND_SIGNUP {Referans} REFERRED {Yönlendiren} other {}}"
+        reward-source-text="{rewardSource, select, MANUAL {Manuel} AUTOMATED {Otomatik} other {}}"
+      ></sqm-rewards-table-source-column>
+      <sqm-rewards-table-status-column
+        column-title="Statut"
+        status-text="{status, select, AVAILABLE {Mevcut} PENDING {Bekleniyor} EXPIRED {Geçmiş} REDEEMED {Kullanılmış} CANCELED {İptal Edildi} other {Kullanılamaz} }"
+        expiry-text="Bitiyor "
+      ></sqm-rewards-table-status-column>
+      <sqm-rewards-table-date-column column-title="Tarih"></sqm-rewards-table-date-column>
+    </sqm-rewards-table>
+  );
+});
+
+export const RewardsTableFr = createHookStory(() => {
+  setupGraphQLKlip({
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InNhbWZyZW5jaCIsImlkIjoic2FtZnJlbmNoIn19.cwhasHpfU5MLV4vGbCQcazb6p19iSw5pD2zyrVHgePg",
+    id: "samfrench",
+  });
+  setProgramId(undefined);
+  const props = {
+    listType: "",
+    render: () => {},
+    disconnectedCallback: () => {},
+    ignored: true,
+  };
+  return (
+    <sqm-rewards-table
+      per-page="4"
+      more-label="Plus"
+      prev-label="Précédent"
+      empty-state-text="Aucune Récompenses Maintenant"
+    >
+      <sqm-rewards-table-reward-column
+        column-title="Récompenses"
+        redeemed-text="{redeemedAmount} rachetée"
+        available-text="{availableAmount} disponible"
+      ></sqm-rewards-table-reward-column>
+      <sqm-rewards-table-source-column
+        column-title="Utilisateur"
+        anonymous-user="Utilisateur Anonyme"
+        deleted-user="Utilisateur Supprimé"
+        reward-exchange-text="Échange de Récompenses"
+        referral-text="{rewardSource, select, FRIEND_SIGNUP {Référence à} REFERRED {Référencé par} other {}}"
+        reward-source-text="{rewardSource, select, MANUAL {Manuel} AUTOMATED {Automatique} other {}}"
+      ></sqm-rewards-table-source-column>
+      <sqm-rewards-table-status-column
+        column-title="Statut"
+        status-text="{status, select, AVAILABLE {Disponible} PENDING {Pendant} EXPIRED {Expiré} REDEEMED {Racheté} CANCELED {Annulé} other {Indisponible} }"
+        expiry-text="Expire sur "
+      ></sqm-rewards-table-status-column>
+      <sqm-rewards-table-date-column column-title="Date de Réception"></sqm-rewards-table-date-column>
     </sqm-rewards-table>
   );
 });

@@ -37,6 +37,30 @@ function setupGraphQL() {
   return { id, accountId };
 }
 
+function setupGraphQLKlip({ token, id }) {
+  const accountId = id;
+  // const programId = "klip-referral-program";
+
+  //@ts-ignore
+  window.widgetIdent = {
+    tenantAlias: "test_a74miwdpofztj",
+    appDomain: "https://staging.referralsaasquatch.com",
+    // programId,
+  };
+  useEffect(() => {
+    setUserIdentity({
+      accountId,
+      id,
+      jwt: token,
+    });
+    return () => {
+      window.widgetIdent = undefined;
+      setUserIdentity(undefined);
+    };
+  }, []);
+
+  return { id, accountId };
+}
 export const ReferralTable = createHookStory(() => {
   setupGraphQL();
   setProgramId("sam-partner-test-2");
@@ -52,6 +76,110 @@ export const ReferralTable = createHookStory(() => {
       <sqm-referral-table-status-column></sqm-referral-table-status-column>
       <sqm-referral-table-date-column></sqm-referral-table-date-column>
       <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+    </sqm-referral-table>
+  );
+});
+
+export const ReferralTableEn = createHookStory(() => {
+  setupGraphQLKlip({
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InNhbWVuZ2xpc2giLCJpZCI6InNhbWVuZ2xpc2gifX0._6OTVF3gcipu_ibgthUNr5UHwC-2E_lhCENI5HpYvcw",
+    id: "samenglish",
+  });
+  setProgramId("klip-referral-program");
+  const props = {
+    listType: "",
+    render: () => {},
+    disconnectedCallback: () => {},
+    ignored: true,
+  };
+  return (
+    <sqm-referral-table per-page="4">
+      <sqm-referral-table-user-column column-title="User"></sqm-referral-table-user-column>
+      <sqm-referral-table-status-column column-title="Referral Status"></sqm-referral-table-status-column>
+      <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+      <sqm-referral-table-date-column
+        column-title="Date Referred"
+        date-shown="dateReferralStarted"
+      ></sqm-referral-table-date-column>
+    </sqm-referral-table>
+  );
+});
+
+export const ReferralTableTr = createHookStory(() => {
+  setupGraphQLKlip({
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InNhbXR1cmtleSIsImlkIjoic2FtdHVya2V5In19.usSMe0RWg8W5FtwcvJayvAlxTw6vMxjTyWXaP8jI8_U",
+    id: "samturkey",
+  });
+  setProgramId("klip-referral-program");
+  const props = {
+    listType: "",
+    render: () => {},
+    disconnectedCallback: () => {},
+    ignored: true,
+  };
+  return (
+    <sqm-referral-table
+      more-label="Daha"
+      prev-label="Öncesi"
+      empty-state-text="Henüz Ödül Yok"
+      per-page="4"
+    >
+      <sqm-referral-table-user-column
+        column-title="Kullanıcılar"
+        anonymous-user="Anonim Kullanıcı"
+        deleted-user="Silinmiş Kullanıcı"
+      ></sqm-referral-table-user-column>
+      <sqm-referral-table-status-column
+        column-title="Durumu"
+        converted-status-text="Dönüştür"
+        in-progress-status-text="Devam etmekte"
+      ></sqm-referral-table-status-column>
+      <sqm-referral-table-rewards-column column-title="Ödüller"></sqm-referral-table-rewards-column>
+      <sqm-referral-table-date-column
+        column-title="Tarih"
+        date-shown="dateReferralStarted"
+      ></sqm-referral-table-date-column>
+    </sqm-referral-table>
+  );
+});
+
+export const ReferralTableFr = createHookStory(() => {
+  setupGraphQLKlip({
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InNhbWZyZW5jaCIsImlkIjoic2FtZnJlbmNoIn19.cwhasHpfU5MLV4vGbCQcazb6p19iSw5pD2zyrVHgePg",
+    id: "samfrench",
+  });
+  setProgramId("klip-referral-program");
+  const props = {
+    listType: "",
+    render: () => {},
+    disconnectedCallback: () => {},
+    ignored: true,
+  };
+  return (
+    <sqm-referral-table
+      more-label="Plus"
+      prev-label="Précédent"
+      empty-state-text="Aucune Référence Maintenant"
+      per-page="4"
+    >
+      <sqm-referral-table-user-column
+        column-title="Utilisateur"
+        anonymous-user="Utilisateur Anonyme"
+        deleted-user="Utilisateur Supprimé"
+      ></sqm-referral-table-user-column>
+      <sqm-referral-table-status-column
+        column-title="Statut de Parrainage"
+        converted-status-text="Converti"
+        in-progress-status-text="En cours"
+      ></sqm-referral-table-status-column>
+      <sqm-referral-table-rewards-column column-title="Récompenses"></sqm-referral-table-rewards-column>
+      <sqm-referral-table-date-column
+        column-title="Date de Référence"
+        date-shown="dateReferralStarted"
+      ></sqm-referral-table-date-column>
     </sqm-referral-table>
   );
 });
