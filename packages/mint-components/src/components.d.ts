@@ -981,8 +981,14 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableRewardsCell {
+        "expiringText": string;
+        "fuelTankText": string;
         "hideDetails": boolean;
+        "pendingForText": string;
+        "rewardReceivedText": string;
         "rewards": Reward[];
+        "statusLongText": string;
+        "statusText": string;
     }
     interface SqmReferralTableRewardsColumn {
         /**
@@ -990,11 +996,35 @@ export namespace Components {
          */
         "columnTitle": string;
         /**
+          * @uiName Reward Expiring Text
+         */
+        "expiringText": string;
+        /**
+          * @uiName Fuel Tank Code Text
+         */
+        "fuelTankText": string;
+        /**
           * @uiName Hide dropdown details of reward
          */
         "hideDetails": boolean;
+        /**
+          * @uiName Reward Pending Text
+         */
+        "pendingForText": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        /**
+          * @uiName Reward Received Text
+         */
+        "rewardReceivedText": string;
+        /**
+          * @uiName Reward Status Long Text
+         */
+        "statusLongText": string;
+        /**
+          * @uiName Reward Status Text
+         */
+        "statusText": string;
     }
     interface SqmReferralTableStatusCell {
         "converted": boolean;
@@ -3122,8 +3152,14 @@ declare namespace LocalJSX {
         "dateShown"?: ReferralDates;
     }
     interface SqmReferralTableRewardsCell {
+        "expiringText"?: string;
+        "fuelTankText"?: string;
         "hideDetails"?: boolean;
+        "pendingForText"?: string;
+        "rewardReceivedText"?: string;
         "rewards"?: Reward[];
+        "statusLongText"?: string;
+        "statusText"?: string;
     }
     interface SqmReferralTableRewardsColumn {
         /**
@@ -3131,9 +3167,33 @@ declare namespace LocalJSX {
          */
         "columnTitle"?: string;
         /**
+          * @uiName Reward Expiring Text
+         */
+        "expiringText"?: string;
+        /**
+          * @uiName Fuel Tank Code Text
+         */
+        "fuelTankText"?: string;
+        /**
           * @uiName Hide dropdown details of reward
          */
         "hideDetails"?: boolean;
+        /**
+          * @uiName Reward Pending Text
+         */
+        "pendingForText"?: string;
+        /**
+          * @uiName Reward Received Text
+         */
+        "rewardReceivedText"?: string;
+        /**
+          * @uiName Reward Status Long Text
+         */
+        "statusLongText"?: string;
+        /**
+          * @uiName Reward Status Text
+         */
+        "statusText"?: string;
     }
     interface SqmReferralTableStatusCell {
         "converted"?: boolean;

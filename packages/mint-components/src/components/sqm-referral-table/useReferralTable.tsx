@@ -1,4 +1,5 @@
 import {
+  useLocale,
   usePaginatedQuery,
   useProgramId,
   useQuery,
@@ -15,7 +16,11 @@ import { useChildElements } from "../../tables/useChildElements";
 export const CSS_NAMESPACE = "sqm-referral-table";
 
 const GET_REFERRER_DATA = gql`
-  query getReferrals($programId: ID, $rewardFilter: RewardFilterInput) {
+  query getReferrals(
+    $programId: ID
+    $rewardFilter: RewardFilterInput
+    $locale: RSLocale
+  ) {
     viewer {
       ... on User {
         referredByReferral(programId: $programId) {
@@ -39,7 +44,7 @@ const GET_REFERRER_DATA = gql`
             fuelTankCode
             fuelTankType
             currency
-            prettyValue
+            prettyValue(locale: $locale)
             statuses
             globalRewardKey
             programRewardKey
@@ -47,7 +52,7 @@ const GET_REFERRER_DATA = gql`
               data {
                 exchangedRewards {
                   data {
-                    prettyValue
+                    prettyValue(locale: $locale)
                     type
                     fuelTankCode
                     globalRewardKey
@@ -68,6 +73,7 @@ const GET_REFERRAL_DATA = gql`
     $offset: Int!
     $referralFilter: ReferralFilterInput
     $rewardFilter: RewardFilterInput
+    $locale: RSLocale
   ) {
     viewer {
       ... on User {
@@ -128,7 +134,7 @@ const GET_REFERRAL_DATA = gql`
               fuelTankCode
               fuelTankType
               currency
-              prettyValue
+              prettyValue(locale: $locale)
               statuses
               globalRewardKey
               programRewardKey
@@ -136,7 +142,7 @@ const GET_REFERRAL_DATA = gql`
                 data {
                   exchangedRewards {
                     data {
-                      prettyValue
+                      prettyValue(locale: $locale)
                       type
                       fuelTankCode
                       globalRewardKey
@@ -220,6 +226,8 @@ export function useReferralTable(
     }
   );
 
+  const locale = useLocale();
+
   const {
     data: referrerResponse,
     loading: referrerLoading,
@@ -229,6 +237,7 @@ export function useReferralTable(
     {
       programId: programId === "classic" ? null : programId,
       rewardFilter,
+      locale,
     },
     !props.showReferrer || !user?.jwt
   );
@@ -323,7 +332,6 @@ export function useReferralTable(
     referralData && getComponentData(components);
   }, [referralData, components, tick]);
 
-  
   const isEmpty = !content?.rows?.length && !data?.length;
 
   const show =
@@ -349,7 +357,7 @@ export function useReferralTable(
         prevLabel: props.prevLabel,
         moreLabel: props.moreLabel,
       },
-    //   referralData: data,
+      //   referralData: data,
       hiddenColumns: props.hiddenColumns,
       smBreakpoint: props.smBreakpoint,
       mdBreakpoint: props.mdBreakpoint,

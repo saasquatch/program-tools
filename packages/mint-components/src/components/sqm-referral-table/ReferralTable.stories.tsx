@@ -608,6 +608,12 @@ export const FullRewardsTable = () => {
                   { ...baseReward, ...pendingReward },
                   { ...baseReward, ...cancelledReward },
                 ]}
+                statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+                statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+                fuelTankText="Your code is"
+                rewardReceivedText="Reward received on"
+                expiringText="Expiring in"
+                pendingForText="{status} for {date}"
               ></sqm-referral-table-rewards-cell>,
 
               <sqm-referral-table-status-cell
@@ -625,6 +631,12 @@ export const FullRewardsTable = () => {
               <sqm-referral-table-user-cell name="Sarah Williams"></sqm-referral-table-user-cell>,
               <sqm-referral-table-rewards-cell
                 rewards={[{ ...baseReward, ...expiredReward }]}
+                statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+                statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+                fuelTankText="Your code is"
+                rewardReceivedText="Reward received on"
+                expiringText="Expiring in"
+                pendingForText="{status} for {date}"
               ></sqm-referral-table-rewards-cell>,
               <sqm-referral-table-status-cell
                 statusText="Incomplete"
@@ -644,6 +656,12 @@ export const FullRewardsTable = () => {
                   { ...baseReward, ...nullExpiresIn },
                   { ...baseReward, ...pendingReward },
                 ]}
+                statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+                statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+                fuelTankText="Your code is"
+                rewardReceivedText="Reward received on"
+                expiringText="Expiring in"
+                pendingForText="{status} for {date}"
               ></sqm-referral-table-rewards-cell>,
               <sqm-referral-table-status-cell
                 statusText="Complete"

@@ -91,6 +91,12 @@ export const RewardsCell = () => {
   return (
     <sqm-referral-table-rewards-cell
       rewards={rewards}
+      statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+      statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+      fuelTankText="Your code is"
+      rewardReceivedText="Reward received on"
+      expiringText="Expiring in"
+      pendingForText="{status} for {date}"
     ></sqm-referral-table-rewards-cell>
   );
 };
