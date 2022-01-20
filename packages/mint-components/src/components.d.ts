@@ -279,49 +279,61 @@ export namespace Components {
     }
     interface SqmMedia {
         /**
-          * @uiName buttonLink
+          * @uiName Image Link
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName CTA Button Link
          */
         "buttonLink"?: string;
         /**
-          * @uiName buttonNewTab
+          * @uiName CTA Button Link Open in New Tab
          */
         "buttonNewTab"?: boolean;
         /**
-          * @uiName buttonText
+          * @uiName CTA Button Text
          */
         "buttonText"?: string;
         /**
-          * @uiName description
+          * @uiName Description Text
          */
         "description"?: string;
         /**
-          * @uiName header
+          * @uiName Title Text
          */
         "header"?: string;
         /**
-          * @uiName height
+          * @uiName Image Link
          */
-        "height"?: string;
+        "imageMobilePos": "top" | "bottom";
         /**
-          * @uiName imageDescription
+          * @uiName Image Link
          */
-        "imageDescription"?: string;
+        "imagePos": "left" | "right";
         /**
-          * @uiName imageHeader
+          * @uiName Image Link
          */
-        "imageHeader"?: string;
+        "imageUrl": string;
         /**
-          * @uiName imgUrl
+          * @uiName Image Link
          */
-        "imgUrl"?: string;
+        "layout": "overlay" | "columns";
         /**
-          * @uiName objectFit
+          * @uiName Image Link
          */
-        "objectFit"?: string;
+        "minHeight": string;
         /**
-          * @uiName width
+          * @uiName Image Link
          */
-        "width"?: string;
+        "overlayColor": string;
+        /**
+          * @uiName Image Link
+         */
+        "overlayOpacity": string;
+        /**
+          * @uiName Image Link
+         */
+        "textColor"?: string;
     }
     interface SqmNameFields {
         /**
@@ -2426,49 +2438,61 @@ declare namespace LocalJSX {
     }
     interface SqmMedia {
         /**
-          * @uiName buttonLink
+          * @uiName Image Link
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName CTA Button Link
          */
         "buttonLink"?: string;
         /**
-          * @uiName buttonNewTab
+          * @uiName CTA Button Link Open in New Tab
          */
         "buttonNewTab"?: boolean;
         /**
-          * @uiName buttonText
+          * @uiName CTA Button Text
          */
         "buttonText"?: string;
         /**
-          * @uiName description
+          * @uiName Description Text
          */
         "description"?: string;
         /**
-          * @uiName header
+          * @uiName Title Text
          */
         "header"?: string;
         /**
-          * @uiName height
+          * @uiName Image Link
          */
-        "height"?: string;
+        "imageMobilePos"?: "top" | "bottom";
         /**
-          * @uiName imageDescription
+          * @uiName Image Link
          */
-        "imageDescription"?: string;
+        "imagePos"?: "left" | "right";
         /**
-          * @uiName imageHeader
+          * @uiName Image Link
          */
-        "imageHeader"?: string;
+        "imageUrl"?: string;
         /**
-          * @uiName imgUrl
+          * @uiName Image Link
          */
-        "imgUrl"?: string;
+        "layout"?: "overlay" | "columns";
         /**
-          * @uiName objectFit
+          * @uiName Image Link
          */
-        "objectFit"?: string;
+        "minHeight"?: string;
         /**
-          * @uiName width
+          * @uiName Image Link
          */
-        "width"?: string;
+        "overlayColor"?: string;
+        /**
+          * @uiName Image Link
+         */
+        "overlayOpacity"?: string;
+        /**
+          * @uiName Image Link
+         */
+        "textColor"?: string;
     }
     interface SqmNameFields {
         /**
