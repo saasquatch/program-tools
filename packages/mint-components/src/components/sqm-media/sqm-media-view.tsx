@@ -41,6 +41,7 @@ export function MediaView(props: MediaViewProps) {
       maxHeight: "100%",
       minHeight: props.minHeight || "300px",
       objectFit: "cover",
+      margin: "auto",
     },
     Overlay: {
       position: "absolute",
