@@ -4,14 +4,10 @@ export default {
   title: "Components/Referral Card",
 };
 
-export const Example = () => {
-  return <div>Hello World</div>;
-};
-
 export const TimelineWith1Reward = () => {
   return (
     <div>
-      <sqm-timeline gift={true}>
+      <sqm-timeline>
         <sqm-timeline-reward
           reward="75"
           unit="points"
@@ -19,7 +15,7 @@ export const TimelineWith1Reward = () => {
         />
       </sqm-timeline>
       <br /> <hr /> <br />
-      <sqm-timeline gift={false}>
+      <sqm-timeline icon="circle">
         <sqm-timeline-reward
           reward="75"
           unit="points"
@@ -33,7 +29,7 @@ export const TimelineWith1Reward = () => {
 export const TimelineWith2Rewards = () => {
   return (
     <div>
-      <sqm-timeline gift={true}>
+      <sqm-timeline>
         <sqm-timeline-reward
           reward="75"
           unit="points"
@@ -46,7 +42,7 @@ export const TimelineWith2Rewards = () => {
         />
       </sqm-timeline>
       <br /> <hr /> <br />
-      <sqm-timeline gift={false}>
+      <sqm-timeline icon="circle">
         <sqm-timeline-reward
           reward="75"
           unit="points"
@@ -65,7 +61,7 @@ export const TimelineWith2Rewards = () => {
 export const TimelineWith3Rewards = () => {
   return (
     <div>
-      <sqm-timeline gift={true}>
+      <sqm-timeline>
         <sqm-timeline-reward
           reward="75"
           unit="points"
@@ -83,7 +79,7 @@ export const TimelineWith3Rewards = () => {
         />
       </sqm-timeline>
       <br /> <hr /> <br />
-      <sqm-timeline gift={false}>
+      <sqm-timeline icon="circle">
         <sqm-timeline-reward
           gift={false}
           reward="75"
@@ -110,7 +106,7 @@ export const TimelineWith3Rewards = () => {
 export const TimelineWith4Rewards = () => {
   return (
     <div>
-      <sqm-timeline gift={true}>
+      <sqm-timeline>
         <sqm-timeline-reward
           reward="75"
           unit="points"
@@ -133,7 +129,7 @@ export const TimelineWith4Rewards = () => {
         />
       </sqm-timeline>
       <br /> <hr /> <br />
-      <sqm-timeline gift={false}>
+      <sqm-timeline icon="circle">
         <sqm-timeline-reward
           gift={false}
           reward="75"

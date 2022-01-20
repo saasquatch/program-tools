@@ -1,7 +1,7 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import { useChildElements } from "../../tables/useChildElements";
-import { TimelineReward } from "./sqm-timeline-reward";
+import { TimelineReward } from "./sqm-timeline-entry";
 
 /**
  * @uiName Timeline
@@ -15,9 +15,11 @@ export class Timeline {
   ignored = true;
 
   /**
-   * @uiName Gift Icon
+   * @uiName Icon
+   * @uiType string
+   * @uiEnum ["gift", "circle"]
    */
-  @Prop() gift: boolean = true;
+  @Prop() icon: string = "gift";
 
   constructor() {
     withHooks(this);
@@ -28,7 +30,7 @@ export class Timeline {
     //@ts-ignore
     const rewards: TimelineReward[] = useChildElements();
 
-    rewards.forEach((reward) => (reward.gift = this.gift));
+    rewards.forEach((reward) => (reward.icon = this.icon));
 
     const vanillaStyle = `
 		:host{

@@ -31,7 +31,7 @@ export const Gift = () => (
   </svg>
 );
 
-export const Dot = () => (
+export const Circle = () => (
   <svg
     width="24"
     height="24"

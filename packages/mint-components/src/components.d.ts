@@ -1645,19 +1645,23 @@ export namespace Components {
     }
     interface SqmTimeline {
         /**
-          * @uiName Gift Icon
+          * @uiName Icon
+          * @uiType string
+          * @uiEnum ["gift", "circle"]
          */
-        "gift": boolean;
+        "icon": string;
     }
-    interface SqmTimelineReward {
+    interface SqmTimelineEntry {
         /**
           * @uiName Description
          */
         "desc": string;
         /**
-          * @undocumented Gift Icon
+          * @uiName Icon
+          * @uiType string
+          * @uiEnum ["gift", "circle"]
          */
-        "gift": boolean;
+        "icon": string;
         /**
           * @uiName Reward Amount
          */
@@ -2131,11 +2135,11 @@ declare global {
         prototype: HTMLSqmTimelineElement;
         new (): HTMLSqmTimelineElement;
     };
-    interface HTMLSqmTimelineRewardElement extends Components.SqmTimelineReward, HTMLStencilElement {
+    interface HTMLSqmTimelineEntryElement extends Components.SqmTimelineEntry, HTMLStencilElement {
     }
-    var HTMLSqmTimelineRewardElement: {
-        prototype: HTMLSqmTimelineRewardElement;
-        new (): HTMLSqmTimelineRewardElement;
+    var HTMLSqmTimelineEntryElement: {
+        prototype: HTMLSqmTimelineEntryElement;
+        new (): HTMLSqmTimelineEntryElement;
     };
     interface HTMLSqmTitledSectionElement extends Components.SqmTitledSection, HTMLStencilElement {
     }
@@ -2222,7 +2226,7 @@ declare global {
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
         "sqm-timeline": HTMLSqmTimelineElement;
-        "sqm-timeline-reward": HTMLSqmTimelineRewardElement;
+        "sqm-timeline-entry": HTMLSqmTimelineEntryElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqm-user-name": HTMLSqmUserNameElement;
     }
@@ -3820,19 +3824,23 @@ declare namespace LocalJSX {
     }
     interface SqmTimeline {
         /**
-          * @uiName Gift Icon
+          * @uiName Icon
+          * @uiType string
+          * @uiEnum ["gift", "circle"]
          */
-        "gift"?: boolean;
+        "icon"?: string;
     }
-    interface SqmTimelineReward {
+    interface SqmTimelineEntry {
         /**
           * @uiName Description
          */
         "desc"?: string;
         /**
-          * @undocumented Gift Icon
+          * @uiName Icon
+          * @uiType string
+          * @uiEnum ["gift", "circle"]
          */
-        "gift"?: boolean;
+        "icon"?: string;
         /**
           * @uiName Reward Amount
          */
@@ -3945,7 +3953,7 @@ declare namespace LocalJSX {
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
         "sqm-timeline": SqmTimeline;
-        "sqm-timeline-reward": SqmTimelineReward;
+        "sqm-timeline-entry": SqmTimelineEntry;
         "sqm-titled-section": SqmTitledSection;
         "sqm-user-name": SqmUserName;
     }
@@ -4026,7 +4034,7 @@ declare module "@stencil/core" {
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
-            "sqm-timeline-reward": LocalJSX.SqmTimelineReward & JSXBase.HTMLAttributes<HTMLSqmTimelineRewardElement>;
+            "sqm-timeline-entry": LocalJSX.SqmTimelineEntry & JSXBase.HTMLAttributes<HTMLSqmTimelineEntryElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
         }
