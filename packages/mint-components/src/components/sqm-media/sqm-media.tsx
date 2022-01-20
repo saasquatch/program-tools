@@ -17,44 +17,53 @@ export class Media {
   @Prop() imageUrl: string;
 
   /**
-   * @uiName Image Link
+   * @uiName Overlay Color
    */
   @Prop() overlayColor: string = "var(--sl-color-primary-900)";
 
   /**
-   * @uiName Image Link
+   * @uiName Overlay Opacity
    */
   @Prop() overlayOpacity: string = "0.75";
 
   /**
-   * @uiName Image Link
+   * @uiName Text Color
    */
   @Prop() textColor?: string;
 
   /**
-   * @uiName Image Link
+   * @uiName Background Color
+   */
+  @Prop() backgroundColor?: string;
+
+  /**
+   * @uiName Minimum Image Height
    */
   @Prop() minHeight: string = "300px";
 
   /**
    * @uiName Image Link
+   * @uiType string
+   * @uiEnum ["overlay", "columns" ]
+   * @uiEnumNames ["Overlay", "Two-column"]
    */
   @Prop() layout: "overlay" | "columns" = "overlay";
 
   /**
-   * @uiName Image Link
+   * @uiName Image Position
+   * @uiType string
+   * @uiEnum ["left", "right" ]
+   * @uiEnumNames ["Left", "Right"]
    */
   @Prop() imagePos: "left" | "right" = "left";
 
   /**
-   * @uiName Image Link
+   * @uiName Image Mobile Position
+   * @uiType string
+   * @uiEnum ["top", "bottom" ]
+   * @uiEnumNames ["Top", "Bottom"]
    */
   @Prop() imageMobilePos: "top" | "bottom" = "top";
-
-  /**
-   * @uiName Image Link
-   */
-  @Prop() backgroundColor?: string;
 
   /**
    * @uiName Title Text
