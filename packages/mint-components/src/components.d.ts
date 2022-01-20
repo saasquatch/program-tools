@@ -309,15 +309,13 @@ export namespace Components {
         /**
           * @uiName Image Mobile Position
           * @uiType string
-          * @uiEnum ["top", "bottom" ]
-          * @uiEnumNames ["Top", "Bottom"]
+          * @uiEnum ["top", "bottom"]
          */
         "imageMobilePos": "top" | "bottom";
         /**
           * @uiName Image Position
           * @uiType string
-          * @uiEnum ["left", "right" ]
-          * @uiEnumNames ["Left", "Right"]
+          * @uiEnum ["left", "right"]
          */
         "imagePos": "left" | "right";
         /**
@@ -327,8 +325,7 @@ export namespace Components {
         /**
           * @uiName Image Link
           * @uiType string
-          * @uiEnum ["overlay", "columns" ]
-          * @uiEnumNames ["Overlay", "Two-column"]
+          * @uiEnum ["overlay", "columns"]
          */
         "layout": "overlay" | "columns";
         /**
@@ -2499,15 +2496,13 @@ declare namespace LocalJSX {
         /**
           * @uiName Image Mobile Position
           * @uiType string
-          * @uiEnum ["top", "bottom" ]
-          * @uiEnumNames ["Top", "Bottom"]
+          * @uiEnum ["top", "bottom"]
          */
         "imageMobilePos"?: "top" | "bottom";
         /**
           * @uiName Image Position
           * @uiType string
-          * @uiEnum ["left", "right" ]
-          * @uiEnumNames ["Left", "Right"]
+          * @uiEnum ["left", "right"]
          */
         "imagePos"?: "left" | "right";
         /**
@@ -2517,8 +2512,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Image Link
           * @uiType string
-          * @uiEnum ["overlay", "columns" ]
-          * @uiEnumNames ["Overlay", "Two-column"]
+          * @uiEnum ["overlay", "columns"]
          */
         "layout"?: "overlay" | "columns";
         /**

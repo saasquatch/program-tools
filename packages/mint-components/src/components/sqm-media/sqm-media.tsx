@@ -4,7 +4,7 @@ import { getProps } from "../../utils/utils";
 import { MediaView } from "./sqm-media-view";
 
 /**
- * @uiName Program Explainer Step
+ * @uiName Media Component
  */
 @Component({
   tag: "sqm-media",
@@ -44,24 +44,21 @@ export class Media {
   /**
    * @uiName Image Link
    * @uiType string
-   * @uiEnum ["overlay", "columns" ]
-   * @uiEnumNames ["Overlay", "Two-column"]
+   * @uiEnum ["overlay", "columns"]
    */
   @Prop() layout: "overlay" | "columns" = "overlay";
 
   /**
    * @uiName Image Position
    * @uiType string
-   * @uiEnum ["left", "right" ]
-   * @uiEnumNames ["Left", "Right"]
+   * @uiEnum ["left", "right"]
    */
   @Prop() imagePos: "left" | "right" = "left";
 
   /**
    * @uiName Image Mobile Position
    * @uiType string
-   * @uiEnum ["top", "bottom" ]
-   * @uiEnumNames ["Top", "Bottom"]
+   * @uiEnum ["top", "bottom"]
    */
   @Prop() imageMobilePos: "top" | "bottom" = "top";
 
