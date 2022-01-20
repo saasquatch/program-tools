@@ -279,49 +279,61 @@ export namespace Components {
     }
     interface SqmMedia {
         /**
-          * @uiName buttonLink
+          * @uiName Image Link
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName CTA Button Link
          */
         "buttonLink"?: string;
         /**
-          * @uiName buttonNewTab
+          * @uiName CTA Button Link Open in New Tab
          */
         "buttonNewTab"?: boolean;
         /**
-          * @uiName buttonText
+          * @uiName CTA Button Text
          */
         "buttonText"?: string;
         /**
-          * @uiName description
+          * @uiName Description Text
          */
         "description"?: string;
         /**
-          * @uiName header
+          * @uiName Title Text
          */
         "header"?: string;
         /**
-          * @uiName height
+          * @uiName Image Link
          */
-        "height"?: string;
+        "imageMobilePos": "top" | "bottom";
         /**
-          * @uiName imageDescription
+          * @uiName Image Link
          */
-        "imageDescription"?: string;
+        "imagePos": "left" | "right";
         /**
-          * @uiName imageHeader
+          * @uiName Image Link
          */
-        "imageHeader"?: string;
+        "imageUrl": string;
         /**
-          * @uiName imgUrl
+          * @uiName Image Link
          */
-        "imgUrl"?: string;
+        "layout": "overlay" | "columns";
         /**
-          * @uiName objectFit
+          * @uiName Image Link
          */
-        "objectFit"?: string;
+        "minHeight": string;
         /**
-          * @uiName width
+          * @uiName Image Link
          */
-        "width"?: string;
+        "overlayColor": string;
+        /**
+          * @uiName Image Link
+         */
+        "overlayOpacity": string;
+        /**
+          * @uiName Image Link
+         */
+        "textColor"?: string;
     }
     interface SqmNameFields {
         /**
@@ -810,60 +822,46 @@ export namespace Components {
     }
     interface SqmProgramExplainer {
         /**
-          * @uiName Card Background Color
+          * @uiName Header Background Color
           * @uiWidget color
          */
-        "cardBackground": string;
-        /**
-          * @uiName Card Text Color
-          * @uiWidget color
-         */
-        "cardColor": string;
-        /**
-          * @uiName Card Description
-         */
-        "cardDescription": string;
-        /**
-          * @uiName Card Title
-         */
-        "cardTitle": string;
+        "backgroundColor": string;
         /**
           * @uiName Header Text
          */
         "header": string;
         /**
-          * @uiName Header Background Color
-          * @uiWidget color
-         */
-        "headerBackground": string;
-        /**
           * @uiName Header Text Color
           * @uiWidget color
          */
-        "headerColor": string;
+        "textColor": string;
     }
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background
          */
-        "background": string;
-        /**
-          * @uiName Title
-         */
-        "cardTitle": string;
-        /**
-          * @uiName Color
-          * @uiWidget color
-         */
-        "color": string;
+        "backgroundColor": string;
         /**
           * @uiName Description
          */
         "description": string;
         /**
+          * @uiName Title
+         */
+        "header": string;
+        /**
           * @uiName Icon
          */
-        "icon": string;
+        "icon"?: string;
+        /**
+          * @uiName Icon
+         */
+        "imageUrl"?: string;
+        /**
+          * @uiName Color
+          * @uiWidget color
+         */
+        "textColor": string;
     }
     interface SqmProgramMenu {
     }
@@ -2462,49 +2460,61 @@ declare namespace LocalJSX {
     }
     interface SqmMedia {
         /**
-          * @uiName buttonLink
+          * @uiName Image Link
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName CTA Button Link
          */
         "buttonLink"?: string;
         /**
-          * @uiName buttonNewTab
+          * @uiName CTA Button Link Open in New Tab
          */
         "buttonNewTab"?: boolean;
         /**
-          * @uiName buttonText
+          * @uiName CTA Button Text
          */
         "buttonText"?: string;
         /**
-          * @uiName description
+          * @uiName Description Text
          */
         "description"?: string;
         /**
-          * @uiName header
+          * @uiName Title Text
          */
         "header"?: string;
         /**
-          * @uiName height
+          * @uiName Image Link
          */
-        "height"?: string;
+        "imageMobilePos"?: "top" | "bottom";
         /**
-          * @uiName imageDescription
+          * @uiName Image Link
          */
-        "imageDescription"?: string;
+        "imagePos"?: "left" | "right";
         /**
-          * @uiName imageHeader
+          * @uiName Image Link
          */
-        "imageHeader"?: string;
+        "imageUrl"?: string;
         /**
-          * @uiName imgUrl
+          * @uiName Image Link
          */
-        "imgUrl"?: string;
+        "layout"?: "overlay" | "columns";
         /**
-          * @uiName objectFit
+          * @uiName Image Link
          */
-        "objectFit"?: string;
+        "minHeight"?: string;
         /**
-          * @uiName width
+          * @uiName Image Link
          */
-        "width"?: string;
+        "overlayColor"?: string;
+        /**
+          * @uiName Image Link
+         */
+        "overlayOpacity"?: string;
+        /**
+          * @uiName Image Link
+         */
+        "textColor"?: string;
     }
     interface SqmNameFields {
         /**
@@ -2993,60 +3003,46 @@ declare namespace LocalJSX {
     }
     interface SqmProgramExplainer {
         /**
-          * @uiName Card Background Color
+          * @uiName Header Background Color
           * @uiWidget color
          */
-        "cardBackground"?: string;
-        /**
-          * @uiName Card Text Color
-          * @uiWidget color
-         */
-        "cardColor"?: string;
-        /**
-          * @uiName Card Description
-         */
-        "cardDescription"?: string;
-        /**
-          * @uiName Card Title
-         */
-        "cardTitle"?: string;
+        "backgroundColor"?: string;
         /**
           * @uiName Header Text
          */
         "header"?: string;
         /**
-          * @uiName Header Background Color
-          * @uiWidget color
-         */
-        "headerBackground"?: string;
-        /**
           * @uiName Header Text Color
           * @uiWidget color
          */
-        "headerColor"?: string;
+        "textColor"?: string;
     }
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background
          */
-        "background"?: string;
-        /**
-          * @uiName Title
-         */
-        "cardTitle"?: string;
-        /**
-          * @uiName Color
-          * @uiWidget color
-         */
-        "color"?: string;
+        "backgroundColor"?: string;
         /**
           * @uiName Description
          */
         "description"?: string;
         /**
+          * @uiName Title
+         */
+        "header"?: string;
+        /**
           * @uiName Icon
          */
         "icon"?: string;
+        /**
+          * @uiName Icon
+         */
+        "imageUrl"?: string;
+        /**
+          * @uiName Color
+          * @uiWidget color
+         */
+        "textColor"?: string;
     }
     interface SqmProgramMenu {
     }

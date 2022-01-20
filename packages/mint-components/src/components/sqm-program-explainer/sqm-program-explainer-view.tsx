@@ -4,12 +4,8 @@ import { createStyleSheet } from "../../styling/JSS";
 
 export interface ProgramExplainerViewProps {
   header: string;
-  headerColor: string;
-  headerBackground: string;
-  cardTitle: string;
-  cardDescription: string;
-  cardColor: string;
-  cardBackground: string;
+  textColor: string;
+  backgroundColor: string;
 }
 export function ProgramExplainerView(
   props: ProgramExplainerViewProps,
@@ -17,30 +13,23 @@ export function ProgramExplainerView(
 ) {
   const style = {
     Container: {
-      display: "flex",
-      flexDirection: "row",
-      "@media (max-width: 499px)": {
-        flexDirection: "column",
-      },
+      color: props.textColor || "var(--sl-color-neutral-900)",
+      background: props.backgroundColor || "",
     },
     Header: {
-      padding: "var(--sl-spacing-large)",
-      color: props.headerColor,
-      background: props.headerBackground,
-    },
-    Card: {
-      padding: "var(--sl-spacing-large)",
-      color: props.cardColor,
-      background: props.cardBackground,
-    },
-    Title: {
       fontSize: "var(--sl-font-size-x-large)",
       fontWeight: "var(--sl-font-weight-bold)",
       lineHeight: "var(--sl-line-height-dense)",
+      marginBottom: "var(--sl-spacing-large)",
+      textAlign: "center",
     },
-    Description: {
-      fontSize: "var(--sl-font-size-medium)",
-      marginTop: "var(--sl-spacing-x-small)",
+    Grid: {
+      display: "flex",
+      flexDirection: "row",
+      gap: "var(--sl-spacing-large)",
+      "@media (max-width: 499px)": {
+        flexDirection: "column",
+      },
     },
   };
 
@@ -59,19 +48,15 @@ export function ProgramExplainerView(
   }`;
 
   return (
-    <div>
+    <div class={sheet.classes.Container}>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
       <div class={sheet.classes.Header}>
-        <div class={sheet.classes.Title}>{props.header}</div>
+        <div class={sheet.classes.Header}>{props.header}</div>
       </div>
-      <div class={sheet.classes.Container}>{children}</div>
-      <div class={sheet.classes.Card}>
-        <div class={sheet.classes.Title}>{props.cardTitle}</div>
-        <div class={sheet.classes.Description}>{props.cardDescription}</div>
-      </div>
+      <div class={sheet.classes.Grid}>{children}</div>
     </div>
   );
 }

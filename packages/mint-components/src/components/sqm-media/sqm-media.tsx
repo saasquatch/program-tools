@@ -12,59 +12,74 @@ import { MediaView } from "./sqm-media-view";
 })
 export class Media {
   /**
-   * @uiName imgUrl
+   * @uiName Image Link
    */
-  @Prop() imgUrl?: string;
+  @Prop() imageUrl: string;
 
   /**
-   * @uiName width
+   * @uiName Image Link
    */
-  @Prop() width?: string;
+  @Prop() overlayColor: string = "var(--sl-color-primary-900)";
 
   /**
-   * @uiName height
+   * @uiName Image Link
    */
-  @Prop() height?: string;
+  @Prop() overlayOpacity: string = "0.75";
 
   /**
-   * @uiName objectFit
+   * @uiName Image Link
    */
-  @Prop() objectFit?: string;
+  @Prop() textColor?: string;
 
   /**
-   * @uiName header
+   * @uiName Image Link
+   */
+  @Prop() minHeight: string = "300px";
+
+  /**
+   * @uiName Image Link
+   */
+  @Prop() layout: "overlay" | "columns" = "overlay";
+
+  /**
+   * @uiName Image Link
+   */
+  @Prop() imagePos: "left" | "right" = "left";
+
+  /**
+   * @uiName Image Link
+   */
+  @Prop() imageMobilePos: "top" | "bottom" = "top";
+
+  /**
+   * @uiName Image Link
+   */
+  @Prop() backgroundColor?: string;
+
+  /**
+   * @uiName Title Text
    */
   @Prop() header?: string;
 
   /**
-   * @uiName description
+   * @uiName Description Text
    */
   @Prop() description?: string;
 
   /**
-   * @uiName imageHeader
-   */
-  @Prop() imageHeader?: string;
-
-  /**
-   * @uiName imageDescription
-   */
-  @Prop() imageDescription?: string;
-
-  /**
-   * @uiName buttonText
+   * @uiName CTA Button Text
    */
   @Prop() buttonText?: string;
 
   /**
-   * @uiName buttonLink
+   * @uiName CTA Button Link
    */
   @Prop() buttonLink?: string;
 
   /**
-   * @uiName buttonNewTab
+   * @uiName CTA Button Link Open in New Tab
    */
-  @Prop() buttonNewTab?: boolean;
+  @Prop() buttonNewTab?: boolean = false;
 
   constructor() {
     withHooks(this);

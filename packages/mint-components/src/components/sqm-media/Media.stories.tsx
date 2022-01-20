@@ -1,4 +1,5 @@
 import { h } from "@stencil/core";
+import { getDescription } from "graphql";
 import { Resizer } from "../sqm-stencilbook/Resizer";
 import { MediaView } from "./sqm-media-view";
 
@@ -6,58 +7,96 @@ export default {
   title: "Components/Media",
 };
 
-export const Image = () => {
-  return <MediaView imgUrl="https://i.imgur.com/bTwu1Um.jpg" />;
+export const ImageOnly = () => {
+  return (
+    <sqm-media image-url="https://i.imgur.com/bTwu1Um.png" layout="overlay" />
+  );
 };
 
 export const ImageWithHeader = () => {
   return (
-    <MediaView
-      imageHeader="Klip Rewards"
-      imageDescription="Refer friends or complete tasks while using Klip to earn rewards"
-      imgUrl="https://i.imgur.com/bTwu1Um.png"
-    />
-  );
-};
-export const ImageWithHeaderButton = () => {
-  return (
-    <MediaView
-      imageHeader="Klip Rewards"
-      imageDescription="Refer friends or complete tasks while using Klip to earn rewards"
-      buttonText="Start earning"
-      imgUrl="https://i.imgur.com/bTwu1Um.png"
+    <sqm-media
+      image-url="https://i.imgur.com/bTwu1Um.png"
+      header="Klip Rewards"
+      layout="overlay"
     />
   );
 };
 
-export const Header = () => {
-  return <MediaView header="Leaderboard" />;
-};
-
-export const Description = () => {
+export const ImageWithDescription = () => {
   return (
-    <MediaView description="Be one of the top 3 referrers at the end of the year and receive Klip free for 1 year!" />
-  );
-};
-
-export const HeaderWithImage = () => {
-  return (
-    <MediaView
-      header="Leaderboard"
-      description="Be one of the top 3 referrers at the end of the year and receive Klip free for 1 year!"
-      imgUrl="https://i.imgur.com/rWYyJWz.jpg"
+    <sqm-media
+      image-url="https://i.imgur.com/bTwu1Um.png"
+      header="Klip Rewards"
+      description="Refer friends or complete tasks while using Klip to earn rewards"
+      layout="overlay"
     />
   );
 };
-export const HTML = () => {
+
+export const ImageWithButton = () => {
   return (
-    <Resizer>
-      <MediaView>
-        <div style={{ background: "antiquewhite" }}>
-          <h1 style={{ color: "blue" }}>A Blue Heading</h1>
-          <p style={{ color: "red" }}>A red paragraph.</p>
-        </div>
-      </MediaView>
-    </Resizer>
+    <sqm-media
+      image-url="https://i.imgur.com/bTwu1Um.png"
+      header="Klip Rewards"
+      description="Refer friends or complete tasks while using Klip to earn rewards"
+      button-text="Start earning"
+      layout="overlay"
+    />
+  );
+};
+
+export const ImageCustomOverlay = () => {
+  return (
+    <sqm-media
+      image-url="https://i.imgur.com/bTwu1Um.png"
+      header="Klip Rewards"
+      description="Refer friends or complete tasks while using Klip to earn rewards"
+      button-text="Start earning"
+      text-color="#fffc4b"
+      overlay-color="#ff7f7f"
+      overlay-opacity="0.9"
+      layout="overlay"
+    />
+  );
+};
+
+export const ImageTwoColumnLayout = () => {
+  return (
+    <sqm-media
+      image-url="https://i.imgur.com/yr6ER3R.png"
+      header="Klip Rewards"
+      description="Refer friends or complete tasks while using Klip to earn rewards"
+      button-text="Start earning"
+      layout="columns"
+    />
+  );
+};
+
+export const ImageTwoColumnLayoutReverse = () => {
+  return (
+    <sqm-media
+      image-url="https://i.imgur.com/yr6ER3R.png"
+      header="Klip Rewards"
+      description="Refer friends or complete tasks while using Klip to earn rewards"
+      button-text="Start earning"
+      layout="columns"
+      imagePos="right"
+      imageMobilePos="bottom"
+    />
+  );
+};
+
+export const ImageTwoColumnCustom = () => {
+  return (
+    <sqm-media
+      image-url="https://i.imgur.com/yr6ER3R.png"
+      header="Klip Rewards"
+      description="Refer friends or complete tasks while using Klip to earn rewards"
+      button-text="Start earning"
+      layout="columns"
+      text-color="#fffc4b"
+      background-color="#ff7f7f"
+    />
   );
 };
