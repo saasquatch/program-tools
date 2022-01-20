@@ -13,28 +13,23 @@ export function ProgramExplainerView(
 ) {
   const style = {
     Container: {
-      display: "flex",
-      flexDirection: "row",
       color: props.textColor || "var(--sl-color-neutral-900)",
-      background: props.backgroundColor || "var(--sl-color-neutral-0)",
-      "@media (max-width: 499px)": {
-        flexDirection: "column",
-      },
+      background: props.backgroundColor || "",
     },
     Header: {
-      padding: "var(--sl-spacing-large)",
-    },
-    Card: {
-      padding: "var(--sl-spacing-large)",
-    },
-    Title: {
       fontSize: "var(--sl-font-size-x-large)",
       fontWeight: "var(--sl-font-weight-bold)",
       lineHeight: "var(--sl-line-height-dense)",
+      marginBottom: "var(--sl-spacing-large)",
+      textAlign: "center",
     },
-    Description: {
-      fontSize: "var(--sl-font-size-medium)",
-      marginTop: "var(--sl-spacing-x-small)",
+    Grid: {
+      display: "flex",
+      flexDirection: "row",
+      gap: "var(--sl-spacing-large)",
+      "@media (max-width: 499px)": {
+        flexDirection: "column",
+      },
     },
   };
 
@@ -53,15 +48,15 @@ export function ProgramExplainerView(
   }`;
 
   return (
-    <div>
+    <div class={sheet.classes.Container}>
       <style type="text/css">
         {styleString}
         {vanillaStyle}
       </style>
       <div class={sheet.classes.Header}>
-        <div class={sheet.classes.Title}>{props.header}</div>
+        <div class={sheet.classes.Header}>{props.header}</div>
       </div>
-      <div class={sheet.classes.Container}>{children}</div>
+      <div class={sheet.classes.Grid}>{children}</div>
     </div>
   );
 }

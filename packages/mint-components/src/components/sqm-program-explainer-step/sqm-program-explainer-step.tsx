@@ -35,7 +35,12 @@ export class ProgramExplainerStep {
   /**
    * @uiName Icon
    */
-  @Prop() imageUrl: string;
+  @Prop() imageUrl?: string;
+
+  /**
+   * @uiName Icon
+   */
+  @Prop() icon?: string;
 
   constructor() {
     withHooks(this);

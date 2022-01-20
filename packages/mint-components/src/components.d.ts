@@ -852,7 +852,11 @@ export namespace Components {
         /**
           * @uiName Icon
          */
-        "imageUrl": string;
+        "icon"?: string;
+        /**
+          * @uiName Icon
+         */
+        "imageUrl"?: string;
         /**
           * @uiName Color
           * @uiWidget color
@@ -2990,6 +2994,10 @@ declare namespace LocalJSX {
           * @uiName Title
          */
         "header"?: string;
+        /**
+          * @uiName Icon
+         */
+        "icon"?: string;
         /**
           * @uiName Icon
          */

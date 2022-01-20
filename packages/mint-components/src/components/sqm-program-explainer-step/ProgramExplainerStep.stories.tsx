@@ -10,7 +10,7 @@ export const ProgramExplainerStep = () => {
     <sqm-program-explainer-step
       header="Get up to $1250 for inviting friends to Klip"
       description="Send your referral link to a friend or share it through email, Twitter, or Facebook"
-      image-url="https://i.imgur.com/xCgw1nb.png"
+      icon="person-plus-fill"
     />
   );
 };

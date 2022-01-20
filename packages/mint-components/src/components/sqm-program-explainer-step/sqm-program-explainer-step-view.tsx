@@ -7,6 +7,7 @@ export interface ProgramExplainerStepViewProps {
   textColor?: string;
   backgroundColor?: string;
   imageUrl?: string;
+  icon?: string;
 }
 
 export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
@@ -18,7 +19,7 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       padding: "var(--sl-spacing-x-large)",
       lineHeight: "var(--sl-line-height-dense)",
       color: props.textColor || "var(--sl-color-neutral-900)",
-      background: props.backgroundColor || "var(--sl-color-primary-100)",
+      background: props.backgroundColor || "var(--sl-color-primary-50)",
       "@media (max-width: 499px)": {
         flexDirection: "row",
         width: "auto",
@@ -45,12 +46,17 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
         marginTop: "var(--sl-spacing-x-small)",
       },
     },
-    Image: {
+    Media: {
       width: "64px",
       height: "64px",
       borderRadius: "100%",
       objectFit: "cover",
       userSelect: "none",
+      background: "#FFF",
+      color: "var(--sl-color-primary-300)",
+      fontSize: "26px",
+      textAlign: "center",
+      lineHeight: "72px",
     },
   };
 
@@ -72,7 +78,13 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
     <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
       <div>
-        <img class={sheet.classes.Image} src={props.imageUrl} />
+        {props.imageUrl ? (
+          <img class={sheet.classes.Media} src={props.imageUrl} />
+        ) : (
+          <div class={sheet.classes.Media}>
+            <sl-icon name={props.icon} />
+          </div>
+        )}
       </div>
       <div class={sheet.classes.Text}>
         <div class={sheet.classes.Header}>{props.header}</div>
