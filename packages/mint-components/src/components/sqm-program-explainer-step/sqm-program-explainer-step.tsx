@@ -14,7 +14,7 @@ export class ProgramExplainerStep {
   /**
    * @uiName Title
    */
-  @Prop() cardTitle: string;
+  @Prop() header: string;
 
   /**
    * @uiName Description
@@ -25,17 +25,17 @@ export class ProgramExplainerStep {
    * @uiName Color
    * @uiWidget color
    */
-  @Prop() color: string;
+  @Prop() textColor: string;
 
   /**
    * @uiName Background
    */
-  @Prop() background: string;
+  @Prop() backgroundColor: string;
 
   /**
    * @uiName Icon
    */
-  @Prop() icon: string;
+  @Prop() imageUrl: string;
 
   constructor() {
     withHooks(this);

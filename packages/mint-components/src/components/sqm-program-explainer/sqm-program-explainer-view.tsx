@@ -4,12 +4,8 @@ import { createStyleSheet } from "../../styling/JSS";
 
 export interface ProgramExplainerViewProps {
   header: string;
-  headerColor: string;
-  headerBackground: string;
-  cardTitle: string;
-  cardDescription: string;
-  cardColor: string;
-  cardBackground: string;
+  textColor: string;
+  backgroundColor: string;
 }
 export function ProgramExplainerView(
   props: ProgramExplainerViewProps,
@@ -19,19 +15,17 @@ export function ProgramExplainerView(
     Container: {
       display: "flex",
       flexDirection: "row",
+      color: props.textColor || "var(--sl-color-neutral-900)",
+      background: props.backgroundColor || "var(--sl-color-neutral-0)",
       "@media (max-width: 499px)": {
         flexDirection: "column",
       },
     },
     Header: {
       padding: "var(--sl-spacing-large)",
-      color: props.headerColor,
-      background: props.headerBackground,
     },
     Card: {
       padding: "var(--sl-spacing-large)",
-      color: props.cardColor,
-      background: props.cardBackground,
     },
     Title: {
       fontSize: "var(--sl-font-size-x-large)",
@@ -68,10 +62,6 @@ export function ProgramExplainerView(
         <div class={sheet.classes.Title}>{props.header}</div>
       </div>
       <div class={sheet.classes.Container}>{children}</div>
-      <div class={sheet.classes.Card}>
-        <div class={sheet.classes.Title}>{props.cardTitle}</div>
-        <div class={sheet.classes.Description}>{props.cardDescription}</div>
-      </div>
     </div>
   );
 }

@@ -23,35 +23,13 @@ export class ProgramExplainer {
    * @uiName Header Text Color
    * @uiWidget color
    */
-  @Prop() headerColor: string;
+  @Prop() textColor: string;
 
   /**
    * @uiName Header Background Color
    * @uiWidget color
    */
-  @Prop() headerBackground: string;
-
-  /**
-   * @uiName Card Title
-   */
-  @Prop() cardTitle: string;
-
-  /**
-   * @uiName Card Description
-   */
-  @Prop() cardDescription: string;
-
-  /**
-   * @uiName Card Text Color
-   * @uiWidget color
-   */
-  @Prop() cardColor: string;
-
-  /**
-   * @uiName Card Background Color
-   * @uiWidget color
-   */
-  @Prop() cardBackground: string;
+  @Prop() backgroundColor: string;
 
   constructor() {
     withHooks(this);

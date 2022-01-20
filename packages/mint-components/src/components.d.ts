@@ -822,60 +822,42 @@ export namespace Components {
     }
     interface SqmProgramExplainer {
         /**
-          * @uiName Card Background Color
+          * @uiName Header Background Color
           * @uiWidget color
          */
-        "cardBackground": string;
-        /**
-          * @uiName Card Text Color
-          * @uiWidget color
-         */
-        "cardColor": string;
-        /**
-          * @uiName Card Description
-         */
-        "cardDescription": string;
-        /**
-          * @uiName Card Title
-         */
-        "cardTitle": string;
+        "backgroundColor": string;
         /**
           * @uiName Header Text
          */
         "header": string;
         /**
-          * @uiName Header Background Color
-          * @uiWidget color
-         */
-        "headerBackground": string;
-        /**
           * @uiName Header Text Color
           * @uiWidget color
          */
-        "headerColor": string;
+        "textColor": string;
     }
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background
          */
-        "background": string;
-        /**
-          * @uiName Title
-         */
-        "cardTitle": string;
-        /**
-          * @uiName Color
-          * @uiWidget color
-         */
-        "color": string;
+        "backgroundColor": string;
         /**
           * @uiName Description
          */
         "description": string;
         /**
+          * @uiName Title
+         */
+        "header": string;
+        /**
           * @uiName Icon
          */
-        "icon": string;
+        "imageUrl": string;
+        /**
+          * @uiName Color
+          * @uiWidget color
+         */
+        "textColor": string;
     }
     interface SqmProgramMenu {
     }
@@ -2981,60 +2963,42 @@ declare namespace LocalJSX {
     }
     interface SqmProgramExplainer {
         /**
-          * @uiName Card Background Color
+          * @uiName Header Background Color
           * @uiWidget color
          */
-        "cardBackground"?: string;
-        /**
-          * @uiName Card Text Color
-          * @uiWidget color
-         */
-        "cardColor"?: string;
-        /**
-          * @uiName Card Description
-         */
-        "cardDescription"?: string;
-        /**
-          * @uiName Card Title
-         */
-        "cardTitle"?: string;
+        "backgroundColor"?: string;
         /**
           * @uiName Header Text
          */
         "header"?: string;
         /**
-          * @uiName Header Background Color
-          * @uiWidget color
-         */
-        "headerBackground"?: string;
-        /**
           * @uiName Header Text Color
           * @uiWidget color
          */
-        "headerColor"?: string;
+        "textColor"?: string;
     }
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background
          */
-        "background"?: string;
-        /**
-          * @uiName Title
-         */
-        "cardTitle"?: string;
-        /**
-          * @uiName Color
-          * @uiWidget color
-         */
-        "color"?: string;
+        "backgroundColor"?: string;
         /**
           * @uiName Description
          */
         "description"?: string;
         /**
+          * @uiName Title
+         */
+        "header"?: string;
+        /**
           * @uiName Icon
          */
-        "icon"?: string;
+        "imageUrl"?: string;
+        /**
+          * @uiName Color
+          * @uiWidget color
+         */
+        "textColor"?: string;
     }
     interface SqmProgramMenu {
     }

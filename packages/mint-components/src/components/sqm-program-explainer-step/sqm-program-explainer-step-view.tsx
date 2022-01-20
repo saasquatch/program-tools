@@ -2,11 +2,11 @@ import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
 export interface ProgramExplainerStepViewProps {
-  cardTitle: string;
+  header: string;
   description: string;
-  color: string;
-  background: string;
-  icon: string;
+  textColor?: string;
+  backgroundColor?: string;
+  imageUrl?: string;
 }
 
 export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
@@ -15,11 +15,10 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
       display: "flex",
       flexDirection: "column",
       width: "100%",
-      color: props.color,
-      background: props.background,
-      padding: "var(--sl-spacing-large)",
-      //   paddingBottom: "var(--sl-spacing-xxx-large)",
-
+      padding: "var(--sl-spacing-x-large)",
+      lineHeight: "var(--sl-line-height-dense)",
+      color: props.textColor || "var(--sl-color-neutral-900)",
+      background: props.backgroundColor || "var(--sl-color-primary-100)",
       "@media (max-width: 499px)": {
         flexDirection: "row",
         width: "auto",
@@ -31,12 +30,10 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
         marginLeft: "var(--sl-spacing-large)",
       },
     },
-    Title: {
-      textTransform: "uppercase",
-      fontSize: "var(--sl-font-size-medium)",
+    Header: {
+      fontSize: "var(--sl-font-size-large)",
       fontWeight: "var(--sl-font-weight-bold)",
-      lineHeight: "var(--sl-line-height-dense)",
-      marginTop: "var(--sl-spacing-large)",
+      marginTop: "var(--sl-spacing-x-large)",
       "@media (max-width: 499px)": {
         margin: "0",
       },
@@ -48,15 +45,12 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
         marginTop: "var(--sl-spacing-x-small)",
       },
     },
-    Icon: {
+    Image: {
       width: "64px",
       height: "64px",
       borderRadius: "100%",
-      background: "#F4F5F7",
-      color: "var(--sl-color-primary-400)",
-      fontSize: "26px",
-      textAlign: "center",
-      lineHeight: "72px",
+      objectFit: "cover",
+      userSelect: "none",
     },
   };
 
@@ -78,12 +72,10 @@ export function ProgramExplainerStepView(props: ProgramExplainerStepViewProps) {
     <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
       <div>
-        <div class={sheet.classes.Icon}>
-          <sl-icon name={props.icon}></sl-icon>
-        </div>
+        <img class={sheet.classes.Image} src={props.imageUrl} />
       </div>
       <div class={sheet.classes.Text}>
-        <div class={sheet.classes.Title}>{props.cardTitle}</div>
+        <div class={sheet.classes.Header}>{props.header}</div>
         <div class={sheet.classes.Description}>{props.description}</div>
       </div>
     </div>
