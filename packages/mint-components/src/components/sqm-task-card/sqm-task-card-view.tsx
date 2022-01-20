@@ -37,7 +37,7 @@ export type TaskCardViewProps = {
     loading: boolean;
     loadingEvent: boolean;
     progress: number;
-    locale: string;
+    locale?: string;
   };
   callbacks?: {
     sendEvent: (event: string) => void;

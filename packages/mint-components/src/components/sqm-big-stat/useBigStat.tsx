@@ -411,6 +411,7 @@ const rewardsRedeemedQuery = (
             rewardBalanceDetails(
               programId: $programId
               filter: { type_eq: $type, unit_eq: $unit }
+              locale: $locale
             ) {
               ... on CreditRewardBalance {
                 prettyRedeemedCredit
@@ -463,6 +464,7 @@ const rewardsAssignedQuery = (
             rewardBalanceDetails(
               programId: $programId
               filter: { type_eq: $type, unit_eq: $unit }
+              locale: $locale
             ) {
               ... on CreditRewardBalance {
                 prettyAssignedCredit
@@ -515,6 +517,7 @@ const rewardsAvailableQuery = (
             rewardBalanceDetails(
               programId: $programId
               filter: { type_eq: $type, unit_eq: $unit }
+              locale: $locale
             ) {
               ... on CreditRewardBalance {
                 prettyAvailableValue
@@ -573,6 +576,7 @@ const rewardsBalanceQuery = (
             rewardBalanceDetails(
               programId: $programId
               filter: { type_eq: $type, unit_eq: $unit }
+              locale: $locale
             ) {
               ... on CreditRewardBalance {
                 prettyAvailableValue(formatType: $format)
@@ -729,7 +733,13 @@ export function useBigStat(props: BigStat): BigStatHook {
 
   if (!re?.exec(statType)) {
     return {
-      props: { value: 0, statvalue: "!!!", flexReverse, alignment, loading:false },
+      props: {
+        value: 0,
+        statvalue: "!!!",
+        flexReverse,
+        alignment,
+        loading: false,
+      },
       label: "BAD PROP TYPE",
     };
   }

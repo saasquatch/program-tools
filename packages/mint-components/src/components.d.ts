@@ -197,6 +197,10 @@ export namespace Components {
     }
     interface SqmLeaderboard {
         /**
+          * @uiName Title displayed for users without names
+         */
+        "anonymousUser": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -332,7 +336,7 @@ export namespace Components {
          */
         "minHeight": string;
         /**
-          * @uiName Image Link
+          * @uiName Overlay Color
          */
         "overlayColor": string;
         /**
@@ -1260,7 +1264,7 @@ export namespace Components {
           * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
          */
         "dateShown": string;
-        "renderCell": (data: Reward[]) => Promise<any>;
+        "renderCell": (data: Reward[], locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableRewardCell {
@@ -2383,6 +2387,10 @@ declare namespace LocalJSX {
     }
     interface SqmLeaderboard {
         /**
+          * @uiName Title displayed for users without names
+         */
+        "anonymousUser"?: string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -2518,7 +2526,7 @@ declare namespace LocalJSX {
          */
         "minHeight"?: string;
         /**
-          * @uiName Image Link
+          * @uiName Overlay Color
          */
         "overlayColor"?: string;
         /**
