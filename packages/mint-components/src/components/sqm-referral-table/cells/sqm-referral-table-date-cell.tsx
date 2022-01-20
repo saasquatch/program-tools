@@ -12,7 +12,7 @@ export class ReferralTableDateCell {
   ignored = true;
 
   @Prop() date: number;
-  @Prop() locale: string;
+  @Prop() locale: string = "en";
   constructor() {
     withHooks(this);
   }
