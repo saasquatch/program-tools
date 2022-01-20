@@ -279,7 +279,7 @@ export namespace Components {
     }
     interface SqmMedia {
         /**
-          * @uiName Image Link
+          * @uiName Background Color
          */
         "backgroundColor"?: string;
         /**
@@ -303,11 +303,17 @@ export namespace Components {
          */
         "header"?: string;
         /**
-          * @uiName Image Link
+          * @uiName Image Mobile Position
+          * @uiType string
+          * @uiEnum ["top", "bottom" ]
+          * @uiEnumNames ["Top", "Bottom"]
          */
         "imageMobilePos": "top" | "bottom";
         /**
-          * @uiName Image Link
+          * @uiName Image Position
+          * @uiType string
+          * @uiEnum ["left", "right" ]
+          * @uiEnumNames ["Left", "Right"]
          */
         "imagePos": "left" | "right";
         /**
@@ -316,22 +322,25 @@ export namespace Components {
         "imageUrl": string;
         /**
           * @uiName Image Link
+          * @uiType string
+          * @uiEnum ["overlay", "columns" ]
+          * @uiEnumNames ["Overlay", "Two-column"]
          */
         "layout": "overlay" | "columns";
         /**
-          * @uiName Image Link
+          * @uiName Minimum Image Height
          */
         "minHeight": string;
         /**
-          * @uiName Image Link
+          * @uiName Overlay Color
          */
         "overlayColor": string;
         /**
-          * @uiName Image Link
+          * @uiName Overlay Opacity
          */
         "overlayOpacity": string;
         /**
-          * @uiName Image Link
+          * @uiName Text Color
          */
         "textColor"?: string;
     }
@@ -2456,7 +2465,7 @@ declare namespace LocalJSX {
     }
     interface SqmMedia {
         /**
-          * @uiName Image Link
+          * @uiName Background Color
          */
         "backgroundColor"?: string;
         /**
@@ -2480,11 +2489,17 @@ declare namespace LocalJSX {
          */
         "header"?: string;
         /**
-          * @uiName Image Link
+          * @uiName Image Mobile Position
+          * @uiType string
+          * @uiEnum ["top", "bottom" ]
+          * @uiEnumNames ["Top", "Bottom"]
          */
         "imageMobilePos"?: "top" | "bottom";
         /**
-          * @uiName Image Link
+          * @uiName Image Position
+          * @uiType string
+          * @uiEnum ["left", "right" ]
+          * @uiEnumNames ["Left", "Right"]
          */
         "imagePos"?: "left" | "right";
         /**
@@ -2493,22 +2508,25 @@ declare namespace LocalJSX {
         "imageUrl"?: string;
         /**
           * @uiName Image Link
+          * @uiType string
+          * @uiEnum ["overlay", "columns" ]
+          * @uiEnumNames ["Overlay", "Two-column"]
          */
         "layout"?: "overlay" | "columns";
         /**
-          * @uiName Image Link
+          * @uiName Minimum Image Height
          */
         "minHeight"?: string;
         /**
-          * @uiName Image Link
+          * @uiName Overlay Color
          */
         "overlayColor"?: string;
         /**
-          * @uiName Image Link
+          * @uiName Overlay Opacity
          */
         "overlayOpacity"?: string;
         /**
-          * @uiName Image Link
+          * @uiName Text Color
          */
         "textColor"?: string;
     }
