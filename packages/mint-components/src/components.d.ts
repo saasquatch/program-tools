@@ -197,6 +197,10 @@ export namespace Components {
     }
     interface SqmLeaderboard {
         /**
+          * @uiName Title displayed for users without names
+         */
+        "anonymousUser": string;
+        /**
           * @undocumented 
           * @uiType object
          */
@@ -2382,6 +2386,10 @@ declare namespace LocalJSX {
         "hookStory"?: FunctionalComponent;
     }
     interface SqmLeaderboard {
+        /**
+          * @uiName Title displayed for users without names
+         */
+        "anonymousUser"?: string;
         /**
           * @undocumented 
           * @uiType object

@@ -136,7 +136,12 @@ export const ReferralTableTr = createHookStory(() => {
         converted-status-text="Dönüştür"
         in-progress-status-text="Devam etmekte"
       ></sqm-referral-table-status-column>
-      <sqm-referral-table-rewards-column column-title="Ödüller"></sqm-referral-table-rewards-column>
+      <sqm-referral-table-rewards-column
+        column-title="Ödüller"
+        status-text="{status, select, AVAILABLE {Mevcut} CANCELLED {İptal edildi} PENDING {Bekliyor} EXPIRED {Süresi doldu} REDEEMED {Kullanıldı} other {Müsait değil} }"
+        status-long-text="{status, select, AVAILABLE {Ödül süresi doluyor} CANCELLED {Ödül iptal edildi} PENDING {üzerinde mevcut} EXPIRED {Ödülün süresi doldu} other {Müsait değil} }"
+        reward-received-text="Ödül şu tarihte alındı:"
+      ></sqm-referral-table-rewards-column>
       <sqm-referral-table-date-column
         column-title="Tarih"
         date-shown="dateReferralStarted"
@@ -175,7 +180,12 @@ export const ReferralTableFr = createHookStory(() => {
         converted-status-text="Converti"
         in-progress-status-text="En cours"
       ></sqm-referral-table-status-column>
-      <sqm-referral-table-rewards-column column-title="Récompenses"></sqm-referral-table-rewards-column>
+      <sqm-referral-table-rewards-column
+        column-title="Récompenses"
+        status-text="{status, select, AVAILABLE {Disponible} CANCELLED {Annulé} PENDING {En attente} EXPIRED {Expiré} REDEEMED {Racheté} other {Indisponible} }"
+        status-long-text="{status, select, AVAILABLE {Récompense expirant sur} CANCELLED {Récompense annulée sur} PENDING {Disponible sur} EXPIRED {Récompense expirée sur} other {Indisponible} }"
+        reward-received-text="Récompense reçue"
+      ></sqm-referral-table-rewards-column>
       <sqm-referral-table-date-column
         column-title="Date de Référence"
         date-shown="dateReferralStarted"
