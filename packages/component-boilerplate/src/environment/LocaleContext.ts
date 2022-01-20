@@ -31,15 +31,15 @@ function _lazilyStartGlobally() {
   const { data } = useQuery(GET_LOCALE, {}, !user);
   const locale = data?.viewer?.locale;
 
-  console.log({ user, data });
   if (!globalProvider) {
     // Lazily creates a global provider
     window.squatchLocale = new ContextProvider<string>({
       element: document.documentElement,
-      initialState: locale || window.widgetIdent?.locale || undefined,
+      initialState: locale ||
+        window.widgetIdent?.locale || undefined,
       contextName: CONTEXT_NAME,
     }).start();
-  } else if (locale !== globalProvider.context) {
+  } else if (locale && locale !== globalProvider.context) {
     globalProvider.context = locale;
   }
 }
@@ -50,6 +50,7 @@ export function useLocale(): string | undefined {
   return useDomContext<string>(host, CONTEXT_NAME);
 }
 
+// not sure if this is even needed
 /**
  * Overide the globally defined Locale context
  *

@@ -50,16 +50,14 @@ const WIDGET_LOAD_EVENT = gql`
 export function useWidget(props: SqbWidget) {
   const userIdent = useUserIdentity();
   const programId = useProgramId();
-
   const locale = useLocale();
-  console.log(locale);
   const [fetch, { data }] = useLazyQuery<GetWidget>(GET_WIDGET);
   const [sendLoadEvent] = useMutation(WIDGET_LOAD_EVENT);
-
   const analyticsEventSent = useRef(false);
 
   if (props.trackLoads && !analyticsEventSent.current && userIdent !== undefined) {
     analyticsEventSent.current = true;
+    console.log('SENDING LOAD EVENT');
     sendLoadEvent({
       eventMeta: {
         programId,
@@ -79,7 +77,6 @@ export function useWidget(props: SqbWidget) {
     // Or auth required and logged in
     userIdent !== undefined;
   useEffect(() => {
-    console.log("locale updated", locale);
     if (props.widgetType && canLoad) {
       fetch({
         widgetType: props.widgetType,
