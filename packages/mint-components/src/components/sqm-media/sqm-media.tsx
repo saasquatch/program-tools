@@ -4,7 +4,7 @@ import { getProps } from "../../utils/utils";
 import { MediaView } from "./sqm-media-view";
 
 /**
- * @uiName Media Component
+ * @uiName Media
  */
 @Component({
   tag: "sqm-media",
@@ -58,7 +58,7 @@ export class Media {
   /**
    * @uiName Image Mobile Position
    * @uiType string
-   * @uiEnum ["top", "bottom"]
+   * @uiEnum ["top", "bottom" ]
    */
   @Prop() imageMobilePos: "top" | "bottom" = "top";
 

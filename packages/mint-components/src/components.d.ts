@@ -309,7 +309,7 @@ export namespace Components {
         /**
           * @uiName Image Mobile Position
           * @uiType string
-          * @uiEnum ["top", "bottom"]
+          * @uiEnum ["top", "bottom" ]
          */
         "imageMobilePos": "top" | "bottom";
         /**
@@ -2496,7 +2496,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Image Mobile Position
           * @uiType string
-          * @uiEnum ["top", "bottom"]
+          * @uiEnum ["top", "bottom" ]
          */
         "imageMobilePos"?: "top" | "bottom";
         /**
