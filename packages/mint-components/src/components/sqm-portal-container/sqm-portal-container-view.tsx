@@ -6,6 +6,7 @@ interface PortalContainerViewProps {
   direction: "row" | "column";
   padding: Spacing;
   gap: string;
+  display?: string;
   minWidth?: string;
   maxWidth?: string;
 }
@@ -16,7 +17,8 @@ export function PortalContainerView(
 ) {
   const style = {
     Container: {
-      display: "grid",
+      display: props.display || "grid",
+	  flexWrap: "wrap",
       "grid-template-columns":
         props.direction === "row"
           ? `repeat(auto-fill, minmax(${props.minWidth}, auto))`

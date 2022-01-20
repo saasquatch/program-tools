@@ -483,6 +483,12 @@ export namespace Components {
          */
         "direction": "row" | "column";
         /**
+          * @uiName Display
+          * @uiType string
+          * @uiEnum ["grid", "flex"]
+         */
+        "display": "grid" | "flex";
+        /**
           * @uiName Gap
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
@@ -2669,6 +2675,12 @@ declare namespace LocalJSX {
           * @uiEnum ["row", "column"]
          */
         "direction"?: "row" | "column";
+        /**
+          * @uiName Display
+          * @uiType string
+          * @uiEnum ["grid", "flex"]
+         */
+        "display"?: "grid" | "flex";
         /**
           * @uiName Gap
           * @uiType string
