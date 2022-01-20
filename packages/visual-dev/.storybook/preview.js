@@ -1,12 +1,23 @@
-import { DocsPage, DocsContainer } from "@storybook/addon-docs"
-import '../src/styles.css'
+import { DocsPage, DocsContainer } from "@storybook/addon-docs";
+import { GlobalStyle } from "../src/components/GlobalStyle";
+import React from "react";
 
 export const parameters = {
   docs: {
     container: DocsContainer,
-    page: DocsPage
+    page: DocsPage,
   },
   options: {
-    enableShortcuts: false
-  }
-}
+    enableShortcuts: false,
+  },
+};
+
+const withGlobalStyles = (Story, context) => {
+  return (
+    <>
+      <GlobalStyle />
+      <Story {...context} />
+    </>
+  );
+};
+export const decorators = [withGlobalStyles];

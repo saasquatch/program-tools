@@ -35,35 +35,46 @@ const ArrayContainer = styled.div``;
 
 // Used in the two templates
 const DefaultArrayItem = (props: any) => {
+  const {
+    key,
+    children,
+    hasToolbar,
+    hasMoveDown,
+    hasMoveUp,
+    hasRemove,
+    disabled,
+    readonly,
+    index,
+    onReorderClick,
+    onDropIndexClick,
+  } = props;
   return (
-    <ItemContainer key={props.key}>
-      <ItemContent>{props.children}</ItemContent>
+    <ItemContainer key={key}>
+      <ItemContent>{children}</ItemContent>
       <ItemButtons>
-        {props.hasToolbar && (
+        {hasToolbar && (
           <>
-            {(props.hasMoveUp || props.hasMoveDown) && (
+            {(hasMoveUp || hasMoveDown) && (
               <IconButton
                 icon="chevron_up"
-                disabled={props.disabled || props.readonly || !props.hasMoveUp}
-                onClick={props.onReorderClick(props.index, props.index - 1)}
+                disabled={disabled || readonly || !hasMoveUp}
+                onClick={onReorderClick(index, index - 1)}
               />
             )}
 
-            {(props.hasMoveUp || props.hasMoveDown) && (
+            {(hasMoveUp || hasMoveDown) && (
               <IconButton
                 icon="chevron_down"
-                disabled={
-                  props.disabled || props.readonly || !props.hasMoveDown
-                }
-                onClick={props.onReorderClick(props.index, props.index + 1)}
+                disabled={disabled || readonly || !hasMoveDown}
+                onClick={onReorderClick(index, index + 1)}
               />
             )}
 
-            {props.hasRemove && (
+            {hasRemove && (
               <IconButton
                 icon="trash"
-                disabled={props.disabled || props.readonly}
-                onClick={props.onDropIndexClick(props.index)}
+                disabled={disabled || readonly}
+                onClick={onDropIndexClick(index)}
               />
             )}
           </>
@@ -74,30 +85,44 @@ const DefaultArrayItem = (props: any) => {
 };
 
 export const ArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
+  const {
+    title,
+    required,
+    idSchema,
+    items,
+    canAdd,
+    disabled,
+    readonly,
+    onAddClick,
+    uiSchema,
+    schema,
+  } = props;
   return (
     <Container>
-      <FrontMatterContainer>
-        <Title key={`array-field-title-${props.idSchema.$id}`}>
-          {props.TitleField || props.uiSchema["ui:title"] || props.title}
-          {props.required ? <RequiredLabel> (required)</RequiredLabel> : null}
-        </Title>
+      {(title || uiSchema["ui:description"] || schema.description) && (
+        <FrontMatterContainer>
+          {title && (
+            <Title key={`array-field-title-${idSchema.$id}`}>
+              {title}
+              {required && <RequiredLabel> (required)</RequiredLabel>}
+            </Title>
+          )}
 
-        {(props.uiSchema["ui:description"] || props.schema.description) && (
-          <Description key={`array-field-description-${props.idSchema.$id}`}>
-            {props.DescriptionField ||
-              props.uiSchema["ui:description"] ||
-              props.schema.description}
-          </Description>
-        )}
-      </FrontMatterContainer>
-      <ArrayContainer key={`array-item-list-${props.idSchema.$id}`}>
-        {props.items && props.items.map((p) => DefaultArrayItem(p))}
+          {(uiSchema["ui:description"] || schema.description) && (
+            <Description key={`array-field-description-${idSchema.$id}`}>
+              {uiSchema["ui:description"] || schema.description}
+            </Description>
+          )}
+        </FrontMatterContainer>
+      )}
+      <ArrayContainer key={`array-item-list-${idSchema.$id}`}>
+        {items && items.map((p) => DefaultArrayItem(p))}
 
-        {props.canAdd && (
+        {canAdd && (
           <IconButton
             icon="add"
-            onClick={props.onAddClick}
-            disabled={props.disabled || props.readonly}
+            onClick={onAddClick}
+            disabled={disabled || readonly}
           />
         )}
       </ArrayContainer>

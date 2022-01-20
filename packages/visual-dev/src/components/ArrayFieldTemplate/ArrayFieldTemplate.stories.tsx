@@ -1,8 +1,7 @@
 import { JSONSchema7 } from "json-schema";
 import React from "react";
 import { Button } from "../Button";
-import { RJSFInput } from "../Input";
-import Form, { WidgetProps } from "@rjsf/core";
+import Form from "@rjsf/core";
 import { ArrayFieldTemplate } from "./ArrayFieldTemplate";
 import { FieldTemplate } from "../FieldTemplate";
 
