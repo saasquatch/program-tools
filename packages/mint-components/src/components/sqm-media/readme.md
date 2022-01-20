@@ -7,20 +7,36 @@
 
 ## Properties
 
-| Property           | Attribute           | Description | Type      | Default     |
-| ------------------ | ------------------- | ----------- | --------- | ----------- |
-| `buttonLink`       | `button-link`       |             | `string`  | `undefined` |
-| `buttonNewTab`     | `button-new-tab`    |             | `boolean` | `undefined` |
-| `buttonText`       | `button-text`       |             | `string`  | `undefined` |
-| `description`      | `description`       |             | `string`  | `undefined` |
-| `header`           | `header`            |             | `string`  | `undefined` |
-| `height`           | `height`            |             | `string`  | `undefined` |
-| `imageDescription` | `image-description` |             | `string`  | `undefined` |
-| `imageHeader`      | `image-header`      |             | `string`  | `undefined` |
-| `imgUrl`           | `img-url`           |             | `string`  | `undefined` |
-| `objectFit`        | `object-fit`        |             | `string`  | `undefined` |
-| `width`            | `width`             |             | `string`  | `undefined` |
+| Property          | Attribute          | Description | Type                     | Default                         |
+| ----------------- | ------------------ | ----------- | ------------------------ | ------------------------------- |
+| `backgroundColor` | `background-color` |             | `string`                 | `undefined`                     |
+| `buttonLink`      | `button-link`      |             | `string`                 | `undefined`                     |
+| `buttonNewTab`    | `button-new-tab`   |             | `boolean`                | `false`                         |
+| `buttonText`      | `button-text`      |             | `string`                 | `undefined`                     |
+| `description`     | `description`      |             | `string`                 | `undefined`                     |
+| `header`          | `header`           |             | `string`                 | `undefined`                     |
+| `imageMobilePos`  | `image-mobile-pos` |             | `"bottom" \| "top"`      | `"top"`                         |
+| `imagePos`        | `image-pos`        |             | `"left" \| "right"`      | `"left"`                        |
+| `imageUrl`        | `image-url`        |             | `string`                 | `undefined`                     |
+| `layout`          | `layout`           |             | `"columns" \| "overlay"` | `"overlay"`                     |
+| `minHeight`       | `min-height`       |             | `string`                 | `"300px"`                       |
+| `overlayColor`    | `overlay-color`    |             | `string`                 | `"var(--sl-color-primary-900)"` |
+| `overlayOpacity`  | `overlay-opacity`  |             | `string`                 | `"0.75"`                        |
+| `textColor`       | `text-color`       |             | `string`                 | `undefined`                     |
 
+
+## Dependencies
+
+### Used by
+
+ - [sqm-stencilbook](../sqm-stencilbook)
+
+### Graph
+```mermaid
+graph TD;
+  sqm-stencilbook --> sqm-media
+  style sqm-media fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

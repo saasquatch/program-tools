@@ -2,6 +2,7 @@ import { h, VNode } from "@stencil/core";
 import { DateTime } from "luxon";
 import { intl } from "../../global/global";
 import { createStyleSheet } from "../../styling/JSS";
+import { luxonLocale } from "../../utils/utils";
 import { Details } from "./DetailsView";
 import {
   ProgressBarProps,
@@ -31,12 +32,12 @@ export type TaskCardViewProps = {
     buttonLink: string;
     openNewTab: boolean;
     eventKey?: string;
-    locale: string;
   };
   states: {
     loading: boolean;
     loadingEvent: boolean;
     progress: number;
+    locale: string;
   };
   callbacks?: {
     sendEvent: (event: string) => void;
@@ -266,21 +267,23 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               defaultMessage: content.startsOnMessage,
             },
             {
-              startDate: content.locale.includes("en")
+              startDate: states.locale.includes("en")
                 ? dateStart
+                    .setLocale(luxonLocale(states.locale))
                     .toLocaleString(DateTime.DATETIME_MED)
                     .split(",")
                     .slice(0, 2)
                     .join(",") +
                   " at " +
                   dateStart
+                    .setLocale(luxonLocale(states.locale))
                     .toLocaleString(DateTime.DATETIME_MED)
                     .split(",")
                     .slice(2)
                     .join(",")
                     .toLowerCase()
                 : dateStart
-                    .setLocale(content.locale)
+                    .setLocale(luxonLocale(states.locale))
                     .toLocaleString(DateTime.DATETIME_MED),
             }
           )}
@@ -297,21 +300,23 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               defaultMessage: content.endedMessage,
             },
             {
-              endDate: content.locale.includes("en")
+              endDate: states.locale.includes("en")
                 ? dateEnd
+                    .setLocale(luxonLocale(states.locale))
                     .toLocaleString(DateTime.DATETIME_MED)
                     .split(",")
                     .slice(0, 2)
                     .join(",") +
                   " at " +
                   dateEnd
+                    .setLocale(luxonLocale(states.locale))
                     .toLocaleString(DateTime.DATETIME_MED)
                     .split(",")
                     .slice(2)
                     .join(",")
                     .toLowerCase()
                 : dateEnd
-                    .setLocale(content.locale)
+                    .setLocale(states.locale)
                     .toLocaleString(DateTime.DATETIME_MED),
             }
           )}
@@ -440,21 +445,23 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                           defaultMessage: content.expiryMessage,
                         },
                         {
-                          endDate: content.locale.includes("en")
+                          endDate: states.locale.includes("en")
                             ? dateEnd
+                                .setLocale(luxonLocale(states.locale))
                                 .toLocaleString(DateTime.DATETIME_MED)
                                 .split(",")
                                 .slice(0, 2)
                                 .join(",") +
                               " at " +
                               dateEnd
+                                .setLocale(luxonLocale(states.locale))
                                 .toLocaleString(DateTime.DATETIME_MED)
                                 .split(",")
                                 .slice(2)
                                 .join(",")
                                 .toLowerCase()
                             : dateEnd
-                                .setLocale(content.locale)
+                                .setLocale(luxonLocale(states.locale))
                                 .toLocaleString(DateTime.DATETIME_MED),
                         }
                       )}

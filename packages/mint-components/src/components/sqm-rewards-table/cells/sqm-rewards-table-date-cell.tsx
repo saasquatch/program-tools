@@ -1,6 +1,7 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import { DateTime } from "luxon";
+import { luxonLocale } from "../../../utils/utils";
 import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 
 @Component({
@@ -12,6 +13,7 @@ export class RewardTableDateCell {
   ignored = true;
 
   @Prop() date: number;
+  @Prop() locale: string = "en";
   constructor() {
     withHooks(this);
   }
@@ -20,7 +22,9 @@ export class RewardTableDateCell {
   render() {
     const date = !this.date
       ? "-"
-      : DateTime.fromMillis(this.date)?.toLocaleString(DateTime.DATE_MED);
+      : DateTime.fromMillis(this.date)
+          ?.setLocale(luxonLocale(this.locale))
+          ?.toLocaleString(DateTime.DATE_MED);
 
     return <TextSpanView type="p">{date}</TextSpanView>;
   }

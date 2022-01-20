@@ -31,12 +31,13 @@ export class RewardsTableColumn implements RewardTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Reward[]) {
+  async renderCell(data: Reward[], locale: string) {
     return (
       <sqm-rewards-table-reward-cell
         reward={data?.[0]}
         redeemedText={this.redeemedText}
         availableText={this.availableText}
+        locale={locale}
       ></sqm-rewards-table-reward-cell>
     );
   }

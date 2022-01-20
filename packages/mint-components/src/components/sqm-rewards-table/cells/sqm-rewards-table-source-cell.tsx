@@ -13,8 +13,10 @@ export class RewardTableSourceCell {
   @Prop() rewardExchangeText: string;
   @Prop() referralText: string;
   @Prop() rewardSourceText: string;
+  @Prop() locale: string = "en";
 
   render() {
+    intl.locale = this.locale;
     const RewardSource = ({ reward }: { reward: Reward }) => {
       return (
         <span>

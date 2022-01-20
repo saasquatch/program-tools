@@ -42,6 +42,8 @@
 - [sqm-portal-login](../sqm-portal-login)
 - [sqm-portal-change-password](../sqm-portal-change-password)
 - [sqm-referral-iframe](../sqm-referral-iframe)
+- [sqm-program-explainer](../sqm-program-explainer)
+- [sqm-program-explainer-step](../sqm-program-explainer-step)
 - [sqm-brand](../sqm-brand)
 - [sqm-portal-container](../sqm-portal-container)
 - [sqm-rewards-table-reward-cell](../sqm-rewards-table/cells)
@@ -52,6 +54,7 @@
 - [sqm-referral-table-status-column](../sqm-referral-table/columns)
 - [sqm-referral-table-date-column](../sqm-referral-table/columns)
 - [sqm-referral-table-rewards-column](../sqm-referral-table/columns)
+- [sqm-media](../sqm-media)
 - [sqm-timeline](../sqm-referral-card)
 - [sqm-timeline-reward](../sqm-referral-card)
 
@@ -91,6 +94,8 @@ graph TD;
   sqm-stencilbook --> sqm-portal-login
   sqm-stencilbook --> sqm-portal-change-password
   sqm-stencilbook --> sqm-referral-iframe
+  sqm-stencilbook --> sqm-program-explainer
+  sqm-stencilbook --> sqm-program-explainer-step
   sqm-stencilbook --> sqm-brand
   sqm-stencilbook --> sqm-portal-container
   sqm-stencilbook --> sqm-rewards-table-reward-cell
@@ -101,6 +106,7 @@ graph TD;
   sqm-stencilbook --> sqm-referral-table-status-column
   sqm-stencilbook --> sqm-referral-table-date-column
   sqm-stencilbook --> sqm-referral-table-rewards-column
+  sqm-stencilbook --> sqm-media
   sqm-stencilbook --> sqm-timeline
   sqm-stencilbook --> sqm-timeline-reward
   sqm-edit-profile --> sqm-form-message
