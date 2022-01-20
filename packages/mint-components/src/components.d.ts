@@ -967,6 +967,7 @@ export namespace Components {
     }
     interface SqmReferralTableDateCell {
         "date": number;
+        "locale": string;
     }
     interface SqmReferralTableDateColumn {
         /**
@@ -979,13 +980,14 @@ export namespace Components {
           * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
          */
         "dateShown": ReferralDates;
-        "renderCell": (data: Referral) => Promise<any>;
+        "renderCell": (data: Referral, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmReferralTableRewardsCell {
         "expiringText": string;
         "fuelTankText": string;
         "hideDetails": boolean;
+        "locale": string;
         "pendingForText": string;
         "rewardReceivedText": string;
         "rewards": Reward[];
@@ -1013,7 +1015,7 @@ export namespace Components {
           * @uiName Reward Pending Text
          */
         "pendingForText": string;
-        "renderCell": (data: Referral) => Promise<any>;
+        "renderCell": (data: Referral, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward Received Text
@@ -1238,6 +1240,7 @@ export namespace Components {
     }
     interface SqmRewardsTableDateCell {
         "date": number;
+        "locale": string;
     }
     interface SqmRewardsTableDateColumn {
         /**
@@ -1255,6 +1258,7 @@ export namespace Components {
     }
     interface SqmRewardsTableRewardCell {
         "availableText": string;
+        "locale": string;
         "redeemedText": string;
         "reward": Reward;
     }
@@ -1271,12 +1275,13 @@ export namespace Components {
           * @uiName Redeemed Amount Text
          */
         "redeemedText": string;
-        "renderCell": (data: Reward[]) => Promise<any>;
+        "renderCell": (data: Reward[], locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableSourceCell {
         "anonymousUserText": string;
         "deletedUserText": string;
+        "locale": string;
         "referralText": string;
         "reward": Reward;
         "rewardExchangeText": string;
@@ -1300,7 +1305,7 @@ export namespace Components {
           * @uiName Referral Text
          */
         "referralText": string;
-        "renderCell": (data: Reward[]) => Promise<any>;
+        "renderCell": (data: Reward[], locale: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward Exchange label
@@ -1313,6 +1318,7 @@ export namespace Components {
     }
     interface SqmRewardsTableStatusCell {
         "expiryText": string;
+        "locale": string;
         "reward": Reward;
         "statusText": string;
     }
@@ -1325,7 +1331,7 @@ export namespace Components {
           * @uiName Expired Status Text
          */
         "expiryText": string;
-        "renderCell": (data: Reward[]) => Promise<any>;
+        "renderCell": (data: Reward[], locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward Status Text
@@ -3142,6 +3148,7 @@ declare namespace LocalJSX {
     }
     interface SqmReferralTableDateCell {
         "date"?: number;
+        "locale"?: string;
     }
     interface SqmReferralTableDateColumn {
         /**
@@ -3159,6 +3166,7 @@ declare namespace LocalJSX {
         "expiringText"?: string;
         "fuelTankText"?: string;
         "hideDetails"?: boolean;
+        "locale"?: string;
         "pendingForText"?: string;
         "rewardReceivedText"?: string;
         "rewards"?: Reward[];
@@ -3405,6 +3413,7 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableDateCell {
         "date"?: number;
+        "locale"?: string;
     }
     interface SqmRewardsTableDateColumn {
         /**
@@ -3420,6 +3429,7 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableRewardCell {
         "availableText"?: string;
+        "locale"?: string;
         "redeemedText"?: string;
         "reward"?: Reward;
     }
@@ -3440,6 +3450,7 @@ declare namespace LocalJSX {
     interface SqmRewardsTableSourceCell {
         "anonymousUserText"?: string;
         "deletedUserText"?: string;
+        "locale"?: string;
         "referralText"?: string;
         "reward"?: Reward;
         "rewardExchangeText"?: string;
@@ -3474,6 +3485,7 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableStatusCell {
         "expiryText"?: string;
+        "locale"?: string;
         "reward"?: Reward;
         "statusText"?: string;
     }

@@ -51,7 +51,7 @@ export class RewardTableUserColumn implements RewardTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Reward[]) {
+  async renderCell(data: Reward[], locale) {
     return (
       <sqm-rewards-table-source-cell
         reward={data?.[0]}
@@ -60,6 +60,7 @@ export class RewardTableUserColumn implements RewardTableColumn {
         rewardExchangeText={this.rewardExchangeText}
         referralText={this.referralText}
         rewardSourceText={this.rewardSourceText}
+        locale={locale}
       ></sqm-rewards-table-source-cell>
     );
   }

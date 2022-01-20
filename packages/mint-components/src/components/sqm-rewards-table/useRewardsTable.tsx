@@ -175,7 +175,7 @@ export function useRewardsTable(
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r: Reward) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell([r], c))
+        tryMethod(c, () => c.renderCell([r], locale))
       );
       const cells = await Promise.all(cellPromise);
       return cells;

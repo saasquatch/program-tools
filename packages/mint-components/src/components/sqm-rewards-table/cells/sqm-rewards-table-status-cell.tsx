@@ -11,6 +11,7 @@ export class RewardTableStatusCell {
   @Prop() statusText: string;
   @Prop() reward: Reward;
   @Prop() expiryText: string;
+  @Prop() locale: string = "en";
 
   rewardStatus(reward: Reward) {
     if (reward.dateCancelled) return "CANCELLED";
@@ -38,6 +39,7 @@ export class RewardTableStatusCell {
   }
 
   render() {
+    intl.locale = this.locale;
     const style = {
       Badge: {
         "&::part(base)": {
@@ -92,7 +94,9 @@ export class RewardTableStatusCell {
         rewardStatus === "AVAILABLE" && this.reward.dateExpires
           ? this.expiryText + " "
           : ""
-      }${DateTime.fromMillis(dateShown)?.toLocaleString(DateTime.DATE_MED)}`;
+      }${DateTime.fromMillis(dateShown)
+        ?.setLocale(this.locale)
+        .toLocaleString(DateTime.DATE_MED)}`;
 
     return (
       <div style={{ display: "contents" }}>

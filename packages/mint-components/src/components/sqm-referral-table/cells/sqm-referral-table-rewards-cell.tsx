@@ -17,7 +17,9 @@ export class ReferralTableRewardsCell {
   @Prop() rewardReceivedText: string;
   @Prop() expiringText: string;
   @Prop() pendingForText: string;
+  @Prop() locale: string = "en";
   render() {
+    intl.locale = this.locale;
     const style = {
       DetailsContainer: {
         width: "100%",
@@ -148,7 +150,11 @@ export class ReferralTableRewardsCell {
 
     const getTimeDiff = (endTime: number): string => {
       // Current implementation only calculates the difference from current time
-      return DateTime.fromMillis(endTime).toRelative().replace("in", "").trim();
+      return DateTime.fromMillis(endTime)
+        .setLocale(this.locale)
+        .toRelative()
+        .replace("in", "")
+        .trim();
     };
 
     return this.rewards.map((reward) => {
@@ -243,7 +249,7 @@ export class ReferralTableRewardsCell {
                     <TextSpanView type="p">
                       {this.rewardReceivedText}{" "}
                       <span class={sheet.classes.BoldText}>
-                        {DateTime.fromMillis(reward.dateGiven).toLocaleString(
+                        {DateTime.fromMillis(reward.dateGiven).setLocale(this.locale).toLocaleString(
                           DateTime.DATE_MED
                         )}
                       </span>
@@ -255,7 +261,7 @@ export class ReferralTableRewardsCell {
                     <TextSpanView type="p">
                       {statusText}{" "}
                       <span class={sheet.classes.BoldText}>
-                        {DateTime.fromMillis(reward.dateExpires).toLocaleString(
+                        {DateTime.fromMillis(reward.dateExpires).setLocale(this.locale).toLocaleString(
                           DateTime.DATE_MED
                         )}
                       </span>
@@ -269,7 +275,7 @@ export class ReferralTableRewardsCell {
                       <span class={sheet.classes.BoldText}>
                         {DateTime.fromMillis(
                           reward.dateCancelled
-                        ).toLocaleString(DateTime.DATE_MED)}
+                        ).setLocale(this.locale).toLocaleString(DateTime.DATE_MED)}
                       </span>
                     </TextSpanView>
                   </div>
@@ -277,11 +283,11 @@ export class ReferralTableRewardsCell {
                 {state === "PENDING" && reward.dateScheduledFor && (
                   <div>
                     <TextSpanView type="p">
-                    {statusText}{" "}
+                      {statusText}{" "}
                       <span class={sheet.classes.BoldText}>
                         {DateTime.fromMillis(
                           reward.dateScheduledFor
-                        ).toLocaleString(DateTime.DATE_MED)}
+                        ).setLocale(this.locale).toLocaleString(DateTime.DATE_MED)}
                       </span>
                     </TextSpanView>
                   </div>
@@ -290,9 +296,9 @@ export class ReferralTableRewardsCell {
                 {state === "AVAILABLE" && reward.dateExpires && (
                   <div>
                     <TextSpanView type="p">
-                    {statusText}{" "}
+                      {statusText}{" "}
                       <span class={sheet.classes.BoldText}>
-                        {DateTime.fromMillis(reward.dateExpires).toLocaleString(
+                        {DateTime.fromMillis(reward.dateExpires).setLocale(this.locale).toLocaleString(
                           DateTime.DATE_MED
                         )}
                       </span>

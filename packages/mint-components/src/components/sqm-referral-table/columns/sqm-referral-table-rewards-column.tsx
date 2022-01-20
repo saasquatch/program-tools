@@ -59,7 +59,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Referral) {
+  async renderCell(data: Referral, locale: string) {
     // TODO: Do the right thing with many rewards, pending rewards, canceled rewards
     return (
       <sqm-referral-table-rewards-cell
@@ -71,6 +71,7 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
         expiringText={this.expiringText}
         pendingForText={this.pendingForText}
         hideDetails={this.hideDetails}
+        locale={locale}
       ></sqm-referral-table-rewards-cell>
     );
   }

@@ -10,10 +10,12 @@ export class RewardTableRewardsCell {
   @Prop() reward: Reward;
   @Prop() redeemedText: string;
   @Prop() availableText: string;
+  @Prop() locale: string;
 
   // TODO: value function from portalv2
 
   render() {
+    intl.locale = this.locale;
     const style = {
       DetailsContainer: {
         width: "100%",

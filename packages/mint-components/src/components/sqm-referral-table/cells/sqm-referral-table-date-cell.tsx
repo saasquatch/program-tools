@@ -12,6 +12,7 @@ export class ReferralTableDateCell {
   ignored = true;
 
   @Prop() date: number;
+  @Prop() locale: string;
   constructor() {
     withHooks(this);
   }
@@ -21,7 +22,9 @@ export class ReferralTableDateCell {
     // needs hook to use locale
     const date = !this.date
       ? "-"
-      : DateTime.fromMillis(this.date)?.toLocaleString(DateTime.DATE_MED);
+      : DateTime.fromMillis(this.date)
+          ?.setLocale(this.locale)
+          .toLocaleString(DateTime.DATE_MED);
 
     return date;
   }

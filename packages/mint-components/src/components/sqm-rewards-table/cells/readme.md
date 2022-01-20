@@ -10,6 +10,7 @@
 | Property     | Attribute     | Description | Type     | Default     |
 | ------------ | ------------- | ----------- | -------- | ----------- |
 | `expiryText` | `expiry-text` |             | `string` | `undefined` |
+| `locale`     | `locale`      |             | `string` | `"en"`      |
 | `reward`     | --            |             | `Reward` | `undefined` |
 | `statusText` | `status-text` |             | `string` | `undefined` |
 

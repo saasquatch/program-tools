@@ -9,6 +9,7 @@ import {
 import { useLeaderboardRank } from "./useLeaderboardRank";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
+import { intl } from "../../global/global";
 
 /**
  * @uiName Leaderboard Rank
@@ -70,10 +71,6 @@ export class LeaderboardRank {
 function useLeaderboardRankDemo(
   props: LeaderboardRank
 ): LeaderboardRankViewProps {
-  const intl = createIntl({
-    locale: "en",
-  });
-
   const rank =
     intl.formatMessage(
       { id: "rankText", defaultMessage: props.rankText },
