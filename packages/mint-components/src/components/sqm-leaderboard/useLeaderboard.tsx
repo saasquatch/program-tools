@@ -15,6 +15,7 @@ export interface LeaderboardProps {
   showUser?: boolean;
   rankType: "rowNumber" | "rank" | "denseRank";
   leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
+  anonymousUser: string;
   interval: string;
   empty: VNode;
   loadingstate: VNode;
@@ -115,7 +116,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   ): Leaderboard[] {
     return leaderboardRows?.flatMap((user) => ({
       value: user.value,
-      firstName: user.firstName || "Anonymous",
+      firstName: user.firstName || props.anonymousUser,
       lastInitial: user.lastInitial,
       rank: user.rank?.[props.rankType],
       rowNumber: user.rank?.rowNumber,
