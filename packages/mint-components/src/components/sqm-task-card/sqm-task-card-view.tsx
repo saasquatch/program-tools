@@ -267,24 +267,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               defaultMessage: content.startsOnMessage,
             },
             {
-              startDate: states.locale.includes("en")
-                ? dateStart
-                    .setLocale(luxonLocale(states.locale))
-                    .toLocaleString(DateTime.DATETIME_MED)
-                    .split(",")
-                    .slice(0, 2)
-                    .join(",") +
-                  " at " +
-                  dateStart
-                    .setLocale(luxonLocale(states.locale))
-                    .toLocaleString(DateTime.DATETIME_MED)
-                    .split(",")
-                    .slice(2)
-                    .join(",")
-                    .toLowerCase()
-                : dateStart
-                    .setLocale(luxonLocale(states.locale))
-                    .toLocaleString(DateTime.DATETIME_MED),
+              startDate: dateStart
+                .setLocale(luxonLocale(states.locale))
+                .toLocaleString(DateTime.DATETIME_MED),
             }
           )}
         </div>
@@ -300,24 +285,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               defaultMessage: content.endedMessage,
             },
             {
-              endDate: states.locale.includes("en")
-                ? dateEnd
-                    .setLocale(luxonLocale(states.locale))
-                    .toLocaleString(DateTime.DATETIME_MED)
-                    .split(",")
-                    .slice(0, 2)
-                    .join(",") +
-                  " at " +
-                  dateEnd
-                    .setLocale(luxonLocale(states.locale))
-                    .toLocaleString(DateTime.DATETIME_MED)
-                    .split(",")
-                    .slice(2)
-                    .join(",")
-                    .toLowerCase()
-                : dateEnd
-                    .setLocale(states.locale)
-                    .toLocaleString(DateTime.DATETIME_MED),
+              endDate: dateEnd
+                .setLocale(states.locale)
+                .toLocaleString(DateTime.DATETIME_MED),
             }
           )}
         </div>
@@ -445,24 +415,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                           defaultMessage: content.expiryMessage,
                         },
                         {
-                          endDate: states.locale.includes("en")
-                            ? dateEnd
-                                .setLocale(luxonLocale(states.locale))
-                                .toLocaleString(DateTime.DATETIME_MED)
-                                .split(",")
-                                .slice(0, 2)
-                                .join(",") +
-                              " at " +
-                              dateEnd
-                                .setLocale(luxonLocale(states.locale))
-                                .toLocaleString(DateTime.DATETIME_MED)
-                                .split(",")
-                                .slice(2)
-                                .join(",")
-                                .toLowerCase()
-                            : dateEnd
-                                .setLocale(luxonLocale(states.locale))
-                                .toLocaleString(DateTime.DATETIME_MED),
+                          endDate: dateEnd
+                            .setLocale(luxonLocale(states.locale))
+                            .toLocaleString(DateTime.DATETIME_MED),
                         }
                       )}
                     </span>
