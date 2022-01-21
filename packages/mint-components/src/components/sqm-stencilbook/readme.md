@@ -55,8 +55,10 @@
 - [sqm-referral-table-date-column](../sqm-referral-table/columns)
 - [sqm-referral-table-rewards-column](../sqm-referral-table/columns)
 - [sqm-media](../sqm-media)
+- [sqm-referral-card](../sqm-referral-card)
+- [sqm-share-code](../sqm-share-code)
 - [sqm-timeline](../sqm-referral-card)
-- [sqm-timeline-reward](../sqm-referral-card)
+- [sqm-timeline-entry](../sqm-referral-card)
 
 ### Graph
 ```mermaid
@@ -107,8 +109,10 @@ graph TD;
   sqm-stencilbook --> sqm-referral-table-date-column
   sqm-stencilbook --> sqm-referral-table-rewards-column
   sqm-stencilbook --> sqm-media
+  sqm-stencilbook --> sqm-referral-card
+  sqm-stencilbook --> sqm-share-code
   sqm-stencilbook --> sqm-timeline
-  sqm-stencilbook --> sqm-timeline-reward
+  sqm-stencilbook --> sqm-timeline-entry
   sqm-edit-profile --> sqm-form-message
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell

@@ -1592,7 +1592,7 @@ export namespace Components {
         /**
           * @uiName Program ID override
          */
-        "programId": string;
+        "programId"?: string;
         /**
           * @uiName Progress Bar Unit
          */
