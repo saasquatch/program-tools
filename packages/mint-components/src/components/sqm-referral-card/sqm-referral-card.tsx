@@ -1,30 +1,42 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import { getProps } from "../../utils/utils";
+import { Spacing } from "../../global/mixins";
 import { ReferralCardView } from "./sqm-referral-card-view";
 
 /**
- * @uiName Card Feed
+ * @uiName Referral Card
  */
 @Component({
   tag: "sqm-referral-card",
   shadow: true,
 })
-export class CardFeed {
+export class ReferralCard {
   @State()
   ignored = true;
 
   /**
-   * @uiName Card Width
+   * @uiName Header Text
    */
-  @Prop()
-  width: number = 347;
+  @Prop() header: string;
 
   /**
-   * @uiName Column Gap
-   * @uiType number
+   * @uiName Description Text
    */
-  @Prop() gap: number = 24;
+  @Prop() description: string;
+
+  /**
+   * @uiName Padding
+   * @uiType string
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   */
+  @Prop() padding: Spacing = "large";
+  /**
+   * @uiName Padding
+   * @uiType string
+   * @uiEnum ["top", "center"]
+   */
+  @Prop() verticalAlignment: "top" | "center" = "top";
 
   constructor() {
     withHooks(this);
@@ -32,6 +44,15 @@ export class CardFeed {
   disconnectedCallback() {}
 
   render() {
-    return <div> Hello World!</div>;
+    const slots = {
+      left: <slot name="left" />,
+      right: <slot name="right" />,
+    };
+
+    return (
+      <ReferralCardView {...getProps(this)} slots={slots}>
+        <slot />
+      </ReferralCardView>
+    );
   }
 }
