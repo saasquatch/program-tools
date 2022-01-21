@@ -883,14 +883,25 @@ export namespace Components {
     }
     interface SqmReferralCard {
         /**
-          * @uiName Column Gap
-          * @uiType number
+          * @uiName Description Text
          */
-        "gap": number;
+        "description": string;
         /**
-          * @uiName Card Width
+          * @uiName Header Text
          */
-        "width": number;
+        "header": string;
+        /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+         */
+        "padding": Spacing;
+        /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["top", "center"]
+         */
+        "verticalAlignment": "top" | "center";
     }
     interface SqmReferralIframe {
         /**
@@ -3080,14 +3091,25 @@ declare namespace LocalJSX {
     }
     interface SqmReferralCard {
         /**
-          * @uiName Column Gap
-          * @uiType number
+          * @uiName Description Text
          */
-        "gap"?: number;
+        "description"?: string;
         /**
-          * @uiName Card Width
+          * @uiName Header Text
          */
-        "width"?: number;
+        "header"?: string;
+        /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+         */
+        "padding"?: Spacing;
+        /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["top", "center"]
+         */
+        "verticalAlignment"?: "top" | "center";
     }
     interface SqmReferralIframe {
         /**
