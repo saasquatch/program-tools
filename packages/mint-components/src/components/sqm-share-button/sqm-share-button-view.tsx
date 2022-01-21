@@ -49,8 +49,8 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
       border-radius: ${props.borderradius ? props.borderradius + "px" : ""};
     }
     *::part(label) {
-      position: relative;
-	  top: 5%;
+    //   position: relative;
+	//   top: 5%;
     }
   `;
 

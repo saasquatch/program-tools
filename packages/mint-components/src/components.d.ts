@@ -310,14 +310,12 @@ export namespace Components {
           * @uiName Image Mobile Position
           * @uiType string
           * @uiEnum ["top", "bottom" ]
-          * @uiEnumNames ["Top", "Bottom"]
          */
         "imageMobilePos": "top" | "bottom";
         /**
           * @uiName Image Position
           * @uiType string
-          * @uiEnum ["left", "right" ]
-          * @uiEnumNames ["Left", "Right"]
+          * @uiEnum ["left", "right"]
          */
         "imagePos": "left" | "right";
         /**
@@ -327,8 +325,7 @@ export namespace Components {
         /**
           * @uiName Image Link
           * @uiType string
-          * @uiEnum ["overlay", "columns" ]
-          * @uiEnumNames ["Overlay", "Two-column"]
+          * @uiEnum ["overlay", "columns"]
          */
         "layout": "overlay" | "columns";
         /**
@@ -485,6 +482,12 @@ export namespace Components {
           * @uiEnum ["row", "column"]
          */
         "direction": "row" | "column";
+        /**
+          * @uiName Display
+          * @uiType string
+          * @uiEnum ["grid", "flex"]
+         */
+        "display": "grid" | "flex";
         /**
           * @uiName Gap
           * @uiType string
@@ -880,14 +883,25 @@ export namespace Components {
     }
     interface SqmReferralCard {
         /**
-          * @uiName Column Gap
-          * @uiType number
+          * @uiName Description Text
          */
-        "gap": number;
+        "description": string;
         /**
-          * @uiName Card Width
+          * @uiName Header Text
          */
-        "width": number;
+        "header": string;
+        /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+         */
+        "padding": Spacing;
+        /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["start", "center", "end"]
+         */
+        "verticalAlignment": "start" | "center" | "end";
     }
     interface SqmReferralIframe {
         /**
@@ -1642,19 +1656,23 @@ export namespace Components {
     }
     interface SqmTimeline {
         /**
-          * @uiName Gift Icon
+          * @uiName Icon
+          * @uiType string
+          * @uiEnum ["gift", "circle"]
          */
-        "gift": boolean;
+        "icon": string;
     }
-    interface SqmTimelineReward {
+    interface SqmTimelineEntry {
         /**
           * @uiName Description
          */
         "desc": string;
         /**
-          * @undocumented Gift Icon
+          * @uiName Icon
+          * @uiType string
+          * @uiEnum ["gift", "circle"]
          */
-        "gift": boolean;
+        "icon": string;
         /**
           * @uiName Reward Amount
          */
@@ -2128,11 +2146,11 @@ declare global {
         prototype: HTMLSqmTimelineElement;
         new (): HTMLSqmTimelineElement;
     };
-    interface HTMLSqmTimelineRewardElement extends Components.SqmTimelineReward, HTMLStencilElement {
+    interface HTMLSqmTimelineEntryElement extends Components.SqmTimelineEntry, HTMLStencilElement {
     }
-    var HTMLSqmTimelineRewardElement: {
-        prototype: HTMLSqmTimelineRewardElement;
-        new (): HTMLSqmTimelineRewardElement;
+    var HTMLSqmTimelineEntryElement: {
+        prototype: HTMLSqmTimelineEntryElement;
+        new (): HTMLSqmTimelineEntryElement;
     };
     interface HTMLSqmTitledSectionElement extends Components.SqmTitledSection, HTMLStencilElement {
     }
@@ -2219,7 +2237,7 @@ declare global {
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
         "sqm-timeline": HTMLSqmTimelineElement;
-        "sqm-timeline-reward": HTMLSqmTimelineRewardElement;
+        "sqm-timeline-entry": HTMLSqmTimelineEntryElement;
         "sqm-titled-section": HTMLSqmTitledSectionElement;
         "sqm-user-name": HTMLSqmUserNameElement;
     }
@@ -2500,14 +2518,12 @@ declare namespace LocalJSX {
           * @uiName Image Mobile Position
           * @uiType string
           * @uiEnum ["top", "bottom" ]
-          * @uiEnumNames ["Top", "Bottom"]
          */
         "imageMobilePos"?: "top" | "bottom";
         /**
           * @uiName Image Position
           * @uiType string
-          * @uiEnum ["left", "right" ]
-          * @uiEnumNames ["Left", "Right"]
+          * @uiEnum ["left", "right"]
          */
         "imagePos"?: "left" | "right";
         /**
@@ -2517,8 +2533,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Image Link
           * @uiType string
-          * @uiEnum ["overlay", "columns" ]
-          * @uiEnumNames ["Overlay", "Two-column"]
+          * @uiEnum ["overlay", "columns"]
          */
         "layout"?: "overlay" | "columns";
         /**
@@ -2675,6 +2690,12 @@ declare namespace LocalJSX {
           * @uiEnum ["row", "column"]
          */
         "direction"?: "row" | "column";
+        /**
+          * @uiName Display
+          * @uiType string
+          * @uiEnum ["grid", "flex"]
+         */
+        "display"?: "grid" | "flex";
         /**
           * @uiName Gap
           * @uiType string
@@ -3070,14 +3091,25 @@ declare namespace LocalJSX {
     }
     interface SqmReferralCard {
         /**
-          * @uiName Column Gap
-          * @uiType number
+          * @uiName Description Text
          */
-        "gap"?: number;
+        "description"?: string;
         /**
-          * @uiName Card Width
+          * @uiName Header Text
          */
-        "width"?: number;
+        "header"?: string;
+        /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+         */
+        "padding"?: Spacing;
+        /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["start", "center", "end"]
+         */
+        "verticalAlignment"?: "start" | "center" | "end";
     }
     interface SqmReferralIframe {
         /**
@@ -3814,19 +3846,23 @@ declare namespace LocalJSX {
     }
     interface SqmTimeline {
         /**
-          * @uiName Gift Icon
+          * @uiName Icon
+          * @uiType string
+          * @uiEnum ["gift", "circle"]
          */
-        "gift"?: boolean;
+        "icon"?: string;
     }
-    interface SqmTimelineReward {
+    interface SqmTimelineEntry {
         /**
           * @uiName Description
          */
         "desc"?: string;
         /**
-          * @undocumented Gift Icon
+          * @uiName Icon
+          * @uiType string
+          * @uiEnum ["gift", "circle"]
          */
-        "gift"?: boolean;
+        "icon"?: string;
         /**
           * @uiName Reward Amount
          */
@@ -3939,7 +3975,7 @@ declare namespace LocalJSX {
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
         "sqm-timeline": SqmTimeline;
-        "sqm-timeline-reward": SqmTimelineReward;
+        "sqm-timeline-entry": SqmTimelineEntry;
         "sqm-titled-section": SqmTitledSection;
         "sqm-user-name": SqmUserName;
     }
@@ -4020,7 +4056,7 @@ declare module "@stencil/core" {
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
             "sqm-timeline": LocalJSX.SqmTimeline & JSXBase.HTMLAttributes<HTMLSqmTimelineElement>;
-            "sqm-timeline-reward": LocalJSX.SqmTimelineReward & JSXBase.HTMLAttributes<HTMLSqmTimelineRewardElement>;
+            "sqm-timeline-entry": LocalJSX.SqmTimelineEntry & JSXBase.HTMLAttributes<HTMLSqmTimelineEntryElement>;
             "sqm-titled-section": LocalJSX.SqmTitledSection & JSXBase.HTMLAttributes<HTMLSqmTitledSectionElement>;
             "sqm-user-name": LocalJSX.SqmUserName & JSXBase.HTMLAttributes<HTMLSqmUserNameElement>;
         }

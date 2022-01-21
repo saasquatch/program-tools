@@ -1,17 +1,60 @@
 import { h, VNode } from "@stencil/core";
+import { Spacing } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 
 export interface ReferralCardViewProps {
-  width: number;
-  gap: number;
+  header: string;
+  description: string;
+  padding: Spacing;
+  verticalAlignment: "start" | "center" | "end";
+  slots: { left: VNode; right: VNode };
 }
 
-export function ReferralCardView(
-  props: ReferralCardViewProps,
-  children: VNode
-) {
+export function ReferralCardView(props: ReferralCardViewProps) {
   const style = {
-    Container: {},
+    Text: {
+      textAlign: "center",
+      marginBottom: "var(--sl-spacing-xx-large)",
+      "& .header": {
+        fontSize: "var(--sl-font-size-large)",
+        fontWeight: "var(--sl-font-weight-semibold)",
+        color: "var(--sl-color-neutral-900)",
+      },
+      "& .description": {
+        color: "var(--sl-color-neutral-600)",
+      },
+    },
+    Container: {
+      display: "flex",
+      color: "var(--sl-color-neutral-900)",
+      "& .left": {
+        width: "50%",
+        padding: "var(--sl-spacing-" + props.padding + ")",
+        paddingRight: "var(--sl-spacing-medium)",
+        alignSelf: props.verticalAlignment,
+        "@media (max-width: 499px)": {
+          width: "100%",
+          padding: "0",
+          marginBottom: "var(--sl-spacing-xx-large)",
+        },
+      },
+      "& .right": {
+        width: "50%",
+        padding: "var(--sl-spacing-" + props.padding + ")",
+        paddingLeft: "var(--sl-spacing-medium)",
+        alignSelf: props.verticalAlignment,
+        "@media (max-width: 499px)": {
+          width: "100%",
+          padding: "0",
+        },
+      },
+      border: "1px solid var(--sl-color-neutral-300)",
+      borderRadius: "var(--sl-border-radius-large)",
+      "@media (max-width: 499px)": {
+        flexDirection: "column",
+        border: "none",
+      },
+    },
   };
 
   const sheet = createStyleSheet(style);
@@ -31,7 +74,14 @@ export function ReferralCardView(
         {styleString}
         {vanillaStyle}
       </style>
-      <div class={sheet.classes.Container}>{children}</div>
+      <div class={sheet.classes.Text}>
+        <div class="header">{props.header}</div>
+        <div class="description">{props.description}</div>
+      </div>
+      <div class={sheet.classes.Container}>
+        <div class="left">{props.slots.left}</div>
+        <div class="right">{props.slots.right}</div>
+      </div>
     </div>
   );
 }

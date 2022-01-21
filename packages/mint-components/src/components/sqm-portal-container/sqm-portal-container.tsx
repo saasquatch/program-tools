@@ -36,6 +36,14 @@ export class PortalContainer {
   /** @uiName Minimum width */
   @Prop() minWidth?: string;
 
+  
+  /**
+   * @uiName Display
+   * @uiType string
+   * @uiEnum ["grid", "flex"]
+   */
+   @Prop() display: "grid" | "flex" = "grid";
+
   /**
    * @uiName Maximum width
    */

@@ -2,13 +2,13 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { useRequestRerender } from "../../tables/re-render";
-import { Dot, Gift } from "./SVGs";
+import { Circle, Gift } from "./SVGs";
 
 /**
- * @uiName Timeline Reward
+ * @uiName Timeline Entry
  */
 @Component({
-  tag: "sqm-timeline-reward",
+  tag: "sqm-timeline-entry",
   shadow: true,
 })
 export class TimelineReward {
@@ -31,9 +31,11 @@ export class TimelineReward {
   @Prop() desc: string;
 
   /**
-   * @undocumented Gift Icon
+   * @uiName Icon
+   * @uiType string
+   * @uiEnum ["gift", "circle"]
    */
-  @Prop() gift: boolean = true;
+  @Prop() icon: string = "gift";
 
   constructor() {
     withHooks(this);
@@ -65,7 +67,6 @@ export class TimelineReward {
           fontSize: "var(--sl-font-size-medium)",
         },
         "& .description": {
-          height: "28px",
           fontSize: "var(--sl-font-size-large)",
         },
 
@@ -97,7 +98,16 @@ export class TimelineReward {
           {vanillaStyle}
         </style>
         <div class="step">
-          <div class="icon">{this.gift ? <Gift /> : <Dot />}</div>
+          {this.icon === "gift" && (
+            <div class="icon">
+              <Gift />
+            </div>
+          )}
+          {this.icon === "circle" && (
+            <div class="icon">
+              <Circle />
+            </div>
+          )}
           <div>
             <div>
               <span class="reward">{this.reward}</span>
