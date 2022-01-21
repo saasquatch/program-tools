@@ -4,81 +4,209 @@ export default {
   title: "Components/Referral Card",
 };
 
-export const ReferralCard = () => {
-  const props = {
-    medium: "facebook",
-    type: "text",
-    backgroundcolor: "#3b5998",
-    textcolor: "#fff",
-    borderradius: 8,
-    iconslot: "prefix",
-  } as const;
+const media = (slot) => {
   return (
-    <div>
-      <sqm-referral-card
-        header="Share $50 with friends"
-        description="They’ll get a $50 credit towards a new account and you’ll get up to $1250."
-      >
-        <div slot="left">
-          Get rewarded when your friend uses Klip
-          <sqm-media
-            image-url="https://i.imgur.com/L3aRMde.png"
-            min-height="0"
-          />
-        </div>
-        <sqm-portal-container gap="large" slot="right">
-          <sqm-text>Choose how you want to share:</sqm-text>
-          <sqm-text
-            style={{
-              fontSize: "var(--sl-font-size-medium)",
-              color: "var(--sl-color-neutral-600)",
-            }}
-          >
-            Your unique referral link:
-            <sqm-share-code />
-          </sqm-text>
-          <sqm-share-button
-            medium="email"
-            icon="envelope"
-            backgroundcolor="#666666"
-            textcolor="#fff"
-          >
-            Share via email
-          </sqm-share-button>
-          <sqm-share-button
-            medium="facebook"
-            backgroundcolor="#0671E6"
-            textcolor="#fff"
-          >
-            Share on Facebook
-          </sqm-share-button>
-          <sqm-share-button
-            medium="twitter"
-            backgroundcolor="#47ACDF"
-            textcolor="#fff"
-          >
-            Tweet about us
-          </sqm-share-button>
-        </sqm-portal-container>
-      </sqm-referral-card>
-    </div>
+    <sqm-portal-container gap="large" slot={slot}>
+      Get rewarded when your friend uses Klip
+      <sqm-media image-url="https://i.imgur.com/L3aRMde.png" min-height="0" />
+    </sqm-portal-container>
   );
 };
 
-{
-  /* <sqm-timeline slot="left">
-          <sqm-timeline-entry
-            reward="75"
-            unit="points"
-            desc="Your friends signs up for a free trial"
-          />
-          <sqm-timeline-entry
-            reward="$50"
-            unit="visa giftcard"
-            desc="Your friends signs up for Klip Personal"
-          />
-        </sqm-timeline> */
-}
+const sharebutton = (slot) => {
+  return (
+    <sqm-portal-container gap="large" slot={slot}>
+      <sqm-text>Choose how you want to share:</sqm-text>
+      <sqm-text>
+        {
+          //@ts-ignore
+          <p light>Your unique referral link:</p>
+        }
+        <sqm-share-code />
+      </sqm-text>
+      <sqm-share-button
+        medium="email"
+        icon="envelope"
+        backgroundcolor="#666666"
+        textcolor="#fff"
+      >
+        Share via email
+      </sqm-share-button>
+      <sqm-share-button
+        medium="facebook"
+        backgroundcolor="#0671E6"
+        textcolor="#fff"
+      >
+        Share on Facebook
+      </sqm-share-button>
+      <sqm-share-button
+        medium="twitter"
+        backgroundcolor="#47ACDF"
+        textcolor="#fff"
+      >
+        Tweet about us
+      </sqm-share-button>
+    </sqm-portal-container>
+  );
+};
+
+const timeline = (slot, count) => {
+  return (
+    <sqm-timeline slot={slot} icon="circle">
+      {count > 0 && (
+        <sqm-timeline-entry
+          reward="75"
+          unit="points"
+          desc="Your friends signs up for a free trial"
+        />
+      )}
+      {count > 1 && (
+        <sqm-timeline-entry
+          reward="$50"
+          unit="visa giftcard"
+          desc="Your friends signs up for Klip Personal"
+        />
+      )}
+      {count > 2 && (
+        <sqm-timeline-entry
+          reward="$200"
+          unit="visa giftcard"
+          desc="Your friend qualifies as a good fit for Klip Team"
+        />
+      )}
+      {count > 3 && (
+        <sqm-timeline-entry
+          reward="$1000"
+          unit="visa giftcard"
+          desc="Your friend purchases Klip Team"
+        />
+      )}
+    </sqm-timeline>
+  );
+};
+
+export const ReferralCardA = () => {
+  return (
+    <sqm-referral-card
+      header="Share $50 with friends"
+      description="They’ll get a $50 credit towards a new account and you’ll get up to $1200."
+    >
+      {media("left")}
+      {sharebutton("right")}
+    </sqm-referral-card>
+  );
+};
+
+export const ReferralCardB = () => {
+  return (
+    <sqm-referral-card
+      header="Share $50 with friends"
+      description="They’ll get a $50 credit towards a new account and you’ll get up to $1200."
+    >
+      {timeline("left", 2)}
+      {sharebutton("right")}
+    </sqm-referral-card>
+  );
+};
+
+export const ReferralCardC = () => {
+  return (
+    <sqm-referral-card
+      header="Share $50 with friends"
+      description="They’ll get a $50 credit towards a new account and you’ll get up to $1200."
+    >
+      {timeline("left", 3)}
+      {sharebutton("right")}
+    </sqm-referral-card>
+  );
+};
+
+export const ReferralCardDStart = () => {
+  return (
+    <sqm-referral-card
+      vertical-alignment="start"
+      header="Share $50 with friends"
+      description="They’ll get a $50 credit towards a new account and you’ll get up to $1200."
+    >
+      {timeline("left", 4)}
+      {sharebutton("right")}
+    </sqm-referral-card>
+  );
+};
+
+export const ReferralCardDCenter = () => {
+  return (
+    <sqm-referral-card
+      vertical-alignment="center"
+      header="Share $50 with friends"
+      description="They’ll get a $50 credit towards a new account and you’ll get up to $1200."
+    >
+      {timeline("left", 4)}
+      {sharebutton("right")}
+    </sqm-referral-card>
+  );
+};
+
+export const ReferralCardDEnd = () => {
+  return (
+    <sqm-referral-card
+      vertical-alignment="end"
+      header="Share $50 with friends"
+      description="They’ll get a $50 credit towards a new account and you’ll get up to $1200."
+    >
+      {timeline("left", 4)}
+      {sharebutton("right")}
+    </sqm-referral-card>
+  );
+};
+
+export const ReferralCardAFlipped = () => {
+  return (
+    <sqm-referral-card
+      header="Share $50 with friends"
+      description="They’ll get a $50 credit towards a new account and you’ll get up to $1200."
+    >
+      {media("right")}
+      {sharebutton("left")}
+    </sqm-referral-card>
+  );
+};
+
+export const ReferralCardBFlipped = () => {
+  return (
+    <sqm-referral-card
+      header="Share $50 with friends"
+      description="They’ll get a $50 credit towards a new account and you’ll get up to $1200."
+    >
+      {timeline("right", 2)}
+      {sharebutton("left")}
+    </sqm-referral-card>
+  );
+};
+
+export const ReferralCardCFlipped = () => {
+  return (
+    <sqm-referral-card
+      header="Share $50 with friends"
+      description="They’ll get a $50 credit towards a new account and you’ll get up to $1200."
+    >
+      {timeline("right", 3)}
+      {sharebutton("left")}
+    </sqm-referral-card>
+  );
+};
+
+export const ReferralCardDFlipped = () => {
+  return (
+    <sqm-referral-card
+      header="Share $50 with friends"
+      description="They’ll get a $50 credit towards a new account and you’ll get up to $1200."
+    >
+      {timeline("right", 4)}
+      {sharebutton("left")}
+    </sqm-referral-card>
+  );
+};
 
 export const TimelineWith1Reward = () => {
   return (
