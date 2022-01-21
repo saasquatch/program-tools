@@ -6,39 +6,54 @@ export interface ReferralCardViewProps {
   header: string;
   description: string;
   padding: Spacing;
-  verticalAlignment: "top" | "center";
+  verticalAlignment: "start" | "center" | "end";
   slots: { left: VNode; right: VNode };
 }
 
-export function ReferralCardView(
-  props: ReferralCardViewProps,
-  children: VNode
-) {
+export function ReferralCardView(props: ReferralCardViewProps) {
   const style = {
     Container: {
       display: "flex",
-
+      color: "var(--sl-color-neutral-900)",
       "& .left": {
         width: "50%",
         padding: "var(--sl-spacing-" + props.padding + ")",
+        paddingRight: "var(--sl-spacing-medium)",
+        alignSelf: props.verticalAlignment,
+        "@media (max-width: 499px)": {
+          width: "100%",
+          padding: "0",
+          marginBottom: "var(--sl-spacing-xx-large)",
+        },
       },
       "& .right": {
         width: "50%",
         padding: "var(--sl-spacing-" + props.padding + ")",
+        paddingLeft: "var(--sl-spacing-medium)",
+        alignSelf: props.verticalAlignment,
+        "@media (max-width: 499px)": {
+          width: "100%",
+          padding: "0",
+        },
       },
       border: "1px solid var(--sl-color-neutral-300)",
       borderRadius: "var(--sl-border-radius-large)",
+      "@media (max-width: 499px)": {
+        flexDirection: "column",
+        border: "none",
+      },
     },
 
     Text: {
       textAlign: "center",
-      marginBottom: "var(--sl-spacing-large)",
+      marginBottom: "var(--sl-spacing-xx-large)",
       "& .header": {
-        fontSize: "var(--sl-font-size-large)",
+        fontSize: "var(--sl-font-size-x-large)",
         fontWeight: "var(--sl-font-weight-semibold)",
         color: "var(--sl-color-neutral-900)",
       },
       "& .description": {
+        fontSize: "var(--sl-font-size-large)",
         color: "var(--sl-color-neutral-600)",
       },
     },

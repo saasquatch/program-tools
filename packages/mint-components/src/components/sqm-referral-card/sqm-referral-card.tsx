@@ -34,9 +34,9 @@ export class ReferralCard {
   /**
    * @uiName Padding
    * @uiType string
-   * @uiEnum ["top", "center"]
+   * @uiEnum ["start", "center", "end"]
    */
-  @Prop() verticalAlignment: "top" | "center" = "top";
+  @Prop() verticalAlignment: "start" | "center" | "end" = "start";
 
   constructor() {
     withHooks(this);

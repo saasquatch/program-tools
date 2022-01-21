@@ -29,7 +29,7 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
       },
       "& > ::slotted(*)": {
         "border-right": "1px solid #EAEAEA",
-        // "padding-right": divideSpace(),
+        "padding-right": divideSpace(),
         height: "100%",
       },
       "& > ::slotted(*:last-child)": {
