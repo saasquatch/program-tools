@@ -101,7 +101,7 @@ export class RewardTableSourceCell {
               }
             )}
           </div>
-          <div>{getFullName(this.reward.referral.referredUser)}</div>
+          <div>{this.reward.rewardSource == "FRIEND_SIGNUP" ? getFullName(this.reward.referral.referredUser) : getFullName(this.reward.referral.referrerUser)}</div>
         </div>
       ) : this.reward.exchangedRewardRedemptionTransaction ? (
         <RewardExchangeBadge reward={this.reward} />
