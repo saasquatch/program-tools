@@ -6,7 +6,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useReducer } from "@saasquatch/universal-hooks";
 import { h, VNode } from "@stencil/core";
-import gql from "graphql-tag";
+import { gql } from "graphql-request";
 import { useRerenderListener } from "../../tables/re-render";
 import { RewardsTable } from "./sqm-rewards-table";
 import { RewardsTableViewProps } from "./sqm-rewards-table-view";
