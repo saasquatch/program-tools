@@ -899,9 +899,9 @@ export namespace Components {
         /**
           * @uiName Padding
           * @uiType string
-          * @uiEnum ["top", "center"]
+          * @uiEnum ["start", "center", "end"]
          */
-        "verticalAlignment": "top" | "center";
+        "verticalAlignment": "start" | "center" | "end";
     }
     interface SqmReferralIframe {
         /**
@@ -3107,9 +3107,9 @@ declare namespace LocalJSX {
         /**
           * @uiName Padding
           * @uiType string
-          * @uiEnum ["top", "center"]
+          * @uiEnum ["start", "center", "end"]
          */
-        "verticalAlignment"?: "top" | "center";
+        "verticalAlignment"?: "start" | "center" | "end";
     }
     interface SqmReferralIframe {
         /**

@@ -5,6 +5,14 @@ export default {
 };
 
 export const ReferralCard = () => {
+  const props = {
+    medium: "facebook",
+    type: "text",
+    backgroundcolor: "#3b5998",
+    textcolor: "#fff",
+    borderradius: 8,
+    iconslot: "prefix",
+  } as const;
   return (
     <div>
       <sqm-referral-card
@@ -12,19 +20,46 @@ export const ReferralCard = () => {
         description="They’ll get a $50 credit towards a new account and you’ll get up to $1250."
       >
         <div slot="left">
-          <sqm-text>
-            <h3>Get rewarded when your friend uses Klip</h3>
-          </sqm-text>
+          Get rewarded when your friend uses Klip
           <sqm-media
             image-url="https://i.imgur.com/L3aRMde.png"
             min-height="0"
           />
         </div>
-        <div slot="right">
-          <sqm-share-code></sqm-share-code>
-          <sqm-share-link></sqm-share-link>
-          <sqm-share-button></sqm-share-button>
-        </div>
+        <sqm-portal-container gap="large" slot="right">
+          <sqm-text>Choose how you want to share:</sqm-text>
+          <sqm-text
+            style={{
+              fontSize: "var(--sl-font-size-medium)",
+              color: "var(--sl-color-neutral-600)",
+            }}
+          >
+            Your unique referral link:
+            <sqm-share-code />
+          </sqm-text>
+          <sqm-share-button
+            medium="email"
+            icon="envelope"
+            backgroundcolor="#666666"
+            textcolor="#fff"
+          >
+            Share via email
+          </sqm-share-button>
+          <sqm-share-button
+            medium="facebook"
+            backgroundcolor="#0671E6"
+            textcolor="#fff"
+          >
+            Share on Facebook
+          </sqm-share-button>
+          <sqm-share-button
+            medium="twitter"
+            backgroundcolor="#47ACDF"
+            textcolor="#fff"
+          >
+            Tweet about us
+          </sqm-share-button>
+        </sqm-portal-container>
       </sqm-referral-card>
     </div>
   );
