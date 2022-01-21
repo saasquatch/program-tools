@@ -52,7 +52,7 @@ export function GenericTableView(props: GenericTableViewProps) {
 
   const style = {
     Table: {
-      borderCollapse: "collapse",
+      //   borderCollapse: "collapse",
       tableLayout: "fixed",
       width: "100%",
       "& th": {
