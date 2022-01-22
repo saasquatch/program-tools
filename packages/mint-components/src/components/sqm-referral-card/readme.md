@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type      | Default     |
-| -------- | --------- | ----------- | --------- | ----------- |
-| `desc`   | `desc`    |             | `string`  | `undefined` |
-| `gift`   | `gift`    |             | `boolean` | `true`      |
-| `reward` | `reward`  |             | `string`  | `undefined` |
-| `unit`   | `unit`    |             | `string`  | `undefined` |
+| Property | Attribute | Description | Type     | Default     |
+| -------- | --------- | ----------- | -------- | ----------- |
+| `desc`   | `desc`    |             | `string` | `undefined` |
+| `icon`   | `icon`    |             | `string` | `"gift"`    |
+| `reward` | `reward`  |             | `string` | `undefined` |
+| `unit`   | `unit`    |             | `string` | `undefined` |
 
 
 ## Dependencies
@@ -24,8 +24,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  sqm-stencilbook --> sqm-timeline-reward
-  style sqm-timeline-reward fill:#f9f,stroke:#333,stroke-width:4px
+  sqm-stencilbook --> sqm-timeline-entry
+  style sqm-timeline-entry fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

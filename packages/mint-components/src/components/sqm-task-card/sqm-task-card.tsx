@@ -169,7 +169,7 @@ export class TaskCard {
   /**
    * @uiName Program ID override
    */
-  @Prop() programId: string;
+  @Prop() programId?: string;
 
   /**
    * @undocumented

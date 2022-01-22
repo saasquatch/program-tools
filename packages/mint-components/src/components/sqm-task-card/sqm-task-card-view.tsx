@@ -286,7 +286,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             },
             {
               endDate: dateEnd
-                .setLocale(states.locale)
+                .setLocale(luxonLocale(states.locale))
                 .toLocaleString(DateTime.DATETIME_MED),
             }
           )}
