@@ -36,6 +36,18 @@ export class Timeline {
 		:host{
 			display: block;   
 		}
+
+		// ::slotted(*:not(:only-child):not(:last-child)) {
+		// 	margin-bottom: var(--sl-spacing-xx-large);
+		// }
+		
+		// ::slotted(*:not(:only-child):not(:last-child))::before {
+		// 	display: block;
+		// 	content: "";
+		// 	height: 100%;
+		// 	background: var(--sl-color-primary-300);
+		// }
+
 		::slotted(*:not(:first-child))::before {
 			display: block;
 			position: relative;
