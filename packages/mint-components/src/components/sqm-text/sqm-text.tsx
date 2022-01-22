@@ -46,7 +46,7 @@ const textStyles = `
   }
 
   sqm-text p[light] {
-    font-size: var(--sl-font-size-x-small);
+    font-size: var(--sl-font-size-small);
     font-weight: 400;
     color: var(--sl-color-gray-600);
     margin: 0;

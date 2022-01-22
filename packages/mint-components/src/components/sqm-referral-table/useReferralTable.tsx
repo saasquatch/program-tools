@@ -7,7 +7,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useReducer } from "@saasquatch/universal-hooks";
 import { h, VNode } from "@stencil/core";
-import gql from "graphql-tag";
+import { gql } from "graphql-request";
 import { useRerenderListener } from "../../tables/re-render";
 import { ReferralTable } from "./sqm-referral-table";
 import { GenericTableViewProps } from "../../tables/GenericTableView";

@@ -3,7 +3,7 @@ import {
   useUserIdentity,
   useQuery,
 } from "@saasquatch/component-boilerplate";
-import gql from "graphql-tag";
+import { gql } from "graphql-request";
 import { ShareButtonViewProps } from "./sqm-share-button-view";
 import { PlatformNativeActions } from "../../global/android";
 import {

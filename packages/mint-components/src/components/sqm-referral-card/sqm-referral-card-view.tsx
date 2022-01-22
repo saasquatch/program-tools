@@ -12,6 +12,18 @@ export interface ReferralCardViewProps {
 
 export function ReferralCardView(props: ReferralCardViewProps) {
   const style = {
+    Text: {
+      textAlign: "center",
+      marginBottom: "var(--sl-spacing-xx-large)",
+      "& .header": {
+        fontSize: "var(--sl-font-size-large)",
+        fontWeight: "var(--sl-font-weight-semibold)",
+        color: "var(--sl-color-neutral-900)",
+      },
+      "& .description": {
+        color: "var(--sl-color-neutral-600)",
+      },
+    },
     Container: {
       display: "flex",
       color: "var(--sl-color-neutral-900)",
@@ -41,20 +53,6 @@ export function ReferralCardView(props: ReferralCardViewProps) {
       "@media (max-width: 499px)": {
         flexDirection: "column",
         border: "none",
-      },
-    },
-
-    Text: {
-      textAlign: "center",
-      marginBottom: "var(--sl-spacing-xx-large)",
-      "& .header": {
-        fontSize: "var(--sl-font-size-x-large)",
-        fontWeight: "var(--sl-font-weight-semibold)",
-        color: "var(--sl-color-neutral-900)",
-      },
-      "& .description": {
-        fontSize: "var(--sl-font-size-large)",
-        color: "var(--sl-color-neutral-600)",
       },
     },
   };

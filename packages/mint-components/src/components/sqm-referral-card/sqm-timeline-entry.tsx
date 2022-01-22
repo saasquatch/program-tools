@@ -67,7 +67,6 @@ export class TimelineReward {
           fontSize: "var(--sl-font-size-medium)",
         },
         "& .description": {
-          height: "28px",
           fontSize: "var(--sl-font-size-large)",
         },
 
