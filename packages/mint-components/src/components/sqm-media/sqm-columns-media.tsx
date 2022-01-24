@@ -7,7 +7,7 @@ import { MediaView } from "./sqm-media-view";
  * @uiName Media
  */
 @Component({
-  tag: "sqm-media",
+  tag: "sqm-columns-media",
   shadow: true,
 })
 export class Media {
@@ -15,24 +15,6 @@ export class Media {
    * @uiName Image Link
    */
   @Prop() imageUrl: string;
-
-  /**
-   * @uiName Minimum Image Height
-   */
-  @Prop() minHeight: string = "300px";
-  
-
-  // sqm-hero
-  
-//   /**
-//    * @uiName Maximum Image Width
-//    */
-//   @Prop() maxWidth: string = "100%";
-  
-//   /**
-//    * @uiName Minimum Image Height
-//    */
-//   @Prop() minHeight: string = "300px";
 
   /**
    * @uiName Overlay Color
@@ -55,6 +37,11 @@ export class Media {
   @Prop() backgroundColor?: string;
 
   /**
+   * @uiName Minimum Image Height
+   */
+  @Prop() minHeight: string = "300px";
+
+  /**
    * @uiName Image Link
    * @uiType string
    * @uiEnum ["overlay", "columns"]
@@ -71,7 +58,7 @@ export class Media {
   /**
    * @uiName Image Mobile Position
    * @uiType string
-   * @uiEnum ["top", "bottom"]
+   * @uiEnum ["top", "bottom" ]
    */
   @Prop() imageMobilePos: "top" | "bottom" = "top";
 
