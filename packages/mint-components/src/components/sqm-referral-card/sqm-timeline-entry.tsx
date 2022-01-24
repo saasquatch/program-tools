@@ -30,6 +30,9 @@ export class TimelineReward {
    */
   @Prop() desc: string;
 
+  /**
+   * @undocumented
+   */
   @Prop() line?: boolean;
 
   /**
@@ -86,6 +89,7 @@ export class TimelineReward {
         },
         "& .description": {
           fontSize: "var(--sl-font-size-large)",
+          marginBottom: "var(--sl-spacing-xx-large)",
         },
       },
     };

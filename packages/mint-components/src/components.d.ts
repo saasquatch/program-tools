@@ -1803,6 +1803,9 @@ export namespace Components {
           * @uiEnum ["gift", "circle"]
          */
         "icon": string;
+        /**
+          * @undocumented
+         */
         "line"?: boolean;
         /**
           * @uiName Reward Amount
@@ -4145,6 +4148,9 @@ declare namespace LocalJSX {
           * @uiEnum ["gift", "circle"]
          */
         "icon"?: string;
+        /**
+          * @undocumented
+         */
         "line"?: boolean;
         /**
           * @uiName Reward Amount
