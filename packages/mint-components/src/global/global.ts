@@ -31,6 +31,7 @@ import {
   SlColorPicker,
   SlDetails,
   SlDialog,
+  SlDivider,
   SlDrawer,
   SlDropdown,
   SlForm,
@@ -43,7 +44,6 @@ import {
   SlInclude,
   SlInput,
   SlMenu,
-  SlMenuDivider,
   SlMenuItem,
   SlMenuLabel,
   SlProgressBar,
@@ -53,7 +53,7 @@ import {
   SlRating,
   SlRelativeTime,
   SlResizeObserver,
-  SlResponsiveEmbed,
+  SlResponsiveMedia,
   SlSelect,
   SlSkeleton,
   SlSpinner,
@@ -100,7 +100,7 @@ try {
   customElements.define("sl-include", SlInclude);
   customElements.define("sl-input", SlInput);
   customElements.define("sl-menu", SlMenu);
-  customElements.define("sl-menu-divider", SlMenuDivider);
+  customElements.define("sl-divider", SlDivider);
   customElements.define("sl-menu-item", SlMenuItem);
   customElements.define("sl-menu-label", SlMenuLabel);
   customElements.define("sl-progress-bar", SlProgressBar);
@@ -110,7 +110,7 @@ try {
   customElements.define("sl-rating", SlRating);
   customElements.define("sl-relative-time", SlRelativeTime);
   customElements.define("sl-resize-observer", SlResizeObserver);
-  customElements.define("sl-responsive-embed", SlResponsiveEmbed);
+  customElements.define("sl-responsive-media", SlResponsiveMedia);
   customElements.define("sl-select", SlSelect);
   customElements.define("sl-skeleton", SlSkeleton);
   customElements.define("sl-spinner", SlSpinner);

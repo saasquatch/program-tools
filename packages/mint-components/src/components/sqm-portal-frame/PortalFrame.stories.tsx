@@ -78,7 +78,7 @@ export const FrameWithMenu = () => {
         <sl-menu-item exportparts="base: menuitem-base" value="/editProfile">
           Edit Profile
         </sl-menu-item>
-        <sl-menu-divider></sl-menu-divider>
+        <sl-divider></sl-divider>
         <sl-menu-item exportparts="base: menuitem-base" value="/logout">
           Logout
         </sl-menu-item>
@@ -126,7 +126,7 @@ export const FullStackFrame = () => {
           <sl-menu-item exportparts="base: menuitem-base" value="/editProfile">
             Edit Profile
           </sl-menu-item>
-          <sl-menu-divider></sl-menu-divider>
+          <sl-divider></sl-divider>
           <sl-menu-item exportparts="base: menuitem-base" value="/logout">
             Logout
           </sl-menu-item>
@@ -170,7 +170,7 @@ export const FullStackFrameLoggedOut = () => {
           <sl-menu-item exportparts="base: menuitem-base" value="/editProfile">
             Edit Profile
           </sl-menu-item>
-          <sl-menu-divider></sl-menu-divider>
+          <sl-divider></sl-divider>
           <sl-menu-item exportparts="base: menuitem-base" value="/logout">
             Logout
           </sl-menu-item>
