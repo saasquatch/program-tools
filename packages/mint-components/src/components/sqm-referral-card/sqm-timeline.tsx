@@ -48,16 +48,33 @@ export class Timeline {
 		// 	background: var(--sl-color-primary-300);
 		// }
 
-		::slotted(*:not(:first-child))::before {
+		// ::slotted(*:not(:first-child))::before {
+		// 	display: block;
+		// 	position: relative;
+		// 	content: "";
+		// 	background: var(--sl-color-primary-300);
+		// 	height: 90px;
+		// 	width: 4px;
+		// 	top: 12px;
+		// 	left: 10px;
+		// 	margin-top: -44px;
+		// 	margin-bottom: 8px;
+		// 	border-radius: 4px;
+		// }
+
+
+    // ZH: Temporary Patch fix
+    ::slotted(*:not(:first-child))::before {
 			display: block;
 			position: relative;
 			content: "";
 			background: var(--sl-color-primary-300);
-			height: 90px;
+			min-height: 150px;
+			max-height: 300px;
 			width: 4px;
 			top: 12px;
 			left: 10px;
-			margin-top: -44px;
+			margin-top: -85px;
 			margin-bottom: 8px;
 			border-radius: 4px;
 		}
