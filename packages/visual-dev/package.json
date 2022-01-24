@@ -16,19 +16,11 @@
   "author": "SaaSquatch Team",
   "license": "MIT",
   "dependencies": {
-    "@types/json-schema": "^7.0.9",
-    "jsonata": "^1.8.4",
-    "jsonata-ui-core": "^1.7.12",
-    "jsonata-visual-editor": "^0.4.0",
-    "marked": "^3.0.4",
-    "prop-types": "^15.7.2",
-    "react-bootstrap": "^1.5.2",
-    "react-select": "^1.3.0",
-    "react-shadow": "^19.0.2",
-    "storybook-addon-matrix": "^1.6.0"
+    "react-shadow": "^19.0.2"
   },
   "devDependencies": {
     "@rjsf/core": "^2.4.1",
+    "storybook-addon-matrix": "^1.6.0",
     "@storybook/addon-a11y": "^6.3.8",
     "@storybook/addon-docs": "^6.3.8",
     "@storybook/addon-knobs": "^6.3.1",
@@ -36,6 +28,7 @@
     "@storybook/react": "^6.3.8",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^10.0.4",
+    "@types/json-schema": "^7.0.9",
     "@types/jest": "^25.2.1",
     "@types/marked": "^3.0.1",
     "@types/react": "^16.14.6",
@@ -47,6 +40,7 @@
     "cross-env": "^7.0.3",
     "downshift": "^6.1.7",
     "jest": "^26.0.1",
+    "marked": "^3.0.4",
     "prettier-standard": "^16.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -59,10 +53,22 @@
     "downshift": ">=6.1.7",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
-    "styled-components": ">=5.3.0"
+    "styled-components": ">=5.3.0",
+    "jsonata": "^1.8.4",
+    "jsonata-ui-core": "^1.7.12",
+    "jsonata-visual-editor": "^0.4.0"
   },
   "peerDependenciesMeta": {
     "downshift": {
+      "optional": true
+    },
+    "jsonata": {
+      "optional": true
+    },
+    "jsonata-ui-core": {
+      "optional": true
+    },
+    "jsonata-visual-editor": {
       "optional": true
     }
   },

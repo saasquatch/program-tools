@@ -28,3 +28,27 @@ export const Description = css`
 export const RequiredLabel = css`
   color: var(--sq-placeholder-text-on-secondary);
 `;
+
+export const ItemContainer = css`
+  display: flex;
+  justify-content: space-between;
+  margin: var(--sq-spacing-large) 0;
+`;
+
+export const ItemContent = css`
+  flex: 1;
+`;
+
+export const ItemButtons = css`
+  height: 36px;
+  display: flex;
+  align-items: center;
+  & > * {
+    margin-left: var(--sq-spacing-medium);
+  }
+`;
+
+export const ArrayContainer = css`
+  display: flex;
+  flex-direction: column;
+`;

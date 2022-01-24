@@ -28,10 +28,18 @@ const RequiredLabel = styled.span`
   ${Styles.RequiredLabel}
 `;
 
-const ItemContainer = styled.div``;
-const ItemContent = styled.div``;
-const ItemButtons = styled.div``;
-const ArrayContainer = styled.div``;
+const ItemContainer = styled.div`
+  ${Styles.ItemContainer}
+`;
+const ItemContent = styled.div`
+  ${Styles.ItemContent}
+`;
+const ItemButtons = styled.div`
+  ${Styles.ItemButtons}
+`;
+const ArrayContainer = styled.div`
+  ${Styles.ArrayContainer}
+`;
 
 // Used in the two templates
 const DefaultArrayItem = (props: any) => {
@@ -56,6 +64,8 @@ const DefaultArrayItem = (props: any) => {
           <>
             {(hasMoveUp || hasMoveDown) && (
               <IconButton
+                size="mini"
+                borderless={true}
                 icon="chevron_up"
                 disabled={disabled || readonly || !hasMoveUp}
                 onClick={onReorderClick(index, index - 1)}
@@ -64,6 +74,8 @@ const DefaultArrayItem = (props: any) => {
 
             {(hasMoveUp || hasMoveDown) && (
               <IconButton
+                size="mini"
+                borderless={true}
                 icon="chevron_down"
                 disabled={disabled || readonly || !hasMoveDown}
                 onClick={onReorderClick(index, index + 1)}
@@ -72,7 +84,10 @@ const DefaultArrayItem = (props: any) => {
 
             {hasRemove && (
               <IconButton
+                size="mini"
+                borderless={true}
                 icon="trash"
+                icon_css={{ color: "var(--sq-on-surface-critical)" }}
                 disabled={disabled || readonly}
                 onClick={onDropIndexClick(index)}
               />
@@ -121,8 +136,11 @@ export const ArrayFieldTemplate = (props: ArrayFieldTemplateProps) => {
         {canAdd && (
           <IconButton
             icon="add"
+            size="mini"
+            borderless={true}
             onClick={onAddClick}
             disabled={disabled || readonly}
+            customCSS={"align-self: end;"}
           />
         )}
       </ArrayContainer>
