@@ -49,6 +49,7 @@ export class TimelineReward {
         lineHeight: "var(--sl-line-height-dense)",
         "& .step": {
           display: "flex",
+          minHeight: "100px",
         },
         "& .icon": {
           position: "relative",

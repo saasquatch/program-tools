@@ -79,6 +79,10 @@ export const config: Config = {
             type: "dist",
             copy: [{ src: "global/styles.ts" }],
           },
+          {
+            type: "stats",
+            file: "docs/stats.json", // optional
+          },
           useDocx,
           useGrapesjs,
         ],
