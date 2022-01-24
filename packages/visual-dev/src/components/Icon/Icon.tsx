@@ -8,12 +8,24 @@ export type IconProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate">;
 
 export interface OptionProps {
+  /**
+   * Icon
+   */
   icon: IconKey;
 }
 
 export interface StyleProps {
+  /**
+   * Icon colour
+   */
   color?: string;
+  /**
+   * Icon size
+   */
   size?: "small" | "medium" | "large" | string;
+  /**
+   * Custom CSS styles applied to icon
+   */
   customCSS?: CSSProp;
 }
 

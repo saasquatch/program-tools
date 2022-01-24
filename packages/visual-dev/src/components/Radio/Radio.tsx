@@ -6,7 +6,13 @@ import * as Styles from "./Styles";
 type RadioProps = OptionProps & Omit<React.ComponentProps<"input">, "value">;
 
 export interface OptionProps {
+  /**
+   * Value of radio
+   */
   value?: any;
+  /**
+   * Onchange action for radio
+   */
   onChange?: any;
   options?: any;
 }

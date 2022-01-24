@@ -8,10 +8,25 @@ type GroupProps = React.ComponentProps<"input">;
 type InputProps = OptionProps & Omit<React.ComponentProps<"input">, "value">;
 
 export interface OptionProps {
+  /**
+   * Current value of radio group
+   */
   value?: any;
+  /**
+   * Value of radio action
+   */
   optionValue?: any;
+  /**
+   * Onchange action for radio action
+   */
   onChange?: any;
+  /**
+   * Action title
+   */
   title: string;
+  /**
+   * Action description
+   */
   description?: string | React.ReactNode;
 }
 

@@ -10,15 +10,45 @@ type InputProps = OptionProps &
 type InputWidthType = boolean | string;
 
 export interface OptionProps {
+  /**
+   * Input value
+   */
   value?: any;
+  /**
+   * Onchange action for input
+   */
   onChange?: any;
+  /**
+   * Disable input
+   */
   disabled?: boolean;
+  /**
+   * Input type
+   */
   type?: string;
+  /**
+   * Errors on input
+   */
   errors?: any;
+  /**
+   * Icon displayed with input
+   */
   icon?: IconKey;
+  /**
+   * Button displayed with input
+   */
   buttons?: React.ReactElement;
+  /**
+   * Position on icons/buttons
+   */
   position?: "left" | "right";
+  /**
+   * Custon CSS applied to input
+   */
   customCSS?: CSSProp;
+  /**
+   * Limit input with (to default or custom value)
+   */
   limitWidth?: InputWidthType;
 }
 

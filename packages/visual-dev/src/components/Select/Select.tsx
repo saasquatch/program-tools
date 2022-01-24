@@ -12,7 +12,7 @@ type SelectProps<ItemType> = OptionProps<ItemType> &
 
 export interface OptionProps<ItemType> {
   /**
-   * Downshift hook
+   * Downshift hook (either useCombobox or useSelect)
    */
   functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
   /**

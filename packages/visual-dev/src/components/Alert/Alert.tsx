@@ -5,15 +5,27 @@ import * as Styles from "./Styles";
 
 export type AlertProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate"|"css">;
+  Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
+  /**
+   * Alert title
+   */
   title: string;
+  /**
+   * Alert content
+   */
   children: React.ReactNode;
 }
 
 export interface StyleProps {
+  /**
+   * Alert type
+   */
   type: "critical" | "warning" | "success" | "info";
+  /**
+   * Custom CSS applied to alert
+   */
   customCSS?: CSSProp;
 }
 
@@ -44,7 +56,12 @@ export const Alert = React.forwardRef<React.ElementRef<"div">, AlertProps>(
     const { type: variant, title, children, customCSS = {}, ...rest } = props;
 
     return (
-      <AlertDiv {...rest} type={variant} ref={forwardedRef} customCSS={customCSS}>
+      <AlertDiv
+        {...rest}
+        type={variant}
+        ref={forwardedRef}
+        customCSS={customCSS}
+      >
         {icons[variant]}
         <div>
           <strong>{title}</strong>
