@@ -23,7 +23,6 @@ import {
 } from "./components/LoadingSpinner";
 import RadioCards from "./components/RadioCards";
 import { GenericInput, PencilButton, EditPencil } from "./components/Inputs";
-import JSONataEditor from "./components/MapFieldsJsonata";
 import {
   PlatformSignInButton,
   PrimaryButton,
@@ -36,7 +35,6 @@ import {
   DefaultObjectTemplate,
 } from "./components/FormTemplates";
 import { Icon } from "./components/Icons";
-import JSONataUtils from "./components/JSONata/JSONataUtils";
 import { Alert } from "./components/Alert";
 import { Avatar } from "./components/Avatar";
 import { Badge } from "./components/Badge";
@@ -108,7 +106,6 @@ export {
   GenericInput,
   PencilButton,
   EditPencil,
-  JSONataEditor,
   StyledHR,
   ColumnContainer,
   RowContainer,
@@ -118,7 +115,6 @@ export {
   ErrorBlock,
   DefaultTemplate,
   DefaultObjectTemplate,
-  JSONataUtils,
   GlobalStyle,
   CSSVariables,
   TextRules,
