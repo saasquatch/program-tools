@@ -50,7 +50,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   const style = {
     HostBlock: HostBlock,
     Container: {
-      padding: "var(--sl-spacing-medium)",
+      minWidth: "300px", // Set to 300px to match the task card grid min
       position: "relative",
     },
     FullImage: {
@@ -299,6 +299,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         "@media (max-width: 499px)": {
           width: "100%",
           marginRight: "0",
+          marginTop: "var(--sl-spacing-small)",
         },
       },
       "& .continue": {
