@@ -259,6 +259,8 @@ export namespace Components {
     interface SqmHookStoryContainer {
         "hookStory": FunctionalComponent;
     }
+    interface SqmImage {
+    }
     interface SqmLeaderboard {
         /**
           * @uiName Title displayed for users without names
@@ -1801,6 +1803,7 @@ export namespace Components {
           * @uiEnum ["gift", "circle"]
          */
         "icon": string;
+        "line"?: boolean;
         /**
           * @uiName Reward Amount
          */
@@ -1907,6 +1910,12 @@ declare global {
     var HTMLSqmHookStoryContainerElement: {
         prototype: HTMLSqmHookStoryContainerElement;
         new (): HTMLSqmHookStoryContainerElement;
+    };
+    interface HTMLSqmImageElement extends Components.SqmImage, HTMLStencilElement {
+    }
+    var HTMLSqmImageElement: {
+        prototype: HTMLSqmImageElement;
+        new (): HTMLSqmImageElement;
     };
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
@@ -2316,6 +2325,7 @@ declare global {
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
         "sqm-hero": HTMLSqmHeroElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
+        "sqm-image": HTMLSqmImageElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-media": HTMLSqmMediaElement;
@@ -2608,6 +2618,8 @@ declare namespace LocalJSX {
     }
     interface SqmHookStoryContainer {
         "hookStory"?: FunctionalComponent;
+    }
+    interface SqmImage {
     }
     interface SqmLeaderboard {
         /**
@@ -4133,6 +4145,7 @@ declare namespace LocalJSX {
           * @uiEnum ["gift", "circle"]
          */
         "icon"?: string;
+        "line"?: boolean;
         /**
           * @uiName Reward Amount
          */
@@ -4184,6 +4197,7 @@ declare namespace LocalJSX {
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
         "sqm-hero": SqmHero;
         "sqm-hook-story-container": SqmHookStoryContainer;
+        "sqm-image": SqmImage;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-media": SqmMedia;
@@ -4267,6 +4281,7 @@ declare module "@stencil/core" {
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
             "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
+            "sqm-image": LocalJSX.SqmImage & JSXBase.HTMLAttributes<HTMLSqmImageElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-media": LocalJSX.SqmMedia & JSXBase.HTMLAttributes<HTMLSqmMediaElement>;
