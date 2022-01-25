@@ -9,6 +9,7 @@ import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
+import { Spacing } from "./global/mixins";
 import { FunctionalComponent } from "@stencil/core";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
@@ -17,7 +18,6 @@ import { NavigationMenuViewProps } from "./components/sqm-navigation-menu/sqm-na
 import { NavigationSidebarItemViewProps } from "./components/sqm-navigation-sidebar-item/sqm-navigation-sidebar-item-view";
 import { PasswordFieldViewDemoProps } from "./components/sqm-password-field/sqm-password-field";
 import { PortalChangePasswordViewProps } from "./components/sqm-portal-change-password/sqm-portal-change-password-view";
-import { Spacing } from "./global/mixins";
 import { PortalEmailVerificationViewProps } from "./components/sqm-portal-email-verification/sqm-portal-email-verification-view";
 import { PortalForgotPasswordViewProps } from "./components/sqm-portal-forgot-password/sqm-portal-forgot-password-view";
 import { PortalFrameViewProps } from "./components/sqm-portal-frame/sqm-portal-frame-view";
@@ -101,70 +101,6 @@ export namespace Components {
           * @uiName Card Width
          */
         "width": number;
-    }
-    interface SqmColumnsMedia {
-        /**
-          * @uiName Background Color
-         */
-        "backgroundColor"?: string;
-        /**
-          * @uiName CTA Button Link
-         */
-        "buttonLink"?: string;
-        /**
-          * @uiName CTA Button Link Open in New Tab
-         */
-        "buttonNewTab"?: boolean;
-        /**
-          * @uiName CTA Button Text
-         */
-        "buttonText"?: string;
-        /**
-          * @uiName Description Text
-         */
-        "description"?: string;
-        /**
-          * @uiName Title Text
-         */
-        "header"?: string;
-        /**
-          * @uiName Image Mobile Position
-          * @uiType string
-          * @uiEnum ["top", "bottom" ]
-         */
-        "imageMobilePos": "top" | "bottom";
-        /**
-          * @uiName Image Position
-          * @uiType string
-          * @uiEnum ["left", "right"]
-         */
-        "imagePos": "left" | "right";
-        /**
-          * @uiName Image Link
-         */
-        "imageUrl": string;
-        /**
-          * @uiName Image Link
-          * @uiType string
-          * @uiEnum ["overlay", "columns"]
-         */
-        "layout": "overlay" | "columns";
-        /**
-          * @uiName Minimum Image Height
-         */
-        "minHeight": string;
-        /**
-          * @uiName Overlay Color
-         */
-        "overlayColor": string;
-        /**
-          * @uiName Overlay Opacity
-         */
-        "overlayOpacity": string;
-        /**
-          * @uiName Text Color
-         */
-        "textColor"?: string;
     }
     interface SqmDividedLayout {
         /**
@@ -255,6 +191,76 @@ export namespace Components {
           * @uiName Wrap direction
          */
         "wrapDirection": "wrap" | "wrap-reverse";
+    }
+    interface SqmHeroImage {
+        /**
+          * @uiName Background Color
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName CTA Button Link
+         */
+        "buttonLink"?: string;
+        /**
+          * @uiName CTA Button Link Open in New Tab
+         */
+        "buttonNewTab"?: boolean;
+        /**
+          * @uiName CTA Button Text
+         */
+        "buttonText"?: string;
+        /**
+          * @uiName Description Text
+         */
+        "description"?: string;
+        /**
+          * @uiName Title Text
+         */
+        "header"?: string;
+        /**
+          * @uiName Image Mobile Position
+          * @uiType string
+          * @uiEnum ["top", "bottom"]
+         */
+        "imageMobilePos": "top" | "bottom";
+        /**
+          * @uiName Image Position
+          * @uiType string
+          * @uiEnum ["left", "right"]
+         */
+        "imagePos": "left" | "right" | "center";
+        /**
+          * @uiName Image Link
+         */
+        "imageUrl": string;
+        /**
+          * @uiName Image Link
+          * @uiType string
+          * @uiEnum ["overlay", "columns"]
+         */
+        "layout": "overlay" | "columns";
+        /**
+          * @uiName Minimum Image Height
+         */
+        "minHeight": string;
+        /**
+          * @uiName Overlay Color
+         */
+        "overlayColor": string;
+        /**
+          * @uiName Overlay Opacity
+         */
+        "overlayOpacity": string;
+        /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+         */
+        "padding": Spacing;
+        /**
+          * @uiName Text Color
+         */
+        "textColor"?: string;
     }
     interface SqmHookStoryContainer {
         "hookStory": FunctionalComponent;
@@ -347,70 +353,6 @@ export namespace Components {
          */
         "unrankedText": string;
     }
-    interface SqmMedia {
-        /**
-          * @uiName Background Color
-         */
-        "backgroundColor"?: string;
-        /**
-          * @uiName CTA Button Link
-         */
-        "buttonLink"?: string;
-        /**
-          * @uiName CTA Button Link Open in New Tab
-         */
-        "buttonNewTab"?: boolean;
-        /**
-          * @uiName CTA Button Text
-         */
-        "buttonText"?: string;
-        /**
-          * @uiName Description Text
-         */
-        "description"?: string;
-        /**
-          * @uiName Title Text
-         */
-        "header"?: string;
-        /**
-          * @uiName Image Mobile Position
-          * @uiType string
-          * @uiEnum ["top", "bottom"]
-         */
-        "imageMobilePos": "top" | "bottom";
-        /**
-          * @uiName Image Position
-          * @uiType string
-          * @uiEnum ["left", "right"]
-         */
-        "imagePos": "left" | "right";
-        /**
-          * @uiName Image Link
-         */
-        "imageUrl": string;
-        /**
-          * @uiName Image Link
-          * @uiType string
-          * @uiEnum ["overlay", "columns"]
-         */
-        "layout": "overlay" | "columns";
-        /**
-          * @uiName Minimum Image Height
-         */
-        "minHeight": string;
-        /**
-          * @uiName Overlay Color
-         */
-        "overlayColor": string;
-        /**
-          * @uiName Overlay Opacity
-         */
-        "overlayOpacity": string;
-        /**
-          * @uiName Text Color
-         */
-        "textColor"?: string;
-    }
     interface SqmNameFields {
         /**
           * @undocumented
@@ -460,70 +402,6 @@ export namespace Components {
           * @uiName Navigation path
          */
         "path": string;
-    }
-    interface SqmOverlayMedia {
-        /**
-          * @uiName Background Color
-         */
-        "backgroundColor"?: string;
-        /**
-          * @uiName CTA Button Link
-         */
-        "buttonLink"?: string;
-        /**
-          * @uiName CTA Button Link Open in New Tab
-         */
-        "buttonNewTab"?: boolean;
-        /**
-          * @uiName CTA Button Text
-         */
-        "buttonText"?: string;
-        /**
-          * @uiName Description Text
-         */
-        "description"?: string;
-        /**
-          * @uiName Title Text
-         */
-        "header"?: string;
-        /**
-          * @uiName Image Mobile Position
-          * @uiType string
-          * @uiEnum ["top", "bottom" ]
-         */
-        "imageMobilePos": "top" | "bottom";
-        /**
-          * @uiName Image Position
-          * @uiType string
-          * @uiEnum ["left", "right"]
-         */
-        "imagePos": "left" | "right";
-        /**
-          * @uiName Image Link
-         */
-        "imageUrl": string;
-        /**
-          * @uiName Image Link
-          * @uiType string
-          * @uiEnum ["overlay", "columns"]
-         */
-        "layout": "overlay" | "columns";
-        /**
-          * @uiName Minimum Image Height
-         */
-        "minHeight": string;
-        /**
-          * @uiName Overlay Color
-         */
-        "overlayColor": string;
-        /**
-          * @uiName Overlay Opacity
-         */
-        "overlayOpacity": string;
-        /**
-          * @uiName Text Color
-         */
-        "textColor"?: string;
     }
     interface SqmPasswordField {
         /**
@@ -1872,12 +1750,6 @@ declare global {
         prototype: HTMLSqmCardFeedElement;
         new (): HTMLSqmCardFeedElement;
     };
-    interface HTMLSqmColumnsMediaElement extends Components.SqmColumnsMedia, HTMLStencilElement {
-    }
-    var HTMLSqmColumnsMediaElement: {
-        prototype: HTMLSqmColumnsMediaElement;
-        new (): HTMLSqmColumnsMediaElement;
-    };
     interface HTMLSqmDividedLayoutElement extends Components.SqmDividedLayout, HTMLStencilElement {
     }
     var HTMLSqmDividedLayoutElement: {
@@ -1908,6 +1780,12 @@ declare global {
         prototype: HTMLSqmHeroElement;
         new (): HTMLSqmHeroElement;
     };
+    interface HTMLSqmHeroImageElement extends Components.SqmHeroImage, HTMLStencilElement {
+    }
+    var HTMLSqmHeroImageElement: {
+        prototype: HTMLSqmHeroImageElement;
+        new (): HTMLSqmHeroImageElement;
+    };
     interface HTMLSqmHookStoryContainerElement extends Components.SqmHookStoryContainer, HTMLStencilElement {
     }
     var HTMLSqmHookStoryContainerElement: {
@@ -1932,12 +1810,6 @@ declare global {
         prototype: HTMLSqmLeaderboardRankElement;
         new (): HTMLSqmLeaderboardRankElement;
     };
-    interface HTMLSqmMediaElement extends Components.SqmMedia, HTMLStencilElement {
-    }
-    var HTMLSqmMediaElement: {
-        prototype: HTMLSqmMediaElement;
-        new (): HTMLSqmMediaElement;
-    };
     interface HTMLSqmNameFieldsElement extends Components.SqmNameFields, HTMLStencilElement {
     }
     var HTMLSqmNameFieldsElement: {
@@ -1961,12 +1833,6 @@ declare global {
     var HTMLSqmNavigationSidebarItemElement: {
         prototype: HTMLSqmNavigationSidebarItemElement;
         new (): HTMLSqmNavigationSidebarItemElement;
-    };
-    interface HTMLSqmOverlayMediaElement extends Components.SqmOverlayMedia, HTMLStencilElement {
-    }
-    var HTMLSqmOverlayMediaElement: {
-        prototype: HTMLSqmOverlayMediaElement;
-        new (): HTMLSqmOverlayMediaElement;
     };
     interface HTMLSqmPasswordFieldElement extends Components.SqmPasswordField, HTMLStencilElement {
     }
@@ -2321,22 +2187,20 @@ declare global {
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
         "sqm-card-feed": HTMLSqmCardFeedElement;
-        "sqm-columns-media": HTMLSqmColumnsMediaElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
         "sqm-hero": HTMLSqmHeroElement;
+        "sqm-hero-image": HTMLSqmHeroImageElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-image": HTMLSqmImageElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
-        "sqm-media": HTMLSqmMediaElement;
         "sqm-name-fields": HTMLSqmNameFieldsElement;
         "sqm-navigation-menu": HTMLSqmNavigationMenuElement;
         "sqm-navigation-sidebar": HTMLSqmNavigationSidebarElement;
         "sqm-navigation-sidebar-item": HTMLSqmNavigationSidebarItemElement;
-        "sqm-overlay-media": HTMLSqmOverlayMediaElement;
         "sqm-password-field": HTMLSqmPasswordFieldElement;
         "sqm-popup-container": HTMLSqmPopupContainerElement;
         "sqm-portal-change-password": HTMLSqmPortalChangePasswordElement;
@@ -2465,70 +2329,6 @@ declare namespace LocalJSX {
          */
         "width"?: number;
     }
-    interface SqmColumnsMedia {
-        /**
-          * @uiName Background Color
-         */
-        "backgroundColor"?: string;
-        /**
-          * @uiName CTA Button Link
-         */
-        "buttonLink"?: string;
-        /**
-          * @uiName CTA Button Link Open in New Tab
-         */
-        "buttonNewTab"?: boolean;
-        /**
-          * @uiName CTA Button Text
-         */
-        "buttonText"?: string;
-        /**
-          * @uiName Description Text
-         */
-        "description"?: string;
-        /**
-          * @uiName Title Text
-         */
-        "header"?: string;
-        /**
-          * @uiName Image Mobile Position
-          * @uiType string
-          * @uiEnum ["top", "bottom" ]
-         */
-        "imageMobilePos"?: "top" | "bottom";
-        /**
-          * @uiName Image Position
-          * @uiType string
-          * @uiEnum ["left", "right"]
-         */
-        "imagePos"?: "left" | "right";
-        /**
-          * @uiName Image Link
-         */
-        "imageUrl"?: string;
-        /**
-          * @uiName Image Link
-          * @uiType string
-          * @uiEnum ["overlay", "columns"]
-         */
-        "layout"?: "overlay" | "columns";
-        /**
-          * @uiName Minimum Image Height
-         */
-        "minHeight"?: string;
-        /**
-          * @uiName Overlay Color
-         */
-        "overlayColor"?: string;
-        /**
-          * @uiName Overlay Opacity
-         */
-        "overlayOpacity"?: string;
-        /**
-          * @uiName Text Color
-         */
-        "textColor"?: string;
-    }
     interface SqmDividedLayout {
         /**
           * @uiName Direction
@@ -2618,6 +2418,76 @@ declare namespace LocalJSX {
           * @uiName Wrap direction
          */
         "wrapDirection"?: "wrap" | "wrap-reverse";
+    }
+    interface SqmHeroImage {
+        /**
+          * @uiName Background Color
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName CTA Button Link
+         */
+        "buttonLink"?: string;
+        /**
+          * @uiName CTA Button Link Open in New Tab
+         */
+        "buttonNewTab"?: boolean;
+        /**
+          * @uiName CTA Button Text
+         */
+        "buttonText"?: string;
+        /**
+          * @uiName Description Text
+         */
+        "description"?: string;
+        /**
+          * @uiName Title Text
+         */
+        "header"?: string;
+        /**
+          * @uiName Image Mobile Position
+          * @uiType string
+          * @uiEnum ["top", "bottom"]
+         */
+        "imageMobilePos"?: "top" | "bottom";
+        /**
+          * @uiName Image Position
+          * @uiType string
+          * @uiEnum ["left", "right"]
+         */
+        "imagePos"?: "left" | "right" | "center";
+        /**
+          * @uiName Image Link
+         */
+        "imageUrl"?: string;
+        /**
+          * @uiName Image Link
+          * @uiType string
+          * @uiEnum ["overlay", "columns"]
+         */
+        "layout"?: "overlay" | "columns";
+        /**
+          * @uiName Minimum Image Height
+         */
+        "minHeight"?: string;
+        /**
+          * @uiName Overlay Color
+         */
+        "overlayColor"?: string;
+        /**
+          * @uiName Overlay Opacity
+         */
+        "overlayOpacity"?: string;
+        /**
+          * @uiName Padding
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+         */
+        "padding"?: Spacing;
+        /**
+          * @uiName Text Color
+         */
+        "textColor"?: string;
     }
     interface SqmHookStoryContainer {
         "hookStory"?: FunctionalComponent;
@@ -2710,70 +2580,6 @@ declare namespace LocalJSX {
          */
         "unrankedText"?: string;
     }
-    interface SqmMedia {
-        /**
-          * @uiName Background Color
-         */
-        "backgroundColor"?: string;
-        /**
-          * @uiName CTA Button Link
-         */
-        "buttonLink"?: string;
-        /**
-          * @uiName CTA Button Link Open in New Tab
-         */
-        "buttonNewTab"?: boolean;
-        /**
-          * @uiName CTA Button Text
-         */
-        "buttonText"?: string;
-        /**
-          * @uiName Description Text
-         */
-        "description"?: string;
-        /**
-          * @uiName Title Text
-         */
-        "header"?: string;
-        /**
-          * @uiName Image Mobile Position
-          * @uiType string
-          * @uiEnum ["top", "bottom"]
-         */
-        "imageMobilePos"?: "top" | "bottom";
-        /**
-          * @uiName Image Position
-          * @uiType string
-          * @uiEnum ["left", "right"]
-         */
-        "imagePos"?: "left" | "right";
-        /**
-          * @uiName Image Link
-         */
-        "imageUrl"?: string;
-        /**
-          * @uiName Image Link
-          * @uiType string
-          * @uiEnum ["overlay", "columns"]
-         */
-        "layout"?: "overlay" | "columns";
-        /**
-          * @uiName Minimum Image Height
-         */
-        "minHeight"?: string;
-        /**
-          * @uiName Overlay Color
-         */
-        "overlayColor"?: string;
-        /**
-          * @uiName Overlay Opacity
-         */
-        "overlayOpacity"?: string;
-        /**
-          * @uiName Text Color
-         */
-        "textColor"?: string;
-    }
     interface SqmNameFields {
         /**
           * @undocumented
@@ -2823,70 +2629,6 @@ declare namespace LocalJSX {
           * @uiName Navigation path
          */
         "path"?: string;
-    }
-    interface SqmOverlayMedia {
-        /**
-          * @uiName Background Color
-         */
-        "backgroundColor"?: string;
-        /**
-          * @uiName CTA Button Link
-         */
-        "buttonLink"?: string;
-        /**
-          * @uiName CTA Button Link Open in New Tab
-         */
-        "buttonNewTab"?: boolean;
-        /**
-          * @uiName CTA Button Text
-         */
-        "buttonText"?: string;
-        /**
-          * @uiName Description Text
-         */
-        "description"?: string;
-        /**
-          * @uiName Title Text
-         */
-        "header"?: string;
-        /**
-          * @uiName Image Mobile Position
-          * @uiType string
-          * @uiEnum ["top", "bottom" ]
-         */
-        "imageMobilePos"?: "top" | "bottom";
-        /**
-          * @uiName Image Position
-          * @uiType string
-          * @uiEnum ["left", "right"]
-         */
-        "imagePos"?: "left" | "right";
-        /**
-          * @uiName Image Link
-         */
-        "imageUrl"?: string;
-        /**
-          * @uiName Image Link
-          * @uiType string
-          * @uiEnum ["overlay", "columns"]
-         */
-        "layout"?: "overlay" | "columns";
-        /**
-          * @uiName Minimum Image Height
-         */
-        "minHeight"?: string;
-        /**
-          * @uiName Overlay Color
-         */
-        "overlayColor"?: string;
-        /**
-          * @uiName Overlay Opacity
-         */
-        "overlayOpacity"?: string;
-        /**
-          * @uiName Text Color
-         */
-        "textColor"?: string;
     }
     interface SqmPasswordField {
         /**
@@ -4196,22 +3938,20 @@ declare namespace LocalJSX {
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
         "sqm-card-feed": SqmCardFeed;
-        "sqm-columns-media": SqmColumnsMedia;
         "sqm-divided-layout": SqmDividedLayout;
         "sqm-edit-profile": SqmEditProfile;
         "sqm-form-message": SqmFormMessage;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
         "sqm-hero": SqmHero;
+        "sqm-hero-image": SqmHeroImage;
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-image": SqmImage;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
-        "sqm-media": SqmMedia;
         "sqm-name-fields": SqmNameFields;
         "sqm-navigation-menu": SqmNavigationMenu;
         "sqm-navigation-sidebar": SqmNavigationSidebar;
         "sqm-navigation-sidebar-item": SqmNavigationSidebarItem;
-        "sqm-overlay-media": SqmOverlayMedia;
         "sqm-password-field": SqmPasswordField;
         "sqm-popup-container": SqmPopupContainer;
         "sqm-portal-change-password": SqmPortalChangePassword;
@@ -4280,22 +4020,20 @@ declare module "@stencil/core" {
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
-            "sqm-columns-media": LocalJSX.SqmColumnsMedia & JSXBase.HTMLAttributes<HTMLSqmColumnsMediaElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
             "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
+            "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-image": LocalJSX.SqmImage & JSXBase.HTMLAttributes<HTMLSqmImageElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
-            "sqm-media": LocalJSX.SqmMedia & JSXBase.HTMLAttributes<HTMLSqmMediaElement>;
             "sqm-name-fields": LocalJSX.SqmNameFields & JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;
             "sqm-navigation-menu": LocalJSX.SqmNavigationMenu & JSXBase.HTMLAttributes<HTMLSqmNavigationMenuElement>;
             "sqm-navigation-sidebar": LocalJSX.SqmNavigationSidebar & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarElement>;
             "sqm-navigation-sidebar-item": LocalJSX.SqmNavigationSidebarItem & JSXBase.HTMLAttributes<HTMLSqmNavigationSidebarItemElement>;
-            "sqm-overlay-media": LocalJSX.SqmOverlayMedia & JSXBase.HTMLAttributes<HTMLSqmOverlayMediaElement>;
             "sqm-password-field": LocalJSX.SqmPasswordField & JSXBase.HTMLAttributes<HTMLSqmPasswordFieldElement>;
             "sqm-popup-container": LocalJSX.SqmPopupContainer & JSXBase.HTMLAttributes<HTMLSqmPopupContainerElement>;
             "sqm-portal-change-password": LocalJSX.SqmPortalChangePassword & JSXBase.HTMLAttributes<HTMLSqmPortalChangePasswordElement>;

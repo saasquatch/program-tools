@@ -1,13 +1,14 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop } from "@stencil/core";
+import { Spacing } from "../../global/mixins";
 import { getProps } from "../../utils/utils";
-import { MediaView } from "./sqm-media-view";
+import { HeroImageView } from "./sqm-hero-image-view";
 
 /**
- * @uiName Media
+ * @uiName Hero Image
  */
 @Component({
-  tag: "sqm-overlay-media",
+  tag: "sqm-hero-image",
   shadow: true,
 })
 export class Media {
@@ -15,6 +16,11 @@ export class Media {
    * @uiName Image Link
    */
   @Prop() imageUrl: string;
+
+  /**
+   * @uiName Minimum Image Height
+   */
+  @Prop() minHeight: string = "300px";
 
   /**
    * @uiName Overlay Color
@@ -37,11 +43,6 @@ export class Media {
   @Prop() backgroundColor?: string;
 
   /**
-   * @uiName Minimum Image Height
-   */
-  @Prop() minHeight: string = "300px";
-
-  /**
    * @uiName Image Link
    * @uiType string
    * @uiEnum ["overlay", "columns"]
@@ -53,12 +54,12 @@ export class Media {
    * @uiType string
    * @uiEnum ["left", "right"]
    */
-  @Prop() imagePos: "left" | "right" = "left";
+  @Prop() imagePos: "left" | "right" | "center" = "center";
 
   /**
    * @uiName Image Mobile Position
    * @uiType string
-   * @uiEnum ["top", "bottom" ]
+   * @uiEnum ["top", "bottom"]
    */
   @Prop() imageMobilePos: "top" | "bottom" = "top";
 
@@ -87,12 +88,23 @@ export class Media {
    */
   @Prop() buttonNewTab?: boolean = false;
 
+  /**
+   * @uiName Padding
+   * @uiType string
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   */
+  @Prop() padding: Spacing = "xx-large";
+
   constructor() {
     withHooks(this);
   }
   disconnectedCallback() {}
 
   render() {
-    return <MediaView {...getProps(this)} />;
+    return (
+      <HeroImageView {...getProps(this)}>
+        <slot />
+      </HeroImageView>
+    );
   }
 }
