@@ -139,7 +139,6 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
     return (
       <div class={sheet.classes.Background}>
         <div class={sheet.classes.Overlay}>
-          {children}
           {props.header && (
             <div class={sheet.classes.Header}>{props.header}</div>
           )}
@@ -159,6 +158,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
               {props.buttonText}
             </sl-button>
           )}
+          {children && children}
         </div>
       </div>
     );

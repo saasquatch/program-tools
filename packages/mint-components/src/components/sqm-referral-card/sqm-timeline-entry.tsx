@@ -64,8 +64,8 @@ export class TimelineReward {
           margin: "-2px",
           position: "relative",
           left: "12px",
-          transform: "scaleY(0.9)",
-          top: "18px",
+          transform: "scaleY(0.95)",
+          top: "16px",
         },
         "& .step": {
           display: "flex",
