@@ -31,6 +31,11 @@ export class TimelineReward {
   @Prop() desc: string;
 
   /**
+   * @undocumented
+   */
+  @Prop() line?: boolean;
+
+  /**
    * @uiName Icon
    * @uiType string
    * @uiEnum ["gift", "circle"]
@@ -47,8 +52,24 @@ export class TimelineReward {
       TimelineReward: {
         color: "var(--sl-color-neutral-900)",
         lineHeight: "var(--sl-line-height-dense)",
+        "& .container": {
+          display: "flex",
+        },
+        "& .line": {
+          color: "transparent",
+          userSelect: "none",
+          background: "var(--sl-color-primary-300)",
+          width: "4px",
+          borderRadius: "4px",
+          margin: "-2px",
+          position: "relative",
+          left: "12px",
+          transform: "scaleY(0.95)",
+          top: "16px",
+        },
         "& .step": {
           display: "flex",
+          minHeight: "100px",
         },
         "& .icon": {
           position: "relative",
@@ -68,14 +89,7 @@ export class TimelineReward {
         },
         "& .description": {
           fontSize: "var(--sl-font-size-large)",
-        },
-
-        "& .line": {
-          height: "50px",
-          position: "relative",
-          left: "10px",
-          top: "-32px",
-          color: "var(--sl-color-primary-300)",
+          marginBottom: "var(--sl-spacing-xx-large)",
         },
       },
     };
@@ -97,23 +111,26 @@ export class TimelineReward {
           {styleString}
           {vanillaStyle}
         </style>
-        <div class="step">
-          {this.icon === "gift" && (
-            <div class="icon">
-              <Gift />
-            </div>
-          )}
-          {this.icon === "circle" && (
-            <div class="icon">
-              <Circle />
-            </div>
-          )}
-          <div>
+        <div class="container">
+          {this.line && <div class="line">.</div>}
+          <div class="step">
+            {this.icon === "gift" && (
+              <div class="icon">
+                <Gift />
+              </div>
+            )}
+            {this.icon === "circle" && (
+              <div class="icon">
+                <Circle />
+              </div>
+            )}
             <div>
-              <span class="reward">{this.reward}</span>
-              <span class="unit">{this.unit}</span>
+              <div>
+                <span class="reward">{this.reward}</span>
+                <span class="unit">{this.unit}</span>
+              </div>
+              <div class="description">{this.desc}</div>
             </div>
-            <div class="description">{this.desc}</div>
           </div>
         </div>
       </div>
