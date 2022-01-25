@@ -42,14 +42,11 @@ export interface StyleProps {
 }
 
 const Button = styled.button<Required<StyleProps>>`
-  ${Styles.icon}
-  ${(props) => props.borderless && Styles.borderless}
-  ${(props) => props.circle && Styles.circle}
-  ${(props) => props.primary && Styles.primary}
-  ${(props) => props.size == "mini" && Styles.icon_mini}
-  ${(props) => props.size == "small" && Styles.icon_small}
-  ${(props) => props.size == "medium" && Styles.icon_medium}
-  ${(props) => props.size == "large" && Styles.icon_large}
+  ${Styles.icon.base}
+  ${(props) => props.borderless && Styles.icon.borderless}
+  ${(props) => props.circle && Styles.icon.circle}
+  ${(props) => props.primary && Styles.primary.base}
+  ${(props) => props.size == "mini" && Styles.icon[props.size]}
   ${(props) => props.customCSS}
 `;
 export const IconButton = React.forwardRef<

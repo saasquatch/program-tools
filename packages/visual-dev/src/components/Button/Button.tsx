@@ -57,18 +57,18 @@ export interface StyleProps {
 const StyledButton = styled.button<
   Required<Omit<StyleProps, "loading">> & { isLoading: boolean }
 >`
-  ${Styles.base}
-  ${(props) => Styles[props.buttonType]}
+  ${Styles.universal_base}
+  ${(props) => Styles[props.buttonType].base}
   ${(props) => props.pill && Styles.pill}
   ${(props) => props.size == "small" && Styles.small}
   ${(props) => props.size == "medium" && Styles.medium}
   ${(props) => props.size == "large" && Styles.large}
-  ${(props) => props.critical && Styles[`${props.buttonType}_critical`]}
-  ${(props) => props.success && Styles[`${props.buttonType}_success`]}
+  ${(props) => props.critical && Styles[props.buttonType].critical}
+  ${(props) => props.success && Styles[props.buttonType].success}
   ${(props) =>
     props.isLoading &&
     props.buttonType != "text" &&
-    Styles[`${props.buttonType}_loading`]}
+    Styles[props.buttonType].loading}
   ${(props) => props.customCSS}
 `;
 

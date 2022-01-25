@@ -34,7 +34,7 @@ export const anim_padding = {
 
 // BASE BUTTON STYLING
 
-export const base = css`
+export const universal_base = css`
   cursor: pointer;
 
   border: none;
@@ -71,189 +71,198 @@ export const large = css`
 
 // BUTTON PRIMARY VARIANTS
 
-export const primary = css`
-  color: var(--sq-surface);
-  background: var(--sq-action-primary);
-  box-shadow: none;
-  border: none;
+export const primary = {
+  base: css`
+    color: var(--sq-surface);
+    background: var(--sq-action-primary);
+    box-shadow: none;
+    border: none;
 
-  &:hover {
-    background: var(--sq-action-primary-hovered);
-  }
+    &:hover {
+      background: var(--sq-action-primary-hovered);
+    }
 
-  &:disabled {
-    cursor: not-allowed;
+    &:disabled {
+      cursor: not-allowed;
+      background: var(--sq-action-primary-disabled);
+      &:hover {
+        background: var(--sq-action-primary-disabled);
+      }
+    }
+  `,
+  critical: css`
+    background: var(--sq-surface-critical);
+    &:hover {
+      background: var(--sq-surface-critical-hovered);
+    }
+  `,
+  success: css`
+    background: var(--sq-surface-success);
+    &:hover {
+      background: var(--sq-surface-success-hovered);
+    }
+  `,
+  loading: css`
+    cursor: wait;
     background: var(--sq-action-primary-disabled);
     &:hover {
       background: var(--sq-action-primary-disabled);
     }
-  }
-`;
-export const primary_critical = css`
-  background: var(--sq-surface-critical);
-  &:hover {
-    background: var(--sq-surface-critical-hovered);
-  }
-`;
-export const primary_success = css`
-  background: var(--sq-surface-success);
-  &:hover {
-    background: var(--sq-surface-success-hovered);
-  }
-`;
-export const primary_loading = css`
-  cursor: wait;
-  background: var(--sq-action-primary-disabled);
-  &:hover {
-    background: var(--sq-action-primary-disabled);
-  }
-`;
+  `,
+};
 
 // BUTTON SECONDARY VARIANTS
 
-export const secondary = css`
-  box-shadow: inset 0 0 0 1px var(--sq-action-secondary-border);
+export const secondary = {
+  base: css`
+    box-shadow: inset 0 0 0 1px var(--sq-action-secondary-border);
 
-  color: var(--sq-text-on-secondary);
-  background: var(--sq-action-secondary);
+    color: var(--sq-text-on-secondary);
+    background: var(--sq-action-secondary);
 
-  &:hover {
-    color: var(--sq-text-on-secondary-hovered);
-    background: var(--sq-action-secondary-hovered);
-  }
+    &:hover {
+      color: var(--sq-text-on-secondary-hovered);
+      background: var(--sq-action-secondary-hovered);
+    }
 
-  &:disabled {
-    cursor: not-allowed;
+    &:disabled {
+      cursor: not-allowed;
+      color: var(--sq-action-primary-disabled);
+      box-shadow: inset 0 0 0 1px var(--sq-action-primary-disabled);
+      &:hover {
+        color: var(--sq-action-primary-disabled);
+        background: var(--sq-action-secondary);
+      }
+    }
+  `,
+  critical: css`
+    color: var(--sq-surface-critical-hovered);
+    box-shadow: inset 0 0 0 1px var(--sq-surface-critical-hovered);
+    &:hover {
+      color: var(--sq-text-on-secondary-hovered);
+      background: var(--sq-surface-critical-hovered);
+    }
+  `,
+  success: css`
+    color: var(--sq-surface-success-hovered);
+    box-shadow: inset 0 0 0 1px var(--sq-surface-success-hovered);
+    &:hover {
+      color: var(--sq-text-on-secondary-hovered);
+      background: var(--sq-surface-success-hovered);
+    }
+  `,
+  loading: css`
+    cursor: wait;
     color: var(--sq-action-primary-disabled);
     box-shadow: inset 0 0 0 1px var(--sq-action-primary-disabled);
     &:hover {
       color: var(--sq-action-primary-disabled);
       background: var(--sq-action-secondary);
     }
-  }
-`;
-export const secondary_critical = css`
-  color: var(--sq-surface-critical-hovered);
-  box-shadow: inset 0 0 0 1px var(--sq-surface-critical-hovered);
-  &:hover {
-    color: var(--sq-text-on-secondary-hovered);
-    background: var(--sq-surface-critical-hovered);
-  }
-`;
-export const secondary_success = css`
-  color: var(--sq-surface-success-hovered);
-  box-shadow: inset 0 0 0 1px var(--sq-surface-success-hovered);
-  &:hover {
-    color: var(--sq-text-on-secondary-hovered);
-    background: var(--sq-surface-success-hovered);
-  }
-`;
-export const secondary_loading = css`
-  cursor: wait;
-  color: var(--sq-action-primary-disabled);
-  box-shadow: inset 0 0 0 1px var(--sq-action-primary-disabled);
-  &:hover {
-    color: var(--sq-action-primary-disabled);
-    background: var(--sq-action-secondary);
-  }
-`;
+  `,
+};
 
 // BUTTON TEXT VARIANTS
 
-export const text = css`
-  border: none;
-  color: var(--sq-text);
-  background: none;
+export const text = {
+  base: css`
+    border: none;
+    color: var(--sq-text);
+    background: none;
 
-  &:hover {
-    text-decoration: underline;
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    color: var(--sq-action-primary-disabled);
-    border-color: var(--sq-action-primary-disabled);
     &:hover {
-      text-decoration: none;
+      text-decoration: underline;
     }
-  }
-`;
-export const text_critical = css`
-  color: var(--sq-surface-critical-hovered);
-`;
-export const text_success = css`
-  color: var(--sq-surface-success-hovered);
-`;
-export const text_small = css`
-  font-size: var(--sq-font-size-button-small);
-  line-height: var(--sq-line-height-button-small);
-`;
-export const text_medium = css`
-  font-size: var(--sq-font-size-button-medium);
-  line-height: var(--sq-line-height-button-medium);
-`;
-export const text_large = css`
-  font-size: var(--sq-font-size-button-large);
-  line-height: var(--sq-line-height-button-large);
-`;
+
+    &:disabled {
+      cursor: not-allowed;
+      color: var(--sq-action-primary-disabled);
+      border-color: var(--sq-action-primary-disabled);
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  `,
+  critical: css`
+    color: var(--sq-surface-critical-hovered);
+  `,
+  success: css`
+    color: var(--sq-surface-success-hovered);
+  `,
+};
+
+// export const text_small = css`
+//   font-size: var(--sq-font-size-button-small);
+//   line-height: var(--sq-line-height-button-small);
+// `;
+// export const text_medium = css`
+//   font-size: var(--sq-font-size-button-medium);
+//   line-height: var(--sq-line-height-button-medium);
+// `;
+// export const text_large = css`
+//   font-size: var(--sq-font-size-button-large);
+//   line-height: var(--sq-line-height-button-large);
+// `;
 
 // BUTTON ICON VARIANTS
 
-export const icon = css`
-  cursor: pointer;
+export const icon = {
+  base: css`
+    cursor: pointer;
 
-  padding: 0;
+    padding: 0;
 
-  border: none;
-  border-radius: 4px;
-  border: 1px solid var(--sq-action-secondary-border);
+    border: none;
+    border-radius: 4px;
+    border: 1px solid var(--sq-action-secondary-border);
 
-  color: var(--sq-text-on-secondary);
-  background: var(--sq-action-secondary);
+    color: var(--sq-text-on-secondary);
+    background: var(--sq-action-secondary);
 
-  &:hover {
-    color: var(--sq-text-on-secondary-hovered);
-    background: var(--sq-action-secondary-hovered);
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    color: var(--sq-action-primary-disabled);
-    border-color: var(--sq-action-primary-disabled);
     &:hover {
+      color: var(--sq-text-on-secondary-hovered);
+      background: var(--sq-action-secondary-hovered);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
       color: var(--sq-action-primary-disabled);
+      border-color: var(--sq-action-primary-disabled);
+      &:hover {
+        color: var(--sq-action-primary-disabled);
+        background: var(--sq-action-secondary);
+      }
+    }
+  `,
+  mini: css`
+    width: 20px;
+    height: 20px;
+  `,
+  small: css`
+    width: 36px;
+    height: 36px;
+  `,
+  medium: css`
+    width: 44px;
+    height: 44px;
+  `,
+  large: css`
+    width: 76px;
+    height: 76px;
+  `,
+
+  circle: css`
+    border-radius: 100px;
+  `,
+  borderless: css`
+    border: none;
+    background: transparent;
+    &:hover {
+      color: var(--sq-action-secondary-border);
       background: var(--sq-action-secondary);
     }
-  }
-`;
-export const icon_mini = css`
-  width: 20px;
-  height: 20px;
-`;
-export const icon_small = css`
-  width: 36px;
-  height: 36px;
-`;
-export const icon_medium = css`
-  width: 44px;
-  height: 44px;
-`;
-export const icon_large = css`
-  width: 76px;
-  height: 76px;
-`;
-
-export const circle = css`
-  border-radius: 100px;
-`;
-export const borderless = css`
-  border: none;
-  background: transparent;
-  &:hover {
-    color: var(--sq-action-secondary-border);
-    background: var(--sq-action-secondary);
-  }
-  &:disabled:hover{
-    background: transparent;
-  }
-`;
+    &:disabled:hover {
+      background: transparent;
+    }
+  `,
+};
