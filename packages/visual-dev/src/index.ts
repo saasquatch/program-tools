@@ -21,7 +21,6 @@ import {
   LoadingSpinner,
   LoadingSpinnerLarge,
 } from "./components/LoadingSpinner";
-import RadioCards from "./components/RadioCards";
 import { GenericInput, PencilButton, EditPencil } from "./components/Inputs";
 import {
   PlatformSignInButton,
@@ -57,11 +56,13 @@ import {
   RJSFNumericalInput,
   RJSFPasswordInput,
 } from "./components/Input";
+
 import { Select } from "./components/Select";
 import { FieldTemplate } from "./components/FieldTemplate";
 import { ObjectFieldTemplate } from "./components/ObjectFieldTemplate";
 import { ArrayFieldTemplate } from "./components/ArrayFieldTemplate";
 import { ErrorListTemplate } from "./components/ErrorListTemplate";
+import { RJSFRadioCardWidget } from "./components/RadioCard";
 
 export {
   Button,
@@ -102,7 +103,6 @@ export {
   Link,
   LoadingSpinner,
   LoadingSpinnerLarge,
-  RadioCards,
   GenericInput,
   PencilButton,
   EditPencil,
@@ -123,4 +123,5 @@ export {
   ObjectFieldTemplate,
   ArrayFieldTemplate,
   ErrorListTemplate,
+  RJSFRadioCardWidget,
 };

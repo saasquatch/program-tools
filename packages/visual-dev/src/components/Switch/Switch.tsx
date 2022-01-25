@@ -5,7 +5,7 @@ import * as Styles from "./Styles";
 
 type SwitchProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate"|"css">;
+  Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
   checked?: boolean;
@@ -28,14 +28,21 @@ const SwitchButton = styled.label`
 const SwitchBackground = styled.input<Required<{ color: string }>>`
   ${Styles.off}
   &:checked + ${SwitchButton} {
-    ${(props) => Styles[props.color]}
+    ${(props) =>
+      props.color === "critical" ? Styles.critical : Styles.success}
     ${Styles.on}
   }
 `;
 
 export const Switch = React.forwardRef<React.ElementRef<"div">, SwitchProps>(
   (props, forwardedRef) => {
-    const { id, color = "success", checked = false, customCSS = {}, ...rest } = props;
+    const {
+      id,
+      color = "success",
+      checked = false,
+      customCSS = {},
+      ...rest
+    } = props;
 
     return (
       <SwitchBox {...rest} ref={forwardedRef} customCSS={customCSS}>

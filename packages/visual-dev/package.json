@@ -3,12 +3,17 @@
   "version": "0.2.1-5",
   "description": "SaaSquatch visual dev",
   "main": "dist/index.js",
+  "module": "dist/tsdx-test.esm.js",
+  "typings": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
-    "build": "tsc",
-    "test": "echo test",
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
     "storybook": "cross-env NODE_ENV=storybook start-storybook -p 9001 -c .storybook",
     "storybook:build": "cross-env NODE_ENV=storybook build-storybook -c .storybook -o .out"
   },
@@ -19,6 +24,7 @@
     "react-shadow": "^19.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.12",
     "@rjsf/core": "^2.4.1",
     "storybook-addon-matrix": "^1.6.0",
     "@storybook/addon-a11y": "^6.3.8",
@@ -47,7 +53,9 @@
     "styled-components": "^5.3.0",
     "ts-jest": "^25.5.1",
     "ts-loader": "^7.0.3",
-    "typescript": "^3.9.9"
+    "typescript": "^3.9.9",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1"
   },
   "peerDependencies": {
     "downshift": ">=6.1.7",
