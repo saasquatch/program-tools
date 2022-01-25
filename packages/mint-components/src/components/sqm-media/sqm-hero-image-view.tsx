@@ -49,7 +49,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       minHeight: props.minHeight,
       backgroundImage: `url(${props.imageUrl})`,
       backgroundSize: "cover",
-      backgroundPosition: props.imagePos,
+      backgroundPosition: props.imagePos || "center",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -70,7 +70,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       "& .image-area": {
         width: "50%",
         boxSizing: "border-box",
-        "@media (max-width: 499px)": {
+        "@media (max-width: 599px)": {
           width: "100%",
         },
       },
@@ -79,13 +79,13 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
         padding: "calc(2*var(--sl-spacing-" + props.padding + "))",
         alignSelf: "center",
         boxSizing: "border-box",
-        "@media (max-width: 499px)": {
+        "@media (max-width: 599px)": {
           width: "100%",
           textAlign: "center",
           padding: "var(--sl-spacing-" + props.padding + ")",
         },
       },
-      "@media (max-width: 499px)": {
+      "@media (max-width: 599px)": {
         flexDirection:
           props.imageMobilePos === "bottom" ? "column-reverse" : "column",
       },
@@ -93,14 +93,14 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
     Header: {
       fontSize: "var(--sl-font-size-xxx-large)",
       fontWeight: "var(--sl-font-weight-bold)",
-      "@media (max-width: 499px)": {
+      "@media (max-width: 599px)": {
         fontSize: "var(--sl-font-size-xx-large)",
       },
     },
     Description: {
       fontSize: "var(--sl-font-size-x-large)",
       margin: "var(--sl-spacing-small) 0",
-      "@media (max-width: 499px)": {
+      "@media (max-width: 599px)": {
         fontSize: "var(--sl-font-size-large)",
       },
     },
@@ -109,7 +109,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       "&::part(base)": {
         padding: "0 var(--sl-spacing-x-large)",
       },
-      "@media (max-width: 499px)": {
+      "@media (max-width: 599px)": {
         width: "100%",
       },
     },

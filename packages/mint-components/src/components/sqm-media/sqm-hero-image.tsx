@@ -11,7 +11,7 @@ import { HeroImageView } from "./sqm-hero-image-view";
   tag: "sqm-hero-image",
   shadow: true,
 })
-export class Media {
+export class HeroImage {
   /**
    * @uiName Image Link
    */
@@ -52,9 +52,9 @@ export class Media {
   /**
    * @uiName Image Position
    * @uiType string
-   * @uiEnum ["left", "right"]
+   * @uiEnum ["left", "center", "right"]
    */
-  @Prop() imagePos: "left" | "right" | "center" = "center";
+  @Prop() imagePos: "left" | "center" | "right" = "center";
 
   /**
    * @uiName Image Mobile Position

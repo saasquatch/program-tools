@@ -226,9 +226,9 @@ export namespace Components {
         /**
           * @uiName Image Position
           * @uiType string
-          * @uiEnum ["left", "right"]
+          * @uiEnum ["left", "center", "right"]
          */
-        "imagePos": "left" | "right" | "center";
+        "imagePos": "left" | "center" | "right";
         /**
           * @uiName Image Link
          */
@@ -266,6 +266,28 @@ export namespace Components {
         "hookStory": FunctionalComponent;
     }
     interface SqmImage {
+        /**
+          * @uiName Position Alignment
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+         */
+        "align": "left" | "center" | "right";
+        /**
+          * @uiName Background Color
+         */
+        "backgroundColor": string;
+        /**
+          * @uiName Image Link
+         */
+        "imageUrl": string;
+        /**
+          * @uiName Left Margin
+         */
+        "left": string;
+        /**
+          * @uiName Right Margin
+         */
+        "right": string;
     }
     interface SqmLeaderboard {
         /**
@@ -2453,9 +2475,9 @@ declare namespace LocalJSX {
         /**
           * @uiName Image Position
           * @uiType string
-          * @uiEnum ["left", "right"]
+          * @uiEnum ["left", "center", "right"]
          */
-        "imagePos"?: "left" | "right" | "center";
+        "imagePos"?: "left" | "center" | "right";
         /**
           * @uiName Image Link
          */
@@ -2493,6 +2515,28 @@ declare namespace LocalJSX {
         "hookStory"?: FunctionalComponent;
     }
     interface SqmImage {
+        /**
+          * @uiName Position Alignment
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+         */
+        "align"?: "left" | "center" | "right";
+        /**
+          * @uiName Background Color
+         */
+        "backgroundColor"?: string;
+        /**
+          * @uiName Image Link
+         */
+        "imageUrl"?: string;
+        /**
+          * @uiName Left Margin
+         */
+        "left"?: string;
+        /**
+          * @uiName Right Margin
+         */
+        "right"?: string;
     }
     interface SqmLeaderboard {
         /**
