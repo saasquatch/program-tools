@@ -54,7 +54,8 @@
 - [sqm-referral-table-status-column](../sqm-referral-table/columns)
 - [sqm-referral-table-date-column](../sqm-referral-table/columns)
 - [sqm-referral-table-rewards-column](../sqm-referral-table/columns)
-- [sqm-media](../sqm-media)
+- [sqm-hero-image](../sqm-media)
+- [sqm-image](../sqm-image)
 - [sqm-share-code](../sqm-share-code)
 - [sqm-timeline](../sqm-referral-card)
 - [sqm-timeline-entry](../sqm-referral-card)
@@ -108,7 +109,8 @@ graph TD;
   sqm-stencilbook --> sqm-referral-table-status-column
   sqm-stencilbook --> sqm-referral-table-date-column
   sqm-stencilbook --> sqm-referral-table-rewards-column
-  sqm-stencilbook --> sqm-media
+  sqm-stencilbook --> sqm-hero-image
+  sqm-stencilbook --> sqm-image
   sqm-stencilbook --> sqm-share-code
   sqm-stencilbook --> sqm-timeline
   sqm-stencilbook --> sqm-timeline-entry

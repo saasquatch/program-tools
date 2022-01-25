@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `desc`   | `desc`    |             | `string` | `undefined` |
-| `icon`   | `icon`    |             | `string` | `"gift"`    |
-| `reward` | `reward`  |             | `string` | `undefined` |
-| `unit`   | `unit`    |             | `string` | `undefined` |
+| Property | Attribute | Description | Type      | Default     |
+| -------- | --------- | ----------- | --------- | ----------- |
+| `desc`   | `desc`    |             | `string`  | `undefined` |
+| `icon`   | `icon`    |             | `string`  | `"gift"`    |
+| `line`   | `line`    |             | `boolean` | `undefined` |
+| `reward` | `reward`  |             | `string`  | `undefined` |
+| `unit`   | `unit`    |             | `string`  | `undefined` |
 
 
 ## Dependencies
