@@ -29,6 +29,7 @@ export const config: Config = {
   globalScript: "src/global/global.ts",
   globalStyle: "src/global/global.css",
   buildEs5: process.env.NODE_ENV !== "dev",
+  // sourceMap: true,
   bundles: [
     {
       components: [
@@ -111,11 +112,11 @@ export const config: Config = {
       copy({
         targets: [
           {
-            src: "node_modules/@shoelace-style/shoelace/dist/assets",
+            src: "node_modules/@samsquatch/shoelace/dist/assets",
             dest: "shoelace",
           },
           {
-            src: "node_modules/@shoelace-style/shoelace/dist/themes",
+            src: "node_modules/@samsquatch/shoelace/dist/themes",
             dest: "shoelace/themes",
           },
         ],

@@ -396,7 +396,7 @@ async function tryMethod(
   c: HTMLElement,
   callback: () => Promise<VNode>
 ): Promise<VNode> {
-  const tag = c.tagName.toLowerCase();
+  const tag = c.tagName?.toLowerCase();
   await customElements.whenDefined(tag);
   let labelPromise: Promise<VNode>;
   try {

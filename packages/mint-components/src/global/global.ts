@@ -66,17 +66,15 @@ import {
   SlTooltip,
   setBasePath,
   registerIconLibrary,
-} from "@shoelace-style/shoelace";
+} from "@samsquatch/shoelace";
 
 try {
   setBasePath("/dist/shoelace");
-  // SlAlert.register();
   registerIconLibrary("default", {
     // same link that shoelace uses internally
     resolver: (name) =>
       `https://fast.ssqt.io/npm/bootstrap-icons@1.7.2/icons/${name}.svg`,
   });
-  // SlAlert.register();
   customElements.define("sl-alert", SlAlert);
   customElements.define("sl-animation", SlAnimation);
   customElements.define("sl-avatar", SlAvatar);

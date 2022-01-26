@@ -21,7 +21,8 @@
     "jsx": "react",
     "jsxFactory": "h",
     // "noImplicitAny": true,
-		"types": ["resize-observer-browser", "jest"]
+		"types": ["resize-observer-browser", "jest"],
+    "skipLibCheck": true
   },
   "include": [
     "src",
