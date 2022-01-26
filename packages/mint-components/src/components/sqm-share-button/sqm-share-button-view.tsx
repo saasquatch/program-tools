@@ -50,7 +50,7 @@ const medium = {
   sms: "#e68523",
   fbmessenger: "#0084ff",
   whatsapp: "#25d366",
-  linemessenger: "#33482c",
+  linemessenger: "#00C72A",
   pinterest: "#e60023",
   reminder: "#b1a24a",
   unknown: "#33482c",
