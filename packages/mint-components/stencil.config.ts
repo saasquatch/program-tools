@@ -59,6 +59,28 @@ export const config: Config = {
         "sqm-rewards-table-status-cell",
       ],
     },
+    {
+      components: [
+        "sqm-portal-verify-email",
+        "sqm-portal-reset-password",
+        "sqm-portal-forgot-password",
+        "sqm-portal-email-verification",
+        "sqm-portal-change-password",
+      ],
+    },
+    {
+      components: [
+        "sqm-portal-protected-route",
+        "sqm-portal-frame",
+        "sqm-portal-profile",
+        "sqm-portal-register",
+        "sqm-portal-login",
+        "sqm-portal-logout",
+      ],
+    },
+    {
+      components: ["sqm-stencilbook", "sqm-hook-story-container"],
+    },
   ],
   outputTargets:
     //@ts-ignore
