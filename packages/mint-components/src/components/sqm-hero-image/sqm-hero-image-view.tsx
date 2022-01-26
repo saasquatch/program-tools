@@ -1,7 +1,8 @@
 import { h, VNode } from "@stencil/core";
+import { Spacing } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 
-export interface MediaViewProps {
+export interface HeroImageViewProps {
   layout: "overlay" | "columns";
   imageUrl: string;
   overlayColor: string;
@@ -14,11 +15,12 @@ export interface MediaViewProps {
   buttonText?: string;
   buttonLink?: string;
   buttonNewTab?: boolean;
-  imagePos: "left" | "right";
+  padding: Spacing;
+  imagePos: "left" | "center" | "right";
   imageMobilePos: "top" | "bottom";
 }
 
-export function MediaView(props: MediaViewProps) {
+export function HeroImageView(props: HeroImageViewProps, children: VNode) {
   const overlay = Boolean(
     (props.header || props.description || props.buttonText) &&
       props.layout === "overlay"
@@ -43,13 +45,19 @@ export function MediaView(props: MediaViewProps) {
       objectFit: "cover",
       margin: "auto",
     },
+    Background: {
+      minHeight: props.minHeight,
+      backgroundImage: `url(${props.imageUrl})`,
+      backgroundSize: "cover",
+      backgroundPosition: props.imagePos || "center",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
     Overlay: {
-      position: "absolute",
-      width: "90%",
-      top: "50%",
-      left: "50%",
+      zIndex: "1",
+      padding: "var(--sl-spacing-" + props.padding + ")",
       textAlign: "center",
-      transform: "translate(-50%, -50%)",
       color: props.textColor || "var(--sl-color-neutral-0)",
       lineHeight: "var(--sl-line-height-dense)",
     },
@@ -61,21 +69,23 @@ export function MediaView(props: MediaViewProps) {
       color: props.textColor || "var(--sl-color-neutral-900)",
       "& .image-area": {
         width: "50%",
-        "@media (max-width: 499px)": {
+        boxSizing: "border-box",
+        "@media (max-width: 599px)": {
           width: "100%",
         },
       },
       "& .text-area": {
         width: "50%",
-        padding: "calc(2*var(--sl-spacing-xx-large))",
+        padding: "calc(2*var(--sl-spacing-" + props.padding + "))",
         alignSelf: "center",
-        "@media (max-width: 499px)": {
-          width: "90%",
+        boxSizing: "border-box",
+        "@media (max-width: 599px)": {
+          width: "100%",
           textAlign: "center",
-          padding: "var(--sl-spacing-xx-large)",
+          padding: "var(--sl-spacing-" + props.padding + ")",
         },
       },
-      "@media (max-width: 499px)": {
+      "@media (max-width: 599px)": {
         flexDirection:
           props.imageMobilePos === "bottom" ? "column-reverse" : "column",
       },
@@ -83,14 +93,14 @@ export function MediaView(props: MediaViewProps) {
     Header: {
       fontSize: "var(--sl-font-size-xxx-large)",
       fontWeight: "var(--sl-font-weight-bold)",
-      "@media (max-width: 499px)": {
+      "@media (max-width: 599px)": {
         fontSize: "var(--sl-font-size-xx-large)",
       },
     },
     Description: {
       fontSize: "var(--sl-font-size-x-large)",
       margin: "var(--sl-spacing-small) 0",
-      "@media (max-width: 499px)": {
+      "@media (max-width: 599px)": {
         fontSize: "var(--sl-font-size-large)",
       },
     },
@@ -99,7 +109,7 @@ export function MediaView(props: MediaViewProps) {
       "&::part(base)": {
         padding: "0 var(--sl-spacing-x-large)",
       },
-      "@media (max-width: 499px)": {
+      "@media (max-width: 599px)": {
         width: "100%",
       },
     },
@@ -127,10 +137,7 @@ export function MediaView(props: MediaViewProps) {
 
   function OverlayView() {
     return (
-      <div>
-        {props.imageUrl && (
-          <img class={sheet.classes.Image} src={props.imageUrl}></img>
-        )}
+      <div class={sheet.classes.Background}>
         <div class={sheet.classes.Overlay}>
           {props.header && (
             <div class={sheet.classes.Header}>{props.header}</div>
@@ -151,6 +158,7 @@ export function MediaView(props: MediaViewProps) {
               {props.buttonText}
             </sl-button>
           )}
+          {children && children}
         </div>
       </div>
     );

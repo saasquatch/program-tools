@@ -753,7 +753,7 @@ export const ProgressBarSteps = () => {
   return (
     <div>
       <MatrixStory
-        matrix={{ progress: [0, 1, 5, 7] }}
+        matrix={{ progress: [0, 1, 5, 7, 12] }}
         props={props}
         Component={ProgressBarView}
       />
@@ -771,7 +771,7 @@ export const ProgressBarRepeatable = () => {
   return (
     <div>
       <MatrixStory
-        matrix={{ progress: [0, 100, 500, 650, 1200] }}
+        matrix={{ progress: [0, 250, 500, 750, 1000, 1250] }}
         props={props}
         Component={ProgressBarView}
       />

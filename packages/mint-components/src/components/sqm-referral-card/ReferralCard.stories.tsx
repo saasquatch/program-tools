@@ -8,7 +8,7 @@ const media = (slot) => {
   return (
     <sqm-portal-container gap="large" slot={slot}>
       Get rewarded when your friend uses Klip
-      <sqm-media image-url="https://i.imgur.com/L3aRMde.png" min-height="0" />
+      <sqm-image image-url="https://i.imgur.com/IqB7GeS.png" />
     </sqm-portal-container>
   );
 };
