@@ -3,7 +3,7 @@
 
 Feature: Image
 
-	Background: User on the portal is viewing the widgets
+	Background: A user on the portal is viewing the widget
 
 	Scenario: Image is displayed from URL
 
