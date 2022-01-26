@@ -41,11 +41,32 @@ export interface ShareButtonViewProps {
   textcolor?: string;
 }
 
+const medium = {
+  facebook: "#1877f2",
+  twitter: "#1da1f2",
+  email: "#f8cc07",
+  direct: "#cd3292",
+  linkedin: "#0077b5",
+  sms: "#e68523",
+  fbmessenger: "#0084ff",
+  whatsapp: "#25d366",
+  linemessenger: "#33482c",
+  pinterest: "#e60023",
+  reminder: "#b1a24a",
+  unknown: "#33482c",
+};
+
 export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   const vanillaStyle = `
     *::part(base) {
-      background: ${props.backgroundcolor ? props.backgroundcolor : ""};
-      color: ${props.textcolor ? props.textcolor : ""};
+      background: ${
+        props.backgroundcolor
+          ? props.backgroundcolor
+          : props.medium
+          ? medium[props.medium]
+          : ""
+      };
+      color: ${props.textcolor ? props.textcolor : props.medium ? "#fff" : ""};
       border-radius: ${props.borderradius ? props.borderradius + "px" : ""};
     }
     *::part(label) {
