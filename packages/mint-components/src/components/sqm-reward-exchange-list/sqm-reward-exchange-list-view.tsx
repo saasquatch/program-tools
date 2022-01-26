@@ -258,20 +258,59 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     },
 
     Confirmation: {
+      maxWidth: "800px",
+      margin: "auto",
+
+      // "& > :first-child": {
+      //   "@media (max-width: 499px)": {
+      //     flexDirection: "column",
+      //   },
+      // },
+
       "& .wrapper": {
         display: "flex",
+        "@media (max-width: 499px)": {
+          flexDirection: "column",
+        },
       },
+
+      "& .reward-item-container": {
+        "@media (max-width: 499px)": {
+          display: "flex",
+          flexDirection: "row-reverse",
+          justifyContent: "flex-end",
+          alignItems: "center",
+        },
+      },
+
+      "& .reward-item-container .reward-title": {
+        paddingBottom: "var(--sl-spacing-medium)",
+        lineHeight: "20px",
+        "@media (max-width: 499px)": {
+          paddingBottom: "none",
+          paddingLeft: "var(--sl-spacing-small)",
+        },
+      },
+
       "& .padding": {
         padding: "var(--sl-spacing-medium) 0",
+        "@media (max-width: 499px)": {
+          padding: "var(--sl-spacing-small) 0",
+        },
       },
       "& .field": {
-        width: "40%",
+        width: "30%",
         textTransform: "uppercase",
         fontSize: "var(--sl-font-size-medium)",
         fontWeight: "var(--sl-font-weight-normal)",
         color: "var(--sl-color-neutral-400)",
-        textAlign: "right",
+        textAlign: "left",
         paddingRight: "var(--sl-spacing-xxx-large)",
+        "@media (max-width: 499px)": {
+          width: "100%",
+          paddingRight: "0",
+          paddingBottom: "0",
+        },
       },
       "& .value": {
         fontSize: "var(--sl-font-size-large)",
@@ -282,6 +321,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
       "& .image": {
         width: "200px",
+        "@media (max-width: 499px)": {
+          width: "100px",
+        },
       },
     },
 
@@ -610,18 +652,17 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     const amount = selectedStep?.prettyDestinationValue;
     return (
       <div>
-        <h2 style={{ margin: "var(--sl-spacing-large) 0" }}>
+        <h2
+          style={{ margin: "var(--sl-spacing-large) 0", textAlign: "center" }}
+        >
           {states.content.text.redeemTitle}
         </h2>
 
         <div class={sheet.classes.Confirmation}>
           <div class="wrapper">
             <div class="field">{states.content.text.rewardNameTitle}</div>
-            <div>{selectedItem.name}</div>
-          </div>
-          <div class="wrapper">
-            <div class="field"></div>
-            <div>
+            <div class="reward-item-container">
+              <div class="reward-title">{selectedItem.name}</div>
               <img
                 class="image"
                 src={
@@ -630,6 +671,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 }
               />
             </div>
+          </div>
+          <div class="wrapper padding">
+            <div class="field"></div>
           </div>
           {amount && (
             <div class="wrapper top-border padding">
@@ -641,25 +685,24 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             <div class="field">{states.content.text.costTitle}</div>
             <div class="value">{cost}</div>
           </div>
-        </div>
-
-        <div class={sheet.classes.Button}>
-          <sl-button
-            class="cancel"
-            type="text"
-            size="large"
-            onClick={() => callbacks.setStage("chooseAmount")}
-          >
-            {states.content.text.backText}
-          </sl-button>
-          <sl-button
-            class="continue"
-            size="large"
-            loading={states.loading}
-            onClick={callbacks.exchangeReward}
-          >
-            {states.content.text.redeemText}
-          </sl-button>
+          <div class={sheet.classes.Button}>
+            <sl-button
+              class="cancel"
+              type="text"
+              size="large"
+              onClick={() => callbacks.setStage("chooseAmount")}
+            >
+              {states.content.text.backText}
+            </sl-button>
+            <sl-button
+              class="continue"
+              size="large"
+              loading={states.loading}
+              onClick={callbacks.exchangeReward}
+            >
+              {states.content.text.redeemText}
+            </sl-button>
+          </div>
         </div>
       </div>
     );
