@@ -3,48 +3,47 @@
 
 Feature: Image
 
-	Scenario: Image from link is displayed
+	Background: A user on the portal is viewing the widget
+
+	Scenario: Image is displayed from URL
 
 		Given an Image component
-		And an image url as a prop
+		And prop "image-url" is provided
 		Then the image is displayed
-		And its aspect ratio is maintained
 
-	Scenario Outline: Image can be aligned left, center or right
+	Scenario Outline: Images can be aligned left, center or right
 
 		Given an Image component
-		And an image url as a prop
-		And <alignment> as a prop
+		And prop "image-url" is provided
+		And prop "align" has <value>
 		Then the image is displayed
-		And its aspect ratio is maintained
-		And it is <alingment> aligned
+		And it is aligned to the <value>
 
 		Examples:
-			| alignment |
-			| left      |
-			| center    |
-			| right     |
+			| value  |
+			| left   |
+			| center |
+			| right  |
 
 
-	Scenario Outline: Image can be offset with margins
+	Scenario Outline: Images can be offset with margins from the left and right
 
 		Given an Image component
-		And an image url as a prop
-		And <marginPos> with <marginAmount>
+		And prop "image-url" is provided
+		And <prop> has <value>
 		Then the image is displayed
-		And its aspect ratio is maintained
-		And image has <marginAmount> on its <marginPos> side
+		And image has <value> margin on its <prop> side
 
 		Examples:
-			| marginPos | marginAmount |
-			| left      | 100px        |
-			| right     | 100px        |
+			| prop  | value |
+			| left  | 100px |
+			| right | 100px |
 
 
 	Scenario: Image background
 
 		Given an Image component
-		And an image url
-		And a background color
+		And prop "image-url" is provided
+		And prop "background-color" is provided a color
 		Then the image is displayed
 		And background is the provided color

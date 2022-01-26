@@ -1722,7 +1722,7 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
          */
-        "align"?: "left" | "center" | "right";
+        "align": "left" | "center" | "right";
         "label": string;
         /**
           * @uiName Label margin style
