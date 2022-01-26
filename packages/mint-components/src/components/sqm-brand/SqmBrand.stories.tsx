@@ -7,19 +7,19 @@ export default {
 const SampleComponents = () => (
   <div style={{ padding: "10px", border: "5px solid #EEE" }}>
     <div style={{ display: "flex", gap: "5px", padding: "5px" }}>
-      <sl-button type="default">Default</sl-button>
-      <sl-button type="primary">Primary</sl-button>
-      <sl-button type="success">Success</sl-button>
-      <sl-button type="neutral">Neutral</sl-button>
-      <sl-button type="warning">Warning</sl-button>
-      <sl-button type="danger">Danger</sl-button>
+      <sl-button variant="default">Default</sl-button>
+      <sl-button variant="primary">Primary</sl-button>
+      <sl-button variant="success">Success</sl-button>
+      <sl-button variant="neutral">Neutral</sl-button>
+      <sl-button variant="warning">Warning</sl-button>
+      <sl-button variant="danger">Danger</sl-button>
     </div>
     <div style={{ display: "flex", gap: "5px", padding: "5px" }}>
-      <sl-badge type="primary">Primary</sl-badge>
-      <sl-badge type="success">Success</sl-badge>
-      <sl-badge type="neutral">Neutral</sl-badge>
-      <sl-badge type="warning">Warning</sl-badge>
-      <sl-badge type="danger">Danger</sl-badge>
+      <sl-badge variant="primary">Primary</sl-badge>
+      <sl-badge variant="success">Success</sl-badge>
+      <sl-badge variant="neutral">Neutral</sl-badge>
+      <sl-badge variant="warning">Warning</sl-badge>
+      <sl-badge variant="danger">Danger</sl-badge>
     </div>
     <div class="color-palette">
       <div class="color-palette__name">

@@ -84,7 +84,7 @@ export function PortalForgotPasswordView(props: PortalForgotPasswordViewProps) {
             submit
             loading={states.loading}
             exportparts="base: primarybutton-base"
-            type="primary"
+            variant="primary"
           >
             {content.submitLabel || "Reset Password"}
           </sl-button>

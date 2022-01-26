@@ -115,7 +115,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
               {text.canceltext}
             </sl-button>
             <sl-button
-              type="primary"
+              variant="primary"
               loading={states.loading}
               disabled={states.submitDisabled}
               onClick={(e) => {
@@ -157,7 +157,7 @@ const EditProfileView = (props: EditProfileViewProps) => {
         </div>
       </div>
       <sl-button
-        type="primary"
+        variant="primary"
         loading={states.loading}
         onClick={() => {
           callbacks.resetForm();

@@ -417,17 +417,17 @@ html {
   --sl-color-success-950: var(--sl-color-green-950);
   --sl-color-success-text: var(--sl-color-white);
 
-  --sl-color-info-50: var(--sl-color-gray-50);
-  --sl-color-info-100: var(--sl-color-gray-100);
-  --sl-color-info-200: var(--sl-color-gray-200);
-  --sl-color-info-300: var(--sl-color-gray-300);
-  --sl-color-info-400: var(--sl-color-gray-400);
-  --sl-color-info-500: var(--sl-color-gray-500);
-  --sl-color-info-600: var(--sl-color-gray-600);
-  --sl-color-info-700: var(--sl-color-gray-700);
-  --sl-color-info-800: var(--sl-color-gray-800);
-  --sl-color-info-900: var(--sl-color-gray-900);
-  --sl-color-info-950: var(--sl-color-gray-950);
+  --sl-color-neutral-50: var(--sl-color-gray-50);
+  --sl-color-neutral-100: var(--sl-color-gray-100);
+  --sl-color-neutral-200: var(--sl-color-gray-200);
+  --sl-color-neutral-300: var(--sl-color-gray-300);
+  --sl-color-neutral-400: var(--sl-color-gray-400);
+  --sl-color-neutral-500: var(--sl-color-gray-500);
+  --sl-color-neutral-600: var(--sl-color-gray-600);
+  --sl-color-neutral-700: var(--sl-color-gray-700);
+  --sl-color-neutral-800: var(--sl-color-gray-800);
+  --sl-color-neutral-900: var(--sl-color-gray-900);
+  --sl-color-neutral-950: var(--sl-color-gray-950);
 
   --sl-color-warning-50: var(--sl-color-amber-50);
   --sl-color-warning-100: var(--sl-color-amber-100);
@@ -477,6 +477,9 @@ html {
   --sl-spacing-xx-large: 2.25rem;
   --sl-spacing-xxx-large: 3rem;
   --sl-spacing-xxxx-large: 4.5rem;
+  --sl-spacing-2x-large: 2.25rem;
+  --sl-spacing-3x-large: 3rem;
+  --sl-spacing-4x-large: 4.5rem;
   --sl-transition-x-slow: 1000ms;
   --sl-transition-slow: 500ms;
   --sl-transition-medium: 250ms;
@@ -506,7 +509,7 @@ html {
   --sl-line-height-loose: 2.2;
   --sl-focus-ring-color-primary: var(--sl-color-primary-100);
   --sl-focus-ring-color-success: var(--sl-color-success-100);
-  --sl-focus-ring-color-info: var(--sl-color-info-100);
+  --sl-focus-ring-color-neutral: var(--sl-color-neutral-100);
   --sl-focus-ring-color-warning: var(--sl-color-warning-100);
   --sl-focus-ring-color-danger: #var(--sl-color-danger-100);;
   --sl-focus-ring-width: 3px;
@@ -730,6 +733,12 @@ sl-input::part(label){
   margin: 0px;
   cursor:pointer;
 }
+
+.button--standard.button--primary {
+  background-color: var(--sl-color-primary-500);
+  border-color: var(--sl-color-primary-500)
+}
+
 
 
 

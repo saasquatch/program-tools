@@ -30,7 +30,7 @@ export class FormMessage {
         <sl-alert
           exportparts="base: erroralert-base, icon:erroralert-icon"
           class="Error"
-          type="danger"
+          variant="danger"
           open
         >
           <sl-icon
@@ -40,12 +40,12 @@ export class FormMessage {
           <slot />
         </sl-alert>
       );
-    } else if (this.type === "info") {
+    } else if (this.type === "neutral") {
       return (
         <sl-alert
           exportparts="base: infoalert-base, icon:infoalert-icon"
           class="Info"
-          type="primary"
+          variant="primary"
           open
         >
           <sl-icon
@@ -60,7 +60,7 @@ export class FormMessage {
         <sl-alert
           exportparts="base: successalert-base, icon:successalert-icon"
           class="Success"
-          type="success"
+          variant="success"
           open
         >
           <sl-icon

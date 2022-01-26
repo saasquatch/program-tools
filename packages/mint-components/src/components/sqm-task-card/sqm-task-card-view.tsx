@@ -432,7 +432,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                       ? "action disabled"
                       : "action"
                   }
-                  type="primary"
+                  variant="primary"
                   size="small"
                   onClick={callbacks.onClick}
                   loading={states.loadingEvent}

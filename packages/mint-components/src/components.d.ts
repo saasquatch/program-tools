@@ -1488,11 +1488,11 @@ export namespace Components {
         /**
           * @uiType string
           * @uiName Button Style
-          * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
+          * @uiEnum ["primary" , "success", "neutral", "warning", "danger", "default", "text" ]
          */
         "type"?: | "primary"
     | "success"
-    | "info"
+    | "neutral"
     | "warning"
     | "danger"
     | "default"
@@ -3725,11 +3725,11 @@ declare namespace LocalJSX {
         /**
           * @uiType string
           * @uiName Button Style
-          * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
+          * @uiEnum ["primary" , "success", "neutral", "warning", "danger", "default", "text" ]
          */
         "type"?: | "primary"
     | "success"
-    | "info"
+    | "neutral"
     | "warning"
     | "danger"
     | "default"

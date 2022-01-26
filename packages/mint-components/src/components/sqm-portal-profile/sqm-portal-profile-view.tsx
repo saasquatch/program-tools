@@ -167,7 +167,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
           ></sl-input>
         )}
         <sl-button
-          type="primary"
+          variant="primary"
           loading={states.loading}
           disabled={states.submitDisabled}
           onClick={(e) => {

@@ -582,7 +582,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           <sl-button
             class="cancel"
             size="large"
-            type="text"
+            variant="text"
             onClick={() => callbacks.resetState()}
           >
             {states.content.text.cancelText}
@@ -646,7 +646,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         <div class={sheet.classes.Button}>
           <sl-button
             class="cancel"
-            type="text"
+            variant="text"
             size="large"
             onClick={() => callbacks.setStage("chooseAmount")}
           >
@@ -710,7 +710,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         <div class={sheet.classes.Button}>
           <sl-button
             class="continue center"
-            type="primary"
+            variant="primary"
             size="large"
             onClick={() => callbacks.resetState(true)}
           >
@@ -795,7 +795,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   function errorMessage() {
     return (
-      <sl-alert type="danger" open>
+      <sl-alert variant="danger" open>
         <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
         {states.content.text.redemptionError}
       </sl-alert>
@@ -804,7 +804,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
   function queryErrorMessage() {
     return (
-      <sl-alert type="danger" open>
+      <sl-alert variant="danger" open>
         <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
         {states.content.text.queryError}
       </sl-alert>

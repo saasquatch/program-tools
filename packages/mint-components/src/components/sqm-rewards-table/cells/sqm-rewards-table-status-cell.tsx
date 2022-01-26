@@ -103,7 +103,7 @@ export class RewardTableStatusCell {
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
         <sl-badge
-          type={badgeType}
+          variant={badgeType}
           pill
           class={
             rewardStatus === "REDEEMED"

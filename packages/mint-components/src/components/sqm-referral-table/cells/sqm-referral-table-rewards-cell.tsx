@@ -158,7 +158,7 @@ export class ReferralTableRewardsCell {
                       ? sheet.classes.RedeemBadge
                       : sheet.classes.StatusBadge
                   }
-                  type={slBadgeType}
+                  variant={slBadgeType}
                   pill
                 >
                   {intl.formatMessage(
@@ -179,7 +179,7 @@ export class ReferralTableRewardsCell {
                       ? sheet.classes.RedeemBadge
                       : sheet.classes.StatusBadge
                   }
-                  type={slBadgeType}
+                  variant={slBadgeType}
                   pill
                 >
                   {badgeText}
@@ -192,7 +192,7 @@ export class ReferralTableRewardsCell {
                       ? sheet.classes.RedeemBadge
                       : sheet.classes.StatusBadge
                   }
-                  type="info"
+                  variant="neutral"
                   pill
                 >
                   {this.expiringText}

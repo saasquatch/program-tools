@@ -1,6 +1,7 @@
 import { useProgramId, useTick, useHost } from '@saasquatch/component-boilerplate';
 import { useRef, useEffect } from '@saasquatch/universal-hooks';
-import { SlMenu, SlMenuItem } from '@shoelace-style/shoelace';
+// TODO: replace samsquatch
+import { SlMenu, SlMenuItem } from '@samsquatch/shoelace';
 import { ProgramMenu } from './sqm-program-menu';
 import debugFn from 'debug';
 

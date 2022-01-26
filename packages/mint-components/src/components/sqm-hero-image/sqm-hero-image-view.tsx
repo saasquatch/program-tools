@@ -148,7 +148,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
           {props.buttonText && (
             <sl-button
               class={sheet.classes.Button}
-              type="primary"
+              variant="primary"
               onClick={() =>
                 props.buttonNewTab
                   ? window.open(props.buttonLink)
@@ -185,7 +185,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
             {props.buttonText && (
               <sl-button
                 class={sheet.classes.Button}
-                type="primary"
+                variant="primary"
                 onClick={() =>
                   props.buttonNewTab
                     ? window.open(props.buttonLink)

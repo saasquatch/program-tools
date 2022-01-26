@@ -94,7 +94,7 @@ export function PortalLoginView(props: PortalLoginViewProps) {
             submit
             loading={states.loading}
             exportparts="base: primarybutton-base"
-            type="primary"
+            variant="primary"
           >
             {content.submitLabel || "Login"}
           </sl-button>

@@ -158,7 +158,7 @@ export function PortalRegisterView(props: PortalRegisterViewProps) {
             submit
             loading={states.loading}
             exportparts="base: primarybutton-base"
-            type="primary"
+            variant="primary"
           >
             {content.submitLabel || "Register"}
           </sl-button>

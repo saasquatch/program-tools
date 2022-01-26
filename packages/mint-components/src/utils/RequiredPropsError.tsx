@@ -39,7 +39,7 @@ export function RequiredPropsError({ missingProps }: RequiredPropsErrorProps) {
   const host = useHost();
   const [detailsOpen, setDetailsOpen] = useState(false);
   return (
-    <sl-alert type="danger" open class={sheet.classes.Alert}>
+    <sl-alert variant="danger" open class={sheet.classes.Alert}>
       <style type="text/css">{styleString}</style>
       <div slot="icon" class={sheet.classes.IconStyle}>
         <sl-icon name="exclamation-octagon"></sl-icon>

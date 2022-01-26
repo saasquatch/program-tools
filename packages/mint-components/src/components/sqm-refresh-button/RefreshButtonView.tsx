@@ -7,7 +7,7 @@ export interface RefreshButtonViewProps {
   type?:
     | "primary"
     | "success"
-    | "info"
+    | "neutral"
     | "warning"
     | "danger"
     | "default"
@@ -36,7 +36,7 @@ export function RefreshButtonView(
         disabled={props.disabled}
         pill={props.pill}
         size={props.size}
-        type={props.type}
+        variant={props.type}
         onClick={props.onClick}
         exportparts={`base: ${props.type}-refresh-base`}
       >

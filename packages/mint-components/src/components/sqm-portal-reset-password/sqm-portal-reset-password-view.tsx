@@ -98,7 +98,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
             onClick={callbacks.gotoNextPage}
             loading={states.loading}
             exportparts="base: primarybutton-base"
-            type="primary"
+            variant="primary"
           >
             {states.content.continueButtonText}
           </sl-button>
@@ -129,7 +129,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
             class={sheet.classes.ContinueButton}
             onClick={callbacks.failed}
             exportparts="base: primarybutton-base"
-            type="primary"
+            variant="primary"
           >
             {states.content.continueButtonText}
           </sl-button>
@@ -181,7 +181,7 @@ export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {
             submit
             loading={states.loading}
             exportparts="base: primarybutton-base"
-            type="primary"
+            variant="primary"
           >
             {states.reset
               ? states.content.continueButtonText

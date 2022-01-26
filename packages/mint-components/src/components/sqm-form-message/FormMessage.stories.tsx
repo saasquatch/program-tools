@@ -20,10 +20,10 @@ export const ErrorAlert = () => {
   );
 };
 
-export const InfoAlert = () => {
+export const NeutralAlert = () => {
   return (
-    <sqm-form-message type="info">
-      <div>This is an info message</div>
+    <sqm-form-message type="neutral">
+      <div>This is a neutral message</div>
     </sqm-form-message>
   );
 };
@@ -35,7 +35,7 @@ export const FullStackSuccess = () => {
         <div part="successalert-text">Title</div>
         <div part="successalert-subtext">Body text.</div>
         <sl-button
-          type="default"
+          variant="default"
           exportparts="base: defaultbutton-base"
           onClick={() => {
             console.log("click");
@@ -45,7 +45,7 @@ export const FullStackSuccess = () => {
         </sl-button>
         <sl-button
           class="SecondaryTextButton"
-          type="text"
+          variant="text"
           onClick={() => {
             console.log("click");
           }}

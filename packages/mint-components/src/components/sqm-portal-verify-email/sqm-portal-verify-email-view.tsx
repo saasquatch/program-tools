@@ -60,7 +60,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
           onClick={callbacks.gotoNextPage}
           loading={states.loading}
           exportparts="base: primarybutton-base"
-          type="primary"
+          variant="primary"
         >
           Continue
         </sl-button>
@@ -84,7 +84,7 @@ export function PortalVerifyEmailView(props: PortalVerifyEmailViewProps) {
           onClick={callbacks.failed}
           loading={states.loading}
           exportparts="base: primarybutton-base"
-          type="primary"
+          variant="primary"
         >
           Continue
         </sl-button>

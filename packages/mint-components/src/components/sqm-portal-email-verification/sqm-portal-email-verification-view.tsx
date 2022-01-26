@@ -91,7 +91,7 @@ export function PortalEmailVerificationView(
           submit
           loading={states.loading}
           exportparts="base: primarybutton-base"
-          type="primary"
+          variant="primary"
         >
           {resendEmailButtonText}
         </sl-button>

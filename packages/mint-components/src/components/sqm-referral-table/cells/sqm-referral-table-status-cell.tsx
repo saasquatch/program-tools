@@ -26,7 +26,7 @@ export class ReferralTableStatusCell {
         <style type="text/css">{styleString}</style>
         <sl-badge
           pill
-          type={this.converted ? "success" : "warning"}
+          variant={this.converted ? "success" : "warning"}
           class={sheet.classes.Badge}
         >
           {this.statusText}

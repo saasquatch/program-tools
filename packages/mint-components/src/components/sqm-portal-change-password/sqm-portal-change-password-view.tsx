@@ -140,7 +140,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                   >
                     <sl-button
                       class={sheet.classes.ChangePasswordButton}
-                      type="primary"
+                      variant="primary"
                       submit
                       loading={states.loading}
                     >
@@ -148,7 +148,7 @@ export function PortalChangePasswordView(props: PortalChangePasswordViewProps) {
                     </sl-button>
                     <sl-button
                       class={sheet.classes.CancelButton}
-                      type="text"
+                      variant="text"
                       onClick={() => callbacks.setOpen(false)}
                     >
                       {states.content.cancelText}
