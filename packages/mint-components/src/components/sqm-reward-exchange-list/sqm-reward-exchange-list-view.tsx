@@ -67,6 +67,14 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       "&::part(menu)": {
         maxHeight: "50vh",
       },
+
+      "& sl-menu-item::part(checked-icon)": {
+        top: "calc(25% - 0.5em)",
+      },
+
+      "& sl-menu-item::part(base):focus": {
+        background: "transparent",
+      },
     },
     ProgressBar: {
       maxWidth: "350px",
@@ -205,8 +213,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
       "& .text": {
         width: "53%",
+        maxWidth: "400px",
         "@media (max-width: 799px)": {
           width: "auto",
+          margin: "auto",
         },
       },
       "& .title": {
@@ -229,6 +239,14 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
       "& .space": {
         marginBottom: "var(--sl-spacing-xxx-large)",
+      },
+    },
+
+    SelectItem: {
+      display: "flex",
+      flexDirection: "column",
+      "& .step-cost": {
+        color: "var(--sl-color-neutral-400)",
       },
     },
 
@@ -258,20 +276,53 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     },
 
     Confirmation: {
+      maxWidth: "800px",
+      margin: "auto",
+
       "& .wrapper": {
         display: "flex",
+        "@media (max-width: 499px)": {
+          flexDirection: "column",
+        },
       },
+
+      "& .reward-item-container": {
+        "@media (max-width: 499px)": {
+          display: "flex",
+          flexDirection: "row-reverse",
+          justifyContent: "flex-end",
+          alignItems: "center",
+        },
+      },
+
+      "& .reward-item-container .reward-title": {
+        paddingBottom: "var(--sl-spacing-medium)",
+        lineHeight: "20px",
+        "@media (max-width: 499px)": {
+          paddingBottom: "none",
+          paddingLeft: "var(--sl-spacing-small)",
+        },
+      },
+
       "& .padding": {
         padding: "var(--sl-spacing-medium) 0",
+        "@media (max-width: 499px)": {
+          padding: "var(--sl-spacing-small) 0",
+        },
       },
       "& .field": {
-        width: "40%",
+        width: "30%",
         textTransform: "uppercase",
         fontSize: "var(--sl-font-size-medium)",
         fontWeight: "var(--sl-font-weight-normal)",
         color: "var(--sl-color-neutral-400)",
-        textAlign: "right",
+        textAlign: "left",
         paddingRight: "var(--sl-spacing-xxx-large)",
+        "@media (max-width: 499px)": {
+          width: "100%",
+          paddingRight: "0",
+          paddingBottom: "0",
+        },
       },
       "& .value": {
         fontSize: "var(--sl-font-size-large)",
@@ -282,6 +333,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
       "& .image": {
         width: "200px",
+        "@media (max-width: 499px)": {
+          width: "100px",
+        },
       },
     },
 
@@ -361,7 +415,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       >
         {item.steps?.map((step) => (
           <sl-menu-item value={step} disabled={!step.available}>
-            {step.prettyDestinationValue}
+            <div class={sheet.classes.SelectItem}>
+              <p style={{ margin: "0" }}>{step.prettyDestinationValue}</p>
+              <div class="step-cost" slot="suffix">
+                {step.prettySourceValue}
+              </div>
+            </div>
             {step.unavailableReasonCode && (
               <p
                 style={{
@@ -384,9 +443,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 )}
               </p>
             )}
-            <div slot="suffix" style={{ marginBottom: "auto", float: "right" }}>
-              {step.prettySourceValue}
-            </div>
           </sl-menu-item>
         ))}
       </sl-select>
@@ -574,11 +630,29 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 <div class="points">{input}</div>
               )}
               <div class="space" />
+              <div class={sheet.classes.Button}>
+                <sl-button
+                  class="cancel"
+                  size="large"
+                  type="text"
+                  onClick={() => callbacks.resetState()}
+                >
+                  {states.content.text.cancelText}
+                </sl-button>
+                <sl-button
+                  class="continue"
+                  size="large"
+                  onClick={() => callbacks.setStage("confirmation")}
+                  disabled={isDisabled}
+                >
+                  {states.content.text.continueToConfirmationText}
+                </sl-button>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class={sheet.classes.Button}>
+        {/* <div class={sheet.classes.Button}>
           <sl-button
             class="cancel"
             size="large"
@@ -595,7 +669,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           >
             {states.content.text.continueToConfirmationText}
           </sl-button>
-        </div>
+        </div> */}
       </div>
     );
   }
@@ -610,18 +684,17 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     const amount = selectedStep?.prettyDestinationValue;
     return (
       <div>
-        <h2 style={{ margin: "var(--sl-spacing-large) 0" }}>
+        <h2
+          style={{ margin: "var(--sl-spacing-large) 0", textAlign: "center" }}
+        >
           {states.content.text.redeemTitle}
         </h2>
 
         <div class={sheet.classes.Confirmation}>
           <div class="wrapper">
             <div class="field">{states.content.text.rewardNameTitle}</div>
-            <div>{selectedItem.name}</div>
-          </div>
-          <div class="wrapper">
-            <div class="field"></div>
-            <div>
+            <div class="reward-item-container">
+              <div class="reward-title">{selectedItem.name}</div>
               <img
                 class="image"
                 src={
@@ -630,6 +703,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 }
               />
             </div>
+          </div>
+          <div class="wrapper padding">
+            <div class="field"></div>
           </div>
           {amount && (
             <div class="wrapper top-border padding">
@@ -641,25 +717,24 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             <div class="field">{states.content.text.costTitle}</div>
             <div class="value">{cost}</div>
           </div>
-        </div>
-
-        <div class={sheet.classes.Button}>
-          <sl-button
-            class="cancel"
-            type="text"
-            size="large"
-            onClick={() => callbacks.setStage("chooseAmount")}
-          >
-            {states.content.text.backText}
-          </sl-button>
-          <sl-button
-            class="continue"
-            size="large"
-            loading={states.loading}
-            onClick={callbacks.exchangeReward}
-          >
-            {states.content.text.redeemText}
-          </sl-button>
+          <div class={sheet.classes.Button}>
+            <sl-button
+              class="cancel"
+              type="text"
+              size="large"
+              onClick={() => callbacks.setStage("chooseAmount")}
+            >
+              {states.content.text.backText}
+            </sl-button>
+            <sl-button
+              class="continue"
+              size="large"
+              loading={states.loading}
+              onClick={callbacks.exchangeReward}
+            >
+              {states.content.text.redeemText}
+            </sl-button>
+          </div>
         </div>
       </div>
     );

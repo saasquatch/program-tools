@@ -12,18 +12,6 @@ export interface ReferralCardViewProps {
 
 export function ReferralCardView(props: ReferralCardViewProps) {
   const style = {
-    Text: {
-      textAlign: "center",
-      marginBottom: "var(--sl-spacing-xx-large)",
-      "& .header": {
-        fontSize: "var(--sl-font-size-large)",
-        fontWeight: "var(--sl-font-weight-semibold)",
-        color: "var(--sl-color-neutral-900)",
-      },
-      "& .description": {
-        color: "var(--sl-color-neutral-600)",
-      },
-    },
     Container: {
       display: "flex",
       color: "var(--sl-color-neutral-900)",
@@ -60,8 +48,6 @@ export function ReferralCardView(props: ReferralCardViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
-  console.log(props);
-
   const vanillaStyle = `
     :host{
       display: block;   
@@ -74,10 +60,6 @@ export function ReferralCardView(props: ReferralCardViewProps) {
         {styleString}
         {vanillaStyle}
       </style>
-      <div class={sheet.classes.Text}>
-        <div class="header">{props.header}</div>
-        <div class="description">{props.description}</div>
-      </div>
       <div class={sheet.classes.Container}>
         <div class="left">{props.slots.left}</div>
         <div class="right">{props.slots.right}</div>

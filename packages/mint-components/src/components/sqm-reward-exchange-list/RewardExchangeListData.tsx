@@ -236,6 +236,22 @@ export const chooseAmountVariable = {
   }),
 };
 
+export const chooseAmountVariableDisabled = {
+  ...baseResponse(data, "chooseAmount", {
+    ...baseReward,
+    ...name("Visa® Prepaid Card USD"),
+    ...imageUrl("https://i.imgur.com/veHErQX.png"),
+    ...variableValue(20, 80, "Points"),
+    steps: [
+      baseStep(20, "$", 40, "Points"),
+      baseStep(30, "$", 60, "Points"),
+      baseStep(40, "$", 80, "Points", false),
+      baseStep(50, "$", 100, "Points", false),
+      baseStep(60, "$", 120, "Points", false),
+    ],
+  }),
+};
+
 export const chooseAmountFixed = {
   ...baseResponse(data, "chooseAmount", {
     ...baseReward,

@@ -42,9 +42,9 @@ export class Timeline {
 			display: block;   
 		}
 
-		// ::slotted(*:not(:only-child):not(:last-child)) {
-		// 	margin-bottom: var(--sl-spacing-xx-large);
-		// }
+		::slotted(*:not(:only-child):not(:last-child)) {
+			margin-bottom: var(--sl-spacing-xx-large);
+		}
 
 		// ::slotted(*:not(:only-child):not(:last-child))::before {
 		// 	display: block;

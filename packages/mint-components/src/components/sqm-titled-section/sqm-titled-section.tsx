@@ -15,6 +15,13 @@ export class TitledSection {
   @Prop() label: string;
 
   /**
+   * @uiName Text Align
+   * @uiType string
+   * @uiEnum ["left", "center", "right"]
+   */
+  @Prop() align: "left" | "center" | "right" = "left";
+
+  /**
    * @uiName Label margin style
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]

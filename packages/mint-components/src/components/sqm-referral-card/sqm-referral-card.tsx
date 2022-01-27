@@ -31,7 +31,7 @@ export class ReferralCard {
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    */
   @Prop() padding: Spacing = "large";
-  
+
   /**
    * @uiName Padding
    * @uiType string
@@ -46,8 +46,8 @@ export class ReferralCard {
 
   render() {
     const slots = {
-      left: <slot name="left" />,
-      right: <slot name="right" />,
+      left: <slot name="left"> Hello </slot>,
+      right: <slot name="right"> World </slot>,
     };
 
     return (

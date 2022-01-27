@@ -1717,6 +1717,12 @@ export namespace Components {
         "unit": string;
     }
     interface SqmTitledSection {
+        /**
+          * @uiName Text Align
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+         */
+        "align": "left" | "center" | "right";
         "label": string;
         /**
           * @uiName Label margin style
@@ -3948,6 +3954,12 @@ declare namespace LocalJSX {
         "unit"?: string;
     }
     interface SqmTitledSection {
+        /**
+          * @uiName Text Align
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+         */
+        "align"?: "left" | "center" | "right";
         "label"?: string;
         /**
           * @uiName Label margin style

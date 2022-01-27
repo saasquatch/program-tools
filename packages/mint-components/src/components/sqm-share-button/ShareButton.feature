@@ -25,8 +25,6 @@ Feature: Share Button
       | whatsapp      |
       | linemessenger |
       | pinterest     |
-      | reminder      |
-      | unknown       |
 
   @review
   @minutae

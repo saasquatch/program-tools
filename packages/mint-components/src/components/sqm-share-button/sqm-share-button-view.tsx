@@ -41,17 +41,97 @@ export interface ShareButtonViewProps {
   textcolor?: string;
 }
 
+const medium = {
+  facebook: "#1877f2",
+  twitter: "#1da1f2",
+  email: "#666666",
+  direct: "#00008B",
+  linkedin: "#0077b5",
+  sms: "#34DA50",
+  fbmessenger: "#0084ff",
+  whatsapp: "#25d366",
+  linemessenger: "#00B300",
+  pinterest: "#e60023",
+};
+
+const medium_text = {
+  facebook: "#fff",
+  twitter: "#fff",
+  email: "#fff",
+  direct: "#fff",
+  linkedin: "#fff",
+  sms: "#fff",
+  fbmessenger: "#fff",
+  whatsapp: "#fff",
+  linemessenger: "#fff",
+  pinterest: "#fff",
+};
+
+const medium_icon = {
+  facebook: "facebook",
+  twitter: "twitter",
+  email: "envelope",
+  direct: "send",
+  linkedin: "linkedin",
+  sms: "chat",
+  fbmessenger: "messenger",
+  whatsapp: "whatsapp",
+  linemessenger: "line",
+  pinterest: "pinterest",
+};
+
 export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   const vanillaStyle = `
     *::part(base) {
-      background: ${props.backgroundcolor ? props.backgroundcolor : ""};
-      color: ${props.textcolor ? props.textcolor : ""};
+			--sl-focus-ring-color-primary: ${
+        props.backgroundcolor
+          ? props.backgroundcolor
+          : props.medium
+          ? medium[props.medium]
+          : ""
+      }80!important;
+
+      background: ${
+        props.backgroundcolor
+          ? props.backgroundcolor
+          : props.medium
+          ? medium[props.medium]
+          : ""
+      };
+      color: ${
+        props.textcolor
+          ? props.textcolor
+          : props.medium
+          ? medium_text[props.medium]
+          : ""
+      };
       border-radius: ${props.borderradius ? props.borderradius + "px" : ""};
     }
-    *::part(label) {
-    //   position: relative;
-	//   top: 5%;
-    }
+
+	*::part(base):hover {
+		border-color: ${
+      props.backgroundcolor
+        ? props.backgroundcolor
+        : props.medium
+        ? medium[props.medium]
+        : ""
+    }D1!important;
+	}
+	
+	*::part(base):focus {
+		border-color: ${
+      props.backgroundcolor
+        ? props.backgroundcolor
+        : props.medium
+        ? medium[props.medium]
+        : ""
+    }D1!important;
+	}
+
+	*::part(label) {
+		position: relative;
+		top: 2%;
+	}
   `;
 
   const style = {
@@ -85,8 +165,8 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
       >
         {!props.hideicon && (
           <sl-icon
-            slot={props.iconslot}
-            name={props.icon ? props.icon : props.medium}
+            slot={props.iconslot || "prefix"}
+            name={props.icon ? props.icon : medium_icon[props.medium]}
             exportparts="icon"
           ></sl-icon>
         )}

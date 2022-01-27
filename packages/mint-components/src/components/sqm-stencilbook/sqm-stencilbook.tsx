@@ -57,6 +57,7 @@ import * as UseReferralTable from "../sqm-referral-table/UseReferralTable.storie
 import * as HeroImage from "../sqm-hero-image/HeroImage.stories";
 import * as ReferralCard from "../sqm-referral-card/ReferralCard.stories";
 import * as Image from "../sqm-image/Image.stories";
+import * as TitledSection from "../sqm-titled-section/TitledSection.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -120,6 +121,7 @@ const stories = [
   HeroImage,
   ReferralCard,
   Image,
+  TitledSection,
 ];
 
 /**
