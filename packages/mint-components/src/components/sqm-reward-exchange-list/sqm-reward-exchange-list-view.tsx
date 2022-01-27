@@ -362,6 +362,16 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         margin: "0 auto",
       },
     },
+
+    Confetti: {
+      pointerEvents: "none",
+      position: "absolute",
+      width: "100%",
+      height: "100%",
+      top: "0%",
+      left: "0%",
+      zIndex: "1",
+    },
   };
 
   // JSS config
@@ -862,15 +872,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           refs.canvasRef.current = canvas;
         }}
         id="my-canvas"
-        style={{
-          pointerEvents: "none",
-          position: "absolute",
-          width: "500px",
-          height: "500px",
-          top: "5%",
-          zIndex: "1",
-          left: "25%",
-        }}
+        class={sheet.classes.Confetti}
       ></canvas>
     );
   }
