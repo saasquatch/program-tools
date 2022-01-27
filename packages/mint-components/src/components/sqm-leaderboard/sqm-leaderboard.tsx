@@ -54,7 +54,7 @@ export class Leaderboard {
   /**
    * @uiName Title displayed for users without names
    */
-  @Prop() anonymousUser: string = "Anonymous";
+  @Prop() anonymousUser: string = "Anonymous User";
 
   /**
    * @uiName Leaderboard time interval
@@ -66,17 +66,18 @@ export class Leaderboard {
   /**
    * @uiName Empty State Image
    */
-  @Prop() emptyStateImage: string = "No Users Yet";
+  @Prop() emptyStateImage: string = "https://i.imgur.com/KPGnPF8.png";
 
   /**
    * @uiName Empty State Header
    */
-  @Prop() emptyStateHeader: string = "No Users Yet";
+  @Prop() emptyStateHeader: string = "View your rank in the leaderboard";
 
   /**
    * @uiName Empty State Description
    */
-  @Prop() emptyStateText: string = "No Users Yet";
+  @Prop() emptyStateText: string =
+    "Be the first to refer a friend and reach the top of the leaderboard";
 
   /**
    * @undocumented
@@ -110,14 +111,18 @@ export class Leaderboard {
     const viewprops = isDemo()
       ? useLeaderboardDemo(demoProps)
       : useLeaderboard(props);
-    return <LeaderboardView {...viewprops} />;
+    return (
+      <LeaderboardView {...viewprops}>
+        <slot />
+      </LeaderboardView>
+    );
   }
 }
 
 function EmptySlot() {
   return (
     <slot name="empty">
-      <sqm-portal-container gap="medium">
+      <sqm-portal-container padding="xxxx-large" gap="medium">
         <sqm-image
           image-url={this.emptyStateImage}
           max-width="100px"
@@ -134,15 +139,21 @@ function EmptySlot() {
 }
 
 function LoadingSlot() {
-  [...Array(10)].map(() => {
-    return (
-      <tr>
-        <td>
-          <sl-skeleton></sl-skeleton>
-        </td>
-      </tr>
-    );
-  });
+  return (
+    <slot name="loadingstate">
+      <table>
+        {[...Array(10)].map(() => {
+          return (
+            <tr>
+              <td>
+                <sl-skeleton></sl-skeleton>
+              </td>
+            </tr>
+          );
+        })}
+      </table>
+    </slot>
+  );
 }
 
 function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {

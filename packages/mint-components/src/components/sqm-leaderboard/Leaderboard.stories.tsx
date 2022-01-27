@@ -14,7 +14,7 @@ const defaultStyles = {
 const defaultElements = {
   empty: (
     <slot name="empty">
-      <sqm-portal-container gap="medium">
+      <sqm-portal-container padding="xxxx-large" gap="medium">
         <sqm-image
           image-url="https://i.imgur.com/KPGnPF8.png"
           max-width="100px"
@@ -30,7 +30,21 @@ const defaultElements = {
       </sqm-portal-container>
     </slot>
   ),
-  loadingstate: null,
+  loadingstate: (
+    <slot name="loading">
+      <table>
+        {[...Array(10)].map(() => {
+          return (
+            <tr>
+              <td>
+                <sl-skeleton></sl-skeleton>
+              </td>
+            </tr>
+          );
+        })}
+      </table>
+    </slot>
+  ),
 };
 
 export const Empty = () => {

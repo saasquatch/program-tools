@@ -4,10 +4,7 @@ import { intl } from "../../global/global";
 import { createStyleSheet } from "../../styling/JSS";
 import { luxonLocale } from "../../utils/utils";
 import { Details } from "./DetailsView";
-import {
-  ProgressBarProps,
-  ProgressBarView,
-} from "./progress-bar/progress-bar-view";
+import { ProgressBarView } from "./progress-bar/progress-bar-view";
 import * as SVGs from "./SVGs";
 
 export type TaskCardViewProps = {
@@ -70,7 +67,6 @@ const style = {
     },
     "& .title": {
       fontSize: "var(--sl-font-size-medium)",
-      // fontWeight: "var(--sl-font-weight-semibold)",
       color: "var(--sl-color-neutral-950)",
     },
     "& .container": {

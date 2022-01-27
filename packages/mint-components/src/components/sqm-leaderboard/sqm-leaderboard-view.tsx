@@ -1,5 +1,7 @@
 import { VNode } from "@stencil/core";
 import { h } from "@stencil/core";
+import { createStyleSheet } from "../../styling/JSS";
+import { loading } from "../sqm-reward-exchange-list/RewardExchangeListData";
 export interface LeaderboardViewProps {
   states: {
     loading: boolean;
@@ -36,38 +38,91 @@ export interface LeaderboardViewProps {
   };
 }
 
-function empty(styles, elements) {
-  return (
-    <table>
-      <tr>
-        {styles.showRank && <th class="Rank">{styles.rankheading}</th>}
-        <th class="User">{styles.usersheading}</th>
-        <th class="Score">{styles.statsheading}</th>
-      </tr>
-      <tr>
-        <td colSpan={100}>{elements.empty}</td>
-      </tr>
-    </table>
-  );
-}
+const style = {
+  Leaderboard: {
+    "& table": {
+      width: "100%",
+      borderCollapse: "collapse",
+    },
+    "& th": {
+      fontSize: "var(--sl-font-size-small)",
+      fontWeight: "var(--sl-font-weight-semibold)",
+      textAlign: "left",
+      padding: "var(--sl-spacing-medium)",
+      paddingTop: "0",
+    },
+    "& tr:not(:first-child)": {
+      borderTop: "1px solid var(--sl-color-neutral-200)",
+    },
+    "& td": {
+      fontSize: "var(--sl-font-size-medium)",
+      fontWeight: "var(--sl-font-weight-normal)",
+    },
+    "& .ellipses": {
+      textAlign: "center",
+      padding: "0",
+      color: "var(--sl-color-neutral-500)",
+    },
+    "& .highlight": {
+      background: "var(--sl-color-primary-50)",
+    },
+    "& td, th": {
+      color: "var(--sl-color-gray-800)",
+      padding: "var(--sl-spacing-medium)",
+    },
+    "& .User": {
+      width: "100%",
+    },
+    "& .Score": {
+      width: "auto",
+      whiteSpace: "nowrap",
+    },
+  },
+};
+
+const sheet = createStyleSheet(style);
+const styleString = sheet.toString();
+
+const vanillaStyle = `
+	:host{
+		display: block;
+	}
+`;
 
 export function LeaderboardView(props: LeaderboardViewProps) {
   const { states, data, elements } = props;
   const { styles } = states;
 
-  if (states.loading) return elements.loadingstate;
-  if (!states.hasLeaders) return elements.empty ?? empty(styles, elements);
+  if (states.loading)
+    return (
+      <div class={sheet.classes.Leaderboard}>
+        <style type="text/css">
+          {styleString}
+          {vanillaStyle}
+        </style>
+        {elements.loadingstate}
+      </div>
+    );
 
   let userSeenFlag = false;
 
   return (
-    <div>
+    <div class={sheet.classes.Leaderboard}>
+      <style type="text/css">
+        {styleString}
+        {vanillaStyle}
+      </style>
       <table>
         <tr>
           {styles.showRank && <th class="Rank">{styles.rankheading}</th>}
           <th class="User">{styles.usersheading}</th>
           <th class="Score">{styles.statsheading}</th>
         </tr>
+        {!states.hasLeaders && (
+          <tr>
+            <td colSpan={100}>{elements.empty}</td>
+          </tr>
+        )}
         {data.leaderboard?.map((user) => {
           if (user.rowNumber === data.userRank?.rowNumber) userSeenFlag = true;
           return (
