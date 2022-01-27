@@ -18,6 +18,7 @@ import {
 import { webhookHandler } from "./webhookHandler";
 import { formHandler } from "./formHandler";
 import { IntegrationConfigError, GraphQLError } from "./errors";
+import { gql } from ".";
 
 declare module "http" {
   interface IncomingMessage {
@@ -123,6 +124,31 @@ export class IntegrationService<
     });
   }
 
+  async getIntegrationTenants() {
+    const tenantQuery = gql`
+      query {
+        viewer {
+          ... on PortalUser {
+            tenants {
+              tenantAlias
+            }
+          }
+        }
+      }
+    `;
+
+    interface TenantQueryData {
+      data: { viewer: { tenants: { tenantAlias: string }[] } };
+    }
+
+    const result = await this.graphql<TenantQueryData>(tenantQuery);
+    const tenantAliases = result.data.viewer.tenants.map(
+      (tenant) => tenant.tenantAlias
+    );
+
+    return tenantAliases;
+  }
+
   async getTenant(tenantAlias: string) {
     const config = await this.getIntegrationConfig(tenantAlias);
     const graphql = this.getTenantScopedGraphQL(tenantAlias);
@@ -169,7 +195,7 @@ export class IntegrationService<
       return config;
     } catch (e) {
       throw new IntegrationConfigError(
-        `Failed to get integration config: ${e.message}`
+        `Failed to get integration config: ${(e as Error).message}`
       );
     }
   }
@@ -183,8 +209,8 @@ export class IntegrationService<
       operationName?: string
     ) => {
       return this.graphql<QueryResponseShape>(
-        tenantAlias,
         query,
+        tenantAlias,
         variables,
         operationName
       );
@@ -192,8 +218,8 @@ export class IntegrationService<
   }
 
   private async graphql<QueryResponseShape = unknown>(
-    tenantAlias: string,
     query: string,
+    tenantAlias?: string,
     variables?: Record<string, any>,
     operationName?: string
   ): Promise<QueryResponseShape> {
@@ -214,9 +240,14 @@ export class IntegrationService<
         body.operationName = operationName;
       }
 
-      const url = `https://${
-        this.config.saasquatchAppDomain
-      }/api/v1/${encodeURIComponent(tenantAlias)}/graphql`;
+      let url;
+      if (tenantAlias) {
+        url = `https://${
+          this.config.saasquatchAppDomain
+        }/api/v1/${encodeURIComponent(tenantAlias)}/graphql`;
+      } else {
+        url = `https://${this.config.saasquatchAppDomain}/api/v1/graphql`;
+      }
 
       const response = await fetch(url, {
         method: "POST",
@@ -240,7 +271,7 @@ export class IntegrationService<
 
       return json;
     } catch (e) {
-      throw new GraphQLError(e.message);
+      throw new GraphQLError((e as Error).message);
     }
   }
 
