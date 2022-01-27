@@ -38,6 +38,18 @@ export class Image {
    */
   @Prop() backgroundColor: string;
 
+  /**
+   * (optional) Helps with constraining minimum size
+   * @uiName Min Height
+   */
+  @Prop() minHeight?: string;
+
+  /**
+   * (optional) Helps with constraining maximum size
+   * @uiName Max Width
+   */
+  @Prop() maxWidth?: string;
+
   @State()
   ignored = true;
 

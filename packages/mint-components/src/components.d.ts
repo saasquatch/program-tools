@@ -285,6 +285,16 @@ export namespace Components {
          */
         "left": string;
         /**
+          * (optional) Helps with constraining maximum size
+          * @uiName Max Width
+         */
+        "maxWidth"?: string;
+        /**
+          * (optional) Helps with constraining minimum size
+          * @uiName Min Height
+         */
+        "minHeight"?: string;
+        /**
           * @uiName Right Margin
          */
         "right": string;
@@ -300,7 +310,15 @@ export namespace Components {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * @uiName Empty State Text
+          * @uiName Empty State Header
+         */
+        "emptyStateHeader": string;
+        /**
+          * @uiName Empty State Image
+         */
+        "emptyStateImage": string;
+        /**
+          * @uiName Empty State Description
          */
         "emptyStateText": string;
         /**
@@ -2540,6 +2558,16 @@ declare namespace LocalJSX {
          */
         "left"?: string;
         /**
+          * (optional) Helps with constraining maximum size
+          * @uiName Max Width
+         */
+        "maxWidth"?: string;
+        /**
+          * (optional) Helps with constraining minimum size
+          * @uiName Min Height
+         */
+        "minHeight"?: string;
+        /**
           * @uiName Right Margin
          */
         "right"?: string;
@@ -2555,7 +2583,15 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * @uiName Empty State Text
+          * @uiName Empty State Header
+         */
+        "emptyStateHeader"?: string;
+        /**
+          * @uiName Empty State Image
+         */
+        "emptyStateImage"?: string;
+        /**
+          * @uiName Empty State Description
          */
         "emptyStateText"?: string;
         /**

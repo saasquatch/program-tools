@@ -9,6 +9,7 @@ export interface LeaderboardViewProps {
       statsheading: string;
       rankheading?: string;
       showRank?: boolean;
+      anonymousUser?: string;
     };
   };
   data: {
@@ -35,7 +36,7 @@ export interface LeaderboardViewProps {
   };
 }
 
-function empty(styles) {
+function empty(styles, elements) {
   return (
     <table>
       <tr>
@@ -44,24 +45,8 @@ function empty(styles) {
         <th class="Score">{styles.statsheading}</th>
       </tr>
       <tr>
-        <td colSpan={100}>{styles.emptyStateText}</td>
+        <td colSpan={100}>{elements.empty}</td>
       </tr>
-    </table>
-  );
-}
-
-function loading() {
-  return (
-    <table>
-      {[...Array(10)].map(() => {
-        return (
-          <tr>
-            <td>
-              <sl-skeleton></sl-skeleton>
-            </td>
-          </tr>
-        );
-      })}
     </table>
   );
 }
@@ -70,9 +55,8 @@ export function LeaderboardView(props: LeaderboardViewProps) {
   const { states, data, elements } = props;
   const { styles } = states;
 
-  if (states.loading) return elements.loadingstate ?? loading();
-  if (!states.hasLeaders)
-    return elements.empty ? elements.empty : empty(styles);
+  if (states.loading) return elements.loadingstate;
+  if (!states.hasLeaders) return elements.empty ?? empty(styles, elements);
 
   let userSeenFlag = false;
 
@@ -93,7 +77,13 @@ export function LeaderboardView(props: LeaderboardViewProps) {
               }
             >
               {styles.showRank && <td class="Rank">{user.rank}</td>}
-              <td class="User">{`${user.firstName} ${user.lastInitial} `}</td>
+              <td class="User">
+                {user.firstName && user.lastInitial
+                  ? user.firstName + " " + user.lastInitial
+                  : user.firstName || user.lastInitial
+                  ? user.firstName || user.lastInitial
+                  : styles.anonymousUser || "Anonymous User"}
+              </td>
               <td class="Score">{user.value}</td>
             </tr>
           );
@@ -113,9 +103,13 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             {styles.showRank && (
               <td class="Rank">{data.userRank?.rank || "-"}</td>
             )}
-            <td class="User">{`${data.userRank?.firstName || "-"} ${
-              data.userRank?.lastInitial || "-"
-            } `}</td>
+            <td class="User">
+              {data.userRank?.firstName && data.userRank?.lastInitial
+                ? data.userRank?.firstName + " " + data.userRank?.lastInitial
+                : data.userRank?.firstName || data.userRank?.lastInitial
+                ? data.userRank?.firstName || data.userRank?.lastInitial
+                : styles.anonymousUser || "Anonymous User"}
+            </td>
             <td class="Score">{data.userRank?.value || "0"}</td>
           </tr>
         )}

@@ -1,21 +1,5 @@
 @include HostBlock;
 
-.header-title {
-  font-size: var(--sl-font-size-large);
-  font-weight: var(--sl-font-weight-semibold);
-}
-
-.header-description {
-  font-size: var(--sl-font-size-medium);
-  font-weight: var(--sl-font-weight-normal);
-  margin-bottom: var(--sl-spacing-large);
-}
-
-.cover-image {
-  width: 100%;
-  margin-bottom: var(--sl-spacing-large);
-}
-
 table {
   width: 100%;
   border-collapse: collapse;
@@ -40,7 +24,6 @@ td {
   text-align: center;
   padding: 0;
   color: var(--sl-color-neutral-500);
-  //   background: var(--sl-color-neutral-100);
 }
 
 .highlight {

@@ -4,9 +4,6 @@ import { LeaderboardView } from "./sqm-leaderboard-view";
 
 export default {
   title: "Components/Leaderboard",
-  parameters: {
-    tagname: "sqm-leaderboard",
-  },
 };
 
 const defaultStyles = {
@@ -15,7 +12,24 @@ const defaultStyles = {
 };
 
 const defaultElements = {
-  empty: null,
+  empty: (
+    <slot name="empty">
+      <sqm-portal-container gap="medium">
+        <sqm-image
+          image-url="https://i.imgur.com/KPGnPF8.png"
+          max-width="100px"
+        ></sqm-image>
+        <sqm-titled-section label-margin="xxx-small" align="center">
+          <sqm-text slot="label">
+            <h3>View your rank in the leaderboard</h3>
+          </sqm-text>
+          <sqm-text slot="content">
+            Be the first to refer a friend and reach the top of the leaderboard
+          </sqm-text>
+        </sqm-titled-section>
+      </sqm-portal-container>
+    </slot>
+  ),
   loadingstate: null,
 };
 
@@ -303,6 +317,59 @@ export const UserOutside = () => {
         value: 7,
         rowNumber: 6,
         rank: 9,
+      },
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};
+
+export const UserEmpty = () => {
+  const props = {
+    states: {
+      loading: false,
+      hasLeaders: true,
+      styles: {
+        rankheading: "Rank",
+        usersheading: "User",
+        statsheading: "Referrals",
+        showRank: true,
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: [
+        {
+          firstName: "Firstname",
+          lastInitial: null,
+          value: 82,
+          rank: 1,
+          rowNumber: 1,
+        },
+        {
+          firstName: null,
+          lastInitial: "Lastname",
+          value: 73,
+          rank: 2,
+          rowNumber: 2,
+        },
+        {
+          firstName: null,
+          lastInitial: null,
+          value: 64,
+          rank: 3,
+          rowNumber: 3,
+        },
+      ],
+      showUser: true,
+      userRank: {
+        firstName: null,
+        lastInitial: null,
+        value: null,
+        rowNumber: null,
+        rank: null,
       },
     },
     elements: {
