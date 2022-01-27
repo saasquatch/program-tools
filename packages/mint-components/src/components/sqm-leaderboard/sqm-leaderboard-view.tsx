@@ -71,7 +71,8 @@ export function LeaderboardView(props: LeaderboardViewProps) {
   const { styles } = states;
 
   if (states.loading) return elements.loadingstate ?? loading();
-  if (!states.hasLeaders) return elements.empty ?? empty(styles);
+  if (!states.hasLeaders)
+    return elements.empty ? elements.empty : empty(styles);
 
   let userSeenFlag = false;
 

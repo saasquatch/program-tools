@@ -5,7 +5,12 @@ export default {
   title: "Components/Share Button",
 };
 
-export const WithIcon = () => {
+export const WithIconPrefix = () => {
+  const props = { medium: "whatsapp", iconslot: "prefix" } as const;
+  return <ShareButtonView {...props}>Share</ShareButtonView>;
+};
+
+export const WithIconSuffix = () => {
   const props = { medium: "whatsapp", iconslot: "suffix" } as const;
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
@@ -14,7 +19,6 @@ export const WithIconOverride = () => {
   const props = {
     medium: "facebook",
     icon: "person-badge",
-    iconslot: "suffix",
   } as const;
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
@@ -23,7 +27,6 @@ export const TextStyle = () => {
   const props = {
     medium: "facebook",
     type: "text",
-    iconslot: "suffix",
   } as const;
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
@@ -47,8 +50,8 @@ export const WithCustomColors = () => {
   const props = {
     medium: "facebook",
     type: "text",
-    backgroundcolor: "#3b5998",
-    textcolor: "#fff",
+    backgroundcolor: "red",
+    textcolor: "yellow",
     iconslot: "prefix",
   } as const;
   return <ShareButtonView {...props}>Facebook</ShareButtonView>;
@@ -58,8 +61,6 @@ export const WithCustomBorderRadius = () => {
   const props = {
     medium: "facebook",
     type: "text",
-    backgroundcolor: "#3b5998",
-    textcolor: "#fff",
     borderradius: 8,
     iconslot: "prefix",
   } as const;
@@ -69,11 +70,11 @@ export const WithCustomBorderRadius = () => {
 export const FullStackIcon = () => {
   return (
     <div>
-      <sqm-share-button medium="facebook" iconslot="prefix">
+      <sqm-share-button medium="facebook">
         <span>Facebook</span>
       </sqm-share-button>
       <br />
-      <sqm-share-button medium="email" icon="envelope" iconslot="prefix">
+      <sqm-share-button medium="email">
         <span>Email</span>
       </sqm-share-button>
     </div>
@@ -83,40 +84,44 @@ export const FullStackIcon = () => {
 export const AllMediums = () => {
   return (
     <div>
-      <sqm-share-button medium="facebook" iconslot="prefix">
+      <sqm-share-button medium="facebook">
         <span>Facebook</span>
       </sqm-share-button>
       <br />
-      <sqm-share-button medium="email" icon="envelope" iconslot="prefix">
+      <sqm-share-button medium="email">
         <span>Email</span>
       </sqm-share-button>
       <br />
-      <sqm-share-button medium="whatsapp" icon="whatsapp" iconslot="prefix">
+      <sqm-share-button medium="whatsapp">
         <span>WhatsApp</span>
       </sqm-share-button>
       <br />
-      <sqm-share-button medium="linkedin" iconslot="prefix">
+      <sqm-share-button medium="linkedin">
         <span>Linkedin</span>
       </sqm-share-button>
       <br />
-      <sqm-share-button medium="twitter" iconslot="prefix">
+      <sqm-share-button medium="twitter">
         <span>Twitter</span>
       </sqm-share-button>
       <br />
-      <sqm-share-button medium="pinterest" iconslot="prefix">
+      <sqm-share-button medium="pinterest">
         <span>Pinterest</span>
       </sqm-share-button>
       <br />
-      <sqm-share-button medium="fbmessenger" icon="messenger" iconslot="prefix">
+      <sqm-share-button medium="fbmessenger">
         <span>Messenger</span>
       </sqm-share-button>
       <br />
-      <sqm-share-button medium="sms" icon="chat" iconslot="prefix">
+      <sqm-share-button medium="sms">
         <span>SMS</span>
       </sqm-share-button>
       <br />
-      <sqm-share-button medium="linemessenger" icon="line" iconslot="prefix">
+      <sqm-share-button medium="linemessenger">
         <span>Line Messenger</span>
+      </sqm-share-button>
+      <br />
+      <sqm-share-button medium="direct">
+        <span>Direct</span>
       </sqm-share-button>
     </div>
   );

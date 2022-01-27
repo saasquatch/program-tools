@@ -64,12 +64,10 @@ export class TimelineReward {
           margin: "-2px",
           position: "relative",
           left: "12px",
-          transform: "scaleY(0.95)",
-          top: "16px",
+          top: "34px",
         },
         "& .step": {
           display: "flex",
-          minHeight: "100px",
         },
         "& .icon": {
           position: "relative",
@@ -85,11 +83,10 @@ export class TimelineReward {
         },
         "& .unit": {
           textTransform: "uppercase",
-          fontSize: "var(--sl-font-size-medium)",
+          fontSize: "var(--sl-font-size-small)",
         },
         "& .description": {
-          fontSize: "var(--sl-font-size-large)",
-          marginBottom: "var(--sl-spacing-xx-large)",
+          fontSize: "var(--sl-font-size-medium)",
         },
       },
     };
