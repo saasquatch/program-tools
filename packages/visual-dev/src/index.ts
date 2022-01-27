@@ -31,6 +31,7 @@ import { ObjectFieldTemplate } from "./components/ObjectFieldTemplate";
 import { ArrayFieldTemplate } from "./components/ArrayFieldTemplate";
 import { ErrorListTemplate } from "./components/ErrorListTemplate";
 import { RJSFRadioCardWidget } from "./components/RadioCard";
+import { Icon } from "./components/Icon";
 
 export {
   Button,
@@ -66,4 +67,5 @@ export {
   ArrayFieldTemplate,
   ErrorListTemplate,
   RJSFRadioCardWidget,
+  Icon,
 };
