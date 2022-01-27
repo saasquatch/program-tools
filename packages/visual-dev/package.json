@@ -1,6 +1,6 @@
 {
   "name": "@saasquatch/visual-dev",
-  "version": "0.2.1-6",
+  "version": "0.2.1-8",
   "description": "SaaSquatch visual dev",
   "main": "dist/index.js",
   "module": "dist/tsdx-test.esm.js",

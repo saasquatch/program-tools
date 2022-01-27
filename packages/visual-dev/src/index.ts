@@ -32,6 +32,7 @@ import { ArrayFieldTemplate } from "./components/ArrayFieldTemplate";
 import { ErrorListTemplate } from "./components/ErrorListTemplate";
 import { RJSFRadioCardWidget } from "./components/RadioCard";
 import { Icon } from "./components/Icon";
+import { RJSFTextarea, Textarea } from "./components/TextArea";
 
 export {
   Button,
@@ -68,4 +69,6 @@ export {
   ErrorListTemplate,
   RJSFRadioCardWidget,
   Icon,
+  Textarea,
+  RJSFTextarea,
 };

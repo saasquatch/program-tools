@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { IconButton } from "../Button";
 import { Textarea } from ".";
 
 export default {
