@@ -14,6 +14,8 @@ export interface OptionProps {
   icon: IconKey;
 }
 
+type Size = keyof typeof default_size;
+
 export interface StyleProps {
   /**
    * Icon colour
@@ -22,7 +24,7 @@ export interface StyleProps {
   /**
    * Icon size
    */
-  size?: "small" | "medium" | "large" | string;
+  size?: Size | string;
   /**
    * Custom CSS styles applied to icon
    */
@@ -41,11 +43,11 @@ const StyledSVG = styled.div<Required<StyleProps>>`
   color: ${(props) => props.color};
   width: ${(props) =>
     default_size.hasOwnProperty(props.size)
-      ? default_size[props.size]
+      ? default_size[props.size as Size]
       : props.size};
   height: ${(props) =>
     default_size.hasOwnProperty(props.size)
-      ? default_size[props.size]
+      ? default_size[props.size as Size]
       : props.size};
   ${(props) => props.customCSS}
 `;
