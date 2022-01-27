@@ -8,9 +8,9 @@ Feature: Reward Table Status Column
         Given the status column is included in the reward table
 
     @motivating
-    Scenario Outline: The title of the date column is configurable
+    Scenario Outline: The title of the status column is configurable
         Given the "column-title" prop is set to <value>
-        Then the date column is shown with <columnTitle>
+        Then the status column is shown with <columnTitle>
         Examples:
             | value           | columnTitle     |
             | Status          |                 |

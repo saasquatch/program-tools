@@ -47,7 +47,7 @@ Feature: Rewards Table
     @motivating
     Scenario Outline: The table becomes paginated when the number of rewards exceeds the per page limit
         Given the user has <number of rewards>
-        And the table is configured to show <page limit> rewardsreferrals per page
+        And the table is configured to show <page limit> rewards per page
         Then the table will have <number of pages> page(s)
         And pagination buttons will allow users to navigate between pages
         And the pagination button to go to the next page is disabled on the last page of rewards
@@ -85,7 +85,7 @@ Feature: Rewards Table
         Then the rewards are displayed as cards in a singular column
 
     @motivating
-    Scenario Outline: By default the first column heading is hidden in mobile,
+    Scenario Outline: By default the first column heading is hidden in mobile
         Given a reward table with 4 columns
         And prop "hidden-columns" with <hideColumnValue>
         And a user with rewards
@@ -102,7 +102,7 @@ Feature: Rewards Table
     @motivating
     Scenario: Only rewards which occured in the program specific by "program-id" are shown
         Given the table is configured with "program-id"
-        Then only referrals from the program with "program-id" are shown
+        Then only rewards from the program with "program-id" are shown
 
     @landmine
     Scenario: Classic program rewards can't be filtered for
