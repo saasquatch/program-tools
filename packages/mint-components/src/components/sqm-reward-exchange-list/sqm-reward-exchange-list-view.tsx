@@ -67,6 +67,14 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       "&::part(menu)": {
         maxHeight: "50vh",
       },
+
+      "& sl-menu-item::part(checked-icon)": {
+        top: "calc(25% - 0.5em)",
+      },
+
+      "& sl-menu-item::part(base):focus": {
+        background: "transparent",
+      },
     },
     ProgressBar: {
       maxWidth: "350px",
@@ -205,8 +213,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
       "& .text": {
         width: "53%",
+        maxWidth: "400px",
         "@media (max-width: 799px)": {
           width: "auto",
+          margin: "auto",
         },
       },
       "& .title": {
@@ -229,6 +239,14 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
       "& .space": {
         marginBottom: "var(--sl-spacing-xxx-large)",
+      },
+    },
+
+    SelectItem: {
+      display: "flex",
+      flexDirection: "column",
+      "& .step-cost": {
+        color: "var(--sl-color-neutral-400)",
       },
     },
 
@@ -260,12 +278,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     Confirmation: {
       maxWidth: "800px",
       margin: "auto",
-
-      // "& > :first-child": {
-      //   "@media (max-width: 499px)": {
-      //     flexDirection: "column",
-      //   },
-      // },
 
       "& .wrapper": {
         display: "flex",
@@ -403,7 +415,12 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       >
         {item.steps?.map((step) => (
           <sl-menu-item value={step} disabled={!step.available}>
-            {step.prettyDestinationValue}
+            <div class={sheet.classes.SelectItem}>
+              <p style={{ margin: "0" }}>{step.prettyDestinationValue}</p>
+              <div class="step-cost" slot="suffix">
+                {step.prettySourceValue}
+              </div>
+            </div>
             {step.unavailableReasonCode && (
               <p
                 style={{
@@ -426,9 +443,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 )}
               </p>
             )}
-            <div slot="suffix" style={{ marginBottom: "auto", float: "right" }}>
-              {step.prettySourceValue}
-            </div>
           </sl-menu-item>
         ))}
       </sl-select>
@@ -616,11 +630,29 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 <div class="points">{input}</div>
               )}
               <div class="space" />
+              <div class={sheet.classes.Button}>
+                <sl-button
+                  class="cancel"
+                  size="large"
+                  type="text"
+                  onClick={() => callbacks.resetState()}
+                >
+                  {states.content.text.cancelText}
+                </sl-button>
+                <sl-button
+                  class="continue"
+                  size="large"
+                  onClick={() => callbacks.setStage("confirmation")}
+                  disabled={isDisabled}
+                >
+                  {states.content.text.continueToConfirmationText}
+                </sl-button>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class={sheet.classes.Button}>
+        {/* <div class={sheet.classes.Button}>
           <sl-button
             class="cancel"
             size="large"
@@ -637,7 +669,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           >
             {states.content.text.continueToConfirmationText}
           </sl-button>
-        </div>
+        </div> */}
       </div>
     );
   }

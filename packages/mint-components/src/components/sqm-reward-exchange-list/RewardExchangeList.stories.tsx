@@ -12,11 +12,10 @@ export default {
 };
 
 const StoryBase = (props: RewardExchangeViewProps) => () => {
-
   return (
-    <Resizer>
-      <RewardExchangeView {...props}></RewardExchangeView>
-    </Resizer>
+    <RewardExchangeView {...props}></RewardExchangeView>
+    // <Resizer>
+    // </Resizer>
   );
 };
 
@@ -24,6 +23,9 @@ export const ChooseReward = StoryBase(Data.rewardExchange);
 export const ChooseRewardSelected = StoryBase(Data.rewardExchangeSelected);
 export const ChooseAmount = StoryBase(Data.chooseAmountFixed);
 export const ChooseAmountVariable = StoryBase(Data.chooseAmountVariable);
+export const chooseAmountVariableDisabled = StoryBase(
+  Data.chooseAmountVariableDisabled
+);
 export const Confirm = StoryBase(Data.confirmFixed);
 export const ConfirmVariable = StoryBase(Data.confirmVariable);
 export const Error = StoryBase(Data.error);
