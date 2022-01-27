@@ -54,12 +54,13 @@
 - [sqm-referral-table-status-column](../sqm-referral-table/columns)
 - [sqm-referral-table-date-column](../sqm-referral-table/columns)
 - [sqm-referral-table-rewards-column](../sqm-referral-table/columns)
-- [sqm-hero-image](../sqm-media)
+- [sqm-hero-image](../sqm-hero-image)
 - [sqm-image](../sqm-image)
 - [sqm-share-code](../sqm-share-code)
 - [sqm-timeline](../sqm-referral-card)
 - [sqm-timeline-entry](../sqm-referral-card)
 - [sqm-referral-card](../sqm-referral-card)
+- [sqm-titled-section](../sqm-titled-section)
 
 ### Graph
 ```mermaid
@@ -115,6 +116,7 @@ graph TD;
   sqm-stencilbook --> sqm-timeline
   sqm-stencilbook --> sqm-timeline-entry
   sqm-stencilbook --> sqm-referral-card
+  sqm-stencilbook --> sqm-titled-section
   sqm-edit-profile --> sqm-form-message
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell

@@ -18,6 +18,13 @@ Feature: Reward Exchange List
         Then the skeleton is replaced with reward exchange options
 
     @motivating
+    Scenario: An error banner appears when the reward exchange list fails to load
+        Given a user trying to view the reward exchange list
+        But it fails to load
+        Then an error banner is displayed
+        And it displays "Unable to load reward exchange list. Please try again"
+
+    @motivating
     Scenario: The exchange progress bar progresses through the exchange process
         Given a user who is eligible for the tenants reward exchange rules
         When they view the reward exchange list
@@ -169,10 +176,10 @@ Feature: Reward Exchange List
         And they progress to the Select page for this exchange
         Then they see the exchange rule image on the left hand side
         And on the right hand side they see the following in this order from top to bottom
-            | elements                                                                                                                 |
-            | exchange name                                                                                                            |
-            | exchange description                                                                                                     |
-            | select list with all exchange options using pretty values, destination reward on the right and source reward on the left |
+            | elements                                                                                          |
+            | exchange name                                                                                     |
+            | exchange description                                                                              |
+            | select list with all exchange options using pretty values, destination reward above source reward |
         Examples:
             | type                        |
             | STEPPED_FIXED_GLOBAL_REWARD |
@@ -197,22 +204,43 @@ Feature: Reward Exchange List
             | exchange description                                   |
 
     @motivating
-    Scenario: Users selection variable rewards can only select rewards they are eligible to exchange for
+    Scenario Outline: Users selection variable rewards can only select rewards they are eligible to exchange for
         Given a <type> exchange rule
         When a user views the reward exchange list
         And they progress to the Select page for this exchange
         Then they see a drop down with all the reward exchange selections
         When they click on the drop down
-        But they are not eligible for all of the exchanges options
+        But they are not eligible for all of the exchanges options <dueToReason>
         Then the ineligble options are disabled
-        And under the source value is "{prettySourceValue} required"
+        And under the source value is <text>
         Examples:
-            | type                        |
-            | STEPPED_FIXED_GLOBAL_REWARD |
-            | VARIABLE_GLOBAL_REWARD      |
-            | VARIABLE_CREDIT_REWARD      |
+            | type                        | dueToReason                     | text                         |
+            | STEPPED_FIXED_GLOBAL_REWARD | due to insufficent source value | {prettySourceValue} required |
+            | VARIABLE_GLOBAL_REWARD      | due to insufficent source value | {prettySourceValue} required |
+            | VARIABLE_CREDIT_REWARD      | due to insufficent source value | {prettySourceValue} required |
+            | STEPPED_FIXED_GLOBAL_REWARD | W9                              | US Tax Limit                 |
+            | VARIABLE_GLOBAL_REWARD      | W9                              | US Tax Limit                 |
+            | VARIABLE_CREDIT_REWARD      | w9                              | US Tax Limit                 |
 
-    Scenario: Confirmation page for all different reward exchange types.....
+    @motivating
+    Scenario Outline: The Confirm page allows users to view their exchange before committing
+        Given a <type> exchange rule
+        When a user views the reward exchange list
+        And they select the exchange
+        And they progress to Confirm page
+        Then they see a row with title "Reward"
+        And it contains the exchange name
+        And it contains the exchange image
+        And they <maySee> a row with title "Reward Amount"
+        And it <mayContain> <amountTitle>
+        And they see a row with title "Cost to Redeem"
+        And it contains the source reward pretty value in bolded text
+        Examples:
+            | type                        | maySee | mayContain      | amountTitle                  |
+            | FIXED_GLOBAL_REWARD         | don't  | doesn't contain | N/A                          |
+            | VARIABLE_GLOBAL_REWARD      | see    | contains        | the pretty destination value |
+            | STEPPED_FIXED_GLOBAL_REWARD | see    | contains        | the pretty destination value |
+            | VARIABLE_CREDIT_REWARD      | see    | contains        | the pretty destination value |
 
     @motivating
     Scenario: An error banner is displayed if an error occurs during redemeption
@@ -266,5 +294,3 @@ Feature: Reward Exchange List
             | VARIABLE_GLOBAL_REWARD      | discount       |
             | VARIABLE_GLOBAL_REWARD      | credit reward  |
             | VARIABLE_CREDIT_REWARD      | credit reward  |
-
-#DS: comment, still missing all specs for customizable props and etc
