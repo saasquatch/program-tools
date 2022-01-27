@@ -28,12 +28,14 @@ export class ProgramExplainerStep {
   @Prop() textColor: string;
 
   /**
-   * @uiName Background
+   * @uiName Background Color
    */
   @Prop() backgroundColor: string;
 
   /**
-   * @uiName Icon
+   * Displayed in place of an icon
+   * 
+   * @uiName Image URl
    */
   @Prop() imageUrl?: string;
 

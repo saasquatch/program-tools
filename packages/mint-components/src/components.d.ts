@@ -902,7 +902,7 @@ export namespace Components {
     }
     interface SqmProgramExplainerStep {
         /**
-          * @uiName Background
+          * @uiName Background Color
          */
         "backgroundColor": string;
         /**
@@ -918,7 +918,8 @@ export namespace Components {
          */
         "icon"?: string;
         /**
-          * @uiName Icon
+          * Displayed in place of an icon
+          * @uiName Image URl
          */
         "imageUrl"?: string;
         /**
@@ -3175,7 +3176,7 @@ declare namespace LocalJSX {
     }
     interface SqmProgramExplainerStep {
         /**
-          * @uiName Background
+          * @uiName Background Color
          */
         "backgroundColor"?: string;
         /**
@@ -3191,7 +3192,8 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * @uiName Icon
+          * Displayed in place of an icon
+          * @uiName Image URl
          */
         "imageUrl"?: string;
         /**

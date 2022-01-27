@@ -166,7 +166,7 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
           usersheading: props.usersheading
             ? props.usersheading
             : "TOP REFERRERS",
-          statsheading: props.statsheading ? props.statsheading : "NEW TITANS",
+          statsheading: props.statsheading ? props.statsheading : "NEW CUSTOMERS",
         },
       },
       data: {
