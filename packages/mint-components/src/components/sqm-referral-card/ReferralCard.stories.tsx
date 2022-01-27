@@ -24,28 +24,9 @@ const sharebutton = (slot) => {
         }
         <sqm-share-code />
       </sqm-text>
-      <sqm-share-button
-        medium="email"
-        icon="envelope"
-        backgroundcolor="#666666"
-        textcolor="#fff"
-      >
-        Share via email
-      </sqm-share-button>
-      <sqm-share-button
-        medium="facebook"
-        backgroundcolor="#0671E6"
-        textcolor="#fff"
-      >
-        Share on Facebook
-      </sqm-share-button>
-      <sqm-share-button
-        medium="twitter"
-        backgroundcolor="#47ACDF"
-        textcolor="#fff"
-      >
-        Tweet about us
-      </sqm-share-button>
+      <sqm-share-button medium="email">Share via email</sqm-share-button>
+      <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
+      <sqm-share-button medium="twitter">Tweet about us</sqm-share-button>
     </sqm-portal-container>
   );
 };
@@ -83,6 +64,10 @@ const timeline = (slot, count) => {
       )}
     </sqm-timeline>
   );
+};
+
+export const ReferralCardDefault = () => {
+  return <sqm-referral-card></sqm-referral-card>;
 };
 
 export const ReferralCardA = () => {

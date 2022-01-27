@@ -89,11 +89,9 @@ export class Leaderboard {
   disconnectedCallback() {}
 
   render() {
-    const loading = <LoadingSkeleton />;
-    const empty = <EmptySkeleton label={this.emptyStateText} />;
     const props = {
-      empty: empty,
-      loadingstate: loading,
+      empty:  <slot name="empty" />,
+      loadingstate: <slot name="loading" />,
       usersheading: this.usersheading,
       statsheading: this.statsheading,
       rankType: this.rankType,
