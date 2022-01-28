@@ -81,6 +81,12 @@ export namespace Components {
     }
     interface SqmBrand {
         /**
+          * The background color for the portal
+          * @uiName Background Color
+          * @uiWidget color
+         */
+        "background": string;
+        /**
           * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
           * @uiName Brand Color
          */
@@ -195,6 +201,7 @@ export namespace Components {
     interface SqmHeroImage {
         /**
           * @uiName Background Color
+          * @uiWidget color
          */
         "backgroundColor"?: string;
         /**
@@ -245,6 +252,7 @@ export namespace Components {
         "minHeight": string;
         /**
           * @uiName Overlay Color
+          * @uiWidget color
          */
         "overlayColor": string;
         /**
@@ -259,6 +267,7 @@ export namespace Components {
         "padding": Spacing;
         /**
           * @uiName Text Color
+          * @uiWidget color
          */
         "textColor"?: string;
     }
@@ -274,6 +283,7 @@ export namespace Components {
         "align": "left" | "center" | "right";
         /**
           * @uiName Background Color
+          * @uiWidget color
          */
         "backgroundColor": string;
         /**
@@ -284,6 +294,16 @@ export namespace Components {
           * @uiName Left Margin
          */
         "left": string;
+        /**
+          * (optional) Helps with constraining maximum size
+          * @uiName Max Width
+         */
+        "maxWidth"?: string;
+        /**
+          * (optional) Helps with constraining minimum size
+          * @uiName Min Height
+         */
+        "minHeight"?: string;
         /**
           * @uiName Right Margin
          */
@@ -300,7 +320,15 @@ export namespace Components {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * @uiName Empty State Text
+          * @uiName Empty State Header
+         */
+        "emptyStateHeader": string;
+        /**
+          * @uiName Empty State Image
+         */
+        "emptyStateImage": string;
+        /**
+          * @uiName Empty State Description
          */
         "emptyStateText": string;
         /**
@@ -2337,6 +2365,12 @@ declare namespace LocalJSX {
     }
     interface SqmBrand {
         /**
+          * The background color for the portal
+          * @uiName Background Color
+          * @uiWidget color
+         */
+        "background"?: string;
+        /**
           * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
           * @uiName Brand Color
          */
@@ -2451,6 +2485,7 @@ declare namespace LocalJSX {
     interface SqmHeroImage {
         /**
           * @uiName Background Color
+          * @uiWidget color
          */
         "backgroundColor"?: string;
         /**
@@ -2501,6 +2536,7 @@ declare namespace LocalJSX {
         "minHeight"?: string;
         /**
           * @uiName Overlay Color
+          * @uiWidget color
          */
         "overlayColor"?: string;
         /**
@@ -2515,6 +2551,7 @@ declare namespace LocalJSX {
         "padding"?: Spacing;
         /**
           * @uiName Text Color
+          * @uiWidget color
          */
         "textColor"?: string;
     }
@@ -2530,6 +2567,7 @@ declare namespace LocalJSX {
         "align"?: "left" | "center" | "right";
         /**
           * @uiName Background Color
+          * @uiWidget color
          */
         "backgroundColor"?: string;
         /**
@@ -2540,6 +2578,16 @@ declare namespace LocalJSX {
           * @uiName Left Margin
          */
         "left"?: string;
+        /**
+          * (optional) Helps with constraining maximum size
+          * @uiName Max Width
+         */
+        "maxWidth"?: string;
+        /**
+          * (optional) Helps with constraining minimum size
+          * @uiName Min Height
+         */
+        "minHeight"?: string;
         /**
           * @uiName Right Margin
          */
@@ -2556,7 +2604,15 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * @uiName Empty State Text
+          * @uiName Empty State Header
+         */
+        "emptyStateHeader"?: string;
+        /**
+          * @uiName Empty State Image
+         */
+        "emptyStateImage"?: string;
+        /**
+          * @uiName Empty State Description
          */
         "emptyStateText"?: string;
         /**

@@ -4,11 +4,6 @@ import { Component, Prop, h, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { withShadowView } from "../../ShadowViewAddon";
-import {
-  EmptySkeleton,
-  LoadingSkeleton,
-  LoadingSlot,
-} from "../../tables/TableSlots";
 import { LeaderboardView, LeaderboardViewProps } from "./sqm-leaderboard-view";
 import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 
@@ -44,11 +39,6 @@ export class Leaderboard {
   @Prop() showUser: boolean = true;
 
   /**
-   * @uiName Empty State Text
-   */
-  @Prop() emptyStateText: string = "No Users Yet";
-
-  /**
    * @uiName Rank type
    * @uiType string
    * @uiEnum ["rowNumber", "rank", "denseRank"]
@@ -64,7 +54,7 @@ export class Leaderboard {
   /**
    * @uiName Title displayed for users without names
    */
-  @Prop() anonymousUser: string = "Anonymous";
+  @Prop() anonymousUser: string = "Anonymous User";
 
   /**
    * @uiName Leaderboard time interval
@@ -72,6 +62,22 @@ export class Leaderboard {
    * @uiOptions {"allowPastDates":true, "months": 1}
    */
   @Prop() interval: string;
+
+  /**
+   * @uiName Empty State Image
+   */
+  @Prop() emptyStateImage: string = "https://i.imgur.com/KPGnPF8.png";
+
+  /**
+   * @uiName Empty State Header
+   */
+  @Prop() emptyStateHeader: string = "View your rank in the leaderboard";
+
+  /**
+   * @uiName Empty State Description
+   */
+  @Prop() emptyStateText: string =
+    "Be the first to refer a friend and reach the top of the leaderboard";
 
   /**
    * @undocumented
@@ -90,14 +96,13 @@ export class Leaderboard {
 
   render() {
     const props = {
-      empty:  <slot name="empty" />,
-      loadingstate: <slot name="loading" />,
+      empty: <EmptySlot />,
+      loadingstate: <LoadingSlot />,
       usersheading: this.usersheading,
       statsheading: this.statsheading,
       rankType: this.rankType,
       leaderboardType: this.leaderboardType,
       anonymousUser: this.anonymousUser,
-      emptyStateText: this.emptyStateText,
       interval: this.interval,
       showUser: this.showUser,
       showRank: this.showRank,
@@ -106,8 +111,49 @@ export class Leaderboard {
     const viewprops = isDemo()
       ? useLeaderboardDemo(demoProps)
       : useLeaderboard(props);
-    return <LeaderboardView {...viewprops} />;
+    return (
+      <LeaderboardView {...viewprops}>
+        <slot />
+      </LeaderboardView>
+    );
   }
+}
+
+function EmptySlot() {
+  return (
+    <slot name="empty">
+      <sqm-portal-container padding="xxxx-large" gap="medium">
+        <sqm-image
+          image-url={this.emptyStateImage}
+          max-width="100px"
+        ></sqm-image>
+        <sqm-titled-section label-margin="xxx-small" align="center">
+          <sqm-text slot="label">
+            <h3>{this.emptyStateHeader}</h3>
+          </sqm-text>
+          <sqm-text slot="content">{this.emptyStateText}</sqm-text>
+        </sqm-titled-section>
+      </sqm-portal-container>
+    </slot>
+  );
+}
+
+function LoadingSlot() {
+  return (
+    <slot name="loadingstate">
+      <table>
+        {[...Array(10)].map(() => {
+          return (
+            <tr>
+              <td>
+                <sl-skeleton></sl-skeleton>
+              </td>
+            </tr>
+          );
+        })}
+      </table>
+    </slot>
+  );
 }
 
 function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
@@ -134,16 +180,8 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
         ],
       },
       elements: {
-        empty: props.empty ? (
-          props.empty
-        ) : (
-          <EmptySkeleton label="No Users Yet" />
-        ),
-        loadingstate: props.loadingstate ? (
-          props.loadingstate
-        ) : (
-          <LoadingSkeleton />
-        ),
+        empty: <EmptySlot />,
+        loadingstate: <LoadingSlot />,
       },
     },
     props.demoProps || {},
