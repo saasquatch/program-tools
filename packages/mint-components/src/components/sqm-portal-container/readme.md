@@ -21,11 +21,13 @@
 
 ### Used by
 
+ - [sqm-leaderboard](../sqm-leaderboard)
  - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
+  sqm-leaderboard --> sqm-portal-container
   sqm-stencilbook --> sqm-portal-container
   style sqm-portal-container fill:#f9f,stroke:#333,stroke-width:4px
 ```

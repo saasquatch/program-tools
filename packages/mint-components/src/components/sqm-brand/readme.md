@@ -9,6 +9,7 @@
 
 | Property     | Attribute     | Description                                                                                                                                           | Type     | Default     |
 | ------------ | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `background` | `background`  | The background color for the portal                                                                                                                   | `string` | `undefined` |
 | `brandColor` | `brand-color` | Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries. | `string` | `undefined` |
 | `brandFont`  | `brand-font`  | The brand font that you want to use                                                                                                                   | `string` | `undefined` |
 

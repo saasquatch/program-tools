@@ -305,9 +305,9 @@ export const chooseAmountVariableDisabled = {
     steps: [
       baseStep(20, "$", 40, "Points"),
       baseStep(30, "$", 60, "Points"),
-      baseStep(40, "$", 80, "Points", false),
-      baseStep(50, "$", 100, "Points", false),
-      baseStep(60, "$", 120, "Points", false),
+      baseStep(40, "$", 80, "Points", false, "INSUFFICIENT_REDEEMABLE_CREDIT"),
+      baseStep(50, "$", 100, "Points", false, "INSUFFICIENT_REDEEMABLE_CREDIT"),
+      baseStep(60, "$", 120, "Points", false, "INSUFFICIENT_REDEEMABLE_CREDIT"),
     ],
   }),
 };
