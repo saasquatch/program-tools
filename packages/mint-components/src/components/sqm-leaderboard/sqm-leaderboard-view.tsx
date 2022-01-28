@@ -45,11 +45,11 @@ const style = {
       borderCollapse: "collapse",
     },
     "& th": {
-      fontSize: "var(--sl-font-size-small)",
-      fontWeight: "var(--sl-font-weight-semibold)",
       textAlign: "left",
       padding: "var(--sl-spacing-medium)",
       paddingTop: "0",
+      fontSize: "var(--sl-font-size-medium)",
+      fontWeight: "var(--sl-font-weight-semibold)",
     },
     "& tr:not(:first-child)": {
       borderTop: "1px solid var(--sl-color-neutral-200)",

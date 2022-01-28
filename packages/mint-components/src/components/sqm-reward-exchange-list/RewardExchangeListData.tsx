@@ -12,7 +12,7 @@ const baseResponse = (
       text: {
         buttonText: "Exchange Rewards",
         notAvailableError:
-          "{unavailableReasonCode, select, US_TAX {Exceeds tax limit for this year} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {unavailableReasonCode} }",
+          "{unavailableReasonCode, select, NOT_CHAMPION {CUSTOM ERROR MESSAGE } US_TAX {Exceeds tax limit for this year} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {unavailableReasonCode} }",
         chooseRewardTitle: "Rewards",
         chooseAmountTitle: "Select",
         confirmationTitle: "Confirm",
@@ -95,6 +95,11 @@ const notEnoughPoints = {
 const usTax = {
   available: false,
   unavailableReasonCode: "US_TAX",
+};
+
+const customError = {
+  available: false,
+  unavailableReasonCode: "NOT_CHAMPION",
 };
 
 const selected = {
@@ -217,6 +222,20 @@ export const rewardExchangeLongText = {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ratione a itaque non obcaecati iste, amet repudiandae at consequatur adipisci culpa nam, incidunt exercitationem aliquid."
       ),
     },
+    ...data,
+  ]),
+};
+
+export const rewardExchangeCustomErrorMsg = {
+  ...baseResponse([
+    {
+      ...baseReward,
+      ...customError,
+      ...name("A very rare cactus"),
+      ...imageUrl("https://i.imgur.com/hhlF2Ey.png"),
+      ...fixedValue("2000 SaaSquatch Points"),
+    },
+    ...data,
   ]),
 };
 
