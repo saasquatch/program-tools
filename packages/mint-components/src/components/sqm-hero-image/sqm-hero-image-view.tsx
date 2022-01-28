@@ -72,7 +72,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       color: props.textColor || "var(--sl-color-neutral-900)",
       "& .image-area": {
         width: props.imagePercentage ? props.imagePercentage + "%" : "50%",
-        padding: `var(--sl-spacing-${props.paddingImage})`,
+        padding: "var(--sl-spacing-" + props.paddingImage + ")",
         boxSizing: "border-box",
         margin: props.maxHeight ? "auto" : "",
         "@media (max-width: 599px)": {
@@ -83,7 +83,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
         width: props.imagePercentage
           ? 100 - props.imagePercentage + "%"
           : "50%",
-        padding: `var(--sl-spacing-${props.paddingText})`,
+        padding: "var(--sl-spacing-" + props.paddingText + ")",
         alignSelf: "center",
         boxSizing: "border-box",
         "@media (max-width: 599px)": {
@@ -128,6 +128,8 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
   :host{
     display: block;
   }`;
+
+  console.log(props);
 
   return (
     <div class={sheet.classes.Container}>

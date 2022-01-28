@@ -136,9 +136,8 @@ export const ColumnsCustomPercentage = () => {
       description="Be one of the top 3 referrers at the end of the year and receive Klip free for 1 year!"
       layout="columns"
       image-percentage="25%"
-      //   minHeight="125px"
-      maxHeight="150px"
-      maxWidth="100%"
+      max-height="150px"
+      max-width="100%"
       paddingImage="large"
       paddingText="large"
     />
