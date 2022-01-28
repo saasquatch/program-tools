@@ -19,7 +19,7 @@ export class TitledSection {
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    */
-  @Prop() align: "left" | "center" | "right" = "left";
+  @Prop() textAlign: "left" | "center" | "right" = "left";
 
   /**
    * @uiName Label margin style

@@ -19,7 +19,7 @@ const defaultElements = {
           image-url="https://i.imgur.com/KPGnPF8.png"
           max-width="100px"
         ></sqm-image>
-        <sqm-titled-section label-margin="xxx-small" align="center">
+        <sqm-titled-section label-margin="xxx-small" text-align="center">
           <sqm-text slot="label">
             <h3>View your rank in the leaderboard</h3>
           </sqm-text>
@@ -45,6 +45,19 @@ const defaultElements = {
       </table>
     </slot>
   ),
+};
+
+export const test = () => {
+  return (
+    <sqm-leaderboard
+      usersheading="Referrer"
+      statsheading="Referrals"
+      rank-type="rank"
+      leaderboard-type="topStartedReferrers"
+      rankheading="Rank"
+      show-rank="true"
+    ></sqm-leaderboard>
+  );
 };
 
 export const Empty = () => {

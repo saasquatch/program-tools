@@ -6,7 +6,7 @@ export default {
 
 export const AlignLeft = () => {
   return (
-    <sqm-titled-section align="left">
+    <sqm-titled-section text-align="left">
       <sqm-text slot="label">
         <h3>Earn more rewards</h3>
       </sqm-text>
@@ -23,7 +23,7 @@ export const AlignLeft = () => {
 
 export const AlignCenter = () => {
   return (
-    <sqm-titled-section align="center">
+    <sqm-titled-section text-align="center">
       <sqm-text slot="label">
         <h3>Earn more rewards</h3>
       </sqm-text>
@@ -39,7 +39,7 @@ export const AlignCenter = () => {
 };
 export const AlignRight = () => {
   return (
-    <sqm-titled-section align="right">
+    <sqm-titled-section text-align="right">
       <sqm-text slot="label">
         <h3>Earn more rewards</h3>
       </sqm-text>

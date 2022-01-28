@@ -142,7 +142,7 @@ export function GenericTableView(props: GenericTableViewProps) {
             </tr>
           </thead>
         )}
-        <tbody>
+        {/* <tbody>
           {show === "loading" && elements.loadingElement}
           {show === "empty" && elements.emptyElement}
           {show === "rows" &&
@@ -165,6 +165,35 @@ export function GenericTableView(props: GenericTableViewProps) {
                 ))}
               </tr>
             ))}
+        </tbody> */}
+
+        <tbody>
+          {show === "loading" && elements.loadingElement}
+          {show === "empty" && elements.emptyElement}
+          {show === "rows" &&
+            rows?.map((row, i) => {
+              return (
+                <tr
+                  style={{
+                    borderTop: `${
+                      !data.textOverrides.showLabels && i === 0 ? "none" : ""
+                    }`,
+                  }}
+                  part="table-row"
+                >
+                  {row?.map((cell, j) => {
+                    return (
+                      <td
+                        class={hiddenCols.includes(j) ? "hidden" : ""}
+                        data-label={columns[j].$children$[0].$text$ + ":"}
+                      >
+                        {cell}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
         </tbody>
       </table>
       <div

@@ -15,6 +15,7 @@ export function ReferralCardView(props: ReferralCardViewProps) {
     Container: {
       display: "flex",
       color: "var(--sl-color-neutral-900)",
+      background: "var(--sl-color-neutral-0)",
       "& .left": {
         width: "50%",
         padding: "var(--sl-spacing-" + props.padding + ")",

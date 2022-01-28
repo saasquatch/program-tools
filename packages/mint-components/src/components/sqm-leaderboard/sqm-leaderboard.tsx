@@ -96,7 +96,13 @@ export class Leaderboard {
 
   render() {
     const props = {
-      empty: <EmptySlot />,
+      empty: (
+        <EmptySlot
+          emptyStateImage={this.emptyStateImage}
+          emptyStateHeader={this.emptyStateHeader}
+          emptyStateText={this.emptyStateText}
+        />
+      ),
       loadingstate: <LoadingSlot />,
       usersheading: this.usersheading,
       statsheading: this.statsheading,
@@ -118,20 +124,24 @@ export class Leaderboard {
     );
   }
 }
-
-function EmptySlot() {
+function EmptySlot({
+  emptyStateImage,
+  emptyStateHeader,
+  emptyStateText,
+}: {
+  emptyStateImage: string;
+  emptyStateHeader: string;
+  emptyStateText: string;
+}) {
   return (
     <slot name="empty">
       <sqm-portal-container padding="xxxx-large" gap="medium">
-        <sqm-image
-          image-url={this.emptyStateImage}
-          max-width="100px"
-        ></sqm-image>
-        <sqm-titled-section label-margin="xxx-small" align="center">
+        <sqm-image image-url={emptyStateImage} max-width="100px"></sqm-image>
+        <sqm-titled-section label-margin="xxx-small" text-align="center">
           <sqm-text slot="label">
-            <h3>{this.emptyStateHeader}</h3>
+            <h3>{emptyStateHeader}</h3>
           </sqm-text>
-          <sqm-text slot="content">{this.emptyStateText}</sqm-text>
+          <sqm-text slot="content">{emptyStateText}</sqm-text>
         </sqm-titled-section>
       </sqm-portal-container>
     </slot>
@@ -140,7 +150,7 @@ function EmptySlot() {
 
 function LoadingSlot() {
   return (
-    <slot name="loadingstate">
+    <slot name="loading">
       <table>
         {[...Array(10)].map(() => {
           return (
@@ -166,7 +176,9 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
           usersheading: props.usersheading
             ? props.usersheading
             : "TOP REFERRERS",
-          statsheading: props.statsheading ? props.statsheading : "NEW CUSTOMERS",
+          statsheading: props.statsheading
+            ? props.statsheading
+            : "NEW CUSTOMERS",
         },
       },
       data: {
@@ -180,7 +192,15 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
         ],
       },
       elements: {
-        empty: <EmptySlot />,
+        empty: (
+          <EmptySlot
+            emptyStateImage={"https://i.imgur.com/KPGnPF8.png"}
+            emptyStateHeader={"View your rank in the leaderboard"}
+            emptyStateText={
+              "Be the first to refer a friend and reach the top of the leaderboard"
+            }
+          />
+        ),
         loadingstate: <LoadingSlot />,
       },
     },
