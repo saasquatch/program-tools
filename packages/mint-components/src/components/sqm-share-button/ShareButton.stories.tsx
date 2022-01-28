@@ -50,8 +50,8 @@ export const WithCustomColors = () => {
   const props = {
     medium: "facebook",
     type: "text",
-    backgroundcolor: "red",
-    textcolor: "yellow",
+    backgroundcolor: "var(--sl-color-primary-500)",
+    textcolor: "white",
     iconslot: "prefix",
   } as const;
   return <ShareButtonView {...props}>Facebook</ShareButtonView>;
