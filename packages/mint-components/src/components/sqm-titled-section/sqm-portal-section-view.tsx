@@ -7,7 +7,7 @@ export interface PortalSectionProps {
   padding: Spacing;
   label: VNode;
   content: VNode;
-  align?: "left" | "center" | "right";
+  textAlign?: "left" | "center" | "right";
 }
 
 export function PortalSectionView(props: PortalSectionProps) {
@@ -19,7 +19,7 @@ export function PortalSectionView(props: PortalSectionProps) {
           : `var(--sl-spacing-${props.labelMargin})`,
     },
     SectionContainer: {
-      textAlign: props.align || "left",
+      textAlign: props.textAlign || "left",
       padding:
         props.padding === "none" ? "0" : `var(--sl-spacing-${props.padding})`,
     },

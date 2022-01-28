@@ -232,9 +232,9 @@ export namespace Components {
         "imageMobilePos": "top" | "bottom";
         /**
           * @uiName Image Percentage
-          * @uiWidget color
+          * @uiType string
          */
-        "imagePercentage"?: number;
+        "imagePercentage": number;
         /**
           * @uiName Image Position
           * @uiType string
@@ -1765,12 +1765,6 @@ export namespace Components {
         "unit": string;
     }
     interface SqmTitledSection {
-        /**
-          * @uiName Text Align
-          * @uiType string
-          * @uiEnum ["left", "center", "right"]
-         */
-        "align": "left" | "center" | "right";
         "label": string;
         /**
           * @uiName Label margin style
@@ -1784,6 +1778,12 @@ export namespace Components {
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "padding": Spacing;
+        /**
+          * @uiName Text Align
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+         */
+        "textAlign": "left" | "center" | "right";
     }
     interface SqmUserName {
         /**
@@ -2535,7 +2535,7 @@ declare namespace LocalJSX {
         "imageMobilePos"?: "top" | "bottom";
         /**
           * @uiName Image Percentage
-          * @uiWidget color
+          * @uiType string
          */
         "imagePercentage"?: number;
         /**
@@ -4050,12 +4050,6 @@ declare namespace LocalJSX {
         "unit"?: string;
     }
     interface SqmTitledSection {
-        /**
-          * @uiName Text Align
-          * @uiType string
-          * @uiEnum ["left", "center", "right"]
-         */
-        "align"?: "left" | "center" | "right";
         "label"?: string;
         /**
           * @uiName Label margin style
@@ -4069,6 +4063,12 @@ declare namespace LocalJSX {
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "padding"?: Spacing;
+        /**
+          * @uiName Text Align
+          * @uiType string
+          * @uiEnum ["left", "center", "right"]
+         */
+        "textAlign"?: "left" | "center" | "right";
     }
     interface SqmUserName {
         /**

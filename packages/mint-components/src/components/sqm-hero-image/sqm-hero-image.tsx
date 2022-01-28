@@ -64,9 +64,9 @@ export class HeroImage {
 
   /**
    * @uiName Image Percentage
-   * @uiWidget color
+   * @uiType string
    */
-  @Prop() imagePercentage?: number;
+  @Prop() imagePercentage: number = 50;
 
   /**
    * @uiName Image Position

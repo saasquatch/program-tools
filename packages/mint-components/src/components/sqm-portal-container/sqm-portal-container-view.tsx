@@ -18,7 +18,7 @@ export function PortalContainerView(
   const style = {
     Container: {
       display: props.display || "grid",
-	  flexWrap: "wrap",
+      flexWrap: "wrap",
       "grid-template-columns":
         props.direction === "row"
           ? `repeat(auto-fill, minmax(${props.minWidth}, auto))`
@@ -28,6 +28,8 @@ export function PortalContainerView(
       padding:
         props.padding === "none" ? "0" : `var(--sl-spacing-${props.padding})`,
       maxWidth: props.maxWidth ? props.maxWidth : "",
+      background: "var(--sqm-portal-background)",
+      margin: "auto",
     },
   };
 
