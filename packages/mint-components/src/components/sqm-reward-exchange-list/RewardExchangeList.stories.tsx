@@ -14,6 +14,7 @@ const StoryBase = (props: RewardExchangeViewProps) => () => {
 };
 
 export const ChooseReward = StoryBase(Data.rewardExchange);
+export const CustomErrorMessage = StoryBase(Data.rewardExchangeCustomErrorMsg);
 export const LongTextRewardExhange = StoryBase(Data.rewardExchangeLongText);
 export const ChooseRewardSelected = StoryBase(Data.rewardExchangeSelected);
 export const ChooseAmount = StoryBase(Data.chooseAmountFixed);
