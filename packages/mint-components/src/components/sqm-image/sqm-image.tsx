@@ -35,6 +35,7 @@ export class Image {
 
   /**
    * @uiName Background Color
+   * @uiWidget color
    */
   @Prop() backgroundColor: string;
 

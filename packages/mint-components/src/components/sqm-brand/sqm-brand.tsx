@@ -29,6 +29,14 @@ export class BrandComponent {
    */
   @Prop() brandFont: string;
 
+  /**
+   * The background color for the portal
+   *
+   * @uiName Background Color
+   * @uiWidget color
+   */
+  @Prop() background: string;
+
   constructor() {
     withHooks(this);
   }
@@ -74,6 +82,7 @@ export class BrandComponent {
             --sl-focus-ring-color-primary: var(--sl-color-primary-100);
             --sl-input-border-color-focus: var(--sl-color-primary-500);
             --sl-color-primary-hue: var(--sl-color-primary-500);
+			--sqm-portal-background: ${this.background};
           }`}</style>
         <slot />
       </Host>
