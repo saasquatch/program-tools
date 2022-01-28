@@ -24,9 +24,11 @@ const sharebutton = (slot) => {
         }
         <sqm-share-code />
       </sqm-text>
-      <sqm-share-button medium="email">Share via email</sqm-share-button>
-      <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
-      <sqm-share-button medium="twitter">Tweet about us</sqm-share-button>
+      <sqm-portal-container gap="x-small">
+        <sqm-share-button medium="email">Share via email</sqm-share-button>
+        <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
+        <sqm-share-button medium="twitter">Tweet about us</sqm-share-button>
+      </sqm-portal-container>
     </sqm-portal-container>
   );
 };

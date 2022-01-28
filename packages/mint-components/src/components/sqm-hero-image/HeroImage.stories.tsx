@@ -129,6 +129,22 @@ export const ColumnsReverse = () => {
   );
 };
 
+export const ColumnsCustomPercentage = () => {
+  return (
+    <sqm-hero-image
+      image-url="https://i.imgur.com/2evfTx7.png"
+      description="Be one of the top 3 referrers at the end of the year and receive Klip free for 1 year!"
+      layout="columns"
+      image-percentage="25%"
+      //   minHeight="125px"
+      maxHeight="150px"
+      maxWidth="100%"
+      paddingImage="large"
+      paddingText="large"
+    />
+  );
+};
+
 export const ColumnsCustom = () => {
   return (
     <sqm-hero-image
