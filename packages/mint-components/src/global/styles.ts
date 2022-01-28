@@ -584,7 +584,7 @@ html {
   --sqm-color-text-error: #e63717;
   --sqm-content-max-width: 700px;
   --sqm-content-background: var(--sl-color-white);
-  --sqm-portal-background: var(--sl-color-gray-50);
+  --sqm-portal-background: transparent;
   --widget-background-color: var(--sl-color-white);
   --sqm-portal-main-width: 900px;
   --sqm-max-width: 1280px;

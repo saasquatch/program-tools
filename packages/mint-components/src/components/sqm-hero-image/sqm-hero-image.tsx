@@ -24,6 +24,7 @@ export class HeroImage {
 
   /**
    * @uiName Overlay Color
+   * @uiWidget color
    */
   @Prop() overlayColor: string = "var(--sl-color-primary-900)";
 
@@ -34,11 +35,13 @@ export class HeroImage {
 
   /**
    * @uiName Text Color
+   * @uiWidget color
    */
   @Prop() textColor?: string;
 
   /**
    * @uiName Background Color
+   * @uiWidget color
    */
   @Prop() backgroundColor?: string;
 
