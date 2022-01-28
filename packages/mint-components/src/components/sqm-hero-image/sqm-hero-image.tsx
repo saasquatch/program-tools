@@ -20,7 +20,17 @@ export class HeroImage {
   /**
    * @uiName Minimum Image Height
    */
-  @Prop() minHeight: string = "300px";
+  @Prop() minHeight?: string;
+
+  /**
+   * @uiName Maximum Image Height
+   */
+  @Prop() maxHeight?: string;
+
+  /**
+   * @uiName Maximum Image Width
+   */
+  @Prop() maxWidth: string = "100%";
 
   /**
    * @uiName Overlay Color
@@ -51,6 +61,12 @@ export class HeroImage {
    * @uiEnum ["overlay", "columns"]
    */
   @Prop() layout: "overlay" | "columns" = "overlay";
+
+  /**
+   * @uiName Image Percentage
+   * @uiWidget color
+   */
+  @Prop() imagePercentage?: number;
 
   /**
    * @uiName Image Position
@@ -92,11 +108,18 @@ export class HeroImage {
   @Prop() buttonNewTab?: boolean = false;
 
   /**
-   * @uiName Padding
+   * @uiName Padding Text
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    */
-  @Prop() padding: Spacing = "xx-large";
+  @Prop() paddingText: Spacing = "xxxx-large";
+
+  /**
+   * @uiName Padding Image
+   * @uiType string
+   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   */
+  @Prop() paddingImage: Spacing = "none";
 
   constructor() {
     withHooks(this);

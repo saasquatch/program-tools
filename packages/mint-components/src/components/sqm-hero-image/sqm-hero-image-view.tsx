@@ -9,13 +9,17 @@ export interface HeroImageViewProps {
   overlayOpacity: string;
   textColor?: string;
   backgroundColor?: string;
+  imagePercentage?: number;
   minHeight?: string;
+  maxHeight?: string;
+  maxWidth?: string;
   header?: string;
   description?: string;
   buttonText?: string;
   buttonLink?: string;
   buttonNewTab?: boolean;
-  padding: Spacing;
+  paddingText?: Spacing;
+  paddingImage?: Spacing;
   imagePos: "left" | "center" | "right";
   imageMobilePos: "top" | "bottom";
 }
@@ -39,8 +43,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
     },
     Image: {
       display: "block",
-      maxWidth: "100%",
-      maxHeight: "100%",
+      maxWidth: props.maxWidth || "100%",
       minHeight: props.minHeight || "300px",
       objectFit: "cover",
       margin: "auto",
@@ -56,7 +59,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
     },
     Overlay: {
       zIndex: "1",
-      padding: "var(--sl-spacing-" + props.padding + ")",
+      padding: "var(--sl-spacing-" + props.paddingText + ")",
       textAlign: "center",
       color: props.textColor || "var(--sl-color-neutral-0)",
       lineHeight: "var(--sl-line-height-dense)",
@@ -68,21 +71,24 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       lineHeight: "var(--sl-line-height-dense)",
       color: props.textColor || "var(--sl-color-neutral-900)",
       "& .image-area": {
-        width: "50%",
+        width: props.imagePercentage ? props.imagePercentage + "%" : "50%",
+        padding: `var(--sl-spacing-${props.paddingImage})`,
         boxSizing: "border-box",
+        margin: props.maxHeight ? "auto" : "",
         "@media (max-width: 599px)": {
           width: "100%",
         },
       },
       "& .text-area": {
-        width: "50%",
-        padding: "calc(2*var(--sl-spacing-" + props.padding + "))",
+        width: props.imagePercentage
+          ? 100 - props.imagePercentage + "%"
+          : "50%",
+        padding: `var(--sl-spacing-${props.paddingText})`,
         alignSelf: "center",
         boxSizing: "border-box",
         "@media (max-width: 599px)": {
           width: "100%",
           textAlign: "center",
-          padding: "var(--sl-spacing-" + props.padding + ")",
         },
       },
       "@media (max-width: 599px)": {
@@ -172,7 +178,10 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
             <img
               class={sheet.classes.Image}
               src={props.imageUrl}
-              style={{ minHeight: "100%" }}
+              style={{
+                minHeight: props.minHeight || "100%",
+                maxHeight: props.maxHeight,
+              }}
             ></img>
           </div>
           <div class="text-area">
