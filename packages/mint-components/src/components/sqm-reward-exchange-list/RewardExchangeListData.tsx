@@ -12,7 +12,7 @@ const baseResponse = (
       text: {
         buttonText: "Exchange Rewards",
         notAvailableError:
-          "{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {unavailableReasonCode} }",
+          "{unavailableReasonCode, select, US_TAX {Exceeds tax limit for this year} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {unavailableReasonCode} }",
         chooseRewardTitle: "Rewards",
         chooseAmountTitle: "Select",
         confirmationTitle: "Confirm",
@@ -186,6 +186,40 @@ export const rewardExchange = {
   ...baseResponse(data),
 };
 
+export const rewardExchangeLongText = {
+  ...baseResponse([
+    {
+      ...baseReward,
+      ...notEnoughPoints,
+      ...name(
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ratione a itaque non obcaecati iste, amet repudiandae at consequatur adipisci culpa nam, incidunt exercitationem aliquid."
+      ),
+      ...imageUrl("https://i.imgur.com/dWEdB3p.png"),
+      ...fixedValue(
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ratione a itaque non obcaecati iste, amet repudiandae at consequatur adipisci culpa nam, incidunt exercitationem aliquid."
+      ),
+    },
+    {
+      ...baseReward,
+      ...name(
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ratione a itaque non obcaecati iste, amet repudiandae at consequatur adipisci culpa nam, incidunt exercitationem aliquid."
+      ),
+      ...imageUrl("https://i.imgur.com/y9HSls1.png"),
+      ...fixedValue(
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ratione a itaque non obcaecati iste, amet repudiandae at consequatur adipisci culpa nam, incidunt exercitationem aliquid."
+      ),
+    },
+    {
+      ...baseReward,
+      ...name("Suuuuuuuuper aweeeeesssssoooommme reward!!!!!!"),
+      ...imageUrl("https://i.imgur.com/WkCMVSE.png"),
+      ...fixedValue(
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ratione a itaque non obcaecati iste, amet repudiandae at consequatur adipisci culpa nam, incidunt exercitationem aliquid."
+      ),
+    },
+  ]),
+};
+
 export const rewardExchangeSelected = {
   ...baseResponse(data, "chooseReward", {
     ...baseReward,
@@ -211,13 +245,20 @@ const stepsData = (start, end, inc) => {
   return steps;
 };
 
-const baseStep = (dst, dstUnit, src, srcUnit, available = true) => ({
+const baseStep = (
+  dst,
+  dstUnit,
+  src,
+  srcUnit,
+  available = true,
+  unavailableReason = null
+) => ({
   destinationValue: dst,
   prettyDestinationValue: dstUnit + dst,
   sourceValue: src,
   prettySourceValue: src + " " + srcUnit,
   available: available,
-  unavailableReasonCode: null,
+  unavailableReasonCode: unavailableReason,
 });
 
 export const chooseAmountVariable = {
@@ -248,6 +289,22 @@ export const chooseAmountVariableDisabled = {
       baseStep(40, "$", 80, "Points", false),
       baseStep(50, "$", 100, "Points", false),
       baseStep(60, "$", 120, "Points", false),
+    ],
+  }),
+};
+
+export const chooseAmountVariableUnavailable = {
+  ...baseResponse(data, "chooseAmount", {
+    ...baseReward,
+    ...name("Visa® Prepaid Card USD"),
+    ...imageUrl("https://i.imgur.com/veHErQX.png"),
+    ...variableValue(20, 80, "Points"),
+    steps: [
+      baseStep(20, "$", 40, "Points"),
+      baseStep(30, "$", 60, "Points"),
+      baseStep(40, "$", 80, "Points", false, "US_TAX"),
+      baseStep(50, "$", 100, "Points", false, "US_TAX"),
+      baseStep(60, "$", 120, "Points", false, "US_TAX"),
     ],
   }),
 };

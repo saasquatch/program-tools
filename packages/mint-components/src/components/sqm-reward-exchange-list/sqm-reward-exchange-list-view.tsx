@@ -3,6 +3,7 @@ import { intl } from "../../global/global";
 import { HostBlock } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 import { ShareLinkView } from "../sqm-share-link/sqm-share-link-view";
+import { Orangey } from "../sqm-stencilbook/Themes";
 import { ProgressBar } from "./progressBar";
 import { CheckmarkFilled, ExchangeArrows, Gift } from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
@@ -69,11 +70,16 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       },
 
       "& sl-menu-item::part(checked-icon)": {
-        top: "calc(25% - 0.5em)",
+        top: "8px",
+      },
+
+      "& sl-menu-item::part(base)": {
+        flexDirection: "column",
       },
 
       "& sl-menu-item::part(base):focus": {
         background: "transparent",
+        color: "var(--sl-color-gray-700)",
       },
     },
     ProgressBar: {
@@ -193,16 +199,23 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     },
 
     ChooseAmount: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+
       margin: "var(--sl-spacing-medium) 0",
       "& .wrapper": {
         display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+
         gap: "var(--sl-spacing-xx-large)",
         "@media (max-width: 799px)": {
           flexDirection: "column",
         },
       },
       "& .image": {
-        width: "47%",
+        width: "50%",
         objectFit: "contain",
         maxWidth: "100%",
         height: "250px",
@@ -212,7 +225,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         },
       },
       "& .text": {
-        width: "53%",
+        width: "50%",
         maxWidth: "400px",
         "@media (max-width: 799px)": {
           width: "auto",
@@ -240,13 +253,28 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       "& .space": {
         marginBottom: "var(--sl-spacing-xxx-large)",
       },
+
+      "& sl-menu-item[disabled]::part(label)": {
+        color: "var(--sl-color-neutral-200)",
+      },
+
+      "& sl-menu-item[disabled]": {
+        "& .step-cost": {
+          color: "var(--sl-color-neutral-200)",
+        },
+      },
     },
 
     SelectItem: {
       display: "flex",
       flexDirection: "column",
-      "& .step-cost": {
+      "& > .step-cost": {
         color: "var(--sl-color-neutral-400)",
+        height: "0",
+        marginBottom: "5px",
+      },
+      "& > .step-value": {
+        margin: "0",
       },
     },
 
@@ -400,6 +428,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         </p>
       );
     }
+    console.log("SELECTED ITEM ", states.selectedStep);
+    console.log("CALLBACKS ", callbacks);
     return (
       <sl-select
         style={{ width: "auto" }}
@@ -413,38 +443,49 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           })
         }
       >
-        {item.steps?.map((step) => (
-          <sl-menu-item value={step} disabled={!step.available}>
-            <div class={sheet.classes.SelectItem}>
-              <p style={{ margin: "0" }}>{step.prettyDestinationValue}</p>
+        {item.steps?.map((step) => {
+          console.log(item.steps);
+
+          return (
+            <sl-menu-item
+              value={step.prettyDestinationValue}
+              disabled={!step.available}
+            >
+              {step.prettyDestinationValue} <br />
+              {/* <div class={sheet.classes.SelectItem}>
+              <p class="step-value">{step.prettyDestinationValue}</p>
               <div class="step-cost" slot="suffix">
                 {step.prettySourceValue}
               </div>
-            </div>
-            {step.unavailableReasonCode && (
-              <p
-                style={{
-                  fontSize: "var(--sl-font-size-small)",
-                  color: "var(--sl-color-warning-500)",
-                  margin: "0",
-                }}
-              >
-                {intl.formatMessage(
-                  {
-                    id: "unavailableCode",
-                    defaultMessage: states.content?.text?.notAvailableError,
-                  },
-                  {
-                    unavailableReasonCode: step.unavailableReasonCode,
-                    sourceUnit: item.sourceUnit,
-                    sourceValue:
-                      step.prettySourceValue || item.prettySourceMinValue,
-                  }
-                )}
-              </p>
-            )}
-          </sl-menu-item>
-        ))}
+            </div> */}
+              {step.unavailableReasonCode && (
+                <p
+                  style={{
+                    fontSize: "var(--sl-font-size-small)",
+                    color: "var(--sl-color-warning-500)",
+                    margin: "0",
+                  }}
+                >
+                  {intl.formatMessage(
+                    {
+                      id: "unavailableCode",
+                      defaultMessage: states.content?.text?.notAvailableError,
+                    },
+                    {
+                      unavailableReasonCode: step.unavailableReasonCode,
+                      sourceUnit: item.sourceUnit,
+                      sourceValue:
+                        step.prettySourceValue || item.prettySourceMinValue,
+                    }
+                  )}
+                </p>
+              )}
+              <div class="step-cost" slot="suffix">
+                {step.prettySourceValue}
+              </div>
+            </sl-menu-item>
+          );
+        })}
       </sl-select>
     );
   }

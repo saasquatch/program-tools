@@ -4,27 +4,25 @@ import {
   RewardExchangeViewProps,
 } from "./sqm-reward-exchange-list-view";
 import * as Data from "./RewardExchangeListData";
-import { Resizer } from "../sqm-stencilbook/Resizer";
-import { useRef } from "@saasquatch/universal-hooks";
 
 export default {
   title: "Components/Reward Exchange List",
 };
 
 const StoryBase = (props: RewardExchangeViewProps) => () => {
-  return (
-    <RewardExchangeView {...props}></RewardExchangeView>
-    // <Resizer>
-    // </Resizer>
-  );
+  return <RewardExchangeView {...props}></RewardExchangeView>;
 };
 
 export const ChooseReward = StoryBase(Data.rewardExchange);
+export const LongTextRewardExhange = StoryBase(Data.rewardExchangeLongText);
 export const ChooseRewardSelected = StoryBase(Data.rewardExchangeSelected);
 export const ChooseAmount = StoryBase(Data.chooseAmountFixed);
 export const ChooseAmountVariable = StoryBase(Data.chooseAmountVariable);
 export const chooseAmountVariableDisabled = StoryBase(
   Data.chooseAmountVariableDisabled
+);
+export const chooseAmountVariableUnavailable = StoryBase(
+  Data.chooseAmountVariableUnavailable
 );
 export const Confirm = StoryBase(Data.confirmFixed);
 export const ConfirmVariable = StoryBase(Data.confirmVariable);
