@@ -47,7 +47,8 @@ export class RewardsTable {
   @Prop() mdBreakpoint?: number = 899;
 
   /** @uiName Empty State Image Link  */
-  @Prop() emptyStateImgUrl: string = "https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_4_1.png";
+  @Prop() emptyStateImgUrl: string =
+    "https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_4_1.png";
 
   /** @uiName Empty State Title  */
   @Prop() emptyStateTitle: string = "View your rewards";
@@ -144,7 +145,12 @@ function useRewardsTableDemo(props: RewardsTable): GenericTableViewProps {
         ),
         loadingElement: <LoadingSlot />,
         // TODO: This should be smarter
-        columns: [<div>Name</div>, <div>Email</div>, <div>DOB</div>],
+        columns: [
+          <div>Reward</div>,
+          <div>Source</div>,
+          <div>Status</div>,
+          <div>Date recieved</div>,
+        ],
         rows: [],
       },
     },
