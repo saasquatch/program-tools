@@ -119,7 +119,7 @@ export class SqmRewardExchangeList {
   /**
    * @uiName Reward List Error Message
    */
-  @Prop() queryError: string = "Unable to load reward exchange list";
+  @Prop() queryError: string = "Unable to load reward exchange list. Please try again";
 
   /**
    * @uiName Redemption Error Message

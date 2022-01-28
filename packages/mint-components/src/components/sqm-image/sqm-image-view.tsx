@@ -7,6 +7,8 @@ export interface ImageViewProps {
   right?: string;
   align?: "left" | "center" | "right";
   backgroundColor?: string;
+  maxHeight?: string; // helps with constraining minimum size
+  maxWidth?: string; // helps with constraining maximum size
 }
 
 export function ImageView(props: ImageViewProps) {
@@ -18,7 +20,8 @@ export function ImageView(props: ImageViewProps) {
       background: props.backgroundColor || "",
     },
     Image: {
-      maxWidth: "100%",
+      maxWidth: props.maxWidth || "100%",
+      maxHiehgt: props.maxHeight || "100%",
       objectFit: "cover",
       marginLeft: props.left || "0",
       marginRight: props.right || "0",

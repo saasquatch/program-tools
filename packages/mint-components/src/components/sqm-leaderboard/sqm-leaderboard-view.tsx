@@ -1,5 +1,7 @@
 import { VNode } from "@stencil/core";
 import { h } from "@stencil/core";
+import { createStyleSheet } from "../../styling/JSS";
+import { loading } from "../sqm-reward-exchange-list/RewardExchangeListData";
 export interface LeaderboardViewProps {
   states: {
     loading: boolean;
@@ -9,6 +11,7 @@ export interface LeaderboardViewProps {
       statsheading: string;
       rankheading?: string;
       showRank?: boolean;
+      anonymousUser?: string;
     };
   };
   data: {
@@ -35,55 +38,91 @@ export interface LeaderboardViewProps {
   };
 }
 
-function empty(styles) {
-  return (
-    <table>
-      <tr>
-        {styles.showRank && <th class="Rank">{styles.rankheading}</th>}
-        <th class="User">{styles.usersheading}</th>
-        <th class="Score">{styles.statsheading}</th>
-      </tr>
-      <tr>
-        <td colSpan={100}>{styles.emptyStateText}</td>
-      </tr>
-    </table>
-  );
-}
+const style = {
+  Leaderboard: {
+    "& table": {
+      width: "100%",
+      borderCollapse: "collapse",
+    },
+    "& th": {
+      fontSize: "var(--sl-font-size-small)",
+      fontWeight: "var(--sl-font-weight-semibold)",
+      textAlign: "left",
+      padding: "var(--sl-spacing-medium)",
+      paddingTop: "0",
+    },
+    "& tr:not(:first-child)": {
+      borderTop: "1px solid var(--sl-color-neutral-200)",
+    },
+    "& td": {
+      fontSize: "var(--sl-font-size-medium)",
+      fontWeight: "var(--sl-font-weight-normal)",
+    },
+    "& .ellipses": {
+      textAlign: "center",
+      padding: "0",
+      color: "var(--sl-color-neutral-500)",
+    },
+    "& .highlight": {
+      background: "var(--sl-color-primary-50)",
+    },
+    "& td, th": {
+      color: "var(--sl-color-gray-800)",
+      padding: "var(--sl-spacing-medium)",
+    },
+    "& .User": {
+      width: "100%",
+    },
+    "& .Score": {
+      width: "auto",
+      whiteSpace: "nowrap",
+    },
+  },
+};
 
-function loading() {
-  return (
-    <table>
-      {[...Array(10)].map(() => {
-        return (
-          <tr>
-            <td>
-              <sl-skeleton></sl-skeleton>
-            </td>
-          </tr>
-        );
-      })}
-    </table>
-  );
-}
+const sheet = createStyleSheet(style);
+const styleString = sheet.toString();
+
+const vanillaStyle = `
+	:host{
+		display: block;
+	}
+`;
 
 export function LeaderboardView(props: LeaderboardViewProps) {
   const { states, data, elements } = props;
   const { styles } = states;
 
-  if (states.loading) return elements.loadingstate ?? loading();
-  if (!states.hasLeaders)
-    return elements.empty ? elements.empty : empty(styles);
+  if (states.loading)
+    return (
+      <div class={sheet.classes.Leaderboard}>
+        <style type="text/css">
+          {styleString}
+          {vanillaStyle}
+        </style>
+        {elements.loadingstate}
+      </div>
+    );
 
   let userSeenFlag = false;
 
   return (
-    <div>
+    <div class={sheet.classes.Leaderboard}>
+      <style type="text/css">
+        {styleString}
+        {vanillaStyle}
+      </style>
       <table>
         <tr>
           {styles.showRank && <th class="Rank">{styles.rankheading}</th>}
           <th class="User">{styles.usersheading}</th>
           <th class="Score">{styles.statsheading}</th>
         </tr>
+        {!states.hasLeaders && (
+          <tr>
+            <td colSpan={100}>{elements.empty}</td>
+          </tr>
+        )}
         {data.leaderboard?.map((user) => {
           if (user.rowNumber === data.userRank?.rowNumber) userSeenFlag = true;
           return (
@@ -93,7 +132,13 @@ export function LeaderboardView(props: LeaderboardViewProps) {
               }
             >
               {styles.showRank && <td class="Rank">{user.rank}</td>}
-              <td class="User">{`${user.firstName} ${user.lastInitial} `}</td>
+              <td class="User">
+                {user.firstName && user.lastInitial
+                  ? user.firstName + " " + user.lastInitial
+                  : user.firstName || user.lastInitial
+                  ? user.firstName || user.lastInitial
+                  : styles.anonymousUser || "Anonymous User"}
+              </td>
               <td class="Score">{user.value}</td>
             </tr>
           );
@@ -113,9 +158,13 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             {styles.showRank && (
               <td class="Rank">{data.userRank?.rank || "-"}</td>
             )}
-            <td class="User">{`${data.userRank?.firstName || "-"} ${
-              data.userRank?.lastInitial || "-"
-            } `}</td>
+            <td class="User">
+              {data.userRank?.firstName && data.userRank?.lastInitial
+                ? data.userRank?.firstName + " " + data.userRank?.lastInitial
+                : data.userRank?.firstName || data.userRank?.lastInitial
+                ? data.userRank?.firstName || data.userRank?.lastInitial
+                : styles.anonymousUser || "Anonymous User"}
+            </td>
             <td class="Score">{data.userRank?.value || "0"}</td>
           </tr>
         )}
