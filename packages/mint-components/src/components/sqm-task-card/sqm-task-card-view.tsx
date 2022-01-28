@@ -204,10 +204,10 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const { callbacks, states, content } = props;
 
   const dateStart =
-    content.rewardDuration &&
+    content.showExpiry &&
     DateTime.fromISO(content.rewardDuration.split("/")[0]);
   const dateEnd =
-    content.rewardDuration &&
+    content.showExpiry &&
     DateTime.fromISO(content.rewardDuration.split("/")[1]);
   const dateToday = DateTime.now();
 
@@ -234,18 +234,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const taskComplete =
     (showComplete && content.repeatable === false) ||
     (content.finite && states.progress >= content.finite * content.goal);
-  const taskEnded = dateToday > dateEnd;
-  const taskNotStarted = dateToday < dateStart;
+  const taskEnded = content.showExpiry && dateEnd <= dateToday;
+  const taskNotStarted = content.showExpiry && dateToday <= dateStart;
   const taskUnavailable = taskEnded || taskNotStarted;
-
-  console.log("dateToday: " + dateToday);
-  console.log("dateEnd: " + dateEnd);
-  console.log("dateStart: " + dateStart);
-  console.log("taskEnded: " + taskEnded);
-  console.log("taskNotStarted: " + taskNotStarted);
-  console.log("taskUnavailable: " + taskUnavailable);
-
-  if (1 == 1) return <div>hello world!</div>;
 
   const vanillaStyle = `
 	:host{
