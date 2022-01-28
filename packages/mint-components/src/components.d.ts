@@ -231,6 +231,11 @@ export namespace Components {
          */
         "imageMobilePos": "top" | "bottom";
         /**
+          * @uiName Image Percentage
+          * @uiWidget color
+         */
+        "imagePercentage"?: number;
+        /**
           * @uiName Image Position
           * @uiType string
           * @uiEnum ["left", "center", "right"]
@@ -247,9 +252,17 @@ export namespace Components {
          */
         "layout": "overlay" | "columns";
         /**
+          * @uiName Maximum Image Height
+         */
+        "maxHeight"?: string;
+        /**
+          * @uiName Maximum Image Width
+         */
+        "maxWidth": string;
+        /**
           * @uiName Minimum Image Height
          */
-        "minHeight": string;
+        "minHeight"?: string;
         /**
           * @uiName Overlay Color
           * @uiWidget color
@@ -260,11 +273,17 @@ export namespace Components {
          */
         "overlayOpacity": string;
         /**
-          * @uiName Padding
+          * @uiName Padding Image
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
-        "padding": Spacing;
+        "paddingImage": Spacing;
+        /**
+          * @uiName Padding Text
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+         */
+        "paddingText": Spacing;
         /**
           * @uiName Text Color
           * @uiWidget color
@@ -2515,6 +2534,11 @@ declare namespace LocalJSX {
          */
         "imageMobilePos"?: "top" | "bottom";
         /**
+          * @uiName Image Percentage
+          * @uiWidget color
+         */
+        "imagePercentage"?: number;
+        /**
           * @uiName Image Position
           * @uiType string
           * @uiEnum ["left", "center", "right"]
@@ -2531,6 +2555,14 @@ declare namespace LocalJSX {
          */
         "layout"?: "overlay" | "columns";
         /**
+          * @uiName Maximum Image Height
+         */
+        "maxHeight"?: string;
+        /**
+          * @uiName Maximum Image Width
+         */
+        "maxWidth"?: string;
+        /**
           * @uiName Minimum Image Height
          */
         "minHeight"?: string;
@@ -2544,11 +2576,17 @@ declare namespace LocalJSX {
          */
         "overlayOpacity"?: string;
         /**
-          * @uiName Padding
+          * @uiName Padding Image
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
-        "padding"?: Spacing;
+        "paddingImage"?: Spacing;
+        /**
+          * @uiName Padding Text
+          * @uiType string
+          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+         */
+        "paddingText"?: Spacing;
         /**
           * @uiName Text Color
           * @uiWidget color
