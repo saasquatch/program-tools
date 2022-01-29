@@ -194,9 +194,9 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
       elements: {
         empty: (
           <EmptySlot
-            emptyStateImage={props.emptyStateImage}
-            emptyStateHeader={props.emptyStateHeader}
-            emptyStateText={props.emptyStateText}
+            emptyStateImage={""}
+            emptyStateHeader={""}
+            emptyStateText={""}
           />
         ),
         loadingstate: <LoadingSlot />,
