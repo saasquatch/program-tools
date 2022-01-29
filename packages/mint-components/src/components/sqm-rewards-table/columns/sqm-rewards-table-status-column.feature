@@ -39,11 +39,15 @@ Feature: Reward Table Status Column
         And under the pill is <date> in format "Month-Date-Year"
         And the date is localized to the users locale
         Examples:
-            | reward                               | date            |
-            | available reward with an expiry date | expiry date     |
-            | redeemed reward                      | redemption date |
-            | expired reward                       | expired date    |
-            | cancelled reward                     | cancelled date  |
+            | reward                               | date             |
+            | available reward with an expiry date | expiry date      |
+            | redeemed reward                      | redemption date  |
+            | expired reward                       | expired date     |
+            | cancelled reward                     | cancelled date   |
+            | pending reward with a end date       | pending for date |
+
+    @motivating
+    Scenario: A W-9 
 
     @motivating
     Scenario Outline: Statuses can be customized

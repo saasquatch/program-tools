@@ -1367,7 +1367,7 @@ export namespace Components {
     }
     interface SqmRewardsTableRewardColumn {
         /**
-          * @uiName Available Amount Text
+          * @uiName Remaining Amount Text
          */
         "availableText": string;
         /**
@@ -3658,7 +3658,7 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableRewardColumn {
         /**
-          * @uiName Available Amount Text
+          * @uiName Remaining Amount Text
          */
         "availableText"?: string;
         /**

@@ -15,7 +15,7 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
       props: {
         value: 0,
         statvalue: "!!!",
-        loading:false,
+        loading: false,
         flexReverse: false,
         alignment: "center" as const,
       },
@@ -31,6 +31,7 @@ export function useDemoBigStat(props: BigStat): BigStatHook {
     props: deepmerge(
       {
         statvalue: "12345",
+        value: 0,
         flexReverse: false,
         alignment: "center" as const,
       },

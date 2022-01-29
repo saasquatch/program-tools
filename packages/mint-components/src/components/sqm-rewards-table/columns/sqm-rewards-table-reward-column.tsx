@@ -21,9 +21,9 @@ export class RewardsTableColumn implements RewardTableColumn {
   @Prop() redeemedText: string = "{redeemedAmount} redeemed";
 
   /**
-   * @uiName Available Amount Text
+   * @uiName Remaining Amount Text
    */
-  @Prop() availableText: string = "{availableAmount} available";
+  @Prop() availableText: string = "{availableAmount} remaining";
 
   constructor() {
     withHooks(this);

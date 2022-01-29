@@ -106,7 +106,6 @@ Feature: Task Card
 	Scenario: Task Expiries can be configured and disable the CTA after the expiry
 		Given a Task Card
 		And it has an "reward-duration" interval
-		And it is configured to show expiry
 		When a user views the card on <day>
 		Then the card <mayBeDisabled>
 		And it <mayHaveAlert>
