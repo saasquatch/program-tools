@@ -93,6 +93,8 @@ export function LeaderboardView(props: LeaderboardViewProps) {
   const { states, data, elements } = props;
   const { styles } = states;
 
+  console.log("I AM THE LEADERBOARDS", props);
+
   if (states.loading)
     return (
       <div class={sheet.classes.Leaderboard}>
@@ -143,7 +145,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             </tr>
           );
         })}
-        {!userSeenFlag && data.showUser && (
+        {states.hasLeaders && !userSeenFlag && data.showUser && (
           <tr>
             <td colSpan={100} class="ellipses">
               <sl-icon
@@ -153,7 +155,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             </td>
           </tr>
         )}
-        {!userSeenFlag && data.showUser && (
+        {states.hasLeaders && !userSeenFlag && data.showUser && (
           <tr class="highlight">
             {styles.showRank && (
               <td class="Rank">{data.userRank?.rank || "-"}</td>

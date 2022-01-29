@@ -19,6 +19,9 @@ export interface LeaderboardProps {
   empty: VNode;
   loadingstate: VNode;
   demoProps?: LeaderboardViewProps;
+  emptyStateImage: string;
+  emptyStateHeader: string;
+  emptyStateText: string;
 }
 
 const GET_LEADERBOARD = gql`

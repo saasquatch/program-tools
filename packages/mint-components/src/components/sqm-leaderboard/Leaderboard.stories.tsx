@@ -72,6 +72,14 @@ export const Empty = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: [],
+      showUser: true,
+      userRank: {
+        firstName: "Kutay",
+        lastInitial: "C",
+        value: 8,
+        rowNumber: 11,
+        rank: 23,
+      },
     },
     elements: {
       ...defaultElements,
