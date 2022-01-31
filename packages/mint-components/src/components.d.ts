@@ -1448,6 +1448,7 @@ export namespace Components {
     interface SqmShareButton {
         /**
           * @uiName Button background color
+          * @uiWidget color
          */
         "backgroundcolor"?: string;
         /**
@@ -1527,6 +1528,7 @@ export namespace Components {
         "size"?: "small" | "medium" | "large";
         /**
           * @uiName Button text color
+          * @uiWidget color
          */
         "textcolor"?: string;
         /**
@@ -3729,6 +3731,7 @@ declare namespace LocalJSX {
     interface SqmShareButton {
         /**
           * @uiName Button background color
+          * @uiWidget color
          */
         "backgroundcolor"?: string;
         /**
@@ -3808,6 +3811,7 @@ declare namespace LocalJSX {
         "size"?: "small" | "medium" | "large";
         /**
           * @uiName Button text color
+          * @uiWidget color
          */
         "textcolor"?: string;
         /**
