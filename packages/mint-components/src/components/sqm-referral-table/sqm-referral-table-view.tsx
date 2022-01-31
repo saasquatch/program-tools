@@ -22,7 +22,7 @@ export interface ReferralTableViewProps {
     nextPage: () => void;
   };
   elements: {
-    columns: VNode[];
+    columns: string[];
     rows: VNode[][];
     loading?: boolean;
     emptyElement?: VNode;

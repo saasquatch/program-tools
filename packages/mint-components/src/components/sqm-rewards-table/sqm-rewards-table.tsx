@@ -146,10 +146,10 @@ function useRewardsTableDemo(props: RewardsTable): GenericTableViewProps {
         loadingElement: <LoadingSlot />,
         // TODO: This should be smarter
         columns: [
-          <div>Reward</div>,
-          <div>Source</div>,
-          <div>Status</div>,
-          <div>Date recieved</div>,
+          "Reward",
+          "Source",
+          "Status",
+          "Date recieved",
         ],
         rows: [],
       },
