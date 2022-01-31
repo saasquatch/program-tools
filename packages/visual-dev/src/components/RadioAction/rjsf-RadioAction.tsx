@@ -1,6 +1,6 @@
 import { WidgetProps } from "@rjsf/core";
 import React from "react";
-import { isEnumArray, isEnumOption } from "../RadioCard";
+import { isEnumArray, isEnumValue } from "../RadioCard";
 import { RadioAction, RadioActionGroup } from "./RadioAction";
 
 interface enumOption {
@@ -29,10 +29,7 @@ export function RJSFRadioActionWidget(props: WidgetProps) {
   return (
     <RadioActionGroup id={props.id}>
       {cardOptions?.map((option: unknown) => {
-        if (!isActionOption(option)) {
-          return <></>;
-        }
-        if (!isEnumOption(valueOptions[option.key])) {
+        if (!isActionOption(option) || !isEnumValue(valueOptions[option.key])) {
           return <></>;
         }
         return (
