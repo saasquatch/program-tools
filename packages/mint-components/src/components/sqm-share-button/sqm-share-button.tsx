@@ -62,10 +62,12 @@ export class ShareButton {
   @Prop() borderradius?: number;
   /**
    * @uiName Button background color
+   * @uiWidget color
    */
   @Prop() backgroundcolor?: string;
   /**
    * @uiName Button text color
+   * @uiWidget color
    */
   @Prop() textcolor?: string;
   /**
