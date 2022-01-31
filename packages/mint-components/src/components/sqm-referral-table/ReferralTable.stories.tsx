@@ -46,25 +46,23 @@ const emptyElement = (
   <div slot="empty" style={{ display: "contents" }}>
     <sqm-table-row>
       <sqm-table-cell colspan={5} style={{ textAlign: "center" }}>
-        <div style={{ padding: "var(--sl-spacing-xxx-large)" }}>
-          <img
-            src="https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_3_1.png"
-            style={{ width: "100px" }}
-          />
-          <div>
-            <b>View your referral details</b>
-          </div>
-          <div
-            style={{
-              marginTop: "var(--sl-spacing-xx-small)",
-              fontSize: "var(--sl-font-size-small)",
-              color: "var(--sl-color-neutral-500)",
-            }}
-          >
-            Track the status of your referrals and rewards earned by referring
-            friends
-          </div>
-        </div>
+        <sqm-portal-container padding="xxxx-large" gap="medium">
+          <sqm-image
+            image-url={
+              "https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_3_1.png"
+            }
+            max-width="100px"
+          ></sqm-image>
+          <sqm-titled-section label-margin="xxx-small" text-align="center">
+            <sqm-text slot="label">
+              <h3>View your referral details</h3>
+            </sqm-text>
+            <sqm-text slot="content">
+              Track the status of your referrals and rewards earned by referring
+              friends
+            </sqm-text>
+          </sqm-titled-section>
+        </sqm-portal-container>
       </sqm-table-cell>
     </sqm-table-row>
   </div>

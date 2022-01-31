@@ -47,11 +47,11 @@ export class RewardsTable {
   @Prop() mdBreakpoint?: number = 899;
 
   /** @uiName Empty State Image Link  */
-  @Prop() emptyStateImgUrl: string =
+  @Prop() emptyStateImage: string =
     "https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_4_1.png";
 
   /** @uiName Empty State Title  */
-  @Prop() emptyStateTitle: string = "View your rewards";
+  @Prop() emptyStateHeader: string = "View your rewards";
 
   /** @uiName Empty State Text  */
   @Prop() emptyStateText: string =
@@ -72,8 +72,8 @@ export class RewardsTable {
   render() {
     const empty = (
       <EmptySlot
-        emptyStateImgUrl={this.emptyStateImgUrl}
-        emptyStateTitle={this.emptyStateTitle}
+        emptyStateImage={this.emptyStateImage}
+        emptyStateHeader={this.emptyStateHeader}
         emptyStateText={this.emptyStateText}
       />
     );
@@ -138,8 +138,8 @@ function useRewardsTableDemo(props: RewardsTable): GenericTableViewProps {
       elements: {
         emptyElement: (
           <EmptySlot
-            emptyStateImgUrl="https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_4_1.png"
-            emptyStateTitle="View your rewards"
+            emptyStateImage="https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_4_1.png"
+            emptyStateHeader="View your rewards"
             emptyStateText="See all the rewards you have earned from referring friends and completing tasks"
           />
         ),
@@ -160,33 +160,30 @@ function useRewardsTableDemo(props: RewardsTable): GenericTableViewProps {
 }
 
 function EmptySlot({
-  emptyStateImgUrl,
-  emptyStateTitle,
+  emptyStateImage,
+  emptyStateHeader,
   emptyStateText,
 }: {
-  emptyStateImgUrl: string;
-  emptyStateTitle: string;
+  emptyStateImage: string;
+  emptyStateHeader: string;
   emptyStateText: string;
 }) {
   return (
     <div slot="empty" style={{ display: "contents" }}>
       <sqm-table-row>
         <sqm-table-cell colspan={5} style={{ textAlign: "center" }}>
-          <div style={{ padding: "var(--sl-spacing-xxx-large)" }}>
-            <img src={emptyStateImgUrl} style={{ width: "100px" }} />
-            <div>
-              <b>{emptyStateTitle}</b>
-            </div>
-            <div
-              style={{
-                marginTop: "var(--sl-spacing-xx-small)",
-                fontSize: "var(--sl-font-size-small)",
-                color: "var(--sl-color-neutral-500)",
-              }}
-            >
-              {emptyStateText}
-            </div>
-          </div>
+          <sqm-portal-container padding="xxxx-large" gap="medium">
+            <sqm-image
+              image-url={emptyStateImage}
+              max-width="100px"
+            ></sqm-image>
+            <sqm-titled-section label-margin="xxx-small" text-align="center">
+              <sqm-text slot="label">
+                <h3>{emptyStateHeader}</h3>
+              </sqm-text>
+              <sqm-text slot="content">{emptyStateText}</sqm-text>
+            </sqm-titled-section>
+          </sqm-portal-container>
         </sqm-table-cell>
       </sqm-table-row>
     </div>

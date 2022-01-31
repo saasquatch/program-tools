@@ -194,9 +194,11 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
       elements: {
         empty: (
           <EmptySlot
-            emptyStateImage={""}
-            emptyStateHeader={""}
-            emptyStateText={""}
+            emptyStateImage={"https://i.imgur.com/KPGnPF8.png"}
+            emptyStateHeader={"View your rank in the leaderboard"}
+            emptyStateText={
+              "Be the first to refer a friend and reach the top of the leaderboard"
+            }
           />
         ),
         loadingstate: <LoadingSlot />,

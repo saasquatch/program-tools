@@ -1008,17 +1008,17 @@ export namespace Components {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Title
+         */
+        "emptyStateHeader": string;
+        /**
           * @uiName Empty State Image Link
          */
-        "emptyStateImgUrl": string;
+        "emptyStateImage": string;
         /**
           * @uiName Empty State Text
          */
         "emptyStateText": string;
-        /**
-          * @uiName Empty State Title
-         */
-        "emptyStateTitle": string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
@@ -1296,17 +1296,17 @@ export namespace Components {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Title
+         */
+        "emptyStateHeader": string;
+        /**
           * @uiName Empty State Image Link
          */
-        "emptyStateImgUrl": string;
+        "emptyStateImage": string;
         /**
           * @uiName Empty State Text
          */
         "emptyStateText": string;
-        /**
-          * @uiName Empty State Title
-         */
-        "emptyStateTitle": string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
@@ -3311,17 +3311,17 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Title
+         */
+        "emptyStateHeader"?: string;
+        /**
           * @uiName Empty State Image Link
          */
-        "emptyStateImgUrl"?: string;
+        "emptyStateImage"?: string;
         /**
           * @uiName Empty State Text
          */
         "emptyStateText"?: string;
-        /**
-          * @uiName Empty State Title
-         */
-        "emptyStateTitle"?: string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
@@ -3589,17 +3589,17 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
+          * @uiName Empty State Title
+         */
+        "emptyStateHeader"?: string;
+        /**
           * @uiName Empty State Image Link
          */
-        "emptyStateImgUrl"?: string;
+        "emptyStateImage"?: string;
         /**
           * @uiName Empty State Text
          */
         "emptyStateText"?: string;
-        /**
-          * @uiName Empty State Title
-         */
-        "emptyStateTitle"?: string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
