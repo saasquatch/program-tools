@@ -18,9 +18,8 @@ export type TaskCardViewProps = {
     finite: number;
     goal: number;
     completedText: string;
-    showExpiry: boolean;
     expiryMessage: string;
-    rewardDuration: string;
+    rewardDuration?: string;
     displayDuration?: string;
     startsOnMessage: string;
     endedMessage: string;
@@ -204,10 +203,10 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const { callbacks, states, content } = props;
 
   const dateStart =
-    content.showExpiry &&
+    content.rewardDuration &&
     DateTime.fromISO(content.rewardDuration.split("/")[0]);
   const dateEnd =
-    content.showExpiry &&
+    content.rewardDuration &&
     DateTime.fromISO(content.rewardDuration.split("/")[1]);
   const dateToday = DateTime.now();
 
@@ -234,8 +233,8 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
   const taskComplete =
     (showComplete && content.repeatable === false) ||
     (content.finite && states.progress >= content.finite * content.goal);
-  const taskEnded = content.showExpiry && dateEnd <= dateToday;
-  const taskNotStarted = content.showExpiry && dateToday <= dateStart;
+  const taskEnded = content.rewardDuration && dateEnd <= dateToday;
+  const taskNotStarted = content.rewardDuration && dateToday <= dateStart;
   const taskUnavailable = taskEnded || taskNotStarted;
 
   const vanillaStyle = `
@@ -403,7 +402,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                       </span>
                     </div>
                   )}
-                  {content.showExpiry && !taskUnavailable && (
+                  {dateEnd && !taskUnavailable && (
                     <span class="datetime">
                       {intl.formatMessage(
                         {

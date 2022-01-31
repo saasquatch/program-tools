@@ -47,7 +47,6 @@ const oneAction = {
     buttonText: "Take survey",
     buttonLink: "https://example.com/",
     openNewTab: false,
-    showExpiry: false,
     rewardDuration: null,
     completedText:
       "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
@@ -56,7 +55,7 @@ const oneAction = {
     endedMessage: "Ended {endDate}",
     finite: 0,
     goal: 1,
-	locale: "en"
+    locale: "en",
   },
   states: {
     progress: 0,
@@ -82,7 +81,6 @@ const coupleActions = {
     buttonText: "Take survey",
     buttonLink: "https://example.com/",
     openNewTab: false,
-    showExpiry: false,
     completedText:
       "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}",
     rewardDuration: null,
@@ -91,7 +89,7 @@ const coupleActions = {
     endedMessage: "Ended {endDate}",
     finite: 0,
     goal: 5,
-	locale: "en"
+    locale: "en",
   },
   states: {
     progress: 1,
@@ -120,21 +118,19 @@ const manyActions = {
     buttonText: "Take survey",
     buttonLink: "https://example.com/",
     openNewTab: false,
-    showExpiry: false,
     rewardDuration: null,
     expiryMessage: "Ends {endDate}",
     startsOnMessage: "Starts {startDate}",
     endedMessage: "Ended {endDate}",
     finite: 0,
     goal: 500,
-	locale: "en"
+    locale: "en",
   },
   states: { progress: 100, loading: false, loadingEvent: false },
 };
 
 export const TaskCard = () => {
   const expire = {
-    showExpiry: true,
     rewardDuration: "2021-11-30T08:00:00.000Z/2021-12-01T08:00:00.000Z",
   };
   const expireRepeat = { ...expire, repeatable: true };
@@ -439,7 +435,6 @@ export const TaskCardRepeatableFinite = () => {
 
 export const TaskCardEndDate = () => {
   const expire = {
-    showExpiry: true,
     rewardDuration:
       DateTime.now().minus({ days: 1 }).toISO() +
       "/" +
@@ -536,7 +531,6 @@ export const TaskCardLoading = () => {
 
 export const TaskCardNotStarted = () => {
   const expire = {
-    showExpiry: true,
     rewardDuration:
       DateTime.now().plus({ days: 1 }).toISO() +
       "/" +
