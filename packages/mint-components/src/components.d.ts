@@ -1422,6 +1422,9 @@ export namespace Components {
     interface SqmRewardsTableStatusCell {
         "expiryText": string;
         "locale": string;
+        "pendingScheduled": string;
+        "pendingUnhandled": string;
+        "pendingUsTax": string;
         "reward": Reward;
         "statusText": string;
     }
@@ -3709,6 +3712,9 @@ declare namespace LocalJSX {
     interface SqmRewardsTableStatusCell {
         "expiryText"?: string;
         "locale"?: string;
+        "pendingScheduled"?: string;
+        "pendingUnhandled"?: string;
+        "pendingUsTax"?: string;
         "reward"?: Reward;
         "statusText"?: string;
     }

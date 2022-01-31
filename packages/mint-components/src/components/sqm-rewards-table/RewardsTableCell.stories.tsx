@@ -23,6 +23,7 @@ const rewardsData: Reward = {
   prettyAvailableNumber: "19",
   prettyRedeemedNumber: "0",
   statuses: ["AVAILABLE"],
+  pendingReasons: null,
   globalRewardKey: null,
   rewardSource: "MANUAL",
   prettyRedeemedCredit: "0 Points",
@@ -97,7 +98,11 @@ export const RewardsCellSingleRedeemed = () => {
 export const RewardsCellNonCredit = () => {
   return (
     <sqm-rewards-table-reward-cell
-      reward={{ ...rewardsData, type: "FUELTANK", prettyValue: "SaaSquatch Giftcard" }}
+      reward={{
+        ...rewardsData,
+        type: "FUELTANK",
+        prettyValue: "SaaSquatch Giftcard",
+      }}
     ></sqm-rewards-table-reward-cell>
   );
 };
@@ -282,12 +287,49 @@ export const StatusCellExpired = () => {
 const pending = {
   statuses: ["PENDING"],
 };
+const us_tax = {
+  pendingReasons: "US_TAX",
+};
+const scheduled = {
+  pendingReasons: "SCHEDULED",
+  dateScheduledFor: 1640038417468,
+};
+const unhandled = {
+  pendingReasons: "UNHANDLED_ERROR",
+};
 
 export const StatusCellPending = () => {
   return (
     <sqm-rewards-table-status-cell
       statusText="Pending"
       reward={{ ...rewardsData, ...pending }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPendingUsTax = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Pending"
+      reward={{ ...rewardsData, ...pending, ...us_tax }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPendingScheduled = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Pending"
+      reward={{ ...rewardsData, ...pending, ...scheduled }}
+    ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPendingUnhandled = () => {
+  return (
+    <sqm-rewards-table-status-cell
+      statusText="Pending"
+      reward={{ ...rewardsData, ...pending, ...unhandled }}
     ></sqm-rewards-table-status-cell>
   );
 };

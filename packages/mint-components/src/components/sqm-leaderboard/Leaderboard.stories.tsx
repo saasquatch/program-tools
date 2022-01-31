@@ -47,19 +47,6 @@ const defaultElements = {
   ),
 };
 
-export const test = () => {
-  return (
-    <sqm-leaderboard
-      usersheading="Referrer"
-      statsheading="Referrals"
-      rank-type="rank"
-      leaderboard-type="topStartedReferrers"
-      rankheading="Rank"
-      show-rank="true"
-    ></sqm-leaderboard>
-  );
-};
-
 export const Empty = () => {
   const props = {
     states: {

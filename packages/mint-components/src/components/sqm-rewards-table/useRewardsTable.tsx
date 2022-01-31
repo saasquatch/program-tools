@@ -56,6 +56,7 @@ const GET_REWARDS = gql`
             )
             programId
             statuses
+			pendingReasons
             globalRewardKey
             programRewardKey
             rewardSource
