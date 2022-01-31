@@ -345,6 +345,8 @@ export function useReferralTable(
       : // 3 - Then show rows
         "rows";
 
+		console.log("magic" ,content.columns)
+
   return {
     states: {
       hasNext: states.currentPage < states.pageCount - 1,
