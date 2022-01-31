@@ -582,6 +582,7 @@ export const RadioCardForm = () => {
         type: "number",
         title: "Number enum",
         enum: [1, 2, 3],
+        enumNames: ["One", "Two", "Three"],
       },
     },
   };
@@ -615,7 +616,6 @@ export const RadioCardForm = () => {
       },
     },
   };
-
   return (
     <div style={{ margin: "100px" }}>
       <Form
