@@ -42,42 +42,16 @@ export interface ShareButtonViewProps {
 }
 
 const medium = {
-  facebook: "#1877f2",
-  twitter: "#1da1f2",
-  email: "#666666",
-  direct: "#00008B",
-  linkedin: "#0077b5",
-  sms: "#34DA50",
-  fbmessenger: "#0084ff",
-  whatsapp: "#25d366",
-  linemessenger: "#00B300",
-  pinterest: "#e60023",
-};
-
-const medium_text = {
-  facebook: "#fff",
-  twitter: "#fff",
-  email: "#fff",
-  direct: "#fff",
-  linkedin: "#fff",
-  sms: "#fff",
-  fbmessenger: "#fff",
-  whatsapp: "#fff",
-  linemessenger: "#fff",
-  pinterest: "#fff",
-};
-
-const medium_icon = {
-  facebook: "facebook",
-  twitter: "twitter",
-  email: "envelope",
-  direct: "send",
-  linkedin: "linkedin",
-  sms: "chat",
-  fbmessenger: "messenger",
-  whatsapp: "whatsapp",
-  linemessenger: "line",
-  pinterest: "pinterest",
+  facebook: { color: "#1877f2", text: "#fff", icon: "facebook" },
+  twitter: { color: "#1da1f2", text: "#fff", icon: "twitter" },
+  email: { color: "#666666", text: "#fff", icon: "envelope" },
+  direct: { color: "var(--sl-color-primary-500)", text: "#fff", icon: "send" },
+  linkedin: { color: "#0077b5", text: "#fff", icon: "linkedin" },
+  sms: { color: "#34DA50", text: "#fff", icon: "chat" },
+  fbmessenger: { color: "#0084ff", text: "#fff", icon: "messenger" },
+  whatsapp: { color: "#25d366", text: "#fff", icon: "whatsapp" },
+  linemessenger: { color: "#00B300", text: "#fff", icon: "line" },
+  pinterest: { color: "#e60023", text: "#fff", icon: "pinterest" },
 };
 
 export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
@@ -87,7 +61,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
         props.backgroundcolor
           ? props.backgroundcolor
           : props.medium
-          ? medium[props.medium]
+          ? medium[props.medium].color
           : ""
       }80!important;
 
@@ -95,14 +69,14 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
         props.backgroundcolor
           ? props.backgroundcolor
           : props.medium
-          ? medium[props.medium]
+          ? medium[props.medium].color
           : ""
       };
       color: ${
         props.textcolor
           ? props.textcolor
           : props.medium
-          ? medium_text[props.medium]
+          ? medium[props.medium].text
           : ""
       };
       border-radius: ${props.borderradius ? props.borderradius + "px" : ""};
@@ -113,7 +87,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
       props.backgroundcolor
         ? props.backgroundcolor
         : props.medium
-        ? medium[props.medium]
+        ? medium[props.medium].color
         : ""
     }D1!important;
 	}
@@ -123,7 +97,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
       props.backgroundcolor
         ? props.backgroundcolor
         : props.medium
-        ? medium[props.medium]
+        ? medium[props.medium].color
         : ""
     }D1!important;
 	}
@@ -166,7 +140,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
         {!props.hideicon && (
           <sl-icon
             slot={props.iconslot || "prefix"}
-            name={props.icon ? props.icon : medium_icon[props.medium]}
+            name={props.icon ? props.icon : medium[props.medium].icon}
             exportparts="icon"
           ></sl-icon>
         )}
