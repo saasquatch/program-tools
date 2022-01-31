@@ -145,12 +145,7 @@ const simpleUserTableProps = {
   },
 
   elements: {
-    columns: [
-      <div>Name</div>,
-      <div>Email</div>,
-      <div>DOB</div>,
-      <div>Rewards</div>,
-    ],
+    columns: ["Customer", "Status", "Date converted", "Rewards"],
     rows: [
       [
         <sqm-referral-table-user-cell name="Joe Smith"></sqm-referral-table-user-cell>,
@@ -230,15 +225,15 @@ const longCellTextTableProps = {
 
   elements: {
     columns: [
-      <div>Name</div>,
-      <div>Email</div>,
-      <div>DOB</div>,
-      <div>City</div>,
-      <div>State/Province</div>,
-      <div>Country</div>,
-      <div>Referrals</div>,
-      <div>Reward Earnings</div>,
-      <div>Status</div>,
+      "Name",
+      "Email",
+      "DOB",
+      "City",
+      "State/Province",
+      "Country",
+      "Referrals",
+      "Reward Earnings",
+      "Status",
     ],
     rows: [
       [
@@ -319,15 +314,15 @@ const longColumnTextTableProps = {
 
   elements: {
     columns: [
-      <div>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>,
-      <div>Email</div>,
-      <div>DOB</div>,
-      <div>City</div>,
-      <div>State/Province</div>,
-      <div>Country</div>,
-      <div>Referrals</div>,
-      <div>Rewarddddddddddd Earningsssssssssssss</div>,
-      <div>Status</div>,
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "Email",
+      "DOB",
+      "City",
+      "State/Province",
+      "Country",
+      "Referrals",
+      "Rewarddddddddddd Earningsssssssssssss",
+      "Status",
     ],
     rows: [
       [
@@ -408,15 +403,15 @@ const fullUserTableProps = {
 
   elements: {
     columns: [
-      <div>Name</div>,
-      <div>Email</div>,
-      <div>DOB</div>,
-      <div>City</div>,
-      <div>State/Province</div>,
-      <div>Country</div>,
-      <div>Referrals</div>,
-      <div>Reward Earnings</div>,
-      <div>Status</div>,
+      "Name",
+      "Email",
+      "DOB",
+      "City",
+      "State/Province",
+      "Country",
+      "Referrals",
+      "Reward Earnings",
+      "Status",
     ],
     rows: [
       [
@@ -528,7 +523,7 @@ export const EmptyTable = () => {
         elements: {
           emptyElement: emptyElement,
           loadingElement: loadingElement,
-          columns: [<div>Name</div>, <div>Email</div>, <div>DOB</div>],
+          columns: ["Name", "Email", "DOB"],
           rows: [],
         },
       }}
@@ -559,7 +554,7 @@ export const LoadingTable = () => {
         elements: {
           emptyElement: emptyElement,
           loadingElement: loadingElement,
-          columns: [<div>Name</div>, <div>Email</div>, <div>DOB</div>],
+          columns: ["Name", "Email", "DOB"],
           rows: [],
         },
       }}
@@ -591,11 +586,11 @@ export const FullRewardsTable = () => {
           emptyElement: emptyElement,
           loadingElement: loadingElement,
           columns: [
-            <div>User</div>,
-            <div>Rewards</div>,
-            <div>Status</div>,
-            <div>Date Started</div>,
-            <div>Date Converted</div>,
+            "User",
+            "Rewards",
+            "Status",
+            "Date Started",
+            "Date Converted",
           ],
           rows: [
             [
