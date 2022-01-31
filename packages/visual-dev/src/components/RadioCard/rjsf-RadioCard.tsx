@@ -11,7 +11,12 @@ interface enumOption {
   value: any;
 }
 
-export function isEnumOption(option: any): option is enumOption {
+interface enumValue {
+  label: any;
+  value: any;
+}
+
+export function isEnumValue(option: any): option is enumValue {
   return (
     typeof option === "object" &&
     option !== null &&
@@ -44,12 +49,10 @@ export function RJSFRadioCardWidget(props: WidgetProps) {
   return (
     <RadioCardGroup id={props.id}>
       {cardOptions?.map((option: unknown) => {
-        if (!isCardOption(option)) {
+        if (!isCardOption(option) || !isEnumValue(valueOptions[option.key])) {
           return <></>;
         }
-        if (!isEnumOption(valueOptions[option.key])) {
-          return <></>;
-        }
+        console.log(valueOptions[option.key]);
         return (
           <RadioCard
             required={props.required}
