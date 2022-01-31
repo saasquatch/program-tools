@@ -4,8 +4,10 @@ import { IconButton } from "../Button";
 import { Input } from "./Input";
 
 export function RJSFInput(props: WidgetProps) {
+  const options = props.uiSchema["ui:options"];
   return (
     <Input
+      {...options}
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}
       disabled={props.disabled}
@@ -16,8 +18,10 @@ export function RJSFInput(props: WidgetProps) {
 }
 
 export function RJSFNumericalInput(props: WidgetProps) {
+  const options = props.uiSchema["ui:options"];
   return (
     <Input
+      {...options}
       value={props.value}
       type="number"
       onChange={(e: any) => props.onChange(e.target.value)}
@@ -30,8 +34,10 @@ export function RJSFNumericalInput(props: WidgetProps) {
 
 export function RJSFPasswordInput(props: WidgetProps) {
   const [type, setType] = useState("password");
+  const options = props.uiSchema["ui:options"];
   return (
     <Input
+      {...options}
       type={type}
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}
@@ -55,8 +61,10 @@ export function RJSFPasswordInput(props: WidgetProps) {
 
 export function RJSFLockableInput(props: WidgetProps) {
   const [locked, setLocked] = useState(props.disabled);
+  const options = props.uiSchema["ui:options"];
   return (
     <Input
+      {...options}
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}
       disabled={locked}
@@ -78,8 +86,10 @@ export function RJSFLockableInput(props: WidgetProps) {
 }
 
 export function RJSFClearableInput(props: WidgetProps) {
+  const options = props.uiSchema["ui:options"];
   return (
     <Input
+      {...options}
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}
       disabled={props.disabled}
@@ -104,8 +114,10 @@ export function RJSFClearableInput(props: WidgetProps) {
 export function RJSFCancellableInput(props: WidgetProps) {
   const [oldValue, setOldValue] = useState(props.value);
   const [locked, setLocked] = useState(props.disabled);
+  const options = props.uiSchema["ui:options"];
   return (
     <Input
+      {...options}
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}
       disabled={locked}

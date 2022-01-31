@@ -47,7 +47,7 @@ export interface OptionProps {
    */
   customCSS?: CSSProp;
   /**
-   * Limit input with (to default or custom value)
+   * Limit input width (to default or custom value)
    */
   limitWidth?: InputWidthType;
 }

@@ -50,6 +50,36 @@ export const SimpleForm = () => {
   );
 };
 
+export const SimpleFormImpliedProps = () => {
+  const uiSchema = {
+    "ui:widget": (props: WidgetProps) => {
+      return <RJSFInput {...props} />;
+    },
+    "ui:options": {
+      limitWidth: false,
+    },
+  };
+
+  const schema: JSONSchema7 = {
+    type: "string",
+  };
+  return (
+    <div style={{ margin: "100px", resize: "horizontal", overflow: "hidden" }}>
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        onChange={log("changed")}
+        onSubmit={log("submitted")}
+        onError={log("errors")}
+      >
+        <Button buttonType="primary" style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
 export const TextareaForm = () => {
   const uiSchema = {
     "ui:widget": (props: WidgetProps) => {

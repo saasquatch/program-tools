@@ -4,7 +4,7 @@ export const TextareaBoxStyle = css`
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  height: 36px;
+  height: 100%;
   color: var(--sq-text);
   background: var(--sq-surface);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
@@ -52,5 +52,5 @@ export const Container = css`
   display: inline-block;
   width: 100%;
   position: relative;
-  height: 36px;
+  height: 100%;
 `;

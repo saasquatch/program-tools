@@ -24,6 +24,10 @@ export const FullWidth = () => (
   <Textarea value="Textarea Text" limitWidth={false} />
 );
 
+export const CustomHeight = () => (
+  <Textarea value="Textarea Text" height={"300px"} />
+);
+
 export const TextareaDisabled = () => (
   <Textarea value="Textarea Text" disabled />
 );

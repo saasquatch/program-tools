@@ -1,15 +1,15 @@
 import { WidgetProps } from "@rjsf/core";
+import { useSelect } from "downshift";
 import React from "react";
-import { defaultProps } from "react-select/src/Select";
-import { Input } from "./Select";
+import { Select } from "./Select";
 
 export function RJSFSelect(props: WidgetProps) {
-  const itemToString = (item) => (props.enumNames ? item.text : "");
+  if (!props.schema?.enum) {
+    return <></>;
+  }
+  const items = Object.values(props.schema?.enum);
   const functional = useSelect({ items });
-  const props = { items, functional };
-  return (
-    <Select
-      {...props}
-    />
-  );
+  const options = props.uiSchema["ui:options"];
+  const selectProps = { options, items, functional };
+  return <Select {...selectProps} />;
 }

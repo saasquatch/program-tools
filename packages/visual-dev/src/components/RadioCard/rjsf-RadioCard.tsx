@@ -52,7 +52,6 @@ export function RJSFRadioCardWidget(props: WidgetProps) {
         if (!isCardOption(option) || !isEnumValue(valueOptions[option.key])) {
           return <></>;
         }
-        console.log(valueOptions[option.key]);
         return (
           <RadioCard
             required={props.required}

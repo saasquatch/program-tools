@@ -6,7 +6,7 @@ import React from "react";
 type TextareaProps = OptionProps &
   Omit<React.ComponentProps<"textarea">, "value" | "css">;
 
-type TextareaWidthType = boolean | string;
+type TextareaSizeType = boolean | string;
 
 export interface OptionProps {
   /**
@@ -30,9 +30,13 @@ export interface OptionProps {
    */
   customCSS?: CSSProp;
   /**
-   * Limit textarea with (to default or custom value)
+   * Limit textarea width (to default or custom value)
    */
-  limitWidth?: TextareaWidthType;
+  limitWidth?: TextareaSizeType;
+  /**
+   * Limit textarea height (to default or custom value)
+   */
+  height?: string;
 }
 
 const ShadowDom = styled(root.div)`
@@ -48,7 +52,10 @@ const TextareaBox = styled.textarea<{
   ${(props) => props.customCSS}
 `;
 
-const Container = styled.div<{ limitWidth: TextareaWidthType }>`
+const Container = styled.div<{
+  limitWidth: TextareaSizeType;
+  height: string;
+}>`
   ${Styles.Container}
   ${(props) =>
     props.limitWidth
@@ -56,6 +63,7 @@ const Container = styled.div<{ limitWidth: TextareaWidthType }>`
         ? `max-width: ${props.limitWidth};`
         : "max-width: 300px;"
       : "max-width: 100%;"}
+  ${(props) => `height: ${props.height}`}
 `;
 
 export const Textarea = React.forwardRef<
@@ -66,13 +74,13 @@ export const Textarea = React.forwardRef<
     errors: rawErrors,
     customCSS = {},
     limitWidth = true,
+    height = "48px",
     required = false,
     ...rest
   } = props;
-
   return (
     <ShadowDom>
-      <Container limitWidth={limitWidth}>
+      <Container height={height} limitWidth={limitWidth}>
         <TextareaBox
           {...rest}
           ref={forwardedRef}
