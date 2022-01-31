@@ -233,7 +233,7 @@ export namespace Components {
         "imageMobilePos": "top" | "bottom";
         /**
           * @uiName Image Percentage
-          * @uiType string
+          * @uiType number
          */
         "imagePercentage": number;
         /**
@@ -554,6 +554,10 @@ export namespace Components {
         "successMessage": string;
     }
     interface SqmPortalContainer {
+        /**
+          * @uiName Center
+         */
+        "center": boolean;
         /**
           * @uiName Direction
           * @uiType string
@@ -2534,7 +2538,7 @@ declare namespace LocalJSX {
         "imageMobilePos"?: "top" | "bottom";
         /**
           * @uiName Image Percentage
-          * @uiType string
+          * @uiType number
          */
         "imagePercentage"?: number;
         /**
@@ -2855,6 +2859,10 @@ declare namespace LocalJSX {
         "successMessage"?: string;
     }
     interface SqmPortalContainer {
+        /**
+          * @uiName Center
+         */
+        "center"?: boolean;
         /**
           * @uiName Direction
           * @uiType string
