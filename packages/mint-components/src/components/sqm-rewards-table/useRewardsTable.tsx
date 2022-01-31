@@ -9,9 +9,9 @@ import { h, VNode } from "@stencil/core";
 import { gql } from "graphql-request";
 import { useRerenderListener } from "../../tables/re-render";
 import { RewardsTable } from "./sqm-rewards-table";
-import { RewardsTableViewProps } from "./sqm-rewards-table-view";
 import { useChildElements } from "../../tables/useChildElements";
 import { generateUserError } from "../sqm-referral-table/useReferralTable";
+import { GenericTableViewProps } from "../../tables/GenericTableView";
 
 export const CSS_NAMESPACE = "sqm-rewards-table";
 
@@ -107,7 +107,7 @@ export function useRewardsTable(
   props: RewardsTable,
   emptyElement: VNode,
   loadingElement: VNode
-): RewardsTableViewProps {
+): GenericTableViewProps {
   const user = useUserIdentity();
   const programIdContext = useProgramId();
   const locale = useLocale();
@@ -126,8 +126,8 @@ export function useRewardsTable(
   };
 
   const [content, setContent] = useReducer<
-    RewardsTableViewProps["elements"],
-    Partial<RewardsTableViewProps["elements"]>
+    GenericTableViewProps["elements"],
+    Partial<GenericTableViewProps["elements"]>
   >(
     (state, next) => ({
       ...state,
