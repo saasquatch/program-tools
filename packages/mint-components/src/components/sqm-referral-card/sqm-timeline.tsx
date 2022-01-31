@@ -34,6 +34,7 @@ export class Timeline {
       if (rewards.length > 1 && idx != rewards.length - 1) {
         reward.line = true;
       }
+	  reward.line = false;
       reward.icon = this.icon;
     });
 
