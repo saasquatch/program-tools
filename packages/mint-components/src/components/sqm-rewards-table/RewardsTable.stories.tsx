@@ -1,11 +1,19 @@
 import { h } from "@stencil/core";
 import { GenericTableView } from "../../tables/GenericTableView";
-import { AvailableNoExpiry } from "../sqm-referral-table/ReferralTableRewardsCell.stories";
 import {
   DateCell,
+  RewardsCellCreditCancelled,
   RewardsCellCreditFull,
+  RewardsCellCreditPartial,
+  RewardsCellCreditRedeemed,
+  SourceCellDeletedUser,
+  SourceCellManual,
   SourceCellReferral,
+  SourceCellReferred,
   StatusCellAvailable,
+  StatusCellAvailableExpiry,
+  StatusCellCancelled,
+  StatusCellRedeemed,
 } from "./RewardsTableCell.stories";
 
 export default {
@@ -68,6 +76,64 @@ const emptyElement = (
   </div>
 );
 
+const rewardsTablePropsEmpty = {
+  states: {
+    hasPrev: false,
+    hasNext: true,
+    show: "empty" as const,
+    namespace: "sqm-referral-table",
+  },
+  data: {
+    textOverrides: {
+      showLabels: true,
+      prevLabel: "Prev",
+      moreLabel: "Next",
+    },
+    hiddenColumns: "",
+    mdBreakpoint: 899,
+    smBreakpoint: 599,
+  },
+  callbacks: {
+    prevPage: () => console.log("Prev"),
+    nextPage: () => console.log("Next"),
+  },
+
+  elements: {
+    columns: ["Rewards", "Status", "Source", "Date received"],
+    rows: [],
+    emptyElement: emptyElement,
+  },
+};
+
+const rewardsTablePropsLoading = {
+  states: {
+    hasPrev: false,
+    hasNext: true,
+    show: "loading" as const,
+    namespace: "sqm-referral-table",
+  },
+  data: {
+    textOverrides: {
+      showLabels: true,
+      prevLabel: "Prev",
+      moreLabel: "Next",
+    },
+    hiddenColumns: "",
+    mdBreakpoint: 899,
+    smBreakpoint: 599,
+  },
+  callbacks: {
+    prevPage: () => console.log("Prev"),
+    nextPage: () => console.log("Next"),
+  },
+
+  elements: {
+    columns: ["Rewards", "Status", "Source", "Date received"],
+    rows: [],
+    loadingElement: loadingElement,
+  },
+};
+
 const rewardsTableProps = {
   states: {
     hasPrev: false,
@@ -79,7 +145,7 @@ const rewardsTableProps = {
     textOverrides: {
       showLabels: true,
       prevLabel: "Prev",
-      moreLabel: "View More",
+      moreLabel: "Next",
     },
     hiddenColumns: "",
     mdBreakpoint: 899,
@@ -99,10 +165,35 @@ const rewardsTableProps = {
         <SourceCellReferral />,
         <DateCell />,
       ],
+      [
+        <RewardsCellCreditCancelled />,
+        <StatusCellCancelled />,
+        <SourceCellDeletedUser />,
+        <DateCell />,
+      ],
+      [
+        <RewardsCellCreditRedeemed />,
+        <StatusCellRedeemed />,
+        <SourceCellManual />,
+        <DateCell />,
+      ],
+      [
+        <RewardsCellCreditPartial />,
+        <StatusCellAvailableExpiry />,
+        <SourceCellReferred />,
+        <DateCell />,
+      ],
     ],
   },
 };
-
-export const RewardsTable = () => {
+export const RewardsTableFull = () => {
   return <GenericTableView {...rewardsTableProps}></GenericTableView>;
+};
+
+export const RewardsTableEmpty = () => {
+  return <GenericTableView {...rewardsTablePropsEmpty}></GenericTableView>;
+};
+
+export const RewardsTableLoading = () => {
+  return <GenericTableView {...rewardsTablePropsLoading}></GenericTableView>;
 };
