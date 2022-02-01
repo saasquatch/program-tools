@@ -955,7 +955,7 @@ export namespace Components {
         "icon"?: string;
         /**
           * Displayed in place of an icon
-          * @uiName Image URl
+          * @uiName Image Url
          */
         "imageUrl"?: string;
         /**
@@ -3266,7 +3266,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Displayed in place of an icon
-          * @uiName Image URl
+          * @uiName Image Url
          */
         "imageUrl"?: string;
         /**
