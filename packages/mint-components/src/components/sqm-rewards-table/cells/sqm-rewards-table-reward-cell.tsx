@@ -112,7 +112,7 @@ export class RewardTableRewardsCell {
         const style = {
           Progress: {
             height: "3px",
-            width: "150px",
+            maxWidth: "150px",
             margin: "var(--sl-spacing-xx-small) 0",
             background: "var(--sl-color-neutral-200)",
             "&:after": {
@@ -128,8 +128,7 @@ export class RewardTableRewardsCell {
             display: "inline-block",
             verticalAlign: "top",
             maxWidth: "100%",
-            maxHeight: "60px",
-            whiteSpace: "nowrap",
+            whiteSpace: "break",
             overflow: "hidden",
             textOverflow: "ellipsis",
           },

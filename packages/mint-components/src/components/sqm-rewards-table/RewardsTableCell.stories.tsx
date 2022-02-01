@@ -109,6 +109,21 @@ const singleRedeemed = {
   prettyValueNumber: "1",
 };
 
+const longName = {
+  prettyValue:
+    "19 Points with a really really super duper longest name ever in the world wide web",
+  prettyValueNumber: "19",
+};
+
+export const RewardsCellCreditLong = () => {
+  return (
+    <sqm-rewards-table-reward-cell
+      reward={{ ...rewardsData, ...longName }}
+      availableText="19 Points with a really really super duper longest name ever in the world wide web available"
+    ></sqm-rewards-table-reward-cell>
+  );
+};
+
 export const RewardsCellNonCredit = () => {
   return (
     <sqm-rewards-table-reward-cell

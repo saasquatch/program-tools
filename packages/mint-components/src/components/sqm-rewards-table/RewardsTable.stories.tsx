@@ -4,6 +4,7 @@ import {
   DateCell,
   RewardsCellCreditCancelled,
   RewardsCellCreditFull,
+  RewardsCellCreditLong,
   RewardsCellCreditPartial,
   RewardsCellCreditRedeemed,
   SourceCellDeletedUser,
@@ -179,6 +180,12 @@ const rewardsTableProps = {
       ],
       [
         <RewardsCellCreditPartial />,
+        <StatusCellAvailableExpiry />,
+        <SourceCellReferred />,
+        <DateCell />,
+      ],
+      [
+        <RewardsCellCreditLong />,
         <StatusCellAvailableExpiry />,
         <SourceCellReferred />,
         <DateCell />,
