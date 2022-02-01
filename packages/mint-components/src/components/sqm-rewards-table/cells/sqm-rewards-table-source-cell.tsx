@@ -27,7 +27,7 @@ export class RewardTableSourceCell {
             },
             {
               rewardSource: reward.rewardSource,
-              programId: reward?.program?.name,
+              programName: reward?.program?.name,
             }
           )}
         </span>
