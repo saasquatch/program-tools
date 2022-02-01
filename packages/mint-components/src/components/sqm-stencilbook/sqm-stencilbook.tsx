@@ -59,6 +59,7 @@ import * as ReferralCard from "../sqm-referral-card/ReferralCard.stories";
 import * as Timeline from "../sqm-timeline/Timeline.stories";
 import * as Image from "../sqm-image/Image.stories";
 import * as TitledSection from "../sqm-titled-section/TitledSection.stories";
+import * as Scroll from "../sqm-scroll/Scroll.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -124,6 +125,7 @@ const stories = [
   Timeline,
   Image,
   TitledSection,
+  Scroll,
 ];
 
 /**

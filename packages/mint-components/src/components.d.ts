@@ -1451,6 +1451,13 @@ export namespace Components {
     }
     interface SqmRouter {
     }
+    interface SqmScroll {
+        "buttonText": string;
+        "buttonType": string;
+        "scrollAnimation": "smooth" | "auto";
+        "scrollId"?: string;
+        "scrollTagName"?: string;
+    }
     interface SqmShareButton {
         /**
           * @uiName Button background color
@@ -2188,6 +2195,12 @@ declare global {
         prototype: HTMLSqmRouterElement;
         new (): HTMLSqmRouterElement;
     };
+    interface HTMLSqmScrollElement extends Components.SqmScroll, HTMLStencilElement {
+    }
+    var HTMLSqmScrollElement: {
+        prototype: HTMLSqmScrollElement;
+        new (): HTMLSqmScrollElement;
+    };
     interface HTMLSqmShareButtonElement extends Components.SqmShareButton, HTMLStencilElement {
     }
     var HTMLSqmShareButtonElement: {
@@ -2353,6 +2366,7 @@ declare global {
         "sqm-rewards-table-status-column": HTMLSqmRewardsTableStatusColumnElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
+        "sqm-scroll": HTMLSqmScrollElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
         "sqm-share-code": HTMLSqmShareCodeElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
@@ -3771,6 +3785,13 @@ declare namespace LocalJSX {
     }
     interface SqmRouter {
     }
+    interface SqmScroll {
+        "buttonText"?: string;
+        "buttonType"?: string;
+        "scrollAnimation"?: "smooth" | "auto";
+        "scrollId"?: string;
+        "scrollTagName"?: string;
+    }
     interface SqmShareButton {
         /**
           * @uiName Button background color
@@ -4197,6 +4218,7 @@ declare namespace LocalJSX {
         "sqm-rewards-table-status-column": SqmRewardsTableStatusColumn;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
+        "sqm-scroll": SqmScroll;
         "sqm-share-button": SqmShareButton;
         "sqm-share-code": SqmShareCode;
         "sqm-share-link": SqmShareLink;
@@ -4282,6 +4304,7 @@ declare module "@stencil/core" {
             "sqm-rewards-table-status-column": LocalJSX.SqmRewardsTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableStatusColumnElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
+            "sqm-scroll": LocalJSX.SqmScroll & JSXBase.HTMLAttributes<HTMLSqmScrollElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
             "sqm-share-code": LocalJSX.SqmShareCode & JSXBase.HTMLAttributes<HTMLSqmShareCodeElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
