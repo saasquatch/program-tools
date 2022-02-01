@@ -94,7 +94,7 @@ export class TaskCard {
    * @uiWidget DateRange
    * @uiOptions {"allowPastDates":true, "months": 1}
    */
-  @Prop() rewardDuration: string = "/";
+  @Prop() rewardDuration: string;
 
   /**
    * Shown to users before the start of the task duration.
