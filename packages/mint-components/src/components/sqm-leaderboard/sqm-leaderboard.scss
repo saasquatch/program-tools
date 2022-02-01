@@ -1,0 +1,51 @@
+@include HostBlock;
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  font-size: var(--sl-font-size-small);
+  font-weight: var(--sl-font-weight-semibold);
+  text-align: left;
+}
+
+tr:not(:first-child) {
+  border-top: 1px solid var(--sl-color-neutral-200);
+}
+
+td {
+  font-size: var(--sl-font-size-medium);
+  font-weight: var(--sl-font-weight-normal);
+}
+
+.ellipses {
+  text-align: center;
+  padding: 0;
+  color: var(--sl-color-neutral-500);
+}
+
+.highlight {
+  background: var(--sl-color-primary-50);
+}
+
+td,
+th {
+  color: var(--sl-color-gray-800);
+  padding: var(--sl-spacing-medium);
+}
+
+th {
+  padding: var(--sl-spacing-medium);
+  padding-top: 0;
+}
+
+.User {
+  width: 100%;
+}
+
+.Score {
+  width: auto;
+  white-space: nowrap;
+}
