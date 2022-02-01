@@ -29,12 +29,14 @@ export class Leaderboard {
    */
   @Prop() rankheading?: string;
   /**
-   * @uiName Show the ranking numbers
+   * @uiName Show leaderboard rank
    */
   @Prop() showRank: boolean;
 
   /**
-   * @uiName Show viewing user's rank
+   * Shows the current user's leaderboard information even if they are not in the top 10
+   *
+   * @uiName Show viewing user
    */
   @Prop() showUser: boolean = true;
 
@@ -175,10 +177,11 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
         styles: {
           usersheading: props.usersheading
             ? props.usersheading
-            : "TOP REFERRERS",
+            : "Top referrers",
           statsheading: props.statsheading
             ? props.statsheading
-            : "NEW CUSTOMERS",
+            : "New customers",
+          rankheading: props.rankheading ? props.rankheading : "Rank",
         },
       },
       data: {
@@ -187,7 +190,7 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
           { firstName: "Viktor", lastInitial: "V", value: 82, rank: 1 },
           { firstName: "MF", lastInitial: "D", value: 73, rank: 2 },
           { firstName: "Freddie", lastInitial: "G", value: 64, rank: 3 },
-          { firstName: "Benny", lastInitial: "B", value: 55, rank: 4 },
+          { value: 55, rank: 4 },
           { firstName: "Mos", lastInitial: "D", value: 46, rank: 5 },
         ],
       },

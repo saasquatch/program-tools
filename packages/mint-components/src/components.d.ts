@@ -373,11 +373,12 @@ export namespace Components {
          */
         "rankheading"?: string;
         /**
-          * @uiName Show the ranking numbers
+          * @uiName Show leaderboard rank
          */
         "showRank": boolean;
         /**
-          * @uiName Show viewing user's rank
+          * Shows the current user's leaderboard information even if they are not in the top 10
+          * @uiName Show viewing user
          */
         "showUser": boolean;
         /**
@@ -1765,6 +1766,10 @@ export namespace Components {
         "unit": string;
     }
     interface SqmTitledSection {
+        /**
+          * Label for the section unless overwritten via the label slot.
+          * @uiName Label
+         */
         "label": string;
         /**
           * @uiName Label margin style
@@ -2676,11 +2681,12 @@ declare namespace LocalJSX {
          */
         "rankheading"?: string;
         /**
-          * @uiName Show the ranking numbers
+          * @uiName Show leaderboard rank
          */
         "showRank"?: boolean;
         /**
-          * @uiName Show viewing user's rank
+          * Shows the current user's leaderboard information even if they are not in the top 10
+          * @uiName Show viewing user
          */
         "showUser"?: boolean;
         /**
@@ -4050,6 +4056,10 @@ declare namespace LocalJSX {
         "unit"?: string;
     }
     interface SqmTitledSection {
+        /**
+          * Label for the section unless overwritten via the label slot.
+          * @uiName Label
+         */
         "label"?: string;
         /**
           * @uiName Label margin style

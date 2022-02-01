@@ -1,4 +1,5 @@
 import { h } from "@stencil/core";
+import { media, sharebutton } from "../sqm-referral-card/ReferralCard.stories";
 
 export default {
   title: "Components/Titled Section",
@@ -9,13 +10,17 @@ export const AlignLeft = () => {
     <sqm-titled-section text-align="left">
       <sqm-text slot="label">
         <h3>Earn more rewards</h3>
-      </sqm-text>
-      <sqm-text slot="content">
         <p>
           Get points while using Klip. Use those points to redeem rewards like
           one free month of Klip Enterprise or two plane tickets to anywhere in
           North America
         </p>
+      </sqm-text>
+      <sqm-text slot="content">
+        <sqm-referral-card>
+          {media("left")}
+          {sharebutton("right")}
+        </sqm-referral-card>
       </sqm-text>
     </sqm-titled-section>
   );
@@ -26,13 +31,17 @@ export const AlignCenter = () => {
     <sqm-titled-section text-align="center">
       <sqm-text slot="label">
         <h3>Earn more rewards</h3>
-      </sqm-text>
-      <sqm-text slot="content">
         <p>
           Get points while using Klip. Use those points to redeem rewards like
           one free month of Klip Enterprise or two plane tickets to anywhere in
           North America
         </p>
+      </sqm-text>
+      <sqm-text slot="content">
+        <sqm-referral-card>
+          {media("left")}
+          {sharebutton("right")}
+        </sqm-referral-card>
       </sqm-text>
     </sqm-titled-section>
   );
@@ -42,13 +51,17 @@ export const AlignRight = () => {
     <sqm-titled-section text-align="right">
       <sqm-text slot="label">
         <h3>Earn more rewards</h3>
-      </sqm-text>
-      <sqm-text slot="content">
         <p>
           Get points while using Klip. Use those points to redeem rewards like
           one free month of Klip Enterprise or two plane tickets to anywhere in
           North America
         </p>
+      </sqm-text>
+      <sqm-text slot="content">
+        <sqm-referral-card>
+          {media("left")}
+          {sharebutton("right")}
+        </sqm-referral-card>
       </sqm-text>
     </sqm-titled-section>
   );

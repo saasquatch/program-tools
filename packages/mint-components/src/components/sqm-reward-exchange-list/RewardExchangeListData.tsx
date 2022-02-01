@@ -134,7 +134,7 @@ const data = [
   {
     ...baseReward,
     ...name("Free swag with a promo code"),
-    ...imageUrl("https://i.imgur.com/n7vC4BR.png"),
+    ...imageUrl("https://res.cloudinary.com/saasquatch/image/upload/v1643653103/squatch-assets/default_rewards_1.png"),
     ...fixedValue("40 SaaSquatch Points"),
   },
   {

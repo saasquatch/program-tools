@@ -121,7 +121,7 @@ export const AllMediums = () => {
       </sqm-share-button>
       <br />
       <sqm-share-button medium="direct">
-        <span>Direct</span>
+        <span>Share</span>
       </sqm-share-button>
     </div>
   );

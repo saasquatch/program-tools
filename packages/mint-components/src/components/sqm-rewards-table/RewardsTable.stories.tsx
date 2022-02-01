@@ -243,7 +243,7 @@ const test = {
             referralText:
               "{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}",
             rewardSourceText:
-              "{rewardSource, select, MANUAL {Manual} AUTOMATED {Automated} other {}}",
+              "{rewardSource, select, MANUAL {Manual} AUTOMATED {Program} other {}}",
           },
           $key$: null,
           $name$: null,
@@ -482,7 +482,7 @@ const test = {
             referralText:
               "{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}",
             rewardSourceText:
-              "{rewardSource, select, MANUAL {Manual} AUTOMATED {Automated} other {}}",
+              "{rewardSource, select, MANUAL {Manual} AUTOMATED {Program} other {}}",
           },
           $key$: null,
           $name$: null,
@@ -721,7 +721,7 @@ const test = {
             referralText:
               "{rewardSource, select, FRIEND_SIGNUP {Referral to} REFERRED {Referred by} other {}}",
             rewardSourceText:
-              "{rewardSource, select, MANUAL {Manual} AUTOMATED {Automated} other {}}",
+              "{rewardSource, select, MANUAL {Manual} AUTOMATED {Program} other {}}",
           },
           $key$: null,
           $name$: null,

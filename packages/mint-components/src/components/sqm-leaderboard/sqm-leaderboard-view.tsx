@@ -93,8 +93,6 @@ export function LeaderboardView(props: LeaderboardViewProps) {
   const { states, data, elements } = props;
   const { styles } = states;
 
-  console.log("I AM THE LEADERBOARDS", props);
-
   if (states.loading)
     return (
       <div class={sheet.classes.Leaderboard}>
