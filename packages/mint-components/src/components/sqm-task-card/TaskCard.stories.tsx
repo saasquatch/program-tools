@@ -626,7 +626,6 @@ export const TaskCardNotStarted = () => {
 
 export const TaskCardEnded = () => {
   const expire = {
-    showExpiry: true,
     rewardDuration:
       DateTime.now().minus({ days: 2 }).toISO() +
       "/" +

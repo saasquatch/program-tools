@@ -12,8 +12,6 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
  */
 @Component({
   tag: "sqm-leaderboard",
-  styleUrl: "sqm-leaderboard.scss",
-  shadow: true,
 })
 export class Leaderboard {
   /**
@@ -27,7 +25,7 @@ export class Leaderboard {
   /**
    * @uiName Rank Heading
    */
-  @Prop() rankheading: string = "Rank";
+  @Prop() rankheading: string;
   /**
    * @uiName Show leaderboard rank
    */
@@ -38,7 +36,7 @@ export class Leaderboard {
    *
    * @uiName Show viewing user
    */
-  @Prop() showUser: boolean = true;
+  @Prop() showUser: boolean = false;
 
   /**
    * @uiName Rank type
@@ -186,18 +184,47 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
           anonymousUser: props.anonymousUser
             ? props.anonymousUser
             : "Anonymous User",
+          showRank: props.showRank,
         },
       },
       data: {
         rankType: "rowNumber",
         leaderboard: [
-          { firstName: "Viktor", lastInitial: "V", value: 82, rank: 1 },
-          { firstName: "MF", lastInitial: "D", value: 73, rank: 2 },
-          { firstName: "Freddie", lastInitial: "G", value: 64, rank: 3 },
-          { value: 55, rank: 4 },
-          { firstName: "Mos", lastInitial: "D", value: 46, rank: 5 },
+          {
+            firstName: "Viktor",
+            lastInitial: "V",
+            value: 82,
+            rank: 1,
+            rowNumber: 1,
+          },
+          {
+            firstName: "MF",
+            lastInitial: "D",
+            value: 73,
+            rank: 2,
+            rowNumber: 2,
+          },
+          {
+            firstName: "Freddie",
+            lastInitial: "G",
+            value: 64,
+            rank: 3,
+            rowNumber: 3,
+          },
+          {
+            firstName: "Benny",
+            lastInitial: "B",
+            value: 55,
+            rank: 4,
+            rowNumber: 4,
+          },
+          {
+            value: 46,
+            rank: 5,
+            rowNumber: 5,
+          },
         ],
-        showUser: false,
+        showUser: props.showUser,
       },
       elements: {
         empty: (

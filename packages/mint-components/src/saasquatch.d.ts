@@ -56,6 +56,9 @@ interface Reward {
   prettyAssignedCredit?: string;
   prettyAvailableValue?: string;
   programId?: string;
+  program?: {
+    name: string;
+  };
   statuses: string[];
   globalRewardKey?: string;
   rewardSource?:
