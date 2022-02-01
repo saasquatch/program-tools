@@ -108,6 +108,7 @@ export class Leaderboard {
       loadingstate: <LoadingSlot />,
       usersheading: this.usersheading,
       statsheading: this.statsheading,
+      rankheading: this.rankheading,
       rankType: this.rankType,
       leaderboardType: this.leaderboardType,
       anonymousUser: this.anonymousUser,
@@ -182,6 +183,9 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
             ? props.statsheading
             : "New customers",
           rankheading: props.rankheading ? props.rankheading : "Rank",
+          anonymousUser: props.anonymousUser
+            ? props.anonymousUser
+            : "Anonymous User",
         },
       },
       data: {
@@ -193,6 +197,7 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
           { value: 55, rank: 4 },
           { firstName: "Mos", lastInitial: "D", value: 46, rank: 5 },
         ],
+        showUser: false,
       },
       elements: {
         empty: (
