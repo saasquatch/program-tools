@@ -43,3 +43,13 @@ export const ImageBackground = () => {
     />
   );
 };
+
+export const ImageSizeConstrained = () => {
+  return (
+    <sqm-image
+      image-url="https://i.imgur.com/oIiVdMM.jpg"
+      minHeight="192px"
+      maxWidth="192px"
+    />
+  );
+};
