@@ -372,7 +372,7 @@ export namespace Components {
         /**
           * @uiName Rank Heading
          */
-        "rankheading"?: string;
+        "rankheading": string;
         /**
           * @uiName Show the ranking numbers
          */
