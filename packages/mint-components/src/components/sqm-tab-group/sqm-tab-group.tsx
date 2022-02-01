@@ -18,8 +18,8 @@ export class TabGroup {
     return (
       <Host style={{ display: "block" }}>
         <sl-tab-group>
-          <slot name="sqm-nav" slot="nav" />
-          <slot name="sqm-panel" slot="panel" />
+          <slot name="nav" />
+          <slot />
         </sl-tab-group>
       </Host>
     );
