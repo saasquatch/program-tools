@@ -16,7 +16,7 @@ export function ImageView(props: ImageViewProps) {
     Container: {
       display: "flex",
       width: "100%",
-      justifyContent: props.align || "center",
+      justifyContent: props.align || "left",
       background: props.backgroundColor || "",
     },
     Image: {
