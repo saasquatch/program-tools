@@ -105,7 +105,6 @@ Feature: Hero Image
 			| description | "Refer friends or complete tasks while using Klip to earn rewards" |
 			| button-text | "Start earning"                                                    |
 			| layout      | "columns"                                                          |
-		A
 		And prop "image-pos" has <imagePos>
 		And prop "image-mobile-pos" has <imageMobilePos>
 		Then image and content is displayed in a two-column layout
