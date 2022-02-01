@@ -462,6 +462,7 @@ export namespace Components {
          */
         "demoData"?: DemoData<NavigationSidebarItemViewProps>;
         /**
+          * Options available at https://shoelace.style/components/icon
           * @uiName Icon
          */
         "icon": string;
@@ -556,7 +557,7 @@ export namespace Components {
     }
     interface SqmPortalContainer {
         /**
-          * @uiName Center
+          * @uiName Center content
          */
         "center": boolean;
         /**
@@ -950,6 +951,7 @@ export namespace Components {
          */
         "header": string;
         /**
+          * Options available at https://shoelace.style/components/icon
           * @uiName Icon
          */
         "icon"?: string;
@@ -959,7 +961,7 @@ export namespace Components {
          */
         "imageUrl"?: string;
         /**
-          * @uiName Color
+          * @uiName Text Color
           * @uiWidget color
          */
         "textColor": string;
@@ -1451,6 +1453,13 @@ export namespace Components {
     }
     interface SqmRouter {
     }
+    interface SqmScroll {
+        "buttonText": string;
+        "buttonType": string;
+        "scrollAnimation": "smooth" | "auto";
+        "scrollId"?: string;
+        "scrollTagName"?: string;
+    }
     interface SqmShareButton {
         /**
           * @uiName Button background color
@@ -1479,6 +1488,7 @@ export namespace Components {
          */
         "hidetext"?: boolean;
         /**
+          * Options available at https://shoelace.style/components/icon
           * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
          */
         "icon"?: string;
@@ -1703,10 +1713,6 @@ export namespace Components {
           * @uiName Reward Unit
          */
         "rewardUnit": string;
-        /**
-          * @uiName Show Goal Expiry
-         */
-        "showExpiry": boolean;
         /**
           * @uiName Show Progress Bar
          */
@@ -2188,6 +2194,12 @@ declare global {
         prototype: HTMLSqmRouterElement;
         new (): HTMLSqmRouterElement;
     };
+    interface HTMLSqmScrollElement extends Components.SqmScroll, HTMLStencilElement {
+    }
+    var HTMLSqmScrollElement: {
+        prototype: HTMLSqmScrollElement;
+        new (): HTMLSqmScrollElement;
+    };
     interface HTMLSqmShareButtonElement extends Components.SqmShareButton, HTMLStencilElement {
     }
     var HTMLSqmShareButtonElement: {
@@ -2353,6 +2365,7 @@ declare global {
         "sqm-rewards-table-status-column": HTMLSqmRewardsTableStatusColumnElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
+        "sqm-scroll": HTMLSqmScrollElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
         "sqm-share-code": HTMLSqmShareCodeElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
@@ -2800,6 +2813,7 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<NavigationSidebarItemViewProps>;
         /**
+          * Options available at https://shoelace.style/components/icon
           * @uiName Icon
          */
         "icon"?: string;
@@ -2894,7 +2908,7 @@ declare namespace LocalJSX {
     }
     interface SqmPortalContainer {
         /**
-          * @uiName Center
+          * @uiName Center content
          */
         "center"?: boolean;
         /**
@@ -3288,6 +3302,7 @@ declare namespace LocalJSX {
          */
         "header"?: string;
         /**
+          * Options available at https://shoelace.style/components/icon
           * @uiName Icon
          */
         "icon"?: string;
@@ -3297,7 +3312,7 @@ declare namespace LocalJSX {
          */
         "imageUrl"?: string;
         /**
-          * @uiName Color
+          * @uiName Text Color
           * @uiWidget color
          */
         "textColor"?: string;
@@ -3771,6 +3786,13 @@ declare namespace LocalJSX {
     }
     interface SqmRouter {
     }
+    interface SqmScroll {
+        "buttonText"?: string;
+        "buttonType"?: string;
+        "scrollAnimation"?: "smooth" | "auto";
+        "scrollId"?: string;
+        "scrollTagName"?: string;
+    }
     interface SqmShareButton {
         /**
           * @uiName Button background color
@@ -3799,6 +3821,7 @@ declare namespace LocalJSX {
          */
         "hidetext"?: boolean;
         /**
+          * Options available at https://shoelace.style/components/icon
           * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
          */
         "icon"?: string;
@@ -4024,10 +4047,6 @@ declare namespace LocalJSX {
          */
         "rewardUnit"?: string;
         /**
-          * @uiName Show Goal Expiry
-         */
-        "showExpiry"?: boolean;
-        /**
           * @uiName Show Progress Bar
          */
         "showProgressBar"?: boolean;
@@ -4197,6 +4216,7 @@ declare namespace LocalJSX {
         "sqm-rewards-table-status-column": SqmRewardsTableStatusColumn;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
+        "sqm-scroll": SqmScroll;
         "sqm-share-button": SqmShareButton;
         "sqm-share-code": SqmShareCode;
         "sqm-share-link": SqmShareLink;
@@ -4282,6 +4302,7 @@ declare module "@stencil/core" {
             "sqm-rewards-table-status-column": LocalJSX.SqmRewardsTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableStatusColumnElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
+            "sqm-scroll": LocalJSX.SqmScroll & JSXBase.HTMLAttributes<HTMLSqmScrollElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
             "sqm-share-code": LocalJSX.SqmShareCode & JSXBase.HTMLAttributes<HTMLSqmShareCodeElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;

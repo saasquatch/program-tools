@@ -49,7 +49,7 @@ export class PortalContainer {
   @Prop() maxWidth?: string = "100%";
 
   /**
-   * @uiName Center
+   * @uiName Center content
    */
   @Prop() center: boolean;
 

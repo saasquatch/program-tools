@@ -116,20 +116,6 @@ Feature: Task Card
 			| a day during the expiry interval | isn't disabled | doesn't have an alert                                             | has the month, date, year and time the task expires |
 			| a day after the expiry interval  | is disabled    | has alert stating the month, date, year and time the task expired | doesn't have expiry text                            |
 
-	@minutae
-	Scenario Outline: Task expiry can be hidden or shown but is hidden by default
-		Given a Task Card
-		And it is configured with an expiry duration interval
-		And it has <showExpiryPropValue>
-		When a user views the Task card during the interval
-		Then the expiry <mayBe> shown in the bottom left hand corner
-		And it is in form "Month-Date-Year-Time"
-		Examples:
-			| showExpiryPropValue | mayBe |
-			| true                | is    |
-			| false               | isn't |
-			| N/A                 | isn't |
-
 	@motivating
 	Scenario Outline: Task Card dates support localization
 		Given a Task Card

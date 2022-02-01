@@ -85,12 +85,6 @@ export class TaskCard {
   progressBarUnit: string = "";
 
   /**
-   * @uiName Show Goal Expiry
-   */
-  @Prop()
-  showExpiry: boolean = false;
-
-  /**
    * @uiName Expiry Date Message
    */
   @Prop() expiryMessage: string = "Ends {endDate}";

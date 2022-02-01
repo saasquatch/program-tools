@@ -238,6 +238,19 @@ export const SourceCellReferred = () => {
   );
 };
 
+export const SourceCellProgram = () => {
+  return (
+    <sqm-rewards-table-source-cell
+      reward={{
+        ...rewardsData,
+        rewardSource: "AUTOMATED",
+        program: { name: "Stencil Loyalty Program" },
+      }}
+      rewardSourceText="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programId}} other {}}"
+    ></sqm-rewards-table-source-cell>
+  );
+};
+
 export const SourceCellAnonymousUser = () => {
   return (
     <sqm-rewards-table-source-cell

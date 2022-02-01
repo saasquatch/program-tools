@@ -23,6 +23,8 @@ export class NavigationSidebarItem {
    */
   @Prop() path: string;
   /**
+   * Options available at https://shoelace.style/components/icon 
+   * 
    * @uiName Icon
    */
   @Prop() icon: string;
