@@ -227,6 +227,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       "& .text": {
         width: "50%",
         maxWidth: "400px",
+        minWidth: "330px",
         "@media (max-width: 799px)": {
           width: "auto",
           margin: "auto",
