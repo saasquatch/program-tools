@@ -40,7 +40,7 @@ export const RewardsCellCreditFull = () => {
   return (
     <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData }}
-      availableText="19 Points remaining"
+      availableText="19 Points available"
     ></sqm-rewards-table-reward-cell>
   );
 };
@@ -56,7 +56,7 @@ export const RewardsCellCreditPartial = () => {
   return (
     <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, ...partial }}
-      availableText="10 Points remaining"
+      availableText="10 Points available"
     ></sqm-rewards-table-reward-cell>
   );
 };
@@ -72,7 +72,7 @@ export const RewardsCellCreditEmpty = () => {
   return (
     <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, ...empty }}
-      availableText="0 Points remaining"
+      availableText="0 Points available"
     ></sqm-rewards-table-reward-cell>
   );
 };

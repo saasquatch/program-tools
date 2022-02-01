@@ -1607,6 +1607,12 @@ export namespace Components {
     }
     interface SqmStencilbook {
     }
+    interface SqmTab {
+    }
+    interface SqmTabGroup {
+    }
+    interface SqmTabPanel {
+    }
     interface SqmTableCell {
         "colspan": number;
         "padding": string;
@@ -2211,6 +2217,24 @@ declare global {
         prototype: HTMLSqmStencilbookElement;
         new (): HTMLSqmStencilbookElement;
     };
+    interface HTMLSqmTabElement extends Components.SqmTab, HTMLStencilElement {
+    }
+    var HTMLSqmTabElement: {
+        prototype: HTMLSqmTabElement;
+        new (): HTMLSqmTabElement;
+    };
+    interface HTMLSqmTabGroupElement extends Components.SqmTabGroup, HTMLStencilElement {
+    }
+    var HTMLSqmTabGroupElement: {
+        prototype: HTMLSqmTabGroupElement;
+        new (): HTMLSqmTabGroupElement;
+    };
+    interface HTMLSqmTabPanelElement extends Components.SqmTabPanel, HTMLStencilElement {
+    }
+    var HTMLSqmTabPanelElement: {
+        prototype: HTMLSqmTabPanelElement;
+        new (): HTMLSqmTabPanelElement;
+    };
     interface HTMLSqmTableCellElement extends Components.SqmTableCell, HTMLStencilElement {
     }
     var HTMLSqmTableCellElement: {
@@ -2333,6 +2357,9 @@ declare global {
         "sqm-share-link": HTMLSqmShareLinkElement;
         "sqm-stat-container": HTMLSqmStatContainerElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
+        "sqm-tab": HTMLSqmTabElement;
+        "sqm-tab-group": HTMLSqmTabGroupElement;
+        "sqm-tab-panel": HTMLSqmTabPanelElement;
         "sqm-table-cell": HTMLSqmTableCellElement;
         "sqm-table-row": HTMLSqmTableRowElement;
         "sqm-task-card": HTMLSqmTaskCardElement;
@@ -3899,6 +3926,12 @@ declare namespace LocalJSX {
     }
     interface SqmStencilbook {
     }
+    interface SqmTab {
+    }
+    interface SqmTabGroup {
+    }
+    interface SqmTabPanel {
+    }
     interface SqmTableCell {
         "colspan"?: number;
         "padding"?: string;
@@ -4167,6 +4200,9 @@ declare namespace LocalJSX {
         "sqm-share-link": SqmShareLink;
         "sqm-stat-container": SqmStatContainer;
         "sqm-stencilbook": SqmStencilbook;
+        "sqm-tab": SqmTab;
+        "sqm-tab-group": SqmTabGroup;
+        "sqm-tab-panel": SqmTabPanel;
         "sqm-table-cell": SqmTableCell;
         "sqm-table-row": SqmTableRow;
         "sqm-task-card": SqmTaskCard;
@@ -4249,6 +4285,9 @@ declare module "@stencil/core" {
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
             "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
+            "sqm-tab": LocalJSX.SqmTab & JSXBase.HTMLAttributes<HTMLSqmTabElement>;
+            "sqm-tab-group": LocalJSX.SqmTabGroup & JSXBase.HTMLAttributes<HTMLSqmTabGroupElement>;
+            "sqm-tab-panel": LocalJSX.SqmTabPanel & JSXBase.HTMLAttributes<HTMLSqmTabPanelElement>;
             "sqm-table-cell": LocalJSX.SqmTableCell & JSXBase.HTMLAttributes<HTMLSqmTableCellElement>;
             "sqm-table-row": LocalJSX.SqmTableRow & JSXBase.HTMLAttributes<HTMLSqmTableRowElement>;
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
