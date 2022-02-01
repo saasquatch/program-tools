@@ -15,7 +15,6 @@
 - [sqm-image](../sqm-image)
 - [sqm-titled-section](../sqm-titled-section)
 - [sqm-text](../sqm-text)
-- [sqm-leaderboard](../sqm-leaderboard)
 - [sqm-router](../sqm-router)
 - [sqm-hook-story-container](../sqm-hook-story-container)
 - [sqm-navigation-menu](../sqm-navigation-menu)
@@ -23,6 +22,7 @@
 - [sqm-edit-profile](../sqm-edit-profile)
 - [sqm-form-message](../sqm-form-message)
 - [sqm-divided-layout](../sqm-divided-layout)
+- [sqm-leaderboard](../sqm-leaderboard)
 - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
 - [sqm-rewards-table](../sqm-rewards-table)
 - [sqm-rewards-table-reward-column](../sqm-rewards-table/columns)
@@ -59,8 +59,8 @@
 - [sqm-referral-table-rewards-column](../sqm-referral-table/columns)
 - [sqm-hero-image](../sqm-hero-image)
 - [sqm-share-code](../sqm-share-code)
-- [sqm-timeline](../sqm-referral-card)
-- [sqm-timeline-entry](../sqm-referral-card)
+- [sqm-timeline](../sqm-timeline)
+- [sqm-timeline-entry](../sqm-timeline)
 - [sqm-referral-card](../sqm-referral-card)
 
 ### Graph
@@ -72,7 +72,6 @@ graph TD;
   sqm-stencilbook --> sqm-image
   sqm-stencilbook --> sqm-titled-section
   sqm-stencilbook --> sqm-text
-  sqm-stencilbook --> sqm-leaderboard
   sqm-stencilbook --> sqm-router
   sqm-stencilbook --> sqm-hook-story-container
   sqm-stencilbook --> sqm-navigation-menu
@@ -80,6 +79,7 @@ graph TD;
   sqm-stencilbook --> sqm-edit-profile
   sqm-stencilbook --> sqm-form-message
   sqm-stencilbook --> sqm-divided-layout
+  sqm-stencilbook --> sqm-leaderboard
   sqm-stencilbook --> sqm-reward-exchange-list
   sqm-stencilbook --> sqm-rewards-table
   sqm-stencilbook --> sqm-rewards-table-reward-column
@@ -119,13 +119,17 @@ graph TD;
   sqm-stencilbook --> sqm-timeline
   sqm-stencilbook --> sqm-timeline-entry
   sqm-stencilbook --> sqm-referral-card
+  sqm-edit-profile --> sqm-form-message
   sqm-leaderboard --> sqm-portal-container
   sqm-leaderboard --> sqm-image
   sqm-leaderboard --> sqm-titled-section
   sqm-leaderboard --> sqm-text
-  sqm-edit-profile --> sqm-form-message
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
+  sqm-rewards-table --> sqm-portal-container
+  sqm-rewards-table --> sqm-image
+  sqm-rewards-table --> sqm-titled-section
+  sqm-rewards-table --> sqm-text
   sqm-rewards-table-reward-column --> sqm-rewards-table-reward-cell
   sqm-rewards-table-status-column --> sqm-rewards-table-status-cell
   sqm-rewards-table-source-column --> sqm-rewards-table-source-cell
@@ -134,6 +138,10 @@ graph TD;
   sqm-portal-register --> sqm-password-field
   sqm-referral-table --> sqm-table-row
   sqm-referral-table --> sqm-table-cell
+  sqm-referral-table --> sqm-portal-container
+  sqm-referral-table --> sqm-image
+  sqm-referral-table --> sqm-titled-section
+  sqm-referral-table --> sqm-text
   sqm-portal-login --> sqm-form-message
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-change-password --> sqm-password-field

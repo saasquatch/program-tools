@@ -7,12 +7,15 @@
 
 ## Properties
 
-| Property     | Attribute     | Description | Type     | Default     |
-| ------------ | ------------- | ----------- | -------- | ----------- |
-| `expiryText` | `expiry-text` |             | `string` | `undefined` |
-| `locale`     | `locale`      |             | `string` | `"en"`      |
-| `reward`     | --            |             | `Reward` | `undefined` |
-| `statusText` | `status-text` |             | `string` | `undefined` |
+| Property           | Attribute           | Description | Type     | Default               |
+| ------------------ | ------------------- | ----------- | -------- | --------------------- |
+| `expiryText`       | `expiry-text`       |             | `string` | `"Expires"`           |
+| `locale`           | `locale`            |             | `string` | `"en"`                |
+| `pendingScheduled` | `pending-scheduled` |             | `string` | `"Until"`             |
+| `pendingUnhandled` | `pending-unhandled` |             | `string` | `"Fulfillment error"` |
+| `pendingUsTax`     | `pending-us-tax`    |             | `string` | `"W-9 required"`      |
+| `reward`           | --                  |             | `Reward` | `undefined`           |
+| `statusText`       | `status-text`       |             | `string` | `undefined`           |
 
 
 ## Dependencies

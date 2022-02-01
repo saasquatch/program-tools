@@ -7,13 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type      | Default     |
-| -------- | --------- | ----------- | --------- | ----------- |
-| `desc`   | `desc`    |             | `string`  | `undefined` |
-| `icon`   | `icon`    |             | `string`  | `"gift"`    |
-| `line`   | `line`    |             | `boolean` | `undefined` |
-| `reward` | `reward`  |             | `string`  | `undefined` |
-| `unit`   | `unit`    |             | `string`  | `undefined` |
+| Property            | Attribute            | Description | Type                                                                                                                                           | Default   |
+| ------------------- | -------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| `padding`           | `padding`            |             | `"large" \| "medium" \| "none" \| "small" \| "x-large" \| "x-small" \| "xx-large" \| "xx-small" \| "xxx-large" \| "xxx-small" \| "xxxx-large"` | `"large"` |
+| `verticalAlignment` | `vertical-alignment` |             | `"center" \| "end" \| "start"`                                                                                                                 | `"start"` |
 
 
 ## Dependencies
@@ -25,8 +22,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  sqm-stencilbook --> sqm-timeline-entry
-  style sqm-timeline-entry fill:#f9f,stroke:#333,stroke-width:4px
+  sqm-stencilbook --> sqm-referral-card
+  style sqm-referral-card fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
