@@ -106,6 +106,8 @@ export class ShareButton {
    */
   @Prop() iconslot?: "prefix" | "suffix" = "prefix";
   /**
+   * Options available at https://shoelace.style/components/icon 
+   * 
    * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
    */
   @Prop() icon?: string;
