@@ -4,7 +4,7 @@ export default {
   title: "Components/Referral Card",
 };
 
-const media = (slot) => {
+export const media = (slot) => {
   return (
     <sqm-portal-container gap="large" slot={slot}>
       Get rewarded when your friend uses Klip
@@ -13,7 +13,7 @@ const media = (slot) => {
   );
 };
 
-const sharebutton = (slot) => {
+export const sharebutton = (slot) => {
   return (
     <sqm-portal-container gap="large" slot={slot}>
       <sqm-text>Choose how you want to share:</sqm-text>

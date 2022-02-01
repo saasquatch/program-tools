@@ -1,6 +1,5 @@
-@author:
-@owner:
-
+@author:derek
+@owner:kutay
 Feature: Hero Image
 
 	Scenario: Overlay image displays header, description, and button
@@ -8,7 +7,6 @@ Feature: Hero Image
 	Background: A user on the portal is viewing the widget
 
 	Scenario Outline: Overlay image crop can be aligned left, center or right
-
 		Given a Hero Image component configured with the following props
 			| prop        | value                                                              |
 			| image-url   | "https://i.imgur.com/bTwu1Um.png/"                                 |
@@ -20,9 +18,8 @@ Feature: Hero Image
 		Then the image with overlay is displayed
 		When image is shrunk to mobile view
 		Then image is cropped with <value> align to fit content
-
 		Examples:
-			| imagePos |
-			| left     |
-			| center   |
-			| right    |
+			| value  |
+			| left   |
+			| center |
+			| right  |
