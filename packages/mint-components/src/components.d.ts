@@ -557,7 +557,7 @@ export namespace Components {
     }
     interface SqmPortalContainer {
         /**
-          * @uiName Center
+          * @uiName Center content
          */
         "center": boolean;
         /**
@@ -2867,7 +2867,7 @@ declare namespace LocalJSX {
     }
     interface SqmPortalContainer {
         /**
-          * @uiName Center
+          * @uiName Center content
          */
         "center"?: boolean;
         /**

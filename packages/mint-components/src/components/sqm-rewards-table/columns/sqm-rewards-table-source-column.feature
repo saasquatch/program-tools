@@ -22,8 +22,9 @@ Feature: Reward Table Source Column
     @motivating
     Scenario: The source column displays "Automated" if the reward is caused automatically by a program
         Given a user with a "AUTOMATED" program reward
+        And the program has name "Loyalty Program"
         When they view the rewards table
-        Then the source of their reward is displayed as "Automated"
+        Then the source of their reward is displayed as "Loyalty Program"
 
     @motivating
     Scenario Outline: The source column displays customizable reward exchange text with amount if the reward is caused by reward exchange
