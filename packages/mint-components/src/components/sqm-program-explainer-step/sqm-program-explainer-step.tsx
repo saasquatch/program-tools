@@ -29,13 +29,14 @@ export class ProgramExplainerStep {
 
   /**
    * @uiName Background Color
+   * @uiWidget color
    */
   @Prop() backgroundColor: string;
 
   /**
    * Displayed in place of an icon
    * 
-   * @uiName Image URl
+   * @uiName Image Url
    */
   @Prop() imageUrl?: string;
 

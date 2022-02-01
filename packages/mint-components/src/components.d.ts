@@ -938,6 +938,7 @@ export namespace Components {
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background Color
+          * @uiWidget color
          */
         "backgroundColor": string;
         /**
@@ -3248,6 +3249,7 @@ declare namespace LocalJSX {
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background Color
+          * @uiWidget color
          */
         "backgroundColor"?: string;
         /**
