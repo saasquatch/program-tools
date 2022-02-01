@@ -29,8 +29,8 @@ export class ShareButton {
    *
    * @uiName Share Medium
    * @uiType string
-   * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest", "reminder", "unknown" ]
-   * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
+   * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
+   * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
    */
   @Prop() medium:
     | "facebook"
@@ -62,10 +62,12 @@ export class ShareButton {
   @Prop() borderradius?: number;
   /**
    * @uiName Button background color
+   * @uiWidget color
    */
   @Prop() backgroundcolor?: string;
   /**
    * @uiName Button text color
+   * @uiWidget color
    */
   @Prop() textcolor?: string;
   /**

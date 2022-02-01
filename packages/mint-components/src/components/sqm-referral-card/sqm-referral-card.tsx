@@ -16,16 +16,6 @@ export class ReferralCard {
   ignored = true;
 
   /**
-   * @uiName Header Text
-   */
-  @Prop() header: string;
-
-  /**
-   * @uiName Description Text
-   */
-  @Prop() description: string;
-
-  /**
    * @uiName Padding
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
@@ -46,8 +36,8 @@ export class ReferralCard {
 
   render() {
     const slots = {
-      left: <slot name="left"> Hello </slot>,
-      right: <slot name="right"> World </slot>,
+      left: <slot name="left" />,
+      right: <slot name="right" />,
     };
 
     return (

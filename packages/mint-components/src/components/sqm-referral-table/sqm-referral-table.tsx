@@ -86,6 +86,8 @@ export class ReferralTable {
       ? useReferraltableDemo(this)
       : useReferralTable(this, empty, loading);
 
+    console.log("elemente", elements);
+
     return (
       <GenericTableView
         states={states}

@@ -6,6 +6,7 @@ interface PortalContainerViewProps {
   direction: "row" | "column";
   padding: Spacing;
   gap: string;
+  center?: boolean;
   display?: string;
   minWidth?: string;
   maxWidth?: string;
@@ -29,7 +30,7 @@ export function PortalContainerView(
         props.padding === "none" ? "0" : `var(--sl-spacing-${props.padding})`,
       maxWidth: props.maxWidth ? props.maxWidth : "",
       background: "var(--sqm-portal-background)",
-      margin: "auto",
+      margin: props.center && "auto",
     },
   };
 

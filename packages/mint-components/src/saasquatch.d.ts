@@ -77,6 +77,7 @@ interface Reward {
     exchangedRewards: Reward[];
   };
   referral?: Referral;
+  pendingReasons?: string[];
   rewardRedemptionTransactions: {
     data: [
       {

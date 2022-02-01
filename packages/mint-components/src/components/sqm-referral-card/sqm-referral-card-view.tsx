@@ -3,11 +3,12 @@ import { Spacing } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 
 export interface ReferralCardViewProps {
-  header: string;
-  description: string;
   padding: Spacing;
   verticalAlignment: "start" | "center" | "end";
-  slots: { left: VNode; right: VNode };
+  slots: {
+    left: VNode;
+    right: VNode;
+  };
 }
 
 export function ReferralCardView(props: ReferralCardViewProps) {
