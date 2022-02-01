@@ -4,7 +4,7 @@ Feature: Brand Configuration
 
     @motivating
     Scenario: The brand components creates a colour pallet from a brand colour and applies it to children
-        Given a brand component with "brandColor" "#4225c4"
+        Given a brand component with "brand-color" "#4225c4"
         And it is wrapping several mint components
         When a user views the children components
         Then the following css variables are set
@@ -29,9 +29,27 @@ Feature: Brand Configuration
 
     @minutae
     Scenario Outline: The brand colour can be hex, HSL or rgb
+        Given a brand component with "brand-color" <colour>
+        And it is wrapping several mint components
+        When a user views the children components
+        Then the colour is used to create a brand palete
+        And it is applied to the children components
+        Examples:
+            | colour             |
+            | #4225c4            |
+            | rgb(66, 37, 196)   |
+            | hsl(251, 68%, 46%) |
 
     @motivating
     Scenario: The brand component applies a background colour to child
+        Given a brand component with "background" "#ABB8C3"
+        And it is wrapping several mint components
+        When a user views the children components
+        Then the following css variables are set
+            | variable                | value                |
+            | --sqm-portal-background | "Nunito Sans", arial |
+        And they are applied to the children components
+        And children components using "sqm-portal-background" have "#ABB8C3" coloured backgrounds
 
     @motivating
     Scenario: The brand component can apply a brand font to children components

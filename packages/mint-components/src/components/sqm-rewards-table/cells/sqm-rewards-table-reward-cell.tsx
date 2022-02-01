@@ -70,7 +70,8 @@ export class RewardTableRewardsCell {
           : reward.prettyValue ?? "-";
 
       const singleReward =
-        reward.prettyValueNumber === "1" && reward.prettyRedeemedNumber === "1";
+        reward.prettyValueNumber === "1" ||
+        (reward.dateRedeemed && reward.prettyAvailableNumber === "0");
 
       if (reward.type === "CREDIT" && !singleReward) {
         const progress = Math.round(

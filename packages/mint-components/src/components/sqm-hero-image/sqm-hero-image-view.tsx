@@ -89,6 +89,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
         "@media (max-width: 599px)": {
           width: "100%",
           textAlign: "center",
+          padding: "calc(0.5*var(--sl-spacing-" + props.paddingText + "))",
         },
       },
       "@media (max-width: 599px)": {

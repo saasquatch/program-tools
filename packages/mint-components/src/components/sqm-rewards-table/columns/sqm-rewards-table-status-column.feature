@@ -31,23 +31,22 @@ Feature: Reward Table Status Column
             | REDEEMED  | Redeemed  | Blue       |
 
     @motivating
-    Scenario Outline: Reward status related dates are displayed under status pills
+    Scenario Outline: Reward status related information is displayed under status pills
         Given a user
         And they have a <reward>
         When they view the reward table
         Then they see their reward
-        And under the pill is <date> in format "Month-Date-Year"
+        And under the pill is <text>
         And the date is localized to the users locale
         Examples:
-            | reward                               | date             |
-            | available reward with an expiry date | expiry date      |
-            | redeemed reward                      | redemption date  |
-            | expired reward                       | expired date     |
-            | cancelled reward                     | cancelled date   |
-            | pending reward with a end date       | pending for date |
-
-    @motivating
-    Scenario: A W-9 
+            | reward                                 | text                                                  |
+            | available reward with an expiry date   | localized expiry date in format "Month-Day-Year"      |
+            | redeemed reward                        | localized redemption date in format "Month-Day-Year"  |
+            | expired reward                         | localized expired date in format "Month-Day-Year"     |
+            | cancelled reward                       | localized cancelled date in format "Month-Day-Year"   |
+            | pending reward with a end date         | localized pending for date in format "Month-Day-Year" |
+            | pending reward due to W9               | W-9 required                                          |
+            | pending reward due to fufillment error | Fulfillment error                                     |
 
     @motivating
     Scenario Outline: Statuses can be customized

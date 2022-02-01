@@ -36,6 +36,14 @@ const rewardsData: Reward = {
   },
 };
 
+export const RewardsCellCreditSingle = () => {
+  return (
+    <sqm-rewards-table-reward-cell
+      reward={{ ...rewardsData, ...singleRedeemed }}
+    ></sqm-rewards-table-reward-cell>
+  );
+};
+
 export const RewardsCellCreditFull = () => {
   return (
     <sqm-rewards-table-reward-cell
@@ -61,14 +69,33 @@ export const RewardsCellCreditPartial = () => {
   );
 };
 
+export const RewardsCellCreditCancelled = () => {
+  return (
+    <sqm-rewards-table-reward-cell
+      reward={{ ...rewardsData, ...cancelled }}
+      redeemedText="0 Points redeemed"
+    ></sqm-rewards-table-reward-cell>
+  );
+};
+
+export const RewardsCellCreditExpired = () => {
+  return (
+    <sqm-rewards-table-reward-cell
+      reward={{ ...rewardsData, ...partial, ...expired }}
+      redeemedText="9 Points redeemed"
+    ></sqm-rewards-table-reward-cell>
+  );
+};
+
 const empty = {
   prettyAvailableValue: "0 Points",
+  prettyAvailableNumber: "0",
   prettyRedeemedCredit: "19 Points",
   prettyRedeemedNumber: "19",
   dateRedeemed: 1640038417468,
 };
 
-export const RewardsCellCreditEmpty = () => {
+export const RewardsCellCreditRedeemed = () => {
   return (
     <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, ...empty }}
@@ -78,21 +105,8 @@ export const RewardsCellCreditEmpty = () => {
 };
 
 const singleRedeemed = {
-  prettyValue: "1 Points",
+  prettyValue: "1 Point",
   prettyValueNumber: "1",
-  prettyAvailableNumber: "1",
-  prettyAvailableValue: "0 Points",
-  prettyRedeemedCredit: "1 Points",
-  prettyRedeemedNumber: "1",
-  dateRedeemed: 1640038417468,
-};
-
-export const RewardsCellSingleRedeemed = () => {
-  return (
-    <sqm-rewards-table-reward-cell
-      reward={{ ...rewardsData, ...singleRedeemed }}
-    ></sqm-rewards-table-reward-cell>
-  );
 };
 
 export const RewardsCellNonCredit = () => {
@@ -107,11 +121,20 @@ export const RewardsCellNonCredit = () => {
   );
 };
 
-export const SourceCellText = () => {
+export const SourceCellManual = () => {
   return (
     <sqm-rewards-table-source-cell
       reward={rewardsData}
       rewardSourceText="Manual"
+    ></sqm-rewards-table-source-cell>
+  );
+};
+
+export const SourceCellProgram = () => {
+  return (
+    <sqm-rewards-table-source-cell
+      reward={rewardsData}
+      rewardSourceText="Automated"
     ></sqm-rewards-table-source-cell>
   );
 };
@@ -196,6 +219,19 @@ export const SourceCellReferred = () => {
     <sqm-rewards-table-source-cell
       reward={{ ...rewardsData, ...referred(johnDoe) }}
       referralText="Referred by"
+    ></sqm-rewards-table-source-cell>
+  );
+};
+
+export const SourceCellProgram = () => {
+  return (
+    <sqm-rewards-table-source-cell
+      reward={{
+        ...rewardsData,
+        rewardSource: "AUTOMATED",
+        program: { name: "Stencil Loyalty Program" },
+      }}
+      rewardSourceText="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programId}} other {}}"
     ></sqm-rewards-table-source-cell>
   );
 };

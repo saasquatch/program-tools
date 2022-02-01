@@ -462,6 +462,7 @@ export namespace Components {
          */
         "demoData"?: DemoData<NavigationSidebarItemViewProps>;
         /**
+          * Options available at https://shoelace.style/components/icon
           * @uiName Icon
          */
         "icon": string;
@@ -556,7 +557,7 @@ export namespace Components {
     }
     interface SqmPortalContainer {
         /**
-          * @uiName Center
+          * @uiName Center content
          */
         "center": boolean;
         /**
@@ -950,6 +951,7 @@ export namespace Components {
          */
         "header": string;
         /**
+          * Options available at https://shoelace.style/components/icon
           * @uiName Icon
          */
         "icon"?: string;
@@ -959,7 +961,7 @@ export namespace Components {
          */
         "imageUrl"?: string;
         /**
-          * @uiName Color
+          * @uiName Text Color
           * @uiWidget color
          */
         "textColor": string;
@@ -1486,6 +1488,7 @@ export namespace Components {
          */
         "hidetext"?: boolean;
         /**
+          * Options available at https://shoelace.style/components/icon
           * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
          */
         "icon"?: string;
@@ -1710,10 +1713,6 @@ export namespace Components {
           * @uiName Reward Unit
          */
         "rewardUnit": string;
-        /**
-          * @uiName Show Goal Expiry
-         */
-        "showExpiry": boolean;
         /**
           * @uiName Show Progress Bar
          */
@@ -2814,6 +2813,7 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<NavigationSidebarItemViewProps>;
         /**
+          * Options available at https://shoelace.style/components/icon
           * @uiName Icon
          */
         "icon"?: string;
@@ -2908,7 +2908,7 @@ declare namespace LocalJSX {
     }
     interface SqmPortalContainer {
         /**
-          * @uiName Center
+          * @uiName Center content
          */
         "center"?: boolean;
         /**
@@ -3302,6 +3302,7 @@ declare namespace LocalJSX {
          */
         "header"?: string;
         /**
+          * Options available at https://shoelace.style/components/icon
           * @uiName Icon
          */
         "icon"?: string;
@@ -3311,7 +3312,7 @@ declare namespace LocalJSX {
          */
         "imageUrl"?: string;
         /**
-          * @uiName Color
+          * @uiName Text Color
           * @uiWidget color
          */
         "textColor"?: string;
@@ -3820,6 +3821,7 @@ declare namespace LocalJSX {
          */
         "hidetext"?: boolean;
         /**
+          * Options available at https://shoelace.style/components/icon
           * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
          */
         "icon"?: string;
@@ -4044,10 +4046,6 @@ declare namespace LocalJSX {
           * @uiName Reward Unit
          */
         "rewardUnit"?: string;
-        /**
-          * @uiName Show Goal Expiry
-         */
-        "showExpiry"?: boolean;
         /**
           * @uiName Show Progress Bar
          */

@@ -22,7 +22,7 @@ export class ProgramExplainerStep {
   @Prop() description: string;
 
   /**
-   * @uiName Color
+   * @uiName Text Color
    * @uiWidget color
    */
   @Prop() textColor: string;
@@ -41,6 +41,8 @@ export class ProgramExplainerStep {
   @Prop() imageUrl?: string;
 
   /**
+   * Options available at https://shoelace.style/components/icon 
+   * 
    * @uiName Icon
    */
   @Prop() icon?: string;

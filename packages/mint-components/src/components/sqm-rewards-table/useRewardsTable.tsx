@@ -56,6 +56,9 @@ const GET_REWARDS = gql`
               locale: $locale
             )
             programId
+            program {
+              name
+            }
             statuses
             pendingReasons
             globalRewardKey

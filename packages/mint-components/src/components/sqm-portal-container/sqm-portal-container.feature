@@ -1,3 +1,5 @@
+@author:kutay
+@owner:noah
 Feature: Portal Container
 
 
@@ -15,9 +17,9 @@ Feature: Portal Container
 	Scenario: `max-width` is required for displaying as a row
 		Given I have `direction` to "row"
 		And I have not set a `max-width`
-		Then it will display as a column
+		Then it displays as a column
 
 	@minutae
 	Scenario: Content can be center aligned in horizontal view
 		Given I have supplied the prop "center"
-		Then it will be displayed as center aligned
+		Then the content is center aligned
