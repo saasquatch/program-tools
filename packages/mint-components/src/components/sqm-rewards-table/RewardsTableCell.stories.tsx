@@ -148,8 +148,12 @@ export const SourceCellManual = () => {
 export const SourceCellProgram = () => {
   return (
     <sqm-rewards-table-source-cell
-      reward={rewardsData}
-      rewardSourceText="Automated"
+      reward={{
+        ...rewardsData,
+        rewardSource: "AUTOMATED",
+        program: { name: "Klip Loyalty" },
+      }}
+      rewardSourceText="{rewardSource, select, MANUAL {Manual} AUTOMATED {{programName}} other {}}"
     ></sqm-rewards-table-source-cell>
   );
 };

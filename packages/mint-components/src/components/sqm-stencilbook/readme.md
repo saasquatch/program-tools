@@ -62,6 +62,7 @@
 - [sqm-timeline](../sqm-timeline)
 - [sqm-timeline-entry](../sqm-timeline)
 - [sqm-referral-card](../sqm-referral-card)
+- [sqm-scroll](../sqm-scroll)
 
 ### Graph
 ```mermaid
@@ -119,6 +120,7 @@ graph TD;
   sqm-stencilbook --> sqm-timeline
   sqm-stencilbook --> sqm-timeline-entry
   sqm-stencilbook --> sqm-referral-card
+  sqm-stencilbook --> sqm-scroll
   sqm-edit-profile --> sqm-form-message
   sqm-leaderboard --> sqm-portal-container
   sqm-leaderboard --> sqm-image

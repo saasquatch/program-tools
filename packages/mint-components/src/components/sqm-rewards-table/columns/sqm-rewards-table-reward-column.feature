@@ -66,6 +66,20 @@ Feature: Reward Table reward Column
         But they do not see the availablity bar
 
     @motivating
+    Scenario Outline: The reward column doesn't display the availability bar if the reward is only 1 reward unit
+        Given a user with a credit reward for 1 of a reward unit
+        And it has <status>
+        When they view the rewards table
+        Then they see the name of the reward
+        But they do not see the availablity bar
+        Examples:
+            | status    |
+            | AVAILABLE |
+            | PENDING   |
+            | EXPIRED   |
+            | CANCELLED |
+
+    @motivating
     Scenario: The reward column doesn't display the availability bar for redeemed credit rewards
         Given a user with a "REDEEMED" credit reward
         When they view the rewards table
