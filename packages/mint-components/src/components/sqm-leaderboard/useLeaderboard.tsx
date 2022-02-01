@@ -11,6 +11,7 @@ export interface LeaderboardProps {
   usersheading: string;
   statsheading: string;
   rankheading?: string;
+  anonymousUser?: string;
   showRank?: boolean;
   showUser?: boolean;
   rankType: "rowNumber" | "rank" | "denseRank";

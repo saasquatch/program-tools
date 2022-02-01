@@ -43,7 +43,7 @@ export class RewardTableUserColumn implements RewardTableColumn {
    * @uiName Reward Source Text
    */
   @Prop() rewardSourceText: string =
-    "{rewardSource, select, MANUAL {Manual} AUTOMATED {Automated} other {}}";
+    "{rewardSource, select, MANUAL {Manual} AUTOMATED {Program} other {}}";
 
   constructor() {
     withHooks(this);

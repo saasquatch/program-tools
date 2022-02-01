@@ -563,7 +563,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                           }
                           src={
                             item?.imageUrl ||
-                            getAssetPath("./assets/placeholder.png")
+                            getAssetPath("./assets/Reward-image.png")
                           }
                         />
                       </div>
@@ -665,7 +665,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               class="image"
               src={
                 selectedItem?.imageUrl ||
-                getAssetPath("./assets/placeholder.png")
+                getAssetPath("./assets/Reward-image.png")
               }
             />
             <div class="text">
@@ -750,7 +750,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 class="image"
                 src={
                   selectedItem?.imageUrl ||
-                  getAssetPath("./assets/placeholder.png")
+                  getAssetPath("./assets/Reward-image.png")
                 }
               />
             </div>

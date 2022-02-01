@@ -9,8 +9,9 @@ import { h, VNode } from "@stencil/core";
 import { gql } from "graphql-request";
 import { useRerenderListener } from "../../tables/re-render";
 import { RewardsTable } from "./sqm-rewards-table";
-import { RewardsTableViewProps } from "./sqm-rewards-table-view";
 import { useChildElements } from "../../tables/useChildElements";
+import { generateUserError } from "../sqm-referral-table/useReferralTable";
+import { GenericTableViewProps } from "../../tables/GenericTableView";
 
 export const CSS_NAMESPACE = "sqm-rewards-table";
 
@@ -56,7 +57,7 @@ const GET_REWARDS = gql`
             )
             programId
             statuses
-			pendingReasons
+            pendingReasons
             globalRewardKey
             programRewardKey
             rewardSource
@@ -106,7 +107,7 @@ export function useRewardsTable(
   props: RewardsTable,
   emptyElement: VNode,
   loadingElement: VNode
-): RewardsTableViewProps {
+): GenericTableViewProps {
   const user = useUserIdentity();
   const programIdContext = useProgramId();
   const locale = useLocale();
@@ -125,8 +126,8 @@ export function useRewardsTable(
   };
 
   const [content, setContent] = useReducer<
-    RewardsTableViewProps["elements"],
-    Partial<RewardsTableViewProps["elements"]>
+    GenericTableViewProps["elements"],
+    Partial<GenericTableViewProps["elements"]>
   >(
     (state, next) => ({
       ...state,
@@ -178,7 +179,7 @@ export function useRewardsTable(
       const cellPromise = columnComponents?.map(async (c: any) =>
         tryMethod(c, () => c.renderCell([r], locale))
       );
-      const cells = await Promise.all(cellPromise);
+      const cells = (await Promise.all(cellPromise)) as VNode[];
       return cells;
     });
 
@@ -186,7 +187,8 @@ export function useRewardsTable(
       cellsPromise && (await Promise.all(cellsPromise)).filter((i) => i);
 
     setContent({ rows });
-    const columns = columnsPromise && (await Promise.all(columnsPromise));
+    const columns =
+      columnsPromise && ((await Promise.all(columnsPromise)) as string[]);
     // Set the content to render and finish loading components
     setContent({ columns, loading: false, page: states.currentPage });
   }
@@ -241,22 +243,13 @@ export function useRewardsTable(
     },
   };
 }
-
-function generateUserError(e: any) {
-  try {
-    return JSON.stringify(e);
-  } catch (e) {
-    return "An unknown error";
-  }
-}
-
 async function tryMethod(
   c: HTMLElement,
-  callback: () => Promise<VNode>
-): Promise<VNode> {
+  callback: () => Promise<string>
+): Promise<string | VNode> {
   const tag = c.tagName.toLowerCase();
   await customElements.whenDefined(tag);
-  let labelPromise: Promise<VNode>;
+  let labelPromise: Promise<string>;
   try {
     labelPromise = callback();
   } catch (e) {

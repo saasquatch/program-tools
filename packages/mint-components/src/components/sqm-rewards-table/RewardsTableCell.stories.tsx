@@ -288,14 +288,14 @@ const pending = {
   statuses: ["PENDING"],
 };
 const us_tax = {
-  pendingReasons: "US_TAX",
+  pendingReasons: ["US_TAX"],
 };
 const scheduled = {
-  pendingReasons: "SCHEDULED",
+  pendingReasons: ["SCHEDULED"],
   dateScheduledFor: 1640038417468,
 };
 const unhandled = {
-  pendingReasons: "UNHANDLED_ERROR",
+  pendingReasons: ["UNHANDLED_ERROR"],
 };
 
 export const StatusCellPending = () => {

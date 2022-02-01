@@ -24,7 +24,7 @@ export interface GenericTableViewProps {
     nextPage: () => void;
   };
   elements: {
-    columns: any[];
+    columns: string[];
     rows: VNode[][];
     loading?: boolean;
     emptyElement?: VNode;
@@ -39,7 +39,7 @@ export function GenericTableView(props: GenericTableViewProps) {
   const { show } = states;
 
   console.log("table", props);
-  console.log("columns 0", columns[0])
+  console.log("columns 0", columns);
 
   const hiddenCols = data.hiddenColumns.split(",").map(Number);
 
@@ -196,7 +196,7 @@ export function GenericTableView(props: GenericTableViewProps) {
               );
             })}
         </tbody>*/}
-      </table> 
+      </table>
       <div
         class={sheet.classes.ButtonContainer}
         part={states.namespace + "-button-wrapper"}

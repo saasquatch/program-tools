@@ -19,6 +19,7 @@ export class BrandComponent {
    * does not affect vanilla components or other component libraries.
    *
    * @uiName Brand Color
+   * @uiWidget color
    */
   @Prop() brandColor: string;
 

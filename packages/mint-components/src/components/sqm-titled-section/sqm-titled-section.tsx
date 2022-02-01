@@ -5,13 +5,18 @@ import { getProps } from "../../utils/utils";
 import { PortalSectionView } from "./sqm-portal-section-view";
 
 /**
- * @uiName Section (with title)
+ * @uiName Titled Section
  */
 @Component({
   tag: "sqm-titled-section",
   shadow: true,
 })
 export class TitledSection {
+  /**
+   * Label for the section unless overwritten via the label slot.
+   *
+   * @uiName Label
+   */
   @Prop() label: string;
 
   /**

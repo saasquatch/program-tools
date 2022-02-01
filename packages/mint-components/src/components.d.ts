@@ -89,6 +89,7 @@ export namespace Components {
         /**
           * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
           * @uiName Brand Color
+          * @uiWidget color
          */
         "brandColor": string;
         /**
@@ -232,7 +233,7 @@ export namespace Components {
         "imageMobilePos": "top" | "bottom";
         /**
           * @uiName Image Percentage
-          * @uiType string
+          * @uiType number
          */
         "imagePercentage": number;
         /**
@@ -371,13 +372,14 @@ export namespace Components {
         /**
           * @uiName Rank Heading
          */
-        "rankheading"?: string;
+        "rankheading": string;
         /**
-          * @uiName Show the ranking numbers
+          * @uiName Show leaderboard rank
          */
         "showRank": boolean;
         /**
-          * @uiName Show viewing user's rank
+          * Shows the current user's leaderboard information even if they are not in the top 10
+          * @uiName Show viewing user
          */
         "showUser": boolean;
         /**
@@ -553,6 +555,10 @@ export namespace Components {
         "successMessage": string;
     }
     interface SqmPortalContainer {
+        /**
+          * @uiName Center
+         */
+        "center": boolean;
         /**
           * @uiName Direction
           * @uiType string
@@ -932,6 +938,7 @@ export namespace Components {
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background Color
+          * @uiWidget color
          */
         "backgroundColor": string;
         /**
@@ -948,7 +955,7 @@ export namespace Components {
         "icon"?: string;
         /**
           * Displayed in place of an icon
-          * @uiName Image URl
+          * @uiName Image Url
          */
         "imageUrl"?: string;
         /**
@@ -960,14 +967,6 @@ export namespace Components {
     interface SqmProgramMenu {
     }
     interface SqmReferralCard {
-        /**
-          * @uiName Description Text
-         */
-        "description": string;
-        /**
-          * @uiName Header Text
-         */
-        "header": string;
         /**
           * @uiName Padding
           * @uiType string
@@ -1455,6 +1454,7 @@ export namespace Components {
     interface SqmShareButton {
         /**
           * @uiName Button background color
+          * @uiWidget color
          */
         "backgroundcolor"?: string;
         /**
@@ -1493,8 +1493,8 @@ export namespace Components {
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
           * @uiType string
-          * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest", "reminder", "unknown" ]
-          * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
+          * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
+          * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
          */
         "medium": | "facebook"
     | "twitter"
@@ -1534,6 +1534,7 @@ export namespace Components {
         "size"?: "small" | "medium" | "large";
         /**
           * @uiName Button text color
+          * @uiWidget color
          */
         "textcolor"?: string;
         /**
@@ -1774,6 +1775,10 @@ export namespace Components {
         "unit": string;
     }
     interface SqmTitledSection {
+        /**
+          * Label for the section unless overwritten via the label slot.
+          * @uiName Label
+         */
         "label": string;
         /**
           * @uiName Label margin style
@@ -2422,6 +2427,7 @@ declare namespace LocalJSX {
         /**
           * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
           * @uiName Brand Color
+          * @uiWidget color
          */
         "brandColor"?: string;
         /**
@@ -2565,7 +2571,7 @@ declare namespace LocalJSX {
         "imageMobilePos"?: "top" | "bottom";
         /**
           * @uiName Image Percentage
-          * @uiType string
+          * @uiType number
          */
         "imagePercentage"?: number;
         /**
@@ -2706,11 +2712,12 @@ declare namespace LocalJSX {
          */
         "rankheading"?: string;
         /**
-          * @uiName Show the ranking numbers
+          * @uiName Show leaderboard rank
          */
         "showRank"?: boolean;
         /**
-          * @uiName Show viewing user's rank
+          * Shows the current user's leaderboard information even if they are not in the top 10
+          * @uiName Show viewing user
          */
         "showUser"?: boolean;
         /**
@@ -2886,6 +2893,10 @@ declare namespace LocalJSX {
         "successMessage"?: string;
     }
     interface SqmPortalContainer {
+        /**
+          * @uiName Center
+         */
+        "center"?: boolean;
         /**
           * @uiName Direction
           * @uiType string
@@ -3265,6 +3276,7 @@ declare namespace LocalJSX {
     interface SqmProgramExplainerStep {
         /**
           * @uiName Background Color
+          * @uiWidget color
          */
         "backgroundColor"?: string;
         /**
@@ -3281,7 +3293,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         /**
           * Displayed in place of an icon
-          * @uiName Image URl
+          * @uiName Image Url
          */
         "imageUrl"?: string;
         /**
@@ -3293,14 +3305,6 @@ declare namespace LocalJSX {
     interface SqmProgramMenu {
     }
     interface SqmReferralCard {
-        /**
-          * @uiName Description Text
-         */
-        "description"?: string;
-        /**
-          * @uiName Header Text
-         */
-        "header"?: string;
         /**
           * @uiName Padding
           * @uiType string
@@ -3770,6 +3774,7 @@ declare namespace LocalJSX {
     interface SqmShareButton {
         /**
           * @uiName Button background color
+          * @uiWidget color
          */
         "backgroundcolor"?: string;
         /**
@@ -3808,8 +3813,8 @@ declare namespace LocalJSX {
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
           * @uiType string
-          * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest", "reminder", "unknown" ]
-          * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
+          * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
+          * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
          */
         "medium"?: | "facebook"
     | "twitter"
@@ -3849,6 +3854,7 @@ declare namespace LocalJSX {
         "size"?: "small" | "medium" | "large";
         /**
           * @uiName Button text color
+          * @uiWidget color
          */
         "textcolor"?: string;
         /**
@@ -4089,6 +4095,10 @@ declare namespace LocalJSX {
         "unit"?: string;
     }
     interface SqmTitledSection {
+        /**
+          * Label for the section unless overwritten via the label slot.
+          * @uiName Label
+         */
         "label"?: string;
         /**
           * @uiName Label margin style

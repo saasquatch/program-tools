@@ -64,7 +64,7 @@ export class HeroImage {
 
   /**
    * @uiName Image Percentage
-   * @uiType string
+   * @uiType number
    */
   @Prop() imagePercentage: number = 50;
 
