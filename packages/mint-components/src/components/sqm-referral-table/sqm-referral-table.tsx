@@ -7,6 +7,11 @@ import {
   GenericTableView,
   GenericTableViewProps,
 } from "../../tables/GenericTableView";
+import {
+  AvailableNoExpiry,
+  Cancelled,
+  PendingNoUnpend,
+} from "./ReferralTableRewardsCell.stories";
 import { useReferralTable } from "./useReferralTable";
 
 /**
@@ -27,7 +32,7 @@ export class ReferralTable {
   @Prop() programId: string;
 
   /** @uiName Number of referrals per page */
-  @Prop() perPage: number = 3;
+  @Prop() perPage: number = 4;
 
   /** @uiName Show column labels */
   @Prop() showLabels?: boolean = true;
@@ -126,6 +131,7 @@ function useReferraltableDemo(props: ReferralTable): GenericTableViewProps {
         hasPrev: false,
         hasNext: false,
         loading: false,
+        show: "rows",
       },
       callbacks: {
         prevPage: () => console.log("Prev"),
@@ -154,13 +160,38 @@ function useReferraltableDemo(props: ReferralTable): GenericTableViewProps {
           <div>Referral Status</div>,
           <div>Rewards</div>,
         ],
-        rows: [],
+        rows: [
+          [
+            <sqm-referral-table-user-cell name="Joe Smith"></sqm-referral-table-user-cell>,
+            <sqm-referral-table-status-cell
+              statusText="Completed"
+              converted={true}
+            ></sqm-referral-table-status-cell>,
+            <PendingNoUnpend />,
+          ],
+          [
+            <sqm-referral-table-user-cell name="Bob Williams"></sqm-referral-table-user-cell>,
+            <sqm-referral-table-status-cell
+              statusText="In Progress"
+              converted={false}
+            ></sqm-referral-table-status-cell>,
+            <AvailableNoExpiry />,
+          ],
+          [
+            <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
+            <sqm-referral-table-status-cell
+              statusText="Completed"
+              converted={true}
+            ></sqm-referral-table-status-cell>,
+            <Cancelled />,
+          ],
+        ],
       },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
-  console.log("PROPS",demoProps)
+  console.log("PROPS", demoProps);
 
   return demoProps;
 }

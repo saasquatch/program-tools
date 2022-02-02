@@ -7,6 +7,21 @@ import {
   GenericTableView,
   GenericTableViewProps,
 } from "../../tables/GenericTableView";
+import {
+  DateCell,
+  RewardsCellCreditCancelled,
+  RewardsCellCreditFull,
+  RewardsCellCreditPartial,
+  RewardsCellCreditRedeemed,
+  SourceCellDeletedUser,
+  SourceCellManual,
+  SourceCellReferral,
+  SourceCellReferred,
+  StatusCellAvailable,
+  StatusCellAvailableExpiry,
+  StatusCellCancelled,
+  StatusCellRedeemed,
+} from "./RewardsTableCell.stories";
 import { CSS_NAMESPACE, useRewardsTable } from "./useRewardsTable";
 
 /**
@@ -26,7 +41,7 @@ export class RewardsTable {
   @Prop() programId: string;
 
   /** @uiName Number of rewards per page */
-  @Prop() perPage: number = 3;
+  @Prop() perPage: number = 4;
 
   /** @uiName Show column labels */
   @Prop() showLabels?: boolean = true;
@@ -121,6 +136,7 @@ function useRewardsTableDemo(props: RewardsTable): GenericTableViewProps {
         hasPrev: false,
         hasNext: false,
         loading: false,
+        show: "rows",
         namespace: CSS_NAMESPACE,
       },
       callbacks: {
@@ -145,13 +161,33 @@ function useRewardsTableDemo(props: RewardsTable): GenericTableViewProps {
         ),
         loadingElement: <LoadingSlot />,
         // TODO: This should be smarter
-        columns: [
-          "Reward",
-          "Source",
-          "Status",
-          "Date recieved",
+        columns: ["Reward", "Source", "Status", "Date recieved"],
+        rows: [
+          [
+            <RewardsCellCreditFull />,
+            <StatusCellAvailable />,
+            <SourceCellReferral />,
+            <DateCell />,
+          ],
+          [
+            <RewardsCellCreditCancelled />,
+            <StatusCellCancelled />,
+            <SourceCellDeletedUser />,
+            <DateCell />,
+          ],
+          [
+            <RewardsCellCreditRedeemed />,
+            <StatusCellRedeemed />,
+            <SourceCellManual />,
+            <DateCell />,
+          ],
+          [
+            <RewardsCellCreditPartial />,
+            <StatusCellAvailableExpiry />,
+            <SourceCellReferred />,
+            <DateCell />,
+          ],
         ],
-        rows: [],
       },
     },
     props.demoData || {},

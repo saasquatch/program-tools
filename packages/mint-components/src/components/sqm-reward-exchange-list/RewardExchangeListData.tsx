@@ -130,11 +130,43 @@ const variableValue = (min, max, unit) => ({
   prettySourceMaxValue: max + " " + unit,
 });
 
+const demoData = [
+  {
+    ...baseReward,
+    ...name("Free swag with a promo code"),
+    ...imageUrl(
+      "https://res.cloudinary.com/saasquatch/image/upload/v1643653103/squatch-assets/default_rewards_1.png"
+    ),
+    ...fixedValue("40 Points"),
+  },
+  {
+    ...baseReward,
+    ...selected,
+    ...name("Visa® Prepaid Card USD"),
+    ...imageUrl("https://i.imgur.com/veHErQX.png"),
+    ...variableValue(20, 80, "Points"),
+  },
+  {
+    ...baseReward,
+    ...name("$50 Store credit"),
+    ...imageUrl("https://i.imgur.com/WkCMVSE.png"),
+    ...fixedValue("100 Points"),
+  },
+  {
+    ...baseReward,
+    ...name("Variable amount of store credit"),
+    ...imageUrl("https://i.imgur.com/Jn2fE0s.png"),
+    ...variableValue(20, 100, "Points"),
+  }
+];
+
 const data = [
   {
     ...baseReward,
     ...name("Free swag with a promo code"),
-    ...imageUrl("https://res.cloudinary.com/saasquatch/image/upload/v1643653103/squatch-assets/default_rewards_1.png"),
+    ...imageUrl(
+      "https://res.cloudinary.com/saasquatch/image/upload/v1643653103/squatch-assets/default_rewards_1.png"
+    ),
     ...fixedValue("40 SaaSquatch Points"),
   },
   {
@@ -190,6 +222,10 @@ const data = [
 export const rewardExchange = {
   ...baseResponse(data),
 };
+
+export const demoRewardExchange = {
+  ...baseResponse(demoData)
+}
 
 export const rewardExchangeLongText = {
   ...baseResponse([

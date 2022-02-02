@@ -13,6 +13,7 @@ import { isDemo } from "@saasquatch/component-boilerplate";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
+import { demoRewardExchange, rewardExchange } from "./RewardExchangeListData";
 
 /**
  * @uiName Reward Exchange List
@@ -119,7 +120,8 @@ export class SqmRewardExchangeList {
   /**
    * @uiName Reward List Error Message
    */
-  @Prop() queryError: string = "Unable to load reward exchange list. Please try again";
+  @Prop() queryError: string =
+    "Unable to load reward exchange list. Please try again";
 
   /**
    * @uiName Redemption Error Message
@@ -221,6 +223,7 @@ function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
       },
       data: {
         shareCode: "SHARECODE123",
+        exchangeList: demoRewardExchange.data.exchangeList,
       },
       callbacks: {
         exchangeReward: () => {},

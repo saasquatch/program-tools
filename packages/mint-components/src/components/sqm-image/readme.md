@@ -9,7 +9,7 @@
 
 | Property          | Attribute          | Description                                     | Type                            | Default     |
 | ----------------- | ------------------ | ----------------------------------------------- | ------------------------------- | ----------- |
-| `align`           | `align`            |                                                 | `"center" \| "left" \| "right"` | `"center"`  |
+| `alignment`       | `alignment`        |                                                 | `"center" \| "left" \| "right"` | `"center"`  |
 | `backgroundColor` | `background-color` |                                                 | `string`                        | `undefined` |
 | `imageUrl`        | `image-url`        |                                                 | `string`                        | `undefined` |
 | `left`            | `left`             |                                                 | `string`                        | `undefined` |

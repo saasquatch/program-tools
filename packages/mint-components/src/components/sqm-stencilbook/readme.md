@@ -132,6 +132,10 @@ graph TD;
   sqm-rewards-table --> sqm-image
   sqm-rewards-table --> sqm-titled-section
   sqm-rewards-table --> sqm-text
+  sqm-rewards-table --> sqm-rewards-table-reward-cell
+  sqm-rewards-table --> sqm-rewards-table-source-cell
+  sqm-rewards-table --> sqm-rewards-table-status-cell
+  sqm-rewards-table --> sqm-rewards-table-date-cell
   sqm-rewards-table-reward-column --> sqm-rewards-table-reward-cell
   sqm-rewards-table-status-column --> sqm-rewards-table-status-cell
   sqm-rewards-table-source-column --> sqm-rewards-table-source-cell
@@ -140,10 +144,13 @@ graph TD;
   sqm-portal-register --> sqm-password-field
   sqm-referral-table --> sqm-table-row
   sqm-referral-table --> sqm-table-cell
+  sqm-referral-table --> sqm-referral-table-user-cell
+  sqm-referral-table --> sqm-referral-table-status-cell
   sqm-referral-table --> sqm-portal-container
   sqm-referral-table --> sqm-image
   sqm-referral-table --> sqm-titled-section
   sqm-referral-table --> sqm-text
+  sqm-referral-table --> sqm-referral-table-rewards-cell
   sqm-portal-login --> sqm-form-message
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-change-password --> sqm-password-field

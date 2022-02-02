@@ -41,7 +41,8 @@ export function GenericTableView(props: GenericTableViewProps) {
   console.log("table", props);
   console.log("columns 0", columns);
 
-  const hiddenCols = data.hiddenColumns && data.hiddenColumns.split(",").map(Number);
+  const hiddenCols =
+    data.hiddenColumns && data.hiddenColumns.split(",").map(Number);
 
   const mobile = "@media (max-width: " + data.mdBreakpoint + "px)";
   const tablet = `@media (min-width: ${
@@ -147,25 +148,31 @@ export function GenericTableView(props: GenericTableViewProps) {
           {show === "loading" && elements.loadingElement}
           {show === "empty" && elements.emptyElement}
           {show === "rows" &&
-            rows?.map((row, i) => (
-              <tr
-                style={{
-                  borderTop: `${
-                    !data.textOverrides.showLabels && i === 0 ? "none" : ""
-                  }`,
-                }}
-                part="table-row"
-              >
-                {row.map((cell, j) => (
-                  <td
-                    class={hiddenCols.includes(j) ? "hidden" : ""}
-                    data-label={columns[j] + ":"}
-                  >
-                    {cell}
-                  </td>
-                ))}
-              </tr>
-            ))}
+            rows?.map((row, i) => {
+              console.log("ROW", row);
+              return (
+                <tr
+                  style={{
+                    borderTop: `${
+                      !data.textOverrides.showLabels && i === 0 ? "none" : ""
+                    }`,
+                  }}
+                  part="table-row"
+                >
+                  {row.map((cell, j) => {
+                    console.log("CELL", cell);
+                    return (
+                      <td
+                        class={hiddenCols?.includes(j) ? "hidden" : ""}
+                        data-label={columns[j] + ":"}
+                      >
+                        {cell}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
         </tbody>
 
         {/* <tbody>
