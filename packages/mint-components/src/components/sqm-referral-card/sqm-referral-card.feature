@@ -12,36 +12,36 @@ Feature: Referral Card
 		Given a Referral Card component
 		And a slot with the name "left"
 		And a slot with the name "right"
+		When the user views the referral card
 		Then slots contents are displayed inside the card
 		When the component is scaled down to 499px
 		Then the column layout switches to row layout
+		And the "left" slot content is displayed above the "right" slot content
 
 	@motivating
 	Scenario Outline: Referral Card component content can be vertically aligned start, center, end
 		Given a Referral Card component
 		And a slot with the name "left"
 		And a slot with the name "right"
-		And prop "vertical-alignment" has <value>
+		And the prop "vertical-alignment" has <value>
 		Then slots contents are displayed inside the card
-		And slots are vertically aligned to <value>
-
+		And slots are vertically aligned to <alignment> of the card
 		Examples:
-			| value  |
-			| start  |
-			| center |
-			| end    |
-
+			| value  | alignment  |
+			| start  | the top    |
+			| center | the center |
+			| end    | the bottom |
+			| N/A    | the top    |
 
 	@motivating
 	Scenario Outline: Referral Card component content outer padding can be customized
 		Given a Referral Card component
 		And a slot with the name "left"
 		And a slot with the name "right"
-		And prop "padding" has <value>
+		And the prop "padding" has <value>
 		Then slots contents are displayed inside the card
 		And <padding> is applied to each slot
 		But neighbouring sides of each slot have a predefined padding of "medium"
-
 		Examples:
 			| value      | padding    |
 			| none       | no padding |
