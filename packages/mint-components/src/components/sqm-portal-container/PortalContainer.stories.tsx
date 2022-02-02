@@ -64,7 +64,7 @@ export const HalfWidth = () => (
 
 export const HalfWidthCenter = () => (
 	<div style={{ width: "1000px", border: "1px dashed grey" }}>
-	  <sqm-portal-container direction="row" minWidth="160px" maxWidth="50%" center>
+	  <sqm-portal-container direction="row" minWidth="160px" maxWidth="50%" center	>
 		<sqm-share-button
 		  icon="envelope"
 		  medium="email"
@@ -103,3 +103,25 @@ export const FullWidth = () => (
     </sqm-portal-container>
   </div>
 );
+
+export const Column = () => (
+  <div style={{ width: "1000px", border: "1px dashed grey" }}>
+    <sqm-portal-container direction="column" maxWidth="100%">
+      <sqm-share-button
+        icon="envelope"
+        medium="email"
+        size="medium"
+        class="hydrated"
+      >
+        Email a friend
+      </sqm-share-button>
+      <sqm-share-button medium="twitter" size="medium" class="hydrated">
+        Tweet about us
+      </sqm-share-button>
+      <sqm-share-button medium="facebook" size="medium" class="hydrated">
+        Share on Facebook
+      </sqm-share-button>
+    </sqm-portal-container>
+  </div>
+);
+

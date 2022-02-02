@@ -1,7 +1,11 @@
 import { h } from "@stencil/core";
+import scenario from "./sqm-hero-image.feature";
 
 export default {
   title: "Components/Hero Image",
+  parameters: {
+    scenario,
+  },
 };
 
 export const OverlayHeader = () => {
@@ -164,18 +168,18 @@ export const Columns = () => {
 };
 
 export const ColumnsPadding = () => {
-	return (
-	  <sqm-hero-image
-		image-url="https://i.imgur.com/yr6ER3R.png"
-		header="Klip Rewards"
-		description="Refer friends or complete tasks while using Klip to earn rewards"
-		button-text="Start earning"
-		layout="columns"
-		padding-image="xxxx-large"
-		padding-text="large"
-	  />
-	);
-  };
+  return (
+    <sqm-hero-image
+      image-url="https://i.imgur.com/yr6ER3R.png"
+      header="Klip Rewards"
+      description="Refer friends or complete tasks while using Klip to earn rewards"
+      button-text="Start earning"
+      layout="columns"
+      padding-image="xxxx-large"
+      padding-text="large"
+    />
+  );
+};
 
 export const ColumnsLong = () => {
   return (
@@ -216,7 +220,7 @@ export const ColumnsCustomPercentage = () => {
       image-percentage="33%"
       padding-image="large"
       padding-text="large"
-	  background-color=""
+      background-color=""
     />
   );
 };

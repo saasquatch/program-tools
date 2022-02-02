@@ -30,7 +30,7 @@ const resizable = {
   overflow: "hidden",
 };
 
-const oneAction = {
+export const oneAction = {
   callbacks: {
     sendEvent: () => void 0,
     onClick: () => void 0,
@@ -64,7 +64,7 @@ const oneAction = {
   },
 };
 
-const coupleActions = {
+export const coupleActions = {
   callbacks: {
     sendEvent: () => void 0,
     onClick: () => void 0,
@@ -98,7 +98,7 @@ const coupleActions = {
   },
 };
 
-const manyActions = {
+export const manyActions = {
   callbacks: {
     sendEvent: () => void 0,
     onClick: () => void 0,

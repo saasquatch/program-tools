@@ -1,7 +1,14 @@
 import { h } from "@stencil/core";
+import scenarioTimeline from "./sqm-timeline.feature";
+import scenarioTimelineEntry from "./sqm-timeline-entry.feature";
+
+const scenario = scenarioTimeline + scenarioTimelineEntry;
 
 export default {
   title: "Components/Timeline",
+  parameters: {
+    scenario,
+  },
 };
 
 export const TimelineWith1Reward = () => {

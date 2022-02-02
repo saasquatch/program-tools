@@ -1,7 +1,11 @@
 import { h } from "@stencil/core";
+import scenario from "./sqm-referral-card.feature";
 
 export default {
   title: "Components/Referral Card",
+  parameters: {
+    scenario,
+  },
 };
 
 export const media = (slot) => {

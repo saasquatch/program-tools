@@ -2,11 +2,7 @@
 @owner:noah
 Feature: Portal Container
 
-
 	Scenario: Horizontal content overflows, but does not stretch
-
-		Bad elements should not affect other elements in the page
-
 		Given there are two element in the container
 		And the first is small
 		And the second would stretch the container wider than it's parent

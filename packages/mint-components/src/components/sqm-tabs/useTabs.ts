@@ -1,19 +1,24 @@
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useMemo } from "@saasquatch/universal-hooks";
 import { useChildElements } from "../../tables/useChildElements";
-export interface tab extends Element {
+import { TabsViewProps } from "./sqm-tabs-view";
+
+export interface TabElement extends Element {
   open: boolean;
   header: string;
 }
 
-export function useTabs() {
-  const tabs = useChildElements() as tab[];
-  console.log({ tabs });
-  function openTab(tabIndex: number) {
-    const currentTabs = tabs.map((tab: tab) => {
-      tab.open = false;
-      return tab;
-    });
-    currentTabs[tabIndex].open = true;
-  }
-  return { callbacks: { openTab }, content: { tabs } };
+export function useTabs(): TabsViewProps {
+  const rawTabs = useChildElements() as TabElement[];
+  const tabs = useMemo(
+    () =>
+      rawTabs
+        .filter((tab) => tab.tagName === "SQM-TAB")
+        .map((tab, i) => {
+          tab.setAttribute("slot", "tab-" + i);
+          return tab;
+        }),
+    [rawTabs]
+  );
+
+  return { content: { tabs } };
 }
