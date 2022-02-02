@@ -1,59 +1,55 @@
-@author:
-@owner:
-
+@author:kutay
+@owner:kutay
 Feature: Image
 
 	Background: A user on the portal is viewing the widget
+		Given a user viewing the image component
 
+	@motivating
 	Scenario: Image is displayed from URL
-
 		Given an Image component
-		And prop "image-url" is provided
+		And prop "image-url" is provided with a valid image url
 		Then the image is displayed
+		And it is centered
 
+	@motivating
 	Scenario Outline: Images can be aligned left, center or right
-
 		Given an Image component
-		And prop "image-url" is provided
+		And prop "image-url" is provided with a valid image url
 		And prop "align" has <value>
 		Then the image is displayed
 		And it is aligned to the <value>
-
 		Examples:
 			| value  |
 			| left   |
 			| center |
 			| right  |
 
-
+	@motivating
 	Scenario Outline: Images can be offset with margins from the left and right
-
 		Given an Image component
-		And prop "image-url" is provided
+		And prop "image-url" is provided with a valid image url
 		And <prop> has <value>
 		Then the image is displayed
-		And image has <value> margin on its <prop> side
-
+		And the image has <value> margin on its <prop> side
 		Examples:
 			| prop  | value |
 			| left  | 100px |
 			| right | 100px |
 
-
+	@motivating
 	Scenario: Image background
-
 		Given an Image component
-		And prop "image-url" is provided
+		And prop "image-url" is provided with a valid image url
 		And prop "background-color" is provided a color
 		Then the image is displayed
-		And background is the provided color
+		And the background is the provided color
 
-
+	@motivating
 	Scenario: Image minimum and maximum size can be constrained
-
 		Given an Image component
 		And prop "image-url" is provided
 		And prop "min-height" is given a minimum value
 		And prop "max-width" is given a maximum value
 		Then the image is displayed
-		And image maintains size between the provided range
+		And the image maintains size between the provided range
