@@ -78,12 +78,12 @@ export class BrandComponent {
             --sl-input-font-family: "${font}", arial;
             --sl-tooltip-font-family: "${font}", arial;
             font-family:  "${font}", arial;
-
-            ${css}
+			
+            ${this.brandColor && css}
             --sl-focus-ring-color-primary: var(--sl-color-primary-100);
             --sl-input-border-color-focus: var(--sl-color-primary-500);
             --sl-color-primary-hue: var(--sl-color-primary-500);
-			--sqm-portal-background: ${this.background};
+			--sqm-portal-background: ${this.background || "transparent"};
           }`}</style>
         <slot />
       </Host>
