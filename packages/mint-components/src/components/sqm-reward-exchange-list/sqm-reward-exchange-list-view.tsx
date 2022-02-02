@@ -459,16 +459,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
 
           return (
             <sl-menu-item
-              value={step.prettyDestinationValue}
+              value={step}
               disabled={!step.available}
             >
               {step.prettyDestinationValue} <br />
-              {/* <div class={sheet.classes.SelectItem}>
-              <p class="step-value">{step.prettyDestinationValue}</p>
-              <div class="step-cost" slot="suffix">
-                {step.prettySourceValue}
-              </div>
-            </div> */}
               {step.unavailableReasonCode && (
                 <p
                   style={{
