@@ -120,7 +120,7 @@ function LoadingRow() {
 }
 
 function useReferraltableDemo(props: ReferralTable): GenericTableViewProps {
-  return deepmerge(
+  const demoProps = deepmerge(
     {
       states: {
         hasPrev: false,
@@ -160,6 +160,9 @@ function useReferraltableDemo(props: ReferralTable): GenericTableViewProps {
     props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
+  console.log("PROPS",demoProps)
+
+  return demoProps;
 }
 
 function EmptySlot({
