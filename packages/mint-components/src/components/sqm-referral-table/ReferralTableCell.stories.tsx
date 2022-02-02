@@ -1,7 +1,17 @@
 import { h } from "@stencil/core";
+import column from "./columns/referral-table-column.feature";
+import date from "./columns/referral-table-date-column.feature";
+import reward from "./columns/referral-table-rewards-column.feature";
+import status from "./columns/referral-table-status-column.feature";
+import user from "./columns/referral-table-user-column.feature";
+
+const scenario = column + date + reward + status + user;
 
 export default {
   title: "Components/Referral Table Cell",
+  parameters: {
+    scenario,
+  },
 };
 
 export const TableCell = () => {
@@ -60,7 +70,7 @@ const rewardsData: Reward = {
   dateScheduledFor: 1628146800000,
   dateExpires: 1629010800000,
   dateCancelled: 134400,
-  dateRedeemed:0,
+  dateRedeemed: 0,
   fuelTankCode: "ABC",
   fuelTankType: "Code",
   currency: "null",

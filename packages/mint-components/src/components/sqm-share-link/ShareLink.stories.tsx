@@ -1,8 +1,12 @@
 import { h } from "@stencil/core";
 import { ShareLinkView } from "./sqm-share-link-view";
+import scenario from "./ShareLink.feature";
 
 export default {
   title: "Components/Share Link",
+  parameters: {
+    scenario,
+  },
 };
 
 export const Default = () => {
@@ -32,7 +36,6 @@ export const Disabled = () => {
   };
   return <ShareLinkView {...props} />;
 };
-
 
 export const FullStack = () => {
   return <sqm-share-link></sqm-share-link>;

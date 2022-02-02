@@ -1,7 +1,11 @@
 import { h } from "@stencil/core";
+import scenario from "./sqm-brand.feature";
 
 export default {
   title: "Components/Brand",
+  parameters: {
+    scenario,
+  },
 };
 
 const SampleComponents = () => (
