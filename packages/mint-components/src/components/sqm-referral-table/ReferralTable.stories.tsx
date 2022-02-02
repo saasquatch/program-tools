@@ -7,9 +7,13 @@ import {
   PendingWithUnpend,
   Redeemed,
 } from "./ReferralTableRewardsCell.stories";
+import scenario from "./referral-table.feature";
 
 export default {
   title: "Components/Referral Table",
+  parameters: {
+    scenario,
+  },
 };
 
 const loadingElement = (

@@ -1,8 +1,18 @@
 import { h } from "@stencil/core";
 import { DateTime } from "luxon";
+import column from "./columns/referral-table-column.feature";
+import date from "./columns/referral-table-date-column.feature";
+import rewards from "./columns/referral-table-rewards-column.feature";
+import status from "./columns/referral-table-status-column.feature";
+import user from "./columns/referral-table-user-column.feature";
+
+const scenario = column + date + rewards + status + user;
 
 export default {
   title: "Components/Referral Table Rewards Cell",
+  parameters: {
+    scenario,
+  },
 };
 
 const baseReward: Reward = {
