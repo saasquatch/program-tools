@@ -122,7 +122,7 @@ const nullExpiresIn = {
   dateExpires: null,
 };
 
-const simpleUserTableProps = {
+export const simpleUserTableProps = {
   states: {
     hasPrev: false,
     hasNext: true,
