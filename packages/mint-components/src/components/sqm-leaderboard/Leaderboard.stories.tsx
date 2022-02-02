@@ -1,7 +1,7 @@
 import { h } from "@stencil/core";
 import { EmptySkeleton, LoadingSkeleton } from "../../tables/TableSlots";
 import { LeaderboardView } from "./sqm-leaderboard-view";
-import scenario from "./sqm-leaderboard.feature";
+import scenario from "./leaderboard.feature";
 
 export default {
   title: "Components/Leaderboard",

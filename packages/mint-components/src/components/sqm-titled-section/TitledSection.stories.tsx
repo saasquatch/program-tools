@@ -1,8 +1,12 @@
 import { h } from "@stencil/core";
 import { media, sharebutton } from "../sqm-referral-card/ReferralCard.stories";
+import scenario from "./sqm-titled-section.feature";
 
 export default {
   title: "Components/Titled Section",
+  parameters: {
+    scenario,
+  },
 };
 
 export const AlignLeft = () => {
