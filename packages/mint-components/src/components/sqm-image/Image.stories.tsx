@@ -9,31 +9,31 @@ export default {
 };
 
 export const Image = () => {
-  return <sqm-image image-url="https://i.imgur.com/tn47wOj.png" />;
+  return <sqm-image image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829007/tenant_test_a7iws76wkk4az/oxghbkf3aazwqz3xusry.png" />;
 };
 
 export const ImageAlignmentLeft = () => {
   return (
-    <sqm-image image-url="https://i.imgur.com/tn47wOj.png" alignment="left" />
+    <sqm-image image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829007/tenant_test_a7iws76wkk4az/oxghbkf3aazwqz3xusry.png" alignment="left" />
   );
 };
 
 export const ImageAlignmentCenter = () => {
   return (
-    <sqm-image image-url="https://i.imgur.com/tn47wOj.png" alignment="center" />
+    <sqm-image image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829007/tenant_test_a7iws76wkk4az/oxghbkf3aazwqz3xusry.png" alignment="center" />
   );
 };
 
 export const ImageAlignmentRight = () => {
   return (
-    <sqm-image image-url="https://i.imgur.com/tn47wOj.png" alignment="right" />
+    <sqm-image image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829007/tenant_test_a7iws76wkk4az/oxghbkf3aazwqz3xusry.png" alignment="right" />
   );
 };
 
 export const ImageMarginLeft = () => {
   return (
     <sqm-image
-      image-url="https://i.imgur.com/tn47wOj.png"
+      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829007/tenant_test_a7iws76wkk4az/oxghbkf3aazwqz3xusry.png"
       left="100px"
       alignment="center"
     />
@@ -43,7 +43,7 @@ export const ImageMarginLeft = () => {
 export const ImageMarginRight = () => {
   return (
     <sqm-image
-      image-url="https://i.imgur.com/tn47wOj.png"
+      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829007/tenant_test_a7iws76wkk4az/oxghbkf3aazwqz3xusry.png"
       right="100px"
       alignment="center"
     />
@@ -53,7 +53,7 @@ export const ImageMarginRight = () => {
 export const ImageBackground = () => {
   return (
     <sqm-image
-      image-url="https://i.imgur.com/tn47wOj.png"
+      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829007/tenant_test_a7iws76wkk4az/oxghbkf3aazwqz3xusry.png"
       background-color="firebrick"
       alignment="center"
     />
@@ -63,7 +63,7 @@ export const ImageBackground = () => {
 export const ImageSizeConstrained = () => {
   return (
     <sqm-image
-      image-url="https://i.imgur.com/oIiVdMM.jpg"
+      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829038/tenant_test_a7iws76wkk4az/fpqigwukfrsp12mc7kur.jpg"
       minHeight="192px"
       maxWidth="192px"
     />
