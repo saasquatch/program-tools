@@ -1,9 +1,13 @@
 import { h } from "@stencil/core";
 import { ProgramExplainerView } from "./sqm-program-explainer-view";
 import { ProgramExplainerStepView } from "../sqm-program-explainer-step/sqm-program-explainer-step-view";
+import scenario from "./sqm-program-explainer.feature";
 
 export default {
   title: "Components/Program Explainer",
+  parameters: {
+    scenario,
+  },
 };
 
 export const OneStep = () => {
