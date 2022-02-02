@@ -379,7 +379,7 @@ const longColumnTextTableProps = {
   },
 };
 
-const fullUserTableProps = {
+const fullUserTableProps = (hidden = false) => ({
   states: {
     hasPrev: false,
     hasNext: true,
@@ -392,7 +392,7 @@ const fullUserTableProps = {
       prevLabel: "Prev",
       moreLabel: "View More",
     },
-    hiddenColumns: "",
+    hiddenColumns: hidden ? "0,1,2,3,4,5,6,7,8" : "-1",
     mdBreakpoint: 899,
     smBreakpoint: 599,
   },
@@ -466,7 +466,7 @@ const fullUserTableProps = {
       ],
     ],
   },
-};
+});
 
 export const SimpleUserTable = () => {
   return <GenericTableView {...simpleUserTableProps}></GenericTableView>;
@@ -489,7 +489,7 @@ export const CustomButtonTextTable = () => {
 };
 
 export const FullUserTable = () => {
-  return <GenericTableView {...fullUserTableProps}></GenericTableView>;
+  return <GenericTableView {...fullUserTableProps()}></GenericTableView>;
 };
 
 export const LongCellTextTable = () => {
@@ -672,4 +672,12 @@ export const FullRewardsTable = () => {
       }}
     ></sqm-referral-table>
   );
+};
+
+export const ColumnsMobileVisible = () => {
+  return <GenericTableView {...fullUserTableProps()}></GenericTableView>;
+};
+
+export const ColumnsMobileHidden = () => {
+  return <GenericTableView {...fullUserTableProps(true)}></GenericTableView>;
 };
