@@ -1604,7 +1604,6 @@ export namespace Components {
     }
     interface SqmTab {
         "header": string;
-        "open": boolean;
     }
     interface SqmTableCell {
         "colspan": number;
@@ -3918,7 +3917,6 @@ declare namespace LocalJSX {
     }
     interface SqmTab {
         "header"?: string;
-        "open"?: boolean;
     }
     interface SqmTableCell {
         "colspan"?: number;
