@@ -1453,6 +1453,13 @@ export namespace Components {
     }
     interface SqmRouter {
     }
+    interface SqmScroll {
+        "buttonText": string;
+        "buttonType": string;
+        "scrollAnimation": "smooth" | "auto";
+        "scrollId"?: string;
+        "scrollTagName"?: string;
+    }
     interface SqmShareButton {
         /**
           * @uiName Button background color
@@ -1608,10 +1615,7 @@ export namespace Components {
     interface SqmStencilbook {
     }
     interface SqmTab {
-    }
-    interface SqmTabGroup {
-    }
-    interface SqmTabPanel {
+        "tabName": string;
     }
     interface SqmTableCell {
         "colspan": number;
@@ -1619,6 +1623,8 @@ export namespace Components {
     }
     interface SqmTableRow {
         "border": string;
+    }
+    interface SqmTabs {
     }
     interface SqmTaskCard {
         /**
@@ -2187,6 +2193,12 @@ declare global {
         prototype: HTMLSqmRouterElement;
         new (): HTMLSqmRouterElement;
     };
+    interface HTMLSqmScrollElement extends Components.SqmScroll, HTMLStencilElement {
+    }
+    var HTMLSqmScrollElement: {
+        prototype: HTMLSqmScrollElement;
+        new (): HTMLSqmScrollElement;
+    };
     interface HTMLSqmShareButtonElement extends Components.SqmShareButton, HTMLStencilElement {
     }
     var HTMLSqmShareButtonElement: {
@@ -2223,18 +2235,6 @@ declare global {
         prototype: HTMLSqmTabElement;
         new (): HTMLSqmTabElement;
     };
-    interface HTMLSqmTabGroupElement extends Components.SqmTabGroup, HTMLStencilElement {
-    }
-    var HTMLSqmTabGroupElement: {
-        prototype: HTMLSqmTabGroupElement;
-        new (): HTMLSqmTabGroupElement;
-    };
-    interface HTMLSqmTabPanelElement extends Components.SqmTabPanel, HTMLStencilElement {
-    }
-    var HTMLSqmTabPanelElement: {
-        prototype: HTMLSqmTabPanelElement;
-        new (): HTMLSqmTabPanelElement;
-    };
     interface HTMLSqmTableCellElement extends Components.SqmTableCell, HTMLStencilElement {
     }
     var HTMLSqmTableCellElement: {
@@ -2246,6 +2246,12 @@ declare global {
     var HTMLSqmTableRowElement: {
         prototype: HTMLSqmTableRowElement;
         new (): HTMLSqmTableRowElement;
+    };
+    interface HTMLSqmTabsElement extends Components.SqmTabs, HTMLStencilElement {
+    }
+    var HTMLSqmTabsElement: {
+        prototype: HTMLSqmTabsElement;
+        new (): HTMLSqmTabsElement;
     };
     interface HTMLSqmTaskCardElement extends Components.SqmTaskCard, HTMLStencilElement {
     }
@@ -2352,16 +2358,16 @@ declare global {
         "sqm-rewards-table-status-column": HTMLSqmRewardsTableStatusColumnElement;
         "sqm-route": HTMLSqmRouteElement;
         "sqm-router": HTMLSqmRouterElement;
+        "sqm-scroll": HTMLSqmScrollElement;
         "sqm-share-button": HTMLSqmShareButtonElement;
         "sqm-share-code": HTMLSqmShareCodeElement;
         "sqm-share-link": HTMLSqmShareLinkElement;
         "sqm-stat-container": HTMLSqmStatContainerElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
         "sqm-tab": HTMLSqmTabElement;
-        "sqm-tab-group": HTMLSqmTabGroupElement;
-        "sqm-tab-panel": HTMLSqmTabPanelElement;
         "sqm-table-cell": HTMLSqmTableCellElement;
         "sqm-table-row": HTMLSqmTableRowElement;
+        "sqm-tabs": HTMLSqmTabsElement;
         "sqm-task-card": HTMLSqmTaskCardElement;
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
@@ -3772,6 +3778,13 @@ declare namespace LocalJSX {
     }
     interface SqmRouter {
     }
+    interface SqmScroll {
+        "buttonText"?: string;
+        "buttonType"?: string;
+        "scrollAnimation"?: "smooth" | "auto";
+        "scrollId"?: string;
+        "scrollTagName"?: string;
+    }
     interface SqmShareButton {
         /**
           * @uiName Button background color
@@ -3927,10 +3940,7 @@ declare namespace LocalJSX {
     interface SqmStencilbook {
     }
     interface SqmTab {
-    }
-    interface SqmTabGroup {
-    }
-    interface SqmTabPanel {
+        "tabName"?: string;
     }
     interface SqmTableCell {
         "colspan"?: number;
@@ -3938,6 +3948,8 @@ declare namespace LocalJSX {
     }
     interface SqmTableRow {
         "border"?: string;
+    }
+    interface SqmTabs {
     }
     interface SqmTaskCard {
         /**
@@ -4195,16 +4207,16 @@ declare namespace LocalJSX {
         "sqm-rewards-table-status-column": SqmRewardsTableStatusColumn;
         "sqm-route": SqmRoute;
         "sqm-router": SqmRouter;
+        "sqm-scroll": SqmScroll;
         "sqm-share-button": SqmShareButton;
         "sqm-share-code": SqmShareCode;
         "sqm-share-link": SqmShareLink;
         "sqm-stat-container": SqmStatContainer;
         "sqm-stencilbook": SqmStencilbook;
         "sqm-tab": SqmTab;
-        "sqm-tab-group": SqmTabGroup;
-        "sqm-tab-panel": SqmTabPanel;
         "sqm-table-cell": SqmTableCell;
         "sqm-table-row": SqmTableRow;
+        "sqm-tabs": SqmTabs;
         "sqm-task-card": SqmTaskCard;
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
@@ -4280,16 +4292,16 @@ declare module "@stencil/core" {
             "sqm-rewards-table-status-column": LocalJSX.SqmRewardsTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableStatusColumnElement>;
             "sqm-route": LocalJSX.SqmRoute & JSXBase.HTMLAttributes<HTMLSqmRouteElement>;
             "sqm-router": LocalJSX.SqmRouter & JSXBase.HTMLAttributes<HTMLSqmRouterElement>;
+            "sqm-scroll": LocalJSX.SqmScroll & JSXBase.HTMLAttributes<HTMLSqmScrollElement>;
             "sqm-share-button": LocalJSX.SqmShareButton & JSXBase.HTMLAttributes<HTMLSqmShareButtonElement>;
             "sqm-share-code": LocalJSX.SqmShareCode & JSXBase.HTMLAttributes<HTMLSqmShareCodeElement>;
             "sqm-share-link": LocalJSX.SqmShareLink & JSXBase.HTMLAttributes<HTMLSqmShareLinkElement>;
             "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
             "sqm-tab": LocalJSX.SqmTab & JSXBase.HTMLAttributes<HTMLSqmTabElement>;
-            "sqm-tab-group": LocalJSX.SqmTabGroup & JSXBase.HTMLAttributes<HTMLSqmTabGroupElement>;
-            "sqm-tab-panel": LocalJSX.SqmTabPanel & JSXBase.HTMLAttributes<HTMLSqmTabPanelElement>;
             "sqm-table-cell": LocalJSX.SqmTableCell & JSXBase.HTMLAttributes<HTMLSqmTableCellElement>;
             "sqm-table-row": LocalJSX.SqmTableRow & JSXBase.HTMLAttributes<HTMLSqmTableRowElement>;
+            "sqm-tabs": LocalJSX.SqmTabs & JSXBase.HTMLAttributes<HTMLSqmTabsElement>;
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;

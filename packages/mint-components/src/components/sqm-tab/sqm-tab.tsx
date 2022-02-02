@@ -1,13 +1,14 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop, Host, State } from "@stencil/core";
+import { Component, Prop, h } from "@stencil/core";
+import { getProps } from "../../utils/utils";
+import { TabView } from "./sqm-tab-view";
+import { useTab } from "./useTab";
 
 @Component({
   tag: "sqm-tab",
-  shadow: true,
 })
 export class Tab {
-  @State()
-  ignored = true;
+  @Prop() tabName: string;
 
   constructor() {
     withHooks(this);
@@ -15,12 +16,12 @@ export class Tab {
   disconnectedCallback() {}
 
   render() {
+    const { tabName } = getProps(this);
+    const { callbacks, state } = useTab();
     return (
-      <Host style={{ display: "block" }}>
-        <sl-tab>
-          <slot />
-        </sl-tab>
-      </Host>
+      <TabView tabName={tabName} callbacks={callbacks} state={state}>
+        <slot />
+      </TabView>
     );
   }
 }
