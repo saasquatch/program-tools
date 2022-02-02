@@ -300,7 +300,7 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
          */
-        "align": "left" | "center" | "right";
+        "alignment": "left" | "center" | "right";
         /**
           * @uiName Background Color
           * @uiWidget color
@@ -2643,7 +2643,7 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["left", "center", "right"]
          */
-        "align"?: "left" | "center" | "right";
+        "alignment"?: "left" | "center" | "right";
         /**
           * @uiName Background Color
           * @uiWidget color

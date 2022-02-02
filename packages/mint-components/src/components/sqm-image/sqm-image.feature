@@ -47,3 +47,13 @@ Feature: Image
 		And prop "background-color" is provided a color
 		Then the image is displayed
 		And background is the provided color
+
+
+	Scenario: Image minimum and maximum size can be constrained
+
+		Given an Image component
+		And prop "image-url" is provided
+		And prop "min-height" is given a minimum value
+		And prop "max-width" is given a maximum value
+		Then the image is displayed
+		And image maintains size between the provided range

@@ -138,8 +138,8 @@ export const ColumnsCustomPercentage = () => {
       image-percentage="25%"
       max-height="150px"
       max-width="100%"
-      paddingImage="large"
-      paddingText="large"
+      padding-image="large"
+      padding-text="large"
     />
   );
 };

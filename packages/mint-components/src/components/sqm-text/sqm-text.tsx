@@ -1,11 +1,11 @@
 import { Component, h, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { insertCSS } from "../../insertcss";
-import debugFn from "debug";
+// import { insertCSS } from "../../insertcss";
+// import debugFn from "debug";
 
-const debug = debugFn("sq:global");
+// const debug = debugFn("sq:global");
 
-const textStyles = `
+const vanillaStyle = `
   sqm-text {
     display: block;
   }
@@ -70,14 +70,19 @@ export class Text {
   disconnectedCallback() {}
 
   componentWillLoad() {
-    try {
-      insertCSS(textStyles);
-    } catch (error) {
-      debug(error);
-    }
+    // try {
+    //   insertCSS(textStyles);
+    // } catch (error) {
+    //   debug(error);
+    // }
   }
 
   render() {
-    return <slot />;
+    return (
+      <div>
+        <style>{vanillaStyle}</style>
+        <slot />
+      </div>
+    );
   }
 }
