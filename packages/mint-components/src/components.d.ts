@@ -247,23 +247,11 @@ export namespace Components {
          */
         "imageUrl": string;
         /**
-          * @uiName Image Link
+          * @uiName Image Layout
           * @uiType string
           * @uiEnum ["overlay", "columns"]
          */
         "layout": "overlay" | "columns";
-        /**
-          * @uiName Maximum Image Height
-         */
-        "maxHeight"?: string;
-        /**
-          * @uiName Maximum Image Width
-         */
-        "maxWidth": string;
-        /**
-          * @uiName Minimum Image Height
-         */
-        "minHeight"?: string;
         /**
           * @uiName Overlay Color
           * @uiWidget color
@@ -274,13 +262,13 @@ export namespace Components {
          */
         "overlayOpacity": string;
         /**
-          * @uiName Padding Image
+          * @uiName Image Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "paddingImage": Spacing;
         /**
-          * @uiName Padding Text
+          * @uiName Text Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
@@ -2591,23 +2579,11 @@ declare namespace LocalJSX {
          */
         "imageUrl"?: string;
         /**
-          * @uiName Image Link
+          * @uiName Image Layout
           * @uiType string
           * @uiEnum ["overlay", "columns"]
          */
         "layout"?: "overlay" | "columns";
-        /**
-          * @uiName Maximum Image Height
-         */
-        "maxHeight"?: string;
-        /**
-          * @uiName Maximum Image Width
-         */
-        "maxWidth"?: string;
-        /**
-          * @uiName Minimum Image Height
-         */
-        "minHeight"?: string;
         /**
           * @uiName Overlay Color
           * @uiWidget color
@@ -2618,13 +2594,13 @@ declare namespace LocalJSX {
          */
         "overlayOpacity"?: string;
         /**
-          * @uiName Padding Image
+          * @uiName Image Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "paddingImage"?: Spacing;
         /**
-          * @uiName Padding Text
+          * @uiName Text Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */

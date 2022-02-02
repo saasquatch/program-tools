@@ -20,7 +20,7 @@ Feature: Reward Table Source Column
         Then the source of their reward is displayed as "Manual"
 
     @motivating
-    Scenario: The source column displays "Automated" if the reward is caused automatically by a program
+    Scenario: The source column displays the program name if the reward is caused automatically by a program
         Given a user with a "AUTOMATED" program reward
         And the program has name "Loyalty Program"
         When they view the rewards table
