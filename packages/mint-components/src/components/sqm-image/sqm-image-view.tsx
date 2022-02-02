@@ -5,9 +5,9 @@ export interface ImageViewProps {
   imageUrl: string;
   left?: string;
   right?: string;
-  align?: "left" | "center" | "right";
+  alignment?: "left" | "center" | "right";
   backgroundColor?: string;
-  maxHeight?: string; // helps with constraining minimum size
+  minHeight?: string; // helps with constraining minimum size
   maxWidth?: string; // helps with constraining maximum size
 }
 
@@ -16,12 +16,12 @@ export function ImageView(props: ImageViewProps) {
     Container: {
       display: "flex",
       width: "100%",
-      justifyContent: props.align || "center",
+      justifyContent: props.alignment || "center",
       background: props.backgroundColor || "",
     },
     Image: {
       maxWidth: props.maxWidth || "100%",
-      maxHiehgt: props.maxHeight || "100%",
+      minHeight: props.minHeight || "100%",
       objectFit: "cover",
       marginLeft: props.left || "0",
       marginRight: props.right || "0",

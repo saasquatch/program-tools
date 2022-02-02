@@ -31,7 +31,7 @@ export class Image {
    * @uiType string
    * @uiEnum ["left", "center", "right"]
    */
-  @Prop() align: "left" | "center" | "right" = "center";
+  @Prop() alignment: "left" | "center" | "right" = "center";
 
   /**
    * @uiName Background Color
