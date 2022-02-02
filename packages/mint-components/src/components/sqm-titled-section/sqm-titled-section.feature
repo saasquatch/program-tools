@@ -5,7 +5,7 @@ Feature: Titled Section
     Background: The titled section has a label and content
         Given a titled section
         And it has a label
-        And it has content
+        And it has content in the content slot
 
     @motivating
     Scenario: Text alignment defaults to left align but can be configured
