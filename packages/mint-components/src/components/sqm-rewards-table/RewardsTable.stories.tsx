@@ -16,9 +16,13 @@ import {
   StatusCellCancelled,
   StatusCellRedeemed,
 } from "./RewardsTableCell.stories";
+import scenario from "./rewards-table.feature";
 
 export default {
   title: "Components/Rewards Table",
+  parameters: {
+    scenario,
+  },
 };
 
 const loadingElement = (
