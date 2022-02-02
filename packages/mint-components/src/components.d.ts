@@ -253,18 +253,6 @@ export namespace Components {
          */
         "layout": "overlay" | "columns";
         /**
-          * @uiName Maximum Image Height
-         */
-        "maxHeight"?: string;
-        /**
-          * @uiName Maximum Image Width
-         */
-        "maxWidth": string;
-        /**
-          * @uiName Minimum Image Height
-         */
-        "minHeight"?: string;
-        /**
           * @uiName Overlay Color
           * @uiWidget color
          */
@@ -2595,18 +2583,6 @@ declare namespace LocalJSX {
           * @uiEnum ["overlay", "columns"]
          */
         "layout"?: "overlay" | "columns";
-        /**
-          * @uiName Maximum Image Height
-         */
-        "maxHeight"?: string;
-        /**
-          * @uiName Maximum Image Width
-         */
-        "maxWidth"?: string;
-        /**
-          * @uiName Minimum Image Height
-         */
-        "minHeight"?: string;
         /**
           * @uiName Overlay Color
           * @uiWidget color
