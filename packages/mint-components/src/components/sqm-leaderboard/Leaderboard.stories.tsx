@@ -20,7 +20,7 @@ const defaultElements = {
     <slot name="empty">
       <sqm-portal-container padding="xxxx-large" gap="medium">
         <sqm-image
-          image-url="https://i.imgur.com/KPGnPF8.png"
+          image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828457/tenant_test_a7iws76wkk4az/pomgkfyhc2mb3cuapauq.png"
           max-width="100px"
         ></sqm-image>
         <sqm-titled-section label-margin="xxx-small" text-align="center">

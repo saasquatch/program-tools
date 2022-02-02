@@ -23,7 +23,7 @@ export const ProgramExplainerStepCustom = () => {
     <sqm-program-explainer-step
       header="Invite your friends to Klip"
       description="Send your referral link to a friend or share it through email, Twitter, or Facebook"
-      image-url="https://i.imgur.com/Uqn3aXw.png"
+      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829061/tenant_test_a7iws76wkk4az/jaalvb4ndgxarcrtk1ya.png"
       text-color="#fffc4b"
       background-color="#ff7f7f"
     />

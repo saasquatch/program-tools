@@ -41,13 +41,13 @@ export class Image {
 
   /**
    * (optional) Helps with constraining minimum size
-   * @uiName Min Height
+   * @uiName Minimum Height
    */
   @Prop() minHeight?: string;
 
   /**
    * (optional) Helps with constraining maximum size
-   * @uiName Max Width
+   * @uiName Maximum Width
    */
   @Prop() maxWidth?: string;
 
