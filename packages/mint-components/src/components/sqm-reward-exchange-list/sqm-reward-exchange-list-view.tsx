@@ -439,8 +439,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         </p>
       );
     }
-    console.log("SELECTED ITEM ", states.selectedStep);
-    console.log("CALLBACKS ", callbacks);
+    // console.log("SELECTED ITEM ", states.selectedStep);
+    // console.log("CALLBACKS ", callbacks);
     return (
       <sl-select
         style={{ width: "auto" }}
@@ -455,7 +455,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         }
       >
         {item.steps?.map((step) => {
-          console.log(item.steps);
+          // console.log(item.steps);
 
           return (
             <sl-menu-item
@@ -658,6 +658,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD"
         ? false
         : input && !states.amount;
+    console.log("input", input);
+    console.log(states.amount);
     return (
       <div>
         <div class={sheet.classes.ChooseAmount}>
@@ -727,8 +729,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   }
 
   function confirmation() {
-    console.log(selectedItem);
-    console.log(selectedStep);
+    // console.log(selectedItem);
+    // console.log(selectedStep);
 
     const cost =
       selectedStep?.prettySourceValue || selectedItem.prettySourceValue;
@@ -793,7 +795,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   }
 
   function success() {
-    console.log("success");
+    // console.log("success");
     return (
       <div class={sheet.classes.Success}>
         <Gift />
@@ -955,7 +957,9 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     <div class={sheet.classes.Container}>
       <style type="text/css">{styleString}</style>
       <div>
-        {console.log(props)}
+        {
+          // console.log(props)
+        }
         {stageMap()}
         {states.exchangeError && errorMessage()}
         {states.queryError && queryErrorMessage()}
