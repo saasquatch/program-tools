@@ -18,16 +18,24 @@ export const CustomErrorMessage = StoryBase(Data.rewardExchangeCustomErrorMsg);
 export const LongTextRewardExhange = StoryBase(Data.rewardExchangeLongText);
 export const ChooseRewardSelected = StoryBase(Data.rewardExchangeSelected);
 export const ChooseAmount = StoryBase(Data.chooseAmountFixed);
-export const ChooseAmountVariable = StoryBase(Data.chooseAmountVariable);
-export const chooseAmountVariableDisabled = StoryBase(
+export const ChooseAmountNoDescription = StoryBase(
+  Data.chooseAmountFixedNoDescription
+);
+export const ChooseAmountVariableAndStepped = StoryBase(
+  Data.chooseAmountVariable
+);
+export const ChooseAmountVariableAndSteppedNoDescription = StoryBase(
+  Data.chooseAmountVariableNoDescription
+);
+export const chooseAmountVariableAndSteppedDisabled = StoryBase(
   Data.chooseAmountVariableDisabled
 );
-export const chooseAmountVariableUnavailable = StoryBase(
+export const chooseAmountVariableAndSteppedUnavailable = StoryBase(
   Data.chooseAmountVariableUnavailable
 );
 export const Confirm = StoryBase(Data.confirmFixed);
-export const ConfirmVariable = StoryBase(Data.confirmVariable);
+export const ConfirmVariableAndStepped = StoryBase(Data.confirmVariable);
 export const Error = StoryBase(Data.error);
 export const SuccessPromo = StoryBase(Data.success);
-export const SuccessVariable = StoryBase(Data.successVariable);
+export const SuccessVariableAndStepped = StoryBase(Data.successVariable);
 export const Loading = StoryBase(Data.loading);
