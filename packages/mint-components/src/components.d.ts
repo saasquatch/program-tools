@@ -247,7 +247,7 @@ export namespace Components {
          */
         "imageUrl": string;
         /**
-          * @uiName Image Link
+          * @uiName Image Layout
           * @uiType string
           * @uiEnum ["overlay", "columns"]
          */
@@ -274,13 +274,13 @@ export namespace Components {
          */
         "overlayOpacity": string;
         /**
-          * @uiName Padding Image
+          * @uiName Image Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "paddingImage": Spacing;
         /**
-          * @uiName Padding Text
+          * @uiName Text Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
@@ -1615,10 +1615,7 @@ export namespace Components {
     interface SqmStencilbook {
     }
     interface SqmTab {
-    }
-    interface SqmTabGroup {
-    }
-    interface SqmTabPanel {
+        "tabName": string;
     }
     interface SqmTableCell {
         "colspan": number;
@@ -1626,6 +1623,8 @@ export namespace Components {
     }
     interface SqmTableRow {
         "border": string;
+    }
+    interface SqmTabs {
     }
     interface SqmTaskCard {
         /**
@@ -2236,18 +2235,6 @@ declare global {
         prototype: HTMLSqmTabElement;
         new (): HTMLSqmTabElement;
     };
-    interface HTMLSqmTabGroupElement extends Components.SqmTabGroup, HTMLStencilElement {
-    }
-    var HTMLSqmTabGroupElement: {
-        prototype: HTMLSqmTabGroupElement;
-        new (): HTMLSqmTabGroupElement;
-    };
-    interface HTMLSqmTabPanelElement extends Components.SqmTabPanel, HTMLStencilElement {
-    }
-    var HTMLSqmTabPanelElement: {
-        prototype: HTMLSqmTabPanelElement;
-        new (): HTMLSqmTabPanelElement;
-    };
     interface HTMLSqmTableCellElement extends Components.SqmTableCell, HTMLStencilElement {
     }
     var HTMLSqmTableCellElement: {
@@ -2259,6 +2246,12 @@ declare global {
     var HTMLSqmTableRowElement: {
         prototype: HTMLSqmTableRowElement;
         new (): HTMLSqmTableRowElement;
+    };
+    interface HTMLSqmTabsElement extends Components.SqmTabs, HTMLStencilElement {
+    }
+    var HTMLSqmTabsElement: {
+        prototype: HTMLSqmTabsElement;
+        new (): HTMLSqmTabsElement;
     };
     interface HTMLSqmTaskCardElement extends Components.SqmTaskCard, HTMLStencilElement {
     }
@@ -2372,10 +2365,9 @@ declare global {
         "sqm-stat-container": HTMLSqmStatContainerElement;
         "sqm-stencilbook": HTMLSqmStencilbookElement;
         "sqm-tab": HTMLSqmTabElement;
-        "sqm-tab-group": HTMLSqmTabGroupElement;
-        "sqm-tab-panel": HTMLSqmTabPanelElement;
         "sqm-table-cell": HTMLSqmTableCellElement;
         "sqm-table-row": HTMLSqmTableRowElement;
+        "sqm-tabs": HTMLSqmTabsElement;
         "sqm-task-card": HTMLSqmTaskCardElement;
         "sqm-text": HTMLSqmTextElement;
         "sqm-text-span": HTMLSqmTextSpanElement;
@@ -2598,7 +2590,7 @@ declare namespace LocalJSX {
          */
         "imageUrl"?: string;
         /**
-          * @uiName Image Link
+          * @uiName Image Layout
           * @uiType string
           * @uiEnum ["overlay", "columns"]
          */
@@ -2625,13 +2617,13 @@ declare namespace LocalJSX {
          */
         "overlayOpacity"?: string;
         /**
-          * @uiName Padding Image
+          * @uiName Image Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "paddingImage"?: Spacing;
         /**
-          * @uiName Padding Text
+          * @uiName Text Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
@@ -3948,10 +3940,7 @@ declare namespace LocalJSX {
     interface SqmStencilbook {
     }
     interface SqmTab {
-    }
-    interface SqmTabGroup {
-    }
-    interface SqmTabPanel {
+        "tabName"?: string;
     }
     interface SqmTableCell {
         "colspan"?: number;
@@ -3959,6 +3948,8 @@ declare namespace LocalJSX {
     }
     interface SqmTableRow {
         "border"?: string;
+    }
+    interface SqmTabs {
     }
     interface SqmTaskCard {
         /**
@@ -4223,10 +4214,9 @@ declare namespace LocalJSX {
         "sqm-stat-container": SqmStatContainer;
         "sqm-stencilbook": SqmStencilbook;
         "sqm-tab": SqmTab;
-        "sqm-tab-group": SqmTabGroup;
-        "sqm-tab-panel": SqmTabPanel;
         "sqm-table-cell": SqmTableCell;
         "sqm-table-row": SqmTableRow;
+        "sqm-tabs": SqmTabs;
         "sqm-task-card": SqmTaskCard;
         "sqm-text": SqmText;
         "sqm-text-span": SqmTextSpan;
@@ -4309,10 +4299,9 @@ declare module "@stencil/core" {
             "sqm-stat-container": LocalJSX.SqmStatContainer & JSXBase.HTMLAttributes<HTMLSqmStatContainerElement>;
             "sqm-stencilbook": LocalJSX.SqmStencilbook & JSXBase.HTMLAttributes<HTMLSqmStencilbookElement>;
             "sqm-tab": LocalJSX.SqmTab & JSXBase.HTMLAttributes<HTMLSqmTabElement>;
-            "sqm-tab-group": LocalJSX.SqmTabGroup & JSXBase.HTMLAttributes<HTMLSqmTabGroupElement>;
-            "sqm-tab-panel": LocalJSX.SqmTabPanel & JSXBase.HTMLAttributes<HTMLSqmTabPanelElement>;
             "sqm-table-cell": LocalJSX.SqmTableCell & JSXBase.HTMLAttributes<HTMLSqmTableCellElement>;
             "sqm-table-row": LocalJSX.SqmTableRow & JSXBase.HTMLAttributes<HTMLSqmTableRowElement>;
+            "sqm-tabs": LocalJSX.SqmTabs & JSXBase.HTMLAttributes<HTMLSqmTabsElement>;
             "sqm-task-card": LocalJSX.SqmTaskCard & JSXBase.HTMLAttributes<HTMLSqmTaskCardElement>;
             "sqm-text": LocalJSX.SqmText & JSXBase.HTMLAttributes<HTMLSqmTextElement>;
             "sqm-text-span": LocalJSX.SqmTextSpan & JSXBase.HTMLAttributes<HTMLSqmTextSpanElement>;
