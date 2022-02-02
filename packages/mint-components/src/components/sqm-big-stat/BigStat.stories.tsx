@@ -1,8 +1,12 @@
 import { h } from "@stencil/core";
 import { BigStatView } from "./sqm-big-stat-view";
+import scenario from "./BigStat.feature";
 
 export default {
   title: "Components/Big Stat",
+  parameters: {
+    scenario,
+  },
 };
 
 export const Default = () => {

@@ -16,9 +16,13 @@ import {
   StatusCellCancelled,
   StatusCellRedeemed,
 } from "./RewardsTableCell.stories";
+import scenario from "./rewards-table.feature";
 
 export default {
   title: "Components/Rewards Table",
+  parameters: {
+    scenario,
+  },
 };
 
 const loadingElement = (
@@ -58,17 +62,17 @@ const emptyElement = (
         <sqm-portal-container padding="xxxx-large" gap="medium">
           <sqm-image
             image-url={
-              "https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_3_1.png"
+              "https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_4_1.png"
             }
             max-width="100px"
           ></sqm-image>
           <sqm-titled-section label-margin="xxx-small" text-align="center">
             <sqm-text slot="label">
-              <h3>View your referral details</h3>
+              <h3>View your rewards</h3>
             </sqm-text>
             <sqm-text slot="content">
-              Track the status of your referrals and rewards earned by referring
-              friends
+              See all the rewards you have earned from referring friends and
+              completing tasks
             </sqm-text>
           </sqm-titled-section>
         </sqm-portal-container>
@@ -82,7 +86,8 @@ const rewardsTableProps = (
   empty = false,
   loading = false,
   prev = "Prev",
-  next = "Next"
+  next = "Next",
+  hidden = ""
 ) => ({
   states: {
     hasPrev: false,
@@ -100,7 +105,7 @@ const rewardsTableProps = (
       prevLabel: prev,
       moreLabel: next,
     },
-    hiddenColumns: "",
+    hiddenColumns: hidden,
     mdBreakpoint: 899,
     smBreakpoint: 599,
   },
@@ -187,9 +192,30 @@ export const RewardsTableLoading = () => {
 };
 
 export const CustomButtonTextTable = () => {
-	return (
-	  <GenericTableView
-		{...rewardsTableProps([r_available, r_redeemed, r_cancelled, r_expired], false, false, "CUSTOM PREVIOUS TEXT", "CUSTOM NEXT TEXT")}
-	  ></GenericTableView>
-	);
-  };
+  return (
+    <GenericTableView
+      {...rewardsTableProps(
+        [r_available, r_redeemed, r_cancelled, r_expired],
+        false,
+        false,
+        "CUSTOM PREVIOUS TEXT",
+        "CUSTOM NEXT TEXT"
+      )}
+    ></GenericTableView>
+  );
+};
+
+export const ColumnsMobileHidden = () => {
+  return (
+    <GenericTableView
+      {...rewardsTableProps(
+        [r_available, r_redeemed, r_cancelled, r_expired],
+        false,
+        false,
+        undefined,
+        undefined,
+        "0,1,2,3"
+      )}
+    ></GenericTableView>
+  );
+};

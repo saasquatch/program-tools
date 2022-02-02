@@ -1,8 +1,12 @@
 import { h } from "@stencil/core";
 import { ShareButtonView } from "./sqm-share-button-view";
+import scenario from "./ShareButton.feature";
 
 export default {
   title: "Components/Share Button",
+  parameters: {
+    scenario,
+  },
 };
 
 export const WithIconPrefix = () => {

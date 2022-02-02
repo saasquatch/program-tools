@@ -4,9 +4,13 @@ import {
   RewardExchangeViewProps,
 } from "./sqm-reward-exchange-list-view";
 import * as Data from "./RewardExchangeListData";
+import scenario from "./sqm-reward-exchange-list.feature";
 
 export default {
   title: "Components/Reward Exchange List",
+  parameters: {
+    scenario,
+  },
 };
 
 const StoryBase = (props: RewardExchangeViewProps) => () => {

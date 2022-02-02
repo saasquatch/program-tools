@@ -304,12 +304,12 @@ export namespace Components {
         "left": string;
         /**
           * (optional) Helps with constraining maximum size
-          * @uiName Max Width
+          * @uiName Maximum Width
          */
         "maxWidth"?: string;
         /**
           * (optional) Helps with constraining minimum size
-          * @uiName Min Height
+          * @uiName Minimum Height
          */
         "minHeight"?: string;
         /**
@@ -2635,12 +2635,12 @@ declare namespace LocalJSX {
         "left"?: string;
         /**
           * (optional) Helps with constraining maximum size
-          * @uiName Max Width
+          * @uiName Maximum Width
          */
         "maxWidth"?: string;
         /**
           * (optional) Helps with constraining minimum size
-          * @uiName Min Height
+          * @uiName Minimum Height
          */
         "minHeight"?: string;
         /**

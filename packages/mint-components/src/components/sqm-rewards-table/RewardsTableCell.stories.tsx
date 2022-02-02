@@ -1,7 +1,11 @@
 import { h } from "@stencil/core";
+import scenario from "./rewards-table.feature";
 
 export default {
   title: "Components/Rewards Table Cell",
+  parameters: {
+    scenario,
+  },
 };
 
 const rewardsData: Reward = {

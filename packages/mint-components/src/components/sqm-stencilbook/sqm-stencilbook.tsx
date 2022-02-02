@@ -61,6 +61,7 @@ import * as Image from "../sqm-image/Image.stories";
 import * as TitledSection from "../sqm-titled-section/TitledSection.stories";
 import * as Scroll from "../sqm-scroll/Scroll.stories";
 import * as Tabs from "../sqm-tabs/Tabs.stories";
+import * as ShareCode from "../sqm-share-code/ShareCode.stories";
 
 import * as Themes from "./Themes";
 import { CucumberAddon } from "./CucumberAddon";
@@ -128,6 +129,7 @@ const stories = [
   TitledSection,
   Scroll,
   Tabs,
+  ShareCode,
 ];
 
 /**

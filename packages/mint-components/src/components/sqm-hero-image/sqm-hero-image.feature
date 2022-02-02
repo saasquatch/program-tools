@@ -18,6 +18,7 @@ Feature: Hero Image
 			| layout      | "overlay"                                                          |
 		Then they see their image
 		And the image has no padding
+		And it has a brand colour overlay
 		And "Klip Rewards" is displayed over top of the image in xxx-large font
 		And below "Refer friends or complete tasks while using Klip to earn rewards" is displayed over top of the image in x-large font
 		And below they see a brand coloured button with text "Start earning"
