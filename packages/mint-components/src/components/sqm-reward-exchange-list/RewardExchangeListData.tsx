@@ -143,19 +143,21 @@ const demoData = [
     ...baseReward,
     ...selected,
     ...name("Visa® Prepaid Card USD"),
-    ...imageUrl("https://i.imgur.com/veHErQX.png"),
+    ...imageUrl(
+      "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829161/tenant_test_a7iws76wkk4az/lmzj1rtxchiyquvazo5k.png"
+    ),
     ...variableValue(20, 80, "Points"),
   },
   {
     ...baseReward,
     ...name("$50 Store credit"),
-    ...imageUrl("https://i.imgur.com/WkCMVSE.png"),
+    ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829222/tenant_test_a7iws76wkk4az/wvxtrsytmr4h1ozhxspv.png"),
     ...fixedValue("100 Points"),
   },
   {
     ...baseReward,
     ...name("Variable amount of store credit"),
-    ...imageUrl("https://i.imgur.com/Jn2fE0s.png"),
+    ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829263/tenant_test_a7iws76wkk4az/dbo8tb4qpwmhg5iudviq.png"),
     ...variableValue(20, 100, "Points"),
   },
 ];
@@ -173,32 +175,34 @@ const data = [
     ...baseReward,
     ...selected,
     ...name("Visa® Prepaid Card USD"),
-    ...imageUrl("https://i.imgur.com/veHErQX.png"),
+    ...imageUrl(
+      "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829161/tenant_test_a7iws76wkk4az/lmzj1rtxchiyquvazo5k.png"
+    ),
     ...variableValue(20, 80, "Points"),
   },
   {
     ...baseReward,
     ...name("A very exclusive gift box"),
-    ...imageUrl("https://i.imgur.com/93BvEgH.png"),
+    ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829284/tenant_test_a7iws76wkk4az/cognmlwma874b5q94hqv.png"),
     ...fixedValue("30 SaaSquatch Points"),
   },
   {
     ...baseReward,
     ...name("$50 Store credit"),
-    ...imageUrl("https://i.imgur.com/WkCMVSE.png"),
+    ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829222/tenant_test_a7iws76wkk4az/wvxtrsytmr4h1ozhxspv.png"),
     ...fixedValue("100 SaaSquatch Points"),
   },
   {
     ...baseReward,
     ...name("Variable amount of store credit"),
-    ...imageUrl("https://i.imgur.com/Jn2fE0s.png"),
+    ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829263/tenant_test_a7iws76wkk4az/dbo8tb4qpwmhg5iudviq.png"),
     ...variableValue(20, 100, "Points"),
   },
   {
     ...baseReward,
     ...notEnoughPoints,
     ...name("A very rare cactus"),
-    ...imageUrl("https://i.imgur.com/hhlF2Ey.png"),
+    ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829341/tenant_test_a7iws76wkk4az/lgrlweifpsekh2y4zjih.png"),
     ...fixedValue("2000 SaaSquatch Points"),
   },
   {
@@ -207,14 +211,14 @@ const data = [
     ...name(
       "$1000 Store credit with a really super long name in the front page"
     ),
-    ...imageUrl("https://i.imgur.com/y9HSls1.png"),
+    ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829384/tenant_test_a7iws76wkk4az/f0dzeyrx3hojncbgim8y.png"),
     ...fixedValue("2000 SaaSquatch Long Points"),
   },
   {
     ...baseReward,
     ...notEnoughPoints,
     ...name("A holiday gift box"),
-    ...imageUrl("https://i.imgur.com/dWEdB3p.png"),
+    ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829450/tenant_test_a7iws76wkk4az/ujzfhfkvwqb02dlgjx6q.png"),
     ...fixedValue("100 SaaSquatch Points"),
   },
 ];
@@ -235,7 +239,7 @@ export const rewardExchangeLongText = {
       ...name(
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ratione a itaque non obcaecati iste, amet repudiandae at consequatur adipisci culpa nam, incidunt exercitationem aliquid."
       ),
-      ...imageUrl("https://i.imgur.com/dWEdB3p.png"),
+      ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829450/tenant_test_a7iws76wkk4az/ujzfhfkvwqb02dlgjx6q.png"),
       ...fixedValue(
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ratione a itaque non obcaecati iste, amet repudiandae at consequatur adipisci culpa nam, incidunt exercitationem aliquid."
       ),
@@ -245,7 +249,7 @@ export const rewardExchangeLongText = {
       ...name(
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ratione a itaque non obcaecati iste, amet repudiandae at consequatur adipisci culpa nam, incidunt exercitationem aliquid."
       ),
-      ...imageUrl("https://i.imgur.com/y9HSls1.png"),
+      ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829384/tenant_test_a7iws76wkk4az/f0dzeyrx3hojncbgim8y.png"),
       ...fixedValue(
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ratione a itaque non obcaecati iste, amet repudiandae at consequatur adipisci culpa nam, incidunt exercitationem aliquid."
       ),
@@ -253,7 +257,7 @@ export const rewardExchangeLongText = {
     {
       ...baseReward,
       ...name("Suuuuuuuuper aweeeeesssssoooommme reward!!!!!!"),
-      ...imageUrl("https://i.imgur.com/WkCMVSE.png"),
+      ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829222/tenant_test_a7iws76wkk4az/wvxtrsytmr4h1ozhxspv.png"),
       ...fixedValue(
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ratione a itaque non obcaecati iste, amet repudiandae at consequatur adipisci culpa nam, incidunt exercitationem aliquid."
       ),
@@ -268,7 +272,7 @@ export const rewardExchangeCustomErrorMsg = {
       ...baseReward,
       ...customError,
       ...name("A very rare cactus"),
-      ...imageUrl("https://i.imgur.com/hhlF2Ey.png"),
+      ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829341/tenant_test_a7iws76wkk4az/lgrlweifpsekh2y4zjih.png"),
       ...fixedValue("2000 SaaSquatch Points"),
     },
     ...data,
@@ -280,7 +284,9 @@ export const rewardExchangeSelected = {
     ...baseReward,
     ...selected,
     ...name("Visa® Prepaid Card USD"),
-    ...imageUrl("https://i.imgur.com/veHErQX.png"),
+    ...imageUrl(
+      "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829161/tenant_test_a7iws76wkk4az/lmzj1rtxchiyquvazo5k.png"
+    ),
     ...variableValue(20, 80, "Points"),
   }),
 };
@@ -320,7 +326,9 @@ export const chooseAmountVariable = {
   ...baseResponse(data, "chooseAmount", {
     ...baseReward,
     ...name("Visa® Prepaid Card USD"),
-    ...imageUrl("https://i.imgur.com/veHErQX.png"),
+    ...imageUrl(
+      "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829161/tenant_test_a7iws76wkk4az/lmzj1rtxchiyquvazo5k.png"
+    ),
     ...variableValue(20, 80, "Points"),
     steps: [
       baseStep(20, "$", 40, "Points"),
@@ -352,7 +360,9 @@ export const chooseAmountVariableDisabled = {
   ...baseResponse(data, "chooseAmount", {
     ...baseReward,
     ...name("Visa® Prepaid Card USD"),
-    ...imageUrl("https://i.imgur.com/veHErQX.png"),
+    ...imageUrl(
+      "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829161/tenant_test_a7iws76wkk4az/lmzj1rtxchiyquvazo5k.png"
+    ),
     ...variableValue(20, 80, "Points"),
     steps: [
       baseStep(20, "$", 40, "Points"),
@@ -368,7 +378,9 @@ export const chooseAmountVariableUnavailable = {
   ...baseResponse(data, "chooseAmount", {
     ...baseReward,
     ...name("Visa® Prepaid Card USD"),
-    ...imageUrl("https://i.imgur.com/veHErQX.png"),
+    ...imageUrl(
+      "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829161/tenant_test_a7iws76wkk4az/lmzj1rtxchiyquvazo5k.png"
+    ),
     ...variableValue(20, 80, "Points"),
     steps: [
       baseStep(20, "$", 40, "Points"),
@@ -384,7 +396,7 @@ export const chooseAmountFixed = {
   ...baseResponse(data, "chooseAmount", {
     ...baseReward,
     ...name("Free swag with a promo code"),
-    ...imageUrl("https://i.imgur.com/n7vC4BR.png"),
+    ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829486/tenant_test_a7iws76wkk4az/xtptk0dynrxxlkg0dctb.png"),
     ...fixedValue("40 SaaSquatch Points"),
   }),
 };
@@ -403,7 +415,7 @@ export const confirmFixed = {
   ...baseResponse(data, "confirmation", {
     ...baseReward,
     ...name("Free swag with a promo code"),
-    ...imageUrl("https://i.imgur.com/n7vC4BR.png"),
+    ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829486/tenant_test_a7iws76wkk4az/xtptk0dynrxxlkg0dctb.png"),
     ...fixedValue("40 SaaSquatch Points"),
   }),
 };
@@ -415,7 +427,9 @@ export const confirmVariable = {
     {
       ...baseReward,
       ...name("Visa® Prepaid Card USD"),
-      ...imageUrl("https://i.imgur.com/veHErQX.png"),
+      ...imageUrl(
+        "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829161/tenant_test_a7iws76wkk4az/lmzj1rtxchiyquvazo5k.png"
+      ),
       ...variableValue(20, 80, "Points"),
     },
     baseStep(20, "$", 40, "Points")
@@ -429,7 +443,9 @@ export const error = {
     {
       ...baseReward,
       ...name("Visa® Prepaid Card USD"),
-      ...imageUrl("https://i.imgur.com/veHErQX.png"),
+      ...imageUrl(
+        "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829161/tenant_test_a7iws76wkk4az/lmzj1rtxchiyquvazo5k.png"
+      ),
       ...variableValue(20, 80, "Points"),
     },
     baseStep(20, "$", 40, "Points"),
@@ -444,7 +460,7 @@ export const success = {
     {
       ...baseReward,
       ...name("Free swag with a promo code"),
-      ...imageUrl("https://i.imgur.com/n7vC4BR.png"),
+      ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829486/tenant_test_a7iws76wkk4az/xtptk0dynrxxlkg0dctb.png"),
       ...fixedValue("40 SaaSquatch Points"),
     },
     undefined,
@@ -461,7 +477,7 @@ export const successVariable = {
     {
       ...baseReward,
       ...name("Visa® Prepaid Card USD"),
-      ...imageUrl("https://i.imgur.com/93BvEgH.png"),
+      ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829284/tenant_test_a7iws76wkk4az/cognmlwma874b5q94hqv.png"),
       ...variableValue(20, 80, "Points"),
     },
     baseStep(20, "$", 40, "Points")

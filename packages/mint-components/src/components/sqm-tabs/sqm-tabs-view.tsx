@@ -12,10 +12,19 @@ const style = {};
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
+const vanillaStyle = `
+sl-tab-panel::part(base) {
+	padding: var(--sl-spacing-x-large) 0;
+}
+`;
+
 export const TabsView: FunctionalComponent<TabsViewProps> = ({ content }) => {
   return (
     <Host>
-      <style type="text/css">{styleString}</style>
+      <style type="text/css">
+        {vanillaStyle}
+        {styleString}
+      </style>
       <sl-tab-group>
         {content.tabs.map((tab: TabElement) => {
           const slotName = tab.getAttribute("slot");

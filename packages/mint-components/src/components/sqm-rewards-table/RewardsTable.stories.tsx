@@ -77,18 +77,28 @@ const emptyElement = (
   </div>
 );
 
-const rewardsTablePropsEmpty = {
+const rewardsTableProps = (
+  rows,
+  empty = false,
+  loading = false,
+  prev = "Prev",
+  next = "Next"
+) => ({
   states: {
     hasPrev: false,
     hasNext: true,
-    show: "empty" as const,
-    namespace: "sqm-referral-table",
+    show: empty
+      ? ("empty" as const)
+      : loading
+      ? ("loading" as const)
+      : ("rows" as const),
+    namespace: "sqm-rewards-table",
   },
   data: {
     textOverrides: {
       showLabels: true,
-      prevLabel: "Prev",
-      moreLabel: "Next",
+      prevLabel: prev,
+      moreLabel: next,
     },
     hiddenColumns: "",
     mdBreakpoint: 899,
@@ -101,106 +111,85 @@ const rewardsTablePropsEmpty = {
 
   elements: {
     columns: ["Rewards", "Status", "Source", "Date received"],
-    rows: [],
+    rows: rows,
     emptyElement: emptyElement,
-  },
-};
-
-const rewardsTablePropsLoading = {
-  states: {
-    hasPrev: false,
-    hasNext: true,
-    show: "loading" as const,
-    namespace: "sqm-referral-table",
-  },
-  data: {
-    textOverrides: {
-      showLabels: true,
-      prevLabel: "Prev",
-      moreLabel: "Next",
-    },
-    hiddenColumns: "",
-    mdBreakpoint: 899,
-    smBreakpoint: 599,
-  },
-  callbacks: {
-    prevPage: () => console.log("Prev"),
-    nextPage: () => console.log("Next"),
-  },
-
-  elements: {
-    columns: ["Rewards", "Status", "Source", "Date received"],
-    rows: [],
     loadingElement: loadingElement,
   },
+});
+
+const r_available = [
+  <RewardsCellCreditFull />,
+  <StatusCellAvailable />,
+  <SourceCellReferral />,
+  <DateCell />,
+];
+
+const r_expired = [
+  <RewardsCellCreditPartial />,
+  <StatusCellAvailableExpiry />,
+  <SourceCellReferred />,
+  <DateCell />,
+];
+
+const r_cancelled = [
+  <RewardsCellCreditCancelled />,
+  <StatusCellCancelled />,
+  <SourceCellDeletedUser />,
+  <DateCell />,
+];
+
+const r_redeemed = [
+  <RewardsCellCreditRedeemed />,
+  <StatusCellRedeemed />,
+  <SourceCellManual />,
+  <DateCell />,
+];
+
+const r_long = [
+  <RewardsCellCreditLong />,
+  <StatusCellAvailableExpiry />,
+  <SourceCellReferred />,
+  <DateCell />,
+];
+
+export const RewardsTable = () => {
+  return (
+    <GenericTableView
+      {...rewardsTableProps([r_available, r_redeemed, r_cancelled, r_expired])}
+    ></GenericTableView>
+  );
 };
 
-const rewardsTableProps = {
-  states: {
-    hasPrev: false,
-    hasNext: true,
-    show: "rows" as const,
-    namespace: "sqm-referral-table",
-  },
-  data: {
-    textOverrides: {
-      showLabels: true,
-      prevLabel: "Prev",
-      moreLabel: "Next",
-    },
-    hiddenColumns: "",
-    mdBreakpoint: 899,
-    smBreakpoint: 599,
-  },
-  callbacks: {
-    prevPage: () => console.log("Prev"),
-    nextPage: () => console.log("Next"),
-  },
-
-  elements: {
-    columns: ["Rewards", "Status", "Source", "Date received"],
-    rows: [
-      [
-        <RewardsCellCreditFull />,
-        <StatusCellAvailable />,
-        <SourceCellReferral />,
-        <DateCell />,
-      ],
-      [
-        <RewardsCellCreditCancelled />,
-        <StatusCellCancelled />,
-        <SourceCellDeletedUser />,
-        <DateCell />,
-      ],
-      [
-        <RewardsCellCreditRedeemed />,
-        <StatusCellRedeemed />,
-        <SourceCellManual />,
-        <DateCell />,
-      ],
-      [
-        <RewardsCellCreditPartial />,
-        <StatusCellAvailableExpiry />,
-        <SourceCellReferred />,
-        <DateCell />,
-      ],
-      [
-        <RewardsCellCreditLong />,
-        <StatusCellAvailableExpiry />,
-        <SourceCellReferred />,
-        <DateCell />,
-      ],
-    ],
-  },
+export const RewardsTableSingle = () => {
+  return (
+    <GenericTableView {...rewardsTableProps([r_available])}></GenericTableView>
+  );
 };
-export const RewardsTableFull = () => {
-  return <GenericTableView {...rewardsTableProps}></GenericTableView>;
+
+export const RewardsTableLong = () => {
+  return (
+    <GenericTableView
+      {...rewardsTableProps([r_redeemed, r_long])}
+    ></GenericTableView>
+  );
 };
 
 export const RewardsTableEmpty = () => {
-  return <GenericTableView {...rewardsTablePropsEmpty}></GenericTableView>;
+  return <GenericTableView {...rewardsTableProps([], true)}></GenericTableView>;
 };
 
 export const RewardsTableLoading = () => {
-  return <GenericTableView {...rewardsTablePropsLoading}></GenericTableView>;
+  return (
+    <GenericTableView
+      {...rewardsTableProps([], false, true)}
+    ></GenericTableView>
+  );
 };
+
+export const CustomButtonTextTable = () => {
+	return (
+	  <GenericTableView
+		{...rewardsTableProps([r_available, r_redeemed, r_cancelled, r_expired], false, false, "CUSTOM PREVIOUS TEXT", "CUSTOM NEXT TEXT")}
+	  ></GenericTableView>
+	);
+  };

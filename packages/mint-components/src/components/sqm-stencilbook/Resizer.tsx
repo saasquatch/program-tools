@@ -15,6 +15,7 @@ export const ResizerStylesheet = `
     padding: 12px;
     height: fit-content;
     overflow: hidden;
+	width: 100%;
 }
 
 .resizer{

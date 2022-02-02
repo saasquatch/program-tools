@@ -66,7 +66,7 @@ export class Leaderboard {
   /**
    * @uiName Empty State Image
    */
-  @Prop() emptyStateImage: string = "https://i.imgur.com/KPGnPF8.png";
+  @Prop() emptyStateImage: string = "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828457/tenant_test_a7iws76wkk4az/pomgkfyhc2mb3cuapauq.png";
 
   /**
    * @uiName Empty State Header
@@ -229,7 +229,7 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
       elements: {
         empty: (
           <EmptySlot
-            emptyStateImage={"https://i.imgur.com/KPGnPF8.png"}
+            emptyStateImage={"https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828457/tenant_test_a7iws76wkk4az/pomgkfyhc2mb3cuapauq.png"}
             emptyStateHeader={"View your rank in the leaderboard"}
             emptyStateText={
               "Be the first to refer a friend and reach the top of the leaderboard"
