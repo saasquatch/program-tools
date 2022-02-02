@@ -54,11 +54,11 @@ Feature: Rewards Table
         And the pagination button to go to the previous page is disabled on the first page of rewards
         Examples:
             | number of rewards | page limit | number of pages |
-            | 0                 | 3          | 1               |
-            | 1                 | 3          | 1               |
-            | 3                 | 3          | 1               |
-            | 5                 | 3          | 2               |
-            | 42                | 3          | 14              |
+            | 0                 | 4          | 1               |
+            | 1                 | 4          | 1               |
+            | 3                 | 4          | 1               |
+            | 5                 | 4          | 2               |
+            | 42                | 4          | 11              |
 
     @motivating
     Scenario: The table converts to a card view on tablet and mobile window sizes
