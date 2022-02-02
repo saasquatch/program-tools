@@ -1,11 +1,13 @@
-@author:derek
+@author:kutay
 @owner:kutay
 Feature: Hero Image
 
 	The Hero Image component displays media images with a header, description and button using an overlay or a double column layout to offer an attrative widget page.
 
 	Background: A user on the portal is viewing the widget
+		Given a user viewing the Hero Image component
 
+	@motivating
 	Scenario: Overlay image displays header, description, and button with brand color
 		Given a Hero Image component configured with the following props
 			| prop        | value                                                              |
@@ -14,10 +16,16 @@ Feature: Hero Image
 			| description | "Refer friends or complete tasks while using Klip to earn rewards" |
 			| button-text | "Start earning"                                                    |
 			| layout      | "overlay"                                                          |
-		Then image with overlay using brand color is displayed
-		When screen is shrunk to smaller size
-		Then image is scaled to fit content
+		Then they see their image
+		And the image has no padding
+		And "Klip Rewards" is displayed over top of the image in xxx-large font
+		And below "Refer friends or complete tasks while using Klip to earn rewards" is displayed over top of the image in x-large font
+		And below they see a brand coloured button with text "Start earning"
+		And the text section has xxx-large padding
+		When the screen is shrunk to smaller size
+		Then the image is scaled to fit content
 
+	@motivating
 	Scenario Outline: Overlay image crop can be aligned left, center or right
 		Given a Hero Image component configured with the following props
 			| prop        | value                                                              |
@@ -26,64 +34,67 @@ Feature: Hero Image
 			| description | "Refer friends or complete tasks while using Klip to earn rewards" |
 			| button-text | "Start earning"                                                    |
 			| layout      | "overlay"                                                          |
-		And prop "image-pos" has <value>
-		Then image with overlay is displayed
-		When image is shrunk to mobile view
-		Then image is cropped with <value> align to fit content
+			| image-pos   | <value>                                                            |
+		Then the image with overlay is displayed
+		When the image is shrunk to mobile view
+		Then the image is <alignment> to fit content
 		Examples:
-			| value  |
-			| left   |
-			| center |
-			| right  |
+			| value  | alignment     |
+			| left   | left aligned  |
+			| center | centered      |
+			| right  | right aligned |
+			| N/A    | centered      |
 
-	Scenario Outline: Overlay padding can be configured
+	@motivating
+	Scenario Outline: Overlay padding is configurable
 		Given a Hero Image component configured with the following props
-			| prop        | value                                                              |
-			| image-url   | "https://i.imgur.com/bTwu1Um.png/"                                 |
-			| header      | "Klip Rewards"                                                     |
-			| description | "Refer friends or complete tasks while using Klip to earn rewards" |
-			| button-text | "Start earning"                                                    |
-			| layout      | "overlay"                                                          |
-		And prop "paddingText" has <value>
-		Then image with overlay is displayed
-		And padding with <value> is applied around header, description and button
-
+			| prop         | value                                                              |
+			| image-url    | "https://i.imgur.com/bTwu1Um.png/"                                 |
+			| header       | "Klip Rewards"                                                     |
+			| description  | "Refer friends or complete tasks while using Klip to earn rewards" |
+			| button-text  | "Start earning"                                                    |
+			| layout       | "overlay"                                                          |
+			| padding-text | <value>                                                            |
+		Then the image with overlay is displayed
+		And <padding> is applied around header, description and button
 		Examples:
-			| value      |
-			| xxx-small  |
-			| xx-small   |
-			| x-small    |
-			| small      |
-			| medium     |
-			| large      |
-			| x-large    |
-			| xx-large   |
-			| xxx-large  |
-			| xxxx-large |
+			| value      | padding    |
+			| none       | no padding |
+			| xxx-small  | xxx-small  |
+			| xx-small   | xx-small   |
+			| x-small    | x-small    |
+			| small      | small      |
+			| medium     | medium     |
+			| large      | large      |
+			| x-large    | x-large    |
+			| xx-large   | xx-large   |
+			| xxx-large  | xxx-large  |
+			| xxxx-large | xxxx-large |
+			| N/A        | no padding |
 
-	Scenario Outline: Overlay color and background can be customized
+	@motivating
+	Scenario Outline: Overlay color and background is configurable
 		Given a Hero Image component configured with the following props
-			| prop        | value                                                              |
-			| image-url   | "https://i.imgur.com/bTwu1Um.png/"                                 |
-			| header      | "Klip Rewards"                                                     |
-			| description | "Refer friends or complete tasks while using Klip to earn rewards" |
-			| button-text | "Start earning"                                                    |
-			| layout      | "overlay"                                                          |
-		And prop "text-color" has <textColor>
-		And prop "overlay-color" has <overlayColor>
-		And prop "overlay-opacity" has <overlayOpacity>
-		Then image with overlay is displayed
-		And overlay has color <overlayColor>
-		And overlay has opacity <overlayOpacity>
-		And text has color <textColor>
-
+			| prop            | value                                                              |
+			| image-url       | "https://i.imgur.com/bTwu1Um.png/"                                 |
+			| header          | "Klip Rewards"                                                     |
+			| description     | "Refer friends or complete tasks while using Klip to earn rewards" |
+			| button-text     | "Start earning"                                                    |
+			| layout          | "overlay"                                                          |
+			| text-color      | <textColor>                                                        |
+			| overlay-color   | <overlayColor>                                                     |
+			| overlay-opacity | <overlayOpacity>                                                   |
+		Then the image with overlay is displayed
+		And the overlay is <overlayColor>
+		And the overlay has <overlayOpacity>
+		And the text is <textColor>
 		Examples:
 			| textColor | overlayColor | overlayOpacity |
 			| #fffc4b   | #ff7f7f      | 0.9            |
 			| #1d0314   | #4baa1a      | 0              |
 			| #211a27   | #aa481a      | 1              |
 
-
+	@motivating
 	Scenario: Two-column layout displays an image on one side and on the other side a header, description, and button
 		Given a Hero Image component configured with the following props
 			| prop        | value                                                              |
@@ -92,48 +103,51 @@ Feature: Hero Image
 			| description | "Refer friends or complete tasks while using Klip to earn rewards" |
 			| button-text | "Start earning"                                                    |
 			| layout      | "columns"                                                          |
-		Then image and content is displayed in a two-column layout
-		When screen is shrunk to smaller size
-		Then two-column layout switches to a row layout
+		Then the image is displayed on the left
+		And the following elements are displayed on the right
+			| elements    |
+			| header      |
+			| description |
+			| button      |
+		When the screen is shrunk to smaller size
+		Then the two-column layout switches to a row layout
+		And the image is displayed on top
+		And the content is displayed below
 
-
-	Scenario Outline: Two-column layout image positions can be chosen for desktop and mobile views
+	@motivating
+	Scenario Outline: Image position is configurable for desktop and mobile views
 		Given a Hero Image component configured with the following props
-			| prop        | value                                                              |
-			| image-url   | "https://i.imgur.com/bTwu1Um.png/"                                 |
-			| header      | "Klip Rewards"                                                     |
-			| description | "Refer friends or complete tasks while using Klip to earn rewards" |
-			| button-text | "Start earning"                                                    |
-			| layout      | "columns"                                                          |
-		A
-		And prop "image-pos" has <imagePos>
-		And prop "image-mobile-pos" has <imageMobilePos>
-		Then image and content is displayed in a two-column layout
-		And image is displayed on the <imagePos>
-		When screen is shrunk to smaller size
+			| prop             | value                                                              |
+			| image-url        | "https://i.imgur.com/bTwu1Um.png/"                                 |
+			| header           | "Klip Rewards"                                                     |
+			| description      | "Refer friends or complete tasks while using Klip to earn rewards" |
+			| button-text      | "Start earning"                                                    |
+			| layout           | "columns"                                                          |
+			| image-pos        | <imagePos>                                                         |
+			| image-mobile-pos | <imageMobilePos>                                                   |
+		Then the image is displayed on the <imagePos>
+		When the screen is shrunk to smaller size
 		Then two-column layout switches to a row layout
 		And image is displayed on the <imageMobilePos>
-
 		Examples:
 			| imagePos | imageMobilePos |
 			| left     | top            |
 			| right    | bottom         |
 
-
-	Scenario Outline: Two-column layout image and text paddings can be configured
+	@motivating
+	Scenario Outline: Padding is configurable for the image and text of two column layouts
 		Given a Hero Image component configured with the following props
-			| prop        | value                                                              |
-			| image-url   | "https://i.imgur.com/bTwu1Um.png/"                                 |
-			| header      | "Klip Rewards"                                                     |
-			| description | "Refer friends or complete tasks while using Klip to earn rewards" |
-			| button-text | "Start earning"                                                    |
-			| layout      | "columns"                                                          |
-		And prop "padding-text" has <paddingText>
-		And prop "padding-image" has <paddingImage>
-		Then image and content is displayed in a two-column layout
-		And image has padding <paddingImage>
-		And text has padding <paddingText>
-
+			| prop          | value                                                              |
+			| image-url     | "https://i.imgur.com/bTwu1Um.png/"                                 |
+			| header        | "Klip Rewards"                                                     |
+			| description   | "Refer friends or complete tasks while using Klip to earn rewards" |
+			| button-text   | "Start earning"                                                    |
+			| layout        | "columns"                                                          |
+			| padding-text  | <paddingText>                                                      |
+			| padding-image | <paddingImage>                                                     |
+		Then the two column layout is displayed
+		And the image has padding <paddingImage>
+		And the text has padding <paddingText>
 		Examples:
 			| paddingText | paddingImage |
 			| xxx-small   | xxx-small    |
@@ -146,42 +160,41 @@ Feature: Hero Image
 			| xx-large    | xx-large     |
 			| xxx-large   | xxx-large    |
 			| xxxx-large  | xxxx-large   |
+			| none        | none         |
 
-
-	Scenario Outline: Two-column layout image division percentage can be configured
+	@motivating
+	Scenario Outline: Two-column layout image division percentage is configurable
 		Given a Hero Image component configured with the following props
-			| prop        | value                                                              |
-			| image-url   | "https://i.imgur.com/bTwu1Um.png/"                                 |
-			| header      | "Klip Rewards"                                                     |
-			| description | "Refer friends or complete tasks while using Klip to earn rewards" |
-			| button-text | "Start earning"                                                    |
-			| layout      | "columns"                                                          |
-		And prop "percentage" has <percentage>
-		Then image and content is displayed in a two-column layout
-		And image takes up <percentage> of the two-column layout
-		And text takes up the remainder of the space
-
+			| prop             | value                                                              |
+			| image-url        | "https://i.imgur.com/bTwu1Um.png/"                                 |
+			| header           | "Klip Rewards"                                                     |
+			| description      | "Refer friends or complete tasks while using Klip to earn rewards" |
+			| button-text      | "Start earning"                                                    |
+			| layout           | "columns"                                                          |
+			| image-percentage | <percent>                                                          |
+		Then the two column layout is displayed
+		And the image takes up <percentage> of the two-column layout
+		And the text elements take up the remainder of the space
 		Examples:
-			| percentage |
-			| 25%        |
-			| 42%        |
-			| 66%        |
+			| percent |
+			| 25%     |
+			| 42%     |
+			| 66%     |
 
-
-	Scenario: Two-column layout text and background color can be customized
+	@motivating
+	Scenario: Two-column layout text and background color is configurable
 		Given a Hero Image component configured with the following props
-			| prop        | value                                                              |
-			| image-url   | "https://i.imgur.com/bTwu1Um.png/"                                 |
-			| header      | "Klip Rewards"                                                     |
-			| description | "Refer friends or complete tasks while using Klip to earn rewards" |
-			| button-text | "Start earning"                                                    |
-			| layout      | "columns"                                                          |
-		And prop "text-color" has <textColor>
-		And prop "background-color" has <backgroundColor>
-		Then image and content is displayed in a two-column layout
-		And text has color <textColor>
-		And background has color <backgroundColor>
-
+			| prop             | value                                                              |
+			| image-url        | "https://i.imgur.com/bTwu1Um.png/"                                 |
+			| header           | "Klip Rewards"                                                     |
+			| description      | "Refer friends or complete tasks while using Klip to earn rewards" |
+			| button-text      | "Start earning"                                                    |
+			| layout           | "columns"                                                          |
+			| text-color       | <textColor>                                                        |
+			| background-color | <backgroundColor>                                                  |
+		Then the two column layout is displayed
+		And the text has color <textColor>
+		And the background has color <backgroundColor>
 		Examples:
 			| textColor | backgroundColor |
 			| #fffc4b   | #ff7f7f         |

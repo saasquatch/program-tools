@@ -247,7 +247,7 @@ export namespace Components {
          */
         "imageUrl": string;
         /**
-          * @uiName Image Link
+          * @uiName Image Layout
           * @uiType string
           * @uiEnum ["overlay", "columns"]
          */
@@ -274,13 +274,13 @@ export namespace Components {
          */
         "overlayOpacity": string;
         /**
-          * @uiName Padding Image
+          * @uiName Image Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "paddingImage": Spacing;
         /**
-          * @uiName Padding Text
+          * @uiName Text Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
@@ -2598,7 +2598,7 @@ declare namespace LocalJSX {
          */
         "imageUrl"?: string;
         /**
-          * @uiName Image Link
+          * @uiName Image Layout
           * @uiType string
           * @uiEnum ["overlay", "columns"]
          */
@@ -2625,13 +2625,13 @@ declare namespace LocalJSX {
          */
         "overlayOpacity"?: string;
         /**
-          * @uiName Padding Image
+          * @uiName Image Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "paddingImage"?: Spacing;
         /**
-          * @uiName Padding Text
+          * @uiName Text Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */

@@ -56,7 +56,7 @@ export class HeroImage {
   @Prop() backgroundColor?: string;
 
   /**
-   * @uiName Image Link
+   * @uiName Image Layout
    * @uiType string
    * @uiEnum ["overlay", "columns"]
    */
@@ -108,14 +108,14 @@ export class HeroImage {
   @Prop() buttonNewTab?: boolean = false;
 
   /**
-   * @uiName Padding Text
+   * @uiName Text Padding
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    */
   @Prop() paddingText: Spacing = "xxxx-large";
 
   /**
-   * @uiName Padding Image
+   * @uiName Image Padding
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
    */
