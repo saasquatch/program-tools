@@ -19,10 +19,10 @@ Feature: Card Feed
 	Scenario: Card Feed component can have a maximum width
 		Given a Card Feed component
 		And a number of task cards in the children slot
-		And prop "width" has a provided maximum value
+		And prop "width" has a provided value
 		Then task cards are displayed in a grid layout
 		When the component is scaled down or up
-		Then the width of the component is constrained by the maximum value
+		Then number of columns adjust to the given width value
 
 	@motivating
 	Scenario: Card Feed component gap between task cards can be customized

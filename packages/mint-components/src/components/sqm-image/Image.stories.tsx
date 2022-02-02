@@ -1,8 +1,11 @@
 import { h } from "@stencil/core";
-import { ImageView } from "./sqm-image-view";
+import scenario from "./sqm-image.feature";
 
 export default {
   title: "Components/Image",
+  parameters: {
+    scenario,
+  },
 };
 
 export const Image = () => {

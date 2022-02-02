@@ -1,9 +1,13 @@
 import { h } from "@stencil/core";
 import { EmptySkeleton, LoadingSkeleton } from "../../tables/TableSlots";
 import { LeaderboardView } from "./sqm-leaderboard-view";
+import scenario from "./sqm-leaderboard.feature";
 
 export default {
   title: "Components/Leaderboard",
+  parameters: {
+    scenario,
+  },
 };
 
 const defaultStyles = {
