@@ -674,10 +674,6 @@ export const FullRewardsTable = () => {
   );
 };
 
-export const ColumnsMobileVisible = () => {
-  return <GenericTableView {...fullUserTableProps()}></GenericTableView>;
-};
-
 export const ColumnsMobileHidden = () => {
   return <GenericTableView {...fullUserTableProps(true)}></GenericTableView>;
 };

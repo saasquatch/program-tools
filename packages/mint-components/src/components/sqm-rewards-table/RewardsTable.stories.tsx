@@ -201,21 +201,6 @@ export const CustomButtonTextTable = () => {
   );
 };
 
-export const ColumnsMobileVisible = () => {
-  return (
-    <GenericTableView
-      {...rewardsTableProps(
-        [r_available, r_redeemed, r_cancelled, r_expired],
-        false,
-        false,
-        undefined,
-        undefined,
-        "-1"
-      )}
-    ></GenericTableView>
-  );
-};
-
 export const ColumnsMobileHidden = () => {
   return (
     <GenericTableView
