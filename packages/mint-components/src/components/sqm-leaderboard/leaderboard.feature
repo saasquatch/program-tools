@@ -117,4 +117,4 @@ Feature: Leaderboard
 		And they do not have a first name
 		And they do not have a last initial
 		When they view the leaderboard
-		Then they see the user disyapled as "Anonymous User"
+		Then they see the user displayed as "Anonymous User"
