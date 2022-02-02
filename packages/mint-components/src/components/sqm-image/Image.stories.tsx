@@ -9,29 +9,41 @@ export const Image = () => {
   return <sqm-image image-url="https://i.imgur.com/tn47wOj.png" />;
 };
 
-export const ImageAlignLeft = () => {
-  return <sqm-image image-url="https://i.imgur.com/tn47wOj.png" align="left" />;
-};
-
-export const ImageAlignCenter = () => {
+export const ImagealignmentLeft = () => {
   return (
-    <sqm-image image-url="https://i.imgur.com/tn47wOj.png" align="center" />
+    <sqm-image image-url="https://i.imgur.com/tn47wOj.png" alignment="left" />
   );
 };
 
-export const ImageAlignRight = () => {
+export const ImagealignmentCenter = () => {
   return (
-    <sqm-image image-url="https://i.imgur.com/tn47wOj.png" align="right" />
+    <sqm-image image-url="https://i.imgur.com/tn47wOj.png" alignment="center" />
+  );
+};
+
+export const ImagealignmentRight = () => {
+  return (
+    <sqm-image image-url="https://i.imgur.com/tn47wOj.png" alignment="right" />
   );
 };
 
 export const ImageMarginLeft = () => {
-  return <sqm-image image-url="https://i.imgur.com/tn47wOj.png" left="100px" />;
+  return (
+    <sqm-image
+      image-url="https://i.imgur.com/tn47wOj.png"
+      left="100px"
+      alignment="center"
+    />
+  );
 };
 
 export const ImageMarginRight = () => {
   return (
-    <sqm-image image-url="https://i.imgur.com/tn47wOj.png" right="100px" />
+    <sqm-image
+      image-url="https://i.imgur.com/tn47wOj.png"
+      right="100px"
+      alignment="center"
+    />
   );
 };
 
@@ -40,6 +52,7 @@ export const ImageBackground = () => {
     <sqm-image
       image-url="https://i.imgur.com/tn47wOj.png"
       background-color="firebrick"
+      alignment="center"
     />
   );
 };
