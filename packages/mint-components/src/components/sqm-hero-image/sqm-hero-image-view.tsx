@@ -10,9 +10,6 @@ export interface HeroImageViewProps {
   textColor?: string;
   backgroundColor?: string;
   imagePercentage?: number;
-  minHeight?: string;
-  maxHeight?: string;
-  maxWidth?: string;
   header?: string;
   description?: string;
   buttonText?: string;
@@ -43,13 +40,11 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
     },
     Image: {
       display: "block",
-      maxWidth: props.maxWidth || "100%",
-      minHeight: props.minHeight || "300px",
+      maxWidth: "100%",
       objectFit: "cover",
       margin: "auto",
     },
     Background: {
-      minHeight: props.minHeight,
       backgroundImage: `url(${props.imageUrl})`,
       backgroundSize: "cover",
       backgroundPosition: props.imagePos || "center",
@@ -74,7 +69,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
         width: props.imagePercentage ? props.imagePercentage + "%" : "50%",
         padding: "var(--sl-spacing-" + props.paddingImage + ")",
         boxSizing: "border-box",
-        margin: props.maxHeight ? "auto" : "",
+        // margin: props.maxHeight ? "auto" : "",
         "@media (max-width: 599px)": {
           width: "100%",
         },
@@ -178,14 +173,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       <div>
         <div class={sheet.classes.Column}>
           <div class="image-area">
-            <img
-              class={sheet.classes.Image}
-              src={props.imageUrl}
-              style={{
-                minHeight: props.minHeight || "100%",
-                maxHeight: props.maxHeight,
-              }}
-            ></img>
+            <img class={sheet.classes.Image} src={props.imageUrl}></img>
           </div>
           <div class="text-area">
             {props.header && (

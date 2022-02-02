@@ -1,10 +1,8 @@
-import { h, Host, VNode } from "@stencil/core";
+import { h, Host } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
 type TabViewProps = {
-  state: { open: boolean };
-  callbacks: { setOpen: any };
-  tabName: string;
+  open: boolean;
 };
 
 const style = {
@@ -17,24 +15,12 @@ const style = {
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export const TabView = (
-  { state: { open }, callbacks: { setOpen }, tabName }: TabViewProps,
-  children
-) => {
+export const TabView = ({ open }: TabViewProps, children) => {
   console.log("OPEN IS ", open);
   return (
     <Host>
       <style type="text/css">{styleString}</style>
-      <div>
-        <sl-button
-          className={open ? sheet.classes.OpenStyle : ""}
-          role="tab"
-          onClick={setOpen}
-        >
-          {tabName}
-        </sl-button>
-        {open && children}
-      </div>
+      <div style={{ display: open ? "block" : "none" }}>{children}</div>
     </Host>
   );
 };

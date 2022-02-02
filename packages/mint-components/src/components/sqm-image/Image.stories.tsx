@@ -9,19 +9,19 @@ export const Image = () => {
   return <sqm-image image-url="https://i.imgur.com/tn47wOj.png" />;
 };
 
-export const ImagealignmentLeft = () => {
+export const ImageAlignmentLeft = () => {
   return (
     <sqm-image image-url="https://i.imgur.com/tn47wOj.png" alignment="left" />
   );
 };
 
-export const ImagealignmentCenter = () => {
+export const ImageAlignmentCenter = () => {
   return (
     <sqm-image image-url="https://i.imgur.com/tn47wOj.png" alignment="center" />
   );
 };
 
-export const ImagealignmentRight = () => {
+export const ImageAlignmentRight = () => {
   return (
     <sqm-image image-url="https://i.imgur.com/tn47wOj.png" alignment="right" />
   );

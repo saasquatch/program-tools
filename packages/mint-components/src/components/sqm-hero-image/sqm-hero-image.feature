@@ -22,7 +22,7 @@ Feature: Hero Image
 		And below "Refer friends or complete tasks while using Klip to earn rewards" is displayed over top of the image in x-large font
 		And below they see a brand coloured button with text "Start earning"
 		And the text section has xxx-large padding
-		When the screen is shrunk to smaller size
+		When the component is scaled down to 599px
 		Then the image is scaled to fit content
 
 	@motivating
@@ -36,7 +36,7 @@ Feature: Hero Image
 			| layout      | "overlay"                                                          |
 			| image-pos   | <value>                                                            |
 		Then the image with overlay is displayed
-		When the image is shrunk to mobile view
+		When the component is scaled down to 599px
 		Then the image is <alignment> to fit content
 		Examples:
 			| value  | alignment     |
@@ -109,13 +109,13 @@ Feature: Hero Image
 			| header      |
 			| description |
 			| button      |
-		When the screen is shrunk to smaller size
+		When the component is scaled down to 599px
 		Then the two-column layout switches to a row layout
 		And the image is displayed on top
 		And the content is displayed below
 
 	@motivating
-	Scenario Outline: Image position is configurable for desktop and mobile views
+	Scenario Outline: Image position is configurable for desktop and 599pxs
 		Given a Hero Image component configured with the following props
 			| prop             | value                                                              |
 			| image-url        | "https://i.imgur.com/bTwu1Um.png/"                                 |
@@ -126,7 +126,7 @@ Feature: Hero Image
 			| image-pos        | <imagePos>                                                         |
 			| image-mobile-pos | <imageMobilePos>                                                   |
 		Then the image is displayed on the <imagePos>
-		When the screen is shrunk to smaller size
+		When the component is scaled down to 599px
 		Then two-column layout switches to a row layout
 		And image is displayed on the <imageMobilePos>
 		Examples:
@@ -173,7 +173,7 @@ Feature: Hero Image
 			| layout           | "columns"                                                          |
 			| image-percentage | <percent>                                                          |
 		Then the two column layout is displayed
-		And the image takes up <percentage> of the two-column layout
+		And the image takes up <percent> of the two-column layout
 		And the text elements take up the remainder of the space
 		Examples:
 			| percent |

@@ -18,21 +18,6 @@ export class HeroImage {
   @Prop() imageUrl: string;
 
   /**
-   * @uiName Minimum Image Height
-   */
-  @Prop() minHeight?: string;
-
-  /**
-   * @uiName Maximum Image Height
-   */
-  @Prop() maxHeight?: string;
-
-  /**
-   * @uiName Maximum Image Width
-   */
-  @Prop() maxWidth: string = "100%";
-
-  /**
    * @uiName Overlay Color
    * @uiWidget color
    */

@@ -8,7 +8,8 @@ import { useTab } from "./useTab";
   tag: "sqm-tab",
 })
 export class Tab {
-  @Prop() tabName: string;
+  @Prop() header: string;
+  @Prop() open: boolean;
 
   constructor() {
     withHooks(this);
@@ -16,10 +17,10 @@ export class Tab {
   disconnectedCallback() {}
 
   render() {
-    const { tabName } = getProps(this);
+    const { header, open } = getProps(this);
     const { callbacks, state } = useTab();
     return (
-      <TabView tabName={tabName} callbacks={callbacks} state={state}>
+      <TabView open={open}>
         <slot />
       </TabView>
     );
