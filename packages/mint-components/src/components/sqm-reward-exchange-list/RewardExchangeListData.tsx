@@ -339,6 +339,22 @@ export const chooseAmountVariable = {
     ],
   }),
 };
+export const chooseAmountVariableNoDescription = {
+  ...baseResponse(data, "chooseAmount", {
+    ...baseReward,
+    ...name("Visa® Prepaid Card USD"),
+    ...description(""),
+    ...imageUrl("https://i.imgur.com/veHErQX.png"),
+    ...variableValue(20, 80, "Points"),
+    steps: [
+      baseStep(20, "$", 40, "Points"),
+      baseStep(30, "$", 60, "Points"),
+      baseStep(40, "$", 80, "Points"),
+      baseStep(50, "$", 100, "Points"),
+      baseStep(60, "$", 120, "Points"),
+    ],
+  }),
+};
 
 export const chooseAmountVariableDisabled = {
   ...baseResponse(data, "chooseAmount", {
@@ -381,6 +397,16 @@ export const chooseAmountFixed = {
     ...baseReward,
     ...name("Free swag with a promo code"),
     ...imageUrl("https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829486/tenant_test_a7iws76wkk4az/xtptk0dynrxxlkg0dctb.png"),
+    ...fixedValue("40 SaaSquatch Points"),
+  }),
+};
+
+export const chooseAmountFixedNoDescription = {
+  ...baseResponse(data, "chooseAmount", {
+    ...baseReward,
+    ...description(""),
+    ...name("Free swag with a promo code"),
+    ...imageUrl("https://i.imgur.com/n7vC4BR.png"),
     ...fixedValue("40 SaaSquatch Points"),
   }),
 };

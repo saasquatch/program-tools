@@ -15,10 +15,10 @@ export class Tabs {
   disconnectedCallback() {}
 
   render() {
-    const { content, callbacks } = useTabs();
+    const { content } = useTabs();
 
     return (
-      <TabsView callbacks={callbacks} content={content}>
+      <TabsView content={content}>
         <slot />
       </TabsView>
     );
