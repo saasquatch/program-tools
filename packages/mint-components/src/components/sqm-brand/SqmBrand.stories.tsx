@@ -93,7 +93,7 @@ function ColorSwatch({ depth }: { depth: number }) {
     <div
       style={{
         backgroundColor: `var(--sl-color-primary-${depth})`,
-        color: `var(--sl-color-neutral-${1000-depth})`,
+        color: `var(--sl-color-neutral-${1000 - depth})`,
         width: "50px",
         height: "50px",
         display: "flex",
@@ -125,6 +125,33 @@ export const Fonts = () => {
       <sqm-brand brand-font="Oswald">
         Oswald
         <SampleComponents />
+      </sqm-brand>
+    </div>
+  );
+};
+
+export const Background = () => {
+  return (
+    <div>
+      <sqm-brand background="#FF0000">
+        <sqm-portal-container>
+          <SampleComponents />
+        </sqm-portal-container>
+      </sqm-brand>
+      <sqm-brand background="#00FF00">
+        <sqm-portal-container>
+          <SampleComponents />
+        </sqm-portal-container>
+      </sqm-brand>
+      <sqm-brand background="#0000FF">
+        <sqm-portal-container>
+          <SampleComponents />
+        </sqm-portal-container>
+      </sqm-brand>
+      <sqm-brand background="#000000">
+        <sqm-portal-container>
+          <SampleComponents />
+        </sqm-portal-container>
       </sqm-brand>
     </div>
   );
