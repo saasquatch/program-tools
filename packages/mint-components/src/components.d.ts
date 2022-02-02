@@ -1615,7 +1615,8 @@ export namespace Components {
     interface SqmStencilbook {
     }
     interface SqmTab {
-        "tabName": string;
+        "header": string;
+        "open": boolean;
     }
     interface SqmTableCell {
         "colspan": number;
@@ -3940,7 +3941,8 @@ declare namespace LocalJSX {
     interface SqmStencilbook {
     }
     interface SqmTab {
-        "tabName"?: string;
+        "header"?: string;
+        "open"?: boolean;
     }
     interface SqmTableCell {
         "colspan"?: number;
