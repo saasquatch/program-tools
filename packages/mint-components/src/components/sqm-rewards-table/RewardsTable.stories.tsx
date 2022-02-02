@@ -193,8 +193,48 @@ const rewardsTableProps = {
     ],
   },
 };
+
+const rewardsTableSingleProps = {
+  states: {
+    hasPrev: false,
+    hasNext: true,
+    show: "rows" as const,
+    namespace: "sqm-referral-table",
+  },
+  data: {
+    textOverrides: {
+      showLabels: true,
+      prevLabel: "Prev",
+      moreLabel: "Next",
+    },
+    hiddenColumns: "",
+    mdBreakpoint: 899,
+    smBreakpoint: 599,
+  },
+  callbacks: {
+    prevPage: () => console.log("Prev"),
+    nextPage: () => console.log("Next"),
+  },
+
+  elements: {
+    columns: ["Rewards", "Status", "Source", "Date received"],
+    rows: [
+      [
+        <RewardsCellCreditFull />,
+        <StatusCellAvailable />,
+        <SourceCellReferral />,
+        <DateCell />,
+      ],
+    ],
+  },
+};
+
 export const RewardsTableFull = () => {
   return <GenericTableView {...rewardsTableProps}></GenericTableView>;
+};
+
+export const RewardsTableSingle = () => {
+  return <GenericTableView {...rewardsTableSingleProps}></GenericTableView>;
 };
 
 export const RewardsTableEmpty = () => {

@@ -39,14 +39,13 @@ export function GenericTableView(props: GenericTableViewProps) {
   const { show } = states;
 
   console.log("table", props);
-  console.log("columns 0", columns);
 
   const hiddenCols =
     data.hiddenColumns && data.hiddenColumns.split(",").map(Number);
 
   const mobile = "@media (max-width: " + data.mdBreakpoint + "px)";
   const tablet = `@media (min-width: ${
-    !Boolean(rows.length) ? data.mdBreakpoint : data.smBreakpoint
+    Boolean(rows.length < 2) ? data.mdBreakpoint : data.smBreakpoint
   }px) and (max-width: ${data.mdBreakpoint}px)`;
 
   const style = {
