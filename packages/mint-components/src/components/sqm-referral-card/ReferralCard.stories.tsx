@@ -74,7 +74,7 @@ const timeline = (slot, count) => {
 
 export const ReferralCardA = () => {
   return (
-    <sqm-referral-card>
+    <sqm-referral-card padding="large">
       {media("left")}
       {sharebutton("right")}
     </sqm-referral-card>
@@ -83,7 +83,7 @@ export const ReferralCardA = () => {
 
 export const ReferralCardB = () => {
   return (
-    <sqm-referral-card>
+    <sqm-referral-card padding="large">
       {timeline("left", 2)}
       {sharebutton("right")}
     </sqm-referral-card>
@@ -92,7 +92,7 @@ export const ReferralCardB = () => {
 
 export const ReferralCardC = () => {
   return (
-    <sqm-referral-card>
+    <sqm-referral-card padding="large">
       {timeline("left", 3)}
       {sharebutton("right")}
     </sqm-referral-card>
@@ -128,7 +128,7 @@ export const ReferralCardDEnd = () => {
 
 export const ReferralCardAFlipped = () => {
   return (
-    <sqm-referral-card>
+    <sqm-referral-card padding="large">
       {media("right")}
       {sharebutton("left")}
     </sqm-referral-card>
@@ -137,7 +137,7 @@ export const ReferralCardAFlipped = () => {
 
 export const ReferralCardBFlipped = () => {
   return (
-    <sqm-referral-card>
+    <sqm-referral-card padding="large">
       {timeline("right", 2)}
       {sharebutton("left")}
     </sqm-referral-card>
@@ -146,7 +146,7 @@ export const ReferralCardBFlipped = () => {
 
 export const ReferralCardCFlipped = () => {
   return (
-    <sqm-referral-card>
+    <sqm-referral-card padding="large">
       {timeline("right", 3)}
       {sharebutton("left")}
     </sqm-referral-card>
@@ -155,9 +155,101 @@ export const ReferralCardCFlipped = () => {
 
 export const ReferralCardDFlipped = () => {
   return (
-    <sqm-referral-card>
+    <sqm-referral-card padding="large">
       {timeline("right", 4)}
       {sharebutton("left")}
     </sqm-referral-card>
+  );
+};
+
+export const ReferralCardPadding = () => {
+  return (
+    <div>
+      <h3>None</h3>
+      <sqm-referral-card padding="none">
+        {media("left")}
+        {sharebutton("right")}
+      </sqm-referral-card>
+      <br />
+      <hr />
+      <br />
+      <h3>xxx-small</h3>
+      <sqm-referral-card padding="xxx-small">
+        {media("left")}
+        {sharebutton("right")}
+      </sqm-referral-card>
+      <br />
+      <hr />
+      <br />
+      <h3>xx-small</h3>
+      <sqm-referral-card padding="xx-small">
+        {media("left")}
+        {sharebutton("right")}
+      </sqm-referral-card>
+      <br />
+      <hr />
+      <br />
+      <h3>x-small</h3>
+      <sqm-referral-card padding="x-small">
+        {media("left")}
+        {sharebutton("right")}
+      </sqm-referral-card>
+      <br />
+      <hr />
+      <br />
+      <h3>small</h3>
+      <sqm-referral-card padding="small">
+        {media("left")}
+        {sharebutton("right")}
+      </sqm-referral-card>
+      <br />
+      <hr />
+      <br />
+      <h3>medium</h3>
+      <sqm-referral-card padding="medium">
+        {media("left")}
+        {sharebutton("right")}
+      </sqm-referral-card>
+      <br />
+      <hr />
+      <br />
+      <h3>large</h3>
+      <sqm-referral-card padding="large">
+        {media("left")}
+        {sharebutton("right")}
+      </sqm-referral-card>
+      <br />
+      <hr />
+      <br />
+      <h3>x-large</h3>
+      <sqm-referral-card padding="x-large">
+        {media("left")}
+        {sharebutton("right")}
+      </sqm-referral-card>
+      <br />
+      <hr />
+      <br />
+      <h3>xx-large</h3>
+      <sqm-referral-card padding="xx-large">
+        {media("left")}
+        {sharebutton("right")}
+      </sqm-referral-card>
+      <br />
+      <hr />
+      <br />
+      <h3>xxx-large</h3>
+      <sqm-referral-card padding="xxx-large">
+        {media("left")}
+        {sharebutton("right")}
+      </sqm-referral-card>
+      <br />
+      <hr />
+      <br />
+      <h3>xxxx-large</h3>
+      <sqm-referral-card padding="xxxx-large">
+        {media("left")}
+        {sharebutton("right")}
+      </sqm-referral-card>
+    </div>
   );
 };
