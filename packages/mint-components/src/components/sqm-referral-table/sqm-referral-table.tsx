@@ -96,7 +96,7 @@ export class ReferralTable {
     const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()
-      ? useReferraltableDemo(this, empty, loading)
+      ? useReferralTableDemo(this, empty, loading)
       : useReferralTable(this, empty, loading);
 
     console.log("elemente", elements);
@@ -132,7 +132,7 @@ function LoadingRow() {
   );
 }
 
-function useReferraltableDemo(
+function useReferralTableDemo(
   props: ReferralTable,
   emptyElement: VNode,
   loadingElement: VNode
@@ -160,6 +160,19 @@ function useReferraltableDemo(
   const components = useChildElements();
 
   async function getComponentData(components: Element[]) {
+    let componentData;
+    const { data: mockData } = mockReferralData;
+    const referrerData = mockReferralData?.referredByReferral;
+    const showReferrerRow =
+      props.showReferrer &&
+      !!mockReferralData?.referredByReferral.dateReferralStarted;
+
+    if (showReferrerRow) {
+      console.log("mock data", mockData.slice(-1));
+      componentData = mockData.slice(0, -1);
+    } else {
+      componentData = data;
+    }
     // filter out loading and empty states from columns array
     const columnComponents = components.filter(
       (component) => component.slot !== "loading" && component.slot !== "empty"
@@ -168,15 +181,10 @@ function useReferraltableDemo(
     const columnsPromise = columnComponents?.map(async (c: any) =>
       tryMethod(c, () => c.renderLabel())
     );
-    const referrerData = mockReferralData?.referredByReferral;
-    const showReferrerRow =
-      props.showReferrer &&
-      !!mockReferralData?.referredByReferral.dateReferralStarted;
 
     // show the referrer row before any other rows (renderReferrerCell is asynchronous)
     let referrerRow;
     if (showReferrerRow) {
-      mockReferralData.data.pop();
       const referrerPromise = columnComponents?.map(async (c: any) =>
         tryMethod(c, function renderCell() {
           return c.renderCell(referrerData, c);
@@ -184,10 +192,9 @@ function useReferraltableDemo(
       );
       referrerRow = await Promise.all(referrerPromise);
     }
-    // const locale = useLocale();
 
     // get the column cells (renderCell is asynchronous)
-    const cellsPromise = data?.map(async (r) => {
+    const cellsPromise = componentData?.map(async (r) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
         tryMethod(c, () => c.renderCell(r, undefined))
       );
