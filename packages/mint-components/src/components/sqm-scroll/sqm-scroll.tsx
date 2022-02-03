@@ -10,7 +10,7 @@ export class Scroll {
   ignored = true;
 
   @Prop() buttonType: string = "primary";
-  @Prop() buttonText: string = "Click me";
+  @Prop() buttonText: string;
   @Prop() scrollTagName?: string;
   @Prop() scrollId?: string;
   @Prop() scrollAnimation: "smooth" | "auto" = "smooth";

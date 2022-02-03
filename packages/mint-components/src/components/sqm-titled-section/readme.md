@@ -19,17 +19,13 @@
 
 ### Used by
 
- - [sqm-leaderboard](../sqm-leaderboard)
- - [sqm-referral-table](../sqm-referral-table)
- - [sqm-rewards-table](../sqm-rewards-table)
+ - [sqm-empty](../sqm-empty)
  - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqm-leaderboard --> sqm-titled-section
-  sqm-referral-table --> sqm-titled-section
-  sqm-rewards-table --> sqm-titled-section
+  sqm-empty --> sqm-titled-section
   sqm-stencilbook --> sqm-titled-section
   style sqm-titled-section fill:#f9f,stroke:#333,stroke-width:4px
 ```

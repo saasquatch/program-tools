@@ -12,19 +12,10 @@ import { ImageView } from "./sqm-image-view";
 })
 export class Image {
   /**
+   * @uiWidget ImageUpload
    * @uiName Image Link
    */
   @Prop() imageUrl: string;
-
-  /**
-   * @uiName Left Margin
-   */
-  @Prop() left: string;
-
-  /**
-   * @uiName Right Margin
-   */
-  @Prop() right: string;
 
   /**
    * @uiName Position Alignment
@@ -44,20 +35,6 @@ export class Image {
    * @uiName Minimum Height
    */
   @Prop() minHeight?: string;
-
-  /**
-   * (optional) Helps with constraining maximum size
-   * @uiName Maximum Width
-   */
-  @Prop() maxWidth?: string;
-
-  @State()
-  ignored = true;
-
-  constructor() {
-    withHooks(this);
-  }
-  disconnectedCallback() {}
 
   render() {
     return <ImageView {...getProps(this)} />;

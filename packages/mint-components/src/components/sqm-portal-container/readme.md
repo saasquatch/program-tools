@@ -22,17 +22,13 @@
 
 ### Used by
 
- - [sqm-leaderboard](../sqm-leaderboard)
- - [sqm-referral-table](../sqm-referral-table)
- - [sqm-rewards-table](../sqm-rewards-table)
+ - [sqm-empty](../sqm-empty)
  - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqm-leaderboard --> sqm-portal-container
-  sqm-referral-table --> sqm-portal-container
-  sqm-rewards-table --> sqm-portal-container
+  sqm-empty --> sqm-portal-container
   sqm-stencilbook --> sqm-portal-container
   style sqm-portal-container fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -7,10 +7,9 @@
 
 ## Properties
 
-| Property            | Attribute            | Description | Type                                                                                                                                           | Default   |
-| ------------------- | -------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| `padding`           | `padding`            |             | `"large" \| "medium" \| "none" \| "small" \| "x-large" \| "x-small" \| "xx-large" \| "xx-small" \| "xxx-large" \| "xxx-small" \| "xxxx-large"` | `"large"` |
-| `verticalAlignment` | `vertical-alignment` |             | `"center" \| "end" \| "start"`                                                                                                                 | `"start"` |
+| Property            | Attribute            | Description | Type                           | Default   |
+| ------------------- | -------------------- | ----------- | ------------------------------ | --------- |
+| `verticalAlignment` | `vertical-alignment` |             | `"center" \| "end" \| "start"` | `"start"` |
 
 
 ## Dependencies

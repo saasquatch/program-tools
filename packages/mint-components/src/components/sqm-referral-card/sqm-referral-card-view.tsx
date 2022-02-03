@@ -3,7 +3,6 @@ import { Spacing } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 
 export interface ReferralCardViewProps {
-  padding: Spacing;
   verticalAlignment: "start" | "center" | "end";
   slots: {
     left: VNode;
@@ -19,7 +18,7 @@ export function ReferralCardView(props: ReferralCardViewProps) {
       background: "var(--sl-color-neutral-0)",
       "& .left": {
         width: "50%",
-        padding: "var(--sl-spacing-" + props.padding + ")",
+        padding: "var(--sl-spacing-large)",
         paddingRight: "var(--sl-spacing-medium)",
         alignSelf: props.verticalAlignment,
         "@media (max-width: 499px)": {
@@ -30,7 +29,7 @@ export function ReferralCardView(props: ReferralCardViewProps) {
       },
       "& .right": {
         width: "50%",
-        padding: "var(--sl-spacing-" + props.padding + ")",
+        padding: "var(--sl-spacing-large)",
         paddingLeft: "var(--sl-spacing-medium)",
         alignSelf: props.verticalAlignment,
         "@media (max-width: 499px)": {

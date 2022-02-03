@@ -16,14 +16,7 @@ export class ReferralCard {
   ignored = true;
 
   /**
-   * @uiName Padding
-   * @uiType string
-   * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-   */
-  @Prop() padding: Spacing = "large";
-
-  /**
-   * @uiName Padding
+   * @uiName Vertical Aligment
    * @uiType string
    * @uiEnum ["start", "center", "end"]
    */

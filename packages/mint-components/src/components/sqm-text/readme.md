@@ -9,17 +9,13 @@
 
 ### Used by
 
- - [sqm-leaderboard](../sqm-leaderboard)
- - [sqm-referral-table](../sqm-referral-table)
- - [sqm-rewards-table](../sqm-rewards-table)
+ - [sqm-empty](../sqm-empty)
  - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqm-leaderboard --> sqm-text
-  sqm-referral-table --> sqm-text
-  sqm-rewards-table --> sqm-text
+  sqm-empty --> sqm-text
   sqm-stencilbook --> sqm-text
   style sqm-text fill:#f9f,stroke:#333,stroke-width:4px
 ```

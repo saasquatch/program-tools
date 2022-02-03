@@ -122,16 +122,16 @@ graph TD;
   sqm-stencilbook --> sqm-referral-card
   sqm-stencilbook --> sqm-scroll
   sqm-edit-profile --> sqm-form-message
-  sqm-leaderboard --> sqm-portal-container
-  sqm-leaderboard --> sqm-image
-  sqm-leaderboard --> sqm-titled-section
-  sqm-leaderboard --> sqm-text
+  sqm-leaderboard --> sqm-empty
+  sqm-empty --> sqm-portal-container
+  sqm-empty --> sqm-image
+  sqm-empty --> sqm-titled-section
+  sqm-empty --> sqm-text
+  sqm-empty --> sqm-table-row
+  sqm-empty --> sqm-table-cell
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
-  sqm-rewards-table --> sqm-portal-container
-  sqm-rewards-table --> sqm-image
-  sqm-rewards-table --> sqm-titled-section
-  sqm-rewards-table --> sqm-text
+  sqm-rewards-table --> sqm-empty
   sqm-rewards-table --> sqm-rewards-table-reward-cell
   sqm-rewards-table --> sqm-rewards-table-source-cell
   sqm-rewards-table --> sqm-rewards-table-status-cell
@@ -144,12 +144,9 @@ graph TD;
   sqm-portal-register --> sqm-password-field
   sqm-referral-table --> sqm-table-row
   sqm-referral-table --> sqm-table-cell
+  sqm-referral-table --> sqm-empty
   sqm-referral-table --> sqm-referral-table-user-cell
   sqm-referral-table --> sqm-referral-table-status-cell
-  sqm-referral-table --> sqm-portal-container
-  sqm-referral-table --> sqm-image
-  sqm-referral-table --> sqm-titled-section
-  sqm-referral-table --> sqm-text
   sqm-referral-table --> sqm-referral-table-rewards-cell
   sqm-portal-login --> sqm-form-message
   sqm-portal-change-password --> sqm-form-message
