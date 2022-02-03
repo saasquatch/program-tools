@@ -306,7 +306,7 @@ export function useReferralTable(
     let referrerRow;
     if (showReferrerRow && states.currentPage === 0) {
       const referrerPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(referrerData, locale))
+        tryMethod(c, () => c.renderReferrerCell(referrerData, locale))
       );
       referrerRow = await Promise.all(referrerPromise);
     }
@@ -409,6 +409,12 @@ export async function tryMethod(
   } catch (e) {
     // renderLabel did not return a promise, so this method probably doesn't exist
     // therefore, we IGNORE the label
+    if (callback.name === "renderReferrerCell") {
+      console.error("column does not have a renderReferrerCell method.");
+    } else {
+      console.error("label promise failed", e);
+    }
+
     console.error("label promise failed", e);
     return <span />;
   }

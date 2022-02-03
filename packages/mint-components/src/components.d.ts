@@ -1074,6 +1074,7 @@ export namespace Components {
         "dateShown": ReferralDates;
         "renderCell": (data: Referral, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmReferralTableRewardsCell {
         "expiringText": string;
@@ -1109,6 +1110,7 @@ export namespace Components {
         "pendingForText": string;
         "renderCell": (data: Referral, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        "renderReferrerCell": (data: Referrer) => Promise<any>;
         /**
           * @uiName Reward Received Text
          */
@@ -1141,6 +1143,7 @@ export namespace Components {
         "inProgressStatusText": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmReferralTableUserCell {
         "name": string;
@@ -1160,6 +1163,7 @@ export namespace Components {
         "deletedUser": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmRefreshButton {
         /**

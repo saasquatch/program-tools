@@ -1,3 +1,4 @@
+import { useHost } from "@saasquatch/stencil-hooks";
 import { FunctionalComponent, h, Host } from "@stencil/core";
 import { TabElement } from "./useTabs";
 
@@ -23,6 +24,8 @@ export const TabsView: FunctionalComponent<TabsViewProps> = ({
       padding: ${padding};
     }
   `;
+  const host = useHost();
+  console.log("sam host", host);
   return (
     <Host>
       <style type="text/css">{vanillaStyle}</style>
@@ -30,7 +33,11 @@ export const TabsView: FunctionalComponent<TabsViewProps> = ({
         {content.tabs.map((tab: TabElement) => {
           const slotName = tab.getAttribute("slot");
           return [
-            <sl-tab slot="nav" panel={slotName}>
+            <sl-tab
+              slot="nav"
+              panel={slotName}
+              id={tab.getAttribute("id") || slotName}
+            >
               {tab.getAttribute("header")}
             </sl-tab>,
             <sl-tab-panel name={slotName}>
