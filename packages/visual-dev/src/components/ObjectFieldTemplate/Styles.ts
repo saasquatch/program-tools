@@ -21,7 +21,7 @@ export const Title = css`
 `;
 
 export const Description = css`
-  color: var(--sq-text-subdued);
+  color: var(--sq-text-subdued) !important;
   margin: var(--sq-spacing-small) 0 0;
 `;
 

@@ -40,7 +40,7 @@ export const InputBoxStyle = css`
 
 export const ExtrasDiv = css`
   position: absolute;
-  bottom: 7px;
+  top: 9px;
   display: inline-flex;
 `;
 
@@ -59,5 +59,5 @@ export const Container = css`
   display: inline-block;
   width: 100%;
   position: relative;
-  height: 36px;
+  height: auto;
 `;

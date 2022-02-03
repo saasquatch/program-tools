@@ -15,9 +15,9 @@ export const Label = css`
 `;
 
 export const Description = css`
-  color: var(--sq-text-subdued);
   display: contents;
   & > p {
+    color: var(--sq-text-subdued) !important;
     margin: var(--sq-spacing-xx-small) 0 0;
   }
 `;
@@ -27,18 +27,18 @@ export const RequiredLabel = css`
 `;
 
 export const HelpText = css`
-  color: var(--sq-text-subdued);
   display: contents;
   & > p {
+    color: var(--sq-text-subdued) !important;
     margin: var(--sq-spacing-small) 0 0;
   }
 `;
 
 export const Errors = css`
-  color: var(--sq-on-surface-critical);
   margin: var(--sq-spacing-small) 0;
   padding-left: var(--sq-spacing-medium);
   & > * {
+    color: var(--sq-on-surface-critical);
     margin: var(--sq-spacing-small) 0 0 !important;
   }
 `;

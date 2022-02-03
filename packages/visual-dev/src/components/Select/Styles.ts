@@ -44,7 +44,6 @@ export const ButtonContainer = css`
   padding-right: var(--sq-spacing-small);
   right: 4px;
   top: 10px;
-  background: var(--sq-surface);
   & > :not(:last-child) {
     margin-right: var(--sq-spacing-x-small);
   }

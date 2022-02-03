@@ -213,7 +213,11 @@ const SelectInner = <ItemType extends ItemTypeBase>(
   const showClear = clearable ? "inline-flex" : "none";
   const arrowColor = errors
     ? "var(--sq-border-critical)"
-    : "var(--sq-text-on-secondary)";
+    : disabled
+    ? "var(--sq-border)"
+    : "var(--sq-text)";
+
+  console.log(arrowColor);
 
   function isCombobox(
     hook: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>
@@ -273,22 +277,14 @@ const SelectInner = <ItemType extends ItemTypeBase>(
                 icon={"chevron_up"}
                 size={"small"}
                 customCSS={"padding: 8px; box-sizing: content-box;"}
-                color={
-                  errors
-                    ? "var(--sq-border-critical)"
-                    : "var(--sq-text-on-secondary)"
-                }
+                color={arrowColor}
               />
             ) : (
               <Icon
                 icon={"chevron_down"}
                 size={"small"}
                 customCSS={"padding: 8px; box-sizing: content-box;"}
-                color={
-                  errors
-                    ? "var(--sq-border-critical)"
-                    : "var(--sq-text-on-secondary)"
-                }
+                color={arrowColor}
               />
             )}
           </ButtonDiv>
