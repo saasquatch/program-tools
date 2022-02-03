@@ -15,6 +15,7 @@ import {
 import Form, { WidgetProps } from "@rjsf/core";
 import { RJSFRadioActionWidget } from "../RadioAction/rjsf-RadioAction";
 import { RJSFTextarea } from "../TextArea";
+import { RJSFSelect } from "../Select/rjsf-Select";
 
 export default {
   title: "Components / Form",
@@ -582,7 +583,6 @@ export const RadioCardForm = () => {
         type: "number",
         title: "Number enum",
         enum: [1, 2, 3],
-        enumNames: ["One", "Two", "Three"],
       },
     },
   };
@@ -614,6 +614,55 @@ export const RadioCardForm = () => {
           },
         ],
       },
+    },
+  };
+  return (
+    <div style={{ margin: "100px" }}>
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        onChange={log("changed")}
+        onSubmit={log("submitted")}
+        onError={log("errors")}
+      >
+        <Button buttonType="primary" style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
+export const SelectForm = () => {
+  const schema: JSONSchema7 = {
+    type: "object",
+    properties: {
+      num: {
+        type: "number",
+        anyOf: [
+          {
+            type: "number",
+            title: "one",
+            enum: [1],
+          },
+          {
+            type: "number",
+            title: "two",
+            enum: [2],
+          },
+          {
+            type: "number",
+            title: "three",
+            enum: [3],
+          },
+        ],
+      },
+    },
+  };
+
+  const uiSchema = {
+    num: {
+      "ui:widget": RJSFSelect,
     },
   };
   return (

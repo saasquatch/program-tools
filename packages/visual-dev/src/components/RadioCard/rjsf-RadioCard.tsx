@@ -46,7 +46,6 @@ export function RJSFRadioCardWidget(props: WidgetProps) {
   if (!isEnumArray(valueOptions) || !isEnumArray(cardOptions)) {
     return <></>;
   }
-  console.log(props.options.enumOptions);
   return (
     <RadioCardGroup id={props.id}>
       {cardOptions?.map((option: unknown) => {
