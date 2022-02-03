@@ -2,7 +2,7 @@ import { FunctionalComponent, h, Host } from "@stencil/core";
 import { TabElement } from "./useTabs";
 
 export type TabsViewProps = {
-  placement: string | null;
+  placement: "left" | "right" | "bottom" | null;
   content: {
     tabs: TabElement[];
   };

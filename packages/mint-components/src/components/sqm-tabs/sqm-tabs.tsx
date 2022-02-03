@@ -15,9 +15,10 @@ export class Tabs {
   /**
    * Used to specify the placement of the tabs
    *
-   * @uiName Placement
+   * @uiName Tabs Placement
+   * @uiEnum ["left", "right", "bottom", null]
    */
-  @Prop() placement?: string | null;
+  @Prop() placement?: "left" | "right" | "bottom" | null;
 
   constructor() {
     withHooks(this);

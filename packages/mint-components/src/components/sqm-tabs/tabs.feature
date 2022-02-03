@@ -20,6 +20,18 @@ Feature: Tabs
   | General   | This is the general tab  |
   | History   | This is the history tab  |
 
+  @motivating
+	Scenario: The placement of the tabs is configurable
+    Given The placement prop has been passed a valid <placement>
+    Then tabs are placed on the <placementResult>
+
+    Examples:
+  | placement | placementResult                |
+  |           | top of the content             |
+  | left      | left hand side of the content  |
+  | right     | right hand side of the content |
+  | bottom    | bottom of the content          |
+
 
   @minutae
 	Scenario Outline: Tabs are setup to use the brand color
@@ -29,6 +41,10 @@ Feature: Tabs
 
   @ui
 	Scenario: Tabs are responsive
+    Given the user is on a mobile device 
+    When there are more tabs than the horizontal space allows for
+    Then clickable arrows appear on the left and right of the tabs
+    And the tabs are scrollable
 
 
   
