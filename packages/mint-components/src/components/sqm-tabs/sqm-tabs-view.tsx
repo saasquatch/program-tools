@@ -1,31 +1,32 @@
-import { FunctionalComponent, h, Host, VNode } from "@stencil/core";
-import { createStyleSheet } from "../../styling/JSS";
+import { FunctionalComponent, h, Host } from "@stencil/core";
 import { TabElement } from "./useTabs";
 
 export type TabsViewProps = {
+  placement: string | null;
   content: {
     tabs: TabElement[];
   };
 };
 
-const style = {};
-const sheet = createStyleSheet(style);
-const styleString = sheet.toString();
+export const TabsView: FunctionalComponent<TabsViewProps> = ({
+  content,
+  placement,
+}) => {
+  // Vertical padding for top & bottom placement, horizontal for left & right.
+  const padding =
+    !placement || placement === "bottom"
+      ? "var(--sl-spacing-x-large) 0;"
+      : "0 var(--sl-spacing-xx-large);";
 
-const vanillaStyle = `
-sl-tab-panel::part(base) {
-	padding: var(--sl-spacing-x-large) 0;
-}
-`;
-
-export const TabsView: FunctionalComponent<TabsViewProps> = ({ content }) => {
+  const vanillaStyle = `
+    sl-tab-panel::part(base) {
+      padding: ${padding};
+    }
+  `;
   return (
     <Host>
-      <style type="text/css">
-        {vanillaStyle}
-        {styleString}
-      </style>
-      <sl-tab-group>
+      <style type="text/css">{vanillaStyle}</style>
+      <sl-tab-group placement={placement}>
         {content.tabs.map((tab: TabElement) => {
           const slotName = tab.getAttribute("slot");
           return [

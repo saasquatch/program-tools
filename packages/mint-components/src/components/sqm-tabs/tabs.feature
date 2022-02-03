@@ -21,11 +21,14 @@ Feature: Tabs
   | History   | This is the history tab  |
 
 
-  @motivating
+  @minutae
 	Scenario Outline: Tabs are setup to use the brand color
     Given the brand color is set to darkblue
     Then the text inside the active tab is darkblue 
     And the underline of the active tab is darkblue
+
+  @ui
+	Scenario: Tabs are responsive
 
 
   
