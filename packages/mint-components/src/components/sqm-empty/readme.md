@@ -20,8 +20,6 @@
 ### Used by
 
  - [sqm-leaderboard](../sqm-leaderboard)
- - [sqm-referral-table](../sqm-referral-table)
- - [sqm-rewards-table](../sqm-rewards-table)
 
 ### Depends on
 
@@ -42,8 +40,6 @@ graph TD;
   sqm-empty --> sqm-table-row
   sqm-empty --> sqm-table-cell
   sqm-leaderboard --> sqm-empty
-  sqm-referral-table --> sqm-empty
-  sqm-rewards-table --> sqm-empty
   style sqm-empty fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -12,7 +12,10 @@ import {
   GenericTableView,
   GenericTableViewProps,
 } from "../../tables/GenericTableView";
-import { useRerenderListener } from "../../tables/re-render";
+import {
+  useRequestRerender,
+  useRerenderListener,
+} from "../../tables/re-render";
 import { useChildElements } from "../../tables/useChildElements";
 import mockReferralData from "./mockReferralData";
 import {
@@ -75,7 +78,7 @@ export class ReferralTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = <slot name="empty"/>;
+    const empty = <slot name="empty" />;
     const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()
@@ -83,6 +86,8 @@ export class ReferralTable {
       : useReferralTable(this, empty, loading);
 
     console.log("elemente", elements);
+
+    useRequestRerender([this.showReferrer, this.perPage]);
 
     return (
       <GenericTableView

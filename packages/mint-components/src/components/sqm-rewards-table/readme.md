@@ -30,28 +30,12 @@
 
 - [sqm-table-row](../sqm-table-row)
 - [sqm-table-cell](../sqm-table-cell)
-- [sqm-empty](../sqm-empty)
-- [sqm-rewards-table-reward-cell](cells)
-- [sqm-rewards-table-source-cell](cells)
-- [sqm-rewards-table-status-cell](cells)
-- [sqm-rewards-table-date-cell](cells)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
-  sqm-rewards-table --> sqm-empty
-  sqm-rewards-table --> sqm-rewards-table-reward-cell
-  sqm-rewards-table --> sqm-rewards-table-source-cell
-  sqm-rewards-table --> sqm-rewards-table-status-cell
-  sqm-rewards-table --> sqm-rewards-table-date-cell
-  sqm-empty --> sqm-portal-container
-  sqm-empty --> sqm-image
-  sqm-empty --> sqm-titled-section
-  sqm-empty --> sqm-text
-  sqm-empty --> sqm-table-row
-  sqm-empty --> sqm-table-cell
   sqm-stencilbook --> sqm-rewards-table
   style sqm-rewards-table fill:#f9f,stroke:#333,stroke-width:4px
 ```
