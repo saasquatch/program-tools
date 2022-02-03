@@ -1,7 +1,10 @@
 import { h } from "@stencil/core";
-
+import scenario from "./tabs.feature";
 export default {
   title: "Components/Tabs",
+  parameters: {
+    scenario,
+  },
 };
 
 export const SimpleTabs = () => (
