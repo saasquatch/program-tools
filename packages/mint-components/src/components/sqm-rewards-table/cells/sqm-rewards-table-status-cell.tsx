@@ -138,7 +138,7 @@ export class RewardTableStatusCell {
               .toLocaleString(DateTime.DATE_MED),
         UNHANDLED_ERROR: prop.pendingUnhandled,
       };
-      return prop.reward.pendingReasons
+      return [prop.reward.pendingReasons]
         .map((s: string): string => pendingCodeMap[s] ?? s)
         .join(", ");
     }

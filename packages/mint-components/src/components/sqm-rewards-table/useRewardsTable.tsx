@@ -246,7 +246,7 @@ export function useRewardsTable(
     },
   };
 }
-async function tryMethod(
+export async function tryMethod(
   c: HTMLElement,
   callback: () => Promise<string>
 ): Promise<string | VNode> {

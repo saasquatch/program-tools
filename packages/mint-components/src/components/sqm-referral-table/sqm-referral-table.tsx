@@ -1,18 +1,26 @@
-import { isDemo } from "@saasquatch/component-boilerplate";
+import {
+  isDemo,
+  useLocale,
+  usePagination,
+} from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop } from "@stencil/core";
+import { useEffect, useReducer } from "@saasquatch/universal-hooks";
+import { Component, h, Prop, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import {
   GenericTableView,
   GenericTableViewProps,
 } from "../../tables/GenericTableView";
+import { useRerenderListener } from "../../tables/re-render";
+import { useChildElements } from "../../tables/useChildElements";
+import mockReferralData from "./mockReferralData";
 import {
   AvailableNoExpiry,
   Cancelled,
   PendingNoUnpend,
 } from "./ReferralTableRewardsCell.stories";
-import { useReferralTable } from "./useReferralTable";
+import { tryMethod, useReferralTable } from "./useReferralTable";
 
 /**
  * @uiName Referral Table
@@ -71,7 +79,7 @@ export class ReferralTable {
     const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()
-      ? useReferraltableDemo(this)
+      ? useReferralTableDemo(this, empty, loading)
       : useReferralTable(this, empty, loading);
 
     console.log("elemente", elements);
@@ -107,7 +115,94 @@ function LoadingRow() {
   );
 }
 
-function useReferraltableDemo(props: ReferralTable): GenericTableViewProps {
+function useReferralTableDemo(
+  props: ReferralTable,
+  emptyElement: VNode,
+  loadingElement: VNode
+): GenericTableViewProps {
+  const [content, setContent] = useReducer<
+    GenericTableViewProps["elements"],
+    Partial<GenericTableViewProps["elements"]>
+  >(
+    (state, next) => ({
+      ...state,
+      ...next,
+    }),
+    {
+      columns: [],
+      rows: [],
+      loading: false,
+      page: 0,
+    }
+  );
+
+  const tick = useRerenderListener();
+
+  const { data } = mockReferralData;
+
+  const components = useChildElements();
+
+  async function getComponentData(components: Element[]) {
+    let componentData;
+    const { data: mockData } = mockReferralData;
+    const referrerData = mockReferralData?.referredByReferral;
+    const showReferrerRow =
+      props.showReferrer &&
+      !!mockReferralData?.referredByReferral.dateReferralStarted;
+
+    if (showReferrerRow) {
+      console.log("mock data", mockData.slice(-1));
+      componentData = mockData.slice(0, -1);
+    } else {
+      componentData = data;
+    }
+    // filter out loading and empty states from columns array
+    const columnComponents = components.filter(
+      (component) => component.slot !== "loading" && component.slot !== "empty"
+    );
+    // get the column titles (renderLabel is asynchronous)
+    const columnsPromise = columnComponents?.map(async (c: any) =>
+      tryMethod(c, () => c.renderLabel())
+    );
+
+    // show the referrer row before any other rows (renderReferrerCell is asynchronous)
+    let referrerRow;
+    if (showReferrerRow) {
+      const referrerPromise = columnComponents?.map(async (c: any) =>
+        tryMethod(c, function renderCell() {
+          return c.renderCell(referrerData, c);
+        })
+      );
+      referrerRow = await Promise.all(referrerPromise);
+    }
+
+    // get the column cells (renderCell is asynchronous)
+    const cellsPromise = componentData?.map(async (r) => {
+      const cellPromise = columnComponents?.map(async (c: any) =>
+        tryMethod(c, () => c.renderCell(r, undefined))
+      );
+      const cells = (await Promise.all(cellPromise)) as VNode[][];
+      return cells;
+    });
+
+    const rows =
+      cellsPromise &&
+      [referrerRow, ...(await Promise.all(cellsPromise))].filter(
+        (value) => value
+      );
+
+    setContent({ rows });
+    const columns =
+      columnsPromise && ((await Promise.all(columnsPromise)) as string[]);
+    // Set the content to render and finish loading components
+    setContent({ columns, loading: false, page: 0 });
+  }
+
+  useEffect(() => {
+    setContent({ loading: true });
+    data && getComponentData(components);
+  }, [data, components, tick]);
+
   const demoProps = deepmerge(
     {
       states: {
@@ -129,53 +224,15 @@ function useReferraltableDemo(props: ReferralTable): GenericTableViewProps {
         referralData: [],
       },
       elements: {
-        emptyElement: (
-          <sqm-empty
-            emptyStateImage="https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_3_1.png"
-            emptyStateHeader="View your referral details"
-            emptyStateText="Track the status of your referrals and rewards earned by referring
-		friends"
-            table
-          />
-        ),
-        loadingElement: <LoadingSlot />,
-        columns: [
-          <div>User</div>,
-          <div>Referral Status</div>,
-          <div>Rewards</div>,
-        ],
-        rows: [
-          [
-            <sqm-referral-table-user-cell name="Joe Smith"></sqm-referral-table-user-cell>,
-            <sqm-referral-table-status-cell
-              statusText="Completed"
-              converted={true}
-            ></sqm-referral-table-status-cell>,
-            <PendingNoUnpend />,
-          ],
-          [
-            <sqm-referral-table-user-cell name="Bob Williams"></sqm-referral-table-user-cell>,
-            <sqm-referral-table-status-cell
-              statusText="In Progress"
-              converted={false}
-            ></sqm-referral-table-status-cell>,
-            <AvailableNoExpiry />,
-          ],
-          [
-            <sqm-referral-table-user-cell name="Sarah Joseph"></sqm-referral-table-user-cell>,
-            <sqm-referral-table-status-cell
-              statusText="Completed"
-              converted={true}
-            ></sqm-referral-table-status-cell>,
-            <Cancelled />,
-          ],
-        ],
+        columns: content.columns,
+        rows: content.rows,
+        emptyElement,
+        loadingElement,
       },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
-  console.log("PROPS", demoProps);
 
   return demoProps;
 }

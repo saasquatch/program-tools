@@ -61,6 +61,25 @@ function setupGraphQLKlip({ token, id }) {
 
   return { id, accountId };
 }
+
+export const RewardTableDemoHook = createHookStory(() => {
+  // setupGraphQL();
+  // setProgramId("sam-partner-test-2");
+  const props = {
+    listType: "",
+    render: () => {},
+    disconnectedCallback: () => {},
+    ignored: true,
+  };
+  return (
+    <sqm-rewards-table per-page="4">
+    <sqm-rewards-table-reward-column></sqm-rewards-table-reward-column>
+    <sqm-rewards-table-source-column></sqm-rewards-table-source-column>
+    <sqm-rewards-table-status-column></sqm-rewards-table-status-column>
+    <sqm-rewards-table-date-column></sqm-rewards-table-date-column>
+  </sqm-rewards-table>
+  );
+});
 export const RewardsTableWithProgram = createHookStory(() => {
   setupGraphQL();
   setProgramId("sam-partner-test-2");

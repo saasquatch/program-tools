@@ -32,13 +32,17 @@ export class ReferralTableUserColumn implements ReferralTableColumn {
   @Method()
   async renderCell(data: Referral) {
     let name: string;
-    if (!data?.referredUser) {
+    if (!data?.referredUser && !data?.referrerUser) {
       name = this.deletedUser;
     } else if (
       !data?.referredUser?.firstName &&
-      !data?.referredUser?.lastName
+      !data?.referredUser?.lastName &&
+      !data?.referrerUser?.firstName &&
+      !data?.referrerUser?.lastName
     ) {
       name = this.anonymousUser;
+    } else if (data?.referrerUser) {
+      name = `${data?.referrerUser?.firstName} ${data?.referrerUser?.lastName}`;
     } else {
       name = `${data?.referredUser?.firstName} ${data?.referredUser?.lastName}`;
     }
@@ -51,6 +55,23 @@ export class ReferralTableUserColumn implements ReferralTableColumn {
   @Method()
   async renderLabel() {
     return this.columnTitle;
+  }
+
+  @Method()
+  async renderReferrerCell(data: Referrer) {
+    let name: string;
+
+    if (!data) {
+      name = this.deletedUser;
+    } else if (!data?.referrerUser?.firstName && !data.referrerUser?.lastName) {
+      name = this.anonymousUser;
+    } else {
+      name = `${data?.referrerUser?.firstName} ${data?.referrerUser?.lastName}`;
+    }
+
+    return (
+      <sqm-referral-table-user-cell name={name}></sqm-referral-table-user-cell>
+    );
   }
 
   render() {
