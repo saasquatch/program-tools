@@ -1243,7 +1243,7 @@ export namespace Components {
          */
         "selectText": string;
         /**
-          * @uiName Number of Skeleton Cards
+          * @undocumented Number of Skeleton Cards
          */
         "skeletonCardNum": number;
         /**
@@ -1328,6 +1328,7 @@ export namespace Components {
     }
     interface SqmRewardsTableRewardCell {
         "availableText": string;
+        "fueltankText": string;
         "locale": string;
         "redeemedText": string;
         "reward": Reward;
@@ -3566,7 +3567,7 @@ declare namespace LocalJSX {
          */
         "selectText"?: string;
         /**
-          * @uiName Number of Skeleton Cards
+          * @undocumented Number of Skeleton Cards
          */
         "skeletonCardNum"?: number;
         /**
@@ -3647,6 +3648,7 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableRewardCell {
         "availableText"?: string;
+        "fueltankText"?: string;
         "locale"?: string;
         "redeemedText"?: string;
         "reward"?: Reward;

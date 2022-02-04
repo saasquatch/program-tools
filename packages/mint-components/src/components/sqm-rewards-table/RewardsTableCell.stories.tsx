@@ -122,10 +122,12 @@ const longName = {
 
 export const RewardsCellCreditLong = () => {
   return (
-    <sqm-rewards-table-reward-cell
-      reward={{ ...rewardsData, ...longName }}
-      availableText="19 Points with a really really super duper longest name ever in the world wide web available"
-    ></sqm-rewards-table-reward-cell>
+    <div style={{ maxWidth: "222px" }}>
+      <sqm-rewards-table-reward-cell
+        reward={{ ...rewardsData, ...longName }}
+        availableText="19 Points with a really really super duper longest name ever in the world wide web available"
+      ></sqm-rewards-table-reward-cell>
+    </div>
   );
 };
 
@@ -134,10 +136,39 @@ export const RewardsCellNonCredit = () => {
     <sqm-rewards-table-reward-cell
       reward={{
         ...rewardsData,
-        type: "FUELTANK",
+        type: "GIFTCARD",
         prettyValue: "SaaSquatch Giftcard",
       }}
     ></sqm-rewards-table-reward-cell>
+  );
+};
+
+export const RewardsCellFueltank = () => {
+  return (
+    <sqm-rewards-table-reward-cell
+      reward={{
+        ...rewardsData,
+        type: "FUELTANK",
+        prettyValue: "Fueltank Reward",
+        fuelTankCode: "AFUELTANKCODE",
+      }}
+      fueltankText="Your code:"
+    ></sqm-rewards-table-reward-cell>
+  );
+};
+export const RewardsCellFueltankLong = () => {
+  return (
+    <div style={{ maxWidth: "222px" }}>
+      <sqm-rewards-table-reward-cell
+        reward={{
+          ...rewardsData,
+          type: "FUELTANK",
+          prettyValue: "Long Fueltank Reward",
+          fuelTankCode: "AFUELTANKCODE123456789123456789123456789123456789",
+        }}
+        fueltankText="Your code:"
+      ></sqm-rewards-table-reward-cell>
+    </div>
   );
 };
 
