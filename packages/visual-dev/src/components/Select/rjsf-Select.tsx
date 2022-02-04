@@ -1,19 +1,13 @@
 import { WidgetProps } from "@rjsf/core";
-import { useSelect } from "downshift";
 import React from "react";
-import { isEnumArray } from "../RadioCard";
 import { Select } from "./Select";
+import { useRJSFSelect } from "./useRJSFSelect";
 
 export function RJSFSelect(props: WidgetProps) {
-  console.log(props);
-  const items = props?.options?.enumOptions;
-  const disabled = props?.options?.enumDisabled ? true : false;
-  if (!isEnumArray(items)) {
+  const hook = useRJSFSelect(props);
+  if (hook === null) {
     return <></>;
   }
-  const itemToString = (item: any) => (item ? item.label : "");
-  const functional = useSelect({ items, itemToString });
-  const options = props.uiSchema["ui:options"];
-  const selectProps = {disabled, options, items, functional, itemToString };
-  return <Select {...selectProps} />;
+  const viewProps = { ...props.uiSchema["ui:options"], ...hook };
+  return <Select {...viewProps} />;
 }

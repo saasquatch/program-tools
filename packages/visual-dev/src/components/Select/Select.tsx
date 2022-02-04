@@ -7,7 +7,7 @@ import React from "react";
 import { Icon } from "../Icon";
 import { LoadingSpinner } from "../LoadingSpinner";
 
-type SelectProps<ItemType> = OptionProps<ItemType> &
+export type SelectProps<ItemType> = OptionProps<ItemType> &
   Omit<React.ComponentProps<"input">, "css">;
 
 export interface OptionProps<ItemType> {
@@ -18,7 +18,7 @@ export interface OptionProps<ItemType> {
   /**
    * Function to transform items to string
    */
-  itemToString?: (item: ItemType) => string;
+  itemToString?: (item: ItemType | null) => string;
   /**
    * Function to transform items into view code for dropdown menu
    */
