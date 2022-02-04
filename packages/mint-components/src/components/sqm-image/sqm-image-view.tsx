@@ -21,6 +21,7 @@ export function ImageView(props: ImageViewProps) {
     },
     Image: {
       minHeight: props.minHeight || "100%",
+      maxWidth: "100%",
       objectFit: "cover",
     },
   };
