@@ -40,7 +40,9 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
     },
     Image: {
       display: "block",
-      maxWidth: "100%",
+      width: "100%",
+      height: "100%",
+      maxWidth: "max-content",
       objectFit: "cover",
       margin: "auto",
     },
