@@ -122,7 +122,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             <th class="Score">{styles.statsheading}</th>
           </tr>
         </table>
-        {elements.empty}
+        <div style={{display: "block"}}>{elements.empty}</div>
       </div>
     );
   }
@@ -184,7 +184,6 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             <td class="Score">{data.userRank?.value || "0"}</td>
           </tr>
         )}
-        {data.leaderboard.length ? elements.empty : ""}
       </table>
     </div>
   );

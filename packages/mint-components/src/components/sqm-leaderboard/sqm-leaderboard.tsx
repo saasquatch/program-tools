@@ -12,6 +12,7 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
  */
 @Component({
   tag: "sqm-leaderboard",
+  shadow: true,
 })
 export class Leaderboard {
   /**
@@ -96,9 +97,7 @@ export class Leaderboard {
     const viewprops = isDemo()
       ? useLeaderboardDemo(demoProps)
       : useLeaderboard(props);
-    return (
-      <LeaderboardView {...viewprops} />
-    );
+    return <LeaderboardView {...viewprops} />;
   }
 }
 
