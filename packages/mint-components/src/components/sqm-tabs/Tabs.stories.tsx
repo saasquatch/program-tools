@@ -77,7 +77,7 @@ export const LoyaltyProgram = () => (
   <div
     style={{ maxWidth: "700px", margin: "auto" }}
     innerHTML={`
-     <sqm-tabs>
+     <sqm-tabs placement="top">
         <sqm-tab header="Leaderboard">
           <sqm-hero-image
             image-url="https://i.imgur.com/MVgOJn7.png"
