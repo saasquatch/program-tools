@@ -219,7 +219,7 @@ export const ColumnsCustomPercentage = () => {
       image-percentage="33%"
       padding-image="large"
       padding-text="large"
-      background-color=""
+      background-color="#EFF8FE"
     />
   );
 };
