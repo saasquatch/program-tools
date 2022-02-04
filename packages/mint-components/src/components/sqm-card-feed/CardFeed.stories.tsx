@@ -246,12 +246,13 @@ export const TaskCardGridLowWidth = () => {
 
 export const CardFeedGeneric = () => {
   return (
-    <CardFeedView width={347} gap={24}>
+    <CardFeedView width={300} gap={24}>
       <div
         style={{
           padding: "100px",
           border: "1px dashed black",
           background: "#eee",
+          display: "inline-block",
         }}
       >
         PLACEHOLDER
@@ -261,6 +262,7 @@ export const CardFeedGeneric = () => {
           padding: "100px",
           border: "1px dashed black",
           background: "#eee",
+          display: "inline-block",
         }}
       >
         PLACEHOLDER
@@ -270,7 +272,7 @@ export const CardFeedGeneric = () => {
           padding: "100px",
           border: "1px dashed black",
           background: "#eee",
-          display: "flex",
+          display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
         }}
@@ -282,6 +284,7 @@ export const CardFeedGeneric = () => {
           padding: "100px",
           border: "1px dashed black",
           background: "#eee",
+          display: "inline-block",
         }}
       >
         PLACEHOLDER
@@ -291,6 +294,7 @@ export const CardFeedGeneric = () => {
           padding: "100px",
           border: "1px dashed black",
           background: "#eee",
+          display: "inline-block",
         }}
       >
         PLACEHOLDER
@@ -300,6 +304,7 @@ export const CardFeedGeneric = () => {
           padding: "100px",
           border: "1px dashed black",
           background: "#eee",
+          display: "inline-block",
         }}
       >
         PLACEHOLDER
@@ -309,6 +314,7 @@ export const CardFeedGeneric = () => {
           padding: "100px",
           border: "1px dashed black",
           background: "#eee",
+          display: "inline-block",
         }}
       >
         PLACEHOLDER
