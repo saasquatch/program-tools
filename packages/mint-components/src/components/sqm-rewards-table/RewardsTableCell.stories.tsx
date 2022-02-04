@@ -1,5 +1,10 @@
 import { h } from "@stencil/core";
-import scenario from "./rewards-table.feature";
+import scenario1 from "./columns/sqm-rewards-table-date-column.feature";
+import scenario2 from "./columns/sqm-rewards-table-reward-column.feature";
+import scenario3 from "./columns/sqm-rewards-table-status-column.feature";
+import scenario4 from "./columns/sqm-rewards-table-source-column.feature";
+
+const scenario = scenario1 + scenario2 + scenario3 + scenario4;
 
 export default {
   title: "Components/Rewards Table Cell",
