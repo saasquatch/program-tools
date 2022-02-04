@@ -1330,6 +1330,18 @@ export namespace Components {
          */
         "smBreakpoint"?: number;
     }
+    interface SqmRewardsTableCustomerNoteCell {
+        "locale": string;
+        "note": string;
+    }
+    interface SqmRewardsTableCustomerNoteColumn {
+        /**
+          * @uiName Customer Note Column Title
+         */
+        "columnTitle"?: string;
+        "renderCell": (data: Reward[], locale: string) => Promise<any>;
+        "renderLabel": () => Promise<string>;
+    }
     interface SqmRewardsTableDateCell {
         "date": number;
         "locale": string;
@@ -2127,6 +2139,18 @@ declare global {
         prototype: HTMLSqmRewardsTableElement;
         new (): HTMLSqmRewardsTableElement;
     };
+    interface HTMLSqmRewardsTableCustomerNoteCellElement extends Components.SqmRewardsTableCustomerNoteCell, HTMLStencilElement {
+    }
+    var HTMLSqmRewardsTableCustomerNoteCellElement: {
+        prototype: HTMLSqmRewardsTableCustomerNoteCellElement;
+        new (): HTMLSqmRewardsTableCustomerNoteCellElement;
+    };
+    interface HTMLSqmRewardsTableCustomerNoteColumnElement extends Components.SqmRewardsTableCustomerNoteColumn, HTMLStencilElement {
+    }
+    var HTMLSqmRewardsTableCustomerNoteColumnElement: {
+        prototype: HTMLSqmRewardsTableCustomerNoteColumnElement;
+        new (): HTMLSqmRewardsTableCustomerNoteColumnElement;
+    };
     interface HTMLSqmRewardsTableDateCellElement extends Components.SqmRewardsTableDateCell, HTMLStencilElement {
     }
     var HTMLSqmRewardsTableDateCellElement: {
@@ -2342,6 +2366,8 @@ declare global {
         "sqm-refresh-button": HTMLSqmRefreshButtonElement;
         "sqm-reward-exchange-list": HTMLSqmRewardExchangeListElement;
         "sqm-rewards-table": HTMLSqmRewardsTableElement;
+        "sqm-rewards-table-customer-note-cell": HTMLSqmRewardsTableCustomerNoteCellElement;
+        "sqm-rewards-table-customer-note-column": HTMLSqmRewardsTableCustomerNoteColumnElement;
         "sqm-rewards-table-date-cell": HTMLSqmRewardsTableDateCellElement;
         "sqm-rewards-table-date-column": HTMLSqmRewardsTableDateColumnElement;
         "sqm-rewards-table-reward-cell": HTMLSqmRewardsTableRewardCellElement;
@@ -3657,6 +3683,16 @@ declare namespace LocalJSX {
          */
         "smBreakpoint"?: number;
     }
+    interface SqmRewardsTableCustomerNoteCell {
+        "locale"?: string;
+        "note"?: string;
+    }
+    interface SqmRewardsTableCustomerNoteColumn {
+        /**
+          * @uiName Customer Note Column Title
+         */
+        "columnTitle"?: string;
+    }
     interface SqmRewardsTableDateCell {
         "date"?: number;
         "locale"?: string;
@@ -4185,6 +4221,8 @@ declare namespace LocalJSX {
         "sqm-refresh-button": SqmRefreshButton;
         "sqm-reward-exchange-list": SqmRewardExchangeList;
         "sqm-rewards-table": SqmRewardsTable;
+        "sqm-rewards-table-customer-note-cell": SqmRewardsTableCustomerNoteCell;
+        "sqm-rewards-table-customer-note-column": SqmRewardsTableCustomerNoteColumn;
         "sqm-rewards-table-date-cell": SqmRewardsTableDateCell;
         "sqm-rewards-table-date-column": SqmRewardsTableDateColumn;
         "sqm-rewards-table-reward-cell": SqmRewardsTableRewardCell;
@@ -4270,6 +4308,8 @@ declare module "@stencil/core" {
             "sqm-refresh-button": LocalJSX.SqmRefreshButton & JSXBase.HTMLAttributes<HTMLSqmRefreshButtonElement>;
             "sqm-reward-exchange-list": LocalJSX.SqmRewardExchangeList & JSXBase.HTMLAttributes<HTMLSqmRewardExchangeListElement>;
             "sqm-rewards-table": LocalJSX.SqmRewardsTable & JSXBase.HTMLAttributes<HTMLSqmRewardsTableElement>;
+            "sqm-rewards-table-customer-note-cell": LocalJSX.SqmRewardsTableCustomerNoteCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableCustomerNoteCellElement>;
+            "sqm-rewards-table-customer-note-column": LocalJSX.SqmRewardsTableCustomerNoteColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableCustomerNoteColumnElement>;
             "sqm-rewards-table-date-cell": LocalJSX.SqmRewardsTableDateCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateCellElement>;
             "sqm-rewards-table-date-column": LocalJSX.SqmRewardsTableDateColumn & JSXBase.HTMLAttributes<HTMLSqmRewardsTableDateColumnElement>;
             "sqm-rewards-table-reward-cell": LocalJSX.SqmRewardsTableRewardCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableRewardCellElement>;

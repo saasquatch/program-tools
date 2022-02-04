@@ -41,6 +41,7 @@ interface Reward {
   unit: string;
   name: string;
   dateGiven: number;
+  meta?: { message?: string };
   dateScheduledFor: number;
   dateExpires: number;
   dateCancelled: number;

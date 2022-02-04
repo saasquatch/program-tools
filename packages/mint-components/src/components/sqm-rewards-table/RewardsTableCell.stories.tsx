@@ -15,6 +15,7 @@ const rewardsData: Reward = {
   unit: "TESTUNIT",
   name: null,
   dateGiven: 1640038417468,
+  meta: { message: "***CUSTOMER NOTE MESSAGE***" },
   dateExpires: null,
   dateCancelled: null,
   dateRedeemed: null,
@@ -385,6 +386,14 @@ export const DateCell = () => {
     <sqm-rewards-table-date-cell
       date={1640038417468}
     ></sqm-rewards-table-date-cell>
+  );
+};
+
+export const CustomerNoteCell = () => {
+  return (
+    <sqm-rewards-table-customer-note-cell
+      note={rewardsData.meta.message}
+    ></sqm-rewards-table-customer-note-cell>
   );
 };
 

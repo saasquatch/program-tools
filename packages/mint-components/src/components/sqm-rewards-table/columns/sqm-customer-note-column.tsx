@@ -4,28 +4,17 @@ import { useRequestRerender } from "../../../tables/re-render";
 import { RewardTableColumn } from "./RewardTableColumn";
 
 /**
- * @uiName Reward Table Date Column
+ * @uiName Reward Table Customer Note Column
  */
 @Component({
-  tag: "sqm-rewards-table-date-column",
+  tag: "sqm-rewards-table-customer-note-column",
   shadow: true,
 })
-export class RewardTableDateColumn implements RewardTableColumn {
+export class RewardTableCustomerNoteColumn implements RewardTableColumn {
   /**
-   * @uiName Date Column Title
+   * @uiName Customer Note Column Title
    */
-  @Prop() columnTitle: string = "Date received";
-
-  /**
-   * @uiName Date Displayed
-   * @uiType string
-   * @uiEnum ["dateGiven",
-   * "dateExpires",
-   * "dateCancelled",
-   * "dateRedeemed",
-   * "dateScheduledFor"]
-   */
-  @Prop() dateShown: string = "dateGiven";
+  @Prop() columnTitle?: string = "Customer note";
 
   constructor() {
     withHooks(this);
@@ -35,14 +24,14 @@ export class RewardTableDateColumn implements RewardTableColumn {
   @Method()
   async renderCell(data: Reward[], locale: string) {
     const reward = data?.[0];
-    // TODO: dateShown validation?
 
     console.log("reward column - locale", { locale });
+    console.log("REWARD", reward);
     return (
-      <sqm-rewards-table-date-cell
-        date={reward[this.dateShown]}
+      <sqm-rewards-table-customer-note-cell
+        note={reward?.meta?.message}
         locale={locale}
-      ></sqm-rewards-table-date-cell>
+      ></sqm-rewards-table-customer-note-cell>
     );
   }
 
@@ -52,7 +41,7 @@ export class RewardTableDateColumn implements RewardTableColumn {
   }
 
   render() {
-    useRequestRerender([this.dateShown, this.columnTitle]);
+    useRequestRerender([this.columnTitle]);
     return <Host style={{ display: "none" }} />;
   }
 }
