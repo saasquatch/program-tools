@@ -173,6 +173,41 @@ const simpleUserTableProps = {
   },
 };
 
+const singleTableProps = {
+  states: {
+    hasPrev: false,
+    hasNext: true,
+    show: "rows" as const,
+    namespace: "sqm-referral-table",
+  },
+  data: {
+    textOverrides: {
+      showLabels: true,
+      prevLabel: "Prev",
+      moreLabel: "View More",
+    },
+    hiddenColumns: "",
+    mdBreakpoint: 899,
+    smBreakpoint: 599,
+  },
+  callbacks: {
+    prevPage: () => console.log("Prev"),
+    nextPage: () => console.log("Next"),
+  },
+
+  elements: {
+    columns: ["Customer", "Status", "Date converted", "Rewards"],
+    rows: [
+      [
+        <sqm-referral-table-user-cell name="Bob Williams"></sqm-referral-table-user-cell>,
+        <sqm-referral-table-user-cell name="bwill@gmail.com"></sqm-referral-table-user-cell>,
+        <sqm-referral-table-user-cell name="09/05/1999"></sqm-referral-table-user-cell>,
+        <AvailableNoExpiry />,
+      ],
+    ],
+  },
+};
+
 const hideLabelProps = {
   data: {
     textOverrides: {
@@ -474,6 +509,10 @@ const fullUserTableProps = (hidden = false) => ({
 
 export const SimpleUserTable = () => {
   return <GenericTableView {...simpleUserTableProps}></GenericTableView>;
+};
+
+export const SingleEntry = () => {
+  return <GenericTableView {...singleTableProps}></GenericTableView>;
 };
 
 export const HiddenLabelsTable = () => {
