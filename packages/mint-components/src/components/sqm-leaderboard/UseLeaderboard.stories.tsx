@@ -90,7 +90,7 @@ const View = (overrideProps?: LeaderboardProps & any) => {
       </sqm-divided-layout>
       <sqm-leaderboard {...props}>
         <sqm-empty
-          empty-state-image="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828457/tenant_test_a7iws76wkk4az/pomgkfyhc2mb3cuapauq.png"
+          empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard.png"
           empty-state-header="View your rank in the leaderboard"
           empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
         ></sqm-empty>
@@ -163,7 +163,7 @@ export const DemoHook = createHookStory(() => {
       show-rank="true"
     >
       <sqm-empty
-        empty-state-image="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828457/tenant_test_a7iws76wkk4az/pomgkfyhc2mb3cuapauq.png"
+        empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard.png"
         empty-state-header="View your rank in the leaderboard"
         empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
       ></sqm-empty>
@@ -188,7 +188,7 @@ export const DemoHookEmpty = createHookStory(() => {
       }}
     >
       <sqm-empty
-        empty-state-image="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828457/tenant_test_a7iws76wkk4az/pomgkfyhc2mb3cuapauq.png"
+        empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard.png"
         empty-state-header="View your rank in the leaderboard"
         empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
       ></sqm-empty>

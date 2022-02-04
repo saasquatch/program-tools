@@ -60,29 +60,11 @@ const loadingElement = (
 );
 
 const emptyElement = (
-  <div slot="empty" style={{ display: "contents" }}>
-    <sqm-table-row>
-      <sqm-table-cell colspan={5} style={{ textAlign: "center" }}>
-        <sqm-portal-container padding="xxxx-large" gap="medium">
-          <sqm-image
-            image-url={
-              "https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_4_1.png"
-            }
-            max-width="100px"
-          ></sqm-image>
-          <sqm-titled-section label-margin="xxx-small" text-align="center">
-            <sqm-text slot="label">
-              <h3>View your rewards</h3>
-            </sqm-text>
-            <sqm-text slot="content">
-              See all the rewards you have earned from referring friends and
-              completing tasks
-            </sqm-text>
-          </sqm-titled-section>
-        </sqm-portal-container>
-      </sqm-table-cell>
-    </sqm-table-row>
-  </div>
+  <sqm-empty
+    empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000224/squatch-assets/empty_rewards.png"
+    empty-state-header="View your rewards"
+    empty-state-text="See all the rewards you have earned from referring friends and completing tasks"
+  ></sqm-empty>
 );
 
 const rewardsTableProps = (

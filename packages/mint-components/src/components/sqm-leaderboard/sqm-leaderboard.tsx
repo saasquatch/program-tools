@@ -96,7 +96,11 @@ export class Leaderboard {
     const viewprops = isDemo()
       ? useLeaderboardDemo(demoProps)
       : useLeaderboard(props);
-    return <LeaderboardView {...viewprops} />;
+    return (
+      <LeaderboardView {...viewprops}>
+        <slot />
+      </LeaderboardView>
+    );
   }
 }
 
@@ -158,7 +162,6 @@ function useLeaderboardDemo(
     },
   ];
 
-  console.log("LENGTH", data?.length);
   return deepmerge(
     {
       states: {
