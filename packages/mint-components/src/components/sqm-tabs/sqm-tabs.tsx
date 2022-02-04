@@ -17,9 +17,9 @@ export class Tabs {
    *
    * @uiName Tabs Placement
    * @uiType string
-   * @uiEnum ["left", "right", "bottom", null]
+   * @uiEnum ["left", "right", "bottom", "top"]
    */
-  @Prop() placement?: "left" | "right" | "bottom" | null;
+  @Prop() placement?: "left" | "right" | "bottom" | "top";
 
   constructor() {
     withHooks(this);
