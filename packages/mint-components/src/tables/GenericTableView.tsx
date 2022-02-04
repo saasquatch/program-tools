@@ -131,7 +131,7 @@ export function GenericTableView(props: GenericTableViewProps) {
   const styleString = sheet.toString();
 
   if (show === "empty") {
-    return <div style={{ width: "100%" }}>{elements.emptyElement}</div>;
+    return <div>{elements.emptyElement}</div>;
   }
 
   return (
