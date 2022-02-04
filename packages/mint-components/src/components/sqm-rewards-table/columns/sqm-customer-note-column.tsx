@@ -14,7 +14,7 @@ export class RewardTableCustomerNoteColumn implements RewardTableColumn {
   /**
    * @uiName Customer Note Column Title
    */
-  @Prop() columnTitle?: string = "Customer note";
+  @Prop() columnTitle: string = "Note";
 
   constructor() {
     withHooks(this);

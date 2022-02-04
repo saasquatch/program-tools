@@ -1304,7 +1304,7 @@ export namespace Components {
         /**
           * @uiName Customer Note Column Title
          */
-        "columnTitle"?: string;
+        "columnTitle": string;
         "renderCell": (data: Reward[], locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
@@ -1405,6 +1405,10 @@ export namespace Components {
           * @uiName Expired Status Text
          */
         "expiryText": string;
+        /**
+          * @uiName Fuel Tank Text
+         */
+        "fueltankText": string;
         "renderCell": (data: Reward[], locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
@@ -3721,6 +3725,10 @@ declare namespace LocalJSX {
           * @uiName Expired Status Text
          */
         "expiryText"?: string;
+        /**
+          * @uiName Fuel Tank Text
+         */
+        "fueltankText"?: string;
         /**
           * @uiName Reward Status Text
          */
