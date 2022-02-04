@@ -8,7 +8,10 @@ import {
   GenericTableView,
   GenericTableViewProps,
 } from "../../tables/GenericTableView";
-import { useRerenderListener } from "../../tables/re-render";
+import {
+  useRequestRerender,
+  useRerenderListener,
+} from "../../tables/re-render";
 import { useChildElements } from "../../tables/useChildElements";
 import mockRewardData from "./mockRewardData";
 
@@ -64,12 +67,14 @@ export class RewardsTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = <slot name="empty"/>;
+    const empty = <slot name="empty" />;
     const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()
       ? useRewardsTableDemo(this, empty, loading)
       : useRewardsTable(this, empty, loading);
+
+    useRequestRerender([this.perPage]);
 
     return (
       <GenericTableView

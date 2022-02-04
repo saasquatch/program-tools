@@ -29,6 +29,9 @@ const GET_REWARDS = gql`
           totalCount
           count
           data {
+            meta {
+              message
+            }
             id
             type
             value
