@@ -80,7 +80,7 @@ export class Leaderboard {
 
   render() {
     const props = {
-      empty: <slot name="empty"/>,
+      empty: <slot name="empty" />,
       loadingstate: <LoadingSlot />,
       usersheading: this.usersheading,
       statsheading: this.statsheading,
@@ -96,11 +96,7 @@ export class Leaderboard {
     const viewprops = isDemo()
       ? useLeaderboardDemo(demoProps)
       : useLeaderboard(props);
-    return (
-      <LeaderboardView {...viewprops}>
-        <slot />
-      </LeaderboardView>
-    );
+    return <LeaderboardView {...viewprops} />;
   }
 }
 

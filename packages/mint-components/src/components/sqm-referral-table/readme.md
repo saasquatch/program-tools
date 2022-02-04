@@ -31,26 +31,12 @@
 
 - [sqm-table-row](../sqm-table-row)
 - [sqm-table-cell](../sqm-table-cell)
-- [sqm-empty](../sqm-empty)
-- [sqm-referral-table-user-cell](cells)
-- [sqm-referral-table-status-cell](cells)
-- [sqm-referral-table-rewards-cell](cells)
 
 ### Graph
 ```mermaid
 graph TD;
   sqm-referral-table --> sqm-table-row
   sqm-referral-table --> sqm-table-cell
-  sqm-referral-table --> sqm-empty
-  sqm-referral-table --> sqm-referral-table-user-cell
-  sqm-referral-table --> sqm-referral-table-status-cell
-  sqm-referral-table --> sqm-referral-table-rewards-cell
-  sqm-empty --> sqm-portal-container
-  sqm-empty --> sqm-image
-  sqm-empty --> sqm-titled-section
-  sqm-empty --> sqm-text
-  sqm-empty --> sqm-table-row
-  sqm-empty --> sqm-table-cell
   sqm-stencilbook --> sqm-referral-table
   style sqm-referral-table fill:#f9f,stroke:#333,stroke-width:4px
 ```
