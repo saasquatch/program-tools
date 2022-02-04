@@ -39,8 +39,6 @@ graph TD;
   sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
-  sqm-empty --> sqm-table-row
-  sqm-empty --> sqm-table-cell
   sqm-stencilbook --> sqm-leaderboard
   style sqm-leaderboard fill:#f9f,stroke:#333,stroke-width:4px
 ```

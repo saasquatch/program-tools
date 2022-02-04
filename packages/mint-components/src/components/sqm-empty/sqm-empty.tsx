@@ -20,11 +20,6 @@ export class HeroImage {
   /** @uiName Empty State Text  */
   @Prop() emptyStateText: string;
 
-  /**
-   * @uiName Table Empty State
-   */
-  @Prop() table: boolean;
-
   render() {
     return (
       <Host slot="empty">
@@ -32,7 +27,6 @@ export class HeroImage {
           emptyStateImage={this.emptyStateImage}
           emptyStateHeader={this.emptyStateHeader}
           emptyStateText={this.emptyStateText}
-          table={this.table}
         />
       </Host>
     );

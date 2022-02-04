@@ -4,14 +4,13 @@ export interface EmptyStateViewProps {
   emptyStateImage: string;
   emptyStateHeader: string;
   emptyStateText: string;
-  table: boolean;
 }
 
 export function EmptyStateView(props: EmptyStateViewProps) {
-  const { emptyStateHeader, emptyStateImage, emptyStateText, table } = props;
+  const { emptyStateHeader, emptyStateImage, emptyStateText } = props;
 
-  function emptyBase() {
-    return (
+  return (
+    <div style={{ display: "contents" }}>
       <sqm-portal-container padding="xxxx-large" gap="medium">
         <sqm-image image-url={emptyStateImage} max-width="100px"></sqm-image>
         <sqm-titled-section label-margin="xxx-small" text-align="center">
@@ -21,19 +20,6 @@ export function EmptyStateView(props: EmptyStateViewProps) {
           <sqm-text slot="content">{emptyStateText}</sqm-text>
         </sqm-titled-section>
       </sqm-portal-container>
-    );
-  }
-
-  if (table) {
-    return (
-      <div style={{ display: "contents" }}>
-        <sqm-table-row>
-          <sqm-table-cell colspan={1000} style={{ textAlign: "center" }}>
-            {emptyBase()}
-          </sqm-table-cell>
-        </sqm-table-row>
-      </div>
-    );
-  }
-  return <div>{emptyBase()}</div>;
+    </div>
+  );
 }

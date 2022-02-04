@@ -53,6 +53,7 @@
 - [sqm-rewards-table-source-cell](../sqm-rewards-table/cells)
 - [sqm-rewards-table-status-cell](../sqm-rewards-table/cells)
 - [sqm-rewards-table-date-cell](../sqm-rewards-table/cells)
+- [sqm-rewards-table-customer-note-cell](../sqm-rewards-table/cells)
 - [sqm-referral-table-user-column](../sqm-referral-table/columns)
 - [sqm-referral-table-status-column](../sqm-referral-table/columns)
 - [sqm-referral-table-date-column](../sqm-referral-table/columns)
@@ -111,6 +112,7 @@ graph TD;
   sqm-stencilbook --> sqm-rewards-table-source-cell
   sqm-stencilbook --> sqm-rewards-table-status-cell
   sqm-stencilbook --> sqm-rewards-table-date-cell
+  sqm-stencilbook --> sqm-rewards-table-customer-note-cell
   sqm-stencilbook --> sqm-referral-table-user-column
   sqm-stencilbook --> sqm-referral-table-status-column
   sqm-stencilbook --> sqm-referral-table-date-column
@@ -127,8 +129,6 @@ graph TD;
   sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
-  sqm-empty --> sqm-table-row
-  sqm-empty --> sqm-table-cell
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
   sqm-rewards-table-reward-column --> sqm-rewards-table-reward-cell

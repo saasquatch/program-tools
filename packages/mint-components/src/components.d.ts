@@ -175,10 +175,6 @@ export namespace Components {
           * @uiName Empty State Text
          */
         "emptyStateText": string;
-        /**
-          * @uiName Table Empty State
-         */
-        "table": boolean;
     }
     interface SqmFormMessage {
         /**
@@ -1598,6 +1594,7 @@ export namespace Components {
         /**
           * Used to specify the placement of the tabs
           * @uiName Tabs Placement
+          * @uiType string
           * @uiEnum ["left", "right", "bottom", null]
          */
         "placement"?: "left" | "right" | "bottom" | null;
@@ -2515,10 +2512,6 @@ declare namespace LocalJSX {
           * @uiName Empty State Text
          */
         "emptyStateText"?: string;
-        /**
-          * @uiName Table Empty State
-         */
-        "table"?: boolean;
     }
     interface SqmFormMessage {
         /**
@@ -3914,6 +3907,7 @@ declare namespace LocalJSX {
         /**
           * Used to specify the placement of the tabs
           * @uiName Tabs Placement
+          * @uiType string
           * @uiEnum ["left", "right", "bottom", null]
          */
         "placement"?: "left" | "right" | "bottom" | null;

@@ -93,6 +93,8 @@ export function LeaderboardView(props: LeaderboardViewProps) {
   const { states, data, elements } = props;
   const { styles } = states;
 
+  console.log("LEADERBOARD PROPS", props);
+
   if (states.loading)
     return (
       <div class={sheet.classes.Leaderboard}>
@@ -106,6 +108,18 @@ export function LeaderboardView(props: LeaderboardViewProps) {
 
   let userSeenFlag = false;
 
+  if (!states.hasLeaders) {
+    return (
+      <div class={sheet.classes.Leaderboard}>
+        <style type="text/css">
+          {styleString}
+          {vanillaStyle}
+        </style>
+        {elements.empty}
+      </div>
+    );
+  }
+
   return (
     <div class={sheet.classes.Leaderboard}>
       <style type="text/css">
@@ -118,11 +132,6 @@ export function LeaderboardView(props: LeaderboardViewProps) {
           <th class="User">{styles.usersheading}</th>
           <th class="Score">{styles.statsheading}</th>
         </tr>
-        {!states.hasLeaders && (
-          <tr>
-            <td colSpan={100}>{elements.empty}</td>
-          </tr>
-        )}
         {data.leaderboard?.map((user) => {
           if (user.rowNumber === data.userRank?.rowNumber) userSeenFlag = true;
           return (

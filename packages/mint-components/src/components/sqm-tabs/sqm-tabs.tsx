@@ -16,6 +16,7 @@ export class Tabs {
    * Used to specify the placement of the tabs
    *
    * @uiName Tabs Placement
+   * @uiType string
    * @uiEnum ["left", "right", "bottom", null]
    */
   @Prop() placement?: "left" | "right" | "bottom" | null;
