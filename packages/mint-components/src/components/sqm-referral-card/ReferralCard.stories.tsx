@@ -125,3 +125,37 @@ export const FlippedSlots = () => {
     </sqm-referral-card>
   );
 };
+
+export const ReferralCardGeneric = () => {
+  return (
+    <sqm-referral-card vertical-alignment="center">
+      <sqm-portal-container slot="left" gap="x-small">
+        <div
+          style={{
+            padding: "100px",
+            border: "1px dashed black",
+            background: "#eee",
+            color: "#333",
+            textAlign: "center",
+          }}
+        >
+          PLACEHOLDER
+        </div>
+      </sqm-portal-container>
+
+      <sqm-portal-container slot="right" gap="x-small">
+        <div
+          style={{
+            padding: "100px",
+            border: "1px dashed black",
+            background: "#eee",
+            color: "#333",
+            textAlign: "center",
+          }}
+        >
+          PLACEHOLDER
+        </div>
+      </sqm-portal-container>
+    </sqm-referral-card>
+  );
+};

@@ -135,6 +135,10 @@ function useRewardsTableDemo(
   const components = useChildElements();
 
   async function getComponentData(components: Element[]) {
+    let componentData = data;
+
+    componentData = data.slice(0, props.perPage);
+
     // filter out loading and empty states from columns array
     const columnComponents = components.filter(
       (component) => component.slot !== "loading" && component.slot !== "empty"
@@ -146,7 +150,7 @@ function useRewardsTableDemo(
 
     // get the column cells (renderCell is asynchronous)
     //@ts-ignore
-    const cellsPromise = data?.map(async (r: Reward) => {
+    const cellsPromise = componentData?.map(async (r: Reward) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
         tryMethod(c, () => c.renderCell([r], undefined))
       );

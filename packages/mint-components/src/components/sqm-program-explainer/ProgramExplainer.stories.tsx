@@ -57,3 +57,44 @@ export const Custom = () => {
     </sqm-program-explainer>
   );
 };
+
+export const ProgramExplainerGeneric = () => {
+  return (
+    <sqm-program-explainer
+      header="Anything and everything can be passed to this component!"
+      text-color="#eee"
+      background-color="#333"
+    >
+      <div
+        style={{
+          padding: "100px",
+          border: "1px dashed black",
+          background: "#eee",
+          color: "#333",
+        }}
+      >
+        PLACEHOLDER
+      </div>
+      <div
+        style={{
+          padding: "100px",
+          border: "1px dashed black",
+          background: "#eee",
+          color: "#333",
+        }}
+      >
+        PLACEHOLDER
+      </div>
+      <div
+        style={{
+          padding: "100px",
+          border: "1px dashed black",
+          background: "#eee",
+          color: "#333",
+        }}
+      >
+        PLACEHOLDER
+      </div>
+    </sqm-program-explainer>
+  );
+};

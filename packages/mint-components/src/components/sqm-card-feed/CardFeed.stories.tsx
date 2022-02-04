@@ -243,3 +243,76 @@ export const TaskCardGridLowWidth = () => {
     </CardFeedView>
   );
 };
+
+export const CardFeedGeneric = () => {
+  return (
+    <CardFeedView width={347} gap={24}>
+      <div
+        style={{
+          padding: "100px",
+          border: "1px dashed black",
+          background: "#eee",
+        }}
+      >
+        PLACEHOLDER
+      </div>
+      <div
+        style={{
+          padding: "100px",
+          border: "1px dashed black",
+          background: "#eee",
+        }}
+      >
+        PLACEHOLDER
+      </div>
+      <div
+        style={{
+          padding: "100px",
+          border: "1px dashed black",
+          background: "#eee",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        PLACEHOLDER
+      </div>
+      <div
+        style={{
+          padding: "100px",
+          border: "1px dashed black",
+          background: "#eee",
+        }}
+      >
+        PLACEHOLDER
+      </div>
+      <div
+        style={{
+          padding: "100px",
+          border: "1px dashed black",
+          background: "#eee",
+        }}
+      >
+        PLACEHOLDER
+      </div>
+      <div
+        style={{
+          padding: "100px",
+          border: "1px dashed black",
+          background: "#eee",
+        }}
+      >
+        PLACEHOLDER
+      </div>
+      <div
+        style={{
+          padding: "100px",
+          border: "1px dashed black",
+          background: "#eee",
+        }}
+      >
+        PLACEHOLDER
+      </div>
+    </CardFeedView>
+  );
+};

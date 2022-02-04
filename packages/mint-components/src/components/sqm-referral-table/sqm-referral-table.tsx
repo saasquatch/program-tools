@@ -156,10 +156,9 @@ function useReferralTableDemo(
       !!mockReferralData?.referredByReferral.dateReferralStarted;
 
     if (showReferrerRow) {
-      console.log("mock data", mockData.slice(-1));
-      componentData = mockData.slice(0, -1);
+      componentData = mockData.slice(0, props.perPage - 1);
     } else {
-      componentData = data;
+      componentData = mockData.slice(0, props.perPage);
     }
     // filter out loading and empty states from columns array
     const columnComponents = components.filter(
