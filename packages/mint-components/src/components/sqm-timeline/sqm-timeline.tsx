@@ -30,11 +30,14 @@ export class Timeline {
     //@ts-ignore
     const rewards: TimelineReward[] = useChildElements();
 
+	//TODO: Change to methods or attributes instead of properties
     rewards.forEach((reward, idx) => {
       if (rewards.length > 1 && idx != rewards.length - 1) {
         reward.line = true;
       }
+	  //TODO: Change to method
 	  else reward.line = false;
+	  //TODO: Chango to method
       reward.icon = this.icon;
     });
 

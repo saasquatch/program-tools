@@ -64,22 +64,6 @@ export class Leaderboard {
   @Prop() interval: string;
 
   /**
-   * @uiName Empty State Image
-   */
-  @Prop() emptyStateImage: string = "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828457/tenant_test_a7iws76wkk4az/pomgkfyhc2mb3cuapauq.png";
-
-  /**
-   * @uiName Empty State Header
-   */
-  @Prop() emptyStateHeader: string = "View your rank in the leaderboard";
-
-  /**
-   * @uiName Empty State Description
-   */
-  @Prop() emptyStateText: string =
-    "Be the first to refer a friend and reach the top of the leaderboard";
-
-  /**
    * @undocumented
    * @uiType object
    */
@@ -96,13 +80,7 @@ export class Leaderboard {
 
   render() {
     const props = {
-      empty: (
-        <EmptySlot
-          emptyStateImage={this.emptyStateImage}
-          emptyStateHeader={this.emptyStateHeader}
-          emptyStateText={this.emptyStateText}
-        />
-      ),
+      empty: <slot name="empty"/>,
       loadingstate: <LoadingSlot />,
       usersheading: this.usersheading,
       statsheading: this.statsheading,
@@ -124,29 +102,6 @@ export class Leaderboard {
       </LeaderboardView>
     );
   }
-}
-function EmptySlot({
-  emptyStateImage,
-  emptyStateHeader,
-  emptyStateText,
-}: {
-  emptyStateImage: string;
-  emptyStateHeader: string;
-  emptyStateText: string;
-}) {
-  return (
-    <slot name="empty">
-      <sqm-portal-container padding="xxxx-large" gap="medium">
-        <sqm-image image-url={emptyStateImage} max-width="100px"></sqm-image>
-        <sqm-titled-section label-margin="xxx-small" text-align="center">
-          <sqm-text slot="label">
-            <h3>{emptyStateHeader}</h3>
-          </sqm-text>
-          <sqm-text slot="content">{emptyStateText}</sqm-text>
-        </sqm-titled-section>
-      </sqm-portal-container>
-    </slot>
-  );
 }
 
 function LoadingSlot() {
@@ -228,8 +183,10 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
       },
       elements: {
         empty: (
-          <EmptySlot
-            emptyStateImage={"https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828457/tenant_test_a7iws76wkk4az/pomgkfyhc2mb3cuapauq.png"}
+          <sqm-empty
+            emptyStateImage={
+              "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828457/tenant_test_a7iws76wkk4az/pomgkfyhc2mb3cuapauq.png"
+            }
             emptyStateHeader={"View your rank in the leaderboard"}
             emptyStateText={
               "Be the first to refer a friend and reach the top of the leaderboard"

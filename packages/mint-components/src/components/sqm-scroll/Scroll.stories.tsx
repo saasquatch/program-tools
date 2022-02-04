@@ -43,67 +43,36 @@ export const ScrollId = () => {
 export const ScrollTabGroup = () => {
   return (
     <div style={{ position: "relative", height: "2000px" }}>
-      <sqm-scroll scroll-tag-name="sl-tab-group"></sqm-scroll>
-      <div style={{ position: "absolute", bottom: "0" }}>
-        <sqm-text slot="label" id="my-id">
-          <sl-tab-group>
-            <sl-tab slot="nav" panel="referralLeaderboard">
-              Leaderboard{" "}
-            </sl-tab>
-            <sl-tab slot="nav" panel="referralHistory">
-              Referral history{" "}
-            </sl-tab>
-            <sl-tab slot="nav" panel="rewardHistory">
-              Reward history{" "}
-            </sl-tab>
-            <sl-tab slot="nav" panel="rewardExchange">
-              Redeem{" "}
-            </sl-tab>
-            <sl-tab-panel name="referralHistory">
-              <sqm-referral-table per-page="4">
-                <sqm-referral-table-user-column column-title="User"></sqm-referral-table-user-column>
-                <sqm-referral-table-status-column column-title="Referral status"></sqm-referral-table-status-column>
-                <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
-                <sqm-referral-table-date-column
-                  column-title="Date referred"
-                  date-shown="dateReferralStarted"
-                ></sqm-referral-table-date-column>
-              </sqm-referral-table>
-            </sl-tab-panel>
-            <sl-tab-panel name="referralLeaderboard">
-              <sqm-titled-section padding="medium" label-margin="small">
-                <sqm-text slot="content">
-                  <p>
-                    Be one of the top 3 referrers at the end of the year and
-                    receive Klip free for 1 year!
-                  </p>
-                </sqm-text>
-              </sqm-titled-section>
-              <sqm-leaderboard
-                usersheading="Referrer"
-                statsheading="Referrals"
-                rank-type="rank"
-                leaderboard-type="topStartedReferrers"
-                rankheading="Rank"
-                show-rank="true"
-              ></sqm-leaderboard>
-            </sl-tab-panel>
-            <sl-tab-panel name="rewardHistory">
-              <sqb-program-section program-id="">
-                <sqm-rewards-table per-page="4">
-                  <sqm-rewards-table-reward-column></sqm-rewards-table-reward-column>
-                  <sqm-rewards-table-source-column></sqm-rewards-table-source-column>
-                  <sqm-rewards-table-status-column></sqm-rewards-table-status-column>
-                  <sqm-rewards-table-date-column></sqm-rewards-table-date-column>
-                </sqm-rewards-table>
-              </sqb-program-section>
-            </sl-tab-panel>
-            <sl-tab-panel name="rewardExchange">
-              <sqm-reward-exchange-list id="hello"></sqm-reward-exchange-list>
-            </sl-tab-panel>
-          </sl-tab-group>
-        </sqm-text>
-      </div>
+      <sqm-scroll scroll-id="tab-3"></sqm-scroll>
+      <div
+        style={{ position: "absolute", bottom: "0" }}
+        innerHTML={`
+              <sqm-tabs>
+              <sqm-tab header="Leaderboard">
+                <sqm-hero-image
+                  image-url="https://i.imgur.com/MVgOJn7.png"
+                  description="Be one of the top 3 referrers at the end of the year and receive Klip free for 1 year!"
+                  layout="columns"
+                  image-percentage="33%"
+                  padding-image="large"
+                  padding-text="large"
+                  background-color=""
+                ></sqm-hero-image>
+                <sqm-leaderboard></sqm-leaderboard>
+              </sqm-tab>
+              <sqm-tab header="Referral history"
+              >
+                <sqm-referral-table></sqm-referral-table>
+              </sqm-tab>
+              <sqm-tab header="Reward history">
+                <sqm-rewards-table></sqm-rewards-table>
+              </sqm-tab>
+              <sqm-tab header="Redeem">
+                <sqm-reward-exchange-list></sqm-reward-exchange-list>
+              </sqm-tab>
+            </sqm-tabs>
+      `}
+      ></div>
     </div>
   );
 };

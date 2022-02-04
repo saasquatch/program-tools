@@ -26,18 +26,6 @@ Feature: Image
 			| right  |
 
 	@motivating
-	Scenario Outline: Images can be offset with margins from the left and right
-		Given an Image component
-		And prop "image-url" is provided with a valid image url
-		And <prop> has <value>
-		Then the image is displayed
-		And the image has <value> margin on its <prop> side
-		Examples:
-			| prop  | value |
-			| left  | 100px |
-			| right | 100px |
-
-	@motivating
 	Scenario: Image background
 		Given an Image component
 		And prop "image-url" is provided with a valid image url
@@ -46,10 +34,10 @@ Feature: Image
 		And the background is the provided color
 
 	@motivating
-	Scenario: Image minimum and maximum size can be constrained
+	Scenario: Image minimum height can be constrained
 		Given an Image component
 		And prop "image-url" is provided
 		And prop "min-height" is given a minimum value
-		And prop "max-width" is given a maximum value
 		Then the image is displayed
-		And the image maintains size between the provided range
+		And the container size changes
+		Then the image does not shrink below its minimum height

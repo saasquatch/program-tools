@@ -22,14 +22,12 @@
 
 ### Used by
 
- - [sqm-rewards-table](..)
  - [sqm-rewards-table-status-column](../columns)
  - [sqm-stencilbook](../../sqm-stencilbook)
 
 ### Graph
 ```mermaid
 graph TD;
-  sqm-rewards-table --> sqm-rewards-table-status-cell
   sqm-rewards-table-status-column --> sqm-rewards-table-status-cell
   sqm-stencilbook --> sqm-rewards-table-status-cell
   style sqm-rewards-table-status-cell fill:#f9f,stroke:#333,stroke-width:4px

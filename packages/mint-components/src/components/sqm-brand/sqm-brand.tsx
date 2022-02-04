@@ -33,7 +33,7 @@ export class BrandComponent {
   /**
    * The background color for the portal
    *
-   * @uiName Background Color
+   * @uiName Page Background Color
    * @uiWidget color
    */
   @Prop() background: string;

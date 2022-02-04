@@ -7,13 +7,13 @@
 
 ## Properties
 
-| Property          | Attribute          | Description | Type                 | Default      |
-| ----------------- | ------------------ | ----------- | -------------------- | ------------ |
-| `buttonText`      | `button-text`      |             | `string`             | `"Click me"` |
-| `buttonType`      | `button-type`      |             | `string`             | `"primary"`  |
-| `scrollAnimation` | `scroll-animation` |             | `"auto" \| "smooth"` | `"smooth"`   |
-| `scrollId`        | `scroll-id`        |             | `string`             | `undefined`  |
-| `scrollTagName`   | `scroll-tag-name`  |             | `string`             | `undefined`  |
+| Property          | Attribute          | Description | Type                 | Default     |
+| ----------------- | ------------------ | ----------- | -------------------- | ----------- |
+| `buttonText`      | `button-text`      |             | `string`             | `undefined` |
+| `buttonType`      | `button-type`      |             | `string`             | `"primary"` |
+| `scrollAnimation` | `scroll-animation` |             | `"auto" \| "smooth"` | `"smooth"`  |
+| `scrollId`        | `scroll-id`        |             | `string`             | `undefined` |
+| `scrollTagName`   | `scroll-tag-name`  |             | `string`             | `undefined` |
 
 
 ## Dependencies

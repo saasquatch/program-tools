@@ -20,11 +20,8 @@ export function ImageView(props: ImageViewProps) {
       background: props.backgroundColor || "",
     },
     Image: {
-      maxWidth: props.maxWidth || "100%",
       minHeight: props.minHeight || "100%",
       objectFit: "cover",
-      marginLeft: props.left || "0",
-      marginRight: props.right || "0",
     },
   };
 

@@ -13,6 +13,7 @@ import { HeroImageView } from "./sqm-hero-image-view";
 })
 export class HeroImage {
   /**
+   * @uiWidget ImageUpload
    * @uiName Image Link
    */
   @Prop() imageUrl: string;

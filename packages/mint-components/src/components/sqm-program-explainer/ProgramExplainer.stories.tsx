@@ -57,21 +57,3 @@ export const Custom = () => {
     </sqm-program-explainer>
   );
 };
-// export const TwoSteps = () => {
-//   return (
-//     <ProgramExplainerView {...props}>
-//       <ProgramExplainerStepView {...steps1} />
-//       <ProgramExplainerStepView {...steps2} />
-//     </ProgramExplainerView>
-//   );
-// };
-
-// export const ThreeSteps = () => {
-//   return (
-//     <ProgramExplainerView {...props}>
-//       <ProgramExplainerStepView {...steps1} />
-//       <ProgramExplainerStepView {...steps2} />
-//       <ProgramExplainerStepView {...steps3} />
-//     </ProgramExplainerView>
-//   );
-// };

@@ -82,7 +82,7 @@ export namespace Components {
     interface SqmBrand {
         /**
           * The background color for the portal
-          * @uiName Background Color
+          * @uiName Page Background Color
           * @uiWidget color
          */
         "background": string;
@@ -160,6 +160,25 @@ export namespace Components {
           * @uiName Update info button text
          */
         "updatetext": string;
+    }
+    interface SqmEmpty {
+        /**
+          * @uiName Empty State Title
+         */
+        "emptyStateHeader": string;
+        /**
+          * @uiWidget ImageUpload
+          * @uiName Empty State Image Link
+         */
+        "emptyStateImage": string;
+        /**
+          * @uiName Empty State Text
+         */
+        "emptyStateText": string;
+        /**
+          * @uiName Table Empty State
+         */
+        "table": boolean;
     }
     interface SqmFormMessage {
         /**
@@ -243,6 +262,7 @@ export namespace Components {
          */
         "imagePos": "left" | "center" | "right";
         /**
+          * @uiWidget ImageUpload
           * @uiName Image Link
          */
         "imageUrl": string;
@@ -295,27 +315,15 @@ export namespace Components {
          */
         "backgroundColor": string;
         /**
+          * @uiWidget ImageUpload
           * @uiName Image Link
          */
         "imageUrl": string;
-        /**
-          * @uiName Left Margin
-         */
-        "left": string;
-        /**
-          * (optional) Helps with constraining maximum size
-          * @uiName Maximum Width
-         */
-        "maxWidth"?: string;
         /**
           * (optional) Helps with constraining minimum size
           * @uiName Minimum Height
          */
         "minHeight"?: string;
-        /**
-          * @uiName Right Margin
-         */
-        "right": string;
     }
     interface SqmLeaderboard {
         /**
@@ -327,18 +335,6 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
-        /**
-          * @uiName Empty State Header
-         */
-        "emptyStateHeader": string;
-        /**
-          * @uiName Empty State Image
-         */
-        "emptyStateImage": string;
-        /**
-          * @uiName Empty State Description
-         */
-        "emptyStateText": string;
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
@@ -958,13 +954,7 @@ export namespace Components {
     }
     interface SqmReferralCard {
         /**
-          * @uiName Padding
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-         */
-        "padding": Spacing;
-        /**
-          * @uiName Padding
+          * @uiName Vertical Aligment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
          */
@@ -997,19 +987,7 @@ export namespace Components {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
-          * @uiName Empty State Title
-         */
-        "emptyStateHeader": string;
-        /**
-          * @uiName Empty State Image Link
-         */
-        "emptyStateImage": string;
-        /**
-          * @uiName Empty State Text
-         */
-        "emptyStateText": string;
-        /**
-          * @uiName Hide Columns (Mobile View)
+          * @uiName Hide Column Labels (Mobile View)
          */
         "hiddenColumns"?: string;
         /**
@@ -1074,6 +1052,7 @@ export namespace Components {
         "dateShown": ReferralDates;
         "renderCell": (data: Referral, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmReferralTableRewardsCell {
         "expiringText": string;
@@ -1109,6 +1088,7 @@ export namespace Components {
         "pendingForText": string;
         "renderCell": (data: Referral, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        "renderReferrerCell": (data: Referrer) => Promise<any>;
         /**
           * @uiName Reward Received Text
          */
@@ -1141,6 +1121,7 @@ export namespace Components {
         "inProgressStatusText": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmReferralTableUserCell {
         "name": string;
@@ -1160,6 +1141,7 @@ export namespace Components {
         "deletedUser": string;
         "renderCell": (data: Referral) => Promise<any>;
         "renderLabel": () => Promise<string>;
+        "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
     interface SqmRefreshButton {
         /**
@@ -1284,18 +1266,6 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<GenericTableViewProps>;
-        /**
-          * @uiName Empty State Title
-         */
-        "emptyStateHeader": string;
-        /**
-          * @uiName Empty State Image Link
-         */
-        "emptyStateImage": string;
-        /**
-          * @uiName Empty State Text
-         */
-        "emptyStateText": string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
@@ -1863,6 +1833,12 @@ declare global {
         prototype: HTMLSqmEditProfileElement;
         new (): HTMLSqmEditProfileElement;
     };
+    interface HTMLSqmEmptyElement extends Components.SqmEmpty, HTMLStencilElement {
+    }
+    var HTMLSqmEmptyElement: {
+        prototype: HTMLSqmEmptyElement;
+        new (): HTMLSqmEmptyElement;
+    };
     interface HTMLSqmFormMessageElement extends Components.SqmFormMessage, HTMLStencilElement {
     }
     var HTMLSqmFormMessageElement: {
@@ -2320,6 +2296,7 @@ declare global {
         "sqm-card-feed": HTMLSqmCardFeedElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
+        "sqm-empty": HTMLSqmEmptyElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
         "sqm-hero": HTMLSqmHeroElement;
@@ -2445,7 +2422,7 @@ declare namespace LocalJSX {
     interface SqmBrand {
         /**
           * The background color for the portal
-          * @uiName Background Color
+          * @uiName Page Background Color
           * @uiWidget color
          */
         "background"?: string;
@@ -2523,6 +2500,25 @@ declare namespace LocalJSX {
           * @uiName Update info button text
          */
         "updatetext"?: string;
+    }
+    interface SqmEmpty {
+        /**
+          * @uiName Empty State Title
+         */
+        "emptyStateHeader"?: string;
+        /**
+          * @uiWidget ImageUpload
+          * @uiName Empty State Image Link
+         */
+        "emptyStateImage"?: string;
+        /**
+          * @uiName Empty State Text
+         */
+        "emptyStateText"?: string;
+        /**
+          * @uiName Table Empty State
+         */
+        "table"?: boolean;
     }
     interface SqmFormMessage {
         /**
@@ -2606,6 +2602,7 @@ declare namespace LocalJSX {
          */
         "imagePos"?: "left" | "center" | "right";
         /**
+          * @uiWidget ImageUpload
           * @uiName Image Link
          */
         "imageUrl"?: string;
@@ -2658,27 +2655,15 @@ declare namespace LocalJSX {
          */
         "backgroundColor"?: string;
         /**
+          * @uiWidget ImageUpload
           * @uiName Image Link
          */
         "imageUrl"?: string;
-        /**
-          * @uiName Left Margin
-         */
-        "left"?: string;
-        /**
-          * (optional) Helps with constraining maximum size
-          * @uiName Maximum Width
-         */
-        "maxWidth"?: string;
         /**
           * (optional) Helps with constraining minimum size
           * @uiName Minimum Height
          */
         "minHeight"?: string;
-        /**
-          * @uiName Right Margin
-         */
-        "right"?: string;
     }
     interface SqmLeaderboard {
         /**
@@ -2690,18 +2675,6 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
-        /**
-          * @uiName Empty State Header
-         */
-        "emptyStateHeader"?: string;
-        /**
-          * @uiName Empty State Image
-         */
-        "emptyStateImage"?: string;
-        /**
-          * @uiName Empty State Description
-         */
-        "emptyStateText"?: string;
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
@@ -3321,13 +3294,7 @@ declare namespace LocalJSX {
     }
     interface SqmReferralCard {
         /**
-          * @uiName Padding
-          * @uiType string
-          * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
-         */
-        "padding"?: Spacing;
-        /**
-          * @uiName Padding
+          * @uiName Vertical Aligment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
          */
@@ -3360,19 +3327,7 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
-          * @uiName Empty State Title
-         */
-        "emptyStateHeader"?: string;
-        /**
-          * @uiName Empty State Image Link
-         */
-        "emptyStateImage"?: string;
-        /**
-          * @uiName Empty State Text
-         */
-        "emptyStateText"?: string;
-        /**
-          * @uiName Hide Columns (Mobile View)
+          * @uiName Hide Column Labels (Mobile View)
          */
         "hiddenColumns"?: string;
         /**
@@ -3637,18 +3592,6 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<GenericTableViewProps>;
-        /**
-          * @uiName Empty State Title
-         */
-        "emptyStateHeader"?: string;
-        /**
-          * @uiName Empty State Image Link
-         */
-        "emptyStateImage"?: string;
-        /**
-          * @uiName Empty State Text
-         */
-        "emptyStateText"?: string;
         /**
           * @uiName Hide Columns (Mobile View)
          */
@@ -4175,6 +4118,7 @@ declare namespace LocalJSX {
         "sqm-card-feed": SqmCardFeed;
         "sqm-divided-layout": SqmDividedLayout;
         "sqm-edit-profile": SqmEditProfile;
+        "sqm-empty": SqmEmpty;
         "sqm-form-message": SqmFormMessage;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
         "sqm-hero": SqmHero;
@@ -4262,6 +4206,7 @@ declare module "@stencil/core" {
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
+            "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
             "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;

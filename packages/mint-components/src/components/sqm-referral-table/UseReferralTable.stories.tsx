@@ -80,6 +80,45 @@ export const ReferralTable = createHookStory(() => {
   );
 });
 
+export const ReferralTableDemoHook = createHookStory(() => {
+  // setupGraphQL();
+  // setProgramId("sam-partner-test-2");
+  const props = {
+    listType: "",
+    render: () => {},
+    disconnectedCallback: () => {},
+    ignored: true,
+  };
+  return (
+    <sqm-referral-table>
+      <sqm-referral-table-user-column></sqm-referral-table-user-column>
+      <sqm-referral-table-status-column></sqm-referral-table-status-column>
+      <sqm-referral-table-date-column></sqm-referral-table-date-column>
+      <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+    </sqm-referral-table>
+  );
+});
+
+
+export const ReferralTableDemoHookShowReferrer = createHookStory(() => {
+  // setupGraphQL();
+  // setProgramId("sam-partner-test-2");
+  const props = {
+    listType: "",
+    render: () => {},
+    disconnectedCallback: () => {},
+    ignored: true,
+  };
+  return (
+    <sqm-referral-table show-referrer="true">
+      <sqm-referral-table-user-column></sqm-referral-table-user-column>
+      <sqm-referral-table-status-column></sqm-referral-table-status-column>
+      <sqm-referral-table-date-column></sqm-referral-table-date-column>
+      <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+    </sqm-referral-table>
+  );
+});
+
 export const ReferralTableEn = createHookStory(() => {
   setupGraphQLKlip({
     token:

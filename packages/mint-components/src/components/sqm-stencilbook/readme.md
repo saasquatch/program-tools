@@ -26,8 +26,8 @@
 - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
 - [sqm-rewards-table](../sqm-rewards-table)
 - [sqm-rewards-table-reward-column](../sqm-rewards-table/columns)
-- [sqm-rewards-table-status-column](../sqm-rewards-table/columns)
 - [sqm-rewards-table-source-column](../sqm-rewards-table/columns)
+- [sqm-rewards-table-status-column](../sqm-rewards-table/columns)
 - [sqm-rewards-table-date-column](../sqm-rewards-table/columns)
 - [sqm-task-card](../sqm-task-card)
 - [sqm-card-feed](../sqm-card-feed)
@@ -84,8 +84,8 @@ graph TD;
   sqm-stencilbook --> sqm-reward-exchange-list
   sqm-stencilbook --> sqm-rewards-table
   sqm-stencilbook --> sqm-rewards-table-reward-column
-  sqm-stencilbook --> sqm-rewards-table-status-column
   sqm-stencilbook --> sqm-rewards-table-source-column
+  sqm-stencilbook --> sqm-rewards-table-status-column
   sqm-stencilbook --> sqm-rewards-table-date-column
   sqm-stencilbook --> sqm-task-card
   sqm-stencilbook --> sqm-card-feed
@@ -122,35 +122,23 @@ graph TD;
   sqm-stencilbook --> sqm-referral-card
   sqm-stencilbook --> sqm-scroll
   sqm-edit-profile --> sqm-form-message
-  sqm-leaderboard --> sqm-portal-container
-  sqm-leaderboard --> sqm-image
-  sqm-leaderboard --> sqm-titled-section
-  sqm-leaderboard --> sqm-text
+  sqm-leaderboard --> sqm-empty
+  sqm-empty --> sqm-portal-container
+  sqm-empty --> sqm-image
+  sqm-empty --> sqm-titled-section
+  sqm-empty --> sqm-text
+  sqm-empty --> sqm-table-row
+  sqm-empty --> sqm-table-cell
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
-  sqm-rewards-table --> sqm-portal-container
-  sqm-rewards-table --> sqm-image
-  sqm-rewards-table --> sqm-titled-section
-  sqm-rewards-table --> sqm-text
-  sqm-rewards-table --> sqm-rewards-table-reward-cell
-  sqm-rewards-table --> sqm-rewards-table-source-cell
-  sqm-rewards-table --> sqm-rewards-table-status-cell
-  sqm-rewards-table --> sqm-rewards-table-date-cell
   sqm-rewards-table-reward-column --> sqm-rewards-table-reward-cell
-  sqm-rewards-table-status-column --> sqm-rewards-table-status-cell
   sqm-rewards-table-source-column --> sqm-rewards-table-source-cell
+  sqm-rewards-table-status-column --> sqm-rewards-table-status-cell
   sqm-rewards-table-date-column --> sqm-rewards-table-date-cell
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field
   sqm-referral-table --> sqm-table-row
   sqm-referral-table --> sqm-table-cell
-  sqm-referral-table --> sqm-referral-table-user-cell
-  sqm-referral-table --> sqm-referral-table-status-cell
-  sqm-referral-table --> sqm-portal-container
-  sqm-referral-table --> sqm-image
-  sqm-referral-table --> sqm-titled-section
-  sqm-referral-table --> sqm-text
-  sqm-referral-table --> sqm-referral-table-rewards-cell
   sqm-portal-login --> sqm-form-message
   sqm-portal-change-password --> sqm-form-message
   sqm-portal-change-password --> sqm-password-field

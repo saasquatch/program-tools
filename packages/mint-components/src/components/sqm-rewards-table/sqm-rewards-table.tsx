@@ -1,6 +1,7 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, Prop } from "@stencil/core";
+import { useEffect, useReducer } from "@saasquatch/universal-hooks";
+import { Component, h, Prop, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import {
@@ -8,21 +9,13 @@ import {
   GenericTableViewProps,
 } from "../../tables/GenericTableView";
 import {
-  DateCell,
-  RewardsCellCreditCancelled,
-  RewardsCellCreditFull,
-  RewardsCellCreditPartial,
-  RewardsCellCreditRedeemed,
-  SourceCellDeletedUser,
-  SourceCellManual,
-  SourceCellReferral,
-  SourceCellReferred,
-  StatusCellAvailable,
-  StatusCellAvailableExpiry,
-  StatusCellCancelled,
-  StatusCellRedeemed,
-} from "./RewardsTableCell.stories";
-import { CSS_NAMESPACE, useRewardsTable } from "./useRewardsTable";
+  useRequestRerender,
+  useRerenderListener,
+} from "../../tables/re-render";
+import { useChildElements } from "../../tables/useChildElements";
+import mockRewardData from "./mockRewardData";
+
+import { tryMethod, useRewardsTable } from "./useRewardsTable";
 
 /**
  * @uiName Rewards Table
@@ -61,17 +54,6 @@ export class RewardsTable {
   /** @uiName Hide Columns (Mobile View)  */
   @Prop() mdBreakpoint?: number = 899;
 
-  /** @uiName Empty State Image Link  */
-  @Prop() emptyStateImage: string =
-    "https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_4_1.png";
-
-  /** @uiName Empty State Title  */
-  @Prop() emptyStateHeader: string = "View your rewards";
-
-  /** @uiName Empty State Text  */
-  @Prop() emptyStateText: string =
-    "See all the rewards you have earned from referring friends and completing tasks";
-
   /**
    * @undocumented
    * @uiType object
@@ -85,18 +67,14 @@ export class RewardsTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = (
-      <EmptySlot
-        emptyStateImage={this.emptyStateImage}
-        emptyStateHeader={this.emptyStateHeader}
-        emptyStateText={this.emptyStateText}
-      />
-    );
+    const empty = <slot name="empty" />;
     const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()
-      ? useRewardsTableDemo(this)
+      ? useRewardsTableDemo(this, empty, loading)
       : useRewardsTable(this, empty, loading);
+
+    useRequestRerender([this.perPage]);
 
     return (
       <GenericTableView
@@ -129,15 +107,75 @@ function LoadingRow() {
   );
 }
 
-function useRewardsTableDemo(props: RewardsTable): GenericTableViewProps {
-  return deepmerge(
+function useRewardsTableDemo(
+  props: RewardsTable,
+  emptyElement: VNode,
+  loadingElement: VNode
+): GenericTableViewProps {
+  const [content, setContent] = useReducer<
+    GenericTableViewProps["elements"],
+    Partial<GenericTableViewProps["elements"]>
+  >(
+    (state, next) => ({
+      ...state,
+      ...next,
+    }),
+    {
+      columns: [],
+      rows: [],
+      loading: false,
+      page: 0,
+    }
+  );
+
+  const tick = useRerenderListener();
+
+  const { data } = mockRewardData;
+
+  const components = useChildElements();
+
+  async function getComponentData(components: Element[]) {
+    // filter out loading and empty states from columns array
+    const columnComponents = components.filter(
+      (component) => component.slot !== "loading" && component.slot !== "empty"
+    );
+    // get the column titles (renderLabel is asynchronous)
+    const columnsPromise = columnComponents?.map(async (c: any) =>
+      tryMethod(c, () => c.renderLabel())
+    );
+
+    // get the column cells (renderCell is asynchronous)
+    //@ts-ignore
+    const cellsPromise = data?.map(async (r: Reward) => {
+      const cellPromise = columnComponents?.map(async (c: any) =>
+        tryMethod(c, () => c.renderCell([r], undefined))
+      );
+      const cells = (await Promise.all(cellPromise)) as VNode[];
+      return cells;
+    });
+
+    const rows =
+      cellsPromise && (await Promise.all(cellsPromise)).filter((i) => i);
+
+    setContent({ rows });
+    const columns =
+      columnsPromise && ((await Promise.all(columnsPromise)) as string[]);
+    // Set the content to render and finish loading components
+    setContent({ columns, loading: false, page: 0 });
+  }
+
+  useEffect(() => {
+    setContent({ loading: true });
+    data && getComponentData(components);
+  }, [data, components, tick]);
+
+  const demoProps = deepmerge(
     {
       states: {
         hasPrev: false,
         hasNext: false,
         loading: false,
         show: "rows",
-        namespace: CSS_NAMESPACE,
       },
       callbacks: {
         prevPage: () => console.log("Prev"),
@@ -152,76 +190,15 @@ function useRewardsTableDemo(props: RewardsTable): GenericTableViewProps {
         referralData: [],
       },
       elements: {
-        emptyElement: (
-          <EmptySlot
-            emptyStateImage="https://res.cloudinary.com/saasquatch/image/upload/v1642618031/squatch-assets/image_4_1.png"
-            emptyStateHeader="View your rewards"
-            emptyStateText="See all the rewards you have earned from referring friends and completing tasks"
-          />
-        ),
-        loadingElement: <LoadingSlot />,
-        // TODO: This should be smarter
-        columns: ["Reward", "Source", "Status", "Date recieved"],
-        rows: [
-          [
-            <RewardsCellCreditFull />,
-            <StatusCellAvailable />,
-            <SourceCellReferral />,
-            <DateCell />,
-          ],
-          [
-            <RewardsCellCreditCancelled />,
-            <StatusCellCancelled />,
-            <SourceCellDeletedUser />,
-            <DateCell />,
-          ],
-          [
-            <RewardsCellCreditRedeemed />,
-            <StatusCellRedeemed />,
-            <SourceCellManual />,
-            <DateCell />,
-          ],
-          [
-            <RewardsCellCreditPartial />,
-            <StatusCellAvailableExpiry />,
-            <SourceCellReferred />,
-            <DateCell />,
-          ],
-        ],
+        columns: content.columns,
+        rows: content.rows,
+        emptyElement,
+        loadingElement,
       },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
-}
 
-function EmptySlot({
-  emptyStateImage,
-  emptyStateHeader,
-  emptyStateText,
-}: {
-  emptyStateImage: string;
-  emptyStateHeader: string;
-  emptyStateText: string;
-}) {
-  return (
-    <div slot="empty" style={{ display: "contents" }}>
-      <sqm-table-row>
-        <sqm-table-cell colspan={5} style={{ textAlign: "center" }}>
-          <sqm-portal-container padding="xxxx-large" gap="medium">
-            <sqm-image
-              image-url={emptyStateImage}
-              max-width="100px"
-            ></sqm-image>
-            <sqm-titled-section label-margin="xxx-small" text-align="center">
-              <sqm-text slot="label">
-                <h3>{emptyStateHeader}</h3>
-              </sqm-text>
-              <sqm-text slot="content">{emptyStateText}</sqm-text>
-            </sqm-titled-section>
-          </sqm-portal-container>
-        </sqm-table-cell>
-      </sqm-table-row>
-    </div>
-  );
+  return demoProps;
 }

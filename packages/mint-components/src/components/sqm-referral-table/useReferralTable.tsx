@@ -24,8 +24,14 @@ const GET_REFERRER_DATA = gql`
     viewer {
       ... on User {
         referredByReferral(programId: $programId) {
-          dateReferralStarted
           dateConverted
+          dateFraudChecksCompleted
+          dateModerated
+          dateModified
+          dateReferralEnded
+          dateReferralPaid
+          dateReferralStarted
+          dateUserModified
           referrerUser {
             firstName
             lastName
@@ -296,13 +302,11 @@ export function useReferralTable(
       tryMethod(c, () => c.renderLabel())
     );
 
-    // show the referrer row before any other rows (renderReferrerCell is asynchronous)
+    // show the referrer row before any other rows
     let referrerRow;
     if (showReferrerRow && states.currentPage === 0) {
       const referrerPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, function renderReferrerCell() {
-          return c.renderReferrerCell(referrerData, c);
-        })
+        tryMethod(c, () => c.renderReferrerCell(referrerData, locale))
       );
       referrerRow = await Promise.all(referrerPromise);
     }
@@ -312,7 +316,7 @@ export function useReferralTable(
       const cellPromise = columnComponents?.map(async (c: any) =>
         tryMethod(c, () => c.renderCell(r, locale))
       );
-      const cells = await Promise.all(cellPromise) as VNode[][];
+      const cells = (await Promise.all(cellPromise)) as VNode[][];
       return cells;
     });
 
@@ -323,353 +327,11 @@ export function useReferralTable(
       );
 
     setContent({ rows });
-    const columns = columnsPromise && (await Promise.all(columnsPromise) as string[]);
+    const columns =
+      columnsPromise && ((await Promise.all(columnsPromise)) as string[]);
     // Set the content to render and finish loading components
     setContent({ columns, loading: false, page: states.currentPage });
   }
-
-  const x = {
-    "columns": [
-        "Customer",
-        "Status",
-        "Date converted",
-        "Rewards"
-    ],
-    "rows": [
-        [
-            {
-                "$flags$": 0,
-                "$tag$": "sqm-referral-table-user-cell",
-                "$text$": null,
-                "$elm$": {
-                    "s-p": [],
-                    "s-hn": "SQM-REFERRAL-TABLE"
-                },
-                "$children$": null,
-                "$attrs$": {
-                    "name": "Aaron Hernandez"
-                },
-                "$key$": null,
-                "$name$": "Aaron Hernandez"
-            },
-            {
-                "$flags$": 0,
-                "$tag$": "sqm-referral-table-status-cell",
-                "$text$": null,
-                "$elm$": {
-                    "s-p": [],
-                    "s-hn": "SQM-REFERRAL-TABLE"
-                },
-                "$children$": null,
-                "$attrs$": {
-                    "status-text": "Converted",
-                    "converted": true
-                },
-                "$key$": null,
-                "$name$": null
-            },
-            {
-                "$flags$": 0,
-                "$tag$": "sqm-referral-table-date-cell",
-                "$text$": null,
-                "$elm$": {
-                    "s-p": [],
-                    "s-hn": "SQM-REFERRAL-TABLE"
-                },
-                "$children$": null,
-                "$attrs$": {
-                    "date": 1554934550726,
-                    "locale": "en_US"
-                },
-                "$key$": null,
-                "$name$": null
-            },
-            {
-                "$flags$": 0,
-                "$tag$": "sqm-referral-table-rewards-cell",
-                "$text$": null,
-                "$elm$": {
-                    "s-p": [],
-                    "s-hn": "SQM-REFERRAL-TABLE"
-                },
-                "$children$": null,
-                "$attrs$": {
-                    "rewards": [
-                        {
-                            "id": "5cae6b16cc540e209db45cfa",
-                            "type": "CREDIT",
-                            "value": 1,
-                            "unit": "POINT",
-                            "name": "Partner Reward",
-                            "dateGiven": 1554934550726,
-                            "dateExpires": null,
-                            "dateCancelled": null,
-                            "dateRedeemed": 1637004373582,
-                            "dateScheduledFor": null,
-                            "fuelTankCode": null,
-                            "fuelTankType": null,
-                            "currency": null,
-                            "prettyValue": "1 Point",
-                            "statuses": [
-                                "REDEEMED"
-                            ],
-                            "globalRewardKey": null,
-                            "programRewardKey": "partnerReward",
-                            "rewardRedemptionTransactions": {
-                                "data": [
-                                    {
-                                        "exchangedRewards": {
-                                            "data": [
-                                                {
-                                                    "prettyValue": "CAD10.00 Visa* Prepaid Card CAD",
-                                                    "type": "INTEGRATION",
-                                                    "fuelTankCode": null,
-                                                    "globalRewardKey": "gc1"
-                                                }
-                                            ]
-                                        }
-                                    }
-                                ]
-                            }
-                        }
-                    ],
-                    "statusText": "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }",
-                    "statusLongText": "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }",
-                    "fuelTankText": "Your code is",
-                    "rewardReceivedText": "Reward received on",
-                    "expiringText": "Expiring in",
-                    "pendingForText": "{status} for {date}",
-                    "hideDetails": false,
-                    "locale": "en_US"
-                },
-                "$key$": null,
-                "$name$": null
-            }
-        ],
-        [
-            {
-                "$flags$": 0,
-                "$tag$": "sqm-referral-table-user-cell",
-                "$text$": null,
-                "$elm$": {
-                    "s-p": [],
-                    "s-hn": "SQM-REFERRAL-TABLE"
-                },
-                "$children$": null,
-                "$attrs$": {
-                    "name": "Brian Mendez"
-                },
-                "$key$": null,
-                "$name$": "Brian Mendez"
-            },
-            {
-                "$flags$": 0,
-                "$tag$": "sqm-referral-table-status-cell",
-                "$text$": null,
-                "$elm$": {
-                    "s-p": [],
-                    "s-hn": "SQM-REFERRAL-TABLE"
-                },
-                "$children$": null,
-                "$attrs$": {
-                    "status-text": "Converted",
-                    "converted": true
-                },
-                "$key$": null,
-                "$name$": null
-            },
-            {
-                "$flags$": 0,
-                "$tag$": "sqm-referral-table-date-cell",
-                "$text$": null,
-                "$elm$": {
-                    "s-p": [],
-                    "s-hn": "SQM-REFERRAL-TABLE"
-                },
-                "$children$": null,
-                "$attrs$": {
-                    "date": 1554934455495,
-                    "locale": "en_US"
-                },
-                "$key$": null,
-                "$name$": null
-            },
-            {
-                "$flags$": 0,
-                "$tag$": "sqm-referral-table-rewards-cell",
-                "$text$": null,
-                "$elm$": {
-                    "s-p": [],
-                    "s-hn": "SQM-REFERRAL-TABLE"
-                },
-                "$children$": null,
-                "$attrs$": {
-                    "rewards": [
-                        {
-                            "id": "5cae6ab7cc540e209db456cc",
-                            "type": "CREDIT",
-                            "value": 1,
-                            "unit": "POINT",
-                            "name": "Partner Reward",
-                            "dateGiven": 1554934455495,
-                            "dateExpires": null,
-                            "dateCancelled": null,
-                            "dateRedeemed": 1637004373582,
-                            "dateScheduledFor": null,
-                            "fuelTankCode": null,
-                            "fuelTankType": null,
-                            "currency": null,
-                            "prettyValue": "1 Point",
-                            "statuses": [
-                                "REDEEMED"
-                            ],
-                            "globalRewardKey": null,
-                            "programRewardKey": "partnerReward",
-                            "rewardRedemptionTransactions": {
-                                "data": [
-                                    {
-                                        "exchangedRewards": {
-                                            "data": [
-                                                {
-                                                    "prettyValue": "CAD10.00 Visa* Prepaid Card CAD",
-                                                    "type": "INTEGRATION",
-                                                    "fuelTankCode": null,
-                                                    "globalRewardKey": "gc1"
-                                                }
-                                            ]
-                                        }
-                                    }
-                                ]
-                            }
-                        }
-                    ],
-                    "statusText": "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }",
-                    "statusLongText": "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }",
-                    "fuelTankText": "Your code is",
-                    "rewardReceivedText": "Reward received on",
-                    "expiringText": "Expiring in",
-                    "pendingForText": "{status} for {date}",
-                    "hideDetails": false,
-                    "locale": "en_US"
-                },
-                "$key$": null,
-                "$name$": null
-            }
-        ],
-        [
-            {
-                "$flags$": 0,
-                "$tag$": "sqm-referral-table-user-cell",
-                "$text$": null,
-                "$elm$": {
-                    "s-p": [],
-                    "s-hn": "SQM-REFERRAL-TABLE"
-                },
-                "$children$": null,
-                "$attrs$": {
-                    "name": "Loretta Harper"
-                },
-                "$key$": null,
-                "$name$": "Loretta Harper"
-            },
-            {
-                "$flags$": 0,
-                "$tag$": "sqm-referral-table-status-cell",
-                "$text$": null,
-                "$elm$": {
-                    "s-p": [],
-                    "s-hn": "SQM-REFERRAL-TABLE"
-                },
-                "$children$": null,
-                "$attrs$": {
-                    "status-text": "Converted",
-                    "converted": true
-                },
-                "$key$": null,
-                "$name$": null
-            },
-            {
-                "$flags$": 0,
-                "$tag$": "sqm-referral-table-date-cell",
-                "$text$": null,
-                "$elm$": {
-                    "s-p": [],
-                    "s-hn": "SQM-REFERRAL-TABLE"
-                },
-                "$children$": null,
-                "$attrs$": {
-                    "date": 1554934342984,
-                    "locale": "en_US"
-                },
-                "$key$": null,
-                "$name$": null
-            },
-            {
-                "$flags$": 0,
-                "$tag$": "sqm-referral-table-rewards-cell",
-                "$text$": null,
-                "$elm$": {
-                    "s-p": [],
-                    "s-hn": "SQM-REFERRAL-TABLE"
-                },
-                "$children$": null,
-                "$attrs$": {
-                    "rewards": [
-                        {
-                            "id": "5cae6a46cc540e209db44cf2",
-                            "type": "CREDIT",
-                            "value": 1,
-                            "unit": "POINT",
-                            "name": "Partner Reward",
-                            "dateGiven": 1554934342984,
-                            "dateExpires": null,
-                            "dateCancelled": null,
-                            "dateRedeemed": 1637004373582,
-                            "dateScheduledFor": null,
-                            "fuelTankCode": null,
-                            "fuelTankType": null,
-                            "currency": null,
-                            "prettyValue": "1 Point",
-                            "statuses": [
-                                "REDEEMED"
-                            ],
-                            "globalRewardKey": null,
-                            "programRewardKey": "partnerReward",
-                            "rewardRedemptionTransactions": {
-                                "data": [
-                                    {
-                                        "exchangedRewards": {
-                                            "data": [
-                                                {
-                                                    "prettyValue": "CAD10.00 Visa* Prepaid Card CAD",
-                                                    "type": "INTEGRATION",
-                                                    "fuelTankCode": null,
-                                                    "globalRewardKey": "gc1"
-                                                }
-                                            ]
-                                        }
-                                    }
-                                ]
-                            }
-                        }
-                    ],
-                    "statusText": "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }",
-                    "statusLongText": "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }",
-                    "fuelTankText": "Your code is",
-                    "rewardReceivedText": "Reward received on",
-                    "expiringText": "Expiring in",
-                    "pendingForText": "{status} for {date}",
-                    "hideDetails": false,
-                    "locale": "en_US"
-                },
-                "$key$": null,
-                "$name$": null
-            }
-        ]
-    ],
-
-}
-
 
   useEffect(() => {
     setContent({ loading: true });
@@ -735,7 +397,7 @@ export function generateUserError(e: any) {
   }
 }
 
-async function tryMethod(
+export async function tryMethod(
   c: HTMLElement,
   callback: () => Promise<string | VNode[]>
 ): Promise<string | VNode[]> {
@@ -747,13 +409,13 @@ async function tryMethod(
   } catch (e) {
     // renderLabel did not return a promise, so this method probably doesn't exist
     // therefore, we IGNORE the label
-
     if (callback.name === "renderReferrerCell") {
       console.error("column does not have a renderReferrerCell method.");
     } else {
       console.error("label promise failed", e);
     }
 
+    console.error("label promise failed", e);
     return <span />;
   }
   try {
