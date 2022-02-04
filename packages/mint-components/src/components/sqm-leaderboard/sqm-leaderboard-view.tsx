@@ -115,6 +115,13 @@ export function LeaderboardView(props: LeaderboardViewProps) {
           {styleString}
           {vanillaStyle}
         </style>
+        <table>
+          <tr>
+            {styles.showRank && <th class="Rank">{styles.rankheading}</th>}
+            <th class="User">{styles.usersheading}</th>
+            <th class="Score">{styles.statsheading}</th>
+          </tr>
+        </table>
         {elements.empty}
       </div>
     );
