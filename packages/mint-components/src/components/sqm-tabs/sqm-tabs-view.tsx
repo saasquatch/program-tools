@@ -3,7 +3,7 @@ import { FunctionalComponent, h, Host } from "@stencil/core";
 import { TabElement } from "./useTabs";
 
 export type TabsViewProps = {
-  placement: "left" | "right" | "bottom" | null;
+  placement: "left" | "right" | "bottom" | "top";
   content: {
     tabs: TabElement[];
   };
@@ -15,7 +15,7 @@ export const TabsView: FunctionalComponent<TabsViewProps> = ({
 }) => {
   // Vertical padding for top & bottom placement, horizontal for left & right.
   const padding =
-    !placement || placement === "bottom"
+    !placement || placement === "top" || placement === "bottom"
       ? "var(--sl-spacing-x-large) 0;"
       : "0 var(--sl-spacing-xx-large);";
 

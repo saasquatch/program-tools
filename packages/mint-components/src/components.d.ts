@@ -1595,9 +1595,9 @@ export namespace Components {
           * Used to specify the placement of the tabs
           * @uiName Tabs Placement
           * @uiType string
-          * @uiEnum ["left", "right", "bottom", null]
+          * @uiEnum ["left", "right", "bottom", "top"]
          */
-        "placement"?: "left" | "right" | "bottom" | null;
+        "placement"?: "left" | "right" | "bottom" | "top";
     }
     interface SqmTaskCard {
         /**
@@ -3908,9 +3908,9 @@ declare namespace LocalJSX {
           * Used to specify the placement of the tabs
           * @uiName Tabs Placement
           * @uiType string
-          * @uiEnum ["left", "right", "bottom", null]
+          * @uiEnum ["left", "right", "bottom", "top"]
          */
-        "placement"?: "left" | "right" | "bottom" | null;
+        "placement"?: "left" | "right" | "bottom" | "top";
     }
     interface SqmTaskCard {
         /**
