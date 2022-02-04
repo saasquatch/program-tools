@@ -10,14 +10,14 @@ export default {
 
 export const Image = () => {
   return (
-    <sqm-image image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829007/tenant_test_a7iws76wkk4az/oxghbkf3aazwqz3xusry.png" />
+    <sqm-image image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png" />
   );
 };
 
 export const ImageAlignmentLeft = () => {
   return (
     <sqm-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829007/tenant_test_a7iws76wkk4az/oxghbkf3aazwqz3xusry.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png"
       alignment="left"
     />
   );
@@ -26,7 +26,7 @@ export const ImageAlignmentLeft = () => {
 export const ImageAlignmentCenter = () => {
   return (
     <sqm-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829007/tenant_test_a7iws76wkk4az/oxghbkf3aazwqz3xusry.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png"
       alignment="center"
     />
   );
@@ -35,7 +35,7 @@ export const ImageAlignmentCenter = () => {
 export const ImageAlignmentRight = () => {
   return (
     <sqm-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829007/tenant_test_a7iws76wkk4az/oxghbkf3aazwqz3xusry.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png"
       alignment="right"
     />
   );
@@ -44,7 +44,7 @@ export const ImageAlignmentRight = () => {
 export const ImageBackground = () => {
   return (
     <sqm-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829007/tenant_test_a7iws76wkk4az/oxghbkf3aazwqz3xusry.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000259/squatch-assets/tn47wOj.png"
       background-color="firebrick"
       alignment="center"
     />
@@ -54,7 +54,7 @@ export const ImageBackground = () => {
 export const MinimumHeight = () => {
   return (
     <sqm-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829038/tenant_test_a7iws76wkk4az/fpqigwukfrsp12mc7kur.jpg"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000255/squatch-assets/oIiVdMM.jpg"
       minHeight="192px"
     />
   );
