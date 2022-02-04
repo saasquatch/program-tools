@@ -22,7 +22,7 @@ export class HeroImage {
 
   render() {
     return (
-      <Host slot="empty" style={{ display: "block" }}>
+      <Host slot="empty">
         <EmptyStateView
           emptyStateImage={this.emptyStateImage}
           emptyStateHeader={this.emptyStateHeader}
