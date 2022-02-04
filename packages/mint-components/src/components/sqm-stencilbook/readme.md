@@ -23,6 +23,7 @@
 - [sqm-form-message](../sqm-form-message)
 - [sqm-divided-layout](../sqm-divided-layout)
 - [sqm-leaderboard](../sqm-leaderboard)
+- [sqm-empty](../sqm-empty)
 - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
 - [sqm-rewards-table](../sqm-rewards-table)
 - [sqm-rewards-table-reward-column](../sqm-rewards-table/columns)
@@ -82,6 +83,7 @@ graph TD;
   sqm-stencilbook --> sqm-form-message
   sqm-stencilbook --> sqm-divided-layout
   sqm-stencilbook --> sqm-leaderboard
+  sqm-stencilbook --> sqm-empty
   sqm-stencilbook --> sqm-reward-exchange-list
   sqm-stencilbook --> sqm-rewards-table
   sqm-stencilbook --> sqm-rewards-table-reward-column
@@ -124,7 +126,6 @@ graph TD;
   sqm-stencilbook --> sqm-referral-card
   sqm-stencilbook --> sqm-scroll
   sqm-edit-profile --> sqm-form-message
-  sqm-leaderboard --> sqm-empty
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section

@@ -1,7 +1,6 @@
 import { h } from "@stencil/core";
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
-import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
-import { LeaderboardView } from "./sqm-leaderboard-view";
+import { LeaderboardProps } from "./useLeaderboard";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { setUserIdentity } from "@saasquatch/component-boilerplate";
 import { getProps } from "../../utils/utils";
@@ -64,9 +63,9 @@ function setupOtherGraphQL() {
 
 const View = (overrideProps?: LeaderboardProps & any) => {
   const props: LeaderboardProps = {
-    leaderboardType: "topConvertedReferrers",
+    "leaderboard-type": "topConvertedReferrers",
     showRank: true,
-    rankType: "rowNumber",
+    "rank-type": "rowNumber",
     usersheading: "Top Referrers",
     statsheading: "Completed Referrals",
     interval: "",
@@ -75,8 +74,7 @@ const View = (overrideProps?: LeaderboardProps & any) => {
     ...overrideProps,
   };
   const { leaderboardType, rankType } = props;
-  console.log(`View("${leaderboardType}") - CALLED`);
-  overrideProps.setup();
+  console.log(`View("${leaderboardType}") - CALLED`, { ...props });
 
   return (
     <div style={{ marginBottom: "20px" }}>
@@ -90,64 +88,110 @@ const View = (overrideProps?: LeaderboardProps & any) => {
           <pre>{rankType}</pre>
         </div>
       </sqm-divided-layout>
-      <sqm-leaderboard {...getProps(props)}></sqm-leaderboard>
+      <sqm-leaderboard {...props}>
+        <sqm-empty
+          empty-state-image="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828457/tenant_test_a7iws76wkk4az/pomgkfyhc2mb3cuapauq.png"
+          empty-state-header="View your rank in the leaderboard"
+          empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
+        ></sqm-empty>
+      </sqm-leaderboard>
       <hr />
     </div>
   );
 };
 
 export const TopConvertedReferrers = createHookStory(() => {
-  const setup = setupGraphQL;
+  setupGraphQL();
   return [
-    View({ setup }),
-    View({ rankType: "rank", setup }),
-    View({ rankType: "denseRank", setup }),
+    View({}),
+    View({ rankType: "rank" }),
+    View({ rankType: "denseRank" }),
   ];
 });
 
 export const TopStartedReferrers = createHookStory(() => {
-  const setup = setupGraphQL;
+  setupGraphQL();
   return [
     View({
       leaderboardType: "topStartedReferrers",
       statsheading: "New Referrals",
-      setup,
     }),
     View({
       leaderboardType: "topStartedReferrers",
       rankType: "rank",
       statsheading: "New Referrals",
-      setup,
     }),
     View({
       leaderboardType: "topStartedReferrers",
       rankType: "denseRank",
       statsheading: "New Referrals",
-      setup,
     }),
   ];
 });
 
 export const EmptyLeaderboard = createHookStory(() => {
-  const setup = setupOtherGraphQL;
+  setupOtherGraphQL();
   return [
     View({
       leaderboardType: "topStartedReferrers",
       statsheading: "New Referrals",
-      setup,
+      interval: "2021-02-11T08:00:00.000Z/2021-02-13T08:00:00.000Z",
     }),
     View({
       leaderboardType: "topStartedReferrers",
       rankType: "rank",
       statsheading: "New Referrals",
-      setup,
+      interval: "2021-02-11T08:00:00.000Z/2021-02-13T08:00:00.000Z",
     }),
     View({
       leaderboardType: "topStartedReferrers",
       rankType: "denseRank",
       statsheading: "New Referrals",
-      interval: "2022-02-11T08:00:00.000Z/2022-02-13T08:00:00.000Z",
-      setup,
+      interval: "2021-02-11T08:00:00.000Z/2021-02-13T08:00:00.000Z",
     }),
   ];
+});
+
+export const DemoHook = createHookStory(() => {
+  return (
+    <sqm-leaderboard
+      usersheading="Referrer"
+      statsheading="Referrals"
+      rank-type="rank"
+      leaderboard-type="topStartedReferrers"
+      rankheading="Rank"
+      show-rank="true"
+    >
+      <sqm-empty
+        empty-state-image="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828457/tenant_test_a7iws76wkk4az/pomgkfyhc2mb3cuapauq.png"
+        empty-state-header="View your rank in the leaderboard"
+        empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
+      ></sqm-empty>
+    </sqm-leaderboard>
+  );
+});
+
+export const DemoHookEmpty = createHookStory(() => {
+  return (
+    <sqm-leaderboard
+      usersheading="Referrer"
+      statsheading="Referrals"
+      rank-type="rank"
+      leaderboard-type="topStartedReferrers"
+      rankheading="Rank"
+      show-rank="true"
+      demoData={{
+        data: {
+          rankType: "rank",
+          leaderboard: [],
+        },
+      }}
+    >
+      <sqm-empty
+        empty-state-image="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828457/tenant_test_a7iws76wkk4az/pomgkfyhc2mb3cuapauq.png"
+        empty-state-header="View your rank in the leaderboard"
+        empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
+      ></sqm-empty>
+    </sqm-leaderboard>
+  );
 });
