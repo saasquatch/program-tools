@@ -54,9 +54,9 @@ export const RadioAction = React.forwardRef<
 
   const selected = value === optionValue;
 
-  if (selected) {
-    console.log("selected ", optionValue);
-  }
+  // if (selected) {
+  //   console.log("selected ", optionValue);
+  // }
 
   return (
     <RadioLabel htmlFor={rest.id} isChecked={selected}>

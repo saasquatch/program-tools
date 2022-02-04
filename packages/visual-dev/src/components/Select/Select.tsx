@@ -217,8 +217,6 @@ const SelectInner = <ItemType extends ItemTypeBase>(
     ? "var(--sq-border)"
     : "var(--sq-text)";
 
-  console.log(arrowColor);
-
   function isCombobox(
     hook: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>
   ): hook is UseComboboxReturnValue<ItemType> {

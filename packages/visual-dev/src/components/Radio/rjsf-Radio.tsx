@@ -7,26 +7,30 @@ interface enumOption {
   value: any;
 }
 
-function isEnumOption(option: any): option is enumOption{
-  return typeof option === 'object' && option !== null && option.hasOwnProperty("label") && option.hasOwnProperty("value")
+function isEnumOption(option: any): option is enumOption {
+  return (
+    typeof option === "object" &&
+    option !== null &&
+    option.hasOwnProperty("label") &&
+    option.hasOwnProperty("value")
+  );
 }
 
-function isEnumArray(options: any): options is any[]{
-  return Array.isArray(options)
+function isEnumArray(options: any): options is any[] {
+  return Array.isArray(options);
 }
 
 export const RJSFRadio = (props: WidgetProps) => {
-  const valueOptions = props?.options?.enumOptions
-  if(!isEnumArray(valueOptions)){
-    return <></>
+  const valueOptions = props?.options?.enumOptions;
+  if (!isEnumArray(valueOptions)) {
+    return <></>;
   }
   return (
     <div>
       {valueOptions?.map((option: unknown) => {
-        if(!isEnumOption(option)){
-          return <></>
+        if (!isEnumOption(option)) {
+          return <></>;
         }
-        console.log(option)
         return (
           <Radio
             options={{ text: option.label }}
