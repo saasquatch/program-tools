@@ -97,9 +97,7 @@ export class Leaderboard {
       ? useLeaderboardDemo(demoProps)
       : useLeaderboard(props);
     return (
-      <LeaderboardView {...viewprops}>
-        <slot />
-      </LeaderboardView>
+      <LeaderboardView {...viewprops} />
     );
   }
 }
