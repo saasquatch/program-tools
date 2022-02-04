@@ -18,7 +18,6 @@ const defaultStyles = {
 const defaultElements = {
   empty: (
     <sqm-empty
-      slot="empty"
       empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard.png"
       empty-state-header="View your rank in the leaderboard"
       empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"

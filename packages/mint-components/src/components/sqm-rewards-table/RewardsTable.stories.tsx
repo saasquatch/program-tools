@@ -61,7 +61,6 @@ const loadingElement = (
 
 const emptyElement = (
   <sqm-empty
-    slot="empty"
     empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000224/squatch-assets/empty_rewards.png"
     empty-state-header="View your rewards"
     empty-state-text="See all the rewards you have earned from referring friends and completing tasks"
