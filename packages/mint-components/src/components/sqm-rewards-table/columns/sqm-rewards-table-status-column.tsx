@@ -27,11 +27,6 @@ export class RewardTableStatusColumn implements RewardTableColumn {
    */
   @Prop() expiryText: string = "Expires on ";
 
-  /**
-   * @uiName Fuel Tank Text
-   */
-  @Prop() fueltankText: string = "Your code:";
-
   constructor() {
     withHooks(this);
   }
