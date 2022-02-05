@@ -10,7 +10,7 @@ export default {
 export const OverlayHeader = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828752/tenant_test_a7iws76wkk4az/aag0ns2mstusdizs0g2x.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000278/squatch-assets/bTwu1Um.png"
       header="Klip Rewards"
       layout="overlay"
       padding-image="none"
@@ -22,7 +22,7 @@ export const OverlayHeader = () => {
 export const OverlayDescription = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828752/tenant_test_a7iws76wkk4az/aag0ns2mstusdizs0g2x.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000278/squatch-assets/bTwu1Um.png"
       header="Klip Rewards"
       description="Refer friends or complete tasks while using Klip to earn rewards"
       layout="overlay"
@@ -35,7 +35,7 @@ export const OverlayDescription = () => {
 export const OverlayButton = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828752/tenant_test_a7iws76wkk4az/aag0ns2mstusdizs0g2x.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000278/squatch-assets/bTwu1Um.png"
       header="Klip Rewards"
       description="Refer friends or complete tasks while using Klip to earn rewards"
       button-text="Start earning"
@@ -49,7 +49,7 @@ export const OverlayButton = () => {
 export const OverlayPadding = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828752/tenant_test_a7iws76wkk4az/aag0ns2mstusdizs0g2x.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000278/squatch-assets/bTwu1Um.png"
       header="Klip Rewards"
       description="Refer friends or complete tasks while using Klip to earn rewards"
       button-text="Start earning"
@@ -63,7 +63,7 @@ export const OverlayPadding = () => {
 export const OverlayLong = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828752/tenant_test_a7iws76wkk4az/aag0ns2mstusdizs0g2x.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000278/squatch-assets/bTwu1Um.png"
       header="Klip Rewards"
       description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
       button-text="Start earning"
@@ -77,7 +77,7 @@ export const OverlayLong = () => {
 export const OverlayLeft = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828752/tenant_test_a7iws76wkk4az/aag0ns2mstusdizs0g2x.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000278/squatch-assets/bTwu1Um.png"
       header="Klip Rewards"
       description="Refer friends or complete tasks while using Klip to earn rewards"
       button-text="Start earning"
@@ -92,7 +92,7 @@ export const OverlayLeft = () => {
 export const OverlayCenter = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828752/tenant_test_a7iws76wkk4az/aag0ns2mstusdizs0g2x.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000278/squatch-assets/bTwu1Um.png"
       header="Klip Rewards"
       description="Refer friends or complete tasks while using Klip to earn rewards"
       button-text="Start earning"
@@ -107,7 +107,7 @@ export const OverlayCenter = () => {
 export const OverlayRight = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828752/tenant_test_a7iws76wkk4az/aag0ns2mstusdizs0g2x.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000278/squatch-assets/bTwu1Um.png"
       header="Klip Rewards"
       description="Refer friends or complete tasks while using Klip to earn rewards"
       button-text="Start earning"
@@ -122,7 +122,7 @@ export const OverlayRight = () => {
 export const OverlayCustomColors = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828752/tenant_test_a7iws76wkk4az/aag0ns2mstusdizs0g2x.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000278/squatch-assets/bTwu1Um.png"
       header="Klip Rewards"
       description="Refer friends or complete tasks while using Klip to earn rewards"
       button-text="Start earning"
@@ -138,7 +138,7 @@ export const OverlayCustomColors = () => {
 export const OverlayCustomOpacity = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828752/tenant_test_a7iws76wkk4az/aag0ns2mstusdizs0g2x.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000278/squatch-assets/bTwu1Um.png"
       header="Klip Rewards"
       description="Refer friends or complete tasks while using Klip to earn rewards"
       button-text="Start earning"
@@ -155,7 +155,7 @@ export const OverlayCustomOpacity = () => {
 export const Columns = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828833/tenant_test_a7iws76wkk4az/ypmzuxldhnbvouujeuks.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"
       header="Klip Rewards"
       description="Refer friends or complete tasks while using Klip to earn rewards"
       button-text="Start earning"
@@ -169,7 +169,7 @@ export const Columns = () => {
 export const ColumnsPadding = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828833/tenant_test_a7iws76wkk4az/ypmzuxldhnbvouujeuks.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"
       header="Klip Rewards"
       description="Refer friends or complete tasks while using Klip to earn rewards"
       button-text="Start earning"
@@ -183,7 +183,7 @@ export const ColumnsPadding = () => {
 export const ColumnsLong = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828833/tenant_test_a7iws76wkk4az/ypmzuxldhnbvouujeuks.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"
       header="Klip Rewards"
       description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
       button-text="Start earning"
@@ -197,7 +197,7 @@ export const ColumnsLong = () => {
 export const ColumnsReverse = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828833/tenant_test_a7iws76wkk4az/ypmzuxldhnbvouujeuks.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"
       header="Klip Rewards"
       description="Refer friends or complete tasks while using Klip to earn rewards"
       button-text="Start earning"
@@ -213,13 +213,13 @@ export const ColumnsReverse = () => {
 export const ColumnsCustomPercentage = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828952/tenant_test_a7iws76wkk4az/binv6fy0l94xbljk4qty.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000248/squatch-assets/MVgOJn7.png"
       description="Be one of the top 3 referrers at the end of the year and receive Klip free for 1 year!"
       layout="columns"
       image-percentage="33%"
       padding-image="large"
       padding-text="large"
-      background-color=""
+      background-color="#EFF8FE"
     />
   );
 };
@@ -227,7 +227,7 @@ export const ColumnsCustomPercentage = () => {
 export const ColumnsCustomColors = () => {
   return (
     <sqm-hero-image
-      image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828833/tenant_test_a7iws76wkk4az/ypmzuxldhnbvouujeuks.png"
+      image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"
       header="Klip Rewards"
       description="Refer friends or complete tasks while using Klip to earn rewards"
       button-text="Start earning"

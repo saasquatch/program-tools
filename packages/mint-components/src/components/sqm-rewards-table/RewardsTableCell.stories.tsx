@@ -1,5 +1,10 @@
 import { h } from "@stencil/core";
-import scenario from "./rewards-table.feature";
+import scenario1 from "./columns/sqm-rewards-table-date-column.feature";
+import scenario2 from "./columns/sqm-rewards-table-reward-column.feature";
+import scenario3 from "./columns/sqm-rewards-table-status-column.feature";
+import scenario4 from "./columns/sqm-rewards-table-source-column.feature";
+
+const scenario = scenario1 + scenario2 + scenario3 + scenario4;
 
 export default {
   title: "Components/Rewards Table Cell",
@@ -122,10 +127,12 @@ const longName = {
 
 export const RewardsCellCreditLong = () => {
   return (
-    <sqm-rewards-table-reward-cell
-      reward={{ ...rewardsData, ...longName }}
-      availableText="19 Points with a really really super duper longest name ever in the world wide web available"
-    ></sqm-rewards-table-reward-cell>
+    <div style={{ maxWidth: "222px" }}>
+      <sqm-rewards-table-reward-cell
+        reward={{ ...rewardsData, ...longName }}
+        availableText="19 Points with a really really super duper longest name ever in the world wide web available"
+      ></sqm-rewards-table-reward-cell>
+    </div>
   );
 };
 
@@ -134,10 +141,39 @@ export const RewardsCellNonCredit = () => {
     <sqm-rewards-table-reward-cell
       reward={{
         ...rewardsData,
-        type: "FUELTANK",
+        type: "GIFTCARD",
         prettyValue: "SaaSquatch Giftcard",
       }}
     ></sqm-rewards-table-reward-cell>
+  );
+};
+
+export const RewardsCellFueltank = () => {
+  return (
+    <sqm-rewards-table-reward-cell
+      reward={{
+        ...rewardsData,
+        type: "FUELTANK",
+        prettyValue: "Fueltank Reward",
+        fuelTankCode: "AFUELTANKCODE",
+      }}
+      fueltankText="Your code:"
+    ></sqm-rewards-table-reward-cell>
+  );
+};
+export const RewardsCellFueltankLong = () => {
+  return (
+    <div style={{ maxWidth: "222px" }}>
+      <sqm-rewards-table-reward-cell
+        reward={{
+          ...rewardsData,
+          type: "FUELTANK",
+          prettyValue: "Long Fueltank Reward",
+          fuelTankCode: "AFUELTANKCODE123456789123456789123456789123456789",
+        }}
+        fueltankText="Your code:"
+      ></sqm-rewards-table-reward-cell>
+    </div>
   );
 };
 

@@ -11,10 +11,7 @@
 
 - [sqm-share-button](../sqm-share-button)
 - [sqm-share-link](../sqm-share-link)
-- [sqm-portal-container](../sqm-portal-container)
-- [sqm-image](../sqm-image)
-- [sqm-titled-section](../sqm-titled-section)
-- [sqm-text](../sqm-text)
+- [sqm-empty](../sqm-empty)
 - [sqm-router](../sqm-router)
 - [sqm-hook-story-container](../sqm-hook-story-container)
 - [sqm-navigation-menu](../sqm-navigation-menu)
@@ -31,6 +28,7 @@
 - [sqm-rewards-table-date-column](../sqm-rewards-table/columns)
 - [sqm-task-card](../sqm-task-card)
 - [sqm-card-feed](../sqm-card-feed)
+- [sqm-text](../sqm-text)
 - [sqm-password-field](../sqm-password-field)
 - [sqm-portal-register](../sqm-portal-register)
 - [sqm-table-row](../sqm-table-row)
@@ -49,6 +47,7 @@
 - [sqm-program-explainer](../sqm-program-explainer)
 - [sqm-program-explainer-step](../sqm-program-explainer-step)
 - [sqm-brand](../sqm-brand)
+- [sqm-portal-container](../sqm-portal-container)
 - [sqm-rewards-table-reward-cell](../sqm-rewards-table/cells)
 - [sqm-rewards-table-source-cell](../sqm-rewards-table/cells)
 - [sqm-rewards-table-status-cell](../sqm-rewards-table/cells)
@@ -59,10 +58,12 @@
 - [sqm-referral-table-date-column](../sqm-referral-table/columns)
 - [sqm-referral-table-rewards-column](../sqm-referral-table/columns)
 - [sqm-hero-image](../sqm-hero-image)
+- [sqm-image](../sqm-image)
 - [sqm-share-code](../sqm-share-code)
 - [sqm-timeline](../sqm-timeline)
 - [sqm-timeline-entry](../sqm-timeline)
 - [sqm-referral-card](../sqm-referral-card)
+- [sqm-titled-section](../sqm-titled-section)
 - [sqm-scroll](../sqm-scroll)
 
 ### Graph
@@ -70,10 +71,7 @@
 graph TD;
   sqm-stencilbook --> sqm-share-button
   sqm-stencilbook --> sqm-share-link
-  sqm-stencilbook --> sqm-portal-container
-  sqm-stencilbook --> sqm-image
-  sqm-stencilbook --> sqm-titled-section
-  sqm-stencilbook --> sqm-text
+  sqm-stencilbook --> sqm-empty
   sqm-stencilbook --> sqm-router
   sqm-stencilbook --> sqm-hook-story-container
   sqm-stencilbook --> sqm-navigation-menu
@@ -90,6 +88,7 @@ graph TD;
   sqm-stencilbook --> sqm-rewards-table-date-column
   sqm-stencilbook --> sqm-task-card
   sqm-stencilbook --> sqm-card-feed
+  sqm-stencilbook --> sqm-text
   sqm-stencilbook --> sqm-password-field
   sqm-stencilbook --> sqm-portal-register
   sqm-stencilbook --> sqm-table-row
@@ -108,6 +107,7 @@ graph TD;
   sqm-stencilbook --> sqm-program-explainer
   sqm-stencilbook --> sqm-program-explainer-step
   sqm-stencilbook --> sqm-brand
+  sqm-stencilbook --> sqm-portal-container
   sqm-stencilbook --> sqm-rewards-table-reward-cell
   sqm-stencilbook --> sqm-rewards-table-source-cell
   sqm-stencilbook --> sqm-rewards-table-status-cell
@@ -118,17 +118,18 @@ graph TD;
   sqm-stencilbook --> sqm-referral-table-date-column
   sqm-stencilbook --> sqm-referral-table-rewards-column
   sqm-stencilbook --> sqm-hero-image
+  sqm-stencilbook --> sqm-image
   sqm-stencilbook --> sqm-share-code
   sqm-stencilbook --> sqm-timeline
   sqm-stencilbook --> sqm-timeline-entry
   sqm-stencilbook --> sqm-referral-card
+  sqm-stencilbook --> sqm-titled-section
   sqm-stencilbook --> sqm-scroll
-  sqm-edit-profile --> sqm-form-message
-  sqm-leaderboard --> sqm-empty
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
+  sqm-edit-profile --> sqm-form-message
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
   sqm-rewards-table-reward-column --> sqm-rewards-table-reward-cell

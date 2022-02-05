@@ -10,6 +10,7 @@ export class RewardTableRewardsCell {
   @Prop() reward: Reward;
   @Prop() redeemedText: string;
   @Prop() availableText: string;
+  @Prop() fueltankText: string;
   @Prop() locale: string;
 
   // TODO: value function from portalv2
@@ -54,8 +55,32 @@ export class RewardTableRewardsCell {
       BoldText: {
         "font-weight": "var(--sl-font-weight-semibold)",
       },
+
       StatusBadge: {
         paddingLeft: "var(--sl-spacing-xxx-small)",
+      },
+
+      Fueltank: {
+        lineBreak: "anywhere",
+        "& .text": {
+          color: "var(--sl-color-neutral-500)",
+          fontSize: "var(--sl-font-size-small)",
+        },
+        "& .code": {
+          cursor: "pointer",
+          userSelect: "none",
+          marginLeft: "var(--sl-spacing-xx-small)",
+          fontWeight: "var(--sl-font-weight-bold)",
+          "&:hover": {
+            color: "var(--sl-color-sky-500)",
+          },
+        },
+        "& .icon": {
+          position: "relative",
+          top: "2px",
+          marginLeft: "var(--sl-spacing-xx-small)",
+          color: "inherit",
+        },
       },
     };
 
@@ -72,6 +97,28 @@ export class RewardTableRewardsCell {
       const singleReward =
         reward.prettyValueNumber === "1" ||
         (reward.dateRedeemed && reward.prettyAvailableNumber === "0");
+
+      if (reward.type === "FUELTANK") {
+        return (
+          <div class={sheet.classes.Fueltank}>
+            {reward.prettyValue}
+            <div class="text">
+              {this.fueltankText}
+              <span
+                class="code"
+                onClick={() =>
+                  navigator.clipboard.writeText(reward.fuelTankCode)
+                }
+              >
+                {reward.fuelTankCode}
+                <span class="icon">
+                  <sl-icon name="files" />
+                </span>
+              </span>
+            </div>
+          </div>
+        );
+      }
 
       if (reward.type === "CREDIT" && !singleReward) {
         const progress = Math.round(

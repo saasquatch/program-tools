@@ -148,7 +148,7 @@ export class SqmRewardExchangeList {
   @Prop() promoCode: string = "Promo Code";
 
   /**
-   * @uiName Number of Skeleton Cards
+   * @undocumented Number of Skeleton Cards
    */
   @Prop() skeletonCardNum: number = 8;
 

@@ -43,7 +43,7 @@ export const ScrollId = () => {
 export const ScrollTabGroup = () => {
   return (
     <div style={{ position: "relative", height: "2000px" }}>
-      <sqm-scroll scroll-id="tab-3"></sqm-scroll>
+      <sqm-scroll button-text="Redeem rewards" scroll-id="tab-3"></sqm-scroll>
       <div
         style={{ position: "absolute", bottom: "0" }}
         innerHTML={`

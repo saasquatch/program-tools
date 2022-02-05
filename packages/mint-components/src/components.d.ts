@@ -1247,7 +1247,7 @@ export namespace Components {
          */
         "selectText": string;
         /**
-          * @uiName Number of Skeleton Cards
+          * @undocumented Number of Skeleton Cards
          */
         "skeletonCardNum": number;
         /**
@@ -1308,7 +1308,7 @@ export namespace Components {
         /**
           * @uiName Customer Note Column Title
          */
-        "columnTitle"?: string;
+        "columnTitle": string;
         "renderCell": (data: Reward[], locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
@@ -1332,6 +1332,7 @@ export namespace Components {
     }
     interface SqmRewardsTableRewardCell {
         "availableText": string;
+        "fueltankText": string;
         "locale": string;
         "redeemedText": string;
         "reward": Reward;
@@ -1345,6 +1346,10 @@ export namespace Components {
           * @uiName Reward column title
          */
         "columnTitle": string;
+        /**
+          * @uiName Fuel Tank Text
+         */
+        "fueltankText": string;
         /**
           * @uiName Redeemed Amount Text
          */
@@ -3574,7 +3579,7 @@ declare namespace LocalJSX {
          */
         "selectText"?: string;
         /**
-          * @uiName Number of Skeleton Cards
+          * @undocumented Number of Skeleton Cards
          */
         "skeletonCardNum"?: number;
         /**
@@ -3655,6 +3660,7 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableRewardCell {
         "availableText"?: string;
+        "fueltankText"?: string;
         "locale"?: string;
         "redeemedText"?: string;
         "reward"?: Reward;
@@ -3668,6 +3674,10 @@ declare namespace LocalJSX {
           * @uiName Reward column title
          */
         "columnTitle"?: string;
+        /**
+          * @uiName Fuel Tank Text
+         */
+        "fueltankText"?: string;
         /**
           * @uiName Redeemed Amount Text
          */

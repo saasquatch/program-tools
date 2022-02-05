@@ -12,6 +12,7 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
  */
 @Component({
   tag: "sqm-leaderboard",
+  shadow: true,
 })
 export class Leaderboard {
   /**
@@ -118,7 +119,46 @@ function LoadingSlot() {
   );
 }
 
-function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
+function useLeaderboardDemo(
+  props: LeaderboardProps & { demoData: any }
+): LeaderboardViewProps {
+  const data = props.demoData?.data?.leaderboard || [
+    {
+      firstName: "Viktor",
+      lastInitial: "V",
+      value: 82,
+      rank: 1,
+      rowNumber: 1,
+    },
+    {
+      firstName: "MF",
+      lastInitial: "D",
+      value: 73,
+      rank: 2,
+      rowNumber: 2,
+    },
+    {
+      firstName: "Freddie",
+      lastInitial: "G",
+      value: 64,
+      rank: 3,
+      rowNumber: 3,
+    },
+    {
+      firstName: "Benny",
+      lastInitial: "B",
+      value: 55,
+      rank: 4,
+      rowNumber: 4,
+    },
+    {
+      value: 46,
+      rank: 5,
+      rowNumber: 5,
+    },
+  ];
+
+
   return deepmerge(
     {
       states: {
@@ -140,59 +180,15 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
       },
       data: {
         rankType: "rowNumber",
-        leaderboard: [
-          {
-            firstName: "Viktor",
-            lastInitial: "V",
-            value: 82,
-            rank: 1,
-            rowNumber: 1,
-          },
-          {
-            firstName: "MF",
-            lastInitial: "D",
-            value: 73,
-            rank: 2,
-            rowNumber: 2,
-          },
-          {
-            firstName: "Freddie",
-            lastInitial: "G",
-            value: 64,
-            rank: 3,
-            rowNumber: 3,
-          },
-          {
-            firstName: "Benny",
-            lastInitial: "B",
-            value: 55,
-            rank: 4,
-            rowNumber: 4,
-          },
-          {
-            value: 46,
-            rank: 5,
-            rowNumber: 5,
-          },
-        ],
+        leaderboard: data,
         showUser: props.showUser,
       },
       elements: {
-        empty: (
-          <sqm-empty
-            emptyStateImage={
-              "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828457/tenant_test_a7iws76wkk4az/pomgkfyhc2mb3cuapauq.png"
-            }
-            emptyStateHeader={"View your rank in the leaderboard"}
-            emptyStateText={
-              "Be the first to refer a friend and reach the top of the leaderboard"
-            }
-          />
-        ),
+        empty: <slot name="empty" />,
         loadingstate: <LoadingSlot />,
       },
     },
-    props.demoProps || {},
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

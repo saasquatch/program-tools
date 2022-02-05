@@ -11,8 +11,10 @@ export default {
 export const media = (slot) => {
   return (
     <sqm-portal-container gap="large" slot={slot}>
-      Get rewarded when your friend uses Klip
-      <sqm-image image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643829127/tenant_test_a7iws76wkk4az/tvazndfcipf4wyraefb3.png" />
+      <sqm-hero-image
+        header="Get rewarded when your friend uses Klip"
+        image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000227/squatch-assets/IqB7GeS.png"
+      ></sqm-hero-image>
     </sqm-portal-container>
   );
 };

@@ -17,6 +17,7 @@ export function ReferralCardView(props: ReferralCardViewProps) {
       color: "var(--sl-color-neutral-900)",
       background: "var(--sl-color-neutral-0)",
       "& .left": {
+        boxSizing: "border-box",
         width: "50%",
         padding: "var(--sl-spacing-large)",
         paddingRight: "var(--sl-spacing-medium)",
@@ -28,6 +29,7 @@ export function ReferralCardView(props: ReferralCardViewProps) {
         },
       },
       "& .right": {
+        boxSizing: "border-box",
         width: "50%",
         padding: "var(--sl-spacing-large)",
         paddingLeft: "var(--sl-spacing-medium)",

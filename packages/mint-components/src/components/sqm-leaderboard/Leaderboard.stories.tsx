@@ -17,22 +17,11 @@ const defaultStyles = {
 
 const defaultElements = {
   empty: (
-    <slot name="empty">
-      <sqm-portal-container padding="xxxx-large" gap="medium">
-        <sqm-image
-          image-url="https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828457/tenant_test_a7iws76wkk4az/pomgkfyhc2mb3cuapauq.png"
-          max-width="100px"
-        ></sqm-image>
-        <sqm-titled-section label-margin="xxx-small" text-align="center">
-          <sqm-text slot="label">
-            <h3>View your rank in the leaderboard</h3>
-          </sqm-text>
-          <sqm-text slot="content">
-            Be the first to refer a friend and reach the top of the leaderboard
-          </sqm-text>
-        </sqm-titled-section>
-      </sqm-portal-container>
-    </slot>
+    <sqm-empty
+      empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard.png"
+      empty-state-header="View your rank in the leaderboard"
+      empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
+    ></sqm-empty>
   ),
   loadingstate: (
     <slot name="loading">

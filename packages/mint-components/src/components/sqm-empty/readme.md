@@ -18,7 +18,7 @@
 
 ### Used by
 
- - [sqm-leaderboard](../sqm-leaderboard)
+ - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Depends on
 
@@ -34,7 +34,7 @@ graph TD;
   sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
-  sqm-leaderboard --> sqm-empty
+  sqm-stencilbook --> sqm-empty
   style sqm-empty fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

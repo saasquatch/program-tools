@@ -85,3 +85,13 @@ Feature: Reward Table reward Column
         When they view the rewards table
         Then they see the name of the reward
         But they do not see the availablity bar
+
+    @motivating
+    Scenario: Users can copy their fuel tank codes 
+        Given a user with a fuel tank reward
+        When they view the rewards table
+        Then they see their fuel tank reward
+        And they see their fuel tank code bolded in blue
+        When they click on their code
+        Then a tool tip appears saying it has been copied to their clipboard
+        And their code is copied to their clipboard

@@ -11,7 +11,7 @@ Feature: Hero Image
 	Scenario: Overlay image displays header, description, and button with brand color
 		Given a Hero Image component configured with the following props
 			| prop        | value                                                              |
-			| image-url   | "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828752/tenant_test_a7iws76wkk4az/aag0ns2mstusdizs0g2x.png/"                                 |
+			| image-url   | "https://res.cloudinary.com/saasquatch/image/upload/v1644000278/squatch-assets/bTwu1Um.png"                                 |
 			| header      | "Klip Rewards"                                                     |
 			| description | "Refer friends or complete tasks while using Klip to earn rewards" |
 			| button-text | "Start earning"                                                    |
@@ -30,7 +30,7 @@ Feature: Hero Image
 	Scenario Outline: Overlay image crop can be aligned left, center or right
 		Given a Hero Image component configured with the following props
 			| prop        | value                                                              |
-			| image-url   | "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828752/tenant_test_a7iws76wkk4az/aag0ns2mstusdizs0g2x.png/"                                 |
+			| image-url   | "https://res.cloudinary.com/saasquatch/image/upload/v1644000278/squatch-assets/bTwu1Um.png"                                 |
 			| header      | "Klip Rewards"                                                     |
 			| description | "Refer friends or complete tasks while using Klip to earn rewards" |
 			| button-text | "Start earning"                                                    |
@@ -50,7 +50,7 @@ Feature: Hero Image
 	Scenario Outline: Overlay padding is configurable
 		Given a Hero Image component configured with the following props
 			| prop         | value                                                              |
-			| image-url    | "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828752/tenant_test_a7iws76wkk4az/aag0ns2mstusdizs0g2x.png/"                                 |
+			| image-url    | "https://res.cloudinary.com/saasquatch/image/upload/v1644000278/squatch-assets/bTwu1Um.png"                                 |
 			| header       | "Klip Rewards"                                                     |
 			| description  | "Refer friends or complete tasks while using Klip to earn rewards" |
 			| button-text  | "Start earning"                                                    |
@@ -77,7 +77,7 @@ Feature: Hero Image
 	Scenario Outline: Overlay color and background is configurable
 		Given a Hero Image component configured with the following props
 			| prop            | value                                                              |
-			| image-url       | "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828752/tenant_test_a7iws76wkk4az/aag0ns2mstusdizs0g2x.png/"                                 |
+			| image-url       | "https://res.cloudinary.com/saasquatch/image/upload/v1644000278/squatch-assets/bTwu1Um.png"                                 |
 			| header          | "Klip Rewards"                                                     |
 			| description     | "Refer friends or complete tasks while using Klip to earn rewards" |
 			| button-text     | "Start earning"                                                    |
@@ -99,7 +99,7 @@ Feature: Hero Image
 	Scenario: Two-column layout displays an image on one side and on the other side a header, description, and button
 		Given a Hero Image component configured with the following props
 			| prop        | value                                                              |
-			| image-url   | "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828833/tenant_test_a7iws76wkk4az/ypmzuxldhnbvouujeuks.png"                                 |
+			| image-url   | "https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"                                 |
 			| header      | "Klip Rewards"                                                     |
 			| description | "Refer friends or complete tasks while using Klip to earn rewards" |
 			| button-text | "Start earning"                                                    |
@@ -119,7 +119,7 @@ Feature: Hero Image
 	Scenario Outline: Image position is configurable for desktop and 599pxs
 		Given a Hero Image component configured with the following props
 			| prop             | value                                                              |
-			| image-url        | "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828833/tenant_test_a7iws76wkk4az/ypmzuxldhnbvouujeuks.png"                                 |
+			| image-url        | "https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"                                 |
 			| header           | "Klip Rewards"                                                     |
 			| description      | "Refer friends or complete tasks while using Klip to earn rewards" |
 			| button-text      | "Start earning"                                                    |
@@ -139,7 +139,7 @@ Feature: Hero Image
 	Scenario Outline: Padding is configurable for the image and text of two column layouts
 		Given a Hero Image component configured with the following props
 			| prop          | value                                                              |
-			| image-url     | "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828833/tenant_test_a7iws76wkk4az/ypmzuxldhnbvouujeuks.png"                                 |
+			| image-url     | "https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"                                 |
 			| header        | "Klip Rewards"                                                     |
 			| description   | "Refer friends or complete tasks while using Klip to earn rewards" |
 			| button-text   | "Start earning"                                                    |
@@ -167,7 +167,7 @@ Feature: Hero Image
 	Scenario Outline: Two-column layout image division percentage is configurable
 		Given a Hero Image component configured with the following props
 			| prop             | value                                                              |
-			| image-url        | "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828833/tenant_test_a7iws76wkk4az/ypmzuxldhnbvouujeuks.png"                                 |
+			| image-url        | "https://res.cloudinary.com/saasquatch/image/upload/v1644000248/squatch-assets/MVgOJn7.png"                                 |
 			| header           | "Klip Rewards"                                                     |
 			| description      | "Refer friends or complete tasks while using Klip to earn rewards" |
 			| button-text      | "Start earning"                                                    |
@@ -186,7 +186,7 @@ Feature: Hero Image
 	Scenario: Two-column layout text and background color is configurable
 		Given a Hero Image component configured with the following props
 			| prop             | value                                                              |
-			| image-url        | "https://res.cloudinary.com/saasquatch-staging/image/upload/v1643828833/tenant_test_a7iws76wkk4az/ypmzuxldhnbvouujeuks.png"                                 |
+			| image-url        | "https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"                                 |
 			| header           | "Klip Rewards"                                                     |
 			| description      | "Refer friends or complete tasks while using Klip to earn rewards" |
 			| button-text      | "Start earning"                                                    |
