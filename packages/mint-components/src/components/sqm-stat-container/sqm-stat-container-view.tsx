@@ -3,7 +3,7 @@ import { createStyleSheet } from "../../styling/JSS";
 
 export interface StatContainerProps {
   space: string;
-  display: "grid" | "flex";
+  display?: "grid" | "flex";
 }
 
 export function StatContainerView(props: StatContainerProps, children: VNode) {
@@ -17,7 +17,7 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
   const style = {
     StatContainer: {
       width: "100%",
-      display: props.display,
+      display: props.display || "grid",
       "grid-template-columns": "repeat(auto-fill, minmax(130px, auto))",
       gap: divideSpace(),
       // First set of styles applies when shadow DOM is disabled, second set applies when shadow DOM is enabled
