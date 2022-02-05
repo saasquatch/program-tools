@@ -1328,6 +1328,7 @@ export namespace Components {
     }
     interface SqmRewardsTableRewardCell {
         "availableText": string;
+        "copyText": string;
         "fueltankText": string;
         "locale": string;
         "redeemedText": string;
@@ -3652,6 +3653,7 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableRewardCell {
         "availableText"?: string;
+        "copyText"?: string;
         "fueltankText"?: string;
         "locale"?: string;
         "redeemedText"?: string;
