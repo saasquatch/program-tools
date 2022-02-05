@@ -122,7 +122,6 @@ function LoadingSlot() {
 function useLeaderboardDemo(
   props: LeaderboardProps & { demoData: any }
 ): LeaderboardViewProps {
-  console.log("SAM", props.demoData);
   const data = props.demoData?.data?.leaderboard || [
     {
       firstName: "Viktor",
@@ -159,6 +158,7 @@ function useLeaderboardDemo(
     },
   ];
 
+
   return deepmerge(
     {
       states: {
@@ -184,17 +184,11 @@ function useLeaderboardDemo(
         showUser: props.showUser,
       },
       elements: {
-        empty: !data?.length ? (
-          <slot name="empty" />
-        ) : (
-          <div style={{ display: "none" }}>
-            <slot name="empty" />
-          </div>
-        ),
+        empty: <slot name="empty" />,
         loadingstate: <LoadingSlot />,
       },
     },
-    props.demoProps || {},
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }
