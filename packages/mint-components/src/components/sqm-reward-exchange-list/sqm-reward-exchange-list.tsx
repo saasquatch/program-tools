@@ -1,9 +1,11 @@
-import { Component, h, Host, Prop, State } from "@stencil/core";
+import { Component, h, Host, Prop, State, VNode } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import {
   ExchangeState,
+  RewardExchangeProps,
   Stages,
   useRewardExchangeList,
+  ExchangeStep,
 } from "./useRewardExchangeList";
 import {
   RewardExchangeViewProps,
@@ -136,6 +138,11 @@ export class SqmRewardExchangeList {
     "Not enough {sourceUnit} to redeem for this reward";
 
   /**
+   * @uiName Reward Redeemed Text
+   */
+  @Prop() rewardRedeemedText: string = "Reward redeemed";
+
+  /**
    * @uiName Promo Code Text
    */
   @Prop() promoCode: string = "Promo Code";
@@ -179,20 +186,14 @@ export class SqmRewardExchangeList {
   disconnectedCallback() {}
 
   render() {
-    // const missingProps = getMissingProps([
-    //   {
-    //     attribute: "listType",
-    //     value: this.listType,
-    //   },
-    // ]);
-
-    // if (missingProps) {
-    //   return <RequiredPropsError missingProps={missingProps} />;
-    // }
+    const props: RewardExchangeProps = {
+      ...getProps(this),
+      empty: <slot name="empty" />,
+    };
 
     const { states, data, callbacks, refs } = isDemo()
-      ? useRewardExchangeListDemo(getProps(this))
-      : useRewardExchangeList(getProps(this));
+      ? useRewardExchangeListDemo(props)
+      : useRewardExchangeList(props);
 
     return (
       <Host style={{ display: "contents" }}>
@@ -207,7 +208,7 @@ export class SqmRewardExchangeList {
   }
 }
 
-function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
+function useRewardExchangeListDemo(props: RewardExchangeProps) {
   return deepmerge(
     {
       states: {
@@ -217,10 +218,24 @@ function useRewardExchangeListDemo(props: SqmRewardExchangeList) {
         redeemStage: "chooseReward",
         amount: 0,
         selectedStep: undefined,
+        selectedItem: undefined,
+        open: false,
         exchangeError: false,
         queryError: false,
         loading: false,
+        empty: (
+          <sqm-empty
+            emptyStateImage={
+              "https://res.cloudinary.com/saasquatch/image/upload/v1643998821/squatch-assets/Group_29.png"
+            }
+            emptyStateHeader={"Redeem rewards"}
+            emptyStateText={
+              "Use your points to redeem rewards once they become available"
+            }
+          />
+        ),
       },
+
       data: {
         shareCode: "SHARECODE123",
         exchangeList: demoRewardExchange.data.exchangeList,
