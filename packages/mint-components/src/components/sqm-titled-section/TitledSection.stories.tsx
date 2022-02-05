@@ -1,5 +1,4 @@
 import { h } from "@stencil/core";
-import { media, sharebutton } from "../sqm-referral-card/ReferralCard.stories";
 import scenario from "./sqm-titled-section.feature";
 
 export default {
@@ -20,12 +19,6 @@ export const AlignLeft = () => {
           North America
         </p>
       </sqm-text>
-      <sqm-text slot="content">
-        <sqm-referral-card>
-          {media("left")}
-          {sharebutton("right")}
-        </sqm-referral-card>
-      </sqm-text>
     </sqm-titled-section>
   );
 };
@@ -41,12 +34,6 @@ export const AlignCenter = () => {
           North America
         </p>
       </sqm-text>
-      <sqm-text slot="content">
-        <sqm-referral-card>
-          {media("left")}
-          {sharebutton("right")}
-        </sqm-referral-card>
-      </sqm-text>
     </sqm-titled-section>
   );
 };
@@ -60,12 +47,6 @@ export const AlignRight = () => {
           one free month of Klip Enterprise or two plane tickets to anywhere in
           North America
         </p>
-      </sqm-text>
-      <sqm-text slot="content">
-        <sqm-referral-card>
-          {media("left")}
-          {sharebutton("right")}
-        </sqm-referral-card>
       </sqm-text>
     </sqm-titled-section>
   );

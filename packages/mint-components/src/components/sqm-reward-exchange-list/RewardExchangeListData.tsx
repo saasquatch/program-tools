@@ -1,3 +1,5 @@
+import { h } from "@stencil/core";
+
 const baseResponse = (
   data,
   stage = "chooseReward",
@@ -25,7 +27,7 @@ const baseResponse = (
         redeemTitle: "Confirm and redeem",
         redemptionSuccessText: "Redeemed {sourceValue} for {destinationValue}",
         doneText: "Done",
-        toolTipText: "Copied!",
+        tooltiptext: "Copied!",
         selectText: "Select amount to receive",
         sourceAmountMessage:
           "{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}",
@@ -37,8 +39,10 @@ const baseResponse = (
         rewardNameTitle: "Reward Name",
         rewardAmountTitle: "Reward Amount",
         costTitle: "Cost",
+        notEnoughError: "Sorry not enough!",
       },
     },
+    queryError: false,
     redeemStage: stage,
     amount: 0,
     exchangeError: error,
@@ -46,6 +50,17 @@ const baseResponse = (
     selectedItem: selectedItem,
     selectedStep: selectedStep,
     open: false,
+    empty: (
+      <sqm-empty
+        emptyStateImage={
+          "https://res.cloudinary.com/saasquatch/image/upload/v1643998821/squatch-assets/Group_29.png"
+        }
+        emptyStateHeader={"Redeem rewards"}
+        emptyStateText={
+          "Use your points to redeem rewards once they become available"
+        }
+      />
+    ),
   },
   data: {
     exchangeList: data,

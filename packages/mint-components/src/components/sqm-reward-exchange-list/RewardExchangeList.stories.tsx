@@ -5,6 +5,7 @@ import {
 } from "./sqm-reward-exchange-list-view";
 import * as Data from "./RewardExchangeListData";
 import scenario from "./sqm-reward-exchange-list.feature";
+import { RewardExchangeProps } from "./useRewardExchangeList";
 
 export default {
   title: "Components/Reward Exchange List",

@@ -11,6 +11,7 @@ export class RewardTableRewardsCell {
   @Prop() redeemedText: string;
   @Prop() availableText: string;
   @Prop() fueltankText: string;
+  @Prop() copyText: string;
   @Prop() locale: string;
 
   // TODO: value function from portalv2
@@ -65,6 +66,7 @@ export class RewardTableRewardsCell {
         "& .text": {
           color: "var(--sl-color-neutral-500)",
           fontSize: "var(--sl-font-size-small)",
+          width: "fit-content",
         },
         "& .code": {
           cursor: "pointer",
@@ -78,8 +80,9 @@ export class RewardTableRewardsCell {
         "& .icon": {
           position: "relative",
           top: "2px",
-          marginLeft: "var(--sl-spacing-xx-small)",
+          marginRight: "var(--sl-spacing-xx-small)",
           color: "inherit",
+        //   float: "right",
         },
       },
     };
@@ -110,10 +113,18 @@ export class RewardTableRewardsCell {
                   navigator.clipboard.writeText(reward.fuelTankCode)
                 }
               >
-                {reward.fuelTankCode}
-                <span class="icon">
-                  <sl-icon name="files" />
-                </span>
+                <sl-tooltip
+                  trigger="click"
+                  placement="top"
+                  distance={10}
+                  content={this.copyText}
+                  onSl-show={(e) => setTimeout(() => e.path[0].hide(), 1000)}
+                >
+                  <span class="icon">
+                    <sl-icon name="files" />
+                  </span>
+                  {reward.fuelTankCode}
+                </sl-tooltip>
               </span>
             </div>
           </div>

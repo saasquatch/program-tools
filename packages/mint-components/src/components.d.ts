@@ -1235,6 +1235,10 @@ export namespace Components {
          */
         "rewardNameTitle": string;
         /**
+          * @uiName Reward Redeemed Text
+         */
+        "rewardRedeemedText": string;
+        /**
           * @uiName Reward Title Text
          */
         "rewardTitle": string;
@@ -1328,6 +1332,7 @@ export namespace Components {
     }
     interface SqmRewardsTableRewardCell {
         "availableText": string;
+        "copyText": string;
         "fueltankText": string;
         "locale": string;
         "redeemedText": string;
@@ -3569,6 +3574,10 @@ declare namespace LocalJSX {
          */
         "rewardNameTitle"?: string;
         /**
+          * @uiName Reward Redeemed Text
+         */
+        "rewardRedeemedText"?: string;
+        /**
           * @uiName Reward Title Text
          */
         "rewardTitle"?: string;
@@ -3658,6 +3667,7 @@ declare namespace LocalJSX {
     }
     interface SqmRewardsTableRewardCell {
         "availableText"?: string;
+        "copyText"?: string;
         "fueltankText"?: string;
         "locale"?: string;
         "redeemedText"?: string;

@@ -158,12 +158,13 @@ export const RewardsCellFueltank = () => {
         fuelTankCode: "AFUELTANKCODE",
       }}
       fueltankText="Your code:"
+      copyText="Copied"
     ></sqm-rewards-table-reward-cell>
   );
 };
 export const RewardsCellFueltankLong = () => {
   return (
-    <div style={{ maxWidth: "222px" }}>
+    <div style={{ maxWidth: "215px" }}>
       <sqm-rewards-table-reward-cell
         reward={{
           ...rewardsData,
@@ -172,6 +173,7 @@ export const RewardsCellFueltankLong = () => {
           fuelTankCode: "AFUELTANKCODE123456789123456789123456789123456789",
         }}
         fueltankText="Your code:"
+        copyText="Copied"
       ></sqm-rewards-table-reward-cell>
     </div>
   );

@@ -8,7 +8,7 @@ export default {
   },
 };
 
-export const media = (slot) => {
+const media = (slot) => {
   return (
     <sqm-portal-container gap="large" slot={slot}>
       <sqm-hero-image
@@ -19,7 +19,7 @@ export const media = (slot) => {
   );
 };
 
-export const sharebutton = (slot) => {
+const sharebutton = (slot) => {
   return (
     <sqm-portal-container gap="large" slot={slot}>
       <sqm-text>Choose how you want to share:</sqm-text>
