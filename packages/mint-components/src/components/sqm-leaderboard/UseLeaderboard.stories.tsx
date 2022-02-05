@@ -185,7 +185,19 @@ export const DemoHookEmpty = createHookStory(() => {
           rankType: "rank",
           leaderboard: [],
         },
+        states:{
+          loading: false,
+          hasLeaders:false,
+          styles: {
+            usersheading: "Top referrers",
+            statsheading: "New customers",
+            rankheading:  "Rank",
+            anonymousUser: "Anonymous User",
+            showRank: true,
+          },
+        }
       }}
+      
     >
       <sqm-empty
         empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard.png"

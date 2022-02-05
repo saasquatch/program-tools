@@ -15,6 +15,7 @@ import {
   useState,
 } from "@saasquatch/universal-hooks";
 import confetti from "canvas-confetti";
+import { VNode } from "@stencil/core";
 
 export type ExchangeItem = {
   key: string;
@@ -66,6 +67,37 @@ export type ExchangeInput = {
   };
   globalRewardKey?: string;
 };
+
+export interface RewardExchangeProps {
+  buttonText: string;
+  notAvailableError: string;
+  chooseRewardTitle: string;
+  chooseAmountTitle: string;
+  confirmationTitle: string;
+  rewardTitle: string;
+  cancelText: string;
+  backText: string;
+  continueText: string;
+  continueToConfirmationText: string;
+  redeemText: string;
+  redeemTitle: string;
+  redemptionSuccessText: string;
+  sourceAmountMessage: string;
+  tooltiptext: string;
+  doneText: string;
+  selectText: string;
+  queryError: string;
+  redemptionError: string;
+  notEnoughError: string;
+  promoCode: string;
+  skeletonCardNum: number;
+  rewardNameTitle: string;
+  rewardAmountTitle: string;
+  rewardRedeemedText: string;
+  costTitle: string;
+  empty: VNode;
+  demoData?: object;
+}
 
 export type Stages = "" | "chooseReward" | "chooseAmount" | "confirmation";
 
@@ -132,7 +164,7 @@ export type ExchangeState = {
 };
 
 export function useRewardExchangeList(
-  props: SqmRewardExchangeList
+  props: RewardExchangeProps
 ): RewardExchangeViewProps {
   const [exchangeState, setExchangeState] = useReducer<
     ExchangeState,
@@ -181,10 +213,10 @@ export function useRewardExchangeList(
   const canvasRef = useRef<HTMLCanvasElement>();
   useEffect(() => {
     if (!canvasRef.current) return;
-    console.log("confetti!")
+    console.log("confetti!");
     const canvas: HTMLCanvasElement & { confetti? } = canvasRef.current;
     canvas.confetti =
-      canvas.confetti || confetti.create(canvas, { resize: true, });
+      canvas.confetti || confetti.create(canvas, { resize: true });
     canvas.confetti();
   }, [canvasRef.current]);
 
@@ -289,6 +321,7 @@ export function useRewardExchangeList(
       queryError: !!queryError,
       loading: loading || exchangeLoading,
       open,
+      empty: props.empty,
     },
     data: {
       exchangeList: data?.viewer?.visibleRewardExchangeItems?.data,

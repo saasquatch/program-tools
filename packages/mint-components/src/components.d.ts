@@ -1235,6 +1235,10 @@ export namespace Components {
          */
         "rewardNameTitle": string;
         /**
+          * @uiName Reward Redeemed Text
+         */
+        "rewardRedeemedText": string;
+        /**
           * @uiName Reward Title Text
          */
         "rewardTitle": string;
@@ -3563,6 +3567,10 @@ declare namespace LocalJSX {
           * @uiName Reward Row Title
          */
         "rewardNameTitle"?: string;
+        /**
+          * @uiName Reward Redeemed Text
+         */
+        "rewardRedeemedText"?: string;
         /**
           * @uiName Reward Title Text
          */
