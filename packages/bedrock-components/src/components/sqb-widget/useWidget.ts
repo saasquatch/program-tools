@@ -57,7 +57,6 @@ export function useWidget(props: SqbWidget) {
 
   if (props.trackLoads && !analyticsEventSent.current && userIdent !== undefined) {
     analyticsEventSent.current = true;
-    console.log('SENDING LOAD EVENT');
     sendLoadEvent({
       eventMeta: {
         programId,
