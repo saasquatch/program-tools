@@ -18,6 +18,35 @@ export const OneStep = () => {
         description="Share your referral link with a friend and earn up to $1250"
         icon="person-plus-fill"
       />
+    </sqm-program-explainer>
+  );
+};
+
+export const TwoSteps = () => {
+  return (
+    <sqm-program-explainer header="How it works">
+      <sqm-program-explainer-step
+        header="Get up to $1250 for inviting friends to Klip"
+        description="Share your referral link with a friend and earn up to $1250"
+        icon="person-plus-fill"
+      />
+      <sqm-program-explainer-step
+        header="Earn points for using Klip"
+        description="Complete tasks like uploading your first video or sharing videos with friends"
+        icon="server"
+      />
+    </sqm-program-explainer>
+  );
+};
+
+export const ThreeSteps = () => {
+  return (
+    <sqm-program-explainer header="How it works">
+      <sqm-program-explainer-step
+        header="Get up to $1250 for inviting friends to Klip"
+        description="Share your referral link with a friend and earn up to $1250"
+        icon="person-plus-fill"
+      />
       <sqm-program-explainer-step
         header="Earn points for using Klip"
         description="Complete tasks like uploading your first video or sharing videos with friends"
