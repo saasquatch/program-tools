@@ -5,6 +5,7 @@ Feature: Rewards Table
     Shows a list of rewards as a table
 
     @motivating
+    @ui
     Scenario: The empty state is shown if there are no rewards
         Given a user with rewards
         When they view the reward table
@@ -14,30 +15,16 @@ Feature: Rewards Table
         And "See all the rewards you have earned from referring friends and completing tasks" below the bolded text
         And the pagination buttons are disabled
 
-    @motivating
-    Scenario: The empty state image and text are customizable
-        Given the reward table has been given the following prop values
-            | prop                | value                                                                                                                           |
-            | empty-state-img-url | https://res.cloudinary.com/saasquatch/image/upload/v1634255445/squatch-assets/Copy_of_saasquatch-logo-tree-large-horizontal.png |
-            | empty-state-title   | View your reward history                                                                                                        |
-            | empty-state-text    | Earn rewards and review them here!                                                                                              |
-        And a user with no rewards
-        When they view the reward table
-        Then they see no rewards
-        And they see the SaaSquatch logo
-        And "View your reward history" in bold
-        And "Earn rewards and review them here! " below the bolded text
-        And the pagination buttons are disabled
-
     @minutae
+    @ui
     Scenario: A custom empty state can be provided
         Given a user with no rewards
         And a custom empty state has been supplied in the "empty" slot
         When they view the reward table
         Then they see the custom empty state
-        And the pagination buttons are disabled
 
     @minutae
+    @ui
     Scenario: The loading state is shown while rewards are loading
         Given the table is loading
         Then the loading state is shown in the table
@@ -45,6 +32,7 @@ Feature: Rewards Table
         And the pagination buttons are disabled
 
     @motivating
+    @ui
     Scenario Outline: The table becomes paginated when the number of rewards exceeds the per page limit
         Given the user has <number of rewards>
         And the table is configured to show <page limit> rewards per page
@@ -61,6 +49,7 @@ Feature: Rewards Table
             | 42                | 4          | 11              |
 
     @motivating
+    @ui
     Scenario: The table converts to a card view on tablet and mobile window sizes
         Given a user with rewards
         When they view the table
@@ -71,6 +60,7 @@ Feature: Rewards Table
         Then the rewards are displayed as cards in a singular column
 
     @motivating
+    @ui
     Scenario: Table and Mobile beakpoints can be configured
         Given the reward table has been configured with the following props
             | prop         | value |
@@ -85,6 +75,7 @@ Feature: Rewards Table
         Then the rewards are displayed as cards in a singular column
 
     @motivating
+    @ui
     Scenario Outline: By default the first column heading is hidden in mobile
         Given a reward table with 4 columns
         And prop "hidden-columns" with <hideColumnValue>
@@ -114,6 +105,7 @@ Feature: Rewards Table
         Then there is an error shown
 
     @minutae
+    @ui
     Scenario: Column heading can be hidden
         Given the table is configured with "show-labels" set to false
         Then the table is displayed without column headings

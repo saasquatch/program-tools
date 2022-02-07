@@ -35,10 +35,10 @@ Feature: Brand Configuration
         Then the colour is used to create a brand palete
         And it is applied to the children components
         Examples:
-            | colour             |
-            | #4225c4            |
-            | rgb(66, 37, 196)   |
-            | hsl(251, 68%, 46%) |
+            | colour                 |
+            | #4225c4                |
+            | rgb(66, 37, 196)       |
+            | hsl(251, 68%, 46%)     |
             | hsla(251, 68%, 46%, 1) |
 
     @motivating

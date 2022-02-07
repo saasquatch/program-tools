@@ -8,6 +8,7 @@ Feature: Reward Table Status Column
         Given the status column is included in the reward table
 
     @motivating
+    @ui
     Scenario Outline: The title of the status column is configurable
         Given the "column-title" prop is set to <value>
         Then the status column is shown with <columnTitle>
@@ -17,6 +18,7 @@ Feature: Reward Table Status Column
             | My column title | My column title |
 
     @motivating
+    @ui
     Scenario Outline: The status column displays the status of each reward
         Given a user
         And they have a <status> reward
@@ -64,6 +66,7 @@ Feature: Reward Table Status Column
             | REDEEMED  | Spent        | Blue       |
 
     @minutae
+    @ui
     Scenario: Expiry status date text can be configured
         Given the "expiry-text" prop has <value>
         And a user with an available reward with an expiry date

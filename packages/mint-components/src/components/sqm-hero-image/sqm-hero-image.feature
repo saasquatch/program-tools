@@ -8,6 +8,7 @@ Feature: Hero Image
 		Given a user viewing the Hero Image component
 
 	@motivating
+	@ui
 	Scenario: Overlay image displays header, description, and button with brand color
 		Given a Hero Image component configured with the following props
 			| prop        | value                                                              |
@@ -27,6 +28,7 @@ Feature: Hero Image
 		Then the image is scaled to fit content
 
 	@motivating
+	@ui
 	Scenario Outline: Overlay image crop can be aligned left, center or right
 		Given a Hero Image component configured with the following props
 			| prop        | value                                                              |
@@ -47,6 +49,7 @@ Feature: Hero Image
 			| N/A    | centered      |
 
 	@motivating
+	@ui
 	Scenario Outline: Overlay padding is configurable
 		Given a Hero Image component configured with the following props
 			| prop         | value                                                              |
@@ -74,6 +77,7 @@ Feature: Hero Image
 			| N/A        | no padding |
 
 	@motivating
+	@ui
 	Scenario Outline: Overlay color and background is configurable
 		Given a Hero Image component configured with the following props
 			| prop            | value                                                              |
@@ -96,6 +100,7 @@ Feature: Hero Image
 			| #211a27   | #aa481a      | 1              |
 
 	@motivating
+	@ui
 	Scenario: Two-column layout displays an image on one side and on the other side a header, description, and button
 		Given a Hero Image component configured with the following props
 			| prop        | value                                                              |
@@ -116,7 +121,8 @@ Feature: Hero Image
 		And the content is displayed below
 
 	@motivating
-	Scenario Outline: Image position is configurable for desktop and 599pxs
+	@ui
+	Scenario Outline: Image position is configurable for desktop and mobile
 		Given a Hero Image component configured with the following props
 			| prop             | value                                                              |
 			| image-url        | "https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"                                 |
@@ -136,6 +142,7 @@ Feature: Hero Image
 			| right    | bottom         |
 
 	@motivating
+	@ui
 	Scenario Outline: Padding is configurable for the image and text of two column layouts
 		Given a Hero Image component configured with the following props
 			| prop          | value                                                              |
@@ -164,6 +171,7 @@ Feature: Hero Image
 			| none        | none         |
 
 	@motivating
+	@ui
 	Scenario Outline: Two-column layout image division percentage is configurable
 		Given a Hero Image component configured with the following props
 			| prop             | value                                                              |
@@ -183,6 +191,7 @@ Feature: Hero Image
 			| 66%     |
 
 	@motivating
+	@ui
 	Scenario: Two-column layout text and background color is configurable
 		Given a Hero Image component configured with the following props
 			| prop             | value                                                              |

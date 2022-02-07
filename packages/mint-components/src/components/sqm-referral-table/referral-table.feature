@@ -6,6 +6,7 @@ Feature: Referral Table
     with a collection of columns.
 
     @motivating
+    @ui
     Scenario: The empty state is shown if there are no referrals
         Given a user with no referrals
         When they view the referral table
@@ -16,29 +17,30 @@ Feature: Referral Table
         And the pagination buttons are disabled
 
     @motivating
+    @ui
     Scenario: The empty state image and text are customizable
-        Given the referral table has been given the following prop values
-            | prop                | value                                                                                                                           |
-            | empty-state-img-url | https://res.cloudinary.com/saasquatch/image/upload/v1634255445/squatch-assets/Copy_of_saasquatch-logo-tree-large-horizontal.png |
-            | empty-state-title   | View your referral history                                                                                                      |
-            | empty-state-text    | See your previous referrals and what you earned!                                                                                |
+        Given the referral table has 'sqm-empty' as a child with the following props
+            | prop               | value                                                                                                                           |
+            | empty-state-imgage | https://res.cloudinary.com/saasquatch/image/upload/v1634255445/squatch-assets/Copy_of_saasquatch-logo-tree-large-horizontal.png |
+            | empty-state-header | View your referral history                                                                                                      |
+            | empty-state-text   | See your previous referrals and what you earned!                                                                                |
         And a user with no referrals
         When they view the referral table
         Then they see no referrals
         And they see the SaaSquatch logo
         And "View your referral history" in bold
         And "See your previous referrals and what you earned!" below the bolded text
-        And the pagination buttons are disabled
 
     @minutae
+    @ui
     Scenario: A custom empty state can be provided
         Given a user with no referrals
         And a custom empty state has been supplied in the "empty" slot
         When they view the referral table
         Then they see the custom empty state
-        And the pagination buttons are disabled
 
     @motivating
+    @ui
     Scenario: The loading state is shown while referrals are loading
         Given the table is loading
         Then the loading state is shown in the table
@@ -46,6 +48,7 @@ Feature: Referral Table
         And the pagination buttons are disabled
 
     @motivating
+    @ui
     Scenario Outline: The table becomes paginated when the number of referrals exceeds the per page limit
         Given the user has <number of referrals>
         And the table is configured to show <page limit> referrals per page
@@ -62,6 +65,7 @@ Feature: Referral Table
             | 42                  | 4          | 11              |
 
     @motivating
+    @ui
     Scenario: The table converts to a card view on tablet and mobile window sizes
         Given a user with referrals
         When they view the table
@@ -72,6 +76,7 @@ Feature: Referral Table
         Then the referrals are displayed as cards in a singular column
 
     @motivating
+    @ui
     Scenario: Table and Mobile beakpoints can be configured
         Given the referral table has been configured with the following props
             | prop         | value |
@@ -86,7 +91,8 @@ Feature: Referral Table
         Then the referrals are displayed as cards in a singular column
 
     @motivating
-    Scenario Outline: By default the first column heading is hidden in mobile,
+    @ui
+    Scenario Outline: By default the first column heading is hidden in mobile, but others can be hidden
         Given a referral table with 4 columns
         And prop "hidden-columns" with <hideColumnValue>
         And a user with referrals
@@ -117,6 +123,7 @@ Feature: Referral Table
         Then only classic referrals are shown in the table
 
     @minutae
+    @ui
     Scenario: Column heading can be hidden
         Given the table is configured with "show-labels" set to false
         Then the table is displayed without column headings

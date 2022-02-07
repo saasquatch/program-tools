@@ -8,6 +8,7 @@ Feature: Referral Table Date Column
         Given the date column is included in the referral table
 
     @motivating
+    @ui
     Scenario Outline: The title of the date column is configurable
         Given the "column-title" prop is set to <value>
         Then the date column is shown with <columTitle>

@@ -9,6 +9,7 @@ Feature: Reward Table reward Column
         And rewards with translations exist
 
     @motivating
+    @ui
     Scenario Outline: The title of the reward column is configurable
         Given the "column-title" prop is set to <value>
         Then the reward column is shown with <columnTitle>
@@ -25,6 +26,7 @@ Feature: Reward Table reward Column
         And the name is the prettyValue translated for the users locale
 
     @motivating
+    @ui
     Scenario: The reward column displays an availability bar if the reward is redeemable
         Given a user with a <status> credit reward of <value>
         But the user has <redeemedAmount>
@@ -42,6 +44,7 @@ Feature: Reward Table reward Column
             | PENDING   | 10 Points | 10%        | 1 Point         | 1 Point  remaining  |
 
     @motivating
+    @ui
     Scenario Outline: The reward column displays an availability bar if the reward was redeemable but had been cancelled or expired
         Given a user with a credit reward of <value>
         And the reward has <status>
@@ -59,6 +62,7 @@ Feature: Reward Table reward Column
             | CANCELLED | 10 Points | 20%        | 8 Point        | 8 Point redeemed |
 
     @motivating
+    @ui
     Scenario: The reward column doesn't display the availability bar if the reward is not redeemable
         Given a user with a non credit reward
         When they view the rewards table
@@ -66,6 +70,7 @@ Feature: Reward Table reward Column
         But they do not see the availablity bar
 
     @motivating
+    @ui
     Scenario Outline: The reward column doesn't display the availability bar if the reward is only 1 reward unit
         Given a user with a credit reward for 1 of a reward unit
         And it has <status>
@@ -80,6 +85,7 @@ Feature: Reward Table reward Column
             | CANCELLED |
 
     @motivating
+    @ui
     Scenario: The reward column doesn't display the availability bar for redeemed credit rewards
         Given a user with a "REDEEMED" credit reward
         When they view the rewards table
@@ -87,7 +93,8 @@ Feature: Reward Table reward Column
         But they do not see the availablity bar
 
     @motivating
-    Scenario: Users can copy their fuel tank codes 
+    @ui
+    Scenario: Users can copy their fuel tank codes
         Given a user with a fuel tank reward
         When they view the rewards table
         Then they see their fuel tank reward
