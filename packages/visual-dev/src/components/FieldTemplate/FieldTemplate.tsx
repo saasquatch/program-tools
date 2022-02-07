@@ -1,6 +1,7 @@
 import { FieldTemplateProps } from "@rjsf/core";
 import React from "react";
 import styled from "styled-components";
+import { Icon } from "../Icon";
 import * as Styles from "./Styles";
 
 const Label = styled.label`
@@ -61,10 +62,12 @@ export const FieldTemplate = (props: FieldTemplateProps) => {
           {rawErrors?.length > 0 && (
             <Errors id={`${id}-errors`}>
               {rawErrors.map((error: string) => {
-                return <ErrorItem key={error}>
-                    <Icon css="" icon="info" size="15px" />
+                return (
+                  <ErrorItem key={error}>
+                    <Icon icon="info" size="15px" />
                     <span>{error}</span>
-                </ErrorItem>;
+                  </ErrorItem>
+                );
               })}
             </Errors>
           )}
