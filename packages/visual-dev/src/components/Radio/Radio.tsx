@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useRef } from "react";
 import root from "react-shadow/styled-components";
 import styled from "styled-components";
 import * as Styles from "./Styles";

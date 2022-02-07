@@ -30,10 +30,12 @@ import { FieldTemplate } from "./components/FieldTemplate";
 import { ObjectFieldTemplate } from "./components/ObjectFieldTemplate";
 import { ArrayFieldTemplate } from "./components/ArrayFieldTemplate";
 import { ErrorListTemplate } from "./components/ErrorListTemplate";
-import { RJSFRadioCardWidget } from "./components/RadioCard";
+import { RadioCard, RJSFRadioCardWidget } from "./components/RadioCard";
 import { Icon } from "./components/Icon";
 import { RJSFTextarea, Textarea } from "./components/TextArea";
 import { RJSFSelect } from "./components/Select/rjsf-Select";
+import { RJSFRadioActionWidget } from "./components/RadioAction/rjsf-RadioAction";
+import { RadioAction } from "./components/RadioAction";
 /// <reference types="styled-components/cssprop" />
 
 export {
@@ -74,4 +76,7 @@ export {
   Textarea,
   RJSFTextarea,
   RJSFSelect,
+  RJSFRadioActionWidget,
+  RadioAction,
+  RadioCard,
 };
