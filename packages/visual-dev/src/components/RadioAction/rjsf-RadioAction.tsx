@@ -23,19 +23,19 @@ function isActionOption(option: any): option is enumOption {
 export function RJSFRadioActionWidget(props: WidgetProps) {
   const valueOptions = props?.options?.enumOptions;
   const cardOptions = props?.options?.ruleOptions;
-  const options = props.uiSchema["ui:options"];
+  const twoColumns = props?.uiSchema["ui:options"]?.twoColumns ? true : false;
+  console.log(props?.uiSchema["ui:options"]);
   if (!isEnumArray(valueOptions) || !isEnumArray(cardOptions)) {
     return <></>;
   }
   return (
-    <RadioActionGroup id={props.id}>
+    <RadioActionGroup id={props.id} twoColumns={twoColumns}>
       {cardOptions?.map((option: unknown) => {
         if (!isActionOption(option) || !isEnumValue(valueOptions[option.key])) {
           return <></>;
         }
         return (
           <RadioAction
-            {...options}
             required={props.required}
             id={props.id + option.key.toString()}
             name={props.id + option.key.toString()}

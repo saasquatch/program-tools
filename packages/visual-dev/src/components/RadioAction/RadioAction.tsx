@@ -45,8 +45,7 @@ const Container = styled.div<{ twoColumns: boolean }>`
     `display: grid;
     width: 100%;
     display: grid;
-    grid-auto-columns: 1fr 1fr;
-    grid-auto-flow: column;
+    grid-template-columns: 50% 50%;
     grid-gap: var(--sq-spacing-small)`}
 `;
 
