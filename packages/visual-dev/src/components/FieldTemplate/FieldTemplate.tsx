@@ -61,7 +61,10 @@ export const FieldTemplate = (props: FieldTemplateProps) => {
           {rawErrors?.length > 0 && (
             <Errors id={`${id}-errors`}>
               {rawErrors.map((error: string) => {
-                return <ErrorItem key={error}>{error}</ErrorItem>;
+                return <ErrorItem key={error}>
+                    <Icon css="" icon="info" size="15px" />
+                    <span>{error}</span>
+                </ErrorItem>;
               })}
             </Errors>
           )}
