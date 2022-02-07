@@ -5,7 +5,7 @@ import * as Styles from "./Styles";
 
 type AvatarProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate"|"css">;
+  Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
   firstName?: string;

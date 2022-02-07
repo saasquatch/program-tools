@@ -6,7 +6,7 @@ import { IconKey, Icon } from "../Icon";
 
 type GroupProps = React.ComponentProps<"input">;
 
-type InputProps = OptionProps & React.ComponentProps<"input">;
+type InputProps = OptionProps & Omit<React.ComponentProps<"input">, "css">;
 export interface OptionProps {
   /**
    * Current value of radio group

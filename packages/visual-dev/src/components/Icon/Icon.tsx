@@ -5,7 +5,7 @@ import * as SVGs from "./SVGs";
 
 export type IconProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate">;
+  Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
   /**

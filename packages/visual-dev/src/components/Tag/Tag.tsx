@@ -5,7 +5,7 @@ import { Icon } from "../Icon";
 
 type TagProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate"|"css">;
+  Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
   onClickClose?: () => void;

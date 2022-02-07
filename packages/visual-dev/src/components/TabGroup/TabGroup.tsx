@@ -4,7 +4,7 @@ import * as Styles from "./Styles";
 
 type TabGroupProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate"|"css">;
+  Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
   children?: React.ReactNode;
@@ -37,7 +37,12 @@ export const TabGroup = React.forwardRef<
   const { color = "primary", children, customCSS = {}, ...rest } = props;
 
   return (
-    <TabGroupStyle color={color} {...rest} ref={forwardedRef} customCSS={customCSS}>
+    <TabGroupStyle
+      color={color}
+      {...rest}
+      ref={forwardedRef}
+      customCSS={customCSS}
+    >
       {children}
     </TabGroupStyle>
   );
