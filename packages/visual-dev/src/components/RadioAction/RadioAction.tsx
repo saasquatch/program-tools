@@ -102,7 +102,6 @@ export const RadioActionGroup = React.forwardRef<
   GroupProps
 >((props) => {
   const { twoColumns = false, children } = props;
-  console.log(twoColumns);
   return (
     <ShadowDom>
       <Container twoColumns={twoColumns}>{children}</Container>

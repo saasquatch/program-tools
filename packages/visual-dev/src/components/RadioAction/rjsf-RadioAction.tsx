@@ -24,7 +24,6 @@ export function RJSFRadioActionWidget(props: WidgetProps) {
   const valueOptions = props?.options?.enumOptions;
   const cardOptions = props?.options?.ruleOptions;
   const twoColumns = props?.uiSchema["ui:options"]?.twoColumns ? true : false;
-  console.log(props?.uiSchema["ui:options"]);
   if (!isEnumArray(valueOptions) || !isEnumArray(cardOptions)) {
     return <></>;
   }
