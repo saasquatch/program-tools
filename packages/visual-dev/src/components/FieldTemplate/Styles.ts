@@ -36,11 +36,16 @@ export const HelpText = css`
 
 export const Errors = css`
   margin: var(--sq-spacing-small) 0;
-  padding-left: var(--sq-spacing-medium);
+  padding-left: 0;
+  list-style-type: none;
   & > * {
     color: var(--sq-on-surface-critical);
     margin: var(--sq-spacing-small) 0 0 !important;
   }
 `;
 
-export const ErrorItem = css``;
+export const ErrorItem = css`
+  & > span {
+    margin-left: 8px;
+  }
+`;
