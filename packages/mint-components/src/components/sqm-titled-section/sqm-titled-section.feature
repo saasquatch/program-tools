@@ -8,6 +8,7 @@ Feature: Titled Section
         And it has content in the content slot
 
     @motivating
+    @ui
     Scenario: Text alignment defaults to left align but can be configured
         Given the titled section has "text-align" <textAlignPropValue>
         When a user views the titled section
@@ -21,6 +22,7 @@ Feature: Titled Section
             |                    | left    |
 
     @minutae
+    @ui
     Scenario: Label margin is configurable
         Given the titled section has "label-margin" <marginPropValue>
         When a user views the titled section
@@ -41,6 +43,7 @@ Feature: Titled Section
             |                 | no         |
 
     @minutae
+    @ui
     Scenario Outline: Titled section padding is configurable
         Given the titled section has "padding" <paddingPropValue>
         When a user views the titled section

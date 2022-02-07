@@ -1595,6 +1595,12 @@ export namespace Components {
     }
     interface SqmStatContainer {
         /**
+          * @uiName Display
+          * @uiType string
+          * @uiEnum ["grid", "flex"]
+         */
+        "display": "grid" | "flex";
+        /**
           * @uiName Space between stats
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
@@ -3930,6 +3936,12 @@ declare namespace LocalJSX {
         "tooltiptext"?: string;
     }
     interface SqmStatContainer {
+        /**
+          * @uiName Display
+          * @uiType string
+          * @uiEnum ["grid", "flex"]
+         */
+        "display"?: "grid" | "flex";
         /**
           * @uiName Space between stats
           * @uiType string

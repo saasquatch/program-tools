@@ -3,6 +3,7 @@
 Feature: Reward Table Customer Note Column
 
     @motivating
+    @ui
     Scenario Outline: The title of the note column is configurable
         Given the "column-title" prop is set to <value>
         Then the note column is shown with <columnTitle>

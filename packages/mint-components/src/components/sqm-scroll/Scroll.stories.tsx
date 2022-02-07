@@ -36,7 +36,7 @@ export const ScrollId = () => {
         button-text="Scroll"
         iconSlot="prefix"
         button-type="primary"
-        iconName="facebook"
+        iconName="gear"
         size="large"
       ></sqm-scroll>
       <div style={{ position: "absolute", bottom: "0" }}>

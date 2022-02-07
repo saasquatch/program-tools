@@ -3,6 +3,7 @@
 Feature: Timeline
 
     @motivating
+    @ui
     Scenario: The timeline adds lines between timeline entries
         Given a timeline
         And it has many timeline entries as children
@@ -11,6 +12,7 @@ Feature: Timeline
         And see that the last entry does not have a line
 
     @motivating
+    @ui
     Scenario Outline: The timeline can set the icons used by its timeline entries
         Given a timeline with "icon" <iconPropValue>
         And it has many timeline entries as children

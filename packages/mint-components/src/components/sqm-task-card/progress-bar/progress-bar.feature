@@ -3,6 +3,7 @@
 Feature: Task Card Progress Bar
 
 	@motivating
+	@ui
 	Scenario Outline: The progress bar displays a continuous bar with the goal represented by a present
 		Given a Task Card component
 		And the users progress is <progress>
@@ -24,6 +25,7 @@ Feature: Task Card Progress Bar
 			| 1200     | ―――――――――――――――――――🎁 | $    | yes   |
 
 	@motivating
+	@ui
 	Scenario Outline: The progress bar can be displayed with steps instead of a continuous line
 		Given a Task Card component
 		And the user progress is <progress>
@@ -44,6 +46,7 @@ Feature: Task Card Progress Bar
 			| 12       | ―――●―――●―――●―――●―――🎁 | yes   |
 
 	@motivating
+	@ui
 	Scenario Outline: The continuous progress bar will continue to progress for repeatable rewards
 		Given a Task Card component
 		And the user progress is <progress>
@@ -66,6 +69,7 @@ Feature: Task Card Progress Bar
 			| 1250     | 🎁―――――――🎁―――●―――🎁 | $    | gift  | colorful | 500   | gift  | colorful  | 1000   | gift  | greyscale | 1500   |
 
 	@motivating
+	@ui
 	Scenario Outline: The stepped progress bar will continue to progress for repeatable rewards
 		Given a Task Card component
 		And the user progress is <progress>

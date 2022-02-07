@@ -3,6 +3,7 @@
 Feature: Timeline Entry
 
     @motivating
+    @ui
     Scenario: Timeline entries have an icon, a reward and an entry desciption
         Given an timeline entry with the following props
             | prop   | value                                               |
@@ -16,6 +17,7 @@ Feature: Timeline Entry
         And below they see "Earn a 50$ Visa Giftcard for each referral you make"
 
     @motivating
+    @ui
     Scenario Outline: Icon can either be a gift or a brand colour cirle
         Given a timeline entry with "icon" <iconPropValue>
         When a user views the entry
@@ -27,6 +29,7 @@ Feature: Timeline Entry
             |                 | gift                |
 
     @motivating
+    @ui
     Scenario: A timeline entry can display a line to connect it to another entry
         Given a timeline entry with "line" "true"
         When a user views the entry

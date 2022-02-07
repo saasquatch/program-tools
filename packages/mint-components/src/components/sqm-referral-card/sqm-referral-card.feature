@@ -8,6 +8,7 @@ Feature: Referral Card
 		Given a user viewing the Referral Card component
 
 	@motivating
+	@ui
 	Scenario: Referral Card component displays provided content in left and right slots side by side
 		Given a Referral Card component
 		And a slot with the name "left"
@@ -19,6 +20,7 @@ Feature: Referral Card
 		And the "left" slot content is displayed above the "right" slot content
 
 	@motivating
+	@ui
 	Scenario Outline: Referral Card component content can be vertically aligned start, center, end
 		Given a Referral Card component
 		And a slot with the name "left"

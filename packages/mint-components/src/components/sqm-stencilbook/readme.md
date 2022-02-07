@@ -58,11 +58,11 @@
 - [sqm-referral-table-date-column](../sqm-referral-table/columns)
 - [sqm-referral-table-rewards-column](../sqm-referral-table/columns)
 - [sqm-hero-image](../sqm-hero-image)
-- [sqm-image](../sqm-image)
 - [sqm-share-code](../sqm-share-code)
 - [sqm-timeline](../sqm-timeline)
 - [sqm-timeline-entry](../sqm-timeline)
 - [sqm-referral-card](../sqm-referral-card)
+- [sqm-image](../sqm-image)
 - [sqm-titled-section](../sqm-titled-section)
 - [sqm-scroll](../sqm-scroll)
 
@@ -118,11 +118,11 @@ graph TD;
   sqm-stencilbook --> sqm-referral-table-date-column
   sqm-stencilbook --> sqm-referral-table-rewards-column
   sqm-stencilbook --> sqm-hero-image
-  sqm-stencilbook --> sqm-image
   sqm-stencilbook --> sqm-share-code
   sqm-stencilbook --> sqm-timeline
   sqm-stencilbook --> sqm-timeline-entry
   sqm-stencilbook --> sqm-referral-card
+  sqm-stencilbook --> sqm-image
   sqm-stencilbook --> sqm-titled-section
   sqm-stencilbook --> sqm-scroll
   sqm-empty --> sqm-portal-container
@@ -130,6 +130,7 @@ graph TD;
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
   sqm-edit-profile --> sqm-form-message
+  sqm-reward-exchange-list --> sqm-empty
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
   sqm-rewards-table-reward-column --> sqm-rewards-table-reward-cell
