@@ -17,6 +17,7 @@ Feature: Card Feed
 		Then the number of columns adjust to the given width
 
 	@motivating
+	@ui
 	Scenario Outline: The Card Feed component can have a maximum width
 		Given a Card Feed component
 		And it is wrapping a number of task cards as children
@@ -32,6 +33,7 @@ Feature: Card Feed
 			| 400   | 400px |
 
 	@motivating
+	@ui
 	Scenario Outline: The Card Feed component gap between task cards can be customized
 		Given a Card Feed component
 		And it is wrapping a number of task cards as children

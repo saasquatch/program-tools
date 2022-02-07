@@ -9,6 +9,26 @@ Feature: Reward Exchange List
         Given a tenant with reward exchange rules
 
     @motivating
+    @ui
+    Scenario: The empty state is shown if there are no visible exchanges
+        Given a user with no visible exchanges
+        When they view the reward exchange
+        Then no exchange options are displayed
+        And they see an image of a present
+        And "Redeem Rewards" in bold
+        And "Use your points to redeem rewards once they become available" below the bolded text
+        And the pagination buttons are disabled
+
+    @minutae
+    @ui
+    Scenario: A custom empty state can be provided
+        Given a user with no visible exchanges
+        And a custom empty state has been supplied in the "empty" slot
+        When they view the reward exchange
+        Then they see the custom empty state
+
+    @motivating
+    @ui
     Scenario: A Loading Skeleton is displayed when the reward exchange rules are loading
         Given a user
         When they load the reward exchange list
@@ -25,6 +45,7 @@ Feature: Reward Exchange List
         And it displays "Unable to load reward exchange list. Please try again"
 
     @motivating
+    @ui
     Scenario: The exchange progress bar progresses through the exchange process
         Given a user who is eligible for the tenants reward exchange rules
         When they view the reward exchange list
@@ -81,6 +102,7 @@ Feature: Reward Exchange List
         Then they are brought to the selection page
 
     @motivating
+    @ui
     Scenario: Reward exchange rule names and images are used in the reward exchange cards
         Given a tenant reward exchange rule
         And it has name "My Visa Exchange Rule"

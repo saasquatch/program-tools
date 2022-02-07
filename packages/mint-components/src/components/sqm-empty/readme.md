@@ -18,6 +18,7 @@
 
 ### Used by
 
+ - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
  - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Depends on
@@ -34,6 +35,7 @@ graph TD;
   sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
+  sqm-reward-exchange-list --> sqm-empty
   sqm-stencilbook --> sqm-empty
   style sqm-empty fill:#f9f,stroke:#333,stroke-width:4px
 ```

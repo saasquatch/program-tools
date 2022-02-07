@@ -22,6 +22,13 @@ export class StatContainer {
    */
   @Prop() space: Spacing = "xxx-large";
 
+  /**
+   * @uiName Display
+   * @uiType string
+   * @uiEnum ["grid", "flex"]
+   */
+  @Prop() display: "grid" | "flex" = "grid";
+
   constructor() {
     withHooks(this);
   }

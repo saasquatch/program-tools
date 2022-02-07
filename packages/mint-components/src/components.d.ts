@@ -1432,9 +1432,22 @@ export namespace Components {
     interface SqmScroll {
         "buttonText": string;
         "buttonType": string;
+        "caret": boolean;
+        "circle": boolean;
+        "disabled": boolean;
+        "download": string;
+        "href": string;
+        "iconName": string;
+        "iconSlot": string;
+        "loading": boolean;
+        "name": string;
+        "outline": boolean;
+        "pill": boolean;
         "scrollAnimation": "smooth" | "auto";
         "scrollId"?: string;
         "scrollTagName"?: string;
+        "size": string;
+        "target": string;
     }
     interface SqmShareButton {
         /**
@@ -1581,6 +1594,12 @@ export namespace Components {
         "tooltiptext": string;
     }
     interface SqmStatContainer {
+        /**
+          * @uiName Display
+          * @uiType string
+          * @uiEnum ["grid", "flex"]
+         */
+        "display": "grid" | "flex";
         /**
           * @uiName Space between stats
           * @uiType string
@@ -3755,9 +3774,22 @@ declare namespace LocalJSX {
     interface SqmScroll {
         "buttonText"?: string;
         "buttonType"?: string;
+        "caret"?: boolean;
+        "circle"?: boolean;
+        "disabled"?: boolean;
+        "download"?: string;
+        "href"?: string;
+        "iconName"?: string;
+        "iconSlot"?: string;
+        "loading"?: boolean;
+        "name"?: string;
+        "outline"?: boolean;
+        "pill"?: boolean;
         "scrollAnimation"?: "smooth" | "auto";
         "scrollId"?: string;
         "scrollTagName"?: string;
+        "size"?: string;
+        "target"?: string;
     }
     interface SqmShareButton {
         /**
@@ -3904,6 +3936,12 @@ declare namespace LocalJSX {
         "tooltiptext"?: string;
     }
     interface SqmStatContainer {
+        /**
+          * @uiName Display
+          * @uiType string
+          * @uiEnum ["grid", "flex"]
+         */
+        "display"?: "grid" | "flex";
         /**
           * @uiName Space between stats
           * @uiType string

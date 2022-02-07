@@ -3,6 +3,7 @@
 Feature: Program Explainer Step
 
     @motivating
+    @ui
     Scenario: The program explainer step displays a icon, header and description
         Given a program explainer step with props
             | prop        | value                            |
@@ -17,6 +18,7 @@ Feature: Program Explainer Step
         And the step background colour is weight 50 brand colour
 
     @motivating
+    @ui
     Scenario: The program explainer can display an image in place of an icon
         Given a program explainer
         And it has an "image-url" prop with a value of a valid url to an image
@@ -24,6 +26,7 @@ Feature: Program Explainer Step
         Then the image is displayed in place of an incon in the top left hand corner
 
     @motivating
+    @ui
     Scenario: Colours are customizable
         Given a program explainer step with props
             | prop             | value            |

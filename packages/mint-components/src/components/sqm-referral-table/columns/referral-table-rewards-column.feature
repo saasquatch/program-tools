@@ -9,6 +9,7 @@ Feature: Referral Table Reward Column
         And at least one referral exists
 
     @motivating
+    @ui
     Scenario Outline: The referral reward and it's status are shown for each referral
         Then for each referral reward there exists a reward cell
         And the reward type and value is displayed in the cell

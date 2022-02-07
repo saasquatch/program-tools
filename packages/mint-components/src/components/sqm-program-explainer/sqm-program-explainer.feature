@@ -3,6 +3,7 @@
 Feature: Program Explainer
 
     @motivating
+    @ui
     Scenario Outline: The program explainer wraps program explainer steps and aligns them
         Given a program explainer component
         And it has <number> program explainer steps as components
@@ -21,6 +22,7 @@ Feature: Program Explainer
             | 4      |
 
     @motivating
+    @ui
     Scenario: The program explainer displays a section header
         Given a program explainer step with props
             | prop   | value     |
@@ -30,6 +32,7 @@ Feature: Program Explainer
         Then they see "My Header" centered above the explainer steps
 
     @motivating
+    @ui
     Scenario: Colours are customizable
         Given a program explainer with props
             | prop             | value  |

@@ -5,6 +5,7 @@ Feature: Share Button
   The share button redirects users to a platform where they can share their referral link
 
   @motivating
+  @ui
   Scenario Outline: Share button displays for various platforms
     Given the share button's medium prop is "<medium>"
     And the button's child is text saying "BUTTON_TEXT"
@@ -27,6 +28,7 @@ Feature: Share Button
       | pinterest     | #e60023      | pinterest logo     |
 
   @minutae
+  @ui
   Scenario Outline: Default icons can be overwritten
     Given a share button for any medium with <iconPropValue>
     When the share button is rendered
@@ -38,6 +40,7 @@ Feature: Share Button
       | bandaid       |
 
   @motivating
+  @ui
   Scenario Outline: Default share medium colours can be overwritten
     Given a share button for any medium with <backgroundColourPropValue>
     When the share button is rendered
@@ -49,6 +52,7 @@ Feature: Share Button
       | green                     |
 
   @minutae
+  @ui
   Scenario Outline: Share medium icons and text can be hidden
     Given a share button with <prop> <value>
     When the share button is rendered
@@ -59,6 +63,7 @@ Feature: Share Button
       | hidetext | true  | text    |
 
   @minutae
+  @ui
   Scenario Outline: Icons can be on either side of the text
     Given a share button with <iconslotPropValue>
     When the share button is rendered

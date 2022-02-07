@@ -45,6 +45,7 @@ Feature: Leaderboard
 			|           | row number |
 
 	@minutiae
+	@ui
 	Scenario: An empty state is displayed if no users
 		Given a user
 		But no users have made any referrals
@@ -56,6 +57,15 @@ Feature: Leaderboard
 		And the text is center aligned
 
 	@minutiae
+	@ui
+	Scenario: A custom empty state can be provided
+		Given a user
+		But no users have made any referrals
+		When they view the leaderboard
+		Then the contents of the "empty" slot are displayed
+
+	@minutiae
+	@ui
 	Scenario: Leaderboard headings can be customized
 		Given a leaderboard
 		And it has the following props
@@ -73,6 +83,7 @@ Feature: Leaderboard
 			| stat   | Referral Count |
 
 	@motivating
+	@ui
 	Scenario Outline: Rank can be hidden or shown
 		Given a leaderboard
 		And it has prop "show-rank" with <propValue>
@@ -86,6 +97,7 @@ Feature: Leaderboard
 			|           | don't see |
 
 	@motivating
+	@ui
 	Scenario: Users in the top 10 referrers see their leaderboard row highlighted
 		Given a user
 		And they are in the top 10 referrers
@@ -93,6 +105,7 @@ Feature: Leaderboard
 		Then they see the row with their name highlighted with brand colour
 
 	@motivating
+	@ui
 	Scenario Outline: Users not in the top 10 referrers can see their progress at the bottom of the leaderboard
 		Given a user
 		And they <mayHmayHaveReferralave>

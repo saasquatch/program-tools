@@ -3,6 +3,7 @@
 Feature: Task Card
 
 	@motivating
+	@ui
 	Scenario: A header, body title and a CTA button are always displayed
 		Given the Task Card is configured with the following props
 			| prop         | value             |
@@ -20,6 +21,7 @@ Feature: Task Card
 		Then they are redirected to "example.com" in a new window
 
 	@motivating
+	@ui
 	Scenario Outline: A Task Card description can be included but is not required
 		Given a Task Card
 		And it has <descriptionPropValue>
@@ -46,6 +48,7 @@ Feature: Task Card
 			| N/A                 | the same tab |
 
 	@minutae
+	@ui
 	Scenario: A loading state is displayed while the Task Card is loading
 		Given a Task Card component
 		When a user views the Task Card
@@ -54,6 +57,7 @@ Feature: Task Card
 		Then the loading state disapears
 
 	@motivating
+	@ui
 	Scenario Outline: The Progress Bar can be shown or hidden but is hidden by default
 		Given a Task Card
 		And it has <showProgressBarPropValue>
@@ -75,6 +79,7 @@ Feature: Task Card
 		And the contents of the widget the card is dislayed within are refreshed
 
 	@motivating
+	@ui
 	Scenario Outline: Tasks can be repeatable or one-time only but are one-time only by default
 		Given a Task Card
 		And it has <repeatablePropValue>
@@ -132,6 +137,7 @@ Feature: Task Card
 			| after the interval  | fr     | Task Ended Date |
 
 	@motivating
+	@ui
 	Scenario Outline: A task completion count is displayed for repeatable tasks
 		Given a Task Card
 		And it is configured for a repeatable task
