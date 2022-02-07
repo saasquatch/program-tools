@@ -33,6 +33,7 @@ import { ErrorListTemplate } from "./components/ErrorListTemplate";
 import { RJSFRadioCardWidget } from "./components/RadioCard";
 import { Icon } from "./components/Icon";
 import { RJSFTextarea, Textarea } from "./components/TextArea";
+import { RJSFSelect } from "./components/Select/rjsf-Select";
 /// <reference types="styled-components/cssprop" />
 
 export {
@@ -72,4 +73,5 @@ export {
   Icon,
   Textarea,
   RJSFTextarea,
+  RJSFSelect,
 };

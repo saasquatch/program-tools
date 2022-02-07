@@ -23,6 +23,7 @@ function isActionOption(option: any): option is enumOption {
 export function RJSFRadioActionWidget(props: WidgetProps) {
   const valueOptions = props?.options?.enumOptions;
   const cardOptions = props?.options?.ruleOptions;
+  const options = props.uiSchema["ui:options"];
   if (!isEnumArray(valueOptions) || !isEnumArray(cardOptions)) {
     return <></>;
   }
@@ -34,6 +35,7 @@ export function RJSFRadioActionWidget(props: WidgetProps) {
         }
         return (
           <RadioAction
+            {...options}
             required={props.required}
             id={props.id + option.key.toString()}
             name={props.id + option.key.toString()}

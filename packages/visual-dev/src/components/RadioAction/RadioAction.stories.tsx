@@ -38,7 +38,7 @@ export const Functional = () => {
   );
 };
 
-export const radioAction = () => {
+export const RadioActionUnchecked = () => {
   return (
     <RadioActionGroup>
       <RadioAction
@@ -52,7 +52,7 @@ export const radioAction = () => {
   );
 };
 
-export const radioActionChecked = () => {
+export const RadioActionChecked = () => {
   return (
     <RadioActionGroup>
       <RadioAction
@@ -60,6 +60,27 @@ export const radioActionChecked = () => {
         description="Addtional description describing conequences of this option"
         value={1}
         optionValue={1}
+        onChange={void 0}
+      />
+    </RadioActionGroup>
+  );
+};
+
+export const TwoColumnLayout = () => {
+  return (
+    <RadioActionGroup twoColumns={true}>
+      <RadioAction
+        title="Primary action"
+        description="Addtional description describing conequences of this option"
+        value={1}
+        optionValue={1}
+        onChange={void 0}
+      />
+      <RadioAction
+        title="Secondary action"
+        description="Addtional description describing conequences of this option"
+        value={1}
+        optionValue={2}
         onChange={void 0}
       />
     </RadioActionGroup>

@@ -4,7 +4,6 @@ export const RadioLabelStyle = css`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  margin-right: 10px;
   padding: 20px;
   user-select: none;
   cursor: pointer;

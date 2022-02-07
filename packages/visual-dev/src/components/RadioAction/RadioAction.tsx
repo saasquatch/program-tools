@@ -3,10 +3,16 @@ import root from "react-shadow/styled-components";
 import styled from "styled-components";
 import * as Styles from "./Styles";
 
-type GroupProps = React.ComponentProps<"input">;
+type GroupProps = React.ComponentProps<"input"> & GroupOptions;
 
 type InputProps = OptionProps & Omit<React.ComponentProps<"input">, "value">;
 
+export interface GroupOptions {
+  /**
+   * Display two columns of radios
+   */
+  twoColumns?: boolean;
+}
 export interface OptionProps {
   /**
    * Current value of radio group
@@ -32,6 +38,18 @@ export interface OptionProps {
 
 const ShadowDom = styled(root.div)``;
 
+const Container = styled.div<{ twoColumns: boolean }>`
+  display: contents;
+  ${(props) =>
+    props.twoColumns &&
+    `display: grid;
+    width: 100%;
+    display: grid;
+    grid-auto-columns: 1fr 1fr;
+    grid-auto-flow: column;
+    grid-gap: var(--sq-spacing-small)`}
+`;
+
 const RadioLabel = styled.label<{ isChecked: boolean }>`
   ${Styles.RadioLabelStyle}
   ${(props) => (props.isChecked ? "background: var(--sq-background);" : "")}
@@ -53,10 +71,6 @@ export const RadioAction = React.forwardRef<
   const { value, optionValue, onChange, title, description, ...rest } = props;
 
   const selected = value === optionValue;
-
-  // if (selected) {
-  //   console.log("selected ", optionValue);
-  // }
 
   return (
     <RadioLabel htmlFor={rest.id} isChecked={selected}>
@@ -87,7 +101,11 @@ export const RadioActionGroup = React.forwardRef<
   React.ElementRef<"div">,
   GroupProps
 >((props) => {
-  const { children } = props;
-
-  return <ShadowDom>{children}</ShadowDom>;
+  const { twoColumns = false, children } = props;
+  console.log(twoColumns);
+  return (
+    <ShadowDom>
+      <Container twoColumns={twoColumns}>{children}</Container>
+    </ShadowDom>
+  );
 });
