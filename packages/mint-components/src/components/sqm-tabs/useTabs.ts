@@ -30,15 +30,17 @@ export function useTabs() {
     const listener = (e: CustomEvent) => {
       // Prevents recursively nested components from sending requests up all the way
       e.stopPropagation();
-      //@ts-ignore
-      if (!host.contains(e?.target) || !e?.target?.parentElement?.shadowRoot)
-        return;
 
-      const element =
-        //@ts-ignore
-        e?.target?.parentElement?.shadowRoot?.querySelector(`#${e.target.id}`);
+      const target = e.target as HTMLElement;
+      if (!target) return;
 
-      (element.parentElement as SlTabGroup)?.show(element?.panel);
+      const tabsComponent = target.closest("sqm-tabs");
+
+      if (!host.contains(target) || !tabsComponent) return;
+
+      const targetTab = target.closest("sqm-tab");
+      const tabGroup = tabsComponent.shadowRoot.querySelector("sl-tab-group");
+      (tabGroup as SlTabGroup)?.show(targetTab.id);
     };
     host.addEventListener(REVEAL_EVENT, listener);
     return () => {
