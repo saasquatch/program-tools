@@ -51,7 +51,7 @@ Feature: Big Stat
       | rewardsMonth     | Rewards - This Month    | Rewards Month     |
       | rewardsWeek      | Rewards - This Week     | Rewards Week      |
       | rewardBalance    | Balance - Credit Earned | Reward Balance    |
-      | customField      | Custom Field            | Custom Field      |
+      | customField      | Custom Fields           | Custom Fields     |
       | programGoals     | Program Goals           | Program Goals     |
 
   @motivating

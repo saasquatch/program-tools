@@ -18,7 +18,10 @@
 
 ### Used by
 
+ - [sqm-leaderboard](../sqm-leaderboard)
+ - [sqm-referral-table](../sqm-referral-table)
  - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
+ - [sqm-rewards-table](../sqm-rewards-table)
  - [sqm-stencilbook](../sqm-stencilbook)
 
 ### Depends on
@@ -35,7 +38,10 @@ graph TD;
   sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
+  sqm-leaderboard --> sqm-empty
+  sqm-referral-table --> sqm-empty
   sqm-reward-exchange-list --> sqm-empty
+  sqm-rewards-table --> sqm-empty
   sqm-stencilbook --> sqm-empty
   style sqm-empty fill:#f9f,stroke:#333,stroke-width:4px
 ```

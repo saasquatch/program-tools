@@ -130,7 +130,9 @@ graph TD;
   sqm-empty --> sqm-titled-section
   sqm-empty --> sqm-text
   sqm-edit-profile --> sqm-form-message
+  sqm-leaderboard --> sqm-empty
   sqm-reward-exchange-list --> sqm-empty
+  sqm-rewards-table --> sqm-empty
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
   sqm-rewards-table-reward-column --> sqm-rewards-table-reward-cell
@@ -139,6 +141,7 @@ graph TD;
   sqm-rewards-table-date-column --> sqm-rewards-table-date-cell
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field
+  sqm-referral-table --> sqm-empty
   sqm-referral-table --> sqm-table-row
   sqm-referral-table --> sqm-table-cell
   sqm-portal-login --> sqm-form-message

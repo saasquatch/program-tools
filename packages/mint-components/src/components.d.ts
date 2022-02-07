@@ -1431,7 +1431,13 @@ export namespace Components {
     }
     interface SqmScroll {
         "buttonText": string;
-        "buttonType": string;
+        "buttonType": | "default"
+    | "primary"
+    | "success"
+    | "neutral"
+    | "warning"
+    | "danger"
+    | "text";
         "caret": boolean;
         "circle": boolean;
         "disabled": boolean;
@@ -3773,7 +3779,13 @@ declare namespace LocalJSX {
     }
     interface SqmScroll {
         "buttonText"?: string;
-        "buttonType"?: string;
+        "buttonType"?: | "default"
+    | "primary"
+    | "success"
+    | "neutral"
+    | "warning"
+    | "danger"
+    | "text";
         "caret"?: boolean;
         "circle"?: boolean;
         "disabled"?: boolean;

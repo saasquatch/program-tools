@@ -12,7 +12,7 @@ export default {
 
 const defaultStyles = {
   usersheading: "TOP REFERRERS",
-  statsheading: "NEW TITANS",
+  statsheading: "NEW CUSTOMERS",
 };
 
 const defaultElements = {
