@@ -30,18 +30,18 @@ export const Default = () => {
         label: false,
         ruleOptions: [
           {
-            key: 0,
+            value: 1,
             title: "Promoter and Referred Friend",
             description:
               "Retract rewards from both the promoter and the referred friend",
           },
           {
-            key: 1,
+            value: 2,
             title: "Referred Friend",
             description: "Only retract rewards from the Referred Friend",
           },
           {
-            key: 2,
+            value: 3,
             title: "Promoter",
             description: "Only retract rewards from the Promoter",
           },
@@ -87,18 +87,18 @@ export const TwoColumns = () => {
         twoColumns: true,
         ruleOptions: [
           {
-            key: 0,
+            value: 1,
             title: "Promoter and Referred Friend",
             description:
               "Retract rewards from both the promoter and the referred friend",
           },
           {
-            key: 1,
+            value: 2,
             title: "Referred Friend",
             description: "Only retract rewards from the Referred Friend",
           },
           {
-            key: 2,
+            value: 3,
             title: "Promoter",
             description: "Only retract rewards from the Promoter",
           },

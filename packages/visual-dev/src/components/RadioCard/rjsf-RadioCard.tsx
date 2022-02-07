@@ -3,7 +3,7 @@ import React from "react";
 import { IconKey } from "../Icon";
 import { RadioCard, RadioCardGroup } from "./RadioCard";
 
-interface enumOption {
+interface cardOption {
   key: number;
   icon: string;
   title: string;
@@ -25,14 +25,14 @@ export function isEnumValue(option: any): option is enumValue {
   );
 }
 
-export function isCardOption(option: any): option is enumOption {
+export function isCardOption(card: any): card is cardOption {
   return (
-    typeof option === "object" &&
-    option !== null &&
-    option.hasOwnProperty("key") &&
-    option.hasOwnProperty("icon") &&
-    option.hasOwnProperty("title") &&
-    option.hasOwnProperty("description")
+    typeof card === "object" &&
+    card !== null &&
+    card.hasOwnProperty("value") &&
+    card.hasOwnProperty("icon") &&
+    card.hasOwnProperty("title") &&
+    card.hasOwnProperty("description")
   );
 }
 
@@ -48,24 +48,30 @@ export function RJSFRadioCardWidget(props: WidgetProps) {
   }
   return (
     <RadioCardGroup id={props.id}>
-      {cardOptions?.map((option: unknown) => {
-        if (!isCardOption(option) || !isEnumValue(valueOptions[option.key])) {
+      {valueOptions?.map((option: unknown) => {
+        if (!isEnumValue(option)) {
+          return <></>;
+        }
+        const card = cardOptions.filter(
+          (card) => card.value === option?.value
+        )[0];
+        if (!card || !isCardOption(card)) {
           return <></>;
         }
         return (
           <RadioCard
             required={props.required}
-            id={props.id + option.key.toString()}
-            name={props.id + option.key.toString()}
-            key={option.key}
-            title={option.title}
-            description={option.description}
-            icon={option.icon as IconKey}
-            optionValue={valueOptions[option.key].value}
+            id={props.id + option.value.toString()}
+            name={props.id + option.value.toString()}
+            key={option.value}
+            title={card.title}
+            description={card.description}
+            icon={card.icon as IconKey}
+            optionValue={option.value}
             value={props.value}
             onClick={(e) => {
               e.preventDefault();
-              props.onChange(valueOptions[option.key].value);
+              props.onChange(option.value);
             }}
           />
         );

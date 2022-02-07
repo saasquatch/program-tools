@@ -14,7 +14,7 @@ function isActionOption(option: any): option is enumOption {
   return (
     typeof option === "object" &&
     option !== null &&
-    option.hasOwnProperty("key") &&
+    option.hasOwnProperty("value") &&
     option.hasOwnProperty("title") &&
     option.hasOwnProperty("description")
   );
@@ -22,29 +22,35 @@ function isActionOption(option: any): option is enumOption {
 
 export function RJSFRadioActionWidget(props: WidgetProps) {
   const valueOptions = props?.options?.enumOptions;
-  const cardOptions = props?.options?.ruleOptions;
+  const actionOptions = props?.options?.ruleOptions;
   const twoColumns = props?.uiSchema["ui:options"]?.twoColumns ? true : false;
-  if (!isEnumArray(valueOptions) || !isEnumArray(cardOptions)) {
+  if (!isEnumArray(valueOptions) || !isEnumArray(actionOptions)) {
     return <></>;
   }
   return (
     <RadioActionGroup id={props.id} twoColumns={twoColumns}>
-      {cardOptions?.map((option: unknown) => {
-        if (!isActionOption(option) || !isEnumValue(valueOptions[option.key])) {
+      {valueOptions?.map((option: unknown) => {
+        if (!isEnumValue(option)) {
+          return <></>;
+        }
+        const action = actionOptions.filter(
+          (action) => action.value === option?.value
+        )[0];
+        if (!action || !isActionOption(action)) {
           return <></>;
         }
         return (
           <RadioAction
             required={props.required}
-            id={props.id + option.key.toString()}
-            name={props.id + option.key.toString()}
-            key={option.key}
-            title={option.title}
-            description={option.description}
-            optionValue={valueOptions[option.key].value}
+            id={props.id + action.value.toString()}
+            name={props.id + action.value.toString()}
+            key={action.value}
+            title={action.title}
+            description={action.description}
+            optionValue={option.value}
             value={props.value}
             onClick={() => {
-              props.onChange(valueOptions[option.key].value);
+              props.onChange(option.value);
             }}
           />
         );

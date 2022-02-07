@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useRef } from "react";
 import root from "react-shadow/styled-components";
 import styled from "styled-components";
 import * as Styles from "./Styles";
@@ -31,9 +32,8 @@ const RadioButton = styled.div`
 `;
 
 export const Radio = React.forwardRef<React.ElementRef<"input">, RadioProps>(
-  (props, forwardedRef) => {
+  (props, forwardRef) => {
     const { value, onChange, options, ...rest } = props;
-
     return (
       <RadioLabel htmlFor={rest.id}>
         <RadioInput
@@ -41,7 +41,7 @@ export const Radio = React.forwardRef<React.ElementRef<"input">, RadioProps>(
           checked={value}
           onChange={onChange}
           {...rest}
-          ref={forwardedRef}
+          ref={forwardRef}
         />
         <RadioButton />
         {options.text ? options.text : ""}

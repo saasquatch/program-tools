@@ -30,20 +30,20 @@ export const Default = () => {
         label: false,
         ruleOptions: [
           {
-            key: 0,
+            value: 1,
             icon: "icon-sqh-friends",
             title: "Promoter and Referred Friend",
             description:
               "Retract rewards from both the promoter and the referred friend",
           },
           {
-            key: 1,
+            value: 2,
             icon: "alert",
             title: "Referred Friend",
             description: "Only retract rewards from the Referred Friend",
           },
           {
-            key: 2,
+            value: 3,
             icon: "icon-sqh-street-view",
             title: "Promoter",
             description: "Only retract rewards from the Promoter",

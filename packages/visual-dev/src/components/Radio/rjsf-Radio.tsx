@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Radio } from "./Radio";
 import { WidgetProps } from "@rjsf/core";
 
@@ -25,6 +25,7 @@ export const RJSFRadio = (props: WidgetProps) => {
   if (!isEnumArray(valueOptions)) {
     return <></>;
   }
+  const dummyRef = useRef(null);
   return (
     <div>
       {valueOptions?.map((option: unknown) => {
@@ -33,6 +34,8 @@ export const RJSFRadio = (props: WidgetProps) => {
         }
         return (
           <Radio
+            ref={dummyRef}
+            key={props.id + option.value}
             options={{ text: option.label }}
             name={props.id}
             required={props.required}
