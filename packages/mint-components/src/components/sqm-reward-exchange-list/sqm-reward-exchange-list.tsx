@@ -188,7 +188,7 @@ export class SqmRewardExchangeList {
   render() {
     const props: RewardExchangeProps = {
       ...getProps(this),
-      empty: <slot name="empty" />,
+      empty: <EmptySlot />,
     };
 
     const { states, data, callbacks, refs } = isDemo()
@@ -206,6 +206,22 @@ export class SqmRewardExchangeList {
       </Host>
     );
   }
+}
+
+function EmptySlot() {
+  return (
+    <slot name="empty">
+      <sqm-empty
+        emptyStateImage={
+          "https://res.cloudinary.com/saasquatch/image/upload/v1643998821/squatch-assets/Group_29.png"
+        }
+        emptyStateHeader={"Redeem rewards"}
+        emptyStateText={
+          "Use your points to redeem rewards once they become available"
+        }
+      />
+    </slot>
+  );
 }
 
 function useRewardExchangeListDemo(props: RewardExchangeProps) {

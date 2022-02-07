@@ -51,7 +51,7 @@ export type RewardExchangeViewProps = {
     queryError: boolean;
     loading: boolean;
     open: boolean;
-    empty: VNode;
+    empty: boolean;
     content: {
       text: TextContent;
     };
@@ -534,6 +534,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         </h2>
         {states.loading ? (
           loading()
+        ) : states.empty ? (
+          empty()
         ) : (
           <div class={sheet.classes.Grid}>
             {data.exchangeList?.map((item: ExchangeItem) => {
@@ -901,6 +903,21 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         </div>
         <ProgressBar stageCount={3} currentStage={stageNumber} />
       </div>
+    );
+  }
+  function empty() {
+    return (
+      <slot name="empty">
+        <sqm-empty
+          emptyStateImage={
+            "https://res.cloudinary.com/saasquatch/image/upload/v1643998821/squatch-assets/Group_29.png"
+          }
+          emptyStateHeader={"Redeem rewards"}
+          emptyStateText={
+            "Use your points to redeem rewards once they become available"
+          }
+        />
+      </slot>
     );
   }
 

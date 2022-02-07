@@ -7,7 +7,8 @@ const baseResponse = (
   selectedStep = null,
   error = false,
   loading = false,
-  fueltank = null
+  fueltank = null,
+  empty = false
 ) => ({
   states: {
     content: {
@@ -50,17 +51,7 @@ const baseResponse = (
     selectedItem: selectedItem,
     selectedStep: selectedStep,
     open: false,
-    empty: (
-      <sqm-empty
-        emptyStateImage={
-          "https://res.cloudinary.com/saasquatch/image/upload/v1643998821/squatch-assets/Group_29.png"
-        }
-        emptyStateHeader={"Redeem rewards"}
-        emptyStateText={
-          "Use your points to redeem rewards once they become available"
-        }
-      />
-    ),
+    empty: empty,
   },
   data: {
     exchangeList: data,
@@ -533,4 +524,8 @@ export const successVariable = {
 
 export const loading = {
   ...baseResponse(null, "chooseReward", null, null, false, true),
+};
+
+export const empty = {
+  ...baseResponse(null, "chooseReward", null, null, false, false, null, true),
 };

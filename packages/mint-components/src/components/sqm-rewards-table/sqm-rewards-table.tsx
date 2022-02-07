@@ -67,7 +67,7 @@ export class RewardsTable {
   disconnectedCallback() {}
 
   render() {
-    const empty = <slot name="empty" />;
+    const empty = <EmptySlot />;
     const loading = <LoadingSlot />;
 
     const { states, data, callbacks, elements } = isDemo()
@@ -85,6 +85,14 @@ export class RewardsTable {
       ></GenericTableView>
     );
   }
+}
+
+function EmptySlot() {
+  return (
+    <slot name="empty">
+      <sqm-empty></sqm-empty>
+    </slot>
+  );
 }
 
 function LoadingSlot() {
