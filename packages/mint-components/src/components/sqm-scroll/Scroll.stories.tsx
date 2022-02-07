@@ -7,7 +7,13 @@ export default {
 export const ScrollTag = () => {
   return (
     <div style={{ position: "relative", height: "2000px" }}>
-      <sqm-scroll scroll-tag-name="sqm-text"></sqm-scroll>
+      <sqm-scroll
+        scroll-tag-name="sqm-text"
+        button-text="Scroll"
+        pill
+        size="small"
+        button-type="warning"
+      ></sqm-scroll>
       <div style={{ position: "absolute", bottom: "0" }}>
         <sqm-text slot="label">
           <h3>Earn more rewards</h3>
@@ -25,7 +31,14 @@ export const ScrollTag = () => {
 export const ScrollId = () => {
   return (
     <div style={{ position: "relative", height: "2000px" }}>
-      <sqm-scroll scroll-id="my-id"></sqm-scroll>
+      <sqm-scroll
+        scroll-id="my-id"
+        button-text="Scroll"
+        iconSlot="prefix"
+        button-type="primary"
+        iconName="facebook"
+        size="large"
+      ></sqm-scroll>
       <div style={{ position: "absolute", bottom: "0" }}>
         <sqm-text slot="label" id="my-id">
           <h3>Earn more rewards</h3>
@@ -43,7 +56,13 @@ export const ScrollId = () => {
 export const ScrollTabGroup = () => {
   return (
     <div style={{ position: "relative", height: "2000px" }}>
-      <sqm-scroll button-text="Redeem rewards" scroll-id="tab-3"></sqm-scroll>
+      <sqm-scroll
+        button-text="Redeem rewards"
+        scroll-id="tab-3"
+        size="medium"
+        button-type="text"
+        caret
+      ></sqm-scroll>
       <div
         style={{ position: "absolute", bottom: "0" }}
         innerHTML={`
