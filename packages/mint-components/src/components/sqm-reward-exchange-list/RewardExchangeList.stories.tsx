@@ -44,3 +44,4 @@ export const Error = StoryBase(Data.error);
 export const SuccessPromo = StoryBase(Data.success);
 export const SuccessVariableAndStepped = StoryBase(Data.successVariable);
 export const Loading = StoryBase(Data.loading);
+export const Empty = StoryBase(Data.empty);

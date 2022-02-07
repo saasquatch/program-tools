@@ -81,7 +81,7 @@ export class Leaderboard {
 
   render() {
     const props = {
-      empty: <slot name="empty" />,
+      empty: <EmptySlot />,
       loadingstate: <LoadingSlot />,
       usersheading: this.usersheading,
       statsheading: this.statsheading,
@@ -99,6 +99,14 @@ export class Leaderboard {
       : useLeaderboard(props);
     return <LeaderboardView {...viewprops} />;
   }
+}
+
+function EmptySlot() {
+  return (
+    <slot name="empty">
+      <sqm-empty></sqm-empty>
+    </slot>
+  );
 }
 
 function LoadingSlot() {
@@ -158,7 +166,6 @@ function useLeaderboardDemo(
     },
   ];
 
-
   return deepmerge(
     {
       states: {
@@ -184,7 +191,7 @@ function useLeaderboardDemo(
         showUser: props.showUser,
       },
       elements: {
-        empty: <slot name="empty" />,
+        empty: <EmptySlot />,
         loadingstate: <LoadingSlot />,
       },
     },
