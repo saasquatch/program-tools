@@ -5,11 +5,7 @@ import { createStyleSheet } from "../../styling/JSS";
 import { ShareLinkView } from "../sqm-share-link/sqm-share-link-view";
 import { ProgressBar } from "./progressBar";
 import { CheckmarkFilled, Gift } from "./SVGs";
-import {
-  ExchangeItem,
-  ExchangeStep,
-  Stages,
-} from "./useRewardExchangeList";
+import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
 
 type TextContent = {
   buttonText: string;
@@ -277,12 +273,15 @@ const style = {
     },
 
     "& sl-menu-item[disabled]::part(label)": {
-      color: "var(--sl-color-neutral-200)",
+      color: "var(--sl-color-neutral-300)",
     },
 
     "& sl-menu-item[disabled]": {
       "& .step-cost": {
-        color: "var(--sl-color-neutral-200)",
+        color: "var(--sl-color-neutral-300)",
+      },
+      "& .step-value": {
+        color: "var(--sl-color-neutral-300)",
       },
     },
   },
@@ -290,12 +289,17 @@ const style = {
   SelectItem: {
     display: "flex",
     flexDirection: "column",
-    "& > .step-cost": {
-      color: "var(--sl-color-neutral-400)",
-      height: "0",
-      marginBottom: "5px",
+    "& .step-cost": {
+      color: "var(--sl-color-neutral-500)",
+      marginBottom: "var(--sl-spacing-xx-small)",
     },
-    "& > .step-value": {
+    "& .step-value": {
+      color: "var(--sl-color-neutral-900)",
+      margin: "0",
+    },
+    "& .step-unavailable": {
+      fontSize: "var(--sl-font-size-small)",
+      color: "var(--sl-color-warning-500)",
       margin: "0",
     },
   },
@@ -487,32 +491,30 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       >
         {item.steps?.map((step) => {
           return (
-            <sl-menu-item value={step} disabled={!step.available}>
-              {step.prettyDestinationValue} <br />
-              {step.unavailableReasonCode && (
-                <p
-                  style={{
-                    fontSize: "var(--sl-font-size-small)",
-                    color: "var(--sl-color-warning-500)",
-                    margin: "0",
-                  }}
-                >
-                  {intl.formatMessage(
-                    {
-                      id: "unavailableCode",
-                      defaultMessage: states.content?.text?.notAvailableError,
-                    },
-                    {
-                      unavailableReasonCode: step.unavailableReasonCode,
-                      sourceUnit: item.sourceUnit,
-                      sourceValue:
-                        step.prettySourceValue || item.prettySourceMinValue,
-                    }
-                  )}
-                </p>
-              )}
+            <sl-menu-item
+              value={step}
+              disabled={!step.available}
+              class={sheet.classes.SelectItem}
+            >
+              <div class="step-value">{step.prettyDestinationValue}</div>
               <div class="step-cost" slot="suffix">
                 {step.prettySourceValue}
+                {step.unavailableReasonCode && (
+                  <p class="step-unavailable">
+                    {intl.formatMessage(
+                      {
+                        id: "unavailableCode",
+                        defaultMessage: states.content?.text?.notAvailableError,
+                      },
+                      {
+                        unavailableReasonCode: step.unavailableReasonCode,
+                        sourceUnit: item.sourceUnit,
+                        sourceValue:
+                          step.prettySourceValue || item.prettySourceMinValue,
+                      }
+                    )}
+                  </p>
+                )}
               </div>
             </sl-menu-item>
           );
