@@ -1,10 +1,6 @@
-import {
-  isDemo,
-  useLocale,
-  usePagination,
-} from "@saasquatch/component-boilerplate";
+import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { useEffect, useReducer } from "@saasquatch/universal-hooks";
+import { useEffect, useMemo, useReducer } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
@@ -18,11 +14,6 @@ import {
 } from "../../tables/re-render";
 import { useChildElements } from "../../tables/useChildElements";
 import mockReferralData from "./mockReferralData";
-import {
-  AvailableNoExpiry,
-  Cancelled,
-  PendingNoUnpend,
-} from "./ReferralTableRewardsCell.stories";
 import { tryMethod, useReferralTable } from "./useReferralTable";
 
 /**
@@ -151,22 +142,26 @@ function useReferralTableDemo(
 
   const tick = useRerenderListener();
 
-  const { data } = mockReferralData;
+  const mockData = useMemo(
+    () => mockReferralData(props.perPage),
+    [props.perPage]
+  );
 
   const components = useChildElements();
 
   async function getComponentData(components: Element[]) {
     let componentData;
-    const { data: mockData } = mockReferralData;
-    const referrerData = mockReferralData?.referredByReferral;
+    //@ts-ignore
+    const referrerData = mockData?.referredByReferral;
     const showReferrerRow =
       props.showReferrer &&
-      !!mockReferralData?.referredByReferral.dateReferralStarted;
+      //@ts-ignore
+      !!mockData?.referredByReferral?.dateReferralStarted;
 
     if (showReferrerRow) {
-      componentData = mockData.slice(0, props.perPage - 1);
+      componentData = mockData.data.slice(0, props.perPage - 1);
     } else {
-      componentData = mockData.slice(0, props.perPage);
+      componentData = mockData.data.slice(0, props.perPage);
     }
     // filter out loading and empty states from columns array
     const columnComponents = components.filter(
@@ -212,8 +207,8 @@ function useReferralTableDemo(
 
   useEffect(() => {
     setContent({ loading: true });
-    data && getComponentData(components);
-  }, [data, components, tick]);
+    mockData?.data && getComponentData(components);
+  }, [mockData?.data, components, tick]);
 
   const demoProps = deepmerge(
     {

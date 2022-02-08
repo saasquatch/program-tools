@@ -126,7 +126,7 @@ export class RewardTableStatusCell {
     );
 
     function getRewardPendingReasons(prop) {
-      console.log(prop.reward);
+      console.log("sam", prop.reward);
       const pendingCodeMap: { [code: string]: string } = {
         US_TAX: prop.pendingUsTax,
         SCHEDULED:
@@ -134,7 +134,7 @@ export class RewardTableStatusCell {
           prop.pendingScheduled +
             " " +
             DateTime.fromMillis(prop.reward.dateScheduledFor)
-              ?.setLocale(luxonLocale(luxonLocale(prop.locale)))
+              ?.setLocale(luxonLocale(luxonLocale(prop.locale || "en")))
               .toLocaleString(DateTime.DATE_MED),
         UNHANDLED_ERROR: prop.pendingUnhandled,
       };

@@ -1,6 +1,6 @@
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { withHooks } from "@saasquatch/stencil-hooks";
-import { useEffect, useReducer } from "@saasquatch/universal-hooks";
+import { useEffect, useReducer, useMemo } from "@saasquatch/universal-hooks";
 import { Component, h, Prop, VNode } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
@@ -138,7 +138,10 @@ function useRewardsTableDemo(
 
   const tick = useRerenderListener();
 
-  const { data } = mockRewardData;
+  const { data } = useMemo(
+    () => mockRewardData(props.perPage),
+    [props.perPage]
+  );
 
   const components = useChildElements();
 
