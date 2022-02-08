@@ -213,7 +213,6 @@ export function useRewardExchangeList(
   const canvasRef = useRef<HTMLCanvasElement>();
   useEffect(() => {
     if (!canvasRef.current) return;
-    console.log("confetti!");
     const canvas: HTMLCanvasElement & { confetti? } = canvasRef.current;
     canvas.confetti =
       canvas.confetti || confetti.create(canvas, { resize: true });

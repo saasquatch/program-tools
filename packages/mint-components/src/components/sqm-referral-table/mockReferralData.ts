@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+
 export default (count = 4) => {
   const data = [...Array(count)].map(() => getMockData());
   return {
@@ -63,13 +65,16 @@ const getMockData = () => {
     shareLinkUsed: null,
     referralCodeUsed: "JIMBONEUTRON2",
     moderationStatus: "PENDING",
-    dateConverted: Math.floor(Math.random() * 10) >= 5 ? 1554934550726 : null,
+    dateConverted:
+      Math.floor(Math.random() * 10) >= 5
+        ? DateTime.now().minus({ days: 6 }).toMillis()
+        : null,
     dateFraudChecksCompleted: null,
     dateModerated: 1558730033306,
     dateModified: 1554934543447,
     dateReferralEnded: null,
     dateReferralPaid: null,
-    dateReferralStarted: 1554934543447,
+    dateReferralStarted: DateTime.now().minus({ days: 8 }).toMillis(),
     dateUserModified: null,
     programId: "sam-partner-test-2",
     program: {

@@ -76,8 +76,6 @@ export class ReferralTable {
       ? useReferralTableDemo(this, empty, loading)
       : useReferralTable(this, empty, loading);
 
-    console.log("elemente", elements);
-
     useRequestRerender([this.showReferrer, this.perPage]);
 
     return (

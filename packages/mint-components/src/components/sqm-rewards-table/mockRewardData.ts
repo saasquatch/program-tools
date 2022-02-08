@@ -16,31 +16,42 @@ const getMockData = () => {
   let pendingReason;
   let dateScheduledFor;
   let dateCancelled;
+  let dateExpires;
+
+  const today = DateTime.now();
+
+  //  set random data
   const randomUnitNumber = Math.floor(Math.random() * 3);
   const randomStatus = statuses[Math.floor(Math.random() * 5)];
-
   const unit = units[randomUnitNumber];
   const prettyValue = prettyValues[randomUnitNumber];
   const randomValue = Math.floor(Math.random() * 100) + 2;
 
+  // set random values depending on status
   let prettyAvailableValue;
   if (randomStatus === "AVAILABLE") {
     prettyAvailableValue = `${randomValue} ${prettyValue}`;
     randomRedeemed = Math.floor(Math.random() * randomValue);
-  } else if (randomStatus === "EXPIRED" || randomStatus === "CANCELLED") {
+    dateExpires =
+      Math.floor(Math.random() * 10) < 3 ? today.plus({ days: 7 }).toMillis() : null;
+  } else if (randomStatus === "EXPIRED") {
     prettyAvailableValue = `0 ${prettyValue}`;
     isAvailableZero = true;
     randomRedeemed = Math.floor(Math.random() * randomValue);
+    dateExpires = today.minus({ days: 1 }).toMillis();
   } else if (randomStatus === "PENDING") {
     const reason = pendingReasons[Math.floor(Math.random() * 3)];
     pendingReason = [reason];
     if (reason === "SCHEDULED") {
-      dateScheduledFor = DateTime.now().plus({ days: 6 }).toMillis();
+      dateScheduledFor = today.plus({ days: 6 }).toMillis();
     }
+  } else if (randomStatus === "REDEEMED") {
+    prettyAvailableValue = `0 ${prettyValue}`;
+    isAvailableZero = true;
   } else {
     prettyAvailableValue = `0 ${prettyValue}`;
     isAvailableZero = true;
-    dateCancelled = 1643612046293;
+    dateCancelled = today.minus({ days: 2 }).toMillis();
   }
 
   const source = Math.floor(Math.random() * 3);
@@ -51,10 +62,11 @@ const getMockData = () => {
     value: randomValue,
     unit,
     name: null,
-    dateGiven: 1643612046293,
-    dateExpires: null,
+    dateGiven: today.minus({ days: 3 }).toMillis(),
+    dateExpires,
     dateCancelled,
-    dateRedeemed: randomStatus === "REDEEMED" ? 1643612046293 : null,
+    dateRedeemed:
+      randomStatus === "REDEEMED" ? today.plus({ days: 2 }).toMillis() : null,
     dateScheduledFor,
     fuelTankCode: null,
     fuelTankType: null,

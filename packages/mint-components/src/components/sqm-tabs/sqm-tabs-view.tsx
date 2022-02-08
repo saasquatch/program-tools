@@ -25,7 +25,6 @@ export const TabsView: FunctionalComponent<TabsViewProps> = ({
     }
   `;
   const host = useHost();
-  console.log("sam host", host);
   return (
     <Host>
       <style type="text/css">{vanillaStyle}</style>

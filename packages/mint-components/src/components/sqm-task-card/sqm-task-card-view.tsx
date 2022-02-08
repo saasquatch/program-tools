@@ -198,8 +198,6 @@ const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function TaskCardView(props: TaskCardViewProps): VNode {
-  console.log("TASK CARD PROPS " + props?.content?.cardTitle);
-  console.log({ props });
   const { callbacks, states, content } = props;
 
   const dateStart =
@@ -215,8 +213,6 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
     const end = content.displayDuration.split("/")?.[1];
     const displayDateStart = start ? DateTime.fromISO(start) : dateToday;
     const displayDateEnd = end ? DateTime.fromISO(end) : dateToday;
-
-    console.log({ displayDateStart, dateToday, displayDateEnd });
     if (dateToday < displayDateStart || dateToday > displayDateEnd)
       return <span></span>;
   }

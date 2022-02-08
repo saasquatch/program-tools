@@ -115,8 +115,6 @@ function TimelineEntryView(props) {
 	}
 	`;
 
-  console.log(props);
-
   const timeline_icon = props.icon ?? props.iconState;
 
   return (

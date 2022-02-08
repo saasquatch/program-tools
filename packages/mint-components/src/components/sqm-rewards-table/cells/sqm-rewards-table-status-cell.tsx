@@ -105,8 +105,6 @@ export class RewardTableStatusCell {
     const pendingReasons =
       rewardStatus === "PENDING" ? getRewardPendingReasons(this) : null;
 
-    console.log(pendingReasons);
-
     return (
       <div style={{ display: "contents" }}>
         <style type="text/css">{styleString}</style>
@@ -126,7 +124,6 @@ export class RewardTableStatusCell {
     );
 
     function getRewardPendingReasons(prop) {
-      console.log("sam", prop.reward);
       const pendingCodeMap: { [code: string]: string } = {
         US_TAX: prop.pendingUsTax,
         SCHEDULED:

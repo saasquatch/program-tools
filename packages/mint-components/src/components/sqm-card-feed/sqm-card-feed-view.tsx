@@ -21,8 +21,6 @@ export function CardFeedView(props: CardFeedViewProps, children: VNode) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
-  console.log(props);
-
   const vanillaStyle = `
     :host{
       display: block;   
