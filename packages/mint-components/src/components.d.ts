@@ -1348,6 +1348,10 @@ export namespace Components {
          */
         "columnTitle": string;
         /**
+          * @uiName Copied Fuel Tank Text
+         */
+        "copyText": string;
+        /**
           * @uiName Fuel Tank Text
          */
         "fueltankText": string;
@@ -3699,6 +3703,10 @@ declare namespace LocalJSX {
           * @uiName Reward column title
          */
         "columnTitle"?: string;
+        /**
+          * @uiName Copied Fuel Tank Text
+         */
+        "copyText"?: string;
         /**
           * @uiName Fuel Tank Text
          */

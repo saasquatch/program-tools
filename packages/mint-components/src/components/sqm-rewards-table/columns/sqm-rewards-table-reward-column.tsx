@@ -30,6 +30,11 @@ export class RewardsTableColumn implements RewardTableColumn {
    */
   @Prop() fueltankText: string = "Your code:";
 
+  /**
+   * @uiName Copied Fuel Tank Text
+   */
+  @Prop() copyText: string = "Copied!";
+
   constructor() {
     withHooks(this);
   }

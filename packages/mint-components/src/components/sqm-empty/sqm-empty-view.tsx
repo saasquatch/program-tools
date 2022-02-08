@@ -14,7 +14,7 @@ export function EmptyStateView(props: EmptyStateViewProps) {
       <sqm-image image-url={emptyStateImage}></sqm-image>
       <sqm-titled-section label-margin="xxx-small" text-align="center">
         <sqm-text slot="label">
-          <h3>{emptyStateHeader}</h3>
+          <h4>{emptyStateHeader}</h4>
         </sqm-text>
         <sqm-text slot="content">{emptyStateText}</sqm-text>
       </sqm-titled-section>
