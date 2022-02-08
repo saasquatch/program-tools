@@ -20,7 +20,6 @@ export class RewardTableCustomerNoteCell {
 
   render() {
     const note = this.note;
-    console.log("THIS FROM NOTE CELL", this);
     return <TextSpanView type="p">{note}</TextSpanView>;
   }
 }

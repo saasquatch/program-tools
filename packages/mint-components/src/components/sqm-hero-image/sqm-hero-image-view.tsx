@@ -127,8 +127,6 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
     display: block;
   }`;
 
-  console.log(props);
-
   return (
     <div class={sheet.classes.Container}>
       <style type="text/css">

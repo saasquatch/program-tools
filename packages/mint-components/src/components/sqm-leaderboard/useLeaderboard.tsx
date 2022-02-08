@@ -123,8 +123,6 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     }));
   }
 
-  console.log(rankData);
-
   const viewingUser: Leaderboard = {
     value: rankData?.viewer?.leaderboardRank?.value,
     firstName: rankData?.viewer?.firstName,

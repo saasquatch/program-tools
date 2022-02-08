@@ -91,7 +91,6 @@ export class RewardTableRewardsCell {
     const styleString = sheet.toString();
 
     const RewardValue = ({ reward }: { reward: Reward }) => {
-      console.log(reward);
       const pimpedPrettyValue =
         reward.unit === "CENTS"
           ? reward.prettyValue.replace(/USD/gi, "$")

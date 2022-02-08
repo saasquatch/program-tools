@@ -30,8 +30,6 @@ export function ImageView(props: ImageViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
-  console.log(props);
-
   const vanillaStyle = `
     :host{
       display: block;   

@@ -24,9 +24,6 @@ export class RewardTableCustomerNoteColumn implements RewardTableColumn {
   @Method()
   async renderCell(data: Reward[], locale: string) {
     const reward = data?.[0];
-
-    console.log("reward column - locale", { locale });
-    console.log("REWARD", reward);
     return (
       <sqm-rewards-table-customer-note-cell
         note={reward?.meta?.message}

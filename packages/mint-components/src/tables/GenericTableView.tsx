@@ -38,8 +38,6 @@ export function GenericTableView(props: GenericTableViewProps) {
   const { columns, rows } = elements;
   const { show } = states;
 
-  console.log("table", props);
-
   const hiddenCols =
     data.hiddenColumns && data.hiddenColumns.split(",").map(Number);
 
@@ -151,7 +149,6 @@ export function GenericTableView(props: GenericTableViewProps) {
           {show === "loading" && elements.loadingElement}
           {show === "rows" &&
             rows?.map((row, i) => {
-              console.log("ROW", row);
               return (
                 <tr
                   style={{
@@ -162,7 +159,6 @@ export function GenericTableView(props: GenericTableViewProps) {
                   part="table-row"
                 >
                   {row.map((cell, j) => {
-                    console.log("CELL", cell);
                     return (
                       <td
                         class={hiddenCols?.includes(j) ? "hidden" : ""}
