@@ -7,13 +7,35 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type      | Default     |
-| -------- | --------- | ----------- | --------- | ----------- |
-| `desc`   | `desc`    |             | `string`  | `undefined` |
-| `icon`   | `icon`    |             | `string`  | `"gift"`    |
-| `line`   | `line`    |             | `boolean` | `undefined` |
-| `reward` | `reward`  |             | `string`  | `undefined` |
-| `unit`   | `unit`    |             | `string`  | `undefined` |
+| Property | Attribute | Description | Type                 | Default     |
+| -------- | --------- | ----------- | -------------------- | ----------- |
+| `desc`   | `desc`    |             | `string`             | `undefined` |
+| `icon`   | `icon`    |             | `"circle" \| "gift"` | `undefined` |
+| `reward` | `reward`  |             | `string`             | `undefined` |
+| `unit`   | `unit`    |             | `string`             | `undefined` |
+
+
+## Methods
+
+### `setIcon(value: "gift" | "circle") => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `setLine(value: boolean) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ## Dependencies

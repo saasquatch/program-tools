@@ -31,7 +31,7 @@ Feature: Scroll button
 
     @motivating
     Scenario: Users can scroll to a specific sqm-tab and open it
-        Given a scorll button component
+        Given a scroll button component
         And a 'sqm-tabs' with 4 tabs
         And the scroll button has "tab-3" for the "scroll-id"
         When a user views the button

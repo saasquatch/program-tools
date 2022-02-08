@@ -58,7 +58,7 @@ export const RewardsCellCreditFull = () => {
   return (
     <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData }}
-      availableText="19 Points available"
+      availableText="19 Points remaining"
     ></sqm-rewards-table-reward-cell>
   );
 };
@@ -74,7 +74,7 @@ export const RewardsCellCreditPartial = () => {
   return (
     <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, ...partial }}
-      availableText="10 Points available"
+      availableText="10 Points remaining"
     ></sqm-rewards-table-reward-cell>
   );
 };
@@ -97,6 +97,16 @@ export const RewardsCellCreditExpired = () => {
   );
 };
 
+export const RewardsCellCreditPending = () => {
+  return (
+    <sqm-rewards-table-reward-cell
+      reward={{ ...rewardsData, ...partial, ...pending }}
+      availableText="9 Points redeemed"
+    ></sqm-rewards-table-reward-cell>
+  );
+};
+
+
 const empty = {
   prettyAvailableValue: "0 Points",
   prettyAvailableNumber: "0",
@@ -109,7 +119,7 @@ export const RewardsCellCreditRedeemed = () => {
   return (
     <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, ...empty }}
-      availableText="0 Points available"
+      availableText="0 Points remaining"
     ></sqm-rewards-table-reward-cell>
   );
 };
@@ -130,7 +140,7 @@ export const RewardsCellCreditLong = () => {
     <div style={{ maxWidth: "222px" }}>
       <sqm-rewards-table-reward-cell
         reward={{ ...rewardsData, ...longName }}
-        availableText="19 Points with a really really super duper longest name ever in the world wide web available"
+        availableText="19 Points with a really really super duper longest name ever in the world wide web remaining"
       ></sqm-rewards-table-reward-cell>
     </div>
   );

@@ -239,17 +239,8 @@ function useRewardExchangeListDemo(props: RewardExchangeProps) {
         exchangeError: false,
         queryError: false,
         loading: false,
-        empty: (
-          <sqm-empty
-            emptyStateImage={
-              "https://res.cloudinary.com/saasquatch/image/upload/v1643998821/squatch-assets/Group_29.png"
-            }
-            emptyStateHeader={"Redeem rewards"}
-            emptyStateText={
-              "Use your points to redeem rewards once they become available"
-            }
-          />
-        ),
+        noExchangeOptions: false,
+        empty: EmptySlot(),
       },
 
       data: {

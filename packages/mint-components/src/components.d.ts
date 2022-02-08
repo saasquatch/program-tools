@@ -1761,7 +1761,7 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["gift", "circle"]
          */
-        "icon": string;
+        "icon": "gift" | "circle";
     }
     interface SqmTimelineEntry {
         /**
@@ -1773,15 +1773,13 @@ export namespace Components {
           * @uiType string
           * @uiEnum ["gift", "circle"]
          */
-        "icon": string;
-        /**
-          * @undocumented
-         */
-        "line"?: boolean;
+        "icon": "gift" | "circle";
         /**
           * @uiName Reward Amount
          */
         "reward": string;
+        "setIcon": (value: "gift" | "circle") => Promise<void>;
+        "setLine": (value: boolean) => Promise<void>;
         /**
           * @uiName Reward Unit
          */
@@ -4109,7 +4107,7 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["gift", "circle"]
          */
-        "icon"?: string;
+        "icon"?: "gift" | "circle";
     }
     interface SqmTimelineEntry {
         /**
@@ -4121,11 +4119,7 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiEnum ["gift", "circle"]
          */
-        "icon"?: string;
-        /**
-          * @undocumented
-         */
-        "line"?: boolean;
+        "icon"?: "gift" | "circle";
         /**
           * @uiName Reward Amount
          */

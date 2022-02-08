@@ -8,7 +8,7 @@ const baseResponse = (
   error = false,
   loading = false,
   fueltank = null,
-  empty = false
+  noExchangeOptions = false
 ) => ({
   states: {
     content: {
@@ -41,6 +41,17 @@ const baseResponse = (
         rewardAmountTitle: "Reward Amount",
         costTitle: "Cost",
         notEnoughError: "Sorry not enough!",
+        empty: (
+          <sqm-empty
+            emptyStateImage={
+              "https://res.cloudinary.com/saasquatch/image/upload/v1643998821/squatch-assets/Group_29.png"
+            }
+            emptyStateHeader={"Redeem rewards"}
+            emptyStateText={
+              "Use your points to redeem rewards once they become available"
+            }
+          />
+        ),
       },
     },
     queryError: false,
@@ -50,8 +61,8 @@ const baseResponse = (
     loading: loading,
     selectedItem: selectedItem,
     selectedStep: selectedStep,
+    noExchangeOptions: noExchangeOptions,
     open: false,
-    empty: empty,
   },
   data: {
     exchangeList: data,
