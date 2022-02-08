@@ -290,11 +290,11 @@ const style = {
     display: "flex",
     flexDirection: "column",
     "&::part(label)": {
-      color: "var(--sl-color-neutral-900)", 
+      color: "var(--sl-color-neutral-900)",
       margin: "0",
     },
     "& .step-cost": {
-      color: "var(--sl-color-neutral-500)", 
+      color: "var(--sl-color-neutral-500)",
       marginBottom: "var(--sl-spacing-x-small)",
     },
     "& .step-unavailable": {
@@ -313,12 +313,17 @@ const style = {
     },
     "& .description": {
       color: "var(--sl-color-neutral-400)",
-      width: "100%",
       maxWidth: "350px",
       margin: "0 auto",
       lineHeight: "var(--sl-line-height-dense)",
       marginBottom: "var(--sl-spacing-xx-large)",
       marginTop: "var(--sl-spacing-xx-small)",
+    },
+    "& .promo": {
+      maxWidth: "350px",
+      margin: "-30px auto var(--sl-spacing-xxx-large) auto",
+      textAlign: "left",
+      color: "var(--sl-color-neutral-700)",
     },
   },
 
@@ -500,22 +505,22 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               <br />
               <div class="step-cost" slot="suffix">
                 {step.prettySourceValue}
-                {step.unavailableReasonCode && ( 
-                  <p class="step-unavailable"> 
-                    {intl.formatMessage( 
-                      { 
-                        id: "unavailableCode", 
-                        defaultMessage: states.content?.text?.notAvailableError, 
-                      }, 
-                      { 
-                        unavailableReasonCode: step.unavailableReasonCode, 
-                        sourceUnit: item.sourceUnit, 
-                        sourceValue: 
-                          step.prettySourceValue || item.prettySourceMinValue, 
-                      } 
-                    )} 
-                  </p> 
-                )} 
+                {step.unavailableReasonCode && (
+                  <p class="step-unavailable">
+                    {intl.formatMessage(
+                      {
+                        id: "unavailableCode",
+                        defaultMessage: states.content?.text?.notAvailableError,
+                      },
+                      {
+                        unavailableReasonCode: step.unavailableReasonCode,
+                        sourceUnit: item.sourceUnit,
+                        sourceValue:
+                          step.prettySourceValue || item.prettySourceMinValue,
+                      }
+                    )}
+                  </p>
+                )}
               </div>
             </sl-menu-item>
           );
@@ -819,14 +824,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           )}
         </div>
         {data?.fuelTankCode && (
-          <div
-            style={{
-              width: "40%",
-              margin: "-30px auto var(--sl-spacing-xxx-large) auto",
-              textAlign: "left",
-              color: "var(--sl-color-neutral-700)",
-            }}
-          >
+          <div class="promo">
             {states.content.text.promoCode}
             <ShareLinkView
               shareString={data.fuelTankCode}
