@@ -28,14 +28,20 @@
 
 ### Depends on
 
+- [sqm-empty](../sqm-empty)
 - [sqm-table-row](../sqm-table-row)
 - [sqm-table-cell](../sqm-table-cell)
 
 ### Graph
 ```mermaid
 graph TD;
+  sqm-rewards-table --> sqm-empty
   sqm-rewards-table --> sqm-table-row
   sqm-rewards-table --> sqm-table-cell
+  sqm-empty --> sqm-portal-container
+  sqm-empty --> sqm-image
+  sqm-empty --> sqm-titled-section
+  sqm-empty --> sqm-text
   sqm-stencilbook --> sqm-rewards-table
   style sqm-rewards-table fill:#f9f,stroke:#333,stroke-width:4px
 ```

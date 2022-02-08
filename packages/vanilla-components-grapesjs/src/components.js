@@ -257,7 +257,7 @@ export default (editor, config = {}) => {
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
           'color': { 'ui:widget': 'color' },
-          // 'background': { 'ui:widget': 'CloudinaryUpload' }
+          'background': { 'ui:widget': 'ImageUpload' }
         }
       })
     },
@@ -959,7 +959,7 @@ export default (editor, config = {}) => {
         ],
         uiSchema: {
           'ishidden': { 'ui:widget': 'hidden' },
-          // 'url': { 'ui:widget': 'CloudinaryUpload' }
+          'url': { 'ui:widget': 'ImageUpload' }
         }
       })
     },

@@ -10,7 +10,14 @@ export class Scroll {
   @State()
   ignored = true;
 
-  @Prop() buttonType: string = "primary";
+  @Prop() buttonType:
+    | "default"
+    | "primary"
+    | "success"
+    | "neutral"
+    | "warning"
+    | "danger"
+    | "text" = "default";
   @Prop() buttonText: string;
   @Prop() scrollTagName?: string;
   @Prop() scrollId?: string;

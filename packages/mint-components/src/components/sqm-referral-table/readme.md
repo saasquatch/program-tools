@@ -29,14 +29,20 @@
 
 ### Depends on
 
+- [sqm-empty](../sqm-empty)
 - [sqm-table-row](../sqm-table-row)
 - [sqm-table-cell](../sqm-table-cell)
 
 ### Graph
 ```mermaid
 graph TD;
+  sqm-referral-table --> sqm-empty
   sqm-referral-table --> sqm-table-row
   sqm-referral-table --> sqm-table-cell
+  sqm-empty --> sqm-portal-container
+  sqm-empty --> sqm-image
+  sqm-empty --> sqm-titled-section
+  sqm-empty --> sqm-text
   sqm-stencilbook --> sqm-referral-table
   style sqm-referral-table fill:#f9f,stroke:#333,stroke-width:4px
 ```

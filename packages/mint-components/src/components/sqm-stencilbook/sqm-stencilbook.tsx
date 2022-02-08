@@ -3,6 +3,7 @@ import { useStencilbook } from "@saasquatch/stencilbook";
 import { useState, withHooks } from "@saasquatch/stencil-hooks";
 
 import * as ShareButton from "../sqm-share-button/ShareButton.stories";
+import * as EmptyState from "../sqm-empty/EmptyState.stories";
 import * as ShareLink from "../sqm-share-link/ShareLink.stories";
 import * as BigStat from "../sqm-big-stat/BigStat.stories";
 import * as Leaderboard from "../sqm-leaderboard/Leaderboard.stories";
@@ -74,6 +75,7 @@ const stories = [
   ShareLink,
   BigStat,
   Leaderboard,
+  EmptyState,
   LeaderboardRank,
   UseShareLink,
   UseShareButton,
