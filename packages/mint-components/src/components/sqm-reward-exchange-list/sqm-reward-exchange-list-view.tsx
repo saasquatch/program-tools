@@ -80,7 +80,7 @@ const style = {
   },
   Select: {
     "&::part(label)": {
-      color: "var(--sl-color-primary-500)",
+      //   color: "var(--sl-color-primary-500)",
     },
     "&::part(menu)": {
       maxHeight: "50vh",
@@ -289,13 +289,13 @@ const style = {
   SelectItem: {
     display: "flex",
     flexDirection: "column",
-    "& .step-cost": {
-      color: "var(--sl-color-neutral-500)",
-      marginBottom: "var(--sl-spacing-xx-small)",
-    },
-    "& .step-value": {
+    "&::part(label)": {
       color: "var(--sl-color-neutral-900)",
       margin: "0",
+    },
+    "& .step-cost": {
+      color: "var(--sl-color-neutral-500)",
+      marginBottom: "var(--sl-spacing-x-small)",
     },
     "& .step-unavailable": {
       fontSize: "var(--sl-font-size-small)",
@@ -459,7 +459,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   function getInput() {
     const item = states.selectedItem;
     if (!item || item?.ruleType === "FIXED_GLOBAL_REWARD")
-      return <span>{item?.prettySourceValue}</span>;
+      return <span class="points">{item?.prettySourceValue}</span>;
 
     if (!item.steps?.length) {
       return (
@@ -496,7 +496,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               disabled={!step.available}
               class={sheet.classes.SelectItem}
             >
-              <div class="step-value">{step.prettyDestinationValue}</div>
+              {step.prettyDestinationValue}
+              <br />
               <div class="step-cost" slot="suffix">
                 {step.prettySourceValue}
                 {step.unavailableReasonCode && (
@@ -703,7 +704,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
                 <div class="description">{selectedItem?.description}</div>
               ) : (
-                <div class="points">{input}</div>
+                <div>{input}</div>
               )}
               <div class="space" />
               <div class={sheet.classes.Button}>
