@@ -10,8 +10,8 @@
 ### Depends on
 
 - [sqm-share-button](../sqm-share-button)
-- [sqm-share-link](../sqm-share-link)
 - [sqm-empty](../sqm-empty)
+- [sqm-share-link](../sqm-share-link)
 - [sqm-router](../sqm-router)
 - [sqm-hook-story-container](../sqm-hook-story-container)
 - [sqm-navigation-menu](../sqm-navigation-menu)
@@ -70,8 +70,8 @@
 ```mermaid
 graph TD;
   sqm-stencilbook --> sqm-share-button
-  sqm-stencilbook --> sqm-share-link
   sqm-stencilbook --> sqm-empty
+  sqm-stencilbook --> sqm-share-link
   sqm-stencilbook --> sqm-router
   sqm-stencilbook --> sqm-hook-story-container
   sqm-stencilbook --> sqm-navigation-menu

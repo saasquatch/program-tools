@@ -3,12 +3,10 @@ import { intl } from "../../global/global";
 import { HostBlock } from "../../global/mixins";
 import { createStyleSheet } from "../../styling/JSS";
 import { ShareLinkView } from "../sqm-share-link/sqm-share-link-view";
-import { Orangey } from "../sqm-stencilbook/Themes";
 import { ProgressBar } from "./progressBar";
-import { CheckmarkFilled, ExchangeArrows, Gift } from "./SVGs";
+import { CheckmarkFilled, Gift } from "./SVGs";
 import {
   ExchangeItem,
-  RewardExchangeProps,
   ExchangeStep,
   Stages,
 } from "./useRewardExchangeList";
@@ -39,6 +37,7 @@ type TextContent = {
   rewardAmountTitle: string;
   rewardRedeemedText: string;
   costTitle: string;
+  empty: VNode;
 };
 
 export type RewardExchangeViewProps = {
@@ -51,7 +50,7 @@ export type RewardExchangeViewProps = {
     queryError: boolean;
     loading: boolean;
     open: boolean;
-    empty: boolean;
+    noExchangeOptions: boolean;
     content: {
       text: TextContent;
     };
@@ -534,8 +533,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         </h2>
         {states.loading ? (
           loading()
-        ) : states.empty ? (
-          empty()
+        ) : states.noExchangeOptions ? (
+          states.content.text.empty
         ) : (
           <div class={sheet.classes.Grid}>
             {data.exchangeList?.map((item: ExchangeItem) => {
@@ -903,21 +902,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         </div>
         <ProgressBar stageCount={3} currentStage={stageNumber} />
       </div>
-    );
-  }
-  function empty() {
-    return (
-      <slot name="empty">
-        <sqm-empty
-          emptyStateImage={
-            "https://res.cloudinary.com/saasquatch/image/upload/v1643998821/squatch-assets/Group_29.png"
-          }
-          emptyStateHeader={"Redeem rewards"}
-          emptyStateText={
-            "Use your points to redeem rewards once they become available"
-          }
-        />
-      </slot>
     );
   }
 

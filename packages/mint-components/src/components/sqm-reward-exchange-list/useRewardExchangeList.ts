@@ -95,7 +95,7 @@ export interface RewardExchangeProps {
   rewardAmountTitle: string;
   rewardRedeemedText: string;
   costTitle: string;
-  empty: boolean;
+  empty: VNode;
   demoData?: object;
 }
 
@@ -321,7 +321,7 @@ export function useRewardExchangeList(
       queryError: !!queryError,
       loading: loading || exchangeLoading,
       open,
-      empty: props.empty,
+      noExchangeOptions: data?.viewer?.visibleRewardExchangeItems.totalCount === 0,
     },
     data: {
       exchangeList: data?.viewer?.visibleRewardExchangeItems?.data,

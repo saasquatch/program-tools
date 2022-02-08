@@ -7,8 +7,8 @@ Feature: Timeline Entry
     Scenario: Timeline entries have an icon, a reward and an entry desciption
         Given an timeline entry with the following props
             | prop   | value                                               |
-            | unit   | 50$                                                 |
-            | reward | Visa Giftcard                                       |
+            | unit   | Visa Giftcard                                       |
+            | reward | 50$                                                 |
             | desc   | Earn a 50$ Visa Giftcard for each referral you make |
         When a user views the entry
         Then they see a gift icon
