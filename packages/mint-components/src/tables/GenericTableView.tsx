@@ -74,7 +74,7 @@ export function GenericTableView(props: GenericTableViewProps) {
           background: "#FFFFFF",
           border: "1px solid var(--sl-color-neutral-200)",
           boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-          borderRadius: "var(--sl-border-radius-medium)",
+          borderRadius: "var(--sl-border-radius-large)",
           padding: "var(--sl-spacing-medium)",
           fontSize: "var(--sl-font-size-small)",
           marginBottom: "var(--sl-spacing-large)",
