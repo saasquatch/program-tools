@@ -290,11 +290,11 @@ const style = {
     display: "flex",
     flexDirection: "column",
     "&::part(label)": {
-      color: "var(--sl-color-neutral-900)",
+      color: "var(--sl-color-neutral-900)", 
       margin: "0",
     },
     "& .step-cost": {
-      color: "var(--sl-color-neutral-500)",
+      color: "var(--sl-color-neutral-500)", 
       marginBottom: "var(--sl-spacing-x-small)",
     },
     "& .step-unavailable": {
@@ -500,22 +500,22 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               <br />
               <div class="step-cost" slot="suffix">
                 {step.prettySourceValue}
-                {step.unavailableReasonCode && (
-                  <p class="step-unavailable">
-                    {intl.formatMessage(
-                      {
-                        id: "unavailableCode",
-                        defaultMessage: states.content?.text?.notAvailableError,
-                      },
-                      {
-                        unavailableReasonCode: step.unavailableReasonCode,
-                        sourceUnit: item.sourceUnit,
-                        sourceValue:
-                          step.prettySourceValue || item.prettySourceMinValue,
-                      }
-                    )}
-                  </p>
-                )}
+                {step.unavailableReasonCode && ( 
+                  <p class="step-unavailable"> 
+                    {intl.formatMessage( 
+                      { 
+                        id: "unavailableCode", 
+                        defaultMessage: states.content?.text?.notAvailableError, 
+                      }, 
+                      { 
+                        unavailableReasonCode: step.unavailableReasonCode, 
+                        sourceUnit: item.sourceUnit, 
+                        sourceValue: 
+                          step.prettySourceValue || item.prettySourceMinValue, 
+                      } 
+                    )} 
+                  </p> 
+                )} 
               </div>
             </sl-menu-item>
           );
