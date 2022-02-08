@@ -32,6 +32,8 @@ const getMockData = () => {
   if (randomStatus === "AVAILABLE") {
     prettyAvailableValue = `${randomValue} ${prettyValue}`;
     randomRedeemed = Math.floor(Math.random() * randomValue);
+    dateExpires =
+      Math.floor(Math.random() * 10) < 3 ? today.plus({ days: 7 }).toMillis() : null;
   } else if (randomStatus === "EXPIRED") {
     prettyAvailableValue = `0 ${prettyValue}`;
     isAvailableZero = true;
