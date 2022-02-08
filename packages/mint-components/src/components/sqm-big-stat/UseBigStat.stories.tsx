@@ -1,7 +1,6 @@
 import { h } from "@stencil/core";
 import { BigStatView } from "./sqm-big-stat-view";
 import { useDemoBigStat } from "./useDemoBigStat";
-import { useBigStat } from "./useBigStat";
 import { useState } from "@saasquatch/stencil-hooks";
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 import { useEffect } from "@saasquatch/universal-hooks";
@@ -39,19 +38,13 @@ function setupGraphQL() {
 const View = (statType: string, format: string) => {
   console.log(`View("${statType}") - CALLED`);
   setupGraphQL();
-  const { props, label } = useBigStat({
-    statType,
-    render: () => {},
-    disconnectedCallback: () => {},
-    ignored: true,
-  });
   return (
     <div>
       <b>Stat format:</b>
       <pre>{format}</pre>
       <br />
       <b>Stat selected:</b> <pre style={{ color: "green" }}>{statType}</pre>
-      <BigStatView {...props}>{label}</BigStatView>
+      <sqm-big-stat stat-type={statType}></sqm-big-stat>
     </div>
   );
 };
