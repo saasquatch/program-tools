@@ -34,8 +34,8 @@ export class Timeline {
       if (rewards.length > 1 && idx != rewards.length - 1) {
         reward.setLine(true);
       }
-	  // Needed for stencilbook when switching between stories
-	  else reward.setLine(false)
+	    // Needed for stencilbook when switching between stories
+	    else reward.setLine(false)
       reward.setIcon(this.icon);
     });
 
