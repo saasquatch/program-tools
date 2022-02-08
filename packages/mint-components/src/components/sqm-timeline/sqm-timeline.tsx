@@ -19,7 +19,7 @@ export class Timeline {
    * @uiType string
    * @uiEnum ["gift", "circle"]
    */
-  @Prop() icon: string = "gift";
+  @Prop() icon: "gift" | "circle" = "gift";
 
   constructor() {
     withHooks(this);
@@ -30,15 +30,13 @@ export class Timeline {
     //@ts-ignore
     const rewards: TimelineReward[] = useChildElements();
 
-	//TODO: Change to methods or attributes instead of properties
     rewards.forEach((reward, idx) => {
       if (rewards.length > 1 && idx != rewards.length - 1) {
-        reward.line = true;
+        reward.setLine(true);
       }
-	  //TODO: Change to method
-	  else reward.line = false;
-	  //TODO: Chango to method
-      reward.icon = this.icon;
+	  // Needed for stencilbook when switching between stories
+	  else reward.setLine(false)
+      reward.setIcon(this.icon);
     });
 
     const vanillaStyle = `
@@ -50,43 +48,19 @@ export class Timeline {
 			margin-bottom: var(--sl-spacing-xx-large);
 		}
 
-		// ::slotted(*:not(:only-child):not(:last-child))::before {
+		// ::slotted(*:not(:only-child):not(:first-child))::before {
 		// 	display: block;
 		// 	content: "";
-		// 	height: 100%;
-		// 	background: var(--sl-color-primary-300);
-		// }
-
-		// ::slotted(*:not(:first-child))::before {
-		// 	display: block;
 		// 	position: relative;
-		// 	content: "";
-		// 	background: var(--sl-color-primary-300);
-		// 	height: 90px;
+		// 	height: 65px;
 		// 	width: 4px;
-		// 	top: 12px;
-		// 	left: 10px;
+		// 	top: -15px;
+		// 	left: 50px;
 		// 	margin-top: -44px;
-		// 	margin-bottom: 8px;
+		// 	margin-bottom: -15px;
 		// 	border-radius: 4px;
+		// 	background: red;
 		// }
-
-
-    // ZH: Temporary Patch fix
-    // ::slotted(*:not(:first-child))::before {
-	// 		display: block;
-	// 		position: relative;
-	// 		content: "";
-	// 		background: var(--sl-color-primary-300);
-	// 		min-height: 150px;
-	// 		max-height: 300px;
-	// 		width: 4px;
-	// 		top: 12px;
-	// 		left: 10px;
-	// 		margin-top: -85px;
-	// 		margin-bottom: 8px;
-	// 		border-radius: 4px;
-	// 	}
 	`;
 
     return (

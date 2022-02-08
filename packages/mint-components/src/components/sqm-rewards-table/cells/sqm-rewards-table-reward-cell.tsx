@@ -80,7 +80,7 @@ export class RewardTableRewardsCell {
         "& .icon": {
           position: "relative",
           top: "2px",
-          marginLeft: "var(--sl-spacing-xx-small)",
+          marginRight: "var(--sl-spacing-xx-small)",
           color: "inherit",
           //   float: "right",
         },
@@ -120,10 +120,10 @@ export class RewardTableRewardsCell {
                   content={this.copyText}
                   onSl-show={(e) => setTimeout(() => e.path[0].hide(), 1000)}
                 >
-                  {reward.fuelTankCode}
                   <span class="icon">
                     <sl-icon name="files" />
                   </span>
+                  {reward.fuelTankCode}
                 </sl-tooltip>
               </span>
             </div>
