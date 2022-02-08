@@ -9,7 +9,7 @@ Feature: Empty State
     Scenario: The empty state displays an image, a header and description text
         Given a empty component with the following props
             | prop               | value                                                                                           |
-            | empty-state-image  | https://res.cloudinary.com/saasquatch/image/upload/v1644000224/squatch-assets/empty_rewards.png |
+            | empty-state-image  | https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png |
             | empty-state-header | My Custom Empty State                                                                           |
             | empty-state-text   | Description about why this empty state is being shown!                                          |
         And it is wrapped by a component with an "empty" slot

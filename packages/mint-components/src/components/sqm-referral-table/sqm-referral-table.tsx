@@ -92,7 +92,11 @@ export class ReferralTable {
 function EmptySlot() {
   return (
     <slot name="empty">
-      <sqm-empty></sqm-empty>
+      <sqm-empty
+        empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png"
+        empty-state-header="View your referral details"
+        empty-state-text="Track the status of your referrals and rewards earned by referring friends"
+      ></sqm-empty>
     </slot>
   );
 }

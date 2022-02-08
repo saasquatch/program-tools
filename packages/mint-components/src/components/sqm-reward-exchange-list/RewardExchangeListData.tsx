@@ -44,7 +44,7 @@ const baseResponse = (
         empty: (
           <sqm-empty
             emptyStateImage={
-              "https://res.cloudinary.com/saasquatch/image/upload/v1643998821/squatch-assets/Group_29.png"
+              "https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_exchange2.png"
             }
             emptyStateHeader={"Redeem rewards"}
             emptyStateText={

@@ -17,7 +17,7 @@ const defaultStyles = {
 export const Empty = () => {
   return (
     <sqm-empty
-      empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard.png"
+      empty-state-image="https://drive.google.com/file/d/10SHFYRqKWqMBOneeGCuKBd7Cz3BrO-0f/view?usp=sharing"
       empty-state-header="View your rank in the leaderboard"
       empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
     ></sqm-empty>
@@ -27,7 +27,7 @@ export const Empty = () => {
 const defaultElements = {
   empty: (
     <sqm-empty
-      empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard.png"
+      empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
       empty-state-header="View your rank in the leaderboard"
       empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
     ></sqm-empty>
