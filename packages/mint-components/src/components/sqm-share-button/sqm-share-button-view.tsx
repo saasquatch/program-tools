@@ -57,6 +57,7 @@ const medium = {
 export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   const vanillaStyle = `
     *::part(base) {
+     border: none;
 			--sl-focus-ring-color-primary: ${
         props.backgroundcolor
           ? props.backgroundcolor
