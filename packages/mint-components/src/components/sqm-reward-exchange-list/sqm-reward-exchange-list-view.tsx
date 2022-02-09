@@ -27,6 +27,7 @@ type TextContent = {
   selectText: string;
   redemptionError: string;
   notEnoughError: string;
+  queryError: string;
   promoCode: string;
   skeletonCardNum: number;
   rewardNameTitle: string;
@@ -524,10 +525,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     return [
       <div>
         <div class={sheet.classes.Title}>{states.content.text.rewardTitle}</div>
-        {states.loading ? (
+        {states.loading || states.queryError ? (
           loading()
-        ) : states.noExchangeOptions ? (
-          "hello world" //states.content.text.empty
         ) : (
           <div class={sheet.classes.Grid}>
             {data.exchangeList?.map((item: ExchangeItem) => {
@@ -920,7 +919,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     return (
       <sl-alert type="danger" open>
         <sl-icon slot="icon" name="exclamation-octagon"></sl-icon>
-        {states.queryError}
+        {states.content.text.queryError}
       </sl-alert>
     );
   }
@@ -946,7 +945,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       <div>
         {stageMap()}
         {states.exchangeError && errorMessage()}
-        {states.queryError && queryErrorMessage()}
+        {states.queryError && !states.exchangeError && queryErrorMessage()}
         {currentStage && currentStage()}
         {states.redeemStage === "success"}
       </div>
