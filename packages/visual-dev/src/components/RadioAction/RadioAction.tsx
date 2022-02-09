@@ -98,14 +98,11 @@ export const RadioAction = React.forwardRef<
   );
 });
 
-export const RadioActionGroup = React.forwardRef<
-  React.ElementRef<"div">,
-  GroupProps
->((props) => {
+export const RadioActionGroup = (props: GroupProps) => {
   const { twoColumns = false, children } = props;
   return (
     <ShadowDom>
       <Container twoColumns={twoColumns}>{children}</Container>
     </ShadowDom>
   );
-});
+};

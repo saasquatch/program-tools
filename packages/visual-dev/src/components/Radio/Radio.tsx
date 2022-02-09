@@ -49,10 +49,8 @@ export const Radio = React.forwardRef<React.ElementRef<"input">, RadioProps>(
   }
 );
 
-export const RadioGroup = React.forwardRef<React.ElementRef<"div">, RadioProps>(
-  (props) => {
+export const RadioGroup = (props: RadioProps) => {
     const { children } = props;
 
     return <ShadowDom>{children}</ShadowDom>;
   }
-);

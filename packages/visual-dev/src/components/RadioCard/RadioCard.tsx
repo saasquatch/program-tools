@@ -112,10 +112,7 @@ export const RadioCard = React.forwardRef<
   );
 });
 
-export const RadioCardGroup = React.forwardRef<
-  React.ElementRef<"div">,
-  GroupProps
->((props) => {
+export const RadioCardGroup = (props: GroupProps) => {
   const { children } = props;
 
   return (
@@ -123,4 +120,4 @@ export const RadioCardGroup = React.forwardRef<
       <RadioGrid>{children}</RadioGrid>
     </ShadowDom>
   );
-});
+}
