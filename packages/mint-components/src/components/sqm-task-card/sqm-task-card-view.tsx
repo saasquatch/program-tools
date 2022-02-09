@@ -50,7 +50,7 @@ const style = {
       boxSizing: "border-box",
       background: "var(--sl-color-neutral-0)",
       border: "1px solid var(--sl-color-neutral-200)",
-      borderRadius: "var(--sl-border-radius-medium)",
+      borderRadius: "var(--sl-border-radius-large)",
       boxShadow: "1px 2px 4px rgba(211, 211, 211, 0.2)",
       fontSize: "var(--sl-font-size-small)",
       lineHeight: "var(--sl-line-height-dense)",
@@ -84,7 +84,7 @@ const style = {
     color: "var(--sl-color-primary-600)",
     border: "1px solid var(--sl-color-neutral-200)",
     borderRadius:
-      "var(--sl-border-radius-medium) var(--sl-border-radius-medium) 0 0",
+      "var(--sl-border-radius-large) var(--sl-border-radius-large) 0 0",
     borderBottom: "none",
     background: "var(--sl-color-primary-50)",
     fontWeight: "var(--sl-font-weight-semibold)",
@@ -102,7 +102,7 @@ const style = {
     color: "var(--sl-color-warning-600)",
     border: "1px solid var(--sl-color-neutral-200)",
     borderRadius:
-      "var(--sl-border-radius-medium) var(--sl-border-radius-medium) 0 0",
+      "var(--sl-border-radius-large) var(--sl-border-radius-large) 0 0",
     borderBottom: "none",
     background: "var(--sl-color-warning-50)",
     fontWeight: "var(--sl-font-weight-semibold)",
@@ -172,7 +172,6 @@ const style = {
       marginLeft: "auto",
       "&::part(base)": {
         color: "var(--sl-color-neutral-0)",
-        borderRadius: "var(--sl-border-radius-medium)",
       },
       "&.disabled::part(base)": {
         border: "1px solid var(--sl-color-primary-400)",
@@ -287,7 +286,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
         style={{
           borderRadius:
             taskUnavailable &&
-            "0 0 var(--sl-border-radius-medium) var(--sl-border-radius-medium)",
+            "0 0 var(--sl-border-radius-large) var(--sl-border-radius-large)",
         }}
         class={
           taskUnavailable

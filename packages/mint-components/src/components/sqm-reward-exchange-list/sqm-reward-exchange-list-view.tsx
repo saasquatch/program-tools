@@ -5,11 +5,7 @@ import { createStyleSheet } from "../../styling/JSS";
 import { ShareLinkView } from "../sqm-share-link/sqm-share-link-view";
 import { ProgressBar } from "./progressBar";
 import { CheckmarkFilled, Gift } from "./SVGs";
-import {
-  ExchangeItem,
-  ExchangeStep,
-  Stages,
-} from "./useRewardExchangeList";
+import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
 
 type TextContent = {
   buttonText: string;
@@ -84,7 +80,7 @@ const style = {
   },
   Select: {
     "&::part(label)": {
-      color: "var(--sl-color-primary-500)",
+      //   color: "var(--sl-color-primary-500)",
     },
     "&::part(menu)": {
       maxHeight: "50vh",
@@ -220,16 +216,9 @@ const style = {
   },
 
   ChooseAmount: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-
     margin: "var(--sl-spacing-medium) 0",
     "& .wrapper": {
       display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-
       gap: "var(--sl-spacing-xx-large)",
       "@media (max-width: 799px)": {
         flexDirection: "column",
@@ -277,12 +266,15 @@ const style = {
     },
 
     "& sl-menu-item[disabled]::part(label)": {
-      color: "var(--sl-color-neutral-200)",
+      color: "var(--sl-color-neutral-300)",
     },
 
     "& sl-menu-item[disabled]": {
       "& .step-cost": {
-        color: "var(--sl-color-neutral-200)",
+        color: "var(--sl-color-neutral-300)",
+      },
+      "& .step-value": {
+        color: "var(--sl-color-neutral-300)",
       },
     },
   },
@@ -290,12 +282,17 @@ const style = {
   SelectItem: {
     display: "flex",
     flexDirection: "column",
-    "& > .step-cost": {
-      color: "var(--sl-color-neutral-400)",
-      height: "0",
-      marginBottom: "5px",
+    "&::part(label)": {
+      color: "var(--sl-color-neutral-900)",
+      margin: "0",
     },
-    "& > .step-value": {
+    "& .step-cost": {
+      color: "var(--sl-color-neutral-500)",
+      marginBottom: "var(--sl-spacing-x-small)",
+    },
+    "& .step-unavailable": {
+      fontSize: "var(--sl-font-size-small)",
+      color: "var(--sl-color-warning-500)",
       margin: "0",
     },
   },
@@ -309,12 +306,17 @@ const style = {
     },
     "& .description": {
       color: "var(--sl-color-neutral-400)",
-      width: "100%",
       maxWidth: "350px",
       margin: "0 auto",
       lineHeight: "var(--sl-line-height-dense)",
       marginBottom: "var(--sl-spacing-xx-large)",
       marginTop: "var(--sl-spacing-xx-small)",
+    },
+    "& .promo": {
+      maxWidth: "350px",
+      margin: "-30px auto var(--sl-spacing-xxx-large) auto",
+      textAlign: "left",
+      color: "var(--sl-color-neutral-700)",
     },
   },
 
@@ -455,7 +457,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   function getInput() {
     const item = states.selectedItem;
     if (!item || item?.ruleType === "FIXED_GLOBAL_REWARD")
-      return <span>{item?.prettySourceValue}</span>;
+      return <span class="points">{item?.prettySourceValue}</span>;
 
     if (!item.steps?.length) {
       return (
@@ -487,32 +489,31 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       >
         {item.steps?.map((step) => {
           return (
-            <sl-menu-item value={step} disabled={!step.available}>
-              {step.prettyDestinationValue} <br />
-              {step.unavailableReasonCode && (
-                <p
-                  style={{
-                    fontSize: "var(--sl-font-size-small)",
-                    color: "var(--sl-color-warning-500)",
-                    margin: "0",
-                  }}
-                >
-                  {intl.formatMessage(
-                    {
-                      id: "unavailableCode",
-                      defaultMessage: states.content?.text?.notAvailableError,
-                    },
-                    {
-                      unavailableReasonCode: step.unavailableReasonCode,
-                      sourceUnit: item.sourceUnit,
-                      sourceValue:
-                        step.prettySourceValue || item.prettySourceMinValue,
-                    }
-                  )}
-                </p>
-              )}
+            <sl-menu-item
+              value={step}
+              disabled={!step.available}
+              class={sheet.classes.SelectItem}
+            >
+              {step.prettyDestinationValue}
+              <br />
               <div class="step-cost" slot="suffix">
                 {step.prettySourceValue}
+                {step.unavailableReasonCode && (
+                  <p class="step-unavailable">
+                    {intl.formatMessage(
+                      {
+                        id: "unavailableCode",
+                        defaultMessage: states.content?.text?.notAvailableError,
+                      },
+                      {
+                        unavailableReasonCode: step.unavailableReasonCode,
+                        sourceUnit: item.sourceUnit,
+                        sourceValue:
+                          step.prettySourceValue || item.prettySourceMinValue,
+                      }
+                    )}
+                  </p>
+                )}
               </div>
             </sl-menu-item>
           );
@@ -701,9 +702,11 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               {states.selectedItem?.ruleType === "FIXED_GLOBAL_REWARD" ? (
                 <div class="description">{selectedItem?.description}</div>
               ) : (
-                <div class="points">{input}</div>
+                <div>{input}</div>
               )}
               <div class="space" />
+            </div>
+          </div>
               <div class={sheet.classes.Button}>
                 <sl-button
                   class="cancel"
@@ -722,8 +725,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                   {states.content.text.continueToConfirmationText}
                 </sl-button>
               </div>
-            </div>
-          </div>
         </div>
       </div>
     );
@@ -769,24 +770,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             <div class="field">{states.content.text.costTitle}</div>
             <div class="value">{cost}</div>
           </div>
-          <div class={sheet.classes.Button}>
-            <sl-button
-              class="cancel"
-              type="text"
-              size="large"
-              onClick={() => callbacks.setStage("chooseAmount")}
-            >
-              {states.content.text.backText}
-            </sl-button>
-            <sl-button
-              class="continue"
-              size="large"
-              loading={states.loading}
-              onClick={callbacks.exchangeReward}
-            >
-              {states.content.text.redeemText}
-            </sl-button>
-          </div>
         </div>
       </div>
     );
@@ -816,14 +799,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           )}
         </div>
         {data?.fuelTankCode && (
-          <div
-            style={{
-              width: "40%",
-              margin: "-30px auto var(--sl-spacing-xxx-large) auto",
-              textAlign: "left",
-              color: "var(--sl-color-neutral-700)",
-            }}
-          >
+          <div class="promo">
             {states.content.text.promoCode}
             <ShareLinkView
               shareString={data.fuelTankCode}

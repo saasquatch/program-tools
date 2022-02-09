@@ -104,27 +104,9 @@ export function LeaderboardView(props: LeaderboardViewProps) {
       </div>
     );
 
+  if (!states.hasLeaders) return elements.empty;
+
   let userSeenFlag = false;
-
-  if (!states.hasLeaders) {
-
-    return (
-      <div class={sheet.classes.Leaderboard}>
-        <style type="text/css">
-          {styleString}
-          {vanillaStyle}
-        </style>
-        <table>
-          <tr>
-            {styles.showRank && <th class="Rank">{styles.rankheading}</th>}
-            <th class="User">{styles.usersheading}</th>
-            <th class="Score">{styles.statsheading}</th>
-          </tr>
-        </table>
-        <div style={{display: "block"}}>{elements.empty}</div>
-      </div>
-    );
-  }
 
   return (
     <div class={sheet.classes.Leaderboard}>
@@ -158,7 +140,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             </tr>
           );
         })}
-        {states.hasLeaders && !userSeenFlag && data.showUser && (
+        {!userSeenFlag && data.showUser && (
           <tr>
             <td colSpan={100} class="ellipses">
               <sl-icon
@@ -168,7 +150,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             </td>
           </tr>
         )}
-        {states.hasLeaders && !userSeenFlag && data.showUser && (
+        {!userSeenFlag && data.showUser && (
           <tr class="highlight">
             {styles.showRank && (
               <td class="Rank">{data.userRank?.rank || "-"}</td>
