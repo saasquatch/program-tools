@@ -85,10 +85,10 @@ export const RadioCard = React.forwardRef<
   return (
     <RadioLabel htmlFor={rest.id} isChecked={selected}>
       <RadioInput
+        {...rest}
         type="radio"
         checked={selected}
         readOnly
-        {...rest}
         ref={forwardedRef}
       />
       <LeftSegment isChecked={selected}>

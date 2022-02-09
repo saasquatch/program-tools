@@ -36,10 +36,10 @@ export const Radio = React.forwardRef<React.ElementRef<"input">, RadioProps>(
     return (
       <RadioLabel htmlFor={rest.id}>
         <RadioInput
+          {...rest}
           type="radio"
           checked={value}
           onChange={onChange}
-          {...rest}
           ref={forwardRef}
         />
         <RadioButton />
