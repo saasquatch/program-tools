@@ -106,7 +106,6 @@ export const RewardsCellCreditPending = () => {
   );
 };
 
-
 const empty = {
   prettyAvailableValue: "0 Points",
   prettyAvailableNumber: "0",
@@ -174,7 +173,7 @@ export const RewardsCellFueltank = () => {
 };
 export const RewardsCellFueltankLong = () => {
   return (
-    <div style={{ maxWidth: "215px" }}>
+    <div style={{ maxWidth: "222px" }}>
       <sqm-rewards-table-reward-cell
         reward={{
           ...rewardsData,
