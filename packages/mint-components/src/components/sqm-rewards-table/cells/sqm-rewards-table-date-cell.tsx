@@ -26,6 +26,6 @@ export class RewardTableDateCell {
           ?.setLocale(luxonLocale(this.locale))
           ?.toLocaleString(DateTime.DATE_MED);
 
-    return <TextSpanView type="p">{date}</TextSpanView>;
+    return date;
   }
 }
