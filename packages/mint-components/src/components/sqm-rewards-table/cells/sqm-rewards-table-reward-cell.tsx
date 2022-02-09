@@ -169,7 +169,7 @@ export class RewardTableRewardsCell {
         const style = {
           Progress: {
             height: "3px",
-            maxWidth: "150px",
+            width: "100%",
             margin: "var(--sl-spacing-xx-small) 0",
             background: "var(--sl-color-neutral-200)",
             "&:after": {
@@ -184,7 +184,7 @@ export class RewardTableRewardsCell {
           Container: {
             display: "inline-block",
             verticalAlign: "top",
-            maxWidth: "100%",
+            width: "130px", //setting fixed width here, so that all progress bars look the same
             whiteSpace: "break",
             overflow: "hidden",
             textOverflow: "ellipsis",
