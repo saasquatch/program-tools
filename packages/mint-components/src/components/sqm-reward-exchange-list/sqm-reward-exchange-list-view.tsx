@@ -147,6 +147,13 @@ const style = {
       margin: "-9px",
     },
   },
+
+  Title: {
+    fontSize: "var(--sl-font-size-large)",
+    fontWeight: "var(--sl-font-weight-semibold)",
+    margin: "var(--sl-spacing-large) 0",
+  },
+
   Image: {
     padding: "var(--sl-spacing-small)",
     minWidth: "96px",
@@ -162,17 +169,7 @@ const style = {
       opacity: "0.5",
     },
   },
-  Square: {
-    width: "120px",
-    height: "118px",
-    borderRadius: "3px 0 0 3px",
-    "& .image": {
-      width: "100%",
-      height: "100%",
-      objectFit: "contain",
-      borderRadius: "inherit",
-    },
-  },
+
   TextArea: {
     textAlign: "left",
     padding: "var(--sl-spacing-small)",
@@ -216,7 +213,8 @@ const style = {
   },
 
   ChooseAmount: {
-    margin: "var(--sl-spacing-medium) 0",
+    maxWidth: "800px",
+    margin: "auto",
     "& .wrapper": {
       display: "flex",
       gap: "var(--sl-spacing-xx-large)",
@@ -237,7 +235,7 @@ const style = {
     "& .text": {
       width: "50%",
       maxWidth: "400px",
-      minWidth: "330px",
+      //   minWidth: "330px",
       "@media (max-width: 799px)": {
         width: "auto",
         margin: "auto",
@@ -525,13 +523,11 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
   function chooseReward() {
     return [
       <div>
-        <h2 style={{ margin: "var(--sl-spacing-large) 0" }}>
-          {states.content.text.rewardTitle}
-        </h2>
+        <div class={sheet.classes.Title}>{states.content.text.rewardTitle}</div>
         {states.loading ? (
           loading()
         ) : states.noExchangeOptions ? (
-          states.content.text.empty
+          "hello world" //states.content.text.empty
         ) : (
           <div class={sheet.classes.Grid}>
             {data.exchangeList?.map((item: ExchangeItem) => {
@@ -707,24 +703,24 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
               <div class="space" />
             </div>
           </div>
-              <div class={sheet.classes.Button}>
-                <sl-button
-                  class="cancel"
-                  size="large"
-                  type="text"
-                  onClick={() => callbacks.resetState()}
-                >
-                  {states.content.text.cancelText}
-                </sl-button>
-                <sl-button
-                  class="continue"
-                  size="large"
-                  onClick={() => callbacks.setStage("confirmation")}
-                  disabled={isDisabled}
-                >
-                  {states.content.text.continueToConfirmationText}
-                </sl-button>
-              </div>
+          <div class={sheet.classes.Button}>
+            <sl-button
+              class="cancel"
+              size="large"
+              type="text"
+              onClick={() => callbacks.resetState()}
+            >
+              {states.content.text.cancelText}
+            </sl-button>
+            <sl-button
+              class="continue"
+              size="large"
+              onClick={() => callbacks.setStage("confirmation")}
+              disabled={isDisabled}
+            >
+              {states.content.text.continueToConfirmationText}
+            </sl-button>
+          </div>
         </div>
       </div>
     );
@@ -737,13 +733,10 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
     const amount = selectedStep?.prettyDestinationValue;
     return (
       <div>
-        <h2
-          style={{ margin: "var(--sl-spacing-large) 0", textAlign: "center" }}
-        >
-          {states.content.text.redeemTitle}
-        </h2>
-
         <div class={sheet.classes.Confirmation}>
+          <div class={sheet.classes.Title}>
+            {states.content.text.redeemTitle}
+          </div>
           <div class="wrapper">
             <div class="field">{states.content.text.rewardNameTitle}</div>
             <div class="reward-item-container">
@@ -769,6 +762,25 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           <div class="wrapper top-border padding">
             <div class="field">{states.content.text.costTitle}</div>
             <div class="value">{cost}</div>
+          </div>
+
+          <div class={sheet.classes.Button}>
+            <sl-button
+              class="cancel"
+              type="text"
+              size="large"
+              onClick={() => callbacks.setStage("chooseAmount")}
+            >
+              {states.content.text.backText}
+            </sl-button>
+            <sl-button
+              class="continue"
+              size="large"
+              loading={states.loading}
+              onClick={callbacks.exchangeReward}
+            >
+              {states.content.text.redeemText}
+            </sl-button>
           </div>
         </div>
       </div>
@@ -925,6 +937,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       ></canvas>
     );
   }
+
+  if (states.noExchangeOptions) return states.content.text.empty;
 
   return (
     <div class={sheet.classes.Container}>
