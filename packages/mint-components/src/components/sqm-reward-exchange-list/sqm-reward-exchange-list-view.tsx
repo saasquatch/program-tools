@@ -235,7 +235,7 @@ const style = {
     "& .text": {
       width: "50%",
       maxWidth: "400px",
-    //   minWidth: "330px",
+      //   minWidth: "330px",
       "@media (max-width: 799px)": {
         width: "auto",
         margin: "auto",
@@ -527,7 +527,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
         {states.loading ? (
           loading()
         ) : states.noExchangeOptions ? (
-          states.content.text.empty
+          "hello world" //states.content.text.empty
         ) : (
           <div class={sheet.classes.Grid}>
             {data.exchangeList?.map((item: ExchangeItem) => {
@@ -937,6 +937,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
       ></canvas>
     );
   }
+
+  if (states.noExchangeOptions) return states.content.text.empty;
 
   return (
     <div class={sheet.classes.Container}>
