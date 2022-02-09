@@ -12,6 +12,226 @@
     <script src="https://fast.ssqt.io/npm/@saasquatch/bedrock-components@latest/dist/bedrock-components/bedrock-components.js"></script>
   </head>
   <body>
-    <sqm-stencilbook></sqm-stencilbook>
+    <script>
+      window.SquatchPortal = {
+        tenantAlias: "test_a5kdluguys3b9",
+        appDomain: "https://app.referralsaasquatch.com",
+      };
+    </script>
+    <sqm-portal-frame>
+      <style>
+        :root {
+          --sqm-max-width: 100%;
+          --sl-color-primary-50: hsla(89, 74%, 95%, 1);
+          --sl-color-primary-100: hsla(89, 74%, 86%, 1);
+          --sl-color-primary-200: hsla(89, 74%, 76%, 1);
+          --sl-color-primary-300: hsla(89, 74%, 66%, 1);
+          --sl-color-primary-400: hsla(89, 74%, 56%, 1);
+          --sl-color-primary-500: hsla(89, 74%, 46%, 1);
+          --sl-color-primary-600: hsla(89, 74%, 39%, 1);
+          --sl-color-primary-700: hsla(89, 74%, 32%, 1);
+          --sl-color-primary-800: hsla(89, 74%, 25%, 1);
+          --sl-color-primary-900: hsla(89, 74%, 18%, 1);
+          --sl-color-primary-950: hsla(89, 74%, 15%, 1);
+          --sl-focus-ring-color-primary: var(--sl-color-primary-100);
+          --sl-input-border-color-focus: var(--sl-color-primary-500);
+          --sl-color-primary-hue: var(--sl-color-primary-500);
+        }
+      </style>
+      <a slot="header" href="/">
+        <sqm-text style="height: 35px">
+          <img
+            style="height: 35px"
+            src="https://www.bamboohr.com/images/global-logos/bamboohr-logo-main.svg"
+          />
+        </sqm-text>
+      </a>
+      <sqb-program-section program-id="bamboo-hr-rewards-program">
+        <sqm-router>
+          <template
+            path="/:path(\bregister\b|\bemailVerification\b|\blogin\b|\bverifyEmail\b|\bforgotPassword\b|\bresetPassword\b|\blogout\b)"
+          >
+            <sqm-graphql-client-provider
+              domain="https://managed-identity.saasquatch.com"
+            >
+              <sqm-hero
+                background="https://www.bamboohr.com/images/pl-pages/rocket-min.png"
+              >
+                <sqm-router>
+                  <template path="/register">
+                    <sqm-portal-register>
+                      <sqm-name-fields slot="formData"></sqm-name-fields>
+                      <p slot="terms">
+                        Participants must be at least 18 years of age and a
+                        legal resident of the U.S. or Canada. By signing up to
+                        participate in the rewards program, you agree to the
+                        program
+                        <a
+                          href="https://www.bamboohr.com/rewards-program-terms"
+                          target="_blank"
+                        >
+                          terms.
+                        </a>
+                        <br />
+                        <sqm-checkbox-field></sqm-checkbox-field>
+                      </p>
+                    </sqm-portal-register>
+                  </template>
+
+                  <template path="/emailVerification">
+                    <sqm-portal-protected-route
+                      redirect-to="/login"
+                    ></sqm-portal-protected-route>
+                    <sqm-portal-email-verification></sqm-portal-email-verification>
+                  </template>
+
+                  <template path="/login">
+                    <sqm-portal-login></sqm-portal-login>
+                  </template>
+
+                  <template path="/verifyEmail">
+                    <sqm-portal-verify-email></sqm-portal-verify-email>
+                  </template>
+
+                  <template path="/forgotPassword">
+                    <sqm-portal-forgot-password
+                      email-label="Business Email"
+                    ></sqm-portal-forgot-password>
+                  </template>
+
+                  <template path="/resetPassword">
+                    <sqm-portal-reset-password
+                      confirm-password="true"
+                    ></sqm-portal-reset-password>
+                  </template>
+                  <template path="/logout">
+                    <sqm-portal-logout next-page="/login"></sqm-portal-logout>
+                  </template>
+                </sqm-router>
+              </sqm-hero>
+            </sqm-graphql-client-provider>
+          </template>
+        </sqm-router>
+        <sqm-router>
+          <template path="/:path(\bactivity\b|\beditProfile\b)?">
+            <sqm-divided-layout
+              direction="row"
+              style="
+                border-top: 1px solid #eaeaea;
+                border-bottom: 1px solid #eaeaea;
+              "
+            >
+              <sqm-navigation-sidebar>
+                <sqm-navigation-sidebar-item
+                  path="/"
+                  icon="house"
+                  label="Dashboard"
+                ></sqm-navigation-sidebar-item>
+                <sqm-navigation-sidebar-item
+                  path="/activity"
+                  icon="bar-chart"
+                  label="Activity"
+                ></sqm-navigation-sidebar-item>
+                <sqm-navigation-sidebar-item
+                  path="/editProfile"
+                  icon="person"
+                  label="Edit Profile"
+                ></sqm-navigation-sidebar-item>
+                <sqm-navigation-sidebar-item
+                  path="/logout"
+                  icon="box-arrow-right"
+                  label="Logout"
+                ></sqm-navigation-sidebar-item>
+              </sqm-navigation-sidebar>
+              <sqm-divided-layout direction="column">
+                <sqm-router>
+                  <template path="/">
+                    <sqm-portal-protected-route
+                      require-email-verification="true"
+                      redirect-to="/login"
+                      redirect-to-unverified="/emailVerification"
+                    ></sqm-portal-protected-route>
+                    <sqb-widget
+                      widget-type="p/bamboo-hr-rewards-program/w/referrerWidget"
+                      track-loads="true"
+                    ></sqb-widget>
+                  </template>
+                  <template path="/editProfile">
+                    <sqm-portal-protected-route
+                      require-email-verification="true"
+                      redirect-to="/login"
+                      redirect-to-unverified="/emailVerification"
+                    ></sqm-portal-protected-route>
+                    <sqm-portal-container direction="column" gap="xxx-large">
+                      <sqm-portal-profile></sqm-portal-profile> </sqm-portal-container
+                    ><sqm-portal-container direction="column" gap="xxx-large">
+                      <sqm-graphql-client-provider
+                        domain="https://managed-identity.saasquatch.com"
+                      >
+                        <sqm-portal-change-password></sqm-portal-change-password>
+                      </sqm-graphql-client-provider>
+                    </sqm-portal-container>
+                  </template>
+
+                  <template path="/activity">
+                    <sqm-portal-protected-route
+                      require-email-verification="true"
+                      redirect-to="/login"
+                      redirect-to-unverified="/emailVerification"
+                    ></sqm-portal-protected-route>
+                    <sqm-portal-container
+                      direction="column"
+                      padding="xxx-large"
+                      gap="xxx-large"
+                    >
+                      <sqm-text> <h1>Activity</h1></sqm-text>
+                      <sqm-stat-container space="xxxx-large"
+                        ><sqm-big-stat
+                          flex-reverse="true"
+                          alignment="left"
+                          stat-type="/referralsCount"
+                          ><sqm-text><p>Referrals</p></sqm-text></sqm-big-stat
+                        >
+                        <sqm-big-stat
+                          flex-reverse="true"
+                          alignment="left"
+                          stat-type="/rewardsCountFiltered/AVAILABLE"
+                          ><sqm-text
+                            ><p>Rewards Earned</p></sqm-text
+                          ></sqm-big-stat
+                        >
+                        <sqm-big-stat
+                          flex-reverse="true"
+                          alignment="left"
+                          stat-type="/rewardBalance/CREDIT/CENTS"
+                          ><sqm-text
+                            ><p>Reward Balance</p></sqm-text
+                          ></sqm-big-stat
+                        >
+                      </sqm-stat-container>
+                      <sqm-referral-table>
+                        <sqm-referral-table-user-column></sqm-referral-table-user-column>
+                        <sqm-referral-table-rewards-column></sqm-referral-table-rewards-column>
+                        <sqm-referral-table-status-column></sqm-referral-table-status-column>
+                        <sqm-referral-table-date-column
+                          column-title="Referred"
+                          date-shown="dateReferralStarted"
+                        ></sqm-referral-table-date-column> </sqm-referral-table
+                    ></sqm-portal-container>
+                  </template>
+                </sqm-router>
+              </sqm-divided-layout>
+            </sqm-divided-layout>
+          </template>
+        </sqm-router>
+      </sqb-program-section>
+      <sqm-portal-footer
+        slot="footer"
+        support-email="rewards@bamboohr.com"
+        terms-link="https://www.bamboohr.com/rewards-program-terms"
+        terms-text="Terms And Conditions"
+        show-powered-by="true"
+      ></sqm-portal-footer>
+    </sqm-portal-frame>
   </body>
 </html>

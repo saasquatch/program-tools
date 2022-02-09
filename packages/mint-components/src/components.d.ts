@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
+import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { FunctionalComponent } from "@stencil/core";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
@@ -76,6 +77,24 @@ export namespace Components {
           * @uiOptions {"version": 1.1}
          */
         "statType": string;
+    }
+    interface SqmCheckboxField {
+        /**
+          * @uiName First name field label
+         */
+        "checkboxLabel": string;
+        /**
+          * @uiName Last name field label
+         */
+        "checkboxName": string;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<CheckboxFieldViewProps>;
+        /**
+          * @uiName Last name field label
+         */
+        "errorMessage": string;
     }
     interface SqmDividedLayout {
         /**
@@ -1074,6 +1093,12 @@ declare global {
         prototype: HTMLSqmBigStatElement;
         new (): HTMLSqmBigStatElement;
     };
+    interface HTMLSqmCheckboxFieldElement extends Components.SqmCheckboxField, HTMLStencilElement {
+    }
+    var HTMLSqmCheckboxFieldElement: {
+        prototype: HTMLSqmCheckboxFieldElement;
+        new (): HTMLSqmCheckboxFieldElement;
+    };
     interface HTMLSqmDividedLayoutElement extends Components.SqmDividedLayout, HTMLStencilElement {
     }
     var HTMLSqmDividedLayoutElement: {
@@ -1395,6 +1420,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "sqm-asset-card": HTMLSqmAssetCardElement;
         "sqm-big-stat": HTMLSqmBigStatElement;
+        "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
@@ -1494,6 +1520,24 @@ declare namespace LocalJSX {
           * @uiOptions {"version": 1.1}
          */
         "statType"?: string;
+    }
+    interface SqmCheckboxField {
+        /**
+          * @uiName First name field label
+         */
+        "checkboxLabel"?: string;
+        /**
+          * @uiName Last name field label
+         */
+        "checkboxName"?: string;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<CheckboxFieldViewProps>;
+        /**
+          * @uiName Last name field label
+         */
+        "errorMessage"?: string;
     }
     interface SqmDividedLayout {
         /**
@@ -2471,6 +2515,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "sqm-asset-card": SqmAssetCard;
         "sqm-big-stat": SqmBigStat;
+        "sqm-checkbox-field": SqmCheckboxField;
         "sqm-divided-layout": SqmDividedLayout;
         "sqm-edit-profile": SqmEditProfile;
         "sqm-form-message": SqmFormMessage;
@@ -2532,6 +2577,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "sqm-asset-card": LocalJSX.SqmAssetCard & JSXBase.HTMLAttributes<HTMLSqmAssetCardElement>;
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
+            "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
