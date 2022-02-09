@@ -1,6 +1,9 @@
 import { Component, h, Prop } from "@stencil/core";
 import { TabView } from "./sqm-tab-view";
 
+/**
+ * @uiName Tab
+ */
 @Component({
   tag: "sqm-tab",
 })
