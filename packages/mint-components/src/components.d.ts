@@ -987,7 +987,7 @@ export namespace Components {
          */
         "hiddenColumns"?: string;
         /**
-          * @uiName Hide Columns (Mobile View)
+          * @uiName Medium Breakpoint (Mobile View)
          */
         "mdBreakpoint"?: number;
         /**
@@ -1016,7 +1016,7 @@ export namespace Components {
          */
         "showReferrer"?: boolean;
         /**
-          * @uiName Hide Columns (Mobile View)
+          * @uiName Small Breakpoint (Mobile View)
          */
         "smBreakpoint"?: number;
     }
@@ -3361,7 +3361,7 @@ declare namespace LocalJSX {
          */
         "hiddenColumns"?: string;
         /**
-          * @uiName Hide Columns (Mobile View)
+          * @uiName Medium Breakpoint (Mobile View)
          */
         "mdBreakpoint"?: number;
         /**
@@ -3390,7 +3390,7 @@ declare namespace LocalJSX {
          */
         "showReferrer"?: boolean;
         /**
-          * @uiName Hide Columns (Mobile View)
+          * @uiName Small Breakpoint (Mobile View)
          */
         "smBreakpoint"?: number;
     }

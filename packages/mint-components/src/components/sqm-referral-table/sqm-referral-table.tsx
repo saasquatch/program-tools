@@ -51,10 +51,10 @@ export class ReferralTable {
   /** @uiName Hide Column Labels (Mobile View)  */
   @Prop() hiddenColumns?: string = "0";
 
-  /** @uiName Hide Columns (Mobile View)  */
+  /** @uiName Small Breakpoint (Mobile View)  */
   @Prop() smBreakpoint?: number = 634;
 
-  /** @uiName Hide Columns (Mobile View)  */
+  /** @uiName Medium Breakpoint (Mobile View)  */
   @Prop() mdBreakpoint?: number = 899;
 
   /**
