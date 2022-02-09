@@ -31,12 +31,11 @@ export class Timeline {
     const rewards: TimelineReward[] = useChildElements();
 
     rewards.forEach((reward, idx) => {
-      if (rewards.length > 1 && idx != rewards.length - 1) {
-        reward.setLine(true);
+      try {
+        reward.setIcon(this.icon);
+      } catch {
+        // incase child is not sqm-timeline-entry
       }
-	    // Needed for stencilbook when switching between stories
-	    else reward.setLine(false)
-      reward.setIcon(this.icon);
     });
 
     const vanillaStyle = `
@@ -47,6 +46,10 @@ export class Timeline {
 		::slotted(*:not(:only-child):not(:last-child)) {
 			margin-bottom: var(--sl-spacing-xx-large);
 		}
+
+		// ::slotted(*:not(:only-child):not(:first-child)) * {
+		// 	background: yellow;
+		// }
 
 		// ::slotted(*:not(:only-child):not(:first-child))::before {
 		// 	display: block;

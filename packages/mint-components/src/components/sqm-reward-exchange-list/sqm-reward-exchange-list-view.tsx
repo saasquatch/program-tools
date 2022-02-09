@@ -216,16 +216,9 @@ const style = {
   },
 
   ChooseAmount: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-
     margin: "var(--sl-spacing-medium) 0",
     "& .wrapper": {
       display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-
       gap: "var(--sl-spacing-xx-large)",
       "@media (max-width: 799px)": {
         flexDirection: "column",
@@ -712,6 +705,8 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                 <div>{input}</div>
               )}
               <div class="space" />
+            </div>
+          </div>
               <div class={sheet.classes.Button}>
                 <sl-button
                   class="cancel"
@@ -730,8 +725,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
                   {states.content.text.continueToConfirmationText}
                 </sl-button>
               </div>
-            </div>
-          </div>
         </div>
       </div>
     );
@@ -776,24 +769,6 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
           <div class="wrapper top-border padding">
             <div class="field">{states.content.text.costTitle}</div>
             <div class="value">{cost}</div>
-          </div>
-          <div class={sheet.classes.Button}>
-            <sl-button
-              class="cancel"
-              type="text"
-              size="large"
-              onClick={() => callbacks.setStage("chooseAmount")}
-            >
-              {states.content.text.backText}
-            </sl-button>
-            <sl-button
-              class="continue"
-              size="large"
-              loading={states.loading}
-              onClick={callbacks.exchangeReward}
-            >
-              {states.content.text.redeemText}
-            </sl-button>
           </div>
         </div>
       </div>

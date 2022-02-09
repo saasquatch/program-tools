@@ -38,11 +38,11 @@ export class TimelineReward {
    */
   @Prop() icon: "gift" | "circle";
 
-  @State() line: boolean = false;
+//   @State() line: boolean = false;
 
-  @Method() async setLine(value: boolean) {
-    this.line = value;
-  }
+//   @Method() async setLine(value: boolean) {
+//     this.line = value;
+//   }
 
   @State() iconState: "gift" | "circle" = "gift";
 
@@ -71,6 +71,7 @@ function TimelineEntryView(props) {
         display: "flex",
       },
       "& .line": {
+        display: "none",
         color: "transparent",
         userSelect: "none",
         background: "var(--sl-color-primary-300)",
@@ -113,6 +114,10 @@ function TimelineEntryView(props) {
 	:host{
 		display: block;   
 	}
+
+	:host(:not(:last-child)) .line {
+		display: block;
+	}
 	`;
 
   const timeline_icon = props.icon ?? props.iconState;
@@ -124,7 +129,7 @@ function TimelineEntryView(props) {
         {vanillaStyle}
       </style>
       <div class="container">
-        {props.line && <div class="line">/</div>}
+        <div class="line">/</div>
         <div class="step">
           {timeline_icon === "gift" && (
             <div class="icon">

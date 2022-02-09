@@ -1783,7 +1783,6 @@ export namespace Components {
          */
         "reward": string;
         "setIcon": (value: "gift" | "circle") => Promise<void>;
-        "setLine": (value: boolean) => Promise<void>;
         /**
           * @uiName Reward Unit
          */
