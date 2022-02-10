@@ -7,7 +7,11 @@ export default {
 export const ScrollTag = () => {
   return (
     <div style={{ position: "relative", height: "2000px" }}>
-      <sqm-scroll scroll-tag-name="sqm-text" button-text="Scroll" scroll-animation="smooth"></sqm-scroll>
+      <sqm-scroll
+        scroll-tag-name="sqm-text"
+        button-text="Scroll"
+        scroll-animation="smooth"
+      ></sqm-scroll>
       <div style={{ position: "absolute", bottom: "0" }}>
         <sqm-text slot="label">
           <h3>Earn more rewards</h3>
@@ -25,7 +29,11 @@ export const ScrollTag = () => {
 export const ScrollId = () => {
   return (
     <div style={{ position: "relative", height: "2000px" }}>
-      <sqm-scroll button-text="Scroll" scroll-id="my-id" scroll-animation="smooth"></sqm-scroll>
+      <sqm-scroll
+        button-text="Scroll"
+        scroll-id="my-id"
+        scroll-animation="smooth"
+      ></sqm-scroll>
       <div style={{ position: "absolute", bottom: "0" }}>
         <sqm-text slot="label" id="my-id">
           <h3>Earn more rewards</h3>
@@ -43,7 +51,11 @@ export const ScrollId = () => {
 export const ScrollAutoAnimation = () => {
   return (
     <div style={{ position: "relative", height: "2000px" }}>
-      <sqm-scroll button-text="Scroll" scroll-id="my-id" scroll-animation="auto"></sqm-scroll>
+      <sqm-scroll
+        button-text="Scroll"
+        scroll-id="my-id"
+        scroll-animation="auto"
+      ></sqm-scroll>
       <div style={{ position: "absolute", bottom: "0" }}>
         <sqm-text slot="label" id="my-id">
           <h3>Earn more rewards</h3>
@@ -61,7 +73,11 @@ export const ScrollAutoAnimation = () => {
 export const ScrollTabGroup = () => {
   return (
     <div style={{ position: "relative", height: "2000px" }}>
-      <sqm-scroll button-text="Redeem rewards" scroll-id="tab-3" scroll-animation="smooth"></sqm-scroll>
+      <sqm-scroll
+        button-text="Redeem rewards"
+        scroll-id="tab-3"
+        scroll-animation="smooth"
+      ></sqm-scroll>
       <div
         style={{ position: "absolute", bottom: "0" }}
         innerHTML={`
@@ -161,9 +177,6 @@ export const ShoelaceProps = () => {
       <h3>Pill:</h3>
       <sqm-scroll pill>Button</sqm-scroll>
       <br /> <hr />
-      <h3>Caret:</h3>
-      <sqm-scroll caret>Button</sqm-scroll>
-      <br /> <hr />
       <h3>Icon:</h3>
       <sqm-scroll button-type="primary" iconName="facebook">
         Icon Name
@@ -183,25 +196,8 @@ export const ShoelaceProps = () => {
       <h3>Outline:</h3>
       <sqm-scroll outline>Button</sqm-scroll>
       <br /> <hr />
-      <h3>Disabled:</h3>
-      <sqm-scroll disabled>Button</sqm-scroll>
-      <br /> <hr />
-      <h3>Loading:</h3>
-      <sqm-scroll loading>Button</sqm-scroll>
-      <br /> <hr />
-      <h3>Link:</h3>
-      <sqm-scroll href="https://example.com/">Link</sqm-scroll>
-      <br />
-      <sqm-scroll href="https://example.com/" target="_self">
-        Same Window
-      </sqm-scroll>
-      <br />
-      <sqm-scroll href="/assets/images/wordmark.svg" download="shoelace.svg">
-        Download
-      </sqm-scroll>
-      <br /> <hr />
       <h3>Mobile Friendly:</h3>
-      <sqm-scroll mobile-friendly>Button</sqm-scroll>
+      <sqm-scroll mobile>Button</sqm-scroll>
       <br /> <hr />
     </div>
   );

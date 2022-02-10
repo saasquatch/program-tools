@@ -14,6 +14,11 @@ export class Scroll {
   @State()
   ignored = true;
 
+  /**
+   * @uiName Button Type
+   * @uiType string
+   * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
+   */
   @Prop() buttonType:
     | "default"
     | "primary"
@@ -22,27 +27,75 @@ export class Scroll {
     | "warning"
     | "danger"
     | "text" = "default";
-  @Prop() buttonText: string;
-  @Prop() scrollTagName?: string;
-  @Prop() scrollId?: string;
-  @Prop() scrollAnimation: "smooth" | "auto" = "smooth";
-  @Prop() mobileFriendly?: boolean;
 
-  // SL Default Props
-  //   @Prop() variant: string; // our version of SL uses 'type' in sl-button
+  /**
+   * @uiName Button Text
+   */
+  @Prop() buttonText: string;
+
+  /**
+   * @uiName Scroll Tag Name
+   */
+  @Prop() scrollTagName?: string;
+
+  /**
+   * @uiName Scroll Id
+   */
+  @Prop() scrollId?: string;
+
+  /**
+   * @uiName Scroll Animation Style
+   * @uiType string
+   * @uiEnum ["smooth", "auto"]
+   */
+  @Prop() scrollAnimation: "smooth" | "auto" = "smooth";
+
+  /**
+   * @uiName Size
+   * @uiType string
+   * @uiEnum ["small", "medium", "large"]
+   */
   @Prop() size: string;
+
+  /**
+   * Draws an outlined button with primary color.
+   *
+   * @uiName Outline
+   */
   @Prop() outline: boolean;
+
+  /**
+   * Draws a pill-style button with rounded edges.
+   *
+   * @uiName Pill
+   */
   @Prop() pill: boolean;
-  @Prop() href: string;
+
+  /**
+   * Draws a circle button.
+   *
+   * @uiName Circle
+   */
   @Prop() circle: boolean;
-  @Prop() name: string;
-  @Prop() target: string;
-  @Prop() download: string;
-  @Prop() disabled: boolean;
-  @Prop() caret: boolean;
-  @Prop() loading: boolean;
+
+  /**
+   * @uiName Icon Slot
+   * @uiType string
+   * @uiEnum ["prefix", "suffix"]
+   */
   @Prop() iconSlot: string;
+
+  /**
+   * @uiName Icon Name
+   */
   @Prop() iconName: string;
+
+  /**
+   * Sets button to be full width in mobile resolutions
+   *
+   * @uiName Mobile Button
+   */
+  @Prop() mobile?: boolean;
 
   constructor() {
     withHooks(this);
@@ -81,7 +134,7 @@ export class Scroll {
 			display: contents;
 		}
 		${
-      this.mobileFriendly &&
+      this.mobile &&
       `
 		@media only screen and (max-width: 499px) {
 			:host {
@@ -94,7 +147,7 @@ export class Scroll {
 
     let classStack = "";
     if (this.outline) classStack += "outline ";
-    if (this.mobileFriendly) classStack += "mobile ";
+    if (this.mobile) classStack += "mobile ";
 
     return (
       <div class={sheet.classes.Button}>
@@ -107,14 +160,7 @@ export class Scroll {
           onClick={callbacks.scroll}
           size={this.size}
           pill={this.pill}
-          href={this.href}
           circle={this.circle}
-          name={this.name}
-          target={this.target}
-          download={this.download}
-          disabled={this.disabled}
-          caret={this.caret}
-          loading={this.loading}
           class={classStack}
         >
           {(this.iconSlot || this.iconName) && (

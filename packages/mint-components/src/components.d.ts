@@ -1423,7 +1423,15 @@ export namespace Components {
     interface SqmRouter {
     }
     interface SqmScroll {
+        /**
+          * @uiName Button Text
+         */
         "buttonText": string;
+        /**
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
+         */
         "buttonType": | "default"
     | "primary"
     | "success"
@@ -1431,23 +1439,56 @@ export namespace Components {
     | "warning"
     | "danger"
     | "text";
-        "caret": boolean;
+        /**
+          * Draws a circle button.
+          * @uiName Circle
+         */
         "circle": boolean;
-        "disabled": boolean;
-        "download": string;
-        "href": string;
+        /**
+          * @uiName Icon Name
+         */
         "iconName": string;
+        /**
+          * @uiName Icon Slot
+          * @uiType string
+          * @uiEnum ["prefix", "suffix"]
+         */
         "iconSlot": string;
-        "loading": boolean;
-        "mobileFriendly"?: boolean;
-        "name": string;
+        /**
+          * Sets button to be full width in mobile resolutions
+          * @uiName Mobile Button
+         */
+        "mobile"?: boolean;
+        /**
+          * Draws an outlined button with primary color.
+          * @uiName Outline
+         */
         "outline": boolean;
+        /**
+          * Draws a pill-style button with rounded edges.
+          * @uiName Pill
+         */
         "pill": boolean;
+        /**
+          * @uiName Scroll Animation Style
+          * @uiType string
+          * @uiEnum ["smooth", "auto"]
+         */
         "scrollAnimation": "smooth" | "auto";
+        /**
+          * @uiName Scroll Id
+         */
         "scrollId"?: string;
+        /**
+          * @uiName Scroll Tag Name
+         */
         "scrollTagName"?: string;
+        /**
+          * @uiName Size
+          * @uiType string
+          * @uiEnum ["small", "medium", "large"]
+         */
         "size": string;
-        "target": string;
     }
     interface SqmShareButton {
         /**
@@ -3762,7 +3803,15 @@ declare namespace LocalJSX {
     interface SqmRouter {
     }
     interface SqmScroll {
+        /**
+          * @uiName Button Text
+         */
         "buttonText"?: string;
+        /**
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
+         */
         "buttonType"?: | "default"
     | "primary"
     | "success"
@@ -3770,23 +3819,56 @@ declare namespace LocalJSX {
     | "warning"
     | "danger"
     | "text";
-        "caret"?: boolean;
+        /**
+          * Draws a circle button.
+          * @uiName Circle
+         */
         "circle"?: boolean;
-        "disabled"?: boolean;
-        "download"?: string;
-        "href"?: string;
+        /**
+          * @uiName Icon Name
+         */
         "iconName"?: string;
+        /**
+          * @uiName Icon Slot
+          * @uiType string
+          * @uiEnum ["prefix", "suffix"]
+         */
         "iconSlot"?: string;
-        "loading"?: boolean;
-        "mobileFriendly"?: boolean;
-        "name"?: string;
+        /**
+          * Sets button to be full width in mobile resolutions
+          * @uiName Mobile Button
+         */
+        "mobile"?: boolean;
+        /**
+          * Draws an outlined button with primary color.
+          * @uiName Outline
+         */
         "outline"?: boolean;
+        /**
+          * Draws a pill-style button with rounded edges.
+          * @uiName Pill
+         */
         "pill"?: boolean;
+        /**
+          * @uiName Scroll Animation Style
+          * @uiType string
+          * @uiEnum ["smooth", "auto"]
+         */
         "scrollAnimation"?: "smooth" | "auto";
+        /**
+          * @uiName Scroll Id
+         */
         "scrollId"?: string;
+        /**
+          * @uiName Scroll Tag Name
+         */
         "scrollTagName"?: string;
+        /**
+          * @uiName Size
+          * @uiType string
+          * @uiEnum ["small", "medium", "large"]
+         */
         "size"?: string;
-        "target"?: string;
     }
     interface SqmShareButton {
         /**
