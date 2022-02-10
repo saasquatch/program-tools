@@ -24,10 +24,7 @@ const sharebutton = (slot) => {
     <sqm-portal-container gap="large" slot={slot}>
       <sqm-text>Choose how you want to share:</sqm-text>
       <sqm-text>
-        {
-          //@ts-ignore
-          <p light>Your unique referral link:</p>
-        }
+        <sub>Your unique referral link:</sub>
         <sqm-share-code />
       </sqm-text>
       <sqm-portal-container gap="x-small">

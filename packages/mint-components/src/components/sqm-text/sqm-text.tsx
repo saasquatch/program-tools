@@ -45,10 +45,10 @@ const vanillaStyle = `
     margin: 0;
   }
 
-  sqm-text p[light] {
-    font-size: var(--sl-font-size-medium);
+  sqm-text sub {
+    font-size: var(--sl-font-size-small);
     font-weight: var(--sl-font-weight-normal);
-    color: var(--sl-color-neutral-600);
+    color: var(--sl-color-neutral-400);
     margin: 0;
   }
 `;
