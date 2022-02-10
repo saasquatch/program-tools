@@ -89,6 +89,7 @@ export class IntegrationService<
   readonly tenantScopedTokenMiddleware: ReturnType<
     typeof createSaasquatchTokenMiddleware
   >;
+  readonly router: Router;
 
   private server: Express;
   private tenantIntegrationConfigCache: NodeCache;
@@ -111,6 +112,7 @@ export class IntegrationService<
       this.auth,
       this.logger
     );
+    this.router = options?.customRouter || Router();
     this.server = this.createExpressServer();
     this.tenantIntegrationConfigCache = new NodeCache({
       stdTTL: 60,
@@ -329,9 +331,7 @@ export class IntegrationService<
       );
     });
 
-    if (this.options?.customRouter) {
-      server.use("/", this.options.customRouter);
-    }
+    server.use("/", this.router);
 
     // Serve the frontend at the root of the server
     if (this.config.proxyFrontend) {
