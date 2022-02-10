@@ -332,6 +332,11 @@ export namespace Components {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
+          * Shows the current user's leaderboard information even if they are not in the top 10
+          * @uiName Show viewing user
+         */
+        "hideViewer": boolean;
+        /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
           * @uiOptions {"allowPastDates":true, "months": 1}
@@ -357,11 +362,6 @@ export namespace Components {
           * @uiName Show leaderboard rank
          */
         "showRank": boolean;
-        /**
-          * Shows the current user's leaderboard information even if they are not in the top 10
-          * @uiName Show viewing user
-         */
-        "showUser": boolean;
         /**
           * @uiName Stats Column Heading
          */
@@ -1450,6 +1450,7 @@ export namespace Components {
         "iconName": string;
         "iconSlot": string;
         "loading": boolean;
+        "mobileFriendly"?: boolean;
         "name": string;
         "outline": boolean;
         "pill": boolean;
@@ -2705,6 +2706,11 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
+          * Shows the current user's leaderboard information even if they are not in the top 10
+          * @uiName Show viewing user
+         */
+        "hideViewer"?: boolean;
+        /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
           * @uiOptions {"allowPastDates":true, "months": 1}
@@ -2730,11 +2736,6 @@ declare namespace LocalJSX {
           * @uiName Show leaderboard rank
          */
         "showRank"?: boolean;
-        /**
-          * Shows the current user's leaderboard information even if they are not in the top 10
-          * @uiName Show viewing user
-         */
-        "showUser"?: boolean;
         /**
           * @uiName Stats Column Heading
          */
@@ -3799,6 +3800,7 @@ declare namespace LocalJSX {
         "iconName"?: string;
         "iconSlot"?: string;
         "loading"?: boolean;
+        "mobileFriendly"?: boolean;
         "name"?: string;
         "outline"?: boolean;
         "pill"?: boolean;

@@ -1,6 +1,7 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, Host, State } from "@stencil/core";
 import { useScroll } from "./useScroll";
+import { createStyleSheet } from "../../styling/JSS";
 
 @Component({
   tag: "sqm-scroll",
@@ -22,9 +23,10 @@ export class Scroll {
   @Prop() scrollTagName?: string;
   @Prop() scrollId?: string;
   @Prop() scrollAnimation: "smooth" | "auto" = "smooth";
+  @Prop() mobileFriendly?: boolean;
 
   // SL Default Props
-  // @Prop() variant: string; - our version of SL uses 'type' as above
+  //   @Prop() variant: string; // our version of SL uses 'type' in sl-button
   @Prop() size: string;
   @Prop() outline: boolean;
   @Prop() pill: boolean;
@@ -47,13 +49,60 @@ export class Scroll {
   render() {
     const { callbacks } = useScroll(this);
 
+    const style = {
+      Button: {
+        "& .outline": {
+          "&::part(base)": {
+            color: "var(--sl-color-primary-500)",
+            borderColor: "var(--sl-color-primary-500)",
+            backgroundColor: "transparent",
+            "&:hover": {
+              color: "var(--sl-color-primary-text)",
+              backgroundColor: "var(--sl-color-primary-500)",
+            },
+          },
+        },
+        "& .mobile": {
+          "@media (max-width: 499px)": {
+            width: "100%",
+          },
+        },
+      },
+    };
+
+    const sheet = createStyleSheet(style);
+    const styleString = sheet.toString();
+
+    const vanillaStyle = `
+		:host{
+			display: block;
+		}
+		${
+      this.mobileFriendly &&
+      `
+		@media only screen and (max-width: 499px) {
+			:host {
+				width: 100%;
+			}
+		}
+	  `
+    }
+	`;
+
+    let classStack = "";
+    if (this.outline) classStack += "outline ";
+    if (this.mobileFriendly) classStack += "mobile ";
+
     return (
-      <Host style={{ display: "contents" }}>
+      <div class={sheet.classes.Button}>
+        <style type="text/css">
+          {vanillaStyle}
+          {styleString}
+        </style>
         <sl-button
-          type={this.buttonType}
+          type={this.outline ? "primary" : this.buttonType}
           onClick={callbacks.scroll}
           size={this.size}
-          outline={this.outline}
           pill={this.pill}
           href={this.href}
           circle={this.circle}
@@ -63,13 +112,15 @@ export class Scroll {
           disabled={this.disabled}
           caret={this.caret}
           loading={this.loading}
+          class={classStack}
         >
           {this.iconSlot && this.iconName && (
             <sl-icon slot={this.iconSlot} name={this.iconName}></sl-icon>
           )}
           {this.buttonText}
+          <slot />
         </sl-button>
-      </Host>
+      </div>
     );
   }
 }

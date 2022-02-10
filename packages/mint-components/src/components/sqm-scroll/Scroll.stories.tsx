@@ -7,13 +7,7 @@ export default {
 export const ScrollTag = () => {
   return (
     <div style={{ position: "relative", height: "2000px" }}>
-      <sqm-scroll
-        scroll-tag-name="sqm-text"
-        button-text="Scroll"
-        pill
-        size="small"
-        button-type="warning"
-      ></sqm-scroll>
+      <sqm-scroll scroll-tag-name="sqm-text" button-text="Scroll"></sqm-scroll>
       <div style={{ position: "absolute", bottom: "0" }}>
         <sqm-text slot="label">
           <h3>Earn more rewards</h3>
@@ -31,14 +25,7 @@ export const ScrollTag = () => {
 export const ScrollId = () => {
   return (
     <div style={{ position: "relative", height: "2000px" }}>
-      <sqm-scroll
-        scroll-id="my-id"
-        button-text="Scroll"
-        iconSlot="prefix"
-        button-type="primary"
-        iconName="gear"
-        size="large"
-      ></sqm-scroll>
+      <sqm-scroll button-text="Scroll" scroll-id="my-id"></sqm-scroll>
       <div style={{ position: "absolute", bottom: "0" }}>
         <sqm-text slot="label" id="my-id">
           <h3>Earn more rewards</h3>
@@ -56,13 +43,7 @@ export const ScrollId = () => {
 export const ScrollTabGroup = () => {
   return (
     <div style={{ position: "relative", height: "2000px" }}>
-      <sqm-scroll
-        button-text="Redeem rewards"
-        scroll-id="tab-3"
-        size="medium"
-        button-type="text"
-        caret
-      ></sqm-scroll>
+      <sqm-scroll button-text="Redeem rewards" scroll-id="tab-3"></sqm-scroll>
       <div
         style={{ position: "absolute", bottom: "0" }}
         innerHTML={`
@@ -102,9 +83,6 @@ export const ScrollTabGroupInner = () => {
       <sqm-scroll
         button-text="Redeem rewards"
         scroll-tag-name="sqm-reward-exchange-list"
-        size="medium"
-        button-type="text"
-        caret
       ></sqm-scroll>
       <div
         style={{ position: "absolute", bottom: "0" }}
@@ -135,6 +113,71 @@ export const ScrollTabGroupInner = () => {
             </sqm-tabs>
       `}
       ></div>
+    </div>
+  );
+};
+
+export const ShoelaceProps = () => {
+  return (
+    <div>
+      <h3>button-type:</h3>
+      <sqm-scroll button-type="primary">Primary</sqm-scroll>
+      <br />
+      <sqm-scroll button-type="success">Success</sqm-scroll>
+      <br />
+      <sqm-scroll button-type="neutral">Neutral</sqm-scroll>
+      <br />
+      <sqm-scroll button-type="warning">Warning</sqm-scroll>
+      <br />
+      <sqm-scroll button-type="danger">Danger</sqm-scroll>
+      <br />
+      <sqm-scroll button-type="text">Text</sqm-scroll>
+      <br /> <hr />
+      <h3>Size:</h3>
+      <sqm-scroll size="small">Small</sqm-scroll>
+      <br />
+      <sqm-scroll size="medium">Medium</sqm-scroll>
+      <br />
+      <sqm-scroll size="large">Large</sqm-scroll>
+      <br /> <hr />
+      <h3>Pill:</h3>
+      <sqm-scroll pill>Button</sqm-scroll>
+      <br /> <hr />
+      <h3>Caret:</h3>
+      <sqm-scroll caret>Button</sqm-scroll>
+      <br /> <hr />
+      <h3>Icon:</h3>
+      <sqm-scroll iconName="gear" iconSlot="prefix">
+        Icon Slot Prefix
+      </sqm-scroll>
+      <br />
+      <sqm-scroll iconName="gear" iconSlot="suffix">
+        Icon Slot Suffix
+      </sqm-scroll>
+      <br /> <hr />
+      <h3>Circle:</h3>
+      <sqm-scroll circle>X</sqm-scroll>
+      <br /> <hr />
+      <h3>Outline:</h3>
+      <sqm-scroll outline>Button</sqm-scroll>
+      <br /> <hr />
+      <h3>Disabled:</h3>
+      <sqm-scroll disabled>Button</sqm-scroll>
+      <br /> <hr />
+      <h3>Link:</h3>
+      <sqm-scroll href="https://example.com/">Link</sqm-scroll>
+      <br />
+      <sqm-scroll href="https://example.com/" target="_self">
+        Same Window
+      </sqm-scroll>
+      <br />
+      <sqm-scroll href="/assets/images/wordmark.svg" download="shoelace.svg">
+        Download
+      </sqm-scroll>
+      <br /> <hr />
+      <h3>Mobile Friendly:</h3>
+      <sqm-scroll mobile-friendly>Button</sqm-scroll>
+      <br /> <hr />
     </div>
   );
 };

@@ -59,30 +59,37 @@ export class RewardTableRewardsCell {
 
       StatusBadge: {
         paddingLeft: "var(--sl-spacing-xxx-small)",
+
+        "&::part(base)": {
+          textAlign: "center",
+          maxWidth: "170px",
+          whiteSpace: "pre-line",
+        },
       },
 
       Fueltank: {
-        lineBreak: "anywhere",
-        "& .text": {
-          color: "var(--sl-color-neutral-500)",
-          fontSize: "var(--sl-font-size-small)",
-          width: "fit-content",
-        },
         "& .code": {
+          display: "flex",
           cursor: "pointer",
           userSelect: "none",
-          marginLeft: "var(--sl-spacing-xx-small)",
-          fontWeight: "var(--sl-font-weight-bold)",
+          color: "var(--sl-color-neutral-500)",
           "&:hover": {
             color: "var(--sl-color-sky-500)",
           },
         },
+        "& .text": {
+          maxWidth: "90%",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          color: "inherit",
+          fontSize: "var(--sl-font-size-small)",
+          fontWeight: "var(--sl-font-weight-bold)",
+        },
         "& .icon": {
           position: "relative",
-          top: "2px",
-          marginRight: "var(--sl-spacing-xx-small)",
+          top: "1px",
+          marginLeft: "var(--sl-spacing-x-small)",
           color: "inherit",
-          //   float: "right",
         },
       },
     };
@@ -104,27 +111,23 @@ export class RewardTableRewardsCell {
         return (
           <div class={sheet.classes.Fueltank}>
             {reward.prettyValue}
-            <div class="text">
-              {this.fueltankText}
-              <span
-                class="code"
-                onClick={() =>
-                  navigator.clipboard.writeText(reward.fuelTankCode)
-                }
+            <div
+              class="code"
+              onClick={() => navigator.clipboard.writeText(reward.fuelTankCode)}
+            >
+              <sl-tooltip
+                trigger="click"
+                placement="top"
+                distance={5}
+                skidding={11}
+                content={this.copyText}
+                onSl-show={(e) => setTimeout(() => e.path[0].hide(), 1000)}
               >
-                <sl-tooltip
-                  trigger="click"
-                  placement="top"
-                  distance={10}
-                  content={this.copyText}
-                  onSl-show={(e) => setTimeout(() => e.path[0].hide(), 1000)}
-                >
-                  <span class="icon">
-                    <sl-icon name="files" />
-                  </span>
-                  {reward.fuelTankCode}
-                </sl-tooltip>
-              </span>
+                <span class="text">{reward.fuelTankCode}</span>
+                <span class="icon">
+                  <sl-icon name="files" />
+                </span>
+              </sl-tooltip>
             </div>
           </div>
         );
@@ -169,7 +172,7 @@ export class RewardTableRewardsCell {
         const style = {
           Progress: {
             height: "3px",
-            maxWidth: "150px",
+            width: "100%",
             margin: "var(--sl-spacing-xx-small) 0",
             background: "var(--sl-color-neutral-200)",
             "&:after": {
@@ -184,7 +187,7 @@ export class RewardTableRewardsCell {
           Container: {
             display: "inline-block",
             verticalAlign: "top",
-            maxWidth: "100%",
+            width: "130px", //setting fixed width here, so that all progress bars look the same
             whiteSpace: "break",
             overflow: "hidden",
             textOverflow: "ellipsis",

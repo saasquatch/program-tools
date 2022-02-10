@@ -5,6 +5,7 @@ import { useBigStat } from "./useBigStat";
 import { useDemoBigStat } from "./useDemoBigStat";
 import { isDemo } from "@saasquatch/component-boilerplate";
 import { DemoData } from "../../global/demo";
+import { useChildElements } from "../../tables/useChildElements";
 
 /**
  *
@@ -59,11 +60,9 @@ export class BigStat {
 
   render() {
     const { props, label } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
+    const hasLabel = useChildElements()?.length;
+    const labelSlot = <slot name="label">{hasLabel ? <slot /> : label}</slot>;
 
-    return (
-      <BigStatView {...props}>
-        <slot>{label}</slot>
-      </BigStatView>
-    );
+    return <BigStatView {...props} labelSlot={labelSlot}></BigStatView>;
   }
 }

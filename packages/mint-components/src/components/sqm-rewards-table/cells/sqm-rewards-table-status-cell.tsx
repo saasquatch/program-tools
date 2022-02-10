@@ -49,6 +49,8 @@ export class RewardTableStatusCell {
         "&::part(base)": {
           fontSize: "var(--sl-font-size-small)",
           padding: "4px 8px",
+          paddingLeft: "10px",
+          whiteSpace: "pre-line",
         },
       },
       RedeemBadge: {
