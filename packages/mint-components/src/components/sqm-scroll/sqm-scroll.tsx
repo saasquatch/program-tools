@@ -77,12 +77,21 @@ export class Scroll {
 		:host{
 			display: block;
 		}
+		${
+      this.mobileFriendly &&
+      `
+		@media only screen and (max-width: 499px) {
+			:host {
+				width: 100%;
+			}
+		}
+	  `
+    }
 	`;
 
     let classStack = "";
-
-    if (this.outline) classStack += "outline";
-    if (this.mobileFriendly) classStack += "mobile";
+    if (this.outline) classStack += "outline ";
+    if (this.mobileFriendly) classStack += "mobile ";
 
     return (
       <div class={sheet.classes.Button}>
