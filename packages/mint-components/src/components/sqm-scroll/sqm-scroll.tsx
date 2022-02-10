@@ -56,6 +56,10 @@ export class Scroll {
             color: "var(--sl-color-primary-500)",
             borderColor: "var(--sl-color-primary-500)",
             backgroundColor: "transparent",
+            "&:hover": {
+              color: "var(--sl-color-primary-text)",
+              backgroundColor: "var(--sl-color-primary-500)",
+            },
           },
         },
         "& .mobile": {
