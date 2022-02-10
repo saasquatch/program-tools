@@ -5,10 +5,11 @@ const baseResponse = (
   stage = "chooseReward",
   selectedItem = null,
   selectedStep = null,
-  error = false,
+  exchangeError = false,
   loading = false,
   fueltank = null,
-  noExchangeOptions = false
+  noExchangeOptions = false,
+  queryError = false
 ) => ({
   states: {
     content: {
@@ -35,6 +36,7 @@ const baseResponse = (
         rewardRedeemedText: "Reward redeemed",
         redemptionError:
           "An error occured trying to redeem this reward. Please try again",
+        queryError: "Unable to load reward exchange list. Please try again",
         promoCode: "Promo code",
         skeletonCardNum: 8,
         rewardNameTitle: "Reward Name",
@@ -54,10 +56,10 @@ const baseResponse = (
         ),
       },
     },
-    queryError: false,
+    queryError: queryError,
     redeemStage: stage,
     amount: 0,
-    exchangeError: error,
+    exchangeError: exchangeError,
     loading: loading,
     selectedItem: selectedItem,
     selectedStep: selectedStep,
@@ -481,7 +483,7 @@ export const confirmVariable = {
   ),
 };
 
-export const error = {
+export const redemptionError = {
   ...baseResponse(
     data,
     "confirmation",
@@ -494,6 +496,20 @@ export const error = {
       ...variableValue(20, 80, "Points"),
     },
     baseStep(20, "$", 40, "Points"),
+    true
+  ),
+};
+
+export const queryError = {
+  ...baseResponse(
+    undefined,
+    "chooseReward",
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
     true
   ),
 };

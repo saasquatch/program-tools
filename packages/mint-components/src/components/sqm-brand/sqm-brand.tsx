@@ -65,6 +65,11 @@ export class BrandComponent {
     return (
       <Host>
         <style>{`
+
+		  :root{
+		  	--sqm-portal-background: ${this.background || "transparent"};
+		  }
+		  
           :host{
             display: contents;
           }
@@ -83,7 +88,6 @@ export class BrandComponent {
             --sl-focus-ring-color-primary: var(--sl-color-primary-100);
             --sl-input-border-color-focus: var(--sl-color-primary-500);
             --sl-color-primary-hue: var(--sl-color-primary-500);
-			--sqm-portal-background: ${this.background || "transparent"};
           }`}</style>
         <slot />
       </Host>

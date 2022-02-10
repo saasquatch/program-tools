@@ -40,7 +40,8 @@ export const chooseAmountVariableAndSteppedUnavailable = StoryBase(
 );
 export const Confirm = StoryBase(Data.confirmFixed);
 export const ConfirmVariableAndStepped = StoryBase(Data.confirmVariable);
-export const Error = StoryBase(Data.error);
+export const RedemptionError = StoryBase(Data.redemptionError);
+export const QueryError = StoryBase(Data.queryError);
 export const SuccessPromo = StoryBase(Data.success);
 export const SuccessVariableAndStepped = StoryBase(Data.successVariable);
 export const Loading = StoryBase(Data.loading);

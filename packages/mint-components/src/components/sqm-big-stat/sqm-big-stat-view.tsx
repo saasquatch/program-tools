@@ -4,12 +4,13 @@ import { createStyleSheet } from "../../styling/JSS";
 export interface BigStatViewProps {
   value: number;
   statvalue: string;
-  loading:boolean;
+  loading: boolean;
   flexReverse?: boolean;
   alignment?: "left" | "right" | "center";
+  labelSlot?: VNode;
 }
 
-export function BigStatView(props: BigStatViewProps, children: VNode) {
+export function BigStatView(props: BigStatViewProps) {
   const { statvalue, flexReverse, alignment } = props;
 
   const style = {
@@ -49,7 +50,7 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
         {statvalue}
       </div>
       <div part="stat-description" class={sheet.classes.Description}>
-        {children}
+        {props.labelSlot}
       </div>
     </div>
   );

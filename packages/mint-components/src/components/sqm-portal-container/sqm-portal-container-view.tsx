@@ -29,7 +29,6 @@ export function PortalContainerView(
       padding:
         props.padding === "none" ? "0" : `var(--sl-spacing-${props.padding})`,
       maxWidth: props.maxWidth ? props.maxWidth : "",
-      background: "var(--sqm-portal-background)",
       margin: props.center && "auto",
     },
   };

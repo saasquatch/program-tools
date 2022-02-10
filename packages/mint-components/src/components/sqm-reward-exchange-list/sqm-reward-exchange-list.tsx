@@ -215,7 +215,7 @@ function EmptySlot() {
         emptyStateImage={
           "https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_exchange2.png"
         }
-        emptyStateHeader={"Redeem rewards"}
+        emptyStateHeader="Redeem rewards"
         emptyStateText={
           "Use your points to redeem rewards once they become available"
         }

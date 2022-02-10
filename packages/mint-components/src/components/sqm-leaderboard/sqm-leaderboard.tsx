@@ -37,7 +37,7 @@ export class Leaderboard {
    *
    * @uiName Show viewing user
    */
-  @Prop() showUser: boolean = false;
+  @Prop() hideViewer: boolean = false;
 
   /**
    * @uiName Rank type
@@ -90,7 +90,7 @@ export class Leaderboard {
       leaderboardType: this.leaderboardType,
       anonymousUser: this.anonymousUser,
       interval: this.interval,
-      showUser: this.showUser,
+      hideViewer: this.hideViewer,
       showRank: this.showRank,
     };
     const demoProps = { ...props, demoData: this.demoData };
@@ -104,7 +104,11 @@ export class Leaderboard {
 function EmptySlot() {
   return (
     <slot name="empty">
-      <sqm-empty></sqm-empty>
+      <sqm-empty
+        empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
+        empty-state-header="View your rank in the leaderboard"
+        empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
+      ></sqm-empty>
     </slot>
   );
 }
@@ -183,12 +187,12 @@ function useLeaderboardDemo(
             ? props.anonymousUser
             : "Anonymous User",
           showRank: props.showRank,
+          hideViewer: props.hideViewer,
         },
       },
       data: {
         rankType: "rowNumber",
         leaderboard: data,
-        showUser: props.showUser,
       },
       elements: {
         empty: <EmptySlot />,

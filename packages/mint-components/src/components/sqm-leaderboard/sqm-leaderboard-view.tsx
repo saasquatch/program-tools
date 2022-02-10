@@ -11,6 +11,7 @@ export interface LeaderboardViewProps {
       statsheading: string;
       rankheading?: string;
       showRank?: boolean;
+      hideViewer?: boolean;
       anonymousUser?: string;
     };
   };
@@ -23,8 +24,7 @@ export interface LeaderboardViewProps {
       lastInitial: string;
       rowNumber: number;
     }[];
-    showUser?: boolean;
-    userRank?: {
+    viewerRank?: {
       value: number;
       rank: number;
       firstName: string;
@@ -93,6 +93,12 @@ export function LeaderboardView(props: LeaderboardViewProps) {
   const { states, data, elements } = props;
   const { styles } = states;
 
+  console.log("LEADER", props);
+
+  console.log(styles);
+  console.log("hideViewer", styles.hideViewer);
+  console.log(!styles.hideViewer);
+
   if (states.loading)
     return (
       <div class={sheet.classes.Leaderboard}>
@@ -121,11 +127,15 @@ export function LeaderboardView(props: LeaderboardViewProps) {
           <th class="Score">{styles.statsheading}</th>
         </tr>
         {data.leaderboard?.map((user) => {
-          if (user.rowNumber === data.userRank?.rowNumber) userSeenFlag = true;
+          if (user.rowNumber === data.viewerRank?.rowNumber)
+            userSeenFlag = true;
           return (
             <tr
               class={
-                user.rowNumber === data.userRank?.rowNumber ? "highlight" : ""
+                !styles.hideViewer &&
+                user.rowNumber === data.viewerRank?.rowNumber
+                  ? "highlight"
+                  : ""
               }
             >
               {styles.showRank && <td class="Rank">{user.rank}</td>}
@@ -140,8 +150,9 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             </tr>
           );
         })}
-        {!userSeenFlag && data.showUser && (
+        {!userSeenFlag && !styles.hideViewer && (
           <tr>
+            {console.log("res", !userSeenFlag && !styles.hideViewer)}
             <td colSpan={100} class="ellipses">
               <sl-icon
                 name="three-dots"
@@ -150,19 +161,21 @@ export function LeaderboardView(props: LeaderboardViewProps) {
             </td>
           </tr>
         )}
-        {!userSeenFlag && data.showUser && (
+        {!userSeenFlag && !styles.hideViewer && (
           <tr class="highlight">
             {styles.showRank && (
-              <td class="Rank">{data.userRank?.rank || "-"}</td>
+              <td class="Rank">{data.viewerRank?.rank || "-"}</td>
             )}
             <td class="User">
-              {data.userRank?.firstName && data.userRank?.lastInitial
-                ? data.userRank?.firstName + " " + data.userRank?.lastInitial
-                : data.userRank?.firstName || data.userRank?.lastInitial
-                ? data.userRank?.firstName || data.userRank?.lastInitial
+              {data.viewerRank?.firstName && data.viewerRank?.lastInitial
+                ? data.viewerRank?.firstName +
+                  " " +
+                  data.viewerRank?.lastInitial
+                : data.viewerRank?.firstName || data.viewerRank?.lastInitial
+                ? data.viewerRank?.firstName || data.viewerRank?.lastInitial
                 : styles.anonymousUser || "Anonymous User"}
             </td>
-            <td class="Score">{data.userRank?.value || "0"}</td>
+            <td class="Score">{data.viewerRank?.value || "0"}</td>
           </tr>
         )}
       </table>

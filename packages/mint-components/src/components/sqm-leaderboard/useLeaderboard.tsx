@@ -13,7 +13,7 @@ export interface LeaderboardProps {
   rankheading?: string;
   anonymousUser?: string;
   showRank?: boolean;
-  showUser?: boolean;
+  hideViewer?: boolean;
   rankType: "rowNumber" | "rank" | "denseRank";
   leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   interval: string;
@@ -140,8 +140,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     data: {
       leaderboard: sortedLeaderboard,
       rankType: props.rankType,
-      userRank: viewingUser,
-      showUser: props.showUser,
+      viewerRank: viewingUser,
     },
     elements: {
       empty: props.empty,
