@@ -40,6 +40,24 @@ export const ScrollId = () => {
   );
 };
 
+export const ScrollAutoAnimation = () => {
+  return (
+    <div style={{ position: "relative", height: "2000px" }}>
+      <sqm-scroll button-text="Scroll" scroll-id="my-id" scroll-animation="auto"></sqm-scroll>
+      <div style={{ position: "absolute", bottom: "0" }}>
+        <sqm-text slot="label" id="my-id">
+          <h3>Earn more rewards</h3>
+          <p>
+            Get points while using Klip. Use those points to redeem rewards like
+            one free month of Klip Enterprise or two plane tickets to anywhere
+            in North America
+          </p>
+        </sqm-text>
+      </div>
+    </div>
+  );
+};
+
 export const ScrollTabGroup = () => {
   return (
     <div style={{ position: "relative", height: "2000px" }}>
@@ -147,6 +165,10 @@ export const ShoelaceProps = () => {
       <sqm-scroll caret>Button</sqm-scroll>
       <br /> <hr />
       <h3>Icon:</h3>
+      <sqm-scroll button-type="primary" iconName="facebook">
+        Icon Name
+      </sqm-scroll>
+      <br />
       <sqm-scroll iconName="gear" iconSlot="prefix">
         Icon Slot Prefix
       </sqm-scroll>
@@ -163,6 +185,9 @@ export const ShoelaceProps = () => {
       <br /> <hr />
       <h3>Disabled:</h3>
       <sqm-scroll disabled>Button</sqm-scroll>
+      <br /> <hr />
+      <h3>Loading:</h3>
+      <sqm-scroll loading>Button</sqm-scroll>
       <br /> <hr />
       <h3>Link:</h3>
       <sqm-scroll href="https://example.com/">Link</sqm-scroll>
