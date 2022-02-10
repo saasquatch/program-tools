@@ -168,7 +168,7 @@ export class RewardTableRewardsCell {
                 },
                 {
                   availableAmount: reward.statuses.includes("PENDING")
-                    ? `${remainingValue} ${reward.unit}`
+                    ? reward.prettyAssignedCredit
                     : reward.prettyAvailableValue,
                 }
               )}

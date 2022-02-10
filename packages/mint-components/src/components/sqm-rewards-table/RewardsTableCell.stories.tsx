@@ -17,7 +17,7 @@ const rewardsData: Reward = {
   id: "61c100117a82a376d8804166",
   type: "CREDIT",
   value: 19,
-  unit: "TESTUNIT",
+  unit: "Points",
   name: null,
   dateGiven: 1640038417468,
   meta: { message: "***CUSTOMER NOTE MESSAGE***" },
@@ -100,7 +100,7 @@ export const RewardsCellCreditExpired = () => {
 export const RewardsCellCreditPending = () => {
   return (
     <sqm-rewards-table-reward-cell
-      reward={{ ...rewardsData, ...partial, ...pending }}
+      reward={{ ...rewardsData, ...pending }}
       availableText="{availableAmount} remaining"
     ></sqm-rewards-table-reward-cell>
   );
