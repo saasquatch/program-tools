@@ -56,6 +56,7 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
   const { states, content, callbacks } = props;
   const validationErrors = states?.validationErrors;
 
+  console.log(content.labelSlot);
   return (
     <div>
       <style type="text/css">
@@ -65,14 +66,17 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
       <sl-checkbox
         exportparts="label: input-label"
         name={`/${content.checkboxName}`}
+        checked={states.checked}
         onSl-change={(e) => {
+          console.log("on sl change")
+
           e.target.value = e.target.checked;
           callbacks.setChecked(e.target.value);
         }}
         required
-        {...(validationErrors?.[content.checkboxName]
+        {...(!states.checked && validationErrors?.[content.checkboxName]
           ? {
-              class: !states.checked && sheet.classes.ErrorStyle,
+              class: sheet.classes.ErrorStyle,
             }
           : [])}
       >

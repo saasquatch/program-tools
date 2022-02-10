@@ -32,13 +32,6 @@ export function usePortalRegister(props: PortalRegister) {
       const key = control.name;
       const value = control.value;
 
-      console.log({
-        key,
-        value,
-        type: control.type,
-        checked: control.checked,
-        required: control.required,
-      });
       jsonpointer.set(formData, key, value);
       // required validation
       if (control.required && !value) {
@@ -62,8 +55,6 @@ export function usePortalRegister(props: PortalRegister) {
       };
     }
 
-    console.log({ validationErrors });
-
     setValidationState({ error: "", validationErrors });
     if (Object.keys(validationErrors).length) {
       // early return for validation errors
@@ -82,7 +73,7 @@ export function usePortalRegister(props: PortalRegister) {
       redirectPath,
     };
     try {
-      // await request(variables);
+      await request(variables);
     } catch (error) {
       setValidationState({ error: "Network request failed." });
     }

@@ -1,42 +1,42 @@
-import { setUserIdentity } from "@saasquatch/component-boilerplate";
-import { useEffect } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import {
   PortalRegisterView,
   PortalRegisterViewProps,
 } from "../sqm-portal-register/sqm-portal-register-view";
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
+import {
+  CheckboxFieldView,
+  CheckboxFieldViewProps,
+} from "./sqm-checkbox-field-view";
 export default {
   title: "Checkbox Field",
 };
 
-function setupGraphQL() {
-  const id = "testestest";
-  const accountId = id;
-  const programId = "sam-partner-test-2";
+const defaultProps: CheckboxFieldViewProps = {
+  states: {
+    validationErrors: {},
+    checked: false,
+  },
+  content: {
+    checkboxName: "agree",
+    errorMessage: "Must be checked",
+    labelSlot: (
+      <slot>
+        <p>
+          By signing up you agree to the{" "}
+          <a href="https://example.com" target="_blank">
+            Terms and Conditions
+          </a>
+        </p>
+      </slot>
+    ),
+  },
+  callbacks: {
+    setChecked: () => {},
+  },
+};
 
-  //@ts-ignore
-  window.widgetIdent = {
-    tenantAlias: "test_a8b41jotf8a1v",
-    appDomain: "https://staging.referralsaasquatch.com",
-    programId,
-  };
-  useEffect(() => {
-    setUserIdentity({
-      accountId,
-      id,
-      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InRlc3Rlc3Rlc3QiLCJpZCI6InRlc3Rlc3Rlc3QifX0.qYnU5hNeIj9C_G3NogfG7btgCPGZC7JRXY0MG6a63zs",
-    });
-    return () => {
-      window.widgetIdent = undefined;
-      setUserIdentity(undefined);
-    };
-  }, []);
-
-  return { id, accountId };
-}
-
-const defaultProps: PortalRegisterViewProps = {
+const defaultRegisterProps: PortalRegisterViewProps = {
   states: {
     error: "",
     loading: false,
@@ -54,12 +54,45 @@ const defaultProps: PortalRegisterViewProps = {
   content: { pageLabel: "Register", confirmPasswordLabel: "Confirm Password" },
 };
 
-export const TermsAndConditions = createHookStory(() => (
-  <PortalRegisterView
+export const Default = createHookStory(() => (
+  <CheckboxFieldView {...defaultProps} />
+));
+
+export const DefaultChecked = createHookStory(() => (
+  <CheckboxFieldView {...defaultProps} states={{
+    ...defaultProps.states,
+    checked:true
+  }} />
+));
+
+export const CustomLabel = createHookStory(() => (
+  <CheckboxFieldView
     {...defaultProps}
-    //@ts-ignore
     content={{
       ...defaultProps.content,
+      labelSlot: <slot>Agree to terms and conditions</slot>,
+    }}
+  />
+));
+
+export const Error = createHookStory(() => (
+  <CheckboxFieldView
+    {...defaultProps}
+    states={{
+      ...defaultProps.states,
+      validationErrors: {
+        agree: "Must be checked",
+      },
+    }}
+  />
+));
+
+export const TermsAndConditions = createHookStory(() => (
+  <PortalRegisterView
+    {...defaultRegisterProps}
+    //@ts-ignore
+    content={{
+      ...defaultRegisterProps.content,
       terms: (
         <p>
           <sqm-checkbox-field></sqm-checkbox-field>
@@ -71,10 +104,10 @@ export const TermsAndConditions = createHookStory(() => (
 
 export const TermsAndConditionsCustomLabel = createHookStory(() => (
   <PortalRegisterView
-    {...defaultProps}
+    {...defaultRegisterProps}
     //@ts-ignore
     content={{
-      ...defaultProps.content,
+      ...defaultRegisterProps.content,
       terms: (
         <p>
           By signing up you agree to the{" "}
@@ -89,27 +122,3 @@ export const TermsAndConditionsCustomLabel = createHookStory(() => (
     }}
   />
 ));
-
-export const TermsAndConditionsHook = createHookStory(() => {
-  setupGraphQL();
-  return (
-    <sqm-portal-register>
-      <div slot="terms">
-        <sqm-checkbox-field></sqm-checkbox-field>
-      </div>
-    </sqm-portal-register>
-  );
-});
-
-export const TermsAndConditionsLabelSlot = createHookStory(() => {
-  setupGraphQL();
-  return (
-    <sqm-portal-register>
-      <div slot="terms">
-        <sqm-checkbox-field>
-          <p>I Agree to the terms and conditions</p>
-        </sqm-checkbox-field>
-      </div>
-    </sqm-portal-register>
-  );
-});

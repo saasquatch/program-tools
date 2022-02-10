@@ -42,7 +42,7 @@ import * as Hero from "../../stories/Hero.stories";
 import * as ReferralIframe from "../../stories/ReferralIframe.stories";
 import * as NameFields from "../../stories/NameFields.stories";
 import * as CheckboxField from "../sqm-checkbox-field/CheckboxField.stories";
-
+import * as UseCheckboxField from "../sqm-checkbox-field/UseCheckboxField.stories";
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -59,6 +59,7 @@ const stories = [
   UseBigStat,
   UseEditProfile,
   UseLeaderboard,
+  UseCheckboxField,
   Router,
   PortalFrame,
   EditProfile,
@@ -88,7 +89,7 @@ const stories = [
   Hero,
   ReferralIframe,
   NameFields,
-  CheckboxField
+  CheckboxField,
 ];
 
 /**
