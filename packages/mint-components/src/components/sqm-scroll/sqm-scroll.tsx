@@ -3,6 +3,9 @@ import { Component, h, Prop, Host, State } from "@stencil/core";
 import { useScroll } from "./useScroll";
 import { createStyleSheet } from "../../styling/JSS";
 
+/**
+ * @uiName Scroll
+ */
 @Component({
   tag: "sqm-scroll",
   shadow: true,
