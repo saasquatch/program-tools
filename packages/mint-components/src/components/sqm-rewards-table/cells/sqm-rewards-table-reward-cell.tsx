@@ -137,11 +137,12 @@ export class RewardTableRewardsCell {
       }
 
       if (reward.type === "CREDIT" && !singleReward) {
+        const remainingValue =
+          parseFloat(reward.prettyValueNumber) -
+          parseFloat(reward.prettyRedeemedNumber);
+
         const progress = Math.round(
-          ((parseFloat(reward.prettyValueNumber) -
-            parseFloat(reward.prettyRedeemedNumber)) /
-            parseFloat(reward.prettyValueNumber)) *
-            100
+          (remainingValue / parseFloat(reward.prettyValueNumber)) * 100
         );
 
         const progressBarSubtext =
@@ -166,7 +167,9 @@ export class RewardTableRewardsCell {
                   defaultMessage: this.availableText,
                 },
                 {
-                  availableAmount: reward.prettyAvailableValue,
+                  availableAmount: reward.statuses.includes("PENDING")
+                    ? `${remainingValue} ${reward.unit}`
+                    : reward.prettyAvailableValue,
                 }
               )}
             </div>

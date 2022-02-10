@@ -603,7 +603,7 @@ export const FullRewardsTable = () => {
             prevLabel: "Prev",
             moreLabel: "View More",
           },
-          hiddenColumns: "",
+          hiddenColumns: "1",
           mdBreakpoint: 899,
           smBreakpoint: 599,
         },
