@@ -114,8 +114,11 @@ export class Scroll {
           loading={this.loading}
           class={classStack}
         >
-          {this.iconSlot && this.iconName && (
-            <sl-icon slot={this.iconSlot} name={this.iconName}></sl-icon>
+          {(this.iconSlot || this.iconName) && (
+            <sl-icon
+              slot={this.iconSlot || "prefix"}
+              name={this.iconName}
+            ></sl-icon>
           )}
           {this.buttonText}
           <slot />
