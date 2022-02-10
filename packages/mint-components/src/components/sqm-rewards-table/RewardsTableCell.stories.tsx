@@ -83,7 +83,7 @@ export const RewardsCellCreditCancelled = () => {
   return (
     <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, ...cancelled }}
-      redeemedText="0 Points redeemed"
+      redeemedText="{redeemedAmount} redeemed"
     ></sqm-rewards-table-reward-cell>
   );
 };
@@ -92,7 +92,7 @@ export const RewardsCellCreditExpired = () => {
   return (
     <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, ...partial, ...expired }}
-      redeemedText="9 Points redeemed"
+      redeemedText="{redeemedAmount} redeemed"
     ></sqm-rewards-table-reward-cell>
   );
 };
