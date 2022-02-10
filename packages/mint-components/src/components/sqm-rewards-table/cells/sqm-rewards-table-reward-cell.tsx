@@ -110,24 +110,28 @@ export class RewardTableRewardsCell {
         return (
           <div class={sheet.classes.Fueltank}>
             {reward.prettyValue}
-            <div
-              class="code"
-              onClick={() => navigator.clipboard.writeText(reward.fuelTankCode)}
-            >
-              <sl-tooltip
-                trigger="click"
-                placement="top"
-                distance={5}
-                skidding={11}
-                content={this.copyText}
-                onSl-show={(e) => setTimeout(() => e.path[0].hide(), 1000)}
+            {reward.fuelTankCode && (
+              <div
+                class="code"
+                onClick={() =>
+                  navigator.clipboard.writeText(reward.fuelTankCode)
+                }
               >
-                <span class="text">{reward.fuelTankCode}</span>
-                <span class="icon">
-                  <sl-icon name="files" />
-                </span>
-              </sl-tooltip>
-            </div>
+                <sl-tooltip
+                  trigger="click"
+                  placement="top"
+                  distance={5}
+                  skidding={11}
+                  content={this.copyText}
+                  onSl-show={(e) => setTimeout(() => e.path[0].hide(), 1000)}
+                >
+                  <span class="text">{reward.fuelTankCode}</span>
+                  <span class="icon">
+                    <sl-icon name="files" />
+                  </span>
+                </sl-tooltip>
+              </div>
+            )}
           </div>
         );
       }
