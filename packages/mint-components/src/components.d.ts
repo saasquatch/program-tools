@@ -81,12 +81,6 @@ export namespace Components {
     }
     interface SqmBrand {
         /**
-          * The background color for the portal
-          * @uiName Page Background Color
-          * @uiWidget color
-         */
-        "background": string;
-        /**
           * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
           * @uiName Brand Color
           * @uiWidget color
@@ -2454,12 +2448,6 @@ declare namespace LocalJSX {
         "statType"?: string;
     }
     interface SqmBrand {
-        /**
-          * The background color for the portal
-          * @uiName Page Background Color
-          * @uiWidget color
-         */
-        "background"?: string;
         /**
           * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
           * @uiName Brand Color
