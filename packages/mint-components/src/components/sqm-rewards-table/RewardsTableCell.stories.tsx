@@ -166,7 +166,6 @@ export const RewardsCellFueltank = () => {
         prettyValue: "Fueltank Reward",
         fuelTankCode: "AFUELTANKCODE",
       }}
-      fueltankText="Your code:"
       copyText="Copied"
     ></sqm-rewards-table-reward-cell>
   );
@@ -181,7 +180,6 @@ export const RewardsCellFueltankLong = () => {
           prettyValue: "Long Fueltank Reward",
           fuelTankCode: "AFUELTANKCODE123456789123456789123456789123456789",
         }}
-        fueltankText="Your code:"
         copyText="Copied"
       ></sqm-rewards-table-reward-cell>
     </div>
