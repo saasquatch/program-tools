@@ -231,6 +231,12 @@ export const SourceCellExchange = () => {
   );
 };
 
+const longUserName = {
+  firstName: "Bartholomew",
+  lastName: "Christopher-Johnston Wallace",
+  imageUrl: null,
+};
+
 const johnDoe = {
   firstName: "John",
   lastName: "Doe",
@@ -283,6 +289,16 @@ export const SourceCellReferral = () => {
       reward={{ ...rewardsData, ...referral(johnDoe) }}
       referralText="Referral to"
     ></sqm-rewards-table-source-cell>
+  );
+};
+export const SourceCellWithLongText = () => {
+  return (
+    <div style={{ width: "200px" }}>
+      <sqm-rewards-table-source-cell
+        reward={{ ...rewardsData, ...referral(longUserName) }}
+        referralText="Referral to"
+      ></sqm-rewards-table-source-cell>
+    </div>
   );
 };
 export const SourceCellReferred = () => {
@@ -398,6 +414,17 @@ export const StatusCellPending = () => {
       statusText="Pending"
       reward={{ ...rewardsData, ...pending }}
     ></sqm-rewards-table-status-cell>
+  );
+};
+
+export const StatusCellPendingWithLongText = () => {
+  return (
+    <div style={{ width: "200px" }}>
+      <sqm-rewards-table-status-cell
+        statusText="Pending for 300,000,000 months and some change"
+        reward={{ ...rewardsData, ...pending }}
+      ></sqm-rewards-table-status-cell>
+    </div>
   );
 };
 
