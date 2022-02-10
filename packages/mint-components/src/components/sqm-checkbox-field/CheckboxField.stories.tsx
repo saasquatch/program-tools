@@ -9,7 +9,7 @@ import {
   CheckboxFieldViewProps,
 } from "./sqm-checkbox-field-view";
 export default {
-  title: "Checkbox Field",
+  title: "Components/Checkbox Field",
 };
 
 const defaultProps: CheckboxFieldViewProps = {
