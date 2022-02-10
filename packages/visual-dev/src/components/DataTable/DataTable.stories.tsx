@@ -1,55 +1,82 @@
-import React from "react"
-import { Icon } from "../Icon"
-import { Skeleton, Content, Action, DataTable, Divider, Popover, Row, Pagination } from "."
-import { Avatar } from "../Avatar"
-import { Text } from "../Text"
+import React from "react";
+import { Icon } from "../Icon";
+import {
+  Skeleton,
+  Content,
+  Action,
+  DataTable,
+  Divider,
+  Popover,
+  Row,
+  Pagination,
+} from ".";
+import { Avatar } from "../Avatar";
+import { Text } from "../Text";
 
 export default {
   title: "Components / DataTable",
   component: DataTable,
-}
+};
+
+const content_a = [
+  { text: "Form" },
+  { text: "User" },
+  { text: "Date Submitted" },
+  { text: "Status" },
+  { text: "", width: "50px", flex: 0.01 },
+];
+
+const text_a = (
+  <Content>
+    <div>
+      <strong> A form name </strong> <br />
+      form-key
+    </div>
+  </Content>
+);
+
+const text_b = (
+  <Content>
+    <div>
+      <Avatar firstName="New" lastName="Guy" />
+    </div>
+    <div style={{ marginLeft: 10 }}>
+      <span style={{ color: "#0088CC" }}>new guy</span> <br />
+      sam123@test.ca
+    </div>
+  </Content>
+);
+
+const text_c = <Content>11 months ago</Content>;
+
+const text_d = (
+  <Content>
+    <Skeleton circle={true} size="8px" color="#57AC59" /> Success
+  </Content>
+);
+
+const text_e = (
+  <Content>
+    <Skeleton circle={true} size="8px" color="#FE6666" /> Failed
+  </Content>
+);
+
+const content_b = [
+  { text: text_a },
+  { text: text_b },
+  { text: text_c },
+  { text: text_d },
+  { text: <Icon icon="actions" />, width: "50px", flex: 0.01, center: true },
+];
+const content_c = [
+  { text: text_a },
+  { text: text_b },
+  { text: text_c },
+  { text: text_e },
+  { text: <Icon icon="actions" />, width: "50px", flex: 0.01, center: true },
+];
 
 export const FormSubmissionTable = () => {
-  const content_a = [{ text: "Form" }, { text: "User" }, { text: "Date Submitted" }, { text: "Status" }, { text: "", width: "50px", flex: 0.01 }]
-
-  const text_a = (
-    <Content>
-      <div>
-        <strong> A form name </strong> <br />
-        form-key
-      </div>
-    </Content>
-  )
-
-  const text_b = (
-    <Content>
-      <div>
-        <Avatar firstName="New" lastName="Guy" />
-      </div>
-      <div style={{ marginLeft: 10 }}>
-        <span style={{ color: "#0088CC" }}>new guy</span> <br />
-        sam123@test.ca
-      </div>
-    </Content>
-  )
-
-  const text_c = <Content>11 months ago</Content>
-
-  const text_d = (
-    <Content>
-      <Skeleton circle={true} size="8px" color="#57AC59" /> Success
-    </Content>
-  )
-
-  const text_e = (
-    <Content>
-      <Skeleton circle={true} size="8px" color="#FE6666" /> Failed
-    </Content>
-  )
-
-  const content_b = [{ text: text_a }, { text: text_b }, { text: text_c }, { text: text_d }, { text: <Icon icon="actions" />, width: "50px", flex: 0.01, center: true }]
-  const content_c = [{ text: text_a }, { text: text_b }, { text: text_c }, { text: text_e }, { text: <Icon icon="actions" />, width: "50px", flex: 0.01, center: true }]
-
   return (
     <DataTable width="958px">
       <Row variant="header" content={content_a} />
@@ -60,11 +87,52 @@ export const FormSubmissionTable = () => {
       <Row content={content_c} />
       <Pagination total={17} pages={[1, 2]} />
     </DataTable>
-  )
-}
+  );
+};
+
+export const FormSubmissionTableWithBanner = () => {
+  return (
+    <DataTable width="958px">
+      <Row variant="banner">
+        {" "}
+        <div>
+          <span style={{ padding: 20 }}>Filter Rewards by Program</span>
+          <span
+            style={{
+              background: "white",
+              width: 2,
+              height: "90px",
+              marginTop: -45,
+              display: "inline-flex",
+              position: "absolute",
+            }}
+          >
+            .
+          </span>
+          <span style={{ marginLeft: 20 }}>
+            5 rewards earned across all programs
+          </span>
+        </div>
+      </Row>
+      <Row variant="header" content={content_a} />
+      <Row content={content_b} />
+      <Row content={content_c} />
+      <Row content={content_c} />
+      <Row content={content_c} />
+      <Row content={content_c} />
+      <Pagination total={17} pages={[1, 2]} />
+    </DataTable>
+  );
+};
 
 export const FormSubmissionTableEmpty = () => {
-  const content_a = [{ text: "Form" }, { text: "User" }, { text: "Date Submitted" }, { text: "Status" }, { text: "", width: "50px", flex: 0.01 }]
+  const content_a = [
+    { text: "Form" },
+    { text: "User" },
+    { text: "Date Submitted" },
+    { text: "Status" },
+    { text: "", width: "50px", flex: 0.01 },
+  ];
 
   return (
     <DataTable width="958px" empty>
@@ -72,10 +140,16 @@ export const FormSubmissionTableEmpty = () => {
       <Row empty />
       <Pagination />
     </DataTable>
-  )
-}
+  );
+};
 export const FormSubmissionTableFilter = () => {
-  const content_a = [{ text: "Form" }, { text: "User" }, { text: "Date Submitted" }, { text: "Status" }, { text: "", width: "50px", flex: 0.01 }]
+  const content_a = [
+    { text: "Form" },
+    { text: "User" },
+    { text: "Date Submitted" },
+    { text: "Status" },
+    { text: "", width: "50px", flex: 0.01 },
+  ];
 
   return (
     <DataTable width="958px" empty>
@@ -83,30 +157,45 @@ export const FormSubmissionTableFilter = () => {
       <Row filter />
       <Pagination />
     </DataTable>
-  )
-}
+  );
+};
 
-export const pagination = () => <Pagination selected={2} pages={[1, 2, 3]} />
+export const pagination = () => <Pagination selected={2} pages={[1, 2, 3]} />;
 
 export const header = () => {
-  const content = [{ text: "Heading A" }, { text: "Heading B" }, { text: "Heading C" }, { text: "Heading D" }]
+  const content = [
+    { text: "Heading A" },
+    { text: "Heading B" },
+    { text: "Heading C" },
+    { text: "Heading D" },
+  ];
 
-  return <Row variant="header" content={content} />
-}
+  return <Row variant="header" content={content} />;
+};
 
 export const row = () => {
-  const text = "Some content"
-  const content = [{ text: text }, { text: text }, { text: text }, { text: text }]
+  const text = "Some content";
+  const content = [
+    { text: text },
+    { text: text },
+    { text: text },
+    { text: text },
+  ];
 
-  return <Row content={content} />
-}
+  return <Row content={content} />;
+};
 
 export const rowSkeleton = () => {
-  const text = <Skeleton size="91px" />
-  const content = [{ text: text }, { text: text }, { text: text }, { text: text }]
+  const text = <Skeleton size="91px" />;
+  const content = [
+    { text: text },
+    { text: text },
+    { text: text },
+    { text: text },
+  ];
 
-  return <Row content={content} />
-}
+  return <Row content={content} />;
+};
 
 export const headerActions = () => {
   const content = [
@@ -115,10 +204,10 @@ export const headerActions = () => {
     { text: "Heading C", flex: "10" },
     { text: "Heading D", flex: "10" },
     { text: "Actions", center: true },
-  ]
+  ];
 
-  return <Row variant="header" content={content} />
-}
+  return <Row variant="header" content={content} />;
+};
 
 export const rowActions = () => {
   const text_a = (
@@ -126,8 +215,8 @@ export const rowActions = () => {
       <strong> A title for this content </strong> <br />
       Some content
     </div>
-  )
-  const text_b = <Text>Some content</Text>
+  );
+  const text_b = <Text>Some content</Text>;
 
   const content = [
     { text: text_a, flex: "10" },
@@ -135,10 +224,10 @@ export const rowActions = () => {
     { text: text_b, flex: "10" },
     { text: text_b, flex: "10" },
     { text: <Icon icon="actions" />, center: true },
-  ]
+  ];
 
-  return <Row content={content} />
-}
+  return <Row content={content} />;
+};
 
 export const rowActionsSkeleton = () => {
   const text_a = (
@@ -146,8 +235,8 @@ export const rowActionsSkeleton = () => {
       <Skeleton size="135px" /> <br />
       <Skeleton size="84px" />
     </div>
-  )
-  const text_b = <Skeleton size="91px" />
+  );
+  const text_b = <Skeleton size="91px" />;
 
   const content = [
     { text: text_a, flex: "10" },
@@ -155,16 +244,22 @@ export const rowActionsSkeleton = () => {
     { text: text_b, flex: "10" },
     { text: text_b, flex: "10" },
     { text: <Icon icon="actions" />, center: true },
-  ]
+  ];
 
-  return <Row content={content} />
-}
+  return <Row content={content} />;
+};
 
 export const header_arrow = () => {
-  const content = [{ text: "", flex: 0.1 }, { text: "Heading A" }, { text: "Heading B" }, { text: "Heading C" }, { text: "Heading D" }]
+  const content = [
+    { text: "", flex: 0.1 },
+    { text: "Heading A" },
+    { text: "Heading B" },
+    { text: "Heading C" },
+    { text: "Heading D" },
+  ];
 
-  return <Row variant="header" content={content} />
-}
+  return <Row variant="header" content={content} />;
+};
 
 export const row_arrow = () => {
   const text_a = (
@@ -172,16 +267,32 @@ export const row_arrow = () => {
       <strong> A title for this content </strong> <br />
       Some content
     </div>
-  )
-  const text_b = <Text>Some content</Text>
+  );
+  const text_b = <Text>Some content</Text>;
 
-  const content = [{ text: <Icon icon="arrow_dropdown" size="40px" customCSS="margin: -50px; margin-top: 0px;" />, flex: 0.1, center: true }, { text: text_a }, { text: text_b }, { text: text_b }, { text: text_b }]
+  const content = [
+    {
+      text: (
+        <Icon
+          icon="arrow_dropdown"
+          size="40px"
+          customCSS="margin: -50px; margin-top: 0px;"
+        />
+      ),
+      flex: 0.1,
+      center: true,
+    },
+    { text: text_a },
+    { text: text_b },
+    { text: text_b },
+    { text: text_b },
+  ];
 
-  return <Row content={content} />
-}
+  return <Row content={content} />;
+};
 
-export const skeleton = () => <Skeleton />
-export const content = () => <Content> Some content </Content>
+export const skeleton = () => <Skeleton />;
+export const content = () => <Content> Some content </Content>;
 export const contentWithTitle = () => (
   <Content>
     <div>
@@ -189,17 +300,17 @@ export const contentWithTitle = () => (
       Some content
     </div>
   </Content>
-)
+);
 export const contentSkeleton = () => (
   <Content>
     <Skeleton size="90px" />
   </Content>
-)
+);
 export const contentSkeletonCircle = () => (
   <Content>
     <Skeleton circle={true} /> <Skeleton size="90px" />
   </Content>
-)
+);
 
 export const contentSkeletonAvatarA = () => (
   <Content>
@@ -212,7 +323,7 @@ export const contentSkeletonAvatarA = () => (
       <Skeleton size="120px" />
     </div>
   </Content>
-)
+);
 
 export const contentSkeletonAvatarB = () => (
   <Content>
@@ -225,7 +336,7 @@ export const contentSkeletonAvatarB = () => (
       <Skeleton size="90px" />
     </div>
   </Content>
-)
+);
 
 export const contentAvatar = () => (
   <Content>
@@ -237,31 +348,31 @@ export const contentAvatar = () => (
       sam123@test.ca
     </div>
   </Content>
-)
+);
 
 export const contentStatus = () => (
   <Content>
     <Skeleton circle={true} size="8px" /> Status
   </Content>
-)
+);
 
 export const contentEnabled = () => (
   <Content>
     <Skeleton circle={true} size="8px" color="#57AC59" /> Enabled
   </Content>
-)
+);
 
 export const contentDisabled = () => (
   <Content>
     <Skeleton circle={true} size="8px" color="#FE6666" /> Disabled
   </Content>
-)
+);
 
 export const contentIconA = () => (
   <Content>
     <Icon icon="action" style={{ marginRight: 10 }} /> Some content
   </Content>
-)
+);
 
 export const contentIconB = () => (
   <Content>
@@ -273,20 +384,20 @@ export const contentIconB = () => (
       Some content
     </div>
   </Content>
-)
+);
 
 export const PopoverOneAction = () => (
   <Popover>
     <Action> An action</Action>
   </Popover>
-)
+);
 
 export const PopoverTwoActions = () => (
   <Popover>
     <Action> First action</Action>
     <Action> Second action</Action>
   </Popover>
-)
+);
 
 export const PopoverMultipleActions = () => (
   <Popover>
@@ -295,21 +406,27 @@ export const PopoverMultipleActions = () => (
     <Action> Third action</Action>
     <Action> Another action</Action>
   </Popover>
-)
+);
 
 export const PopoverLongAction = () => (
   <Popover>
-    <Action> A really long name for a single action that takes up mulitple lines</Action>
+    <Action>
+      {" "}
+      A really long name for a single action that takes up mulitple lines
+    </Action>
   </Popover>
-)
+);
 
 export const PopoverVariousActions = () => (
   <Popover>
     <Action> Short action </Action>
-    <Action> A really long name for a single action that takes up mulitple lines</Action>
+    <Action>
+      {" "}
+      A really long name for a single action that takes up mulitple lines
+    </Action>
     <Action> Another action</Action>
   </Popover>
-)
+);
 
 export const PopoverSectionActions = () => (
   <Popover css="width: 254px;">
@@ -319,7 +436,8 @@ export const PopoverSectionActions = () => (
     </Action>
     <Divider />
     <Action>
-      <strong> A really really long title that takes up two lines : </strong> <br />
+      <strong> A really really long title that takes up two lines : </strong>{" "}
+      <br />
       Another line of text
     </Action>
     <Divider />
@@ -329,7 +447,7 @@ export const PopoverSectionActions = () => (
       </span>
     </Action>
   </Popover>
-)
+);
 
 export const PopoverSubmissionSuccessOne = () => (
   <Popover>
@@ -338,7 +456,7 @@ export const PopoverSubmissionSuccessOne = () => (
       shirley.lam@referralsaasquatch.com
     </Action>
   </Popover>
-)
+);
 
 export const PopoverSubmissionSuccessTwo = () => (
   <Popover css=" div + div.action { margin-top: 20px;}">
@@ -351,7 +469,7 @@ export const PopoverSubmissionSuccessTwo = () => (
       noah.clarke@referralsaasquatch.com
     </Action>
   </Popover>
-)
+);
 
 export const PopoverSubmissionSuccessLong = () => (
   <Popover css=" div + div.action { margin-top: 20px;}">
@@ -366,7 +484,7 @@ export const PopoverSubmissionSuccessLong = () => (
       derek.siemens@referralsaasquatch.com
     </Action>
   </Popover>
-)
+);
 
 export const PopoverIconPropOne = () => (
   <Popover notification icon="mail">
@@ -375,18 +493,19 @@ export const PopoverIconPropOne = () => (
       noah.clarke@referralsaasquatch.com
     </Action>
   </Popover>
-)
+);
 
 export const PopoverIconProp = () => (
   <Popover notification icon="action">
     <Action>A really really really really long long long long text</Action>
   </Popover>
-)
+);
 
 export const PopoverTextIcon = () => (
   <Popover notification>
     <Action>
-      Some text to be copied <Icon icon="copy" size="30px" customCSS="color: #F49C20; margin: -5px;" />
+      Some text to be copied{" "}
+      <Icon icon="copy" size="30px" customCSS="color: #F49C20; margin: -5px;" />
     </Action>
   </Popover>
-)
+);

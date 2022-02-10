@@ -1,15 +1,18 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
+import * as Styles from "./Styles";
 
 type PopoverProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate"|"customCSS">;
+  Omit<React.ComponentProps<"div">, "translate" | "customCSS">;
 
 interface OptionProps {
   content?: any;
   empty?: boolean;
   filter?: boolean;
   children?: any;
+  emptyText?: string | React.ReactNode;
+  emptyFilterText?: string | React.ReactNode;
 }
 
 interface StyleProps {
@@ -18,57 +21,9 @@ interface StyleProps {
 }
 
 const RowDiv = styled.div<Required<StyleProps>>`
-  display: flex;
-  padding: 20px;
-  justify-content: space-between;
-  align-items: center;
-  font-family: Helvetica;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 20px;
-  color: #232323;
+  ${Styles.RowBase}
 
-  ${(props) =>
-    props.variant == "row" &&
-    `
-    background: #FFFFFF;
-    border: 2px solid #E2E2E2;
-    box-sizing: border-box;
-  `}
-
-  ${(props) =>
-    props.variant == "header" &&
-    `
-    font-weight: bold;
-    background: #F9F9F9;
-    border: 2px solid #E2E2E2;
-    box-sizing: border-box;
-    border-radius: 6px 6px 0px 0px;
-  `}
-
-  ${(props) =>
-    props.variant == "banner" &&
-    `
-    padding: 0;
-    // margin: 20px;
-    color: white;
-    height: 74px;
-    background: #003b45;
-    border: 2px solid #003b45;
-    box-sizing: border-box;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-
-  `}
-
-  ${(props) =>
-    props.variant == "extra" &&
-    `
-    background: #f9f9f9;
-    border: 2px solid #E2E2E2;
-    box-sizing: border-box;
-
-  `}
+  ${(props) => Styles.Row[props.variant]}
 
   ${(props) => props.customCSS}
 `;
@@ -81,9 +36,9 @@ const ContentDiv = styled.div<{ flex: string; center: boolean; width: string }>`
 `;
 
 const DataDiv = styled.div`
-  width: 100%;
-  text-align: center;
+  ${Styles.DataDiv}
 `;
+
 export const Row = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
   (props, forwardedRef) => {
     const {
@@ -93,25 +48,30 @@ export const Row = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
       variant = "row",
       children,
       customCSS = {},
+      emptyText = "No submission found",
+      emptyFilterText = "No submissions that meet your filter criteria",
       ...rest
     } = props;
 
     return (
-      <RowDiv variant={variant} {...rest} ref={forwardedRef} customCSS={customCSS}>
+      <RowDiv
+        variant={variant}
+        {...rest}
+        ref={forwardedRef}
+        customCSS={customCSS}
+      >
         {empty && (
           <DataDiv>
             {dataSVG}
             <br />
-            No submission found
+            {emptyText}
           </DataDiv>
         )}
         {filter && (
           <DataDiv>
             {dataSVG}
             <br />
-            No submissions that meet your
-            <br />
-            filter criteria
+            {emptyFilterText}
           </DataDiv>
         )}
         {content &&
@@ -125,26 +85,6 @@ export const Row = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
             </ContentDiv>
           ))}
         {children}
-        {variant == "banner" && (
-          <div>
-            <span style={{ padding: 20 }}>Filter Rewards by Program</span>
-            <span
-              style={{
-                background: "white",
-                width: 2,
-                height: "90px",
-                marginTop: -45,
-                display: "inline-flex",
-                position: "absolute",
-              }}
-            >
-              .
-            </span>
-            <span style={{ marginLeft: 20 }}>
-              5 rewards earned across all programs
-            </span>
-          </div>
-        )}
       </RowDiv>
     );
   }

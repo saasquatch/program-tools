@@ -5,7 +5,7 @@ import { Dropdown } from "../Dropdown";
 
 type PopoverProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate"|"css">;
+  Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 interface OptionProps {
   children?: any;
@@ -20,17 +20,16 @@ interface StyleProps {
 
 const PaginationDiv = styled.div<Required<StyleProps>>`
   display: flex;
-  padding: 20px;
+  padding: var(--sq-spacing-large);
   align-items: center;
-  background: #f9f9f9;
-  border: 2px solid #e2e2e2;
+  background: var(--sq-background);
+  border: 2px solid var(--sq-border);
   box-sizing: border-box;
   border-radius: 0px 0px 6px 6px;
-  font-family: Helvetica;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
+  font-family: var(--sq-font-family-sans);
+  font-weight: var(--sq-font-weight-regular);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
 
   ${(props) => props.customCSS}
 `;
@@ -38,13 +37,15 @@ const PaginationDiv = styled.div<Required<StyleProps>>`
 const TextDiv = styled.div<{ selected?: boolean }>`
   padding: 6px;
   display: inline;
-  color: #0088cc;
+  color: var(--sq-text-interactive);
   cursor: pointer;
-  font-family: Helvetica;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 20px;
-  ${(props) => (props.selected ? "font-weight: bold;" : "font-weight: normal;")}
+  font-family: var(--sq-font-family-sans);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
+  ${(props) =>
+    props.selected
+      ? "font-weight: var(--sq-font-weight-bold);"
+      : "font-weight: var(--sq-font-weight-regular);"}
 `;
 
 export const Pagination = React.forwardRef<
@@ -71,7 +72,7 @@ export const Pagination = React.forwardRef<
         <Icon
           size="24px"
           icon="chevron_right"
-          customCSS="margin: -3px; margin-right: 24px;"
+          customCSS="margin: -3px; margin-right: var(--sq-spacing-x-large);"
         />
         <Dropdown
           pill
