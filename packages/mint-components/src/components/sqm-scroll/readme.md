@@ -19,6 +19,7 @@
 | `iconName`        | `icon-name`        |             | `string`                                                                              | `undefined` |
 | `iconSlot`        | `icon-slot`        |             | `string`                                                                              | `undefined` |
 | `loading`         | `loading`          |             | `boolean`                                                                             | `undefined` |
+| `mobileFriendly`  | `mobile-friendly`  |             | `boolean`                                                                             | `undefined` |
 | `name`            | `name`             |             | `string`                                                                              | `undefined` |
 | `outline`         | `outline`          |             | `boolean`                                                                             | `undefined` |
 | `pill`            | `pill`             |             | `boolean`                                                                             | `undefined` |
