@@ -19,17 +19,10 @@ const defaultProps: CheckboxFieldViewProps = {
   },
   content: {
     checkboxName: "agree",
+    checkboxLabel: "By signing up you agree to the {labelLink}",
+    checkboxLabelLink: "https://example.com",
+    checkboxLabelLinkText: "Terms and Conditions",
     errorMessage: "Must be checked",
-    labelSlot: (
-      <slot>
-        <p>
-          By signing up you agree to the{" "}
-          <a href="https://example.com" target="_blank">
-            Terms and Conditions
-          </a>
-        </p>
-      </slot>
-    ),
   },
   callbacks: {
     setChecked: () => {},
@@ -59,10 +52,13 @@ export const Default = createHookStory(() => (
 ));
 
 export const DefaultChecked = createHookStory(() => (
-  <CheckboxFieldView {...defaultProps} states={{
-    ...defaultProps.states,
-    checked:true
-  }} />
+  <CheckboxFieldView
+    {...defaultProps}
+    states={{
+      ...defaultProps.states,
+      checked: true,
+    }}
+  />
 ));
 
 export const CustomLabel = createHookStory(() => (
@@ -70,7 +66,7 @@ export const CustomLabel = createHookStory(() => (
     {...defaultProps}
     content={{
       ...defaultProps.content,
-      labelSlot: <slot>Agree to terms and conditions</slot>,
+      checkboxLabel: "I Agree",
     }}
   />
 ));
@@ -114,9 +110,7 @@ export const TermsAndConditionsCustomLabel = createHookStory(() => (
           <a href="https://example.com" target="_blank">
             Terms and Conditions
           </a>
-          <sqm-checkbox-field>
-            <p>I Agree</p>
-          </sqm-checkbox-field>
+          <sqm-checkbox-field checkbox-label="I agree"></sqm-checkbox-field>
         </p>
       ),
     }}

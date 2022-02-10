@@ -80,7 +80,13 @@ export namespace Components {
     }
     interface SqmCheckboxField {
         /**
-          * @uiName Last name field label
+          * @uiName Checkbox label
+         */
+        "checkboxLabel": string;
+        "checkboxLabelLink": string;
+        "checkboxLabelLinkText": string;
+        /**
+          * @uiName Checkbox name attribute
          */
         "checkboxName": string;
         "checkboxRequired"?: boolean;
@@ -89,7 +95,7 @@ export namespace Components {
          */
         "demoData"?: DemoData<CheckboxFieldViewProps>;
         /**
-          * @uiName Last name field label
+          * @uiName Unchecked error message
          */
         "errorMessage": string;
     }
@@ -1520,7 +1526,13 @@ declare namespace LocalJSX {
     }
     interface SqmCheckboxField {
         /**
-          * @uiName Last name field label
+          * @uiName Checkbox label
+         */
+        "checkboxLabel"?: string;
+        "checkboxLabelLink"?: string;
+        "checkboxLabelLinkText"?: string;
+        /**
+          * @uiName Checkbox name attribute
          */
         "checkboxName"?: string;
         "checkboxRequired"?: boolean;
@@ -1529,7 +1541,7 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CheckboxFieldViewProps>;
         /**
-          * @uiName Last name field label
+          * @uiName Unchecked error message
          */
         "errorMessage"?: string;
     }

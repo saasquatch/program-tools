@@ -1,6 +1,7 @@
 import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
+import { intl } from "../../global/global";
 
 export interface CheckboxFieldViewProps {
   states: {
@@ -9,8 +10,10 @@ export interface CheckboxFieldViewProps {
   };
   content: {
     checkboxName: string;
+    checkboxLabel: string;
+    checkboxLabelLink?: string;
+    checkboxLabelLinkText?: string;
     errorMessage: string;
-    labelSlot: VNode;
   };
   callbacks: {
     setChecked: Function;
@@ -56,7 +59,6 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
   const { states, content, callbacks } = props;
   const validationErrors = states?.validationErrors;
 
-  console.log(content.labelSlot);
   return (
     <div>
       <style type="text/css">
@@ -68,7 +70,7 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
         name={`/${content.checkboxName}`}
         checked={states.checked}
         onSl-change={(e) => {
-          console.log("on sl change")
+          console.log("on sl change");
 
           e.target.value = e.target.checked;
           callbacks.setChecked(e.target.value);
@@ -80,7 +82,19 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
             }
           : [])}
       >
-        {content.labelSlot}
+        {intl.formatMessage(
+          {
+            id: content.checkboxName,
+            defaultMessage: content.checkboxLabel,
+          },
+          {
+            labelLink: (
+              <a href={content.checkboxLabelLink} target="_blank">
+                {content.checkboxLabelLinkText}
+              </a>
+            ),
+          }
+        )}
       </sl-checkbox>
       {!states.checked && validationErrors?.[content.checkboxName] && (
         <p class={sheet.classes.ErrorMessageStyle}>{content.errorMessage}</p>

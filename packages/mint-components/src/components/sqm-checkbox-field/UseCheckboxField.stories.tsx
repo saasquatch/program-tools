@@ -65,25 +65,12 @@ export const TermsAndConditions = createHookStory(() => {
   );
 });
 
-export const TermsAndConditionsWithSlot = createHookStory(() => {
+export const TermsAndConditionsWithLabel = createHookStory(() => {
   setupGraphQL();
   return (
     <sqm-portal-register>
       <div slot="terms">
-        <sqm-checkbox-field>
-          <p>I Agree to the terms and conditions</p>
-        </sqm-checkbox-field>
-      </div>
-    </sqm-portal-register>
-  );
-});
-
-export const TermsAndConditionsWithSlotText = createHookStory(() => {
-  setupGraphQL();
-  return (
-    <sqm-portal-register>
-      <div slot="terms">
-        <sqm-checkbox-field>I Agree</sqm-checkbox-field>
+        <sqm-checkbox-field checkbox-label="I agree"></sqm-checkbox-field>
       </div>
     </sqm-portal-register>
   );

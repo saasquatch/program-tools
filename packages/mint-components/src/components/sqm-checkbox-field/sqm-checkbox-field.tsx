@@ -21,12 +21,19 @@ export class NameFields {
   ignored = true;
 
   /**
-   * @uiName Last name field label
+   * @uiName Checkbox name attribute
    */
   @Prop() checkboxName: string = "agreement";
 
   /**
-   * @uiName Last name field label
+   * @uiName Checkbox label
+   */
+  @Prop() checkboxLabel: string = "By signing up you agree to the {labelLink}";
+
+  @Prop() checkboxLabelLink: string = "https://example.com";
+  @Prop() checkboxLabelLinkText: string = "Terms and Conditions";
+  /**
+   * @uiName Unchecked error message
    */
   @Prop() errorMessage: string = "Must be checked";
 
@@ -43,20 +50,8 @@ export class NameFields {
   disconnectedCallback() {}
 
   render() {
-    const labelSlot = (
-      <slot>
-        <p>
-          By signing up you agree to the{" "}
-          <a href="https://example.com" target="_blank">
-            Terms and Conditions
-          </a>
-        </p>
-      </slot>
-    );
-
     const content = {
       ...getProps(this),
-      labelSlot,
     };
 
     const { states, callbacks } = isDemo()
