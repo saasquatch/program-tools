@@ -26,11 +26,6 @@ export class RewardsTableColumn implements RewardTableColumn {
   @Prop() availableText: string = "{availableAmount} remaining";
 
   /**
-   * @uiName Fuel Tank Text
-   */
-  @Prop() fueltankText: string = "Your code:";
-
-  /**
    * @uiName Copied Fuel Tank Text
    */
   @Prop() copyText: string = "Copied!";
@@ -47,7 +42,7 @@ export class RewardsTableColumn implements RewardTableColumn {
         reward={data?.[0]}
         redeemedText={this.redeemedText}
         availableText={this.availableText}
-        fueltankText={this.fueltankText}
+        copyText={this.copyText}
         locale={locale}
       ></sqm-rewards-table-reward-cell>
     );

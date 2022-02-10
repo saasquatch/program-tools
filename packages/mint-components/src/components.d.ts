@@ -1327,7 +1327,6 @@ export namespace Components {
     interface SqmRewardsTableRewardCell {
         "availableText": string;
         "copyText": string;
-        "fueltankText": string;
         "locale": string;
         "redeemedText": string;
         "reward": Reward;
@@ -1345,10 +1344,6 @@ export namespace Components {
           * @uiName Copied Fuel Tank Text
          */
         "copyText": string;
-        /**
-          * @uiName Fuel Tank Text
-         */
-        "fueltankText": string;
         /**
           * @uiName Redeemed Amount Text
          */
@@ -3677,7 +3672,6 @@ declare namespace LocalJSX {
     interface SqmRewardsTableRewardCell {
         "availableText"?: string;
         "copyText"?: string;
-        "fueltankText"?: string;
         "locale"?: string;
         "redeemedText"?: string;
         "reward"?: Reward;
@@ -3695,10 +3689,6 @@ declare namespace LocalJSX {
           * @uiName Copied Fuel Tank Text
          */
         "copyText"?: string;
-        /**
-          * @uiName Fuel Tank Text
-         */
-        "fueltankText"?: string;
         /**
           * @uiName Redeemed Amount Text
          */

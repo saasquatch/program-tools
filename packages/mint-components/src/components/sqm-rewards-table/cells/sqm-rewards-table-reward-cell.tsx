@@ -10,7 +10,6 @@ export class RewardTableRewardsCell {
   @Prop() reward: Reward;
   @Prop() redeemedText: string;
   @Prop() availableText: string;
-  @Prop() fueltankText: string;
   @Prop() copyText: string;
   @Prop() locale: string;
 
