@@ -23,6 +23,19 @@
 | `"the description of the component"` |             |
 
 
+## Dependencies
+
+### Used by
+
+ - [sqm-stencilbook](../sqm-stencilbook)
+
+### Graph
+```mermaid
+graph TD;
+  sqm-stencilbook --> sqm-big-stat
+  style sqm-big-stat fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

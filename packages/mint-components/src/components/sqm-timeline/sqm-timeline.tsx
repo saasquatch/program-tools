@@ -30,7 +30,7 @@ export class Timeline {
     //@ts-ignore
     const rewards: TimelineReward[] = useChildElements();
 
-    rewards.forEach((reward, idx) => {
+    rewards.forEach((reward) => {
       try {
         reward.setIcon(this.icon);
       } catch {
