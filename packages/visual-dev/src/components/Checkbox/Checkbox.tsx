@@ -42,12 +42,13 @@ export const Checkbox = React.forwardRef<React.ElementRef<"input">, InputProps>(
       <ShadowDom>
         <CheckboxLabel htmlFor={id} isDisabled={disabled}>
           <CheckboxInput
+            {...rest}
             checked={value}
             type="checkbox"
             isDisabled={disabled}
             id={id}
-            {...rest}
             ref={forwardedRef}
+            onChange={onChange}
           />
           <CheckboxBox isDisabled={disabled}>
             <Icon icon="checkmark" customCSS={CheckboxTick} />
