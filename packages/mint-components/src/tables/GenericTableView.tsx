@@ -81,7 +81,6 @@ export function GenericTableView(props: GenericTableViewProps) {
         },
         "& td": {
           display: "grid",
-          gridTemplateColumns: "0.5fr 0.5fr",
           borderTop: "none",
           padding: "0",
           marginBottom: "var(--sl-spacing-medium)",
@@ -163,6 +162,11 @@ export function GenericTableView(props: GenericTableViewProps) {
                       <td
                         class={hiddenCols?.includes(j) ? "hidden" : ""}
                         data-label={columns[j] + ":"}
+                        style={{
+                          gridTemplateColumns: hiddenCols?.includes(j)
+                            ? "1fr"
+                            : "0.5fr 0.5fr",
+                        }}
                       >
                         {cell}
                       </td>
