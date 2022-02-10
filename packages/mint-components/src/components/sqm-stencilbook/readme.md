@@ -34,6 +34,8 @@
 - [sqm-portal-login](../sqm-portal-login)
 - [sqm-portal-change-password](../sqm-portal-change-password)
 - [sqm-referral-iframe](../sqm-referral-iframe)
+- [sqm-checkbox-field](../sqm-checkbox-field)
+- [sqm-name-fields](../sqm-name-fields)
 
 ### Graph
 ```mermaid
@@ -63,6 +65,8 @@ graph TD;
   sqm-stencilbook --> sqm-portal-login
   sqm-stencilbook --> sqm-portal-change-password
   sqm-stencilbook --> sqm-referral-iframe
+  sqm-stencilbook --> sqm-checkbox-field
+  sqm-stencilbook --> sqm-name-fields
   sqm-edit-profile --> sqm-form-message
   sqm-portal-register --> sqm-form-message
   sqm-portal-register --> sqm-password-field
