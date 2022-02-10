@@ -41,6 +41,8 @@ import * as PortalFooter from "../../stories/PortalFooter.stories";
 import * as Hero from "../../stories/Hero.stories";
 import * as ReferralIframe from "../../stories/ReferralIframe.stories";
 import * as NameFields from "../../stories/NameFields.stories";
+import * as CheckboxField from "../sqm-checkbox-field/CheckboxField.stories";
+
 
 import { CucumberAddon } from "./CucumberAddon";
 import { HookStoryAddon } from "./HookStoryAddon";
@@ -86,6 +88,7 @@ const stories = [
   Hero,
   ReferralIframe,
   NameFields,
+  CheckboxField
 ];
 
 /**

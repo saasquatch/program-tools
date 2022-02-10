@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 
@@ -8,9 +8,9 @@ export interface CheckboxFieldViewProps {
     checked: boolean;
   };
   content: {
-    checkboxLabel: string;
     checkboxName: string;
     errorMessage: string;
+    labelSlot: VNode;
   };
   callbacks: {
     setChecked: Function;
@@ -42,7 +42,6 @@ const vanillaStyle = `
   width: 100%;
   display: block;
 }
-
 sl-checkbox::part(label){
   font-size: var(--sl-input-label-font-size-small);
   font-weight: var(--sl-font-weight-semibold);
@@ -77,7 +76,7 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
             }
           : [])}
       >
-        {content.checkboxLabel}
+        {content.labelSlot}
       </sl-checkbox>
       {!states.checked && validationErrors?.[content.checkboxName] && (
         <p class={sheet.classes.ErrorMessageStyle}>{content.errorMessage}</p>

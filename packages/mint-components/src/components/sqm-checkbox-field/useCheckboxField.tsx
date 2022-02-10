@@ -12,18 +12,13 @@ type ValidationErrors = {
   [key: string]: string;
 };
 
-export function useCheckboxField(props: NameFields) {
+export function useCheckboxField() {
   const validationState = useDomContext<FormState>(CONTEXT_NAME);
   const [checked, setChecked] = useState(false);
   return {
     states: {
       validationErrors: validationState?.validationErrors,
       checked,
-    },
-    content: {
-      checkboxLabel: props.checkboxLabel,
-      checkboxName: props.checkboxName,
-      errorMessage: props.errorMessage,
     },
     callbacks: {
       setChecked,

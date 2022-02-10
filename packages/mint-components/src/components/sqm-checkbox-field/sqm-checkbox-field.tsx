@@ -3,6 +3,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
+import { getProps } from "../../utils/utils";
 import {
   CheckboxFieldView,
   CheckboxFieldViewProps,
@@ -20,11 +21,6 @@ export class NameFields {
   ignored = true;
 
   /**
-   * @uiName First name field label
-   */
-  @Prop() checkboxLabel: string = "Agree";
-
-  /**
    * @uiName Last name field label
    */
   @Prop() checkboxName: string = "agreement";
@@ -33,6 +29,9 @@ export class NameFields {
    * @uiName Last name field label
    */
   @Prop() errorMessage: string = "Must be checked";
+
+  // TODO: should this be configurable?
+  @Prop() checkboxRequired?: boolean = true;
 
   /** @undocumented */
   @Prop() demoData?: DemoData<CheckboxFieldViewProps>;
@@ -44,9 +43,25 @@ export class NameFields {
   disconnectedCallback() {}
 
   render() {
-    const { states, content, callbacks } = isDemo()
+    const labelSlot = (
+      <slot>
+        <p>
+          By signing up you agree to the{" "}
+          <a href="https://example.com" target="_blank">
+            Terms and Conditions
+          </a>
+        </p>
+      </slot>
+    );
+
+    const content = {
+      ...getProps(this),
+      labelSlot,
+    };
+
+    const { states, callbacks } = isDemo()
       ? useCheckboxFieldDemo(this)
-      : useCheckboxField(this);
+      : useCheckboxField();
     return (
       <CheckboxFieldView
         states={states}
@@ -64,11 +79,6 @@ function useCheckboxFieldDemo(
       states: {
         validationErrors: [],
         checked: false,
-      },
-      content: {
-        checkboxLabel: "Agree",
-        checkboxName: "agreement",
-        errorMessage: "Must be checked",
       },
       callbacks: {
         setChecked: () => {},
