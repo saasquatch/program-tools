@@ -18,7 +18,7 @@ import mockRewardData from "./mockRewardData";
 import { tryMethod, useRewardsTable } from "./useRewardsTable";
 
 /**
- * @uiName Rewards Table
+ * @uiName Reward Table
  */
 @Component({
   tag: "sqm-rewards-table",
