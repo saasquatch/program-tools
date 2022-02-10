@@ -36,7 +36,7 @@ function setupGraphQL() {
 }
 
 const View = (statType: string, format: string) => {
-  console.log(`View("${statType}") - CALLED`);
+  //   console.log(`View("${statType}") - CALLED`);
   setupGraphQL();
   return (
     <div>
