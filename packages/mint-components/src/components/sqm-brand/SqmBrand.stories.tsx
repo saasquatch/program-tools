@@ -133,30 +133,3 @@ export const Fonts = () => {
     </div>
   );
 };
-
-export const Background = () => {
-  return (
-    <div>
-      <sqm-brand background="#FF0000">
-        <sqm-portal-container>
-          <SampleComponents />
-        </sqm-portal-container>
-      </sqm-brand>
-      <sqm-brand background="#00FF00">
-        <sqm-portal-container>
-          <SampleComponents />
-        </sqm-portal-container>
-      </sqm-brand>
-      <sqm-brand background="#0000FF">
-        <sqm-portal-container>
-          <SampleComponents />
-        </sqm-portal-container>
-      </sqm-brand>
-      <sqm-brand background="#000000">
-        <sqm-portal-container>
-          <SampleComponents />
-        </sqm-portal-container>
-      </sqm-brand>
-    </div>
-  );
-};

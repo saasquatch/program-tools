@@ -30,14 +30,6 @@ export class BrandComponent {
    */
   @Prop() brandFont: string;
 
-  /**
-   * The background color for the portal
-   *
-   * @uiName Page Background Color
-   * @uiWidget color
-   */
-  @Prop() background: string;
-
   constructor() {
     withHooks(this);
   }
@@ -66,10 +58,6 @@ export class BrandComponent {
       <Host>
         <style>{`
 
-		  :root{
-		  	--sqm-portal-background: ${this.background || "transparent"};
-		  }
-		  
           :host{
             display: contents;
           }
