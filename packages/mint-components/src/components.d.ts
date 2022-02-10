@@ -1450,6 +1450,7 @@ export namespace Components {
         "iconName": string;
         "iconSlot": string;
         "loading": boolean;
+        "mobileFriendly"?: boolean;
         "name": string;
         "outline": boolean;
         "pill": boolean;
@@ -3799,6 +3800,7 @@ declare namespace LocalJSX {
         "iconName"?: string;
         "iconSlot"?: string;
         "loading"?: boolean;
+        "mobileFriendly"?: boolean;
         "name"?: string;
         "outline"?: boolean;
         "pill"?: boolean;
