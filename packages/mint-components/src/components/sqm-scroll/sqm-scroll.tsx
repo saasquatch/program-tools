@@ -75,7 +75,7 @@ export class Scroll {
 
     const vanillaStyle = `
 		:host{
-			display: block;
+			display: contents;
 		}
 		${
       this.mobileFriendly &&
