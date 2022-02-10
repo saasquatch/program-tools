@@ -59,6 +59,12 @@ export class RewardTableRewardsCell {
 
       StatusBadge: {
         paddingLeft: "var(--sl-spacing-xxx-small)",
+
+        "&::part(base)": {
+          textAlign: "center",
+          maxWidth: "170px",
+          whiteSpace: "pre-line",
+        },
       },
 
       Fueltank: {

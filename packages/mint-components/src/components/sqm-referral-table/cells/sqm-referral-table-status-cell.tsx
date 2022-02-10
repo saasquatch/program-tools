@@ -14,6 +14,7 @@ export class ReferralTableStatusCell {
         "&::part(base)": {
           fontSize: "var(--sl-font-size-small)",
           padding: "4px 8px",
+          whiteSpace: "pre-line",
         },
       },
     };

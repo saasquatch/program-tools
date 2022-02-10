@@ -198,6 +198,44 @@ export const PendingNoUnpendNoDetails = () => {
   );
 };
 
+export const NarrowColumnWithWideText = () => {
+  return (
+    <div style={{ width: "250px" }}>
+      <sqm-referral-table-rewards-cell
+        rewards={[
+          { ...baseReward, ...pendingReward, dateScheduledFor: getDays() },
+        ]}
+        statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+        statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+        fuelTankText="Your code is"
+        rewardReceivedText="Reward received on"
+        expiringText="Expiring in"
+        pendingForText="{status} for {date}"
+      ></sqm-referral-table-rewards-cell>
+      <sqm-referral-table-rewards-cell
+        rewards={[{ ...baseReward, ...pendingReward }]}
+        statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+        statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+        fuelTankText="Your code is"
+        rewardReceivedText="Reward received on"
+        expiringText="Expiring in"
+        pendingForText="Pending for 300,000,000 months and some change"
+      ></sqm-referral-table-rewards-cell>
+      <sqm-referral-table-rewards-cell
+        rewards={[
+          { ...baseReward, ...pendingReward, dateScheduledFor: getYears() },
+        ]}
+        statusText="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+        statusLongText="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} REDEEMED {Redeemed} other {Not available} }"
+        fuelTankText="Your code is"
+        rewardReceivedText="Reward received on"
+        expiringText="Expiring in"
+        pendingForText="{status} for {date}"
+      ></sqm-referral-table-rewards-cell>
+    </div>
+  );
+};
+
 export const PendingWithUnpend = () => {
   return [
     <sqm-referral-table-rewards-cell
