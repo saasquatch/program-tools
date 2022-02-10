@@ -75,3 +75,21 @@ export const TermsAndConditionsWithLabel = createHookStory(() => {
     </sqm-portal-register>
   );
 });
+
+export const MultipleCheckboxes = createHookStory(() => {
+  setupGraphQL();
+  return (
+    <sqm-portal-register>
+      <sqm-name-fields slot="formData"></sqm-name-fields>
+      <sqm-checkbox-field
+        slot="formData"
+        checkbox-label="I am not a robot"
+        error-message="Cannot be a robot"
+        checkbox-name="isHuman"
+      ></sqm-checkbox-field>
+      <div slot="terms">
+        <sqm-checkbox-field></sqm-checkbox-field>
+      </div>
+    </sqm-portal-register>
+  );
+});

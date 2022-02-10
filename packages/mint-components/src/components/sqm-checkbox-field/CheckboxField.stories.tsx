@@ -83,6 +83,18 @@ export const Error = createHookStory(() => (
   />
 ));
 
+export const CustomError = createHookStory(() => (
+  <CheckboxFieldView
+    {...defaultProps}
+    states={{
+      ...defaultProps.states,
+      validationErrors: {
+        agree: "This checkbox must be checked to continue",
+      },
+    }}
+  />
+));
+
 export const TermsAndConditions = createHookStory(() => (
   <PortalRegisterView
     {...defaultRegisterProps}

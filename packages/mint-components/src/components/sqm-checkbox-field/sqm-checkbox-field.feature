@@ -1,32 +1,43 @@
 @owner:sam
 @author:sam
 
-Feature: Name Fields
+Feature: Checkbox Field
 
-  Fields to be used to fill the first and last name of a user during registration
+  Field to be used to be used as a checkbox during registration
 
   Background:
     Given the current page is "/register"
 
   @motivating
-  Scenario: Both first name and last name are required
+  Scenario: Checkbox is required by default
     Given the email field has valid input
     And the password field has valid input
-    And first name field is empty
-    And last name field is empty
+    And the checkbox is not checked
     When register is clicked
-    Then the name fields will be highlighted in red
-    And the error messages will say "Cannot be empty"
+    Then the name fields will be highlighted in red with an error message
+    And the checkbox will be highlighted in red
+    And the error message will say "Must be checked"
 
   @motivating
-  Scenario: First and last name are upserted with the SaaSquatch user
-    Given all fields have been filled with data
-      | firstName | lastName  | email           | password        |
-      | Bob       | Testerson | bob@example.com | SecurePassword1 |
+  Scenario: Multiple checkboxes need different "checkbox-name" values
+    Given the register form has the following html
+      """
+      <sqm-portal-register>
+      <sqm-name-fields></sqm-name-fields>
+      <sqm-checkbox-field
+      slot="formData"
+      checkbox-label="I am not a robot"
+      error-message="Cannot be a robot"
+      checkbox-name="isHuman"
+      ></sqm-checkbox-field>
+      <div slot="terms">
+      <sqm-checkbox-field></sqm-checkbox-field>
+      </div>
+      </sqm-portal-register>
+      """
+    And the checkboxes are not checked
     When register is clicked
-    Then the email verification page will be loaded
-    And the user will be upserted
-    And the SaaSquatch user will contain data
-      | firstName | lastName  | email           |
-      | Bob       | Testerson | bob@example.com |
+    Then both checkboxes will be highlighted in red
+    And the checkboxes will have different error messages
+
 

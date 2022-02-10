@@ -33,9 +33,12 @@ const style = {
     },
   },
   ErrorMessageStyle: {
-    marginTop: 0,
+    margin: 0,
     color: "var(--sl-color-danger-500)",
     fontSize: "var(--sl-input-help-text-font-size-medium)",
+  },
+  FieldContainer: {
+    "margin-bottom": "var(--sl-spacing-large)",
   },
 };
 
@@ -60,7 +63,7 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
   const validationErrors = states?.validationErrors;
 
   return (
-    <div>
+    <div class={sheet.classes.FieldContainer}>
       <style type="text/css">
         {vanillaStyle}
         {styleString}

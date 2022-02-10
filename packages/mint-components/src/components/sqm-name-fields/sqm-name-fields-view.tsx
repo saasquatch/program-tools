@@ -1,4 +1,3 @@
-import { isPossiblePhoneNumber } from "libphonenumber-js";
 import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
@@ -15,17 +14,12 @@ export interface NameFieldsViewProps {
 }
 
 const style = {
-  InputContainer: {
-    "& > :not(:last-child)": {
-      "margin-bottom": "20px",
-    },
-  },
+  ErrorStyle: ErrorStyles,
   FieldsContainer: {
-    "& > :not(:last-child)": {
+    "& sl-input": {
       "margin-bottom": "var(--sl-spacing-large)",
     },
   },
-  ErrorStyle: ErrorStyles,
 };
 
 const vanillaStyle = `
