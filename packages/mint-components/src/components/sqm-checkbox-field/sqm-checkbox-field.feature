@@ -23,7 +23,7 @@ Feature: Checkbox Field
     Given the register form has the following html
       """
       <sqm-portal-register>
-      <sqm-name-fields></sqm-name-fields>
+      <sqm-name-fields slot="formData"></sqm-name-fields>
       <sqm-checkbox-field
       slot="formData"
       checkbox-label="I am not a robot"
@@ -39,5 +39,25 @@ Feature: Checkbox Field
     When register is clicked
     Then both checkboxes will be highlighted in red
     And the checkboxes will have different error messages
+
+  @motivating
+  Scenario: Checkboxes can be optional
+    Given the register form has the following html
+      """
+      <sqm-portal-register>
+      <sqm-name-fields slot="formData"></sqm-name-fields>
+      <sqm-checkbox-field
+      slot="formData"
+      checkbox-label="I am not a robot"
+      checkbox-required="false"
+      checkbox-name="isHuman"
+      />
+      </sqm-portal-register>
+      """
+    And the checkbox is not checked
+    When register is clicked
+    Then there will be no error for the checkbox
+
+
 
 

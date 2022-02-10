@@ -93,3 +93,21 @@ export const MultipleCheckboxes = createHookStory(() => {
     </sqm-portal-register>
   );
 });
+
+export const OptionalCheckboxes = createHookStory(() => {
+  setupGraphQL();
+  return (
+    <sqm-portal-register>
+      <sqm-name-fields slot="formData"></sqm-name-fields>
+      <sqm-checkbox-field
+        slot="formData"
+        checkbox-label="I am not a robot"
+        checkbox-required="false"
+        checkbox-name="isHuman"
+      />
+      <div slot="terms">
+        <sqm-checkbox-field></sqm-checkbox-field>
+      </div>
+    </sqm-portal-register>
+  );
+});

@@ -1,4 +1,4 @@
-import { h, VNode } from "@stencil/core";
+import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { intl } from "../../global/global";
@@ -13,6 +13,7 @@ export interface CheckboxFieldViewProps {
     checkboxLabel: string;
     checkboxLabelLink?: string;
     checkboxLabelLinkText?: string;
+    checkboxRequired?: boolean;
     errorMessage: string;
   };
   callbacks: {
@@ -73,12 +74,10 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
         name={`/${content.checkboxName}`}
         checked={states.checked}
         onSl-change={(e) => {
-          console.log("on sl change");
-
           e.target.value = e.target.checked;
           callbacks.setChecked(e.target.value);
         }}
-        required
+        {...(content.checkboxRequired ? { required: true } : [])}
         {...(!states.checked && validationErrors?.[content.checkboxName]
           ? {
               class: sheet.classes.ErrorStyle,
@@ -93,7 +92,7 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
           {
             labelLink: (
               <a href={content.checkboxLabelLink} target="_blank">
-                {content.checkboxLabelLinkText}
+                {content.checkboxLabelLinkText || content.checkboxLabelLink}
               </a>
             ),
           }

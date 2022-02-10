@@ -30,14 +30,24 @@ export class NameFields {
    */
   @Prop() checkboxLabel: string = "By signing up you agree to the {labelLink}";
 
+  /**
+   * @uiName Checkbox label link
+   * Used with link text if the checkbox label contains {labelLink}
+   */
   @Prop() checkboxLabelLink: string = "https://example.com";
+
+  /**
+   * @uiName Checkbox label link text
+   */
   @Prop() checkboxLabelLinkText: string = "Terms and Conditions";
   /**
    * @uiName Unchecked error message
    */
   @Prop() errorMessage: string = "Must be checked";
 
-  // TODO: should this be configurable?
+  /**
+   * @uiName Required
+   */
   @Prop() checkboxRequired?: boolean = true;
 
   /** @undocumented */
