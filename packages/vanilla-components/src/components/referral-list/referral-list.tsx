@@ -59,7 +59,7 @@ export class ReferralList {
 
   componentWillLoad() {
     if (!this.ishidden) {
-      return this.getReferrals()
+      return this.getReferrals(this.showreferrer)
         .then((res) => {
           this.referrals = res.referrals.data;
           this.referredBy = res.referredByReferral;
@@ -73,8 +73,8 @@ export class ReferralList {
     }
   }
 
-  getReferrals(offset = 0) {
-    return API.graphql.getReferrals(offset);
+  getReferrals(showReferrer:boolean, offset:number = 0) {
+    return API.graphql.getReferrals(showReferrer, offset);
   }
 
   paginate(offset, event) {

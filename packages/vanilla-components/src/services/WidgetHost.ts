@@ -298,7 +298,7 @@ const API = {
       return apolloClient()
         .mutate({
           mutation: gql`
-            mutation($eventMeta: UserAnalyticsEvent!) {
+            mutation ($eventMeta: UserAnalyticsEvent!) {
               createUserAnalyticsEvent(eventMeta: $eventMeta)
             }
           `,
@@ -333,7 +333,7 @@ const API = {
 
       return this.getClient().query({
         query: gql`
-          query($userId: String!, $accountId: String!, $offset: Int) {
+          query ($userId: String!, $accountId: String!, $offset: Int) {
             user(id: $userId, accountId: $accountId) {
               ...UserFragment
             }
@@ -367,7 +367,7 @@ const API = {
       return this.getClient()
         .query({
           query: gql`
-            query(
+            query (
               $userId: String!
               $accountId: String!
               $programId: ID
@@ -388,7 +388,7 @@ const API = {
         .then((res) => res.data.user.shareLink);
     },
 
-    getReferrals(offset = 0, limit = 3) {
+    getReferrals(showReferrer: boolean, offset = 0, limit = 3) {
       const widgetId = widgetIdent();
 
       if (widgetId["env"] === "demo" || !widgetId) {
@@ -415,7 +415,7 @@ const API = {
       return this.getClient()
         .query({
           query: gql`
-            query(
+            query (
               $userId: String!
               $accountId: String!
               $offset: Int!
@@ -453,7 +453,9 @@ const API = {
                     }
                   }
                 }
-                referredByReferral(programId: $programId) {
+                ${
+                  showReferrer
+                    ? `referredByReferral(programId: $programId) {
                   referrerUser {
                     firstName
                     lastName
@@ -465,8 +467,9 @@ const API = {
                     prettyValue
                     statuses
                   }
+                }`
+                    : ""
                 }
-              }
             }
           `,
           variables,
@@ -513,7 +516,7 @@ const API = {
       return this.getClient()
         .query({
           query: gql`
-            query(
+            query (
               $userId: String!
               $accountId: String!
               $programId: ID
@@ -598,7 +601,7 @@ const API = {
       return this.getClient()
         .query({
           query: gql`
-            query($userId: String!, $accountId: String!, $programId: ID!) {
+            query ($userId: String!, $accountId: String!, $programId: ID!) {
               user(id: $userId, accountId: $accountId) {
                 referralCode(programId: $programId)
               }
@@ -631,7 +634,7 @@ const API = {
       return this.getClient()
         .query({
           query: gql`
-            query(
+            query (
               $userId: String!
               $accountId: String!
               $programId: ID!
