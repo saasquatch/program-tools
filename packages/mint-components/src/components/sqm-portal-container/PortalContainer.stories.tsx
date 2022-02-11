@@ -186,3 +186,249 @@ export const FullWidth = () => (
     </sqm-portal-container>
   </div>
 );
+
+export const SpaceBetween = () => {
+  return (
+    <div style={{ width: "1000px", border: "1px dashed grey" }}>
+      <sqm-portal-container
+        center
+        direction="row"
+        display="flex"
+        justify-content="space-between"
+      >
+        <sqm-stat-container space="xxx-large" display="flex">
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardsRedeemed/CREDIT/global"
+          >
+            <sqm-text>
+              <p>Rewards Redeemed</p>
+            </sqm-text>
+          </sqm-big-stat>
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardBalance/CREDIT/POINT/value/global"
+          >
+            <sqm-text>
+              <p>Points Balance</p>
+            </sqm-text>
+          </sqm-big-stat>
+        </sqm-stat-container>
+        <sqm-scroll
+          scroll-id="tab-2"
+          outline
+          button-type="primary"
+          button-text="Redeem your rewards"
+          mobile
+        ></sqm-scroll>
+      </sqm-portal-container>
+    </div>
+  );
+};
+
+export const SpaceAround = () => {
+  return (
+    <div style={{ width: "1000px", border: "1px dashed grey" }}>
+      <sqm-portal-container
+        center
+        direction="row"
+        display="flex"
+        justify-content="space-around"
+      >
+        <sqm-stat-container space="xxx-large" display="flex">
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardsRedeemed/CREDIT/global"
+          >
+            <sqm-text>
+              <p>Rewards Redeemed</p>
+            </sqm-text>
+          </sqm-big-stat>
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardBalance/CREDIT/POINT/value/global"
+          >
+            <sqm-text>
+              <p>Points Balance</p>
+            </sqm-text>
+          </sqm-big-stat>
+        </sqm-stat-container>
+        <sqm-scroll
+          scroll-id="tab-2"
+          outline
+          button-type="primary"
+          button-text="Redeem your rewards"
+          mobile
+        ></sqm-scroll>
+      </sqm-portal-container>
+    </div>
+  );
+};
+
+export const SpaceEvenly = () => {
+  return (
+    <div style={{ width: "1000px", border: "1px dashed grey" }}>
+      <sqm-portal-container
+        center
+        direction="row"
+        display="flex"
+        justify-content="space-evenly"
+      >
+        <sqm-stat-container space="xxx-large" display="flex">
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardsRedeemed/CREDIT/global"
+          >
+            <sqm-text>
+              <p>Rewards Redeemed</p>
+            </sqm-text>
+          </sqm-big-stat>
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardBalance/CREDIT/POINT/value/global"
+          >
+            <sqm-text>
+              <p>Points Balance</p>
+            </sqm-text>
+          </sqm-big-stat>
+        </sqm-stat-container>
+        <sqm-scroll
+          scroll-id="tab-2"
+          outline
+          button-type="primary"
+          button-text="Redeem your rewards"
+          mobile
+        ></sqm-scroll>
+      </sqm-portal-container>
+    </div>
+  );
+};
+
+export const Start = () => {
+  return (
+    <div style={{ width: "1000px", border: "1px dashed grey" }}>
+      <sqm-portal-container
+        center
+        direction="row"
+        display="flex"
+        justify-content="start"
+      >
+        <sqm-stat-container space="xxx-large" display="flex">
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardsRedeemed/CREDIT/global"
+          >
+            <sqm-text>
+              <p>Rewards Redeemed</p>
+            </sqm-text>
+          </sqm-big-stat>
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardBalance/CREDIT/POINT/value/global"
+          >
+            <sqm-text>
+              <p>Points Balance</p>
+            </sqm-text>
+          </sqm-big-stat>
+        </sqm-stat-container>
+        <sqm-scroll
+          scroll-id="tab-2"
+          outline
+          button-type="primary"
+          button-text="Redeem your rewards"
+          mobile
+        ></sqm-scroll>
+      </sqm-portal-container>
+    </div>
+  );
+};
+
+export const Center = () => {
+  return (
+    <div style={{ width: "1000px", border: "1px dashed grey" }}>
+      <sqm-portal-container
+        center
+        direction="row"
+        display="flex"
+        justify-content="center"
+      >
+        <sqm-stat-container space="xxx-large" display="flex">
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardsRedeemed/CREDIT/global"
+          >
+            <sqm-text>
+              <p>Rewards Redeemed</p>
+            </sqm-text>
+          </sqm-big-stat>
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardBalance/CREDIT/POINT/value/global"
+          >
+            <sqm-text>
+              <p>Points Balance</p>
+            </sqm-text>
+          </sqm-big-stat>
+        </sqm-stat-container>
+        <sqm-scroll
+          scroll-id="tab-2"
+          outline
+          button-type="primary"
+          button-text="Redeem your rewards"
+          mobile
+        ></sqm-scroll>
+      </sqm-portal-container>
+    </div>
+  );
+};
+
+export const End = () => {
+  return (
+    <div style={{ width: "1000px", border: "1px dashed grey" }}>
+      <sqm-portal-container
+        center
+        direction="row"
+        display="flex"
+        justify-content="end"
+      >
+        <sqm-stat-container space="xxx-large" display="flex">
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardsRedeemed/CREDIT/global"
+          >
+            <sqm-text>
+              <p>Rewards Redeemed</p>
+            </sqm-text>
+          </sqm-big-stat>
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardBalance/CREDIT/POINT/value/global"
+          >
+            <sqm-text>
+              <p>Points Balance</p>
+            </sqm-text>
+          </sqm-big-stat>
+        </sqm-stat-container>
+        <sqm-scroll
+          scroll-id="tab-2"
+          outline
+          button-type="primary"
+          button-text="Redeem your rewards"
+          mobile
+        ></sqm-scroll>
+      </sqm-portal-container>
+    </div>
+  );
+};

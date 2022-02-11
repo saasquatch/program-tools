@@ -44,6 +44,19 @@ export class PortalContainer {
   @Prop() display: "grid" | "flex" = "grid";
 
   /**
+   * @uiName Justify content
+   * @uiType string
+   * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
+   */
+  @Prop() justifyContent?:
+    | "start"
+    | "center"
+    | "end"
+    | "space-between"
+    | "space-around"
+    | "space-evenly";
+
+  /**
    * @uiName Maximum width
    */
   @Prop() maxWidth?: string = "100%";
