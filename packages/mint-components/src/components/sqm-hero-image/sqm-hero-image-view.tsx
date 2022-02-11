@@ -26,6 +26,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
     (props.header || props.description || props.buttonText) &&
       props.layout === "overlay"
   );
+  // Dependent on props, not feasiable to move out
   const style = {
     Container: {
       position: "relative",
@@ -71,7 +72,6 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
         width: props.imagePercentage ? props.imagePercentage + "%" : "50%",
         padding: "var(--sl-spacing-" + props.paddingImage + ")",
         boxSizing: "border-box",
-        // margin: props.maxHeight ? "auto" : "",
         "@media (max-width: 599px)": {
           width: "100%",
         },

@@ -12,8 +12,8 @@ import { ShareLinkViewProps } from "../sqm-share-link/sqm-share-link-view";
 
 interface ShareCodeProps {
   programId?: string;
-  tooltiptext: string;
-  tooltiplifespan: number;
+  tooltipText: string;
+  tooltipLifespan: number;
 }
 
 const MessageLinkQuery = gql`
@@ -52,7 +52,7 @@ export function useShareCode(props: ShareCodeProps): ShareLinkViewProps {
     // Only if called from a user-initiated event
     navigator.clipboard.writeText(shareString);
     setOpen(true);
-    setTimeout(() => setOpen(false), props.tooltiplifespan);
+    setTimeout(() => setOpen(false), props.tooltipLifespan);
     sendLoadEvent({
       eventMeta: {
         programId,

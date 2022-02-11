@@ -18,7 +18,7 @@ import { getProps } from "../../utils/utils";
 import { demoRewardExchange, rewardExchange } from "./RewardExchangeListData";
 
 /**
- * @uiName Reward Exchange List
+ * @uiName Reward Exchange
  */
 @Component({
   tag: "sqm-reward-exchange-list",
@@ -105,9 +105,9 @@ export class SqmRewardExchangeList {
   /**
    * Shown when a user copies a fuel tank code
    *
-   * @uiName Tool Tip Text
+   * @uiName Tooltip Text
    */
-  @Prop() tooltiptext: string = "Copied";
+  @Prop() tooltipText: string = "Copied";
 
   /**
    * @uiName Done Text
@@ -148,7 +148,9 @@ export class SqmRewardExchangeList {
   @Prop() promoCode: string = "Promo Code";
 
   /**
-   * @undocumented Number of Skeleton Cards
+   * Set the number of placeholder cards to be shown in loading state.
+   * 
+   * @undocumented Loading Cards
    */
   @Prop() skeletonCardNum: number = 8;
 

@@ -22,7 +22,7 @@ type TextContent = {
   redeemTitle: string;
   redemptionSuccessText: string;
   sourceAmountMessage: string;
-  tooltiptext: string;
+  tooltipText: string;
   doneText: string;
   selectText: string;
   redemptionError: string;
@@ -814,7 +814,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             {states.content.text.promoCode}
             <ShareLinkView
               shareString={data.fuelTankCode}
-              tooltiptext={states?.content?.text.tooltiptext}
+              tooltipText={states?.content?.text.tooltipText}
               open={states.open}
               onClick={callbacks.copyFuelTankCode}
             ></ShareLinkView>

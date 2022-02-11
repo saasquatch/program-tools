@@ -54,10 +54,23 @@ const medium = {
   pinterest: { color: "#e60023", text: "#fff", icon: "pinterest" },
 };
 
+const style = {
+  HostBlock: HostBlock,
+  buttonStyle: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    lineHeight: "0",
+  },
+};
+
+const sheet = createStyleSheet(style);
+const styleString = sheet.toString();
+
 export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
   const vanillaStyle = `
-    *::part(base) {
-     border: none;
+	*::part(base) {
+	border: none;
 			--sl-focus-ring-color-primary: ${
         props.backgroundColor
           ? props.backgroundColor
@@ -66,22 +79,22 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
           : ""
       }80!important;
 
-      background: ${
-        props.backgroundColor
-          ? props.backgroundColor
-          : props.medium
-          ? medium[props.medium].color
-          : ""
-      };
-      color: ${
-        props.textColor
-          ? props.textColor
-          : props.medium
-          ? medium[props.medium].text
-          : ""
-      };
-      border-radius: ${props.borderRadius ? props.borderRadius + "px" : ""};
-    }
+	background: ${
+    props.backgroundColor
+      ? props.backgroundColor
+      : props.medium
+      ? medium[props.medium].color
+      : ""
+  };
+	color: ${
+    props.textColor
+      ? props.textColor
+      : props.medium
+      ? medium[props.medium].text
+      : ""
+  };
+	border-radius: ${props.borderRadius ? props.borderRadius + "px" : ""};
+	}
 
 	*::part(base):hover {
 		border-color: ${
@@ -92,7 +105,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
         : ""
     }D1!important;
 	}
-	
+
 	*::part(base):focus {
 		border-color: ${
       props.backgroundColor
@@ -107,20 +120,7 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
 		position: relative;
 		top: 2%;
 	}
-  `;
-
-  const style = {
-    HostBlock: HostBlock,
-    buttonStyle: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      lineHeight: "0",
-    },
-  };
-
-  const sheet = createStyleSheet(style);
-  const styleString = sheet.toString();
+	`;
 
   return props.hide ? (
     <Host style={{ display: "none" }}></Host>
