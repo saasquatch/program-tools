@@ -138,6 +138,7 @@ export class Scroll {
       `
 		@media only screen and (max-width: 499px) {
 			:host {
+				display: block;
 				width: 100%;
 			}
 		}
