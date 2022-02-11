@@ -36,6 +36,7 @@ import { RJSFTextarea, Textarea } from "./components/TextArea";
 import { RJSFSelect } from "./components/Select/rjsf-Select";
 import { RJSFRadioActionWidget } from "./components/RadioAction/rjsf-RadioAction";
 import { RadioAction } from "./components/RadioAction";
+import { List } from './components/List'
 /// <reference types="styled-components/cssprop" />
 
 export {
@@ -79,4 +80,5 @@ export {
   RJSFRadioActionWidget,
   RadioAction,
   RadioCard,
+  List
 };
