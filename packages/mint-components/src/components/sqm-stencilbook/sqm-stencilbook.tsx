@@ -21,6 +21,7 @@ import * as UseRewardExchangeList from "../sqm-reward-exchange-list/UseRewardExc
 import * as UseRewardsTable from "../sqm-rewards-table/UseRewardsTable.stories";
 import * as UseTaskCard from "../sqm-task-card/UseTaskCard.stories";
 import * as NewPortal from "../../stories/NewPortal.stories";
+import * as Widget from "../../stories/Widget.stories";
 import * as SidebarItem from "../sqm-navigation-sidebar-item/SidebarItem.stories";
 import * as NavigationSidebar from "../sqm-navigation-sidebar/NavigationSidebar.stories";
 import * as PortalLogin from "../sqm-portal-login/PortalLogin.stories";
@@ -106,6 +107,7 @@ const stories = [
   PasswordField,
   TaskCard,
   PortalTemplates,
+  Widget,
   ProgramMenu,
   PoweredByImg,
   PortalFooter,

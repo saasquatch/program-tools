@@ -1,0 +1,148 @@
+<sqm-brand brand-color="#4225c4" brand-font="Nunito Sans">
+  <sqm-portal-container direction="column" padding="small" gap="xxx-large">
+    <sqm-portal-container direction="column" padding="none" gap="xxx-large">
+      <sqm-hero-image
+        image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"
+        header="Klip Rewards"
+        description="Refer a friend to Klip and earn up to $1200 in rewards"
+        layout="columns"
+        image-pos="right"
+        background-color="#F9F9F9"
+      >
+      </sqm-hero-image>
+    </sqm-portal-container>
+    <sqm-portal-container
+      direction="column"
+      padding="none"
+      gap="xxx-large"
+      max-width="770px"
+      center
+    >
+      <sqm-portal-container direction="row" center display="flex">
+        <sqm-stat-container space="xxx-large" display="flex">
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/referralsCount"
+          >
+            <sqm-text>
+              <p>Referrals</p>
+            </sqm-text>
+          </sqm-big-stat>
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/integrationRewardsCountFiltered/AVAILABLE/global"
+          >
+            <sqm-text>
+              <p>Giftcards</p>
+            </sqm-text>
+          </sqm-big-stat>
+        </sqm-stat-container>
+      </sqm-portal-container>
+
+      <sqm-portal-container gap="large">
+        <sqm-titled-section text-align="center" label-margin="xxx-small">
+          <sqm-text slot="label">
+            <h3>Get rewarded when your friend uses Klip</h3>
+          </sqm-text>
+        </sqm-titled-section>
+        <sqm-referral-card>
+          <sqm-portal-container gap="large" slot="left">
+            <sqm-text
+              >They’ll get a $50 credit towards a new account and you’ll get:
+            </sqm-text>
+            <sqm-timeline icon="circle">
+              <sqm-timeline-entry
+                reward="$50"
+                unit="visa giftcard"
+                desc="Your friend purchases Klip Business"
+              >
+              </sqm-timeline-entry>
+              <sqm-timeline-entry
+                reward="$200"
+                unit="visa giftcard"
+                desc="Our sales team qualifies your friend as a good fit for Klip Enterprise"
+              >
+              </sqm-timeline-entry>
+              <sqm-timeline-entry
+                reward="$1000"
+                unit="visa giftcard"
+                desc="Your friend purchases Klip Enterprise"
+              >
+              </sqm-timeline-entry>
+            </sqm-timeline>
+          </sqm-portal-container>
+          <sqm-portal-container gap="large" slot="right">
+            <sqm-text>Choose how you want to share: </sqm-text>
+            <sqm-text>
+              <sub>Your unique referral link:</sub>
+              <sqm-share-link> </sqm-share-link>
+            </sqm-text>
+            <sqm-portal-container gap="x-small">
+              <sqm-share-button medium="email">
+                Share via email
+              </sqm-share-button>
+              <sqm-share-button medium="linkedin">
+                Share on LinkedIn
+              </sqm-share-button>
+              <sqm-share-button medium="twitter">
+                Tweet about us
+              </sqm-share-button>
+            </sqm-portal-container>
+          </sqm-portal-container>
+        </sqm-referral-card>
+      </sqm-portal-container>
+      <sqm-tabs>
+        <sqm-tab header="Leaderboard">
+          <sqm-portal-container gap="large">
+            <sqm-hero-image
+              image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000248/squatch-assets/MVgOJn7.png"
+              description="Be one of the top 3 referrers at the end of the year and receive Klip free for 1 year!"
+              layout="columns"
+              image-percentage="33%"
+              padding-image="large"
+              padding-text="large"
+              background-color="#EFF8FE"
+            >
+            </sqm-hero-image>
+            <sqm-leaderboard
+              usersheading="Referrer"
+              statsheading="Referrals"
+              rankheading="Rank"
+              rank-type="rowNumber"
+              leaderboard-type="topStartedReferrers"
+              show-rank="true"
+            >
+              <sqm-empty
+                empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard2.png"
+                empty-state-header="View your rank in the leaderboard"
+                empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
+              ></sqm-empty>
+            </sqm-leaderboard>
+          </sqm-portal-container>
+        </sqm-tab>
+        <sqm-tab header="Referral history">
+          <sqm-referral-table per-page="4" hidden-columns="2">
+            <sqm-referral-table-user-column column-title="User">
+            </sqm-referral-table-user-column>
+            <sqm-referral-table-status-column column-title="Referral status">
+            </sqm-referral-table-status-column>
+            <sqm-referral-table-rewards-column>
+            </sqm-referral-table-rewards-column>
+            <sqm-referral-table-date-column
+              column-title="Date referred"
+              date-shown="dateReferralStarted"
+            >
+            </sqm-referral-table-date-column>
+            <sqm-empty
+              empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png"
+              empty-state-header="View your referral details"
+              empty-state-text="Refer a friend to view the status of your referrals and rewards earned"
+            ></sqm-empty>
+          </sqm-referral-table>
+        </sqm-tab>
+      </sqm-tabs>
+    </sqm-portal-container>
+  </sqm-portal-container>
+</sqm-brand>

@@ -3,9 +3,8 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { BigStatView, BigStatViewProps } from "./sqm-big-stat-view";
 import { useBigStat } from "./useBigStat";
 import { useDemoBigStat } from "./useDemoBigStat";
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { isDemo, useHost } from "@saasquatch/component-boilerplate";
 import { DemoData } from "../../global/demo";
-import { useChildElements } from "../../tables/useChildElements";
 
 /**
  *
@@ -60,7 +59,8 @@ export class BigStat {
 
   render() {
     const { props, label } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
-    const hasLabel = useChildElements()?.length;
+    const host = useHost();
+    const hasLabel = !!host.innerHTML?.trim();
     const labelSlot = <slot name="label">{hasLabel ? <slot /> : label}</slot>;
 
     return <BigStatView {...props} labelSlot={labelSlot}></BigStatView>;

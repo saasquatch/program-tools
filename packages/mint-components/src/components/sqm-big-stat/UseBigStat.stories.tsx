@@ -1,4 +1,4 @@
-import { h } from "@stencil/core";
+import { h, VNode } from "@stencil/core";
 import { BigStatView } from "./sqm-big-stat-view";
 import { useDemoBigStat } from "./useDemoBigStat";
 import { useState } from "@saasquatch/stencil-hooks";
@@ -35,7 +35,7 @@ function setupGraphQL() {
   }, []);
 }
 
-const View = (statType: string, format: string) => {
+const View = (statType: string, format: string, label?: VNode | string) => {
   //   console.log(`View("${statType}") - CALLED`);
   setupGraphQL();
   return (
@@ -44,7 +44,7 @@ const View = (statType: string, format: string) => {
       <pre>{format}</pre>
       <br />
       <b>Stat selected:</b> <pre style={{ color: "green" }}>{statType}</pre>
-      <sqm-big-stat stat-type={statType}></sqm-big-stat>
+      <sqm-big-stat stat-type={statType}>{label}</sqm-big-stat>
     </div>
   );
 };
@@ -214,4 +214,36 @@ export const ProgramGoals = createHookStory(() => {
 
 export const CustomField = createHookStory(() => {
   return View(`/customFields/thingCount`, "/(customFields)/:customField");
+});
+
+export const CustomFieldWithLabel = createHookStory(() => {
+  return View(
+    `/customFields/thingCount`,
+    "/(customFields)/:customField",
+    <sqm-text>Thing Count</sqm-text>
+  );
+});
+
+export const CustomFieldWithEmptyLabel = createHookStory(() => {
+  return View(
+    `/customFields/thingCount`,
+    "/(customFields)/:customField",
+    "   "
+  );
+});
+
+export const CustomFieldWithEmptySpaceLabel = createHookStory(() => {
+  return View(
+    `/customFields/thingCount`,
+    "/(customFields)/:customField",
+    "\n   "
+  );
+});
+
+export const CustomFieldWithTextLabel = createHookStory(() => {
+  return View(
+    `/customFields/thingCount`,
+    "/(customFields)/:customField",
+    "Thing Count"
+  );
 });

@@ -5,7 +5,7 @@ import { TabsView } from "./sqm-tabs-view";
 import { useTabs } from "./useTabs";
 
 /**
- * @uiName Tabs
+ * @uiName Tab Group
  */
 @Component({
   tag: "sqm-tabs",

@@ -36,14 +36,6 @@ export default {
   title: "Templates / Portal",
 };
 
-// slot="footer"
-// support-email="john@foodservicerewards.com"
-// terms-link="example.com"
-// faq-link="example.com"
-// padding="large"
-// show-powered-by="false"
-// powered-by-link="https://www.saasquatch.com/"
-
 function useTemplate(templateString: string) {
   const [editedTemplate, setEditedTemplate] = useState(templateString);
   const [previewTemplate, setPreviewTemplate] = useState(templateString);

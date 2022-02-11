@@ -96,7 +96,7 @@ function EmptySlot() {
       <sqm-empty
         empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png"
         empty-state-header="View your rewards"
-        empty-state-text="See all the rewards you have earned from referring friends and completing tasks"
+        empty-state-text="Refer friends and complete tasks to view the details of your rewards"
       ></sqm-empty>
     </slot>
   );

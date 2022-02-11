@@ -193,7 +193,7 @@ export class RewardTableRewardsCell {
           Container: {
             display: "inline-block",
             verticalAlign: "top",
-            width: "130px", //setting fixed width here, so that all progress bars look the same
+            width: "150px", //setting fixed width here, so that all progress bars look the same
             whiteSpace: "break",
             overflow: "hidden",
             textOverflow: "ellipsis",

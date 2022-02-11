@@ -242,7 +242,7 @@ Feature: Reward Exchange List
             | VARIABLE_CREDIT_REWARD      | due to insufficent source value | {prettySourceValue} required |
             | STEPPED_FIXED_GLOBAL_REWARD | W9                              | US Tax Limit                 |
             | VARIABLE_GLOBAL_REWARD      | W9                              | US Tax Limit                 |
-            | VARIABLE_CREDIT_REWARD      | w9                              | US Tax Limit                 |
+            | VARIABLE_CREDIT_REWARD      | W9                              | US Tax Limit                 |
 
     @motivating
     Scenario Outline: The Confirm page allows users to view their exchange before committing
