@@ -25,7 +25,12 @@ const GET_REWARDS = gql`
     viewer {
       ... on User {
         id
-        rewards(limit: $limit, offset: $offset, filter: $rewardFilter) {
+        rewards(
+          limit: $limit
+          offset: $offset
+          filter: $rewardFilter
+          sortBy: { field: "dateCreated", order: DESC }
+        ) {
           totalCount
           count
           data {
@@ -38,6 +43,7 @@ const GET_REWARDS = gql`
             unit
             name
             dateGiven
+            dateCreated
             dateExpires
             dateCancelled
             dateRedeemed
