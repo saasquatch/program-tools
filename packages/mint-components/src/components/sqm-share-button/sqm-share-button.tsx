@@ -9,7 +9,7 @@ import deepmerge from "deepmerge";
 
 /**
  * @uiName Share Button
- * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
+ * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideIcon"]
  */
 @Component({
   tag: "sqm-share-button",
@@ -59,17 +59,17 @@ export class ShareButton {
   /**
    * @uiName Configure border radius with pixel amount
    */
-  @Prop() borderradius?: number;
+  @Prop() borderRadius?: number;
   /**
    * @uiName Button background color
    * @uiWidget color
    */
-  @Prop() backgroundcolor?: string;
+  @Prop() backgroundColor?: string;
   /**
    * @uiName Button text color
    * @uiWidget color
    */
-  @Prop() textcolor?: string;
+  @Prop() textColor?: string;
   /**
    * @uiName Display as pill
    */
@@ -104,29 +104,29 @@ export class ShareButton {
    * @uiEnum ["prefix", "suffix" ]
    * @uiEnumNames ["Prefix", "Suffix"]
    */
-  @Prop() iconslot?: "prefix" | "suffix" = "prefix";
+  @Prop() iconSlot?: "prefix" | "suffix" = "prefix";
   /**
-   * Options available at https://shoelace.style/components/icon 
-   * 
+   * Options available at https://shoelace.style/components/icon
+   *
    * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
    */
   @Prop() icon?: string;
   /**
    * @uiName Hide the icon
    */
-  @Prop() hideicon?: boolean = false;
+  @Prop() hideIcon?: boolean = false;
   /**
    * @uiName Hide the text
    */
-  @Prop() hidetext?: boolean = false;
+  @Prop() hideText?: boolean = false;
   /**
    * @uiName Title used for native sharing (mobile only)
    */
-  @Prop() sharetitle?: string;
+  @Prop() shareTitle?: string;
   /**
    * @uiName Text used for native sharing (mobile only)
    */
-  @Prop() sharetext?: string;
+  @Prop() shareText?: string;
 
   /**
    * @undocumented

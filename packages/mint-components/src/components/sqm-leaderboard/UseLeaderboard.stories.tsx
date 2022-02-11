@@ -74,7 +74,7 @@ const View = (overrideProps?: LeaderboardProps & any) => {
     ...overrideProps,
   };
   const { leaderboardType, rankType } = props;
-  console.log(`View("${leaderboardType}") - CALLED`, { ...props });
+  //   console.log(`View("${leaderboardType}") - CALLED`, { ...props });
 
   return (
     <div style={{ marginBottom: "20px" }}>
@@ -185,19 +185,18 @@ export const DemoHookEmpty = createHookStory(() => {
           rankType: "rank",
           leaderboard: [],
         },
-        states:{
+        states: {
           loading: false,
-          hasLeaders:false,
+          hasLeaders: false,
           styles: {
             usersheading: "Top referrers",
             statsheading: "New customers",
-            rankheading:  "Rank",
+            rankheading: "Rank",
             anonymousUser: "Anonymous User",
             showRank: true,
           },
-        }
+        },
       }}
-      
     >
       <sqm-empty
         empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"

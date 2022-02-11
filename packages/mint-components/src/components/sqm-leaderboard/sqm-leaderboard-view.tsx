@@ -93,12 +93,6 @@ export function LeaderboardView(props: LeaderboardViewProps) {
   const { states, data, elements } = props;
   const { styles } = states;
 
-  console.log("LEADER", props);
-
-  console.log(styles);
-  console.log("hideViewer", styles.hideViewer);
-  console.log(!styles.hideViewer);
-
   if (states.loading)
     return (
       <div class={sheet.classes.Leaderboard}>
@@ -152,7 +146,6 @@ export function LeaderboardView(props: LeaderboardViewProps) {
         })}
         {!userSeenFlag && !styles.hideViewer && (
           <tr>
-            {console.log("res", !userSeenFlag && !styles.hideViewer)}
             <td colSpan={100} class="ellipses">
               <sl-icon
                 name="three-dots"

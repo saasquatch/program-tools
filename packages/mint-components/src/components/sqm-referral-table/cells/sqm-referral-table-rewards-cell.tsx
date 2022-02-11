@@ -143,9 +143,6 @@ export class ReferralTableRewardsCell {
           status: state,
         }
       );
-
-      const rid = Math.random().toString(36).slice(2);
-
       return (
         <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
           <style type="text/css">{styleString}</style>

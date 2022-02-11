@@ -17,7 +17,7 @@ const rewardsData: Reward = {
   id: "61c100117a82a376d8804166",
   type: "CREDIT",
   value: 19,
-  unit: "TESTUNIT",
+  unit: "Points",
   name: null,
   dateGiven: 1640038417468,
   meta: { message: "***CUSTOMER NOTE MESSAGE***" },
@@ -58,7 +58,7 @@ export const RewardsCellCreditFull = () => {
   return (
     <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData }}
-      availableText="19 Points remaining"
+      availableText="{availableAmount} remaining"
     ></sqm-rewards-table-reward-cell>
   );
 };
@@ -74,7 +74,7 @@ export const RewardsCellCreditPartial = () => {
   return (
     <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, ...partial }}
-      availableText="10 Points remaining"
+      availableText="{availableAmount} remaining"
     ></sqm-rewards-table-reward-cell>
   );
 };
@@ -83,7 +83,7 @@ export const RewardsCellCreditCancelled = () => {
   return (
     <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, ...cancelled }}
-      redeemedText="0 Points redeemed"
+      redeemedText="{redeemedAmount} redeemed"
     ></sqm-rewards-table-reward-cell>
   );
 };
@@ -92,7 +92,7 @@ export const RewardsCellCreditExpired = () => {
   return (
     <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, ...partial, ...expired }}
-      redeemedText="9 Points redeemed"
+      redeemedText="{redeemedAmount} redeemed"
     ></sqm-rewards-table-reward-cell>
   );
 };
@@ -100,8 +100,8 @@ export const RewardsCellCreditExpired = () => {
 export const RewardsCellCreditPending = () => {
   return (
     <sqm-rewards-table-reward-cell
-      reward={{ ...rewardsData, ...partial, ...pending }}
-      availableText="9 Points redeemed"
+      reward={{ ...rewardsData, ...pending }}
+      availableText="{availableAmount} remaining"
     ></sqm-rewards-table-reward-cell>
   );
 };
@@ -118,7 +118,7 @@ export const RewardsCellCreditRedeemed = () => {
   return (
     <sqm-rewards-table-reward-cell
       reward={{ ...rewardsData, ...empty }}
-      availableText="0 Points remaining"
+      availableText="{availableAmount} remaining"
     ></sqm-rewards-table-reward-cell>
   );
 };
@@ -139,7 +139,7 @@ export const RewardsCellCreditLong = () => {
     <div style={{ maxWidth: "222px" }}>
       <sqm-rewards-table-reward-cell
         reward={{ ...rewardsData, ...longName }}
-        availableText="19 Points with a really really super duper longest name ever in the world wide web remaining"
+        availableText="{availableAmount} remaining"
       ></sqm-rewards-table-reward-cell>
     </div>
   );

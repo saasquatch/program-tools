@@ -1,6 +1,6 @@
 @author:kutay
 @owner:kutay
-Feature: Task Card Progress Bar
+Feature: The progress bar can be shown as a continuous line with progress and end goal. 
 
 	@motivating
 	@ui

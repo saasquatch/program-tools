@@ -67,6 +67,8 @@ export class TaskCard {
   showProgressBar: boolean = false;
 
   /**
+   * Sets the goal for progress to be completed. If repeatable is checked, repeatable goals will be increments of this.
+   * 
    * @uiName Goal Completion Number
    */
   @Prop()

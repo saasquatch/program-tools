@@ -1423,7 +1423,15 @@ export namespace Components {
     interface SqmRouter {
     }
     interface SqmScroll {
+        /**
+          * @uiName Button Text
+         */
         "buttonText": string;
+        /**
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
+         */
         "buttonType": | "default"
     | "primary"
     | "success"
@@ -1431,34 +1439,67 @@ export namespace Components {
     | "warning"
     | "danger"
     | "text";
-        "caret": boolean;
+        /**
+          * Draws a circle button.
+          * @uiName Circle
+         */
         "circle": boolean;
-        "disabled": boolean;
-        "download": string;
-        "href": string;
+        /**
+          * @uiName Icon Name
+         */
         "iconName": string;
+        /**
+          * @uiName Icon Slot
+          * @uiType string
+          * @uiEnum ["prefix", "suffix"]
+         */
         "iconSlot": string;
-        "loading": boolean;
-        "mobileFriendly"?: boolean;
-        "name": string;
+        /**
+          * Sets button to be full width in mobile resolutions
+          * @uiName Mobile Button
+         */
+        "mobile"?: boolean;
+        /**
+          * Draws an outlined button with primary color.
+          * @uiName Outline
+         */
         "outline": boolean;
+        /**
+          * Draws a pill-style button with rounded edges.
+          * @uiName Pill
+         */
         "pill": boolean;
+        /**
+          * @uiName Scroll Animation Style
+          * @uiType string
+          * @uiEnum ["smooth", "auto"]
+         */
         "scrollAnimation": "smooth" | "auto";
+        /**
+          * @uiName Scroll Id
+         */
         "scrollId"?: string;
+        /**
+          * @uiName Scroll Tag Name
+         */
         "scrollTagName"?: string;
+        /**
+          * @uiName Size
+          * @uiType string
+          * @uiEnum ["small", "medium", "large"]
+         */
         "size": string;
-        "target": string;
     }
     interface SqmShareButton {
         /**
           * @uiName Button background color
           * @uiWidget color
          */
-        "backgroundcolor"?: string;
+        "backgroundColor"?: string;
         /**
           * @uiName Configure border radius with pixel amount
          */
-        "borderradius"?: number;
+        "borderRadius"?: number;
         /**
           * @undocumented 
           * @uiType object
@@ -1471,11 +1512,11 @@ export namespace Components {
         /**
           * @uiName Hide the icon
          */
-        "hideicon"?: boolean;
+        "hideIcon"?: boolean;
         /**
           * @uiName Hide the text
          */
-        "hidetext"?: boolean;
+        "hideText"?: boolean;
         /**
           * Options available at https://shoelace.style/components/icon
           * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
@@ -1487,7 +1528,7 @@ export namespace Components {
           * @uiEnum ["prefix", "suffix" ]
           * @uiEnumNames ["Prefix", "Suffix"]
          */
-        "iconslot"?: "prefix" | "suffix";
+        "iconSlot"?: "prefix" | "suffix";
         /**
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
@@ -1519,11 +1560,11 @@ export namespace Components {
         /**
           * @uiName Text used for native sharing (mobile only)
          */
-        "sharetext"?: string;
+        "shareText"?: string;
         /**
           * @uiName Title used for native sharing (mobile only)
          */
-        "sharetitle"?: string;
+        "shareTitle"?: string;
         /**
           * @uiName Button Size
           * @uiType string
@@ -1535,7 +1576,7 @@ export namespace Components {
           * @uiName Button text color
           * @uiWidget color
          */
-        "textcolor"?: string;
+        "textColor"?: string;
         /**
           * @uiType string
           * @uiName Button Style
@@ -1681,6 +1722,7 @@ export namespace Components {
          */
         "finite": number;
         /**
+          * Sets the goal for progress to be completed. If repeatable is checked, repeatable goals will be increments of this.
           * @uiName Goal Completion Number
          */
         "goal": number;
@@ -3762,7 +3804,15 @@ declare namespace LocalJSX {
     interface SqmRouter {
     }
     interface SqmScroll {
+        /**
+          * @uiName Button Text
+         */
         "buttonText"?: string;
+        /**
+          * @uiName Button Type
+          * @uiType string
+          * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
+         */
         "buttonType"?: | "default"
     | "primary"
     | "success"
@@ -3770,34 +3820,67 @@ declare namespace LocalJSX {
     | "warning"
     | "danger"
     | "text";
-        "caret"?: boolean;
+        /**
+          * Draws a circle button.
+          * @uiName Circle
+         */
         "circle"?: boolean;
-        "disabled"?: boolean;
-        "download"?: string;
-        "href"?: string;
+        /**
+          * @uiName Icon Name
+         */
         "iconName"?: string;
+        /**
+          * @uiName Icon Slot
+          * @uiType string
+          * @uiEnum ["prefix", "suffix"]
+         */
         "iconSlot"?: string;
-        "loading"?: boolean;
-        "mobileFriendly"?: boolean;
-        "name"?: string;
+        /**
+          * Sets button to be full width in mobile resolutions
+          * @uiName Mobile Button
+         */
+        "mobile"?: boolean;
+        /**
+          * Draws an outlined button with primary color.
+          * @uiName Outline
+         */
         "outline"?: boolean;
+        /**
+          * Draws a pill-style button with rounded edges.
+          * @uiName Pill
+         */
         "pill"?: boolean;
+        /**
+          * @uiName Scroll Animation Style
+          * @uiType string
+          * @uiEnum ["smooth", "auto"]
+         */
         "scrollAnimation"?: "smooth" | "auto";
+        /**
+          * @uiName Scroll Id
+         */
         "scrollId"?: string;
+        /**
+          * @uiName Scroll Tag Name
+         */
         "scrollTagName"?: string;
+        /**
+          * @uiName Size
+          * @uiType string
+          * @uiEnum ["small", "medium", "large"]
+         */
         "size"?: string;
-        "target"?: string;
     }
     interface SqmShareButton {
         /**
           * @uiName Button background color
           * @uiWidget color
          */
-        "backgroundcolor"?: string;
+        "backgroundColor"?: string;
         /**
           * @uiName Configure border radius with pixel amount
          */
-        "borderradius"?: number;
+        "borderRadius"?: number;
         /**
           * @undocumented 
           * @uiType object
@@ -3810,11 +3893,11 @@ declare namespace LocalJSX {
         /**
           * @uiName Hide the icon
          */
-        "hideicon"?: boolean;
+        "hideIcon"?: boolean;
         /**
           * @uiName Hide the text
          */
-        "hidetext"?: boolean;
+        "hideText"?: boolean;
         /**
           * Options available at https://shoelace.style/components/icon
           * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
@@ -3826,7 +3909,7 @@ declare namespace LocalJSX {
           * @uiEnum ["prefix", "suffix" ]
           * @uiEnumNames ["Prefix", "Suffix"]
          */
-        "iconslot"?: "prefix" | "suffix";
+        "iconSlot"?: "prefix" | "suffix";
         /**
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
@@ -3858,11 +3941,11 @@ declare namespace LocalJSX {
         /**
           * @uiName Text used for native sharing (mobile only)
          */
-        "sharetext"?: string;
+        "shareText"?: string;
         /**
           * @uiName Title used for native sharing (mobile only)
          */
-        "sharetitle"?: string;
+        "shareTitle"?: string;
         /**
           * @uiName Button Size
           * @uiType string
@@ -3874,7 +3957,7 @@ declare namespace LocalJSX {
           * @uiName Button text color
           * @uiWidget color
          */
-        "textcolor"?: string;
+        "textColor"?: string;
         /**
           * @uiType string
           * @uiName Button Style
@@ -4020,6 +4103,7 @@ declare namespace LocalJSX {
          */
         "finite"?: number;
         /**
+          * Sets the goal for progress to be completed. If repeatable is checked, repeatable goals will be increments of this.
           * @uiName Goal Completion Number
          */
         "goal"?: number;

@@ -110,34 +110,39 @@ export class RewardTableRewardsCell {
         return (
           <div class={sheet.classes.Fueltank}>
             {reward.prettyValue}
-            <div
-              class="code"
-              onClick={() => navigator.clipboard.writeText(reward.fuelTankCode)}
-            >
-              <sl-tooltip
-                trigger="click"
-                placement="top"
-                distance={5}
-                skidding={11}
-                content={this.copyText}
-                onSl-show={(e) => setTimeout(() => e.path[0].hide(), 1000)}
+            {reward.fuelTankCode && (
+              <div
+                class="code"
+                onClick={() =>
+                  navigator.clipboard.writeText(reward.fuelTankCode)
+                }
               >
-                <span class="text">{reward.fuelTankCode}</span>
-                <span class="icon">
-                  <sl-icon name="files" />
-                </span>
-              </sl-tooltip>
-            </div>
+                <sl-tooltip
+                  trigger="click"
+                  placement="top"
+                  distance={5}
+                  skidding={11}
+                  content={this.copyText}
+                  onSl-show={(e) => setTimeout(() => e.path[0].hide(), 1000)}
+                >
+                  <span class="text">{reward.fuelTankCode}</span>
+                  <span class="icon">
+                    <sl-icon name="files" />
+                  </span>
+                </sl-tooltip>
+              </div>
+            )}
           </div>
         );
       }
 
       if (reward.type === "CREDIT" && !singleReward) {
+        const remainingValue =
+          parseFloat(reward.prettyValueNumber) -
+          parseFloat(reward.prettyRedeemedNumber);
+
         const progress = Math.round(
-          ((parseFloat(reward.prettyValueNumber) -
-            parseFloat(reward.prettyRedeemedNumber)) /
-            parseFloat(reward.prettyValueNumber)) *
-            100
+          (remainingValue / parseFloat(reward.prettyValueNumber)) * 100
         );
 
         const progressBarSubtext =
@@ -162,7 +167,9 @@ export class RewardTableRewardsCell {
                   defaultMessage: this.availableText,
                 },
                 {
-                  availableAmount: reward.prettyAvailableValue,
+                  availableAmount: reward.statuses.includes("PENDING")
+                    ? reward.prettyAssignedCredit
+                    : reward.prettyAvailableValue,
                 }
               )}
             </div>
