@@ -72,7 +72,7 @@ const referralsCountQuery = (
     { queryFilter },
 
     (res) => ({
-      value: res.data?.viewer?.referrals?.totalCount,
+      value: res.data?.viewer?.referrals?.totalCount || 0,
       statvalue: res.data?.viewer?.referrals?.totalCount?.toString(),
     })
   );

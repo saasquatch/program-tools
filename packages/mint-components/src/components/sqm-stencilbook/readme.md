@@ -18,6 +18,7 @@
 - [sqm-portal-frame](../sqm-portal-frame)
 - [sqm-edit-profile](../sqm-edit-profile)
 - [sqm-form-message](../sqm-form-message)
+- [sqm-big-stat](../sqm-big-stat)
 - [sqm-divided-layout](../sqm-divided-layout)
 - [sqm-leaderboard](../sqm-leaderboard)
 - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
@@ -78,6 +79,7 @@ graph TD;
   sqm-stencilbook --> sqm-portal-frame
   sqm-stencilbook --> sqm-edit-profile
   sqm-stencilbook --> sqm-form-message
+  sqm-stencilbook --> sqm-big-stat
   sqm-stencilbook --> sqm-divided-layout
   sqm-stencilbook --> sqm-leaderboard
   sqm-stencilbook --> sqm-reward-exchange-list

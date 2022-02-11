@@ -109,7 +109,7 @@ Feature: Reward Exchange List
         And it has an image
         When a user views the reward exchange list
         Then they see a exchange card with title "My Visa Exchange Rule"
-        And the exchange image on the right hand side of the card
+        And the exchange image on the left hand side of the card
 
     @motivating
     Scenario Outline: Reward exchange source values are displayed on reward exchange cards

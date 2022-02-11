@@ -22,7 +22,6 @@ Feature: Leaderboard
 		Given there is aleast one user
 		Then the leaderboard displays up to 10 top referrers
 		And leaderboard is ordered by the referrers score in descending ordered
-		And in the case of a tie the rows are ordered alphabetically
 
 	@motivating
 	Scenario: The leaderboard can filter referrals within an time interval

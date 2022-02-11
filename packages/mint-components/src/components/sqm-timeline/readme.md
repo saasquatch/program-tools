@@ -27,16 +27,6 @@ Type: `Promise<void>`
 
 
 
-### `setLine(value: boolean) => Promise<void>`
-
-
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
 
 ## Dependencies
 
