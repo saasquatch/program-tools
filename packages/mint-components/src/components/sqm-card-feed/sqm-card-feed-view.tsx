@@ -1,13 +1,13 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 
-
 export interface CardFeedViewProps {
   width: number;
   gap: number;
 }
 
 export function CardFeedView(props: CardFeedViewProps, children: VNode) {
+  // Dependent on props, not feasiable to move out
   const style = {
     Container: {
       columnGap: props.gap + "px",

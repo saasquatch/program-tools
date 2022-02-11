@@ -12,6 +12,7 @@ export interface ImageViewProps {
 }
 
 export function ImageView(props: ImageViewProps) {
+  // Dependent on props, not feasiable to move out
   const style = {
     Container: {
       display: "flex",

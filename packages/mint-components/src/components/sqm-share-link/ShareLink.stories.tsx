@@ -13,7 +13,7 @@ export const Default = () => {
   const props = {
     shareString: "https://noah.example.com",
     open: false,
-    tooltiptext: "Copied!",
+    tooltipText: "Copied!",
   };
   return <ShareLinkView {...props} />;
 };
@@ -21,7 +21,7 @@ export const Default = () => {
 export const Tooltip = () => {
   const props = {
     shareString: "https://noah.example.com",
-    tooltiptext: "Some text for the tooltip",
+    tooltipText: "Some text for the tooltip",
     open: true,
   };
   return <ShareLinkView {...props} />;
@@ -32,7 +32,7 @@ export const Disabled = () => {
     shareString: "https://noah.example.com",
     disabled: true,
     open: true,
-    tooltiptext: "Copied!",
+    tooltipText: "Copied!",
   };
   return <ShareLinkView {...props} />;
 };

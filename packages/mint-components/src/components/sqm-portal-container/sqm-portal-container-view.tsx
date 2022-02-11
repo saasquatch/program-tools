@@ -28,7 +28,7 @@ export function PortalContainerView(
       "grid-gap": `var(--sl-spacing-${props.gap})`,
       padding:
         props.padding === "none" ? "0" : `var(--sl-spacing-${props.padding})`,
-      maxWidth: props.maxWidth ? props.maxWidth : "",
+      maxWidth: props.maxWidth,
       margin: props.center && "auto",
     },
   };

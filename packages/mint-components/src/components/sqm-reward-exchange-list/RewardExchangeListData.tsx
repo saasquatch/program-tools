@@ -29,7 +29,7 @@ const baseResponse = (
         redeemTitle: "Confirm and redeem",
         redemptionSuccessText: "Redeemed {sourceValue} for {destinationValue}",
         doneText: "Done",
-        tooltiptext: "Copied!",
+        tooltipText: "Copied!",
         selectText: "Select amount to receive",
         sourceAmountMessage:
           "{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}",

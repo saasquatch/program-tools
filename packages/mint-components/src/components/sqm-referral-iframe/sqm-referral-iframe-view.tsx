@@ -17,6 +17,8 @@ export type ReferralIframeViewProps = {
 export function ReferralIframeView(props: ReferralIframeViewProps) {
   const { states, data } = props;
   const { content } = states;
+
+  // dependent on props
   const style = {
     Container: {
       position: "relative",

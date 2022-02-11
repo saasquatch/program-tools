@@ -41,7 +41,6 @@ Feature: Leaderboard
 			| rowNumber | row number |
 			| denseRank | dense rank |
 			| rank      | rank       |
-			|           | row number |
 
 	@minutiae
 	@ui

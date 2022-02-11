@@ -46,9 +46,9 @@ export function GenericTableView(props: GenericTableViewProps) {
     Boolean(rows.length < 2) ? data.mdBreakpoint : data.smBreakpoint
   }px) and (max-width: ${data.mdBreakpoint}px)`;
 
+  // Due to mobile media queries being dependant on props, not feasiable to move out of render function
   const style = {
     Table: {
-      //   borderCollapse: "collapse",
       tableLayout: "fixed",
       width: "100%",
       "& th": {
@@ -127,9 +127,7 @@ export function GenericTableView(props: GenericTableViewProps) {
   const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
-  if (show === "empty") {
-    return <div>{elements.emptyElement}</div>;
-  }
+  if (show === "empty") return elements.emptyElement;
 
   return (
     <div>

@@ -47,14 +47,17 @@ export class ReferralTable {
 
   /** @uiName Show Referred by user in table  */
   @Prop() showReferrer?: boolean = false;
-
-  /** @uiName Hide Column Labels (Mobile View)  */
+  
+  /*
+   * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+   *
+   *  @uiName Mobile Hidden Columns  */
   @Prop() hiddenColumns?: string = "0";
 
-  /** @uiName Small Breakpoint (Mobile View)  */
+  /** @uiName Mobile Breakpoint  */
   @Prop() smBreakpoint?: number = 634;
 
-  /** @uiName Medium Breakpoint (Mobile View)  */
+  /** @uiName Tablet Breakpoint  */
   @Prop() mdBreakpoint?: number = 899;
 
   /**
@@ -95,7 +98,7 @@ function EmptySlot() {
       <sqm-empty
         empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png"
         empty-state-header="View your referral details"
-        empty-state-text="Track the status of your referrals and rewards earned by referring friends"
+        empty-state-text="Refer a friend to view the status of your referrals and rewards earned"
       ></sqm-empty>
     </slot>
   );
