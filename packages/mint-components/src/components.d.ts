@@ -976,12 +976,9 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<GenericTableViewProps>;
-        /**
-          * @uiName Hide Column Labels (Mobile View)
-         */
         "hiddenColumns"?: string;
         /**
-          * @uiName Medium Breakpoint (Mobile View)
+          * @uiName Tablet Breakpoint
          */
         "mdBreakpoint"?: number;
         /**
@@ -1010,7 +1007,7 @@ export namespace Components {
          */
         "showReferrer"?: boolean;
         /**
-          * @uiName Small Breakpoint (Mobile View)
+          * @uiName Mobile Breakpoint
          */
         "smBreakpoint"?: number;
     }
@@ -1241,7 +1238,8 @@ export namespace Components {
          */
         "selectText": string;
         /**
-          * @undocumented Number of Skeleton Cards
+          * Set the number of placeholder cards to be shown in loading state.
+          * @undocumented Loading Cards
          */
         "skeletonCardNum": number;
         /**
@@ -1250,9 +1248,9 @@ export namespace Components {
         "sourceAmountMessage": string;
         /**
           * Shown when a user copies a fuel tank code
-          * @uiName Tool Tip Text
+          * @uiName Tooltip Text
          */
-        "tooltiptext": string;
+        "tooltipText": string;
     }
     interface SqmRewardsTable {
         /**
@@ -1261,11 +1259,12 @@ export namespace Components {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
-          * @uiName Hide Columns (Mobile View)
+          * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+          * @uiName Mobile Hidden Columns
          */
         "hiddenColumns"?: string;
         /**
-          * @uiName Hide Columns (Mobile View)
+          * @uiName Tablet Breakpoint
          */
         "mdBreakpoint"?: number;
         /**
@@ -1290,7 +1289,7 @@ export namespace Components {
          */
         "showLabels"?: boolean;
         /**
-          * @uiName Hide Columns (Mobile View)
+          * @uiName Mobile Breakpoint
          */
         "smBreakpoint"?: number;
     }
@@ -1605,12 +1604,12 @@ export namespace Components {
           * The number of milliseconds that the tooltip will appear for
           * @uiName Tooltip lifespan
          */
-        "tooltiplifespan": number;
+        "tooltipLifespan": number;
         /**
           * This is shown after someone has successfully copied the cpde to the clipboard.
           * @uiName Tooltip text
          */
-        "tooltiptext": string;
+        "tooltipText": string;
     }
     interface SqmShareLink {
         /**
@@ -1624,15 +1623,15 @@ export namespace Components {
          */
         "programId"?: string;
         /**
+          * This is shown after someone has successfully copied the link to the clipboard.
+          * @uiName Tooltip text
+         */
+        "tooltipText": string;
+        /**
           * The number of milliseconds that the tooltip will appear for
           * @uiName Tooltip lifespan
          */
         "tooltiplifespan": number;
-        /**
-          * This is shown after someone has successfully copied the link to the clipboard.
-          * @uiName Tooltip text
-         */
-        "tooltiptext": string;
     }
     interface SqmStatContainer {
         /**
@@ -3381,12 +3380,9 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<GenericTableViewProps>;
-        /**
-          * @uiName Hide Column Labels (Mobile View)
-         */
         "hiddenColumns"?: string;
         /**
-          * @uiName Medium Breakpoint (Mobile View)
+          * @uiName Tablet Breakpoint
          */
         "mdBreakpoint"?: number;
         /**
@@ -3415,7 +3411,7 @@ declare namespace LocalJSX {
          */
         "showReferrer"?: boolean;
         /**
-          * @uiName Small Breakpoint (Mobile View)
+          * @uiName Mobile Breakpoint
          */
         "smBreakpoint"?: number;
     }
@@ -3632,7 +3628,8 @@ declare namespace LocalJSX {
          */
         "selectText"?: string;
         /**
-          * @undocumented Number of Skeleton Cards
+          * Set the number of placeholder cards to be shown in loading state.
+          * @undocumented Loading Cards
          */
         "skeletonCardNum"?: number;
         /**
@@ -3641,9 +3638,9 @@ declare namespace LocalJSX {
         "sourceAmountMessage"?: string;
         /**
           * Shown when a user copies a fuel tank code
-          * @uiName Tool Tip Text
+          * @uiName Tooltip Text
          */
-        "tooltiptext"?: string;
+        "tooltipText"?: string;
     }
     interface SqmRewardsTable {
         /**
@@ -3652,11 +3649,12 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<GenericTableViewProps>;
         /**
-          * @uiName Hide Columns (Mobile View)
+          * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+          * @uiName Mobile Hidden Columns
          */
         "hiddenColumns"?: string;
         /**
-          * @uiName Hide Columns (Mobile View)
+          * @uiName Tablet Breakpoint
          */
         "mdBreakpoint"?: number;
         /**
@@ -3681,7 +3679,7 @@ declare namespace LocalJSX {
          */
         "showLabels"?: boolean;
         /**
-          * @uiName Hide Columns (Mobile View)
+          * @uiName Mobile Breakpoint
          */
         "smBreakpoint"?: number;
     }
@@ -3986,12 +3984,12 @@ declare namespace LocalJSX {
           * The number of milliseconds that the tooltip will appear for
           * @uiName Tooltip lifespan
          */
-        "tooltiplifespan"?: number;
+        "tooltipLifespan"?: number;
         /**
           * This is shown after someone has successfully copied the cpde to the clipboard.
           * @uiName Tooltip text
          */
-        "tooltiptext"?: string;
+        "tooltipText"?: string;
     }
     interface SqmShareLink {
         /**
@@ -4005,15 +4003,15 @@ declare namespace LocalJSX {
          */
         "programId"?: string;
         /**
+          * This is shown after someone has successfully copied the link to the clipboard.
+          * @uiName Tooltip text
+         */
+        "tooltipText"?: string;
+        /**
           * The number of milliseconds that the tooltip will appear for
           * @uiName Tooltip lifespan
          */
         "tooltiplifespan"?: number;
-        /**
-          * This is shown after someone has successfully copied the link to the clipboard.
-          * @uiName Tooltip text
-         */
-        "tooltiptext"?: string;
     }
     interface SqmStatContainer {
         /**

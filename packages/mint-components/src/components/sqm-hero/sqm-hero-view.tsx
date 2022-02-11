@@ -71,6 +71,7 @@ export function HeroView(props: HeroProps) {
     }
   };
 
+  // Dependent on props, not feasiable to move out
   const style = {
     TwoColumnContainer: {
       display: "flex",

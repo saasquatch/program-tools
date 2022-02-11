@@ -45,13 +45,16 @@ export class RewardsTable {
   /** @uiName View More button text  */
   @Prop() moreLabel?: string = "Next";
 
-  /** @uiName Hide Columns (Mobile View)  */
+  /**
+   * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+   * 
+   *  @uiName Mobile Hidden Columns  */
   @Prop() hiddenColumns?: string = "0";
 
-  /** @uiName Hide Columns (Mobile View)  */
+  /** @uiName Mobile Breakpoint  */
   @Prop() smBreakpoint?: number = 599;
 
-  /** @uiName Hide Columns (Mobile View)  */
+  /** @uiName Tablet Breakpoint  */
   @Prop() mdBreakpoint?: number = 899;
 
   /**

@@ -13,6 +13,7 @@ export interface BigStatViewProps {
 export function BigStatView(props: BigStatViewProps) {
   const { statvalue, flexReverse, alignment } = props;
 
+  // Dependent on props, not feasiable to move out
   const style = {
     Container: {
       display: "flex",

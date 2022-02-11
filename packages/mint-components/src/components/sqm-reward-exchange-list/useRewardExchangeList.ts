@@ -83,7 +83,7 @@ export interface RewardExchangeProps {
   redeemTitle: string;
   redemptionSuccessText: string;
   sourceAmountMessage: string;
-  tooltiptext: string;
+  tooltipText: string;
   doneText: string;
   selectText: string;
   queryError: string;

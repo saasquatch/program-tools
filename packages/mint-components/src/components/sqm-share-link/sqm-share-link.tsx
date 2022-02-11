@@ -31,7 +31,7 @@ export class ShareLink {
   @Prop({
     attribute: "tooltip-text",
   })
-  tooltiptext: string = "Copied to Clipboard";
+  tooltipText: string = "Copied to Clipboard";
   /**
    * The number of milliseconds that the tooltip will appear for
    *
@@ -68,7 +68,7 @@ function useDemoShareLink(props: ShareLink): ShareLinkViewProps {
   return deepmerge(
     {
       shareString,
-      tooltiptext: props.tooltiptext,
+      tooltipText: props.tooltipText,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility

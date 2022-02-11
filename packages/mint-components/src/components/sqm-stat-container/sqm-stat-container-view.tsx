@@ -14,6 +14,7 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
     return `${Math.floor(parseInt(spaceValue) / 2)}rem`;
   };
 
+  // Dependent on props, not feasiable to move out
   const style = {
     StatContainer: {
       width: "100%",

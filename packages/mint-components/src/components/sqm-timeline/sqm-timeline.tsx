@@ -46,24 +46,6 @@ export class Timeline {
 		::slotted(*:not(:only-child):not(:last-child)) {
 			margin-bottom: var(--sl-spacing-xx-large);
 		}
-
-		// ::slotted(*:not(:only-child):not(:first-child)) * {
-		// 	background: yellow;
-		// }
-
-		// ::slotted(*:not(:only-child):not(:first-child))::before {
-		// 	display: block;
-		// 	content: "";
-		// 	position: relative;
-		// 	height: 65px;
-		// 	width: 4px;
-		// 	top: -15px;
-		// 	left: 50px;
-		// 	margin-top: -44px;
-		// 	margin-bottom: -15px;
-		// 	border-radius: 4px;
-		// 	background: red;
-		// }
 	`;
 
     return (

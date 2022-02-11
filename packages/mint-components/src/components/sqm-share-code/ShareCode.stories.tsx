@@ -11,9 +11,9 @@ export const ShareCode = () => {
   return <sqm-share-code></sqm-share-code>;
 };
 export const CustomTooltipText = () => {
-  return <sqm-share-code tooltiptext="CUSTOM TOOLTIP TEXT"></sqm-share-code>;
+  return <sqm-share-code tooltipText="CUSTOM TOOLTIP TEXT"></sqm-share-code>;
 };
 
 export const CustomTooltipDuration = () => {
-  return <sqm-share-code tooltiplifespan={5000}></sqm-share-code>;
+  return <sqm-share-code tooltipLifespan={5000}></sqm-share-code>;
 };

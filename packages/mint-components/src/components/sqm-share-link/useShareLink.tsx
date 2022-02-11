@@ -11,7 +11,7 @@ import { ShareLinkViewProps } from "./sqm-share-link-view";
 
 interface ShareLinkProps {
   programId?: string;
-  tooltiptext: string;
+  tooltipText: string;
   tooltiplifespan: number;
 }
 

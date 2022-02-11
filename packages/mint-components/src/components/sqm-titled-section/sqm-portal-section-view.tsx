@@ -10,7 +10,9 @@ export interface PortalSectionProps {
   textAlign?: "left" | "center" | "right";
 }
 
-export function PortalSectionView(props: PortalSectionProps) {
+export function PortalSectionView(props:   PortalSectionProps) {
+
+  // Due to sole usage of props, not feasiable to move out of render function
   const style = {
     LabelContainer: {
       "margin-bottom":

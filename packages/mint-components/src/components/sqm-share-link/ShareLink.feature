@@ -10,7 +10,7 @@ Feature: Share Link
 
   @motivating
   Scenario: A Users sharelink can be copied to their clipboard
-    Given tooltiptext is "hello tooltip"
+    Given tooltipText is "hello tooltip"
     When the component renders
     Then there is a textbox with the user's share link
     When the clipboard icon is clicked
