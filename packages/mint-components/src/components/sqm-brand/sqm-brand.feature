@@ -42,17 +42,6 @@ Feature: Brand Configuration
 			| hsla(251, 68%, 46%, 1) |
 
 	@motivating
-	Scenario: The brand component applies a background colour to child
-		Given a brand component with "background" "#ABB8C3"
-		And it is wrapping several mint components
-		When a user views the children components
-		Then the following css variables are set
-			| variable                | value   |
-			| --sqm-portal-background | #ABB8C3 |
-		And they are applied to the children components
-		And children components using "sqm-portal-background" have "#ABB8C3" coloured backgrounds
-
-	@motivating
 	Scenario: The brand component can apply a brand font to children components
 		Given a brand component with "brand-font" "Nunito Sans"
 		And it is wrapping several mint components
