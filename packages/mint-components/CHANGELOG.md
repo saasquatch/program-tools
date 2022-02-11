@@ -119,6 +119,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       - Text, link and behaviour (open in new or same tab) are configurable via prop
     - All text is configurable by props
     - Text and Image padding are configurable via prop
+  - \<sqm-scroll>
+    - A button that scrolls users to an element in the widget
+    - Can scroll by id or tag
+    - Visual props mirror that of sl-button
 
 ### Changed
 
