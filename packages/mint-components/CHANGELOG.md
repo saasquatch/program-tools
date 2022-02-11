@@ -115,7 +115,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Displays image and text in two configuration
       - Overlay or column, defaults to overlay
     - Background and text colour are configurable via prop
-    - A CTA button can be optionally shown in the column view
+    - A CTA button can be optionally shown
       - Text, link and behaviour (open in new or same tab) are configurable via prop
     - All text is configurable by props
     - Text and Image padding are configurable via prop
