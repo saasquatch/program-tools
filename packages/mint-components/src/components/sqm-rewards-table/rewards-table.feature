@@ -96,13 +96,13 @@ Feature: Rewards Table
         Then only rewards from the program with "program-id" are shown
 
     @landmine
-    Scenario: Classic program rewards can't be filtered for
+    Scenario: When a `classic` program Id is set then any reward without a programId is shown
         There is no easy way for the backend to filter for "classic" programs,
-        since it only allows filtering my "programId: null"
-        and that returns manual rewards and reward exchanges
+        thus we are filtering for rewards without programId's.
 
         Given the "program-id" of the table is set to "classic"
-        Then there is an error shown
+        Then rewards from classic programs are shown
+        And manual rewards are shown
 
     @minutae
     @ui
