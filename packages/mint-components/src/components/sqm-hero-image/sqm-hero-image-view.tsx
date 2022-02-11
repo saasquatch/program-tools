@@ -57,10 +57,18 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
     },
     Overlay: {
       zIndex: "1",
-      padding: "var(--sl-spacing-" + props.paddingText + ")",
+      padding:
+        "calc(var(--sl-spacing-" +
+        props.paddingText +
+        ") + var(--sl-spacing-" +
+        props.paddingImage +
+        "))",
       textAlign: "center",
       color: props.textColor || "var(--sl-color-neutral-0)",
       lineHeight: "var(--sl-line-height-dense)",
+      "@media (max-width: 599px)": {
+        padding: "var(--sl-spacing-" + props.paddingText + ")",
+      },
     },
     Column: {
       display: "flex",

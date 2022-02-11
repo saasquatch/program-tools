@@ -3,9 +3,9 @@ import { h } from "@stencil/core";
 import { createHookStory } from "../components/sqm-stencilbook/HookStoryAddon";
 import referralWidget from "../templates/ReferralWidget.html";
 import monoWidget from "../templates/MonoWidget.html";
+import loyaltyWidget from "../templates/LoyaltyWidget.html";
 
 import marked from "marked";
-
 
 import { navigation } from "@saasquatch/component-boilerplate";
 
@@ -89,6 +89,17 @@ export const MonoWidget = createHookStory(() => {
       states={states}
       callbacks={callbacks}
       template={monoWidget}
+    />
+  );
+});
+
+export const Loyalty = createHookStory(() => {
+  const { states, callbacks } = useTemplate(loyaltyWidget);
+  return (
+    <DefaultTemplateView
+      states={states}
+      callbacks={callbacks}
+      template={loyaltyWidget}
     />
   );
 });

@@ -210,6 +210,8 @@ function useRewardsTableDemo(
           moreLabel: props.moreLabel,
         },
         referralData: [],
+		mdBreakpoint: 899,
+		smBreakpoint: 599,
       },
       elements: {
         columns: content.columns,

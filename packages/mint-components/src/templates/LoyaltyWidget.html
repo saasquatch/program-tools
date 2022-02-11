@@ -1,0 +1,145 @@
+<sqm-brand brand-color="#4225c4" brand-font="Nunito Sans">
+  <sqm-portal-container direction="column" padding="small" gap="xxxx-large">
+    <sqm-portal-container direction="column" padding="none" gap="xxx-large">
+      <sqm-media
+        image-url="https://i.imgur.com/bTwu1Um.png"
+        header="Klip Rewards"
+        description="Refer friends and complete tasks while using Klip to earn rewards"
+        layout="overlay"
+      >
+      </sqm-media>
+
+      <sqm-program-explainer header="How it works">
+        <sqm-program-explainer-step
+          description="Complete tasks like uploading your first video or sharing videos with friends"
+          header="Earn points for using Klip"
+          icon="cash-stack"
+        >
+        </sqm-program-explainer-step>
+        <sqm-program-explainer-step
+          description="Redeem rewards like one free month of Klip Enterprise or two plane tickets to anywhere in North America"
+          header="Redeem rewards with your points"
+          icon="people"
+        >
+        </sqm-program-explainer-step>
+      </sqm-program-explainer>
+
+      <sqm-portal-container center direction="row" display="flex">
+        <sqm-stat-container space="xxx-large" display="flex">
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardsRedeemed/CREDIT/"
+          >
+            <sqm-text>
+              <p>Rewards Redeemed</p>
+            </sqm-text>
+          </sqm-big-stat>
+          <sqm-big-stat
+            flex-reverse="true"
+            alignment="left"
+            stat-type="/rewardBalance/CREDIT/POINT/value/global"
+          >
+            <sqm-text>
+              <p>Points Balance</p>
+            </sqm-text>
+          </sqm-big-stat>
+        </sqm-stat-container>
+        <sqm-scroll
+          scroll-id="tab-2"
+          outline
+          button-type="primary"
+          button-text="Redeem your rewards"
+          outline
+          mobile
+        ></sqm-scroll>
+      </sqm-portal-container>
+    </sqm-portal-container>
+    <sqm-portal-container direction="column" padding="none" gap="xx-large">
+      <sqm-titled-section>
+        <sqm-text>Earn points</sqm-text>
+      </sqm-titled-section>
+      <sqm-card-feed>
+        <sqm-task-card
+          reward-amount="250"
+          goal="500"
+          show-progress-bar="true"
+          card-title="Spend $500 on Klip Products"
+          description="Earn 150 points when you spend $500 or more on Klip products."
+          button-text="See plans"
+          button-link="https://klip-staging.vercel.app/app/plans"
+          stat-type="/customFields/purchaseTotal"
+          open-new-tab="false"
+        >
+        </sqm-task-card>
+        <sqm-task-card
+          reward-amount="100"
+          goal="5"
+          repeatable="true"
+          show-progress-bar="true"
+          steps="true"
+          card-title="Share 5 Videos"
+          description="Earn 100 points for collaborating each time you share 5 videos."
+          button-text="Share"
+          button-link="https://klip-staging.vercel.app/app"
+          stat-type="/customFields/videosShared"
+          open-new-tab="false"
+        >
+        </sqm-task-card>
+        <sqm-task-card
+          reward-amount="200"
+          goal="5"
+          show-progress-bar=""
+          steps=""
+          card-title="Purchase 5 Seats"
+          description="Earn 200 points when you expand your Klip Team by purchasing 5 or more seats."
+          button-text="Purchase seats"
+          button-link="https://klip-staging.vercel.app/app/plans"
+          stat-type="/customFields/seatCount"
+          reward-duration="2021-11-02T07:00:00.000Z/2021-11-07T07:00:00.000Z"
+          show-expiry=""
+        >
+        </sqm-task-card>
+        <sqb-program-section program-id="klip-loyalty">
+          <sqm-task-card
+            reward-amount="20"
+            goal="1"
+            card-title="Complete a Survey"
+            description="Fill out our NPS survey and get 100 points for giving us honest feedback. Be sure to use your Klip account email when completing the survey."
+            button-text="Take survey"
+            button-link="https://y5tqgj96plv.typeform.com/to/p6N7lHUk"
+            stat-type="/programGoals/count/NPS-Survey"
+            reward-unit="Points"
+            open-new-tab="true"
+          >
+          </sqm-task-card>
+        </sqb-program-section>
+      </sqm-card-feed>
+
+      <sqm-tabs>
+        <sqm-tab header="Reward history">
+          <sqm-rewards-table per-page="4" program-id="">
+            <sqm-rewards-table-reward-column></sqm-rewards-table-reward-column>
+            <sqm-rewards-table-source-column></sqm-rewards-table-source-column>
+            <sqm-rewards-table-status-column></sqm-rewards-table-status-column>
+            <sqm-rewards-table-date-column></sqm-rewards-table-date-column>
+            <sqm-empty
+              empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_reward2.png"
+              empty-state-header="View your rewards"
+              empty-state-text="Refer friends and complete tasks to view the details of your rewards"
+            ></sqm-empty>
+          </sqm-rewards-table>
+        </sqm-tab>
+        <sqm-tab header="Redeem">
+          <sqm-reward-exchange-list>
+            <sqm-empty
+              empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_exchange2.png"
+              empty-state-header="Redeem rewards"
+              empty-state-text="Use your points to redeem rewards once they become available"
+            ></sqm-empty>
+          </sqm-reward-exchange-list>
+        </sqm-tab>
+      </sqm-tabs>
+    </sqm-portal-container>
+  </sqm-portal-container>
+</sqm-brand>

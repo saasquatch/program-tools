@@ -467,6 +467,7 @@ html {
   --sl-shadow-large: 0 2px 8px #0d131e1a;
   --sl-shadow-x-large: 0 4px 16px #0d131e1a;
   /** LV: Could use the Anvil spacing rules, but probably not necessary **/
+  --sl-spacing-none: 0rem;
   --sl-spacing-xxx-small: 0.125rem;
   --sl-spacing-xx-small: 0.25rem;
   --sl-spacing-x-small: 0.5rem;

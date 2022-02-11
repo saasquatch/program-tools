@@ -19,6 +19,7 @@
 - [sqm-edit-profile](../sqm-edit-profile)
 - [sqm-form-message](../sqm-form-message)
 - [sqm-big-stat](../sqm-big-stat)
+- [sqm-text](../sqm-text)
 - [sqm-divided-layout](../sqm-divided-layout)
 - [sqm-leaderboard](../sqm-leaderboard)
 - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
@@ -29,7 +30,6 @@
 - [sqm-rewards-table-date-column](../sqm-rewards-table/columns)
 - [sqm-task-card](../sqm-task-card)
 - [sqm-card-feed](../sqm-card-feed)
-- [sqm-text](../sqm-text)
 - [sqm-password-field](../sqm-password-field)
 - [sqm-portal-register](../sqm-portal-register)
 - [sqm-table-row](../sqm-table-row)
@@ -80,6 +80,7 @@ graph TD;
   sqm-stencilbook --> sqm-edit-profile
   sqm-stencilbook --> sqm-form-message
   sqm-stencilbook --> sqm-big-stat
+  sqm-stencilbook --> sqm-text
   sqm-stencilbook --> sqm-divided-layout
   sqm-stencilbook --> sqm-leaderboard
   sqm-stencilbook --> sqm-reward-exchange-list
@@ -90,7 +91,6 @@ graph TD;
   sqm-stencilbook --> sqm-rewards-table-date-column
   sqm-stencilbook --> sqm-task-card
   sqm-stencilbook --> sqm-card-feed
-  sqm-stencilbook --> sqm-text
   sqm-stencilbook --> sqm-password-field
   sqm-stencilbook --> sqm-portal-register
   sqm-stencilbook --> sqm-table-row
