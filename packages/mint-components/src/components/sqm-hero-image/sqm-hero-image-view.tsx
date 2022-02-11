@@ -66,6 +66,9 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
       textAlign: "center",
       color: props.textColor || "var(--sl-color-neutral-0)",
       lineHeight: "var(--sl-line-height-dense)",
+      "@media (max-width: 599px)": {
+        padding: "var(--sl-spacing-" + props.paddingText + ")",
+      },
     },
     Column: {
       display: "flex",
