@@ -390,7 +390,6 @@ const API = {
 
     getReferrals(showReferrer: boolean, offset = 0, limit = 3) {
       const widgetId = widgetIdent();
-
       if (widgetId["env"] === "demo" || !widgetId) {
         const { referrals: refs, referredByReferral, locale } = demoUser;
         const referrals = {
@@ -470,6 +469,7 @@ const API = {
                 }`
                     : ""
                 }
+              }
             }
           `,
           variables,
