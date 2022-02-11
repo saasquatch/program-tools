@@ -1456,7 +1456,7 @@ export namespace Components {
         "iconSlot": string;
         /**
           * Sets button to be full width in mobile resolutions
-          * @uiName Mobile Button
+          * @uiName Full Width on Mobile
          */
         "mobile"?: boolean;
         /**
@@ -3837,7 +3837,7 @@ declare namespace LocalJSX {
         "iconSlot"?: string;
         /**
           * Sets button to be full width in mobile resolutions
-          * @uiName Mobile Button
+          * @uiName Full Width on Mobile
          */
         "mobile"?: boolean;
         /**

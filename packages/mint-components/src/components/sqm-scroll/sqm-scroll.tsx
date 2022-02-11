@@ -93,7 +93,7 @@ export class Scroll {
   /**
    * Sets button to be full width in mobile resolutions
    *
-   * @uiName Mobile Button
+   * @uiName Full Width on Mobile
    */
   @Prop() mobile?: boolean;
 

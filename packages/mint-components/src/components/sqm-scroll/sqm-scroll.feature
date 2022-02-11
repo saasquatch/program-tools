@@ -48,4 +48,4 @@ Feature: Scroll button
         When a user clicks the button
         Then they are scrolled to the 4th tab of the 'sqm-tabs' section
         And the tab is opened
-        And they will not be scrolled to the component
+        And they are not be scrolled to the component
