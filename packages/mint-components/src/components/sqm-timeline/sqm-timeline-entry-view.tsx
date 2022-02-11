@@ -59,11 +59,11 @@ const styleString = sheet.toString();
 
 const vanillaStyle = `
 	:host{
-		display: block;   
+		display: block; 
 	}
 
-	:host(:not(:last-child)) .line {
-		display: block;
+	:host(:not(:last-of-type)) .line {
+		display: block; 
 	}
 	`;
 
