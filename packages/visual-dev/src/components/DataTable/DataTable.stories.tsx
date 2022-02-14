@@ -94,7 +94,6 @@ export const FormSubmissionTableWithBanner = () => {
   return (
     <DataTable width="958px">
       <Row variant="banner">
-        {" "}
         <div>
           <span style={{ padding: 20 }}>Filter Rewards by Program</span>
           <span
