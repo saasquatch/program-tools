@@ -17,3 +17,14 @@ export const root = css`
 export const Tab = css`
   cursor: pointer;
 `
+
+export const defaultTabStyle = css`
+  border-bottom: 2px solid transparent;
+
+  padding: 12px 32px;
+
+  &.active {
+    font-weight: bold;
+    border-bottom: 2px solid #575757;
+  }
+`

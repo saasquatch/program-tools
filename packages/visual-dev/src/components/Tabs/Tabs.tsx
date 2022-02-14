@@ -39,7 +39,7 @@ const StyledTabsContainer = styled.div<{customStyle?: any}>`
   ${Styles.root}
   & > .tab {
     ${Styles.Tab}
-    ${({customStyle}) => customStyle ? customStyle : null}
+    ${({customStyle}) => customStyle ? customStyle : Styles.defaultTabStyle }
   }
 `
 

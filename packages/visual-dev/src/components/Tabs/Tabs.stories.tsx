@@ -31,7 +31,7 @@ export const defaultTabs = () => {
   )
 }
 
-export const StyledTabs = () => {
+export const FunctionalTabs = () => {
   const [selected, setSelected] = React.useState<string>("first");
 
   return (
@@ -39,7 +39,6 @@ export const StyledTabs = () => {
     <Tabs
       selected={selected}
       onTabClick={setSelected}
-      customTabStyle={TabStyling}
     >
       <Tabs.Tab id="first">First</Tabs.Tab>
       <Tabs.Tab id="second">Second</Tabs.Tab>
