@@ -133,6 +133,7 @@ const style = {
       lineHeight: "100%",
       marginRight: "var(--sl-spacing-xx-small)",
     },
+
     "& .text": {
       alignSelf: "end",
       textTransform: "uppercase",
@@ -151,6 +152,12 @@ const style = {
     },
   },
   Footer: {
+    "&[data-subdue] .success": {
+      color: "var(--sl-color-primary-300)",
+    },
+    "&[data-subdue] .neutral": {
+      color: "var(--sl-color-neutral-300)",
+    },
     display: "flex",
     "& .icon": {
       fontSize: "var(--sl-font-size-xx-small)",
@@ -188,7 +195,6 @@ const style = {
     "& .datetime": {
       display: "block",
       marginTop: "var(--sl-spacing-xx-small)",
-      color: "var(--sl-color-neutral-400)",
     },
   },
 };
@@ -296,12 +302,11 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
             : "main"
         }
       >
-        <div
-          class={
-            taskComplete || taskUnavailable ? "container subdued" : "container"
-          }
-        >
-          <div class={sheet.classes.Header}>
+        <div class="container" data-subdue={taskComplete || taskUnavailable}>
+          <div
+            class={sheet.classes.Header}
+            style={{ opacity: taskComplete || taskUnavailable ? "0.45" : "1" }}
+          >
             {states.loading ? (
               <sl-skeleton style={{ width: "22%", margin: "0" }} />
             ) : (
@@ -332,6 +337,7 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                     ? "var(--sl-spacing-xx-large)"
                     : ""
                   : "",
+                opacity: taskComplete || taskUnavailable ? "0.45" : "1",
               }}
             >
               {content.cardTitle}
@@ -340,7 +346,12 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
           {states.loading ? (
             <sl-skeleton style={{ margin: "var(--sl-spacing-medium) 0" }} />
           ) : (
-            content.description && <Details {...props} />
+            content.description && (
+              <Details
+                {...props}
+                opacity={taskComplete || taskUnavailable ? "0.45" : "1"}
+              />
+            )
           )}
           {content.showProgressBar && states.loading ? (
             <sl-skeleton style={{ margin: "var(--sl-spacing-medium) 0" }} />
@@ -349,12 +360,16 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
               <ProgressBarView
                 {...props.content}
                 {...props.states}
+                opacity={taskComplete || taskUnavailable ? "0.45" : "1"}
                 complete={taskComplete}
                 expired={taskUnavailable}
               />
             )
           )}
-          <div class={sheet.classes.Footer}>
+          <div
+            class={sheet.classes.Footer}
+            data-subdue={taskComplete || taskUnavailable}
+          >
             {states.loading ? (
               <sl-skeleton style={{ width: "25%", marginLeft: "auto" }} />
             ) : (
@@ -368,8 +383,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                             ? taskUnavailable
                               ? "icon neutral"
                               : "icon success"
-                            : "icon"
+                            : "icon neutral"
                         }
+                        data-subdue={taskComplete || taskUnavailable}
                       >
                         {arrow_left_right}
                       </span>
@@ -379,8 +395,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                             ? taskUnavailable
                               ? "neutral"
                               : "success"
-                            : ""
+                            : "neutral"
                         }
+                        data-subdue={taskComplete || taskUnavailable}
                       >
                         {intl.formatMessage(
                           {
@@ -398,7 +415,10 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                     </div>
                   )}
                   {dateEnd && !taskUnavailable && (
-                    <span class="datetime">
+                    <span
+                      class="datetime neutral"
+                      data-subdue={taskComplete || taskUnavailable}
+                    >
                       {intl.formatMessage(
                         {
                           id: "expiryMessage",
@@ -427,6 +447,9 @@ export function TaskCardView(props: TaskCardViewProps): VNode {
                   onClick={callbacks.onClick}
                   loading={states.loadingEvent}
                   disabled={taskComplete || taskUnavailable}
+                  style={{
+                    opacity: taskComplete || taskUnavailable ? "0.45" : "1",
+                  }}
                 >
                   {content.buttonText}
                 </sl-button>
