@@ -1,6 +1,6 @@
 import { h, VNode } from "@stencil/core";
 import { createStyleSheet } from "../../../styling/JSS";
-import { Gift } from "./SVGs";
+import { Gift, GreyGift } from "./SVGs";
 
 export type ProgressBarProps = {
   progress?: number;
@@ -11,6 +11,7 @@ export type ProgressBarProps = {
   complete?: boolean;
   expired?: boolean;
   finite?: number;
+  opacity?: string;
 };
 
 const style = {
@@ -25,17 +26,34 @@ const style = {
       lineHeight: "45px",
       userSelect: "none",
     },
+    "& .progress-bar.repeatable-steps": {
+      marginLeft: "var(--sl-spacing-x-small)",
+    },
     "&[data-steps]": {
       marginTop: "calc(-1*var(--sl-spacing-x-small))",
     },
     "&[data-steps]  .progress-bar": {
       marginTop: "var(--sl-spacing-medium)",
     },
-    "&[data-expired]  .progress-bar": {
-      filter: "grayscale(1)",
+    "&[data-expired]  .progress::after": {
+      backgroundColor: "#bfbfbf", //"var(--sl-color-neutral-300)",
     },
-    "& .progress-bar.repeatable-steps": {
-      marginLeft: "var(--sl-spacing-x-small)",
+    "&[data-expired]  .filled::after": {
+      backgroundColor: "#bfbfbf", //"var(--sl-color-neutral-300)",
+    },
+    "&[data-complete] .filled::after .progress::after": {
+      backgroundColor: "var(--sl-color-primary-200)",
+    },
+    "& .gift": {
+      textAlign: "center",
+      marginLeft: "-100px",
+      marginRight: "-100px",
+      position: "relative",
+      top: "-18px",
+    },
+    "& .gift.start": {
+      transform: "scale(80%)",
+      top: "-20px",
     },
     "& .filled:after": {
       content: '""',
@@ -106,20 +124,6 @@ const style = {
       borderRadius: "4px",
       backgroundColor: "#E0E0E0",
     },
-    "& .gift.bw": {
-      filter: "grayscale(100%)",
-    },
-    "& .gift.start": {
-      transform: "scale(80%)",
-      top: "-20px",
-    },
-    "& .gift": {
-      textAlign: "center",
-      marginLeft: "-100px",
-      marginRight: "-100px",
-      position: "relative",
-      top: "-18px",
-    },
   },
 };
 
@@ -133,8 +137,10 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
     steps = false,
     progressBarUnit = "",
     repeatable = false,
+    complete = false,
     expired = false,
     finite = 0,
+    opacity = "1",
   } = props;
 
   let aggregate: Aggregate = buildProgressBar(repeatable, steps, props);
@@ -144,8 +150,10 @@ export function ProgressBarView(props: ProgressBarProps): VNode {
     <div
       class={sheet.classes.ProgressBar}
       data-expired={expired}
+      data-complete={complete}
       data-steps={steps}
       data-done={goal <= progress}
+      style={{ opacity: opacity }}
     >
       <style type="text/css">{styleString}</style>
       <div
@@ -189,7 +197,7 @@ function buildProgressBar(
   }
 }
 
-function addSteps({ progress, goal }: ProgressBarProps): Aggregate {
+function addSteps({ progress, goal, expired }: ProgressBarProps): Aggregate {
   const items = [];
   const columns = [];
   let ratio = 1 / goal;
@@ -211,7 +219,7 @@ function addSteps({ progress, goal }: ProgressBarProps): Aggregate {
     columns.push("0fr");
     items.push(<div class={"filled"}></div>);
     items.push(<div class={"progress bg"}>{goal}</div>);
-    items.push(<div class="gift">{<Gift />}</div>);
+    items.push(<div class="gift">{expired ? <GreyGift /> : <Gift />}</div>);
   }
 
   // reward fail
@@ -219,7 +227,11 @@ function addSteps({ progress, goal }: ProgressBarProps): Aggregate {
     columns.push("0fr");
     items.push(<div class={"remain"}></div>);
     items.push(<div class={"empty bg"}>{goal}</div>);
-    items.push(<div class="gift bw">{<Gift />}</div>);
+    items.push(
+      <div class="gift">
+        <GreyGift />
+      </div>
+    );
   }
   return {
     items,
@@ -232,6 +244,7 @@ function addLinearRepeatable({
   goal,
   progressBarUnit,
   finite,
+  expired,
 }: ProgressBarProps): Aggregate {
   let repetitions = Math.floor(progress / goal);
   let ratio = ((progress % goal) / goal) * 0.5;
@@ -250,13 +263,13 @@ function addLinearRepeatable({
     items.push(<div class={"remain"}></div>);
     items.push(<div class={"progress bg"}>{progressBarUnit + goal}</div>);
     items.push(
-      <div class={progress == goal ? "gift" : "gift bw"}>
-        <Gift />
+      <div class="gift">
+        {progress == goal ? expired ? <GreyGift /> : <Gift /> : <GreyGift />}
       </div>
     );
     items.push(<div class={"remain"}></div>);
     items.push(<div class={"progress bg"}>{progressBarUnit + goal * 2}</div>);
-    items.push(<div class="gift bw">{<Gift />}</div>);
+    items.push(<div class="gift">{<GreyGift />}</div>);
   }
 
   // single repetition
@@ -265,7 +278,7 @@ function addLinearRepeatable({
       "0.5fr 0fr 0fr " + ratio + "fr 0fr " + (0.5 - ratio) + "fr 0fr 0fr";
     items.push(<div class={"filled"}></div>);
     items.push(<div class={"progress bg"}>{progressBarUnit + goal}</div>);
-    items.push(<div class="gift">{<Gift />}</div>);
+    items.push(<div class="gift">{expired ? <GreyGift /> : <Gift />}</div>);
     items.push(<div class={"filled"}></div>);
     items.push(
       <div class={progress == goal ? "progress top bg" : "progress top"}>
@@ -274,7 +287,7 @@ function addLinearRepeatable({
     );
     items.push(<div class={"remain"}></div>);
     items.push(<div class={"progress bg"}>{progressBarUnit + goal * 2}</div>);
-    items.push(<div class="gift bw">{<Gift />}</div>);
+    items.push(<div class="gift">{<GreyGift />}</div>);
   }
 
   // finite repetition hit
@@ -283,7 +296,9 @@ function addLinearRepeatable({
       items.push(
         <div class={"progress bg"}>{progressBarUnit + goal * (finite - 2)}</div>
       );
-      items.push(<div class="gift start">{<Gift />}</div>);
+      items.push(
+        <div class="gift start">{expired ? <GreyGift /> : <Gift />}</div>
+      );
       columns = "0fr 0fr 0.5fr 0fr 0fr 0.5fr 0fr 0fr";
     } else {
       columns = "0.5fr 0fr 0fr 0.5fr 0fr 0fr";
@@ -292,12 +307,12 @@ function addLinearRepeatable({
     items.push(
       <div class={"progress bg"}>{progressBarUnit + goal * (finite - 1)}</div>
     );
-    items.push(<div class="gift">{<Gift />}</div>);
+    items.push(<div class="gift">{expired ? <GreyGift /> : <Gift />}</div>);
     items.push(<div class={"filled"}></div>);
     items.push(
       <div class={"progress bg"}>{progressBarUnit + goal * finite}</div>
     );
-    items.push(<div class="gift">{<Gift />}</div>);
+    items.push(<div class="gift">{expired ? <GreyGift /> : <Gift />}</div>);
   }
 
   // multiple repetitions
@@ -313,12 +328,14 @@ function addLinearRepeatable({
         {progressBarUnit + goal * (repetitions - 1)}
       </div>
     );
-    items.push(<div class="gift start">{<Gift />}</div>);
+    items.push(
+      <div class="gift start">{expired ? <GreyGift /> : <Gift />}</div>
+    );
     items.push(<div class={"filled"}></div>);
     items.push(
       <div class={"progress bg"}>{progressBarUnit + goal * repetitions}</div>
     );
-    items.push(<div class="gift">{<Gift />}</div>);
+    items.push(<div class="gift">{expired ? <GreyGift /> : <Gift />}</div>);
     items.push(<div class={"filled"}></div>);
     items.push(
       <div
@@ -335,7 +352,7 @@ function addLinearRepeatable({
         {progressBarUnit + goal * (repetitions + 1)}
       </div>
     );
-    items.push(<div class="gift bw">{<Gift />}</div>);
+    items.push(<div class="gift">{<GreyGift />}</div>);
   }
   return { items, columns };
 }
@@ -344,6 +361,7 @@ function addStepsRepeatable({
   progress,
   goal,
   finite,
+  expired,
 }: ProgressBarProps): Aggregate {
   const items = [];
   const columns = [];
@@ -360,13 +378,13 @@ function addStepsRepeatable({
           columns.push("0fr");
           items.push(<div class={"remain"}></div>);
           items.push(<div class={"empty bg"}>{goal}</div>);
-          items.push(<div class="gift bw">{<Gift />}</div>);
+          items.push(<div class="gift">{<GreyGift />}</div>);
         } else if (i == goal * 2) {
           columns.push("0fr");
           columns.push("0fr");
           items.push(<div class={"remain"}></div>);
           items.push(<div class={"empty bg"}>{goal * 2}</div>);
-          items.push(<div class={"gift bw"}>{<Gift />}</div>);
+          items.push(<div class={"gift"}>{<GreyGift />}</div>);
         } else {
           items.push(<div class={"remain"}></div>);
           items.push(<div class={"empty"}>{i}</div>);
@@ -375,7 +393,7 @@ function addStepsRepeatable({
         columns.push("0fr");
         items.push(<div class={"filled"}></div>);
         items.push(<div class={"progress bg"}>{i}</div>);
-        items.push(<div class="gift">{<Gift />}</div>);
+        items.push(<div class="gift">{expired ? <GreyGift /> : <Gift />}</div>);
       } else {
         items.push(<div class={"filled"}></div>);
         items.push(<div class={"progress"}>{i}</div>);
@@ -390,7 +408,9 @@ function addStepsRepeatable({
       columns.push("0fr");
       columns.push("0fr");
       items.push(<div class={"progress bg"}>{goal * (finite - 2)}</div>);
-      items.push(<div class={"gift start"}>{<Gift />}</div>);
+      items.push(
+        <div class={"gift start"}>{expired ? <GreyGift /> : <Gift />}</div>
+      );
     }
     for (let i = 1; i < goal * 2 + 1; i++) {
       columns.push(ratio + "fr");
@@ -400,19 +420,21 @@ function addStepsRepeatable({
           columns.push("0fr");
           items.push(<div class={"remain"}></div>);
           items.push(<div class={"progress bg"}>{goal * (finite - 1)}</div>);
-          items.push(<div class="gift bw">{<Gift />}</div>);
+          items.push(<div class="gift">{<GreyGift />}</div>);
         }
       } else if (i == goal) {
         columns.push("0fr");
         items.push(<div class={"filled"}></div>);
         items.push(<div class={"progress bg"}>{goal * (finite - 1)}</div>);
-        items.push(<div class="gift">{<Gift />}</div>);
+        items.push(<div class="gift">{expired ? <GreyGift /> : <Gift />}</div>);
       } else if (i == goal * 2) {
         columns.push("0fr");
         columns.push("0fr");
         items.push(<div class={"filled"}></div>);
         items.push(<div class={"progress bg"}>{goal * finite}</div>);
-        items.push(<div class={"gift"}>{<Gift />}</div>);
+        items.push(
+          <div class={"gift"}>{expired ? <GreyGift /> : <Gift />}</div>
+        );
       } else {
         items.push(<div class={"filled"}></div>);
         items.push(<div class={"progress"}>{i + goal * (finite - 2)}</div>);
@@ -427,7 +449,9 @@ function addStepsRepeatable({
     columns.push("0fr");
     columns.push("0fr");
     items.push(<div class={"progress bg"}>{goal * (repetitions - 1)}</div>);
-    items.push(<div class={"gift start"}>{<Gift />}</div>);
+    items.push(
+      <div class={"gift start"}>{expired ? <GreyGift /> : <Gift />}</div>
+    );
     for (let i = 1; i < goal * 2 + 1; i++) {
       columns.push(ratio + "fr");
       columns.push("0fr");
@@ -438,7 +462,9 @@ function addStepsRepeatable({
           items.push(
             <div class={"progress bg"}>{i + goal * (repetitions - 1)}</div>
           );
-          items.push(<div class={"gift"}>{<Gift />}</div>);
+          items.push(
+            <div class={"gift"}>{expired ? <GreyGift /> : <Gift />}</div>
+          );
         } else {
           items.push(<div class={"filled"}></div>);
           items.push(
@@ -453,7 +479,7 @@ function addStepsRepeatable({
           items.push(
             <div class={"empty bg"}>{i + goal * (repetitions - 1)}</div>
           );
-          items.push(<div class={"gift bw"}>{<Gift />}</div>);
+          items.push(<div class={"gift"}>{<GreyGift />}</div>);
         } else {
           items.push(<div class={"remain"}></div>);
           items.push(<div class={"empty"}>{i + goal * (repetitions - 1)}</div>);
@@ -473,6 +499,7 @@ function addLinear({
   progress,
   goal,
   progressBarUnit,
+  expired
 }: ProgressBarProps): Aggregate {
   const items = [];
   let columns = "";
@@ -494,8 +521,16 @@ function addLinear({
   items.push(<div class={"remain"}></div>);
   items.push(<div class={"progress bg"}>{progressBarUnit + goal}</div>);
   items.push(
-    <div class={clamp(progress, 0, goal) == goal ? "gift" : "gift bw"}>
-      <Gift />
+    <div class="gift">
+      {clamp(progress, 0, goal) == goal ? (
+        expired ? (
+          <GreyGift />
+        ) : (
+          <Gift />
+        )
+      ) : (
+        <GreyGift />
+      )}
     </div>
   );
   return { items, columns };

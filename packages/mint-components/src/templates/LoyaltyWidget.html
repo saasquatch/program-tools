@@ -35,7 +35,7 @@
           </sqm-program-explainer-step>
         </sqm-program-explainer>
 
-        <sqm-portal-container center direction="row" display="flex">
+        <sqm-portal-container center direction="row" display="flex" justify-content="space-between">
           <sqm-stat-container space="xxx-large" display="flex">
             <sqm-big-stat
               flex-reverse="true"
@@ -61,7 +61,6 @@
             outline
             button-type="primary"
             button-text="Redeem your rewards"
-            outline
             mobile
           ></sqm-scroll>
         </sqm-portal-container>
@@ -138,7 +137,35 @@
             </sqm-rewards-table>
           </sqm-tab>
           <sqm-tab header="Redeem">
-            <sqm-reward-exchange-list>
+            <sqm-reward-exchange-list
+            back-text="Back"
+            button-text="Exchange Rewards"
+            cancel-text="Cancel"
+            choose-amount-title="Select"
+            choose-reward-title="Rewards"
+            confirmation-title="Confirm"
+            continue-text="Continue"
+            continue-to-confirmation-text="Continue to confirmation"
+            done-text="Done"
+            reward-title="Choose a reward"
+            not-available-error="{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {unavailableReasonCode} }"
+            not-enough-error="Not enough {sourceUnit} to redeem for this reward"
+            query-error="Unable to load reward exchange list. Please try again"
+            redeem-text="Redeem"
+            redeem-title="Confirm and redeem"
+            redemption-error="An error occured trying to redeem this reward. Please try again"
+            redemption-success-text="Redeemed {sourceValue} for {destinationValue}"
+            select-text="Select amount to receive"
+            source-amount-message="{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}"
+            tooltiptext="Copied"
+            reward-name-title="Reward"
+            reward-amount-title="Reward Amount"
+            cost-title="Cost to Redeem"
+            reward-redeemed-text="Reward redeemed"
+            skeleton-card-num="8"
+            promo-code="Promo Code"
+
+            >
               <sqm-empty
                 empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_exchange2.png"
                 empty-state-header="Redeem rewards"

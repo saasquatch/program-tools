@@ -48,7 +48,7 @@ export function Details(props): VNode {
   const rid = Math.random().toString(36).slice(2);
 
   return (
-    <div>
+    <div style={{ opacity: props.opacity }}>
       <style type="text/css">{styleString}</style>
       <span class={sheet.classes.Description}>
         <input type="checkbox" id={"details-" + rid} />

@@ -553,6 +553,17 @@ export namespace Components {
          */
         "gap": Spacing;
         /**
+          * @uiName Justify content
+          * @uiType string
+          * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
+         */
+        "justifyContent"?: | "start"
+    | "center"
+    | "end"
+    | "space-between"
+    | "space-around"
+    | "space-evenly";
+        /**
           * @uiName Maximum width
          */
         "maxWidth"?: string;
@@ -2956,6 +2967,17 @@ declare namespace LocalJSX {
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
          */
         "gap"?: Spacing;
+        /**
+          * @uiName Justify content
+          * @uiType string
+          * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
+         */
+        "justifyContent"?: | "start"
+    | "center"
+    | "end"
+    | "space-between"
+    | "space-around"
+    | "space-evenly";
         /**
           * @uiName Maximum width
          */

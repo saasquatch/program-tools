@@ -10,6 +10,13 @@ interface PortalContainerViewProps {
   display?: string;
   minWidth?: string;
   maxWidth?: string;
+  justifyContent?:
+    | "start"
+    | "center"
+    | "end"
+    | "space-between"
+    | "space-around"
+    | "space-evenly";
 }
 
 export function PortalContainerView(
@@ -30,6 +37,7 @@ export function PortalContainerView(
         props.padding === "none" ? "0" : `var(--sl-spacing-${props.padding})`,
       maxWidth: props.maxWidth,
       margin: props.center && "auto",
+      justifyContent: props.justifyContent,
     },
   };
 
