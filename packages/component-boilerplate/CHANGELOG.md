@@ -9,11 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- useLocale() hook uses locale from SaaSquatch user instead of browser
+- useLocale hook uses locale from SaaSquatch user instead of browser
 
 ### Added
 
-- `sq:refresh` event listener added to give ability to refresh query data without triggering a loading state
+- useRefreshDispatcher hook and `sq:refresh` event listener added to give ability to refresh query data without triggering a loading state
 
 ## [1.3.0] - 2021-12-09
 
