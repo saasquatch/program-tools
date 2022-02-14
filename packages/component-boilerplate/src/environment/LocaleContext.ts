@@ -50,7 +50,6 @@ export function useLocale(): string | undefined {
   return useDomContext<string>(host, CONTEXT_NAME);
 }
 
-// not sure if this is even needed
 /**
  * Overide the globally defined Locale context
  *
