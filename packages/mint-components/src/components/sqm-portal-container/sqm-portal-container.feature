@@ -72,3 +72,19 @@ Feature: Portal Container
 	Scenario: Content in the last row can span full width with display in horizontal view
 		Given I have `display` to "flex"
 		Then the content is full width on the last row
+
+	@motivating
+	@ui
+	Scenario Outline: Content can be aligned along the x-axis 
+		Given prop "justify-content" has <value>
+		Then content within the container is aligned <alignment>
+
+		Examples:
+			| value         | alignment          |
+			| none          | no alignment       |
+			| start         | to the start       |
+			| center        | to the center      |
+			| end           | to the end         |
+			| space-between | with space between |
+			| space-around  | with space around  |
+			| space-evenly  | with space evenly  |
