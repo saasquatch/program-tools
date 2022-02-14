@@ -1,6 +1,6 @@
-# SaaSquatch Bedrock Components
+# SaaSquatch Component Boilerplate
 
-This is a collection of essential non-visual components for use in widgets in the SaaSquatch platform.
+This is a collection of essential universal hooks for use in building web components for the SaaSquatch platform.
 
 ## Documentation
 
