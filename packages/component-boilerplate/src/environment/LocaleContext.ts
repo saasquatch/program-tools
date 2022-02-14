@@ -35,8 +35,7 @@ function _lazilyStartGlobally() {
     // Lazily creates a global provider
     window.squatchLocale = new ContextProvider<string>({
       element: document.documentElement,
-      initialState: locale ||
-        window.widgetIdent?.locale || undefined,
+      initialState: locale || window.widgetIdent?.locale || undefined,
       contextName: CONTEXT_NAME,
     }).start();
   } else if (locale && locale !== globalProvider.context) {
@@ -48,14 +47,4 @@ export function useLocale(): string | undefined {
   _lazilyStartGlobally();
   const host = useHost();
   return useDomContext<string>(host, CONTEXT_NAME);
-}
-
-/**
- * Overide the globally defined Locale context
- *
- * @param locale the new locale used by the user
- */
-export function setLocale(locale: string) {
-  const globalProvider = window.squatchLocale;
-  globalProvider.context = locale;
 }
