@@ -27,6 +27,25 @@ export class RewardTableStatusColumn implements RewardTableColumn {
    */
   @Prop() expiryText: string = "Expires on ";
 
+  /**
+   * Displayed when a reward is pending due to W9 compliance.
+   *
+   * @uiName W9 Pending Text
+   */
+  @Prop() pendingUsTax: string = "W-9 required";
+
+  /**
+   * @uiName Expiry Date Prefix
+   */
+  @Prop() pendingScheduled: string = "Until";
+
+  /**
+   * Displayed when fulfillment error occured when creating a reward.
+   *
+   * @uiName Unhandled Error Text
+   */
+  @Prop() pendingUnhandled: string = "Fulfillment error";
+
   constructor() {
     withHooks(this);
   }
@@ -40,6 +59,9 @@ export class RewardTableStatusColumn implements RewardTableColumn {
         statusText={this.statusText}
         reward={rewardData}
         expiryText={this.expiryText}
+        pendingScheduled={this.pendingScheduled}
+        pendingUsTax={this.pendingUsTax}
+        pendingUnhandled={this.pendingUnhandled}
         locale={locale}
       ></sqm-rewards-table-status-cell>
     );
@@ -51,7 +73,14 @@ export class RewardTableStatusColumn implements RewardTableColumn {
   }
 
   render() {
-    useRequestRerender([this.columnTitle, this.statusText, this.expiryText]);
+    useRequestRerender([
+      this.columnTitle,
+      this.statusText,
+      this.expiryText,
+      this.pendingScheduled,
+      this.pendingUsTax,
+      this.pendingUnhandled,
+    ]);
     return <Host style={{ display: "none" }} />;
   }
 }
