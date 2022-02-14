@@ -49,3 +49,21 @@ Feature: Scroll button
         Then they are scrolled to the 4th tab of the 'sqm-tabs' section
         And the tab is opened
         And they are not be scrolled to the component
+
+    @motivating
+    Scenario: Buttons can grow to width of container in mobile
+        Given a scroll button component
+        And it has prop "mobile"
+        When a user views the button
+        And their screen size is smaller than 500px
+        Then the button spans the width of its container
+
+    @motivating
+    Scenario: Buttons can be shown with an outline button
+        Given a scroll button component
+        And it has prop "outline"
+        When a user views the button
+        Then it has a border outline according to its button type
+        And the text colour matches the outline
+        When a user hovers over the button
+        Then the infill goes from white to button type colour

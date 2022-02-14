@@ -54,7 +54,12 @@ export class RewardsTableColumn implements RewardTableColumn {
   }
 
   render() {
-    useRequestRerender([this.columnTitle]);
+    useRequestRerender([
+      this.columnTitle,
+      this.redeemedText,
+      this.availableText,
+      this.copyText,
+    ]);
     return <Host style={{ display: "none" }} />;
   }
 }

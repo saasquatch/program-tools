@@ -51,7 +51,7 @@ export class RewardTableStatusColumn implements RewardTableColumn {
   }
 
   render() {
-    useRequestRerender([this.columnTitle]);
+    useRequestRerender([this.columnTitle, this.statusText, this.expiryText]);
     return <Host style={{ display: "none" }} />;
   }
 }
