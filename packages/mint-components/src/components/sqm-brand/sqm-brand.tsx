@@ -38,7 +38,7 @@ export class BrandComponent {
   render() {
     const brandColor = this.brandColor ?? "#FFF";
     const css = autoColorScaleCss(brandColor);
-    const sanitizedFont = (this.brandFont ?? "").trim() || undefined;
+    const sanitizedFont = (this.brandFont ?? "Nunito Sans").trim() || undefined;
 
     useEffect(() => {
       if (!sanitizedFont) {
