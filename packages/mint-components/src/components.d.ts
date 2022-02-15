@@ -326,8 +326,8 @@ export namespace Components {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * Shows the current user's leaderboard information even if they are not in the top 10
-          * @uiName Show viewing user
+          * Hide the current user's leaderboard information when they are not in the top 10
+          * @uiName Hide viewing user
          */
         "hideViewer": boolean;
         /**
@@ -1661,6 +1661,9 @@ export namespace Components {
     interface SqmStencilbook {
     }
     interface SqmTab {
+        /**
+          * @uiName Tab Title
+         */
         "header": string;
     }
     interface SqmTableCell {
@@ -2741,8 +2744,8 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * Shows the current user's leaderboard information even if they are not in the top 10
-          * @uiName Show viewing user
+          * Hide the current user's leaderboard information when they are not in the top 10
+          * @uiName Hide viewing user
          */
         "hideViewer"?: boolean;
         /**
@@ -4052,6 +4055,9 @@ declare namespace LocalJSX {
     interface SqmStencilbook {
     }
     interface SqmTab {
+        /**
+          * @uiName Tab Title
+         */
         "header"?: string;
     }
     interface SqmTableCell {
