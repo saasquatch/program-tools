@@ -69,17 +69,25 @@ export const Pagination = React.forwardRef<
     ...rest
   } = props;
 
-  const current_page = Math.floor(offset + 1 / limit);
+  console.log("limit", limit);
+  console.log("offset", offset);
+
+  const current_page = Math.floor((offset + 1) / limit);
   const pages = total
     ? Array.from(Array(Math.ceil(total / limit)).keys())
     : [current_page];
+  const total_pages = pages[pages.length - 1];
 
   const filteredPages = pages.filter(
     (page) =>
       Math.abs(page - current_page) < 3 ||
-      Math.abs(page - (total ? total : 0)) < 3 ||
+      Math.abs(page - total_pages) < 3 ||
       Math.abs(page) < 3
   );
+
+  console.log(current_page);
+  console.log(pages);
+  console.log(filteredPages);
 
   const [dropdown, setDropdown] = React.useState(false);
 

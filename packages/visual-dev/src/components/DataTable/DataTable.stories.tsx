@@ -1,15 +1,6 @@
 import React from "react";
 import { Icon } from "../Icon";
-import {
-  Skeleton,
-  Content,
-  Action,
-  DataTable,
-  Divider,
-  Popover,
-  Row,
-  Pagination,
-} from ".";
+import { Skeleton, Content, DataTable, Row, Pagination } from ".";
 import { Avatar } from "../Avatar";
 import { Text } from "../Text";
 
@@ -190,6 +181,33 @@ export const pagination = () => (
     total={17}
     limit={10}
     offset={0}
+    updatePagination={updatePagination}
+  />
+);
+
+export const paginationManyStart = () => (
+  <Pagination
+    total={440}
+    limit={10}
+    offset={0}
+    updatePagination={updatePagination}
+  />
+);
+
+export const paginationManyMiddle = () => (
+  <Pagination
+    total={440}
+    limit={10}
+    offset={180}
+    updatePagination={updatePagination}
+  />
+);
+
+export const paginationManyEnd = () => (
+  <Pagination
+    total={440}
+    limit={10}
+    offset={430}
     updatePagination={updatePagination}
   />
 );
