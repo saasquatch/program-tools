@@ -24,7 +24,7 @@ export { useProgramId, setProgramId } from "./ProgramContext";
 /**
  * Locale context helpers
  */
-export { useLocale, setLocale } from "./LocaleContext";
+export { useLocale } from "./LocaleContext";
 
 /**
  * Provided by the SaaSquatch GraphQL backend when a widget is rendered.
