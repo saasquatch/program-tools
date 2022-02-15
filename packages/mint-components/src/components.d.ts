@@ -1178,6 +1178,7 @@ export namespace Components {
          */
         "continueText": string;
         /**
+          * Displayed on the reward selection page.
           * @uiName Continue to Confirmation Button Text
          */
         "continueToConfirmationText": string;
@@ -1208,6 +1209,7 @@ export namespace Components {
          */
         "promoCode": string;
         /**
+          * Shown if an error occurs when loading the reward exchange.
           * @uiName Reward List Error Message
          */
         "queryError": string;
@@ -1216,14 +1218,17 @@ export namespace Components {
          */
         "redeemText": string;
         /**
+          * Displayed as the header for the confirmation page.
           * @uiName Confirmation Title Text
          */
         "redeemTitle": string;
         /**
+          * Shown if an error occurs during the reward exchange.
           * @uiName Redemption Error Message
          */
         "redemptionError": string;
         /**
+          * Displayed on the success screen when a user successfully exchanges for a reward.
           * @uiName Redemption Success Message
          */
         "redemptionSuccessText": string;
@@ -1255,6 +1260,7 @@ export namespace Components {
          */
         "skeletonCardNum": number;
         /**
+          * Displayed on the reward exchange cards.
           * @uiName Reward Exchange Amount Text
          */
         "sourceAmountMessage": string;
@@ -3597,6 +3603,7 @@ declare namespace LocalJSX {
          */
         "continueText"?: string;
         /**
+          * Displayed on the reward selection page.
           * @uiName Continue to Confirmation Button Text
          */
         "continueToConfirmationText"?: string;
@@ -3627,6 +3634,7 @@ declare namespace LocalJSX {
          */
         "promoCode"?: string;
         /**
+          * Shown if an error occurs when loading the reward exchange.
           * @uiName Reward List Error Message
          */
         "queryError"?: string;
@@ -3635,14 +3643,17 @@ declare namespace LocalJSX {
          */
         "redeemText"?: string;
         /**
+          * Displayed as the header for the confirmation page.
           * @uiName Confirmation Title Text
          */
         "redeemTitle"?: string;
         /**
+          * Shown if an error occurs during the reward exchange.
           * @uiName Redemption Error Message
          */
         "redemptionError"?: string;
         /**
+          * Displayed on the success screen when a user successfully exchanges for a reward.
           * @uiName Redemption Success Message
          */
         "redemptionSuccessText"?: string;
@@ -3674,6 +3685,7 @@ declare namespace LocalJSX {
          */
         "skeletonCardNum"?: number;
         /**
+          * Displayed on the reward exchange cards.
           * @uiName Reward Exchange Amount Text
          */
         "sourceAmountMessage"?: string;
