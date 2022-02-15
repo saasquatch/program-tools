@@ -1,5 +1,5 @@
 @author:derek
-@owner:
+@owner:derek
 Feature: Reward Exchange List
 
     The Reward Exchange List gives end users the power to exchange their rewards for other rewards.

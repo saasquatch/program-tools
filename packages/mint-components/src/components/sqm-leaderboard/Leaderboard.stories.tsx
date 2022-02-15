@@ -69,13 +69,13 @@ const users = [
   },
   {
     firstName: "James",
-    lastInitial: "N",
+    lastInitial: "",
     value: 33,
     rank: 9,
     rowNumber: 9,
   },
   {
-    firstName: "Fahim",
+    firstName: "",
     lastInitial: "J",
     value: 29,
     rank: 10,
