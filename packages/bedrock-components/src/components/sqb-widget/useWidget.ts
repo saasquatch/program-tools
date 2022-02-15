@@ -80,8 +80,6 @@ export function useWidget(props: SqbWidget) {
     if (props.widgetType && canLoad) {
       fetch({
         widgetType: props.widgetType,
-        // TODO: This should use `useLocale` from component boilerplate, but that implementation is incomplete
-        // because it doesn't pull the user's locale from GraphQL
         locale,
       });
     }
