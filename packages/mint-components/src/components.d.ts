@@ -188,7 +188,8 @@ export namespace Components {
     }
     interface SqmHero {
         /**
-          * @uiName Background image or color
+          * Can either be an image url, colour or Shoelace variable.
+          * @uiName Background
          */
         "background"?: string;
         /**
@@ -2606,7 +2607,8 @@ declare namespace LocalJSX {
     }
     interface SqmHero {
         /**
-          * @uiName Background image or color
+          * Can either be an image url, colour or Shoelace variable.
+          * @uiName Background
          */
         "background"?: string;
         /**

@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property          | Attribute          | Description                                     | Type                            | Default     |
-| ----------------- | ------------------ | ----------------------------------------------- | ------------------------------- | ----------- |
-| `alignment`       | `alignment`        |                                                 | `"center" \| "left" \| "right"` | `"center"`  |
-| `backgroundColor` | `background-color` |                                                 | `string`                        | `undefined` |
-| `imageUrl`        | `image-url`        |                                                 | `string`                        | `undefined` |
-| `minHeight`       | `min-height`       | (optional) Helps with constraining minimum size | `string`                        | `undefined` |
+| Property          | Attribute          | Description                                                                                                               | Type                            | Default     |
+| ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ----------- |
+| `alignment`       | `alignment`        |                                                                                                                           | `"center" \| "left" \| "right"` | `"center"`  |
+| `backgroundColor` | `background-color` |                                                                                                                           | `string`                        | `undefined` |
+| `imageUrl`        | `image-url`        |                                                                                                                           | `string`                        | `undefined` |
+| `minHeight`       | `min-height`       | (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc. | `string`                        | `undefined` |
 
 
 ## Dependencies
