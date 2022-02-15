@@ -29,15 +29,20 @@ function _lazilyStartGlobally() {
   const globalProvider = window.squatchLocale;
   const user = useUserIdentity();
 
+
   useEffect(() => {
+    console.log({ user });
     if (!user) {
+      console.log("clearing locale")
       return (globalProvider.context = undefined);
     }
     if (!locale) fetch({});
-  }, [user.jwt]);
-  
+  }, [user]);
+
   const [fetch, { data }] = useLazyQuery(GET_LOCALE);
   const locale = data?.viewer?.locale;
+
+  console.log({locale})
 
   if (!globalProvider) {
     // Lazily creates a global provider
