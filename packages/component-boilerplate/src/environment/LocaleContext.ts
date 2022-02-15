@@ -47,7 +47,7 @@ function _lazilyStartGlobally() {
       initialState: locale || window.widgetIdent?.locale || undefined,
       contextName: CONTEXT_NAME,
     }).start();
-  } else if (locale && locale !== globalProvider.context) {
+  } else if (locale !== globalProvider.context) {
     globalProvider.context = locale;
   }
 }
