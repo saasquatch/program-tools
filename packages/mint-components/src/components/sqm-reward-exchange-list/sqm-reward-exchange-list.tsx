@@ -129,6 +129,7 @@ export class SqmRewardExchangeList {
     "Unable to load reward exchange list. Please try again";
 
   /**
+  * Shown if an error occurs during the reward exchange.
    * @uiName Redemption Error Message
    */
   @Prop() redemptionError: string =
