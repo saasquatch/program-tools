@@ -36,10 +36,10 @@ export class RewardsTableColumn implements RewardTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Reward[], locale: string) {
+  async renderCell(data: Reward, locale: string) {
     return (
       <sqm-rewards-table-reward-cell
-        reward={data?.[0]}
+        reward={data}
         redeemedText={this.redeemedText}
         availableText={this.availableText}
         copyText={this.copyText}

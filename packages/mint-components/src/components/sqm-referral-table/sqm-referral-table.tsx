@@ -152,7 +152,7 @@ function useReferralTableDemo(
     [props.perPage]
   );
 
-  const components = useChildElements();
+  const components = useChildElements<Element>();
 
   async function getComponentData(components: Element[]) {
     let componentData;

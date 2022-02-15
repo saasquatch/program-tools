@@ -27,8 +27,8 @@ export class Timeline {
   disconnectedCallback() {}
 
   render() {
-    //@ts-ignore
-    const rewards: TimelineReward[] = useChildElements();
+ 
+    const rewards = useChildElements<TimelineReward>();
 
     rewards.forEach((reward) => {
       try {
