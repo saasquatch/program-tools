@@ -1,8 +1,8 @@
 import { useDomContext } from "@saasquatch/dom-context-hooks";
-import { useEffect, useState } from "@saasquatch/universal-hooks";
+import { useEffect } from "@saasquatch/universal-hooks";
 import { ContextProvider } from "dom-context";
 import { gql } from "graphql-request";
-import { useLazyQuery, useQuery, useUserIdentity } from "..";
+import { useLazyQuery, useUserIdentity } from "..";
 import { useHost } from "../hooks/useHost";
 import { WidgetIdent } from "./environment";
 
@@ -30,19 +30,15 @@ function _lazilyStartGlobally() {
   const user = useUserIdentity();
 
   useEffect(() => {
-    console.log({ user });
+    // Clear locale if user is undefined
     if (!user && globalProvider) {
-      console.log("clearing locale");
       return (globalProvider.context = undefined);
     }
-    console.log("fetching locale");
     fetch({});
   }, [user]);
 
   const [fetch, { data }] = useLazyQuery(GET_LOCALE);
   const locale = data?.viewer?.locale;
-
-  console.log({ locale });
 
   if (!globalProvider) {
     // Lazily creates a global provider
