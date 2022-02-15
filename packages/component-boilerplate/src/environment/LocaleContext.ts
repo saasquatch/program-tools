@@ -57,3 +57,13 @@ export function useLocale(): string | undefined {
   const host = useHost();
   return useDomContext<string>(host, CONTEXT_NAME);
 }
+
+/**
+ * Overide the globally defined Locale context
+ *
+ * @param locale the new locale used by the user
+ */
+export function setLocale(locale: string) {
+  const globalProvider = window.squatchLocale;
+  if (globalProvider) globalProvider.context = locale;
+}
