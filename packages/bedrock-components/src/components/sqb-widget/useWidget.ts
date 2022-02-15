@@ -76,6 +76,7 @@ export function useWidget(props: SqbWidget) {
     // Or auth required and logged in
     userIdent !== undefined;
   useEffect(() => {
+    console.log(locale);
     if (props.widgetType && canLoad) {
       fetch({
         widgetType: props.widgetType,

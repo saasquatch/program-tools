@@ -1,7 +1,7 @@
 import { setUserIdentity } from '@saasquatch/component-boilerplate';
 import { h } from '@stencil/core';
-import { createHookStory } from '../components/sqb-stencilbook/HookStoryAddon';
-import scenario from '../components/sqb-widget/sqb-widget.feature';
+import { createHookStory } from '../sqb-stencilbook/HookStoryAddon';
+import scenario from './sqb-widget.feature';
 export default {
   title: 'Widget',
   parameters: {
@@ -16,31 +16,8 @@ function useGraphQL(user) {
     programId: 'Vacay-referral',
     engagementMedium: 'EMBED',
     ...user,
-    // locale: 'ru_CA',
   };
 }
-
-// function useGraphQL(user, env?) {
-//   //@ts-ignore
-//   window.widgetIdent = {
-//     tenantAlias: 'test_agvu4yg8zrkxt',
-//     appDomain: 'https://app.referralsaasquatch.com',
-//     programId: 'Vacay-referral',
-//     engagementMedium: 'EMBED',
-//     ...env,
-//     // locale: 'ru_CA',
-//   };
-
-//   useEffect(() => {
-//     setUserIdentity({
-//       ...user,
-//     });
-//     return () => {
-//       window.widgetIdent = undefined;
-//       setUserIdentity(undefined);
-//     };
-//   }, []);
-// }
 
 export const Widget = createHookStory(() => {
   const user = {

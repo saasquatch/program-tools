@@ -1,7 +1,7 @@
 import { useEffect } from '@saasquatch/universal-hooks';
 import { h } from '@stencil/core';
-import { createHookStory } from '../components/sqb-stencilbook/HookStoryAddon';
-import scenario from '../components/sqb-program-switch/sqb-program-switch.feature';
+import { createHookStory } from '../sqb-stencilbook/HookStoryAddon';
+import scenario from './sqb-program-switch.feature';
 
 export default {
   title: 'Program Switch',

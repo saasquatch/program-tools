@@ -1,8 +1,8 @@
 import { h, Component, Host, State } from '@stencil/core';
 import { useStencilbook } from '@saasquatch/stencilbook';
 import { withHooks } from '@saasquatch/stencil-hooks';
-import * as ProgramSwitch from '../../stories/ProgramSwitch.stories';
-import * as Widget from '../../stories/Widget.stories';
+import * as ProgramSwitch from '../sqb-program-switch/ProgramSwitch.stories';
+import * as Widget from '../sqb-widget/Widget.stories';
 import { HookStoryAddon } from './HookStoryAddon';
 import { CucumberAddon } from './CucumberAddon';
 
