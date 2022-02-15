@@ -65,7 +65,11 @@ export class ReferralTableStatusColumn implements ReferralTableColumn {
   }
 
   render() {
-    useRequestRerender([this.columnTitle]);
+    useRequestRerender([
+      this.columnTitle,
+      this.convertedStatusText,
+      this.inProgressStatusText,
+    ]);
     return <Host style={{ display: "none" }} />;
   }
 }

@@ -86,6 +86,7 @@ export class SqmRewardExchangeList {
   @Prop() redeemText: string = "Redeem";
 
   /**
+  * Displayed as the header for the confirmation page.
    * @uiName Confirmation Title Text
    */
   @Prop() redeemTitle: string = "Confirm and redeem";

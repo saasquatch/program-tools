@@ -75,6 +75,9 @@ export class RewardTableUserColumn implements RewardTableColumn {
       this.deletedUser,
       this.anonymousUser,
       this.columnTitle,
+      this.rewardExchangeText,
+      this.referralText,
+      this.rewardSourceText,
     ]);
     return <Host style={{ display: "none" }} />;
   }

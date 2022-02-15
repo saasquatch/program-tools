@@ -49,6 +49,8 @@
 - [sqm-program-explainer-step](../sqm-program-explainer-step)
 - [sqm-brand](../sqm-brand)
 - [sqm-portal-container](../sqm-portal-container)
+- [sqm-stat-container](../sqm-stat-container)
+- [sqm-scroll](../sqm-scroll)
 - [sqm-rewards-table-reward-cell](../sqm-rewards-table/cells)
 - [sqm-rewards-table-source-cell](../sqm-rewards-table/cells)
 - [sqm-rewards-table-status-cell](../sqm-rewards-table/cells)
@@ -65,7 +67,6 @@
 - [sqm-referral-card](../sqm-referral-card)
 - [sqm-image](../sqm-image)
 - [sqm-titled-section](../sqm-titled-section)
-- [sqm-scroll](../sqm-scroll)
 
 ### Graph
 ```mermaid
@@ -110,6 +111,8 @@ graph TD;
   sqm-stencilbook --> sqm-program-explainer-step
   sqm-stencilbook --> sqm-brand
   sqm-stencilbook --> sqm-portal-container
+  sqm-stencilbook --> sqm-stat-container
+  sqm-stencilbook --> sqm-scroll
   sqm-stencilbook --> sqm-rewards-table-reward-cell
   sqm-stencilbook --> sqm-rewards-table-source-cell
   sqm-stencilbook --> sqm-rewards-table-status-cell
@@ -126,7 +129,6 @@ graph TD;
   sqm-stencilbook --> sqm-referral-card
   sqm-stencilbook --> sqm-image
   sqm-stencilbook --> sqm-titled-section
-  sqm-stencilbook --> sqm-scroll
   sqm-empty --> sqm-portal-container
   sqm-empty --> sqm-image
   sqm-empty --> sqm-titled-section

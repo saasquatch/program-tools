@@ -1418,6 +1418,20 @@ export namespace Components {
           * @uiName Expired Status Text
          */
         "expiryText": string;
+        /**
+          * @uiName Expiry Date Prefix
+         */
+        "pendingScheduled": string;
+        /**
+          * Displayed when fulfillment error occured when creating a reward.
+          * @uiName Unhandled Error Text
+         */
+        "pendingUnhandled": string;
+        /**
+          * Displayed when a reward is pending due to W9 compliance.
+          * @uiName W9 Pending Text
+         */
+        "pendingUsTax": string;
         "renderCell": (data: Reward[], locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
@@ -3815,6 +3829,20 @@ declare namespace LocalJSX {
           * @uiName Expired Status Text
          */
         "expiryText"?: string;
+        /**
+          * @uiName Expiry Date Prefix
+         */
+        "pendingScheduled"?: string;
+        /**
+          * Displayed when fulfillment error occured when creating a reward.
+          * @uiName Unhandled Error Text
+         */
+        "pendingUnhandled"?: string;
+        /**
+          * Displayed when a reward is pending due to W9 compliance.
+          * @uiName W9 Pending Text
+         */
+        "pendingUsTax"?: string;
         /**
           * @uiName Reward Status Text
          */

@@ -92,7 +92,16 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
   }
 
   render() {
-    useRequestRerender([this.columnTitle]);
+    useRequestRerender([
+      this.columnTitle,
+      this.statusText,
+      this.statusLongText,
+      this.fuelTankText,
+      this.rewardReceivedText,
+      this.expiringText,
+      this.pendingForText,
+      this.hideDetails,
+    ]);
     return <Host style={{ display: "none" }} />;
   }
 }

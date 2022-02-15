@@ -129,3 +129,14 @@ Feature: Leaderboard
 		And they do not have a last initial
 		When they view the leaderboard
 		Then they see the user displayed as "Anonymous User"
+
+	@minutiae
+	Scenario Outline: If a user only has a first or last name, then only that is displayed
+		Given a user
+		And they only have a <name>
+		When they view the leaderboard
+		Then they only see their <name>
+		Examples:
+			| name      |
+			| firstName |
+			| lastName  |
