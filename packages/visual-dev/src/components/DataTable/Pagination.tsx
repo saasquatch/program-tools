@@ -74,6 +74,13 @@ export const Pagination = React.forwardRef<
     ? Array.from(Array(Math.ceil(total / limit)).keys())
     : [current_page];
 
+  const filteredPages = pages.filter(
+    (page) =>
+      Math.abs(page - current_page) < 3 ||
+      Math.abs(page - (total ? total : 0)) < 3 ||
+      Math.abs(page) < 3
+  );
+
   const [dropdown, setDropdown] = React.useState(false);
 
   return (
@@ -91,15 +98,18 @@ export const Pagination = React.forwardRef<
             updatePagination(limit, Math.max(offset - limit, 0));
           }}
         />
-        {pages.map((x: any) => (
-          <TextDiv
-            selected={current_page === x}
-            onClick={() => {
-              updatePagination(limit, Math.max(limit * x, 0));
-            }}
-          >
-            {x + 1}
-          </TextDiv>
+        {filteredPages.map((p: number, i: number) => (
+          <>
+            {i != 0 && filteredPages[i - 1] + 1 != p && <TextDiv>...</TextDiv>}
+            <TextDiv
+              selected={current_page === p}
+              onClick={() => {
+                updatePagination(limit, Math.max(limit * p, 0));
+              }}
+            >
+              {p + 1}
+            </TextDiv>
+          </>
         ))}
         <IconButton
           size="mini"
