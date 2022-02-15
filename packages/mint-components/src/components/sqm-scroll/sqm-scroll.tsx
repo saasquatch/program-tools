@@ -91,7 +91,7 @@ export class Scroll {
   @Prop() iconName: string;
 
   /**
-   * Sets button to be full width in mobile resolutions
+   * The button becomes full width if the screen size is smaller than 500px
    *
    * @uiName Full Width on Mobile
    */
