@@ -69,6 +69,10 @@ export const NavigationTabs = () => {
     &:not(.active) {
       color: var(--sq-nav-text-on-primary-subdued);
     }
+
+    &:hover {
+      color: var(--sq-nav-text-on-primary);
+    }
   `
 
   const NavContainer = styled.div`

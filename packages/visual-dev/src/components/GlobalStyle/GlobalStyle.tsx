@@ -158,10 +158,20 @@ p{
 }
 `;
 
+export const ListRules = createGlobalStyle`
+  ul, li {
+    color: var(--sq-text);
+    font-family: var(--sq-font-family-sans);
+    font-weight: var(--sq-font-weight-regular);
+    font-size: var(--sq-font-size-regular);
+    line-height: var(--sq-line-height-regular);
+  }
+`
+
 export const GlobalStyle = () => {
   return(
   <>
-    <CSSVariables /> <TextRules />
+    <CSSVariables /> <TextRules /> <ListRules />
   </>
 );
 }

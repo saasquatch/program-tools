@@ -4,7 +4,7 @@ import { IconKey, Icon } from "../Icon";
 import { loadingAnimation, successAnimation } from "./Animations";
 import * as Styles from "./Styles";
 
-type ButtonProps = OptionProps &
+export type ButtonProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"button">, "translate" | "css" | "loading">;
 
