@@ -22,7 +22,7 @@ export class HeroImage {
    * @uiName Overlay Color
    * @uiWidget color
    */
-  @Prop() overlayColor: string = "var(--sl-color-primary-900)";
+  @Prop() overlayColor?: string;
 
   /**
    * @uiName Overlay Opacity

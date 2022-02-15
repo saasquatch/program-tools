@@ -8,7 +8,6 @@ export interface ImageViewProps {
   alignment?: "left" | "center" | "right";
   backgroundColor?: string;
   minHeight?: string; // helps with constraining minimum size
-  maxWidth?: string; // helps with constraining maximum size
 }
 
 export function ImageView(props: ImageViewProps) {

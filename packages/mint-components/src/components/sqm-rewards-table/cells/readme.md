@@ -1,4 +1,4 @@
-# sqm-referral-table-user-cell
+# sqm-rewards-table-cell
 
 
 

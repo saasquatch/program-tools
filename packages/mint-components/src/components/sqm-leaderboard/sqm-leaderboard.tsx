@@ -26,7 +26,7 @@ export class Leaderboard {
   /**
    * @uiName Rank Heading
    */
-  @Prop() rankheading: string;
+  @Prop() rankheading?: string;
   /**
    * @uiName Show leaderboard rank
    */

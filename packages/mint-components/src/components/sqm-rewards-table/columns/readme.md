@@ -1,4 +1,4 @@
-# sqm-referral-table-user-column
+# sqm-rewards-table-column
 
 
 

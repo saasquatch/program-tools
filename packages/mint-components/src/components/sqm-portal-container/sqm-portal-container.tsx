@@ -64,7 +64,7 @@ export class PortalContainer {
   /**
    * @uiName Center content
    */
-  @Prop() center: boolean;
+  @Prop() center?: boolean;
 
   constructor() {
     withHooks(this);

@@ -138,7 +138,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
                   ? user.firstName + " " + user.lastInitial
                   : user.firstName || user.lastInitial
                   ? user.firstName || user.lastInitial
-                  : styles.anonymousUser || "Anonymous User"}
+                  : styles.anonymousUser}
               </td>
               <td class="Score">{user.value}</td>
             </tr>
@@ -166,7 +166,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
                   data.viewerRank?.lastInitial
                 : data.viewerRank?.firstName || data.viewerRank?.lastInitial
                 ? data.viewerRank?.firstName || data.viewerRank?.lastInitial
-                : styles.anonymousUser || "Anonymous User"}
+                : styles.anonymousUser}
             </td>
             <td class="Score">{data.viewerRank?.value || "0"}</td>
           </tr>

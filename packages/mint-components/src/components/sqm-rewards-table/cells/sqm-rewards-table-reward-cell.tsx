@@ -2,6 +2,85 @@ import { Component, h, Prop } from "@stencil/core";
 import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 
+const style = {
+  DetailsContainer: {
+    width: "100%",
+    display: "flex",
+    "align-items": "center",
+    "justify-content": "space-between",
+    "margin-right": "var(--sl-spacing-small)",
+    "flex-wrap": "wrap",
+  },
+
+  Details: {
+    "padding-bottom": "var(--sl-spacing-small)",
+    "max-width": "500px",
+    "padding-right": "var(--sl-spacing-x-small)",
+    "&::part(header)": {
+      padding: "var(--sl-spacing-x-small)",
+      cursor: "default",
+    },
+    "&::part(content)": {
+      padding: "var(--sl-spacing-x-small) var(--sl-spacing-medium)",
+    },
+    "&::part(base)": {
+      opacity: "1",
+    },
+    "&::part(summary-icon)": {
+      display: "flex",
+    },
+  },
+
+  BadgeContainer: {
+    "& > :not(:last-child)": {
+      "margin-right": "var(--sl-spacing-x-small)",
+    },
+  },
+
+  BoldText: {
+    "font-weight": "var(--sl-font-weight-semibold)",
+  },
+
+  StatusBadge: {
+    paddingLeft: "var(--sl-spacing-xxx-small)",
+
+    "&::part(base)": {
+      textAlign: "center",
+      maxWidth: "170px",
+      whiteSpace: "pre-line",
+    },
+  },
+
+  Fueltank: {
+    "& .code": {
+      display: "flex",
+      cursor: "pointer",
+      userSelect: "none",
+      color: "var(--sl-color-neutral-500)",
+      "&:hover": {
+        color: "var(--sl-color-sky-500)",
+      },
+    },
+    "& .text": {
+      maxWidth: "90%",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      color: "inherit",
+      fontSize: "var(--sl-font-size-small)",
+      fontWeight: "var(--sl-font-weight-bold)",
+    },
+    "& .icon": {
+      position: "relative",
+      top: "1px",
+      marginLeft: "var(--sl-spacing-x-small)",
+      color: "inherit",
+    },
+  },
+};
+
+const sheet = createStyleSheet(style);
+const styleString = sheet.toString();
+
 @Component({
   tag: "sqm-rewards-table-reward-cell",
   shadow: true,
@@ -17,84 +96,6 @@ export class RewardTableRewardsCell {
 
   render() {
     intl.locale = this.locale;
-    const style = {
-      DetailsContainer: {
-        width: "100%",
-        display: "flex",
-        "align-items": "center",
-        "justify-content": "space-between",
-        "margin-right": "var(--sl-spacing-small)",
-        "flex-wrap": "wrap",
-      },
-
-      Details: {
-        "padding-bottom": "var(--sl-spacing-small)",
-        "max-width": "500px",
-        "padding-right": "var(--sl-spacing-x-small)",
-        "&::part(header)": {
-          padding: "var(--sl-spacing-x-small)",
-          cursor: "default",
-        },
-        "&::part(content)": {
-          padding: "var(--sl-spacing-x-small) var(--sl-spacing-medium)",
-        },
-        "&::part(base)": {
-          opacity: "1",
-        },
-        "&::part(summary-icon)": {
-          display: "flex",
-        },
-      },
-
-      BadgeContainer: {
-        "& > :not(:last-child)": {
-          "margin-right": "var(--sl-spacing-x-small)",
-        },
-      },
-
-      BoldText: {
-        "font-weight": "var(--sl-font-weight-semibold)",
-      },
-
-      StatusBadge: {
-        paddingLeft: "var(--sl-spacing-xxx-small)",
-
-        "&::part(base)": {
-          textAlign: "center",
-          maxWidth: "170px",
-          whiteSpace: "pre-line",
-        },
-      },
-
-      Fueltank: {
-        "& .code": {
-          display: "flex",
-          cursor: "pointer",
-          userSelect: "none",
-          color: "var(--sl-color-neutral-500)",
-          "&:hover": {
-            color: "var(--sl-color-sky-500)",
-          },
-        },
-        "& .text": {
-          maxWidth: "90%",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          color: "inherit",
-          fontSize: "var(--sl-font-size-small)",
-          fontWeight: "var(--sl-font-weight-bold)",
-        },
-        "& .icon": {
-          position: "relative",
-          top: "1px",
-          marginLeft: "var(--sl-spacing-x-small)",
-          color: "inherit",
-        },
-      },
-    };
-
-    const sheet = createStyleSheet(style);
-    const styleString = sheet.toString();
 
     const RewardValue = ({ reward }: { reward: Reward }) => {
       const pimpedPrettyValue =

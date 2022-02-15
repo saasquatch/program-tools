@@ -87,6 +87,7 @@ const defaultStyles = {
   usersheading: "User",
   statsheading: "Referrals",
   rankheading: "Rank",
+  anonymousUser: "Anonymous User"
 };
 
 const defaultElements = {
