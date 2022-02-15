@@ -76,6 +76,7 @@ export class SqmRewardExchangeList {
   @Prop() continueText: string = "Continue";
 
   /**
+  * Displayed on the reward selection page.
    * @uiName Continue to Confirmation Button Text
    */
   @Prop() continueToConfirmationText: string = "Continue to confirmation";
