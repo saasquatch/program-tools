@@ -16,7 +16,7 @@ export const circle = css`
   font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
-  font-size: var(--sq-line-height-regular);
+  line-height: var(--sq-line-height-regular);
 `;
 
 export const RowBase = css`
@@ -27,7 +27,7 @@ export const RowBase = css`
   font-family: var(--sq-font-family-sans);
   font-style: normal;
   font-size: var(--sq-font-size-regular);
-  font-size: var(--sq-line-height-regular);
+  line-height: var(--sq-line-height-regular);
   color: var(--sq-text-dark);
 `;
 
@@ -77,7 +77,7 @@ export const ContentDiv = css`
   font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
-  font-size: var(--sq-line-height-regular);
+  line-height: var(--sq-line-height-regular);
   /* identical to box height, or 143% */
 
   /* On Surface/Text Dark */
@@ -110,7 +110,7 @@ export const PopoverActionDiv = css`
   font-style: normal;
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
-  font-size: var(--sq-line-height-regular);
+  line-height: var(--sq-line-height-regular);
   color: var(--sq-text);
 `;
 
