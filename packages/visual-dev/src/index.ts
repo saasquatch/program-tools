@@ -5,11 +5,8 @@ import {
 import { Alert } from "./components/Alert";
 import { Avatar } from "./components/Avatar";
 import { Badge } from "./components/Badge";
-import { Heading } from "./components/Heading";
-import { Paragraph } from "./components/Paragraph";
 import { Switch } from "./components/Switch";
 import { Tag } from "./components/Tag";
-import { Text } from "./components/Text";
 import { Tooltip } from "./components/Tooltip";
 import { GlobalStyle, CSSVariables, TextRules } from "./components/GlobalStyle";
 import { Button, IconButton } from "./components/Button";
@@ -36,7 +33,7 @@ import { RJSFTextarea, Textarea } from "./components/TextArea";
 import { RJSFSelect } from "./components/Select/rjsf-Select";
 import { RJSFRadioActionWidget } from "./components/RadioAction/rjsf-RadioAction";
 import { RadioAction } from "./components/RadioAction";
-import { List } from './components/List'
+import { List } from "./components/List";
 /// <reference types="styled-components/cssprop" />
 
 export {
@@ -56,11 +53,8 @@ export {
   Alert,
   Avatar,
   Badge,
-  Heading,
-  Paragraph,
   Switch,
   Tag,
-  Text,
   Tooltip,
   LoadingSpinner,
   LoadingSpinnerLarge,
@@ -80,5 +74,5 @@ export {
   RJSFRadioActionWidget,
   RadioAction,
   RadioCard,
-  List
+  List,
 };

@@ -35,6 +35,7 @@ export const Row = {
   row: css`
     background: var(--sq-surface);
     border: 2px solid var(--sq-border);
+    border-top: 0px;
     box-sizing: border-box;
   `,
   header: css`
