@@ -95,7 +95,7 @@ export const Pagination = React.forwardRef<
           <TextDiv
             selected={current_page === x}
             onClick={() => {
-              updatePagination(limit, limit * (x - 1));
+              updatePagination(limit, Math.max(limit * x, 0));
             }}
           >
             {x + 1}
