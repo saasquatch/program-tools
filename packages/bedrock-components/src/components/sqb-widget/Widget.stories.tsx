@@ -1,4 +1,5 @@
 import { setUserIdentity } from '@saasquatch/component-boilerplate';
+import { useEffect } from '@saasquatch/universal-hooks';
 import { h } from '@stencil/core';
 import { createHookStory } from '../sqb-stencilbook/HookStoryAddon';
 import scenario from './sqb-widget.feature';
@@ -17,6 +18,18 @@ function useGraphQL(user) {
     engagementMedium: 'EMBED',
     ...user,
   };
+
+  useEffect(() => {
+    setUserIdentity({
+      accountId: user?.accountId,
+      id: user?.id,
+      jwt: user?.token,
+    });
+    return () => {
+      window.widgetIdent = undefined;
+      setUserIdentity(undefined);
+    };
+  }, []);
 }
 
 export const Widget = createHookStory(() => {
