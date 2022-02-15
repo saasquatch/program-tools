@@ -1,4 +1,4 @@
-# sqm-timeline-reward
+# sqm-referral-card
 
 
 

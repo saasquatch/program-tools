@@ -1,9 +1,5 @@
 import { Component, h, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
-// import { insertCSS } from "../../insertcss";
-// import debugFn from "debug";
-
-// const debug = debugFn("sq:global");
 
 const vanillaStyle = `
   sqm-text {
@@ -69,13 +65,7 @@ export class Text {
   }
   disconnectedCallback() {}
 
-  componentWillLoad() {
-    // try {
-    //   insertCSS(textStyles);
-    // } catch (error) {
-    //   debug(error);
-    // }
-  }
+  componentWillLoad() {}
 
   render() {
     return (

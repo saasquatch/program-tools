@@ -1,7 +1,6 @@
 import { useCallback } from "@saasquatch/universal-hooks";
 import { useDeepCompareEffect } from "../useDeepEffect";
 import { useHost } from "../useHost";
-import { GqlType } from "./useBaseQuery";
 
 export const REFRESH_EVENT_NAME = "sq:refresh";
 

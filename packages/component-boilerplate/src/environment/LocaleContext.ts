@@ -1,7 +1,8 @@
 import { useDomContext } from "@saasquatch/dom-context-hooks";
+import { useEffect } from "@saasquatch/universal-hooks";
 import { ContextProvider } from "dom-context";
 import { gql } from "graphql-request";
-import { useQuery, useUserIdentity } from "..";
+import { useLazyQuery, useUserIdentity } from "..";
 import { useHost } from "../hooks/useHost";
 import { WidgetIdent } from "./environment";
 
@@ -28,15 +29,22 @@ function _lazilyStartGlobally() {
   const globalProvider = window.squatchLocale;
   const user = useUserIdentity();
 
-  const { data } = useQuery(GET_LOCALE, {}, !user);
+  useEffect(() => {
+    // Clear locale if user is undefined
+    if (!user && globalProvider) {
+      return (globalProvider.context = undefined);
+    }
+    fetch({});
+  }, [user]);
+
+  const [fetch, { data }] = useLazyQuery(GET_LOCALE);
   const locale = data?.viewer?.locale;
 
   if (!globalProvider) {
     // Lazily creates a global provider
     window.squatchLocale = new ContextProvider<string>({
       element: document.documentElement,
-      initialState: locale ||
-        window.widgetIdent?.locale || undefined,
+      initialState: locale || window.widgetIdent?.locale || undefined,
       contextName: CONTEXT_NAME,
     }).start();
   } else if (locale && locale !== globalProvider.context) {
@@ -48,15 +56,4 @@ export function useLocale(): string | undefined {
   _lazilyStartGlobally();
   const host = useHost();
   return useDomContext<string>(host, CONTEXT_NAME);
-}
-
-// not sure if this is even needed
-/**
- * Overide the globally defined Locale context
- *
- * @param locale the new locale used by the user
- */
-export function setLocale(locale: string) {
-  const globalProvider = window.squatchLocale;
-  globalProvider.context = locale;
 }

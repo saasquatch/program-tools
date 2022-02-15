@@ -4,6 +4,32 @@ import { intl } from "../../../global/global";
 import { createStyleSheet } from "../../../styling/JSS";
 import { luxonLocale } from "../../../utils/utils";
 
+const style = {
+  Badge: {
+    "&::part(base)": {
+      fontSize: "var(--sl-font-size-small)",
+      padding: "4px 8px",
+      paddingLeft: "10px",
+      whiteSpace: "pre-line",
+    },
+  },
+  RedeemBadge: {
+    "&::part(base)": {
+      fontSize: "var(--sl-font-size-small)",
+      padding: "4px 8px",
+      background: "var(--sl-color-blue-600)",
+    },
+  },
+
+  Date: {
+    fontSize: "var(--sl-font-size-small)",
+    color: "var(--sl-color-neutral-500)",
+    margin: "0",
+  },
+};
+
+const sheet = createStyleSheet(style);
+const styleString = sheet.toString();
 @Component({
   tag: "sqm-rewards-table-status-cell",
   shadow: true,
@@ -44,32 +70,6 @@ export class RewardTableStatusCell {
 
   render() {
     intl.locale = this.locale;
-    const style = {
-      Badge: {
-        "&::part(base)": {
-          fontSize: "var(--sl-font-size-small)",
-          padding: "4px 8px",
-          paddingLeft: "10px",
-          whiteSpace: "pre-line",
-        },
-      },
-      RedeemBadge: {
-        "&::part(base)": {
-          fontSize: "var(--sl-font-size-small)",
-          padding: "4px 8px",
-          background: "var(--sl-color-blue-600)",
-        },
-      },
-
-      Date: {
-        fontSize: "var(--sl-font-size-small)",
-        color: "var(--sl-color-neutral-500)",
-        margin: "0",
-      },
-    };
-
-    const sheet = createStyleSheet(style);
-    const styleString = sheet.toString();
 
     const rewardStatus = this.rewardStatus(this.reward);
     const statusText = intl.formatMessage(

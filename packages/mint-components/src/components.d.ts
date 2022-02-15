@@ -188,7 +188,8 @@ export namespace Components {
     }
     interface SqmHero {
         /**
-          * @uiName Background image or color
+          * Can either be an image url, colour or Shoelace variable.
+          * @uiName Background
          */
         "background"?: string;
         /**
@@ -266,7 +267,7 @@ export namespace Components {
           * @uiName Overlay Color
           * @uiWidget color
          */
-        "overlayColor": string;
+        "overlayColor"?: string;
         /**
           * @uiName Overlay Opacity
          */
@@ -310,7 +311,7 @@ export namespace Components {
          */
         "imageUrl": string;
         /**
-          * (optional) Helps with constraining minimum size
+          * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
           * @uiName Minimum Height
          */
         "minHeight"?: string;
@@ -326,8 +327,8 @@ export namespace Components {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * Shows the current user's leaderboard information even if they are not in the top 10
-          * @uiName Show viewing user
+          * Hide the current user's leaderboard information when they are not in the top 10
+          * @uiName Hide viewing user
          */
         "hideViewer": boolean;
         /**
@@ -351,7 +352,7 @@ export namespace Components {
         /**
           * @uiName Rank Heading
          */
-        "rankheading": string;
+        "rankheading"?: string;
         /**
           * @uiName Show leaderboard rank
          */
@@ -533,7 +534,7 @@ export namespace Components {
         /**
           * @uiName Center content
          */
-        "center": boolean;
+        "center"?: boolean;
         /**
           * @uiName Direction
           * @uiType string
@@ -1675,6 +1676,9 @@ export namespace Components {
     interface SqmStencilbook {
     }
     interface SqmTab {
+        /**
+          * @uiName Tab Title
+         */
         "header": string;
     }
     interface SqmTableCell {
@@ -2617,7 +2621,8 @@ declare namespace LocalJSX {
     }
     interface SqmHero {
         /**
-          * @uiName Background image or color
+          * Can either be an image url, colour or Shoelace variable.
+          * @uiName Background
          */
         "background"?: string;
         /**
@@ -2739,7 +2744,7 @@ declare namespace LocalJSX {
          */
         "imageUrl"?: string;
         /**
-          * (optional) Helps with constraining minimum size
+          * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
           * @uiName Minimum Height
          */
         "minHeight"?: string;
@@ -2755,8 +2760,8 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * Shows the current user's leaderboard information even if they are not in the top 10
-          * @uiName Show viewing user
+          * Hide the current user's leaderboard information when they are not in the top 10
+          * @uiName Hide viewing user
          */
         "hideViewer"?: boolean;
         /**
@@ -4080,6 +4085,9 @@ declare namespace LocalJSX {
     interface SqmStencilbook {
     }
     interface SqmTab {
+        /**
+          * @uiName Tab Title
+         */
         "header"?: string;
     }
     interface SqmTableCell {

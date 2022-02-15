@@ -5,7 +5,7 @@ import { createStyleSheet } from "../../styling/JSS";
 export interface HeroImageViewProps {
   layout: "overlay" | "columns";
   imageUrl: string;
-  overlayColor: string;
+  overlayColor?: string;
   overlayOpacity: string;
   textColor?: string;
   backgroundColor?: string;
@@ -36,7 +36,7 @@ export function HeroImageView(props: HeroImageViewProps, children: VNode) {
         height: "100%",
         position: "absolute",
         background: props.overlayColor || "var(--sl-color-primary-900)",
-        opacity: props.overlayOpacity || "0.75",
+        opacity: props.overlayOpacity,
       },
     },
     Image: {

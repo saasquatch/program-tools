@@ -4,7 +4,7 @@ import { getProps } from "../../utils/utils";
 import { ImageView } from "./sqm-image-view";
 
 /**
- * @uiName Image Component
+ * @uiName Image
  */
 @Component({
   tag: "sqm-image",
@@ -31,7 +31,7 @@ export class Image {
   @Prop() backgroundColor: string;
 
   /**
-   * (optional) Helps with constraining minimum size
+   * (Optional) Helps with constraining the minimum image size. Can be a pixel value or a percentage i.e. "500px", "33%", etc.
    * @uiName Minimum Height
    */
   @Prop() minHeight?: string;
