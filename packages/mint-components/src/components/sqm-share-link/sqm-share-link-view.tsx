@@ -6,7 +6,7 @@ export interface ShareLinkViewProps {
   shareString: string;
   open: boolean;
   disabled?: boolean;
-  tooltipText: string;
+  tooltiptext: string;
   onClick?: () => void;
 }
 
@@ -26,7 +26,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
       <style type="text/css">{styleString}</style>
       <sl-tooltip
         trigger="manual"
-        content={props.tooltipText}
+        content={props.tooltiptext}
         placement="top-end"
         disabled={props.disabled}
         open={props.open}

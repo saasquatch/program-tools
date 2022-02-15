@@ -9,7 +9,7 @@ import deepmerge from "deepmerge";
 
 /**
  * @uiName Share Button
- * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideIcon"]
+ * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
  */
 @Component({
   tag: "sqm-share-button",
@@ -59,17 +59,17 @@ export class ShareButton {
   /**
    * @uiName Configure border radius with pixel amount
    */
-  @Prop() borderRadius?: number;
+  @Prop() borderradius?: number;
   /**
    * @uiName Button background color
    * @uiWidget color
    */
-  @Prop() backgroundColor?: string;
+  @Prop() backgroundcolor?: string;
   /**
    * @uiName Button text color
    * @uiWidget color
    */
-  @Prop() textColor?: string;
+  @Prop() textcolor?: string;
   /**
    * @uiName Display as pill
    */
@@ -104,7 +104,7 @@ export class ShareButton {
    * @uiEnum ["prefix", "suffix" ]
    * @uiEnumNames ["Prefix", "Suffix"]
    */
-  @Prop() iconSlot?: "prefix" | "suffix" = "prefix";
+  @Prop() iconslot?: "prefix" | "suffix" = "prefix";
   /**
    * Options available at https://shoelace.style/components/icon
    *
@@ -114,19 +114,19 @@ export class ShareButton {
   /**
    * @uiName Hide the icon
    */
-  @Prop() hideIcon?: boolean = false;
+  @Prop() hideicon?: boolean = false;
   /**
    * @uiName Hide the text
    */
-  @Prop() hideText?: boolean = false;
+  @Prop() hidetext?: boolean = false;
   /**
    * @uiName Title used for native sharing (mobile only)
    */
-  @Prop() shareTitle?: string;
+  @Prop() sharetitle?: string;
   /**
    * @uiName Text used for native sharing (mobile only)
    */
-  @Prop() shareText?: string;
+  @Prop() sharetext?: string;
 
   /**
    * @undocumented

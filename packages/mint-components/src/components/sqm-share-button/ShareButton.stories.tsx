@@ -10,12 +10,12 @@ export default {
 };
 
 export const WithIconPrefix = () => {
-  const props = { medium: "whatsapp", iconSlot: "prefix" } as const;
+  const props = { medium: "whatsapp", iconslot: "prefix" } as const;
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
 
 export const WithIconSuffix = () => {
-  const props = { medium: "whatsapp", iconSlot: "suffix" } as const;
+  const props = { medium: "whatsapp", iconslot: "suffix" } as const;
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
 
@@ -36,17 +36,17 @@ export const TextStyle = () => {
 };
 
 export const WithoutIcon = () => {
-  const props = { medium: "facebook", hideIcon: true } as const;
+  const props = { medium: "facebook", hideicon: true } as const;
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
 
 export const WithoutText = () => {
-  const props = { medium: "facebook", hideText: true } as const;
+  const props = { medium: "facebook", hidetext: true } as const;
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
 
 export const TextStyleWithoutIcon = () => {
-  const props = { medium: "facebook", type: "text", hideIcon: true } as const;
+  const props = { medium: "facebook", type: "text", hideicon: true } as const;
   return <ShareButtonView {...props}>Share</ShareButtonView>;
 };
 
@@ -56,7 +56,7 @@ export const WithCustomColors = () => {
     type: "text",
     backgroundcolor: "red",
     textcolor: "yellow",
-    iconSlot: "prefix",
+    iconslot: "prefix",
   } as const;
   return <ShareButtonView {...props}>Facebook</ShareButtonView>;
 };
@@ -65,8 +65,8 @@ export const WithCustomBorderRadius = () => {
   const props = {
     medium: "facebook",
     type: "text",
-    borderRadius: 8,
-    iconSlot: "prefix",
+    borderradius: 8,
+    iconslot: "prefix",
   } as const;
   return <ShareButtonView {...props}>Facebook</ShareButtonView>;
 };
