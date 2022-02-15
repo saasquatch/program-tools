@@ -27,8 +27,12 @@ export function usePortalLogin(props) {
   useEffect(() => {
     if (data?.authenticateManagedIdentityWithEmailAndPassword?.token) {
       urlParams.delete("nextPage");
+      const nextPage = nextPageOverride || props.nextPage;
+      const url = new URL(nextPage, window.location.href);
+      const cleanUrl = new URL(window.location.href);
+      cleanUrl.pathname = url.pathname;
       navigation.push({
-        pathname: nextPageOverride || props.nextPage,
+        pathname: cleanUrl.pathname,
         search: urlParams.toString() && "?" + urlParams.toString(),
       });
     }
@@ -46,8 +50,8 @@ export function usePortalLogin(props) {
     states: {
       loading,
       error: errorMessage,
-      registerPath:props.registerPath,
-      forgotPasswordPath:props.forgotPasswordPath
+      registerPath: props.registerPath,
+      forgotPasswordPath: props.forgotPasswordPath,
     },
     callbacks: {
       submit,

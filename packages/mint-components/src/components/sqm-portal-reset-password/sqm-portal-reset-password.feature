@@ -59,3 +59,20 @@ Feature: Reset Password
         When they click "Update"
         Then their password is updated
         And they are redirected to "/activity"
+
+    @motivating
+    Scenario Outline: Users are redirected to the value of the nextPage url parameter as if it were a relative path
+        Given the component is loaded at <domain>
+        And the component does not have prop "nextPage"
+        And the users url contains a "nextPage" query paramater with <nextPageParamValue>
+        When they click "Update"
+        Then their password is updated
+        And they are redirected to <url>
+        Examples:
+            | domain          | nextPageParamValue | url                                    |
+            | www.example.com | /activity          | https://www.example.com/activity       |
+            | www.example.com | activity           | https://www.example.com/activity       |
+            | www.example.com | www.google.com     | https://www.example.com/www.google.com |
+            | www.example.com | //foo.com          | https://www.example.com/               |
+            | www.example.com | activity?foo=bar   | https://www.example.com/activity       |
+            | www.example.com | /activity?foo=bar  | https://www.example.com/activity       |

@@ -43,8 +43,12 @@ export function usePortalResetPassword(
 
   const gotoNextPage = () => {
     urlParams.delete("nextPage");
+    const nextPage = nextPageOverride || props.nextPage;
+    const url = new URL(nextPage, window.location.href);
+    const cleanUrl = new URL(window.location.href);
+    cleanUrl.pathname = url.pathname;
     navigation.push({
-      pathname: nextPageOverride || props.nextPage,
+      pathname: cleanUrl.pathname,
       search: urlParams.toString() && "?" + urlParams.toString(),
     });
   };

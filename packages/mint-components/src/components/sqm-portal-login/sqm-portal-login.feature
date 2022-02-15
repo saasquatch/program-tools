@@ -67,6 +67,25 @@ Feature: Portal Login
       | has           | /dashboard    | /activity          |
       | does not have | N/A           | /activity          |
 
+  @motivating
+  Scenario Outline: Users are redirected to the value of the nextPage url parameter as if it were a relative path
+    Given a user entered a valid email and password combination
+    And the component is loaded at <domain>
+    And the component has prop "nextPage"
+    But the users url contains a "nextPage" query paramater with <nextPageParamValue>
+    When the user clicks "Login"
+    Then they are logged in
+    And they are redirected to <url>
+    Examples:
+      | domain          | nextPageParamValue | url                                    |
+      | www.example.com | /activity          | https://www.example.com/activity       |
+      | www.example.com | activity           | https://www.example.com/activity       |
+      | www.example.com | www.google.com     | https://www.example.com/www.google.com |
+      | www.example.com | //foo.com          | https://www.example.com/               |
+      | www.example.com | activity?foo=bar   | https://www.example.com/activity       |
+      | www.example.com | /activity?foo=bar  | https://www.example.com/activity       |
+
+
   @minutae
   Scenario Outline: Navigation to the registration page can be customized but defaults to "/register"
     Given a user viewing the login component

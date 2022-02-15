@@ -26,8 +26,12 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
 
   const gotoNextPage = () => {
     urlParams.delete("nextPage");
-    return navigation.push({
-      pathname: nextPageOverride || nextPage,
+    const np = nextPageOverride || nextPage;
+    const url = new URL(np, window.location.href);
+    const cleanUrl = new URL(window.location.href);
+    cleanUrl.pathname = url.pathname;
+    navigation.push({
+      pathname: cleanUrl.pathname,
       search: urlParams.toString() && "?" + urlParams.toString(),
     });
   };
