@@ -99,6 +99,7 @@ export class SqmRewardExchangeList {
     "Redeemed {sourceValue} for {destinationValue}";
 
   /**
+  * Displayed on the reward exchange cards.
    * @uiName Reward Exchange Amount Text
    */
   @Prop() sourceAmountMessage: string =
