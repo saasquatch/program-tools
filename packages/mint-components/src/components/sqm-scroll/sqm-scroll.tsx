@@ -58,7 +58,7 @@ export class Scroll {
   @Prop() size: string;
 
   /**
-   * Draws an outlined button with primary color.
+   * Draws an outlined button.
    *
    * @uiName Outline
    */
@@ -104,17 +104,17 @@ export class Scroll {
 
   render() {
     const { callbacks } = useScroll(this);
-
+    const outlineColor = this.buttonType ?? "primary";
     const style = {
       Button: {
         "& .outline": {
           "&::part(base)": {
-            color: "var(--sl-color-primary-500)",
-            borderColor: "var(--sl-color-primary-500)",
+            color: "var(--sl-color-" + outlineColor + "-500)",
+            borderColor: "var(--sl-color-" + outlineColor + "-500)",
             backgroundColor: "transparent",
             "&:hover": {
               color: "var(--sl-color-primary-text)",
-              backgroundColor: "var(--sl-color-primary-500)",
+              backgroundColor: "var(--sl-color-" + outlineColor + "-500)",
             },
           },
         },
@@ -146,10 +146,6 @@ export class Scroll {
     }
 	`;
 
-    let classStack = "";
-    if (this.outline) classStack += "outline ";
-    if (this.mobile) classStack += "mobile ";
-
     return (
       <div class={sheet.classes.Button}>
         <style type="text/css">
@@ -157,12 +153,12 @@ export class Scroll {
           {styleString}
         </style>
         <sl-button
-          type={this.outline ? "primary" : this.buttonType}
+          type={this.buttonType}
           onClick={callbacks.scroll}
           size={this.size}
           pill={this.pill}
           circle={this.circle}
-          class={classStack}
+          class={this.outline && this.buttonType != "default" ? "outline" : ""}
         >
           {(this.iconSlot || this.iconName) && (
             <sl-icon

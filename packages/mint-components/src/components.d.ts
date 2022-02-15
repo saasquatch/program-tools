@@ -1482,12 +1482,12 @@ export namespace Components {
          */
         "iconSlot": string;
         /**
-          * Sets button to be full width at and below 499px breakpoint resolution
+          * The button becomes full width if the screen size is smaller than 500px
           * @uiName Full Width on Mobile
          */
         "mobile"?: boolean;
         /**
-          * Draws an outlined button with primary color.
+          * Draws an outlined button.
           * @uiName Outline
          */
         "outline": boolean;
@@ -3893,12 +3893,12 @@ declare namespace LocalJSX {
          */
         "iconSlot"?: string;
         /**
-          * Sets button to be full width at and below 499px breakpoint resolution
+          * The button becomes full width if the screen size is smaller than 500px
           * @uiName Full Width on Mobile
          */
         "mobile"?: boolean;
         /**
-          * Draws an outlined button with primary color.
+          * Draws an outlined button.
           * @uiName Outline
          */
         "outline"?: boolean;
