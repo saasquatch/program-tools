@@ -8,6 +8,8 @@ import { TabView } from "./sqm-tab-view";
   tag: "sqm-tab",
 })
 export class Tab {
+  
+  /** @uiName Tab Title  */
   @Prop() header: string;
 
   render() {

@@ -33,9 +33,9 @@ export class Leaderboard {
   @Prop() showRank: boolean;
 
   /**
-   * Shows the current user's leaderboard information even if they are not in the top 10
+   * Hide the current user's leaderboard information when they are not in the top 10
    *
-   * @uiName Show viewing user
+   * @uiName Hide viewing user
    */
   @Prop() hideViewer: boolean = false;
 

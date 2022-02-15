@@ -4,7 +4,7 @@ import { getProps } from "../../utils/utils";
 import { ImageView } from "./sqm-image-view";
 
 /**
- * @uiName Image Component
+ * @uiName Image
  */
 @Component({
   tag: "sqm-image",

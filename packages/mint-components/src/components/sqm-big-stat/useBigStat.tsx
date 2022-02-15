@@ -116,14 +116,11 @@ const programGoalsQuery = (
 };
 
 const customFieldsQuery = (
-  programId: string,
+  _programId:string,
   locale: string,
   fieldName: string,
   goalId: string
 ) => {
-  // Confirm this behaviour
-  if (programId === "classic") return null;
-
   return debugQuery(
     gql`
       query {
@@ -134,7 +131,7 @@ const customFieldsQuery = (
         }
       }
     `,
-    { programId, fieldName, goalId, locale },
+    {  fieldName, goalId, locale },
     (res) => {
       const customField = res.data?.viewer?.customFields?.[fieldName];
       return {

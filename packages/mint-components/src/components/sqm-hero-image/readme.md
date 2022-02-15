@@ -1,4 +1,4 @@
-# sqm-media
+# sqm-hero-image
 
 
 
