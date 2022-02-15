@@ -75,7 +75,7 @@ export const WidgetWithLocaleEn = createHookStory(() => {
 
   return (
     <div>
-      <sqb-widget widget-type="p/klip-referral-program/w/referrerWidget" track-loads="true"></sqb-widget>
+      <sqb-widget widget-type="p/klip-referral-program/w/referrerWidget" track-loads="true" require-auth="true"></sqb-widget>
     </div>
   );
 });
@@ -92,7 +92,7 @@ export const WidgetWithLocaleTr = createHookStory(() => {
   useGraphQL(user);
   return (
     <div>
-      <sqb-widget widget-type="p/klip-referral-program/w/referrerWidget" track-loads="true"></sqb-widget>
+      <sqb-widget widget-type="p/klip-referral-program/w/referrerWidget" track-loads="true" require-auth="true"></sqb-widget>
     </div>
   );
 });
@@ -109,7 +109,7 @@ export const WidgetWithLocaleFr = createHookStory(() => {
   useGraphQL(user);
   return (
     <div>
-      <sqb-widget widget-type="p/klip-referral-program/w/referrerWidget" track-loads="true"></sqb-widget>
+      <sqb-widget widget-type="p/klip-referral-program/w/referrerWidget" track-loads="true" require-auth="true"></sqb-widget>
     </div>
   );
 });
@@ -126,7 +126,22 @@ export const WidgetWithNoLocale = createHookStory(() => {
   useGraphQL(user);
   return (
     <div>
-      <sqb-widget widget-type="p/klip-referral-program/w/referrerWidget" track-loads="true"></sqb-widget>
+      <sqb-widget widget-type="p/klip-referral-program/w/referrerWidget" track-loads="true" require-auth="true"></sqb-widget>
+    </div>
+  );
+});
+
+export const WidgetWithNoAuth = createHookStory(() => {
+  //@ts-ignore
+  window.widgetIdent = {
+    tenantAlias: 'test_a74miwdpofztj',
+    programId: 'klip-referral-program',
+    appDomain: 'https://staging.referralsaasquatch.com',
+  };
+  setUserIdentity(undefined);
+  return (
+    <div>
+      <sqb-widget widget-type="w/globalWidget" track-loads="false"></sqb-widget>
     </div>
   );
 });

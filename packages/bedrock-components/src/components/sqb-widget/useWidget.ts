@@ -76,18 +76,17 @@ export function useWidget(props: SqbWidget) {
     // No auth required
     !props.requireAuth ||
     // Or auth required and logged in
-    userIdent !== undefined;
+    (userIdent !== undefined && locale !== undefined);
 
   useEffect(() => {
-    console.log(locale);
-    if (props.widgetType && canLoad && locale !== undefined) {
+    if (props.widgetType && canLoad) {
       console.log(locale);
       fetch({
         widgetType: props.widgetType,
         locale,
       });
     }
-  }, [props.widgetType, props.requireAuth, locale, userIdent?.jwt, canLoad]);
+  }, [props.widgetType, props.requireAuth, userIdent?.jwt, locale]);
 
   const html = data?.renderWidget?.widgetConfig?.values?.htmlTemplate || '';
 
