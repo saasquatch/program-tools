@@ -123,6 +123,7 @@ export class SqmRewardExchangeList {
   @Prop() selectText: string = "Select amount to receive";
 
   /**
+  * Shown if an error occurs when loading the reward exchange.
    * @uiName Reward List Error Message
    */
   @Prop() queryError: string =
