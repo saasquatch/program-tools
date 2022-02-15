@@ -57,6 +57,8 @@ export function useWidget(props: SqbWidget) {
 
   if (props.trackLoads && !analyticsEventSent.current && userIdent !== undefined) {
     analyticsEventSent.current = true;
+
+    console.log(userIdent);
     sendLoadEvent({
       eventMeta: {
         programId,
@@ -75,15 +77,17 @@ export function useWidget(props: SqbWidget) {
     !props.requireAuth ||
     // Or auth required and logged in
     userIdent !== undefined;
+
   useEffect(() => {
     console.log(locale);
-    if (props.widgetType && canLoad) {
+    if (props.widgetType && canLoad && locale !== undefined) {
+      console.log(locale);
       fetch({
         widgetType: props.widgetType,
         locale,
       });
     }
-  }, [props.widgetType, props.requireAuth, userIdent?.jwt, locale]);
+  }, [props.widgetType, props.requireAuth, locale, userIdent?.jwt, canLoad]);
 
   const html = data?.renderWidget?.widgetConfig?.values?.htmlTemplate || '';
 

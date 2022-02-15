@@ -34,7 +34,7 @@ function useGraphQL(user) {
 
 export const Widget = createHookStory(() => {
   const user = {
-    userId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
+    id: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
     accountId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
     token:
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEiLCJpZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEifX0.lGUEN_cmRrSdw-y2fEz-BQ2R5COoN8tQTiKJGEMfCcI',
@@ -49,7 +49,7 @@ export const Widget = createHookStory(() => {
 
 export const WidgetWithAnalytics = createHookStory(() => {
   const user = {
-    userId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
+    id: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
     accountId: 'rfcdhX2WTcgyJUB061TxE1xwXvj1',
     token:
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEiLCJpZCI6InJmY2RoWDJXVGNneUpVQjA2MVR4RTF4d1h2ajEifX0.lGUEN_cmRrSdw-y2fEz-BQ2R5COoN8tQTiKJGEMfCcI',
@@ -64,7 +64,7 @@ export const WidgetWithAnalytics = createHookStory(() => {
 
 export const WidgetWithLocaleEn = createHookStory(() => {
   const user = {
-    userId: 'samenglish',
+    id: 'samenglish',
     accountId: 'samenglish',
     token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtZW5nbGlzaCIsImFjY291bnRJZCI6InNhbWVuZ2xpc2gifX0.sqnbhq5piBZkTpWi5cwadqF11lVbghrn1fiIXJ6iUU0',
     tenantAlias: 'test_a74miwdpofztj',
@@ -75,39 +75,6 @@ export const WidgetWithLocaleEn = createHookStory(() => {
 
   return (
     <div>
-      <button
-        onClick={() =>
-          setUserIdentity({
-            id: 'samenglish',
-            accountId: 'samenglish',
-            jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtZW5nbGlzaCIsImFjY291bnRJZCI6InNhbWVuZ2xpc2gifX0.sqnbhq5piBZkTpWi5cwadqF11lVbghrn1fiIXJ6iUU0',
-          })
-        }
-      >
-        en
-      </button>
-      <button
-        onClick={() =>
-          setUserIdentity({
-            id: 'samfrench',
-            accountId: 'samfrench',
-            jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtZnJlbmNoIiwiYWNjb3VudElkIjoic2FtZnJlbmNoIn19.-25oxP2cH5iOaR6UZCr9GDmEfg-Sqo8dlVIGUYTuHYM',
-          })
-        }
-      >
-        fr
-      </button>
-      <button
-        onClick={() =>
-          setUserIdentity({
-            id: 'samturkey',
-            accountId: 'samturkey',
-            jwt: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtdHVya2V5IiwiYWNjb3VudElkIjoic2FtdHVya2V5In19.3Ayf3k1Mg5pntjRgEdPE-PqARBX5uNTc1mnX3wlbHaw',
-          })
-        }
-      >
-        tr
-      </button>
       <sqb-widget widget-type="p/klip-referral-program/w/referrerWidget" track-loads="true"></sqb-widget>
     </div>
   );
@@ -115,7 +82,7 @@ export const WidgetWithLocaleEn = createHookStory(() => {
 
 export const WidgetWithLocaleTr = createHookStory(() => {
   const user = {
-    userId: 'samturkey',
+    id: 'samturkey',
     accountId: 'samturkey',
     token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtdHVya2V5IiwiYWNjb3VudElkIjoic2FtdHVya2V5In19.3Ayf3k1Mg5pntjRgEdPE-PqARBX5uNTc1mnX3wlbHaw',
     tenantAlias: 'test_a74miwdpofztj',
@@ -132,9 +99,26 @@ export const WidgetWithLocaleTr = createHookStory(() => {
 
 export const WidgetWithLocaleFr = createHookStory(() => {
   const user = {
-    userId: 'samfrench',
+    id: 'samfrench',
     accountId: 'samfrench',
     token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoic2FtZnJlbmNoIiwiYWNjb3VudElkIjoic2FtZnJlbmNoIn19.-25oxP2cH5iOaR6UZCr9GDmEfg-Sqo8dlVIGUYTuHYM',
+    tenantAlias: 'test_a74miwdpofztj',
+    programId: 'klip-referral-program',
+    appDomain: 'https://staging.referralsaasquatch.com',
+  };
+  useGraphQL(user);
+  return (
+    <div>
+      <sqb-widget widget-type="p/klip-referral-program/w/referrerWidget" track-loads="true"></sqb-widget>
+    </div>
+  );
+});
+
+export const WidgetWithNoLocale = createHookStory(() => {
+  const user = {
+    id: 'nolocale',
+    accountId: 'nolocale',
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoibm9sb2NhbGUiLCJhY2NvdW50SWQiOiJub2xvY2FsZSJ9fQ.ACri_gO_eIdNfh3ifMmbbDp7gZz3yjT_8mfiQ96T-BY',
     tenantAlias: 'test_a74miwdpofztj',
     programId: 'klip-referral-program',
     appDomain: 'https://staging.referralsaasquatch.com',
