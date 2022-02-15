@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import { Icon } from "../Icon";
-import { Dropdown } from "../Dropdown";
+import { Dropdown, DropdownItem } from "../Dropdown";
+import { IconButton } from "../..";
 
 type PopoverProps = OptionProps &
   StyleProps &
@@ -9,9 +9,10 @@ type PopoverProps = OptionProps &
 
 interface OptionProps {
   children?: any;
-  selected?: number;
-  pages?: any;
+  offset: number;
+  limit: number;
   total?: number;
+  updatePagination: (limit: number, offset: number) => void;
 }
 
 interface StyleProps {
@@ -24,6 +25,7 @@ const PaginationDiv = styled.div<Required<StyleProps>>`
   align-items: center;
   background: var(--sq-background);
   border: 2px solid var(--sq-border);
+  border-top: 0px;
   box-sizing: border-box;
   border-radius: 0px 0px 6px 6px;
   font-family: var(--sq-font-family-sans);
@@ -36,7 +38,6 @@ const PaginationDiv = styled.div<Required<StyleProps>>`
 
 const TextDiv = styled.div<{ selected?: boolean }>`
   padding: 6px;
-  display: inline;
   color: var(--sq-text-interactive);
   cursor: pointer;
   font-family: var(--sq-font-family-sans);
@@ -48,39 +49,102 @@ const TextDiv = styled.div<{ selected?: boolean }>`
       : "font-weight: var(--sq-font-weight-regular);"}
 `;
 
+const PaginationContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+`;
+
 export const Pagination = React.forwardRef<
   React.ElementRef<"div">,
   PopoverProps
 >((props, forwardedRef) => {
   const {
     children,
-    selected = 1,
-    pages = [1],
-    total = 0,
+    offset,
+    limit,
+    updatePagination,
+    total = null,
     customCSS = {},
     ...rest
   } = props;
 
+  const current_page = Math.floor(offset + 1 / limit);
+  const pages = total
+    ? Array.from(Array(Math.ceil(total / limit)).keys())
+    : [current_page];
+
+  const [dropdown, setDropdown] = React.useState(false);
+
   return (
     <PaginationDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
-      1-10 of {total}
-      <div style={{ marginLeft: "auto" }}>
-        <Icon size="24px" icon="chevron_left" customCSS="margin: -3px;" />
+      {total &&
+        `${offset + 1} - ${Math.min(offset + limit, total)} of ${total}`}
+      <PaginationContainer>
+        <IconButton
+          borderless={true}
+          size="mini"
+          icon="chevron_left"
+          customCSS="margin: -3px;"
+          disabled={offset == 0}
+          onClick={() => {
+            updatePagination(limit, Math.max(offset - limit, 0));
+          }}
+        />
         {pages.map((x: any) => (
-          <TextDiv selected={selected === x}>{x}</TextDiv>
+          <TextDiv
+            selected={current_page === x}
+            onClick={() => {
+              updatePagination(limit, limit * (x - 1));
+            }}
+          >
+            {x + 1}
+          </TextDiv>
         ))}
-        <Icon
-          size="24px"
+        <IconButton
+          size="mini"
           icon="chevron_right"
+          borderless={true}
           customCSS="margin: -3px; margin-right: var(--sq-spacing-x-large);"
+          disabled={total ? offset + limit > total : false}
+          onClick={() => {
+            updatePagination(limit, offset + limit);
+          }}
         />
         <Dropdown
+          onClickDropdown={() => setDropdown(!dropdown)}
+          showMenu={dropdown}
           pill
           center
-          text="10 per page"
+          text={`${limit} Per Page`}
           customCSS="min-width: 165px; width: 165px; display: inline-block"
-        />
-      </div>
+        >
+          <DropdownItem
+            onClick={() => {
+              updatePagination(10, offset);
+              setDropdown(false);
+            }}
+          >
+            10 Per Page
+          </DropdownItem>
+          <DropdownItem
+            onClick={() => {
+              updatePagination(25, offset);
+              setDropdown(false);
+            }}
+          >
+            25 Per Page
+          </DropdownItem>
+          <DropdownItem
+            onClick={() => {
+              updatePagination(50, offset);
+              setDropdown(false);
+            }}
+          >
+            50 Per Page
+          </DropdownItem>
+        </Dropdown>
+      </PaginationContainer>
     </PaginationDiv>
   );
 });

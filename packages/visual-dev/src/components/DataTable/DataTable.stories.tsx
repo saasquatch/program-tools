@@ -18,6 +18,12 @@ export default {
   component: DataTable,
 };
 
+const updatePagination = (limit: number, offset: number) => {
+  console.log("pagination updated");
+  console.log("limit", limit);
+  console.log("offset", offset);
+};
+
 const content_a = [
   { text: "Form" },
   { text: "User" },
@@ -85,7 +91,12 @@ export const FormSubmissionTable = () => {
       <Row content={content_c} />
       <Row content={content_c} />
       <Row content={content_c} />
-      <Pagination total={17} pages={[1, 2]} />
+      <Pagination
+        total={17}
+        limit={10}
+        offset={0}
+        updatePagination={updatePagination}
+      />
     </DataTable>
   );
 };
@@ -119,7 +130,12 @@ export const FormSubmissionTableWithBanner = () => {
       <Row content={content_c} />
       <Row content={content_c} />
       <Row content={content_c} />
-      <Pagination total={17} pages={[1, 2]} />
+      <Pagination
+        total={17}
+        limit={10}
+        offset={0}
+        updatePagination={updatePagination}
+      />
     </DataTable>
   );
 };
@@ -137,7 +153,12 @@ export const FormSubmissionTableEmpty = () => {
     <DataTable width="958px" empty>
       <Row variant="header" content={content_a} />
       <Row empty />
-      <Pagination />
+      <Pagination
+        total={17}
+        limit={10}
+        offset={0}
+        updatePagination={updatePagination}
+      />
     </DataTable>
   );
 };
@@ -154,12 +175,24 @@ export const FormSubmissionTableFilter = () => {
     <DataTable width="958px" empty>
       <Row variant="header" content={content_a} />
       <Row filter />
-      <Pagination />
+      <Pagination
+        total={17}
+        limit={10}
+        offset={0}
+        updatePagination={updatePagination}
+      />
     </DataTable>
   );
 };
 
-export const pagination = () => <Pagination selected={2} pages={[1, 2, 3]} />;
+export const pagination = () => (
+  <Pagination
+    total={17}
+    limit={10}
+    offset={0}
+    updatePagination={updatePagination}
+  />
+);
 
 export const header = () => {
   const content = [

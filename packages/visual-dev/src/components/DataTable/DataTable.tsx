@@ -19,9 +19,6 @@ export interface StyleProps {
 
 const DataTableDiv = styled.div<Required<StyleProps>>`
   width: ${(props) => props.width};
-  div + div {
-    margin-top: -2px;
-  }
   ${(props) => props.customCSS}
 `;
 

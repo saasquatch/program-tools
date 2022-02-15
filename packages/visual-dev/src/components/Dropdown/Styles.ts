@@ -46,7 +46,7 @@ export const button = css`
 `;
 
 export const content = css`
-  position: relative;
+  position: absolute;
   width: max-content;
   min-width: inherit;
   z-index: 100;
