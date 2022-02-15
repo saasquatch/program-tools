@@ -92,6 +92,7 @@ export class SqmRewardExchangeList {
   @Prop() redeemTitle: string = "Confirm and redeem";
 
   /**
+  * Displayed on the success screen when a user successfully exchanges for a reward.
    * @uiName Redemption Success Message
    */
   @Prop() redemptionSuccessText: string =
