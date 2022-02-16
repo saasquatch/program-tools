@@ -80,7 +80,6 @@ export function useWidget(props: SqbWidget) {
 
   useEffect(() => {
     if (props.widgetType && canLoad) {
-      console.log(locale);
       fetch({
         widgetType: props.widgetType,
         locale,
