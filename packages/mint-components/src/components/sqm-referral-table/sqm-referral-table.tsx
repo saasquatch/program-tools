@@ -233,6 +233,7 @@ function useReferralTableDemo(
           prevLabel: props.prevLabel,
           moreLabel: props.moreLabel,
         },
+        hiddenColumns: props.hiddenColumns,
         referralData: [],
         mdBreakpoint: 899,
         smBreakpoint: 599,
