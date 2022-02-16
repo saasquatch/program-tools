@@ -5,6 +5,7 @@ import { getEnvironmentSDK } from "./environment";
 import { useHost } from "../hooks/useHost";
 import { equal } from "@wry/equality";
 import debugFn from "debug";
+import { setLocale } from "./LocaleContext";
 export const debug = debugFn("sq:user-identity");
 
 const CONTEXT_NAME = "sq:user-identity";
@@ -153,6 +154,7 @@ export function setUserIdentity(identity?: UserIdentity) {
   const globalProvider = window.squatchUserIdentity;
 
   if (!equal(globalProvider.context, identity)) {
+    setLocale(undefined);
     globalProvider.context = identity;
   }
 
@@ -193,6 +195,7 @@ export function useUserIdentity(): UserIdentity | undefined {
   if (identity && !validIdentity) {
     // Likely that the JWT has expired
     setUserIdentity(undefined);
+    setLocale(undefined);
     return undefined;
   }
   return identity;

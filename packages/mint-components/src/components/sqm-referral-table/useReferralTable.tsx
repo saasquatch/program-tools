@@ -290,7 +290,7 @@ export function useReferralTable(
 
   const data = referralData?.data;
 
-  const components = useChildElements();
+  const components = useChildElements<Element>();
 
   async function getComponentData(components: Element[]) {
     // filter out loading and empty states from columns array

@@ -11,7 +11,7 @@ export interface TabElement extends Element {
 }
 
 export function useTabs() {
-  const rawTabs = useChildElements() as TabElement[];
+  const rawTabs = useChildElements<TabElement>();
   const host = useHost();
   const tabs = useMemo(
     () =>

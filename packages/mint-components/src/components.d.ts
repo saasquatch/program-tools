@@ -1008,6 +1008,10 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<GenericTableViewProps>;
+        /**
+          * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+          * @uiName Mobile Hidden Columns
+         */
         "hiddenColumns"?: string;
         /**
           * @uiName Tablet Breakpoint
@@ -1337,7 +1341,7 @@ export namespace Components {
           * @uiName Customer Note Column Title
          */
         "columnTitle": string;
-        "renderCell": (data: Reward[], locale: string) => Promise<any>;
+        "renderCell": (data: Reward, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableDateCell {
@@ -1355,7 +1359,7 @@ export namespace Components {
           * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
          */
         "dateShown": string;
-        "renderCell": (data: Reward[], locale: string) => Promise<any>;
+        "renderCell": (data: Reward, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableRewardCell {
@@ -1382,7 +1386,7 @@ export namespace Components {
           * @uiName Redeemed Amount Text
          */
         "redeemedText": string;
-        "renderCell": (data: Reward[], locale: string) => Promise<any>;
+        "renderCell": (data: Reward, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableSourceCell {
@@ -1400,7 +1404,7 @@ export namespace Components {
          */
         "anonymousUser": string;
         /**
-          * @uiName User Column Title
+          * @uiName Soruce Column Title
          */
         "columnTitle": string;
         /**
@@ -1412,7 +1416,7 @@ export namespace Components {
           * @uiName Referral Text
          */
         "referralText": string;
-        "renderCell": (data: Reward[], locale: any) => Promise<any>;
+        "renderCell": (data: Reward, locale: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward Exchange label
@@ -1455,7 +1459,7 @@ export namespace Components {
           * @uiName W9 Pending Text
          */
         "pendingUsTax": string;
-        "renderCell": (data: Reward[], locale: string) => Promise<any>;
+        "renderCell": (data: Reward, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward Status Text
@@ -3464,6 +3468,10 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<GenericTableViewProps>;
+        /**
+          * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+          * @uiName Mobile Hidden Columns
+         */
         "hiddenColumns"?: string;
         /**
           * @uiName Tablet Breakpoint
@@ -3836,7 +3844,7 @@ declare namespace LocalJSX {
          */
         "anonymousUser"?: string;
         /**
-          * @uiName User Column Title
+          * @uiName Soruce Column Title
          */
         "columnTitle"?: string;
         /**

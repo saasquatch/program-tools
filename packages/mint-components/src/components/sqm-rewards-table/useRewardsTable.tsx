@@ -172,7 +172,7 @@ export function useRewardsTable(
   );
 
   const tick = useRerenderListener();
-  const components = useChildElements();
+  const components = useChildElements<Element>();
 
   const data = rewardsData?.data;
 
@@ -189,7 +189,7 @@ export function useRewardsTable(
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r: Reward) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell([r], locale))
+        tryMethod(c, () => c.renderCell(r, locale))
       );
       const cells = (await Promise.all(cellPromise)) as VNode[];
       return cells;

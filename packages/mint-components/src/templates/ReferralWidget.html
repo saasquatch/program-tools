@@ -1,10 +1,22 @@
 <sqm-brand brand-color="#4225c4" brand-font="Nunito Sans">
-  <sqm-portal-container direction="column" padding="small" gap="xxx-large">
-    <sqm-portal-container direction="column" padding="none" gap="xxx-large">
+  <sqm-portal-container
+    direction="column"
+    padding="small"
+    gap="xxx-large"
+    display="grid"
+    max-width="100%"
+  >
+    <sqm-portal-container
+      direction="column"
+      padding="none"
+      gap="xxx-large"
+      display="grid"
+      max-width="100%"
+    >
       <sqm-hero-image
         image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"
-        header="Klip Rewards"
-        description="Refer a friend to Klip and earn up to $1200 in rewards"
+        header="MyCompany Rewards"
+        description="Refer a friend to MyCompany and earn up to $1200 in rewards"
         layout="columns"
         image-pos="right"
         background-color="#F9F9F9"
@@ -17,12 +29,16 @@
       gap="xxx-large"
       max-width="770px"
       center
+      display="grid"
     >
       <sqm-portal-container
-        justify-content="center"
+        justify-content="start"
         direction="row"
         center
         display="flex"
+        gap="xx-large"
+        max-width="100%"
+        padding="none"
       >
         <sqm-stat-container space="xxx-large" display="flex">
           <sqm-big-stat
@@ -45,15 +61,31 @@
           </sqm-big-stat>
         </sqm-stat-container>
       </sqm-portal-container>
-
-      <sqm-portal-container gap="large">
-        <sqm-titled-section text-align="center" label-margin="xxx-small">
+      <sqm-portal-container
+        gap="large"
+        direction="column"
+        display="grid"
+        max-width="100%"
+        padding="none"
+      >
+        <sqm-titled-section
+          text-align="center"
+          label-margin="xxx-small"
+          padding="none"
+        >
           <sqm-text slot="label">
-            <h3>Get rewarded when your friend uses Klip</h3>
+            <h3>Get rewarded when your friend uses MyCompany</h3>
           </sqm-text>
         </sqm-titled-section>
-        <sqm-referral-card>
-          <sqm-portal-container gap="large" slot="left">
+        <sqm-referral-card vertical-alignment="start">
+          <sqm-portal-container
+            gap="large"
+            slot="left"
+            direction="column"
+            display="grid"
+            max-width="100%"
+            padding="none"
+          >
             <sqm-text
               >They’ll get a $50 credit towards a new account and you’ll get:
             </sqm-text>
@@ -61,54 +93,98 @@
               <sqm-timeline-entry
                 reward="$50"
                 unit="visa giftcard"
-                desc="Your friend purchases Klip Business"
+                desc="Your friend purchases MyCompany Business"
+                icon="circle"
               >
               </sqm-timeline-entry>
               <sqm-timeline-entry
                 reward="$200"
                 unit="visa giftcard"
-                desc="Our sales team qualifies your friend as a good fit for Klip Enterprise"
+                desc="Our sales team qualifies your friend as a good fit for MyCompany Enterprise"
+                icon="circle"
               >
               </sqm-timeline-entry>
               <sqm-timeline-entry
                 reward="$1000"
                 unit="visa giftcard"
-                desc="Your friend purchases Klip Enterprise"
+                desc="Your friend purchases MyCompany Enterprise"
+                icon="circle"
               >
               </sqm-timeline-entry>
             </sqm-timeline>
           </sqm-portal-container>
-          <sqm-portal-container gap="large" slot="right">
+          <sqm-portal-container
+            gap="large"
+            slot="right"
+            direction="column"
+            display="grid"
+            max-width="100%"
+            padding="none"
+          >
             <sqm-text>Choose how you want to share: </sqm-text>
             <sqm-text>
               <sub>Your unique referral link:</sub>
-              <sqm-share-link> </sqm-share-link>
+              <sqm-share-link
+                tooltip-text="Copied to Clipboard"
+                tooltip-lifespan="1000"
+              >
+              </sqm-share-link>
             </sqm-text>
-            <sqm-portal-container gap="x-small">
-              <sqm-share-button medium="email">
+            <sqm-portal-container
+              gap="x-small"
+              direction="column"
+              display="grid"
+              max-width="100%"
+              padding="none"
+            >
+              <sqm-share-button
+                medium="email"
+                icon-slot="prefix"
+                size="medium"
+                type="default"
+              >
                 Share via email
               </sqm-share-button>
-              <sqm-share-button medium="linkedin">
+              <sqm-share-button
+                medium="linkedin"
+                icon-slot="prefix"
+                size="medium"
+                type="default"
+              >
                 Share on LinkedIn
               </sqm-share-button>
-              <sqm-share-button medium="twitter">
+              <sqm-share-button
+                medium="twitter"
+                icon-slot="prefix"
+                size="medium"
+                type="default"
+              >
                 Tweet about us
               </sqm-share-button>
             </sqm-portal-container>
           </sqm-portal-container>
         </sqm-referral-card>
       </sqm-portal-container>
-      <sqm-tabs>
+      <sqm-tabs placement="top">
         <sqm-tab header="Leaderboard">
-          <sqm-portal-container gap="large">
+          <sqm-portal-container
+            gap="large"
+            direction="column"
+            display="grid"
+            max-width="100%"
+            padding="none"
+          >
             <sqm-hero-image
               image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000248/squatch-assets/MVgOJn7.png"
-              description="Be one of the top 3 referrers at the end of the year and receive Klip free for 1 year!"
+              description="Be one of the top 3 referrers at the end of the year and receive MyCompany free for 1 year!"
               layout="columns"
-              image-percentage="33%"
+              image-percentage="30"
               padding-image="large"
               padding-text="large"
               background-color="#EFF8FE"
+              image-mobile-pos="top"
+              image-pos="right"
+              overlay-opacity="0.75"
             >
             </sqm-hero-image>
             <sqm-leaderboard
@@ -117,23 +193,49 @@
               rankheading="Rank"
               rank-type="rowNumber"
               leaderboard-type="topStartedReferrers"
-              show-rank="true"
+              show-rank
+              anonymous-user="Anonymous User"
             >
               <sqm-empty
                 empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard2.png"
                 empty-state-header="View your rank in the leaderboard"
                 empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
-              ></sqm-empty>
+              >
+              </sqm-empty>
             </sqm-leaderboard>
           </sqm-portal-container>
         </sqm-tab>
         <sqm-tab header="Referral history">
-          <sqm-referral-table per-page="4" hidden-columns="2">
-            <sqm-referral-table-user-column column-title="User">
+          <sqm-referral-table
+            per-page="4"
+            hidden-columns="2"
+            md-breakpoint="899"
+            more-label="Next"
+            prev-label="Prev"
+            show-labels
+            sm-breakpoint="634"
+          >
+            <sqm-referral-table-user-column
+              column-title="User"
+              anonymous-user="Anonymous User"
+              deleted-user="Deleted User"
+            >
             </sqm-referral-table-user-column>
-            <sqm-referral-table-status-column column-title="Referral status">
+            <sqm-referral-table-status-column
+              column-title="Referral status"
+              converted-status-text="Converted"
+              in-progress-status-text="In Progress"
+            >
             </sqm-referral-table-status-column>
-            <sqm-referral-table-rewards-column>
+            <sqm-referral-table-rewards-column
+              column-title="Rewards"
+              expiring-text="Expiring in"
+              fuel-tank-text="Your code is"
+              pending-for-text="{status} for {date}"
+              reward-received-text="Reward received on"
+              status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }"
+              status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }"
+            >
             </sqm-referral-table-rewards-column>
             <sqm-referral-table-date-column
               column-title="Date referred"

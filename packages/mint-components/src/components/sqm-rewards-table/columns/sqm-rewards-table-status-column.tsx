@@ -52,12 +52,11 @@ export class RewardTableStatusColumn implements RewardTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Reward[], locale: string) {
-    const rewardData = data?.[0];
+  async renderCell(data: Reward, locale: string) {
     return (
       <sqm-rewards-table-status-cell
         statusText={this.statusText}
-        reward={rewardData}
+        reward={data}
         expiryText={this.expiryText}
         pendingScheduled={this.pendingScheduled}
         pendingUsTax={this.pendingUsTax}
