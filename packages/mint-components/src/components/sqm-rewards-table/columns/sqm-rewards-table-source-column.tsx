@@ -51,10 +51,10 @@ export class RewardTableUserColumn implements RewardTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Reward[], locale) {
+  async renderCell(data: Reward, locale) {
     return (
       <sqm-rewards-table-source-cell
-        reward={data?.[0]}
+        reward={data}
         anonymousUserText={this.anonymousUser}
         deletedUserText={this.deletedUser}
         rewardExchangeText={this.rewardExchangeText}

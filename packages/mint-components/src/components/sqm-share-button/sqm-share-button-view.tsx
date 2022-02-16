@@ -31,14 +31,14 @@ export interface ShareButtonViewProps {
   size?: "small" | "medium" | "large";
 
   icon?: string;
-  hideIcon?: boolean;
-  hideText?: boolean;
-  iconSlot?: "prefix" | "suffix";
+  hideicon?: boolean;
+  hidetext?: boolean;
+  iconslot?: "prefix" | "suffix";
   onClick?: () => void;
   hide?: boolean;
-  borderRadius?: number;
-  backgroundColor?: string;
-  textColor?: string;
+  borderradius?: number;
+  backgroundcolor?: string;
+  textcolor?: string;
 }
 
 const medium = {
@@ -72,34 +72,34 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
 	*::part(base) {
 	border: none;
 			--sl-focus-ring-color-primary: ${
-        props.backgroundColor
-          ? props.backgroundColor
+        props.backgroundcolor
+          ? props.backgroundcolor
           : props.medium
           ? medium[props.medium].color
           : ""
       }80!important;
 
 	background: ${
-    props.backgroundColor
-      ? props.backgroundColor
+    props.backgroundcolor
+      ? props.backgroundcolor
       : props.medium
       ? medium[props.medium].color
       : ""
   };
 	color: ${
-    props.textColor
-      ? props.textColor
+    props.textcolor
+      ? props.textcolor
       : props.medium
       ? medium[props.medium].text
       : ""
   };
-	border-radius: ${props.borderRadius ? props.borderRadius + "px" : ""};
+	border-radius: ${props.borderradius ? props.borderradius + "px" : ""};
 	}
 
 	*::part(base):hover {
 		border-color: ${
-      props.backgroundColor
-        ? props.backgroundColor
+      props.backgroundcolor
+        ? props.backgroundcolor
         : props.medium
         ? medium[props.medium].color
         : ""
@@ -108,8 +108,8 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
 
 	*::part(base):focus {
 		border-color: ${
-      props.backgroundColor
-        ? props.backgroundColor
+      props.backgroundcolor
+        ? props.backgroundcolor
         : props.medium
         ? medium[props.medium].color
         : ""
@@ -138,14 +138,14 @@ export function ShareButtonView(props: ShareButtonViewProps, children: VNode) {
         onClick={props.onClick}
         exportparts={`base: ${props.type}sharebutton-base`}
       >
-        {!props.hideIcon && (
+        {!props.hideicon && (
           <sl-icon
-            slot={props.iconSlot || "prefix"}
+            slot={props.iconslot || "prefix"}
             name={props.icon ? props.icon : medium[props.medium].icon}
             exportparts="icon"
           ></sl-icon>
         )}
-        {!props.hideText && children}
+        {!props.hidetext && children}
       </sl-button>
     </div>
   );

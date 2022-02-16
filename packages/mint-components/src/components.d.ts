@@ -1182,6 +1182,7 @@ export namespace Components {
          */
         "continueText": string;
         /**
+          * Displayed on the reward selection page.
           * @uiName Continue to Confirmation Button Text
          */
         "continueToConfirmationText": string;
@@ -1212,6 +1213,7 @@ export namespace Components {
          */
         "promoCode": string;
         /**
+          * Shown if an error occurs when loading the reward exchange.
           * @uiName Reward List Error Message
          */
         "queryError": string;
@@ -1220,14 +1222,17 @@ export namespace Components {
          */
         "redeemText": string;
         /**
+          * Displayed as the header for the confirmation page.
           * @uiName Confirmation Title Text
          */
         "redeemTitle": string;
         /**
+          * Shown if an error occurs during the reward exchange.
           * @uiName Redemption Error Message
          */
         "redemptionError": string;
         /**
+          * Displayed on the success screen when a user successfully exchanges for a reward.
           * @uiName Redemption Success Message
          */
         "redemptionSuccessText": string;
@@ -1259,6 +1264,7 @@ export namespace Components {
          */
         "skeletonCardNum": number;
         /**
+          * Displayed on the reward exchange cards.
           * @uiName Reward Exchange Amount Text
          */
         "sourceAmountMessage": string;
@@ -1318,7 +1324,7 @@ export namespace Components {
           * @uiName Customer Note Column Title
          */
         "columnTitle": string;
-        "renderCell": (data: Reward[], locale: string) => Promise<any>;
+        "renderCell": (data: Reward, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableDateCell {
@@ -1336,7 +1342,7 @@ export namespace Components {
           * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
          */
         "dateShown": string;
-        "renderCell": (data: Reward[], locale: string) => Promise<any>;
+        "renderCell": (data: Reward, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableRewardCell {
@@ -1363,7 +1369,7 @@ export namespace Components {
           * @uiName Redeemed Amount Text
          */
         "redeemedText": string;
-        "renderCell": (data: Reward[], locale: string) => Promise<any>;
+        "renderCell": (data: Reward, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
     }
     interface SqmRewardsTableSourceCell {
@@ -1393,7 +1399,7 @@ export namespace Components {
           * @uiName Referral Text
          */
         "referralText": string;
-        "renderCell": (data: Reward[], locale: any) => Promise<any>;
+        "renderCell": (data: Reward, locale: any) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward Exchange label
@@ -1436,7 +1442,7 @@ export namespace Components {
           * @uiName W9 Pending Text
          */
         "pendingUsTax": string;
-        "renderCell": (data: Reward[], locale: string) => Promise<any>;
+        "renderCell": (data: Reward, locale: string) => Promise<any>;
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward Status Text
@@ -1524,11 +1530,11 @@ export namespace Components {
           * @uiName Button background color
           * @uiWidget color
          */
-        "backgroundColor"?: string;
+        "backgroundcolor"?: string;
         /**
           * @uiName Configure border radius with pixel amount
          */
-        "borderRadius"?: number;
+        "borderradius"?: number;
         /**
           * @undocumented 
           * @uiType object
@@ -1541,11 +1547,11 @@ export namespace Components {
         /**
           * @uiName Hide the icon
          */
-        "hideIcon"?: boolean;
+        "hideicon"?: boolean;
         /**
           * @uiName Hide the text
          */
-        "hideText"?: boolean;
+        "hidetext"?: boolean;
         /**
           * Options available at https://shoelace.style/components/icon
           * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
@@ -1557,7 +1563,7 @@ export namespace Components {
           * @uiEnum ["prefix", "suffix" ]
           * @uiEnumNames ["Prefix", "Suffix"]
          */
-        "iconSlot"?: "prefix" | "suffix";
+        "iconslot"?: "prefix" | "suffix";
         /**
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
@@ -1589,11 +1595,11 @@ export namespace Components {
         /**
           * @uiName Text used for native sharing (mobile only)
          */
-        "shareText"?: string;
+        "sharetext"?: string;
         /**
           * @uiName Title used for native sharing (mobile only)
          */
-        "shareTitle"?: string;
+        "sharetitle"?: string;
         /**
           * @uiName Button Size
           * @uiType string
@@ -1605,7 +1611,7 @@ export namespace Components {
           * @uiName Button text color
           * @uiWidget color
          */
-        "textColor"?: string;
+        "textcolor"?: string;
         /**
           * @uiType string
           * @uiName Button Style
@@ -1634,12 +1640,12 @@ export namespace Components {
           * The number of milliseconds that the tooltip will appear for
           * @uiName Tooltip lifespan
          */
-        "tooltipLifespan": number;
+        "tooltiplifespan": number;
         /**
           * This is shown after someone has successfully copied the cpde to the clipboard.
           * @uiName Tooltip text
          */
-        "tooltipText": string;
+        "tooltiptext": string;
     }
     interface SqmShareLink {
         /**
@@ -1653,15 +1659,15 @@ export namespace Components {
          */
         "programId"?: string;
         /**
-          * This is shown after someone has successfully copied the link to the clipboard.
-          * @uiName Tooltip text
-         */
-        "tooltipText": string;
-        /**
           * The number of milliseconds that the tooltip will appear for
           * @uiName Tooltip lifespan
          */
         "tooltiplifespan": number;
+        /**
+          * This is shown after someone has successfully copied the link to the clipboard.
+          * @uiName Tooltip text
+         */
+        "tooltiptext": string;
     }
     interface SqmStatContainer {
         /**
@@ -3605,6 +3611,7 @@ declare namespace LocalJSX {
          */
         "continueText"?: string;
         /**
+          * Displayed on the reward selection page.
           * @uiName Continue to Confirmation Button Text
          */
         "continueToConfirmationText"?: string;
@@ -3635,6 +3642,7 @@ declare namespace LocalJSX {
          */
         "promoCode"?: string;
         /**
+          * Shown if an error occurs when loading the reward exchange.
           * @uiName Reward List Error Message
          */
         "queryError"?: string;
@@ -3643,14 +3651,17 @@ declare namespace LocalJSX {
          */
         "redeemText"?: string;
         /**
+          * Displayed as the header for the confirmation page.
           * @uiName Confirmation Title Text
          */
         "redeemTitle"?: string;
         /**
+          * Shown if an error occurs during the reward exchange.
           * @uiName Redemption Error Message
          */
         "redemptionError"?: string;
         /**
+          * Displayed on the success screen when a user successfully exchanges for a reward.
           * @uiName Redemption Success Message
          */
         "redemptionSuccessText"?: string;
@@ -3682,6 +3693,7 @@ declare namespace LocalJSX {
          */
         "skeletonCardNum"?: number;
         /**
+          * Displayed on the reward exchange cards.
           * @uiName Reward Exchange Amount Text
          */
         "sourceAmountMessage"?: string;
@@ -3937,11 +3949,11 @@ declare namespace LocalJSX {
           * @uiName Button background color
           * @uiWidget color
          */
-        "backgroundColor"?: string;
+        "backgroundcolor"?: string;
         /**
           * @uiName Configure border radius with pixel amount
          */
-        "borderRadius"?: number;
+        "borderradius"?: number;
         /**
           * @undocumented 
           * @uiType object
@@ -3954,11 +3966,11 @@ declare namespace LocalJSX {
         /**
           * @uiName Hide the icon
          */
-        "hideIcon"?: boolean;
+        "hideicon"?: boolean;
         /**
           * @uiName Hide the text
          */
-        "hideText"?: boolean;
+        "hidetext"?: boolean;
         /**
           * Options available at https://shoelace.style/components/icon
           * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
@@ -3970,7 +3982,7 @@ declare namespace LocalJSX {
           * @uiEnum ["prefix", "suffix" ]
           * @uiEnumNames ["Prefix", "Suffix"]
          */
-        "iconSlot"?: "prefix" | "suffix";
+        "iconslot"?: "prefix" | "suffix";
         /**
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
@@ -4002,11 +4014,11 @@ declare namespace LocalJSX {
         /**
           * @uiName Text used for native sharing (mobile only)
          */
-        "shareText"?: string;
+        "sharetext"?: string;
         /**
           * @uiName Title used for native sharing (mobile only)
          */
-        "shareTitle"?: string;
+        "sharetitle"?: string;
         /**
           * @uiName Button Size
           * @uiType string
@@ -4018,7 +4030,7 @@ declare namespace LocalJSX {
           * @uiName Button text color
           * @uiWidget color
          */
-        "textColor"?: string;
+        "textcolor"?: string;
         /**
           * @uiType string
           * @uiName Button Style
@@ -4047,12 +4059,12 @@ declare namespace LocalJSX {
           * The number of milliseconds that the tooltip will appear for
           * @uiName Tooltip lifespan
          */
-        "tooltipLifespan"?: number;
+        "tooltiplifespan"?: number;
         /**
           * This is shown after someone has successfully copied the cpde to the clipboard.
           * @uiName Tooltip text
          */
-        "tooltipText"?: string;
+        "tooltiptext"?: string;
     }
     interface SqmShareLink {
         /**
@@ -4066,15 +4078,15 @@ declare namespace LocalJSX {
          */
         "programId"?: string;
         /**
-          * This is shown after someone has successfully copied the link to the clipboard.
-          * @uiName Tooltip text
-         */
-        "tooltipText"?: string;
-        /**
           * The number of milliseconds that the tooltip will appear for
           * @uiName Tooltip lifespan
          */
         "tooltiplifespan"?: number;
+        /**
+          * This is shown after someone has successfully copied the link to the clipboard.
+          * @uiName Tooltip text
+         */
+        "tooltiptext"?: string;
     }
     interface SqmStatContainer {
         /**

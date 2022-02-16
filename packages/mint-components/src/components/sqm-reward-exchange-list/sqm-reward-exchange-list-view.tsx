@@ -814,7 +814,7 @@ export function RewardExchangeView(props: RewardExchangeViewProps) {
             {states.content.text.promoCode}
             <ShareLinkView
               shareString={data.fuelTankCode}
-              tooltipText={states?.content?.text.tooltipText}
+              tooltiptext={states?.content?.text.tooltipText}
               open={states.open}
               onClick={callbacks.copyFuelTankCode}
             ></ShareLinkView>

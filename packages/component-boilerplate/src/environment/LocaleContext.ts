@@ -47,7 +47,7 @@ function _lazilyStartGlobally() {
       initialState: locale || window.widgetIdent?.locale || undefined,
       contextName: CONTEXT_NAME,
     }).start();
-  } else if (locale && locale !== globalProvider.context) {
+  } else if (locale !== globalProvider.context) {
     globalProvider.context = locale;
   }
 }
@@ -56,4 +56,14 @@ export function useLocale(): string | undefined {
   _lazilyStartGlobally();
   const host = useHost();
   return useDomContext<string>(host, CONTEXT_NAME);
+}
+
+/**
+ * Overide the globally defined Locale context
+ *
+ * @param locale the new locale used by the user
+ */
+export function setLocale(locale: string) {
+  const globalProvider = window.squatchLocale;
+  if (globalProvider) globalProvider.context = locale;
 }

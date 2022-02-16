@@ -76,7 +76,7 @@ export const Dashboard = () => {
     shareString: "https://ssqt.co/johnsmithrox",
     open: false,
     disabled: false,
-    tooltipText: "Share link copied",
+    tooltiptext: "Share link copied",
     onClick: () => console.log("Share link copied"),
   };
 
@@ -84,7 +84,7 @@ export const Dashboard = () => {
     shareString: "JOHNSMITH1",
     open: false,
     disabled: false,
-    tooltipText: "Share code copied",
+    tooltiptext: "Share code copied",
     onClick: () => console.log("Share code copied"),
   };
 

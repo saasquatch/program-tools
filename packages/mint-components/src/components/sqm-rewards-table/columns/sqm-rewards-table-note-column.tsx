@@ -22,8 +22,8 @@ export class RewardTableCustomerNoteColumn implements RewardTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Reward[], locale: string) {
-    const reward = data?.[0];
+  async renderCell(data: Reward, locale: string) {
+    const reward = data;
     return (
       <sqm-rewards-table-customer-note-cell
         note={reward?.meta?.message}

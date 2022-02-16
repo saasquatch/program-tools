@@ -34,7 +34,7 @@ export class ShareCode {
   @Prop({
     attribute: "tooltip-text",
   })
-  tooltipText: string = "Copied to Clipboard";
+  tooltiptext: string = "Copied to Clipboard";
   /**
    * The number of milliseconds that the tooltip will appear for
    *
@@ -43,7 +43,7 @@ export class ShareCode {
   @Prop({
     attribute: "tooltip-lifespan",
   })
-  tooltipLifespan: number = DEFAULT_TOOLTIP_LIFESPAN;
+  tooltiplifespan: number = DEFAULT_TOOLTIP_LIFESPAN;
   /**
    * @undocumented
    * @uiType object
@@ -70,14 +70,14 @@ function useDemoShareCode(props: ShareCode): ShareLinkViewProps {
   return deepmerge(
     {
       shareString,
-      tooltipText: props.tooltipText,
+      tooltiptext: props.tooltiptext,
       open,
       onClick: () => {
         // Should well supported: https://developer.mozilla.org/en-US/docs/Web/API/Clipboard#browser_compatibility
         // Only if called from a user-initiated event
         navigator.clipboard.writeText(shareString);
         setOpen(true);
-        setTimeout(() => setOpen(false), props.tooltipLifespan);
+        setTimeout(() => setOpen(false), props.tooltiplifespan);
       },
     },
     props.demoData || {},
