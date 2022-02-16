@@ -8,7 +8,6 @@ import { CheckmarkFilled, Gift } from "./SVGs";
 import { ExchangeItem, ExchangeStep, Stages } from "./useRewardExchangeList";
 
 type TextContent = {
-  buttonText: string;
   notAvailableError: string;
   chooseRewardTitle: string;
   chooseAmountTitle: string;

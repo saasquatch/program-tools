@@ -71,8 +71,7 @@ export class RewardTableSourceCell {
       );
     };
 
-    // TODO: user type
-    const getFullName = (user: any) => {
+    const getFullName = (user: { firstName: string; lastName: string }) => {
       if (!user) return this.deletedUserText;
       if (!user.firstName && !user.lastName) return this.anonymousUserText;
 

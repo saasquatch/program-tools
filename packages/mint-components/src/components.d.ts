@@ -55,6 +55,7 @@ export namespace Components {
           * @uiName Alignment - controls the alignment of the flexbox
           * @uiType string
           * @uiEnum ["left", "right", "center"]
+          * @uiEnumNames ["Left", "Right", "Center"]
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -108,6 +109,7 @@ export namespace Components {
           * @uiName Direction
           * @uiType string
           * @uiEnum ["row", "column"]
+          * @uiEnumNames ["Row", "Column"]
          */
         "direction": "row" | "column";
         /**
@@ -239,6 +241,7 @@ export namespace Components {
           * @uiName Image Mobile Position
           * @uiType string
           * @uiEnum ["top", "bottom"]
+          * @uiEnumNames ["Top", "Bottom"]
          */
         "imageMobilePos": "top" | "bottom";
         /**
@@ -250,6 +253,7 @@ export namespace Components {
           * @uiName Image Position
           * @uiType string
           * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
         "imagePos": "left" | "center" | "right";
         /**
@@ -261,6 +265,7 @@ export namespace Components {
           * @uiName Image Layout
           * @uiType string
           * @uiEnum ["overlay", "columns"]
+          * @uiEnumNames ["Overlay", "Two-column"]
          */
         "layout": "overlay" | "columns";
         /**
@@ -276,12 +281,14 @@ export namespace Components {
           * @uiName Image Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingImage": Spacing;
         /**
           * @uiName Text Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingText": Spacing;
         /**
@@ -298,6 +305,7 @@ export namespace Components {
           * @uiName Position Alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
         "alignment": "left" | "center" | "right";
         /**
@@ -341,12 +349,14 @@ export namespace Components {
           * @uiName Leaderboard type
           * @uiType string
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
+          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
          */
         "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
         /**
           * @uiName Rank type
           * @uiType string
           * @uiEnum ["rowNumber", "rank", "denseRank"]
+          * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
         /**
@@ -382,6 +392,7 @@ export namespace Components {
           * @uiName Leaderboard type
           * @uiType string
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
+          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
          */
         "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
         /**
@@ -392,6 +403,7 @@ export namespace Components {
           * @uiName Default rank
           * @uiType string
           * @uiEnum ["rowNumber", "rank", "denseRank"]
+          * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
         /**
@@ -478,12 +490,14 @@ export namespace Components {
           * @uiName Specify padding on the popup contents when in embedded mode
           * @uiType string
           * @uiEnum ["none", "small", "medium", "large"]
+          * @uiEnumNames ["None", "Small", "Medium", "Large"]
          */
         "embedPadding"?: "none" | "small" | "medium" | "large";
         /**
           * @uiName Specify padding on the popup contents when in popup mode
           * @uiType string
           * @uiEnum ["none", "small", "medium", "large"]
+          * @uiEnumNames ["None", "Small", "Medium", "Large"]
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
@@ -539,24 +553,28 @@ export namespace Components {
           * @uiName Direction
           * @uiType string
           * @uiEnum ["row", "column"]
+          * @uiEnumNames ["Row", "Column"]
          */
         "direction": "row" | "column";
         /**
           * @uiName Display
           * @uiType string
           * @uiEnum ["grid", "flex"]
+          * @uiEnumNames ["Grid", "Flex"]
          */
         "display": "grid" | "flex";
         /**
           * @uiName Gap
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "gap": Spacing;
         /**
           * @uiName Justify content
           * @uiType string
           * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
+          * @uiEnumNames ["Start", "Center", "End", "Space Between", "Space Around", "Space Evenly"]
          */
         "justifyContent"?: | "start"
     | "center"
@@ -576,6 +594,7 @@ export namespace Components {
           * @uiName Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "padding": Spacing;
     }
@@ -959,6 +978,7 @@ export namespace Components {
           * @uiName Vertical Aligment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
+          * @uiEnumNames ["Start", "Center", "End"]
          */
         "verticalAlignment": "start" | "center" | "end";
     }
@@ -1051,6 +1071,7 @@ export namespace Components {
           * @uiName Date Displayed
           * @uiType string
           * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
+          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended",]
          */
         "dateShown": ReferralDates;
         "renderCell": (data: Referral, locale: string) => Promise<any>;
@@ -1157,10 +1178,6 @@ export namespace Components {
           * @uiName Back Button Text
          */
         "backText": string;
-        /**
-          * @uiName Exchange button text
-         */
-        "buttonText": string;
         /**
           * @uiName Cancel Button Text
          */
@@ -1490,12 +1507,12 @@ export namespace Components {
          */
         "iconSlot": string;
         /**
-          * Sets button to be full width in mobile resolutions
+          * The button becomes full width if the screen size is smaller than 500px
           * @uiName Full Width on Mobile
          */
         "mobile"?: boolean;
         /**
-          * Draws an outlined button with primary color.
+          * Draws an outlined button.
           * @uiName Outline
          */
         "outline": boolean;
@@ -2498,6 +2515,7 @@ declare namespace LocalJSX {
           * @uiName Alignment - controls the alignment of the flexbox
           * @uiType string
           * @uiEnum ["left", "right", "center"]
+          * @uiEnumNames ["Left", "Right", "Center"]
          */
         "alignment"?: "left" | "right" | "center";
         /**
@@ -2551,6 +2569,7 @@ declare namespace LocalJSX {
           * @uiName Direction
           * @uiType string
           * @uiEnum ["row", "column"]
+          * @uiEnumNames ["Row", "Column"]
          */
         "direction"?: "row" | "column";
         /**
@@ -2682,6 +2701,7 @@ declare namespace LocalJSX {
           * @uiName Image Mobile Position
           * @uiType string
           * @uiEnum ["top", "bottom"]
+          * @uiEnumNames ["Top", "Bottom"]
          */
         "imageMobilePos"?: "top" | "bottom";
         /**
@@ -2693,6 +2713,7 @@ declare namespace LocalJSX {
           * @uiName Image Position
           * @uiType string
           * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
         "imagePos"?: "left" | "center" | "right";
         /**
@@ -2704,6 +2725,7 @@ declare namespace LocalJSX {
           * @uiName Image Layout
           * @uiType string
           * @uiEnum ["overlay", "columns"]
+          * @uiEnumNames ["Overlay", "Two-column"]
          */
         "layout"?: "overlay" | "columns";
         /**
@@ -2719,12 +2741,14 @@ declare namespace LocalJSX {
           * @uiName Image Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingImage"?: Spacing;
         /**
           * @uiName Text Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "paddingText"?: Spacing;
         /**
@@ -2741,6 +2765,7 @@ declare namespace LocalJSX {
           * @uiName Position Alignment
           * @uiType string
           * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
         "alignment"?: "left" | "center" | "right";
         /**
@@ -2784,12 +2809,14 @@ declare namespace LocalJSX {
           * @uiName Leaderboard type
           * @uiType string
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
+          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
          */
         "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
         /**
           * @uiName Rank type
           * @uiType string
           * @uiEnum ["rowNumber", "rank", "denseRank"]
+          * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
         /**
@@ -2825,6 +2852,7 @@ declare namespace LocalJSX {
           * @uiName Leaderboard type
           * @uiType string
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
+          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
          */
         "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
         /**
@@ -2835,6 +2863,7 @@ declare namespace LocalJSX {
           * @uiName Default rank
           * @uiType string
           * @uiEnum ["rowNumber", "rank", "denseRank"]
+          * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
         /**
@@ -2921,12 +2950,14 @@ declare namespace LocalJSX {
           * @uiName Specify padding on the popup contents when in embedded mode
           * @uiType string
           * @uiEnum ["none", "small", "medium", "large"]
+          * @uiEnumNames ["None", "Small", "Medium", "Large"]
          */
         "embedPadding"?: "none" | "small" | "medium" | "large";
         /**
           * @uiName Specify padding on the popup contents when in popup mode
           * @uiType string
           * @uiEnum ["none", "small", "medium", "large"]
+          * @uiEnumNames ["None", "Small", "Medium", "Large"]
          */
         "popupPadding"?: "none" | "small" | "medium" | "large";
         /**
@@ -2982,24 +3013,28 @@ declare namespace LocalJSX {
           * @uiName Direction
           * @uiType string
           * @uiEnum ["row", "column"]
+          * @uiEnumNames ["Row", "Column"]
          */
         "direction"?: "row" | "column";
         /**
           * @uiName Display
           * @uiType string
           * @uiEnum ["grid", "flex"]
+          * @uiEnumNames ["Grid", "Flex"]
          */
         "display"?: "grid" | "flex";
         /**
           * @uiName Gap
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "gap"?: Spacing;
         /**
           * @uiName Justify content
           * @uiType string
           * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
+          * @uiEnumNames ["Start", "Center", "End", "Space Between", "Space Around", "Space Evenly"]
          */
         "justifyContent"?: | "start"
     | "center"
@@ -3019,6 +3054,7 @@ declare namespace LocalJSX {
           * @uiName Padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "padding"?: Spacing;
     }
@@ -3402,6 +3438,7 @@ declare namespace LocalJSX {
           * @uiName Vertical Aligment
           * @uiType string
           * @uiEnum ["start", "center", "end"]
+          * @uiEnumNames ["Start", "Center", "End"]
          */
         "verticalAlignment"?: "start" | "center" | "end";
     }
@@ -3492,6 +3529,7 @@ declare namespace LocalJSX {
           * @uiName Date Displayed
           * @uiType string
           * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
+          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended",]
          */
         "dateShown"?: ReferralDates;
     }
@@ -3586,10 +3624,6 @@ declare namespace LocalJSX {
           * @uiName Back Button Text
          */
         "backText"?: string;
-        /**
-          * @uiName Exchange button text
-         */
-        "buttonText"?: string;
         /**
           * @uiName Cancel Button Text
          */
@@ -3909,12 +3943,12 @@ declare namespace LocalJSX {
          */
         "iconSlot"?: string;
         /**
-          * Sets button to be full width in mobile resolutions
+          * The button becomes full width if the screen size is smaller than 500px
           * @uiName Full Width on Mobile
          */
         "mobile"?: boolean;
         /**
-          * Draws an outlined button with primary color.
+          * Draws an outlined button.
           * @uiName Outline
          */
         "outline"?: boolean;

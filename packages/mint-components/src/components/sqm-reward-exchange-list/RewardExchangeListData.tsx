@@ -14,7 +14,6 @@ const baseResponse = (
   states: {
     content: {
       text: {
-        buttonText: "Exchange Rewards",
         notAvailableError:
           "{unavailableReasonCode, select, NOT_CHAMPION {CUSTOM ERROR MESSAGE } US_TAX {Exceeds tax limit for this year} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {unavailableReasonCode} }",
         chooseRewardTitle: "Rewards",

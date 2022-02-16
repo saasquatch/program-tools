@@ -154,17 +154,44 @@ export const ScrollTabGroupInner = () => {
 export const ShoelaceProps = () => {
   return (
     <div>
-      <h3>button-type:</h3>
-      <sqm-scroll button-type="primary">Primary</sqm-scroll>
-      <br />
-      <sqm-scroll button-type="success">Success</sqm-scroll>
-      <br />
-      <sqm-scroll button-type="neutral">Neutral</sqm-scroll>
-      <br />
-      <sqm-scroll button-type="warning">Warning</sqm-scroll>
-      <br />
-      <sqm-scroll button-type="danger">Danger</sqm-scroll>
-      <br />
+      <div style={{ display: "flex", gap: "60px" }}>
+        <div style={{ textAlign: "center" }}>
+          <h3>Type:</h3>
+          <sqm-scroll button-type="primary">Primary</sqm-scroll>
+          <br />
+          <sqm-scroll button-type="success">Success</sqm-scroll>
+          <br />
+          <sqm-scroll button-type="neutral">Neutral</sqm-scroll>
+          <br />
+          <sqm-scroll button-type="warning">Warning</sqm-scroll>
+          <br />
+          <sqm-scroll button-type="danger">Danger</sqm-scroll>
+        </div>
+        <div style={{ textAlign: "center" }}>
+          <h3>Outline:</h3>
+          <sqm-scroll outline button-type="primary">
+            Primary
+          </sqm-scroll>
+          <br />
+          <sqm-scroll outline button-type="success">
+            Success
+          </sqm-scroll>
+          <br />
+          <sqm-scroll outline button-type="neutral">
+            Neutral
+          </sqm-scroll>
+          <br />
+          <sqm-scroll outline button-type="warning">
+            Warning
+          </sqm-scroll>
+          <br />
+          <sqm-scroll outline button-type="danger">
+            Danger
+          </sqm-scroll>
+        </div>
+      </div>
+      <br /> <hr />
+      <h3>Text:</h3>
       <sqm-scroll button-type="text">Text</sqm-scroll>
       <br /> <hr />
       <h3>Size:</h3>
@@ -192,9 +219,6 @@ export const ShoelaceProps = () => {
       <br /> <hr />
       <h3>Circle:</h3>
       <sqm-scroll circle>X</sqm-scroll>
-      <br /> <hr />
-      <h3>Outline:</h3>
-      <sqm-scroll outline>Button</sqm-scroll>
       <br /> <hr />
       <h3>Mobile Friendly:</h3>
       <sqm-scroll mobile>Button</sqm-scroll>
