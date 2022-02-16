@@ -21,6 +21,7 @@ export class Image {
    * @uiName Position Alignment
    * @uiType string
    * @uiEnum ["left", "center", "right"]
+   * @uiEnumNames ["Left", "Center", "Right"]
    */
   @Prop() alignment: "left" | "center" | "right" = "center";
 

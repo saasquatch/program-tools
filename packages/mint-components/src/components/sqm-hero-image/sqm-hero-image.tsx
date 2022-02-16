@@ -45,6 +45,7 @@ export class HeroImage {
    * @uiName Image Layout
    * @uiType string
    * @uiEnum ["overlay", "columns"]
+   * @uiEnumNames ["Overlay", "Two-column"]
    */
   @Prop() layout: "overlay" | "columns" = "overlay";
 
@@ -58,6 +59,7 @@ export class HeroImage {
    * @uiName Image Position
    * @uiType string
    * @uiEnum ["left", "center", "right"]
+   * @uiEnumNames ["Left", "Center", "Right"]
    */
   @Prop() imagePos: "left" | "center" | "right" = "center";
 
@@ -65,6 +67,7 @@ export class HeroImage {
    * @uiName Image Mobile Position
    * @uiType string
    * @uiEnum ["top", "bottom"]
+   * @uiEnumNames ["Top", "Bottom"]
    */
   @Prop() imageMobilePos: "top" | "bottom" = "top";
 
@@ -97,6 +100,7 @@ export class HeroImage {
    * @uiName Text Padding
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingText: Spacing = "xxxx-large";
 
@@ -104,6 +108,7 @@ export class HeroImage {
    * @uiName Image Padding
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() paddingImage: Spacing = "none";
 
