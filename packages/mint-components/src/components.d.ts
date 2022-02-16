@@ -988,6 +988,10 @@ export namespace Components {
           * @uiType object
          */
         "demoData"?: DemoData<GenericTableViewProps>;
+        /**
+          * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+          * @uiName Mobile Hidden Columns
+         */
         "hiddenColumns"?: string;
         /**
           * @uiName Tablet Breakpoint
@@ -1377,7 +1381,7 @@ export namespace Components {
          */
         "anonymousUser": string;
         /**
-          * @uiName User Column Title
+          * @uiName Soruce Column Title
          */
         "columnTitle": string;
         /**
@@ -3421,6 +3425,10 @@ declare namespace LocalJSX {
           * @uiType object
          */
         "demoData"?: DemoData<GenericTableViewProps>;
+        /**
+          * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
+          * @uiName Mobile Hidden Columns
+         */
         "hiddenColumns"?: string;
         /**
           * @uiName Tablet Breakpoint
@@ -3790,7 +3798,7 @@ declare namespace LocalJSX {
          */
         "anonymousUser"?: string;
         /**
-          * @uiName User Column Title
+          * @uiName Soruce Column Title
          */
         "columnTitle"?: string;
         /**

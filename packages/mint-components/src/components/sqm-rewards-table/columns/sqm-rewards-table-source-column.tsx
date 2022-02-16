@@ -12,7 +12,7 @@ import { RewardTableColumn } from "./RewardTableColumn";
 })
 export class RewardTableUserColumn implements RewardTableColumn {
   /**
-   * @uiName User Column Title
+   * @uiName Soruce Column Title
    */
   @Prop() columnTitle: string = "Source";
 
