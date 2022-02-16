@@ -190,7 +190,6 @@ and middleware as needed.
 import { createIntegrationService } from "@saasquatch/integration-boilerplate-node";
 
 async function main() {
-  const router = Router();
   const service = await createIntegrationService();
 
   service.router.get("/myCustomRoute", (req, res) => {
