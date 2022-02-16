@@ -48,7 +48,7 @@ export class ReferralTable {
   /** @uiName Show Referred by user in table  */
   @Prop() showReferrer?: boolean = false;
 
-  /*
+  /**
    * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
    *
    *  @uiName Mobile Hidden Columns  */

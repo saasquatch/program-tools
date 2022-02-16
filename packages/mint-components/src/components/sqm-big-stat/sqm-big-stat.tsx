@@ -33,6 +33,7 @@ export class BigStat {
    * @uiName Alignment - controls the alignment of the flexbox
    * @uiType string
    * @uiEnum ["left", "right", "center"]
+   * @uiEnumNames ["Left", "Right", "Center"]
    */
   @Prop() alignment?: "left" | "right" | "center";
 

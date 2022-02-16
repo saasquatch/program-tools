@@ -69,7 +69,6 @@ export type ExchangeInput = {
 };
 
 export interface RewardExchangeProps {
-  buttonText: string;
   notAvailableError: string;
   chooseRewardTitle: string;
   chooseAmountTitle: string;

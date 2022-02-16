@@ -22,12 +22,14 @@ export class PopupContainer {
    * @uiName Specify padding on the popup contents when in embedded mode
    * @uiType string
    * @uiEnum ["none", "small", "medium", "large"]
+   * @uiEnumNames ["None", "Small", "Medium", "Large"]
    */
   @Prop() embedPadding?: "none" | "small" | "medium" | "large";
   /**
    * @uiName  Specify padding on the popup contents when in popup mode
    * @uiType string
    * @uiEnum ["none", "small", "medium", "large"]
+   * @uiEnumNames ["None", "Small", "Medium", "Large"]
    */
   @Prop() popupPadding?: "none" | "small" | "medium" | "large";
 

@@ -18,18 +18,21 @@ export class PortalContainer {
    * @uiName Direction
    * @uiType string
    * @uiEnum ["row", "column"]
+   * @uiEnumNames ["Row", "Column"]
    */
   @Prop() direction: "row" | "column" = "column";
   /**
    * @uiName Padding
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() padding: Spacing;
   /**
    * @uiName Gap
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() gap: Spacing = "xxx-large";
 
@@ -40,6 +43,7 @@ export class PortalContainer {
    * @uiName Display
    * @uiType string
    * @uiEnum ["grid", "flex"]
+   * @uiEnumNames ["Grid", "Flex"]
    */
   @Prop() display: "grid" | "flex" = "grid";
 
@@ -47,6 +51,7 @@ export class PortalContainer {
    * @uiName Justify content
    * @uiType string
    * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
+   * @uiEnumNames ["Start", "Center", "End", "Space Between", "Space Around", "Space Evenly"]
    */
   @Prop() justifyContent?:
     | "start"
