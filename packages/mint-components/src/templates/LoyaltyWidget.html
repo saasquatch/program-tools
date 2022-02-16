@@ -109,6 +109,7 @@
               card-title="Complete a Survey"
               description="Fill out our NPS survey and get 100 points for giving us honest feedback. Be sure to use your Klip account email when completing the survey."
               button-text="Take survey"
+              button-link="https://y5tqgj96plv.typeform.com/to/p6N7lHUk"
               stat-type="/programGoals/count/NPS-Survey"
               reward-unit="Points"
               completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
@@ -121,6 +122,7 @@
             <sqm-task-card
               reward-amount="250"
               goal="500"
+              show-progress-bar
               card-title="Spend $500 on Klip Products"
               description="Earn 150 points when you spend $500 or more on Klip products."
               button-text="See plans"
@@ -128,6 +130,7 @@
               completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
               ended-message="Ended {endDate}"
               expiry-message="Ends {endDate}"
+              progress-bar-unit="$"
               finite="0"
               reward-unit="Points"
               starts-on-message="Starts {startDate}"
@@ -136,6 +139,9 @@
             <sqm-task-card
               reward-amount="100"
               goal="5"
+              repeatable
+              show-progress-bar
+              step
               card-title="Share 5 Videos"
               description="Earn 100 points for collaborating each time you share 5 videos."
               button-text="Share"
@@ -144,7 +150,6 @@
               ended-message="Ended {endDate}"
               expiry-message="Ends {endDate}"
               finite="0"
-              progress-bar-unit="$"
               reward-unit="Points"
               starts-on-message="Starts {startDate}"
             >
