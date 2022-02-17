@@ -12,6 +12,8 @@ import { useRerenderListener } from "../../tables/re-render";
 import { ReferralTable } from "./sqm-referral-table";
 import { GenericTableViewProps } from "../../tables/GenericTableView";
 import { useChildElements } from "../../tables/useChildElements";
+import debugFn from "debug";
+const debug = debugFn("sq:useReferralTable");
 
 export const CSS_NAMESPACE = "sqm-referral-table";
 
@@ -410,12 +412,12 @@ export async function tryMethod(
     // renderLabel did not return a promise, so this method probably doesn't exist
     // therefore, we IGNORE the label
     if (callback.name === "renderReferrerCell") {
-      console.error("column does not have a renderReferrerCell method.");
+      debug("column does not have a renderReferrerCell method.");
     } else {
-      console.error("label promise failed", e);
+      debug("label promise failed", e);
     }
 
-    console.error("label promise failed", e);
+    debug("label promise failed", e);
     return <span />;
   }
   try {
@@ -423,7 +425,7 @@ export async function tryMethod(
   } catch (e) {
     // The column returned a promise, and that promise failed.
     // This should not happen so we fail fast
-    console.error("Error rendering label", e);
+    debug("Error rendering label", e);
     const userError = generateUserError(e);
     return (
       <details>

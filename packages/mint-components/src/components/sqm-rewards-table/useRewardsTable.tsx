@@ -12,6 +12,8 @@ import { RewardsTable } from "./sqm-rewards-table";
 import { useChildElements } from "../../tables/useChildElements";
 import { generateUserError } from "../sqm-referral-table/useReferralTable";
 import { GenericTableViewProps } from "../../tables/GenericTableView";
+import debugFn from "debug";
+const debug = debugFn("sq:useRewardsTable");
 
 export const CSS_NAMESPACE = "sqm-rewards-table";
 
@@ -267,7 +269,7 @@ export async function tryMethod(
   } catch (e) {
     // renderLabel did not return a promise, so this method probably doesn't exist
     // therefore, we IGNORE the label
-    console.error("label promise failed", e);
+    debug("label promise failed", e);
     return <span />;
   }
   try {
@@ -275,7 +277,7 @@ export async function tryMethod(
   } catch (e) {
     // The column returned a promise, and that promise failed.
     // This should not happen so we fail fast
-    console.error("Error rendering label", e);
+    debug("Error rendering label", e);
     const userError = generateUserError(e);
     return (
       <details>

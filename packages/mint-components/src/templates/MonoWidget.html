@@ -16,7 +16,7 @@
       <sqm-hero-image
         image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000275/squatch-assets/yr6ER3R.png"
         header="MyCompany Rewards"
-        description="Refer friends and complete tasks while using MyCompany to earn rewards"
+        description="Refer friends and complete tasks to earn rewards"
         layout="columns"
         image-pos="right"
         background-color="#F9F9F9"
@@ -120,21 +120,21 @@
               <sqm-timeline-entry
                 reward="$50"
                 unit="visa giftcard"
-                desc="Your friend purchases MyCompany Business"
+                desc="Your friend purchases a Business plan"
                 icon="circle"
               >
               </sqm-timeline-entry>
               <sqm-timeline-entry
                 reward="$200"
                 unit="visa giftcard"
-                desc="Our sales team qualifies your friend as a good fit for MyCompany Enterprise"
+                desc="Our sales team qualifies your friend as a good fit for our Enterprise plan"
                 icon="circle"
               >
               </sqm-timeline-entry>
               <sqm-timeline-entry
                 reward="$1000"
                 unit="visa giftcard"
-                desc="Your friend purchases MyCompany Enterprise"
+                desc="Your friend purchases an Enterprise plan"
                 icon="circle"
               >
               </sqm-timeline-entry>
@@ -206,8 +206,8 @@
             </sqm-text>
             <sqm-text slot="content">
               <p>
-                Get points while using MyCompany. Use those points to redeem
-                rewards like one free month of MyCompany Enterprise or two plane
+                Get points while using our product. Use those points to redeem
+                rewards like one free month of Enterprise or two plane
                 tickets to anywhere in North America
               </p>
             </sqm-text>
@@ -217,7 +217,7 @@
               reward-amount="20"
               goal="1"
               card-title="Complete a Survey"
-              description="Fill out our NPS survey and get 100 points for giving us honest feedback. Be sure to use your MyCompany account email when completing the survey."
+              description="Fill out our NPS survey and get 100 points for giving us honest feedback."
               button-text="Take survey"
               reward-unit="Points"
               completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
@@ -231,8 +231,8 @@
               reward-amount="250"
               goal="500"
               show-progress-bar
-              card-title="Spend $500 on MyCompany Products"
-              description="Earn 150 points when you spend $500 or more on MyCompany products."
+              card-title="Spend $500"
+              description="Earn 150 points when you spend $500 or more."
               button-text="See plans"
               completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
               ended-message="Ended {endDate}"
@@ -244,14 +244,14 @@
             >
             </sqm-task-card>
             <sqm-task-card
-              reward-amount="100"
-              goal="5"
-              repeatable
-              show-progress-bar
-              step
-              card-title="Share 5 Videos"
-              description="Earn 100 points for collaborating each time you share 5 videos."
-              button-text="Share"
+              goal="1"
+              reward-amount="50"
+              card-title="Follow Us on Twitter"
+              description="Earn 50 points when you follow us on Twitter!"
+              button-text="Follow"
+              button-link="https://twitter.com/"
+              open-new-tab="true"
+              event-key="socialFollow"
               completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
               ended-message="Ended {endDate}"
               expiry-message="Ends {endDate}"
@@ -261,16 +261,17 @@
             >
             </sqm-task-card>
             <sqm-task-card
-              reward-amount="25"
+              reward-amount="1"
+              reward-unit="Free Month"
               goal="1"
-              card-title="Upload Your First Video"
-              description="Earn 25 points for exploring the MyCompany platform when you upload your first video."
-              button-text="Upload"
+              card-title="Upgrade Your Plan"
+              description="Receive one free month for being a committed customer when you upgrade your plan."
+              button-text="Upgrade"
               completed-text="Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}"
               ended-message="Ended {endDate}"
               expiry-message="Ends {endDate}"
+              open-new-tab="false"
               finite="0"
-              reward-unit="Point"
               starts-on-message="Starts {startDate}"
             >
             </sqm-task-card>
@@ -281,7 +282,7 @@
             <sqm-portal-container gap="large">
               <sqm-hero-image
                 image-url="https://res.cloudinary.com/saasquatch/image/upload/v1644000248/squatch-assets/MVgOJn7.png"
-                description="Be one of the top 3 referrers at the end of the year and receive MyCompany free for 1 year!"
+                description="Be one of the top 3 referrers at the end of the year and receive our product free for 1 year!"
                 layout="columns"
                 image-percentage="33%"
                 padding-image="large"
