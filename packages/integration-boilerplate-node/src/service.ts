@@ -18,6 +18,7 @@ import {
 import { webhookHandler } from "./webhookHandler";
 import { formHandler } from "./formHandler";
 import { IntegrationConfigError, GraphQLError } from "./errors";
+import { gql } from ".";
 
 declare module "http" {
   interface IncomingMessage {
@@ -88,6 +89,7 @@ export class IntegrationService<
   readonly tenantScopedTokenMiddleware: ReturnType<
     typeof createSaasquatchTokenMiddleware
   >;
+  readonly router: Router;
 
   private server: Express;
   private tenantIntegrationConfigCache: NodeCache;
@@ -110,6 +112,7 @@ export class IntegrationService<
       this.auth,
       this.logger
     );
+    this.router = options?.customRouter || Router();
     this.server = this.createExpressServer();
     this.tenantIntegrationConfigCache = new NodeCache({
       stdTTL: 60,
@@ -121,6 +124,31 @@ export class IntegrationService<
     this.server.listen(this.config.port, () => {
       this.logger.info(`Listening on port ${this.config.port}`);
     });
+  }
+
+  async getIntegrationTenants() {
+    const tenantQuery = gql`
+      query {
+        viewer {
+          ... on PortalUser {
+            tenants {
+              tenantAlias
+            }
+          }
+        }
+      }
+    `;
+
+    interface TenantQueryData {
+      data: { viewer: { tenants: { tenantAlias: string }[] } };
+    }
+
+    const result = await this.graphql<TenantQueryData>(tenantQuery);
+    const tenantAliases = result.data.viewer.tenants.map(
+      (tenant) => tenant.tenantAlias
+    );
+
+    return tenantAliases;
   }
 
   async getTenant(tenantAlias: string) {
@@ -169,7 +197,7 @@ export class IntegrationService<
       return config;
     } catch (e) {
       throw new IntegrationConfigError(
-        `Failed to get integration config: ${e.message}`
+        `Failed to get integration config: ${(e as Error).message}`
       );
     }
   }
@@ -183,8 +211,8 @@ export class IntegrationService<
       operationName?: string
     ) => {
       return this.graphql<QueryResponseShape>(
-        tenantAlias,
         query,
+        tenantAlias,
         variables,
         operationName
       );
@@ -192,8 +220,8 @@ export class IntegrationService<
   }
 
   private async graphql<QueryResponseShape = unknown>(
-    tenantAlias: string,
     query: string,
+    tenantAlias?: string,
     variables?: Record<string, any>,
     operationName?: string
   ): Promise<QueryResponseShape> {
@@ -214,9 +242,14 @@ export class IntegrationService<
         body.operationName = operationName;
       }
 
-      const url = `https://${
-        this.config.saasquatchAppDomain
-      }/api/v1/${encodeURIComponent(tenantAlias)}/graphql`;
+      let url;
+      if (tenantAlias) {
+        url = `https://${
+          this.config.saasquatchAppDomain
+        }/api/v1/${encodeURIComponent(tenantAlias)}/graphql`;
+      } else {
+        url = `https://${this.config.saasquatchAppDomain}/api/v1/graphql`;
+      }
 
       const response = await fetch(url, {
         method: "POST",
@@ -240,7 +273,7 @@ export class IntegrationService<
 
       return json;
     } catch (e) {
-      throw new GraphQLError(e.message);
+      throw new GraphQLError((e as Error).message);
     }
   }
 
@@ -298,9 +331,7 @@ export class IntegrationService<
       );
     });
 
-    if (this.options?.customRouter) {
-      server.use("/", this.options.customRouter);
-    }
+    server.use("/", this.router);
 
     // Serve the frontend at the root of the server
     if (this.config.proxyFrontend) {

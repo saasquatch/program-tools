@@ -183,19 +183,16 @@ kind of data.
 Many integrations can get away with only providing handlers for webhooks and forms, however more complex integrations
 that may respond to webhooks from 3rd party systems need to define their own routing and middleware.
 
-This is achievable by providing an `express.Router` to the `customRouter` option when creating the service:
+There is a router available on the service as `service.router` for this purpose, which can be configured with routes
+and middleware as needed.
 
 ```ts
-import { Router } from "express";
 import { createIntegrationService } from "@saasquatch/integration-boilerplate-node";
 
 async function main() {
-  const router = Router();
-  const service = await createIntegrationService({
-    customRouter: router,
-  });
+  const service = await createIntegrationService();
 
-  router.get("/myCustomRoute", (req, res) => {
+  service.router.get("/myCustomRoute", (req, res) => {
     res.send("Hello World");
   });
 
