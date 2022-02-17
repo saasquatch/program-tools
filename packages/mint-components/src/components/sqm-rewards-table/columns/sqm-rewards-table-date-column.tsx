@@ -24,6 +24,7 @@ export class RewardTableDateColumn implements RewardTableColumn {
    * "dateCancelled",
    * "dateRedeemed",
    * "dateScheduledFor"]
+   * @uiEnumNames ["Date Given", "Date Expires", "Date Cancelled", "Date Redeemed", "Date Scheduled For"]
    */
   @Prop() dateShown: string = "dateGiven";
 

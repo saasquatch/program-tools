@@ -34,6 +34,7 @@ export class TimelineReward {
    * @uiName Icon
    * @uiType string
    * @uiEnum ["gift", "circle"]
+   * @uiEnumNames ["Gift", "Circle"]
    */
   @Prop() icon: "gift" | "circle";
 

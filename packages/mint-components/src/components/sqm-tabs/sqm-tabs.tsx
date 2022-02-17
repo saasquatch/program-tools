@@ -18,6 +18,7 @@ export class Tabs {
    * @uiName Tabs Placement
    * @uiType string
    * @uiEnum ["left", "right", "bottom", "top"]
+   * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
    */
   @Prop() placement?: "left" | "right" | "bottom" | "top";
 

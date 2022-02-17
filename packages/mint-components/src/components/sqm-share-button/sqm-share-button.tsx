@@ -82,6 +82,7 @@ export class ShareButton {
    * @uiType string
    * @uiName Button Style
    * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
+   * @uiEnumNames ["Primary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
    */
   @Prop() type?:
     | "primary"

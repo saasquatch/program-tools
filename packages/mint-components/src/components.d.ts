@@ -1071,7 +1071,7 @@ export namespace Components {
           * @uiName Date Displayed
           * @uiType string
           * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
-          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended",]
+          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended"]
          */
         "dateShown": ReferralDates;
         "renderCell": (data: Referral, locale: string) => Promise<any>;
@@ -1357,6 +1357,7 @@ export namespace Components {
           * @uiName Date Displayed
           * @uiType string
           * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
+          * @uiEnumNames ["Date Given", "Date Expires", "Date Cancelled", "Date Redeemed", "Date Scheduled For"]
          */
         "dateShown": string;
         "renderCell": (data: Reward, locale: string) => Promise<any>;
@@ -1483,6 +1484,7 @@ export namespace Components {
           * @uiName Button Type
           * @uiType string
           * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
+          * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger", "Text"]
          */
         "buttonType": | "default"
     | "primary"
@@ -1504,6 +1506,7 @@ export namespace Components {
           * @uiName Icon Slot
           * @uiType string
           * @uiEnum ["prefix", "suffix"]
+          * @uiEnumNames ["Prefix", "Suffix"]
          */
         "iconSlot": string;
         /**
@@ -1525,6 +1528,7 @@ export namespace Components {
           * @uiName Scroll Animation Style
           * @uiType string
           * @uiEnum ["smooth", "auto"]
+          * @uiEnumNames ["Smooth", "Auto"]
          */
         "scrollAnimation": "smooth" | "auto";
         /**
@@ -1539,6 +1543,7 @@ export namespace Components {
           * @uiName Size
           * @uiType string
           * @uiEnum ["small", "medium", "large"]
+          * @uiEnumNames ["Small", "Medium", "Large"]
          */
         "size": string;
     }
@@ -1633,6 +1638,7 @@ export namespace Components {
           * @uiType string
           * @uiName Button Style
           * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
+          * @uiEnumNames ["Primary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
          */
         "type"?: | "primary"
     | "success"
@@ -1691,12 +1697,14 @@ export namespace Components {
           * @uiName Display
           * @uiType string
           * @uiEnum ["grid", "flex"]
+          * @uiEnumNames ["Grid", "Flex"]
          */
         "display": "grid" | "flex";
         /**
           * @uiName Space between stats
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "space": Spacing;
     }
@@ -1721,6 +1729,7 @@ export namespace Components {
           * @uiName Tabs Placement
           * @uiType string
           * @uiEnum ["left", "right", "bottom", "top"]
+          * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
          */
         "placement"?: "left" | "right" | "bottom" | "top";
     }
@@ -1843,6 +1852,7 @@ export namespace Components {
           * @uiName Text
           * @uiType string
           * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
+          * @uiEnumNames ["Paragraph", "Subtext", "Header 1", "Header 2", "Header 3", "Header 4"]
          */
         "type": "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
@@ -1851,6 +1861,7 @@ export namespace Components {
           * @uiName Icon
           * @uiType string
           * @uiEnum ["gift", "circle"]
+          * @uiEnumNames ["Gift", "Circle"]
          */
         "icon": "gift" | "circle";
     }
@@ -1863,6 +1874,7 @@ export namespace Components {
           * @uiName Icon
           * @uiType string
           * @uiEnum ["gift", "circle"]
+          * @uiEnumNames ["Gift", "Circle"]
          */
         "icon": "gift" | "circle";
         /**
@@ -1885,18 +1897,21 @@ export namespace Components {
           * @uiName Label margin style
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "labelMargin": Spacing;
         /**
           * @uiName Section padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "padding": Spacing;
         /**
           * @uiName Text Align
           * @uiType string
           * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
         "textAlign": "left" | "center" | "right";
     }
@@ -3529,7 +3544,7 @@ declare namespace LocalJSX {
           * @uiName Date Displayed
           * @uiType string
           * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
-          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended",]
+          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended"]
          */
         "dateShown"?: ReferralDates;
     }
@@ -3801,6 +3816,7 @@ declare namespace LocalJSX {
           * @uiName Date Displayed
           * @uiType string
           * @uiEnum ["dateGiven", "dateExpires", "dateCancelled", "dateRedeemed", "dateScheduledFor"]
+          * @uiEnumNames ["Date Given", "Date Expires", "Date Cancelled", "Date Redeemed", "Date Scheduled For"]
          */
         "dateShown"?: string;
     }
@@ -3919,6 +3935,7 @@ declare namespace LocalJSX {
           * @uiName Button Type
           * @uiType string
           * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
+          * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger", "Text"]
          */
         "buttonType"?: | "default"
     | "primary"
@@ -3940,6 +3957,7 @@ declare namespace LocalJSX {
           * @uiName Icon Slot
           * @uiType string
           * @uiEnum ["prefix", "suffix"]
+          * @uiEnumNames ["Prefix", "Suffix"]
          */
         "iconSlot"?: string;
         /**
@@ -3961,6 +3979,7 @@ declare namespace LocalJSX {
           * @uiName Scroll Animation Style
           * @uiType string
           * @uiEnum ["smooth", "auto"]
+          * @uiEnumNames ["Smooth", "Auto"]
          */
         "scrollAnimation"?: "smooth" | "auto";
         /**
@@ -3975,6 +3994,7 @@ declare namespace LocalJSX {
           * @uiName Size
           * @uiType string
           * @uiEnum ["small", "medium", "large"]
+          * @uiEnumNames ["Small", "Medium", "Large"]
          */
         "size"?: string;
     }
@@ -4069,6 +4089,7 @@ declare namespace LocalJSX {
           * @uiType string
           * @uiName Button Style
           * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
+          * @uiEnumNames ["Primary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
          */
         "type"?: | "primary"
     | "success"
@@ -4127,12 +4148,14 @@ declare namespace LocalJSX {
           * @uiName Display
           * @uiType string
           * @uiEnum ["grid", "flex"]
+          * @uiEnumNames ["Grid", "Flex"]
          */
         "display"?: "grid" | "flex";
         /**
           * @uiName Space between stats
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "space"?: Spacing;
     }
@@ -4157,6 +4180,7 @@ declare namespace LocalJSX {
           * @uiName Tabs Placement
           * @uiType string
           * @uiEnum ["left", "right", "bottom", "top"]
+          * @uiEnumNames ["Left", "Right", "Bottom", "Top"]
          */
         "placement"?: "left" | "right" | "bottom" | "top";
     }
@@ -4279,6 +4303,7 @@ declare namespace LocalJSX {
           * @uiName Text
           * @uiType string
           * @uiEnum ["p", "subtext", "h1", "h2", "h3", "h4"]
+          * @uiEnumNames ["Paragraph", "Subtext", "Header 1", "Header 2", "Header 3", "Header 4"]
          */
         "type"?: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
     }
@@ -4287,6 +4312,7 @@ declare namespace LocalJSX {
           * @uiName Icon
           * @uiType string
           * @uiEnum ["gift", "circle"]
+          * @uiEnumNames ["Gift", "Circle"]
          */
         "icon"?: "gift" | "circle";
     }
@@ -4299,6 +4325,7 @@ declare namespace LocalJSX {
           * @uiName Icon
           * @uiType string
           * @uiEnum ["gift", "circle"]
+          * @uiEnumNames ["Gift", "Circle"]
          */
         "icon"?: "gift" | "circle";
         /**
@@ -4320,18 +4347,21 @@ declare namespace LocalJSX {
           * @uiName Label margin style
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "labelMargin"?: Spacing;
         /**
           * @uiName Section padding
           * @uiType string
           * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+          * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
          */
         "padding"?: Spacing;
         /**
           * @uiName Text Align
           * @uiType string
           * @uiEnum ["left", "center", "right"]
+          * @uiEnumNames ["Left", "Center", "Right"]
          */
         "textAlign"?: "left" | "center" | "right";
     }

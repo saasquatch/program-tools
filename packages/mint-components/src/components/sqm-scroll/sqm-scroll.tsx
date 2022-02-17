@@ -18,6 +18,8 @@ export class Scroll {
    * @uiName Button Type
    * @uiType string
    * @uiEnum ["default", "primary", "success", "neutral", "warning", "danger", "text"]
+   * @uiEnumNames ["Default", "Primary", "Success", "Neutral", "Warning", "Danger", "Text"]
+
    */
   @Prop() buttonType:
     | "default"
@@ -47,6 +49,7 @@ export class Scroll {
    * @uiName Scroll Animation Style
    * @uiType string
    * @uiEnum ["smooth", "auto"]
+   * @uiEnumNames ["Smooth", "Auto"]
    */
   @Prop() scrollAnimation: "smooth" | "auto" = "smooth";
 
@@ -54,6 +57,7 @@ export class Scroll {
    * @uiName Size
    * @uiType string
    * @uiEnum ["small", "medium", "large"]
+   * @uiEnumNames ["Small", "Medium", "Large"]
    */
   @Prop() size: string;
 
@@ -82,6 +86,7 @@ export class Scroll {
    * @uiName Icon Slot
    * @uiType string
    * @uiEnum ["prefix", "suffix"]
+   * @uiEnumNames ["Prefix", "Suffix"]
    */
   @Prop() iconSlot: string;
 
