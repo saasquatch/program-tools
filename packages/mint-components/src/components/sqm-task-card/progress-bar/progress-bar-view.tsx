@@ -499,7 +499,7 @@ function addLinear({
   progress,
   goal,
   progressBarUnit,
-  expired
+  expired,
 }: ProgressBarProps): Aggregate {
   const items = [];
   let columns = "";

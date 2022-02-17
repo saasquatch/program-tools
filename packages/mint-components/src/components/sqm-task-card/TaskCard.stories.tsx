@@ -757,6 +757,7 @@ export const ProgressBarRepeatable = () => {
   const props = {
     progress: 0,
     goal: 500,
+    progressBarUnit: "$",
     repeatable: true,
   };
   return (
@@ -788,7 +789,26 @@ export const ProgressBarStepsRepeatable = () => {
   );
 };
 
-export const ProgressBarStepsRepeatableFinite = () => {
+export const ProgressBarFinite = () => {
+  const props = {
+    progress: 0,
+    goal: 500,
+    progressBarUnit: "$",
+    repeatable: true,
+    finite: 2,
+  };
+  return (
+    <div>
+      <MatrixStory
+        matrix={{ progress: [0, 250, 500, 750, 1000, 1250] }}
+        props={props}
+        Component={ProgressBarView}
+      />
+    </div>
+  );
+};
+
+export const ProgressBarStepsFinite = () => {
   const props = {
     progress: 0,
     steps: true,
