@@ -6,10 +6,10 @@ type Position = "top" | "bottom" | "right" | "left"
 
 export interface PopoverProps {
   show: boolean
-  relativePosition: Position
+  // relativePosition: Position
   children: React.ReactNode
-  overrideX?: number
-  overrideY?: number
+  relativeX: string
+  relativeY: string
 }
 
 export interface SectionProps {
@@ -43,7 +43,13 @@ const Action: React.FC<ActionProps> = ({children, ...rest}) => (
   <StyledAction buttonType="text" {...rest as any}>{children}</StyledAction>
 )
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.div<Pick<PopoverProps, 'show' | 'relativeY' | 'relativeX'>>`
+  position: absolute;
+
+  display: ${({show}) => show ? "block" : "none"};
+  top: ${({relativeY}) => relativeY};
+  left: ${({relativeX}) => relativeX};
+
   max-width: 300px;
   width: fit-content;
   box-sizing: border-box;
@@ -60,16 +66,16 @@ export const Popover: React.FC<PopoverProps>
   & { Section: typeof Section }
   & { Action: typeof Action } = ({
   show,
-  relativePosition,
-  overrideX,
-  overrideY,
+  // relativePosition,
+  relativeY,
+  relativeX,
   children
 }) => {
   if (React.Children.count(children) > 1) {
-    return <StyledContainer>{children}</StyledContainer>
+    return <StyledContainer show={show} relativeX={relativeX} relativeY={relativeY}>{children}</StyledContainer>
   } else {
     return (
-      <StyledContainer>
+      <StyledContainer show={show} relativeX={relativeX} relativeY={relativeY}>
         <StyledSection style={{padding: "8px 16px"}}>{children}</StyledSection>
       </StyledContainer>
     )
