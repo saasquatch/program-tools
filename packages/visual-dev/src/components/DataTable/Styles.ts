@@ -119,3 +119,33 @@ export const PopoverDividerDiv = css`
   margin: var(--sq-spacing-medium) -36px;
   background: var(--sq-border);
 `;
+
+export const PaginationDiv = css`
+  display: flex;
+  padding: var(--sq-spacing-large);
+  align-items: center;
+  background: var(--sq-background);
+  border: 2px solid var(--sq-border);
+  border-top: 0px;
+  box-sizing: border-box;
+  border-radius: 0px 0px 6px 6px;
+  font-family: var(--sq-font-family-sans);
+  font-weight: var(--sq-font-weight-regular);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
+`;
+
+export const PaginationText = css`
+  padding: 6px;
+  color: var(--sq-text-interactive);
+  cursor: pointer;
+  font-family: var(--sq-font-family-sans);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
+`;
+
+export const PaginationContainer = css`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+`;

@@ -2,6 +2,7 @@ import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import { Dropdown, DropdownItem } from "../Dropdown";
 import { IconButton } from "../..";
+import * as styles from "./Styles";
 
 type PopoverProps = OptionProps &
   StyleProps &
@@ -20,39 +21,21 @@ interface StyleProps {
 }
 
 const PaginationDiv = styled.div<Required<StyleProps>>`
-  display: flex;
-  padding: var(--sq-spacing-large);
-  align-items: center;
-  background: var(--sq-background);
-  border: 2px solid var(--sq-border);
-  border-top: 0px;
-  box-sizing: border-box;
-  border-radius: 0px 0px 6px 6px;
-  font-family: var(--sq-font-family-sans);
-  font-weight: var(--sq-font-weight-regular);
-  font-size: var(--sq-font-size-regular);
-  line-height: var(--sq-line-height-regular);
+  ${styles.PaginationDiv}
 
   ${(props) => props.customCSS}
 `;
 
 const TextDiv = styled.div<{ selected?: boolean }>`
-  padding: 6px;
-  color: var(--sq-text-interactive);
-  cursor: pointer;
-  font-family: var(--sq-font-family-sans);
-  font-size: var(--sq-font-size-regular);
-  line-height: var(--sq-line-height-regular);
+  ${styles.PaginationText}
   ${(props) =>
     props.selected
       ? "font-weight: var(--sq-font-weight-bold);"
       : "font-weight: var(--sq-font-weight-regular);"}
 `;
 
-const PaginationContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: auto;
+const Container = styled.div`
+  ${styles.PaginationContainer}
 `;
 
 export const Pagination = React.forwardRef<
@@ -69,9 +52,6 @@ export const Pagination = React.forwardRef<
     ...rest
   } = props;
 
-  console.log("limit", limit);
-  console.log("offset", offset);
-
   const current_page = Math.floor((offset + 1) / limit);
   const pages = total
     ? Array.from(Array(Math.ceil(total / limit)).keys())
@@ -85,30 +65,28 @@ export const Pagination = React.forwardRef<
       Math.abs(page) < 3
   );
 
-  console.log(current_page);
-  console.log(pages);
-  console.log(filteredPages);
-
   const [dropdown, setDropdown] = React.useState(false);
 
   return (
     <PaginationDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
       {total &&
         `${offset + 1} - ${Math.min(offset + limit, total)} of ${total}`}
-      <PaginationContainer>
+      <Container>
         <IconButton
           borderless={true}
           size="mini"
           icon="chevron_left"
-          customCSS="margin: -3px;"
+          customCSS="margin: -3px; &:hover{background: none;}"
           disabled={offset == 0}
           onClick={() => {
             updatePagination(limit, Math.max(offset - limit, 0));
           }}
         />
         {filteredPages.map((p: number, i: number) => (
-          <>
-            {i != 0 && filteredPages[i - 1] + 1 != p && <TextDiv>...</TextDiv>}
+          <React.Fragment key={`page-${i}`}>
+            {i != 0 && filteredPages[i - 1] + 1 != p && (
+              <TextDiv style={{ cursor: "default" }}>...</TextDiv>
+            )}
             <TextDiv
               selected={current_page === p}
               onClick={() => {
@@ -117,14 +95,14 @@ export const Pagination = React.forwardRef<
             >
               {p + 1}
             </TextDiv>
-          </>
+          </React.Fragment>
         ))}
         <IconButton
           size="mini"
           icon="chevron_right"
           borderless={true}
-          customCSS="margin: -3px; margin-right: var(--sq-spacing-x-large);"
-          disabled={total ? offset + limit > total : false}
+          customCSS="margin: -3px; margin-right: var(--sq-spacing-x-large); &:hover{background: none;}"
+          disabled={total ? offset + limit >= total : false}
           onClick={() => {
             updatePagination(limit, offset + limit);
           }}
@@ -162,7 +140,7 @@ export const Pagination = React.forwardRef<
             50 Per Page
           </DropdownItem>
         </Dropdown>
-      </PaginationContainer>
+      </Container>
     </PaginationDiv>
   );
 });

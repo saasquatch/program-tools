@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Icon } from "../Icon";
 import { Skeleton, Content, DataTable, Row, Pagination } from ".";
 import { Avatar } from "../Avatar";
@@ -9,7 +9,7 @@ export default {
   component: DataTable,
 };
 
-const updatePagination = (limit: number, offset: number) => {
+const updatePaginationDummy = (limit: number, offset: number) => {
   console.log("pagination updated");
   console.log("limit", limit);
   console.log("offset", offset);
@@ -86,7 +86,7 @@ export const FormSubmissionTable = () => {
         total={17}
         limit={10}
         offset={0}
-        updatePagination={updatePagination}
+        updatePagination={updatePaginationDummy}
       />
     </DataTable>
   );
@@ -125,7 +125,7 @@ export const FormSubmissionTableWithBanner = () => {
         total={17}
         limit={10}
         offset={0}
-        updatePagination={updatePagination}
+        updatePagination={updatePaginationDummy}
       />
     </DataTable>
   );
@@ -148,7 +148,7 @@ export const FormSubmissionTableEmpty = () => {
         total={17}
         limit={10}
         offset={0}
-        updatePagination={updatePagination}
+        updatePagination={updatePaginationDummy}
       />
     </DataTable>
   );
@@ -165,32 +165,42 @@ export const FormSubmissionTableFilter = () => {
   return (
     <DataTable width="958px" empty>
       <Row variant="header" content={content_a} />
-      <Row filter />
+      <Row emptyFilter />
       <Pagination
         total={17}
         limit={10}
         offset={0}
-        updatePagination={updatePagination}
+        updatePagination={updatePaginationDummy}
       />
     </DataTable>
   );
 };
 
-export const pagination = () => (
-  <Pagination
-    total={17}
-    limit={10}
-    offset={0}
-    updatePagination={updatePagination}
-  />
-);
+export const paginationFunctional = () => {
+  const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(10);
+
+  const updatePagination = (newLimit: number, newOffset: number) => {
+    setOffset(newOffset);
+    setLimit(newLimit);
+  };
+
+  return (
+    <Pagination
+      total={440}
+      limit={limit}
+      offset={offset}
+      updatePagination={updatePagination}
+    />
+  );
+};
 
 export const paginationManyStart = () => (
   <Pagination
     total={440}
     limit={10}
     offset={0}
-    updatePagination={updatePagination}
+    updatePagination={updatePaginationDummy}
   />
 );
 
@@ -199,7 +209,7 @@ export const paginationManyMiddle = () => (
     total={440}
     limit={10}
     offset={180}
-    updatePagination={updatePagination}
+    updatePagination={updatePaginationDummy}
   />
 );
 
@@ -208,7 +218,7 @@ export const paginationManyEnd = () => (
     total={440}
     limit={10}
     offset={430}
-    updatePagination={updatePagination}
+    updatePagination={updatePaginationDummy}
   />
 );
 

@@ -9,7 +9,7 @@ type PopoverProps = OptionProps &
 interface OptionProps {
   content?: any;
   empty?: boolean;
-  filter?: boolean;
+  emptyFilter?: boolean;
   children?: any;
   emptyText?: string | React.ReactNode;
   emptyFilterText?: string | React.ReactNode;
@@ -44,7 +44,7 @@ export const Row = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
     const {
       content,
       empty = false,
-      filter = false,
+      emptyFilter: filter = false,
       variant = "row",
       children,
       customCSS = {},
@@ -75,11 +75,12 @@ export const Row = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
           </DataDiv>
         )}
         {content &&
-          content.map((x: any) => (
+          content.map((x: any, i: number) => (
             <ContentDiv
               flex={x.flex ? x.flex : "1"}
               center={x.center}
               width={x.width ? x.width : "100px"}
+              key={i}
             >
               {x.text}
             </ContentDiv>
