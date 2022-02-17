@@ -122,7 +122,7 @@ const simpleUserTableProps = {
       moreLabel: "View More",
     },
     hiddenColumns: "",
-    mdBreakpoint: 899,
+    mdBreakpoint: 799,
     smBreakpoint: 599,
   },
   callbacks: {
@@ -169,7 +169,7 @@ const singleTableProps = {
       moreLabel: "View More",
     },
     hiddenColumns: "",
-    mdBreakpoint: 899,
+    mdBreakpoint: 799,
     smBreakpoint: 599,
   },
   callbacks: {
@@ -198,7 +198,7 @@ const hideLabelProps = {
       moreLabel: "View More",
     },
     hiddenColumns: "",
-    mdBreakpoint: 899,
+    mdBreakpoint: 799,
     smBreakpoint: 599,
   },
 };
@@ -217,7 +217,7 @@ const customButtonProps = {
       moreLabel: "CUSTOM NEXT TEXT",
     },
     hiddenColumns: "",
-    mdBreakpoint: 899,
+    mdBreakpoint: 799,
     smBreakpoint: 599,
   },
 };
@@ -236,7 +236,7 @@ const longCellTextTableProps = {
       moreLabel: "View More",
     },
     hiddenColumns: "",
-    mdBreakpoint: 899,
+    mdBreakpoint: 799,
     smBreakpoint: 599,
   },
   callbacks: {
@@ -325,7 +325,7 @@ const longColumnTextTableProps = {
       moreLabel: "View More",
     },
     hiddenColumns: "",
-    mdBreakpoint: 899,
+    mdBreakpoint: 799,
     smBreakpoint: 599,
   },
   callbacks: {
@@ -414,7 +414,7 @@ const fullUserTableProps = (hidden = false) => ({
       moreLabel: "View More",
     },
     hiddenColumns: hidden ? "0,1,2,3,4,5,6,7,8" : "-1",
-    mdBreakpoint: 899,
+    mdBreakpoint: 799,
     smBreakpoint: 599,
   },
   callbacks: {
@@ -542,7 +542,7 @@ export const EmptyTable = () => {
             moreLabel: "View More",
           },
           hiddenColumns: "",
-          mdBreakpoint: 899,
+          mdBreakpoint: 799,
           smBreakpoint: 599,
         },
         elements: {
@@ -573,7 +573,7 @@ export const LoadingTable = () => {
             moreLabel: "View More",
           },
           hiddenColumns: "",
-          mdBreakpoint: 899,
+          mdBreakpoint: 799,
           smBreakpoint: 599,
         },
         elements: {
@@ -604,7 +604,7 @@ export const FullRewardsTable = () => {
             moreLabel: "View More",
           },
           hiddenColumns: "1",
-          mdBreakpoint: 899,
+          mdBreakpoint: 799,
           smBreakpoint: 599,
         },
         elements: {

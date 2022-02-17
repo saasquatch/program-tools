@@ -53,10 +53,10 @@ Feature: Rewards Table
     Scenario: The table converts to a card view on tablet and mobile window sizes
         Given a user with rewards
         When they view the table
-        And their window size is smaller than "899px"
+        And their window size is smaller than "799px"
         Then rewards are displayed as cards
         And they are in two columns
-        When their window size is smaller than "634px"
+        When their window size is smaller than "599px"
         Then the rewards are displayed as cards in a singular column
 
     @motivating

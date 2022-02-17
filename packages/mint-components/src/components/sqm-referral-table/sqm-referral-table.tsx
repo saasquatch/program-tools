@@ -55,10 +55,10 @@ export class ReferralTable {
   @Prop() hiddenColumns?: string = "0";
 
   /** @uiName Mobile Breakpoint  */
-  @Prop() smBreakpoint?: number = 634;
+  @Prop() smBreakpoint?: number = 599;
 
   /** @uiName Tablet Breakpoint  */
-  @Prop() mdBreakpoint?: number = 899;
+  @Prop() mdBreakpoint?: number = 799;
 
   /**
    * @undocumented
@@ -234,7 +234,7 @@ function useReferralTableDemo(
           moreLabel: props.moreLabel,
         },
         referralData: [],
-        mdBreakpoint: 899,
+        mdBreakpoint: 799,
         smBreakpoint: 599,
       },
       elements: {

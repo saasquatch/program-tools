@@ -92,7 +92,7 @@ const rewardsTableProps = (
       moreLabel: next,
     },
     hiddenColumns: hidden,
-    mdBreakpoint: 899,
+    mdBreakpoint: 799,
     smBreakpoint: 599,
   },
   callbacks: {
