@@ -126,10 +126,15 @@ export const CSSVariables = createGlobalStyle`
 `;
 
 export const TextRules = createGlobalStyle`
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body{
   line-height: var(--sq-line-height-regular);
   font-family: var(--sq-font-family-sans);
   color: var(--sq-text);
+  margin: 0;
 }
 
 h1{
