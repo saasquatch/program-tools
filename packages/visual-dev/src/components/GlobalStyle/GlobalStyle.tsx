@@ -66,6 +66,7 @@ export const CSSVariables = createGlobalStyle`
 
   /* Typography */
   --sq-font-family-sans: "Helvetica Neue", Helvetica, sans-serif;
+  --sq-font-family-monospace: monospace;
 
   --sq-font-weight-regular: 400;
   --sq-font-weight-semibold: 600;
@@ -125,6 +126,12 @@ export const CSSVariables = createGlobalStyle`
 `;
 
 export const TextRules = createGlobalStyle`
+body{
+  line-height: var(--sq-line-height-regular);
+  font-family: var(--sq-font-family-sans);
+  color: var(--sq-text);
+}
+
 h1{
   font-size: var(--sq-font-size-header-one);
   line-height: var(--sq-line-height-header-one);
@@ -156,6 +163,35 @@ p{
   font-family: var(--sq-font-family-sans);
   color: var(--sq-text);
 }
+
+pre{
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
+  font-weight: var(--sq-font-weight-regular);
+  font-family: var(--sq-font-family-monospace);
+  color: var(--sq-text);
+}
+
+a{
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
+  font-weight: var(--sq-font-weight-regular);
+  font-family: var(--sq-font-family-sans);
+  color: var(--sq-text-interactive);
+  text-decoration: none;
+
+  &:hover{
+    color: var(--sq-focused);
+  }
+}
+`;
+
+export const LayoutRules = createGlobalStyle`
+  hr{
+    border: none;
+    border-top: 1px solid var(--sq-border);
+    margin: var(--sq-spacing-xx-large) 0;
+  }
 `;
 
 export const ListRules = createGlobalStyle`
@@ -166,12 +202,12 @@ export const ListRules = createGlobalStyle`
     font-size: var(--sq-font-size-regular);
     line-height: var(--sq-line-height-regular);
   }
-`
+`;
 
 export const GlobalStyle = () => {
-  return(
-  <>
-    <CSSVariables /> <TextRules /> <ListRules />
-  </>
-);
-}
+  return (
+    <>
+      <CSSVariables /> <TextRules /> <ListRules /> <LayoutRules />
+    </>
+  );
+};
