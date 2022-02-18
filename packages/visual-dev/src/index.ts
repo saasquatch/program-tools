@@ -34,6 +34,8 @@ import { RJSFSelect } from "./components/Select/rjsf-Select";
 import { RJSFRadioActionWidget } from "./components/RadioAction/rjsf-RadioAction";
 import { RadioAction } from "./components/RadioAction";
 import { List } from "./components/List";
+import { Accordion } from "./components/Accordion";
+import { DataGraphic } from "./components/Graphics";
 /// <reference types="styled-components/cssprop" />
 
 export {
@@ -75,4 +77,6 @@ export {
   RadioAction,
   RadioCard,
   List,
+  Accordion,
+  DataGraphic,
 };
