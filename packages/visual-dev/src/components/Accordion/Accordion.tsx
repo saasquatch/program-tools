@@ -47,6 +47,15 @@ const Description = styled.p`
   ${Styles.Description}
 `;
 
+const IconContainer = styled.div<{ expanded: boolean }>`
+  ${(props) =>
+    props.expanded &&
+    "transform: rotate( -180deg ); transition: transform 400ms ease;"}
+  ${(props) =>
+    !props.expanded &&
+    "transform: rotate( 0deg ); transition: transform 400ms ease;"}
+`;
+
 export const Accordion = React.forwardRef<
   React.ElementRef<"div">,
   AccordionProps
@@ -62,7 +71,9 @@ export const Accordion = React.forwardRef<
         }}
       >
         <Title>{title}</Title>
-        <Icon icon="chevron_down" color="var(--sq-text-subdued)"></Icon>
+        <IconContainer expanded={expanded}>
+          <Icon icon="chevron_down" color="var(--sq-text-subdued)"></Icon>
+        </IconContainer>
       </Head>
       <CollapseContainer expanded={expanded}>
         <Description>{description}</Description>
