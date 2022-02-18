@@ -7,6 +7,7 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { PortalResetPasswordViewProps } from "./sqm-portal-reset-password-view";
 import { PortalResetPassword } from "./sqm-portal-reset-password";
+import { sanitizeUrlPath } from "../../utilities";
 
 export function usePortalResetPassword(
   props: PortalResetPassword
@@ -43,12 +44,9 @@ export function usePortalResetPassword(
 
   const gotoNextPage = () => {
     urlParams.delete("nextPage");
-    const nextPage = nextPageOverride || props.nextPage;
-    const url = new URL(nextPage, window.location.href);
-    const cleanUrl = new URL(window.location.href);
-    cleanUrl.pathname = url.pathname;
+    const path = sanitizeUrlPath(nextPageOverride || props.nextPage);
     navigation.push({
-      pathname: cleanUrl.pathname,
+      pathname: path,
       search: urlParams.toString() && "?" + urlParams.toString(),
     });
   };

@@ -4,6 +4,7 @@ import {
   useUserIdentity,
   useVerifyEmailMutation,
 } from "@saasquatch/component-boilerplate";
+import { sanitizeUrlPath } from "../../utilities";
 
 export function usePortalVerifyEmail({ nextPage, failedPage }) {
   const [verified, setVerified] = useState(false);
@@ -26,12 +27,9 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
 
   const gotoNextPage = () => {
     urlParams.delete("nextPage");
-    const np = nextPageOverride || nextPage;
-    const url = new URL(np, window.location.href);
-    const cleanUrl = new URL(window.location.href);
-    cleanUrl.pathname = url.pathname;
+    const path = sanitizeUrlPath(nextPageOverride || nextPage);
     navigation.push({
-      pathname: cleanUrl.pathname,
+      pathname: path,
       search: urlParams.toString() && "?" + urlParams.toString(),
     });
   };

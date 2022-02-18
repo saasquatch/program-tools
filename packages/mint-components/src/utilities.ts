@@ -30,3 +30,11 @@ export function isMobile(breakPoint: number): boolean {
 export function isValidColor(teststr: string) {
   return CSS.supports(`(color: ${teststr})`);
 }
+
+export function sanitizeUrlPath(path: string): string {
+  const url = new URL(path, window.location.href);
+  const cleanUrl = new URL(window.location.href);
+  cleanUrl.pathname = url.pathname;
+
+  return cleanUrl.pathname;
+}
