@@ -164,6 +164,7 @@ export class TaskCard {
   @Prop() eventKey?: string;
 
   /**
+  * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
    * @uiName Program ID override
    */
   @Prop() programId?: string;
