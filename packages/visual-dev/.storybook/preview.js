@@ -10,11 +10,8 @@ export const parameters = {
   options: {
     enableShortcuts: false,
   },
+  viewMode: "docs",
 };
-
-addParameters({
-  viewMode: 'docs',
-});
 
 const withGlobalStyles = (Story, context) => {
   return (
