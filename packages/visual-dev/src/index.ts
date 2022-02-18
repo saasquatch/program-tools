@@ -36,6 +36,14 @@ import { RadioAction } from "./components/RadioAction";
 import { List } from "./components/List";
 import { Accordion } from "./components/Accordion";
 import { DataGraphic } from "./components/Graphics";
+import {
+  DataTable,
+  Row,
+  Popover,
+  Content,
+  Pagination,
+} from "./components/DataTable";
+
 /// <reference types="styled-components/cssprop" />
 
 export {
@@ -79,4 +87,9 @@ export {
   List,
   Accordion,
   DataGraphic,
+  DataTable,
+  Row,
+  Popover,
+  Content,
+  Pagination,
 };
