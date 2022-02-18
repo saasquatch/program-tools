@@ -68,7 +68,6 @@ export type RewardExchangeViewProps = {
 const style = {
   HostBlock: HostBlock,
   Container: {
-    padding: "8px",
     minWidth: "300px", // Set to 300px to match the task card grid min
     position: "relative",
   },
