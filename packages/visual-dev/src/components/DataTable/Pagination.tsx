@@ -117,7 +117,7 @@ export const Pagination = React.forwardRef<
         >
           <DropdownItem
             onClick={() => {
-              updatePagination(10, offset);
+              updatePagination(10, 0);
               setDropdown(false);
             }}
           >
@@ -125,7 +125,7 @@ export const Pagination = React.forwardRef<
           </DropdownItem>
           <DropdownItem
             onClick={() => {
-              updatePagination(25, offset);
+              updatePagination(25, 0);
               setDropdown(false);
             }}
           >
@@ -133,7 +133,7 @@ export const Pagination = React.forwardRef<
           </DropdownItem>
           <DropdownItem
             onClick={() => {
-              updatePagination(50, offset);
+              updatePagination(50, 0);
               setDropdown(false);
             }}
           >
