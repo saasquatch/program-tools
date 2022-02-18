@@ -19,7 +19,7 @@
 
 ## Methods
 
-### `renderCell(data: Reward[], locale: string) => Promise<any>`
+### `renderCell(data: Reward, locale: string) => Promise<any>`
 
 
 
