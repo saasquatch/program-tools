@@ -27,7 +27,7 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
         "padding-right": divideSpace(),
       },
       "& > :last-child": {
-        "border-right": "1px solid #ffffff",
+        "border-right": "none",
       },
       "& > ::slotted(*)": {
         "border-right": "1px solid #EAEAEA",
@@ -37,30 +37,12 @@ export function StatContainerView(props: StatContainerProps, children: VNode) {
       "& > ::slotted(*:last-child)": {
         "border-right": "none",
       },
-      // TODO: Try Make this happen without media queries
-      // "@media screen and (max-width: 499px)": {
-      //   gridTemplateColumns: "1fr",
-
-      //   "& > *": {
-      //     borderRight: "none",
-      //     paddingRight: "none",
-      //   },
-
-      //   "& > :last-child": {
-      //     borderRight: "none",
-      //     paddingRight: "none",
-      //   },
-      //   "& > ::slotted(*)": {
-      //     borderRight: "none",
-      //     paddingRight: "none",
-      //   },
-      // },
     },
     StatFrame: {
       display: "flex",
     },
     BorderFix: {
-      "border-right": "1px solid #ffffff",
+      "border-right": "1px solid transparent",
       width: "0px",
       "margin-left": "-1px",
     },

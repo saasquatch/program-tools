@@ -1071,7 +1071,7 @@ export namespace Components {
           * @uiName Date Displayed
           * @uiType string
           * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
-          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date Referral Modified"]
+          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date User Modified"]
          */
         "dateShown": ReferralDates;
         "renderCell": (data: Referral, locale: string) => Promise<any>;
@@ -1773,6 +1773,7 @@ export namespace Components {
          */
         "endedMessage": string;
         /**
+          * Optionally send an event to SaaSquatch when a user clicks the CTA. This field configured what key of the event sent is.
           * @uiName Event key of task card button
          */
         "eventKey"?: string;
@@ -1786,7 +1787,7 @@ export namespace Components {
          */
         "finite": number;
         /**
-          * Sets the goal for progress to be completed. If repeatable is checked, repeatable goals will be increments of this.
+          * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
           * @uiName Goal Completion Number
          */
         "goal": number;
@@ -1795,6 +1796,7 @@ export namespace Components {
          */
         "openNewTab": boolean;
         /**
+          * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
           * @uiName Program ID override
          */
         "programId"?: string;
@@ -3544,7 +3546,7 @@ declare namespace LocalJSX {
           * @uiName Date Displayed
           * @uiType string
           * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
-          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date Referral Modified"]
+          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date User Modified"]
          */
         "dateShown"?: ReferralDates;
     }
@@ -4224,6 +4226,7 @@ declare namespace LocalJSX {
          */
         "endedMessage"?: string;
         /**
+          * Optionally send an event to SaaSquatch when a user clicks the CTA. This field configured what key of the event sent is.
           * @uiName Event key of task card button
          */
         "eventKey"?: string;
@@ -4237,7 +4240,7 @@ declare namespace LocalJSX {
          */
         "finite"?: number;
         /**
-          * Sets the goal for progress to be completed. If repeatable is checked, repeatable goals will be increments of this.
+          * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
           * @uiName Goal Completion Number
          */
         "goal"?: number;
@@ -4246,6 +4249,7 @@ declare namespace LocalJSX {
          */
         "openNewTab"?: boolean;
         /**
+          * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
           * @uiName Program ID override
          */
         "programId"?: string;

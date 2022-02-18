@@ -83,3 +83,37 @@ export const InvalidStatValue = () => {
   };
   return <BigStatView {...props}>Big stat</BigStatView>;
 };
+
+export const MultipleStats = () => {
+  return (
+    <sqm-stat-container space="xxx-large" display="flex">
+      <sqm-big-stat
+        flex-reverse="true"
+        alignment="left"
+        stat-type="/referralsCount"
+      >
+        <sqm-text>
+          <p>Rewards Redeemed</p>
+        </sqm-text>
+      </sqm-big-stat>
+      <sqm-big-stat
+        flex-reverse="true"
+        alignment="left"
+        stat-type="/rewardsRedeemed/CREDIT/global"
+      >
+        <sqm-text>
+          <p>Rewards Redeemed</p>
+        </sqm-text>
+      </sqm-big-stat>
+      <sqm-big-stat
+        flex-reverse="true"
+        alignment="left"
+        stat-type="/rewardBalance/CREDIT/POINT/value/global"
+      >
+        <sqm-text>
+          <p>Points Balance</p>
+        </sqm-text>
+      </sqm-big-stat>
+    </sqm-stat-container>
+  )
+}
