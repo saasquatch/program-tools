@@ -209,10 +209,24 @@ export const ListRules = createGlobalStyle`
   }
 `;
 
+export const TableRules = createGlobalStyle`
+  table {
+    color: var(--sq-text);
+    font-family: var(--sq-font-family-sans);
+    font-weight: var(--sq-font-weight-regular);
+    font-size: var(--sq-font-size-regular);
+    line-height: var(--sq-line-height-regular);
+  }
+`;
+
 export const GlobalStyle = () => {
   return (
     <>
-      <CSSVariables /> <TextRules /> <ListRules /> <LayoutRules />
+      <CSSVariables />
+      <TextRules />
+      <ListRules />
+      <LayoutRules />
+      <TableRules />
     </>
   );
 };
