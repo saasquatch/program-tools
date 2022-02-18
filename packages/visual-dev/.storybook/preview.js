@@ -12,6 +12,10 @@ export const parameters = {
   },
 };
 
+addParameters({
+  viewMode: 'docs',
+});
+
 const withGlobalStyles = (Story, context) => {
   return (
     <>
