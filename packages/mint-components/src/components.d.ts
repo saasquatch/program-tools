@@ -1071,7 +1071,7 @@ export namespace Components {
           * @uiName Date Displayed
           * @uiType string
           * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
-          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended"]
+          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date Referral Modified"]
          */
         "dateShown": ReferralDates;
         "renderCell": (data: Referral, locale: string) => Promise<any>;
@@ -3544,7 +3544,7 @@ declare namespace LocalJSX {
           * @uiName Date Displayed
           * @uiType string
           * @uiEnum ["dateConverted", "dateReferralStarted", "dateFraudChecksCompleted", "dateModerated", "dateModified", "dateReferralEnded", "dateReferralPaid", "dateUserModified"]
-          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended"]
+          * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended", "Date Referral Paid", "Date Referral Modified"]
          */
         "dateShown"?: ReferralDates;
     }

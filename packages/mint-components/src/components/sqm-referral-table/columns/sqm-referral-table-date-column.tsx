@@ -27,7 +27,14 @@ export class ReferralTableDateColumn implements ReferralTableColumn {
    * "dateReferralEnded",
    * "dateReferralPaid",
    * "dateUserModified"]
-   * @uiEnumNames ["Date Converted", "Date Referral Started", "Date Fraud Checks Completed", "Date Moderated", "Date Modified", "Date Referral Ended"]
+   * @uiEnumNames ["Date Converted",
+   * "Date Referral Started",
+   * "Date Fraud Checks Completed",
+   * "Date Moderated",
+   * "Date Modified",
+   * "Date Referral Ended",
+   * "Date Referral Paid",
+   * "Date User Modified"]
    */
   @Prop() dateShown: ReferralDates = "dateConverted";
 

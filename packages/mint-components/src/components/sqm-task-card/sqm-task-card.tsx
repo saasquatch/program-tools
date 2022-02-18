@@ -158,11 +158,13 @@ export class TaskCard {
   statType: string = "/programGoals/count/Referral-Started%2Freferrals";
 
   /**
+  * Optionally send an event to SaaSquatch when a user clicks the CTA. This field configured what key of the event sent is.
    * @uiName Event key of task card button
    */
   @Prop() eventKey?: string;
 
   /**
+  * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
    * @uiName Program ID override
    */
   @Prop() programId?: string;
