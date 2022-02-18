@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import { Icon } from "../Icon";
 import { Skeleton, Content, DataTable, Row, Pagination } from ".";
 import { Avatar } from "../Avatar";
 import { Text } from "../Text";
+import { Dropdown } from "../Dropdown";
 
 export default {
   title: "Components / DataTable",
@@ -73,61 +75,90 @@ const content_c = [
   { text: <Icon icon="actions" />, width: "50px", flex: 0.01, center: true },
 ];
 
+const Menus = styled.div`
+  div + div {
+    margin-left: var(--sq-spacing-x-small);
+  }
+  margin-bottom: var(--sq-spacing-large);
+`;
+
 export const FormSubmissionTable = () => {
   return (
-    <DataTable width="958px">
-      <Row variant="header" content={content_a} />
-      <Row content={content_b} />
-      <Row content={content_c} />
-      <Row content={content_c} />
-      <Row content={content_c} />
-      <Row content={content_c} />
-      <Pagination
-        total={17}
-        limit={10}
-        offset={0}
-        updatePagination={updatePaginationDummy}
-      />
-    </DataTable>
+    <>
+      <Menus>
+        <Dropdown text="All Forms" customCSS="min-width: 112px;" />
+        <Dropdown text="Any Status" customCSS="min-width: 116px;" />
+        <Dropdown
+          text="30 Days"
+          icon="calendar"
+          customCSS="min-width: 142px;"
+        />
+      </Menus>
+      <DataTable width="958px">
+        <Row variant="header" content={content_a} />
+        <Row content={content_b} />
+        <Row content={content_c} />
+        <Row content={content_c} />
+        <Row content={content_c} />
+        <Row content={content_c} />
+        <Pagination
+          total={17}
+          limit={10}
+          offset={0}
+          updatePagination={updatePaginationDummy}
+        />
+      </DataTable>
+    </>
   );
 };
 
 export const FormSubmissionTableWithBanner = () => {
   return (
-    <DataTable width="958px">
-      <Row variant="banner">
-        <div>
-          <span style={{ padding: 20 }}>Filter Rewards by Program</span>
-          <span
-            style={{
-              background: "white",
-              width: 2,
-              height: "90px",
-              marginTop: -45,
-              display: "inline-flex",
-              position: "absolute",
-            }}
-          >
-            .
-          </span>
-          <span style={{ marginLeft: 20 }}>
-            5 rewards earned across all programs
-          </span>
-        </div>
-      </Row>
-      <Row variant="header" content={content_a} />
-      <Row content={content_b} />
-      <Row content={content_c} />
-      <Row content={content_c} />
-      <Row content={content_c} />
-      <Row content={content_c} />
-      <Pagination
-        total={17}
-        limit={10}
-        offset={0}
-        updatePagination={updatePaginationDummy}
-      />
-    </DataTable>
+    <>
+      <Menus>
+        <Dropdown text="All Forms" customCSS="min-width: 112px;" />
+        <Dropdown text="Any Status" customCSS="min-width: 116px;" />
+        <Dropdown
+          text="30 Days"
+          icon="calendar"
+          customCSS="min-width: 142px;"
+        />
+      </Menus>
+      <DataTable width="958px">
+        <Row variant="banner">
+          <div>
+            <span style={{ padding: 20 }}>Filter Rewards by Program</span>
+            <span
+              style={{
+                background: "white",
+                width: 2,
+                height: "90px",
+                marginTop: -45,
+                display: "inline-flex",
+                position: "absolute",
+              }}
+            >
+              .
+            </span>
+            <span style={{ marginLeft: 20 }}>
+              5 rewards earned across all programs
+            </span>
+          </div>
+        </Row>
+        <Row variant="header" content={content_a} />
+        <Row content={content_b} />
+        <Row content={content_c} />
+        <Row content={content_c} />
+        <Row content={content_c} />
+        <Row content={content_c} />
+        <Pagination
+          total={17}
+          limit={10}
+          offset={0}
+          updatePagination={updatePaginationDummy}
+        />
+      </DataTable>
+    </>
   );
 };
 
@@ -141,16 +172,27 @@ export const FormSubmissionTableEmpty = () => {
   ];
 
   return (
-    <DataTable width="958px" empty>
-      <Row variant="header" content={content_a} />
-      <Row empty />
-      <Pagination
-        total={17}
-        limit={10}
-        offset={0}
-        updatePagination={updatePaginationDummy}
-      />
-    </DataTable>
+    <>
+      <Menus>
+        <Dropdown text="All Forms" customCSS="min-width: 112px;" />
+        <Dropdown text="Any Status" customCSS="min-width: 116px;" />
+        <Dropdown
+          text="30 Days"
+          icon="calendar"
+          customCSS="min-width: 142px;"
+        />
+      </Menus>
+      <DataTable width="958px" empty>
+        <Row variant="header" content={content_a} />
+        <Row empty />
+        <Pagination
+          total={17}
+          limit={10}
+          offset={0}
+          updatePagination={updatePaginationDummy}
+        />
+      </DataTable>
+    </>
   );
 };
 export const FormSubmissionTableFilter = () => {
@@ -163,16 +205,27 @@ export const FormSubmissionTableFilter = () => {
   ];
 
   return (
-    <DataTable width="958px" empty>
-      <Row variant="header" content={content_a} />
-      <Row emptyFilter />
-      <Pagination
-        total={17}
-        limit={10}
-        offset={0}
-        updatePagination={updatePaginationDummy}
-      />
-    </DataTable>
+    <>
+      <Menus>
+        <Dropdown text="All Forms" customCSS="min-width: 112px;" />
+        <Dropdown text="Any Status" customCSS="min-width: 116px;" />
+        <Dropdown
+          text="30 Days"
+          icon="calendar"
+          customCSS="min-width: 142px;"
+        />
+      </Menus>
+      <DataTable width="958px" empty>
+        <Row variant="header" content={content_a} />
+        <Row emptyFilter />
+        <Pagination
+          total={17}
+          limit={10}
+          offset={0}
+          updatePagination={updatePaginationDummy}
+        />
+      </DataTable>
+    </>
   );
 };
 

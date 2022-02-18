@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import { Dropdown } from "../Dropdown";
 
 type DataTableProps = OptionProps &
   StyleProps &
@@ -22,13 +21,6 @@ const DataTableDiv = styled.div<Required<StyleProps>>`
   ${(props) => props.customCSS}
 `;
 
-const Menus = styled.div`
-  div + div {
-    margin-left: var(--sq-spacing-x-small);
-  }
-  margin-bottom: var(--sq-spacing-large);
-`;
-
 export const DataTable = React.forwardRef<
   React.ElementRef<"div">,
   DataTableProps
@@ -43,24 +35,13 @@ export const DataTable = React.forwardRef<
   } = props;
 
   return (
-    <>
-      <Menus>
-        <Dropdown text="All Forms" customCSS="min-width: 112px;" />
-        <Dropdown text="Any Status" customCSS="min-width: 116px;" />
-        <Dropdown
-          text="30 Days"
-          icon="calendar"
-          customCSS="min-width: 142px;"
-        />
-      </Menus>
-      <DataTableDiv
-        width={width}
-        {...rest}
-        ref={forwardedRef}
-        customCSS={customCSS}
-      >
-        {children}
-      </DataTableDiv>
-    </>
+    <DataTableDiv
+      width={width}
+      {...rest}
+      ref={forwardedRef}
+      customCSS={customCSS}
+    >
+      {children}
+    </DataTableDiv>
   );
 });
