@@ -76,3 +76,10 @@ export const FieldTemplate = (props: FieldTemplateProps) => {
     </Container>
   );
 };
+
+FieldTemplate.Label = Label;
+FieldTemplate.Description = Description;
+FieldTemplate.HelpText = HelpText;
+FieldTemplate.Errors = Errors;
+FieldTemplate.Container = Container;
+FieldTemplate.ErrorItem = ErrorItem;
