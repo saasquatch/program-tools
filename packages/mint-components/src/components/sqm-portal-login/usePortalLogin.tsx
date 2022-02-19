@@ -4,7 +4,7 @@ import {
   navigation,
   useAuthenticateWithEmailAndPasswordMutation,
 } from "@saasquatch/component-boilerplate";
-import { sanitizeUrlPath } from "../../utilities";
+import { sanitizeUrlPath } from "../../utils/utils";
 
 export function usePortalLogin(props) {
   const [request, { loading, errors, data }] =
@@ -28,11 +28,8 @@ export function usePortalLogin(props) {
   useEffect(() => {
     if (data?.authenticateManagedIdentityWithEmailAndPassword?.token) {
       urlParams.delete("nextPage");
-      const path = sanitizeUrlPath(nextPageOverride || props.nextPage);
-      navigation.push({
-        pathname: path,
-        search: urlParams.toString() && "?" + urlParams.toString(),
-      });
+      const url = sanitizeUrlPath(nextPageOverride || props.nextPage);
+      navigation.push(url.href);
     }
   }, [data?.authenticateManagedIdentityWithEmailAndPassword?.token]);
 

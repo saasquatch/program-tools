@@ -21,7 +21,7 @@
     "build:grapes": "cross-env BUILD=DOCS stencil build --watch --docs",
     "serve:grapes": "npx http-server . --cors -c-1 -p 8080",
     "start": "cross-env NODE_ENV=dev stencil build --dev --watch --serve",
-    "test": "stencil test --spec --e2e",
+    "test": "stencil test --spec --e2e --verbose",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "specs": "picklesdoc xlsx src docs --testers=2"
