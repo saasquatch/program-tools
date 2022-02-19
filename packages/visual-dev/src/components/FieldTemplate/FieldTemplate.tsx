@@ -83,3 +83,4 @@ FieldTemplate.HelpText = HelpText;
 FieldTemplate.Errors = Errors;
 FieldTemplate.Container = Container;
 FieldTemplate.ErrorItem = ErrorItem;
+FieldTemplate.RequiredLabel = RequiredLabel;
