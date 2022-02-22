@@ -6,7 +6,7 @@ import * as Styles from "./Styles";
 
 type DropdownProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate"|"css">;
+  Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
   text?: string;
@@ -16,6 +16,7 @@ export interface OptionProps {
   narrow?: boolean;
   disabled?: boolean;
   icon?: IconKey;
+  popUpwards?: boolean;
   onClickDropdown?: () => void;
   children?: React.ReactNode;
 }
@@ -66,9 +67,16 @@ const DropdownButton = styled("div")<Required<ButtonProps>>`
     ${(props) => props.disabled && "cursor: not-allowed;"};
   }
 `;
-const DropdownContent = styled("div")<Pick<DropdownProps, "pill">>`
+const DropdownContent = styled("div")<
+  Pick<DropdownProps, "pill" | "popUpwards">
+>`
   ${Styles.content}
   border-radius: ${(props) => (props.pill ? "20px" : "4px")};
+
+  ${(props) =>
+    props.popUpwards
+      ? `margin-bottom: var(--sq-spacing-x-small); top: 0; transform: translateY(-100%) translateY(calc(var(--sq-spacing-x-small) * -1)); ;`
+      : "margin-top: var(--sq-spacing-x-small);"}
 `;
 
 const DropdownItemStyle = styled("div")<Required<StyleProps>>`
@@ -104,6 +112,7 @@ export const Dropdown = React.forwardRef<
     center = false,
     narrow = false,
     disabled = false,
+    popUpwards = false,
     icon,
     onClickDropdown,
     children,
@@ -130,7 +139,11 @@ export const Dropdown = React.forwardRef<
         )}
         {text} <ArrowStyle>{showMenu ? chevron_up : chevron_down}</ArrowStyle>
       </DropdownButton>
-      {showMenu && <DropdownContent pill={pill}>{children}</DropdownContent>}
+      {showMenu && (
+        <DropdownContent pill={pill} popUpwards={popUpwards}>
+          {children}
+        </DropdownContent>
+      )}
     </DropdownContainer>
   );
 });
@@ -142,7 +155,12 @@ export const DropdownItem = React.forwardRef<
   const { onClick, children, customCSS = {}, ...rest } = props;
 
   return (
-    <DropdownItemStyle onClick={onClick} {...rest} ref={forwardedRef} customCSS={customCSS}>
+    <DropdownItemStyle
+      onClick={onClick}
+      {...rest}
+      ref={forwardedRef}
+      customCSS={customCSS}
+    >
       {children}
     </DropdownItemStyle>
   );

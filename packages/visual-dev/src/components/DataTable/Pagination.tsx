@@ -112,6 +112,7 @@ export const Pagination = React.forwardRef<
           showMenu={dropdown}
           pill
           center
+          popUpwards
           text={`${limit} Per Page`}
           customCSS="min-width: 165px; width: 165px; display: inline-block"
         >

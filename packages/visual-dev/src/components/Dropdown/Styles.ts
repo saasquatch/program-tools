@@ -50,7 +50,6 @@ export const content = css`
   width: max-content;
   min-width: inherit;
   z-index: 100;
-  margin-top: 10px;
   background: #ffffff;
   border: 1px solid var(--sq-action-secondary-border);
   box-sizing: border-box;
