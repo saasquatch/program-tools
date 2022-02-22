@@ -3,6 +3,7 @@ import { Popover } from ".";
 import { Paragraph } from "../Paragraph";
 import { Icon } from "../Icon";
 import { useState } from "react";
+import { HoverPopover } from "./HoverPopover";
 
 export default {
   title: "Components / Popover",
@@ -30,18 +31,9 @@ export const Default = () => {
 };
 
 export const Functional = () => {
-  const [show, setShow] = useState(false);
   return (
-    <div
-      onMouseOver={() => {
-        setShow(true);
-      }}
-      onMouseLeave={() => {
-        setShow(false);
-      }}
-    >
-      <span>This is a popover, hover here</span>
-      <Popover show={show} relativeX="0" relativeY="0">
+    <HoverPopover handle={<span>This is a popover, hover here</span>}>
+      <Popover>
         <Popover.Section>
           <Paragraph size="2" bold>
             Shown in widgets, emails, and used in integrations, API, for:
@@ -56,7 +48,7 @@ export const Functional = () => {
           <Popover.Action>Popover action</Popover.Action>
         </Popover.Section>
       </Popover>
-    </div>
+    </HoverPopover>
   );
 };
 

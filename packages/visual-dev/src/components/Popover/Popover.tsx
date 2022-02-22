@@ -8,11 +8,10 @@ import * as Styles from "./Styles";
 export type PopoverProps = PopoverOptions &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 export interface PopoverOptions {
-  show: boolean;
-  // relativePosition: Position
+  show?: boolean;
   children: React.ReactNode;
-  relativeX: string;
-  relativeY: string;
+  relativeX?: string;
+  relativeY?: string;
 }
 
 export interface SectionProps {
@@ -51,13 +50,7 @@ const StyledContainer = styled.div<
 
 export const Popover: React.FC<PopoverProps> & { Section: typeof Section } & {
   Action: typeof Action;
-} = ({
-  show,
-  // relativePosition,
-  relativeY,
-  relativeX,
-  children,
-}) => {
+} = ({ show = true, relativeY = "0px", relativeX = "0px", children }) => {
   if (React.Children.count(children) > 1) {
     return (
       <StyledContainer show={show} relativeX={relativeX} relativeY={relativeY}>
