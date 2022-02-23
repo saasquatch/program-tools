@@ -123,6 +123,15 @@ export class Scroll {
             },
           },
         },
+        "& .neutral": {
+          "&::part(base)": {
+            color: "var(--sl-color-primary-text)",
+            background: "var(--sl-color-neutral-500)",
+            "&:hover": {
+              opacity:"0.8"
+            },
+          },
+        },
         "& .mobile": {
           "@media (max-width: 499px)": {
             width: "100%",
@@ -151,6 +160,11 @@ export class Scroll {
     }
 	`;
 
+    let classStack = "";
+    if (this.outline && this.buttonType != "default") classStack += "outline ";
+    if (this.buttonType === "neutral") classStack += "neutral ";
+    if (this.mobile) classStack += "mobile ";
+
     return (
       <div class={sheet.classes.Button}>
         <style type="text/css">
@@ -163,7 +177,7 @@ export class Scroll {
           size={this.size}
           pill={this.pill}
           circle={this.circle}
-          class={this.outline && this.buttonType != "default" ? "outline" : ""}
+          class={classStack}
         >
           {(this.iconSlot || this.iconName) && (
             <sl-icon
