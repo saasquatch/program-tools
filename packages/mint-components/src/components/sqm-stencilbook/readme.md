@@ -12,14 +12,15 @@
 - [sqm-share-button](../sqm-share-button)
 - [sqm-empty](../sqm-empty)
 - [sqm-share-link](../sqm-share-link)
+- [sqm-stat-container](../sqm-stat-container)
+- [sqm-big-stat](../sqm-big-stat)
+- [sqm-text](../sqm-text)
 - [sqm-router](../sqm-router)
 - [sqm-hook-story-container](../sqm-hook-story-container)
 - [sqm-navigation-menu](../sqm-navigation-menu)
 - [sqm-portal-frame](../sqm-portal-frame)
 - [sqm-edit-profile](../sqm-edit-profile)
 - [sqm-form-message](../sqm-form-message)
-- [sqm-big-stat](../sqm-big-stat)
-- [sqm-text](../sqm-text)
 - [sqm-divided-layout](../sqm-divided-layout)
 - [sqm-leaderboard](../sqm-leaderboard)
 - [sqm-reward-exchange-list](../sqm-reward-exchange-list)
@@ -49,7 +50,6 @@
 - [sqm-program-explainer-step](../sqm-program-explainer-step)
 - [sqm-brand](../sqm-brand)
 - [sqm-portal-container](../sqm-portal-container)
-- [sqm-stat-container](../sqm-stat-container)
 - [sqm-scroll](../sqm-scroll)
 - [sqm-rewards-table-reward-cell](../sqm-rewards-table/cells)
 - [sqm-rewards-table-source-cell](../sqm-rewards-table/cells)
@@ -74,14 +74,15 @@ graph TD;
   sqm-stencilbook --> sqm-share-button
   sqm-stencilbook --> sqm-empty
   sqm-stencilbook --> sqm-share-link
+  sqm-stencilbook --> sqm-stat-container
+  sqm-stencilbook --> sqm-big-stat
+  sqm-stencilbook --> sqm-text
   sqm-stencilbook --> sqm-router
   sqm-stencilbook --> sqm-hook-story-container
   sqm-stencilbook --> sqm-navigation-menu
   sqm-stencilbook --> sqm-portal-frame
   sqm-stencilbook --> sqm-edit-profile
   sqm-stencilbook --> sqm-form-message
-  sqm-stencilbook --> sqm-big-stat
-  sqm-stencilbook --> sqm-text
   sqm-stencilbook --> sqm-divided-layout
   sqm-stencilbook --> sqm-leaderboard
   sqm-stencilbook --> sqm-reward-exchange-list
@@ -111,7 +112,6 @@ graph TD;
   sqm-stencilbook --> sqm-program-explainer-step
   sqm-stencilbook --> sqm-brand
   sqm-stencilbook --> sqm-portal-container
-  sqm-stencilbook --> sqm-stat-container
   sqm-stencilbook --> sqm-scroll
   sqm-stencilbook --> sqm-rewards-table-reward-cell
   sqm-stencilbook --> sqm-rewards-table-source-cell

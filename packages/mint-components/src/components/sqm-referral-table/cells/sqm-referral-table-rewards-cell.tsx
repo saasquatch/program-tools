@@ -125,7 +125,7 @@ export class ReferralTableRewardsCell {
         .trim();
     };
 
-    return this.rewards.map((reward) => {
+    return this.rewards?.map((reward) => {
       const state = getState(reward.statuses);
       const slBadgeType = getSLBadgeType(state);
       const badgeText = intl.formatMessage(
