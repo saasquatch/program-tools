@@ -5,6 +5,7 @@ import { Skeleton, Content, DataTable, Row, Pagination } from ".";
 import { Avatar } from "../Avatar";
 import { Text } from "../Text";
 import { Dropdown } from "../Dropdown";
+import { HoverPopover, Popover } from '../Popover'
 
 export default {
   title: "Components / DataTable",
@@ -111,6 +112,31 @@ export const FormSubmissionTable = () => {
     </>
   );
 };
+
+export const PopoverTestStory = () => {
+  return (
+    <>
+      <DataTable width="958px">
+        <Row variant="header" content={content_a} />
+        <HoverPopover handle={
+          <Row content={content_b} />
+          }>
+          <Popover relativeY="10px" relativeX="10px">This is a popover over the row</Popover>
+        </HoverPopover>
+        <Row content={content_c} />
+        <Row content={content_c} />
+        <Row content={content_c} />
+        <Row content={content_c} />
+        <Pagination
+          total={17}
+          limit={10}
+          offset={0}
+          updatePagination={updatePaginationDummy}
+        />
+      </DataTable>
+    </>
+  );
+}
 
 export const FormSubmissionTableWithBanner = () => {
   return (
