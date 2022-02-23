@@ -30,6 +30,7 @@ export function ShareLinkView(props: ShareLinkViewProps) {
         placement="top-end"
         disabled={props.disabled}
         open={props.open}
+        skidding={-20}
       >
         <sl-input
           class={sheet.classes.inputStyle}
