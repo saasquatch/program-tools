@@ -41,6 +41,17 @@ Feature: Widget
             | tr     |
 
     @motivating
+    Scenario Outline: Widgets can load with a locale of null
+        Given a user without a locale
+        And a widget translated for the following locales
+            | en_CA |
+            | en_US |
+            | fr    |
+            | tr    |
+        When the users loads the widget
+        Then the default widget is loaded
+
+    @motivating
     Scenario Outline: Widget load events can be tracked in SSQT when a widget is loaded
         Given a sqb-widget with "widget-type" "p/referral-a/w/referrerWidget"
         And it <mayHaveTrackLoads> prop with <value>
