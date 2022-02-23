@@ -60,6 +60,8 @@ export const CSSVariables = createGlobalStyle`
 
   /* Interactive */
   --sq-text-interactive: #0088cc;
+  --sq-text-interactive-hovered: #005580;
+  --sq-text-interactive-visited: #310A8F;
   --sq-focused: #458edf;
   --sq-icon-interactive: #0275fb;
   --sq-surface-hover: #eef6ff;
@@ -184,9 +186,13 @@ a{
   font-family: var(--sq-font-family-sans);
   color: var(--sq-text-interactive);
   text-decoration: none;
+  
+  &:visited{
+    color: var(--sq-text-interactive-visited)
+  }
 
   &:hover{
-    color: var(--sq-focused);
+    color: var(--sq-text-interactive-hovered);
   }
 }
 `;
