@@ -5,7 +5,8 @@ import { Skeleton, Content, DataTable, Row, Pagination } from ".";
 import { Avatar } from "../Avatar";
 import { Text } from "../Text";
 import { Dropdown } from "../Dropdown";
-import { HoverPopover, Popover } from '../Popover'
+import { HoverPopover, Popover } from "../Popover";
+import { Badge } from "../Badge";
 
 export default {
   title: "Components / DataTable",
@@ -61,6 +62,28 @@ const text_e = (
   </Content>
 );
 
+const text_e_popover = (
+  <Content>
+    <HoverPopover
+      handle={
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Skeleton circle={true} size="8px" color="#FE6666" /> Failed
+        </div>
+      }
+    >
+      <Popover>This is a popover with some Text</Popover>
+    </HoverPopover>
+  </Content>
+);
+
+const text_f = (
+  <Content>
+    <Badge status="success" icon="gift">
+      Success Badge
+    </Badge>
+  </Content>
+);
+
 const content_b = [
   { text: text_a },
   { text: text_b },
@@ -73,6 +96,13 @@ const content_c = [
   { text: text_b },
   { text: text_c },
   { text: text_e },
+  { text: <Icon icon="actions" />, width: "50px", flex: 0.01, center: true },
+];
+const content_d = [
+  { text: text_a },
+  { text: text_b },
+  { text: text_e_popover },
+  { text: text_f },
   { text: <Icon icon="actions" />, width: "50px", flex: 0.01, center: true },
 ];
 
@@ -113,20 +143,16 @@ export const FormSubmissionTable = () => {
   );
 };
 
-export const PopoverTestStory = () => {
+export const PopoverTest = () => {
   return (
     <>
       <DataTable width="958px">
         <Row variant="header" content={content_a} />
-        <HoverPopover handle={
-          <Row content={content_b} />
-          }>
-          <Popover relativeY="10px" relativeX="10px">This is a popover over the row</Popover>
-        </HoverPopover>
-        <Row content={content_c} />
-        <Row content={content_c} />
-        <Row content={content_c} />
-        <Row content={content_c} />
+        <Row content={content_b} />
+        <Row content={content_d} />
+        <Row content={content_d} />
+        <Row content={content_d} />
+        <Row content={content_d} />
         <Pagination
           total={17}
           limit={10}
@@ -136,7 +162,7 @@ export const PopoverTestStory = () => {
       </DataTable>
     </>
   );
-}
+};
 
 export const FormSubmissionTableWithBanner = () => {
   return (

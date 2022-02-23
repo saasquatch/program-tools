@@ -42,8 +42,11 @@ const StyledContainer = styled.div<
   Pick<PopoverProps, "show" | "relativeY" | "relativeX">
 >`
   display: ${({ show }) => (show ? "block" : "none")};
-  top: ${({ relativeY }) => relativeY};
-  left: ${({ relativeX }) => relativeX};
+
+  transform: translate(
+    ${({ relativeX }) => relativeX},
+    ${({ relativeY }) => relativeY}
+  );
 
   ${Styles.StyledContainer}
 `;

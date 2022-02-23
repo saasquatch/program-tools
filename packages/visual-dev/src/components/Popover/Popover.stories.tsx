@@ -2,8 +2,8 @@ import * as React from "react";
 import { Popover } from ".";
 import { Paragraph } from "../Paragraph";
 import { Icon } from "../Icon";
-import { useState } from "react";
 import { HoverPopover } from "./HoverPopover";
+import { CopyWrapper } from "../CopyWrapper";
 
 export default {
   title: "Components / Popover",
@@ -71,7 +71,9 @@ export const CopyPopover = () => (
   <Popover show={true} relativeX="24px" relativeY="24px">
     <span style={{ display: "flex", alignItems: "center", gap: "8px" }}>
       http://coleton-example.com/mz3aN3{" "}
-      <Icon icon="copy" color="var(--sq-action-primary)" />
+      <CopyWrapper clipboardContent="This is test clipboard content">
+        <Icon icon="copy" color="var(--sq-action-primary)" />
+      </CopyWrapper>
     </span>
   </Popover>
 );

@@ -44,6 +44,7 @@ import {
   Skeleton,
 } from "./components/DataTable";
 import { Popover, HoverPopover } from "./components/Popover";
+import { CopyWrapper } from "./components/CopyWrapper";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -95,4 +96,5 @@ export {
   Content,
   Pagination,
   Skeleton,
+  CopyWrapper,
 };

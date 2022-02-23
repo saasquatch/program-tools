@@ -20,7 +20,7 @@ export const HoverPopover: React.FC<HoverPopoverProps> = ({
       onMouseLeave={() => {
         setShow(false);
       }}
-      style={{position: "relative"}}
+      style={{ position: "relative", display: "contents" }}
     >
       {handle}
       {show && children}
