@@ -31,7 +31,7 @@ Feature: Widget
             | en_US |
             | fr    |
             | tr    |
-        When the users loads the widget
+        When the user loads the widget
         Then they get the <locale> widget
         Examples:
             | locale |
@@ -48,7 +48,7 @@ Feature: Widget
             | en_US |
             | fr    |
             | tr    |
-        When the users loads the widget
+        When the user loads the widget
         Then the default widget is loaded
 
     @motivating
