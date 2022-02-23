@@ -12,7 +12,6 @@
   "unpkg": "dist/bedrock-components/bedrock-components.esm.js",
   "files": [
     "dist/",
-    "docs/",
     "grapesjs/"
   ],
   "license": "MIT",
