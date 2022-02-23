@@ -141,7 +141,7 @@ export const WidgetWithNoAuth = createHookStory(() => {
   setUserIdentity(undefined);
   return (
     <div>
-      <sqb-widget widget-type="w/globalWidget" track-loads="false"></sqb-widget>
+      <sqb-widget widget-type="w/sampleWidget" track-loads="false"></sqb-widget>
     </div>
   );
 });
