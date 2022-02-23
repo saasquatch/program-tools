@@ -19,6 +19,7 @@ export const StyledAction = css`
 
 export const StyledContainer = css`
   position: absolute;
+  z-index: 999;
   background: var(--sq-surface);
   max-width: 300px;
   width: fit-content;
