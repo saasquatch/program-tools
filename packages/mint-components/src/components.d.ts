@@ -1167,12 +1167,6 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
         "renderReferrerCell": (data: Referrer) => Promise<any>;
     }
-    interface SqmRefreshButton {
-        /**
-          * @uiName Icon to show in the slot
-         */
-        "icon"?: string;
-    }
     interface SqmRewardExchangeList {
         /**
           * @uiName Back Button Text
@@ -2234,12 +2228,6 @@ declare global {
         prototype: HTMLSqmReferralTableUserColumnElement;
         new (): HTMLSqmReferralTableUserColumnElement;
     };
-    interface HTMLSqmRefreshButtonElement extends Components.SqmRefreshButton, HTMLStencilElement {
-    }
-    var HTMLSqmRefreshButtonElement: {
-        prototype: HTMLSqmRefreshButtonElement;
-        new (): HTMLSqmRefreshButtonElement;
-    };
     interface HTMLSqmRewardExchangeListElement extends Components.SqmRewardExchangeList, HTMLStencilElement {
     }
     var HTMLSqmRewardExchangeListElement: {
@@ -2477,7 +2465,6 @@ declare global {
         "sqm-referral-table-status-column": HTMLSqmReferralTableStatusColumnElement;
         "sqm-referral-table-user-cell": HTMLSqmReferralTableUserCellElement;
         "sqm-referral-table-user-column": HTMLSqmReferralTableUserColumnElement;
-        "sqm-refresh-button": HTMLSqmRefreshButtonElement;
         "sqm-reward-exchange-list": HTMLSqmRewardExchangeListElement;
         "sqm-rewards-table": HTMLSqmRewardsTableElement;
         "sqm-rewards-table-customer-note-cell": HTMLSqmRewardsTableCustomerNoteCellElement;
@@ -3630,12 +3617,6 @@ declare namespace LocalJSX {
          */
         "deletedUser"?: string;
     }
-    interface SqmRefreshButton {
-        /**
-          * @uiName Icon to show in the slot
-         */
-        "icon"?: string;
-    }
     interface SqmRewardExchangeList {
         /**
           * @uiName Back Button Text
@@ -4435,7 +4416,6 @@ declare namespace LocalJSX {
         "sqm-referral-table-status-column": SqmReferralTableStatusColumn;
         "sqm-referral-table-user-cell": SqmReferralTableUserCell;
         "sqm-referral-table-user-column": SqmReferralTableUserColumn;
-        "sqm-refresh-button": SqmRefreshButton;
         "sqm-reward-exchange-list": SqmRewardExchangeList;
         "sqm-rewards-table": SqmRewardsTable;
         "sqm-rewards-table-customer-note-cell": SqmRewardsTableCustomerNoteCell;
@@ -4523,7 +4503,6 @@ declare module "@stencil/core" {
             "sqm-referral-table-status-column": LocalJSX.SqmReferralTableStatusColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableStatusColumnElement>;
             "sqm-referral-table-user-cell": LocalJSX.SqmReferralTableUserCell & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserCellElement>;
             "sqm-referral-table-user-column": LocalJSX.SqmReferralTableUserColumn & JSXBase.HTMLAttributes<HTMLSqmReferralTableUserColumnElement>;
-            "sqm-refresh-button": LocalJSX.SqmRefreshButton & JSXBase.HTMLAttributes<HTMLSqmRefreshButtonElement>;
             "sqm-reward-exchange-list": LocalJSX.SqmRewardExchangeList & JSXBase.HTMLAttributes<HTMLSqmRewardExchangeListElement>;
             "sqm-rewards-table": LocalJSX.SqmRewardsTable & JSXBase.HTMLAttributes<HTMLSqmRewardsTableElement>;
             "sqm-rewards-table-customer-note-cell": LocalJSX.SqmRewardsTableCustomerNoteCell & JSXBase.HTMLAttributes<HTMLSqmRewardsTableCustomerNoteCellElement>;
