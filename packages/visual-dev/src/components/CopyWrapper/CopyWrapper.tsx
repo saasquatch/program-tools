@@ -5,26 +5,19 @@ type CopyWrapperProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
-  displayType?: string;
   copyContent: string;
   copyCallback: (copyResult: boolean) => void;
 }
 
-const Container = styled.div<{ displayType: string }>`
-  display: ${({ displayType }) => displayType};
+const Container = styled.div`
+  display: contents;
 `;
 
 export const CopyWrapper = React.forwardRef<
   React.ElementRef<"div">,
   CopyWrapperProps
 >((props, forwardedRef) => {
-  const {
-    displayType = "block",
-    copyContent,
-    copyCallback,
-    children,
-    ...rest
-  } = props;
+  const { copyContent, copyCallback, children, ...rest } = props;
 
   const writeToClipboard = () => {
     navigator.clipboard.writeText(copyContent).then(
@@ -38,12 +31,7 @@ export const CopyWrapper = React.forwardRef<
   };
 
   return (
-    <Container
-      onClick={writeToClipboard}
-      displayType={displayType}
-      {...rest}
-      ref={forwardedRef}
-    >
+    <Container onClick={writeToClipboard} {...rest} ref={forwardedRef}>
       {children}
     </Container>
   );
