@@ -139,7 +139,7 @@ export class TaskCard {
    * @uiName CTA Button Link
    */
   @Prop()
-  buttonLink: string = "https://example.com/";
+  buttonLink: string;
 
   /**
    * @uiName CTA Button Link Open in New Tab
