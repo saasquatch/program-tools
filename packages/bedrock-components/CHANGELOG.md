@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed components:
   - \<sqb-widget>
     - Now supports translations, returning the localized widget
+  - \<sqb-program-section>
+    - Now supports `program-id=""` as a null programId instead of empty string
 
 ## [1.3.0] - 2021-12-07
 
