@@ -36,7 +36,7 @@ export const RJSFRadio = (props: WidgetProps) => {
           <Radio
             ref={dummyRef}
             key={props.id + option.value}
-            options={{ text: option.label }}
+            label={option.label}
             name={props.id}
             required={props.required}
             value={props.value == option.value}

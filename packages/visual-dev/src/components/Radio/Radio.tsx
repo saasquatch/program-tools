@@ -15,7 +15,7 @@ export interface OptionProps {
    * Onchange action for radio
    */
   onChange?: any;
-  options?: any;
+  label?: React.ReactNode | "string";
 }
 
 const ShadowDom = styled(root.div)``;
@@ -32,7 +32,7 @@ const RadioButton = styled.div`
 
 export const Radio = React.forwardRef<React.ElementRef<"input">, RadioProps>(
   (props, forwardRef) => {
-    const { value, onChange, options, ...rest } = props;
+    const { value, onChange, label, ...rest } = props;
     return (
       <RadioLabel htmlFor={rest.id}>
         <RadioInput
@@ -43,14 +43,14 @@ export const Radio = React.forwardRef<React.ElementRef<"input">, RadioProps>(
           ref={forwardRef}
         />
         <RadioButton />
-        {options.text ? options.text : ""}
+        {label ? label : ""}
       </RadioLabel>
     );
   }
 );
 
 export const RadioGroup = (props: RadioProps) => {
-    const { children } = props;
+  const { children } = props;
 
-    return <ShadowDom>{children}</ShadowDom>;
-  }
+  return <ShadowDom>{children}</ShadowDom>;
+};

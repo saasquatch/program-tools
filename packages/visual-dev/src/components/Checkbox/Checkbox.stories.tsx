@@ -62,3 +62,17 @@ export const DisabledChecked = () => {
     />
   );
 };
+
+export const CustomCSS = () => {
+  const options = {
+    text: "Checked",
+  };
+  return (
+    <Checkbox
+      options={options}
+      value={true}
+      disabled={true}
+      onChange={undefined}
+    />
+  );
+};

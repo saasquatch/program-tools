@@ -6,7 +6,8 @@ type CopyWrapperProps = OptionProps &
 
 export interface OptionProps {
   displayType?: string;
-  clipboardContent: string;
+  copyContent: string;
+  copyCallback: (copyResult: boolean) => void;
 }
 
 const Container = styled.div<{ displayType: string }>`
@@ -17,15 +18,21 @@ export const CopyWrapper = React.forwardRef<
   React.ElementRef<"div">,
   CopyWrapperProps
 >((props, forwardedRef) => {
-  const { displayType = "block", clipboardContent, children, ...rest } = props;
+  const {
+    displayType = "block",
+    copyContent,
+    copyCallback,
+    children,
+    ...rest
+  } = props;
 
   const writeToClipboard = () => {
-    navigator.clipboard.writeText(clipboardContent).then(
+    navigator.clipboard.writeText(copyContent).then(
       function () {
-        /* clipboard successfully set */
+        copyCallback(true);
       },
       function () {
-        /* clipboard write failed */
+        copyCallback(true);
       }
     );
   };

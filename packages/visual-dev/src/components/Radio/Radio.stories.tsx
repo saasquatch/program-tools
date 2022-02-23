@@ -1,31 +1,25 @@
-import React from 'react'
-import { Radio } from '.'
+import React from "react";
+import { Radio } from ".";
 
 export default {
-  title: 'Components / Radio',
+  title: "Components / Radio",
   component: Radio,
-}
+};
 
 export const Functional = () => {
   return (
     <div>
-      <Radio options={{ text: 'Option 1' }} name='group1' />
-      <Radio options={{ text: 'Option 2' }} name='group1' />
-      <Radio options={{ text: 'Option 3' }} name='group1' />
+      <Radio label="Option 1" name="group1" />
+      <Radio label="Option 2" name="group1" />
+      <Radio label="Option 3" name="group1" />
     </div>
-  )
-}
+  );
+};
 
 export const radio = () => {
-  const options = {
-    text: 'Radio',
-  }
-  return <Radio options={options} value={false} onChange={() => void 0} />
-}
+  return <Radio label="Radio" value={false} onChange={() => void 0} />;
+};
 
 export const radioChecked = () => {
-  const options = {
-    text: 'Checked',
-  }
-  return <Radio options={options} value={true} onChange={() => void 0} />
-}
+  return <Radio label="Checked" value={true} onChange={() => void 0} />;
+};
