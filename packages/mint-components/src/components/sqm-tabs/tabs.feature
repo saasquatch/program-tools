@@ -49,8 +49,9 @@ Feature: Tabs
   @landmine
   Scenario: Program section cannot be used inside of tabs
     Given a tabs component
-    And tab with a program section with program-id "test123"
-    And the program section wraps a rewards table component
+    And tab containing a program section with program-id "test123"
+    And the program section wraps a component using program context
     When the tabs component is rendered
-    Then the rewards table does not use program-id "test123" to source its data
-    And falls back to the program it is loaded from
+    Then the "sq:program-id" event listener for the program section is removed
+    And the component does not use program-id "test123" to source its data
+    And falls back to the global program id
