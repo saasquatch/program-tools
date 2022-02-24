@@ -15,5 +15,5 @@ export const CustomTooltipText = () => {
 };
 
 export const CustomTooltipDuration = () => {
-  return <sqm-share-code tooltiplifespan={5000}></sqm-share-code>;
+  return <sqm-share-code tooltiplifespan={5000} tooltiptext="CUSTOM TOOLTIP TEXT"></sqm-share-code>;
 };
