@@ -44,9 +44,9 @@ export {
   memoizedGraphQLClient,
   GRAPHQL_CONTEXT,
 } from "./hooks/graphql/useGraphQLClient";
+export { useRefreshDispatcher } from "./hooks/graphql/Refresh";
 
 //      Navigation
-
 export { navigation, useCurrentPage } from "./hooks/useNavigation";
 
 //

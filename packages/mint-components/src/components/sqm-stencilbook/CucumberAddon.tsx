@@ -19,7 +19,7 @@ export const CucumberAddon: AddOn = ({ story }, children) => {
 
   return (
     <div>
-      {result && <pre innerHTML={result.value} />}
+      <details><summary>Specs</summary>{result && <pre innerHTML={result.value} />}</details>
       {children}
     </div>
   );

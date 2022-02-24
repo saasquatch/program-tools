@@ -1,4 +1,4 @@
-# sqm-share-link
+# sqm-share-code
 
 
 
@@ -14,6 +14,19 @@
 | `tooltiplifespan` | `tooltip-lifespan` | The number of milliseconds that the tooltip will appear for                                                             | `number`                                                                                                    | `DEFAULT_TOOLTIP_LIFESPAN` |
 | `tooltiptext`     | `tooltip-text`     | This is shown after someone has successfully copied the cpde to the clipboard.                                          | `string`                                                                                                    | `"Copied to Clipboard"`    |
 
+
+## Dependencies
+
+### Used by
+
+ - [sqm-stencilbook](../sqm-stencilbook)
+
+### Graph
+```mermaid
+graph TD;
+  sqm-stencilbook --> sqm-share-code
+  style sqm-share-code fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

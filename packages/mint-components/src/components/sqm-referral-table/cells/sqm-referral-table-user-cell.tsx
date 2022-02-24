@@ -9,6 +9,6 @@ export class ReferralTableUserCell {
   @Prop() name: string;
 
   render() {
-    return <TextSpanView type="p">{this.name}</TextSpanView>;
+    return this.name;
   }
 }

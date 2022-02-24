@@ -18,6 +18,7 @@ export class DividedLayout {
    * @uiName Direction
    * @uiType string
    * @uiEnum ["row", "column"]
+   * @uiEnumNames ["Row", "Column"]
    */
   @Prop() direction: "row" | "column";
 

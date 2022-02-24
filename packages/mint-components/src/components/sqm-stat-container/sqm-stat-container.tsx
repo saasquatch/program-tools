@@ -19,8 +19,17 @@ export class StatContainer {
    * @uiName Space between stats
    * @uiType string
    * @uiEnum ["none", "xxx-small", "xx-small", "x-small", "small", "medium", "large", "x-large", "xx-large", "xxx-large", "xxxx-large"]
+   * @uiEnumNames ["None", "XXX-Small", "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "XXX-Large", "XXXX-Large"]
    */
   @Prop() space: Spacing = "xxx-large";
+
+  /**
+   * @uiName Display
+   * @uiType string
+   * @uiEnum ["grid", "flex"]
+   * @uiEnumNames ["Grid", "Flex"]
+   */
+  @Prop() display: "grid" | "flex" = "grid";
 
   constructor() {
     withHooks(this);

@@ -66,7 +66,7 @@ export class ShareCode {
 
 function useDemoShareCode(props: ShareCode): ShareLinkViewProps {
   const [open, setOpen] = useState(false);
-  const shareString = "https://www.example.com/sharelink/abc";
+  const shareString = "SHARECODE001";
   return deepmerge(
     {
       shareString,

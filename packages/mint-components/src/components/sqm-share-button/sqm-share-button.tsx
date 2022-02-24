@@ -29,8 +29,8 @@ export class ShareButton {
    *
    * @uiName Share Medium
    * @uiType string
-   * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest", "reminder", "unknown" ]
-   * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest", "Reminder", "Unknown"]
+   * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
+   * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
    */
   @Prop() medium:
     | "facebook"
@@ -57,6 +57,20 @@ export class ShareButton {
   //
 
   /**
+   * @uiName Configure border radius with pixel amount
+   */
+  @Prop() borderradius?: number;
+  /**
+   * @uiName Button background color
+   * @uiWidget color
+   */
+  @Prop() backgroundcolor?: string;
+  /**
+   * @uiName Button text color
+   * @uiWidget color
+   */
+  @Prop() textcolor?: string;
+  /**
    * @uiName Display as pill
    */
   @Prop() pill?: boolean;
@@ -68,6 +82,7 @@ export class ShareButton {
    * @uiType string
    * @uiName Button Style
    * @uiEnum ["primary" , "success", "info", "warning", "danger", "default", "text" ]
+   * @uiEnumNames ["Primary", "Success", "Info", "Warning", "Danger", "Default", "Text"]
    */
   @Prop() type?:
     | "primary"
@@ -92,6 +107,8 @@ export class ShareButton {
    */
   @Prop() iconslot?: "prefix" | "suffix" = "prefix";
   /**
+   * Options available at https://shoelace.style/components/icon
+   *
    * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
    */
   @Prop() icon?: string;
@@ -139,16 +156,8 @@ export class ShareButton {
 function useDemoShareButton(props: ShareButton): ShareButtonViewProps {
   return deepmerge(
     {
-      medium: props.medium,
+      ...props,
       loading: false,
-      disabled: props.disabled,
-      pill: props.pill,
-      type: props.type,
-      size: props.size,
-      hideicon: props.hideicon,
-      hidetext: props.hidetext,
-      iconslot: props.iconslot,
-      icon: props.icon,
       hide: false,
       onClick: () => {
         // TODO: Provide visual feedback
