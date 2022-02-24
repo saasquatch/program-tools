@@ -45,3 +45,12 @@ Feature: Tabs
     When there are more tabs than the horizontal space allows for
     Then clickable arrows appear on the left and right of the tabs
     And the tabs are scrollable
+
+  @landmine
+  Scenario: Program section cannot be used inside of tabs
+    Given a tabs component
+    And tab with a program section with program-id "test123"
+    And the program section wraps a rewards table component
+    When the tabs component is rendered
+    Then the rewards table does not use program-id "test123" to source its data
+    And falls back to the program it is loaded from
