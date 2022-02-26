@@ -43,7 +43,7 @@ const style = {
     "box-sizing": "border-box",
     display: "flex",
     "justify-content": "space-between",
-    padding: "var(--sl-spacing-small) var(--sl-spacing-large)",
+    // padding: "var(--sl-spacing-small) var(--sl-spacing-large)",
     "align-items": "center",
 
     "background-color": "var(--sqm-header-background)",

@@ -3,13 +3,7 @@ import { createStyleSheet } from "../../styling/JSS";
 
 type HamburgerMenuViewProps = {};
 
-export function HamburgerMenuView() {
-  const style = {
-    Container: {
-      border: "1px solid #ccc",
-    },
-  };
-
+export function HamburgerMenuView(children: VNode) {
   const vanillaStyle = `
 
     * {
@@ -21,6 +15,7 @@ export function HamburgerMenuView() {
       display: none;
       padding: 30px;
       border-radius: 12px;
+      border: 2px solid #eaeaea;
       padding-top: 90px;
       background: white; 
       max-width: 35%;
@@ -29,7 +24,7 @@ export function HamburgerMenuView() {
       top: 0;
       right: 0;
       margin: 0;
-      animation: slideIn 700ms ease-in;
+      animation: slideIn 500ms ease-in;
     }
 
    @keyframes slideIn {
@@ -48,11 +43,23 @@ export function HamburgerMenuView() {
       z-index: 5;
     }
 
+    @media screen and (max-width: 599px) {
+      .toggler,
+      .hamburger {
+        visibility: visible !important;
+      }
+
+      .hamburger > .line {
+        visibility: visible !important;
+      }
+    }
+
     .toggler,
     .hamburger {
+      visibility:hidden;
       position: absolute;
-      right: 50px;
-      top: 30px;
+      right: 20px;
+      top: 25px;
       width: 50px;
       height: 50px;
     }
@@ -89,24 +96,20 @@ export function HamburgerMenuView() {
     }
 
     .hamburger > .line {
+      visibility:hidden;
       z-index: 2;
       height: 4px;
-      width: 85%;
+      width: 65%;
       margin-bottom: 3px;
-      border-bottom: 7px solid #444445;
-      display: block;
+      border-bottom: 5px solid #444445;
     }
 
 
 
   `;
 
-  const sheet = createStyleSheet(style);
-  const styleString = sheet.toString();
-  const { classes } = sheet;
   return (
-    <div class={classes.Container}>
-      <style>{styleString}</style>
+    <div>
       <style>{vanillaStyle}</style>
       <input type="checkbox" class="toggler" />
       <div class="hamburger">
@@ -115,28 +118,7 @@ export function HamburgerMenuView() {
         <div class="line"></div>
       </div>
       <ul class="menu-items">
-        <sqm-navigation-sidebar>
-          <sqm-navigation-sidebar-item
-            path="/"
-            icon="house"
-            label="Dashboard"
-          ></sqm-navigation-sidebar-item>
-          <sqm-navigation-sidebar-item
-            path="/activity"
-            icon="bar-chart"
-            label="Activity"
-          ></sqm-navigation-sidebar-item>
-          <sqm-navigation-sidebar-item
-            path="/editProfile"
-            icon="person"
-            label="Edit Profile"
-          ></sqm-navigation-sidebar-item>
-          <sqm-navigation-sidebar-item
-            path="/logout"
-            icon="box-arrow-right"
-            label="Logout"
-          ></sqm-navigation-sidebar-item>
-        </sqm-navigation-sidebar>
+        <div>{children}</div>
       </ul>
     </div>
   );

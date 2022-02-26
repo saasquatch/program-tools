@@ -1,3 +1,4 @@
+import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, State } from "@stencil/core";
 import { HamburgerMenuView } from "./sqm-hamburger-menu-view";
 
@@ -14,7 +15,10 @@ export class HamburgerMenu {
   @State()
   ignored = true;
 
+  disconnectedCallback() {}
+
   render() {
-    return <HamburgerMenuView></HamburgerMenuView>;
+    const itemsSlot = <slot />;
+    return <HamburgerMenuView {...itemsSlot} />;
   }
 }

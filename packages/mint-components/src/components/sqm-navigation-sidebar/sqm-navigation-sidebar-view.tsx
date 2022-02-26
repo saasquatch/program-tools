@@ -16,6 +16,11 @@ const style = {
 };
 
 const vanillaStyle = `
+  @media screen and (max-width: 599px) {
+    :host {
+      display:none;
+    }
+  }
   :host{    
     width: 30vw;
     min-width: min-content;
