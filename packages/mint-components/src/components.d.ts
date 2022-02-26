@@ -188,6 +188,8 @@ export namespace Components {
          */
         "domain": string;
     }
+    interface SqmHamburgerMenu {
+    }
     interface SqmHero {
         /**
           * Can either be an image url, colour or Shoelace variable.
@@ -1982,6 +1984,12 @@ declare global {
         prototype: HTMLSqmGraphqlClientProviderElement;
         new (): HTMLSqmGraphqlClientProviderElement;
     };
+    interface HTMLSqmHamburgerMenuElement extends Components.SqmHamburgerMenu, HTMLStencilElement {
+    }
+    var HTMLSqmHamburgerMenuElement: {
+        prototype: HTMLSqmHamburgerMenuElement;
+        new (): HTMLSqmHamburgerMenuElement;
+    };
     interface HTMLSqmHeroElement extends Components.SqmHero, HTMLStencilElement {
     }
     var HTMLSqmHeroElement: {
@@ -2424,6 +2432,7 @@ declare global {
         "sqm-empty": HTMLSqmEmptyElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
         "sqm-graphql-client-provider": HTMLSqmGraphqlClientProviderElement;
+        "sqm-hamburger-menu": HTMLSqmHamburgerMenuElement;
         "sqm-hero": HTMLSqmHeroElement;
         "sqm-hero-image": HTMLSqmHeroImageElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
@@ -2651,6 +2660,8 @@ declare namespace LocalJSX {
           * @uiName Domain
          */
         "domain"?: string;
+    }
+    interface SqmHamburgerMenu {
     }
     interface SqmHero {
         /**
@@ -4375,6 +4386,7 @@ declare namespace LocalJSX {
         "sqm-empty": SqmEmpty;
         "sqm-form-message": SqmFormMessage;
         "sqm-graphql-client-provider": SqmGraphqlClientProvider;
+        "sqm-hamburger-menu": SqmHamburgerMenu;
         "sqm-hero": SqmHero;
         "sqm-hero-image": SqmHeroImage;
         "sqm-hook-story-container": SqmHookStoryContainer;
@@ -4462,6 +4474,7 @@ declare module "@stencil/core" {
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;
             "sqm-graphql-client-provider": LocalJSX.SqmGraphqlClientProvider & JSXBase.HTMLAttributes<HTMLSqmGraphqlClientProviderElement>;
+            "sqm-hamburger-menu": LocalJSX.SqmHamburgerMenu & JSXBase.HTMLAttributes<HTMLSqmHamburgerMenuElement>;
             "sqm-hero": LocalJSX.SqmHero & JSXBase.HTMLAttributes<HTMLSqmHeroElement>;
             "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
