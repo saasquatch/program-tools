@@ -52,6 +52,23 @@ export const Functional = () => {
   );
 };
 
+export const PopoverWidthLongWord = () => {
+  return (
+    <Popover>
+      <Popover.Section>
+        The longest town name in Wales is:
+        Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch
+      </Popover.Section>
+      <Popover.Section>
+        <Popover.Action>
+          The longest town name in New Zealand is:
+          Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu
+        </Popover.Action>
+      </Popover.Section>
+    </Popover>
+  );
+};
+
 export const WithPositionOffset = () => {
   return (
     <HoverPopover handle={<span>This is a popover, hover here</span>}>

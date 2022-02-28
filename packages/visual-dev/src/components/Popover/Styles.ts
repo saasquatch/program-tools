@@ -3,6 +3,8 @@ import { css } from "styled-components";
 export const StyledSection = css`
   box-sizing: border-box;
   padding: 12px 24px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--sq-border);
@@ -15,6 +17,9 @@ export const StyledAction = css`
   font-size: var(--sq-font-size-small);
   text-decoration: none;
   color: var(--sq-action-primary);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  max-width: 100%;
 `;
 
 export const StyledContainer = css`
