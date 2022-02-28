@@ -78,5 +78,10 @@ Feature: Dropdown field
     And they register
     Then the value "option-2" is submitted as the value for the "options" form field
 
-
-
+  @motivating
+  Scenario: The form field name attribute is configurable
+    Given a dropdown component inside of a "sqm-portal-register"
+    And the dropdown has prop "dropdown-name" with value "myDropDown"
+    When the user selects a drop down option
+    And they register
+    Then the value of their selected option is submitted under "myDropDown" field

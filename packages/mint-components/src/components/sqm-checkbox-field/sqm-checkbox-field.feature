@@ -95,4 +95,10 @@ Feature: Checkbox Field
       | Read our {labelLink} before registration             | Terms of Service     | https://example.com/terms | Read our Terms of Service before registration        |
       | By registering you agree to our terms and conditions | N/A                  | N/A                       | By registering you agree to our terms and conditions |
 
-
+  @motivating
+  Scenario: The form field name attribute is configurable
+    Given a checkbox inside of a "sqm-portal-register"
+    And the checkbox has prop "checkbox-name" with value "myCheckBox"
+    When the user checks the box
+    And they register
+    Then the value of the checkbox is submitted under "myCheckBox" field
