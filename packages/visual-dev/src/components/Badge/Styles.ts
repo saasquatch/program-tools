@@ -38,5 +38,5 @@ export const critical = css`
 export const warning = css`
   background-color: var(--sq-border-warning);
   border-color: var(--sq-border-warning);
-  color: var(--sq-text-dark);
+  color: var(--sq-surface);
 `;
