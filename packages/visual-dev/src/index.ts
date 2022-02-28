@@ -45,6 +45,7 @@ import {
 } from "./components/DataTable";
 import { Popover, HoverPopover } from "./components/Popover";
 import { CopyWrapper } from "./components/CopyWrapper";
+import { CardContainer } from "./components/Layouts";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -97,4 +98,5 @@ export {
   Pagination,
   Skeleton,
   CopyWrapper,
+  CardContainer,
 };
