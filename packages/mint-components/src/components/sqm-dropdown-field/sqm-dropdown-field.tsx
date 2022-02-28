@@ -30,7 +30,7 @@ export class DropdownField {
    */
   @Prop() dropdownLabel: string = "Select an option";
   /**
-   * @uiName Unchecked error message
+   * @uiName Unselected error message
    */
   @Prop() errorMessage: string = "Must select an option";
 
@@ -54,15 +54,11 @@ export class DropdownField {
       selectOptions: <slot></slot>,
     };
 
-    const { states, callbacks } = isDemo()
+    const { states } = isDemo()
       ? useDropdownFieldDemo(this)
       : useDropdownField();
     return (
-      <DropdownFieldView
-        states={states}
-        content={content}
-        callbacks={callbacks}
-      ></DropdownFieldView>
+      <DropdownFieldView states={states} content={content}></DropdownFieldView>
     );
   }
 }
@@ -73,13 +69,6 @@ function useDropdownFieldDemo(
     {
       states: {
         validationErrors: [],
-        checked: false,
-      },
-      callbacks: {
-        setChecked: () => {},
-      },
-      refs: {
-        checkboxRef: null,
       },
     },
     props.demoData || {},

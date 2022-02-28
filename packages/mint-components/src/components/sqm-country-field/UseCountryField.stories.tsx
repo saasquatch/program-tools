@@ -3,7 +3,7 @@ import { useEffect } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 export default {
-  title: "Hooks / useDropdownField",
+  title: "Hooks / useCountryField",
 };
 
 function setupGraphQL() {
@@ -32,36 +32,11 @@ function setupGraphQL() {
   return { id, accountId };
 }
 
-export const SelectOptions = createHookStory(() => {
+export const Default = createHookStory(() => {
   setupGraphQL();
   return (
     <sqm-portal-register>
-      <sqm-dropdown-field
-        slot="formData"
-        dropdown-label="Select an option"
-        dropdown-name="options"
-      >
-        <sl-menu-item value="option-1">Option 1</sl-menu-item>
-        <sl-menu-item value="option-2">Option 2</sl-menu-item>
-        <sl-menu-item value="option-3">Option 3</sl-menu-item>
-      </sqm-dropdown-field>
-    </sqm-portal-register>
-  );
-});
-
-export const Countries = createHookStory(() => {
-  setupGraphQL();
-  return (
-    <sqm-portal-register>
-      <sqm-dropdown-field
-        slot="formData"
-        dropdown-label="Country"
-        dropdown-name="countryCode"
-      >
-        <sl-menu-item value="CA">Canada</sl-menu-item>
-        <sl-menu-item value="US">United States</sl-menu-item>
-        <sl-menu-item value="GB">United Kingdom</sl-menu-item>
-      </sqm-dropdown-field>
+      <sqm-country-field slot="formData"></sqm-country-field>
     </sqm-portal-register>
   );
 });

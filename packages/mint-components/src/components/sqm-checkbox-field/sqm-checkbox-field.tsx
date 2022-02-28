@@ -23,7 +23,7 @@ export class CheckboxField {
   /**
    * @uiName Checkbox name attribute
    */
-  @Prop() checkboxName: string = "agreement";
+  @Prop() checkboxName: string;
 
   /**
    * @uiName Checkbox label

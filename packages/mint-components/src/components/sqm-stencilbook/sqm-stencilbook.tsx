@@ -51,6 +51,7 @@ import * as CheckboxField from "../sqm-checkbox-field/CheckboxField.stories";
 import * as UseCheckboxField from "../sqm-checkbox-field/UseCheckboxField.stories";
 import * as DropdownField from "../sqm-dropdown-field/DropdownField.stories";
 import * as UseDropdownField from "../sqm-dropdown-field/UseDropdownField.stories";
+import * as UseCountryField from "../sqm-country-field/UseCountryField.stories";
 import * as RewardExchangeList from "../sqm-reward-exchange-list/RewardExchangeList.stories";
 import * as ProgramExplainer from "../sqm-program-explainer/ProgramExplainer.stories";
 import * as ProgramExplainerStep from "../sqm-program-explainer-step/ProgramExplainerStep.stories";
@@ -89,6 +90,7 @@ const stories = [
   UseLeaderboard,
   UseCheckboxField,
   UseDropdownField,
+  UseCountryField,
   Router,
   PortalFrame,
   EditProfile,

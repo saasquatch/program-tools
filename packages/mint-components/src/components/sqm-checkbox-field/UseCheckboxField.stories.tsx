@@ -1,7 +1,6 @@
 import { setUserIdentity } from "@saasquatch/component-boilerplate";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
-import { PortalRegisterViewProps } from "../sqm-portal-register/sqm-portal-register-view";
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 export default {
   title: "Hooks / useCheckboxField",
