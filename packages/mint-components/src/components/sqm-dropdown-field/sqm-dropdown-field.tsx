@@ -5,53 +5,42 @@ import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { getProps } from "../../utils/utils";
 import {
-  CheckboxFieldView,
-  CheckboxFieldViewProps,
-} from "./sqm-checkbox-field-view";
-import { useCheckboxField } from "./useCheckboxField";
+  DropdownFieldView,
+  DropdownFieldViewProps,
+} from "./sqm-dropdown-field-view";
+import { useDropdownField } from "./useDropdownField";
 
 /**
- * @uiName Checkbox Field
+ * @uiName Dropdown Field
  */
 @Component({
-  tag: "sqm-checkbox-field",
+  tag: "sqm-dropdown-field",
 })
-export class CheckboxField {
+export class DropdownField {
   @State()
   ignored = true;
 
   /**
-   * @uiName Checkbox name attribute
+   * @uiName Dropdown name attribute
    */
-  @Prop() checkboxName: string = "agreement";
+  @Prop() dropdownName: string;
 
   /**
-   * @uiName Checkbox label
+   * @uiName Dropdown label
    */
-  @Prop() checkboxLabel: string = "By signing up you agree to the {labelLink}";
-
-  /**
-   * @uiName Checkbox label link
-   * Used with link text if the checkbox label contains {labelLink}
-   */
-  @Prop() checkboxLabelLink: string = "https://example.com";
-
-  /**
-   * @uiName Checkbox label link text
-   */
-  @Prop() checkboxLabelLinkText: string = "Terms and Conditions";
+  @Prop() dropdownLabel: string = "Select an option";
   /**
    * @uiName Unchecked error message
    */
-  @Prop() errorMessage: string = "Must be checked";
+  @Prop() errorMessage: string = "Must select an option";
 
   /**
    * @uiName Required
    */
-  @Prop() checkboxRequired?: boolean = true;
+  @Prop() dropdownRequired?: boolean = true;
 
   /** @undocumented */
-  @Prop() demoData?: DemoData<CheckboxFieldViewProps>;
+  @Prop() demoData?: DemoData<DropdownFieldViewProps>;
 
   constructor() {
     withHooks(this);
@@ -62,23 +51,24 @@ export class CheckboxField {
   render() {
     const content = {
       ...getProps(this),
+      selectOptions: <slot></slot>,
     };
 
     const { states, callbacks } = isDemo()
-      ? useCheckboxFieldDemo(this)
-      : useCheckboxField();
+      ? useDropdownFieldDemo(this)
+      : useDropdownField();
     return (
-      <CheckboxFieldView
+      <DropdownFieldView
         states={states}
         content={content}
         callbacks={callbacks}
-      ></CheckboxFieldView>
+      ></DropdownFieldView>
     );
   }
 }
-function useCheckboxFieldDemo(
-  props: CheckboxField
-): Partial<CheckboxFieldViewProps> {
+function useDropdownFieldDemo(
+  props: DropdownField
+): Partial<DropdownFieldViewProps> {
   return deepmerge(
     {
       states: {

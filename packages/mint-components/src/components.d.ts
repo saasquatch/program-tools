@@ -8,6 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
+import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
+import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
 import { FunctionalComponent } from "@stencil/core";
@@ -104,6 +106,36 @@ export namespace Components {
          */
         "width": number;
     }
+    interface SqmCheckboxField {
+        /**
+          * @uiName Checkbox label
+         */
+        "checkboxLabel": string;
+        /**
+          * @uiName Checkbox label link Used with link text if the checkbox label contains {labelLink}
+         */
+        "checkboxLabelLink": string;
+        /**
+          * @uiName Checkbox label link text
+         */
+        "checkboxLabelLinkText": string;
+        /**
+          * @uiName Checkbox name attribute
+         */
+        "checkboxName": string;
+        /**
+          * @uiName Required
+         */
+        "checkboxRequired"?: boolean;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<CheckboxFieldViewProps>;
+        /**
+          * @uiName Unchecked error message
+         */
+        "errorMessage": string;
+    }
     interface SqmDividedLayout {
         /**
           * @uiName Direction
@@ -117,6 +149,28 @@ export namespace Components {
           * @uiName Border style
          */
         "dividerStyle": string;
+    }
+    interface SqmDropdownField {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<DropdownFieldViewProps>;
+        /**
+          * @uiName Dropdown label
+         */
+        "dropdownLabel": string;
+        /**
+          * @uiName Dropdown name attribute
+         */
+        "dropdownName": string;
+        /**
+          * @uiName Required
+         */
+        "dropdownRequired"?: boolean;
+        /**
+          * @uiName Unchecked error message
+         */
+        "errorMessage": string;
     }
     interface SqmEditProfile {
         /**
@@ -1952,11 +2006,23 @@ declare global {
         prototype: HTMLSqmCardFeedElement;
         new (): HTMLSqmCardFeedElement;
     };
+    interface HTMLSqmCheckboxFieldElement extends Components.SqmCheckboxField, HTMLStencilElement {
+    }
+    var HTMLSqmCheckboxFieldElement: {
+        prototype: HTMLSqmCheckboxFieldElement;
+        new (): HTMLSqmCheckboxFieldElement;
+    };
     interface HTMLSqmDividedLayoutElement extends Components.SqmDividedLayout, HTMLStencilElement {
     }
     var HTMLSqmDividedLayoutElement: {
         prototype: HTMLSqmDividedLayoutElement;
         new (): HTMLSqmDividedLayoutElement;
+    };
+    interface HTMLSqmDropdownFieldElement extends Components.SqmDropdownField, HTMLStencilElement {
+    }
+    var HTMLSqmDropdownFieldElement: {
+        prototype: HTMLSqmDropdownFieldElement;
+        new (): HTMLSqmDropdownFieldElement;
     };
     interface HTMLSqmEditProfileElement extends Components.SqmEditProfile, HTMLStencilElement {
     }
@@ -2419,7 +2485,9 @@ declare global {
         "sqm-big-stat": HTMLSqmBigStatElement;
         "sqm-brand": HTMLSqmBrandElement;
         "sqm-card-feed": HTMLSqmCardFeedElement;
+        "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
+        "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
         "sqm-empty": HTMLSqmEmptyElement;
         "sqm-form-message": HTMLSqmFormMessageElement;
@@ -2568,6 +2636,36 @@ declare namespace LocalJSX {
          */
         "width"?: number;
     }
+    interface SqmCheckboxField {
+        /**
+          * @uiName Checkbox label
+         */
+        "checkboxLabel"?: string;
+        /**
+          * @uiName Checkbox label link Used with link text if the checkbox label contains {labelLink}
+         */
+        "checkboxLabelLink"?: string;
+        /**
+          * @uiName Checkbox label link text
+         */
+        "checkboxLabelLinkText"?: string;
+        /**
+          * @uiName Checkbox name attribute
+         */
+        "checkboxName"?: string;
+        /**
+          * @uiName Required
+         */
+        "checkboxRequired"?: boolean;
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<CheckboxFieldViewProps>;
+        /**
+          * @uiName Unchecked error message
+         */
+        "errorMessage"?: string;
+    }
     interface SqmDividedLayout {
         /**
           * @uiName Direction
@@ -2581,6 +2679,28 @@ declare namespace LocalJSX {
           * @uiName Border style
          */
         "dividerStyle"?: string;
+    }
+    interface SqmDropdownField {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<DropdownFieldViewProps>;
+        /**
+          * @uiName Dropdown label
+         */
+        "dropdownLabel"?: string;
+        /**
+          * @uiName Dropdown name attribute
+         */
+        "dropdownName"?: string;
+        /**
+          * @uiName Required
+         */
+        "dropdownRequired"?: boolean;
+        /**
+          * @uiName Unchecked error message
+         */
+        "errorMessage"?: string;
     }
     interface SqmEditProfile {
         /**
@@ -4370,7 +4490,9 @@ declare namespace LocalJSX {
         "sqm-big-stat": SqmBigStat;
         "sqm-brand": SqmBrand;
         "sqm-card-feed": SqmCardFeed;
+        "sqm-checkbox-field": SqmCheckboxField;
         "sqm-divided-layout": SqmDividedLayout;
+        "sqm-dropdown-field": SqmDropdownField;
         "sqm-edit-profile": SqmEditProfile;
         "sqm-empty": SqmEmpty;
         "sqm-form-message": SqmFormMessage;
@@ -4457,7 +4579,9 @@ declare module "@stencil/core" {
             "sqm-big-stat": LocalJSX.SqmBigStat & JSXBase.HTMLAttributes<HTMLSqmBigStatElement>;
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
+            "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
+            "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;
             "sqm-empty": LocalJSX.SqmEmpty & JSXBase.HTMLAttributes<HTMLSqmEmptyElement>;
             "sqm-form-message": LocalJSX.SqmFormMessage & JSXBase.HTMLAttributes<HTMLSqmFormMessageElement>;

@@ -45,6 +45,8 @@ export function usePortalRegister(props: PortalRegister) {
           jsonpointer.set(validationErrors, key, validationError);
       }
     });
+
+    console.log({ formData });
     if (
       (props.confirmPassword || formData.confirmPassword) &&
       formData.password !== formData.confirmPassword

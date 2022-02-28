@@ -1,10 +1,9 @@
 import { setUserIdentity } from "@saasquatch/component-boilerplate";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
-import { PortalRegisterViewProps } from "../sqm-portal-register/sqm-portal-register-view";
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 export default {
-  title: "Hooks / useCheckboxField",
+  title: "Hooks / useDropdownField",
 };
 
 function setupGraphQL() {
@@ -33,24 +32,36 @@ function setupGraphQL() {
   return { id, accountId };
 }
 
-export const TermsAndConditions = createHookStory(() => {
+export const SelectOptions = createHookStory(() => {
   setupGraphQL();
   return (
     <sqm-portal-register>
-      <div slot="terms">
-        <sqm-checkbox-field></sqm-checkbox-field>
-      </div>
+      <sqm-dropdown-field
+        slot="formData"
+        dropdown-label="Select an option"
+        dropdown-name="options"
+      >
+        <sl-menu-item value="option-1">Option 1</sl-menu-item>
+        <sl-menu-item value="option-2">Option 2</sl-menu-item>
+        <sl-menu-item value="option-3">Option 3</sl-menu-item>
+      </sqm-dropdown-field>
     </sqm-portal-register>
   );
 });
 
-export const TermsAndConditionsWithLabel = createHookStory(() => {
+export const Country = createHookStory(() => {
   setupGraphQL();
   return (
     <sqm-portal-register>
-      <div slot="terms">
-        <sqm-checkbox-field checkbox-label="I agree"></sqm-checkbox-field>
-      </div>
+      <sqm-dropdown-field
+        slot="formData"
+        dropdown-label="Country"
+        dropdown-name="countryCode"
+      >
+        <sl-menu-item value="CA">Canada</sl-menu-item>
+        <sl-menu-item value="US">United States</sl-menu-item>
+        <sl-menu-item value="GB">United Kingdom</sl-menu-item>
+      </sqm-dropdown-field>
     </sqm-portal-register>
   );
 });
