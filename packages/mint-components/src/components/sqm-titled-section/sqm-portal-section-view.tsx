@@ -1,16 +1,18 @@
 import { h, VNode } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
 import { Spacing } from "../../global/mixins";
+import { createStyleSheet } from "../../styling/JSS";
 
 export interface PortalSectionProps {
   labelMargin: Spacing;
   padding: Spacing;
   label: VNode;
   content: VNode;
+  textAlign?: "left" | "center" | "right";
 }
 
-export function PortalSectionView(props: PortalSectionProps) {
+export function PortalSectionView(props:   PortalSectionProps) {
+
+  // Due to sole usage of props, not feasiable to move out of render function
   const style = {
     LabelContainer: {
       "margin-bottom":
@@ -19,15 +21,13 @@ export function PortalSectionView(props: PortalSectionProps) {
           : `var(--sl-spacing-${props.labelMargin})`,
     },
     SectionContainer: {
+      textAlign: props.textAlign || "left",
       padding:
-        props.padding === "none"
-          ? "0"
-          : `var(--sl-spacing-${props.padding})`,
+        props.padding === "none" ? "0" : `var(--sl-spacing-${props.padding})`,
     },
   };
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   return (

@@ -3,7 +3,7 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { BigStatView, BigStatViewProps } from "./sqm-big-stat-view";
 import { useBigStat } from "./useBigStat";
 import { useDemoBigStat } from "./useDemoBigStat";
-import { isDemo } from "@saasquatch/component-boilerplate";
+import { isDemo, useHost } from "@saasquatch/component-boilerplate";
 import { DemoData } from "../../global/demo";
 
 /**
@@ -33,6 +33,7 @@ export class BigStat {
    * @uiName Alignment - controls the alignment of the flexbox
    * @uiType string
    * @uiEnum ["left", "right", "center"]
+   * @uiEnumNames ["Left", "Right", "Center"]
    */
   @Prop() alignment?: "left" | "right" | "center";
 
@@ -59,11 +60,10 @@ export class BigStat {
 
   render() {
     const { props, label } = isDemo() ? useDemoBigStat(this) : useBigStat(this);
+    const host = useHost();
+    const hasLabel = !!host.innerHTML?.trim();
+    const labelSlot = <slot name="label">{hasLabel ? <slot /> : label}</slot>;
 
-    return (
-      <BigStatView {...props}>
-        <slot>{label}</slot>
-      </BigStatView>
-    );
+    return <BigStatView {...props} labelSlot={labelSlot}></BigStatView>;
   }
 }

@@ -1,6 +1,5 @@
 import { h } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../styling/JSS";
 import { gap } from "../../global/mixins";
 import { navigation } from "@saasquatch/component-boilerplate";
 
@@ -23,7 +22,9 @@ export function NavigationSidebarItemView(
   const style = {
     ItemContainer: {
       display: "flex",
-      "background-color": `${states.active ? "var(--sl-color-gray-200)" : "var(--sl-color-white)"}`,
+      "background-color": `${
+        states.active ? "var(--sl-color-gray-200)" : "var(--sl-color-white)"
+      }`,
       "border-radius": "8px",
       padding: "8px",
       "text-decoration": "none",
@@ -32,7 +33,9 @@ export function NavigationSidebarItemView(
       ...gap({ direction: "row" as const, size: "var(--sl-font-size-small)" }),
       "&:hover": {
         cursor: "pointer",
-        background: states.active ? "var(--sl-color-gray-300)" : "var(--sl-color-gray-50)",
+        background: states.active
+          ? "var(--sl-color-gray-300)"
+          : "var(--sl-color-gray-50)",
       },
     },
     Label: {
@@ -43,8 +46,7 @@ export function NavigationSidebarItemView(
     },
   };
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   return (

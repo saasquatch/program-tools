@@ -5,7 +5,9 @@ import { OutputTarget } from '@stencil/core/internal';
 import { string } from 'rollup-plugin-string';
 import path from 'path';
 
-const useGrapesjs: OutputTarget = grapesJsOutput({});
+const useGrapesjs: OutputTarget = grapesJsOutput({
+  outDir: 'grapesjs',
+});
 
 export const config: Config = {
   namespace: 'bedrock-components',

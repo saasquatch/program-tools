@@ -1,8 +1,7 @@
 import { useHost } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../styling/JSS";
 export type RequiredPropsErrorProps = {
   missingProps:
     | {
@@ -32,8 +31,7 @@ const style = {
   },
 };
 
-jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
+const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function RequiredPropsError({ missingProps }: RequiredPropsErrorProps) {

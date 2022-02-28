@@ -27,14 +27,14 @@ type Goal = {
 const debugQuery = (
   query: Parameters<typeof useQuery>[0],
   variables: unknown,
-  getStat: (res: QueryData<any>) => string
+  getStat: (res: QueryData<any>) => { value: number; statvalue: string }
 ) => {
   const res = useQuery(query, variables);
   if (!res?.data && !res.loading) {
     console.error("issue getting stat:", res);
   }
   const stat = getStat(res);
-  return stat;
+  return { ...stat, loading: res.loading };
 };
 
 const referralsCountQuery = (
@@ -71,7 +71,10 @@ const referralsCountQuery = (
     `,
     { queryFilter },
 
-    (res) => res.data?.viewer?.referrals?.totalCount?.toString()
+    (res) => ({
+      value: res.data?.viewer?.referrals?.totalCount || 0,
+      statvalue: res.data?.viewer?.referrals?.totalCount?.toString(),
+    })
   );
 };
 
@@ -104,7 +107,37 @@ const programGoalsQuery = (
       const goal = res.data?.viewer?.programGoals?.filter(
         (goal: Goal) => goal.goalId === goalId && goal.programId === programId
       );
-      return goal?.[0]?.[metricType]?.toString() || 0;
+      return {
+        value: goal?.[0]?.[metricType] || 0,
+        statvalue: goal?.[0]?.[metricType]?.toString() || 0,
+      };
+    }
+  );
+};
+
+const customFieldsQuery = (
+  _programId:string,
+  locale: string,
+  fieldName: string,
+  goalId: string
+) => {
+  return debugQuery(
+    gql`
+      query {
+        viewer {
+          ... on User {
+            customFields
+          }
+        }
+      }
+    `,
+    {  fieldName, goalId, locale },
+    (res) => {
+      const customField = res.data?.viewer?.customFields?.[fieldName];
+      return {
+        value: customField || 0,
+        statvalue: customField?.toString() || "0",
+      };
     }
   );
 };
@@ -132,7 +165,10 @@ const referralsMonthQuery = (programId: string) => {
       }
     `,
     { filter },
-    (res) => res.data?.viewer?.referrals?.totalCount?.toString()
+    (res) => ({
+      value: res.data?.viewer?.referrals?.totalCount || 0,
+      statvalue: res.data?.viewer?.referrals?.totalCount?.toString(),
+    })
   );
 };
 
@@ -159,7 +195,10 @@ const referralsWeekQuery = (programId: string) => {
       }
     `,
     { filter },
-    (res) => res.data?.viewer?.referrals?.totalCount?.toString()
+    (res) => ({
+      value: res.data?.viewer?.referrals?.totalCount || 0,
+      statvalue: res.data?.viewer?.referrals?.totalCount?.toString(),
+    })
   );
 };
 
@@ -184,7 +223,10 @@ const rewardsCountQuery = (
     {
       programId: !global && programId !== "classic" ? programId : null,
     },
-    (res) => res.data?.viewer?.rewards?.totalCount?.toString()
+    (res) => ({
+      value: res.data?.viewer?.rewards?.totalCount || 0,
+      statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
+    })
   );
 };
 
@@ -229,7 +271,10 @@ const rewardsCountFilteredQuery = (
       type,
       statusFilter,
     },
-    (res) => res.data?.viewer?.rewards?.totalCount?.toString()
+    (res) => ({
+      value: res.data?.viewer?.rewards?.totalCount || 0,
+      statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
+    })
   );
 };
 
@@ -264,7 +309,10 @@ const integrationRewardsCountFilteredQuery = (
       programId: !global && programId !== "classic" ? programId : null,
       statusFilter,
     },
-    (res) => res.data?.viewer?.rewards?.totalCount?.toString()
+    (res) => ({
+      value: res.data?.viewer?.rewards?.totalCount || 0,
+      statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
+    })
   );
 };
 
@@ -294,7 +342,10 @@ const rewardsMonthQuery = (
     {
       programId: !global && programId !== "classic" ? programId : null,
     },
-    (res) => res.data?.viewer?.rewards?.totalCount?.toString()
+    (res) => ({
+      value: res.data?.viewer?.rewards?.totalCount || 0,
+      statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
+    })
   );
 };
 
@@ -324,7 +375,10 @@ const rewardsWeekQuery = (
     {
       programId: !global && programId !== "classic" ? programId : null,
     },
-    (res) => res.data?.viewer?.rewards?.totalCount?.toString()
+    (res) => ({
+      value: res.data?.viewer?.rewards?.totalCount || 0,
+      statvalue: res.data?.viewer?.rewards?.totalCount?.toString(),
+    })
   );
 };
 
@@ -354,6 +408,7 @@ const rewardsRedeemedQuery = (
             rewardBalanceDetails(
               programId: $programId
               filter: { type_eq: $type, unit_eq: $unit }
+              locale: $locale
             ) {
               ... on CreditRewardBalance {
                 prettyRedeemedCredit
@@ -372,7 +427,10 @@ const rewardsRedeemedQuery = (
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
-      return arr?.[0]?.prettyRedeemedCredit || fallback;
+      return {
+        value: arr?.[0]?.prettyRedeemedCredit || 0,
+        statvalue: arr?.[0]?.prettyRedeemedCredit || fallback,
+      };
     }
   );
 };
@@ -403,6 +461,7 @@ const rewardsAssignedQuery = (
             rewardBalanceDetails(
               programId: $programId
               filter: { type_eq: $type, unit_eq: $unit }
+              locale: $locale
             ) {
               ... on CreditRewardBalance {
                 prettyAssignedCredit
@@ -421,7 +480,10 @@ const rewardsAssignedQuery = (
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
-      return arr?.[0]?.prettyAssignedCredit || fallback;
+      return {
+        value: arr?.[0]?.prettyAssignedCredit || 0,
+        statvalue: arr?.[0]?.prettyAssignedCredit || fallback,
+      };
     }
   );
 };
@@ -452,6 +514,7 @@ const rewardsAvailableQuery = (
             rewardBalanceDetails(
               programId: $programId
               filter: { type_eq: $type, unit_eq: $unit }
+              locale: $locale
             ) {
               ... on CreditRewardBalance {
                 prettyAvailableValue
@@ -470,7 +533,10 @@ const rewardsAvailableQuery = (
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
-      return arr?.[0]?.prettyAvailableValue || fallback;
+      return {
+        value: arr?.[0]?.prettyAvailableValue || 0,
+        statvalue: arr?.[0]?.prettyAvailableValue || fallback,
+      };
     }
   );
 };
@@ -507,6 +573,7 @@ const rewardsBalanceQuery = (
             rewardBalanceDetails(
               programId: $programId
               filter: { type_eq: $type, unit_eq: $unit }
+              locale: $locale
             ) {
               ... on CreditRewardBalance {
                 prettyAvailableValue(formatType: $format)
@@ -527,7 +594,10 @@ const rewardsBalanceQuery = (
     (res) => {
       const arr = res.data?.viewer?.rewardBalanceDetails;
       const fallback = res.data?.fallback;
-      return arr?.[0]?.prettyAvailableValue || fallback;
+      return {
+        value: arr?.[0]?.prettyAvailableValue || 0,
+        statvalue: arr?.[0]?.prettyAvailableValue || fallback,
+      };
     }
   );
 };
@@ -536,7 +606,10 @@ const rewardsBalanceQuery = (
 export const queries: {
   [key: string]: {
     label: string;
-    query: (programId: string, ...args: string[]) => string;
+    query: (
+      programId: string,
+      ...args: string[]
+    ) => { value: number; statvalue: string; loading: boolean };
   };
 } = {
   rewardsAssigned: {
@@ -591,11 +664,16 @@ export const queries: {
     label: "Program Goals",
     query: programGoalsQuery,
   },
+  customFields: {
+    label: "Custom Fields",
+    query: customFieldsQuery,
+  },
 };
 
 // this should be exposed in documentation somehow
 export const StatPaths = [
   { name: "programGoals", route: "/(programGoals)/:metricType/:goalId" },
+  { name: "customFields", route: "/(customFields)/:customField" },
   { name: "referralsCount", route: "/(referralsCount)/:status?" },
   { name: "referralsMonth", route: "/(referralsMonth)" },
   { name: "referralsWeek", route: "/(referralsWeek)" },
@@ -652,7 +730,13 @@ export function useBigStat(props: BigStat): BigStatHook {
 
   if (!re?.exec(statType)) {
     return {
-      props: { statvalue: "!!!", flexReverse, alignment },
+      props: {
+        value: 0,
+        statvalue: "!!!",
+        flexReverse,
+        alignment,
+        loading: false,
+      },
       label: "BAD PROP TYPE",
     };
   }
@@ -685,7 +769,13 @@ export function useBigStat(props: BigStat): BigStatHook {
     userIdent?.jwt && queries[queryName].query(programId, locale, ...queryArgs);
   debug("stat:", stat);
   return {
-    props: { statvalue: stat ?? LOADING, flexReverse, alignment },
+    props: {
+      value: stat?.value,
+      statvalue: stat?.statvalue ?? LOADING,
+      loading: stat?.loading,
+      flexReverse,
+      alignment,
+    },
     label,
   };
 }

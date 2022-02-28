@@ -1,5 +1,5 @@
 import { useQuery, useUserIdentity } from "@saasquatch/component-boilerplate";
-import gql from "graphql-tag";
+import { gql } from "graphql-request";
 import { UserName } from "./sqm-user-name";
 import { UserNameViewProps } from "./sqm-user-name-view";
 

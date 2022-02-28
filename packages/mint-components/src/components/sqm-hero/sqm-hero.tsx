@@ -16,8 +16,12 @@ export class Hero {
   /** @uiName Number of columns in the layout */
   @Prop() columns: 1 | 2 = 1;
 
-  /** @uiName Background image or color */
-  @Prop() background?: string;
+  /**
+  * Can either be an image url, colour or Shoelace variable.
+  *  
+  * @uiName Background
+  */
+  @Prop() background?: string = "var(--sl-color-gray-50)";
 
   /** @uiName Padding size */
   @Prop() paddingSize: "none" | "small" | "medium" | "large" = "large";

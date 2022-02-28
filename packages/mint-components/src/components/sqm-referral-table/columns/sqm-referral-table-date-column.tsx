@@ -1,6 +1,6 @@
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Host, Method, Prop } from "@stencil/core";
-import { useRequestRerender } from "../re-render";
+import { useRequestRerender } from "../../../tables/re-render";
 import { ReferralDates } from "../useReferralTable";
 import { ReferralTableColumn } from "./ReferralTableColumn";
 
@@ -15,7 +15,7 @@ export class ReferralTableDateColumn implements ReferralTableColumn {
   /**
    * @uiName Date Column Title
    */
-  @Prop() columnTitle: string = "Date Converted";
+  @Prop() columnTitle: string = "Date converted";
   /**
    * @uiName Date Displayed
    * @uiType string
@@ -27,6 +27,14 @@ export class ReferralTableDateColumn implements ReferralTableColumn {
    * "dateReferralEnded",
    * "dateReferralPaid",
    * "dateUserModified"]
+   * @uiEnumNames ["Date Converted",
+   * "Date Referral Started",
+   * "Date Fraud Checks Completed",
+   * "Date Moderated",
+   * "Date Modified",
+   * "Date Referral Ended",
+   * "Date Referral Paid",
+   * "Date User Modified"]
    */
   @Prop() dateShown: ReferralDates = "dateConverted";
 
@@ -36,11 +44,13 @@ export class ReferralTableDateColumn implements ReferralTableColumn {
   disconnectedCallback() {}
 
   @Method()
-  async renderCell(data: Referral) {
+  async renderCell(data: Referral, locale: string) {
     // TODO - Validate `dateShown` against a set of known values
+
     return (
       <sqm-referral-table-date-cell
         date={data[this.dateShown]}
+        locale={locale}
       ></sqm-referral-table-date-cell>
     );
   }
@@ -48,6 +58,16 @@ export class ReferralTableDateColumn implements ReferralTableColumn {
   @Method()
   async renderLabel() {
     return this.columnTitle;
+  }
+
+  @Method()
+  async renderReferrerCell(data:Referrer) {
+    // TODO - Validate `dateShown` against a set of known values
+    return (
+      <sqm-referral-table-date-cell
+        date={data[this.dateShown]}
+      ></sqm-referral-table-date-cell>
+    );
   }
 
   render() {
