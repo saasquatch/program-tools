@@ -1,9 +1,6 @@
 import { css } from "styled-components";
 
 export const Main = css`
-  border: 1px solid var(--sq-border);
-  border-radius: 10px;
-  padding: var(--sq-spacing-large);
   margin-top: var(--sq-spacing-xx-large);
 `;
 
