@@ -1,63 +1,82 @@
-@owner:sam
-@author:sam
+@owner:derek
+@author:derek
+Feature: Dropdown field
 
-Feature: Checkbox Field
+  Dropdown field to be used in our portal registration component. Motivating examples include, a dropdown of countries
+  for users to select between during registration.
 
-  Field to be used to be used as a checkbox during registration
-
-  Background:
-    Given the current page is "/register"
-
-  @motivating
-  Scenario: Checkbox is required by default
-    Given the email field has valid input
-    And the password field has valid input
-    And the checkbox is not checked
-    When register is clicked
-    Then the name fields will be highlighted in red with an error message
-    And the checkbox will be highlighted in red
-    And the error message will say "Must be checked"
+  Background: A user is on the portal registration page
+    Given a user is viewing the "/register"
 
   @motivating
-  Scenario: Multiple checkboxes need different "checkbox-name" values
+  Scenario: The dropdown field is required by default
+    Given a dropdown component inside of a "sqm-portal-register"
+    When the user tries to register
+    But they havent selected a dropdown option
+    Then they are not registered
+    And they see the dropdown bordered in red
+    And below they see the validation error "Must select an option"
+
+  @minutae
+  Scenario: The dropdown field can be optional
+    Given a dropdown component inside of a "sqm-portal-register"
+    And the dropdown has prop "dropdown-required" with value "false"
+    When the user tries to register
+    And they havent selected a dropdown option
+    Then they see no validation error
+    And registration is not blocked
+
+  @motivating
+  Scenario Outline: Dropdown label is configurable
+    Given a dropdown component inside of a "sqm-portal-register"
+    And the dropdown has prop "dropdown-label" with <propValue>
+    When the user views the dropdown component
+    Then the label is <label>
+    Examples:
+      | propValue       | label            |
+      |                 | Select an option |
+      | My Custom Label | My Custom Label  |
+
+  @minutae
+  Scenario Outline: Validation error message is configurable
+    Given a dropdown component inside of a "sqm-portal-register"
+    And the dropdown is required
+    And the dropdown has prop "dropdown-label" with <propValue>
+    When the user tries to register
+    But they havent selected a dropdown option
+    Then they see <errorMessage> below
+    Examples:
+      | propValue         | errorMessage          |
+      |                   | Must select an option |
+      | My Custom Message | My Custom Message     |
+
+  @motivating
+  Scenario: Dropdown options are passed as child sl-menu-item components
     Given the register form has the following html
       """
       <sqm-portal-register>
-      <sqm-name-fields slot="formData"></sqm-name-fields>
-      <sqm-checkbox-field
+      <sqm-dropdown-field
       slot="formData"
-      checkbox-label="I am not a robot"
-      error-message="Cannot be a robot"
-      checkbox-name="isHuman"
-      ></sqm-checkbox-field>
-      <div slot="terms">
-      <sqm-checkbox-field></sqm-checkbox-field>
-      </div>
+      dropdown-label="Select an option"
+      dropdown-name="options"
+      >
+      <sl-menu-item value="option-1">Option 1</sl-menu-item>
+      <sl-menu-item value="option-2">Option 2</sl-menu-item>
+      <sl-menu-item value="option-3">Option 3</sl-menu-item>
+      </sqm-dropdown-field>
       </sqm-portal-register>
       """
-    And the checkboxes are not checked
-    When register is clicked
-    Then both checkboxes will be highlighted in red
-    And the checkboxes will have different error messages
-
-  @motivating
-  Scenario: Checkboxes can be optional
-    Given the register form has the following html
-      """
-      <sqm-portal-register>
-      <sqm-name-fields slot="formData"></sqm-name-fields>
-      <sqm-checkbox-field
-      slot="formData"
-      checkbox-label="I am not a robot"
-      checkbox-required="false"
-      checkbox-name="isHuman"
-      />
-      </sqm-portal-register>
-      """
-    And the checkbox is not checked
-    When register is clicked
-    Then there will be no error for the checkbox
-
+    When the user views the dropdown component
+    And they click on the input
+    Then the dropdown expands downwards
+    And they see the three following options
+      | options  |
+      | Option 1 |
+      | Option 2 |
+      | Option 3 |
+    When they select "Option 2"
+    And they register
+    Then the value "option-2" is submitted as the value for the "options" form field
 
 
 
