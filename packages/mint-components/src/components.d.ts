@@ -9,6 +9,7 @@ import { DemoData } from "./global/demo";
 import { AssetCardViewProps } from "./components/sqm-asset-card/sqm-asset-card-view";
 import { BigStatViewProps } from "./components/sqm-big-stat/sqm-big-stat-view";
 import { CheckboxFieldViewProps } from "./components/sqm-checkbox-field/sqm-checkbox-field-view";
+import { CountryFieldViewProps } from "./components/sqm-country-field/sqm-country-field-view";
 import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-dropdown-field-view";
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
@@ -136,6 +137,28 @@ export namespace Components {
          */
         "errorMessage": string;
     }
+    interface SqmCountryField {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<CountryFieldViewProps>;
+        /**
+          * @uiName Dropdown label
+         */
+        "dropdownLabel": string;
+        /**
+          * @uiName Country name attribute
+         */
+        "dropdownName": string;
+        /**
+          * @uiName Required
+         */
+        "dropdownRequired"?: boolean;
+        /**
+          * @uiName Unselected error message
+         */
+        "errorMessage": string;
+    }
     interface SqmDividedLayout {
         /**
           * @uiName Direction
@@ -168,7 +191,7 @@ export namespace Components {
          */
         "dropdownRequired"?: boolean;
         /**
-          * @uiName Unchecked error message
+          * @uiName Unselected error message
          */
         "errorMessage": string;
     }
@@ -2012,6 +2035,12 @@ declare global {
         prototype: HTMLSqmCheckboxFieldElement;
         new (): HTMLSqmCheckboxFieldElement;
     };
+    interface HTMLSqmCountryFieldElement extends Components.SqmCountryField, HTMLStencilElement {
+    }
+    var HTMLSqmCountryFieldElement: {
+        prototype: HTMLSqmCountryFieldElement;
+        new (): HTMLSqmCountryFieldElement;
+    };
     interface HTMLSqmDividedLayoutElement extends Components.SqmDividedLayout, HTMLStencilElement {
     }
     var HTMLSqmDividedLayoutElement: {
@@ -2486,6 +2515,7 @@ declare global {
         "sqm-brand": HTMLSqmBrandElement;
         "sqm-card-feed": HTMLSqmCardFeedElement;
         "sqm-checkbox-field": HTMLSqmCheckboxFieldElement;
+        "sqm-country-field": HTMLSqmCountryFieldElement;
         "sqm-divided-layout": HTMLSqmDividedLayoutElement;
         "sqm-dropdown-field": HTMLSqmDropdownFieldElement;
         "sqm-edit-profile": HTMLSqmEditProfileElement;
@@ -2666,6 +2696,28 @@ declare namespace LocalJSX {
          */
         "errorMessage"?: string;
     }
+    interface SqmCountryField {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<CountryFieldViewProps>;
+        /**
+          * @uiName Dropdown label
+         */
+        "dropdownLabel"?: string;
+        /**
+          * @uiName Country name attribute
+         */
+        "dropdownName"?: string;
+        /**
+          * @uiName Required
+         */
+        "dropdownRequired"?: boolean;
+        /**
+          * @uiName Unselected error message
+         */
+        "errorMessage"?: string;
+    }
     interface SqmDividedLayout {
         /**
           * @uiName Direction
@@ -2698,7 +2750,7 @@ declare namespace LocalJSX {
          */
         "dropdownRequired"?: boolean;
         /**
-          * @uiName Unchecked error message
+          * @uiName Unselected error message
          */
         "errorMessage"?: string;
     }
@@ -4491,6 +4543,7 @@ declare namespace LocalJSX {
         "sqm-brand": SqmBrand;
         "sqm-card-feed": SqmCardFeed;
         "sqm-checkbox-field": SqmCheckboxField;
+        "sqm-country-field": SqmCountryField;
         "sqm-divided-layout": SqmDividedLayout;
         "sqm-dropdown-field": SqmDropdownField;
         "sqm-edit-profile": SqmEditProfile;
@@ -4580,6 +4633,7 @@ declare module "@stencil/core" {
             "sqm-brand": LocalJSX.SqmBrand & JSXBase.HTMLAttributes<HTMLSqmBrandElement>;
             "sqm-card-feed": LocalJSX.SqmCardFeed & JSXBase.HTMLAttributes<HTMLSqmCardFeedElement>;
             "sqm-checkbox-field": LocalJSX.SqmCheckboxField & JSXBase.HTMLAttributes<HTMLSqmCheckboxFieldElement>;
+            "sqm-country-field": LocalJSX.SqmCountryField & JSXBase.HTMLAttributes<HTMLSqmCountryFieldElement>;
             "sqm-divided-layout": LocalJSX.SqmDividedLayout & JSXBase.HTMLAttributes<HTMLSqmDividedLayoutElement>;
             "sqm-dropdown-field": LocalJSX.SqmDropdownField & JSXBase.HTMLAttributes<HTMLSqmDropdownFieldElement>;
             "sqm-edit-profile": LocalJSX.SqmEditProfile & JSXBase.HTMLAttributes<HTMLSqmEditProfileElement>;

@@ -15,7 +15,6 @@ export default {
 const defaultProps: DropdownFieldViewProps = {
   states: {
     validationErrors: {},
-    checked: false,
   },
   content: {
     dropdownName: "agree",
@@ -32,9 +31,6 @@ const defaultProps: DropdownFieldViewProps = {
         Option 3
       </sl-menu-item>,
     ],
-  },
-  callbacks: {
-    setChecked: () => {},
   },
 };
 
@@ -65,7 +61,6 @@ export const DefaultSelect = createHookStory(() => (
     {...defaultProps}
     states={{
       ...defaultProps.states,
-      checked: true,
     }}
   />
 ));

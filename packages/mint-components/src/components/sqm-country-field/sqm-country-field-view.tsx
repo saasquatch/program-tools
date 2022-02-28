@@ -1,8 +1,9 @@
 import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
+import { Country } from "./useCountryField";
 
-export interface DropdownFieldViewProps {
+export interface CountryFieldViewProps {
   states: {
     validationErrors?: Record<string, string>;
   };
@@ -12,6 +13,9 @@ export interface DropdownFieldViewProps {
     dropdownRequired?: boolean;
     errorMessage: string;
     selectOptions?: VNode | VNode[];
+  };
+  data: {
+    countries: Country[];
   };
 }
 
@@ -55,11 +59,11 @@ jss.setup(preset());
 const sheet = jss.createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function DropdownFieldView(props: DropdownFieldViewProps) {
-  const { states, content } = props;
+export function CountryFieldView(props: CountryFieldViewProps) {
+  const { states, content, data } = props;
   const validationErrors = states?.validationErrors;
 
-  console.log(content.dropdownName);
+  console.log(content.dropdownName, data);
   return (
     <div class={sheet.classes.FieldContainer}>
       <style type="text/css">
@@ -77,7 +81,11 @@ export function DropdownFieldView(props: DropdownFieldViewProps) {
             }
           : [])}
       >
-        {content.selectOptions}
+        {data.countries?.map((country) => (
+          <sl-menu-item value={country.displayName}>
+            {country.displayName}
+          </sl-menu-item>
+        ))}
       </sl-select>
       {validationErrors?.[content.dropdownName] && (
         <p class={sheet.classes.ErrorMessageStyle}>{content.errorMessage}</p>
