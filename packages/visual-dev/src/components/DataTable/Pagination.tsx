@@ -13,6 +13,7 @@ interface OptionProps {
   offset: number;
   limit: number;
   total?: number;
+  hasNext?: boolean;
   updatePagination: (limit: number, offset: number) => void;
 }
 
@@ -48,6 +49,7 @@ export const Pagination = React.forwardRef<
     limit,
     updatePagination,
     total = null,
+    hasNext = false,
     customCSS = {},
     ...rest
   } = props;
@@ -102,7 +104,7 @@ export const Pagination = React.forwardRef<
           icon="chevron_right"
           borderless={true}
           customCSS="margin: -3px; margin-right: var(--sq-spacing-x-large); &:hover{background: none;}"
-          disabled={total ? offset + limit >= total : false}
+          disabled={total != null ? offset + limit >= total : !hasNext}
           onClick={() => {
             updatePagination(limit, offset + limit);
           }}

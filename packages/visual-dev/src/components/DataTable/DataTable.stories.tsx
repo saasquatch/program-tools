@@ -328,11 +328,25 @@ export const paginationManyEnd = () => (
 );
 
 export const paginationNoTotalStart = () => (
-  <Pagination limit={10} offset={0} updatePagination={updatePaginationDummy} />
+  <Pagination
+    limit={10}
+    offset={0}
+    hasNext={true}
+    updatePagination={updatePaginationDummy}
+  />
 );
 
 export const paginationNoTotalMiddle = () => (
-  <Pagination limit={10} offset={10} updatePagination={updatePaginationDummy} />
+  <Pagination
+    limit={10}
+    offset={10}
+    hasNext={true}
+    updatePagination={updatePaginationDummy}
+  />
+);
+
+export const paginationNoTotalEnd = () => (
+  <Pagination limit={10} offset={20} updatePagination={updatePaginationDummy} />
 );
 
 export const header = () => {
