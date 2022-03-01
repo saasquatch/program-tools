@@ -53,10 +53,11 @@ export const Error = createHookStory(() => (
 export const CustomError = createHookStory(() => (
   <DropdownFieldView
     {...defaultProps}
+    content={{...defaultProps.content, errorMessage: "An option must be selected to continue",}}
     states={{
       ...defaultProps.states,
       validationErrors: {
-        options: "An option must be selected to continue",
+       options: "Must select an option",
       },
     }}
   />
