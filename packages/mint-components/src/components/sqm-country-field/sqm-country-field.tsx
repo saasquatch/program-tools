@@ -27,7 +27,7 @@ export class CountryField {
   @Prop() dropdownName: string = "countryCode";
 
   /**
-   * @uiName Dropdown label
+   * @uiName Country Dropdown label
    */
   @Prop() dropdownLabel: string = "Country";
   /**
@@ -74,7 +74,6 @@ function useCountryFieldDemo(
     {
       states: {
         validationErrors: [],
-        checked: false,
       },
       data: {
         countries: [],

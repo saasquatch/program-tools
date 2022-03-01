@@ -143,7 +143,7 @@ export namespace Components {
          */
         "demoData"?: DemoData<CountryFieldViewProps>;
         /**
-          * @uiName Dropdown label
+          * @uiName Country Dropdown label
          */
         "dropdownLabel": string;
         /**
@@ -2702,7 +2702,7 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<CountryFieldViewProps>;
         /**
-          * @uiName Dropdown label
+          * @uiName Country Dropdown label
          */
         "dropdownLabel"?: string;
         /**

@@ -6,22 +6,19 @@ export default {
   title: "Hooks / useCountryField",
 };
 
-function setupGraphQL() {
-  const id = "testestest";
+function setupGraphQL({ token, id }) {
   const accountId = id;
-  const programId = "sam-partner-test-2";
 
   //@ts-ignore
   window.widgetIdent = {
-    tenantAlias: "test_a8b41jotf8a1v",
+    tenantAlias: "test_a74miwdpofztj",
     appDomain: "https://staging.referralsaasquatch.com",
-    programId,
   };
   useEffect(() => {
     setUserIdentity({
       accountId,
       id,
-      jwt: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InRlc3Rlc3Rlc3QiLCJpZCI6InRlc3Rlc3Rlc3QifX0.qYnU5hNeIj9C_G3NogfG7btgCPGZC7JRXY0MG6a63zs",
+      jwt: token,
     });
     return () => {
       window.widgetIdent = undefined;
@@ -33,7 +30,52 @@ function setupGraphQL() {
 }
 
 export const Default = createHookStory(() => {
-  setupGraphQL();
+  setupGraphQL({
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoibm9sb2NhbGUiLCJhY2NvdW50SWQiOiJub2xvY2FsZSJ9fQ.ACri_gO_eIdNfh3ifMmbbDp7gZz3yjT_8mfiQ96T-BY",
+    id: "nolocale",
+  });
+
+  return (
+    <sqm-portal-register>
+      <sqm-country-field slot="formData"></sqm-country-field>
+    </sqm-portal-register>
+  );
+});
+
+export const English = createHookStory(() => {
+  setupGraphQL({
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InNhbWVuZ2xpc2giLCJpZCI6InNhbWVuZ2xpc2gifX0._6OTVF3gcipu_ibgthUNr5UHwC-2E_lhCENI5HpYvcw",
+    id: "samenglish",
+  });
+
+  return (
+    <sqm-portal-register>
+      <sqm-country-field slot="formData"></sqm-country-field>
+    </sqm-portal-register>
+  );
+});
+
+export const French = createHookStory(() => {
+  setupGraphQL({
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InNhbWZyZW5jaCIsImlkIjoic2FtZnJlbmNoIn19.cwhasHpfU5MLV4vGbCQcazb6p19iSw5pD2zyrVHgePg",
+    id: "samfrench",
+  });
+  return (
+    <sqm-portal-register>
+      <sqm-country-field slot="formData"></sqm-country-field>
+    </sqm-portal-register>
+  );
+});
+
+export const Turkish = createHookStory(() => {
+  setupGraphQL({
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImFjY291bnRJZCI6InNhbXR1cmtleSIsImlkIjoic2FtdHVya2V5In19.usSMe0RWg8W5FtwcvJayvAlxTw6vMxjTyWXaP8jI8_U",
+    id: "samturkey",
+  });
   return (
     <sqm-portal-register>
       <sqm-country-field slot="formData"></sqm-country-field>

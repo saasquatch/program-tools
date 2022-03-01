@@ -17,17 +17,10 @@ export interface DropdownFieldViewProps {
 
 const style = {
   ErrorStyle: {
-    "&::part(base)": {
-      background: "var(--sl-color-danger-10)",
-      borderColor: "var(--sl-color-danger-500)",
-      outline: "var(--sl-color-danger-500)",
-    },
-    "&::part(base) > *": {
-      background: "red",
-    },
-    "&:host": {
-      "--focus-ring": "0 0 0 var(--sl-focus-ring-width) red !important",
-    },
+    "--sl-input-border-color": "var(--sl-color-danger-500)",
+    "--sl-input-background-color": "var(--sl-color-danger-10)",
+    "--sl-input-border-color-focus": "var(--sl-color-danger-500)",
+    "--sl-input-border-color-hover": "var(--sl-color-danger-500)",
   },
   ErrorMessageStyle: {
     margin: 0,
@@ -58,8 +51,6 @@ const styleString = sheet.toString();
 export function DropdownFieldView(props: DropdownFieldViewProps) {
   const { states, content } = props;
   const validationErrors = states?.validationErrors;
-
-  console.log(content.dropdownName);
   return (
     <div class={sheet.classes.FieldContainer}>
       <style type="text/css">
