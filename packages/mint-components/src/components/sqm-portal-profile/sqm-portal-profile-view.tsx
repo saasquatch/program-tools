@@ -1,6 +1,5 @@
 import { h } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../styling/JSS";
 import { PortalContainerView } from "../sqm-portal-container/sqm-portal-container-view";
 import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 import { intl } from "../../global/global";
@@ -67,8 +66,7 @@ export function PortalProfileView(props: PortalProfileViewProps) {
     },
   };
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   const country = states.user?.countryCode

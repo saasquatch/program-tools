@@ -1,4 +1,5 @@
 import {
+  useLocale,
   usePaginatedQuery,
   useProgramId,
   useQuery,
@@ -6,19 +7,33 @@ import {
 } from "@saasquatch/component-boilerplate";
 import { useEffect, useReducer } from "@saasquatch/universal-hooks";
 import { h, VNode } from "@stencil/core";
-import gql from "graphql-tag";
-import { useRerenderListener } from "./re-render";
+import { gql } from "graphql-request";
+import { useRerenderListener } from "../../tables/re-render";
 import { ReferralTable } from "./sqm-referral-table";
-import { ReferralTableViewProps } from "./sqm-referral-table-view";
-import { useChildElements } from "./useChildElements";
+import { GenericTableViewProps } from "../../tables/GenericTableView";
+import { useChildElements } from "../../tables/useChildElements";
+import debugFn from "debug";
+const debug = debugFn("sq:useReferralTable");
+
+export const CSS_NAMESPACE = "sqm-referral-table";
 
 const GET_REFERRER_DATA = gql`
-  query getReferrals($programId: ID, $rewardFilter: RewardFilterInput) {
+  query getReferrals(
+    $programId: ID
+    $rewardFilter: RewardFilterInput
+    $locale: RSLocale
+  ) {
     viewer {
       ... on User {
         referredByReferral(programId: $programId) {
-          dateReferralStarted
           dateConverted
+          dateFraudChecksCompleted
+          dateModerated
+          dateModified
+          dateReferralEnded
+          dateReferralPaid
+          dateReferralStarted
+          dateUserModified
           referrerUser {
             firstName
             lastName
@@ -37,7 +52,7 @@ const GET_REFERRER_DATA = gql`
             fuelTankCode
             fuelTankType
             currency
-            prettyValue
+            prettyValue(locale: $locale)
             statuses
             globalRewardKey
             programRewardKey
@@ -45,7 +60,7 @@ const GET_REFERRER_DATA = gql`
               data {
                 exchangedRewards {
                   data {
-                    prettyValue
+                    prettyValue(locale: $locale)
                     type
                     fuelTankCode
                     globalRewardKey
@@ -66,6 +81,7 @@ const GET_REFERRAL_DATA = gql`
     $offset: Int!
     $referralFilter: ReferralFilterInput
     $rewardFilter: RewardFilterInput
+    $locale: RSLocale
   ) {
     viewer {
       ... on User {
@@ -126,7 +142,7 @@ const GET_REFERRAL_DATA = gql`
               fuelTankCode
               fuelTankType
               currency
-              prettyValue
+              prettyValue(locale: $locale)
               statuses
               globalRewardKey
               programRewardKey
@@ -134,7 +150,7 @@ const GET_REFERRAL_DATA = gql`
                 data {
                   exchangedRewards {
                     data {
-                      prettyValue
+                      prettyValue(locale: $locale)
                       type
                       fuelTankCode
                       globalRewardKey
@@ -185,7 +201,7 @@ export function useReferralTable(
   props: ReferralTable,
   emptyElement: VNode,
   loadingElement: VNode
-): ReferralTableViewProps {
+): GenericTableViewProps {
   const user = useUserIdentity();
   const programIdContext = useProgramId();
   // Default to context, overriden by props
@@ -203,8 +219,8 @@ export function useReferralTable(
   };
 
   const [content, setContent] = useReducer<
-    ReferralTableViewProps["elements"],
-    Partial<ReferralTableViewProps["elements"]>
+    GenericTableViewProps["elements"],
+    Partial<GenericTableViewProps["elements"]>
   >(
     (state, next) => ({
       ...state,
@@ -218,6 +234,8 @@ export function useReferralTable(
     }
   );
 
+  const locale = useLocale();
+
   const {
     data: referrerResponse,
     loading: referrerLoading,
@@ -227,6 +245,7 @@ export function useReferralTable(
     {
       programId: programId === "classic" ? null : programId,
       rewardFilter,
+      locale,
     },
     !props.showReferrer || !user?.jwt
   );
@@ -249,6 +268,7 @@ export function useReferralTable(
     {
       referralFilter,
       rewardFilter,
+      locale,
     },
     (props.showReferrer && referrerLoading && !referrerResponse) || !user?.jwt
   );
@@ -272,7 +292,7 @@ export function useReferralTable(
 
   const data = referralData?.data;
 
-  const components = useChildElements();
+  const components = useChildElements<Element>();
 
   async function getComponentData(components: Element[]) {
     // filter out loading and empty states from columns array
@@ -284,13 +304,11 @@ export function useReferralTable(
       tryMethod(c, () => c.renderLabel())
     );
 
-    // show the referrer row before any other rows (renderReferrerCell is asynchronous)
+    // show the referrer row before any other rows
     let referrerRow;
     if (showReferrerRow && states.currentPage === 0) {
       const referrerPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, function renderReferrerCell() {
-          return c.renderReferrerCell(referrerData, c);
-        })
+        tryMethod(c, () => c.renderReferrerCell(referrerData, locale))
       );
       referrerRow = await Promise.all(referrerPromise);
     }
@@ -298,9 +316,9 @@ export function useReferralTable(
     // get the column cells (renderCell is asynchronous)
     const cellsPromise = data?.map(async (r) => {
       const cellPromise = columnComponents?.map(async (c: any) =>
-        tryMethod(c, () => c.renderCell(r, c))
+        tryMethod(c, () => c.renderCell(r, locale))
       );
-      const cells = await Promise.all(cellPromise);
+      const cells = (await Promise.all(cellPromise)) as VNode[][];
       return cells;
     });
 
@@ -311,7 +329,8 @@ export function useReferralTable(
       );
 
     setContent({ rows });
-    const columns = columnsPromise && (await Promise.all(columnsPromise));
+    const columns =
+      columnsPromise && ((await Promise.all(columnsPromise)) as string[]);
     // Set the content to render and finish loading components
     setContent({ columns, loading: false, page: states.currentPage });
   }
@@ -321,11 +340,24 @@ export function useReferralTable(
     referralData && getComponentData(components);
   }, [referralData, components, tick]);
 
+  const isEmpty = !content?.rows?.length && !data?.length;
+
+  const show =
+    // 1 - Loading if loading
+    states.loading || content.loading
+      ? "loading"
+      : // 2 - Empty if empty
+      isEmpty
+      ? "empty"
+      : // 3 - Then show rows
+        "rows";
+
   return {
     states: {
       hasNext: states.currentPage < states.pageCount - 1,
       hasPrev: states.currentPage > 0,
-      loading: states.loading || content.loading,
+      show,
+      namespace: CSS_NAMESPACE,
     },
     data: {
       textOverrides: {
@@ -333,7 +365,10 @@ export function useReferralTable(
         prevLabel: props.prevLabel,
         moreLabel: props.moreLabel,
       },
-      referralData: data,
+      //   referralData: data,
+      hiddenColumns: props.hiddenColumns,
+      smBreakpoint: props.smBreakpoint,
+      mdBreakpoint: props.mdBreakpoint,
     },
     elements: {
       columns: content.columns,
@@ -356,7 +391,7 @@ export function useReferralTable(
   };
 }
 
-function generateUserError(e: any) {
+export function generateUserError(e: any) {
   try {
     return JSON.stringify(e);
   } catch (e) {
@@ -364,33 +399,33 @@ function generateUserError(e: any) {
   }
 }
 
-async function tryMethod(
+export async function tryMethod(
   c: HTMLElement,
-  callback: () => Promise<VNode>
-): Promise<VNode> {
+  callback: () => Promise<string | VNode[]>
+): Promise<string | VNode[]> {
   const tag = c.tagName.toLowerCase();
   await customElements.whenDefined(tag);
-  let labelPromise: Promise<VNode>;
+  let renderPromise: Promise<string | VNode[]>;
   try {
-    labelPromise = callback();
+    renderPromise = callback();
   } catch (e) {
     // renderLabel did not return a promise, so this method probably doesn't exist
     // therefore, we IGNORE the label
-
     if (callback.name === "renderReferrerCell") {
-      console.error("column does not have a renderReferrerCell method.");
+      debug("column does not have a renderReferrerCell method.");
     } else {
-      console.error("label promise failed", e);
+      debug("label promise failed", e);
     }
 
+    debug("label promise failed", e);
     return <span />;
   }
   try {
-    return await labelPromise;
+    return await renderPromise;
   } catch (e) {
     // The column returned a promise, and that promise failed.
     // This should not happen so we fail fast
-    console.error("Error rendering label", e);
+    debug("Error rendering label", e);
     const userError = generateUserError(e);
     return (
       <details>

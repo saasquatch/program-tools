@@ -12,7 +12,6 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
  */
 @Component({
   tag: "sqm-leaderboard",
-  styleUrl: "sqm-leaderboard.scss",
   shadow: true,
 })
 export class Leaderboard {
@@ -29,22 +28,36 @@ export class Leaderboard {
    */
   @Prop() rankheading?: string;
   /**
-   * @uiName Show the ranking numbers
+   * @uiName Show leaderboard rank
    */
   @Prop() showRank: boolean;
+
+  /**
+   * Hide the current user's leaderboard information when they are not in the top 10
+   *
+   * @uiName Hide viewing user
+   */
+  @Prop() hideViewer: boolean = false;
 
   /**
    * @uiName Rank type
    * @uiType string
    * @uiEnum ["rowNumber", "rank", "denseRank"]
+   * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
    */
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
   /**
    * @uiName Leaderboard type
    * @uiType string
    * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
+   * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
    */
   @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
+
+  /**
+   * @uiName Title displayed for users without names
+   */
+  @Prop() anonymousUser: string = "Anonymous User";
 
   /**
    * @uiName Leaderboard time interval
@@ -70,13 +83,17 @@ export class Leaderboard {
 
   render() {
     const props = {
-      empty: <slot name="empty" />,
-      loadingstate: <slot name="loading" />,
+      empty: <EmptySlot />,
+      loadingstate: <LoadingSlot />,
       usersheading: this.usersheading,
       statsheading: this.statsheading,
+      rankheading: this.rankheading,
       rankType: this.rankType,
       leaderboardType: this.leaderboardType,
+      anonymousUser: this.anonymousUser,
       interval: this.interval,
+      hideViewer: this.hideViewer,
+      showRank: this.showRank,
     };
     const demoProps = { ...props, demoData: this.demoData };
     const viewprops = isDemo()
@@ -86,7 +103,75 @@ export class Leaderboard {
   }
 }
 
-function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
+function EmptySlot() {
+  return (
+    <slot name="empty">
+      <sqm-empty
+        empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644360953/squatch-assets/empty_leaderboard2.png"
+        empty-state-header="View your rank in the leaderboard"
+        empty-state-text="Be the first to refer a friend and reach the top of the leaderboard"
+      ></sqm-empty>
+    </slot>
+  );
+}
+
+function LoadingSlot() {
+  return (
+    <slot name="loading">
+      <table>
+        {[...Array(10)].map(() => {
+          return (
+            <tr>
+              <td>
+                <sl-skeleton></sl-skeleton>
+              </td>
+            </tr>
+          );
+        })}
+      </table>
+    </slot>
+  );
+}
+
+function useLeaderboardDemo(
+  props: LeaderboardProps & { demoData: any }
+): LeaderboardViewProps {
+  const data = props.demoData?.data?.leaderboard || [
+    {
+      firstName: "Viktor",
+      lastInitial: "V",
+      value: 82,
+      rank: 1,
+      rowNumber: 1,
+    },
+    {
+      firstName: "MF",
+      lastInitial: "D",
+      value: 73,
+      rank: 2,
+      rowNumber: 2,
+    },
+    {
+      firstName: "Freddie",
+      lastInitial: "G",
+      value: 64,
+      rank: 3,
+      rowNumber: 3,
+    },
+    {
+      firstName: "Benny",
+      lastInitial: "B",
+      value: 55,
+      rank: 4,
+      rowNumber: 4,
+    },
+    {
+      value: 46,
+      rank: 5,
+      rowNumber: 5,
+    },
+  ];
+
   return deepmerge(
     {
       states: {
@@ -95,30 +180,28 @@ function useLeaderboardDemo(props: LeaderboardProps): LeaderboardViewProps {
         styles: {
           usersheading: props.usersheading
             ? props.usersheading
-            : "TOP REFERRERS",
-          statsheading: props.statsheading ? props.statsheading : "NEW TITANS",
+            : "Top referrers",
+          statsheading: props.statsheading
+            ? props.statsheading
+            : "New customers",
+          rankheading: props.rankheading ? props.rankheading : "Rank",
+          anonymousUser: props.anonymousUser
+            ? props.anonymousUser
+            : "Anonymous User",
+          showRank: props.showRank,
+          hideViewer: props.hideViewer,
         },
       },
       data: {
         rankType: "rowNumber",
-        leaderboard: [
-          { firstName: "Viktor", lastInitial: "V", value: 82, rank: 1 },
-          { firstName: "MF", lastInitial: "D", value: 73, rank: 2 },
-          { firstName: "Freddie", lastInitial: "G", value: 64, rank: 3 },
-          { firstName: "Benny", lastInitial: "B", value: 55, rank: 4 },
-          { firstName: "Mos", lastInitial: "D", value: 46, rank: 5 },
-        ],
+        leaderboard: data,
       },
       elements: {
-        empty: props.empty ? props.empty : <div>Empty</div>,
-        loadingstate: props.loadingstate ? (
-          props.loadingstate
-        ) : (
-          <div>Loading</div>
-        ),
+        empty: <EmptySlot />,
+        loadingstate: <LoadingSlot />,
       },
     },
-    props.demoProps || {},
+    props.demoData || {},
     { arrayMerge: (_, a) => a }
   );
 }

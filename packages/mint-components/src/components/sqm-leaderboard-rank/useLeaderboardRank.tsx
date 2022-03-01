@@ -3,7 +3,7 @@ import {
   useQuery,
   useUserIdentity,
 } from "@saasquatch/component-boilerplate";
-import gql from "graphql-tag";
+import { gql } from "graphql-request";
 import { LeaderboardRankViewProps } from "./sqm-leaderboard-rank-view";
 import { intl } from "../../global/global";
 

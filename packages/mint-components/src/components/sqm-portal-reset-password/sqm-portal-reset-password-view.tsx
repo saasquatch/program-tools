@@ -2,12 +2,11 @@ import { h } from "@stencil/core";
 import {
   AuthButtonsContainer,
   AuthColumn,
-  AuthWrapper,
+  AuthWrapper
 } from "../../global/mixins";
-import jss from "jss";
-import preset from "jss-preset-default";
-import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
+import { createStyleSheet } from "../../styling/JSS";
 import { PasswordFieldViewDemoProps } from "../sqm-password-field/sqm-password-field";
+import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
 export interface PortalResetPasswordViewProps {
   states: {
@@ -71,8 +70,7 @@ const vanillaStyle = `
 }
 `;
 
-jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
+const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function PortalResetPasswordView(props: PortalResetPasswordViewProps) {

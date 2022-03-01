@@ -1,11 +1,11 @@
-import { Component, h, Host, Prop, State, Watch } from "@stencil/core";
+import { Component, h, Host, Prop, State } from "@stencil/core";
 import { withHooks } from "@saasquatch/stencil-hooks";
 import { useReferralIframe } from "./useReferralIframe";
 import {
   ReferralIframeView,
   ReferralIframeViewProps,
 } from "./sqm-referral-iframe-view";
-import { isDemo, useHost } from "@saasquatch/component-boilerplate";
+import { isDemo } from "@saasquatch/component-boilerplate";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
 import { getMissingProps, getProps } from "../../utils/utils";

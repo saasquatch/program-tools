@@ -7,6 +7,161 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2022-02-23
+
+### Added
+
+- Added Components:
+
+  - \<sqm-brand>
+    - Takes in a brand colour via prop and creates a colour palette from it.
+    - Sets shoelace colour variables from brand palette for child components
+    - Takes in a brand font and applies it to child components
+  - \<sqm-card-feed>
+    - Applies a masonry style grid to child components (created for sqm-task-card)
+    - Child width and gap between children is configurable
+  - \<sqm-program-explainer>
+    - Designed to wrap \<sqm-program-explainer-step>
+    - Adds header and footer sections
+    - Text (titles and descriptions) and colours (background and text) are configurable
+  - \<sqm-program-explainer-step>
+    - Card to explain part of a customers program
+    - Icon, background colour, text colour, title and description text are configurable
+    - Image can be used instead of an icon, image url is configurable by prop
+  - \<sqm-reward-exchange-list>
+    - Allows users to exchange rewards configured by Tenant level reward exchange rules
+    - Includes props for complete text editability
+    - Has a 4 step process, select exchange rule, select reward, confirm exchange, exchanged
+  - \<sqm-rewards-table>
+    - Displays a table of users rewards with help from column and cell components
+    - Program Id prop specifies from which programs to show rewards for, defaults to program context but shows rewards globally if no program is provided through prop or context
+    - Column titles are shown by default but can be hidden via prop
+    - 4 rewards are shown per page by default but is customizable via prop
+    - Mobile responsive functionality
+    - Includes props for mobile and table breakpoints, which trigger mobile friendly views
+    - Includes prop to hide column titles in mobile view
+    - \<sqm-rewards-table-date-column>
+      - Displays reward dates in a column using the \<sqm-rewards-table-date-cell>
+      - Includes prop to configure what date to show (date given, expires, canceled, redeemed, scheduled for)
+      - Includes prop to configure column title text
+    - \<sqm-rewards-table-date-cell>
+      - Displays reward date
+    - \<sqm-rewards-table-reward-column>
+      - Displays rewards in a column using the \<sqm-rewards-table-rewards-cell>
+      - Includes prop to configure column title and other text
+    - \<sqm-rewards-table-rewards-cell>
+      - Displays the amount and type of a reward
+      - Displays how much of the reward is available/redeemed
+    - \<sqm-rewards-table-source-column>
+      - Displays reward sources in a column using the \<sqm-rewards-table-source-cell>
+      - Includes props to configure text elements used in the source cell
+      - Includes prop to configure column title
+    - \<sqm-rewards-table-source-cell>
+      - Displays the source of a reward (Program/Automated, Manual, Referral, Reward Exchange)
+    - \<sqm-rewards-table-status-column>
+      - Displays reward statuses in a column using the \<sqm-rewards-table-status-cell>
+      - Includes props to configure reward status text
+      - Includes prop to configure column title
+      - Displays associated status dates (date expires, date pending, etc)
+    - \<sqm-rewards-table-status-cell>
+      - Displays the status of a reward along with status information (expiry or pending date, etc)
+    - \<sqm-rewards-table-customer-note-column>
+      - Includes prop to configure column title
+      - Displays a rewards customer note using the \<sqm-rewards-table-customer-note-cell>
+    - \<sqm-rewards-table-customer-note-cell>
+      - Displays a rewards customer note
+  - \<sqm-task-card>
+    - Displays Tasks which correspond to program goals for users to complete
+    - Tasks can be one time, repeatable, or finite repeatable, configurable by prop
+    - Users progress comes from custom field or program goal, configured by prop
+    - Goal value is configurable by prop
+    - Includes prop to disable cards outside of an activities duration and show an expiry during, default is no duration (always available)
+    - Includes prop to hide cards outside of an activities duration, default is no duration (always displayed)
+    - Includes props for text configuration like card title, reward amount/unit, description, CTA button text
+    - Includes CTA button to redirect users to where they need to complete the task (new tab or existing tab), route is configurable via prop
+    - CTA link can open in a new tab or redirect on the current tab, configurable by prop
+    - Can send an event to SSQT and refresh the widget when a user clicks the CTA, event is configurable via prop
+    - Progress bar is hidden or shown by prop, hidden by default
+    - Includes text showing how many times a user has completed a task if repeatable, text is configurable
+  - \<sqm-timeline>
+    - Wraps several \<sqm-timeline-entry> to create a program timeline
+    - Includes prop to select between a brand colour cirle or gift icon for each entry
+    - Links entry's together with a brand colour line
+    - \<sqm-timeline-entry>
+      - Displays a step of a program
+      - Configurable text props for reward, unit, description and icon
+  - \<sqm-empty>
+    - A reusable empty state component to be slotted into parent components like our tables, leaderboard or reward exchange
+    - Includes props to configured image, heading and description
+    - Uses `empty` slot
+  - \<sqm-tabs>
+    - Wraps \<sqm-tab> components to create a collection of tabs
+    - Similar to shoelace tabs
+    - Placement can be configured to be left, right, bottom, top
+    - Pulls headers from child \<sqm-tab> and displays them
+  - \<sqm-tab>
+    - Wraps a slotted content to be a member of the \<sqm-tabs> component
+    - Has a header prop to configure the label displayed by \<sqm-tabs>
+  - \<sqm-referral-card>
+    - Takes two slots and displays them within a card
+    - Slots are named `left` and `right` 
+    - Vertical alignment can be configured by a prop, defaults to `start` but options for `center` and `end` also available
+  - \<sqm-image>
+    - Displays an image configured with an `imageUrl` prop
+    - Aligned can be `left`, `center` or `right`, defaults to `center` but is configurable by prop
+    - A min height can be configured by prop
+    - A background colour can be configured by prop
+  - \<sqm-hero-image>
+    - Displays image and text in two configuration
+      - Overlay or column, defaults to overlay
+    - Background and text colour are configurable via prop
+    - A CTA button can be optionally shown
+      - Text, link and behaviour (open in new or same tab) are configurable via prop
+    - All text is configurable by props
+    - Text and Image padding are configurable via prop
+  - \<sqm-scroll>
+    - A button that scrolls users to an element in the widget
+    - Can scroll by id or tag
+    - Visual props mirror that of sl-button
+
+### Changed
+
+- Changed Components:
+  - \<sqm-big-stat>
+    - Added hook functionality to query custom fields
+    - Hooks now returns value (number) and statValue (string)
+    - Added loading state into the hook
+  - \<sqm-leaderboard>
+    - Now the viewing user is shown by default, can be disabled via prop
+      - If they are in the leaderboard they are highlighted, else they are displayed below the top 10
+    - Updated default empty state
+    - Added prop to customized anonymous user fallback
+  - \<sqm-portal-container>
+    - Added max width prop, defaults to 100%
+    - Added prop to center children 
+    - Added display prop, options are grid or flex but defaults to grid
+  - \<sqm-referral-table>
+    - Added new default empty state
+    - Changed default per page value from 3 to 4
+    - Added mobile and tablet responsive functionality
+    - Added props for mobile and table breakpoints, which trigger mobile friendly views
+    - Added prop to hide column titles in mobile view
+  - \<sqm-share-button>
+    - Added default button colours and icons for all share mediums
+    - Added border radius prop
+    - Added background colour prop
+    - Added text colour prop
+  - \<sqm-share-code>
+    - Sends a "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT" analytic with "DIRECT" share medium event on copy code click
+  - \<sqm-share-link>
+    - Sends a "USER_REFERRAL_PROGRAM_ENGAGEMENT_EVENT" analytic with "DIRECT" share medium event on copy link click
+  - \<sqm-titled-section>
+    - Added prop to configure text alignment, left, center or right, defaults to left
+  - \<sqm-hero>
+    - Added default background colour which matches the previous `--sqm-portal-background` colour
+  - \<sqm-text>
+    - Added styling for subtitle (`sub`) elements
+
 
 ## [1.4.2] - 2022-01-14
 
@@ -198,8 +353,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.4.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.0...HEAD
+[1.5.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.0
 [1.4.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.4.2
 [1.4.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.4.1
 [1.4.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.4.0

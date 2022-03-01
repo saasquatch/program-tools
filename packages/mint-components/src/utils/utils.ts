@@ -44,3 +44,11 @@ export function getMissingProps(props: RequiredProps) {
   const missingProps = props.filter((prop) => !prop.value);
   return missingProps.length ? missingProps : false;
 }
+
+export function luxonLocale(locale: string) {
+  const splitLocale = locale?.split("_");
+  if (!splitLocale || splitLocale.length === 1) return locale;
+  const language = splitLocale[0];
+  const country = splitLocale[1];
+  return `${language}-${country.toUpperCase()}`;
+}

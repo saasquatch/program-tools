@@ -1,9 +1,8 @@
 import { h } from "@stencil/core";
-import { AuthColumn, AuthWrapper } from "../../global/mixins";
-import jss from "jss";
-import preset from "jss-preset-default";
-import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 import { intl } from "../../global/global";
+import { AuthColumn, AuthWrapper } from "../../global/mixins";
+import { createStyleSheet } from "../../styling/JSS";
+import { TextSpanView } from "../sqm-text-span/sqm-text-span-view";
 
 export interface PortalEmailVerificationViewProps {
   states: {
@@ -36,8 +35,7 @@ const vanillaStyle = `
 }
 `;
 
-jss.setup(preset());
-const sheet = jss.createStyleSheet(style);
+const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
 export function PortalEmailVerificationView(
@@ -46,7 +44,12 @@ export function PortalEmailVerificationView(
   const {
     states,
     callbacks,
-    content: { email, verifyMessage, emailVerificationHeader, resendEmailButtonText },
+    content: {
+      email,
+      verifyMessage,
+      emailVerificationHeader,
+      resendEmailButtonText,
+    },
   } = props;
   return (
     <div class={sheet.classes.Wrapper}>
@@ -54,9 +57,7 @@ export function PortalEmailVerificationView(
         {vanillaStyle}
         {styleString}
       </style>
-      <TextSpanView type="h3">
-        {emailVerificationHeader}
-      </TextSpanView>
+      <TextSpanView type="h3">{emailVerificationHeader}</TextSpanView>
       <sl-form class={sheet.classes.Column} onSl-submit={callbacks.submit}>
         {props.states.error && (
           <sqm-form-message type="error" exportparts="erroralert-icon">

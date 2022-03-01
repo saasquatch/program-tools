@@ -1,16 +1,19 @@
-import { h, Host, VNode } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { h, VNode } from "@stencil/core";
+import { createStyleSheet } from "../../styling/JSS";
 
 export interface BigStatViewProps {
+  value: number;
   statvalue: string;
+  loading: boolean;
   flexReverse?: boolean;
   alignment?: "left" | "right" | "center";
+  labelSlot?: VNode;
 }
 
-export function BigStatView(props: BigStatViewProps, children: VNode) {
+export function BigStatView(props: BigStatViewProps) {
   const { statvalue, flexReverse, alignment } = props;
 
+  // Dependent on props, not feasiable to move out
   const style = {
     Container: {
       display: "flex",
@@ -38,8 +41,7 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
     },
   };
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
+  const sheet = createStyleSheet(style);
   const styleString = sheet.toString();
 
   return (
@@ -49,7 +51,7 @@ export function BigStatView(props: BigStatViewProps, children: VNode) {
         {statvalue}
       </div>
       <div part="stat-description" class={sheet.classes.Description}>
-        {children}
+        {props.labelSlot}
       </div>
     </div>
   );

@@ -1,9 +1,10 @@
 import { Component, h, Prop } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
 import { DateTime } from "luxon";
-import { intl } from "../../../global/global";
 import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
+import { createStyleSheet } from "../../../styling/JSS";
+import { intl } from "../../../global/global";
+import { luxonLocale } from "../../../utils/utils";
+
 @Component({
   tag: "sqm-referral-table-rewards-cell",
   shadow: true,
@@ -11,8 +12,20 @@ import { TextSpanView } from "../../sqm-text-span/sqm-text-span-view";
 export class ReferralTableRewardsCell {
   @Prop() rewards: Reward[];
   @Prop() hideDetails: boolean;
+  @Prop() statusText: string;
+  @Prop() statusLongText: string;
+  @Prop() fuelTankText: string;
+  @Prop() rewardReceivedText: string;
+  @Prop() expiringText: string;
+  @Prop() pendingForText: string;
+  @Prop() locale: string = "en";
   render() {
+    intl.locale = this.locale;
     const style = {
+      "@keyframes slideRight": {
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+      },
       DetailsContainer: {
         width: "100%",
         display: "flex",
@@ -25,7 +38,7 @@ export class ReferralTableRewardsCell {
       Details: {
         "padding-bottom": "var(--sl-spacing-small)",
         "max-width": "500px",
-        "padding-right": "var(--sl-spacing-x-small)",
+        // "padding-right": "var(--sl-spacing-x-small)",
         "&::part(header)": {
           padding: "var(--sl-spacing-x-small)",
           cursor: `${this.hideDetails ? "default" : "pointer"}`,
@@ -38,6 +51,11 @@ export class ReferralTableRewardsCell {
         },
         "&::part(summary-icon)": {
           display: `${this.hideDetails ? "none" : "flex"}`,
+        },
+
+        "&::part(summary-icon[open])": {
+          transform: "rotate(-90deg)",
+          background: "red",
         },
       },
 
@@ -52,11 +70,21 @@ export class ReferralTableRewardsCell {
       },
       StatusBadge: {
         paddingLeft: "var(--sl-spacing-xxx-small)",
+        "&::part(base)": {
+          textAlign: "center",
+          maxWidth: "170px",
+          whiteSpace: "pre-line",
+        },
+      },
+      RedeemBadge: {
+        paddingLeft: "var(--sl-spacing-xxx-small)",
+        "&::part(base)": {
+          background: "var(--sl-color-blue-600)",
+        },
       },
     };
 
-    jss.setup(preset());
-    const sheet = jss.createStyleSheet(style);
+    const sheet = createStyleSheet(style);
     const styleString = sheet.toString();
 
     const getState = (states: Array<string>): string => {
@@ -88,20 +116,33 @@ export class ReferralTableRewardsCell {
       }
     };
 
-    const toTitleCase = (state: string): string => {
-      return state[0].toUpperCase() + state.slice(1).toLowerCase();
-    };
-
     const getTimeDiff = (endTime: number): string => {
       // Current implementation only calculates the difference from current time
-      return DateTime.fromMillis(endTime).toRelative().replace("in", "").trim();
+      return DateTime.fromMillis(endTime)
+        .setLocale(luxonLocale(this.locale))
+        .toRelative()
+        .replace("in", "")
+        .trim();
     };
 
-    return this.rewards.map((reward) => {
+    return this.rewards?.map((reward) => {
       const state = getState(reward.statuses);
       const slBadgeType = getSLBadgeType(state);
-      const badgeText = toTitleCase(state);
-
+      const badgeText = intl.formatMessage(
+        { id: "statusShortMessage", defaultMessage: this.statusText },
+        {
+          status: state,
+        }
+      );
+      const statusText = intl.formatMessage(
+        {
+          id: "statusLongMessage",
+          defaultMessage: this.statusLongText,
+        },
+        {
+          status: state,
+        }
+      );
       return (
         <sl-details class={sheet.classes.Details} disabled={this.hideDetails}>
           <style type="text/css">{styleString}</style>
@@ -114,15 +155,32 @@ export class ReferralTableRewardsCell {
             <div class={sheet.classes.BadgeContainer}>
               {state === "PENDING" && reward.dateScheduledFor ? (
                 <sl-badge
-                  class={sheet.classes.StatusBadge}
+                  class={
+                    slBadgeType === "primary"
+                      ? sheet.classes.RedeemBadge
+                      : sheet.classes.StatusBadge
+                  }
                   type={slBadgeType}
                   pill
-                >{`${badgeText} for ${getTimeDiff(
-                  reward.dateScheduledFor
-                )}`}</sl-badge>
+                >
+                  {intl.formatMessage(
+                    {
+                      id: "pendingForText",
+                      defaultMessage: this.pendingForText,
+                    },
+                    {
+                      status: badgeText,
+                      date: getTimeDiff(reward.dateScheduledFor),
+                    }
+                  )}
+                </sl-badge>
               ) : (
                 <sl-badge
-                  class={sheet.classes.StatusBadge}
+                  class={
+                    slBadgeType === "primary"
+                      ? sheet.classes.RedeemBadge
+                      : sheet.classes.StatusBadge
+                  }
                   type={slBadgeType}
                   pill
                 >
@@ -130,8 +188,17 @@ export class ReferralTableRewardsCell {
                 </sl-badge>
               )}
               {reward.dateExpires && state === "AVAILABLE" && (
-                <sl-badge class={sheet.classes.StatusBadge} type="info" pill>
-                  {`Expiring in ${getTimeDiff(reward.dateExpires)}`}
+                <sl-badge
+                  class={
+                    slBadgeType === "primary"
+                      ? sheet.classes.RedeemBadge
+                      : sheet.classes.StatusBadge
+                  }
+                  type="info"
+                  pill
+                >
+                  {this.expiringText}
+                  {` ${getTimeDiff(reward.dateExpires)}`}
                 </sl-badge>
               )}
             </div>
@@ -140,11 +207,11 @@ export class ReferralTableRewardsCell {
             {reward.dateGiven && (
               <div>
                 <TextSpanView type="p">
-                  Reward received on{" "}
+                  {this.rewardReceivedText}{" "}
                   <span class={sheet.classes.BoldText}>
-                    {DateTime.fromMillis(reward.dateGiven).toLocaleString(
-                      DateTime.DATE_MED
-                    )}
+                    {DateTime.fromMillis(reward.dateGiven)
+                      .setLocale(luxonLocale(this.locale))
+                      .toLocaleString(DateTime.DATE_MED)}
                   </span>
                 </TextSpanView>
               </div>
@@ -152,11 +219,11 @@ export class ReferralTableRewardsCell {
             {state === "EXPIRED" && reward.dateExpires && (
               <div>
                 <TextSpanView type="p">
-                  Reward expired on{" "}
+                  {statusText}{" "}
                   <span class={sheet.classes.BoldText}>
-                    {DateTime.fromMillis(reward.dateExpires).toLocaleString(
-                      DateTime.DATE_MED
-                    )}
+                    {DateTime.fromMillis(reward.dateExpires)
+                      .setLocale(luxonLocale(this.locale))
+                      .toLocaleString(DateTime.DATE_MED)}
                   </span>
                 </TextSpanView>
               </div>
@@ -164,11 +231,11 @@ export class ReferralTableRewardsCell {
             {state === "CANCELLED" && reward.dateCancelled && (
               <div>
                 <TextSpanView type="p">
-                  Reward cancelled on{" "}
+                  {statusText}{" "}
                   <span class={sheet.classes.BoldText}>
-                    {DateTime.fromMillis(reward.dateCancelled).toLocaleString(
-                      DateTime.DATE_MED
-                    )}
+                    {DateTime.fromMillis(reward.dateCancelled)
+                      .setLocale(luxonLocale(this.locale))
+                      .toLocaleString(DateTime.DATE_MED)}
                   </span>
                 </TextSpanView>
               </div>
@@ -176,11 +243,11 @@ export class ReferralTableRewardsCell {
             {state === "PENDING" && reward.dateScheduledFor && (
               <div>
                 <TextSpanView type="p">
-                  Available on{" "}
+                  {statusText}{" "}
                   <span class={sheet.classes.BoldText}>
-                    {DateTime.fromMillis(
-                      reward.dateScheduledFor
-                    ).toLocaleString(DateTime.DATE_MED)}
+                    {DateTime.fromMillis(reward.dateScheduledFor)
+                      .setLocale(luxonLocale(this.locale))
+                      .toLocaleString(DateTime.DATE_MED)}
                   </span>
                 </TextSpanView>
               </div>
@@ -189,23 +256,21 @@ export class ReferralTableRewardsCell {
             {state === "AVAILABLE" && reward.dateExpires && (
               <div>
                 <TextSpanView type="p">
-                  Reward expiring on{" "}
+                  {statusText}{" "}
                   <span class={sheet.classes.BoldText}>
-                    {DateTime.fromMillis(reward.dateExpires).toLocaleString(
-                      DateTime.DATE_MED
-                    )}
+                    {DateTime.fromMillis(reward.dateExpires)
+                      .setLocale(luxonLocale(this.locale))
+                      .toLocaleString(DateTime.DATE_MED)}
                   </span>
                 </TextSpanView>
               </div>
             )}
             {reward.fuelTankCode && (
               <div>
-                <TextSpanView type="p">
-                  Your code is{" "}
-                  <span class={sheet.classes.BoldText}>
-                    {reward.fuelTankCode}
-                  </span>
-                </TextSpanView>
+                {this.fuelTankText}{" "}
+                <span class={sheet.classes.BoldText}>
+                  {reward.fuelTankCode}
+                </span>
               </div>
             )}
           </div>

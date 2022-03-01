@@ -8,13 +8,13 @@ const PROGRAM_CONTEXT = 'sq:program-id';
 
 export function useProgramProvider(programId: string) {
   const host = useHost();
-  const [_, setProgramId] = useDomContextState(PROGRAM_CONTEXT, programId);
+  const [_, setProgramId] = useDomContextState(PROGRAM_CONTEXT, programId || null);
 
   useEffect(() => {
-    host?.addEventListener('sq:update-program-id', (e: CustomEvent) => setProgramId(e.detail));
+    host?.addEventListener('sq:update-program-id', (e: CustomEvent) => setProgramId(e.detail || null));
   }, []);
 
   useEffect(() => {
-    setProgramId(programId);
+    setProgramId(programId || null);
   }, [programId]);
 }

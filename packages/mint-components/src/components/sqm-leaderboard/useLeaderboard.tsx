@@ -11,7 +11,9 @@ export interface LeaderboardProps {
   usersheading: string;
   statsheading: string;
   rankheading?: string;
+  anonymousUser?: string;
   showRank?: boolean;
+  hideViewer?: boolean;
   rankType: "rowNumber" | "rank" | "denseRank";
   leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
   interval: string;
@@ -38,11 +40,29 @@ const GET_LEADERBOARD = gql`
   }
 `;
 
+const GET_RANK = gql`
+  query ($type: String!, $filter: UserLeaderboardFilterInput) {
+    viewer {
+      ... on User {
+        firstName
+        lastInitial
+        leaderboardRank(type: $type, filter: $filter) {
+          value
+          rank
+          denseRank
+          rowNumber
+        }
+      }
+    }
+  }
+`;
+
 type LeaderboardRows = {
   value: number;
   firstName: string;
   lastInitial: string;
   rank: Rank;
+  rowNumber: number;
 };
 
 export type Rank = {
@@ -56,6 +76,7 @@ export type Leaderboard = {
   rank: number;
   firstName: string;
   lastInitial: string;
+  rowNumber: number;
 };
 
 export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
@@ -77,6 +98,8 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     !user?.jwt
   );
 
+  const { data: rankData } = useQuery(GET_RANK, variables, !user?.jwt);
+
   const leaderboardRows = leaderboardData?.userLeaderboard?.rows;
 
   const flattenedLeaderboard = getFlattenedLeaderboard(leaderboardRows);
@@ -93,11 +116,20 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   ): Leaderboard[] {
     return leaderboardRows?.flatMap((user) => ({
       value: user.value,
-      firstName: user.firstName || "Anonymous",
+      firstName: user.firstName,
       lastInitial: user.lastInitial,
       rank: user.rank?.[props.rankType],
+      rowNumber: user.rank?.rowNumber,
     }));
   }
+
+  const viewingUser: Leaderboard = {
+    value: rankData?.viewer?.leaderboardRank?.value,
+    firstName: rankData?.viewer?.firstName,
+    lastInitial: rankData?.viewer?.lastInitial,
+    rank: rankData?.viewer?.leaderboardRank?.[props.rankType],
+    rowNumber: rankData?.viewer?.leaderboardRank?.rowNumber,
+  };
 
   return {
     states: {
@@ -108,6 +140,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     data: {
       leaderboard: sortedLeaderboard,
       rankType: props.rankType,
+      viewerRank: viewingUser,
     },
     elements: {
       empty: props.empty,

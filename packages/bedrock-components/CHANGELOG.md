@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2022-02-23
+
+### Changed
+
+- Changed components:
+  - \<sqb-widget>
+    - Now supports translations, returning the localized widget
+  - \<sqb-program-section>
+    - Now supports `program-id=""` as a null programId instead of empty string
+
 ## [1.3.0] - 2021-12-07
 
 ### Changed
@@ -61,7 +71,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqb-conditional-section>
   - \<sqb-program-section>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.3.0...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/bedrock-components%401.3.1...HEAD
+[1.3.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.1
 [1.3.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.3.0
 [1.2.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.2.1
 [1.2.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fbedrock-components%401.2.0

@@ -1,61 +1,58 @@
 import { h, VNode } from "@stencil/core";
-import jss from "jss";
-import preset from "jss-preset-default";
+import { createStyleSheet } from "../../styling/JSS";
 
 export interface TextSpanView {
   type: "p" | "subtext" | "h1" | "h2" | "h3" | "h4";
 }
+const style = {
+  p: {
+    "font-size": "var(--sl-font-size-small)",
+    "font-weight": "400",
+    color: "var(--sl-color-gray-800)",
+    margin: "0",
+  },
+  subtext: {
+    "font-size": "var(--sl-font-size-x-small)",
+    "font-weight": "400",
+    color: "var(--sl-color-gray-600)",
+    margin: "0",
+  },
+  h1: {
+    "font-size": "var(--sl-font-size-xx-large)",
+    "font-weight": "600",
+    color: "var(--sl-color-gray-800)",
+    margin: "0",
+  },
+  h2: {
+    "font-size": "var(--sl-font-size-x-large)",
+    "font-weight": "600",
+    color: "var(--sl-color-gray-800)",
+    margin: "0",
+  },
+  h3: {
+    "font-size": "var(--sl-font-size-large)",
+    "font-weight": "600",
+    color: "var(--sl-color-gray-800)",
+    margin: "0",
+  },
+  h4: {
+    "font-size": "13px",
+    "font-weight": "600",
+    color: "var(--sl-color-gray-800)",
+    margin: "0",
+  },
+};
 
-export function TextSpanView(props: TextSpanView, children: VNode) {
-  const style = {
-    p: {
-      "font-size": "var(--sl-font-size-small)",
-      "font-weight": "400",
-      color: "var(--sl-color-gray-800)",
-      margin: "0",
-    },
-    subtext: {
-      "font-size": "var(--sl-font-size-x-small)",
-      "font-weight": "400",
-      color: "var(--sl-color-gray-600)",
-      margin: "0",
-    },
-    h1: {
-      "font-size": "var(--sl-font-size-xx-large)",
-      "font-weight": "600",
-      color: "var(--sl-color-gray-800)",
-      margin: "0",
-    },
-    h2: {
-      "font-size": "var(--sl-font-size-x-large)",
-      "font-weight": "600",
-      color: "var(--sl-color-gray-800)",
-      margin: "0",
-    },
-    h3: {
-      "font-size": "var(--sl-font-size-large)",
-      "font-weight": "600",
-      color: "var(--sl-color-gray-800)",
-      margin: "0",
-    },
-    h4: {
-      "font-size": "13px",
-      "font-weight": "600",
-      color: "var(--sl-color-gray-800)",
-      margin: "0",
-    },
-  };
+const sheet = createStyleSheet(style);
+const styleString = sheet.toString();
 
-  jss.setup(preset());
-  const sheet = jss.createStyleSheet(style);
-  const styleString = sheet.toString();
-
-  const vanillaStyle = `
+const vanillaStyle = `
     sqm-text-span {
       display: inline;
     }
   `;
 
+export function TextSpanView(props: TextSpanView, children: VNode) {
   return (
     <span class={sheet.classes[props.type]}>
       <style type="text/css">

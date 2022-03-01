@@ -1,6 +1,7 @@
 dist/
 www/
 loader/
+grapesjs/
 
 *~
 *.sw[mnpcod]
