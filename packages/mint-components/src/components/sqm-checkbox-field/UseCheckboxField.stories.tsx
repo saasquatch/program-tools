@@ -37,7 +37,7 @@ export const TermsAndConditions = createHookStory(() => {
   return (
     <sqm-portal-register>
       <div slot="terms">
-        <sqm-checkbox-field></sqm-checkbox-field>
+        <sqm-checkbox-field checkbox-name="terms"></sqm-checkbox-field>
       </div>
     </sqm-portal-register>
   );
@@ -48,7 +48,7 @@ export const TermsAndConditionsWithLabel = createHookStory(() => {
   return (
     <sqm-portal-register>
       <div slot="terms">
-        <sqm-checkbox-field checkbox-label="I agree"></sqm-checkbox-field>
+        <sqm-checkbox-field checkbox-label="I agree" checkbox-name="terms"></sqm-checkbox-field>
       </div>
     </sqm-portal-register>
   );

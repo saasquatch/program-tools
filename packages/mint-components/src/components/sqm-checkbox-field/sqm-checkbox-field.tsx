@@ -88,9 +88,6 @@ function useCheckboxFieldDemo(
       callbacks: {
         setChecked: () => {},
       },
-      refs: {
-        checkboxRef: null,
-      },
     },
     props.demoData || {},
     { arrayMerge: (_, a) => a }

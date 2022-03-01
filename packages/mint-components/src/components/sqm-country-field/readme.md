@@ -1,4 +1,4 @@
-# sqm-dropdown-field
+# sqm-country-field
 
 
 
@@ -7,15 +7,13 @@
 
 ## Properties
 
-| Property                | Attribute                  | Description | Type                                                                                                                                                                                                                           | Default                                        |
-| ----------------------- | -------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- |
-| `checkboxLabel`         | `checkbox-label`           |             | `string`                                                                                                                                                                                                                       | `"By signing up you agree to the {labelLink}"` |
-| `checkboxLabelLink`     | `checkbox-label-link`      |             | `string`                                                                                                                                                                                                                       | `"https://example.com"`                        |
-| `checkboxLabelLinkText` | `checkbox-label-link-text` |             | `string`                                                                                                                                                                                                                       | `"Terms and Conditions"`                       |
-| `checkboxName`          | `checkbox-name`            |             | `string`                                                                                                                                                                                                                       | `"agreement"`                                  |
-| `checkboxRequired`      | `checkbox-required`        |             | `boolean`                                                                                                                                                                                                                      | `true`                                         |
-| `demoData`              | --                         |             | `{ states?: { validationErrors?: Record<string, string>; checked: boolean; }; content?: { checkboxName: string; checkboxLabel: string; checkboxLabelLink?: string; checkboxLabelLinkText?: string; errorMessage: string; }; }` | `undefined`                                    |
-| `errorMessage`          | `error-message`            |             | `string`                                                                                                                                                                                                                       | `"Must be checked"`                            |
+| Property           | Attribute           | Description | Type                                                                                                                                                                                                                                             | Default                   |
+| ------------------ | ------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
+| `demoData`         | --                  |             | `{ states?: { validationErrors?: Record<string, string>; }; data?: { countries: Country[]; }; content?: { dropdownName: string; dropdownLabel: string; dropdownRequired?: boolean; errorMessage: string; selectOptions?: VNode \| VNode[]; }; }` | `undefined`               |
+| `dropdownLabel`    | `dropdown-label`    |             | `string`                                                                                                                                                                                                                                         | `"Country"`               |
+| `dropdownName`     | `dropdown-name`     |             | `string`                                                                                                                                                                                                                                         | `"countryCode"`           |
+| `dropdownRequired` | `dropdown-required` |             | `boolean`                                                                                                                                                                                                                                        | `true`                    |
+| `errorMessage`     | `error-message`     |             | `string`                                                                                                                                                                                                                                         | `"Must select a country"` |
 
 
 ## Dependencies
@@ -27,8 +25,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  sqm-stencilbook --> sqm-checkbox-field
-  style sqm-checkbox-field fill:#f9f,stroke:#333,stroke-width:4px
+  sqm-stencilbook --> sqm-country-field
+  style sqm-country-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
