@@ -2,14 +2,21 @@
 @author:derek
 Feature: Country Field
 
-  Dropdown field to be used in our portal registration component. Motivating examples include, a dropdown of countries
-  for users to select between during registration.
+  The country field component can be used within the portal registration component. It provides a full list of all countries
+  for a user to select from during registration.
 
   Background: A user is on the portal registration page
     Given a user is viewing the "/register"
 
   @motivating
   Scenario: The country field displays a list of all countries
+    Given a country component inside of a "sqm-portal-register"
+    Then the user sees a field with label "Country"
+    When they click on the dropdown
+    Then they see a list of all countries
+    When they select a country
+    Then the dropdown closes
+    And their selection is shown in the field
 
   @motivating
   Scenario: The country field is required by default
@@ -56,9 +63,9 @@ Feature: Country Field
   @motivating
   Scenario: The form field name attribute defaults to "country"
     Given a country component inside of a "sqm-portal-register"
-    When the user selects a drop down option
+    When the user selects a country
     And they register
-    Then the selected country is submitted under the "country" field
+    Then the two character country code of the selected country is submitted under the "country" field
 
   @motivating
   Scenario: The form field name attribute is customizable
@@ -66,4 +73,4 @@ Feature: Country Field
     And the component has prop "dropdown-name" with value "myDropDown"
     When the user selects a country
     And they register
-    Then the selected country is submitted under the "myDropDown" field
+    Then the two character country code of the selected country is submitted under the "myDropDown" field
