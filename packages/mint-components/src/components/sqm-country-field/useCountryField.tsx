@@ -1,5 +1,10 @@
-import { useLocale, useQuery } from "@saasquatch/component-boilerplate";
+import {
+  useLocale,
+  useQuery,
+  useUserIdentity,
+} from "@saasquatch/component-boilerplate";
 import { gql } from "graphql-request";
+import { CountryField } from "./sqm-country-field";
 
 export type Country = {
   countryCode: string;
@@ -17,13 +22,14 @@ const GET_COUNTRIES = gql`
   }
 `;
 
-export function useCountryField() {
-  const locale = useLocale();
+export function useCountryField(props: CountryField) {
+
+  const user = useUserIdentity();
+  const locale = props.locale || useLocale();
   const { data: res } = useQuery(
     GET_COUNTRIES,
-    { locale }
-    // TODO: where should the locale be coming from? this is used on registration where there's usually no user (thus no locale)
-    // locale === undefined
+    { locale },
+    user && locale === undefined
   );
   return {
     data: {

@@ -82,3 +82,43 @@ export const Turkish = createHookStory(() => {
     </sqm-portal-register>
   );
 });
+
+export const NoUser = createHookStory(() => {
+  //@ts-ignore
+  window.widgetIdent = {
+    tenantAlias: "test_a74miwdpofztj",
+    appDomain: "https://staging.referralsaasquatch.com",
+  };
+  useEffect(() => {
+    setUserIdentity(undefined);
+    return () => {
+      window.widgetIdent = undefined;
+      setUserIdentity(undefined);
+    };
+  }, []);
+  return (
+    <sqm-portal-register>
+      <sqm-country-field slot="formData"></sqm-country-field>
+    </sqm-portal-register>
+  );
+});
+
+export const NoUserFrench = createHookStory(() => {
+  //@ts-ignore
+  window.widgetIdent = {
+    tenantAlias: "test_a74miwdpofztj",
+    appDomain: "https://staging.referralsaasquatch.com",
+  };
+  useEffect(() => {
+    setUserIdentity(undefined);
+    return () => {
+      window.widgetIdent = undefined;
+      setUserIdentity(undefined);
+    };
+  }, []);
+  return (
+    <sqm-portal-register>
+      <sqm-country-field slot="formData" locale="fr"></sqm-country-field>
+    </sqm-portal-register>
+  );
+});

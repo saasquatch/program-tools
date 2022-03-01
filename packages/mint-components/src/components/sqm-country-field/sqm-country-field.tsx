@@ -40,6 +40,11 @@ export class CountryField {
    */
   @Prop() dropdownRequired?: boolean = true;
 
+  /**
+   * @uiName Country name locale override
+   */
+  @Prop() locale: string | null = null;
+
   /** @undocumented */
   @Prop() demoData?: DemoData<CountryFieldViewProps>;
 
@@ -57,7 +62,9 @@ export class CountryField {
 
     const { states } = useDropdownField();
 
-    const { data } = isDemo() ? useCountryFieldDemo(this) : useCountryField();
+    const { data } = isDemo()
+      ? useCountryFieldDemo(this)
+      : useCountryField(this);
     return (
       <CountryFieldView
         states={states}

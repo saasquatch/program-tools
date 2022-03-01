@@ -158,6 +158,10 @@ export namespace Components {
           * @uiName Unselected error message
          */
         "errorMessage": string;
+        /**
+          * @uiName Country name locale override
+         */
+        "locale": string | null;
     }
     interface SqmDividedLayout {
         /**
@@ -2717,6 +2721,10 @@ declare namespace LocalJSX {
           * @uiName Unselected error message
          */
         "errorMessage"?: string;
+        /**
+          * @uiName Country name locale override
+         */
+        "locale"?: string | null;
     }
     interface SqmDividedLayout {
         /**

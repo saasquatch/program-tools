@@ -137,7 +137,7 @@ export const TermsAndConditionsLongCustomLabel = createHookStory(() => (
       ...defaultRegisterProps.content,
       terms: (
         <sqm-checkbox-field
-          checkbox-label="Participants must be at least 18 years of age and a legal resident of the U.S. or Canada. By signing up to participate in the rewards program, you agree to the terms {labelLink}."
+          checkbox-label="Participants must be at least 18 years of age and a legal resident of the U.S. or Canada. By signing up to participate in the rewards program, you agree to the {labelLink}."
           checkbox-label-link="https://www.example.com"
           checkbox-label-link-text="terms"
           checkbox-name="termsAndConditions"
