@@ -86,7 +86,7 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
       >
         {intl.formatMessage(
           {
-            id: content.checkboxName,
+            id: content.checkboxName + "-message",
             defaultMessage: content.checkboxLabel,
           },
           {

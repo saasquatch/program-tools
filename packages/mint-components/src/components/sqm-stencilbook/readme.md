@@ -46,6 +46,10 @@
 - [sqm-portal-login](../sqm-portal-login)
 - [sqm-portal-change-password](../sqm-portal-change-password)
 - [sqm-referral-iframe](../sqm-referral-iframe)
+- [sqm-checkbox-field](../sqm-checkbox-field)
+- [sqm-name-fields](../sqm-name-fields)
+- [sqm-dropdown-field](../sqm-dropdown-field)
+- [sqm-country-field](../sqm-country-field)
 - [sqm-program-explainer](../sqm-program-explainer)
 - [sqm-program-explainer-step](../sqm-program-explainer-step)
 - [sqm-brand](../sqm-brand)
@@ -108,6 +112,10 @@ graph TD;
   sqm-stencilbook --> sqm-portal-login
   sqm-stencilbook --> sqm-portal-change-password
   sqm-stencilbook --> sqm-referral-iframe
+  sqm-stencilbook --> sqm-checkbox-field
+  sqm-stencilbook --> sqm-name-fields
+  sqm-stencilbook --> sqm-dropdown-field
+  sqm-stencilbook --> sqm-country-field
   sqm-stencilbook --> sqm-program-explainer
   sqm-stencilbook --> sqm-program-explainer-step
   sqm-stencilbook --> sqm-brand
