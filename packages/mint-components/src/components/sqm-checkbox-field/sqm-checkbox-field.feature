@@ -24,6 +24,29 @@ Feature: Checkbox Field
     And the checkbox is highlighted in red
     And the error message says "Must be checked"
 
+
+  @landmine
+  Scenario: Checkboxes with the same "checkbox-name" are not submitted in the form data
+    Given the register form has the following html
+      """
+      <sqm-portal-register>
+      <sqm-name-fields slot="formData"></sqm-name-fields>
+      <sqm-checkbox-field
+      slot="formData"
+      checkbox-label="I am not a robot"
+      error-message="Cannot be a robot"
+      checkbox-name="isHuman"
+      ></sqm-checkbox-field>
+      <div slot="terms">
+      <sqm-checkbox-field checkbox-name="isHuman"></sqm-checkbox-field>
+      </div>
+      </sqm-portal-register>
+      """
+    And the checkboxes are checked
+    When the user tries to register
+    Then the form is submitted
+    But no field with key "isHuman" is included in the form data
+
   @motivating
   Scenario: Multiple checkboxes need different "checkbox-name" values
     Given the register form has the following html
@@ -37,7 +60,7 @@ Feature: Checkbox Field
       checkbox-name="isHuman"
       ></sqm-checkbox-field>
       <div slot="terms">
-      <sqm-checkbox-field></sqm-checkbox-field>
+      <sqm-checkbox-field checkbox-name="myCheckbox"></sqm-checkbox-field>
       </div>
       </sqm-portal-register>
       """
@@ -45,6 +68,13 @@ Feature: Checkbox Field
     When the user tries to register
     Then both checkboxes are bordered in red
     And the checkboxes have different error messages
+    When the user checks the boxes
+    And tries to register
+    Then the form is submitted
+    And the following fields are included in the form data
+      | feilds     |
+      | isHuman    |
+      | myCheckbox |
 
   @motivating
   Scenario: Checkboxes can be optional
