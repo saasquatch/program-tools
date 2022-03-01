@@ -35,8 +35,11 @@ const style = {
   },
   ErrorMessageStyle: {
     margin: 0,
+    marginTop: "5px",
     color: "var(--sl-color-danger-500)",
     fontSize: "var(--sl-input-help-text-font-size-medium)",
+    fontFamily: "var(--sl-font-sans)",
+    fontWeight: "var(--sl-font-weight-normal)",
   },
   FieldContainer: {
     "margin-bottom": "var(--sl-spacing-large)",
@@ -52,6 +55,9 @@ const vanillaStyle = `
 sl-checkbox::part(label){
   font-size: var(--sl-input-label-font-size-small);
   font-weight: var(--sl-font-weight-semibold);
+}
+sl-checkbox::part(base){
+  align-items: start;
 }
 `;
 
@@ -97,10 +103,10 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
             ),
           }
         )}
+        {!states.checked && validationErrors?.[content.checkboxName] && (
+          <p class={sheet.classes.ErrorMessageStyle}>{content.errorMessage}</p>
+        )}
       </sl-checkbox>
-      {!states.checked && validationErrors?.[content.checkboxName] && (
-        <p class={sheet.classes.ErrorMessageStyle}>{content.errorMessage}</p>
-      )}
     </div>
   );
 }

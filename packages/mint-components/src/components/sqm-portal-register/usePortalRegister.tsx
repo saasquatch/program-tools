@@ -46,7 +46,6 @@ export function usePortalRegister(props: PortalRegister) {
       }
     });
 
-    console.log({ formData });
     if (
       (props.confirmPassword || formData.confirmPassword) &&
       formData.password !== formData.confirmPassword

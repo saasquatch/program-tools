@@ -128,3 +128,21 @@ export const TermsAndConditionsCustomLabel = createHookStory(() => (
     }}
   />
 ));
+
+export const TermsAndConditionsLongCustomLabel = createHookStory(() => (
+  <PortalRegisterView
+    {...defaultRegisterProps}
+    //@ts-ignore
+    content={{
+      ...defaultRegisterProps.content,
+      terms: (
+        <sqm-checkbox-field
+          checkbox-label="Participants must be at least 18 years of age and a legal resident of the U.S. or Canada. By signing up to participate in the rewards program, you agree to the terms {labelLink}."
+          checkbox-label-link="https://www.example.com"
+          checkbox-label-link-text="terms"
+          checkbox-name="termsAndConditions"
+        />
+      ),
+    }}
+  />
+));
