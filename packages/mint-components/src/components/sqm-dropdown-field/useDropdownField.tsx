@@ -1,17 +1,11 @@
 import { useDomContext } from "@saasquatch/stencil-hooks";
-const CONTEXT_NAME = "sq:validation-state";
-
-type FormState = {
-  error?: string;
-  validationErrors?: ValidationErrors;
-};
-
-type ValidationErrors = {
-  [key: string]: string;
-};
+import {
+  FormState,
+  FORM_VALIDATION_CONTEXT,
+} from "../sqm-portal-register/useValidationState";
 
 export function useDropdownField() {
-  const validationState = useDomContext<FormState>(CONTEXT_NAME);
+  const validationState = useDomContext<FormState>(FORM_VALIDATION_CONTEXT);
   return {
     states: {
       validationErrors: validationState?.validationErrors,

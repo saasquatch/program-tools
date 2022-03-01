@@ -1,10 +1,11 @@
 import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
+import { ValidationErrors } from "../sqm-portal-register/useValidationState";
 
 export interface DropdownFieldViewProps {
   states: {
-    validationErrors?: Record<string, string>;
+    validationErrors?: ValidationErrors;
   };
   content: {
     dropdownName: string;

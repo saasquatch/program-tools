@@ -2,7 +2,7 @@ import { useHost } from "@saasquatch/component-boilerplate";
 import { ContextProvider } from "dom-context";
 import { useDomContextState } from "@saasquatch/dom-context-hooks";
 
-const CONTEXT_NAME = "sq:validation-state";
+export const FORM_VALIDATION_CONTEXT = "sq:validation-state";
 
 declare global {
   interface Window {
@@ -23,7 +23,7 @@ export function useValidationState(formState?: FormState) {
   const host = useHost();
   const [validationState, setValidationState] = useDomContextState<FormState>(
     host,
-    CONTEXT_NAME,
+    FORM_VALIDATION_CONTEXT,
     formState
   );
 

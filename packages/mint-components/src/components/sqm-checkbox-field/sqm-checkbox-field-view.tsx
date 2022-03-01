@@ -2,10 +2,11 @@ import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
 import { intl } from "../../global/global";
+import { ValidationErrors } from "../sqm-portal-register/useValidationState";
 
 export interface CheckboxFieldViewProps {
   states: {
-    validationErrors?: Record<string, string>;
+    validationErrors?: ValidationErrors;
     checked: boolean;
   };
   content: {

@@ -1,10 +1,11 @@
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { ErrorStyles } from "../../global/mixins";
+import { ValidationErrors } from "../sqm-portal-register/useValidationState";
 
 export interface NameFieldsViewProps {
   states: {
-    validationErrors?: Record<string, string>;
+    validationErrors?: ValidationErrors;
     content: {
       firstNameLabel: string;
       lastNameLabel: string;
