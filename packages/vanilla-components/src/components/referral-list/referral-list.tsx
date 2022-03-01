@@ -85,7 +85,7 @@ export class ReferralList {
     this.loading = true;
     const { target } = event;
     target.innerText = "...";
-    this.getReferrals(offset).then((res) => {
+    this.getReferrals(this.showreferrer, offset).then((res) => {
       target.innerText =
         offset > this.offset ? this.paginatemore : this.paginateless;
       this.referrals = res.referrals.data;
