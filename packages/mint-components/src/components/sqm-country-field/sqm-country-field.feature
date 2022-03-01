@@ -1,63 +1,76 @@
-@owner:sam
-@author:sam
+@owner:derek
+@author:derek
+Feature: Country Field
 
-Feature: Checkbox Field
+  The country field component can be used within the portal registration component. It provides a full list of all countries
+  for a user to select from during registration.
 
-  Field to be used to be used as a checkbox during registration
-
-  Background:
-    Given the current page is "/register"
-
-  @motivating
-  Scenario: Checkbox is required by default
-    Given the email field has valid input
-    And the password field has valid input
-    And the checkbox is not checked
-    When register is clicked
-    Then the name fields will be highlighted in red with an error message
-    And the checkbox will be highlighted in red
-    And the error message will say "Must be checked"
+  Background: A user is on the portal registration page
+    Given a user is viewing the "/register"
 
   @motivating
-  Scenario: Multiple checkboxes need different "checkbox-name" values
-    Given the register form has the following html
-      """
-      <sqm-portal-register>
-      <sqm-name-fields slot="formData"></sqm-name-fields>
-      <sqm-checkbox-field
-      slot="formData"
-      checkbox-label="I am not a robot"
-      error-message="Cannot be a robot"
-      checkbox-name="isHuman"
-      ></sqm-checkbox-field>
-      <div slot="terms">
-      <sqm-checkbox-field></sqm-checkbox-field>
-      </div>
-      </sqm-portal-register>
-      """
-    And the checkboxes are not checked
-    When register is clicked
-    Then both checkboxes will be highlighted in red
-    And the checkboxes will have different error messages
+  Scenario: The country field displays a list of all countries
+    Given a country component inside of a "sqm-portal-register"
+    Then the user sees a field with label "Country"
+    When they click on the dropdown
+    Then they see a list of all countries
+    When they select a country
+    Then the dropdown closes
+    And their selection is shown in the field
 
   @motivating
-  Scenario: Checkboxes can be optional
-    Given the register form has the following html
-      """
-      <sqm-portal-register>
-      <sqm-name-fields slot="formData"></sqm-name-fields>
-      <sqm-checkbox-field
-      slot="formData"
-      checkbox-label="I am not a robot"
-      checkbox-required="false"
-      checkbox-name="isHuman"
-      />
-      </sqm-portal-register>
-      """
-    And the checkbox is not checked
-    When register is clicked
-    Then there will be no error for the checkbox
+  Scenario: The country field is required by default
+    Given a country component inside of a "sqm-portal-register"
+    When the user tries to register
+    But they havent selected a country
+    Then they are not registered
+    And they see the country field is bordered in red
+    And below they see the validation error "Select a country"
 
+  @minutae
+  Scenario: The country field can be optional
+    Given a country component inside of a "sqm-portal-register"
+    And the component has prop "country-required" with value "false"
+    When the user tries to register
+    And they havent selected a country
+    Then they see no validation error
+    And registration is not blocked
 
+  @motivating
+  Scenario Outline: The country field label is configurable
+    Given a country component inside of a "sqm-portal-register"
+    And the component has prop "dropdown-label" with <propValue>
+    When the user views the country component
+    Then the label is <label>
+    Examples:
+      | propValue       | label           |
+      |                 | Country         |
+      | My Custom Label | My Custom Label |
 
+  @minutae
+  Scenario Outline: Validation error message is configurable
+    Given a country component inside of a "sqm-portal-register"
+    And the country is required
+    And the component has prop "error-message" with <propValue>
+    When the user tries to register
+    But they havent selected a country
+    Then they see <errorMessage> below
+    Examples:
+      | propValue         | errorMessage          |
+      |                   | Must select a country |
+      | My Custom Message | My Custom Message     |
 
+  @motivating
+  Scenario: The form field name attribute defaults to "country"
+    Given a country component inside of a "sqm-portal-register"
+    When the user selects a country
+    And they register
+    Then the two character country code of the selected country is submitted under the "country" field
+
+  @motivating
+  Scenario: The form field name attribute is customizable
+    Given a country component inside of a "sqm-portal-register"
+    And the component has prop "dropdown-name" with value "myDropDown"
+    When the user selects a country
+    And they register
+    Then the two character country code of the selected country is submitted under the "myDropDown" field

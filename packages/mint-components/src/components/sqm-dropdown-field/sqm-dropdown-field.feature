@@ -41,7 +41,7 @@ Feature: Dropdown field
   Scenario Outline: Validation error message is configurable
     Given a dropdown component inside of a "sqm-portal-register"
     And the dropdown is required
-    And the dropdown has prop "dropdown-label" with <propValue>
+    And the dropdown has prop "error-message" with <propValue>
     When the user tries to register
     But they havent selected a dropdown option
     Then they see <errorMessage> below
