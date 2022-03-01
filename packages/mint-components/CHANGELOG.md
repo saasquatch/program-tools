@@ -11,9 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Checkbox component added for use in \<sqm-portal-register>
-  New component:
+- Checkbox and dropdown components added for use in \<sqm-portal-register>
+  New components:
   - \<sqm-checkbox-field>
+  - \<sqm-dropdown-field>
 
 ## [1.5.0] - 2022-02-23
 
@@ -112,7 +113,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Has a header prop to configure the label displayed by \<sqm-tabs>
   - \<sqm-referral-card>
     - Takes two slots and displays them within a card
-    - Slots are named `left` and `right` 
+    - Slots are named `left` and `right`
     - Vertical alignment can be configured by a prop, defaults to `start` but options for `center` and `end` also available
   - \<sqm-image>
     - Displays an image configured with an `imageUrl` prop
@@ -146,7 +147,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Added prop to customized anonymous user fallback
   - \<sqm-portal-container>
     - Added max width prop, defaults to 100%
-    - Added prop to center children 
+    - Added prop to center children
     - Added display prop, options are grid or flex but defaults to grid
   - \<sqm-referral-table>
     - Added new default empty state
@@ -169,7 +170,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Added default background colour which matches the previous `--sqm-portal-background` colour
   - \<sqm-text>
     - Added styling for subtitle (`sub`) elements
-
 
 ## [1.4.2] - 2022-01-14
 

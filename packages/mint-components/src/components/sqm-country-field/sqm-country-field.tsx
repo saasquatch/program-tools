@@ -24,7 +24,7 @@ export class CountryField {
   /**
    * @uiName Country name attribute
    */
-  @Prop() dropdownName: string = "countryCode";
+  @Prop() dropdownName: string = "country";
 
   /**
    * @uiName Country Dropdown label
@@ -33,7 +33,7 @@ export class CountryField {
   /**
    * @uiName Unselected error message
    */
-  @Prop() errorMessage: string = "Must select a country";
+  @Prop() errorMessage: string = "Select a country";
 
   /**
    * @uiName Required

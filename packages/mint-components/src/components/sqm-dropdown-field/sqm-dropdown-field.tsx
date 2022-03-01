@@ -32,7 +32,7 @@ export class DropdownField {
   /**
    * @uiName Unselected error message
    */
-  @Prop() errorMessage: string = "Must select an option";
+  @Prop() errorMessage: string = "Select an option";
 
   /**
    * @uiName Required
