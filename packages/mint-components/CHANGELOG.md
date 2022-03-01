@@ -7,14 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.5.1] - 2022-02-28
+## [1.5.1] - 2022-03-01
 
 ### Added
 
 - Checkbox and dropdown components added for use in \<sqm-portal-register>
-  New components:
+
+- Added Components:
+
   - \<sqm-checkbox-field>
+    - Required by default but can be optional
+    - Allows for a link in checkbox text to support behaviour like linking out to terms and conditions
+    - All text is configurable by prop
+    - Best used in the register components `terms` or `formData` slots
+    - Form field name can be customized with the `checkbox-name` prop
   - \<sqm-dropdown-field>
+    - Required by default but can be optional
+    - Dropdown options are \<sl-menu-items>
+    - All text is configurable by prop
+    - Best used in the register components `formData` slot
+    - Form field name can be customized with the `dropdown-name` prop
 
 ## [1.5.0] - 2022-02-23
 
