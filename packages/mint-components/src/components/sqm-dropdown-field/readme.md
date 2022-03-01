@@ -7,13 +7,13 @@
 
 ## Properties
 
-| Property           | Attribute           | Description | Type                                                                                                                                                                                                           | Default                   |
-| ------------------ | ------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| `demoData`         | --                  |             | `{ states?: { validationErrors?: Record<string, string>; }; content?: { dropdownName: string; dropdownLabel: string; dropdownRequired?: boolean; errorMessage: string; selectOptions?: VNode \| VNode[]; }; }` | `undefined`               |
-| `dropdownLabel`    | `dropdown-label`    |             | `string`                                                                                                                                                                                                       | `"Select an option"`      |
-| `dropdownName`     | `dropdown-name`     |             | `string`                                                                                                                                                                                                       | `undefined`               |
-| `dropdownRequired` | `dropdown-required` |             | `boolean`                                                                                                                                                                                                      | `true`                    |
-| `errorMessage`     | `error-message`     |             | `string`                                                                                                                                                                                                       | `"Must select an option"` |
+| Property           | Attribute           | Description | Type                                                                                                                                                                                                           | Default              |
+| ------------------ | ------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| `demoData`         | --                  |             | `{ states?: { validationErrors?: Record<string, string>; }; content?: { dropdownName: string; dropdownLabel: string; dropdownRequired?: boolean; errorMessage: string; selectOptions?: VNode \| VNode[]; }; }` | `undefined`          |
+| `dropdownLabel`    | `dropdown-label`    |             | `string`                                                                                                                                                                                                       | `"Select an option"` |
+| `dropdownName`     | `dropdown-name`     |             | `string`                                                                                                                                                                                                       | `undefined`          |
+| `dropdownRequired` | `dropdown-required` |             | `boolean`                                                                                                                                                                                                      | `true`               |
+| `errorMessage`     | `error-message`     |             | `string`                                                                                                                                                                                                       | `"Select an option"` |
 
 
 ## Dependencies
