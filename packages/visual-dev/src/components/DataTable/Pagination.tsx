@@ -9,7 +9,7 @@ type PopoverProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 interface OptionProps {
-  children?: any;
+  children?: string | React.ReactNode;
   offset: number;
   limit: number;
   total?: number;

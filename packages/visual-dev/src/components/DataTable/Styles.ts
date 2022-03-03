@@ -45,22 +45,22 @@ export const Row = {
     box-sizing: border-box;
     border-radius: 6px 6px 0px 0px;
   `,
-  banner: css`
-    padding: 0;
-    color: var(--sq-surface);
-    height: 74px;
-    background: var(--sq-nav-surface-primary);
-    border: 2px solid var(--sq-nav-surface-primary);
-    box-sizing: border-box;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-  `,
   extra: css`
     background: var(--sq-background);
     border: 2px solid var(--sq-border);
     box-sizing: border-box;
   `,
 };
+
+export const BannerDiv = css`
+  display: flex;
+  align-items: center;
+  padding: 0 var(--sq-spacing-large);
+  height: 74px;
+  color: var(--sq-surface);
+  background: var(--sq-nav-surface-primary);
+  box-sizing: border-box;
+`;
 
 export const DataDiv = css`
   width: 100%;

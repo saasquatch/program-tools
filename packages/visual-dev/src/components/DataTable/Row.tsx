@@ -8,7 +8,6 @@ type PopoverProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "customCSS">;
 
 interface OptionProps {
-  content?: any;
   empty?: boolean;
   emptyFilter?: boolean;
   children?: any;
@@ -17,7 +16,7 @@ interface OptionProps {
 }
 
 interface StyleProps {
-  variant?: "row" | "header" | "banner" | "extra";
+  variant?: "row" | "header" | "extra";
   customCSS?: CSSProp;
 }
 
@@ -30,7 +29,7 @@ const RowDiv = styled.div<Required<StyleProps>>`
 `;
 
 const ContentDiv = styled.div<{ flex: string; center: boolean; width: string }>`
-  display: inline-block;
+  ${Styles.ContentDiv}
   ${(props) => (props.center ? "text-align: center;" : "")}
   flex-grow: ${(props) => props.flex};
   width: ${(props) => props.width};
@@ -43,7 +42,6 @@ const DataDiv = styled.div`
 export const Row = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
   (props, forwardedRef) => {
     const {
-      content,
       empty = false,
       emptyFilter: filter = false,
       variant = "row",
@@ -75,18 +73,17 @@ export const Row = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
             {emptyFilterContent}
           </DataDiv>
         )}
-        {content &&
-          content.map((x: any, i: number) => (
+        {children &&
+          children.map((cell: any, i: number) => (
             <ContentDiv
-              flex={x.flex ? x.flex : "1"}
-              center={x.center}
-              width={x.width ? x.width : "100px"}
+              flex={cell.flex ? cell.flex : "1"}
+              center={cell.center}
+              width={cell.width ? cell.width : "100px"}
               key={i}
             >
-              {x.text}
+              {cell.text}
             </ContentDiv>
           ))}
-        {children}
       </RowDiv>
     );
   }

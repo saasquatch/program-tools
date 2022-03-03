@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { Icon } from "../Icon";
-import { Skeleton, Content, DataTable, Row, Pagination } from ".";
+import { Skeleton, DataTable, Row, Pagination } from ".";
 import { Avatar } from "../Avatar";
 import { Text } from "../Text";
 import { Dropdown } from "../Dropdown";
 import { HoverPopover, Popover } from "../Popover";
 import { Badge } from "../Badge";
+import { Filter } from "./Filter";
+import { Banner } from "./Banner";
 
 export default {
   title: "Components / DataTable",
@@ -28,16 +29,14 @@ const content_a = [
 ];
 
 const text_a = (
-  <Content>
-    <div>
-      <strong> A form name </strong> <br />
-      form-key
-    </div>
-  </Content>
+  <div>
+    <strong> A form name </strong> <br />
+    form-key
+  </div>
 );
 
 const text_b = (
-  <Content>
+  <>
     <div>
       <Avatar firstName="New" lastName="Guy" />
     </div>
@@ -45,43 +44,39 @@ const text_b = (
       <span style={{ color: "#0088CC" }}>new guy</span> <br />
       sam123@test.ca
     </div>
-  </Content>
+  </>
 );
 
-const text_c = <Content>11 months ago</Content>;
+const text_c = "11 months ago";
 
 const text_d = (
-  <Content>
+  <>
     <Skeleton circle={true} size="8px" color="#57AC59" /> Success
-  </Content>
+  </>
 );
 
 const text_e = (
-  <Content>
+  <>
     <Skeleton circle={true} size="8px" color="#FE6666" /> Failed
-  </Content>
+  </>
 );
 
 const text_e_popover = (
-  <Content>
-    <HoverPopover
-      handle={
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <Skeleton circle={true} size="8px" color="#FE6666" /> Failed
-        </div>
-      }
-    >
-      <Popover>This is a popover with some Text</Popover>
-    </HoverPopover>
-  </Content>
+  <HoverPopover
+    handle={
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <Skeleton circle={true} size="8px" color="#FE6666" /> Failed
+      </div>
+    }
+  >
+    <Popover>This is a popover with some Text</Popover>
+  </HoverPopover>
 );
 
 const text_f = (
-  <Content>
-    <Badge status="success" icon="gift">
-      Success Badge
-    </Badge>
-  </Content>
+  <Badge status="success" icon="gift">
+    Success Badge
+  </Badge>
 );
 
 const content_b = [
@@ -106,17 +101,10 @@ const content_d = [
   { text: <Icon icon="actions" />, width: "50px", flex: 0.01, center: true },
 ];
 
-const Menus = styled.div`
-  div + div {
-    margin-left: var(--sq-spacing-x-small);
-  }
-  margin-bottom: var(--sq-spacing-large);
-`;
-
 export const FormSubmissionTable = () => {
   return (
     <>
-      <Menus>
+      <Filter>
         <Dropdown text="All Forms" customCSS="min-width: 112px;" />
         <Dropdown text="Any Status" customCSS="min-width: 116px;" />
         <Dropdown
@@ -124,14 +112,14 @@ export const FormSubmissionTable = () => {
           icon="calendar"
           customCSS="min-width: 142px;"
         />
-      </Menus>
+      </Filter>
       <DataTable width="958px">
-        <Row variant="header" content={content_a} />
-        <Row content={content_b} />
-        <Row content={content_c} />
-        <Row content={content_c} />
-        <Row content={content_c} />
-        <Row content={content_c} />
+        <Row variant="header">{content_a}</Row>
+        <Row>{content_b}</Row>
+        <Row>{content_c}</Row>
+        <Row>{content_c}</Row>
+        <Row>{content_c}</Row>
+        <Row>{content_c}</Row>
         <Pagination
           total={17}
           limit={10}
@@ -147,12 +135,12 @@ export const PopoverTest = () => {
   return (
     <>
       <DataTable width="958px">
-        <Row variant="header" content={content_a} />
-        <Row content={content_b} />
-        <Row content={content_d} />
-        <Row content={content_d} />
-        <Row content={content_d} />
-        <Row content={content_d} />
+        <Row variant="header">{content_a}</Row>
+        <Row>{content_b}</Row>
+        <Row>{content_d}</Row>
+        <Row>{content_d}</Row>
+        <Row>{content_d}</Row>
+        <Row>{content_d}</Row>
         <Pagination
           total={17}
           limit={10}
@@ -167,7 +155,7 @@ export const PopoverTest = () => {
 export const FormSubmissionTableWithBanner = () => {
   return (
     <>
-      <Menus>
+      <Filter>
         <Dropdown text="All Forms" customCSS="min-width: 112px;" />
         <Dropdown text="Any Status" customCSS="min-width: 116px;" />
         <Dropdown
@@ -175,34 +163,28 @@ export const FormSubmissionTableWithBanner = () => {
           icon="calendar"
           customCSS="min-width: 142px;"
         />
-      </Menus>
+      </Filter>
       <DataTable width="958px">
-        <Row variant="banner">
-          <div>
-            <span style={{ padding: 20 }}>Filter Rewards by Program</span>
-            <span
-              style={{
-                background: "white",
-                width: 2,
-                height: "90px",
-                marginTop: -45,
-                display: "inline-flex",
-                position: "absolute",
-              }}
-            >
-              .
-            </span>
-            <span style={{ marginLeft: 20 }}>
-              5 rewards earned across all programs
-            </span>
+        <Banner>
+          Filter Rewards by Program
+          <div
+            style={{
+              background: "white",
+              width: 2,
+              height: "100%",
+              margin: "0 20px",
+            }}
+          >
+            .
           </div>
-        </Row>
-        <Row variant="header" content={content_a} />
-        <Row content={content_b} />
-        <Row content={content_c} />
-        <Row content={content_c} />
-        <Row content={content_c} />
-        <Row content={content_c} />
+          5 rewards earned across all programs
+        </Banner>
+        <Row variant="header">{content_a}</Row>
+        <Row>{content_b}</Row>
+        <Row>{content_c}</Row>
+        <Row>{content_c}</Row>
+        <Row>{content_c}</Row>
+        <Row>{content_c}</Row>
         <Pagination
           total={17}
           limit={10}
@@ -225,7 +207,7 @@ export const FormSubmissionTableEmpty = () => {
 
   return (
     <>
-      <Menus>
+      <Filter>
         <Dropdown text="All Forms" customCSS="min-width: 112px;" />
         <Dropdown text="Any Status" customCSS="min-width: 116px;" />
         <Dropdown
@@ -233,9 +215,9 @@ export const FormSubmissionTableEmpty = () => {
           icon="calendar"
           customCSS="min-width: 142px;"
         />
-      </Menus>
+      </Filter>
       <DataTable width="958px" empty>
-        <Row variant="header" content={content_a} />
+        <Row variant="header">{content_a}</Row>
         <Row empty />
         <Pagination
           total={17}
@@ -258,7 +240,7 @@ export const FormSubmissionTableFilter = () => {
 
   return (
     <>
-      <Menus>
+      <Filter>
         <Dropdown text="All Forms" customCSS="min-width: 112px;" />
         <Dropdown text="Any Status" customCSS="min-width: 116px;" />
         <Dropdown
@@ -266,9 +248,9 @@ export const FormSubmissionTableFilter = () => {
           icon="calendar"
           customCSS="min-width: 142px;"
         />
-      </Menus>
+      </Filter>
       <DataTable width="958px" empty>
-        <Row variant="header" content={content_a} />
+        <Row variant="header">{content_a}</Row>
         <Row emptyFilter />
         <Pagination
           total={17}
@@ -357,7 +339,7 @@ export const header = () => {
     { text: "Heading D" },
   ];
 
-  return <Row variant="header" content={content} />;
+  return <Row variant="header">{content}</Row>;
 };
 
 export const row = () => {
@@ -369,7 +351,7 @@ export const row = () => {
     { text: text },
   ];
 
-  return <Row content={content} />;
+  return <Row>{content}</Row>;
 };
 
 export const rowSkeleton = () => {
@@ -381,7 +363,7 @@ export const rowSkeleton = () => {
     { text: text },
   ];
 
-  return <Row content={content} />;
+  return <Row>{content}</Row>;
 };
 
 export const headerActions = () => {
@@ -393,7 +375,7 @@ export const headerActions = () => {
     { text: "Actions", center: true },
   ];
 
-  return <Row variant="header" content={content} />;
+  return <Row variant="header">{content}</Row>;
 };
 
 export const rowActions = () => {
@@ -413,7 +395,7 @@ export const rowActions = () => {
     { text: <Icon icon="actions" />, center: true },
   ];
 
-  return <Row content={content} />;
+  return <Row>{content}</Row>;
 };
 
 export const rowActionsSkeleton = () => {
@@ -433,7 +415,7 @@ export const rowActionsSkeleton = () => {
     { text: <Icon icon="actions" />, center: true },
   ];
 
-  return <Row content={content} />;
+  return <Row>{content}</Row>;
 };
 
 export const header_arrow = () => {
@@ -445,7 +427,7 @@ export const header_arrow = () => {
     { text: "Heading D" },
   ];
 
-  return <Row variant="header" content={content} />;
+  return <Row variant="header">{content}</Row>;
 };
 
 export const row_arrow = () => {
@@ -460,11 +442,13 @@ export const row_arrow = () => {
   const content = [
     {
       text: (
-        <Icon
-          icon="arrow_dropdown"
-          size="40px"
-          customCSS="margin: -50px; margin-top: 0px;"
-        />
+        <span style={{ textAlign: "center", width: "100%" }}>
+          <Icon
+            icon="arrow_dropdown"
+            size="40px"
+            customCSS="top: 8px; height: auto;"
+          />
+        </span>
       ),
       flex: 0.1,
       center: true,
@@ -475,224 +459,5 @@ export const row_arrow = () => {
     { text: text_b },
   ];
 
-  return <Row content={content} />;
+  return <Row>{content}</Row>;
 };
-
-export const skeleton = () => <Skeleton />;
-export const content = () => <Content> Some content </Content>;
-export const contentWithTitle = () => (
-  <Content>
-    <div>
-      <strong> A title for this content </strong> <br />
-      Some content
-    </div>
-  </Content>
-);
-export const contentSkeleton = () => (
-  <Content>
-    <Skeleton size="90px" />
-  </Content>
-);
-export const contentSkeletonCircle = () => (
-  <Content>
-    <Skeleton circle={true} /> <Skeleton size="90px" />
-  </Content>
-);
-
-export const contentSkeletonAvatarA = () => (
-  <Content>
-    <div>
-      <Skeleton circle={true} size="34px" />
-    </div>
-    <div>
-      <Skeleton size="120px" />
-      <br />
-      <Skeleton size="120px" />
-    </div>
-  </Content>
-);
-
-export const contentSkeletonAvatarB = () => (
-  <Content>
-    <div>
-      <Skeleton circle={true} size="34px" />
-    </div>
-    <div>
-      <Skeleton size="120px" />
-      <br />
-      <Skeleton size="90px" />
-    </div>
-  </Content>
-);
-
-export const contentAvatar = () => (
-  <Content>
-    <div>
-      <Avatar firstName="New" lastName="Guy" />
-    </div>
-    <div style={{ marginLeft: 10 }}>
-      new guy <br />
-      sam123@test.ca
-    </div>
-  </Content>
-);
-
-export const contentStatus = () => (
-  <Content>
-    <Skeleton circle={true} size="8px" /> Status
-  </Content>
-);
-
-export const contentEnabled = () => (
-  <Content>
-    <Skeleton circle={true} size="8px" color="#57AC59" /> Enabled
-  </Content>
-);
-
-export const contentDisabled = () => (
-  <Content>
-    <Skeleton circle={true} size="8px" color="#FE6666" /> Disabled
-  </Content>
-);
-
-export const contentIconA = () => (
-  <Content>
-    <Icon icon="action" style={{ marginRight: 10 }} /> Some content
-  </Content>
-);
-
-export const contentIconB = () => (
-  <Content>
-    <div>
-      <Icon icon="mail" style={{ marginRight: 10 }} />
-    </div>
-    <div>
-      <strong> A title for this content </strong> <br />
-      Some content
-    </div>
-  </Content>
-);
-
-// export const PopoverOneAction = () => (
-//   <Popover>
-//     <Action> An action</Action>
-//   </Popover>
-// );
-
-// export const PopoverTwoActions = () => (
-//   <Popover>
-//     <Action> First action</Action>
-//     <Action> Second action</Action>
-//   </Popover>
-// );
-
-// export const PopoverMultipleActions = () => (
-//   <Popover>
-//     <Action> First action</Action>
-//     <Action> Second action</Action>
-//     <Action> Third action</Action>
-//     <Action> Another action</Action>
-//   </Popover>
-// );
-
-// export const PopoverLongAction = () => (
-//   <Popover>
-//     <Action>
-//       {" "}
-//       A really long name for a single action that takes up mulitple lines
-//     </Action>
-//   </Popover>
-// );
-
-// export const PopoverVariousActions = () => (
-//   <Popover>
-//     <Action> Short action </Action>
-//     <Action>
-//       {" "}
-//       A really long name for a single action that takes up mulitple lines
-//     </Action>
-//     <Action> Another action</Action>
-//   </Popover>
-// );
-
-// export const PopoverSectionActions = () => (
-//   <Popover css="width: 254px;">
-//     <Action>
-//       <strong> A short title: </strong> <br />
-//       Some code or link
-//     </Action>
-//     <Divider />
-//     <Action>
-//       <strong> A really really long title that takes up two lines : </strong>{" "}
-//       <br />
-//       Another line of text
-//     </Action>
-//     <Divider />
-//     <Action>
-//       <span style={{ color: "#F49C20", cursor: "pointer" }}>
-//         <strong>Some Text Link</strong>
-//       </span>
-//     </Action>
-//   </Popover>
-// );
-
-// export const PopoverSubmissionSuccessOne = () => (
-//   <Popover>
-//     <Action>
-//       <strong> On submission success </strong> <br />
-//       shirley.lam@referralsaasquatch.com
-//     </Action>
-//   </Popover>
-// );
-
-// export const PopoverSubmissionSuccessTwo = () => (
-//   <Popover css=" div + div.action { margin-top: 20px;}">
-//     <Action>
-//       <strong> On submission success </strong> <br />
-//       shirley.lam@referralsaasquatch.com
-//     </Action>
-//     <Action>
-//       <strong> On submission failure </strong> <br />
-//       noah.clarke@referralsaasquatch.com
-//     </Action>
-//   </Popover>
-// );
-
-// export const PopoverSubmissionSuccessLong = () => (
-//   <Popover css=" div + div.action { margin-top: 20px;}">
-//     <Action>
-//       <strong> On submission success </strong> <br />
-//       shirley.lam1984353914388582484839247932@referralsaasquatch.com
-//     </Action>
-//     <Action>
-//       <strong> On submission failure </strong> <br />
-//       noah.clarke@referralsaasquatch.com
-//       <br />
-//       derek.siemens@referralsaasquatch.com
-//     </Action>
-//   </Popover>
-// );
-
-// export const PopoverIconPropOne = () => (
-//   <Popover notification icon="mail">
-//     <Action>
-//       <strong> On submission failure </strong> <br />
-//       noah.clarke@referralsaasquatch.com
-//     </Action>
-//   </Popover>
-// );
-
-// export const PopoverIconProp = () => (
-//   <Popover notification icon="action">
-//     <Action>A really really really really long long long long text</Action>
-//   </Popover>
-// );
-
-// export const PopoverTextIcon = () => (
-//   <Popover notification>
-//     <Action>
-//       Some text to be copied{" "}
-//       <Icon icon="copy" size="30px" customCSS="color: #F49C20; margin: -5px;" />
-//     </Action>
-//   </Popover>
-// );
