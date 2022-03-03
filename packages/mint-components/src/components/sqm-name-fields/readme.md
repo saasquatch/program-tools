@@ -14,6 +14,19 @@
 | `lastNameLabel`  | `last-name-label`  |             | `string`                                                                                                                    | `"Last Name"`  |
 
 
+## Dependencies
+
+### Used by
+
+ - [sqm-stencilbook](../sqm-stencilbook)
+
+### Graph
+```mermaid
+graph TD;
+  sqm-stencilbook --> sqm-name-fields
+  style sqm-name-fields fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.1] - 2022-03-03
+
+### Added
+
+- Checkbox and dropdown components added for use in \<sqm-portal-register>
+
+- Added Components:
+
+  - \<sqm-checkbox-field>
+    - Required by default but can be optional
+    - Allows for a link in checkbox text to support behaviour like linking out to terms and conditions
+    - All text is configurable by prop
+    - Best used in the register components `terms` or `formData` slots
+    - Form field name can be customized with the `checkbox-name` prop
+  - \<sqm-dropdown-field>
+    - Required by default but can be optional
+    - Dropdown options are \<sl-menu-items>
+    - All text is configurable by prop
+    - Best used in the register components `formData` slot
+    - Form field name can be customized with the `dropdown-name` prop
+
 ## [1.5.0] - 2022-02-23
 
 ### Added
@@ -104,7 +125,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Has a header prop to configure the label displayed by \<sqm-tabs>
   - \<sqm-referral-card>
     - Takes two slots and displays them within a card
-    - Slots are named `left` and `right` 
+    - Slots are named `left` and `right`
     - Vertical alignment can be configured by a prop, defaults to `start` but options for `center` and `end` also available
   - \<sqm-image>
     - Displays an image configured with an `imageUrl` prop
@@ -138,7 +159,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Added prop to customized anonymous user fallback
   - \<sqm-portal-container>
     - Added max width prop, defaults to 100%
-    - Added prop to center children 
+    - Added prop to center children
     - Added display prop, options are grid or flex but defaults to grid
   - \<sqm-referral-table>
     - Added new default empty state
@@ -161,7 +182,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Added default background colour which matches the previous `--sqm-portal-background` colour
   - \<sqm-text>
     - Added styling for subtitle (`sub`) elements
-
 
 ## [1.4.2] - 2022-01-14
 
@@ -353,6 +373,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.1...HEAD
+[1.5.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.1
 [unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.0...HEAD
 [1.5.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.0
 [1.4.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.4.2

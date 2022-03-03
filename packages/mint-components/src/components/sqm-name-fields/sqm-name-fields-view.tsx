@@ -1,11 +1,11 @@
-import { isPossiblePhoneNumber } from "libphonenumber-js";
 import { h } from "@stencil/core";
 import { createStyleSheet } from "../../styling/JSS";
 import { ErrorStyles } from "../../global/mixins";
+import { ValidationErrors } from "../sqm-portal-register/useValidationState";
 
 export interface NameFieldsViewProps {
   states: {
-    validationErrors?: Record<string, string>;
+    validationErrors?: ValidationErrors;
     content: {
       firstNameLabel: string;
       lastNameLabel: string;
@@ -14,17 +14,12 @@ export interface NameFieldsViewProps {
 }
 
 const style = {
-  InputContainer: {
-    "& > :not(:last-child)": {
-      "margin-bottom": "20px",
-    },
-  },
+  ErrorStyle: ErrorStyles,
   FieldsContainer: {
-    "& > :not(:last-child)": {
+    "& sl-input": {
       "margin-bottom": "var(--sl-spacing-large)",
     },
   },
-  ErrorStyle: ErrorStyles,
 };
 
 const vanillaStyle = `

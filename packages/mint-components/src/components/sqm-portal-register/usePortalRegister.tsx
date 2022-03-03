@@ -28,8 +28,10 @@ export function usePortalRegister(props: PortalRegister) {
     let validationErrors: Record<string, string> = {};
     formControls?.forEach((control) => {
       if (!control.name) return;
+
       const key = control.name;
       const value = control.value;
+
       jsonpointer.set(formData, key, value);
       // required validation
       if (control.required && !value) {
@@ -43,6 +45,7 @@ export function usePortalRegister(props: PortalRegister) {
           jsonpointer.set(validationErrors, key, validationError);
       }
     });
+
     if (
       (props.confirmPassword || formData.confirmPassword) &&
       formData.password !== formData.confirmPassword
@@ -52,6 +55,7 @@ export function usePortalRegister(props: PortalRegister) {
         confirmPassword: "Passwords do not match.",
       };
     }
+
     setValidationState({ error: "", validationErrors });
     if (Object.keys(validationErrors).length) {
       // early return for validation errors
