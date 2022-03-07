@@ -8,6 +8,6 @@ export function RJSFSelect(props: WidgetProps) {
   if (hook === null) {
     return <></>;
   }
-  const viewProps = { ...props.uiSchema["ui:options"], ...hook };
+  const viewProps = { ...props.options, ...hook };
   return <Select {...viewProps} />;
 }
