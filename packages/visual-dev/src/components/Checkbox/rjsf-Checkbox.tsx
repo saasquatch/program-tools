@@ -3,13 +3,13 @@ import React from "react";
 import { Checkbox } from ".";
 
 export function RJSFCheckbox(props: WidgetProps) {
-  const options = props.uiSchema["ui:options"];
+  const options = props.options;
   return (
     <Checkbox
       {...options}
       value={props.value}
       required={props.required}
-      onChange={(e: any) => props.onChange(e.target.value)}
+      onChange={(e: any) => props.onChange(e.target.checked)}
       disabled={props.disabled}
       options={{ text: props.label }}
     />
