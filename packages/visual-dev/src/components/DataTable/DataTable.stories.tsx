@@ -113,19 +113,25 @@ export const FormSubmissionTable = () => {
           customCSS="min-width: 142px;"
         />
       </Filter>
-      <DataTable width="958px">
-        <DataTable.Row variant="header">{content_a}</DataTable.Row>
+      <DataTable
+        width="958px"
+        headerContent={
+          <DataTable.Row variant="header">{content_a}</DataTable.Row>
+        }
+        footerContent={
+          <DataTable.Pagination
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      >
         <DataTable.Row>{content_b}</DataTable.Row>
         <DataTable.Row>{content_c}</DataTable.Row>
         <DataTable.Row>{content_c}</DataTable.Row>
         <DataTable.Row>{content_c}</DataTable.Row>
         <DataTable.Row>{content_c}</DataTable.Row>
-        <DataTable.Pagination
-          total={17}
-          limit={10}
-          offset={0}
-          updatePagination={updatePaginationDummy}
-        />
       </DataTable>
     </>
   );
@@ -134,19 +140,25 @@ export const FormSubmissionTable = () => {
 export const PopoverTest = () => {
   return (
     <>
-      <DataTable width="958px">
-        <DataTable.Row variant="header">{content_a}</DataTable.Row>
+      <DataTable
+        width="958px"
+        headerContent={
+          <DataTable.Row variant="header">{content_a}</DataTable.Row>
+        }
+        footerContent={
+          <DataTable.Pagination
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      >
         <DataTable.Row>{content_b}</DataTable.Row>
         <DataTable.Row>{content_d}</DataTable.Row>
         <DataTable.Row>{content_d}</DataTable.Row>
         <DataTable.Row>{content_d}</DataTable.Row>
         <DataTable.Row>{content_d}</DataTable.Row>
-        <DataTable.Pagination
-          total={17}
-          limit={10}
-          offset={0}
-          updatePagination={updatePaginationDummy}
-        />
       </DataTable>
     </>
   );
@@ -164,33 +176,41 @@ export const FormSubmissionTableWithBanner = () => {
           customCSS="min-width: 142px;"
         />
       </Filter>
-      <DataTable width="958px">
-        <Banner>
-          Filter Rewards by Program
-          <div
-            style={{
-              background: "white",
-              width: 2,
-              height: "100%",
-              margin: "0 20px",
-            }}
-          >
-            .
-          </div>
-          5 rewards earned across all programs
-        </Banner>
-        <DataTable.Row variant="header">{content_a}</DataTable.Row>
+      <DataTable
+        width="958px"
+        headerContent={
+          <>
+            <Banner>
+              Filter Rewards by Program
+              <div
+                style={{
+                  background: "white",
+                  width: 2,
+                  height: "100%",
+                  margin: "0 20px",
+                }}
+              >
+                .
+              </div>
+              5 rewards earned across all programs
+            </Banner>
+            <DataTable.Row variant="header">{content_a}</DataTable.Row>
+          </>
+        }
+        footerContent={
+          <DataTable.Pagination
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      >
         <DataTable.Row>{content_b}</DataTable.Row>
         <DataTable.Row>{content_c}</DataTable.Row>
         <DataTable.Row>{content_c}</DataTable.Row>
         <DataTable.Row>{content_c}</DataTable.Row>
         <DataTable.Row>{content_c}</DataTable.Row>
-        <DataTable.Pagination
-          total={17}
-          limit={10}
-          offset={0}
-          updatePagination={updatePaginationDummy}
-        />
       </DataTable>
     </>
   );
@@ -216,16 +236,21 @@ export const FormSubmissionTableEmpty = () => {
           customCSS="min-width: 142px;"
         />
       </Filter>
-      <DataTable width="958px" empty>
-        <DataTable.Row variant="header">{content_a}</DataTable.Row>
-        <DataTable.Row empty />
-        <DataTable.Pagination
-          total={17}
-          limit={10}
-          offset={0}
-          updatePagination={updatePaginationDummy}
-        />
-      </DataTable>
+      <DataTable
+        width="958px"
+        empty
+        headerContent={
+          <DataTable.Row variant="header">{content_a}</DataTable.Row>
+        }
+        footerContent={
+          <DataTable.Pagination
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      ></DataTable>
     </>
   );
 };
@@ -249,16 +274,21 @@ export const FormSubmissionTableFilter = () => {
           customCSS="min-width: 142px;"
         />
       </Filter>
-      <DataTable width="958px" empty>
-        <DataTable.Row variant="header">{content_a}</DataTable.Row>
-        <DataTable.Row emptyFilter />
-        <DataTable.Pagination
-          total={17}
-          limit={10}
-          offset={0}
-          updatePagination={updatePaginationDummy}
-        />
-      </DataTable>
+      <DataTable
+        width="958px"
+        empty
+        headerContent={
+          <DataTable.Row variant="header">{content_a}</DataTable.Row>
+        }
+        footerContent={
+          <DataTable.Pagination
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      ></DataTable>
     </>
   );
 };

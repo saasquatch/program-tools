@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import { DataGraphic } from "../Graphics";
 import * as Styles from "./Styles";
 
 type PopoverProps = OptionProps &
@@ -8,11 +7,7 @@ type PopoverProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "customCSS">;
 
 export interface OptionProps {
-  empty?: boolean;
-  emptyFilter?: boolean;
   children?: any;
-  emptyContent?: string | React.ReactNode;
-  emptyFilterContent?: string | React.ReactNode;
 }
 
 export interface StyleProps {
@@ -35,20 +30,13 @@ const ContentDiv = styled.div<{ flex: string; center: boolean; width: string }>`
   width: ${(props) => props.width};
 `;
 
-const DataDiv = styled.div`
-  ${Styles.DataDiv}
-`;
-
 export const Row = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
   (props, forwardedRef) => {
     const {
-      empty = false,
-      emptyFilter: filter = false,
       variant = "row",
       children,
       customCSS = {},
-      emptyContent = "No submission found",
-      emptyFilterContent = "No submissions that meet your filter criteria",
+
       ...rest
     } = props;
 
@@ -59,20 +47,6 @@ export const Row = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
         ref={forwardedRef}
         customCSS={customCSS}
       >
-        {empty && (
-          <DataDiv>
-            {DataGraphic}
-            <br />
-            {emptyContent}
-          </DataDiv>
-        )}
-        {filter && (
-          <DataDiv>
-            {DataGraphic}
-            <br />
-            {emptyFilterContent}
-          </DataDiv>
-        )}
         {children &&
           children.map((cell: any, i: number) => (
             <ContentDiv

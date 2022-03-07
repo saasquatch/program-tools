@@ -1,6 +1,6 @@
 import { WidgetProps } from "@rjsf/core";
 import React from "react";
-import { Checkbox } from ".";
+import { Checkbox } from "./Checkbox";
 
 export function RJSFCheckbox(props: WidgetProps) {
   const options = props.options;
