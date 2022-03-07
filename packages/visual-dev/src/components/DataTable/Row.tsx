@@ -7,7 +7,7 @@ type PopoverProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate" | "customCSS">;
 
-interface OptionProps {
+export interface OptionProps {
   empty?: boolean;
   emptyFilter?: boolean;
   children?: any;
@@ -15,7 +15,7 @@ interface OptionProps {
   emptyFilterContent?: string | React.ReactNode;
 }
 
-interface StyleProps {
+export interface StyleProps {
   variant?: "row" | "header" | "extra";
   customCSS?: CSSProp;
 }

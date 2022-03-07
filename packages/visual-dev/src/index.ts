@@ -36,13 +36,7 @@ import { RadioAction } from "./components/RadioAction";
 import { List } from "./components/List";
 import { Accordion } from "./components/Accordion";
 import { DataGraphic } from "./components/Graphics";
-import {
-  DataTable,
-  Row,
-  Content,
-  Pagination,
-  Skeleton,
-} from "./components/DataTable";
+import { DataTable } from "./components/DataTable";
 import { Popover, HoverPopover } from "./components/Popover";
 import { CopyWrapper } from "./components/CopyWrapper";
 import { CardContainer } from "./components/Layouts";
@@ -91,12 +85,8 @@ export {
   Accordion,
   DataGraphic,
   DataTable,
-  Row,
   Popover,
   HoverPopover,
-  Content,
-  Pagination,
-  Skeleton,
   CopyWrapper,
   CardContainer,
 };

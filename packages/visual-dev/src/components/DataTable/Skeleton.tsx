@@ -6,31 +6,13 @@ type PopoverProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
-interface OptionProps {
+export interface OptionProps {
   children?: any;
 }
 
-interface StyleProps {
+export interface StyleProps {
   customCSS?: CSSProp;
 }
-
-const ContentDiv = styled.div<Required<StyleProps>>`
-  ${Styles.ContentDiv}
-
-  ${(props) => props.customCSS}
-`;
-
-export const Content = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
-  (props, forwardedRef) => {
-    const { children, customCSS = {}, ...rest } = props;
-
-    return (
-      <ContentDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
-        {children}
-      </ContentDiv>
-    );
-  }
-);
 
 const SkeletonDiv = styled.div<
   Required<StyleProps> & { size?: string; circle: boolean; color?: string }
