@@ -67,6 +67,41 @@ Feature: Portal Login
       | has           | /dashboard    | /activity          |
       | does not have | N/A           | /activity          |
 
+  @motivating
+  Scenario Outline: Users are redirected to the value of the nextPage url parameter as if it were a relative path
+    Given a user entered a valid email and password combination
+    And the component is loaded at <currentUrl>
+    When the user clicks "Login"
+    Then they are logged in
+    And they are redirected to <url>
+    Examples:
+      | currentUrl                                                                 | url                                           |
+      | https://www.example.com?nextPage=./activity                                | https://www.example.com/activity              |
+      | https://www.example.com?nextPage=activity                                  | https://www.example.com/activity              |
+      | https://www.example.com?nextPage=/activity                                 | https://www.example.com/activity              |
+      | https://www.example.com?nextPage=www.google.com                            | https://www.example.com/www.google.com        |
+      | https://www.example.com?nextPage=//foo.com                                 | https://www.example.com/                      |
+      | https://www.example.com?nextPage=https://malicious.example.com             | https://www.example.com/                      |
+      | http://www.example.com/nest/page?oob=123&other&nextPage=activity#heading-1 | http://www.example.com/activity               |
+      | https://www.example.com?nextPage=activity?foo=bar                          | https://www.example.com/activity?foo=bar      |
+      | https://www.example.com?nextPage=%2Factivity%3Ffoo%3Dbar                   | https://www.example.com/activity?foo=bar      |
+      | https://www.example.com?nextPage=%2Factivity%3Ffoo%3Dbar#hash              | https://www.example.com/activity?foo=bar      |
+      | https://www.example.com?nextPage=%2Factivity%3Ffoo%3Dbar%23hash            | https://www.example.com/activity?foo=bar#hash |
+      | https://www.example.com:1337?nextPage=activity                             | https://www.example.com:1337/activity         |
+      | http://1.1.1.1:1111?nextPage=activity                                      | http://1.1.1.1:1111/activity                  |
+
+  @landmine
+  Scenario Outline: Username and password are not persisted on redirects
+    Given a user entered a valid email and password combination
+    And the component is loaded at <currentUrl>
+    When the user clicks "Login"
+    Then they are logged in
+    And they are redirected to <url>
+    Examples:
+      | currentUrl                                              | url                                  |
+      | https://user:pass@www.example.com:444?nextPage=activity | https://www.example.com:444/activity |
+
+
   @minutae
   Scenario Outline: Navigation to the registration page can be customized but defaults to "/register"
     Given a user viewing the login component

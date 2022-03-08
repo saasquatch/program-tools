@@ -52,3 +52,13 @@ export function luxonLocale(locale: string) {
   const country = splitLocale[1];
   return `${language}-${country.toUpperCase()}`;
 }
+
+export function sanitizeUrlPath(path: string): URL {
+  const url = new URL(path, window.location.origin);
+  const cleanUrl = new URL(window.location.origin);
+  cleanUrl.pathname = url.pathname;
+  cleanUrl.search = url.search;
+  cleanUrl.hash = url.hash;
+
+  return cleanUrl;
+}
