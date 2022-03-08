@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
+import * as Styles from "./Styles";
 
 type DataTableProps = OptionProps &
   StyleProps &
@@ -16,7 +17,8 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const DataTableDiv = styled.div<Required<StyleProps>>`
+const DataTableContainer = styled.div<Required<StyleProps>>`
+  ${Styles.DataTableDiv}
   width: ${(props) => props.width};
   ${(props) => props.customCSS}
 `;
@@ -35,13 +37,13 @@ export const DataTable = React.forwardRef<
   } = props;
 
   return (
-    <DataTableDiv
+    <DataTableContainer
       width={width}
       {...rest}
       ref={forwardedRef}
       customCSS={customCSS}
     >
       {children}
-    </DataTableDiv>
+    </DataTableContainer>
   );
 });

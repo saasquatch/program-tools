@@ -31,6 +31,12 @@ export const RowBase = css`
   color: var(--sq-text-dark);
 `;
 
+export const DataTableDiv = css`
+  &:first-child {
+    border-radius: 6px 6px inherit inherit;
+  }
+`;
+
 export const Row = {
   row: css`
     background: var(--sq-surface);
@@ -43,7 +49,6 @@ export const Row = {
     background: var(--sq-background);
     border: 2px solid var(--sq-border);
     box-sizing: border-box;
-    border-radius: 6px 6px 0px 0px;
   `,
   extra: css`
     background: var(--sq-background);
