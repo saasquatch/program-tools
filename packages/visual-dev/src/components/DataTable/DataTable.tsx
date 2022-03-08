@@ -11,8 +11,8 @@ export interface OptionProps {
   children?: any;
   search?: boolean;
   empty?: boolean;
-  headerContent?: React.ReactNode;
-  footerContent?: React.ReactNode;
+  headerSlot?: React.ReactNode;
+  footerSlot?: React.ReactNode;
   emptyFilter?: boolean;
   emptyContent?: string | React.ReactNode;
   emptyFilterContent?: string | React.ReactNode;
@@ -51,8 +51,8 @@ export const DataTable = React.forwardRef<
     emptyFilter = false,
     emptyContent = "No submission found",
     emptyFilterContent = "No submissions that meet your filter criteria",
-    headerContent = <></>,
-    footerContent = <></>,
+    headerSlot: headerContent = <></>,
+    footerSlot: footerContent = <></>,
     ...rest
   } = props;
 
