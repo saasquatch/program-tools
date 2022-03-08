@@ -32,8 +32,11 @@ export const RowBase = css`
 `;
 
 export const DataTableDiv = css`
-  &:first-child {
-    border-radius: 6px 6px inherit inherit;
+  & > :first-child {
+    border-radius: 6px 6px 0px 0px;
+  }
+  & > :last-child {
+    border-radius: 0px 0px 6px 6px;
   }
 `;
 
@@ -133,7 +136,6 @@ export const PaginationDiv = css`
   border: 2px solid var(--sq-border);
   border-top: 0px;
   box-sizing: border-box;
-  border-radius: 0px 0px 6px 6px;
   font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);

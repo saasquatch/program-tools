@@ -58,8 +58,8 @@ export const DataTable = React.forwardRef<
 
   return (
     <DataTableContainer
-      width={width}
       {...rest}
+      width={width}
       ref={forwardedRef}
       customCSS={customCSS}
     >
