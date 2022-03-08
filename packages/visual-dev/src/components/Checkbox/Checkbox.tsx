@@ -4,13 +4,16 @@ import styled, { css } from "styled-components";
 import { Icon } from "../Icon";
 import * as Styles from "./Styles";
 
-type InputProps = Omit<React.ComponentProps<"input">, "value" | "css"> &
+type InputProps = Omit<
+  React.ComponentProps<"input">,
+  "value" | "css" | "label"
+> &
   OptionProps;
 
 export interface OptionProps {
   value?: any;
   onChange?: any;
-  options?: any;
+  label?: string | boolean;
   disabled?: boolean;
   id?: string;
 }
@@ -36,8 +39,7 @@ const CheckboxBox = styled.div<{ isDisabled?: any }>`
 
 export const Checkbox = React.forwardRef<React.ElementRef<"input">, InputProps>(
   (props, forwardedRef) => {
-    const { id, value, onChange, options, disabled, name, ...rest } = props;
-
+    const { id, value, onChange, label = "", disabled, name, ...rest } = props;
     return (
       <ShadowDom>
         <CheckboxLabel htmlFor={id} isDisabled={disabled}>
@@ -53,7 +55,7 @@ export const Checkbox = React.forwardRef<React.ElementRef<"input">, InputProps>(
           <CheckboxBox isDisabled={disabled}>
             <Icon icon="checkmark" customCSS={CheckboxTick} />
           </CheckboxBox>
-          {options ? options.text : ""}
+          {label ? label : ""}
         </CheckboxLabel>
       </ShadowDom>
     );

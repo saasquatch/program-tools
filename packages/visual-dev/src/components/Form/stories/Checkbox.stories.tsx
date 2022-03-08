@@ -27,6 +27,7 @@ export const Default = () => {
       "ui:widget": RJSFCheckbox,
       "ui:options": {
         label: false,
+        test: "test",
       },
     },
   };
@@ -48,7 +49,7 @@ export const Default = () => {
   );
 };
 
-export const Disbaled = () => {
+export const Disabled = () => {
   const schema: JSONSchema7 = {
     type: "object",
     properties: {

@@ -5,11 +5,11 @@ type FilterProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
-interface OptionProps {
+export interface OptionProps {
   children?: string | React.ReactNode;
 }
 
-interface StyleProps {
+export interface StyleProps {
   customCSS?: CSSProp;
 }
 

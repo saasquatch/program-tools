@@ -8,7 +8,7 @@ type PopoverProps = OptionProps &
   StyleProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
-interface OptionProps {
+export interface OptionProps {
   children?: string | React.ReactNode;
   offset: number;
   limit: number;
@@ -17,7 +17,7 @@ interface OptionProps {
   updatePagination: (limit: number, offset: number) => void;
 }
 
-interface StyleProps {
+export interface StyleProps {
   customCSS?: CSSProp;
 }
 

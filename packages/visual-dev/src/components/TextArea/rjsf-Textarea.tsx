@@ -3,7 +3,7 @@ import React from "react";
 import { Textarea } from "./Textarea";
 
 export function RJSFTextarea(props: WidgetProps) {
-  const options = props.uiSchema["ui:options"];
+  const options = props.options;
   return (
     <Textarea
       {...options}

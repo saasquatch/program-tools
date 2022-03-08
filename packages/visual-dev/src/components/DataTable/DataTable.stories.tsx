@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Icon } from "../Icon";
-import { Skeleton, DataTable, Row, Pagination } from ".";
 import { Avatar } from "../Avatar";
 import { Text } from "../Text";
 import { Dropdown } from "../Dropdown";
@@ -8,6 +7,7 @@ import { HoverPopover, Popover } from "../Popover";
 import { Badge } from "../Badge";
 import { Filter } from "./Filter";
 import { Banner } from "./Banner";
+import { DataTable } from ".";
 
 export default {
   title: "Components / DataTable",
@@ -51,13 +51,13 @@ const text_c = "11 months ago";
 
 const text_d = (
   <>
-    <Skeleton circle={true} size="8px" color="#57AC59" /> Success
+    <DataTable.Skeleton circle={true} size="8px" color="#57AC59" /> Success
   </>
 );
 
 const text_e = (
   <>
-    <Skeleton circle={true} size="8px" color="#FE6666" /> Failed
+    <DataTable.Skeleton circle={true} size="8px" color="#FE6666" /> Failed
   </>
 );
 
@@ -65,7 +65,7 @@ const text_e_popover = (
   <HoverPopover
     handle={
       <div style={{ display: "flex", alignItems: "center" }}>
-        <Skeleton circle={true} size="8px" color="#FE6666" /> Failed
+        <DataTable.Skeleton circle={true} size="8px" color="#FE6666" /> Failed
       </div>
     }
   >
@@ -113,19 +113,25 @@ export const FormSubmissionTable = () => {
           customCSS="min-width: 142px;"
         />
       </Filter>
-      <DataTable width="958px">
-        <Row variant="header">{content_a}</Row>
-        <Row>{content_b}</Row>
-        <Row>{content_c}</Row>
-        <Row>{content_c}</Row>
-        <Row>{content_c}</Row>
-        <Row>{content_c}</Row>
-        <Pagination
-          total={17}
-          limit={10}
-          offset={0}
-          updatePagination={updatePaginationDummy}
-        />
+      <DataTable
+        width="958px"
+        headerContent={
+          <DataTable.Row variant="header">{content_a}</DataTable.Row>
+        }
+        footerContent={
+          <DataTable.Pagination
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      >
+        <DataTable.Row>{content_b}</DataTable.Row>
+        <DataTable.Row>{content_c}</DataTable.Row>
+        <DataTable.Row>{content_c}</DataTable.Row>
+        <DataTable.Row>{content_c}</DataTable.Row>
+        <DataTable.Row>{content_c}</DataTable.Row>
       </DataTable>
     </>
   );
@@ -134,19 +140,25 @@ export const FormSubmissionTable = () => {
 export const PopoverTest = () => {
   return (
     <>
-      <DataTable width="958px">
-        <Row variant="header">{content_a}</Row>
-        <Row>{content_b}</Row>
-        <Row>{content_d}</Row>
-        <Row>{content_d}</Row>
-        <Row>{content_d}</Row>
-        <Row>{content_d}</Row>
-        <Pagination
-          total={17}
-          limit={10}
-          offset={0}
-          updatePagination={updatePaginationDummy}
-        />
+      <DataTable
+        width="958px"
+        headerContent={
+          <DataTable.Row variant="header">{content_a}</DataTable.Row>
+        }
+        footerContent={
+          <DataTable.Pagination
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      >
+        <DataTable.Row>{content_b}</DataTable.Row>
+        <DataTable.Row>{content_d}</DataTable.Row>
+        <DataTable.Row>{content_d}</DataTable.Row>
+        <DataTable.Row>{content_d}</DataTable.Row>
+        <DataTable.Row>{content_d}</DataTable.Row>
       </DataTable>
     </>
   );
@@ -164,33 +176,41 @@ export const FormSubmissionTableWithBanner = () => {
           customCSS="min-width: 142px;"
         />
       </Filter>
-      <DataTable width="958px">
-        <Banner>
-          Filter Rewards by Program
-          <div
-            style={{
-              background: "white",
-              width: 2,
-              height: "100%",
-              margin: "0 20px",
-            }}
-          >
-            .
-          </div>
-          5 rewards earned across all programs
-        </Banner>
-        <Row variant="header">{content_a}</Row>
-        <Row>{content_b}</Row>
-        <Row>{content_c}</Row>
-        <Row>{content_c}</Row>
-        <Row>{content_c}</Row>
-        <Row>{content_c}</Row>
-        <Pagination
-          total={17}
-          limit={10}
-          offset={0}
-          updatePagination={updatePaginationDummy}
-        />
+      <DataTable
+        width="958px"
+        headerContent={
+          <>
+            <Banner>
+              Filter Rewards by Program
+              <div
+                style={{
+                  background: "white",
+                  width: 2,
+                  height: "100%",
+                  margin: "0 20px",
+                }}
+              >
+                .
+              </div>
+              5 rewards earned across all programs
+            </Banner>
+            <DataTable.Row variant="header">{content_a}</DataTable.Row>
+          </>
+        }
+        footerContent={
+          <DataTable.Pagination
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      >
+        <DataTable.Row>{content_b}</DataTable.Row>
+        <DataTable.Row>{content_c}</DataTable.Row>
+        <DataTable.Row>{content_c}</DataTable.Row>
+        <DataTable.Row>{content_c}</DataTable.Row>
+        <DataTable.Row>{content_c}</DataTable.Row>
       </DataTable>
     </>
   );
@@ -216,16 +236,21 @@ export const FormSubmissionTableEmpty = () => {
           customCSS="min-width: 142px;"
         />
       </Filter>
-      <DataTable width="958px" empty>
-        <Row variant="header">{content_a}</Row>
-        <Row empty />
-        <Pagination
-          total={17}
-          limit={10}
-          offset={0}
-          updatePagination={updatePaginationDummy}
-        />
-      </DataTable>
+      <DataTable
+        width="958px"
+        empty
+        headerContent={
+          <DataTable.Row variant="header">{content_a}</DataTable.Row>
+        }
+        footerContent={
+          <DataTable.Pagination
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      ></DataTable>
     </>
   );
 };
@@ -249,16 +274,21 @@ export const FormSubmissionTableFilter = () => {
           customCSS="min-width: 142px;"
         />
       </Filter>
-      <DataTable width="958px" empty>
-        <Row variant="header">{content_a}</Row>
-        <Row emptyFilter />
-        <Pagination
-          total={17}
-          limit={10}
-          offset={0}
-          updatePagination={updatePaginationDummy}
-        />
-      </DataTable>
+      <DataTable
+        width="958px"
+        empty
+        headerContent={
+          <DataTable.Row variant="header">{content_a}</DataTable.Row>
+        }
+        footerContent={
+          <DataTable.Pagination
+            total={17}
+            limit={10}
+            offset={0}
+            updatePagination={updatePaginationDummy}
+          />
+        }
+      ></DataTable>
     </>
   );
 };
@@ -273,7 +303,7 @@ export const paginationFunctional = () => {
   };
 
   return (
-    <Pagination
+    <DataTable.Pagination
       total={440}
       limit={limit}
       offset={offset}
@@ -283,7 +313,7 @@ export const paginationFunctional = () => {
 };
 
 export const paginationManyStart = () => (
-  <Pagination
+  <DataTable.Pagination
     total={440}
     limit={10}
     offset={0}
@@ -292,7 +322,7 @@ export const paginationManyStart = () => (
 );
 
 export const paginationManyMiddle = () => (
-  <Pagination
+  <DataTable.Pagination
     total={440}
     limit={10}
     offset={180}
@@ -301,7 +331,7 @@ export const paginationManyMiddle = () => (
 );
 
 export const paginationManyEnd = () => (
-  <Pagination
+  <DataTable.Pagination
     total={440}
     limit={10}
     offset={430}
@@ -310,7 +340,7 @@ export const paginationManyEnd = () => (
 );
 
 export const paginationNoTotalStart = () => (
-  <Pagination
+  <DataTable.Pagination
     limit={10}
     offset={0}
     hasNext={true}
@@ -319,7 +349,7 @@ export const paginationNoTotalStart = () => (
 );
 
 export const paginationNoTotalMiddle = () => (
-  <Pagination
+  <DataTable.Pagination
     limit={10}
     offset={10}
     hasNext={true}
@@ -328,7 +358,11 @@ export const paginationNoTotalMiddle = () => (
 );
 
 export const paginationNoTotalEnd = () => (
-  <Pagination limit={10} offset={20} updatePagination={updatePaginationDummy} />
+  <DataTable.Pagination
+    limit={10}
+    offset={20}
+    updatePagination={updatePaginationDummy}
+  />
 );
 
 export const header = () => {
@@ -339,7 +373,7 @@ export const header = () => {
     { text: "Heading D" },
   ];
 
-  return <Row variant="header">{content}</Row>;
+  return <DataTable.Row variant="header">{content}</DataTable.Row>;
 };
 
 export const row = () => {
@@ -351,11 +385,11 @@ export const row = () => {
     { text: text },
   ];
 
-  return <Row>{content}</Row>;
+  return <DataTable.Row>{content}</DataTable.Row>;
 };
 
 export const rowSkeleton = () => {
-  const text = <Skeleton size="91px" />;
+  const text = <DataTable.Skeleton size="91px" />;
   const content = [
     { text: text },
     { text: text },
@@ -363,7 +397,7 @@ export const rowSkeleton = () => {
     { text: text },
   ];
 
-  return <Row>{content}</Row>;
+  return <DataTable.Row>{content}</DataTable.Row>;
 };
 
 export const headerActions = () => {
@@ -375,7 +409,7 @@ export const headerActions = () => {
     { text: "Actions", center: true },
   ];
 
-  return <Row variant="header">{content}</Row>;
+  return <DataTable.Row variant="header">{content}</DataTable.Row>;
 };
 
 export const rowActions = () => {
@@ -395,17 +429,17 @@ export const rowActions = () => {
     { text: <Icon icon="actions" />, center: true },
   ];
 
-  return <Row>{content}</Row>;
+  return <DataTable.Row>{content}</DataTable.Row>;
 };
 
 export const rowActionsSkeleton = () => {
   const text_a = (
     <div>
-      <Skeleton size="135px" /> <br />
-      <Skeleton size="84px" />
+      <DataTable.Skeleton size="135px" /> <br />
+      <DataTable.Skeleton size="84px" />
     </div>
   );
-  const text_b = <Skeleton size="91px" />;
+  const text_b = <DataTable.Skeleton size="91px" />;
 
   const content = [
     { text: text_a, flex: "10" },
@@ -415,7 +449,7 @@ export const rowActionsSkeleton = () => {
     { text: <Icon icon="actions" />, center: true },
   ];
 
-  return <Row>{content}</Row>;
+  return <DataTable.Row>{content}</DataTable.Row>;
 };
 
 export const header_arrow = () => {
@@ -427,7 +461,7 @@ export const header_arrow = () => {
     { text: "Heading D" },
   ];
 
-  return <Row variant="header">{content}</Row>;
+  return <DataTable.Row variant="header">{content}</DataTable.Row>;
 };
 
 export const row_arrow = () => {
@@ -459,5 +493,5 @@ export const row_arrow = () => {
     { text: text_b },
   ];
 
-  return <Row>{content}</Row>;
+  return <DataTable.Row>{content}</DataTable.Row>;
 };
