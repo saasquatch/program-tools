@@ -24,7 +24,7 @@ export const AvatarTextStyle = css`
   position: relative;
   top: 7px;
   color: var(--sq-text);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
@@ -34,7 +34,7 @@ export const AvatarTextStyleLarge = css`
   position: relative;
   top: 15px;
   color: var(--sq-surface);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-avatar);
   line-height: var(--sq-line-height-regular);

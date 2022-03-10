@@ -2,14 +2,13 @@ import { css } from "styled-components";
 
 export const base = css`
   position: absolute;
-  top: 0;
-  left: 0;
   width: 40px;
   height: 20px;
   border: 3px solid var(--sq-border);
   border-radius: 100px;
-  background: #ebebeb;
+  background: var(--sq-surface-input-disabled);
   cursor: pointer;
+  transform: translateX(-100%);
   &::after {
     content: "";
     display: block;
@@ -26,19 +25,21 @@ export const base = css`
 export const label = css`
   display: flex;
   align-items: center;
-  font-family: Helvatica Neue, Arial;
-  font-size: 14px;
-  line-height: 18px;
+  font-family: var(--sq-font-family-sans);
+  font-size: var(--sq-font-size-regular);
+  line-height: var(--sq-line-height-regular);
   color: var(--sq-text-dark);
   user-select: none;
 `;
 
 export const success = css`
   background: var(--sq-border-success);
+  transition: 0.15s ease-out;
 `;
 
 export const critical = css`
   background: var(--sq-border-critical);
+  transition: 0.15s ease-out;
 `;
 
 export const off = css`
@@ -47,6 +48,7 @@ export const off = css`
   border-radius: 15px;
   width: 40px;
   height: 20px;
+  margin: 0;
 `;
 
 export const on = css`
@@ -57,10 +59,11 @@ export const on = css`
     width: 20px;
     height: 20px;
     margin-left: 17px;
-    transition: 0.1s;
+    transition: 0.1s ease-out;
   }
 `;
 
 export const wrapper = css`
   position: relative;
+  display: inline-block;
 `;

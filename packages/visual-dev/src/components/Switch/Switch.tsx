@@ -16,7 +16,7 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const SwitchBox = styled.div<Required<StyleProps>>`
+const SwitchContainer = styled.div<Required<StyleProps>>`
   ${Styles.wrapper}
   ${(props) => props.customCSS}
 `;
@@ -45,7 +45,7 @@ export const Switch = React.forwardRef<React.ElementRef<"div">, SwitchProps>(
     } = props;
 
     return (
-      <SwitchBox {...rest} ref={forwardedRef} customCSS={customCSS}>
+      <SwitchContainer {...rest} ref={forwardedRef} customCSS={customCSS}>
         <SwitchBackground
           color={color}
           id={id}
@@ -53,7 +53,7 @@ export const Switch = React.forwardRef<React.ElementRef<"div">, SwitchProps>(
           checked={checked}
         />
         <SwitchButton htmlFor={id} />
-      </SwitchBox>
+      </SwitchContainer>
     );
   }
 );
