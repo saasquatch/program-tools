@@ -1,7 +1,7 @@
 import { css } from "styled-components";
 
 export const base = css`
-  padding: 4px 20px;
+  padding: var(--sq-spacing-xx-small) var(--sq-spacing-large);
   color: var(--sq-text);
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: var(--sq-font-weight-bold);
