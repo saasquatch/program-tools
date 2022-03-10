@@ -27,8 +27,8 @@ export const RJSFRadio = (props: WidgetProps) => {
   }
   const dummyRef = useRef(null);
   return (
-    <div>
-      {valueOptions?.map((option: unknown) => {
+    <div id={props.id}>
+      {valueOptions?.map((option: unknown, i) => {
         if (!isEnumOption(option)) {
           return <></>;
         }

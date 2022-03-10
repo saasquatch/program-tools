@@ -7,6 +7,7 @@ export function RJSFInput(props: WidgetProps) {
   const options = props.options;
   return (
     <Input
+      id={props.id}
       {...options}
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}
@@ -21,6 +22,7 @@ export function RJSFNumericalInput(props: WidgetProps) {
   const options = props.options;
   return (
     <Input
+      id={props.id}
       {...options}
       value={props.value}
       type="number"
@@ -37,6 +39,7 @@ export function RJSFPasswordInput(props: WidgetProps) {
   const options = props.options;
   return (
     <Input
+      id={props.id}
       {...options}
       type={type}
       value={props.value}
@@ -64,6 +67,7 @@ export function RJSFLockableInput(props: WidgetProps) {
   const options = props.options;
   return (
     <Input
+      id={props.id}
       {...options}
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}
@@ -89,6 +93,7 @@ export function RJSFClearableInput(props: WidgetProps) {
   const options = props.options;
   return (
     <Input
+      id={props.id}
       {...options}
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}
@@ -117,6 +122,7 @@ export function RJSFCancellableInput(props: WidgetProps) {
   const options = props.options;
   return (
     <Input
+      id={props.id}
       {...options}
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}

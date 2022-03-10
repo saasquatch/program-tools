@@ -9,5 +9,5 @@ export function RJSFSelect(props: WidgetProps) {
     return <></>;
   }
   const viewProps = { ...props.options, ...hook };
-  return <Select {...viewProps} />;
+  return <Select id={props.id} {...viewProps} />;
 }
