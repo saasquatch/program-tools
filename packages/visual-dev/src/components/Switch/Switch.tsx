@@ -1,15 +1,20 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-
+import root from "react-shadow/styled-components";
 import * as Styles from "./Styles";
 
-type SwitchProps = OptionProps &
-  StyleProps &
-  Omit<React.ComponentProps<"div">, "translate" | "css">;
+type SwitchProps = Omit<
+  React.ComponentProps<"input">,
+  "value" | "css" | "label"
+> &
+  OptionProps &
+  StyleProps;
 
 export interface OptionProps {
-  checked?: boolean;
+  onChange?: any;
+  value?: boolean;
   color?: "success" | "critical";
+  id?: string;
 }
 
 export interface StyleProps {
@@ -34,26 +39,34 @@ const SwitchBackground = styled.input<Required<{ color: string }>>`
   }
 `;
 
-export const Switch = React.forwardRef<React.ElementRef<"div">, SwitchProps>(
+const ShadowDom = styled(root.div)``;
+
+export const Switch = React.forwardRef<React.ElementRef<"input">, SwitchProps>(
   (props, forwardedRef) => {
     const {
       id,
       color = "success",
-      checked = false,
+      value,
       customCSS = {},
+      onChange,
       ...rest
     } = props;
 
     return (
-      <SwitchContainer {...rest} ref={forwardedRef} customCSS={customCSS}>
-        <SwitchBackground
-          color={color}
-          id={id}
-          type="checkbox"
-          checked={checked}
-        />
-        <SwitchButton htmlFor={id} />
-      </SwitchContainer>
+      <ShadowDom>
+        <SwitchContainer customCSS={customCSS}>
+          <SwitchBackground
+            {...rest}
+            color={color}
+            checked={value}
+            type="checkbox"
+            id={id}
+            ref={forwardedRef}
+            onChange={onChange}
+          />
+          <SwitchButton htmlFor={id} />
+        </SwitchContainer>
+      </ShadowDom>
     );
   }
 );

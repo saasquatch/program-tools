@@ -9,6 +9,7 @@ export const base = css`
   background: var(--sq-surface-input-disabled);
   cursor: pointer;
   transform: translateX(-100%);
+  box-sizing: border-box;
   &::after {
     content: "";
     display: block;
@@ -19,6 +20,7 @@ export const base = css`
     background: var(--sq-surface);
     border: 3px solid var(--sq-border);
     transition: 0.1s;
+    box-sizing: border-box;
   }
 `;
 
