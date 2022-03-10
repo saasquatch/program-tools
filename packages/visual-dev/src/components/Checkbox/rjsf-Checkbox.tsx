@@ -6,6 +6,7 @@ export function RJSFCheckbox(props: WidgetProps) {
   const options = props.options;
   return (
     <Checkbox
+      id={props.id}
       {...options}
       value={props.value}
       required={props.required}

@@ -104,7 +104,7 @@ const content_d = [
 export const FormSubmissionTable = () => {
   return (
     <>
-      <Filter>
+      <DataTable.Filter>
         <Dropdown text="All Forms" customCSS="min-width: 112px;" />
         <Dropdown text="Any Status" customCSS="min-width: 116px;" />
         <Dropdown
@@ -112,13 +112,11 @@ export const FormSubmissionTable = () => {
           icon="calendar"
           customCSS="min-width: 142px;"
         />
-      </Filter>
+      </DataTable.Filter>
       <DataTable
         width="958px"
-        headerContent={
-          <DataTable.Row variant="header">{content_a}</DataTable.Row>
-        }
-        footerContent={
+        headerSlot={<DataTable.Row variant="header">{content_a}</DataTable.Row>}
+        footerSlot={
           <DataTable.Pagination
             total={17}
             limit={10}
@@ -142,10 +140,8 @@ export const PopoverTest = () => {
     <>
       <DataTable
         width="958px"
-        headerContent={
-          <DataTable.Row variant="header">{content_a}</DataTable.Row>
-        }
-        footerContent={
+        headerSlot={<DataTable.Row variant="header">{content_a}</DataTable.Row>}
+        footerSlot={
           <DataTable.Pagination
             total={17}
             limit={10}
@@ -167,7 +163,7 @@ export const PopoverTest = () => {
 export const FormSubmissionTableWithBanner = () => {
   return (
     <>
-      <Filter>
+      <DataTable.Filter>
         <Dropdown text="All Forms" customCSS="min-width: 112px;" />
         <Dropdown text="Any Status" customCSS="min-width: 116px;" />
         <Dropdown
@@ -175,10 +171,10 @@ export const FormSubmissionTableWithBanner = () => {
           icon="calendar"
           customCSS="min-width: 142px;"
         />
-      </Filter>
+      </DataTable.Filter>
       <DataTable
         width="958px"
-        headerContent={
+        headerSlot={
           <>
             <Banner>
               Filter Rewards by Program
@@ -197,7 +193,7 @@ export const FormSubmissionTableWithBanner = () => {
             <DataTable.Row variant="header">{content_a}</DataTable.Row>
           </>
         }
-        footerContent={
+        footerSlot={
           <DataTable.Pagination
             total={17}
             limit={10}
@@ -227,7 +223,7 @@ export const FormSubmissionTableEmpty = () => {
 
   return (
     <>
-      <Filter>
+      <DataTable.Filter>
         <Dropdown text="All Forms" customCSS="min-width: 112px;" />
         <Dropdown text="Any Status" customCSS="min-width: 116px;" />
         <Dropdown
@@ -235,14 +231,12 @@ export const FormSubmissionTableEmpty = () => {
           icon="calendar"
           customCSS="min-width: 142px;"
         />
-      </Filter>
+      </DataTable.Filter>
       <DataTable
         width="958px"
         empty
-        headerContent={
-          <DataTable.Row variant="header">{content_a}</DataTable.Row>
-        }
-        footerContent={
+        headerSlot={<DataTable.Row variant="header">{content_a}</DataTable.Row>}
+        footerSlot={
           <DataTable.Pagination
             total={17}
             limit={10}
@@ -265,7 +259,7 @@ export const FormSubmissionTableFilter = () => {
 
   return (
     <>
-      <Filter>
+      <DataTable.Filter>
         <Dropdown text="All Forms" customCSS="min-width: 112px;" />
         <Dropdown text="Any Status" customCSS="min-width: 116px;" />
         <Dropdown
@@ -273,14 +267,12 @@ export const FormSubmissionTableFilter = () => {
           icon="calendar"
           customCSS="min-width: 142px;"
         />
-      </Filter>
+      </DataTable.Filter>
       <DataTable
         width="958px"
         empty
-        headerContent={
-          <DataTable.Row variant="header">{content_a}</DataTable.Row>
-        }
-        footerContent={
+        headerSlot={<DataTable.Row variant="header">{content_a}</DataTable.Row>}
+        footerSlot={
           <DataTable.Pagination
             total={17}
             limit={10}

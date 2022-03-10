@@ -6,6 +6,7 @@ export function RJSFTextarea(props: WidgetProps) {
   const options = props.options;
   return (
     <Textarea
+      id={props.id}
       {...options}
       value={props.value}
       onChange={(e: any) => props.onChange(e.target.value)}

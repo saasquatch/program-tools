@@ -11,8 +11,8 @@ export interface OptionProps {
   children?: any;
   search?: boolean;
   empty?: boolean;
-  headerContent?: React.ReactNode;
-  footerContent?: React.ReactNode;
+  headerSlot?: React.ReactNode;
+  footerSlot?: React.ReactNode;
   emptyFilter?: boolean;
   emptyContent?: string | React.ReactNode;
   emptyFilterContent?: string | React.ReactNode;
@@ -32,7 +32,8 @@ const RowDiv = styled.div`
   ${Styles.Row.row}
 `;
 
-const DataTableDiv = styled.div<Required<StyleProps>>`
+const DataTableContainer = styled.div<Required<StyleProps>>`
+  ${Styles.DataTableDiv}
   width: ${(props) => props.width};
   ${(props) => props.customCSS}
 `;
@@ -50,15 +51,15 @@ export const DataTable = React.forwardRef<
     emptyFilter = false,
     emptyContent = "No submission found",
     emptyFilterContent = "No submissions that meet your filter criteria",
-    headerContent = <></>,
-    footerContent = <></>,
+    headerSlot: headerContent = <></>,
+    footerSlot: footerContent = <></>,
     ...rest
   } = props;
 
   return (
-    <DataTableDiv
-      width={width}
+    <DataTableContainer
       {...rest}
+      width={width}
       ref={forwardedRef}
       customCSS={customCSS}
     >
@@ -83,6 +84,6 @@ export const DataTable = React.forwardRef<
       )}
       {!empty && !emptyFilter && children}
       {footerContent}
-    </DataTableDiv>
+    </DataTableContainer>
   );
 });
