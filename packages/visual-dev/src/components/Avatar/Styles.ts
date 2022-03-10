@@ -10,6 +10,7 @@ export const AvatarCircleStyle = css`
   box-sizing: border-box;
   border-radius: 50px;
 `;
+
 export const AvatarCircleStyleLarge = css`
   background-color: var(--sq-background);
   border-radius: 50%;
@@ -18,6 +19,7 @@ export const AvatarCircleStyleLarge = css`
   text-align: center;
   border-radius: 50px;
 `;
+
 export const AvatarTextStyle = css`
   position: relative;
   top: 7px;
@@ -36,4 +38,8 @@ export const AvatarTextStyleLarge = css`
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-avatar);
   line-height: var(--sq-line-height-regular);
+`;
+
+export const AvatarContainer = css`
+  display: inline-block;
 `;

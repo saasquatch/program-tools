@@ -17,7 +17,8 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const AvatarStyle = styled.div<Required<StyleProps>>`
+const AvatarContainer = styled.div<Required<StyleProps>>`
+  ${Styles.AvatarContainer}
   ${(props) => props.customCSS}
 `;
 
@@ -57,7 +58,7 @@ export const Avatar = React.forwardRef<React.ElementRef<"div">, AvatarProps>(
     const random = initials.charCodeAt(0) % 6;
 
     return (
-      <AvatarStyle {...rest} ref={forwardedRef} customCSS={customCSS}>
+      <AvatarContainer {...rest} ref={forwardedRef} customCSS={customCSS}>
         {!(firstName || lastName) ? (
           <Icon
             icon="avatar"
@@ -74,7 +75,7 @@ export const Avatar = React.forwardRef<React.ElementRef<"div">, AvatarProps>(
             </AvatarText>
           </AvatarCircle>
         )}
-      </AvatarStyle>
+      </AvatarContainer>
     );
   }
 );
