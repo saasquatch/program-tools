@@ -4,11 +4,11 @@ export const RadioLabelStyle = css`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 20px;
+  padding: var(--sq-spacing-large);
   user-select: none;
   cursor: pointer;
   color: var(--sq-text);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
@@ -30,7 +30,7 @@ export const RadioButtonStyle = css`
   height: 14px;
   border: 1.5px solid var(--sq-text);
   border-radius: 50%;
-  margin-right: 20px;
+  margin-right: var(--sq-spacing-large);
   box-sizing: border-box;
   padding: 1.5px;
   flex-shrink: 0;
@@ -48,4 +48,11 @@ export const RadioButtonStyle = css`
 `;
 export const RadioTextStyle = css`
   flex-direction: column;
+`;
+export const RadioTwoColumn = css`
+  display: grid;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: var(--sq-spacing-small);
 `;

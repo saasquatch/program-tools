@@ -38,7 +38,7 @@ export const Functional = () => {
   );
 };
 
-export const RadioActionUnchecked = () => {
+export const RadioActionUnselected = () => {
   return (
     <RadioActionGroup>
       <RadioAction
@@ -52,7 +52,20 @@ export const RadioActionUnchecked = () => {
   );
 };
 
-export const RadioActionChecked = () => {
+export const RadioActionNoDescription = () => {
+  return (
+    <RadioActionGroup>
+      <RadioAction
+        title="Primary action"
+        value={0}
+        optionValue={1}
+        onChange={void 0}
+      />
+    </RadioActionGroup>
+  );
+};
+
+export const RadioActionSelected = () => {
   return (
     <RadioActionGroup>
       <RadioAction

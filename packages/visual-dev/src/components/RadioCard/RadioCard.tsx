@@ -69,14 +69,7 @@ export const RadioCard = React.forwardRef<
   React.ElementRef<"input">,
   InputProps
 >((props, forwardedRef) => {
-  const {
-    value,
-    optionValue,
-    title,
-    description,
-    icon = "calendar",
-    ...rest
-  } = props;
+  const { value, optionValue, title, description, icon = "", ...rest } = props;
 
   const selected = value === optionValue;
 
@@ -92,7 +85,7 @@ export const RadioCard = React.forwardRef<
         ref={forwardedRef}
       />
       <LeftSegment isChecked={selected}>
-        <Icon icon={icon} size="40px" color={icon_color} />
+        {icon && <Icon icon={icon} size="40px" color={icon_color} />}
       </LeftSegment>
       <RightSegment>
         <RadioText>
@@ -120,4 +113,4 @@ export const RadioCardGroup = (props: GroupProps) => {
       <RadioGrid>{children}</RadioGrid>
     </ShadowDom>
   );
-}
+};

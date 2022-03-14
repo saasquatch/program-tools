@@ -41,13 +41,7 @@ const ShadowDom = styled(root.div)``;
 
 const Container = styled.div<{ twoColumns: boolean }>`
   display: contents;
-  ${(props) =>
-    props.twoColumns &&
-    `display: grid;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-gap: var(--sq-spacing-small)`}
+  ${(props) => props.twoColumns && Styles.RadioTwoColumn}
 `;
 
 const RadioLabel = styled.label<{ isChecked: boolean }>`
