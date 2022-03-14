@@ -23,3 +23,14 @@ export const radio = () => {
 export const radioChecked = () => {
   return <Radio label="Checked" value={true} onChange={() => void 0} />;
 };
+
+export const customLabelCSS = () => {
+  return (
+    <Radio
+      customLabelCSS={"font-size: 20px"}
+      label="Checked"
+      value={true}
+      onChange={() => void 0}
+    />
+  );
+};
