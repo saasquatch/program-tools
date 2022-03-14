@@ -4,7 +4,7 @@ export const Item = css`
   padding: var(--sq-spacing-x-small);
   cursor: pointer;
   color: var(--sq-text);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-size: var(--sq-font-size-regular);
   font-weight: var(--sq-font-weight-regular);
   line-height: var(--sq-line-height-regular);

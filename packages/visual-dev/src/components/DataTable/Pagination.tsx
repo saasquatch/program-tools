@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import { Dropdown, DropdownItem } from "../Dropdown";
-import { IconButton } from "../..";
+import { IconButton } from "../Button";
 import * as styles from "./Styles";
 
 type PopoverProps = OptionProps &

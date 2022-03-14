@@ -226,13 +226,13 @@ export const Detailed = () => {
     text: string;
     description: string;
   }
-  const items = [
+  const items: Array<Islands> = [
     { text: "Salt Spring", description: "The big one" },
     { text: "Gabriola", description: "Way up north" },
     { text: "Mayne", description: "With a y" },
     { text: "Pender", description: "There's actually two" },
   ];
-  const itemToString = (item: Islands) => (item ? item.text : "");
+  const itemToString = (item: Islands | null) => (item ? item.text : "");
   const functional = useCombobox({ items, itemToString });
   const props = { items, functional, itemToString };
   return <Select {...props}></Select>;
