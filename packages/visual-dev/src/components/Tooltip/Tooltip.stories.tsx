@@ -124,3 +124,25 @@ export const Right = () => (
     />
   </div>
 );
+
+export const LongTooltip = () => (
+  <div style={{ padding: "25px 0px 40px 8px" }}>
+    <Tooltip
+      showTooltip={true}
+      direction="right"
+      maxWidth="400px"
+      text="A tooltip that explains something in detail. This is a longer tooltip."
+    />
+  </div>
+);
+
+export const CustomCSS = () => (
+  <div style={{ padding: "25px 0px 40px 8px" }}>
+    <Tooltip
+      showTooltip={true}
+      direction="right"
+      customCSS="font-size: 20px"
+      text="A tooltip that explains something in detail. This is a longer tooltip."
+    />
+  </div>
+);

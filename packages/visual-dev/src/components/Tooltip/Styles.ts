@@ -1,23 +1,32 @@
-import { css } from "styled-components";
+import { css, keyframes } from "styled-components";
 
 export const base = css`
   display: inline-block;
   position: relative;
 `;
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 export const tooltip = css`
   user-select: none;
   position: absolute;
-  padding: 12px;
+  padding: var(--sq-spacing-small);
   border-radius: 4px;
   width: max-content;
-  max-width: 144px;
   min-height: 20px;
   color: var(--sq-surface);
   background: rgba(35, 35, 35, 0.9);
-  font-family: Helvatica Neue, Arial;
-  font-size: 14px;
+  font-family: var(--sq-font-family-sans);
+  font-size: var(--sq-font-size-regular);
   line-height: 20px;
+  animation: ${fadeIn} 0.2s;
 
   &::before {
     content: " ";
