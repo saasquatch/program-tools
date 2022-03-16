@@ -12,7 +12,7 @@ import {
 } from "../../Input";
 
 export default {
-  title: "Components / Form / Input",
+  title: "RJSF / Widgets / Input",
   component: Form,
 };
 

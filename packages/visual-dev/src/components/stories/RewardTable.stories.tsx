@@ -1,13 +1,19 @@
 import React from "react";
 import { Icon } from "../Icon";
-import { Skeleton, Content, DataTable, Row, Pagination } from "../DataTable";
+import { DataTable } from "../DataTable";
 import { Avatar } from "../Avatar";
 import { Dropdown } from "../Dropdown";
 import { VisualSpec } from "../meta";
 
 export default {
   title: "User Page / Rewards Table",
-  component: Row,
+  component: DataTable,
+};
+
+const updatePaginationDummy = (limit: number, offset: number) => {
+  console.log("pagination updated");
+  console.log("limit", limit);
+  console.log("offset", offset);
 };
 
 export const FormSubmissionTable = () => {
@@ -23,16 +29,14 @@ export const FormSubmissionTable = () => {
   ];
 
   const text_a = (
-    <Content>
-      <div>
-        <strong> A form name </strong> <br />
-        form-key
-      </div>
-    </Content>
+    <div>
+      <strong> A form name </strong> <br />
+      form-key
+    </div>
   );
 
   const text_b = (
-    <Content>
+    <>
       <div>
         <Avatar firstName="New" lastName="Guy" />
       </div>
@@ -40,21 +44,21 @@ export const FormSubmissionTable = () => {
         <span style={{ color: "#0088CC" }}>new guy</span> <br />
         sam123@test.ca
       </div>
-    </Content>
+    </>
   );
 
-  const text_c = <Content>11 months ago</Content>;
+  const text_c = <>11 months ago</>;
 
   const text_d = (
-    <Content>
-      <Skeleton circle={true} size="8px" color="#57AC59" /> Success
-    </Content>
+    <>
+      <DataTable.Skeleton circle={true} size="8px" color="#57AC59" /> Success
+    </>
   );
 
   const text_e = (
-    <Content>
-      <Skeleton circle={true} size="8px" color="#FE6666" /> Failed
-    </Content>
+    <>
+      <DataTable.Skeleton circle={true} size="8px" color="#FE6666" /> Failed
+    </>
   );
 
   const content_b = [
@@ -96,21 +100,24 @@ export const FormSubmissionTable = () => {
           ></Dropdown>
           <Dropdown text="Any Status" css="min-width: 110px;"></Dropdown>
         </div>
-        <Row variant="banner"> </Row>
-        <Row variant="extra">
-          <div></div>{" "}
-        </Row>
-        <Row
-          variant="row"
-          content={content_a}
-          css="background: #f9f9f9; color: #7c7c7c;"
+        <DataTable.Banner> </DataTable.Banner>
+        <DataTable.Row variant="extra">
+          <div></div>
+        </DataTable.Row>
+        <DataTable.Row css="background: #f9f9f9; color: #7c7c7c;">
+          {content_a}
+        </DataTable.Row>
+        <DataTable.Row>{content_b}</DataTable.Row>
+        <DataTable.Row>{content_c}</DataTable.Row>
+        <DataTable.Row>{content_c}</DataTable.Row>
+        <DataTable.Row>{content_c}</DataTable.Row>
+        <DataTable.Row>{content_c}</DataTable.Row>
+        <DataTable.Pagination
+          total={17}
+          limit={5}
+          offset={0}
+          updatePagination={updatePaginationDummy}
         />
-        <Row content={content_b} />
-        <Row content={content_c} />
-        <Row content={content_c} />
-        <Row content={content_c} />
-        <Row content={content_c} />
-        <Pagination></Pagination>
       </DataTable>
     </div>
   );

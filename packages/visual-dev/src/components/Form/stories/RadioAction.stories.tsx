@@ -5,7 +5,7 @@ import { Button } from "../../Button";
 import { RJSFRadioActionWidget } from "../../RadioAction/rjsf-RadioAction";
 
 export default {
-  title: "Components / Form / RadioAction",
+  title: "RJSF / Widgets / RadioAction",
   component: Form,
 };
 

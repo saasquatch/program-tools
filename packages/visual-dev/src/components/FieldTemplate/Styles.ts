@@ -46,6 +46,6 @@ export const Errors = css`
 
 export const ErrorItem = css`
   & > span {
-    margin-left: 8px;
+    margin-left: var(--sq-spacing-x-small);
   }
 `;

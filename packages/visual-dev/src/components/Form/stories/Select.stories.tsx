@@ -4,7 +4,7 @@ import React from "react";
 import { Button, RJSFSelect } from "../../..";
 
 export default {
-  title: "Components / Form / Select",
+  title: "RJSF / Widgets / Select",
   component: Form,
 };
 

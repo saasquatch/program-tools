@@ -5,7 +5,7 @@ import { Button } from "../../Button";
 import { RJSFSwitch } from "../../Switch";
 
 export default {
-  title: "Components / Form / Switch",
+  title: "RJSF / Widgets / Switch",
   component: Form,
 };
 

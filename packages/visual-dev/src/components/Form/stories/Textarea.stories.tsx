@@ -5,7 +5,7 @@ import { Button } from "../../Button";
 import { RJSFTextarea } from "../../TextArea";
 
 export default {
-  title: "Components / Form / Textarea",
+  title: "RJSF / Widgets / Textarea",
   component: Form,
 };
 

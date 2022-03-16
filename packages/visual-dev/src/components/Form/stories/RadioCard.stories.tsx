@@ -5,7 +5,7 @@ import { Button } from "../../Button";
 import { RJSFRadioCardWidget } from "../../RadioCard";
 
 export default {
-  title: "Components / Form / RadioCard",
+  title: "RJSF / Widgets / RadioCard",
   component: Form,
 };
 

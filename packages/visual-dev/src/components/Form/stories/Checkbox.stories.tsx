@@ -5,7 +5,7 @@ import { Button } from "../../Button";
 import { RJSFCheckbox } from "../../Checkbox";
 
 export default {
-  title: "Components / Form / Checkbox",
+  title: "RJSF / Widgets / Checkbox",
   component: Form,
 };
 
