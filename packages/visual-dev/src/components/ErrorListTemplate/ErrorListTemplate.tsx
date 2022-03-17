@@ -30,3 +30,7 @@ export const ErrorListTemplate = (props: ErrorListProps) => {
     </Container>
   );
 };
+
+ErrorListTemplate.Container = Container;
+ErrorListTemplate.List = Errors;
+ErrorListTemplate.Item = ErrorItem;

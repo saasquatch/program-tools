@@ -46,6 +46,36 @@ export const Default = () => {
   );
 };
 
+export const NoDescription = () => {
+  const uiSchema = {
+    "ui:title": "Field Title Without Description",
+    "ui:widget": (props: WidgetProps) => {
+      return <RJSFInput {...props} />;
+    },
+  };
+
+  const schema: JSONSchema7 = {
+    type: "string",
+  };
+
+  return (
+    <div style={{ margin: "100px", resize: "horizontal", overflow: "hidden" }}>
+      <Form
+        schema={schema}
+        uiSchema={uiSchema}
+        onChange={log("changed")}
+        onSubmit={log("submitted")}
+        onError={log("errors")}
+        FieldTemplate={FieldTemplate}
+      >
+        <Button buttonType="primary" style={{ marginTop: 15 }}>
+          Submit
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
 export const WithHelp = () => {
   const uiSchema = {
     "ui:title": "Field Title",
