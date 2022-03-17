@@ -8,7 +8,7 @@ export const card = css`
   box-sizing: border-box;
   border-radius: 4px;
   color: var(--sq-text);
-  padding: 8px;
+  padding: var(--sq-spacing-x-small);
 `;
 export const cardHeader = css`
 display: flex;
@@ -16,7 +16,7 @@ height: 40px;
 vertical-align: middle
 flex-direction: column;
 align-items: center;
-padding: 8px;`;
+padding: var(--sq-spacing-x-small);`;
 export const cardHeaderIcon = css`
   float: left;
   margin-right: 16px;
@@ -30,11 +30,11 @@ export const cardHeaderText = css`
 `;
 export const cardText = css`
   height: 94px;
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
-  padding: 8px;
+  padding: var(--sq-spacing-x-small);
 `;
 export const cardFooter = css`
   position: relative;
@@ -48,7 +48,7 @@ export const cardLong = css`
   box-sizing: border-box;
   border-radius: 4px;
   color: var(--sq-text);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
@@ -61,20 +61,20 @@ export const cardLongHeader = css`
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-header-three);
   line-height: var(--sq-line-height-header-three);
-  padding: 20px;
+  padding: var(--sq-spacing-large);
   padding-bottom: 0;
 `;
 export const cardLongText = css`
   height: 61px;
-  font-size: 14px;
-  padding: 20px;
+  font-size: var(--sq-font-size-regular);
+  padding: var(--sq-spacing-large);
 `;
 export const cardLongFooter = css`
   position: relative;
   bottom: 0px;
   background: var(--sq-background);
   height: 26px;
-  padding: 20px;
+  padding: var(--sq-spacing-large);
 `;
 export const cardEdit = css`
   width: 850px;
@@ -84,7 +84,7 @@ export const cardEdit = css`
   box-sizing: border-box;
   border-radius: 4px;
   color: var(--sq-text);
-  padding: 16px;
+  padding: var(--sq-spacing-medium);
 `;
 export const cardEditHeader = css`
   display: flex;	
@@ -95,24 +95,24 @@ export const cardEditHeader = css`
 `;
 export const cardEditHeaderIcon = css`
   float: left;
-  margin-right: 16px;
+  margin-right: var(--sq-spacing-medium);
 `;
 export const cardEditHeaderText = css`
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-header-three);
   line-height: var(--sq-line-height-header-three);
   float: left;
 `;
 export const cardEditTextTitle = css`
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-bold);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
 `;
 export const cardEditTextDesc = css`
   color: var(--sq-text-subdued);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);

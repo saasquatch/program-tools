@@ -2,18 +2,27 @@ import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { Icon } from "../Icon";
-import { Button } from "../Button"
+import { Button } from "../Button";
 
 type CardProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate"|"css">;
+  Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
+  /**
+   * Card title
+   */
   title: string;
-  children: any;
+  /**
+   * Card content
+   */
+  children: string | React.ReactNode;
 }
 
 export interface StyleProps {
+  /**
+   * Custom CSS applied to Card
+   */
   customCSS?: CSSProp;
 }
 
@@ -64,7 +73,12 @@ export const Card = React.forwardRef<React.ElementRef<"div">, CardProps>(
           >
             Learn More
           </Button>
-          <Button buttonType="primary" size="small" pill customCSS="width: 124px;">
+          <Button
+            buttonType="primary"
+            size="small"
+            pill
+            customCSS="width: 124px;"
+          >
             Create
           </Button>
         </CardFooter>

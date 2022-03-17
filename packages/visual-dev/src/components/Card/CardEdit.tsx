@@ -9,15 +9,27 @@ import * as Styles from "./Styles";
 
 type CardProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate"|"css">;
+  Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 interface OptionProps {
+  /**
+   * Card title
+   */
   title?: string;
-  children?: any;
+  /**
+   * Card footer content
+   */
+  children?: string | React.ReactNode;
+  /**
+   * Enable edit mode
+   */
   edit?: boolean;
 }
 
 interface StyleProps {
+  /**
+   * Custom CSS applied to Card
+   */
   customCSS?: CSSProp;
 }
 

@@ -4,15 +4,27 @@ import * as Styles from "./Styles";
 
 type CardProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate"|"css">;
+  Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 interface OptionProps {
+  /**
+   * Card title
+   */
   title: string;
-  footer: any;
+  /**
+   * Card footer content
+   */
+  footer: string | React.ReactNode;
+  /**
+   * Card content
+   */
   children: any;
 }
 
 interface StyleProps {
+  /**
+   * Custom CSS applied to Card
+   */
   customCSS?: CSSProp;
 }
 
