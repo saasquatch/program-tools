@@ -7,11 +7,20 @@ type PopoverProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "customCSS">;
 
 export interface OptionProps {
+  /**
+   * Row content
+   */
   children?: any;
 }
 
 export interface StyleProps {
+  /**
+   * Row variant
+   */
   variant?: "row" | "header" | "extra";
+  /**
+   * Custom CSS applied to row
+   */
   customCSS?: CSSProp;
 }
 

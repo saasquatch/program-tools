@@ -9,15 +9,32 @@ type PopoverProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
-  children?: string | React.ReactNode;
+  /**
+   * Pagination offset
+   */
   offset: number;
+  /**
+   * Pagination limit
+   */
   limit: number;
+  /**
+   * Pagination total items
+   */
   total?: number;
+  /**
+   * Page exists after current page
+   */
   hasNext?: boolean;
+  /**
+   * Update pagination callback
+   */
   updatePagination: (limit: number, offset: number) => void;
 }
 
 export interface StyleProps {
+  /**
+   * Custom CSS applied to pagination section
+   */
   customCSS?: CSSProp;
 }
 
@@ -44,7 +61,6 @@ export const Pagination = React.forwardRef<
   PopoverProps
 >((props, forwardedRef) => {
   const {
-    children,
     offset,
     limit,
     updatePagination,

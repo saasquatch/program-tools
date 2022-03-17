@@ -40,6 +40,7 @@ import { DataTable } from "./components/DataTable";
 import { Popover, HoverPopover } from "./components/Popover";
 import { CopyWrapper } from "./components/CopyWrapper";
 import { CardContainer } from "./components/Layouts";
+import { Card, CardEdit, CardLong } from "./components/Card";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -89,4 +90,7 @@ export {
   HoverPopover,
   CopyWrapper,
   CardContainer,
+  Card,
+  CardEdit,
+  CardLong,
 };

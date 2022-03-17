@@ -8,12 +8,24 @@ type BadgeProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
+  /**
+   * Icon included in badge
+   */
   icon?: IconKey;
 }
 
 export interface StyleProps {
+  /**
+   * Badge variant
+   */
   status: "info" | "success" | "critical" | "warning";
+  /**
+   * Pill style badge
+   */
   pill?: boolean;
+  /**
+   * Custom CSS applied to badge
+   */
   customCSS?: CSSProp;
 }
 

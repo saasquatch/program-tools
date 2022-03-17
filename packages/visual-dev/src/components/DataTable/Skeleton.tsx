@@ -7,10 +7,16 @@ type PopoverProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
+  /**
+   * Content to include with skeleton
+   */
   children?: any;
 }
 
 export interface StyleProps {
+  /**
+   * Custom CSS applied to skeleton
+   */
   customCSS?: CSSProp;
 }
 

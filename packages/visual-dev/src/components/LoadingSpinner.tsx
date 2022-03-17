@@ -5,11 +5,26 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-interface RingProps {
+export interface RingProps {
+  /**
+   * Bottom offset
+   */
   bottom?: string;
+  /**
+   * Right offset
+   */
   right?: string;
+  /**
+   * Left offset
+   */
   left?: string;
+  /**
+   * Right padding
+   */
   paddingRight?: string;
+  /**
+   * Spinner colour
+   */
   color?: string;
 }
 

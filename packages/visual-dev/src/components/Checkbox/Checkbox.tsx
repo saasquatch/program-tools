@@ -11,10 +11,25 @@ type InputProps = Omit<
   OptionProps;
 
 export interface OptionProps {
+  /**
+   * Checkbox form value
+   */
   value?: any;
+  /**
+   * Onchange callback
+   */
   onChange?: any;
+  /**
+   * Checkbox label
+   */
   label?: string | boolean;
+  /**
+   * Render in disabled state
+   */
   disabled?: boolean;
+  /**
+   * Form element id
+   */
   id?: string;
 }
 

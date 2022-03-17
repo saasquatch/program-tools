@@ -9,12 +9,24 @@ type AccordionProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
+  /**
+   * Accordion section title
+   */
   title: string | React.ReactNode;
+  /**
+   * Accordion section description
+   */
   description?: string | React.ReactNode;
+  /**
+   * Accordion section content
+   */
   children: React.ReactNode;
 }
 
 export interface StyleProps {
+  /**
+   * Custom CSS applied to accordion
+   */
   customCSS?: CSSProp;
 }
 

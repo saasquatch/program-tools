@@ -11,13 +11,28 @@ type SwitchProps = Omit<
   StyleProps;
 
 export interface OptionProps {
+  /**
+   * Switch state change callback
+   */
   onChange?: any;
+  /**
+   * Switch value
+   */
   value?: boolean;
+  /**
+   * Switch variant
+   */
   color?: "success" | "critical";
+  /**
+   * Switch element id
+   */
   id?: string;
 }
 
 export interface StyleProps {
+  /**
+   * CSS applied to switch
+   */
   customCSS?: CSSProp;
 }
 

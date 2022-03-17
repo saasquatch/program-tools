@@ -8,12 +8,24 @@ type AvatarProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
+  /**
+   * Avatar first name (for initial(s))
+   */
   firstName?: string;
+  /**
+   * Avatar last name (for initial(s))
+   */
   lastName?: string;
+  /**
+   * Large style avatar
+   */
   large?: boolean;
 }
 
 export interface StyleProps {
+  /**
+   * Custom CSS for avatar
+   */
   customCSS?: CSSProp;
 }
 

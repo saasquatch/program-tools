@@ -6,10 +6,16 @@ type FilterProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
+  /**
+   * Filters to display (usually dropdowns)
+   */
   children?: string | React.ReactNode;
 }
 
 export interface StyleProps {
+  /**
+   * Custom CSS applied to filter
+   */
   customCSS?: CSSProp;
 }
 

@@ -8,13 +8,28 @@ import * as Styles from "./Styles";
 export type PopoverProps = PopoverOptions &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 export interface PopoverOptions {
+  /**
+   * Display popover
+   */
   show?: boolean;
+  /**
+   * Popover content
+   */
   children: React.ReactNode;
+  /**
+   * X offset
+   */
   relativeX?: string;
+  /**
+   * Y offset
+   */
   relativeY?: string;
 }
 
 export interface SectionProps {
+  /**
+   * Section content
+   */
   children: React.ReactNode;
 }
 

@@ -9,11 +9,11 @@ type RadioProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Radio value
+   * Radio form value
    */
   value?: any;
   /**
-   * OnChange action for radio
+   * On change callback for radio
    */
   onChange?: any;
   /**
@@ -23,6 +23,9 @@ export interface OptionProps {
 }
 
 export interface StyleProps {
+  /**
+   * Custom CSS applied to radio
+   */
   customLabelCSS?: CSSProp;
 }
 

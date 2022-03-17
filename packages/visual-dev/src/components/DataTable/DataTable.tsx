@@ -8,18 +8,44 @@ type DataTableProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
+  /**
+   * Table content (rows)
+   */
   children?: any;
-  search?: boolean;
+  /**
+   * Render table in empty state
+   */
   empty?: boolean;
+  /**
+   * Table header content
+   */
   headerSlot?: React.ReactNode;
+  /**
+   * Table footer content
+   */
   footerSlot?: React.ReactNode;
+  /**
+   * Render in empty filter state
+   */
   emptyFilter?: boolean;
+  /**
+   * Table content when in the empty state
+   */
   emptyContent?: string | React.ReactNode;
+  /**
+   * Table content when in the empty filter state
+   */
   emptyFilterContent?: string | React.ReactNode;
 }
 
 export interface StyleProps {
+  /**
+   * Table width
+   */
   width?: string;
+  /**
+   * Custom CSS applied to table
+   */
   customCSS?: CSSProp;
 }
 
@@ -44,7 +70,6 @@ export const DataTable = React.forwardRef<
 >((props, forwardedRef) => {
   const {
     width = "100%",
-    search = false,
     children,
     customCSS = {},
     empty = false,

@@ -8,11 +8,20 @@ type TagProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
+  /**
+   * On close button click callback
+   */
   onClickClose?: () => void;
+  /**
+   * Tag content
+   */
   children: React.ReactNode;
 }
 
 export interface StyleProps {
+  /**
+   * Custom CSS applied to tag
+   */
   customCSS?: CSSProp;
 }
 

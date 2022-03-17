@@ -45,7 +45,7 @@ export interface StyleProps {
    */
   success?: boolean;
   /**
-   * Button Size
+   * Button size
    */
   size?: "small" | "medium" | "large";
   /**

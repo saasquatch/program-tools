@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Dropdown, DropdownItem, DropdownSublist } from ".";
+import { Dropdown } from ".";
 
 export default {
   title: "Components / Dropdown",
@@ -17,18 +17,18 @@ export const Functional = () => {
         onClickDropdown={() => setEnable(!enabled)}
         showMenu={enabled}
       >
-        <DropdownItem onClick={exampleOnClick}> Dropdown Item </DropdownItem>
-        <DropdownItem onClick={exampleOnClick}> Dropdown Item </DropdownItem>
-        <DropdownSublist name="Dropdown Subtitle">
-          <DropdownItem onClick={exampleOnClick}>
+        <Dropdown.Item onClick={exampleOnClick}> Dropdown Item </Dropdown.Item>
+        <Dropdown.Item onClick={exampleOnClick}> Dropdown Item </Dropdown.Item>
+        <Dropdown.Sublist name="Dropdown Subtitle">
+          <Dropdown.Item onClick={exampleOnClick}>
             {" "}
             Dropdown Suboption{" "}
-          </DropdownItem>
-          <DropdownItem onClick={exampleOnClick}>
+          </Dropdown.Item>
+          <Dropdown.Item onClick={exampleOnClick}>
             {" "}
             Dropdown Suboption{" "}
-          </DropdownItem>
-        </DropdownSublist>
+          </Dropdown.Item>
+        </Dropdown.Sublist>
       </Dropdown>
     </div>
   );
@@ -44,18 +44,18 @@ export const FunctionalUpwards = () => {
         onClickDropdown={() => setEnable(!enabled)}
         showMenu={enabled}
       >
-        <DropdownItem onClick={exampleOnClick}> Dropdown Item </DropdownItem>
-        <DropdownItem onClick={exampleOnClick}> Dropdown Item </DropdownItem>
-        <DropdownSublist name="Dropdown Subtitle">
-          <DropdownItem onClick={exampleOnClick}>
+        <Dropdown.Item onClick={exampleOnClick}> Dropdown Item </Dropdown.Item>
+        <Dropdown.Item onClick={exampleOnClick}> Dropdown Item </Dropdown.Item>
+        <Dropdown.Sublist name="Dropdown Subtitle">
+          <Dropdown.Item onClick={exampleOnClick}>
             {" "}
             Dropdown Suboption{" "}
-          </DropdownItem>
-          <DropdownItem onClick={exampleOnClick}>
+          </Dropdown.Item>
+          <Dropdown.Item onClick={exampleOnClick}>
             {" "}
             Dropdown Suboption{" "}
-          </DropdownItem>
-        </DropdownSublist>
+          </Dropdown.Item>
+        </Dropdown.Sublist>
       </Dropdown>
     </div>
   );
@@ -141,9 +141,9 @@ export const NarrowPillClosed = () => (
 export const MenuOptions = () => (
   <div style={{ height: 180 }}>
     <Dropdown text="Menu Options" showMenu={true}>
-      <DropdownItem> Dropdown Item </DropdownItem>
-      <DropdownItem> Dropdown Item </DropdownItem>
-      <DropdownItem> Dropdown Item </DropdownItem>
+      <Dropdown.Item> Dropdown Item </Dropdown.Item>
+      <Dropdown.Item> Dropdown Item </Dropdown.Item>
+      <Dropdown.Item> Dropdown Item </Dropdown.Item>
     </Dropdown>
   </div>
 );
@@ -151,11 +151,11 @@ export const MenuOptions = () => (
 export const MenuSuboptions = () => (
   <div style={{ height: 240 }}>
     <Dropdown text="Menu Suboptions" showMenu={true}>
-      <DropdownSublist name="Dropdown Subtitle">
-        <DropdownItem> Dropdown Suboption </DropdownItem>
-        <DropdownItem> Dropdown Suboption </DropdownItem>
-        <DropdownItem> Dropdown Suboption </DropdownItem>
-      </DropdownSublist>
+      <Dropdown.Sublist name="Dropdown Subtitle">
+        <Dropdown.Item> Dropdown Suboption </Dropdown.Item>
+        <Dropdown.Item> Dropdown Suboption </Dropdown.Item>
+        <Dropdown.Item> Dropdown Suboption </Dropdown.Item>
+      </Dropdown.Sublist>
     </Dropdown>
   </div>
 );

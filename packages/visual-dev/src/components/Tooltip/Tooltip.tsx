@@ -9,14 +9,32 @@ type TooltipProps = OptionProps &
 
 export type directions = "top" | "left" | "bottom" | "right";
 export interface OptionProps {
+  /**
+   * Tooltip text
+   */
   text?: string;
+  /**
+   * Tooltip direction
+   */
   direction?: directions;
+  /**
+   * Display tooltip
+   */
   showTooltip?: boolean;
+  /**
+   * Element the tooltip is attached to
+   */
   children?: React.ReactNode;
 }
 
 export interface StyleProps {
+  /**
+   * Tooltip max width
+   */
   maxWidth?: string;
+  /**
+   * Custom CSS applied to tooltip
+   */
   customCSS?: CSSProp;
 }
 

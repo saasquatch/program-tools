@@ -36,7 +36,7 @@ export interface StyleProps {
    */
   size?: "mini" | "small" | "medium" | "large";
   /**
-   * Custom CSS to apply to button
+   * Custom CSS applied to button
    */
   customCSS?: CSSProp;
 }

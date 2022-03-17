@@ -5,7 +5,13 @@ type CopyWrapperProps = OptionProps &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
+  /**
+   * Content to copy to clipboard on click
+   */
   copyContent: string;
+  /**
+   * Copy action result callback
+   */
   copyCallback: (copyResult: boolean) => void;
 }
 
