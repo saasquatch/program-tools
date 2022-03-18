@@ -1,9 +1,13 @@
 import { h, VNode } from "@stencil/core";
-import { createStyleSheet } from "../../styling/JSS";
 
-type HamburgerMenuViewProps = {};
+type HamburgerMenuViewProps = {
+  position?: string;
+};
 
-export function HamburgerMenuView(children: VNode) {
+export function HamburgerMenuView(
+  props: HamburgerMenuViewProps,
+  children: VNode
+) {
   const vanillaStyle = `
 
     * {
@@ -22,11 +26,12 @@ export function HamburgerMenuView(children: VNode) {
       min-width: 325px;
       position: absolute;
       top: 0;
-      right: 0;
+      right: ${props.position === "right" && "0"};
+      left: ${props.position === "left" && "0"};
       margin: 0;
       animation: slideIn 500ms ease-in;
     }
-
+    /*
    @keyframes slideIn {
       0% {
         right: -350px;
@@ -35,6 +40,7 @@ export function HamburgerMenuView(children: VNode) {
         right: 0;
       }
     } 
+    */
 
     .toggler {
       border: 2px solid #eee;
@@ -58,16 +64,18 @@ export function HamburgerMenuView(children: VNode) {
     .hamburger {
       visibility:hidden;
       position: absolute;
-      right: 20px;
       top: 25px;
       width: 50px;
       height: 50px;
+      right: ${props.position === "right" && "20px"};
+      left: ${props.position === "left" && "20px"};
     }
 
     .toggler:checked ~ .menu-items {
       display: block;
     }
 
+    /***** Turn hamburger into an X *****/
     .toggler:checked ~ .hamburger > .line:nth-child(1) {
       opacity: 0;
     }
@@ -103,8 +111,6 @@ export function HamburgerMenuView(children: VNode) {
       margin-bottom: 3px;
       border-bottom: 5px solid #444445;
     }
-
-
 
   `;
 

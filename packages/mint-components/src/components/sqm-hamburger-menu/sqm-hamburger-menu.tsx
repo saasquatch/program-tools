@@ -1,5 +1,5 @@
-import { withHooks } from "@saasquatch/stencil-hooks";
-import { Component, h, State } from "@stencil/core";
+import { Component, h, Prop, State } from "@stencil/core";
+import { getProps } from "../../utils/utils";
 import { HamburgerMenuView } from "./sqm-hamburger-menu-view";
 
 /**
@@ -15,10 +15,17 @@ export class HamburgerMenu {
   @State()
   ignored = true;
 
+  @Prop() position?: string = "right";
+
   disconnectedCallback() {}
 
   render() {
-    const itemsSlot = <slot />;
-    return <HamburgerMenuView {...itemsSlot} />;
+    const props = getProps(this);
+
+    return (
+      <HamburgerMenuView {...props}>
+        <slot />
+      </HamburgerMenuView>
+    );
   }
 }

@@ -189,6 +189,7 @@ export namespace Components {
         "domain": string;
     }
     interface SqmHamburgerMenu {
+        "position"?: string;
     }
     interface SqmHero {
         /**
@@ -2662,6 +2663,7 @@ declare namespace LocalJSX {
         "domain"?: string;
     }
     interface SqmHamburgerMenu {
+        "position"?: string;
     }
     interface SqmHero {
         /**
