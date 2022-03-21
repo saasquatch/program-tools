@@ -9,18 +9,18 @@ type BadgeProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Icon included in badge
+   * Key of the icon to display in the badge
    */
   icon?: IconKey;
 }
 
 export interface StyleProps {
   /**
-   * Badge variant
+   * Badge variant, defines badge colour
    */
   status: "info" | "success" | "critical" | "warning";
   /**
-   * Pill style badge
+   * Display the badge with the pill style with rounded sides
    */
   pill?: boolean;
   /**

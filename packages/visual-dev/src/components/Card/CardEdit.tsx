@@ -13,11 +13,11 @@ type CardProps = OptionProps &
 
 interface OptionProps {
   /**
-   * Card title
+   * Title displayed at the top of the card right of the icon
    */
   title?: string;
   /**
-   * Card footer content
+   * Content displayed in the card below the title/icon
    */
   children?: string | React.ReactNode;
   /**
@@ -28,7 +28,7 @@ interface OptionProps {
 
 interface StyleProps {
   /**
-   * Custom CSS applied to Card
+   * Custom CSS applied to the card container
    */
   customCSS?: CSSProp;
 }

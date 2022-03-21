@@ -10,22 +10,22 @@ type AccordionProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Accordion section title
+   * Title shown shown regardless of expanded/collapsed state. Use ReactNode for custom text styling.
    */
   title: string | React.ReactNode;
   /**
-   * Accordion section description
+   * Description below title, hidden while collapsed. Use ReactNode for custom text styling.
    */
   description?: string | React.ReactNode;
   /**
-   * Accordion section content
+   * Content displayed inside accordion
    */
   children: React.ReactNode;
 }
 
 export interface StyleProps {
   /**
-   * Custom CSS applied to accordion
+   * Custom CSS applied to accordion container
    */
   customCSS?: CSSProp;
 }

@@ -10,42 +10,42 @@ export type ButtonProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Icon on button
+   * Key of the icon to display in the button
    */
   icon?: IconKey;
   /**
-   * Icon location on button
+   * Icon location in button
    */
   iconLocation?: "left" | "right";
   /**
-   * Custom children on button
+   * Content to display inside the button
    */
   children?: React.ReactElement | string;
 }
 
 export interface StyleProps {
   /**
-   * Button type
+   * Button type, affects background and border colour
    */
   buttonType?: "primary" | "secondary" | "text";
   /**
-   * Pill-style button
+   * Display the button in pill style with rounded sides
    */
   pill?: boolean;
   /**
-   * Render in loading state
+   * Render in loading state with a spinner
    */
   loading?: boolean;
   /**
-   * Render in critical state
+   * Render in critical state with red colour scheme
    */
   critical?: boolean;
   /**
-   * Render is success state
+   * Render is success state with green colour scheme
    */
   success?: boolean;
   /**
-   * Button size
+   * Button size affects the button itself and interior text/icons
    */
   size?: "small" | "medium" | "large";
   /**

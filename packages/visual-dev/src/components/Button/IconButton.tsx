@@ -9,22 +9,22 @@ type ButtonProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Icon on button
+   * Key of the icon to display in the button
    */
   icon: IconKey;
   /**
-   * Icon location on button
+   * CSS to apply to the icon in the button directly
    */
   icon_css?: CSSProp;
 }
 
 export interface StyleProps {
   /**
-   * Render button as a circle
+   * Render button as a circle (otherwise rectangle with rounded corners)
    */
   circle?: boolean;
   /**
-   * Button is a primary button
+   * Button is a primary button with orange colour scheme
    */
   primary?: boolean;
   /**
@@ -32,11 +32,11 @@ export interface StyleProps {
    */
   borderless?: boolean;
   /**
-   * Button size
+   * Button size affects the button itself and the interior icon
    */
   size?: "mini" | "small" | "medium" | "large";
   /**
-   * Custom CSS applied to button
+   * Custom CSS to apply to the button
    */
   customCSS?: CSSProp;
 }

@@ -8,22 +8,22 @@ type CardProps = OptionProps &
 
 interface OptionProps {
   /**
-   * Card title
+   * Title displayed at the top of the card right of the icon
    */
   title: string;
   /**
-   * Card footer content
+   * Content displayed in the footer of the card
    */
   footer: string | React.ReactNode;
   /**
-   * Card content
+   * Content displayed between the title and footer in the card
    */
   children: any;
 }
 
 interface StyleProps {
   /**
-   * Custom CSS applied to Card
+   * Custom CSS applied to the card container
    */
   customCSS?: CSSProp;
 }

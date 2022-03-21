@@ -9,18 +9,18 @@ export type AlertProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Alert title
+   * Title displayed at top of alert
    */
   title: string;
   /**
-   * Alert content
+   * Content displayed inside alert below title
    */
   children: React.ReactNode;
 }
 
 export interface StyleProps {
   /**
-   * Alert type
+   * Alert type that affects border, background, and text colours
    */
   type: "critical" | "warning" | "success" | "info";
   /**

@@ -9,22 +9,22 @@ type AvatarProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Avatar first name (for initial(s))
+   * Used for first initial in avatar
    */
   firstName?: string;
   /**
-   * Avatar last name (for initial(s))
+   * Used for second initial in avatar
    */
   lastName?: string;
   /**
-   * Large style avatar
+   * Option to display large style avatar with full colour background
    */
   large?: boolean;
 }
 
 export interface StyleProps {
   /**
-   * Custom CSS for avatar
+   * Custom CSS for avatar container
    */
   customCSS?: CSSProp;
 }
