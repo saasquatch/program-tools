@@ -10,7 +10,7 @@ export interface OptionProps {
    */
   copyContent: string;
   /**
-   * Copy action result callback
+   * Callback passes the result of the copy action, either successful or failed (true/false)
    */
   copyCallback: (copyResult: boolean) => void;
 }

@@ -12,15 +12,15 @@ type InputProps = Omit<
 
 export interface OptionProps {
   /**
-   * Checkbox form value
+   * Form value supplied to checkbox
    */
   value?: any;
   /**
-   * Onchange callback
+   * Callback triggered on checkbox click
    */
   onChange?: any;
   /**
-   * Checkbox label
+   * Label adjacent to checkbox
    */
   label?: string | boolean;
   /**
@@ -28,7 +28,7 @@ export interface OptionProps {
    */
   disabled?: boolean;
   /**
-   * Form element id
+   * Checkbox element id
    */
   id?: string;
 }
