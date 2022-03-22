@@ -88,7 +88,7 @@ Feature: Referral List
   Scenario: Showing the referrer for a user with a duplicate accountId breaks the referral list
     Given a user with the same accountId as another user
     And they have been referred
-    But the referral list does not have the prop 'show-referrer="false"'
+    But the referral list does not have the prop 'showreferrer="false"'
     When the user views the referral list
     Then the query fails with a permission error
     And the referral table renders as "undefined"
