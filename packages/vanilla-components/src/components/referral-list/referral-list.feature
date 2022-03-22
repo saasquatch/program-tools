@@ -78,7 +78,7 @@ Feature: Referral List
   Scenario: Setting show-referrer prop to false prevents query for referredByReferral
     Given a user with the same accountId as another user
     And they have been referred
-    And the referral list has the prop 'show-referrer="false"'
+    And the referral list has the prop 'showreferrer="false"'
     When the user views the referral list
     Then the query does not return data for referredByReferral
     And the referral table renders successfully
