@@ -52,7 +52,7 @@ Feature: Referral List
     And the status is colored in green
 
   @ui
-  Scenario Outline: Referral reward description
+  Scenario Outline: The referral list displays reward descriptions based on the number of rewards and their status
     Given I have a referral
     And the number of rewards for that referral is <numberOfRewards>
     And the statuses for the first reward in the list are <statuses>
@@ -93,7 +93,7 @@ Feature: Referral List
     And the referral table renders as "undefined"
 
   @minutia
-  Scenario: Showing the referrer for a user
+  Scenario: The referral list can show a users referrer
     Given a user that has been referred
     And they have been referred
     And the referral list does not have the prop 'show-referrer="false"'
