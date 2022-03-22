@@ -59,18 +59,18 @@ Feature: Referral List
     Then I see <rewardDescription>
 
     Examples:
-      | statuses          | rewardDescription | numberOfRewards | expiryText | expiryDate     |
-      | AVAILABLE         | X or more         | 2 or more       | shown      | exists         |
-      | CANCELLED         | X or more         | 2 or more       |            |                |
-      | REDEEMED          | X or more         | 2 or more       |            |                |
-      | EXPIRED           | X or more         | 2 or more       |            |                |
-      | CANCELLED         | Cancelled Reward  | 1               |            |                |
-      | CANCELLED,EXPIRED | Expired Reward    | 1               |            |                |
-      | EXPIRED           | Expired Reward    | 1               |            |                |
-      | AVAILABLE         | Expires in X      | 1               | shown      | exists         |
-      | AVAILABLE         |                   | 1               | shown      | does not exist |
-      | PENDING           | Reward Pending    | 0               | not shown  | does not exist |
-      | REDEEMED          | Redeemed          | 1               | exists     |                |
+      | statuses          | rewardDescription | numberOfRewards |
+      | AVAILABLE         | X or more         | 2 or more       |
+      | CANCELLED         | X or more         | 2 or more       |
+      | REDEEMED          | X or more         | 2 or more       |
+      | EXPIRED           | X or more         | 2 or more       |
+      | CANCELLED         | Cancelled Reward  | 1               |
+      | CANCELLED,EXPIRED | Expired Reward    | 1               |
+      | EXPIRED           | Expired Reward    | 1               |
+      | AVAILABLE         | Expires in X      | 1               |
+      | AVAILABLE         |                   | 1               |
+      | PENDING           | Reward Pending    | 0               |
+      | REDEEMED          | Redeemed          | 1               |
 
 
   @minutia
