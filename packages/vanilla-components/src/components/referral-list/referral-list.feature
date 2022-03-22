@@ -93,7 +93,7 @@ Feature: Referral List
     And the referral table renders as "undefined"
 
   @minutia
-  Scenario: Showing the referrer for a user
+  Scenario: The referral list can show a users referrer
     Given a user that has been referred
     And they have been referred
     And the referral list does not have the prop 'show-referrer="false"'
