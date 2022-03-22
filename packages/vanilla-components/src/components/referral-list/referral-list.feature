@@ -100,5 +100,5 @@ Feature: Referral List
     And the referral list does not have the prop 'showreferrer="false"'
     When the user views the referral list
     Then the referral table renders successfully
-    And the referrer row is shown at the top of the list
+    And the referrer row is shown as the last referral in the list
 
