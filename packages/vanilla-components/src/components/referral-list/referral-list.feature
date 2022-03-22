@@ -56,21 +56,22 @@ Feature: Referral List
     Given I have a referral
     And the number of rewards for that referral is <numberOfRewards>
     And the statuses for the first reward in the list are <statuses>
+    And the reward <mayHave> an expiry date
     Then I see <rewardDescription>
 
     Examples:
-      | statuses          | rewardDescription | numberOfRewards |
-      | AVAILABLE         | X or more         | 2 or more       |
-      | CANCELLED         | X or more         | 2 or more       |
-      | REDEEMED          | X or more         | 2 or more       |
-      | EXPIRED           | X or more         | 2 or more       |
-      | CANCELLED         | Cancelled Reward  | 1               |
-      | CANCELLED,EXPIRED | Expired Reward    | 1               |
-      | EXPIRED           | Expired Reward    | 1               |
-      | AVAILABLE         | Expires in X      | 1               |
-      | AVAILABLE         |                   | 1               |
-      | PENDING           | Reward Pending    | 0               |
-      | REDEEMED          | Redeemed          | 1               |
+      | statuses          | rewardDescription | numberOfRewards | hasExpiryDate |
+      | AVAILABLE         | X or more         | 2 or more       | does not      |
+      | CANCELLED         | X or more         | 2 or more       | does not      |
+      | REDEEMED          | X or more         | 2 or more       | does not      |
+      | EXPIRED           | X or more         | 2 or more       | does not      |
+      | CANCELLED         | Cancelled Reward  | 1               | does not      |
+      | CANCELLED,EXPIRED | Expired Reward    | 1               | does          |
+      | EXPIRED           | Expired Reward    | 1               | does          |
+      | AVAILABLE         | Expires in X      | 1               | does          |
+      | AVAILABLE         |                   | 1               | does not      |
+      | PENDING           | Reward Pending    | 0               | does not      |
+      | REDEEMED          | Redeemed          | 1               | does not      |
 
 
   @minutia
