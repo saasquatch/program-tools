@@ -97,7 +97,7 @@ Feature: Referral List
   Scenario: The referral list can show a users referrer
     Given a user that has been referred
     And they have been referred
-    And the referral list does not have the prop 'show-referrer="false"'
+    And the referral list does not have the prop 'showreferrer="false"'
     When the user views the referral list
     Then the referral table renders successfully
     And the referrer row is shown at the top of the list
