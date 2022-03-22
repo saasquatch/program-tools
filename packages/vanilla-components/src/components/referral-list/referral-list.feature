@@ -61,17 +61,17 @@ Feature: Referral List
 
     Examples:
       | statuses          | rewardDescription | numberOfRewards | hasExpiryDate |
-      | AVAILABLE         | X or more         | 2 or more       | does not      |
-      | CANCELLED         | X or more         | 2 or more       | does not      |
-      | REDEEMED          | X or more         | 2 or more       | does not      |
-      | EXPIRED           | X or more         | 2 or more       | does not      |
-      | CANCELLED         | Cancelled Reward  | 1               | does not      |
-      | CANCELLED,EXPIRED | Expired Reward    | 1               | does          |
-      | EXPIRED           | Expired Reward    | 1               | does          |
-      | AVAILABLE         | Expires in X      | 1               | does          |
+      | AVAILABLE         | X or more         | 2 or more       | doesn't have  |
+      | CANCELLED         | X or more         | 2 or more       | doesn't have  |
+      | REDEEMED          | X or more         | 2 or more       | doesn't have  |
+      | EXPIRED           | X or more         | 2 or more       | doesn't have  |
+      | CANCELLED         | Cancelled Reward  | 1               | doesn't have  |
+      | CANCELLED,EXPIRED | Expired Reward    | 1               | does have     |
+      | EXPIRED           | Expired Reward    | 1               | does have     |
+      | AVAILABLE         | Expires in X      | 1               | does have     |
       | AVAILABLE         |                   | 1               | does not      |
-      | PENDING           | Reward Pending    | 0               | does not      |
-      | REDEEMED          | Redeemed          | 1               | does not      |
+      | PENDING           | Reward Pending    | 0               | doesn't have  |
+      | REDEEMED          | Redeemed          | 1               | doesn't have  |
 
 
   @minutia
