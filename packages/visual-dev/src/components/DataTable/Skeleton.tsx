@@ -8,7 +8,7 @@ type PopoverProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Content to include with skeleton
+   * Content to include alongside skeleton
    */
   children?: any;
 }

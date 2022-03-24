@@ -8,7 +8,7 @@ type FilterProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Banner content
+   * Content that appears inside the banner, generally inline elements
    */
   children?: string | React.ReactNode;
 }

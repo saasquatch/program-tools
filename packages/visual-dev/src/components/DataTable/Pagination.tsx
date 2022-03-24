@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import { Dropdown, DropdownItem } from "../Dropdown";
+import { Dropdown } from "../Dropdown";
 import { IconButton } from "../Button";
 import * as styles from "./Styles";
 
@@ -10,23 +10,23 @@ type PopoverProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Pagination offset
+   * Pagination offset, first item in table page
    */
   offset: number;
   /**
-   * Pagination limit
+   * Pagination limit, number of items per page
    */
   limit: number;
   /**
-   * Pagination total items
+   * Total number of items to display in the table across all pages
    */
   total?: number;
   /**
-   * Page exists after current page
+   * Page exists after current page, used when total not available
    */
   hasNext?: boolean;
   /**
-   * Update pagination callback
+   * Update pagination callback, for requesting a new page
    */
   updatePagination: (limit: number, offset: number) => void;
 }
@@ -134,30 +134,30 @@ export const Pagination = React.forwardRef<
           text={`${limit} Per Page`}
           customCSS="min-width: 165px; width: 165px; display: inline-block"
         >
-          <DropdownItem
+          <Dropdown.Item
             onClick={() => {
               updatePagination(10, 0);
               setDropdown(false);
             }}
           >
             10 Per Page
-          </DropdownItem>
-          <DropdownItem
+          </Dropdown.Item>
+          <Dropdown.Item
             onClick={() => {
               updatePagination(25, 0);
               setDropdown(false);
             }}
           >
             25 Per Page
-          </DropdownItem>
-          <DropdownItem
+          </Dropdown.Item>
+          <Dropdown.Item
             onClick={() => {
               updatePagination(50, 0);
               setDropdown(false);
             }}
           >
             50 Per Page
-          </DropdownItem>
+          </Dropdown.Item>
         </Dropdown>
       </Container>
     </PaginationDiv>

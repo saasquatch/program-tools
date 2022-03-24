@@ -9,7 +9,7 @@ type DataTableProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Table content (rows)
+   * Table content, almost always "row" variant Row components
    */
   children?: any;
   /**
@@ -17,11 +17,11 @@ export interface OptionProps {
    */
   empty?: boolean;
   /**
-   * Table header content
+   * Content at the top of the table, generally heading and banners
    */
   headerSlot?: React.ReactNode;
   /**
-   * Table footer content
+   * Content at the bottom of the table, almost always pagination
    */
   footerSlot?: React.ReactNode;
   /**
@@ -29,22 +29,22 @@ export interface OptionProps {
    */
   emptyFilter?: boolean;
   /**
-   * Table content when in the empty state
+   * Content to display in place of rows while the table is in the empty state
    */
   emptyContent?: string | React.ReactNode;
   /**
-   * Table content when in the empty filter state
+   * Content to display in place of rows while the table is in the empty filter state
    */
   emptyFilterContent?: string | React.ReactNode;
 }
 
 export interface StyleProps {
   /**
-   * Table width
+   * Limit the width of the table, use valid CSS size units (px, %, em, rem)
    */
   width?: string;
   /**
-   * Custom CSS applied to table
+   * Custom CSS applied to table container
    */
   customCSS?: CSSProp;
 }

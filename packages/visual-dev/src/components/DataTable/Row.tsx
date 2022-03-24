@@ -8,14 +8,14 @@ type PopoverProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Row content
+   * Content to display in row, one element per table cell
    */
   children?: any;
 }
 
 export interface StyleProps {
   /**
-   * Row variant
+   * Row variant (default to "row")
    */
   variant?: "row" | "header" | "extra";
   /**

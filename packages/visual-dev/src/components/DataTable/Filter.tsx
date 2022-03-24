@@ -7,7 +7,7 @@ type FilterProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Filters to display (usually dropdowns)
+   * Filters to display, usually dropdowns
    */
   children?: string | React.ReactNode;
 }
