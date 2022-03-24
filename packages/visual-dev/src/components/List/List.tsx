@@ -6,15 +6,15 @@ const Item = styled.li``;
 
 export interface ListProps {
   /**
-   * List type
+   * Choose a bullet or numbered list type (default bullet)
    */
   type?: "bullet" | "number";
   /**
-   * List content
+   * List content, usually List.Item
    */
   children?: React.ReactNode;
   /**
-   * Custom CSS applied to list
+   * Custom CSS applied to the list container
    */
   customCSS?: CSSProp;
 }

@@ -10,29 +10,29 @@ type InputProps = OptionProps &
 
 export interface GroupOptions {
   /**
-   * Display two columns of radios
+   * Display two columns of radio actions
    */
   twoColumns?: boolean;
 }
 export interface OptionProps {
   /**
-   * Current value of radio group
+   * Current value of radio action form group
    */
   value?: any;
   /**
-   * Value of radio action
+   * Form value of radio action
    */
   optionValue?: any;
   /**
-   * Onchange action for radio action
+   * Callback triggered on radio action select/deselect
    */
   onChange?: any;
   /**
-   * Action title
+   * Title that appears next to the radio
    */
   title: string;
   /**
-   * Action description
+   * Description that appears below the title, use ReactNodes for custom text styles
    */
   description?: string | React.ReactNode;
 }

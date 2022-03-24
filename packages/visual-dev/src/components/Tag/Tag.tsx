@@ -9,11 +9,11 @@ type TagProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * On close button click callback
+   * Callback triggered when the close on the tag is clicked
    */
   onClickClose?: () => void;
   /**
-   * Tag content
+   * Content displayed inside tag, generally small pieces of content like a <span>
    */
   children: React.ReactNode;
 }

@@ -11,35 +11,35 @@ type InputWidthType = boolean | string;
 
 export interface OptionProps {
   /**
-   * Input value
+   * Value of the input
    */
   value?: any;
   /**
-   * Onchange action for input
+   * Callback triggered when the input changes
    */
   onChange?: any;
   /**
-   * Disable input
+   * Disable the input
    */
   disabled?: boolean;
   /**
-   * Input type
+   * HTML input type (e.g. password)
    */
   type?: string;
   /**
-   * Errors on input
+   * Render with a red background and border to indicate an error
    */
   errors?: any;
   /**
-   * Icon displayed with input
+   * Key of an icon to display inside the input field
    */
   icon?: IconKey;
   /**
-   * Button displayed with input
+   * Button to display inside the input field
    */
   buttons?: React.ReactElement;
   /**
-   * Position on icons/buttons
+   * Choose which end of the input to display the button/icon (default "left")
    */
   position?: "left" | "right";
   /**
@@ -47,7 +47,7 @@ export interface OptionProps {
    */
   customCSS?: CSSProp;
   /**
-   * Limit input width (to default or custom value)
+   * Limit the input width using a valid CSS size value (e.g. px, %)
    */
   limitWidth?: InputWidthType;
 }

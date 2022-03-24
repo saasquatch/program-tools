@@ -12,51 +12,51 @@ export type SelectProps<ItemType> = OptionProps<ItemType> &
 
 export interface OptionProps<ItemType> {
   /**
-   * Downshift hook (either useCombobox or useSelect)
+   * Downshift hook for component functionality (useSelect or useCombobox)
    */
   functional: UseSelectReturnValue<ItemType> | UseComboboxReturnValue<ItemType>;
   /**
-   * Function to transform items to string
+   * Function to transform item objects to strings for display
    */
   itemToString?: (item: ItemType | null) => string;
   /**
-   * Function to transform items into view code for dropdown menu
+   * Function to transform item objects into template code for dropdown items
    */
   itemToNode?: (item: ItemType) => React.ReactNode;
   /**
-   * Disable input
+   * Disable the select
    */
   disabled?: boolean;
   /**
-   * Error in input
+   * Render the select with red border and background to indicate an error
    */
   errors?: any;
   /**
-   * Items to select from
+   * Items to include in the select list
    */
   items: Array<any>;
   /**
-   * Custom CSS for input element
+   * Custom CSS for the select handle
    */
   customCSS?: CSSProp;
   /**
-   * Allow the input to be cleared
+   * Allow the select value to be cleared
    */
   clearable?: boolean;
   /**
-   * Set the input state to loading
+   * Render the handle in the loading state
    */
   loading?: boolean;
   /**
-   * Placeholder for unset input
+   * Placeholder displayed in the handle before a selection is made
    */
   placeholer?: string;
   /**
-   * Limit the width of the input
+   * Limit the width of the select with a valid CSS size (px, %) (default 300px)
    */
   limitWidth?: SizeType;
   /**
-   * Limit the width of the input
+   * Limit the height of the input in its expanded state with a valid CSS size (px, %) (default 200px)
    */
   limitHeight?: SizeType;
 }

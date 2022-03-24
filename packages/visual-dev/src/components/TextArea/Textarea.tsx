@@ -10,31 +10,31 @@ type TextareaSizeType = boolean | string;
 
 export interface OptionProps {
   /**
-   * Textarea value
+   * Form value of the textarea
    */
   value?: any;
   /**
-   * Onchange action for textarea
+   * Callback triggered when the textarea input changes
    */
   onChange?: any;
   /**
-   * Disable textarea
+   * Render in the disabled state and disallow input
    */
   disabled?: boolean;
   /**
-   * Errors on textarea
+   * Indicate an error with a red border and background
    */
   errors?: any;
   /**
-   * Custon CSS applied to textarea
+   * Custon CSS applied to textarea input
    */
   customCSS?: CSSProp;
   /**
-   * Limit textarea width (to default or custom value)
+   * Limit textarea width, use "true" to fill parent, or indicate a custom value with a CSS size value (px, %) [default 300px]
    */
   limitWidth?: TextareaSizeType;
   /**
-   * Limit textarea height (to default or custom value)
+   * Limit textarea width, use "true" to fill parent, or indicate a custom value with a CSS size value (px, %) [default 48px]
    */
   height?: string;
 }

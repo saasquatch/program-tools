@@ -9,26 +9,26 @@ export type PopoverProps = PopoverOptions &
   Omit<React.ComponentProps<"div">, "translate" | "css">;
 export interface PopoverOptions {
   /**
-   * Display popover
+   * Choose if popover is rendered
    */
   show?: boolean;
   /**
-   * Popover content
+   * Content displayed inside the popover
    */
   children: React.ReactNode;
   /**
-   * X offset
+   * X offset of the popover relative to the element it originates from
    */
   relativeX?: string;
   /**
-   * Y offset
+   * Y offset of the popover relative to the element it originates from
    */
   relativeY?: string;
 }
 
 export interface SectionProps {
   /**
-   * Section content
+   * Content to display inside the popover section
    */
   children: React.ReactNode;
 }

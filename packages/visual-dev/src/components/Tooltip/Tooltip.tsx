@@ -10,15 +10,15 @@ type TooltipProps = OptionProps &
 export type directions = "top" | "left" | "bottom" | "right";
 export interface OptionProps {
   /**
-   * Tooltip text
+   * Text displayed inside the tooltip
    */
   text?: string;
   /**
-   * Tooltip direction
+   * Where the tooltip appears in relation to the element it is attached to
    */
   direction?: directions;
   /**
-   * Display tooltip
+   * Display/hide the tooltip
    */
   showTooltip?: boolean;
   /**
@@ -29,7 +29,7 @@ export interface OptionProps {
 
 export interface StyleProps {
   /**
-   * Tooltip max width
+   * Max width of the tooltip, use a valid CSS size value (px, %)
    */
   maxWidth?: string;
   /**

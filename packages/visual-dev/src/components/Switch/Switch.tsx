@@ -12,15 +12,15 @@ type SwitchProps = Omit<
 
 export interface OptionProps {
   /**
-   * Switch state change callback
+   * Callback triggered on switch state change
    */
   onChange?: any;
   /**
-   * Switch value
+   * Current form value of the switch
    */
   value?: boolean;
   /**
-   * Switch variant
+   * Indicte a positive action (success) or negative action (critical)
    */
   color?: "success" | "critical";
   /**

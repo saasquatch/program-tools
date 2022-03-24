@@ -9,15 +9,15 @@ type RadioProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Radio form value
+   * Value for form input
    */
   value?: any;
   /**
-   * On change callback for radio
+   * Callback triggered on radio select/deselect
    */
   onChange?: any;
   /**
-   * Radio label
+   * Label for the radio, appears on the right
    */
   label?: React.ReactNode | "string";
 }

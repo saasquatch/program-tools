@@ -18,11 +18,11 @@ type Size = keyof typeof default_size;
 
 export interface StyleProps {
   /**
-   * Icon colour
+   * Set the icon colour with valid CSS color values
    */
   color?: string;
   /**
-   * Icon size
+   * Set the icon size with valid CSS size values (px, rem, em)
    */
   size?: Size | string;
   /**

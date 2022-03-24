@@ -9,27 +9,27 @@ type GroupProps = React.ComponentProps<"input">;
 type InputProps = OptionProps & Omit<React.ComponentProps<"input">, "css">;
 export interface OptionProps {
   /**
-   * Current value of radio group
+   * Current value of radio card form group
    */
   value: any;
   /**
-   * Value of radio card
+   * Form value of radio card
    */
   optionValue: any;
   /**
-   * Onchange action for radio card
+   * Callback triggered on radio action select/deselect
    */
   onChange?: any;
   /**
-   * Card title
+   * Main title at the top of the card
    */
   title?: string;
   /**
-   * Card description
+   * Description in the card below the title
    */
   description?: string;
   /**
-   * Card icon
+   * Icon displayed in the left side section of the card
    */
   icon?: IconKey;
 }

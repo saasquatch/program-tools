@@ -10,7 +10,7 @@ type DropdownProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Text displayed in dropdown
+   * Text displayed in dropdown handle
    */
   text?: string;
   /**
@@ -18,35 +18,35 @@ export interface OptionProps {
    */
   showMenu?: boolean;
   /**
-   * Pill styled dropdown
+   * Pill styled handle with rounded sides
    */
   pill?: boolean;
   /**
-   * Center align text
+   * Center align text in the handle
    */
   center?: boolean;
   /**
-   * Narrow style dropdown handle (vertically)
+   * Make the handle vertically narrow
    */
   narrow?: boolean;
   /**
-   * Render in disabled state
+   * Render the handle in the disabled (greyed out) state
    */
   disabled?: boolean;
   /**
-   * Icon included in dropdown
+   * Key of an icon to render left of the text in the handle
    */
   icon?: IconKey;
   /**
-   * Open dropdown menu upwards
+   * Show the menu able the handle instead of below
    */
   popUpwards?: boolean;
   /**
-   * On dropdown click callback
+   * Onclick callback for dropdown handle, usually toggles the open state
    */
   onClickDropdown?: () => void;
   /**
-   * Dropdown content (menu items)
+   * Dropdown content, almost always multiple Dropdown.Sublist or Dropdown.Item
    */
   children?: React.ReactNode;
 }
@@ -60,7 +60,7 @@ interface ButtonProps {
 
 export interface DropdownItemProps {
   /**
-   * On item click callback
+   * Callback triggered on menu item click
    */
   onClick?: () => void;
   /**
@@ -68,14 +68,14 @@ export interface DropdownItemProps {
    */
   customCSS?: CSSProp;
   /**
-   * Item content
+   * Visual content of the item, often a span or div with text
    */
   children?: React.ReactNode;
 }
 
 export interface DropdownSublistProps {
   /**
-   * Sublist
+   * Name of the menu sublist
    */
   name: string;
   /**
@@ -83,14 +83,14 @@ export interface DropdownSublistProps {
    */
   customCSS?: CSSProp;
   /**
-   * Sublist content (menu items)
+   * Items contained in the sublist, usually multiple Dropdown.Sublist or Dropdown.Item
    */
   children: React.ReactNode;
 }
 
 export interface StyleProps {
   /**
-   * Custom CSS applied to dropdown
+   * Custom CSS applied to dropdown handle
    */
   customCSS?: CSSProp;
 }
