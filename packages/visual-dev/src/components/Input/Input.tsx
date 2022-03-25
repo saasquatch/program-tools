@@ -39,7 +39,7 @@ export interface OptionProps {
    */
   buttons?: React.ReactElement;
   /**
-   * Choose which end of the input to display the button/icon (default "left")
+   * Choose which end of the input to display the button/icon [default "left"]
    */
   position?: "left" | "right";
   /**
@@ -47,7 +47,7 @@ export interface OptionProps {
    */
   customCSS?: CSSProp;
   /**
-   * Limit the input width using a valid CSS size value (e.g. px, %)
+   * Limit the input width using a valid CSS size value (e.g. px, %) [default 300px]
    */
   limitWidth?: InputWidthType;
 }

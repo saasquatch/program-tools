@@ -9,7 +9,7 @@ export type IconProps = OptionProps &
 
 export interface OptionProps {
   /**
-   * Icon
+   * Icon key
    */
   icon: IconKey;
 }
@@ -22,7 +22,7 @@ export interface StyleProps {
    */
   color?: string;
   /**
-   * Set the icon size with valid CSS size values (px, rem, em)
+   * Set the icon size with valid CSS size values (px, rem, em) or predefined small, medium, large, badge [default "medium"]
    */
   size?: Size | string;
   /**

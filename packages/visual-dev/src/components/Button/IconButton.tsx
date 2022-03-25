@@ -32,7 +32,7 @@ export interface StyleProps {
    */
   borderless?: boolean;
   /**
-   * Button size affects the button itself and the interior icon
+   * Button size affects the button itself and the interior icon [default "medium"]
    */
   size?: "mini" | "small" | "medium" | "large";
   /**

@@ -6,7 +6,7 @@ const Item = styled.li``;
 
 export interface ListProps {
   /**
-   * Choose a bullet or numbered list type (default bullet)
+   * Choose a bullet or numbered list type [default "bullet"]
    */
   type?: "bullet" | "number";
   /**

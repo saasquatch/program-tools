@@ -14,7 +14,7 @@ export interface OptionProps {
    */
   icon?: IconKey;
   /**
-   * Icon location in button
+   * Icon location in button [default "left"]
    */
   iconLocation?: "left" | "right";
   /**
@@ -45,7 +45,7 @@ export interface StyleProps {
    */
   success?: boolean;
   /**
-   * Button size affects the button itself and interior text/icons
+   * Button size affects the button itself and interior text/icons [default "medium"]
    */
   size?: "small" | "medium" | "large";
   /**

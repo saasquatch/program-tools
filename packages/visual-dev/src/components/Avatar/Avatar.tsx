@@ -17,7 +17,7 @@ export interface OptionProps {
    */
   lastName?: string;
   /**
-   * Option to display large style avatar with full colour background
+   * Display large style avatar with full colour background
    */
   large?: boolean;
 }

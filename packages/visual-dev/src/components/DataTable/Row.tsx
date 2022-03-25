@@ -15,7 +15,7 @@ export interface OptionProps {
 
 export interface StyleProps {
   /**
-   * Row variant (default to "row")
+   * Row variant [default "row"]
    */
   variant?: "row" | "header" | "extra";
   /**

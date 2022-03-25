@@ -52,11 +52,11 @@ export interface OptionProps<ItemType> {
    */
   placeholer?: string;
   /**
-   * Limit the width of the select with a valid CSS size (px, %) (default 300px)
+   * Limit the width of the select with a valid CSS size (px, %) [default 300px]
    */
   limitWidth?: SizeType;
   /**
-   * Limit the height of the input in its expanded state with a valid CSS size (px, %) (default 200px)
+   * Limit the height of the input in its expanded state with a valid CSS size (px, %) [default 200px]
    */
   limitHeight?: SizeType;
 }
