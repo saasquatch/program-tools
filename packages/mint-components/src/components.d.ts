@@ -13,6 +13,7 @@ import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-drop
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
 import { FunctionalComponent } from "@stencil/core";
+import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-fields-view";
@@ -377,6 +378,28 @@ export namespace Components {
           * @uiName Minimum Height
          */
         "minHeight"?: string;
+    }
+    interface SqmInputField {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<InputFieldViewProps>;
+        /**
+          * @uiName Empty error message
+         */
+        "errorMessage": string;
+        /**
+          * @uiName Input label
+         */
+        "fieldLabel": string;
+        /**
+          * @uiName Input name attribute
+         */
+        "fieldName": string;
+        /**
+          * @uiName Required
+         */
+        "fieldRequired"?: boolean;
     }
     interface SqmLeaderboard {
         /**
@@ -2072,6 +2095,12 @@ declare global {
         prototype: HTMLSqmImageElement;
         new (): HTMLSqmImageElement;
     };
+    interface HTMLSqmInputFieldElement extends Components.SqmInputField, HTMLStencilElement {
+    }
+    var HTMLSqmInputFieldElement: {
+        prototype: HTMLSqmInputFieldElement;
+        new (): HTMLSqmInputFieldElement;
+    };
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
     var HTMLSqmLeaderboardElement: {
@@ -2496,6 +2525,7 @@ declare global {
         "sqm-hero-image": HTMLSqmHeroImageElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-image": HTMLSqmImageElement;
+        "sqm-input-field": HTMLSqmInputFieldElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-name-fields": HTMLSqmNameFieldsElement;
@@ -2907,6 +2937,28 @@ declare namespace LocalJSX {
           * @uiName Minimum Height
          */
         "minHeight"?: string;
+    }
+    interface SqmInputField {
+        /**
+          * @undocumented
+         */
+        "demoData"?: DemoData<InputFieldViewProps>;
+        /**
+          * @uiName Empty error message
+         */
+        "errorMessage"?: string;
+        /**
+          * @uiName Input label
+         */
+        "fieldLabel"?: string;
+        /**
+          * @uiName Input name attribute
+         */
+        "fieldName"?: string;
+        /**
+          * @uiName Required
+         */
+        "fieldRequired"?: boolean;
     }
     interface SqmLeaderboard {
         /**
@@ -4501,6 +4553,7 @@ declare namespace LocalJSX {
         "sqm-hero-image": SqmHeroImage;
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-image": SqmImage;
+        "sqm-input-field": SqmInputField;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-name-fields": SqmNameFields;
@@ -4590,6 +4643,7 @@ declare module "@stencil/core" {
             "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-image": LocalJSX.SqmImage & JSXBase.HTMLAttributes<HTMLSqmImageElement>;
+            "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-name-fields": LocalJSX.SqmNameFields & JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;
