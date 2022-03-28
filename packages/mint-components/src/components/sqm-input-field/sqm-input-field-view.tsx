@@ -30,14 +30,6 @@ const vanillaStyle = `
   width: 100%;
   display: block;
 }
-sl-checkbox::part(label){
-  font-size: var(--sl-input-label-font-size-small);
-  font-weight: var(--sl-font-weight-normal);
-  line-height: 20px;
-}
-sl-checkbox::part(base){
-  align-items: start;
-}
 `;
 
 jss.setup(preset());
