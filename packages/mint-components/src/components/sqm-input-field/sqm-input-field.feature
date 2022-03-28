@@ -64,3 +64,75 @@ Feature: Form Input Field
         And they register
         Then the value of the input field is submitted under "myCustomField" field
         And it is of type 'string'
+
+    @motivating
+    Scenario Outline: By default the input field is a text input
+        Given an input field inside of a "sqm-portal-register" component
+        And the input field <mayHave> prop "field-type" with <value>
+        When the user views the input field
+        Then it is a text input
+        Examples:
+            | mayHave      | value |
+            | has          | text  |
+            | doesn't have |       |
+
+    @motivating
+    Scenario: The input field can be a number input
+        Given an input field inside of a "sqm-portal-register" component
+        And the input field has prop "field-type" "number"
+        When the user views the input field
+        And the hover over
+        Then they see up and down arrows on the right hand side
+        When they click the up arrow
+        Then the number in the input field increments
+        When they click the down arrow
+        Then the number in the input field decrements
+        When they click the input
+        And try to enter text characters
+        Then nothing happens
+        When they click the input field
+        And try to enter number characters
+        Then they are added in the input
+
+    @motivating
+    Scenario: The input field can provide a date picker
+        Given an input field inside of a "sqm-portal-register" component
+        And the input field has prop "field-type" "date"
+        When the user views the input field
+        Then they see "mm/dd/yyyy" as a placeholder
+        And they see a calender icon on the right
+        When they start typing a date
+        Then it maintains the "mm/dd/yyyy" format
+        When they click the calendar icon
+        Then a dropdown appears
+        And they see a calendar
+        When they select a date
+        Then it is applied to the input
+
+    @motivating
+    Scenario: The input field can format telephone numbers
+        Given an input field inside of a "sqm-portal-register" component
+        And the input field has prop "field-type" "tel"
+        When the user views the input field
+        And they start typing in a phone number
+        Then it is formatted into the following form "(XXX) XXX-XXXX"
+        When they start their phone number with a "1"
+        And add their 10 character phone number
+        Then it is formatted into the following form "1 (XXX) XXX-XXXX"
+
+    @landmine
+    Scenario: Telephone formating is removed after 10 numbers
+        Given a user viewing a telephone type input field
+        And they entered their 10 character phone number
+        And it was not prefixed with a 1
+        When they add another character
+        Then the formatting is removed
+
+    @landmine
+    Scenario: Number type inputs are recorded in the form data as a string
+        Given an input field inside of a "sqm-portal-register" component
+        And the input field has prop "field-type" "number"
+        When the user views the input field
+        And they input 12
+        And they submit the form
+        Then the input value 12 is recorded in the form data as a string
