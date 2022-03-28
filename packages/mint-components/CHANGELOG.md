@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.3] - 2022-03-28
+
+### Changed
+
+- \<sqm-input-field>
+  - Required by default but can be optional
+  - All text is configurable by props
+  - Best used in `formData` slot
+  - Form field name can be customized with the `input-name` prop
+  - Input type can be customized with the `input-type` prop
+    - Supports `text`, `number`, `tel`, and `date` as types
+
 ## [1.5.2] - 2022-03-08
 
 ### Changed
@@ -385,7 +397,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.3...HEAD
+[1.5.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.3
 [1.5.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.2
 [1.5.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.1
 [1.5.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.0
