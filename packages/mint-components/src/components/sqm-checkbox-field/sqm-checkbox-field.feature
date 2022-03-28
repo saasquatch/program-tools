@@ -8,20 +8,22 @@ Feature: Checkbox Field
   Background:
     Given a user is viewing the "/register"
     And the registration page has the following fields
-      | fields   |
-      | email    |
-      | password |
-      | checkbox |
+      | fields     |
+      | first name |
+      | last name  |
+      | email      |
+      | password   |
+      | checkbox   |
 
   @motivating
   Scenario: Checkbox is required by default
     Given a checkbox inside of a "sqm-portal-register"
+    And the name fields have valid input
     And the email field has valid input
     And the password field has valid input
     And the checkbox is not checked
     When the user tries to register
-    Then the name fields are highlighted in red with an error message
-    And the checkbox is highlighted in red
+    Then the checkbox is highlighted in red
     And the error message says "Must be checked"
 
 
