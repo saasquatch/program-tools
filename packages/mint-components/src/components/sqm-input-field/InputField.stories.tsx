@@ -126,7 +126,7 @@ export const RegistrationField = () => (
     {...defaultRegisterProps}
     content={{
       ...defaultRegisterProps.content,
-      formData: <sqm-input-field></sqm-input-field>,
+      formData: <InputFieldView {...defaultProps} />,
     }}
   />
 );
@@ -136,7 +136,15 @@ export const RegistrationFieldCustomLabel = () => (
     {...defaultRegisterProps}
     content={{
       ...defaultRegisterProps.content,
-      formData: <sqm-input-field field-label="Data"></sqm-input-field>,
+      formData: (
+        <InputFieldView
+          {...defaultProps}
+          content={{
+            ...defaultProps.content,
+            fieldLabel: "Data",
+          }}
+        />
+      ),
     }}
   />
 );
