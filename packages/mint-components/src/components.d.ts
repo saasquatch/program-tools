@@ -403,9 +403,9 @@ export namespace Components {
         /**
           * @uiName Input Type
           * @uiType string
-          * @uiEnum ["text", "date", "email", "number", "password", "tel"]
+          * @uiEnum ["text", "date",  "number", "tel"]
          */
-        "fieldType": "text" | "date" | "email" | "number" | "password" | "tel";
+        "fieldType": "text" | "date" | "number" | "tel";
     }
     interface SqmLeaderboard {
         /**
@@ -2968,9 +2968,9 @@ declare namespace LocalJSX {
         /**
           * @uiName Input Type
           * @uiType string
-          * @uiEnum ["text", "date", "email", "number", "password", "tel"]
+          * @uiEnum ["text", "date",  "number", "tel"]
          */
-        "fieldType"?: "text" | "date" | "email" | "number" | "password" | "tel";
+        "fieldType"?: "text" | "date" | "number" | "tel";
     }
     interface SqmLeaderboard {
         /**

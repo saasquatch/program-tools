@@ -110,19 +110,6 @@ export const NumberType = createHookStory(() => {
   );
 });
 
-export const PasswordType = createHookStory(() => {
-  return (
-    <InputFieldView
-      {...defaultProps}
-      content={{
-        ...defaultProps.content,
-        fieldLabel: "Password",
-        fieldType: "password",
-      }}
-    />
-  );
-});
-
 export const TelType = createHookStory(() => {
   return (
     <InputFieldView

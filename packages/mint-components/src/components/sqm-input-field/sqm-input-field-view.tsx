@@ -11,13 +11,7 @@ export interface InputFieldViewProps {
   content: {
     fieldName: string;
     fieldLabel: string;
-    fieldType:
-      | "date"
-      | "email"
-      | "number"
-      | "password"
-      | "tel"
-      | "text"
+    fieldType: "date" | "number" | "tel" | "text";
     fieldRequired?: boolean;
     errorMessage: string;
   };
