@@ -8,8 +8,13 @@ import {
   CheckboxFieldView,
   CheckboxFieldViewProps,
 } from "./sqm-checkbox-field-view";
+import scenario from "./sqm-checkbox-field.feature";
+
 export default {
   title: "Components/Checkbox Field",
+  parameters: {
+    scenario,
+  },
 };
 
 const defaultProps: CheckboxFieldViewProps = {
