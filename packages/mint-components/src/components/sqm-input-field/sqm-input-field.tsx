@@ -25,7 +25,7 @@ export class InputField {
   /**
    * @uiName Input label
    */
-  @Prop() fieldLabel: string = "My Custom Input";
+  @Prop() fieldLabel: string;
 
   /**
    * @uiName Input Type
