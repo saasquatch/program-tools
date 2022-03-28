@@ -2,9 +2,9 @@
 @owner:derek
 Feature: Form Input Field
 
-    This componenent is used as a custom registration field during registration. A motivating use case
-    is to ask for a users company name, this calue could then be mapped through the Managed Identity Service
-    and upserted on the user after registration.
+    This componenent is used as a custom registration field during registration. The field can be text, a number, 
+    date or phone number. A motivating use case is to ask for a users company name, this value would then be mapped 
+    through the Managed Identity Service and upserted on the user after registration.
 
     Background: A user exists and is viewing the hosted portal registration
         Given a user is viewing "/register"

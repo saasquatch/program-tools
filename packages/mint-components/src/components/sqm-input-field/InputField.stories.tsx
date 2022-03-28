@@ -45,18 +45,16 @@ const defaultRegisterProps: PortalRegisterViewProps = {
   content: { pageLabel: "Register", confirmPasswordLabel: "Confirm Password" },
 };
 
-export const Default = createHookStory(() => (
-  <InputFieldView {...defaultProps} />
-));
+export const Default = () => <InputFieldView {...defaultProps} />;
 
-export const CustomLabel = createHookStory(() => (
+export const CustomLabel = () => (
   <InputFieldView
     {...defaultProps}
     content={{ ...defaultProps.content, fieldLabel: "My Label" }}
   />
-));
+);
 
-export const Error = createHookStory(() => (
+export const Error = () => (
   <InputFieldView
     {...defaultProps}
     states={{
@@ -66,9 +64,9 @@ export const Error = createHookStory(() => (
       },
     }}
   />
-));
+);
 
-export const CustomError = createHookStory(() => (
+export const CustomError = () => (
   <InputFieldView
     {...defaultProps}
     content={{
@@ -82,9 +80,9 @@ export const CustomError = createHookStory(() => (
       },
     }}
   />
-));
+);
 
-export const DateType = createHookStory(() => {
+export const DateType = () => {
   return (
     <InputFieldView
       {...defaultProps}
@@ -95,9 +93,9 @@ export const DateType = createHookStory(() => {
       }}
     />
   );
-});
+};
 
-export const NumberType = createHookStory(() => {
+export const NumberType = () => {
   return (
     <InputFieldView
       {...defaultProps}
@@ -108,9 +106,9 @@ export const NumberType = createHookStory(() => {
       }}
     />
   );
-});
+};
 
-export const TelType = createHookStory(() => {
+export const TelType = () => {
   return (
     <InputFieldView
       {...defaultProps}
@@ -121,9 +119,9 @@ export const TelType = createHookStory(() => {
       }}
     />
   );
-});
+};
 
-export const RegistrationField = createHookStory(() => (
+export const RegistrationField = () => (
   <PortalRegisterView
     {...defaultRegisterProps}
     content={{
@@ -131,9 +129,9 @@ export const RegistrationField = createHookStory(() => (
       formData: <sqm-input-field></sqm-input-field>,
     }}
   />
-));
+);
 
-export const RegistrationFieldCustomLabel = createHookStory(() => (
+export const RegistrationFieldCustomLabel = () => (
   <PortalRegisterView
     {...defaultRegisterProps}
     content={{
@@ -141,4 +139,4 @@ export const RegistrationFieldCustomLabel = createHookStory(() => (
       formData: <sqm-input-field field-label="Data"></sqm-input-field>,
     }}
   />
-));
+);
