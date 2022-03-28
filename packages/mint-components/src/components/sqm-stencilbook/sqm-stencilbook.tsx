@@ -168,7 +168,7 @@ export class StencilStorybook {
     const { class: Style, children } = useStencilbook(stories, {
       h,
       title: "Mint Components",
-      addons: [CucumberAddon, ShadowViewAddon, HookStoryAddon],
+      addons: [HookStoryAddon, ShadowViewAddon, CucumberAddon],
     });
 
     const [selectedTheme, setSelected] = useState("Default");
