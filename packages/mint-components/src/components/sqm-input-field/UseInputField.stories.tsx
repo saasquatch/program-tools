@@ -2,8 +2,13 @@ import { setUserIdentity } from "@saasquatch/component-boilerplate";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
+import scenario from "../sqm-input-field/sqm-input-field.feature";
+
 export default {
   title: "Hooks / useInputField",
+  parameters: {
+    scenario,
+  },
 };
 
 function setupGraphQL() {
@@ -86,6 +91,66 @@ export const OptionalInputs = createHookStory(() => {
         field-label="Optional Field"
         field-required="false"
         field-name="optionalField"
+      />
+    </sqm-portal-register>
+  );
+});
+
+export const DateType = createHookStory(() => {
+  setupGraphQL();
+  return (
+    <sqm-portal-register>
+      <sqm-name-fields slot="formData"></sqm-name-fields>
+      <sqm-input-field
+        slot="formData"
+        field-label="Date"
+        field-name="date"
+        field-type="date"
+      />
+    </sqm-portal-register>
+  );
+});
+
+export const NumberType = createHookStory(() => {
+  setupGraphQL();
+  return (
+    <sqm-portal-register>
+      <sqm-name-fields slot="formData"></sqm-name-fields>
+      <sqm-input-field
+        slot="formData"
+        field-label="Number"
+        field-name="number"
+        field-type="number"
+      />
+    </sqm-portal-register>
+  );
+});
+
+export const PasswordType = createHookStory(() => {
+  setupGraphQL();
+  return (
+    <sqm-portal-register>
+      <sqm-name-fields slot="formData"></sqm-name-fields>
+      <sqm-input-field
+        slot="formData"
+        field-label="Other Password"
+        field-name="password"
+        field-type="password"
+      />
+    </sqm-portal-register>
+  );
+});
+
+export const TelType = createHookStory(() => {
+  setupGraphQL();
+  return (
+    <sqm-portal-register>
+      <sqm-name-fields slot="formData"></sqm-name-fields>
+      <sqm-input-field
+        slot="formData"
+        field-label="Phone Number"
+        field-name="tel"
+        field-type="tel"
       />
     </sqm-portal-register>
   );

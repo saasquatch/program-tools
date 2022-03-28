@@ -11,6 +11,13 @@ export interface InputFieldViewProps {
   content: {
     fieldName: string;
     fieldLabel: string;
+    fieldType:
+      | "date"
+      | "email"
+      | "number"
+      | "password"
+      | "tel"
+      | "text"
     fieldRequired?: boolean;
     errorMessage: string;
   };
@@ -56,6 +63,7 @@ export function InputFieldView(props: InputFieldViewProps) {
       <sl-input
         exportparts="label: input-label"
         name={`/${content.fieldName}`}
+        type={content.fieldType}
         label={content.fieldLabel}
         {...(content.fieldRequired ? { required: true } : [])}
         {...(validationErrors?.[content.fieldName]

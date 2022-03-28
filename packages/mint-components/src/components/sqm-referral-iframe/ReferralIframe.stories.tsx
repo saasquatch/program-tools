@@ -6,7 +6,7 @@ import {
 import scenario from "../sqm-referral-iframe/sqm-referral-iframe.feature";
 
 export default {
-  title: "Referral Iframe",
+  title: "Components/Referral Iframe",
   parameters: {
     scenario,
   },

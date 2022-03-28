@@ -400,6 +400,12 @@ export namespace Components {
           * @uiName Required
          */
         "fieldRequired"?: boolean;
+        /**
+          * @uiName Input Type
+          * @uiType string
+          * @uiEnum ["text", "date", "email", "number", "password", "tel"]
+         */
+        "fieldType": "text" | "date" | "email" | "number" | "password" | "tel";
     }
     interface SqmLeaderboard {
         /**
@@ -2959,6 +2965,12 @@ declare namespace LocalJSX {
           * @uiName Required
          */
         "fieldRequired"?: boolean;
+        /**
+          * @uiName Input Type
+          * @uiType string
+          * @uiEnum ["text", "date", "email", "number", "password", "tel"]
+         */
+        "fieldType"?: "text" | "date" | "email" | "number" | "password" | "tel";
     }
     interface SqmLeaderboard {
         /**

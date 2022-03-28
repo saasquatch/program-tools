@@ -5,8 +5,13 @@ import {
 } from "../sqm-portal-register/sqm-portal-register-view";
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 import { InputFieldView, InputFieldViewProps } from "./sqm-input-field-view";
+import scenario from "../sqm-input-field/sqm-input-field.feature";
+
 export default {
   title: "Components/Input Field",
+  parameters: {
+    scenario,
+  },
 };
 
 const defaultProps: InputFieldViewProps = {
@@ -16,6 +21,7 @@ const defaultProps: InputFieldViewProps = {
   content: {
     fieldName: "field",
     fieldLabel: "My Custom Input",
+    fieldType: "text",
     fieldRequired: true,
     errorMessage: "Cannot be empty",
   },
@@ -77,6 +83,58 @@ export const CustomError = createHookStory(() => (
     }}
   />
 ));
+
+export const DateType = createHookStory(() => {
+  return (
+    <InputFieldView
+      {...defaultProps}
+      content={{
+        ...defaultProps.content,
+        fieldLabel: "Date",
+        fieldType: "date",
+      }}
+    />
+  );
+});
+
+export const NumberType = createHookStory(() => {
+  return (
+    <InputFieldView
+      {...defaultProps}
+      content={{
+        ...defaultProps.content,
+        fieldLabel: "Number",
+        fieldType: "number",
+      }}
+    />
+  );
+});
+
+export const PasswordType = createHookStory(() => {
+  return (
+    <InputFieldView
+      {...defaultProps}
+      content={{
+        ...defaultProps.content,
+        fieldLabel: "Password",
+        fieldType: "password",
+      }}
+    />
+  );
+});
+
+export const TelType = createHookStory(() => {
+  return (
+    <InputFieldView
+      {...defaultProps}
+      content={{
+        ...defaultProps.content,
+        fieldLabel: "Phone Number",
+        fieldType: "tel",
+      }}
+    />
+  );
+});
 
 export const RegistrationField = createHookStory(() => (
   <PortalRegisterView

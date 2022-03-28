@@ -28,6 +28,14 @@ export class InputField {
   @Prop() fieldLabel: string = "My Custom Input";
 
   /**
+   * @uiName Input Type
+   * @uiType string
+   * @uiEnum ["text", "date", "email", "number", "password", "tel"]
+   */
+  @Prop() fieldType: "text" | "date" | "email" | "number" | "password" | "tel" =
+    "text";
+
+  /**
    * @uiName Empty error message
    */
   @Prop() errorMessage: string = "Cannot be empty";
