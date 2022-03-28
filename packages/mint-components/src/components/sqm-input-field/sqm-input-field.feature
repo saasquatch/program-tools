@@ -110,6 +110,7 @@ Feature: Form Input Field
     @landmine
     Scenario Outline: Input values are always recorded as strings in the form data
         Given the input has prop "field-type" with <value>
+        And it has a "field-name"
         When the user inputs <formInput>
         And they register
         Then <formInput> is recorded in the form data as a string
@@ -119,3 +120,10 @@ Feature: Form Input Field
             | number | 123            |
             | date   | 05/07/2021     |
             | tel    | (250) 234-9877 |
+
+    @landmine
+    Scenario: Input fields must be given a "field-name" to appear in form data
+        Given the input does not have prop "field-name"
+        When the users fills in the input
+        And they register
+        Then the value of the input is not recorded in the form data
