@@ -33,7 +33,7 @@ Feature: Form Input Field
         And it has label "My Custom Input" above the input
 
     @minutae
-    Scenario Outline: Validation error message is configurable
+    Scenario Outline: The validation error message is configurable
         Given the input is required
         And it has prop "error-message" with <value>
         When the user tries to register
