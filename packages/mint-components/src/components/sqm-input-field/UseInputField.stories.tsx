@@ -2,7 +2,7 @@ import { setUserIdentity } from "@saasquatch/component-boilerplate";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
-import scenario from "../sqm-input-field/sqm-input-field.feature";
+import scenario from "./sqm-input-field.feature";
 
 export default {
   title: "Hooks / useInputField",

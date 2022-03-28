@@ -5,7 +5,7 @@ import {
 } from "../sqm-portal-register/sqm-portal-register-view";
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 import { InputFieldView, InputFieldViewProps } from "./sqm-input-field-view";
-import scenario from "../sqm-input-field/sqm-input-field.feature";
+import scenario from "./sqm-input-field.feature";
 
 export default {
   title: "Components/Input Field",
