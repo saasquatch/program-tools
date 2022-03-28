@@ -122,8 +122,8 @@ Feature: Form Input Field
             | tel    | (250) 234-9877 |
 
     @landmine
-    Scenario: Input fields must be given a "field-name" to appear in form data
+    Scenario: Input fields without field names appear under "/undefined" in the form data
         Given the input does not have prop "field-name"
         When the users enters a value in the input
         And they register
-        Then the value of the input is not recorded in the form data
+        Then the value of the input is recorded under "/undefined" in the form data
