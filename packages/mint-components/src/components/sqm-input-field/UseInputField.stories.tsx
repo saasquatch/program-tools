@@ -126,21 +126,6 @@ export const NumberType = createHookStory(() => {
   );
 });
 
-export const PasswordType = createHookStory(() => {
-  setupGraphQL();
-  return (
-    <sqm-portal-register>
-      <sqm-name-fields slot="formData"></sqm-name-fields>
-      <sqm-input-field
-        slot="formData"
-        field-label="Other Password"
-        field-name="password"
-        field-type="password"
-      />
-    </sqm-portal-register>
-  );
-});
-
 export const TelType = createHookStory(() => {
   setupGraphQL();
   return (

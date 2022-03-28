@@ -30,10 +30,9 @@ export class InputField {
   /**
    * @uiName Input Type
    * @uiType string
-   * @uiEnum ["text", "date", "email", "number", "password", "tel"]
+   * @uiEnum ["text", "date",  "number", "tel"]
    */
-  @Prop() fieldType: "text" | "date" | "email" | "number" | "password" | "tel" =
-    "text";
+  @Prop() fieldType: "text" | "date" | "number" | "tel" = "text";
 
   /**
    * @uiName Empty error message
