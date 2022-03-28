@@ -124,6 +124,6 @@ Feature: Form Input Field
     @landmine
     Scenario: Input fields must be given a "field-name" to appear in form data
         Given the input does not have prop "field-name"
-        When the users fills in the input
+        When the users enters a value in the input
         And they register
         Then the value of the input is not recorded in the form data
