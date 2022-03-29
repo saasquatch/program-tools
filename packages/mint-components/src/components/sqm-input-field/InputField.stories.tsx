@@ -3,7 +3,6 @@ import {
   PortalRegisterView,
   PortalRegisterViewProps,
 } from "../sqm-portal-register/sqm-portal-register-view";
-import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 import { InputFieldView, InputFieldViewProps } from "./sqm-input-field-view";
 import scenario from "./sqm-input-field.feature";
 
@@ -22,7 +21,7 @@ const defaultProps: InputFieldViewProps = {
     fieldName: "field",
     fieldLabel: "My Custom Input",
     fieldType: "text",
-    fieldRequired: true,
+    fieldOptional: true,
     errorMessage: "Cannot be empty",
   },
 };
@@ -90,19 +89,6 @@ export const DateType = () => {
         ...defaultProps.content,
         fieldLabel: "Date",
         fieldType: "date",
-      }}
-    />
-  );
-};
-
-export const NumberType = () => {
-  return (
-    <InputFieldView
-      {...defaultProps}
-      content={{
-        ...defaultProps.content,
-        fieldLabel: "Number",
-        fieldType: "number",
       }}
     />
   );

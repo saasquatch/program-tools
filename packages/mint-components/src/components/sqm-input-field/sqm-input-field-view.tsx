@@ -12,7 +12,7 @@ export interface InputFieldViewProps {
     fieldName: string;
     fieldLabel: string;
     fieldType: "date" | "tel" | "text";
-    fieldRequired?: boolean;
+    fieldOptional?: boolean;
     errorMessage: string;
   };
 }
@@ -51,7 +51,7 @@ export function InputFieldView(props: InputFieldViewProps) {
         name={`/${content.fieldName}`}
         type={content.fieldType}
         label={content.fieldLabel}
-        {...(content.fieldRequired ? { required: true } : [])}
+        {...(!content.fieldOptional ? { required: true } : [])}
         {...(validationErrors?.[content.fieldName]
           ? {
               class: sheet.classes.ErrorStyle,

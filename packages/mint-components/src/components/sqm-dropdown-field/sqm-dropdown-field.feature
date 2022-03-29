@@ -20,7 +20,7 @@ Feature: Dropdown field
   @minutae
   Scenario: The dropdown field can be optional
     Given a dropdown component inside of a "sqm-portal-register"
-    And the dropdown has prop "dropdown-required" with value "false"
+    And the dropdown has prop "dropdown-optional" with value "true"
     When the user tries to register
     And they havent selected a dropdown option
     Then they see no validation error

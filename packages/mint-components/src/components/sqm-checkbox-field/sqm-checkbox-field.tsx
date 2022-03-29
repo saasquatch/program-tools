@@ -3,7 +3,8 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
-import { getProps } from "../../utils/utils";
+import { RequiredPropsError } from "../../utils/RequiredPropsError";
+import { getMissingProps, getProps } from "../../utils/utils";
 import {
   CheckboxFieldView,
   CheckboxFieldViewProps,
@@ -46,9 +47,9 @@ export class CheckboxField {
   @Prop() errorMessage: string = "Must be checked";
 
   /**
-   * @uiName Required
+   * @uiName Optional
    */
-  @Prop() checkboxRequired?: boolean = true;
+  @Prop() checkboxOptional?: boolean = false;
 
   /** @undocumented */
   @Prop() demoData?: DemoData<CheckboxFieldViewProps>;
@@ -60,6 +61,17 @@ export class CheckboxField {
   disconnectedCallback() {}
 
   render() {
+    const missingProps = getMissingProps([
+      {
+        attribute: "checkbox-name",
+        value: this.checkboxName,
+      },
+    ]);
+
+    if (missingProps) {
+      return <RequiredPropsError missingProps={missingProps} />;
+    }
+
     const content = {
       ...getProps(this),
     };

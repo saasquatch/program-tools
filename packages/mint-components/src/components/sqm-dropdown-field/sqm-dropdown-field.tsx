@@ -3,7 +3,8 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
-import { getProps } from "../../utils/utils";
+import { RequiredPropsError } from "../../utils/RequiredPropsError";
+import { getMissingProps, getProps } from "../../utils/utils";
 import {
   DropdownFieldView,
   DropdownFieldViewProps,
@@ -35,9 +36,9 @@ export class DropdownField {
   @Prop() errorMessage: string = "Select an option";
 
   /**
-   * @uiName Required
+   * @uiName Optional
    */
-  @Prop() dropdownRequired?: boolean = true;
+  @Prop() dropdownOptional?: boolean = false;
 
   /** @undocumented */
   @Prop() demoData?: DemoData<DropdownFieldViewProps>;
@@ -49,6 +50,17 @@ export class DropdownField {
   disconnectedCallback() {}
 
   render() {
+    const missingProps = getMissingProps([
+      {
+        attribute: "dropdown-name",
+        value: this.dropdownName,
+      },
+    ]);
+
+    if (missingProps) {
+      return <RequiredPropsError missingProps={missingProps} />;
+    }
+
     const content = {
       ...getProps(this),
       selectOptions: <slot></slot>,

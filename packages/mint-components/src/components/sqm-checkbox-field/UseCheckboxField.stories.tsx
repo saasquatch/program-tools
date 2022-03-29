@@ -88,7 +88,7 @@ export const OptionalCheckboxes = createHookStory(() => {
       <sqm-checkbox-field
         slot="formData"
         checkbox-label="I am not a robot"
-        checkbox-required="false"
+        checkbox-optional="true"
         checkbox-name="isHuman"
       />
       <div slot="terms">

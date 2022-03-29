@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Best used in `formData` slot
     - Form field name can be customized with the `field-name` prop
     - Input type can be customized with the `field-type` prop
-      - Supports `text`, `number`, `tel`, and `date` as types
+      - Supports `text`, `tel`, and `date` as types
 
 ## [1.5.2] - 2022-03-08
 

@@ -3,7 +3,8 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
-import { getProps } from "../../utils/utils";
+import { RequiredPropsError } from "../../utils/RequiredPropsError";
+import { getMissingProps, getProps } from "../../utils/utils";
 import { InputFieldView, InputFieldViewProps } from "./sqm-input-field-view";
 import { useInputField } from "./useInputField";
 
@@ -40,9 +41,9 @@ export class InputField {
   @Prop() errorMessage: string = "Cannot be empty";
 
   /**
-   * @uiName Required
+   * @uiName Optional
    */
-  @Prop() fieldRequired?: boolean = true;
+  @Prop() fieldOptional?: boolean = false;
 
   /** @undocumented */
   @Prop() demoData?: DemoData<InputFieldViewProps>;
@@ -57,6 +58,17 @@ export class InputField {
     const content = {
       ...getProps(this),
     };
+
+    const missingProps = getMissingProps([
+      {
+        attribute: "field-name",
+        value: this.fieldName,
+      },
+    ]);
+
+    if (missingProps) {
+      return <RequiredPropsError missingProps={missingProps} />;
+    }
 
     const { states } = isDemo() ? useInputFieldDemo(this) : useInputField();
     return <InputFieldView states={states} content={content}></InputFieldView>;
