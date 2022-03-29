@@ -65,3 +65,16 @@ export const Countries = createHookStory(() => {
     </sqm-portal-register>
   );
 });
+
+export const MissingName = createHookStory(() => {
+  setupGraphQL();
+  return (
+    <sqm-portal-register>
+      <sqm-dropdown-field slot="formData" dropdown-label="Country">
+        <sl-menu-item value="CA">Canada</sl-menu-item>
+        <sl-menu-item value="US">United States</sl-menu-item>
+        <sl-menu-item value="GB">United Kingdom</sl-menu-item>
+      </sqm-dropdown-field>
+    </sqm-portal-register>
+  );
+});

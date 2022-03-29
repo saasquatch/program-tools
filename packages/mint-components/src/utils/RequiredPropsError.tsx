@@ -18,16 +18,16 @@ const style = {
     top: "23px",
   },
   DivStyle: {
-    marginLeft: "30px",
+    marginLeft: "28px",
   },
   Details: {
-    marginLeft: "30px",
+    marginLeft: "28px",
   },
   Heading: {
     display: "inline-block",
   },
   Alert: {
-    margin: "30px",
+    margin: "28px",
   },
 };
 
@@ -46,11 +46,11 @@ export function RequiredPropsError({ missingProps }: RequiredPropsErrorProps) {
       </div>
       <div class={sheet.classes.DivStyle}>
         <h2 class={sheet.classes.Heading}>
-          There was a problem loading this page
+          There was a problem loading this section
         </h2>
         <p>
-          There was a technical problem that prevented this page from loading.
-          Please contact us with the link to this page.
+          There was a technical problem that prevented this section from
+          loading. Please contact us with the link to this page.
         </p>
       </div>
       <details class={sheet.classes.Details}>

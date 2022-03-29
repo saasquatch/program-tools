@@ -7,14 +7,14 @@
 
 ## Properties
 
-| Property        | Attribute        | Description | Type                                                                                                                                                                                                            | Default             |
-| --------------- | ---------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
-| `demoData`      | --               |             | `{ states?: { validationErrors?: ValidationErrors; }; content?: { fieldName: string; fieldLabel: string; fieldType: "number" \| "text" \| "date" \| "tel"; fieldRequired?: boolean; errorMessage: string; }; }` | `undefined`         |
-| `errorMessage`  | `error-message`  |             | `string`                                                                                                                                                                                                        | `"Cannot be empty"` |
-| `fieldLabel`    | `field-label`    |             | `string`                                                                                                                                                                                                        | `undefined`         |
-| `fieldName`     | `field-name`     |             | `string`                                                                                                                                                                                                        | `undefined`         |
-| `fieldRequired` | `field-required` |             | `boolean`                                                                                                                                                                                                       | `true`              |
-| `fieldType`     | `field-type`     |             | `"date" \| "number" \| "tel" \| "text"`                                                                                                                                                                         | `"text"`            |
+| Property        | Attribute        | Description | Type                                                                                                                                                                                                | Default             |
+| --------------- | ---------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| `demoData`      | --               |             | `{ states?: { validationErrors?: ValidationErrors; }; content?: { fieldName: string; fieldLabel: string; fieldType: "text" \| "date" \| "tel"; fieldOptional?: boolean; errorMessage: string; }; }` | `undefined`         |
+| `errorMessage`  | `error-message`  |             | `string`                                                                                                                                                                                            | `"Cannot be empty"` |
+| `fieldLabel`    | `field-label`    |             | `string`                                                                                                                                                                                            | `undefined`         |
+| `fieldName`     | `field-name`     |             | `string`                                                                                                                                                                                            | `undefined`         |
+| `fieldOptional` | `field-optional` |             | `boolean`                                                                                                                                                                                           | `false`             |
+| `fieldType`     | `field-type`     |             | `"date" \| "tel" \| "text"`                                                                                                                                                                         | `"text"`            |
 
 
 ## Dependencies

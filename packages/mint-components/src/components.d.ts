@@ -125,9 +125,9 @@ export namespace Components {
          */
         "checkboxName": string;
         /**
-          * @uiName Required
+          * @uiName Optional
          */
-        "checkboxRequired"?: boolean;
+        "checkboxOptional"?: boolean;
         /**
           * @undocumented
          */
@@ -165,9 +165,9 @@ export namespace Components {
          */
         "dropdownName": string;
         /**
-          * @uiName Required
+          * @uiName Optional
          */
-        "dropdownRequired"?: boolean;
+        "dropdownOptional"?: boolean;
         /**
           * @uiName Unselected error message
          */
@@ -397,15 +397,15 @@ export namespace Components {
          */
         "fieldName": string;
         /**
-          * @uiName Required
+          * @uiName Optional
          */
-        "fieldRequired"?: boolean;
+        "fieldOptional"?: boolean;
         /**
           * @uiName Input Type
           * @uiType string
-          * @uiEnum ["text", "date",  "number", "tel"]
+          * @uiEnum ["text", "date", "tel"]
          */
-        "fieldType": "text" | "date" | "number" | "tel";
+        "fieldType": "text" | "date" | "tel";
     }
     interface SqmLeaderboard {
         /**
@@ -2690,9 +2690,9 @@ declare namespace LocalJSX {
          */
         "checkboxName"?: string;
         /**
-          * @uiName Required
+          * @uiName Optional
          */
-        "checkboxRequired"?: boolean;
+        "checkboxOptional"?: boolean;
         /**
           * @undocumented
          */
@@ -2730,9 +2730,9 @@ declare namespace LocalJSX {
          */
         "dropdownName"?: string;
         /**
-          * @uiName Required
+          * @uiName Optional
          */
-        "dropdownRequired"?: boolean;
+        "dropdownOptional"?: boolean;
         /**
           * @uiName Unselected error message
          */
@@ -2962,15 +2962,15 @@ declare namespace LocalJSX {
          */
         "fieldName"?: string;
         /**
-          * @uiName Required
+          * @uiName Optional
          */
-        "fieldRequired"?: boolean;
+        "fieldOptional"?: boolean;
         /**
           * @uiName Input Type
           * @uiType string
-          * @uiEnum ["text", "date",  "number", "tel"]
+          * @uiEnum ["text", "date", "tel"]
          */
-        "fieldType"?: "text" | "date" | "number" | "tel";
+        "fieldType"?: "text" | "date" | "tel";
     }
     interface SqmLeaderboard {
         /**

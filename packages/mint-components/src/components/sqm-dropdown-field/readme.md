@@ -9,10 +9,10 @@
 
 | Property           | Attribute           | Description | Type                                                                                                                                                                                                     | Default              |
 | ------------------ | ------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| `demoData`         | --                  |             | `{ states?: { validationErrors?: ValidationErrors; }; content?: { dropdownName: string; dropdownLabel: string; dropdownRequired?: boolean; errorMessage: string; selectOptions?: VNode \| VNode[]; }; }` | `undefined`          |
+| `demoData`         | --                  |             | `{ states?: { validationErrors?: ValidationErrors; }; content?: { dropdownName: string; dropdownLabel: string; dropdownOptional?: boolean; errorMessage: string; selectOptions?: VNode \| VNode[]; }; }` | `undefined`          |
 | `dropdownLabel`    | `dropdown-label`    |             | `string`                                                                                                                                                                                                 | `"Select an option"` |
 | `dropdownName`     | `dropdown-name`     |             | `string`                                                                                                                                                                                                 | `undefined`          |
-| `dropdownRequired` | `dropdown-required` |             | `boolean`                                                                                                                                                                                                | `true`               |
+| `dropdownOptional` | `dropdown-optional` |             | `boolean`                                                                                                                                                                                                | `false`              |
 | `errorMessage`     | `error-message`     |             | `string`                                                                                                                                                                                                 | `"Select an option"` |
 
 

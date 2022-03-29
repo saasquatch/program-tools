@@ -125,3 +125,17 @@ export const TelType = createHookStory(() => {
     </sqm-portal-register>
   );
 });
+
+export const MissingName = createHookStory(() => {
+  setupGraphQL();
+  return (
+    <sqm-portal-register>
+      <sqm-name-fields slot="formData"></sqm-name-fields>
+      <sqm-input-field
+        slot="formData"
+        field-label="Phone Number"
+        field-type="tel"
+      />
+    </sqm-portal-register>
+  );
+});
