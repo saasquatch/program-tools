@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Component:
 
   - \<sqm-input-field>
-    - Required by default but can be optional
+    - Required by default but can be optional with the `field-optional` prop
     - All text is configurable by props
     - Best used in `formData` slot
     - Form field name can be customized with the `field-name` prop
