@@ -57,7 +57,7 @@ export class DropdownField {
       },
     ]);
 
-    if (missingProps) {
+    if (!isDemo() && missingProps) {
       return <RequiredPropsError missingProps={missingProps} />;
     }
 

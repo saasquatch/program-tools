@@ -68,7 +68,7 @@ export class CheckboxField {
       },
     ]);
 
-    if (missingProps) {
+    if (!isDemo() && missingProps) {
       return <RequiredPropsError missingProps={missingProps} />;
     }
 
