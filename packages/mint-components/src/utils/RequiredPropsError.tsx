@@ -29,12 +29,18 @@ const style = {
   Alert: {
     margin: "28px",
   },
+  Children: {
+    display: "none",
+  },
 };
 
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function RequiredPropsError({ missingProps }: RequiredPropsErrorProps) {
+export function RequiredPropsError(
+  { missingProps }: RequiredPropsErrorProps,
+  children
+) {
   if (!missingProps) return false;
   const host = useHost();
   const [detailsOpen, setDetailsOpen] = useState(false);
@@ -69,6 +75,7 @@ export function RequiredPropsError({ missingProps }: RequiredPropsErrorProps) {
           ))}
         </ul>
       </details>
+      <div class={sheet.classes.Children}>{children}</div>
     </sl-alert>
   );
 }
