@@ -10,7 +10,7 @@ export interface DropdownFieldViewProps {
   content: {
     dropdownName: string;
     dropdownLabel: string;
-    dropdownRequired?: boolean;
+    dropdownOptional?: boolean;
     errorMessage: string;
     selectOptions?: VNode | VNode[];
   };
@@ -62,7 +62,7 @@ export function DropdownFieldView(props: DropdownFieldViewProps) {
         exportparts="label: input-label"
         label={content.dropdownLabel}
         name={`/${content.dropdownName}`}
-        {...(content.dropdownRequired ? { required: true } : [])}
+        {...(!content.dropdownOptional ? { required: true } : [])}
         {...(validationErrors?.[content.dropdownName]
           ? {
               class: sheet.classes.ErrorStyle,

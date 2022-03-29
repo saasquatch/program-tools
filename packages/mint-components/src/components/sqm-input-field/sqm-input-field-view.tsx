@@ -11,8 +11,8 @@ export interface InputFieldViewProps {
   content: {
     fieldName: string;
     fieldLabel: string;
-    fieldType: "date" | "number" | "tel" | "text";
-    fieldRequired?: boolean;
+    fieldType: "date" | "tel" | "text";
+    fieldOptional?: boolean;
     errorMessage: string;
   };
 }
@@ -29,14 +29,6 @@ const vanillaStyle = `
   margin: 0 auto;
   width: 100%;
   display: block;
-}
-sl-checkbox::part(label){
-  font-size: var(--sl-input-label-font-size-small);
-  font-weight: var(--sl-font-weight-normal);
-  line-height: 20px;
-}
-sl-checkbox::part(base){
-  align-items: start;
 }
 `;
 
@@ -59,7 +51,7 @@ export function InputFieldView(props: InputFieldViewProps) {
         name={`/${content.fieldName}`}
         type={content.fieldType}
         label={content.fieldLabel}
-        {...(content.fieldRequired ? { required: true } : [])}
+        {...(!content.fieldOptional ? { required: true } : [])}
         {...(validationErrors?.[content.fieldName]
           ? {
               class: sheet.classes.ErrorStyle,

@@ -89,7 +89,7 @@ export const OptionalInputs = createHookStory(() => {
       <sqm-input-field
         slot="formData"
         field-label="Optional Field"
-        field-required="false"
+        field-optional="true"
         field-name="optionalField"
       />
     </sqm-portal-register>
@@ -106,21 +106,6 @@ export const DateType = createHookStory(() => {
         field-label="Date"
         field-name="date"
         field-type="date"
-      />
-    </sqm-portal-register>
-  );
-});
-
-export const NumberType = createHookStory(() => {
-  setupGraphQL();
-  return (
-    <sqm-portal-register>
-      <sqm-name-fields slot="formData"></sqm-name-fields>
-      <sqm-input-field
-        slot="formData"
-        field-label="Number"
-        field-name="number"
-        field-type="number"
       />
     </sqm-portal-register>
   );

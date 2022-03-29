@@ -13,7 +13,7 @@ Feature: Form Input Field
 
     @motivating
     Scenario Outline: Input fields are required by default but can be optional
-        Given the input has prop "field-required" with <value>
+        Given the input has prop "field-optional" with <value>
         And the input is empty
         When the user tries to register
         Then the input <mayBe> highlighted in red
@@ -21,9 +21,9 @@ Feature: Form Input Field
         And form submission <mayBe> blocked
         Examples:
             | value | mayBe | mayAppear      |
-            | true  | is    | appears        |
+            | false | is    | appears        |
             |       | is    | appears        |
-            | false | isn't | doesn't appear |
+            | true  | isn't | doesn't appear |
 
     @motivating
     Scenario: Input field labels are configurable

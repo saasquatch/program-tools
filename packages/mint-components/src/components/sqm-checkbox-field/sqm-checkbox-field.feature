@@ -87,7 +87,7 @@ Feature: Checkbox Field
       <sqm-checkbox-field
       slot="formData"
       checkbox-label="I am not a robot"
-      checkbox-required="false"
+      checkbox-optional="true"
       checkbox-name="isHuman"
       />
       </sqm-portal-register>

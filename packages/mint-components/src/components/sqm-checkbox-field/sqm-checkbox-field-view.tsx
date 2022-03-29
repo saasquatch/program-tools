@@ -14,7 +14,7 @@ export interface CheckboxFieldViewProps {
     checkboxLabel: string;
     checkboxLabelLink?: string;
     checkboxLabelLinkText?: string;
-    checkboxRequired?: boolean;
+    checkboxOptional?: boolean;
     errorMessage: string;
   };
   callbacks: {
@@ -85,7 +85,7 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
           e.target.value = e.target.checked;
           callbacks.setChecked(e.target.value);
         }}
-        {...(content.checkboxRequired ? { required: true } : [])}
+        {...(!content.checkboxOptional ? { required: true } : [])}
         {...(!states.checked && validationErrors?.[content.checkboxName]
           ? {
               class: sheet.classes.ErrorStyle,
