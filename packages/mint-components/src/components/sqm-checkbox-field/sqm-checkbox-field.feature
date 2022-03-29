@@ -5,9 +5,10 @@ Feature: Checkbox Field
   Field to be used to be used as a checkbox during registration. A motivating use case is to use this component as a terms
   and conditions field, to sastisfy legal requirements that a customer might have for their end users.
 
-  Background:
+  Background: A user is on the portal registration page
     Given a user is viewing the "/register"
-    And the registration page has the following fields
+    And "/register" contains the registration form
+    And the registration form has the following fields
       | fields     |
       | first name |
       | last name  |
@@ -17,15 +18,14 @@ Feature: Checkbox Field
 
   @motivating
   Scenario: Checkbox is required by default
-    Given a checkbox inside of a "sqm-portal-register"
+    Given the user is filling out the registration form
     And the name fields have valid input
     And the email field has valid input
     And the password field has valid input
     And the checkbox is not checked
-    When the user tries to register
+    When they try to register
     Then the checkbox is highlighted in red
     And the error message says "Must be checked"
-
 
   @landmine
   Scenario: Checkboxes with the same "checkbox-name" are not submitted in the form data
@@ -98,8 +98,8 @@ Feature: Checkbox Field
 
   @minutae
   Scenario Outline: Validation error message is configurable
-    Given a checkbox inside of a "sqm-portal-register"
-    And the checkbox is required
+    The error message string is evaluated as an ICU string, but currently is provided no context
+    Given the checkbox is required
     And the checkbox has prop "error-message" with <propValue>
     When the user tries to register
     But they havent checked the checkbox
@@ -111,8 +111,7 @@ Feature: Checkbox Field
 
   @motivating
   Scenario Outline: Checkbox text and link are configurable
-    Given a checkbox inside of a "sqm-portal-register"
-    And the checkbox has the following prop values
+    Given the checkbox has the following prop values
       | prop                     | value           |
       | checkbox-label           | <labelText>     |
       | checkbox-label-link      | <labelLink>     |
@@ -129,8 +128,24 @@ Feature: Checkbox Field
 
   @motivating
   Scenario: The form field name attribute is configurable
-    Given a checkbox inside of a "sqm-portal-register"
-    And the checkbox has prop "checkbox-name" with value "myCheckBox"
+    Given the checkbox has prop "checkbox-name" with value "myCheckBox"
     When the user checks the box
     And they register
     Then the value of the checkbox is submitted under "myCheckBox" field
+
+  @minutae
+  Scenario Outline: The checkbox field component fails fast if a checkbox name isn't provided
+    Given the checkbox <mayHave> prop "checkbox-name"
+    And it <mayHavePropValue>
+    When a user views the checkbox
+    Then an alert with an error message is displayed in place of the checkbox
+    And it has a details section
+    When "More details" is clicked
+    Then the following information will be displayed
+      | component being used |
+      | missing attribute(s) |
+    Examples:
+      | mayBeAnAttribute | mayHavePropValue |
+      | doesn't have     | N/A              |
+      | has              | ""               |
+      | has              |                  |

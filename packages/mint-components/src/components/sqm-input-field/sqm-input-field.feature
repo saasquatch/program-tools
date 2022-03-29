@@ -2,8 +2,8 @@
 @owner:derek
 Feature: Form Input Field
 
-    This component is used as a custom registration field during registration. The field can be text, a number,
-    date or phone number. A motivating use case is to ask for a users company name, this value would then be mapped
+    This component is used as a custom registration field during registration. The field can be text,
+    a date or phone number. A motivating use case is to ask for a users company name, this value would then be mapped
     through the Managed Identity Service and upserted on the user after registration.
 
     Background: A user exists and is viewing the hosted portal registration
@@ -34,6 +34,7 @@ Feature: Form Input Field
 
     @minutae
     Scenario Outline: The validation error message is configurable
+        The error message string is evaluated as an ICU string, but currently is provided no context
         Given the input is required
         And it has prop "error-message" with <value>
         When the user tries to register
@@ -60,22 +61,6 @@ Feature: Form Input Field
             | mayHave      | value |
             | has          | text  |
             | doesn't have |       |
-
-    @motivating
-    Scenario: Number type inputs are supported
-        Given the input has prop "field-type" with value "number"
-        When the user views the input field
-        And the hover over it
-        Then they see up and down arrows on the right hand side
-        When they click the up arrow
-        Then the number in the input field increments
-        When they click the down arrow
-        Then the number in the input field decrements
-        When they click the input
-        And try to enter text characters
-        Then nothing happens
-        When they click the input field
-        Then they are able to input numbers
 
     @motivating
     Scenario: Date type inputs are supported
@@ -113,17 +98,26 @@ Feature: Form Input Field
         And it has a "field-name"
         When the user inputs <formInput>
         And they register
-        Then <formInput> is recorded in the form data as a string
+        Then <formData> is recorded in the form data as a string
         Examples:
-            | value  | formInput      |
-            | text   | Hello there    |
-            | number | 123            |
-            | date   | 05/07/2021     |
-            | tel    | (250) 234-9877 |
+            | value | formInput      | formData       |
+            | text  | Hello there    | Hello there    |
+            | date  | 05/07/2021     | 2021-05-07     |
+            | tel   | (250) 234-9877 | (250) 234-9877 |
 
-    @landmine
-    Scenario: Input fields without field names appear under "/undefined" in the form data
-        Given the input does not have prop "field-name"
-        When the users enters a value in the input
-        And they register
-        Then the value of the input is recorded under "/undefined" in the form data
+    @minutae
+    Scenario Outline: The input field component fails fast if a field name isn't provided
+        Given the input <mayHave> prop "field-name"
+        And it <mayHavePropValue>
+        When a user views the input
+        Then an alert with an error message is displayed in place of the input
+        And it has a details section
+        When "More details" is clicked
+        Then the following information will be displayed
+            | component being used |
+            | missing attribute(s) |
+        Examples:
+            | mayBeAnAttribute | mayHavePropValue |
+            | doesn't have     | N/A              |
+            | has              | ""               |
+            | has              |                  |

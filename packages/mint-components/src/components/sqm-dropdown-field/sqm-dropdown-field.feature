@@ -6,21 +6,22 @@ Feature: Dropdown field
   for users to select between during registration.
 
   Background: A user is on the portal registration page
-    Given a user is viewing the "/register"
+    Given a user is viewing "/register"
+    And "/register" contains the registration form
+    And the registration form has checkbox field component
 
   @motivating
   Scenario: The dropdown field is required by default
-    Given a dropdown component inside of a "sqm-portal-register"
-    When the user tries to register
+    Given the user tries to register
     But they havent selected a dropdown option
+    When they click "Register"
     Then they are not registered
     And they see the dropdown bordered in red
     And below they see the validation error "Must select an option"
 
   @minutae
   Scenario: The dropdown field can be optional
-    Given a dropdown component inside of a "sqm-portal-register"
-    And the dropdown has prop "dropdown-optional" with value "true"
+    Given the dropdown has prop "dropdown-optional" with value "true"
     When the user tries to register
     And they havent selected a dropdown option
     Then they see no validation error
@@ -28,8 +29,7 @@ Feature: Dropdown field
 
   @motivating
   Scenario Outline: Dropdown label is configurable
-    Given a dropdown component inside of a "sqm-portal-register"
-    And the dropdown has prop "dropdown-label" with <propValue>
+    Given the dropdown has prop "dropdown-label" with <propValue>
     When the user views the dropdown component
     Then the label is <label>
     Examples:
@@ -39,8 +39,8 @@ Feature: Dropdown field
 
   @minutae
   Scenario Outline: Validation error message is configurable
-    Given a dropdown component inside of a "sqm-portal-register"
-    And the dropdown is required
+    The error message string is evaluated as an ICU string, but currently is provided no context
+    Given the dropdown is required
     And the dropdown has prop "error-message" with <propValue>
     When the user tries to register
     But they havent selected a dropdown option
@@ -80,8 +80,24 @@ Feature: Dropdown field
 
   @motivating
   Scenario: The form field name attribute is configurable
-    Given a dropdown component inside of a "sqm-portal-register"
-    And the dropdown has prop "dropdown-name" with value "myDropDown"
+    Given the dropdown has prop "dropdown-name" with value "myDropDown"
     When the user selects a drop down option
     And they register
     Then the value of their selected option is submitted under "myDropDown" field
+
+  @minutae
+  Scenario Outline: The dropdown field component fails fast if a dropdown name isn't provided
+    Given the dropdown <mayHave> prop "dropdown-name"
+    And it <mayHavePropValue>
+    When a user views the dropdown
+    Then an alert with an error message is displayed in place of the dropdown
+    And it has a details section
+    When "More details" is clicked
+    Then the following information will be displayed
+      | component being used |
+      | missing attribute(s) |
+    Examples:
+      | mayBeAnAttribute | mayHavePropValue |
+      | doesn't have     | N/A              |
+      | has              | ""               |
+      | has              |                  |
