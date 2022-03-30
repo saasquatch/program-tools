@@ -113,7 +113,8 @@ Feature: Form Input Field
         Then an alert with an error message is displayed in place of the input
         And it has a details section
         When "More details" is clicked
-        Then the following information will be displayed
+        Then the following information is displayed
+            | information          |
             | component being used |
             | missing attribute(s) |
         Examples:

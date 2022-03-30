@@ -131,7 +131,7 @@ Feature: Checkbox Field
     Given the checkbox has prop "checkbox-name" with value "myCheckBox"
     When the user checks the box
     And they register
-    Then the value of the checkbox is submitted under "myCheckBox" field
+    Then the boolean value of the checkbox is submitted under "myCheckBox" field
 
   @minutae
   Scenario Outline: The checkbox field component fails fast if a checkbox name isn't provided
@@ -141,7 +141,8 @@ Feature: Checkbox Field
     Then an alert with an error message is displayed in place of the checkbox
     And it has a details section
     When "More details" is clicked
-    Then the following information will be displayed
+    Then the following information is displayed
+      | information          |
       | component being used |
       | missing attribute(s) |
     Examples:

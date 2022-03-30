@@ -17,7 +17,7 @@ Feature: Dropdown field
     When they click "Register"
     Then they are not registered
     And they see the dropdown bordered in red
-    And below they see the validation error "Must select an option"
+    And below they see the validation error "Select an option"
 
   @minutae
   Scenario: The dropdown field can be optional
@@ -47,7 +47,7 @@ Feature: Dropdown field
     Then they see <errorMessage> below
     Examples:
       | propValue         | errorMessage          |
-      |                   | Must select an option |
+      |                   | Select an option |
       | My Custom Message | My Custom Message     |
 
   @motivating
@@ -93,7 +93,8 @@ Feature: Dropdown field
     Then an alert with an error message is displayed in place of the dropdown
     And it has a details section
     When "More details" is clicked
-    Then the following information will be displayed
+    Then the following information is displayed
+      | information          |
       | component being used |
       | missing attribute(s) |
     Examples:
