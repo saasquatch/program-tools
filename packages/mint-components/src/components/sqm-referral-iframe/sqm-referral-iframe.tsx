@@ -55,7 +55,16 @@ export class SqmReferralIframe {
     ]);
 
     if (missingProps) {
-      return <RequiredPropsError missingProps={missingProps} />;
+      return (
+        <RequiredPropsError
+          missingProps={missingProps}
+          heading={"An error occured while loading this page"}
+          subheading={
+            "A technical problem prevented this iframe from loading. Please contact us with the link to this page."
+          }
+          description={"Values for the following attributes are missing:"}
+        />
+      );
     }
 
     const { states, data } = isDemo()

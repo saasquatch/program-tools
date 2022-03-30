@@ -69,7 +69,18 @@ export class CheckboxField {
     ]);
 
     if (!isDemo() && missingProps) {
-      return <RequiredPropsError missingProps={missingProps} />;
+      return (
+        <RequiredPropsError
+          missingProps={missingProps}
+          heading={"An error occured while loading this form"}
+          subheading={
+            "A technical problem prevented this checkbox field from loading. Please contact us with the link to this page."
+          }
+          description={
+            "Values for the following attributes are missing:"
+          }
+        />
+      );
     }
 
     const content = {

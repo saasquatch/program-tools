@@ -59,7 +59,16 @@ export class DropdownField {
 
     if (!isDemo() && missingProps) {
       return (
-        <RequiredPropsError missingProps={missingProps}>
+        <RequiredPropsError
+          missingProps={missingProps}
+          heading={"An error occured while loading this form"}
+          subheading={
+            "A technical problem prevented this drop down field from loading. Please contact us with the link to this page."
+          }
+          description={
+            "Values for the following attributes are missing:"
+          }
+        >
           <slot />
         </RequiredPropsError>
       );

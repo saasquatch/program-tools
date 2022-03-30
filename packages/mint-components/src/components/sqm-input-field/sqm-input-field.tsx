@@ -67,9 +67,19 @@ export class InputField {
     ]);
 
     if (!isDemo() && missingProps) {
-      return <RequiredPropsError missingProps={missingProps} />;
+      return (
+        <RequiredPropsError
+          missingProps={missingProps}
+          heading={"An error occured while loading this form"}
+          subheading={
+            "A technical problem prevented this input field from loading. Please contact us with the link to this page."
+          }
+          description={
+            "Values for the following attributes are missing:"
+          }
+        />
+      );
     }
-
     const { states } = isDemo() ? useInputFieldDemo(this) : useInputField();
     return <InputFieldView states={states} content={content}></InputFieldView>;
   }
