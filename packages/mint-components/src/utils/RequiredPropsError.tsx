@@ -82,8 +82,6 @@ export function RequiredPropsError(
             },
             { tagName: host.tagName.toLowerCase() }
           )}
-          {intl}
-          {host}
         </p>
         <ul>
           {missingProps.map((prop) => (
