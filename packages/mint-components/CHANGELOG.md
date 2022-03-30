@@ -16,12 +16,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added Component:
 
   - \<sqm-input-field>
-    - Required by default but can be optional
+    - Required by default but can be optional with the `field-optional` prop
     - All text is configurable by props
     - Best used in `formData` slot
     - Form field name can be customized with the `field-name` prop
+      - Error will be displayed if `field-name` prop is not included
     - Input type can be customized with the `field-type` prop
       - Supports `text`, `tel`, and `date` as types
+
+- Changed Components:
+
+  - \<sqm-dropdown-field>
+
+    - Error will be displayed if `dropdown-name` prop is not included
+    - `dropdown-required` prop deprecated, must use `dropdown-optional` instead
+
+  - \<sqm-checkbox-field>
+
+    - Error will be displayed if `checkbox-name` prop is not included
+    - `checkbox-required` prop deprecated, must use `checkbox-optional` instead
 
 ## [1.5.2] - 2022-03-08
 

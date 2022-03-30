@@ -106,7 +106,12 @@ export function CheckboxFieldView(props: CheckboxFieldViewProps) {
           }
         )}
         {!states.checked && validationErrors?.[content.checkboxName] && (
-          <p class={sheet.classes.ErrorMessageStyle}>{content.errorMessage}</p>
+          <p class={sheet.classes.ErrorMessageStyle}>
+            {intl.formatMessage({
+              id: `errorMessage-${content.checkboxName}`,
+              defaultMessage: content.errorMessage,
+            })}
+          </p>
         )}
       </sl-checkbox>
     </div>

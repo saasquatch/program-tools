@@ -57,8 +57,12 @@ export class DropdownField {
       },
     ]);
 
-    if (missingProps) {
-      return <RequiredPropsError missingProps={missingProps} />;
+    if (!isDemo() && missingProps) {
+      return (
+        <RequiredPropsError missingProps={missingProps}>
+          <slot />
+        </RequiredPropsError>
+      );
     }
 
     const content = {

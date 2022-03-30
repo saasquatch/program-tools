@@ -94,8 +94,12 @@ export const CustomError = createHookStory(() => (
     states={{
       ...defaultProps.states,
       validationErrors: {
-        agree: "This checkbox must be checked to continue",
+        agree: "Must be checked",
       },
+    }}
+    content={{
+      ...defaultProps.content,
+      errorMessage: "This checkbox must be checked to continue",
     }}
   />
 ));

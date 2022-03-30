@@ -74,7 +74,7 @@ export const MultipleCheckboxes = createHookStory(() => {
         checkbox-name="isHuman"
       ></sqm-checkbox-field>
       <div slot="terms">
-        <sqm-checkbox-field></sqm-checkbox-field>
+        <sqm-checkbox-field checkbox-name="otherCheckbox"></sqm-checkbox-field>
       </div>
     </sqm-portal-register>
   );
@@ -91,6 +91,17 @@ export const OptionalCheckboxes = createHookStory(() => {
         checkbox-optional="true"
         checkbox-name="isHuman"
       />
+      <div slot="terms">
+        <sqm-checkbox-field checkbox-name="required"></sqm-checkbox-field>
+      </div>
+    </sqm-portal-register>
+  );
+});
+
+export const MissingName = createHookStory(() => {
+  setupGraphQL();
+  return (
+    <sqm-portal-register>
       <div slot="terms">
         <sqm-checkbox-field></sqm-checkbox-field>
       </div>

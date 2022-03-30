@@ -66,7 +66,7 @@ export class InputField {
       },
     ]);
 
-    if (missingProps) {
+    if (!isDemo() && missingProps) {
       return <RequiredPropsError missingProps={missingProps} />;
     }
 

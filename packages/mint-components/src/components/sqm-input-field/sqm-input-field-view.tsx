@@ -1,6 +1,7 @@
 import { h } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
+import { intl } from "../../global/global";
 import { ErrorStyles } from "../../global/mixins";
 import { ValidationErrors } from "../sqm-portal-register/useValidationState";
 
@@ -55,8 +56,11 @@ export function InputFieldView(props: InputFieldViewProps) {
         {...(validationErrors?.[content.fieldName]
           ? {
               class: sheet.classes.ErrorStyle,
-              helpText:
-                content.errorMessage || validationErrors?.[content.fieldName],
+              helpText: intl.formatMessage({
+                id: `errorMessage-${content.fieldName}`,
+                defaultMessage:
+                  content.errorMessage || validationErrors?.[content.fieldName],
+              }),
             }
           : [])}
       ></sl-input>
