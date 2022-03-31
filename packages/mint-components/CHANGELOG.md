@@ -35,7 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `checkbox-required` prop deprecated, must use `checkbox-optional` instead
       - Field is still required by default\
   - \<sqm-referral-iframe>
-    - Update fail fast state text
+    - Updated fail fast state text
 
 ## [1.5.2] - 2022-03-08
 
