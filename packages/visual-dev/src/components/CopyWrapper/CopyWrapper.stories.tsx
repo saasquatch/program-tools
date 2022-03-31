@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { CopyWrapper } from ".";
+import { CopyWrapperView } from ".";
 import { Icon } from "../..";
 import { Tooltip } from "../Tooltip";
 
 export default {
   title: "Components / Copy Wrapper",
-  component: CopyWrapper,
+  component: CopyWrapperView,
 };
 
 export const AroundIcon = () => {
   const [copySuccess, setCopySuccess] = useState(false);
   return (
     <>
-      <CopyWrapper
+      <CopyWrapperView
         copyCallback={setCopySuccess}
         copyContent="This is test clipboard content"
       >
         <Icon icon="copy" color="var(--sq-action-primary)" />
-      </CopyWrapper>
+      </CopyWrapperView>
       <br></br>
       <span>Copy success value: {copySuccess ? "true" : "false"}</span>
     </>
@@ -37,7 +37,7 @@ export const WithTooltip = () => {
 
   return (
     <>
-      <CopyWrapper
+      <CopyWrapperView
         copyCallback={setCopySuccess}
         copyContent="This is test clipboard content"
       >
@@ -48,7 +48,7 @@ export const WithTooltip = () => {
         >
           <Icon icon="copy" color="var(--sq-action-primary)" />
         </Tooltip>
-      </CopyWrapper>
+      </CopyWrapperView>
       <br></br>
     </>
   );

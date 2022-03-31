@@ -95,13 +95,13 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const DropdownContainer = styled("div")<Required<StyleProps>>`
-  ${Styles.base}
+const DropdownDiv = styled("div")<Required<StyleProps>>`
+  ${Styles.DropdownDiv}
   ${(props) => props.customCSS}
 `;
 
-const DropdownButton = styled("div")<Required<ButtonProps>>`
-  ${Styles.button}
+const DropdownButtonDiv = styled("div")<Required<ButtonProps>>`
+  ${Styles.ButtonDiv}
   border-radius: ${(props) => (props.pill ? "100px" : "4px")};
   text-align: ${(props) => (props.center ? "center" : "left")};
   line-height: ${(props) => (props.narrow ? "10px" : "16px")};
@@ -118,10 +118,10 @@ const DropdownButton = styled("div")<Required<ButtonProps>>`
     ${(props) => props.disabled && "cursor: not-allowed;"};
   }
 `;
-const DropdownContent = styled("div")<
+const DropdownContentDiv = styled("div")<
   Pick<DropdownProps, "pill" | "popUpwards">
 >`
-  ${Styles.content}
+  ${Styles.ContentDiv}
   border-radius: ${(props) => (props.pill ? "20px" : "4px")};
 
   ${(props) =>
@@ -130,29 +130,29 @@ const DropdownContent = styled("div")<
       : "margin-top: var(--sq-spacing-x-small);"}
 `;
 
-const DropdownItemStyle = styled("div")<Required<StyleProps>>`
-  ${Styles.item}
+const DropdownItemDiv = styled("div")<Required<StyleProps>>`
+  ${Styles.ItemDiv}
   ${(props) => props.customCSS}
 `;
 
-const SublistContent = styled("div")<Required<StyleProps>>`
-  ${Styles.subcontent}
+const SublistDiv = styled("div")<Required<StyleProps>>`
+  ${Styles.SublistDiv}
   ${(props) => props.customCSS}
 `;
 
-const DropdownSubItemStyle = styled("div")`
+const DropdownSubItemDiv = styled("div")`
   ${Styles.subitem}
 `;
 
-const DropdownSublistStyle = styled("div")`
-  ${Styles.sublist}
+const DropdownSublistDiv = styled("div")`
+  ${Styles.DropdownSublistDiv}
 `;
 
-const ArrowStyle = styled("span")`
+const ArrowStyleSpan = styled("span")`
   ${Styles.arrow}
 `;
 
-const Dropdown = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
+const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
   (props, forwardedRef) => {
     const {
       text = "",
@@ -170,8 +170,8 @@ const Dropdown = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
     } = props;
 
     return (
-      <DropdownContainer {...rest} ref={forwardedRef} customCSS={customCSS}>
-        <DropdownButton
+      <DropdownDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+        <DropdownButtonDiv
           pill={pill}
           center={center}
           narrow={narrow}
@@ -186,51 +186,65 @@ const Dropdown = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
               style={{ margin: -3, top: 2.5, marginRight: "8px" }}
             />
           )}
-          {text} <ArrowStyle>{showMenu ? chevron_up : chevron_down}</ArrowStyle>
-        </DropdownButton>
+          {text}{" "}
+          <ArrowStyleSpan>
+            {showMenu ? chevron_up : chevron_down}
+          </ArrowStyleSpan>
+        </DropdownButtonDiv>
         {showMenu && (
-          <DropdownContent pill={pill} popUpwards={popUpwards}>
+          <DropdownContentDiv pill={pill} popUpwards={popUpwards}>
             {children}
-          </DropdownContent>
+          </DropdownContentDiv>
         )}
-      </DropdownContainer>
+      </DropdownDiv>
     );
   }
 );
 
-const Item = React.forwardRef<React.ElementRef<"div">, DropdownItemProps>(
+const ItemView = React.forwardRef<React.ElementRef<"div">, DropdownItemProps>(
   (props, forwardedRef) => {
     const { onClick, children, customCSS = {}, ...rest } = props;
 
     return (
-      <DropdownItemStyle
+      <DropdownItemDiv
         onClick={onClick}
         {...rest}
         ref={forwardedRef}
         customCSS={customCSS}
       >
         {children}
-      </DropdownItemStyle>
+      </DropdownItemDiv>
     );
   }
 );
 
-const Sublist = React.forwardRef<React.ElementRef<"div">, DropdownSublistProps>(
-  (props, forwardedRef) => {
-    const { name, children, customCSS = {}, ...rest } = props;
+const SublistView = React.forwardRef<
+  React.ElementRef<"div">,
+  DropdownSublistProps
+>((props, forwardedRef) => {
+  const { name, children, customCSS = {}, ...rest } = props;
 
-    return (
-      <SublistContent {...rest} ref={forwardedRef} customCSS={customCSS}>
-        <DropdownSublistStyle>{name}</DropdownSublistStyle>
-        <DropdownSubItemStyle>{children}</DropdownSubItemStyle>
-      </SublistContent>
-    );
-  }
-);
-
-const DropdownNamespace = Object.assign(Dropdown, {
-  Sublist: Sublist,
-  Item: Item,
+  return (
+    <SublistDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+      <DropdownSublistDiv>{name}</DropdownSublistDiv>
+      <DropdownSubItemDiv>{children}</DropdownSubItemDiv>
+    </SublistDiv>
+  );
 });
 
-export { DropdownNamespace as Dropdown };
+const DropdownNamespace = Object.assign(DropdownView, {
+  SublistView: SublistView,
+  ItemView: ItemView,
+});
+
+const DropdownNamespaceDeprecated = Object.assign(DropdownView, {
+  Sublist: SublistView,
+  Item: ItemView,
+});
+
+export { DropdownNamespace as DropdownView };
+
+/**
+ * @deprecated use {@link DropdownView} instead
+ */
+export { DropdownNamespaceDeprecated as Dropdown };

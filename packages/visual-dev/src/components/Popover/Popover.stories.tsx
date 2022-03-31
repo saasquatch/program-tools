@@ -3,7 +3,7 @@ import { Popover } from ".";
 import { Paragraph } from "../Paragraph";
 import { Icon } from "../Icon";
 import { HoverPopover } from "./HoverPopover";
-import { CopyWrapper } from "../CopyWrapper/CopyWrapper";
+import { CopyWrapperView } from "../CopyWrapper/CopyWrapper";
 
 export default {
   title: "Components / Popover",
@@ -110,14 +110,14 @@ export const CopyPopover = () => (
   <Popover show={true} relativeX="24px" relativeY="24px">
     <span style={{ display: "flex", alignItems: "center", gap: "8px" }}>
       http://coleton-example.com/mz3aN3{" "}
-      <CopyWrapper
+      <CopyWrapperView
         copyCallback={(result: boolean) => {
           console.log(result);
         }}
         copyContent="This is test clipboard content"
       >
         <Icon icon="copy" color="var(--sq-action-primary)" />
-      </CopyWrapper>
+      </CopyWrapperView>
     </span>
   </Popover>
 );

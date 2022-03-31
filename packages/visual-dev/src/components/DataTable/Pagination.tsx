@@ -52,11 +52,11 @@ const TextDiv = styled.div<{ selected?: boolean }>`
       : "font-weight: var(--sq-font-weight-regular);"}
 `;
 
-const Container = styled.div`
+const ContainerDiv = styled.div`
   ${styles.PaginationContainer}
 `;
 
-export const Pagination = React.forwardRef<
+export const PaginationView = React.forwardRef<
   React.ElementRef<"div">,
   PopoverProps
 >((props, forwardedRef) => {
@@ -89,7 +89,7 @@ export const Pagination = React.forwardRef<
     <PaginationDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
       {total &&
         `${offset + 1} - ${Math.min(offset + limit, total)} of ${total}`}
-      <Container>
+      <ContainerDiv>
         <IconButton
           borderless={true}
           size="mini"
@@ -159,7 +159,12 @@ export const Pagination = React.forwardRef<
             50 Per Page
           </Dropdown.Item>
         </Dropdown>
-      </Container>
+      </ContainerDiv>
     </PaginationDiv>
   );
 });
+
+/**
+ * @deprecated use {@link PaginationView} instead
+ */
+export const Pagination = PaginationView;

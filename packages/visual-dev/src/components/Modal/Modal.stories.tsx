@@ -14,7 +14,7 @@ import { Dropdown } from "../Dropdown";
 import { Input } from "../Input";
 import { RadioAction } from "../RadioAction";
 import { Icon } from "../Icon";
-import { Checkbox } from "../Checkbox";
+import { CheckboxView } from "../Checkbox";
 
 export default {
   title: "Components / Modal",
@@ -380,7 +380,10 @@ export const WithFormElements = () => {
             User ID <span style={{ color: "#989898" }}> (required) </span>
             <Input value="" style={{ margin: "10px 0 10px 0" }} />
             <br />
-            <Checkbox value={true} options={{ text: "Referrable" }}></Checkbox>
+            <CheckboxView
+              value={true}
+              options={{ text: "Referrable" }}
+            ></CheckboxView>
           </ModalContentText>
           <ModalContentDivider />
           <ModalContentAction

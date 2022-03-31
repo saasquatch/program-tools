@@ -1,11 +1,11 @@
 import { WidgetProps } from "@rjsf/core";
 import React from "react";
-import { Checkbox } from "./Checkbox";
+import { CheckboxView } from "./Checkbox";
 
 export function RJSFCheckbox(props: WidgetProps) {
   const options = props.options;
   return (
-    <Checkbox
+    <CheckboxView
       id={props.id}
       {...options}
       value={props.value}

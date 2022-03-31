@@ -40,7 +40,7 @@ const SkeletonDiv = styled.div<
   ${(props) => props.customCSS};
 `;
 
-export const Skeleton = React.forwardRef<
+export const SkeletonView = React.forwardRef<
   React.ElementRef<"div">,
   PopoverProps & { size?: string; circle?: boolean }
 >((props, forwardedRef) => {
@@ -66,3 +66,8 @@ export const Skeleton = React.forwardRef<
     </SkeletonDiv>
   );
 });
+
+/**
+ * @deprecated use {@link SkeletonView} instead
+ */
+export const Skeleton = SkeletonView;

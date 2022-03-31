@@ -58,13 +58,13 @@ const RowDiv = styled.div`
   ${Styles.Row.row}
 `;
 
-const DataTableContainer = styled.div<Required<StyleProps>>`
+const DataTableDiv = styled.div<Required<StyleProps>>`
   ${Styles.DataTableDiv}
   width: ${(props) => props.width};
   ${(props) => props.customCSS}
 `;
 
-export const DataTable = React.forwardRef<
+export const DataTableView = React.forwardRef<
   React.ElementRef<"div">,
   DataTableProps
 >((props, forwardedRef) => {
@@ -82,7 +82,7 @@ export const DataTable = React.forwardRef<
   } = props;
 
   return (
-    <DataTableContainer
+    <DataTableDiv
       {...rest}
       width={width}
       ref={forwardedRef}
@@ -109,6 +109,11 @@ export const DataTable = React.forwardRef<
       )}
       {!empty && !emptyFilter && children}
       {footerContent}
-    </DataTableContainer>
+    </DataTableDiv>
   );
 });
+
+/**
+ * @deprecated use {@link DataTableView} instead
+ */
+export const DataTable = DataTableView;

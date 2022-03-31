@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Checkbox } from ".";
+import { CheckboxView } from ".";
 
 export default {
   title: "Components / Checkbox",
-  component: Checkbox,
+  component: CheckboxView,
 };
 
 export const functional = () => {
@@ -12,7 +12,7 @@ export const functional = () => {
     text: "Checkbox",
   };
   return (
-    <Checkbox
+    <CheckboxView
       options={options}
       value={value}
       onChange={() => console.log("change!")}
@@ -25,14 +25,14 @@ export const checkbox = () => {
   const options = {
     text: "Checkbox",
   };
-  return <Checkbox options={options} value={false} onChange={undefined} />;
+  return <CheckboxView options={options} value={false} onChange={undefined} />;
 };
 
 export const checkboxChecked = () => {
   const options = {
     text: "Checked",
   };
-  return <Checkbox options={options} value={true} onChange={undefined} />;
+  return <CheckboxView options={options} value={true} onChange={undefined} />;
 };
 
 export const Disabled = () => {
@@ -40,7 +40,7 @@ export const Disabled = () => {
     text: "Disabled",
   };
   return (
-    <Checkbox
+    <CheckboxView
       options={options}
       value={false}
       disabled={true}
@@ -54,7 +54,7 @@ export const DisabledChecked = () => {
     text: "Checked",
   };
   return (
-    <Checkbox
+    <CheckboxView
       options={options}
       value={true}
       disabled={true}
@@ -68,7 +68,7 @@ export const CustomCSS = () => {
     text: "Checked",
   };
   return (
-    <Checkbox
+    <CheckboxView
       options={options}
       value={true}
       disabled={true}

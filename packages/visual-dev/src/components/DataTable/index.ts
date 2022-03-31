@@ -1,16 +1,29 @@
-import { Banner } from "./Banner";
-import { Filter } from "./Filter";
-import { Pagination } from "./Pagination";
-import { Row } from "./Row";
-import { DataTable } from "./DataTable";
-import { Skeleton } from "./Skeleton";
+import { BannerView } from "./Banner";
+import { FilterView } from "./Filter";
+import { PaginationView } from "./Pagination";
+import { RowView } from "./Row";
+import { DataTableView } from "./DataTable";
+import { SkeletonView } from "./Skeleton";
 
-const DataTableNamespace = Object.assign(DataTable, {
-  Row: Row,
-  Pagination: Pagination,
-  Banner: Banner,
-  Filter: Filter,
-  Skeleton: Skeleton,
+const DataTableNamespace = Object.assign(DataTableView, {
+  RowView: RowView,
+  PaginationView: PaginationView,
+  BannerView: BannerView,
+  FilterView: FilterView,
+  SkeletonView: SkeletonView,
 });
 
-export { DataTableNamespace as DataTable };
+const DataTableNamespaceDeprecated = Object.assign(DataTableView, {
+  Row: RowView,
+  Pagination: PaginationView,
+  Banner: BannerView,
+  Filter: FilterView,
+  Skeleton: SkeletonView,
+});
+
+export { DataTableNamespace as DataTableView };
+
+/**
+ * @deprecated use {@link DataTableView} instead
+ */
+export { DataTableNamespaceDeprecated as DataTable };

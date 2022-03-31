@@ -5,8 +5,8 @@ import { Text } from "../Text";
 import { Dropdown } from "../Dropdown";
 import { HoverPopover, Popover } from "../Popover";
 import { BadgeView } from "../Badge";
-import { Filter } from "./Filter";
-import { Banner } from "./Banner";
+import { FilterView } from "./Filter";
+import { BannerView } from "./Banner";
 import { DataTable } from ".";
 
 export default {
@@ -176,7 +176,7 @@ export const FormSubmissionTableWithBanner = () => {
         width="958px"
         headerSlot={
           <>
-            <Banner>
+            <BannerView>
               Filter Rewards by Program
               <div
                 style={{
@@ -189,7 +189,7 @@ export const FormSubmissionTableWithBanner = () => {
                 .
               </div>
               5 rewards earned across all programs
-            </Banner>
+            </BannerView>
             <DataTable.Row variant="header">{content_a}</DataTable.Row>
           </>
         }

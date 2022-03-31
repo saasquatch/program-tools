@@ -20,19 +20,25 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const BannerContainer = styled.div<Required<StyleProps>>`
+const BannerDiv = styled.div<Required<StyleProps>>`
   ${Styles.BannerDiv}
 
   ${(props) => props.customCSS}
 `;
 
-export const Banner = React.forwardRef<React.ElementRef<"div">, FilterProps>(
-  (props, forwardedRef) => {
-    const { children, customCSS = "", ...rest } = props;
-    return (
-      <BannerContainer {...rest} ref={forwardedRef} customCSS={customCSS}>
-        {children}
-      </BannerContainer>
-    );
-  }
-);
+export const BannerView = React.forwardRef<
+  React.ElementRef<"div">,
+  FilterProps
+>((props, forwardedRef) => {
+  const { children, customCSS = "", ...rest } = props;
+  return (
+    <BannerDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+      {children}
+    </BannerDiv>
+  );
+});
+
+/**
+ * @deprecated use {@link BannerView} instead
+ */
+export const Banner = BannerView;

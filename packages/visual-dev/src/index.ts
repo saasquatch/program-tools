@@ -10,7 +10,7 @@ import { Tag } from "./components/Tag";
 import { Tooltip } from "./components/Tooltip";
 import { GlobalStyle, CSSVariables, TextRules } from "./components/GlobalStyle";
 import { Button, IconButton, IconButtonView } from "./components/Button";
-import { Checkbox, RJSFCheckbox } from "./components/Checkbox";
+import { Checkbox, CheckboxView, RJSFCheckbox } from "./components/Checkbox";
 import { Radio, RJSFRadio } from "./components/Radio";
 import {
   Input,
@@ -36,9 +36,9 @@ import { RadioAction } from "./components/RadioAction";
 import { List } from "./components/List";
 import { Accordion, AccordionView } from "./components/Accordion";
 import { DataGraphic } from "./components/Graphics";
-import { DataTable } from "./components/DataTable";
+import { DataTable, DataTableView } from "./components/DataTable";
 import { Popover, HoverPopover } from "./components/Popover";
-import { CopyWrapper } from "./components/CopyWrapper";
+import { CopyWrapper, CopyWrapperView } from "./components/CopyWrapper";
 import { CardContainer } from "./components/Layouts";
 import {
   CardView,
@@ -48,6 +48,7 @@ import {
   CardEdit,
   CardLong,
 } from "./components/Card";
+import { Dropdown, DropdownView } from "./components/Dropdown";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -69,11 +70,16 @@ export {
   CardEdit,
   CardLongView,
   CardLong,
+  CheckboxView,
   Checkbox,
+  CopyWrapperView,
   CopyWrapper,
   CSSVariables,
   DataGraphic,
+  DataTableView,
   DataTable,
+  Dropdown,
+  DropdownView,
   ErrorListTemplate,
   FieldTemplate,
   GlobalStyle,

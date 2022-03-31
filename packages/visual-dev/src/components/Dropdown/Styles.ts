@@ -1,11 +1,11 @@
 import { css } from "styled-components";
 
-export const base = css`
+export const DropdownDiv = css`
   position: relative;
   min-width: 191px;
   display: inline-block;
 `;
-export const subcontent = css`
+export const SublistDiv = css`
   border-radius: inherit;
 `;
 
@@ -14,7 +14,7 @@ export const subitem = css`
   border-radius: inherit;
 `;
 
-export const sublist = css`
+export const DropdownSublistDiv = css`
   padding: 15px;
   border-radius: inherit;
   user-select: none;
@@ -33,7 +33,7 @@ export const arrow = css`
   }
 `;
 
-export const button = css`
+export const ButtonDiv = css`
   display: flex;
   user-select: none;
   padding: 7px 12px;
@@ -45,7 +45,7 @@ export const button = css`
   line-height: var(--sq-line-height-regular);
 `;
 
-export const content = css`
+export const ContentDiv = css`
   position: absolute;
   width: max-content;
   min-width: inherit;
@@ -58,7 +58,7 @@ export const content = css`
   }
 `;
 
-export const item = css`
+export const ItemDiv = css`
   padding: 15px;
   cursor: pointer;
   color: var(--sq-text);

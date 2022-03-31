@@ -39,7 +39,7 @@ const ContentDiv = styled.div<{ flex: string; center: boolean; width: string }>`
   width: ${(props) => props.width};
 `;
 
-export const Row = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
+export const RowView = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
   (props, forwardedRef) => {
     const {
       variant = "row",
@@ -71,3 +71,8 @@ export const Row = React.forwardRef<React.ElementRef<"div">, PopoverProps>(
     );
   }
 );
+
+/**
+ * @deprecated use {@link RowView} instead
+ */
+export const Row = RowView;

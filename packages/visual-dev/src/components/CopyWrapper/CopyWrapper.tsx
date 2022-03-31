@@ -15,11 +15,11 @@ export interface OptionProps {
   copyCallback: (copyResult: boolean) => void;
 }
 
-const Container = styled.div`
+const ContainerDiv = styled.div`
   display: contents;
 `;
 
-export const CopyWrapper = React.forwardRef<
+export const CopyWrapperView = React.forwardRef<
   React.ElementRef<"div">,
   CopyWrapperProps
 >((props, forwardedRef) => {
@@ -37,8 +37,13 @@ export const CopyWrapper = React.forwardRef<
   };
 
   return (
-    <Container onClick={writeToClipboard} {...rest} ref={forwardedRef}>
+    <ContainerDiv onClick={writeToClipboard} {...rest} ref={forwardedRef}>
       {children}
-    </Container>
+    </ContainerDiv>
   );
 });
+
+/**
+ * @deprecated use {@link CopyWrapperView} instead
+ */
+export const CopyWrapper = CopyWrapperView;

@@ -19,7 +19,7 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const Menus = styled.div<Required<StyleProps>>`
+const MenusDiv = styled.div<Required<StyleProps>>`
   div + div {
     margin-left: var(--sq-spacing-x-small);
   }
@@ -28,13 +28,19 @@ const Menus = styled.div<Required<StyleProps>>`
   ${(props) => props.customCSS}
 `;
 
-export const Filter = React.forwardRef<React.ElementRef<"div">, FilterProps>(
-  (props, forwardedRef) => {
-    const { children, customCSS = "", ...rest } = props;
-    return (
-      <Menus {...rest} ref={forwardedRef} customCSS={customCSS}>
-        {children}
-      </Menus>
-    );
-  }
-);
+export const FilterView = React.forwardRef<
+  React.ElementRef<"div">,
+  FilterProps
+>((props, forwardedRef) => {
+  const { children, customCSS = "", ...rest } = props;
+  return (
+    <MenusDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+      {children}
+    </MenusDiv>
+  );
+});
+
+/**
+ * @deprecated use {@link FilterView} instead
+ */
+export const Filter = FilterView;
