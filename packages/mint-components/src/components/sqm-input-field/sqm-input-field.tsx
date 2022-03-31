@@ -19,12 +19,14 @@ export class InputField {
   ignored = true;
 
   /**
-   * @uiName Input name attribute
+   * Used as the key of the inputs value in form data.
+   * 
+   * @uiName Input Name Attribute
    */
   @Prop() fieldName: string;
 
   /**
-   * @uiName Input label
+   * @uiName Input Label
    */
   @Prop() fieldLabel: string;
 
@@ -37,7 +39,7 @@ export class InputField {
   @Prop() fieldType: "text" | "date" | "tel" = "text";
 
   /**
-   * @uiName Empty error message
+   * @uiName Required Error Message
    */
   @Prop() errorMessage: string = "Cannot be empty";
 
