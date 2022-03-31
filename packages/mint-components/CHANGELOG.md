@@ -9,12 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.5.3] - 2022-03-31
 
-### Changed
-
+### Added
 - Input component added for use in \<sqm-portal-register>
-
 - Added Component:
-
   - \<sqm-input-field>
     - Required by default but can be optional with the `field-optional` prop
     - Field label and error message are configurable by prop
@@ -26,16 +23,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Input type can be customized with the `field-type` prop
       - Supports `text`, `tel`, and `date` as types
 
+### Changed
+
 - Changed Components:
-
   - \<sqm-dropdown-field>
-
     - An error is now displayed if `dropdown-name` prop is not included
     - `dropdown-required` prop deprecated, must use `dropdown-optional` instead
       - Field is still required by default
-
   - \<sqm-checkbox-field>
-
     - Error is now displayed if `checkbox-name` prop is not included
     - `checkbox-required` prop deprecated, must use `checkbox-optional` instead
       - Field is still required by default
