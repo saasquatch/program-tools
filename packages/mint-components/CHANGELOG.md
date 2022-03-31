@@ -17,12 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
   - \<sqm-input-field>
     - Required by default but can be optional with the `field-optional` prop
-    - All text is configurable by props
+    - Field label and error message are configurable by prop
     - Best used in `formData` slot inside \<sqm-portal-register>
     - Form field name can be customized with the `field-name` prop
-      - `field-name` must be a unique string and will be submitted as the key to the value submitted
-        - For example, with `field-name` set to `businessName`: `{"businessName":"SaaSquatch"}`
-      - Error will be displayed if `field-name` prop is not included
+      - `field-name` must be a unique string and is submitted as the key to the value submitted
+        - For example, with `field-name` set to `businessName` the result is `{"businessName":"SaaSquatch"}`
+      - An error is displayed if `field-name` prop is not included
     - Input type can be customized with the `field-type` prop
       - Supports `text`, `tel`, and `date` as types
 
@@ -30,13 +30,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
   - \<sqm-dropdown-field>
 
-    - Error will be displayed if `dropdown-name` prop is not included
+    - An error is now displayed if `dropdown-name` prop is not included
     - `dropdown-required` prop deprecated, must use `dropdown-optional` instead
       - Field is still required by default
 
   - \<sqm-checkbox-field>
 
-    - Error will be displayed if `checkbox-name` prop is not included
+    - Error is now displayed if `checkbox-name` prop is not included
     - `checkbox-required` prop deprecated, must use `checkbox-optional` instead
       - Field is still required by default
 
