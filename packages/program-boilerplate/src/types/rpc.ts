@@ -166,8 +166,16 @@ type ProgramValidationFunctions = {
  * of the trigger.
  */
 export type ProgramTriggerResult = {
-  json: any;
+  json: any | ProgramTriggerError;
   code: number;
+};
+
+/**
+ * Error format that is returned to json result of program trigger
+ */
+export type ProgramTriggerError = {
+  error: string;
+  message: string;
 };
 
 /**

@@ -1,15 +1,12 @@
 import * as request from "supertest";
 import { webtask } from "../src/index";
+import { silenceLogger } from "../src/logger";
 
 describe("webtask express wrapper functionality", () => {
-  // hopefully can remove this once the console logs are cleaned up in trigger.ts
-  const cachedLogger = console.log;
   beforeAll(() => {
-    console.log = () => {};
+    silenceLogger();
   });
-  afterAll(() => {
-    console.log = cachedLogger;
-  });
+
   const testSuccessBody = {
     messageType: "PROGRAM_INTROSPECTION" as "PROGRAM_INTROSPECTION",
     template: { test: "template" },
@@ -49,9 +46,7 @@ describe("webtask express wrapper functionality", () => {
 
   const successSpy = jest.fn((...args) => newTemplate);
   const errorSpy = jest.fn((...args) => {
-    const error = new Error();
-    error.stack = "message";
-    throw error;
+    throw new Error();
   });
 
   const testProgram = {
@@ -77,7 +72,7 @@ describe("webtask express wrapper functionality", () => {
         .send(testErrorBody);
       expect(response.body).toStrictEqual({
         error: "An error occurred in a webtask",
-        message: "message",
+        message: "An unspecified error occurred in the program",
       });
       expect(response.status).toBe(500);
     });

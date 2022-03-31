@@ -1,3 +1,4 @@
+import { silenceLogger } from "../src/logger";
 import Transaction from "../src/transaction";
 import { triggerProgram } from "../src/trigger";
 import {
@@ -8,14 +9,10 @@ import {
   Program,
 } from "../src/types/rpc";
 
-const cachedLogger = console.log;
-beforeAll(() => {
-  console.log = () => {};
-});
-afterAll(() => {
-  console.log = cachedLogger;
-});
 describe("triggerProgram", () => {
+  beforeAll(() => {
+    silenceLogger();
+  });
   describe("body has invalid messageType", () => {
     const testBody = {
       messageType: "NOT_YET_ADDED_TO_BOILERPLATE",
@@ -30,6 +27,7 @@ describe("triggerProgram", () => {
       );
       expect(result).toStrictEqual({
         json: {
+          error: "Unrecognized messageType",
           message: `Unrecognized messageType NOT_YET_ADDED_TO_BOILERPLATE`,
         },
         code: 501,
@@ -92,7 +90,6 @@ describe("triggerProgram", () => {
     test("PROGRAM_INTROSPECTION errors", () => {
       const spy = jest.fn((...args) => {
         const error = new Error();
-        error.stack = undefined;
         throw error;
       });
       const spyingProgram = {
@@ -108,7 +105,7 @@ describe("triggerProgram", () => {
       expect(result).toStrictEqual({
         json: {
           error: "An error occurred in a webtask",
-          message: undefined,
+          message: "An unspecified error occurred in the program",
         },
         code: 500,
       });
@@ -152,7 +149,6 @@ describe("triggerProgram", () => {
     test("PROGRAM_TRIGGER errors", () => {
       const spy = jest.fn((...args) => {
         const error = new Error();
-        error.stack = undefined;
         throw error;
       });
       const spyingProgram = {
@@ -162,7 +158,7 @@ describe("triggerProgram", () => {
       expect(result).toStrictEqual({
         json: {
           error: "An error occurred in a webtask",
-          message: undefined,
+          message: "An unspecified error occurred in the program",
         },
         code: 500,
       });
@@ -255,7 +251,48 @@ describe("triggerProgram", () => {
       });
     });
 
-    test.skip("PROGRAM_VALIDATION errors - NEEDS IMPLEMENTATION", () => {});
+    test("PROGRAM_VALIDATION missing validation handler", () => {
+      const spyingProgram = {
+        PROGRAM_VALIDATION: {},
+      };
+      const result = triggerProgram(testBody, spyingProgram);
+
+      expect(result).toStrictEqual({
+        json: {
+          error: "An error occurred in a webtask",
+          message: "Requirement handler for key rule1 not implemented",
+        },
+        code: 501,
+      });
+    });
+
+    test("PROGRAM_VALIDATION validation handler throws error", () => {
+      const spy1 = (jest.fn(
+        () => 1
+      ) as unknown) as RequirementValidationHandler;
+      const spy2 = (jest.fn(() => {
+        throw new Error();
+      }) as unknown) as RequirementValidationHandler;
+      const spy3 = (jest.fn(
+        () => 3
+      ) as unknown) as RequirementValidationHandler;
+      const spyingProgram = {
+        PROGRAM_VALIDATION: {
+          rule1: spy1,
+          rule2: spy2,
+          rule3: spy3,
+        },
+      };
+      const result = triggerProgram(testBody, spyingProgram);
+
+      expect(result).toStrictEqual({
+        json: {
+          error: "An error occurred in a webtask",
+          message: "Requirement handler for key rule2 failed",
+        },
+        code: 501,
+      });
+    });
   });
 
   describe("body has messageType PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST", () => {
@@ -300,7 +337,6 @@ describe("triggerProgram", () => {
     test("PROGRAM_TRIGGER_VARIABLES_SCHEMA_REQUEST errors", () => {
       const spy = jest.fn((...args) => {
         const error = new Error();
-        error.stack = undefined;
         throw error;
       });
       const spyingProgram = {

@@ -1,6 +1,5 @@
 import * as express from "express";
 
-import { meetCustomFieldRules, meetEventTriggerRules } from "./conversion";
 import { rewardEmailQuery } from "./queries";
 import Transaction from "./transaction";
 import { triggerProgram } from "./trigger";
@@ -36,8 +35,6 @@ export {
   RequirementValidationResult,
   ProgramRequirement,
   ValidationProgramField,
-  meetEventTriggerRules,
-  meetCustomFieldRules,
   rewardEmailQuery,
   setRewardSchedule,
   getGoalAnalyticTimestamp,
