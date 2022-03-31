@@ -46,7 +46,10 @@ export class InputField {
    */
   @Prop() fieldOptional?: boolean = false;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<InputFieldViewProps>;
 
   constructor() {

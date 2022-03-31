@@ -26,7 +26,10 @@ export class NameFields {
    */
   @Prop() lastNameLabel: string = "Last Name";
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<NameFieldsViewProps>;
 
   constructor() {

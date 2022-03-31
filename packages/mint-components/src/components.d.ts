@@ -129,7 +129,8 @@ export namespace Components {
          */
         "checkboxOptional"?: boolean;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<CheckboxFieldViewProps>;
         /**
@@ -153,7 +154,8 @@ export namespace Components {
     }
     interface SqmDropdownField {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<DropdownFieldViewProps>;
         /**
@@ -381,7 +383,8 @@ export namespace Components {
     }
     interface SqmInputField {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<InputFieldViewProps>;
         /**
@@ -497,7 +500,8 @@ export namespace Components {
     }
     interface SqmNameFields {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<NameFieldsViewProps>;
         /**
@@ -2695,7 +2699,8 @@ declare namespace LocalJSX {
          */
         "checkboxOptional"?: boolean;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<CheckboxFieldViewProps>;
         /**
@@ -2719,7 +2724,8 @@ declare namespace LocalJSX {
     }
     interface SqmDropdownField {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<DropdownFieldViewProps>;
         /**
@@ -2947,7 +2953,8 @@ declare namespace LocalJSX {
     }
     interface SqmInputField {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<InputFieldViewProps>;
         /**
@@ -3063,7 +3070,8 @@ declare namespace LocalJSX {
     }
     interface SqmNameFields {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<NameFieldsViewProps>;
         /**

@@ -51,7 +51,10 @@ export class CheckboxField {
    */
   @Prop() checkboxOptional?: boolean = false;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<CheckboxFieldViewProps>;
 
   constructor() {
@@ -76,9 +79,7 @@ export class CheckboxField {
           subheading={
             "A technical problem prevented this checkbox field from loading. Please contact us with the link to this page."
           }
-          description={
-            "Values for the following attributes are missing:"
-          }
+          description={"Values for the following attributes are missing:"}
         />
       );
     }

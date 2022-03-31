@@ -40,7 +40,10 @@ export class DropdownField {
    */
   @Prop() dropdownOptional?: boolean = false;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<DropdownFieldViewProps>;
 
   constructor() {
@@ -65,9 +68,7 @@ export class DropdownField {
           subheading={
             "A technical problem prevented this drop down field from loading. Please contact us with the link to this page."
           }
-          description={
-            "Values for the following attributes are missing:"
-          }
+          description={"Values for the following attributes are missing:"}
         >
           <slot />
         </RequiredPropsError>
