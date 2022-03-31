@@ -13,6 +13,7 @@ import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-drop
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
 import { FunctionalComponent } from "@stencil/core";
+import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-fields-view";
@@ -124,11 +125,12 @@ export namespace Components {
          */
         "checkboxName": string;
         /**
-          * @uiName Required
+          * @uiName Optional
          */
-        "checkboxRequired"?: boolean;
+        "checkboxOptional"?: boolean;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<CheckboxFieldViewProps>;
         /**
@@ -152,7 +154,8 @@ export namespace Components {
     }
     interface SqmDropdownField {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<DropdownFieldViewProps>;
         /**
@@ -164,9 +167,9 @@ export namespace Components {
          */
         "dropdownName": string;
         /**
-          * @uiName Required
+          * @uiName Optional
          */
-        "dropdownRequired"?: boolean;
+        "dropdownOptional"?: boolean;
         /**
           * @uiName Unselected error message
          */
@@ -378,6 +381,36 @@ export namespace Components {
          */
         "minHeight"?: string;
     }
+    interface SqmInputField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<InputFieldViewProps>;
+        /**
+          * @uiName Empty error message
+         */
+        "errorMessage": string;
+        /**
+          * @uiName Input label
+         */
+        "fieldLabel": string;
+        /**
+          * @uiName Input name attribute
+         */
+        "fieldName": string;
+        /**
+          * @uiName Optional
+         */
+        "fieldOptional"?: boolean;
+        /**
+          * @uiName Input Type
+          * @uiType string
+          * @uiEnum ["text", "date", "tel"]
+          * @uiEnumNames ["Text", "Date", "Phone Number"]
+         */
+        "fieldType": "text" | "date" | "tel";
+    }
     interface SqmLeaderboard {
         /**
           * @uiName Title displayed for users without names
@@ -467,7 +500,8 @@ export namespace Components {
     }
     interface SqmNameFields {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<NameFieldsViewProps>;
         /**
@@ -2072,6 +2106,12 @@ declare global {
         prototype: HTMLSqmImageElement;
         new (): HTMLSqmImageElement;
     };
+    interface HTMLSqmInputFieldElement extends Components.SqmInputField, HTMLStencilElement {
+    }
+    var HTMLSqmInputFieldElement: {
+        prototype: HTMLSqmInputFieldElement;
+        new (): HTMLSqmInputFieldElement;
+    };
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
     var HTMLSqmLeaderboardElement: {
@@ -2496,6 +2536,7 @@ declare global {
         "sqm-hero-image": HTMLSqmHeroImageElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-image": HTMLSqmImageElement;
+        "sqm-input-field": HTMLSqmInputFieldElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-name-fields": HTMLSqmNameFieldsElement;
@@ -2654,11 +2695,12 @@ declare namespace LocalJSX {
          */
         "checkboxName"?: string;
         /**
-          * @uiName Required
+          * @uiName Optional
          */
-        "checkboxRequired"?: boolean;
+        "checkboxOptional"?: boolean;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<CheckboxFieldViewProps>;
         /**
@@ -2682,7 +2724,8 @@ declare namespace LocalJSX {
     }
     interface SqmDropdownField {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<DropdownFieldViewProps>;
         /**
@@ -2694,9 +2737,9 @@ declare namespace LocalJSX {
          */
         "dropdownName"?: string;
         /**
-          * @uiName Required
+          * @uiName Optional
          */
-        "dropdownRequired"?: boolean;
+        "dropdownOptional"?: boolean;
         /**
           * @uiName Unselected error message
          */
@@ -2908,6 +2951,36 @@ declare namespace LocalJSX {
          */
         "minHeight"?: string;
     }
+    interface SqmInputField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<InputFieldViewProps>;
+        /**
+          * @uiName Empty error message
+         */
+        "errorMessage"?: string;
+        /**
+          * @uiName Input label
+         */
+        "fieldLabel"?: string;
+        /**
+          * @uiName Input name attribute
+         */
+        "fieldName"?: string;
+        /**
+          * @uiName Optional
+         */
+        "fieldOptional"?: boolean;
+        /**
+          * @uiName Input Type
+          * @uiType string
+          * @uiEnum ["text", "date", "tel"]
+          * @uiEnumNames ["Text", "Date", "Phone Number"]
+         */
+        "fieldType"?: "text" | "date" | "tel";
+    }
     interface SqmLeaderboard {
         /**
           * @uiName Title displayed for users without names
@@ -2997,7 +3070,8 @@ declare namespace LocalJSX {
     }
     interface SqmNameFields {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<NameFieldsViewProps>;
         /**
@@ -4501,6 +4575,7 @@ declare namespace LocalJSX {
         "sqm-hero-image": SqmHeroImage;
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-image": SqmImage;
+        "sqm-input-field": SqmInputField;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-name-fields": SqmNameFields;
@@ -4590,6 +4665,7 @@ declare module "@stencil/core" {
             "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-image": LocalJSX.SqmImage & JSXBase.HTMLAttributes<HTMLSqmImageElement>;
+            "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-name-fields": LocalJSX.SqmNameFields & JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;

@@ -1,12 +1,9 @@
 import { h } from "@stencil/core";
-import {
-  NameFieldsView,
-  NameFieldsViewProps,
-} from "./sqm-name-fields-view";
+import { NameFieldsView, NameFieldsViewProps } from "./sqm-name-fields-view";
 import scenario from "../sqm-name-fields/sqm-name-fields.feature";
 
 export default {
-  title: "Name Fields",
+  title: "Components/Name Fields",
   parameters: {
     scenario,
   },

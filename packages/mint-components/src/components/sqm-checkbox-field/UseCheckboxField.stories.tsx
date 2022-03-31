@@ -2,8 +2,13 @@ import { setUserIdentity } from "@saasquatch/component-boilerplate";
 import { useEffect } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
 import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
+import scenario from "./sqm-checkbox-field.feature";
+
 export default {
   title: "Hooks / useCheckboxField",
+  parameters: {
+    scenario,
+  },
 };
 
 function setupGraphQL() {
@@ -48,7 +53,10 @@ export const TermsAndConditionsWithLabel = createHookStory(() => {
   return (
     <sqm-portal-register>
       <div slot="terms">
-        <sqm-checkbox-field checkbox-label="I agree" checkbox-name="terms"></sqm-checkbox-field>
+        <sqm-checkbox-field
+          checkbox-label="I agree"
+          checkbox-name="terms"
+        ></sqm-checkbox-field>
       </div>
     </sqm-portal-register>
   );
@@ -66,7 +74,7 @@ export const MultipleCheckboxes = createHookStory(() => {
         checkbox-name="isHuman"
       ></sqm-checkbox-field>
       <div slot="terms">
-        <sqm-checkbox-field></sqm-checkbox-field>
+        <sqm-checkbox-field checkbox-name="otherCheckbox"></sqm-checkbox-field>
       </div>
     </sqm-portal-register>
   );
@@ -80,9 +88,20 @@ export const OptionalCheckboxes = createHookStory(() => {
       <sqm-checkbox-field
         slot="formData"
         checkbox-label="I am not a robot"
-        checkbox-required="false"
+        checkbox-optional="true"
         checkbox-name="isHuman"
       />
+      <div slot="terms">
+        <sqm-checkbox-field checkbox-name="required"></sqm-checkbox-field>
+      </div>
+    </sqm-portal-register>
+  );
+});
+
+export const MissingName = createHookStory(() => {
+  setupGraphQL();
+  return (
+    <sqm-portal-register>
       <div slot="terms">
         <sqm-checkbox-field></sqm-checkbox-field>
       </div>

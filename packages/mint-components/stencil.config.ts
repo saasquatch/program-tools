@@ -27,7 +27,7 @@ const useGrapesjs: OutputTarget = grapesJsOutput({
 export const config: Config = {
   namespace: "mint-components",
   devServer: {
-    startupTimeout: 0,
+    // startupTimeout: 0,
   },
   globalScript: "src/global/global.ts",
   globalStyle: "src/global/global.css",

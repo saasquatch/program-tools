@@ -3,7 +3,7 @@ import { HeroView } from "./sqm-hero-view";
 import scenario from "../sqm-hero/sqm-hero.feature";
 
 export default {
-  title: "Hero Layout",
+  title: "Components/Hero Layout",
   parameters: {
     scenario,
   },

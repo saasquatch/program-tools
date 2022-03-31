@@ -1,6 +1,7 @@
 import { h, VNode } from "@stencil/core";
 import jss from "jss";
 import preset from "jss-preset-default";
+import { intl } from "../../global/global";
 import { ValidationErrors } from "../sqm-portal-register/useValidationState";
 
 export interface DropdownFieldViewProps {
@@ -10,7 +11,7 @@ export interface DropdownFieldViewProps {
   content: {
     dropdownName: string;
     dropdownLabel: string;
-    dropdownRequired?: boolean;
+    dropdownOptional?: boolean;
     errorMessage: string;
     selectOptions?: VNode | VNode[];
   };
@@ -62,7 +63,7 @@ export function DropdownFieldView(props: DropdownFieldViewProps) {
         exportparts="label: input-label"
         label={content.dropdownLabel}
         name={`/${content.dropdownName}`}
-        {...(content.dropdownRequired ? { required: true } : [])}
+        {...(!content.dropdownOptional ? { required: true } : [])}
         {...(validationErrors?.[content.dropdownName]
           ? {
               class: sheet.classes.ErrorStyle,
@@ -72,7 +73,12 @@ export function DropdownFieldView(props: DropdownFieldViewProps) {
         {content.selectOptions}
       </sl-select>
       {validationErrors?.[content.dropdownName] && (
-        <p class={sheet.classes.ErrorMessageStyle}>{content.errorMessage}</p>
+        <p class={sheet.classes.ErrorMessageStyle}>
+          {intl.formatMessage({
+            id: `errorMessage-${content.dropdownName}`,
+            defaultMessage: content.errorMessage,
+          })}
+        </p>
       )}
     </div>
   );
