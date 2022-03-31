@@ -33,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-checkbox-field>
     - Error is now displayed if `checkbox-name` prop is not included
     - `checkbox-required` prop deprecated, must use `checkbox-optional` instead
-      - Field is still required by default\
+      - Field is still required by default
   - \<sqm-referral-iframe>
     - Updated fail fast state text
 
