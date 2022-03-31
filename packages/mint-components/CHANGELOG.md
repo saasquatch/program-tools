@@ -21,8 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Best used in `formData` slot inside \<sqm-portal-register>
     - Form field name can be customized with the `field-name` prop
       - `field-name` must be a unique string and will be submitted as the key to the value submitted
-        For example, with `field-name` set to `businessName`
-        - `{"businessName":"SaaSquatch"}`
+        - For example, with `field-name` set to `businessName`: `{"businessName":"SaaSquatch"}`
       - Error will be displayed if `field-name` prop is not included
     - Input type can be customized with the `field-type` prop
       - Supports `text`, `tel`, and `date` as types
