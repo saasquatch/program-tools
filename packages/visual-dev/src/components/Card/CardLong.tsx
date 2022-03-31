@@ -28,30 +28,36 @@ interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const CardStyle = styled.div<Required<StyleProps>>`
-  ${Styles.cardLong}
+const CardDiv = styled.div<Required<StyleProps>>`
+  ${Styles.CardLongDiv}
   ${(props) => props.customCSS}
 `;
-const CardHeader = styled.div`
-  ${Styles.cardLongHeader}
+const CardHeaderDiv = styled.div`
+  ${Styles.CardLongHeaderDiv}
 `;
-const CardText = styled.div`
-  ${Styles.cardLongText}
+const CardTextDiv = styled.div`
+  ${Styles.CardLongTextDiv}
 `;
-const CardFooter = styled.div`
-  ${Styles.cardLongFooter}
+const CardFooterDiv = styled.div`
+  ${Styles.CardLongFooterDiv}
 `;
 
-export const CardLong = React.forwardRef<React.ElementRef<"div">, CardProps>(
-  (props, forwardedRef) => {
-    const { title, footer, children, customCSS = {}, ...rest } = props;
+export const CardLongView = React.forwardRef<
+  React.ElementRef<"div">,
+  CardProps
+>((props, forwardedRef) => {
+  const { title, footer, children, customCSS = {}, ...rest } = props;
 
-    return (
-      <CardStyle {...rest} ref={forwardedRef} customCSS={customCSS}>
-        <CardHeader>{title}</CardHeader>
-        <CardText>{children}</CardText>
-        <CardFooter>{footer}</CardFooter>
-      </CardStyle>
-    );
-  }
-);
+  return (
+    <CardDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+      <CardHeaderDiv>{title}</CardHeaderDiv>
+      <CardTextDiv>{children}</CardTextDiv>
+      <CardFooterDiv>{footer}</CardFooterDiv>
+    </CardDiv>
+  );
+});
+
+/**
+ * @deprecated use {@link ButtonView} instead
+ */
+export const CardLong = CardLongView;

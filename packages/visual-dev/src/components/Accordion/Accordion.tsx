@@ -30,36 +30,36 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const Container = styled.div<Required<StyleProps>>`
-  ${Styles.Container}
+const AccordionDiv = styled.div<Required<StyleProps>>`
+  ${Styles.AccordionDiv}
   ${(props) => props.customCSS}
 `;
 
-const Head = styled.div`
-  ${Styles.Head}
+const HeadDiv = styled.div`
+  ${Styles.HeadDiv}
 `;
 
-const Main = styled.div`
-  ${Styles.Main}
+const MainDiv = styled.div`
+  ${Styles.MainDiv}
 `;
 
-const CollapseContainer = styled.div<{ expanded: boolean }>`
-  ${Styles.CollapseContainer}
+const CollapsibleDiv = styled.div<{ expanded: boolean }>`
+  ${Styles.CollapsibleDiv}
 
   ${(props) =>
     props.expanded &&
     "max-height: 1000px; transition: max-height 1s ease-in-out;"}
 `;
 
-const Title = styled.h2`
-  ${Styles.Title}
+const TitleH2 = styled.h2`
+  ${Styles.TitleH2}
 `;
 
-const Description = styled.p`
-  ${Styles.Description}
+const DescriptionP = styled.p`
+  ${Styles.DescriptionP}
 `;
 
-const IconContainer = styled.div<{ expanded: boolean }>`
+const IconDiv = styled.div<{ expanded: boolean }>`
   ${(props) =>
     props.expanded &&
     "transform: rotate( -180deg ); transition: transform 400ms ease;"}
@@ -68,7 +68,7 @@ const IconContainer = styled.div<{ expanded: boolean }>`
     "transform: rotate( 0deg ); transition: transform 400ms ease;"}
 `;
 
-export const Accordion = React.forwardRef<
+export const AccordionView = React.forwardRef<
   React.ElementRef<"div">,
   AccordionProps
 >((props, forwardedRef) => {
@@ -76,21 +76,26 @@ export const Accordion = React.forwardRef<
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Container {...rest} ref={forwardedRef} customCSS={customCSS}>
-      <Head
+    <AccordionDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+      <HeadDiv
         onClick={() => {
           setExpanded(!expanded);
         }}
       >
-        <Title>{title}</Title>
-        <IconContainer expanded={expanded}>
+        <TitleH2>{title}</TitleH2>
+        <IconDiv expanded={expanded}>
           <Icon icon="chevron_down" color="var(--sq-text-subdued)"></Icon>
-        </IconContainer>
-      </Head>
-      <CollapseContainer expanded={expanded}>
-        <Description>{description}</Description>
-        <Main>{children}</Main>
-      </CollapseContainer>
-    </Container>
+        </IconDiv>
+      </HeadDiv>
+      <CollapsibleDiv expanded={expanded}>
+        <DescriptionP>{description}</DescriptionP>
+        <MainDiv>{children}</MainDiv>
+      </CollapsibleDiv>
+    </AccordionDiv>
   );
 });
+
+/**
+ * @deprecated use {@link AccordionView} instead
+ */
+export const Accordion = AccordionView;

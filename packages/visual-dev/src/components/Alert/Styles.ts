@@ -1,20 +1,20 @@
 import { css } from "styled-components";
 
-export const AlertDivStyle = css`
+export const AlertDiv = css`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  padding: 16px;
+  padding: var(--sq-spacing-medium);
   border: 1px solid;
   border-radius: 5px;
   box-sizing: border-box;
   color: var(--sq-text);
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: var(--sq-font-family-sans);
   font-weight: var(--sq-font-weight-regular);
   font-size: var(--sq-font-size-regular);
   line-height: var(--sq-line-height-regular);
   div + div {
-    padding-left: 16px;
+    padding-left: var(--sq-spacing-medium);
   }
 `;
 

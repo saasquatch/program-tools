@@ -1,117 +1,117 @@
 import React from "react";
-import { Badge } from ".";
+import { BadgeView } from ".";
 
 export default {
   title: "Components / Badge",
-  component: Badge,
+  component: BadgeView,
 };
 
-export const defaultBadge = () => <Badge status="info">Default Badge</Badge>;
+export const defaultBadge = () => <BadgeView status="info">Default Badge</BadgeView>;
 
 export const defaultBadgeWithIcon = () => (
-  <Badge status="info" icon="gift">
+  <BadgeView status="info" icon="gift">
     Badge with icon
-  </Badge>
+  </BadgeView>
 );
 
-export const successBadge = () => <Badge status="success">Default Badge</Badge>;
+export const successBadge = () => <BadgeView status="success">Default Badge</BadgeView>;
 
 export const successBadgeWithIcon = () => (
-  <Badge status="success" icon="gift">
+  <BadgeView status="success" icon="gift">
     Badge with icon
-  </Badge>
+  </BadgeView>
 );
-export const criticalBadge = () => (
+export const criticalBadge = () => (BadgeViewBadgeView
   <Badge status="critical">Default Badge</Badge>
 );
-
+BadgeView
 export const criticalBadgeWithIcon = () => (
-  <Badge status="critical" icon="gift">
+  <BBadgeViewstatus="critical" icon="gift">
     Badge with icon
   </Badge>
-);
+);BadgeViewBadgeView
 
 export const warningBadge = () => <Badge status="warning">Default Badge</Badge>;
-
+BadgeView
 export const warningBadgeWithIcon = () => (
-  <Badge status="warning" icon="gift">
+  <BBadgeViewstatus="warning" icon="gift">
     Badge with icon
   </Badge>
-);
+);BadgeViewBadgeView
 
 export const longBadge = () => (
-  <Badge status="info">A badge with a really really long name</Badge>
+  <BadgeView status="info">A badge with a really really long name</Badge>
 );
-
+BadgeView
 export const longBadgeWithIcon = () => (
   <Badge status="info" icon="gift">
-    A badge with a really really long name
+    A badge with a really reallyBadgeView name
   </Badge>
 );
-
+BadgeView
 export const badgeIcon = () => <Badge status="info" icon="trash" />;
-
+BadgeView
 export const defaultBadgePill = () => (
   <Badge status="info" pill>
     Default Badge
-  </Badge>
+  <BadgeViewe>
 );
-
+BadgeView
 export const defaultBadgeWithIconPill = () => (
   <Badge status="info" icon="gift" pill>
     Badge with icon
-  </Badge>
+  <BadgeViewe>
 );
-
+BadgeView
 export const successBadgePill = () => (
   <Badge status="success" pill>
     Default Badge
-  </Badge>
+  <BadgeViewe>
 );
-
+BadgeView
 export const successBadgeWithIconPill = () => (
   <Badge status="success" icon="gift" pill>
-    Badge with icon
+   BadgeViewe with icon
   </Badge>
-);
+);BadgeView
 export const criticalBadgePill = () => (
   <Badge status="critical" pill>
     Default Badge
-  </Badge>
+  <BadgeViewe>
 );
-
+BadgeView
 export const criticalBadgeWithIconPill = () => (
   <Badge status="critical" icon="gift" pill>
     Badge with icon
-  </Badge>
+  <BadgeViewe>
 );
-
+BadgeView
 export const warningBadgePill = () => (
   <Badge status="warning" pill>
     Default Badge
-  </Badge>
+  <BadgeViewe>
 );
-
+BadgeView
 export const warningBadgeWithIconPill = () => (
   <Badge status="warning" icon="gift" pill>
     Badge with icon
-  </Badge>
+  <BadgeViewe>
 );
-
+BadgeView
 export const longBadgePill = () => (
   <Badge status="info" pill>
     A badge with a really really long name
-  </Badge>
+  <BadgeViewe>
 );
-
+BadgeView
 export const longBadgeWithIconPill = () => (
   <Badge status="info" icon="gift" pill>
-    A badge with a really really long name
+    A badge with a really really lonBadgeViewe
   </Badge>
 );
-
+BadgeView
 export const badgeIconPill = () => <Badge status="info" icon="trash" pill />;
-
+BadgeView
 export const badgeCSS = () => (
   <Badge status="info" customCSS="color: yellow; background: blue;">
     CSS Badge

@@ -29,8 +29,8 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const AvatarContainer = styled.div<Required<StyleProps>>`
-  ${Styles.AvatarContainer}
+const AvatarDiv = styled.div<Required<StyleProps>>`
+  ${Styles.AvatarDiv}
   ${(props) => props.customCSS}
 `;
 
@@ -40,54 +40,60 @@ const AvatarCircle = styled.div<{ large: boolean; color: string }>`
   ${(props) => (props.large ? "background-color: " + props.color : "")};
 `;
 
-const AvatarText = styled.span<{ large: boolean; color: string }>`
+const AvatarSpan = styled.span<{ large: boolean; color: string }>`
   ${(props) =>
     props.large ? Styles.AvatarTextStyleLarge : Styles.AvatarTextStyle};
   ${(props) => (props.large ? "" : "color: " + props.color)};
 `;
 
-export const Avatar = React.forwardRef<React.ElementRef<"div">, AvatarProps>(
-  (props, forwardedRef) => {
-    const {
-      firstName = "",
-      large = false,
-      lastName = "",
-      customCSS = {},
-      ...rest
-    } = props;
-    let initials = "";
-    if (firstName || lastName) {
-      initials = firstName.charAt(0) + lastName.charAt(0);
-    }
-    const colors = [
-      "#023B44",
-      "#0FA177",
-      "#00C75F",
-      "#0092AD",
-      "#44BFD5",
-      "#F5A624",
-    ];
-    const random = initials.charCodeAt(0) % 6;
-
-    return (
-      <AvatarContainer {...rest} ref={forwardedRef} customCSS={customCSS}>
-        {!(firstName || lastName) ? (
-          <Icon
-            icon="avatar"
-            size={
-              large
-                ? "var(--sq-icon-size-avatar-large)"
-                : "var(--sq-icon-size-avatar)"
-            }
-          />
-        ) : (
-          <AvatarCircle large={large} color={colors[random]}>
-            <AvatarText large={large} color={colors[random]}>
-              {initials}
-            </AvatarText>
-          </AvatarCircle>
-        )}
-      </AvatarContainer>
-    );
+export const AvatarView = React.forwardRef<
+  React.ElementRef<"div">,
+  AvatarProps
+>((props, forwardedRef) => {
+  const {
+    firstName = "",
+    large = false,
+    lastName = "",
+    customCSS = {},
+    ...rest
+  } = props;
+  let initials = "";
+  if (firstName || lastName) {
+    initials = firstName.charAt(0) + lastName.charAt(0);
   }
-);
+  const colors = [
+    "#023B44",
+    "#0FA177",
+    "#00C75F",
+    "#0092AD",
+    "#44BFD5",
+    "#F5A624",
+  ];
+  const random = initials.charCodeAt(0) % 6;
+
+  return (
+    <AvatarDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+      {!(firstName || lastName) ? (
+        <Icon
+          icon="avatar"
+          size={
+            large
+              ? "var(--sq-icon-size-avatar-large)"
+              : "var(--sq-icon-size-avatar)"
+          }
+        />
+      ) : (
+        <AvatarCircle large={large} color={colors[random]}>
+          <AvatarSpan large={large} color={colors[random]}>
+            {initials}
+          </AvatarSpan>
+        </AvatarCircle>
+      )}
+    </AvatarDiv>
+  );
+});
+
+/**
+ * @deprecated use {@link AvatarView} instead
+ */
+export const Avatar = AvatarView;

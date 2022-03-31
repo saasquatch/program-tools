@@ -40,6 +40,6 @@ export const AvatarTextStyleLarge = css`
   line-height: var(--sq-line-height-regular);
 `;
 
-export const AvatarContainer = css`
+export const AvatarDiv = css`
   display: inline-block;
 `;

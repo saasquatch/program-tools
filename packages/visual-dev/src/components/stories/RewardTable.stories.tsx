@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon } from "../Icon";
 import { DataTable } from "../DataTable";
-import { Avatar } from "../Avatar";
+import { AvatarView } from "../Avatar";
 import { Dropdown } from "../Dropdown";
 import { VisualSpec } from "../meta";
 
@@ -38,7 +38,7 @@ export const FormSubmissionTable = () => {
   const text_b = (
     <>
       <div>
-        <Avatar firstName="New" lastName="Guy" />
+        <AvatarView firstName="New" lastName="Guy" />
       </div>
       <div style={{ marginLeft: 10 }}>
         <span style={{ color: "#0088CC" }}>new guy</span> <br />

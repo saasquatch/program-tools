@@ -1,20 +1,20 @@
 import React from "react";
-import { Accordion } from ".";
+import { AccordionView } from ".";
 
 export default {
   title: "Components / Accordion",
-  component: Accordion,
+  component: AccordionView,
 };
 
 export const Default = () => (
   <>
     <hr />
-    <Accordion title="Test Title" description="This is a test description">
+    <AccordionView title="Test Title" description="This is a test description">
       <p>
         A simple paragraph to test the accordion. <br></br> Look it has some
         height too!
       </p>
-    </Accordion>
+    </AccordionView>
     <hr />
   </>
 );
@@ -22,12 +22,12 @@ export const Default = () => (
 export const NoDescription = () => (
   <>
     <hr />
-    <Accordion title="Test Title">
+    <AccordionView title="Test Title">
       <p>
         A simple paragraph to test the accordion. <br></br> Look it has some
         height too!
       </p>
-    </Accordion>
+    </AccordionView>
     <hr />
   </>
 );
@@ -35,12 +35,12 @@ export const NoDescription = () => (
 export const CustomCSS = () => (
   <>
     <hr />
-    <Accordion customCSS={"background: Wheat"} title="Test Title">
+    <AccordionView customCSS={"background: Wheat"} title="Test Title">
       <p>
         A simple paragraph to test the accordion. <br></br> Look it has some
         height too!
       </p>
-    </Accordion>
+    </AccordionView>
     <hr />
   </>
 );

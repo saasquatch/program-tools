@@ -1,23 +1,27 @@
 import React from "react";
-import { Avatar } from ".";
+import { AvatarView } from ".";
 import { GlobalStyle } from "../GlobalStyle";
 
 export default {
   title: "Components / Avatar",
-  component: Avatar,
+  component: AvatarView,
 };
 
-export const Default = () => <Avatar />;
-export const Large = () => <Avatar large />;
-export const Color_1 = () => <Avatar firstName="Never" lastName="Gonna" />;
-export const Color_2 = () => <Avatar firstName="Coleton" lastName="Annett" />;
-export const Color_3 = () => <Avatar firstName="Johan" lastName="Venter" />;
-export const Color_4 = () => <Avatar firstName="Kutay" lastName="Cinar" />;
-export const Color_5 = () => <Avatar firstName="Logan" lastName="Volkers" />;
-export const Color_6 = () => <Avatar firstName="Amy" lastName="Santiago" />;
+export const Default = () => <AvatarView />;
+export const Large = () => <AvatarView large />;
+export const Color_1 = () => <AvatarView firstName="Never" lastName="Gonna" />;
+export const Color_2 = () => (
+  <AvatarView firstName="Coleton" lastName="Annett" />
+);
+export const Color_3 = () => <AvatarView firstName="Johan" lastName="Venter" />;
+export const Color_4 = () => <AvatarView firstName="Kutay" lastName="Cinar" />;
+export const Color_5 = () => (
+  <AvatarView firstName="Logan" lastName="Volkers" />
+);
+export const Color_6 = () => <AvatarView firstName="Amy" lastName="Santiago" />;
 export const Color_Large = () => (
-  <Avatar firstName="Amy" lastName="Santiago" large />
+  <AvatarView firstName="Amy" lastName="Santiago" large />
 );
 
-export const FirstNameOnly = () => <Avatar firstName="Shirley" />;
-export const LastNameOnly = () => <Avatar lastName="Lam" />;
+export const FirstNameOnly = () => <AvatarView firstName="Shirley" />;
+export const LastNameOnly = () => <AvatarView lastName="Lam" />;

@@ -29,7 +29,7 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const BadgeStyled = styled.div<StyleProps>`
+const BadgeDiv = styled.div<StyleProps>`
   ${Styles.base}
   ${(props) => Styles[props.status]}
   padding: ${(props) =>
@@ -41,7 +41,7 @@ const BadgeStyled = styled.div<StyleProps>`
   ${(props) => props.customCSS}
 `;
 
-export const Badge = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
+export const BadgeView = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
   (props, forwardedRef) => {
     const {
       status,
@@ -53,7 +53,7 @@ export const Badge = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
     } = props;
 
     return (
-      <BadgeStyled
+      <BadgeDiv
         {...rest}
         status={status}
         pill={pill}
@@ -70,7 +70,12 @@ export const Badge = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
           />
         )}
         {children && <span>{children}</span>}
-      </BadgeStyled>
+      </BadgeDiv>
     );
   }
 );
+
+/**
+ * @deprecated use {@link BadgeView} instead
+ */
+export const Badge = BadgeView;

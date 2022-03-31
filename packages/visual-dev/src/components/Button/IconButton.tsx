@@ -41,7 +41,7 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const Button = styled.button<Required<StyleProps>>`
+const StyledButton = styled.button<Required<StyleProps>>`
   ${Styles.icon.base}
   ${(props) => props.borderless && Styles.icon.borderless}
   ${(props) => props.circle && Styles.icon.circle}
@@ -49,7 +49,8 @@ const Button = styled.button<Required<StyleProps>>`
   ${(props) => props.size == "mini" && Styles.icon[props.size]}
   ${(props) => props.customCSS}
 `;
-export const IconButton = React.forwardRef<
+
+export const IconButtonView = React.forwardRef<
   React.ElementRef<"button">,
   ButtonProps
 >((props, forwardedRef) => {
@@ -66,7 +67,7 @@ export const IconButton = React.forwardRef<
   } = props;
 
   return (
-    <Button
+    <StyledButton
       {...rest}
       circle={circle}
       primary={primary}
@@ -80,6 +81,11 @@ export const IconButton = React.forwardRef<
         size={Styles.icon_only_size[size]}
         customCSS={icon_css}
       />
-    </Button>
+    </StyledButton>
   );
 });
+
+/**
+ * @deprecated use {@link IconButtonView} instead
+ */
+export const IconButton = IconButtonView;

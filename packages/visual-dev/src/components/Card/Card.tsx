@@ -26,45 +26,45 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const CardStyle = styled.div<Required<StyleProps>>`
-  ${Styles.card}
+const CardDiv = styled.div<Required<StyleProps>>`
+  ${Styles.CardDiv}
   ${(props) => props.customCSS}
 `;
-const CardHeader = styled.div`
-  ${Styles.cardHeader}
+const CardHeaderDiv = styled.div`
+  ${Styles.CardHeaderDiv}
 `;
-const CardHeaderIcon = styled.div`
-  ${Styles.cardHeaderIcon}
+const CardHeaderIconDiv = styled.div`
+  ${Styles.CardHeaderIconDiv}
 `;
-const CardHeaderText = styled.div`
-  ${Styles.cardHeaderText}
+const CardHeaderTextDiv = styled.div`
+  ${Styles.CardHeaderTextDiv}
 `;
-const CardText = styled.div`
-  ${Styles.cardText}
+const CardTextDiv = styled.div`
+  ${Styles.CardTextDiv}
 `;
-const CardFooter = styled.div`
-  ${Styles.cardFooter}
+const CardFooterDiv = styled.div`
+  ${Styles.CardFooterDiv}
 `;
 
-export const Card = React.forwardRef<React.ElementRef<"div">, CardProps>(
+export const CardView = React.forwardRef<React.ElementRef<"div">, CardProps>(
   (props, forwardedRef) => {
     const { title, children, customCSS = {}, ...rest } = props;
 
     return (
-      <CardStyle {...rest} ref={forwardedRef} customCSS={customCSS}>
-        <CardHeader>
-          <CardHeaderIcon>
+      <CardDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+        <CardHeaderDiv>
+          <CardHeaderIconDiv>
             <Icon
               icon="calendar"
               size="large"
               customCSS=""
               color="var(--sq-text-subdued)"
             />
-          </CardHeaderIcon>
-          <CardHeaderText>{title}</CardHeaderText>
-        </CardHeader>
-        <CardText> {children}</CardText>
-        <CardFooter>
+          </CardHeaderIconDiv>
+          <CardHeaderTextDiv>{title}</CardHeaderTextDiv>
+        </CardHeaderDiv>
+        <CardTextDiv> {children}</CardTextDiv>
+        <CardFooterDiv>
           <Button
             buttonType="secondary"
             size="small"
@@ -81,8 +81,13 @@ export const Card = React.forwardRef<React.ElementRef<"div">, CardProps>(
           >
             Create
           </Button>
-        </CardFooter>
-      </CardStyle>
+        </CardFooterDiv>
+      </CardDiv>
     );
   }
 );
+
+/**
+ * @deprecated use {@link CardView} instead
+ */
+export const Card = CardView;

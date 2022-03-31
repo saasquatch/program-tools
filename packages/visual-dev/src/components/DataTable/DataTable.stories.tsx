@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Icon } from "../Icon";
-import { Avatar } from "../Avatar";
+import { AvatarView } from "../Avatar";
 import { Text } from "../Text";
 import { Dropdown } from "../Dropdown";
 import { HoverPopover, Popover } from "../Popover";
-import { Badge } from "../Badge";
+import { BadgeView } from "../Badge";
 import { Filter } from "./Filter";
 import { Banner } from "./Banner";
 import { DataTable } from ".";
@@ -38,7 +38,7 @@ const text_a = (
 const text_b = (
   <>
     <div>
-      <Avatar firstName="New" lastName="Guy" />
+      <AvatarView firstName="New" lastName="Guy" />
     </div>
     <div style={{ marginLeft: 10 }}>
       <span style={{ color: "#0088CC" }}>new guy</span> <br />
@@ -74,9 +74,9 @@ const text_e_popover = (
 );
 
 const text_f = (
-  <Badge status="success" icon="gift">
+  <BadgeView status="success" icon="gift">
     Success Badge
-  </Badge>
+  </BadgeView>
 );
 
 const content_b = [

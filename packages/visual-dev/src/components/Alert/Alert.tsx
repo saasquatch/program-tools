@@ -30,7 +30,7 @@ export interface StyleProps {
 }
 
 const AlertDiv = styled.div<Required<StyleProps>>`
-  ${Styles.AlertDivStyle}
+  ${Styles.AlertDiv}
   ${(props) => Styles[props.type]}
 `;
 
@@ -51,7 +51,7 @@ const icons = {
   info: <Icon icon={"help"} color="var(--sq-text)" size="23px" />,
 };
 
-export const Alert = React.forwardRef<React.ElementRef<"div">, AlertProps>(
+export const AlertView = React.forwardRef<React.ElementRef<"div">, AlertProps>(
   (props, forwardedRef) => {
     const { type: variant, title, children, customCSS = {}, ...rest } = props;
 
@@ -71,3 +71,8 @@ export const Alert = React.forwardRef<React.ElementRef<"div">, AlertProps>(
     );
   }
 );
+
+/**
+ * @deprecated use {@link AlertView} instead
+ */
+export const Alert = AlertView;

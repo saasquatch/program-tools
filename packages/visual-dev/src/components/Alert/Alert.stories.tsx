@@ -1,28 +1,28 @@
-import React from 'react'
-import { Alert } from '.'
+import React from "react";
+import { AlertView } from ".";
 
 export default {
-  title: 'Components / Alert',
-  component: Alert,
-}
+  title: "Components / Alert",
+  component: AlertView,
+};
 
 export const critical = () => (
-  <Alert type='critical' title='A critical alert'>
+  <AlertView type="critical" title="A critical alert">
     An explanation of what this alert is.
-  </Alert>
-)
+  </AlertView>
+);
 export const warning = () => (
-  <Alert type='warning' title='A warning alert'>
+  <AlertView type="warning" title="A warning alert">
     An explanation of what this alert is.
-  </Alert>
-)
+  </AlertView>
+);
 export const success = () => (
-  <Alert type='success' title='A success alert'>
+  <AlertView type="success" title="A success alert">
     An explanation of what this alert is.
-  </Alert>
-)
+  </AlertView>
+);
 export const info = () => (
-  <Alert type='info' title='An info alert'>
+  <AlertView type="info" title="An info alert">
     An explanation of what this alert is in multiple lines.
-  </Alert>
-)
+  </AlertView>
+);
