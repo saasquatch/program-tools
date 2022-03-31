@@ -76,6 +76,15 @@ Feature: Form Input Field
         When they select a date
         Then it is applied to the input
 
+    @landmine
+    Scenario: The clear text button in the date picker does not clear the date
+        Due to an incompatibility between our shoelace version and the browser, the clear funtionality is not supported currently
+        Given the input has prop "field-type" "date"
+        And the user has entered a date
+        When they click the calendar icon
+        And click the 'clear' text button
+        Then their selected date is not cleared
+
     @motivating
     Scenario: Phone number type inputs are supported
         Given the input has prop "field-type" with value "tel"
