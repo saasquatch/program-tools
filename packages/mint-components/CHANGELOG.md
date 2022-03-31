@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-input-field>
     - Required by default but can be optional with the `field-optional` prop
     - All text is configurable by props
-    - Best used in `formData` slot
+    - Best used in `formData` slot inside \<sqm-portal-register>
     - Form field name can be customized with the `field-name` prop
       - Error will be displayed if `field-name` prop is not included
     - Input type can be customized with the `field-type` prop
@@ -30,11 +30,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
     - Error will be displayed if `dropdown-name` prop is not included
     - `dropdown-required` prop deprecated, must use `dropdown-optional` instead
+      - Field will still be required by default
 
   - \<sqm-checkbox-field>
 
     - Error will be displayed if `checkbox-name` prop is not included
     - `checkbox-required` prop deprecated, must use `checkbox-optional` instead
+      - Field will still be required by default
 
 ## [1.5.2] - 2022-03-08
 

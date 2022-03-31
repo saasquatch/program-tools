@@ -32,6 +32,7 @@ export class InputField {
    * @uiName Input Type
    * @uiType string
    * @uiEnum ["text", "date", "tel"]
+   * @uiEnumNames ["Text", "Date", "Phone Number"]
    */
   @Prop() fieldType: "text" | "date" | "tel" = "text";
 
@@ -74,9 +75,7 @@ export class InputField {
           subheading={
             "A technical problem prevented this input field from loading. Please contact us with the link to this page."
           }
-          description={
-            "Values for the following attributes are missing:"
-          }
+          description={"Values for the following attributes are missing:"}
         />
       );
     }

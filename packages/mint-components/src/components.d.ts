@@ -404,6 +404,7 @@ export namespace Components {
           * @uiName Input Type
           * @uiType string
           * @uiEnum ["text", "date", "tel"]
+          * @uiEnumNames ["Text", "Date", "Phone Number"]
          */
         "fieldType": "text" | "date" | "tel";
     }
@@ -2969,6 +2970,7 @@ declare namespace LocalJSX {
           * @uiName Input Type
           * @uiType string
           * @uiEnum ["text", "date", "tel"]
+          * @uiEnumNames ["Text", "Date", "Phone Number"]
          */
         "fieldType"?: "text" | "date" | "tel";
     }
