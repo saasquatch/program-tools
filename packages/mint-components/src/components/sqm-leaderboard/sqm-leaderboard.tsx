@@ -49,10 +49,10 @@ export class Leaderboard {
   /**
    * @uiName Leaderboard type
    * @uiType string
-   * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
-   * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
+   * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+   * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
    */
-  @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
+  @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers" | "topPointEarners";
 
   /**
    * @uiName Title displayed for users without names

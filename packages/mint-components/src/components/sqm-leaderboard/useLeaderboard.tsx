@@ -15,7 +15,7 @@ export interface LeaderboardProps {
   showRank?: boolean;
   hideViewer?: boolean;
   rankType: "rowNumber" | "rank" | "denseRank";
-  leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
+  leaderboardType: "topStartedReferrers" | "topConvertedReferrers" | "topPointEarners";
   interval: string;
   empty: VNode;
   loadingstate: VNode;

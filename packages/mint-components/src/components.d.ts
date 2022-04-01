@@ -388,15 +388,16 @@ export namespace Components {
          */
         "demoData"?: DemoData<InputFieldViewProps>;
         /**
-          * @uiName Empty error message
+          * @uiName Required Error Message
          */
         "errorMessage": string;
         /**
-          * @uiName Input label
+          * @uiName Input Label
          */
         "fieldLabel": string;
         /**
-          * @uiName Input name attribute
+          * Used as the key of the inputs value in form data.
+          * @uiName Input Name Attribute
          */
         "fieldName": string;
         /**
@@ -435,10 +436,10 @@ export namespace Components {
         /**
           * @uiName Leaderboard type
           * @uiType string
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
-          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
-        "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
+        "leaderboardType": "topStartedReferrers" | "topConvertedReferrers" | "topPointEarners";
         /**
           * @uiName Rank type
           * @uiType string
@@ -2958,15 +2959,16 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<InputFieldViewProps>;
         /**
-          * @uiName Empty error message
+          * @uiName Required Error Message
          */
         "errorMessage"?: string;
         /**
-          * @uiName Input label
+          * @uiName Input Label
          */
         "fieldLabel"?: string;
         /**
-          * @uiName Input name attribute
+          * Used as the key of the inputs value in form data.
+          * @uiName Input Name Attribute
          */
         "fieldName"?: string;
         /**
@@ -3005,10 +3007,10 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard type
           * @uiType string
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
-          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
-        "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
+        "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers" | "topPointEarners";
         /**
           * @uiName Rank type
           * @uiType string

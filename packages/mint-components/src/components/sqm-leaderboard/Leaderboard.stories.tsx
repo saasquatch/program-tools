@@ -254,7 +254,7 @@ export const Five = () => {
   return <LeaderboardView {...props} />;
 };
 
-export const Ten = () => {
+export const ReferralLeaderboard = () => {
   const props = {
     states: {
       loading: false,
@@ -263,6 +263,36 @@ export const Ten = () => {
         rankheading: "Rank",
         usersheading: "User",
         statsheading: "Referrals",
+        showRank: false,
+      },
+    },
+    data: {
+      rankType: "rowNumber",
+      leaderboard: users,
+      viewerRank: {
+        firstName: "Viktor",
+        lastInitial: "V",
+        value: 82,
+        rank: 1,
+        rowNumber: 1,
+      },
+    },
+    elements: {
+      ...defaultElements,
+    },
+  };
+  return <LeaderboardView {...props} />;
+};
+
+export const PointsLeaderboard = () => {
+  const props = {
+    states: {
+      loading: false,
+      hasLeaders: true,
+      styles: {
+        rankheading: "Rank",
+        usersheading: "User",
+        statsheading: "Points",
         showRank: false,
       },
     },
