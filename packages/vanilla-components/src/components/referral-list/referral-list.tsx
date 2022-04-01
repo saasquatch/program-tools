@@ -3,46 +3,221 @@ import { css } from "emotion";
 import { uuid } from "../../utilities";
 import { API } from "../../services/WidgetHost";
 
+/**
+ * @uiName Referral List
+ */
 @Component({
   tag: "sqh-referral-list",
   styleUrl: "referral-list.scss",
 })
 export class ReferralList {
-  // general in dropdown
+  /**
+   * Hide the component
+   *
+   * @uiName Is Hidden
+   * @uiGroup general
+   */
   @Prop() ishidden: boolean;
+  /**
+   * Text inside the paginate more button
+   *
+   * @uiName Paginate More Text
+   * @uiGroup general
+   */
   @Prop() paginatemore: string;
+  /**
+   * Text inside the paginate less button
+   *
+   * @uiName Paginate Less Text
+   * @uiGroup general
+   */
   @Prop() paginateless: string;
+  /**
+   * Text shown when referral list is empty
+   *
+   * @uiName Empty Referrals Text
+   * @uiGroup general
+   */
   @Prop() noreferralsyet: string;
+  /**
+   * Text color of the referred users name
+   *
+   * @uiName Referral Name Color
+   * @uiGroup general
+   */
   @Prop() referralnamecolor: string;
+  /**
+   * Text color of the referral details
+   *
+   * @uiName Referral Text Color
+   * @uiGroup general
+   */
   @Prop() referraltextcolor: string;
+  /**
+   * Text shown when the referred users name is unknown
+   *
+   * @uiName Unknown User Text
+   * @uiGroup general
+   */
   @Prop() unknownuser: string;
+  /**
+   * Show and hide expired referrals
+   *
+   * @uiName Show Expiry
+   * @uiGroup general
+   */
   @Prop() showexpiry: boolean;
+  /**
+   * Show the invoice details for a referral
+   *
+   * @uiName Show Notes
+   * @uiGroup general
+   */
   @Prop() shownotes: boolean;
+  /**
+   * Shown when reward is redeemed
+   *
+   * @uiName Redeemed Value
+   * @uiGroup general
+   */
   @Prop() redeemedvalue: string;
-  // referrer props
+  /**
+   * Show and hide the referrer
+   *
+   * @uiName Show Referrer
+   * @uiGroup referrerProps
+   */
   @Prop() showreferrer: boolean;
+  /**
+   * Details about who referred you
+   *
+   * @uiName Referrer Content
+   * @uiGroup referrerProps
+   */
   @Prop() referrercontent: string;
+  /**
+   * Referred Text shown in reward column
+   *
+   * @uiName Referrer Value
+   * @uiGroup referrerProps
+   */
   @Prop() referrervalue: string;
-  // converted referral props
+  /**
+   * Color of the reward details
+   *
+   * @uiName Reward Color
+   * @uiGroup convertedReferralProps
+   */
   @Prop() rewardcolor: string;
+  /**
+   * Color of the customer note
+   *
+   * @uiName Reward Color
+   * @uiGroup convertedReferralProps
+   */
   @Prop() customernotecolor: string;
+  /**
+   * Show value of the first earned reward inside the rewards column
+   *
+   * @uiName Use First Reward
+   * @uiGroup convertedReferralProps
+   */
   @Prop() usefirstreward: boolean;
+  /**
+   * Content shown when a referral is converted
+   *
+   * @uiName Converted Content
+   * @uiGroup convertedReferralProps
+   */
   @Prop() convertedcontent: string;
+  /**
+   * Value shown in the rewards column
+   *
+   * @uiName Value Content
+   * @uiGroup convertedReferralProps
+   */
   @Prop() valuecontent: string;
-  // pending referral props
+
+  /**
+   * Color of the pending icon and text
+   *
+   * @uiName Pending Color
+   * @uiGroup pendingReferralProps
+   */
   @Prop() pendingcolor: string;
+  /**
+   * Pending content shown in the user column
+   *
+   * @uiName Pending Content
+   * @uiGroup pendingReferralProps
+   */
   @Prop() pendingcontent: string;
+  /**
+   * Pending content shown alongside the icon in the referral column
+   *
+   * @uiName Pending Value
+   * @uiGroup pendingReferralProps
+   */
   @Prop() pendingvalue: string;
-  // expired reward props
+
+  /**
+   * Color of the expired icon and text
+   *
+   * @uiName Expired Color
+   * @uiGroup expiredRewardProps
+   */
   @Prop() expiredcolor: string;
+  /**
+   * Expired content shown in the user column
+   *
+   * @uiName Expired Content
+   * @uiGroup expiredRewardProps
+   */
   @Prop() expiredcontent: string;
+  /**
+   * Expired content shown alongside the icon in the referral column
+   *
+   * @uiName Expired Value
+   * @uiGroup expiredRewardProps
+   */
   @Prop() expiredvalue: string;
+  /**
+   * Reward expiry ICU message
+   *
+   * @uiName Expires Value
+   * @uiGroup expiredRewardProps
+   */
   @Prop() expiresvalue: string;
-  // cancelled reward props
+  /**
+   * Color of the cancelled icon and text
+   *
+   * @uiName Cancelled Color
+   * @uiGroup cancelledRewardProps
+   */
   @Prop() cancelledcolor: string;
+  /**
+   * Cancelled content shown in the user column
+   *
+   * @uiName Cancelled Content
+   * @uiGroup cancelledRewardProps
+   */
   @Prop() cancelledcontent: string;
+  /**
+   * Cancelled content shown alongside the icon in the referral column
+   *
+   * @uiName Cancelled Value
+   * @uiGroup cancelledRewardProps
+   */
   @Prop() cancelledvalue: string;
-  //internationalization props
+  /**
+   * @uiGroup Internationalization Props
+   */
+  /**
+   * When true sets the local, with the default being en-US
+   *
+   * @uiName Internationalization
+   * @uiGroup internationalizationProps
+   */
   @Prop() internationalization: boolean;
 
   @State() referrals: Referral[];
@@ -73,7 +248,7 @@ export class ReferralList {
     }
   }
 
-  getReferrals(showReferrer:boolean, offset:number = 0) {
+  getReferrals(showReferrer: boolean, offset: number = 0) {
     return API.graphql.getReferrals(showReferrer, offset);
   }
 

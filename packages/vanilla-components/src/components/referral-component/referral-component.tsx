@@ -1,14 +1,42 @@
 import { h, Component, Prop } from "@stencil/core";
 import FormatJS from "../../services/FormatJs";
+/**
+ * @uiName Referral Component
+ */
 @Component({
   tag: "sqh-referral-component",
   styleUrl: "referral-component.scss",
 })
 export class ReferralComponent {
+  /**
+   * Referral object
+   *
+   * @uiName Referral
+   */
   @Prop() referral: Referral | ReferredByReferral;
+  /**
+   * Type of referral
+   *
+   * @uiName Referral Type
+   */
   @Prop() referraltype: "converted" | "pending" | "referrer";
+  /**
+   * Referral variables used to format the row in the referral list
+   *
+   * @uiName Referral Variables
+   */
   @Prop() referralvariables: ReferralVariables;
+  /**
+   * Text shown when the name of a user is unknown
+   *
+   * @uiName Unknown User
+   */
   @Prop() unknownuser: String;
+  /**
+   * Configure the local
+   *
+   * @uiName Local
+   */
   @Prop() locale: string;
 
   getName() {
@@ -156,7 +184,7 @@ export class ReferralComponent {
         );
         return FormatJS.format(
           this.referralvariables.expiresvalue || `Expires ${expiryDate}`,
-          {...formatVariables, expiryDate },
+          { ...formatVariables, expiryDate },
           this.locale
         );
       }

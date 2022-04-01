@@ -8,17 +8,44 @@ import {
   Watch,
 } from "@stencil/core";
 import { css } from "emotion";
-
+/**
+ * @uiName Partner Stat
+ */
 @Component({
   tag: "sqh-partner-stat-component",
   styleUrl: "partner-stat-component.scss",
 })
-export class StatComponent {
+export class PartnerStatComponent {
   @Element() elem: HTMLElement;
+  /**
+   * Hide the component
+   *
+   * @uiName Is Hidden
+   */
   @Prop() ishidden: boolean;
+  /**
+   * Used to query the stats for a user
+   *
+   * @uiName Stat Type
+   */
   @Prop() stattype: string;
+  /**
+   * Value of the stat
+   *
+   * @uiName Stat Value
+   */
   @Prop() statvalue: string;
+  /**
+   * Description of the stat
+   *
+   * @uiName Stat Description
+   */
   @Prop() statdescription: string;
+  /**
+   * Color of the stat value and description
+   *
+   * @uiName Stat Color
+   */
   @Prop() statcolor: string;
   @Event() statTypeUpdated: EventEmitter;
   @Event() statAdded: EventEmitter;
@@ -44,7 +71,6 @@ export class StatComponent {
     const clz = css`
       color: ${this.statcolor};
     `;
-
     return (
       !this.ishidden && (
         <div class={clz}>

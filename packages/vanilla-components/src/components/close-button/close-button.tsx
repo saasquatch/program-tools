@@ -4,12 +4,19 @@ import { API, widgetIdent } from "../../services/WidgetHost";
 
 // const API: MyAPI = window["WidgetHost"];
 // const widget = window["widgetIdent"];
-
+/**
+ * @uiName Close Button
+ */
 @Component({
   tag: "sqh-close-button",
   styleUrl: "close-button.scss",
 })
-export class TwitterShareButton {
+export class CloseButton {
+  /**
+   * The text shown inside the close button.
+   *
+   * @uiName Text 
+   */
   @Prop() text: string = "Close";
   @Element() closeButton: HTMLElement;
 

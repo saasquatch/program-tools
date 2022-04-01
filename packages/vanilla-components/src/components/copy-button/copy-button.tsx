@@ -3,24 +3,87 @@ import { shadeColor, addClass, removeClass } from "../../utilities";
 import { css } from "emotion";
 import { API } from "../../services/WidgetHost";
 import Clipboard from "clipboard";
-
+/**
+ * @uiName Copy Button
+ */
 @Component({
   tag: "sqh-copy-button",
   styleUrl: "copy-button.scss",
 })
 export class CopyButton {
+   /**
+   * Hide the component
+   *
+   * @uiName Is Hidden
+   */
   @Prop() ishidden: boolean;
+  /**
+   * Text shown inside the copy button.
+   *
+   * @uiName Text
+   */
   @Prop() text: string;
+  /**
+   * Sets a maximum width on the copy button.
+   *
+   * @uiName Width
+   */
   @Prop() width: number;
+  /**
+   * Background color & border color of the copy button.
+   *
+   * @uiName Background Color
+   */
   @Prop() backgroundcolor: string;
+  /**
+   * Configure border radius with pixel amount
+   *
+   * @uiName Border Radius
+   */
   @Prop() borderradius: number;
+  /**
+   * Color of text inside the copy button.
+   *
+   * @uiName Text Color
+   */
   @Prop() textcolor: string;
+  /**
+   * Font size of the copy button text. 
+   *
+   * @uiName Font Size
+   */
   @Prop() fontsize: number;
+  /**
+   * Text shown when the code is successfully copied to the users clipboard. 
+   *
+   * @uiName Copy Success
+   */
   @Prop() copysuccess: string;
+  /**
+   * Text shown when the button has failed to copy the code to the users clipboard. 
+   *
+   * @uiName Copy Failure
+   */
   @Prop() copyfailure: string;
+  /**
+   * rewardkey is used to get the fuel tank code for a user. 
+   *
+   * @uiName Reward Key
+   */
   @Prop() rewardkey: string;
+  /**
+   * Font size of the fuel tank code. 
+   *
+   * @uiName Code Font Size
+   */
   @Prop() codefontsize: number;
+  /**
+   * Text color of the fuel tank code.
+   *
+   * @uiName Code Font Color
+   */
   @Prop() codefontcolor: string;
+
   @State() fueltankcode: string;
 
   componentWillLoad() {

@@ -9,17 +9,50 @@ import {
 } from "@stencil/core";
 import { css } from "emotion";
 
+/**
+ * @uiName Stat Component
+ */
 @Component({
   tag: "sqh-stat-component",
   styleUrl: "stat-component.scss",
 })
 export class StatComponent {
   @Element() elem: HTMLElement;
+  /**
+   * Hide the component
+   *
+   * @uiName Is Hidden
+   */
   @Prop() ishidden: boolean;
+  /**
+   * Type of stat being displayed. e.g /rewardsCount
+   *
+   * @uiName Stat Type
+   * @uiGroup stat
+   */
   @Prop() stattype: string;
+  /**
+   * Value shown inside stat
+   *
+   * @uiName Stat Value
+   * @uiGroup stat
+   */
   @Prop() statvalue: string;
+  /**
+   * Description shown underneath stat value
+   *
+   * @uiName Stat Description
+   * @uiGroup stat
+   */
   @Prop() statdescription: string;
+  /**
+   * Text color of the stat
+   *
+   * @uiName Stat Color
+   * @uiGroup stat
+   */
   @Prop() statcolor: string;
+
   @Event() statTypeUpdated: EventEmitter;
   @Event() statAdded: EventEmitter;
 

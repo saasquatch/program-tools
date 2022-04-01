@@ -3,16 +3,36 @@ import { API } from "../../services/WidgetHost";
 import { pathToRegexp } from "path-to-regexp";
 import { css } from "emotion";
 
+/**
+ * @uiName Stats Container
+ */
 @Component({
   tag: "sqh-stats-container",
   styleUrl: "stats-container.scss",
 })
 export class StatsContainer {
   @Element() container: HTMLElement;
+  /**
+   * Hide the component
+   *
+   * @uiName Is Hidden
+   */
   @Prop() ishidden: boolean = false;
+  /**
+   * Configure the padding top of the container
+   *
+   * @uiName Padding Top
+   */
   @Prop() paddingtop: string;
+  /**
+   * Configure the padding bottom of the container
+   *
+   * @uiName Padding Bottom
+   */
   @Prop() paddingbottom: string;
+
   @State() loading: boolean;
+
   @State() stats: object;
 
   constructor() {

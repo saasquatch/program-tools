@@ -3,18 +3,51 @@ import Clipboard from "clipboard";
 import { shadeColor, addClass, removeClass } from "../../utilities";
 import { css } from "emotion";
 import { API } from "../../services/WidgetHost";
-
+/**
+ * @uiName Copy Link Button
+ */
 @Component({
   tag: "sqh-copy-link-button",
   styleUrl: "copy-link-button.scss",
 })
 export class CopyLinkButton {
+  /**
+   * Boolean value used to hide the component
+   *
+   * @uiName Is Hidden
+   */
   @Prop() ishidden: boolean;
+  /**
+   * Text shown inside the copy button.
+   *
+   * @uiName Text
+   */
   @Prop() text: string;
+  /**
+   * Text shown when the code is successfully copied to the users clipboard.
+   *
+   * @uiName Copy Success
+   */
   @Prop() copysuccess: string;
+  /**
+   * Text shown when the button has failed to copy the code to the users clipboard.
+   *
+   * @uiName Copy Failure
+   */
   @Prop() copyfailure: string;
+  /**
+   * Background & border color of the copy button.
+   *
+   * @uiName Button Color
+   */
   @Prop() buttoncolor: string;
+  /**
+   * Color of text inside the copy button.
+   *
+   * @uiName Text Color
+   */
   @Prop() textcolor: string;
+
   @State() sharelink: string;
 
   componentWillLoad() {

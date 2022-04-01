@@ -1,6 +1,8 @@
 import { h, Component, State } from "@stencil/core";
 import { API } from "../../services/WidgetHost";
-
+/**
+ * @uiName Referral Code
+ */
 @Component({
   tag: "sqh-referral-code",
   styleUrl: "referral-code.scss",

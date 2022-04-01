@@ -1,12 +1,30 @@
 import { h, Component, Prop } from "@stencil/core";
 
+/**
+ * @uiName Reward Actions
+ */
 @Component({
   tag: "sqh-rewards-actions",
   styleUrl: "rewards-actions.scss",
 })
 export class RewardsActions {
+  /**
+   * Text inside the previous button
+   *
+   * @uiName Previous Text
+   */
   @Prop() previoustext: string = "Previous";
+  /**
+   * Text inside the hide button
+   *
+   * @uiName Hide Text
+   */
   @Prop() hidetext: string = "Hide";
+  /**
+   * Text inside the next button
+   *
+   * @uiName Next Text
+   */
   @Prop() nexttext: string = "Next";
 
   render() {
