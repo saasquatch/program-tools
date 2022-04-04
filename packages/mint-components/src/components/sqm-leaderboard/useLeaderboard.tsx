@@ -20,6 +20,7 @@ export interface LeaderboardProps {
     | "topConvertedReferrers"
     | "topPointEarners";
   rowNumber: number;
+  programId?: string;
   interval: string;
   empty: VNode;
   loadingstate: VNode;
@@ -84,13 +85,19 @@ export type Leaderboard = {
 };
 
 export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
-  const programId = useProgramId();
+  const programIdContext = useProgramId();
+  // Default to context, overriden by props
+  const programId = props.programId ?? programIdContext;
   const user = useUserIdentity();
 
-  const variables = {
-    type: props.leaderboardType,
-    filter: { programId_eq: programId },
-  };
+  const variables = programId
+    ? {
+        type: props.leaderboardType,
+        filter: { programId_eq: programId },
+      }
+    : {
+        type: props.leaderboardType,
+      };
 
   if (props.interval) {
     variables.filter["interval"] = props.interval;

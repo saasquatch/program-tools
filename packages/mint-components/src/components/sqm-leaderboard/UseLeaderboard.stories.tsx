@@ -149,6 +149,29 @@ export const topPointEaners = createHookStory(() => {
   ];
 });
 
+export const globalLeaderboards = createHookStory(() => {
+  setupGraphQL();
+  return [
+    View({
+      leaderboardType: "topPointEarners",
+      statsheading: "Points",
+      programId: "",
+    }),
+    View({
+      leaderboardType: "topStartedReferrers",
+      rankType: "rank",
+      statsheading: "Referrals",
+      programId: "",
+    }),
+    View({
+      leaderboardType: "topConvertedReferrers",
+      rankType: "denseRank",
+      statsheading: "Referrals",
+      programId: "",
+    }),
+  ];
+});
+
 export const FiveResults = createHookStory(() => {
   setupGraphQL();
   return [

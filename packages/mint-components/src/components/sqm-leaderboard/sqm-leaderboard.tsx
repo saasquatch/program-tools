@@ -16,6 +16,14 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 })
 export class Leaderboard {
   /**
+   * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard lives.
+   * If no program ID is set or provided by context, then a global leaderboard is shown.
+   *
+   * @uiName Program
+   */
+  @Prop() programId?: string;
+
+  /**
    * @uiName User Column Heading
    */
   @Prop() usersheading: string;
@@ -101,6 +109,7 @@ export class Leaderboard {
       rankType: this.rankType,
       leaderboardType: this.leaderboardType,
       rowNumber: this.rowNumber,
+      programId: this.programId,
       anonymousUser: this.anonymousUser,
       interval: this.interval,
       hideViewer: this.hideViewer,

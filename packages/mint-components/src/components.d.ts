@@ -443,6 +443,11 @@ export namespace Components {
     | "topConvertedReferrers"
     | "topPointEarners";
         /**
+          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard lives. If no program ID is set or provided by context, then a global leaderboard is shown.
+          * @uiName Program
+         */
+        "programId"?: string;
+        /**
           * @uiName Rank type
           * @uiType string
           * @uiEnum ["rowNumber", "rank", "denseRank"]
@@ -454,8 +459,8 @@ export namespace Components {
          */
         "rankheading"?: string;
         /**
-          * The amount of leaderboard rows displayed, minimum is 1 and maximum is 10
-          * @uiName Leaderboard Row Count
+          * The maxiumum amount of leaderboard rows displayed, minimum is 1 and maximum is 10
+          * @uiName Max Number of Leaderboard Rows
          */
         "rowNumber": number;
         /**
@@ -3021,6 +3026,11 @@ declare namespace LocalJSX {
     | "topConvertedReferrers"
     | "topPointEarners";
         /**
+          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard lives. If no program ID is set or provided by context, then a global leaderboard is shown.
+          * @uiName Program
+         */
+        "programId"?: string;
+        /**
           * @uiName Rank type
           * @uiType string
           * @uiEnum ["rowNumber", "rank", "denseRank"]
@@ -3032,8 +3042,8 @@ declare namespace LocalJSX {
          */
         "rankheading"?: string;
         /**
-          * The amount of leaderboard rows displayed, minimum is 1 and maximum is 10
-          * @uiName Leaderboard Row Count
+          * The maxiumum amount of leaderboard rows displayed, minimum is 1 and maximum is 10
+          * @uiName Max Number of Leaderboard Rows
          */
         "rowNumber"?: number;
         /**
