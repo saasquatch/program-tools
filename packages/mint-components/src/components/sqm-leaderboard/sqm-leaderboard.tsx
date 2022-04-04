@@ -52,7 +52,10 @@ export class Leaderboard {
    * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
    * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
    */
-  @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers" | "topPointEarners";
+  @Prop() leaderboardType:
+    | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "topPointEarners";
 
   /**
    * @uiName Title displayed for users without names
@@ -65,6 +68,13 @@ export class Leaderboard {
    * @uiOptions {"allowPastDates":true, "months": 1}
    */
   @Prop() interval: string;
+
+  /**
+   * The amount of leaderboard rows displayed, minimum is 1 and maximum is 10
+   *
+   * @uiName Leaderboard Row Count
+   */
+  @Prop() rowNumber: number = 10;
 
   /**
    * @undocumented
@@ -90,6 +100,7 @@ export class Leaderboard {
       rankheading: this.rankheading,
       rankType: this.rankType,
       leaderboardType: this.leaderboardType,
+      rowNumber: this.rowNumber,
       anonymousUser: this.anonymousUser,
       interval: this.interval,
       hideViewer: this.hideViewer,

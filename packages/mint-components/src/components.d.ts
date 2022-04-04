@@ -439,7 +439,9 @@ export namespace Components {
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
           * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
-        "leaderboardType": "topStartedReferrers" | "topConvertedReferrers" | "topPointEarners";
+        "leaderboardType": | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "topPointEarners";
         /**
           * @uiName Rank type
           * @uiType string
@@ -451,6 +453,11 @@ export namespace Components {
           * @uiName Rank Heading
          */
         "rankheading"?: string;
+        /**
+          * The amount of leaderboard rows displayed, minimum is 1 and maximum is 10
+          * @uiName Leaderboard Row Count
+         */
+        "rowNumber": number;
         /**
           * @uiName Show leaderboard rank
          */
@@ -3010,7 +3017,9 @@ declare namespace LocalJSX {
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
           * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
-        "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers" | "topPointEarners";
+        "leaderboardType"?: | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "topPointEarners";
         /**
           * @uiName Rank type
           * @uiType string
@@ -3022,6 +3031,11 @@ declare namespace LocalJSX {
           * @uiName Rank Heading
          */
         "rankheading"?: string;
+        /**
+          * The amount of leaderboard rows displayed, minimum is 1 and maximum is 10
+          * @uiName Leaderboard Row Count
+         */
+        "rowNumber"?: number;
         /**
           * @uiName Show leaderboard rank
          */

@@ -15,7 +15,11 @@ export interface LeaderboardProps {
   showRank?: boolean;
   hideViewer?: boolean;
   rankType: "rowNumber" | "rank" | "denseRank";
-  leaderboardType: "topStartedReferrers" | "topConvertedReferrers" | "topPointEarners";
+  leaderboardType:
+    | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "topPointEarners";
+  rowNumber: number;
   interval: string;
   empty: VNode;
   loadingstate: VNode;
@@ -138,7 +142,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
       styles: props,
     },
     data: {
-      leaderboard: sortedLeaderboard,
+      leaderboard: sortedLeaderboard?.slice(0, props.rowNumber),
       rankType: props.rankType,
       viewerRank: viewingUser,
     },

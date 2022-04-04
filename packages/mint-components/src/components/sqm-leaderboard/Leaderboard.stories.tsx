@@ -87,7 +87,7 @@ const defaultStyles = {
   usersheading: "User",
   statsheading: "Referrals",
   rankheading: "Rank",
-  anonymousUser: "Anonymous User"
+  anonymousUser: "Anonymous User",
 };
 
 const defaultElements = {
@@ -127,6 +127,7 @@ export const Empty = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: [],
+      rowNumber: 10,
       viewerRank: {
         firstName: "Kutay",
         lastInitial: "C",
@@ -153,6 +154,7 @@ export const Loading = () => {
     },
     data: {
       rankType: "rowNumber",
+      rowNumber: 10,
       leaderboard: [],
     },
     elements: {
@@ -173,6 +175,7 @@ export const One = () => {
     },
     data: {
       rankType: "rowNumber",
+      rowNumber: 1,
       leaderboard: [
         {
           firstName: "Viktor",
@@ -208,6 +211,7 @@ export const Five = () => {
     },
     data: {
       rankType: "rowNumber",
+      rowNumber: 5,
       leaderboard: [
         {
           firstName: "Viktor",
@@ -269,6 +273,7 @@ export const ReferralLeaderboard = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: users,
+      rowNumber: 10,
       viewerRank: {
         firstName: "Viktor",
         lastInitial: "V",
@@ -299,6 +304,7 @@ export const PointsLeaderboard = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: users,
+      rowNumber: 10,
       viewerRank: {
         firstName: "Viktor",
         lastInitial: "V",
@@ -327,6 +333,7 @@ export const TenWithRank = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: users,
+      rowNumber: 10,
       viewerRank: {
         firstName: "Viktor",
         lastInitial: "V",
@@ -355,6 +362,7 @@ export const ViewerOutside = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: users,
+      rowNumber: 10,
       viewerRank: {
         firstName: "Kutay",
         lastInitial: "C",
@@ -383,6 +391,7 @@ export const ViewerAnonymous = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: users,
+      rowNumber: 10,
       viewerRank: null,
     },
     elements: {
@@ -397,6 +406,7 @@ export const HideViewer = () => {
     states: {
       loading: false,
       hasLeaders: true,
+      rowNumber: 10,
       styles: {
         ...defaultStyles,
         showRank: true,
@@ -406,6 +416,7 @@ export const HideViewer = () => {
     data: {
       rankType: "rowNumber",
       leaderboard: users,
+      rowNumber: 10,
       viewerRank: {
         firstName: "Viktor",
         lastInitial: "V",
