@@ -70,9 +70,9 @@ export class Leaderboard {
   @Prop() interval: string;
 
   /**
-   * The amount of leaderboard rows displayed, minimum is 1 and maximum is 10
+   * The maxiumum amount of leaderboard rows displayed, minimum is 1 and maximum is 10
    *
-   * @uiName Leaderboard Row Count
+   * @uiName Max Number of Leaderboard Rows
    */
   @Prop() rowNumber: number = 10;
 

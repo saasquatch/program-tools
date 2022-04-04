@@ -2,39 +2,67 @@
 @author:noah
 Feature: Leaderboard
 
-	The leaderboard displays the top referrers along with their scores
+	The leaderboard supports three main cases
+	- Top Started Referrers
+	- Top Converted Referrers
+	- Top Point Earners
+	To display these different types of leaderboards it uses the backends pre-canned options.
+	The backend supports filtering on programId and interval, programId is sourced from program context.
+
+	Background: A user exists
+		Given a user
+		And they are viewing the leaderboard
 
 	@motivating
-	Scenario Outline: The leaderboard can be for referrals started or converted
-		Given a leaderboard is configured with "leaderboard-type" <value>
-		And a user with started referrals
-		And a user with converted referrals
-		When they view the leaderboard
-		Then then only <referralType> referrals are counted in the leaderboard
+	Scenario: The top started referrers leaderboard is displayed by default
+		Given a leaderboard doesn't have prop "leaderboard-type"
+		And there are started referrals on the tenant
+		When the user views the leaderboard
+		Then they see the top started referrers leaderboard
+
+	@motivating
+	Scenario Outline: Two types of referrals leaderboards can be displayed
+		Given a leaderboard has prop "leaderboard-type" with <value>
+		And there are started referrals on the tenant
+		And there are started converted on the tenant
+		When the user views the leaderboard
+		Then they see the <referralType> leaderboard
 		Examples:
 			| value                 | referralType |
 			| topStartedReferrers   | started      |
 			| topConvertedReferrers | converted    |
-			|                       | started      |
 
 	@motivating
-	Scenario: If there are any users with referrals the leaderboard is shown
-		Given there is aleast one user
-		Then the leaderboard displays up to 10 top referrers
-		And leaderboard is ordered by the referrers score in descending ordered
+	#Note, currently no good way to display a global points leaderboard, gap
+	Scenario: The top point earners leaderboard can be displayed
+		Given a leaderboard has prop "leaderboard-type" with value "topPointEarners"
+		And there are users with points
+		When the user views the leaderboard
+		Then they see the top point earners leaderboard
 
 	@motivating
-	Scenario: The leaderboard can filter referrals within an time interval
-		Given a leaderboard is configured with "interval" "2021-11-02T07:00:00.000Z/2021-11-07T07:00:00.000Z"
-		And a user with referrals
-		When they view the leaderboard
-		Then only referrals from within "2021-11-02T07:00:00.000Z/2021-11-07T07:00:00.000Z" are counted in the leaderboard
+	Scenario: Leaderboard results are shown in descending order
+		Given there are leaderboard results
+		When the user views the leaderboard
+		Then they see up to the 10 top leaderboard results
+		And leaderboard is in descending order
 
 	@motivating
-	Scenario Outline: Rank Type can be configured
-		Given a leaderboard is configured with "rank-type" <value>
-		And a user
-		When they view the leaderboard
+	Scenario Outline: Leaderboard results can be filtered with a time interval
+		Given a <leaderboardType> leaderboard
+		And it has prop "interval" with value "2021-11-02T07:00:00.000Z/2021-11-07T07:00:00.000Z"
+		When the user views the leaderboard
+		Then they only see <results> from within "2021-11-02T07:00:00.000Z/2021-11-07T07:00:00.000Z"
+		Examples:
+			| leaderboardType       | results             |
+			| topStartedReferrers   | started referrals   |
+			| topConvertedReferrers | converted referrals |
+			| topPointEarners       | points earned       |
+
+	@motivating
+	Scenario Outline: Leaderboard rank type can be configured
+		Given a leaderboard has prop "rank-type" with <value>
+		When the user views the leaderboard
 		Then their leaderboard rank is their <rank>
 		Examples:
 			| value     | rank       |
@@ -42,12 +70,23 @@ Feature: Leaderboard
 			| denseRank | dense rank |
 			| rank      | rank       |
 
+	@minutia
+	Scenario Outline: The max number of leaderboard rows displayed can be configured
+		Given a leaderboard has prop "row-number" with <value>
+		And the leaderboard has <resultCount>
+		When the user views the leaderboard
+		Then they see <number> rows
+		Examples:
+			| value | resultCount | number |
+			|       | 10          | 10     |
+			| 5     | 10          | 5      |
+			| 3     | 1           | 1      |
+
 	@minutiae
 	@ui
-	Scenario: An empty state is displayed if no users
-		Given a user
-		But no users have made any referrals
-		When they view the leaderboard
+	Scenario: Leaderboards with no results show an empty state
+		Given a leaderboard has no results
+		When the user views the leaderboard
 		Then an empty state is dislayed
 		And they see an image of a leaderboard
 		And below they see "View your rank in the leaderboard"
@@ -57,9 +96,8 @@ Feature: Leaderboard
 	@minutiae
 	@ui
 	Scenario: A custom empty state can be provided
-		Given a user
-		But no users have made any referrals
-		When they view the leaderboard
+		Given a leaderboard has no results
+		When the user views the leaderboard
 		Then the contents of the "empty" slot are displayed
 
 	@minutiae
@@ -72,8 +110,7 @@ Feature: Leaderboard
 			| usersheading | Customer       |
 			| statsheading | Referral Count |
 			| show-rank    | true           |
-		And a user
-		When they view the leaderboard
+		When the user views the leaderboard
 		Then they see the following columns with headings
 			| column | heading        |
 			| rank   | Place          |
@@ -82,11 +119,10 @@ Feature: Leaderboard
 
 	@motivating
 	@ui
-	Scenario Outline: Rank can be hidden or shown
+	Scenario Outline: Leaderboard rank can be hidden or shown
 		Given a leaderboard
 		And it has prop "show-rank" with <propValue>
-		And a user
-		When they view the leaderboard
+		When the user views the leaderboard
 		Then they <maySee> the rank column
 		Examples:
 			| propValue | maySee    |
@@ -96,31 +132,29 @@ Feature: Leaderboard
 
 	@motivating
 	@ui
-	Scenario: Users in the top 10 referrers see their leaderboard row highlighted
-		Given a user
-		And they are in the top 10 referrers
+	Scenario: Users in the top 10 of the leaderboard results see their leaderboard row highlighted
+		Given a user in the top 10 of the leaderboard results
 		When they view the leaderboard
 		Then they see the row with their name highlighted with brand colour
 
 	@motivating
 	@ui
-	Scenario Outline: Users not in the top 10 referrers can see their progress at the bottom of the leaderboard
-		Given a user
-		And they <mayHmayHaveReferralave>
-		And they are not in the top 10 referrers
+	Scenario Outline: Users not in the top 10 leaderboard results can see their progress at the bottom of the leaderboard
+		Given a user <mayHave> completed actions counted by the leaderboard
+		And they are not in the top 10 leaderboard results
 		And the leaderboard has prop "show-user" with <value>
 		When they view the leaderboard
-		Then they <maySee> "..." under the top 10 referrers
+		Then they <maySee> "..." under the top 10 leaderboard results
 		And under "..." they <maySee> a row highlighted with brand colour
 		And they <maySee> their name
-		And they <maySee> their referral count
+		And they <maySee> their leaderboard value
 		And they <maySeeRank>
 		Examples:
-			| mayHaveReferral      | value | maySee    | maySeeRank           |
-			| have referrals       | true  | see       | see their rank       |
-			| don't have referrals | true  | see       | don't see their rank |
-			|                      | false | don't see | don't see their rank |
-			| have referrals       |       | see       | see their rank       |
+			| mayHave | value | maySee    | maySeeRank           |
+			| has     | true  | see       | see their rank       |
+			| hasn't  | true  | see       | don't see their rank |
+			| N/A     | false | don't see | don't see their rank |
+			| hasn't  |       | see       | see their rank       |
 
 	@minutiae
 	Scenario: Users without names are displayed as an "Anonymous User"
