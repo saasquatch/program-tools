@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed Component:
   - /<sqm-leaderboard>
     - Now supports a top point earners leaderboard, `topPointEarners`
-    - Number of leaderboard rows is now configurable
+    - MAx number of leaderboard rows displayed is now configurable via prop but defaults to 10
 
 ## [1.5.3] - 2022-03-31
 
@@ -425,7 +425,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-stencilbook>
 
 [unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.4...HEAD
-[1.5.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.4
+[1.5.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.4
 [1.5.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.3
 [1.5.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.2
 [1.5.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.1
