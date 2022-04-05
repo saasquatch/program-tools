@@ -154,6 +154,7 @@ export const globalLeaderboards = createHookStory(() => {
   return [
     View({
       leaderboardType: "topPointEarners",
+      rankType: "rank",
       statsheading: "Points",
       programId: "",
     }),
@@ -165,7 +166,7 @@ export const globalLeaderboards = createHookStory(() => {
     }),
     View({
       leaderboardType: "topConvertedReferrers",
-      rankType: "denseRank",
+      rankType: "rank",
       statsheading: "Referrals",
       programId: "",
     }),
