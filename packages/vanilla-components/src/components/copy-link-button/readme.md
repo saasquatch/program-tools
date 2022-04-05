@@ -5,14 +5,14 @@
 
 ## Properties
 
-| Property      | Attribute     | Description | Type      | Default     |
-| ------------- | ------------- | ----------- | --------- | ----------- |
-| `buttoncolor` | `buttoncolor` |             | `string`  | `undefined` |
-| `copyfailure` | `copyfailure` |             | `string`  | `undefined` |
-| `copysuccess` | `copysuccess` |             | `string`  | `undefined` |
-| `ishidden`    | `ishidden`    |             | `boolean` | `undefined` |
-| `text`        | `text`        |             | `string`  | `undefined` |
-| `textcolor`   | `textcolor`   |             | `string`  | `undefined` |
+| Property      | Attribute     | Description                                                               | Type      | Default     |
+| ------------- | ------------- | ------------------------------------------------------------------------- | --------- | ----------- |
+| `buttoncolor` | `buttoncolor` | Background & border color of the copy button.                             | `string`  | `undefined` |
+| `copyfailure` | `copyfailure` | Shown when the button has failed to copy the code to the users clipboard. | `string`  | `undefined` |
+| `copysuccess` | `copysuccess` | Shown when the code is successfully copied to the users clipboard.        | `string`  | `undefined` |
+| `ishidden`    | `ishidden`    | Hide or show the component                                                | `boolean` | `undefined` |
+| `text`        | `text`        | Text shown inside the copy button.                                        | `string`  | `undefined` |
+| `textcolor`   | `textcolor`   | Color of text inside the copy button.                                     | `string`  | `undefined` |
 
 
 ----------------------------------------------

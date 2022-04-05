@@ -5,13 +5,13 @@
 
 ## Properties
 
-| Property          | Attribute         | Description | Type      | Default     |
-| ----------------- | ----------------- | ----------- | --------- | ----------- |
-| `ishidden`        | `ishidden`        |             | `boolean` | `undefined` |
-| `statcolor`       | `statcolor`       |             | `string`  | `undefined` |
-| `statdescription` | `statdescription` |             | `string`  | `undefined` |
-| `stattype`        | `stattype`        |             | `string`  | `undefined` |
-| `statvalue`       | `statvalue`       |             | `string`  | `undefined` |
+| Property          | Attribute         | Description                                     | Type      | Default     |
+| ----------------- | ----------------- | ----------------------------------------------- | --------- | ----------- |
+| `ishidden`        | `ishidden`        | Hide or show the component                      | `boolean` | `undefined` |
+| `statcolor`       | `statcolor`       | Text color of the stat                          | `string`  | `undefined` |
+| `statdescription` | `statdescription` | Description shown underneath stat value         | `string`  | `undefined` |
+| `stattype`        | `stattype`        | Type of stat being displayed. e.g /rewardsCount | `string`  | `undefined` |
+| `statvalue`       | `statvalue`       | Value shown inside stat                         | `string`  | `undefined` |
 
 
 ## Events

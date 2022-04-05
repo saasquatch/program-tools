@@ -5,20 +5,19 @@
 
 ## Properties
 
-| Property        | Attribute       | Description | Type      | Default            |
-| --------------- | --------------- | ----------- | --------- | ------------------ |
-| `background`    | `background`    |             | `string`  | `undefined`        |
-| `color`         | `color`         |             | `string`  | `undefined`        |
-| `fontfamily`    | `fontfamily`    |             | `string`  | `undefined`        |
-| `fontsize`      | `fontsize`      |             | `string`  | `undefined`        |
-| `height`        | `height`        |             | `string`  | `undefined`        |
-| `ishidden`      | `ishidden`      |             | `boolean` | `undefined`        |
-| `ismarkdown`    | `ismarkdown`    |             | `boolean` | `undefined`        |
-| `padding`       | `padding`       |             | `string`  | `"10px 20px 15px"` |
-| `paddingbottom` | `paddingbottom` |             | `string`  | `undefined`        |
-| `paddingtop`    | `paddingtop`    |             | `string`  | `undefined`        |
-| `text`          | `text`          |             | `string`  | `undefined`        |
-| `textalign`     | `textalign`     |             | `string`  | `undefined`        |
+| Property        | Attribute       | Description                       | Type      | Default     |
+| --------------- | --------------- | --------------------------------- | --------- | ----------- |
+| `background`    | `background`    | Background color of the container | `string`  | `undefined` |
+| `color`         | `color`         | Color of the text                 | `string`  | `undefined` |
+| `fontfamily`    | `fontfamily`    | Font family of the text           | `string`  | `undefined` |
+| `fontsize`      | `fontsize`      | Size of the text                  | `string`  | `undefined` |
+| `height`        | `height`        | Height of the container           | `string`  | `undefined` |
+| `ishidden`      | `ishidden`      | Hide or show the component        | `boolean` | `undefined` |
+| `ismarkdown`    | `ismarkdown`    | Compiles plain text into markdown | `boolean` | `undefined` |
+| `paddingbottom` | `paddingbottom` | Bottom padding on text            | `string`  | `undefined` |
+| `paddingtop`    | `paddingtop`    | Top padding on text               | `string`  | `undefined` |
+| `text`          | `text`          | The text content                  | `string`  | `undefined` |
+| `textalign`     | `textalign`     | Text alignment                    | `string`  | `undefined` |
 
 
 ----------------------------------------------

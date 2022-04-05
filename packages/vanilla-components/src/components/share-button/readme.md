@@ -5,19 +5,19 @@
 
 ## Properties
 
-| Property          | Attribute           | Description | Type     | Default     |
-| ----------------- | ------------------- | ----------- | -------- | ----------- |
-| `backgroundcolor` | `backgroundcolor`   |             | `string` | `undefined` |
-| `buttonClassName` | `button-class-name` |             | `string` | `undefined` |
-| `displayrule`     | `displayrule`       |             | `string` | `undefined` |
-| `icon`            | `icon`              |             | `string` | `undefined` |
-| `iconhorizontal`  | `iconhorizontal`    |             | `number` | `undefined` |
-| `iconsize`        | `iconsize`          |             | `number` | `undefined` |
-| `iconvertical`    | `iconvertical`      |             | `number` | `undefined` |
-| `text`            | `text`              |             | `string` | `undefined` |
-| `textcolor`       | `textcolor`         |             | `string` | `undefined` |
-| `type`            | `type`              |             | `string` | `undefined` |
-| `url`             | `url`               |             | `string` | `undefined` |
+| Property          | Attribute           | Description                                                          | Type     | Default     |
+| ----------------- | ------------------- | -------------------------------------------------------------------- | -------- | ----------- |
+| `backgroundcolor` | `backgroundcolor`   | Background color of the Share button                                 | `string` | `undefined` |
+| `buttonClassName` | `button-class-name` | CSS Class name used to style the Share button                        | `string` | `undefined` |
+| `displayrule`     | `displayrule`       | Show and hide button depending on what type of device the user is on | `string` | `undefined` |
+| `icon`            | `icon`              | Share button icon                                                    | `string` | `undefined` |
+| `iconhorizontal`  | `iconhorizontal`    | Number to horizontally align the Share button icon                   | `number` | `undefined` |
+| `iconsize`        | `iconsize`          | Size of the Share button icon                                        | `number` | `undefined` |
+| `iconvertical`    | `iconvertical`      | Number to vertically align the Share button icon                     | `number` | `undefined` |
+| `text`            | `text`              | Text inside the Share button                                         | `string` | `undefined` |
+| `textcolor`       | `textcolor`         | Color of the text inside the Share button                            | `string` | `undefined` |
+| `type`            | `type`              | Type of the share button                                             | `string` | `undefined` |
+| `url`             | `url`               | URL redirect location                                                | `string` | `undefined` |
 
 
 ## Dependencies
