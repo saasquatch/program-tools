@@ -9,13 +9,13 @@ export namespace Components {
     interface SqhCloseButton {
         /**
           * The text shown inside the close button.
-          * @uiName Text
+          * @uiName Button Text
          */
         "text": string;
     }
     interface SqhCopyButton {
         /**
-          * Background color & border color of the copy button.
+          * Background & border color of the copy button.
           * @uiName Background Color
          */
         "backgroundcolor": string;
@@ -35,13 +35,13 @@ export namespace Components {
          */
         "codefontsize": number;
         /**
-          * Text shown when the button has failed to copy the code to the users clipboard.
-          * @uiName Copy Failure
+          * Shown when the button has failed to copy the code to the users clipboard.
+          * @uiName Copy Failure Text
          */
         "copyfailure": string;
         /**
-          * Text shown when the code is successfully copied to the users clipboard.
-          * @uiName Copy Success
+          * Shown when the code is successfully copied to the users clipboard.
+          * @uiName Copy Success Text
          */
         "copysuccess": string;
         /**
@@ -50,8 +50,8 @@ export namespace Components {
          */
         "fontsize": number;
         /**
-          * Hide the component
-          * @uiName Is Hidden
+          * Hide or show the component
+          * @uiName Hide Button
          */
         "ishidden": boolean;
         /**
@@ -61,7 +61,7 @@ export namespace Components {
         "rewardkey": string;
         /**
           * Text shown inside the copy button.
-          * @uiName Text
+          * @uiName Button Text
          */
         "text": string;
         /**
@@ -71,7 +71,7 @@ export namespace Components {
         "textcolor": string;
         /**
           * Sets a maximum width on the copy button.
-          * @uiName Width
+          * @uiName Max Width
          */
         "width": number;
     }
@@ -82,23 +82,23 @@ export namespace Components {
          */
         "buttoncolor": string;
         /**
-          * Text shown when the button has failed to copy the code to the users clipboard.
-          * @uiName Copy Failure
+          * Shown when the button has failed to copy the code to the users clipboard.
+          * @uiName Copy Failure Text
          */
         "copyfailure": string;
         /**
-          * Text shown when the code is successfully copied to the users clipboard.
-          * @uiName Copy Success
+          * Shown when the code is successfully copied to the users clipboard.
+          * @uiName Copy Success Text
          */
         "copysuccess": string;
         /**
-          * Boolean value used to hide the component
-          * @uiName Is Hidden
+          * Hide or show the component
+          * @uiName Hide Button
          */
         "ishidden": boolean;
         /**
           * Text shown inside the copy button.
-          * @uiName Text
+          * @uiName Button Text
          */
         "text": string;
         /**
@@ -114,7 +114,7 @@ export namespace Components {
          */
         "background": string;
         /**
-          * Font family used in the container.
+          * Font family used inside the container.
           * @uiName Font Family
          */
         "fontfamily": string;
@@ -151,8 +151,8 @@ export namespace Components {
          */
         "css": string;
         /**
-          * Hide the component
-          * @uiName Is Hidden
+          * Hide or show the component
+          * @uiName Hide Image
          */
         "ishidden": boolean;
         /**
@@ -168,8 +168,8 @@ export namespace Components {
     }
     interface SqhPartnerStatComponent {
         /**
-          * Hide the component
-          * @uiName Is Hidden
+          * Hide or show the component
+          * @uiName Hide Stat
          */
         "ishidden": boolean;
         /**
@@ -230,13 +230,13 @@ export namespace Components {
          */
         "cancelledcolor": string;
         /**
-          * Cancelled content shown in the user column
+          * Cancelled text content shown in the user column
           * @uiName Cancelled Content
           * @uiGroup cancelledRewardProps
          */
         "cancelledcontent": string;
         /**
-          * Cancelled content shown alongside the icon in the referral column
+          * Cancelled text content shown alongside the icon in the referral column
           * @uiName Cancelled Value
           * @uiGroup cancelledRewardProps
          */
@@ -278,33 +278,29 @@ export namespace Components {
          */
         "expiresvalue": string;
         /**
-          * When true sets the local, with the default being en-US
+          * When true, the local gets set by using the value passed to the referral component
           * @uiName Internationalization
           * @uiGroup internationalizationProps
          */
         "internationalization": boolean;
         /**
-          * Hide the component
-          * @uiName Is Hidden
-          * @uiGroup general
+          * Hide or show the component
+          * @uiName Hide Referral List
          */
         "ishidden": boolean;
         /**
-          * Text shown when referral list is empty
+          * Shown when referral list is empty
           * @uiName Empty Referrals Text
-          * @uiGroup general
          */
         "noreferralsyet": string;
         /**
-          * Text inside the paginate less button
+          * Shown inside the paginate less button
           * @uiName Paginate Less Text
-          * @uiGroup general
          */
         "paginateless": string;
         /**
-          * Text inside the paginate more button
+          * Shown inside the paginate more button
           * @uiName Paginate More Text
-          * @uiGroup general
          */
         "paginatemore": string;
         /**
@@ -328,23 +324,20 @@ export namespace Components {
         /**
           * Shown when reward is redeemed
           * @uiName Redeemed Value
-          * @uiGroup general
          */
         "redeemedvalue": string;
         /**
           * Text color of the referred users name
           * @uiName Referral Name Color
-          * @uiGroup general
          */
         "referralnamecolor": string;
         /**
-          * Text color of the referral details
+          * Text color of the referral status
           * @uiName Referral Text Color
-          * @uiGroup general
          */
         "referraltextcolor": string;
         /**
-          * Details about who referred you
+          * Text explaining who referred you to the program
           * @uiName Referrer Content
           * @uiGroup referrerProps
          */
@@ -356,25 +349,23 @@ export namespace Components {
          */
         "referrervalue": string;
         /**
-          * Color of the reward details
+          * Color of the successful reward icon and the text value
           * @uiName Reward Color
           * @uiGroup convertedReferralProps
          */
         "rewardcolor": string;
         /**
-          * Show and hide expired referrals
+          * Show or hide expired rewards
           * @uiName Show Expiry
-          * @uiGroup general
          */
         "showexpiry": boolean;
         /**
-          * Show the invoice details for a referral
-          * @uiName Show Notes
-          * @uiGroup general
+          * Show the customer note for a referral
+          * @uiName Show Customer Note
          */
         "shownotes": boolean;
         /**
-          * Show and hide the referrer
+          * Show or hide the referrer
           * @uiName Show Referrer
           * @uiGroup referrerProps
          */
@@ -382,7 +373,6 @@ export namespace Components {
         /**
           * Text shown when the referred users name is unknown
           * @uiName Unknown User Text
-          * @uiGroup general
          */
         "unknownuser": string;
         /**
@@ -401,17 +391,17 @@ export namespace Components {
     interface SqhRewardsActions {
         /**
           * Text inside the hide button
-          * @uiName Hide Text
+          * @uiName Hide Button Text
          */
         "hidetext": string;
         /**
           * Text inside the next button
-          * @uiName Next Text
+          * @uiName Next Button Text
          */
         "nexttext": string;
         /**
           * Text inside the previous button
-          * @uiName Previous Text
+          * @uiName Previous Button Text
          */
         "previoustext": string;
     }
@@ -582,8 +572,8 @@ export namespace Components {
          */
         "facebooktextcolor": string;
         /**
-          * Hide the component
-          * @uiName Is Hidden
+          * Hide or show the component
+          * @uiName Hide Share Buttons
          */
         "ishidden": boolean;
         /**
@@ -967,8 +957,8 @@ export namespace Components {
     }
     interface SqhStatComponent {
         /**
-          * Hide the component
-          * @uiName Is Hidden
+          * Hide or show the component
+          * @uiName Hide Stat
          */
         "ishidden": boolean;
         /**
@@ -1040,8 +1030,8 @@ export namespace Components {
          */
         "height": string;
         /**
-          * Hide the component
-          * @uiName Is Hidden
+          * Hide or show the component
+          * @uiName Hide Text
          */
         "ishidden": boolean;
         /**
@@ -1050,23 +1040,18 @@ export namespace Components {
          */
         "ismarkdown": boolean;
         /**
-          * Padding all around the text
-          * @uiName Padding
-         */
-        "padding": string;
-        /**
-          * Padding bottom on the text
+          * Bottom padding on text
           * @uiName Padding Bottom
          */
         "paddingbottom": string;
         /**
-          * Padding on top of the text
+          * Top padding on text
           * @uiName Padding Top
          */
         "paddingtop": string;
         /**
           * The text content
-          * @uiName Is Hidden
+          * @uiName Text
          */
         "text": string;
         /**
@@ -1189,13 +1174,13 @@ declare namespace LocalJSX {
     interface SqhCloseButton {
         /**
           * The text shown inside the close button.
-          * @uiName Text
+          * @uiName Button Text
          */
         "text"?: string;
     }
     interface SqhCopyButton {
         /**
-          * Background color & border color of the copy button.
+          * Background & border color of the copy button.
           * @uiName Background Color
          */
         "backgroundcolor"?: string;
@@ -1215,13 +1200,13 @@ declare namespace LocalJSX {
          */
         "codefontsize"?: number;
         /**
-          * Text shown when the button has failed to copy the code to the users clipboard.
-          * @uiName Copy Failure
+          * Shown when the button has failed to copy the code to the users clipboard.
+          * @uiName Copy Failure Text
          */
         "copyfailure"?: string;
         /**
-          * Text shown when the code is successfully copied to the users clipboard.
-          * @uiName Copy Success
+          * Shown when the code is successfully copied to the users clipboard.
+          * @uiName Copy Success Text
          */
         "copysuccess"?: string;
         /**
@@ -1230,8 +1215,8 @@ declare namespace LocalJSX {
          */
         "fontsize"?: number;
         /**
-          * Hide the component
-          * @uiName Is Hidden
+          * Hide or show the component
+          * @uiName Hide Button
          */
         "ishidden"?: boolean;
         /**
@@ -1241,7 +1226,7 @@ declare namespace LocalJSX {
         "rewardkey"?: string;
         /**
           * Text shown inside the copy button.
-          * @uiName Text
+          * @uiName Button Text
          */
         "text"?: string;
         /**
@@ -1251,7 +1236,7 @@ declare namespace LocalJSX {
         "textcolor"?: string;
         /**
           * Sets a maximum width on the copy button.
-          * @uiName Width
+          * @uiName Max Width
          */
         "width"?: number;
     }
@@ -1262,23 +1247,23 @@ declare namespace LocalJSX {
          */
         "buttoncolor"?: string;
         /**
-          * Text shown when the button has failed to copy the code to the users clipboard.
-          * @uiName Copy Failure
+          * Shown when the button has failed to copy the code to the users clipboard.
+          * @uiName Copy Failure Text
          */
         "copyfailure"?: string;
         /**
-          * Text shown when the code is successfully copied to the users clipboard.
-          * @uiName Copy Success
+          * Shown when the code is successfully copied to the users clipboard.
+          * @uiName Copy Success Text
          */
         "copysuccess"?: string;
         /**
-          * Boolean value used to hide the component
-          * @uiName Is Hidden
+          * Hide or show the component
+          * @uiName Hide Button
          */
         "ishidden"?: boolean;
         /**
           * Text shown inside the copy button.
-          * @uiName Text
+          * @uiName Button Text
          */
         "text"?: string;
         /**
@@ -1294,7 +1279,7 @@ declare namespace LocalJSX {
          */
         "background"?: string;
         /**
-          * Font family used in the container.
+          * Font family used inside the container.
           * @uiName Font Family
          */
         "fontfamily"?: string;
@@ -1331,8 +1316,8 @@ declare namespace LocalJSX {
          */
         "css"?: string;
         /**
-          * Hide the component
-          * @uiName Is Hidden
+          * Hide or show the component
+          * @uiName Hide Image
          */
         "ishidden"?: boolean;
         /**
@@ -1348,8 +1333,8 @@ declare namespace LocalJSX {
     }
     interface SqhPartnerStatComponent {
         /**
-          * Hide the component
-          * @uiName Is Hidden
+          * Hide or show the component
+          * @uiName Hide Stat
          */
         "ishidden"?: boolean;
         "onStatAdded"?: (event: CustomEvent<any>) => void;
@@ -1412,13 +1397,13 @@ declare namespace LocalJSX {
          */
         "cancelledcolor"?: string;
         /**
-          * Cancelled content shown in the user column
+          * Cancelled text content shown in the user column
           * @uiName Cancelled Content
           * @uiGroup cancelledRewardProps
          */
         "cancelledcontent"?: string;
         /**
-          * Cancelled content shown alongside the icon in the referral column
+          * Cancelled text content shown alongside the icon in the referral column
           * @uiName Cancelled Value
           * @uiGroup cancelledRewardProps
          */
@@ -1460,33 +1445,29 @@ declare namespace LocalJSX {
          */
         "expiresvalue"?: string;
         /**
-          * When true sets the local, with the default being en-US
+          * When true, the local gets set by using the value passed to the referral component
           * @uiName Internationalization
           * @uiGroup internationalizationProps
          */
         "internationalization"?: boolean;
         /**
-          * Hide the component
-          * @uiName Is Hidden
-          * @uiGroup general
+          * Hide or show the component
+          * @uiName Hide Referral List
          */
         "ishidden"?: boolean;
         /**
-          * Text shown when referral list is empty
+          * Shown when referral list is empty
           * @uiName Empty Referrals Text
-          * @uiGroup general
          */
         "noreferralsyet"?: string;
         /**
-          * Text inside the paginate less button
+          * Shown inside the paginate less button
           * @uiName Paginate Less Text
-          * @uiGroup general
          */
         "paginateless"?: string;
         /**
-          * Text inside the paginate more button
+          * Shown inside the paginate more button
           * @uiName Paginate More Text
-          * @uiGroup general
          */
         "paginatemore"?: string;
         /**
@@ -1510,23 +1491,20 @@ declare namespace LocalJSX {
         /**
           * Shown when reward is redeemed
           * @uiName Redeemed Value
-          * @uiGroup general
          */
         "redeemedvalue"?: string;
         /**
           * Text color of the referred users name
           * @uiName Referral Name Color
-          * @uiGroup general
          */
         "referralnamecolor"?: string;
         /**
-          * Text color of the referral details
+          * Text color of the referral status
           * @uiName Referral Text Color
-          * @uiGroup general
          */
         "referraltextcolor"?: string;
         /**
-          * Details about who referred you
+          * Text explaining who referred you to the program
           * @uiName Referrer Content
           * @uiGroup referrerProps
          */
@@ -1538,25 +1516,23 @@ declare namespace LocalJSX {
          */
         "referrervalue"?: string;
         /**
-          * Color of the reward details
+          * Color of the successful reward icon and the text value
           * @uiName Reward Color
           * @uiGroup convertedReferralProps
          */
         "rewardcolor"?: string;
         /**
-          * Show and hide expired referrals
+          * Show or hide expired rewards
           * @uiName Show Expiry
-          * @uiGroup general
          */
         "showexpiry"?: boolean;
         /**
-          * Show the invoice details for a referral
-          * @uiName Show Notes
-          * @uiGroup general
+          * Show the customer note for a referral
+          * @uiName Show Customer Note
          */
         "shownotes"?: boolean;
         /**
-          * Show and hide the referrer
+          * Show or hide the referrer
           * @uiName Show Referrer
           * @uiGroup referrerProps
          */
@@ -1564,7 +1540,6 @@ declare namespace LocalJSX {
         /**
           * Text shown when the referred users name is unknown
           * @uiName Unknown User Text
-          * @uiGroup general
          */
         "unknownuser"?: string;
         /**
@@ -1583,17 +1558,17 @@ declare namespace LocalJSX {
     interface SqhRewardsActions {
         /**
           * Text inside the hide button
-          * @uiName Hide Text
+          * @uiName Hide Button Text
          */
         "hidetext"?: string;
         /**
           * Text inside the next button
-          * @uiName Next Text
+          * @uiName Next Button Text
          */
         "nexttext"?: string;
         /**
           * Text inside the previous button
-          * @uiName Previous Text
+          * @uiName Previous Button Text
          */
         "previoustext"?: string;
     }
@@ -1764,8 +1739,8 @@ declare namespace LocalJSX {
          */
         "facebooktextcolor"?: string;
         /**
-          * Hide the component
-          * @uiName Is Hidden
+          * Hide or show the component
+          * @uiName Hide Share Buttons
          */
         "ishidden"?: boolean;
         /**
@@ -2149,8 +2124,8 @@ declare namespace LocalJSX {
     }
     interface SqhStatComponent {
         /**
-          * Hide the component
-          * @uiName Is Hidden
+          * Hide or show the component
+          * @uiName Hide Stat
          */
         "ishidden"?: boolean;
         "onStatAdded"?: (event: CustomEvent<any>) => void;
@@ -2224,8 +2199,8 @@ declare namespace LocalJSX {
          */
         "height"?: string;
         /**
-          * Hide the component
-          * @uiName Is Hidden
+          * Hide or show the component
+          * @uiName Hide Text
          */
         "ishidden"?: boolean;
         /**
@@ -2234,23 +2209,18 @@ declare namespace LocalJSX {
          */
         "ismarkdown"?: boolean;
         /**
-          * Padding all around the text
-          * @uiName Padding
-         */
-        "padding"?: string;
-        /**
-          * Padding bottom on the text
+          * Bottom padding on text
           * @uiName Padding Bottom
          */
         "paddingbottom"?: string;
         /**
-          * Padding on top of the text
+          * Top padding on text
           * @uiName Padding Top
          */
         "paddingtop"?: string;
         /**
           * The text content
-          * @uiName Is Hidden
+          * @uiName Text
          */
         "text"?: string;
         /**

@@ -10,9 +10,9 @@ import { API } from "../../services/WidgetHost";
 })
 export class ShareButtonContainer {
   /**
-   * Hide the component
+   * Hide or show the component
    *
-   * @uiName Is Hidden
+   * @uiName Hide Share Buttons
    */
   @Prop() ishidden: boolean;
 

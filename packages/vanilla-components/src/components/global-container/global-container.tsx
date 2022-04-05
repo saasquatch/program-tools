@@ -21,7 +21,7 @@ export class GlobalContainer {
    */
   @Prop() loadingcolor: string;
   /**
-   * Font family used in the container.
+   * Font family used inside the container.
    *
    * @uiName Font Family
    */

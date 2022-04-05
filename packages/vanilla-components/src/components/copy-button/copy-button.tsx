@@ -11,26 +11,26 @@ import Clipboard from "clipboard";
   styleUrl: "copy-button.scss",
 })
 export class CopyButton {
-   /**
-   * Hide the component
+  /**
+   * Hide or show the component
    *
-   * @uiName Is Hidden
+   * @uiName Hide Button
    */
   @Prop() ishidden: boolean;
   /**
    * Text shown inside the copy button.
    *
-   * @uiName Text
+   * @uiName Button Text
    */
   @Prop() text: string;
   /**
    * Sets a maximum width on the copy button.
    *
-   * @uiName Width
+   * @uiName Max Width
    */
   @Prop() width: number;
   /**
-   * Background color & border color of the copy button.
+   * Background & border color of the copy button.
    *
    * @uiName Background Color
    */
@@ -48,31 +48,31 @@ export class CopyButton {
    */
   @Prop() textcolor: string;
   /**
-   * Font size of the copy button text. 
+   * Font size of the copy button text.
    *
    * @uiName Font Size
    */
   @Prop() fontsize: number;
   /**
-   * Text shown when the code is successfully copied to the users clipboard. 
+   * Shown when the code is successfully copied to the users clipboard.
    *
-   * @uiName Copy Success
+   * @uiName Copy Success Text
    */
   @Prop() copysuccess: string;
   /**
-   * Text shown when the button has failed to copy the code to the users clipboard. 
+   * Shown when the button has failed to copy the code to the users clipboard.
    *
-   * @uiName Copy Failure
+   * @uiName Copy Failure Text
    */
   @Prop() copyfailure: string;
   /**
-   * rewardkey is used to get the fuel tank code for a user. 
+   * rewardkey is used to get the fuel tank code for a user.
    *
    * @uiName Reward Key
    */
   @Prop() rewardkey: string;
   /**
-   * Font size of the fuel tank code. 
+   * Font size of the fuel tank code.
    *
    * @uiName Code Font Size
    */

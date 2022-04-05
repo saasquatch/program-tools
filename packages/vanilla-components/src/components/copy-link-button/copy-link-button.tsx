@@ -12,27 +12,27 @@ import { API } from "../../services/WidgetHost";
 })
 export class CopyLinkButton {
   /**
-   * Boolean value used to hide the component
+   * Hide or show the component
    *
-   * @uiName Is Hidden
+   * @uiName Hide Button
    */
   @Prop() ishidden: boolean;
   /**
    * Text shown inside the copy button.
    *
-   * @uiName Text
+   * @uiName Button Text
    */
   @Prop() text: string;
   /**
-   * Text shown when the code is successfully copied to the users clipboard.
+   * Shown when the code is successfully copied to the users clipboard.
    *
-   * @uiName Copy Success
+   * @uiName Copy Success Text
    */
   @Prop() copysuccess: string;
   /**
-   * Text shown when the button has failed to copy the code to the users clipboard.
+   * Shown when the button has failed to copy the code to the users clipboard.
    *
-   * @uiName Copy Failure
+   * @uiName Copy Failure Text
    */
   @Prop() copyfailure: string;
   /**

@@ -10,9 +10,9 @@ import { css } from "emotion";
 })
 export class ImageComponent {
   /**
-   * Hide the component
+   * Hide or show the component
    *
-   * @uiName Is Hidden
+   * @uiName Hide Image
    */
   @Prop() ishidden: boolean;
   /**

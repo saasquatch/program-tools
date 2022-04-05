@@ -19,9 +19,9 @@ import { css } from "emotion";
 export class StatComponent {
   @Element() elem: HTMLElement;
   /**
-   * Hide the component
+   * Hide or show the component
    *
-   * @uiName Is Hidden
+   * @uiName Hide Stat
    */
   @Prop() ishidden: boolean;
   /**

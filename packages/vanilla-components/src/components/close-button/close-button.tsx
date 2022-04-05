@@ -15,7 +15,7 @@ export class CloseButton {
   /**
    * The text shown inside the close button.
    *
-   * @uiName Text 
+   * @uiName Button Text
    */
   @Prop() text: string = "Close";
   @Element() closeButton: HTMLElement;

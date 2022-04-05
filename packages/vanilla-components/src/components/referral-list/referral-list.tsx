@@ -12,84 +12,74 @@ import { API } from "../../services/WidgetHost";
 })
 export class ReferralList {
   /**
-   * Hide the component
+   * Hide or show the component
    *
-   * @uiName Is Hidden
-   * @uiGroup general
+   * @uiName Hide Referral List
    */
   @Prop() ishidden: boolean;
   /**
-   * Text inside the paginate more button
+   * Shown inside the paginate more button
    *
    * @uiName Paginate More Text
-   * @uiGroup general
    */
   @Prop() paginatemore: string;
   /**
-   * Text inside the paginate less button
+   * Shown inside the paginate less button
    *
    * @uiName Paginate Less Text
-   * @uiGroup general
    */
   @Prop() paginateless: string;
   /**
-   * Text shown when referral list is empty
+   * Shown when referral list is empty
    *
    * @uiName Empty Referrals Text
-   * @uiGroup general
    */
   @Prop() noreferralsyet: string;
   /**
    * Text color of the referred users name
    *
    * @uiName Referral Name Color
-   * @uiGroup general
    */
   @Prop() referralnamecolor: string;
   /**
-   * Text color of the referral details
+   * Text color of the referral status
    *
    * @uiName Referral Text Color
-   * @uiGroup general
    */
   @Prop() referraltextcolor: string;
   /**
    * Text shown when the referred users name is unknown
    *
    * @uiName Unknown User Text
-   * @uiGroup general
    */
   @Prop() unknownuser: string;
   /**
-   * Show and hide expired referrals
+   * Show or hide expired rewards
    *
    * @uiName Show Expiry
-   * @uiGroup general
    */
   @Prop() showexpiry: boolean;
   /**
-   * Show the invoice details for a referral
+   * Show the customer note for a referral
    *
-   * @uiName Show Notes
-   * @uiGroup general
+   * @uiName Show Customer Note
    */
   @Prop() shownotes: boolean;
   /**
    * Shown when reward is redeemed
    *
    * @uiName Redeemed Value
-   * @uiGroup general
    */
   @Prop() redeemedvalue: string;
   /**
-   * Show and hide the referrer
+   * Show or hide the referrer
    *
    * @uiName Show Referrer
    * @uiGroup referrerProps
    */
   @Prop() showreferrer: boolean;
   /**
-   * Details about who referred you
+   * Text explaining who referred you to the program
    *
    * @uiName Referrer Content
    * @uiGroup referrerProps
@@ -103,7 +93,7 @@ export class ReferralList {
    */
   @Prop() referrervalue: string;
   /**
-   * Color of the reward details
+   * Color of the successful reward icon and the text value
    *
    * @uiName Reward Color
    * @uiGroup convertedReferralProps
@@ -137,7 +127,6 @@ export class ReferralList {
    * @uiGroup convertedReferralProps
    */
   @Prop() valuecontent: string;
-
   /**
    * Color of the pending icon and text
    *
@@ -159,7 +148,6 @@ export class ReferralList {
    * @uiGroup pendingReferralProps
    */
   @Prop() pendingvalue: string;
-
   /**
    * Color of the expired icon and text
    *
@@ -196,24 +184,21 @@ export class ReferralList {
    */
   @Prop() cancelledcolor: string;
   /**
-   * Cancelled content shown in the user column
+   * Cancelled text content shown in the user column
    *
    * @uiName Cancelled Content
    * @uiGroup cancelledRewardProps
    */
   @Prop() cancelledcontent: string;
   /**
-   * Cancelled content shown alongside the icon in the referral column
+   * Cancelled text content shown alongside the icon in the referral column
    *
    * @uiName Cancelled Value
    * @uiGroup cancelledRewardProps
    */
   @Prop() cancelledvalue: string;
   /**
-   * @uiGroup Internationalization Props
-   */
-  /**
-   * When true sets the local, with the default being en-US
+   * When true, the local gets set by using the value passed to the referral component
    *
    * @uiName Internationalization
    * @uiGroup internationalizationProps

@@ -11,19 +11,19 @@ export class RewardsActions {
   /**
    * Text inside the previous button
    *
-   * @uiName Previous Text
+   * @uiName Previous Button Text
    */
   @Prop() previoustext: string = "Previous";
   /**
    * Text inside the hide button
    *
-   * @uiName Hide Text
+   * @uiName Hide Button Text
    */
   @Prop() hidetext: string = "Hide";
   /**
    * Text inside the next button
    *
-   * @uiName Next Text
+   * @uiName Next Button Text
    */
   @Prop() nexttext: string = "Next";
 

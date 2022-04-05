@@ -11,9 +11,9 @@ import marked from "marked";
 })
 export class TextComponent {
   /**
-   * Hide the component
+   * Hide or show the component
    *
-   * @uiName Is Hidden
+   * @uiName Hide Text
    */
   @Prop() ishidden: boolean;
   /**
@@ -25,7 +25,7 @@ export class TextComponent {
   /**
    * The text content
    *
-   * @uiName Is Hidden
+   * @uiName Text
    */
   @Prop() text: string;
   /**
@@ -47,23 +47,17 @@ export class TextComponent {
    */
   @Prop() fontsize: string;
   /**
-   * Padding on top of the text
+   * Top padding on text
    *
    * @uiName Padding Top
    */
   @Prop() paddingtop: string;
   /**
-   * Padding bottom on the text
+   * Bottom padding on text
    *
    * @uiName Padding Bottom
    */
   @Prop() paddingbottom: string;
-  /**
-   * Padding all around the text
-   *
-   * @uiName Padding
-   */
-  @Prop() padding: string = "10px 20px 15px";
   /**
    * Text alignment
    *
