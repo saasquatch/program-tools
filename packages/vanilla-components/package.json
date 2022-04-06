@@ -10,7 +10,8 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "files": [
-    "dist/"
+    "dist/",
+    "raisins/"
   ],
   "scripts": {
     "build": "stencil build --docs",
@@ -71,7 +72,8 @@
   "homepage": "https://github.com/saasquatch/program-tools",
   "gitHead": "8bb7593d8b46310071835017f0cd63c8c36013b4",
   "dependencies": {
-    "@formatjs/intl-pluralrules": "^1.5.8"
+    "@formatjs/intl-pluralrules": "^1.5.8",
+    "@raisins/stencil-docs-target": "^0.1.0"
   },
   "jest": {
     "transform": {

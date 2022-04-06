@@ -407,17 +407,17 @@ export namespace Components {
     }
     interface SqhShareButton {
         /**
-          * Background color of the Share button
+          * Background color of the share button
           * @uiName Share Button Background Color
          */
         "backgroundcolor": string;
         /**
-          * CSS Class name used to style the Share button
+          * CSS Class name used to style the share button
           * @uiName Share Button Class Name
          */
         "buttonClassName": string;
         /**
-          * Show and hide button depending on what type of device the user is on
+          * Show or hide button depending on what type of device the user is on
           * @uiName Share Button Display Rule
          */
         "displayrule": string;
@@ -427,7 +427,7 @@ export namespace Components {
          */
         "icon": string;
         /**
-          * Number to horizontally align the Share button icon
+          * Number to horizontally align the share button icon
           * @uiName Share Button Icon Horizontal
          */
         "iconhorizontal": number;
@@ -437,17 +437,17 @@ export namespace Components {
          */
         "iconsize": number;
         /**
-          * Number to vertically align the Share button icon
+          * Number to vertically align the share button icon
           * @uiName Share Button Icon Vertical
          */
         "iconvertical": number;
         /**
-          * Text inside the Share button
+          * Text inside the share button
           * @uiName Share Button Text
          */
         "text": string;
         /**
-          * Color of the text inside the Share button
+          * Color of the text inside the share button
           * @uiName Share Button Text Color
          */
         "textcolor": string;
@@ -964,25 +964,21 @@ export namespace Components {
         /**
           * Text color of the stat
           * @uiName Stat Color
-          * @uiGroup stat
          */
         "statcolor": string;
         /**
           * Description shown underneath stat value
           * @uiName Stat Description
-          * @uiGroup stat
          */
         "statdescription": string;
         /**
           * Type of stat being displayed. e.g /rewardsCount
           * @uiName Stat Type
-          * @uiGroup stat
          */
         "stattype": string;
         /**
           * Value shown inside stat
           * @uiName Stat Value
-          * @uiGroup stat
          */
         "statvalue": string;
     }
@@ -1574,17 +1570,17 @@ declare namespace LocalJSX {
     }
     interface SqhShareButton {
         /**
-          * Background color of the Share button
+          * Background color of the share button
           * @uiName Share Button Background Color
          */
         "backgroundcolor"?: string;
         /**
-          * CSS Class name used to style the Share button
+          * CSS Class name used to style the share button
           * @uiName Share Button Class Name
          */
         "buttonClassName"?: string;
         /**
-          * Show and hide button depending on what type of device the user is on
+          * Show or hide button depending on what type of device the user is on
           * @uiName Share Button Display Rule
          */
         "displayrule"?: string;
@@ -1594,7 +1590,7 @@ declare namespace LocalJSX {
          */
         "icon"?: string;
         /**
-          * Number to horizontally align the Share button icon
+          * Number to horizontally align the share button icon
           * @uiName Share Button Icon Horizontal
          */
         "iconhorizontal"?: number;
@@ -1604,17 +1600,17 @@ declare namespace LocalJSX {
          */
         "iconsize"?: number;
         /**
-          * Number to vertically align the Share button icon
+          * Number to vertically align the share button icon
           * @uiName Share Button Icon Vertical
          */
         "iconvertical"?: number;
         /**
-          * Text inside the Share button
+          * Text inside the share button
           * @uiName Share Button Text
          */
         "text"?: string;
         /**
-          * Color of the text inside the Share button
+          * Color of the text inside the share button
           * @uiName Share Button Text Color
          */
         "textcolor"?: string;
@@ -2133,25 +2129,21 @@ declare namespace LocalJSX {
         /**
           * Text color of the stat
           * @uiName Stat Color
-          * @uiGroup stat
          */
         "statcolor"?: string;
         /**
           * Description shown underneath stat value
           * @uiName Stat Description
-          * @uiGroup stat
          */
         "statdescription"?: string;
         /**
           * Type of stat being displayed. e.g /rewardsCount
           * @uiName Stat Type
-          * @uiGroup stat
          */
         "stattype"?: string;
         /**
           * Value shown inside stat
           * @uiName Stat Value
-          * @uiGroup stat
          */
         "statvalue"?: string;
     }
