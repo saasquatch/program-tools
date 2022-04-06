@@ -1,8 +1,12 @@
 import { h } from "@stencil/core";
 import { LeaderboardRankView } from "./sqm-leaderboard-rank-view";
+import scenario from "./leaderboard-rank.feature";
 
 export default {
   title: "Components/Leaderboard Rank",
+  parameters: {
+    scenario,
+  },
 };
 
 export const First = () => {

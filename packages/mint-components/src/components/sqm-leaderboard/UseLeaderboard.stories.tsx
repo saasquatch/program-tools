@@ -129,25 +129,25 @@ export const TopStartedReferrers = createHookStory(() => {
   ];
 });
 
-export const topPointEaners = createHookStory(() => {
+export const topPointEarners = createHookStory(() => {
   setupGraphQL();
   return [
     View({
       leaderboardType: "topPointEarners",
       statsheading: "Points",
-      usersheading: "Point Earners",
+      usersheading: "Top Earners",
     }),
     View({
       leaderboardType: "topPointEarners",
       rankType: "rank",
       statsheading: "Points",
-      usersheading: "Point Earners",
+      usersheading: "Top Earners",
     }),
     View({
       leaderboardType: "topPointEarners",
       rankType: "denseRank",
       statsheading: "Points",
-      usersheading: "Point Earners",
+      usersheading: "Top Earners",
     }),
   ];
 });
@@ -159,7 +159,7 @@ export const globalLeaderboards = createHookStory(() => {
       leaderboardType: "topPointEarners",
       rankType: "rank",
       statsheading: "Points",
-      usersheading: "Point Earners",
+      usersheading: "Top Earners",
       programId: "",
     }),
     View({
