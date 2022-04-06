@@ -28,28 +28,24 @@ export class StatComponent {
    * Type of stat being displayed. e.g /rewardsCount
    *
    * @uiName Stat Type
-   * @uiGroup stat
    */
   @Prop() stattype: string;
   /**
    * Value shown inside stat
    *
    * @uiName Stat Value
-   * @uiGroup stat
    */
   @Prop() statvalue: string;
   /**
    * Description shown underneath stat value
    *
    * @uiName Stat Description
-   * @uiGroup stat
    */
   @Prop() statdescription: string;
   /**
    * Text color of the stat
    *
    * @uiName Stat Color
-   * @uiGroup stat
    */
   @Prop() statcolor: string;
 
