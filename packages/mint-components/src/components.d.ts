@@ -443,7 +443,7 @@ export namespace Components {
     | "topConvertedReferrers"
     | "topPointEarners";
         /**
-          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard lives. If no program ID is set or provided by context, then a global leaderboard is shown.
+          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
           * @uiName Program
          */
         "programId"?: string;
@@ -491,10 +491,17 @@ export namespace Components {
         /**
           * @uiName Leaderboard type
           * @uiType string
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
-          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
-        "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
+        "leaderboardType": | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "topPointEarners";
+        /**
+          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
+          * @uiName Program
+         */
+        "programId"?: string;
         /**
           * @uiName Rank Text
          */
@@ -3026,7 +3033,7 @@ declare namespace LocalJSX {
     | "topConvertedReferrers"
     | "topPointEarners";
         /**
-          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard lives. If no program ID is set or provided by context, then a global leaderboard is shown.
+          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
           * @uiName Program
          */
         "programId"?: string;
@@ -3074,10 +3081,17 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard type
           * @uiType string
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
-          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
-        "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
+        "leaderboardType"?: | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "topPointEarners";
+        /**
+          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
+          * @uiName Program
+         */
+        "programId"?: string;
         /**
           * @uiName Rank Text
          */

@@ -41,7 +41,7 @@ Feature: Leaderboard
 
 	@motivating
 	Scenario Outline: Program Context is used by default to filter leaderboard results
-		Given a leaderboard loaded with program context for "my-program"
+		Given a <leaderboardType> leaderboard loaded with program context for "my-program"
 		When the user views the leaderboard
 		Then they only see <results> from "my-program"
 		Examples:
@@ -52,7 +52,7 @@ Feature: Leaderboard
 
 	@motivating
 	Scenario Outline: Program Id context can be overwritten with a prop
-		Given a leaderboard has prop "program-Id" with value "my-test-program"
+		Given a <leaderboardType> leaderboard has prop "program-Id" with value "my-test-program"
 		When the user views the leaderboard
 		Then they only see <results> from "my-test-program"
 		Examples:
@@ -65,7 +65,7 @@ Feature: Leaderboard
 	Scenario Outline: Global leaderboard can be displayed by clearing program context
 		#This is important for clients with use cases like StaffTracks global points leaderboard
 		#This can also be done with a program section in a similar manner
-		Given a leaderboard has prop "program-Id" with value ""
+		Given a <leaderboardType> leaderboard has prop "program-Id" with value ""
 		When the user views the leaderboard
 		Then they see global <results>
 		Examples:

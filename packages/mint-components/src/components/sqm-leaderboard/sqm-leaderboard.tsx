@@ -16,7 +16,7 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 })
 export class Leaderboard {
   /**
-   * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard lives.
+   * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is.
    * If no program ID is set or provided by context, then a global leaderboard is shown.
    *
    * @uiName Program

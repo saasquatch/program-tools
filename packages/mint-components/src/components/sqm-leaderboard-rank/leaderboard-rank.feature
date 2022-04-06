@@ -1,26 +1,56 @@
 @owner:noah
 @author:noah
-
 Feature: Leaderboard Rank
 
     The leaderboard rank components displays the current users rank on the leaderboard.
 
-    @review
     @minutiae
     Scenario: Users without a rank are shown a generic message
         Given a user has no rank
-        Then the component will display a generic message
-        And the message will be the string from the prop "unrankedText"
+        Then the component displays a generic message
+        And the message is the string from the prop "unrankedText"
 
-    @review
     @motivating
-    Scenario: Users with a rank will be shown a message containing their rank
+    Scenario: Users with a rank are shown a message containing their rank
         Given a user has a valid rank
-        And the prop rankText is an ICU message
-        Then the ICU message will be parsed to include the user's rank
-        And the parsed message will be displayed to the users
+        And the prop "rankText" is an ICU message
+        Then the ICU message is parsed to include the user's rank
+        And the parsed message is displayed to the users
 
-    @review
+    @motivating
+    Scenario Outline: Ranks from any of the three standard leaderboards can be displayed
+        Given a leaderboard rank component with <leaderboardType>
+        And a user has a valid rank
+        When they view the leaderboard rank component
+        Then they see their rank for <leaderboardType>
+        Examples:
+            | leaderboardType       |
+            | topStartedReferrers   |
+            | topConvertedReferrers |
+            | topPointEarners       |
+
+    @motivating
+    Scenario Outline: Program Context is used by default to filter leaderboard rank
+        Given a <leaderboardType> leaderboard rank component loaded with program context for "my-program"
+        When they view the leaderboard rank component
+        Then they see their rank for <leaderboardType> from "my-program"
+        Examples:
+            | leaderboardType       |
+            | topStartedReferrers   |
+            | topConvertedReferrers |
+            | topPointEarners       |
+
+    @motivating
+    Scenario Outline: Program Id context can be overwritten with a prop
+        Given a <leaderboardType> leaderboard has prop "program-Id" with value "my-test-program"
+        When they view the leaderboard rank component
+        Then they see their rank for <leaderboardType> from "my-test-program"
+        Examples:
+            | leaderboardType       | results             |
+            | topStartedReferrers   | started referrals   |
+            | topConvertedReferrers | converted referrals |
+            | topPointEarners       | points earned       |
+
     @motivating
     Scenario: Rank calculation is controlled by the "rankType" prop
         Given the current user is User C
@@ -28,7 +58,7 @@ Feature: Leaderboard Rank
         And User A has <points>
         And User B has <points>
         And the value of the "rankType" prop is <rankType>
-        Then the rank of the current user will be <rank>
+        Then the rank of the current user is <rank>
         Examples:
             | user   | points | rankType  | rank |
             | User A | 5      | rowNumber | 3    |

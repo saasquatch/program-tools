@@ -135,16 +135,19 @@ export const topPointEaners = createHookStory(() => {
     View({
       leaderboardType: "topPointEarners",
       statsheading: "Points",
+      usersheading: "Point Earners",
     }),
     View({
       leaderboardType: "topPointEarners",
       rankType: "rank",
       statsheading: "Points",
+      usersheading: "Point Earners",
     }),
     View({
       leaderboardType: "topPointEarners",
       rankType: "denseRank",
       statsheading: "Points",
+      usersheading: "Point Earners",
     }),
   ];
 });
@@ -156,6 +159,7 @@ export const globalLeaderboards = createHookStory(() => {
       leaderboardType: "topPointEarners",
       rankType: "rank",
       statsheading: "Points",
+      usersheading: "Point Earners",
       programId: "",
     }),
     View({
