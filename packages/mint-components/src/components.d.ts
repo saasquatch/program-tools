@@ -388,15 +388,16 @@ export namespace Components {
          */
         "demoData"?: DemoData<InputFieldViewProps>;
         /**
-          * @uiName Empty error message
+          * @uiName Required Error Message
          */
         "errorMessage": string;
         /**
-          * @uiName Input label
+          * @uiName Input Label
          */
         "fieldLabel": string;
         /**
-          * @uiName Input name attribute
+          * Used as the key of the inputs value in form data.
+          * @uiName Input Name Attribute
          */
         "fieldName": string;
         /**
@@ -2958,15 +2959,16 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<InputFieldViewProps>;
         /**
-          * @uiName Empty error message
+          * @uiName Required Error Message
          */
         "errorMessage"?: string;
         /**
-          * @uiName Input label
+          * @uiName Input Label
          */
         "fieldLabel"?: string;
         /**
-          * @uiName Input name attribute
+          * Used as the key of the inputs value in form data.
+          * @uiName Input Name Attribute
          */
         "fieldName"?: string;
         /**
