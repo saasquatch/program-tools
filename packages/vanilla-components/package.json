@@ -2,6 +2,7 @@
   "name": "@saasquatch/vanilla-components",
   "version": "1.3.0-0",
   "description": "Vanilla component library for the SaaSquatch platform",
+  "raisins": "docs/raisins.json",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "es2015": "dist/esm/index.mjs",
@@ -10,8 +11,7 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "files": [
-    "dist/",
-    "raisins/"
+    "dist/"
   ],
   "scripts": {
     "build": "stencil build --docs",
@@ -21,7 +21,9 @@
     "generate": "stencil generate",
     "storybook": "start-storybook -p 6006 -s ./dist",
     "build-storybook": "build-storybook -o docs -c .storybook-prod",
-    "contentful": "ts-node templates/build-contentful.ts"
+    "contentful": "ts-node templates/build-contentful.ts",
+    "serve:package": "serve . --cors",
+    "start:raisins": "run-p start serve:package"
   },
   "devDependencies": {
     "@formatjs/intl-relativetimeformat": "^4.5.15",

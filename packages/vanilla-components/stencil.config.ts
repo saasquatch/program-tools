@@ -15,7 +15,7 @@ export const config: Config = {
             copy: [{ src: "entrypoint.js" }],
           },
           plugin({
-            outDir: "raisins",
+            outDir: "docs",
           }),
         ],
   plugins: [sass()],
