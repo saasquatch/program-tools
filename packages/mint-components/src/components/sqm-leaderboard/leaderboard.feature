@@ -62,7 +62,7 @@ Feature: Leaderboard
 			| topPointEarners       | points earned       |
 
 	@motivating
-	Scenario Outline: Global leaderboard can be displayed by clearing program context
+	Scenario Outline: Global leaderboards can be displayed by clearing program context
 		#This is important for clients with use cases like StaffTracks global points leaderboard
 		#This can also be done with a program section in a similar manner
 		Given a <leaderboardType> leaderboard has prop "program-Id" with value ""

@@ -42,9 +42,21 @@ Feature: Leaderboard Rank
 
     @motivating
     Scenario Outline: Program Id context can be overwritten with a prop
-        Given a <leaderboardType> leaderboard has prop "program-Id" with value "my-test-program"
+        Given a <leaderboardType> leaderboard rank component has prop "program-Id" with value "my-test-program"
         When they view the leaderboard rank component
         Then they see their rank for <leaderboardType> from "my-test-program"
+        Examples:
+            | leaderboardType       | results             |
+            | topStartedReferrers   | started referrals   |
+            | topConvertedReferrers | converted referrals |
+            | topPointEarners       | points earned       |
+
+    @motivating
+    Scenario Outline: Global leaderboards ranks can be displayed by clearing program context
+        #This can also be done with a program section in a similar manner
+        Given a <leaderboardType> leaderboard rank component has prop "program-Id" with value ""
+        When they view the leaderboard rank component
+        Then they see global <results> rank
         Examples:
             | leaderboardType       | results             |
             | topStartedReferrers   | started referrals   |
