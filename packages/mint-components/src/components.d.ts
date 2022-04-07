@@ -464,7 +464,7 @@ export namespace Components {
          */
         "rowNumber": number;
         /**
-          * @uiName Show leaderboard rank
+          * @uiName Show leaderboard rank column
          */
         "showRank": boolean;
         /**
@@ -3054,7 +3054,7 @@ declare namespace LocalJSX {
          */
         "rowNumber"?: number;
         /**
-          * @uiName Show leaderboard rank
+          * @uiName Show leaderboard rank column
          */
         "showRank"?: boolean;
         /**

@@ -36,7 +36,7 @@ export class Leaderboard {
    */
   @Prop() rankheading?: string;
   /**
-   * @uiName Show leaderboard rank
+   * @uiName Show leaderboard rank column
    */
   @Prop() showRank: boolean;
 
@@ -160,33 +160,33 @@ function useLeaderboardDemo(
     {
       firstName: "Viktor",
       lastInitial: "V",
-      value: 82,
+      textValue: "82",
       rank: 1,
       rowNumber: 1,
     },
     {
       firstName: "MF",
       lastInitial: "D",
-      value: 73,
+      textValue: "73",
       rank: 2,
       rowNumber: 2,
     },
     {
       firstName: "Freddie",
       lastInitial: "G",
-      value: 64,
+      textValue: "64",
       rank: 3,
       rowNumber: 3,
     },
     {
       firstName: "Benny",
       lastInitial: "B",
-      value: 55,
+      textValue: "55",
       rank: 4,
       rowNumber: 4,
     },
     {
-      value: 46,
+      textValue: "46",
       rank: 5,
       rowNumber: 5,
     },

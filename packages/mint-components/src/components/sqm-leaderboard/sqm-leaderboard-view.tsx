@@ -18,14 +18,14 @@ export interface LeaderboardViewProps {
   data: {
     rankType: string;
     leaderboard: {
-      value: number;
+      textValue: string;
       rank: number;
       firstName: string;
       lastInitial: string;
       rowNumber: number;
     }[];
     viewerRank?: {
-      value: number;
+      textValue: string;
       rank: number;
       firstName: string;
       lastInitial: string;
@@ -140,7 +140,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
                   ? user.firstName || user.lastInitial
                   : styles.anonymousUser}
               </td>
-              <td class="Score">{user.value}</td>
+              <td class="Score">{user.textValue}</td>
             </tr>
           );
         })}
@@ -168,7 +168,7 @@ export function LeaderboardView(props: LeaderboardViewProps) {
                 ? data.viewerRank?.firstName || data.viewerRank?.lastInitial
                 : styles.anonymousUser}
             </td>
-            <td class="Score">{data.viewerRank?.value || "0"}</td>
+            <td class="Score">{data.viewerRank?.textValue || "0"}</td>
           </tr>
         )}
       </table>

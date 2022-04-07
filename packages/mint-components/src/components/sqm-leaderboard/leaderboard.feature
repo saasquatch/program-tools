@@ -38,6 +38,7 @@ Feature: Leaderboard
 		And there are users with points
 		When the user views the leaderboard
 		Then they see the top point earners leaderboard
+		And text values are displayed for point counts
 
 	@motivating
 	Scenario Outline: Program Context is used by default to filter leaderboard results

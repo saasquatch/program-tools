@@ -1,4 +1,5 @@
 import {
+  useLocale,
   useProgramId,
   useQuery,
   useUserIdentity,
@@ -28,11 +29,16 @@ export interface LeaderboardProps {
 }
 
 const GET_LEADERBOARD = gql`
-  query ($type: String!, $filter: UserLeaderboardFilterInput) {
+  query (
+    $type: String!
+    $filter: UserLeaderboardFilterInput
+    $locale: RSLocale
+  ) {
     userLeaderboard(type: $type, filter: $filter) {
       dateModified
       rows {
         value
+        textValue(locale: $locale)
         firstName
         lastInitial
         rank {
@@ -46,7 +52,10 @@ const GET_LEADERBOARD = gql`
 `;
 
 const GET_RANK = gql`
-  query ($type: String!, $filter: UserLeaderboardFilterInput) {
+  query (
+    $type: String!
+    $filter: UserLeaderboardFilterInput
+  ) {
     viewer {
       ... on User {
         firstName
@@ -63,7 +72,7 @@ const GET_RANK = gql`
 `;
 
 type LeaderboardRows = {
-  value: number;
+  textValue: string;
   firstName: string;
   lastInitial: string;
   rank: Rank;
@@ -77,7 +86,7 @@ export type Rank = {
 };
 
 export type Leaderboard = {
-  value: number;
+  textValue: string;
   rank: number;
   firstName: string;
   lastInitial: string;
@@ -89,19 +98,23 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   // Default to context, overriden by props
   const programId = props.programId ?? programIdContext;
   const user = useUserIdentity();
+  const locale = useLocale();
 
   const variables = programId
     ? {
         type: props.leaderboardType,
         filter: { programId_eq: programId },
+        locale: locale ?? "en_US",
       }
     : {
         type: props.leaderboardType,
+        locale: locale ?? "en_US",
       };
 
   if (props.interval) {
     variables.filter["interval"] = props.interval;
   }
+  console.log("VARIABLES", variables)
 
   const { data: leaderboardData, loading: loadingLeaderboard } = useQuery(
     GET_LEADERBOARD,
@@ -126,7 +139,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     leaderboardRows: LeaderboardRows[]
   ): Leaderboard[] {
     return leaderboardRows?.flatMap((user) => ({
-      value: user.value,
+      textValue: user.textValue,
       firstName: user.firstName,
       lastInitial: user.lastInitial,
       rank: user.rank?.[props.rankType],
@@ -135,7 +148,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   }
 
   const viewingUser: Leaderboard = {
-    value: rankData?.viewer?.leaderboardRank?.value,
+    textValue: rankData?.viewer?.leaderboardRank?.value,
     firstName: rankData?.viewer?.firstName,
     lastInitial: rankData?.viewer?.lastInitial,
     rank: rankData?.viewer?.leaderboardRank?.[props.rankType],
