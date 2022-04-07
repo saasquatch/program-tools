@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Added a `programId` prop to overwride program context
       - If an empty string is passed, then a global leaderboard is displayed
     - Max number of leaderboard rows displayed is now configurable via prop but defaults to 10
+  - /<sqm-leaderboard-rank>
+    - Now supports rank from top point earners leaderboard
+    - Added a `programId` prop to overwride program context
+      - If an empty string is passed, then a global leaderboard rank is displayed
 
 ## [1.5.3] - 2022-03-31
 
