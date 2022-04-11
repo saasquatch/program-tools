@@ -68,7 +68,7 @@ export class TaskCard {
 
   /**
    * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
-   * 
+   *
    * @uiName Goal Completion Number
    */
   @Prop()
@@ -142,7 +142,8 @@ export class TaskCard {
   buttonLink: string;
 
   /**
-   * @uiName CTA Button Link Open in New Tab
+   * CTA Button Link Opens in New Tab
+   * @uiName Open In New Tab
    */
   @Prop()
   openNewTab: boolean = false;
@@ -158,14 +159,16 @@ export class TaskCard {
   statType: string;
 
   /**
-  * Optionally send an event to SaaSquatch when a user clicks the CTA. This field configured what key of the event sent is.
-   * @uiName Event key of task card button
+   * Optionally send an event to SaaSquatch when a user clicks the CTA. This field configured what key of the event sent is.
+   *
+   * @uiName Task Card Button Event Key
    */
   @Prop() eventKey?: string;
 
   /**
-  * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
-   * @uiName Program ID override
+   * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
+   *
+   * @uiName Program ID Override
    */
   @Prop() programId?: string;
 

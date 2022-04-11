@@ -18,54 +18,70 @@ export class PortalLogin {
   ignored = true;
 
   /**
-   * @uiName Page navigated to after sign-in
+   * Page navigated to after sign-in
+   *
+   * @uiName Next Page Path
    */
   @Prop()
   nextPage: string = "/";
 
   /**
-   * @uiName Label for email field
+   * Label for email field
+   *
+   * @uiName Email Label
    */
   @Prop()
   emailLabel: string = "Email";
 
   /**
-   * @uiName Label for password field
+   * Label for password field
+   *
+   * @uiName Password Label
    */
   @Prop()
   passwordLabel: string = "Password";
 
   /**
-   * @uiName Label for submit button
+   * Label for submit button
+   *
+   * @uiName Submit Button Text
    */
   @Prop()
   submitLabel: string = "Sign In";
 
   /**
-   * @uiName Label for forgotten password button
+   * Label for forgotten password button
+   *
+   * @uiName Forgot Password Text
    */
   @Prop()
   forgotPasswordLabel: string = "Forgot Password?";
 
   /**
-   * @uiName Label for register navigation button
+   * Label for register button
+   *
+   * @uiName Register Button Text
    */
   @Prop()
   registerLabel: string = "Register";
 
   /**
-   * @uiName Heading label
+   * @uiName Heading Label
    */
   @Prop()
   pageLabel: string = "Sign in to your account";
 
   /**
-   * @uiName Register button redirection path
+   * Register redirect path
+   *
+   * @uiName Register Path
    */
   @Prop() registerPath: string = "/register";
 
   /**
-   * @uiName Forgot password button redirect path
+   * Forgot password redirect path
+   *
+   * @uiName Forgot Password Path
    */
   @Prop() forgotPasswordPath: string = "/forgotPassword";
 

@@ -36,7 +36,7 @@ export class PortalContainer {
    */
   @Prop() gap: Spacing = "xxx-large";
 
-  /** @uiName Minimum width */
+  /** @uiName Minimum Width */
   @Prop() minWidth?: string;
 
   /**
@@ -48,7 +48,9 @@ export class PortalContainer {
   @Prop() display: "grid" | "flex" = "grid";
 
   /**
-   * @uiName Justify content
+   * Defines how the container distributes space between & around content items along the main-axis of a flex container
+   *
+   * @uiName Justify Content
    * @uiType string
    * @uiEnum ["start", "center", "end", "space-between", "space-around", "space-evenly"]
    * @uiEnumNames ["Start", "Center", "End", "Space Between", "Space Around", "Space Evenly"]
@@ -67,7 +69,7 @@ export class PortalContainer {
   @Prop() maxWidth?: string = "100%";
 
   /**
-   * @uiName Center content
+   * @uiName Center Content
    */
   @Prop() center?: boolean;
 

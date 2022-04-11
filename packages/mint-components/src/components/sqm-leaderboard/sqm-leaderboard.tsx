@@ -28,26 +28,26 @@ export class Leaderboard {
    */
   @Prop() rankheading?: string;
   /**
-   * @uiName Show leaderboard rank
+   * @uiName Show Leaderboard Rank
    */
   @Prop() showRank: boolean;
 
   /**
    * Hide the current user's leaderboard information when they are not in the top 10
    *
-   * @uiName Hide viewing user
+   * @uiName Hide Viewing User
    */
   @Prop() hideViewer: boolean = false;
 
   /**
-   * @uiName Rank type
+   * @uiName Rank Type
    * @uiType string
    * @uiEnum ["rowNumber", "rank", "denseRank"]
    * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
    */
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
   /**
-   * @uiName Leaderboard type
+   * @uiName Leaderboard Type
    * @uiType string
    * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
    * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
@@ -55,12 +55,13 @@ export class Leaderboard {
   @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
 
   /**
-   * @uiName Title displayed for users without names
+   * Title displayed for users without names
+   * @uiName Unknown User Text
    */
   @Prop() anonymousUser: string = "Anonymous User";
 
   /**
-   * @uiName Leaderboard time interval
+   * @uiName Leaderboard Time Interval
    * @uiWidget DateRange
    * @uiOptions {"allowPastDates":true, "months": 1}
    */

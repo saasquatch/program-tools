@@ -22,19 +22,19 @@ export class PortalVerifyEmail {
 
   /**
    * The page that users are redirected to when the verification succeeds.
-   * 
-   * @uiName Next page path
+   *
+   * @uiName Next Page Path
    */
   @Prop()
   nextPage: string = "/";
 
   /**
    * The page that users are redirected to if verification fails due to outdated verification attempt.
-   * 
-   * @uiName Failed page redirection path
+   *
+   * @uiName Failed Page Path
    */
-   @Prop()
-   failedPage: string = "/";
+  @Prop()
+  failedPage: string = "/";
 
   /**
    * @undocumented

@@ -23,8 +23,8 @@ export class DividedLayout {
   @Prop() direction: "row" | "column";
 
   /**
-   * Uses CSS border style syntax
-   * @uiName Border style
+   * Uses Shorthand CSS border syntax
+   * @uiName Border Style
    */
   @Prop() dividerStyle: string = "1px solid #EAEAEA";
 

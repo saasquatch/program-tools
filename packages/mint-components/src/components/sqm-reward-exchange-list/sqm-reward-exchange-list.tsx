@@ -30,7 +30,9 @@ export class SqmRewardExchangeList {
   ignored = true;
 
   /**
-   * @uiName Exchange button text
+   * Error message shown when reward is not available
+   *
+   * @uiName Not Available Error
    */
   @Prop() notAvailableError: string =
     "{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {unavailableReasonCode} }";
@@ -71,7 +73,7 @@ export class SqmRewardExchangeList {
   @Prop() continueText: string = "Continue";
 
   /**
-  * Displayed on the reward selection page.
+   * Displayed on the reward selection page.
    * @uiName Continue to Confirmation Button Text
    */
   @Prop() continueToConfirmationText: string = "Continue to confirmation";
@@ -82,20 +84,23 @@ export class SqmRewardExchangeList {
   @Prop() redeemText: string = "Redeem";
 
   /**
-  * Displayed as the header for the confirmation page.
+   * Displayed as the header for the confirmation page.
+   *
    * @uiName Confirmation Title Text
    */
   @Prop() redeemTitle: string = "Confirm and redeem";
 
   /**
-  * Displayed on the success screen when a user successfully exchanges for a reward.
+   * Displayed on the success screen when a user successfully exchanges for a reward.
+   *
    * @uiName Redemption Success Message
    */
   @Prop() redemptionSuccessText: string =
     "Redeemed {sourceValue} for {destinationValue}";
 
   /**
-  * Displayed on the reward exchange cards.
+   * Displayed on the reward exchange cards.
+   *
    * @uiName Reward Exchange Amount Text
    */
   @Prop() sourceAmountMessage: string =
@@ -119,21 +124,23 @@ export class SqmRewardExchangeList {
   @Prop() selectText: string = "Select amount to receive";
 
   /**
-  * Shown if an error occurs when loading the reward exchange.
+   * Shown if an error occurs when loading the reward exchange.
+   *
    * @uiName Reward List Error Message
    */
   @Prop() queryError: string =
     "Unable to load reward exchange list. Please try again";
 
   /**
-  * Shown if an error occurs during the reward exchange.
+   * Shown if an error occurs during the reward exchange.
+   *
    * @uiName Redemption Error Message
    */
   @Prop() redemptionError: string =
     "An error occured trying to redeem this reward. Please try again";
 
   /**
-   * @uiName Not Enough Available Error Message
+   * @uiName Not Enough Error Message
    */
   @Prop() notEnoughError: string =
     "Not enough {sourceUnit} to redeem for this reward";
@@ -150,8 +157,8 @@ export class SqmRewardExchangeList {
 
   /**
    * Set the number of placeholder cards to be shown in loading state.
-   * 
-   * @undocumented Loading Cards
+   *
+   * @uiName Loading Cards
    */
   @Prop() skeletonCardNum: number = 8;
 

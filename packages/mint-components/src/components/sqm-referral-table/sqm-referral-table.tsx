@@ -33,25 +33,34 @@ export class ReferralTable {
    */
   @Prop() programId: string;
 
-  /** @uiName Number of referrals per page */
+  /**
+   * Number of referrals displayed per page
+   *
+   * @uiName Referrals Per Page
+   */
   @Prop() perPage: number = 4;
 
-  /** @uiName Show column labels */
+  /** @uiName Show Column Labels */
   @Prop() showLabels?: boolean = true;
 
-  /** @uiName Previous button text  */
+  /** @uiName Previous Button Text  */
   @Prop() prevLabel?: string = "Prev";
 
-  /** @uiName View More button text  */
+  /** @uiName View More Button Text  */
   @Prop() moreLabel?: string = "Next";
 
-  /** @uiName Show Referred by user in table  */
+  /**
+   * Show referred by user in table
+   *
+   * @uiName Show Referrer
+   */
   @Prop() showReferrer?: boolean = false;
 
   /**
    * Provide the column numbers (0 indexed) that should not be displayed in mobile views. Ex. 0,2,3
    *
-   *  @uiName Mobile Hidden Columns  */
+   * @uiName Hidden Mobile Columns
+   */
   @Prop() hiddenColumns?: string = "0";
 
   /** @uiName Mobile Breakpoint  */

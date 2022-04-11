@@ -92,7 +92,9 @@ export class HeroImage {
   @Prop() buttonLink?: string;
 
   /**
-   * @uiName CTA Button Link Open in New Tab
+   * CTA Button Opens Link in New Tab
+   *
+   * @uiName Button New Tab
    */
   @Prop() buttonNewTab?: boolean = false;
 

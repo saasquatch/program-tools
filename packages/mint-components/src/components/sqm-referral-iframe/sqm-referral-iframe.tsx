@@ -22,16 +22,19 @@ export class SqmReferralIframe {
   ignored = true;
 
   /**
-   * @uiName URL of iframe to display
+   * URL of iframe to display
+   * @uiName Iframe Source
    * @uiRequired
    */
   @Prop() iframeSrc: string;
   /**
-   * @uiName Height of the iframe container
+   * Height of the iframe container
+   * @uiName Iframe Height
    */
   @Prop() iframeHeight: string = "100%";
   /**
-   * @uiName Width of the iframe container
+   * Width of the iframe container
+   * @uiName Iframe Width
    */
   @Prop() iframeWidth: string = "100%";
   /**

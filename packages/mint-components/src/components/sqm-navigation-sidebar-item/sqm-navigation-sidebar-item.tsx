@@ -19,12 +19,12 @@ import { useNavigationSidebarItem } from "./useNavigationSidebarItem";
 })
 export class NavigationSidebarItem {
   /**
-   * @uiName Navigation path
+   * @uiName Navigation Path
    */
   @Prop() path: string;
   /**
-   * Options available at https://shoelace.style/components/icon 
-   * 
+   * Options available at https://shoelace.style/components/icon
+   *
    * @uiName Icon
    */
   @Prop() icon: string;

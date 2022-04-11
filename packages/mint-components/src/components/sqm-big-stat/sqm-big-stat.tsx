@@ -26,11 +26,15 @@ export class BigStat {
   @Prop() statType: string;
 
   /**
-   * @uiName Flex Reverse - controls the order of the stat value & description column
+   * Controls the order of the stat value & description column
+   *
+   * @uiName Flex Reverse
    */
   @Prop() flexReverse?: boolean = false;
   /**
-   * @uiName Alignment - controls the alignment of the flexbox
+   * Controls the alignment of the flexbox
+   *
+   * @uiName Alignment
    * @uiType string
    * @uiEnum ["left", "right", "center"]
    * @uiEnumNames ["Left", "Right", "Center"]

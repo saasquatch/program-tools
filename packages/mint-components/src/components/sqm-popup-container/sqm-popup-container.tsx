@@ -5,28 +5,43 @@ import { usePopupContainer } from "./usePopupContainer";
 import { getProps } from "../../utils/utils";
 
 /**
- * @uiName Popup container for widgets
+ * @uiName Popup Container For Widgets
  */
 @Component({
   tag: "sqm-popup-container",
   styleUrl: "sqm-popup-container.scss",
 })
 export class PopupContainer {
-  /** @uiName Show SaaSquatch Powered By messaging */
+  /**
+   * Show Powered By SaaSquatch link
+   *
+   * @uiName Show Powered By
+   */
   @Prop() poweredBy: boolean;
-  /** @uiName Display a close button on the popup */
+  /**
+   * Display a close button on the popup
+   *
+   * @uiName Show Close Button
+   */
   @Prop() closeButton: boolean;
-  /** @uiName Text to be used as the close button */
+  /**
+   * Text inside the close button
+   *
+   * @uiName Close Button Text
+   */
   @Prop() closeButtonText: string;
   /**
-   * @uiName Specify padding on the popup contents when in embedded mode
+   * Specify padding on the popup contents when in embedded mode
+   *
+   * @uiName Embed Padding
    * @uiType string
    * @uiEnum ["none", "small", "medium", "large"]
    * @uiEnumNames ["None", "Small", "Medium", "Large"]
    */
   @Prop() embedPadding?: "none" | "small" | "medium" | "large";
   /**
-   * @uiName  Specify padding on the popup contents when in popup mode
+   * Specify padding on the popup contents when in popup mode
+   * @uiName Popup Padding
    * @uiType string
    * @uiEnum ["none", "small", "medium", "large"]
    * @uiEnumNames ["None", "Small", "Medium", "Large"]

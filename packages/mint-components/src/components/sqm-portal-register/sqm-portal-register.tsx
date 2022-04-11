@@ -21,7 +21,9 @@ export class PortalRegister {
   ignored = true;
 
   /**
-   * @uiName Page navigated to after registration
+   * Page navigated to after registration
+   *
+   * @uiName Next Page
    */
   @Prop()
   nextPage: string = "/";
@@ -29,66 +31,72 @@ export class PortalRegister {
   /**
    * The page that users are redirected to from the verification email.
    *
-   * @uiName Email redirection base path
+   * @uiName Email Redirection Base Path
    */
   @Prop()
   redirectPath: string = "/verifyEmail";
 
   /**
-   * @uiName Label for email field
+   * @uiName Email Label
    */
   @Prop()
   emailLabel: string = "Email";
 
   /**
-   * @uiName Label for password field
+   * @uiName Password Label
    */
   @Prop()
   passwordLabel: string = "Password";
 
   /**
-   * @uiName Label for submit button
+   * @uiName Submit Button Text
    */
   @Prop()
   submitLabel: string = "Register";
 
   /**
-   * @uiName Label for login navigation button
+   * @uiName Login Button Text
    */
   @Prop()
   loginLabel: string = "Sign in";
 
   /**
-   * @uiName Label for confirm password field
+   * @uiName Confirm Password Label
    */
   @Prop() confirmPasswordLabel: string = "Confirm Password";
 
   /**
-   * @uiName Show confirm password field
+   * Show or hide the confirm password input
+   *
+   * @uiName Show Confirm Password Field
    */
   @Prop()
   confirmPassword: boolean = false;
 
   /**
-   * @uiName Use password field with live validation
+   * @uiName Enable Password Validation
    */
   @Prop()
   enablePasswordValidation: boolean = true;
 
   /**
-   * @uiName Hide default input fields to use custom fields
+   * Hide default input fields to use custom fields
+   *
+   * @uiName Hide Default Inputs
    */
   @Prop()
   hideInputs: boolean = false;
 
   /**
-   * @uiName Heading label
+   * @uiName Heading Label
    */
   @Prop()
   pageLabel: string = "Register";
 
   /**
-   * @uiName Sign in button redirection path
+   * Login button redirection path
+   *
+   * @uiName Login Path
    */
   @Prop() loginPath: string = "/login";
 

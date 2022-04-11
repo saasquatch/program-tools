@@ -11,7 +11,7 @@ import { RewardTableColumn } from "./RewardTableColumn";
 })
 export class RewardsTableColumn implements RewardTableColumn {
   /**
-   * @uiName Reward column title
+   * @uiName Reward Column Title
    */
   @Prop() columnTitle: string = "Reward";
 

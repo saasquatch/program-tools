@@ -16,11 +16,15 @@ export class ReferralTableUserColumn implements ReferralTableColumn {
    */
   @Prop() columnTitle: string = "Customer";
   /**
-   * @uiName Name displayed for anonymous users
+   * Name displayed for unknown users
+   *
+   * @uiName Anonymous User Text
    */
   @Prop() anonymousUser: string = "Anonymous User";
   /**
-   * @uiName Name displayed for deleted users
+   * Name displayed for deleted users
+   *
+   * @uiName Deleted User Text
    */
   @Prop() deletedUser: string = "Deleted User";
 

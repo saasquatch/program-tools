@@ -22,42 +22,52 @@ export class PortalProfile {
   ignored = true;
 
   /**
-   * @uiName First name input field label
+   * First name input field label
+   *
+   * @uiName First Name Label
    */
   @Prop() firstnametext: string = "First Name";
 
   /**
-   * @uiName Last name input field label
+   * Last name input field label
+   *
+   * @uiName Last Name Label
    */
   @Prop() lastnametext: string = "Last Name";
 
   /**
-   * @uiName Email input field label
+   * Email input field label
+   *
+   * @uiName Email Label
    */
   @Prop() emailtext: string = "Email";
 
   /**
-   * @uiName Country input field label
+   * Country input field label
+   *
+   * @uiName Country Label
    */
   @Prop() countrytext: string = "Country";
 
   /**
-   * @uiName Edit profile header
+   * @uiName Edit Profile Header
    */
   @Prop() editProfileHeader: string = "Edit your profile";
 
   /**
-   * @uiName Edit profile sub header
+   * @uiName Edit Profile Sub Header
    */
   @Prop() editProfileSubHeader: string = "Personal Information";
 
   /**
-   * @uiName Text for the submit changes button
+   * @uiName Submit Changes Button Text
    */
   @Prop() submitChangeButtonText: string = "Submit Changes";
 
   /**
-   * @uiName Show or hide country field
+   * Show or hide the country field
+   *
+   * @uiName Show Country Field
    */
   @Prop() showCountry: boolean = true;
 

@@ -27,7 +27,7 @@ export class PortalProtectedRoute {
   requireEmailVerification: boolean = false;
 
   /**
-   * @uiName Redirect unverified users path
+   * @uiName Redirect Unverified Users Path
    */
   @Prop()
   redirectToUnverified: string = "/emailVerification";

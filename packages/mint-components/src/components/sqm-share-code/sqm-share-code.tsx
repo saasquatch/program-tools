@@ -27,9 +27,9 @@ export class ShareCode {
    */
   @Prop() programId?: string;
   /**
-   * This is shown after someone has successfully copied the cpde to the clipboard.
+   * This is shown after someone has successfully copied the code to the clipboard.
    *
-   * @uiName Tooltip text
+   * @uiName Tooltip Text
    */
   @Prop({
     attribute: "tooltip-text",

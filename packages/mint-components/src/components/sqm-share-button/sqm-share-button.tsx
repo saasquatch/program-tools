@@ -57,21 +57,22 @@ export class ShareButton {
   //
 
   /**
-   * @uiName Configure border radius with pixel amount
+   * Configure border radius with pixel amount
+   * @uiName Border Radius
    */
   @Prop() borderradius?: number;
   /**
-   * @uiName Button background color
+   * @uiName Button Background Color
    * @uiWidget color
    */
   @Prop() backgroundcolor?: string;
   /**
-   * @uiName Button text color
+   * @uiName Button Text Color
    * @uiWidget color
    */
   @Prop() textcolor?: string;
   /**
-   * @uiName Display as pill
+   * @uiName Display Pill
    */
   @Prop() pill?: boolean;
   /**
@@ -109,23 +110,27 @@ export class ShareButton {
   /**
    * Options available at https://shoelace.style/components/icon
    *
-   * @uiName Icon used in button. Will try to select an icon based on the share medium if left empty.
+   * Icon used in button. Will try to select an icon based on the share medium if left empty.
+   *
+   * @uiName Icon
    */
   @Prop() icon?: string;
   /**
-   * @uiName Hide the icon
+   * @uiName Hide Icon
    */
   @Prop() hideicon?: boolean = false;
   /**
-   * @uiName Hide the text
+   * @uiName Hide Text
    */
   @Prop() hidetext?: boolean = false;
   /**
-   * @uiName Title used for native sharing (mobile only)
+   * Title used for native sharing (mobile only)
+   * @uiName Share Title
    */
   @Prop() sharetitle?: string;
   /**
-   * @uiName Text used for native sharing (mobile only)
+   * Text used for native sharing (mobile only)
+   * @uiName Share Text
    */
   @Prop() sharetext?: string;
 

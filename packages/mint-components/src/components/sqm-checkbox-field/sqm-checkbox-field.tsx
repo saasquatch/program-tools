@@ -21,32 +21,33 @@ export class CheckboxField {
   ignored = true;
 
   /**
-   * @uiName Checkbox name attribute
+   * @uiName Checkbox Name Attribute
    */
   @Prop() checkboxName: string;
 
   /**
-   * @uiName Checkbox label
+   * @uiName Checkbox Label
    */
   @Prop() checkboxLabel: string = "By signing up you agree to the {labelLink}";
 
   /**
-   * @uiName Checkbox label link
    * Used with link text if the checkbox label contains {labelLink}
+   *
+   * @uiName Checkbox Label Link
    */
   @Prop() checkboxLabelLink: string = "https://example.com";
 
   /**
-   * @uiName Checkbox label link text
+   * @uiName Checkbox Label Link Text
    */
   @Prop() checkboxLabelLinkText: string = "Terms and Conditions";
   /**
-   * @uiName Unchecked error message
+   * @uiName Unchecked Error Message
    */
   @Prop() errorMessage: string = "Must be checked";
 
   /**
-   * @uiName Required
+   * @uiName Checkbox Required
    */
   @Prop() checkboxRequired?: boolean = true;
 

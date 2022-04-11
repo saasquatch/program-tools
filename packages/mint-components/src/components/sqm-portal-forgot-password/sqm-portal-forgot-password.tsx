@@ -23,25 +23,25 @@ export class PortalForgotPassword {
   /**
    * The page that users are redirected to from the password reset email.
    *
-   * @uiName Email redirection base path
+   * @uiName Email Redirection Base Path
    */
   @Prop()
   redirectPath: string = "/resetPassword";
 
   /**
-   * @uiName Email label
+   * @uiName Email Label
    */
   @Prop()
   emailLabel: string = "Email";
 
   /**
-   * @uiName Password reset button text
+   * @uiName Password Reset Button Text
    */
   @Prop()
   submitLabel: string = "Request Password Reset";
 
   /**
-   * @uiName Routing path to login page
+   * @uiName Login Page Routing Path
    */
   @Prop() loginPath: string = "/login";
 
