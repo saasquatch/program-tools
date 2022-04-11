@@ -40,6 +40,18 @@ Feature: Leaderboard
 		Then they see the top point earners leaderboard
 		And text values are displayed for point counts
 
+	@minutia
+	Scenario Outline: Reward pretty value is used on the top point earners leaderboard
+		Given top point earners leaderboard
+		And the "POINT" reward unit has a pretty value for the following locales
+			| locale |
+			| en     |
+			| fr     |
+			| tr     |
+		When the user views the leaderboard
+		And they have <locale>
+		Then they see the translated pretty value in the stat value column
+
 	@motivating
 	Scenario Outline: Program Context is used by default to filter leaderboard results
 		Given a <leaderboardType> leaderboard loaded with program context for "my-program"
@@ -106,7 +118,7 @@ Feature: Leaderboard
 			| rank      | rank       |
 
 	@minutia
-	Scenario Outline: The max number of leaderboard rows displayed can be configured
+	Scenario Outline: The max number of leaderboard rows displayed can be configured but defaults to 10
 		Given a leaderboard has prop "row-number" with <value>
 		And the leaderboard has <resultCount>
 		When the user views the leaderboard
@@ -116,6 +128,7 @@ Feature: Leaderboard
 			|       | 10          | 10     |
 			| 5     | 10          | 5      |
 			| 3     | 1           | 1      |
+			| 25    | 15          | 15     |
 
 	@minutiae
 	@ui

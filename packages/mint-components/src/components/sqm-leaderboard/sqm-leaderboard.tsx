@@ -82,7 +82,7 @@ export class Leaderboard {
    *
    * @uiName Max Number of Leaderboard Rows
    */
-  @Prop() rowNumber: number = 10;
+  @Prop() maxRows: number = 10;
 
   /**
    * @undocumented
@@ -108,7 +108,7 @@ export class Leaderboard {
       rankheading: this.rankheading,
       rankType: this.rankType,
       leaderboardType: this.leaderboardType,
-      rowNumber: this.rowNumber,
+      maxRows: this.maxRows,
       programId: this.programId,
       anonymousUser: this.anonymousUser,
       interval: this.interval,

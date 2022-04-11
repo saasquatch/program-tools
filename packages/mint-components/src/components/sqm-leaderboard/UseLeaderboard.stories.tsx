@@ -182,7 +182,7 @@ export const FiveResults = createHookStory(() => {
   return [
     View({
       leaderboardType: "topStartedReferrers",
-      rowNumber: 5,
+      maxRows: 5,
       statsheading: "Referrals",
     }),
   ];

@@ -20,7 +20,7 @@ export interface LeaderboardProps {
     | "topStartedReferrers"
     | "topConvertedReferrers"
     | "topPointEarners";
-  rowNumber: number;
+  maxRows: number;
   programId?: string;
   interval: string;
   empty: VNode;
@@ -33,11 +33,11 @@ const GET_LEADERBOARD = gql`
     $type: String!
     $filter: UserLeaderboardFilterInput
     $locale: RSLocale
+    $limit: Int!
   ) {
     userLeaderboard(type: $type, filter: $filter) {
       dateModified
-      rows {
-        value
+      rows(limit: $limit) {
         textValue(locale: $locale)
         firstName
         lastInitial
@@ -52,16 +52,13 @@ const GET_LEADERBOARD = gql`
 `;
 
 const GET_RANK = gql`
-  query (
-    $type: String!
-    $filter: UserLeaderboardFilterInput
-  ) {
+  query ($type: String!, $filter: UserLeaderboardFilterInput, $locale: RSLocale) {
     viewer {
       ... on User {
         firstName
         lastInitial
         leaderboardRank(type: $type, filter: $filter) {
-          value
+          textValue(locale: $locale)
           rank
           denseRank
           rowNumber
@@ -104,17 +101,22 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     ? {
         type: props.leaderboardType,
         filter: { programId_eq: programId },
-        locale: locale ?? "en_US",
       }
     : {
         type: props.leaderboardType,
-        locale: locale ?? "en_US",
       };
 
   if (props.interval) {
     variables.filter["interval"] = props.interval;
   }
-  console.log("VARIABLES", variables)
+
+  if (locale) {
+    variables["locale"] = locale;
+  }
+
+  if (props.maxRows > 0) {
+    variables["limit"] = props.maxRows;
+  }
 
   const { data: leaderboardData, loading: loadingLeaderboard } = useQuery(
     GET_LEADERBOARD,
@@ -148,7 +150,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   }
 
   const viewingUser: Leaderboard = {
-    textValue: rankData?.viewer?.leaderboardRank?.value,
+    textValue: rankData?.viewer?.leaderboardRank?.textValue,
     firstName: rankData?.viewer?.firstName,
     lastInitial: rankData?.viewer?.lastInitial,
     rank: rankData?.viewer?.leaderboardRank?.[props.rankType],
@@ -162,7 +164,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
       styles: props,
     },
     data: {
-      leaderboard: sortedLeaderboard?.slice(0, props.rowNumber),
+      leaderboard: sortedLeaderboard,
       rankType: props.rankType,
       viewerRank: viewingUser,
     },
