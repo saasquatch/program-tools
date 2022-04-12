@@ -414,7 +414,8 @@ export namespace Components {
     }
     interface SqmLeaderboard {
         /**
-          * @uiName Title displayed for users without names
+          * Text displayed for users without names in the leaderboard
+          * @uiName Anonymous User Name
          */
         "anonymousUser": string;
         /**
@@ -423,18 +424,19 @@ export namespace Components {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * Hide the current user's leaderboard information when they are not in the top 10
-          * @uiName Hide viewing user
+          * Hide the viewer's leaderboard row if not in the top 10.
+          * @uiName Hide Viewing User
          */
         "hideViewer": boolean;
         /**
-          * @uiName Leaderboard time interval
+          * Only count leaderboard activity within a given interval
+          * @uiName Leaderboard Time Interval
           * @uiWidget DateRange
           * @uiOptions {"allowPastDates":true, "months": 1}
          */
         "interval": string;
         /**
-          * @uiName Leaderboard type
+          * @uiName Leaderboard Type
           * @uiType string
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
           * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
@@ -443,8 +445,8 @@ export namespace Components {
     | "topConvertedReferrers"
     | "topPointEarners";
         /**
-          * The maxiumum amount of leaderboard rows displayed, minimum is 1 and maximum is 10
-          * @uiName Max Number of Leaderboard Rows
+          * Control the maximum amount of rows displayed on the leaderboard.
+          * @uiName Maximum Rows Number
          */
         "maxRows": number;
         /**
@@ -453,18 +455,18 @@ export namespace Components {
          */
         "programId"?: string;
         /**
-          * @uiName Rank type
+          * @uiName Rank Type
           * @uiType string
           * @uiEnum ["rowNumber", "rank", "denseRank"]
           * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
         /**
-          * @uiName Rank Heading
+          * @uiName Rank Column Heading
          */
         "rankheading"?: string;
         /**
-          * @uiName Show leaderboard rank column
+          * @uiName Show Rank Column
          */
         "showRank": boolean;
         /**
@@ -3004,7 +3006,8 @@ declare namespace LocalJSX {
     }
     interface SqmLeaderboard {
         /**
-          * @uiName Title displayed for users without names
+          * Text displayed for users without names in the leaderboard
+          * @uiName Anonymous User Name
          */
         "anonymousUser"?: string;
         /**
@@ -3013,18 +3016,19 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * Hide the current user's leaderboard information when they are not in the top 10
-          * @uiName Hide viewing user
+          * Hide the viewer's leaderboard row if not in the top 10.
+          * @uiName Hide Viewing User
          */
         "hideViewer"?: boolean;
         /**
-          * @uiName Leaderboard time interval
+          * Only count leaderboard activity within a given interval
+          * @uiName Leaderboard Time Interval
           * @uiWidget DateRange
           * @uiOptions {"allowPastDates":true, "months": 1}
          */
         "interval"?: string;
         /**
-          * @uiName Leaderboard type
+          * @uiName Leaderboard Type
           * @uiType string
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
           * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
@@ -3033,8 +3037,8 @@ declare namespace LocalJSX {
     | "topConvertedReferrers"
     | "topPointEarners";
         /**
-          * The maxiumum amount of leaderboard rows displayed, minimum is 1 and maximum is 10
-          * @uiName Max Number of Leaderboard Rows
+          * Control the maximum amount of rows displayed on the leaderboard.
+          * @uiName Maximum Rows Number
          */
         "maxRows"?: number;
         /**
@@ -3043,18 +3047,18 @@ declare namespace LocalJSX {
          */
         "programId"?: string;
         /**
-          * @uiName Rank type
+          * @uiName Rank Type
           * @uiType string
           * @uiEnum ["rowNumber", "rank", "denseRank"]
           * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
         /**
-          * @uiName Rank Heading
+          * @uiName Rank Column Heading
          */
         "rankheading"?: string;
         /**
-          * @uiName Show leaderboard rank column
+          * @uiName Show Rank Column
          */
         "showRank"?: boolean;
         /**

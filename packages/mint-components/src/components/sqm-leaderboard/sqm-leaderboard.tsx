@@ -32,30 +32,31 @@ export class Leaderboard {
    */
   @Prop() statsheading: string;
   /**
-   * @uiName Rank Heading
+   * @uiName Rank Column Heading
    */
   @Prop() rankheading?: string;
   /**
-   * @uiName Show leaderboard rank column
+   * @uiName Show Rank Column
    */
   @Prop() showRank: boolean;
 
   /**
-   * Hide the current user's leaderboard information when they are not in the top 10
+   * Hide the viewer's leaderboard row if not in the top 10.
    *
-   * @uiName Hide viewing user
+   * @uiName Hide Viewing User
    */
   @Prop() hideViewer: boolean = false;
 
   /**
-   * @uiName Rank type
+   * @uiName Rank Type
    * @uiType string
    * @uiEnum ["rowNumber", "rank", "denseRank"]
    * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
    */
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
+
   /**
-   * @uiName Leaderboard type
+   * @uiName Leaderboard Type
    * @uiType string
    * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
    * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
@@ -66,21 +67,25 @@ export class Leaderboard {
     | "topPointEarners";
 
   /**
-   * @uiName Title displayed for users without names
+   * Text displayed for users without names in the leaderboard
+   * 
+   * @uiName Anonymous User Name
    */
   @Prop() anonymousUser: string = "Anonymous User";
 
   /**
-   * @uiName Leaderboard time interval
+   * Only count leaderboard activity within a given interval
+   * 
+   * @uiName Leaderboard Time Interval
    * @uiWidget DateRange
    * @uiOptions {"allowPastDates":true, "months": 1}
    */
   @Prop() interval: string;
 
   /**
-   * The maxiumum amount of leaderboard rows displayed, minimum is 1 and maximum is 10
-   *
-   * @uiName Max Number of Leaderboard Rows
+   * Control the maximum amount of rows displayed on the leaderboard.
+   * 
+   * @uiName Maximum Rows Number
    */
   @Prop() maxRows: number = 10;
 
