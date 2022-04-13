@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Now supports rank from top point earners leaderboard
     - Added a `programId` prop to overwride program context
       - If an empty string is passed, then a global leaderboard rank is displayed
+  - /<sqm-reward-exchange-list>
+    - Updated `not-available-error` default value to fix issue with error message fallback in ICU message
 
 ## [1.5.3] - 2022-03-31
 
