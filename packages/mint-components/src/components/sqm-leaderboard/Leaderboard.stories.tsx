@@ -12,8 +12,8 @@ export default {
 
 const users = [
   {
-    firstName: "Viktor",
-    lastInitial: "V",
+    firstName: "",
+    lastInitial: "",
     textValue: "82",
     rank: 1,
     rowNumber: 1,
@@ -220,7 +220,13 @@ export const Five = () => {
           rank: 1,
           rowNumber: 1,
         },
-        { firstName: "MF", lastInitial: "D", textValue: "73", rank: 2, rowNumber: 2 },
+        {
+          firstName: "MF",
+          lastInitial: "D",
+          textValue: "73",
+          rank: 2,
+          rowNumber: 2,
+        },
         {
           firstName: "Freddie",
           lastInitial: "G",
@@ -264,6 +270,7 @@ export const ReferralLeaderboard = () => {
       loading: false,
       hasLeaders: true,
       styles: {
+        ...defaultStyles,
         rankheading: "Rank",
         usersheading: "User",
         statsheading: "Referrals",
@@ -295,6 +302,7 @@ export const PointsLeaderboard = () => {
       loading: false,
       hasLeaders: true,
       styles: {
+        ...defaultStyles,
         rankheading: "Rank",
         usersheading: "User",
         statsheading: "Points",

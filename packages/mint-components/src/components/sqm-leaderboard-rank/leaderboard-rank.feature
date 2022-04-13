@@ -30,6 +30,18 @@ Feature: Leaderboard Rank
             | topPointEarners       |
 
     @motivating
+    Scenario Outline: Leaderboard rank can be filtered with a time interval
+        Given a leaderboard rank component with <leaderboardType>
+        And it has prop "interval" with value "2021-11-02T07:00:00.000Z/2021-11-07T07:00:00.000Z"
+        When they view the leaderboard rank component
+        Then they see their rank for <results> from within "2021-11-02T07:00:00.000Z/2021-11-07T07:00:00.000Z"
+        Examples:
+            | leaderboardType       | results             |
+            | topStartedReferrers   | started referrals   |
+            | topConvertedReferrers | converted referrals |
+            | topPointEarners       | points earned       |
+
+    @motivating
     Scenario Outline: Program Context is used by default to filter leaderboard rank
         Given a <leaderboardType> leaderboard rank component loaded with program context for "my-program"
         When they view the leaderboard rank component

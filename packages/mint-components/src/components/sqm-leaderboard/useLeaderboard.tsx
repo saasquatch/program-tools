@@ -52,7 +52,11 @@ const GET_LEADERBOARD = gql`
 `;
 
 const GET_RANK = gql`
-  query ($type: String!, $filter: UserLeaderboardFilterInput, $locale: RSLocale) {
+  query (
+    $type: String!
+    $filter: UserLeaderboardFilterInput
+    $locale: RSLocale
+  ) {
     viewer {
       ... on User {
         firstName
@@ -104,6 +108,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
       }
     : {
         type: props.leaderboardType,
+        filter: {},
       };
 
   if (props.interval) {

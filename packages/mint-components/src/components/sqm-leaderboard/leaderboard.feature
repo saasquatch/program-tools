@@ -14,19 +14,12 @@ Feature: Leaderboard
 		And they are viewing the leaderboard
 
 	@motivating
-	Scenario: The top started referrers leaderboard is displayed by default
-		Given a leaderboard doesn't have prop "leaderboard-type"
-		And there are started referrals on the tenant
-		When the user views the leaderboard
-		Then they see the top started referrers leaderboard
-
-	@motivating
 	Scenario Outline: Two types of referrals leaderboards can be displayed
 		Given a leaderboard has prop "leaderboard-type" with <value>
 		And there are started referrals on the tenant
 		And there are started converted on the tenant
 		When the user views the leaderboard
-		Then they see the <referralType> leaderboard
+		Then they see the referral <referralType> leaderboard
 		Examples:
 			| value                 | referralType |
 			| topStartedReferrers   | started      |
@@ -119,7 +112,7 @@ Feature: Leaderboard
 
 	@minutia
 	Scenario Outline: The max number of leaderboard rows displayed can be configured but defaults to 10
-		Given a leaderboard has prop "row-number" with <value>
+		Given a leaderboard has prop "max-rows" with <value>
 		And the leaderboard has <resultCount>
 		When the user views the leaderboard
 		Then they see <number> rows
@@ -202,7 +195,7 @@ Feature: Leaderboard
 			| has     | true  | see       | see their rank       |
 			| hasn't  | true  | see       | don't see their rank |
 			| N/A     | false | don't see | don't see their rank |
-			| hasn't  |       | see       | see their rank       |
+			| hasn't  |       | see       | don't see their rank |
 
 	@minutiae
 	Scenario: Users without names are displayed as an "Anonymous User"

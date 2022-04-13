@@ -48,6 +48,7 @@ export function useLeaderboardRank(
       }
     : {
         type: props.leaderboardType,
+        filter: {},
       };
 
   if (props.interval) {
