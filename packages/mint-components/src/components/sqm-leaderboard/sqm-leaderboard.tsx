@@ -16,6 +16,14 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 })
 export class Leaderboard {
   /**
+   * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is.
+   * If no program ID is set or provided by context, then a global leaderboard is shown.
+   *
+   * @uiName Program
+   */
+  @Prop() programId?: string;
+
+  /**
    * @uiName User Column Heading
    */
   @Prop() usersheading: string;
@@ -24,47 +32,62 @@ export class Leaderboard {
    */
   @Prop() statsheading: string;
   /**
-   * @uiName Rank Heading
+   * @uiName Rank Column Heading
    */
   @Prop() rankheading?: string;
   /**
-   * @uiName Show leaderboard rank
+   * @uiName Show Rank Column
    */
   @Prop() showRank: boolean;
 
   /**
-   * Hide the current user's leaderboard information when they are not in the top 10
+   * Hide the viewer's leaderboard row if not in the top 10.
    *
-   * @uiName Hide viewing user
+   * @uiName Hide Viewing User
    */
   @Prop() hideViewer: boolean = false;
 
   /**
-   * @uiName Rank type
+   * @uiName Rank Type
    * @uiType string
    * @uiEnum ["rowNumber", "rank", "denseRank"]
    * @uiEnumNames ["Row Number", "Rank", "Dense Rank"]
    */
   @Prop() rankType: "rowNumber" | "rank" | "denseRank";
-  /**
-   * @uiName Leaderboard type
-   * @uiType string
-   * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
-   * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
-   */
-  @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
 
   /**
-   * @uiName Title displayed for users without names
+   * @uiName Leaderboard Type
+   * @uiType string
+   * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+   * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
+   */
+  @Prop() leaderboardType:
+    | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "topPointEarners";
+
+  /**
+   * Text displayed for users without names in the leaderboard
+   * 
+   * @uiName Anonymous User Name
    */
   @Prop() anonymousUser: string = "Anonymous User";
 
   /**
-   * @uiName Leaderboard time interval
+   * Only count leaderboard activity within a given interval
+   * 
+   * @uiName Leaderboard Time Interval
    * @uiWidget DateRange
    * @uiOptions {"allowPastDates":true, "months": 1}
    */
   @Prop() interval: string;
+
+  /**
+   * Control the maximum amount of rows displayed on the leaderboard.
+   * 
+   * @uiName Maximum Rows Number
+   */
+  @Prop() maxRows: number = 10;
 
   /**
    * @undocumented
@@ -90,6 +113,8 @@ export class Leaderboard {
       rankheading: this.rankheading,
       rankType: this.rankType,
       leaderboardType: this.leaderboardType,
+      maxRows: this.maxRows,
+      programId: this.programId,
       anonymousUser: this.anonymousUser,
       interval: this.interval,
       hideViewer: this.hideViewer,
@@ -140,33 +165,33 @@ function useLeaderboardDemo(
     {
       firstName: "Viktor",
       lastInitial: "V",
-      value: 82,
+      textValue: "82",
       rank: 1,
       rowNumber: 1,
     },
     {
       firstName: "MF",
       lastInitial: "D",
-      value: 73,
+      textValue: "73",
       rank: 2,
       rowNumber: 2,
     },
     {
       firstName: "Freddie",
       lastInitial: "G",
-      value: 64,
+      textValue: "64",
       rank: 3,
       rowNumber: 3,
     },
     {
       firstName: "Benny",
       lastInitial: "B",
-      value: 55,
+      textValue: "55",
       rank: 4,
       rowNumber: 4,
     },
     {
-      value: 46,
+      textValue: "46",
       rank: 5,
       rowNumber: 5,
     },

@@ -1,4 +1,5 @@
 import {
+  useLocale,
   useProgramId,
   useQuery,
   useUserIdentity,
@@ -15,7 +16,12 @@ export interface LeaderboardProps {
   showRank?: boolean;
   hideViewer?: boolean;
   rankType: "rowNumber" | "rank" | "denseRank";
-  leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
+  leaderboardType:
+    | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "topPointEarners";
+  maxRows: number;
+  programId?: string;
   interval: string;
   empty: VNode;
   loadingstate: VNode;
@@ -23,11 +29,16 @@ export interface LeaderboardProps {
 }
 
 const GET_LEADERBOARD = gql`
-  query ($type: String!, $filter: UserLeaderboardFilterInput) {
+  query (
+    $type: String!
+    $filter: UserLeaderboardFilterInput
+    $locale: RSLocale
+    $limit: Int!
+  ) {
     userLeaderboard(type: $type, filter: $filter) {
       dateModified
-      rows {
-        value
+      rows(limit: $limit) {
+        textValue(locale: $locale)
         firstName
         lastInitial
         rank {
@@ -41,13 +52,17 @@ const GET_LEADERBOARD = gql`
 `;
 
 const GET_RANK = gql`
-  query ($type: String!, $filter: UserLeaderboardFilterInput) {
+  query (
+    $type: String!
+    $filter: UserLeaderboardFilterInput
+    $locale: RSLocale
+  ) {
     viewer {
       ... on User {
         firstName
         lastInitial
         leaderboardRank(type: $type, filter: $filter) {
-          value
+          textValue(locale: $locale)
           rank
           denseRank
           rowNumber
@@ -58,7 +73,7 @@ const GET_RANK = gql`
 `;
 
 type LeaderboardRows = {
-  value: number;
+  textValue: string;
   firstName: string;
   lastInitial: string;
   rank: Rank;
@@ -72,7 +87,7 @@ export type Rank = {
 };
 
 export type Leaderboard = {
-  value: number;
+  textValue: string;
   rank: number;
   firstName: string;
   lastInitial: string;
@@ -80,16 +95,32 @@ export type Leaderboard = {
 };
 
 export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
-  const programId = useProgramId();
+  const programIdContext = useProgramId();
+  // Default to context, overriden by props
+  const programId = props.programId ?? programIdContext;
   const user = useUserIdentity();
+  const locale = useLocale();
 
-  const variables = {
-    type: props.leaderboardType,
-    filter: { programId_eq: programId },
-  };
+  const variables = programId
+    ? {
+        type: props.leaderboardType,
+        filter: { programId_eq: programId },
+      }
+    : {
+        type: props.leaderboardType,
+        filter: {},
+      };
 
   if (props.interval) {
     variables.filter["interval"] = props.interval;
+  }
+
+  if (locale) {
+    variables["locale"] = locale;
+  }
+
+  if (props.maxRows > 0) {
+    variables["limit"] = props.maxRows;
   }
 
   const { data: leaderboardData, loading: loadingLeaderboard } = useQuery(
@@ -115,7 +146,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
     leaderboardRows: LeaderboardRows[]
   ): Leaderboard[] {
     return leaderboardRows?.flatMap((user) => ({
-      value: user.value,
+      textValue: user.textValue,
       firstName: user.firstName,
       lastInitial: user.lastInitial,
       rank: user.rank?.[props.rankType],
@@ -124,7 +155,7 @@ export function useLeaderboard(props: LeaderboardProps): LeaderboardViewProps {
   }
 
   const viewingUser: Leaderboard = {
-    value: rankData?.viewer?.leaderboardRank?.value,
+    textValue: rankData?.viewer?.leaderboardRank?.textValue,
     firstName: rankData?.viewer?.firstName,
     lastInitial: rankData?.viewer?.lastInitial,
     rank: rankData?.viewer?.leaderboardRank?.[props.rankType],

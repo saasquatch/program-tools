@@ -129,6 +129,65 @@ export const TopStartedReferrers = createHookStory(() => {
   ];
 });
 
+export const topPointEarners = createHookStory(() => {
+  setupGraphQL();
+  return [
+    View({
+      leaderboardType: "topPointEarners",
+      statsheading: "Points",
+      usersheading: "Top Earners",
+    }),
+    View({
+      leaderboardType: "topPointEarners",
+      rankType: "rank",
+      statsheading: "Points",
+      usersheading: "Top Earners",
+    }),
+    View({
+      leaderboardType: "topPointEarners",
+      rankType: "denseRank",
+      statsheading: "Points",
+      usersheading: "Top Earners",
+    }),
+  ];
+});
+
+export const globalLeaderboards = createHookStory(() => {
+  setupGraphQL();
+  return [
+    View({
+      leaderboardType: "topPointEarners",
+      rankType: "rank",
+      statsheading: "Points",
+      usersheading: "Top Earners",
+      programId: "",
+    }),
+    View({
+      leaderboardType: "topStartedReferrers",
+      rankType: "rank",
+      statsheading: "Referrals",
+      programId: "",
+    }),
+    View({
+      leaderboardType: "topConvertedReferrers",
+      rankType: "rank",
+      statsheading: "Referrals",
+      programId: "",
+    }),
+  ];
+});
+
+export const FiveResults = createHookStory(() => {
+  setupGraphQL();
+  return [
+    View({
+      leaderboardType: "topStartedReferrers",
+      maxRows: 5,
+      statsheading: "Referrals",
+    }),
+  ];
+});
+
 export const EmptyLeaderboard = createHookStory(() => {
   setupOtherGraphQL();
   return [
