@@ -38,11 +38,11 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const TooltipDiv = styled.div`
+const WrapperDiv = styled.div`
   ${Styles.base}
 `;
 
-const TooltipTip = styled.div<Required<StyleProps>>`
+const TooltipDiv = styled.div<Required<StyleProps>>`
   ${Styles.tooltip};
 
   max-width: ${(props) => (props.maxWidth ? props.maxWidth : "144px")};
@@ -50,31 +50,37 @@ const TooltipTip = styled.div<Required<StyleProps>>`
   ${(props) => props.customCSS}
 `;
 
-export const Tooltip = React.forwardRef<React.ElementRef<"div">, TooltipProps>(
-  (props, forwardedRef) => {
-    const {
-      text = "",
-      direction = "top",
-      showTooltip = false,
-      children,
-      maxWidth = "",
-      customCSS = {},
-      ...rest
-    } = props;
+export const TooltipView = React.forwardRef<
+  React.ElementRef<"div">,
+  TooltipProps
+>((props, forwardedRef) => {
+  const {
+    text = "",
+    direction = "top",
+    showTooltip = false,
+    children,
+    maxWidth = "",
+    customCSS = {},
+    ...rest
+  } = props;
 
-    return (
-      <TooltipDiv {...rest} ref={forwardedRef}>
-        {children}
-        {showTooltip && (
-          <TooltipTip
-            maxWidth={maxWidth}
-            customCSS={customCSS}
-            className={direction}
-          >
-            {text}
-          </TooltipTip>
-        )}
-      </TooltipDiv>
-    );
-  }
-);
+  return (
+    <WrapperDiv {...rest} ref={forwardedRef}>
+      {children}
+      {showTooltip && (
+        <TooltipDiv
+          maxWidth={maxWidth}
+          customCSS={customCSS}
+          className={direction}
+        >
+          {text}
+        </TooltipDiv>
+      )}
+    </WrapperDiv>
+  );
+});
+
+/**
+ * @deprecated use {@link TooltipView} instead
+ */
+export const Tooltip = TooltipView;

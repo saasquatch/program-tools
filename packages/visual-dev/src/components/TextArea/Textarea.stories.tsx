@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { Textarea } from ".";
+import { TextareaView } from ".";
 
 export default {
   title: "Components / Textarea",
-  component: Textarea,
+  component: TextareaView,
 };
 
 export const FunctionalTextarea = () => {
   const [value, setValue] = useState("");
   return (
-    <Textarea
+    <TextareaView
       value={value}
       onChange={(e: { target: { value: string } }) => setValue(e.target.value)}
       disabled={undefined}
@@ -18,25 +18,27 @@ export const FunctionalTextarea = () => {
   );
 };
 
-export const TextareaText = () => <Textarea value="Textarea Text" />;
+export const TextareaText = () => <TextareaView value="Textarea Text" />;
 
 export const FullWidth = () => (
-  <Textarea value="Textarea Text" limitWidth={false} />
+  <TextareaView value="Textarea Text" limitWidth={false} />
 );
 
 export const CustomHeight = () => (
-  <Textarea value="Textarea Text" height={"300px"} />
+  <TextareaView value="Textarea Text" height={"300px"} />
 );
 
 export const TextareaDisabled = () => (
-  <Textarea value="Textarea Text" disabled />
+  <TextareaView value="Textarea Text" disabled />
 );
 
-export const Placeholder = () => <Textarea placeholder="Placeholder Text" />;
+export const Placeholder = () => (
+  <TextareaView placeholder="Placeholder Text" />
+);
 
 export const PlaceholderDisabled = () => (
-  <Textarea placeholder="Placeholder Text" disabled />
+  <TextareaView placeholder="Placeholder Text" disabled />
 );
 export const InvalidField = () => (
-  <Textarea value="Invalid Field" errors={"error"} />
+  <TextareaView value="Invalid Field" errors={"error"} />
 );

@@ -1,52 +1,46 @@
-import * as React from 'react';
-import { Tabs } from '.';
-import styled, { css } from 'styled-components'
+import * as React from "react";
+import { TabsView } from ".";
+import styled, { css } from "styled-components";
 
 export default {
   title: "Components / Tabs",
-  component: Tabs
-}
+  component: TabsView,
+};
 
-const TabStyling = css`
-  border-bottom: 1px solid transparent;
+// const TabStyling = css`
+//   border-bottom: 1px solid transparent;
 
-  &:not(:first-child) {
-    margin-left: 16px;
-  }
+//   &:not(:first-child) {
+//     margin-left: 16px;
+//   }
 
-  &.active {
-    border-bottom: 1px solid #575757;
-  }
-`
+//   &.active {
+//     border-bottom: 1px solid #575757;
+//   }
+// `;
 
 export const defaultTabs = () => {
   return (
-    <Tabs
-      selected={"first"}
-      onTabClick={() => {}}
-    >
-      <Tabs.Tab id="first">First</Tabs.Tab>
-      <Tabs.Tab id="second">Second</Tabs.Tab>
-    </Tabs>
-  )
-}
+    <TabsView selected={"first"} onTabClick={() => {}}>
+      <TabsView.TabView id="first">First</TabsView.TabView>
+      <TabsView.TabView id="second">Second</TabsView.TabView>
+    </TabsView>
+  );
+};
 
 export const FunctionalTabs = () => {
   const [selected, setSelected] = React.useState<string>("first");
 
   return (
     <>
-    <Tabs
-      selected={selected}
-      onTabClick={setSelected}
-    >
-      <Tabs.Tab id="first">First</Tabs.Tab>
-      <Tabs.Tab id="second">Second</Tabs.Tab>
-    </Tabs>
-      <div style={{marginTop: "32px"}}>Tab selected: {selected}</div>
+      <TabsView selected={selected} onTabClick={setSelected}>
+        <TabsView.TabView id="first">First</TabsView.TabView>
+        <TabsView.TabView id="second">Second</TabsView.TabView>
+      </TabsView>
+      <div style={{ marginTop: "32px" }}>Tab selected: {selected}</div>
     </>
-  )
-}
+  );
+};
 
 export const NavigationTabs = () => {
   const [selected, setSelected] = React.useState<string>("programs");
@@ -73,27 +67,27 @@ export const NavigationTabs = () => {
     &:hover {
       color: var(--sq-nav-text-on-primary);
     }
-  `
+  `;
 
   const NavContainer = styled.div`
     background: var(--sq-nav-surface-primary);
     box-sizing: border-box;
     padding: 16px 24px;
-  `
+  `;
 
   return (
     <NavContainer>
-      <Tabs
+      <TabsView
         selected={selected}
         onTabClick={setSelected}
         customTabStyle={NavTabStyling}
       >
-        <Tabs.Tab id="programs">Programs</Tabs.Tab>
-        <Tabs.Tab id="rewards">Rewards</Tabs.Tab>
-        <Tabs.Tab id="analytics">Analytics</Tabs.Tab>
-        <Tabs.Tab id="participants">Participants</Tabs.Tab>
-        <Tabs.Tab id="settings">Settings</Tabs.Tab>
-      </Tabs>
+        <TabsView.TabView id="programs">Programs</TabsView.TabView>
+        <TabsView.TabView id="rewards">Rewards</TabsView.TabView>
+        <TabsView.TabView id="analytics">Analytics</TabsView.TabView>
+        <TabsView.TabView id="participants">Participants</TabsView.TabView>
+        <TabsView.TabView id="settings">Settings</TabsView.TabView>
+      </TabsView>
     </NavContainer>
-  )
-}
+  );
+};

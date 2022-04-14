@@ -43,7 +43,7 @@ const ShadowDom = styled(root.div)`
   display: contents;
 `;
 
-const TextareaBox = styled.textarea<{
+const StyledTextarea = styled.textarea<{
   isInvalid: boolean;
   customCSS: CSSProp;
 }>`
@@ -52,7 +52,7 @@ const TextareaBox = styled.textarea<{
   ${(props) => props.customCSS}
 `;
 
-const Container = styled.div<{
+const ContainerDiv = styled.div<{
   limitWidth: TextareaSizeType;
   height: string;
 }>`
@@ -66,7 +66,7 @@ const Container = styled.div<{
   ${(props) => `height: ${props.height}`}
 `;
 
-export const Textarea = React.forwardRef<
+export const TextareaView = React.forwardRef<
   React.ElementRef<"textarea">,
   TextareaProps
 >((props, forwardedRef) => {
@@ -80,15 +80,20 @@ export const Textarea = React.forwardRef<
   } = props;
   return (
     <ShadowDom>
-      <Container height={height} limitWidth={limitWidth}>
-        <TextareaBox
+      <ContainerDiv height={height} limitWidth={limitWidth}>
+        <StyledTextarea
           {...rest}
           ref={forwardedRef}
           isInvalid={rawErrors}
           customCSS={customCSS}
           required={required}
         />
-      </Container>
+      </ContainerDiv>
     </ShadowDom>
   );
 });
+
+/**
+ * @deprecated use {@link TextareaView} instead
+ */
+export const Textarea = TextareaView;

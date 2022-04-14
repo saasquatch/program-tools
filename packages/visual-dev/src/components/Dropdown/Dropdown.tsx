@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import { IconKey, Icon } from "../Icon";
+import { IconKey, IconView } from "../Icon";
 import { chevron_down, chevron_up } from "../Icon/SVGs";
 import * as Styles from "./Styles";
 
@@ -179,7 +179,7 @@ const DropdownView = React.forwardRef<React.ElementRef<"div">, DropdownProps>(
           onClick={onClickDropdown}
         >
           {icon && (
-            <Icon
+            <IconView
               color="inherit"
               size="16px"
               icon={icon}
@@ -237,6 +237,9 @@ const DropdownNamespace = Object.assign(DropdownView, {
   ItemView: ItemView,
 });
 
+/**
+ * @deprecated use {@link DropdownView} instead
+ */
 const DropdownNamespaceDeprecated = Object.assign(DropdownView, {
   Sublist: SublistView,
   Item: ItemView,

@@ -1,11 +1,11 @@
 import { WidgetProps } from "@rjsf/core";
 import React from "react";
-import { Switch } from "./Switch";
+import { SwitchView } from "./Switch";
 
 export function RJSFSwitch(props: WidgetProps) {
   const options = props.options;
   return (
-    <Switch
+    <SwitchView
       id={props.id}
       {...options}
       checked={props.value}

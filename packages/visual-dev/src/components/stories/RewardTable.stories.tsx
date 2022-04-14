@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon } from "../Icon";
+import { IconView } from "../Icon";
 import { DataTable } from "../DataTable";
 import { AvatarView } from "../Avatar";
 import { Dropdown } from "../Dropdown";
@@ -69,7 +69,12 @@ export const FormSubmissionTable = () => {
     { text: "" },
     { text: "" },
     { text: "" },
-    { text: <Icon icon="actions" />, width: "50px", flex: 0.01, center: true },
+    {
+      text: <IconView icon="actions" />,
+      width: "50px",
+      flex: 0.01,
+      center: true,
+    },
   ];
   const content_c = [
     { text: text_a },
@@ -79,7 +84,12 @@ export const FormSubmissionTable = () => {
     { text: "" },
     { text: "" },
     { text: "" },
-    { text: <Icon icon="actions" />, width: "50px", flex: 0.01, center: true },
+    {
+      text: <IconView icon="actions" />,
+      width: "50px",
+      flex: 0.01,
+      center: true,
+    },
   ];
 
   return (

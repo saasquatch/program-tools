@@ -1,12 +1,12 @@
 import { WidgetProps } from "@rjsf/core";
 import React, { useState } from "react";
 import { IconButton } from "../Button";
-import { Input } from "./Input";
+import { InputView } from "./Input";
 
 export function RJSFInput(props: WidgetProps) {
   const options = props.options;
   return (
-    <Input
+    <InputView
       id={props.id}
       {...options}
       value={props.value}
@@ -21,7 +21,7 @@ export function RJSFInput(props: WidgetProps) {
 export function RJSFNumericalInput(props: WidgetProps) {
   const options = props.options;
   return (
-    <Input
+    <InputView
       id={props.id}
       {...options}
       value={props.value}
@@ -38,7 +38,7 @@ export function RJSFPasswordInput(props: WidgetProps) {
   const [type, setType] = useState("password");
   const options = props.options;
   return (
-    <Input
+    <InputView
       id={props.id}
       {...options}
       type={type}
@@ -66,7 +66,7 @@ export function RJSFLockableInput(props: WidgetProps) {
   const [locked, setLocked] = useState(props.disabled);
   const options = props.options;
   return (
-    <Input
+    <InputView
       id={props.id}
       {...options}
       value={props.value}
@@ -92,7 +92,7 @@ export function RJSFLockableInput(props: WidgetProps) {
 export function RJSFClearableInput(props: WidgetProps) {
   const options = props.options;
   return (
-    <Input
+    <InputView
       id={props.id}
       {...options}
       value={props.value}
@@ -121,7 +121,7 @@ export function RJSFCancellableInput(props: WidgetProps) {
   const [locked, setLocked] = useState(props.disabled);
   const options = props.options;
   return (
-    <Input
+    <InputView
       id={props.id}
       {...options}
       value={props.value}

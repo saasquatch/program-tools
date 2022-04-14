@@ -1,11 +1,11 @@
 import { WidgetProps } from "@rjsf/core";
 import React from "react";
-import { Textarea } from "./Textarea";
+import { TextareaView } from "./Textarea";
 
 export function RJSFTextarea(props: WidgetProps) {
   const options = props.options;
   return (
-    <Textarea
+    <TextareaView
       id={props.id}
       {...options}
       value={props.value}

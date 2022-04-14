@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
-import { Icon } from "../Icon";
+import { IconView } from "../Icon";
 
 type TagProps = OptionProps &
   StyleProps &
@@ -25,30 +25,35 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const TagStyled = styled.div<StyleProps>`
+const TagDiv = styled.div<StyleProps>`
   ${Styles.base}
   ${(props) => props.customCSS}
 `;
 
-const IconSegmentStyled = styled.div`
+const IconSegmentDiv = styled.div`
   ${Styles.iconSegment}
 `;
 
-const TextSegmentStyled = styled.div`
+const TextSegmentDiv = styled.div`
   ${Styles.textSegment}
 `;
 
-export const Tag = React.forwardRef<React.ElementRef<"div">, TagProps>(
+export const TagView = React.forwardRef<React.ElementRef<"div">, TagProps>(
   (props, forwardedRef) => {
     const { onClickClose, children, customCSS = {}, ...rest } = props;
 
     return (
-      <TagStyled {...rest} ref={forwardedRef} customCSS={customCSS}>
-        <IconSegmentStyled onClick={onClickClose}>
-          {<Icon size="10px" icon="close" />}
-        </IconSegmentStyled>
-        <TextSegmentStyled>{children}</TextSegmentStyled>
-      </TagStyled>
+      <TagDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
+        <IconSegmentDiv onClick={onClickClose}>
+          {<IconView size="10px" icon="close" />}
+        </IconSegmentDiv>
+        <TextSegmentDiv>{children}</TextSegmentDiv>
+      </TagDiv>
     );
   }
 );
+
+/**
+ * @deprecated use {@link TagView} instead
+ */
+export const Tag = TagView;

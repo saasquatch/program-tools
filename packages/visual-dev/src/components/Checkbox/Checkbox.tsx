@@ -1,7 +1,7 @@
 import * as React from "react";
 import root from "react-shadow/styled-components";
 import styled, { css } from "styled-components";
-import { Icon } from "../Icon";
+import { IconView } from "../Icon";
 import * as Styles from "./Styles";
 
 type InputProps = Omit<
@@ -70,7 +70,7 @@ export const CheckboxView = React.forwardRef<
           onChange={onChange}
         />
         <CheckboxDiv isDisabled={disabled}>
-          <Icon icon="checkmark" customCSS={CheckboxTick} />
+          <IconView icon="checkmark" customCSS={CheckboxTick} />
         </CheckboxDiv>
         {label ? label : ""}
       </CheckboxLabel>

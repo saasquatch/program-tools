@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { Switch } from ".";
+import { SwitchView } from ".";
 
 export default {
   title: "Components / Switch",
-  component: Switch,
+  component: SwitchView,
 };
 
 export const Functional = () => {
   const [enabled, setEnable] = useState(false);
   return (
-    <Switch
+    <SwitchView
       id="switch"
       checked={enabled}
       onChange={() => setEnable(!enabled)}
@@ -17,12 +17,14 @@ export const Functional = () => {
   );
 };
 
-export const SuccessOff = () => <Switch checked={false} />;
-export const SuccessOn = () => <Switch checked={true} />;
-export const CriticalOff = () => <Switch color="critical" checked={false} />;
-export const CriticalOn = () => <Switch color="critical" checked={true} />;
+export const SuccessOff = () => <SwitchView checked={false} />;
+export const SuccessOn = () => <SwitchView checked={true} />;
+export const CriticalOff = () => (
+  <SwitchView color="critical" checked={false} />
+);
+export const CriticalOn = () => <SwitchView color="critical" checked={true} />;
 export const CustomCSS = () => (
-  <Switch
+  <SwitchView
     checked={true}
     customCSS={{
       border: "2px solid blue",

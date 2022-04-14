@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Icon } from "../Icon";
+import { IconView } from "../Icon";
 import { AvatarView } from "../Avatar";
 import { Text } from "../Text";
 import { Dropdown } from "../Dropdown";
-import { HoverPopover, Popover } from "../Popover";
+import { HoverPopover, PopoverView } from "../Popover";
 import { BadgeView } from "../Badge";
 import { FilterView } from "./Filter";
 import { BannerView } from "./Banner";
@@ -69,7 +69,7 @@ const text_e_popover = (
       </div>
     }
   >
-    <Popover>This is a popover with some Text</Popover>
+    <PopoverView>This is a popover with some Text</PopoverView>
   </HoverPopover>
 );
 
@@ -84,21 +84,36 @@ const content_b = [
   { text: text_b },
   { text: text_c },
   { text: text_d },
-  { text: <Icon icon="actions" />, width: "50px", flex: 0.01, center: true },
+  {
+    text: <IconView icon="actions" />,
+    width: "50px",
+    flex: 0.01,
+    center: true,
+  },
 ];
 const content_c = [
   { text: text_a },
   { text: text_b },
   { text: text_c },
   { text: text_e },
-  { text: <Icon icon="actions" />, width: "50px", flex: 0.01, center: true },
+  {
+    text: <IconView icon="actions" />,
+    width: "50px",
+    flex: 0.01,
+    center: true,
+  },
 ];
 const content_d = [
   { text: text_a },
   { text: text_b },
   { text: text_e_popover },
   { text: text_f },
-  { text: <Icon icon="actions" />, width: "50px", flex: 0.01, center: true },
+  {
+    text: <IconView icon="actions" />,
+    width: "50px",
+    flex: 0.01,
+    center: true,
+  },
 ];
 
 export const FormSubmissionTable = () => {
@@ -418,7 +433,7 @@ export const rowActions = () => {
     { text: text_b, flex: "10" },
     { text: text_b, flex: "10" },
     { text: text_b, flex: "10" },
-    { text: <Icon icon="actions" />, center: true },
+    { text: <IconView icon="actions" />, center: true },
   ];
 
   return <DataTable.Row>{content}</DataTable.Row>;
@@ -438,7 +453,7 @@ export const rowActionsSkeleton = () => {
     { text: text_b, flex: "10" },
     { text: text_b, flex: "10" },
     { text: text_b, flex: "10" },
-    { text: <Icon icon="actions" />, center: true },
+    { text: <IconView icon="actions" />, center: true },
   ];
 
   return <DataTable.Row>{content}</DataTable.Row>;
@@ -469,7 +484,7 @@ export const row_arrow = () => {
     {
       text: (
         <span style={{ textAlign: "center", width: "100%" }}>
-          <Icon
+          <IconView
             icon="arrow_dropdown"
             size="40px"
             customCSS="top: 8px; height: auto;"

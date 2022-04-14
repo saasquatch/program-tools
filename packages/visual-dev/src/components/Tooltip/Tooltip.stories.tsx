@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { directions, Tooltip } from ".";
+import { directions, TooltipView } from ".";
 import { Button } from "../Button";
 import styled from "styled-components";
-import { Input } from "../Input";
+import { InputView } from "../Input";
 
 export default {
   title: "Components / Tooltip",
-  component: Tooltip,
+  component: TooltipView,
 };
 
 const StoryFrame = styled.div`
@@ -45,7 +45,7 @@ export const Functional = () => {
 
   return (
     <StoryFrame>
-      <Tooltip
+      <TooltipView
         onMouseEnter={showTooltip}
         onMouseLeave={hideTooltip}
         showTooltip={enabled}
@@ -53,10 +53,10 @@ export const Functional = () => {
         text="A tooltip that explains something in detail"
       >
         <Button buttonType="primary"> Hover </Button>
-      </Tooltip>
+      </TooltipView>
       <div style={{ position: "absolute", left: "90%", bottom: "50%" }}>
         <span style={{ fontFamily: "Helvetica" }}>Delay:</span>
-        <Input
+        <InputView
           value={delay}
           type="number"
           onChange={(e: { target: { value: string } }) =>
@@ -87,7 +87,7 @@ export const Functional = () => {
 
 export const Top = () => (
   <div style={{ padding: "70px 0px 0px 100px" }}>
-    <Tooltip
+    <TooltipView
       showTooltip={true}
       direction="top"
       text="A tooltip that explains something in detail"
@@ -97,7 +97,7 @@ export const Top = () => (
 
 export const Left = () => (
   <div style={{ padding: "25px 0px 40px 195px" }}>
-    <Tooltip
+    <TooltipView
       showTooltip={true}
       direction="left"
       text="A tooltip that explains something in detail"
@@ -107,7 +107,7 @@ export const Left = () => (
 
 export const Bottom = () => (
   <div style={{ padding: "0px 0px 100px 100px" }}>
-    <Tooltip
+    <TooltipView
       showTooltip={true}
       direction="bottom"
       text="A tooltip that explains something in detail"
@@ -117,7 +117,7 @@ export const Bottom = () => (
 
 export const Right = () => (
   <div style={{ padding: "25px 0px 40px 8px" }}>
-    <Tooltip
+    <TooltipView
       showTooltip={true}
       direction="right"
       text="A tooltip that explains something in detail"
@@ -127,7 +127,7 @@ export const Right = () => (
 
 export const LongTooltip = () => (
   <div style={{ padding: "25px 0px 40px 8px" }}>
-    <Tooltip
+    <TooltipView
       showTooltip={true}
       direction="right"
       maxWidth="400px"
@@ -138,7 +138,7 @@ export const LongTooltip = () => (
 
 export const CustomCSS = () => (
   <div style={{ padding: "25px 0px 40px 8px" }}>
-    <Tooltip
+    <TooltipView
       showTooltip={true}
       direction="right"
       customCSS="font-size: 20px"

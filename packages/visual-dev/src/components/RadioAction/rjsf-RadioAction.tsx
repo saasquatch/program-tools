@@ -1,7 +1,7 @@
 import { WidgetProps } from "@rjsf/core";
 import React from "react";
 import { isEnumArray, isEnumValue } from "../RadioCard";
-import { RadioAction, RadioActionGroup } from "./RadioAction";
+import { RadioActionView, RadioActionGroupView } from "./RadioAction";
 
 interface enumOption {
   key: number;
@@ -28,7 +28,7 @@ export function RJSFRadioActionWidget(props: WidgetProps) {
     return <></>;
   }
   return (
-    <RadioActionGroup id={props.id} twoColumns={twoColumns}>
+    <RadioActionGroupView id={props.id} twoColumns={twoColumns}>
       {valueOptions?.map((option: unknown) => {
         if (!isEnumValue(option)) {
           return <></>;
@@ -40,7 +40,7 @@ export function RJSFRadioActionWidget(props: WidgetProps) {
           return <></>;
         }
         return (
-          <RadioAction
+          <RadioActionView
             required={props.required}
             id={props.id + action.value.toString()}
             name={props.id + action.value.toString()}
@@ -55,6 +55,6 @@ export function RJSFRadioActionWidget(props: WidgetProps) {
           />
         );
       })}
-    </RadioActionGroup>
+    </RadioActionGroupView>
   );
 }

@@ -1,10 +1,10 @@
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
 import { UseComboboxReturnValue, UseSelectReturnValue } from "downshift";
-import { Input } from "../Input";
+import { InputView } from "../Input";
 import { IconButton } from "../Button";
 import React from "react";
-import { Icon } from "../Icon";
+import { IconView } from "../Icon";
 import { LoadingSpinner } from "../LoadingSpinner";
 
 export type SelectProps<ItemType> = OptionProps<ItemType> &
@@ -71,7 +71,7 @@ function isComplexItem(item: any): item is ComplexItemType {
   return typeof item === "object" && item !== null;
 }
 
-const ItemContainer = styled.ul<{
+const ItemContainerList = styled.ul<{
   errors: any;
   limitWidth: SizeType;
   limitHeight: SizeType;
@@ -94,19 +94,19 @@ const ItemContainer = styled.ul<{
       : "max-height: auto;"}
 `;
 
-const Item = styled("li")`
+const ListItem = styled("li")`
   ${Styles.Item}
 `;
 
-const ButtonContainer = styled.div`
+const ButtonContainerDiv = styled.div`
   ${Styles.ButtonContainer}
 `;
 
-const ItemDescription = styled("span")`
+const ItemDescriptionSpan = styled("span")`
   ${Styles.ItemDescription}
 `;
 
-const Container = styled("div")<{
+const ContainerDiv = styled("div")<{
   limitWidth: SizeType;
 }>`
   ${Styles.Container}
@@ -118,7 +118,7 @@ const Container = styled("div")<{
       : "max-width: 100%;"}
 `;
 
-const SelectInput = styled.div<{
+const SelectInputDiv = styled.div<{
   disabled: boolean | undefined;
   errors: any;
   isOpen: boolean;
@@ -154,7 +154,7 @@ const SelectInput = styled.div<{
   ${(props) => props.customCSS}
 `;
 
-const SelectedValue = styled.span<{
+const SelectedValueSpan = styled.span<{
   subdued: boolean;
 }>`
   ${Styles.SelectedValue}
@@ -172,7 +172,7 @@ declare module "react" {
   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
 }
 
-const SelectInner = <ItemType extends ItemTypeBase>(
+const SelectInnerView = <ItemType extends ItemTypeBase>(
   props: SelectProps<ItemType>,
   ref: React.Ref<HTMLInputElement>
 ) => {
@@ -198,7 +198,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
             {item.description && (
               <>
                 <br />
-                <ItemDescription>{item.description}</ItemDescription>
+                <ItemDescriptionSpan>{item.description}</ItemDescriptionSpan>
               </>
             )}
           </>
@@ -228,9 +228,9 @@ const SelectInner = <ItemType extends ItemTypeBase>(
   const isOpen = disabled || loading ? false : functional.isOpen;
 
   return (
-    <Container limitWidth={limitWidth}>
+    <ContainerDiv limitWidth={limitWidth}>
       {!isCombobox(functional) ? (
-        <SelectInput
+        <SelectInputDiv
           {...rest}
           isOpen={functional.isOpen}
           disabled={disabled || loading}
@@ -240,11 +240,11 @@ const SelectInner = <ItemType extends ItemTypeBase>(
           role="button"
           {...functional.getToggleButtonProps()}
         >
-          <SelectedValue subdued={functional.selectedItem ? false : true}>
+          <SelectedValueSpan subdued={functional.selectedItem ? false : true}>
             {functional.selectedItem
               ? itemToString(functional.selectedItem)
               : placeholder}
-          </SelectedValue>
+          </SelectedValueSpan>
           <ButtonDiv>
             <IconButton
               disabled={disabled}
@@ -271,14 +271,14 @@ const SelectInner = <ItemType extends ItemTypeBase>(
             {loading ? (
               <LoadingSpinner color={arrowColor} right="14px" bottom="12px" />
             ) : isOpen ? (
-              <Icon
+              <IconView
                 icon={"chevron_up"}
                 size={"small"}
                 customCSS={"padding: 8px; box-sizing: content-box;"}
                 color={arrowColor}
               />
             ) : (
-              <Icon
+              <IconView
                 icon={"chevron_down"}
                 size={"small"}
                 customCSS={"padding: 8px; box-sizing: content-box;"}
@@ -286,10 +286,10 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               />
             )}
           </ButtonDiv>
-        </SelectInput>
+        </SelectInputDiv>
       ) : (
         <div {...functional.getComboboxProps()}>
-          <Input
+          <InputView
             {...rest}
             placeholder={placeholder}
             type={"text"}
@@ -308,7 +308,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
             disabled={disabled || loading}
             {...functional.getInputProps()}
           />
-          <ButtonContainer>
+          <ButtonContainerDiv>
             <IconButton
               disabled={disabled}
               icon={"close"}
@@ -362,10 +362,10 @@ const SelectInner = <ItemType extends ItemTypeBase>(
                 {...functional.getToggleButtonProps()}
               />
             )}
-          </ButtonContainer>
+          </ButtonContainerDiv>
         </div>
       )}
-      <ItemContainer
+      <ItemContainerList
         limitWidth={limitWidth}
         limitHeight={limitHeight}
         errors={errors}
@@ -373,7 +373,7 @@ const SelectInner = <ItemType extends ItemTypeBase>(
       >
         {isOpen &&
           items.map((item, index) => (
-            <Item
+            <ListItem
               style={
                 functional.highlightedIndex === index
                   ? { backgroundColor: "var(--sq-surface-hover)" }
@@ -383,11 +383,16 @@ const SelectInner = <ItemType extends ItemTypeBase>(
               {...functional.getItemProps({ item, index })}
             >
               {itemToNode(item)}
-            </Item>
+            </ListItem>
           ))}
-      </ItemContainer>
-    </Container>
+      </ItemContainerList>
+    </ContainerDiv>
   );
 };
 
-export const Select = React.forwardRef(SelectInner);
+export const SelectView = React.forwardRef(SelectInnerView);
+
+/**
+ * @deprecated use {@link SelectView} instead
+ */
+export const Select = React.forwardRef(SelectInnerView);

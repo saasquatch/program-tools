@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
-import { Icon } from "../Icon";
+import { IconView } from "../Icon";
 import { Button } from "../Button";
 
 type CardProps = OptionProps &
@@ -54,7 +54,7 @@ export const CardView = React.forwardRef<React.ElementRef<"div">, CardProps>(
       <CardDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
         <CardHeaderDiv>
           <CardHeaderIconDiv>
-            <Icon
+            <IconView
               icon="calendar"
               size="large"
               customCSS=""

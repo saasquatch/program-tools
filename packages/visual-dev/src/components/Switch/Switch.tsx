@@ -36,18 +36,18 @@ export interface StyleProps {
   customCSS?: CSSProp;
 }
 
-const SwitchContainer = styled.div<Required<StyleProps>>`
+const SwitchContainerDiv = styled.div<Required<StyleProps>>`
   ${Styles.wrapper}
   ${(props) => props.customCSS}
 `;
 
-const SwitchButton = styled.label`
+const SwitchButtonLabel = styled.label`
   ${Styles.base}
 `;
 
-const SwitchBackground = styled.input<Required<{ color: string }>>`
+const SwitchBackgroundInput = styled.input<Required<{ color: string }>>`
   ${Styles.off}
-  &:checked + ${SwitchButton} {
+  &:checked + ${SwitchButtonLabel} {
     ${(props) =>
       props.color === "critical" ? Styles.critical : Styles.success}
     ${Styles.on}
@@ -56,32 +56,38 @@ const SwitchBackground = styled.input<Required<{ color: string }>>`
 
 const ShadowDom = styled(root.div)``;
 
-export const Switch = React.forwardRef<React.ElementRef<"input">, SwitchProps>(
-  (props, forwardedRef) => {
-    const {
-      id,
-      color = "success",
-      value,
-      customCSS = {},
-      onChange,
-      ...rest
-    } = props;
+export const SwitchView = React.forwardRef<
+  React.ElementRef<"input">,
+  SwitchProps
+>((props, forwardedRef) => {
+  const {
+    id,
+    color = "success",
+    value,
+    customCSS = {},
+    onChange,
+    ...rest
+  } = props;
 
-    return (
-      <ShadowDom>
-        <SwitchContainer customCSS={customCSS}>
-          <SwitchBackground
-            {...rest}
-            color={color}
-            checked={value}
-            type="checkbox"
-            id={id}
-            ref={forwardedRef}
-            onChange={onChange}
-          />
-          <SwitchButton htmlFor={id} />
-        </SwitchContainer>
-      </ShadowDom>
-    );
-  }
-);
+  return (
+    <ShadowDom>
+      <SwitchContainerDiv customCSS={customCSS}>
+        <SwitchBackgroundInput
+          {...rest}
+          color={color}
+          checked={value}
+          type="checkbox"
+          id={id}
+          ref={forwardedRef}
+          onChange={onChange}
+        />
+        <SwitchButtonLabel htmlFor={id} />
+      </SwitchContainerDiv>
+    </ShadowDom>
+  );
+});
+
+/**
+ * @deprecated use {@link SwitchView} instead
+ */
+export const Switch = SwitchView;

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Radio } from "./Radio";
+import { RadioView } from "./Radio";
 import { WidgetProps } from "@rjsf/core";
 
 interface enumOption {
@@ -33,7 +33,7 @@ export const RJSFRadio = (props: WidgetProps) => {
           return <></>;
         }
         return (
-          <Radio
+          <RadioView
             ref={dummyRef}
             key={props.id + option.value}
             label={option.label}

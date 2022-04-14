@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
-import { IconKey, Icon } from "../Icon";
+import { IconKey, IconView } from "../Icon";
 
 type BadgeProps = OptionProps &
   StyleProps &
@@ -61,7 +61,7 @@ export const BadgeView = React.forwardRef<React.ElementRef<"div">, BadgeProps>(
         customCSS={customCSS}
       >
         {icon && (
-          <Icon
+          <IconView
             icon={icon}
             color="inherit"
             size="var(--sq-icon-size-badge)"

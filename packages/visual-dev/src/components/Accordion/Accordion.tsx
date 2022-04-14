@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import styled, { CSSProp } from "styled-components";
-import { Icon } from "../Icon";
+import { IconView } from "../Icon";
 import * as Styles from "./Styles";
 
 type AccordionProps = OptionProps &
@@ -84,7 +84,10 @@ export const AccordionView = React.forwardRef<
       >
         <TitleH2>{title}</TitleH2>
         <IconDiv expanded={expanded}>
-          <Icon icon="chevron_down" color="var(--sq-text-subdued)"></Icon>
+          <IconView
+            icon="chevron_down"
+            color="var(--sq-text-subdued)"
+          ></IconView>
         </IconDiv>
       </HeadDiv>
       <CollapsibleDiv expanded={expanded}>

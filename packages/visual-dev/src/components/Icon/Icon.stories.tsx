@@ -1,51 +1,51 @@
 import React from "react";
-import { Icon } from ".";
+import { IconView } from ".";
 
 export default {
   title: "Components / Icon",
-  component: Icon,
+  component: IconView,
 };
 
-export const add = () => <Icon icon={"add"} />;
-export const SizeSmall = () => <Icon size="small" icon={"add"} />;
-export const SizeMedium = () => <Icon size="medium" icon={"add"} />;
-export const SizeLarge = () => <Icon size="large" icon={"add"} />;
-export const SizeBadge = () => <Icon size="badge" icon={"add"} />;
-export const SizeCustom = () => <Icon size="88px" icon={"add"} />;
+export const add = () => <IconView icon={"add"} />;
+export const SizeSmall = () => <IconView size="small" icon={"add"} />;
+export const SizeMedium = () => <IconView size="medium" icon={"add"} />;
+export const SizeLarge = () => <IconView size="large" icon={"add"} />;
+export const SizeBadge = () => <IconView size="badge" icon={"add"} />;
+export const SizeCustom = () => <IconView size="88px" icon={"add"} />;
 export const CSSCustom = () => (
-  <Icon
+  <IconView
     customCSS="color: red; width: 50px; height: 50px; margin-left: 50px;"
     icon={"add"}
   />
 );
-export const close = () => <Icon icon={"close"} />;
-export const ChevronDown = () => <Icon icon={"chevron_down"} />;
-export const ChevronUp = () => <Icon icon={"chevron_up"} />;
-export const calendar = () => <Icon icon={"calendar"} />;
-export const block = () => <Icon icon={"block"} />;
-export const edit = () => <Icon icon={"edit"} />;
-export const checkmark = () => <Icon icon={"checkmark"} />;
-export const CheckmarkCircle = () => <Icon icon={"checkmark_circle"} />;
-export const actions = () => <Icon icon={"actions"} />;
-export const ChevronLeft = () => <Icon icon={"chevron_left"} />;
-export const ChevronRight = () => <Icon icon={"chevron_right"} />;
-export const mail = () => <Icon icon={"mail"} />;
-export const action = () => <Icon icon={"action"} />;
-export const arrowDropdown = () => <Icon icon={"arrow_dropdown"} />;
-export const help = () => <Icon icon={"help"} />;
+export const close = () => <IconView icon={"close"} />;
+export const ChevronDown = () => <IconView icon={"chevron_down"} />;
+export const ChevronUp = () => <IconView icon={"chevron_up"} />;
+export const calendar = () => <IconView icon={"calendar"} />;
+export const block = () => <IconView icon={"block"} />;
+export const edit = () => <IconView icon={"edit"} />;
+export const checkmark = () => <IconView icon={"checkmark"} />;
+export const CheckmarkCircle = () => <IconView icon={"checkmark_circle"} />;
+export const actions = () => <IconView icon={"actions"} />;
+export const ChevronLeft = () => <IconView icon={"chevron_left"} />;
+export const ChevronRight = () => <IconView icon={"chevron_right"} />;
+export const mail = () => <IconView icon={"mail"} />;
+export const action = () => <IconView icon={"action"} />;
+export const arrowDropdown = () => <IconView icon={"arrow_dropdown"} />;
+export const help = () => <IconView icon={"help"} />;
 export const loading = () => (
-  <Icon color="var(--sq-action-primary)" icon={"loading"} />
+  <IconView color="var(--sq-action-primary)" icon={"loading"} />
 );
-export const gift = () => <Icon icon={"gift"} />;
+export const gift = () => <IconView icon={"gift"} />;
 export const copy = () => (
-  <Icon color="var(--sq-action-primary)" icon={"copy"} />
+  <IconView color="var(--sq-action-primary)" icon={"copy"} />
 );
-export const alert = () => <Icon icon={"alert"} />;
-export const search = () => <Icon icon={"search"} />;
-export const filter = () => <Icon icon={"filter"} />;
-export const trash = () => <Icon icon={"trash"} />;
-export const info = () => <Icon icon={"info"} />;
-export const settings = () => <Icon icon={"settings"} />;
-export const avatar = () => <Icon icon={"avatar"} />;
-export const leftwardArrow = () => <Icon icon={"leftward_arrow"} />;
-export const visibility = () => <Icon icon={"visibility"} />;
+export const alert = () => <IconView icon={"alert"} />;
+export const search = () => <IconView icon={"search"} />;
+export const filter = () => <IconView icon={"filter"} />;
+export const trash = () => <IconView icon={"trash"} />;
+export const info = () => <IconView icon={"info"} />;
+export const settings = () => <IconView icon={"settings"} />;
+export const avatar = () => <IconView icon={"avatar"} />;
+export const leftwardArrow = () => <IconView icon={"leftward_arrow"} />;
+export const visibility = () => <IconView icon={"visibility"} />;

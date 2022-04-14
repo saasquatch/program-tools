@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import { Icon } from "../Icon";
+import { IconView } from "../Icon";
 import * as Styles from "./Styles";
 
 type ModalProps = OptionProps &
   StyleProps &
-  Omit<React.ComponentProps<"div">, "translate"|"css">;
+  Omit<React.ComponentProps<"div">, "translate" | "css">;
 
 export interface OptionProps {
   title: string;
@@ -54,7 +54,7 @@ export const Modal = React.forwardRef<React.ElementRef<"div">, ModalProps>(
             <ModalDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
               <ModalHeader>
                 {title}
-                <Icon
+                <IconView
                   icon="close"
                   color="#fff"
                   size="24px"

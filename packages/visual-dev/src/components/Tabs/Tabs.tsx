@@ -1,61 +1,77 @@
-import * as React from 'react';
-import * as Styles from './Styles'
-import styled from 'styled-components';
+import * as React from "react";
+import * as Styles from "./Styles";
+import styled from "styled-components";
 
-type TabsContextType = [string | undefined, undefined | Function]
-const TabsContext = React.createContext<TabsContextType>([undefined, undefined]) 
+type TabsContextType = [string | undefined, undefined | Function];
+const TabsContext = React.createContext<TabsContextType>([
+  undefined,
+  undefined,
+]);
 
-export const Tab: React.FC<{id: string, children: React.ReactNode}> = ({
+const TabView: React.FC<{ id: string; children: React.ReactNode }> = ({
   id,
-  children
+  children,
 }) => {
-  const [selected, setId] = useTabs()
+  const [selected, setId] = useTabs();
 
   return (
     <div
       className={`tab${selected == id ? " active" : ""}`}
       onClick={() => setId!(id)}
     >
-     {children}
+      {children}
     </div>
-  )
-}
+  );
+};
 
 export interface TabsProps {
   selected?: string;
-  onTabClick: (id: string) => void
-  customTabStyle?: any
-  children: React.ReactNode
+  onTabClick: (id: string) => void;
+  customTabStyle?: any;
+  children: React.ReactNode;
 }
 
 function useTabs() {
-  const cxt = React.useContext(TabsContext)
-  if (!cxt) throw new Error("Tab must be within Tabs component")
+  const cxt = React.useContext(TabsContext);
+  if (!cxt) throw new Error("Tab must be within Tabs component");
 
-  return cxt
+  return cxt;
 }
 
-const StyledTabsContainer = styled.div<{customStyle?: any}>`
+const StyledTabsContainerDiv = styled.div<{ customStyle?: any }>`
   ${Styles.root}
   & > .tab {
     ${Styles.Tab}
-    ${({customStyle}) => customStyle ? customStyle : Styles.defaultTabStyle }
+    ${({ customStyle }) => (customStyle ? customStyle : Styles.defaultTabStyle)}
   }
-`
+`;
 
-export const Tabs: React.FC<TabsProps> & { Tab: typeof Tab } = ({
+const TabsView: React.FC<TabsProps> = ({
   selected,
   onTabClick,
   customTabStyle,
-  children
+  children,
 }) => {
   return (
     <TabsContext.Provider value={[selected, onTabClick]}>
-      <StyledTabsContainer customStyle={customTabStyle}>
+      <StyledTabsContainerDiv customStyle={customTabStyle}>
         {children}
-      </StyledTabsContainer>
+      </StyledTabsContainerDiv>
     </TabsContext.Provider>
-  )
-}
+  );
+};
 
-Tabs.Tab = Tab
+const TabsNamespace = Object.assign(TabsView, {
+  TabView: TabView,
+});
+
+const TabsNamespaceDeprecated = Object.assign(TabsView, {
+  Tab: TabView,
+});
+
+export { TabsNamespace as TabsView };
+
+/**
+ * @deprecated use {@link TabsView} instead
+ */
+export { TabsNamespaceDeprecated as Tabs };

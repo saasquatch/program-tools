@@ -1,7 +1,7 @@
 import root from "react-shadow/styled-components";
 import styled, { CSSProp } from "styled-components";
 import * as Styles from "./Styles";
-import { IconKey, Icon } from "../Icon";
+import { IconKey, IconView } from "../Icon";
 import React from "react";
 
 type InputProps = OptionProps &
@@ -56,7 +56,7 @@ const ShadowDom = styled(root.div)`
   display: contents;
 `;
 
-const InputBox = styled.input<{
+const StyledInput = styled.input<{
   isInvalid: boolean;
   position: string;
   hasIcon: boolean;
@@ -74,7 +74,7 @@ const ExtrasDiv = styled.div<{ position: string }>`
   ${(props) => (props.position == "left" ? "left: 12px;" : "right: 12px;")}
 `;
 
-const Container = styled.div<{ limitWidth: InputWidthType }>`
+const ContainerDiv = styled.div<{ limitWidth: InputWidthType }>`
   ${Styles.Container}
   ${(props) =>
     props.limitWidth
@@ -84,41 +84,51 @@ const Container = styled.div<{ limitWidth: InputWidthType }>`
       : "max-width: 100%;"}
 `;
 
-export const Input = React.forwardRef<React.ElementRef<"input">, InputProps>(
-  (props, forwardedRef) => {
-    const {
-      icon,
-      position = "right",
-      type = "text",
-      buttons = false,
-      errors: rawErrors,
-      customCSS = {},
-      limitWidth = true,
-      required = false,
-      ...rest
-    } = props;
+export const InputView = React.forwardRef<
+  React.ElementRef<"input">,
+  InputProps
+>((props, forwardedRef) => {
+  const {
+    icon,
+    position = "right",
+    type = "text",
+    buttons = false,
+    errors: rawErrors,
+    customCSS = {},
+    limitWidth = true,
+    required = false,
+    ...rest
+  } = props;
 
-    return (
-      <ShadowDom>
-        <Container limitWidth={limitWidth}>
-          <InputBox
-            {...rest}
-            type={type}
-            position={position}
-            ref={forwardedRef}
-            isInvalid={rawErrors}
-            customCSS={customCSS}
-            hasIcon={icon || buttons ? true : false}
-            required={required}
-          />
-          {icon && (
-            <ExtrasDiv position={position}>
-              <Icon icon={icon} size={"22px"} color="var(--sq-text-subdued)" />
-            </ExtrasDiv>
-          )}
-          <ExtrasDiv position={position}>{buttons}</ExtrasDiv>
-        </Container>
-      </ShadowDom>
-    );
-  }
-);
+  return (
+    <ShadowDom>
+      <ContainerDiv limitWidth={limitWidth}>
+        <StyledInput
+          {...rest}
+          type={type}
+          position={position}
+          ref={forwardedRef}
+          isInvalid={rawErrors}
+          customCSS={customCSS}
+          hasIcon={icon || buttons ? true : false}
+          required={required}
+        />
+        {icon && (
+          <ExtrasDiv position={position}>
+            <IconView
+              icon={icon}
+              size={"22px"}
+              color="var(--sq-text-subdued)"
+            />
+          </ExtrasDiv>
+        )}
+        <ExtrasDiv position={position}>{buttons}</ExtrasDiv>
+      </ContainerDiv>
+    </ShadowDom>
+  );
+});
+
+/**
+ * @deprecated use {@link InputView} instead
+ */
+export const Input = InputView;

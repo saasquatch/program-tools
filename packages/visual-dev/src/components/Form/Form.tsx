@@ -2,7 +2,7 @@ import * as React from "react";
 import styled, { css } from "styled-components";
 import root from "react-shadow/styled-components";
 import * as Styles from "./Styles";
-import { Icon } from "../Icon";
+import { IconView } from "../Icon";
 
 type InputProps = OptionProps & React.ComponentProps<"input">;
 
@@ -107,7 +107,7 @@ export const Checkbox = React.forwardRef<React.ElementRef<"input">, InputProps>(
         <CheckboxLabel htmlFor={id}>
           <CheckboxInput type="checkbox" id={id} {...rest} ref={forwardedRef} />
           <CheckboxBox>
-            <Icon icon="checkmark" customCSS={CheckboxTick} />
+            <IconView icon="checkmark" customCSS={CheckboxTick} />
           </CheckboxBox>
           {options.primary ? options.primary : ""}
         </CheckboxLabel>

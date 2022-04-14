@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CopyWrapperView } from ".";
 import { Icon } from "../..";
-import { Tooltip } from "../Tooltip";
+import { TooltipView } from "../Tooltip";
 
 export default {
   title: "Components / Copy Wrapper",
@@ -41,13 +41,13 @@ export const WithTooltip = () => {
         copyCallback={setCopySuccess}
         copyContent="This is test clipboard content"
       >
-        <Tooltip
+        <TooltipView
           showTooltip={copySuccess}
           text={`Copied successfully? ${copySuccess ? "true" : "false"}`}
           direction={"right"}
         >
           <Icon icon="copy" color="var(--sq-action-primary)" />
-        </Tooltip>
+        </TooltipView>
       </CopyWrapperView>
       <br></br>
     </>

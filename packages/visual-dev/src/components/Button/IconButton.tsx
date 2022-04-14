@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import { Icon, IconKey } from "../Icon";
+import { IconView, IconKey } from "../Icon";
 import * as Styles from "./Styles";
 
 type ButtonProps = OptionProps &
@@ -76,7 +76,7 @@ export const IconButtonView = React.forwardRef<
       ref={forwardedRef}
       customCSS={customCSS}
     >
-      <Icon
+      <IconView
         icon={icon}
         size={Styles.icon_only_size[size]}
         customCSS={icon_css}

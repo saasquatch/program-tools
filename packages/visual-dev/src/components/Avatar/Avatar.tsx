@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import { Icon } from "../Icon";
+import { IconView } from "../Icon";
 import * as Styles from "./Styles";
 
 type AvatarProps = OptionProps &
@@ -74,7 +74,7 @@ export const AvatarView = React.forwardRef<
   return (
     <AvatarDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
       {!(firstName || lastName) ? (
-        <Icon
+        <IconView
           icon="avatar"
           size={
             large

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { RadioCard, RadioCardGroup } from ".";
+import { RadioCardView, RadioCardGroupView } from ".";
 
 export default {
   title: "Components / RadioCard",
-  component: RadioCard,
+  component: RadioCardView,
 };
 
 export const Functional = () => {
   const [value, setValue] = useState(0);
   return (
-    <RadioCardGroup>
-      <RadioCard
+    <RadioCardGroupView>
+      <RadioCardView
         title={"A title for this option"}
         description={
           "This is a default radio group button. Toggle it by clicking."
@@ -21,7 +21,7 @@ export const Functional = () => {
         onClick={() => setValue(1)}
         icon="calendar"
       />
-      <RadioCard
+      <RadioCardView
         title={"Test Title"}
         description={"Test description."}
         value={value}
@@ -30,7 +30,7 @@ export const Functional = () => {
         onClick={() => setValue(2)}
         icon="calendar"
       />
-      <RadioCard
+      <RadioCardView
         title={"A title for this option"}
         description={
           "This is a default radio group button. Toggle it by clicking."
@@ -41,14 +41,14 @@ export const Functional = () => {
         onClick={() => setValue(3)}
         icon="calendar"
       />
-    </RadioCardGroup>
+    </RadioCardGroupView>
   );
 };
 
 export const radioCard = () => {
   return (
-    <RadioCardGroup>
-      <RadioCard
+    <RadioCardGroupView>
+      <RadioCardView
         title={"A title for this option"}
         description={
           "This is a default radio group button. Toggle it by clicking."
@@ -59,14 +59,14 @@ export const radioCard = () => {
         onChange={void 0}
         icon="calendar"
       />
-    </RadioCardGroup>
+    </RadioCardGroupView>
   );
 };
 
 export const radioCardSelected = () => {
   return (
-    <RadioCardGroup>
-      <RadioCard
+    <RadioCardGroupView>
+      <RadioCardView
         title={"A title for this option"}
         description={
           "This is a default radio group button. Toggle it by clicking."
@@ -77,14 +77,14 @@ export const radioCardSelected = () => {
         onChange={void 0}
         icon="calendar"
       />
-    </RadioCardGroup>
+    </RadioCardGroupView>
   );
 };
 
 export const radioCardNoIcon = () => {
   return (
-    <RadioCardGroup>
-      <RadioCard
+    <RadioCardGroupView>
+      <RadioCardView
         title={"A title for this option"}
         description={
           "This is a default radio group button. Toggle it by clicking."
@@ -94,14 +94,14 @@ export const radioCardNoIcon = () => {
         onClick={void 0}
         onChange={void 0}
       />
-    </RadioCardGroup>
+    </RadioCardGroupView>
   );
 };
 
 export const radioCardNoTitle = () => {
   return (
-    <RadioCardGroup>
-      <RadioCard
+    <RadioCardGroupView>
+      <RadioCardView
         description={
           "This is a default radio group button. Toggle it by clicking."
         }
@@ -111,14 +111,14 @@ export const radioCardNoTitle = () => {
         onChange={void 0}
         icon="calendar"
       />
-    </RadioCardGroup>
+    </RadioCardGroupView>
   );
 };
 
 export const radioCardNoDescription = () => {
   return (
-    <RadioCardGroup>
-      <RadioCard
+    <RadioCardGroupView>
+      <RadioCardView
         title={"A title for this option"}
         value={0}
         optionValue={1}
@@ -126,20 +126,20 @@ export const radioCardNoDescription = () => {
         onChange={void 0}
         icon="checkmark"
       />
-    </RadioCardGroup>
+    </RadioCardGroupView>
   );
 };
 
 export const radioCardNoText = () => {
   return (
-    <RadioCardGroup>
-      <RadioCard
+    <RadioCardGroupView>
+      <RadioCardView
         value={0}
         optionValue={1}
         onClick={void 0}
         onChange={void 0}
         icon="alert"
       />
-    </RadioCardGroup>
+    </RadioCardGroupView>
   );
 };

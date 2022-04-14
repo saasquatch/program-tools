@@ -39,7 +39,7 @@ export interface OptionProps {
 
 const ShadowDom = styled(root.div)``;
 
-const Container = styled.div<{ twoColumns: boolean }>`
+const ContainerDiv = styled.div<{ twoColumns: boolean }>`
   display: contents;
   ${(props) => props.twoColumns && Styles.RadioTwoColumn}
 `;
@@ -51,14 +51,14 @@ const RadioLabel = styled.label<{ isChecked: boolean }>`
 const RadioInput = styled.input`
   ${Styles.RadioInputStyle}
 `;
-const RadioButton = styled.div`
+const RadioButtonDiv = styled.div`
   ${Styles.RadioButtonStyle}
 `;
-const RadioText = styled.div`
+const RadioTextDiv = styled.div`
   ${Styles.RadioTextStyle}
 `;
 
-export const RadioAction = React.forwardRef<
+export const RadioActionView = React.forwardRef<
   React.ElementRef<"input">,
   InputProps
 >((props, forwardedRef) => {
@@ -76,8 +76,8 @@ export const RadioAction = React.forwardRef<
         readOnly
         ref={forwardedRef}
       />
-      <RadioButton />
-      <RadioText>
+      <RadioButtonDiv />
+      <RadioTextDiv>
         {title ? <div> {title} </div> : ""}
         {description ? (
           <div style={{ color: "var(--sq-text-subdued)", marginTop: 4 }}>
@@ -87,16 +87,26 @@ export const RadioAction = React.forwardRef<
         ) : (
           ""
         )}
-      </RadioText>
+      </RadioTextDiv>
     </RadioLabel>
   );
 });
 
-export const RadioActionGroup = (props: GroupProps) => {
+export const RadioActionGroupView = (props: GroupProps) => {
   const { twoColumns = false, children } = props;
   return (
     <ShadowDom>
-      <Container twoColumns={twoColumns}>{children}</Container>
+      <ContainerDiv twoColumns={twoColumns}>{children}</ContainerDiv>
     </ShadowDom>
   );
 };
+
+/**
+ * @deprecated use {@link RadioActionView} instead
+ */
+export const RadioAction = RadioActionView;
+
+/**
+ * @deprecated use {@link RadioGroupView} instead
+ */
+export const RadioActionGroup = RadioActionGroupView;

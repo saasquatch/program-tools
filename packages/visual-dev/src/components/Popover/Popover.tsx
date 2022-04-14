@@ -33,27 +33,27 @@ export interface SectionProps {
   children: React.ReactNode;
 }
 
-const StyledSection = styled.div`
+const StyledSectionDiv = styled.div`
   ${Styles.StyledSection}
 `;
 
-const Section: React.FC<SectionProps> = ({ children }) => {
-  return <StyledSection>{children}</StyledSection>;
+const SectionView: React.FC<SectionProps> = ({ children }) => {
+  return <StyledSectionDiv>{children}</StyledSectionDiv>;
 };
 
 export interface ActionProps extends Omit<ButtonProps, "buttonType"> {}
 
-const StyledAction = styled(Button)`
+const StyledActionButton = styled(Button)`
   ${Styles.StyledAction}
 `;
 
-const Action: React.FC<ActionProps> = ({ children, ...rest }) => (
-  <StyledAction buttonType="text" {...(rest as any)}>
+const ActionView: React.FC<ActionProps> = ({ children, ...rest }) => (
+  <StyledActionButton buttonType="text" {...(rest as any)}>
     {children}
-  </StyledAction>
+  </StyledActionButton>
 );
 
-const StyledContainer = styled.div<
+const StyledContainerDiv = styled.div<
   Pick<PopoverProps, "show" | "relativeY" | "relativeX">
 >`
   display: ${({ show }) => (show ? "block" : "none")};
@@ -66,25 +66,53 @@ const StyledContainer = styled.div<
   ${Styles.StyledContainer}
 `;
 
-export const Popover: React.FC<PopoverProps> & { Section: typeof Section } & {
-  Action: typeof Action;
-} = ({ show = true, relativeY = "0px", relativeX = "0px", children }) => {
+const PopoverView: React.FC<PopoverProps> = ({
+  show = true,
+  relativeY = "0px",
+  relativeX = "0px",
+  children,
+}) => {
   if (React.Children.count(children) > 1) {
     return (
-      <StyledContainer show={show} relativeX={relativeX} relativeY={relativeY}>
+      <StyledContainerDiv
+        show={show}
+        relativeX={relativeX}
+        relativeY={relativeY}
+      >
         {children}
-      </StyledContainer>
+      </StyledContainerDiv>
     );
   } else {
     return (
-      <StyledContainer show={show} relativeX={relativeX} relativeY={relativeY}>
-        <StyledSection style={{ padding: "8px 16px" }}>
+      <StyledContainerDiv
+        show={show}
+        relativeX={relativeX}
+        relativeY={relativeY}
+      >
+        <StyledSectionDiv style={{ padding: "8px 16px" }}>
           {children}
-        </StyledSection>
-      </StyledContainer>
+        </StyledSectionDiv>
+      </StyledContainerDiv>
     );
   }
 };
 
-Popover.Section = Section;
-Popover.Action = Action;
+const PopoverNamespace = Object.assign(PopoverView, {
+  SectionView: SectionView,
+  ActionView: ActionView,
+});
+
+/**
+ * @deprecated use {@link ListView} instead
+ */
+const PopoverNamespaceDeprecated = Object.assign(PopoverView, {
+  Section: SectionView,
+  Action: ActionView,
+});
+
+export { PopoverNamespace as PopoverView };
+
+/**
+ * @deprecated use {@link ListView} instead
+ */
+export { PopoverNamespaceDeprecated as Popover };

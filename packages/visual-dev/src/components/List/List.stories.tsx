@@ -1,24 +1,23 @@
-import * as React from 'react'
-import { List } from '.'
+import * as React from "react";
+import { ListView } from ".";
 
-export default { 
+export default {
   title: "Components / List",
-  component: List
-}
+  component: ListView,
+};
 
 export const defaultList = () => (
-  <List>
-    <List.Item>First element</List.Item>
-    <List.Item>Second element</List.Item>
-    <List.Item>Third element</List.Item>
-  </List>
-)
+  <ListView>
+    <ListView.ItemView>First element</ListView.ItemView>
+    <ListView.ItemView>Second element</ListView.ItemView>
+    <ListView.ItemView>Third element</ListView.ItemView>
+  </ListView>
+);
 
 export const numberedList = () => (
-  <List type="number">
-    <List.Item>First element</List.Item>
-    <List.Item>Second element</List.Item>
-    <List.Item>Third element</List.Item>
-  </List>
-)
-
+  <ListView type="number">
+    <ListView.ItemView>First element</ListView.ItemView>
+    <ListView.ItemView>Second element</ListView.ItemView>
+    <ListView.ItemView>Third element</ListView.ItemView>
+  </ListView>
+);

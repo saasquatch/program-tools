@@ -2,7 +2,7 @@ import * as React from "react";
 import * as Styles from "./Styles";
 import styled, { CSSProp } from "styled-components";
 
-const Item = styled.li``;
+const ItemView = styled.li``;
 
 export interface ListProps {
   /**
@@ -24,7 +24,7 @@ const StyledList = styled.ul<{ customCSS: CSSProp }>`
   ${(props) => props.customCSS}
 `;
 
-export const List: React.FC<ListProps> & { Item: typeof Item } = ({
+const ListView: React.FC<ListProps> = ({
   customCSS = {},
   children,
   type = "bullet",
@@ -37,4 +37,16 @@ export const List: React.FC<ListProps> & { Item: typeof Item } = ({
   );
 };
 
-List.Item = Item;
+const ListNamespace = Object.assign(ListView, { ItemView: ItemView });
+
+/**
+ * @deprecated use {@link ListView} instead
+ */
+const ListNamespaceDeprecated = Object.assign(ListView, { Item: ItemView });
+
+export { ListNamespace as ListView };
+
+/**
+ * @deprecated use {@link ListView} instead
+ */
+export { ListNamespaceDeprecated as List };

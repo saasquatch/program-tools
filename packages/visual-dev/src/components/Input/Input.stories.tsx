@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { IconButton } from "../Button";
-import { Input } from ".";
+import { InputView } from ".";
 
 export default {
   title: "Components / Input",
-  component: Input,
+  component: InputView,
 };
 
 export const FunctionalInput = () => {
   const [value, setValue] = useState("");
   return (
-    <Input
+    <InputView
       value={value}
       onChange={(e: { target: { value: string } }) => setValue(e.target.value)}
       disabled={undefined}
@@ -19,27 +19,31 @@ export const FunctionalInput = () => {
   );
 };
 
-export const InputText = () => <Input value="Input Text" />;
+export const InputText = () => <InputView value="Input Text" />;
 
-export const FullWidth = () => <Input value="Input Text" limitWidth={false} />;
+export const FullWidth = () => (
+  <InputView value="Input Text" limitWidth={false} />
+);
 
-export const InputDisabled = () => <Input value="Input Text" disabled />;
+export const InputDisabled = () => <InputView value="Input Text" disabled />;
 
-export const Placeholder = () => <Input placeholder="Placeholder Text" />;
+export const Placeholder = () => <InputView placeholder="Placeholder Text" />;
 
 export const PlaceholderDisabled = () => (
-  <Input placeholder="Placeholder Text" disabled />
+  <InputView placeholder="Placeholder Text" disabled />
 );
 export const InvalidField = () => (
-  <Input value="Invalid Field" errors={"error"} />
+  <InputView value="Invalid Field" errors={"error"} />
 );
 
-export const PasswordInput = () => <Input type="password" value="Input Text" />;
+export const PasswordInput = () => (
+  <InputView type="password" value="Input Text" />
+);
 
 export const PasswordInputWithToggle = () => {
   const [visible, setVisible] = useState(false);
   return (
-    <Input
+    <InputView
       type={visible ? "text" : "password"}
       buttons={
         <IconButton
@@ -55,24 +59,26 @@ export const PasswordInputWithToggle = () => {
   );
 };
 
-export const InputEdit = () => <Input value="" icon="edit" />;
-export const InputEditDisabled = () => <Input value="" icon="edit" disabled />;
+export const InputEdit = () => <InputView value="" icon="edit" />;
+export const InputEditDisabled = () => (
+  <InputView value="" icon="edit" disabled />
+);
 export const InputSearch = () => (
-  <Input value="" icon="search" position="left" />
+  <InputView value="" icon="search" position="left" />
 );
 export const InputSearchDisabled = () => (
-  <Input value="" icon="search" position="left" disabled />
+  <InputView value="" icon="search" position="left" disabled />
 );
-export const InputClose = () => <Input value="" icon="close" />;
+export const InputClose = () => <InputView value="" icon="close" />;
 export const InputCloseDisabled = () => (
-  <Input value="" icon="close" disabled />
+  <InputView value="" icon="close" disabled />
 );
 
-export const InputNumber = () => <Input value="" type="number" />;
-export const InputNumberDisabled = () => <Input type="number" disabled />;
+export const InputNumber = () => <InputView value="" type="number" />;
+export const InputNumberDisabled = () => <InputView type="number" disabled />;
 
 export const InputButtons = () => (
-  <Input
+  <InputView
     value="Edit Input Text"
     buttons={
       <>

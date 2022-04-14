@@ -11,9 +11,9 @@ import {
   ModalContentCode,
 } from ".";
 import { Dropdown } from "../Dropdown";
-import { Input } from "../Input";
-import { RadioAction } from "../RadioAction";
-import { Icon } from "../Icon";
+import { InputView } from "../Input";
+import { RadioActionView } from "../RadioAction";
+import { IconView } from "../Icon";
 import { CheckboxView } from "../Checkbox";
 
 export default {
@@ -81,12 +81,12 @@ export const WithPrimaryAndSecondaryAction = () => {
             <br />
             Referral Code <span style={{ color: "#adadad" }}> (required) </span>
             <br />
-            <Input
+            <InputView
               value="NEW CODE"
               style={{ margin: "10px 0 10px 0", width: "510px" }}
             />
             <br />
-            <RadioAction
+            <RadioActionView
               title="Set as primary referral code"
               description={
                 <span>
@@ -103,7 +103,7 @@ export const WithPrimaryAndSecondaryAction = () => {
               value={true}
               onChange={void 0}
             />
-            <RadioAction
+            <RadioActionView
               title="Set as secondary referral code"
               description={
                 <span>
@@ -266,7 +266,7 @@ export const WithHeaderAction = () => {
           <ModalContentTopAction
             action={{
               text: "Back to Learn More",
-              icon: <Icon size="20px" icon="leftward_arrow" />,
+              icon: <IconView size="20px" icon="leftward_arrow" />,
             }}
           />
           <ModalContentText>
@@ -277,10 +277,10 @@ export const WithHeaderAction = () => {
             <br />
             <br />
             Program Name
-            <Input value="" style={{ margin: "10px 0 10px 0" }} />
+            <InputView value="" style={{ margin: "10px 0 10px 0" }} />
             <br />
             Program ID
-            <Input disabled style={{ margin: "10px 0 10px 0" }} />
+            <InputView disabled style={{ margin: "10px 0 10px 0" }} />
           </ModalContentText>
           <ModalContentDivider />
           <ModalContentAction
@@ -320,9 +320,9 @@ export const WithMultipleSectionsAndActions = () => {
             <br />
             <br />
             Enter New Email
-            <Input value="" style={{ margin: "10px 0 10px 0" }} />
+            <InputView value="" style={{ margin: "10px 0 10px 0" }} />
             Enter Password
-            <Input value="" style={{ margin: "10px 0 10px 0" }} />
+            <InputView value="" style={{ margin: "10px 0 10px 0" }} />
           </ModalContentText>
           <ModalContentAction
             primaryAction={{
@@ -340,11 +340,11 @@ export const WithMultipleSectionsAndActions = () => {
             <br />
             <br />
             Current Password
-            <Input value="" style={{ margin: "10px 0 10px 0" }} />
+            <InputView value="" style={{ margin: "10px 0 10px 0" }} />
             New Password
-            <Input value="" style={{ margin: "10px 0 10px 0" }} />
+            <InputView value="" style={{ margin: "10px 0 10px 0" }} />
             Re-enter New Password
-            <Input value="" style={{ margin: "10px 0 10px 0" }} />
+            <InputView value="" style={{ margin: "10px 0 10px 0" }} />
           </ModalContentText>
           <ModalContentAction
             primaryAction={{
@@ -370,15 +370,15 @@ export const WithFormElements = () => {
         <ModalContent>
           <ModalContentText>
             First Name
-            <Input value="" style={{ margin: "10px 0 10px 0" }} />
+            <InputView value="" style={{ margin: "10px 0 10px 0" }} />
             Last Name
-            <Input value="" style={{ margin: "10px 0 10px 0" }} />
+            <InputView value="" style={{ margin: "10px 0 10px 0" }} />
             Email
-            <Input value="" style={{ margin: "10px 0 10px 0" }} />
+            <InputView value="" style={{ margin: "10px 0 10px 0" }} />
             Account ID <span style={{ color: "#989898" }}> (required) </span>
-            <Input value="" style={{ margin: "10px 0 10px 0" }} />
+            <InputView value="" style={{ margin: "10px 0 10px 0" }} />
             User ID <span style={{ color: "#989898" }}> (required) </span>
-            <Input value="" style={{ margin: "10px 0 10px 0" }} />
+            <InputView value="" style={{ margin: "10px 0 10px 0" }} />
             <br />
             <CheckboxView
               value={true}

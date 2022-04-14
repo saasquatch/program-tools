@@ -1,7 +1,7 @@
 import { WidgetProps } from "@rjsf/core";
 import React from "react";
 import { IconKey } from "../Icon";
-import { RadioCard, RadioCardGroup } from "./RadioCard";
+import { RadioCardView, RadioCardGroupView } from "./RadioCard";
 
 interface cardOption {
   key: number;
@@ -47,7 +47,7 @@ export function RJSFRadioCardWidget(props: WidgetProps) {
     return <></>;
   }
   return (
-    <RadioCardGroup id={props.id}>
+    <RadioCardGroupView id={props.id}>
       {valueOptions?.map((option: unknown) => {
         if (!isEnumValue(option)) {
           return <></>;
@@ -59,7 +59,7 @@ export function RJSFRadioCardWidget(props: WidgetProps) {
           return <></>;
         }
         return (
-          <RadioCard
+          <RadioCardView
             required={props.required}
             id={props.id + option.value.toString()}
             name={props.id + option.value.toString()}
@@ -76,6 +76,6 @@ export function RJSFRadioCardWidget(props: WidgetProps) {
           />
         );
       })}
-    </RadioCardGroup>
+    </RadioCardGroupView>
   );
 }

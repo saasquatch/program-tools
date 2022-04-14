@@ -2,7 +2,7 @@ import * as React from "react";
 import root from "react-shadow/styled-components";
 import styled from "styled-components";
 import * as Styles from "./Styles";
-import { IconKey, Icon } from "../Icon";
+import { IconKey, IconView } from "../Icon";
 
 type GroupProps = React.ComponentProps<"input">;
 
@@ -47,25 +47,25 @@ const RadioInput = styled.input`
   ${Styles.RadioInputStyle}
 `;
 
-const RightSegment = styled.div`
+const RightSegmentDiv = styled.div`
   ${Styles.RightSegmentStyle}
 `;
 
-const RadioText = styled.div`
+const RadioTextDiv = styled.div`
   ${Styles.RadioTextStyle}
 `;
 
-const LeftSegment = styled.div<{ isChecked: boolean }>`
+const LeftSegmentDiv = styled.div<{ isChecked: boolean }>`
   ${Styles.LeftSegmentStyle}
   ${(props) =>
     props.isChecked ? "color: var(--sq-action-primary-hovered);" : ""}
 `;
 
-const RadioGrid = styled.div`
+const RadioGridDiv = styled.div`
   ${Styles.RadioGridStyle}
 `;
 
-export const RadioCard = React.forwardRef<
+export const RadioCardView = React.forwardRef<
   React.ElementRef<"input">,
   InputProps
 >((props, forwardedRef) => {
@@ -84,11 +84,11 @@ export const RadioCard = React.forwardRef<
         readOnly
         ref={forwardedRef}
       />
-      <LeftSegment isChecked={selected}>
-        {icon && <Icon icon={icon} size="40px" color={icon_color} />}
-      </LeftSegment>
-      <RightSegment>
-        <RadioText>
+      <LeftSegmentDiv isChecked={selected}>
+        {icon && <IconView icon={icon} size="40px" color={icon_color} />}
+      </LeftSegmentDiv>
+      <RightSegmentDiv>
+        <RadioTextDiv>
           {title ? (
             <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
           ) : (
@@ -99,18 +99,28 @@ export const RadioCard = React.forwardRef<
           ) : (
             ""
           )}
-        </RadioText>
-      </RightSegment>
+        </RadioTextDiv>
+      </RightSegmentDiv>
     </RadioLabel>
   );
 });
 
-export const RadioCardGroup = (props: GroupProps) => {
+export const RadioCardGroupView = (props: GroupProps) => {
   const { children } = props;
 
   return (
     <ShadowDom>
-      <RadioGrid>{children}</RadioGrid>
+      <RadioGridDiv>{children}</RadioGridDiv>
     </ShadowDom>
   );
 };
+
+/**
+ * @deprecated use {@link RadioCardView} instead
+ */
+export const RadioCard = RadioCardView;
+
+/**
+ * @deprecated use {@link RadioGroupView} instead
+ */
+export const RadioCardGroup = RadioCardGroupView;

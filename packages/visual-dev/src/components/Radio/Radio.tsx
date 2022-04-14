@@ -38,31 +38,42 @@ const RadioLabel = styled.label<Required<StyleProps>>`
 const RadioInput = styled.input`
   ${Styles.RadioInputStyle}
 `;
-const RadioButton = styled.div`
+const RadioButtonDiv = styled.div`
   ${Styles.RadioButtonStyle}
 `;
 
-export const Radio = React.forwardRef<React.ElementRef<"input">, RadioProps>(
-  (props, forwardRef) => {
-    const { value, onChange, label, customLabelCSS = {}, ...rest } = props;
-    return (
-      <RadioLabel customLabelCSS={customLabelCSS} htmlFor={rest.id}>
-        <RadioInput
-          {...rest}
-          type="radio"
-          checked={value}
-          onChange={onChange}
-          ref={forwardRef}
-        />
-        <RadioButton />
-        {label ? label : ""}
-      </RadioLabel>
-    );
-  }
-);
+export const RadioView = React.forwardRef<
+  React.ElementRef<"input">,
+  RadioProps
+>((props, forwardRef) => {
+  const { value, onChange, label, customLabelCSS = {}, ...rest } = props;
+  return (
+    <RadioLabel customLabelCSS={customLabelCSS} htmlFor={rest.id}>
+      <RadioInput
+        {...rest}
+        type="radio"
+        checked={value}
+        onChange={onChange}
+        ref={forwardRef}
+      />
+      <RadioButtonDiv />
+      {label ? label : ""}
+    </RadioLabel>
+  );
+});
 
-export const RadioGroup = (props: RadioProps) => {
+export const RadioGroupView = (props: RadioProps) => {
   const { children } = props;
 
   return <ShadowDom>{children}</ShadowDom>;
 };
+
+/**
+ * @deprecated use {@link RadioView} instead
+ */
+export const Radio = RadioView;
+
+/**
+ * @deprecated use {@link RadioGroupView} instead
+ */
+export const RadioGroup = RadioGroupView;

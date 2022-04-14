@@ -13,6 +13,9 @@ const DataTableNamespace = Object.assign(DataTableView, {
   SkeletonView: SkeletonView,
 });
 
+/**
+ * @deprecated use {@link DataTableView} instead
+ */
 const DataTableNamespaceDeprecated = Object.assign(DataTableView, {
   Row: RowView,
   Pagination: PaginationView,

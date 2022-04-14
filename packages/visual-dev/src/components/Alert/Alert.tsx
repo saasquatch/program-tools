@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import { Icon } from "../Icon";
+import { IconView } from "../Icon";
 import * as Styles from "./Styles";
 
 export type AlertProps = OptionProps &
@@ -36,19 +36,19 @@ const AlertDiv = styled.div<Required<StyleProps>>`
 
 const icons = {
   critical: (
-    <Icon icon={"alert"} color="var(--sq-surface-critical)" size="23px" />
+    <IconView icon={"alert"} color="var(--sq-surface-critical)" size="23px" />
   ),
   warning: (
-    <Icon icon={"alert"} color="var(--sq-surface-warning)" size="23px" />
+    <IconView icon={"alert"} color="var(--sq-surface-warning)" size="23px" />
   ),
   success: (
-    <Icon
+    <IconView
       icon={"checkmark_circle"}
       color="var(--sq-surface-success)"
       size="23px"
     />
   ),
-  info: <Icon icon={"help"} color="var(--sq-text)" size="23px" />,
+  info: <IconView icon={"help"} color="var(--sq-text)" size="23px" />,
 };
 
 export const AlertView = React.forwardRef<React.ElementRef<"div">, AlertProps>(

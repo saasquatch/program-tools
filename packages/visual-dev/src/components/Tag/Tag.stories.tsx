@@ -1,29 +1,33 @@
 import React from "react";
-import { Tag } from ".";
+import { TagView } from ".";
 
 export default {
   title: "Components / Tag",
-  component: Tag,
+  component: TagView,
 };
 
 const fake = async () => {
   Promise.resolve(alert("You clicked a tag."));
 };
 
-export const shortTag = () => <Tag onClickClose={fake}>New Segment</Tag>;
+export const shortTag = () => (
+  <TagView onClickClose={fake}>New Segment</TagView>
+);
 export const longTag = () => (
-  <Tag onClickClose={fake}>A really really long tag with lots of text</Tag>
+  <TagView onClickClose={fake}>
+    A really really long tag with lots of text
+  </TagView>
 );
 export const customCSS = () => (
-  <Tag
+  <TagView
     customCSS={{ background: "lightblue", color: "white", borderColor: "blue" }}
     onClickClose={fake}
   >
     A long segment
-  </Tag>
+  </TagView>
 );
 export const multipleLines = () => (
-  <Tag onClickClose={fake}>
+  <TagView onClickClose={fake}>
     A multi- <br></br> line tag
-  </Tag>
+  </TagView>
 );

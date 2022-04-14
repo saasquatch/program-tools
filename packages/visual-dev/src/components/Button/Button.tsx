@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled, { CSSProp } from "styled-components";
-import { IconKey, Icon } from "../Icon";
+import { IconKey, IconView } from "../Icon";
 import { loadingAnimation, successAnimation } from "./Animations";
 import * as Styles from "./Styles";
 
@@ -103,11 +103,11 @@ export const ButtonView = React.forwardRef<
       customCSS={customCSS}
     >
       {iconLocation == "left" && icon && (
-        <Icon icon={icon} size={Styles.icon_size[size]} />
+        <IconView icon={icon} size={Styles.icon_size[size]} />
       )}
       <span> {children} </span>
       {iconLocation == "right" && icon && (
-        <Icon icon={icon} size={Styles.icon_size[size]} />
+        <IconView icon={icon} size={Styles.icon_size[size]} />
       )}
       {loading && props.buttonType != "text" && (
         <>

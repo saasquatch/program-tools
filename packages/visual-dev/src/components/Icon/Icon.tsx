@@ -38,7 +38,7 @@ const default_size = {
   badge: "var(--sq-icon-size-badge)",
 };
 
-const StyledSVG = styled.div<Required<StyleProps>>`
+const SVGStyleDiv = styled.div<Required<StyleProps>>`
   ${Styles.base}
   color: ${(props) => props.color};
   width: ${(props) =>
@@ -54,7 +54,7 @@ const StyledSVG = styled.div<Required<StyleProps>>`
 
 export type IconKey = keyof typeof SVGs;
 
-export const Icon = React.forwardRef<React.ElementRef<"div">, IconProps>(
+export const IconView = React.forwardRef<React.ElementRef<"div">, IconProps>(
   (props, forwardedRef) => {
     const {
       icon,
@@ -65,7 +65,7 @@ export const Icon = React.forwardRef<React.ElementRef<"div">, IconProps>(
     } = props;
 
     return (
-      <StyledSVG
+      <SVGStyleDiv
         {...rest}
         size={size}
         color={color}
@@ -73,7 +73,12 @@ export const Icon = React.forwardRef<React.ElementRef<"div">, IconProps>(
         customCSS={customCSS}
       >
         {Object.keys(SVGs).includes(icon) ? SVGs[icon] : SVGs["placeholder"]}
-      </StyledSVG>
+      </SVGStyleDiv>
     );
   }
 );
+
+/**
+ * @deprecated use {@link IconView} instead
+ */
+export const Icon = IconView;

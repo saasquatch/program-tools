@@ -3,8 +3,8 @@ import { useState } from "react";
 import styled, { CSSProp } from "styled-components";
 import { BadgeView } from "../Badge";
 import { Button, IconButton } from "../Button";
-import { Icon } from "../Icon";
-import { Input } from "../Input";
+import { IconView } from "../Icon";
+import { InputView } from "../Input";
 import * as Styles from "./Styles";
 
 type CardProps = OptionProps &
@@ -65,7 +65,7 @@ export const CardEditView = React.forwardRef<
     <CardDiv {...rest} ref={forwardedRef} customCSS={customCSS}>
       <CardHeaderDiv>
         <CardHeaderIconDiv>
-          <Icon
+          <IconView
             icon="calendar"
             size="large"
             customCSS=""
@@ -74,7 +74,7 @@ export const CardEditView = React.forwardRef<
         </CardHeaderIconDiv>
         {edit && (
           <>
-            <Input
+            <InputView
               placeholder="Edit Program Name"
               disabled={locked}
               buttons={
@@ -121,7 +121,7 @@ export const CardEditView = React.forwardRef<
             <CardHeaderTextDiv>
               <TitleTextDiv>
                 {title}
-                <Icon
+                <IconView
                   size="25px"
                   icon="edit"
                   customCSS="margin: -5px; margin-left: 0; :hover{color: #0275FB	;}"
