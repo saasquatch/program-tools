@@ -12,7 +12,7 @@ export interface OptionProps {
   /**
    * Title shown shown regardless of expanded/collapsed state. Use ReactNode for custom text styling.
    */
-  title: string | React.ReactNode;
+  heading: string | React.ReactNode;
   /**
    * Description below title, hidden while collapsed. Use ReactNode for custom text styling.
    */
@@ -72,7 +72,13 @@ export const AccordionView = React.forwardRef<
   React.ElementRef<"div">,
   AccordionProps
 >((props, forwardedRef) => {
-  const { title, description = "", children, customCSS = {}, ...rest } = props;
+  const {
+    heading: title,
+    description = "",
+    children,
+    customCSS = {},
+    ...rest
+  } = props;
   const [expanded, setExpanded] = useState(false);
 
   return (

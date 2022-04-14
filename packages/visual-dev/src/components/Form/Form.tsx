@@ -10,7 +10,9 @@ interface OptionProps {
   options?: any;
 }
 
-const ShadowDom = styled(root.div)``;
+const ShadowDom = styled(root.div)`
+  display: contents;
+`;
 
 const InputBox = styled.input`
   ${Styles.InputBoxStyle}

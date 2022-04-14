@@ -15,6 +15,7 @@ export const AccordionDiv = css``;
 
 export const TitleH2 = css`
   font-size: var(--sq-font-size-caption);
+  flex: 1;
   margin: 0;
 `;
 

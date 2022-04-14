@@ -68,4 +68,5 @@ export const on = css`
 export const wrapper = css`
   position: relative;
   display: inline-block;
+  height: 20px;
 `;

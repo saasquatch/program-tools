@@ -34,7 +34,9 @@ export interface OptionProps {
   icon?: IconKey;
 }
 
-const ShadowDom = styled(root.div)``;
+const ShadowDom = styled(root.div)`
+  display: contents;
+`;
 
 const RadioLabel = styled.label<{ isChecked: boolean }>`
   ${Styles.RadioLabelStyle}

@@ -33,7 +33,9 @@ export interface OptionProps {
   id?: string;
 }
 
-const ShadowDom = styled(root.div)``;
+const ShadowDom = styled(root.div)`
+  display: contents;
+`;
 
 const CheckboxLabel = styled.label<{ isDisabled?: any }>`
   ${Styles.CheckboxLabelStyle}

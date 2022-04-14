@@ -29,7 +29,9 @@ export interface StyleProps {
   customLabelCSS?: CSSProp;
 }
 
-const ShadowDom = styled(root.div)``;
+const ShadowDom = styled(root.div)`
+  display: contents;
+`;
 
 const RadioLabel = styled.label<Required<StyleProps>>`
   ${Styles.RadioLabelStyle}

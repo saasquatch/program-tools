@@ -54,7 +54,9 @@ const SwitchBackgroundInput = styled.input<Required<{ color: string }>>`
   }
 `;
 
-const ShadowDom = styled(root.div)``;
+const ShadowDom = styled(root.div)`
+  display: contents;
+`;
 
 export const SwitchView = React.forwardRef<
   React.ElementRef<"input">,

@@ -37,7 +37,9 @@ export interface OptionProps {
   description?: string | React.ReactNode;
 }
 
-const ShadowDom = styled(root.div)``;
+const ShadowDom = styled(root.div)`
+  display: contents;
+`;
 
 const ContainerDiv = styled.div<{ twoColumns: boolean }>`
   display: contents;
