@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { IconButton, IconButtonView } from "../Button";
 import { InputView } from ".";
+import { useSelect } from "downshift";
+import { Select, SelectView } from "../Select";
 
 export default {
   title: "Components / Input",
@@ -115,5 +117,40 @@ export const ClearableInput = () => {
         </>
       }
     />
+  );
+};
+
+export const WithUnits = () => {
+  const items = ["px", "em", "rem", "%"];
+  const functional = useSelect({ items });
+  const props = {
+    items,
+    functional,
+    limitWidth: "90px",
+    customCSS: { borderTopLeftRadius: 0, borderBottomLeftRadius: 0 },
+  };
+  const [value, setValue] = useState("");
+  return (
+    <div
+      style={{
+        display: "flex",
+      }}
+    >
+      <InputView
+        value={value}
+        onChange={(e: { target: { value: string } }) =>
+          setValue(e.target.value)
+        }
+        disabled={undefined}
+        errors={undefined}
+        limitWidth="210px"
+        customCSS={{
+          borderTopRightRadius: 0,
+          borderBottomRightRadius: 0,
+          borderRight: "none",
+        }}
+      />
+      <SelectView {...props}></SelectView>
+    </div>
   );
 };
