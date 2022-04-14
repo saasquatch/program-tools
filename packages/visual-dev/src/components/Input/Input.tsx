@@ -71,7 +71,7 @@ const StyledInput = styled.input<{
 
 const ExtrasDiv = styled.div<{ position: string }>`
   ${Styles.ExtrasDiv}
-  ${(props) => (props.position == "left" ? "left: 12px;" : "right: 12px;")}
+  ${(props) => (props.position == "left" ? "left: 1px;" : "right: 10px;")}
 `;
 
 const ContainerDiv = styled.div<{ limitWidth: InputWidthType }>`

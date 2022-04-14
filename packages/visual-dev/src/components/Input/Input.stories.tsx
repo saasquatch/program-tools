@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IconButton } from "../Button";
+import { IconButton, IconButtonView } from "../Button";
 import { InputView } from ".";
 
 export default {
@@ -82,14 +82,38 @@ export const InputButtons = () => (
     value="Edit Input Text"
     buttons={
       <>
-        <IconButton
+        <IconButtonView
           icon="checkmark"
           size="mini"
           primary
-          css={"margin-right: 4px;"}
+          customCSS={"margin-right: 4px;"}
         />
-        <IconButton icon="close" size="mini" icon_css="color: #858585;" />
+        <IconButtonView icon="close" size="mini" icon_css="color: #858585;" />
       </>
     }
   />
 );
+
+export const ClearableInput = () => {
+  const [value, setValue] = useState("");
+  return (
+    <InputView
+      value={value}
+      onChange={(e: any) => {
+        setValue(e.target.value);
+      }}
+      buttons={
+        <>
+          <IconButtonView
+            onClick={() => {
+              setValue("");
+            }}
+            icon="close"
+            size="mini"
+            borderless
+          />
+        </>
+      }
+    />
+  );
+};
