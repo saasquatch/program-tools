@@ -9,20 +9,22 @@ type RadioGenericProps = OptionProps &
 
 export interface RadioOption {
   value: any;
-  view: React.ReactNode;
+  view: React.ComponentType; // TODO switch to using component type and stop injecting props with clone https://flow.org/en/docs/react/types/#toc-react-componenttype
 }
 
 export interface OptionProps {
   /**
    * Value for form input
    */
-  value?: any;
+  activeValue?: any;
   /**
    * Callback triggered on radio select/deselect
    */
   onChange?: any;
 
-  options: Array<RadioOption>;
+  name: string;
+
+  radioOptions: Array<RadioOption>;
 }
 
 export interface StyleProps {
@@ -36,6 +38,8 @@ const ShadowDom = styled(root.div)`
   display: contents;
 `;
 
+const StyledRadioInput = styled.input``;
+
 const ContainerDiv = styled.div<Required<StyleProps>>`
   ${Styles.ContainerDiv}
 `;
@@ -44,14 +48,34 @@ export const RadioGenericView = React.forwardRef<
   React.ElementRef<"div">,
   RadioGenericProps
 >((props, forwardRef) => {
-  const { value, onChange, customCSS = {}, options, ...rest } = props;
+  const {
+    name,
+    activeValue,
+    onChange,
+    customCSS = {},
+    radioOptions,
+    ...rest
+  } = props;
   return (
     <ShadowDom>
-      <ContainerDiv
-        ref={forwardRef}
-        customCSS={customCSS}
-        htmlFor={rest.id}
-      ></ContainerDiv>
+      <ContainerDiv {...rest} ref={forwardRef} customCSS={customCSS}>
+        {radioOptions &&
+          radioOptions.map((radioOption: any) => (
+            <>
+              <StyledRadioInput
+                type="radio"
+                id={radioOption.value.toLowerCase()}
+                name={activeValue}
+                value={radioOption.value}
+              />
+              {React.cloneElement(radioOption.view, {
+                activeValue: activeValue,
+                htmlFor: radioOption.value.toLowerCase(),
+                onClick: () => onChange(radioOption.value),
+              })}
+            </>
+          ))}
+      </ContainerDiv>
     </ShadowDom>
   );
 });

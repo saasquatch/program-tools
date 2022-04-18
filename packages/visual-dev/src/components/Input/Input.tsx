@@ -64,7 +64,7 @@ const StyledInput = styled.input<{
 }>`
   ${Styles.InputBoxStyle}
   ${(props) => (props.isInvalid ? Styles.invalid : "")}
-  ${(props) => props.hasIcon && "padding-right: var(--sq-spacing-xxx-large)"}
+  ${(props) => props.hasIcon && "padding-right: var(--sq-spacing-xxx-large);"}
   ${(props) => (props.position == "left" ? "text-indent: 40px;" : "")}
   ${(props) => props.customCSS}
 `;
