@@ -3,7 +3,8 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
-import { getProps } from "../../utils/utils";
+import { RequiredPropsError } from "../../utils/RequiredPropsError";
+import { getMissingProps, getProps } from "../../utils/utils";
 import {
   DropdownFieldView,
   DropdownFieldViewProps,
@@ -35,11 +36,14 @@ export class DropdownField {
   @Prop() errorMessage: string = "Select an option";
 
   /**
-   * @uiName Dropdown Required
+   * @uiName Optional
    */
-  @Prop() dropdownRequired?: boolean = true;
+  @Prop() dropdownOptional?: boolean = false;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<DropdownFieldViewProps>;
 
   constructor() {
@@ -49,6 +53,28 @@ export class DropdownField {
   disconnectedCallback() {}
 
   render() {
+    const missingProps = getMissingProps([
+      {
+        attribute: "dropdown-name",
+        value: this.dropdownName,
+      },
+    ]);
+
+    if (!isDemo() && missingProps) {
+      return (
+        <RequiredPropsError
+          missingProps={missingProps}
+          heading={"An error occured while loading this form"}
+          subheading={
+            "A technical problem prevented this drop down field from loading. Please contact us with the link to this page."
+          }
+          description={"Values for the following attributes are missing:"}
+        >
+          <slot />
+        </RequiredPropsError>
+      );
+    }
+
     const content = {
       ...getProps(this),
       selectOptions: <slot></slot>,

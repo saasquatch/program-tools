@@ -8,8 +8,13 @@ import {
   CheckboxFieldView,
   CheckboxFieldViewProps,
 } from "./sqm-checkbox-field-view";
+import scenario from "./sqm-checkbox-field.feature";
+
 export default {
   title: "Components/Checkbox Field",
+  parameters: {
+    scenario,
+  },
 };
 
 const defaultProps: CheckboxFieldViewProps = {
@@ -89,8 +94,12 @@ export const CustomError = createHookStory(() => (
     states={{
       ...defaultProps.states,
       validationErrors: {
-        agree: "This checkbox must be checked to continue",
+        agree: "Must be checked",
       },
+    }}
+    content={{
+      ...defaultProps.content,
+      errorMessage: "This checkbox must be checked to continue",
     }}
   />
 ));

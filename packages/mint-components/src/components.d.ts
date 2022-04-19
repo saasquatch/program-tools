@@ -13,6 +13,7 @@ import { DropdownFieldViewProps } from "./components/sqm-dropdown-field/sqm-drop
 import { EditProfileViewProps } from "./components/sqm-edit-profile/sqm-edit-profile-view";
 import { Spacing } from "./global/mixins";
 import { FunctionalComponent } from "@stencil/core";
+import { InputFieldViewProps } from "./components/sqm-input-field/sqm-input-field-view";
 import { LeaderboardViewProps } from "./components/sqm-leaderboard/sqm-leaderboard-view";
 import { LeaderboardRankViewProps } from "./components/sqm-leaderboard-rank/sqm-leaderboard-rank-view";
 import { NameFieldsViewProps } from "./components/sqm-name-fields/sqm-name-fields-view";
@@ -78,7 +79,7 @@ export namespace Components {
           * Select what type of stat to display. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
-          * @uiOptions {"version": 1.1}
+          * @uiWidgetOptions {"version": 1.1}
          */
         "statType": string;
     }
@@ -124,11 +125,12 @@ export namespace Components {
          */
         "checkboxName": string;
         /**
-          * @uiName Required
+          * @uiName Optional
          */
-        "checkboxRequired"?: boolean;
+        "checkboxOptional"?: boolean;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<CheckboxFieldViewProps>;
         /**
@@ -152,7 +154,8 @@ export namespace Components {
     }
     interface SqmDropdownField {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<DropdownFieldViewProps>;
         /**
@@ -164,9 +167,9 @@ export namespace Components {
          */
         "dropdownName": string;
         /**
-          * @uiName Required
+          * @uiName Optional
          */
-        "dropdownRequired"?: boolean;
+        "dropdownOptional"?: boolean;
         /**
           * @uiName Unselected error message
          */
@@ -378,6 +381,37 @@ export namespace Components {
          */
         "minHeight"?: string;
     }
+    interface SqmInputField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<InputFieldViewProps>;
+        /**
+          * @uiName Required Error Message
+         */
+        "errorMessage": string;
+        /**
+          * @uiName Input Label
+         */
+        "fieldLabel": string;
+        /**
+          * Used as the key of the inputs value in form data.
+          * @uiName Input Name Attribute
+         */
+        "fieldName": string;
+        /**
+          * @uiName Optional
+         */
+        "fieldOptional"?: boolean;
+        /**
+          * @uiName Input Type
+          * @uiType string
+          * @uiEnum ["text", "date", "tel"]
+          * @uiEnumNames ["Text", "Date", "Phone Number"]
+         */
+        "fieldType": "text" | "date" | "tel";
+    }
     interface SqmLeaderboard {
         /**
           * @uiName Title displayed for users without names
@@ -396,7 +430,7 @@ export namespace Components {
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
          */
         "interval": string;
         /**
@@ -439,7 +473,7 @@ export namespace Components {
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
          */
         "interval": string;
         /**
@@ -467,7 +501,8 @@ export namespace Components {
     }
     interface SqmNameFields {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<NameFieldsViewProps>;
         /**
@@ -1048,7 +1083,7 @@ export namespace Components {
         "iframeHeight": string;
         /**
           * @uiName URL of iframe to display
-          * @uiRequired
+          * @required
          */
         "iframeSrc": string;
         /**
@@ -1784,19 +1819,23 @@ export namespace Components {
     interface SqmTaskCard {
         /**
           * @uiName CTA Button Link
+          * @uiGroup CTA Button
          */
         "buttonLink": string;
         /**
           * @uiName CTA Button Text
+          * @uiGroup CTA Button
          */
         "buttonText": string;
         /**
           * @uiName Title Text
+          * @uiGroup Task
          */
         "cardTitle": string;
         /**
           * Displays the amount of times that a user has completed a repeatable task.
           * @uiName Completed Count Text
+          * @uiGroup Task
          */
         "completedText": string;
         /**
@@ -1806,88 +1845,107 @@ export namespace Components {
         "demoData"?: DemoData<TaskCardViewProps | BigStatViewProps>;
         /**
           * @uiName Description Text
+          * @uiGroup Task
          */
         "description": string;
         /**
           * Timeframe that the task card will be shown
           * @uiName Display Duration
           * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+          * @uiGroup Task
          */
         "displayDuration": string;
         /**
           * Shown to users after the end of the task duration.
           * @uiName Ended Date Message
+          * @uiGroup Task
          */
         "endedMessage": string;
         /**
           * Optionally send an event to SaaSquatch when a user clicks the CTA. This field configured what key of the event sent is.
           * @uiName Event key of task card button
+          * @uiGroup CTA Button
          */
         "eventKey"?: string;
         /**
           * @uiName Expiry Date Message
+          * @uiGroup Task
          */
         "expiryMessage": string;
         /**
           * The number of times a reward can be earned.  Use zero for no limit (the default).
           * @uiName Repeat Amount
+          * @uiGroup Reward
          */
         "finite": number;
         /**
           * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
           * @uiName Goal Completion Number
+          * @uiGroup Goal
          */
         "goal": number;
         /**
           * @uiName CTA Button Link Open in New Tab
+          * @uiGroup CTA Button
+          * @default undefined
          */
         "openNewTab": boolean;
         /**
           * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
           * @uiName Program ID override
+          * @uiGroup Goal
          */
         "programId"?: string;
         /**
           * @uiName Progress Bar Unit
+          * @uiGroup Goal
          */
         "progressBarUnit": string;
         /**
           * @uiName Goal Repeatable
+          * @uiGroup Goal
          */
         "repeatable": boolean;
         /**
           * @uiName Reward Amount
+          * @uiGroup Reward
          */
         "rewardAmount": string;
         /**
           * @uiName Reward Duration
           * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+          * @uiGroup Reward
          */
         "rewardDuration": string;
         /**
           * @uiName Reward Unit
+          * @uiGroup Reward
          */
         "rewardUnit": string;
         /**
           * @uiName Show Progress Bar
+          * @uiGroup Goal
          */
         "showProgressBar": boolean;
         /**
           * Shown to users before the start of the task duration.
           * @uiName Start Date Message
+          * @uiGroup Task
          */
         "startsOnMessage": string;
         /**
           * Select what type of stat to display for the goal. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget
           * @uiName Goal Progress Source
-          * @uiOptions {"version": 1.1}
+          * @uiWidgetOptions {"version": 1.1}
+          * @uiGroup Goal
          */
         "statType": string;
         /**
           * @uiName Progress Bar Steps
+          * @uiGroup Goal
          */
         "steps": boolean;
     }
@@ -2071,6 +2129,12 @@ declare global {
     var HTMLSqmImageElement: {
         prototype: HTMLSqmImageElement;
         new (): HTMLSqmImageElement;
+    };
+    interface HTMLSqmInputFieldElement extends Components.SqmInputField, HTMLStencilElement {
+    }
+    var HTMLSqmInputFieldElement: {
+        prototype: HTMLSqmInputFieldElement;
+        new (): HTMLSqmInputFieldElement;
     };
     interface HTMLSqmLeaderboardElement extends Components.SqmLeaderboard, HTMLStencilElement {
     }
@@ -2496,6 +2560,7 @@ declare global {
         "sqm-hero-image": HTMLSqmHeroImageElement;
         "sqm-hook-story-container": HTMLSqmHookStoryContainerElement;
         "sqm-image": HTMLSqmImageElement;
+        "sqm-input-field": HTMLSqmInputFieldElement;
         "sqm-leaderboard": HTMLSqmLeaderboardElement;
         "sqm-leaderboard-rank": HTMLSqmLeaderboardRankElement;
         "sqm-name-fields": HTMLSqmNameFieldsElement;
@@ -2608,7 +2673,7 @@ declare namespace LocalJSX {
           * Select what type of stat to display. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget
           * @uiName Stat Type
-          * @uiOptions {"version": 1.1}
+          * @uiWidgetOptions {"version": 1.1}
          */
         "statType"?: string;
     }
@@ -2654,11 +2719,12 @@ declare namespace LocalJSX {
          */
         "checkboxName"?: string;
         /**
-          * @uiName Required
+          * @uiName Optional
          */
-        "checkboxRequired"?: boolean;
+        "checkboxOptional"?: boolean;
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<CheckboxFieldViewProps>;
         /**
@@ -2682,7 +2748,8 @@ declare namespace LocalJSX {
     }
     interface SqmDropdownField {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<DropdownFieldViewProps>;
         /**
@@ -2694,9 +2761,9 @@ declare namespace LocalJSX {
          */
         "dropdownName"?: string;
         /**
-          * @uiName Required
+          * @uiName Optional
          */
-        "dropdownRequired"?: boolean;
+        "dropdownOptional"?: boolean;
         /**
           * @uiName Unselected error message
          */
@@ -2908,6 +2975,37 @@ declare namespace LocalJSX {
          */
         "minHeight"?: string;
     }
+    interface SqmInputField {
+        /**
+          * @undocumented 
+          * @uiType object
+         */
+        "demoData"?: DemoData<InputFieldViewProps>;
+        /**
+          * @uiName Required Error Message
+         */
+        "errorMessage"?: string;
+        /**
+          * @uiName Input Label
+         */
+        "fieldLabel"?: string;
+        /**
+          * Used as the key of the inputs value in form data.
+          * @uiName Input Name Attribute
+         */
+        "fieldName"?: string;
+        /**
+          * @uiName Optional
+         */
+        "fieldOptional"?: boolean;
+        /**
+          * @uiName Input Type
+          * @uiType string
+          * @uiEnum ["text", "date", "tel"]
+          * @uiEnumNames ["Text", "Date", "Phone Number"]
+         */
+        "fieldType"?: "text" | "date" | "tel";
+    }
     interface SqmLeaderboard {
         /**
           * @uiName Title displayed for users without names
@@ -2926,7 +3024,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
          */
         "interval"?: string;
         /**
@@ -2969,7 +3067,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard time interval
           * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
          */
         "interval"?: string;
         /**
@@ -2997,7 +3095,8 @@ declare namespace LocalJSX {
     }
     interface SqmNameFields {
         /**
-          * @undocumented
+          * @undocumented 
+          * @uiType object
          */
         "demoData"?: DemoData<NameFieldsViewProps>;
         /**
@@ -3578,7 +3677,7 @@ declare namespace LocalJSX {
         "iframeHeight"?: string;
         /**
           * @uiName URL of iframe to display
-          * @uiRequired
+          * @required
          */
         "iframeSrc"?: string;
         /**
@@ -4290,19 +4389,23 @@ declare namespace LocalJSX {
     interface SqmTaskCard {
         /**
           * @uiName CTA Button Link
+          * @uiGroup CTA Button
          */
         "buttonLink"?: string;
         /**
           * @uiName CTA Button Text
+          * @uiGroup CTA Button
          */
         "buttonText"?: string;
         /**
           * @uiName Title Text
+          * @uiGroup Task
          */
         "cardTitle"?: string;
         /**
           * Displays the amount of times that a user has completed a repeatable task.
           * @uiName Completed Count Text
+          * @uiGroup Task
          */
         "completedText"?: string;
         /**
@@ -4312,88 +4415,107 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<TaskCardViewProps | BigStatViewProps>;
         /**
           * @uiName Description Text
+          * @uiGroup Task
          */
         "description"?: string;
         /**
           * Timeframe that the task card will be shown
           * @uiName Display Duration
           * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+          * @uiGroup Task
          */
         "displayDuration"?: string;
         /**
           * Shown to users after the end of the task duration.
           * @uiName Ended Date Message
+          * @uiGroup Task
          */
         "endedMessage"?: string;
         /**
           * Optionally send an event to SaaSquatch when a user clicks the CTA. This field configured what key of the event sent is.
           * @uiName Event key of task card button
+          * @uiGroup CTA Button
          */
         "eventKey"?: string;
         /**
           * @uiName Expiry Date Message
+          * @uiGroup Task
          */
         "expiryMessage"?: string;
         /**
           * The number of times a reward can be earned.  Use zero for no limit (the default).
           * @uiName Repeat Amount
+          * @uiGroup Reward
          */
         "finite"?: number;
         /**
           * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
           * @uiName Goal Completion Number
+          * @uiGroup Goal
          */
         "goal"?: number;
         /**
           * @uiName CTA Button Link Open in New Tab
+          * @uiGroup CTA Button
+          * @default undefined
          */
         "openNewTab"?: boolean;
         /**
           * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
           * @uiName Program ID override
+          * @uiGroup Goal
          */
         "programId"?: string;
         /**
           * @uiName Progress Bar Unit
+          * @uiGroup Goal
          */
         "progressBarUnit"?: string;
         /**
           * @uiName Goal Repeatable
+          * @uiGroup Goal
          */
         "repeatable"?: boolean;
         /**
           * @uiName Reward Amount
+          * @uiGroup Reward
          */
         "rewardAmount"?: string;
         /**
           * @uiName Reward Duration
           * @uiWidget DateRange
-          * @uiOptions {"allowPastDates":true, "months": 1}
+          * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+          * @uiGroup Reward
          */
         "rewardDuration"?: string;
         /**
           * @uiName Reward Unit
+          * @uiGroup Reward
          */
         "rewardUnit"?: string;
         /**
           * @uiName Show Progress Bar
+          * @uiGroup Goal
          */
         "showProgressBar"?: boolean;
         /**
           * Shown to users before the start of the task duration.
           * @uiName Start Date Message
+          * @uiGroup Task
          */
         "startsOnMessage"?: string;
         /**
           * Select what type of stat to display for the goal. Manual paths are also supported.
           * @uiWidget StatTypeSelectWidget
           * @uiName Goal Progress Source
-          * @uiOptions {"version": 1.1}
+          * @uiWidgetOptions {"version": 1.1}
+          * @uiGroup Goal
          */
         "statType"?: string;
         /**
           * @uiName Progress Bar Steps
+          * @uiGroup Goal
          */
         "steps"?: boolean;
     }
@@ -4501,6 +4623,7 @@ declare namespace LocalJSX {
         "sqm-hero-image": SqmHeroImage;
         "sqm-hook-story-container": SqmHookStoryContainer;
         "sqm-image": SqmImage;
+        "sqm-input-field": SqmInputField;
         "sqm-leaderboard": SqmLeaderboard;
         "sqm-leaderboard-rank": SqmLeaderboardRank;
         "sqm-name-fields": SqmNameFields;
@@ -4590,6 +4713,7 @@ declare module "@stencil/core" {
             "sqm-hero-image": LocalJSX.SqmHeroImage & JSXBase.HTMLAttributes<HTMLSqmHeroImageElement>;
             "sqm-hook-story-container": LocalJSX.SqmHookStoryContainer & JSXBase.HTMLAttributes<HTMLSqmHookStoryContainerElement>;
             "sqm-image": LocalJSX.SqmImage & JSXBase.HTMLAttributes<HTMLSqmImageElement>;
+            "sqm-input-field": LocalJSX.SqmInputField & JSXBase.HTMLAttributes<HTMLSqmInputFieldElement>;
             "sqm-leaderboard": LocalJSX.SqmLeaderboard & JSXBase.HTMLAttributes<HTMLSqmLeaderboardElement>;
             "sqm-leaderboard-rank": LocalJSX.SqmLeaderboardRank & JSXBase.HTMLAttributes<HTMLSqmLeaderboardRankElement>;
             "sqm-name-fields": LocalJSX.SqmNameFields & JSXBase.HTMLAttributes<HTMLSqmNameFieldsElement>;

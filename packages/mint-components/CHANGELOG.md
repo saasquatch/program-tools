@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.3] - 2022-03-31
+
+### Added
+- Input component added for use in \<sqm-portal-register>
+- Added Component:
+  - \<sqm-input-field>
+    - Required by default but can be optional with the `field-optional` prop
+    - Field label and error message are configurable by prop
+    - Best used in `formData` slot inside \<sqm-portal-register>
+    - Form field name can be customized with the `field-name` prop
+      - `field-name` must be a unique string and is submitted as the key to the value submitted
+        - For example, with `field-name` set to `businessName` the result is `{"businessName":"SaaSquatch"}`
+      - An error is displayed if `field-name` prop is not included
+    - Input type can be customized with the `field-type` prop
+      - Supports `text`, `tel`, and `date` as types
+
+### Changed
+
+- Changed Components:
+  - \<sqm-dropdown-field>
+    - An error is now displayed if `dropdown-name` prop is not included
+    - `dropdown-required` prop deprecated, must use `dropdown-optional` instead
+      - Field is still required by default
+  - \<sqm-checkbox-field>
+    - Error is now displayed if `checkbox-name` prop is not included
+    - `checkbox-required` prop deprecated, must use `checkbox-optional` instead
+      - Field is still required by default
+  - \<sqm-referral-iframe>
+    - Updated fail fast state text
+
 ## [1.5.2] - 2022-03-08
 
 ### Changed
@@ -385,7 +415,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.2...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.3...HEAD
+[1.5.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.3
 [1.5.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.2
 [1.5.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.1
 [1.5.0]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.0

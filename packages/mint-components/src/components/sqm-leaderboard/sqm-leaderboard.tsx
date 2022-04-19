@@ -63,7 +63,7 @@ export class Leaderboard {
   /**
    * @uiName Leaderboard Time Interval
    * @uiWidget DateRange
-   * @uiOptions {"allowPastDates":true, "months": 1}
+   * @uiWidgetOptions {"allowPastDates":true, "months": 1}
    */
   @Prop() interval: string;
 

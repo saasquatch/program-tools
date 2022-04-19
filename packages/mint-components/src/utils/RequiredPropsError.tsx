@@ -1,6 +1,7 @@
 import { useHost } from "@saasquatch/component-boilerplate";
 import { useState } from "@saasquatch/universal-hooks";
 import { h } from "@stencil/core";
+import { intl } from "../global/global";
 import { createStyleSheet } from "../styling/JSS";
 export type RequiredPropsErrorProps = {
   missingProps:
@@ -9,6 +10,9 @@ export type RequiredPropsErrorProps = {
         value: string | boolean | number;
       }[]
     | false;
+  heading?: string;
+  subheading?: string;
+  description?: string;
 };
 
 const style = {
@@ -18,39 +22,52 @@ const style = {
     top: "23px",
   },
   DivStyle: {
-    marginLeft: "30px",
+    marginLeft: "28px",
   },
   Details: {
-    marginLeft: "30px",
+    marginLeft: "28px",
   },
   Heading: {
     display: "inline-block",
   },
-  Alert: {
-    margin: "30px",
+  Children: {
+    display: "none",
   },
 };
 
 const sheet = createStyleSheet(style);
 const styleString = sheet.toString();
 
-export function RequiredPropsError({ missingProps }: RequiredPropsErrorProps) {
+export function RequiredPropsError(
+  {
+    missingProps,
+    heading = "There was a problem loading this section",
+    subheading = "There was a technical problem that prevented this section from loading. Please contact us with the link to this page.",
+    description = "Error occured while loading <{tagName}>. Values for the following attributes are missing:",
+  }: RequiredPropsErrorProps,
+  children
+) {
   if (!missingProps) return false;
   const host = useHost();
   const [detailsOpen, setDetailsOpen] = useState(false);
   return (
-    <sl-alert type="danger" open class={sheet.classes.Alert}>
+    <sl-alert type="danger" open>
       <style type="text/css">{styleString}</style>
       <div slot="icon" class={sheet.classes.IconStyle}>
         <sl-icon name="exclamation-octagon"></sl-icon>
       </div>
       <div class={sheet.classes.DivStyle}>
         <h2 class={sheet.classes.Heading}>
-          There was a problem loading this page
+          {intl.formatMessage({
+            id: `error-heading`,
+            defaultMessage: heading,
+          })}
         </h2>
         <p>
-          There was a technical problem that prevented this page from loading.
-          Please contact us with the link to this page.
+          {intl.formatMessage({
+            id: `error-subheading`,
+            defaultMessage: subheading,
+          })}
         </p>
       </div>
       <details class={sheet.classes.Details}>
@@ -58,8 +75,13 @@ export function RequiredPropsError({ missingProps }: RequiredPropsErrorProps) {
           {detailsOpen ? "Less" : "More"} details
         </summary>
         <p>
-          Error occured while loading {`<${host.tagName.toLowerCase()}>`}.
-          Values for the following attributes are missing:
+          {intl.formatMessage(
+            {
+              id: `error-description`,
+              defaultMessage: description,
+            },
+            { tagName: host.tagName.toLowerCase() }
+          )}
         </p>
         <ul>
           {missingProps.map((prop) => (
@@ -69,6 +91,7 @@ export function RequiredPropsError({ missingProps }: RequiredPropsErrorProps) {
           ))}
         </ul>
       </details>
+      <div class={sheet.classes.Children}>{children}</div>
     </sl-alert>
   );
 }

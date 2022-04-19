@@ -3,7 +3,8 @@ import { withHooks } from "@saasquatch/stencil-hooks";
 import { Component, h, Prop, State } from "@stencil/core";
 import deepmerge from "deepmerge";
 import { DemoData } from "../../global/demo";
-import { getProps } from "../../utils/utils";
+import { RequiredPropsError } from "../../utils/RequiredPropsError";
+import { getMissingProps, getProps } from "../../utils/utils";
 import {
   CheckboxFieldView,
   CheckboxFieldViewProps,
@@ -47,11 +48,14 @@ export class CheckboxField {
   @Prop() errorMessage: string = "Must be checked";
 
   /**
-   * @uiName Checkbox Required
+   * @uiName Optional
    */
-  @Prop() checkboxRequired?: boolean = true;
+  @Prop() checkboxOptional?: boolean = false;
 
-  /** @undocumented */
+  /**
+   * @undocumented
+   * @uiType object
+   */
   @Prop() demoData?: DemoData<CheckboxFieldViewProps>;
 
   constructor() {
@@ -61,6 +65,26 @@ export class CheckboxField {
   disconnectedCallback() {}
 
   render() {
+    const missingProps = getMissingProps([
+      {
+        attribute: "checkbox-name",
+        value: this.checkboxName,
+      },
+    ]);
+
+    if (!isDemo() && missingProps) {
+      return (
+        <RequiredPropsError
+          missingProps={missingProps}
+          heading={"An error occured while loading this form"}
+          subheading={
+            "A technical problem prevented this checkbox field from loading. Please contact us with the link to this page."
+          }
+          description={"Values for the following attributes are missing:"}
+        />
+      );
+    }
+
     const content = {
       ...getProps(this),
     };

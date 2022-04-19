@@ -10,8 +10,6 @@ import { useShareCode } from "./useShareCode";
 import { DemoData } from "../../global/demo";
 import deepmerge from "deepmerge";
 
-const DEFAULT_TOOLTIP_LIFESPAN = 1000;
-
 /**
  * @uiName Share Code
  */
@@ -43,7 +41,7 @@ export class ShareCode {
   @Prop({
     attribute: "tooltip-lifespan",
   })
-  tooltiplifespan: number = DEFAULT_TOOLTIP_LIFESPAN;
+  tooltiplifespan: number = 1000;
   /**
    * @undocumented
    * @uiType object

@@ -3,7 +3,7 @@ import { createHookStory } from "../sqm-stencilbook/HookStoryAddon";
 import dashboardTemplate from "../../templates/Dashboard.html";
 
 export default {
-  title: "Program Menu",
+  title: "Components/Program Menu",
 };
 
 export const OneProgram = createHookStory(() => {
