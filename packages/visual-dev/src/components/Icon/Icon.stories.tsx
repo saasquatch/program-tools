@@ -29,6 +29,12 @@ export const CheckmarkCircle = () => <IconView icon={"checkmark_circle"} />;
 export const actions = () => <IconView icon={"actions"} />;
 export const ChevronLeft = () => <IconView icon={"chevron_left"} />;
 export const ChevronRight = () => <IconView icon={"chevron_right"} />;
+export const DoubleChevronLeft = () => (
+  <IconView icon={"double_chevron_left"} />
+);
+export const DoubleChevronRight = () => (
+  <IconView icon={"double_chevron_right"} />
+);
 export const mail = () => <IconView icon={"mail"} />;
 export const action = () => <IconView icon={"action"} />;
 export const arrowDropdown = () => <IconView icon={"arrow_dropdown"} />;
@@ -49,3 +55,4 @@ export const settings = () => <IconView icon={"settings"} />;
 export const avatar = () => <IconView icon={"avatar"} />;
 export const leftwardArrow = () => <IconView icon={"leftward_arrow"} />;
 export const visibility = () => <IconView icon={"visibility"} />;
+export const layers = () => <IconView icon={"layers"} />;

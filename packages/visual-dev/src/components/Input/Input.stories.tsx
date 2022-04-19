@@ -154,3 +154,5 @@ export const WithUnits = () => {
     </div>
   );
 };
+
+export const InputDate = () => <InputView value="" type="date" />;

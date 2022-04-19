@@ -502,3 +502,46 @@ export const visibility = (
     <path d="M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8.13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7z" />
   </svg>
 );
+
+export const layers = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 30 30"
+    fill="currentColor"
+  >
+    <path
+      d="M5.96349 12.95L2.5 14.5333L14.9688 20.2333L27.4375 14.5333L23.974 12.95L14.9688 17.0667L5.96349 12.95Z"
+      fill="#323232"
+    />
+    <path
+      d="M5.96349 18.9667L2.5 20.55L14.9688 26.25L27.4375 20.55L23.974 18.9667L14.9688 23.0834L5.96349 18.9667Z"
+      fill="#323232"
+    />
+    <path
+      d="M14.9686 2.5L27.4371 8.1295L14.9686 13.759L2.5 8.1295L14.9686 2.5Z"
+      fill="#323232"
+    />
+  </svg>
+);
+
+export const double_chevron_left = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path d="M9.5 5H12L7 12L12 19H9.5L4.5 12L9.5 5Z" fill="#575757" />
+    <path d="M16.5 5H19L14 12L19 19H16.5L11.5 12L16.5 5Z" fill="#575757" />
+  </svg>
+);
+
+export const double_chevron_right = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path d="M14.5 5H12L17 12L12 19H14.5L19.5 12L14.5 5Z" fill="#575757" />
+    <path d="M7.5 5H5L10 12L5 19H7.5L12.5 12L7.5 5Z" fill="#575757" />
+  </svg>
+);

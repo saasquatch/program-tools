@@ -54,6 +54,7 @@ import {
   CardLong,
 } from "./components/Card";
 import { Dropdown, DropdownView } from "./components/Dropdown";
+import { Tabs, TabsView } from "./components/Tabs";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -130,4 +131,6 @@ export {
   TextRules,
   TooltipView,
   Tooltip,
+  Tabs,
+  TabsView,
 };
