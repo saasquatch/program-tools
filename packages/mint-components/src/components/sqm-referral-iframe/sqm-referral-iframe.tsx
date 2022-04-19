@@ -23,7 +23,7 @@ export class SqmReferralIframe {
 
   /**
    * @uiName URL of iframe to display
-   * @uiRequired
+   * @required
    */
   @Prop() iframeSrc: string;
   /**

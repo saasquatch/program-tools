@@ -24,30 +24,35 @@ export class TaskCard {
 
   /**
    * @uiName Reward Amount
+   * @uiGroup Reward
    */
   @Prop()
   rewardAmount: string = "0";
 
   /**
    * @uiName Reward Unit
+   * @uiGroup Reward
    */
   @Prop()
   rewardUnit: string = "Points";
 
   /**
    * @uiName Title Text
+   * @uiGroup Task
    */
   @Prop()
   cardTitle: string = "Title Text";
 
   /**
    * @uiName Description Text
+   * @uiGroup Task
    */
   @Prop()
   description: string = "";
 
   /**
    * @uiName Goal Repeatable
+   * @uiGroup Goal
    */
   @Prop()
   repeatable: boolean = false;
@@ -56,45 +61,52 @@ export class TaskCard {
    * The number of times a reward can be earned.  Use zero for no limit (the default).
    *
    * @uiName Repeat Amount
+   * @uiGroup Reward
    */
   @Prop()
   finite: number = 0;
 
   /**
    * @uiName Show Progress Bar
+   * @uiGroup Goal
    */
   @Prop()
   showProgressBar: boolean = false;
 
   /**
    * Sets the goal for users progress to know when a task has been completed. If repeatable is checked, repeatable goals is an increment of this.
-   * 
+   *
    * @uiName Goal Completion Number
+   * @uiGroup Goal
    */
   @Prop()
   goal: number = 1;
 
   /**
    * @uiName Progress Bar Steps
+   * @uiGroup Goal
    */
   @Prop()
   steps: boolean = false;
 
   /**
    * @uiName Progress Bar Unit
+   * @uiGroup Goal
    */
   @Prop()
   progressBarUnit: string = "";
 
   /**
    * @uiName Expiry Date Message
+   * @uiGroup Task
    */
   @Prop() expiryMessage: string = "Ends {endDate}";
 
   /**
    * @uiName Reward Duration
    * @uiWidget DateRange
-   * @uiOptions {"allowPastDates":true, "months": 1}
+   * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+   * @uiGroup Reward
    */
   @Prop() rewardDuration: string;
 
@@ -102,6 +114,7 @@ export class TaskCard {
    * Shown to users before the start of the task duration.
    *
    * @uiName Start Date Message
+   * @uiGroup Task
    */
   @Prop() startsOnMessage: string = "Starts {startDate}";
 
@@ -110,7 +123,8 @@ export class TaskCard {
    *
    * @uiName Display Duration
    * @uiWidget DateRange
-   * @uiOptions {"allowPastDates":true, "months": 1}
+   * @uiWidgetOptions {"allowPastDates":true, "months": 1}
+   * @uiGroup Task
    */
   @Prop() displayDuration: string;
 
@@ -118,6 +132,7 @@ export class TaskCard {
    * Shown to users after the end of the task duration.
    *
    * @uiName Ended Date Message
+   * @uiGroup Task
    */
   @Prop() endedMessage: string = "Ended {endDate}";
 
@@ -125,24 +140,29 @@ export class TaskCard {
    * Displays the amount of times that a user has completed a repeatable task.
    *
    * @uiName Completed Count Text
+   * @uiGroup Task
    */
   @Prop() completedText: string =
     "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}";
 
   /**
    * @uiName CTA Button Text
+   * @uiGroup CTA Button
    */
   @Prop()
   buttonText: string = "Complete Action";
 
   /**
    * @uiName CTA Button Link
+   * @uiGroup CTA Button
    */
   @Prop()
   buttonLink: string;
 
   /**
    * @uiName CTA Button Link Open in New Tab
+   * @uiGroup CTA Button
+   * @default undefined
    */
   @Prop()
   openNewTab: boolean = false;
@@ -152,20 +172,23 @@ export class TaskCard {
    *
    * @uiWidget StatTypeSelectWidget
    * @uiName Goal Progress Source
-   * @uiOptions {"version": 1.1}
+   * @uiWidgetOptions {"version": 1.1}
+   * @uiGroup Goal
    */
   @Prop()
   statType: string;
 
   /**
-  * Optionally send an event to SaaSquatch when a user clicks the CTA. This field configured what key of the event sent is.
+   * Optionally send an event to SaaSquatch when a user clicks the CTA. This field configured what key of the event sent is.
    * @uiName Event key of task card button
+   * @uiGroup CTA Button
    */
   @Prop() eventKey?: string;
 
   /**
-  * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
+   * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
    * @uiName Program ID override
+   * @uiGroup Goal
    */
   @Prop() programId?: string;
 
