@@ -55,4 +55,14 @@ export const settings = () => <IconView icon={"settings"} />;
 export const avatar = () => <IconView icon={"avatar"} />;
 export const leftwardArrow = () => <IconView icon={"leftward_arrow"} />;
 export const visibility = () => <IconView icon={"visibility"} />;
+export const visibility_cancelled = () => (
+  <IconView icon={"visibility_cancelled"} />
+);
 export const layers = () => <IconView icon={"layers"} />;
+export const undo = () => <IconView icon={"undo"} />;
+export const redo = () => <IconView icon={"redo"} />;
+export const outline = () => <IconView icon={"outline"} />;
+export const outline_cancelled = () => <IconView icon={"outline_cancelled"} />;
+export const code = () => <IconView icon={"code"} />;
+export const duplicate = () => <IconView icon={"duplicate"} />;
+export const move = () => <IconView icon={"move"} />;
