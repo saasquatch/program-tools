@@ -9,7 +9,12 @@ import { Switch, SwitchView } from "./components/Switch";
 import { Tag, TagView } from "./components/Tag";
 import { Tooltip, TooltipView } from "./components/Tooltip";
 import { GlobalStyle, CSSVariables, TextRules } from "./components/GlobalStyle";
-import { Button, IconButton, IconButtonView } from "./components/Button";
+import {
+  Button,
+  ButtonView,
+  IconButton,
+  IconButtonView,
+} from "./components/Button";
 import { Checkbox, CheckboxView, RJSFCheckbox } from "./components/Checkbox";
 import { Radio, RadioView, RJSFRadio } from "./components/Radio";
 import {
@@ -68,6 +73,7 @@ export {
   AvatarView,
   Badge,
   BadgeView,
+  ButtonView,
   Button,
   CardView,
   Card,
