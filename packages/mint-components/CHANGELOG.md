@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+## [1.5.5] - 2022-04-21
+- Fixed grapesJs from build by removing window.location.origin from stencil build file
+  - Grapes was broken in the previous build
+
 ## [1.5.4] - 2022-04-13
 
 ### Changed
@@ -432,7 +436,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.4...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.5...HEAD
+[1.5.5]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.5
 [1.5.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.4
 [1.5.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.3
 [1.5.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.2
