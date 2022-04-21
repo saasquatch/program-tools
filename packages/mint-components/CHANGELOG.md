@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+## [1.5.5] - 2022-04-13
+- Fixed grapesJs from build by removing window.location.origin from stencil build file
+
 ## [1.5.4] - 2022-04-13
 
 ### Changed
