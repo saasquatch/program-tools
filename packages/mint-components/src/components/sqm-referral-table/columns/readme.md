@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property        | Attribute        | Description | Type     | Default            |
-| --------------- | ---------------- | ----------- | -------- | ------------------ |
-| `anonymousUser` | `anonymous-user` |             | `string` | `"Anonymous User"` |
-| `columnTitle`   | `column-title`   |             | `string` | `"Customer"`       |
-| `deletedUser`   | `deleted-user`   |             | `string` | `"Deleted User"`   |
+| Property        | Attribute        | Description                      | Type     | Default            |
+| --------------- | ---------------- | -------------------------------- | -------- | ------------------ |
+| `anonymousUser` | `anonymous-user` | Name displayed for unknown users | `string` | `"Anonymous User"` |
+| `columnTitle`   | `column-title`   |                                  | `string` | `"Customer"`       |
+| `deletedUser`   | `deleted-user`   | Name displayed for deleted users | `string` | `"Deleted User"`   |
 
 
 ## Methods

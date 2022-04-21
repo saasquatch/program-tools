@@ -10,6 +10,9 @@ import deepmerge from "deepmerge";
 /**
  * @uiName Share Button
  * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
+ * @example SMS hare Button - <sqm-share-button medium="sms">Text a friend</sqm-share-button>
+ * @example Email Share Button - <sqm-share-button medium="email">Share via email</sqm-share-button>
+ * @example Linkedin Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
  */
 @Component({
   tag: "sqm-share-button",

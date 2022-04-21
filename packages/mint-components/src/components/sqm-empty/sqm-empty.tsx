@@ -3,6 +3,7 @@ import { EmptyStateView } from "./sqm-empty-view";
 
 /**
  * @uiName Empty State Content
+ * @validParents ["sqm-referral-table","sqm-rewards-table","sqm-leaderboard"]
  */
 @Component({
   tag: "sqm-empty",

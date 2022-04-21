@@ -6,6 +6,7 @@ import { TimelineEntryView } from "./sqm-timeline-entry-view";
 
 /**
  * @uiName Timeline Entry
+ * @validParents ["sqm-timeline"]
  */
 @Component({
   tag: "sqm-timeline-entry",

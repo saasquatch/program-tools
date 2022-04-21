@@ -13,6 +13,7 @@ import { useTaskCard } from "./useTaskCard";
 /**
  * @uiName Task Card
  * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", "*"]
+ * @validParents ["sqm-card-feed"]
  */
 @Component({
   tag: "sqm-task-card",
