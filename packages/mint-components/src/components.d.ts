@@ -447,10 +447,22 @@ export namespace Components {
         /**
           * @uiName Leaderboard Type
           * @uiType string
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
-          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
-        "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
+        "leaderboardType": | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "topPointEarners";
+        /**
+          * Control the maximum amount of rows displayed on the leaderboard.
+          * @uiName Maximum Rows Number
+         */
+        "maxRows": number;
+        /**
+          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
+          * @uiName Program
+         */
+        "programId"?: string;
         /**
           * @uiName Rank Type
           * @uiType string
@@ -459,7 +471,7 @@ export namespace Components {
          */
         "rankType": "rowNumber" | "rank" | "denseRank";
         /**
-          * @uiName Rank Heading
+          * @uiName Rank Column Heading
          */
         "rankheading"?: string;
         /**
@@ -490,10 +502,17 @@ export namespace Components {
         /**
           * @uiName Leaderboard Type
           * @uiType string
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
-          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
-        "leaderboardType": "topStartedReferrers" | "topConvertedReferrers";
+        "leaderboardType": | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "topPointEarners";
+        /**
+          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
+          * @uiName Program
+         */
+        "programId"?: string;
         /**
           * @uiName Rank Text
          */
@@ -3100,10 +3119,22 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard Type
           * @uiType string
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
-          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
-        "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
+        "leaderboardType"?: | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "topPointEarners";
+        /**
+          * Control the maximum amount of rows displayed on the leaderboard.
+          * @uiName Maximum Rows Number
+         */
+        "maxRows"?: number;
+        /**
+          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
+          * @uiName Program
+         */
+        "programId"?: string;
         /**
           * @uiName Rank Type
           * @uiType string
@@ -3112,7 +3143,7 @@ declare namespace LocalJSX {
          */
         "rankType"?: "rowNumber" | "rank" | "denseRank";
         /**
-          * @uiName Rank Heading
+          * @uiName Rank Column Heading
          */
         "rankheading"?: string;
         /**
@@ -3143,10 +3174,17 @@ declare namespace LocalJSX {
         /**
           * @uiName Leaderboard Type
           * @uiType string
-          * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
-          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
+          * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+          * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
-        "leaderboardType"?: "topStartedReferrers" | "topConvertedReferrers";
+        "leaderboardType"?: | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "topPointEarners";
+        /**
+          * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
+          * @uiName Program
+         */
+        "programId"?: string;
         /**
           * @uiName Rank Text
          */

@@ -33,23 +33,37 @@ export class LeaderboardRank {
    */
   @Prop() rankText: string =
     "You are currently in {rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th} } place!";
+
   /**
    * @uiName Leaderboard Type
    * @uiType string
-   * @uiEnum ["topStartedReferrers", "topConvertedReferrers"]
-   * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers"]
+   * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
+   * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
    */
-  @Prop() leaderboardType: "topStartedReferrers" | "topConvertedReferrers";
+  @Prop() leaderboardType:
+    | "topStartedReferrers"
+    | "topConvertedReferrers"
+    | "topPointEarners";
+
   /**
    * @uiName Unranked Text
    */
   @Prop() unrankedText: string;
+
   /**
    * @uiName Leaderboard Time Interval
    * @uiWidget DateRange
    * @uiWidgetOptions {"allowPastDates":true, "months": 1}
    */
   @Prop() interval: string;
+
+  /**
+   * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is.
+   * If no program ID is set or provided by context, then a global leaderboard is shown.
+   *
+   * @uiName Program
+   */
+  @Prop() programId?: string;
 
   /**
    * @undocumented

@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [1.5.4] - 2022-04-13
+
+### Changed
+- Changed Component:
+  - /<sqm-leaderboard>
+    - Now supports a top point earners leaderboard, `topPointEarners`
+    - Added a `programId` prop to overwride program context
+      - If an empty string is passed, then a global leaderboard is displayed
+    - Max number of leaderboard rows displayed is now configurable via prop but defaults to 10
+  - /<sqm-leaderboard-rank>
+    - Now supports rank from top point earners leaderboard
+    - Added a `programId` prop to overwride program context
+      - If an empty string is passed, then a global leaderboard rank is displayed
+  - /<sqm-reward-exchange-list>
+    - Updated `not-available-error` default value to fix issue with error message fallback in ICU message
+
 ## [1.5.3] - 2022-03-31
 
 ### Added
@@ -415,7 +432,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - \<sqm-popup-container>
   - \<sqm-stencilbook>
 
-[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.3...HEAD
+[unreleased]: https://github.com/saasquatch/program-tools/compare/mint-components@1.5.4...HEAD
+[1.5.4]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.4
 [1.5.3]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.3
 [1.5.2]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.2
 [1.5.1]: https://github.com/saasquatch/program-tools/releases/tag/%40saasquatch%2Fmint-components%401.5.1
