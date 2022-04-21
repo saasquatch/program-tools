@@ -59,6 +59,7 @@ export const visibility_cancelled = () => (
   <IconView icon={"visibility_cancelled"} />
 );
 export const layers = () => <IconView icon={"layers"} />;
+export const new_copy = () => <IconView icon={"new_copy"} />;
 export const undo = () => <IconView icon={"undo"} />;
 export const redo = () => <IconView icon={"redo"} />;
 export const outline = () => <IconView icon={"outline"} />;
@@ -66,3 +67,14 @@ export const outline_cancelled = () => <IconView icon={"outline_cancelled"} />;
 export const code = () => <IconView icon={"code"} />;
 export const duplicate = () => <IconView icon={"duplicate"} />;
 export const move = () => <IconView icon={"move"} />;
+export const empty_package_logo = () => (
+  <IconView icon={"empty_package_logo"} />
+);
+export const vanilla_package_logo = () => (
+  <IconView icon={"vanilla_package_logo"} />
+);
+export const mint_package_logo = () => <IconView icon={"mint_package_logo"} />;
+export const bedrock_package_logo = () => (
+  <IconView icon={"bedrock_package_logo"} />
+);
+export const npm_logo = () => <IconView icon={"npm_logo"} />;
