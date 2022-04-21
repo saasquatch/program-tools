@@ -434,7 +434,7 @@ export namespace Components {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * Hide the current user's leaderboard information when they are not in the top 10
+          * Hide the viewer's leaderboard row if not in the top 10.
           * @uiName Hide Viewing User
          */
         "hideViewer": boolean;
@@ -3106,7 +3106,7 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * Hide the current user's leaderboard information when they are not in the top 10
+          * Hide the viewer's leaderboard row if not in the top 10.
           * @uiName Hide Viewing User
          */
         "hideViewer"?: boolean;

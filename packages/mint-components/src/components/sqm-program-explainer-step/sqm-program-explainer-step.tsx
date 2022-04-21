@@ -5,6 +5,7 @@ import { ProgramExplainerStepView } from "./sqm-program-explainer-step-view";
 
 /**
  * @uiName Program Explainer Step
+ * @example Program Explainer Step - <sqm-program-explainer-step description="Complete tasks like uploading your first video or sharing videos with friends" header="Earn points" icon="cash-stack" text-color="#000000"></sqm-program-explainer-step>
  * @validParents ["sqm-program-explainer"]
  */
 @Component({
