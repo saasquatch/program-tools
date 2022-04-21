@@ -3,6 +3,7 @@ import { TabView } from "./sqm-tab-view";
 
 /**
  * @uiName Tab
+ * @validParents ["sqm-tabs"]
  */
 @Component({
   tag: "sqm-tab",

@@ -4,6 +4,7 @@ import { useRequestRerender } from "../../../tables/re-render";
 import { RewardTableColumn } from "./RewardTableColumn";
 /**
  * @uiName Rewards Table Reward Column
+ * @validParents ["sqm-rewards-table"]
  */
 @Component({
   tag: "sqm-rewards-table-reward-column",

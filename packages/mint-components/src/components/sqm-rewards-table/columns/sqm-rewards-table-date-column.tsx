@@ -5,6 +5,7 @@ import { RewardTableColumn } from "./RewardTableColumn";
 
 /**
  * @uiName Reward Table Date Column
+ * @validParents ["sqm-rewards-table"]
  */
 @Component({
   tag: "sqm-rewards-table-date-column",

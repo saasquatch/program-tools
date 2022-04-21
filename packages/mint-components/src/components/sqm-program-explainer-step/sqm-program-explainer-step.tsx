@@ -5,6 +5,7 @@ import { ProgramExplainerStepView } from "./sqm-program-explainer-step-view";
 
 /**
  * @uiName Program Explainer Step
+ * @validParents ["sqm-program-explainer"]
  */
 @Component({
   tag: "sqm-program-explainer-step",
