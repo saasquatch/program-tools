@@ -127,7 +127,10 @@ export const WithUnits = () => {
     items,
     functional,
     limitWidth: "90px",
-    customCSS: { borderTopLeftRadius: 0, borderBottomLeftRadius: 0 },
+    customCSS: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
   };
   const [value, setValue] = useState("");
   return (

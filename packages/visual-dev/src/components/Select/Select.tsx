@@ -40,6 +40,10 @@ export interface OptionProps<ItemType> {
    */
   customCSS?: CSSProp;
   /**
+   * Custom CSS for the select handle container
+   */
+  customContainerCSS?: CSSProp;
+  /**
    * Allow the select value to be cleared
    */
   clearable?: boolean;
@@ -107,6 +111,7 @@ const ItemDescriptionSpan = styled("span")`
 `;
 
 const ContainerDiv = styled("div")<{
+  customContainerCSS: CSSProp;
   limitWidth: SizeType;
 }>`
   ${Styles.Container}
@@ -116,6 +121,7 @@ const ContainerDiv = styled("div")<{
         ? `max-width: ${props.limitWidth};`
         : "max-width: 300px;"
       : "max-width: 100%;"}
+  ${(props) => props.customContainerCSS}
 `;
 
 const SelectInputDiv = styled.div<{
@@ -178,6 +184,7 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
 ) => {
   const {
     customCSS = ``,
+    customContainerCSS = ``,
     disabled = false,
     errors = false,
     clearable = false,
@@ -228,7 +235,10 @@ const SelectInnerView = <ItemType extends ItemTypeBase>(
   const isOpen = disabled || loading ? false : functional.isOpen;
 
   return (
-    <ContainerDiv limitWidth={limitWidth}>
+    <ContainerDiv
+      customContainerCSS={customContainerCSS}
+      limitWidth={limitWidth}
+    >
       {!isCombobox(functional) ? (
         <SelectInputDiv
           {...rest}
