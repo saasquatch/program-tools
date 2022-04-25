@@ -47,6 +47,10 @@ export interface OptionProps {
    */
   customCSS?: CSSProp;
   /**
+   * Custon CSS applied to the input container
+   */
+  customContainerCSS?: CSSProp;
+  /**
    * Limit the input width using a valid CSS size value (e.g. px, %) [default 300px]
    */
   limitWidth?: InputWidthType;
@@ -74,7 +78,10 @@ const ExtrasDiv = styled.div<{ position: string }>`
   ${(props) => (props.position == "left" ? "left: 1px;" : "right: 10px;")}
 `;
 
-const ContainerDiv = styled.div<{ limitWidth: InputWidthType }>`
+const ContainerDiv = styled.div<{
+  customContainerCSS: CSSProp;
+  limitWidth: InputWidthType;
+}>`
   ${Styles.Container}
   ${(props) =>
     props.limitWidth
@@ -82,6 +89,7 @@ const ContainerDiv = styled.div<{ limitWidth: InputWidthType }>`
         ? `max-width: ${props.limitWidth};`
         : "max-width: 300px;"
       : "max-width: 100%;"}
+  ${(props) => props.customContainerCSS}
 `;
 
 export const InputView = React.forwardRef<
@@ -95,6 +103,7 @@ export const InputView = React.forwardRef<
     buttons = false,
     errors: rawErrors,
     customCSS = {},
+    customContainerCSS = {},
     limitWidth = true,
     required = false,
     ...rest
@@ -102,7 +111,10 @@ export const InputView = React.forwardRef<
 
   return (
     <ShadowDom>
-      <ContainerDiv limitWidth={limitWidth}>
+      <ContainerDiv
+        customContainerCSS={customContainerCSS}
+        limitWidth={limitWidth}
+      >
         <StyledInput
           {...rest}
           type={type}
