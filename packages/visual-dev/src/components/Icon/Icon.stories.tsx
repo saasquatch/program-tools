@@ -74,7 +74,20 @@ export const vanilla_package_logo = () => (
   <IconView icon={"vanilla_package_logo"} />
 );
 export const mint_package_logo = () => <IconView icon={"mint_package_logo"} />;
+export const default_package_logo = () => (
+  <IconView icon={"default_package_logo"} />
+);
 export const bedrock_package_logo = () => (
   <IconView icon={"bedrock_package_logo"} />
 );
 export const npm_logo = () => <IconView icon={"npm_logo"} />;
+export const desktop = () => <IconView icon={"desktop"} />;
+export const tablet = () => <IconView icon={"tablet"} />;
+export const mobile = () => <IconView icon={"mobile"} />;
+export const bold_text = () => <IconView icon={"bold_text"} />;
+export const italic_text = () => <IconView icon={"italic_text"} />;
+export const underline_text = () => <IconView icon={"underline_text"} />;
+export const strikethrough_text = () => (
+  <IconView icon={"strikethrough_text"} />
+);
+export const link_text = () => <IconView icon={"link_text"} />;
