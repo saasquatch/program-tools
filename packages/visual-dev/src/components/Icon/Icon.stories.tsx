@@ -29,6 +29,12 @@ export const CheckmarkCircle = () => <IconView icon={"checkmark_circle"} />;
 export const actions = () => <IconView icon={"actions"} />;
 export const ChevronLeft = () => <IconView icon={"chevron_left"} />;
 export const ChevronRight = () => <IconView icon={"chevron_right"} />;
+export const DoubleChevronLeft = () => (
+  <IconView icon={"double_chevron_left"} />
+);
+export const DoubleChevronRight = () => (
+  <IconView icon={"double_chevron_right"} />
+);
 export const mail = () => <IconView icon={"mail"} />;
 export const action = () => <IconView icon={"action"} />;
 export const arrowDropdown = () => <IconView icon={"arrow_dropdown"} />;
@@ -49,3 +55,26 @@ export const settings = () => <IconView icon={"settings"} />;
 export const avatar = () => <IconView icon={"avatar"} />;
 export const leftwardArrow = () => <IconView icon={"leftward_arrow"} />;
 export const visibility = () => <IconView icon={"visibility"} />;
+export const visibility_cancelled = () => (
+  <IconView icon={"visibility_cancelled"} />
+);
+export const layers = () => <IconView icon={"layers"} />;
+export const new_copy = () => <IconView icon={"new_copy"} />;
+export const undo = () => <IconView icon={"undo"} />;
+export const redo = () => <IconView icon={"redo"} />;
+export const outline = () => <IconView icon={"outline"} />;
+export const outline_cancelled = () => <IconView icon={"outline_cancelled"} />;
+export const code = () => <IconView icon={"code"} />;
+export const duplicate = () => <IconView icon={"duplicate"} />;
+export const move = () => <IconView icon={"move"} />;
+export const empty_package_logo = () => (
+  <IconView icon={"empty_package_logo"} />
+);
+export const vanilla_package_logo = () => (
+  <IconView icon={"vanilla_package_logo"} />
+);
+export const mint_package_logo = () => <IconView icon={"mint_package_logo"} />;
+export const bedrock_package_logo = () => (
+  <IconView icon={"bedrock_package_logo"} />
+);
+export const npm_logo = () => <IconView icon={"npm_logo"} />;

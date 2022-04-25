@@ -9,7 +9,12 @@ import { Switch, SwitchView } from "./components/Switch";
 import { Tag, TagView } from "./components/Tag";
 import { Tooltip, TooltipView } from "./components/Tooltip";
 import { GlobalStyle, CSSVariables, TextRules } from "./components/GlobalStyle";
-import { Button, IconButton, IconButtonView } from "./components/Button";
+import {
+  Button,
+  ButtonView,
+  IconButton,
+  IconButtonView,
+} from "./components/Button";
 import { Checkbox, CheckboxView, RJSFCheckbox } from "./components/Checkbox";
 import { Radio, RadioView, RJSFRadio } from "./components/Radio";
 import {
@@ -54,6 +59,7 @@ import {
   CardLong,
 } from "./components/Card";
 import { Dropdown, DropdownView } from "./components/Dropdown";
+import { Tabs, TabsView } from "./components/Tabs";
 
 /// <reference types="styled-components/cssprop" />
 
@@ -67,6 +73,7 @@ export {
   AvatarView,
   Badge,
   BadgeView,
+  ButtonView,
   Button,
   CardView,
   Card,
@@ -130,4 +137,6 @@ export {
   TextRules,
   TooltipView,
   Tooltip,
+  Tabs,
+  TabsView,
 };
