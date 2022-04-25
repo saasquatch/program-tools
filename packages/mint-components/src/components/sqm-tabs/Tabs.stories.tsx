@@ -27,7 +27,8 @@ export const ManyTabs = () => (
      <sqm-tabs>
         <sqm-tab header="General">This is the general tab</sqm-tab>
         <sqm-tab header="Custom">This is the custom tab</sqm-tab>
-        <sqm-tab header="Advanced">This is the advanced tab</sqm-tab>        <sqm-tab header="General">This is the general tab</sqm-tab>
+        <sqm-tab header="Advanced">This is the advanced tab</sqm-tab> 
+        <sqm-tab header="General">This is the general tab</sqm-tab>
         <sqm-tab header="Custom">This is the custom tab</sqm-tab>
         <sqm-tab header="Advanced">This is the advanced tab</sqm-tab>
         <sqm-tab header="General">This is the general tab</sqm-tab>

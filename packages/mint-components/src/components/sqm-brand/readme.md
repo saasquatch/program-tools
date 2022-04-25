@@ -13,13 +13,6 @@
 | `brandFont`  | `brand-font`  | The brand font that you want to use                                                                                                                   | `string` | `undefined` |
 
 
-## Slots
-
-| Slot                                                                               | Description |
-| ---------------------------------------------------------------------------------- | ----------- |
-| `"Controls the brand color and font of Mint Components wrapped by the container."` |             |
-
-
 ## Dependencies
 
 ### Used by

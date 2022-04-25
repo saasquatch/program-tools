@@ -6,6 +6,7 @@ import { PortalSectionView } from "./sqm-portal-section-view";
 
 /**
  * @uiName Titled Section
+ * @slot [{"name":"label", title":"Label"},{"name":"content", "title":"Content"}]
  */
 @Component({
   tag: "sqm-titled-section",

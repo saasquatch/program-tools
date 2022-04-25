@@ -9,8 +9,8 @@ import { DemoData } from "../../global/demo";
 /**
  *
  * @uiName Big Stat
- * @slot the description of the component
- * @example Points Balance -  <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global">Points Balance</sqm-big-stat>
+ * @slots [{"name":"","title":"Stat Text"}]
+ * @example Points Balance - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global">Points Balance</sqm-big-stat>
  * @example GiftCards Earned - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global">Giftcards Earned</sqm-big-stat>
  * @example Referrals - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/referralsCount">Referrals</sqm-big-stat>
   */

@@ -8,6 +8,7 @@ import { useUserName } from "./useUserName";
 
 /**
  * @uiName User Name
+ * @example User Name Display - <sqm-user-name fallback="Anonymous User"></sqm-user-name>
  */
 @Component({
   tag: "sqm-user-name",

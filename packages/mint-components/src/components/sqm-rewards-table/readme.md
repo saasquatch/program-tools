@@ -20,6 +20,13 @@
 | `smBreakpoint`  | `sm-breakpoint`  |                                                                                                                                                                                                                  | `number`                                                                                                                                                                                                                                                                                                                                                                                                           | `599`       |
 
 
+## Slots
+
+| Slot                                   | Description |
+| -------------------------------------- | ----------- |
+| `"[{"name":"", "title":"Table Row"}]"` |             |
+
+
 ## Dependencies
 
 ### Used by

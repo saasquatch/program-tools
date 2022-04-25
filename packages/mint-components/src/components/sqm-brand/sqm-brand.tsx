@@ -7,7 +7,7 @@ import { autoColorScaleCss } from "../sqm-stencilbook/AutoColor";
 /**
  *
  * @uiName Brand Container
- * @slot Controls the brand color and font of Mint Components wrapped by the container.
+ * @slots [{"name":"","title":"Branded Content"}]
  */
 @Component({
   tag: "sqm-brand",

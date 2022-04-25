@@ -18,6 +18,7 @@ import { tryMethod, useReferralTable } from "./useReferralTable";
 
 /**
  * @uiName Referral Table
+ * @slot [{"name":"", "title":"Table Row"}]
  */
 @Component({
   tag: "sqm-referral-table",

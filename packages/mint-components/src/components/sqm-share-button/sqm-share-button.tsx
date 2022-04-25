@@ -9,10 +9,18 @@ import deepmerge from "deepmerge";
 
 /**
  * @uiName Share Button
+ * @slot [{"name":"", "title":"Button Content"}]
  * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
- * @example SMS hare Button - <sqm-share-button medium="sms">Text a friend</sqm-share-button>
- * @example Email Share Button - <sqm-share-button medium="email">Share via email</sqm-share-button>
- * @example Linkedin Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
+ * @example Facebook Share Button - <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>
+ * @example Twitter Share Button - <sqm-share-button medium="twitter">Share via Tweet</sqm-share-button>
+ * @example Email Share Button - <sqm-share-button medium="email">Share via Email</sqm-share-button>
+ * @example Web Share Sheet Share Button - <sqm-share-button medium="direct">Share</sqm-share-button>
+ * @example LinkedIn Share Button - <sqm-share-button medium="linkedin">Share on LinkedIn</sqm-share-button>
+ * @example SMS Share Button - <sqm-share-button medium="sms">Text a friend</sqm-share-button>
+ * @example Facebook Messenger Share Button - <sqm-share-button medium="fbmessenger">Share via Messenger</sqm-share-button>
+ * @example WhatsApp Share Button - <sqm-share-button medium="whatsapp">Share via WhatsApp</sqm-share-button>
+ * @example Line Messenger Share Button - <sqm-share-button medium="linemessenger">Share via Line Messenger</sqm-share-button>
+ * @example Pinterest Share Button - <sqm-share-button medium="pinterest">Share on Pinterest</sqm-share-button>
  */
 @Component({
   tag: "sqm-share-button",
@@ -20,11 +28,6 @@ import deepmerge from "deepmerge";
   shadow: true,
 })
 export class ShareButton {
-  //
-  //  Required attrs to make it work
-  //
-  /// TOOD: Add all the share mediums
-  // Should be a REQUIRED prop
 
   /**
    * The social medium to share on. Share messages and links

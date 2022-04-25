@@ -7,6 +7,7 @@ import { TimelineEntryView } from "./sqm-timeline-entry-view";
 /**
  * @uiName Timeline Entry
  * @validParents ["sqm-timeline"]
+ * @example Timeline Entry - <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry>
  */
 @Component({
   tag: "sqm-timeline-entry",

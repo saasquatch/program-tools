@@ -37,6 +37,13 @@
 | `tooltipText`                | `tooltip-text`                  | Shown when a user copies a fuel tank code                                        | `string`                                                                                                                                                                                                                                                                                                                                      | `"Copied"`                                                                                                                                                                                 |
 
 
+## Slots
+
+| Slot                                         | Description |
+| -------------------------------------------- | ----------- |
+| `"[{"name":"empty", title":"Empty State"}]"` |             |
+
+
 ## Dependencies
 
 ### Used by

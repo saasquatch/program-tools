@@ -5,6 +5,7 @@ import { createStyleSheet } from "../../styling/JSS";
 
 /**
  * @uiName Scroll
+ * @slot [{"name":"", "title":"Button Content"}]
  */
 @Component({
   tag: "sqm-scroll",

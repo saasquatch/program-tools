@@ -19,6 +19,7 @@ import { tryMethod, useRewardsTable } from "./useRewardsTable";
 
 /**
  * @uiName Reward Table
+ * @slot [{"name":"", "title":"Table Row"}]
  */
 @Component({
   tag: "sqm-rewards-table",
@@ -210,8 +211,8 @@ function useRewardsTableDemo(
           moreLabel: props.moreLabel,
         },
         referralData: [],
-		mdBreakpoint: 799,
-		smBreakpoint: 599,
+        mdBreakpoint: 799,
+        smBreakpoint: 599,
       },
       elements: {
         columns: content.columns,
