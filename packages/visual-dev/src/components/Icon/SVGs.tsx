@@ -217,7 +217,7 @@ export const action = (
 export const arrow_dropdown = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="-3 -5 20 20"
+    viewBox="-3 -6 20 20"
     fill="currentColor"
   >
     <path d="M.5.5h13L7 7.5.5.5z" />
