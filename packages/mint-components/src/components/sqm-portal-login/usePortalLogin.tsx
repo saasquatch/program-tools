@@ -40,7 +40,9 @@ export function usePortalLogin(props) {
   }, [errors]);
 
   const errorMessage =
-    errors?.response?.errors?.[0]?.extensions?.message || error;
+    errors?.response?.errors?.[0]?.extensions?.message ||
+    errors?.response?.errors?.[0]?.message ||
+    error;
 
   return {
     states: {

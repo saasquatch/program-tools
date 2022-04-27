@@ -41,7 +41,10 @@ export function usePortalForgotPassword(props: PortalForgotPassword) {
   return {
     states: {
       loading,
-      error: errors?.response?.errors?.[0]?.extensions?.message || error,
+      error:
+        errors?.response?.errors?.[0]?.extensions?.message ||
+        errors?.response?.errors?.[0]?.message ||
+        error,
       success,
       loginPath: props.loginPath,
     },

@@ -110,6 +110,7 @@ export function usePortalRegister(props: PortalRegister) {
   } else {
     errorMessage =
       errors?.response?.errors?.[0]?.extensions?.message ||
+      errors?.response?.errors?.[0]?.message ||
       validationState?.error;
   }
   return {

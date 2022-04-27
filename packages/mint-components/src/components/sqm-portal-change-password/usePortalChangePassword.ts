@@ -49,7 +49,10 @@ export function usePortalChangePassword(props: PortalChangePassword) {
       open,
       loading,
       success,
-      error: error || errors?.response?.errors?.[0]?.extensions?.message,
+      error:
+        error ||
+        errors?.response?.errors?.[0]?.extensions?.message ||
+        errors?.response?.errors?.[0]?.message,
       content: {
         modalChangePasswordHeader: props.modalChangePasswordHeader,
         cancelText: props.cancelText,
