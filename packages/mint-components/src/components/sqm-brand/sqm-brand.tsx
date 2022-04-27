@@ -5,9 +5,9 @@ import { buildFontsCssUrl } from "../../fonts/GoogleFonts";
 import { autoColorScaleCss } from "../sqm-stencilbook/AutoColor";
 
 /**
- *
  * @uiName Brand Container
  * @slots [{"name":"","title":"Branded Content"}]
+ * @exampleGroup Common Components
  */
 @Component({
   tag: "sqm-brand",

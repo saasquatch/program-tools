@@ -6,6 +6,7 @@ import { TimelineReward } from "./sqm-timeline-entry";
 /**
  * @uiName Program Timeline
  * @slots [{"name":"","title":"Timeline","validChildren":["sqm-timeline-entry"]}]
+ * @exampleGroup Common Components
  * @examples Program Timeline - <sqm-timeline icon="circle"> <sqm-timeline-entry reward="$50" unit="visa giftcard" desc="You refer a friend" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$200" unit="visa giftcard" desc="Our sales team qualifies your friend as a good fit for our Enterprise plan" icon="circle" > </sqm-timeline-entry> <sqm-timeline-entry reward="$1000" unit="visa giftcard" desc="Your friend purchases an Enterprise plan" icon="circle" > </sqm-timeline-entry></sqm-timeline>
 */
 @Component({

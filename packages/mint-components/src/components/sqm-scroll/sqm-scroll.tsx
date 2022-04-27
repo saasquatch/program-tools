@@ -5,6 +5,7 @@ import { createStyleSheet } from "../../styling/JSS";
 
 /**
  * @uiName Scroll
+ * @exampleGroup Common Components
  * @slot [{"name":"", "title":"Button Content"}]
  */
 @Component({

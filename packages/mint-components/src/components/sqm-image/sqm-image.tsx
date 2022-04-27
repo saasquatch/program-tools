@@ -5,6 +5,7 @@ import { ImageView } from "./sqm-image-view";
 
 /**
  * @uiName Image
+ * @exampleGroup Common Components
  */
 @Component({
   tag: "sqm-image",

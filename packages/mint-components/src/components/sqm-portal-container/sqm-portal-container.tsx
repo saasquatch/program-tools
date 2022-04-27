@@ -7,6 +7,7 @@ import { Spacing } from "../../global/mixins";
 /**
  * @uiName Portal Container
  * @slots [{"name":"","title":"Widget Content"}]
+ * @exampleGroup Layout
  */
 @Component({
   tag: "sqm-portal-container",

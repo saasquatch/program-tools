@@ -6,6 +6,7 @@ import { RewardTableColumn } from "./RewardTableColumn";
 /**
  * @uiName Reward Table Status Column
  * @validParents ["sqm-rewards-table"]
+ * @exampleGroup Rewards
  */
 @Component({
   tag: "sqm-rewards-table-status-column",

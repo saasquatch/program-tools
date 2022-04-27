@@ -6,6 +6,7 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
 /**
  * @uiName Referral Table User Column
  * @validParents ["sqm-referral-table"]
+ * @exampleGroup Referrals
  */
 @Component({
   tag: "sqm-referral-table-user-column",

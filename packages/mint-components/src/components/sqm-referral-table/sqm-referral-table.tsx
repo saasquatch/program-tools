@@ -18,6 +18,7 @@ import { tryMethod, useReferralTable } from "./useReferralTable";
 
 /**
  * @uiName Referral Table
+ * @exampleGroup Referrals
  * @slot [{"name":"", "title":"Table Row"}]
  */
 @Component({

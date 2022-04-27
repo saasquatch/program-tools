@@ -6,6 +6,7 @@ import { CardFeedView } from "./sqm-card-feed-view";
 /**
  * @uiName Card Feed
  * @slots [{"name":"","title":"Cards"}]
+ * @exampleGroup Rewards
  */
 @Component({
   tag: "sqm-card-feed",

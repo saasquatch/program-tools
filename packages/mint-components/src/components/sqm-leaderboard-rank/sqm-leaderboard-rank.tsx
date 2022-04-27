@@ -13,6 +13,7 @@ import { intl } from "../../global/global";
 
 /**
  * @uiName Leaderboard Rank
+ * @exampleGroup Leaderboards
  * @example Referral Converted Leaderboard - <sqm-leaderboard-rank leaderboard-type="topConvertedReferrers" rank-type="rowNumber" rank-text="You are currently in {rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th} } place!" unranked-text="You are currently unranked, refer a friend!"></sqm-leaderboard-rank>
  * @example Referral Started Leaderboard - <sqm-leaderboard-rank leaderboard-type="topStartedReferrers" rank-type="rowNumber" rank-text="You are currently in {rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th} } place!" unranked-text="You are currently unranked, refer a friend!"></sqm-leaderboard-rank>
  * @example Point Earners Leaderboard - <sqm-leaderboard-rank rleaderboard-type="topPointEarners" ank-type="rowNumber" rank-text="You are currently in {rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th} } place!" unranked-text="You are currently unranked, earn points!"></sqm-leaderboard-rank>
