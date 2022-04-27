@@ -79,7 +79,9 @@ export function usePortalResetPassword(
       loading: resetPasswordState.loading,
       reset,
       confirmPassword: props.confirmPassword,
-      error: resetPasswordState.errors?.response?.errors?.[0]?.message || error,
+      error:
+        resetPasswordState.errors?.response?.errors?.[0]?.extensions?.message ||
+        error,
       oobCodeValidating: verifyPasswordResetCodeState.loading,
       oobCodeValid:
         verifyPasswordResetCodeState.data

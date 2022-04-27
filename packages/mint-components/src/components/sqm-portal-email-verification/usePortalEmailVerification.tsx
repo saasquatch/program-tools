@@ -41,7 +41,8 @@ export function usePortalEmailVerification(props: PortalEmailVerification) {
   return {
     states: {
       loading,
-      error: errors?.response?.errors?.[0]?.message || error,
+
+      error: errors?.response?.errors?.[0]?.extensions?.message || error,
       success,
     },
     callbacks: {

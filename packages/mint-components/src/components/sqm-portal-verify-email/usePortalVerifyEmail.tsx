@@ -76,7 +76,7 @@ export function usePortalVerifyEmail({ nextPage, failedPage }) {
   return {
     states: {
       loading: loading || disableContinue,
-      error: errors?.response?.errors?.[0]?.message || error,
+      error: errors?.response?.errors?.[0]?.extensions?.message || error,
       verified,
     },
     data: {

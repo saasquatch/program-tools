@@ -39,7 +39,8 @@ export function usePortalLogin(props) {
     }
   }, [errors]);
 
-  const errorMessage = errors?.response?.errors?.[0]?.message || error;
+  const errorMessage =
+    errors?.response?.errors?.[0]?.extensions?.message || error;
 
   return {
     states: {

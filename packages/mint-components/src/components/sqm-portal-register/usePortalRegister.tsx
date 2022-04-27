@@ -109,7 +109,8 @@ export function usePortalRegister(props: PortalRegister) {
     errorMessage = "Network request failed";
   } else {
     errorMessage =
-      errors?.response?.errors?.[0]?.message || validationState?.error;
+      errors?.response?.errors?.[0]?.extensions?.message ||
+      validationState?.error;
   }
   return {
     states: {
