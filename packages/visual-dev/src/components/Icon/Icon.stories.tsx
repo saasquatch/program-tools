@@ -93,3 +93,4 @@ export const strikethrough_text = () => (
 export const link_text = () => <IconView icon={"link_text"} />;
 export const link_break = () => <IconView icon={"break_link"} />;
 export const trash_alt = () => <IconView icon={"trash_alt"} />;
+export const paintbrush = () => <IconView icon={"paintbrush"} />;

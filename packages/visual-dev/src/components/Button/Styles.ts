@@ -52,7 +52,7 @@ export const pill = css`
 // SIZE VARIANTS
 
 export const small = css`
-  padding: 2.5px 10.5px;
+  padding: 3px 10.5px 2px;
   font-size: var(--sq-font-size-button-small);
   line-height: var(--sq-line-height-button-small);
 `;
