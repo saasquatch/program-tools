@@ -9,6 +9,7 @@ import deepmerge from "deepmerge";
 
 /**
  * @uiName Share Link
+ * @exampleGroup Referrals
  * @example Share Link - <sqm-share-link tooltip-text="Copied to Clipboard" tooltip-lifespan="1000"></sqm-share-link>
  */
 @Component({

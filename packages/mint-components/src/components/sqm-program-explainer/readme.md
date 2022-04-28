@@ -16,9 +16,9 @@
 
 ## Slots
 
-| Slot                                                                                  | Description |
-| ------------------------------------------------------------------------------------- | ----------- |
-| `"[{"name":"", title":"Explainer", "validChildren":["sqm-program-explainer-step"]}]"` |             |
+| Slot                                                                                   | Description |
+| -------------------------------------------------------------------------------------- | ----------- |
+| `"[{"name":"", "title":"Explainer", "validChildren":["sqm-program-explainer-step"]}]"` |             |
 
 
 ## Dependencies

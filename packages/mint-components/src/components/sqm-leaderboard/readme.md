@@ -25,9 +25,9 @@
 
 ## Slots
 
-| Slot                                         | Description |
-| -------------------------------------------- | ----------- |
-| `"[{"name":"empty", title":"Empty State"}]"` |             |
+| Slot                                          | Description |
+| --------------------------------------------- | ----------- |
+| `"[{"name":"empty", "title":"Empty State"}]"` |             |
 
 
 ## Dependencies

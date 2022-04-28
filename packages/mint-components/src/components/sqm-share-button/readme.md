@@ -27,13 +27,6 @@
 | `type`            | `type`            |                                                                                                                                                       | `"danger" \| "default" \| "info" \| "primary" \| "success" \| "text" \| "warning"`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | `"default"` |
 
 
-## Slots
-
-| Slot                                        | Description |
-| ------------------------------------------- | ----------- |
-| `"[{"name":"", "title":"Button Content"}]"` |             |
-
-
 ## Dependencies
 
 ### Used by

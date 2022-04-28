@@ -23,13 +23,6 @@
 | `size`            | `size`             |                                                                        | `string`                                                                              | `undefined` |
 
 
-## Slots
-
-| Slot                                        | Description |
-| ------------------------------------------- | ----------- |
-| `"[{"name":"", "title":"Button Content"}]"` |             |
-
-
 ## Dependencies
 
 ### Used by

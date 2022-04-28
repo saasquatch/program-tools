@@ -15,13 +15,6 @@
 | `textAlign`   | `text-align`   |                                                              | `"center" \| "left" \| "right"`                                                                                                                | `"left"`    |
 
 
-## Slots
-
-| Slot                                                                         | Description |
-| ---------------------------------------------------------------------------- | ----------- |
-| `"[{"name":"label", title":"Label"},{"name":"content", "title":"Content"}]"` |             |
-
-
 ## Dependencies
 
 ### Used by

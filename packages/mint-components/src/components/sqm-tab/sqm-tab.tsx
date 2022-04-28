@@ -3,7 +3,7 @@ import { TabView } from "./sqm-tab-view";
 
 /**
  * @uiName Tab
- * @slot [{"name":"", "title":"Tab Content"}]
+ * @slots [{"name":"", "title":"Tab Content"}]
  * @validParents ["sqm-tabs"]
  * @exampleGroup Layout
  * @example Tab - <sqm-tab header="Example">This is an example tab. Add your own content here.</sqm-tab>

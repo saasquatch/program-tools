@@ -20,7 +20,7 @@ import { tryMethod, useRewardsTable } from "./useRewardsTable";
 /**
  * @uiName Reward Table
  * @exampleGroup Rewards
- * @slot [{"name":"", "title":"Table Row"}]
+ * @slots [{"name":"", "title":"Table Row"}]
  */
 @Component({
   tag: "sqm-rewards-table",
