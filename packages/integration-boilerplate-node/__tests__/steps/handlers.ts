@@ -4,6 +4,7 @@ import { StepDefinitions } from "jest-cucumber";
 import fetch, { Response, RequestInit } from "node-fetch";
 
 import { createIntegrationService } from "../../src";
+import { graphqlShouldError } from "../../mocks/graphql";
 
 const mockWebhookHandler = jest
   .fn()
@@ -60,6 +61,7 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
     server.close(done);
     url = "";
     requestInit = {};
+    graphqlShouldError.flag = false;
   });
 
   given("a default integration service", async () => {
@@ -169,7 +171,12 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
             req.tenantAlias!
           );
 
-          const response = await graphql("query tenantAlias { tenantAlias }");
+          let response;
+          try {
+            response = await graphql("query tenantAlias { tenantAlias }");
+          } catch (e) {
+            res.send(e.response);
+          }
 
           res.send(response);
         }
@@ -178,6 +185,10 @@ const handlerSteps: StepDefinitions = ({ given, and, when, then }) => {
       return setupService(service);
     }
   );
+
+  and("the GraphQL query returns an error", () => {
+    graphqlShouldError.flag = true;
+  });
 
   and(/there is a (.*) request to (.*)/, async (method, route) => {
     requestInit = {

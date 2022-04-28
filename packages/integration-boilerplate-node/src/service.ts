@@ -273,6 +273,7 @@ export class IntegrationService<
 
       return json;
     } catch (e) {
+      if (e instanceof GraphQLError) throw e;
       throw new GraphQLError((e as Error).message);
     }
   }
