@@ -6,7 +6,11 @@ export class PermissionDeniedError extends CustomError {}
 export class UnhandledWebhookError extends CustomError {}
 export class UnhandledFormError extends CustomError {}
 export class IntegrationConfigError extends CustomError {}
-export class GraphQLError extends CustomError {}
+export class GraphQLError extends CustomError {
+  constructor(message: string, public response: any = undefined) {
+    super(message);
+  }
+}
 
 export function handleError(e: Error, logger: Logger, res: Response) {
   let status = 500;

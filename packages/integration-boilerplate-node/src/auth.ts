@@ -154,7 +154,7 @@ export class Auth {
       this.saasquatchTokenCache.set("the", json.access_token);
 
       return json.access_token;
-    } catch (e) {
+    } catch (e: any) {
       throw new PermissionDeniedError(e.message);
     }
   }

@@ -263,12 +263,12 @@ export class IntegrationService<
       const json = await response.json();
 
       if (response.status !== 200) {
-        throw new Error(JSON.stringify(json));
+        throw new GraphQLError(JSON.stringify(json), json);
       }
 
       if (json.errors) {
         const errors = json.errors.map((e: any) => e.message).join("\n");
-        throw new Error(errors);
+        throw new GraphQLError(errors, json);
       }
 
       return json;
