@@ -10,6 +10,7 @@ import deepmerge from "deepmerge";
 /**
  * @uiName Share Button
  * @slots [{"name":"", "title":"Button Content"}]
+ * @slotEditor richText
  * @uiOrder ["medium", "program-id", "*", "pill", "disabled", "hideicon"]
  * @exampleGroup Sharing
  * @example Facebook Share Button - <sqm-share-button medium="facebook">Share on Facebook</sqm-share-button>

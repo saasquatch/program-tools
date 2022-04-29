@@ -10,6 +10,7 @@ import { DemoData } from "../../global/demo";
  *
  * @uiName Big Stat
  * @slots [{"name":"","title":"Stat Text"}]
+ * @slotEditor richText
  * @exampleGroup Statistics
  * @example Points Balance - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/rewardBalance/CREDIT/POINT/value/global">Points Balance</sqm-big-stat>
  * @example GiftCards Earned - <sqm-big-stat flex-reverse="true" alignment="left" stat-type="/integrationRewardsCountFiltered/AVAILABLE/global">Giftcards Earned</sqm-big-stat>
