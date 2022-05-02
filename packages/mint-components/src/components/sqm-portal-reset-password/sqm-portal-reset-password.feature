@@ -43,6 +43,15 @@ Feature: Reset Password
         And they can log in with their new password
 
     @motivating
+    Scenario: Users are notified if resetting their password fails
+        Given a user has a valid oob code as a url query parameter
+        When they enter their password twice
+        And they click "Update"
+        But the password reset fails
+        Then the user's password does not reset
+        And an error banner is shown
+
+    @motivating
     Scenario: Users are redirected to "/" by default
         Given the component does not have prop "nextPage"
         And the users url does not contain a "nextPage" query parameter
