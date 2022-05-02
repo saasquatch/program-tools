@@ -22,8 +22,6 @@ export class SqbProgramSection {
    *
    * @uiName Program
    * @uiWidget programSelector
-   * @required
-   * @minLength 1
    */
   @Prop()
   programId: string;

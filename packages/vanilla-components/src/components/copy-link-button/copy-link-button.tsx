@@ -21,30 +21,39 @@ export class CopyLinkButton {
    * Text shown inside the copy button.
    *
    * @uiName Button Text
+   * @default "Copy"
    */
   @Prop() text: string;
   /**
    * Shown when the code is successfully copied to the users clipboard.
    *
    * @uiName Copy Success Text
+   * @default "copied!"
    */
   @Prop() copysuccess: string;
   /**
    * Shown when the button has failed to copy the code to the users clipboard.
    *
    * @uiName Copy Failure Text
+   * @default "Press Ctrl+C to copy"
    */
   @Prop() copyfailure: string;
   /**
    * Background & border color of the copy button.
    *
    * @uiName Button Color
+   * @uiWidget color
+   * @format color
+   * @default "#5C6164"
    */
   @Prop() buttoncolor: string;
   /**
    * Color of text inside the copy button.
    *
    * @uiName Text Color
+   * @uiWidget color
+   * @format color
+   * @default "#FFFFFF"
    */
   @Prop() textcolor: string;
 

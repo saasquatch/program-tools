@@ -26,7 +26,11 @@ export class Hero {
    */
   @Prop() background?: string = "var(--sl-color-gray-50)";
 
-  /** @uiName Padding Size */
+  /**
+   * @uiName Padding Size
+   * @uiEnum ["none", "small", "medium","large"]
+   * @uiEnumNames ["None", "Small", "Medium", "Large"]
+   */
   @Prop() paddingSize: "none" | "small" | "medium" | "large" = "large";
 
   /**
@@ -40,6 +44,8 @@ export class Hero {
    * Flexbox wrap direction, accepts wrap or wrap-reverse
    *
    * @uiName Wrap Direction
+   * @uiEnum ["wrap", "wrap-reverse]
+   * @uiEnumNames ["Wrap", "Wrap Reverse"]
    */
   @Prop() wrapDirection: "wrap" | "wrap-reverse" = "wrap";
 

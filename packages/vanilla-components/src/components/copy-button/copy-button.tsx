@@ -15,72 +15,90 @@ export class CopyButton {
    * Hide or show the component
    *
    * @uiName Hide Button
+   * @default undefined
    */
   @Prop() ishidden: boolean;
   /**
    * Text shown inside the copy button.
    *
    * @uiName Button Text
+   * @default "COPY CODE"
    */
   @Prop() text: string;
   /**
    * Sets a maximum width on the copy button.
    *
    * @uiName Max Width
+   * @default 170
    */
   @Prop() width: number;
   /**
    * Background & border color of the copy button.
    *
    * @uiName Background Color
+   * @uiWidget color
+   * @format color
+   * @default #35b21e
    */
   @Prop() backgroundcolor: string;
   /**
    * Configure border radius with pixel amount
    *
    * @uiName Border Radius
+   * @default 4
    */
   @Prop() borderradius: number;
   /**
    * Color of text inside the copy button.
    *
    * @uiName Text Color
+   * @uiWidget color
+   * @format color
+   * @default #ffffff
    */
   @Prop() textcolor: string;
   /**
    * Font size of the copy button text.
    *
    * @uiName Font Size
+   * @default 14
    */
   @Prop() fontsize: number;
   /**
    * Shown when the code is successfully copied to the users clipboard.
    *
    * @uiName Copy Success Text
+   * @default "copied!"
    */
   @Prop() copysuccess: string;
   /**
    * Shown when the button has failed to copy the code to the users clipboard.
    *
    * @uiName Copy Failure Text
+   * @default "Press Ctrl+C to copy"
    */
   @Prop() copyfailure: string;
   /**
    * rewardkey is used to get the fuel tank code for a user.
    *
    * @uiName Reward Key
+   * @default "referredReward"
    */
   @Prop() rewardkey: string;
   /**
    * Font size of the fuel tank code.
    *
    * @uiName Code Font Size
+   * @default 14
    */
   @Prop() codefontsize: number;
   /**
    * Text color of the fuel tank code.
    *
    * @uiName Code Font Color
+   * @uiWidget color
+   * @format color
+   * @default #000000
    */
   @Prop() codefontcolor: string;
 

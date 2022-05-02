@@ -27,7 +27,10 @@ export class PartnerStatComponent {
    * Used to query the stats for a user
    *
    * @uiName Stat Type
+   * @uiWidget statTypeSelector
+   * @required
    */
+  //STAT TYPE UIOPTIONS ARE NEEDED HERE
   @Prop() stattype: string;
   /**
    * Value of the stat
@@ -45,6 +48,8 @@ export class PartnerStatComponent {
    * Color of the stat value and description
    *
    * @uiName Stat Color
+   * @uiWidget color
+   * @format color
    */
   @Prop() statcolor: string;
   @Event() statTypeUpdated: EventEmitter;

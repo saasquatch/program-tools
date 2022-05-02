@@ -21,18 +21,21 @@ export class ProgramExplainerStep {
 
   /**
    * @uiName Description
+   * @uiWidget textArea
    */
   @Prop() description: string;
 
   /**
    * @uiName Text Color
    * @uiWidget color
+   * @format color
    */
   @Prop() textColor: string;
 
   /**
    * @uiName Background Color
    * @uiWidget color
+   * @format color
    */
   @Prop() backgroundColor: string;
 
@@ -40,6 +43,8 @@ export class ProgramExplainerStep {
    * Displayed in place of an icon
    * 
    * @uiName Image Url
+   * @uiWidget imageUpload
+   * @format url
    */
   @Prop() imageUrl?: string;
 

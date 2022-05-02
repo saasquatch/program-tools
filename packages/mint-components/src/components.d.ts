@@ -90,6 +90,8 @@ export namespace Components {
           * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
           * @uiName Brand Color
           * @uiWidget color
+          * @format color
+          * @default #FFF
          */
         "brandColor": string;
         /**
@@ -2762,6 +2764,8 @@ declare namespace LocalJSX {
           * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
           * @uiName Brand Color
           * @uiWidget color
+          * @format color
+          * @default #FFF
          */
         "brandColor"?: string;
         /**

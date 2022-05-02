@@ -36,6 +36,7 @@ export class SqmRewardExchangeList {
    * Error message shown when reward is not available
    *
    * @uiName Not Available Error
+   * @uiWidget textArea
    */
   @Prop() notAvailableError: string =
     "{unavailableReasonCode, select, US_TAX {US Tax limit} INSUFFICIENT_REDEEMABLE_CREDIT {{sourceValue} required} AVAILABILITY_PREDICATE {Not available} other {{unavailableReasonCode}} }";
@@ -97,6 +98,7 @@ export class SqmRewardExchangeList {
    * Displayed on the success screen when a user successfully exchanges for a reward.
    *
    * @uiName Redemption Success Message
+   * @uiWidget textArea
    */
   @Prop() redemptionSuccessText: string =
     "Redeemed {sourceValue} for {destinationValue}";
@@ -105,6 +107,7 @@ export class SqmRewardExchangeList {
    * Displayed on the reward exchange cards.
    *
    * @uiName Reward Exchange Amount Text
+   * @uiWidget textArea
    */
   @Prop() sourceAmountMessage: string =
     "{ruleType, select, FIXED_GLOBAL_REWARD {{sourceValue}} other {{sourceMinValue} to {sourceMaxValue}}}";
@@ -130,6 +133,7 @@ export class SqmRewardExchangeList {
    * Shown if an error occurs when loading the reward exchange.
    *
    * @uiName Reward List Error Message
+   * @uiWidget textArea
    */
   @Prop() queryError: string =
     "Unable to load reward exchange list. Please try again";
@@ -138,12 +142,14 @@ export class SqmRewardExchangeList {
    * Shown if an error occurs during the reward exchange.
    *
    * @uiName Redemption Error Message
+   * @uiWidget textArea
    */
   @Prop() redemptionError: string =
     "An error occured trying to redeem this reward. Please try again";
 
   /**
    * @uiName Not Enough Error Message
+   * @uiWidget textArea
    */
   @Prop() notEnoughError: string =
     "Not enough {sourceUnit} to redeem for this reward";

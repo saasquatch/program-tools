@@ -12,6 +12,7 @@ import { EmptyStateView } from "./sqm-empty-view";
 export class HeroImage {
   /**
    * @uiWidget ImageUpload
+   * @format url
    * @uiName Empty State Image Link  */
   @Prop() emptyStateImage: string;
 

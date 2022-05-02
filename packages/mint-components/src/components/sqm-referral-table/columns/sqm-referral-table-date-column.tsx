@@ -8,6 +8,7 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
  * @uiName Referral Table Date Column
  * @validParents ["sqm-referral-table"]
  * @exampleGroup Referrals
+ * @example Referral Table Date Column - <sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-referral-table-date-column>
  */
 @Component({
   tag: "sqm-referral-table-date-column",

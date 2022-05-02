@@ -4,10 +4,11 @@ import { useScroll } from "./useScroll";
 import { createStyleSheet } from "../../styling/JSS";
 
 /**
- * @uiName Scroll
+ * @uiName Scroll Button
  * @exampleGroup Common Components
  * @slots [{"name":"", "title":"Button Content"}]
  * @slotEditor richText
+ * @example Scroll Button - <sqm-scroll button-type="primary" size="medium" outline mobile scroll-animation="smooth">Button Text</sqm-scroll>
  */
 @Component({
   tag: "sqm-scroll",

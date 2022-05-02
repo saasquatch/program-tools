@@ -2,6 +2,7 @@ import { h, Component, Prop } from "@stencil/core";
 import { css } from "emotion";
 /**
  * @uiName Global Container
+ * @slots [{"name":"", "title":"Widget Content"}]
  */
 @Component({
   tag: "sqh-global-container",
@@ -12,18 +13,26 @@ export class GlobalContainer {
    * Configure the background color.
    *
    * @uiName Background Color
+   * @uiWidget color
+   * @format color
+   * @default "#ffffff"
    */
   @Prop() background: string;
   /**
    * Configure the color of the loading state.
    *
    * @uiName Loading Color
+   * @uiWidget color
+   * @format color
    */
   @Prop() loadingcolor: string;
   /**
    * Font family used inside the container.
    *
    * @uiName Font Family
+   * @default "Roboto"
+   * @uiEnum [ "Roboto", "Artifakt Element", "Helvetica Neue,Helvetica,Arial,sans-serif", "Lato,sans-serif", "Times New Roman", "Arial", "Courier", "Tahoma", "Verdana", "Georgia"]
+   * @uiEnumNames enumNames: ["Roboto","Artifakt Element","Helvetica Neue","Lato","Times New Roman","Arial","Courier","Tahoma","Verdana","Georgia"]
    */
   @Prop() fontfamily: string;
   /**
@@ -33,9 +42,9 @@ export class GlobalContainer {
    */
   @Prop() maxwidth: string;
   /**
-   * Show and hide the powered by SaaSquatch link.
+   * Show and hide the powered by SaaSquatch link. Can only be disabled on Pro plans.
    *
-   * @uiName Powered By
+   * @uiName Show Powered By
    */
   @Prop() poweredby: boolean;
 

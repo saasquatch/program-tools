@@ -23,13 +23,6 @@
 | `usersheading`    | `usersheading`     |                                                                                                                                                                                                         | `string`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | `undefined`        |
 
 
-## Slots
-
-| Slot                                          | Description |
-| --------------------------------------------- | ----------- |
-| `"[{"name":"empty", "title":"Empty State"}]"` |             |
-
-
 ## Dependencies
 
 ### Used by

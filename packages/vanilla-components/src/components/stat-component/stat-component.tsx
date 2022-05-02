@@ -26,9 +26,11 @@ export class StatComponent {
   @Prop() ishidden: boolean;
   /**
    * Type of stat being displayed. e.g /rewardsCount
-   *
    * @uiName Stat Type
+   * @uiWidget statTypeSelector
+   * @required
    */
+  //STAT TYPE UIOPTIONS ARE NEEDED HERE
   @Prop() stattype: string;
   /**
    * Value shown inside stat
@@ -46,6 +48,8 @@ export class StatComponent {
    * Text color of the stat
    *
    * @uiName Stat Color
+   * @uiWidget color
+   * @format color
    */
   @Prop() statcolor: string;
 

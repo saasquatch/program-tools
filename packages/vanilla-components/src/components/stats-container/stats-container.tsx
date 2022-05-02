@@ -5,6 +5,7 @@ import { css } from "emotion";
 
 /**
  * @uiName Stats Container
+ * @slots [{"name":"","title":"Stats"}]
  */
 @Component({
   tag: "sqh-stats-container",
@@ -22,12 +23,14 @@ export class StatsContainer {
    * Configure the padding top of the container
    *
    * @uiName Padding Top
+   * @default "0"
    */
   @Prop() paddingtop: string;
   /**
    * Configure the padding bottom of the container
    *
    * @uiName Padding Bottom
+   * @default "0"
    */
   @Prop() paddingbottom: string;
 

@@ -24,8 +24,9 @@ export class BigStat {
   /**
    * Select what type of stat to display. Manual paths are also supported.
    *
-   * @uiWidget StatTypeSelectWidget
+   * @uiWidget statTypeSelectWidget
    * @uiName Stat Type
+   * @required
    * @uiWidgetOptions {"version": 1.1}
    */
   @Prop() statType: string;
@@ -50,6 +51,7 @@ export class BigStat {
    * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
    *
    * @uiName Program ID
+   * @uiWidget programSelector
    */
   @Prop() programId?: string;
 

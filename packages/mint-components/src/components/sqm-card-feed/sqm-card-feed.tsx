@@ -8,6 +8,8 @@ import { CardFeedView } from "./sqm-card-feed-view";
  * @slots [{"name":"","title":"Cards"}]
  * @exampleGroup Rewards
  */
+
+//FINISH ME
 @Component({
   tag: "sqm-card-feed",
   shadow: true,

@@ -7,6 +7,7 @@ import { ReferralTableColumn } from "./ReferralTableColumn";
  * @uiName Referral Table Rewards Column
  * @validParents ["sqm-referral-table"]
  * @exampleGroup Referrals
+ * @example Referral Table Rewards Column - <sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}"></sqm-referral-table-rewards-column>
  */
 @Component({
   tag: "sqm-referral-table-rewards-column",
@@ -20,12 +21,14 @@ export class ReferralTableRewardsColumn implements ReferralTableColumn {
 
   /**
    * @uiName Reward Status Text
+   * @uiWidget textArea
    */
   @Prop() statusText: string =
     "{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }";
 
   /**
    * @uiName Reward Status Long Text
+   * @uiWidget textArea
    */
   @Prop() statusLongText: string =
     "{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }";

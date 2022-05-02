@@ -8,18 +8,22 @@ import { autoColorScaleCss } from "../sqm-stencilbook/AutoColor";
  * @uiName Brand Container
  * @slots [{"name":"","title":"Branded Content"}]
  * @exampleGroup Common Components
+ * @example Brand Container - <sqm-brand color="" brand="Nunito Sans">Add your branded content here!</sqm-brand>
  */
+
+//FINISH ME Default stencil blue!
 @Component({
   tag: "sqm-brand",
   shadow: true,
 })
 export class BrandComponent {
   /**
-   * Controls the primary brand color used in the Mint Components library. Note that this
-   * does not affect vanilla components or other component libraries.
+   * Controls the primary brand color used in the Mint Components library.
    *
    * @uiName Brand Color
    * @uiWidget color
+   * @format color
+   * @default #FFF
    */
   @Prop() brandColor: string;
 
@@ -27,6 +31,7 @@ export class BrandComponent {
    * The brand font that you want to use
    *
    * @uiName Brand Font
+   * @default "Nunito Sans"
    */
   @Prop() brandFont: string;
 

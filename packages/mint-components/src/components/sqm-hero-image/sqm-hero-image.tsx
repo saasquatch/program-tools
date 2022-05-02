@@ -17,6 +17,7 @@ import { HeroImageView } from "./sqm-hero-image-view";
 export class HeroImage {
   /**
    * @uiWidget ImageUpload
+   * @format url
    * @uiName Image Link
    */
   @Prop() imageUrl: string;
@@ -24,6 +25,7 @@ export class HeroImage {
   /**
    * @uiName Overlay Color
    * @uiWidget color
+   * @format color
    */
   @Prop() overlayColor?: string;
 
@@ -35,12 +37,14 @@ export class HeroImage {
   /**
    * @uiName Text Color
    * @uiWidget color
+   * @format color
    */
   @Prop() textColor?: string;
 
   /**
    * @uiName Background Color
    * @uiWidget color
+   * @format color
    */
   @Prop() backgroundColor?: string;
 

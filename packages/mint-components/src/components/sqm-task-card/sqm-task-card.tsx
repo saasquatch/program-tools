@@ -15,6 +15,8 @@ import { useTaskCard } from "./useTaskCard";
  * @uiOrder ["reward-amount", "reward-unit", "card-title", "description", "repeatable", "finite", "show-progress-bar", "stat-type", "progress-source", "goal", "steps", "progress-bar-unit", "show-expiry", "reward-duration", "button-text", "button-link", "open-new-tab", "ended-message", "expiry-message", "starts-on-message", "event-key", "*"]
  * @exampleGroup Rewards
  */
+
+//FINISH ME
 @Component({
   tag: "sqm-task-card",
   shadow: true,
@@ -105,7 +107,7 @@ export class TaskCard {
 
   /**
    * @uiName Reward Duration
-   * @uiWidget DateRange
+   * @uiWidget dateRange
    * @uiWidgetOptions {"allowPastDates":true, "months": 1}
    * @uiGroup Reward
    */
@@ -123,7 +125,7 @@ export class TaskCard {
    * Timeframe that the task card will be shown
    *
    * @uiName Display Duration
-   * @uiWidget DateRange
+   * @uiWidget dateRange
    * @uiWidgetOptions {"allowPastDates":true, "months": 1}
    * @uiGroup Task
    */
@@ -142,6 +144,7 @@ export class TaskCard {
    *
    * @uiName Completed Count Text
    * @uiGroup Task
+   * @uiWidget textArea
    */
   @Prop() completedText: string =
     "Completed {finite, select, 0 {{count, plural, =1 {{count} time} other {{count} times}}} other {{count}/{finite} times}}";
@@ -164,7 +167,6 @@ export class TaskCard {
    * CTA Button Link Opens in New Tab
    * @uiName Open In New Tab
    * @uiGroup CTA Button
-   * @default undefined
    */
   @Prop()
   openNewTab: boolean = false;
@@ -172,8 +174,9 @@ export class TaskCard {
   /**
    * Select what type of stat to display for the goal. Manual paths are also supported.
    *
-   * @uiWidget StatTypeSelectWidget
+   * @uiWidget statTypeSelectWidget
    * @uiName Goal Progress Source
+   * @required
    * @uiWidgetOptions {"version": 1.1}
    * @uiGroup Goal
    */
@@ -192,6 +195,7 @@ export class TaskCard {
    * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
    *
    * @uiName Program ID Override
+   * @uiWidget programSelector
    * @uiGroup Goal
    */
   @Prop() programId?: string;

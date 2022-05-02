@@ -24,6 +24,7 @@ export class ShareCode {
    * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
    *
    * @uiName Program ID
+   * @uiWidget programSelector
    */
   @Prop() programId?: string;
   /**
@@ -36,7 +37,7 @@ export class ShareCode {
   })
   tooltiptext: string = "Copied to Clipboard";
   /**
-   * The number of milliseconds that the tooltip will appear for
+   * The number of milliseconds that the tooltip appears for
    *
    * @uiName Tooltip lifespan
    */

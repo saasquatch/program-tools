@@ -37,6 +37,7 @@ export class ShareButton {
    *
    * @uiName Share Medium
    * @uiType string
+   * @required
    * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
    * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
    */
@@ -57,6 +58,7 @@ export class ShareButton {
    * Optional programId, or uses the programId context where this button is rendered.
    *
    * @uiName Program ID
+   * @uiWidget programSelector
    */
   @Prop() programId?: string;
 
@@ -72,11 +74,13 @@ export class ShareButton {
   /**
    * @uiName Button Background Color
    * @uiWidget color
+   * @format color
    */
   @Prop() backgroundcolor?: string;
   /**
    * @uiName Button Text Color
    * @uiWidget color
+   * @format color
    */
   @Prop() textcolor?: string;
   /**

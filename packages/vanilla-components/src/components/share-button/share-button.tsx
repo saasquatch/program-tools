@@ -30,12 +30,16 @@ export class ShareButton {
    * Background color of the share button
    *
    * @uiName Share Button Background Color
+   * @uiWidget color
+   * @format color
    */
   @Prop() backgroundcolor: string;
   /**
    * Color of the text inside the share button
    *
    * @uiName Share Button Text Color
+   * @uiWidget color
+   * @format color
    */
   @Prop() textcolor: string;
   /**
@@ -78,6 +82,8 @@ export class ShareButton {
    * URL redirect location
    *
    * @uiName URL
+   * @uiWidget imageUpload
+   * @format url
    */
   @Prop() url: string;
 

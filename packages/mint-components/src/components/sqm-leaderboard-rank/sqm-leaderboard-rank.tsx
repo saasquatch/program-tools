@@ -37,6 +37,7 @@ export class LeaderboardRank {
 
   /**
    * @uiName Rank Text
+   * @uiWidget textArea
    */
   @Prop() rankText: string =
     "You are currently in {rank, selectordinal, one {#st} two {#nd} few {#rd} other {#th} } place!";
@@ -44,6 +45,7 @@ export class LeaderboardRank {
   /**
    * @uiName Leaderboard Type
    * @uiType string
+   * @required
    * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
    * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
    */
@@ -59,7 +61,7 @@ export class LeaderboardRank {
 
   /**
    * @uiName Leaderboard Time Interval
-   * @uiWidget DateRange
+   * @uiWidget dateRange
    * @uiWidgetOptions {"allowPastDates":true, "months": 1}
    */
   @Prop() interval: string;
@@ -69,6 +71,7 @@ export class LeaderboardRank {
    * If no program ID is set or provided by context, then a global leaderboard is shown.
    *
    * @uiName Program
+   * @uiWidget programSelector
    */
   @Prop() programId?: string;
 

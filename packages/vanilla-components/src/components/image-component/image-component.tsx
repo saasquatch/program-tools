@@ -19,6 +19,9 @@ export class ImageComponent {
    * Image link
    *
    * @uiName URL
+   * @uiWidget imageUpload
+   * @format url
+   * 
    */
   @Prop() url: string;
   /**
@@ -37,12 +40,17 @@ export class ImageComponent {
    * Configure alignment of the image
    *
    * @uiName Alignment
+   * @uiEnum ['left', 'center', 'right']
+   * @uiEnumNames ['Left', 'Center', 'Right']
+   * @default "center"
    */
   @Prop() alignment: string;
   /**
    * Additional CSS applied to the image element
    *
    * @uiName CSS
+   * @uiWidget textArea
+   * @default "padding-top: 38px; padding-bottom: 7px;"
    */
   @Prop() css: string;
 

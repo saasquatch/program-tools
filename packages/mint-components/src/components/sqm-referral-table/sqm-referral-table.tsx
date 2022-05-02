@@ -19,7 +19,8 @@ import { tryMethod, useReferralTable } from "./useReferralTable";
 /**
  * @uiName Referral Table
  * @exampleGroup Referrals
- * @slots [{"name":"", "title":"Table Row"}]
+ * @slots [{"name":"", "title":"Table Row"},{"name":"empty", "title":"Empty"},{"name":"loading","title":"Loading"}]
+ * @example Referral Table - <sqm-referral-table><sqm-referral-table-user-column column-title="Customer" anonymous-user="Anonymous User" deleted-user="Deleted User"></sqm-referral-table-user-column><sqm-referral-table-rewards-column column-title="Rewards" status-text="{status, select, AVAILABLE {Available} CANCELLED {Cancelled} PENDING {Pending} EXPIRED {Expired} REDEEMED {Redeemed} other {Not available} }" status-long-text="{status, select, AVAILABLE {Reward expiring on} CANCELLED {Reward cancelled on} PENDING {Available on} EXPIRED {Reward expired on} other {Not available} }" fuel-tank-text="Your code is" reward-received-text="Reward received on" expiring-text="Expiring in" pending-for-text="{status} for {date}"></sqm-referral-table-rewards-column><sqm-referral-table-date-column column-title="Date converted" date-shown="dateConverted"></sqm-referral-table-date-column><sqm-referral-table-status-column column-title="Status" converted-status-text="Converted" in-progress-status-text="In Progress"></sqm-referral-table-status-column><sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_referral2.png" empty-state-header="View your referral details" empty-state-text="Refer a friend to view the status of your referrals and rewards earned"></sqm-empty></sqm-referral-table>
  */
 @Component({
   tag: "sqm-referral-table",
@@ -32,6 +33,7 @@ export class ReferralTable {
    * If program ID is "classic", shows classic-only referrals
    *
    * @uiName Program
+   * @uiWidget programSelector
    */
   @Prop() programId: string;
 

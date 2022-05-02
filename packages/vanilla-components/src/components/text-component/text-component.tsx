@@ -38,6 +38,8 @@ export class TextComponent {
    * Color of the text
    *
    * @uiName Color
+   * @uiWidget color
+   * @format color
    */
   @Prop() color: string;
   /**
@@ -62,10 +64,12 @@ export class TextComponent {
    * Text alignment
    *
    * @uiName Text Align
+   * @uiEnum ['left', 'center', 'right']
+   * @uiEnumNames ['Left', 'Center', 'Right']
    */
   @Prop() textalign: string;
   /**
-   * Background color of the container
+   * Background the container, color or url
    *
    * @uiName Background
    */

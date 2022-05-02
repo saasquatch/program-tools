@@ -21,41 +21,51 @@ export class ReferralList {
    * Shown inside the paginate more button
    *
    * @uiName Paginate More Text
+   * @default "View More"
    */
   @Prop() paginatemore: string;
   /**
    * Shown inside the paginate less button
    *
    * @uiName Paginate Less Text
+   * @default "Previous"
    */
   @Prop() paginateless: string;
   /**
    * Shown when referral list is empty
    *
    * @uiName Empty Referrals Text
+   * @default "No Referrals Yet..."
    */
   @Prop() noreferralsyet: string;
   /**
    * Text color of the referred users name
    *
    * @uiName Referral Name Color
+   * @uiWidget color
+   * @format color
+   * @default "darkslategray"
    */
   @Prop() referralnamecolor: string;
   /**
    * Text color of the referral status
    *
    * @uiName Referral Text Color
+   * @uiWidget color
+   * @format color
+   * @default "lightgray"
    */
   @Prop() referraltextcolor: string;
   /**
    * Text shown when the referred users name is unknown
    *
    * @uiName Unknown User Text
+   * @default "Your Friend"
    */
   @Prop() unknownuser: string;
   /**
    * Show or hide expired rewards
-   *
+   * 
    * @uiName Show Expiry
    */
   @Prop() showexpiry: boolean;
@@ -69,132 +79,160 @@ export class ReferralList {
    * Shown when reward is redeemed
    *
    * @uiName Redeemed Value
+   * @uiGroup Converted Referrals
+   * @default "Redeemed"
    */
   @Prop() redeemedvalue: string;
   /**
    * Show or hide the referrer
    *
    * @uiName Show Referrer
-   * @uiGroup referrerProps
+   * @uiGroup Referrer
+   * @default ""
    */
   @Prop() showreferrer: boolean;
   /**
    * Text explaining who referred you to the program
    *
    * @uiName Referrer Content
-   * @uiGroup referrerProps
+   * @uiGroup Referrer
+   * @default "Referred you {date}"
    */
   @Prop() referrercontent: string;
   /**
    * Referred Text shown in reward column
    *
    * @uiName Referrer Value
-   * @uiGroup referrerProps
+   * @uiGroup Referrer
+   * @default "Referred"
    */
   @Prop() referrervalue: string;
   /**
    * Color of the successful reward icon and the text value
    *
    * @uiName Reward Color
-   * @uiGroup convertedReferralProps
+   * @uiGroup Converted Referrals
+   * @uiWidget color
+   * @format color
+   * @default "#4BB543"
    */
   @Prop() rewardcolor: string;
   /**
    * Color of the customer note
    *
    * @uiName Reward Color
-   * @uiGroup convertedReferralProps
+   * @uiGroup Converted Referrals
+   * @uiWidget color
+   * @format color
    */
   @Prop() customernotecolor: string;
   /**
    * Show value of the first earned reward inside the rewards column
    *
    * @uiName Use First Reward
-   * @uiGroup convertedReferralProps
+   * @uiGroup Converted Referrals
    */
   @Prop() usefirstreward: boolean;
   /**
    * Content shown when a referral is converted
    *
    * @uiName Converted Content
-   * @uiGroup convertedReferralProps
+   * @uiGroup Converted Referrals
+   * @default "Signed up, referred {date}"
    */
   @Prop() convertedcontent: string;
   /**
    * Value shown in the rewards column
    *
    * @uiName Value Content
-   * @uiGroup convertedReferralProps
+   * @uiGroup Converted Referrals
+   * @uiWidget textArea
+   * @default "and {extrarewards} more {extrarewards, plural, one {reward} other {rewards}}"
    */
   @Prop() valuecontent: string;
   /**
    * Color of the pending icon and text
    *
    * @uiName Pending Color
-   * @uiGroup pendingReferralProps
+   * @uiGroup Pending Referrals
+   * @uiWidget color
+   * @format color
+   * @default "lightgray"
    */
   @Prop() pendingcolor: string;
   /**
    * Pending content shown in the user column
    *
    * @uiName Pending Content
-   * @uiGroup pendingReferralProps
+   * @uiGroup Pending Referrals
+   * @default "Trial user, referred {date}"
    */
   @Prop() pendingcontent: string;
   /**
    * Pending content shown alongside the icon in the referral column
    *
    * @uiName Pending Value
-   * @uiGroup pendingReferralProps
+   * @uiGroup Pending Referrals
+   * @default "Referral pending"
    */
   @Prop() pendingvalue: string;
   /**
    * Color of the expired icon and text
    *
    * @uiName Expired Color
-   * @uiGroup expiredRewardProps
+   * @uiGroup Expired Rewards
+   * @uiWidget color
+   * @format color
+   * @default "lightgray"
    */
   @Prop() expiredcolor: string;
   /**
    * Expired content shown in the user column
    *
    * @uiName Expired Content
-   * @uiGroup expiredRewardProps
+   * @uiGroup Expired Rewards
+   * @default "Signed up, referred {date}"
    */
   @Prop() expiredcontent: string;
   /**
    * Expired content shown alongside the icon in the referral column
    *
    * @uiName Expired Value
-   * @uiGroup expiredRewardProps
+   * @uiGroup Expired Rewards
+   * @default "Expired Reward"
    */
   @Prop() expiredvalue: string;
   /**
    * Reward expiry ICU message
    *
    * @uiName Expires Value
-   * @uiGroup expiredRewardProps
+   * @uiGroup Expired Rewards
    */
   @Prop() expiresvalue: string;
   /**
    * Color of the cancelled icon and text
    *
    * @uiName Cancelled Color
-   * @uiGroup cancelledRewardProps
+   * @uiGroup Cancelled Rewards
+   * @uiWidget color
+   * @format color
+   * @default "#C81D05"
    */
   @Prop() cancelledcolor: string;
   /**
    * Cancelled text content shown in the user column
    *
    * @uiName Cancelled Content
-   * @uiGroup cancelledRewardProps
+   * @uiGroup Cancelled Rewards
+   * @default "Signed up, referred {date}"
    */
   @Prop() cancelledcontent: string;
   /**
    * Cancelled text content shown alongside the icon in the referral column
    *
    * @uiName Cancelled Value
-   * @uiGroup cancelledRewardProps
+   * @uiGroup Cancelled Rewards
+   * @default "Cancelled Reward"
    */
   @Prop() cancelledvalue: string;
   /**

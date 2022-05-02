@@ -9,7 +9,7 @@ import { LeaderboardProps, useLeaderboard } from "./useLeaderboard";
 
 /**
  * @uiName Leaderboard
- * @slot [{"name":"empty", "title":"Empty State"}]
+ * @slots [{"name":"empty", "title":"Empty State"}]
  * @exampleGroup Leaderboards
  * @example Referral Converted Leaderboard - <sqm-leaderboard usersheading="Referrer" statsheading="Referrals" rankheading="Rank" rank-type="rowNumber" leaderboard-type="topConvertedReferrers" show-rank anonymous-user="Anonymous User"> <sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" > </sqm-empty></sqm-leaderboard>
  * @example Referral Started Leaderboard - <sqm-leaderboard usersheading="Referrer" statsheading="Referrals" rankheading="Rank" rank-type="rowNumber" leaderboard-type="topStartedReferrers" show-rank anonymous-user="Anonymous User"> <sqm-empty empty-state-image="https://res.cloudinary.com/saasquatch/image/upload/v1644000223/squatch-assets/empty_leaderboard2.png" empty-state-header="View your rank in the leaderboard" empty-state-text="Be the first to refer a friend and reach the top of the leaderboard" > </sqm-empty></sqm-leaderboard>
@@ -25,6 +25,7 @@ export class Leaderboard {
    * If no program ID is set or provided by context, then a global leaderboard is shown.
    *
    * @uiName Program
+   * @uiWidget programSelector
    */
   @Prop() programId?: string;
 
@@ -46,7 +47,7 @@ export class Leaderboard {
   @Prop() showRank: boolean;
 
   /**
-   * Hide the viewer's leaderboard row if not in the top 10.
+   * Hide the viewer's leaderboard row if not in the top results.
    *
    * @uiName Hide Viewing User
    */
@@ -63,6 +64,7 @@ export class Leaderboard {
   /**
    * @uiName Leaderboard Type
    * @uiType string
+   * @required
    * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
    * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
    */
@@ -79,7 +81,7 @@ export class Leaderboard {
 
   /**
    * @uiName Leaderboard Time Interval
-   * @uiWidget DateRange
+   * @uiWidget dateRange
    * @uiWidgetOptions {"allowPastDates":true, "months": 1}
    */
   @Prop() interval: string;

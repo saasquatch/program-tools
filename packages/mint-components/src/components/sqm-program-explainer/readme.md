@@ -14,13 +14,6 @@
 | `textColor`       | `text-color`       |             | `string` | `undefined` |
 
 
-## Slots
-
-| Slot                                                                                   | Description |
-| -------------------------------------------------------------------------------------- | ----------- |
-| `"[{"name":"", "title":"Explainer", "validChildren":["sqm-program-explainer-step"]}]"` |             |
-
-
 ## Dependencies
 
 ### Used by
