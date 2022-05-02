@@ -44,7 +44,7 @@ export class Hero {
    * Flexbox wrap direction, accepts wrap or wrap-reverse
    *
    * @uiName Wrap Direction
-   * @uiEnum ["wrap", "wrap-reverse]
+   * @uiEnum ["wrap", "wrap-reverse"]
    * @uiEnumNames ["Wrap", "Wrap Reverse"]
    */
   @Prop() wrapDirection: "wrap" | "wrap-reverse" = "wrap";

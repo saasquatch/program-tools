@@ -75,19 +75,21 @@ export namespace Components {
         /**
           * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
           * Select what type of stat to display. Manual paths are also supported.
-          * @uiWidget StatTypeSelectWidget
+          * @uiWidget statTypeSelectWidget
           * @uiName Stat Type
+          * @required 
           * @uiWidgetOptions {"version": 1.1}
          */
         "statType": string;
     }
     interface SqmBrand {
         /**
-          * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
+          * Controls the primary brand color used in the Mint Components library.
           * @uiName Brand Color
           * @uiWidget color
           * @format color
@@ -97,6 +99,7 @@ export namespace Components {
         /**
           * The brand font that you want to use
           * @uiName Brand Font
+          * @default "Nunito Sans"
          */
         "brandFont": string;
     }
@@ -228,6 +231,7 @@ export namespace Components {
         "emptyStateHeader": string;
         /**
           * @uiWidget ImageUpload
+          * @format url
           * @uiName Empty State Image Link
          */
         "emptyStateImage": string;
@@ -266,6 +270,8 @@ export namespace Components {
         "columns": 1 | 2;
         /**
           * @uiName Padding Size
+          * @uiEnum ["none", "small", "medium","large"]
+          * @uiEnumNames ["None", "Small", "Medium", "Large"]
          */
         "paddingSize": "none" | "small" | "medium" | "large";
         /**
@@ -276,6 +282,8 @@ export namespace Components {
         /**
           * Flexbox wrap direction, accepts wrap or wrap-reverse
           * @uiName Wrap Direction
+          * @uiEnum ["wrap", "wrap-reverse"]
+          * @uiEnumNames ["Wrap", "Wrap Reverse"]
          */
         "wrapDirection": "wrap" | "wrap-reverse";
     }
@@ -283,6 +291,7 @@ export namespace Components {
         /**
           * @uiName Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundColor"?: string;
         /**
@@ -327,6 +336,7 @@ export namespace Components {
         "imagePos": "left" | "center" | "right";
         /**
           * @uiWidget ImageUpload
+          * @format url
           * @uiName Image Link
          */
         "imageUrl": string;
@@ -340,6 +350,7 @@ export namespace Components {
         /**
           * @uiName Overlay Color
           * @uiWidget color
+          * @format color
          */
         "overlayColor"?: string;
         /**
@@ -363,6 +374,7 @@ export namespace Components {
         /**
           * @uiName Text Color
           * @uiWidget color
+          * @format color
          */
         "textColor"?: string;
     }
@@ -380,10 +392,13 @@ export namespace Components {
         /**
           * @uiName Background Color
           * @uiWidget color
+          * @format
          */
         "backgroundColor": string;
         /**
           * @uiWidget ImageUpload
+          * @format url
+          * @required 
           * @uiName Image Link
          */
         "imageUrl": string;
@@ -436,19 +451,20 @@ export namespace Components {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * Hide the viewer's leaderboard row if not in the top 10.
+          * Hide the viewer's leaderboard row if not in the top results.
           * @uiName Hide Viewing User
          */
         "hideViewer": boolean;
         /**
           * @uiName Leaderboard Time Interval
-          * @uiWidget DateRange
+          * @uiWidget dateRange
           * @uiWidgetOptions {"allowPastDates":true, "months": 1}
          */
         "interval": string;
         /**
           * @uiName Leaderboard Type
           * @uiType string
+          * @required 
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
           * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
@@ -463,6 +479,7 @@ export namespace Components {
         /**
           * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
@@ -497,13 +514,14 @@ export namespace Components {
         "demoData"?: DemoData<LeaderboardRankViewProps>;
         /**
           * @uiName Leaderboard Time Interval
-          * @uiWidget DateRange
+          * @uiWidget dateRange
           * @uiWidgetOptions {"allowPastDates":true, "months": 1}
          */
         "interval": string;
         /**
           * @uiName Leaderboard Type
           * @uiType string
+          * @required 
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
           * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
@@ -513,10 +531,12 @@ export namespace Components {
         /**
           * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
           * @uiName Rank Text
+          * @uiWidget textArea
          */
         "rankText": string;
         /**
@@ -1083,6 +1103,7 @@ export namespace Components {
         /**
           * @uiName Header Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundColor": string;
         /**
@@ -1092,6 +1113,7 @@ export namespace Components {
         /**
           * @uiName Header Text Color
           * @uiWidget color
+          * @format color
          */
         "textColor": string;
     }
@@ -1099,10 +1121,12 @@ export namespace Components {
         /**
           * @uiName Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundColor": string;
         /**
           * @uiName Description
+          * @uiWidget textArea
          */
         "description": string;
         /**
@@ -1117,11 +1141,14 @@ export namespace Components {
         /**
           * Displayed in place of an icon
           * @uiName Image Url
+          * @uiWidget imageUpload
+          * @format url
          */
         "imageUrl"?: string;
         /**
           * @uiName Text Color
           * @uiWidget color
+          * @format color
          */
         "textColor": string;
     }
@@ -1190,6 +1217,7 @@ export namespace Components {
         /**
           * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs. If program ID is "classic", shows classic-only referrals
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId": string;
         /**
@@ -1278,10 +1306,12 @@ export namespace Components {
         "rewardReceivedText": string;
         /**
           * @uiName Reward Status Long Text
+          * @uiWidget textArea
          */
         "statusLongText": string;
         /**
           * @uiName Reward Status Text
+          * @uiWidget textArea
          */
         "statusText": string;
     }
@@ -1375,10 +1405,12 @@ export namespace Components {
         /**
           * Error message shown when reward is not available
           * @uiName Not Available Error
+          * @uiWidget textArea
          */
         "notAvailableError": string;
         /**
           * @uiName Not Enough Error Message
+          * @uiWidget textArea
          */
         "notEnoughError": string;
         /**
@@ -1388,6 +1420,7 @@ export namespace Components {
         /**
           * Shown if an error occurs when loading the reward exchange.
           * @uiName Reward List Error Message
+          * @uiWidget textArea
          */
         "queryError": string;
         /**
@@ -1402,11 +1435,13 @@ export namespace Components {
         /**
           * Shown if an error occurs during the reward exchange.
           * @uiName Redemption Error Message
+          * @uiWidget textArea
          */
         "redemptionError": string;
         /**
           * Displayed on the success screen when a user successfully exchanges for a reward.
           * @uiName Redemption Success Message
+          * @uiWidget textArea
          */
         "redemptionSuccessText": string;
         /**
@@ -1439,6 +1474,7 @@ export namespace Components {
         /**
           * Displayed on the reward exchange cards.
           * @uiName Reward Exchange Amount Text
+          * @uiWidget textArea
          */
         "sourceAmountMessage": string;
         /**
@@ -1477,6 +1513,7 @@ export namespace Components {
         /**
           * Filters to only show rewards in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all rewards from all programs.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId": string;
         /**
@@ -1573,6 +1610,7 @@ export namespace Components {
         /**
           * Shown when a reward has been created by a referral
           * @uiName Referral Text
+          * @uiWidget textArea
          */
         "referralText": string;
         "renderCell": (data: Reward, locale: any) => Promise<any>;
@@ -1583,6 +1621,7 @@ export namespace Components {
         "rewardExchangeText": string;
         /**
           * @uiName Reward Source Text
+          * @uiWidget textArea
          */
         "rewardSourceText": string;
     }
@@ -1622,6 +1661,7 @@ export namespace Components {
         "renderLabel": () => Promise<string>;
         /**
           * @uiName Reward Status Text
+          * @uiWidget textArea
          */
         "statusText": string;
     }
@@ -1709,6 +1749,7 @@ export namespace Components {
         /**
           * @uiName Button Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundcolor"?: string;
         /**
@@ -1749,6 +1790,7 @@ export namespace Components {
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
           * @uiType string
+          * @required 
           * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
           * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
          */
@@ -1771,6 +1813,7 @@ export namespace Components {
         /**
           * Optional programId, or uses the programId context where this button is rendered.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
@@ -1793,6 +1836,7 @@ export namespace Components {
         /**
           * @uiName Button Text Color
           * @uiWidget color
+          * @format color
          */
         "textcolor"?: string;
         /**
@@ -1818,10 +1862,11 @@ export namespace Components {
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
-          * The number of milliseconds that the tooltip will appear for
+          * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
          */
         "tooltiplifespan": number;
@@ -1840,10 +1885,11 @@ export namespace Components {
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
-          * The number of milliseconds that the tooltip will appear for
+          * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip Lifespan
          */
         "tooltiplifespan": number;
@@ -1914,6 +1960,7 @@ export namespace Components {
           * Displays the amount of times that a user has completed a repeatable task.
           * @uiName Completed Count Text
           * @uiGroup Task
+          * @uiWidget textArea
          */
         "completedText": string;
         /**
@@ -1929,7 +1976,7 @@ export namespace Components {
         /**
           * Timeframe that the task card will be shown
           * @uiName Display Duration
-          * @uiWidget DateRange
+          * @uiWidget dateRange
           * @uiWidgetOptions {"allowPastDates":true, "months": 1}
           * @uiGroup Task
          */
@@ -1967,12 +2014,12 @@ export namespace Components {
           * CTA Button Link Opens in New Tab
           * @uiName Open In New Tab
           * @uiGroup CTA Button
-          * @default undefined
          */
         "openNewTab": boolean;
         /**
           * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
           * @uiName Program ID Override
+          * @uiWidget programSelector
           * @uiGroup Goal
          */
         "programId"?: string;
@@ -1993,7 +2040,7 @@ export namespace Components {
         "rewardAmount": string;
         /**
           * @uiName Reward Duration
-          * @uiWidget DateRange
+          * @uiWidget dateRange
           * @uiWidgetOptions {"allowPastDates":true, "months": 1}
           * @uiGroup Reward
          */
@@ -2016,8 +2063,9 @@ export namespace Components {
         "startsOnMessage": string;
         /**
           * Select what type of stat to display for the goal. Manual paths are also supported.
-          * @uiWidget StatTypeSelectWidget
+          * @uiWidget statTypeSelectWidget
           * @uiName Goal Progress Source
+          * @required 
           * @uiWidgetOptions {"version": 1.1}
           * @uiGroup Goal
          */
@@ -2749,19 +2797,21 @@ declare namespace LocalJSX {
         /**
           * The ID of the program that is used to scope stats. Defaults to the program context when no ID is specified.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
           * Select what type of stat to display. Manual paths are also supported.
-          * @uiWidget StatTypeSelectWidget
+          * @uiWidget statTypeSelectWidget
           * @uiName Stat Type
+          * @required 
           * @uiWidgetOptions {"version": 1.1}
          */
         "statType"?: string;
     }
     interface SqmBrand {
         /**
-          * Controls the primary brand color used in the Mint Components library. Note that this does not affect vanilla components or other component libraries.
+          * Controls the primary brand color used in the Mint Components library.
           * @uiName Brand Color
           * @uiWidget color
           * @format color
@@ -2771,6 +2821,7 @@ declare namespace LocalJSX {
         /**
           * The brand font that you want to use
           * @uiName Brand Font
+          * @default "Nunito Sans"
          */
         "brandFont"?: string;
     }
@@ -2902,6 +2953,7 @@ declare namespace LocalJSX {
         "emptyStateHeader"?: string;
         /**
           * @uiWidget ImageUpload
+          * @format url
           * @uiName Empty State Image Link
          */
         "emptyStateImage"?: string;
@@ -2940,6 +2992,8 @@ declare namespace LocalJSX {
         "columns"?: 1 | 2;
         /**
           * @uiName Padding Size
+          * @uiEnum ["none", "small", "medium","large"]
+          * @uiEnumNames ["None", "Small", "Medium", "Large"]
          */
         "paddingSize"?: "none" | "small" | "medium" | "large";
         /**
@@ -2950,6 +3004,8 @@ declare namespace LocalJSX {
         /**
           * Flexbox wrap direction, accepts wrap or wrap-reverse
           * @uiName Wrap Direction
+          * @uiEnum ["wrap", "wrap-reverse"]
+          * @uiEnumNames ["Wrap", "Wrap Reverse"]
          */
         "wrapDirection"?: "wrap" | "wrap-reverse";
     }
@@ -2957,6 +3013,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundColor"?: string;
         /**
@@ -3001,6 +3058,7 @@ declare namespace LocalJSX {
         "imagePos"?: "left" | "center" | "right";
         /**
           * @uiWidget ImageUpload
+          * @format url
           * @uiName Image Link
          */
         "imageUrl"?: string;
@@ -3014,6 +3072,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Overlay Color
           * @uiWidget color
+          * @format color
          */
         "overlayColor"?: string;
         /**
@@ -3037,6 +3096,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Text Color
           * @uiWidget color
+          * @format color
          */
         "textColor"?: string;
     }
@@ -3054,10 +3114,13 @@ declare namespace LocalJSX {
         /**
           * @uiName Background Color
           * @uiWidget color
+          * @format
          */
         "backgroundColor"?: string;
         /**
           * @uiWidget ImageUpload
+          * @format url
+          * @required 
           * @uiName Image Link
          */
         "imageUrl"?: string;
@@ -3110,19 +3173,20 @@ declare namespace LocalJSX {
          */
         "demoData"?: DemoData<LeaderboardViewProps>;
         /**
-          * Hide the viewer's leaderboard row if not in the top 10.
+          * Hide the viewer's leaderboard row if not in the top results.
           * @uiName Hide Viewing User
          */
         "hideViewer"?: boolean;
         /**
           * @uiName Leaderboard Time Interval
-          * @uiWidget DateRange
+          * @uiWidget dateRange
           * @uiWidgetOptions {"allowPastDates":true, "months": 1}
          */
         "interval"?: string;
         /**
           * @uiName Leaderboard Type
           * @uiType string
+          * @required 
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
           * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
@@ -3137,6 +3201,7 @@ declare namespace LocalJSX {
         /**
           * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
@@ -3171,13 +3236,14 @@ declare namespace LocalJSX {
         "demoData"?: DemoData<LeaderboardRankViewProps>;
         /**
           * @uiName Leaderboard Time Interval
-          * @uiWidget DateRange
+          * @uiWidget dateRange
           * @uiWidgetOptions {"allowPastDates":true, "months": 1}
          */
         "interval"?: string;
         /**
           * @uiName Leaderboard Type
           * @uiType string
+          * @required 
           * @uiEnum ["topStartedReferrers", "topConvertedReferrers", "topPointEarners"]
           * @uiEnumNames ["Top Started Referrers", "Top Converted Referrers", "Top Point Earners"]
          */
@@ -3187,10 +3253,12 @@ declare namespace LocalJSX {
         /**
           * Filters leaderboard to show only data from this program. Defaults to the program context where this leaderboard is. If no program ID is set or provided by context, then a global leaderboard is shown.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
           * @uiName Rank Text
+          * @uiWidget textArea
          */
         "rankText"?: string;
         /**
@@ -3757,6 +3825,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Header Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundColor"?: string;
         /**
@@ -3766,6 +3835,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Header Text Color
           * @uiWidget color
+          * @format color
          */
         "textColor"?: string;
     }
@@ -3773,10 +3843,12 @@ declare namespace LocalJSX {
         /**
           * @uiName Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundColor"?: string;
         /**
           * @uiName Description
+          * @uiWidget textArea
          */
         "description"?: string;
         /**
@@ -3791,11 +3863,14 @@ declare namespace LocalJSX {
         /**
           * Displayed in place of an icon
           * @uiName Image Url
+          * @uiWidget imageUpload
+          * @format url
          */
         "imageUrl"?: string;
         /**
           * @uiName Text Color
           * @uiWidget color
+          * @format color
          */
         "textColor"?: string;
     }
@@ -3864,6 +3939,7 @@ declare namespace LocalJSX {
         /**
           * Filters to only show referrals in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all referrals from all programs. If program ID is "classic", shows classic-only referrals
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
@@ -3944,10 +4020,12 @@ declare namespace LocalJSX {
         "rewardReceivedText"?: string;
         /**
           * @uiName Reward Status Long Text
+          * @uiWidget textArea
          */
         "statusLongText"?: string;
         /**
           * @uiName Reward Status Text
+          * @uiWidget textArea
          */
         "statusText"?: string;
     }
@@ -4035,10 +4113,12 @@ declare namespace LocalJSX {
         /**
           * Error message shown when reward is not available
           * @uiName Not Available Error
+          * @uiWidget textArea
          */
         "notAvailableError"?: string;
         /**
           * @uiName Not Enough Error Message
+          * @uiWidget textArea
          */
         "notEnoughError"?: string;
         /**
@@ -4048,6 +4128,7 @@ declare namespace LocalJSX {
         /**
           * Shown if an error occurs when loading the reward exchange.
           * @uiName Reward List Error Message
+          * @uiWidget textArea
          */
         "queryError"?: string;
         /**
@@ -4062,11 +4143,13 @@ declare namespace LocalJSX {
         /**
           * Shown if an error occurs during the reward exchange.
           * @uiName Redemption Error Message
+          * @uiWidget textArea
          */
         "redemptionError"?: string;
         /**
           * Displayed on the success screen when a user successfully exchanges for a reward.
           * @uiName Redemption Success Message
+          * @uiWidget textArea
          */
         "redemptionSuccessText"?: string;
         /**
@@ -4099,6 +4182,7 @@ declare namespace LocalJSX {
         /**
           * Displayed on the reward exchange cards.
           * @uiName Reward Exchange Amount Text
+          * @uiWidget textArea
          */
         "sourceAmountMessage"?: string;
         /**
@@ -4137,6 +4221,7 @@ declare namespace LocalJSX {
         /**
           * Filters to only show rewards in this program. Will default to filtering by the program context where this table lives. If no program ID is set or provided by context, then shows all rewards from all programs.
           * @uiName Program
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
@@ -4227,6 +4312,7 @@ declare namespace LocalJSX {
         /**
           * Shown when a reward has been created by a referral
           * @uiName Referral Text
+          * @uiWidget textArea
          */
         "referralText"?: string;
         /**
@@ -4235,6 +4321,7 @@ declare namespace LocalJSX {
         "rewardExchangeText"?: string;
         /**
           * @uiName Reward Source Text
+          * @uiWidget textArea
          */
         "rewardSourceText"?: string;
     }
@@ -4272,6 +4359,7 @@ declare namespace LocalJSX {
         "pendingUsTax"?: string;
         /**
           * @uiName Reward Status Text
+          * @uiWidget textArea
          */
         "statusText"?: string;
     }
@@ -4359,6 +4447,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Button Background Color
           * @uiWidget color
+          * @format color
          */
         "backgroundcolor"?: string;
         /**
@@ -4399,6 +4488,7 @@ declare namespace LocalJSX {
           * The social medium to share on. Share messages and links will be pulled from your program config and tagged for analytics.
           * @uiName Share Medium
           * @uiType string
+          * @required 
           * @uiEnum ["facebook", "twitter", "email", "direct", "linkedin", "sms", "fbmessenger", "whatsapp", "linemessenger", "pinterest" ]
           * @uiEnumNames ["Facebook", "Twitter", "Email", "Web Share Sheet", "Linkedin", "SMS", "Facebook Messenger", "Whatsapp", "Line Messenger", "Pinterest"]
          */
@@ -4421,6 +4511,7 @@ declare namespace LocalJSX {
         /**
           * Optional programId, or uses the programId context where this button is rendered.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
@@ -4443,6 +4534,7 @@ declare namespace LocalJSX {
         /**
           * @uiName Button Text Color
           * @uiWidget color
+          * @format color
          */
         "textcolor"?: string;
         /**
@@ -4468,10 +4560,11 @@ declare namespace LocalJSX {
         /**
           * The ID of the program that should generate the code. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
-          * The number of milliseconds that the tooltip will appear for
+          * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip lifespan
          */
         "tooltiplifespan"?: number;
@@ -4490,10 +4583,11 @@ declare namespace LocalJSX {
         /**
           * The ID of the program that should generate the link. Defaults to the program ID in context where this widget is loaded.
           * @uiName Program ID
+          * @uiWidget programSelector
          */
         "programId"?: string;
         /**
-          * The number of milliseconds that the tooltip will appear for
+          * The number of milliseconds that the tooltip appears for
           * @uiName Tooltip Lifespan
          */
         "tooltiplifespan"?: number;
@@ -4564,6 +4658,7 @@ declare namespace LocalJSX {
           * Displays the amount of times that a user has completed a repeatable task.
           * @uiName Completed Count Text
           * @uiGroup Task
+          * @uiWidget textArea
          */
         "completedText"?: string;
         /**
@@ -4579,7 +4674,7 @@ declare namespace LocalJSX {
         /**
           * Timeframe that the task card will be shown
           * @uiName Display Duration
-          * @uiWidget DateRange
+          * @uiWidget dateRange
           * @uiWidgetOptions {"allowPastDates":true, "months": 1}
           * @uiGroup Task
          */
@@ -4617,12 +4712,12 @@ declare namespace LocalJSX {
           * CTA Button Link Opens in New Tab
           * @uiName Open In New Tab
           * @uiGroup CTA Button
-          * @default undefined
          */
         "openNewTab"?: boolean;
         /**
           * The ID of the program that is used to scope the task card. Defaults to the program context when no ID is specified.
           * @uiName Program ID Override
+          * @uiWidget programSelector
           * @uiGroup Goal
          */
         "programId"?: string;
@@ -4643,7 +4738,7 @@ declare namespace LocalJSX {
         "rewardAmount"?: string;
         /**
           * @uiName Reward Duration
-          * @uiWidget DateRange
+          * @uiWidget dateRange
           * @uiWidgetOptions {"allowPastDates":true, "months": 1}
           * @uiGroup Reward
          */
@@ -4666,8 +4761,9 @@ declare namespace LocalJSX {
         "startsOnMessage"?: string;
         /**
           * Select what type of stat to display for the goal. Manual paths are also supported.
-          * @uiWidget StatTypeSelectWidget
+          * @uiWidget statTypeSelectWidget
           * @uiName Goal Progress Source
+          * @required 
           * @uiWidgetOptions {"version": 1.1}
           * @uiGroup Goal
          */
