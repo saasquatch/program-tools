@@ -66,6 +66,7 @@ export const SwitchView = React.forwardRef<
     id,
     color = "success",
     value,
+    checked,
     customCSS = {},
     onChange,
     ...rest
@@ -77,7 +78,7 @@ export const SwitchView = React.forwardRef<
         <SwitchBackgroundInput
           {...rest}
           color={color}
-          checked={value}
+          checked={value || checked}
           type="checkbox"
           id={id}
           ref={forwardedRef}
